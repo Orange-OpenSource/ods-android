@@ -1,0 +1,9 @@
+<resources>
+
+    <!-- Orange Design System theme for night mode. -->
+    <style name="Theme.Orange" parent="Base.Theme.Orange">
+        <item name="colorPrimary">@android:color/holo_red_light</item>
+        <item name="colorSecondary">@android:color/holo_blue_light</item>
+    </style>
+
+</resources>
