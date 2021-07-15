@@ -1,0 +1,12 @@
+<resources>
+
+    <!-- Orange Design System theme. -->
+    <style name="Theme.Orange" parent="Base.Theme.Orange">
+        <item name="colorPrimary">@android:color/holo_red_dark</item>
+        <item name="colorSecondary">@android:color/holo_blue_dark</item>
+    </style>
+
+    <style name="Base.Theme.Orange" parent="Theme.MaterialComponents.DayNight"/>
+
+
+</resources>
