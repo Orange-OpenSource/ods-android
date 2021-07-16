@@ -9,7 +9,35 @@
     <fragment
         android:id="@+id/navigation_home"
         android:name="com.orange.ods.sample.home.HomeFragment"
-        android:label="@string/title_home"
-        tools:layout="@layout/fragment_home" />
+        android:label="@string/home_title"
+        tools:layout="@layout/fragment_home">
+        <action
+            android:id="@+id/action_navigation_home_to_navigation_text_button"
+            app:destination="@id/navigation_text_button" />
+        <action
+            android:id="@+id/action_navigation_home_to_navigation_outlined_button"
+            app:destination="@id/navigation_outlined_button" />
+        <action
+            android:id="@+id/action_navigation_home_to_navigation_contained_button"
+            app:destination="@id/navigation_contained_button" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/navigation_text_button"
+        android:name="com.orange.ods.sample.button.TextButtonFragment"
+        android:label="@string/text_button_title"
+        tools:layout="@layout/fragment_text_button" />
+
+    <fragment
+        android:id="@+id/navigation_outlined_button"
+        android:name="com.orange.ods.sample.button.OutlinedButtonFragment"
+        android:label="@string/outlined_button_title"
+        tools:layout="@layout/fragment_outlined_button" />
+
+    <fragment
+        android:id="@+id/navigation_contained_button"
+        android:name="com.orange.ods.sample.button.ContainedButtonFragment"
+        android:label="@string/contained_button_title"
+        tools:layout="@layout/fragment_contained_button" />
 
 </navigation>
