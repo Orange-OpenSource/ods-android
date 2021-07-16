@@ -1,0 +1,8 @@
+<Button xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    style="@style/Widget.Orange.Button.Icon"
+    app:icon="@drawable/ic_plus"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:focusable="true"
+    android:focusableInTouchMode="true" />

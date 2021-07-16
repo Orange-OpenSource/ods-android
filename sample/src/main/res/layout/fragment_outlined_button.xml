@@ -9,81 +9,115 @@
 
         <Button
             android:id="@+id/button_state_enabled"
+            style="@style/Widget.Orange.Button.OutlinedButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:focusable="true"
+            android:focusableInTouchMode="true"
             android:text="@string/button_state_enabled" />
 
         <Button
             android:id="@+id/button_with_icon_state_enabled"
+            style="@style/Widget.Orange.Button.OutlinedButton.Icon"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:focusable="true"
+            android:focusableInTouchMode="true"
             android:text="@string/button_state_enabled"
             app:icon="@drawable/ic_plus" />
 
         <Button
             android:id="@+id/button_state_hovered"
+            style="@style/Widget.Orange.Button.OutlinedButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:focusable="true"
+            android:focusableInTouchMode="true"
             android:text="@string/button_state_hovered" />
 
         <Button
             android:id="@+id/button_with_icon_state_hovered"
+            style="@style/Widget.Orange.Button.OutlinedButton.Icon"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:focusable="true"
+            android:focusableInTouchMode="true"
             android:text="@string/button_state_hovered"
             app:icon="@drawable/ic_plus" />
 
         <Button
             android:id="@+id/button_state_focused"
+            style="@style/Widget.Orange.Button.OutlinedButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:focusable="true"
+            android:focusableInTouchMode="true"
             android:text="@string/button_state_focused" />
 
         <Button
             android:id="@+id/button_with_icon_state_focused"
+            style="@style/Widget.Orange.Button.OutlinedButton.Icon"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:focusable="true"
+            android:focusableInTouchMode="true"
             android:text="@string/button_state_focused"
             app:icon="@drawable/ic_plus" />
 
         <Button
             android:id="@+id/button_state_pressed"
+            style="@style/Widget.Orange.Button.OutlinedButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:focusable="true"
+            android:focusableInTouchMode="true"
             android:text="@string/button_state_pressed" />
 
         <Button
             android:id="@+id/button_with_icon_state_pressed"
+            style="@style/Widget.Orange.Button.OutlinedButton.Icon"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:focusable="true"
+            android:focusableInTouchMode="true"
             android:text="@string/button_state_pressed"
             app:icon="@drawable/ic_plus" />
 
         <Button
             android:id="@+id/button_state_dragged"
+            style="@style/Widget.Orange.Button.OutlinedButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:focusable="true"
+            android:focusableInTouchMode="true"
             android:text="@string/button_state_dragged" />
 
         <Button
             android:id="@+id/button_with_icon_state_dragged"
+            style="@style/Widget.Orange.Button.OutlinedButton.Icon"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:focusable="true"
+            android:focusableInTouchMode="true"
             android:text="@string/button_state_dragged"
             app:icon="@drawable/ic_plus" />
 
         <Button
             android:id="@+id/button_state_disabled"
+            style="@style/Widget.Orange.Button.OutlinedButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:enabled="false"
+            android:focusable="true"
+            android:focusableInTouchMode="true"
             android:text="@string/button_state_disabled" />
 
         <Button
             android:id="@+id/button_with_icon_state_disabled"
+            style="@style/Widget.Orange.Button.OutlinedButton.Icon"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:enabled="false"
+            android:focusable="true"
+            android:focusableInTouchMode="true"
             android:text="@string/button_state_disabled"
             app:icon="@drawable/ic_plus" />
 

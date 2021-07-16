@@ -1,0 +1,12 @@
+<resources>
+
+    <style name="Widget.Orange.Button" parent="Widget.MaterialComponents.Button"/>
+    <style name="Widget.Orange.Button.Icon" parent="Widget.MaterialComponents.Button.Icon"/>
+
+    <style name="Widget.Orange.Button.TextButton" parent="Widget.MaterialComponents.Button.TextButton"/>
+    <style name="Widget.Orange.Button.TextButton.Icon" parent="Widget.MaterialComponents.Button.TextButton.Icon"/>
+
+    <style name="Widget.Orange.Button.OutlinedButton" parent="Widget.MaterialComponents.Button.OutlinedButton"/>
+    <style name="Widget.Orange.Button.OutlinedButton.Icon" parent="Widget.MaterialComponents.Button.OutlinedButton.Icon"/>
+
+</resources>
