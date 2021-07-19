@@ -17,4 +17,7 @@
     <string name="contained_button_title">Contained button states</string>
     <string name="home_to_contained_button">Contained button states</string>
     <string name="button_add_icon">Show icon</string>
+
+    <string name="light_mode">Light mode</string>
+    <string name="dark_mode">Dark mode</string>
 </resources>
