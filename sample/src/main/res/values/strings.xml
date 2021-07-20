@@ -16,8 +16,24 @@
     <string name="button_state_disabled">disabled</string>
     <string name="contained_button_title">Contained button states</string>
     <string name="home_to_contained_button">Contained button states</string>
+    <string name="home_to_typography">Typography</string>
     <string name="button_add_icon">Show icon</string>
+
+    <string name="typography_title">Typography</string>
 
     <string name="light_mode">Light mode</string>
     <string name="dark_mode">Dark mode</string>
+    <string name="typography_headline1">Headline</string>
+    <string name="typography_headline2">Headline 2</string>
+    <string name="typography_headline3">Headline 3</string>
+    <string name="typography_headline4">Headline 4</string>
+    <string name="typography_headline5">Headline 5</string>
+    <string name="typography_headline6">Headline 6</string>
+    <string name="typography_subtitle1">Subtitle 1</string>
+    <string name="typography_subtitle2">Subtitle 2</string>
+    <string name="typography_body1">Body 1</string>
+    <string name="typography_body2">Body 2</string>
+    <string name="typography_button">Button</string>
+    <string name="typography_caption">Caption</string>
+    <string name="typography_overline">Overline</string>
 </resources>

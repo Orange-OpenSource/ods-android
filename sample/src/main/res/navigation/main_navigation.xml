@@ -20,6 +20,9 @@
         <action
             android:id="@+id/action_navigation_home_to_navigation_contained_button"
             app:destination="@id/navigation_contained_button" />
+        <action
+            android:id="@+id/action_navigation_home_to_navigation_typography"
+            app:destination="@id/navigation_typography" />
     </fragment>
 
     <fragment
@@ -39,5 +42,11 @@
         android:name="com.orange.ods.sample.button.ContainedButtonFragment"
         android:label="@string/contained_button_title"
         tools:layout="@layout/fragment_contained_button" />
+
+    <fragment
+        android:id="@+id/navigation_typography"
+        android:name="com.orange.ods.sample.typography.TypographyFragment"
+        android:label="@string/typography_title"
+        tools:layout="@layout/fragment_typography" />
 
 </navigation>

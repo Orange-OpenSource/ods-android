@@ -10,19 +10,29 @@
             android:id="@+id/text_button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            style="@style/Widget.Orange.Button.Outlined"
             android:text="@string/home_to_text_button" />
 
         <Button
             android:id="@+id/outlined_button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            style="@style/Widget.Orange.Button.Outlined"
             android:text="@string/home_to_outlined_button" />
 
         <Button
             android:id="@+id/contained_button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            style="@style/Widget.Orange.Button.Outlined"
             android:text="@string/home_to_contained_button" />
+
+        <Button
+            android:id="@+id/typography"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            style="@style/Widget.Orange.Button.Outlined"
+            android:text="@string/home_to_typography" />
     </LinearLayout>
 
 

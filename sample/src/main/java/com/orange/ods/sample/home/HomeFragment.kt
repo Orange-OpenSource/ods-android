@@ -21,5 +21,9 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(R.layout.fragment_home) {
         binding.containedButton.setOnClickListener {
             findNavController().navigate(HomeFragmentDirections.actionNavigationHomeToNavigationContainedButton())
         }
+
+        binding.typography.setOnClickListener {
+            findNavController().navigate(HomeFragmentDirections.actionNavigationHomeToNavigationTypography())
+        }
     }
 }
