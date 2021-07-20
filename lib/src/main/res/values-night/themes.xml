@@ -2,8 +2,22 @@
 
     <!-- Orange Design System theme for night mode. -->
     <style name="Theme.Orange" parent="Base.Theme.Orange">
-        <item name="colorPrimary">@android:color/holo_red_light</item>
-        <item name="colorSecondary">@android:color/holo_blue_light</item>
+        <item name="colorPrimary">@color/ods_color_core_orange_200</item>
+        <item name="colorPrimaryVariant">@color/orange_primary_variant</item>
+        <item name="colorOnPrimary">@color/ods_color_core_black_900</item>
+
+        <item name="colorSecondary">@color/ods_color_core_orange_200</item>
+        <item name="colorSecondaryVariant">@color/orange_primary_variant</item>
+        <item name="colorOnSecondary">@color/ods_color_core_black_900</item>
+
+        <item name="android:colorBackground">@color/dark_background</item>
+        <item name="colorOnBackground">@color/ods_color_core_white_100</item>
+
+        <item name="colorSurface">@color/dark_background</item>
+        <item name="colorOnSurface">@color/ods_color_core_white_100</item>
+
+        <item name="colorError">@color/ods_color_functional_negative_200</item>
+        <item name="colorOnError">@color/ods_color_core_black_900</item>
     </style>
 
 </resources>

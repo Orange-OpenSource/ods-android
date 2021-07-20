@@ -1,0 +1,7 @@
+<resources>
+
+    <style name="Widget.Orange.Toolbar" parent="Widget.MaterialComponents.Toolbar">
+        <item name="android:background">@color/ods_color_core_black_900</item>
+    </style>
+
+</resources>
