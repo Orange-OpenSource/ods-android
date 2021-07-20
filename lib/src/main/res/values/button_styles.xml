@@ -3,10 +3,13 @@
     <style name="Widget.Orange.Button" parent="Widget.MaterialComponents.Button"/>
     <style name="Widget.Orange.Button.Icon" parent="Widget.MaterialComponents.Button.Icon"/>
 
-    <style name="Widget.Orange.Button.TextButton" parent="Widget.MaterialComponents.Button.TextButton"/>
-    <style name="Widget.Orange.Button.TextButton.Icon" parent="Widget.MaterialComponents.Button.TextButton.Icon"/>
+    <style name="Widget.Orange.Button.Contained" parent="Widget.Orange.Button"/>
+    <style name="Widget.Orange.Button.Contained.Icon" parent="Widget.Orange.Button.Icon"/>
 
-    <style name="Widget.Orange.Button.OutlinedButton" parent="Widget.MaterialComponents.Button.OutlinedButton"/>
-    <style name="Widget.Orange.Button.OutlinedButton.Icon" parent="Widget.MaterialComponents.Button.OutlinedButton.Icon"/>
+    <style name="Widget.Orange.Button.Text" parent="Widget.MaterialComponents.Button.TextButton"/>
+    <style name="Widget.Orange.Button.Text.Icon" parent="Widget.MaterialComponents.Button.TextButton.Icon"/>
+
+    <style name="Widget.Orange.Button.Outlined" parent="Widget.MaterialComponents.Button.OutlinedButton"/>
+    <style name="Widget.Orange.Button.Outlined.Icon" parent="Widget.MaterialComponents.Button.OutlinedButton.Icon"/>
 
 </resources>

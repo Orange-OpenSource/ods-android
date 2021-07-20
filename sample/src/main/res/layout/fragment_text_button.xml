@@ -9,7 +9,7 @@
 
         <Button
             android:id="@+id/button_state_enabled"
-            style="@style/Widget.Orange.Button.TextButton"
+            style="@style/Widget.Orange.Button.Text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:focusable="true"
@@ -18,7 +18,7 @@
 
         <Button
             android:id="@+id/button_with_icon_state_enabled"
-            style="@style/Widget.Orange.Button.TextButton.Icon"
+            style="@style/Widget.Orange.Button.Text.Icon"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:focusable="true"
@@ -28,7 +28,7 @@
 
         <Button
             android:id="@+id/button_state_hovered"
-            style="@style/Widget.Orange.Button.TextButton"
+            style="@style/Widget.Orange.Button.Text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:focusable="true"
@@ -37,7 +37,7 @@
 
         <Button
             android:id="@+id/button_with_icon_state_hovered"
-            style="@style/Widget.Orange.Button.TextButton.Icon"
+            style="@style/Widget.Orange.Button.Text.Icon"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:focusable="true"
@@ -47,7 +47,7 @@
 
         <Button
             android:id="@+id/button_state_focused"
-            style="@style/Widget.Orange.Button.TextButton"
+            style="@style/Widget.Orange.Button.Text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:focusable="true"
@@ -56,7 +56,7 @@
 
         <Button
             android:id="@+id/button_with_icon_state_focused"
-            style="@style/Widget.Orange.Button.TextButton.Icon"
+            style="@style/Widget.Orange.Button.Text.Icon"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:focusable="true"
@@ -66,7 +66,7 @@
 
         <Button
             android:id="@+id/button_state_pressed"
-            style="@style/Widget.Orange.Button.TextButton"
+            style="@style/Widget.Orange.Button.Text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:focusable="true"
@@ -75,7 +75,7 @@
 
         <Button
             android:id="@+id/button_with_icon_state_pressed"
-            style="@style/Widget.Orange.Button.TextButton.Icon"
+            style="@style/Widget.Orange.Button.Text.Icon"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:focusable="true"
@@ -85,7 +85,7 @@
 
         <Button
             android:id="@+id/button_state_dragged"
-            style="@style/Widget.Orange.Button.TextButton"
+            style="@style/Widget.Orange.Button.Text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:focusable="true"
@@ -94,7 +94,7 @@
 
         <Button
             android:id="@+id/button_with_icon_state_dragged"
-            style="@style/Widget.Orange.Button.TextButton.Icon"
+            style="@style/Widget.Orange.Button.Text.Icon"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:focusable="true"
@@ -104,7 +104,7 @@
 
         <Button
             android:id="@+id/button_state_disabled"
-            style="@style/Widget.Orange.Button.TextButton"
+            style="@style/Widget.Orange.Button.Text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:focusable="true"
@@ -113,7 +113,7 @@
 
         <Button
             android:id="@+id/button_with_icon_state_disabled"
-            style="@style/Widget.Orange.Button.TextButton.Icon"
+            style="@style/Widget.Orange.Button.Text.Icon"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:focusable="true"
