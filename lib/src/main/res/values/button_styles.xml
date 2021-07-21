@@ -1,15 +1,36 @@
 <resources>
 
-    <style name="Widget.Orange.Button" parent="Widget.MaterialComponents.Button"/>
-    <style name="Widget.Orange.Button.Icon" parent="Widget.MaterialComponents.Button.Icon"/>
+    <style name="Widget.Orange.Button" parent="Widget.MaterialComponents.Button">
+        <item name="shapeAppearance">@style/ShapeAppearance.Orange.Button</item>
+    </style>
+    <style name="Widget.Orange.Button.Icon" parent="Widget.MaterialComponents.Button.Icon">
+        <item name="shapeAppearance">@style/ShapeAppearance.Orange.Button</item>
+    </style>
 
-    <style name="Widget.Orange.Button.Contained" parent="Widget.Orange.Button"/>
-    <style name="Widget.Orange.Button.Contained.Icon" parent="Widget.Orange.Button.Icon"/>
+    <style name="Widget.Orange.Button.Contained" parent="Widget.Orange.Button">
+        <item name="shapeAppearance">@style/ShapeAppearance.Orange.Button</item>
+    </style>
+    <style name="Widget.Orange.Button.Contained.Icon" parent="Widget.Orange.Button.Icon">
+        <item name="shapeAppearance">@style/ShapeAppearance.Orange.Button</item>
+    </style>
 
-    <style name="Widget.Orange.Button.Text" parent="Widget.MaterialComponents.Button.TextButton"/>
-    <style name="Widget.Orange.Button.Text.Icon" parent="Widget.MaterialComponents.Button.TextButton.Icon"/>
+    <style name="Widget.Orange.Button.Text" parent="Widget.MaterialComponents.Button.TextButton">
+        <item name="shapeAppearance">@style/ShapeAppearance.Orange.Button</item>
+    </style>
+    <style name="Widget.Orange.Button.Text.Icon" parent="Widget.MaterialComponents.Button.TextButton.Icon">
+        <item name="shapeAppearance">@style/ShapeAppearance.Orange.Button</item>
+    </style>
 
-    <style name="Widget.Orange.Button.Outlined" parent="Widget.MaterialComponents.Button.OutlinedButton"/>
-    <style name="Widget.Orange.Button.Outlined.Icon" parent="Widget.MaterialComponents.Button.OutlinedButton.Icon"/>
+    <style name="Widget.Orange.Button.Outlined" parent="Widget.MaterialComponents.Button.OutlinedButton">
+        <item name="shapeAppearance">@style/ShapeAppearance.Orange.Button</item>
+    </style>
+    <style name="Widget.Orange.Button.Outlined.Icon" parent="Widget.MaterialComponents.Button.OutlinedButton.Icon">
+        <item name="shapeAppearance">@style/ShapeAppearance.Orange.Button</item>
+    </style>
+
+
+    <style name="ShapeAppearance.Orange.Button" parent="ShapeAppearance.MaterialComponents.SmallComponent">
+        <item name="cornerSize">0dp</item>
+    </style>
 
 </resources>

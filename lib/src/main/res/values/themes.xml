@@ -33,6 +33,8 @@
         <item name="textAppearanceCaption">@style/TextAppearance.Orange.Caption</item>
         <item name="textAppearanceOverline">@style/TextAppearance.Orange.Overline</item>
 
+        <item name="materialButtonStyle">@style/Widget.Orange.Button</item>
+        <item name="materialButtonOutlinedStyle">@style/Widget.Orange.Button.Outlined</item>
 
     </style>
 
