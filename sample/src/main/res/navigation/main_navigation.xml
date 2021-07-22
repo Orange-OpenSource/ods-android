@@ -29,6 +29,9 @@
         <action
             android:id="@+id/action_navigation_home_to_navigation_radio_button"
             app:destination="@id/navigation_radio_button" />
+        <action
+            android:id="@+id/action_navigation_home_to_navigation_switch"
+            app:destination="@id/navigation_switch" />
 
 
     </fragment>
@@ -68,5 +71,11 @@
         android:name="com.orange.ods.sample.radio.RadioButtonFragment"
         android:label="@string/radio_button_title"
         tools:layout="@layout/fragment_radio_button" />
+
+    <fragment
+        android:id="@+id/navigation_switch"
+        android:name="com.orange.ods.sample.switch.SwitchFragment"
+        android:label="@string/switch_title"
+        tools:layout="@layout/fragment_switch" />
 
 </navigation>

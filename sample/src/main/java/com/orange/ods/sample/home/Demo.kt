@@ -11,4 +11,5 @@ internal enum class Demo(@StringRes val nameResId: Int) {
     TYPOGRAPHY(R.string.demo_typography),
     CHECKBOX(R.string.demo_checkbox),
     RADIO_BUTTON(R.string.demo_radio_button),
+    SWITCH(R.string.demo_switch),
 }

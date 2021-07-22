@@ -9,12 +9,12 @@
 
     <string name="button_add_icon">Show icon</string>
 
-    <string name="state_enabled">enabled</string>
-    <string name="state_hovered">hovered</string>
-    <string name="state_focused">focused</string>
-    <string name="state_pressed">pressed</string>
-    <string name="state_dragged">dragged</string>
-    <string name="state_disabled">disabled</string>
+    <string name="state_enabled">Enabled</string>
+    <string name="state_hovered">Hovered</string>
+    <string name="state_focused">Focused</string>
+    <string name="state_pressed">Pressed</string>
+    <string name="state_dragged">Dragged</string>
+    <string name="state_disabled">Disabled</string>
 
     <string name="typography_title">Typography</string>
 
@@ -38,5 +38,7 @@
 
     <string name="checkbox_title">Checkbox states</string>
     <string name="radio_button_title">Radio button states</string>
+    <string name="switch_title">Switch</string>
+    <string name="demo_switch">Switch</string>
 
 </resources>
