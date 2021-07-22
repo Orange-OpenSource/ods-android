@@ -1,39 +1,22 @@
-<layout xmlns:android="http://schemas.android.com/apk/res/android">
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
 
-    <LinearLayout
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:gravity="center_horizontal"
-        android:orientation="vertical">
+        android:layout_height="match_parent">
 
-        <Button
-            android:id="@+id/text_button"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            style="@style/Widget.Orange.Button.Outlined"
-            android:text="@string/home_to_text_button" />
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/demo"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:listitem="@layout/demo_item" />
 
-        <Button
-            android:id="@+id/outlined_button"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            style="@style/Widget.Orange.Button.Outlined"
-            android:text="@string/home_to_outlined_button" />
-
-        <Button
-            android:id="@+id/contained_button"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            style="@style/Widget.Orange.Button.Outlined"
-            android:text="@string/home_to_contained_button" />
-
-        <Button
-            android:id="@+id/typography"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            style="@style/Widget.Orange.Button.Outlined"
-            android:text="@string/home_to_typography" />
-    </LinearLayout>
-
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
 </layout>

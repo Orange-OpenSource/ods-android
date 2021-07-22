@@ -2,11 +2,10 @@
     <string name="app_name">ODS Android Sample</string>
 
     <string name="home_title">Home</string>
-    <string name="home_to_text_button">Text button states</string>
-    <string name="home_to_outlined_button">Outlined button states</string>
 
     <string name="text_button_title">Text button states</string>
     <string name="outlined_button_title">Outlined button states</string>
+    <string name="contained_button_title">Contained button states</string>
 
     <string name="button_state_enabled">enabled</string>
     <string name="button_state_hovered">hovered</string>
@@ -14,15 +13,13 @@
     <string name="button_state_pressed">pressed</string>
     <string name="button_state_dragged">dragged</string>
     <string name="button_state_disabled">disabled</string>
-    <string name="contained_button_title">Contained button states</string>
-    <string name="home_to_contained_button">Contained button states</string>
-    <string name="home_to_typography">Typography</string>
     <string name="button_add_icon">Show icon</string>
 
     <string name="typography_title">Typography</string>
 
     <string name="light_mode">Light mode</string>
     <string name="dark_mode">Dark mode</string>
+
     <string name="typography_headline1">Headline</string>
     <string name="typography_headline2">Headline 2</string>
     <string name="typography_headline3">Headline 3</string>
