@@ -23,30 +23,40 @@
         <action
             android:id="@+id/action_navigation_home_to_navigation_typography"
             app:destination="@id/navigation_typography" />
+        <action
+            android:id="@+id/action_navigation_home_to_navigation_checkbox"
+            app:destination="@id/navigation_checkbox" />
+
     </fragment>
 
     <fragment
         android:id="@+id/navigation_text_button"
         android:name="com.orange.ods.sample.button.TextButtonFragment"
         android:label="@string/text_button_title"
-        tools:layout="@layout/fragment_text_button" />
+        tools:layout="@layout/fragment_button" />
 
     <fragment
         android:id="@+id/navigation_outlined_button"
         android:name="com.orange.ods.sample.button.OutlinedButtonFragment"
         android:label="@string/outlined_button_title"
-        tools:layout="@layout/fragment_outlined_button" />
+        tools:layout="@layout/fragment_button" />
 
     <fragment
         android:id="@+id/navigation_contained_button"
         android:name="com.orange.ods.sample.button.ContainedButtonFragment"
         android:label="@string/contained_button_title"
-        tools:layout="@layout/fragment_contained_button" />
+        tools:layout="@layout/fragment_button" />
 
     <fragment
         android:id="@+id/navigation_typography"
         android:name="com.orange.ods.sample.typography.TypographyFragment"
         android:label="@string/typography_title"
         tools:layout="@layout/fragment_typography" />
+
+    <fragment
+        android:id="@+id/navigation_checkbox"
+        android:name="com.orange.ods.sample.checkbox.CheckboxFragment"
+        android:label="@string/checkbox_title"
+        tools:layout="@layout/fragment_checkbox" />
 
 </navigation>

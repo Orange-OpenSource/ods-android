@@ -15,6 +15,7 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(R.layout.fragment_home) {
             Demo.CONTAINED_BUTTON to HomeFragmentDirections.actionNavigationHomeToNavigationContainedButton(),
             Demo.OUTLINED_BUTTON to HomeFragmentDirections.actionNavigationHomeToNavigationOutlinedButton(),
             Demo.TYPOGRAPHY to HomeFragmentDirections.actionNavigationHomeToNavigationTypography(),
+            Demo.CHECKBOX to HomeFragmentDirections.actionNavigationHomeToNavigationCheckbox(),
         )
     }
 

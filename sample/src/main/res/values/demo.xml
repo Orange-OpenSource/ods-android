@@ -3,4 +3,5 @@
     <string name="demo_outlined_button">Outlined button</string>
     <string name="demo_contained_button">Contained button</string>
     <string name="demo_typography">Typography</string>
+    <string name="demo_checkbox">Checkbox</string>
 </resources>

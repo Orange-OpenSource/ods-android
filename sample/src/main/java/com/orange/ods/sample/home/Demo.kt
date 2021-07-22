@@ -9,4 +9,5 @@ internal enum class Demo(@StringRes val nameResId: Int) {
     OUTLINED_BUTTON(R.string.demo_outlined_button),
     CONTAINED_BUTTON(R.string.demo_contained_button),
     TYPOGRAPHY(R.string.demo_typography),
+    CHECKBOX(R.string.demo_checkbox),
 }
