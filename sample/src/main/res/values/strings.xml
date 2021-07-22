@@ -34,8 +34,9 @@
     <string name="typography_button">Button</string>
     <string name="typography_caption">Caption</string>
     <string name="typography_overline">Overline</string>
-    <string name="checkbox_checked">is checked</string>
+    <string name="action_is_checked">is checked</string>
 
-    <string name="checkbox_title">Checkbox</string>
+    <string name="checkbox_title">Checkbox states</string>
+    <string name="radio_button_title">Radio button states</string>
 
 </resources>
