@@ -5,4 +5,8 @@
     <string name="demo_typography">Typography</string>
     <string name="demo_checkbox">Checkbox</string>
     <string name="demo_radio_button">Radio button</string>
+    <string name="demo_switch">Switch</string>
+    <string name="demo_fab">Floating Action Button</string>
+    <string name="demo_fab_mini">Floating Action Button Mini</string>
+    <string name="demo_fab_extended">Floating Action Button Extended</string>
 </resources>

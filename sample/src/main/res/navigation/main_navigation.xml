@@ -32,6 +32,15 @@
         <action
             android:id="@+id/action_navigation_home_to_navigation_switch"
             app:destination="@id/navigation_switch" />
+        <action
+            android:id="@+id/action_navigation_home_to_navigation_fab"
+            app:destination="@id/navigation_fab" />
+        <action
+            android:id="@+id/action_navigation_home_to_navigation_fab_mini"
+            app:destination="@id/navigation_fab_mini" />
+        <action
+            android:id="@+id/action_navigation_home_to_navigation_fab_extended"
+            app:destination="@id/navigation_fab_extended" />
 
 
     </fragment>
@@ -77,5 +86,23 @@
         android:name="com.orange.ods.sample.switch.SwitchFragment"
         android:label="@string/switch_title"
         tools:layout="@layout/fragment_switch" />
+
+    <fragment
+        android:id="@+id/navigation_fab"
+        android:name="com.orange.ods.sample.fab.FabFragment"
+        android:label="@string/fab_title"
+        tools:layout="@layout/fragment_fab" />
+
+    <fragment
+        android:id="@+id/navigation_fab_mini"
+        android:name="com.orange.ods.sample.fab.FabMiniFragment"
+        android:label="@string/fab_mini_title"
+        tools:layout="@layout/fragment_fab_mini" />
+
+    <fragment
+        android:id="@+id/navigation_fab_extended"
+        android:name="com.orange.ods.sample.fab.FabExtendedFragment"
+        android:label="@string/fab_extended_title"
+        tools:layout="@layout/fragment_fab_extended" />
 
 </navigation>

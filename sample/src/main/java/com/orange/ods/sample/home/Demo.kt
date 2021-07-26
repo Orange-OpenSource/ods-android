@@ -12,4 +12,7 @@ internal enum class Demo(@StringRes val nameResId: Int) {
     CHECKBOX(R.string.demo_checkbox),
     RADIO_BUTTON(R.string.demo_radio_button),
     SWITCH(R.string.demo_switch),
+    FAB(R.string.demo_fab),
+    FAB_MINI(R.string.demo_fab_mini),
+    FAB_EXTENDED(R.string.demo_fab_extended),
 }

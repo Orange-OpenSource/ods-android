@@ -39,6 +39,8 @@
     <string name="checkbox_title">Checkbox states</string>
     <string name="radio_button_title">Radio button states</string>
     <string name="switch_title">Switch</string>
-    <string name="demo_switch">Switch</string>
+    <string name="fab_title">Floating Action Button</string>
+    <string name="fab_mini_title">Floating Action Button Mini</string>
+    <string name="fab_extended_title">Floating Action Button Extended</string>
 
 </resources>
