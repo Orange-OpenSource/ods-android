@@ -9,4 +9,5 @@
     <string name="demo_fab">Floating Action Button</string>
     <string name="demo_fab_mini">Floating Action Button Mini</string>
     <string name="demo_fab_extended">Floating Action Button Extended</string>
+    <string name="demo_dialog">Dialog</string>
 </resources>

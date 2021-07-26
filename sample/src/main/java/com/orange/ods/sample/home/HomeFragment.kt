@@ -21,6 +21,7 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(R.layout.fragment_home) {
             Demo.FAB to HomeFragmentDirections.actionNavigationHomeToNavigationFab(),
             Demo.FAB_MINI to HomeFragmentDirections.actionNavigationHomeToNavigationFabMini(),
             Demo.FAB_EXTENDED to HomeFragmentDirections.actionNavigationHomeToNavigationFabExtended(),
+            Demo.DIALOG to HomeFragmentDirections.actionNavigationHomeToNavigationDialog(),
         )
     }
 

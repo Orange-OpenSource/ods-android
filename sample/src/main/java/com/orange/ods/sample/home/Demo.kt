@@ -15,4 +15,5 @@ internal enum class Demo(@StringRes val nameResId: Int) {
     FAB(R.string.demo_fab),
     FAB_MINI(R.string.demo_fab_mini),
     FAB_EXTENDED(R.string.demo_fab_extended),
+    DIALOG(R.string.demo_dialog),
 }

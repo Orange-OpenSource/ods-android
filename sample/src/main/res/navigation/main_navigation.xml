@@ -41,6 +41,9 @@
         <action
             android:id="@+id/action_navigation_home_to_navigation_fab_extended"
             app:destination="@id/navigation_fab_extended" />
+        <action
+            android:id="@+id/action_navigation_home_to_navigation_dialog"
+            app:destination="@id/navigation_dialog" />
 
 
     </fragment>
@@ -104,5 +107,12 @@
         android:name="com.orange.ods.sample.fab.FabExtendedFragment"
         android:label="@string/fab_extended_title"
         tools:layout="@layout/fragment_fab_extended" />
+
+    <fragment
+        android:id="@+id/navigation_dialog"
+        android:name="com.orange.ods.sample.dialog.DialogFragment"
+        android:label="@string/dialog_title"
+        tools:layout="@layout/fragment_dialog" />
+
 
 </navigation>
