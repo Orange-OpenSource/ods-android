@@ -14,4 +14,5 @@
     <string name="demo_tab">Tabs</string>
     <string name="demo_progress">Progress</string>
     <string name="demo_snackbar">Snackbar</string>
+    <string name="demo_card">Card</string>
 </resources>

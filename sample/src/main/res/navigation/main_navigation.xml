@@ -56,6 +56,9 @@
         <action
             android:id="@+id/action_navigation_home_to_navigation_snackbar"
             app:destination="@id/navigation_snackbar" />
+        <action
+            android:id="@+id/action_navigation_home_to_navigation_card"
+            app:destination="@id/navigation_card" />
 
 
     </fragment>
@@ -149,6 +152,12 @@
         android:name="com.orange.ods.sample.snackbar.SnackbarFragment"
         android:label="@string/snackbar_title"
         tools:layout="@layout/fragment_snackbar" />
+
+    <fragment
+        android:id="@+id/navigation_card"
+        android:name="com.orange.ods.sample.card.CardFragment"
+        android:label="@string/card_title"
+        tools:layout="@layout/fragment_card" />
 
 
 </navigation>

@@ -79,5 +79,11 @@
     <string name="snackbar_one_line_with_action">One line text string with one action</string>
     <string name="snackbar_two_line">Two lines text string.\nOne or two lines is preferable on mobile or tablet</string>
     <string name="snackbar_two_line_with_action">Two lines text string with one action.\nOne or two lines is preferable on mobile or tablet</string>
+    <string name="card_title">Card</string>
+    <string name="card_icon_content_description">Icon content description</string>
+    <string name="card_content_title">Headline 6</string>
+    <string name="card_content_description">Body 2</string>
+    <string name="card_icon_share">Share</string>
+    <string name="card_content_content_description">Card content description</string>
 
 </resources>
