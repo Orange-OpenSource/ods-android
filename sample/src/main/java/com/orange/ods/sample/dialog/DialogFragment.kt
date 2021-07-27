@@ -11,8 +11,8 @@ import kotlinx.coroutines.NonCancellable.cancel
 
 class DialogFragment : BaseFragment<FragmentDialogBinding>(R.layout.fragment_dialog) {
 
-    override fun onResume() {
-        super.onResume()
+    override fun setUpView() {
+        super.setUpView()
 
         binding.alert.setOnClickListener {
 

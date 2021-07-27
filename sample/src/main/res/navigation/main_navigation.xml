@@ -53,6 +53,9 @@
         <action
             android:id="@+id/action_navigation_home_to_navigation_progress"
             app:destination="@id/navigation_progress" />
+        <action
+            android:id="@+id/action_navigation_home_to_navigation_snackbar"
+            app:destination="@id/navigation_snackbar" />
 
 
     </fragment>
@@ -140,6 +143,12 @@
         android:name="com.orange.ods.sample.progress.ProgressFragment"
         android:label="@string/progress_title"
         tools:layout="@layout/fragment_progress" />
+
+    <fragment
+        android:id="@+id/navigation_snackbar"
+        android:name="com.orange.ods.sample.snackbar.SnackbarFragment"
+        android:label="@string/snackbar_title"
+        tools:layout="@layout/fragment_snackbar" />
 
 
 </navigation>

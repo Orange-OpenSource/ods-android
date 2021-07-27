@@ -13,4 +13,5 @@
     <string name="demo_form">Text fields</string>
     <string name="demo_tab">Tabs</string>
     <string name="demo_progress">Progress</string>
+    <string name="demo_snackbar">Snackbar</string>
 </resources>

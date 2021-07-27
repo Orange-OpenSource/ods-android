@@ -70,5 +70,14 @@
     <string name="progress_title">Progress</string>
     <string name="progress_circular">Circular</string>
     <string name="progress_indeterminate">Indeterminate</string>
+    <string name="snackbar_title">Snackbar</string>
+    <string name="snackbar_single_line">Single line</string>
+    <string name="snackbar_single_line_with_button">Single line with button</string>
+    <string name="snackbar_multi_line">Multi line</string>
+    <string name="snackbar_multi_line_with_button">Multi line with button</string>
+    <string name="snackbar_one_line">One line text string</string>
+    <string name="snackbar_one_line_with_action">One line text string with one action</string>
+    <string name="snackbar_two_line">Two lines text string.\nOne or two lines is preferable on mobile or tablet</string>
+    <string name="snackbar_two_line_with_action">Two lines text string with one action.\nOne or two lines is preferable on mobile or tablet</string>
 
 </resources>
