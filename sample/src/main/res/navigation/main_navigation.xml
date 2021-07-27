@@ -47,6 +47,9 @@
         <action
             android:id="@+id/action_navigation_home_to_navigation_form"
             app:destination="@id/navigation_form" />
+        <action
+            android:id="@+id/action_navigation_home_to_navigation_tab"
+            app:destination="@id/navigation_tab" />
 
 
     </fragment>
@@ -122,6 +125,12 @@
         android:name="com.orange.ods.sample.form.FormFragment"
         android:label="@string/form_title"
         tools:layout="@layout/fragment_form" />
+
+    <fragment
+        android:id="@+id/navigation_tab"
+        android:name="com.orange.ods.sample.tab.TabFragment"
+        android:label="@string/tab_title"
+        tools:layout="@layout/fragment_tab" />
 
 
 </navigation>

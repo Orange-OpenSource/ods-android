@@ -11,4 +11,5 @@
     <string name="demo_fab_extended">Floating Action Button Extended</string>
     <string name="demo_dialog">Dialog</string>
     <string name="demo_form">Text fields</string>
+    <string name="demo_tab">Tabs</string>
 </resources>

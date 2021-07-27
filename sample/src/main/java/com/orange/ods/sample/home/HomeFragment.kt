@@ -23,6 +23,7 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(R.layout.fragment_home) {
             Demo.FAB_EXTENDED to HomeFragmentDirections.actionNavigationHomeToNavigationFabExtended(),
             Demo.DIALOG to HomeFragmentDirections.actionNavigationHomeToNavigationDialog(),
             Demo.FORM to HomeFragmentDirections.actionNavigationHomeToNavigationForm(),
+            Demo.TAB to HomeFragmentDirections.actionNavigationHomeToNavigationTab(),
         )
     }
 
