@@ -18,4 +18,5 @@ internal enum class Demo(@StringRes val nameResId: Int) {
     DIALOG(R.string.demo_dialog),
     FORM(R.string.demo_form),
     TAB(R.string.demo_tab),
+    PROGRESS(R.string.demo_progress),
 }

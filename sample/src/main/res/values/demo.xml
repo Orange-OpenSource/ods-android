@@ -12,4 +12,5 @@
     <string name="demo_dialog">Dialog</string>
     <string name="demo_form">Text fields</string>
     <string name="demo_tab">Tabs</string>
+    <string name="demo_progress">Progress</string>
 </resources>

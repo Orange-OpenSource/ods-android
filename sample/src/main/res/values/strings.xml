@@ -67,5 +67,8 @@
     <string name="tab_title">Tabs</string>
     <string name="tab_fixed">Fixed</string>
     <string name="tab_scrollable">Scrollable</string>
+    <string name="progress_title">Progress</string>
+    <string name="progress_circular">Circular</string>
+    <string name="progress_indeterminate">Indeterminate</string>
 
 </resources>
