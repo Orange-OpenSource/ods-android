@@ -10,7 +10,8 @@
     <string name="demo_fab_mini">Floating Action Button Mini</string>
     <string name="demo_fab_extended">Floating Action Button Extended</string>
     <string name="demo_dialog">Dialog</string>
-    <string name="demo_form">Text fields</string>
+    <string name="demo_textfield_filled">Text fields filled</string>
+    <string name="demo_textfield_outlined">Text fields outlined</string>
     <string name="demo_tab">Tabs</string>
     <string name="demo_progress">Progress</string>
     <string name="demo_snackbar">Snackbar</string>

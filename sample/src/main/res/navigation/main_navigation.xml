@@ -45,8 +45,11 @@
             android:id="@+id/action_navigation_home_to_navigation_dialog"
             app:destination="@id/navigation_dialog" />
         <action
-            android:id="@+id/action_navigation_home_to_navigation_form"
-            app:destination="@id/navigation_form" />
+            android:id="@+id/action_navigation_home_to_navigation_textfield_filled"
+            app:destination="@id/navigation_text_field_filled" />
+        <action
+            android:id="@+id/action_navigation_home_to_navigation_textfield_outlined"
+            app:destination="@id/navigation_text_field_outlined" />
         <action
             android:id="@+id/action_navigation_home_to_navigation_tab"
             app:destination="@id/navigation_tab" />
@@ -130,10 +133,16 @@
         tools:layout="@layout/fragment_dialog" />
 
     <fragment
-        android:id="@+id/navigation_form"
-        android:name="com.orange.ods.sample.form.FormFragment"
-        android:label="@string/form_title"
-        tools:layout="@layout/fragment_form" />
+        android:id="@+id/navigation_text_field_filled"
+        android:name="com.orange.ods.sample.textfield.TextFieldFilledFragment"
+        android:label="@string/textfield_filled_title"
+        tools:layout="@layout/fragment_textfield" />
+
+    <fragment
+        android:id="@+id/navigation_text_field_outlined"
+        android:name="com.orange.ods.sample.textfield.TextFieldOutlinedFragment"
+        android:label="@string/textfield_outlined_title"
+        tools:layout="@layout/fragment_textfield" />
 
     <fragment
         android:id="@+id/navigation_tab"
