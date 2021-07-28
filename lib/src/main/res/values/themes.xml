@@ -1,4 +1,4 @@
-<resources xmlns:tools="http://schemas.android.com/tools">
+<resources>
 
     <!-- Orange Design System theme. -->
     <style name="Theme.Orange" parent="Base.Theme.Orange">
@@ -6,7 +6,7 @@
         <item name="colorPrimaryVariant">@color/orange_primary_variant</item>
         <item name="colorOnPrimary">@color/ods_color_core_white_100</item>
 
-        <item name="colorSecondary">@color/ods_color_core_orange_200</item>
+        <item name="colorSecondary">@color/orange_primary_variant</item>
         <item name="colorSecondaryVariant">@color/orange_primary_variant</item>
         <item name="colorOnSecondary">@color/ods_color_core_white_100</item>
 
