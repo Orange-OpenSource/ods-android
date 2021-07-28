@@ -1,4 +1,4 @@
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools">
 
     <!-- Orange Design System theme for night mode. -->
     <style name="Theme.Orange" parent="Base.Theme.Orange">
@@ -18,6 +18,9 @@
 
         <item name="colorError">@color/ods_color_functional_negative_200</item>
         <item name="colorOnError">@color/ods_color_core_black_900</item>
+
+        <item name="android:windowLightStatusBar" tools:targetApi="m">false</item>
+        <item name="android:windowLightNavigationBar" tools:ignore="NewApi">false</item>
     </style>
 
 </resources>

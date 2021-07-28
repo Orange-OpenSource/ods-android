@@ -1,4 +1,4 @@
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools">
 
     <!-- Orange Design System theme. -->
     <style name="Theme.Orange" parent="Base.Theme.Orange">
@@ -38,8 +38,15 @@
 
     </style>
 
-    <style name="Base.Theme.Orange" parent="Theme.MaterialComponents.DayNight.DarkActionBar">
+    <style name="Base.Theme.Orange" parent="Theme.MaterialComponents.DayNight">
         <item name="toolbarStyle">@style/Widget.Orange.Toolbar</item>
+
+        <item name="android:statusBarColor" tools:ignore="NewApi">?attr/colorSurface</item>
+        <item name="android:windowLightStatusBar" tools:ignore="NewApi">true</item>
+        <item name="android:navigationBarColor" tools:ignore="NewApi">?android:attr/colorBackground</item>
+        <item name="android:windowLightNavigationBar" tools:ignore="NewApi">true</item>
+        <item name="android:navigationBarDividerColor" tools:ignore="NewApi">?attr/colorControlHighlight</item>
+
     </style>
 
 </resources>
