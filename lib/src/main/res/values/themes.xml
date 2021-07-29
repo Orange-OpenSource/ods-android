@@ -36,6 +36,9 @@
         <item name="materialButtonStyle">@style/Widget.Orange.Button</item>
         <item name="materialButtonOutlinedStyle">@style/Widget.Orange.Button.Outlined</item>
 
+        <item name="floatingActionButtonStyle">@style/Widget.Orange.FloatingActionButton</item>
+        <item name="extendedFloatingActionButtonStyle">@style/Widget.Orange.ExtendedFloatingActionButton</item>
+
     </style>
 
     <style name="Base.Theme.Orange" parent="Theme.MaterialComponents.DayNight">

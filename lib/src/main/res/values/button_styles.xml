@@ -50,9 +50,21 @@
         <item name="android:minHeight">@dimen/mtrl_min_touch_target_size</item>
     </style>
 
+    <style name="Widget.Orange.FloatingActionButton" parent="Widget.MaterialComponents.FloatingActionButton">
+        <item name="materialThemeOverlay">@style/ThemeOverlay.Orange.FloatingActionButton</item>
+    </style>
+
+    <style name="Widget.Orange.ExtendedFloatingActionButton" parent="Widget.MaterialComponents.ExtendedFloatingActionButton.Icon">
+        <item name="materialThemeOverlay">@style/ThemeOverlay.Orange.FloatingActionButton</item>
+    </style>
+
 
     <style name="ShapeAppearance.Orange.Button" parent="ShapeAppearance.MaterialComponents.SmallComponent">
         <item name="cornerSize">@dimen/ods_button_corner_size</item>
+    </style>
+
+    <style name="ThemeOverlay.Orange.FloatingActionButton" parent="">
+        <item name="colorOnSecondary">@color/ods_color_core_black_900</item>
     </style>
 
 </resources>
