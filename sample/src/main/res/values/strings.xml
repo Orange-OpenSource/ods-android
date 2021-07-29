@@ -6,6 +6,7 @@
     <string name="text_button_title">Text button states</string>
     <string name="outlined_button_title">Outlined button states</string>
     <string name="contained_button_title">Contained button states</string>
+    <string name="toggle_button_title">Toggle button</string>
 
     <string name="button_add_icon">Show icon</string>
 
@@ -87,5 +88,11 @@
     <string name="card_content_description">Body 2</string>
     <string name="card_icon_share">Share</string>
     <string name="card_content_content_description">Card content description</string>
+    <string name="toggle_button_1">button 1</string>
+    <string name="toggle_button_2">button 2</string>
+    <string name="toggle_button_3">button 3</string>
+    <string name="toggle_button_single_selection">Single selection</string>
+    <string name="toggle_button_multi_selection">Multiple selection</string>
+    <string name="toggle_button_icon">Only icon</string>
 
 </resources>

@@ -21,6 +21,9 @@
             android:id="@+id/action_navigation_home_to_navigation_contained_button"
             app:destination="@id/navigation_contained_button" />
         <action
+            android:id="@+id/action_navigation_home_to_navigation_toggle_button"
+            app:destination="@id/navigation_toggle_button" />
+        <action
             android:id="@+id/action_navigation_home_to_navigation_typography"
             app:destination="@id/navigation_typography" />
         <action
@@ -83,6 +86,12 @@
         android:name="com.orange.ods.sample.button.ContainedButtonFragment"
         android:label="@string/contained_button_title"
         tools:layout="@layout/fragment_button" />
+
+    <fragment
+        android:id="@+id/navigation_toggle_button"
+        android:name="com.orange.ods.sample.button.ToggleButtonFragment"
+        android:label="@string/contained_button_title"
+        tools:layout="@layout/fragment_toggle_button" />
 
     <fragment
         android:id="@+id/navigation_typography"

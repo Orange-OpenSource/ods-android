@@ -40,6 +40,16 @@
         <item name="iconTint">@color/ods_btn_outlined_text_color_selector</item>
     </style>
 
+    <style name="Widget.Orange.Button.Outlined.IconOnly" parent="Widget.Orange.Button.Outlined.Icon">
+        <item name="iconPadding">0dp</item>
+        <item name="android:insetTop">0dp</item>
+        <item name="android:insetBottom">0dp</item>
+        <item name="android:paddingLeft">@dimen/mtrl_btn_icon_btn_padding_left</item>
+        <item name="android:paddingRight">@dimen/mtrl_btn_icon_btn_padding_left</item>
+        <item name="android:minWidth">@dimen/mtrl_min_touch_target_size</item>
+        <item name="android:minHeight">@dimen/mtrl_min_touch_target_size</item>
+    </style>
+
 
     <style name="ShapeAppearance.Orange.Button" parent="ShapeAppearance.MaterialComponents.SmallComponent">
         <item name="cornerSize">@dimen/ods_button_corner_size</item>
