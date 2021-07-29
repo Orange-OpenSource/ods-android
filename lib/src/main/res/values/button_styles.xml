@@ -2,21 +2,24 @@
 
     <style name="Widget.Orange.Button" parent="Widget.MaterialComponents.Button">
         <item name="shapeAppearance">@style/ShapeAppearance.Orange.Button</item>
-    </style>
-    <style name="Widget.Orange.Button.Icon" parent="Widget.MaterialComponents.Button.Icon">
-        <item name="shapeAppearance">@style/ShapeAppearance.Orange.Button</item>
+        <item name="android:textColor">@color/ods_btn_contained_text_color_selector</item>
+        <item name="iconTint">@color/ods_btn_contained_text_color_selector</item>
     </style>
 
-    <style name="Widget.Orange.Button.Contained" parent="Widget.Orange.Button">
+    <style name="Widget.Orange.Button.Icon" parent="Widget.MaterialComponents.Button.Icon">
         <item name="shapeAppearance">@style/ShapeAppearance.Orange.Button</item>
+        <item name="android:textColor">@color/ods_btn_contained_text_color_selector</item>
+        <item name="iconTint">@color/ods_btn_contained_text_color_selector</item>
     </style>
-    <style name="Widget.Orange.Button.Contained.Icon" parent="Widget.Orange.Button.Icon">
-        <item name="shapeAppearance">@style/ShapeAppearance.Orange.Button</item>
-    </style>
+
+    <style name="Widget.Orange.Button.Contained" parent="Widget.Orange.Button" />
+
+    <style name="Widget.Orange.Button.Contained.Icon" parent="Widget.Orange.Button.Icon" />
 
     <style name="Widget.Orange.Button.Text" parent="Widget.MaterialComponents.Button.TextButton">
         <item name="shapeAppearance">@style/ShapeAppearance.Orange.Button</item>
     </style>
+
     <style name="Widget.Orange.Button.Text.Icon" parent="Widget.MaterialComponents.Button.TextButton.Icon">
         <item name="shapeAppearance">@style/ShapeAppearance.Orange.Button</item>
     </style>
@@ -28,6 +31,7 @@
         <item name="android:textColor">@color/ods_btn_outlined_text_color_selector</item>
         <item name="iconTint">@color/ods_btn_outlined_text_color_selector</item>
     </style>
+
     <style name="Widget.Orange.Button.Outlined.Icon" parent="Widget.MaterialComponents.Button.OutlinedButton.Icon">
         <item name="shapeAppearance">@style/ShapeAppearance.Orange.Button</item>
         <item name="strokeWidth">@dimen/ods_button_outlined_stroke_width</item>
