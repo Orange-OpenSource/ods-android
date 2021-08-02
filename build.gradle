@@ -9,7 +9,8 @@ buildscript {
             'kotlin'      : '1.5.21',
     ]
 
-    ext.java_version = JavaVersion.VERSION_1_8
+    ext.java_version = JavaVersion.VERSION_11
+    ext.jvm_target = "11"
 
     repositories {
         google()
@@ -17,7 +18,7 @@ buildscript {
     }
 
     dependencies {
-        classpath "com.android.tools.build:gradle:4.2.2"
+        classpath 'com.android.tools.build:gradle:7.0.0'
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:${versions.kotlin}"
 
         // NOTE: Do not place your application dependencies here; they belong
