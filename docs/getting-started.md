@@ -1,8 +1,12 @@
-# Getting started with Orange Design System for Android
+---
+layout: detail
+title: Getting started
+description: Getting started with Orange Design System for Android
+---
 
-## Instructions
+# Instructions
 
-### 1. Depend on our library
+## 1. Depend on our library
 
 Orange Design System for Android is available through Google's Maven Repository.
 To use it:

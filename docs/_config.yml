@@ -3,4 +3,4 @@ plugins:
 relative_links:
   enabled: true
   collections: true
-
+remote_theme: ods-sandbox/ods-jekyll-theme
