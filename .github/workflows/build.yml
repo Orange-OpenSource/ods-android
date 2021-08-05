@@ -31,7 +31,7 @@ jobs:
         run: ./gradlew lintDebug
 
       - name: Build lib and sample app
-        run: ./gradlew assembleDebug --stacktrace
+        run: ./gradlew assemble --stacktrace
 
       - name: Store library
         uses: actions/upload-artifact@v2
