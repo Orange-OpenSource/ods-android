@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "513870194982",
+    "project_id": "orange-design-system",
+    "storage_bucket": "orange-design-system.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:513870194982:android:e624a74de329ca86bfb9e7",
+        "android_client_info": {
+          "package_name": "com.orange.ods.sample"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "513870194982-1tepbp6foucnkk8akp6f7v1ipocm27j8.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAFWqIL99HcAQa0oGDfjMJrILrzc6b3FzU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "513870194982-1tepbp6foucnkk8akp6f7v1ipocm27j8.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
