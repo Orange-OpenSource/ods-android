@@ -1,22 +1,16 @@
-name: android build
+name: deploy
 
 on:
   push:
     branches:
       - master  # Set a branch to deploy
-  pull_request:
-    types:
-      - opened
-      - synchronize
-      - labeled
-      - unlabeled
 
 jobs:
 
   build:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout code
+      - name: checkout code
         uses: actions/checkout@v2
         with:
           fetch-depth: 0
@@ -27,11 +21,8 @@ jobs:
           distribution: 'zulu'
           java-version: '11'
 
-      - name: Run Android Linter
-        run: ./gradlew lintDebug
-
-      - name: Build lib and sample app
-        run: ./gradlew assembleDebug --stacktrace
+      - name: Assemble lib and sample app
+        run: ./gradlew assembleRelease --stacktrace
 
       - name: Store library
         uses: actions/upload-artifact@v2
@@ -44,3 +35,12 @@ jobs:
         with:
           name: sample
           path: sample/build/outputs/apk/**/*.apk
+
+      - name: upload artifact to Firebase App Distribution
+        uses: wzieba/Firebase-Distribution-Github-Action@v1.3.2
+        with:
+          appId: ${{secrets.FIREBASE_APP_ID}}
+          token: ${{secrets.FIREBASE_TOKEN}}
+          groups: testers
+          file: sample/build/outputs/apk/release/sample-release.apk
+
