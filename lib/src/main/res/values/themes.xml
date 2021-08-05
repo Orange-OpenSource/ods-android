@@ -19,6 +19,9 @@
         <item name="colorError">@color/ods_color_functional_negative_200</item>
         <item name="colorOnError">@color/ods_color_core_white_100</item>
 
+    </style>
+
+    <style name="Base.Theme.Orange" parent="Theme.MaterialComponents.DayNight">
         <item name="textAppearanceHeadline1">@style/TextAppearance.Orange.Headline1</item>
         <item name="textAppearanceHeadline2">@style/TextAppearance.Orange.Headline2</item>
         <item name="textAppearanceHeadline3">@style/TextAppearance.Orange.Headline3</item>
@@ -39,9 +42,6 @@
         <item name="floatingActionButtonStyle">@style/Widget.Orange.FloatingActionButton</item>
         <item name="extendedFloatingActionButtonStyle">@style/Widget.Orange.ExtendedFloatingActionButton</item>
 
-    </style>
-
-    <style name="Base.Theme.Orange" parent="Theme.MaterialComponents.DayNight">
         <item name="toolbarStyle">@style/Widget.Orange.Toolbar</item>
 
         <item name="android:statusBarColor" tools:ignore="NewApi">?attr/colorSurface</item>
