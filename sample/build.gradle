@@ -47,7 +47,13 @@ android {
     }
 
     buildTypes {
+        debug {
+            manifestPlaceholders = [crashlyticsCollectionEnabled: "false"]
+            ext.enableCrashlytics = false
+        }
+
         release {
+            manifestPlaceholders = [crashlyticsCollectionEnabled: "true"]
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
             signingConfig signingConfigs.release
@@ -95,6 +101,10 @@ dependencies {
 
     // BoM for the Firebase platform
     implementation platform('com.google.firebase:firebase-bom:28.3.0')
+
+    // When using the BoM, you don't specify versions in Firebase library dependencies
+    implementation 'com.google.firebase:firebase-crashlytics-ktx'
+    implementation 'com.google.firebase:firebase-analytics-ktx'
 
     testImplementation 'junit:junit:4.13.2'
     androidTestImplementation 'androidx.test.ext:junit:1.1.3'
