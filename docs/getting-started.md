@@ -58,14 +58,3 @@ Update your app theme to inherit from Orange theme, e.g.:
 ```
 
 Orange theme supports both light and dark mode.
-
-### 5. Preload fonts used by Orange Theme
-
-Orange theme for Android uses [downloadable fonts](https://developer.android.com/guide/topics/ui/look-and-feel/downloadable-fonts)
-
-In order to preload fonts on application start you have to declare a `meta-data` in your `AndroidManifest.xml`
-```xml
-<meta-data
-    android:name="preloaded_fonts"
-    android:resource="@array/preloaded_fonts" />
-```
