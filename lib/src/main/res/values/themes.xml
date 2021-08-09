@@ -44,6 +44,10 @@
 
         <item name="toolbarStyle">@style/Widget.Orange.Toolbar</item>
 
+        <item name="snackbarStyle">@style/Widget.Orange.Snackbar</item>
+        <item name="snackbarButtonStyle">@style/Widget.Orange.Snackbar.Button</item>
+        <item name="snackbarTextViewStyle">@style/Widget.Orange.Snackbar.Text</item>
+
         <item name="android:statusBarColor" tools:ignore="NewApi">?attr/colorSurface</item>
         <item name="android:windowLightStatusBar" tools:ignore="NewApi">true</item>
         <item name="android:navigationBarColor" tools:ignore="NewApi">?android:attr/colorBackground</item>

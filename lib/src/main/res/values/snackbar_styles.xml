@@ -1,0 +1,13 @@
+<resources>
+
+    <style name="Widget.Orange.Snackbar" parent="Widget.MaterialComponents.Snackbar">
+        <item name="backgroundTint">@color/snackbar_background</item>
+        <item name="actionTextColorAlpha">1</item>
+    </style>
+
+    <style name="Widget.Orange.Snackbar.Button" parent="Widget.Orange.Button.Text"/>
+    <style name="Widget.Orange.Snackbar.Text" parent="Widget.MaterialComponents.Snackbar.TextView">
+        <item name="android:textColor">?attr/colorOnSurface</item>
+    </style>
+
+</resources>
