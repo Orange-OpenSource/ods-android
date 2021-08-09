@@ -43,6 +43,7 @@
         <item name="extendedFloatingActionButtonStyle">@style/Widget.Orange.ExtendedFloatingActionButton</item>
 
         <item name="toolbarStyle">@style/Widget.Orange.Toolbar</item>
+        <item name="tabStyle">@style/Widget.Orange.Tab</item>
 
         <item name="snackbarStyle">@style/Widget.Orange.Snackbar</item>
         <item name="snackbarButtonStyle">@style/Widget.Orange.Snackbar.Button</item>
