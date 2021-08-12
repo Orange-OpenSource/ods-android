@@ -24,4 +24,5 @@ internal enum class Demo(@StringRes val nameResId: Int) {
     SNACKBAR(R.string.demo_snackbar),
     CARD(R.string.demo_card),
     BOTTOM_NAVIGATION(R.string.demo_bottom_navigation),
+    BOTTOM_APP_BAR(R.string.demo_bottom_app_bar),
 }

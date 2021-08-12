@@ -64,6 +64,7 @@
     </style>
 
     <style name="ThemeOverlay.Orange.FloatingActionButton" parent="">
+        <item name="colorSecondary">@color/ods_color_core_orange_100</item>
         <item name="colorOnSecondary">@color/ods_color_core_black_900</item>
     </style>
 

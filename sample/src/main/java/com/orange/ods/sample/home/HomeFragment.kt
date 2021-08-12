@@ -27,6 +27,7 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(R.layout.fragment_home) {
             Demo.TEXTFIELD_OUTLINED to HomeFragmentDirections.actionNavigationHomeToNavigationTextfieldOutlined(),
             Demo.TAB to HomeFragmentDirections.actionNavigationHomeToNavigationTab(),
             Demo.BOTTOM_NAVIGATION to HomeFragmentDirections.actionNavigationHomeToNavigationBottomNavigation(),
+            Demo.BOTTOM_APP_BAR to HomeFragmentDirections.actionNavigationHomeToNavigationBottomAppBar(),
             Demo.PROGRESS to HomeFragmentDirections.actionNavigationHomeToNavigationProgress(),
             Demo.SNACKBAR to HomeFragmentDirections.actionNavigationHomeToNavigationSnackbar(),
             Demo.CARD to HomeFragmentDirections.actionNavigationHomeToNavigationCard(),

@@ -68,7 +68,9 @@
         <action
             android:id="@+id/action_navigation_home_to_navigation_bottom_navigation"
             app:destination="@id/navigation_bottom_navigation" />
-
+        <action
+            android:id="@+id/action_navigation_home_to_navigation_bottom_app_bar"
+            app:destination="@id/navigation_bottom_app_bar" />
 
     </fragment>
 
@@ -185,6 +187,12 @@
         android:name="com.orange.ods.sample.bottom.navigation.BottomNavigationFragment"
         android:label="@string/bottom_navigation_title"
         tools:layout="@layout/fragment_bottom_navigation" />
+
+    <fragment
+        android:id="@+id/navigation_bottom_app_bar"
+        android:name="com.orange.ods.sample.bottom.appbar.BottomAppBarFragment"
+        android:label="@string/bottom_app_bar_title"
+        tools:layout="@layout/fragment_bottom_app_bar" />
 
 
 </navigation>

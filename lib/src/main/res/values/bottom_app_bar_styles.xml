@@ -1,0 +1,5 @@
+<resources>
+
+    <style name="Widget.Orange.BottomAppBar" parent="Widget.MaterialComponents.BottomAppBar" />
+
+</resources>
