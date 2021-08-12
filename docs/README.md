@@ -13,4 +13,5 @@ In order to apply Orange Design System to your Android application please follow
 
 * [Button](./components/button.md)
 * [Tabs](./components/tabs.md)
+* [Bottom Navigation](components/bottomNavigation.md)
 
