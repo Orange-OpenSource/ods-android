@@ -4,7 +4,5 @@
 
     <!-- Snackbar background tint -->
     <color name="ods_snackbar_background">@color/ods_color_core_white_100</color>
-    <!-- Tab background tint -->
-    <color name="ods_tab_background">@color/ods_color_core_white_100</color>
 
 </resources>

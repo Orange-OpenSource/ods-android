@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/bottom_1"
+        android:title="@string/bottom_nav_1"
+        android:icon="@drawable/ic_dark"/>
+
+    <item
+        android:id="@+id/bottom_2"
+        android:title="@string/bottom_nav_2"
+        android:icon="@drawable/ic_light"/>
+
+    <item
+        android:id="@+id/bottom_3"
+        android:title="@string/bottom_nav_3"
+        android:icon="@drawable/ic_plus"/>
+
+    <item
+        android:id="@+id/bottom_4"
+        android:title="@string/bottom_nav_4"
+        android:icon="@drawable/ic_share"/>
+
+</menu>

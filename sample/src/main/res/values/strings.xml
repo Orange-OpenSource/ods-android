@@ -94,5 +94,10 @@
     <string name="toggle_button_single_selection">Single selection</string>
     <string name="toggle_button_multi_selection">Multiple selection</string>
     <string name="toggle_button_icon">Only icon</string>
+    <string name="bottom_nav_1">Bottom 1</string>
+    <string name="bottom_nav_2">Bottom 2</string>
+    <string name="bottom_nav_3">Bottom 3</string>
+    <string name="bottom_nav_4">Bottom 4</string>
+    <string name="bottom_navigation_title">Bottom Navigation</string>
 
 </resources>

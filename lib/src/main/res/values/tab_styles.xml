@@ -1,12 +1,7 @@
 <resources>
 
     <style name="Widget.Orange.Tab" parent="Widget.MaterialComponents.TabLayout">
-        <item name="materialThemeOverlay">@style/ThemeOverlay.Orange.TabLayout</item>
-        <item name="android:elevation">6dp</item>
-    </style>
-
-    <style name="ThemeOverlay.Orange.TabLayout" parent="">
-        <item name="colorSurface">@color/ods_tab_background</item>
+        <item name="android:elevation">@dimen/ods_tab_elevation</item>
     </style>
 
 </resources>

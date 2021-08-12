@@ -17,4 +17,5 @@
     <string name="demo_progress">Progress</string>
     <string name="demo_snackbar">Snackbar</string>
     <string name="demo_card">Card</string>
+    <string name="demo_bottom_navigation">Bottom navigation</string>
 </resources>

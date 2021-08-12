@@ -10,7 +10,7 @@ import com.orange.ods.sample.databinding.FragmentHomeBinding
 class HomeFragment : BaseFragment<FragmentHomeBinding>(R.layout.fragment_home) {
 
     companion object {
-        private val DEMO_ACTIONS = mapOf(
+        private val DEMO_ACTIONS = linkedMapOf(
             Demo.TEXT_BUTTON to HomeFragmentDirections.actionNavigationHomeToNavigationTextButton(),
             Demo.CONTAINED_BUTTON to HomeFragmentDirections.actionNavigationHomeToNavigationContainedButton(),
             Demo.OUTLINED_BUTTON to HomeFragmentDirections.actionNavigationHomeToNavigationOutlinedButton(),
@@ -26,6 +26,7 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(R.layout.fragment_home) {
             Demo.TEXTFIELD_FILLED to HomeFragmentDirections.actionNavigationHomeToNavigationTextfieldFilled(),
             Demo.TEXTFIELD_OUTLINED to HomeFragmentDirections.actionNavigationHomeToNavigationTextfieldOutlined(),
             Demo.TAB to HomeFragmentDirections.actionNavigationHomeToNavigationTab(),
+            Demo.BOTTOM_NAVIGATION to HomeFragmentDirections.actionNavigationHomeToNavigationBottomNavigation(),
             Demo.PROGRESS to HomeFragmentDirections.actionNavigationHomeToNavigationProgress(),
             Demo.SNACKBAR to HomeFragmentDirections.actionNavigationHomeToNavigationSnackbar(),
             Demo.CARD to HomeFragmentDirections.actionNavigationHomeToNavigationCard(),
@@ -37,7 +38,7 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(R.layout.fragment_home) {
             findNavController().navigate(it)
         }
     }).apply {
-        submitList(Demo.values().toList())
+        submitList(DEMO_ACTIONS.keys.toList())
     }
 
 
