@@ -28,6 +28,7 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(R.layout.fragment_home) {
             Demo.TAB to HomeFragmentDirections.actionNavigationHomeToNavigationTab(),
             Demo.BOTTOM_NAVIGATION to HomeFragmentDirections.actionNavigationHomeToNavigationBottomNavigation(),
             Demo.BOTTOM_APP_BAR to HomeFragmentDirections.actionNavigationHomeToNavigationBottomAppBar(),
+            Demo.TOP_APP_BAR to HomeFragmentDirections.actionNavigationHomeToNavigationTopAppBar(),
             Demo.PROGRESS to HomeFragmentDirections.actionNavigationHomeToNavigationProgress(),
             Demo.SNACKBAR to HomeFragmentDirections.actionNavigationHomeToNavigationSnackbar(),
             Demo.CARD to HomeFragmentDirections.actionNavigationHomeToNavigationCard(),

@@ -113,5 +113,9 @@ Phasellus in aliquet mi. Pellentesque habitant morbi tristique senectus et netus
     <string name="bottom_app_bar_hide_fab">Hide FAB</string>
     <string name="bottom_app_bar_fab_center">Center FAB</string>
     <string name="bottom_app_bar_fab_end">FAB end</string>
-
+    <string name="top_app_bar_default">Default</string>
+    <string name="top_app_bar_raised">Raised</string>
+    <string name="top_app_bar_toolbar_title">Toolbar title</string>
+    <string name="top_app_bar_title">Top App bar</string>
+    <string name="top_app_bar_navigation_content_description">Navigation content description</string>
 </resources>

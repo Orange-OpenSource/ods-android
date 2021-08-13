@@ -1,4 +1,4 @@
-package com.orange.ods.sample.bottom.appbar
+package com.orange.ods.sample.appbar
 
 import com.google.android.material.bottomappbar.BottomAppBar
 import com.google.android.material.button.MaterialButton

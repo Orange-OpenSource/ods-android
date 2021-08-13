@@ -1,5 +1,7 @@
 <resources>
 
-    <style name="Widget.Orange.BottomNavigation" parent="Widget.MaterialComponents.BottomNavigationView" />
+    <style name="Widget.Orange.BottomNavigation" parent="Widget.MaterialComponents.BottomNavigationView" >
+        <item name="itemIconTint">@color/ods_navigation_bar_item_tint</item>
+    </style>
 
 </resources>

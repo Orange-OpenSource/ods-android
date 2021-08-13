@@ -3,4 +3,5 @@
 <resources>
 
     <dimen name="ods_tab_elevation">8dp</dimen>
+    <dimen name="ods_toolbar_elevation">4dp</dimen>
 </resources>

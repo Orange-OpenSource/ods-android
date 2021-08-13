@@ -57,4 +57,11 @@ Update your app theme to inherit from Orange theme, e.g.:
 </style>
 ```
 
+This theme will use the default `Toolbar`. If you want to provide your own `Toolbar` please use:
+```xml
+<style name="Theme.MyApp" parent="Theme.Orange.NoActionBar">
+    <!-- ... -->
+</style>
+```
+
 Orange theme supports both light and dark mode.

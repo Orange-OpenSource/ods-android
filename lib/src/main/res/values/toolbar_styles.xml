@@ -1,6 +1,15 @@
 <resources>
 
     <style name="Widget.Orange.Toolbar" parent="Widget.MaterialComponents.Toolbar.Surface">
+        <item name="materialThemeOverlay">@style/ThemeOverlay.Orange.Toolbar</item>
+    </style>
+
+    <style name="Widget.Orange.Toolbar.Raised">
+        <item name="android:elevation">@dimen/ods_toolbar_elevation</item>
+    </style>
+
+    <style name="ThemeOverlay.Orange.Toolbar" parent="">
+        <item name="colorControlNormal">?attr/colorOnSurface</item>
     </style>
 
 </resources>

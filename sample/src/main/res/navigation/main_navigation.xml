@@ -71,6 +71,9 @@
         <action
             android:id="@+id/action_navigation_home_to_navigation_bottom_app_bar"
             app:destination="@id/navigation_bottom_app_bar" />
+        <action
+            android:id="@+id/action_navigation_home_to_navigation_top_app_bar"
+            app:destination="@id/navigation_top_app_bar" />
 
     </fragment>
 
@@ -190,9 +193,15 @@
 
     <fragment
         android:id="@+id/navigation_bottom_app_bar"
-        android:name="com.orange.ods.sample.bottom.appbar.BottomAppBarFragment"
+        android:name="com.orange.ods.sample.appbar.BottomAppBarFragment"
         android:label="@string/bottom_app_bar_title"
         tools:layout="@layout/fragment_bottom_app_bar" />
+
+    <fragment
+        android:id="@+id/navigation_top_app_bar"
+        android:name="com.orange.ods.sample.appbar.TopAppBarFragment"
+        android:label="@string/top_app_bar_title"
+        tools:layout="@layout/fragment_top_app_bar" />
 
 
 </navigation>

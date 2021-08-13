@@ -1,6 +1,6 @@
 <resources>
 
     <!-- Application theme. -->
-    <style name="AppTheme" parent="Theme.Orange"/>
+    <style name="AppTheme" parent="Theme.Orange.NoActionBar"/>
 
 </resources>

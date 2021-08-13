@@ -21,6 +21,11 @@
 
     </style>
 
+    <style name="Theme.Orange.NoActionBar">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+    </style>
+
     <style name="Base.Theme.Orange" parent="Theme.MaterialComponents.DayNight">
         <item name="textAppearanceHeadline1">@style/TextAppearance.Orange.Headline1</item>
         <item name="textAppearanceHeadline2">@style/TextAppearance.Orange.Headline2</item>
@@ -40,7 +45,9 @@
         <item name="materialButtonOutlinedStyle">@style/Widget.Orange.Button.Outlined</item>
 
         <item name="floatingActionButtonStyle">@style/Widget.Orange.FloatingActionButton</item>
-        <item name="extendedFloatingActionButtonStyle">@style/Widget.Orange.ExtendedFloatingActionButton</item>
+        <item name="extendedFloatingActionButtonStyle">
+            @style/Widget.Orange.ExtendedFloatingActionButton
+        </item>
 
         <item name="toolbarStyle">@style/Widget.Orange.Toolbar</item>
         <item name="tabStyle">@style/Widget.Orange.Tab</item>
@@ -53,9 +60,13 @@
 
         <item name="android:statusBarColor" tools:ignore="NewApi">?attr/colorSurface</item>
         <item name="android:windowLightStatusBar" tools:ignore="NewApi">true</item>
-        <item name="android:navigationBarColor" tools:ignore="NewApi">?android:attr/colorBackground</item>
+        <item name="android:navigationBarColor" tools:ignore="NewApi">
+            ?android:attr/colorBackground
+        </item>
         <item name="android:windowLightNavigationBar" tools:ignore="NewApi">true</item>
-        <item name="android:navigationBarDividerColor" tools:ignore="NewApi">?attr/colorControlHighlight</item>
+        <item name="android:navigationBarDividerColor" tools:ignore="NewApi">
+            ?attr/colorControlHighlight
+        </item>
 
     </style>
 
