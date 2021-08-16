@@ -1,0 +1,52 @@
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:padding="@dimen/padding_normal">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:labelFor="@id/slider_discrete"
+            android:text="@string/slider_discrete"
+            android:textAppearance="?attr/textAppearanceSubtitle1" />
+
+        <com.google.android.material.slider.Slider
+            android:id="@+id/slider_discrete"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/margin_normal"
+            android:layout_marginBottom="@dimen/margin_normal"
+            android:contentDescription="@string/slider_discrete_content_description"
+            android:value="30.0"
+            android:valueFrom="0.0"
+            android:valueTo="100.0"
+            app:labelBehavior="withinBounds" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/margin_normal"
+            android:labelFor="@id/slider_continuous"
+            android:text="@string/slider_continuous"
+            android:textAppearance="?attr/textAppearanceSubtitle1" />
+
+        <com.google.android.material.slider.Slider
+            android:id="@+id/slider_continuous"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/margin_normal"
+            android:layout_marginBottom="@dimen/margin_normal"
+            android:contentDescription="@string/slider_continuous_content_description"
+            android:stepSize="10.0"
+            android:value="30.0"
+            android:valueFrom="0.0"
+            android:valueTo="100.0"
+            app:labelBehavior="withinBounds" />
+
+
+    </LinearLayout>
+</layout>

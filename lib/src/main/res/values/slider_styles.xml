@@ -1,0 +1,27 @@
+<resources>
+
+    <style name="Widget.Orange.Slider" parent="Widget.MaterialComponents.Slider">
+        <item name="trackHeight">@dimen/ods_slider_track_height</item>
+        <item name="thumbRadius">@dimen/ods_slider_thumb_radius</item>
+        <item name="haloRadius">@dimen/ods_slider_halo_radius</item>
+        <item name="haloColor">@color/ods_slider_halo_color_selector</item>
+
+        <item name="labelStyle">@style/Widget.Orange.Tooltip</item>
+    </style>
+
+    <style name="Widget.Orange.Tooltip" parent="Widget.MaterialComponents.Tooltip">
+        <item name="android:textAppearance">@style/TextAppearance.Orange.Tooltip</item>
+        <item name="shapeAppearance">@style/ShapeAppearance.Orange.Tooltip</item>
+        <item name="backgroundTint">?attr/colorPrimary</item>
+    </style>
+
+    <style name="TextAppearance.Orange.Tooltip" parent="TextAppearance.Orange.Body2">
+        <item name="android:textColor">@color/ods_slider_label_text_color_selector</item>
+    </style>
+
+    <style name="ShapeAppearance.Orange.Tooltip" parent="">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSize">16dp</item>
+    </style>
+
+</resources>

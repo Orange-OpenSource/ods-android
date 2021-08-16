@@ -118,4 +118,9 @@ Phasellus in aliquet mi. Pellentesque habitant morbi tristique senectus et netus
     <string name="top_app_bar_toolbar_title">Toolbar title</string>
     <string name="top_app_bar_title">Top App bar</string>
     <string name="top_app_bar_navigation_content_description">Navigation content description</string>
+    <string name="slider_discrete">Discrete</string>
+    <string name="slider_continuous">Continuous</string>
+    <string name="slider_discrete_content_description">Discrete slider</string>
+    <string name="slider_continuous_content_description">Continuous slider</string>
+    <string name="slider_title">Slider</string>
 </resources>

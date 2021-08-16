@@ -4,4 +4,7 @@
 
     <dimen name="ods_tab_elevation">8dp</dimen>
     <dimen name="ods_toolbar_elevation">4dp</dimen>
+    <dimen name="ods_slider_track_height">2dp</dimen>
+    <dimen name="ods_slider_thumb_radius">6dp</dimen>
+    <dimen name="ods_slider_halo_radius">24dp</dimen>
 </resources>

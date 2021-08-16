@@ -20,4 +20,5 @@
     <string name="demo_bottom_navigation">Bottom navigation</string>
     <string name="demo_bottom_app_bar">Bottom app bar</string>
     <string name="demo_top_app_bar">Top app bar</string>
+    <string name="demo_slider">Slider</string>
 </resources>
