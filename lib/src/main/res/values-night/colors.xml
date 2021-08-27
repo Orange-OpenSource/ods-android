@@ -5,7 +5,7 @@
     <!-- Snackbar background tint -->
     <color name="ods_snackbar_background">@color/ods_color_core_black_900</color>
     <!-- Slider halo color -->
-    <color name="ods_slider_halo_background_color">@color/ods_color_core_orange_100</color>
+    <color name="ods_slider_halo_background_color">@color/ods_color_core_orange_200</color>
     <!-- Slider label text color -->
     <color name="ods_slider_label_text_color">@color/ods_color_core_white_100</color>
 
