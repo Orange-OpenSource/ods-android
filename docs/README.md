@@ -11,8 +11,17 @@ In order to apply Orange Design System to your Android application please follow
 
 ## Components
 
-* [Button](./components/button.md)
-* [Tabs](./components/tabs.md)
-* [Bottom Navigation](components/bottomNavigation.md)
-* [Bottom App Bar](components/bottomAppBar.md)
+* [Button](components/Button.md)
+* [Checkbox](components/Checkbox.md)
+* [Radio Button](components/RadioButton.md)
+* [Switch](components/Switch.md)
+* [Tabs](components/Tabs.md)
+* [Floating Action Button](components/FloatingActionButton.md)
+* [Bottom Navigation](components/BottomNavigation.md)
+* [Bottom App Bar](components/BottomAppBar.md)
+* [Top App Bar](components/TopAppBar.md)
+* [Slider](components/Slider.md)
+* [Snackbar](components/Snackbar.md)
+* [Dialog](components/Dialog.md)
+* [Card](components/Card.md)
 
