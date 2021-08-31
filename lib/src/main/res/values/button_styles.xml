@@ -2,14 +2,10 @@
 
     <style name="Widget.Orange.Button" parent="Widget.MaterialComponents.Button">
         <item name="shapeAppearance">@style/ShapeAppearance.Orange.Button</item>
-        <item name="android:textColor">@color/ods_btn_contained_text_color_selector</item>
-        <item name="iconTint">@color/ods_btn_contained_text_color_selector</item>
     </style>
 
     <style name="Widget.Orange.Button.Icon" parent="Widget.MaterialComponents.Button.Icon">
         <item name="shapeAppearance">@style/ShapeAppearance.Orange.Button</item>
-        <item name="android:textColor">@color/ods_btn_contained_text_color_selector</item>
-        <item name="iconTint">@color/ods_btn_contained_text_color_selector</item>
     </style>
 
     <style name="Widget.Orange.Button.Contained" parent="Widget.Orange.Button" />
