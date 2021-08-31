@@ -46,10 +46,6 @@
         <item name="android:minHeight">@dimen/mtrl_min_touch_target_size</item>
     </style>
 
-    <style name="Widget.Orange.FloatingActionButton" parent="Widget.MaterialComponents.FloatingActionButton"/>
-
-    <style name="Widget.Orange.ExtendedFloatingActionButton" parent="Widget.MaterialComponents.ExtendedFloatingActionButton"/>
-
     <style name="ShapeAppearance.Orange.Button" parent="ShapeAppearance.MaterialComponents.SmallComponent">
         <item name="cornerSize">@dimen/ods_button_corner_size</item>
     </style>
