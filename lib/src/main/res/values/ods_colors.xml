@@ -37,5 +37,9 @@
     <color name="ods_color_grey_500">#999999</color>
     <color name="ods_color_grey_400">#CCCCCC</color>
     <color name="ods_color_grey_300">#DDDDDD</color>
-    <color name="color_grey_200">#EEEEEE</color>
+    <color name="ods_color_grey_200">#EEEEEE</color>
+
+    <!-- Custom colors -->
+    <color name="ods_dark_default_color_surface">#121212</color>
+
 </resources>

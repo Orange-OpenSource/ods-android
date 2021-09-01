@@ -1,0 +1,8 @@
+<resources>
+
+    <!-- Custom attributes that must be defined on each themes -->
+
+    <!-- Slider halo color -->
+    <attr name="odsSliderHaloBackground" format="color"/>
+
+</resources>

@@ -1,5 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<resources>
-    <dimen name="ods_button_outlined_stroke_width">2dp</dimen>
-    <dimen name="ods_button_corner_size">0dp</dimen>
-</resources>

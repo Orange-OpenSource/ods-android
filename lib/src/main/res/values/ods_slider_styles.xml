@@ -16,12 +16,12 @@
     </style>
 
     <style name="TextAppearance.Orange.Tooltip" parent="TextAppearance.Orange.Body2">
-        <item name="android:textColor">@color/ods_slider_label_text_color_selector</item>
+        <item name="android:textColor">?attr/colorOnPrimary</item>
     </style>
 
     <style name="ShapeAppearance.Orange.Tooltip" parent="">
         <item name="cornerFamily">rounded</item>
-        <item name="cornerSize">16dp</item>
+        <item name="cornerSize">@dimen/ods_slider_tooltip_corner_size</item>
     </style>
 
 </resources>

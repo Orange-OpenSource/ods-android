@@ -10,14 +10,17 @@
         <item name="colorSecondaryVariant">@color/ods_color_core_orange_200</item>
         <item name="colorOnSecondary">@color/ods_color_core_black_900</item>
 
-        <item name="android:colorBackground">@color/dark_background</item>
+        <item name="android:colorBackground">@color/ods_dark_default_color_surface</item>
         <item name="colorOnBackground">@color/ods_color_core_white_100</item>
 
-        <item name="colorSurface">@color/dark_background</item>
+        <item name="colorSurface">@color/ods_dark_default_color_surface</item>
         <item name="colorOnSurface">@color/ods_color_core_white_100</item>
 
         <item name="colorError">@color/ods_color_functional_negative_200</item>
         <item name="colorOnError">@color/ods_color_core_black_900</item>
+
+        <!-- Custom ODS attributes -->
+        <item name="odsSliderHaloBackground">@color/ods_color_core_orange_200</item>
 
         <item name="android:windowLightStatusBar" tools:targetApi="m">false</item>
         <item name="android:windowLightNavigationBar" tools:ignore="NewApi">false</item>

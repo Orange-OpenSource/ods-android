@@ -19,6 +19,9 @@
         <item name="colorError">@color/ods_color_functional_negative_200</item>
         <item name="colorOnError">@color/ods_color_core_black_900</item>
 
+        <!-- Custom ODS attributes -->
+        <item name="odsSliderHaloBackground">@color/ods_color_core_black_900</item>
+
     </style>
 
     <style name="Theme.Orange.NoActionBar">
