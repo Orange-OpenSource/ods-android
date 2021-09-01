@@ -12,6 +12,7 @@ In order to apply Orange Design System to your Android application please follow
 ## Components
 
 * [Button](components/Button.md)
+* [Text field](components/TextField.md)
 * [Checkbox](components/Checkbox.md)
 * [Radio Button](components/RadioButton.md)
 * [Switch](components/Switch.md)
