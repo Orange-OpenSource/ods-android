@@ -27,4 +27,8 @@ internal enum class Demo(@StringRes val nameResId: Int) {
     BOTTOM_APP_BAR(R.string.demo_bottom_app_bar),
     TOP_APP_BAR(R.string.demo_top_app_bar),
     SLIDER(R.string.demo_slider),
+    INPUT_CHIP(R.string.demo_input_chip),
+    FILTER_CHIP(R.string.demo_filter_chip),
+    CHOICE_CHIP(R.string.demo_choice_chip),
+    ACTION_CHIP(R.string.demo_action_chip),
 }

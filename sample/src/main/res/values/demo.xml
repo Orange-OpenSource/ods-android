@@ -21,4 +21,8 @@
     <string name="demo_bottom_app_bar">Bottom app bar</string>
     <string name="demo_top_app_bar">Top app bar</string>
     <string name="demo_slider">Slider</string>
+    <string name="demo_input_chip">Input chip</string>
+    <string name="demo_filter_chip">Filter chip</string>
+    <string name="demo_choice_chip">Choice chip</string>
+    <string name="demo_action_chip">Action chip</string>
 </resources>

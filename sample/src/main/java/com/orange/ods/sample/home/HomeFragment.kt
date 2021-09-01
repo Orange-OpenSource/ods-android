@@ -33,6 +33,10 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(R.layout.fragment_home) {
             Demo.SNACKBAR to HomeFragmentDirections.actionNavigationHomeToNavigationSnackbar(),
             Demo.CARD to HomeFragmentDirections.actionNavigationHomeToNavigationCard(),
             Demo.SLIDER to HomeFragmentDirections.actionNavigationHomeToNavigationSlider(),
+            Demo.INPUT_CHIP to HomeFragmentDirections.actionNavigationHomeToNavigationInputChip(),
+            Demo.FILTER_CHIP to HomeFragmentDirections.actionNavigationHomeToNavigationFilterChip(),
+            Demo.CHOICE_CHIP to HomeFragmentDirections.actionNavigationHomeToNavigationChoiceChip(),
+            Demo.ACTION_CHIP to HomeFragmentDirections.actionNavigationHomeToNavigationActionChip(),
         )
     }
 

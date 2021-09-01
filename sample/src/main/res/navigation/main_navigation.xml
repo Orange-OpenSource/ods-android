@@ -77,6 +77,18 @@
         <action
             android:id="@+id/action_navigation_home_to_navigation_slider"
             app:destination="@id/navigation_slider" />
+        <action
+            android:id="@+id/action_navigation_home_to_navigation_input_chip"
+            app:destination="@id/navigation_input_chip" />
+        <action
+            android:id="@+id/action_navigation_home_to_navigation_filter_chip"
+            app:destination="@id/navigation_filter_chip" />
+        <action
+            android:id="@+id/action_navigation_home_to_navigation_choice_chip"
+            app:destination="@id/navigation_choice_chip" />
+        <action
+            android:id="@+id/action_navigation_home_to_navigation_action_chip"
+            app:destination="@id/navigation_action_chip" />
 
     </fragment>
 
@@ -211,6 +223,30 @@
         android:name="com.orange.ods.sample.slider.SliderFragment"
         android:label="@string/slider_title"
         tools:layout="@layout/fragment_slider" />
+
+    <fragment
+        android:id="@+id/navigation_input_chip"
+        android:name="com.orange.ods.sample.chip.InputChipFragment"
+        android:label="@string/input_chip_title"
+        tools:layout="@layout/fragment_chip" />
+
+    <fragment
+        android:id="@+id/navigation_filter_chip"
+        android:name="com.orange.ods.sample.chip.FilterChipFragment"
+        android:label="@string/filter_chip_title"
+        tools:layout="@layout/fragment_chip" />
+
+    <fragment
+        android:id="@+id/navigation_choice_chip"
+        android:name="com.orange.ods.sample.chip.ChoiceChipFragment"
+        android:label="@string/choice_chip_title"
+        tools:layout="@layout/fragment_chip" />
+
+    <fragment
+        android:id="@+id/navigation_action_chip"
+        android:name="com.orange.ods.sample.chip.ActionChipFragment"
+        android:label="@string/action_chip_title"
+        tools:layout="@layout/fragment_chip" />
 
 
 </navigation>

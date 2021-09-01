@@ -1,6 +1,7 @@
 package com.orange.ods.sample.tools
 
 import android.view.View
+import android.widget.Checkable
 
 internal fun View.enabledState() = post {
     isEnabled = true
@@ -27,5 +28,11 @@ internal fun View.hoveredState() = post {
 }
 
 internal fun View.draggedState() = post {
+    invalidate()
+}
+
+internal fun View.checkedState() = post {
+
+    (this as? Checkable)?.isChecked = true
     invalidate()
 }
