@@ -25,4 +25,5 @@ In order to apply Orange Design System to your Android application please follow
 * [Snackbar](components/Snackbar.md)
 * [Dialog](components/Dialog.md)
 * [Card](components/Card.md)
+* [Chip](components/Chip.md)
 
