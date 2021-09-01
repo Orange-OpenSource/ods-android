@@ -18,6 +18,7 @@
     <string name="state_pressed">Pressed</string>
     <string name="state_dragged">Dragged</string>
     <string name="state_disabled">Disabled</string>
+    <string name="state_error">Error</string>
 
     <string name="typography_title">Typography</string>
 
@@ -64,6 +65,7 @@ Phasellus in aliquet mi. Pellentesque habitant morbi tristique senectus et netus
 
     <string name="textfield_hint">Label</string>
     <string name="textfield_input_text">Input text</string>
+    <string name="textfield_input_error">Input error</string>
     <string name="textfield_placeholder">Label</string>
 
     <string name="textfield_filled_title">Text Fields Filled</string>

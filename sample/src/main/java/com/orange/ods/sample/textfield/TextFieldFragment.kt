@@ -21,6 +21,7 @@ abstract class TextFieldFragment(
     private lateinit var hovered: TextInputLayout
     private lateinit var focused: TextInputLayout
     private lateinit var activated: TextInputLayout
+    private lateinit var error: TextInputLayout
     private lateinit var disabled: TextInputLayout
 
     override fun setUpView() {
@@ -49,6 +50,11 @@ abstract class TextFieldFragment(
             activated = addTextField(R.string.state_activated).apply {
                 editText?.setText(R.string.textfield_input_text)
             }
+            error = addTextField(R.string.state_error).apply {
+                editText?.setText(R.string.textfield_input_text)
+                error = getText(R.string.textfield_input_error)
+                isErrorEnabled = true
+            }
             disabled = addTextField(R.string.state_disabled)
         }
     }
@@ -56,6 +62,7 @@ abstract class TextFieldFragment(
     private fun setUpStates() {
         inactivated.enabledState()
         activated.enabledState()
+        error.enabledState()
         disabled.disabledState()
         focused.focusedState()
         hovered.hoveredState()
