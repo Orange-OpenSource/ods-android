@@ -21,7 +21,19 @@
                 app:menu="@menu/menu_top_bar"
                 app:navigationContentDescription="@string/top_app_bar_navigation_content_description"
                 app:navigationIcon="@drawable/ic_menu"
-                app:subtitle="@string/top_app_bar_default"
+                app:subtitle="@string/top_app_bar_no_style"
+                app:title="@string/top_app_bar_toolbar_title" />
+
+            <com.google.android.material.appbar.MaterialToolbar
+                style="@style/Widget.Orange.Toolbar"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/margin_normal"
+                android:layout_marginBottom="@dimen/margin_normal"
+                app:menu="@menu/menu_top_bar"
+                app:navigationContentDescription="@string/top_app_bar_navigation_content_description"
+                app:navigationIcon="@drawable/ic_menu"
+                app:subtitle="@string/top_app_bar_style_default"
                 app:title="@string/top_app_bar_toolbar_title" />
 
             <com.google.android.material.appbar.MaterialToolbar
@@ -33,7 +45,7 @@
                 app:menu="@menu/menu_top_bar"
                 app:navigationContentDescription="@string/top_app_bar_navigation_content_description"
                 app:navigationIcon="@drawable/ic_menu"
-                app:subtitle="@string/top_app_bar_raised"
+                app:subtitle="@string/top_app_bar_style_raised"
                 app:title="@string/top_app_bar_toolbar_title" />
 
         </LinearLayout>

@@ -51,9 +51,7 @@
         <item name="tabStyle">@style/Widget.Orange.Tab</item>
         <item name="bottomNavigationStyle">@style/Widget.Orange.BottomNavigation</item>
         <item name="bottomAppBarStyle">@style/Widget.Orange.BottomAppBar</item>
-
         <item name="snackbarStyle">@style/Widget.Orange.Snackbar</item>
-
         <item name="sliderStyle">@style/Widget.Orange.Slider</item>
 
         <item name="android:statusBarColor" tools:ignore="NewApi">?attr/colorSurface</item>
