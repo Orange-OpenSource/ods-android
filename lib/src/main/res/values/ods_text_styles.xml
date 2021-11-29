@@ -1,5 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 
+<!--
+  ~ /*
+  ~ * Copyright 2021 Orange
+  ~ *
+  ~ * Use of this source code is governed by an MIT-style
+  ~ * license that can be found in the LICENSE file or at
+  ~ * https://opensource.org/licenses/MIT.
+  ~ */
+  -->
+
 <resources>
 
     <style name="TextAppearance.Orange.Headline1" parent="TextAppearance.MaterialComponents.Headline1">

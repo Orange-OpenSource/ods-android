@@ -1,5 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 
+<!--
+  ~ /*
+  ~ * Copyright 2021 Orange
+  ~ *
+  ~ * Use of this source code is governed by an MIT-style
+  ~ * license that can be found in the LICENSE file or at
+  ~ * https://opensource.org/licenses/MIT.
+  ~ */
+  -->
+
 <resources>
     <color name="ods_color_core_orange_200">#f16e00</color>
     <color name="ods_color_core_orange_100">#ff7900</color>

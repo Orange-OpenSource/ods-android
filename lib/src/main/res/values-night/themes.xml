@@ -1,3 +1,13 @@
+<!--
+  ~ /*
+  ~ * Copyright 2021 Orange
+  ~ *
+  ~ * Use of this source code is governed by an MIT-style
+  ~ * license that can be found in the LICENSE file or at
+  ~ * https://opensource.org/licenses/MIT.
+  ~ */
+  -->
+
 <resources xmlns:tools="http://schemas.android.com/tools">
 
     <!-- Orange Design System theme for night mode. -->
