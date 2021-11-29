@@ -31,7 +31,6 @@
                 app:menu="@menu/menu_top_bar"
                 app:navigationContentDescription="@string/top_app_bar_navigation_content_description"
                 app:navigationIcon="@drawable/ic_menu"
-                app:subtitle="@string/top_app_bar_no_style"
                 app:title="@string/top_app_bar_toolbar_title" />
 
             <com.google.android.material.appbar.MaterialToolbar
