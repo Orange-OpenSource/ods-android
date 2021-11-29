@@ -11,14 +11,17 @@ AndroidX
 - fragment-ktx
 - navigation-fragment-ktx
 - navigation-ui-ktx
-AndroidX and his submodules are distributed under the terms and conditions ot the Apache 2.0 License (http://www.apache.org/licenses/LICENSE-2.0)
+AndroidX and his submodules are distributed under the terms and conditions of the Apache 2.0 License (http://www.apache.org/licenses/LICENSE-2.0)
 
 Firebase
  - firebase-bom
  - firebase-crashlytics-ktx
  - firebase-analytics-ktx
-Firebase and his submodules are distributed under the terms and conditions ot the Apache 2.0 License (http://www.apache.org/licenses/LICENSE-2.0)
+Firebase and his submodules are distributed under the terms and conditions of the Apache 2.0 License (http://www.apache.org/licenses/LICENSE-2.0)
+
+Material
+Material is distributed under the terms and conditions of the Apache 2.0 License (http://www.apache.org/licenses/LICENSE-2.0)
 
 Jekyll
-Jekyll is distributed under the terms and conditions ot the MIT License (http://opensource.org/licenses/MIT
+Jekyll is distributed under the terms and conditions of the MIT License (http://opensource.org/licenses/MIT)
 You may download the source code on the following website: https://github.com/jekyll/jekyll
