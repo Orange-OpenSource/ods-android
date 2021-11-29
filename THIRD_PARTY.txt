@@ -1,0 +1,24 @@
+This document contains the list of Third Party Software along with the license information.
+
+Third Party Software may impose additional restrictions and it is the user's responsibility to ensure that they have met the licensing
+requirements of the relevant license of the Third Party Software they are using.
+
+//-----//
+AndroidX 
+- core-ktx
+- appcompat
+- activity-ktx
+- fragment-ktx
+- navigation-fragment-ktx
+- navigation-ui-ktx
+AndroidX and his submodules are distributed under the terms and conditions ot the Apache 2.0 License (http://www.apache.org/licenses/LICENSE-2.0)
+
+Firebase
+ - firebase-bom
+ - firebase-crashlytics-ktx
+ - firebase-analytics-ktx
+Firebase and his submodules are distributed under the terms and conditions ot the Apache 2.0 License (http://www.apache.org/licenses/LICENSE-2.0)
+
+Jekyll
+Jekyll is distributed under the terms and conditions ot the MIT License (http://opensource.org/licenses/MIT
+You may download the source code on the following website: https://github.com/jekyll/jekyll
