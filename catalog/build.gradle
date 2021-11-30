@@ -101,6 +101,9 @@ android {
     applicationId = 'com.orange.ods.sample'
     versionName = "2.0.0"
 
+    lintOptions {
+      abortOnError false
+    }
   }
 
   testOptions {
