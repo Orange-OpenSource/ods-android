@@ -164,7 +164,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/cat_card_single_spacing"
+
                 android:ellipsize="end"
                 android:maxLines="1"
                 android:text="@string/cat_card_rich_media_view_secondary_line_text"/>
@@ -191,8 +191,8 @@
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:padding="@dimen/cat_card_single_spacing"
-            android:orientation="horizontal">
+            android:orientation="horizontal"
+            android:paddingStart="8dp">
 
           <com.google.android.material.button.MaterialButton
               style="?attr/borderlessButtonStyle"
