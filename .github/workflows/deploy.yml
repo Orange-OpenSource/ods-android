@@ -22,7 +22,7 @@ jobs:
           java-version: '11'
 
       - name: Assemble lib and sample app
-        run: ./gradlew assembleRelease --stacktrace
+        run: ./gradlew assemble --stacktrace
 
       - name: Store library
         uses: actions/upload-artifact@v2
