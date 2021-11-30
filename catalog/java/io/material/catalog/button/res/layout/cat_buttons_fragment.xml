@@ -52,31 +52,16 @@
           android:layout_width="wrap_content"
           android:layout_height="wrap_content"
           android:paddingTop="8dp"
-          android:text="@string/cat_unelevated_btn_text"
-          android:textSize="16sp"/>
-
-      <Button
-          android:id="@+id/material_unelevated_button"
-          style="@style/Widget.MaterialComponents.Button.UnelevatedButton"
-          android:layout_width="wrap_content"
-          android:layout_height="wrap_content"
-          android:text="@string/cat_button_label_enabled"/>
-
-      <TextView
-          android:textStyle="bold"
-          android:layout_width="wrap_content"
-          android:layout_height="wrap_content"
-          android:paddingTop="8dp"
           android:text="@string/cat_icon_btn_text"
           android:textSize="16sp"/>
 
       <Button
           android:id="@+id/material_icon_button"
-          style="@style/Widget.MaterialComponents.Button.Icon"
+          style="@style/Widget.Orange.Button.Icon"
           android:layout_width="wrap_content"
           android:layout_height="wrap_content"
           android:text="@string/cat_button_label_enabled"
-          app:icon="@drawable/ic_dialogs_24px"/>
+          app:icon="@drawable/ic_add_24px"/>
 
       <TextView
           android:textStyle="bold"
@@ -88,7 +73,7 @@
 
       <Button
           android:id="@+id/material_text_button"
-          style="@style/Widget.MaterialComponents.Button.TextButton"
+          style="@style/Widget.Orange.Button.Text"
           android:layout_width="wrap_content"
           android:layout_height="wrap_content"
           android:text="@string/cat_button_label_enabled"/>
@@ -103,11 +88,11 @@
 
       <Button
           android:id="@+id/material_icon_text_button"
-          style="@style/Widget.MaterialComponents.Button.TextButton.Icon"
+          style="@style/Widget.Orange.Button.Text.Icon"
           android:layout_width="wrap_content"
           android:layout_height="wrap_content"
           android:text="@string/cat_button_label_enabled"
-          app:icon="@drawable/ic_dialogs_24px"/>
+          app:icon="@drawable/ic_add_24px"/>
 
       <TextView
           android:textStyle="bold"
@@ -119,7 +104,7 @@
 
       <Button
           android:id="@+id/material_outlined_button"
-          style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+          style="@style/Widget.Orange.Button.Outlined"
           android:layout_width="wrap_content"
           android:layout_height="wrap_content"
           android:text="@string/cat_button_label_enabled"/>
@@ -133,13 +118,29 @@
           android:textSize="16sp"/>
 
       <Button
-          style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+          style="@style/Widget.Orange.Button.Outlined.IconOnly"
           android:layout_width="wrap_content"
           android:layout_height="wrap_content"
           android:contentDescription="@string/cat_button_icon_btn_text"
-          app:icon="@drawable/ic_dialogs_24px"
+          app:icon="@drawable/ic_add_24px"
           app:iconGravity="textStart"
           app:iconPadding="0dp"/>
+
+      <TextView
+          android:textStyle="bold"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:paddingTop="8dp"
+          android:text="@string/cat_outlined_icon_btn_title_text"
+          android:textSize="16sp"/>
+
+      <Button
+          android:id="@+id/material_outlined_text_button"
+          style="@style/Widget.Orange.Button.Outlined.Icon"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:text="@string/cat_button_label_enabled"
+          app:icon="@drawable/ic_add_24px"/>
 
       <TextView
         android:textStyle="bold"
@@ -150,12 +151,12 @@
         android:textSize="16sp"/>
 
       <Button
-        style="@style/Widget.MaterialComponents.Button"
+        style="@style/Widget.Orange.Button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:contentDescription="@string/cat_button_top_icon_btn_text"
         android:text="@string/cat_button_label_enabled"
-        app:icon="@drawable/ic_dialogs_24px"
+        app:icon="@drawable/ic_add_24px"
         app:iconGravity="textTop" />
 
       <com.google.android.material.switchmaterial.SwitchMaterial
