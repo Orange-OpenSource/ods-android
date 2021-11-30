@@ -22,13 +22,25 @@ Jekyll is distributed under the terms and conditions of the MIT License (http://
 You may download the source code on the following website: https://github.com/jekyll/jekyll
 
 Guava
+Guava is distributed under the terms and conditions of the Apache 2.0 License (http://www.apache.org/licenses/LICENSE-2.0)
+You may download the source code on the following website: https://github.com/google/guava
 
 Dagger
+Guava is distributed under the terms and conditions of the Apache 2.0 License (http://www.apache.org/licenses/LICENSE-2.0)
+You may download the source code on the following website: https://github.com/google/dagger
 
 Truth
+Truth is distributed under the terms and conditions of the Apache 2.0 License (http://www.apache.org/licenses/LICENSE-2.0)
+You may download the source code on the following website: https://github.com/google/truth
 
 Mockito-Core
+Mockito is distributed under the terms and conditions of the MIT License (http://opensource.org/licenses/MIT)
+You may download the source code on the following website: https://github.com/mockito/mockito
 
 Robolectric
+Robolectric is distributed under the terms and conditions of the Apache 2.0 License (http://www.apache.org/licenses/LICENSE-2.0)
+You may download the source code on the following website: https://github.com/robolectric/robolectric
 
 Auto-service
+Auto-service is distributed under the terms and conditions of the Apache 2.0 License (http://www.apache.org/licenses/LICENSE-2.0)
+You may download the source code on the following website: https://github.com/google/auto
