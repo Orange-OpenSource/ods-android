@@ -72,10 +72,7 @@ public class ThemeSwitcherDialogFragment extends BottomSheetDialogFragment
 
   @Inject ThemeSwitcherResourceProvider resourceProvider;
   @Inject ThemeAttributeValuesCreator themeAttributeValuesCreator;
-  private RadioGroup primaryColorGroup;
-  private RadioGroup secondaryColorGroup;
-  private RadioGroup shapeCornerFamilyGroup;
-  private RadioGroup shapeCornerSizeGroup;
+
 
   private WindowPreferencesManager windowPreferencesManager;
 
@@ -102,61 +99,7 @@ public class ThemeSwitcherDialogFragment extends BottomSheetDialogFragment
       @Nullable Bundle bundle) {
     View view = layoutInflater.inflate(R.layout.mtrl_theme_switcher_dialog, viewGroup, false);
     initializeChooseThemeButtons(view);
-    primaryColorGroup = view.findViewById(R.id.primary_colors);
-    initializeThemingValues(
-        primaryColorGroup,
-        resourceProvider.getPrimaryColors(),
-        resourceProvider.getPrimaryColorsContentDescription(),
-        resourceProvider.getPrimaryThemeOverlayAttrs(),
-        R.id.theme_feature_primary_color,
-        view.findViewById(R.id.primary_colors_label),
-        resourceProvider.getPrimaryColorsGroupDescription(),
-        ThemingType.COLOR);
 
-    secondaryColorGroup = view.findViewById(R.id.secondary_colors);
-    initializeThemingValues(
-        secondaryColorGroup,
-        resourceProvider.getSecondaryColors(),
-        resourceProvider.getSecondaryColorsContentDescription(),
-        resourceProvider.getSecondaryThemeOverlayAttrs(),
-        R.id.theme_feature_secondary_color,
-        view.findViewById(R.id.secondary_colors_label),
-        resourceProvider.getSecondaryColorsGroupDescription(),
-        ThemingType.COLOR);
-
-    shapeCornerFamilyGroup = view.findViewById(R.id.shape_families);
-    initializeThemingValues(
-        shapeCornerFamilyGroup,
-        resourceProvider.getShapes(),
-        resourceProvider.getShapesContentDescription(),
-        R.id.theme_feature_corner_family,
-        view.findViewById(R.id.shape_families_label),
-        resourceProvider.getShapesGroupDescription(),
-        ThemingType.SHAPE_CORNER_FAMILY);
-
-    shapeCornerSizeGroup = view.findViewById(R.id.shape_corner_sizes);
-    initializeThemingValues(
-        shapeCornerSizeGroup,
-        resourceProvider.getShapeSizes(),
-        resourceProvider.getShapeSizesContentDescription(),
-        R.id.theme_feature_corner_size,
-        view.findViewById(R.id.shape_corner_sizes_label),
-        resourceProvider.getShapeSizesGroupDescription(),
-        ThemingType.SHAPE_CORNER_SIZE);
-
-    View applyButton = view.findViewById(R.id.apply_button);
-    applyButton.setOnClickListener(
-        v -> {
-          applyThemeOverlays();
-          dismiss();
-        });
-
-    View clearButton = view.findViewById(R.id.clear_button);
-    clearButton.setOnClickListener(
-        v -> {
-          ThemeOverlayUtils.clearThemeOverlays(getActivity());
-          dismiss();
-        });
 
     return view;
   }
@@ -176,109 +119,9 @@ public class ThemeSwitcherDialogFragment extends BottomSheetDialogFragment
     });
   }
 
-  private void applyThemeOverlays() {
-    int[][] themesMap = new int[][]{
-        {R.id.theme_feature_primary_color, getThemeOverlayResId(primaryColorGroup)},
-        {R.id.theme_feature_secondary_color, getThemeOverlayResId(secondaryColorGroup)},
-        {R.id.theme_feature_corner_family, getThemeOverlayResId(shapeCornerFamilyGroup)},
-        {R.id.theme_feature_corner_size, getThemeOverlayResId(shapeCornerSizeGroup)}
-    };
 
-    for (int i = 0; i < themesMap.length; ++i) {
-      ThemeOverlayUtils.setThemeOverlay(themesMap[i][0], themesMap[i][1]);
-    }
 
-    getActivity().recreate();
-  }
 
-  private int getThemeOverlayResId(RadioGroup radioGroup) {
-    if (radioGroup.getCheckedRadioButtonId() == View.NO_ID) {
-      return 0;
-    }
-
-    ThemeAttributeValues overlayFeature =
-          (ThemeAttributeValues)
-              getDialog().findViewById(radioGroup.getCheckedRadioButtonId()).getTag();
-
-    return overlayFeature.themeOverlay;
-  }
-
-  private void initializeThemingValues(
-      RadioGroup group,
-      @ArrayRes int overlays,
-      @ArrayRes int contentDescriptions,
-      @IdRes int overlayId,
-      TextView groupLabel,
-      @StringRes int groupDescriptionResId,
-      ThemingType themingType) {
-    initializeThemingValues(
-        group,
-        overlays,
-        contentDescriptions,
-        new int[] {},
-        overlayId,
-        groupLabel,
-        groupDescriptionResId,
-        themingType);
-  }
-
-  private void initializeThemingValues(
-      RadioGroup group,
-      @ArrayRes int overlays,
-      @ArrayRes int contentDescriptions,
-      @StyleableRes int[] themeOverlayAttrs,
-      @IdRes int overlayId,
-      TextView groupLabel,
-      @StringRes int groupDescriptionResId,
-      ThemingType themingType) {
-    groupLabel.setText(groupDescriptionResId);
-
-    TypedArray themingValues = getResources().obtainTypedArray(overlays);
-    TypedArray contentDescriptionArray = getResources().obtainTypedArray(contentDescriptions);
-    if (themingValues.length() != contentDescriptionArray.length()) {
-      throw new IllegalArgumentException(
-          "Feature array length doesn't match its content description array length.");
-    }
-
-    for (int i = 0; i < themingValues.length(); i++) {
-      @StyleRes int valueThemeOverlay = themingValues.getResourceId(i, 0);
-      ThemeAttributeValues themeAttributeValues = null;
-      // Create RadioButtons for themeAttributeValues values
-      switch (themingType) {
-        case COLOR:
-          themeAttributeValues =
-              themeAttributeValuesCreator.createColorPalette(
-                  getContext(), valueThemeOverlay, themeOverlayAttrs);
-          break;
-        case SHAPE_CORNER_FAMILY:
-          themeAttributeValues =
-              themeAttributeValuesCreator.createThemeAttributeValues(valueThemeOverlay);
-          break;
-        case SHAPE_CORNER_SIZE:
-          themeAttributeValues =
-              themeAttributeValuesCreator.createThemeAttributeValuesWithContentDescription(
-                  valueThemeOverlay, contentDescriptionArray.getString(i));
-          break;
-      }
-
-      // Expect the radio group to have a RadioButton as child for each themeAttributeValues value.
-      AppCompatRadioButton button =
-          themingType.radioButtonType == RadioButtonType.XML
-              ? ((AppCompatRadioButton) group.getChildAt(i))
-              : createCompatRadioButton(group, contentDescriptionArray.getString(i));
-
-      button.setTag(themeAttributeValues);
-      themeAttributeValues.customizeRadioButton(button);
-
-      int currentThemeOverlay = ThemeOverlayUtils.getThemeOverlay(overlayId);
-      if (themeAttributeValues.themeOverlay == currentThemeOverlay) {
-        group.check(button.getId());
-      }
-    }
-
-    themingValues.recycle();
-    contentDescriptionArray.recycle();
-  }
 
   @NonNull
   private AppCompatRadioButton createCompatRadioButton(
