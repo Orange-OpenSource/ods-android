@@ -24,4 +24,8 @@
         <item name="actionMenuTextColor">?attr/colorOnSurface</item>
     </style>
 
+    <style name="Widget.Orange.AppBarLayout" parent="Widget.MaterialComponents.AppBarLayout.Primary">
+        <item name="android:background">@android:color/transparent</item>
+    </style>
+
 </resources>

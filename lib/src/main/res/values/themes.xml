@@ -74,6 +74,8 @@
             ?attr/colorControlHighlight
         </item>
 
+        <item name="appBarLayoutStyle">@style/Widget.Orange.AppBarLayout</item>
+
     </style>
 
 </resources>

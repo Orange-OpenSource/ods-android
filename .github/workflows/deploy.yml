@@ -34,7 +34,7 @@ jobs:
         uses: actions/upload-artifact@v2
         with:
           name: sample
-          path: sample/build/outputs/apk/**/*.apk
+          path: catalog/build/outputs/apk/**/*.apk
 
       - name: upload artifact to Firebase App Distribution
         uses: wzieba/Firebase-Distribution-Github-Action@v1.3.2
@@ -42,5 +42,5 @@ jobs:
           appId: ${{secrets.FIREBASE_APP_ID}}
           token: ${{secrets.FIREBASE_TOKEN}}
           groups: testers
-          file: sample/build/outputs/apk/release/sample-release.apk
+          file: catalog/build/outputs/apk/release/catalog-debug.apk
 

@@ -9,5 +9,5 @@
  */
 
 include ':lib'
-include ':sample'
+include ':catalog'
 rootProject.name = "Orange Design System Android"
