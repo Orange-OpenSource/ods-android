@@ -10,5 +10,4 @@
 
 include ':lib'
 include ':catalog'
-include ':sample'
 rootProject.name = "Orange Design System Android"

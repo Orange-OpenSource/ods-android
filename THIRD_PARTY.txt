@@ -4,20 +4,15 @@ Third Party Software may impose additional restrictions and it is the user's res
 requirements of the relevant license of the Third Party Software they are using.
 
 //-----//
-AndroidX 
-- core-ktx
+AndroidX
+- multidex
+- constraintlayout
+- gridlayout
 - appcompat
-- activity-ktx
-- fragment-ktx
-- navigation-fragment-ktx
-- navigation-ui-ktx
+- recyclerview
+- test
+- runner
 AndroidX and his submodules are distributed under the terms and conditions of the Apache 2.0 License (http://www.apache.org/licenses/LICENSE-2.0)
-
-Firebase
- - firebase-bom
- - firebase-crashlytics-ktx
- - firebase-analytics-ktx
-Firebase and his submodules are distributed under the terms and conditions of the Apache 2.0 License (http://www.apache.org/licenses/LICENSE-2.0)
 
 Material
 Material is distributed under the terms and conditions of the Apache 2.0 License (http://www.apache.org/licenses/LICENSE-2.0)
@@ -25,3 +20,15 @@ Material is distributed under the terms and conditions of the Apache 2.0 License
 Jekyll
 Jekyll is distributed under the terms and conditions of the MIT License (http://opensource.org/licenses/MIT)
 You may download the source code on the following website: https://github.com/jekyll/jekyll
+
+Guava
+
+Dagger
+
+Truth
+
+Mockito-Core
+
+Robolectric
+
+Auto-service

@@ -97,6 +97,10 @@ android {
     vectorDrawables.useSupportLibrary = true
     minSdkVersion 21
     targetSdkVersion 30
+
+    applicationId = 'com.orange.ods.sample'
+    versionName = "2.0.0"
+
   }
 
   testOptions {
