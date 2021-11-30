@@ -42,7 +42,7 @@ import javax.inject.Inject;
  * The main launcher activity for the Catalog, capable of displaying a number of different screens
  * via Fragments.
  */
-public class MainActivity extends DaggerAppCompatActivity  {
+public class MainActivity extends DaggerAppCompatActivity implements ThemeSwitcherActivity {
 
   @Inject Optional<InternalOptionsMenuPresenter> internalOptionsMenu;
   TocFragment tocFragment;
