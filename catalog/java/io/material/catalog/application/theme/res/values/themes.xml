@@ -24,7 +24,7 @@
     <item name="windowActionModeOverlay">true</item>
   </style>
 
-  <style name="Theme.Catalog.Dark" parent="Theme.MaterialComponents.NoActionBar">
+  <style name="Theme.Catalog.Dark" parent="Theme.Orange.NoActionBar">
     <item name="catalogToolbarStyle">@style/Widget.Catalog.Toolbar</item>
     <item name="catalogToolbarWithCloseButtonStyle">@style/Widget.Catalog.Toolbar.WithCloseButton</item>
     <item name="bottomSheetDialogTheme">@style/ThemeOverlay.Catalog.BottomSheetDialog</item>
