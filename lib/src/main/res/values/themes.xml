@@ -31,6 +31,7 @@
 
         <!-- Custom ODS attributes -->
         <item name="odsSliderHaloBackground">@color/ods_color_core_black_900</item>
+        <item name="odsBadgeTextColor">@color/ods_color_core_white_100</item>
 
     </style>
 
@@ -63,6 +64,7 @@
         <item name="bottomAppBarStyle">@style/Widget.Orange.BottomAppBar</item>
         <item name="snackbarStyle">@style/Widget.Orange.Snackbar</item>
         <item name="sliderStyle">@style/Widget.Orange.Slider</item>
+        <item name="badgeStyle">@style/Widget.Orange.Badge</item>
 
         <item name="android:statusBarColor" tools:ignore="NewApi">?attr/colorSurface</item>
         <item name="android:windowLightStatusBar" tools:ignore="NewApi">true</item>

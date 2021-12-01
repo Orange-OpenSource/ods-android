@@ -15,4 +15,7 @@
     <!-- Slider halo color -->
     <attr name="odsSliderHaloBackground" format="color"/>
 
+    <!-- badge color -->
+    <attr name="odsBadgeTextColor" format="color"/>
+
 </resources>

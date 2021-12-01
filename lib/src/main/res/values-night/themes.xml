@@ -31,6 +31,7 @@
 
         <!-- Custom ODS attributes -->
         <item name="odsSliderHaloBackground">@color/ods_color_core_orange_200</item>
+        <item name="odsBadgeTextColor">@color/ods_color_core_white_100</item>
 
         <item name="android:windowLightStatusBar" tools:targetApi="m">false</item>
         <item name="android:windowLightNavigationBar" tools:ignore="NewApi">false</item>
