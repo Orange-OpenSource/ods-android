@@ -23,13 +23,14 @@
       android:id="@+id/app_bar"
       android:layout_width="match_parent"
       android:layout_height="192dp"
-      android:fitsSystemWindows="true">
+      android:fitsSystemWindows="true"
+      app:statusBarForeground="?attr/colorSurface">
     <com.google.android.material.appbar.CollapsingToolbarLayout
         style="?attr/catalogToolbarStyle"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         app:collapsedTitleTextAppearance="?attr/textAppearanceHeadline6"
-        app:contentScrim="?attr/colorPrimary"
+        app:contentScrim="?attr/colorSurface"
         app:expandedTitleGravity="bottom"
         app:expandedTitleMarginBottom="56dp"
         app:expandedTitleMarginStart="16dp"

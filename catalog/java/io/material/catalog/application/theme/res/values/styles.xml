@@ -16,7 +16,7 @@
   -->
 <resources xmlns:tools="http://schemas.android.com/tools">
 
-  <style name="Widget.Catalog.Toolbar" parent="Widget.MaterialComponents.Toolbar.PrimarySurface">
+  <style name="Widget.Catalog.Toolbar" parent="Widget.Orange.Toolbar">
     <!-- Toolbar should always be within an AppBarLayout which provides the background. -->
     <item name="android:background">@null</item>
   </style>
