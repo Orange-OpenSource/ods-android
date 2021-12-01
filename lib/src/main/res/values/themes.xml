@@ -29,9 +29,13 @@
         <item name="colorError">@color/ods_color_functional_negative_200</item>
         <item name="colorOnError">@color/ods_color_core_black_900</item>
 
+        <item name="android:textColorPrimary">@color/ods_color_core_black_900</item>
+        <item name="android:textColorSecondary">@color/ods_color_core_black_900</item>
+        
         <!-- Custom ODS attributes -->
         <item name="odsSliderHaloBackground">@color/ods_color_core_black_900</item>
         <item name="odsBadgeTextColor">@color/ods_color_core_white_100</item>
+
 
     </style>
 
