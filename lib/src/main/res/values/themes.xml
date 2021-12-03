@@ -89,11 +89,13 @@
     <style name="Widget.Orange.Dialog" parent="ThemeOverlay.MaterialComponents.MaterialAlertDialog">
         <item name="materialAlertDialogBodyTextStyle">@style/Widget.Orange.Dialog.Body.Text</item>
         <item name="materialAlertDialogTitleIconStyle">@style/Widget.Orange.Dialog.Icon</item>
+        <item name="android:checkedTextViewStyle">@style/Widget.Orange.Dialog.CheckedTextView</item>
     </style>
 
     <style name="Widget.Orange.Dialog.Centered" parent="ThemeOverlay.MaterialComponents.MaterialAlertDialog.Centered">
         <item name="materialAlertDialogBodyTextStyle">@style/Widget.Orange.Dialog.Body.Text</item>
         <item name="materialAlertDialogTitleIconStyle">@style/Widget.Orange.Dialog.Icon.CenterStacked</item>
+        <item name="android:checkedTextViewStyle">@style/Widget.Orange.Dialog.CheckedTextView</item>
     </style>
 
     <style name="Widget.Orange.Dialog.Body.Text" parent="MaterialAlertDialog.MaterialComponents.Body.Text">
@@ -107,6 +109,10 @@
     <style name="Widget.Orange.Dialog.Icon.CenterStacked" parent="MaterialAlertDialog.MaterialComponents.Title.Icon.CenterStacked">
         <item name="android:tint">?attr/colorPrimary</item>
         <item name="android:layout_marginBottom">6dp</item>
+    </style>
+
+    <style name="Widget.Orange.Dialog.CheckedTextView" parent="Widget.MaterialComponents.CheckedTextView">
+        <item name="android:textColor">?attr/colorOnSurface</item>
     </style>
 
 </resources>
