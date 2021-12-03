@@ -70,6 +70,8 @@
         <item name="sliderStyle">@style/Widget.Orange.Slider</item>
         <item name="badgeStyle">@style/Widget.Orange.Badge</item>
 
+        <item name="materialAlertDialogTheme">@style/Widget.Orange.Dialog</item>
+
         <item name="android:statusBarColor" tools:ignore="NewApi">?attr/colorSurface</item>
         <item name="android:windowLightStatusBar" tools:ignore="NewApi">true</item>
         <item name="android:navigationBarColor" tools:ignore="NewApi">
@@ -82,6 +84,29 @@
 
         <item name="appBarLayoutStyle">@style/Widget.Orange.AppBarLayout</item>
 
+    </style>
+
+    <style name="Widget.Orange.Dialog" parent="ThemeOverlay.MaterialComponents.MaterialAlertDialog">
+        <item name="materialAlertDialogBodyTextStyle">@style/Widget.Orange.Dialog.Body.Text</item>
+        <item name="materialAlertDialogTitleIconStyle">@style/Widget.Orange.Dialog.Icon</item>
+    </style>
+
+    <style name="Widget.Orange.Dialog.Centered" parent="ThemeOverlay.MaterialComponents.MaterialAlertDialog.Centered">
+        <item name="materialAlertDialogBodyTextStyle">@style/Widget.Orange.Dialog.Body.Text</item>
+        <item name="materialAlertDialogTitleIconStyle">@style/Widget.Orange.Dialog.Icon.CenterStacked</item>
+    </style>
+
+    <style name="Widget.Orange.Dialog.Body.Text" parent="MaterialAlertDialog.MaterialComponents.Body.Text">
+        <item name="android:textColor">?attr/colorOnSurface</item>
+    </style>
+
+    <style name="Widget.Orange.Dialog.Icon" parent="MaterialAlertDialog.MaterialComponents.Title.Icon">
+        <item name="android:tint">?attr/colorPrimary</item>
+    </style>
+
+    <style name="Widget.Orange.Dialog.Icon.CenterStacked" parent="MaterialAlertDialog.MaterialComponents.Title.Icon.CenterStacked">
+        <item name="android:tint">?attr/colorPrimary</item>
+        <item name="android:layout_marginBottom">6dp</item>
     </style>
 
 </resources>

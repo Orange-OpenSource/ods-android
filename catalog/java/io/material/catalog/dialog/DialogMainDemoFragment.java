@@ -59,16 +59,6 @@ public class DialogMainDemoFragment extends DemoFragment {
     String message = getResources().getString(R.string.message);
     String longMessage = getResources().getString(R.string.long_message);
 
-    // AppCompat title, message, 3 actions
-    addDialogLauncher(
-        dialogLaunchersLayout,
-        R.string.app_compat_alert_dialog,
-        new AlertDialog.Builder(getContext())
-            .setTitle(title)
-            .setMessage(message)
-            .setPositiveButton(positiveText, null)
-            .setNegativeButton(negativeText, null));
-
     // message, 2 actions
     addDialogLauncher(
         dialogLaunchersLayout,
@@ -248,7 +238,7 @@ public class DialogMainDemoFragment extends DemoFragment {
 
   @StyleRes
   protected int getCenteredTitleThemeOverlay() {
-    return R.style.ThemeOverlay_MaterialComponents_MaterialAlertDialog_Centered;
+    return R.style.Widget_Orange_Dialog_Centered;
   }
 
   private void addDialogLauncher(

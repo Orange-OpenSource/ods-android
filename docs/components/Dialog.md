@@ -89,3 +89,15 @@ MaterialAlertDialogBuilder(context)
          }
         .show()
 ```
+
+## Centered dialog
+
+```kt
+MaterialAlertDialogBuilder(context, R.style.Widget.Orange.Dialog.Centered)
+        .setTitle("title")
+        .setMessage("message")
+        .setPositiveButton("positiveText", null)
+        .setNegativeButton("negativeText", null)
+        .setIcon(R.drawable.your_drawable)
+        .show()
+```
