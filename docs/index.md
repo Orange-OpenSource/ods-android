@@ -1,3 +1,9 @@
+---
+layout: detail
+title: Orange Design System documentation for Android
+description: Orange Design System documentation for Android
+---
+
 # Orange Design System documentation for Android
 
 ## Introduction
