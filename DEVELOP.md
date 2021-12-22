@@ -14,7 +14,7 @@ Then they can use:
 ```groovy
 dependencies {
     ... 
-    implementation 'com.github.ods-sandbox:android:v0.0.1-alpha'
+    implementation 'com.github.Orange-OpenSource:ods-android:0.0.1'
 }
 ```
 
@@ -22,6 +22,6 @@ dependencies {
 ```groovy
 dependencies {
     ... 
-    implementation 'com.github.ods-sandbox:android:develop-SNAPSHOT'
+    implementation 'com.github.Orange-OpenSource:ods-android:develop-SNAPSHOT'
 }
 ```

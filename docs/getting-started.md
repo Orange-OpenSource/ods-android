@@ -29,7 +29,7 @@ Repository. To use it:
    ```groovy
      dependencies {
        // ...
-       implementation 'com.github.ods-sandbox:android:v0.0.1-alpha'
+       implementation 'com.github.Orange-OpenSource:ods-android:0.0.1'
        // ...
      }
    ```
