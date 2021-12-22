@@ -4,8 +4,6 @@ title: Orange Design System documentation for Android
 description: Orange Design System documentation for Android
 ---
 
-# Orange Design System documentation for Android
-
 ## Introduction
 
 Orange Design System for Android is based on [Material Design](https://material.io/) from Google
