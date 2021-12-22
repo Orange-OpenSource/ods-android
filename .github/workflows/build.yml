@@ -43,4 +43,4 @@ jobs:
         uses: actions/upload-artifact@v2
         with:
           name: sample
-          path: catalog/build/outputs/apk/**/*.apk
+          path: catalog/build/outputs/apk/debug/*.apk
