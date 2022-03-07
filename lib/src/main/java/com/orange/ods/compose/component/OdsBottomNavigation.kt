@@ -12,6 +12,7 @@ package com.orange.ods.compose.component
 
 import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.layout.RowScope
+import androidx.compose.material.BottomNavigation
 import androidx.compose.material.BottomNavigationItem
 import androidx.compose.material.ContentAlpha
 import androidx.compose.material.MaterialTheme
@@ -24,7 +25,7 @@ fun OdsBottomNavigation(
     modifier: Modifier = Modifier,
     content: @Composable RowScope.() -> Unit
 ) {
-    androidx.compose.material.BottomNavigation(
+    BottomNavigation(
         modifier = modifier,
         // Need to define backgroundColor cause in Compose default backgroundColor is primarySurface
         backgroundColor = MaterialTheme.colors.surface,
