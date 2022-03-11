@@ -40,7 +40,7 @@ fun MainScreen() {
 
 @Composable
 private fun BottomNavigationBar(navController: NavController) {
-    val navigationItems = listOf(NavigationItem.Guidelines, NavigationItem.Components, NavigationItem.Modules)
+    val navigationItems = listOf(NavigationItem.Guidelines, NavigationItem.Components, NavigationItem.Modules, NavigationItem.About)
 
     OdsBottomNavigation {
         val navBackStackEntry by navController.currentBackStackEntryAsState()

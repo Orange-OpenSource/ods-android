@@ -26,6 +26,7 @@ sealed class NavigationItem(
     object Guidelines : NavigationItem(R.drawable.ic_guide_help, R.string.navigation_item_guidelines,"guidelines")
     object Components : NavigationItem(R.drawable.ic_folder, R.string.navigation_item_components, "components")
     object Modules : NavigationItem(R.drawable.ic_layers, R.string.navigation_item_modules, "modules")
+    object About : NavigationItem(R.drawable.ic_info, R.string.navigation_item_about, "about")
 }
 
 @Composable
@@ -39,6 +40,9 @@ fun AppNavigation(navController: NavHostController) {
         }
         composable(NavigationItem.Modules.route) {
             ModulesScreen()
+        }
+        composable(NavigationItem.About.route) {
+            AboutScreen()
         }
     }
 }
