@@ -13,15 +13,15 @@ Then they can use:
 - a specific version:
 ```groovy
 dependencies {
-    ... 
-    implementation 'com.github.Orange-OpenSource:ods-android:0.0.1'
+    //... 
+    implementation 'com.github.orange-openSource:ods-android:0.0.1'
 }
 ```
 
 - or a snapshot version (latest commit from a specific branch):
 ```groovy
 dependencies {
-    ... 
-    implementation 'com.github.Orange-OpenSource:ods-android:develop-SNAPSHOT'
+    //... 
+    implementation 'com.github.orange-openSource:ods-android:develop-SNAPSHOT'
 }
 ```

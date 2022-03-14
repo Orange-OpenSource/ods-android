@@ -18,6 +18,7 @@ package io.material.catalog.font;
 
 import io.material.catalog.R;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.res.TypedArray;
 import android.os.Bundle;
@@ -184,13 +185,14 @@ public class FontMainDemoFragment extends DemoFragment {
     }
 
     @SuppressWarnings("RestrictTo")
+    @SuppressLint("RestrictedApi")
     private String createDescription(String name, @StyleRes int style) {
       TextAppearance textAppearance = new TextAppearance(itemView.getContext(), style);
       return name
           + " - "
           + convertFontFamilyToDescription(textAppearance.fontFamily)
           + " "
-          + pxToSp(textAppearance.textSize)
+          + pxToSp(textAppearance.getTextSize())
           + "sp";
     }
 

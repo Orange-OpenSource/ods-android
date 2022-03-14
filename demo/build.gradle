@@ -9,20 +9,24 @@
  */
 
 plugins {
-    id 'com.android.library'
+    id 'com.android.application'
     id 'kotlin-android'
-    id 'maven-publish'
 }
 
 android {
-    compileSdkVersion versions.compileSdk
-    buildToolsVersion versions.androidTools
+    compileSdk versions.compileSdk
 
     defaultConfig {
-        minSdkVersion versions.minSdk
+        applicationId "com.orange.ods.demo"
+        minSdk versions.minSdk
+        targetSdk versions.compileSdk
+        versionCode 1
+        versionName "1.0"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
-        consumerProguardFiles "consumer-rules.pro"
+        vectorDrawables {
+            useSupportLibrary true
+        }
     }
 
     buildTypes {
@@ -32,45 +36,39 @@ android {
         }
     }
     compileOptions {
-        sourceCompatibility java_version
-        targetCompatibility java_version
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
     }
-    kotlinOptions.jvmTarget = jvm_target
+    kotlinOptions {
+        jvmTarget = '1.8'
+        allWarningsAsErrors = true
+    }
     buildFeatures {
         compose true
     }
     composeOptions {
         kotlinCompilerExtensionVersion versions.compose
     }
+    packagingOptions {
+        resources {
+            excludes += '/META-INF/{AL2.0,LGPL2.1}'
+        }
+    }
 }
 
 dependencies {
-
-    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk8:${versions.kotlin}"
-
-    api "com.google.android.material:material:${versions.material}"
+    implementation project(':lib')
 
     implementation 'androidx.core:core-ktx:1.7.0'
     implementation 'androidx.appcompat:appcompat:1.4.1'
+    implementation "com.google.android.material:material:${versions.material}"
     implementation "androidx.compose.ui:ui:${versions.compose}"
     implementation "androidx.compose.material:material:${versions.compose}"
     implementation "androidx.compose.ui:ui-tooling-preview:${versions.compose}"
     implementation 'androidx.lifecycle:lifecycle-runtime-ktx:2.4.1'
+    implementation 'androidx.activity:activity-compose:1.4.0'
+    implementation 'com.google.android.material:compose-theme-adapter:1.1.5'
+    implementation "androidx.navigation:navigation-compose:2.4.1"
 
-    testImplementation 'junit:junit:4.13.2'
-    androidTestImplementation 'androidx.test.ext:junit:1.1.3'
-}
-
-afterEvaluate {
-    publishing {
-        publications {
-            // Creates a Maven publication called "release".
-            release(MavenPublication) {
-                from components.release
-                groupId = 'com.orange.design-system'
-                artifactId = 'ods-android'
-                version = '1.0'
-            }
-        }
-    }
+    debugImplementation "androidx.compose.ui:ui-tooling:${versions.compose}"
 }

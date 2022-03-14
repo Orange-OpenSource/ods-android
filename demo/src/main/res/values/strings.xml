@@ -1,0 +1,19 @@
+<!--
+  ~ /*
+  ~ * Copyright 2021 Orange
+  ~ *
+  ~ * Use of this source code is governed by an MIT-style
+  ~ * license that can be found in the LICENSE file or at
+  ~ * https://opensource.org/licenses/MIT.
+  ~ */
+  -->
+
+<resources>
+    <string name="app_name">ODS Demo</string>
+
+    <!-- Navigation -->
+    <string name="navigation_item_guidelines">Guidelines</string>
+    <string name="navigation_item_components">Components</string>
+    <string name="navigation_item_modules">Modules</string>
+    <string name="navigation_item_about">About</string>
+</resources>
