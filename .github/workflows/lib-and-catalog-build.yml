@@ -1,4 +1,4 @@
-name: android build
+name: lib-and-catalog-build
 
 on:
   push:
@@ -30,7 +30,7 @@ jobs:
       - name: Run Android Linter
         run: ./gradlew lintDebug
 
-      - name: Build lib and sample app
+      - name: Build lib and catalog app
         run: ./gradlew assemble --stacktrace
 
       - name: Store library
@@ -39,16 +39,8 @@ jobs:
           name: library
           path: lib/build/outputs/aar/*.aar
 
-      - name: Store sample app
+      - name: Store catalog app
         uses: actions/upload-artifact@v2
         with:
-          name: sample
+          name: catalog
           path: catalog/build/outputs/apk/debug/*.apk
-
-      - name: Upload demo artifact to Firebase App Distribution
-        uses: wzieba/Firebase-Distribution-Github-Action@v1
-        with:
-          appId: ${{secrets.FIREBASE_APP_ID}}
-          token: ${{secrets.FIREBASE_TOKEN}}
-          groups: ods-demo-android
-          file: demo/build/outputs/apk/debug/demo-debug.apk
