@@ -1,4 +1,4 @@
-name: lib-and-catalog-build
+name: android-build
 
 on:
   push:
@@ -30,7 +30,7 @@ jobs:
       - name: Run Android Linter
         run: ./gradlew lintDebug
 
-      - name: Build lib and catalog app
+      - name: Build lib, catalog and demo app
         run: ./gradlew assemble --stacktrace
 
       - name: Store library
@@ -44,3 +44,9 @@ jobs:
         with:
           name: catalog
           path: catalog/build/outputs/apk/debug/*.apk
+
+      - name: Store demo app
+        uses: actions/upload-artifact@v2
+        with:
+          name: demo
+          path: demo/build/outputs/apk/debug/*.apk
