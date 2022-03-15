@@ -36,5 +36,5 @@ jobs:
           appId: ${{secrets.FIREBASE_APP_ID}}
           token: ${{secrets.FIREBASE_TOKEN}}
           groups: ods-android-internal-tests
-          releaseNotes: ${{steps.extract_branch_name.outputs.branch}}
+          releaseNotes: 'Last merged PR: ${{steps.extract_branch_name.outputs.branch}}'
           file: demo/build/outputs/apk/debug/demo-debug.apk
