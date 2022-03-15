@@ -28,11 +28,16 @@ jobs:
       - name: Build demo app
         run: ./gradlew demo:assemble --stacktrace
 
+      - name: Extract branch name
+        shell: bash
+        run: echo "##[set-output name=branch;]${GITHUB_REF#refs/heads/}"
+        id: extract_branch_name
+
       - name: Upload artifact to Firebase App Distribution
         uses: wzieba/Firebase-Distribution-Github-Action@v1.3.2
         with:
           appId: ${{secrets.FIREBASE_APP_ID}}
           token: ${{secrets.FIREBASE_TOKEN}}
           groups: ods-android-internal-tests
-          releaseNotes: ${{github.ref_name}}
+          releaseNotes: ${{steps.extract_branch_name.outputs.branch}}
           file: demo/build/outputs/apk/debug/demo-debug.apk
