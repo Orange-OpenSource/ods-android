@@ -10,7 +10,9 @@
 
 plugins {
     id 'com.android.application'
+    id 'com.google.gms.google-services'
     id 'kotlin-android'
+    id 'com.google.firebase.appdistribution'
 }
 
 android {
@@ -35,6 +37,11 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
+
+    firebaseAppDistribution {
+        groups = "ods-demo-android"
+    }
+
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
@@ -68,7 +75,7 @@ dependencies {
     implementation 'androidx.lifecycle:lifecycle-runtime-ktx:2.4.1'
     implementation 'androidx.activity:activity-compose:1.4.0'
     implementation 'com.google.android.material:compose-theme-adapter:1.1.5'
-    implementation "androidx.navigation:navigation-compose:2.4.1"
+    implementation 'androidx.navigation:navigation-compose:2.4.1'
 
     debugImplementation "androidx.compose.ui:ui-tooling:${versions.compose}"
 }
