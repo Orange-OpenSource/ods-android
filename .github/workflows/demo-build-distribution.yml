@@ -22,9 +22,6 @@ jobs:
           distribution: 'zulu'
           java-version: '11'
 
-      - name: Run Android Linter
-        run: ./gradlew lintDebug
-
       - name: Build demo app
         run: ./gradlew demo:assemble --stacktrace
 
