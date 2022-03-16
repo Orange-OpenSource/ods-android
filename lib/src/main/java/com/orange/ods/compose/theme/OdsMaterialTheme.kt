@@ -49,7 +49,7 @@ private val darkThemeColors = darkColors(
 )
 
 @Composable
-fun OdsTheme(
+fun OdsMaterialTheme(
     darkTheme: Boolean = isSystemInDarkTheme(),
     content: @Composable () -> Unit
 ) {

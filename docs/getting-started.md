@@ -69,9 +69,9 @@ This theme will use the default `Toolbar`. If you want to provide your own `Tool
 
 #### In Jetpack Compose app
 
-Use the `OdsTheme` which is a Material theme extension for Jetpack Compose applications:
+Use the `OdsMaterialTheme` which is a Material theme extension for Jetpack Compose applications:
 ```kotlin
-    OdsTheme {
+    OdsMaterialTheme {
         //...
     }
 ```
