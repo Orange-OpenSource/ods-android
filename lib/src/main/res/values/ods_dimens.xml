@@ -30,5 +30,6 @@
 
     <!-- Card -->
     <dimen name="ods_card_big_image_width">196dp</dimen>
+    <dimen name="ods_card_small_image_width">96dp</dimen>
 
 </resources>
