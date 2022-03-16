@@ -29,7 +29,7 @@ Repository. To use it:
    ```groovy
      dependencies {
        // ...
-       implementation 'com.github.Orange-OpenSource:ods-android:0.0.1'
+       implementation 'com.github.orange-openSource:ods-android:0.0.1'
        // ...
      }
    ```
@@ -38,7 +38,7 @@ Repository. To use it:
 
 Orange Design System library depends on Material Design library from Google. For this reason, you
 will have to install Android Studio 4.0 or higher to build with Android 11, and update your
-app's `compileSdkVersion` to `30`.
+app's `compileSdkVersion` to `31`.
 
 ### 3. Ensure you are using `AppCompatActivity`
 
@@ -49,8 +49,11 @@ other important things.
 
 ### 4. Change your app theme to inherit from a Orange Design theme
 
-Update your app theme to inherit from Orange theme, e.g.:
+Note that Orange theme supports both light and dark mode.
 
+#### In XML app
+
+Update your app theme to inherit from Orange theme, e.g.:
 ```xml
 <style name="Theme.MyApp" parent="Theme.Orange">
     <!-- ... -->
@@ -64,4 +67,11 @@ This theme will use the default `Toolbar`. If you want to provide your own `Tool
 </style>
 ```
 
-Orange theme supports both light and dark mode.
+#### In Jetpack Compose app
+
+Use the `OdsMaterialTheme` which is a Material theme extension for Jetpack Compose applications:
+```kotlin
+    OdsMaterialTheme {
+        //...
+    }
+```

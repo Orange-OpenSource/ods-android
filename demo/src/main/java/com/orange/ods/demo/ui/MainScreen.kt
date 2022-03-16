@@ -22,16 +22,16 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.navigation.NavController
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
-import com.google.android.material.composethemeadapter.MdcTheme
 import com.orange.ods.compose.component.OdsBottomNavigation
 import com.orange.ods.compose.component.OdsBottomNavigationItem
+import com.orange.ods.compose.theme.OdsMaterialTheme
 
 @Preview(showBackground = true, uiMode = Configuration.UI_MODE_NIGHT_YES)
 @Preview(showBackground = true)
 @Composable
 fun MainScreen() {
     val navController = rememberNavController()
-    MdcTheme {
+    OdsMaterialTheme {
         Scaffold(bottomBar = { BottomNavigationBar(navController) }) {
             AppNavigation(navController)
         }
