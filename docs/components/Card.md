@@ -125,3 +125,26 @@ In the layout:
 
 </com.google.android.material.card.MaterialCardView>
 ```
+
+### JetPack Compose
+
+You can add in your compose screen the following to add a small Card:
+
+```kotlin
+Row(
+    horizontalArrangement = Arrangement.spacedBy(16.dp),
+) {
+    OdsCardSmall(
+        modifier = Modifier.weight(0.5f),
+        title = "Title",
+        imageRes = R.drawable.picture,
+        onCardClick = {}
+    )
+    OdsCardSmall(
+        modifier = Modifier.weight(0.5f),
+        title = "Title",
+        imageRes = R.drawable.picture,
+        onCardClick = {}
+    )
+}
+```
