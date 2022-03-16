@@ -19,7 +19,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
-import com.google.android.material.composethemeadapter.MdcTheme
+import com.orange.ods.compose.theme.OdsTheme
 
 @Composable
 fun ModulesScreen() {
@@ -39,7 +39,7 @@ fun ModulesScreen() {
 @Preview(showBackground = true)
 @Composable
 fun ModulesScreenPreview() {
-    MdcTheme {
+    OdsTheme {
         ModulesScreen()
     }
 }
