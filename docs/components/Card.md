@@ -125,3 +125,22 @@ In the layout:
 
 </com.google.android.material.card.MaterialCardView>
 ```
+
+### JetPackCompose
+
+In your composable screen you can use:
+
+```kotlin
+OdsCardImageFirst(
+            title = "Title",
+            imageRes = R.drawable.picture,
+            imageContentDescription = "Picture content description", //Optional
+            subtitle = "Subtitle", //Optional
+            text = "Text", //Optional
+            button1Text = "Button1", //Optional
+            button2Text = "Button2", //Optional
+            onCardClick = {  }, //Optional
+            onButton1Click = {  }, //Optional
+            onButton2Click = {  } //Optional
+        )
+```
