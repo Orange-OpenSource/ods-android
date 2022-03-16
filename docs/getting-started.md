@@ -69,7 +69,15 @@ This theme will use the default `Toolbar`. If you want to provide your own `Tool
 
 #### In Jetpack Compose app
 
-Use the `OdsMaterialTheme` which is a Material theme extension for Jetpack Compose applications:
+In the `Manifest.xml` file, add `Theme.Orange.NoActionBar` to your application:
+```xml
+    <application
+        android:theme="@style/Theme.Orange.NoActionBar">
+        <!-- ... -->
+    </application>
+```
+
+Use the `OdsMaterialTheme` in your screens which is a Material theme extension for Jetpack Compose applications:
 ```kotlin
     OdsMaterialTheme {
         //...
