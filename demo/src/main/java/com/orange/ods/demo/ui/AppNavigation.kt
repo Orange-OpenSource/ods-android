@@ -13,6 +13,7 @@ package com.orange.ods.demo.ui
 import androidx.annotation.DrawableRes
 import androidx.annotation.StringRes
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.res.stringResource
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
@@ -30,18 +31,22 @@ sealed class NavigationItem(
 }
 
 @Composable
-fun AppNavigation(navController: NavHostController) {
+fun AppNavigation(navController: NavHostController, onSetScreenTitle: (String) -> Unit) {
     NavHost(navController, startDestination = NavigationItem.Guidelines.route) {
         composable(NavigationItem.Guidelines.route) {
+            onSetScreenTitle(stringResource(id = NavigationItem.Guidelines.title))
             GuidelinesScreen()
         }
         composable(NavigationItem.Components.route) {
+            onSetScreenTitle(stringResource(id = NavigationItem.Components.title))
             ComponentsScreen()
         }
         composable(NavigationItem.Modules.route) {
+            onSetScreenTitle(stringResource(id = NavigationItem.Modules.title))
             ModulesScreen()
         }
         composable(NavigationItem.About.route) {
+            onSetScreenTitle(stringResource(id = NavigationItem.About.title))
             AboutScreen()
         }
     }

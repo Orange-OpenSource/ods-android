@@ -11,10 +11,12 @@
 package com.orange.ods.demo.ui
 
 import android.content.res.Configuration
+import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.material.Icon
 import androidx.compose.material.Scaffold
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.*
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
@@ -30,9 +32,17 @@ import com.orange.ods.compose.theme.OdsMaterialTheme
 @Composable
 fun MainScreen() {
     val navController = rememberNavController()
-    OdsMaterialTheme {
-        Scaffold(bottomBar = { BottomNavigationBar(navController) }) {
-            AppNavigation(navController)
+    val default = isSystemInDarkTheme()
+    var isDarkMode by remember { mutableStateOf(default) }
+    var topAppBarTitle by remember { mutableStateOf("") }
+    OdsMaterialTheme(isDarkMode) {
+        Scaffold(
+            topBar = {
+                TopAppBar(title = topAppBarTitle, isDarkMode = isDarkMode) { isDarkMode = it }
+            },
+            bottomBar = { BottomNavigationBar(navController) }
+        ) {
+            AppNavigation(navController = navController, onSetScreenTitle = { topAppBarTitle = it })
         }
     }
 }
