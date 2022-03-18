@@ -10,19 +10,23 @@
 
 package com.orange.ods.demo.ui
 
-import androidx.compose.material.*
+import androidx.compose.material.Icon
+import androidx.compose.material.IconButton
+import androidx.compose.material.MaterialTheme
+import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.SideEffect
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import com.google.accompanist.systemuicontroller.rememberSystemUiController
+import com.orange.ods.compose.component.OdsTopAppBar
 import com.orange.ods.demo.R
 
 @Composable
 fun TopAppBar(title: String, isDarkMode: Boolean, onThemeChange: (Boolean) -> Unit) {
     UpdateSystemBarsColor(MaterialTheme.colors.background)
-    TopAppBar(
+    OdsTopAppBar(
         title = {
             Text(text = title)
         },
@@ -45,8 +49,7 @@ fun TopAppBar(title: String, isDarkMode: Boolean, onThemeChange: (Boolean) -> Un
                     }
                 )
             }
-        },
-        backgroundColor = MaterialTheme.colors.surface
+        }
     )
 }
 

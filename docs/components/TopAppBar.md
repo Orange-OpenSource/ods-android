@@ -211,3 +211,36 @@ If you need to have a top app bar with some elevation you can set the `@style/Wi
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>
 ```
+
+
+### JetPack compose
+
+Add this to your Scaffold topBar:
+
+```kotlin
+OdsTopAppBar(
+    title = {
+        Text(text = "Title")
+    },
+    actions = {
+        IconButton(onClick = {}) {
+            Icon(
+                painter = painterResource(id =  R.drawable.ic_share),
+                contentDescription = "content description"
+            )
+        }
+    },
+    navigationIcon = {
+        IconButton(onClick = {}) {
+            Icon(
+                painter = painterResource(id =  R.drawable.ic_back),
+                contentDescription = "content description"
+            )
+        }
+    }
+)
+```
+
+title - The title to be displayed in the center of the TopAppBar
+navigationIcon (optional) - The navigation icon displayed at the start of the TopAppBar. This should typically be an IconButton or IconToggleButton.
+actions (optional)- The actions displayed at the end of the TopAppBar. This should typically be IconButtons. The default layout here is a Row, so icons inside will be placed horizontally.

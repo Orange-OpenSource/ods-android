@@ -9,6 +9,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
+- Add `OdsTopAppBar` component
 - Add `OdsCardSmall` and `OdsCardImageFirst` component
 - Add `OdsMaterialTheme` which is a Material theme extension for Jetpack Compose applications
 - Add `OdsBottomNavigation` and `OdsBottomNavigationItem` composables
