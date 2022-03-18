@@ -12,12 +12,16 @@ package com.orange.ods.demo.ui
 
 import androidx.compose.material.*
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.SideEffect
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
+import com.google.accompanist.systemuicontroller.rememberSystemUiController
 import com.orange.ods.demo.R
 
 @Composable
 fun TopAppBar(title: String, isDarkMode: Boolean, onThemeChange: (Boolean) -> Unit) {
+    UpdateSystemBarsColor(MaterialTheme.colors.background)
     TopAppBar(
         title = {
             Text(text = title)
@@ -44,4 +48,14 @@ fun TopAppBar(title: String, isDarkMode: Boolean, onThemeChange: (Boolean) -> Un
         },
         backgroundColor = MaterialTheme.colors.surface
     )
+}
+
+@Composable
+private fun UpdateSystemBarsColor(backgroundColor: Color) {
+    val systemUiController = rememberSystemUiController()
+    SideEffect {
+        systemUiController.setSystemBarsColor(
+            color = backgroundColor,
+        )
+    }
 }
