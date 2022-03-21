@@ -23,9 +23,9 @@ sealed class NavigationItem(
     @StringRes var title: Int,
     var route: String
 ) {
-    object Guidelines : NavigationItem(R.drawable.ic_guide_help, R.string.navigation_item_guidelines,"guidelines")
-    object Components : NavigationItem(R.drawable.ic_folder, R.string.navigation_item_components, "components")
-    object Modules : NavigationItem(R.drawable.ic_layers, R.string.navigation_item_modules, "modules")
+    object Guidelines : NavigationItem(R.drawable.ic_guideline_dna, R.string.navigation_item_guidelines,"guidelines")
+    object Components : NavigationItem(R.drawable.ic_component_atom, R.string.navigation_item_components, "components")
+    object Modules : NavigationItem(R.drawable.ic_module_molecule, R.string.navigation_item_modules, "modules")
     object About : NavigationItem(R.drawable.ic_info, R.string.navigation_item_about, "about")
 }
 
