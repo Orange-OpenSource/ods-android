@@ -9,7 +9,7 @@
   -->
 
 <resources>
-    <string name="app_name">ODS Demo</string>
+    <string name="app_name">ODS Preview</string>
 
     <!-- Navigation -->
     <string name="navigation_item_guidelines">Guidelines</string>
