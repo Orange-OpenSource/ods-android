@@ -29,6 +29,19 @@ import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.unit.dp
 import com.orange.ods.R
 
+/**
+ * <a href="https://system.design.orange.com/0c1af118d/p/272739-cards/b/991690" target="_blank">ODS Card</a>.
+ *
+ * Cards contain content and actions about a single subject.
+ *
+ * @param modifier Modifier to be applied to the layout of the card.
+ * @param title The title to be displayed in the card.
+ * @param subtitle Optional subtitle to be displayed in the card.
+ * @param imageRes The drawable resource of the card image.
+ * @param imageContentDescription Optional card image content description.
+ * @param onCardClick Optional click on the card itself.
+ *
+ */
 @Composable
 fun OdsCardSmall(
     modifier: Modifier = Modifier,
