@@ -12,13 +12,11 @@ package com.orange.ods.compose.component
 
 import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.layout.RowScope
-import androidx.compose.material.BottomNavigation
-import androidx.compose.material.BottomNavigationItem
-import androidx.compose.material.ContentAlpha
-import androidx.compose.material.MaterialTheme
+import androidx.compose.material.*
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.text.style.TextOverflow
 
 @Composable
 fun OdsBottomNavigation(
@@ -40,7 +38,7 @@ fun RowScope.OdsBottomNavigationItem(
     icon: @Composable () -> Unit,
     modifier: Modifier = Modifier,
     enabled: Boolean = true,
-    label: @Composable (() -> Unit)? = null,
+    label: String?,
     alwaysShowLabel: Boolean = true,
     interactionSource: MutableInteractionSource = remember { MutableInteractionSource() }
 ) {
@@ -50,7 +48,15 @@ fun RowScope.OdsBottomNavigationItem(
         icon = icon,
         modifier = modifier,
         enabled = enabled,
-        label = label,
+        label = label?.let {
+            {
+                Text(
+                    text = label,
+                    maxLines = 1,
+                    overflow = TextOverflow.Ellipsis
+                )
+            }
+        },
         alwaysShowLabel = alwaysShowLabel,
         interactionSource = interactionSource,
         // Need to define these attributes cause they are not taken from style

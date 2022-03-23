@@ -13,7 +13,6 @@ package com.orange.ods.demo.ui
 import android.content.res.Configuration
 import androidx.compose.material.Icon
 import androidx.compose.material.Scaffold
-import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.res.painterResource
@@ -40,7 +39,12 @@ fun MainScreen() {
 
 @Composable
 private fun BottomNavigationBar(navController: NavController) {
-    val navigationItems = listOf(NavigationItem.Guidelines, NavigationItem.Components, NavigationItem.Modules, NavigationItem.About)
+    val navigationItems = listOf(
+        NavigationItem.Guidelines,
+        NavigationItem.Components,
+        NavigationItem.Modules,
+        NavigationItem.About
+    )
 
     OdsBottomNavigation {
         val navBackStackEntry by navController.currentBackStackEntryAsState()
@@ -48,7 +52,7 @@ private fun BottomNavigationBar(navController: NavController) {
         navigationItems.forEach { item ->
             OdsBottomNavigationItem(
                 icon =  { Icon(painter = painterResource(id = item.icon), contentDescription = stringResource(id = item.title)) },
-                label = { Text(text = stringResource(id = item.title)) },
+                label = stringResource(id = item.title),
                 selected = currentRoute == item.route,
                 onClick = {
                     navController.navigate(item.route) {
