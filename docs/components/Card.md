@@ -37,6 +37,8 @@ below for more info.
 
 ### Adding a Card
 
+#### In XMl
+
 To have a Card in your layout you must add `com.google.android.material.card.MaterialCardView` in your layout.
 
 API and source code:
@@ -126,7 +128,7 @@ In the layout:
 </com.google.android.material.card.MaterialCardView>
 ```
 
-### JetPackCompose
+#### In JetPack Compose
 
 In your composable screen you can use:
 
