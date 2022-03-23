@@ -61,6 +61,8 @@ or use the `setContentDescription` method on the `ImageView`.
 
 ### Top app bar example
 
+#### In XML
+
 API and source code:
 
 *   `CoordinatorLayout`
@@ -173,7 +175,7 @@ topAppBar.setOnMenuItemClickListener { menuItem ->
 }
 ```
 
-#### Applying scrolling behavior to the top app bar
+##### Applying scrolling behavior to the top app bar
 
 The following example shows the top app bar positioned at the same elevation as
 content. Upon scroll, it increases elevation and lets content scroll behind it.
@@ -194,7 +196,7 @@ In the layout:
 </androidx.coordinatorlayout.widget.CoordinatorLayout>
 ```
 
-#### Raised top app bar
+##### Raised top app bar
 
 If you need to have a top app bar with some elevation you can set the `@style/Widget.Orange.Toolbar.Raised`
 
@@ -213,7 +215,7 @@ If you need to have a top app bar with some elevation you can set the `@style/Wi
 ```
 
 
-### JetPack compose
+#### In JetPack compose
 
 Add this to your Scaffold topBar:
 
