@@ -37,6 +37,8 @@ below for more info.
 
 ### Adding a Card
 
+#### In XML
+
 To have a Card in your layout you must add `com.google.android.material.card.MaterialCardView` in your layout.
 
 API and source code:
@@ -126,7 +128,7 @@ In the layout:
 </com.google.android.material.card.MaterialCardView>
 ```
 
-### JetPack Compose
+#### In JetPack Compose
 
 You can add in your compose screen the following to add a small Card:
 
