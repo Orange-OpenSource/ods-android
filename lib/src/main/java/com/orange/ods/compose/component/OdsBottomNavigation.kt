@@ -61,6 +61,6 @@ fun RowScope.OdsBottomNavigationItem(
         interactionSource = interactionSource,
         // Need to define these attributes cause they are not taken from style
         selectedContentColor = MaterialTheme.colors.primary,
-        unselectedContentColor = MaterialTheme.colors.onSurface.copy(alpha = ContentAlpha.medium)
+        unselectedContentColor = MaterialTheme.colors.onSurface
     )
 }
