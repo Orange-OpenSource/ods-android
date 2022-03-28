@@ -17,6 +17,11 @@
     <string name="navigation_item_modules">Modules</string>
     <string name="navigation_item_about">About</string>
 
+    <!-- TopAppBar -->
+    <string name="theme_changer_icon_content_description_dark">Change to dark mode</string>
+    <string name="theme_changer_icon_content_description_light">Change to light mode</string>
+
+
     <!-- Guidelines -->
     <string name="colour_text">Colour</string>
     <string name="typography_text">Typography</string>

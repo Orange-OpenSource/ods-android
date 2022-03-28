@@ -61,6 +61,8 @@ or use the `setContentDescription` method on the `ImageView`.
 
 ### Top app bar example
 
+#### In XML
+
 API and source code:
 
 *   `CoordinatorLayout`
@@ -173,7 +175,7 @@ topAppBar.setOnMenuItemClickListener { menuItem ->
 }
 ```
 
-#### Applying scrolling behavior to the top app bar
+##### Applying scrolling behavior to the top app bar
 
 The following example shows the top app bar positioned at the same elevation as
 content. Upon scroll, it increases elevation and lets content scroll behind it.
@@ -194,7 +196,7 @@ In the layout:
 </androidx.coordinatorlayout.widget.CoordinatorLayout>
 ```
 
-#### Raised top app bar
+##### Raised top app bar
 
 If you need to have a top app bar with some elevation you can set the `@style/Widget.Orange.Toolbar.Raised`
 
@@ -211,3 +213,36 @@ If you need to have a top app bar with some elevation you can set the `@style/Wi
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>
 ```
+
+
+#### In JetPack compose
+
+Add this to your Scaffold topBar:
+
+```kotlin
+OdsTopAppBar(
+    title = {
+        Text(text = "Title")
+    },
+    actions = {
+        IconButton(onClick = {}) {
+            Icon(
+                painter = painterResource(id =  R.drawable.ic_share),
+                contentDescription = "content description"
+            )
+        }
+    },
+    navigationIcon = {
+        IconButton(onClick = {}) {
+            Icon(
+                painter = painterResource(id =  R.drawable.ic_back),
+                contentDescription = "content description"
+            )
+        }
+    }
+)
+```
+
+- title - The title to be displayed in the center of the `OdsTopAppBar`.
+- navigationIcon (optional) - The navigation icon displayed at the start of the `OdsTopAppBar`. This should typically be an `IconButton` or `IconToggleButton`.
+- actions (optional) - The actions displayed at the end of the `OdsTopAppBar`. This should typically be `IconButtons`. The default layout here is a `Row`, so icons inside will be placed horizontally.
