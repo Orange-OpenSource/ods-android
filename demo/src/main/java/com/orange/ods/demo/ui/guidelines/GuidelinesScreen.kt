@@ -8,10 +8,8 @@
  * /
  */
 
-package com.orange.ods.demo.ui
+package com.orange.ods.demo.ui.guidelines
 
-import androidx.annotation.DrawableRes
-import androidx.annotation.StringRes
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
@@ -22,46 +20,9 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
-import com.orange.ods.compose.theme.OdsMaterialTheme
 import androidx.compose.ui.unit.dp
 import com.orange.ods.compose.component.OdsCardImageFirst
-import com.orange.ods.demo.R
-
-sealed class GuidelinesCardItem(
-    @DrawableRes var image: Int,
-    @StringRes var imageDescription: Int,
-    @StringRes var title: Int,
-    @StringRes var subTitle: Int?,
-) {
-    object Colour :
-        GuidelinesCardItem(
-            image = R.drawable.picture_guideline_colour,
-            imageDescription = R.string.guideline_colour_text,
-            title = R.string.guideline_colour_text,
-            subTitle = null
-        )
-    object Typography :
-        GuidelinesCardItem(
-            image = R.drawable.picture_guideline_typography,
-            imageDescription = R.string.guideline_typography_text,
-            title = R.string.guideline_typography_text,
-            subTitle = null
-        )
-    object Imagery :
-        GuidelinesCardItem(
-            image = R.drawable.picture_guideline_imagery,
-            imageDescription = R.string.guideline_imagery_text,
-            title = R.string.guideline_imagery_text,
-            subTitle = null
-        )
-    object Iconography :
-        GuidelinesCardItem(
-            image = R.drawable.picture_guideline_iconography,
-            imageDescription = R.string.guideline_iconography_text,
-            title = R.string.guideline_iconography_text,
-            subTitle = null
-        )
-}
+import com.orange.ods.compose.theme.OdsMaterialTheme
 
 @Composable
 fun GuidelinesScreen() {
@@ -91,7 +52,6 @@ private fun CardList(cards: List<GuidelinesCardItem>) {
     cards.forEach { card ->
         OdsCardImageFirst(
             imageRes = card.image,
-            imageContentDescription = stringResource(id = card.imageDescription),
             title = stringResource(id = card.title),
             onCardClick = {},
         )

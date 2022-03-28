@@ -18,6 +18,10 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import com.orange.ods.demo.R
+import com.orange.ods.demo.ui.about.AboutScreen
+import com.orange.ods.demo.ui.components.ComponentsScreen
+import com.orange.ods.demo.ui.guidelines.GuidelinesScreen
+import com.orange.ods.demo.ui.modules.ModulesScreen
 
 sealed class NavigationItem(
     @DrawableRes var icon: Int,

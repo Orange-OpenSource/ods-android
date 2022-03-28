@@ -8,33 +8,29 @@
  * /
  */
 
-package com.orange.ods.demo.ui
+package com.orange.ods.demo.ui.components
 
 import androidx.annotation.DrawableRes
 import androidx.annotation.StringRes
 import com.orange.ods.demo.R
 
-sealed class CardComponentItem(
+sealed class ComponentsCardItem(
     @DrawableRes var image: Int,
-    @StringRes var imageDescription: Int,
     @StringRes var title: Int,
 ) {
     object Buttons :
-        CardComponentItem(
+        ComponentsCardItem(
             image = R.drawable.picture_component_buttons,
-            imageDescription = R.string.buttons_text,
-            title = R.string.buttons_text
+            title = R.string.component_buttons
         )
     object Controls :
-        CardComponentItem(
+        ComponentsCardItem(
             image = R.drawable.picture_component_controls,
-            imageDescription = R.string.controls_text,
-            title = R.string.controls_text
+            title = R.string.component_controls
         )
     object BottomNavigation :
-        CardComponentItem(
+        ComponentsCardItem(
             image = R.drawable.picture_component_botton_navigation,
-            imageDescription = R.string.bottom_navigation_text,
-            title = R.string.bottom_navigation_text
+            title = R.string.component_bottom_navigation
         )
 }

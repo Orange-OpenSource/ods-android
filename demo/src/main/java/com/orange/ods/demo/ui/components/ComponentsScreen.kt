@@ -8,7 +8,7 @@
  * /
  */
 
-package com.orange.ods.demo.ui
+package com.orange.ods.demo.ui.components
 
 import androidx.compose.foundation.layout.*
 import androidx.compose.runtime.Composable
@@ -27,42 +27,42 @@ fun ComponentsScreen() {
             .fillMaxSize(),
         verticalArrangement = Arrangement.spacedBy(16.dp)
     ) {
-        CardComponentList(
+        ComponentsCardsList(
             emptyList()
             //Add item in the list once ready
             /*listOf(
-                CardComponentItem.Buttons,
-                CardComponentItem.Controls,
-                CardComponentItem.BottomNavigation,
+                ComponentsCardItem.Buttons,
+                ComponentsCardItem.Controls,
+                ComponentsCardItem.BottomNavigation,
             )*/
         )
     }
 }
 
 @Composable
-fun CardComponentList(cards: List<CardComponentItem>) {
-    cards.chunked(2).forEach { cardsPair ->
+private fun ComponentsCardsList(cards: List<ComponentsCardItem>) {
+    cards.chunked(2).forEach { rowCards ->
         Row(
             horizontalArrangement = Arrangement.spacedBy(16.dp),
         ) {
-            OdsCardSmall(
-                modifier = Modifier.weight(0.5f),
-                title = stringResource(id = cardsPair[0].title),
-                imageRes = cardsPair[0].image,
-                onCardClick = {}
-            )
-            if (cardsPair.size == 2) {
-                OdsCardSmall(
-                    modifier = Modifier.weight(0.5f),
-                    title = stringResource(id = cardsPair[1].title),
-                    imageRes = cardsPair[1].image,
-                    onCardClick = {}
-                )
+            ComponentCard(componentsCardItem = rowCards[0])
+            if (rowCards.size == 2) {
+                ComponentCard(componentsCardItem = rowCards[1])
             } else {
                 Box(modifier = Modifier.weight(0.5f)) {}
             }
         }
     }
+}
+
+@Composable
+private fun RowScope.ComponentCard(componentsCardItem: ComponentsCardItem) {
+    OdsCardSmall(
+        modifier = Modifier.weight(0.5f),
+        title = stringResource(id = componentsCardItem.title),
+        imageRes = componentsCardItem.image,
+        onCardClick = {}
+    )
 }
 
 @Preview(showBackground = true)
