@@ -8,7 +8,7 @@
  * /
  */
 
-package com.orange.ods.demo.ui
+package com.orange.ods.demo.ui.modules
 
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
@@ -22,14 +22,14 @@ import androidx.compose.ui.tooling.preview.Preview
 import com.orange.ods.compose.theme.OdsMaterialTheme
 
 @Composable
-fun ComponentsScreen() {
+fun ModulesScreen() {
     Column(
         modifier = Modifier
             .fillMaxSize()
             .wrapContentSize(Alignment.Center)
     ) {
         Text(
-            text = "Components",
+            text = "Modules",
             modifier = Modifier.align(Alignment.CenterHorizontally),
             textAlign = TextAlign.Center
         )
@@ -38,8 +38,8 @@ fun ComponentsScreen() {
 
 @Preview(showBackground = true)
 @Composable
-fun ComponentsScreenPreview() {
+fun ModulesScreenPreview() {
     OdsMaterialTheme {
-        ComponentsScreen()
+        ModulesScreen()
     }
 }

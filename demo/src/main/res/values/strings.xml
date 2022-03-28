@@ -21,11 +21,15 @@
     <string name="theme_changer_icon_content_description_dark">Change to dark mode</string>
     <string name="theme_changer_icon_content_description_light">Change to light mode</string>
 
-
     <!-- Guidelines -->
-    <string name="guideline_colour_text">Colour</string>
-    <string name="guideline_typography_text">Typography</string>
-    <string name="guideline_imagery_text">Imagery</string>
-    <string name="guideline_iconography_text">Iconography</string>
+    <string name="guideline_colour">Colour</string>
+    <string name="guideline_typography">Typography</string>
+    <string name="guideline_imagery">Imagery</string>
+    <string name="guideline_iconography">Iconography</string>
+
+    <!-- Components -->
+    <string name="component_buttons">Buttons</string>
+    <string name="component_controls">Controls</string>
+    <string name="component_bottom_navigation">Bottom Navigation</string>
 
 </resources>
