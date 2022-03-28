@@ -10,29 +10,58 @@
 
 package com.orange.ods.demo.ui
 
-import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.wrapContentSize
-import androidx.compose.material.Text
+import androidx.compose.foundation.layout.*
 import androidx.compose.runtime.Composable
-import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.text.style.TextAlign
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import com.orange.ods.compose.theme.OdsMaterialTheme
+import androidx.compose.ui.unit.dp
+import com.orange.ods.compose.component.OdsCardSmall
 
 @Composable
 fun ComponentsScreen() {
     Column(
         modifier = Modifier
-            .fillMaxSize()
-            .wrapContentSize(Alignment.Center)
+            .padding(16.dp)
+            .fillMaxSize(),
+        verticalArrangement = Arrangement.spacedBy(16.dp)
     ) {
-        Text(
-            text = "Components",
-            modifier = Modifier.align(Alignment.CenterHorizontally),
-            textAlign = TextAlign.Center
+        CardComponentList(
+            emptyList()
+            //Add item in the list once ready
+            /*listOf(
+                CardComponentItem.Buttons,
+                CardComponentItem.Controls,
+                CardComponentItem.BottomNavigation,
+            )*/
         )
+    }
+}
+
+@Composable
+fun CardComponentList(cards: List<CardComponentItem>) {
+    cards.chunked(2).forEach { cardsPair ->
+        Row(
+            horizontalArrangement = Arrangement.spacedBy(16.dp),
+        ) {
+            OdsCardSmall(
+                modifier = Modifier.weight(0.5f),
+                title = stringResource(id = cardsPair[0].title),
+                imageRes = cardsPair[0].image,
+                onCardClick = {}
+            )
+            if (cardsPair.size == 2) {
+                OdsCardSmall(
+                    modifier = Modifier.weight(0.5f),
+                    title = stringResource(id = cardsPair[1].title),
+                    imageRes = cardsPair[1].image,
+                    onCardClick = {}
+                )
+            } else {
+                Box(modifier = Modifier.weight(0.5f)) {}
+            }
+        }
     }
 }
 

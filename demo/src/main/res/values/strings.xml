@@ -28,4 +28,10 @@
     <string name="guideline_imagery_text">Imagery</string>
     <string name="guideline_iconography_text">Iconography</string>
 
+
+    <!-- Components -->
+    <string name="buttons_text">Buttons</string>
+    <string name="controls_text">Controls</string>
+    <string name="bottom_navigation_text">Bottom Navigation</string>
+
 </resources>
