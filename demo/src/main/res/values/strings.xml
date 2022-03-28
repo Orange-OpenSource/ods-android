@@ -16,4 +16,11 @@
     <string name="navigation_item_components">Components</string>
     <string name="navigation_item_modules">Modules</string>
     <string name="navigation_item_about">About</string>
+
+    <!-- Guidelines -->
+    <string name="colour_text">Colour</string>
+    <string name="typography_text">Typography</string>
+    <string name="imagery_text">Imagery</string>
+    <string name="iconography_text">Iconography</string>
+
 </resources>
