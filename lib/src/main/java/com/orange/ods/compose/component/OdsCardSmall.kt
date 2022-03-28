@@ -74,7 +74,7 @@ fun OdsCardSmall(
             ) {
                 Text(
                     text = title,
-                    style = MaterialTheme.typography.subtitle1
+                    style = MaterialTheme.typography.h6
                 )
                 subtitle?.let {
                     Text(
