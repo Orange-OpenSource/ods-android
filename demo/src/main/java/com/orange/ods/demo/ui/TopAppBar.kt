@@ -34,20 +34,18 @@ fun TopAppBar(title: String, isDarkMode: Boolean, onThemeChange: (Boolean) -> Un
             IconButton(onClick = {
                 onThemeChange(!isDarkMode)
             }) {
-                Icon(
-                    painter = painterResource(
-                        id = if (isDarkMode) {
-                            R.drawable.ic_ui_light_mode
-                        } else {
-                            R.drawable.ic_ui_dark_mode
-                        }
-                    ),
-                    contentDescription = if (isDarkMode) {
-                        stringResource(id = R.string.theme_changer_icon_content_description_light)
-                    } else {
-                        stringResource(id = R.string.theme_changer_icon_content_description_dark)
-                    }
-                )
+                if (isDarkMode) {
+                    Icon(
+                        painter = painterResource(id = R.drawable.ic_ui_light_mode),
+                        contentDescription = stringResource(id = R.string.theme_changer_icon_content_description_light)
+
+                    )
+                } else {
+                    Icon(
+                        painter = painterResource(id = R.drawable.ic_ui_dark_mode),
+                        contentDescription = stringResource(id = R.string.theme_changer_icon_content_description_dark)
+                    )
+                }
             }
         }
     )
