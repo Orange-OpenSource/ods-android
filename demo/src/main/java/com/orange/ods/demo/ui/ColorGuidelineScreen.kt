@@ -12,6 +12,7 @@ package com.orange.ods.demo.ui
 
 import android.content.Context
 import androidx.annotation.ColorRes
+import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
@@ -23,6 +24,8 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.text.font.FontStyle
 import androidx.compose.ui.unit.dp
 import androidx.core.content.ContextCompat
 import com.orange.ods.compose.theme.*
@@ -56,14 +59,34 @@ fun ColorRow(color: ColorItem) {
             modifier = Modifier.padding(start = 8.dp),
         ) {
             Text(text = "Hex : ${context.getColorHex(color.xmlResource)}")
-            Text(text = "Resource : ${context.getStringOrId(color.xmlResource)}")
-            Text(text = "Compose : ${color.colorName}")
+            Row(
+                horizontalArrangement = Arrangement.spacedBy(8.dp),
+                verticalAlignment = Alignment.CenterVertically
+            ) {
+                Image(
+                    painter = painterResource(id = R.drawable.ic_xml_logo),
+                    modifier = Modifier.width(32.dp),
+                    contentDescription = null
+                )
+                Text(text = context.getStringName(color.xmlResource), fontStyle = FontStyle.Italic)
+            }
+            Row(
+                horizontalArrangement = Arrangement.spacedBy(8.dp),
+                verticalAlignment = Alignment.CenterVertically,
+            ) {
+                Image(
+                    painter = painterResource(id = R.drawable.image_jetpack_compose),
+                    modifier = Modifier.width(32.dp),
+                    contentDescription = null
+                )
+                Text(text = color.colorName, fontStyle = FontStyle.Italic)
+            }
         }
     }
 }
 
 @Composable
-fun ColorList(colors: List<ColorItem>) {
+private fun ColorList(colors: List<ColorItem>) {
     LazyColumn(
         contentPadding = PaddingValues(16.dp),
         verticalArrangement = Arrangement.spacedBy(16.dp),
@@ -75,7 +98,7 @@ fun ColorList(colors: List<ColorItem>) {
     }
 }
 
-fun buildColorList(): List<ColorItem> = listOf(
+private fun buildColorList(): List<ColorItem> = listOf(
     ColorItem(
         jetPackColor = Orange200,
         colorName = "Orange200",
@@ -233,10 +256,12 @@ fun buildColorList(): List<ColorItem> = listOf(
     ),
 )
 
-fun Context.getStringOrId(@ColorRes res: Int): String =
+//Method to get the resource name with the color id
+private fun Context.getStringName(@ColorRes res: Int): String =
     this.resources.getResourceName(res).split('/').last()
 
-fun Context.getColorHex(@ColorRes res: Int): String {
+//Method to get the color hexadecimal with the color id
+private fun Context.getColorHex(@ColorRes res: Int): String {
     var number = Integer.toHexString(ContextCompat.getColor(this, res))
     if (number.length == 8 && number.startsWith("ff")) {
         number = number.removePrefix("ff")
