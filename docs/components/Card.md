@@ -164,7 +164,7 @@ OdsCardImageFirst(
 
 This is a small card which takes the half screen width.
 
-In your composable screen you can use:
+You can add in your compose screen the following to add a small Card:
 
 ```kotlin
 Row(
