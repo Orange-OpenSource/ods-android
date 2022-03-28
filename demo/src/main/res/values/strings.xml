@@ -34,4 +34,10 @@
     <string name="controls_text">Controls</string>
     <string name="bottom_navigation_text">Bottom Navigation</string>
 
+
+    <!-- Components -->
+    <string name="buttons_text">Buttons</string>
+    <string name="controls_text">Controls</string>
+    <string name="bottom_navigation_text">Bottom Navigation</string>
+
 </resources>
