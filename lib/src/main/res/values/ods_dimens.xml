@@ -29,7 +29,7 @@
     <dimen name="ods_slider_tooltip_corner_size">16dp</dimen>
 
     <!-- Card -->
-    <dimen name="ods_card_big_image_width">196dp</dimen>
-    <dimen name="ods_card_small_image_width">96dp</dimen>
+    <dimen name="ods_card_big_image_width">194dp</dimen>
+    <dimen name="ods_card_small_image_width">95dp</dimen>
 
 </resources>

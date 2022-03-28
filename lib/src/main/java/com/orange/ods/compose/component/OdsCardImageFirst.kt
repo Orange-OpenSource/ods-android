@@ -77,17 +77,12 @@ fun OdsCardImageFirst(
                 )
             Column(
                 modifier = Modifier
-                    .padding(
-                        start = 16.dp,
-                        end = 16.dp,
-                        top = 16.dp,
-                        bottom = 8.dp
-                    )
+                    .padding(16.dp)
                     .semantics(mergeDescendants = true) {}
             ) {
                 Text(
                     text = title,
-                    style = MaterialTheme.typography.subtitle1
+                    style = MaterialTheme.typography.h6
                 )
                 subtitle?.let {
                     Text(
