@@ -37,6 +37,8 @@ below for more info.
 
 ### Adding a Card
 
+#### In XMl
+
 To have a Card in your layout you must add `com.google.android.material.card.MaterialCardView` in your layout.
 
 API and source code:
@@ -124,4 +126,23 @@ In the layout:
     </LinearLayout>
 
 </com.google.android.material.card.MaterialCardView>
+```
+
+#### In JetPack Compose
+
+In your composable screen you can use:
+
+```kotlin
+OdsCardImageFirst(
+            title = "Title",
+            imageRes = R.drawable.picture,
+            imageContentDescription = "Picture content description", //Optional
+            subtitle = "Subtitle", //Optional
+            text = "Text", //Optional
+            button1Text = "Button1", //Optional
+            button2Text = "Button2", //Optional
+            onCardClick = {  }, //Optional
+            onButton1Click = {  }, //Optional
+            onButton2Click = {  } //Optional
+        )
 ```

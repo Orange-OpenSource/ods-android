@@ -28,4 +28,7 @@
     <dimen name="ods_slider_halo_radius">24dp</dimen>
     <dimen name="ods_slider_tooltip_corner_size">16dp</dimen>
 
+    <!-- Card -->
+    <dimen name="ods_card_big_image_width">196dp</dimen>
+
 </resources>
