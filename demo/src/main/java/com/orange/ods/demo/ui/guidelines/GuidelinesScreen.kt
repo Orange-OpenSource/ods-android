@@ -25,6 +25,7 @@ import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
 import com.orange.ods.compose.component.OdsCardImageFirst
 import com.orange.ods.compose.theme.OdsMaterialTheme
+import com.orange.ods.demo.ui.GuidelinesNavigationItem
 
 @Composable
 fun GuidelinesScreen(navController: NavController) {
@@ -58,7 +59,7 @@ private fun CardList(cards: List<GuidelinesCardItem>, navController: NavControll
             onCardClick = {
                 when (card) {
                     is GuidelinesCardItem.Colour -> {
-                        navController.navigate(GuidelineNavigationItem.Color.route)
+                        navController.navigate(GuidelinesNavigationItem.Color.route)
                     }
                     else -> {
                         //Not handled for the moment

@@ -20,6 +20,7 @@ import androidx.navigation.compose.composable
 import com.orange.ods.demo.R
 import com.orange.ods.demo.ui.about.AboutScreen
 import com.orange.ods.demo.ui.components.ComponentsScreen
+import com.orange.ods.demo.ui.guidelines.GuidelinesColorScreen
 import com.orange.ods.demo.ui.guidelines.GuidelinesScreen
 import com.orange.ods.demo.ui.modules.ModulesScreen
 
@@ -34,11 +35,11 @@ sealed class NavigationItem(
     object About : NavigationItem(R.drawable.ic_info, R.string.navigation_item_about, "about")
 }
 
-sealed class GuidelineNavigationItem(
+sealed class GuidelinesNavigationItem(
     @StringRes var title: Int,
     var route: String
 ){
-    object Color : GuidelineNavigationItem(R.string.guideline_colour_text, "color")
+    object Color : GuidelinesNavigationItem(R.string.guideline_colour, "color")
 }
 
 @Composable
@@ -60,9 +61,9 @@ fun AppNavigation(navController: NavHostController, onSetScreenTitle: (String) -
             onSetScreenTitle(stringResource(id = NavigationItem.About.title))
             AboutScreen()
         }
-        composable(GuidelineNavigationItem.Color.route){
-            onSetScreenTitle(stringResource(id = GuidelineNavigationItem.Color.title))
-            ColorGuidelineScreen()
+        composable(GuidelinesNavigationItem.Color.route){
+            onSetScreenTitle(stringResource(id = GuidelinesNavigationItem.Color.title))
+            GuidelinesColorScreen()
         }
     }
 }

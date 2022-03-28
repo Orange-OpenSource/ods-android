@@ -8,7 +8,7 @@
  * /
  */
 
-package com.orange.ods.demo.ui
+package com.orange.ods.demo.ui.guidelines
 
 import android.content.Context
 import androidx.annotation.ColorRes
@@ -39,7 +39,7 @@ data class ColorItem(
 )
 
 @Composable
-fun ColorGuidelineScreen() {
+fun GuidelinesColorScreen() {
     ColorList(buildColorList())
 }
 
