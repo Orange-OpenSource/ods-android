@@ -23,9 +23,9 @@
 
 
     <!-- Guidelines -->
-    <string name="colour_text">Colour</string>
-    <string name="typography_text">Typography</string>
-    <string name="imagery_text">Imagery</string>
-    <string name="iconography_text">Iconography</string>
+    <string name="guideline_colour_text">Colour</string>
+    <string name="guideline_typography_text">Typography</string>
+    <string name="guideline_imagery_text">Imagery</string>
+    <string name="guideline_iconography_text">Iconography</string>
 
 </resources>
