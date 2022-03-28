@@ -11,6 +11,13 @@ Cards contain content and actions about a single subject.
 **Contents**
 
 *   [Using cards](#using-cards)
+    *   [Material Design](#material-design)
+    *   [Accessibility](#accessibility)
+    *   [Adding a Card](#adding-a-card)
+        *   [In XML](#in-xml)
+        *   [In JetPack Compose](#in-jetpack-compose)
+            *   [Card image first: OdsCardImageFirst](#card-image-first-odscardimagefirst)
+            *   [Small card: OdsCardSmall](#small-card-odscardsmall)
 
 ## Using cards
 
@@ -37,7 +44,7 @@ below for more info.
 
 ### Adding a Card
 
-#### In XMl
+#### In XML
 
 To have a Card in your layout you must add `com.google.android.material.card.MaterialCardView` in your layout.
 
@@ -130,6 +137,12 @@ In the layout:
 
 #### In JetPack Compose
 
+The library offers several Composables for each type of card available in Orange Design System:
+
+##### Card image first: OdsCardImageFirst
+
+This is a full width card displaying with an image as first element.
+
 In your composable screen you can use:
 
 ```kotlin
@@ -145,4 +158,29 @@ OdsCardImageFirst(
             onButton1Click = {  }, //Optional
             onButton2Click = {  } //Optional
         )
+```
+
+##### Small card: OdsCardSmall
+
+This is a small card which takes the half screen width.
+
+You can add in your compose screen the following to add a small Card:
+
+```kotlin
+Row(
+    horizontalArrangement = Arrangement.spacedBy(16.dp),
+) {
+    OdsCardSmall(
+        modifier = Modifier.weight(0.5f),
+        title = "Title",
+        imageRes = R.drawable.picture,
+        onCardClick = {}
+    )
+    OdsCardSmall(
+        modifier = Modifier.weight(0.5f),
+        title = "Title",
+        imageRes = R.drawable.picture,
+        onCardClick = {}
+    )
+}
 ```
