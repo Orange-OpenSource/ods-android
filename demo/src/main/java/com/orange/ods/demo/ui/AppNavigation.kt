@@ -34,12 +34,19 @@ sealed class NavigationItem(
     object About : NavigationItem(R.drawable.ic_info, R.string.navigation_item_about, "about")
 }
 
+sealed class GuidelineNavigationItem(
+    @StringRes var title: Int,
+    var route: String
+){
+    object Color : GuidelineNavigationItem(R.string.guideline_colour_text, "color")
+}
+
 @Composable
 fun AppNavigation(navController: NavHostController, onSetScreenTitle: (String) -> Unit) {
     NavHost(navController, startDestination = NavigationItem.Guidelines.route) {
         composable(NavigationItem.Guidelines.route) {
             onSetScreenTitle(stringResource(id = NavigationItem.Guidelines.title))
-            GuidelinesScreen()
+            GuidelinesScreen(navController)
         }
         composable(NavigationItem.Components.route) {
             onSetScreenTitle(stringResource(id = NavigationItem.Components.title))
@@ -52,6 +59,10 @@ fun AppNavigation(navController: NavHostController, onSetScreenTitle: (String) -
         composable(NavigationItem.About.route) {
             onSetScreenTitle(stringResource(id = NavigationItem.About.title))
             AboutScreen()
+        }
+        composable(GuidelineNavigationItem.Color.route){
+            onSetScreenTitle(stringResource(id = GuidelineNavigationItem.Color.title))
+            ColorGuidelineScreen()
         }
     }
 }

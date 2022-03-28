@@ -21,11 +21,13 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.navigation.NavController
+import androidx.navigation.compose.rememberNavController
 import com.orange.ods.compose.component.OdsCardImageFirst
 import com.orange.ods.compose.theme.OdsMaterialTheme
 
 @Composable
-fun GuidelinesScreen() {
+fun GuidelinesScreen(navController: NavController) {
     val scrollState = rememberScrollState()
     Column(
         modifier = Modifier
@@ -35,25 +37,34 @@ fun GuidelinesScreen() {
         verticalArrangement = Arrangement.spacedBy(16.dp)
     ) {
         CardList(
-            emptyList()
             //Add item in the list once ready
-            /*listOf(
+            cards = listOf(
                 GuidelinesCardItem.Colour,
-                GuidelinesCardItem.Typography,
-                GuidelinesCardItem.Iconography,
-                GuidelinesCardItem.Imagery,
-            )*/
+                //GuidelinesCardItem.Typography,
+                //GuidelinesCardItem.Iconography,
+                //GuidelinesCardItem.Imagery,
+            ),
+            navController = navController
         )
     }
 }
 
 @Composable
-private fun CardList(cards: List<GuidelinesCardItem>) {
+private fun CardList(cards: List<GuidelinesCardItem>, navController: NavController) {
     cards.forEach { card ->
         OdsCardImageFirst(
             imageRes = card.image,
             title = stringResource(id = card.title),
-            onCardClick = {},
+            onCardClick = {
+                when (card) {
+                    is GuidelinesCardItem.Colour -> {
+                        navController.navigate(GuidelineNavigationItem.Color.route)
+                    }
+                    else -> {
+                        //Not handled for the moment
+                    }
+                }
+            },
         )
     }
 }
@@ -62,6 +73,6 @@ private fun CardList(cards: List<GuidelinesCardItem>) {
 @Composable
 fun GuidelinesScreenPreview() {
     OdsMaterialTheme {
-        GuidelinesScreen()
+        GuidelinesScreen(rememberNavController())
     }
 }

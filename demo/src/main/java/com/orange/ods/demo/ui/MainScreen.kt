@@ -11,16 +11,18 @@
 package com.orange.ods.demo.ui
 
 import android.content.res.Configuration
+import androidx.compose.animation.AnimatedVisibility
+import androidx.compose.animation.fadeIn
+import androidx.compose.animation.fadeOut
 import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.material.Icon
 import androidx.compose.material.Scaffold
-import androidx.compose.runtime.Composable
-import androidx.compose.runtime.getValue
 import androidx.compose.runtime.*
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.navigation.NavController
+import androidx.navigation.NavHostController
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
 import com.orange.ods.compose.component.OdsBottomNavigation
@@ -35,12 +37,31 @@ fun MainScreen() {
     val default = isSystemInDarkTheme()
     var isDarkMode by remember { mutableStateOf(default) }
     var topAppBarTitle by remember { mutableStateOf("") }
+
+    val bottomBarState = when {
+        currentRoute(navController) == NavigationItem.Guidelines.route
+            || currentRoute(navController) == NavigationItem.Components.route
+            || currentRoute(navController) == NavigationItem.Modules.route
+            || currentRoute(navController) == NavigationItem.About.route -> {
+            true
+        }
+        else -> false
+    }
+    
     OdsMaterialTheme(isDarkMode) {
         Scaffold(
             topBar = {
                 TopAppBar(title = topAppBarTitle, isDarkMode = isDarkMode) { isDarkMode = it }
             },
-            bottomBar = { BottomNavigationBar(navController) }
+            bottomBar = {
+                AnimatedVisibility(
+                    visible = bottomBarState,
+                    enter = fadeIn(),
+                    exit = fadeOut()
+                ) {
+                    BottomNavigationBar(navController)
+                }
+            }
         ) {
             AppNavigation(navController = navController, onSetScreenTitle = { topAppBarTitle = it })
         }
@@ -84,4 +105,10 @@ private fun BottomNavigationBar(navController: NavController) {
             )
         }
     }
+}
+
+@Composable
+private fun currentRoute(navController: NavHostController): String? {
+    val navBackStackEntry by navController.currentBackStackEntryAsState()
+    return navBackStackEntry?.destination?.route
 }
