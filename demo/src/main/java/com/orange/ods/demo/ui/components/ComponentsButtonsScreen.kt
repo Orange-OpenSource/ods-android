@@ -38,10 +38,9 @@ import com.orange.ods.demo.R
 
 @Composable
 fun ComponentsButtonsScreen() {
-    val scrollState = rememberScrollState()
     Column(
         modifier = Modifier
-            .verticalScroll(state = scrollState)
+            .verticalScroll(state = rememberScrollState())
             .fillMaxWidth()
             .wrapContentSize(Alignment.Center)
             .padding(16.dp)
