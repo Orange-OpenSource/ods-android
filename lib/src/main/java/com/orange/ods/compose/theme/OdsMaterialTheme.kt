@@ -11,16 +11,13 @@
 package com.orange.ods.compose.theme
 
 import androidx.compose.foundation.isSystemInDarkTheme
-import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.MaterialTheme
-import androidx.compose.material.Shapes
 import androidx.compose.material.darkColors
 import androidx.compose.material.lightColors
 import androidx.compose.material.ripple.LocalRippleTheme
 import androidx.compose.material.ripple.RippleTheme
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.CompositionLocalProvider
-import androidx.compose.ui.unit.dp
 
 private val lightThemeColors = lightColors(
     primary = Orange200,
@@ -57,7 +54,7 @@ private val darkThemeColors = darkColors(
  */
 internal object OdsRippleTheme : RippleTheme {
     @Composable
-    override fun defaultColor()= RippleTheme.defaultRippleColor(
+    override fun defaultColor() = RippleTheme.defaultRippleColor(
         contentColor = MaterialTheme.colors.onSurface,
         lightTheme = !isSystemInDarkTheme()
     )
@@ -74,7 +71,7 @@ internal object OdsRippleTheme : RippleTheme {
  */
 internal object OdsPrimaryRippleTheme : RippleTheme {
     @Composable
-    override fun defaultColor()= RippleTheme.defaultRippleColor(
+    override fun defaultColor() = RippleTheme.defaultRippleColor(
         contentColor = MaterialTheme.colors.primary,
         lightTheme = true // allow to force ripple in primary color when in dark mode
     )
@@ -88,7 +85,7 @@ internal object OdsPrimaryRippleTheme : RippleTheme {
 
 internal object OdsNoRippleTheme : RippleTheme {
     @Composable
-    override fun defaultColor()= RippleTheme.defaultRippleColor(
+    override fun defaultColor() = RippleTheme.defaultRippleColor(
         contentColor = MaterialTheme.colors.surface.copy(alpha = 0f),
         lightTheme = true
     )
@@ -110,12 +107,7 @@ fun OdsMaterialTheme(
 ) {
     MaterialTheme(
         colors = if (darkTheme) darkThemeColors else lightThemeColors,
-        typography = OdsTypography,
-        shapes = Shapes(
-            small = RoundedCornerShape(4.dp), // buttons, snack bars, tooltips, ...
-            medium = RoundedCornerShape(4.dp), // cards, dialogs, menus, ...
-            large = RoundedCornerShape(0.dp) // sheets, drawers, ...
-        )
+        typography = OdsTypography
     ) {
         CompositionLocalProvider(
             LocalRippleTheme provides OdsRippleTheme,
