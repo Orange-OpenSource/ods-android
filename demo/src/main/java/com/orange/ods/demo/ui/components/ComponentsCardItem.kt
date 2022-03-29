@@ -38,4 +38,10 @@ sealed class ComponentsCardItem(
             title = R.string.component_bottom_navigation,
             route = ComponentsNavigationItem.BottomNavigation.route
         )
+    object Cards :
+        ComponentsCardItem(
+            image = R.drawable.picture_component_cards,
+            title = R.string.component_cards,
+            route = ComponentsNavigationItem.Cards.route
+        )
 }
