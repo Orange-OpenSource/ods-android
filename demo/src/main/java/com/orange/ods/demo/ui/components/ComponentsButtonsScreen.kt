@@ -13,6 +13,7 @@ package com.orange.ods.demo.ui.components
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.RowScope
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.wrapContentSize
@@ -129,26 +130,33 @@ private fun TextButtons() {
     }
 }
 
+@Preview
 @Composable
 fun ToggleButtons() {
     var checked by remember { mutableStateOf(false) }
     ButtonTypeSubtitleText("Toggle")
-    Row(
-        modifier = Modifier.fillMaxWidth(),
-        horizontalArrangement = Arrangement.SpaceEvenly
-    ) {
+    Row(modifier = Modifier.fillMaxWidth(), verticalAlignment = Alignment.CenterVertically) {
+        Text(text = "group:")
         ToggleGroup()
-        OdsToggleButton(checked = checked, onCheckedChange = { checked = it }, iconRes = R.drawable.ic_search, contentDescription = "Search")
+    }
+    Row(modifier = Modifier.fillMaxWidth(), verticalAlignment = Alignment.CenterVertically) {
+        Text(text = "single:")
+        OdsToggleButton(
+            checked = checked, onCheckedChange = { checked = it }, iconRes = R.drawable.ic_module_molecule, contentDescription = "Search",
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(top = 4.dp)
+        )
     }
 }
 
 @Composable
-private fun ToggleGroup() {
+private fun RowScope.ToggleGroup() {
     val iconsRes = listOf(R.drawable.ic_info, R.drawable.ic_search, R.drawable.ic_guideline_dna)
     var checkedIcon by remember { mutableStateOf(R.drawable.ic_info) }
 
     Row(
-        modifier = Modifier.fillMaxWidth(),
+        modifier = Modifier.weight(1f),
         horizontalArrangement = Arrangement.Center
     ) {
         iconsRes.forEach { iconRes ->
