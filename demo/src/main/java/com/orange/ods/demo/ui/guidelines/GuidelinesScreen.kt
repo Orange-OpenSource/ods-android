@@ -41,7 +41,7 @@ fun GuidelinesScreen(navController: NavController) {
             //Add item in the list once ready
             cards = listOf(
                 GuidelinesCardItem.Colour,
-                //GuidelinesCardItem.Typography,
+                GuidelinesCardItem.Typography,
                 //GuidelinesCardItem.Iconography,
                 //GuidelinesCardItem.Imagery,
             ),

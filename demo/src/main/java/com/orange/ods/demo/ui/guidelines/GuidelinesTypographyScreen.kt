@@ -8,7 +8,7 @@
  * /
  */
 
-package com.orange.ods.demo.ui
+package com.orange.ods.demo.ui.guidelines
 
 import android.content.Context
 import androidx.annotation.AttrRes
@@ -32,6 +32,7 @@ import androidx.compose.ui.text.withStyle
 import androidx.compose.ui.unit.dp
 import com.orange.ods.compose.theme.ObsGrey700
 import com.orange.ods.demo.R
+import com.orange.ods.demo.ui.utils.getStringName
 
 data class TypographyItem(
     val name: String,
@@ -42,7 +43,7 @@ data class TypographyItem(
 )
 
 @Composable
-fun TypographyGuidelineScreen() {
+fun GuidelinesTypographyScreen() {
     TypographyList(
         listOf(
             TypographyItem(
@@ -128,7 +129,7 @@ fun TypographyGuidelineScreen() {
 }
 
 @Composable
-fun TypographyRow(typo: TypographyItem) {
+private fun TypographyRow(typo: TypographyItem) {
     val context = LocalContext.current
     Column() {
         Text(
@@ -147,7 +148,7 @@ fun TypographyRow(typo: TypographyItem) {
             buildAnnotatedString {
                 append("Resource: ")
                 withStyle(style = SpanStyle(fontStyle = FontStyle.Italic)) {
-                    append("?attr/${context.getStringOfId(typo.xmlResource)}")
+                    append("?attr/${context.getStringName(typo.xmlResource)}")
                 }
             }
         )
@@ -155,7 +156,7 @@ fun TypographyRow(typo: TypographyItem) {
 }
 
 @Composable
-fun TypographyList(typos: List<TypographyItem>) {
+private fun TypographyList(typos: List<TypographyItem>) {
     LazyColumn(
         contentPadding = PaddingValues(16.dp),
         verticalArrangement = Arrangement.spacedBy(16.dp),
@@ -166,6 +167,3 @@ fun TypographyList(typos: List<TypographyItem>) {
         }
     }
 }
-
-fun Context.getStringOfId(@AttrRes res: Int): String =
-    this.resources.getResourceName(res).split('/').last()
