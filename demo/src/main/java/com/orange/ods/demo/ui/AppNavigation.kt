@@ -12,6 +12,7 @@ package com.orange.ods.demo.ui
 
 import androidx.annotation.DrawableRes
 import androidx.annotation.StringRes
+import androidx.compose.material.ExperimentalMaterialApi
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.res.stringResource
 import androidx.navigation.NavHostController
@@ -20,6 +21,7 @@ import androidx.navigation.compose.composable
 import com.orange.ods.demo.R
 import com.orange.ods.demo.ui.about.AboutScreen
 import com.orange.ods.demo.ui.components.ComponentsButtonsScreen
+import com.orange.ods.demo.ui.components.ComponentsCardScreen
 import com.orange.ods.demo.ui.components.ComponentsScreen
 import com.orange.ods.demo.ui.guidelines.GuidelinesColorScreen
 import com.orange.ods.demo.ui.guidelines.GuidelinesScreen
@@ -54,6 +56,7 @@ sealed class ComponentsNavigationItem(
     object Buttons : ComponentsNavigationItem(R.string.component_buttons, "components/buttons")
     object Controls : ComponentsNavigationItem(R.string.component_controls, "components/controls")
     object BottomNavigation : ComponentsNavigationItem(R.string.component_bottom_navigation, "components/bottom_navigation")
+    object Card : ComponentsNavigationItem(R.string.component_cards, "components/card")
 }
 
 @Composable
@@ -94,5 +97,9 @@ fun AppNavigation(navController: NavHostController, onSetScreenTitle: (String) -
             ComponentsButtonsScreen()
         }
 
+        composable(ComponentsNavigationItem.Card.route) {
+            onSetScreenTitle(stringResource(id = ComponentsNavigationItem.Card.title))
+            ComponentsCardScreen()
+        }
     }
 }

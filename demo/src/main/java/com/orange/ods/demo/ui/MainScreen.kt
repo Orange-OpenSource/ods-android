@@ -15,6 +15,7 @@ import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.animation.fadeIn
 import androidx.compose.animation.fadeOut
 import androidx.compose.foundation.isSystemInDarkTheme
+import androidx.compose.material.ExperimentalMaterialApi
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material.Icon
@@ -32,6 +33,7 @@ import com.orange.ods.compose.component.OdsBottomNavigation
 import com.orange.ods.compose.component.OdsBottomNavigationItem
 import com.orange.ods.compose.theme.OdsMaterialTheme
 
+@ExperimentalMaterialApi
 @Preview(showBackground = true, uiMode = Configuration.UI_MODE_NIGHT_YES)
 @Preview(showBackground = true)
 @Composable

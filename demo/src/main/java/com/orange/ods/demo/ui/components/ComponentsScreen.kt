@@ -35,8 +35,9 @@ fun ComponentsScreen(navController: NavController) {
     ) {
         ComponentsCardsList(
             listOf(
-                ComponentsCardItem.Buttons
+                ComponentsCardItem.Buttons,
                 //ComponentsCardItem.Controls,
+                    ComponentsCardItem.Cards
                 //ComponentsCardItem.BottomNavigation,
             ), navController
         )

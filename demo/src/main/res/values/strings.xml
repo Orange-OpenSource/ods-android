@@ -31,5 +31,6 @@
     <string name="component_buttons">Buttons</string>
     <string name="component_controls">Controls</string>
     <string name="component_bottom_navigation">Bottom Navigation</string>
+    <string name="component_cards">Cards</string>
 
 </resources>
