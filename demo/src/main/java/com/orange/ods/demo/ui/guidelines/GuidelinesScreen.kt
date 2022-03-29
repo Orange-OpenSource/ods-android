@@ -25,7 +25,6 @@ import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
 import com.orange.ods.compose.component.OdsCardImageFirst
 import com.orange.ods.compose.theme.OdsMaterialTheme
-import com.orange.ods.demo.ui.GuidelinesNavigationItem
 
 @Composable
 fun GuidelinesScreen(navController: NavController) {

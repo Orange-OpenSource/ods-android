@@ -14,7 +14,10 @@ import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.darkColors
 import androidx.compose.material.lightColors
+import androidx.compose.material.ripple.LocalRippleTheme
+import androidx.compose.material.ripple.RippleTheme
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.CompositionLocalProvider
 
 private val lightThemeColors = lightColors(
     primary = Orange200,
@@ -46,6 +49,57 @@ private val darkThemeColors = darkColors(
     onError = Black900
 )
 
+/**
+ * Default ripple theme
+ */
+internal object OdsRippleTheme : RippleTheme {
+    @Composable
+    override fun defaultColor() = RippleTheme.defaultRippleColor(
+        contentColor = MaterialTheme.colors.onSurface,
+        lightTheme = !isSystemInDarkTheme()
+    )
+
+    @Composable
+    override fun rippleAlpha() = RippleTheme.defaultRippleAlpha(
+        MaterialTheme.colors.surface,
+        lightTheme = !isSystemInDarkTheme()
+    )
+}
+
+/**
+ * Ripple theme in primary color. It overrides the default behavior for some components like buttons, checkboxes...
+ */
+internal object OdsPrimaryRippleTheme : RippleTheme {
+    @Composable
+    override fun defaultColor() = RippleTheme.defaultRippleColor(
+        contentColor = MaterialTheme.colors.primary,
+        lightTheme = true // allow to force ripple in primary color when in dark mode
+    )
+
+    @Composable
+    override fun rippleAlpha() = RippleTheme.defaultRippleAlpha(
+        MaterialTheme.colors.surface,
+        lightTheme = !isSystemInDarkTheme()
+    )
+}
+
+internal object OdsNoRippleTheme : RippleTheme {
+    @Composable
+    override fun defaultColor() = RippleTheme.defaultRippleColor(
+        contentColor = MaterialTheme.colors.surface.copy(alpha = 0f),
+        lightTheme = true
+    )
+
+    @Composable
+    override fun rippleAlpha() = RippleTheme.defaultRippleAlpha(
+        MaterialTheme.colors.surface,
+        lightTheme = true
+    )
+}
+
+/**
+ * ODS Material theme is the theme to apply to your screens in an Orange Jetpack Compose application.
+ */
 @Composable
 fun OdsMaterialTheme(
     darkTheme: Boolean = isSystemInDarkTheme(),
@@ -53,7 +107,11 @@ fun OdsMaterialTheme(
 ) {
     MaterialTheme(
         colors = if (darkTheme) darkThemeColors else lightThemeColors,
-        typography = OdsTypography,
-        content = content
-    )
+        typography = OdsTypography
+    ) {
+        CompositionLocalProvider(
+            LocalRippleTheme provides OdsRippleTheme,
+            content = content
+        )
+    }
 }

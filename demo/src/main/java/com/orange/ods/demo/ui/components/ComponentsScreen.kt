@@ -11,43 +11,47 @@
 package com.orange.ods.demo.ui.components
 
 import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import com.orange.ods.compose.theme.OdsMaterialTheme
 import androidx.compose.ui.unit.dp
+import androidx.navigation.NavController
+import androidx.navigation.compose.rememberNavController
 import com.orange.ods.compose.component.OdsCardSmall
 
 @Composable
-fun ComponentsScreen() {
+fun ComponentsScreen(navController: NavController) {
+    val scrollState = rememberScrollState()
     Column(
         modifier = Modifier
             .padding(16.dp)
-            .fillMaxSize(),
+            .fillMaxSize()
+            .verticalScroll(scrollState),
         verticalArrangement = Arrangement.spacedBy(16.dp)
     ) {
         ComponentsCardsList(
-            emptyList()
-            //Add item in the list once ready
-            /*listOf(
-                ComponentsCardItem.Buttons,
-                ComponentsCardItem.Controls,
-                ComponentsCardItem.BottomNavigation,
-            )*/
+            listOf(
+                ComponentsCardItem.Buttons
+                //ComponentsCardItem.Controls,
+                //ComponentsCardItem.BottomNavigation,
+            ), navController
         )
     }
 }
 
 @Composable
-private fun ComponentsCardsList(cards: List<ComponentsCardItem>) {
+private fun ComponentsCardsList(cards: List<ComponentsCardItem>, navController: NavController) {
     cards.chunked(2).forEach { rowCards ->
         Row(
             horizontalArrangement = Arrangement.spacedBy(16.dp),
         ) {
-            ComponentCard(componentsCardItem = rowCards[0])
+            ComponentCard(componentsCardItem = rowCards[0], navController)
             if (rowCards.size == 2) {
-                ComponentCard(componentsCardItem = rowCards[1])
+                ComponentCard(componentsCardItem = rowCards[1], navController)
             } else {
                 Box(modifier = Modifier.weight(0.5f)) {}
             }
@@ -56,12 +60,14 @@ private fun ComponentsCardsList(cards: List<ComponentsCardItem>) {
 }
 
 @Composable
-private fun RowScope.ComponentCard(componentsCardItem: ComponentsCardItem) {
+private fun RowScope.ComponentCard(componentsCardItem: ComponentsCardItem, navController: NavController) {
     OdsCardSmall(
         modifier = Modifier.weight(0.5f),
         title = stringResource(id = componentsCardItem.title),
         imageRes = componentsCardItem.image,
-        onCardClick = {}
+        onCardClick = {
+            navController.navigate(componentsCardItem.route)
+        },
     )
 }
 
@@ -69,6 +75,6 @@ private fun RowScope.ComponentCard(componentsCardItem: ComponentsCardItem) {
 @Composable
 fun ComponentsScreenPreview() {
     OdsMaterialTheme {
-        ComponentsScreen()
+        ComponentsScreen(rememberNavController())
     }
 }
