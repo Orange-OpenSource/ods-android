@@ -57,14 +57,7 @@ private fun CardList(cards: List<GuidelinesCardItem>, navController: NavControll
             imageRes = card.image,
             title = stringResource(id = card.title),
             onCardClick = {
-                when (card) {
-                    is GuidelinesCardItem.Colour -> {
-                        navController.navigate(GuidelinesNavigationItem.Color.route)
-                    }
-                    else -> {
-                        //Not handled for the moment
-                    }
-                }
+                navController.navigate(card.route)
             },
         )
     }

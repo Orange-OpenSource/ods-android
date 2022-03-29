@@ -39,7 +39,10 @@ sealed class GuidelinesNavigationItem(
     @StringRes var title: Int,
     var route: String
 ){
-    object Color : GuidelinesNavigationItem(R.string.guideline_colour, "color")
+    object Color : GuidelinesNavigationItem(R.string.guideline_colour, "guidelines/color")
+    object Typography : GuidelinesNavigationItem(R.string.guideline_typography, "guidelines/typography")
+    object Imagery : GuidelinesNavigationItem(R.string.guideline_imagery, "guidelines/imagery")
+    object Iconography : GuidelinesNavigationItem(R.string.guideline_iconography, "guidelines/iconography")
 }
 
 @Composable

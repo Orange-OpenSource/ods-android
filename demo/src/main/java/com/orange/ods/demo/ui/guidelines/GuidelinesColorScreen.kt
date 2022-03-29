@@ -44,7 +44,7 @@ fun GuidelinesColorScreen() {
 }
 
 @Composable
-fun ColorRow(color: ColorItem) {
+private fun ColorRow(color: ColorItem) {
     val context = LocalContext.current
     Row(
         verticalAlignment = Alignment.CenterVertically
