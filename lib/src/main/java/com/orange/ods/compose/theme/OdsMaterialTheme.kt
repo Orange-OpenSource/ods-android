@@ -55,7 +55,7 @@ private val darkThemeColors = darkColors(
 /**
  * Default ripple theme
  */
-private object OdsRippleTheme : RippleTheme {
+internal object OdsRippleTheme : RippleTheme {
     @Composable
     override fun defaultColor()= RippleTheme.defaultRippleColor(
         contentColor = MaterialTheme.colors.onSurface,

@@ -23,6 +23,7 @@ import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import com.orange.ods.compose.theme.OdsPrimaryRippleTheme
+import com.orange.ods.compose.theme.OdsRippleTheme
 
 /**
  * <a href="https://system.design.orange.com/0c1af118d/p/06a393-buttons/b/79b091" target="_blank">ODS Buttons</a>.
@@ -53,7 +54,7 @@ fun OdsTextButton(
     interactionSource: MutableInteractionSource = remember { MutableInteractionSource() },
     hasPrimaryColor: Boolean = false,
 ) {
-    CompositionLocalProvider(LocalRippleTheme provides OdsPrimaryRippleTheme) {
+    CompositionLocalProvider(LocalRippleTheme provides if (hasPrimaryColor) OdsPrimaryRippleTheme else OdsRippleTheme) {
         TextButton(
             onClick = onClick,
             modifier = modifier,
