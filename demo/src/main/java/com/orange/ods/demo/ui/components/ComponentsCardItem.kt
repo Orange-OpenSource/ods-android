@@ -42,6 +42,6 @@ sealed class ComponentsCardItem(
         ComponentsCardItem(
             image = R.drawable.picture_component_cards,
             title = R.string.component_cards,
-            route = ComponentsNavigationItem.Card.route
+            route = ComponentsNavigationItem.Cards.route
         )
 }

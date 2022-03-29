@@ -56,9 +56,10 @@ sealed class ComponentsNavigationItem(
     object Buttons : ComponentsNavigationItem(R.string.component_buttons, "components/buttons")
     object Controls : ComponentsNavigationItem(R.string.component_controls, "components/controls")
     object BottomNavigation : ComponentsNavigationItem(R.string.component_bottom_navigation, "components/bottom_navigation")
-    object Card : ComponentsNavigationItem(R.string.component_cards, "components/card")
+    object Cards : ComponentsNavigationItem(R.string.component_cards, "components/card")
 }
 
+@ExperimentalMaterialApi
 @Composable
 fun AppNavigation(navController: NavHostController, onSetScreenTitle: (String) -> Unit) {
     NavHost(navController, startDestination = NavigationItem.Guidelines.route) {
@@ -97,8 +98,8 @@ fun AppNavigation(navController: NavHostController, onSetScreenTitle: (String) -
             ComponentsButtonsScreen()
         }
 
-        composable(ComponentsNavigationItem.Card.route) {
-            onSetScreenTitle(stringResource(id = ComponentsNavigationItem.Card.title))
+        composable(ComponentsNavigationItem.Cards.route) {
+            onSetScreenTitle(stringResource(id = ComponentsNavigationItem.Cards.title))
             ComponentsCardScreen()
         }
     }
