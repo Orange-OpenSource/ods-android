@@ -76,20 +76,20 @@ fun ComponentsCardScreen() {
                     Toast.makeText(context, "Click on Card", Toast.LENGTH_LONG).show()
                 },
                 button1Text = if (button1IsChecked.value) {
-                    "Action 1"
+                    "Button 1"
                 } else {
                     null
                 },
                 onButton1Click = {
-                    Toast.makeText(context, "Click on Action", Toast.LENGTH_LONG).show()
+                    Toast.makeText(context, "Click on Button 1", Toast.LENGTH_LONG).show()
                 },
                 button2Text = if (button2IsChecked.value) {
-                    "Action 2"
+                    "Button 2"
                 } else {
                     null
                 },
                 onButton2Click = {
-                    Toast.makeText(context, "Click on Action", Toast.LENGTH_LONG).show()
+                    Toast.makeText(context, "Click on Button 2", Toast.LENGTH_LONG).show()
                 }
             )
         }
