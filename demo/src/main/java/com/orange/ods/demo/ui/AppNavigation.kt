@@ -20,6 +20,7 @@ import androidx.navigation.compose.composable
 import com.orange.ods.demo.R
 import com.orange.ods.demo.ui.about.AboutScreen
 import com.orange.ods.demo.ui.components.ComponentsScreen
+import com.orange.ods.demo.ui.guidelines.GuidelinesColorScreen
 import com.orange.ods.demo.ui.guidelines.GuidelinesScreen
 import com.orange.ods.demo.ui.modules.ModulesScreen
 
@@ -34,12 +35,22 @@ sealed class NavigationItem(
     object About : NavigationItem(R.drawable.ic_info, R.string.navigation_item_about, "about")
 }
 
+sealed class GuidelinesNavigationItem(
+    @StringRes var title: Int,
+    var route: String
+){
+    object Color : GuidelinesNavigationItem(R.string.guideline_colour, "guidelines/color")
+    object Typography : GuidelinesNavigationItem(R.string.guideline_typography, "guidelines/typography")
+    object Imagery : GuidelinesNavigationItem(R.string.guideline_imagery, "guidelines/imagery")
+    object Iconography : GuidelinesNavigationItem(R.string.guideline_iconography, "guidelines/iconography")
+}
+
 @Composable
 fun AppNavigation(navController: NavHostController, onSetScreenTitle: (String) -> Unit) {
     NavHost(navController, startDestination = NavigationItem.Guidelines.route) {
         composable(NavigationItem.Guidelines.route) {
             onSetScreenTitle(stringResource(id = NavigationItem.Guidelines.title))
-            GuidelinesScreen()
+            GuidelinesScreen(navController)
         }
         composable(NavigationItem.Components.route) {
             onSetScreenTitle(stringResource(id = NavigationItem.Components.title))
@@ -52,6 +63,10 @@ fun AppNavigation(navController: NavHostController, onSetScreenTitle: (String) -
         composable(NavigationItem.About.route) {
             onSetScreenTitle(stringResource(id = NavigationItem.About.title))
             AboutScreen()
+        }
+        composable(GuidelinesNavigationItem.Color.route){
+            onSetScreenTitle(stringResource(id = GuidelinesNavigationItem.Color.title))
+            GuidelinesColorScreen()
         }
     }
 }
