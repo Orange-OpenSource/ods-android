@@ -15,9 +15,12 @@ import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.animation.fadeIn
 import androidx.compose.animation.fadeOut
 import androidx.compose.foundation.isSystemInDarkTheme
+import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.padding
 import androidx.compose.material.Icon
 import androidx.compose.material.Scaffold
 import androidx.compose.runtime.*
+import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
@@ -62,8 +65,10 @@ fun MainScreen() {
                     BottomNavigationBar(navController)
                 }
             }
-        ) {
-            AppNavigation(navController = navController, onSetScreenTitle = { topAppBarTitle = it })
+        ) { innerPadding ->
+            Box(modifier = Modifier.padding(innerPadding)) {
+                AppNavigation(navController = navController, onSetScreenTitle = { topAppBarTitle = it })
+            }
         }
     }
 }
