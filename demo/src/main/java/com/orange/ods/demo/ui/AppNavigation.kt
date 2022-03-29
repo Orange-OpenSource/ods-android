@@ -22,6 +22,7 @@ import com.orange.ods.demo.ui.about.AboutScreen
 import com.orange.ods.demo.ui.components.ComponentsScreen
 import com.orange.ods.demo.ui.guidelines.GuidelinesColorScreen
 import com.orange.ods.demo.ui.guidelines.GuidelinesScreen
+import com.orange.ods.demo.ui.guidelines.GuidelinesTypographyScreen
 import com.orange.ods.demo.ui.modules.ModulesScreen
 
 sealed class NavigationItem(
@@ -67,6 +68,10 @@ fun AppNavigation(navController: NavHostController, onSetScreenTitle: (String) -
         composable(GuidelinesNavigationItem.Color.route){
             onSetScreenTitle(stringResource(id = GuidelinesNavigationItem.Color.title))
             GuidelinesColorScreen()
+        }
+        composable(GuidelinesNavigationItem.Typography.route){
+            onSetScreenTitle(stringResource(id = GuidelinesNavigationItem.Typography.title))
+            GuidelinesTypographyScreen()
         }
     }
 }

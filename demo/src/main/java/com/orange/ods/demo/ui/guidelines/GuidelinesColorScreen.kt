@@ -30,6 +30,7 @@ import androidx.compose.ui.unit.dp
 import androidx.core.content.ContextCompat
 import com.orange.ods.compose.theme.*
 import com.orange.ods.demo.R
+import com.orange.ods.demo.ui.utils.getStringName
 
 data class ColorItem(
     val jetPackColor: Color,
@@ -255,10 +256,6 @@ private fun buildColorList(): List<ColorItem> = listOf(
         xmlResource = R.color.ods_dark_default_color_surface
     ),
 )
-
-//Method to get the resource name with the color id
-private fun Context.getStringName(@ColorRes res: Int): String =
-    this.resources.getResourceName(res).split('/').last()
 
 //Method to get the color hexadecimal with the color id
 private fun Context.getColorHex(@ColorRes res: Int): String {
