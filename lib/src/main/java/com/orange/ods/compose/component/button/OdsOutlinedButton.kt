@@ -53,7 +53,6 @@ fun OdsOutlinedButton(
         enabled = enabled,
         modifier = modifier,
         interactionSource = interactionSource,
-        elevation = null,
         shape = odsButtonShape,
         border = BorderStroke(ButtonDefaults.OutlinedBorderSize, MaterialTheme.colors.onSurface),
         colors = ButtonDefaults.outlinedButtonColors(
