@@ -36,7 +36,7 @@ Checkboxes support content labeling for accessibility and are readable by most s
 as TalkBack. Text rendered in check boxes is automatically provided to accessibility services.
 Additional content labels are usually unnecessary.
 
-### Adding a checkbox
+### Adding a checkbox in XML
 
 To create a Checkbox you just have to add a `Checkbox` in your layout. Orange theme will be
 automatically applied
@@ -51,4 +51,16 @@ In the layout:
     android:checked="true"
     android:text="@string/label"
 />
+```
+
+### Adding a checkbox in Jetpack Compose
+
+In your composable screen you can use:
+
+```kotlin
+OdsCheckbox(
+    checked = true,
+    onCheckedChange = { },
+    enabled = enabled,
+)
 ```

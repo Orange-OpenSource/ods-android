@@ -25,6 +25,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
+import com.orange.ods.compose.component.controls.OdsCheckbox
 import com.orange.ods.compose.theme.SliderActiveTickColor
 
 private const val ENABLED = "Enabled"
@@ -208,14 +209,12 @@ fun LabelledCheckbox(
         verticalAlignment = Alignment.CenterVertically,
     ) {
         val isCheckedRemember = remember { mutableStateOf(isChecked) }
-        CompositionLocalProvider(LocalRippleTheme provides RippleCustomTheme) {
-            Checkbox(
-                checked = isCheckedRemember.value,
-                onCheckedChange = { isCheckedRemember.value = it },
-                enabled = enabled,
-            )
-            Text(text = label)
-        }
+        OdsCheckbox(
+            checked = isCheckedRemember.value,
+            onCheckedChange = { isCheckedRemember.value = it },
+            enabled = enabled,
+        )
+        Text(text = label)
     }
 }
 

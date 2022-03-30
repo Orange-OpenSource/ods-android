@@ -9,6 +9,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
+- Add `OdsCheckbox` component
 - Add ODS buttons composables: `OdsButton`, `OdsOutlinedButton`, `OdsTextButton` and `OdsToggleButton`
 - Add `OdsTopAppBar` component
 - Add `OdsCardSmall` and `OdsCardImageFirst` component
