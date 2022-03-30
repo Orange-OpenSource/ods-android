@@ -34,7 +34,7 @@ screen readers, such as TalkBack. Text rendered in switches is automatically
 provided to accessibility services. Additional content labels are usually
 unnecessary.
 
-### Adding a switch
+### Adding a switch in XML
 
 To create a Switch using Orange theme you will have to add `com.google.android.material.switchmaterial.SwitchMaterial` into your layout.
 
@@ -84,4 +84,16 @@ switchMaterial.isChecked = true
 switchMaterial.setOnCheckedChangeListener { buttonView, isChecked
     // Responds to switch being checked/unchecked
 }
+```
+
+### Adding a switch in Jetpack Compose
+
+In your composable screen you can use:
+
+```kotlin
+OdsSwitch(
+    checked = true,
+    onCheckedChange = { },
+    enabled = true
+)
 ```

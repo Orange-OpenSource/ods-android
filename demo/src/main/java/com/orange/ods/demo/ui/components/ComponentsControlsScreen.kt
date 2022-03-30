@@ -16,8 +16,10 @@ import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
-import androidx.compose.material.*
-import androidx.compose.material.ripple.LocalRippleTheme
+import androidx.compose.material.MaterialTheme
+import androidx.compose.material.Slider
+import androidx.compose.material.SliderDefaults
+import androidx.compose.material.Text
 import androidx.compose.material.ripple.RippleAlpha
 import androidx.compose.material.ripple.RippleTheme
 import androidx.compose.runtime.*
@@ -27,6 +29,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 import com.orange.ods.compose.component.controls.OdsCheckbox
 import com.orange.ods.compose.component.controls.OdsRadioButton
+import com.orange.ods.compose.component.controls.OdsSwitch
 import com.orange.ods.compose.theme.SliderActiveTickColor
 
 private const val ENABLED = "Enabled"
@@ -254,14 +257,12 @@ fun LabelledSwitch(
         verticalAlignment = Alignment.CenterVertically,
     ) {
         val isSelectedRemember = remember { mutableStateOf(isSelected) }
-        CompositionLocalProvider(LocalRippleTheme provides RippleCustomTheme) {
-            Switch(
-                checked = isSelectedRemember.value,
-                onCheckedChange = { isSelectedRemember.value = it },
-                enabled = enabled
-            )
-            Text(text = label)
-        }
+        OdsSwitch(
+            checked = isSelectedRemember.value,
+            onCheckedChange = { isSelectedRemember.value = it },
+            enabled = enabled
+        )
+        Text(text = label)
     }
 }
 

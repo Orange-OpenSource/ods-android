@@ -28,7 +28,7 @@ import com.orange.ods.compose.theme.OdsPrimaryRippleTheme
  * Radio buttons allow users to select one option from a set.
  *
  * [RadioButton]s can be combined together with [Text] in the desired layout (e.g. [Column] or
- * [Row]) to achieve radio group-like behaviour, where the entire layout is selectable:
+ * [Row]) to achieve radio group-like behaviour, where the entire layout is selectable.
  *
  * @param selected whether this radio button is selected or not
  * @param onClick callback to be invoked when the RadioButton is clicked. If null, then this
