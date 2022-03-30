@@ -26,6 +26,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 import com.orange.ods.compose.component.controls.OdsCheckbox
+import com.orange.ods.compose.component.controls.OdsRadioButton
 import com.orange.ods.compose.theme.SliderActiveTickColor
 
 private const val ENABLED = "Enabled"
@@ -230,16 +231,14 @@ fun LabelledRadioButton(
         modifier = modifier.padding(start = 24.dp, end = 24.dp),
         verticalAlignment = Alignment.CenterVertically,
     ) {
-        CompositionLocalProvider(LocalRippleTheme provides RippleCustomTheme) {
-            RadioButton(
-                selected = selectedRadio.value == currentRadio,
-                onClick = {
-                    selectedRadio.value = currentRadio
-                },
-                enabled = enabled
-            )
-            Text(text = label)
-        }
+        OdsRadioButton(
+            selected = selectedRadio.value == currentRadio,
+            onClick = {
+                selectedRadio.value = currentRadio
+            },
+            enabled = enabled
+        )
+        Text(text = label)
     }
 }
 
