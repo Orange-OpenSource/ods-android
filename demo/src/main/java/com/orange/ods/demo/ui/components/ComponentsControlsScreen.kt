@@ -8,8 +8,9 @@
  * /
  */
 
-package com.orange.ods.demo.ui
+package com.orange.ods.demo.ui.components
 
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.padding
@@ -24,6 +25,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
+import com.orange.ods.compose.theme.SliderActiveTickColor
 
 private const val ENABLED = "Enabled"
 private const val DISABLED = "Disabled"
@@ -31,13 +33,14 @@ private const val ON = "On"
 private const val OFF = "Off"
 
 @Composable
-fun ControlsComponentScreen() {
+fun ComponentsControlsScreen() {
     Column(
         modifier = Modifier.verticalScroll(rememberScrollState())
     ) {
         Checkboxes()
         RadioButtons()
         Switches()
+        Sliders()
     }
 }
 
@@ -158,6 +161,38 @@ fun Switches() {
                 enabled = false
             )
         }
+    }
+}
+
+@Composable
+fun Sliders() {
+    Column {
+        ControlTitle(title = "Sliders")
+        var sliderPosition by remember { mutableStateOf(0f) }
+        var sliderPosition2 by remember { mutableStateOf(0f) }
+        Text(
+            modifier = Modifier.padding(start = 16.dp, end = 16.dp),
+            text = "Discrete"
+        )
+        Slider(
+            modifier = Modifier.padding(start = 16.dp, end = 16.dp),
+            value = sliderPosition2,
+            steps = 10,
+            onValueChange = { sliderPosition2 = it },
+            colors = SliderDefaults.colors(
+                activeTickColor = SliderActiveTickColor //Cannot use primary alpha color, it will not be visible, need to use plain color
+            )
+        )
+        Text(
+            modifier = Modifier.padding(start = 16.dp, end = 16.dp),
+            text = "Continuous"
+        )
+        Slider(
+            modifier = Modifier.padding(start = 16.dp, end = 16.dp),
+            value = sliderPosition,
+            onValueChange = { sliderPosition = it }
+        )
+        Box(modifier = Modifier.padding(bottom = 64.dp)) {}
     }
 }
 

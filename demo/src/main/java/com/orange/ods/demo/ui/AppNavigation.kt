@@ -24,6 +24,9 @@ import com.orange.ods.demo.ui.components.*
 import com.orange.ods.demo.ui.components.cards.ComponentsCardScreen
 import com.orange.ods.demo.ui.components.cards.ComponentsCardImageFirstScreen
 import com.orange.ods.demo.ui.components.cards.ComponentsCardSmallScreen
+import com.orange.ods.demo.ui.components.ComponentsButtonsScreen
+import com.orange.ods.demo.ui.components.ComponentsControlsScreen
+import com.orange.ods.demo.ui.components.ComponentsScreen
 import com.orange.ods.demo.ui.guidelines.GuidelinesColorScreen
 import com.orange.ods.demo.ui.guidelines.GuidelinesScreen
 import com.orange.ods.demo.ui.guidelines.GuidelinesTypographyScreen
@@ -100,7 +103,6 @@ fun AppNavigation(navController: NavHostController, onSetScreenTitle: (String) -
             onSetScreenTitle(stringResource(id = ComponentsNavigationItem.Buttons.title))
             ComponentsButtonsScreen()
         }
-
         composable(ComponentsNavigationItem.Cards.route) {
             onSetScreenTitle(stringResource(id = ComponentsNavigationItem.Cards.title))
             ComponentsCardScreen(navController)
@@ -114,6 +116,10 @@ fun AppNavigation(navController: NavHostController, onSetScreenTitle: (String) -
         composable(ComponentsNavigationItem.CardSmall.route) {
             onSetScreenTitle(stringResource(id = ComponentsNavigationItem.CardSmall.title))
             ComponentsCardSmallScreen()
+        }
+        composable(ComponentsNavigationItem.Controls.route) {
+            onSetScreenTitle(stringResource(id = ComponentsNavigationItem.Controls.title))
+            ComponentsControlsScreen()
         }
     }
 }
