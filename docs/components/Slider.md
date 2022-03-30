@@ -73,6 +73,8 @@ API and source code:
     *   [Class definition](https://developer.android.com/reference/com/google/android/material/slider/Slider)
     *   [Class source](https://github.com/material-components/material-components-android/tree/master/lib/java/com/google/android/material/slider/Slider.java)
 
+### Adding in XML
+
 In the layout:
 
 ```xml
@@ -86,6 +88,18 @@ In the layout:
     android:valueTo="100.0" />
 ```
 
+### Adding in Jetpack Compose
+
+In your composable screen you can use:
+
+```kotlin
+OdsSlider(
+    value = 20f,
+    valueRange = 0f..100f,
+    onValueChange = { }
+)
+```
+
 ## Discrete slider
 
 Discrete sliders display a numeric value label upon pressing the thumb, which
@@ -96,6 +110,8 @@ API and source code:
 *   `Slider`
     *   [Class definition](https://developer.android.com/reference/com/google/android/material/slider/Slider)
     *   [Class source](https://github.com/material-components/material-components-android/tree/master/lib/java/com/google/android/material/slider/Slider.java)
+    
+### Adding in XML
 
 In the layout:
 
@@ -109,4 +125,17 @@ In the layout:
     android:valueFrom="0.0"
     android:valueTo="100.0"    
     android:stepSize="5.0" />
+```
+
+### Adding in Jetpack Compose
+
+In your composable screen you can use:
+
+```kotlin
+OdsSlider(
+    value = 20f,
+    valueRange = 0f..100f,
+    steps = 10,
+    onValueChange = { }
+)
 ```

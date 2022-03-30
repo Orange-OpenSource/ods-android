@@ -11,12 +11,13 @@
 package com.orange.ods.demo.ui.components
 
 import androidx.compose.foundation.Image
-import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.MaterialTheme
-import androidx.compose.material.Slider
-import androidx.compose.material.SliderDefaults
 import androidx.compose.material.Text
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
@@ -26,8 +27,8 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import com.orange.ods.compose.component.controls.OdsCheckbox
 import com.orange.ods.compose.component.controls.OdsRadioButton
+import com.orange.ods.compose.component.controls.OdsSlider
 import com.orange.ods.compose.component.controls.OdsSwitch
-import com.orange.ods.compose.theme.SliderActiveTickColor
 import com.orange.ods.demo.R
 
 private const val ENABLED = "Enabled"
@@ -49,7 +50,7 @@ fun ComponentsControlsScreen() {
             text = stringResource(id = R.string.component_controls_description),
             modifier = Modifier.padding(16.dp),
             style = MaterialTheme.typography.body1
-            )
+        )
         Checkboxes()
         RadioButtons()
         Switches()
@@ -187,25 +188,21 @@ fun Sliders() {
             modifier = Modifier.padding(start = 16.dp, end = 16.dp),
             text = "Discrete"
         )
-        Slider(
+        OdsSlider(
             modifier = Modifier.padding(start = 16.dp, end = 16.dp),
             value = sliderPosition2,
             steps = 10,
             onValueChange = { sliderPosition2 = it },
-            colors = SliderDefaults.colors(
-                activeTickColor = SliderActiveTickColor //Cannot use primary alpha color, it will not be visible, need to use plain color
-            )
         )
         Text(
             modifier = Modifier.padding(start = 16.dp, end = 16.dp),
             text = "Continuous"
         )
-        Slider(
+        OdsSlider(
             modifier = Modifier.padding(start = 16.dp, end = 16.dp),
             value = sliderPosition,
             onValueChange = { sliderPosition = it }
         )
-        Box(modifier = Modifier.padding(bottom = 64.dp)) {}
     }
 }
 
