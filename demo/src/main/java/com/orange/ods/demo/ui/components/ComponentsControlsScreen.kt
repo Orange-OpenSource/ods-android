@@ -265,20 +265,3 @@ fun LabelledSwitch(
         Text(text = label)
     }
 }
-
-private object RippleCustomTheme : RippleTheme {
-
-    @Composable
-    override fun defaultColor() =
-        RippleTheme.defaultRippleColor(
-            MaterialTheme.colors.primary,
-            lightTheme = true
-        )
-
-    @Composable
-    override fun rippleAlpha(): RippleAlpha =
-        RippleTheme.defaultRippleAlpha(
-            Color.Black,
-            lightTheme = true
-        )
-}

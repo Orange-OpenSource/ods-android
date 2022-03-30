@@ -13,6 +13,9 @@ package com.orange.ods.compose.component.controls
 import androidx.compose.foundation.interaction.Interaction
 import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.material.Checkbox
+import androidx.compose.material.CheckboxDefaults
+import androidx.compose.material.ContentAlpha
+import androidx.compose.material.MaterialTheme
 import androidx.compose.material.ripple.LocalRippleTheme
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.CompositionLocalProvider
@@ -52,7 +55,12 @@ fun OdsCheckbox(
             checked = checked,
             onCheckedChange = onCheckedChange,
             enabled = enabled,
-            interactionSource = interactionSource
+            interactionSource = interactionSource,
+            colors = if (checked) {
+                CheckboxDefaults.colors(disabledColor = MaterialTheme.colors.secondary.copy(alpha = ContentAlpha.disabled))
+            } else {
+                CheckboxDefaults.colors()
+            }
         )
     }
 }
