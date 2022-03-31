@@ -27,7 +27,7 @@ import com.orange.ods.demo.R
 
 @ExperimentalMaterialApi
 @Composable
-fun ComponentsSmallCardViewScreen() {
+fun ComponentsCardSmallScreen() {
     val context = LocalContext.current
 
     val subtitleIsChecked = remember { mutableStateOf(true) }

@@ -52,15 +52,15 @@ fun ComponentsCardScreen(navController: NavHostController) {
             modifier = Modifier.padding(top = 16.dp)
         ) {
             TextAndDivider(
-                text = stringResource(id = R.string.component_image_first_card_view),
+                text = stringResource(id = R.string.component_card_image_first),
                 onClick = {
-                    navController.navigate(ComponentsNavigationItem.ImageFirstCardView.route)
+                    navController.navigate(ComponentsNavigationItem.CardImageFirst.route)
                 }
             )
             TextAndDivider(
-                text = stringResource(id = R.string.component_small_card_view),
+                text = stringResource(id = R.string.component_card_small),
                 onClick = {
-                    navController.navigate(ComponentsNavigationItem.SmallCardView.route)
+                    navController.navigate(ComponentsNavigationItem.CardSmall.route)
                 }
             )
         }

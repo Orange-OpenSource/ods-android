@@ -28,7 +28,7 @@ import com.orange.ods.demo.R
 
 @ExperimentalMaterialApi
 @Composable
-fun ComponentsImageFirstCardViewScreen() {
+fun ComponentsCardImageFirstScreen() {
     val context = LocalContext.current
 
     val textIsChecked = remember { mutableStateOf(true) }
