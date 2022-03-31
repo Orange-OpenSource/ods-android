@@ -16,21 +16,29 @@ import androidx.compose.animation.core.animateFloatAsState
 import androidx.compose.foundation.background
 import androidx.compose.foundation.interaction.Interaction
 import androidx.compose.foundation.interaction.MutableInteractionSource
+import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material.Icon
 import androidx.compose.material.IconButton
 import androidx.compose.material.IconToggleButton
-import androidx.compose.material.MaterialTheme
-import androidx.compose.material.ripple.LocalRippleTheme
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
-import com.orange.ods.compose.theme.OdsNoRippleTheme
+import com.orange.ods.compose.theme.Black900
+import com.orange.ods.compose.theme.Orange200
+import com.orange.ods.compose.theme.White100
+import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.emptyFlow
+
+class DisabledInteractionSource : MutableInteractionSource {
+    override val interactions: Flow<Interaction> = emptyFlow()
+    override suspend fun emit(interaction: Interaction) {}
+    override fun tryEmit(interaction: Interaction) = true
+}
 
 /**
  * <a href="https://system.design.orange.com/0c1af118d/p/06a393-buttons/b/79b091" target="_blank">ODS Buttons</a>.
@@ -45,10 +53,9 @@ import com.orange.ods.compose.theme.OdsNoRippleTheme
  * @param modifier optional [Modifier] for this IconToggleButton
  * @param enabled enabled whether or not this [IconToggleButton] will handle input events and appear
  * enabled for semantics purposes
- * @param interactionSource the [MutableInteractionSource] representing the stream of
- * [Interaction]s for this IconToggleButton. You can create and pass in your own remembered
- * [MutableInteractionSource] if you want to observe [Interaction]s and customize the
- * appearance / behavior of this IconToggleButton in different [Interaction]s.
+ * @param isOnDarkSurface optional allow to force the button display on a dark or light
+ * surface. By default the system night mode value is used to know if the button is displayed
+ * on dark or light.
  */
 @Composable
 fun OdsToggleButton(
@@ -59,29 +66,32 @@ fun OdsToggleButton(
     contentDescription: String,
     modifier: Modifier = Modifier,
     enabled: Boolean = true,
-    interactionSource: MutableInteractionSource = remember { MutableInteractionSource() },
+    isOnDarkSurface: Boolean = isSystemInDarkTheme()
 ) {
-    CompositionLocalProvider(LocalRippleTheme provides OdsNoRippleTheme) {
-        IconToggleButton(
-            checked = checked,
-            onCheckedChange = onCheckedChange,
-            modifier = modifier,
-            enabled = enabled,
-            interactionSource = interactionSource
+    val iconColor = when {
+        !checked && isOnDarkSurface -> White100
+        !checked && !isOnDarkSurface -> Black900
+        else -> Orange200
+    }
+    IconToggleButton(
+        checked = checked,
+        onCheckedChange = onCheckedChange,
+        modifier = modifier,
+        enabled = enabled,
+        interactionSource = remember { DisabledInteractionSource() }
+    ) {
+        val iconTint by animateColorAsState(iconColor)
+        val backgroundAlpha by animateFloatAsState(if (checked) 0.12f else 0f)
+        Box(
+            modifier = Modifier
+                .background(color = Orange200.copy(alpha = backgroundAlpha))
+                .padding(12.dp)
         ) {
-            val iconTint by animateColorAsState(if (checked) MaterialTheme.colors.primary else MaterialTheme.colors.onSurface)
-            val backgroundAlpha by animateFloatAsState(if (checked) 0.12f else 0f)
-            Box(
-                modifier = Modifier
-                    .background(color = MaterialTheme.colors.primary.copy(alpha = backgroundAlpha))
-                    .padding(12.dp)
-            ) {
-                Icon(
-                    painter = painterResource(id = iconRes),
-                    contentDescription = contentDescription,
-                    tint = iconTint
-                )
-            }
+            Icon(
+                painter = painterResource(id = iconRes),
+                contentDescription = contentDescription,
+                tint = iconTint
+            )
         }
     }
 }

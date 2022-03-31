@@ -11,10 +11,14 @@
 package com.orange.ods.compose.component.button
 
 import androidx.annotation.DrawableRes
-import androidx.compose.foundation.interaction.Interaction
 import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.isSystemInDarkTheme
-import androidx.compose.material.*
+import androidx.compose.material.Button
+import androidx.compose.material.ButtonDefaults
+import androidx.compose.material.Colors
+import androidx.compose.material.ContentAlpha
+import androidx.compose.material.MaterialTheme
+import androidx.compose.material.Text
 import androidx.compose.material.ripple.LocalRippleTheme
 import androidx.compose.material.ripple.RippleTheme
 import androidx.compose.runtime.Composable
@@ -55,10 +59,9 @@ private object OdsOnPrimaryRippleTheme : RippleTheme {
  * @param iconRes Drawable resource of the icon. If `null`, no icon will be displayed.
  * @param enabled Controls the enabled state of the button. When `false`, this button will not
  * be clickable
- * @param interactionSource the [MutableInteractionSource] representing the stream of
- * [Interaction]s for this Button. You can create and pass in your own remembered
- * [MutableInteractionSource] if you want to observe [Interaction]s and customize the
- * appearance / behavior of this Button in different [Interaction]s.
+ * @param isOnDarkSurface optional allow to force the button display on a dark or light
+ * surface. By default the system night mode value is used to know if the button is displayed
+ * on dark or light.
  */
 @Composable
 fun OdsButton(
@@ -68,14 +71,14 @@ fun OdsButton(
     @DrawableRes
     iconRes: Int? = null,
     enabled: Boolean = true,
-    interactionSource: MutableInteractionSource = remember { MutableInteractionSource() }
+    isOnDarkSurface: Boolean = isSystemInDarkTheme()
 ) {
     CompositionLocalProvider(LocalRippleTheme provides OdsOnPrimaryRippleTheme) {
         Button(
             onClick = onClick,
             enabled = enabled,
             modifier = modifier,
-            interactionSource = interactionSource,
+            interactionSource = remember { MutableInteractionSource() },
             elevation = null,
             shape = odsButtonShape,
             colors = ButtonDefaults.buttonColors(
