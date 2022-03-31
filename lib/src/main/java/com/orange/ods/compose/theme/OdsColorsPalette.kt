@@ -20,7 +20,6 @@ val White100 = Color(0xffffffff)
 val Black900 = Color(0xff000000)
 val ObsGrey700 = Color(0xff595959)
 
-
 // Supporting colors
 
 val Blue100 = Color(0xffB5E8F7)
@@ -43,7 +42,6 @@ val Pink100 = Color(0xffFFE8F7)
 val Pink200 = Color(0xffFFB4E6)
 val Pink300 = Color(0xffFF8AD4)
 
-
 // Functional colors
 
 val Info200 = Color(0xff4BB4E6)
@@ -63,3 +61,4 @@ val Grey800 = Color(0xff333333)
 // Custom colors
 
 val DarkSurfaceDefault = Color(0xff121212)
+val Transparent = Color(0x00000000)
