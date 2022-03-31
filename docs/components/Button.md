@@ -51,6 +51,8 @@ content labels are usually unnecessary.
 Text buttons are typically used for less-pronounced actions, including those located in dialogs and
 cards. In cards, text buttons help maintain an emphasis on card content.
 
+  ![TextButton](images/button_text_light.png) ![TextButton dark](images/button_text_dark.png)
+
 ### Adding a text button in XML
 
 To create a Text Button using Orange theme you will need to apply
@@ -92,6 +94,8 @@ Use the `OdsTextButton` composable:
 
 Outlined buttons are medium-emphasis buttons. They contain actions that are important, but aren’t
 the primary action in an app.
+
+  ![OutlinedButton](images/button_outlined_light.png) ![OutlinedButton dark](images/button_outlined_dark.png)
 
 ### Adding an outlined button in XML
 
@@ -135,9 +139,11 @@ Use the `OdsOutlinedButton` composable:
 Contained buttons are high-emphasis, distinguished by their use of elevation and fill. They contain
 actions that are primary to your app.
 
-_**Note** The contained button is the default style if the style is not set._
+  ![ContainedButton](images/button_contained_light.png) ![ContainedButton dark](images/button_contained_dark.png)
 
 ### Adding a contained button in XML
+
+_**Note** The contained button is the default style if the style is not set._
 
 To create a Contained Button using Orange theme you will need to apply
 style `@style/Widget.Orange.Button.Contained` on your `Button` layout
@@ -187,6 +193,8 @@ Use the `OdsButton` composable:
 To emphasize groups of related toggle buttons, a group should share a common container.
 
 Orange Toggle Buttons refers to Material Design Toggle Buttons.
+
+  ![ToggleButton](images/button_toggle_light.png) ![ToggleButton dark](images/button_toggle_dark.png)
 
 ### Adding a toggle button in XML
 
@@ -248,7 +256,7 @@ In the layout:
 
 #### Adding a toggle button in Jetpack Compose
 
-Use the `OdsToogleButton` composable:
+Use the `OdsToggleButton` composable:
 
 ```kotlin
 OdsToggleButton(checked = false, onCheckedChange = { }, iconRes = iconRes, contentDescription = "action")
