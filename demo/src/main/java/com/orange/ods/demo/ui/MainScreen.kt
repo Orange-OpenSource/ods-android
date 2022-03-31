@@ -15,13 +15,16 @@ import android.content.res.Configuration.UI_MODE_NIGHT_YES
 import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.animation.fadeIn
 import androidx.compose.animation.fadeOut
-import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material.ExperimentalMaterialApi
 import androidx.compose.material.Icon
 import androidx.compose.material.Scaffold
-import androidx.compose.runtime.*
+import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalConfiguration
 import androidx.compose.ui.res.painterResource
@@ -34,6 +37,7 @@ import androidx.navigation.compose.rememberNavController
 import com.orange.ods.compose.component.OdsBottomNavigation
 import com.orange.ods.compose.component.OdsBottomNavigationItem
 import com.orange.ods.compose.theme.OdsMaterialTheme
+import com.orange.ods.demo.OdsApplication
 
 @ExperimentalMaterialApi
 @Preview(showBackground = true, uiMode = UI_MODE_NIGHT_YES)
@@ -41,8 +45,7 @@ import com.orange.ods.compose.theme.OdsMaterialTheme
 @Composable
 fun MainScreen() {
     val navController = rememberNavController()
-    val default = isSystemInDarkTheme()
-    var isDarkMode by remember { mutableStateOf(default) }
+    val isDarkModeEnabled by remember { OdsApplication.instance.isDarkModeEnabled }
     var topAppBarTitle by remember { mutableStateOf("") }
 
     val bottomBarState = when {
@@ -54,17 +57,20 @@ fun MainScreen() {
         }
         else -> false
     }
+
     //Change isSystemInDarkTheme() value to make switching theme working with custom color
-    if (isDarkMode) {
+    if (isDarkModeEnabled) {
         LocalConfiguration.current.uiMode = UI_MODE_NIGHT_YES
     } else {
         LocalConfiguration.current.uiMode = UI_MODE_NIGHT_NO
     }
 
-    OdsMaterialTheme(isDarkMode) {
+    OdsMaterialTheme(isDarkModeEnabled) {
         Scaffold(
             topBar = {
-                TopAppBar(title = topAppBarTitle, isDarkMode = isDarkMode) { isDarkMode = it }
+                TopAppBar(title = topAppBarTitle, isDarkMode = isDarkModeEnabled) {
+                    OdsApplication.instance.isDarkModeEnabled.value = it
+                }
             },
             bottomBar = {
                 AnimatedVisibility(
@@ -97,7 +103,7 @@ private fun BottomNavigationBar(navController: NavController) {
         val currentRoute = navBackStackEntry?.destination?.route
         navigationItems.forEach { item ->
             OdsBottomNavigationItem(
-                icon =  { Icon(painter = painterResource(id = item.icon), contentDescription = stringResource(id = item.title)) },
+                icon = { Icon(painter = painterResource(id = item.icon), contentDescription = stringResource(id = item.title)) },
                 label = stringResource(id = item.title),
                 selected = currentRoute == item.route,
                 onClick = {
