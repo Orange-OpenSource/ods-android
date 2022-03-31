@@ -20,9 +20,10 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import com.orange.ods.demo.R
 import com.orange.ods.demo.ui.about.AboutScreen
-import com.orange.ods.demo.ui.components.ComponentsButtonsScreen
-import com.orange.ods.demo.ui.components.ComponentsCardScreen
-import com.orange.ods.demo.ui.components.ComponentsScreen
+import com.orange.ods.demo.ui.components.*
+import com.orange.ods.demo.ui.components.cards.ComponentsCardScreen
+import com.orange.ods.demo.ui.components.cards.ComponentsCardImageFirstScreen
+import com.orange.ods.demo.ui.components.cards.ComponentsCardSmallScreen
 import com.orange.ods.demo.ui.guidelines.GuidelinesColorScreen
 import com.orange.ods.demo.ui.guidelines.GuidelinesScreen
 import com.orange.ods.demo.ui.guidelines.GuidelinesTypographyScreen
@@ -57,6 +58,8 @@ sealed class ComponentsNavigationItem(
     object Controls : ComponentsNavigationItem(R.string.component_controls, "components/controls")
     object BottomNavigation : ComponentsNavigationItem(R.string.component_bottom_navigation, "components/bottom_navigation")
     object Cards : ComponentsNavigationItem(R.string.component_cards, "components/card")
+    object CardImageFirst : ComponentsNavigationItem(R.string.component_card_image_first, "components/card/image_first_card_view")
+    object CardSmall : ComponentsNavigationItem(R.string.component_card_small, "components/card/small_card_view")
 }
 
 @ExperimentalMaterialApi
@@ -100,7 +103,17 @@ fun AppNavigation(navController: NavHostController, onSetScreenTitle: (String) -
 
         composable(ComponentsNavigationItem.Cards.route) {
             onSetScreenTitle(stringResource(id = ComponentsNavigationItem.Cards.title))
-            ComponentsCardScreen()
+            ComponentsCardScreen(navController)
+        }
+
+        composable(ComponentsNavigationItem.CardImageFirst.route) {
+            onSetScreenTitle(stringResource(id = ComponentsNavigationItem.CardImageFirst.title))
+            ComponentsCardImageFirstScreen()
+        }
+
+        composable(ComponentsNavigationItem.CardSmall.route) {
+            onSetScreenTitle(stringResource(id = ComponentsNavigationItem.CardSmall.title))
+            ComponentsCardSmallScreen()
         }
     }
 }

@@ -33,4 +33,9 @@
     <string name="component_bottom_navigation">Bottom Navigation</string>
     <string name="component_cards">Cards</string>
 
+    <!-- Component Card -->
+    <string name="component_card_image_first">Image first card view</string>
+    <string name="component_card_small">Small card view</string>
+    <string name="component_card_description">Cards are important components that can be used to organise and present a number of different types of related information.</string>
+
 </resources>

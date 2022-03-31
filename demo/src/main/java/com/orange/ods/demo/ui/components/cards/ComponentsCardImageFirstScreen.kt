@@ -8,7 +8,7 @@
  * /
  */
 
-package com.orange.ods.demo.ui.components
+package com.orange.ods.demo.ui.components.cards
 
 import android.widget.Toast
 import androidx.compose.foundation.layout.*
@@ -28,7 +28,7 @@ import com.orange.ods.demo.R
 
 @ExperimentalMaterialApi
 @Composable
-fun ComponentsCardScreen() {
+fun ComponentsCardImageFirstScreen() {
     val context = LocalContext.current
 
     val textIsChecked = remember { mutableStateOf(true) }
@@ -97,7 +97,7 @@ fun ComponentsCardScreen() {
 }
 
 @Composable
-private fun LabelledCheckbox(isChecked: MutableState<Boolean>, label: String) {
+fun LabelledCheckbox(isChecked: MutableState<Boolean>, label: String) {
     Row(
         modifier = Modifier.padding(0.dp),
         verticalAlignment = Alignment.CenterVertically
