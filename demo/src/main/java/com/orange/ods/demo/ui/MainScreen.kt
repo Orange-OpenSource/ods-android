@@ -15,6 +15,7 @@ import android.content.res.Configuration.UI_MODE_NIGHT_YES
 import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.animation.fadeIn
 import androidx.compose.animation.fadeOut
+import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material.ExperimentalMaterialApi
@@ -37,15 +38,23 @@ import androidx.navigation.compose.rememberNavController
 import com.orange.ods.compose.component.OdsBottomNavigation
 import com.orange.ods.compose.component.OdsBottomNavigationItem
 import com.orange.ods.compose.theme.OdsMaterialTheme
-import com.orange.ods.demo.OdsApplication
 
 @ExperimentalMaterialApi
 @Preview(showBackground = true, uiMode = UI_MODE_NIGHT_YES)
 @Preview(showBackground = true)
 @Composable
 fun MainScreen() {
+    val default = isSystemInDarkTheme()
+    var isDarkModeEnabled by remember { mutableStateOf(default) }
+
+    // Change isSystemInDarkTheme() value to make switching theme working with custom color
+    if (isDarkModeEnabled) {
+        LocalConfiguration.current.uiMode = UI_MODE_NIGHT_YES
+    } else {
+        LocalConfiguration.current.uiMode = UI_MODE_NIGHT_NO
+    }
+
     val navController = rememberNavController()
-    val isDarkModeEnabled by remember { OdsApplication.instance.isDarkModeEnabled }
     var topAppBarTitle by remember { mutableStateOf("") }
 
     val bottomBarState = when {
@@ -58,18 +67,11 @@ fun MainScreen() {
         else -> false
     }
 
-    //Change isSystemInDarkTheme() value to make switching theme working with custom color
-    if (isDarkModeEnabled) {
-        LocalConfiguration.current.uiMode = UI_MODE_NIGHT_YES
-    } else {
-        LocalConfiguration.current.uiMode = UI_MODE_NIGHT_NO
-    }
-
     OdsMaterialTheme(isDarkModeEnabled) {
         Scaffold(
             topBar = {
                 TopAppBar(title = topAppBarTitle, isDarkMode = isDarkModeEnabled) {
-                    OdsApplication.instance.isDarkModeEnabled.value = it
+                    isDarkModeEnabled = it
                 }
             },
             bottomBar = {

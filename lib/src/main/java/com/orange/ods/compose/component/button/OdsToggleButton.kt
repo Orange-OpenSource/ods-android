@@ -16,21 +16,22 @@ import androidx.compose.animation.core.animateFloatAsState
 import androidx.compose.foundation.background
 import androidx.compose.foundation.interaction.Interaction
 import androidx.compose.foundation.interaction.MutableInteractionSource
-import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.padding
+import androidx.compose.material.Colors
 import androidx.compose.material.Icon
 import androidx.compose.material.IconButton
 import androidx.compose.material.IconToggleButton
+import androidx.compose.material.MaterialTheme
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
-import com.orange.ods.compose.theme.Black900
-import com.orange.ods.compose.theme.Orange200
-import com.orange.ods.compose.theme.White100
+import com.orange.ods.compose.theme.OdsDisplayAppearance
+import com.orange.ods.compose.theme.darkThemeColors
+import com.orange.ods.compose.theme.lightThemeColors
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.emptyFlow
 
@@ -53,9 +54,8 @@ class DisabledInteractionSource : MutableInteractionSource {
  * @param modifier optional [Modifier] for this IconToggleButton
  * @param enabled enabled whether or not this [IconToggleButton] will handle input events and appear
  * enabled for semantics purposes
- * @param isOnDarkSurface optional allow to force the button display on a dark or light
- * surface. By default the system night mode value is used to know if the button is displayed
- * on dark or light.
+ * @param displayAppearance optional allow to force the button display on a dark or light
+ * surface. By default the appearance applied is based on the system night mode value.
  */
 @Composable
 fun OdsToggleButton(
@@ -66,13 +66,8 @@ fun OdsToggleButton(
     contentDescription: String,
     modifier: Modifier = Modifier,
     enabled: Boolean = true,
-    isOnDarkSurface: Boolean = isSystemInDarkTheme()
+    displayAppearance: OdsDisplayAppearance = OdsDisplayAppearance.DEFAULT
 ) {
-    val iconColor = when {
-        !checked && isOnDarkSurface -> White100
-        !checked && !isOnDarkSurface -> Black900
-        else -> Orange200
-    }
     IconToggleButton(
         checked = checked,
         onCheckedChange = onCheckedChange,
@@ -80,11 +75,15 @@ fun OdsToggleButton(
         enabled = enabled,
         interactionSource = remember { DisabledInteractionSource() }
     ) {
-        val iconTint by animateColorAsState(iconColor)
+        val iconTint by animateColorAsState(MaterialTheme.colors.toggleButtonIconColor(displayAppearance, checked))
         val backgroundAlpha by animateFloatAsState(if (checked) 0.12f else 0f)
         Box(
             modifier = Modifier
-                .background(color = Orange200.copy(alpha = backgroundAlpha))
+                .background(
+                    color = MaterialTheme.colors
+                        .toggleButtonBackgroundColor(displayAppearance)
+                        .copy(alpha = backgroundAlpha)
+                )
                 .padding(12.dp)
         ) {
             Icon(
@@ -95,3 +94,19 @@ fun OdsToggleButton(
         }
     }
 }
+
+@Composable
+private fun Colors.toggleButtonIconColor(displayAppearance: OdsDisplayAppearance, checked: Boolean) =
+    when (displayAppearance) {
+        OdsDisplayAppearance.DEFAULT -> if (checked) MaterialTheme.colors.primary else MaterialTheme.colors.onSurface
+        OdsDisplayAppearance.ON_DARK -> if (checked) darkThemeColors.primary else darkThemeColors.onSurface
+        OdsDisplayAppearance.ON_LIGHT -> if (checked) lightThemeColors.primary else lightThemeColors.onSurface
+    }
+
+@Composable
+private fun Colors.toggleButtonBackgroundColor(displayAppearance: OdsDisplayAppearance) =
+    when (displayAppearance) {
+        OdsDisplayAppearance.DEFAULT -> MaterialTheme.colors.primary
+        OdsDisplayAppearance.ON_DARK -> darkThemeColors.primary
+        OdsDisplayAppearance.ON_LIGHT -> lightThemeColors.primary
+    }

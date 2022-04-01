@@ -36,9 +36,9 @@ import com.orange.ods.compose.component.button.OdsOutlinedButton
 import com.orange.ods.compose.component.button.OdsTextButton
 import com.orange.ods.compose.component.button.OdsToggleButton
 import com.orange.ods.compose.theme.Black900
+import com.orange.ods.compose.theme.OdsDisplayAppearance
 import com.orange.ods.compose.theme.OdsMaterialTheme
 import com.orange.ods.compose.theme.White100
-import com.orange.ods.demo.OdsApplication
 import com.orange.ods.demo.R
 
 @Composable
@@ -50,16 +50,15 @@ fun ComponentsButtonsScreen() {
             .wrapContentSize(Alignment.Center)
             .padding(vertical = 16.dp)
     ) {
-        val isDarkModeEnabled by remember { OdsApplication.instance.isDarkModeEnabled }
-        ContainedButtons(isDarkModeEnabled)
-        OutlinedButtons(isDarkModeEnabled)
-        TextButtons(isDarkModeEnabled)
-        ToggleButtons(isDarkModeEnabled)
+        ContainedButtons()
+        OutlinedButtons()
+        TextButtons()
+        ToggleButtons()
     }
 }
 
 @Composable
-private fun ContainedButtons(isDarkModeEnabled: Boolean) {
+private fun ContainedButtons() {
     ButtonTypeSubtitleText("Contained")
     Row(
         modifier = Modifier
@@ -67,8 +66,8 @@ private fun ContainedButtons(isDarkModeEnabled: Boolean) {
             .padding(horizontal = 16.dp),
         horizontalArrangement = Arrangement.SpaceEvenly
     ) {
-        OdsButton(text = "Enabled", onClick = {}, isOnDarkSurface = isDarkModeEnabled)
-        OdsButton(text = "Disabled", onClick = {}, enabled = false, isOnDarkSurface = isDarkModeEnabled)
+        OdsButton(text = "Enabled", onClick = {})
+        OdsButton(text = "Disabled", onClick = {}, enabled = false)
     }
 
     ButtonTypeSubtitleText("Contained with icon")
@@ -78,23 +77,23 @@ private fun ContainedButtons(isDarkModeEnabled: Boolean) {
             .padding(horizontal = 16.dp),
         horizontalArrangement = Arrangement.SpaceEvenly
     ) {
-        OdsButton(text = "Enabled", onClick = {}, iconRes = R.drawable.ic_search, isOnDarkSurface = isDarkModeEnabled)
-        OdsButton(text = "Disabled", onClick = {}, iconRes = R.drawable.ic_search, enabled = false, isOnDarkSurface = isDarkModeEnabled)
+        OdsButton(text = "Enabled", onClick = {}, iconRes = R.drawable.ic_search)
+        OdsButton(text = "Disabled", onClick = {}, iconRes = R.drawable.ic_search, enabled = false)
     }
 
     DarkSurface {
-        OdsButton(text = "Enabled", onClick = {}, isOnDarkSurface = true)
-        OdsButton(text = "Disabled", onClick = {}, enabled = false, isOnDarkSurface = true)
+        OdsButton(text = "Enabled", onClick = {}, displayAppearance = OdsDisplayAppearance.ON_DARK)
+        OdsButton(text = "Disabled", onClick = {}, enabled = false, displayAppearance = OdsDisplayAppearance.ON_DARK)
     }
 
     LightSurface {
-        OdsButton(text = "Enabled", onClick = {}, isOnDarkSurface = false)
-        OdsButton(text = "Disabled", onClick = {}, enabled = false, isOnDarkSurface = false)
+        OdsButton(text = "Enabled", onClick = {}, displayAppearance = OdsDisplayAppearance.ON_LIGHT)
+        OdsButton(text = "Disabled", onClick = {}, enabled = false, displayAppearance = OdsDisplayAppearance.ON_LIGHT)
     }
 }
 
 @Composable
-private fun OutlinedButtons(isDarkModeEnabled: Boolean) {
+private fun OutlinedButtons() {
     ButtonTypeSubtitleText("Outlined")
     Row(
         modifier = Modifier
@@ -102,8 +101,8 @@ private fun OutlinedButtons(isDarkModeEnabled: Boolean) {
             .padding(horizontal = 16.dp),
         horizontalArrangement = Arrangement.SpaceEvenly
     ) {
-        OdsOutlinedButton(text = "Enabled", onClick = {}, isOnDarkSurface = isDarkModeEnabled)
-        OdsOutlinedButton(text = "Disabled", onClick = {}, enabled = false, isOnDarkSurface = isDarkModeEnabled)
+        OdsOutlinedButton(text = "Enabled", onClick = {})
+        OdsOutlinedButton(text = "Disabled", onClick = {}, enabled = false)
     }
 
     ButtonTypeSubtitleText("Outlined with icon")
@@ -113,23 +112,23 @@ private fun OutlinedButtons(isDarkModeEnabled: Boolean) {
             .padding(horizontal = 16.dp),
         horizontalArrangement = Arrangement.SpaceEvenly
     ) {
-        OdsOutlinedButton(text = "Enabled", onClick = {}, iconRes = R.drawable.ic_search, isOnDarkSurface = isDarkModeEnabled)
-        OdsOutlinedButton(text = "Disabled", onClick = {}, iconRes = R.drawable.ic_search, enabled = false, isOnDarkSurface = isDarkModeEnabled)
+        OdsOutlinedButton(text = "Enabled", onClick = {}, iconRes = R.drawable.ic_search)
+        OdsOutlinedButton(text = "Disabled", onClick = {}, iconRes = R.drawable.ic_search, enabled = false)
     }
 
     DarkSurface {
-        OdsOutlinedButton(text = "Enabled", onClick = {}, isOnDarkSurface = true)
-        OdsOutlinedButton(text = "Disabled", onClick = {}, enabled = false, isOnDarkSurface = true)
+        OdsOutlinedButton(text = "Enabled", onClick = {}, displayAppearance = OdsDisplayAppearance.ON_DARK)
+        OdsOutlinedButton(text = "Disabled", onClick = {}, enabled = false, displayAppearance = OdsDisplayAppearance.ON_DARK)
     }
 
     LightSurface {
-        OdsOutlinedButton(text = "Enabled", onClick = {}, isOnDarkSurface = false)
-        OdsOutlinedButton(text = "Disabled", onClick = {}, enabled = false, isOnDarkSurface = false)
+        OdsOutlinedButton(text = "Enabled", onClick = {}, displayAppearance = OdsDisplayAppearance.ON_LIGHT)
+        OdsOutlinedButton(text = "Disabled", onClick = {}, enabled = false, displayAppearance = OdsDisplayAppearance.ON_LIGHT)
     }
 }
 
 @Composable
-private fun TextButtons(isDarkModeEnabled: Boolean) {
+private fun TextButtons() {
     ButtonTypeSubtitleText("Text")
     Row(
         modifier = Modifier
@@ -137,8 +136,8 @@ private fun TextButtons(isDarkModeEnabled: Boolean) {
             .padding(horizontal = 16.dp),
         horizontalArrangement = Arrangement.SpaceEvenly
     ) {
-        OdsTextButton(text = "Enabled", onClick = {}, isOnDarkSurface = isDarkModeEnabled)
-        OdsTextButton(text = "Disabled", onClick = {}, enabled = false, isOnDarkSurface = isDarkModeEnabled)
+        OdsTextButton(text = "Enabled", onClick = {})
+        OdsTextButton(text = "Disabled", onClick = {}, enabled = false)
     }
     Row(
         modifier = Modifier
@@ -146,8 +145,8 @@ private fun TextButtons(isDarkModeEnabled: Boolean) {
             .padding(horizontal = 16.dp),
         horizontalArrangement = Arrangement.SpaceEvenly
     ) {
-        OdsTextButton(text = "Enabled", onClick = {}, hasPrimaryColor = true, isOnDarkSurface = isDarkModeEnabled)
-        OdsTextButton(text = "Disabled", onClick = {}, enabled = false, hasPrimaryColor = true, isOnDarkSurface = isDarkModeEnabled)
+        OdsTextButton(text = "Enabled", onClick = {}, hasPrimaryColor = true)
+        OdsTextButton(text = "Disabled", onClick = {}, enabled = false, hasPrimaryColor = true)
     }
 
     ButtonTypeSubtitleText("Text with icon")
@@ -157,8 +156,8 @@ private fun TextButtons(isDarkModeEnabled: Boolean) {
             .padding(horizontal = 16.dp),
         horizontalArrangement = Arrangement.SpaceEvenly
     ) {
-        OdsTextButton(text = "Enabled", onClick = {}, iconRes = R.drawable.ic_search, isOnDarkSurface = isDarkModeEnabled)
-        OdsTextButton(text = "Disabled", onClick = {}, iconRes = R.drawable.ic_search, enabled = false, isOnDarkSurface = isDarkModeEnabled)
+        OdsTextButton(text = "Enabled", onClick = {}, iconRes = R.drawable.ic_search)
+        OdsTextButton(text = "Disabled", onClick = {}, iconRes = R.drawable.ic_search, enabled = false)
     }
     Row(
         modifier = Modifier
@@ -166,23 +165,23 @@ private fun TextButtons(isDarkModeEnabled: Boolean) {
             .padding(horizontal = 16.dp),
         horizontalArrangement = Arrangement.SpaceEvenly
     ) {
-        OdsTextButton(text = "Enabled", onClick = {}, iconRes = R.drawable.ic_search, hasPrimaryColor = true, isOnDarkSurface = isDarkModeEnabled)
-        OdsTextButton(text = "Disabled", onClick = {}, iconRes = R.drawable.ic_search, enabled = false, hasPrimaryColor = true, isOnDarkSurface = isDarkModeEnabled)
+        OdsTextButton(text = "Enabled", onClick = {}, iconRes = R.drawable.ic_search, hasPrimaryColor = true)
+        OdsTextButton(text = "Disabled", onClick = {}, iconRes = R.drawable.ic_search, enabled = false, hasPrimaryColor = true)
     }
 
     DarkSurface {
-        OdsTextButton(text = "Enabled", onClick = {}, isOnDarkSurface = true)
-        OdsTextButton(text = "Disabled", onClick = {}, enabled = false, isOnDarkSurface = true)
+        OdsTextButton(text = "Enabled", onClick = {}, displayAppearance = OdsDisplayAppearance.ON_DARK)
+        OdsTextButton(text = "Disabled", onClick = {}, enabled = false, displayAppearance = OdsDisplayAppearance.ON_DARK)
     }
 
     LightSurface {
-        OdsTextButton(text = "Enabled", onClick = {}, isOnDarkSurface = false)
-        OdsTextButton(text = "Disabled", onClick = {}, enabled = false, isOnDarkSurface = false)
+        OdsTextButton(text = "Enabled", onClick = {}, displayAppearance = OdsDisplayAppearance.ON_LIGHT)
+        OdsTextButton(text = "Disabled", onClick = {}, enabled = false, displayAppearance = OdsDisplayAppearance.ON_LIGHT)
     }
 }
 
 @Composable
-fun ToggleButtons(isDarkModeEnabled: Boolean) {
+fun ToggleButtons() {
     ButtonTypeSubtitleText("Toggle")
     Row(
         modifier = Modifier
@@ -191,7 +190,7 @@ fun ToggleButtons(isDarkModeEnabled: Boolean) {
         verticalAlignment = Alignment.CenterVertically
     ) {
         Text(text = "group:")
-        ToggleGroup(isDarkModeEnabled)
+        ToggleGroup()
     }
     Row(
         modifier = Modifier
@@ -208,8 +207,7 @@ fun ToggleButtons(isDarkModeEnabled: Boolean) {
             contentDescription = "Search",
             modifier = Modifier
                 .fillMaxWidth()
-                .padding(top = 4.dp),
-            isOnDarkSurface = isDarkModeEnabled
+                .padding(top = 4.dp)
         )
     }
 
@@ -223,7 +221,7 @@ fun ToggleButtons(isDarkModeEnabled: Boolean) {
             modifier = Modifier
                 .fillMaxWidth()
                 .padding(top = 4.dp),
-            isOnDarkSurface = true
+            displayAppearance = OdsDisplayAppearance.ON_DARK
         )
     }
 
@@ -237,13 +235,13 @@ fun ToggleButtons(isDarkModeEnabled: Boolean) {
             modifier = Modifier
                 .fillMaxWidth()
                 .padding(top = 4.dp),
-            isOnDarkSurface = false
+            displayAppearance = OdsDisplayAppearance.ON_LIGHT
         )
     }
 }
 
 @Composable
-private fun RowScope.ToggleGroup(isDarkModeEnabled: Boolean) {
+private fun RowScope.ToggleGroup() {
     val iconsRes = listOf(R.drawable.ic_info, R.drawable.ic_search, R.drawable.ic_guideline_dna)
     var checkedIcon by remember { mutableStateOf(R.drawable.ic_info) }
 
@@ -258,8 +256,7 @@ private fun RowScope.ToggleGroup(isDarkModeEnabled: Boolean) {
                 checked = checkedIcon == iconRes,
                 onCheckedChange = { checkedIcon = iconRes },
                 iconRes = iconRes,
-                contentDescription = "",
-                isOnDarkSurface = isDarkModeEnabled
+                contentDescription = ""
             )
         }
     }

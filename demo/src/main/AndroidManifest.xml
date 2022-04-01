@@ -1,4 +1,6 @@
-<?xml version="1.0" encoding="utf-8"?><!--
+<?xml version="1.0" encoding="utf-8"?>
+
+<!--
   ~ /*
   ~ * Copyright 2021 Orange
   ~ *
@@ -7,12 +9,10 @@
   ~ * https://opensource.org/licenses/MIT.
   ~ */
   -->
-
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.orange.ods.demo">
 
     <application
-        android:name=".OdsApplication"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"

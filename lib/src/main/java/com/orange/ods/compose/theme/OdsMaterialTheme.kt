@@ -38,7 +38,7 @@ fun OdsMaterialTheme(
     }
 }
 
-private val lightThemeColors = lightColors(
+internal val lightThemeColors = lightColors(
     primary = Orange200,
     primaryVariant = Orange200,
     secondary = Orange200,
@@ -53,7 +53,7 @@ private val lightThemeColors = lightColors(
     onError = Black900
 )
 
-private val darkThemeColors = darkColors(
+internal val darkThemeColors = darkColors(
     primary = Orange200,
     primaryVariant = Orange200,
     secondary = Orange200,
