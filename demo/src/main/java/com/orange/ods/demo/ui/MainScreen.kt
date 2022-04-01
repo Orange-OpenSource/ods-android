@@ -57,22 +57,16 @@ fun MainScreen() {
     val navController = rememberNavController()
     var topAppBarTitle by remember { mutableStateOf("") }
 
-    val bottomBarState = when {
-        currentRoute(navController) == NavigationItem.Guidelines.route
-            || currentRoute(navController) == NavigationItem.Components.route
-            || currentRoute(navController) == NavigationItem.Modules.route
-            || currentRoute(navController) == NavigationItem.About.route -> {
-            true
-        }
-        else -> false
-    }
+    val bottomBarState = isCurrentScreenFromHome(navController)
 
     OdsMaterialTheme(isDarkModeEnabled) {
         Scaffold(
             topBar = {
-                TopAppBar(title = topAppBarTitle, isDarkMode = isDarkModeEnabled) {
-                    isDarkModeEnabled = it
-                }
+                TopAppBar(
+                    title = topAppBarTitle,
+                    isDarkMode = isDarkModeEnabled,
+                    navController = navController
+                ) { isDarkModeEnabled = it }
             },
             bottomBar = {
                 AnimatedVisibility(
@@ -85,7 +79,9 @@ fun MainScreen() {
             }
         ) { innerPadding ->
             Box(modifier = Modifier.padding(innerPadding)) {
-                AppNavigation(navController = navController, onSetScreenTitle = { topAppBarTitle = it })
+                AppNavigation(
+                    navController = navController,
+                    onSetScreenTitle = { topAppBarTitle = it })
             }
         }
     }
@@ -134,4 +130,17 @@ private fun BottomNavigationBar(navController: NavController) {
 private fun currentRoute(navController: NavHostController): String? {
     val navBackStackEntry by navController.currentBackStackEntryAsState()
     return navBackStackEntry?.destination?.route
+}
+
+@Composable
+fun isCurrentScreenFromHome(navController: NavHostController): Boolean {
+    return when {
+        currentRoute(navController) == NavigationItem.Guidelines.route
+            || currentRoute(navController) == NavigationItem.Components.route
+            || currentRoute(navController) == NavigationItem.Modules.route
+            || currentRoute(navController) == NavigationItem.About.route -> {
+            true
+        }
+        else -> false
+    }
 }

@@ -14,21 +14,44 @@ import androidx.compose.material.Icon
 import androidx.compose.material.IconButton
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Text
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.ArrowBack
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.SideEffect
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
+import androidx.navigation.NavHostController
 import com.google.accompanist.systemuicontroller.rememberSystemUiController
 import com.orange.ods.compose.component.OdsTopAppBar
 import com.orange.ods.demo.R
 
 @Composable
-fun TopAppBar(title: String, isDarkMode: Boolean, onThemeChange: (Boolean) -> Unit) {
+fun TopAppBar(
+    title: String,
+    isDarkMode: Boolean,
+    navController: NavHostController,
+    onThemeChange: (Boolean) -> Unit
+) {
     UpdateSystemBarsColor(MaterialTheme.colors.background)
     OdsTopAppBar(
         title = {
             Text(text = title)
+        },
+        navigationIcon = if (
+            navController.previousBackStackEntry != null
+            && !isCurrentScreenFromHome(navController)
+        ) {
+            {
+                IconButton(onClick = { navController.navigateUp() }) {
+                    Icon(
+                        imageVector = Icons.Filled.ArrowBack,
+                        contentDescription = "Back"
+                    )
+                }
+            }
+        } else {
+            null
         },
         actions = {
             IconButton(onClick = {
