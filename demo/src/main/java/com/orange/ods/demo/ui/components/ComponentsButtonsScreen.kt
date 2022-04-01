@@ -10,8 +10,10 @@
 
 package com.orange.ods.demo.ui.components
 
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.ColumnScope
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.RowScope
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -34,7 +36,10 @@ import com.orange.ods.compose.component.button.OdsButton
 import com.orange.ods.compose.component.button.OdsOutlinedButton
 import com.orange.ods.compose.component.button.OdsTextButton
 import com.orange.ods.compose.component.button.OdsToggleButton
+import com.orange.ods.compose.theme.Black900
+import com.orange.ods.compose.theme.OdsDisplayAppearance
 import com.orange.ods.compose.theme.OdsMaterialTheme
+import com.orange.ods.compose.theme.White100
 import com.orange.ods.demo.R
 
 @Composable
@@ -44,7 +49,7 @@ fun ComponentsButtonsScreen() {
             .verticalScroll(state = rememberScrollState())
             .fillMaxWidth()
             .wrapContentSize(Alignment.Center)
-            .padding(16.dp)
+            .padding(vertical = 16.dp)
     ) {
         ContainedButtons()
         OutlinedButtons()
@@ -57,20 +62,56 @@ fun ComponentsButtonsScreen() {
 private fun ContainedButtons() {
     ButtonTypeSubtitleText("Contained")
     Row(
-        modifier = Modifier.fillMaxWidth(),
+        modifier = Modifier
+            .fillMaxWidth()
+            .padding(horizontal = 16.dp),
         horizontalArrangement = Arrangement.SpaceEvenly
     ) {
-        OdsButton(text = "Enabled", onClick = {})
-        OdsButton(text = "Disabled", onClick = {}, enabled = false)
+        OdsButton(text = "Enabled", onClick = {}, hasPrimaryColor = true)
+        OdsButton(text = "Disabled", onClick = {}, enabled = false, hasPrimaryColor = true)
     }
 
     ButtonTypeSubtitleText("Contained with icon")
     Row(
-        modifier = Modifier.fillMaxWidth(),
+        modifier = Modifier
+            .fillMaxWidth()
+            .padding(horizontal = 16.dp),
+        horizontalArrangement = Arrangement.SpaceEvenly
+    ) {
+        OdsButton(text = "Enabled", onClick = {}, iconRes = R.drawable.ic_search, hasPrimaryColor = true)
+        OdsButton(text = "Disabled", onClick = {}, iconRes = R.drawable.ic_search, enabled = false, hasPrimaryColor = true)
+    }
+
+    Row(
+        modifier = Modifier
+            .fillMaxWidth()
+            .padding(horizontal = 16.dp),
         horizontalArrangement = Arrangement.SpaceEvenly
     ) {
         OdsButton(text = "Enabled", onClick = {}, iconRes = R.drawable.ic_search)
         OdsButton(text = "Disabled", onClick = {}, iconRes = R.drawable.ic_search, enabled = false)
+    }
+
+    DarkSurface {
+        Row(modifier = Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.SpaceEvenly) {
+            OdsButton(text = "Enabled", onClick = {}, hasPrimaryColor = true, displayAppearance = OdsDisplayAppearance.ON_DARK)
+            OdsButton(text = "Disabled", onClick = {}, enabled = false, hasPrimaryColor = true, displayAppearance = OdsDisplayAppearance.ON_DARK)
+        }
+        Row(modifier = Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.SpaceEvenly) {
+            OdsButton(text = "Enabled", onClick = {}, displayAppearance = OdsDisplayAppearance.ON_DARK)
+            OdsButton(text = "Disabled", onClick = {}, enabled = false, displayAppearance = OdsDisplayAppearance.ON_DARK)
+        }
+    }
+
+    LightSurface {
+        Row(modifier = Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.SpaceEvenly) {
+            OdsButton(text = "Enabled", onClick = {}, hasPrimaryColor = true, displayAppearance = OdsDisplayAppearance.ON_LIGHT)
+            OdsButton(text = "Disabled", onClick = {}, enabled = false, hasPrimaryColor = true, displayAppearance = OdsDisplayAppearance.ON_LIGHT)
+        }
+        Row(modifier = Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.SpaceEvenly) {
+            OdsButton(text = "Enabled", onClick = {}, displayAppearance = OdsDisplayAppearance.ON_LIGHT)
+            OdsButton(text = "Disabled", onClick = {}, enabled = false, displayAppearance = OdsDisplayAppearance.ON_LIGHT)
+        }
     }
 }
 
@@ -78,7 +119,9 @@ private fun ContainedButtons() {
 private fun OutlinedButtons() {
     ButtonTypeSubtitleText("Outlined")
     Row(
-        modifier = Modifier.fillMaxWidth(),
+        modifier = Modifier
+            .fillMaxWidth()
+            .padding(horizontal = 16.dp),
         horizontalArrangement = Arrangement.SpaceEvenly
     ) {
         OdsOutlinedButton(text = "Enabled", onClick = {})
@@ -87,11 +130,27 @@ private fun OutlinedButtons() {
 
     ButtonTypeSubtitleText("Outlined with icon")
     Row(
-        modifier = Modifier.fillMaxWidth(),
+        modifier = Modifier
+            .fillMaxWidth()
+            .padding(horizontal = 16.dp),
         horizontalArrangement = Arrangement.SpaceEvenly
     ) {
         OdsOutlinedButton(text = "Enabled", onClick = {}, iconRes = R.drawable.ic_search)
         OdsOutlinedButton(text = "Disabled", onClick = {}, iconRes = R.drawable.ic_search, enabled = false)
+    }
+
+    DarkSurface {
+        Row(modifier = Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.SpaceEvenly) {
+            OdsOutlinedButton(text = "Enabled", onClick = {}, displayAppearance = OdsDisplayAppearance.ON_DARK)
+            OdsOutlinedButton(text = "Disabled", onClick = {}, enabled = false, displayAppearance = OdsDisplayAppearance.ON_DARK)
+        }
+    }
+
+    LightSurface {
+        Row(modifier = Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.SpaceEvenly) {
+            OdsOutlinedButton(text = "Enabled", onClick = {}, displayAppearance = OdsDisplayAppearance.ON_LIGHT)
+            OdsOutlinedButton(text = "Disabled", onClick = {}, enabled = false, displayAppearance = OdsDisplayAppearance.ON_LIGHT)
+        }
     }
 }
 
@@ -99,14 +158,18 @@ private fun OutlinedButtons() {
 private fun TextButtons() {
     ButtonTypeSubtitleText("Text")
     Row(
-        modifier = Modifier.fillMaxWidth(),
+        modifier = Modifier
+            .fillMaxWidth()
+            .padding(horizontal = 16.dp),
         horizontalArrangement = Arrangement.SpaceEvenly
     ) {
         OdsTextButton(text = "Enabled", onClick = {})
         OdsTextButton(text = "Disabled", onClick = {}, enabled = false)
     }
     Row(
-        modifier = Modifier.fillMaxWidth(),
+        modifier = Modifier
+            .fillMaxWidth()
+            .padding(horizontal = 16.dp),
         horizontalArrangement = Arrangement.SpaceEvenly
     ) {
         OdsTextButton(text = "Enabled", onClick = {}, hasPrimaryColor = true)
@@ -115,38 +178,100 @@ private fun TextButtons() {
 
     ButtonTypeSubtitleText("Text with icon")
     Row(
-        modifier = Modifier.fillMaxWidth(),
+        modifier = Modifier
+            .fillMaxWidth()
+            .padding(horizontal = 16.dp),
         horizontalArrangement = Arrangement.SpaceEvenly
     ) {
         OdsTextButton(text = "Enabled", onClick = {}, iconRes = R.drawable.ic_search)
         OdsTextButton(text = "Disabled", onClick = {}, iconRes = R.drawable.ic_search, enabled = false)
     }
     Row(
-        modifier = Modifier.fillMaxWidth(),
+        modifier = Modifier
+            .fillMaxWidth()
+            .padding(horizontal = 16.dp),
         horizontalArrangement = Arrangement.SpaceEvenly
     ) {
         OdsTextButton(text = "Enabled", onClick = {}, iconRes = R.drawable.ic_search, hasPrimaryColor = true)
         OdsTextButton(text = "Disabled", onClick = {}, iconRes = R.drawable.ic_search, enabled = false, hasPrimaryColor = true)
     }
+
+    DarkSurface {
+        Row(modifier = Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.SpaceEvenly) {
+            OdsTextButton(text = "Enabled", onClick = {}, displayAppearance = OdsDisplayAppearance.ON_DARK)
+            OdsTextButton(text = "Disabled", onClick = {}, enabled = false, displayAppearance = OdsDisplayAppearance.ON_DARK)
+        }
+    }
+
+    LightSurface {
+        Row(modifier = Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.SpaceEvenly) {
+            OdsTextButton(text = "Enabled", onClick = {}, displayAppearance = OdsDisplayAppearance.ON_LIGHT)
+            OdsTextButton(text = "Disabled", onClick = {}, enabled = false, displayAppearance = OdsDisplayAppearance.ON_LIGHT)
+        }
+    }
 }
 
-@Preview
 @Composable
 fun ToggleButtons() {
-    var checked by remember { mutableStateOf(false) }
     ButtonTypeSubtitleText("Toggle")
-    Row(modifier = Modifier.fillMaxWidth(), verticalAlignment = Alignment.CenterVertically) {
+    Row(
+        modifier = Modifier
+            .fillMaxWidth()
+            .padding(horizontal = 16.dp),
+        verticalAlignment = Alignment.CenterVertically
+    ) {
         Text(text = "group:")
         ToggleGroup()
     }
-    Row(modifier = Modifier.fillMaxWidth(), verticalAlignment = Alignment.CenterVertically) {
+    Row(
+        modifier = Modifier
+            .fillMaxWidth()
+            .padding(horizontal = 16.dp),
+        verticalAlignment = Alignment.CenterVertically
+    ) {
         Text(text = "single:")
+        var toggleChecked by remember { mutableStateOf(false) }
         OdsToggleButton(
-            checked = checked, onCheckedChange = { checked = it }, iconRes = R.drawable.ic_module_molecule, contentDescription = "Search",
+            checked = toggleChecked,
+            onCheckedChange = { toggleChecked = it },
+            iconRes = R.drawable.ic_module_molecule,
+            contentDescription = "Search",
             modifier = Modifier
                 .fillMaxWidth()
                 .padding(top = 4.dp)
         )
+    }
+
+    DarkSurface {
+        Row(modifier = Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.SpaceEvenly) {
+            var toggleChecked by remember { mutableStateOf(false) }
+            OdsToggleButton(
+                checked = toggleChecked,
+                onCheckedChange = { toggleChecked = it },
+                iconRes = R.drawable.ic_module_molecule,
+                contentDescription = "Search",
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(top = 4.dp),
+                displayAppearance = OdsDisplayAppearance.ON_DARK
+            )
+        }
+    }
+
+    LightSurface {
+        Row(modifier = Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.SpaceEvenly) {
+            var toggleChecked by remember { mutableStateOf(false) }
+            OdsToggleButton(
+                checked = toggleChecked,
+                onCheckedChange = { toggleChecked = it },
+                iconRes = R.drawable.ic_module_molecule,
+                contentDescription = "Search",
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(top = 4.dp),
+                displayAppearance = OdsDisplayAppearance.ON_LIGHT
+            )
+        }
     }
 }
 
@@ -156,11 +281,18 @@ private fun RowScope.ToggleGroup() {
     var checkedIcon by remember { mutableStateOf(R.drawable.ic_info) }
 
     Row(
-        modifier = Modifier.weight(1f),
+        modifier = Modifier
+            .weight(1f)
+            .padding(horizontal = 16.dp),
         horizontalArrangement = Arrangement.Center
     ) {
         iconsRes.forEach { iconRes ->
-            OdsToggleButton(checked = checkedIcon == iconRes, onCheckedChange = { checkedIcon = iconRes }, iconRes = iconRes, contentDescription = "")
+            OdsToggleButton(
+                checked = checkedIcon == iconRes,
+                onCheckedChange = { checkedIcon = iconRes },
+                iconRes = iconRes,
+                contentDescription = ""
+            )
         }
     }
 }
@@ -170,7 +302,45 @@ private fun ButtonTypeSubtitleText(type: String) {
     Text(
         text = type,
         style = MaterialTheme.typography.subtitle1,
-        modifier = Modifier.padding(vertical = 8.dp)
+        modifier = Modifier.padding(vertical = 8.dp, horizontal = 16.dp)
+    )
+}
+
+@Composable
+private fun DarkSurface(content: @Composable ColumnScope.() -> Unit) {
+    Text(
+        "forced on dark background",
+        color = White100,
+        modifier = Modifier
+            .fillMaxWidth()
+            .background(color = Black900)
+            .padding(vertical = 4.dp, horizontal = 16.dp)
+    )
+    Column(
+        modifier = Modifier
+            .fillMaxWidth()
+            .background(color = Black900)
+            .padding(horizontal = 16.dp),
+        content = content
+    )
+}
+
+@Composable
+private fun LightSurface(content: @Composable ColumnScope.() -> Unit) {
+    Text(
+        "forced on light background",
+        color = Black900,
+        modifier = Modifier
+            .fillMaxWidth()
+            .background(color = White100)
+            .padding(vertical = 4.dp, horizontal = 16.dp)
+    )
+    Column(
+        modifier = Modifier
+            .fillMaxWidth()
+            .background(color = White100)
+            .padding(horizontal = 16.dp),
+        content = content
     )
 }
 

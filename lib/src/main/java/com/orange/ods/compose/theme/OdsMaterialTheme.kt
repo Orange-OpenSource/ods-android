@@ -19,7 +19,26 @@ import androidx.compose.material.ripple.RippleTheme
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.CompositionLocalProvider
 
-private val lightThemeColors = lightColors(
+/**
+ * ODS Material theme is the theme to apply to your screens in an Orange Jetpack Compose application.
+ */
+@Composable
+fun OdsMaterialTheme(
+    darkTheme: Boolean = isSystemInDarkTheme(),
+    content: @Composable () -> Unit
+) {
+    MaterialTheme(
+        colors = if (darkTheme) darkThemeColors else lightThemeColors,
+        typography = OdsTypography
+    ) {
+        CompositionLocalProvider(
+            LocalRippleTheme provides OdsRippleTheme,
+            content = content
+        )
+    }
+}
+
+internal val lightThemeColors = lightColors(
     primary = Orange200,
     primaryVariant = Orange200,
     secondary = Orange200,
@@ -34,7 +53,7 @@ private val lightThemeColors = lightColors(
     onError = Black900
 )
 
-private val darkThemeColors = darkColors(
+internal val darkThemeColors = darkColors(
     primary = Orange200,
     primaryVariant = Orange200,
     secondary = Orange200,
@@ -81,37 +100,4 @@ internal object OdsPrimaryRippleTheme : RippleTheme {
         MaterialTheme.colors.surface,
         lightTheme = !isSystemInDarkTheme()
     )
-}
-
-internal object OdsNoRippleTheme : RippleTheme {
-    @Composable
-    override fun defaultColor() = RippleTheme.defaultRippleColor(
-        contentColor = MaterialTheme.colors.surface.copy(alpha = 0f),
-        lightTheme = true
-    )
-
-    @Composable
-    override fun rippleAlpha() = RippleTheme.defaultRippleAlpha(
-        MaterialTheme.colors.surface,
-        lightTheme = true
-    )
-}
-
-/**
- * ODS Material theme is the theme to apply to your screens in an Orange Jetpack Compose application.
- */
-@Composable
-fun OdsMaterialTheme(
-    darkTheme: Boolean = isSystemInDarkTheme(),
-    content: @Composable () -> Unit
-) {
-    MaterialTheme(
-        colors = if (darkTheme) darkThemeColors else lightThemeColors,
-        typography = OdsTypography
-    ) {
-        CompositionLocalProvider(
-            LocalRippleTheme provides OdsRippleTheme,
-            content = content
-        )
-    }
 }

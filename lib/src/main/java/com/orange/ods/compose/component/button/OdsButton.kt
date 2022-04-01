@@ -11,19 +11,95 @@
 package com.orange.ods.compose.component.button
 
 import androidx.annotation.DrawableRes
-import androidx.compose.foundation.interaction.Interaction
 import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.isSystemInDarkTheme
-import androidx.compose.material.*
+import androidx.compose.material.Button
+import androidx.compose.material.ButtonDefaults
+import androidx.compose.material.Colors
+import androidx.compose.material.ContentAlpha
+import androidx.compose.material.MaterialTheme
+import androidx.compose.material.Text
 import androidx.compose.material.ripple.LocalRippleTheme
 import androidx.compose.material.ripple.RippleTheme
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
-import com.orange.ods.compose.theme.DarkSurfaceDefault
-import com.orange.ods.compose.theme.Grey800
+import com.orange.ods.compose.theme.OdsDisplayAppearance
+import com.orange.ods.compose.theme.darkThemeColors
+import com.orange.ods.compose.theme.lightThemeColors
+
+/**
+ * <a href="https://system.design.orange.com/0c1af118d/p/06a393-buttons/b/79b091" target="_blank">ODS Buttons</a>.
+ *
+ * Contained buttons are high-emphasis, distinguished by their use of elevation and fill. They
+ * contain actions that are primary to your app.
+ *
+ * @param text Text displayed in the button
+ * @param onClick Will be called when the user clicks the button
+ * @param modifier Modifier to be applied to the button
+ * @param iconRes Drawable resource of the icon. If `null`, no icon will be displayed.
+ * @param enabled Controls the enabled state of the button. When `false`, this button will not
+ * be clickable
+ * @param hasPrimaryColor Controls the style of the button. When `true`, the button has primary background color, otherwise it has onSurface background color.
+ * @param displayAppearance optional allow to force the button display on a dark or light
+ * surface. By default the appearance applied is based on the system night mode value.
+ */
+@Composable
+fun OdsButton(
+    text: String,
+    onClick: () -> Unit,
+    modifier: Modifier = Modifier,
+    @DrawableRes
+    iconRes: Int? = null,
+    enabled: Boolean = true,
+    hasPrimaryColor: Boolean = false,
+    displayAppearance: OdsDisplayAppearance = OdsDisplayAppearance.DEFAULT
+) {
+    CompositionLocalProvider(LocalRippleTheme provides OdsOnPrimaryRippleTheme) {
+        Button(
+            onClick = onClick,
+            enabled = enabled,
+            modifier = modifier,
+            interactionSource = remember { MutableInteractionSource() },
+            elevation = null,
+            shape = odsButtonShape,
+            colors = ButtonDefaults.buttonColors(
+                backgroundColor = MaterialTheme.colors.buttonBackgroundColor(displayAppearance, hasPrimaryColor),
+                contentColor = MaterialTheme.colors.buttonContentColor(displayAppearance, hasPrimaryColor),
+                disabledBackgroundColor = MaterialTheme.colors.buttonDisabledColor(displayAppearance).copy(alpha = 0.12f),
+                disabledContentColor = MaterialTheme.colors.buttonDisabledColor(displayAppearance).copy(alpha = ContentAlpha.disabled)
+            )
+        ) {
+            iconRes?.let { ButtonIcon(it) }
+            Text(text.uppercase())
+        }
+    }
+}
+
+@Composable
+private fun Colors.buttonBackgroundColor(displayAppearance: OdsDisplayAppearance, hasPrimaryColor: Boolean) =
+    when (displayAppearance) {
+        OdsDisplayAppearance.DEFAULT -> if (hasPrimaryColor) MaterialTheme.colors.primary else MaterialTheme.colors.onSurface
+        OdsDisplayAppearance.ON_DARK -> if (hasPrimaryColor) darkThemeColors.primary else darkThemeColors.onSurface
+        OdsDisplayAppearance.ON_LIGHT -> if (hasPrimaryColor) lightThemeColors.primary else lightThemeColors.onSurface
+    }
+
+@Composable
+private fun Colors.buttonContentColor(displayAppearance: OdsDisplayAppearance, hasPrimaryColor: Boolean) =
+    when (displayAppearance) {
+        OdsDisplayAppearance.DEFAULT -> if (hasPrimaryColor) MaterialTheme.colors.onPrimary else MaterialTheme.colors.surface
+        OdsDisplayAppearance.ON_DARK -> if (hasPrimaryColor) darkThemeColors.onPrimary else darkThemeColors.surface
+        OdsDisplayAppearance.ON_LIGHT -> if (hasPrimaryColor) lightThemeColors.onPrimary else lightThemeColors.surface
+    }
+
+@Composable
+private fun Colors.buttonDisabledColor(displayAppearance: OdsDisplayAppearance) =
+    when (displayAppearance) {
+        OdsDisplayAppearance.DEFAULT -> MaterialTheme.colors.onSurface
+        OdsDisplayAppearance.ON_DARK -> darkThemeColors.onSurface
+        OdsDisplayAppearance.ON_LIGHT -> lightThemeColors.onSurface
+    }
 
 /**
  * Ripple theme used on primary color.
@@ -41,60 +117,4 @@ private object OdsOnPrimaryRippleTheme : RippleTheme {
         MaterialTheme.colors.primary,
         lightTheme = !isSystemInDarkTheme()
     )
-}
-
-/**
- * <a href="https://system.design.orange.com/0c1af118d/p/06a393-buttons/b/79b091" target="_blank">ODS Buttons</a>.
- *
- * Contained buttons are high-emphasis, distinguished by their use of elevation and fill. They
- * contain actions that are primary to your app.
- *
- * @param text Text displayed in the button
- * @param onClick Will be called when the user clicks the button
- * @param modifier Modifier to be applied to the button
- * @param iconRes Drawable resource of the icon. If `null`, no icon will be displayed.
- * @param enabled Controls the enabled state of the button. When `false`, this button will not
- * be clickable
- * @param interactionSource the [MutableInteractionSource] representing the stream of
- * [Interaction]s for this Button. You can create and pass in your own remembered
- * [MutableInteractionSource] if you want to observe [Interaction]s and customize the
- * appearance / behavior of this Button in different [Interaction]s.
- */
-@Composable
-fun OdsButton(
-    text: String,
-    onClick: () -> Unit,
-    modifier: Modifier = Modifier,
-    @DrawableRes
-    iconRes: Int? = null,
-    enabled: Boolean = true,
-    interactionSource: MutableInteractionSource = remember { MutableInteractionSource() }
-) {
-    CompositionLocalProvider(LocalRippleTheme provides OdsOnPrimaryRippleTheme) {
-        Button(
-            onClick = onClick,
-            enabled = enabled,
-            modifier = modifier,
-            interactionSource = interactionSource,
-            elevation = null,
-            shape = odsButtonShape,
-            colors = ButtonDefaults.buttonColors(
-                disabledBackgroundColor = MaterialTheme.colors.buttonDisabledBackgroundColor(),
-                disabledContentColor = MaterialTheme.colors.buttonDisabledContentColor()
-            )
-        ) {
-            iconRes?.let { ButtonIcon(it) }
-            Text(text.uppercase())
-        }
-    }
-}
-
-@Composable
-private fun Colors.buttonDisabledBackgroundColor(): Color {
-    return if (isLight) MaterialTheme.colors.primary.copy(alpha = ContentAlpha.disabled) else Grey800
-}
-
-@Composable
-private fun Colors.buttonDisabledContentColor(): Color {
-    return if (isLight) MaterialTheme.colors.onSurface.copy(alpha = ContentAlpha.disabled) else DarkSurfaceDefault
 }

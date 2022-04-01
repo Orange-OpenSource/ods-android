@@ -15,7 +15,7 @@ import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.material.ExperimentalMaterialApi
 
-@ExperimentalMaterialApi //Used for BottomSheetScaffold in the ComponentsCardScreen
+@ExperimentalMaterialApi // Used for BottomSheetScaffold in the ComponentsCardScreen
 class MainActivity : ComponentActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
