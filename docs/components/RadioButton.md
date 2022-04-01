@@ -38,7 +38,11 @@ most screen readers, such as TalkBack. Text rendered in radio buttons is
 automatically provided to accessibility services. Additional content labels are
 usually unnecessary.
 
-### Adding a radio button in XML
+### Adding a radio button
+
+![RadioButton](images/radio_button_light.png) ![RadioButton dark](images/radio_button_dark.png)
+
+#### In XML
 
 To create a Radio Button you just have to add a `RadioButton` in your layout. Orange theme will be
 automatically applied
@@ -53,7 +57,7 @@ In the layout:
     android:text="@string/label"/>
 ```
 
-### Adding a radio button in JetPackCompose
+#### In JetPack Compose
 
 In your composable screen you can use:
 

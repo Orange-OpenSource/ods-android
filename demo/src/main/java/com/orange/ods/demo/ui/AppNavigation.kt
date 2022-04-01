@@ -20,7 +20,6 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import com.orange.ods.demo.R
 import com.orange.ods.demo.ui.about.AboutScreen
-import com.orange.ods.demo.ui.components.*
 import com.orange.ods.demo.ui.components.cards.ComponentsCardScreen
 import com.orange.ods.demo.ui.components.cards.ComponentsCardImageFirstScreen
 import com.orange.ods.demo.ui.components.cards.ComponentsCardSmallScreen
@@ -107,12 +106,10 @@ fun AppNavigation(navController: NavHostController, onSetScreenTitle: (String) -
             onSetScreenTitle(stringResource(id = ComponentsNavigationItem.Cards.title))
             ComponentsCardScreen(navController)
         }
-
         composable(ComponentsNavigationItem.CardImageFirst.route) {
             onSetScreenTitle(stringResource(id = ComponentsNavigationItem.CardImageFirst.title))
             ComponentsCardImageFirstScreen()
         }
-
         composable(ComponentsNavigationItem.CardSmall.route) {
             onSetScreenTitle(stringResource(id = ComponentsNavigationItem.CardSmall.title))
             ComponentsCardSmallScreen()

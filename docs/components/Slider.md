@@ -67,6 +67,8 @@ There are two types of sliders:
 Continuous sliders allow users to make meaningful selections that don’t require
 a specific value.
 
+![RadioButton](images/slider_continuous_light.png) ![RadioButton dark](images/slider_continuous_dark.png)
+
 API and source code:
 
 *   `Slider`
@@ -104,6 +106,8 @@ OdsSlider(
 
 Discrete sliders display a numeric value label upon pressing the thumb, which
 allows a user to input an exact value.
+
+![RadioButton](images/slider_discrete_light.png) ![RadioButton dark](images/slider_discrete_dark.png)
 
 API and source code:
 

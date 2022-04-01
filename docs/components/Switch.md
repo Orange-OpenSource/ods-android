@@ -34,7 +34,11 @@ screen readers, such as TalkBack. Text rendered in switches is automatically
 provided to accessibility services. Additional content labels are usually
 unnecessary.
 
-### Adding a switch in XML
+### Adding a switch
+
+![RadioButton](images/switch_light.png) ![RadioButton dark](images/switch_dark.png)
+
+#### In XML
 
 To create a Switch using Orange theme you will have to add `com.google.android.material.switchmaterial.SwitchMaterial` into your layout.
 
@@ -86,7 +90,7 @@ switchMaterial.setOnCheckedChangeListener { buttonView, isChecked
 }
 ```
 
-### Adding a switch in Jetpack Compose
+#### In Jetpack Compose
 
 In your composable screen you can use:
 
