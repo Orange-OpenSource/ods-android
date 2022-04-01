@@ -10,18 +10,20 @@
 
 package com.orange.ods.demo.ui
 
-import android.content.res.Configuration
+import android.content.res.Configuration.UI_MODE_NIGHT_NO
+import android.content.res.Configuration.UI_MODE_NIGHT_YES
 import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.animation.fadeIn
 import androidx.compose.animation.fadeOut
 import androidx.compose.foundation.isSystemInDarkTheme
-import androidx.compose.material.ExperimentalMaterialApi
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.padding
+import androidx.compose.material.ExperimentalMaterialApi
 import androidx.compose.material.Icon
 import androidx.compose.material.Scaffold
 import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalConfiguration
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
@@ -34,7 +36,7 @@ import com.orange.ods.compose.component.OdsBottomNavigationItem
 import com.orange.ods.compose.theme.OdsMaterialTheme
 
 @ExperimentalMaterialApi
-@Preview(showBackground = true, uiMode = Configuration.UI_MODE_NIGHT_YES)
+@Preview(showBackground = true, uiMode = UI_MODE_NIGHT_YES)
 @Preview(showBackground = true)
 @Composable
 fun MainScreen() {
@@ -52,7 +54,13 @@ fun MainScreen() {
         }
         else -> false
     }
-    
+    //Change isSystemInDarkTheme() value to make switching theme working with custom color
+    if (isDarkMode) {
+        LocalConfiguration.current.uiMode = UI_MODE_NIGHT_YES
+    } else {
+        LocalConfiguration.current.uiMode = UI_MODE_NIGHT_NO
+    }
+
     OdsMaterialTheme(isDarkMode) {
         Scaffold(
             topBar = {
