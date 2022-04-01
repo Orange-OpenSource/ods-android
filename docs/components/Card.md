@@ -143,6 +143,8 @@ The library offers several Composables for each type of card available in Orange
 
 This is a full width card displaying with an image as first element.
 
+  ![CardImageFisrt](images/card_image_first_light.png) ![CardImageFirst dark](images/card_image_first_dark.png)
+
 In your composable screen you can use:
 
 ```kotlin
@@ -163,6 +165,8 @@ OdsCardImageFirst(
 ##### Small card: OdsCardSmall
 
 This is a small card which takes the half screen width.
+
+  ![CardSmall](images/card_small_light.png) ![CardSmall dark](images/card_small_dark.png)
 
 You can add in your compose screen the following to add a small Card:
 
