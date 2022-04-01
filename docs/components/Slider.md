@@ -67,8 +67,6 @@ There are two types of sliders:
 Continuous sliders allow users to make meaningful selections that don’t require
 a specific value.
 
-![RadioButton](images/slider_continuous_light.png) ![RadioButton dark](images/slider_continuous_dark.png)
-
 API and source code:
 
 *   `Slider`
@@ -92,6 +90,8 @@ In the layout:
 
 ### Adding in Jetpack Compose
 
+![RadioButton](images/slider_continuous_light.png) ![RadioButton dark](images/slider_continuous_dark.png)
+
 In your composable screen you can use:
 
 ```kotlin
@@ -102,12 +102,26 @@ OdsSlider(
 )
 ```
 
+#### Continuous with icons
+
+![RadioButton](images/slider_continuous_with_icon_light.png) ![RadioButton dark](images/slider_continuous_with_icon_dark.png)
+
+In your composable screen you can use:
+
+```kotlin
+OdsSlider(
+    value = 20f,
+    valueRange = 0f..100f,
+    onValueChange = { },
+    leftIconRes = R.drawable.ic_heart,
+    rightIconRes = R.drawable.ic_heart
+)
+```
+
 ## Discrete slider
 
 Discrete sliders display a numeric value label upon pressing the thumb, which
 allows a user to input an exact value.
-
-![RadioButton](images/slider_discrete_light.png) ![RadioButton dark](images/slider_discrete_dark.png)
 
 API and source code:
 
@@ -133,6 +147,8 @@ In the layout:
 
 ### Adding in Jetpack Compose
 
+![RadioButton](images/slider_discrete_light.png) ![RadioButton dark](images/slider_discrete_dark.png)
+
 In your composable screen you can use:
 
 ```kotlin
@@ -141,5 +157,22 @@ OdsSlider(
     valueRange = 0f..100f,
     steps = 10,
     onValueChange = { }
+)
+```
+
+#### Discrete slider with icons
+
+![RadioButton](images/slider_discrete_with_icon_light.png) ![RadioButton dark](images/slider_discrete_with_icon_dark.png)
+
+In your composable screen you can use:
+
+```kotlin
+OdsSlider(
+    value = 20f,
+    valueRange = 0f..100f,
+    steps = 10,
+    onValueChange = { },
+    leftIconRes = R.drawable.ic_heart,
+    rightIconRes = R.drawable.ic_heart
 )
 ```

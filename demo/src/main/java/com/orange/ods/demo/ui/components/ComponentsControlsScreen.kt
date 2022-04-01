@@ -180,28 +180,53 @@ fun Switches() {
 
 @Composable
 fun Sliders() {
-    Column {
+    Column(modifier = Modifier.padding(bottom = 16.dp)) {
         ControlTitle(title = "Sliders")
         var sliderPosition by remember { mutableStateOf(0f) }
         var sliderPosition2 by remember { mutableStateOf(0f) }
+        var sliderPosition3 by remember { mutableStateOf(0f) }
+        var sliderPosition4 by remember { mutableStateOf(0f) }
         Text(
             modifier = Modifier.padding(start = 16.dp, end = 16.dp),
             text = "Discrete"
         )
         OdsSlider(
             modifier = Modifier.padding(start = 16.dp, end = 16.dp),
+            value = sliderPosition,
+            steps = 10,
+            onValueChange = { sliderPosition = it },
+        )
+        Text(
+            modifier = Modifier.padding(start = 16.dp, end = 16.dp, top = 16.dp),
+            text = "Discrete with icons"
+        )
+        OdsSlider(
+            modifier = Modifier.padding(start = 16.dp, end = 16.dp),
             value = sliderPosition2,
             steps = 10,
             onValueChange = { sliderPosition2 = it },
+            leftIconRes = R.drawable.ic_heart,
+            rightIconRes = R.drawable.ic_heart,
         )
         Text(
-            modifier = Modifier.padding(start = 16.dp, end = 16.dp),
+            modifier = Modifier.padding(start = 16.dp, end = 16.dp, top = 16.dp),
             text = "Continuous"
         )
         OdsSlider(
             modifier = Modifier.padding(start = 16.dp, end = 16.dp),
-            value = sliderPosition,
-            onValueChange = { sliderPosition = it }
+            value = sliderPosition3,
+            onValueChange = { sliderPosition3 = it }
+        )
+        Text(
+            modifier = Modifier.padding(start = 16.dp, end = 16.dp, top = 16.dp),
+            text = "Continuous with icons"
+        )
+        OdsSlider(
+            modifier = Modifier.padding(start = 16.dp, end = 16.dp),
+            value = sliderPosition4,
+            onValueChange = { sliderPosition4 = it },
+            leftIconRes = R.drawable.ic_heart,
+            rightIconRes = R.drawable.ic_heart,
         )
     }
 }

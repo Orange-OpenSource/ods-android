@@ -10,13 +10,20 @@
 
 package com.orange.ods.compose.component.controls
 
+import androidx.annotation.DrawableRes
 import androidx.compose.foundation.interaction.Interaction
 import androidx.compose.foundation.interaction.MutableInteractionSource
+import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Row
+import androidx.compose.material.Icon
 import androidx.compose.material.Slider
 import androidx.compose.material.SliderDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.unit.dp
 import com.orange.ods.compose.theme.SliderActiveTickColor
 
 /**
@@ -36,7 +43,7 @@ import com.orange.ods.compose.theme.SliderActiveTickColor
  * @param value current value of the Slider. If outside of [valueRange] provided, value will be
  * coerced to this range.
  * @param onValueChange lambda in which value should be updated
- * @param modifier modifiers for the Slider layout
+ * @param modifier modifiers for the OdsSlider layout
  * @param enabled whether or not component is enabled and can be interacted with or not
  * @param valueRange range of values that Slider value can take. Passed [value] will be coerced to
  * this range
@@ -50,6 +57,10 @@ import com.orange.ods.compose.theme.SliderActiveTickColor
  * [Interaction]s for this Slider. You can create and pass in your own remembered
  * [MutableInteractionSource] if you want to observe [Interaction]s and customize the
  * appearance / behavior of this Slider in different [Interaction]s.
+ *  @param leftIconRes Drawable resource for left icon if needed
+ *  @param leftIconContentDescription Left icon content description
+ *  @param rightIconRes Drawable resource for right icon if needed
+ *  @param rightIconContentDescription Right icon content description
  */
 @Composable
 fun OdsSlider(
@@ -61,19 +72,43 @@ fun OdsSlider(
     steps: Int = 0,
     onValueChangeFinished: (() -> Unit)? = null,
     interactionSource: MutableInteractionSource = remember { MutableInteractionSource() },
+    @DrawableRes
+    leftIconRes: Int? = null,
+    leftIconContentDescription: String? = null,
+    @DrawableRes
+    rightIconRes: Int? = null,
+    rightIconContentDescription: String? = null,
 ) {
-    //For the moment we cannot change the height of the slider track (need to check in jetpack compose future versions)
-    Slider(
-        value = value,
-        onValueChange = onValueChange,
+    Row(
         modifier = modifier,
-        enabled = enabled,
-        valueRange = valueRange,
-        steps = steps,
-        onValueChangeFinished = onValueChangeFinished,
-        interactionSource = interactionSource,
-        colors = SliderDefaults.colors(
-            activeTickColor = SliderActiveTickColor //Cannot use primary alpha color, it will not be visible, need to use plain color
+        verticalAlignment = Alignment.CenterVertically,
+        horizontalArrangement = Arrangement.spacedBy(16.dp)
+    ) {
+        leftIconRes?.let {
+            Icon(
+                painter = painterResource(id = it),
+                contentDescription = leftIconContentDescription
+            )
+        }
+        //For the moment we cannot change the height of the slider track (need to check in jetpack compose future versions)
+        Slider(
+            value = value,
+            onValueChange = onValueChange,
+            modifier = Modifier.weight(1F),
+            enabled = enabled,
+            valueRange = valueRange,
+            steps = steps,
+            onValueChangeFinished = onValueChangeFinished,
+            interactionSource = interactionSource,
+            colors = SliderDefaults.colors(
+                activeTickColor = SliderActiveTickColor //Cannot use primary alpha color, it will not be visible, need to use plain color
+            )
         )
-    )
+        rightIconRes?.let {
+            Icon(
+                painter = painterResource(id = it),
+                contentDescription = rightIconContentDescription
+            )
+        }
+    }
 }
