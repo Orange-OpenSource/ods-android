@@ -65,7 +65,7 @@ fun OdsTextButton(
             shape = odsButtonShape,
             colors = ButtonDefaults.textButtonColors(
                 contentColor = MaterialTheme.colors.textButtonColor(displayAppearance, hasPrimaryColor),
-                disabledContentColor = MaterialTheme.colors.textButtonColor(displayAppearance, hasPrimaryColor).copy(alpha = ContentAlpha.disabled)
+                disabledContentColor = MaterialTheme.colors.textButtonDisabledColor(displayAppearance)
             )
         ) {
             iconRes?.let { ButtonIcon(it) }
@@ -81,3 +81,7 @@ private fun Colors.textButtonColor(displayAppearance: OdsDisplayAppearance, hasP
         OdsDisplayAppearance.ON_DARK -> if (hasPrimaryColor) darkThemeColors.primary else darkThemeColors.onSurface
         OdsDisplayAppearance.ON_LIGHT -> if (hasPrimaryColor) lightThemeColors.primary else lightThemeColors.onSurface
     }
+
+@Composable
+private fun Colors.textButtonDisabledColor(displayAppearance: OdsDisplayAppearance) =
+    textButtonColor(displayAppearance = displayAppearance, hasPrimaryColor = false).copy(alpha = ContentAlpha.disabled)
