@@ -10,15 +10,12 @@
 
 package com.orange.ods.compose.component.controls
 
-import androidx.compose.foundation.interaction.Interaction
-import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.material.*
 import androidx.compose.material.ripple.LocalRippleTheme
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.CompositionLocalProvider
-import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import com.orange.ods.compose.theme.OdsPrimaryRippleTheme
 
@@ -36,10 +33,6 @@ import com.orange.ods.compose.theme.OdsPrimaryRippleTheme
  * @param modifier Modifier to be applied to the radio button
  * @param enabled Controls the enabled state of the [RadioButton]. When `false`, this button will
  * not be selectable and appears disabled
- * @param interactionSource the [MutableInteractionSource] representing the stream of
- * [Interaction]s for this RadioButton. You can create and pass in your own remembered
- * [MutableInteractionSource] if you want to observe [Interaction]s and customize the
- * appearance / behavior of this RadioButton in different [Interaction]s.
  */
 @Composable
 fun OdsRadioButton(
@@ -47,7 +40,6 @@ fun OdsRadioButton(
     onClick: (() -> Unit)?,
     modifier: Modifier = Modifier,
     enabled: Boolean = true,
-    interactionSource: MutableInteractionSource = remember { MutableInteractionSource() },
 ) {
     CompositionLocalProvider(LocalRippleTheme provides OdsPrimaryRippleTheme) {
         RadioButton(
@@ -55,7 +47,6 @@ fun OdsRadioButton(
             onClick = onClick,
             modifier = modifier,
             enabled = enabled,
-            interactionSource = interactionSource,
             colors = if (selected) {
                 RadioButtonDefaults.colors(
                     disabledColor = MaterialTheme.colors.secondary.copy(alpha = ContentAlpha.disabled)

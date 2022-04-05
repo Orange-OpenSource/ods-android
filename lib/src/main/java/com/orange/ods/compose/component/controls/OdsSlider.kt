@@ -11,15 +11,12 @@
 package com.orange.ods.compose.component.controls
 
 import androidx.annotation.DrawableRes
-import androidx.compose.foundation.interaction.Interaction
-import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Row
 import androidx.compose.material.Icon
 import androidx.compose.material.Slider
 import androidx.compose.material.SliderDefaults
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.painterResource
@@ -53,10 +50,6 @@ import com.orange.ods.compose.theme.SliderActiveTickColor
  * @param onValueChangeFinished lambda to be invoked when value change has ended. This callback
  * shouldn't be used to update the slider value (use [onValueChange] for that), but rather to
  * know when the user has completed selecting a new value by ending a drag or a click.
- * @param interactionSource the [MutableInteractionSource] representing the stream of
- * [Interaction]s for this Slider. You can create and pass in your own remembered
- * [MutableInteractionSource] if you want to observe [Interaction]s and customize the
- * appearance / behavior of this Slider in different [Interaction]s.
  *  @param leftIconRes Drawable resource for left icon if needed
  *  @param leftIconContentDescription Left icon content description
  *  @param rightIconRes Drawable resource for right icon if needed
@@ -71,7 +64,6 @@ fun OdsSlider(
     valueRange: ClosedFloatingPointRange<Float> = 0f..1f,
     steps: Int = 0,
     onValueChangeFinished: (() -> Unit)? = null,
-    interactionSource: MutableInteractionSource = remember { MutableInteractionSource() },
     @DrawableRes
     leftIconRes: Int? = null,
     leftIconContentDescription: String? = null,
@@ -99,7 +91,6 @@ fun OdsSlider(
             valueRange = valueRange,
             steps = steps,
             onValueChangeFinished = onValueChangeFinished,
-            interactionSource = interactionSource,
             colors = SliderDefaults.colors(
                 activeTickColor = SliderActiveTickColor //Cannot use primary alpha color, it will not be visible, need to use plain color
             )

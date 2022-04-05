@@ -66,6 +66,6 @@ In your composable screen you can use:
 OdsCheckbox(
     checked = true,
     onCheckedChange = { },
-    enabled = enabled,
+    enabled = true,
 )
 ```

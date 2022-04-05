@@ -10,8 +10,6 @@
 
 package com.orange.ods.compose.component.controls
 
-import androidx.compose.foundation.interaction.Interaction
-import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.material.Checkbox
 import androidx.compose.material.CheckboxDefaults
 import androidx.compose.material.ContentAlpha
@@ -19,7 +17,6 @@ import androidx.compose.material.MaterialTheme
 import androidx.compose.material.ripple.LocalRippleTheme
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.CompositionLocalProvider
-import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import com.orange.ods.compose.theme.OdsPrimaryRippleTheme
 
@@ -36,10 +33,6 @@ import com.orange.ods.compose.theme.OdsPrimaryRippleTheme
  * and relies entirely on a higher-level component to control the "checked" state.
  * @param modifier Modifier to be applied to the layout of the checkbox
  * @param enabled whether the component is enabled or grayed out
- * @param interactionSource the [MutableInteractionSource] representing the stream of
- * [Interaction]s for this Checkbox. You can create and pass in your own remembered
- * [MutableInteractionSource] if you want to observe [Interaction]s and customize the
- * appearance / behavior of this Checkbox in different [Interaction]s.
  */
 @Composable
 fun OdsCheckbox(
@@ -47,7 +40,6 @@ fun OdsCheckbox(
     onCheckedChange: ((Boolean) -> Unit)?,
     modifier: Modifier = Modifier,
     enabled: Boolean = true,
-    interactionSource: MutableInteractionSource = remember { MutableInteractionSource() },
 ) {
     CompositionLocalProvider(LocalRippleTheme provides OdsPrimaryRippleTheme) {
         Checkbox(
@@ -55,7 +47,6 @@ fun OdsCheckbox(
             checked = checked,
             onCheckedChange = onCheckedChange,
             enabled = enabled,
-            interactionSource = interactionSource,
             colors = if (checked) {
                 CheckboxDefaults.colors(disabledColor = MaterialTheme.colors.secondary.copy(alpha = ContentAlpha.disabled))
             } else {

@@ -10,15 +10,10 @@
 
 package com.orange.ods.compose.component.controls
 
-import androidx.compose.foundation.interaction.Interaction
-import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.material.Switch
-import androidx.compose.material.SwitchColors
-import androidx.compose.material.SwitchDefaults
 import androidx.compose.material.ripple.LocalRippleTheme
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.CompositionLocalProvider
-import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import com.orange.ods.compose.theme.OdsPrimaryRippleTheme
 
@@ -33,10 +28,6 @@ import com.orange.ods.compose.theme.OdsPrimaryRippleTheme
  * and relies entirely on a higher-level component to control the "checked" state.
  * @param modifier Modifier to be applied to the switch layout
  * @param enabled whether the component is enabled or grayed out
- * @param interactionSource the [MutableInteractionSource] representing the stream of
- * [Interaction]s for this Switch. You can create and pass in your own remembered
- * [MutableInteractionSource] if you want to observe [Interaction]s and customize the
- * appearance / behavior of this Switch in different [Interaction]s.
  */
 @Composable
 fun OdsSwitch(
@@ -44,7 +35,6 @@ fun OdsSwitch(
     onCheckedChange: ((Boolean) -> Unit)?,
     modifier: Modifier = Modifier,
     enabled: Boolean = true,
-    interactionSource: MutableInteractionSource = remember { MutableInteractionSource() },
 ) {
     CompositionLocalProvider(LocalRippleTheme provides OdsPrimaryRippleTheme) {
         Switch(
@@ -52,7 +42,6 @@ fun OdsSwitch(
             onCheckedChange = onCheckedChange,
             modifier = modifier,
             enabled = enabled,
-            interactionSource = interactionSource
         )
     }
 }
