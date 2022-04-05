@@ -35,6 +35,9 @@
         <!-- Custom ODS attributes -->
         <item name="odsSliderHaloBackground">@color/ods_color_core_black_900</item>
         <item name="odsBadgeTextColor">@color/ods_color_core_white_100</item>
+        <item name="functionalAlert">@color/ods_color_functional_alert_200</item>
+        <item name="functionalPositive">@color/ods_color_functional_positive_200</item>
+        <item name="functionalInfo">@color/ods_color_functional_info_200</item>
 
 
     </style>

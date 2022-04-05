@@ -18,4 +18,8 @@
     <!-- Badge color -->
     <attr name="odsBadgeTextColor" format="color"/>
 
+    <!-- Functional colors -->
+    <attr name="functionalInfo" format="color"/>
+    <attr name="functionalPositive" format="color"/>
+    <attr name="functionalAlert" format="color"/>
 </resources>
