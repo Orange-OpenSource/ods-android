@@ -36,6 +36,10 @@ unnecessary.
 
 ### Adding a switch
 
+![RadioButton](images/switch_light.png) ![RadioButton dark](images/switch_dark.png)
+
+#### In XML
+
 To create a Switch using Orange theme you will have to add `com.google.android.material.switchmaterial.SwitchMaterial` into your layout.
 
 *   `SwitchMaterial`
@@ -84,4 +88,16 @@ switchMaterial.isChecked = true
 switchMaterial.setOnCheckedChangeListener { buttonView, isChecked
     // Responds to switch being checked/unchecked
 }
+```
+
+#### In Jetpack Compose
+
+In your composable screen you can use:
+
+```kotlin
+OdsSwitch(
+    checked = true,
+    onCheckedChange = { },
+    enabled = true
+)
 ```

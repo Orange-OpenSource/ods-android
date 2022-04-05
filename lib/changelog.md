@@ -9,7 +9,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
-- Add ODS buttons composables: `OdsButton`, `OdsOutlinedButton`, `OdsTextButton` and `OdsToggleButton`
+- Add ODS controls composable: `OdsCheckbox`, `OdsRadioButton`, `OdsSwitch`, `OdsSlider`
+- Add ODS buttons composable: `OdsButton`, `OdsOutlinedButton`, `OdsTextButton` and `OdsToggleButton`
 - Add `OdsTopAppBar` component
 - Add `OdsCardSmall` and `OdsCardImageFirst` component
 - Add `OdsMaterialTheme` which is a Material theme extension for Jetpack Compose applications

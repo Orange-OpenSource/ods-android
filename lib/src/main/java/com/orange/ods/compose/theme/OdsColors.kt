@@ -62,3 +62,4 @@ val Grey800 = Color(0xff333333)
 
 val DarkSurfaceDefault = Color(0xff121212)
 val Transparent = Color(0x00000000)
+val SliderActiveTickColor = Color(0xffEBA66C)

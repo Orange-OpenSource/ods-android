@@ -20,10 +20,12 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import com.orange.ods.demo.R
 import com.orange.ods.demo.ui.about.AboutScreen
-import com.orange.ods.demo.ui.components.*
 import com.orange.ods.demo.ui.components.cards.ComponentsCardScreen
 import com.orange.ods.demo.ui.components.cards.ComponentsCardImageFirstScreen
 import com.orange.ods.demo.ui.components.cards.ComponentsCardSmallScreen
+import com.orange.ods.demo.ui.components.ComponentsButtonsScreen
+import com.orange.ods.demo.ui.components.ComponentsControlsScreen
+import com.orange.ods.demo.ui.components.ComponentsScreen
 import com.orange.ods.demo.ui.guidelines.GuidelinesColorScreen
 import com.orange.ods.demo.ui.guidelines.GuidelinesScreen
 import com.orange.ods.demo.ui.guidelines.GuidelinesTypographyScreen
@@ -100,20 +102,21 @@ fun AppNavigation(navController: NavHostController, onSetScreenTitle: (String) -
             onSetScreenTitle(stringResource(id = ComponentsNavigationItem.Buttons.title))
             ComponentsButtonsScreen()
         }
-
         composable(ComponentsNavigationItem.Cards.route) {
             onSetScreenTitle(stringResource(id = ComponentsNavigationItem.Cards.title))
             ComponentsCardScreen(navController)
         }
-
         composable(ComponentsNavigationItem.CardImageFirst.route) {
             onSetScreenTitle(stringResource(id = ComponentsNavigationItem.CardImageFirst.title))
             ComponentsCardImageFirstScreen()
         }
-
         composable(ComponentsNavigationItem.CardSmall.route) {
             onSetScreenTitle(stringResource(id = ComponentsNavigationItem.CardSmall.title))
             ComponentsCardSmallScreen()
+        }
+        composable(ComponentsNavigationItem.Controls.route) {
+            onSetScreenTitle(stringResource(id = ComponentsNavigationItem.Controls.title))
+            ComponentsControlsScreen()
         }
     }
 }

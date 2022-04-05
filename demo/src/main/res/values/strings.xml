@@ -39,4 +39,15 @@
     <string name="component_card_small">Small card view</string>
     <string name="component_card_description">Cards are important components that can be used to organise and present a number of different types of related information.</string>
 
+    <!-- Component Controls -->
+    <string name="component_controls_description">There are a number of controls that enable user input. Their appearance is customised for Orange but their behaviour must follow the native platform standard.</string>
+    <string name="component_controls_checkboxes">Checkboxes</string>
+    <string name="component_controls_radio_buttons">Radio Buttons</string>
+    <string name="component_controls_switches">Switches</string>
+    <string name="component_controls_sliders">Sliders</string>
+    <string name="component_controls_slider_discrete">Discrete</string>
+    <string name="component_controls_slider_discrete_with_icons">Discrete with icons</string>
+    <string name="component_controls_slider_continuous">Continuous with icons</string>
+    <string name="component_controls_slider_continuous_with_icons">Continuous with icons</string>
+
 </resources>
