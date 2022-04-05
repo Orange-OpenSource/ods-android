@@ -39,7 +39,7 @@ fun TopAppBar(
         title = {
             Text(text = title)
         },
-        navigationIcon = NavigationIcon(navController),
+        navigationIcon = getNavigationIcon(navController),
         actions = {
             IconButton(onClick = {
                 onThemeChange(!isDarkMode)
@@ -62,13 +62,13 @@ fun TopAppBar(
 }
 
 @Composable
-private fun NavigationIcon(navController: NavController): @Composable (() -> Unit)? {
+private fun getNavigationIcon(navController: NavController): @Composable (() -> Unit)? {
     return if (!isCurrentScreenFromHome(navController)) {
         {
             IconButton(onClick = { navController.navigateUp() }) {
                 Icon(
                     imageVector = Icons.Filled.ArrowBack,
-                    contentDescription = "Back"
+                    contentDescription = stringResource(id = R.string.back_icon_content_description)
                 )
             }
         }
