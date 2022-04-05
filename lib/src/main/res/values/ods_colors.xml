@@ -34,12 +34,16 @@
     <color name="ods_color_supporting_pink_300">#FF8AD4</color>
     <color name="ods_color_supporting_pink_100">#FFE8F7</color>
 
-    <color name="ods_color_functional_info_200">#4BB4E6</color>
+    <color name="ods_color_functional_info_100">#527EDB</color>
+    <color name="ods_color_functional_info_200">#4170D8</color>
 
-    <color name="ods_color_functional_alert_200">#FFCC00</color>
+    <color name="ods_color_functional_alert_100">#FFCC00</color>
+    <color name="ods_color_functional_alert_200">#8F7200</color>
 
-    <color name="ods_color_functional_positive_200">#32C832</color>
+    <color name="ods_color_functional_positive_100">#32C832</color>
+    <color name="ods_color_functional_positive_200">#228722</color>
 
+    <color name="ods_color_functional_negative_100">#D53F15</color>
     <color name="ods_color_functional_negative_200">#CD3C14</color>
 
     <color name="ods_color_grey_800">#333333</color>
