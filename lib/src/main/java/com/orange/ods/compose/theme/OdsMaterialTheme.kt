@@ -54,13 +54,13 @@ internal val lightThemeColors = lightColors(
 )
 
 internal val darkThemeColors = darkColors(
-    primary = Orange200,
+    primary = Orange100,
     primaryVariant = Orange200,
     secondary = Orange200,
     secondaryVariant = Orange200,
-    background = DarkSurfaceDefault,
+    background = Black900,
     surface = DarkSurfaceDefault,
-    error = Negative200,
+    error = Negative100,
     onPrimary = Black900,
     onSecondary = Black900,
     onBackground = White100,

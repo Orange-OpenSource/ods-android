@@ -10,6 +10,8 @@
 
 package com.orange.ods.compose.theme
 
+import androidx.compose.material.Colors
+import androidx.compose.runtime.Composable
 import androidx.compose.ui.graphics.Color
 
 // Core colors
@@ -44,9 +46,13 @@ val Pink300 = Color(0xffFF8AD4)
 
 // Functional colors
 
-val Info200 = Color(0xff4BB4E6)
-val Alert200 = Color(0xffFFCC00)
-val Positive200 = Color(0xff32C832)
+val Info100 = Color(0xff527EDB)
+val Info200 = Color(0xff4170D8)
+val Alert100 = Color(0xffFFCC00)
+val Alert200 = Color(0xff8F7200)
+val Positive100 = Color(0xff32C832)
+val Positive200 = Color(0xff228722)
+val Negative100 = Color(0xffD53F15)
 val Negative200 = Color(0xffCD3C14)
 
 // Grey colors
@@ -63,3 +69,15 @@ val Grey800 = Color(0xff333333)
 val DarkSurfaceDefault = Color(0xff121212)
 val Transparent = Color(0x00000000)
 val SliderActiveTickColor = Color(0xffEBA66C)
+
+val Colors.functionalPositive: Color
+    @Composable
+    get() = if (isLight) Positive200 else Positive100
+
+val Colors.functionalInfo: Color
+    @Composable
+    get() = if (isLight) Info200 else Info100
+
+val Colors.functionalAlert: Color
+    @Composable
+    get() = if (isLight) Alert200 else Alert100
