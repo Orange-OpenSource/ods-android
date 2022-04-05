@@ -28,6 +28,12 @@
     <string name="guideline_imagery">Imagery</string>
     <string name="guideline_iconography">Iconography</string>
 
+    <!-- Guideline Colour-->
+    <string name="guideline_colour_core">Core</string>
+    <string name="guideline_colour_functional">Functional</string>
+    <string name="guideline_colour_supporting">Supporting</string>
+    <string name="guideline_colour_xml">xml (%1s)</string>
+
     <!-- Components -->
     <string name="component_buttons">Buttons</string>
     <string name="component_controls">Controls</string>
