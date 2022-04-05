@@ -20,6 +20,7 @@
     <!-- TopAppBar -->
     <string name="theme_changer_icon_content_description_dark">Change to dark mode</string>
     <string name="theme_changer_icon_content_description_light">Change to light mode</string>
+    <string name="back_icon_content_description">Back</string>
 
     <!-- Guidelines -->
     <string name="guideline_colour">Colour</string>
