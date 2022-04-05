@@ -110,11 +110,8 @@ android {
     unitTests.returnDefaultValues = true
   }
 
-  aaptOptions {
-    additionalParameters "--no-version-vectors"
-  }
 
-  sourceSets {
+    sourceSets {
     main {
       manifest.srcFile 'java/io/material/catalog/AndroidManifest.xml'
       java.srcDir 'java'
@@ -138,4 +135,7 @@ android {
     sourceCompatibility JavaVersion.VERSION_1_8
     targetCompatibility JavaVersion.VERSION_1_8
   }
+    androidResources {
+        additionalParameters '--no-version-vectors'
+    }
 }
