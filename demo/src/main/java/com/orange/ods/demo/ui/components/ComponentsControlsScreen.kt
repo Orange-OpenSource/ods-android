@@ -10,6 +10,7 @@
 
 package com.orange.ods.demo.ui.components
 
+import androidx.annotation.StringRes
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -59,9 +60,9 @@ fun ComponentsControlsScreen() {
 }
 
 @Composable
-fun ControlTitle(title: String) {
+fun ControlTitle(@StringRes titleRes: Int) {
     Text(
-        text = title,
+        text = stringResource(id = titleRes),
         modifier = Modifier.padding(16.dp),
         style = MaterialTheme.typography.h5
     )
@@ -70,7 +71,7 @@ fun ControlTitle(title: String) {
 @Composable
 fun Checkboxes() {
     Column {
-        ControlTitle("Checkboxes")
+        ControlTitle(R.string.component_controls_checkboxes)
         Row {
             LabelledCheckbox(
                 modifier = Modifier.weight(0.5f),
@@ -105,7 +106,7 @@ fun Checkboxes() {
 @Composable
 fun RadioButtons() {
     Column {
-        ControlTitle("Radio Buttons")
+        ControlTitle(R.string.component_controls_radio_buttons)
         Row {
             val selectedRadio = remember { mutableStateOf(ON) }
             LabelledRadioButton(
@@ -146,7 +147,7 @@ fun RadioButtons() {
 @Composable
 fun Switches() {
     Column {
-        ControlTitle("Switches")
+        ControlTitle(R.string.component_controls_switches)
         Row {
             LabelledSwitch(
                 modifier = Modifier.weight(0.5F),
@@ -181,14 +182,14 @@ fun Switches() {
 @Composable
 fun Sliders() {
     Column(modifier = Modifier.padding(bottom = 16.dp)) {
-        ControlTitle(title = "Sliders")
+        ControlTitle(R.string.component_controls_sliders)
         var sliderPosition by remember { mutableStateOf(0f) }
         var sliderPosition2 by remember { mutableStateOf(0f) }
         var sliderPosition3 by remember { mutableStateOf(0f) }
         var sliderPosition4 by remember { mutableStateOf(0f) }
         Text(
             modifier = Modifier.padding(start = 16.dp, end = 16.dp),
-            text = "Discrete"
+            text = stringResource(id = R.string.component_controls_slider_discrete)
         )
         OdsSlider(
             modifier = Modifier.padding(start = 16.dp, end = 16.dp),
@@ -198,7 +199,7 @@ fun Sliders() {
         )
         Text(
             modifier = Modifier.padding(start = 16.dp, end = 16.dp, top = 16.dp),
-            text = "Discrete with icons"
+            text = stringResource(id = R.string.component_controls_slider_discrete_with_icons)
         )
         OdsSlider(
             modifier = Modifier.padding(start = 16.dp, end = 16.dp),
@@ -210,7 +211,7 @@ fun Sliders() {
         )
         Text(
             modifier = Modifier.padding(start = 16.dp, end = 16.dp, top = 16.dp),
-            text = "Continuous"
+            text = stringResource(id = R.string.component_controls_slider_continuous)
         )
         OdsSlider(
             modifier = Modifier.padding(start = 16.dp, end = 16.dp),
@@ -219,7 +220,7 @@ fun Sliders() {
         )
         Text(
             modifier = Modifier.padding(start = 16.dp, end = 16.dp, top = 16.dp),
-            text = "Continuous with icons"
+            text = stringResource(id = R.string.component_controls_slider_continuous_with_icons)
         )
         OdsSlider(
             modifier = Modifier.padding(start = 16.dp, end = 16.dp),
