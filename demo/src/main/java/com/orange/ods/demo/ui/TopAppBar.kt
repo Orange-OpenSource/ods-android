@@ -21,6 +21,7 @@ import androidx.compose.runtime.SideEffect
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
+import androidx.navigation.NavController
 import androidx.navigation.NavHostController
 import com.google.accompanist.systemuicontroller.rememberSystemUiController
 import com.orange.ods.compose.component.OdsTopAppBar
@@ -38,21 +39,7 @@ fun TopAppBar(
         title = {
             Text(text = title)
         },
-        navigationIcon = if (
-            navController.previousBackStackEntry != null
-            && !isCurrentScreenFromHome(navController)
-        ) {
-            {
-                IconButton(onClick = { navController.navigateUp() }) {
-                    Icon(
-                        imageVector = Icons.Filled.ArrowBack,
-                        contentDescription = "Back"
-                    )
-                }
-            }
-        } else {
-            null
-        },
+        navigationIcon = NavigationIcon(navController),
         actions = {
             IconButton(onClick = {
                 onThemeChange(!isDarkMode)
@@ -72,6 +59,22 @@ fun TopAppBar(
             }
         }
     )
+}
+
+@Composable
+private fun NavigationIcon(navController: NavController): @Composable (() -> Unit)? {
+    return if (!isCurrentScreenFromHome(navController)) {
+        {
+            IconButton(onClick = { navController.navigateUp() }) {
+                Icon(
+                    imageVector = Icons.Filled.ArrowBack,
+                    contentDescription = "Back"
+                )
+            }
+        }
+    } else {
+        null
+    }
 }
 
 @Composable

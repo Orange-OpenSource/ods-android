@@ -32,7 +32,6 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.navigation.NavController
-import androidx.navigation.NavHostController
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
 import com.orange.ods.compose.component.OdsBottomNavigation
@@ -97,8 +96,7 @@ private fun BottomNavigationBar(navController: NavController) {
     )
 
     OdsBottomNavigation {
-        val navBackStackEntry by navController.currentBackStackEntryAsState()
-        val currentRoute = navBackStackEntry?.destination?.route
+        val currentRoute = getCurrentRoute(navController)
         navigationItems.forEach { item ->
             OdsBottomNavigationItem(
                 icon = { Icon(painter = painterResource(id = item.icon), contentDescription = stringResource(id = item.title)) },
@@ -127,20 +125,14 @@ private fun BottomNavigationBar(navController: NavController) {
 }
 
 @Composable
-private fun currentRoute(navController: NavHostController): String? {
+private fun getCurrentRoute(navController: NavController): String? {
     val navBackStackEntry by navController.currentBackStackEntryAsState()
     return navBackStackEntry?.destination?.route
 }
 
 @Composable
-fun isCurrentScreenFromHome(navController: NavHostController): Boolean {
-    return when {
-        currentRoute(navController) == NavigationItem.Guidelines.route
-            || currentRoute(navController) == NavigationItem.Components.route
-            || currentRoute(navController) == NavigationItem.Modules.route
-            || currentRoute(navController) == NavigationItem.About.route -> {
-            true
-        }
-        else -> false
-    }
-}
+fun isCurrentScreenFromHome(navController: NavController) =
+    getCurrentRoute(navController) in listOf(
+        NavigationItem.Guidelines.route, NavigationItem.Components.route,
+        NavigationItem.Modules.route, NavigationItem.About.route
+    )
