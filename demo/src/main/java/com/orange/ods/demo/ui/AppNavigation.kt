@@ -26,7 +26,7 @@ import com.orange.ods.demo.ui.components.cards.ComponentsCardSmallScreen
 import com.orange.ods.demo.ui.components.ComponentsButtonsScreen
 import com.orange.ods.demo.ui.components.ComponentsControlsScreen
 import com.orange.ods.demo.ui.components.ComponentsScreen
-import com.orange.ods.demo.ui.guidelines.GuidelinesColorScreen
+import com.orange.ods.demo.ui.guidelines.colors.GuidelinesColorScreen
 import com.orange.ods.demo.ui.guidelines.GuidelinesScreen
 import com.orange.ods.demo.ui.guidelines.GuidelinesTypographyScreen
 import com.orange.ods.demo.ui.modules.ModulesScreen
