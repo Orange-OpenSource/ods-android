@@ -8,7 +8,7 @@
  * /
  */
 
-package com.orange.ods.demo.ui.components
+package com.orange.ods.demo.ui.components.cards
 
 import androidx.annotation.DrawableRes
 import androidx.annotation.StringRes
@@ -26,18 +26,21 @@ sealed class ComponentsCardItem(
             title = R.string.component_buttons,
             route = ComponentsNavigationItem.Buttons.route
         )
+
     object Controls :
         ComponentsCardItem(
             image = R.drawable.picture_component_controls,
             title = R.string.component_controls,
             route = ComponentsNavigationItem.Controls.route
         )
+
     object BottomNavigation :
         ComponentsCardItem(
             image = R.drawable.picture_component_botton_navigation,
             title = R.string.component_bottom_navigation,
             route = ComponentsNavigationItem.BottomNavigation.route
         )
+
     object Cards :
         ComponentsCardItem(
             image = R.drawable.picture_component_cards,
