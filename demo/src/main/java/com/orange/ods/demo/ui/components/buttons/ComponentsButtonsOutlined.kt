@@ -13,7 +13,7 @@ package com.orange.ods.demo.ui.components.buttons
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
-import com.orange.ods.compose.component.button.OdsOutlinedButton
+import com.orange.ods.compose.component.button.OdsButtonOutlined
 import com.orange.ods.compose.theme.OdsDisplayAppearance
 import com.orange.ods.demo.R
 import com.orange.ods.demo.ui.utils.Title
@@ -21,11 +21,11 @@ import com.orange.ods.demo.ui.utils.Title
 @Composable
 fun OutlinedButtons() {
     Title(R.string.component_buttons_outlined_title)
-    OdsOutlinedButton(modifier = Modifier.fullWidthButton(), text = stringResource(R.string.component_button_enabled), onClick = {})
-    OdsOutlinedButton(modifier = Modifier.fullWidthButton(false), text = stringResource(R.string.component_button_disabled), onClick = {}, enabled = false)
+    OdsButtonOutlined(modifier = Modifier.fullWidthButton(), text = stringResource(R.string.component_button_enabled), onClick = {})
+    OdsButtonOutlined(modifier = Modifier.fullWidthButton(false), text = stringResource(R.string.component_button_disabled), onClick = {}, enabled = false)
 
-    OdsOutlinedButton(modifier = Modifier.fullWidthButton(), text = stringResource(R.string.component_button_enabled), onClick = {}, iconRes = R.drawable.ic_search)
-    OdsOutlinedButton(
+    OdsButtonOutlined(modifier = Modifier.fullWidthButton(), text = stringResource(R.string.component_button_enabled), onClick = {}, iconRes = R.drawable.ic_search)
+    OdsButtonOutlined(
         modifier = Modifier.fullWidthButton(false),
         text = stringResource(R.string.component_button_disabled),
         onClick = {},
@@ -43,8 +43,8 @@ fun OutlinedButtons() {
 
 @Composable
 private fun OutlinedButtonsFullWidthAppearanceForced(displayAppearance: OdsDisplayAppearance) {
-    OdsOutlinedButton(modifier = Modifier.fullWidthButton(), text = stringResource(R.string.component_button_enabled), onClick = {}, displayAppearance = displayAppearance)
-    OdsOutlinedButton(
+    OdsButtonOutlined(modifier = Modifier.fullWidthButton(), text = stringResource(R.string.component_button_enabled), onClick = {}, displayAppearance = displayAppearance)
+    OdsButtonOutlined(
         modifier = Modifier.fullWidthButton(false),
         text = stringResource(R.string.component_button_disabled),
         onClick = {},

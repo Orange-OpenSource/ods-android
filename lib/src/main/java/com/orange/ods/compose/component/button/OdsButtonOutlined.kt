@@ -43,7 +43,7 @@ import com.orange.ods.compose.theme.odsLightThemeColors
  * surface. By default the appearance applied is based on the system night mode value.
  */
 @Composable
-fun OdsOutlinedButton(
+fun OdsButtonOutlined(
     text: String,
     onClick: () -> Unit,
     modifier: Modifier = Modifier,
@@ -61,15 +61,15 @@ fun OdsOutlinedButton(
         border = BorderStroke(
             ButtonDefaults.OutlinedBorderSize,
             if (enabled) {
-                MaterialTheme.colors.outlinedButtonColor(displayAppearance)
+                MaterialTheme.colors.buttonOutlinedColor(displayAppearance)
             } else {
-                MaterialTheme.colors.outlinedButtonDisabledColor(displayAppearance)
+                MaterialTheme.colors.buttonOutlinedDisabledColor(displayAppearance)
             }
         ),
         colors = ButtonDefaults.outlinedButtonColors(
             backgroundColor = Transparent,
-            contentColor = MaterialTheme.colors.outlinedButtonColor(displayAppearance),
-            disabledContentColor = MaterialTheme.colors.outlinedButtonDisabledColor(displayAppearance)
+            contentColor = MaterialTheme.colors.buttonOutlinedColor(displayAppearance),
+            disabledContentColor = MaterialTheme.colors.buttonOutlinedDisabledColor(displayAppearance)
         )
     ) {
         iconRes?.let { ButtonIcon(it) }
@@ -78,7 +78,7 @@ fun OdsOutlinedButton(
 }
 
 @Composable
-private fun Colors.outlinedButtonColor(displayAppearance: OdsDisplayAppearance) =
+private fun Colors.buttonOutlinedColor(displayAppearance: OdsDisplayAppearance) =
     when (displayAppearance) {
         OdsDisplayAppearance.DEFAULT -> MaterialTheme.colors.onSurface
         OdsDisplayAppearance.ON_DARK -> odsDarkThemeColors.onSurface
@@ -86,5 +86,5 @@ private fun Colors.outlinedButtonColor(displayAppearance: OdsDisplayAppearance) 
     }
 
 @Composable
-private fun Colors.outlinedButtonDisabledColor(displayAppearance: OdsDisplayAppearance) =
-    outlinedButtonColor(displayAppearance).copy(alpha = ContentAlpha.disabled)
+private fun Colors.buttonOutlinedDisabledColor(displayAppearance: OdsDisplayAppearance) =
+    buttonOutlinedColor(displayAppearance).copy(alpha = ContentAlpha.disabled)

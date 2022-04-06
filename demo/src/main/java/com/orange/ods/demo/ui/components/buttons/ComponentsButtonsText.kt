@@ -13,7 +13,7 @@ package com.orange.ods.demo.ui.components.buttons
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
-import com.orange.ods.compose.component.button.OdsTextButton
+import com.orange.ods.compose.component.button.OdsButtonText
 import com.orange.ods.compose.theme.OdsDisplayAppearance
 import com.orange.ods.demo.R
 import com.orange.ods.demo.ui.utils.Subtitle
@@ -24,11 +24,11 @@ fun TextButtons() {
     Title(R.string.component_buttons_text_title)
 
     Subtitle(R.string.component_buttons_text_subtitle_default)
-    OdsTextButton(modifier = Modifier.fullWidthButton(), text = stringResource(R.string.component_button_enabled), onClick = {})
-    OdsTextButton(modifier = Modifier.fullWidthButton(false), text = stringResource(R.string.component_button_disabled), onClick = {}, enabled = false)
+    OdsButtonText(modifier = Modifier.fullWidthButton(), text = stringResource(R.string.component_button_enabled), onClick = {})
+    OdsButtonText(modifier = Modifier.fullWidthButton(false), text = stringResource(R.string.component_button_disabled), onClick = {}, enabled = false)
 
-    OdsTextButton(modifier = Modifier.fullWidthButton(), text = stringResource(R.string.component_button_enabled), onClick = {}, iconRes = R.drawable.ic_search)
-    OdsTextButton(
+    OdsButtonText(modifier = Modifier.fullWidthButton(), text = stringResource(R.string.component_button_enabled), onClick = {}, iconRes = R.drawable.ic_search)
+    OdsButtonText(
         modifier = Modifier.fullWidthButton(false),
         text = stringResource(R.string.component_button_disabled),
         onClick = {},
@@ -37,17 +37,17 @@ fun TextButtons() {
     )
 
     Subtitle(R.string.component_buttons_text_subtitle_primary)
-    OdsTextButton(modifier = Modifier.fullWidthButton(), text = stringResource(R.string.component_button_enabled), onClick = {}, hasPrimaryColor = true)
-    OdsTextButton(modifier = Modifier.fullWidthButton(false), text = stringResource(R.string.component_button_disabled), onClick = {}, enabled = false, hasPrimaryColor = true)
+    OdsButtonText(modifier = Modifier.fullWidthButton(), text = stringResource(R.string.component_button_enabled), onClick = {}, hasPrimaryColor = true)
+    OdsButtonText(modifier = Modifier.fullWidthButton(false), text = stringResource(R.string.component_button_disabled), onClick = {}, enabled = false, hasPrimaryColor = true)
 
-    OdsTextButton(
+    OdsButtonText(
         modifier = Modifier.fullWidthButton(),
         text = stringResource(R.string.component_button_enabled),
         onClick = {},
         iconRes = R.drawable.ic_search,
         hasPrimaryColor = true
     )
-    OdsTextButton(
+    OdsButtonText(
         modifier = Modifier.fullWidthButton(false),
         text = stringResource(R.string.component_button_disabled),
         onClick = {},
@@ -66,8 +66,8 @@ fun TextButtons() {
 
 @Composable
 private fun TextButtonsFullWidthAppearanceForced(displayAppearance: OdsDisplayAppearance) {
-    OdsTextButton(modifier = Modifier.fullWidthButton(), text = stringResource(R.string.component_button_enabled), onClick = {}, displayAppearance = displayAppearance)
-    OdsTextButton(
+    OdsButtonText(modifier = Modifier.fullWidthButton(), text = stringResource(R.string.component_button_enabled), onClick = {}, displayAppearance = displayAppearance)
+    OdsButtonText(
         modifier = Modifier.fullWidthButton(false),
         text = stringResource(R.string.component_button_disabled),
         onClick = {},

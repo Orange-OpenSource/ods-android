@@ -30,7 +30,7 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.unit.dp
 import com.orange.ods.R
-import com.orange.ods.compose.component.button.OdsTextButton
+import com.orange.ods.compose.component.button.OdsButtonText
 
 /**
  * <a href="https://system.design.orange.com/0c1af118d/p/272739-cards/b/991690" target="_blank">ODS Card</a>.
@@ -110,14 +110,14 @@ fun OdsCardImageFirst(
                 horizontalArrangement = Arrangement.spacedBy(8.dp)
             ) {
                 button1Text?.let {
-                    OdsTextButton(
+                    OdsButtonText(
                         text = it,
                         onClick = { onButton1Click?.invoke() },
                         hasPrimaryColor = true
                     )
                 }
                 button2Text?.let {
-                    OdsTextButton(
+                    OdsButtonText(
                         text = it,
                         onClick = { onButton2Click?.invoke() },
                         hasPrimaryColor = true

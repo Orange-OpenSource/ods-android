@@ -21,7 +21,7 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.dimensionResource
-import com.orange.ods.compose.component.button.OdsToggleButton
+import com.orange.ods.compose.component.button.OdsButtonToggle
 import com.orange.ods.compose.theme.OdsDisplayAppearance
 import com.orange.ods.demo.R
 import com.orange.ods.demo.ui.utils.Subtitle
@@ -36,7 +36,7 @@ fun ToggleButtons() {
 
     Subtitle(R.string.component_buttons_toggle_subtitle_single)
     var toggleChecked by remember { mutableStateOf(false) }
-    OdsToggleButton(
+    OdsButtonToggle(
         checked = toggleChecked,
         onCheckedChange = { toggleChecked = it },
         iconRes = R.drawable.ic_module_molecule,
@@ -64,7 +64,7 @@ private fun ToggleGroup() {
         horizontalArrangement = Arrangement.Center
     ) {
         iconsRes.forEach { iconRes ->
-            OdsToggleButton(
+            OdsButtonToggle(
                 checked = checkedIcon == iconRes,
                 onCheckedChange = { checkedIcon = iconRes },
                 iconRes = iconRes,
@@ -77,7 +77,7 @@ private fun ToggleGroup() {
 @Composable
 private fun ToggleButtonFullWidthAppearanceForced(displayAppearance: OdsDisplayAppearance) {
     var toggleChecked by remember { mutableStateOf(false) }
-    OdsToggleButton(
+    OdsButtonToggle(
         checked = toggleChecked,
         onCheckedChange = { toggleChecked = it },
         iconRes = R.drawable.ic_module_molecule,

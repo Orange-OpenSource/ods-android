@@ -46,7 +46,7 @@ import com.orange.ods.compose.theme.odsLightThemeColors
  * surface. By default the appearance applied is based on the system night mode value.
  */
 @Composable
-fun OdsTextButton(
+fun OdsButtonText(
     text: String,
     onClick: () -> Unit,
     modifier: Modifier = Modifier,
@@ -64,8 +64,8 @@ fun OdsTextButton(
             interactionSource = remember { MutableInteractionSource() },
             shape = odsButtonShape,
             colors = ButtonDefaults.textButtonColors(
-                contentColor = MaterialTheme.colors.textButtonColor(displayAppearance, hasPrimaryColor),
-                disabledContentColor = MaterialTheme.colors.textButtonDisabledColor(displayAppearance)
+                contentColor = MaterialTheme.colors.buttonTextColor(displayAppearance, hasPrimaryColor),
+                disabledContentColor = MaterialTheme.colors.buttonTextDisabledColor(displayAppearance)
             )
         ) {
             iconRes?.let { ButtonIcon(it) }
@@ -75,7 +75,7 @@ fun OdsTextButton(
 }
 
 @Composable
-private fun Colors.textButtonColor(displayAppearance: OdsDisplayAppearance, hasPrimaryColor: Boolean) =
+private fun Colors.buttonTextColor(displayAppearance: OdsDisplayAppearance, hasPrimaryColor: Boolean) =
     when (displayAppearance) {
         OdsDisplayAppearance.DEFAULT -> if (hasPrimaryColor) MaterialTheme.colors.primary else MaterialTheme.colors.onSurface
         OdsDisplayAppearance.ON_DARK -> if (hasPrimaryColor) odsDarkThemeColors.primary else odsDarkThemeColors.onSurface
@@ -83,5 +83,5 @@ private fun Colors.textButtonColor(displayAppearance: OdsDisplayAppearance, hasP
     }
 
 @Composable
-private fun Colors.textButtonDisabledColor(displayAppearance: OdsDisplayAppearance) =
-    textButtonColor(displayAppearance = displayAppearance, hasPrimaryColor = false).copy(alpha = ContentAlpha.disabled)
+private fun Colors.buttonTextDisabledColor(displayAppearance: OdsDisplayAppearance) =
+    buttonTextColor(displayAppearance = displayAppearance, hasPrimaryColor = false).copy(alpha = ContentAlpha.disabled)
