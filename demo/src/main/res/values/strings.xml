@@ -56,6 +56,8 @@
     <string name="component_buttons_toggle_title">Toggle buttons</string>
     <string name="component_buttons_toggle_subtitle_group">Group</string>
     <string name="component_buttons_toggle_subtitle_single">Single</string>
+    <string name="component_button_enabled">Enabled</string>
+    <string name="component_button_disabled">Disabled</string>
 
     <!-- Components Cards -->
     <string name="component_card_image_first">Image first card view</string>
