@@ -13,7 +13,6 @@ package com.orange.ods.demo.ui.components
 import androidx.annotation.DrawableRes
 import androidx.annotation.StringRes
 import androidx.compose.foundation.Image
-import androidx.compose.foundation.layout.ColumnScope
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.runtime.Composable
@@ -25,7 +24,7 @@ import com.orange.ods.compose.text.OdsTextBody1
 import com.orange.ods.demo.R
 
 @Composable
-fun ColumnScope.ComponentHeader(
+fun ComponentHeader(
     @DrawableRes imageRes: Int,
     @StringRes description: Int
 ) {
