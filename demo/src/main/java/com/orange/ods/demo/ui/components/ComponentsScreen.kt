@@ -10,7 +10,13 @@
 
 package com.orange.ods.demo.ui.components
 
-import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.RowScope
+import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.runtime.Composable
@@ -22,6 +28,7 @@ import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
 import com.orange.ods.compose.component.OdsCardSmall
 import com.orange.ods.compose.theme.OdsMaterialTheme
+import com.orange.ods.demo.ui.components.cards.ComponentsCardItem
 
 @Composable
 fun ComponentsScreen(navController: NavController) {

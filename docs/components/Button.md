@@ -84,10 +84,10 @@ In the layout:
 
 ### Adding a text button in Jetpack Compose
 
-Use the `OdsTextButton` composable:
+Use the `OdsButtonText` composable:
 
 ```kotlin
-        OdsTextButton(text = "Text button", onClick = {}, enabled = true)
+        OdsButtonText(text = "Text button", onClick = {}, enabled = true)
 ```
 
 ## Outlined button
@@ -95,7 +95,7 @@ Use the `OdsTextButton` composable:
 Outlined buttons are medium-emphasis buttons. They contain actions that are important, but aren’t
 the primary action in an app.
 
-  ![OutlinedButton](images/button_outlined_light.png) ![OutlinedButton dark](images/button_outlined_dark.png)
+  ![ButtonOutlined](images/button_outlined_light.png) ![ButtonOutlined dark](images/button_outlined_dark.png)
 
 ### Adding an outlined button in XML
 
@@ -128,10 +128,10 @@ In the layout:
 
 ### Adding an outlined button in Jetpack Compose
 
-Use the `OdsOutlinedButton` composable:
+Use the `OdsButtonOutlined` composable:
 
 ```kotlin
-        OdsOutlinedButton(text = "Text button", onClick = {}, iconRes = R.drawable.ic_search, enabled = true)
+        OdsButtonOutlined(text = "Text button", onClick = {}, iconRes = R.drawable.ic_search, enabled = true)
 ```
 
 ## Contained button
@@ -194,7 +194,7 @@ To emphasize groups of related toggle buttons, a group should share a common con
 
 Orange Toggle Buttons refers to Material Design Toggle Buttons.
 
-  ![ToggleButton](images/button_toggle_light.png) ![ToggleButton dark](images/button_toggle_dark.png)
+  ![ButtonToggle](images/button_toggle_light.png) ![ButtonToggle dark](images/button_toggle_dark.png)
 
 ### Adding a toggle button in XML
 
@@ -256,9 +256,9 @@ In the layout:
 
 #### Adding a toggle button in Jetpack Compose
 
-Use the `OdsToggleButton` composable:
+Use the `OdsButtonToggle` composable:
 
 ```kotlin
-OdsToggleButton(checked = false, onCheckedChange = { }, iconRes = iconRes, contentDescription = "action")
+OdsButtonToggle(checked = false, onCheckedChange = { }, iconRes = iconRes, contentDescription = "action")
 ```
 

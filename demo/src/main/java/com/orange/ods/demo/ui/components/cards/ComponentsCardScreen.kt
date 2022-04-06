@@ -10,7 +10,6 @@
 
 package com.orange.ods.demo.ui.components.cards
 
-import androidx.compose.foundation.Image
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -20,17 +19,16 @@ import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.Divider
 import androidx.compose.material.ExperimentalMaterialApi
-import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavHostController
 import com.orange.ods.compose.theme.Grey300
 import com.orange.ods.demo.R
 import com.orange.ods.demo.ui.ComponentsNavigationItem
+import com.orange.ods.demo.ui.components.ComponentHeader
 
 @ExperimentalMaterialApi
 @Composable
@@ -38,16 +36,11 @@ fun ComponentsCardScreen(navController: NavHostController) {
     Column(
         modifier = Modifier.verticalScroll(rememberScrollState())
     ) {
-        Image(
-            painter = painterResource(id = R.drawable.picture_component_cards),
-            modifier = Modifier.fillMaxWidth(),
-            contentDescription = null
+        ComponentHeader(
+            imageRes = R.drawable.picture_component_cards,
+            description = R.string.component_card_description
         )
-        Text(
-            text = stringResource(id = R.string.component_card_description),
-            modifier = Modifier.padding(16.dp),
-            style = MaterialTheme.typography.body1
-        )
+
         Column(
             modifier = Modifier.padding(top = 16.dp)
         ) {

@@ -30,8 +30,8 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 import com.orange.ods.compose.theme.OdsDisplayAppearance
-import com.orange.ods.compose.theme.darkThemeColors
-import com.orange.ods.compose.theme.lightThemeColors
+import com.orange.ods.compose.theme.odsDarkThemeColors
+import com.orange.ods.compose.theme.odsLightThemeColors
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.emptyFlow
 
@@ -58,7 +58,7 @@ class DisabledInteractionSource : MutableInteractionSource {
  * surface. By default the appearance applied is based on the system night mode value.
  */
 @Composable
-fun OdsToggleButton(
+fun OdsButtonToggle(
     checked: Boolean,
     onCheckedChange: (Boolean) -> Unit,
     @DrawableRes
@@ -75,13 +75,13 @@ fun OdsToggleButton(
         enabled = enabled,
         interactionSource = remember { DisabledInteractionSource() }
     ) {
-        val iconTint by animateColorAsState(MaterialTheme.colors.toggleButtonIconColor(displayAppearance, checked))
+        val iconTint by animateColorAsState(MaterialTheme.colors.buttonToggleIconColor(displayAppearance, checked))
         val backgroundAlpha by animateFloatAsState(if (checked) 0.12f else 0f)
         Box(
             modifier = Modifier
                 .background(
                     color = MaterialTheme.colors
-                        .toggleButtonBackgroundColor(displayAppearance)
+                        .buttonToggleBackgroundColor(displayAppearance)
                         .copy(alpha = backgroundAlpha)
                 )
                 .padding(12.dp)
@@ -96,17 +96,17 @@ fun OdsToggleButton(
 }
 
 @Composable
-private fun Colors.toggleButtonIconColor(displayAppearance: OdsDisplayAppearance, checked: Boolean) =
+private fun Colors.buttonToggleIconColor(displayAppearance: OdsDisplayAppearance, checked: Boolean) =
     when (displayAppearance) {
         OdsDisplayAppearance.DEFAULT -> if (checked) MaterialTheme.colors.primary else MaterialTheme.colors.onSurface
-        OdsDisplayAppearance.ON_DARK -> if (checked) darkThemeColors.primary else darkThemeColors.onSurface
-        OdsDisplayAppearance.ON_LIGHT -> if (checked) lightThemeColors.primary else lightThemeColors.onSurface
+        OdsDisplayAppearance.ON_DARK -> if (checked) odsDarkThemeColors.primary else odsDarkThemeColors.onSurface
+        OdsDisplayAppearance.ON_LIGHT -> if (checked) odsLightThemeColors.primary else odsLightThemeColors.onSurface
     }
 
 @Composable
-private fun Colors.toggleButtonBackgroundColor(displayAppearance: OdsDisplayAppearance) =
+private fun Colors.buttonToggleBackgroundColor(displayAppearance: OdsDisplayAppearance) =
     when (displayAppearance) {
         OdsDisplayAppearance.DEFAULT -> MaterialTheme.colors.primary
-        OdsDisplayAppearance.ON_DARK -> darkThemeColors.primary
-        OdsDisplayAppearance.ON_LIGHT -> lightThemeColors.primary
+        OdsDisplayAppearance.ON_DARK -> odsDarkThemeColors.primary
+        OdsDisplayAppearance.ON_LIGHT -> odsLightThemeColors.primary
     }

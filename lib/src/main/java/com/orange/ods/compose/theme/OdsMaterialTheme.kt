@@ -28,7 +28,7 @@ fun OdsMaterialTheme(
     content: @Composable () -> Unit
 ) {
     MaterialTheme(
-        colors = if (darkTheme) darkThemeColors else lightThemeColors,
+        colors = if (darkTheme) odsDarkThemeColors else odsLightThemeColors,
         typography = OdsTypography
     ) {
         CompositionLocalProvider(
@@ -38,7 +38,7 @@ fun OdsMaterialTheme(
     }
 }
 
-internal val lightThemeColors = lightColors(
+val odsLightThemeColors = lightColors(
     primary = Orange200,
     primaryVariant = Orange200,
     secondary = Orange200,
@@ -53,7 +53,7 @@ internal val lightThemeColors = lightColors(
     onError = Black900
 )
 
-internal val darkThemeColors = darkColors(
+val odsDarkThemeColors = darkColors(
     primary = Orange100,
     primaryVariant = Orange200,
     secondary = Orange200,

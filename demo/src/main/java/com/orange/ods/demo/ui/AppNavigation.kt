@@ -20,15 +20,15 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import com.orange.ods.demo.R
 import com.orange.ods.demo.ui.about.AboutScreen
-import com.orange.ods.demo.ui.components.cards.ComponentsCardScreen
-import com.orange.ods.demo.ui.components.cards.ComponentsCardImageFirstScreen
-import com.orange.ods.demo.ui.components.cards.ComponentsCardSmallScreen
-import com.orange.ods.demo.ui.components.ComponentsButtonsScreen
 import com.orange.ods.demo.ui.components.ComponentsControlsScreen
 import com.orange.ods.demo.ui.components.ComponentsScreen
-import com.orange.ods.demo.ui.guidelines.colors.GuidelinesColorScreen
+import com.orange.ods.demo.ui.components.buttons.ComponentsButtonsScreen
+import com.orange.ods.demo.ui.components.cards.ComponentsCardImageFirstScreen
+import com.orange.ods.demo.ui.components.cards.ComponentsCardScreen
+import com.orange.ods.demo.ui.components.cards.ComponentsCardSmallScreen
 import com.orange.ods.demo.ui.guidelines.GuidelinesScreen
 import com.orange.ods.demo.ui.guidelines.GuidelinesTypographyScreen
+import com.orange.ods.demo.ui.guidelines.colors.GuidelinesColorScreen
 import com.orange.ods.demo.ui.modules.ModulesScreen
 
 sealed class NavigationItem(
