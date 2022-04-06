@@ -19,7 +19,7 @@ import com.orange.ods.demo.R
 import com.orange.ods.demo.ui.utils.Title
 
 @Composable
-fun OutlinedButtons() {
+fun ButtonsOutlined() {
     Title(R.string.component_buttons_outlined_title)
     OdsButtonOutlined(modifier = Modifier.fullWidthButton(), text = stringResource(R.string.component_button_enabled), onClick = {})
     OdsButtonOutlined(modifier = Modifier.fullWidthButton(false), text = stringResource(R.string.component_button_disabled), onClick = {}, enabled = false)

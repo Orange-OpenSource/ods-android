@@ -59,10 +59,10 @@ fun ComponentsButtonsScreen() {
         )
 
         Title(R.string.component_buttons_contained_title)
-        ContainedButtons()
-        OutlinedButtons()
-        TextButtons()
-        ToggleButtons()
+        ButtonsContained()
+        ButtonsOutlined()
+        ButtonsText()
+        ButtonsToggle()
     }
 }
 

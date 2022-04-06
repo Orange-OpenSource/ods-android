@@ -19,7 +19,7 @@ import com.orange.ods.demo.R
 import com.orange.ods.demo.ui.utils.Subtitle
 
 @Composable
-fun ContainedButtons() {
+fun ButtonsContained() {
     Subtitle(R.string.component_buttons_contained_subtitle_primary)
     OdsButton(
         modifier = Modifier

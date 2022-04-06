@@ -28,7 +28,7 @@ import com.orange.ods.demo.ui.utils.Subtitle
 import com.orange.ods.demo.ui.utils.Title
 
 @Composable
-fun ToggleButtons() {
+fun ButtonsToggle() {
     Title(R.string.component_buttons_toggle_title)
 
     Subtitle(R.string.component_buttons_toggle_subtitle_group)

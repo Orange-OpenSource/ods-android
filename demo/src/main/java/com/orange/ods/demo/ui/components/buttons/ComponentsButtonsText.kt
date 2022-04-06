@@ -20,7 +20,7 @@ import com.orange.ods.demo.ui.utils.Subtitle
 import com.orange.ods.demo.ui.utils.Title
 
 @Composable
-fun TextButtons() {
+fun ButtonsText() {
     Title(R.string.component_buttons_text_title)
 
     Subtitle(R.string.component_buttons_text_subtitle_default)
