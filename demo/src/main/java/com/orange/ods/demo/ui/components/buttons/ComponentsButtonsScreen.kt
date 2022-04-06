@@ -23,6 +23,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.composed
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.dimensionResource
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import com.orange.ods.compose.text.OdsTextBody1
 import com.orange.ods.compose.text.OdsTextH5
@@ -45,14 +46,14 @@ fun ComponentsButtonsScreen() {
         )
 
         OdsTextH5(
-            textRes = R.string.component_buttons_title_try,
+            text = stringResource(R.string.component_buttons_title_try),
             modifier = Modifier
                 .padding(top = dimensionResource(R.dimen.ods_spacing_m))
                 .padding(horizontal = dimensionResource(R.dimen.ods_screen_horizontal_margin))
         )
 
         OdsTextBody1(
-            textRes = R.string.component_buttons_preamble,
+            text = stringResource(R.string.component_buttons_preamble),
             modifier = Modifier
                 .padding(top = dimensionResource(id = R.dimen.ods_spacing_s))
                 .padding(horizontal = dimensionResource(R.dimen.ods_screen_horizontal_margin))

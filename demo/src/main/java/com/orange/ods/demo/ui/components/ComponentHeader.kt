@@ -20,6 +20,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.res.stringResource
 import com.orange.ods.compose.text.OdsTextBody1
 import com.orange.ods.demo.R
 
@@ -35,7 +36,7 @@ fun ComponentHeader(
         contentDescription = null
     )
     OdsTextBody1(
-        textRes = description,
+        text = stringResource(description),
         modifier = Modifier
             .padding(
                 top = dimensionResource(id = R.dimen.ods_spacing_s)

@@ -18,6 +18,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.dimensionResource
+import androidx.compose.ui.res.stringResource
 import com.orange.ods.compose.text.OdsTextH5
 import com.orange.ods.compose.text.OdsTextSubtitle1
 import com.orange.ods.compose.theme.OdsDisplayAppearance
@@ -28,7 +29,7 @@ import com.orange.ods.demo.R
 @Composable
 fun Title(@StringRes textRes: Int) {
     OdsTextH5(
-        textRes = textRes,
+        text = stringResource(textRes),
         modifier = Modifier
             .fillMaxWidth()
             .padding(top = dimensionResource(R.dimen.ods_spacing_l))
@@ -44,7 +45,7 @@ fun Subtitle(@StringRes textRes: Int, displayAppearance: OdsDisplayAppearance = 
         OdsDisplayAppearance.ON_LIGHT -> odsLightThemeColors.background
     }
     OdsTextSubtitle1(
-        textRes = textRes,
+        text = stringResource(textRes),
         modifier = Modifier
             .fillMaxWidth()
             .background(backgroundColor)
