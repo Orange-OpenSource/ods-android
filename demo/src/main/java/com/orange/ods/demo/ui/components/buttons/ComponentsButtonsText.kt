@@ -10,7 +10,6 @@
 
 package com.orange.ods.demo.ui.components.buttons
 
-import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import com.orange.ods.compose.component.button.OdsTextButton
@@ -37,14 +36,11 @@ fun TextButtons() {
     OdsTextButton(modifier = Modifier.fullWidthButton(), text = "Enabled", onClick = {}, iconRes = R.drawable.ic_search, hasPrimaryColor = true)
     OdsTextButton(modifier = Modifier.fullWidthButton(false), text = "Disabled", onClick = {}, enabled = false, iconRes = R.drawable.ic_search, hasPrimaryColor = true)
 
-    if (isSystemInDarkTheme()) {
-        LightSurface {
-            TextButtonsFullWidthAppearanceForced(OdsDisplayAppearance.ON_LIGHT)
-        }
-    } else {
-        DarkSurface {
-            TextButtonsFullWidthAppearanceForced(OdsDisplayAppearance.ON_DARK)
-        }
+    LightSurface {
+        TextButtonsFullWidthAppearanceForced(OdsDisplayAppearance.ON_LIGHT)
+    }
+    DarkSurface {
+        TextButtonsFullWidthAppearanceForced(OdsDisplayAppearance.ON_DARK)
     }
 }
 

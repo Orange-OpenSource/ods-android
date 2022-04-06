@@ -10,7 +10,6 @@
 
 package com.orange.ods.demo.ui.components.buttons
 
-import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import com.orange.ods.compose.component.button.OdsButton
@@ -79,14 +78,11 @@ fun ContainedButtons() {
         enabled = false,
     )
 
-    if (isSystemInDarkTheme()) {
-        LightSurface {
-            ContainedButtonsFullWidthAppearanceForced(OdsDisplayAppearance.ON_LIGHT)
-        }
-    } else {
-        DarkSurface {
-            ContainedButtonsFullWidthAppearanceForced(OdsDisplayAppearance.ON_DARK)
-        }
+    LightSurface {
+        ContainedButtonsFullWidthAppearanceForced(OdsDisplayAppearance.ON_LIGHT)
+    }
+    DarkSurface {
+        ContainedButtonsFullWidthAppearanceForced(OdsDisplayAppearance.ON_DARK)
     }
 }
 

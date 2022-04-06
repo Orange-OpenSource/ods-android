@@ -10,7 +10,6 @@
 
 package com.orange.ods.demo.ui.components.buttons
 
-import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -47,14 +46,11 @@ fun ToggleButtons() {
             .padding(top = dimensionResource(R.dimen.ods_spacing_xs))
     )
 
-    if (isSystemInDarkTheme()) {
-        LightSurface {
-            ToggleButtonFullWidthAppearanceForced(OdsDisplayAppearance.ON_LIGHT)
-        }
-    } else {
-        DarkSurface {
-            ToggleButtonFullWidthAppearanceForced(OdsDisplayAppearance.ON_DARK)
-        }
+    LightSurface {
+        ToggleButtonFullWidthAppearanceForced(OdsDisplayAppearance.ON_LIGHT)
+    }
+    DarkSurface {
+        ToggleButtonFullWidthAppearanceForced(OdsDisplayAppearance.ON_DARK)
     }
 }
 

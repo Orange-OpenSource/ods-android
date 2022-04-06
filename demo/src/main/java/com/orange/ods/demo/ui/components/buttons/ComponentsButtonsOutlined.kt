@@ -10,7 +10,6 @@
 
 package com.orange.ods.demo.ui.components.buttons
 
-import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import com.orange.ods.compose.component.button.OdsOutlinedButton
@@ -27,14 +26,11 @@ fun OutlinedButtons() {
     OdsOutlinedButton(modifier = Modifier.fullWidthButton(), text = "Enabled", onClick = {}, iconRes = R.drawable.ic_search)
     OdsOutlinedButton(modifier = Modifier.fullWidthButton(false), text = "Disabled", onClick = {}, enabled = false, iconRes = R.drawable.ic_search)
 
-    if (isSystemInDarkTheme()) {
-        LightSurface {
-            OutlinedButtonsFullWidthAppearanceForced(OdsDisplayAppearance.ON_LIGHT)
-        }
-    } else {
-        DarkSurface {
-            OutlinedButtonsFullWidthAppearanceForced(OdsDisplayAppearance.ON_DARK)
-        }
+    LightSurface {
+        OutlinedButtonsFullWidthAppearanceForced(OdsDisplayAppearance.ON_LIGHT)
+    }
+    DarkSurface {
+        OutlinedButtonsFullWidthAppearanceForced(OdsDisplayAppearance.ON_DARK)
     }
 }
 
