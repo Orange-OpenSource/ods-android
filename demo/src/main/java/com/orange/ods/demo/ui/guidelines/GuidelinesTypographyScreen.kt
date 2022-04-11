@@ -10,7 +10,6 @@
 
 package com.orange.ods.demo.ui.guidelines
 
-import android.content.Context
 import androidx.annotation.AttrRes
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -32,7 +31,7 @@ import androidx.compose.ui.text.withStyle
 import androidx.compose.ui.unit.dp
 import com.orange.ods.compose.theme.ObsGrey700
 import com.orange.ods.demo.R
-import com.orange.ods.demo.ui.utils.getStringName
+import com.orange.ods.demo.ui.utilities.getStringName
 
 data class TypographyItem(
     val name: String,

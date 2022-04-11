@@ -8,7 +8,7 @@
  * /
  */
 
-package com.orange.ods.demo.ui.utils
+package com.orange.ods.demo.ui.utilities
 
 import androidx.annotation.StringRes
 import androidx.compose.foundation.background

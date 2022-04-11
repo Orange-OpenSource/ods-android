@@ -8,10 +8,9 @@
  * /
  */
 
-package com.orange.ods.demo.ui.utils
+package com.orange.ods.demo.ui.utilities
 
 import android.content.Context
-import androidx.annotation.ColorRes
 
 //Method to get the resource name with the color id
 fun Context.getStringName(res: Int): String =
