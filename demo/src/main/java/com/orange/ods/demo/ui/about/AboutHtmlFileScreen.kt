@@ -20,6 +20,8 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.viewinterop.AndroidView
 
+private const val FILE_PATH = "file:///android_res/raw/"
+
 @Composable
 fun AboutHtmlFileScreen(fileName: String?) {
     val context = LocalContext.current
@@ -28,7 +30,7 @@ fun AboutHtmlFileScreen(fileName: String?) {
         factory = {
             WebView(context).apply {
                 webViewClient = WebViewClient()
-                loadUrl("file:///android_res/raw/${fileName}")
+                loadUrl("${FILE_PATH}${fileName}")
                 setBackgroundColor(Color.TRANSPARENT)
             }
         })
