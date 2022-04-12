@@ -10,21 +10,28 @@
 
 package com.orange.ods.demo.ui.components.cards
 
+import android.content.Context
 import android.widget.Toast
-import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
-import androidx.compose.material.*
+import androidx.compose.material.BottomSheetScaffold
+import androidx.compose.material.ExperimentalMaterialApi
+import androidx.compose.material.rememberBottomSheetScaffoldState
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.MutableState
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
-import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.unit.dp
 import com.orange.ods.compose.component.OdsCardImageFirst
+import com.orange.ods.compose.text.OdsTextBody2
 import com.orange.ods.demo.R
+import com.orange.ods.demo.ui.utilities.LabelledCheckbox
 
 @ExperimentalMaterialApi
 @Composable
@@ -42,71 +49,42 @@ fun ComponentsCardImageFirstScreen() {
         scaffoldState = scaffoldState,
         sheetPeekHeight = 56.dp,
         sheetContent = {
-            Text(
-                modifier = Modifier.padding(16.dp),
+            OdsTextBody2(
+                modifier = Modifier.padding(dimensionResource(id = R.dimen.ods_spacing_s)),
                 text = "Swipe up to Customize"
             )
-            LabelledCheckbox(subtitleIsChecked, "Subtitle")
-            LabelledCheckbox(textIsChecked, "Text")
-            LabelledCheckbox(button1IsChecked, "Button 1")
-            LabelledCheckbox(button2IsChecked, "Button 2")
+            LabelledCheckbox("Subtitle", subtitleIsChecked)
+            LabelledCheckbox("Text", textIsChecked)
+            LabelledCheckbox("Button 1", button1IsChecked)
+            LabelledCheckbox("Button 2", button2IsChecked)
         }
     ) {
         Column(
             modifier = Modifier
                 .fillMaxSize()
-                .padding(16.dp)
+                .padding(dimensionResource(id = R.dimen.ods_spacing_s))
                 .verticalScroll(state = rememberScrollState()),
-            verticalArrangement = Arrangement.spacedBy(16.dp)
+            verticalArrangement = Arrangement.spacedBy(dimensionResource(id = R.dimen.ods_spacing_s))
         ) {
             OdsCardImageFirst(
                 imageRes = R.drawable.picture_guideline_iconography,
                 title = "Title",
-                subtitle = if (subtitleIsChecked.value) {
-                    "SubTitle"
-                } else {
-                    null
-                },
+                subtitle = if (subtitleIsChecked.value) "SubTitle" else null,
                 text = if (textIsChecked.value) {
                     "Lorem ipsum dolor sit amet, at blandit nec tristique porttitor."
                 } else {
                     null
                 },
-                onCardClick = {
-                    Toast.makeText(context, "Click on Card", Toast.LENGTH_LONG).show()
-                },
-                button1Text = if (button1IsChecked.value) {
-                    "Button 1"
-                } else {
-                    null
-                },
-                onButton1Click = {
-                    Toast.makeText(context, "Click on Button 1", Toast.LENGTH_LONG).show()
-                },
-                button2Text = if (button2IsChecked.value) {
-                    "Button 2"
-                } else {
-                    null
-                },
-                onButton2Click = {
-                    Toast.makeText(context, "Click on Button 2", Toast.LENGTH_LONG).show()
-                }
+                onCardClick = { displayToast(context, "Click on Card") },
+                button1Text = if (button1IsChecked.value) "Button 1" else null,
+                onButton1Click = { displayToast(context, "Click on Button 2") },
+                button2Text = if (button2IsChecked.value) "Button 2" else null,
+                onButton2Click = { displayToast(context, "Click on Button 2") }
             )
         }
     }
 }
 
-@Composable
-fun LabelledCheckbox(isChecked: MutableState<Boolean>, label: String) {
-    Row(
-        modifier = Modifier.padding(0.dp),
-        verticalAlignment = Alignment.CenterVertically
-    ) {
-        Checkbox(
-            checked = isChecked.value,
-            onCheckedChange = { isChecked.value = it },
-            enabled = true,
-        )
-        Text(text = label)
-    }
+private fun displayToast(context: Context, text: String) {
+    Toast.makeText(context, text, Toast.LENGTH_LONG).show()
 }

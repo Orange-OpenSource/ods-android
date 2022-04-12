@@ -41,6 +41,9 @@
     <string name="component_bottom_navigation">Bottom Navigation</string>
     <string name="component_force_on_dark">Forced on dark</string>
     <string name="component_force_on_light">Forced on light</string>
+    <string name="component_customize">Swipe up to customize</string>
+    <string name="component_state_enabled">Enabled</string>
+    <string name="component_state_disabled">Disabled</string>
 
     <!-- Components Buttons -->
     <string name="component_buttons_description">A button allows a user to perform an action or to navigate to another page. It contains a text label and a supporting icon can be displayed.</string>
@@ -56,12 +59,10 @@
     <string name="component_buttons_toggle_title">Toggle buttons</string>
     <string name="component_buttons_toggle_subtitle_group">Group</string>
     <string name="component_buttons_toggle_subtitle_single">Single</string>
-    <string name="component_button_enabled">Enabled</string>
-    <string name="component_button_disabled">Disabled</string>
 
     <!-- Components Cards -->
-    <string name="component_card_image_first">Image first card view</string>
-    <string name="component_card_small">Small card view</string>
+    <string name="component_card_image_first">Card image first</string>
+    <string name="component_card_small">Card small</string>
     <string name="component_card_description">Cards are important components that can be used to organise and present a number of different types of related information.</string>
 
     <!-- Component Controls -->

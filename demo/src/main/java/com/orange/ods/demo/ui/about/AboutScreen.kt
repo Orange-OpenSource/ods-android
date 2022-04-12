@@ -40,11 +40,11 @@ import com.orange.ods.demo.ui.AboutNavigationItem
 import com.orange.ods.demo.ui.utilities.extension.orElse
 import com.orange.ods.demo.ui.utilities.versionCode
 
-private data class AboutEntry(@StringRes val titleRes: Int, val fileName: String)
+private data class AboutMenuItem(@StringRes val titleRes: Int, val fileName: String)
 
-private val aboutEntries = listOf(
-    AboutEntry(R.string.about_menu_legal_notice, "about_legal_notice.html"),
-    AboutEntry(R.string.about_menu_privacy_policy, "about_privacy_policy.html")
+private val aboutMenuItems = listOf(
+    AboutMenuItem(R.string.about_menu_legal_notice, "about_legal_notice.html"),
+    AboutMenuItem(R.string.about_menu_privacy_policy, "about_privacy_policy.html")
 )
 
 @Composable
@@ -75,9 +75,9 @@ fun AboutScreen(navController: NavHostController) {
 
         Spacer(modifier = Modifier.height(dimensionResource(id = R.dimen.ods_spacing_s)))
 
-        for (aboutEntry in aboutEntries) {
-            OdsListItem(text = stringResource(id = aboutEntry.titleRes), modifier = Modifier.clickable {
-                navController.navigate(AboutNavigationItem.HtmlFile.route.plus("/${aboutEntry.titleRes}/${aboutEntry.fileName}"))
+        for (aboutMenuItem in aboutMenuItems) {
+            OdsListItem(text = stringResource(id = aboutMenuItem.titleRes), modifier = Modifier.clickable {
+                navController.navigate(AboutNavigationItem.HtmlFile.route.plus("/${aboutMenuItem.titleRes}/${aboutMenuItem.fileName}"))
             })
         }
     }

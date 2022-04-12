@@ -29,12 +29,12 @@ import com.orange.ods.demo.ui.utilities.Title
 
 @Composable
 fun ButtonsToggle() {
-    Title(R.string.component_buttons_toggle_title)
+    Title(R.string.component_buttons_toggle_title, withHorizontalPadding = true)
 
-    Subtitle(R.string.component_buttons_toggle_subtitle_group)
+    Subtitle(R.string.component_buttons_toggle_subtitle_group, withHorizontalPadding = true)
     ToggleGroup()
 
-    Subtitle(R.string.component_buttons_toggle_subtitle_single)
+    Subtitle(R.string.component_buttons_toggle_subtitle_single, withHorizontalPadding = true)
     var toggleChecked by remember { mutableStateOf(false) }
     OdsButtonToggle(
         checked = toggleChecked,

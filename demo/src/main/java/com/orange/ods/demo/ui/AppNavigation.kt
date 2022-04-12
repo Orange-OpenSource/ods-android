@@ -23,15 +23,15 @@ import androidx.navigation.navArgument
 import com.orange.ods.demo.R
 import com.orange.ods.demo.ui.about.AboutHtmlFileScreen
 import com.orange.ods.demo.ui.about.AboutScreen
-import com.orange.ods.demo.ui.components.ComponentsControlsScreen
 import com.orange.ods.demo.ui.components.ComponentsScreen
 import com.orange.ods.demo.ui.components.buttons.ComponentsButtonsScreen
 import com.orange.ods.demo.ui.components.cards.ComponentsCardImageFirstScreen
-import com.orange.ods.demo.ui.components.cards.ComponentsCardScreen
 import com.orange.ods.demo.ui.components.cards.ComponentsCardSmallScreen
+import com.orange.ods.demo.ui.components.cards.ComponentsCardsScreen
+import com.orange.ods.demo.ui.components.controls.ComponentsControlsScreen
 import com.orange.ods.demo.ui.guidelines.GuidelinesScreen
-import com.orange.ods.demo.ui.guidelines.GuidelinesTypographyScreen
-import com.orange.ods.demo.ui.guidelines.colors.GuidelinesColorScreen
+import com.orange.ods.demo.ui.guidelines.colors.GuidelinesColorsScreen
+import com.orange.ods.demo.ui.guidelines.typography.GuidelinesTypographyScreen
 import com.orange.ods.demo.ui.modules.ModulesScreen
 
 sealed class NavigationItem(
@@ -104,7 +104,7 @@ fun AppNavigation(navController: NavHostController, onSetScreenTitle: (String) -
         // Guidelines
         composable(GuidelinesNavigationItem.Color.route) {
             onSetScreenTitle(stringResource(id = GuidelinesNavigationItem.Color.title))
-            GuidelinesColorScreen()
+            GuidelinesColorsScreen()
         }
         composable(GuidelinesNavigationItem.Typography.route) {
             onSetScreenTitle(stringResource(id = GuidelinesNavigationItem.Typography.title))
@@ -118,7 +118,7 @@ fun AppNavigation(navController: NavHostController, onSetScreenTitle: (String) -
         }
         composable(ComponentsNavigationItem.Cards.route) {
             onSetScreenTitle(stringResource(id = ComponentsNavigationItem.Cards.title))
-            ComponentsCardScreen(navController)
+            ComponentsCardsScreen(navController)
         }
         composable(ComponentsNavigationItem.CardImageFirst.route) {
             onSetScreenTitle(stringResource(id = ComponentsNavigationItem.CardImageFirst.title))

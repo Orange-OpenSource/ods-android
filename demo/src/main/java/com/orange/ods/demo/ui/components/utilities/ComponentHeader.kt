@@ -8,7 +8,7 @@
  * /
  */
 
-package com.orange.ods.demo.ui.components
+package com.orange.ods.demo.ui.components.utilities
 
 import androidx.annotation.DrawableRes
 import androidx.annotation.StringRes

@@ -20,14 +20,14 @@ import com.orange.ods.demo.ui.utilities.Title
 
 @Composable
 fun ButtonsOutlined() {
-    Title(R.string.component_buttons_outlined_title)
-    OdsButtonOutlined(modifier = Modifier.fullWidthButton(), text = stringResource(R.string.component_button_enabled), onClick = {})
-    OdsButtonOutlined(modifier = Modifier.fullWidthButton(false), text = stringResource(R.string.component_button_disabled), onClick = {}, enabled = false)
+    Title(R.string.component_buttons_outlined_title, withHorizontalPadding = true)
+    OdsButtonOutlined(modifier = Modifier.fullWidthButton(), text = stringResource(R.string.component_state_enabled), onClick = {})
+    OdsButtonOutlined(modifier = Modifier.fullWidthButton(false), text = stringResource(R.string.component_state_disabled), onClick = {}, enabled = false)
 
-    OdsButtonOutlined(modifier = Modifier.fullWidthButton(), text = stringResource(R.string.component_button_enabled), onClick = {}, iconRes = R.drawable.ic_search)
+    OdsButtonOutlined(modifier = Modifier.fullWidthButton(), text = stringResource(R.string.component_state_enabled), onClick = {}, iconRes = R.drawable.ic_search)
     OdsButtonOutlined(
         modifier = Modifier.fullWidthButton(false),
-        text = stringResource(R.string.component_button_disabled),
+        text = stringResource(R.string.component_state_disabled),
         onClick = {},
         enabled = false,
         iconRes = R.drawable.ic_search
@@ -43,10 +43,10 @@ fun ButtonsOutlined() {
 
 @Composable
 private fun OutlinedButtonsFullWidthAppearanceForced(displayAppearance: OdsDisplayAppearance) {
-    OdsButtonOutlined(modifier = Modifier.fullWidthButton(), text = stringResource(R.string.component_button_enabled), onClick = {}, displayAppearance = displayAppearance)
+    OdsButtonOutlined(modifier = Modifier.fullWidthButton(), text = stringResource(R.string.component_state_enabled), onClick = {}, displayAppearance = displayAppearance)
     OdsButtonOutlined(
         modifier = Modifier.fullWidthButton(false),
-        text = stringResource(R.string.component_button_disabled),
+        text = stringResource(R.string.component_state_disabled),
         onClick = {},
         enabled = false,
         displayAppearance = displayAppearance

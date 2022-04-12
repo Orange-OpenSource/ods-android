@@ -10,7 +10,6 @@
 
 package com.orange.ods.demo.ui.guidelines.colors
 
-import androidx.annotation.StringRes
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
@@ -29,7 +28,6 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.material.MaterialTheme
-import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.MutableState
 import androidx.compose.runtime.mutableStateOf
@@ -37,54 +35,63 @@ import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.stringResource
-import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.window.Dialog
+import com.orange.ods.compose.text.OdsTextBody1
+import com.orange.ods.compose.text.OdsTextCaption
+import com.orange.ods.compose.text.OdsTextH5
+import com.orange.ods.compose.text.OdsTextH6
 import com.orange.ods.compose.theme.Black900
 import com.orange.ods.compose.theme.White100
 import com.orange.ods.demo.R
+import com.orange.ods.demo.ui.utilities.Title
 import com.orange.ods.demo.ui.utilities.getStringName
 
 @Composable
-fun GuidelinesColorScreen() {
+fun GuidelinesColorsScreen() {
     ColorList(getColorList(isSystemInDarkTheme()))
 }
 
 @Composable
-private fun ColorList(colors: List<ColorItem>) {
+private fun ColorList(colors: List<GuidelinesColorsItem>) {
     LazyColumn(
-        contentPadding = PaddingValues(start = 8.dp, end = 8.dp, bottom = 32.dp),
-        verticalArrangement = Arrangement.spacedBy(19.dp),
+        contentPadding = PaddingValues(
+            start = dimensionResource(id = R.dimen.ods_spacing_s),
+            end = dimensionResource(id = R.dimen.ods_spacing_s),
+            bottom = dimensionResource(id = R.dimen.ods_screen_vertical_margin)
+        ),
+        verticalArrangement = Arrangement.spacedBy(dimensionResource(id = R.dimen.ods_spacing_s)),
     ) {
         item {
-            Title(textRes = R.string.guideline_colour_core, paddingTop = 26.dp)
+            Title(textRes = R.string.guideline_colour_core)
         }
         items(colors.filter { it.colorType == ColorType.CORE }.chunked(2)) { rowColors ->
             Row(
-                horizontalArrangement = Arrangement.spacedBy(16.dp),
+                horizontalArrangement = Arrangement.spacedBy(dimensionResource(id = R.dimen.ods_spacing_s)),
             ) {
                 BigColorItem(color = rowColors[0])
                 BigColorItem(color = rowColors[1])
             }
         }
         item {
-            Title(textRes = R.string.guideline_colour_functional, paddingTop = 50.dp)
+            Title(textRes = R.string.guideline_colour_functional)
         }
         items(colors.filter { it.colorType == ColorType.FUNCTIONAL }.chunked(2)) { rowColors ->
             Row(
-                horizontalArrangement = Arrangement.spacedBy(16.dp),
+                horizontalArrangement = Arrangement.spacedBy(dimensionResource(id = R.dimen.ods_spacing_s)),
             ) {
                 BigColorItem(color = rowColors[0])
                 BigColorItem(color = rowColors[1])
             }
         }
         item {
-            Title(textRes = R.string.guideline_colour_supporting, paddingTop = 50.dp)
+            Title(textRes = R.string.guideline_colour_supporting)
         }
         items(colors.filter { it.colorType == ColorType.SUPPORTING }.chunked(3)) { rowColors ->
             Row(
-                horizontalArrangement = Arrangement.spacedBy(16.dp),
+                horizontalArrangement = Arrangement.spacedBy(dimensionResource(id = R.dimen.ods_spacing_s)),
             ) {
                 SmallColorItem(color = rowColors[0])
                 SmallColorItem(color = rowColors[1])
@@ -95,16 +102,7 @@ private fun ColorList(colors: List<ColorItem>) {
 }
 
 @Composable
-private fun Title(@StringRes textRes: Int, paddingTop: Dp) {
-    Text(
-        text = stringResource(id = textRes),
-        style = MaterialTheme.typography.h5,
-        modifier = Modifier.padding(start = 8.dp, end = 8.dp, top = paddingTop)
-    )
-}
-
-@Composable
-private fun RowScope.SmallColorItem(color: ColorItem) {
+private fun RowScope.SmallColorItem(color: GuidelinesColorsItem) {
     val openDialog = remember { mutableStateOf(false) }
     Column(
         modifier = Modifier
@@ -119,15 +117,11 @@ private fun RowScope.SmallColorItem(color: ColorItem) {
                 .fillMaxWidth()
                 .aspectRatio(1f)
         )
-        Text(
+        OdsTextH6(
             text = color.name,
-            style = MaterialTheme.typography.h5,
-            modifier = Modifier.padding(top = 3.dp)
+            modifier = Modifier.padding(top = dimensionResource(id = R.dimen.ods_spacing_xxs))
         )
-        Text(
-            text = color.hexValue,
-            style = MaterialTheme.typography.caption
-        )
+        OdsTextCaption(text = color.hexValue)
     }
     if (openDialog.value) {
         DialogColor(color = color, openDialog)
@@ -135,7 +129,7 @@ private fun RowScope.SmallColorItem(color: ColorItem) {
 }
 
 @Composable
-private fun RowScope.BigColorItem(color: ColorItem) {
+private fun RowScope.BigColorItem(color: GuidelinesColorsItem) {
     val openDialog = remember { mutableStateOf(false) }
     Column(
         modifier = Modifier
@@ -161,21 +155,18 @@ private fun RowScope.BigColorItem(color: ColorItem) {
                 }
             }
         )
-        Text(
+        OdsTextH6(
             text = color.name,
-            style = MaterialTheme.typography.h5,
-            modifier = Modifier.padding(top = 3.dp)
+            modifier = Modifier.padding(top = dimensionResource(id = R.dimen.ods_spacing_xxs))
         )
-        Text(text = color.jetPackName, style = MaterialTheme.typography.body1)
-        Text(
-            modifier = Modifier.padding(top = 2.dp),
-            text = color.hexValue,
-            style = MaterialTheme.typography.caption
+        OdsTextBody1(text = color.jetPackName)
+        OdsTextCaption(
+            modifier = Modifier.padding(top = dimensionResource(id = R.dimen.ods_spacing_xxxs)),
+            text = color.hexValue
         )
-        Text(
-            modifier = Modifier.padding(top = 2.dp),
-            text = color.rgbValue,
-            style = MaterialTheme.typography.caption
+        OdsTextCaption(
+            modifier = Modifier.padding(top = dimensionResource(id = R.dimen.ods_spacing_xxxs)),
+            text = color.rgbValue
         )
     }
     if (openDialog.value) {
@@ -184,7 +175,7 @@ private fun RowScope.BigColorItem(color: ColorItem) {
 }
 
 @Composable
-private fun DialogColor(color: ColorItem, openDialog: MutableState<Boolean>) {
+private fun DialogColor(color: GuidelinesColorsItem, openDialog: MutableState<Boolean>) {
     val context = LocalContext.current
     Dialog(
         onDismissRequest = { openDialog.value = false },
@@ -200,33 +191,27 @@ private fun DialogColor(color: ColorItem, openDialog: MutableState<Boolean>) {
                 modifier = Modifier
                     .background(color = MaterialTheme.colors.background)
                     .fillMaxWidth()
-                    .padding(start = 15.dp, end = 15.dp, top = 15.dp, bottom = 20.dp)
+                    .padding(dimensionResource(id = R.dimen.ods_spacing_s))
             ) {
-                Text(
-                    text = color.name,
-                    style = MaterialTheme.typography.h5,
+                OdsTextH5(text = color.name)
+                OdsTextBody1(
+                    modifier = Modifier.padding(top = dimensionResource(id = R.dimen.ods_spacing_xxs)),
+                    text = color.jetPackName
                 )
-                Text(
-                    modifier = Modifier.padding(top = 3.dp),
-                    text = color.jetPackName,
-                    style = MaterialTheme.typography.body1
+                OdsTextBody1(
+                    modifier = Modifier.padding(top = dimensionResource(id = R.dimen.ods_spacing_xs)),
+                    text = color.hexValue
                 )
-                Text(
-                    modifier = Modifier.padding(top = 7.dp),
-                    text = color.hexValue,
-                    style = MaterialTheme.typography.body1
+                OdsTextBody1(
+                    modifier = Modifier.padding(top = dimensionResource(id = R.dimen.ods_spacing_xs)),
+                    text = color.rgbValue
                 )
-                Text(
-                    modifier = Modifier.padding(top = 7.dp),
-                    text = color.rgbValue, style = MaterialTheme.typography.body1
-                )
-                Text(
-                    modifier = Modifier.padding(top = 7.dp),
+                OdsTextBody1(
+                    modifier = Modifier.padding(top = dimensionResource(id = R.dimen.ods_spacing_xs)),
                     text = stringResource(
                         id = R.string.guideline_colour_xml,
                         context.getStringName(color.xmlResourceValue)
-                    ),
-                    style = MaterialTheme.typography.body1
+                    )
                 )
             }
         }
@@ -234,8 +219,8 @@ private fun DialogColor(color: ColorItem, openDialog: MutableState<Boolean>) {
 }
 
 @Composable
-private fun getColorList(systemInDarkTheme: Boolean): List<ColorItem> {
-    return getCoreColorList(systemInDarkTheme)
-        .plus(getFunctionalColorList(systemInDarkTheme))
-        .plus(getSupportingColorList())
+private fun getColorList(systemInDarkTheme: Boolean): List<GuidelinesColorsItem> {
+    return getCoreColors(systemInDarkTheme)
+        .plus(getFunctionalColors(systemInDarkTheme))
+        .plus(getSupportingColors())
 }

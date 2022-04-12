@@ -31,7 +31,7 @@ import com.orange.ods.compose.theme.DarkSurfaceDefault
 import com.orange.ods.compose.theme.OdsDisplayAppearance
 import com.orange.ods.compose.theme.White100
 import com.orange.ods.demo.R
-import com.orange.ods.demo.ui.components.ComponentHeader
+import com.orange.ods.demo.ui.components.utilities.ComponentHeader
 import com.orange.ods.demo.ui.utilities.Subtitle
 import com.orange.ods.demo.ui.utilities.Title
 
@@ -59,7 +59,7 @@ fun ComponentsButtonsScreen() {
                 .padding(horizontal = dimensionResource(R.dimen.ods_screen_horizontal_margin))
         )
 
-        Title(R.string.component_buttons_contained_title)
+        Title(R.string.component_buttons_contained_title, withHorizontalPadding = true)
         ButtonsContained()
         ButtonsOutlined()
         ButtonsText()
@@ -78,7 +78,7 @@ fun Modifier.fullWidthButton(withTopPadding: Boolean = true) = composed {
 fun DarkSurface(content: @Composable ColumnScope.() -> Unit) {
     val backgroundColor = DarkSurfaceDefault
     Spacer(modifier = Modifier.padding(top = dimensionResource(R.dimen.ods_spacing_xs)))
-    Subtitle(textRes = R.string.component_force_on_dark, OdsDisplayAppearance.ON_DARK)
+    Subtitle(textRes = R.string.component_force_on_dark, OdsDisplayAppearance.ON_DARK, withHorizontalPadding = true)
     ForcedBackgroundColumn(color = backgroundColor, content = content)
 }
 
@@ -86,7 +86,7 @@ fun DarkSurface(content: @Composable ColumnScope.() -> Unit) {
 fun LightSurface(content: @Composable ColumnScope.() -> Unit) {
     val backgroundColor = White100
     Spacer(modifier = Modifier.padding(top = dimensionResource(R.dimen.ods_spacing_xs)))
-    Subtitle(textRes = R.string.component_force_on_light, OdsDisplayAppearance.ON_LIGHT)
+    Subtitle(textRes = R.string.component_force_on_light, OdsDisplayAppearance.ON_LIGHT, withHorizontalPadding = true)
     ForcedBackgroundColumn(color = backgroundColor, content = content)
 }
 
