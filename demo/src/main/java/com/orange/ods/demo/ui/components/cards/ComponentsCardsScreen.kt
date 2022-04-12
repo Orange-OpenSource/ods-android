@@ -31,6 +31,7 @@ private data class CardMenuItem(@StringRes val titleRes: Int, val route: String)
 
 private val cardMenuItems = listOf(
     CardMenuItem(R.string.component_card_image_first, ComponentsNavigationItem.CardImageFirst.route),
+    CardMenuItem(R.string.component_card_title_first, ComponentsNavigationItem.CardTitleFirst.route),
     CardMenuItem(R.string.component_card_small, ComponentsNavigationItem.CardSmall.route)
 )
 
