@@ -18,13 +18,11 @@ import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.stringResource
-import androidx.compose.ui.tooling.preview.Preview
-import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
-import androidx.navigation.compose.rememberNavController
 import com.orange.ods.compose.component.OdsCardImageFirst
-import com.orange.ods.compose.theme.OdsMaterialTheme
+import com.orange.ods.demo.R
 
 @Composable
 fun GuidelinesScreen(navController: NavController) {
@@ -32,40 +30,16 @@ fun GuidelinesScreen(navController: NavController) {
     Column(
         modifier = Modifier
             .fillMaxSize()
-            .padding(16.dp)
+            .padding(dimensionResource(id = R.dimen.ods_spacing_s))
             .verticalScroll(scrollState),
-        verticalArrangement = Arrangement.spacedBy(16.dp)
+        verticalArrangement = Arrangement.spacedBy(dimensionResource(id = R.dimen.ods_spacing_s))
     ) {
-        CardList(
-            //Add item in the list once ready
-            cards = listOf(
-                GuidelinesCardItem.Colour,
-                GuidelinesCardItem.Typography,
-                //GuidelinesCardItem.Iconography,
-                //GuidelinesCardItem.Imagery,
-            ),
-            navController = navController
-        )
-    }
-}
-
-@Composable
-private fun CardList(cards: List<GuidelinesCardItem>, navController: NavController) {
-    cards.forEach { card ->
-        OdsCardImageFirst(
-            imageRes = card.image,
-            title = stringResource(id = card.title),
-            onCardClick = {
-                navController.navigate(card.route)
-            },
-        )
-    }
-}
-
-@Preview(showBackground = true)
-@Composable
-fun GuidelinesScreenPreview() {
-    OdsMaterialTheme {
-        GuidelinesScreen(rememberNavController())
+        guidelinesItems.forEach { item ->
+            OdsCardImageFirst(
+                imageRes = item.image,
+                title = stringResource(id = item.title),
+                onCardClick = { navController.navigate(item.route) }
+            )
+        }
     }
 }

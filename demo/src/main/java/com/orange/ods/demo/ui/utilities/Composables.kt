@@ -12,13 +12,19 @@ package com.orange.ods.demo.ui.utilities
 
 import androidx.annotation.StringRes
 import androidx.compose.foundation.background
+import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.MutableState
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.unit.dp
+import com.orange.ods.compose.component.controls.OdsCheckbox
+import com.orange.ods.compose.text.OdsTextBody1
 import com.orange.ods.compose.text.OdsTextH5
 import com.orange.ods.compose.text.OdsTextSubtitle1
 import com.orange.ods.compose.theme.OdsDisplayAppearance
@@ -27,18 +33,18 @@ import com.orange.ods.compose.theme.odsLightThemeColors
 import com.orange.ods.demo.R
 
 @Composable
-fun Title(@StringRes textRes: Int) {
+fun Title(@StringRes textRes: Int, withHorizontalPadding: Boolean = false) {
     OdsTextH5(
         text = stringResource(textRes),
         modifier = Modifier
             .fillMaxWidth()
             .padding(top = dimensionResource(R.dimen.ods_spacing_l))
-            .padding(horizontal = dimensionResource(R.dimen.ods_screen_horizontal_margin))
+            .padding(horizontal = if (withHorizontalPadding) dimensionResource(R.dimen.ods_screen_horizontal_margin) else 0.dp)
     )
 }
 
 @Composable
-fun Subtitle(@StringRes textRes: Int, displayAppearance: OdsDisplayAppearance = OdsDisplayAppearance.DEFAULT) {
+fun Subtitle(@StringRes textRes: Int, displayAppearance: OdsDisplayAppearance = OdsDisplayAppearance.DEFAULT, withHorizontalPadding: Boolean = false) {
     val backgroundColor = when (displayAppearance) {
         OdsDisplayAppearance.DEFAULT -> Color.Unspecified
         OdsDisplayAppearance.ON_DARK -> odsDarkThemeColors.background
@@ -50,7 +56,23 @@ fun Subtitle(@StringRes textRes: Int, displayAppearance: OdsDisplayAppearance = 
             .fillMaxWidth()
             .background(backgroundColor)
             .padding(top = dimensionResource(id = R.dimen.ods_spacing_s))
-            .padding(horizontal = dimensionResource(R.dimen.ods_screen_horizontal_margin)),
+            .padding(horizontal = if (withHorizontalPadding) dimensionResource(R.dimen.ods_screen_horizontal_margin) else 0.dp),
         displayAppearance = displayAppearance
     )
+}
+
+@Composable
+fun LabelledCheckbox(
+    label: String,
+    checked: MutableState<Boolean>,
+    enabled: Boolean = true
+) {
+    Row(verticalAlignment = Alignment.CenterVertically) {
+        OdsCheckbox(
+            checked = checked.value,
+            onCheckedChange = { checked.value = it },
+            enabled = enabled,
+        )
+        OdsTextBody1(text = label)
+    }
 }

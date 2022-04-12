@@ -13,10 +13,28 @@ package com.orange.ods.demo.ui.guidelines.colors
 import androidx.compose.material.MaterialTheme
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.graphics.Color
-import com.orange.ods.compose.theme.*
+import com.orange.ods.compose.theme.Blue100
+import com.orange.ods.compose.theme.Blue200
+import com.orange.ods.compose.theme.Blue300
+import com.orange.ods.compose.theme.Green100
+import com.orange.ods.compose.theme.Green200
+import com.orange.ods.compose.theme.Green300
+import com.orange.ods.compose.theme.ObsGrey700
+import com.orange.ods.compose.theme.Pink100
+import com.orange.ods.compose.theme.Pink200
+import com.orange.ods.compose.theme.Pink300
+import com.orange.ods.compose.theme.Purple100
+import com.orange.ods.compose.theme.Purple200
+import com.orange.ods.compose.theme.Purple300
+import com.orange.ods.compose.theme.Yellow100
+import com.orange.ods.compose.theme.Yellow200
+import com.orange.ods.compose.theme.Yellow300
+import com.orange.ods.compose.theme.functionalAlert
+import com.orange.ods.compose.theme.functionalInfo
+import com.orange.ods.compose.theme.functionalPositive
 import com.orange.ods.demo.R
 
-data class ColorItem(
+data class GuidelinesColorsItem(
     val name: String,
     val jetPackName: String,
     val jetPackValue: Color,
@@ -33,10 +51,10 @@ enum class ColorType {
 }
 
 @Composable
-internal fun getCoreColorList(systemInDarkTheme: Boolean): List<ColorItem> = listOf(
+internal fun getCoreColors(systemInDarkTheme: Boolean): List<GuidelinesColorsItem> = listOf(
     //Orange
     if (systemInDarkTheme) {
-        ColorItem(
+        GuidelinesColorsItem(
             name = "Orange 100",
             jetPackName = "primary",
             jetPackValue = MaterialTheme.colors.primary,
@@ -46,7 +64,7 @@ internal fun getCoreColorList(systemInDarkTheme: Boolean): List<ColorItem> = lis
             colorType = ColorType.CORE
         )
     } else {
-        ColorItem(
+        GuidelinesColorsItem(
             name = "Orange 200",
             jetPackName = "primary",
             jetPackValue = MaterialTheme.colors.primary,
@@ -58,7 +76,7 @@ internal fun getCoreColorList(systemInDarkTheme: Boolean): List<ColorItem> = lis
     },
     //Background
     if (systemInDarkTheme) {
-        ColorItem(
+        GuidelinesColorsItem(
             name = "Black 900",
             jetPackName = "background",
             jetPackValue = MaterialTheme.colors.background,
@@ -68,7 +86,7 @@ internal fun getCoreColorList(systemInDarkTheme: Boolean): List<ColorItem> = lis
             colorType = ColorType.CORE
         )
     } else {
-        ColorItem(
+        GuidelinesColorsItem(
             name = "White 100",
             jetPackName = "background",
             jetPackValue = MaterialTheme.colors.background,
@@ -80,7 +98,7 @@ internal fun getCoreColorList(systemInDarkTheme: Boolean): List<ColorItem> = lis
     },
     //Secondary Background
     if (systemInDarkTheme) {
-        ColorItem(
+        GuidelinesColorsItem(
             name = "Secondary Background",
             jetPackName = "surface",
             jetPackValue = MaterialTheme.colors.surface,
@@ -90,7 +108,7 @@ internal fun getCoreColorList(systemInDarkTheme: Boolean): List<ColorItem> = lis
             colorType = ColorType.CORE
         )
     } else {
-        ColorItem(
+        GuidelinesColorsItem(
             name = "White 100",
             jetPackName = "surface",
             jetPackValue = MaterialTheme.colors.surface,
@@ -100,7 +118,7 @@ internal fun getCoreColorList(systemInDarkTheme: Boolean): List<ColorItem> = lis
             colorType = ColorType.CORE
         )
     },
-    ColorItem(
+    GuidelinesColorsItem(
         name = "OBS Grey 700",
         jetPackName = "ObsGrey700",
         jetPackValue = ObsGrey700,
@@ -112,10 +130,10 @@ internal fun getCoreColorList(systemInDarkTheme: Boolean): List<ColorItem> = lis
 )
 
 @Composable
-internal fun getFunctionalColorList(systemInDarkTheme: Boolean): List<ColorItem> = listOf(
+internal fun getFunctionalColors(systemInDarkTheme: Boolean): List<GuidelinesColorsItem> = listOf(
     //Positive
     if (systemInDarkTheme) {
-        ColorItem(
+        GuidelinesColorsItem(
             name = "Positive 100",
             jetPackName = "functionalPositive",
             jetPackValue = MaterialTheme.colors.functionalPositive,
@@ -125,7 +143,7 @@ internal fun getFunctionalColorList(systemInDarkTheme: Boolean): List<ColorItem>
             colorType = ColorType.FUNCTIONAL
         )
     } else {
-        ColorItem(
+        GuidelinesColorsItem(
             name = "Positive 200",
             jetPackName = "functionalPositive",
             jetPackValue = MaterialTheme.colors.functionalPositive,
@@ -137,7 +155,7 @@ internal fun getFunctionalColorList(systemInDarkTheme: Boolean): List<ColorItem>
     },
     //Negative
     if (systemInDarkTheme) {
-        ColorItem(
+        GuidelinesColorsItem(
             name = "Negative 100",
             jetPackName = "error",
             jetPackValue = MaterialTheme.colors.error,
@@ -147,7 +165,7 @@ internal fun getFunctionalColorList(systemInDarkTheme: Boolean): List<ColorItem>
             colorType = ColorType.FUNCTIONAL
         )
     } else {
-        ColorItem(
+        GuidelinesColorsItem(
             name = "Negative 200",
             jetPackName = "error",
             jetPackValue = MaterialTheme.colors.error,
@@ -159,7 +177,7 @@ internal fun getFunctionalColorList(systemInDarkTheme: Boolean): List<ColorItem>
     },
     //Info
     if (systemInDarkTheme) {
-        ColorItem(
+        GuidelinesColorsItem(
             name = "Info 100",
             jetPackName = "functionalInfo",
             jetPackValue = MaterialTheme.colors.functionalInfo,
@@ -169,7 +187,7 @@ internal fun getFunctionalColorList(systemInDarkTheme: Boolean): List<ColorItem>
             colorType = ColorType.FUNCTIONAL
         )
     } else {
-        ColorItem(
+        GuidelinesColorsItem(
             name = "Info 200",
             jetPackName = "functionalInfo",
             jetPackValue = MaterialTheme.colors.functionalInfo,
@@ -181,7 +199,7 @@ internal fun getFunctionalColorList(systemInDarkTheme: Boolean): List<ColorItem>
     },
     //Alert
     if (systemInDarkTheme) {
-        ColorItem(
+        GuidelinesColorsItem(
             name = "Alert 100",
             jetPackName = "functionalAlert",
             jetPackValue = MaterialTheme.colors.functionalAlert,
@@ -191,7 +209,7 @@ internal fun getFunctionalColorList(systemInDarkTheme: Boolean): List<ColorItem>
             colorType = ColorType.FUNCTIONAL
         )
     } else {
-        ColorItem(
+        GuidelinesColorsItem(
             name = "Alert 200",
             jetPackName = "functionalAlert",
             jetPackValue = MaterialTheme.colors.functionalAlert,
@@ -203,8 +221,8 @@ internal fun getFunctionalColorList(systemInDarkTheme: Boolean): List<ColorItem>
     },
 )
 
-internal fun getSupportingColorList(): List<ColorItem> = listOf(
-    ColorItem(
+internal fun getSupportingColors(): List<GuidelinesColorsItem> = listOf(
+    GuidelinesColorsItem(
         name = "Blue 100",
         jetPackName = "Blue100",
         jetPackValue = Blue100,
@@ -213,7 +231,7 @@ internal fun getSupportingColorList(): List<ColorItem> = listOf(
         xmlResourceValue = R.color.ods_color_supporting_blue_100,
         colorType = ColorType.SUPPORTING
     ),
-    ColorItem(
+    GuidelinesColorsItem(
         name = "Blue 200",
         jetPackName = "Blue200",
         jetPackValue = Blue200,
@@ -222,7 +240,7 @@ internal fun getSupportingColorList(): List<ColorItem> = listOf(
         xmlResourceValue = R.color.ods_color_supporting_blue_200,
         colorType = ColorType.SUPPORTING
     ),
-    ColorItem(
+    GuidelinesColorsItem(
         name = "Blue 300",
         jetPackName = "Blue300",
         jetPackValue = Blue300,
@@ -231,7 +249,7 @@ internal fun getSupportingColorList(): List<ColorItem> = listOf(
         xmlResourceValue = R.color.ods_color_supporting_blue_300,
         colorType = ColorType.SUPPORTING
     ),
-    ColorItem(
+    GuidelinesColorsItem(
         name = "Green 100",
         jetPackName = "Green100",
         jetPackValue = Green100,
@@ -240,7 +258,7 @@ internal fun getSupportingColorList(): List<ColorItem> = listOf(
         xmlResourceValue = R.color.ods_color_supporting_green_100,
         colorType = ColorType.SUPPORTING
     ),
-    ColorItem(
+    GuidelinesColorsItem(
         name = "Green 200",
         jetPackName = "Green200",
         jetPackValue = Green200,
@@ -249,7 +267,7 @@ internal fun getSupportingColorList(): List<ColorItem> = listOf(
         xmlResourceValue = R.color.ods_color_supporting_green_200,
         colorType = ColorType.SUPPORTING
     ),
-    ColorItem(
+    GuidelinesColorsItem(
         name = "Green 300",
         jetPackName = "Green300",
         jetPackValue = Green300,
@@ -258,7 +276,7 @@ internal fun getSupportingColorList(): List<ColorItem> = listOf(
         xmlResourceValue = R.color.ods_color_supporting_green_300,
         colorType = ColorType.SUPPORTING
     ),
-    ColorItem(
+    GuidelinesColorsItem(
         name = "Pink 100",
         jetPackName = "Pink100",
         jetPackValue = Pink100,
@@ -267,7 +285,7 @@ internal fun getSupportingColorList(): List<ColorItem> = listOf(
         xmlResourceValue = R.color.ods_color_supporting_pink_100,
         colorType = ColorType.SUPPORTING
     ),
-    ColorItem(
+    GuidelinesColorsItem(
         name = "Pink 200",
         jetPackName = "Pink200",
         jetPackValue = Pink200,
@@ -276,7 +294,7 @@ internal fun getSupportingColorList(): List<ColorItem> = listOf(
         xmlResourceValue = R.color.ods_color_supporting_pink_200,
         colorType = ColorType.SUPPORTING
     ),
-    ColorItem(
+    GuidelinesColorsItem(
         name = "Pink 300",
         jetPackName = "Pink300",
         jetPackValue = Pink300,
@@ -285,7 +303,7 @@ internal fun getSupportingColorList(): List<ColorItem> = listOf(
         xmlResourceValue = R.color.ods_color_supporting_pink_300,
         colorType = ColorType.SUPPORTING
     ),
-    ColorItem(
+    GuidelinesColorsItem(
         name = "Purple 100",
         jetPackName = "Purple100",
         jetPackValue = Purple100,
@@ -294,7 +312,7 @@ internal fun getSupportingColorList(): List<ColorItem> = listOf(
         xmlResourceValue = R.color.ods_color_supporting_purple_100,
         colorType = ColorType.SUPPORTING
     ),
-    ColorItem(
+    GuidelinesColorsItem(
         name = "Purple 200",
         jetPackName = "Purple200",
         jetPackValue = Purple200,
@@ -303,7 +321,7 @@ internal fun getSupportingColorList(): List<ColorItem> = listOf(
         xmlResourceValue = R.color.ods_color_supporting_purple_200,
         colorType = ColorType.SUPPORTING
     ),
-    ColorItem(
+    GuidelinesColorsItem(
         name = "Purple 300",
         jetPackName = "Purple300",
         jetPackValue = Purple300,
@@ -312,7 +330,7 @@ internal fun getSupportingColorList(): List<ColorItem> = listOf(
         xmlResourceValue = R.color.ods_color_supporting_purple_300,
         colorType = ColorType.SUPPORTING
     ),
-    ColorItem(
+    GuidelinesColorsItem(
         name = "Yellow 100",
         jetPackName = "Yellow100",
         jetPackValue = Yellow100,
@@ -321,7 +339,7 @@ internal fun getSupportingColorList(): List<ColorItem> = listOf(
         xmlResourceValue = R.color.ods_color_supporting_yellow_100,
         colorType = ColorType.SUPPORTING
     ),
-    ColorItem(
+    GuidelinesColorsItem(
         name = "Yellow 200",
         jetPackName = "Yellow200",
         jetPackValue = Yellow200,
@@ -330,7 +348,7 @@ internal fun getSupportingColorList(): List<ColorItem> = listOf(
         xmlResourceValue = R.color.ods_color_supporting_yellow_200,
         colorType = ColorType.SUPPORTING
     ),
-    ColorItem(
+    GuidelinesColorsItem(
         name = "Yellow 300",
         jetPackName = "Yellow300",
         jetPackValue = Yellow300,

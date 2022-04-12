@@ -21,60 +21,48 @@ import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
-import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
 import com.orange.ods.compose.component.OdsCardSmall
 import com.orange.ods.compose.theme.OdsMaterialTheme
-import com.orange.ods.demo.ui.components.cards.ComponentsCardItem
+import com.orange.ods.demo.R
 
 @Composable
 fun ComponentsScreen(navController: NavController) {
     val scrollState = rememberScrollState()
     Column(
         modifier = Modifier
-            .padding(16.dp)
+            .padding(dimensionResource(id = R.dimen.ods_spacing_s))
             .fillMaxSize()
             .verticalScroll(scrollState),
-        verticalArrangement = Arrangement.spacedBy(16.dp)
+        verticalArrangement = Arrangement.spacedBy(dimensionResource(id = R.dimen.ods_spacing_s))
     ) {
-        ComponentsCardsList(
-            listOf(
-                ComponentsCardItem.Buttons,
-                ComponentsCardItem.Controls,
-                ComponentsCardItem.Cards
-                //ComponentsCardItem.BottomNavigation,
-            ), navController
-        )
-    }
-}
-
-@Composable
-private fun ComponentsCardsList(cards: List<ComponentsCardItem>, navController: NavController) {
-    cards.chunked(2).forEach { rowCards ->
-        Row(
-            horizontalArrangement = Arrangement.spacedBy(16.dp),
-        ) {
-            ComponentCard(componentsCardItem = rowCards[0], navController)
-            if (rowCards.size == 2) {
-                ComponentCard(componentsCardItem = rowCards[1], navController)
-            } else {
-                Box(modifier = Modifier.weight(0.5f)) {}
+        componentsItems.chunked(2).forEach { rowCards ->
+            Row(
+                horizontalArrangement = Arrangement.spacedBy(dimensionResource(id = R.dimen.ods_spacing_s)),
+            ) {
+                ComponentCard(componentsItem = rowCards[0], navController)
+                if (rowCards.size == 2) {
+                    ComponentCard(componentsItem = rowCards[1], navController)
+                } else {
+                    Box(modifier = Modifier.weight(0.5f)) {}
+                }
             }
         }
     }
 }
 
 @Composable
-private fun RowScope.ComponentCard(componentsCardItem: ComponentsCardItem, navController: NavController) {
+private fun RowScope.ComponentCard(componentsItem: ComponentsItem, navController: NavController) {
     OdsCardSmall(
         modifier = Modifier.weight(0.5f),
-        title = stringResource(id = componentsCardItem.title),
-        imageRes = componentsCardItem.image,
+        title = stringResource(id = componentsItem.title),
+        imageRes = componentsItem.image,
         onCardClick = {
-            navController.navigate(componentsCardItem.route)
+            navController.navigate(componentsItem.route)
         },
     )
 }

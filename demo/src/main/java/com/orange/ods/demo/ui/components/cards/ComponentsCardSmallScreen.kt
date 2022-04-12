@@ -11,7 +11,11 @@
 package com.orange.ods.demo.ui.components.cards
 
 import android.widget.Toast
-import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.padding
 import androidx.compose.material.BottomSheetScaffold
 import androidx.compose.material.ExperimentalMaterialApi
 import androidx.compose.material.Text
@@ -21,9 +25,12 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.res.dimensionResource
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import com.orange.ods.compose.component.OdsCardSmall
 import com.orange.ods.demo.R
+import com.orange.ods.demo.ui.utilities.LabelledCheckbox
 
 @ExperimentalMaterialApi
 @Composable
@@ -39,17 +46,17 @@ fun ComponentsCardSmallScreen() {
         sheetPeekHeight = 56.dp,
         sheetContent = {
             Text(
-                modifier = Modifier.padding(16.dp),
-                text = "Swipe up to Customize"
+                modifier = Modifier.padding(dimensionResource(id = R.dimen.ods_spacing_s)),
+                text = stringResource(id = R.string.component_customize)
             )
-            LabelledCheckbox(subtitleIsChecked, "Subtitle")
+            LabelledCheckbox("Subtitle", subtitleIsChecked)
         }
     ) {
         Row(
             modifier = Modifier
                 .fillMaxSize()
-                .padding(16.dp),
-            horizontalArrangement = Arrangement.spacedBy(16.dp),
+                .padding(dimensionResource(id = R.dimen.ods_spacing_s)),
+            horizontalArrangement = Arrangement.spacedBy(dimensionResource(id = R.dimen.ods_spacing_s)),
         ) {
             OdsCardSmall(
                 modifier = Modifier.weight(0.5f),

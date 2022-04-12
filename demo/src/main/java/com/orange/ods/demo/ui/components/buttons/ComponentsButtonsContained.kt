@@ -20,17 +20,17 @@ import com.orange.ods.demo.ui.utilities.Subtitle
 
 @Composable
 fun ButtonsContained() {
-    Subtitle(R.string.component_buttons_contained_subtitle_primary)
+    Subtitle(R.string.component_buttons_contained_subtitle_primary, withHorizontalPadding = true)
     OdsButton(
         modifier = Modifier
             .fullWidthButton(),
-        text = stringResource(R.string.component_button_enabled),
+        text = stringResource(R.string.component_state_enabled),
         onClick = {},
         hasPrimaryColor = true
     )
     OdsButton(
         modifier = Modifier.fullWidthButton(false),
-        text = stringResource(R.string.component_button_disabled),
+        text = stringResource(R.string.component_state_disabled),
         onClick = {},
         enabled = false,
         hasPrimaryColor = true
@@ -39,28 +39,28 @@ fun ButtonsContained() {
     OdsButton(
         modifier = Modifier.fullWidthButton(),
         iconRes = R.drawable.ic_search,
-        text = stringResource(R.string.component_button_enabled),
+        text = stringResource(R.string.component_state_enabled),
         onClick = {},
         hasPrimaryColor = true
     )
     OdsButton(
         modifier = Modifier.fullWidthButton(false),
         iconRes = R.drawable.ic_search,
-        text = stringResource(R.string.component_button_disabled),
+        text = stringResource(R.string.component_state_disabled),
         onClick = {},
         enabled = false,
         hasPrimaryColor = true
     )
 
-    Subtitle(R.string.component_buttons_contained_subtitle_standard)
+    Subtitle(R.string.component_buttons_contained_subtitle_standard, withHorizontalPadding = true)
     OdsButton(
         modifier = Modifier.fullWidthButton(),
-        text = stringResource(R.string.component_button_enabled),
+        text = stringResource(R.string.component_state_enabled),
         onClick = {},
     )
     OdsButton(
         modifier = Modifier.fullWidthButton(false),
-        text = stringResource(R.string.component_button_disabled),
+        text = stringResource(R.string.component_state_disabled),
         onClick = {},
         enabled = false,
     )
@@ -68,13 +68,13 @@ fun ButtonsContained() {
     OdsButton(
         modifier = Modifier.fullWidthButton(),
         iconRes = R.drawable.ic_search,
-        text = stringResource(R.string.component_button_enabled),
+        text = stringResource(R.string.component_state_enabled),
         onClick = {},
     )
     OdsButton(
         modifier = Modifier.fullWidthButton(false),
         iconRes = R.drawable.ic_search,
-        text = stringResource(R.string.component_button_disabled),
+        text = stringResource(R.string.component_state_disabled),
         onClick = {},
         enabled = false,
     )
@@ -91,23 +91,23 @@ fun ButtonsContained() {
 private fun ContainedButtonsFullWidthAppearanceForced(displayAppearance: OdsDisplayAppearance) {
     OdsButton(
         modifier = Modifier.fullWidthButton(),
-        text = stringResource(R.string.component_button_enabled),
+        text = stringResource(R.string.component_state_enabled),
         onClick = {},
         hasPrimaryColor = true,
         displayAppearance = displayAppearance
     )
     OdsButton(
         modifier = Modifier.fullWidthButton(false),
-        text = stringResource(R.string.component_button_disabled),
+        text = stringResource(R.string.component_state_disabled),
         onClick = {},
         enabled = false,
         hasPrimaryColor = true,
         displayAppearance = displayAppearance
     )
-    OdsButton(modifier = Modifier.fullWidthButton(), text = stringResource(R.string.component_button_enabled), onClick = {}, displayAppearance = displayAppearance)
+    OdsButton(modifier = Modifier.fullWidthButton(), text = stringResource(R.string.component_state_enabled), onClick = {}, displayAppearance = displayAppearance)
     OdsButton(
         modifier = Modifier.fullWidthButton(false),
-        text = stringResource(R.string.component_button_disabled),
+        text = stringResource(R.string.component_state_disabled),
         onClick = {},
         enabled = false,
         displayAppearance = displayAppearance
