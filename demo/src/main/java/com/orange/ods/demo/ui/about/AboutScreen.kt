@@ -73,7 +73,7 @@ fun AboutScreen(navController: NavHostController) {
 
         for (aboutEntry in aboutEntries) {
             OdsListItem(text = stringResource(id = aboutEntry.titleRes), modifier = Modifier.clickable {
-                navController.navigate(AboutNavigationItem.AboutEntryContent.route.plus("/${aboutEntry.titleRes}/${aboutEntry.fileName}"))
+                navController.navigate(AboutNavigationItem.HtmlFile.route.plus("/${aboutEntry.titleRes}/${aboutEntry.fileName}"))
             })
         }
     }

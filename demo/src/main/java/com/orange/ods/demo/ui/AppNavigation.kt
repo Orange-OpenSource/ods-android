@@ -21,8 +21,8 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.navArgument
 import com.orange.ods.demo.R
+import com.orange.ods.demo.ui.about.AboutHtmlFileScreen
 import com.orange.ods.demo.ui.about.AboutScreen
-import com.orange.ods.demo.ui.about.AboutWebViewScreen
 import com.orange.ods.demo.ui.components.ComponentsControlsScreen
 import com.orange.ods.demo.ui.components.ComponentsScreen
 import com.orange.ods.demo.ui.components.buttons.ComponentsButtonsScreen
@@ -75,7 +75,7 @@ sealed class AboutNavigationItem(
         const val TITLE_RES_KEY = "titleRes"
     }
 
-    object AboutEntryContent : AboutNavigationItem("about/entry_content")
+    object HtmlFile : AboutNavigationItem("about/html_file")
 }
 
 @ExperimentalMaterialApi
@@ -135,14 +135,14 @@ fun AppNavigation(navController: NavHostController, onSetScreenTitle: (String) -
 
         // About
         composable(
-            AboutNavigationItem.AboutEntryContent.route.plus("/{${AboutNavigationItem.TITLE_RES_KEY}}/{${AboutNavigationItem.FILE_NAME_KEY}}"),
+            AboutNavigationItem.HtmlFile.route.plus("/{${AboutNavigationItem.TITLE_RES_KEY}}/{${AboutNavigationItem.FILE_NAME_KEY}}"),
             arguments = listOf(
                 navArgument(AboutNavigationItem.TITLE_RES_KEY) { type = NavType.IntType }
             )
         ) { backStackEntry ->
             val arguments = requireNotNull(backStackEntry.arguments)
             onSetScreenTitle(stringResource(id = arguments.getInt(AboutNavigationItem.TITLE_RES_KEY)))
-            AboutWebViewScreen(arguments.getString(AboutNavigationItem.FILE_NAME_KEY))
+            AboutHtmlFileScreen(arguments.getString(AboutNavigationItem.FILE_NAME_KEY))
         }
 
     }

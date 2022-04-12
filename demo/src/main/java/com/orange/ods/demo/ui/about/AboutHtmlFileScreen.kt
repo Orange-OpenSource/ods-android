@@ -21,7 +21,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.viewinterop.AndroidView
 
 @Composable
-fun AboutWebViewScreen(fileName: String?) {
+fun AboutHtmlFileScreen(fileName: String?) {
     val context = LocalContext.current
     AndroidView(
         modifier = Modifier.padding(horizontal = 16.dp, vertical = 8.dp),
