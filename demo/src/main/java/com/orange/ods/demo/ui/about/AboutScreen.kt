@@ -29,9 +29,9 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
-import androidx.compose.ui.unit.dp
 import androidx.navigation.NavHostController
 import com.orange.ods.compose.component.lists.OdsListItem
 import com.orange.ods.compose.theme.Blue200
@@ -63,13 +63,17 @@ fun AboutScreen(navController: NavHostController) {
             contentScale = ContentScale.Crop,
             contentDescription = null
         )
-        Column(Modifier.padding(horizontal = 16.dp)) {
-            Text(text = stringResource(id = R.string.about_app_name), style = MaterialTheme.typography.h4, modifier = Modifier.padding(top = 33.dp))
-            Text(text = getVersion(context), style = MaterialTheme.typography.caption, modifier = Modifier.padding(top = 3.dp))
+        Column(Modifier.padding(horizontal = dimensionResource(id = R.dimen.ods_screen_horizontal_margin))) {
+            Text(
+                text = stringResource(id = R.string.about_app_name),
+                style = MaterialTheme.typography.h4,
+                modifier = Modifier.padding(top = dimensionResource(id = R.dimen.ods_spacing_l))
+            )
+            Text(text = getVersion(context), style = MaterialTheme.typography.caption, modifier = Modifier.padding(top = dimensionResource(id = R.dimen.ods_spacing_xxs)))
             Text(text = stringResource(id = R.string.about_copyright), style = MaterialTheme.typography.caption)
         }
 
-        Spacer(modifier = Modifier.height(16.dp))
+        Spacer(modifier = Modifier.height(dimensionResource(id = R.dimen.ods_spacing_s)))
 
         for (aboutEntry in aboutEntries) {
             OdsListItem(text = stringResource(id = aboutEntry.titleRes), modifier = Modifier.clickable {

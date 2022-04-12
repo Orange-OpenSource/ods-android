@@ -17,8 +17,9 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
-import androidx.compose.ui.unit.dp
+import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.viewinterop.AndroidView
+import com.orange.ods.demo.R
 
 private const val FILE_PATH = "file:///android_res/raw/"
 
@@ -26,7 +27,10 @@ private const val FILE_PATH = "file:///android_res/raw/"
 fun AboutHtmlFileScreen(fileName: String?) {
     val context = LocalContext.current
     AndroidView(
-        modifier = Modifier.padding(horizontal = 16.dp, vertical = 8.dp),
+        modifier = Modifier.padding(
+            horizontal = dimensionResource(id = R.dimen.ods_screen_horizontal_margin),
+            vertical = dimensionResource(id = R.dimen.ods_screen_vertical_margin)
+        ),
         factory = {
             WebView(context).apply {
                 webViewClient = WebViewClient()
