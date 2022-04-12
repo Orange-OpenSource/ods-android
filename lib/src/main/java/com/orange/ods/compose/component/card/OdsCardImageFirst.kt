@@ -20,17 +20,17 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material.Card
-import androidx.compose.material.MaterialTheme
-import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.semantics.semantics
-import androidx.compose.ui.unit.dp
 import com.orange.ods.R
 import com.orange.ods.compose.component.button.OdsButtonText
+import com.orange.ods.compose.text.OdsTextBody1
+import com.orange.ods.compose.text.OdsTextH6
+import com.orange.ods.compose.text.OdsTextSubtitle2
 
 /**
  * <a href="https://system.design.orange.com/0c1af118d/p/272739-cards/b/991690" target="_blank">ODS Card</a>.
@@ -82,32 +82,25 @@ fun OdsCardImageFirst(
                 )
             Column(
                 modifier = Modifier
-                    .padding(16.dp)
+                    .padding(dimensionResource(id = R.dimen.ods_spacing_s))
                     .semantics(mergeDescendants = true) {}
             ) {
-                Text(
-                    text = title,
-                    style = MaterialTheme.typography.h6
-                )
+                OdsTextH6(text = title)
                 subtitle?.let {
-                    Text(
-                        text = it,
-                        style = MaterialTheme.typography.subtitle2
-                    )
+                    OdsTextSubtitle2(text = it)
                 }
                 text?.let {
-                    Text(
+                    OdsTextBody1(
                         modifier = Modifier.padding(
-                            top = 8.dp
+                            top = dimensionResource(id = R.dimen.ods_spacing_xs)
                         ),
-                        text = it,
-                        style = MaterialTheme.typography.body1
+                        text = it
                     )
                 }
             }
             Row(
-                modifier = Modifier.padding(start = 8.dp),
-                horizontalArrangement = Arrangement.spacedBy(8.dp)
+                modifier = Modifier.padding(horizontal = dimensionResource(id = R.dimen.ods_spacing_xs)),
+                horizontalArrangement = Arrangement.spacedBy(dimensionResource(id = R.dimen.ods_spacing_xs))
             ) {
                 button1Text?.let {
                     OdsButtonText(
