@@ -11,6 +11,7 @@
 package com.orange.ods.demo.ui.about
 
 import android.content.Context
+import androidx.annotation.StringRes
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
@@ -30,17 +31,25 @@ import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.navigation.NavHostController
 import com.orange.ods.compose.component.lists.OdsListItem
 import com.orange.ods.compose.theme.Blue200
-import com.orange.ods.compose.theme.OdsMaterialTheme
 import com.orange.ods.demo.R
+import com.orange.ods.demo.ui.AboutNavigationItem
+import com.orange.ods.demo.ui.utilities.extension.orElse
 import com.orange.ods.demo.ui.utilities.versionCode
+
+private data class AboutEntry(@StringRes val titleRes: Int, val fileName: String)
+
+private val aboutEntries = listOf(
+    AboutEntry(R.string.about_menu_legal_notice, "about_legal_notice.html"),
+    AboutEntry(R.string.about_menu_privacy_policy, "about_privacy_policy.html")
+)
 
 @Composable
 @ExperimentalMaterialApi
-fun AboutScreen() {
+fun AboutScreen(navController: NavHostController) {
     Column(
         modifier = Modifier
             .verticalScroll(rememberScrollState())
@@ -62,8 +71,11 @@ fun AboutScreen() {
 
         Spacer(modifier = Modifier.height(16.dp))
 
-        OdsListItem(text = stringResource(id = R.string.about_menu_legal_notice), modifier = Modifier.clickable { })
-        OdsListItem(text = stringResource(id = R.string.about_menu_privacy_policy), modifier = Modifier.clickable { })
+        for (aboutEntry in aboutEntries) {
+            OdsListItem(text = stringResource(id = aboutEntry.titleRes), modifier = Modifier.clickable {
+                navController.navigate(AboutNavigationItem.AboutEntryContent.route.plus("/${aboutEntry.titleRes}/${aboutEntry.fileName}"))
+            })
+        }
     }
 }
 
@@ -73,16 +85,7 @@ private fun getVersion(context: Context): String {
     }
     return packageInfo?.let {
         String.format(context.resources.getString(R.string.about_app_version), packageInfo.versionName, packageInfo.versionCode())
-    } ?: run {
+    }.orElse {
         context.resources.getString(R.string.about_app_version)
-    }
-}
-
-@Preview(showBackground = true)
-@Composable
-@ExperimentalMaterialApi
-fun AboutScreenPreview() {
-    OdsMaterialTheme {
-        AboutScreen()
     }
 }
