@@ -24,8 +24,8 @@ import androidx.compose.ui.res.dimensionResource
 import com.orange.ods.compose.component.button.OdsButtonToggle
 import com.orange.ods.compose.theme.OdsDisplayAppearance
 import com.orange.ods.demo.R
-import com.orange.ods.demo.ui.utils.Subtitle
-import com.orange.ods.demo.ui.utils.Title
+import com.orange.ods.demo.ui.utilities.Subtitle
+import com.orange.ods.demo.ui.utilities.Title
 
 @Composable
 fun ButtonsToggle() {

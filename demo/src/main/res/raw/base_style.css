@@ -1,0 +1,54 @@
+html, body {
+
+    padding: 0;
+
+    -webkit-text-size-adjust: none;
+
+    margin: 0%;
+}
+
+h1 {
+    font-size: 24;
+    font-family: sans-serif;
+    font-weight: bold;
+    line-height: 100%;
+    margin-top: 2em ;
+    margin-bottom: 0.3em ;
+}
+
+h2 {
+    font-family: sans-serif;
+    font-weight: normal;
+    font-size: 16;
+    line-height: 100%;
+    letter-spacing: -0.3;
+    font-weight: bold;
+    margin-top: 1.5em ;
+    margin-bottom: 0.3em ;
+}
+
+p, ul, li {
+    font-weight: normal;
+    font-size: 14;
+    letter-spacing: 0.4;
+    line-height: 1.6;
+    font-family: sans-serif;
+    margin-top: 0.3em ;
+    margin-bottom: 0em ;
+}
+
+table {
+  border-collapse: collapse;
+  width: 98%;
+}
+
+th, td {
+  padding: 0.2em;
+}
+
+a:link {
+    font-weight: normal
+    font-size: 15;
+    color: #f06d02;
+    text-decoration: underline;
+}

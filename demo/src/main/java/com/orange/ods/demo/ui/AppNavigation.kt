@@ -16,9 +16,12 @@ import androidx.compose.material.ExperimentalMaterialApi
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.res.stringResource
 import androidx.navigation.NavHostController
+import androidx.navigation.NavType
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
+import androidx.navigation.navArgument
 import com.orange.ods.demo.R
+import com.orange.ods.demo.ui.about.AboutHtmlFileScreen
 import com.orange.ods.demo.ui.about.AboutScreen
 import com.orange.ods.demo.ui.components.ComponentsControlsScreen
 import com.orange.ods.demo.ui.components.ComponentsScreen
@@ -64,6 +67,17 @@ sealed class ComponentsNavigationItem(
     object CardSmall : ComponentsNavigationItem(R.string.component_card_small, "components/card/small_card_view")
 }
 
+sealed class AboutNavigationItem(
+    var route: String
+) {
+    companion object {
+        const val FILE_NAME_KEY = "fileName"
+        const val TITLE_RES_KEY = "titleRes"
+    }
+
+    object HtmlFile : AboutNavigationItem("about/html_file")
+}
+
 @ExperimentalMaterialApi
 @Composable
 fun AppNavigation(navController: NavHostController, onSetScreenTitle: (String) -> Unit) {
@@ -84,7 +98,7 @@ fun AppNavigation(navController: NavHostController, onSetScreenTitle: (String) -
         }
         composable(NavigationItem.About.route) {
             onSetScreenTitle(stringResource(id = NavigationItem.About.title))
-            AboutScreen()
+            AboutScreen(navController)
         }
 
         // Guidelines
@@ -118,5 +132,18 @@ fun AppNavigation(navController: NavHostController, onSetScreenTitle: (String) -
             onSetScreenTitle(stringResource(id = ComponentsNavigationItem.Controls.title))
             ComponentsControlsScreen()
         }
+
+        // About
+        composable(
+            AboutNavigationItem.HtmlFile.route.plus("/{${AboutNavigationItem.TITLE_RES_KEY}}/{${AboutNavigationItem.FILE_NAME_KEY}}"),
+            arguments = listOf(
+                navArgument(AboutNavigationItem.TITLE_RES_KEY) { type = NavType.IntType }
+            )
+        ) { backStackEntry ->
+            val arguments = requireNotNull(backStackEntry.arguments)
+            onSetScreenTitle(stringResource(id = arguments.getInt(AboutNavigationItem.TITLE_RES_KEY)))
+            AboutHtmlFileScreen(arguments.getString(AboutNavigationItem.FILE_NAME_KEY))
+        }
+
     }
 }

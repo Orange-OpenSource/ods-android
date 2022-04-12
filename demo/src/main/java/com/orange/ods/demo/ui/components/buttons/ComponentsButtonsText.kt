@@ -16,8 +16,8 @@ import androidx.compose.ui.res.stringResource
 import com.orange.ods.compose.component.button.OdsButtonText
 import com.orange.ods.compose.theme.OdsDisplayAppearance
 import com.orange.ods.demo.R
-import com.orange.ods.demo.ui.utils.Subtitle
-import com.orange.ods.demo.ui.utils.Title
+import com.orange.ods.demo.ui.utilities.Subtitle
+import com.orange.ods.demo.ui.utilities.Title
 
 @Composable
 fun ButtonsText() {

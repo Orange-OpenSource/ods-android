@@ -11,8 +11,21 @@
 package com.orange.ods.demo.ui.guidelines.colors
 
 import androidx.annotation.StringRes
-import androidx.compose.foundation.*
-import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.BorderStroke
+import androidx.compose.foundation.background
+import androidx.compose.foundation.border
+import androidx.compose.foundation.clickable
+import androidx.compose.foundation.isSystemInDarkTheme
+import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.PaddingValues
+import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.RowScope
+import androidx.compose.foundation.layout.aspectRatio
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.material.MaterialTheme
@@ -31,7 +44,7 @@ import androidx.compose.ui.window.Dialog
 import com.orange.ods.compose.theme.Black900
 import com.orange.ods.compose.theme.White100
 import com.orange.ods.demo.R
-import com.orange.ods.demo.ui.utils.getStringName
+import com.orange.ods.demo.ui.utilities.getStringName
 
 @Composable
 fun GuidelinesColorScreen() {
