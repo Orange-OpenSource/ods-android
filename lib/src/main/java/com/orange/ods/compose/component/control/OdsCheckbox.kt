@@ -8,7 +8,7 @@
  * /
  */
 
-package com.orange.ods.compose.component.controls
+package com.orange.ods.compose.component.control
 
 import androidx.compose.material.Checkbox
 import androidx.compose.material.CheckboxDefaults

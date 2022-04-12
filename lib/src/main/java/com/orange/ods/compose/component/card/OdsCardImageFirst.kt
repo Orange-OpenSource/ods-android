@@ -8,7 +8,7 @@
  * /
  */
 
-package com.orange.ods.compose.component
+package com.orange.ods.compose.component.card
 
 import androidx.annotation.DrawableRes
 import androidx.compose.foundation.Image

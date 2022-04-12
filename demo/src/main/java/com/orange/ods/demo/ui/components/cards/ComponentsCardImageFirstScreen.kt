@@ -28,7 +28,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.unit.dp
-import com.orange.ods.compose.component.OdsCardImageFirst
+import com.orange.ods.compose.component.card.OdsCardImageFirst
 import com.orange.ods.compose.text.OdsTextBody2
 import com.orange.ods.demo.R
 import com.orange.ods.demo.ui.utilities.LabelledCheckbox

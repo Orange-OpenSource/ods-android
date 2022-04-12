@@ -8,7 +8,7 @@
  * /
  */
 
-package com.orange.ods.compose.component.controls
+package com.orange.ods.compose.component.control
 
 import androidx.compose.material.Switch
 import androidx.compose.material.ripple.LocalRippleTheme
