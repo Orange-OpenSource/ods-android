@@ -28,6 +28,16 @@
     <dimen name="ods_button_outlined_stroke_width">2dp</dimen>
     <dimen name="ods_button_corner_size">0dp</dimen>
 
+    <!-- Card -->
+    <dimen name="ods_card_big_image_width">194dp</dimen>
+    <dimen name="ods_card_small_image_width">95dp</dimen>
+
+    <!-- Lists -->
+    <dimen name="list_single_line_item_height">48dp</dimen>
+    <dimen name="list_single_line_with_icon_item_height">56dp</dimen>
+    <dimen name="list_two_line_item_height">64dp</dimen>
+    <dimen name="list_two_line_item_with_icon_height">72dp</dimen>
+
     <!-- Tab -->
     <dimen name="ods_tab_elevation">8dp</dimen>
 
@@ -39,9 +49,5 @@
     <dimen name="ods_slider_thumb_radius">6dp</dimen>
     <dimen name="ods_slider_halo_radius">24dp</dimen>
     <dimen name="ods_slider_tooltip_corner_size">16dp</dimen>
-
-    <!-- Card -->
-    <dimen name="ods_card_big_image_width">194dp</dimen>
-    <dimen name="ods_card_small_image_width">95dp</dimen>
 
 </resources>
