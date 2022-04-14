@@ -93,7 +93,7 @@
     <string name="component_controls_sliders_description">Sliders enable the user to set a value by moving the slider thumb. The lowest value is always on the left. Sliders can be either continuous or discrete, where the slider thumb snaps to evenly spaced tick marks along the slider rail.</string>
     <string name="component_controls_slider_discrete">Discrete</string>
     <string name="component_controls_slider_discrete_with_icons">Discrete with icons</string>
-    <string name="component_controls_slider_continuous">Continuous with icons</string>
+    <string name="component_controls_slider_continuous">Continuous</string>
     <string name="component_controls_slider_continuous_with_icons">Continuous with icons</string>
 
     <!-- About -->
