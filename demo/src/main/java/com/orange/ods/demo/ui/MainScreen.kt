@@ -34,8 +34,8 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.navigation.NavController
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
-import com.orange.ods.compose.component.OdsBottomNavigation
-import com.orange.ods.compose.component.OdsBottomNavigationItem
+import com.orange.ods.compose.component.bottomnavigation.OdsBottomNavigation
+import com.orange.ods.compose.component.bottomnavigation.OdsBottomNavigationItem
 import com.orange.ods.compose.theme.OdsMaterialTheme
 
 @ExperimentalMaterialApi

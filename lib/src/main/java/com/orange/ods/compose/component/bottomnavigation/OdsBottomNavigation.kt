@@ -8,7 +8,7 @@
  * /
  */
 
-package com.orange.ods.compose.component
+package com.orange.ods.compose.component.bottomnavigation
 
 import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.layout.RowScope
