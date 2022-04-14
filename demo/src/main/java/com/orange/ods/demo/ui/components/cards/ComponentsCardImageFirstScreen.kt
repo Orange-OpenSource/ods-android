@@ -10,8 +10,6 @@
 
 package com.orange.ods.demo.ui.components.cards
 
-import android.content.Context
-import android.widget.Toast
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
@@ -32,6 +30,7 @@ import androidx.compose.ui.unit.dp
 import com.orange.ods.compose.component.card.OdsCardImageFirst
 import com.orange.ods.compose.text.OdsTextBody2
 import com.orange.ods.demo.R
+import com.orange.ods.demo.ui.components.utilities.clickOnElement
 import com.orange.ods.demo.ui.utilities.LabelledCheckbox
 
 @ExperimentalMaterialApi
@@ -54,7 +53,7 @@ fun ComponentsCardImageFirstScreen() {
                 modifier = Modifier.padding(dimensionResource(id = R.dimen.ods_spacing_s)),
                 text = stringResource(id = R.string.component_customize)
             )
-            LabelledCheckbox(label = "Subtitle", checked = subtitleIsChecked)
+            LabelledCheckbox(label = stringResource(id = R.string.component_card_element_subtitle), checked = subtitleIsChecked)
             LabelledCheckbox(label = "Text", checked = textIsChecked)
             LabelledCheckbox(label = "Button 1", checked = button1IsChecked)
             LabelledCheckbox(label = "Button 2", checked = button2IsChecked)
@@ -67,25 +66,21 @@ fun ComponentsCardImageFirstScreen() {
                 .verticalScroll(state = rememberScrollState()),
             verticalArrangement = Arrangement.spacedBy(dimensionResource(id = R.dimen.ods_spacing_s))
         ) {
+            val button1Text = stringResource(id = R.string.component_card_element_button1)
+            val button2Text = stringResource(id = R.string.component_card_element_button2)
+            val cardContainerText = stringResource(id = R.string.component_card_element_container)
+
             OdsCardImageFirst(
                 imageRes = R.drawable.picture_guideline_iconography,
-                title = "Title",
-                subtitle = if (subtitleIsChecked.value) "SubTitle" else null,
-                text = if (textIsChecked.value) {
-                    "Lorem ipsum dolor sit amet, at blandit nec tristique porttitor."
-                } else {
-                    null
-                },
-                onCardClick = { displayToast(context, "Click on Card") },
-                button1Text = if (button1IsChecked.value) "Button 1" else null,
-                onButton1Click = { displayToast(context, "Click on Button 2") },
-                button2Text = if (button2IsChecked.value) "Button 2" else null,
-                onButton2Click = { displayToast(context, "Click on Button 2") }
+                title = stringResource(id = R.string.component_card_element_title),
+                subtitle = if (subtitleIsChecked.value) stringResource(id = R.string.component_card_element_subtitle) else null,
+                text = if (textIsChecked.value) stringResource(id = R.string.component_card_element_text_value) else null,
+                onCardClick = { clickOnElement(context, cardContainerText) },
+                button1Text = if (button1IsChecked.value) button1Text else null,
+                onButton1Click = { clickOnElement(context, button1Text) },
+                button2Text = if (button2IsChecked.value) button2Text else null,
+                onButton2Click = { clickOnElement(context, button2Text) }
             )
         }
     }
-}
-
-private fun displayToast(context: Context, text: String) {
-    Toast.makeText(context, text, Toast.LENGTH_LONG).show()
 }

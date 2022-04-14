@@ -44,6 +44,7 @@
     <string name="component_customize">Swipe up to customize</string>
     <string name="component_state_enabled">Enabled</string>
     <string name="component_state_disabled">Disabled</string>
+    <string name="component_on_click_toast">Click on %s</string>
 
     <!-- Components Buttons -->
     <string name="component_buttons_description">A button allows a user to perform an action or to navigate to another page. It contains a text label and a supporting icon can be displayed.</string>
@@ -65,6 +66,14 @@
     <string name="component_card_title_first">Card title first</string>
     <string name="component_card_small">Card small</string>
     <string name="component_card_description">Cards are important components that can be used to organise and present a number of different types of related information.</string>
+    <string name="component_card_element_container">Card container</string>
+    <string name="component_card_element_title">Title</string>
+    <string name="component_card_element_subtitle">Subtitle</string>
+    <string name="component_card_element_thumbnail">Thumbnail</string>
+    <string name="component_card_element_button1">Button 1</string>
+    <string name="component_card_element_button2">Button 2</string>
+    <string name="component_card_element_text">Text</string>
+    <string name="component_card_element_text_value">Lorem ipsum dolor sit amet, at blandit nec tristique porttitor.</string>
 
     <!-- Component Controls -->
     <string name="component_controls_description">There are a number of controls that enable user input. Their appearance is customised for Orange but their behaviour must follow the native platform standard.</string>

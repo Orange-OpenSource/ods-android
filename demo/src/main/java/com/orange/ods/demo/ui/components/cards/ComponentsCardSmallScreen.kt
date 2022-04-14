@@ -10,7 +10,6 @@
 
 package com.orange.ods.demo.ui.components.cards
 
-import android.widget.Toast
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Row
@@ -30,6 +29,7 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import com.orange.ods.compose.component.card.OdsCardSmall
 import com.orange.ods.demo.R
+import com.orange.ods.demo.ui.components.utilities.clickOnElement
 import com.orange.ods.demo.ui.utilities.LabelledCheckbox
 
 @ExperimentalMaterialApi
@@ -38,7 +38,6 @@ fun ComponentsCardSmallScreen() {
     val context = LocalContext.current
 
     val subtitleIsChecked = remember { mutableStateOf(true) }
-
     val scaffoldState = rememberBottomSheetScaffoldState()
 
     BottomSheetScaffold(
@@ -49,7 +48,7 @@ fun ComponentsCardSmallScreen() {
                 modifier = Modifier.padding(dimensionResource(id = R.dimen.ods_spacing_s)),
                 text = stringResource(id = R.string.component_customize)
             )
-            LabelledCheckbox("Subtitle", subtitleIsChecked)
+            LabelledCheckbox(stringResource(id = R.string.component_card_element_subtitle), subtitleIsChecked)
         }
     ) {
         Row(
@@ -58,20 +57,16 @@ fun ComponentsCardSmallScreen() {
                 .padding(dimensionResource(id = R.dimen.ods_spacing_s)),
             horizontalArrangement = Arrangement.spacedBy(dimensionResource(id = R.dimen.ods_spacing_s)),
         ) {
+            val cardContainerText = stringResource(id = R.string.component_card_element_container)
+
             OdsCardSmall(
                 modifier = Modifier.weight(0.5f),
                 imageRes = R.drawable.picture_component_cards,
-                title = "Title",
-                subtitle = if (subtitleIsChecked.value) {
-                    "SubTitle"
-                } else {
-                    null
-                },
-                onCardClick = {
-                    Toast.makeText(context, "Click on Card", Toast.LENGTH_LONG).show()
-                }
+                title = stringResource(id = R.string.component_card_element_title),
+                subtitle = if (subtitleIsChecked.value) stringResource(id = R.string.component_card_element_subtitle) else null,
+                onCardClick = { clickOnElement(context, cardContainerText) }
             )
-            Box(modifier = Modifier.weight(0.5f)) {}
+            Box(modifier = Modifier.weight(0.5f))
         }
     }
 }
