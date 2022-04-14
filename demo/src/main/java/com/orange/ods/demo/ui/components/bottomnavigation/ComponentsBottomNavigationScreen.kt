@@ -89,7 +89,7 @@ private fun BottomNavigationBar(selectedVariant: MutableState<BottomNavigationVa
     OdsBottomNavigation {
         for (item in navigationItems.subList(0, selectedVariant.value.itemNumber)) {
             OdsBottomNavigationItem(
-                icon = { Icon(painter = painterResource(id = item.icon), contentDescription = item.title) },
+                icon = { Icon(painter = painterResource(id = item.icon), contentDescription = null) },
                 label = item.title,
                 selected = selectedItem.value.title == item.title,
                 onClick = {

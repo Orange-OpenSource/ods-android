@@ -10,10 +10,12 @@
 
 package com.orange.ods.demo.ui.utilities.composable
 
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Row
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.MutableState
 import androidx.compose.ui.Alignment
+import androidx.compose.ui.Modifier
 import com.orange.ods.compose.component.control.OdsCheckbox
 import com.orange.ods.compose.component.control.OdsRadioButton
 import com.orange.ods.compose.text.OdsTextBody1
@@ -43,14 +45,15 @@ fun LabelledRadioButton(
     enabled: Boolean = true
 ) {
     Row(
-        verticalAlignment = Alignment.CenterVertically,
+        modifier = Modifier.clickable {
+            selectedRadio.value = currentRadio
+            onClick.invoke()
+        },
+        verticalAlignment = Alignment.CenterVertically
     ) {
         OdsRadioButton(
             selected = selectedRadio.value == currentRadio,
-            onClick = {
-                selectedRadio.value = currentRadio
-                onClick.invoke()
-            },
+            onClick = {},
             enabled = enabled
         )
         OdsTextBody1(text = label)

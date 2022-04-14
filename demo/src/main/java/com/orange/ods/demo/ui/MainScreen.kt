@@ -99,7 +99,7 @@ private fun BottomNavigationBar(navController: NavController) {
         val currentRoute = getCurrentRoute(navController)
         navigationItems.forEach { item ->
             OdsBottomNavigationItem(
-                icon = { Icon(painter = painterResource(id = item.icon), contentDescription = stringResource(id = item.title)) },
+                icon = { Icon(painter = painterResource(id = item.icon), contentDescription = null) },
                 label = stringResource(id = item.title),
                 selected = currentRoute == item.route,
                 onClick = {

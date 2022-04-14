@@ -133,7 +133,7 @@ Here is an example:
     OdsBottomNavigation {
         for (item in navigationItems) {
             OdsBottomNavigationItem(
-                icon = { Icon(painter = painterResource(id = item.icon), contentDescription = item.title) },
+                icon = { Icon(painter = painterResource(id = item.icon), contentDescription = null) }, // contentDescription is null cause Talkback already read the item's title
                 label = item.title,
                 selected = selectedItem.value.title == item.title,
                 onClick = {
