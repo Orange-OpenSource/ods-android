@@ -17,6 +17,7 @@ Cards contain content and actions about a single subject.
         *   [In XML](#in-xml)
         *   [In JetPack Compose](#in-jetpack-compose)
             *   [Card image first: OdsCardImageFirst](#card-image-first-odscardimagefirst)
+            *   [Card title first: OdsCardTitleFirst](#card-title-first-odscardtitlefirst)
             *   [Small card: OdsCardSmall](#small-card-odscardsmall)
 
 ## Using cards
@@ -160,6 +161,30 @@ OdsCardImageFirst(
             onButton1Click = {  }, //Optional
             onButton2Click = {  } //Optional
         )
+```
+
+##### Card title first: OdsCardTitleFirst
+
+This is a full width card displaying with a title and a thumbnail on top as first element.
+
+  ![CardTitleFirst](images/card_title_first_light.png) ![CardTitleFirst dark](images/card_title_first_dark.png)
+
+In your composable screen you can use:
+
+```kotlin
+OdsCardTitleFirst(
+    thumbnailRes = R.drawable.thumbnail, //Optional
+    title = "Title",
+    subtitle = "Subtitle", //Optional
+    imageRes = R.drawable.picture,
+    imageContentDescription = "Picture content description", //Optional
+    text = "Text", //Optional
+    button1Text = "Button1", //Optional
+    button2Text = "Button2", //Optional
+    onCardClick = {  }, //Optional
+    onButton1Click = {  }, //Optional
+    onButton2Click = {  } //Optional
+)
 ```
 
 ##### Small card: OdsCardSmall
