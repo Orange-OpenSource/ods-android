@@ -45,6 +45,9 @@
     <!-- Components Bottom navigation -->
     <string name="component_bottom_navigation">Bottom navigation</string>
     <string name="component_bottom_navigation_description">Enable users to quickly and directly explore top-level destinations.</string>
+    <string name="component_bottom_navigation_three_up">Three up</string>
+    <string name="component_bottom_navigation_four_up">Four up</string>
+    <string name="component_bottom_navigation_five_up">Five up</string>
 
     <!-- Components Buttons -->
     <string name="component_buttons">Buttons</string>

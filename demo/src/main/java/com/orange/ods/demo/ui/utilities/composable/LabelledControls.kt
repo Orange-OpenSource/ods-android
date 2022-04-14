@@ -39,7 +39,8 @@ fun LabelledRadioButton(
     selectedRadio: MutableState<String>,
     currentRadio: String,
     label: String,
-    enabled: Boolean
+    onClick: () -> Unit = {},
+    enabled: Boolean = true
 ) {
     Row(
         verticalAlignment = Alignment.CenterVertically,
@@ -48,6 +49,7 @@ fun LabelledRadioButton(
             selected = selectedRadio.value == currentRadio,
             onClick = {
                 selectedRadio.value = currentRadio
+                onClick.invoke()
             },
             enabled = enabled
         )

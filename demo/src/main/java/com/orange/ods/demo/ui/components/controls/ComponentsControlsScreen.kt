@@ -62,13 +62,11 @@ fun Checkboxes() {
         ) {
             LabelledCheckbox(
                 checked = remember { mutableStateOf(true) },
-                label = stringResource(id = R.string.component_state_enabled),
-                enabled = true
+                label = stringResource(id = R.string.component_state_enabled)
             )
             LabelledCheckbox(
                 checked = remember { mutableStateOf(false) },
-                label = stringResource(id = R.string.component_state_enabled),
-                enabled = true
+                label = stringResource(id = R.string.component_state_enabled)
             )
         }
         Row(
@@ -104,14 +102,12 @@ fun RadioButtons() {
             LabelledRadioButton(
                 selectedRadio = selectedRadio,
                 currentRadio = radio1,
-                label = stringResource(id = R.string.component_state_enabled),
-                enabled = true
+                label = stringResource(id = R.string.component_state_enabled)
             )
             LabelledRadioButton(
                 selectedRadio = selectedRadio,
                 currentRadio = radio2,
-                label = stringResource(id = R.string.component_state_enabled),
-                enabled = true
+                label = stringResource(id = R.string.component_state_enabled)
             )
         }
         Row(
@@ -145,13 +141,11 @@ fun Switches() {
         ) {
             LabelledSwitch(
                 label = stringResource(id = R.string.component_state_enabled),
-                selected = remember { mutableStateOf(true) },
-                enabled = true
+                selected = remember { mutableStateOf(true) }
             )
             LabelledSwitch(
                 label = stringResource(id = R.string.component_state_enabled),
-                selected = remember { mutableStateOf(false) },
-                enabled = true
+                selected = remember { mutableStateOf(false) }
             )
         }
         Row(
@@ -218,7 +212,7 @@ fun Sliders() {
 private fun LabelledSwitch(
     selected: MutableState<Boolean>,
     label: String,
-    enabled: Boolean
+    enabled: Boolean = true
 ) {
     Row(
         verticalAlignment = Alignment.CenterVertically,
