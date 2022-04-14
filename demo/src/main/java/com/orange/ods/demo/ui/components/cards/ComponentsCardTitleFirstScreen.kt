@@ -27,7 +27,7 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
-import com.orange.ods.compose.component.card.OdsCardImageFirst
+import com.orange.ods.compose.component.card.OdsCardTitleFirst
 import com.orange.ods.compose.text.OdsTextBody2
 import com.orange.ods.demo.R
 import com.orange.ods.demo.ui.components.utilities.clickOnElement
@@ -35,9 +35,10 @@ import com.orange.ods.demo.ui.utilities.LabelledCheckbox
 
 @ExperimentalMaterialApi
 @Composable
-fun ComponentsCardImageFirstScreen() {
+fun ComponentsCardTitleFirstScreen() {
     val context = LocalContext.current
 
+    val thumbnailIsChecked = remember { mutableStateOf(true) }
     val textIsChecked = remember { mutableStateOf(true) }
     val subtitleIsChecked = remember { mutableStateOf(true) }
     val button1IsChecked = remember { mutableStateOf(true) }
@@ -53,6 +54,7 @@ fun ComponentsCardImageFirstScreen() {
                 modifier = Modifier.padding(dimensionResource(id = R.dimen.ods_spacing_s)),
                 text = stringResource(id = R.string.component_customize)
             )
+            LabelledCheckbox(label = stringResource(id = R.string.component_card_element_thumbnail), checked = thumbnailIsChecked)
             LabelledCheckbox(label = stringResource(id = R.string.component_card_element_subtitle), checked = subtitleIsChecked)
             LabelledCheckbox(label = stringResource(id = R.string.component_card_element_text), checked = textIsChecked)
             LabelledCheckbox(label = stringResource(id = R.string.component_card_element_button1), checked = button1IsChecked)
@@ -70,7 +72,8 @@ fun ComponentsCardImageFirstScreen() {
             val button2Text = stringResource(id = R.string.component_card_element_button2)
             val cardContainerText = stringResource(id = R.string.component_card_element_container)
 
-            OdsCardImageFirst(
+            OdsCardTitleFirst(
+                thumbnailRes = if (thumbnailIsChecked.value) R.drawable.picture_component_cards else null,
                 imageRes = R.drawable.picture_guideline_iconography,
                 title = stringResource(id = R.string.component_card_element_title),
                 subtitle = if (subtitleIsChecked.value) stringResource(id = R.string.component_card_element_subtitle) else null,

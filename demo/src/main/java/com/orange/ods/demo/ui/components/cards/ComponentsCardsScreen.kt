@@ -22,7 +22,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.stringResource
 import androidx.navigation.NavHostController
-import com.orange.ods.compose.component.lists.OdsListItem
+import com.orange.ods.compose.component.list.OdsListItem
 import com.orange.ods.demo.R
 import com.orange.ods.demo.ui.ComponentsNavigationItem
 import com.orange.ods.demo.ui.components.utilities.ComponentHeader
@@ -31,6 +31,7 @@ private data class CardMenuItem(@StringRes val titleRes: Int, val route: String)
 
 private val cardMenuItems = listOf(
     CardMenuItem(R.string.component_card_image_first, ComponentsNavigationItem.CardImageFirst.route),
+    CardMenuItem(R.string.component_card_title_first, ComponentsNavigationItem.CardTitleFirst.route),
     CardMenuItem(R.string.component_card_small, ComponentsNavigationItem.CardSmall.route)
 )
 

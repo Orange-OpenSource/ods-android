@@ -27,9 +27,9 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.stringResource
-import com.orange.ods.compose.component.controls.OdsRadioButton
-import com.orange.ods.compose.component.controls.OdsSlider
-import com.orange.ods.compose.component.controls.OdsSwitch
+import com.orange.ods.compose.component.control.OdsRadioButton
+import com.orange.ods.compose.component.control.OdsSlider
+import com.orange.ods.compose.component.control.OdsSwitch
 import com.orange.ods.compose.text.OdsTextBody1
 import com.orange.ods.demo.R
 import com.orange.ods.demo.ui.components.utilities.ComponentHeader

@@ -27,6 +27,7 @@ import com.orange.ods.demo.ui.components.ComponentsScreen
 import com.orange.ods.demo.ui.components.buttons.ComponentsButtonsScreen
 import com.orange.ods.demo.ui.components.cards.ComponentsCardImageFirstScreen
 import com.orange.ods.demo.ui.components.cards.ComponentsCardSmallScreen
+import com.orange.ods.demo.ui.components.cards.ComponentsCardTitleFirstScreen
 import com.orange.ods.demo.ui.components.cards.ComponentsCardsScreen
 import com.orange.ods.demo.ui.components.controls.ComponentsControlsScreen
 import com.orange.ods.demo.ui.guidelines.GuidelinesScreen
@@ -63,7 +64,8 @@ sealed class ComponentsNavigationItem(
     object Controls : ComponentsNavigationItem(R.string.component_controls, "components/controls")
     object BottomNavigation : ComponentsNavigationItem(R.string.component_bottom_navigation, "components/bottom_navigation")
     object Cards : ComponentsNavigationItem(R.string.component_cards, "components/card")
-    object CardImageFirst : ComponentsNavigationItem(R.string.component_card_image_first, "components/card/image_first_card_view")
+    object CardImageFirst : ComponentsNavigationItem(R.string.component_card_image_first, "components/card/card_image_first")
+    object CardTitleFirst : ComponentsNavigationItem(R.string.component_card_title_first, "components/card/card_title_first")
     object CardSmall : ComponentsNavigationItem(R.string.component_card_small, "components/card/small_card_view")
 }
 
@@ -123,6 +125,10 @@ fun AppNavigation(navController: NavHostController, onSetScreenTitle: (String) -
         composable(ComponentsNavigationItem.CardImageFirst.route) {
             onSetScreenTitle(stringResource(id = ComponentsNavigationItem.CardImageFirst.title))
             ComponentsCardImageFirstScreen()
+        }
+        composable(ComponentsNavigationItem.CardTitleFirst.route) {
+            onSetScreenTitle(stringResource(id = ComponentsNavigationItem.CardTitleFirst.title))
+            ComponentsCardTitleFirstScreen()
         }
         composable(ComponentsNavigationItem.CardSmall.route) {
             onSetScreenTitle(stringResource(id = ComponentsNavigationItem.CardSmall.title))

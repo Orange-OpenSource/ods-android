@@ -8,7 +8,7 @@
  * /
  */
 
-package com.orange.ods.compose.component.lists
+package com.orange.ods.compose.component.list
 
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
