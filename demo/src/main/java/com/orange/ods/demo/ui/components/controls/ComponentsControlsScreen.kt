@@ -27,15 +27,15 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.stringResource
-import com.orange.ods.compose.component.control.OdsRadioButton
 import com.orange.ods.compose.component.control.OdsSlider
 import com.orange.ods.compose.component.control.OdsSwitch
 import com.orange.ods.compose.text.OdsTextBody1
 import com.orange.ods.demo.R
 import com.orange.ods.demo.ui.components.utilities.ComponentHeader
-import com.orange.ods.demo.ui.utilities.LabelledCheckbox
-import com.orange.ods.demo.ui.utilities.Subtitle
-import com.orange.ods.demo.ui.utilities.Title
+import com.orange.ods.demo.ui.utilities.composable.LabelledCheckbox
+import com.orange.ods.demo.ui.utilities.composable.LabelledRadioButton
+import com.orange.ods.demo.ui.utilities.composable.Subtitle
+import com.orange.ods.demo.ui.utilities.composable.Title
 
 @Composable
 fun ComponentsControlsScreen() {
@@ -62,13 +62,11 @@ fun Checkboxes() {
         ) {
             LabelledCheckbox(
                 checked = remember { mutableStateOf(true) },
-                label = stringResource(id = R.string.component_state_enabled),
-                enabled = true
+                label = stringResource(id = R.string.component_state_enabled)
             )
             LabelledCheckbox(
                 checked = remember { mutableStateOf(false) },
-                label = stringResource(id = R.string.component_state_enabled),
-                enabled = true
+                label = stringResource(id = R.string.component_state_enabled)
             )
         }
         Row(
@@ -104,14 +102,12 @@ fun RadioButtons() {
             LabelledRadioButton(
                 selectedRadio = selectedRadio,
                 currentRadio = radio1,
-                label = stringResource(id = R.string.component_state_enabled),
-                enabled = true
+                label = stringResource(id = R.string.component_state_enabled)
             )
             LabelledRadioButton(
                 selectedRadio = selectedRadio,
                 currentRadio = radio2,
-                label = stringResource(id = R.string.component_state_enabled),
-                enabled = true
+                label = stringResource(id = R.string.component_state_enabled)
             )
         }
         Row(
@@ -145,13 +141,11 @@ fun Switches() {
         ) {
             LabelledSwitch(
                 label = stringResource(id = R.string.component_state_enabled),
-                selected = remember { mutableStateOf(true) },
-                enabled = true
+                selected = remember { mutableStateOf(true) }
             )
             LabelledSwitch(
                 label = stringResource(id = R.string.component_state_enabled),
-                selected = remember { mutableStateOf(false) },
-                enabled = true
+                selected = remember { mutableStateOf(false) }
             )
         }
         Row(
@@ -215,31 +209,10 @@ fun Sliders() {
 }
 
 @Composable
-private fun LabelledRadioButton(
-    selectedRadio: MutableState<String>,
-    currentRadio: String,
-    label: String,
-    enabled: Boolean
-) {
-    Row(
-        verticalAlignment = Alignment.CenterVertically,
-    ) {
-        OdsRadioButton(
-            selected = selectedRadio.value == currentRadio,
-            onClick = {
-                selectedRadio.value = currentRadio
-            },
-            enabled = enabled
-        )
-        OdsTextBody1(text = label)
-    }
-}
-
-@Composable
 private fun LabelledSwitch(
     selected: MutableState<Boolean>,
     label: String,
-    enabled: Boolean
+    enabled: Boolean = true
 ) {
     Row(
         verticalAlignment = Alignment.CenterVertically,

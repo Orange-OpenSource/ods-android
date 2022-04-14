@@ -34,8 +34,8 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.navigation.NavController
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
-import com.orange.ods.compose.component.OdsBottomNavigation
-import com.orange.ods.compose.component.OdsBottomNavigationItem
+import com.orange.ods.compose.component.bottomnavigation.OdsBottomNavigation
+import com.orange.ods.compose.component.bottomnavigation.OdsBottomNavigationItem
 import com.orange.ods.compose.theme.OdsMaterialTheme
 
 @ExperimentalMaterialApi
@@ -99,7 +99,7 @@ private fun BottomNavigationBar(navController: NavController) {
         val currentRoute = getCurrentRoute(navController)
         navigationItems.forEach { item ->
             OdsBottomNavigationItem(
-                icon = { Icon(painter = painterResource(id = item.icon), contentDescription = stringResource(id = item.title)) },
+                icon = { Icon(painter = painterResource(id = item.icon), contentDescription = null) },
                 label = stringResource(id = item.title),
                 selected = currentRoute == item.route,
                 onClick = {

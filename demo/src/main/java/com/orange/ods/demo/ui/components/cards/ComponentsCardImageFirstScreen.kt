@@ -31,7 +31,7 @@ import com.orange.ods.compose.component.card.OdsCardImageFirst
 import com.orange.ods.compose.text.OdsTextBody2
 import com.orange.ods.demo.R
 import com.orange.ods.demo.ui.components.utilities.clickOnElement
-import com.orange.ods.demo.ui.utilities.LabelledCheckbox
+import com.orange.ods.demo.ui.utilities.composable.LabelledCheckbox
 
 @ExperimentalMaterialApi
 @Composable

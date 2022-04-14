@@ -16,7 +16,7 @@ import androidx.compose.ui.res.stringResource
 import com.orange.ods.compose.component.button.OdsButtonOutlined
 import com.orange.ods.compose.theme.OdsDisplayAppearance
 import com.orange.ods.demo.R
-import com.orange.ods.demo.ui.utilities.Title
+import com.orange.ods.demo.ui.utilities.composable.Title
 
 @Composable
 fun ButtonsOutlined() {

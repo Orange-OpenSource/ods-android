@@ -32,13 +32,11 @@ val componentsItems = listOf(
         title = R.string.component_controls,
         route = ComponentsNavigationItem.Controls.route
     ),
-    /*
-    ComponentsScreenItem(
+    ComponentsItem(
         image = R.drawable.picture_component_botton_navigation,
         title = R.string.component_bottom_navigation,
         route = ComponentsNavigationItem.BottomNavigation.route
     ),
-    */
     ComponentsItem(
         image = R.drawable.picture_component_cards,
         title = R.string.component_cards,

@@ -16,7 +16,7 @@ import androidx.compose.ui.res.stringResource
 import com.orange.ods.compose.component.button.OdsButton
 import com.orange.ods.compose.theme.OdsDisplayAppearance
 import com.orange.ods.demo.R
-import com.orange.ods.demo.ui.utilities.Subtitle
+import com.orange.ods.demo.ui.utilities.composable.Subtitle
 
 @Composable
 fun ButtonsContained() {

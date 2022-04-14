@@ -24,6 +24,7 @@ import com.orange.ods.demo.R
 import com.orange.ods.demo.ui.about.AboutHtmlFileScreen
 import com.orange.ods.demo.ui.about.AboutScreen
 import com.orange.ods.demo.ui.components.ComponentsScreen
+import com.orange.ods.demo.ui.components.bottomnavigation.ComponentsBottomNavigationScreen
 import com.orange.ods.demo.ui.components.buttons.ComponentsButtonsScreen
 import com.orange.ods.demo.ui.components.cards.ComponentsCardImageFirstScreen
 import com.orange.ods.demo.ui.components.cards.ComponentsCardSmallScreen
@@ -114,6 +115,10 @@ fun AppNavigation(navController: NavHostController, onSetScreenTitle: (String) -
         }
 
         // Components
+        composable(ComponentsNavigationItem.BottomNavigation.route) {
+            onSetScreenTitle(stringResource(id = ComponentsNavigationItem.BottomNavigation.title))
+            ComponentsBottomNavigationScreen()
+        }
         composable(ComponentsNavigationItem.Buttons.route) {
             onSetScreenTitle(stringResource(id = ComponentsNavigationItem.Buttons.title))
             ComponentsButtonsScreen()

@@ -35,10 +35,6 @@
     <string name="guideline_colour_xml">xml (%1s)</string>
 
     <!-- Components -->
-    <string name="component_buttons">Buttons</string>
-    <string name="component_cards">Cards</string>
-    <string name="component_controls">Controls</string>
-    <string name="component_bottom_navigation">Bottom Navigation</string>
     <string name="component_force_on_dark">Forced on dark</string>
     <string name="component_force_on_light">Forced on light</string>
     <string name="component_customize">Swipe up to customize</string>
@@ -46,7 +42,15 @@
     <string name="component_state_disabled">Disabled</string>
     <string name="component_on_click_toast">Click on %s</string>
 
+    <!-- Components Bottom navigation -->
+    <string name="component_bottom_navigation">Bottom navigation</string>
+    <string name="component_bottom_navigation_description">Enable users to quickly and directly explore top-level destinations.</string>
+    <string name="component_bottom_navigation_three_up">Three up</string>
+    <string name="component_bottom_navigation_four_up">Four up</string>
+    <string name="component_bottom_navigation_five_up">Five up</string>
+
     <!-- Components Buttons -->
+    <string name="component_buttons">Buttons</string>
     <string name="component_buttons_description">A button allows a user to perform an action or to navigate to another page. It contains a text label and a supporting icon can be displayed.</string>
     <string name="component_buttons_title_try">Try out our buttons</string>
     <string name="component_buttons_preamble">This demo lets you preview the button component and each of its states.</string>
@@ -62,6 +66,7 @@
     <string name="component_buttons_toggle_subtitle_single">Single</string>
 
     <!-- Components Cards -->
+    <string name="component_cards">Cards</string>
     <string name="component_card_image_first">Card image first</string>
     <string name="component_card_title_first">Card title first</string>
     <string name="component_card_small">Card small</string>
@@ -76,6 +81,7 @@
     <string name="component_card_element_text_value">Lorem ipsum dolor sit amet, at blandit nec tristique porttitor.</string>
 
     <!-- Component Controls -->
+    <string name="component_controls">Controls</string>
     <string name="component_controls_description">There are a number of controls that enable user input. Their appearance is customised for Orange but their behaviour must follow the native platform standard.</string>
     <string name="component_controls_checkboxes">Checkboxes</string>
     <string name="component_controls_radio_buttons">Radio Buttons</string>

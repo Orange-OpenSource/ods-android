@@ -32,8 +32,8 @@ import com.orange.ods.compose.theme.OdsDisplayAppearance
 import com.orange.ods.compose.theme.White100
 import com.orange.ods.demo.R
 import com.orange.ods.demo.ui.components.utilities.ComponentHeader
-import com.orange.ods.demo.ui.utilities.Subtitle
-import com.orange.ods.demo.ui.utilities.Title
+import com.orange.ods.demo.ui.utilities.composable.Subtitle
+import com.orange.ods.demo.ui.utilities.composable.Title
 
 @Composable
 fun ComponentsButtonsScreen() {
