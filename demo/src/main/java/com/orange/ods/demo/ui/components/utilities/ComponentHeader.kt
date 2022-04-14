@@ -35,14 +35,23 @@ fun ComponentHeader(
         contentScale = ContentScale.FillWidth,
         contentDescription = null
     )
+    ComponentDescription(
+        modifier = Modifier.padding(
+            horizontal = dimensionResource(id = R.dimen.ods_screen_horizontal_margin)
+        ),
+        description = description
+    )
+}
+
+@Composable
+fun ComponentDescription(
+    modifier: Modifier = Modifier,
+    @StringRes description: Int
+) {
     OdsTextBody1(
         text = stringResource(description),
-        modifier = Modifier
-            .padding(
-                top = dimensionResource(id = R.dimen.ods_spacing_s)
-            )
-            .padding(
-                horizontal = dimensionResource(id = R.dimen.ods_screen_horizontal_margin)
-            )
+        modifier = modifier.padding(
+            top = dimensionResource(id = R.dimen.ods_spacing_s)
+        )
     )
 }

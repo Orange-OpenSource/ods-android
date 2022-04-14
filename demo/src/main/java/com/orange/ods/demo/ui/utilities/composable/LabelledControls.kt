@@ -44,16 +44,17 @@ fun LabelledRadioButton(
     onClick: () -> Unit = {},
     enabled: Boolean = true
 ) {
+    val clickAction = {
+        selectedRadio.value = currentRadio
+        onClick.invoke()
+    }
     Row(
-        modifier = Modifier.clickable {
-            selectedRadio.value = currentRadio
-            onClick.invoke()
-        },
+        modifier = if (enabled) Modifier.clickable { clickAction.invoke() } else Modifier,
         verticalAlignment = Alignment.CenterVertically
     ) {
         OdsRadioButton(
             selected = selectedRadio.value == currentRadio,
-            onClick = {},
+            onClick = { clickAction.invoke() },
             enabled = enabled
         )
         OdsTextBody1(text = label)
