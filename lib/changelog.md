@@ -9,10 +9,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
-- Add ODS controls composable: `OdsCheckbox`, `OdsRadioButton`, `OdsSwitch`, `OdsSlider`
-- Add ODS buttons composable: `OdsButton`, `OdsOutlinedButton`, `OdsTextButton` and `OdsToggleButton`
+- Add ODS controls components: `OdsCheckbox`, `OdsRadioButton`, `OdsSwitch`, `OdsSlider`
+- Add ODS buttons components: `OdsButton`, `OdsOutlinedButton`, `OdsTextButton` and `OdsToggleButton`
 - Add `OdsTopAppBar` component
-- Add `OdsCardSmall` and `OdsCardImageFirst` component
+- Add `OdsCardSmall`, `OdsCardImageFirst` and `OdsCardTitleFirst` components
+- Add `OdsBottomNavigation` and `OdsBottomNavigationItem` components
 - Add `OdsMaterialTheme` which is a Material theme extension for Jetpack Compose applications
-- Add `OdsBottomNavigation` and `OdsBottomNavigationItem` composables
 - Add `Theme.Orange` and `Theme.Orange.NoActionBar`, the Orange Design System theme for XML applications
