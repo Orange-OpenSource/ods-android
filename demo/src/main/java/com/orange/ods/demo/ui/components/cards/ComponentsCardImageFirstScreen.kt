@@ -54,9 +54,9 @@ fun ComponentsCardImageFirstScreen() {
                 text = stringResource(id = R.string.component_customize)
             )
             LabelledCheckbox(label = stringResource(id = R.string.component_card_element_subtitle), checked = subtitleIsChecked)
-            LabelledCheckbox(label = "Text", checked = textIsChecked)
-            LabelledCheckbox(label = "Button 1", checked = button1IsChecked)
-            LabelledCheckbox(label = "Button 2", checked = button2IsChecked)
+            LabelledCheckbox(label = stringResource(id = R.string.component_card_element_text), checked = textIsChecked)
+            LabelledCheckbox(label = stringResource(id = R.string.component_card_element_button1), checked = button1IsChecked)
+            LabelledCheckbox(label = stringResource(id = R.string.component_card_element_button2), checked = button2IsChecked)
         }
     ) {
         Column(
