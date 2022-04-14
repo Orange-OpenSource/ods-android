@@ -11,6 +11,11 @@ Bottom navigation bars allow movement between primary destinations in an app.
 **Contents**
 
 * [Using bottom navigation](#using-bottom-navigation)
+  *   [Material Design](#material-design)
+  *   [Accessibility](#accessibility)
+  *   [Bottom navigation bar example](#bottom-navigation-bar-example)
+        *   [In XML](#in-xml)
+        *   [In JetPack Compose](#in-jetpack-compose)
 
 ## Using bottom navigation
 
@@ -48,6 +53,8 @@ text labels for each navigation item. There are four visibility modes:
 *   `LABEL_VISIBILITY_UNLABELED`: The label is hidden for all navigation items
 
 ### Bottom navigation bar example
+
+#### In XML
 
 API and source code:
 
@@ -104,4 +111,36 @@ In code:
 
 ```kt
 bottomNavigation.selectedItemId = R.id.page_2
+```
+
+#### In Jetpack Compose
+
+In your composable screen, use the `OdsBottomNavigation` composable. It should contain multiple `OdsBottomNavigationItem`s.
+
+Here is an example:
+
+```kotlin
+    val navigationItems = listOf(
+        NavigationItem("Favorites", R.drawable.ic_heart),
+        NavigationItem("Search", R.drawable.ic_search),
+        NavigationItem("Information", R.drawable.ic_info),
+        NavigationItem("Notification", R.drawable.ic_notification),
+        NavigationItem("Settings", R.drawable.ic_settings)
+    )
+
+    val selectedItem = remember { mutableStateOf(navigationItems[0]) }
+
+    OdsBottomNavigation {
+        for (item in navigationItems) {
+            OdsBottomNavigationItem(
+                icon = { Icon(painter = painterResource(id = item.icon), contentDescription = item.title) },
+                label = item.title,
+                selected = selectedItem.value.title == item.title,
+                onClick = {
+                    selectedItem.value = item
+                    // Do what you want with a piece of code
+                }
+            )
+        }
+    }
 ```
