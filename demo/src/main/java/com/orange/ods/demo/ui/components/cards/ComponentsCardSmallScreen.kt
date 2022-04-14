@@ -30,7 +30,7 @@ import androidx.compose.ui.unit.dp
 import com.orange.ods.compose.component.card.OdsCardSmall
 import com.orange.ods.demo.R
 import com.orange.ods.demo.ui.components.utilities.clickOnElement
-import com.orange.ods.demo.ui.utilities.LabelledCheckbox
+import com.orange.ods.demo.ui.utilities.composable.LabelledCheckbox
 
 @ExperimentalMaterialApi
 @Composable

@@ -8,23 +8,18 @@
  * /
  */
 
-package com.orange.ods.demo.ui.utilities
+package com.orange.ods.demo.ui.utilities.composable
 
 import androidx.annotation.StringRes
 import androidx.compose.foundation.background
-import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.MutableState
-import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
-import com.orange.ods.compose.component.control.OdsCheckbox
-import com.orange.ods.compose.text.OdsTextBody1
 import com.orange.ods.compose.text.OdsTextH5
 import com.orange.ods.compose.text.OdsTextSubtitle1
 import com.orange.ods.compose.theme.OdsDisplayAppearance
@@ -59,20 +54,4 @@ fun Subtitle(@StringRes textRes: Int, displayAppearance: OdsDisplayAppearance = 
             .padding(horizontal = if (withHorizontalPadding) dimensionResource(R.dimen.ods_screen_horizontal_margin) else 0.dp),
         displayAppearance = displayAppearance
     )
-}
-
-@Composable
-fun LabelledCheckbox(
-    label: String,
-    checked: MutableState<Boolean>,
-    enabled: Boolean = true
-) {
-    Row(verticalAlignment = Alignment.CenterVertically) {
-        OdsCheckbox(
-            checked = checked.value,
-            onCheckedChange = { checked.value = it },
-            enabled = enabled,
-        )
-        OdsTextBody1(text = label)
-    }
 }
