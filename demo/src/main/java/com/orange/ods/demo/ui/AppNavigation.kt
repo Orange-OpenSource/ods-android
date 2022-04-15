@@ -38,7 +38,6 @@ import com.orange.ods.demo.ui.components.controls.ComponentsControlsRadioButtons
 import com.orange.ods.demo.ui.components.controls.ComponentsControlsScreen
 import com.orange.ods.demo.ui.components.controls.ComponentsControlsSlidersScreen
 import com.orange.ods.demo.ui.components.controls.ComponentsControlsSwitchesScreen
-import com.orange.ods.demo.ui.components.lists.ComponentsListsScreen
 import com.orange.ods.demo.ui.components.progress.ComponentsProgressScreen
 import com.orange.ods.demo.ui.guidelines.GuidelinesNavigationItem
 import com.orange.ods.demo.ui.guidelines.GuidelinesScreen
