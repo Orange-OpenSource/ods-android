@@ -35,6 +35,7 @@ private val componentsItems = listOf(
     ComponentsNavigationItem.Buttons,
     ComponentsNavigationItem.Controls,
     ComponentsNavigationItem.Cards,
+    ComponentsNavigationItem.Lists,
     ComponentsNavigationItem.Progress
 )
 

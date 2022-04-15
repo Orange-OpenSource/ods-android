@@ -24,6 +24,7 @@ sealed class ComponentsNavigationItem(
     object Cards : ComponentsNavigationItem(R.string.component_cards, "components/card", R.drawable.picture_component_cards)
     object Controls : ComponentsNavigationItem(R.string.component_controls, "components/controls", R.drawable.picture_component_controls)
     object Progress : ComponentsNavigationItem(R.string.component_progress, "components/progress", R.drawable.picture_component_progress)
+    object Lists : ComponentsNavigationItem(R.string.component_lists, "components/lists", R.drawable.picture_component_lists)
 }
 
 sealed class ComponentsSubLevelNavigationItem(

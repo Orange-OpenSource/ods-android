@@ -38,6 +38,7 @@ import com.orange.ods.demo.ui.components.controls.ComponentsControlsRadioButtons
 import com.orange.ods.demo.ui.components.controls.ComponentsControlsScreen
 import com.orange.ods.demo.ui.components.controls.ComponentsControlsSlidersScreen
 import com.orange.ods.demo.ui.components.controls.ComponentsControlsSwitchesScreen
+import com.orange.ods.demo.ui.components.lists.ComponentsListsScreen
 import com.orange.ods.demo.ui.components.progress.ComponentsProgressScreen
 import com.orange.ods.demo.ui.guidelines.GuidelinesNavigationItem
 import com.orange.ods.demo.ui.guidelines.GuidelinesScreen
@@ -109,6 +110,10 @@ fun AppNavigation(navController: NavHostController, onSetScreenTitle: (String) -
         composable(ComponentsNavigationItem.Progress.route) {
             onSetScreenTitle(stringResource(id = ComponentsNavigationItem.Progress.title))
             ComponentsProgressScreen()
+        }
+        composable(ComponentsNavigationItem.Lists.route) {
+            onSetScreenTitle(stringResource(id = ComponentsNavigationItem.Lists.title))
+            ComponentsListsScreen()
         }
 
         // Components sub-level

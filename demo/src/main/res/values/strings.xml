@@ -108,6 +108,9 @@
     <string name="component_progress_circular_determinate">Circular determinate</string>
     <string name="component_progress_circular_indeterminate">Circular indeterminate</string>
 
+    <!-- Components Lists -->
+    <string name="component_lists">Lists</string>
+    <string name="component_lists_description">A list is a continuous vertical group of data entries like text, icons or images.</string>
 
     <!-- About -->
     <string name="about_app_name">Orange Design</string>
