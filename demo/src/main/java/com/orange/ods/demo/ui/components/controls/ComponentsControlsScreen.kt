@@ -24,16 +24,16 @@ import androidx.compose.ui.res.stringResource
 import androidx.navigation.NavHostController
 import com.orange.ods.compose.component.list.OdsListItem
 import com.orange.ods.demo.R
-import com.orange.ods.demo.ui.ComponentsNavigationItem
+import com.orange.ods.demo.ui.components.ComponentsSubLevelNavigationItem
 import com.orange.ods.demo.ui.components.utilities.ComponentHeader
 
 private data class ControlsMenuItem(@StringRes val titleRes: Int, val route: String)
 
 private val controlsMenuItems = listOf(
-    ControlsMenuItem(R.string.component_controls_checkboxes, ComponentsNavigationItem.ControlsCheckboxes.route),
-    ControlsMenuItem(R.string.component_controls_radio_buttons, ComponentsNavigationItem.ControlsRadioButtons.route),
-    ControlsMenuItem(R.string.component_controls_switches, ComponentsNavigationItem.ControlsSwitches.route),
-    ControlsMenuItem(R.string.component_controls_sliders, ComponentsNavigationItem.ControlsSliders.route)
+    ControlsMenuItem(R.string.component_controls_checkboxes, ComponentsSubLevelNavigationItem.ControlsCheckboxes.route),
+    ControlsMenuItem(R.string.component_controls_radio_buttons, ComponentsSubLevelNavigationItem.ControlsRadioButtons.route),
+    ControlsMenuItem(R.string.component_controls_switches, ComponentsSubLevelNavigationItem.ControlsSwitches.route),
+    ControlsMenuItem(R.string.component_controls_sliders, ComponentsSubLevelNavigationItem.ControlsSliders.route)
 )
 
 @Composable

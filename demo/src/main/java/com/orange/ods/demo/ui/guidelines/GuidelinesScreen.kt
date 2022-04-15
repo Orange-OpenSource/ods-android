@@ -24,6 +24,11 @@ import androidx.navigation.NavController
 import com.orange.ods.compose.component.card.OdsCardImageFirst
 import com.orange.ods.demo.R
 
+private val guidelinesItems = listOf(
+    GuidelinesNavigationItem.Color,
+    GuidelinesNavigationItem.Typography
+)
+
 @Composable
 fun GuidelinesScreen(navController: NavController) {
     val scrollState = rememberScrollState()

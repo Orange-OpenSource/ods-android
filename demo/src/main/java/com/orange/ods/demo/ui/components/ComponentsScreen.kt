@@ -30,6 +30,14 @@ import com.orange.ods.compose.component.card.OdsCardSmall
 import com.orange.ods.compose.theme.OdsMaterialTheme
 import com.orange.ods.demo.R
 
+private val componentsItems = listOf(
+    ComponentsNavigationItem.BottomNavigation,
+    ComponentsNavigationItem.Buttons,
+    ComponentsNavigationItem.Controls,
+    ComponentsNavigationItem.Cards,
+    ComponentsNavigationItem.Progress
+)
+
 @Composable
 fun ComponentsScreen(navController: NavController) {
     val scrollState = rememberScrollState()
@@ -44,9 +52,9 @@ fun ComponentsScreen(navController: NavController) {
             Row(
                 horizontalArrangement = Arrangement.spacedBy(dimensionResource(id = R.dimen.ods_spacing_s)),
             ) {
-                ComponentCard(componentsItem = rowCards[0], navController)
+                ComponentCard(componentsNavigationItem = rowCards[0], navController)
                 if (rowCards.size == 2) {
-                    ComponentCard(componentsItem = rowCards[1], navController)
+                    ComponentCard(componentsNavigationItem = rowCards[1], navController)
                 } else {
                     Box(modifier = Modifier.weight(0.5f)) {}
                 }
@@ -56,13 +64,13 @@ fun ComponentsScreen(navController: NavController) {
 }
 
 @Composable
-private fun RowScope.ComponentCard(componentsItem: ComponentsItem, navController: NavController) {
+private fun RowScope.ComponentCard(componentsNavigationItem: ComponentsNavigationItem, navController: NavController) {
     OdsCardSmall(
         modifier = Modifier.weight(0.5f),
-        title = stringResource(id = componentsItem.title),
-        imageRes = componentsItem.image,
+        title = stringResource(id = componentsNavigationItem.title),
+        imageRes = componentsNavigationItem.image,
         onCardClick = {
-            navController.navigate(componentsItem.route)
+            navController.navigate(componentsNavigationItem.route)
         },
     )
 }

@@ -22,8 +22,11 @@ import androidx.navigation.compose.composable
 import androidx.navigation.navArgument
 import com.orange.ods.demo.R
 import com.orange.ods.demo.ui.about.AboutHtmlFileScreen
+import com.orange.ods.demo.ui.about.AboutNavigationItem
 import com.orange.ods.demo.ui.about.AboutScreen
+import com.orange.ods.demo.ui.components.ComponentsNavigationItem
 import com.orange.ods.demo.ui.components.ComponentsScreen
+import com.orange.ods.demo.ui.components.ComponentsSubLevelNavigationItem
 import com.orange.ods.demo.ui.components.bottomnavigation.ComponentsBottomNavigationScreen
 import com.orange.ods.demo.ui.components.buttons.ComponentsButtonsScreen
 import com.orange.ods.demo.ui.components.cards.ComponentsCardImageFirstScreen
@@ -36,6 +39,7 @@ import com.orange.ods.demo.ui.components.controls.ComponentsControlsScreen
 import com.orange.ods.demo.ui.components.controls.ComponentsControlsSlidersScreen
 import com.orange.ods.demo.ui.components.controls.ComponentsControlsSwitchesScreen
 import com.orange.ods.demo.ui.components.progress.ComponentsProgressScreen
+import com.orange.ods.demo.ui.guidelines.GuidelinesNavigationItem
 import com.orange.ods.demo.ui.guidelines.GuidelinesScreen
 import com.orange.ods.demo.ui.guidelines.colors.GuidelinesColorsScreen
 import com.orange.ods.demo.ui.guidelines.typography.GuidelinesTypographyScreen
@@ -50,45 +54,6 @@ sealed class NavigationItem(
     object Components : NavigationItem(R.drawable.ic_component_atom, R.string.navigation_item_components, "components")
     object Modules : NavigationItem(R.drawable.ic_module_molecule, R.string.navigation_item_modules, "modules")
     object About : NavigationItem(R.drawable.ic_info, R.string.navigation_item_about, "about")
-}
-
-sealed class GuidelinesNavigationItem(
-    @StringRes var title: Int,
-    var route: String
-) {
-    object Color : GuidelinesNavigationItem(R.string.guideline_colour, "guidelines/color")
-    object Typography : GuidelinesNavigationItem(R.string.guideline_typography, "guidelines/typography")
-    object Imagery : GuidelinesNavigationItem(R.string.guideline_imagery, "guidelines/imagery")
-    object Iconography : GuidelinesNavigationItem(R.string.guideline_iconography, "guidelines/iconography")
-}
-
-sealed class ComponentsNavigationItem(
-    @StringRes var title: Int,
-    var route: String
-) {
-    object Buttons : ComponentsNavigationItem(R.string.component_buttons, "components/buttons")
-    object Controls : ComponentsNavigationItem(R.string.component_controls, "components/controls")
-    object BottomNavigation : ComponentsNavigationItem(R.string.component_bottom_navigation, "components/bottom_navigation")
-    object Cards : ComponentsNavigationItem(R.string.component_cards, "components/card")
-    object CardImageFirst : ComponentsNavigationItem(R.string.component_card_image_first, "components/card/card_image_first")
-    object CardTitleFirst : ComponentsNavigationItem(R.string.component_card_title_first, "components/card/card_title_first")
-    object CardSmall : ComponentsNavigationItem(R.string.component_card_small, "components/card/small_card_view")
-    object ControlsCheckboxes : ComponentsNavigationItem(R.string.component_controls_checkboxes, "components/controls/checkboxes")
-    object ControlsRadioButtons : ComponentsNavigationItem(R.string.component_controls_radio_buttons, "components/controls/radio_buttons")
-    object ControlsSwitches : ComponentsNavigationItem(R.string.component_controls_switches, "components/controls/switches")
-    object ControlsSliders : ComponentsNavigationItem(R.string.component_controls_sliders, "components/controls/sliders")
-    object Progress : ComponentsNavigationItem(R.string.component_progress, "components/progress")
-}
-
-sealed class AboutNavigationItem(
-    var route: String
-) {
-    companion object {
-        const val FILE_NAME_KEY = "fileName"
-        const val TITLE_RES_KEY = "titleRes"
-    }
-
-    object HtmlFile : AboutNavigationItem("about/html_file")
 }
 
 @ExperimentalMaterialApi
@@ -137,41 +102,43 @@ fun AppNavigation(navController: NavHostController, onSetScreenTitle: (String) -
             onSetScreenTitle(stringResource(id = ComponentsNavigationItem.Cards.title))
             ComponentsCardsScreen(navController)
         }
-        composable(ComponentsNavigationItem.CardImageFirst.route) {
-            onSetScreenTitle(stringResource(id = ComponentsNavigationItem.CardImageFirst.title))
-            ComponentsCardImageFirstScreen()
-        }
-        composable(ComponentsNavigationItem.CardTitleFirst.route) {
-            onSetScreenTitle(stringResource(id = ComponentsNavigationItem.CardTitleFirst.title))
-            ComponentsCardTitleFirstScreen()
-        }
-        composable(ComponentsNavigationItem.CardSmall.route) {
-            onSetScreenTitle(stringResource(id = ComponentsNavigationItem.CardSmall.title))
-            ComponentsCardSmallScreen()
-        }
         composable(ComponentsNavigationItem.Controls.route) {
             onSetScreenTitle(stringResource(id = ComponentsNavigationItem.Controls.title))
             ComponentsControlsScreen(navController)
         }
-        composable(ComponentsNavigationItem.ControlsCheckboxes.route) {
-            onSetScreenTitle(stringResource(id = ComponentsNavigationItem.ControlsCheckboxes.title))
-            ComponentsControlsCheckboxesScreen()
-        }
-        composable(ComponentsNavigationItem.ControlsRadioButtons.route) {
-            onSetScreenTitle(stringResource(id = ComponentsNavigationItem.ControlsRadioButtons.title))
-            ComponentsControlsRadioButtonsScreen()
-        }
-        composable(ComponentsNavigationItem.ControlsSwitches.route) {
-            onSetScreenTitle(stringResource(id = ComponentsNavigationItem.ControlsSwitches.title))
-            ComponentsControlsSwitchesScreen()
-        }
-        composable(ComponentsNavigationItem.ControlsSliders.route) {
-            onSetScreenTitle(stringResource(id = ComponentsNavigationItem.ControlsSliders.title))
-            ComponentsControlsSlidersScreen()
-        }
         composable(ComponentsNavigationItem.Progress.route) {
             onSetScreenTitle(stringResource(id = ComponentsNavigationItem.Progress.title))
             ComponentsProgressScreen()
+        }
+
+        // Components sub-level
+        composable(ComponentsSubLevelNavigationItem.CardImageFirst.route) {
+            onSetScreenTitle(stringResource(id = ComponentsSubLevelNavigationItem.CardImageFirst.title))
+            ComponentsCardImageFirstScreen()
+        }
+        composable(ComponentsSubLevelNavigationItem.CardTitleFirst.route) {
+            onSetScreenTitle(stringResource(id = ComponentsSubLevelNavigationItem.CardTitleFirst.title))
+            ComponentsCardTitleFirstScreen()
+        }
+        composable(ComponentsSubLevelNavigationItem.CardSmall.route) {
+            onSetScreenTitle(stringResource(id = ComponentsSubLevelNavigationItem.CardSmall.title))
+            ComponentsCardSmallScreen()
+        }
+        composable(ComponentsSubLevelNavigationItem.ControlsCheckboxes.route) {
+            onSetScreenTitle(stringResource(id = ComponentsSubLevelNavigationItem.ControlsCheckboxes.title))
+            ComponentsControlsCheckboxesScreen()
+        }
+        composable(ComponentsSubLevelNavigationItem.ControlsRadioButtons.route) {
+            onSetScreenTitle(stringResource(id = ComponentsSubLevelNavigationItem.ControlsRadioButtons.title))
+            ComponentsControlsRadioButtonsScreen()
+        }
+        composable(ComponentsSubLevelNavigationItem.ControlsSwitches.route) {
+            onSetScreenTitle(stringResource(id = ComponentsSubLevelNavigationItem.ControlsSwitches.title))
+            ComponentsControlsSwitchesScreen()
+        }
+        composable(ComponentsSubLevelNavigationItem.ControlsSliders.route) {
+            onSetScreenTitle(stringResource(id = ComponentsSubLevelNavigationItem.ControlsSliders.title))
+            ComponentsControlsSlidersScreen()
         }
 
         // About
