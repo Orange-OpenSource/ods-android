@@ -13,12 +13,12 @@ Cards contain content and actions about a single subject.
 *   [Using cards](#using-cards)
     *   [Material Design](#material-design)
     *   [Accessibility](#accessibility)
-    *   [Adding a Card](#adding-a-card)
-        *   [In XML](#in-xml)
-        *   [In JetPack Compose](#in-jetpack-compose)
-            *   [Card image first: OdsCardImageFirst](#card-image-first-odscardimagefirst)
-            *   [Card title first: OdsCardTitleFirst](#card-title-first-odscardtitlefirst)
-            *   [Small card: OdsCardSmall](#small-card-odscardsmall)
+*   [Adding a Card](#adding-a-card)
+    *   [In XML](#in-xml)
+    *   [In JetPack Compose](#in-jetpack-compose)
+        *   [Card image first: OdsCardImageFirst](#card-image-first-odscardimagefirst)
+        *   [Card title first: OdsCardTitleFirst](#card-title-first-odscardtitlefirst)
+        *   [Small card: OdsCardSmall](#small-card-odscardsmall)
 
 ## Using cards
 
@@ -43,9 +43,9 @@ on it, so that the behavior can be accessible via screen readers such as
 TalkBack. See the [draggable card section](https://material.io/components/cards/android#making-a-card-draggable) section
 below for more info.
 
-### Adding a Card
+## Adding a Card
 
-#### In XML
+### In XML
 
 To have a Card in your layout you must add `com.google.android.material.card.MaterialCardView` in your layout.
 
@@ -136,11 +136,11 @@ In the layout:
 </com.google.android.material.card.MaterialCardView>
 ```
 
-#### In JetPack Compose
+### In JetPack Compose
 
 The library offers several Composables for each type of card available in Orange Design System:
 
-##### Card image first: OdsCardImageFirst
+#### Card image first: OdsCardImageFirst
 
 This is a full width card displaying with an image as first element.
 
@@ -163,7 +163,7 @@ OdsCardImageFirst(
         )
 ```
 
-##### Card title first: OdsCardTitleFirst
+#### Card title first: OdsCardTitleFirst
 
 This is a full width card displaying with a title and a thumbnail on top as first element.
 
@@ -187,7 +187,7 @@ OdsCardTitleFirst(
 )
 ```
 
-##### Small card: OdsCardSmall
+#### Small card: OdsCardSmall
 
 This is a small card which takes the half screen width.
 
