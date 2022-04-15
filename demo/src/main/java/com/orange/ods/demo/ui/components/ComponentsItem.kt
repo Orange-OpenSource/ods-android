@@ -41,5 +41,10 @@ val componentsItems = listOf(
         image = R.drawable.picture_component_cards,
         title = R.string.component_cards,
         route = ComponentsNavigationItem.Cards.route
+    ),
+    ComponentsItem(
+        image = R.drawable.picture_component_progress,
+        title = R.string.component_progress,
+        route = ComponentsNavigationItem.Progress.route
     )
 )

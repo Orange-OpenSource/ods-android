@@ -35,6 +35,7 @@ import com.orange.ods.demo.ui.components.controls.ComponentsControlsRadioButtons
 import com.orange.ods.demo.ui.components.controls.ComponentsControlsScreen
 import com.orange.ods.demo.ui.components.controls.ComponentsControlsSlidersScreen
 import com.orange.ods.demo.ui.components.controls.ComponentsControlsSwitchesScreen
+import com.orange.ods.demo.ui.components.progress.ComponentsProgressScreen
 import com.orange.ods.demo.ui.guidelines.GuidelinesScreen
 import com.orange.ods.demo.ui.guidelines.colors.GuidelinesColorsScreen
 import com.orange.ods.demo.ui.guidelines.typography.GuidelinesTypographyScreen
@@ -76,6 +77,7 @@ sealed class ComponentsNavigationItem(
     object ControlsRadioButtons : ComponentsNavigationItem(R.string.component_controls_radio_buttons, "components/controls/radio_buttons")
     object ControlsSwitches : ComponentsNavigationItem(R.string.component_controls_switches, "components/controls/switches")
     object ControlsSliders : ComponentsNavigationItem(R.string.component_controls_sliders, "components/controls/sliders")
+    object Progress : ComponentsNavigationItem(R.string.component_progress, "components/progress")
 }
 
 sealed class AboutNavigationItem(
@@ -166,6 +168,10 @@ fun AppNavigation(navController: NavHostController, onSetScreenTitle: (String) -
         composable(ComponentsNavigationItem.ControlsSliders.route) {
             onSetScreenTitle(stringResource(id = ComponentsNavigationItem.ControlsSliders.title))
             ComponentsControlsSlidersScreen()
+        }
+        composable(ComponentsNavigationItem.Progress.route) {
+            onSetScreenTitle(stringResource(id = ComponentsNavigationItem.Progress.title))
+            ComponentsProgressScreen()
         }
 
         // About
