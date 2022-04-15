@@ -73,8 +73,8 @@ fun ComponentsCardTitleFirstScreen() {
             val cardContainerText = stringResource(id = R.string.component_card_element_container)
 
             OdsCardTitleFirst(
-                thumbnailRes = if (thumbnailIsChecked.value) R.drawable.picture_component_cards else null,
-                imageRes = R.drawable.picture_guideline_iconography,
+                thumbnailRes = if (thumbnailIsChecked.value) R.drawable.placeholder else null,
+                imageRes = R.drawable.placeholder,
                 title = stringResource(id = R.string.component_card_element_title),
                 subtitle = if (subtitleIsChecked.value) stringResource(id = R.string.component_card_element_subtitle) else null,
                 text = if (textIsChecked.value) stringResource(id = R.string.component_card_element_text_value) else null,
