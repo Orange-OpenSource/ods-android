@@ -10,9 +10,17 @@ Progress indicators express an unspecified wait time or display the length of a 
 
 **Contents**
 
-* [Using progress indicators](#using-progress-indicators)
-* [Linear progress indicators](#linear-progress-indicators)
-* [Circular progress indicators](#circular-progress-indicators)
+*   [Using progress indicators](#using-progress-indicators)
+    *   [Material Design](#material-design)
+    *   [Accessibility](#accessibility)
+    *   [Linear progress indicators](#linear-progress-indicators)
+    *   [Circular progress indicators](#circular-progress-indicators)
+*   [Adding a linear progress indicator](#adding-a-linear-progress-indicator)
+    *   [Linear progress indicator in XML](#linear-progress-indicator-in-xml)
+    *   [Linear progress indicator in Jetpack Compose](#linear-progress-indicator-in-jetpack-compose)
+*   [Adding a circular progress indicator](#adding-a-circular-progress-indicator)
+    *   [Circular progress indicator in XML](#circular-progress-indicator-in-xml)
+    *   [Circular progress indicator in Jetpack Compose](#circular-progress-indicator-in-jetpack-compose)
 
 ## Using progress indicators
 
@@ -37,14 +45,7 @@ That can be done in XML via the `android:contentDescription` attribute or progra
 progressIndicator.contentDescription = contentDescription
 ```
 
-### Types
-
-There are two types of progress indicators:
-
-- [Linear progress indicators](#linear-progress-indicators)
-- [Circular progress indicators](#circular-progress-indicators)
-
-## Linear progress indicators
+### Linear progress indicators
 
 Linear progress indicators display progress by animating an indicator along the length of a fixed,
 visible track. The behavior of the indicator is dependent on whether the progress of a process is
@@ -57,7 +58,23 @@ Linear progress indicators support both determinate and indeterminate operations
 * Indeterminate operations display the indicator continually growing and shrinking along the track
   until the process is complete.
 
-### Adding a linear progress indicator
+## Circular progress indicators
+
+Circular progress indicators display progress by animating an indicator along an
+invisible circular track in a clockwise direction. They can be applied directly
+to a surface, such as a button or card.
+
+Circular progress indicators support both determinate and indeterminate
+processes.
+
+*   Determinate circular indicators fill the invisible, circular track with
+    color, as the indicator moves from 0 to 360 degrees.
+*   Indeterminate circular indicators grow and shrink in size while moving along
+    the invisible track.
+
+## Adding a linear progress indicator
+
+### Linear progress indicator in XML
 
 To create a linear progress indicator you will need to
 add `com.google.android.material.progressindicator.LinearProgressIndicator` in your layout
@@ -90,21 +107,23 @@ In the layout:
     android:indeterminate="true" />
 ```
 
-## Circular progress indicators
+### Linear progress indicator in Jetpack Compose
 
-Circular progress indicators display progress by animating an indicator along an
-invisible circular track in a clockwise direction. They can be applied directly
-to a surface, such as a button or card.
+You can use the native `LinearProgressIndicator` like this:
 
-Circular progress indicators support both determinate and indeterminate
-processes.
+- For a determinate linear progress indicator
+```kotlin
+LinearProgressIndicator(progress = 0.2f)
+```
 
-*   Determinate circular indicators fill the invisible, circular track with
-    color, as the indicator moves from 0 to 360 degrees.
-*   Indeterminate circular indicators grow and shrink in size while moving along
-    the invisible track.
+- For an indeterminate linear progress indicator
+```kotlin
+LinearProgressIndicator()
+```
 
-### Adding a circular progress indicator
+## Adding a circular progress indicator
+
+### Circular progress indicator in XML
 
 To create a circular progress indicator you will need to
 add `com.google.android.material.progressindicator.CircularProgressIndicator` in your layout
@@ -134,4 +153,18 @@ In the layout:
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     android:indeterminate="true" />
+```
+
+### Circular progress indicator in Jetpack Compose
+
+You can use the native `CircularProgressIndicator` like this:
+
+- For a determinate circular progress indicator
+```kotlin
+CircularProgressIndicator(progress = 0.2f)
+```
+
+- For an indeterminate circular progress indicator
+```kotlin
+CircularProgressIndicator()
 ```
