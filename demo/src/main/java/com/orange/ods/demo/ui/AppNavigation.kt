@@ -30,7 +30,11 @@ import com.orange.ods.demo.ui.components.cards.ComponentsCardImageFirstScreen
 import com.orange.ods.demo.ui.components.cards.ComponentsCardSmallScreen
 import com.orange.ods.demo.ui.components.cards.ComponentsCardTitleFirstScreen
 import com.orange.ods.demo.ui.components.cards.ComponentsCardsScreen
+import com.orange.ods.demo.ui.components.controls.ComponentsControlsCheckboxesScreen
+import com.orange.ods.demo.ui.components.controls.ComponentsControlsRadioButtonsScreen
 import com.orange.ods.demo.ui.components.controls.ComponentsControlsScreen
+import com.orange.ods.demo.ui.components.controls.ComponentsControlsSlidersScreen
+import com.orange.ods.demo.ui.components.controls.ComponentsControlsSwitchesScreen
 import com.orange.ods.demo.ui.guidelines.GuidelinesScreen
 import com.orange.ods.demo.ui.guidelines.colors.GuidelinesColorsScreen
 import com.orange.ods.demo.ui.guidelines.typography.GuidelinesTypographyScreen
@@ -68,6 +72,10 @@ sealed class ComponentsNavigationItem(
     object CardImageFirst : ComponentsNavigationItem(R.string.component_card_image_first, "components/card/card_image_first")
     object CardTitleFirst : ComponentsNavigationItem(R.string.component_card_title_first, "components/card/card_title_first")
     object CardSmall : ComponentsNavigationItem(R.string.component_card_small, "components/card/small_card_view")
+    object ControlsCheckboxes : ComponentsNavigationItem(R.string.component_controls_checkboxes, "components/controls/checkboxes")
+    object ControlsRadioButtons : ComponentsNavigationItem(R.string.component_controls_radio_buttons, "components/controls/radio_buttons")
+    object ControlsSwitches : ComponentsNavigationItem(R.string.component_controls_switches, "components/controls/switches")
+    object ControlsSliders : ComponentsNavigationItem(R.string.component_controls_sliders, "components/controls/sliders")
 }
 
 sealed class AboutNavigationItem(
@@ -141,7 +149,23 @@ fun AppNavigation(navController: NavHostController, onSetScreenTitle: (String) -
         }
         composable(ComponentsNavigationItem.Controls.route) {
             onSetScreenTitle(stringResource(id = ComponentsNavigationItem.Controls.title))
-            ComponentsControlsScreen()
+            ComponentsControlsScreen(navController)
+        }
+        composable(ComponentsNavigationItem.ControlsCheckboxes.route) {
+            onSetScreenTitle(stringResource(id = ComponentsNavigationItem.ControlsCheckboxes.title))
+            ComponentsControlsCheckboxesScreen()
+        }
+        composable(ComponentsNavigationItem.ControlsRadioButtons.route) {
+            onSetScreenTitle(stringResource(id = ComponentsNavigationItem.ControlsRadioButtons.title))
+            ComponentsControlsRadioButtonsScreen()
+        }
+        composable(ComponentsNavigationItem.ControlsSwitches.route) {
+            onSetScreenTitle(stringResource(id = ComponentsNavigationItem.ControlsSwitches.title))
+            ComponentsControlsSwitchesScreen()
+        }
+        composable(ComponentsNavigationItem.ControlsSliders.route) {
+            onSetScreenTitle(stringResource(id = ComponentsNavigationItem.ControlsSliders.title))
+            ComponentsControlsSlidersScreen()
         }
 
         // About

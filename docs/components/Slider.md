@@ -11,8 +11,14 @@ Sliders allow users to make selections from a range of values.
 **Contents**
 
 * [Using sliders](#using-sliders)
-* [Continuous slider](#continuous-slider)
-* [Discrete slider](#discrete-slider)
+  * [Material Design](#material-design)
+  * [Accessibility](#accessibility)
+  * [Add a continuous slider](#add-a-continuous-slider)
+    * [Continuous slider in XML](#continuous-slider-in-xml)
+    * [Continuous slider in Jetpack Compose](#continuous-slider-in-jetpack-compose)
+  * [Add a discrete slider](#add-a-discrete-slider)
+    * [Discrete slider in XML](#discrete-slider-in-xml)
+    * [Discrete slider in Jetpack Compose](#discrete-slider-in-jetpack-compose)
 
 ## Using sliders
 
@@ -42,7 +48,20 @@ Additionaly, if using a `TextView` to display the value of the slider, you
 should set `android:labelFor` on it, so that screen readers announce that
 `TextView` refers to the slider.
 
-### Adding/removing the value label
+### Add a continuous slider
+
+Continuous sliders allow users to make meaningful selections that don’t require
+a specific value.
+
+API and source code:
+
+*   `Slider`
+    *   [Class definition](https://developer.android.com/reference/com/google/android/material/slider/Slider)
+    *   [Class source](https://github.com/material-components/material-components-android/tree/master/lib/java/com/google/android/material/slider/Slider.java)
+
+#### Continuous slider in XML
+
+**Note: Adding/removing the value label**
 
 By default, the slider will show a value label above the thumb when it's
 selected. You can change how it's drawn via the `app:labelBehavior` attribute or
@@ -55,27 +74,7 @@ The modes of `app:labelBehavior` are:
 *   `withinBounds` - draws the label floating within the bounds of this view
 *   `gone` - prevents the label from being drawn
 
-
-### Types
-
-There are two types of sliders: 
-- [Continuous slider](#continuous-slider)
-- [Discrete slider](#discrete-slider)
-
-## Continuous slider
-
-Continuous sliders allow users to make meaningful selections that don’t require
-a specific value.
-
-API and source code:
-
-*   `Slider`
-    *   [Class definition](https://developer.android.com/reference/com/google/android/material/slider/Slider)
-    *   [Class source](https://github.com/material-components/material-components-android/tree/master/lib/java/com/google/android/material/slider/Slider.java)
-
-### Adding in XML
-
-In the layout:
+**Adding a continuous slider in the layout**
 
 ```xml
 <com.google.android.material.slider.Slider
@@ -88,9 +87,11 @@ In the layout:
     android:valueTo="100.0" />
 ```
 
-### Adding in Jetpack Compose
+#### Continuous slider in Jetpack Compose
 
-![RadioButton](images/slider_continuous_light.png) ![RadioButton dark](images/slider_continuous_dark.png)
+**Continuous slider**
+
+![Continuous slider](images/slider_continuous_light.png) ![Continuous slider dark](images/slider_continuous_dark.png)
 
 In your composable screen you can use:
 
@@ -102,9 +103,9 @@ OdsSlider(
 )
 ```
 
-#### Continuous with icons
+**Continuous slider with icons**
 
-![RadioButton](images/slider_continuous_with_icon_light.png) ![RadioButton dark](images/slider_continuous_with_icon_dark.png)
+![Continuous slider with icons](images/slider_continuous_with_icon_light.png) ![Continuous slider with icons dark](images/slider_continuous_with_icon_dark.png)
 
 In your composable screen you can use:
 
@@ -118,7 +119,22 @@ OdsSlider(
 )
 ```
 
-## Discrete slider
+**Continuous lockups slider**
+
+![Continuous lockups slider](images/slider_continuous_lockups_light.png) ![Continuous lockups slider dark](images/slider_continuous_lockups_light.png)
+
+In your composable screen you can use:
+
+```kotlin
+        OdsSliderLockups(
+            value = 20f,
+            valueRange = 0f..100f,
+            onValueChange = { }
+        )
+```
+
+
+#### Add a discrete slider
 
 Discrete sliders display a numeric value label upon pressing the thumb, which
 allows a user to input an exact value.
@@ -129,7 +145,7 @@ API and source code:
     *   [Class definition](https://developer.android.com/reference/com/google/android/material/slider/Slider)
     *   [Class source](https://github.com/material-components/material-components-android/tree/master/lib/java/com/google/android/material/slider/Slider.java)
     
-### Adding in XML
+##### Discrete slider in XML
 
 In the layout:
 
@@ -145,9 +161,11 @@ In the layout:
     android:stepSize="5.0" />
 ```
 
-### Adding in Jetpack Compose
+##### Discrete slider in Jetpack Compose
 
-![RadioButton](images/slider_discrete_light.png) ![RadioButton dark](images/slider_discrete_dark.png)
+**Discrete slider**
+
+![Discrete slider](images/slider_discrete_light.png) ![Discrete slider dark](images/slider_discrete_dark.png)
 
 In your composable screen you can use:
 
@@ -160,9 +178,9 @@ OdsSlider(
 )
 ```
 
-#### Discrete slider with icons
+**Discrete slider with icons**
 
-![RadioButton](images/slider_discrete_with_icon_light.png) ![RadioButton dark](images/slider_discrete_with_icon_dark.png)
+![Discrete slider with icon](images/slider_discrete_with_icon_light.png) ![Discrete slider with icon dark](images/slider_discrete_with_icon_dark.png)
 
 In your composable screen you can use:
 
@@ -175,4 +193,18 @@ OdsSlider(
     leftIconRes = R.drawable.ic_heart,
     rightIconRes = R.drawable.ic_heart
 )
+```
+
+**Discrete lockups slider**
+
+![Discrete lockups slider](images/slider_discrete_lockups_light.png) ![Discrete lockups slider dark](images/slider_discrete_lockups_dark.png)
+
+In your composable screen you can use:
+
+```kotlin
+        OdsSliderLockups(
+            value = 20f,
+            valueRange = 0f..100f,
+            onValueChange = { }
+        )
 ```

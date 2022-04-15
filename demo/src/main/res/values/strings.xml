@@ -84,13 +84,19 @@
     <string name="component_controls">Controls</string>
     <string name="component_controls_description">There are a number of controls that enable user input. Their appearance is customised for Orange but their behaviour must follow the native platform standard.</string>
     <string name="component_controls_checkboxes">Checkboxes</string>
+    <string name="component_controls_checkboxes_description">Checkboxes are used to select or deselect an option. Single checkboxes can be used to determine an individual choice and they can be grouped to allow users to select any combination of items.</string>
     <string name="component_controls_radio_buttons">Radio Buttons</string>
+    <string name="component_controls_radio_buttons_description">Radio buttons enable users to choose one item from a set of mutually exclusive, related choices.</string>
     <string name="component_controls_switches">Switches</string>
+    <string name="component_controls_switches_description">On/off switches toggle the state of a single settings option. The function of the switch should be made clear by the inline label.</string>
     <string name="component_controls_sliders">Sliders</string>
+    <string name="component_controls_sliders_description">Sliders enable the user to set a value by moving the slider thumb. The lowest value is always on the left. Sliders can be either continuous or discrete, where the slider thumb snaps to evenly spaced tick marks along the slider rail.</string>
     <string name="component_controls_slider_discrete">Discrete</string>
     <string name="component_controls_slider_discrete_with_icons">Discrete with icons</string>
-    <string name="component_controls_slider_continuous">Continuous with icons</string>
+    <string name="component_controls_slider_continuous">Continuous</string>
     <string name="component_controls_slider_continuous_with_icons">Continuous with icons</string>
+    <string name="component_controls_slider_discrete_lockups">Discrete lockups</string>
+    <string name="component_controls_slider_continuous_lockups">Continuous lockups</string>
 
     <!-- About -->
     <string name="about_app_name">Orange Design</string>
