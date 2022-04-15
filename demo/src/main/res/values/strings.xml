@@ -95,6 +95,8 @@
     <string name="component_controls_slider_discrete_with_icons">Discrete with icons</string>
     <string name="component_controls_slider_continuous">Continuous</string>
     <string name="component_controls_slider_continuous_with_icons">Continuous with icons</string>
+    <string name="component_controls_slider_discrete_lockups">Discrete lockups</string>
+    <string name="component_controls_slider_continuous_lockups">Continuous lockups</string>
 
     <!-- About -->
     <string name="about_app_name">Orange Design</string>
