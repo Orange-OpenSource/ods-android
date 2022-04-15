@@ -61,7 +61,7 @@ fun ComponentsCardSmallScreen() {
 
             OdsCardSmall(
                 modifier = Modifier.weight(0.5f),
-                imageRes = R.drawable.picture_component_cards,
+                imageRes = R.drawable.placeholder,
                 title = stringResource(id = R.string.component_card_element_title),
                 subtitle = if (subtitleIsChecked.value) stringResource(id = R.string.component_card_element_subtitle) else null,
                 onCardClick = { clickOnElement(context, cardContainerText) }

@@ -71,7 +71,7 @@ fun ComponentsCardImageFirstScreen() {
             val cardContainerText = stringResource(id = R.string.component_card_element_container)
 
             OdsCardImageFirst(
-                imageRes = R.drawable.picture_guideline_iconography,
+                imageRes = R.drawable.placeholder,
                 title = stringResource(id = R.string.component_card_element_title),
                 subtitle = if (subtitleIsChecked.value) stringResource(id = R.string.component_card_element_subtitle) else null,
                 text = if (textIsChecked.value) stringResource(id = R.string.component_card_element_text_value) else null,
