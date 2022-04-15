@@ -89,7 +89,9 @@ The modes of `app:labelBehavior` are:
 
 #### Continuous slider in Jetpack Compose
 
-![RadioButton](images/slider_continuous_light.png) ![RadioButton dark](images/slider_continuous_dark.png)
+**Continuous slider**
+
+![Continuous slider](images/slider_continuous_light.png) ![Continuous slider dark](images/slider_continuous_dark.png)
 
 In your composable screen you can use:
 
@@ -101,9 +103,9 @@ OdsSlider(
 )
 ```
 
-**Continuous with icons**
+**Continuous slider with icons**
 
-![RadioButton](images/slider_continuous_with_icon_light.png) ![RadioButton dark](images/slider_continuous_with_icon_dark.png)
+![Continuous slider with icons](images/slider_continuous_with_icon_light.png) ![Continuous slider with icons dark](images/slider_continuous_with_icon_dark.png)
 
 In your composable screen you can use:
 
@@ -116,6 +118,21 @@ OdsSlider(
     rightIconRes = R.drawable.ic_heart
 )
 ```
+
+**Continuous lockups slider**
+
+![Continuous lockups slider](images/slider_continuous_lockups_light.png) ![Continuous lockups slider dark](images/slider_continuous_lockups_light.png)
+
+In your composable screen you can use:
+
+```kotlin
+        OdsSliderLockups(
+            value = 20f,
+            valueRange = 0f..100f,
+            onValueChange = { }
+        )
+```
+
 
 #### Add a discrete slider
 
@@ -146,7 +163,9 @@ In the layout:
 
 ##### Discrete slider in Jetpack Compose
 
-![RadioButton](images/slider_discrete_light.png) ![RadioButton dark](images/slider_discrete_dark.png)
+**Discrete slider**
+
+![Discrete slider](images/slider_discrete_light.png) ![Discrete slider dark](images/slider_discrete_dark.png)
 
 In your composable screen you can use:
 
@@ -161,7 +180,7 @@ OdsSlider(
 
 **Discrete slider with icons**
 
-![RadioButton](images/slider_discrete_with_icon_light.png) ![RadioButton dark](images/slider_discrete_with_icon_dark.png)
+![Discrete slider with icon](images/slider_discrete_with_icon_light.png) ![Discrete slider with icon dark](images/slider_discrete_with_icon_dark.png)
 
 In your composable screen you can use:
 
@@ -174,4 +193,18 @@ OdsSlider(
     leftIconRes = R.drawable.ic_heart,
     rightIconRes = R.drawable.ic_heart
 )
+```
+
+**Discrete lockups slider**
+
+![Discrete lockups slider](images/slider_discrete_lockups_light.png) ![Discrete lockups slider dark](images/slider_discrete_lockups_dark.png)
+
+In your composable screen you can use:
+
+```kotlin
+        OdsSliderLockups(
+            value = 20f,
+            valueRange = 0f..100f,
+            onValueChange = { }
+        )
 ```
