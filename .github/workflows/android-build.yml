@@ -31,7 +31,7 @@ jobs:
         run: ./gradlew lintDebug
 
       - name: Build lib, catalog and demo app
-        run: ./gradlew assemble --stacktrace
+        run: ./gradlew assemble -PversionCode=$GITHUB_RUN_NUMBER --stacktrace
 
       - name: Store library
         uses: actions/upload-artifact@v2

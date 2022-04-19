@@ -23,7 +23,7 @@ jobs:
           java-version: '11'
 
       - name: Build demo app
-        run: ./gradlew demo:assemble --stacktrace
+        run: ./gradlew demo:assemble -PversionCode=$GITHUB_RUN_NUMBER --stacktrace
 
       - name: Extract branch name
         shell: bash

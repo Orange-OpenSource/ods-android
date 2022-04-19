@@ -10,6 +10,7 @@
 
 import com.orange.ods.gradle.Dependencies
 import com.orange.ods.gradle.Versions
+import com.orange.ods.gradle.findTypedProperty
 
 plugins {
     id("com.android.application")
@@ -26,7 +27,8 @@ android {
         applicationId = "com.orange.ods.demo"
         minSdk = Versions.minSdk
         targetSdk = Versions.targetSdk
-        versionCode = 1
+        val versionCodeProperty = project.findTypedProperty<String>("versionCode")
+        versionCode = versionCodeProperty?.toInt() ?: 1
         versionName = "1.0"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
