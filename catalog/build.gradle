@@ -1,3 +1,5 @@
+import com.orange.omnis.gradle.Versions
+
 apply plugin: 'com.android.application'
 
 dependencies {
@@ -83,8 +85,8 @@ def srcDirs = [
 ]
 
 android {
-  compileSdkVersion versions.compileSdk
-  buildToolsVersion versions.androidTools
+  compileSdkVersion Versions.compileSdk
+  buildToolsVersion '30.0.3'
 
   defaultConfig {
     manifestPlaceholders = [
@@ -95,7 +97,7 @@ android {
 
     testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     vectorDrawables.useSupportLibrary = true
-    minSdkVersion 21
+    minSdkVersion Versions.minSdk
     targetSdkVersion 30
 
     applicationId = 'com.orange.ods.sample'
