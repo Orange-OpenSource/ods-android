@@ -22,6 +22,14 @@ jobs:
           distribution: 'zulu'
           java-version: '11'
 
+      - name: Set up signing configuration
+        uses: ./.github/actions/setup-signing
+        with:
+          keystore: ${{ secrets.SIGNING_KEYSTORE }}
+          store-password: ${{ secrets.SIGNING_STORE_PASSWORD }}
+          key-alias: ${{ secrets.SIGNING_KEY_ALIAS }}
+          key-password: ${{ secrets.SIGNING_KEY_PASSWORD }}
+
       - name: Build demo app
         run: ./gradlew demo:assemble -PversionCode=$GITHUB_RUN_NUMBER --stacktrace
 
@@ -37,4 +45,4 @@ jobs:
           token: ${{secrets.FIREBASE_TOKEN}}
           groups: ods-android-internal-tests
           releaseNotes: 'Last merged PR: ${{steps.extract_branch_name.outputs.branch}}'
-          file: demo/build/outputs/apk/debug/demo-debug.apk
+          file: demo/build/outputs/apk/debug/demo-release.apk

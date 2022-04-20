@@ -12,7 +12,6 @@ on:
       - unlabeled
 
 jobs:
-
   build:
     runs-on: ubuntu-latest
     steps:
@@ -26,6 +25,14 @@ jobs:
         with:
           distribution: 'zulu'
           java-version: '11'
+
+      - name: Set up signing configuration
+        uses: ./.github/actions/setup-signing
+        with:
+          keystore: ${{ secrets.SIGNING_KEYSTORE }}
+          store-password: ${{ secrets.SIGNING_STORE_PASSWORD }}
+          key-alias: ${{ secrets.SIGNING_KEY_ALIAS }}
+          key-password: ${{ secrets.SIGNING_KEY_PASSWORD }}
 
       - name: Run Android Linter
         run: ./gradlew lintDebug
@@ -43,10 +50,10 @@ jobs:
         uses: actions/upload-artifact@v2
         with:
           name: catalog
-          path: catalog/build/outputs/apk/debug/*.apk
+          path: catalog/build/outputs/apk/*/*.apk
 
       - name: Store demo app
         uses: actions/upload-artifact@v2
         with:
           name: demo
-          path: demo/build/outputs/apk/debug/*.apk
+          path: demo/build/outputs/apk/*/*.apk
