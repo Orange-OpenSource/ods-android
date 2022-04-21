@@ -10,7 +10,6 @@
 
 package com.orange.ods.demo.ui.components.cards
 
-import androidx.annotation.StringRes
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.padding
@@ -26,13 +25,12 @@ import com.orange.ods.compose.component.list.OdsListItem
 import com.orange.ods.demo.R
 import com.orange.ods.demo.ui.components.ComponentsSubLevelNavigationItem
 import com.orange.ods.demo.ui.components.utilities.ComponentHeader
-
-private data class CardMenuItem(@StringRes val titleRes: Int, val route: String)
+import com.orange.ods.demo.ui.utilities.MenuItem
 
 private val cardMenuItems = listOf(
-    CardMenuItem(R.string.component_card_image_first, ComponentsSubLevelNavigationItem.CardImageFirst.route),
-    CardMenuItem(R.string.component_card_title_first, ComponentsSubLevelNavigationItem.CardTitleFirst.route),
-    CardMenuItem(R.string.component_card_small, ComponentsSubLevelNavigationItem.CardSmall.route)
+    MenuItem(R.string.component_card_image_first, ComponentsSubLevelNavigationItem.CardImageFirst.route),
+    MenuItem(R.string.component_card_title_first, ComponentsSubLevelNavigationItem.CardTitleFirst.route),
+    MenuItem(R.string.component_card_small, ComponentsSubLevelNavigationItem.CardSmall.route)
 )
 
 @ExperimentalMaterialApi

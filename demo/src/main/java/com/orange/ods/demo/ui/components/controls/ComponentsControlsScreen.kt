@@ -10,7 +10,6 @@
 
 package com.orange.ods.demo.ui.components.controls
 
-import androidx.annotation.StringRes
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.padding
@@ -26,14 +25,13 @@ import com.orange.ods.compose.component.list.OdsListItem
 import com.orange.ods.demo.R
 import com.orange.ods.demo.ui.components.ComponentsSubLevelNavigationItem
 import com.orange.ods.demo.ui.components.utilities.ComponentHeader
-
-private data class ControlsMenuItem(@StringRes val titleRes: Int, val route: String)
+import com.orange.ods.demo.ui.utilities.MenuItem
 
 private val controlsMenuItems = listOf(
-    ControlsMenuItem(R.string.component_controls_checkboxes, ComponentsSubLevelNavigationItem.ControlsCheckboxes.route),
-    ControlsMenuItem(R.string.component_controls_radio_buttons, ComponentsSubLevelNavigationItem.ControlsRadioButtons.route),
-    ControlsMenuItem(R.string.component_controls_switches, ComponentsSubLevelNavigationItem.ControlsSwitches.route),
-    ControlsMenuItem(R.string.component_controls_sliders, ComponentsSubLevelNavigationItem.ControlsSliders.route)
+    MenuItem(R.string.component_controls_checkboxes, ComponentsSubLevelNavigationItem.ControlsCheckboxes.route),
+    MenuItem(R.string.component_controls_radio_buttons, ComponentsSubLevelNavigationItem.ControlsRadioButtons.route),
+    MenuItem(R.string.component_controls_switches, ComponentsSubLevelNavigationItem.ControlsSwitches.route),
+    MenuItem(R.string.component_controls_sliders, ComponentsSubLevelNavigationItem.ControlsSliders.route)
 )
 
 @Composable
