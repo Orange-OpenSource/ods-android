@@ -39,4 +39,8 @@ sealed class ComponentsSubLevelNavigationItem(
     object ControlsRadioButtons : ComponentsSubLevelNavigationItem(R.string.component_controls_radio_buttons, "components/controls/radio_buttons")
     object ControlsSwitches : ComponentsSubLevelNavigationItem(R.string.component_controls_switches, "components/controls/switches")
     object ControlsSliders : ComponentsSubLevelNavigationItem(R.string.component_controls_sliders, "components/controls/sliders")
+
+    object ListsOneLine : ComponentsSubLevelNavigationItem(R.string.component_lists_one_line, "components/lists/one_line")
+    object ListsTwoLines : ComponentsSubLevelNavigationItem(R.string.component_lists_two_lines, "components/lists/two_lines")
+    object ListsThreeLines : ComponentsSubLevelNavigationItem(R.string.component_lists_three_lines, "components/lists/three_lines")
 }
