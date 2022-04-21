@@ -48,7 +48,7 @@ fun ComponentsCardSmallScreen() {
                 modifier = Modifier.padding(dimensionResource(id = R.dimen.ods_spacing_s)),
                 text = stringResource(id = R.string.component_customize)
             )
-            LabelledCheckbox(stringResource(id = R.string.component_card_element_subtitle), subtitleIsChecked)
+            LabelledCheckbox(stringResource(id = R.string.component_element_subtitle), subtitleIsChecked)
         }
     ) {
         Row(
@@ -62,8 +62,8 @@ fun ComponentsCardSmallScreen() {
             OdsCardSmall(
                 modifier = Modifier.weight(0.5f),
                 imageRes = R.drawable.placeholder,
-                title = stringResource(id = R.string.component_card_element_title),
-                subtitle = if (subtitleIsChecked.value) stringResource(id = R.string.component_card_element_subtitle) else null,
+                title = stringResource(id = R.string.component_element_title),
+                subtitle = if (subtitleIsChecked.value) stringResource(id = R.string.component_element_subtitle) else null,
                 onCardClick = { clickOnElement(context, cardContainerText) }
             )
             Box(modifier = Modifier.weight(0.5f))
