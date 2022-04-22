@@ -57,7 +57,7 @@ fun ComponentsListsOneLineScreen() {
         OdsListItem(
             modifier = Modifier.clickable { },
             text = stringResource(id = R.string.component_element_text),
-            icon = { OdsListItemIcon(iconRes = R.drawable.ic_heart) },
+            icon = { OdsListItemIcon(painter = painterResource(id = R.drawable.ic_heart)) },
             trailing = { OdsCheckbox(checked = item2Checked, onCheckedChange = { item2Checked = it }) }
         )
         Divider()
@@ -70,7 +70,7 @@ fun ComponentsListsOneLineScreen() {
         OdsListItem(
             modifier = Modifier.clickable { },
             text = stringResource(id = R.string.component_element_text),
-            icon = { OdsListSquaredThumbnail(thumbnailRes = R.drawable.placeholder) },
+            icon = { OdsListSquaredThumbnail(painter = painterResource(id = R.drawable.placeholder)) },
             isThumbnailIcon = true
         )
         Divider()

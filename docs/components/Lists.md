@@ -88,7 +88,7 @@ Here is an example of three-line list item with an optional icon (here an `OdsLi
             text = "Primary text",
             secondaryText = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor.",
             singleLineSecondaryText = false,
-            icon = { OdsListSquaredThumbnail(thumbnailRes = R.drawable.placeholder) },
+            icon = { OdsListSquaredThumbnail(painter = painterResource(R.drawable.placeholder)) },
             trailing = { Text(text = "Caption") }
         )
 ```

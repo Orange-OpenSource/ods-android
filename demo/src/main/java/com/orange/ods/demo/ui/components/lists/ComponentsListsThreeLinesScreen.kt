@@ -77,7 +77,7 @@ fun ComponentsListsThreeLinesScreen() {
             text = stringResource(id = R.string.component_element_text),
             secondaryText = stringResource(id = R.string.component_element_secondary_text_value),
             singleLineSecondaryText = false,
-            icon = { OdsListSquaredThumbnail(thumbnailRes = R.drawable.placeholder) }
+            icon = { OdsListSquaredThumbnail(painter = painterResource(id = R.drawable.placeholder)) }
         )
         Divider()
         OdsListItemWideThumbnail(

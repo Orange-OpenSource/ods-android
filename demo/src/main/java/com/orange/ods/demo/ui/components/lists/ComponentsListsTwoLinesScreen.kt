@@ -62,7 +62,7 @@ fun ComponentsListsTwoLinesScreen() {
             modifier = Modifier.clickable { },
             text = stringResource(id = R.string.component_element_text),
             secondaryText = stringResource(id = R.string.component_element_secondary_text),
-            icon = { OdsListItemIcon(R.drawable.ic_heart) },
+            icon = { OdsListItemIcon(painter = painterResource(id = R.drawable.ic_heart)) },
             trailing = { ListItemTrailingIcon() })
         Divider()
         OdsListItem(

@@ -10,7 +10,6 @@
 
 package com.orange.ods.compose.component.list
 
-import androidx.annotation.DrawableRes
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -33,7 +32,6 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.painter.Painter
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.dimensionResource
-import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.Dp
 import com.orange.ods.R
@@ -131,7 +129,7 @@ fun OdsListItemWideThumbnail(
     trailing: @Composable (() -> Unit)? = null
 ) {
     Row(modifier = modifier, verticalAlignment = Alignment.CenterVertically) {
-        OdsListWideThumbnail(thumbnail = thumbnail, contentDescription = thumbnailContentDescription)
+        OdsListWideThumbnail(painter = thumbnail, contentDescription = thumbnailContentDescription)
         OdsListItem(
             modifier = Modifier.weight(1f),
             isThumbnailIcon = true,
@@ -147,26 +145,26 @@ fun OdsListItemWideThumbnail(
 /**
  * Displays an icon in a list item centered vertically
  *
- * @param iconRes Resource identifier of the icon
+ * @param painter to draw
  * @param contentDescription Content description of the icon
  */
 @Composable
-fun OdsListItemIcon(@DrawableRes iconRes: Int, contentDescription: String? = null) {
+fun OdsListItemIcon(painter: Painter, contentDescription: String? = null) {
     Column(modifier = Modifier.fillMaxHeight(), verticalArrangement = Arrangement.Center) {
-        Icon(painter = painterResource(id = iconRes), contentDescription = contentDescription)
+        Icon(painter = painter, contentDescription = contentDescription)
     }
 }
 
 /**
  * Displays a 56x100 thumbnail in a list item
  *
- * @param thumbnail Painter to draw
+ * @param painter to draw
  * @param contentDescription Content description of the icon
  */
 @Composable
-fun OdsListWideThumbnail(thumbnail: Painter, contentDescription: String? = null) {
+fun OdsListWideThumbnail(painter: Painter, contentDescription: String? = null) {
     Image(
-        painter = thumbnail,
+        painter = painter,
         contentDescription = contentDescription,
         contentScale = ContentScale.Crop,
         modifier = Modifier
@@ -178,13 +176,13 @@ fun OdsListWideThumbnail(thumbnail: Painter, contentDescription: String? = null)
 /**
  * Displays a 56x56 thumbnail in a list item
  *
- * @param thumbnailRes Resource identifier of the icon
+ * @param painter to draw
  * @param contentDescription Content description of the icon
  */
 @Composable
-fun OdsListSquaredThumbnail(@DrawableRes thumbnailRes: Int, contentDescription: String? = null) {
+fun OdsListSquaredThumbnail(painter: Painter, contentDescription: String? = null) {
     Image(
-        painter = painterResource(id = thumbnailRes),
+        painter = painter,
         contentDescription = contentDescription,
         modifier = Modifier
             .size(dimensionResource(id = R.dimen.list_squared_thumbnail_size))
