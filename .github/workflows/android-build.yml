@@ -38,7 +38,10 @@ jobs:
         run: ./gradlew lintDebug
 
       - name: Build lib, catalog and demo app
-        run: ./gradlew assemble -PversionCode=$GITHUB_RUN_NUMBER --stacktrace
+        run: |
+          BRANCH_SHA=${{ github.event.pull_request.head.sha }}
+          COMMIT_SHA=${BRANCH_SHA:-$GITHUB_SHA}
+          ./gradlew assemble -PversionNameSuffix="-${COMMIT_SHA::7}" -PversionCode=$GITHUB_RUN_NUMBER --stacktrace
 
       - name: Store library
         uses: actions/upload-artifact@v2

@@ -31,6 +31,8 @@ android {
         val versionCodeProperty = project.findTypedProperty<String>("versionCode")
         versionCode = versionCodeProperty?.toInt() ?: 1
         versionName = "1.0"
+        val versionNameSuffixProperty = project.findTypedProperty<String>("versionNameSuffix")
+        versionNameSuffix = versionNameSuffixProperty
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         vectorDrawables {

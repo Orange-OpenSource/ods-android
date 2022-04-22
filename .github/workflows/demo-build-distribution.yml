@@ -31,7 +31,10 @@ jobs:
           key-password: ${{ secrets.SIGNING_KEY_PASSWORD }}
 
       - name: Build demo app
-        run: ./gradlew demo:assemble -PversionCode=$GITHUB_RUN_NUMBER --stacktrace
+        run: |
+          BRANCH_SHA=${{ github.event.pull_request.head.sha }}
+          COMMIT_SHA=${BRANCH_SHA:-$GITHUB_SHA}
+          ./gradlew demo:assemble -PversionNameSuffix="-${COMMIT_SHA::7}" -PversionCode=$GITHUB_RUN_NUMBER --stacktrace
 
       - name: Extract branch name
         shell: bash
