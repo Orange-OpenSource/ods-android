@@ -68,7 +68,7 @@ fun ComponentsListsThreeLinesScreen() {
             text = stringResource(id = R.string.component_element_text),
             secondaryText = stringResource(id = R.string.component_element_secondary_text_value),
             singleLineSecondaryText = false,
-            icon = { OdsImageCircleShape(imageRes = R.drawable.placeholder, contentDescription = null) },
+            icon = { OdsImageCircleShape(painter = painterResource(id = R.drawable.placeholder), contentDescription = null) },
             trailing = { Text(text = stringResource(id = R.string.component_element_caption)) }
         )
         Divider()

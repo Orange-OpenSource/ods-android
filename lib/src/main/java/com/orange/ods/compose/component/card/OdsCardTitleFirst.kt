@@ -83,7 +83,7 @@ fun OdsCardTitleFirst(
                     .padding(horizontal = dimensionResource(id = R.dimen.ods_spacing_s)),
                 verticalAlignment = Alignment.CenterVertically
             ) {
-                thumbnailRes?.let { OdsImageCircleShape(imageRes = it) }
+                thumbnailRes?.let { OdsImageCircleShape(painter = painterResource(id = it)) }
                 Column(modifier = Modifier.padding(start = thumbnailRes?.let { dimensionResource(id = R.dimen.ods_spacing_xs) } ?: run { 0.dp })) {
                     OdsTextH6(text = title)
                     subtitle?.let {

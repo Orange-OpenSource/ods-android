@@ -71,7 +71,7 @@ Here is an example of two-line list item with an optional icon (here an `OdsImag
             modifier = Modifier.clickable { doSomething() },
             text = "Primary text",
             secondaryText = "Secondary text",
-            icon = { OdsImageCircleShape(imageRes = R.drawable.placeholder) },
+            icon = { OdsImageCircleShape(painter = painterResource(R.drawable.placeholder)) },
             trailing = { Icon(painter = painterResource(id = R.drawable.ic_drag_handle), contentDescription = "Drag item") }
         )
 ```

@@ -69,7 +69,7 @@ fun ComponentsListsTwoLinesScreen() {
             modifier = Modifier.clickable { },
             text = stringResource(id = R.string.component_element_text),
             secondaryText = stringResource(id = R.string.component_element_secondary_text),
-            icon = { OdsImageCircleShape(imageRes = R.drawable.placeholder) },
+            icon = { OdsImageCircleShape(painter = painterResource(id = R.drawable.placeholder)) },
             trailing = { ListItemTrailingIcon() })
         Divider()
         OdsListItemWideThumbnail(

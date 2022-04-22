@@ -10,29 +10,28 @@
 
 package com.orange.ods.compose.component.other
 
-import androidx.annotation.DrawableRes
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.graphics.painter.Painter
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.dimensionResource
-import androidx.compose.ui.res.painterResource
 import com.orange.ods.R
 
 /**
  * Displays in a disc a 40x40 icon
  *
  * @param modifier Modifier applied to the image
- * @param imageRes Resource identifier for the image
+ * @param painter to draw
  * @param contentDescription Content description of the image
  */
 @Composable
-fun OdsImageCircleShape(modifier: Modifier = Modifier, @DrawableRes imageRes: Int, contentDescription: String? = null) {
+fun OdsImageCircleShape(modifier: Modifier = Modifier, painter: Painter, contentDescription: String? = null) {
     Image(
-        painter = painterResource(id = imageRes),
+        painter = painter,
         contentDescription = contentDescription,
         contentScale = ContentScale.Crop,
         modifier = modifier
