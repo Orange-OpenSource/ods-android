@@ -53,10 +53,10 @@ fun ComponentsCardImageFirstScreen() {
                 modifier = Modifier.padding(dimensionResource(id = R.dimen.ods_spacing_s)),
                 text = stringResource(id = R.string.component_customize)
             )
-            LabelledCheckbox(label = stringResource(id = R.string.component_card_element_subtitle), checked = subtitleIsChecked)
-            LabelledCheckbox(label = stringResource(id = R.string.component_card_element_text), checked = textIsChecked)
-            LabelledCheckbox(label = stringResource(id = R.string.component_card_element_button1), checked = button1IsChecked)
-            LabelledCheckbox(label = stringResource(id = R.string.component_card_element_button2), checked = button2IsChecked)
+            LabelledCheckbox(label = stringResource(id = R.string.component_element_subtitle), checked = subtitleIsChecked)
+            LabelledCheckbox(label = stringResource(id = R.string.component_element_text), checked = textIsChecked)
+            LabelledCheckbox(label = stringResource(id = R.string.component_element_button1), checked = button1IsChecked)
+            LabelledCheckbox(label = stringResource(id = R.string.component_element_button2), checked = button2IsChecked)
         }
     ) {
         Column(
@@ -66,15 +66,15 @@ fun ComponentsCardImageFirstScreen() {
                 .verticalScroll(state = rememberScrollState()),
             verticalArrangement = Arrangement.spacedBy(dimensionResource(id = R.dimen.ods_spacing_s))
         ) {
-            val button1Text = stringResource(id = R.string.component_card_element_button1)
-            val button2Text = stringResource(id = R.string.component_card_element_button2)
+            val button1Text = stringResource(id = R.string.component_element_button1)
+            val button2Text = stringResource(id = R.string.component_element_button2)
             val cardContainerText = stringResource(id = R.string.component_card_element_container)
 
             OdsCardImageFirst(
                 imageRes = R.drawable.placeholder,
-                title = stringResource(id = R.string.component_card_element_title),
-                subtitle = if (subtitleIsChecked.value) stringResource(id = R.string.component_card_element_subtitle) else null,
-                text = if (textIsChecked.value) stringResource(id = R.string.component_card_element_text_value) else null,
+                title = stringResource(id = R.string.component_element_title),
+                subtitle = if (subtitleIsChecked.value) stringResource(id = R.string.component_element_subtitle) else null,
+                text = if (textIsChecked.value) stringResource(id = R.string.component_element_text_value) else null,
                 onCardClick = { clickOnElement(context, cardContainerText) },
                 button1Text = if (button1IsChecked.value) button1Text else null,
                 onButton1Click = { clickOnElement(context, button1Text) },

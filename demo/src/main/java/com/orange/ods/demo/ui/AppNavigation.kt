@@ -38,6 +38,10 @@ import com.orange.ods.demo.ui.components.controls.ComponentsControlsRadioButtons
 import com.orange.ods.demo.ui.components.controls.ComponentsControlsScreen
 import com.orange.ods.demo.ui.components.controls.ComponentsControlsSlidersScreen
 import com.orange.ods.demo.ui.components.controls.ComponentsControlsSwitchesScreen
+import com.orange.ods.demo.ui.components.lists.ComponentsListsOneLineScreen
+import com.orange.ods.demo.ui.components.lists.ComponentsListsScreen
+import com.orange.ods.demo.ui.components.lists.ComponentsListsThreeLinesScreen
+import com.orange.ods.demo.ui.components.lists.ComponentsListsTwoLinesScreen
 import com.orange.ods.demo.ui.components.progress.ComponentsProgressScreen
 import com.orange.ods.demo.ui.guidelines.GuidelinesNavigationItem
 import com.orange.ods.demo.ui.guidelines.GuidelinesScreen
@@ -110,6 +114,10 @@ fun AppNavigation(navController: NavHostController, onSetScreenTitle: (String) -
             onSetScreenTitle(stringResource(id = ComponentsNavigationItem.Progress.title))
             ComponentsProgressScreen()
         }
+        composable(ComponentsNavigationItem.Lists.route) {
+            onSetScreenTitle(stringResource(id = ComponentsNavigationItem.Lists.title))
+            ComponentsListsScreen(navController)
+        }
 
         // Components sub-level
         composable(ComponentsSubLevelNavigationItem.CardImageFirst.route) {
@@ -139,6 +147,18 @@ fun AppNavigation(navController: NavHostController, onSetScreenTitle: (String) -
         composable(ComponentsSubLevelNavigationItem.ControlsSliders.route) {
             onSetScreenTitle(stringResource(id = ComponentsSubLevelNavigationItem.ControlsSliders.title))
             ComponentsControlsSlidersScreen()
+        }
+        composable(ComponentsSubLevelNavigationItem.ListsOneLine.route) {
+            onSetScreenTitle(stringResource(id = ComponentsSubLevelNavigationItem.ListsOneLine.title))
+            ComponentsListsOneLineScreen()
+        }
+        composable(ComponentsSubLevelNavigationItem.ListsTwoLines.route) {
+            onSetScreenTitle(stringResource(id = ComponentsSubLevelNavigationItem.ListsTwoLines.title))
+            ComponentsListsTwoLinesScreen()
+        }
+        composable(ComponentsSubLevelNavigationItem.ListsThreeLines.route) {
+            onSetScreenTitle(stringResource(id = ComponentsSubLevelNavigationItem.ListsThreeLines.title))
+            ComponentsListsThreeLinesScreen()
         }
 
         // About

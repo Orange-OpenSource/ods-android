@@ -41,6 +41,17 @@
     <string name="component_state_enabled">Enabled</string>
     <string name="component_state_disabled">Disabled</string>
     <string name="component_on_click_toast">Click on %s</string>
+    <string name="component_element_title">Title</string>
+    <string name="component_element_subtitle">Subtitle</string>
+    <string name="component_element_overline">Overline</string>
+    <string name="component_element_caption">Caption</string>
+    <string name="component_element_secondary_text">Secondary text</string>
+    <string name="component_element_secondary_text_value">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor.</string>
+    <string name="component_element_thumbnail">Thumbnail</string>
+    <string name="component_element_button1">Button 1</string>
+    <string name="component_element_button2">Button 2</string>
+    <string name="component_element_text">Text</string>
+    <string name="component_element_text_value">Lorem ipsum dolor sit amet, at blandit nec tristique porttitor.</string>
 
     <!-- Components Bottom navigation -->
     <string name="component_bottom_navigation">Bottom navigation</string>
@@ -72,13 +83,6 @@
     <string name="component_card_small">Card small</string>
     <string name="component_card_description">Cards are important components that can be used to organise and present a number of different types of related information.</string>
     <string name="component_card_element_container">Card container</string>
-    <string name="component_card_element_title">Title</string>
-    <string name="component_card_element_subtitle">Subtitle</string>
-    <string name="component_card_element_thumbnail">Thumbnail</string>
-    <string name="component_card_element_button1">Button 1</string>
-    <string name="component_card_element_button2">Button 2</string>
-    <string name="component_card_element_text">Text</string>
-    <string name="component_card_element_text_value">Lorem ipsum dolor sit amet, at blandit nec tristique porttitor.</string>
 
     <!-- Component Controls -->
     <string name="component_controls">Controls</string>
@@ -108,6 +112,12 @@
     <string name="component_progress_circular_determinate">Circular determinate</string>
     <string name="component_progress_circular_indeterminate">Circular indeterminate</string>
 
+    <!-- Components Lists -->
+    <string name="component_lists">Lists</string>
+    <string name="component_lists_description">A list is a continuous vertical group of data entries like text, icons or images.</string>
+    <string name="component_lists_one_line">One-line list</string>
+    <string name="component_lists_two_lines">Two-line list</string>
+    <string name="component_lists_three_lines">Three-line list</string>
 
     <!-- About -->
     <string name="about_app_name">Orange Design</string>

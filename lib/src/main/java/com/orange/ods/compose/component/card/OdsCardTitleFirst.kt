@@ -19,19 +19,17 @@ import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.size
-import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material.Card
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.draw.clip
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 import com.orange.ods.R
 import com.orange.ods.compose.component.button.OdsButtonText
+import com.orange.ods.compose.component.other.OdsImageCircleShape
 import com.orange.ods.compose.text.OdsTextBody1
 import com.orange.ods.compose.text.OdsTextH6
 import com.orange.ods.compose.text.OdsTextSubtitle2
@@ -85,14 +83,7 @@ fun OdsCardTitleFirst(
                     .padding(horizontal = dimensionResource(id = R.dimen.ods_spacing_s)),
                 verticalAlignment = Alignment.CenterVertically
             ) {
-                thumbnailRes?.let {
-                    Image(
-                        painter = painterResource(id = thumbnailRes), contentDescription = null, contentScale = ContentScale.Crop,
-                        modifier = Modifier
-                            .size(40.dp)
-                            .clip(CircleShape)
-                    )
-                }
+                thumbnailRes?.let { OdsImageCircleShape(painter = painterResource(id = it)) }
                 Column(modifier = Modifier.padding(start = thumbnailRes?.let { dimensionResource(id = R.dimen.ods_spacing_xs) } ?: run { 0.dp })) {
                     OdsTextH6(text = title)
                     subtitle?.let {

@@ -8,7 +8,7 @@
  * /
  */
 
-package com.orange.ods.demo.ui.components.controls
+package com.orange.ods.demo.ui.components.lists
 
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Column
@@ -27,26 +27,27 @@ import com.orange.ods.demo.ui.components.ComponentsSubLevelNavigationItem
 import com.orange.ods.demo.ui.components.utilities.ComponentHeader
 import com.orange.ods.demo.ui.utilities.MenuItem
 
-private val controlsMenuItems = listOf(
-    MenuItem(R.string.component_controls_checkboxes, ComponentsSubLevelNavigationItem.ControlsCheckboxes.route),
-    MenuItem(R.string.component_controls_radio_buttons, ComponentsSubLevelNavigationItem.ControlsRadioButtons.route),
-    MenuItem(R.string.component_controls_switches, ComponentsSubLevelNavigationItem.ControlsSwitches.route),
-    MenuItem(R.string.component_controls_sliders, ComponentsSubLevelNavigationItem.ControlsSliders.route)
+private val listsMenuItems = listOf(
+    MenuItem(R.string.component_lists_one_line, ComponentsSubLevelNavigationItem.ListsOneLine.route),
+    MenuItem(R.string.component_lists_two_lines, ComponentsSubLevelNavigationItem.ListsTwoLines.route),
+    MenuItem(R.string.component_lists_three_lines, ComponentsSubLevelNavigationItem.ListsThreeLines.route)
 )
 
 @Composable
 @ExperimentalMaterialApi
-fun ComponentsControlsScreen(navController: NavHostController) {
+fun ComponentsListsScreen(navController: NavHostController) {
     Column(
         modifier = Modifier
             .verticalScroll(rememberScrollState())
-            .padding(bottom = dimensionResource(id = R.dimen.ods_spacing_s))
     ) {
-        ComponentHeader(imageRes = R.drawable.picture_component_controls, description = R.string.component_controls_description)
+        ComponentHeader(
+            imageRes = R.drawable.picture_component_lists,
+            description = R.string.component_lists_description
+        )
         Column(
             modifier = Modifier.padding(top = dimensionResource(id = R.dimen.ods_spacing_s))
         ) {
-            controlsMenuItems.forEach { item ->
+            listsMenuItems.forEach { item ->
                 OdsListItem(text = stringResource(id = item.titleRes), modifier = Modifier.clickable {
                     navController.navigate(item.route)
                 })

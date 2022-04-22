@@ -9,8 +9,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
-- Add ODS controls components: `OdsCheckbox`, `OdsRadioButton`, `OdsSwitch`, `OdsSlider`
-- Add ODS buttons components: `OdsButton`, `OdsOutlinedButton`, `OdsTextButton` and `OdsToggleButton`
+- Add list items components: `OdsListItem` and `OdsListItemWideThumbnail`
+- Add controls components: `OdsCheckbox`, `OdsRadioButton`, `OdsSwitch`, `OdsSlider`
+- Add buttons components: `OdsButton`, `OdsOutlinedButton`, `OdsTextButton` and `OdsToggleButton`
 - Add `OdsTopAppBar` component
 - Add `OdsCardSmall`, `OdsCardImageFirst` and `OdsCardTitleFirst` components
 - Add `OdsBottomNavigation` and `OdsBottomNavigationItem` components
