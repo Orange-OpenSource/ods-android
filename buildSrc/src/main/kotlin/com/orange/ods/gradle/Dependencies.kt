@@ -8,7 +8,7 @@
  * Software description: My Orange is a multi-services mobile application for Orange services.
  */
 
-package com.orange.omnis.gradle
+package com.orange.ods.gradle
 
 object Dependencies {
 

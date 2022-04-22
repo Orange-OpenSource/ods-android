@@ -1,4 +1,4 @@
-import com.orange.omnis.gradle.Versions
+import com.orange.ods.gradle.Versions
 
 apply plugin: 'com.android.application'
 

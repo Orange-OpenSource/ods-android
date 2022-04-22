@@ -8,7 +8,7 @@
  * /
  */
 
-package com.orange.omnis.gradle
+package com.orange.ods.gradle
 
 object Versions {
 

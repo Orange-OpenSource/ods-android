@@ -8,8 +8,8 @@
  * /
  */
 
-import com.orange.omnis.gradle.Dependencies
-import com.orange.omnis.gradle.Versions
+import com.orange.ods.gradle.Dependencies
+import com.orange.ods.gradle.Versions
 
 plugins {
     id("com.android.application")

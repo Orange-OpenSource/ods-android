@@ -15,10 +15,10 @@ buildscript {
     }
 
     dependencies {
-        classpath(com.orange.omnis.gradle.Dependencies.androidGradlePlugin)
-        classpath(com.orange.omnis.gradle.Dependencies.kotlinGradlePlugin)
-        classpath(com.orange.omnis.gradle.Dependencies.firebaseAppDistributionGradlePlugin)
-        classpath(com.orange.omnis.gradle.Dependencies.googleServicesGradlePlugin)
+        classpath(com.orange.ods.gradle.Dependencies.androidGradlePlugin)
+        classpath(com.orange.ods.gradle.Dependencies.kotlinGradlePlugin)
+        classpath(com.orange.ods.gradle.Dependencies.firebaseAppDistributionGradlePlugin)
+        classpath(com.orange.ods.gradle.Dependencies.googleServicesGradlePlugin)
     }
 }
 
