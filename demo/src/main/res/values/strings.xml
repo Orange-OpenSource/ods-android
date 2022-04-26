@@ -23,7 +23,7 @@
     <string name="back_icon_content_description">Back</string>
 
     <!-- Guidelines -->
-    <string name="guideline_colour">Colour</string>
+    <string name="guideline_colors">Colour</string>
     <string name="guideline_typography">Typography</string>
     <string name="guideline_imagery">Imagery</string>
     <string name="guideline_iconography">Iconography</string>

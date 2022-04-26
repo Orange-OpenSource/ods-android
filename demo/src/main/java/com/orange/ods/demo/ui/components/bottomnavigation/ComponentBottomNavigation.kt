@@ -12,16 +12,19 @@ package com.orange.ods.demo.ui.components.bottomnavigation
 
 import androidx.annotation.DrawableRes
 import androidx.annotation.StringRes
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.Icon
 import androidx.compose.material.Scaffold
+import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.MutableState
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
+import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.dimensionResource
@@ -43,30 +46,32 @@ private val bottomNavigationVariants = listOf(
 )
 
 @Composable
-fun ComponentsBottomNavigationScreen() {
-    val selectedBottomNavigationVariant = remember { mutableStateOf(bottomNavigationVariants[0]) }
-    val selectedRadio = remember { mutableStateOf(bottomNavigationVariants[0].titleRes.toString()) }
-
+fun ComponentBottomNavigation() {
+    val selectedVariantIndex = rememberSaveable { mutableStateOf(0) }
+    
     Scaffold(
-        bottomBar = { BottomNavigationBar(selectedBottomNavigationVariant) }
-    ) {
-        Column(
-            modifier = Modifier.verticalScroll(rememberScrollState())
-        ) {
-            ComponentHeader(
-                imageRes = R.drawable.picture_component_botton_navigation,
-                description = R.string.component_bottom_navigation_description
-            )
+        bottomBar = { BottomNavigationBar(selectedVariantIndex) }
+    ) { innerPadding ->
+        Box(modifier = Modifier.padding(innerPadding)) {
             Column(
-                modifier = Modifier.padding(top = dimensionResource(id = R.dimen.ods_spacing_s))
+                modifier = Modifier.verticalScroll(rememberScrollState())
             ) {
-                for (bottomNavigationVariant in bottomNavigationVariants) {
-                    LabelledRadioButton(
-                        selectedRadio = selectedRadio,
-                        currentRadio = bottomNavigationVariant.titleRes.toString(),
-                        label = stringResource(id = bottomNavigationVariant.titleRes),
-                        onClick = { selectedBottomNavigationVariant.value = bottomNavigationVariant }
-                    )
+                ComponentHeader(
+                    imageRes = R.drawable.picture_component_bottom_navigation,
+                    description = R.string.component_bottom_navigation_description
+                )
+                Text(text = "selectedVariantIndex=${selectedVariantIndex.value}")
+                Column(
+                    modifier = Modifier.padding(top = dimensionResource(id = R.dimen.ods_spacing_s))
+                ) {
+                    bottomNavigationVariants.forEachIndexed { index, bottomNavigationVariant ->
+                        LabelledRadioButton(
+                            selectedRadio = mutableStateOf(bottomNavigationVariants[selectedVariantIndex.value].titleRes.toString()),
+                            currentRadio = bottomNavigationVariant.titleRes.toString(),
+                            label = stringResource(id = bottomNavigationVariant.titleRes),
+                            onClick = { selectedVariantIndex.value = index }
+                        )
+                    }
                 }
             }
         }
@@ -74,7 +79,7 @@ fun ComponentsBottomNavigationScreen() {
 }
 
 @Composable
-private fun BottomNavigationBar(selectedVariant: MutableState<BottomNavigationVariant>) {
+private fun BottomNavigationBar(selectedVariantIndex: MutableState<Int>) {
     val context = LocalContext.current
     val navigationItems = listOf(
         NavigationItem("Favorites", R.drawable.ic_heart),
@@ -87,7 +92,7 @@ private fun BottomNavigationBar(selectedVariant: MutableState<BottomNavigationVa
     val selectedItem = remember { mutableStateOf(navigationItems[0]) }
 
     OdsBottomNavigation {
-        for (item in navigationItems.subList(0, selectedVariant.value.itemNumber)) {
+        for (item in navigationItems.subList(0, bottomNavigationVariants[selectedVariantIndex.value].itemNumber)) {
             OdsBottomNavigationItem(
                 icon = { Icon(painter = painterResource(id = item.icon), contentDescription = null) },
                 label = item.title,

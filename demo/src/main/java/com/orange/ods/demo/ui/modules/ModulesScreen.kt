@@ -18,11 +18,11 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.style.TextAlign
-import androidx.compose.ui.tooling.preview.Preview
-import com.orange.ods.compose.theme.OdsMaterialTheme
+import com.orange.ods.demo.R
 
 @Composable
-fun ModulesScreen() {
+fun ModulesScreen(updateTopBarTitle: (Int) -> Unit) {
+    updateTopBarTitle(R.string.navigation_item_modules)
     Column(
         modifier = Modifier
             .fillMaxSize()
@@ -33,13 +33,5 @@ fun ModulesScreen() {
             modifier = Modifier.align(Alignment.CenterHorizontally),
             textAlign = TextAlign.Center
         )
-    }
-}
-
-@Preview(showBackground = true)
-@Composable
-fun ModulesScreenPreview() {
-    OdsMaterialTheme {
-        ModulesScreen()
     }
 }

@@ -15,6 +15,7 @@ import android.webkit.WebView
 import android.webkit.WebViewClient
 import androidx.compose.foundation.layout.padding
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.dimensionResource
@@ -24,18 +25,26 @@ import com.orange.ods.demo.R
 private const val FILE_PATH = "file:///android_res/raw/"
 
 @Composable
-fun AboutHtmlFileScreen(fileName: String?) {
-    val context = LocalContext.current
-    AndroidView(
-        modifier = Modifier.padding(
-            horizontal = dimensionResource(id = R.dimen.ods_screen_horizontal_margin),
-            vertical = dimensionResource(id = R.dimen.ods_screen_vertical_margin)
-        ),
-        factory = {
-            WebView(context).apply {
-                webViewClient = WebViewClient()
-                loadUrl("${FILE_PATH}${fileName}")
-                setBackgroundColor(Color.TRANSPARENT)
-            }
-        })
+fun AboutHtmlFileScreen(
+    aboutItemId: Long,
+    updateTopBarTitle: (Int) -> Unit
+) {
+    val aboutItem = remember { aboutItems.firstOrNull { item -> item.id == aboutItemId } }
+
+    aboutItem?.let { item ->
+        updateTopBarTitle(item.titleRes)
+        val context = LocalContext.current
+        AndroidView(
+            modifier = Modifier.padding(
+                horizontal = dimensionResource(id = R.dimen.ods_screen_horizontal_margin),
+                vertical = dimensionResource(id = R.dimen.ods_screen_vertical_margin)
+            ),
+            factory = {
+                WebView(context).apply {
+                    webViewClient = WebViewClient()
+                    loadUrl("${FILE_PATH}${item.fileName}")
+                    setBackgroundColor(Color.TRANSPARENT)
+                }
+            })
+    }
 }

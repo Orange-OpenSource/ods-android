@@ -50,12 +50,13 @@ import com.orange.ods.demo.ui.utilities.composable.Title
 import com.orange.ods.demo.ui.utilities.getStringName
 
 @Composable
-fun GuidelinesColorsScreen() {
+fun GuidelineColorsScreen(updateTopBarTitle: (Int) -> Unit) {
+    updateTopBarTitle(R.string.guideline_colors)
     ColorList(getColorList(isSystemInDarkTheme()))
 }
 
 @Composable
-private fun ColorList(colors: List<GuidelinesColorsItem>) {
+private fun ColorList(colors: List<GuidelineColorItem>) {
     LazyColumn(
         contentPadding = PaddingValues(
             start = dimensionResource(id = R.dimen.ods_spacing_s),
@@ -102,7 +103,7 @@ private fun ColorList(colors: List<GuidelinesColorsItem>) {
 }
 
 @Composable
-private fun RowScope.SmallColorItem(color: GuidelinesColorsItem) {
+private fun RowScope.SmallColorItem(color: GuidelineColorItem) {
     val openDialog = remember { mutableStateOf(false) }
     Column(
         modifier = Modifier
@@ -129,7 +130,7 @@ private fun RowScope.SmallColorItem(color: GuidelinesColorsItem) {
 }
 
 @Composable
-private fun RowScope.BigColorItem(color: GuidelinesColorsItem) {
+private fun RowScope.BigColorItem(color: GuidelineColorItem) {
     val openDialog = remember { mutableStateOf(false) }
     Column(
         modifier = Modifier
@@ -175,7 +176,7 @@ private fun RowScope.BigColorItem(color: GuidelinesColorsItem) {
 }
 
 @Composable
-private fun DialogColor(color: GuidelinesColorsItem, openDialog: MutableState<Boolean>) {
+private fun DialogColor(color: GuidelineColorItem, openDialog: MutableState<Boolean>) {
     val context = LocalContext.current
     Dialog(
         onDismissRequest = { openDialog.value = false },
@@ -219,7 +220,7 @@ private fun DialogColor(color: GuidelinesColorsItem, openDialog: MutableState<Bo
 }
 
 @Composable
-private fun getColorList(systemInDarkTheme: Boolean): List<GuidelinesColorsItem> {
+private fun getColorList(systemInDarkTheme: Boolean): List<GuidelineColorItem> {
     return getCoreColors(systemInDarkTheme)
         .plus(getFunctionalColors(systemInDarkTheme))
         .plus(getSupportingColors())

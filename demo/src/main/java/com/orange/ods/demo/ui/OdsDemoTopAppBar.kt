@@ -21,25 +21,26 @@ import androidx.compose.runtime.SideEffect
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
-import androidx.navigation.NavController
-import androidx.navigation.NavHostController
 import com.google.accompanist.systemuicontroller.rememberSystemUiController
 import com.orange.ods.compose.component.OdsTopAppBar
 import com.orange.ods.demo.R
 
 @Composable
-fun TopAppBar(
-    title: String,
+fun OdsDemoTopAppBar(
+    titleRes: Int,
     isDarkMode: Boolean,
-    navController: NavHostController,
+    shouldShowUpNavigationIcon: Boolean,
+    navigateUp: () -> Unit,
     onThemeChange: (Boolean) -> Unit
 ) {
-    UpdateSystemBarsColor(MaterialTheme.colors.background)
+    SystemBarsColorSideEffect(MaterialTheme.colors.background)
     OdsTopAppBar(
         title = {
-            Text(text = title)
+            Text(text = stringResource(id = titleRes))
         },
-        navigationIcon = getNavigationIcon(navController),
+        navigationIcon = if (shouldShowUpNavigationIcon) {
+            { UpNavigationIcon(navigateUp) }
+        } else null,
         actions = {
             IconButton(onClick = {
                 onThemeChange(!isDarkMode)
@@ -62,23 +63,17 @@ fun TopAppBar(
 }
 
 @Composable
-private fun getNavigationIcon(navController: NavController): @Composable (() -> Unit)? {
-    return if (!isCurrentScreenFromHome(navController)) {
-        {
-            IconButton(onClick = { navController.navigateUp() }) {
-                Icon(
-                    imageVector = Icons.Filled.ArrowBack,
-                    contentDescription = stringResource(id = R.string.back_icon_content_description)
-                )
-            }
-        }
-    } else {
-        null
+private fun UpNavigationIcon(navigateUp: () -> Unit) {
+    IconButton(onClick = { navigateUp() }) {
+        Icon(
+            imageVector = Icons.Filled.ArrowBack,
+            contentDescription = stringResource(id = R.string.back_icon_content_description)
+        )
     }
 }
 
 @Composable
-private fun UpdateSystemBarsColor(backgroundColor: Color) {
+private fun SystemBarsColorSideEffect(backgroundColor: Color) {
     val systemUiController = rememberSystemUiController()
     SideEffect {
         systemUiController.setSystemBarsColor(

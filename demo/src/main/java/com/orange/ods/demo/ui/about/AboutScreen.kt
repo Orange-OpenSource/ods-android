@@ -11,7 +11,6 @@
 package com.orange.ods.demo.ui.about
 
 import android.content.Context
-import androidx.annotation.StringRes
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
@@ -32,23 +31,16 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
-import androidx.navigation.NavHostController
 import com.orange.ods.compose.component.list.OdsListItem
 import com.orange.ods.compose.theme.Blue200
 import com.orange.ods.demo.R
 import com.orange.ods.demo.ui.utilities.extension.orElse
 import com.orange.ods.demo.ui.utilities.versionCode
 
-private data class AboutMenuItem(@StringRes val titleRes: Int, val fileName: String)
-
-private val aboutMenuItems = listOf(
-    AboutMenuItem(R.string.about_menu_legal_notice, "about_legal_notice.html"),
-    AboutMenuItem(R.string.about_menu_privacy_policy, "about_privacy_policy.html")
-)
-
 @Composable
 @ExperimentalMaterialApi
-fun AboutScreen(navController: NavHostController) {
+fun AboutScreen(onAboutItemClick: (Long) -> Unit, updateTopBarTitle: (Int) -> Unit) {
+    updateTopBarTitle(R.string.navigation_item_about)
     Column(
         modifier = Modifier
             .verticalScroll(rememberScrollState())
@@ -74,9 +66,9 @@ fun AboutScreen(navController: NavHostController) {
 
         Spacer(modifier = Modifier.height(dimensionResource(id = R.dimen.ods_spacing_s)))
 
-        for (aboutMenuItem in aboutMenuItems) {
-            OdsListItem(text = stringResource(id = aboutMenuItem.titleRes), modifier = Modifier.clickable {
-                navController.navigate(AboutNavigationItem.HtmlFile.route.plus("/${aboutMenuItem.titleRes}/${aboutMenuItem.fileName}"))
+        for (aboutItem in aboutItems) {
+            OdsListItem(text = stringResource(id = aboutItem.titleRes), modifier = Modifier.clickable {
+                onAboutItemClick(aboutItem.id)
             })
         }
     }
