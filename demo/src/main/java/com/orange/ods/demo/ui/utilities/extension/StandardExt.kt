@@ -1,11 +1,11 @@
 /*
- * Software Name: MyOrange
- * SPDX-FileCopyrightText: Copyright (c) 2019-2021 Orange
  *
- * This software is confidential and proprietary information of Orange.
- * You shall not disclose such Confidential Information and shall not copy, use or distribute it in whole or in part without the prior written consent of Orange.
+ *  Copyright 2021 Orange
  *
- * Software description: My Orange is a multi-services mobile application for Orange services.
+ *  Use of this source code is governed by an MIT-style
+ *  license that can be found in the LICENSE file or at
+ *  https://opensource.org/licenses/MIT.
+ * /
  */
 
 package com.orange.ods.demo.ui.utilities.extension

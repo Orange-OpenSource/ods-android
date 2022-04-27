@@ -35,7 +35,7 @@ import com.orange.ods.compose.component.list.OdsListItem
 import com.orange.ods.compose.theme.Blue200
 import com.orange.ods.demo.R
 import com.orange.ods.demo.ui.utilities.extension.orElse
-import com.orange.ods.demo.ui.utilities.versionCode
+import com.orange.ods.demo.ui.utilities.extension.versionCode
 
 @Composable
 @ExperimentalMaterialApi
