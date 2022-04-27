@@ -60,7 +60,6 @@ fun ComponentBottomNavigation() {
                     imageRes = R.drawable.picture_component_bottom_navigation,
                     description = R.string.component_bottom_navigation_description
                 )
-                Text(text = "selectedVariantIndex=${selectedVariantIndex.value}")
                 Column(
                     modifier = Modifier.padding(top = dimensionResource(id = R.dimen.ods_spacing_s))
                 ) {
