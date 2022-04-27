@@ -8,7 +8,7 @@
  * /
  */
 
-package com.orange.ods.demo.ui.components.controls
+package com.orange.ods.demo.ui.components.checkboxes
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Row
@@ -24,7 +24,7 @@ import com.orange.ods.demo.R
 import com.orange.ods.demo.ui.utilities.composable.LabelledCheckbox
 
 @Composable
-fun ControlCheckboxesContent() {
+fun ComponentCheckboxesContent() {
     Row(
         modifier = Modifier
             .fillMaxWidth()

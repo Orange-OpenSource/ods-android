@@ -8,7 +8,7 @@
  * /
  */
 
-package com.orange.ods.demo.ui.components.controls
+package com.orange.ods.demo.ui.components.radiobuttons
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Row
@@ -24,7 +24,7 @@ import com.orange.ods.demo.R
 import com.orange.ods.demo.ui.utilities.composable.LabelledRadioButton
 
 @Composable
-fun ControlRadioButtonsContent() {
+fun ComponentRadioButtonsContent() {
     val radio1 = "radio1"
     val radio2 = "radio2"
     val selectedRadio = remember { mutableStateOf(radio1) }

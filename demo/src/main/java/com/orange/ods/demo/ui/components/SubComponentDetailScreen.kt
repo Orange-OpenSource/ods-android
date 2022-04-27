@@ -14,7 +14,6 @@ import androidx.compose.material.ExperimentalMaterialApi
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember
 import com.orange.ods.demo.ui.components.cards.SubComponentCard
-import com.orange.ods.demo.ui.components.controls.SubComponentControl
 import com.orange.ods.demo.ui.components.lists.SubComponentList
 
 @ExperimentalMaterialApi
@@ -30,7 +29,6 @@ fun SubComponentDetailScreen(
         updateTopBarTitle(subComponent.titleRes)
         when (component) {
             Component.Cards -> SubComponentCard(subComponent)
-            Component.Controls -> SubComponentControl(subComponent)
             Component.Lists -> SubComponentList(subComponent)
             else -> {}
         }
