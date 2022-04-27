@@ -19,7 +19,6 @@ import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.Icon
 import androidx.compose.material.Scaffold
-import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.MutableState
 import androidx.compose.runtime.mutableStateOf
@@ -48,7 +47,7 @@ private val bottomNavigationVariants = listOf(
 @Composable
 fun ComponentBottomNavigation() {
     val selectedVariantIndex = rememberSaveable { mutableStateOf(0) }
-    
+
     Scaffold(
         bottomBar = { BottomNavigationBar(selectedVariantIndex) }
     ) { innerPadding ->
@@ -57,7 +56,7 @@ fun ComponentBottomNavigation() {
                 modifier = Modifier.verticalScroll(rememberScrollState())
             ) {
                 ComponentHeader(
-                    imageRes = R.drawable.picture_component_bottom_navigation,
+                    imageRes = R.drawable.il_bottom_navigation,
                     description = R.string.component_bottom_navigation_description
                 )
                 Column(

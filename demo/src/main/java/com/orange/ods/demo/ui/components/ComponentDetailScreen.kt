@@ -23,9 +23,6 @@ import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.stringResource
 import com.orange.ods.compose.component.list.OdsListItem
 import com.orange.ods.demo.R
-import com.orange.ods.demo.ui.components.bottomnavigation.ComponentBottomNavigation
-import com.orange.ods.demo.ui.components.buttons.ComponentButtons
-import com.orange.ods.demo.ui.components.progress.ComponentProgress
 import com.orange.ods.demo.ui.components.utilities.ComponentHeader
 
 @ExperimentalMaterialApi
@@ -39,18 +36,27 @@ fun ComponentDetailScreen(
 
     component?.let {
         updateTopBarTitle(component.titleRes)
-        when (component) {
-            Component.BottomNavigation -> ComponentBottomNavigation()
-            Component.Buttons -> ComponentButtons()
-            Component.Progress -> ComponentProgress()
-            Component.Cards, Component.Controls, Component.Lists -> SubComponents(component = component, onSubComponentClick = onSubComponentClick)
-        }
+        component.Detail(onSubComponentClick = onSubComponentClick)
     }
 }
 
 @ExperimentalMaterialApi
 @Composable
-private fun SubComponents(component: Component, onSubComponentClick: (Long) -> Unit) {
+fun ComponentDetail(component: Component, ComponentContent: @Composable () -> Unit) {
+    Column(
+        modifier = Modifier.verticalScroll(rememberScrollState())
+    ) {
+        ComponentHeader(
+            imageRes = component.imageRes,
+            description = component.descriptionRes
+        )
+        ComponentContent()
+    }
+}
+
+@ExperimentalMaterialApi
+@Composable
+fun ComponentDetailWithSubComponents(component: Component, onSubComponentClick: (Long) -> Unit) {
     Column(
         modifier = Modifier.verticalScroll(rememberScrollState())
     ) {

@@ -16,8 +16,6 @@ import androidx.compose.foundation.layout.ColumnScope
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.rememberScrollState
-import androidx.compose.foundation.verticalScroll
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.composed
@@ -31,39 +29,30 @@ import com.orange.ods.compose.theme.DarkSurfaceDefault
 import com.orange.ods.compose.theme.OdsDisplayAppearance
 import com.orange.ods.compose.theme.White100
 import com.orange.ods.demo.R
-import com.orange.ods.demo.ui.components.utilities.ComponentHeader
 import com.orange.ods.demo.ui.utilities.composable.Subtitle
 import com.orange.ods.demo.ui.utilities.composable.Title
 
 @Composable
-fun ComponentButtons() {
-    Column(
-        modifier = Modifier.verticalScroll(rememberScrollState())
-    ) {
-        ComponentHeader(
-            imageRes = R.drawable.picture_component_buttons,
-            description = R.string.component_buttons_description
-        )
-        OdsTextH5(
-            text = stringResource(R.string.component_buttons_title_try),
-            modifier = Modifier
-                .padding(top = dimensionResource(R.dimen.ods_spacing_m))
-                .padding(horizontal = dimensionResource(R.dimen.ods_screen_horizontal_margin))
-        )
+fun ComponentButtonsContent() {
+    OdsTextH5(
+        text = stringResource(R.string.component_buttons_title_try),
+        modifier = Modifier
+            .padding(top = dimensionResource(R.dimen.ods_spacing_m))
+            .padding(horizontal = dimensionResource(R.dimen.ods_screen_horizontal_margin))
+    )
 
-        OdsTextBody1(
-            text = stringResource(R.string.component_buttons_preamble),
-            modifier = Modifier
-                .padding(top = dimensionResource(id = R.dimen.ods_spacing_s))
-                .padding(horizontal = dimensionResource(R.dimen.ods_screen_horizontal_margin))
-        )
+    OdsTextBody1(
+        text = stringResource(R.string.component_buttons_preamble),
+        modifier = Modifier
+            .padding(top = dimensionResource(id = R.dimen.ods_spacing_s))
+            .padding(horizontal = dimensionResource(R.dimen.ods_screen_horizontal_margin))
+    )
 
-        Title(R.string.component_buttons_contained_title, withHorizontalPadding = true)
-        ButtonsContained()
-        ButtonsOutlined()
-        ButtonsText()
-        ButtonsToggle()
-    }
+    Title(R.string.component_buttons_contained_title, withHorizontalPadding = true)
+    ButtonsContained()
+    ButtonsOutlined()
+    ButtonsText()
+    ButtonsToggle()
 }
 
 fun Modifier.fullWidthButton(withTopPadding: Boolean = true) = composed {
