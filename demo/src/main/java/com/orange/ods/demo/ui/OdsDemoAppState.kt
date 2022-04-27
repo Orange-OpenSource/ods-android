@@ -44,13 +44,18 @@ object MainDestinations {
 @Composable
 fun rememberOdsDemoAppState(
     navController: NavHostController = rememberNavController(),
-    topAppBarTitleRes: MutableState<Int> = rememberSaveable { mutableStateOf(R.string.navigation_item_guidelines) }
+    topAppBarTitleRes: MutableState<Int> = rememberSaveable { mutableStateOf(R.string.navigation_item_guidelines) },
+    darkModeEnabled: MutableState<Boolean>
 ) =
-    remember(navController, topAppBarTitleRes) {
-        OdsDemoAppState(navController, topAppBarTitleRes)
+    remember(navController, topAppBarTitleRes, darkModeEnabled) {
+        OdsDemoAppState(navController, topAppBarTitleRes, darkModeEnabled)
     }
 
-class OdsDemoAppState(val navController: NavHostController, val topAppBarTitleRes: MutableState<Int>) {
+class OdsDemoAppState(val navController: NavHostController, val topAppBarTitleRes: MutableState<Int>, val darkModeEnabled: MutableState<Boolean>) {
+
+    fun updateTheme(isDark: Boolean) {
+        darkModeEnabled.value = isDark
+    }
 
     // ----------------------------------------------------------
     // TopAppBar state source of truth

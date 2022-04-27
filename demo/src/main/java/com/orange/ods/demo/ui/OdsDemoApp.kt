@@ -22,10 +22,8 @@ import androidx.compose.material.ExperimentalMaterialApi
 import androidx.compose.material.Icon
 import androidx.compose.material.Scaffold
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.saveable.rememberSaveable
-import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalConfiguration
 import androidx.compose.ui.res.painterResource
@@ -47,27 +45,26 @@ import com.orange.ods.demo.ui.guidelines.addGuidelinesGraph
 @Preview(showBackground = true)
 @Composable
 fun OdsDemoApp() {
-    val appState = rememberOdsDemoAppState()
-
     val isSystemInDarkTheme = isSystemInDarkTheme()
-    var isDarkModeEnabled by rememberSaveable { mutableStateOf(isSystemInDarkTheme) }
+    val appState = rememberOdsDemoAppState(darkModeEnabled = rememberSaveable { mutableStateOf(isSystemInDarkTheme) })
 
     // Change isSystemInDarkTheme() value to make switching theme working with custom color
-    if (isDarkModeEnabled) {
+    if (appState.darkModeEnabled.value) {
         LocalConfiguration.current.uiMode = UI_MODE_NIGHT_YES
     } else {
         LocalConfiguration.current.uiMode = UI_MODE_NIGHT_NO
     }
 
-    OdsMaterialTheme(isDarkModeEnabled) {
+    OdsMaterialTheme(appState.darkModeEnabled.value) {
         Scaffold(
             topBar = {
                 OdsDemoTopAppBar(
                     titleRes = appState.topAppBarTitleRes.value,
-                    isDarkMode = isDarkModeEnabled,
+                    darkModeEnabled = appState.darkModeEnabled.value,
                     shouldShowUpNavigationIcon = !appState.shouldShowBottomBar,
-                    navigateUp = appState::upPress
-                ) { isDarkModeEnabled = it }
+                    navigateUp = appState::upPress,
+                    updateTheme = appState::updateTheme
+                )
             },
             bottomBar = {
                 AnimatedVisibility(

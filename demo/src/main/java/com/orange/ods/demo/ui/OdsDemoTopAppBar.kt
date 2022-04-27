@@ -10,6 +10,8 @@
 
 package com.orange.ods.demo.ui
 
+import androidx.annotation.DrawableRes
+import androidx.annotation.StringRes
 import androidx.compose.material.Icon
 import androidx.compose.material.IconButton
 import androidx.compose.material.MaterialTheme
@@ -28,10 +30,10 @@ import com.orange.ods.demo.R
 @Composable
 fun OdsDemoTopAppBar(
     titleRes: Int,
-    isDarkMode: Boolean,
+    darkModeEnabled: Boolean,
     shouldShowUpNavigationIcon: Boolean,
     navigateUp: () -> Unit,
-    onThemeChange: (Boolean) -> Unit
+    updateTheme: (Boolean) -> Unit
 ) {
     SystemBarsColorSideEffect(MaterialTheme.colors.background)
     OdsTopAppBar(
@@ -43,22 +45,23 @@ fun OdsDemoTopAppBar(
         } else null,
         actions = {
             IconButton(onClick = {
-                onThemeChange(!isDarkMode)
+                updateTheme(!darkModeEnabled)
             }) {
-                if (isDarkMode) {
-                    Icon(
-                        painter = painterResource(id = R.drawable.ic_ui_light_mode),
-                        contentDescription = stringResource(id = R.string.theme_changer_icon_content_description_light)
-
-                    )
+                if (darkModeEnabled) {
+                    ThemeIcon(iconRes = R.drawable.ic_ui_light_mode, contentDescriptionRes = R.string.theme_changer_icon_content_description_light)
                 } else {
-                    Icon(
-                        painter = painterResource(id = R.drawable.ic_ui_dark_mode),
-                        contentDescription = stringResource(id = R.string.theme_changer_icon_content_description_dark)
-                    )
+                    ThemeIcon(iconRes = R.drawable.ic_ui_dark_mode, contentDescriptionRes = R.string.theme_changer_icon_content_description_dark)
                 }
             }
         }
+    )
+}
+
+@Composable
+private fun ThemeIcon(@DrawableRes iconRes: Int, @StringRes contentDescriptionRes: Int) {
+    Icon(
+        painter = painterResource(id = iconRes),
+        contentDescription = stringResource(id = contentDescriptionRes)
     )
 }
 
