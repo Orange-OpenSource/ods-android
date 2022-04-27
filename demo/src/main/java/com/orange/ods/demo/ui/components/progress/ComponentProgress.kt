@@ -25,16 +25,14 @@ import com.orange.ods.demo.ui.utilities.composable.Subtitle
 import com.orange.ods.demo.ui.utilities.composable.Title
 
 @Composable
-fun ComponentsProgressScreen() {
+fun ComponentProgress() {
     Column(
-        modifier = Modifier
-            .verticalScroll(rememberScrollState())
+        modifier = Modifier.verticalScroll(rememberScrollState())
     ) {
         ComponentHeader(
             imageRes = R.drawable.picture_component_progress,
             description = R.string.component_progress_description
         )
-
         Column(
             modifier = Modifier
                 .padding(horizontal = dimensionResource(id = R.dimen.ods_screen_horizontal_margin))

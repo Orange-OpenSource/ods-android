@@ -20,18 +20,14 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.stringResource
-import androidx.navigation.NavController
 import com.orange.ods.compose.component.card.OdsCardImageFirst
 import com.orange.ods.demo.R
 
-private val guidelinesItems = listOf(
-    GuidelinesNavigationItem.Color,
-    GuidelinesNavigationItem.Typography
-)
-
 @Composable
-fun GuidelinesScreen(navController: NavController) {
+fun GuidelinesScreen(onGuidelineClick: (String) -> Unit, updateTopBarTitle: (Int) -> Unit) {
+    updateTopBarTitle(R.string.navigation_item_guidelines)
     val scrollState = rememberScrollState()
+
     Column(
         modifier = Modifier
             .fillMaxSize()
@@ -39,11 +35,11 @@ fun GuidelinesScreen(navController: NavController) {
             .verticalScroll(scrollState),
         verticalArrangement = Arrangement.spacedBy(dimensionResource(id = R.dimen.ods_spacing_s))
     ) {
-        guidelinesItems.forEach { item ->
+        guidelines.forEach { item ->
             OdsCardImageFirst(
-                imageRes = item.image,
-                title = stringResource(id = item.title),
-                onCardClick = { navController.navigate(item.route) }
+                imageRes = item.imageRes,
+                title = stringResource(id = item.titleRes),
+                onCardClick = { onGuidelineClick(item.route) }
             )
         }
     }

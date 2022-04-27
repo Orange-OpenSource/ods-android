@@ -33,8 +33,10 @@ import com.orange.ods.demo.R
 import com.orange.ods.demo.ui.utilities.getStringName
 
 @Composable
-fun GuidelinesTypographyScreen() {
+fun GuidelineTypographyScreen(updateTopBarTitle: (Int) -> Unit) {
+    updateTopBarTitle(R.string.guideline_typography)
     val typographyItems = getTypographyItems()
+
     LazyColumn(
         contentPadding = PaddingValues(horizontal = dimensionResource(id = R.dimen.ods_spacing_s), vertical = dimensionResource(id = R.dimen.ods_spacing_xs)),
         verticalArrangement = Arrangement.spacedBy(dimensionResource(id = R.dimen.ods_spacing_s)),

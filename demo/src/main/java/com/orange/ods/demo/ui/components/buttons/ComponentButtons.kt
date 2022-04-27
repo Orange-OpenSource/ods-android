@@ -36,15 +36,14 @@ import com.orange.ods.demo.ui.utilities.composable.Subtitle
 import com.orange.ods.demo.ui.utilities.composable.Title
 
 @Composable
-fun ComponentsButtonsScreen() {
+fun ComponentButtons() {
     Column(
         modifier = Modifier.verticalScroll(rememberScrollState())
     ) {
         ComponentHeader(
-            imageRes = R.drawable.il_components,
+            imageRes = R.drawable.picture_component_buttons,
             description = R.string.component_buttons_description
         )
-
         OdsTextH5(
             text = stringResource(R.string.component_buttons_title_try),
             modifier = Modifier

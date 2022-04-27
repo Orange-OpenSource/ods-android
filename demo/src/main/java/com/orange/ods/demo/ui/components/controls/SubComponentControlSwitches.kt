@@ -27,38 +27,36 @@ import com.orange.ods.compose.text.OdsTextBody1
 import com.orange.ods.demo.R
 
 @Composable
-fun ComponentsControlsSwitchesScreen() {
-    ComponentsControlsTemplate(R.string.component_controls_switches_description) {
-        Row(
-            modifier = Modifier
-                .fillMaxWidth()
-                .padding(top = dimensionResource(id = R.dimen.ods_spacing_s)),
-            horizontalArrangement = Arrangement.SpaceEvenly
-        ) {
-            LabelledSwitch(
-                label = stringResource(id = R.string.component_state_enabled),
-                selected = remember { mutableStateOf(true) }
-            )
-            LabelledSwitch(
-                label = stringResource(id = R.string.component_state_enabled),
-                selected = remember { mutableStateOf(false) }
-            )
-        }
-        Row(
-            modifier = Modifier.fillMaxWidth(),
-            horizontalArrangement = Arrangement.SpaceEvenly
-        ) {
-            LabelledSwitch(
-                label = stringResource(id = R.string.component_state_enabled),
-                selected = remember { mutableStateOf(true) },
-                enabled = false
-            )
-            LabelledSwitch(
-                label = stringResource(id = R.string.component_state_disabled),
-                selected = remember { mutableStateOf(false) },
-                enabled = false
-            )
-        }
+fun ControlSwitchesContent() {
+    Row(
+        modifier = Modifier
+            .fillMaxWidth()
+            .padding(top = dimensionResource(id = R.dimen.ods_spacing_s)),
+        horizontalArrangement = Arrangement.SpaceEvenly
+    ) {
+        LabelledSwitch(
+            label = stringResource(id = R.string.component_state_enabled),
+            selected = remember { mutableStateOf(true) }
+        )
+        LabelledSwitch(
+            label = stringResource(id = R.string.component_state_enabled),
+            selected = remember { mutableStateOf(false) }
+        )
+    }
+    Row(
+        modifier = Modifier.fillMaxWidth(),
+        horizontalArrangement = Arrangement.SpaceEvenly
+    ) {
+        LabelledSwitch(
+            label = stringResource(id = R.string.component_state_enabled),
+            selected = remember { mutableStateOf(true) },
+            enabled = false
+        )
+        LabelledSwitch(
+            label = stringResource(id = R.string.component_state_disabled),
+            selected = remember { mutableStateOf(false) },
+            enabled = false
+        )
     }
 }
 

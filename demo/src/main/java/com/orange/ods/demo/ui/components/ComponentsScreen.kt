@@ -23,24 +23,12 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.stringResource
-import androidx.compose.ui.tooling.preview.Preview
-import androidx.navigation.NavController
-import androidx.navigation.compose.rememberNavController
 import com.orange.ods.compose.component.card.OdsCardSmall
-import com.orange.ods.compose.theme.OdsMaterialTheme
 import com.orange.ods.demo.R
 
-private val componentsItems = listOf(
-    ComponentsNavigationItem.BottomNavigation,
-    ComponentsNavigationItem.Buttons,
-    ComponentsNavigationItem.Controls,
-    ComponentsNavigationItem.Cards,
-    ComponentsNavigationItem.Lists,
-    ComponentsNavigationItem.Progress
-)
-
 @Composable
-fun ComponentsScreen(navController: NavController) {
+fun ComponentsScreen(onComponentClick: (Long) -> Unit, updateTopBarTitle: (Int) -> Unit) {
+    updateTopBarTitle(R.string.navigation_item_components)
     val scrollState = rememberScrollState()
     Column(
         modifier = Modifier
@@ -49,13 +37,13 @@ fun ComponentsScreen(navController: NavController) {
             .verticalScroll(scrollState),
         verticalArrangement = Arrangement.spacedBy(dimensionResource(id = R.dimen.ods_spacing_s))
     ) {
-        componentsItems.chunked(2).forEach { rowCards ->
+        components.chunked(2).forEach { rowCards ->
             Row(
                 horizontalArrangement = Arrangement.spacedBy(dimensionResource(id = R.dimen.ods_spacing_s)),
             ) {
-                ComponentCard(componentsNavigationItem = rowCards[0], navController)
+                ComponentCard(component = rowCards[0], onComponentClick)
                 if (rowCards.size == 2) {
-                    ComponentCard(componentsNavigationItem = rowCards[1], navController)
+                    ComponentCard(component = rowCards[1], onComponentClick)
                 } else {
                     Box(modifier = Modifier.weight(0.5f)) {}
                 }
@@ -65,21 +53,13 @@ fun ComponentsScreen(navController: NavController) {
 }
 
 @Composable
-private fun RowScope.ComponentCard(componentsNavigationItem: ComponentsNavigationItem, navController: NavController) {
+private fun RowScope.ComponentCard(component: Component, onComponentClick: (Long) -> Unit) {
     OdsCardSmall(
         modifier = Modifier.weight(0.5f),
-        title = stringResource(id = componentsNavigationItem.title),
-        imageRes = componentsNavigationItem.image,
+        title = stringResource(id = component.titleRes),
+        imageRes = component.imageRes,
         onCardClick = {
-            navController.navigate(componentsNavigationItem.route)
+            onComponentClick(component.id)
         },
     )
-}
-
-@Preview(showBackground = true)
-@Composable
-fun ComponentsScreenPreview() {
-    OdsMaterialTheme {
-        ComponentsScreen(rememberNavController())
-    }
 }
