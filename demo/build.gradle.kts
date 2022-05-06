@@ -19,6 +19,7 @@ plugins {
     id("kotlin-android")
     id("com.google.firebase.appdistribution")
     id("com.google.firebase.crashlytics")
+    id("firebase")
 }
 
 android {
@@ -66,7 +67,8 @@ android {
     }
 
     firebaseAppDistribution {
-        groups = "ods-demo-android"
+        releaseNotesFile = Firebase_gradle.AppDistribution.releaseNotesFilePath
+        groups = "ods-android-internal-tests"
     }
 
     compileOptions {

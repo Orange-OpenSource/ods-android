@@ -23,7 +23,7 @@ object Versions {
     const val compose = "1.1.1"
     const val core = "1.7.0"
     const val googleServicesGradlePlugin = "4.3.10"
-    const val firebaseAppDistributionGradlePlugin = "3.0.0"
+    const val firebaseAppDistributionGradlePlugin = "3.0.1"
     const val firebaseBom = "30.0.0"
     const val firebaseCrashlyticsGradlePlugin = "2.8.1"
     const val jUnit = "4.13.2"
