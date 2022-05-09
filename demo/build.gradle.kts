@@ -30,7 +30,7 @@ android {
         targetSdk = Versions.targetSdk
         val versionCodeProperty = project.findTypedProperty<String>("versionCode")
         versionCode = versionCodeProperty?.toInt() ?: 1
-        versionName = "1.0"
+        versionName = "0.3"
         val versionNameSuffixProperty = project.findTypedProperty<String>("versionNameSuffix")
         versionNameSuffix = versionNameSuffixProperty
 
