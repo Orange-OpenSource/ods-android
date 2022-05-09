@@ -29,7 +29,7 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 import com.orange.ods.R
 import com.orange.ods.compose.component.button.OdsButtonText
-import com.orange.ods.compose.component.other.OdsImageCircleShape
+import com.orange.ods.compose.component.utilities.OdsImageCircleShape
 import com.orange.ods.compose.text.OdsTextBody1
 import com.orange.ods.compose.text.OdsTextH6
 import com.orange.ods.compose.text.OdsTextSubtitle2

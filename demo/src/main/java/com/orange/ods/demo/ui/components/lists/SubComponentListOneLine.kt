@@ -26,7 +26,7 @@ import com.orange.ods.compose.component.list.OdsListItem
 import com.orange.ods.compose.component.list.OdsListItemIcon
 import com.orange.ods.compose.component.list.OdsListItemWideThumbnail
 import com.orange.ods.compose.component.list.OdsListSquaredThumbnail
-import com.orange.ods.compose.component.other.OdsImageCircleShape
+import com.orange.ods.compose.component.utilities.OdsImageCircleShape
 import com.orange.ods.demo.R
 
 @ExperimentalMaterialApi

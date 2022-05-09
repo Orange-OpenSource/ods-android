@@ -8,7 +8,7 @@
  * /
  */
 
-package com.orange.ods.compose.component.other
+package com.orange.ods.compose.component.utilities
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.size
