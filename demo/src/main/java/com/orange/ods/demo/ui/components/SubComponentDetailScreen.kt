@@ -15,6 +15,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember
 import com.orange.ods.demo.ui.components.cards.SubComponentCard
 import com.orange.ods.demo.ui.components.lists.SubComponentList
+import com.orange.ods.demo.ui.components.textfields.SubComponentTextField
 
 @ExperimentalMaterialApi
 @Composable
@@ -28,8 +29,9 @@ fun SubComponentDetailScreen(
     subComponent?.let {
         updateTopBarTitle(subComponent.titleRes)
         when (component) {
-            Component.Cards -> SubComponentCard(subComponent)
-            Component.Lists -> SubComponentList(subComponent)
+            Component.Cards -> SubComponentCard(subComponent = subComponent)
+            Component.Lists -> SubComponentList(subComponent = subComponent)
+            Component.TextFields -> SubComponentTextField(subComponent = subComponent)
             else -> {}
         }
     }
