@@ -15,9 +15,7 @@ import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
-import androidx.compose.material.BottomSheetScaffold
 import androidx.compose.material.ExperimentalMaterialApi
-import androidx.compose.material.rememberBottomSheetScaffoldState
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.saveable.rememberSaveable
@@ -25,9 +23,9 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.stringResource
-import androidx.compose.ui.unit.dp
 import com.orange.ods.compose.component.card.OdsCardSmall
 import com.orange.ods.demo.R
+import com.orange.ods.demo.ui.components.utilities.ComponentCustomizeSheetScaffold
 import com.orange.ods.demo.ui.components.utilities.clickOnElement
 import com.orange.ods.demo.ui.utilities.composable.LabelledCheckbox
 
@@ -36,33 +34,26 @@ import com.orange.ods.demo.ui.utilities.composable.LabelledCheckbox
 fun CardSmallContent() {
     val context = LocalContext.current
     val subtitleIsChecked = rememberSaveable { mutableStateOf(true) }
+    
+    ComponentCustomizeSheetScaffold(sheetContent = {
+        LabelledCheckbox(label = stringResource(id = R.string.component_element_subtitle), checked = subtitleIsChecked)
+    }) {
+        Row(
+            modifier = Modifier
+                .fillMaxSize()
+                .padding(dimensionResource(id = R.dimen.ods_spacing_s)),
+            horizontalArrangement = Arrangement.spacedBy(dimensionResource(id = R.dimen.ods_spacing_s)),
+        ) {
+            val cardContainerText = stringResource(id = R.string.component_card_element_container)
 
-    BottomSheetScaffold(
-        scaffoldState = rememberBottomSheetScaffoldState(),
-        sheetPeekHeight = 56.dp,
-        sheetContent = {
-            CardBottomSheetContentHeader()
-            LabelledCheckbox(label = stringResource(id = R.string.component_element_subtitle), checked = subtitleIsChecked)
-        }
-    ) { innerPadding ->
-        Box(modifier = Modifier.padding(innerPadding)) {
-            Row(
-                modifier = Modifier
-                    .fillMaxSize()
-                    .padding(dimensionResource(id = R.dimen.ods_spacing_s)),
-                horizontalArrangement = Arrangement.spacedBy(dimensionResource(id = R.dimen.ods_spacing_s)),
-            ) {
-                val cardContainerText = stringResource(id = R.string.component_card_element_container)
-
-                OdsCardSmall(
-                    modifier = Modifier.weight(0.5f),
-                    imageRes = R.drawable.placeholder,
-                    title = stringResource(id = R.string.component_element_title),
-                    subtitle = if (subtitleIsChecked.value) stringResource(id = R.string.component_element_subtitle) else null,
-                    onCardClick = { clickOnElement(context, cardContainerText) }
-                )
-                Box(modifier = Modifier.weight(0.5f))
-            }
+            OdsCardSmall(
+                modifier = Modifier.weight(0.5f),
+                imageRes = R.drawable.placeholder,
+                title = stringResource(id = R.string.component_element_title),
+                subtitle = if (subtitleIsChecked.value) stringResource(id = R.string.component_element_subtitle) else null,
+                onCardClick = { clickOnElement(context, cardContainerText) }
+            )
+            Box(modifier = Modifier.weight(0.5f))
         }
     }
 }

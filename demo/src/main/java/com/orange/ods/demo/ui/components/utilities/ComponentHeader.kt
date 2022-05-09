@@ -44,7 +44,7 @@ fun ComponentHeader(
 }
 
 @Composable
-fun ComponentDescription(
+private fun ComponentDescription(
     modifier: Modifier = Modifier,
     @StringRes description: Int
 ) {
