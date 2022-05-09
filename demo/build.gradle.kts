@@ -16,6 +16,7 @@ plugins {
     id("com.google.gms.google-services")
     id("kotlin-android")
     id("com.google.firebase.appdistribution")
+    id("com.google.firebase.crashlytics")
 }
 
 android {
@@ -83,6 +84,8 @@ dependencies {
     implementation(Dependencies.activityCompose)
     implementation(Dependencies.navigationCompose)
     implementation(Dependencies.accompanistSystemUiController)
+    implementation(platform(Dependencies.firebaseBom))
+    implementation(Dependencies.firebaseCrashlytics)
 
     debugImplementation(Dependencies.composeUiTooling)
 }
