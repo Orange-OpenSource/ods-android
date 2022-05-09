@@ -106,7 +106,7 @@
     <string name="component_slider_discrete_lockups">Discrete lockups</string>
     <string name="component_slider_continuous_lockups">Continuous lockups</string>
 
-    <!-- Components Progress & activities -->
+    <!-- Component Progress & activities -->
     <string name="component_progress">Progress &amp; activities</string>
     <string name="component_progress_description">If a process is taking place in the application, it is important to reassure users that something is happening, and if possible, how long it will take.</string>
     <string name="component_progress_linear">Linear</string>
@@ -116,12 +116,22 @@
     <string name="component_progress_circular_determinate">Circular determinate</string>
     <string name="component_progress_circular_indeterminate">Circular indeterminate</string>
 
-    <!-- Components Lists -->
+    <!-- Component Lists -->
     <string name="component_lists">Lists</string>
     <string name="component_lists_description">A list is a continuous vertical group of data entries like text, icons or images.</string>
     <string name="component_lists_one_line">One-line list</string>
     <string name="component_lists_two_lines">Two-line list</string>
     <string name="component_lists_three_lines">Three-line list</string>
+
+    <!-- Component Text fields -->
+    <string name="component_text_fields">Text fields</string>
+    <string name="component_text_fields_description">Text fields enable the user to type text into the app. They also provide ways to select text and the opportunity to save time by suggesting options for auto-completion.</string>
+    <string name="component_text_fields_filled">Filled text fields</string>
+    <string name="component_text_field_filled">Filled</string>
+    <string name="component_text_field_filled_suffix_text">Filled suffix text</string>
+    <string name="component_text_fields_outlined">Outlined text fields</string>
+    <string name="component_text_field_outlined">Outlined</string>
+    <string name="component_text_field_outlined_suffix_text">Outlined suffix text</string>
 
     <!-- About -->
     <string name="about_app_name">Orange Design</string>
