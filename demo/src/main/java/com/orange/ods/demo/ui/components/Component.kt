@@ -18,6 +18,7 @@ import com.orange.ods.demo.R
 import com.orange.ods.demo.ui.components.bottomnavigation.ComponentBottomNavigation
 import com.orange.ods.demo.ui.components.buttons.ComponentButtonsContent
 import com.orange.ods.demo.ui.components.checkboxes.ComponentCheckboxesContent
+import com.orange.ods.demo.ui.components.dialogs.ComponentDialogsContent
 import com.orange.ods.demo.ui.components.progress.ComponentProgressContent
 import com.orange.ods.demo.ui.components.radiobuttons.ComponentRadioButtonsContent
 import com.orange.ods.demo.ui.components.sliders.ComponentSlidersContent
@@ -41,8 +42,9 @@ sealed class Component(
     )
 
     object Checkboxes : Component(4L, R.string.component_checkboxes, R.drawable.il_checkbox, R.string.component_checkboxes_description)
+    object Dialogs : Component(5L, R.string.component_dialogs, R.drawable.il_dialogs, R.string.component_dialogs_description)
     object Lists : Component(
-        5L,
+        6L,
         R.string.component_lists,
         R.drawable.il_lists,
         R.string.component_lists_description,
@@ -68,6 +70,7 @@ sealed class Component(
             BottomNavigation -> ComponentBottomNavigation()
             Buttons -> ComponentDetail(component = this) { ComponentButtonsContent() }
             Checkboxes -> ComponentDetail(component = this) { ComponentCheckboxesContent() }
+            Dialogs -> ComponentDetail(component = this) { ComponentDialogsContent() }
             Progress -> ComponentDetail(component = this) { ComponentProgressContent() }
             RadioButtons -> ComponentDetail(component = this) { ComponentRadioButtonsContent() }
             Sliders -> ComponentDetail(component = this) { ComponentSlidersContent() }

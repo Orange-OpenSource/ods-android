@@ -95,6 +95,16 @@
     <string name="component_checkboxes">Checkboxes</string>
     <string name="component_checkboxes_description">Checkboxes are used to select or deselect an option. Single checkboxes can be used to determine an individual choice and they can be grouped to allow users to select any combination of items.</string>
 
+    <!-- Component Dialogs -->
+    <string name="component_dialogs">Dialogs</string>
+    <string name="component_dialogs_description">Dialogs are for prompting the user when the app requires a decision or further details required to complete a task.</string>
+    <string name="component_dialogs_customize">Customize dialog</string>
+    <string name="component_dialogs_open_dialog">Open dialog</string>
+    <string name="component_dialog_title">Dialog sample</string>
+    <string name="component_dialog_text">A dialog box asks the user for further information that the app needs in order to continue. The user has to tap one of the action buttons at the bottom of the box to continue.</string>
+    <string name="component_dialog_action1">Decline</string>
+    <string name="component_dialog_action2">Accept</string>
+
     <!-- Component Radio Buttons -->
     <string name="component_radio_buttons">Radio Buttons</string>
     <string name="component_radio_buttons_description">Radio buttons enable users to choose one item from a set of mutually exclusive, related choices.</string>
