@@ -28,7 +28,6 @@ import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.painter.Painter
-import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.text.input.KeyboardType
@@ -109,7 +108,6 @@ fun OdsTextField(
     singleLine: Boolean = false,
     maxLines: Int = Int.MAX_VALUE,
 ) {
-    val context = LocalContext.current
     TextField(
         value = value,
         onValueChange = onValueChange,
