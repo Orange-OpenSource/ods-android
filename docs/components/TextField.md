@@ -71,6 +71,9 @@ an `AccessibilityDelegate` directly on the `EditText`.
 Filled text fields have more visual emphasis than outlined text fields, making them stand out when
 surrounded by other content and components.
 
+  ![TextField filled](images/textfield_filled_light.png)  
+  ![TextField filled dark](images/textfield_filled_dark.png)
+
 ##### Filled text field in XML
 
 _**Note:** The filled text field is the default style if the style is not set._
@@ -148,6 +151,9 @@ To add a filled text field in your composable screen you can use:
 Outlined text fields have less visual emphasis than filled text fields. When they appear in places
 like forms, where many text fields are placed together, their reduced emphasis helps simplify the
 layout.
+
+  ![TextField outlined](images/textfield_outlined_light.png)  
+  ![TextField outlined dark](images/textfield_outlined_dark.png)
 
 ##### Outlined text field in XML
 
