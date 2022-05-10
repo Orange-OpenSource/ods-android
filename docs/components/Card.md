@@ -52,8 +52,8 @@ To have a Card in your layout you must add `com.google.android.material.card.Mat
 API and source code:
 
 *   `MaterialCardView`
-  *   [Class definition](https://developer.android.com/reference/com/google/android/material/card/MaterialCardView)
-  *   [Class source](https://github.com/material-components/material-components-android/tree/master/lib/java/com/google/android/material/card/MaterialCardView.java)
+      *   [Class definition](https://developer.android.com/reference/com/google/android/material/card/MaterialCardView)
+      *   [Class source](https://github.com/material-components/material-components-android/tree/master/lib/java/com/google/android/material/card/MaterialCardView.java)
 
 In the layout:
 
