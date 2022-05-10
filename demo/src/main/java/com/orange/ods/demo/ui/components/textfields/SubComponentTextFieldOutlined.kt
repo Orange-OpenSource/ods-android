@@ -18,45 +18,35 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.painter.Painter
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.res.stringResource
 import com.orange.ods.compose.component.textfield.OdsOutlinedTextField
 import com.orange.ods.demo.R
-import com.orange.ods.demo.ui.utilities.composable.Subtitle
+import com.orange.ods.demo.ui.components.utilities.clickOnElement
 
 @Composable
-fun TextFieldOutlinedContent() {
-    Subtitle(textRes = R.string.component_text_field_outlined)
-
-    val trailingIcon = painterResource(id = R.drawable.ic_eye)
-    OutlinedTextField(trailingIcon = trailingIcon)
-    OutlinedTextField(enabled = false, trailingIcon = trailingIcon)
-    OutlinedTextField(isError = true, trailingIcon = trailingIcon)
-
-    Subtitle(textRes = R.string.component_text_field_outlined_suffix_text)
-
-    val trailingText = "units"
-    OutlinedTextField(trailingText = trailingText)
-    OutlinedTextField(enabled = false, trailingText = trailingText)
-    OutlinedTextField(isError = true, trailingText = trailingText)
-}
-
-@Composable
-private fun OutlinedTextField(enabled: Boolean = true, isError: Boolean = false, trailingIcon: Painter? = null, trailingText: String? = null) {
+fun TextFieldOutlinedContent(customizationState: TextFieldCustomizationState) {
     var text by rememberSaveable { mutableStateOf("") }
+    val context = LocalContext.current
+    val trailingIconName = stringResource(id = R.string.component_element_trailing)
+
     OdsOutlinedTextField(
         modifier = Modifier
             .fillMaxWidth()
             .padding(top = dimensionResource(id = R.dimen.ods_spacing_xs)),
-        leadingIcon = painterResource(id = R.drawable.ic_heart),
-        enabled = enabled,
-        isError = isError,
+        leadingIcon = if (customizationState.leadingIconChecked.value) painterResource(id = R.drawable.ic_heart) else null,
+        enabled = customizationState.enabled,
+        isError = customizationState.isError,
         value = text,
         onValueChange = { text = it },
         label = "Label",
         placeholder = "Placeholder",
-        trailingIcon = trailingIcon,
-        trailingText = trailingText
+        trailingIcon = if (customizationState.hasTrailingIcon) painterResource(id = R.drawable.ic_eye) else null,
+        onTrailingIconClick = if (customizationState.hasTrailingIcon) {
+            { clickOnElement(context = context, trailingIconName) }
+        } else null,
+        trailingText = if (customizationState.hasTrailingText) "units" else null
     )
 }

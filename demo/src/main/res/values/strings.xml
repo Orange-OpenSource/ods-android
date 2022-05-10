@@ -38,8 +38,11 @@
     <string name="component_force_on_dark">Forced on dark</string>
     <string name="component_force_on_light">Forced on light</string>
     <string name="component_customize">Swipe up to customize</string>
+    <string name="component_state">State</string>
     <string name="component_state_enabled">Enabled</string>
     <string name="component_state_disabled">Disabled</string>
+    <string name="component_state_error">Error</string>
+    <string name="component_state_default">Default</string>
     <string name="component_on_click_toast">Click on %s</string>
     <string name="component_element_title">Title</string>
     <string name="component_element_subtitle">Subtitle</string>
@@ -52,6 +55,10 @@
     <string name="component_element_button2">Button 2</string>
     <string name="component_element_text">Text</string>
     <string name="component_element_text_value">Lorem ipsum dolor sit amet, at blandit nec tristique porttitor.</string>
+    <string name="component_element_icon">Icon</string>
+    <string name="component_element_none">None</string>
+    <string name="component_element_trailing">Trailing element</string>
+    <string name="component_element_leading_icon">Leading icon</string>
 
     <!-- Components Bottom navigation -->
     <string name="component_bottom_navigation">Bottom navigation</string>
@@ -127,11 +134,7 @@
     <string name="component_text_fields">Text fields</string>
     <string name="component_text_fields_description">Text fields enable the user to type text into the app. They also provide ways to select text and the opportunity to save time by suggesting options for auto-completion.</string>
     <string name="component_text_fields_filled">Filled text fields</string>
-    <string name="component_text_field_filled">Filled</string>
-    <string name="component_text_field_filled_suffix_text">Filled suffix text</string>
     <string name="component_text_fields_outlined">Outlined text fields</string>
-    <string name="component_text_field_outlined">Outlined</string>
-    <string name="component_text_field_outlined_suffix_text">Outlined suffix text</string>
 
     <!-- About -->
     <string name="about_app_name">Orange Design</string>
