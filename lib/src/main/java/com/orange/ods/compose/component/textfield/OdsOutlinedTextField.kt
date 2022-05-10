@@ -170,7 +170,7 @@ private fun odsTextFieldColors() = TextFieldDefaults.textFieldColors(
 @Composable
 private fun OdsTextFieldIcon(painter: Painter, contentDescription: String?, onClick: (() -> Unit)?, color: Color) {
     val interactionSource = if (onClick != null) remember { MutableInteractionSource() } else remember { DisabledInteractionSource() }
-    IconButton(onClick = onClick.run { {} }, interactionSource = interactionSource) {
+    IconButton(onClick = onClick ?: {}, interactionSource = interactionSource) {
         Icon(
             painter = painter,
             contentDescription = contentDescription,

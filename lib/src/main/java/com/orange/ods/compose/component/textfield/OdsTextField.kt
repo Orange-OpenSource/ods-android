@@ -28,6 +28,7 @@ import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.painter.Painter
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.text.input.KeyboardType
@@ -108,6 +109,7 @@ fun OdsTextField(
     singleLine: Boolean = false,
     maxLines: Int = Int.MAX_VALUE,
 ) {
+    val context = LocalContext.current
     TextField(
         value = value,
         onValueChange = onValueChange,
@@ -122,7 +124,7 @@ fun OdsTextField(
                 OdsTextFieldIcon(
                     painter = leadingIcon,
                     contentDescription = leadingIconContentDescription,
-                    onClick = onLeadingIconClick,
+                    onClick = if (enabled) onLeadingIconClick else null,
                     color = MaterialTheme.colors.textFieldIconColor(enabled)
                 )
             }
@@ -133,7 +135,7 @@ fun OdsTextField(
                     OdsTextFieldIcon(
                         painter = trailingIcon,
                         contentDescription = trailingIconContentDescription,
-                        onClick = onTrailingIconClick,
+                        onClick = if (enabled) onTrailingIconClick else null,
                         color = MaterialTheme.colors.textFieldIconColor(enabled)
                     )
                 }
@@ -168,7 +170,7 @@ private fun odsTextFieldColors() = TextFieldDefaults.textFieldColors(
 @Composable
 private fun OdsTextFieldIcon(painter: Painter, contentDescription: String?, onClick: (() -> Unit)?, color: Color) {
     val interactionSource = if (onClick != null) remember { MutableInteractionSource() } else remember { DisabledInteractionSource() }
-    IconButton(onClick = onClick.run { {} }, interactionSource = interactionSource) {
+    IconButton(onClick = onClick ?: {}, interactionSource = interactionSource) {
         Icon(
             painter = painter,
             contentDescription = contentDescription,
