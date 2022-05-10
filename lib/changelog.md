@@ -9,6 +9,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
+- Add text fields components: `OdsTextField` and `OdsOutlinedTextField`
 - Add list items components: `OdsListItem` and `OdsListItemWideThumbnail`
 - Add controls components: `OdsCheckbox`, `OdsRadioButton`, `OdsSwitch`, `OdsSlider`
 - Add buttons components: `OdsButton`, `OdsOutlinedButton`, `OdsTextButton` and `OdsToggleButton`
