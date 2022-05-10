@@ -163,8 +163,9 @@ fun OdsOutlinedTextField(
 }
 
 @Composable
-private fun odsTextFieldColors() = TextFieldDefaults.textFieldColors(
-    focusedLabelColor = MaterialTheme.colors.onSurface
+private fun odsTextFieldColors() = TextFieldDefaults.outlinedTextFieldColors(
+    focusedLabelColor = MaterialTheme.colors.onSurface,
+    errorLabelColor = MaterialTheme.colors.onSurface
 )
 
 @Composable
