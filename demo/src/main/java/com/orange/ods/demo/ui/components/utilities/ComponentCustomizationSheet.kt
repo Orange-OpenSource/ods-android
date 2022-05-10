@@ -30,7 +30,7 @@ import com.orange.ods.demo.R
 import kotlinx.coroutines.launch
 
 @Composable
-fun ComponentCustomizeSheetHeader(onClick: () -> Unit = {}) {
+fun ComponentCustomizationSheetHeader(onClick: () -> Unit = {}) {
     Box(
         modifier = Modifier
             .fillMaxWidth()
@@ -46,7 +46,7 @@ fun ComponentCustomizeSheetHeader(onClick: () -> Unit = {}) {
 
 @Composable
 @ExperimentalMaterialApi
-fun ComponentCustomizeSheetScaffold(sheetContent: @Composable () -> Unit, screenContent: @Composable BoxScope.() -> Unit) {
+fun ComponentCustomizationSheetScaffold(sheetContent: @Composable () -> Unit, screenContent: @Composable BoxScope.() -> Unit) {
     val bottomSheetScaffoldState = rememberBottomSheetScaffoldState()
     val coroutineScope = rememberCoroutineScope()
 
@@ -54,7 +54,7 @@ fun ComponentCustomizeSheetScaffold(sheetContent: @Composable () -> Unit, screen
         scaffoldState = bottomSheetScaffoldState,
         sheetPeekHeight = 56.dp,
         sheetContent = {
-            ComponentCustomizeSheetHeader(onClick = {
+            ComponentCustomizationSheetHeader(onClick = {
                 coroutineScope.launch {
                     if (bottomSheetScaffoldState.bottomSheetState.isExpanded) {
                         bottomSheetScaffoldState.bottomSheetState.collapse()

@@ -26,7 +26,7 @@ import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.stringResource
 import com.orange.ods.compose.component.card.OdsCardImageFirst
 import com.orange.ods.demo.R
-import com.orange.ods.demo.ui.components.utilities.ComponentCustomizeSheetScaffold
+import com.orange.ods.demo.ui.components.utilities.ComponentCustomizationSheetScaffold
 import com.orange.ods.demo.ui.components.utilities.clickOnElement
 import com.orange.ods.demo.ui.utilities.composable.LabelledCheckbox
 
@@ -39,7 +39,7 @@ fun CardImageFirstContent() {
     val button1IsChecked = rememberSaveable { mutableStateOf(true) }
     val button2IsChecked = rememberSaveable { mutableStateOf(true) }
 
-    ComponentCustomizeSheetScaffold(sheetContent = {
+    ComponentCustomizationSheetScaffold(sheetContent = {
         LabelledCheckbox(label = stringResource(id = R.string.component_element_subtitle), checked = subtitleIsChecked)
         LabelledCheckbox(label = stringResource(id = R.string.component_element_text), checked = textIsChecked)
         LabelledCheckbox(label = stringResource(id = R.string.component_element_button1), checked = button1IsChecked)
