@@ -144,7 +144,7 @@ fun OdsTextField(
                         modifier = Modifier.padding(end = dimensionResource(id = R.dimen.ods_spacing_xs)),
                         text = trailingText,
                         style = MaterialTheme.typography.subtitle1,
-                        color = MaterialTheme.colors.trailingTextColor(value.isEmpty())
+                        color = MaterialTheme.colors.trailingTextColor(value.isEmpty(), enabled)
                     )
                 }
             }
@@ -178,8 +178,8 @@ private fun OdsTextFieldIcon(painter: Painter, contentDescription: String?, onCl
 }
 
 @Composable
-private fun Colors.trailingTextColor(isValueEmpty: Boolean = false) =
-    if (isValueEmpty) {
+private fun Colors.trailingTextColor(isValueEmpty: Boolean, isTextFieldEnabled: Boolean) =
+    if (isValueEmpty || !isTextFieldEnabled) {
         MaterialTheme.colors.onSurface.copy(alpha = ContentAlpha.disabled)
     } else {
         MaterialTheme.colors.onSurface
