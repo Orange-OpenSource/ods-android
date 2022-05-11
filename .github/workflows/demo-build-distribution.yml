@@ -1,20 +1,17 @@
 name: demo-build-distribution
 
-# only trigger on pull request closed events
 on:
-  pull_request:
-    types: [ closed ]
-
-  workflow_dispatch:
+  schedule:
+    - cron:  '31 7 * * MON-FRI'
 
 jobs:
   build:
-    # this job will only run if the PR has been merged
-    if: github.event.pull_request.merged == true
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
 
       - name: Set up our JDK environment
         uses: actions/setup-java@v2
@@ -30,24 +27,13 @@ jobs:
           key-alias: ${{ secrets.SIGNING_KEY_ALIAS }}
           key-password: ${{ secrets.SIGNING_KEY_PASSWORD }}
 
-      - name: Build demo app
+      - name: Upload artifact to Firebase App Distribution
         run: |
           # Git SHA is equal to github.event.pull_request.head.sha for pull requests
           # This value is unset if workflow has not been triggered by a pull request, use GITHUB_SHA instead
           BRANCH_SHA=${{ github.event.pull_request.head.sha }}
           COMMIT_SHA=${BRANCH_SHA:-$GITHUB_SHA}
-          ./gradlew demo:assemble -PversionNameSuffix="-${COMMIT_SHA::7}" -PversionCode=$GITHUB_RUN_NUMBER --stacktrace
-
-      - name: Extract branch name
-        shell: bash
-        run: echo "##[set-output name=branch;]${GITHUB_HEAD_REF}"
-        id: extract_branch_name
-
-      - name: Upload artifact to Firebase App Distribution
-        uses: wzieba/Firebase-Distribution-Github-Action@v1.3.2
-        with:
-          appId: ${{secrets.FIREBASE_APP_ID}}
-          token: ${{secrets.FIREBASE_TOKEN}}
-          groups: ods-android-internal-tests
-          releaseNotes: 'Last merged PR: ${{steps.extract_branch_name.outputs.branch}}'
-          file: demo/build/outputs/apk/debug/demo-release.apk
+          ./gradlew demo:appDistributionUpload -PversionNameSuffix="-${COMMIT_SHA::7}" -PversionCode=$GITHUB_RUN_NUMBER -PappDistributionVariants=release -PappDistributionGitTagPrefix=ci/daily-demo -PappDistributionGitTagSha=$COMMIT_SHA --stacktrace
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          FIREBASE_TOKEN: ${{secrets.FIREBASE_TOKEN}}
