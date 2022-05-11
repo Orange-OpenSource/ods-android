@@ -16,7 +16,7 @@ object Environment {
 
     /**
      * Returns the values for the given environment variables names.
-     * Throws an exception is at least one environment variable is missing.
+     * Throws an exception if at least one environment variable is missing.
      *
      * @param variables The list of environment variables.
      * @return The values associated with these environment variables.
