@@ -161,12 +161,7 @@ fun OdsTextField(
 }
 
 @Composable
-private fun odsTextFieldColors() = TextFieldDefaults.textFieldColors(
-    focusedLabelColor = MaterialTheme.colors.onSurface
-)
-
-@Composable
-private fun OdsTextFieldIcon(painter: Painter, contentDescription: String?, onClick: (() -> Unit)?, color: Color) {
+fun OdsTextFieldIcon(painter: Painter, contentDescription: String?, onClick: (() -> Unit)?, color: Color) {
     val interactionSource = if (onClick != null) remember { MutableInteractionSource() } else remember { DisabledInteractionSource() }
     IconButton(onClick = onClick ?: {}, interactionSource = interactionSource) {
         Icon(
@@ -178,7 +173,7 @@ private fun OdsTextFieldIcon(painter: Painter, contentDescription: String?, onCl
 }
 
 @Composable
-private fun Colors.trailingTextColor(isValueEmpty: Boolean, isTextFieldEnabled: Boolean) =
+fun Colors.trailingTextColor(isValueEmpty: Boolean, isTextFieldEnabled: Boolean) =
     if (isValueEmpty || !isTextFieldEnabled) {
         MaterialTheme.colors.onSurface.copy(alpha = ContentAlpha.disabled)
     } else {
@@ -186,9 +181,14 @@ private fun Colors.trailingTextColor(isValueEmpty: Boolean, isTextFieldEnabled: 
     }
 
 @Composable
-private fun Colors.textFieldIconColor(enabled: Boolean = true) =
+fun Colors.textFieldIconColor(enabled: Boolean = true) =
     if (enabled) {
         MaterialTheme.colors.onSurface
     } else {
         MaterialTheme.colors.onSurface.copy(alpha = ContentAlpha.disabled)
     }
+
+@Composable
+private fun odsTextFieldColors() = TextFieldDefaults.textFieldColors(
+    focusedLabelColor = MaterialTheme.colors.onSurface
+)

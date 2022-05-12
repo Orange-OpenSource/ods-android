@@ -10,14 +10,9 @@
 
 package com.orange.ods.compose.component.textfield
 
-import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.text.KeyboardActions
 import androidx.compose.foundation.text.KeyboardOptions
-import androidx.compose.material.Colors
-import androidx.compose.material.ContentAlpha
-import androidx.compose.material.Icon
-import androidx.compose.material.IconButton
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.OutlinedTextField
 import androidx.compose.material.Text
@@ -25,16 +20,13 @@ import androidx.compose.material.TextField
 import androidx.compose.material.TextFieldDefaults
 import androidx.compose.material.Typography
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.painter.Painter
 import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.input.VisualTransformation
 import com.orange.ods.R
-import com.orange.ods.compose.component.utilities.DisabledInteractionSource
 
 /**
  * <a href="https://system.design.orange.com/0c1af118d/p/483f94-text-fields/b/720e3b" target="_blank">ODS Text fields</a>.
@@ -124,7 +116,7 @@ fun OdsOutlinedTextField(
                 OdsTextFieldIcon(
                     painter = leadingIcon,
                     contentDescription = leadingIconContentDescription,
-                    onClick = onLeadingIconClick,
+                    onClick = if (enabled) onLeadingIconClick else null,
                     color = MaterialTheme.colors.textFieldIconColor(enabled)
                 )
             }
@@ -135,7 +127,7 @@ fun OdsOutlinedTextField(
                     OdsTextFieldIcon(
                         painter = trailingIcon,
                         contentDescription = trailingIconContentDescription,
-                        onClick = onTrailingIconClick,
+                        onClick = if (enabled) onTrailingIconClick else null,
                         color = MaterialTheme.colors.textFieldIconColor(enabled)
                     )
                 }
@@ -146,7 +138,7 @@ fun OdsOutlinedTextField(
                         modifier = Modifier.padding(end = dimensionResource(id = R.dimen.ods_spacing_xs)),
                         text = trailingText,
                         style = MaterialTheme.typography.subtitle1,
-                        color = MaterialTheme.colors.trailingTextColor(value.isEmpty())
+                        color = MaterialTheme.colors.trailingTextColor(value.isEmpty(), enabled)
                     )
                 }
             }
@@ -158,40 +150,12 @@ fun OdsOutlinedTextField(
         keyboardActions = keyboardActions,
         singleLine = singleLine,
         maxLines = maxLines,
-        colors = odsTextFieldColors()
+        colors = odsOutlinedTextFieldColors()
     )
 }
 
 @Composable
-private fun odsTextFieldColors() = TextFieldDefaults.outlinedTextFieldColors(
+private fun odsOutlinedTextFieldColors() = TextFieldDefaults.outlinedTextFieldColors(
     focusedLabelColor = MaterialTheme.colors.onSurface,
     errorLabelColor = MaterialTheme.colors.onSurface
 )
-
-@Composable
-private fun OdsTextFieldIcon(painter: Painter, contentDescription: String?, onClick: (() -> Unit)?, color: Color) {
-    val interactionSource = if (onClick != null) remember { MutableInteractionSource() } else remember { DisabledInteractionSource() }
-    IconButton(onClick = onClick ?: {}, interactionSource = interactionSource) {
-        Icon(
-            painter = painter,
-            contentDescription = contentDescription,
-            tint = color
-        )
-    }
-}
-
-@Composable
-private fun Colors.trailingTextColor(isValueEmpty: Boolean = false) =
-    if (isValueEmpty) {
-        MaterialTheme.colors.onSurface.copy(alpha = ContentAlpha.disabled)
-    } else {
-        MaterialTheme.colors.onSurface
-    }
-
-@Composable
-private fun Colors.textFieldIconColor(enabled: Boolean = true) =
-    if (enabled) {
-        MaterialTheme.colors.onSurface
-    } else {
-        MaterialTheme.colors.onSurface.copy(alpha = ContentAlpha.disabled)
-    }
