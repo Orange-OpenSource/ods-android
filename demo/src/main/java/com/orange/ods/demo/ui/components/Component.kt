@@ -77,18 +77,7 @@ sealed class Component(
     }
 }
 
-val components = listOf(
-    Component.BottomNavigation,
-    Component.Buttons,
-    Component.Cards,
-    Component.Checkboxes,
-    Component.Lists,
-    Component.Progress,
-    Component.RadioButtons,
-    Component.Sliders,
-    Component.Switches,
-    Component.TextFields
-)
+val components = Component::class.sealedSubclasses.mapNotNull { it.objectInstance }
 
 sealed class SubComponent(
     val id: Long,

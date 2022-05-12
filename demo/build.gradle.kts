@@ -75,20 +75,20 @@ android {
         sourceCompatibility = JavaVersion.VERSION_1_8
         targetCompatibility = JavaVersion.VERSION_1_8
     }
-    
+
     kotlinOptions {
         jvmTarget = "1.8"
         allWarningsAsErrors = true
     }
-    
+
     buildFeatures {
         compose = true
     }
-    
+
     composeOptions {
         kotlinCompilerExtensionVersion = Versions.compose
     }
-    
+
     packagingOptions {
         with(resources.excludes) {
             add("/META-INF/{AL2.0,LGPL2.1}")
@@ -100,6 +100,7 @@ dependencies {
     implementation(project(":lib"))
 
     implementation(Dependencies.coreKtx)
+    implementation(Dependencies.kotlinReflect)
     implementation(Dependencies.appCompat)
     implementation(Dependencies.material)
     implementation(Dependencies.composeUi)
