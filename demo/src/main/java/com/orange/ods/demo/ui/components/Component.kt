@@ -61,6 +61,8 @@ sealed class Component(
         listOf(SubComponent.TextFieldsFilled, SubComponent.TextFieldsOutlined)
     )
 
+    object Tabs : Component(10L, R.string.component_tabs, R.drawable.il_tabs, R.string.component_tabs_description)
+
     @ExperimentalMaterialApi
     @Composable
     fun Detail(onSubComponentClick: (Long) -> Unit) {
@@ -74,6 +76,7 @@ sealed class Component(
             Sliders -> ComponentDetail(component = this) { ComponentSlidersContent() }
             Switches -> ComponentDetail(component = this) { ComponentSwitchesContent() }
             Cards, Lists, TextFields -> ComponentDetailWithSubComponents(component = this, onSubComponentClick = onSubComponentClick)
+            Tabs -> ComponentDetail(component = this) { }
         }
     }
 }
