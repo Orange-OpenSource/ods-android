@@ -1,0 +1,18 @@
+#!/bin/bash
+# happen the number in the commit message before the first '-' in branch name if any
+
+BRANCH="$(git rev-parse --abbrev-ref HEAD)"
+# If branch name is HEAD (during rebase for example), do nothing
+if [ $BRANCH != 'HEAD' ]
+then
+    ISSUE_ID="${BRANCH%%-*}"
+    # If branch name = issue_id or issue_id is not an integer, it means that branch name has no wished format -> do nothing
+    if [[ $BRANCH != $ISSUE_ID && $ISSUE_ID =~ ^[0-9]+$ ]]
+    then
+        case "$2," in
+          ,|message,|template,)
+            sed -i.bak "1i\\
+[#$ISSUE_ID] " "$1" ;;
+        esac
+    fi
+fi
