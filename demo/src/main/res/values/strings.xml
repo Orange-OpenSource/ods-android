@@ -102,8 +102,10 @@
     <string name="component_dialogs_open_dialog">Open dialog</string>
     <string name="component_dialog_title">Dialog sample</string>
     <string name="component_dialog_text">A dialog box asks the user for further information that the app needs in order to continue. The user has to tap one of the action buttons at the bottom of the box to continue.</string>
-    <string name="component_dialog_action1">Decline</string>
-    <string name="component_dialog_action2">Accept</string>
+    <string name="component_dialog_element_dismiss_button">Dismiss button</string>
+    <string name="component_dialog_action_dismiss">Decline</string>
+    <string name="component_dialog_action_confirm">Accept</string>
+    <string name="component_dialog_action_ok">OK</string>
 
     <!-- Component Radio Buttons -->
     <string name="component_radio_buttons">Radio Buttons</string>
