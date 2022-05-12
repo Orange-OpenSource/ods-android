@@ -47,17 +47,17 @@ fun SubComponentTextField(subComponent: SubComponent) {
         ) {
             LabelledRadioButton(
                 selectedRadio = customizationState.selectedState,
-                currentRadio = TextFieldCustomizationState.Companion.DisplayType.DEFAULT,
+                currentRadio = TextFieldCustomizationState.DisplayType.DEFAULT,
                 label = stringResource(id = R.string.component_state_default)
             )
             LabelledRadioButton(
                 selectedRadio = customizationState.selectedState,
-                currentRadio = TextFieldCustomizationState.Companion.DisplayType.ERROR,
+                currentRadio = TextFieldCustomizationState.DisplayType.ERROR,
                 label = stringResource(id = R.string.component_state_error)
             )
             LabelledRadioButton(
                 selectedRadio = customizationState.selectedState,
-                currentRadio = TextFieldCustomizationState.Companion.DisplayType.DISABLED,
+                currentRadio = TextFieldCustomizationState.DisplayType.DISABLED,
                 label = stringResource(id = R.string.component_state_disabled)
             )
         }
@@ -71,17 +71,17 @@ fun SubComponentTextField(subComponent: SubComponent) {
         ) {
             LabelledRadioButton(
                 selectedRadio = customizationState.selectedTrailingElement,
-                currentRadio = TextFieldCustomizationState.Companion.TrailingElement.NONE,
+                currentRadio = TextFieldCustomizationState.TrailingElement.NONE,
                 label = stringResource(id = R.string.component_element_none)
             )
             LabelledRadioButton(
                 selectedRadio = customizationState.selectedTrailingElement,
-                currentRadio = TextFieldCustomizationState.Companion.TrailingElement.ICON,
+                currentRadio = TextFieldCustomizationState.TrailingElement.ICON,
                 label = stringResource(id = R.string.component_element_icon)
             )
             LabelledRadioButton(
                 selectedRadio = customizationState.selectedTrailingElement,
-                currentRadio = TextFieldCustomizationState.Companion.TrailingElement.TEXT,
+                currentRadio = TextFieldCustomizationState.TrailingElement.TEXT,
                 label = stringResource(id = R.string.component_element_text)
             )
         }

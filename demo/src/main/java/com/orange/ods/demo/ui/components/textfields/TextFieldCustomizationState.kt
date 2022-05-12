@@ -15,8 +15,8 @@ import androidx.compose.runtime.MutableState
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.saveable.rememberSaveable
-import com.orange.ods.demo.ui.components.textfields.TextFieldCustomizationState.Companion.DisplayType
-import com.orange.ods.demo.ui.components.textfields.TextFieldCustomizationState.Companion.TrailingElement
+import com.orange.ods.demo.ui.components.textfields.TextFieldCustomizationState.DisplayType
+import com.orange.ods.demo.ui.components.textfields.TextFieldCustomizationState.TrailingElement
 
 @Composable
 fun rememberTextFieldCustomizationState(
@@ -33,17 +33,15 @@ class TextFieldCustomizationState(
     val selectedState: MutableState<DisplayType>,
     val selectedTrailingElement: MutableState<TrailingElement>
 ) {
-    companion object {
-        enum class DisplayType {
-            DEFAULT, ERROR, DISABLED
-        }
-
-        enum class TrailingElement {
-            NONE, ICON, TEXT
-        }
+    enum class DisplayType {
+        DEFAULT, ERROR, DISABLED
     }
 
-    val enabled
+    enum class TrailingElement {
+        NONE, ICON, TEXT
+    }
+
+    val isEnabled
         get() = selectedState.value != DisplayType.DISABLED
 
     val isError

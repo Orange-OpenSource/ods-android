@@ -39,7 +39,7 @@ fun TextFieldFilledContent(customizationState: TextFieldCustomizationState) {
             .fillMaxWidth()
             .padding(top = dimensionResource(id = R.dimen.ods_spacing_xs)),
         leadingIcon = if (customizationState.leadingIconChecked.value) painterResource(id = R.drawable.ic_heart) else null,
-        enabled = customizationState.enabled,
+        enabled = customizationState.isEnabled,
         isError = customizationState.isError,
         value = text,
         onValueChange = { text = it },
