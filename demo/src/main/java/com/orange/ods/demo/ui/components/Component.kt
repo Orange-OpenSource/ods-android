@@ -58,7 +58,7 @@ sealed class Component(
         R.string.component_text_fields,
         R.drawable.il_text_fields,
         R.string.component_text_fields_description,
-        listOf(SubComponent.TextFieldsFilled, SubComponent.TextFieldsOutline)
+        listOf(SubComponent.TextFieldsFilled, SubComponent.TextFieldsOutlined)
     )
 
     @ExperimentalMaterialApi
@@ -103,5 +103,5 @@ sealed class SubComponent(
     object ListsThreeLines : SubComponent(6L, R.string.component_lists_three_lines)
 
     object TextFieldsFilled : SubComponent(7L, R.string.component_text_fields_filled)
-    object TextFieldsOutline : SubComponent(8L, R.string.component_text_fields_outlined)
+    object TextFieldsOutlined : SubComponent(8L, R.string.component_text_fields_outlined)
 }

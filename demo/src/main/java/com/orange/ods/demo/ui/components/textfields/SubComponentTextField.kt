@@ -93,7 +93,7 @@ fun SubComponentTextField(subComponent: SubComponent) {
         ) {
             when (subComponent) {
                 SubComponent.TextFieldsFilled -> TextFieldFilledContent(customizationState)
-                SubComponent.TextFieldsOutline -> TextFieldOutlinedContent(customizationState)
+                SubComponent.TextFieldsOutlined -> TextFieldOutlinedContent(customizationState)
                 else -> {}
             }
         }
