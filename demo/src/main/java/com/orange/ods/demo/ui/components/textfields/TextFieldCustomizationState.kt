@@ -15,21 +15,23 @@ import androidx.compose.runtime.MutableState
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.saveable.rememberSaveable
+import com.orange.ods.demo.ui.components.textfields.TextFieldCustomizationState.Companion.DisplayType
+import com.orange.ods.demo.ui.components.textfields.TextFieldCustomizationState.Companion.TrailingElement
 
 @Composable
 fun rememberTextFieldCustomizationState(
     leadingIconChecked: MutableState<Boolean> = rememberSaveable { mutableStateOf(false) },
-    selectedState: MutableState<String> = rememberSaveable { mutableStateOf(TextFieldCustomizationState.Companion.DisplayType.DEFAULT.name) },
-    selectedTrailingElement: MutableState<String> = rememberSaveable { mutableStateOf(TextFieldCustomizationState.Companion.TrailingElement.NONE.name) }
+    selectedDisplayType: MutableState<DisplayType> = rememberSaveable { mutableStateOf(DisplayType.DEFAULT) },
+    selectedTrailingElement: MutableState<TrailingElement> = rememberSaveable { mutableStateOf(TrailingElement.NONE) }
 ) =
-    remember(leadingIconChecked, selectedState, selectedTrailingElement) {
-        TextFieldCustomizationState(leadingIconChecked, selectedState, selectedTrailingElement)
+    remember(leadingIconChecked, selectedDisplayType, selectedTrailingElement) {
+        TextFieldCustomizationState(leadingIconChecked, selectedDisplayType, selectedTrailingElement)
     }
 
 class TextFieldCustomizationState(
     val leadingIconChecked: MutableState<Boolean>,
-    val selectedState: MutableState<String>,
-    val selectedTrailingElement: MutableState<String>
+    val selectedState: MutableState<DisplayType>,
+    val selectedTrailingElement: MutableState<TrailingElement>
 ) {
     companion object {
         enum class DisplayType {
@@ -42,14 +44,14 @@ class TextFieldCustomizationState(
     }
 
     val enabled
-        get() = selectedState.value != DisplayType.DISABLED.name
+        get() = selectedState.value != DisplayType.DISABLED
 
     val isError
-        get() = selectedState.value == DisplayType.ERROR.name
+        get() = selectedState.value == DisplayType.ERROR
 
     val hasTrailingIcon
-        get() = selectedTrailingElement.value == TrailingElement.ICON.name
+        get() = selectedTrailingElement.value == TrailingElement.ICON
 
     val hasTrailingText
-        get() = selectedTrailingElement.value == TrailingElement.TEXT.name
+        get() = selectedTrailingElement.value == TrailingElement.TEXT
 }

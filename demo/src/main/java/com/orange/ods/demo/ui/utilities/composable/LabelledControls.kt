@@ -37,9 +37,9 @@ fun LabelledCheckbox(
 }
 
 @Composable
-fun LabelledRadioButton(
-    selectedRadio: MutableState<String>,
-    currentRadio: String,
+fun <T> LabelledRadioButton(
+    selectedRadio: MutableState<T>,
+    currentRadio: T,
     label: String,
     onClick: () -> Unit = {},
     enabled: Boolean = true
