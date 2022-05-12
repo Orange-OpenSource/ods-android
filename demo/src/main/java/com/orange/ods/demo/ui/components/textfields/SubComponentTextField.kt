@@ -24,7 +24,7 @@ import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.stringResource
 import com.orange.ods.demo.R
 import com.orange.ods.demo.ui.components.SubComponent
-import com.orange.ods.demo.ui.components.utilities.ComponentCustomizationSheetScaffold
+import com.orange.ods.demo.ui.components.utilities.ComponentCustomizationBottomSheetScaffold
 import com.orange.ods.demo.ui.utilities.composable.LabelledCheckbox
 import com.orange.ods.demo.ui.utilities.composable.LabelledRadioButton
 import com.orange.ods.demo.ui.utilities.composable.Subtitle
@@ -34,7 +34,7 @@ import com.orange.ods.demo.ui.utilities.composable.Subtitle
 fun SubComponentTextField(subComponent: SubComponent) {
     val customizationState = rememberTextFieldCustomizationState()
 
-    ComponentCustomizationSheetScaffold(sheetContent = {
+    ComponentCustomizationBottomSheetScaffold(sheetContent = {
         LabelledCheckbox(label = stringResource(id = R.string.component_element_leading_icon), checked = customizationState.leadingIconChecked)
 
         Subtitle(textRes = R.string.component_state, withHorizontalPadding = true)
