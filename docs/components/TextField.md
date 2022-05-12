@@ -13,6 +13,8 @@ Text fields let users enter and edit text.
 * [Using text fields](#using-text-fields)
     * [Material Design](#material-design)
     * [Accessibility](#accessibility)
+      * [Content description](#content-description)
+      * [Custom `EditText`](#custom-edittext)
 * [Adding a text field](#adding-a-text-field)
     * [Filled text field](#filled-text-field)
       * [Filled text field in XML](#filled-text-field-in-xml)
