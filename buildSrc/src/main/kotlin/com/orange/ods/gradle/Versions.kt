@@ -18,7 +18,7 @@ object Versions {
 
     const val accompanist = "0.23.1"
     const val activity = "1.4.0"
-    const val androidGradlePlugin = "7.1.3"
+    const val androidGradlePlugin = "7.2.0"
     const val appCompat = "1.4.1"
     const val compose = "1.1.1"
     const val core = "1.7.0"
