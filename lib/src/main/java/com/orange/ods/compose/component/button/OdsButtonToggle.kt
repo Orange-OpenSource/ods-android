@@ -14,8 +14,6 @@ import androidx.annotation.DrawableRes
 import androidx.compose.animation.animateColorAsState
 import androidx.compose.animation.core.animateFloatAsState
 import androidx.compose.foundation.background
-import androidx.compose.foundation.interaction.Interaction
-import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material.Colors
@@ -29,17 +27,10 @@ import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
+import com.orange.ods.compose.component.utilities.DisabledInteractionSource
 import com.orange.ods.compose.theme.OdsDisplayAppearance
 import com.orange.ods.compose.theme.odsDarkThemeColors
 import com.orange.ods.compose.theme.odsLightThemeColors
-import kotlinx.coroutines.flow.Flow
-import kotlinx.coroutines.flow.emptyFlow
-
-class DisabledInteractionSource : MutableInteractionSource {
-    override val interactions: Flow<Interaction> = emptyFlow()
-    override suspend fun emit(interaction: Interaction) {}
-    override fun tryEmit(interaction: Interaction) = true
-}
 
 /**
  * <a href="https://system.design.orange.com/0c1af118d/p/06a393-buttons/b/79b091" target="_blank">ODS Buttons</a>.

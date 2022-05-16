@@ -53,6 +53,13 @@ sealed class Component(
     object RadioButtons : Component(7L, R.string.component_radio_buttons, R.drawable.il_radio_buttons, R.string.component_radio_buttons_description)
     object Sliders : Component(8L, R.string.component_sliders, R.drawable.il_slider, R.string.component_sliders_description)
     object Switches : Component(9L, R.string.component_switches, R.drawable.il_switches, R.string.component_switches_description)
+    object TextFields : Component(
+        10L,
+        R.string.component_text_fields,
+        R.drawable.il_text_fields,
+        R.string.component_text_fields_description,
+        listOf(SubComponent.TextFieldsFilled, SubComponent.TextFieldsOutlined)
+    )
 
     @ExperimentalMaterialApi
     @Composable
@@ -60,28 +67,17 @@ sealed class Component(
         return when (this) {
             BottomNavigation -> ComponentBottomNavigation()
             Buttons -> ComponentDetail(component = this) { ComponentButtonsContent() }
-            Cards -> ComponentDetailWithSubComponents(component = this, onSubComponentClick = onSubComponentClick)
             Checkboxes -> ComponentDetail(component = this) { ComponentCheckboxesContent() }
-            Lists -> ComponentDetailWithSubComponents(component = this, onSubComponentClick = onSubComponentClick)
             Progress -> ComponentDetail(component = this) { ComponentProgressContent() }
             RadioButtons -> ComponentDetail(component = this) { ComponentRadioButtonsContent() }
             Sliders -> ComponentDetail(component = this) { ComponentSlidersContent() }
             Switches -> ComponentDetail(component = this) { ComponentSwitchesContent() }
+            Cards, Lists, TextFields -> ComponentDetailWithSubComponents(component = this, onSubComponentClick = onSubComponentClick)
         }
     }
 }
 
-val components = listOf(
-    Component.BottomNavigation,
-    Component.Buttons,
-    Component.Cards,
-    Component.Checkboxes,
-    Component.Lists,
-    Component.Progress,
-    Component.RadioButtons,
-    Component.Sliders,
-    Component.Switches
-)
+val components = Component::class.sealedSubclasses.mapNotNull { it.objectInstance }
 
 sealed class SubComponent(
     val id: Long,
@@ -94,4 +90,7 @@ sealed class SubComponent(
     object ListsOneLine : SubComponent(4L, R.string.component_lists_one_line)
     object ListsTwoLines : SubComponent(5L, R.string.component_lists_two_lines)
     object ListsThreeLines : SubComponent(6L, R.string.component_lists_three_lines)
+
+    object TextFieldsFilled : SubComponent(7L, R.string.component_text_fields_filled)
+    object TextFieldsOutlined : SubComponent(8L, R.string.component_text_fields_outlined)
 }

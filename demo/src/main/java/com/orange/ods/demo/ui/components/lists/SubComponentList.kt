@@ -31,7 +31,7 @@ fun SubComponentList(subComponent: SubComponent) {
 
 @ExperimentalMaterialApi
 @Composable
-fun SubComponentListContent(subComponent: SubComponent) {
+private fun SubComponentListContent(subComponent: SubComponent) {
     when (subComponent) {
         SubComponent.ListsOneLine -> ListOneLineContent()
         SubComponent.ListsTwoLines -> ListTwoLinesContent()

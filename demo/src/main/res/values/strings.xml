@@ -38,8 +38,11 @@
     <string name="component_force_on_dark">Forced on dark</string>
     <string name="component_force_on_light">Forced on light</string>
     <string name="component_customize">Swipe up to customize</string>
+    <string name="component_state">State</string>
     <string name="component_state_enabled">Enabled</string>
     <string name="component_state_disabled">Disabled</string>
+    <string name="component_state_error">Error</string>
+    <string name="component_state_default">Default</string>
     <string name="component_on_click_toast">Click on %s</string>
     <string name="component_element_title">Title</string>
     <string name="component_element_subtitle">Subtitle</string>
@@ -52,6 +55,10 @@
     <string name="component_element_button2">Button 2</string>
     <string name="component_element_text">Text</string>
     <string name="component_element_text_value">Lorem ipsum dolor sit amet, at blandit nec tristique porttitor.</string>
+    <string name="component_element_icon">Icon</string>
+    <string name="component_element_none">None</string>
+    <string name="component_element_trailing">Trailing element</string>
+    <string name="component_element_leading_icon">Leading icon</string>
 
     <!-- Components Bottom navigation -->
     <string name="component_bottom_navigation">Bottom navigation</string>
@@ -106,7 +113,7 @@
     <string name="component_slider_discrete_lockups">Discrete lockups</string>
     <string name="component_slider_continuous_lockups">Continuous lockups</string>
 
-    <!-- Components Progress & activities -->
+    <!-- Component Progress & activities -->
     <string name="component_progress">Progress &amp; activities</string>
     <string name="component_progress_description">If a process is taking place in the application, it is important to reassure users that something is happening, and if possible, how long it will take.</string>
     <string name="component_progress_linear">Linear</string>
@@ -116,12 +123,18 @@
     <string name="component_progress_circular_determinate">Circular determinate</string>
     <string name="component_progress_circular_indeterminate">Circular indeterminate</string>
 
-    <!-- Components Lists -->
+    <!-- Component Lists -->
     <string name="component_lists">Lists</string>
     <string name="component_lists_description">A list is a continuous vertical group of data entries like text, icons or images.</string>
     <string name="component_lists_one_line">One-line list</string>
     <string name="component_lists_two_lines">Two-line list</string>
     <string name="component_lists_three_lines">Three-line list</string>
+
+    <!-- Component Text fields -->
+    <string name="component_text_fields">Text fields</string>
+    <string name="component_text_fields_description">Text fields enable the user to type text into the app. They also provide ways to select text and the opportunity to save time by suggesting options for auto-completion.</string>
+    <string name="component_text_fields_filled">Filled text fields</string>
+    <string name="component_text_fields_outlined">Outlined text fields</string>
 
     <!-- About -->
     <string name="about_app_name">Orange Design</string>
