@@ -124,28 +124,28 @@ filledTextField.editText?.doOnTextChanged { inputText, _, _, _ ->
 To add a filled text field in your composable screen you can use:
 
 ```kotlin
-    var text by rememberSaveable { mutableStateOf("") }
-    OdsTextField(
-        leadingIcon = painterResource(id = R.drawable.ic_heart), // Optional
-        leadingIconContentDescription = "Like", // Optional
-        onLeadingIconClick = { doSomething() }, // Optional
-        enabled = true, // true if not set
-        readOnly = false, // false if not set
-        isError = false, // false if not set
-        value = text,
-        onValueChange = { text = it },
-        label = "Label", // Optional
-        placeholder = "Placeholder", // Optional
-        trailingIcon = painterResource(id = R.drawable.ic_eye), // Optional
-        trailingIconContentDescription = "Show password", // Optional
-        onTrailingIconClick = { doSomething() }, // Optional
-        trailingText = "units", // Optional
-        visualTransformation = VisualTransformation.None, // `VisualTransformation.None` if not set
-        keyboardOptions = KeyboardOptions.Default, // `KeyboardOptions.Default` if not set
-        keyboardActions = KeyboardActions(), // `KeyboardActions()` if not set
-        singleLine = false, // false if not set
-        maxLines = Int.MAX_VALUE, // `Int.MAX_VALUE` if not set
-    )
+var text by rememberSaveable { mutableStateOf("") }
+OdsTextField(
+    leadingIcon = painterResource(id = R.drawable.ic_heart), // Optional
+    leadingIconContentDescription = "Like", // Optional
+    onLeadingIconClick = { doSomething() }, // Optional
+    enabled = true, // true if not set
+    readOnly = false, // false if not set
+    isError = false, // false if not set
+    value = text,
+    onValueChange = { text = it },
+    label = "Label", // Optional
+    placeholder = "Placeholder", // Optional
+    trailingIcon = painterResource(id = R.drawable.ic_eye), // Optional
+    trailingIconContentDescription = "Show password", // Optional
+    onTrailingIconClick = { doSomething() }, // Optional
+    trailingText = "units", // Optional
+    visualTransformation = VisualTransformation.None, // `VisualTransformation.None` if not set
+    keyboardOptions = KeyboardOptions.Default, // `KeyboardOptions.Default` if not set
+    keyboardActions = KeyboardActions(), // `KeyboardActions()` if not set
+    singleLine = false, // false if not set
+    maxLines = Int.MAX_VALUE, // `Int.MAX_VALUE` if not set
+)
 ```
 
 #### Outlined text field
@@ -204,26 +204,26 @@ outlinedTextField.editText?.doOnTextChanged { inputText, _, _, _ ->
 To add an outlined text field in your composable screen you can use:
 
 ```kotlin
-    var text by rememberSaveable { mutableStateOf("") }
-    OdsOutlinedTextField(
-        leadingIcon = painterResource(id = R.drawable.ic_heart), // Optional
-        leadingIconContentDescription = "Like", // Optional
-        onLeadingIconClick = { doSomething() }, // Optional
-        enabled = true, // true if not set
-        readOnly = false, // false if not set
-        isError = false, // false if not set
-        value = text,
-        onValueChange = { text = it },
-        label = "Label", // Optional
-        placeholder = "Placeholder", // Optional
-        trailingIcon = painterResource(id = R.drawable.ic_eye), // Optional
-        trailingIconContentDescription = "Show password", // Optional
-        onTrailingIconClick = { doSomething() }, // Optional
-        trailingText = "units", // Optional
-        visualTransformation = VisualTransformation.None, // `VisualTransformation.None` if not set
-        keyboardOptions = KeyboardOptions.Default, // `KeyboardOptions.Default` if not set
-        keyboardActions = KeyboardActions(), // `KeyboardActions()` if not set
-        singleLine = false, // false if not set
-        maxLines = Int.MAX_VALUE, // `Int.MAX_VALUE` if not set
-    )
+var text by rememberSaveable { mutableStateOf("") }
+OdsOutlinedTextField(
+    leadingIcon = painterResource(id = R.drawable.ic_heart), // Optional
+    leadingIconContentDescription = "Like", // Optional
+    onLeadingIconClick = { doSomething() }, // Optional
+    enabled = true, // true if not set
+    readOnly = false, // false if not set
+    isError = false, // false if not set
+    value = text,
+    onValueChange = { text = it },
+    label = "Label", // Optional
+    placeholder = "Placeholder", // Optional
+    trailingIcon = painterResource(id = R.drawable.ic_eye), // Optional
+    trailingIconContentDescription = "Show password", // Optional
+    onTrailingIconClick = { doSomething() }, // Optional
+    trailingText = "units", // Optional
+    visualTransformation = VisualTransformation.None, // `VisualTransformation.None` if not set
+    keyboardOptions = KeyboardOptions.Default, // `KeyboardOptions.Default` if not set
+    keyboardActions = KeyboardActions(), // `KeyboardActions()` if not set
+    singleLine = false, // false if not set
+    maxLines = Int.MAX_VALUE, // `Int.MAX_VALUE` if not set
+)
 ```
