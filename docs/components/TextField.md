@@ -80,8 +80,6 @@ surrounded by other content and components.
 
 _**Note:** The filled text field is the default style if the style is not set._
 
-**Filled text field examples**
-
 API and source code:
 
 * `TextInputLayout`
@@ -158,8 +156,6 @@ layout.
   ![TextField outlined dark](images/textfield_outlined_dark.png)
 
 ##### Outlined text field in XML
-
-**Outlined text field examples**
 
 API and source code:
 
