@@ -53,7 +53,7 @@ fun ComponentSwitchesContent() {
             horizontalArrangement = Arrangement.SpaceEvenly
         ) {
             LabelledSwitch(
-                label = stringResource(id = R.string.component_state_enabled),
+                label = stringResource(id = R.string.component_state_disabled),
                 selected = remember { mutableStateOf(true) },
                 enabled = false
             )
