@@ -19,22 +19,32 @@ import com.google.accompanist.pager.ExperimentalPagerApi
 import com.google.accompanist.pager.PagerState
 import com.google.accompanist.pager.rememberPagerState
 
+private const val TabCountMin = 2
+
 @ExperimentalPagerApi
 @Composable
 fun rememberTabsCustomizationState(
     pagerState: PagerState = rememberPagerState(),
-    tabsNumber: MutableState<Int> = rememberSaveable { mutableStateOf(2) }
+    tabsNumber: MutableState<Int> = rememberSaveable { mutableStateOf(2) },
+    iconIsChecked: MutableState<Boolean> = rememberSaveable { mutableStateOf(false) }
 ) =
-    remember(pagerState, tabsNumber) {
-        TabsCustomizationState(pagerState, tabsNumber)
+    remember(pagerState, tabsNumber, iconIsChecked) {
+        TabsCustomizationState(pagerState, tabsNumber, iconIsChecked)
     }
 
 @ExperimentalPagerApi
 class TabsCustomizationState(
     val pagerState: PagerState,
-    private val tabsNumber: MutableState<Int>
+    val tabsNumber: MutableState<Int>,
+    val iconIsChecked: MutableState<Boolean>
 ) {
     private val availableTabs = TabItem::class.sealedSubclasses.mapNotNull { it.objectInstance }
+
+    val canRemoveTab: Boolean
+        get() = tabsNumber.value > TabCountMin
+
+    val canAddTab: Boolean
+        get() = tabsNumber.value < 3
 
     val tabs: List<TabItem>
         get() = availableTabs.subList(0, tabsNumber.value)
