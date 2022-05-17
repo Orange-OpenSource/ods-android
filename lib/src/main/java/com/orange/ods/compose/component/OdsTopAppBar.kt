@@ -12,12 +12,14 @@ package com.orange.ods.compose.component
 
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.RowScope
+import androidx.compose.material.AppBarDefaults
 import androidx.compose.material.IconButton
 import androidx.compose.material.IconToggleButton
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.TopAppBar
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.unit.dp
 
 /**
  * <a href="https://system.design.orange.com/0c1af118d/p/23e0e6-app-bars/b/620966" class="external" target="_blank">Material ODS Top App Bar</a>.
@@ -35,6 +37,7 @@ import androidx.compose.ui.Modifier
  * typically be an [IconButton] or [IconToggleButton].
  * @param actions The actions displayed at the end of the TopAppBar. This should typically be
  * [IconButton]s. The default layout here is a [Row], so icons inside will be placed horizontally.
+ * @param elevation True to set an elevation to the top app bar (shadow displayed), false otherwise.
  */
 @Composable
 fun OdsTopAppBar(
@@ -42,6 +45,7 @@ fun OdsTopAppBar(
     modifier: Modifier = Modifier,
     navigationIcon: @Composable (() -> Unit)? = null,
     actions: @Composable RowScope.() -> Unit = {},
+    elevation: Boolean = true
 ) {
     TopAppBar(
         title = title,
@@ -49,5 +53,6 @@ fun OdsTopAppBar(
         navigationIcon = navigationIcon,
         actions = actions,
         backgroundColor = MaterialTheme.colors.surface,
+        elevation = if (elevation) AppBarDefaults.TopAppBarElevation else 0.dp
     )
 }
