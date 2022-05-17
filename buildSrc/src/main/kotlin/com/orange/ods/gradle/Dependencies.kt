@@ -13,6 +13,8 @@ package com.orange.ods.gradle
 object Dependencies {
 
     const val accompanistSystemUiController = "com.google.accompanist:accompanist-systemuicontroller:${Versions.accompanist}"
+    const val accompanistPager = "com.google.accompanist:accompanist-pager:${Versions.accompanist}"
+    const val accompanistPagerIndicators = "com.google.accompanist:accompanist-pager-indicators:${Versions.accompanist}"
     const val activityCompose = "androidx.activity:activity-compose:${Versions.activity}"
     const val androidGradlePlugin = "com.android.tools.build:gradle:${Versions.androidGradlePlugin}"
     const val appCompat = "androidx.appcompat:appcompat:${Versions.appCompat}"
@@ -29,6 +31,7 @@ object Dependencies {
     const val jUnit = "junit:junit:${Versions.jUnit}"
     const val kotlinReflect = "org.jetbrains.kotlin:kotlin-reflect:${Versions.kotlin}"
     const val kotlinGradlePlugin = "org.jetbrains.kotlin:kotlin-gradle-plugin:${Versions.kotlin}"
+    const val kotlinReflect = "org.jetbrains.kotlin:kotlin-reflect:${Versions.kotlin}"
     const val kotlinStdlibJdk8 = "org.jetbrains.kotlin:kotlin-stdlib-jdk8:${Versions.kotlin}"
     const val lifecycleRuntimeKtx = "androidx.lifecycle:lifecycle-runtime-ktx:${Versions.lifecycle}"
     const val material = "com.google.android.material:material:${Versions.material}"

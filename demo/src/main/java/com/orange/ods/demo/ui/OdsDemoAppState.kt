@@ -22,7 +22,10 @@ import androidx.navigation.NavGraph
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
+import com.google.accompanist.pager.ExperimentalPagerApi
+import com.google.accompanist.pager.PagerState
 import com.orange.ods.demo.R
+import com.orange.ods.demo.ui.components.tabs.TabItem
 
 /**
  * Destinations used in the [OdsDemoApp].
@@ -42,16 +45,29 @@ object MainDestinations {
 }
 
 @Composable
+@ExperimentalPagerApi
 fun rememberOdsDemoAppState(
     navController: NavHostController = rememberNavController(),
     topAppBarTitleRes: MutableState<Int> = rememberSaveable { mutableStateOf(R.string.navigation_item_guidelines) },
-    darkModeEnabled: MutableState<Boolean>
+    darkModeEnabled: MutableState<Boolean>,
+    shouldShowTabs: MutableState<Boolean> = rememberSaveable { mutableStateOf(false) },
+    topAppBarTabs: MutableState<List<TabItem>> = rememberSaveable { mutableStateOf(emptyList()) }
 ) =
-    remember(navController, topAppBarTitleRes, darkModeEnabled) {
-        OdsDemoAppState(navController, topAppBarTitleRes, darkModeEnabled)
+    remember(navController, topAppBarTitleRes, darkModeEnabled, shouldShowTabs, topAppBarTabs) {
+        OdsDemoAppState(navController, topAppBarTitleRes, darkModeEnabled, shouldShowTabs, topAppBarTabs)
     }
 
-class OdsDemoAppState(val navController: NavHostController, val topAppBarTitleRes: MutableState<Int>, val darkModeEnabled: MutableState<Boolean>) {
+@ExperimentalPagerApi
+class OdsDemoAppState(
+    val navController: NavHostController,
+    val topAppBarTitleRes: MutableState<Int>,
+    val darkModeEnabled: MutableState<Boolean>,
+    val shouldShowTabs: MutableState<Boolean>,
+    val topAppBarTabs: MutableState<List<TabItem>>
+) {
+
+    var pagerState: PagerState? = null
+        private set
 
     fun updateTheme(isDark: Boolean) {
         darkModeEnabled.value = isDark
@@ -63,6 +79,18 @@ class OdsDemoAppState(val navController: NavHostController, val topAppBarTitleRe
 
     fun updateTopAppBarTitle(titleRes: Int) {
         topAppBarTitleRes.value = titleRes
+    }
+
+    fun updateTopAppBarTabs(tabs: List<TabItem>, pagerState: PagerState?) {
+        topAppBarTabs.value = tabs
+        this.pagerState = pagerState
+        shouldShowTabs.value = tabs.isNotEmpty() && pagerState != null
+    }
+
+    fun clearTopAppBarTabs() {
+        topAppBarTabs.value = emptyList()
+        pagerState = null
+        shouldShowTabs.value = false
     }
 
     // ----------------------------------------------------------

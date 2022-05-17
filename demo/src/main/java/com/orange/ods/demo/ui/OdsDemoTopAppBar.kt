@@ -33,7 +33,7 @@ fun OdsDemoTopAppBar(
     darkModeEnabled: Boolean,
     shouldShowUpNavigationIcon: Boolean,
     navigateUp: () -> Unit,
-    updateTheme: (Boolean) -> Unit
+    updateTheme: (Boolean) -> Unit,
 ) {
     SystemBarsColorSideEffect(MaterialTheme.colors.background)
     OdsTopAppBar(
@@ -53,7 +53,8 @@ fun OdsDemoTopAppBar(
                     ThemeIcon(iconRes = R.drawable.ic_ui_dark_mode, contentDescriptionRes = R.string.theme_changer_icon_content_description_dark)
                 }
             }
-        }
+        },
+        elevation = false // elevation is managed in [OdsDemoApp] cause of tabs
     )
 }
 

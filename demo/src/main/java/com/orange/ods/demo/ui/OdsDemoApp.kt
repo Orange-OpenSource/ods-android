@@ -17,10 +17,13 @@ import androidx.compose.animation.fadeIn
 import androidx.compose.animation.fadeOut
 import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.padding
+import androidx.compose.material.AppBarDefaults
 import androidx.compose.material.ExperimentalMaterialApi
 import androidx.compose.material.Icon
 import androidx.compose.material.Scaffold
+import androidx.compose.material.Surface
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.saveable.rememberSaveable
@@ -33,14 +36,19 @@ import androidx.navigation.NavBackStackEntry
 import androidx.navigation.NavGraphBuilder
 import androidx.navigation.compose.NavHost
 import androidx.navigation.navigation
+import com.google.accompanist.pager.ExperimentalPagerApi
+import com.google.accompanist.pager.PagerState
 import com.orange.ods.compose.component.bottomnavigation.OdsBottomNavigation
 import com.orange.ods.compose.component.bottomnavigation.OdsBottomNavigationItem
 import com.orange.ods.compose.theme.OdsMaterialTheme
 import com.orange.ods.demo.ui.about.addAboutGraph
 import com.orange.ods.demo.ui.components.addComponentsGraph
+import com.orange.ods.demo.ui.components.tabs.TabItem
+import com.orange.ods.demo.ui.components.tabs.TopAppBarTabs
 import com.orange.ods.demo.ui.guidelines.addGuidelinesGraph
 
 @ExperimentalMaterialApi
+@ExperimentalPagerApi
 @Preview(showBackground = true, uiMode = UI_MODE_NIGHT_YES)
 @Preview(showBackground = true)
 @Composable
@@ -58,13 +66,21 @@ fun OdsDemoApp() {
     OdsMaterialTheme(appState.darkModeEnabled.value) {
         Scaffold(
             topBar = {
-                OdsDemoTopAppBar(
-                    titleRes = appState.topAppBarTitleRes.value,
-                    darkModeEnabled = appState.darkModeEnabled.value,
-                    shouldShowUpNavigationIcon = !appState.shouldShowBottomBar,
-                    navigateUp = appState::upPress,
-                    updateTheme = appState::updateTheme
-                )
+                Surface(elevation = AppBarDefaults.TopAppBarElevation) {
+                    Column {
+                        OdsDemoTopAppBar(
+                            titleRes = appState.topAppBarTitleRes.value,
+                            darkModeEnabled = appState.darkModeEnabled.value,
+                            shouldShowUpNavigationIcon = !appState.shouldShowBottomBar,
+                            navigateUp = appState::upPress,
+                            updateTheme = appState::updateTheme
+                        )
+                        // Display tabs in the top bar if needed
+                        if (appState.shouldShowTabs.value) {
+                            TopAppBarTabs(tabs = appState.topAppBarTabs.value, pagerState = appState.pagerState!!)
+                        }
+                    }
+                }
             },
             bottomBar = {
                 AnimatedVisibility(
@@ -84,7 +100,9 @@ fun OdsDemoApp() {
                 NavHost(appState.navController, startDestination = MainDestinations.HOME_ROUTE) {
                     odsDemoNavGraph(
                         onNavElementClick = appState::navigateToElement,
-                        updateTopBarTitle = appState::updateTopAppBarTitle
+                        updateTopBarTitle = appState::updateTopAppBarTitle,
+                        updateTopAppBarTabs = appState::updateTopAppBarTabs,
+                        clearTopAppBarTabs = appState::clearTopAppBarTabs
                     )
                 }
             }
@@ -106,19 +124,22 @@ private fun OdsDemoBottomBar(tabs: Array<HomeSections>, currentRoute: String, na
     }
 }
 
+@ExperimentalPagerApi
 @ExperimentalMaterialApi
 private fun NavGraphBuilder.odsDemoNavGraph(
     onNavElementClick: (String, Long?, NavBackStackEntry) -> Unit,
-    updateTopBarTitle: (Int) -> Unit
+    updateTopBarTitle: (Int) -> Unit,
+    updateTopAppBarTabs: (List<TabItem>, PagerState?) -> Unit,
+    clearTopAppBarTabs: () -> Unit
 ) {
     navigation(
         route = MainDestinations.HOME_ROUTE,
         startDestination = HomeSections.GUIDELINES.route
     ) {
-        addHomeGraph(onNavElementClick, updateTopBarTitle)
+        addHomeGraph(onNavElementClick, updateTopBarTitle, clearTopAppBarTabs)
     }
 
-    addGuidelinesGraph(updateTopBarTitle)
-    addComponentsGraph(onNavElementClick, updateTopBarTitle)
-    addAboutGraph(updateTopBarTitle)
+    addGuidelinesGraph(updateTopBarTitle, clearTopAppBarTabs)
+    addComponentsGraph(onNavElementClick, updateTopBarTitle, updateTopAppBarTabs)
+    addAboutGraph(updateTopBarTitle, clearTopAppBarTabs)
 }

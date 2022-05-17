@@ -16,27 +16,34 @@ import androidx.compose.material.ExperimentalMaterialApi
 import androidx.navigation.NavBackStackEntry
 import androidx.navigation.NavGraphBuilder
 import androidx.navigation.compose.composable
+import com.google.accompanist.pager.ExperimentalPagerApi
 import com.orange.ods.demo.R
 import com.orange.ods.demo.ui.about.AboutScreen
 import com.orange.ods.demo.ui.components.ComponentsScreen
 import com.orange.ods.demo.ui.guidelines.GuidelinesScreen
 import com.orange.ods.demo.ui.modules.ModulesScreen
 
+@ExperimentalPagerApi
 @ExperimentalMaterialApi
 fun NavGraphBuilder.addHomeGraph(
     onNavElementClick: (String, Long?, NavBackStackEntry) -> Unit,
-    updateTopBarTitle: (Int) -> Unit
+    updateTopBarTitle: (Int) -> Unit,
+    clearTopAppBarTabs: () -> Unit
 ) {
     composable(HomeSections.GUIDELINES.route) { from ->
+        clearTopAppBarTabs()
         GuidelinesScreen(onGuidelineClick = { route -> onNavElementClick(route, null, from) }, updateTopBarTitle = updateTopBarTitle)
     }
     composable(HomeSections.COMPONENTS.route) { from ->
+        clearTopAppBarTabs()
         ComponentsScreen(onComponentClick = { id -> onNavElementClick(MainDestinations.COMPONENT_DETAIL_ROUTE, id, from) }, updateTopBarTitle = updateTopBarTitle)
     }
     composable(HomeSections.MODULES.route) {
+        clearTopAppBarTabs()
         ModulesScreen(updateTopBarTitle = updateTopBarTitle)
     }
     composable(HomeSections.ABOUT.route) { from ->
+        clearTopAppBarTabs()
         AboutScreen(onAboutItemClick = { id -> onNavElementClick(MainDestinations.ABOUT_ITEM_DETAIL_ROUTE, id, from) }, updateTopBarTitle = updateTopBarTitle)
     }
 }

@@ -18,11 +18,13 @@ import com.orange.ods.demo.ui.guidelines.colors.GuidelineColorsScreen
 import com.orange.ods.demo.ui.guidelines.typography.GuidelineTypographyScreen
 
 @ExperimentalMaterialApi
-fun NavGraphBuilder.addGuidelinesGraph(updateTopBarTitle: (Int) -> Unit) {
+fun NavGraphBuilder.addGuidelinesGraph(updateTopBarTitle: (Int) -> Unit, clearTopAppBarTabs: () -> Unit) {
     composable(MainDestinations.GUIDELINE_COLORS) {
+        clearTopAppBarTabs()
         GuidelineColorsScreen(updateTopBarTitle = updateTopBarTitle)
     }
     composable(MainDestinations.GUIDELINE_TYPOGRAPHY) {
+        clearTopAppBarTabs()
         GuidelineTypographyScreen(updateTopBarTitle = updateTopBarTitle)
     }
 }

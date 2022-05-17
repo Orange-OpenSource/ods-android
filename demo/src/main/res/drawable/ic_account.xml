@@ -1,0 +1,20 @@
+<!--
+  ~ Software Name: MyOrange
+  ~ SPDX-FileCopyrightText: Copyright (c) 2019-2021 Orange
+  ~
+  ~ This software is confidential and proprietary information of Orange.
+  ~ You shall not disclose such Confidential Information and shall not copy, use or distribute it in whole or in part without the prior written consent of Orange.
+  ~
+  ~ Software description: My Orange is a multi-services mobile application for Orange services.
+  -->
+
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="24dp"
+    android:height="24dp"
+    android:viewportWidth="24"
+    android:viewportHeight="24">
+  <path
+      android:fillColor="#FF000000"
+      android:pathData="M16.069,9.316c1.519,1.03 2.681,2.6 2.681,4.268V21H7.934c-1.457,0 -2.684,-0.979 -2.684,-2.141v-5.282c0,-1.658 1.166,-3.214 2.689,-4.25C8.902,10.5 10.364,11.25 12,11.25c1.595,0 3.024,-0.711 3.986,-1.833zM12,2.25c2.071,0 3.75,1.679 3.75,3.75 0,2.071 -1.679,3.75 -3.75,3.75 -2.07,0 -3.75,-1.679 -3.75,-3.75 0,-2.071 1.68,-3.75 3.75,-3.75z"
+      android:fillType="evenOdd"/>
+</vector>
