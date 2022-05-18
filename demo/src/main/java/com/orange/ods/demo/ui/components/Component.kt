@@ -97,7 +97,7 @@ sealed class SubComponent(
 
     object TextFieldsFilled : SubComponent(R.string.component_text_fields_filled)
     object TextFieldsOutlined : SubComponent(R.string.component_text_fields_outlined)
-
+    
     object TabsFixed : SubComponent(R.string.component_tabs_fixed)
     object TabsScrollable : SubComponent(R.string.component_tabs_scrollable)
 }

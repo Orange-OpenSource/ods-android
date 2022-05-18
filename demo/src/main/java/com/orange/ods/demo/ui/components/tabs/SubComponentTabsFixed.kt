@@ -17,7 +17,6 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.material.ExperimentalMaterialApi
 import androidx.compose.material.Icon
 import androidx.compose.material.IconButton
-import androidx.compose.material.rememberBottomSheetScaffoldState
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Alignment
@@ -34,7 +33,7 @@ import com.orange.ods.compose.component.tab.OdsLeadingIconTab
 import com.orange.ods.compose.component.tab.OdsTabRow
 import com.orange.ods.compose.text.OdsTextSubtitle1
 import com.orange.ods.demo.R
-import com.orange.ods.demo.ui.components.utilities.CustomizationBottomSheet
+import com.orange.ods.demo.ui.components.utilities.ComponentCustomizationBottomSheetScaffold
 import kotlinx.coroutines.launch
 
 @ExperimentalPagerApi
@@ -44,9 +43,8 @@ fun TabsFixedContent(updateTopAppBarTabs: (List<TabItem>, PagerState?) -> Unit) 
     val customizationState = rememberTabsCustomizationState()
     updateTopAppBarTabs(customizationState.tabs, customizationState.pagerState)
 
-    CustomizationBottomSheet(
-        bottomSheetScaffoldState = rememberBottomSheetScaffoldState(),
-        bottomSheetContent = {
+    ComponentCustomizationBottomSheetScaffold(
+        sheetContent = {
             OdsListItem(
                 text = stringResource(id = R.string.component_element_icon),
                 trailing = { OdsCheckbox(checked = customizationState.iconIsChecked.value, onCheckedChange = { checked -> customizationState.iconIsChecked.value = checked }) })
