@@ -13,13 +13,13 @@
     <!-- Custom attributes that must be defined on each themes -->
 
     <!-- Slider halo color -->
-    <attr name="odsSliderHaloBackground" format="color"/>
+    <attr name="odsSliderHaloBackground" format="color" />
 
     <!-- Badge color -->
-    <attr name="odsBadgeTextColor" format="color"/>
+    <attr name="odsBadgeTextColor" format="color" />
 
     <!-- Functional colors -->
-    <attr name="functionalInfo" format="color"/>
-    <attr name="functionalPositive" format="color"/>
-    <attr name="functionalAlert" format="color"/>
+    <attr name="functionalInfo" format="color" />
+    <attr name="functionalPositive" format="color" />
+    <attr name="functionalAlert" format="color" />
 </resources>

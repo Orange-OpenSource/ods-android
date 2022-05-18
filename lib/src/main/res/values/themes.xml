@@ -31,7 +31,7 @@
 
         <item name="android:textColorPrimary">@color/ods_color_core_black_900</item>
         <item name="android:textColorSecondary">@color/ods_color_core_black_900</item>
-        
+
         <!-- Custom ODS attributes -->
         <item name="odsSliderHaloBackground">@color/ods_color_core_black_900</item>
         <item name="odsBadgeTextColor">@color/ods_color_core_white_100</item>
@@ -97,7 +97,9 @@
 
     <style name="Widget.Orange.Dialog.Centered" parent="ThemeOverlay.MaterialComponents.MaterialAlertDialog.Centered">
         <item name="materialAlertDialogBodyTextStyle">@style/Widget.Orange.Dialog.Body.Text</item>
-        <item name="materialAlertDialogTitleIconStyle">@style/Widget.Orange.Dialog.Icon.CenterStacked</item>
+        <item name="materialAlertDialogTitleIconStyle">
+            @style/Widget.Orange.Dialog.Icon.CenterStacked
+        </item>
         <item name="android:checkedTextViewStyle">@style/Widget.Orange.Dialog.CheckedTextView</item>
     </style>
 

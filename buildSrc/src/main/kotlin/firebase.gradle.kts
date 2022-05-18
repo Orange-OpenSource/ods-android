@@ -14,7 +14,7 @@ import com.orange.ods.gradle.findTypedProperty
 import com.orange.ods.gradle.generateReleaseNotes
 
 object AppDistribution {
-    
+
     const val releaseNotesFilePath = "./app_distribution_release_notes.txt"
 }
 

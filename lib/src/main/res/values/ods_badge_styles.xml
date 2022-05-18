@@ -9,6 +9,7 @@
   -->
 
 <resources>
+
     <style name="Widget.Orange.Badge" parent="Widget.MaterialComponents.Badge">
         <item name="badgeTextColor">?attr/odsBadgeTextColor</item>
     </style>

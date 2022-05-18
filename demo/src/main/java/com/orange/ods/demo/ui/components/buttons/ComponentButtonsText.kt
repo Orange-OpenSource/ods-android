@@ -38,7 +38,13 @@ fun ButtonsText() {
 
     Subtitle(R.string.component_buttons_text_subtitle_primary, withHorizontalPadding = true)
     OdsButtonText(modifier = Modifier.fullWidthButton(), text = stringResource(R.string.component_state_enabled), onClick = {}, hasPrimaryColor = true)
-    OdsButtonText(modifier = Modifier.fullWidthButton(false), text = stringResource(R.string.component_state_disabled), onClick = {}, enabled = false, hasPrimaryColor = true)
+    OdsButtonText(
+        modifier = Modifier.fullWidthButton(false),
+        text = stringResource(R.string.component_state_disabled),
+        onClick = {},
+        enabled = false,
+        hasPrimaryColor = true
+    )
 
     OdsButtonText(
         modifier = Modifier.fullWidthButton(),
@@ -66,7 +72,12 @@ fun ButtonsText() {
 
 @Composable
 private fun TextButtonsFullWidthAppearanceForced(displayAppearance: OdsDisplayAppearance) {
-    OdsButtonText(modifier = Modifier.fullWidthButton(), text = stringResource(R.string.component_state_enabled), onClick = {}, displayAppearance = displayAppearance)
+    OdsButtonText(
+        modifier = Modifier.fullWidthButton(),
+        text = stringResource(R.string.component_state_enabled),
+        onClick = {},
+        displayAppearance = displayAppearance
+    )
     OdsButtonText(
         modifier = Modifier.fullWidthButton(false),
         text = stringResource(R.string.component_state_disabled),
