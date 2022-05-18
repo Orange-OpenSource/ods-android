@@ -16,6 +16,7 @@ import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material.ExperimentalMaterialApi
+import androidx.compose.material.rememberBottomSheetScaffoldState
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.saveable.rememberSaveable
@@ -35,9 +36,11 @@ fun CardSmallContent() {
     val context = LocalContext.current
     val subtitleIsChecked = rememberSaveable { mutableStateOf(true) }
 
-    ComponentCustomizationBottomSheetScaffold(bottomSheetContent = {
-        LabelledCheckbox(label = stringResource(id = R.string.component_element_subtitle), checked = subtitleIsChecked)
-    }) {
+    ComponentCustomizationBottomSheetScaffold(
+        bottomSheetScaffoldState = rememberBottomSheetScaffoldState(),
+        bottomSheetContent = {
+            LabelledCheckbox(label = stringResource(id = R.string.component_element_subtitle), checked = subtitleIsChecked)
+        }) {
         Row(
             modifier = Modifier
                 .fillMaxSize()

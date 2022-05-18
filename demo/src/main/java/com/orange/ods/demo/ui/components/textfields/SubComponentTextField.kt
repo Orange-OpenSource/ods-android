@@ -18,6 +18,7 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.ExperimentalMaterialApi
+import androidx.compose.material.rememberBottomSheetScaffoldState
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.dimensionResource
@@ -34,58 +35,60 @@ import com.orange.ods.demo.ui.utilities.composable.Subtitle
 fun SubComponentTextField(subComponent: SubComponent) {
     val customizationState = rememberTextFieldCustomizationState()
 
-    ComponentCustomizationBottomSheetScaffold(bottomSheetContent = {
-        LabelledCheckbox(label = stringResource(id = R.string.component_element_leading_icon), checked = customizationState.leadingIconChecked)
+    ComponentCustomizationBottomSheetScaffold(
+        bottomSheetScaffoldState = rememberBottomSheetScaffoldState(),
+        bottomSheetContent = {
+            LabelledCheckbox(label = stringResource(id = R.string.component_element_leading_icon), checked = customizationState.leadingIconChecked)
 
-        Subtitle(textRes = R.string.component_state, withHorizontalPadding = true)
-        Row(
-            modifier = Modifier
-                .fillMaxWidth()
-                .padding(top = dimensionResource(id = R.dimen.ods_spacing_xs))
-                .padding(start = dimensionResource(id = R.dimen.ods_spacing_s)),
-            horizontalArrangement = Arrangement.Start
-        ) {
-            LabelledRadioButton(
-                selectedRadio = customizationState.selectedState,
-                currentRadio = TextFieldCustomizationState.DisplayType.DEFAULT,
-                label = stringResource(id = R.string.component_state_default)
-            )
-            LabelledRadioButton(
-                selectedRadio = customizationState.selectedState,
-                currentRadio = TextFieldCustomizationState.DisplayType.ERROR,
-                label = stringResource(id = R.string.component_state_error)
-            )
-            LabelledRadioButton(
-                selectedRadio = customizationState.selectedState,
-                currentRadio = TextFieldCustomizationState.DisplayType.DISABLED,
-                label = stringResource(id = R.string.component_state_disabled)
-            )
-        }
-        Subtitle(textRes = R.string.component_element_trailing, withHorizontalPadding = true)
-        Row(
-            modifier = Modifier
-                .fillMaxWidth()
-                .padding(vertical = dimensionResource(id = R.dimen.ods_spacing_xs))
-                .padding(start = dimensionResource(id = R.dimen.ods_spacing_s)),
-            horizontalArrangement = Arrangement.Start
-        ) {
-            LabelledRadioButton(
-                selectedRadio = customizationState.selectedTrailingElement,
-                currentRadio = TextFieldCustomizationState.TrailingElement.NONE,
-                label = stringResource(id = R.string.component_element_none)
-            )
-            LabelledRadioButton(
-                selectedRadio = customizationState.selectedTrailingElement,
-                currentRadio = TextFieldCustomizationState.TrailingElement.ICON,
-                label = stringResource(id = R.string.component_element_icon)
-            )
-            LabelledRadioButton(
-                selectedRadio = customizationState.selectedTrailingElement,
-                currentRadio = TextFieldCustomizationState.TrailingElement.TEXT,
-                label = stringResource(id = R.string.component_element_text)
-            )
-        }
-    }) {
+            Subtitle(textRes = R.string.component_state, withHorizontalPadding = true)
+            Row(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(top = dimensionResource(id = R.dimen.ods_spacing_xs))
+                    .padding(start = dimensionResource(id = R.dimen.ods_spacing_s)),
+                horizontalArrangement = Arrangement.Start
+            ) {
+                LabelledRadioButton(
+                    selectedRadio = customizationState.selectedState,
+                    currentRadio = TextFieldCustomizationState.DisplayType.DEFAULT,
+                    label = stringResource(id = R.string.component_state_default)
+                )
+                LabelledRadioButton(
+                    selectedRadio = customizationState.selectedState,
+                    currentRadio = TextFieldCustomizationState.DisplayType.ERROR,
+                    label = stringResource(id = R.string.component_state_error)
+                )
+                LabelledRadioButton(
+                    selectedRadio = customizationState.selectedState,
+                    currentRadio = TextFieldCustomizationState.DisplayType.DISABLED,
+                    label = stringResource(id = R.string.component_state_disabled)
+                )
+            }
+            Subtitle(textRes = R.string.component_element_trailing, withHorizontalPadding = true)
+            Row(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(vertical = dimensionResource(id = R.dimen.ods_spacing_xs))
+                    .padding(start = dimensionResource(id = R.dimen.ods_spacing_s)),
+                horizontalArrangement = Arrangement.Start
+            ) {
+                LabelledRadioButton(
+                    selectedRadio = customizationState.selectedTrailingElement,
+                    currentRadio = TextFieldCustomizationState.TrailingElement.NONE,
+                    label = stringResource(id = R.string.component_element_none)
+                )
+                LabelledRadioButton(
+                    selectedRadio = customizationState.selectedTrailingElement,
+                    currentRadio = TextFieldCustomizationState.TrailingElement.ICON,
+                    label = stringResource(id = R.string.component_element_icon)
+                )
+                LabelledRadioButton(
+                    selectedRadio = customizationState.selectedTrailingElement,
+                    currentRadio = TextFieldCustomizationState.TrailingElement.TEXT,
+                    label = stringResource(id = R.string.component_element_text)
+                )
+            }
+        }) {
         Column(
             modifier = Modifier
                 .verticalScroll(rememberScrollState())

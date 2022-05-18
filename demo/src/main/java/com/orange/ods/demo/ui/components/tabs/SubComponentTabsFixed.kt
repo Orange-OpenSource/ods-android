@@ -17,6 +17,7 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.material.ExperimentalMaterialApi
 import androidx.compose.material.Icon
 import androidx.compose.material.IconButton
+import androidx.compose.material.rememberBottomSheetScaffoldState
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Alignment
@@ -40,10 +41,13 @@ import kotlinx.coroutines.launch
 @ExperimentalMaterialApi
 @Composable
 fun TabsFixedContent(updateTopAppBarTabs: (List<TabItem>, PagerState?) -> Unit) {
+    val bottomSheetScaffoldState = rememberBottomSheetScaffoldState()
     val customizationState = rememberTabsCustomizationState()
     updateTopAppBarTabs(customizationState.tabs, customizationState.pagerState)
 
+
     ComponentCustomizationBottomSheetScaffold(
+        bottomSheetScaffoldState = bottomSheetScaffoldState,
         bottomSheetContent = {
             OdsListItem(
                 text = stringResource(id = R.string.component_element_icon),
