@@ -35,7 +35,7 @@ fun CardSmallContent() {
     val context = LocalContext.current
     val subtitleIsChecked = rememberSaveable { mutableStateOf(true) }
 
-    ComponentCustomizationBottomSheetScaffold(sheetContent = {
+    ComponentCustomizationBottomSheetScaffold(bottomSheetContent = {
         LabelledCheckbox(label = stringResource(id = R.string.component_element_subtitle), checked = subtitleIsChecked)
     }) {
         Row(

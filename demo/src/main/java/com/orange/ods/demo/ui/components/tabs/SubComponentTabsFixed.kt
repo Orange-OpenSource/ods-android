@@ -44,7 +44,7 @@ fun TabsFixedContent(updateTopAppBarTabs: (List<TabItem>, PagerState?) -> Unit) 
     updateTopAppBarTabs(customizationState.tabs, customizationState.pagerState)
 
     ComponentCustomizationBottomSheetScaffold(
-        sheetContent = {
+        bottomSheetContent = {
             OdsListItem(
                 text = stringResource(id = R.string.component_element_icon),
                 trailing = { OdsCheckbox(checked = customizationState.iconIsChecked.value, onCheckedChange = { checked -> customizationState.iconIsChecked.value = checked }) })

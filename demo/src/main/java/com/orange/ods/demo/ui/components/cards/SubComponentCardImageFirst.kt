@@ -39,7 +39,7 @@ fun CardImageFirstContent() {
     val button1IsChecked = rememberSaveable { mutableStateOf(true) }
     val button2IsChecked = rememberSaveable { mutableStateOf(true) }
 
-    ComponentCustomizationBottomSheetScaffold(sheetContent = {
+    ComponentCustomizationBottomSheetScaffold(bottomSheetContent = {
         LabelledCheckbox(label = stringResource(id = R.string.component_element_subtitle), checked = subtitleIsChecked)
         LabelledCheckbox(label = stringResource(id = R.string.component_element_text), checked = textIsChecked)
         LabelledCheckbox(label = stringResource(id = R.string.component_element_button1), checked = button1IsChecked)

@@ -30,23 +30,8 @@ import com.orange.ods.demo.R
 import kotlinx.coroutines.launch
 
 @Composable
-fun ComponentCustomizationBottomSheetHeader(onClick: () -> Unit = {}) {
-    Box(
-        modifier = Modifier
-            .fillMaxWidth()
-            .height(56.dp)
-            .clickable(onClick = onClick)
-    ) {
-        OdsTextSubtitle1(
-            modifier = Modifier.padding(dimensionResource(id = R.dimen.ods_spacing_s)),
-            text = stringResource(id = R.string.component_customize)
-        )
-    }
-}
-
-@Composable
 @ExperimentalMaterialApi
-fun ComponentCustomizationBottomSheetScaffold(sheetContent: @Composable () -> Unit, screenContent: @Composable BoxScope.() -> Unit) {
+fun ComponentCustomizationBottomSheetScaffold(bottomSheetContent: @Composable () -> Unit, content: @Composable BoxScope.() -> Unit) {
     val bottomSheetScaffoldState = rememberBottomSheetScaffoldState()
     val coroutineScope = rememberCoroutineScope()
 
@@ -63,9 +48,24 @@ fun ComponentCustomizationBottomSheetScaffold(sheetContent: @Composable () -> Un
                     }
                 }
             })
-            sheetContent()
+            bottomSheetContent()
         }
     ) { innerPadding ->
-        Box(modifier = Modifier.padding(innerPadding), content = screenContent)
+        Box(modifier = Modifier.padding(innerPadding), content = content)
+    }
+}
+
+@Composable
+private fun ComponentCustomizationBottomSheetHeader(onClick: () -> Unit = {}) {
+    Box(
+        modifier = Modifier
+            .fillMaxWidth()
+            .height(56.dp)
+            .clickable(onClick = onClick)
+    ) {
+        OdsTextSubtitle1(
+            modifier = Modifier.padding(dimensionResource(id = R.dimen.ods_spacing_s)),
+            text = stringResource(id = R.string.component_customize)
+        )
     }
 }

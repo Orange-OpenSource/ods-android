@@ -34,7 +34,7 @@ import com.orange.ods.demo.ui.utilities.composable.Subtitle
 fun SubComponentTextField(subComponent: SubComponent) {
     val customizationState = rememberTextFieldCustomizationState()
 
-    ComponentCustomizationBottomSheetScaffold(sheetContent = {
+    ComponentCustomizationBottomSheetScaffold(bottomSheetContent = {
         LabelledCheckbox(label = stringResource(id = R.string.component_element_leading_icon), checked = customizationState.leadingIconChecked)
 
         Subtitle(textRes = R.string.component_state, withHorizontalPadding = true)
