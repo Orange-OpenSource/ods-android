@@ -90,16 +90,16 @@ MaterialAlertDialogBuilder(context, R.style.Widget.Orange.Dialog.Centered)
 To display an alert dialog in your composable screen, you can use:
 
 ```kotlin
-        OdsAlertDialog(
-            modifier = Modifier, // Optional, `Modifier` if not set
-            titleText = "title", // Optional
-            text = "content text of the dialog",
-            confirmButtonText = "confirm",
-            onConfirmButtonClick = { doSomething() },
-            dismissButtonText = "dismiss", // Optional
-            onDismissButtonClick = { doSomething() }, // Optional
-            properties = DialogProperties() // Optional, `DialogProperties()` if not set
-        )
+OdsAlertDialog(
+    modifier = Modifier, // Optional, `Modifier` if not set
+    titleText = "title", // Optional
+    text = "content text of the dialog",
+    confirmButtonText = "confirm",
+    onConfirmButtonClick = { doSomething() },
+    dismissButtonText = "dismiss", // Optional
+    onDismissButtonClick = { doSomething() }, // Optional
+    properties = DialogProperties() // Optional, `DialogProperties()` if not set
+)
 ```
 
 ### Simple dialog
