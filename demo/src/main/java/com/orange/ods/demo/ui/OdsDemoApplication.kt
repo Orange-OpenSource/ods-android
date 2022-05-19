@@ -15,7 +15,7 @@ import com.google.firebase.crashlytics.ktx.crashlytics
 import com.google.firebase.ktx.Firebase
 import com.orange.ods.demo.BuildConfig
 
-class OdsDemoApplication: Application() {
+class OdsDemoApplication : Application() {
 
     override fun onCreate() {
         super.onCreate()

@@ -89,7 +89,10 @@ fun SubComponentTextField(subComponent: SubComponent) {
         Column(
             modifier = Modifier
                 .verticalScroll(rememberScrollState())
-                .padding(horizontal = dimensionResource(id = R.dimen.ods_screen_horizontal_margin), vertical = dimensionResource(id = R.dimen.ods_screen_vertical_margin))
+                .padding(
+                    horizontal = dimensionResource(id = R.dimen.ods_screen_horizontal_margin),
+                    vertical = dimensionResource(id = R.dimen.ods_screen_vertical_margin)
+                )
         ) {
             when (subComponent) {
                 SubComponent.TextFieldsFilled -> TextFieldFilledContent(customizationState)

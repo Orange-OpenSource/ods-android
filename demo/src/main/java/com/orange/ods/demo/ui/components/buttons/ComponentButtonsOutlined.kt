@@ -24,7 +24,12 @@ fun ButtonsOutlined() {
     OdsButtonOutlined(modifier = Modifier.fullWidthButton(), text = stringResource(R.string.component_state_enabled), onClick = {})
     OdsButtonOutlined(modifier = Modifier.fullWidthButton(false), text = stringResource(R.string.component_state_disabled), onClick = {}, enabled = false)
 
-    OdsButtonOutlined(modifier = Modifier.fullWidthButton(), text = stringResource(R.string.component_state_enabled), onClick = {}, iconRes = R.drawable.ic_search)
+    OdsButtonOutlined(
+        modifier = Modifier.fullWidthButton(),
+        text = stringResource(R.string.component_state_enabled),
+        onClick = {},
+        iconRes = R.drawable.ic_search
+    )
     OdsButtonOutlined(
         modifier = Modifier.fullWidthButton(false),
         text = stringResource(R.string.component_state_disabled),
@@ -43,7 +48,12 @@ fun ButtonsOutlined() {
 
 @Composable
 private fun OutlinedButtonsFullWidthAppearanceForced(displayAppearance: OdsDisplayAppearance) {
-    OdsButtonOutlined(modifier = Modifier.fullWidthButton(), text = stringResource(R.string.component_state_enabled), onClick = {}, displayAppearance = displayAppearance)
+    OdsButtonOutlined(
+        modifier = Modifier.fullWidthButton(),
+        text = stringResource(R.string.component_state_enabled),
+        onClick = {},
+        displayAppearance = displayAppearance
+    )
     OdsButtonOutlined(
         modifier = Modifier.fullWidthButton(false),
         text = stringResource(R.string.component_state_disabled),

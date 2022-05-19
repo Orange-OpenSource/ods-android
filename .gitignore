@@ -1,5 +1,7 @@
 *.iml
-.idea/
+.idea/*
+!.idea/codeStyles
+!.idea/saveactions_settings.xml
 .gradle
 /local.properties
 .DS_Store
