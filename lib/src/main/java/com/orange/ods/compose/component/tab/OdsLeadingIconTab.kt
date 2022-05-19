@@ -21,10 +21,8 @@ import androidx.compose.ui.graphics.painter.Painter
 /**
  * <a href="https://system.design.orange.com/0c1af118d/p/513d27-tabs/b/50cb71" class="external" target="_blank">ODS tab</a>.
  *
- * Tabs organize content across different screens, data sets, and other interactions.
- *
- * A LeadingIconTab represents a single page of content using a text label and an icon in
- * front of the label.
+ * An OdsLeadingIconTab is a Jetpack Compose [LeadingIconTab] to which we applied the Orange design and theme.
+ * @see LeadingIconTab documentation
  *
  * This should typically be used inside of an [OdsTabRow].
  *

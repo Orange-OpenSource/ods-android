@@ -21,21 +21,17 @@ import androidx.compose.ui.graphics.painter.Painter
 /**
  * <a href="https://system.design.orange.com/0c1af118d/p/513d27-tabs/b/50cb71" class="external" target="_blank">ODS tab</a>.
  *
- * Tabs organize content across different screens, data sets, and other interactions.
- *
- * A Tab represents a single page of content using a text label and/or icon. It represents its
- * selected state by tinting the text label and/or image.
+ * An OdsTab is a Jetpack Compose [Tab] to which we applied the Orange design and theme.
+ * @see Tab documentation
  *
  * This should typically be used inside of an [OdsTabRow].
- *
- * This Tab has slots for [text] and an optional [icon]
  *
  * @param selected whether this tab is selected or not
  * @param onClick the callback to be invoked when this tab is selected
  * @param modifier optional [Modifier] for this tab
  * @param enabled controls the enabled state of this tab. When `false`, this tab will not
  * be clickable and will appear disabled to accessibility services.
- * @param text the text label displayed in this tab
+ * @param text the text label displayed in this tab. Always displayed in uppercase.
  * @param icon the optional icon displayed in this tab
  *
  * @see OdsLeadingIconTab
@@ -46,7 +42,7 @@ fun OdsTab(
     onClick: () -> Unit,
     modifier: Modifier = Modifier,
     enabled: Boolean = true,
-    text: String,
+    text: String? = null,
     icon: Painter? = null,
 ) {
     Tab(
@@ -55,7 +51,7 @@ fun OdsTab(
         modifier = modifier,
         enabled = enabled,
         icon = icon?.let { { Icon(painter = icon, contentDescription = null) } },
-        text = { Text(text) },
+        text = text?.let { { Text(text.uppercase()) } },
         selectedContentColor = MaterialTheme.colors.primary,
         unselectedContentColor = MaterialTheme.colors.onSurface,
     )
