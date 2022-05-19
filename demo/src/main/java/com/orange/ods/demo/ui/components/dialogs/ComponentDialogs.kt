@@ -53,15 +53,11 @@ fun ComponentDialogsContent() {
 
     if (openDialog.value) {
         OdsAlertDialog(
-            titleText = if (customizationState.isTitleChecked) {
-                stringResource(id = R.string.component_element_title)
-            } else null,
+            titleText = if (customizationState.isTitleChecked) stringResource(id = R.string.component_element_title) else null,
             text = stringResource(id = R.string.component_dialog_text),
             confirmButtonText = stringResource(id = confirmActionRes),
             onConfirmButtonClick = closeDialogAction,
-            dismissButtonText = if (customizationState.isDismissButtonChecked) {
-                stringResource(id = R.string.component_dialog_action_dismiss)
-            } else null,
+            dismissButtonText = if (customizationState.isDismissButtonChecked) stringResource(id = R.string.component_dialog_action_dismiss) else null,
             onDismissButtonClick = closeDialogAction
         )
     }
