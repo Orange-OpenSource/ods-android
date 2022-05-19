@@ -33,7 +33,7 @@ import com.orange.ods.demo.ui.utilities.composable.Title
 @ExperimentalMaterialApi
 @Composable
 fun ComponentDialogsContent() {
-    val customizationState = rememberDialogCustomizationState()
+    val customizationState = rememberComponentDialogsContentState()
     val openDialog = rememberSaveable { mutableStateOf(false) }
     val closeDialogAction = { openDialog.value = false }
     val confirmActionRes = if (customizationState.isDismissButtonChecked) R.string.component_dialog_action_confirm else R.string.component_dialog_action_ok
