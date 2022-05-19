@@ -43,8 +43,8 @@ import com.orange.ods.compose.component.bottomnavigation.OdsBottomNavigationItem
 import com.orange.ods.compose.theme.OdsMaterialTheme
 import com.orange.ods.demo.ui.about.addAboutGraph
 import com.orange.ods.demo.ui.components.addComponentsGraph
+import com.orange.ods.demo.ui.components.tabs.SubComponentTabsState
 import com.orange.ods.demo.ui.components.tabs.TabItem
-import com.orange.ods.demo.ui.components.tabs.TabsCustomizationState
 import com.orange.ods.demo.ui.components.tabs.TopAppBarTabs
 import com.orange.ods.demo.ui.guidelines.addGuidelinesGraph
 
@@ -81,7 +81,8 @@ fun OdsDemoApp() {
                             TopAppBarTabs(
                                 tabs = appState.topAppBarState.tabs.value,
                                 pagerState = appState.topAppBarState.pagerState!!,
-                                tabIconType = appState.topAppBarState.tabIconType.value
+                                tabIconType = appState.topAppBarState.tabIconType.value,
+                                tabTextEnabled = appState.topAppBarState.tabTextEnabled.value
                             )
                         }
                     }
@@ -134,7 +135,7 @@ private fun OdsDemoBottomBar(tabs: Array<HomeSections>, currentRoute: String, na
 private fun NavGraphBuilder.odsDemoNavGraph(
     onNavElementClick: (String, Long?, NavBackStackEntry) -> Unit,
     updateTopBarTitle: (Int) -> Unit,
-    updateTopAppBarTabs: (List<TabItem>, PagerState?, TabsCustomizationState.TabIconType) -> Unit,
+    updateTopAppBarTabs: (List<TabItem>, PagerState?, SubComponentTabsState.TabIconType, Boolean) -> Unit,
     clearTopAppBarTabs: () -> Unit
 ) {
     navigation(

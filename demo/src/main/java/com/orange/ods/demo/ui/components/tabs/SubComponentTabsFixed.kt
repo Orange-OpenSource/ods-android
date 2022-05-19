@@ -34,6 +34,7 @@ import com.orange.ods.compose.component.tab.OdsTabRow
 import com.orange.ods.compose.text.OdsTextSubtitle1
 import com.orange.ods.demo.R
 import com.orange.ods.demo.ui.components.utilities.ComponentCustomizationBottomSheetScaffold
+import com.orange.ods.demo.ui.components.utilities.ComponentCustomizationCheckboxItem
 import com.orange.ods.demo.ui.utilities.composable.LabelledRadioButton
 import kotlinx.coroutines.launch
 
@@ -42,10 +43,10 @@ private const val FixedTabsCountMax = 3
 @ExperimentalPagerApi
 @ExperimentalMaterialApi
 @Composable
-fun TabsFixedContent(updateTopAppBarTabs: (List<TabItem>, PagerState?, TabsCustomizationState.TabIconType) -> Unit) {
+fun TabsFixedContent(updateTopAppBarTabs: (List<TabItem>, PagerState?, SubComponentTabsState.TabIconType, Boolean) -> Unit) {
     val bottomSheetScaffoldState = rememberBottomSheetScaffoldState()
-    val customizationState = rememberTabsCustomizationState()
-    updateTopAppBarTabs(customizationState.tabs, customizationState.pagerState, customizationState.selectedTabIconType.value)
+    val subComponentTabsState = rememberSubComponentTabsState()
+    updateTopAppBarTabs(subComponentTabsState.tabs, subComponentTabsState.pagerState, subComponentTabsState.selectedTabIconType.value, subComponentTabsState.tabTextEnabled.value)
 
     ComponentCustomizationBottomSheetScaffold(
         bottomSheetScaffoldState = bottomSheetScaffoldState,
@@ -60,21 +61,26 @@ fun TabsFixedContent(updateTopAppBarTabs: (List<TabItem>, PagerState?, TabsCusto
             ) {
                 OdsTextSubtitle1(modifier = Modifier.weight(1f), text = stringResource(id = R.string.component_element_icon))
                 LabelledRadioButton(
-                    selectedRadio = customizationState.selectedTabIconType,
-                    currentRadio = TabsCustomizationState.TabIconType.Leading,
-                    label = stringResource(id = R.string.component_tab_icon_leading)
+                    selectedRadio = subComponentTabsState.selectedTabIconType,
+                    currentRadio = SubComponentTabsState.TabIconType.Leading,
+                    label = stringResource(id = R.string.component_tab_icon_leading),
+                    enabled = subComponentTabsState.areTabIconRadiosEnabled
                 )
                 LabelledRadioButton(
-                    selectedRadio = customizationState.selectedTabIconType,
-                    currentRadio = TabsCustomizationState.TabIconType.Top,
-                    label = stringResource(id = R.string.component_tab_icon_top)
+                    selectedRadio = subComponentTabsState.selectedTabIconType,
+                    currentRadio = SubComponentTabsState.TabIconType.Top,
+                    label = stringResource(id = R.string.component_tab_icon_top),
+                    enabled = subComponentTabsState.areTabIconRadiosEnabled
                 )
                 LabelledRadioButton(
-                    selectedRadio = customizationState.selectedTabIconType,
-                    currentRadio = TabsCustomizationState.TabIconType.None,
-                    label = stringResource(id = R.string.component_element_none)
+                    selectedRadio = subComponentTabsState.selectedTabIconType,
+                    currentRadio = SubComponentTabsState.TabIconType.None,
+                    label = stringResource(id = R.string.component_element_none),
+                    enabled = subComponentTabsState.areTabIconRadiosEnabled
                 )
             }
+
+            ComponentCustomizationCheckboxItem(R.string.component_element_text, subComponentTabsState.tabTextEnabled, subComponentTabsState.isTabTextCheckboxEnabled)
 
             Row(
                 modifier = Modifier
@@ -84,14 +90,14 @@ fun TabsFixedContent(updateTopAppBarTabs: (List<TabItem>, PagerState?, TabsCusto
                 verticalAlignment = Alignment.CenterVertically
             ) {
                 OdsTextSubtitle1(modifier = Modifier.weight(1f), text = stringResource(id = R.string.component_tabs_number))
-                IconButton(onClick = { customizationState.tabsNumber.value-- }, enabled = customizationState.canRemoveTab) {
+                IconButton(onClick = { subComponentTabsState.tabsNumber.value-- }, enabled = subComponentTabsState.canRemoveTab) {
                     Icon(
                         painter = painterResource(id = R.drawable.ic_remove),
                         contentDescription = "content description"
                     )
                 }
-                OdsTextSubtitle1(text = customizationState.tabs.size.toString())
-                IconButton(onClick = { customizationState.tabsNumber.value++ }, enabled = customizationState.canAddTab(FixedTabsCountMax)) {
+                OdsTextSubtitle1(text = subComponentTabsState.tabs.size.toString())
+                IconButton(onClick = { subComponentTabsState.tabsNumber.value++ }, enabled = subComponentTabsState.canAddTab(FixedTabsCountMax)) {
                     Icon(
                         painter = painterResource(id = R.drawable.ic_add),
                         contentDescription = "content description"
@@ -99,20 +105,20 @@ fun TabsFixedContent(updateTopAppBarTabs: (List<TabItem>, PagerState?, TabsCusto
                 }
             }
         }) {
-        TabsContent(tabs = customizationState.tabs, pagerState = customizationState.pagerState)
+        TabsContent(tabs = subComponentTabsState.tabs, pagerState = subComponentTabsState.pagerState)
     }
 }
 
 @ExperimentalPagerApi
 @Composable
-fun TopAppBarTabs(tabs: List<TabItem>, pagerState: PagerState, tabIconType: TabsCustomizationState.TabIconType) {
+fun TopAppBarTabs(tabs: List<TabItem>, pagerState: PagerState, tabIconType: SubComponentTabsState.TabIconType, tabTextEnabled: Boolean) {
     val scope = rememberCoroutineScope()
 
     OdsTabRow(
         selectedTabIndex = pagerState.currentPage
     ) {
         tabs.forEachIndexed { index, tab ->
-            if (tabIconType == TabsCustomizationState.TabIconType.Leading) {
+            if (tabIconType == SubComponentTabsState.TabIconType.Leading && tabTextEnabled) {
                 OdsLeadingIconTab(
                     icon = painterResource(id = tab.icon),
                     text = tab.title,
@@ -125,8 +131,8 @@ fun TopAppBarTabs(tabs: List<TabItem>, pagerState: PagerState, tabIconType: Tabs
                 )
             } else {
                 OdsTab(
-                    icon = if (tabIconType == TabsCustomizationState.TabIconType.Top) painterResource(id = tab.icon) else null,
-                    text = tab.title,
+                    icon = if (tabIconType == SubComponentTabsState.TabIconType.None) null else painterResource(id = tab.icon),
+                    text = if (tabTextEnabled) tab.title else null,
                     selected = pagerState.currentPage == index,
                     onClick = {
                         scope.launch {

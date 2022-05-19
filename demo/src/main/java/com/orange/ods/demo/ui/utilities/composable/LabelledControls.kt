@@ -12,6 +12,9 @@ package com.orange.ods.demo.ui.utilities.composable
 
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Row
+import androidx.compose.material.ContentAlpha
+import androidx.compose.material.MaterialTheme
+import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.MutableState
 import androidx.compose.ui.Alignment
@@ -57,6 +60,10 @@ fun <T> LabelledRadioButton(
             onClick = { clickAction.invoke() },
             enabled = enabled
         )
-        OdsTextBody1(text = label)
+        Text(
+            text = label,
+            style = MaterialTheme.typography.body1,
+            color = MaterialTheme.colors.onSurface.copy(alpha = if (enabled) ContentAlpha.high else ContentAlpha.disabled)
+        )
     }
 }

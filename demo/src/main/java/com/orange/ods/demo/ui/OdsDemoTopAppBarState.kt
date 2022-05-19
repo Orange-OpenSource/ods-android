@@ -18,25 +18,27 @@ import androidx.compose.runtime.saveable.rememberSaveable
 import com.google.accompanist.pager.ExperimentalPagerApi
 import com.google.accompanist.pager.PagerState
 import com.orange.ods.demo.R
+import com.orange.ods.demo.ui.components.tabs.SubComponentTabsState
 import com.orange.ods.demo.ui.components.tabs.TabItem
-import com.orange.ods.demo.ui.components.tabs.TabsCustomizationState
 
 @Composable
 @ExperimentalPagerApi
 fun rememberOdsDemoTopAppBarState(
     titleRes: MutableState<Int> = rememberSaveable { mutableStateOf(R.string.navigation_item_guidelines) },
     tabs: MutableState<List<TabItem>> = rememberSaveable { mutableStateOf(emptyList()) },
-    tabIconType: MutableState<TabsCustomizationState.TabIconType> = rememberSaveable { mutableStateOf(TabsCustomizationState.TabIconType.Top) }
+    tabIconType: MutableState<SubComponentTabsState.TabIconType> = rememberSaveable { mutableStateOf(SubComponentTabsState.TabIconType.Top) },
+    tabTextEnabled: MutableState<Boolean> = rememberSaveable { mutableStateOf(true) }
 ) =
-    remember(titleRes, tabs, tabIconType) {
-        OdsDemoTopAppBarState(titleRes, tabs, tabIconType)
+    remember(titleRes, tabs, tabIconType, tabTextEnabled) {
+        OdsDemoTopAppBarState(titleRes, tabs, tabIconType, tabTextEnabled)
     }
 
 @ExperimentalPagerApi
 class OdsDemoTopAppBarState(
     val titleRes: MutableState<Int>,
     val tabs: MutableState<List<TabItem>>,
-    val tabIconType: MutableState<TabsCustomizationState.TabIconType>
+    val tabIconType: MutableState<SubComponentTabsState.TabIconType>,
+    val tabTextEnabled: MutableState<Boolean>
 ) {
     var pagerState: PagerState? = null
         private set
@@ -52,10 +54,11 @@ class OdsDemoTopAppBarState(
         this.titleRes.value = titleRes
     }
 
-    fun updateTopAppBarTabs(tabs: List<TabItem>, pagerState: PagerState?, tabIconType: TabsCustomizationState.TabIconType) {
+    fun updateTopAppBarTabs(tabs: List<TabItem>, pagerState: PagerState?, tabIconType: SubComponentTabsState.TabIconType, tabTextEnabled: Boolean) {
         this.tabs.value = tabs
         this.pagerState = pagerState
         this.tabIconType.value = tabIconType
+        this.tabTextEnabled.value = tabTextEnabled
     }
 
     fun clearTopAppBarTabs() {

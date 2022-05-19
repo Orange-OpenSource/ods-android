@@ -23,20 +23,22 @@ private const val TabCountMin = 2
 
 @ExperimentalPagerApi
 @Composable
-fun rememberTabsCustomizationState(
+fun rememberSubComponentTabsState(
     pagerState: PagerState = rememberPagerState(),
     tabsNumber: MutableState<Int> = rememberSaveable { mutableStateOf(2) },
-    selectedTabIconType: MutableState<TabsCustomizationState.TabIconType> = rememberSaveable { mutableStateOf(TabsCustomizationState.TabIconType.Top) }
+    selectedTabIconType: MutableState<SubComponentTabsState.TabIconType> = rememberSaveable { mutableStateOf(SubComponentTabsState.TabIconType.Top) },
+    tabTextEnabled: MutableState<Boolean> = rememberSaveable { mutableStateOf(true) }
 ) =
-    remember(pagerState, tabsNumber, selectedTabIconType) {
-        TabsCustomizationState(pagerState, tabsNumber, selectedTabIconType)
+    remember(pagerState, tabsNumber, selectedTabIconType, tabTextEnabled) {
+        SubComponentTabsState(pagerState, tabsNumber, selectedTabIconType, tabTextEnabled)
     }
 
 @ExperimentalPagerApi
-class TabsCustomizationState(
+class SubComponentTabsState(
     val pagerState: PagerState,
     val tabsNumber: MutableState<Int>,
-    val selectedTabIconType: MutableState<TabIconType>
+    val selectedTabIconType: MutableState<TabIconType>,
+    val tabTextEnabled: MutableState<Boolean>
 ) {
     enum class TabIconType {
         Leading, Top, None
@@ -44,11 +46,17 @@ class TabsCustomizationState(
 
     private val availableTabs = TabItem::class.sealedSubclasses.mapNotNull { it.objectInstance }
 
+    val isTabTextCheckboxEnabled: Boolean
+        get() = selectedTabIconType.value != TabIconType.None
+
+    val areTabIconRadiosEnabled: Boolean
+        get() = tabTextEnabled.value
+
     val canRemoveTab: Boolean
         get() = tabsNumber.value > TabCountMin
 
     val tabs: List<TabItem>
         get() = availableTabs.subList(0, tabsNumber.value)
-
+    
     fun canAddTab(tabCountMax: Int) = tabsNumber.value < tabCountMax
 }
