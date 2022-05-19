@@ -19,6 +19,7 @@ import com.orange.ods.demo.ui.components.cards.SubComponentCard
 import com.orange.ods.demo.ui.components.lists.SubComponentList
 import com.orange.ods.demo.ui.components.tabs.SubComponentTab
 import com.orange.ods.demo.ui.components.tabs.TabItem
+import com.orange.ods.demo.ui.components.tabs.TabsCustomizationState
 import com.orange.ods.demo.ui.components.textfields.SubComponentTextField
 
 @ExperimentalMaterialApi
@@ -27,7 +28,7 @@ import com.orange.ods.demo.ui.components.textfields.SubComponentTextField
 fun SubComponentDetailScreen(
     subComponentId: Long,
     updateTopBarTitle: (Int) -> Unit,
-    updateTopAppBarTabs: (List<TabItem>, PagerState?) -> Unit
+    updateTopAppBarTabs: (List<TabItem>, PagerState?, TabsCustomizationState.TabIconType) -> Unit
 ) {
     val component = remember { components.firstOrNull { component -> component.subComponents.any { subComponent -> subComponent.id == subComponentId } } }
     val subComponent = remember { components.flatMap { it.subComponents }.firstOrNull { it.id == subComponentId } }

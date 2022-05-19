@@ -20,19 +20,21 @@ import com.google.accompanist.pager.ExperimentalPagerApi
 import com.google.accompanist.pager.PagerState
 import com.orange.ods.demo.ui.MainDestinations
 import com.orange.ods.demo.ui.components.tabs.TabItem
+import com.orange.ods.demo.ui.components.tabs.TabsCustomizationState
 
 @ExperimentalMaterialApi
 @ExperimentalPagerApi
 fun NavGraphBuilder.addComponentsGraph(
     onNavElementClick: (String, Long?, NavBackStackEntry) -> Unit,
     updateTopBarTitle: (Int) -> Unit,
-    updateTopAppBarTabs: (List<TabItem>, PagerState?) -> Unit
+    updateTopAppBarTabs: (List<TabItem>, PagerState?, TabsCustomizationState.TabIconType) -> Unit,
+    clearTopAppBarTabs: () -> Unit
 ) {
     composable(
         "${MainDestinations.COMPONENT_DETAIL_ROUTE}/{${MainDestinations.COMPONENT_ID_KEY}}",
         arguments = listOf(navArgument(MainDestinations.COMPONENT_ID_KEY) { type = NavType.LongType })
     ) { from ->
-        updateTopAppBarTabs(emptyList(), null)
+        clearTopAppBarTabs()
         val arguments = requireNotNull(from.arguments)
         val componentId = arguments.getLong(MainDestinations.COMPONENT_ID_KEY)
         ComponentDetailScreen(

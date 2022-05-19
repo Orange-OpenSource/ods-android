@@ -26,26 +26,29 @@ private const val TabCountMin = 2
 fun rememberTabsCustomizationState(
     pagerState: PagerState = rememberPagerState(),
     tabsNumber: MutableState<Int> = rememberSaveable { mutableStateOf(2) },
-    iconIsChecked: MutableState<Boolean> = rememberSaveable { mutableStateOf(false) }
+    selectedTabIconType: MutableState<TabsCustomizationState.TabIconType> = rememberSaveable { mutableStateOf(TabsCustomizationState.TabIconType.Top) }
 ) =
-    remember(pagerState, tabsNumber, iconIsChecked) {
-        TabsCustomizationState(pagerState, tabsNumber, iconIsChecked)
+    remember(pagerState, tabsNumber, selectedTabIconType) {
+        TabsCustomizationState(pagerState, tabsNumber, selectedTabIconType)
     }
 
 @ExperimentalPagerApi
 class TabsCustomizationState(
     val pagerState: PagerState,
     val tabsNumber: MutableState<Int>,
-    val iconIsChecked: MutableState<Boolean>
+    val selectedTabIconType: MutableState<TabIconType>
 ) {
+    enum class TabIconType {
+        Leading, Top, None
+    }
+
     private val availableTabs = TabItem::class.sealedSubclasses.mapNotNull { it.objectInstance }
 
     val canRemoveTab: Boolean
         get() = tabsNumber.value > TabCountMin
 
-    val canAddTab: Boolean
-        get() = tabsNumber.value < 3
-
     val tabs: List<TabItem>
         get() = availableTabs.subList(0, tabsNumber.value)
+
+    fun canAddTab(tabCountMax: Int) = tabsNumber.value < tabCountMax
 }

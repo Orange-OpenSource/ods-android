@@ -28,7 +28,7 @@ import com.orange.ods.demo.ui.components.SubComponent
 @ExperimentalMaterialApi
 @ExperimentalPagerApi
 @Composable
-fun SubComponentTab(subComponent: SubComponent, updateTopAppBarTabs: (List<TabItem>, PagerState?) -> Unit) {
+fun SubComponentTab(subComponent: SubComponent, updateTopAppBarTabs: (List<TabItem>, PagerState?, TabsCustomizationState.TabIconType) -> Unit) {
     when (subComponent) {
         SubComponent.TabsFixed -> TabsFixedContent(updateTopAppBarTabs)
         SubComponent.TabsScrollable -> TabsScrollableContent()

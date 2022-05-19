@@ -154,6 +154,8 @@
     <string name="component_tabs_fixed">Fixed tabs</string>
     <string name="component_tabs_scrollable">Scrollable tabs</string>
     <string name="component_tabs_number">Tabs number</string>
+    <string name="component_tab_icon_leading">Leading</string>
+    <string name="component_tab_icon_top">Top</string>
 
     <!-- About -->
     <string name="about_app_name">Orange Design</string>
