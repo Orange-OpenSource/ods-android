@@ -28,29 +28,29 @@ import com.orange.ods.utilities.extension.ifNotNull
  * place them horizontally next to each other and fallback to horizontal placement if not enough
  * space is available.
  *
- * @param modifier Modifier to be applied to the layout of the dialog.
- * @param onDismissRequest Executes when the user tries to dismiss the Dialog by clicking outside
- * or pressing the back button. This is not called when the dismiss button is clicked.
+ * @param text The text which presents the details regarding the Dialog's purpose.
  * @param confirmButtonText The text of the button which is meant to confirm a proposed action, thus resolving
  * what triggered the dialog.
  * @param onConfirmButtonClick The action executed on confirm button click
+ * @param modifier Modifier to be applied to the layout of the dialog.
+ * @param onDismissRequest Executes when the user tries to dismiss the Dialog by clicking outside
+ * or pressing the back button. This is not called when the dismiss button is clicked.
  * @param dismissButtonText The text of the button which is meant to dismiss the dialog.
  * @param onDismissButtonClick The action executed on dismiss button click
  * @param titleText The title of the Dialog which should specify the purpose of the Dialog. The title
  * is not mandatory, because there may be sufficient information inside the [text].
- * @param text The text which presents the details regarding the Dialog's purpose.
  * @param properties Typically platform specific properties to further configure the dialog.
  */
 @Composable
 fun OdsAlertDialog(
-    modifier: Modifier = Modifier,
-    onDismissRequest: () -> Unit = {},
+    text: String,
     confirmButtonText: String,
     onConfirmButtonClick: () -> Unit,
+    modifier: Modifier = Modifier,
+    onDismissRequest: () -> Unit = {},
     dismissButtonText: String? = null,
     onDismissButtonClick: (() -> Unit)? = null,
     titleText: String? = null,
-    text: String,
     properties: DialogProperties = DialogProperties()
 ) {
     AlertDialog(
