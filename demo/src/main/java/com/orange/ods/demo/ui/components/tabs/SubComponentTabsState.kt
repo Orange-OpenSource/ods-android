@@ -10,6 +10,9 @@
 
 package com.orange.ods.demo.ui.components.tabs
 
+import androidx.compose.material.BottomSheetScaffoldState
+import androidx.compose.material.ExperimentalMaterialApi
+import androidx.compose.material.rememberBottomSheetScaffoldState
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.MutableState
 import androidx.compose.runtime.mutableStateOf
@@ -19,22 +22,24 @@ import com.google.accompanist.pager.ExperimentalPagerApi
 import com.google.accompanist.pager.PagerState
 import com.google.accompanist.pager.rememberPagerState
 
-private const val TabCountMin = 2
-
+@ExperimentalMaterialApi
 @ExperimentalPagerApi
 @Composable
 fun rememberSubComponentTabsState(
+    bottomSheetScaffoldState: BottomSheetScaffoldState = rememberBottomSheetScaffoldState(),
+    tabsNumber: MutableState<Int>,
     pagerState: PagerState = rememberPagerState(),
-    tabsNumber: MutableState<Int> = rememberSaveable { mutableStateOf(2) },
     selectedTabIconType: MutableState<SubComponentTabsState.TabIconType> = rememberSaveable { mutableStateOf(SubComponentTabsState.TabIconType.Top) },
     tabTextEnabled: MutableState<Boolean> = rememberSaveable { mutableStateOf(true) }
 ) =
-    remember(pagerState, tabsNumber, selectedTabIconType, tabTextEnabled) {
-        SubComponentTabsState(pagerState, tabsNumber, selectedTabIconType, tabTextEnabled)
+    remember(bottomSheetScaffoldState, pagerState, tabsNumber, selectedTabIconType, tabTextEnabled) {
+        SubComponentTabsState(bottomSheetScaffoldState, pagerState, tabsNumber, selectedTabIconType, tabTextEnabled)
     }
 
+@ExperimentalMaterialApi
 @ExperimentalPagerApi
 class SubComponentTabsState(
+    val bottomSheetScaffoldState: BottomSheetScaffoldState,
     val pagerState: PagerState,
     val tabsNumber: MutableState<Int>,
     val selectedTabIconType: MutableState<TabIconType>,
@@ -52,11 +57,10 @@ class SubComponentTabsState(
     val areTabIconRadiosEnabled: Boolean
         get() = tabTextEnabled.value
 
-    val canRemoveTab: Boolean
-        get() = tabsNumber.value > TabCountMin
-
     val tabs: List<TabItem>
         get() = availableTabs.subList(0, tabsNumber.value)
-    
+
+    fun canRemoveTab(tabCountMin: Int) = tabsNumber.value > tabCountMin
+
     fun canAddTab(tabCountMax: Int) = tabsNumber.value < tabCountMax
 }

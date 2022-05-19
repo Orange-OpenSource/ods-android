@@ -17,17 +17,15 @@ import androidx.navigation.NavType
 import androidx.navigation.compose.composable
 import androidx.navigation.navArgument
 import com.google.accompanist.pager.ExperimentalPagerApi
-import com.google.accompanist.pager.PagerState
 import com.orange.ods.demo.ui.MainDestinations
-import com.orange.ods.demo.ui.components.tabs.SubComponentTabsState
-import com.orange.ods.demo.ui.components.tabs.TabItem
+import com.orange.ods.demo.ui.TabsConfiguration
 
 @ExperimentalMaterialApi
 @ExperimentalPagerApi
 fun NavGraphBuilder.addComponentsGraph(
     onNavElementClick: (String, Long?, NavBackStackEntry) -> Unit,
     updateTopBarTitle: (Int) -> Unit,
-    updateTopAppBarTabs: (List<TabItem>, PagerState?, SubComponentTabsState.TabIconType, Boolean) -> Unit,
+    updateTopAppBarTabs: (TabsConfiguration) -> Unit,
     clearTopAppBarTabs: () -> Unit
 ) {
     composable(

@@ -10,9 +10,12 @@
 
 package com.orange.ods.demo.ui
 
+import androidx.compose.material.ExperimentalMaterialApi
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.MutableState
+import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
+import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.lifecycle.Lifecycle
 import androidx.navigation.NavBackStackEntry
 import androidx.navigation.NavDestination
@@ -21,6 +24,7 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
 import com.google.accompanist.pager.ExperimentalPagerApi
+import com.orange.ods.demo.R
 
 /**
  * Destinations used in the [OdsDemoApp].
@@ -41,24 +45,36 @@ object MainDestinations {
 
 @Composable
 @ExperimentalPagerApi
+@ExperimentalMaterialApi
 fun rememberOdsDemoAppState(
     navController: NavHostController = rememberNavController(),
     darkModeEnabled: MutableState<Boolean>,
-    topAppBarState: OdsDemoTopAppBarState = rememberOdsDemoTopAppBarState()
+    topAppBarTitleRes: MutableState<Int> = rememberSaveable { mutableStateOf(R.string.navigation_item_guidelines) },
+    tabsState: OdsDemoTabsState = rememberOdsDemoTabsState()
 ) =
-    remember(navController, darkModeEnabled, topAppBarState) {
-        OdsDemoAppState(navController, darkModeEnabled, topAppBarState)
+    remember(navController, darkModeEnabled, topAppBarTitleRes, tabsState) {
+        OdsDemoAppState(navController, darkModeEnabled, topAppBarTitleRes, tabsState)
     }
 
 @ExperimentalPagerApi
+@ExperimentalMaterialApi
 class OdsDemoAppState(
     val navController: NavHostController,
     val darkModeEnabled: MutableState<Boolean>,
-    val topAppBarState: OdsDemoTopAppBarState
+    val topAppBarTitleRes: MutableState<Int>,
+    val tabsState: OdsDemoTabsState
 ) {
 
     fun updateTheme(isDark: Boolean) {
         darkModeEnabled.value = isDark
+    }
+
+    // ----------------------------------------------------------
+    // TopAppBar state source of truth
+    // ----------------------------------------------------------
+
+    fun updateTopAppBarTitle(titleRes: Int) {
+        topAppBarTitleRes.value = titleRes
     }
 
     // ----------------------------------------------------------

@@ -22,7 +22,7 @@ import androidx.compose.ui.text.style.TextOverflow
 /**
  * <a href="https://system.design.orange.com/0c1af118d/p/513d27-tabs/b/50cb71" class="external" target="_blank">ODS tab</a>.
  *
- * An OdsLeadingIconTab is a Jetpack Compose [LeadingIconTab] to which we applied the Orange design and theme.
+ * An OdsLeadingIconTab is a Jetpack Compose [LeadingIconTab] with the Orange design and theme.
  * @see LeadingIconTab documentation
  *
  * This should typically be used inside of an [OdsTabRow].

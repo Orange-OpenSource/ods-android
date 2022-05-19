@@ -10,6 +10,7 @@
 
 package com.orange.ods.demo.ui
 
+import androidx.compose.material.ExperimentalMaterialApi
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.MutableState
 import androidx.compose.runtime.mutableStateOf
@@ -17,28 +18,29 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.saveable.rememberSaveable
 import com.google.accompanist.pager.ExperimentalPagerApi
 import com.google.accompanist.pager.PagerState
-import com.orange.ods.demo.R
 import com.orange.ods.demo.ui.components.tabs.SubComponentTabsState
 import com.orange.ods.demo.ui.components.tabs.TabItem
 
 @Composable
 @ExperimentalPagerApi
-fun rememberOdsDemoTopAppBarState(
-    titleRes: MutableState<Int> = rememberSaveable { mutableStateOf(R.string.navigation_item_guidelines) },
+@ExperimentalMaterialApi
+fun rememberOdsDemoTabsState(
     tabs: MutableState<List<TabItem>> = rememberSaveable { mutableStateOf(emptyList()) },
     tabIconType: MutableState<SubComponentTabsState.TabIconType> = rememberSaveable { mutableStateOf(SubComponentTabsState.TabIconType.Top) },
-    tabTextEnabled: MutableState<Boolean> = rememberSaveable { mutableStateOf(true) }
+    tabTextEnabled: MutableState<Boolean> = rememberSaveable { mutableStateOf(true) },
+    scrollableTabs: MutableState<Boolean> = rememberSaveable { mutableStateOf(false) }
 ) =
-    remember(titleRes, tabs, tabIconType, tabTextEnabled) {
-        OdsDemoTopAppBarState(titleRes, tabs, tabIconType, tabTextEnabled)
+    remember(tabs, tabIconType, tabTextEnabled, scrollableTabs) {
+        OdsDemoTabsState(tabs, tabIconType, tabTextEnabled, scrollableTabs)
     }
 
 @ExperimentalPagerApi
-class OdsDemoTopAppBarState(
-    val titleRes: MutableState<Int>,
+@ExperimentalMaterialApi
+class OdsDemoTabsState(
     val tabs: MutableState<List<TabItem>>,
     val tabIconType: MutableState<SubComponentTabsState.TabIconType>,
-    val tabTextEnabled: MutableState<Boolean>
+    val tabTextEnabled: MutableState<Boolean>,
+    val scrollableTabs: MutableState<Boolean>
 ) {
     var pagerState: PagerState? = null
         private set
@@ -47,18 +49,15 @@ class OdsDemoTopAppBarState(
         get() = tabs.value.isNotEmpty()
 
     // ----------------------------------------------------------
-    // TopAppBar state source of truth
+    // Tabs state source of truth
     // ----------------------------------------------------------
 
-    fun updateTopAppBarTitle(titleRes: Int) {
-        this.titleRes.value = titleRes
-    }
-
-    fun updateTopAppBarTabs(tabs: List<TabItem>, pagerState: PagerState?, tabIconType: SubComponentTabsState.TabIconType, tabTextEnabled: Boolean) {
-        this.tabs.value = tabs
-        this.pagerState = pagerState
-        this.tabIconType.value = tabIconType
-        this.tabTextEnabled.value = tabTextEnabled
+    fun updateTopAppBarTabs(tabsConfiguration: TabsConfiguration) {
+        tabs.value = tabsConfiguration.tabs
+        pagerState = tabsConfiguration.pagerState
+        tabIconType.value = tabsConfiguration.tabIconType
+        tabTextEnabled.value = tabsConfiguration.tabTextEnabled
+        scrollableTabs.value = tabsConfiguration.scrollableTabs
     }
 
     fun clearTopAppBarTabs() {
@@ -66,3 +65,11 @@ class OdsDemoTopAppBarState(
         pagerState = null
     }
 }
+
+data class TabsConfiguration @ExperimentalPagerApi @ExperimentalMaterialApi constructor(
+    val scrollableTabs: Boolean,
+    val tabs: List<TabItem>,
+    val pagerState: PagerState,
+    val tabIconType: SubComponentTabsState.TabIconType,
+    val tabTextEnabled: Boolean
+)

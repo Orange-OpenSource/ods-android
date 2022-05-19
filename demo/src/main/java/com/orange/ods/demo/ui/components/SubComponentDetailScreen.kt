@@ -14,12 +14,10 @@ import androidx.compose.material.ExperimentalMaterialApi
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember
 import com.google.accompanist.pager.ExperimentalPagerApi
-import com.google.accompanist.pager.PagerState
+import com.orange.ods.demo.ui.TabsConfiguration
 import com.orange.ods.demo.ui.components.cards.SubComponentCard
 import com.orange.ods.demo.ui.components.lists.SubComponentList
 import com.orange.ods.demo.ui.components.tabs.SubComponentTabs
-import com.orange.ods.demo.ui.components.tabs.SubComponentTabsState
-import com.orange.ods.demo.ui.components.tabs.TabItem
 import com.orange.ods.demo.ui.components.textfields.SubComponentTextField
 
 @ExperimentalMaterialApi
@@ -28,7 +26,7 @@ import com.orange.ods.demo.ui.components.textfields.SubComponentTextField
 fun SubComponentDetailScreen(
     subComponentId: Long,
     updateTopBarTitle: (Int) -> Unit,
-    updateTopAppBarTabs: (List<TabItem>, PagerState?, SubComponentTabsState.TabIconType, Boolean) -> Unit
+    updateTopAppBarTabs: (TabsConfiguration) -> Unit
 ) {
     val component = remember { components.firstOrNull { component -> component.subComponents.any { subComponent -> subComponent.id == subComponentId } } }
     val subComponent = remember { components.flatMap { it.subComponents }.firstOrNull { it.id == subComponentId } }

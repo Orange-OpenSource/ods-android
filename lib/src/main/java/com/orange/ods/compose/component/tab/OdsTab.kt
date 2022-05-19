@@ -21,7 +21,7 @@ import androidx.compose.ui.graphics.painter.Painter
 /**
  * <a href="https://system.design.orange.com/0c1af118d/p/513d27-tabs/b/50cb71" class="external" target="_blank">ODS tab</a>.
  *
- * An OdsTab is a Jetpack Compose [Tab] to which we applied the Orange design and theme.
+ * An OdsTab is a Jetpack Compose [Tab] with the Orange design and theme.
  * @see Tab documentation
  *
  * This should typically be used inside of an [OdsTabRow].
