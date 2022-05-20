@@ -105,8 +105,8 @@ fun OdsCardTitleFirst(
             text?.let {
                 OdsTextBody1(
                     modifier = Modifier
-                        .padding(top = dimensionResource(id = R.dimen.ods_spacing_xs))
-                        .padding(horizontal = dimensionResource(id = R.dimen.ods_spacing_xs)),
+                        .padding(top = dimensionResource(id = R.dimen.ods_spacing_s))
+                        .padding(horizontal = dimensionResource(id = R.dimen.ods_spacing_s)),
                     text = it
                 )
             }
@@ -114,7 +114,8 @@ fun OdsCardTitleFirst(
             Row(
                 modifier = Modifier
                     .fillMaxWidth()
-                    .padding(horizontal = dimensionResource(id = R.dimen.ods_spacing_xs)),
+                    .padding(horizontal = dimensionResource(id = R.dimen.ods_spacing_xs))
+                    .padding(top = dimensionResource(id = R.dimen.ods_spacing_s)),
                 horizontalArrangement = Arrangement.spacedBy(dimensionResource(id = R.dimen.ods_spacing_xs))
             ) {
                 button1Text?.let {
