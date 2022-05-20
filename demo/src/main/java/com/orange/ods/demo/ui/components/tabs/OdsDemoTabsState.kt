@@ -8,24 +8,21 @@
  * /
  */
 
-package com.orange.ods.demo.ui
+package com.orange.ods.demo.ui.components.tabs
 
 import androidx.compose.material.ExperimentalMaterialApi
-import androidx.compose.runtime.Composable
-import androidx.compose.runtime.MutableState
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
+import androidx.compose.runtime.*
 import androidx.compose.runtime.saveable.rememberSaveable
+import androidx.compose.runtime.snapshots.SnapshotStateList
 import com.google.accompanist.pager.ExperimentalPagerApi
 import com.google.accompanist.pager.PagerState
-import com.orange.ods.demo.ui.components.tabs.SubComponentTabsState
-import com.orange.ods.demo.ui.components.tabs.TabItem
+import com.orange.ods.demo.ui.utilities.rememberMutableStateListOf
 
 @Composable
 @ExperimentalPagerApi
 @ExperimentalMaterialApi
 fun rememberOdsDemoTabsState(
-    tabs: MutableState<List<TabItem>> = rememberSaveable { mutableStateOf(emptyList()) },
+    tabs: SnapshotStateList<TabItem> = rememberMutableStateListOf(),
     tabIconType: MutableState<SubComponentTabsState.TabIconType> = rememberSaveable { mutableStateOf(SubComponentTabsState.TabIconType.Top) },
     tabTextEnabled: MutableState<Boolean> = rememberSaveable { mutableStateOf(true) },
     scrollableTabs: MutableState<Boolean> = rememberSaveable { mutableStateOf(false) }
@@ -37,7 +34,7 @@ fun rememberOdsDemoTabsState(
 @ExperimentalPagerApi
 @ExperimentalMaterialApi
 class OdsDemoTabsState(
-    val tabs: MutableState<List<TabItem>>,
+    val tabs: SnapshotStateList<TabItem>,
     val tabIconType: MutableState<SubComponentTabsState.TabIconType>,
     val tabTextEnabled: MutableState<Boolean>,
     val scrollableTabs: MutableState<Boolean>
@@ -46,14 +43,17 @@ class OdsDemoTabsState(
         private set
 
     val hasTabs: Boolean
-        get() = tabs.value.isNotEmpty()
+        get() = tabs.isNotEmpty()
 
     // ----------------------------------------------------------
     // Tabs state source of truth
     // ----------------------------------------------------------
 
     fun updateTopAppBarTabs(tabsConfiguration: TabsConfiguration) {
-        tabs.value = tabsConfiguration.tabs
+        with(tabs) {
+            clear()
+            addAll(tabsConfiguration.tabs)
+        }
         pagerState = tabsConfiguration.pagerState
         tabIconType.value = tabsConfiguration.tabIconType
         tabTextEnabled.value = tabsConfiguration.tabTextEnabled
@@ -61,7 +61,7 @@ class OdsDemoTabsState(
     }
 
     fun clearTopAppBarTabs() {
-        tabs.value = emptyList()
+        tabs.clear()
         pagerState = null
     }
 }

@@ -18,7 +18,7 @@ import androidx.navigation.compose.composable
 import androidx.navigation.navArgument
 import com.google.accompanist.pager.ExperimentalPagerApi
 import com.orange.ods.demo.ui.MainDestinations
-import com.orange.ods.demo.ui.TabsConfiguration
+import com.orange.ods.demo.ui.components.tabs.TabsConfiguration
 
 @ExperimentalMaterialApi
 @ExperimentalPagerApi

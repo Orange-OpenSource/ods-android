@@ -35,7 +35,6 @@ import com.google.accompanist.pager.ExperimentalPagerApi
 import com.google.accompanist.pager.HorizontalPager
 import com.orange.ods.compose.text.OdsTextSubtitle1
 import com.orange.ods.demo.R
-import com.orange.ods.demo.ui.TabsConfiguration
 import com.orange.ods.demo.ui.components.SubComponent
 import com.orange.ods.demo.ui.components.utilities.ComponentCustomizationBottomSheetScaffold
 import com.orange.ods.demo.ui.components.utilities.ComponentCustomizationCheckboxItem
@@ -153,11 +152,11 @@ fun TabsPagerContentScreen(text: String) {
     }
 }
 
-sealed class TabItem(@DrawableRes val icon: Int, val title: String, val screen: @Composable () -> Unit) {
-    object Favourites : TabItem(R.drawable.ic_heart, "Favourites", { TabsPagerContentScreen("Favourites") })
-    object Calls : TabItem(R.drawable.ic_call, "Calls", { TabsPagerContentScreen("Calls") })
-    object Alerts : TabItem(R.drawable.ic_alert, "Alerts", { TabsPagerContentScreen("Alerts") })
-    object Calendar : TabItem(R.drawable.ic_calendar, "Calendar", { TabsPagerContentScreen("Calendar") })
-    object Account : TabItem(R.drawable.ic_account, "Account", { TabsPagerContentScreen("Account") })
-    object Settings : TabItem(R.drawable.ic_settings, "Settings", { TabsPagerContentScreen("Settings") })
+enum class TabItem(@DrawableRes val icon: Int, val title: String, val screen: @Composable () -> Unit) {
+    Favourites(R.drawable.ic_heart, "Favourites", { TabsPagerContentScreen("Favourites") }),
+    Calls(R.drawable.ic_call, "Calls", { TabsPagerContentScreen("Calls") }),
+    Alerts(R.drawable.ic_alert, "Alerts", { TabsPagerContentScreen("Alerts") }),
+    Calendar(R.drawable.ic_calendar, "Calendar", { TabsPagerContentScreen("Calendar") }),
+    Account(R.drawable.ic_account, "Account", { TabsPagerContentScreen("Account") }),
+    Settings(R.drawable.ic_settings, "Settings", { TabsPagerContentScreen("Settings") })
 }

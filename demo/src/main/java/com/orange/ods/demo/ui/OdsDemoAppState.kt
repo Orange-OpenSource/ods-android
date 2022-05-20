@@ -25,6 +25,8 @@ import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
 import com.google.accompanist.pager.ExperimentalPagerApi
 import com.orange.ods.demo.R
+import com.orange.ods.demo.ui.components.tabs.OdsDemoTabsState
+import com.orange.ods.demo.ui.components.tabs.rememberOdsDemoTabsState
 
 /**
  * Destinations used in the [OdsDemoApp].

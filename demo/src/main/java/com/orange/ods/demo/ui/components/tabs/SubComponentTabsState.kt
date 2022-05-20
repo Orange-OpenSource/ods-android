@@ -49,7 +49,7 @@ class SubComponentTabsState(
         Leading, Top, None
     }
 
-    private val availableTabs = TabItem::class.sealedSubclasses.mapNotNull { it.objectInstance }
+    private val availableTabs = TabItem.values().toList()
 
     val isTabTextCheckboxEnabled: Boolean
         get() = selectedTabIconType.value != TabIconType.None

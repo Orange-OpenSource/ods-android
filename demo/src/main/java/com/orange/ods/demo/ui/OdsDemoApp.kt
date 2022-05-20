@@ -42,6 +42,7 @@ import com.orange.ods.compose.component.bottomnavigation.OdsBottomNavigationItem
 import com.orange.ods.compose.theme.OdsMaterialTheme
 import com.orange.ods.demo.ui.about.addAboutGraph
 import com.orange.ods.demo.ui.components.addComponentsGraph
+import com.orange.ods.demo.ui.components.tabs.TabsConfiguration
 import com.orange.ods.demo.ui.components.tabs.TopAppBarFixedTabs
 import com.orange.ods.demo.ui.components.tabs.TopAppBarScrollableTabs
 import com.orange.ods.demo.ui.guidelines.addGuidelinesGraph
@@ -78,14 +79,14 @@ fun OdsDemoApp() {
                         if (appState.tabsState.hasTabs && appState.tabsState.pagerState != null) {
                             if (appState.tabsState.scrollableTabs.value) {
                                 TopAppBarScrollableTabs(
-                                    tabs = appState.tabsState.tabs.value,
+                                    tabs = appState.tabsState.tabs,
                                     pagerState = appState.tabsState.pagerState!!,
                                     tabIconType = appState.tabsState.tabIconType.value,
                                     tabTextEnabled = appState.tabsState.tabTextEnabled.value
                                 )
                             } else {
                                 TopAppBarFixedTabs(
-                                    tabs = appState.tabsState.tabs.value,
+                                    tabs = appState.tabsState.tabs,
                                     pagerState = appState.tabsState.pagerState!!,
                                     tabIconType = appState.tabsState.tabIconType.value,
                                     tabTextEnabled = appState.tabsState.tabTextEnabled.value

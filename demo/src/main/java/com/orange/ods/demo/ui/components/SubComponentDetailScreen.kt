@@ -14,7 +14,7 @@ import androidx.compose.material.ExperimentalMaterialApi
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember
 import com.google.accompanist.pager.ExperimentalPagerApi
-import com.orange.ods.demo.ui.TabsConfiguration
+import com.orange.ods.demo.ui.components.tabs.TabsConfiguration
 import com.orange.ods.demo.ui.components.cards.SubComponentCard
 import com.orange.ods.demo.ui.components.lists.SubComponentList
 import com.orange.ods.demo.ui.components.tabs.SubComponentTabs
