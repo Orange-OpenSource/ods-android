@@ -1,23 +1,26 @@
 ---
 layout: detail
 title: Radio Button
-description: Radio Button description
+description: Radio button selection control allows the user to select options.
 ---
 
-# Selection controls: radio buttons
-
-Selection controls allow the user to select options.
-
 Use radio buttons to:
-
 *   Select a single option from a list
 *   Expose all available options
 *   If available options can be collapsed, consider using a dropdown menu
     instead, as it uses less space.
 
+
 **Contents**
 
 *   [Using radio buttons](#using-radio-buttons)
+    *   [Material Design](#material-design)
+    *   [Accessibility](#accessibility)
+    *   [Adding a radio button](#adding-a-radio-button)
+        *   [In XML](#in-xml)
+        *   [In JetPack Compose](#in-jetpack-compose)
+    *   [Grouping radio buttons](#grouping-radio-buttons)
+
 
 ## Using radio buttons
 

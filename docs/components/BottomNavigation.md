@@ -1,12 +1,8 @@
 ---
 layout: detail
 title: Bottom navigation
-description: Bottom navigation description
+description: Bottom navigation bars allow movement between primary destinations in an app.
 ---
-
-# Bottom navigation
-
-Bottom navigation bars allow movement between primary destinations in an app.
 
 **Contents**
 
@@ -15,7 +11,7 @@ Bottom navigation bars allow movement between primary destinations in an app.
   *   [Accessibility](#accessibility)
   *   [Bottom navigation bar example](#bottom-navigation-bar-example)
         *   [In XML](#in-xml)
-        *   [In JetPack Compose](#in-jetpack-compose)
+        *   [In Jetpack Compose](#in-jetpack-compose)
 
 ## Using bottom navigation
 

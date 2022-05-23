@@ -1,12 +1,8 @@
 ---
 layout: detail
 title: Lists
-description: Lists description
-------------------------------
-
-# Lists
-
-Lists are continuous, vertical indexes of text or images.
+description: Lists are continuous, vertical indexes of text or images.
+---
 
 **Contents**
 

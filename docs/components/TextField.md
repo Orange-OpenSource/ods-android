@@ -1,12 +1,8 @@
 ---
 layout: detail
 title: Text field
-description: Text field description
+description: Text fields let users enter and edit text.
 ---
-
-# Text fields
-
-Text fields let users enter and edit text.
 
 **Contents**
 

@@ -1,12 +1,8 @@
 ---
 layout: detail
 title: Button
-description: Button description
+description: Buttons allow users to take actions, and make choices, with a single tap.
 ---
-
-# Buttons
-
-Buttons allow users to take actions, and make choices, with a single tap.
 
 **Contents**
 

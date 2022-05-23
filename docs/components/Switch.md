@@ -1,12 +1,8 @@
 ---
 layout: detail
 title: Switch
-description: Switch description
+description: Swicth selection control allows the user to select options.
 ---
-
-# Selection controls: switches
-
-Selection controls allow the user to select options.
 
 Switches toggle the state of a single setting on or off. They are the preferred
 way to adjust settings on mobile.
@@ -14,6 +10,11 @@ way to adjust settings on mobile.
 **Contents**
 
 *   [Using switches](#using-switches)
+    *   [Material Design](#material-design)
+    *   [Accessibility](#accessibility)
+    *   [Adding a switch](#adding-a-switch)
+          *   [In XML](#in-xml)
+          *   [In Jetpack Compose](#in-jetpack-compose)
 
 ## Using switches
 

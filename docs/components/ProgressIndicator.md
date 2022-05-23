@@ -1,12 +1,8 @@
 ---
 layout: detail
 title: Progress indicator
-description: Progress indicator description
+description: Progress indicators express an unspecified wait time or display the length of a process.
 ---
-
-# Progress Indicators
-
-Progress indicators express an unspecified wait time or display the length of a process.
 
 **Contents**
 

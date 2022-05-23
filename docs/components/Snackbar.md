@@ -1,12 +1,8 @@
 ---
 layout: detail
 title: Snackbar
-description: Snackbar description
+description: Snackbars provide brief messages about app processes at the bottom of the screen.
 ---
-
-# Snackbars
-
-Snackbars provide brief messages about app processes at the bottom of the screen.
 
 Snackbars inform users of a process that an app has performed or will perform.
 They appear temporarily, towards the bottom of the screen. They shouldn’t
@@ -20,6 +16,11 @@ action that was just taken, or retrying an action that had failed.
 **Contents**
 
 *   [Using snackbars](#using-snackbars)
+    *   [Material Design](#material-design)
+    *   [Accessibility](#accessibility)
+    *   [Showing a snackbar](#showing-a-snackbar)
+    *   [Adding an action](#adding-an-action)
+    *   [Anchoring a snackbar](#anchoring-a-snackbar)
 
 ## Using snackbars
 

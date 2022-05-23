@@ -1,12 +1,8 @@
 ---
 layout: detail
 title: Slider
-description: Slider description
+description: Sliders allow users to make selections from a range of values.
 ---
-
-# Slider
-
-Sliders allow users to make selections from a range of values.
 
 **Contents**
 

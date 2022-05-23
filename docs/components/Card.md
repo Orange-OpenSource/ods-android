@@ -1,12 +1,8 @@
 ---
 layout: detail
 title: Card
-description: Card description
+description: Cards contain content and actions about a single subject.
 ---
-
-# Cards
-
-Cards contain content and actions about a single subject.
 
 **Contents**
 

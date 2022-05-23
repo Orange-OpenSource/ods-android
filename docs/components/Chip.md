@@ -1,20 +1,19 @@
 ---
 layout: detail
 title: Chip
-description: Chip description
+description: Chips are compact elements that represent an input, attribute, or action.
 ---
-
-# Chips
-
-Chips are compact elements that represent an input, attribute, or action.
 
 **Contents**
 
 * [Using chips](#using-chips)
-* [Input chip](#input-chip)
-* [Choice chip](#choice-chip)
-* [Filter chip](#filter-chip)
-* [Action chip](#action-chip)
+  *   [Material Design](#material-design)
+  *   [Accessibility](#accessibility)
+  *   [Types](#types)
+        * [Input chip](#input-chip)
+        * [Choice chip](#choice-chip)
+        * [Filter chip](#filter-chip)
+        * [Action chip](#action-chip)
 
 ## Using chips
 
@@ -42,10 +41,10 @@ content labels are usually unnecessary.
 
 There are four types of chips:
 
-- [input (entry)](#input-chip)
-- [choice](#choice-chip)
-- [filter](#filter-chip)
-- [action](#action-chip)
+- [Input chip](#input-chip)
+- [Choice chip](#choice-chip)
+- [Filter chip](#filter-chip)
+- [Action chip](#action-chip)
 
 API and source code:
 

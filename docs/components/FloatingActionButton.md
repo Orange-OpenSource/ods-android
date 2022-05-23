@@ -1,21 +1,23 @@
 ---
 layout: detail
 title: Floating Action Button
-description: Floating Action Button description
+description: A floating action button (FAB) represents the primary action of a screen.
 ---
-
-# Floating action buttons
-
-A floating action button (FAB) represents the primary action of a screen.
 
 **Contents**
 
 *   [Using FABs](#using-fabs)
-*   [Regular FABs](#regular-fabs)
-*   [Mini FABs](#mini-fabs)
-*   [Extended FABs](#extended-fabs)
+    *   [Material Design](#material-design)
+    *   [Accessibility](#accessibility)
+    *   [Visibility](#visibility)
+    *   [Extending and Shrinking](#extending-and-shrinking)
+    *   [Sizing FABs](#sizing-fabs)
+    *   [Types](#types)
+        *   [Regular FABs](#regular-fabs)
+        *   [Mini FABs](#mini-fabs)
+        *   [Extended FABs](#extended-fabs)
 
-## Using fabs
+## Using FABs
 
 Before you can use Orange themed FABs, you need to add a dependency to the Orange Design System
 for Android library. For more information, go to the
@@ -83,22 +85,15 @@ Or, you can set a custom size via the `app:fabCustomSize` attribute. If set,
 
 ### Types
 
-There are three types of FABS: 
--   [Regular FABs](#regular-fabs)
--   [Mini FABs](#mini-fabs)
--   [Extended FABs](#extended-fabs)
-
-## Regular FABs
+#### Regular FABs
 
 Regular FABs are FABs that are not expanded and are a regular size.
 
 API and source code:
 
 *   `FloatingActionButton`
-  *   [Class description](https://developer.android.com/reference/com/google/android/material/floatingactionbutton/FloatingActionButton)
-  *   [Class source](https://github.com/material-components/material-components-android/tree/master/lib/java/com/google/android/material/floatingactionbutton/FloatingActionButton.java)
-
-### Using Regular FAB
+    *   [Class description](https://developer.android.com/reference/com/google/android/material/floatingactionbutton/FloatingActionButton)
+    *   [Class source](https://github.com/material-components/material-components-android/tree/master/lib/java/com/google/android/material/floatingactionbutton/FloatingActionButton.java)
 
 To have a regular FAB in your layout you must add `com.google.android.material.floatingactionbutton.FloatingActionButton` in your layout.
 
@@ -131,7 +126,7 @@ fab.setOnClickListener {
 }
 ```
 
-## Mini FABs
+#### Mini FABs
 
 A mini FAB should be used on smaller screens.
 
@@ -140,10 +135,8 @@ Mini FABs can also be used to create visual continuity with other screen element
 API and source code:
 
 *   `FloatingActionButton`
-  *   [Class description](https://developer.android.com/reference/com/google/android/material/floatingactionbutton/FloatingActionButton)
-  *   [Class source](https://github.com/material-components/material-components-android/tree/master/lib/java/com/google/android/material/floatingactionbutton/FloatingActionButton.java)
-
-### Adding a Mini FAB
+    *   [Class description](https://developer.android.com/reference/com/google/android/material/floatingactionbutton/FloatingActionButton)
+    *   [Class source](https://github.com/material-components/material-components-android/tree/master/lib/java/com/google/android/material/floatingactionbutton/FloatingActionButton.java)
 
 To have a mini FAB in your layout you must add `com.google.android.material.floatingactionbutton.FloatingActionButton` in your layout and set property `fabSize` to `mini`.
 
@@ -168,17 +161,15 @@ fab.setOnClickListener {
 }
 ```
 
-## Extended FABs
+#### Extended FABs
 
 The extended FAB is wider, and it includes a text label.
 
 API and source code:
 
 *   `ExtendedFloatingActionButton`
-  *   [Class description](https://developer.android.com/reference/com/google/android/material/floatingactionbutton/ExtendedFloatingActionButton)
-  *   [Class source](https://github.com/material-components/material-components-android/tree/master/lib/java/com/google/android/material/floatingactionbutton/ExtendedFloatingActionButton.java)
-
-### Adding an extended FAB
+    *   [Class description](https://developer.android.com/reference/com/google/android/material/floatingactionbutton/ExtendedFloatingActionButton)
+    *   [Class source](https://github.com/material-components/material-components-android/tree/master/lib/java/com/google/android/material/floatingactionbutton/ExtendedFloatingActionButton.java)
 
 To have an extended FAB in your layout you must add `com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton` in your layout.
 Icon should be set with property `icon`.
