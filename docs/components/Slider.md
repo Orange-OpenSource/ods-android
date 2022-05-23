@@ -24,7 +24,7 @@ Sliders allow users to make selections from a range of values.
 
 Before you can use Orange themed sliders, you need to add a dependency to the Orange Design System
 for Android library. For more information, go to the
-[Getting started](../getting-started.md) page.
+[Getting started](../home_content.md) page.
 
 ### Material Design
 

@@ -19,7 +19,7 @@ way to adjust settings on mobile.
 
 Before you can use Orange themed switches, you need to add a dependency to the Orange Design
 System for Android library. For more information, go to the
-[Getting started](../getting-started.md) page.
+[Getting started](../home_content.md) page.
 
 ### Material Design
 

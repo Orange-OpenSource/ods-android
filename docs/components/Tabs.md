@@ -18,7 +18,7 @@ Tabs organize content across different screens, data sets, and other interaction
 
 Before you can use Orange themed tabs, you need to add a dependency to the Orange Design System
 for Android library. For more information, go to the
-[Getting started](../getting-started.md) page.
+[Getting started](../home_content.md) page.
 
 ### Material Design
 

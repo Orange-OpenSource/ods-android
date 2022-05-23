@@ -25,7 +25,7 @@ action that was just taken, or retrying an action that had failed.
 
 Before you can use Orange themed snackbars, you need to add a dependency to the Orange Design System
 for Android library. For more information, go to the
-[Getting started](../getting-started.md) page.
+[Getting started](../home_content.md) page.
 
 ### Material Design
 

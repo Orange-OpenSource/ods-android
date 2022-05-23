@@ -1,9 +1,3 @@
----
-layout: detail
-title: Getting started
-description: Getting started with Orange Design System for Android
----
-
 # Instructions
 
 ## 1. Depend on our library

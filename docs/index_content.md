@@ -1,5 +1,5 @@
 ---
-layout: main
+layout: detail
 title: Getting started with Orange Design System for Android
 description: Adding to your project
 ---

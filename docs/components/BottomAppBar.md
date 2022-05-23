@@ -16,7 +16,7 @@ A bottom app bar displays navigation and key actions at the bottom of mobile scr
 
 Before you can use Orange themed bottom app bar, you need to add a dependency to the Orange Design System
 for Android library. For more information, go to the
-[Getting started](../getting-started.md) page.
+[Getting started](../home_content.md) page.
 
 ### Material Design
 

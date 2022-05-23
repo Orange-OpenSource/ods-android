@@ -1,0 +1,64 @@
+<!--
+  ~ /*
+  ~ * Copyright 2021 Orange
+  ~ *
+  ~ * Use of this source code is governed by an MIT-style
+  ~ * license that can be found in the LICENSE file or at
+  ~ * https://opensource.org/licenses/MIT.
+  ~ */
+  -->
+
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<!-- Preconnect to CDN: remove if not needed -->
+<link href="https://cdn.jsdelivr.net" rel="preconnect" crossorigin="anonymous">
+
+<!-- Boosted CSS -->
+<link href="https://cdn.jsdelivr.net/npm/boosted@5.0.2/dist/css/boosted.min.css" rel="stylesheet"
+      integrity="sha384-6VTsNhIHFxNglfMLfhvvJFxXZbdvT1UXhm7+wVMAda9c+2NIFu4zmlKKz/bJthi/"
+      crossorigin="anonymous">
+
+<!-- Custom CSS -->
+<link href="{{ "/assets/css/main.css" | relative_url }}" rel="stylesheet">
+
+<style>
+
+nav{
+    width: 50%;
+    margin: 0px auto 40px auto;
+    background-color: white;
+    position: sticky;
+    top: 0px;
+}
+
+nav ul{
+    list-style-type: none;
+}
+
+nav li{
+    float: left;
+    width: 25%;
+    text-align: center;
+}
+
+/*Avoid menu with null height*/
+nav ul::after{
+    content: "";
+    display: table;
+    clear: both;
+}
+
+nav a{
+    display: block; /*All surface will be clickable*/
+    text-decoration: none;
+    color: black;
+    border-bottom: 2px solid transparent;/*Avoid elements gap below the menu caused by border in :hover*/
+    padding: 10px 0px;/*Enlarge menu and text border*/
+}
+
+  border-bottom: 2px solid gold;
+}
+
+
+</style>
