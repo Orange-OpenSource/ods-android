@@ -27,7 +27,7 @@ toc2:
         url: /ods-android/components/Chip_docs
       - page: Dialog
         url: /ods-android/components/Dialog_docs
-      - page: Floating action button
+      - page: Floating Action Button
         url: /ods-android/components/FloatingActionButton_docs
       - page: Lists
         url: /ods-android/components/Lists_docs

@@ -156,11 +156,13 @@ In the layout:
 You can use the native `CircularProgressIndicator` like this:
 
 - For a determinate circular progress indicator
+
 ```kotlin
 CircularProgressIndicator(progress = 0.2f)
 ```
 
 - For an indeterminate circular progress indicator
+
 ```kotlin
 CircularProgressIndicator()
 ```
