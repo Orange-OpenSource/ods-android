@@ -4,6 +4,13 @@ toc2:
       - page: Instructions
         url: /ods-android/index.html
 
+  - title: Guidelines
+    subfolderitems:
+      - page: Colors
+        url: /ods-android/guidelines/Colors_docs
+      - page: Typography
+        url: /ods-android/guidelines/Typography_docs
+
   - title: Components
     subfolderitems:
       - page: Bottom app bar
@@ -40,5 +47,3 @@ toc2:
         url: /ods-android/components/TextField_docs
       - page: Top app bar
         url: /ods-android/components/TopAppBar_docs
-
-  - title: Modules
