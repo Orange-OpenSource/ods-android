@@ -36,7 +36,7 @@ badges . While optional, we strongly encourage their use.
 Adding a content description to the entire `TabLayout` can be done in XML with
 the `android:contentDescription` attribute or programmatically like so:
 
-```kt
+```kotlin
 tabLayout.contentDescription = contentDescription
 ```
 

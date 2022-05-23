@@ -36,7 +36,7 @@ optional, we strongly encourage their use.
 That can be done in XML via the `android:contentDescription` attribute or
 programmatically like so:
 
-```kt
+```kotlin
 slider.contentDescription = contentDescription
 ```
 

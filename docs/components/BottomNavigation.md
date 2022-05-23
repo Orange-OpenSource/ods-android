@@ -105,7 +105,7 @@ In `bottom_navigation_menu.xml` inside a `menu` resource directory:
 
 In code:
 
-```kt
+```kotlin
 bottomNavigation.selectedItemId = R.id.page_2
 ```
 

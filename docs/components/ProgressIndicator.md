@@ -37,7 +37,7 @@ Please consider setting the content descriptor for use with screen readers.
 
 That can be done in XML via the `android:contentDescription` attribute or programmatically like so:
 
-```kt
+```kotlin
 progressIndicator.contentDescription = contentDescription
 ```
 

@@ -155,7 +155,7 @@ In menu/navigation icons:
 
 In code:
 
-```kt
+```kotlin
 topAppBar.setNavigationOnClickListener {
     // Handle navigation icon press
 }

@@ -81,7 +81,7 @@ In the layout:
 
 In code:
 
-```kt
+```kotlin
 // To check a switch
 switchMaterial.isChecked = true
 

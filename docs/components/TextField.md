@@ -104,7 +104,7 @@ In the layout:
 
 In code:
 
-```kt
+```kotlin
 // Get input text
 val inputText = filledTextField.editText?.text.toString()
 
@@ -182,7 +182,7 @@ In the layout:
 
 In code:
 
-```kt
+```kotlin
 // Get input text
 val inputText = outlinedTextField.editText?.text.toString()
 

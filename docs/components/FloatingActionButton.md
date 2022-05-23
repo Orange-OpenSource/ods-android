@@ -44,7 +44,7 @@ Use the `show` and `hide` methods to animate the visibility of a
 grows the widget and fades it in, while the hide animation shrinks the widget
 and fades it out.
 
-```kt
+```kotlin
 // To show:
 fab.show()
 // To hide:
@@ -58,7 +58,7 @@ an `ExtendedFloatingActionButton`. The extend animation extends the FAB to show
 the text and the icon. The shrink animation shrinks the FAB to show just the
 icon.
 
-```kt
+```kotlin
 // To extend:
 extendedFab.extend()
 // To shrink:
@@ -120,7 +120,7 @@ In the layout:
 
 In code:
 
-```kt
+```kotlin
 fab.setOnClickListener {
     // Respond to FAB click
 }
@@ -155,7 +155,7 @@ In the layout:
 
 In code:
 
-```kt
+```kotlin
 fab.setOnClickListener {
     // Respond to FAB click
 }
@@ -197,7 +197,7 @@ In the layout:
 
 In code:
 
-```kt
+```kotlin
 extendedFab.setOnClickListener {
     // Respond to Extended FAB click
 }

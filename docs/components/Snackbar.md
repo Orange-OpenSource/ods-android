@@ -50,7 +50,7 @@ dismiss any previous ones first.
 
 To show a snackbar with a message and no action:
 
-```kt
+```kotlin
 // The view used to make the snackbar.
 // This should be contained within the view hierarchy you want to display the
 // snackbar. Generally it can be the view that was interacted with to trigger
@@ -68,7 +68,7 @@ Snackbars are automatically dismissed when the action is clicked.
 
 To show a snackbar with a message and an action:
 
-```kt
+```kotlin
 Snackbar.make(contextView, R.string.text_label, Snackbar.LENGTH_LONG)
     .setAction(R.string.action_text) {
         // Responds to click on the action
@@ -82,7 +82,7 @@ By default, `Snackbar`s will be anchored to the bottom edge of their parent
 view. However, you can use the `setAnchorView` method to make a `Snackbar`
 appear above a specific view within your layout, e.g. a `FloatingActionButton`.
 
-```kt
+```kotlin
 Snackbar.make(...)
     .setAnchorView(fab)
     ...

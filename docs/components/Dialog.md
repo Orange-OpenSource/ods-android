@@ -53,7 +53,7 @@ Alert dialogs interrupt users with urgent information, details, or actions.
 
 In code:
 
-```kt
+```kotlin
 MaterialAlertDialogBuilder(context)
         .setTitle(resources.getString(R.string.title))
         .setMessage(resources.getString(R.string.supporting_text))
@@ -71,7 +71,7 @@ MaterialAlertDialogBuilder(context)
 
 Centered dialog:
 
-```kt
+```kotlin
 MaterialAlertDialogBuilder(context, R.style.Widget.Orange.Dialog.Centered)
         .setTitle("title")
         .setMessage("message")
@@ -111,7 +111,7 @@ way.
 
 In code:
 
-```kt
+```kotlin
 val items = arrayOf("Item 1", "Item 2", "Item 3")
 
 MaterialAlertDialogBuilder(context)

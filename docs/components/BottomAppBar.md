@@ -142,7 +142,7 @@ In menu/navigation icon drawables:
 
 In code:
 
-```kt
+```kotlin
 bottomAppBar.setNavigationOnClickListener {
     // Handle navigation icon press
 }
