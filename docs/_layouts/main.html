@@ -48,6 +48,7 @@
     }
 
 
+
 </style>
 
 <head>
@@ -115,7 +116,7 @@
                     {% if page.content_page %}
 
                     {% for all in site.pages %}
-                    {% if all.name contains page.content_page %}
+                    {% if all.name == page.content_page %}
 
                     <div class="ods-intro pt-md-4 ps-lg-4">
                         <div class="d-md-flex align-items-center justify-content-between">
