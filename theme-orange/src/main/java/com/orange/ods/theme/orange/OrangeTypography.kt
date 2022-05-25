@@ -8,7 +8,7 @@
  * /
  */
 
-package com.orange.ods.theme.ods
+package com.orange.ods.theme.orange
 
 import androidx.compose.material.Typography
 import androidx.compose.ui.text.TextStyle

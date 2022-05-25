@@ -23,7 +23,7 @@ import androidx.navigation.NavGraph
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
-import com.orange.ods.compose.OrangeTheme
+import com.orange.ods.compose.theme.OdsTheme
 import com.orange.ods.demo.R
 import com.orange.ods.demo.ui.utilities.rememberMutableStateListOf
 
@@ -48,17 +48,17 @@ object MainDestinations {
 fun rememberOdsDemoAppState(
     navController: NavHostController = rememberNavController(),
     topAppBarTitleRes: MutableState<Int> = rememberSaveable { mutableStateOf(R.string.navigation_item_guidelines) },
-    orangeTheme: SnapshotStateList<OrangeTheme> = rememberMutableStateListOf(),
+    odsThemes: SnapshotStateList<OdsTheme> = rememberMutableStateListOf(),
     darkModeEnabled: MutableState<Boolean>
 ) =
-    remember(navController, topAppBarTitleRes, orangeTheme, darkModeEnabled) {
-        OdsDemoAppState(navController, topAppBarTitleRes, orangeTheme, darkModeEnabled)
+    remember(navController, topAppBarTitleRes, odsThemes, darkModeEnabled) {
+        OdsDemoAppState(navController, topAppBarTitleRes, odsThemes, darkModeEnabled)
     }
 
 class OdsDemoAppState(
     val navController: NavHostController,
     val topAppBarTitleRes: MutableState<Int>,
-    val orangeTheme: SnapshotStateList<OrangeTheme>,
+    val odsThemes: SnapshotStateList<OdsTheme>,
     val darkModeEnabled: MutableState<Boolean>
 ) {
 

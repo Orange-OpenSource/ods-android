@@ -29,9 +29,9 @@ import androidx.compose.ui.text.font.FontStyle
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.text.withStyle
 import androidx.compose.ui.unit.dp
-import com.orange.ods.compose.theme.ObsGrey700
 import com.orange.ods.demo.R
 import com.orange.ods.demo.ui.utilities.getStringName
+import com.orange.ods.theme.orange.ObsGrey700
 
 @Composable
 fun GuidelineTypographyScreen(updateTopBarTitle: (Int) -> Unit) {

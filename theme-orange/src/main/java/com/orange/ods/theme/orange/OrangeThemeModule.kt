@@ -8,9 +8,9 @@
  * /
  */
 
-package com.orange.ods.theme.ods
+package com.orange.ods.theme.orange
 
-import com.orange.ods.compose.OrangeTheme
+import com.orange.ods.compose.theme.OdsTheme
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -19,10 +19,10 @@ import dagger.multibindings.IntoSet
 
 @Module
 @InstallIn(SingletonComponent::class)
-object OdsThemeModule {
+object OrangeThemeModule {
 
     @Provides
     @IntoSet
-    fun provideOdsTheme(): OrangeTheme = OdsTheme()
+    fun provideOdsTheme(): OdsTheme = OrangeTheme()
 
 }

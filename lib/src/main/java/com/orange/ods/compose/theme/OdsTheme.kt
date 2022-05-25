@@ -8,18 +8,19 @@
  * /
  */
 
-package com.orange.ods.compose
+package com.orange.ods.compose.theme
 
 import android.os.Parcelable
 import androidx.compose.material.Typography
 import androidx.compose.material.darkColors
 import androidx.compose.material.lightColors
 
-abstract class OrangeTheme : Parcelable {
+abstract class OdsTheme : Parcelable {
 
     open fun getLightThemeColors() = lightColors()
 
     open fun getDarkThemeColors() = darkColors()
 
     open fun getTypography() = Typography()
+
 }

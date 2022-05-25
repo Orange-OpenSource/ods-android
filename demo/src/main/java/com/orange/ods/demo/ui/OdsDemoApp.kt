@@ -32,10 +32,10 @@ import androidx.navigation.NavBackStackEntry
 import androidx.navigation.NavGraphBuilder
 import androidx.navigation.compose.NavHost
 import androidx.navigation.navigation
-import com.orange.ods.compose.OrangeTheme
 import com.orange.ods.compose.component.bottomnavigation.OdsBottomNavigation
 import com.orange.ods.compose.component.bottomnavigation.OdsBottomNavigationItem
 import com.orange.ods.compose.theme.OdsMaterialTheme
+import com.orange.ods.compose.theme.OdsTheme
 import com.orange.ods.demo.ui.about.addAboutGraph
 import com.orange.ods.demo.ui.components.addComponentsGraph
 import com.orange.ods.demo.ui.guidelines.addGuidelinesGraph
@@ -43,10 +43,10 @@ import com.orange.ods.demo.ui.utilities.rememberMutableStateListOf
 
 @ExperimentalMaterialApi
 @Composable
-fun OdsDemoApp(orangeThemes: Set<OrangeTheme>) {
+fun OdsDemoApp(odsThemes: Set<OdsTheme>) {
     val isSystemInDarkTheme = isSystemInDarkTheme()
     val appState = rememberOdsDemoAppState(
-        orangeTheme = rememberMutableStateListOf(elements = orangeThemes.toList()),
+        odsThemes = rememberMutableStateListOf(elements = odsThemes.toList()),
         darkModeEnabled = rememberSaveable { mutableStateOf(isSystemInDarkTheme) })
 
     // Change isSystemInDarkTheme() value to make switching theme working with custom color
@@ -57,7 +57,7 @@ fun OdsDemoApp(orangeThemes: Set<OrangeTheme>) {
     }
 
     OdsMaterialTheme(
-        orangeTheme = appState.orangeTheme.first(),
+        odsTheme = appState.odsThemes.first(),
         darkThemeEnabled = appState.darkModeEnabled.value
     ) {
         Scaffold(

@@ -45,11 +45,11 @@ import com.orange.ods.compose.text.OdsTextBody1
 import com.orange.ods.compose.text.OdsTextCaption
 import com.orange.ods.compose.text.OdsTextH5
 import com.orange.ods.compose.text.OdsTextH6
-import com.orange.ods.compose.theme.Black900
-import com.orange.ods.compose.theme.White100
 import com.orange.ods.demo.R
 import com.orange.ods.demo.ui.utilities.composable.Title
 import com.orange.ods.demo.ui.utilities.getStringName
+import com.orange.ods.theme.orange.Black900
+import com.orange.ods.theme.orange.White100
 
 @Composable
 fun GuidelineColorsScreen(updateTopBarTitle: (Int) -> Unit) {

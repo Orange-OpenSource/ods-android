@@ -32,9 +32,9 @@ import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import com.orange.ods.compose.component.list.OdsListItem
-import com.orange.ods.compose.theme.Blue200
 import com.orange.ods.demo.R
 import com.orange.ods.demo.ui.utilities.extension.versionCode
+import com.orange.ods.theme.orange.Blue200
 import com.orange.ods.utilities.extension.orElse
 
 @Composable

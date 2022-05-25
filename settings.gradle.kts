@@ -12,4 +12,4 @@ rootProject.name = "Orange Design System Android"
 
 include(":lib", ":catalog", ":demo")
 
-include(":theme-ods")
+include(":theme-orange")

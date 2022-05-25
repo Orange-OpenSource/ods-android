@@ -19,7 +19,6 @@ import androidx.compose.material.ripple.RippleTheme
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.runtime.compositionLocalOf
-import com.orange.ods.compose.OrangeTheme
 
 val LocalLightThemeColors = compositionLocalOf { lightColors() }
 val LocalDarkThemeColors = compositionLocalOf { darkColors() }
@@ -29,18 +28,18 @@ val LocalDarkThemeColors = compositionLocalOf { darkColors() }
  */
 @Composable
 fun OdsMaterialTheme(
-    orangeTheme: OrangeTheme,
+    odsTheme: OdsTheme,
     darkThemeEnabled: Boolean = isSystemInDarkTheme(),
     content: @Composable () -> Unit
 ) {
     MaterialTheme(
-        colors = if (darkThemeEnabled) orangeTheme.getDarkThemeColors() else orangeTheme.getLightThemeColors(),
-        typography = orangeTheme.getTypography()
+        colors = if (darkThemeEnabled) odsTheme.getDarkThemeColors() else odsTheme.getLightThemeColors(),
+        typography = odsTheme.getTypography()
     ) {
         CompositionLocalProvider(
             LocalRippleTheme provides OdsRippleTheme,
-            LocalLightThemeColors provides orangeTheme.getLightThemeColors(),
-            LocalDarkThemeColors provides orangeTheme.getDarkThemeColors(),
+            LocalLightThemeColors provides odsTheme.getLightThemeColors(),
+            LocalDarkThemeColors provides odsTheme.getDarkThemeColors(),
             content = content
         )
     }

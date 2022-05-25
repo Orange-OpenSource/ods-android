@@ -13,26 +13,26 @@ package com.orange.ods.demo.ui.guidelines.colors
 import androidx.compose.material.MaterialTheme
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.graphics.Color
-import com.orange.ods.compose.theme.Blue100
-import com.orange.ods.compose.theme.Blue200
-import com.orange.ods.compose.theme.Blue300
-import com.orange.ods.compose.theme.Green100
-import com.orange.ods.compose.theme.Green200
-import com.orange.ods.compose.theme.Green300
-import com.orange.ods.compose.theme.ObsGrey700
-import com.orange.ods.compose.theme.Pink100
-import com.orange.ods.compose.theme.Pink200
-import com.orange.ods.compose.theme.Pink300
-import com.orange.ods.compose.theme.Purple100
-import com.orange.ods.compose.theme.Purple200
-import com.orange.ods.compose.theme.Purple300
-import com.orange.ods.compose.theme.Yellow100
-import com.orange.ods.compose.theme.Yellow200
-import com.orange.ods.compose.theme.Yellow300
-import com.orange.ods.compose.theme.functionalAlert
-import com.orange.ods.compose.theme.functionalInfo
-import com.orange.ods.compose.theme.functionalPositive
 import com.orange.ods.demo.R
+import com.orange.ods.theme.orange.Blue100
+import com.orange.ods.theme.orange.Blue200
+import com.orange.ods.theme.orange.Blue300
+import com.orange.ods.theme.orange.Green100
+import com.orange.ods.theme.orange.Green200
+import com.orange.ods.theme.orange.Green300
+import com.orange.ods.theme.orange.ObsGrey700
+import com.orange.ods.theme.orange.Pink100
+import com.orange.ods.theme.orange.Pink200
+import com.orange.ods.theme.orange.Pink300
+import com.orange.ods.theme.orange.Purple100
+import com.orange.ods.theme.orange.Purple200
+import com.orange.ods.theme.orange.Purple300
+import com.orange.ods.theme.orange.Yellow100
+import com.orange.ods.theme.orange.Yellow200
+import com.orange.ods.theme.orange.Yellow300
+import com.orange.ods.theme.orange.functionalAlert
+import com.orange.ods.theme.orange.functionalInfo
+import com.orange.ods.theme.orange.functionalPositive
 
 data class GuidelineColorItem(
     val name: String,
