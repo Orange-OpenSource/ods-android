@@ -25,9 +25,9 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
+import com.orange.ods.compose.theme.LocalDarkThemeColors
+import com.orange.ods.compose.theme.LocalLightThemeColors
 import com.orange.ods.compose.theme.OdsDisplayAppearance
-import com.orange.ods.compose.theme.odsDarkThemeColors
-import com.orange.ods.compose.theme.odsLightThemeColors
 
 /**
  * <a href="https://system.design.orange.com/0c1af118d/p/06a393-buttons/b/79b091" target="_blank">ODS Buttons</a>.
@@ -65,10 +65,18 @@ fun OdsButton(
             elevation = null,
             shape = odsButtonShape,
             colors = ButtonDefaults.buttonColors(
-                backgroundColor = MaterialTheme.colors.buttonBackgroundColor(displayAppearance, hasPrimaryColor),
-                contentColor = MaterialTheme.colors.buttonContentColor(displayAppearance, hasPrimaryColor),
-                disabledBackgroundColor = MaterialTheme.colors.buttonDisabledColor(displayAppearance).copy(alpha = 0.12f),
-                disabledContentColor = MaterialTheme.colors.buttonDisabledColor(displayAppearance).copy(alpha = ContentAlpha.disabled)
+                backgroundColor = MaterialTheme.colors.buttonBackgroundColor(
+                    displayAppearance,
+                    hasPrimaryColor
+                ),
+                contentColor = MaterialTheme.colors.buttonContentColor(
+                    displayAppearance,
+                    hasPrimaryColor
+                ),
+                disabledBackgroundColor = MaterialTheme.colors.buttonDisabledColor(displayAppearance)
+                    .copy(alpha = 0.12f),
+                disabledContentColor = MaterialTheme.colors.buttonDisabledColor(displayAppearance)
+                    .copy(alpha = ContentAlpha.disabled)
             )
         ) {
             iconRes?.let { ButtonIcon(it) }
@@ -78,27 +86,33 @@ fun OdsButton(
 }
 
 @Composable
-private fun Colors.buttonBackgroundColor(displayAppearance: OdsDisplayAppearance, hasPrimaryColor: Boolean) =
+private fun Colors.buttonBackgroundColor(
+    displayAppearance: OdsDisplayAppearance,
+    hasPrimaryColor: Boolean
+) =
     when (displayAppearance) {
         OdsDisplayAppearance.DEFAULT -> if (hasPrimaryColor) MaterialTheme.colors.primary else MaterialTheme.colors.onSurface
-        OdsDisplayAppearance.ON_DARK -> if (hasPrimaryColor) odsDarkThemeColors.primary else odsDarkThemeColors.onSurface
-        OdsDisplayAppearance.ON_LIGHT -> if (hasPrimaryColor) odsLightThemeColors.primary else odsLightThemeColors.onSurface
+        OdsDisplayAppearance.ON_DARK -> if (hasPrimaryColor) LocalDarkThemeColors.current.primary else LocalDarkThemeColors.current.onSurface
+        OdsDisplayAppearance.ON_LIGHT -> if (hasPrimaryColor) LocalLightThemeColors.current.primary else LocalLightThemeColors.current.onSurface
     }
 
 @Composable
-private fun Colors.buttonContentColor(displayAppearance: OdsDisplayAppearance, hasPrimaryColor: Boolean) =
+private fun Colors.buttonContentColor(
+    displayAppearance: OdsDisplayAppearance,
+    hasPrimaryColor: Boolean
+) =
     when (displayAppearance) {
         OdsDisplayAppearance.DEFAULT -> if (hasPrimaryColor) MaterialTheme.colors.onPrimary else MaterialTheme.colors.surface
-        OdsDisplayAppearance.ON_DARK -> if (hasPrimaryColor) odsDarkThemeColors.onPrimary else odsDarkThemeColors.surface
-        OdsDisplayAppearance.ON_LIGHT -> if (hasPrimaryColor) odsLightThemeColors.onPrimary else odsLightThemeColors.surface
+        OdsDisplayAppearance.ON_DARK -> if (hasPrimaryColor) LocalDarkThemeColors.current.onPrimary else LocalDarkThemeColors.current.surface
+        OdsDisplayAppearance.ON_LIGHT -> if (hasPrimaryColor) LocalLightThemeColors.current.onPrimary else LocalLightThemeColors.current.surface
     }
 
 @Composable
 private fun Colors.buttonDisabledColor(displayAppearance: OdsDisplayAppearance) =
     when (displayAppearance) {
         OdsDisplayAppearance.DEFAULT -> MaterialTheme.colors.onSurface
-        OdsDisplayAppearance.ON_DARK -> odsDarkThemeColors.onSurface
-        OdsDisplayAppearance.ON_LIGHT -> odsLightThemeColors.onSurface
+        OdsDisplayAppearance.ON_DARK -> LocalDarkThemeColors.current.onSurface
+        OdsDisplayAppearance.ON_LIGHT -> LocalLightThemeColors.current.onSurface
     }
 
 /**

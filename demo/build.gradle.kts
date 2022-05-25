@@ -17,6 +17,8 @@ plugins {
     id("com.android.application")
     id("com.google.gms.google-services")
     id("kotlin-android")
+    id("kotlin-kapt")
+    id("dagger.hilt.android.plugin")
     id("com.google.firebase.appdistribution")
     id("com.google.firebase.crashlytics")
     id("firebase")
@@ -61,7 +63,10 @@ android {
     buildTypes {
         release {
             isMinifyEnabled = false
-            proguardFiles(getDefaultProguardFile("proguard-android-optimize.txt"), file("proguard-rules.pro"))
+            proguardFiles(
+                getDefaultProguardFile("proguard-android-optimize.txt"),
+                file("proguard-rules.pro")
+            )
             signingConfig = this@android.signingConfigs.getByName(signingConfigName)
         }
     }
@@ -98,6 +103,7 @@ android {
 
 dependencies {
     implementation(project(":lib"))
+    implementation(project(":theme-ods"))
 
     implementation(Dependencies.coreKtx)
     implementation(Dependencies.kotlinReflect)
@@ -112,6 +118,13 @@ dependencies {
     implementation(Dependencies.accompanistSystemUiController)
     implementation(platform(Dependencies.firebaseBom))
     implementation(Dependencies.firebaseCrashlytics)
+    implementation(Dependencies.hiltAndroid)
+    kapt(Dependencies.hiltCompiler)
 
     debugImplementation(Dependencies.composeUiTooling)
+}
+
+// Allow references to generated code
+kapt {
+    correctErrorTypes = true
 }

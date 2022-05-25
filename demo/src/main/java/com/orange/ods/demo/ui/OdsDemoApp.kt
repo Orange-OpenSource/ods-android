@@ -28,25 +28,26 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalConfiguration
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.navigation.NavBackStackEntry
 import androidx.navigation.NavGraphBuilder
 import androidx.navigation.compose.NavHost
 import androidx.navigation.navigation
+import com.orange.ods.compose.OrangeTheme
 import com.orange.ods.compose.component.bottomnavigation.OdsBottomNavigation
 import com.orange.ods.compose.component.bottomnavigation.OdsBottomNavigationItem
 import com.orange.ods.compose.theme.OdsMaterialTheme
 import com.orange.ods.demo.ui.about.addAboutGraph
 import com.orange.ods.demo.ui.components.addComponentsGraph
 import com.orange.ods.demo.ui.guidelines.addGuidelinesGraph
+import com.orange.ods.demo.ui.utilities.rememberMutableStateListOf
 
 @ExperimentalMaterialApi
-@Preview(showBackground = true, uiMode = UI_MODE_NIGHT_YES)
-@Preview(showBackground = true)
 @Composable
-fun OdsDemoApp() {
+fun OdsDemoApp(orangeThemes: Set<OrangeTheme>) {
     val isSystemInDarkTheme = isSystemInDarkTheme()
-    val appState = rememberOdsDemoAppState(darkModeEnabled = rememberSaveable { mutableStateOf(isSystemInDarkTheme) })
+    val appState = rememberOdsDemoAppState(
+        orangeTheme = rememberMutableStateListOf(elements = orangeThemes.toList()),
+        darkModeEnabled = rememberSaveable { mutableStateOf(isSystemInDarkTheme) })
 
     // Change isSystemInDarkTheme() value to make switching theme working with custom color
     if (appState.darkModeEnabled.value) {
@@ -55,7 +56,10 @@ fun OdsDemoApp() {
         LocalConfiguration.current.uiMode = UI_MODE_NIGHT_NO
     }
 
-    OdsMaterialTheme(appState.darkModeEnabled.value) {
+    OdsMaterialTheme(
+        orangeTheme = appState.orangeTheme.first(),
+        darkThemeEnabled = appState.darkModeEnabled.value
+    ) {
         Scaffold(
             topBar = {
                 OdsDemoTopAppBar(
@@ -93,11 +97,20 @@ fun OdsDemoApp() {
 }
 
 @Composable
-private fun OdsDemoBottomBar(tabs: Array<HomeSections>, currentRoute: String, navigateToRoute: (String) -> Unit) {
+private fun OdsDemoBottomBar(
+    tabs: Array<HomeSections>,
+    currentRoute: String,
+    navigateToRoute: (String) -> Unit
+) {
     OdsBottomNavigation {
         tabs.forEach { tab ->
             OdsBottomNavigationItem(
-                icon = { Icon(painter = painterResource(id = tab.iconRes), contentDescription = null) },
+                icon = {
+                    Icon(
+                        painter = painterResource(id = tab.iconRes),
+                        contentDescription = null
+                    )
+                },
                 label = stringResource(id = tab.titleRes),
                 selected = currentRoute == tab.route,
                 onClick = { navigateToRoute(tab.route) }

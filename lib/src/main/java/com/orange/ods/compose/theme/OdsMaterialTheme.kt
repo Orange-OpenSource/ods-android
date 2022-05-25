@@ -18,55 +18,33 @@ import androidx.compose.material.ripple.LocalRippleTheme
 import androidx.compose.material.ripple.RippleTheme
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.CompositionLocalProvider
+import androidx.compose.runtime.compositionLocalOf
+import com.orange.ods.compose.OrangeTheme
+
+val LocalLightThemeColors = compositionLocalOf { lightColors() }
+val LocalDarkThemeColors = compositionLocalOf { darkColors() }
 
 /**
  * ODS Material theme is the theme to apply to your screens in an Orange Jetpack Compose application.
  */
 @Composable
 fun OdsMaterialTheme(
-    darkTheme: Boolean = isSystemInDarkTheme(),
+    orangeTheme: OrangeTheme,
+    darkThemeEnabled: Boolean = isSystemInDarkTheme(),
     content: @Composable () -> Unit
 ) {
     MaterialTheme(
-        colors = if (darkTheme) odsDarkThemeColors else odsLightThemeColors,
-        typography = OdsTypography
+        colors = if (darkThemeEnabled) orangeTheme.getDarkThemeColors() else orangeTheme.getLightThemeColors(),
+        typography = orangeTheme.getTypography()
     ) {
         CompositionLocalProvider(
             LocalRippleTheme provides OdsRippleTheme,
+            LocalLightThemeColors provides orangeTheme.getLightThemeColors(),
+            LocalDarkThemeColors provides orangeTheme.getDarkThemeColors(),
             content = content
         )
     }
 }
-
-val odsLightThemeColors = lightColors(
-    primary = Orange200,
-    primaryVariant = Orange200,
-    secondary = Orange200,
-    secondaryVariant = Orange200,
-    background = White100,
-    surface = White100,
-    error = Negative200,
-    onPrimary = Black900,
-    onSecondary = Black900,
-    onBackground = Black900,
-    onSurface = Black900,
-    onError = Black900
-)
-
-val odsDarkThemeColors = darkColors(
-    primary = Orange100,
-    primaryVariant = Orange200,
-    secondary = Orange200,
-    secondaryVariant = Orange200,
-    background = Black900,
-    surface = DarkSurfaceDefault,
-    error = Negative100,
-    onPrimary = Black900,
-    onSecondary = Black900,
-    onBackground = White100,
-    onSurface = White100,
-    onError = Black900
-)
 
 /**
  * Default ripple theme

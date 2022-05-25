@@ -8,5 +8,8 @@
  * /
  */
 
-include(":lib", ":catalog", ":demo")
 rootProject.name = "Orange Design System Android"
+
+include(":lib", ":catalog", ":demo")
+
+include(":theme-ods")

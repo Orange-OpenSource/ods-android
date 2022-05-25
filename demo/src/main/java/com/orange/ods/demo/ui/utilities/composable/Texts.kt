@@ -22,9 +22,9 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import com.orange.ods.compose.text.OdsTextH5
 import com.orange.ods.compose.text.OdsTextSubtitle1
+import com.orange.ods.compose.theme.LocalDarkThemeColors
+import com.orange.ods.compose.theme.LocalLightThemeColors
 import com.orange.ods.compose.theme.OdsDisplayAppearance
-import com.orange.ods.compose.theme.odsDarkThemeColors
-import com.orange.ods.compose.theme.odsLightThemeColors
 import com.orange.ods.demo.R
 
 @Composable
@@ -39,11 +39,15 @@ fun Title(@StringRes textRes: Int, modifier: Modifier = Modifier, withHorizontal
 }
 
 @Composable
-fun Subtitle(@StringRes textRes: Int, displayAppearance: OdsDisplayAppearance = OdsDisplayAppearance.DEFAULT, withHorizontalPadding: Boolean = false) {
+fun Subtitle(
+    @StringRes textRes: Int,
+    displayAppearance: OdsDisplayAppearance = OdsDisplayAppearance.DEFAULT,
+    withHorizontalPadding: Boolean = false
+) {
     val backgroundColor = when (displayAppearance) {
         OdsDisplayAppearance.DEFAULT -> Color.Unspecified
-        OdsDisplayAppearance.ON_DARK -> odsDarkThemeColors.background
-        OdsDisplayAppearance.ON_LIGHT -> odsLightThemeColors.background
+        OdsDisplayAppearance.ON_DARK -> LocalDarkThemeColors.current.background
+        OdsDisplayAppearance.ON_LIGHT -> LocalLightThemeColors.current.background
     }
     OdsTextSubtitle1(
         text = stringResource(textRes),

@@ -14,14 +14,21 @@ import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.material.ExperimentalMaterialApi
+import com.orange.ods.compose.OrangeTheme
+import dagger.hilt.android.AndroidEntryPoint
+import javax.inject.Inject
 
+@AndroidEntryPoint
 @ExperimentalMaterialApi // Used for BottomSheetScaffold in the ComponentsCardScreen
 class MainActivity : ComponentActivity() {
+
+    @Inject
+    lateinit var orangeThemes: Set<@JvmSuppressWildcards OrangeTheme>
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
-            OdsDemoApp()
+            OdsDemoApp(orangeThemes)
         }
     }
 }

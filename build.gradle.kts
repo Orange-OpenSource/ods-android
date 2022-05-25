@@ -20,6 +20,7 @@ buildscript {
         classpath(com.orange.ods.gradle.Dependencies.firebaseAppDistributionGradlePlugin)
         classpath(com.orange.ods.gradle.Dependencies.firebaseCrashlyticsGradlePlugin)
         classpath(com.orange.ods.gradle.Dependencies.googleServicesGradlePlugin)
+        classpath(com.orange.ods.gradle.Dependencies.hiltAndroidGradlePlugin)
     }
 }
 

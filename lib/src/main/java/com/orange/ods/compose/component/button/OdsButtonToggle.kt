@@ -28,9 +28,9 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 import com.orange.ods.compose.component.utilities.DisabledInteractionSource
+import com.orange.ods.compose.theme.LocalDarkThemeColors
+import com.orange.ods.compose.theme.LocalLightThemeColors
 import com.orange.ods.compose.theme.OdsDisplayAppearance
-import com.orange.ods.compose.theme.odsDarkThemeColors
-import com.orange.ods.compose.theme.odsLightThemeColors
 
 /**
  * <a href="https://system.design.orange.com/0c1af118d/p/06a393-buttons/b/79b091" target="_blank">ODS Buttons</a>.
@@ -66,7 +66,12 @@ fun OdsButtonToggle(
         enabled = enabled,
         interactionSource = remember { DisabledInteractionSource() }
     ) {
-        val iconTint by animateColorAsState(MaterialTheme.colors.buttonToggleIconColor(displayAppearance, checked))
+        val iconTint by animateColorAsState(
+            MaterialTheme.colors.buttonToggleIconColor(
+                displayAppearance,
+                checked
+            )
+        )
         val backgroundAlpha by animateFloatAsState(if (checked) 0.12f else 0f)
         Box(
             modifier = Modifier
@@ -87,17 +92,20 @@ fun OdsButtonToggle(
 }
 
 @Composable
-private fun Colors.buttonToggleIconColor(displayAppearance: OdsDisplayAppearance, checked: Boolean) =
+private fun Colors.buttonToggleIconColor(
+    displayAppearance: OdsDisplayAppearance,
+    checked: Boolean
+) =
     when (displayAppearance) {
         OdsDisplayAppearance.DEFAULT -> if (checked) MaterialTheme.colors.primary else MaterialTheme.colors.onSurface
-        OdsDisplayAppearance.ON_DARK -> if (checked) odsDarkThemeColors.primary else odsDarkThemeColors.onSurface
-        OdsDisplayAppearance.ON_LIGHT -> if (checked) odsLightThemeColors.primary else odsLightThemeColors.onSurface
+        OdsDisplayAppearance.ON_DARK -> if (checked) LocalDarkThemeColors.current.primary else LocalDarkThemeColors.current.onSurface
+        OdsDisplayAppearance.ON_LIGHT -> if (checked) LocalLightThemeColors.current.primary else LocalLightThemeColors.current.onSurface
     }
 
 @Composable
 private fun Colors.buttonToggleBackgroundColor(displayAppearance: OdsDisplayAppearance) =
     when (displayAppearance) {
         OdsDisplayAppearance.DEFAULT -> MaterialTheme.colors.primary
-        OdsDisplayAppearance.ON_DARK -> odsDarkThemeColors.primary
-        OdsDisplayAppearance.ON_LIGHT -> odsLightThemeColors.primary
+        OdsDisplayAppearance.ON_DARK -> LocalDarkThemeColors.current.primary
+        OdsDisplayAppearance.ON_LIGHT -> LocalLightThemeColors.current.primary
     }

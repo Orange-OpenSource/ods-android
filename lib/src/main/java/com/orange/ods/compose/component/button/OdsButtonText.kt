@@ -23,11 +23,11 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
+import com.orange.ods.compose.theme.LocalDarkThemeColors
+import com.orange.ods.compose.theme.LocalLightThemeColors
 import com.orange.ods.compose.theme.OdsDisplayAppearance
 import com.orange.ods.compose.theme.OdsPrimaryRippleTheme
 import com.orange.ods.compose.theme.OdsRippleTheme
-import com.orange.ods.compose.theme.odsDarkThemeColors
-import com.orange.ods.compose.theme.odsLightThemeColors
 
 /**
  * <a href="https://system.design.orange.com/0c1af118d/p/06a393-buttons/b/79b091" target="_blank">ODS Buttons</a>.
@@ -64,8 +64,13 @@ fun OdsButtonText(
             interactionSource = remember { MutableInteractionSource() },
             shape = odsButtonShape,
             colors = ButtonDefaults.textButtonColors(
-                contentColor = MaterialTheme.colors.buttonTextColor(displayAppearance, hasPrimaryColor),
-                disabledContentColor = MaterialTheme.colors.buttonTextDisabledColor(displayAppearance)
+                contentColor = MaterialTheme.colors.buttonTextColor(
+                    displayAppearance,
+                    hasPrimaryColor
+                ),
+                disabledContentColor = MaterialTheme.colors.buttonTextDisabledColor(
+                    displayAppearance
+                )
             )
         ) {
             iconRes?.let { ButtonIcon(it) }
@@ -75,13 +80,19 @@ fun OdsButtonText(
 }
 
 @Composable
-private fun Colors.buttonTextColor(displayAppearance: OdsDisplayAppearance, hasPrimaryColor: Boolean) =
+private fun Colors.buttonTextColor(
+    displayAppearance: OdsDisplayAppearance,
+    hasPrimaryColor: Boolean
+) =
     when (displayAppearance) {
         OdsDisplayAppearance.DEFAULT -> if (hasPrimaryColor) MaterialTheme.colors.primary else MaterialTheme.colors.onSurface
-        OdsDisplayAppearance.ON_DARK -> if (hasPrimaryColor) odsDarkThemeColors.primary else odsDarkThemeColors.onSurface
-        OdsDisplayAppearance.ON_LIGHT -> if (hasPrimaryColor) odsLightThemeColors.primary else odsLightThemeColors.onSurface
+        OdsDisplayAppearance.ON_DARK -> if (hasPrimaryColor) LocalDarkThemeColors.current.primary else LocalDarkThemeColors.current.onSurface
+        OdsDisplayAppearance.ON_LIGHT -> if (hasPrimaryColor) LocalLightThemeColors.current.primary else LocalLightThemeColors.current.onSurface
     }
 
 @Composable
 private fun Colors.buttonTextDisabledColor(displayAppearance: OdsDisplayAppearance) =
-    buttonTextColor(displayAppearance = displayAppearance, hasPrimaryColor = false).copy(alpha = ContentAlpha.disabled)
+    buttonTextColor(
+        displayAppearance = displayAppearance,
+        hasPrimaryColor = false
+    ).copy(alpha = ContentAlpha.disabled)

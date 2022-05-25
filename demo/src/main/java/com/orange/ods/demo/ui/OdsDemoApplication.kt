@@ -14,7 +14,9 @@ import android.app.Application
 import com.google.firebase.crashlytics.ktx.crashlytics
 import com.google.firebase.ktx.Firebase
 import com.orange.ods.demo.BuildConfig
+import dagger.hilt.android.HiltAndroidApp
 
+@HiltAndroidApp
 class OdsDemoApplication : Application() {
 
     override fun onCreate() {

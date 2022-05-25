@@ -13,8 +13,10 @@ import com.orange.ods.gradle.Versions
 
 plugins {
     id("com.android.library")
-    id("kotlin-android")
-    id("maven-publish")
+    id("org.jetbrains.kotlin.android")
+    id("kotlin-kapt")
+    id("dagger.hilt.android.plugin")
+    id("kotlin-parcelize")
 }
 
 android {
@@ -24,7 +26,7 @@ android {
         minSdk = Versions.minSdk
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
-        consumerProguardFile("consumer-rules.pro")
+        consumerProguardFiles("consumer-rules.pro")
     }
 
     buildTypes {
@@ -32,52 +34,28 @@ android {
             isMinifyEnabled = false
             proguardFiles(
                 getDefaultProguardFile("proguard-android-optimize.txt"),
-                file("proguard-rules.pro")
+                "proguard-rules.pro"
             )
         }
     }
-
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_11
         targetCompatibility = JavaVersion.VERSION_11
     }
 
     kotlinOptions.jvmTarget = "11"
-
-    buildFeatures {
-        compose = true
-    }
-
-    composeOptions {
-        kotlinCompilerExtensionVersion = Versions.compose
-    }
 }
 
 dependencies {
-    implementation(Dependencies.kotlinStdlibJdk8)
-
-    api(Dependencies.material)
-
+    implementation(project(":lib"))
     implementation(Dependencies.coreKtx)
     implementation(Dependencies.appCompat)
-    implementation(Dependencies.composeUi)
     implementation(Dependencies.composeMaterial)
-    implementation(Dependencies.composeUiToolingPreview)
-    implementation(Dependencies.lifecycleRuntimeKtx)
-
-    testImplementation(Dependencies.jUnit)
-    androidTestImplementation(Dependencies.testExtJUnit)
+    implementation(Dependencies.hiltAndroid)
+    kapt(Dependencies.hiltCompiler)
 }
 
-afterEvaluate {
-    publishing {
-        publications {
-            create<MavenPublication>("release") {
-                from(components["release"])
-                groupId = "com.orange.design-system"
-                artifactId = "ods-android"
-                version = "1.0"
-            }
-        }
-    }
+// Allow references to generated code
+kapt {
+    correctErrorTypes = true
 }

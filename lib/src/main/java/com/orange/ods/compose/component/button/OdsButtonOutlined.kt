@@ -22,10 +22,10 @@ import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
+import com.orange.ods.compose.theme.LocalDarkThemeColors
+import com.orange.ods.compose.theme.LocalLightThemeColors
 import com.orange.ods.compose.theme.OdsDisplayAppearance
 import com.orange.ods.compose.theme.Transparent
-import com.orange.ods.compose.theme.odsDarkThemeColors
-import com.orange.ods.compose.theme.odsLightThemeColors
 
 /**
  * <a href="https://system.design.orange.com/0c1af118d/p/06a393-buttons/b/79b091" target="_blank">ODS Buttons</a>.
@@ -69,7 +69,9 @@ fun OdsButtonOutlined(
         colors = ButtonDefaults.outlinedButtonColors(
             backgroundColor = Transparent,
             contentColor = MaterialTheme.colors.buttonOutlinedColor(displayAppearance),
-            disabledContentColor = MaterialTheme.colors.buttonOutlinedDisabledColor(displayAppearance)
+            disabledContentColor = MaterialTheme.colors.buttonOutlinedDisabledColor(
+                displayAppearance
+            )
         )
     ) {
         iconRes?.let { ButtonIcon(it) }
@@ -81,8 +83,8 @@ fun OdsButtonOutlined(
 private fun Colors.buttonOutlinedColor(displayAppearance: OdsDisplayAppearance) =
     when (displayAppearance) {
         OdsDisplayAppearance.DEFAULT -> MaterialTheme.colors.onSurface
-        OdsDisplayAppearance.ON_DARK -> odsDarkThemeColors.onSurface
-        OdsDisplayAppearance.ON_LIGHT -> odsLightThemeColors.onSurface
+        OdsDisplayAppearance.ON_DARK -> LocalDarkThemeColors.current.onSurface
+        OdsDisplayAppearance.ON_LIGHT -> LocalLightThemeColors.current.onSurface
     }
 
 @Composable
