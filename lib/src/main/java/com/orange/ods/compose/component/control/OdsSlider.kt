@@ -33,7 +33,8 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import com.orange.ods.R
-import com.orange.ods.compose.theme.SliderActiveTickColor
+
+private val activeTickColorAlpha = 0.4f
 
 /**
  * <a href="https://system.design.orange.com/0c1af118d/p/14638a-selection-controls/b/352c00" class="external" target="_blank">ODS slider</a>.
@@ -103,9 +104,7 @@ fun OdsSlider(
             valueRange = valueRange,
             steps = steps,
             onValueChangeFinished = onValueChangeFinished,
-            colors = SliderDefaults.colors(
-                activeTickColor = SliderActiveTickColor //Cannot use primary alpha color, it will not be visible, need to use plain color
-            )
+            colors = SliderDefaults.colors(activeTickColor = MaterialTheme.colors.surface.copy(alpha = activeTickColorAlpha))
         )
         rightIconRes?.let {
             Icon(
@@ -188,9 +187,7 @@ fun OdsSliderLockups(
             valueRange = valueRange,
             steps = steps,
             onValueChangeFinished = onValueChangeFinished,
-            colors = SliderDefaults.colors(
-                activeTickColor = SliderActiveTickColor // Cannot use primary alpha color, it will not be visible, need to use plain color
-            )
+            colors = SliderDefaults.colors(activeTickColor = MaterialTheme.colors.surface.copy(alpha = activeTickColorAlpha))
         )
     }
 }
