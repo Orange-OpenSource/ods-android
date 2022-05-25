@@ -16,6 +16,7 @@ import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
@@ -111,11 +112,14 @@ fun OdsCardTitleFirst(
                 )
             }
 
+            if (button1Text != null || button2Text != null || text != null) {
+                Spacer(modifier = Modifier.height(dimensionResource(id = R.dimen.ods_spacing_s)))
+            }
+
             Row(
                 modifier = Modifier
                     .fillMaxWidth()
-                    .padding(horizontal = dimensionResource(id = R.dimen.ods_spacing_xs))
-                    .padding(top = dimensionResource(id = R.dimen.ods_spacing_s)),
+                    .padding(horizontal = dimensionResource(id = R.dimen.ods_spacing_xs)),
                 horizontalArrangement = Arrangement.spacedBy(dimensionResource(id = R.dimen.ods_spacing_xs))
             ) {
                 button1Text?.let {
