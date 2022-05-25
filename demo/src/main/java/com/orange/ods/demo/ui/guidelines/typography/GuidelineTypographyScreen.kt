@@ -22,6 +22,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.dimensionResource
+import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.text.SpanStyle
 import androidx.compose.ui.text.buildAnnotatedString
 import androidx.compose.ui.text.font.FontStyle
@@ -55,7 +56,7 @@ fun GuidelineTypographyScreen(updateTopBarTitle: (Int) -> Unit) {
 @Composable
 private fun TypographyRow(typography: TypographyItem) {
     val context = LocalContext.current
-    Column {
+    Column(modifier = Modifier.semantics(mergeDescendants = true) {}) {
         Text(
             text = typography.name,
             style = typography.style,
