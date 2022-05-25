@@ -28,10 +28,10 @@ import com.orange.ods.compose.theme.odsLightThemeColors
 import com.orange.ods.demo.R
 
 @Composable
-fun Title(@StringRes textRes: Int, withHorizontalPadding: Boolean = false) {
+fun Title(@StringRes textRes: Int, modifier: Modifier = Modifier, withHorizontalPadding: Boolean = false) {
     OdsTextH5(
         text = stringResource(textRes),
-        modifier = Modifier
+        modifier = modifier
             .fillMaxWidth()
             .padding(top = dimensionResource(R.dimen.ods_spacing_l))
             .padding(horizontal = if (withHorizontalPadding) dimensionResource(R.dimen.ods_screen_horizontal_margin) else 0.dp)

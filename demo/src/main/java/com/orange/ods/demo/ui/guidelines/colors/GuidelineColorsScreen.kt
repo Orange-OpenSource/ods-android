@@ -37,6 +37,8 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.semantics.heading
+import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.window.Dialog
 import com.orange.ods.compose.text.OdsTextBody1
@@ -66,7 +68,7 @@ private fun ColorList(colors: List<GuidelineColorItem>) {
         verticalArrangement = Arrangement.spacedBy(dimensionResource(id = R.dimen.ods_spacing_s)),
     ) {
         item {
-            Title(textRes = R.string.guideline_colour_core)
+            Title(textRes = R.string.guideline_colour_core, modifier = Modifier.semantics { heading() })
         }
         items(colors.filter { it.colorType == ColorType.CORE }.chunked(2)) { rowColors ->
             Row(
@@ -77,7 +79,7 @@ private fun ColorList(colors: List<GuidelineColorItem>) {
             }
         }
         item {
-            Title(textRes = R.string.guideline_colour_functional)
+            Title(textRes = R.string.guideline_colour_functional, modifier = Modifier.semantics { heading() })
         }
         items(colors.filter { it.colorType == ColorType.FUNCTIONAL }.chunked(2)) { rowColors ->
             Row(
@@ -88,7 +90,7 @@ private fun ColorList(colors: List<GuidelineColorItem>) {
             }
         }
         item {
-            Title(textRes = R.string.guideline_colour_supporting)
+            Title(textRes = R.string.guideline_colour_supporting, modifier = Modifier.semantics { heading() })
         }
         items(colors.filter { it.colorType == ColorType.SUPPORTING }.chunked(3)) { rowColors ->
             Row(
