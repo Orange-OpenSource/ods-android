@@ -58,7 +58,7 @@ API and source code:
     * [Class definition](https://developer.android.com/reference/com/google/android/material/chip/ChipDrawable)
     * [Class source](https://github.com/material-components/material-components-android/tree/master/lib/java/com/google/android/material/chip/ChipDrawable.java)
 
-## Input chip
+#### Input chip
 
 Input chips (refered to as **entry** chips in Android) represent a complex piece of information in
 compact form, such as an entity (person, place, or thing) or text. They enable user input and verify
@@ -82,7 +82,7 @@ In the layout:
 </com.google.android.material.chip.ChipGroup>
 ```
 
-## Choice chip
+#### Choice chip
 
 Choice chips allow selection of a single chip from a set of options.
 
@@ -107,7 +107,7 @@ In the layout:
     </com.google.android.material.chip.ChipGroup>
 ```
 
-## Filter chip
+#### Filter chip
 
 Filter chips use tags or descriptive words to filter content.
 
@@ -132,7 +132,7 @@ In the layout:
 </com.google.android.material.chip.ChipGroup>
 ```
 
-## Action chip
+#### Action chip
 
 Action chips offer actions related to primary content. They should appear dynamically and
 contextually in a UI.
