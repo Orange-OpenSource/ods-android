@@ -16,14 +16,12 @@ import androidx.compose.material.ExperimentalMaterialApi
 import androidx.navigation.NavBackStackEntry
 import androidx.navigation.NavGraphBuilder
 import androidx.navigation.compose.composable
-import com.google.accompanist.pager.ExperimentalPagerApi
 import com.orange.ods.demo.R
 import com.orange.ods.demo.ui.about.AboutScreen
 import com.orange.ods.demo.ui.components.ComponentsScreen
 import com.orange.ods.demo.ui.guidelines.GuidelinesScreen
 import com.orange.ods.demo.ui.modules.ModulesScreen
 
-@ExperimentalPagerApi
 @ExperimentalMaterialApi
 fun NavGraphBuilder.addHomeGraph(
     onNavElementClick: (String, Long?, NavBackStackEntry) -> Unit,
