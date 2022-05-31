@@ -27,13 +27,13 @@ import com.google.accompanist.pager.rememberPagerState
 @Composable
 fun rememberSubComponentTabsState(
     bottomSheetScaffoldState: BottomSheetScaffoldState = rememberBottomSheetScaffoldState(),
-    tabsNumber: MutableState<Int>,
+    tabsCount: MutableState<Int>,
     pagerState: PagerState = rememberPagerState(),
     selectedTabIconType: MutableState<SubComponentTabsState.TabIconType> = rememberSaveable { mutableStateOf(SubComponentTabsState.TabIconType.Top) },
     tabTextEnabled: MutableState<Boolean> = rememberSaveable { mutableStateOf(true) }
 ) =
-    remember(bottomSheetScaffoldState, pagerState, tabsNumber, selectedTabIconType, tabTextEnabled) {
-        SubComponentTabsState(bottomSheetScaffoldState, pagerState, tabsNumber, selectedTabIconType, tabTextEnabled)
+    remember(bottomSheetScaffoldState, pagerState, tabsCount, selectedTabIconType, tabTextEnabled) {
+        SubComponentTabsState(bottomSheetScaffoldState, pagerState, tabsCount, selectedTabIconType, tabTextEnabled)
     }
 
 @ExperimentalMaterialApi
@@ -41,7 +41,7 @@ fun rememberSubComponentTabsState(
 class SubComponentTabsState(
     val bottomSheetScaffoldState: BottomSheetScaffoldState,
     val pagerState: PagerState,
-    val tabsNumber: MutableState<Int>,
+    val tabsCount: MutableState<Int>,
     val selectedTabIconType: MutableState<TabIconType>,
     val tabTextEnabled: MutableState<Boolean>
 ) {
@@ -58,9 +58,9 @@ class SubComponentTabsState(
         get() = tabTextEnabled.value
 
     val tabs: List<TabItem>
-        get() = availableTabs.take(tabsNumber.value)
+        get() = availableTabs.take(tabsCount.value)
 
-    fun canRemoveTab(tabCountMin: Int) = tabsNumber.value > tabCountMin
+    fun canRemoveTab(tabCountMin: Int) = tabsCount.value > tabCountMin
 
-    fun canAddTab(tabCountMax: Int) = tabsNumber.value < tabCountMax
+    fun canAddTab(tabCountMax: Int) = tabsCount.value < tabCountMax
 }

@@ -63,7 +63,7 @@ fun SubComponentTabs(subComponent: SubComponent, updateTopAppBarTabs: (TabsConfi
         tabCountMax = FixedTabsCountMax
     }
 
-    val subComponentTabsState = rememberSubComponentTabsState(tabsNumber = rememberSaveable { mutableStateOf(tabCountMin) })
+    val subComponentTabsState = rememberSubComponentTabsState(tabsCount = rememberSaveable { mutableStateOf(tabCountMin) })
     updateTopAppBarTabs(
         TabsConfiguration(
             scrollableTabs = scrollableTabs,
@@ -116,14 +116,14 @@ fun SubComponentTabs(subComponent: SubComponent, updateTopAppBarTabs: (TabsConfi
                 verticalAlignment = Alignment.CenterVertically
             ) {
                 OdsTextSubtitle1(modifier = Modifier.weight(1f), text = stringResource(id = R.string.component_tabs_count))
-                IconButton(onClick = { subComponentTabsState.tabsNumber.value-- }, enabled = subComponentTabsState.canRemoveTab(tabCountMin)) {
+                IconButton(onClick = { subComponentTabsState.tabsCount.value-- }, enabled = subComponentTabsState.canRemoveTab(tabCountMin)) {
                     Icon(
                         painter = painterResource(id = R.drawable.ic_remove),
                         contentDescription = "content description"
                     )
                 }
                 OdsTextSubtitle1(text = subComponentTabsState.tabs.size.toString())
-                IconButton(onClick = { subComponentTabsState.tabsNumber.value++ }, enabled = subComponentTabsState.canAddTab(tabCountMax)) {
+                IconButton(onClick = { subComponentTabsState.tabsCount.value++ }, enabled = subComponentTabsState.canAddTab(tabCountMax)) {
                     Icon(
                         painter = painterResource(id = R.drawable.ic_add),
                         contentDescription = "content description"
