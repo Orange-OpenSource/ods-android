@@ -1,8 +1,8 @@
 ---
 layout: detail
 title: Switch
-description: Swicth selection control allows the user to select options.
----
+description: Switch selection control allows the user to select options.
+------------------------------------------------------------------------
 
 Switches toggle the state of a single setting on or off. They are the preferred
 way to adjust settings on mobile.
