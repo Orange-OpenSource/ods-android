@@ -146,7 +146,6 @@ private fun TabsPagerContentScreen(text: String) {
     ) {
         Text(
             text = text,
-            modifier = Modifier.align(Alignment.CenterHorizontally),
             textAlign = TextAlign.Center
         )
     }
