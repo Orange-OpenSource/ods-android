@@ -11,6 +11,7 @@
 package com.orange.ods.demo.ui.components.tabs
 
 import androidx.annotation.DrawableRes
+import androidx.annotation.StringRes
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -132,7 +133,7 @@ fun SubComponentTabs(subComponent: SubComponent, updateTopAppBarTabs: (TabsConfi
         }) {
 
         HorizontalPager(state = subComponentTabsState.pagerState, count = subComponentTabsState.tabs.size) { page ->
-            subComponentTabsState.tabs[page].screen()
+            subComponentTabsState.tabs[page].Screen()
         }
     }
 }
@@ -151,11 +152,16 @@ private fun TabsPagerContentScreen(text: String) {
     }
 }
 
-enum class TabItem(@DrawableRes val icon: Int, val title: String, val screen: @Composable () -> Unit) {
-    Favourites(R.drawable.ic_heart, "Favourites", { TabsPagerContentScreen("Favourites") }),
-    Calls(R.drawable.ic_call, "Calls", { TabsPagerContentScreen("Calls") }),
-    Alerts(R.drawable.ic_alert, "Alerts", { TabsPagerContentScreen("Alerts") }),
-    Calendar(R.drawable.ic_calendar, "Calendar", { TabsPagerContentScreen("Calendar") }),
-    Account(R.drawable.ic_account, "Account", { TabsPagerContentScreen("Account") }),
-    Settings(R.drawable.ic_settings, "Settings", { TabsPagerContentScreen("Settings") })
+enum class TabItem(@DrawableRes val icon: Int, @StringRes val titleRes: Int) {
+    Favourites(R.drawable.ic_heart, R.string.component_tab_favourites),
+    Calls(R.drawable.ic_call, R.string.component_tab_calls),
+    Alerts(R.drawable.ic_alert, R.string.component_tab_alerts),
+    Calendar(R.drawable.ic_calendar, R.string.component_tab_calendar),
+    Account(R.drawable.ic_account, R.string.component_tab_account),
+    Settings(R.drawable.ic_settings, R.string.component_tab_settings);
+
+    @Composable
+    fun Screen() {
+        TabsPagerContentScreen(stringResource(id = titleRes))
+    }
 }

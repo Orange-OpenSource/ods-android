@@ -156,6 +156,12 @@
     <string name="component_tabs_number">Tabs number</string>
     <string name="component_tab_icon_leading">Leading</string>
     <string name="component_tab_icon_top">Top</string>
+    <string name="component_tab_favourites">Favourites</string>
+    <string name="component_tab_calls">Calls</string>
+    <string name="component_tab_alerts">Alerts</string>
+    <string name="component_tab_calendar">Calendar</string>
+    <string name="component_tab_account">Account</string>
+    <string name="component_tab_settings">Settings</string>
 
     <!-- About -->
     <string name="about_app_name">Orange Design</string>

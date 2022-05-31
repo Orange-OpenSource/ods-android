@@ -14,6 +14,7 @@ import androidx.compose.material.ExperimentalMaterialApi
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.res.stringResource
 import com.google.accompanist.pager.ExperimentalPagerApi
 import com.google.accompanist.pager.PagerState
 import com.orange.ods.compose.component.tab.OdsLeadingIconTab
@@ -34,7 +35,7 @@ fun TopAppBarFixedTabs(tabs: List<TabItem>, pagerState: PagerState, tabIconType:
             if (tabIconType == SubComponentTabsState.TabIconType.Leading && tabTextEnabled) {
                 OdsLeadingIconTab(
                     icon = painterResource(id = tab.icon),
-                    text = tab.title,
+                    text = stringResource(id = tab.titleRes),
                     selected = pagerState.currentPage == index,
                     onClick = {
                         scope.launch {
@@ -45,7 +46,7 @@ fun TopAppBarFixedTabs(tabs: List<TabItem>, pagerState: PagerState, tabIconType:
             } else {
                 OdsTab(
                     icon = if (tabIconType == SubComponentTabsState.TabIconType.None) null else painterResource(id = tab.icon),
-                    text = if (tabTextEnabled) tab.title else null,
+                    text = if (tabTextEnabled) stringResource(id = tab.titleRes) else null,
                     selected = pagerState.currentPage == index,
                     onClick = {
                         scope.launch {
