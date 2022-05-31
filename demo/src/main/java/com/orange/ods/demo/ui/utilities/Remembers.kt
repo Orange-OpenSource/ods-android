@@ -21,6 +21,9 @@ fun <T: Any> rememberMutableStateListOf(vararg elements: T): SnapshotStateList<T
     return rememberSaveable(
         saver = listSaver(
             save = { stateList ->
+                stateList.firstOrNull { !canBeSaved(it) }?.let { objectNotSaveable ->
+                    throw IllegalStateException("${objectNotSaveable::class} cannot be saved. By default only types which can be stored in the Bundle class can be saved.")
+                }
                 if (stateList.isNotEmpty()) {
                     val first = stateList.first()
                     if (!canBeSaved(first)) {
