@@ -1,12 +1,8 @@
 ---
 layout: detail
 title: Bottom navigation
-description: Bottom navigation description
+description: Bottom navigation bars allow movement between primary destinations in an app.
 ---
-
-# Bottom navigation
-
-Bottom navigation bars allow movement between primary destinations in an app.
 
 **Contents**
 
@@ -15,13 +11,13 @@ Bottom navigation bars allow movement between primary destinations in an app.
   *   [Accessibility](#accessibility)
   *   [Bottom navigation bar example](#bottom-navigation-bar-example)
         *   [In XML](#in-xml)
-        *   [In JetPack Compose](#in-jetpack-compose)
+        *   [In Jetpack Compose](#in-jetpack-compose)
 
 ## Using bottom navigation
 
 Before you can use Orange themed bottom navigation, you need to add a dependency to the Orange Design System
 for Android library. For more information, go to the
-[Getting started](../getting-started.md) page.
+[Getting started](../home_content.md) page.
 
 ### Material Design
 
@@ -109,7 +105,7 @@ In `bottom_navigation_menu.xml` inside a `menu` resource directory:
 
 In code:
 
-```kt
+```kotlin
 bottomNavigation.selectedItemId = R.id.page_2
 ```
 

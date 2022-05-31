@@ -1,12 +1,8 @@
 ---
 layout: detail
 title: Slider
-description: Slider description
+description: Sliders allow users to make selections from a range of values.
 ---
-
-# Slider
-
-Sliders allow users to make selections from a range of values.
 
 **Contents**
 
@@ -24,7 +20,7 @@ Sliders allow users to make selections from a range of values.
 
 Before you can use Orange themed sliders, you need to add a dependency to the Orange Design System
 for Android library. For more information, go to the
-[Getting started](../getting-started.md) page.
+[Getting started](../home_content.md) page.
 
 ### Material Design
 
@@ -40,7 +36,7 @@ optional, we strongly encourage their use.
 That can be done in XML via the `android:contentDescription` attribute or
 programmatically like so:
 
-```kt
+```kotlin
 slider.contentDescription = contentDescription
 ```
 

@@ -1,22 +1,22 @@
 ---
 layout: detail
 title: Bottom App bar
-description: Bottom App bar description
+description: A bottom app bar displays navigation and key actions at the bottom of mobile screens.
 ---
-
-# Bottom app bar
-
-A bottom app bar displays navigation and key actions at the bottom of mobile screens..
 
 **Contents**
 
 * [Using bottom app bar](#using-bottom-app-bar)
+  *   [Material Design](#material-design)
+  *   [Accessibility](#accessibility)
+      *   [Content descriptions](#content-descriptions)
+  *   [Bottom app bar example](#bottom-app-bar-example)
 
 ## Using bottom app bar
 
 Before you can use Orange themed bottom app bar, you need to add a dependency to the Orange Design System
 for Android library. For more information, go to the
-[Getting started](../getting-started.md) page.
+[Getting started](../home_content.md) page.
 
 ### Material Design
 
@@ -142,7 +142,7 @@ In menu/navigation icon drawables:
 
 In code:
 
-```kt
+```kotlin
 bottomAppBar.setNavigationOnClickListener {
     // Handle navigation icon press
 }

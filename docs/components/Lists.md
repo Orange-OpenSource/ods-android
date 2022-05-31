@@ -1,12 +1,8 @@
 ---
 layout: detail
 title: Lists
-description: Lists description
-------------------------------
-
-# Lists
-
-Lists are continuous, vertical indexes of text or images.
+description: Lists are continuous, vertical indexes of text or images.
+---
 
 **Contents**
 
@@ -112,7 +108,7 @@ Here is an example of one-line list item with a wide thumbnail and an optional t
         )
 ```
 
-#### Two-line list
+**Two-line list**
 
 Here is an example of two-line list item with a wide thumbnail and an optional trailing (here a drag Icon).
 
@@ -128,7 +124,7 @@ Here is an example of two-line list item with a wide thumbnail and an optional t
         )
 ```
 
-#### Three-line list
+**Three-line list**
 
 Here is an example of three-line list item with a wide thumbnail and an optional trailing (here a simple Text).
 

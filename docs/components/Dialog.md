@@ -1,12 +1,8 @@
 ---
 layout: detail
 title: Dialog
-description: Dialog description
+description: Dialogs inform users about a task and can contain critical information, require decisions, or involve multiple tasks.
 ---
-
-# Dialogs
-
-Dialogs inform users about a task and can contain critical information, require decisions, or involve multiple tasks.
 
 A dialog is a type of modal window that appears in front of app content to
 provide critical information or ask for a decision. Dialogs disable all app
@@ -32,7 +28,7 @@ Dialogs are purposefully interruptive, so they should be used sparingly.
 
 Before you can use Orange themed dialogs, you need to add a dependency to the Orange Design System
 for Android library. For more information, go to the
-[Getting started](../getting-started.md) page.
+[Getting started](../home_content.md) page.
 
 ### Material Design
 
@@ -57,7 +53,7 @@ Alert dialogs interrupt users with urgent information, details, or actions.
 
 In code:
 
-```kt
+```kotlin
 MaterialAlertDialogBuilder(context)
         .setTitle(resources.getString(R.string.title))
         .setMessage(resources.getString(R.string.supporting_text))
@@ -75,7 +71,7 @@ MaterialAlertDialogBuilder(context)
 
 Centered dialog:
 
-```kt
+```kotlin
 MaterialAlertDialogBuilder(context, R.style.Widget.Orange.Dialog.Centered)
         .setTitle("title")
         .setMessage("message")
@@ -115,7 +111,7 @@ way.
 
 In code:
 
-```kt
+```kotlin
 val items = arrayOf("Item 1", "Item 2", "Item 3")
 
 MaterialAlertDialogBuilder(context)

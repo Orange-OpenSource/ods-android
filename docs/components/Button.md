@@ -1,12 +1,8 @@
 ---
 layout: detail
 title: Button
-description: Button description
+description: Buttons allow users to take actions, and make choices, with a single tap.
 ---
-
-# Buttons
-
-Buttons allow users to take actions, and make choices, with a single tap.
 
 **Contents**
 
@@ -32,7 +28,7 @@ Buttons allow users to take actions, and make choices, with a single tap.
 
 Before you can use Orange themed buttons, you need to add a dependency to the Orange Design System
 for Android library. For more information, go to the
-[Getting started](../getting-started.md) page.
+[Getting started](../home_content.md) page.
 
 ## Material Design
 
@@ -228,7 +224,7 @@ In the layout:
 </com.google.android.material.button.MaterialButtonToggleGroup>
 ```
 
-#### Adding a toggle button icon-only in XML
+### Adding a toggle button icon-only in XML
 
 To create an icon-only toggle button using Orange theme you will need to apply
 style `@style/Widget.Orange.Button.Outlined.IconOnly` on your `Button` layout
@@ -254,7 +250,7 @@ In the layout:
 </com.google.android.material.button.MaterialButtonToggleGroup>
 ```
 
-#### Adding a toggle button in Jetpack Compose
+### Adding a toggle button in Jetpack Compose
 
 Use the `OdsButtonToggle` composable:
 

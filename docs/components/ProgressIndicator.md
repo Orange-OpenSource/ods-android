@@ -1,12 +1,8 @@
 ---
 layout: detail
 title: Progress indicator
-description: Progress indicator description
+description: Progress indicators express an unspecified wait time or display the length of a process.
 ---
-
-# Progress Indicators
-
-Progress indicators express an unspecified wait time or display the length of a process.
 
 **Contents**
 
@@ -26,7 +22,7 @@ Progress indicators express an unspecified wait time or display the length of a 
 
 Before you can use Orange themed progres indicators, you need to add a dependency to the Orange
 Design System for Android library. For more information, go to the
-[Getting started](../getting-started.md) page.
+[Getting started](../home_content.md) page.
 
 ### Material Design
 
@@ -41,7 +37,7 @@ Please consider setting the content descriptor for use with screen readers.
 
 That can be done in XML via the `android:contentDescription` attribute or programmatically like so:
 
-```kt
+```kotlin
 progressIndicator.contentDescription = contentDescription
 ```
 
@@ -58,7 +54,7 @@ Linear progress indicators support both determinate and indeterminate operations
 * Indeterminate operations display the indicator continually growing and shrinking along the track
   until the process is complete.
 
-## Circular progress indicators
+### Circular progress indicators
 
 Circular progress indicators display progress by animating an indicator along an
 invisible circular track in a clockwise direction. They can be applied directly
@@ -160,11 +156,13 @@ In the layout:
 You can use the native `CircularProgressIndicator` like this:
 
 - For a determinate circular progress indicator
+
 ```kotlin
 CircularProgressIndicator(progress = 0.2f)
 ```
 
 - For an indeterminate circular progress indicator
+
 ```kotlin
 CircularProgressIndicator()
 ```

@@ -1,12 +1,8 @@
 ---
 layout: detail
 title: Snackbar
-description: Snackbar description
+description: Snackbars provide brief messages about app processes at the bottom of the screen.
 ---
-
-# Snackbars
-
-Snackbars provide brief messages about app processes at the bottom of the screen.
 
 Snackbars inform users of a process that an app has performed or will perform.
 They appear temporarily, towards the bottom of the screen. They shouldn’t
@@ -20,12 +16,17 @@ action that was just taken, or retrying an action that had failed.
 **Contents**
 
 *   [Using snackbars](#using-snackbars)
+    *   [Material Design](#material-design)
+    *   [Accessibility](#accessibility)
+    *   [Showing a snackbar](#showing-a-snackbar)
+    *   [Adding an action](#adding-an-action)
+    *   [Anchoring a snackbar](#anchoring-a-snackbar)
 
 ## Using snackbars
 
 Before you can use Orange themed snackbars, you need to add a dependency to the Orange Design System
 for Android library. For more information, go to the
-[Getting started](../getting-started.md) page.
+[Getting started](../home_content.md) page.
 
 ### Material Design
 
@@ -49,7 +50,7 @@ dismiss any previous ones first.
 
 To show a snackbar with a message and no action:
 
-```kt
+```kotlin
 // The view used to make the snackbar.
 // This should be contained within the view hierarchy you want to display the
 // snackbar. Generally it can be the view that was interacted with to trigger
@@ -67,7 +68,7 @@ Snackbars are automatically dismissed when the action is clicked.
 
 To show a snackbar with a message and an action:
 
-```kt
+```kotlin
 Snackbar.make(contextView, R.string.text_label, Snackbar.LENGTH_LONG)
     .setAction(R.string.action_text) {
         // Responds to click on the action
@@ -81,7 +82,7 @@ By default, `Snackbar`s will be anchored to the bottom edge of their parent
 view. However, you can use the `setAnchorView` method to make a `Snackbar`
 appear above a specific view within your layout, e.g. a `FloatingActionButton`.
 
-```kt
+```kotlin
 Snackbar.make(...)
     .setAnchorView(fab)
     ...

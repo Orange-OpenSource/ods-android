@@ -1,22 +1,26 @@
 ---
 layout: detail
 title: Top App bar
-description: Top App bar description
+description: Top app bars display information and actions relating to the current screen.
 ---
-
-# Top app bar
-
-Top app bars display information and actions relating to the current screen.
 
 **Contents**
 
 * [Using top app bar](#using-top-app-bar)
+  *   [Material Design](#material-design)
+  *   [Accessibility](#accessibility)
+      *   [Content descriptions](#content-descriptions)
+  *   [Top app bar example](#top-app-bar-example)
+        *   [In XML](#in-xml)
+            *   [Applying scrolling behavior to the top app bar](#applying-scrolling-behavior-to-the-top-app-bar)
+            *   [Raised top app bar](#raised-top-app-bar)
+        *   [In Jetpack compose](#in-jetpack-compose)
 
 ## Using top app bar
 
 Before you can use Orange themed top app bar, you need to add a dependency to the Orange Design System
 for Android library. For more information, go to the
-[Getting started](../getting-started.md) page.
+[Getting started](../home_content.md) page.
 
 ### Material Design
 
@@ -151,7 +155,7 @@ In menu/navigation icons:
 
 In code:
 
-```kt
+```kotlin
 topAppBar.setNavigationOnClickListener {
     // Handle navigation icon press
 }
@@ -215,7 +219,7 @@ If you need to have a top app bar with some elevation you can set the `@style/Wi
 ```
 
 
-#### In JetPack compose
+#### In Jetpack compose
 
 Add this to your Scaffold topBar:
 

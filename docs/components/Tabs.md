@@ -1,24 +1,24 @@
 ---
 layout: detail
 title: Tabs
-description: Tabs description
+description: Tabs organize content across different screens, data sets, and other interactions.
 ---
-
-# Tabs
-
-Tabs organize content across different screens, data sets, and other interactions.
 
 **Contents**
 
 * [Using tabs](#using-tabs)
-* [Fixed tabs](#fixed-tabs)
-* [Scrollable tabs](#scrollable-tabs)
+  *   [Material Design](#material-design)
+  *   [Accessibility](#accessibility)
+      *   [Content descriptions](#content-descriptions)
+  *   [Types](#types)
+      *   [Fixed tabs](#fixed-tabs)
+      *   [Scrollable tabs](#scrollable-tabs)
 
 ## Using tabs
 
 Before you can use Orange themed tabs, you need to add a dependency to the Orange Design System
 for Android library. For more information, go to the
-[Getting started](../getting-started.md) page.
+[Getting started](../home_content.md) page.
 
 ### Material Design
 
@@ -36,7 +36,7 @@ badges . While optional, we strongly encourage their use.
 Adding a content description to the entire `TabLayout` can be done in XML with
 the `android:contentDescription` attribute or programmatically like so:
 
-```kt
+```kotlin
 tabLayout.contentDescription = contentDescription
 ```
 
@@ -46,14 +46,14 @@ There are two types of tabs:
 - [Fixed tabs](#fixed-tabs)
 - [Scrollable tabs](#scrollable-tabs)
 
-## Fixed tabs
+#### Fixed tabs
 
 Fixed tabs display all tabs on one screen, with each tab at a fixed width. The
 width of each tab is determined by dividing the number of tabs by the screen
 width. They don’t scroll to reveal more tabs; the visible tab set represents the
 only tabs available.
 
-### Fixed tabs example
+##### Fixed tabs example
 
 API and source code:
 
@@ -96,12 +96,12 @@ In the layout:
 </com.google.android.material.tabs.TabLayout>
 ```
 
-## Scrollable tabs
+#### Scrollable tabs
 
 Scrollable tabs are displayed without fixed widths. They are scrollable, such
 that some tabs will remain off-screen until scrolled.
 
-### Scrollable tabs example
+##### Scrollable tabs example
 
 API and source code:
 

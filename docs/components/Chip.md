@@ -1,26 +1,25 @@
 ---
 layout: detail
 title: Chip
-description: Chip description
+description: Chips are compact elements that represent an input, attribute, or action.
 ---
-
-# Chips
-
-Chips are compact elements that represent an input, attribute, or action.
 
 **Contents**
 
 * [Using chips](#using-chips)
-* [Input chip](#input-chip)
-* [Choice chip](#choice-chip)
-* [Filter chip](#filter-chip)
-* [Action chip](#action-chip)
+  *   [Material Design](#material-design)
+  *   [Accessibility](#accessibility)
+  *   [Types](#types)
+        * [Input chip](#input-chip)
+        * [Choice chip](#choice-chip)
+        * [Filter chip](#filter-chip)
+        * [Action chip](#action-chip)
 
 ## Using chips
 
 Before you can use Orange themed chips, you need to add a dependency to the Orange Design System for
 Android library. For more information, go to the
-[Getting started](../getting-started.md) page.
+[Getting started](../home_content.md) page.
 
 Chips allow users to enter information, make selections, filter content, or trigger actions. While
 buttons are expected to appear consistently and with familiar calls to action, chips should appear
@@ -42,10 +41,10 @@ content labels are usually unnecessary.
 
 There are four types of chips:
 
-- [input (entry)](#input-chip)
-- [choice](#choice-chip)
-- [filter](#filter-chip)
-- [action](#action-chip)
+- [Input chip](#input-chip)
+- [Choice chip](#choice-chip)
+- [Filter chip](#filter-chip)
+- [Action chip](#action-chip)
 
 API and source code:
 
@@ -59,7 +58,7 @@ API and source code:
     * [Class definition](https://developer.android.com/reference/com/google/android/material/chip/ChipDrawable)
     * [Class source](https://github.com/material-components/material-components-android/tree/master/lib/java/com/google/android/material/chip/ChipDrawable.java)
 
-## Input chip
+#### Input chip
 
 Input chips (refered to as **entry** chips in Android) represent a complex piece of information in
 compact form, such as an entity (person, place, or thing) or text. They enable user input and verify
@@ -83,7 +82,7 @@ In the layout:
 </com.google.android.material.chip.ChipGroup>
 ```
 
-## Choice chip
+#### Choice chip
 
 Choice chips allow selection of a single chip from a set of options.
 
@@ -108,7 +107,7 @@ In the layout:
     </com.google.android.material.chip.ChipGroup>
 ```
 
-## Filter chip
+#### Filter chip
 
 Filter chips use tags or descriptive words to filter content.
 
@@ -133,7 +132,7 @@ In the layout:
 </com.google.android.material.chip.ChipGroup>
 ```
 
-## Action chip
+#### Action chip
 
 Action chips offer actions related to primary content. They should appear dynamically and
 contextually in a UI.

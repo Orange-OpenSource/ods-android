@@ -1,12 +1,8 @@
 ---
 layout: detail
 title: Switch
-description: Switch description
+description: Switch selection control allows the user to select options.
 ---
-
-# Selection controls: switches
-
-Selection controls allow the user to select options.
 
 Switches toggle the state of a single setting on or off. They are the preferred
 way to adjust settings on mobile.
@@ -14,12 +10,17 @@ way to adjust settings on mobile.
 **Contents**
 
 *   [Using switches](#using-switches)
+    *   [Material Design](#material-design)
+    *   [Accessibility](#accessibility)
+    *   [Adding a switch](#adding-a-switch)
+          *   [In XML](#in-xml)
+          *   [In Jetpack Compose](#in-jetpack-compose)
 
 ## Using switches
 
 Before you can use Orange themed switches, you need to add a dependency to the Orange Design
 System for Android library. For more information, go to the
-[Getting started](../getting-started.md) page.
+[Getting started](../home_content.md) page.
 
 ### Material Design
 
@@ -80,7 +81,7 @@ In the layout:
 
 In code:
 
-```kt
+```kotlin
 // To check a switch
 switchMaterial.isChecked = true
 

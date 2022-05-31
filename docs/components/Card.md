@@ -1,12 +1,8 @@
 ---
 layout: detail
 title: Card
-description: Card description
+description: Cards contain content and actions about a single subject.
 ---
-
-# Cards
-
-Cards contain content and actions about a single subject.
 
 **Contents**
 
@@ -15,7 +11,7 @@ Cards contain content and actions about a single subject.
     *   [Accessibility](#accessibility)
 *   [Adding a Card](#adding-a-card)
     *   [In XML](#in-xml)
-    *   [In JetPack Compose](#in-jetpack-compose)
+    *   [In Jetpack Compose](#in-jetpack-compose)
         *   [Card image first: OdsCardImageFirst](#card-image-first-odscardimagefirst)
         *   [Card title first: OdsCardTitleFirst](#card-title-first-odscardtitlefirst)
         *   [Small card: OdsCardSmall](#small-card-odscardsmall)
@@ -24,7 +20,7 @@ Cards contain content and actions about a single subject.
 
 Before you can use Orange themed cards, you need to add a dependency to the Orange Design System
 for Android library. For more information, go to the
-[Getting started](../getting-started.md) page.
+[Getting started](../home_content.md) page.
 
 ### Material Design
 
@@ -136,7 +132,7 @@ In the layout:
 </com.google.android.material.card.MaterialCardView>
 ```
 
-### In JetPack Compose
+### In Jetpack Compose
 
 The library offers several Composables for each type of card available in Orange Design System:
 

@@ -1,12 +1,8 @@
 ---
 layout: detail
 title: Text field
-description: Text field description
+description: Text fields let users enter and edit text.
 ---
-
-# Text fields
-
-Text fields let users enter and edit text.
 
 **Contents**
 
@@ -27,7 +23,7 @@ Text fields let users enter and edit text.
 
 Before you can use Orange themed text fields, you need to add a dependency to the Orange Design
 System for Android library. For more information, go to the
-[Getting started](../getting-started.md) page.
+[Getting started](../home_content.md) page.
 
 ### Material Design
 
@@ -108,7 +104,7 @@ In the layout:
 
 In code:
 
-```kt
+```kotlin
 // Get input text
 val inputText = filledTextField.editText?.text.toString()
 
@@ -186,7 +182,7 @@ In the layout:
 
 In code:
 
-```kt
+```kotlin
 // Get input text
 val inputText = outlinedTextField.editText?.text.toString()
 
