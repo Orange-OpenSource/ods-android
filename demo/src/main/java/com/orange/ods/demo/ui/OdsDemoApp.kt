@@ -76,23 +76,28 @@ fun OdsDemoApp() {
                             updateTheme = appState::updateTheme
                         )
                         // Display tabs in the top bar if needed
-                        if (appState.tabsState.hasTabs && appState.tabsState.pagerState != null) {
-                            if (appState.tabsState.scrollableTabs.value) {
-                                TopAppBarScrollableTabs(
-                                    tabs = appState.tabsState.tabs,
-                                    pagerState = appState.tabsState.pagerState!!,
-                                    tabIconType = appState.tabsState.tabIconType.value,
-                                    tabTextEnabled = appState.tabsState.tabTextEnabled.value
-                                )
-                            } else {
-                                TopAppBarFixedTabs(
-                                    tabs = appState.tabsState.tabs,
-                                    pagerState = appState.tabsState.pagerState!!,
-                                    tabIconType = appState.tabsState.tabIconType.value,
-                                    tabTextEnabled = appState.tabsState.tabTextEnabled.value
-                                )
+                        with(appState.tabsState) {
+                            pagerState?.let { pagerState ->
+                                if (hasTabs) {
+                                    if (scrollableTabs.value) {
+                                        TopAppBarScrollableTabs(
+                                            tabs = tabs,
+                                            pagerState = pagerState,
+                                            tabIconType = tabIconType.value,
+                                            tabTextEnabled = tabTextEnabled.value
+                                        )
+                                    } else {
+                                        TopAppBarFixedTabs(
+                                            tabs = tabs,
+                                            pagerState = pagerState,
+                                            tabIconType = tabIconType.value,
+                                            tabTextEnabled = tabTextEnabled.value
+                                        )
+                                    }
+                                }
                             }
                         }
+
                     }
                 }
             },
