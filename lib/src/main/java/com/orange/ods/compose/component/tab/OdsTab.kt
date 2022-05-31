@@ -17,6 +17,7 @@ import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.painter.Painter
+import androidx.compose.ui.text.style.TextOverflow
 
 /**
  * <a href="https://system.design.orange.com/0c1af118d/p/513d27-tabs/b/50cb71" class="external" target="_blank">ODS tab</a>.
@@ -51,7 +52,7 @@ fun OdsTab(
         modifier = modifier,
         enabled = enabled,
         icon = icon?.let { { Icon(painter = icon, contentDescription = null) } },
-        text = text?.let { { Text(text.uppercase()) } },
+        text = text?.let { { Text(text.uppercase(), maxLines = 1, overflow = TextOverflow.Ellipsis) } },
         selectedContentColor = MaterialTheme.colors.primary,
         unselectedContentColor = MaterialTheme.colors.onSurface,
     )
