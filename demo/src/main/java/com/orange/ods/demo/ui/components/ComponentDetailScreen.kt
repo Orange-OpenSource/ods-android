@@ -30,7 +30,7 @@ import com.orange.ods.demo.ui.components.utilities.ComponentHeader
 fun ComponentDetailScreen(
     componentId: Long,
     onSubComponentClick: (Long) -> Unit,
-    updateTopBarTitle: (Int) -> Unit,
+    updateTopBarTitle: (Int) -> Unit
 ) {
     val component = remember { components.firstOrNull { component -> component.id == componentId } }
 

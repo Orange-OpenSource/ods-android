@@ -33,7 +33,7 @@ fun OdsDemoTopAppBar(
     darkModeEnabled: Boolean,
     shouldShowUpNavigationIcon: Boolean,
     navigateUp: () -> Unit,
-    updateTheme: (Boolean) -> Unit,
+    updateTheme: (Boolean) -> Unit
 ) {
     SystemBarsColorSideEffect(MaterialTheme.colors.background)
     OdsTopAppBar(
@@ -81,7 +81,7 @@ private fun SystemBarsColorSideEffect(backgroundColor: Color) {
     val systemUiController = rememberSystemUiController()
     SideEffect {
         systemUiController.setSystemBarsColor(
-            color = backgroundColor,
+            color = backgroundColor
         )
     }
 }
