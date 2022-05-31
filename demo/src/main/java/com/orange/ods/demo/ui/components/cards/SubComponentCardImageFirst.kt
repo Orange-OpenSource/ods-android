@@ -17,6 +17,7 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.ExperimentalMaterialApi
+import androidx.compose.material.rememberBottomSheetScaffoldState
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.saveable.rememberSaveable
@@ -39,12 +40,14 @@ fun CardImageFirstContent() {
     val button1IsChecked = rememberSaveable { mutableStateOf(true) }
     val button2IsChecked = rememberSaveable { mutableStateOf(true) }
 
-    ComponentCustomizationBottomSheetScaffold(sheetContent = {
-        LabelledCheckbox(label = stringResource(id = R.string.component_element_subtitle), checked = subtitleIsChecked)
-        LabelledCheckbox(label = stringResource(id = R.string.component_element_text), checked = textIsChecked)
-        LabelledCheckbox(label = stringResource(id = R.string.component_element_button1), checked = button1IsChecked)
-        LabelledCheckbox(label = stringResource(id = R.string.component_element_button2), checked = button2IsChecked)
-    }) {
+    ComponentCustomizationBottomSheetScaffold(
+        bottomSheetScaffoldState = rememberBottomSheetScaffoldState(),
+        bottomSheetContent = {
+            LabelledCheckbox(label = stringResource(id = R.string.component_element_subtitle), checked = subtitleIsChecked)
+            LabelledCheckbox(label = stringResource(id = R.string.component_element_text), checked = textIsChecked)
+            LabelledCheckbox(label = stringResource(id = R.string.component_element_button1), checked = button1IsChecked)
+            LabelledCheckbox(label = stringResource(id = R.string.component_element_button2), checked = button2IsChecked)
+        }) {
         Column(
             modifier = Modifier
                 .fillMaxSize()

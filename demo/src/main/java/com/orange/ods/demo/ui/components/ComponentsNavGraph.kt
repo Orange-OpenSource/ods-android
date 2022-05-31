@@ -16,17 +16,23 @@ import androidx.navigation.NavGraphBuilder
 import androidx.navigation.NavType
 import androidx.navigation.compose.composable
 import androidx.navigation.navArgument
+import com.google.accompanist.pager.ExperimentalPagerApi
 import com.orange.ods.demo.ui.MainDestinations
+import com.orange.ods.demo.ui.components.tabs.TabsConfiguration
 
 @ExperimentalMaterialApi
+@ExperimentalPagerApi
 fun NavGraphBuilder.addComponentsGraph(
     onNavElementClick: (String, Long?, NavBackStackEntry) -> Unit,
-    updateTopBarTitle: (Int) -> Unit
+    updateTopBarTitle: (Int) -> Unit,
+    updateTopAppBarTabs: (TabsConfiguration) -> Unit,
+    clearTopAppBarTabs: () -> Unit
 ) {
     composable(
         "${MainDestinations.COMPONENT_DETAIL_ROUTE}/{${MainDestinations.COMPONENT_ID_KEY}}",
         arguments = listOf(navArgument(MainDestinations.COMPONENT_ID_KEY) { type = NavType.LongType })
     ) { from ->
+        clearTopAppBarTabs()
         val arguments = requireNotNull(from.arguments)
         val componentId = arguments.getLong(MainDestinations.COMPONENT_ID_KEY)
         ComponentDetailScreen(
@@ -42,6 +48,10 @@ fun NavGraphBuilder.addComponentsGraph(
     ) { from ->
         val arguments = requireNotNull(from.arguments)
         val subComponentId = arguments.getLong(MainDestinations.COMPONENT_ID_KEY)
-        SubComponentDetailScreen(subComponentId = subComponentId, updateTopBarTitle = updateTopBarTitle)
+        SubComponentDetailScreen(
+            subComponentId = subComponentId,
+            updateTopBarTitle = updateTopBarTitle,
+            updateTopAppBarTabs = updateTopAppBarTabs
+        )
     }
 }

@@ -25,18 +25,23 @@ import com.orange.ods.demo.ui.modules.ModulesScreen
 @ExperimentalMaterialApi
 fun NavGraphBuilder.addHomeGraph(
     onNavElementClick: (String, Long?, NavBackStackEntry) -> Unit,
-    updateTopBarTitle: (Int) -> Unit
+    updateTopBarTitle: (Int) -> Unit,
+    clearTopAppBarTabs: () -> Unit
 ) {
     composable(HomeSections.GUIDELINES.route) { from ->
+        clearTopAppBarTabs()
         GuidelinesScreen(onGuidelineClick = { route -> onNavElementClick(route, null, from) }, updateTopBarTitle = updateTopBarTitle)
     }
     composable(HomeSections.COMPONENTS.route) { from ->
+        clearTopAppBarTabs()
         ComponentsScreen(onComponentClick = { id -> onNavElementClick(MainDestinations.COMPONENT_DETAIL_ROUTE, id, from) }, updateTopBarTitle = updateTopBarTitle)
     }
     composable(HomeSections.MODULES.route) {
+        clearTopAppBarTabs()
         ModulesScreen(updateTopBarTitle = updateTopBarTitle)
     }
     composable(HomeSections.ABOUT.route) { from ->
+        clearTopAppBarTabs()
         AboutScreen(onAboutItemClick = { id -> onNavElementClick(MainDestinations.ABOUT_ITEM_DETAIL_ROUTE, id, from) }, updateTopBarTitle = updateTopBarTitle)
     }
 }

@@ -61,6 +61,8 @@ sealed class Component(
         listOf(SubComponent.TextFieldsFilled, SubComponent.TextFieldsOutlined)
     )
 
+    object Tabs : Component(R.string.component_tabs, R.drawable.il_tabs, R.string.component_tabs_description, listOf(SubComponent.TabsFixed, SubComponent.TabsScrollable))
+
     @ExperimentalMaterialApi
     @Composable
     fun Detail(onSubComponentClick: (Long) -> Unit) {
@@ -73,7 +75,7 @@ sealed class Component(
             RadioButtons -> ComponentDetail(component = this) { ComponentRadioButtonsContent() }
             Sliders -> ComponentDetail(component = this) { ComponentSlidersContent() }
             Switches -> ComponentDetail(component = this) { ComponentSwitchesContent() }
-            Cards, Lists, TextFields -> ComponentDetailWithSubComponents(component = this, onSubComponentClick = onSubComponentClick)
+            Cards, Lists, TextFields, Tabs -> ComponentDetailWithSubComponents(component = this, onSubComponentClick = onSubComponentClick)
         }
     }
 }
@@ -95,4 +97,7 @@ sealed class SubComponent(
 
     object TextFieldsFilled : SubComponent(R.string.component_text_fields_filled)
     object TextFieldsOutlined : SubComponent(R.string.component_text_fields_outlined)
+    
+    object TabsFixed : SubComponent(R.string.component_tabs_fixed)
+    object TabsScrollable : SubComponent(R.string.component_tabs_scrollable)
 }

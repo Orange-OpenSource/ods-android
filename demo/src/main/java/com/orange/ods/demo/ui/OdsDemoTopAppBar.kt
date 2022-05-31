@@ -53,7 +53,8 @@ fun OdsDemoTopAppBar(
                     ThemeIcon(iconRes = R.drawable.ic_ui_dark_mode, contentDescriptionRes = R.string.theme_changer_icon_content_description_dark)
                 }
             }
-        }
+        },
+        elevated = false // elevation is managed in [OdsDemoApp] cause of tabs
     )
 }
 
@@ -80,7 +81,7 @@ private fun SystemBarsColorSideEffect(backgroundColor: Color) {
     val systemUiController = rememberSystemUiController()
     SideEffect {
         systemUiController.setSystemBarsColor(
-            color = backgroundColor,
+            color = backgroundColor
         )
     }
 }

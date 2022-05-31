@@ -37,7 +37,7 @@
     <!-- Components -->
     <string name="component_force_on_dark">Forced on dark</string>
     <string name="component_force_on_light">Forced on light</string>
-    <string name="component_customize">Swipe up to customize</string>
+    <string name="component_customize">Click to customize</string>
     <string name="component_state">State</string>
     <string name="component_state_enabled">Enabled</string>
     <string name="component_state_disabled">Disabled</string>
@@ -147,6 +147,21 @@
     <string name="component_text_fields_description">Text fields enable the user to type text into the app. They also provide ways to select text and the opportunity to save time by suggesting options for auto-completion.</string>
     <string name="component_text_fields_filled">Filled text fields</string>
     <string name="component_text_fields_outlined">Outlined text fields</string>
+
+    <!-- Component Tabs -->
+    <string name="component_tabs">Tabs</string>
+    <string name="component_tabs_description">A tab bar appears at the top of the screen and provides an easy way for users to switch between a number of different views.</string>
+    <string name="component_tabs_fixed">Fixed tabs</string>
+    <string name="component_tabs_scrollable">Scrollable tabs</string>
+    <string name="component_tabs_count">Tabs count</string>
+    <string name="component_tab_icon_leading">Leading</string>
+    <string name="component_tab_icon_top">Top</string>
+    <string name="component_tab_favourites">Favourites</string>
+    <string name="component_tab_calls">Calls</string>
+    <string name="component_tab_alerts">Alerts</string>
+    <string name="component_tab_calendar">Calendar</string>
+    <string name="component_tab_account">Account</string>
+    <string name="component_tab_settings">Settings</string>
 
     <!-- About -->
     <string name="about_app_name">Orange Design</string>

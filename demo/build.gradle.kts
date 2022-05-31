@@ -110,6 +110,8 @@ dependencies {
     implementation(Dependencies.activityCompose)
     implementation(Dependencies.navigationCompose)
     implementation(Dependencies.accompanistSystemUiController)
+    implementation(Dependencies.accompanistPager)
+    implementation(Dependencies.accompanistPagerIndicators)
     implementation(platform(Dependencies.firebaseBom))
     implementation(Dependencies.firebaseCrashlytics)
 

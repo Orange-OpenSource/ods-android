@@ -10,6 +10,7 @@
 
 package com.orange.ods.demo.ui
 
+import androidx.compose.material.ExperimentalMaterialApi
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.MutableState
 import androidx.compose.runtime.mutableStateOf
@@ -22,7 +23,10 @@ import androidx.navigation.NavGraph
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
+import com.google.accompanist.pager.ExperimentalPagerApi
 import com.orange.ods.demo.R
+import com.orange.ods.demo.ui.components.tabs.OdsDemoTabsState
+import com.orange.ods.demo.ui.components.tabs.rememberOdsDemoTabsState
 
 /**
  * Destinations used in the [OdsDemoApp].
@@ -42,16 +46,26 @@ object MainDestinations {
 }
 
 @Composable
+@ExperimentalPagerApi
+@ExperimentalMaterialApi
 fun rememberOdsDemoAppState(
     navController: NavHostController = rememberNavController(),
+    darkModeEnabled: MutableState<Boolean>,
     topAppBarTitleRes: MutableState<Int> = rememberSaveable { mutableStateOf(R.string.navigation_item_guidelines) },
-    darkModeEnabled: MutableState<Boolean>
+    tabsState: OdsDemoTabsState = rememberOdsDemoTabsState()
 ) =
-    remember(navController, topAppBarTitleRes, darkModeEnabled) {
-        OdsDemoAppState(navController, topAppBarTitleRes, darkModeEnabled)
+    remember(navController, darkModeEnabled, topAppBarTitleRes, tabsState) {
+        OdsDemoAppState(navController, darkModeEnabled, topAppBarTitleRes, tabsState)
     }
 
-class OdsDemoAppState(val navController: NavHostController, val topAppBarTitleRes: MutableState<Int>, val darkModeEnabled: MutableState<Boolean>) {
+@ExperimentalPagerApi
+@ExperimentalMaterialApi
+class OdsDemoAppState(
+    val navController: NavHostController,
+    val darkModeEnabled: MutableState<Boolean>,
+    val topAppBarTitleRes: MutableState<Int>,
+    val tabsState: OdsDemoTabsState
+) {
 
     fun updateTheme(isDark: Boolean) {
         darkModeEnabled.value = isDark

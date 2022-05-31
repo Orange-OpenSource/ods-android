@@ -13,15 +13,20 @@ package com.orange.ods.demo.ui.components
 import androidx.compose.material.ExperimentalMaterialApi
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember
+import com.google.accompanist.pager.ExperimentalPagerApi
+import com.orange.ods.demo.ui.components.tabs.TabsConfiguration
 import com.orange.ods.demo.ui.components.cards.SubComponentCard
 import com.orange.ods.demo.ui.components.lists.SubComponentList
+import com.orange.ods.demo.ui.components.tabs.SubComponentTabs
 import com.orange.ods.demo.ui.components.textfields.SubComponentTextField
 
 @ExperimentalMaterialApi
+@ExperimentalPagerApi
 @Composable
 fun SubComponentDetailScreen(
     subComponentId: Long,
-    updateTopBarTitle: (Int) -> Unit
+    updateTopBarTitle: (Int) -> Unit,
+    updateTopAppBarTabs: (TabsConfiguration) -> Unit
 ) {
     val component = remember { components.firstOrNull { component -> component.subComponents.any { subComponent -> subComponent.id == subComponentId } } }
     val subComponent = remember { components.flatMap { it.subComponents }.firstOrNull { it.id == subComponentId } }
@@ -32,6 +37,7 @@ fun SubComponentDetailScreen(
             Component.Cards -> SubComponentCard(subComponent = subComponent)
             Component.Lists -> SubComponentList(subComponent = subComponent)
             Component.TextFields -> SubComponentTextField(subComponent = subComponent)
+            Component.Tabs -> SubComponentTabs(subComponent, updateTopAppBarTabs)
             else -> {}
         }
     }
