@@ -54,7 +54,7 @@ fun OdsDemoTopAppBar(
                 }
             }
         },
-        elevation = false // elevation is managed in [OdsDemoApp] cause of tabs
+        elevated = false // elevation is managed in [OdsDemoApp] cause of tabs
     )
 }
 

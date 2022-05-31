@@ -37,7 +37,7 @@ import androidx.compose.ui.unit.dp
  * typically be an [IconButton] or [IconToggleButton].
  * @param actions The actions displayed at the end of the TopAppBar. This should typically be
  * [IconButton]s. The default layout here is a [Row], so icons inside will be placed horizontally.
- * @param elevation True to set an elevation to the top app bar (shadow displayed), false otherwise.
+ * @param elevated True to set an elevation to the top app bar (shadow displayed), false otherwise.
  */
 @Composable
 fun OdsTopAppBar(
@@ -45,7 +45,7 @@ fun OdsTopAppBar(
     modifier: Modifier = Modifier,
     navigationIcon: @Composable (() -> Unit)? = null,
     actions: @Composable RowScope.() -> Unit = {},
-    elevation: Boolean = true
+    elevated: Boolean = true
 ) {
     TopAppBar(
         title = title,
@@ -53,6 +53,6 @@ fun OdsTopAppBar(
         navigationIcon = navigationIcon,
         actions = actions,
         backgroundColor = MaterialTheme.colors.surface,
-        elevation = if (elevation) AppBarDefaults.TopAppBarElevation else 0.dp
+        elevation = if (elevated) AppBarDefaults.TopAppBarElevation else 0.dp
     )
 }
