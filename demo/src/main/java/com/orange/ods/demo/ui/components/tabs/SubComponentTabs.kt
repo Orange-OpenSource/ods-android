@@ -138,7 +138,7 @@ fun SubComponentTabs(subComponent: SubComponent, updateTopAppBarTabs: (TabsConfi
 }
 
 @Composable
-fun TabsPagerContentScreen(text: String) {
+private fun TabsPagerContentScreen(text: String) {
     Column(
         modifier = Modifier
             .fillMaxSize()
