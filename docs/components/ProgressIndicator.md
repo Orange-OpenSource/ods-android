@@ -54,7 +54,7 @@ Linear progress indicators support both determinate and indeterminate operations
 * Indeterminate operations display the indicator continually growing and shrinking along the track
   until the process is complete.
 
-## Circular progress indicators
+### Circular progress indicators
 
 Circular progress indicators display progress by animating an indicator along an
 invisible circular track in a clockwise direction. They can be applied directly

@@ -224,7 +224,7 @@ In the layout:
 </com.google.android.material.button.MaterialButtonToggleGroup>
 ```
 
-#### Adding a toggle button icon-only in XML
+### Adding a toggle button icon-only in XML
 
 To create an icon-only toggle button using Orange theme you will need to apply
 style `@style/Widget.Orange.Button.Outlined.IconOnly` on your `Button` layout
@@ -250,7 +250,7 @@ In the layout:
 </com.google.android.material.button.MaterialButtonToggleGroup>
 ```
 
-#### Adding a toggle button in Jetpack Compose
+### Adding a toggle button in Jetpack Compose
 
 Use the `OdsButtonToggle` composable:
 
