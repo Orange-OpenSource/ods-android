@@ -19,7 +19,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 
 /**
- * <a href="https://system.design.orange.com/0c1af118d/p/513d27-tabs/b/50cb71" class="external" target="_blank">ODS fixed tabs</a>.
+ * <a href="https://system.design.orange.com/0c1af118d/p/513d27-tabs/b/50cb71" class="external" target="_blank">ODS tabs</a>.
  *
  * An OdsScrollableTabRow is a Jetpack Compose [ScrollableTabRow] with the Orange design and theme.
  * @see ScrollableTabRow documentation
