@@ -26,35 +26,9 @@ import kotlinx.coroutines.launch
 @ExperimentalPagerApi
 @Composable
 fun TopAppBarFixedTabs(tabs: List<TabItem>, pagerState: PagerState, tabIconType: SubComponentTabsState.TabIconType, tabTextEnabled: Boolean) {
-    val scope = rememberCoroutineScope()
 
-    OdsTabRow(
-        selectedTabIndex = pagerState.currentPage
-    ) {
-        tabs.forEachIndexed { index, tab ->
-            if (tabIconType == SubComponentTabsState.TabIconType.Leading && tabTextEnabled) {
-                OdsLeadingIconTab(
-                    icon = painterResource(id = tab.icon),
-                    text = stringResource(id = tab.titleRes),
-                    selected = pagerState.currentPage == index,
-                    onClick = {
-                        scope.launch {
-                            pagerState.animateScrollToPage(index)
-                        }
-                    },
-                )
-            } else {
-                OdsTab(
-                    icon = if (tabIconType == SubComponentTabsState.TabIconType.None) null else painterResource(id = tab.icon),
-                    text = if (tabTextEnabled) stringResource(id = tab.titleRes) else null,
-                    selected = pagerState.currentPage == index,
-                    onClick = {
-                        scope.launch {
-                            pagerState.animateScrollToPage(index)
-                        }
-                    }
-                )
-            }
-        }
+    OdsTabRow(selectedTabIndex = pagerState.currentPage) {
+        TopAppBarTabs(tabs = tabs, pagerState = pagerState, tabIconType = tabIconType, tabTextEnabled = tabTextEnabled)
     }
+
 }
