@@ -16,13 +16,13 @@ import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.snapshots.SnapshotStateList
 import com.google.accompanist.pager.ExperimentalPagerApi
 import com.google.accompanist.pager.PagerState
-import com.orange.ods.demo.ui.utilities.rememberMutableStateListOf
+import com.orange.ods.demo.ui.utilities.rememberSaveableMutableStateListOf
 
 @Composable
 @ExperimentalPagerApi
 @ExperimentalMaterialApi
 fun rememberOdsDemoTabsState(
-    tabs: SnapshotStateList<TabItem> = rememberMutableStateListOf(),
+    tabs: SnapshotStateList<TabItem> = rememberSaveableMutableStateListOf(),
     tabIconType: MutableState<SubComponentTabsState.TabIconType> = rememberSaveable { mutableStateOf(SubComponentTabsState.TabIconType.Top) },
     tabTextEnabled: MutableState<Boolean> = rememberSaveable { mutableStateOf(true) },
     scrollableTabs: MutableState<Boolean> = rememberSaveable { mutableStateOf(false) }
