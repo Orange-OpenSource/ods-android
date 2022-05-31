@@ -115,7 +115,7 @@ fun SubComponentTabs(subComponent: SubComponent, updateTopAppBarTabs: (TabsConfi
                 horizontalArrangement = Arrangement.Start,
                 verticalAlignment = Alignment.CenterVertically
             ) {
-                OdsTextSubtitle1(modifier = Modifier.weight(1f), text = stringResource(id = R.string.component_tabs_number))
+                OdsTextSubtitle1(modifier = Modifier.weight(1f), text = stringResource(id = R.string.component_tabs_count))
                 IconButton(onClick = { subComponentTabsState.tabsNumber.value-- }, enabled = subComponentTabsState.canRemoveTab(tabCountMin)) {
                     Icon(
                         painter = painterResource(id = R.drawable.ic_remove),
