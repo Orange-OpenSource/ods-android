@@ -18,7 +18,7 @@ Use radio buttons to:
     *   [Accessibility](#accessibility)
     *   [Adding a radio button](#adding-a-radio-button)
         *   [In XML](#in-xml)
-        *   [In JetPack Compose](#in-jetpack-compose)
+        *   [In Jetpack Compose](#in-jetpack-compose)
     *   [Grouping radio buttons](#grouping-radio-buttons)
 
 
@@ -60,7 +60,7 @@ In the layout:
     android:text="@string/label"/>
 ```
 
-#### In JetPack Compose
+#### In Jetpack Compose
 
 In your composable screen you can use:
 

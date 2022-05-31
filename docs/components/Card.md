@@ -11,7 +11,7 @@ description: Cards contain content and actions about a single subject.
     *   [Accessibility](#accessibility)
 *   [Adding a Card](#adding-a-card)
     *   [In XML](#in-xml)
-    *   [In JetPack Compose](#in-jetpack-compose)
+    *   [In Jetpack Compose](#in-jetpack-compose)
         *   [Card image first: OdsCardImageFirst](#card-image-first-odscardimagefirst)
         *   [Card title first: OdsCardTitleFirst](#card-title-first-odscardtitlefirst)
         *   [Small card: OdsCardSmall](#small-card-odscardsmall)
@@ -132,7 +132,7 @@ In the layout:
 </com.google.android.material.card.MaterialCardView>
 ```
 
-### In JetPack Compose
+### In Jetpack Compose
 
 The library offers several Composables for each type of card available in Orange Design System:
 
