@@ -58,7 +58,7 @@ class SubComponentTabsState(
         get() = tabTextEnabled.value
 
     val tabs: List<TabItem>
-        get() = availableTabs.subList(0, tabsNumber.value)
+        get() = availableTabs.take(tabsNumber.value)
 
     fun canRemoveTab(tabCountMin: Int) = tabsNumber.value > tabCountMin
 
