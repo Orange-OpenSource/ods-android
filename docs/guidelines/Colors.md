@@ -3,6 +3,13 @@ layout: detail
 title: Colors
 ---
 
+**Contents**
+
+*   [Using colors in Jetpack Compose](#using-colors-in-jetpack-compose)
+    *   [Theme colors](#theme-colors)
+    *   [Functional colors](#functional-colors)
+    *   [Other colors from Orange Design System](#other-colors-from-orange-design-system)
+
 ## Using colors in Jetpack Compose
 
 ### Theme colors

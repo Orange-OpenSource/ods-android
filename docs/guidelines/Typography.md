@@ -3,6 +3,12 @@ layout: detail
 title: Typography
 ---
 
+**Contents**
+
+*   [Using typography in Jetpack Compose](#using-typography-in-jetpack-compose)
+    *   [TextStyles](#textstyles)
+    *   [OdsText composables](#odstext-composables)
+
 ## Using typography in Jetpack Compose
 
 ### TextStyles
