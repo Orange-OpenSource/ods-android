@@ -11,8 +11,6 @@
 package com.orange.ods.demo.ui.about
 
 import android.annotation.SuppressLint
-import android.content.res.Configuration.UI_MODE_NIGHT_MASK
-import android.content.res.Configuration.UI_MODE_NIGHT_YES
 import android.graphics.Color
 import android.webkit.WebView
 import android.webkit.WebViewClient
@@ -25,6 +23,7 @@ import androidx.compose.ui.viewinterop.AndroidView
 import androidx.webkit.WebSettingsCompat
 import androidx.webkit.WebViewFeature
 import com.orange.ods.demo.R
+import com.orange.ods.demo.ui.utilities.extension.isDarkModeEnabled
 
 private const val FILE_PATH = "file:///android_res/raw/"
 
@@ -61,8 +60,7 @@ fun AboutHtmlFileScreen(
             },
             update = {
                 if (WebViewFeature.isFeatureSupported(WebViewFeature.FORCE_DARK)) {
-                    val isDarkModeEnabled = configuration.uiMode and UI_MODE_NIGHT_MASK == UI_MODE_NIGHT_YES
-                    val forceDarkMode = if (isDarkModeEnabled) WebSettingsCompat.FORCE_DARK_ON else WebSettingsCompat.FORCE_DARK_OFF
+                    val forceDarkMode = if (configuration.isDarkModeEnabled) WebSettingsCompat.FORCE_DARK_ON else WebSettingsCompat.FORCE_DARK_OFF
                     WebSettingsCompat.setForceDark(it.settings, forceDarkMode)
                 }
             })

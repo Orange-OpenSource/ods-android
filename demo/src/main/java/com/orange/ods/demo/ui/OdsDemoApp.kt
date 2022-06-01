@@ -10,7 +10,6 @@
 
 package com.orange.ods.demo.ui
 
-import android.content.res.Configuration.UI_MODE_NIGHT_NO
 import android.content.res.Configuration.UI_MODE_NIGHT_YES
 import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.animation.fadeIn
@@ -47,6 +46,7 @@ import com.orange.ods.demo.ui.components.tabs.TabsConfiguration
 import com.orange.ods.demo.ui.components.tabs.TopAppBarFixedTabs
 import com.orange.ods.demo.ui.components.tabs.TopAppBarScrollableTabs
 import com.orange.ods.demo.ui.guidelines.addGuidelinesGraph
+import com.orange.ods.demo.ui.utilities.extension.isDarkModeEnabled
 
 @ExperimentalMaterialApi
 @ExperimentalPagerApi
@@ -59,18 +59,17 @@ fun OdsDemoApp() {
 
     // Change isSystemInDarkTheme() value to make switching theme working with custom color
     val configuration = LocalConfiguration.current.apply {
-        uiMode = if (appState.darkModeEnabled.value) UI_MODE_NIGHT_YES else UI_MODE_NIGHT_NO
+        isDarkModeEnabled = appState.darkModeEnabled.value
     }
 
     CompositionLocalProvider(LocalConfiguration provides configuration) {
-        OdsMaterialTheme(appState.darkModeEnabled.value) {
+        OdsMaterialTheme(configuration.isDarkModeEnabled) {
             Scaffold(
                 topBar = {
                     Surface(elevation = AppBarDefaults.TopAppBarElevation) {
                         Column {
                             OdsDemoTopAppBar(
                                 titleRes = appState.topAppBarTitleRes.value,
-                                darkModeEnabled = appState.darkModeEnabled.value,
                                 shouldShowUpNavigationIcon = !appState.shouldShowBottomBar,
                                 navigateUp = appState::upPress,
                                 updateTheme = appState::updateTheme
