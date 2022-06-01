@@ -52,3 +52,42 @@ a:link {
     color: #f06d02;
     text-decoration: underline;
 }
+
+body {
+    font-family: sans-serif;
+    font-size: 14;
+    color: #000000;
+}
+
+a:visited {
+    color: #000000;
+}
+
+a:hover {
+    color: #000000;
+}
+
+a:active, a:focus {
+    color: #000000;
+}
+
+@media (prefers-color-scheme: dark) {
+  body {
+      font-family: sans-serif;
+      font-size: 14;
+      background-color: #000000;
+      color: #FFFFFF;
+  }
+
+  a:visited {
+      color: #FFFFFF;
+  }
+
+  a:hover {
+      color: #FFFFFF;
+  }
+
+  a:active, a:focus {
+      color: #FFFFFF;
+  }
+}

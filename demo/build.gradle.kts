@@ -114,6 +114,7 @@ dependencies {
     implementation(Dependencies.accompanistPagerIndicators)
     implementation(platform(Dependencies.firebaseBom))
     implementation(Dependencies.firebaseCrashlytics)
+    implementation(Dependencies.webkit)
 
     debugImplementation(Dependencies.composeUiTooling)
 }

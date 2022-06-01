@@ -25,6 +25,7 @@ import androidx.compose.material.Icon
 import androidx.compose.material.Scaffold
 import androidx.compose.material.Surface
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.ui.Modifier
@@ -57,72 +58,72 @@ fun OdsDemoApp() {
     val appState = rememberOdsDemoAppState(darkModeEnabled = rememberSaveable { mutableStateOf(isSystemInDarkTheme) })
 
     // Change isSystemInDarkTheme() value to make switching theme working with custom color
-    if (appState.darkModeEnabled.value) {
-        LocalConfiguration.current.uiMode = UI_MODE_NIGHT_YES
-    } else {
-        LocalConfiguration.current.uiMode = UI_MODE_NIGHT_NO
+    val configuration = LocalConfiguration.current.apply {
+        uiMode = if (appState.darkModeEnabled.value) UI_MODE_NIGHT_YES else UI_MODE_NIGHT_NO
     }
 
-    OdsMaterialTheme(appState.darkModeEnabled.value) {
-        Scaffold(
-            topBar = {
-                Surface(elevation = AppBarDefaults.TopAppBarElevation) {
-                    Column {
-                        OdsDemoTopAppBar(
-                            titleRes = appState.topAppBarTitleRes.value,
-                            darkModeEnabled = appState.darkModeEnabled.value,
-                            shouldShowUpNavigationIcon = !appState.shouldShowBottomBar,
-                            navigateUp = appState::upPress,
-                            updateTheme = appState::updateTheme
-                        )
-                        // Display tabs in the top bar if needed
-                        with(appState.tabsState) {
-                            pagerState?.let { pagerState ->
-                                if (hasTabs) {
-                                    if (scrollableTabs.value) {
-                                        TopAppBarScrollableTabs(
-                                            tabs = tabs,
-                                            pagerState = pagerState,
-                                            tabIconType = tabIconType.value,
-                                            tabTextEnabled = tabTextEnabled.value
-                                        )
-                                    } else {
-                                        TopAppBarFixedTabs(
-                                            tabs = tabs,
-                                            pagerState = pagerState,
-                                            tabIconType = tabIconType.value,
-                                            tabTextEnabled = tabTextEnabled.value
-                                        )
+    CompositionLocalProvider(LocalConfiguration provides configuration) {
+        OdsMaterialTheme(appState.darkModeEnabled.value) {
+            Scaffold(
+                topBar = {
+                    Surface(elevation = AppBarDefaults.TopAppBarElevation) {
+                        Column {
+                            OdsDemoTopAppBar(
+                                titleRes = appState.topAppBarTitleRes.value,
+                                darkModeEnabled = appState.darkModeEnabled.value,
+                                shouldShowUpNavigationIcon = !appState.shouldShowBottomBar,
+                                navigateUp = appState::upPress,
+                                updateTheme = appState::updateTheme
+                            )
+                            // Display tabs in the top bar if needed
+                            with(appState.tabsState) {
+                                pagerState?.let { pagerState ->
+                                    if (hasTabs) {
+                                        if (scrollableTabs.value) {
+                                            TopAppBarScrollableTabs(
+                                                tabs = tabs,
+                                                pagerState = pagerState,
+                                                tabIconType = tabIconType.value,
+                                                tabTextEnabled = tabTextEnabled.value
+                                            )
+                                        } else {
+                                            TopAppBarFixedTabs(
+                                                tabs = tabs,
+                                                pagerState = pagerState,
+                                                tabIconType = tabIconType.value,
+                                                tabTextEnabled = tabTextEnabled.value
+                                            )
+                                        }
                                     }
                                 }
                             }
-                        }
 
+                        }
+                    }
+                },
+                bottomBar = {
+                    AnimatedVisibility(
+                        visible = appState.shouldShowBottomBar,
+                        enter = fadeIn(),
+                        exit = fadeOut()
+                    ) {
+                        OdsDemoBottomBar(
+                            tabs = appState.bottomBarTabs,
+                            currentRoute = appState.currentRoute!!,
+                            navigateToRoute = appState::navigateToBottomBarRoute
+                        )
                     }
                 }
-            },
-            bottomBar = {
-                AnimatedVisibility(
-                    visible = appState.shouldShowBottomBar,
-                    enter = fadeIn(),
-                    exit = fadeOut()
-                ) {
-                    OdsDemoBottomBar(
-                        tabs = appState.bottomBarTabs,
-                        currentRoute = appState.currentRoute!!,
-                        navigateToRoute = appState::navigateToBottomBarRoute
-                    )
-                }
-            }
-        ) { innerPadding ->
-            Box(modifier = Modifier.padding(innerPadding)) {
-                NavHost(appState.navController, startDestination = MainDestinations.HOME_ROUTE) {
-                    odsDemoNavGraph(
-                        onNavElementClick = appState::navigateToElement,
-                        updateTopBarTitle = appState::updateTopAppBarTitle,
-                        updateTopAppBarTabs = appState.tabsState::updateTopAppBarTabs,
-                        clearTopAppBarTabs = appState.tabsState::clearTopAppBarTabs
-                    )
+            ) { innerPadding ->
+                Box(modifier = Modifier.padding(innerPadding)) {
+                    NavHost(appState.navController, startDestination = MainDestinations.HOME_ROUTE) {
+                        odsDemoNavGraph(
+                            onNavElementClick = appState::navigateToElement,
+                            updateTopBarTitle = appState::updateTopAppBarTitle,
+                            updateTopAppBarTabs = appState.tabsState::updateTopAppBarTabs,
+                            clearTopAppBarTabs = appState.tabsState::clearTopAppBarTabs
+                        )
+                    }
                 }
             }
         }
