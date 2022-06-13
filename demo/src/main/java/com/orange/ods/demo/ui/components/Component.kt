@@ -41,7 +41,7 @@ sealed class Component(
         listOf(SubComponent.CardImageFirst, SubComponent.CardTitleFirst, SubComponent.CardSmall)
     )
 
-    object Checkboxes : Component(R.string.component_checkboxes, R.drawable.il_checkbox, R.string.component_checkboxes_description)
+    object Checkboxes : Component(R.string.component_checkboxes, R.drawable.il_checkboxes, R.string.component_checkboxes_description)
     object Dialogs : Component(R.string.component_dialogs, R.drawable.il_dialogs, R.string.component_dialogs_description)
     object Lists : Component(
         R.string.component_lists,
