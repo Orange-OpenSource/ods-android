@@ -10,7 +10,6 @@
 
 package com.orange.ods.demo.ui
 
-import android.content.res.Configuration.UI_MODE_NIGHT_NO
 import android.content.res.Configuration.UI_MODE_NIGHT_YES
 import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.animation.fadeIn
@@ -25,6 +24,7 @@ import androidx.compose.material.Icon
 import androidx.compose.material.Scaffold
 import androidx.compose.material.Surface
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.ui.Modifier
@@ -46,6 +46,7 @@ import com.orange.ods.demo.ui.components.tabs.TabsConfiguration
 import com.orange.ods.demo.ui.components.tabs.TopAppBarFixedTabs
 import com.orange.ods.demo.ui.components.tabs.TopAppBarScrollableTabs
 import com.orange.ods.demo.ui.guidelines.addGuidelinesGraph
+import com.orange.ods.demo.ui.utilities.extension.isDarkModeEnabled
 
 @ExperimentalMaterialApi
 @ExperimentalPagerApi
@@ -57,72 +58,71 @@ fun OdsDemoApp() {
     val appState = rememberOdsDemoAppState(darkModeEnabled = rememberSaveable { mutableStateOf(isSystemInDarkTheme) })
 
     // Change isSystemInDarkTheme() value to make switching theme working with custom color
-    if (appState.darkModeEnabled.value) {
-        LocalConfiguration.current.uiMode = UI_MODE_NIGHT_YES
-    } else {
-        LocalConfiguration.current.uiMode = UI_MODE_NIGHT_NO
+    val configuration = LocalConfiguration.current.apply {
+        isDarkModeEnabled = appState.darkModeEnabled.value
     }
 
-    OdsMaterialTheme(appState.darkModeEnabled.value) {
-        Scaffold(
-            topBar = {
-                Surface(elevation = AppBarDefaults.TopAppBarElevation) {
-                    Column {
-                        OdsDemoTopAppBar(
-                            titleRes = appState.topAppBarTitleRes.value,
-                            darkModeEnabled = appState.darkModeEnabled.value,
-                            shouldShowUpNavigationIcon = !appState.shouldShowBottomBar,
-                            navigateUp = appState::upPress,
-                            updateTheme = appState::updateTheme
-                        )
-                        // Display tabs in the top bar if needed
-                        with(appState.tabsState) {
-                            pagerState?.let { pagerState ->
-                                if (hasTabs) {
-                                    if (scrollableTabs.value) {
-                                        TopAppBarScrollableTabs(
-                                            tabs = tabs,
-                                            pagerState = pagerState,
-                                            tabIconType = tabIconType.value,
-                                            tabTextEnabled = tabTextEnabled.value
-                                        )
-                                    } else {
-                                        TopAppBarFixedTabs(
-                                            tabs = tabs,
-                                            pagerState = pagerState,
-                                            tabIconType = tabIconType.value,
-                                            tabTextEnabled = tabTextEnabled.value
-                                        )
+    CompositionLocalProvider(LocalConfiguration provides configuration) {
+        OdsMaterialTheme(configuration.isDarkModeEnabled) {
+            Scaffold(
+                topBar = {
+                    Surface(elevation = AppBarDefaults.TopAppBarElevation) {
+                        Column {
+                            OdsDemoTopAppBar(
+                                titleRes = appState.topAppBarTitleRes.value,
+                                shouldShowUpNavigationIcon = !appState.shouldShowBottomBar,
+                                navigateUp = appState::upPress,
+                                updateTheme = appState::updateTheme
+                            )
+                            // Display tabs in the top bar if needed
+                            with(appState.tabsState) {
+                                pagerState?.let { pagerState ->
+                                    if (hasTabs) {
+                                        if (scrollableTabs.value) {
+                                            TopAppBarScrollableTabs(
+                                                tabs = tabs,
+                                                pagerState = pagerState,
+                                                tabIconType = tabIconType.value,
+                                                tabTextEnabled = tabTextEnabled.value
+                                            )
+                                        } else {
+                                            TopAppBarFixedTabs(
+                                                tabs = tabs,
+                                                pagerState = pagerState,
+                                                tabIconType = tabIconType.value,
+                                                tabTextEnabled = tabTextEnabled.value
+                                            )
+                                        }
                                     }
                                 }
                             }
-                        }
 
+                        }
+                    }
+                },
+                bottomBar = {
+                    AnimatedVisibility(
+                        visible = appState.shouldShowBottomBar,
+                        enter = fadeIn(),
+                        exit = fadeOut()
+                    ) {
+                        OdsDemoBottomBar(
+                            tabs = appState.bottomBarTabs,
+                            currentRoute = appState.currentRoute!!,
+                            navigateToRoute = appState::navigateToBottomBarRoute
+                        )
                     }
                 }
-            },
-            bottomBar = {
-                AnimatedVisibility(
-                    visible = appState.shouldShowBottomBar,
-                    enter = fadeIn(),
-                    exit = fadeOut()
-                ) {
-                    OdsDemoBottomBar(
-                        tabs = appState.bottomBarTabs,
-                        currentRoute = appState.currentRoute!!,
-                        navigateToRoute = appState::navigateToBottomBarRoute
-                    )
-                }
-            }
-        ) { innerPadding ->
-            Box(modifier = Modifier.padding(innerPadding)) {
-                NavHost(appState.navController, startDestination = MainDestinations.HOME_ROUTE) {
-                    odsDemoNavGraph(
-                        onNavElementClick = appState::navigateToElement,
-                        updateTopBarTitle = appState::updateTopAppBarTitle,
-                        updateTopAppBarTabs = appState.tabsState::updateTopAppBarTabs,
-                        clearTopAppBarTabs = appState.tabsState::clearTopAppBarTabs
-                    )
+            ) { innerPadding ->
+                Box(modifier = Modifier.padding(innerPadding)) {
+                    NavHost(appState.navController, startDestination = MainDestinations.HOME_ROUTE) {
+                        odsDemoNavGraph(
+                            onNavElementClick = appState::navigateToElement,
+                            updateTopBarTitle = appState::updateTopAppBarTitle,
+                            updateTopAppBarTabs = appState.tabsState::updateTopAppBarTabs,
+                            clearTopAppBarTabs = appState.tabsState::clearTopAppBarTabs
+                        )
+                    }
                 }
             }
         }

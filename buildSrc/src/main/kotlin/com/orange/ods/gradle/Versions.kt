@@ -32,4 +32,5 @@ object Versions {
     const val material = "1.5.0"
     const val navigation = "2.4.1"
     const val testExtJUnit = "1.1.3"
+    const val webkit = "1.4.0"
 }

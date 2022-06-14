@@ -21,16 +21,17 @@ import androidx.compose.material.icons.filled.ArrowBack
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.SideEffect
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.LocalConfiguration
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import com.google.accompanist.systemuicontroller.rememberSystemUiController
 import com.orange.ods.compose.component.OdsTopAppBar
 import com.orange.ods.demo.R
+import com.orange.ods.demo.ui.utilities.extension.isDarkModeEnabled
 
 @Composable
 fun OdsDemoTopAppBar(
     titleRes: Int,
-    darkModeEnabled: Boolean,
     shouldShowUpNavigationIcon: Boolean,
     navigateUp: () -> Unit,
     updateTheme: (Boolean) -> Unit
@@ -44,10 +45,11 @@ fun OdsDemoTopAppBar(
             { UpNavigationIcon(navigateUp) }
         } else null,
         actions = {
+            val configuration = LocalConfiguration.current
             IconButton(onClick = {
-                updateTheme(!darkModeEnabled)
+                updateTheme(!configuration.isDarkModeEnabled)
             }) {
-                if (darkModeEnabled) {
+                if (configuration.isDarkModeEnabled) {
                     ThemeIcon(iconRes = R.drawable.ic_ui_light_mode, contentDescriptionRes = R.string.theme_changer_icon_content_description_light)
                 } else {
                     ThemeIcon(iconRes = R.drawable.ic_ui_dark_mode, contentDescriptionRes = R.string.theme_changer_icon_content_description_dark)

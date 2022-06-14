@@ -36,4 +36,5 @@ object Dependencies {
     const val material = "com.google.android.material:material:${Versions.material}"
     const val navigationCompose = "androidx.navigation:navigation-compose:${Versions.navigation}"
     const val testExtJUnit = "androidx.test.ext:junit:${Versions.testExtJUnit}"
+    const val webkit = "androidx.webkit:webkit:${Versions.webkit}"
 }
