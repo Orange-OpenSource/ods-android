@@ -20,6 +20,7 @@ import androidx.compose.runtime.MutableState
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.stringResource
 import com.orange.ods.compose.component.button.OdsButton
@@ -28,6 +29,7 @@ import com.orange.ods.compose.component.dialog.OdsAlertDialog
 import com.orange.ods.compose.component.list.OdsListItem
 import com.orange.ods.demo.R
 import com.orange.ods.demo.ui.components.buttons.fullWidthButton
+import com.orange.ods.demo.ui.components.utilities.clickOnElement
 import com.orange.ods.demo.ui.utilities.composable.Title
 
 @ExperimentalMaterialApi
@@ -37,6 +39,7 @@ fun ComponentDialogsContent() {
     val openDialog = rememberSaveable { mutableStateOf(false) }
     val closeDialogAction = { openDialog.value = false }
     val confirmActionRes = if (customizationState.isDismissButtonChecked) R.string.component_dialog_action_confirm else R.string.component_dialog_action_ok
+    val context = LocalContext.current
 
     Title(textRes = R.string.component_dialogs_customize, withHorizontalPadding = true)
     Spacer(modifier = Modifier.height(dimensionResource(id = R.dimen.ods_spacing_xs)))
@@ -52,13 +55,22 @@ fun ComponentDialogsContent() {
     )
 
     if (openDialog.value) {
+        val confirmButtonText = stringResource(id = confirmActionRes)
+        val dismissButtonText = stringResource(id = R.string.component_dialog_action_dismiss)
+
         OdsAlertDialog(
             titleText = if (customizationState.isTitleChecked) stringResource(id = R.string.component_element_title) else null,
             text = stringResource(id = R.string.component_dialog_text),
-            confirmButtonText = stringResource(id = confirmActionRes),
-            onConfirmButtonClick = closeDialogAction,
-            dismissButtonText = if (customizationState.isDismissButtonChecked) stringResource(id = R.string.component_dialog_action_dismiss) else null,
-            onDismissButtonClick = closeDialogAction
+            confirmButtonText = confirmButtonText,
+            onConfirmButtonClick = {
+                clickOnElement(context = context, clickedElement = confirmButtonText)
+                closeDialogAction()
+            },
+            dismissButtonText = if (customizationState.isDismissButtonChecked) dismissButtonText else null,
+            onDismissButtonClick = {
+                clickOnElement(context = context, clickedElement = dismissButtonText)
+                closeDialogAction()
+            },
         )
     }
 }
