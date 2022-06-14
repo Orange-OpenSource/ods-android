@@ -61,15 +61,15 @@ fun ComponentDialogsContent() {
         OdsAlertDialog(
             titleText = if (customizationState.isTitleChecked) stringResource(id = R.string.component_element_title) else null,
             text = stringResource(id = R.string.component_dialog_text),
-            confirmButtonText = stringResource(id = confirmActionRes),
+            confirmButtonText = confirmButtonText,
             onConfirmButtonClick = {
                 clickOnElement(context = context, clickedElement = confirmButtonText)
-                closeDialogAction.invoke()
+                closeDialogAction()
             },
             dismissButtonText = if (customizationState.isDismissButtonChecked) dismissButtonText else null,
             onDismissButtonClick = {
                 clickOnElement(context = context, clickedElement = dismissButtonText)
-                closeDialogAction.invoke()
+                closeDialogAction()
             },
         )
     }
