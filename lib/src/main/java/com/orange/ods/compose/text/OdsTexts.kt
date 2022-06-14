@@ -10,15 +10,14 @@
 
 package com.orange.ods.compose.text
 
-import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.TextStyle
 import com.orange.ods.compose.theme.LocalDarkThemeColors
 import com.orange.ods.compose.theme.LocalLightThemeColors
 import com.orange.ods.compose.theme.OdsDisplayAppearance
+import com.orange.ods.compose.theme.OdsTheme
 
 @Composable
 fun OdsTextH1(
@@ -26,7 +25,7 @@ fun OdsTextH1(
     modifier: Modifier = Modifier,
     displayAppearance: OdsDisplayAppearance = OdsDisplayAppearance.DEFAULT
 ) =
-    OdsText(text, MaterialTheme.typography.h1, modifier, displayAppearance)
+    OdsText(text, OdsTheme.typography.h1, modifier, displayAppearance)
 
 @Composable
 fun OdsTextH2(
@@ -34,7 +33,7 @@ fun OdsTextH2(
     modifier: Modifier = Modifier,
     displayAppearance: OdsDisplayAppearance = OdsDisplayAppearance.DEFAULT
 ) =
-    OdsText(text, MaterialTheme.typography.h2, modifier, displayAppearance)
+    OdsText(text, OdsTheme.typography.h2, modifier, displayAppearance)
 
 @Composable
 fun OdsTextH3(
@@ -42,7 +41,7 @@ fun OdsTextH3(
     modifier: Modifier = Modifier,
     displayAppearance: OdsDisplayAppearance = OdsDisplayAppearance.DEFAULT
 ) =
-    OdsText(text, MaterialTheme.typography.h3, modifier, displayAppearance)
+    OdsText(text, OdsTheme.typography.h3, modifier, displayAppearance)
 
 @Composable
 fun OdsTextH4(
@@ -50,7 +49,7 @@ fun OdsTextH4(
     modifier: Modifier = Modifier,
     displayAppearance: OdsDisplayAppearance = OdsDisplayAppearance.DEFAULT
 ) =
-    OdsText(text, MaterialTheme.typography.h4, modifier, displayAppearance)
+    OdsText(text, OdsTheme.typography.h4, modifier, displayAppearance)
 
 @Composable
 fun OdsTextH5(
@@ -58,7 +57,7 @@ fun OdsTextH5(
     modifier: Modifier = Modifier,
     displayAppearance: OdsDisplayAppearance = OdsDisplayAppearance.DEFAULT
 ) =
-    OdsText(text, MaterialTheme.typography.h5, modifier, displayAppearance)
+    OdsText(text, OdsTheme.typography.h5, modifier, displayAppearance)
 
 @Composable
 fun OdsTextH6(
@@ -66,7 +65,7 @@ fun OdsTextH6(
     modifier: Modifier = Modifier,
     displayAppearance: OdsDisplayAppearance = OdsDisplayAppearance.DEFAULT
 ) =
-    OdsText(text, MaterialTheme.typography.h6, modifier, displayAppearance)
+    OdsText(text, OdsTheme.typography.h6, modifier, displayAppearance)
 
 @Composable
 fun OdsTextSubtitle1(
@@ -74,7 +73,7 @@ fun OdsTextSubtitle1(
     modifier: Modifier = Modifier,
     displayAppearance: OdsDisplayAppearance = OdsDisplayAppearance.DEFAULT
 ) =
-    OdsText(text, MaterialTheme.typography.subtitle1, modifier, displayAppearance)
+    OdsText(text, OdsTheme.typography.subtitle1, modifier, displayAppearance)
 
 @Composable
 fun OdsTextSubtitle2(
@@ -82,7 +81,7 @@ fun OdsTextSubtitle2(
     modifier: Modifier = Modifier,
     displayAppearance: OdsDisplayAppearance = OdsDisplayAppearance.DEFAULT
 ) =
-    OdsText(text, MaterialTheme.typography.subtitle2, modifier, displayAppearance)
+    OdsText(text, OdsTheme.typography.subtitle2, modifier, displayAppearance)
 
 @Composable
 fun OdsTextBody1(
@@ -90,7 +89,7 @@ fun OdsTextBody1(
     modifier: Modifier = Modifier,
     displayAppearance: OdsDisplayAppearance = OdsDisplayAppearance.DEFAULT
 ) =
-    OdsText(text, MaterialTheme.typography.body1, modifier, displayAppearance)
+    OdsText(text, OdsTheme.typography.body1, modifier, displayAppearance)
 
 @Composable
 fun OdsTextBody2(
@@ -98,7 +97,7 @@ fun OdsTextBody2(
     modifier: Modifier = Modifier,
     displayAppearance: OdsDisplayAppearance = OdsDisplayAppearance.DEFAULT
 ) =
-    OdsText(text, MaterialTheme.typography.body2, modifier, displayAppearance)
+    OdsText(text, OdsTheme.typography.body2, modifier, displayAppearance)
 
 @Composable
 fun OdsTextButton(
@@ -106,7 +105,7 @@ fun OdsTextButton(
     modifier: Modifier = Modifier,
     displayAppearance: OdsDisplayAppearance = OdsDisplayAppearance.DEFAULT
 ) =
-    OdsText(text, MaterialTheme.typography.button, modifier, displayAppearance)
+    OdsText(text, OdsTheme.typography.button, modifier, displayAppearance)
 
 @Composable
 fun OdsTextCaption(
@@ -114,7 +113,7 @@ fun OdsTextCaption(
     modifier: Modifier = Modifier,
     displayAppearance: OdsDisplayAppearance = OdsDisplayAppearance.DEFAULT
 ) =
-    OdsText(text, MaterialTheme.typography.caption, modifier, displayAppearance)
+    OdsText(text, OdsTheme.typography.caption, modifier, displayAppearance)
 
 @Composable
 fun OdsTextOverline(
@@ -122,7 +121,7 @@ fun OdsTextOverline(
     modifier: Modifier = Modifier,
     displayAppearance: OdsDisplayAppearance = OdsDisplayAppearance.DEFAULT
 ) =
-    OdsText(text, MaterialTheme.typography.overline, modifier, displayAppearance)
+    OdsText(text, OdsTheme.typography.overline, modifier, displayAppearance)
 
 @Composable
 private fun OdsText(
@@ -132,9 +131,9 @@ private fun OdsText(
     displayAppearance: OdsDisplayAppearance
 ) {
     val color = when (displayAppearance) {
-        OdsDisplayAppearance.DEFAULT -> Color.Unspecified
-        OdsDisplayAppearance.ON_DARK -> LocalDarkThemeColors.current.onSurface
-        OdsDisplayAppearance.ON_LIGHT -> LocalLightThemeColors.current.onSurface
+        OdsDisplayAppearance.DEFAULT -> OdsTheme.colors.coreOnSurface
+        OdsDisplayAppearance.ON_DARK -> LocalDarkThemeColors.current.coreOnSurface
+        OdsDisplayAppearance.ON_LIGHT -> LocalLightThemeColors.current.coreOnSurface
     }
     Text(text = text, style = textStyle, color = color, modifier = modifier)
 }

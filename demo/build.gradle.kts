@@ -103,6 +103,7 @@ android {
 
 dependencies {
     implementation(project(":lib"))
+    implementation(project(":theme-sosh"))
     implementation(project(":theme-orange"))
 
     implementation(Dependencies.coreKtx)

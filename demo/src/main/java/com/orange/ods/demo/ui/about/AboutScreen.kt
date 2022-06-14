@@ -22,16 +22,21 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.ExperimentalMaterialApi
-import androidx.compose.material.MaterialTheme
-import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.window.Dialog
 import com.orange.ods.compose.component.list.OdsListItem
+import com.orange.ods.compose.text.OdsTextCaption
+import com.orange.ods.compose.text.OdsTextH4
+import com.orange.ods.compose.theme.OdsCustomTheme
+import com.orange.ods.compose.theme.OdsTheme
 import com.orange.ods.demo.R
 import com.orange.ods.demo.ui.utilities.extension.versionCode
 import com.orange.ods.theme.orange.Blue200
@@ -39,7 +44,12 @@ import com.orange.ods.utilities.extension.orElse
 
 @Composable
 @ExperimentalMaterialApi
-fun AboutScreen(onAboutItemClick: (Long) -> Unit, updateTopBarTitle: (Int) -> Unit) {
+fun AboutScreen(
+    onAboutItemClick: (Long) -> Unit, updateTopBarTitle: (Int) -> Unit, customThemes: List<OdsCustomTheme>,
+    updateCurrentTheme: (OdsCustomTheme) -> Unit
+) {
+    val dialogVisibleState = rememberSaveable { mutableStateOf(false) }
+
     updateTopBarTitle(R.string.navigation_item_about)
     Column(
         modifier = Modifier
@@ -49,23 +59,25 @@ fun AboutScreen(onAboutItemClick: (Long) -> Unit, updateTopBarTitle: (Int) -> Un
         Image(
             modifier = Modifier
                 .fillMaxWidth()
+                .clickable {
+                    dialogVisibleState.value = true
+                }
                 .background(Blue200), // TODO remove this background color when we get the full width image from the design team
+
             painter = painterResource(id = R.drawable.il_about),
             contentScale = ContentScale.Crop,
             contentDescription = null
         )
         Column(Modifier.padding(horizontal = dimensionResource(id = R.dimen.ods_screen_horizontal_margin))) {
-            Text(
+            OdsTextH4(
                 text = stringResource(id = R.string.about_app_name),
-                style = MaterialTheme.typography.h4,
                 modifier = Modifier.padding(top = dimensionResource(id = R.dimen.ods_spacing_l))
             )
-            Text(
+            OdsTextCaption(
                 text = getVersion(context),
-                style = MaterialTheme.typography.caption,
                 modifier = Modifier.padding(top = dimensionResource(id = R.dimen.ods_spacing_xxs))
             )
-            Text(text = stringResource(id = R.string.about_copyright), style = MaterialTheme.typography.caption)
+            OdsTextCaption(text = stringResource(id = R.string.about_copyright))
         }
 
         Spacer(modifier = Modifier.height(dimensionResource(id = R.dimen.ods_spacing_s)))
@@ -74,6 +86,16 @@ fun AboutScreen(onAboutItemClick: (Long) -> Unit, updateTopBarTitle: (Int) -> Un
             OdsListItem(text = stringResource(id = aboutItem.titleRes), modifier = Modifier.clickable {
                 onAboutItemClick(aboutItem.id)
             })
+        }
+
+        if (dialogVisibleState.value) {
+            Dialog(onDismissRequest = { dialogVisibleState.value = false }) {
+                Column(modifier = Modifier.background(OdsTheme.colors.coreSurface)) {
+                    customThemes.forEach { theme ->
+                        OdsListItem(modifier = Modifier.clickable { updateCurrentTheme(theme) }, text = theme.javaClass.simpleName)
+                    }
+                }
+            }
         }
     }
 }

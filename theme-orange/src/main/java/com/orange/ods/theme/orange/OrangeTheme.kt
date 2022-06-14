@@ -10,15 +10,20 @@
 
 package com.orange.ods.theme.orange
 
-import androidx.compose.material.darkColors
-import androidx.compose.material.lightColors
-import com.orange.ods.compose.theme.OdsTheme
+import com.orange.ods.compose.theme.OdsColors
+import com.orange.ods.compose.theme.OdsCustomTheme
 import kotlinx.parcelize.Parcelize
 
 @Parcelize
-class OrangeTheme : OdsTheme() {
+class OrangeTheme : OdsCustomTheme() {
 
-    override fun getLightThemeColors() = lightColors(
+    override val lightThemeColors: OdsColors
+        get() = orangeLightColors()
+
+    override val darkThemeColors: OdsColors
+        get() = orangeDarkColors()
+
+    /*override fun getLightThemeColors() = lightColors(
         primary = Orange200,
         primaryVariant = Orange200,
         secondary = Orange200,
@@ -46,7 +51,7 @@ class OrangeTheme : OdsTheme() {
         onBackground = White100,
         onSurface = White100,
         onError = Black900
-    )
+    )*/
 
     override fun getTypography() = OdsTypography
 }

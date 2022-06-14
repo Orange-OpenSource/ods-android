@@ -31,6 +31,7 @@ import com.orange.ods.compose.component.button.OdsButtonText
 import com.orange.ods.compose.text.OdsTextBody1
 import com.orange.ods.compose.text.OdsTextH6
 import com.orange.ods.compose.text.OdsTextSubtitle2
+import com.orange.ods.compose.theme.OdsTheme
 
 /**
  * <a href="https://system.design.orange.com/0c1af118d/p/272739-cards/b/991690" target="_blank">ODS Card</a>.
@@ -68,7 +69,9 @@ fun OdsCardImageFirst(
     Card(
         modifier = modifier.clickable {
             onCardClick?.invoke()
-        }
+        },
+        backgroundColor = OdsTheme.colors.cardBackground,
+        contentColor = OdsTheme.colors.cardContent
     ) {
         Column {
             Image(

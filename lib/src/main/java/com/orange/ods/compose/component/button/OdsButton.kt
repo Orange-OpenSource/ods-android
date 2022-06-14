@@ -92,8 +92,8 @@ private fun Colors.buttonBackgroundColor(
 ) =
     when (displayAppearance) {
         OdsDisplayAppearance.DEFAULT -> if (hasPrimaryColor) MaterialTheme.colors.primary else MaterialTheme.colors.onSurface
-        OdsDisplayAppearance.ON_DARK -> if (hasPrimaryColor) LocalDarkThemeColors.current.primary else LocalDarkThemeColors.current.onSurface
-        OdsDisplayAppearance.ON_LIGHT -> if (hasPrimaryColor) LocalLightThemeColors.current.primary else LocalLightThemeColors.current.onSurface
+        OdsDisplayAppearance.ON_DARK -> if (hasPrimaryColor) LocalDarkThemeColors.current.coreSurface else LocalDarkThemeColors.current.coreSurface
+        OdsDisplayAppearance.ON_LIGHT -> if (hasPrimaryColor) LocalLightThemeColors.current.coreSurface else LocalLightThemeColors.current.coreSurface
     }
 
 @Composable
@@ -103,16 +103,16 @@ private fun Colors.buttonContentColor(
 ) =
     when (displayAppearance) {
         OdsDisplayAppearance.DEFAULT -> if (hasPrimaryColor) MaterialTheme.colors.onPrimary else MaterialTheme.colors.surface
-        OdsDisplayAppearance.ON_DARK -> if (hasPrimaryColor) LocalDarkThemeColors.current.onPrimary else LocalDarkThemeColors.current.surface
-        OdsDisplayAppearance.ON_LIGHT -> if (hasPrimaryColor) LocalLightThemeColors.current.onPrimary else LocalLightThemeColors.current.surface
+        OdsDisplayAppearance.ON_DARK -> if (hasPrimaryColor) LocalDarkThemeColors.current.coreSurface else LocalDarkThemeColors.current.coreOnSurface
+        OdsDisplayAppearance.ON_LIGHT -> if (hasPrimaryColor) LocalLightThemeColors.current.coreSurface else LocalLightThemeColors.current.coreOnSurface
     }
 
 @Composable
 private fun Colors.buttonDisabledColor(displayAppearance: OdsDisplayAppearance) =
     when (displayAppearance) {
         OdsDisplayAppearance.DEFAULT -> MaterialTheme.colors.onSurface
-        OdsDisplayAppearance.ON_DARK -> LocalDarkThemeColors.current.onSurface
-        OdsDisplayAppearance.ON_LIGHT -> LocalLightThemeColors.current.onSurface
+        OdsDisplayAppearance.ON_DARK -> LocalDarkThemeColors.current.componentBackgroundDisabled
+        OdsDisplayAppearance.ON_LIGHT -> LocalLightThemeColors.current.componentBackgroundDisabled
     }
 
 /**

@@ -46,8 +46,8 @@ fun Subtitle(
 ) {
     val backgroundColor = when (displayAppearance) {
         OdsDisplayAppearance.DEFAULT -> Color.Unspecified
-        OdsDisplayAppearance.ON_DARK -> LocalDarkThemeColors.current.background
-        OdsDisplayAppearance.ON_LIGHT -> LocalLightThemeColors.current.background
+        OdsDisplayAppearance.ON_DARK -> LocalDarkThemeColors.current.coreSurface
+        OdsDisplayAppearance.ON_LIGHT -> LocalLightThemeColors.current.coreSurface
     }
     OdsTextSubtitle1(
         text = stringResource(textRes),

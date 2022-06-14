@@ -66,14 +66,14 @@ fun Modifier.fullWidthButton(withTopPadding: Boolean = true) = composed {
 fun DarkSurface(content: @Composable ColumnScope.() -> Unit) {
     Spacer(modifier = Modifier.padding(top = dimensionResource(R.dimen.ods_spacing_xs)))
     Subtitle(textRes = R.string.component_force_on_dark, OdsDisplayAppearance.ON_DARK, withHorizontalPadding = true)
-    ForcedBackgroundColumn(color = LocalDarkThemeColors.current.surface, content = content)
+    ForcedBackgroundColumn(color = LocalDarkThemeColors.current.coreSurface, content = content)
 }
 
 @Composable
 fun LightSurface(content: @Composable ColumnScope.() -> Unit) {
     Spacer(modifier = Modifier.padding(top = dimensionResource(R.dimen.ods_spacing_xs)))
     Subtitle(textRes = R.string.component_force_on_light, OdsDisplayAppearance.ON_LIGHT, withHorizontalPadding = true)
-    ForcedBackgroundColumn(color = LocalLightThemeColors.current.surface, content = content)
+    ForcedBackgroundColumn(color = LocalLightThemeColors.current.coreSurface, content = content)
 }
 
 @Composable

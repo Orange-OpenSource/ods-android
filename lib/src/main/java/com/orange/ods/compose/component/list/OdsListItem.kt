@@ -36,6 +36,7 @@ import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.Dp
 import com.orange.ods.R
 import com.orange.ods.compose.text.OdsTextSubtitle1
+import com.orange.ods.compose.theme.OdsTheme
 
 /**
  * <a href="https://system.design.orange.com/0c1af118d/p/09a804-lists/b/669743" target="_blank">ODS Lists</a>.
@@ -89,11 +90,16 @@ fun OdsListItem(
             .requiredHeight(requiredHeight),
         icon = icon,
         secondaryText = if (secondaryText != null) {
-            { Text(text = secondaryText, style = MaterialTheme.typography.body2, maxLines = secondaryTextLinesNumber, overflow = TextOverflow.Ellipsis) }
+            {
+                Text(
+                    text = secondaryText, color = OdsTheme.colors.coreOnSurface, style = OdsTheme.typography.body2, maxLines = secondaryTextLinesNumber,
+                    overflow = TextOverflow.Ellipsis
+                )
+            }
         } else null,
         singleLineSecondaryText = singleLineSecondaryText,
         overlineText = if (overlineText != null) {
-            { Text(text = overlineText, style = MaterialTheme.typography.overline, color = MaterialTheme.colors.onSurface.copy(alpha = 0.6f)) }
+            { Text(text = overlineText, style = OdsTheme.typography.overline, color = OdsTheme.colors.coreOnSurface.copy(alpha = 0.6f)) }
         } else null,
         trailing = trailing,
         text = {
@@ -196,7 +202,13 @@ fun OdsListSquaredThumbnail(painter: Painter, contentDescription: String? = null
  * It allows to be able to center vertically elements in the item.
  */
 @Composable
-internal fun computeRequiredHeight(hasIcon: Boolean, isThumbnailIcon: Boolean, hasOverline: Boolean, hasSecondaryText: Boolean, singleLineSecondaryText: Boolean): Dp {
+internal fun computeRequiredHeight(
+    hasIcon: Boolean,
+    isThumbnailIcon: Boolean,
+    hasOverline: Boolean,
+    hasSecondaryText: Boolean,
+    singleLineSecondaryText: Boolean
+): Dp {
     val heightRes = when {
         // single-line
         !hasOverline && !hasSecondaryText -> when {

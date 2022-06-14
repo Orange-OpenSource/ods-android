@@ -98,14 +98,14 @@ private fun Colors.buttonToggleIconColor(
 ) =
     when (displayAppearance) {
         OdsDisplayAppearance.DEFAULT -> if (checked) MaterialTheme.colors.primary else MaterialTheme.colors.onSurface
-        OdsDisplayAppearance.ON_DARK -> if (checked) LocalDarkThemeColors.current.primary else LocalDarkThemeColors.current.onSurface
-        OdsDisplayAppearance.ON_LIGHT -> if (checked) LocalLightThemeColors.current.primary else LocalLightThemeColors.current.onSurface
+        OdsDisplayAppearance.ON_DARK -> if (checked) LocalDarkThemeColors.current.coreOnSurface else LocalDarkThemeColors.current.coreOnSurface
+        OdsDisplayAppearance.ON_LIGHT -> if (checked) LocalLightThemeColors.current.coreOnSurface else LocalLightThemeColors.current.coreOnSurface
     }
 
 @Composable
 private fun Colors.buttonToggleBackgroundColor(displayAppearance: OdsDisplayAppearance) =
     when (displayAppearance) {
         OdsDisplayAppearance.DEFAULT -> MaterialTheme.colors.primary
-        OdsDisplayAppearance.ON_DARK -> LocalDarkThemeColors.current.primary
-        OdsDisplayAppearance.ON_LIGHT -> LocalLightThemeColors.current.primary
+        OdsDisplayAppearance.ON_DARK -> LocalDarkThemeColors.current.coreSurface
+        OdsDisplayAppearance.ON_LIGHT -> LocalLightThemeColors.current.coreSurface
     }

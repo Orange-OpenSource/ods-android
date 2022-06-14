@@ -14,8 +14,6 @@ import androidx.annotation.DrawableRes
 import androidx.annotation.StringRes
 import androidx.compose.material.Icon
 import androidx.compose.material.IconButton
-import androidx.compose.material.MaterialTheme
-import androidx.compose.material.Text
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ArrowBack
 import androidx.compose.runtime.Composable
@@ -25,6 +23,7 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import com.google.accompanist.systemuicontroller.rememberSystemUiController
 import com.orange.ods.compose.component.OdsTopAppBar
+import com.orange.ods.compose.theme.OdsTheme
 import com.orange.ods.demo.R
 
 @Composable
@@ -35,11 +34,12 @@ fun OdsDemoTopAppBar(
     navigateUp: () -> Unit,
     updateTheme: (Boolean) -> Unit
 ) {
-    SystemBarsColorSideEffect(MaterialTheme.colors.background)
+    SystemBarsColorSideEffect(
+        statusBarColor = OdsTheme.colors.systemStatusBarBackground,
+        navigationBarColor = OdsTheme.colors.systemNavigationBarBackground
+    )
     OdsTopAppBar(
-        title = {
-            Text(text = stringResource(id = titleRes))
-        },
+        title = stringResource(id = titleRes),
         navigationIcon = if (shouldShowUpNavigationIcon) {
             { UpNavigationIcon(navigateUp) }
         } else null,
@@ -76,11 +76,10 @@ private fun UpNavigationIcon(navigateUp: () -> Unit) {
 }
 
 @Composable
-private fun SystemBarsColorSideEffect(backgroundColor: Color) {
+private fun SystemBarsColorSideEffect(statusBarColor: Color, navigationBarColor: Color) {
     val systemUiController = rememberSystemUiController()
     SideEffect {
-        systemUiController.setSystemBarsColor(
-            color = backgroundColor,
-        )
+        systemUiController.setStatusBarColor(color = statusBarColor)
+        systemUiController.setNavigationBarColor(color = navigationBarColor)
     }
 }

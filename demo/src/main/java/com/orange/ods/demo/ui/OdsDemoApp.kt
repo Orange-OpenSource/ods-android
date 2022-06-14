@@ -34,7 +34,7 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.navigation
 import com.orange.ods.compose.component.bottomnavigation.OdsBottomNavigation
 import com.orange.ods.compose.component.bottomnavigation.OdsBottomNavigationItem
-import com.orange.ods.compose.theme.OdsMaterialTheme
+import com.orange.ods.compose.theme.OdsCustomTheme
 import com.orange.ods.compose.theme.OdsTheme
 import com.orange.ods.demo.ui.about.addAboutGraph
 import com.orange.ods.demo.ui.components.addComponentsGraph
@@ -43,10 +43,11 @@ import com.orange.ods.demo.ui.utilities.rememberMutableStateListOf
 
 @ExperimentalMaterialApi
 @Composable
-fun OdsDemoApp(odsThemes: Set<OdsTheme>) {
+fun OdsDemoApp(odsCustomThemes: Set<OdsCustomTheme>) {
     val isSystemInDarkTheme = isSystemInDarkTheme()
     val appState = rememberOdsDemoAppState(
-        odsThemes = rememberMutableStateListOf(elements = odsThemes.toList()),
+        customThemes = rememberMutableStateListOf(elements = odsCustomThemes.toList()),
+        currentTheme = rememberSaveable { mutableStateOf(odsCustomThemes.first()) },
         darkModeEnabled = rememberSaveable { mutableStateOf(isSystemInDarkTheme) })
 
     // Change isSystemInDarkTheme() value to make switching theme working with custom color
@@ -56,11 +57,12 @@ fun OdsDemoApp(odsThemes: Set<OdsTheme>) {
         LocalConfiguration.current.uiMode = UI_MODE_NIGHT_NO
     }
 
-    OdsMaterialTheme(
-        odsTheme = appState.odsThemes.first(),
+    OdsTheme(
+        odsCustomTheme = appState.currentTheme.value,
         darkThemeEnabled = appState.darkModeEnabled.value
     ) {
         Scaffold(
+            backgroundColor = OdsTheme.colors.coreSurface,
             topBar = {
                 OdsDemoTopAppBar(
                     titleRes = appState.topAppBarTitleRes.value,
@@ -88,7 +90,9 @@ fun OdsDemoApp(odsThemes: Set<OdsTheme>) {
                 NavHost(appState.navController, startDestination = MainDestinations.HOME_ROUTE) {
                     odsDemoNavGraph(
                         onNavElementClick = appState::navigateToElement,
-                        updateTopBarTitle = appState::updateTopAppBarTitle
+                        updateTopBarTitle = appState::updateTopAppBarTitle,
+                        customThemes = appState.customThemes,
+                        updateCurrentTheme = appState::updateCurrentTheme
                     )
                 }
             }
@@ -122,13 +126,15 @@ private fun OdsDemoBottomBar(
 @ExperimentalMaterialApi
 private fun NavGraphBuilder.odsDemoNavGraph(
     onNavElementClick: (String, Long?, NavBackStackEntry) -> Unit,
-    updateTopBarTitle: (Int) -> Unit
+    updateTopBarTitle: (Int) -> Unit,
+    customThemes: List<OdsCustomTheme>,
+    updateCurrentTheme: (OdsCustomTheme) -> Unit
 ) {
     navigation(
         route = MainDestinations.HOME_ROUTE,
         startDestination = HomeSections.GUIDELINES.route
     ) {
-        addHomeGraph(onNavElementClick, updateTopBarTitle)
+        addHomeGraph(onNavElementClick, updateTopBarTitle, customThemes, updateCurrentTheme)
     }
 
     addGuidelinesGraph(updateTopBarTitle)

@@ -14,10 +14,11 @@ import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.RowScope
 import androidx.compose.material.IconButton
 import androidx.compose.material.IconToggleButton
-import androidx.compose.material.MaterialTheme
+import androidx.compose.material.Text
 import androidx.compose.material.TopAppBar
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import com.orange.ods.compose.theme.OdsTheme
 
 /**
  * <a href="https://system.design.orange.com/0c1af118d/p/23e0e6-app-bars/b/620966" class="external" target="_blank">Material ODS Top App Bar</a>.
@@ -29,7 +30,7 @@ import androidx.compose.ui.Modifier
  * centering the title, use the other TopAppBar overload for a generic TopAppBar with no
  * restriction on content.
  *
- * @param title The title to be displayed in the center of the TopAppBar
+ * @param title The title to be displayed in the TopAppBar
  * @param modifier The [Modifier] to be applied to this TopAppBar
  * @param navigationIcon The navigation icon displayed at the start of the TopAppBar. This should
  * typically be an [IconButton] or [IconToggleButton].
@@ -38,16 +39,17 @@ import androidx.compose.ui.Modifier
  */
 @Composable
 fun OdsTopAppBar(
-    title: @Composable () -> Unit,
+    title: String?,
     modifier: Modifier = Modifier,
     navigationIcon: @Composable (() -> Unit)? = null,
     actions: @Composable RowScope.() -> Unit = {},
 ) {
     TopAppBar(
-        title = title,
+        title = { Text(text = title.orEmpty(), style = OdsTheme.typography.h6, color = OdsTheme.colors.topBarContent) },
         modifier = modifier,
         navigationIcon = navigationIcon,
         actions = actions,
-        backgroundColor = MaterialTheme.colors.surface,
+        backgroundColor = OdsTheme.colors.topBarBackground,
+        contentColor = OdsTheme.colors.topBarContent
     )
 }

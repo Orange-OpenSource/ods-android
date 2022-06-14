@@ -14,7 +14,7 @@ import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.material.ExperimentalMaterialApi
-import com.orange.ods.compose.theme.OdsTheme
+import com.orange.ods.compose.theme.OdsCustomTheme
 import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
 
@@ -23,12 +23,12 @@ import javax.inject.Inject
 class MainActivity : ComponentActivity() {
 
     @Inject
-    lateinit var odsThemes: Set<@JvmSuppressWildcards OdsTheme>
+    lateinit var odsCustomThemes: Set<@JvmSuppressWildcards OdsCustomTheme>
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
-            OdsDemoApp(odsThemes)
+            OdsDemoApp(odsCustomThemes)
         }
     }
 }

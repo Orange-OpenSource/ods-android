@@ -8,9 +8,8 @@
  * /
  */
 
-package com.orange.ods.theme.orange
+package com.orange.ods.theme.sosh
 
-import com.orange.ods.compose.theme.OdsColors
 import com.orange.ods.compose.theme.OdsCustomTheme
 import dagger.Module
 import dagger.Provides
@@ -20,13 +19,10 @@ import dagger.multibindings.IntoSet
 
 @Module
 @InstallIn(SingletonComponent::class)
-object OrangeThemeModule {
+object SoshThemeModule {
 
     @Provides
     @IntoSet
-    fun provideOrangeTheme(): OdsCustomTheme = OrangeTheme()
-
-    @Provides
-    fun provideOrangeColors(): OdsColors = orangeLightColors()
+    fun provideSoshTheme(): OdsCustomTheme = SoshTheme()
 
 }

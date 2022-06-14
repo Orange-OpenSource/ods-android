@@ -8,9 +8,8 @@
  * /
  */
 
-rootProject.name = "Orange Design System Android"
+package com.orange.ods.compose.theme
 
-include(":lib", ":catalog", ":demo")
+import androidx.compose.ui.graphics.Color
 
-include(":theme-orange")
-include(":theme-sosh")
+val Transparent = Color(0x00000000) // Defined here cause it's independent to the theme applied

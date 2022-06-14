@@ -86,8 +86,8 @@ private fun Colors.buttonTextColor(
 ) =
     when (displayAppearance) {
         OdsDisplayAppearance.DEFAULT -> if (hasPrimaryColor) MaterialTheme.colors.primary else MaterialTheme.colors.onSurface
-        OdsDisplayAppearance.ON_DARK -> if (hasPrimaryColor) LocalDarkThemeColors.current.primary else LocalDarkThemeColors.current.onSurface
-        OdsDisplayAppearance.ON_LIGHT -> if (hasPrimaryColor) LocalLightThemeColors.current.primary else LocalLightThemeColors.current.onSurface
+        OdsDisplayAppearance.ON_DARK -> if (hasPrimaryColor) LocalDarkThemeColors.current.coreOnSurface else LocalDarkThemeColors.current.coreOnSurface
+        OdsDisplayAppearance.ON_LIGHT -> if (hasPrimaryColor) LocalLightThemeColors.current.coreOnSurface else LocalLightThemeColors.current.coreOnSurface
     }
 
 @Composable

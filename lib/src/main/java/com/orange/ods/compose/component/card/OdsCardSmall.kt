@@ -18,8 +18,6 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material.Card
-import androidx.compose.material.MaterialTheme
-import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.layout.ContentScale
@@ -28,6 +26,9 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.unit.dp
 import com.orange.ods.R
+import com.orange.ods.compose.text.OdsTextH6
+import com.orange.ods.compose.text.OdsTextSubtitle2
+import com.orange.ods.compose.theme.OdsTheme
 
 /**
  * <a href="https://system.design.orange.com/0c1af118d/p/272739-cards/b/991690" target="_blank">ODS Card</a>.
@@ -55,7 +56,9 @@ fun OdsCardSmall(
     Card(
         modifier = modifier.clickable {
             onCardClick?.invoke()
-        }
+        },
+        backgroundColor = OdsTheme.colors.cardBackground,
+        contentColor = OdsTheme.colors.cardContent
     ) {
         Column {
             Image(
@@ -72,15 +75,9 @@ fun OdsCardSmall(
                     .padding(16.dp)
                     .semantics(mergeDescendants = true) {}
             ) {
-                Text(
-                    text = title,
-                    style = MaterialTheme.typography.h6
-                )
+                OdsTextH6(text = title)
                 subtitle?.let {
-                    Text(
-                        text = it,
-                        style = MaterialTheme.typography.subtitle2
-                    )
+                    OdsTextSubtitle2(text = it)
                 }
             }
         }
