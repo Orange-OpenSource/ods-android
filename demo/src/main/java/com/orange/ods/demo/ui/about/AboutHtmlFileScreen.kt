@@ -23,7 +23,10 @@ import androidx.compose.ui.viewinterop.AndroidView
 import androidx.webkit.WebSettingsCompat
 import androidx.webkit.WebViewFeature
 import com.orange.ods.demo.R
+import com.orange.ods.demo.ui.utilities.Markdown
 import com.orange.ods.demo.ui.utilities.extension.isDarkModeEnabled
+import java.io.BufferedReader
+import java.nio.charset.StandardCharsets
 
 private const val FILE_PATH = "file:///android_res/raw/"
 
@@ -51,7 +54,17 @@ fun AboutHtmlFileScreen(
                             view?.loadUrl("javascript:(function(){ document.body.style.padding = '${verticalPadding}px ${horizontalPadding}px' })();");
                         }
                     }
-                    loadUrl("${FILE_PATH}${item.fileName}")
+
+                    val fileContent = resources.openRawResource(item.fileRes)
+                        .bufferedReader()
+                        .use(BufferedReader::readText)
+                    val html = when (item.fileFormat) {
+                        AboutItem.FileFormat.Html -> fileContent
+                        AboutItem.FileFormat.Markdown -> Markdown.toHtml(fileContent)
+                    }
+                    // Use loadDataWithBaseURL instead of loadData otherwise CSS won't work
+                    loadDataWithBaseURL(FILE_PATH, html, "text/html; charset=UTF-8", StandardCharsets.UTF_8.name(), null)
+
                     setBackgroundColor(Color.TRANSPARENT)
                     if (WebViewFeature.isFeatureSupported(WebViewFeature.FORCE_DARK_STRATEGY)) {
                         WebSettingsCompat.setForceDarkStrategy(settings, WebSettingsCompat.DARK_STRATEGY_WEB_THEME_DARKENING_ONLY)

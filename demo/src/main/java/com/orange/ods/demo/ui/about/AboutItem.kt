@@ -10,18 +10,28 @@
 
 package com.orange.ods.demo.ui.about
 
+import androidx.annotation.RawRes
 import androidx.annotation.StringRes
 import androidx.compose.runtime.Immutable
 import com.orange.ods.demo.R
 
 @Immutable
 data class AboutItem(
-    val id: Long,
     @StringRes val titleRes: Int,
-    val fileName: String
-)
+    @RawRes val fileRes: Int,
+    val fileFormat: FileFormat
+) {
+    enum class FileFormat {
+        Html, Markdown
+    }
+}
+
+val AboutItem.id: Long
+    get() = aboutItems.indexOf(this).toLong()
+
 
 val aboutItems = listOf(
-    AboutItem(1L, R.string.about_menu_legal_notice, "about_legal_notice.html"),
-    AboutItem(2L, R.string.about_menu_privacy_policy, "about_privacy_policy.html")
+    AboutItem(R.string.about_menu_legal_notice, R.raw.about_legal_notice, AboutItem.FileFormat.Html),
+    AboutItem(R.string.about_menu_privacy_policy, R.raw.about_privacy_policy, AboutItem.FileFormat.Html),
+    AboutItem(R.string.about_menu_changelog, R.raw.changelog, AboutItem.FileFormat.Markdown)
 )
