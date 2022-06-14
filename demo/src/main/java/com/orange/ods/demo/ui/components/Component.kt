@@ -27,41 +27,53 @@ import com.orange.ods.demo.ui.components.switches.ComponentSwitchesContent
 sealed class Component(
     @StringRes val titleRes: Int,
     @DrawableRes val imageRes: Int,
+    @DrawableRes val smallImageRes: Int?,
     @StringRes val descriptionRes: Int,
     val subComponents: List<SubComponent> = emptyList()
 ) {
     val id: Long = Component::class.sealedSubclasses.indexOf(this::class).toLong()
 
-    object BottomNavigation : Component(R.string.component_bottom_navigation, R.drawable.il_bottom_navigation, R.string.component_bottom_navigation_description)
-    object Buttons : Component(R.string.component_buttons, R.drawable.il_buttons, R.string.component_buttons_description)
+    object BottomNavigation :
+        Component(R.string.component_bottom_navigation, R.drawable.il_bottom_navigation, null, R.string.component_bottom_navigation_description)
+
+    object Buttons : Component(R.string.component_buttons, R.drawable.il_buttons, R.drawable.il_buttons_small, R.string.component_buttons_description)
     object Cards : Component(
         R.string.component_cards,
         R.drawable.il_cards,
+        null,
         R.string.component_card_description,
         listOf(SubComponent.CardImageFirst, SubComponent.CardTitleFirst, SubComponent.CardSmall)
     )
 
-    object Checkboxes : Component(R.string.component_checkboxes, R.drawable.il_checkbox, R.string.component_checkboxes_description)
-    object Dialogs : Component(R.string.component_dialogs, R.drawable.il_dialogs, R.string.component_dialogs_description)
+    object Checkboxes : Component(R.string.component_checkboxes, R.drawable.il_checkboxes, null, R.string.component_checkboxes_description)
+    object Dialogs : Component(R.string.component_dialogs, R.drawable.il_dialogs, null, R.string.component_dialogs_description)
     object Lists : Component(
         R.string.component_lists,
         R.drawable.il_lists,
+        null,
         R.string.component_lists_description,
         listOf(SubComponent.ListsOneLine, SubComponent.ListsTwoLines, SubComponent.ListsThreeLines)
     )
 
-    object Progress : Component(R.string.component_progress, R.drawable.il_progress, R.string.component_progress_description)
-    object RadioButtons : Component(R.string.component_radio_buttons, R.drawable.il_radio_buttons, R.string.component_radio_buttons_description)
-    object Sliders : Component(R.string.component_sliders, R.drawable.il_slider, R.string.component_sliders_description)
-    object Switches : Component(R.string.component_switches, R.drawable.il_switches, R.string.component_switches_description)
+    object Progress : Component(R.string.component_progress, R.drawable.il_progress, null, R.string.component_progress_description)
+    object RadioButtons : Component(R.string.component_radio_buttons, R.drawable.il_radio_buttons, null, R.string.component_radio_buttons_description)
+    object Sliders : Component(R.string.component_sliders, R.drawable.il_sliders, null, R.string.component_sliders_description)
+    object Switches : Component(R.string.component_switches, R.drawable.il_switches, R.drawable.il_switches_small, R.string.component_switches_description)
     object TextFields : Component(
         R.string.component_text_fields,
         R.drawable.il_text_fields,
+        R.drawable.il_text_fields_small,
         R.string.component_text_fields_description,
         listOf(SubComponent.TextFieldsFilled, SubComponent.TextFieldsOutlined)
     )
 
-    object Tabs : Component(R.string.component_tabs, R.drawable.il_tabs, R.string.component_tabs_description, listOf(SubComponent.TabsFixed, SubComponent.TabsScrollable))
+    object Tabs : Component(
+        R.string.component_tabs,
+        R.drawable.il_tabs,
+        R.drawable.il_tabs_small,
+        R.string.component_tabs_description,
+        listOf(SubComponent.TabsFixed, SubComponent.TabsScrollable)
+    )
 
     @ExperimentalMaterialApi
     @Composable
@@ -97,7 +109,7 @@ sealed class SubComponent(
 
     object TextFieldsFilled : SubComponent(R.string.component_text_fields_filled)
     object TextFieldsOutlined : SubComponent(R.string.component_text_fields_outlined)
-    
+
     object TabsFixed : SubComponent(R.string.component_tabs_fixed)
     object TabsScrollable : SubComponent(R.string.component_tabs_scrollable)
 }

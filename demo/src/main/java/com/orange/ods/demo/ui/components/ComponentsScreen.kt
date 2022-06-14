@@ -25,6 +25,7 @@ import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.stringResource
 import com.orange.ods.compose.component.card.OdsCardSmall
 import com.orange.ods.demo.R
+import com.orange.ods.utilities.extension.orElse
 
 @Composable
 fun ComponentsScreen(onComponentClick: (Long) -> Unit, updateTopBarTitle: (Int) -> Unit) {
@@ -57,7 +58,7 @@ private fun RowScope.ComponentCard(component: Component, onComponentClick: (Long
     OdsCardSmall(
         modifier = Modifier.weight(0.5f),
         title = stringResource(id = component.titleRes),
-        imageRes = component.imageRes,
+        imageRes = component.smallImageRes.orElse { component.imageRes },
         onCardClick = {
             onComponentClick(component.id)
         },
