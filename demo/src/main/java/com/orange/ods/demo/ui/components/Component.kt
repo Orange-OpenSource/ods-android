@@ -52,7 +52,16 @@ sealed class Component(
     )
 
     object Checkboxes : Component(R.string.component_checkboxes, R.drawable.il_checkboxes, null, R.string.component_checkboxes_description)
+    object Chips : Component(
+        R.string.component_chips,
+        R.drawable.il_chips,
+        R.drawable.il_chips_small,
+        R.string.component_chips_description,
+        listOf(SubComponent.ChipsContained, SubComponent.ChipsOutlined)
+    )
+
     object Dialogs : Component(R.string.component_dialogs, R.drawable.il_dialogs, null, R.string.component_dialogs_description)
+
     object Lists : Component(
         R.string.component_lists,
         R.drawable.il_lists,
@@ -92,7 +101,7 @@ sealed class Component(
             RadioButtons -> ComponentDetail(component = this) { ComponentRadioButtonsContent() }
             Sliders -> ComponentDetail(component = this) { ComponentSlidersContent() }
             Switches -> ComponentDetail(component = this) { ComponentSwitchesContent() }
-            Buttons, Cards, Lists, TextFields, Tabs -> ComponentDetailWithSubComponents(component = this, onSubComponentClick = onSubComponentClick)
+            Buttons, Cards, Chips, Lists, TextFields, Tabs -> ComponentDetailWithSubComponents(component = this, onSubComponentClick = onSubComponentClick)
         }
     }
 }
@@ -112,6 +121,9 @@ sealed class SubComponent(
     object CardImageFirst : SubComponent(R.string.component_card_image_first)
     object CardTitleFirst : SubComponent(R.string.component_card_title_first)
     object CardSmall : SubComponent(R.string.component_card_small)
+
+    object ChipsContained : SubComponent(R.string.component_chips_contained)
+    object ChipsOutlined : SubComponent(R.string.component_chips_outlined)
 
     object ListsOneLine : SubComponent(R.string.component_lists_one_line)
     object ListsTwoLines : SubComponent(R.string.component_lists_two_lines)

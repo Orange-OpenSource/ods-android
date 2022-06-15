@@ -43,6 +43,7 @@
     <string name="component_state_disabled">Disabled</string>
     <string name="component_state_error">Error</string>
     <string name="component_state_default">Default</string>
+    <string name="component_state_selected">Selected</string>
     <string name="component_on_click_toast">Click on %s</string>
     <string name="component_element_title">Title</string>
     <string name="component_element_subtitle">Subtitle</string>
@@ -56,9 +57,12 @@
     <string name="component_element_button2">Button 2</string>
     <string name="component_element_text">Text</string>
     <string name="component_element_text_value">Lorem ipsum dolor sit amet, at blandit nec tristique porttitor.</string>
+    <string name="component_element_avatar">Avatar</string>
     <string name="component_element_icon">Icon</string>
     <string name="component_element_none">None</string>
     <string name="component_element_trailing">Trailing element</string>
+    <string name="component_element_trailing_cross">Trailing cross</string>
+    <string name="component_element_leading">Leading element</string>
     <string name="component_element_leading_icon">Leading icon</string>
     <string name="component_element_item1">Item 1</string>
     <string name="component_element_item2">Item 2</string>
@@ -99,6 +103,12 @@
     <string name="component_checkboxes_description">Checkboxes are used to select or deselect an option. Single checkboxes can be used to determine an individual choice and they can be grouped to allow users to select any combination of items.</string>
     <string name="component_checkboxes_enabled">Enabled checkboxes</string>
     <string name="component_checkboxes_disabled">Disabled checkboxes</string>
+
+    <!-- Component Chips -->
+    <string name="component_chips">Chips</string>
+    <string name="component_chips_contained">Chips contained</string>
+    <string name="component_chips_outlined">Chips outlined</string>
+    <string name="component_chips_description">Chips are small components containing a number of elements that represent a calendar event or contact.</string>
 
     <!-- Component Dialogs -->
     <string name="component_dialogs">Dialogs</string>
