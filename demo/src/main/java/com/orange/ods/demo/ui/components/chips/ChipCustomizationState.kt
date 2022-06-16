@@ -15,20 +15,20 @@ import androidx.compose.runtime.MutableState
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.saveable.rememberSaveable
-import com.orange.ods.demo.ui.components.chips.ChipsCustomizationState.LeadingElement
+import com.orange.ods.demo.ui.components.chips.ChipCustomizationState.LeadingElement
 
 @Composable
-fun rememberChipsCustomizationState(
+fun rememberChipCustomizationState(
     selectedLeadingElement: MutableState<LeadingElement> = rememberSaveable { mutableStateOf(LeadingElement.NONE) },
     selectedChecked: MutableState<Boolean> = rememberSaveable { mutableStateOf(false) },
     disabledChecked: MutableState<Boolean> = rememberSaveable { mutableStateOf(false) },
     trailingCrossChecked: MutableState<Boolean> = rememberSaveable { mutableStateOf(false) },
 ) =
     remember(selectedLeadingElement, selectedChecked, disabledChecked, trailingCrossChecked) {
-        ChipsCustomizationState(selectedLeadingElement, selectedChecked, disabledChecked, trailingCrossChecked)
+        ChipCustomizationState(selectedLeadingElement, selectedChecked, disabledChecked, trailingCrossChecked)
     }
 
-class ChipsCustomizationState(
+class ChipCustomizationState(
     val selectedLeadingElement: MutableState<LeadingElement>,
     val selectedChecked: MutableState<Boolean>,
     val disabledChecked: MutableState<Boolean>,

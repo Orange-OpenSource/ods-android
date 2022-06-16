@@ -16,26 +16,37 @@ import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.graphics.DefaultAlpha
 import androidx.compose.ui.graphics.painter.Painter
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.dimensionResource
+import androidx.compose.ui.unit.Dp
 import com.orange.ods.R
 
 /**
- * Displays in a disc a 40x40 icon
+ * Displays an image in a disc
  *
- * @param modifier Modifier applied to the image
  * @param painter to draw
+ * @param modifier Modifier applied to the image
  * @param contentDescription Content description of the image
+ * @param circleSize The size of the final image, 40x40 by default
+ * @param alpha Optional opacity to be applied to the Painter when it is rendered onscreen the default renders the Painter completely opaque
  */
 @Composable
-fun OdsImageCircleShape(modifier: Modifier = Modifier, painter: Painter, contentDescription: String? = null) {
+fun OdsImageCircleShape(
+    painter: Painter,
+    modifier: Modifier = Modifier,
+    contentDescription: String? = null,
+    circleSize: Dp = dimensionResource(id = R.dimen.avatar_size),
+    alpha: Float = DefaultAlpha
+) {
     Image(
         painter = painter,
         contentDescription = contentDescription,
         contentScale = ContentScale.Crop,
         modifier = modifier
-            .size(dimensionResource(id = R.dimen.image_circle_shape_size))
+            .size(circleSize)
             .clip(CircleShape),
+        alpha = alpha
     )
 }

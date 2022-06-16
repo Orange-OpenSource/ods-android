@@ -32,8 +32,8 @@ import com.orange.ods.demo.ui.utilities.composable.Subtitle
 
 @ExperimentalMaterialApi
 @Composable
-fun SubComponentChips(subComponent: SubComponent) {
-    val customizationState = rememberChipsCustomizationState()
+fun SubComponentChip(subComponent: SubComponent) {
+    val customizationState = rememberChipCustomizationState()
 
     ComponentCustomizationBottomSheetScaffold(
         bottomSheetScaffoldState = rememberBottomSheetScaffoldState(),
@@ -48,17 +48,17 @@ fun SubComponentChips(subComponent: SubComponent) {
             ) {
                 LabelledRadioButton(
                     selectedRadio = customizationState.selectedLeadingElement,
-                    currentRadio = ChipsCustomizationState.LeadingElement.NONE,
+                    currentRadio = ChipCustomizationState.LeadingElement.NONE,
                     label = stringResource(id = R.string.component_element_none)
                 )
                 LabelledRadioButton(
                     selectedRadio = customizationState.selectedLeadingElement,
-                    currentRadio = ChipsCustomizationState.LeadingElement.AVATAR,
+                    currentRadio = ChipCustomizationState.LeadingElement.AVATAR,
                     label = stringResource(id = R.string.component_element_avatar)
                 )
                 LabelledRadioButton(
                     selectedRadio = customizationState.selectedLeadingElement,
-                    currentRadio = ChipsCustomizationState.LeadingElement.ICON,
+                    currentRadio = ChipCustomizationState.LeadingElement.ICON,
                     label = stringResource(id = R.string.component_element_icon)
                 )
             }
@@ -77,8 +77,8 @@ fun SubComponentChips(subComponent: SubComponent) {
                 )
         ) {
             when (subComponent) {
-                SubComponent.ChipsContained -> ChipsContainedContent()
-                SubComponent.ChipsOutlined -> ChipsOutlinedContent()
+                SubComponent.ChipsContained -> ChipContainedContent(customizationState)
+                SubComponent.ChipsOutlined -> ChipOutlinedContent(customizationState)
                 else -> {}
             }
         }
