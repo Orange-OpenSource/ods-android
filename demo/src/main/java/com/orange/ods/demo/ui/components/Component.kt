@@ -57,7 +57,7 @@ sealed class Component(
         R.drawable.il_chips,
         R.drawable.il_chips_small,
         R.string.component_chips_description,
-        listOf(SubComponent.ChipsContained, SubComponent.ChipsOutlined)
+        listOf(SubComponent.Chip, SubComponent.ChipFilter)
     )
 
     object Dialogs : Component(R.string.component_dialogs, R.drawable.il_dialogs, null, R.string.component_dialogs_description)
@@ -122,8 +122,8 @@ sealed class SubComponent(
     object CardTitleFirst : SubComponent(R.string.component_card_title_first)
     object CardSmall : SubComponent(R.string.component_card_small)
 
-    object ChipsContained : SubComponent(R.string.component_chips_contained)
-    object ChipsOutlined : SubComponent(R.string.component_chips_outlined)
+    object Chip : SubComponent(R.string.component_chip)
+    object ChipFilter : SubComponent(R.string.component_chip_filter)
 
     object ListsOneLine : SubComponent(R.string.component_lists_one_line)
     object ListsTwoLines : SubComponent(R.string.component_lists_two_lines)

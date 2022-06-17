@@ -15,33 +15,52 @@ import androidx.compose.runtime.MutableState
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.saveable.rememberSaveable
+import com.orange.ods.demo.ui.components.chips.ChipCustomizationState.ChipType
 import com.orange.ods.demo.ui.components.chips.ChipCustomizationState.LeadingElement
+
 
 @Composable
 fun rememberChipCustomizationState(
-    selectedLeadingElement: MutableState<LeadingElement> = rememberSaveable { mutableStateOf(LeadingElement.NONE) },
-    selectedChecked: MutableState<Boolean> = rememberSaveable { mutableStateOf(false) },
+    selectedChipType: MutableState<ChipType> = rememberSaveable { mutableStateOf(ChipType.Input) },
+    selectedLeadingElement: MutableState<LeadingElement> = rememberSaveable { mutableStateOf(LeadingElement.None) },
     disabledChecked: MutableState<Boolean> = rememberSaveable { mutableStateOf(false) },
-    trailingCrossChecked: MutableState<Boolean> = rememberSaveable { mutableStateOf(false) },
+    hasBorderChecked: MutableState<Boolean> = rememberSaveable { mutableStateOf(false) }
 ) =
-    remember(selectedLeadingElement, selectedChecked, disabledChecked, trailingCrossChecked) {
-        ChipCustomizationState(selectedLeadingElement, selectedChecked, disabledChecked, trailingCrossChecked)
+    remember(selectedChipType, selectedLeadingElement, disabledChecked, hasBorderChecked) {
+        ChipCustomizationState(selectedChipType, selectedLeadingElement, disabledChecked, hasBorderChecked)
     }
 
 class ChipCustomizationState(
-    val selectedLeadingElement: MutableState<LeadingElement>,
-    val selectedChecked: MutableState<Boolean>,
+    val selectedChipType: MutableState<ChipType>,
+    val selectedLeadingElement: MutableState<LeadingElement> = mutableStateOf(LeadingElement.None),
     val disabledChecked: MutableState<Boolean>,
-    val trailingCrossChecked: MutableState<Boolean>
+    val hasBorderChecked: MutableState<Boolean>
 ) {
 
-    enum class LeadingElement {
-        NONE, AVATAR, ICON
+    enum class ChipType {
+        Input, Action, Choice
     }
 
+    enum class LeadingElement {
+        None, Avatar, Icon
+    }
+
+    val isInputChip
+        get() = selectedChipType.value == ChipType.Input
+
+    val isActionChip
+        get() = selectedChipType.value == ChipType.Action
+
+    val isChoiceChip
+        get() = selectedChipType.value == ChipType.Choice
+
     val hasLeadingAvatar
-        get() = selectedLeadingElement.value == LeadingElement.AVATAR
+        get() = selectedLeadingElement.value == LeadingElement.Avatar
 
     val hasLeadingIcon
-        get() = selectedLeadingElement.value == LeadingElement.ICON
+        get() = selectedLeadingElement.value == LeadingElement.Icon
+
+    fun resetLeadingElement() {
+        selectedLeadingElement.value = LeadingElement.None
+    }
 }
