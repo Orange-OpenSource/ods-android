@@ -25,6 +25,6 @@ fun NavGraphBuilder.addAboutGraph(updateTopBarTitle: (Int) -> Unit, clearTopAppB
         clearTopAppBarTabs()
         val arguments = requireNotNull(backStackEntry.arguments)
         val aboutItemId = arguments.getLong(MainDestinations.ABOUT_ITEM_ID_KEY)
-        AboutHtmlFileScreen(aboutItemId, updateTopBarTitle)
+        AboutFileScreen(aboutItemId, updateTopBarTitle)
     }
 }

@@ -31,7 +31,7 @@ import java.nio.charset.StandardCharsets
 private const val FILE_PATH = "file:///android_res/raw/"
 
 @Composable
-fun AboutHtmlFileScreen(
+fun AboutFileScreen(
     aboutItemId: Long,
     updateTopBarTitle: (Int) -> Unit
 ) {
