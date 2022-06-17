@@ -8,6 +8,7 @@
  * /
  */
 
+import com.android.build.gradle.internal.tasks.factory.dependsOn
 import com.orange.ods.gradle.Dependencies
 import com.orange.ods.gradle.Environment
 import com.orange.ods.gradle.Versions
@@ -117,4 +118,12 @@ dependencies {
     implementation(Dependencies.webkit)
 
     debugImplementation(Dependencies.composeUiTooling)
+}
+
+tasks.register<Copy>("copyChangelog") {
+    from("../lib/changelog.md").into("src/main/res/raw")
+}
+
+gradle.projectsEvaluated {
+    tasks.named("preBuild").dependsOn(tasks.named("copyChangelog"))
 }
