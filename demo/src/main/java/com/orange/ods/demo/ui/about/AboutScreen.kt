@@ -44,6 +44,7 @@ fun AboutScreen(onAboutItemClick: (Long) -> Unit, updateTopBarTitle: (Int) -> Un
     Column(
         modifier = Modifier
             .verticalScroll(rememberScrollState())
+            .padding(bottom = dimensionResource(id = R.dimen.ods_screen_vertical_margin))
     ) {
         val context = LocalContext.current
         Image(
