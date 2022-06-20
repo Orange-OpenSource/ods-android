@@ -43,7 +43,22 @@ that input by converting text into chips.
 
 > **Jetpack Compose implementation**
 
-*Not available yet*
+Use the `OdsChip` composable:
+
+```kotlin
+OdsChip(
+    text = "chip text",
+    onClick = {
+        // Something executed on chip click
+    },
+    outlined = false, // Set it to `true` to display an outlined chip
+    leadingAvatar = painterResource(id = R.drawable.avatar),
+    enabled = true, // Set it to `false` to disabled the chip
+    onCancel = { 
+        // Something executed on cancel cross click
+    }
+)
+```
 
 > **XML implementation**
 
@@ -74,7 +89,18 @@ toggle buttons, radio buttons, and single select menus.
 
 > **Jetpack Compose implementation**
 
-*Not available yet*
+Use the `OdsChip` composable:
+
+```kotlin
+OdsChip(
+    text = "chip text",
+    onClick = {
+        // Something executed on chip click
+    },
+    outlined = false, // Set it to `true` to display an outlined chip
+    enabled = true, // Set it to `false` to disabled the chip
+)
+```
 
 > **XML implementation**
 
@@ -105,7 +131,23 @@ toggle buttons or checkboxes.
 
 > **Jetpack Compose implementation**
 
-*Not available yet*
+Use the `OdsFilterChip` composable:
+
+```kotlin
+OdsFilterChip(
+    text = "chip text",
+    onClick = {
+        // Something executed on chip click
+    },
+    leadingAvatar = painterResource(id = R.drawable.avatar), // set it to `null` for no avatar
+    onClick = { 
+         // Something executed on chip click
+    },
+    selected = false, // `true` to display the chip selected
+    outlined = false, // Set it to `true` to display an outlined chip
+    enabled = true, // Set it to `false` to disabled the chip
+)
+```
 
 > **XML implementation**
 
@@ -135,7 +177,19 @@ An alternative to action chips are buttons, which should appear persistently and
 
 > **Jetpack Compose implementation**
 
-*Not available yet*
+Use the `OdsChip` composable:
+
+```kotlin
+OdsChip(
+    text = "chip text",
+    onClick = {
+        // Something executed on chip click
+    },
+    leadingIcon = painterResource(id = R.drawable.ic_heart), // set it to `null` for no icon
+    outlined = false, // Set it to `true` to display an outlined chip
+    enabled = true, // Set it to `false` to disabled the chip
+)
+```
 
 > **XML implementation**
 
