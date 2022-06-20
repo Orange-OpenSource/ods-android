@@ -12,7 +12,6 @@ package com.orange.ods.compose.component.chip
 
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.clickable
-import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.size
 import androidx.compose.material.Chip
@@ -21,14 +20,10 @@ import androidx.compose.material.ChipDefaults
 import androidx.compose.material.ChipDefaults.LeadingIconOpacity
 import androidx.compose.material.ExperimentalMaterialApi
 import androidx.compose.material.Icon
-import androidx.compose.material.LocalContentAlpha
-import androidx.compose.material.LocalContentColor
 import androidx.compose.material.MaterialTheme
 import androidx.compose.runtime.Composable
-import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.graphics.painter.ColorPainter
 import androidx.compose.ui.graphics.painter.Painter
 import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.painterResource
@@ -41,7 +36,7 @@ import com.orange.ods.compose.text.OdsTextBody2
 /**
  * The color opacity used for chip's surface overlay.
  */
-private const val SurfaceOverlayOpacity = 0.12f
+const val ChipSurfaceOverlayOpacity = 0.12f
 
 /**
  * <a href="https://system.design.orange.com/0c1af118d/p/81aa91-chips/b/13c40e" target="_blank">ODS Chips</a>.
@@ -56,7 +51,6 @@ private const val SurfaceOverlayOpacity = 0.12f
  * @param outlined If set to true, a border will be drawn around the chip.
  * @param enabled When disabled, chip will not respond to user input. It will also appear visually
  * disabled and disabled to accessibility services.
- * @param selected Highlight the chip if set to true.
  * @param leadingIcon Optional icon at the start of the chip, preceding the content text.
  * @param leadingAvatar Optional avatar at the start of the chip, preceding the content text.
  * @param leadingElementContentDescription Content description associated to the leading element (icon or avatar).
@@ -80,7 +74,7 @@ fun OdsChip(
         onClick = onClick,
         modifier = modifier,
         border = if (outlined) {
-            BorderStroke(1.dp, odsChipBorderColor(selected = selected))
+            BorderStroke(1.dp, odsChipBorderColor(selected = selected, enabled = enabled))
         } else null,
         enabled = enabled,
         colors = odsChipColors(outlined, selected),
@@ -96,70 +90,50 @@ fun OdsChip(
             }
             leadingAvatar != null -> {
                 {
-                    Box(contentAlignment = Alignment.Center) {
-                        OdsImageCircleShape(
-                            painter = leadingAvatar,
-                            contentDescription = leadingElementContentDescription,
-                            circleSize = dimensionResource(id = R.dimen.icon_size),
-                            alpha = if (enabled) 1f else LeadingIconOpacity
-                        )
-                        if (selected) {
-                            OdsImageCircleShape(
-                                painter = ColorPainter(color = Color.Black),
-                                contentDescription = null, // TODO
-                                circleSize = dimensionResource(id = R.dimen.icon_size),
-                                alpha = LeadingIconOpacity
-                            )
-                            OdsChipSelectedIcon(tint = MaterialTheme.colors.onSurface)
-                        }
-                    }
+                    OdsImageCircleShape(
+                        painter = leadingAvatar,
+                        contentDescription = leadingElementContentDescription,
+                        circleSize = dimensionResource(id = R.dimen.icon_size),
+                        alpha = if (enabled) 1f else LeadingIconOpacity
+                    )
                 }
             }
-            else -> if (selected) {
-                {
-                    OdsChipSelectedIcon()
-                }
-            } else null
-        },
-        content = {
-            OdsTextBody2(text = text)
-            onCancel?.let {
-                Spacer(modifier = Modifier.size(dimensionResource(id = R.dimen.ods_spacing_xs)))
-                Icon(
-                    modifier = Modifier
-                        .size(18.dp)
-                        .clickable { onCancel() },
-                    painter = painterResource(id = R.drawable.ic_cancel),
-                    contentDescription = "cancel",
-                    tint = odsChipColors(outlined, selected).leadingIconContentColor(enabled = enabled).value
-                )
-            }
+            else -> null
         }
-    )
+    ) {
+        OdsTextBody2(text = text)
+        onCancel?.let {
+            Spacer(modifier = Modifier.size(dimensionResource(id = R.dimen.ods_spacing_xs)))
+            Icon(
+                modifier = Modifier
+                    .size(18.dp)
+                    .clickable { onCancel() },
+                painter = painterResource(id = R.drawable.ic_cancel),
+                contentDescription = "cancel",
+                tint = odsChipColors(outlined, selected).leadingIconContentColor(enabled = enabled).value
+            )
+        }
+    }
 }
 
 @ExperimentalMaterialApi
 @Composable
-private fun odsChipColors(hasBorder: Boolean, selected: Boolean): ChipColors {
-    val selectedBackgroundColor = MaterialTheme.colors.primary.copy(alpha = SurfaceOverlayOpacity)
+private fun odsChipColors(outlined: Boolean, selected: Boolean): ChipColors {
+    val selectedBackgroundColor = MaterialTheme.colors.primary.copy(alpha = ChipSurfaceOverlayOpacity)
     val selectedContentColor = MaterialTheme.colors.primary
     return when {
-        hasBorder && !selected -> ChipDefaults.outlinedChipColors()
-        hasBorder && selected -> ChipDefaults.outlinedChipColors(backgroundColor = selectedBackgroundColor, contentColor = selectedContentColor)
-        !hasBorder && selected -> ChipDefaults.chipColors(backgroundColor = selectedBackgroundColor, contentColor = selectedContentColor)
+        outlined && !selected -> ChipDefaults.outlinedChipColors()
+        outlined && selected -> ChipDefaults.outlinedChipColors(backgroundColor = selectedBackgroundColor, contentColor = selectedContentColor)
+        !outlined && selected -> ChipDefaults.chipColors(backgroundColor = selectedBackgroundColor, contentColor = selectedContentColor)
         else -> ChipDefaults.chipColors()
     }
 }
 
 @Composable
-private fun odsChipBorderColor(selected: Boolean) = if (selected) MaterialTheme.colors.primary else MaterialTheme.colors.onSurface.copy(SurfaceOverlayOpacity)
-
-@Composable
-private fun OdsChipSelectedIcon(tint: Color = LocalContentColor.current.copy(alpha = LocalContentAlpha.current)) {
-    Icon(
-        modifier = Modifier.size(dimensionResource(id = R.dimen.chip_icon_size)),
-        painter = painterResource(id = R.drawable.ic_check),
-        contentDescription = null, //TODO
-        tint = tint
-    )
+private fun odsChipBorderColor(selected: Boolean, enabled: Boolean): Color {
+    return if (selected) {
+        if (enabled) MaterialTheme.colors.primary else MaterialTheme.colors.primary.copy(alpha = ChipSurfaceOverlayOpacity)
+    } else {
+        MaterialTheme.colors.onSurface.copy(alpha = ChipSurfaceOverlayOpacity)
+    }
 }

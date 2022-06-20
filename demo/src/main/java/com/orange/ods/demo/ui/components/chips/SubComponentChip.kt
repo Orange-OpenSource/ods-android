@@ -22,8 +22,6 @@ import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.ExperimentalMaterialApi
 import androidx.compose.material.rememberBottomSheetScaffoldState
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.dimensionResource
@@ -57,17 +55,17 @@ fun SubComponentChip() {
                 horizontalArrangement = Arrangement.Start
             ) {
                 LabelledRadioButton(
-                    selectedRadio = customizationState.selectedChipType,
+                    selectedRadio = customizationState.chipType,
                     currentRadio = ChipType.Input,
                     label = stringResource(id = R.string.component_chip_type_input)
                 )
                 LabelledRadioButton(
-                    selectedRadio = customizationState.selectedChipType,
+                    selectedRadio = customizationState.chipType,
                     currentRadio = ChipType.Choice,
                     label = stringResource(id = R.string.component_chip_type_choice)
                 )
                 LabelledRadioButton(
-                    selectedRadio = customizationState.selectedChipType,
+                    selectedRadio = customizationState.chipType,
                     currentRadio = ChipType.Action,
                     label = stringResource(id = R.string.component_chip_type_action)
                 )
@@ -82,17 +80,17 @@ fun SubComponentChip() {
                     horizontalArrangement = Arrangement.Start
                 ) {
                     LabelledRadioButton(
-                        selectedRadio = customizationState.selectedLeadingElement,
+                        selectedRadio = customizationState.leadingElement,
                         currentRadio = LeadingElement.None,
                         label = stringResource(id = R.string.component_element_none)
                     )
                     LabelledRadioButton(
-                        selectedRadio = customizationState.selectedLeadingElement,
+                        selectedRadio = customizationState.leadingElement,
                         currentRadio = LeadingElement.Avatar,
                         label = stringResource(id = R.string.component_element_avatar)
                     )
                     LabelledRadioButton(
-                        selectedRadio = customizationState.selectedLeadingElement,
+                        selectedRadio = customizationState.leadingElement,
                         currentRadio = LeadingElement.Icon,
                         label = stringResource(id = R.string.component_element_icon)
                     )
@@ -101,7 +99,7 @@ fun SubComponentChip() {
                 customizationState.resetLeadingElement()
             }
 
-            ComponentCustomizationCheckboxItem(labelRes = R.string.component_state_outlined, checked = customizationState.hasBorderChecked)
+            ComponentCustomizationCheckboxItem(labelRes = R.string.component_state_outlined, checked = customizationState.outlinedChecked)
             ComponentCustomizationCheckboxItem(labelRes = R.string.component_state_disabled, checked = customizationState.disabledChecked)
 
         }) {
@@ -133,9 +131,9 @@ private fun ChipContent(customizationState: ChipCustomizationState) {
         }
     } else {
         OdsChip(
-            text = getChipText(chipType = customizationState.selectedChipType.value),
+            text = getChipText(chipType = customizationState.chipType.value),
             onClick = { },
-            outlined = customizationState.hasBorderChecked.value,
+            outlined = customizationState.outlinedChecked.value,
             leadingIcon = if (customizationState.isActionChip || customizationState.hasLeadingIcon) painterResource(id = R.drawable.ic_heart) else null,
             leadingAvatar = if (customizationState.hasLeadingAvatar) painterResource(id = R.drawable.placeholder_small) else null,
             enabled = !customizationState.disabledChecked.value,
@@ -162,12 +160,11 @@ private fun getChipText(chipType: ChipType): String {
 @ExperimentalMaterialApi
 @Composable
 private fun ChoiceChip(index: Int, customizationState: ChipCustomizationState) {
-    val selected = rememberSaveable { mutableStateOf(false) }
     OdsChip(
-        text = "${getChipText(chipType = customizationState.selectedChipType.value)} $index",
-        onClick = { selected.value = !selected.value },
-        selected = selected.value,
-        outlined = customizationState.hasBorderChecked.value,
+        text = "${getChipText(chipType = customizationState.chipType.value)} $index",
+        onClick = { customizationState.selectChoiceChip(index) },
+        selected = customizationState.choiceChipIndexSelected.value == index,
+        outlined = customizationState.outlinedChecked.value,
         enabled = !customizationState.disabledChecked.value,
     )
     Spacer(modifier = Modifier.size(dimensionResource(id = R.dimen.ods_spacing_xs)))
