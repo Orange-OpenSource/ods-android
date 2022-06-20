@@ -9,6 +9,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
+- Add chips components: `OdsChip` and `OdsFilterChip`
 - Add tabs components: `OdsLeadingIconTab`, `OdsTab`, `OdsTabRow` and `OdsScrollableTabRow`
 - Add text fields components: `OdsTextField` and `OdsOutlinedTextField`
 - Add `OdsAlertDialog` component
