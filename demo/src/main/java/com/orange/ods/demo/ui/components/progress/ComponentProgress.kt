@@ -29,16 +29,16 @@ fun ComponentProgressContent() {
             .padding(bottom = dimensionResource(id = R.dimen.ods_spacing_s))
     ) {
 
-        Title(textRes = R.string.component_progress_linear)
-        Subtitle(textRes = R.string.component_progress_linear_determinate)
+        Title(textRes = R.string.component_progress_bars)
+        Subtitle(textRes = R.string.component_progress_bar_determinate)
         LinearProgressIndicator(progress = 0.2f, modifier = Modifier.padding(top = dimensionResource(id = R.dimen.ods_spacing_s)))
-        Subtitle(textRes = R.string.component_progress_linear_indeterminate)
+        Subtitle(textRes = R.string.component_progress_bar_indeterminate)
         LinearProgressIndicator(modifier = Modifier.padding(top = dimensionResource(id = R.dimen.ods_spacing_s)))
 
-        Title(textRes = R.string.component_progress_circular)
-        Subtitle(textRes = R.string.component_progress_circular_determinate)
+        Title(textRes = R.string.component_progress_activity_indicator)
+        Subtitle(textRes = R.string.component_progress_activity_indicator_determinate)
         CircularProgressIndicator(progress = 0.2f, modifier = Modifier.padding(top = dimensionResource(id = R.dimen.ods_spacing_s)))
-        Subtitle(textRes = R.string.component_progress_circular_indeterminate)
+        Subtitle(textRes = R.string.component_progress_activity_indicator_indeterminate)
         CircularProgressIndicator(modifier = Modifier.padding(top = dimensionResource(id = R.dimen.ods_spacing_s)))
     }
 }
