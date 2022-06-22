@@ -15,6 +15,7 @@ import com.orange.ods.gradle.Versions
 plugins {
     id("com.android.library")
     id("kotlin-android")
+    id("github")
     `maven-publish`
     signing
 }

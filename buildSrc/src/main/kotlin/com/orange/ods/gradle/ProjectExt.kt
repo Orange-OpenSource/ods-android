@@ -113,3 +113,14 @@ fun Project.createTag(tag: String, sha: String) {
         "https://api.github.com/repos/$repository/git/refs"
     )
 }
+
+fun Project.publishGitHubRelease(tag: String, draft: Boolean, prerelease: Boolean) {
+    val (token, repository) = Environment.getVariables("GITHUB_TOKEN", "GITHUB_REPOSITORY")
+    curl(
+        "-X", "POST",
+        "-H", "Authorization: token $token",
+        "-H", "Accept: application/vnd.github.v3+json",
+        "-d", "{\"tag_name\":\"$tag\",\"name\":\"$tag\",\"draft\":$draft,\"prerelease\":$prerelease}",
+        "https://api.github.com/repos/$repository/releases"
+    )
+}
