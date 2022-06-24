@@ -51,7 +51,7 @@ With icons:
 
 ![Continuous slider with icons](images/slider_continuous_with_icon_light.png) ![Continuous slider with icons dark](images/slider_continuous_with_icon_dark.png)
 
-- **Jetpack Compose implementation**
+> **Jetpack Compose implementation**
 
 In your composable screen you can use:
 
@@ -75,7 +75,7 @@ OdsSlider(
 )
 ```
 
-- **XML implementation**
+> **XML implementation**
 
 API and source code:
 
@@ -109,7 +109,7 @@ The modes of `app:labelBehavior` are:
 
 ![Continuous lockups slider](images/slider_continuous_lockups_light.png) ![Continuous lockups slider dark](images/slider_continuous_lockups_light.png)
 
-- **Jetpack Compose implementation**
+> **Jetpack Compose implementation**
 
 In your composable screen you can use:
 
@@ -132,7 +132,7 @@ With icons:
 
 ![Discrete slider with icon](images/slider_discrete_with_icon_light.png) ![Discrete slider with icon dark](images/slider_discrete_with_icon_dark.png)
 
-- **Jetpack Compose implementation**
+> **Jetpack Compose implementation**
 
 In your composable screen you can use:
 
@@ -158,7 +158,7 @@ OdsSlider(
 )
 ```
 
-- **XML implementation**
+> **XML implementation**
 
 API and source code:
 
@@ -182,7 +182,7 @@ In the layout:
 
 ![Discrete lockups slider](images/slider_discrete_lockups_light.png) ![Discrete lockups slider dark](images/slider_discrete_lockups_dark.png)
 
-- **Jetpack Compose implementation**
+> **Jetpack Compose implementation**
 
 In your composable screen you can use:
 

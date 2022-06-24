@@ -43,7 +43,11 @@ text labels for each navigation item. There are four visibility modes:
 
 ## Implementation
 
-- **Jetpack Compose implementation**
+  ![BottomNavigation light](images/bottom_navigation_light.png)
+
+  ![BottomNavigation dark](images/bottom_navigation_dark.png)
+
+> **Jetpack Compose implementation**
 
 In your composable screen, use the `OdsBottomNavigation` composable. It should contain multiple `OdsBottomNavigationItem`s.
 
@@ -75,7 +79,7 @@ Here is an example:
     }
 ```
 
-- **XML implementation**
+> **XML implementation**
 
 API and source code:
 

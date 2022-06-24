@@ -39,7 +39,7 @@ This is a full width card displayed with an image as first element.
 
   ![CardImageFisrt](images/card_image_first_light.png) ![CardImageFirst dark](images/card_image_first_dark.png)
 
-- **Jetpack Compose implementation**
+> **Jetpack Compose implementation**
 
 In your composable screen you can use `OdsCardImageFirst` composable:
 
@@ -58,7 +58,7 @@ OdsCardImageFirst(
         )
 ```
 
-- **XML implementation**
+> **XML implementation**
 
 See [Cards implementation in XML](#cards-implementation-in-xml)
 
@@ -68,7 +68,7 @@ This is a full width card displaying with a title and a thumbnail on top as firs
 
   ![CardTitleFirst](images/card_title_first_light.png) ![CardTitleFirst dark](images/card_title_first_dark.png)
 
-- **Jetpack Compose implementation**
+> **Jetpack Compose implementation**
 
 In your composable screen you can use `OdsCardTitleFirst`composable:
 
@@ -88,7 +88,7 @@ OdsCardTitleFirst(
 )
 ```
 
-- **XML implementation**
+> **XML implementation**
 
 See [Cards implementation in XML](#cards-implementation-in-xml)
 
@@ -98,7 +98,7 @@ This is a small card which takes the half screen width.
 
   ![CardSmall](images/card_small_light.png) ![CardSmall dark](images/card_small_dark.png)
 
-- **Jetpack Compose implementation**
+> **Jetpack Compose implementation**
 
 You can add an `OdsCardSmall`composable in your screen to add a small card:
 
@@ -121,7 +121,7 @@ Row(
 }
 ```
 
-- **XML implementation**
+> **XML implementation**
 
 See [Cards implementation in XML](#cards-implementation-in-xml)
 

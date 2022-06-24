@@ -42,12 +42,16 @@ width of each tab is determined by dividing the number of tabs by the screen
 width. They don’t scroll to reveal more tabs; the visible tab set represents the
 only tabs available.
 
-- - **Jetpack Compose implementation**
+ > **Jetpack Compose implementation**
 
 In Compose, the fixed tabs should be added inside of an `OdsTabRow`.
 The used composable for tab depends on the type of tabs to display: classic `OdsTab` or `OdsLeadingIconTab`.
 
-***`OdsTab` composable:***
+  ![Fixed tabs light](images/tabs_fixed_light.png)
+
+  ![Fixed tabs dark](images/tabs_fixed_dark.png)
+
+**`OdsTab` composable:**
 
 This composable allows to display:
 - an icon only tab
@@ -79,7 +83,7 @@ OdsTabRow(selectedTabIndex = pagerState.currentPage) {
 }
 ```
 
-***`OdsLeadingIconTab` composable:***
+**`OdsLeadingIconTab` composable:**
 
 This composable allows to display a tab with a text label and an icon in front of the label.
 
@@ -108,7 +112,7 @@ OdsTabRow(selectedTabIndex = pagerState.currentPage) {
 }
 ```
 
-- - **XML implementation**
+ > **XML implementation**
 
 API and source code:
 
@@ -152,7 +156,11 @@ In the layout:
 Scrollable tabs are displayed without fixed widths. They are scrollable, such
 that some tabs will remain off-screen until scrolled.
 
-- - **Jetpack Compose implementation**
+  ![Scrollable tabs light](images/tabs_scrollable_light.png)
+
+  ![Scrollable tabs dark](images/tabs_scrollable_dark.png)
+
+> **Jetpack Compose implementation**
 
 For scrollable tabs, the tabs should be added inside of an `OdsScrollableTabRow`. This is the only difference with fixed tabs implementation.
 As for fixed tabs, you can use an `OdsTab` composable or an `OdsLeadingIconTab` inside.
@@ -182,7 +190,7 @@ OdsScrollableTabRow(selectedTabIndex = pagerState.currentPage) {
 }
 ```
 
-- - **XML implementation**
+> **XML implementation**
 
 API and source code:
 

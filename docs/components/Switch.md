@@ -32,7 +32,7 @@ unnecessary.
 
 ![Switch](images/switch_light.png) ![Switch dark](images/switch_dark.png)
 
-- **Jetpack Compose implementation**
+> **Jetpack Compose implementation**
 
 In your composable screen you can use:
 
@@ -46,7 +46,7 @@ OdsSwitch(
 )
 ```
 
-- **XML implementation**
+> **XML implementation**
 
 To create a Switch using Orange theme you will have to add `com.google.android.material.switchmaterial.SwitchMaterial` into your layout.
 

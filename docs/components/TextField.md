@@ -60,7 +60,7 @@ surrounded by other content and components.
   ![TextField filled](images/textfield_filled_light.png)  
   ![TextField filled dark](images/textfield_filled_dark.png)
 
-- **Jetpack Compose implementation**
+> **Jetpack Compose implementation**
 
 To add a filled text field in your composable screen you can use the `OdsTextField` composable as follow:
 
@@ -89,7 +89,7 @@ OdsTextField(
 )
 ```
 
-- **XML implementation**
+> **XML implementation**
 
 _**Note:** The filled text field is the default style if the style is not set._
 
@@ -135,7 +135,7 @@ layout.
   ![TextField outlined](images/textfield_outlined_light.png)  
   ![TextField outlined dark](images/textfield_outlined_dark.png)
 
-- **Jetpack Compose implementation**
+> **Jetpack Compose implementation**
 
 To add an outlined text field in your composable screen you can use the `OdsOutlinedTextField` composable as follow:
 
@@ -164,7 +164,7 @@ OdsOutlinedTextField(
 )
 ```
 
-- **XML implementation**
+> **XML implementation**
 
 API and source code:
 

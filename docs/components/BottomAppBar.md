@@ -55,11 +55,11 @@ needs to be set in the menu:
 Bottom app bars provide access to a bottom navigation drawer and up to four
 actions, including the floating action button.
 
-- **Jetpack Compose implementation**
+> **Jetpack Compose implementation**
 
 *Not available yet*
 
-- **XML implementation**
+> **XML implementation**
 
 API and source code:
 

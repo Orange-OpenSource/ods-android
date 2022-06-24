@@ -35,7 +35,7 @@ usually unnecessary.
 
 ![RadioButton](images/radio_button_light.png) ![RadioButton dark](images/radio_button_dark.png)
 
-- **Jetpack Compose implementation**
+> **Jetpack Compose implementation**
 
 In your composable screen you can use:
 
@@ -47,7 +47,7 @@ OdsRadioButton(
 )
 ```
 
-- **XML implementation**
+> **XML implementation**
 
 To create a Radio Button you just have to add a `RadioButton` in your layout. Orange theme will be
 automatically applied.

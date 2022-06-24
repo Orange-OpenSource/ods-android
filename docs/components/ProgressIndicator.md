@@ -41,26 +41,30 @@ known.
 
 Linear progress indicators support both determinate and indeterminate operations.
 
-* Determinate operations display the indicator increasing in width from 0 to 100% of the track, in
-  sync with the process’s progress.
-* Indeterminate operations display the indicator continually growing and shrinking along the track
-  until the process is complete.
+* Determinate operations display the indicator increasing in width
+  from 0 to 100% of the track, in sync with the process’s progress.
+* Indeterminate operations display the indicator continually growing
+  and shrinking along the track until the process is complete.
 
-- **Jetpack Compose implementation**
+  ![Progress bar light](images/progress_bar_light.png)
+
+  ![Progress bar dark](images/progress_bar_dark.png)
+
+ > **Jetpack Compose implementation**
 
 You can use the native composable `LinearProgressIndicator` like this:
 
-- For a **determinate** linear progress indicator
+For a **determinate** linear progress indicator
 ```kotlin
 LinearProgressIndicator(progress = 0.2f)
 ```
 
-- For an **indeterminate** linear progress indicator
+For an **indeterminate** linear progress indicator
 ```kotlin
 LinearProgressIndicator()
 ```
 
-- **XML implementation**
+ > **XML implementation**
 
 To create a linear progress indicator you will need to
 add `com.google.android.material.progressindicator.LinearProgressIndicator` in your layout
@@ -104,7 +108,9 @@ processes.
 *   Indeterminate circular indicators grow and shrink in size while moving along
     the invisible track.
 
-- **Jetpack Compose implementation**
+  ![Activity indicator light](images/progress_activity_light.png)  ![Activity indicator dark](images/progress_activity_dark.png)
+
+> **Jetpack Compose implementation**
 
 You can use the native `CircularProgressIndicator` like this:
 
@@ -120,7 +126,7 @@ CircularProgressIndicator(progress = 0.2f)
 CircularProgressIndicator()
 ```
 
-- **XML implementation**
+> **XML implementation**
 
 To create a circular progress indicator you will need to
 add `com.google.android.material.progressindicator.CircularProgressIndicator` in your layout

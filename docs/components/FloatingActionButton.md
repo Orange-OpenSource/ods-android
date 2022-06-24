@@ -39,11 +39,11 @@ so additional content labels are usually unnecessary.
 
 Regular FABs are FABs that are not expanded and are a regular size.
 
-- **Jetpack Compose implementation**
+> **Jetpack Compose implementation**
 
 *Not available yet*
 
-- **XML implementation**
+> **XML implementation**
 
 API and source code:
 
@@ -86,11 +86,11 @@ A mini FAB should be used on smaller screens.
 
 Mini FABs can also be used to create visual continuity with other screen elements.
 
-- **Jetpack Compose implementation**
+> **Jetpack Compose implementation**
 
 *Not available yet*
 
-- **XML implementation**
+> **XML implementation**
 
 API and source code:
 
@@ -122,11 +122,11 @@ fab.setOnClickListener {
 
 The extended FAB is wider, and it includes a text label.
 
-- **Jetpack Compose implementation**
+> **Jetpack Compose implementation**
 
 *Not available yet*
 
-- **XML implementation**
+> **XML implementation**
 
 API and source code:
 

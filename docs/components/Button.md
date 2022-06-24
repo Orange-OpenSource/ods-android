@@ -37,7 +37,7 @@ cards. In cards, text buttons help maintain an emphasis on card content.
 
   ![TextButton](images/button_text_light.png) ![TextButton dark](images/button_text_dark.png)
 
-- **Jetpack Compose implementation**
+> **Jetpack Compose implementation**
 
 Use the `OdsButtonText` composable:
 
@@ -50,7 +50,7 @@ OdsButtonText(
 )
 ```
 
-- **XML implementation**
+> **XML implementation**
 
 To create a Text Button using Orange theme you will need to apply
 style `@style/Widget.Orange.Button.Text` on your `Button` layout
@@ -82,7 +82,7 @@ the primary action in an app.
 
   ![ButtonOutlined](images/button_outlined_light.png) ![ButtonOutlined dark](images/button_outlined_dark.png)
 
-- **Jetpack Compose implementation**
+> **Jetpack Compose implementation**
 
 Use the `OdsButtonOutlined` composable:
 
@@ -95,7 +95,7 @@ OdsButtonOutlined(
 )
 ```
 
-- **XML implementation**
+> **XML implementation**
 
 To create an Outlined Button using Orange theme you will need to apply
 style `@style/Widget.Orange.Button.Outlined` on your `Button` layout.
@@ -127,7 +127,7 @@ actions that are primary to your app.
 
   ![ContainedButton](images/button_contained_light.png) ![ContainedButton dark](images/button_contained_dark.png)
 
-- **Jetpack Compose implementation**
+> **Jetpack Compose implementation**
 
 Use the `OdsButton` composable:
 
@@ -140,7 +140,7 @@ OdsButton(
 )
 ```
 
-- **XML implementation**
+> **XML implementation**
 
 _**Note** In XML, the contained button is the default style if the style is not set._
 
@@ -182,7 +182,7 @@ To emphasize groups of related toggle buttons, a group should share a common con
 
   ![ButtonToggle](images/button_toggle_light.png) ![ButtonToggle dark](images/button_toggle_dark.png)
 
-- **Jetpack Compose implementation**
+> **Jetpack Compose implementation**
 
 Use the `OdsButtonToggle` composable:
 
@@ -195,7 +195,7 @@ OdsButtonToggle(
 )
 ```
 
-- **XML implementation**
+> **XML implementation**
 
 API and source code:
 

@@ -33,7 +33,7 @@ Additional content labels are usually unnecessary.
 
 ![Checkbox](images/checkbox_light.png) ![Checkbox dark](images/checkbox_dark.png)
 
-- **Jetpack Compose implementation**
+> **Jetpack Compose implementation**
 
 In your composable screen you can use:
 
@@ -45,7 +45,7 @@ OdsCheckbox(
 )
 ```
 
-- **XML implementation**
+> **XML implementation**
 
 To create a Checkbox you just have to add a `Checkbox` in your layout. Orange theme will be
 automatically applied

@@ -36,7 +36,7 @@ There are two different displays for a one-line list:
 
     ![Lists one-line](images/lists_one_line_light.png) ![Lists one-line dark](images/lists_one_line_dark.png)
 
-- **Jetpack Compose implementation**
+> **Jetpack Compose implementation**
 
 The library offers 2 composables to display lists items. If you need to display a wide thumbnail without start padding in your item use `OdsListItemWideThumbnail`.  
 In all other cases use `OdsListItem`.
@@ -61,7 +61,7 @@ To display a **one-line list item with a wide thumbnail** with a checkbox traili
         )
 ```
 
-- **XML implementation**
+> **XML implementation**
 
 *Not available yet*
 
@@ -77,7 +77,7 @@ There are two different displays for a two-line list:
 
   ![Lists two-line](images/lists_two_line_light.png) ![Lists two-line dark](images/lists_two_line_dark.png)
 
-- **Jetpack Compose implementation**
+> **Jetpack Compose implementation**
 
 The library offers 2 composables to display lists items. If you need to display a wide thumbnail without start padding in your item use `OdsListItemWideThumbnail`.  
 In all other cases use `OdsListItem`.
@@ -106,7 +106,7 @@ To display a **two-line list item with a wide thumbnail** with a drag icon trail
         )
 ```
 
-- **XML implementation**
+> **XML implementation**
 
 *Not available yet*
 
@@ -122,7 +122,7 @@ There are two different displays for a two-line list:
 
   ![Lists three-line](images/lists_three_line_light.png) ![Lists three-line dark](images/lists_three_line_dark.png)
 
-- **Jetpack Compose implementation**
+> **Jetpack Compose implementation**
 
 The library offers 2 composables to display lists items. If you need to display a wide thumbnail without start padding in your item use `OdsListItemWideThumbnail`.  
 In all other cases use `OdsListItem`.
@@ -153,6 +153,6 @@ To display a **three-line list item with a wide thumbnail** with a text as trail
         )
 ```
 
-- **XML implementation**
+> **XML implementation**
 
 *Not available yet*

@@ -36,11 +36,11 @@ Input chips (referred to as **entry** chips in Android) represent a complex piec
 compact form, such as an entity (person, place, or thing) or text. They enable user input and verify
 that input by converting text into chips.
 
-- **Jetpack Compose implementation**
+> **Jetpack Compose implementation**
 
 *Not available yet*
 
-- **XML implementation**
+> **XML implementation**
 
 To create an input chip you must add a `com.google.android.material.chip.Chip` component to your
 layout and set `style` property to `@style/Widget.MaterialComponents.Chip.Entry`
@@ -67,11 +67,11 @@ Choice chips allow selection of a single chip from a set of options.
 Choice chips clearly delineate and display options in a compact area. They are a good alternative to
 toggle buttons, radio buttons, and single select menus.
 
-- **Jetpack Compose implementation**
+> **Jetpack Compose implementation**
 
 *Not available yet*
 
-- **XML implementation**
+> **XML implementation**
 
 To create a choice chip you must add a `com.google.android.material.chip.Chip` component to your
 layout and set `style` property to `@style/Widget.MaterialComponents.Chip.Choice`
@@ -98,11 +98,11 @@ Filter chips use tags or descriptive words to filter content.
 Filter chips clearly delineate and display options in a compact area. They are a good alternative to
 toggle buttons or checkboxes.
 
-- **Jetpack Compose implementation**
+> **Jetpack Compose implementation**
 
 *Not available yet*
 
-- **XML implementation**
+> **XML implementation**
 
 To create a filter chip you must add a `com.google.android.material.chip.Chip` component to your
 layout and set `style` property to `@style/Widget.MaterialComponents.Chip.Filter`
@@ -128,11 +128,11 @@ contextually in a UI.
 
 An alternative to action chips are buttons, which should appear persistently and consistently.
 
-- **Jetpack Compose implementation**
+> **Jetpack Compose implementation**
 
 *Not available yet*
 
-- **XML implementation**
+> **XML implementation**
 
 To create an action chip you must add a `com.google.android.material.chip.Chip` component to your
 layout and set `style` property to `@style/Widget.MaterialComponents.Chip.Action`

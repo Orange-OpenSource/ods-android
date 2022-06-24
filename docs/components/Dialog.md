@@ -40,7 +40,9 @@ such as an icon on a title having a content description via the
 
 Alert dialogs interrupt users with urgent information, details, or actions.
 
-- **Jetpack Compose implementation**
+  ![Alert dialog light](images/dialog_alert_light.png)  ![Alert dialog dark](images/dialog_alert_dark.png)
+
+> **Jetpack Compose implementation**
 
 To display an alert dialog in your composable screen, you can use:
 
@@ -57,7 +59,7 @@ OdsAlertDialog(
 )
 ```
 
-- **XML implementation**
+> **XML implementation**
 
 In code:
 
@@ -98,11 +100,11 @@ As simple dialogs are interruptive, they should be used sparingly.
 Alternatively, dropdown menus provide options in a non-modal, less disruptive
 way.
 
-- **Jetpack Compose implementation**
+> **Jetpack Compose implementation**
 
 *Not available yet*
 
-- **XML implementation**
+> **XML implementation**
 
 In code:
 

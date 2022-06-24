@@ -54,7 +54,7 @@ or use the `setContentDescription` method on the `ImageView`.
 
 ## Implementation
 
-- **Jetpack Compose implementation**
+> **Jetpack Compose implementation**
 
 Add `OdsTopAppBar` composable to your Scaffold topBar as follow:
 
@@ -86,7 +86,7 @@ OdsTopAppBar(
 - navigationIcon (optional) - The navigation icon displayed at the start of the `OdsTopAppBar`. This should typically be an `IconButton` or `IconToggleButton`.
 - actions (optional) - The actions displayed at the end of the `OdsTopAppBar`. This should typically be `IconButtons`. The default layout here is a `Row`, so icons inside will be placed horizontally.
 
-- **XML implementation**
+> **XML implementation**
 
 API and source code:
 
