@@ -4,6 +4,15 @@ title: Snackbar
 description: Snackbars provide brief messages about app processes at the bottom of the screen.
 ---
 
+**Page Summary**
+
+* [Specifications references](#specifications-references)
+* [Accessibility](#accessibility)
+* [Implementation](#implementation)
+    * [Adding an action](#adding-an-action)
+    * [Anchoring a snackbar](#anchoring-a-snackbar)
+
+
 Snackbars inform users of a process that an app has performed or will perform.
 They appear temporarily, towards the bottom of the screen. They shouldn’t
 interrupt the user experience, and they don’t require user input to disappear.
@@ -13,35 +22,21 @@ the screen, but can also be swiped off the screen.
 Snackbars can also offer the ability to perform an action, such as undoing an
 action that was just taken, or retrying an action that had failed.
 
-**Contents**
+## Specifications references
 
-*   [Using snackbars](#using-snackbars)
-    *   [Material Design](#material-design)
-    *   [Accessibility](#accessibility)
-    *   [Showing a snackbar](#showing-a-snackbar)
-    *   [Adding an action](#adding-an-action)
-    *   [Anchoring a snackbar](#anchoring-a-snackbar)
+- [Design System Manager - Toasts & Snackbars](https://system.design.orange.com/0c1af118d/p/887440-toast--snackbars/b/043ece)
+- [Material Design - Snackbars](https://material.io/components/snackbars)
 
-## Using snackbars
+## Accessibility
 
-Before you can use Orange themed snackbars, you need to add a dependency to the Orange Design System
-for Android library. For more information, go to the
-[Getting started](../home_content.md) page.
-
-### Material Design
-
-Orange Buttons are based on Material Design from Google and apply Orange theming.
-**Note:** Here is the full documentation
-of [Material Design Snackbar](https://material.io/components/snackbars/)
-
-### Accessibility
+Please follow [accessibility criteria for development](https://a11y-guidelines.orange.com/en/mobile/android/development/)
 
 Snackbars support content labeling for accessibility and are readable by most
 screen readers, such as TalkBack. Text rendered in snackbars is automatically
 provided to accessibility services. Additional content labels are usually
 unnecessary.
 
-### Showing a snackbar
+### Implementation
 
 Calling `make` creates the snackbar, but doesn't cause it to be visible on the
 screen. To show it, use the `show` method on the returned `Snackbar` instance.
@@ -61,7 +56,7 @@ Snackbar.make(contextView, R.string.text_label, Snackbar.LENGTH_SHORT)
     .show()
 ```
 
-### Adding an action
+#### Adding an action
 
 To add an action, use the `setAction` method on the object returned from `make`.
 Snackbars are automatically dismissed when the action is clicked.
@@ -76,7 +71,7 @@ Snackbar.make(contextView, R.string.text_label, Snackbar.LENGTH_LONG)
     .show()
 ```
 
-### Anchoring a snackbar
+#### Anchoring a snackbar
 
 By default, `Snackbar`s will be anchored to the bottom edge of their parent
 view. However, you can use the `setAnchorView` method to make a `Snackbar`

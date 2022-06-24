@@ -4,63 +4,38 @@ title: Radio Button
 description: Radio button selection control allows the user to select options.
 ---
 
+**Page Summary**
+
+* [Specifications references](#specifications-references)
+* [Accessibility](#accessibility)
+* [Implementation](#implementation)
+
+
 Use radio buttons to:
 *   Select a single option from a list
 *   Expose all available options
 *   If available options can be collapsed, consider using a dropdown menu
     instead, as it uses less space.
 
+## Specifications references
 
-**Contents**
+- [Design System Manager - Selection controls](https://system.design.orange.com/0c1af118d/p/14638a-selection-controls/b/352c00)
+- [Material Design - Radio buttons](https://material.io/components/radio-buttons/)
 
-*   [Using radio buttons](#using-radio-buttons)
-    *   [Material Design](#material-design)
-    *   [Accessibility](#accessibility)
-    *   [Adding a radio button](#adding-a-radio-button)
-        *   [In XML](#in-xml)
-        *   [In Jetpack Compose](#in-jetpack-compose)
-    *   [Grouping radio buttons](#grouping-radio-buttons)
+## Accessibility
 
-
-## Using radio buttons
-
-Before you can use Orange themed radio buttons, you need to add a dependency to the Orange Design
-System for Android library. For more information, go to the
-[Getting started](../home_content.md) page.
-
-### Material Design
-
-Orange Radio Buttons are based on Material Design from Google and apply Orange theming.
-**Note:** Here is the full documentation
-of [Material Design Radio Button](https://material.io/components/radio-buttons/)
-
-### Accessibility
+Please follow [accessibility criteria for development](https://a11y-guidelines.orange.com/en/mobile/android/development/)
 
 Radio buttons support content labeling for accessibility and are readable by
 most screen readers, such as TalkBack. Text rendered in radio buttons is
 automatically provided to accessibility services. Additional content labels are
 usually unnecessary.
 
-### Adding a radio button
+## Implementation
 
 ![RadioButton](images/radio_button_light.png) ![RadioButton dark](images/radio_button_dark.png)
 
-#### In XML
-
-To create a Radio Button you just have to add a `RadioButton` in your layout. Orange theme will be
-automatically applied
-
-In the layout:
-
-```xml
-<RadioButton
-    android:id="@+id/radio_button"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:text="@string/label"/>
-```
-
-#### In Jetpack Compose
+- **Jetpack Compose implementation**
 
 In your composable screen you can use:
 
@@ -72,13 +47,26 @@ OdsRadioButton(
 )
 ```
 
-### Grouping radio buttons
+- **XML implementation**
+
+To create a Radio Button you just have to add a `RadioButton` in your layout. Orange theme will be
+automatically applied.
+
+In the layout:
+
+```xml
+<RadioButton
+    android:id="@+id/radio_button"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:text="@string/label"/>
+```
 
 Changes in the states of one radio button can affect other buttons in the group.
 Specifically, selecting a `RadioButton` in a `RadioGroup` will de-select all
 other buttons in that group.
 
-Example showing a radio button group with five radio buttons.
+Example showing a **radio button group** with five radio buttons.
 
 In the layout:
 

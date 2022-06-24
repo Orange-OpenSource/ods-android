@@ -4,33 +4,27 @@ title: Bottom App bar
 description: A bottom app bar displays navigation and key actions at the bottom of mobile screens.
 ---
 
-**Contents**
+**Page Summary**
 
-* [Using bottom app bar](#using-bottom-app-bar)
-  *   [Material Design](#material-design)
-  *   [Accessibility](#accessibility)
-      *   [Content descriptions](#content-descriptions)
-  *   [Bottom app bar example](#bottom-app-bar-example)
+* [Specifications references](#specifications-references)
+* [Accessibility](#accessibility)
+* [Implementation](#implementation)
 
-## Using bottom app bar
 
-Before you can use Orange themed bottom app bar, you need to add a dependency to the Orange Design System
-for Android library. For more information, go to the
-[Getting started](../home_content.md) page.
+## Specifications references
 
-### Material Design
+- [Design System Manager - App bars](https://system.design.orange.com/0c1af118d/p/23e0e6-app-bars/b/620966)
+- [Material Design - App bars: bottom](https://material.io/components/app-bars-bottom)
 
-Orange Bottom app bar is based on Material Design from Google and apply Orange theming.
-**Note:** Here is the full documentation
-of [Material Design Bottom App Bar](https://material.io/components/app-bars-bottom/)
+## Accessibility
 
-### Accessibility
+Please follow [accessibility criteria for development](https://a11y-guidelines.orange.com/en/mobile/android/development/)
 
 Android's bottom app bar component APIs provide support for the navigation icon,
 action items, overflow menu and more for informing the user as to what each
 action performs. While optional, their use is strongly encouraged.
 
-#### Content descriptions
+**Content descriptions**
 
 When using icons for navigation icons, action items and other elements of bottom
 app bars, you should set a content description on them so that screen readers
@@ -56,21 +50,22 @@ needs to be set in the menu:
 </menu>
 ```
 
-### Bottom app bar example
+## Implementation
 
 Bottom app bars provide access to a bottom navigation drawer and up to four
 actions, including the floating action button.
 
+- **Jetpack Compose implementation**
+
+*Not available yet*
+
+- **XML implementation**
+
 API and source code:
 
-*   `CoordinatorLayout`
-    *   [Class definition](https://developer.android.com/reference/androidx/coordinatorlayout/widget/CoordinatorLayout)
-*   `BottomAppBar`
-    *   [Class definition](https://developer.android.com/reference/com/google/android/material/bottomappbar/BottomAppBar)
-    *   [Class source](https://github.com/material-components/material-components-android/tree/master/lib/java/com/google/android/material/bottomappbar/BottomAppBar.java)
-*   `FloatingActionButton`
-    *   [Class definition](https://developer.android.com/reference/com/google/android/material/floatingactionbutton/FloatingActionButton)
-    *   [Class source](https://github.com/material-components/material-components-android/tree/master/lib/java/com/google/android/material/floatingactionbutton/FloatingActionButton.java)
+*   `CoordinatorLayout`: [Class definition](https://developer.android.com/reference/androidx/coordinatorlayout/widget/CoordinatorLayout)
+*   `BottomAppBar`: [Class definition](https://developer.android.com/reference/com/google/android/material/bottomappbar/BottomAppBar), [Class source](https://github.com/material-components/material-components-android/tree/master/lib/java/com/google/android/material/bottomappbar/BottomAppBar.java)
+*   `FloatingActionButton`: [Class definition](https://developer.android.com/reference/com/google/android/material/floatingactionbutton/FloatingActionButton), [Class source](https://github.com/material-components/material-components-android/tree/master/lib/java/com/google/android/material/floatingactionbutton/FloatingActionButton.java)
 
 In the layout:
 

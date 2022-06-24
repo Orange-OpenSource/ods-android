@@ -4,37 +4,26 @@ title: Top App bar
 description: Top app bars display information and actions relating to the current screen.
 ---
 
-**Contents**
+**Page Summary**
 
-* [Using top app bar](#using-top-app-bar)
-  *   [Material Design](#material-design)
-  *   [Accessibility](#accessibility)
-      *   [Content descriptions](#content-descriptions)
-  *   [Top app bar example](#top-app-bar-example)
-        *   [In XML](#in-xml)
-            *   [Applying scrolling behavior to the top app bar](#applying-scrolling-behavior-to-the-top-app-bar)
-            *   [Raised top app bar](#raised-top-app-bar)
-        *   [In Jetpack compose](#in-jetpack-compose)
+* [Specifications references](#specifications-references)
+* [Accessibility](#accessibility)
+* [Implementation](#implementation)
 
-## Using top app bar
+## Specifications references
 
-Before you can use Orange themed top app bar, you need to add a dependency to the Orange Design System
-for Android library. For more information, go to the
-[Getting started](../home_content.md) page.
+- [Design System Manager - App bars](https://system.design.orange.com/0c1af118d/p/23e0e6-app-bars/b/620966)
+- [Material Design - App bars: top](https://material.io/components/app-bars-top/)
 
-### Material Design
+## Accessibility
 
-Orange Top app bar is based on Material Design from Google and apply Orange theming.
-**Note:** Here is the full documentation
-of [Material Design Top App Bar](https://material.io/components/app-bars-top/)
-
-### Accessibility
+Please follow [accessibility criteria for development](https://a11y-guidelines.orange.com/en/mobile/android/development/)
 
 Android's top app bar component APIs provide support for the navigation icon,
 action items, overflow menu and more for informing the user as to what each
 action performs. While optional, their use is strongly encouraged.
 
-#### Content descriptions
+**Content descriptions**
 
 When using icons for navigation icons, action items and other elements of top
 app bars, you should set a content description on them so that screen readers
@@ -63,23 +52,48 @@ needs to be set in the menu:
 For images within top app bars, set an `android:contentDescription`
 or use the `setContentDescription` method on the `ImageView`.
 
-### Top app bar example
+## Implementation
 
-#### In XML
+- **Jetpack Compose implementation**
+
+Add `OdsTopAppBar` composable to your Scaffold topBar as follow:
+
+```kotlin
+OdsTopAppBar(
+    title = {
+        Text(text = "Title")
+    },
+    actions = {
+        IconButton(onClick = {}) {
+            Icon(
+                painter = painterResource(id =  R.drawable.ic_share),
+                contentDescription = "content description"
+            )
+        }
+    },
+    navigationIcon = {
+        IconButton(onClick = {}) {
+            Icon(
+                painter = painterResource(id =  R.drawable.ic_back),
+                contentDescription = "content description"
+            )
+        }
+    }
+)
+```
+
+- title - The title to be displayed in the center of the `OdsTopAppBar`.
+- navigationIcon (optional) - The navigation icon displayed at the start of the `OdsTopAppBar`. This should typically be an `IconButton` or `IconToggleButton`.
+- actions (optional) - The actions displayed at the end of the `OdsTopAppBar`. This should typically be `IconButtons`. The default layout here is a `Row`, so icons inside will be placed horizontally.
+
+- **XML implementation**
 
 API and source code:
 
-*   `CoordinatorLayout`
-    *   [Class definition](https://developer.android.com/reference/androidx/coordinatorlayout/widget/CoordinatorLayout)
-*   `AppBarLayout`
-    *   [Class definition](https://developer.android.com/reference/com/google/android/material/appbar/AppBarLayout)
-    *   [Class source](https://github.com/material-components/material-components-android/tree/master/lib/java/com/google/android/material/appbar/AppBarLayout.java)
-*   `MaterialToolbar`
-    *   [Class definition](https://developer.android.com/reference/com/google/android/material/appbar/MaterialToolbar)
-    *   [Class source](https://github.com/material-components/material-components-android/tree/master/lib/java/com/google/android/material/appbar/MaterialToolbar.java)
-*   `CollapsingToolbarLayout`
-    *   [Class definition](https://developer.android.com/reference/com/google/android/material/appbar/CollapsingToolbarLayout)
-    *   [Class source](https://github.com/material-components/material-components-android/tree/master/lib/java/com/google/android/material/appbar/CollapsingToolbarLayout.java)
+*   `CoordinatorLayout`: [Class definition](https://developer.android.com/reference/androidx/coordinatorlayout/widget/CoordinatorLayout)
+*   `AppBarLayout`: [Class definition](https://developer.android.com/reference/com/google/android/material/appbar/AppBarLayout), [Class source](https://github.com/material-components/material-components-android/tree/master/lib/java/com/google/android/material/appbar/AppBarLayout.java)
+*   `MaterialToolbar`: [Class definition](https://developer.android.com/reference/com/google/android/material/appbar/MaterialToolbar), [Class source](https://github.com/material-components/material-components-android/tree/master/lib/java/com/google/android/material/appbar/MaterialToolbar.java)
+*   `CollapsingToolbarLayout`: [Class definition](https://developer.android.com/reference/com/google/android/material/appbar/CollapsingToolbarLayout), [Class source](https://github.com/material-components/material-components-android/tree/master/lib/java/com/google/android/material/appbar/CollapsingToolbarLayout.java)
 
 In the layout:
 
@@ -179,7 +193,7 @@ topAppBar.setOnMenuItemClickListener { menuItem ->
 }
 ```
 
-##### Applying scrolling behavior to the top app bar
+_**Applying scrolling behavior to the top app bar**_
 
 The following example shows the top app bar positioned at the same elevation as
 content. Upon scroll, it increases elevation and lets content scroll behind it.
@@ -200,7 +214,7 @@ In the layout:
 </androidx.coordinatorlayout.widget.CoordinatorLayout>
 ```
 
-##### Raised top app bar
+_**Raised top app bar**_
 
 If you need to have a top app bar with some elevation you can set the `@style/Widget.Orange.Toolbar.Raised`
 
@@ -217,36 +231,3 @@ If you need to have a top app bar with some elevation you can set the `@style/Wi
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>
 ```
-
-
-#### In Jetpack compose
-
-Add this to your Scaffold topBar:
-
-```kotlin
-OdsTopAppBar(
-    title = {
-        Text(text = "Title")
-    },
-    actions = {
-        IconButton(onClick = {}) {
-            Icon(
-                painter = painterResource(id =  R.drawable.ic_share),
-                contentDescription = "content description"
-            )
-        }
-    },
-    navigationIcon = {
-        IconButton(onClick = {}) {
-            Icon(
-                painter = painterResource(id =  R.drawable.ic_back),
-                contentDescription = "content description"
-            )
-        }
-    }
-)
-```
-
-- title - The title to be displayed in the center of the `OdsTopAppBar`.
-- navigationIcon (optional) - The navigation icon displayed at the start of the `OdsTopAppBar`. This should typically be an `IconButton` or `IconToggleButton`.
-- actions (optional) - The actions displayed at the end of the `OdsTopAppBar`. This should typically be `IconButtons`. The default layout here is a `Row`, so icons inside will be placed horizontally.

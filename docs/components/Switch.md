@@ -4,48 +4,55 @@ title: Switch
 description: Switch selection control allows the user to select options.
 ---
 
+**Page Summary**
+
+* [Specifications references](#specifications-references)
+* [Accessibility](#accessibility)
+* [Implementation](#implementation)
+
+
 Switches toggle the state of a single setting on or off. They are the preferred
 way to adjust settings on mobile.
 
-**Contents**
+## Specifications references
 
-*   [Using switches](#using-switches)
-    *   [Material Design](#material-design)
-    *   [Accessibility](#accessibility)
-    *   [Adding a switch](#adding-a-switch)
-          *   [In XML](#in-xml)
-          *   [In Jetpack Compose](#in-jetpack-compose)
+- [Design System Manager - Selection controls](https://system.design.orange.com/0c1af118d/p/14638a-selection-controls/b/352c00)
+- [Material Design - Switches](https://material.io/components/switches)
 
-## Using switches
+## Accessibility
 
-Before you can use Orange themed switches, you need to add a dependency to the Orange Design
-System for Android library. For more information, go to the
-[Getting started](../home_content.md) page.
-
-### Material Design
-
-Orange Switches are based on Material Design from Google and apply Orange theming.
-**Note:** Here is the full documentation
-of [Material Design Checkbox](https://material.io/components/switches/)
-
-### Accessibility
+Please follow [accessibility criteria for development](https://a11y-guidelines.orange.com/en/mobile/android/development/)
 
 Switches support content labeling for accessibility and are readable by most
 screen readers, such as TalkBack. Text rendered in switches is automatically
 provided to accessibility services. Additional content labels are usually
 unnecessary.
 
-### Adding a switch
+### Implementation
 
-![RadioButton](images/switch_light.png) ![RadioButton dark](images/switch_dark.png)
+![Switch](images/switch_light.png) ![Switch dark](images/switch_dark.png)
 
-#### In XML
+- **Jetpack Compose implementation**
+
+In your composable screen you can use:
+
+```kotlin
+OdsSwitch(
+    checked = true,
+    onCheckedChange = {
+        // Do something
+    },
+    enabled = true
+)
+```
+
+- **XML implementation**
 
 To create a Switch using Orange theme you will have to add `com.google.android.material.switchmaterial.SwitchMaterial` into your layout.
 
-*   `SwitchMaterial`
-    *   [Class definition](https://developer.android.com/reference/com/google/android/material/switchmaterial/SwitchMaterial)
-    *   [Class source](https://github.com/material-components/material-components-android/tree/master/lib/java/com/google/android/material/switchmaterial/SwitchMaterial.java)
+API and source code:
+
+*   `SwitchMaterial`: [Class definition](https://developer.android.com/reference/com/google/android/material/switchmaterial/SwitchMaterial), [Class source](https://github.com/material-components/material-components-android/tree/master/lib/java/com/google/android/material/switchmaterial/SwitchMaterial.java)
 
 In the layout:
 
@@ -89,16 +96,4 @@ switchMaterial.isChecked = true
 switchMaterial.setOnCheckedChangeListener { buttonView, isChecked
     // Responds to switch being checked/unchecked
 }
-```
-
-#### In Jetpack Compose
-
-In your composable screen you can use:
-
-```kotlin
-OdsSwitch(
-    checked = true,
-    onCheckedChange = { },
-    enabled = true
-)
 ```

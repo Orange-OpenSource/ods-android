@@ -4,44 +4,48 @@ title: Checkbox
 description: Checkbox selection control allows the user to select options.
 ---
 
+**Page Summary**
+
+* [Specifications references](#specifications-references)
+* [Accessibility](#accessibility)
+* [Implementation](#implementation)
+
+
 Use checkboxes to:
 * Select one or more options from a list
 * Present a list containing sub-selections
 * Turn an item on or off in a desktop environment
 
-**Contents**
+## Specifications references
 
-* [Using checkboxes](#using-checkboxes)
-  *   [Material Design](#material-design)
-  *   [Accessibility](#accessibility)
-  *   [Adding a checkbox](#adding-a-checkbox)
-      *   [In XML](#in-xml)
-      *   [In Jetpack Compose](#in-jetpack-compose)
+- [Design System Manager - Selection controls](https://system.design.orange.com/0c1af118d/p/14638a-selection-controls/b/352c00)
+- [Material Design - Checkboxes](https://material.io/components/checkboxes/)
 
-## Using checkboxes
+## Accessibility
 
-Before you can use Orange themed checkboxes, you need to add a dependency to the Orange Design
-System for Android library. For more information, go to the
-[Getting started](../home_content.md) page.
-
-### Material Design
-
-Orange Checkboxes are based on Material Design from Google and apply Orange theming.
-**Note:** Here is the full documentation
-of [Material Design Checkbox](https://material.io/components/checkboxes/)
-
-### Accessibility
+Please follow [accessibility criteria for development](https://a11y-guidelines.orange.com/en/mobile/android/development/)
 
 Checkboxes support content labeling for accessibility and are readable by most screen readers, such
 as TalkBack. Text rendered in check boxes is automatically provided to accessibility services.
 Additional content labels are usually unnecessary.
 
+### Implementation
 
-### Adding a checkbox
+![Checkbox](images/checkbox_light.png) ![Checkbox dark](images/checkbox_dark.png)
 
-![RadioButton](images/checkbox_light.png) ![RadioButton dark](images/checkbox_dark.png)
+- **Jetpack Compose implementation**
 
-#### In XML
+In your composable screen you can use:
+
+```kotlin
+OdsCheckbox(
+    checked = true,
+    onCheckedChange = { },
+    enabled = true,
+)
+```
+
+- **XML implementation**
 
 To create a Checkbox you just have to add a `Checkbox` in your layout. Orange theme will be
 automatically applied
@@ -56,16 +60,4 @@ In the layout:
     android:checked="true"
     android:text="@string/label"
 />
-```
-
-#### In Jetpack Compose
-
-In your composable screen you can use:
-
-```kotlin
-OdsCheckbox(
-    checked = true,
-    onCheckedChange = { },
-    enabled = true,
-)
 ```
