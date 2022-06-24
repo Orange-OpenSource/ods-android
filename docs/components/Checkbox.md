@@ -9,6 +9,7 @@ description: Checkbox selection control allows the user to select options.
 * [Specifications references](#specifications-references)
 * [Accessibility](#accessibility)
 * [Implementation](#implementation)
+* [Component specific tokens](#component-specific-tokens)
 
 
 Use checkboxes to:
@@ -20,6 +21,7 @@ Use checkboxes to:
 
 - [Design System Manager - Selection controls](https://system.design.orange.com/0c1af118d/p/14638a-selection-controls/b/352c00)
 - [Material Design - Checkboxes](https://material.io/components/checkboxes/)
+- Technical documentation soon available
 
 ## Accessibility
 
@@ -61,3 +63,7 @@ In the layout:
     android:text="@string/label"
 />
 ```
+
+## Component specific tokens
+
+_Soon available_

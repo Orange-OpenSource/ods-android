@@ -11,6 +11,7 @@ description: Snackbars provide brief messages about app processes at the bottom 
 * [Implementation](#implementation)
     * [Adding an action](#adding-an-action)
     * [Anchoring a snackbar](#anchoring-a-snackbar)
+* [Component specific tokens](#component-specific-tokens)
 
 
 Snackbars inform users of a process that an app has performed or will perform.
@@ -26,6 +27,7 @@ action that was just taken, or retrying an action that had failed.
 
 - [Design System Manager - Toasts & Snackbars](https://system.design.orange.com/0c1af118d/p/887440-toast--snackbars/b/043ece)
 - [Material Design - Snackbars](https://material.io/components/snackbars)
+- Technical documentation soon available
 
 ## Accessibility
 
@@ -87,3 +89,6 @@ This is especially helpful if you would like to place a `Snackbar` above
 navigational elements at the bottom of the screen, such as a `BottomAppBar` or
 `BottomNavigationView`.
 
+## Component specific tokens
+
+_Soon available_

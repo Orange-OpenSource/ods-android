@@ -9,12 +9,14 @@ description: Bottom navigation bars allow movement between primary destinations 
 * [Specifications references](#specifications-references)
 * [Accessibility](#accessibility)
 * [Implementation](#implementation)
+* [Component specific tokens](#component-specific-tokens)
 
 
 ## Specifications references
 
 - [Design System Manager - Navigation: bottom](https://system.design.orange.com/0c1af118d/p/042eb8-navigation-bottom/b/30078d)
 - [Material Design - Bottom navigation](https://material.io/components/bottom-navigation)
+- Technical documentation soon available
 
 ## Accessibility
 
@@ -135,3 +137,7 @@ In code:
 ```kotlin
 bottomNavigation.selectedItemId = R.id.page_2
 ```
+
+## Component specific tokens
+
+_Soon available_

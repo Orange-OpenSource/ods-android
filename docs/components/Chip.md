@@ -13,12 +13,14 @@ description: Chips are compact elements that represent an input, attribute, or a
   * [Choice chip](#choice-chip)
   * [Filter chip](#filter-chip)
   * [Action chip](#action-chip)
+* [Component specific tokens](#component-specific-tokens)
 
 
 ## Specifications references
 
 - [Design System Manager](https://system.design.orange.com/0c1af118d/p/81aa91-chips/b/13c40e)
 - [Material Design](https://material.io/components/chips)
+- Technical documentation soon available
 
 ## Accessibility
 
@@ -151,3 +153,7 @@ In the layout:
 
 </com.google.android.material.chip.ChipGroup>
 ```
+
+## Component specific tokens
+
+_Soon available_

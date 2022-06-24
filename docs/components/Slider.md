@@ -13,12 +13,14 @@ description: Sliders allow users to make selections from a range of values.
   * [Continuous lockups slider](#continuous-lockups-slider)
   * [Discrete slider](#discrete-slider)
   * [Discrete lockup slider](#discrete-lockup-slider)
+* [Component specific tokens](#component-specific-tokens)
 
 
 ## Specifications references
 
 - [Design System Manager - Sliders](https://system.design.orange.com/0c1af118d/p/8077fc-sliders/b/673558)
 - [Material Design - Sliders](https://material.io/components/sliders/)
+- Technical documentation soon available
 
 ## Accessibility
 
@@ -193,3 +195,7 @@ In your composable screen you can use:
             onValueChange = { }
         )
 ```
+
+## Component specific tokens
+
+_Soon available_

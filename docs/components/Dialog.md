@@ -11,6 +11,7 @@ description: Dialogs inform users about a task and can contain critical informat
 * [Variants](#variants)
     * [Alert dialog](#alert-dialog)
     * [Simple dialog](#simple-dialog)
+* [Component specific tokens](#component-specific-tokens)
 
 
 A dialog is a type of modal window that appears in front of app content to
@@ -24,6 +25,7 @@ Dialogs are purposefully interruptive, so they should be used sparingly.
 
 - [Design System Manager - Dialogs](https://system.design.orange.com/0c1af118d/p/02ae02-dialogs/b/81772e)
 - [Material Design - Dialogs](https://material.io/components/dialogs)
+- Technical documentation soon available
 
 ## Accessibility
 
@@ -118,3 +120,7 @@ MaterialAlertDialogBuilder(context)
          }
         .show()
 ```
+
+## Component specific tokens
+
+_Soon available_

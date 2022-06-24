@@ -16,12 +16,14 @@ description: A floating action button (FAB) represents the primary action of a s
   * [Visibility](#visibility)
   * [Extending and Shrinking](#extending-and-shrinking)
   * [Sizing FABs](#sizing-fabs)
+* [Component specific tokens](#component-specific-tokens)
 
 
 ## Specifications references
 
-- Design System Manager - Floating Action Button (coming soon)
+- Design System Manager - Floating Action Button (soon available)
 - [Material Design - Buttons: floating action button](https://material.io/components/buttons-floating-action-button/)
+- Technical documentation soon available
 
 ## Accessibility
 
@@ -210,3 +212,7 @@ There are three `app:fabSize` modes:
 Or, you can set a custom size via the `app:fabCustomSize` attribute. If set,
 `app:fabSize` will be ignored, unless the custom size is cleared via the
 `clearCustomSize` method.
+
+## Component specific tokens
+
+_Soon available_

@@ -11,11 +11,14 @@ description: Tabs organize content across different screens, data sets, and othe
 * [Variants](#variants)
   * [Fixed tabs](#fixed-tabs)
   * [Scrollable tabs](#scrollable-tabs)
+* [Component specific tokens](#component-specific-tokens)
+
 
 ## Specifications references
 
 - [Design System Manager - Tabs](https://system.design.orange.com/0c1af118d/p/513d27-tabs/b/50cb71)
 - [Material Design - Tabs](https://material.io/components/tabs/)
+- Technical documentation soon available
 
 ## Accessibility
 
@@ -238,3 +241,7 @@ In the layout:
 
 </com.google.android.material.tabs.TabLayout>
 ```
+
+## Component specific tokens
+
+_Soon available_

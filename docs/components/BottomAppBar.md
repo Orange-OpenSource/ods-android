@@ -9,12 +9,14 @@ description: A bottom app bar displays navigation and key actions at the bottom 
 * [Specifications references](#specifications-references)
 * [Accessibility](#accessibility)
 * [Implementation](#implementation)
+* [Component specific tokens](#component-specific-tokens)
 
 
 ## Specifications references
 
 - [Design System Manager - App bars](https://system.design.orange.com/0c1af118d/p/23e0e6-app-bars/b/620966)
 - [Material Design - App bars: bottom](https://material.io/components/app-bars-bottom)
+- Technical documentation soon available
 
 ## Accessibility
 
@@ -156,3 +158,7 @@ bottomAppBar.setOnMenuItemClickListener { menuItem ->
     }
 }
 ```
+
+## Component specific tokens
+
+_Soon available_

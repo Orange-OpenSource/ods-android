@@ -11,12 +11,14 @@ description: Progress indicators express an unspecified wait time or display the
 * [Variants](#variants)
     * [Progress bar](#progress-bar)
     * [Activity indicator](#activity-indicator)
+* [Component specific tokens](#component-specific-tokens)
 
 
 ## Specifications references
 
 - [Design System Manager - Progress indicators](https://system.design.orange.com/0c1af118d/p/92aec5-progress-indicators------/b/33faf7)
 - [Material Design - Progress indicators](https://material.io/components/progress-indicators/)
+- Technical documentation soon available
 
 ## Accessibility
 
@@ -155,3 +157,6 @@ In the layout:
     android:layout_height="wrap_content"
     android:indeterminate="true" />
 ```
+## Component specific tokens
+
+_Soon available_

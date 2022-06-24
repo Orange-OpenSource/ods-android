@@ -12,11 +12,14 @@ description: Lists are continuous, vertical indexes of text or images.
   * [One-line list](#one-line-list)
   * [Two-line list](#two-line-list)
   * [Three-line list](#three-line-list)
+* [Component specific tokens](#component-specific-tokens)
+
 
 ## Specifications references
 
 - [Design System Manager - Lists](https://system.design.orange.com/0c1af118d/p/09a804-lists/b/669743)
 - [Material Design - Lists](https://material.io/components/lists/)
+- Technical documentation soon available
 
 ## Accessibility
 
@@ -156,3 +159,7 @@ To display a **three-line list item with a wide thumbnail** with a text as trail
 > **XML implementation**
 
 *Not available yet*
+
+## Component specific tokens
+
+_Soon available_

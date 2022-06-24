@@ -9,6 +9,7 @@ description: Switch selection control allows the user to select options.
 * [Specifications references](#specifications-references)
 * [Accessibility](#accessibility)
 * [Implementation](#implementation)
+* [Component specific tokens](#component-specific-tokens)
 
 
 Switches toggle the state of a single setting on or off. They are the preferred
@@ -18,6 +19,7 @@ way to adjust settings on mobile.
 
 - [Design System Manager - Selection controls](https://system.design.orange.com/0c1af118d/p/14638a-selection-controls/b/352c00)
 - [Material Design - Switches](https://material.io/components/switches)
+- Technical documentation soon available
 
 ## Accessibility
 
@@ -97,3 +99,7 @@ switchMaterial.setOnCheckedChangeListener { buttonView, isChecked
     // Responds to switch being checked/unchecked
 }
 ```
+
+## Component specific tokens
+
+_Soon available_

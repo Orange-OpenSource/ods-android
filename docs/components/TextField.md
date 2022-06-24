@@ -11,11 +11,14 @@ description: Text fields let users enter and edit text.
 * [Variants](#variants)
   * [Filled text field](#filled-text-field)
   * [Outlined text field](#outlined-text-field)
+* [Component specific tokens](#component-specific-tokens)
+
 
 ## Specifications references
 
 - [Design System Manager - Text fields](https://system.design.orange.com/0c1af118d/p/483f94-text-fields/b/720e3b)
 - [Material Design - Text fields](https://material.io/components/text-fields/)
+- Technical documentation soon available
 
 ## Accessibility
 
@@ -199,3 +202,7 @@ outlinedTextField.editText?.doOnTextChanged { inputText, _, _, _ ->
     // Respond to input text change
 }
 ```
+
+## Component specific tokens
+
+_Soon available_

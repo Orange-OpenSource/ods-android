@@ -12,11 +12,14 @@ description: Cards contain content and actions about a single subject.
     * [Card image first](#card-image-first)
     * [Card title first](#card-title-first)
     * [Small card](#small-card)
+* [Component specific tokens](#component-specific-tokens)
+
 
 ## Specifications references
 
 - [Design System Manager - Cards](https://system.design.orange.com/0c1af118d/p/272739-cards/b/991690)
 - [Material Design - Cards](https://material.io/components/cards/)
+- Technical documentation soon available
 
 ## Accessibility
 
@@ -213,3 +216,7 @@ In the layout:
 
 </com.google.android.material.card.MaterialCardView>
 ```
+
+## Component specific tokens
+
+_Soon available_

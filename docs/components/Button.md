@@ -13,12 +13,14 @@ description: Buttons allow users to take actions, and make choices, with a singl
     * [Outlined button](#outlined-button)
     * [Contained button](#contained-button)
     * [Toggle button](#toggle-button)
+* [Component specific tokens](#component-specific-tokens)
 
 
 ## Specifications references
 
 - [Design System Manager - Buttons](https://system.design.orange.com/0c1af118d/p/06a393-buttons/b/530521)
 - [Material Design - Buttons](https://material.io/components/buttons/)
+- Technical documentation soon available
 
 ## Accessibility
 
@@ -244,3 +246,7 @@ style `@style/Widget.Orange.Button.Outlined.IconOnly` on your `Button` layout.
           style="@style/Widget.Orange.Button.Outlined.IconOnly" />
 </com.google.android.material.button.MaterialButtonToggleGroup>
 ```
+
+## Component specific tokens
+
+_Soon available_

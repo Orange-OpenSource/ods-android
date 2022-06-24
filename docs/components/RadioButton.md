@@ -9,6 +9,7 @@ description: Radio button selection control allows the user to select options.
 * [Specifications references](#specifications-references)
 * [Accessibility](#accessibility)
 * [Implementation](#implementation)
+* [Component specific tokens](#component-specific-tokens)
 
 
 Use radio buttons to:
@@ -21,6 +22,7 @@ Use radio buttons to:
 
 - [Design System Manager - Selection controls](https://system.design.orange.com/0c1af118d/p/14638a-selection-controls/b/352c00)
 - [Material Design - Radio buttons](https://material.io/components/radio-buttons/)
+- Technical documentation soon available
 
 ## Accessibility
 
@@ -104,3 +106,7 @@ In the layout:
         android:text="@string/label_5"/>
 </RadioGroup>
 ```
+
+## Component specific tokens
+
+_Soon available_

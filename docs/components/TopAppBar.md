@@ -9,11 +9,14 @@ description: Top app bars display information and actions relating to the curren
 * [Specifications references](#specifications-references)
 * [Accessibility](#accessibility)
 * [Implementation](#implementation)
+* [Component specific tokens](#component-specific-tokens)
+
 
 ## Specifications references
 
 - [Design System Manager - App bars](https://system.design.orange.com/0c1af118d/p/23e0e6-app-bars/b/620966)
 - [Material Design - App bars: top](https://material.io/components/app-bars-top/)
+- Technical documentation soon available
 
 ## Accessibility
 
@@ -231,3 +234,7 @@ If you need to have a top app bar with some elevation you can set the `@style/Wi
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>
 ```
+
+## Component specific tokens
+
+_Soon available_
