@@ -4,6 +4,8 @@ title: Progress indicator
 description: Progress indicators express an unspecified wait time or display the length of a process.
 ---
 
+---
+
 **Page Summary**
 
 * [Specifications references](#specifications-references)
@@ -13,6 +15,7 @@ description: Progress indicators express an unspecified wait time or display the
     * [Activity indicator](#activity-indicator)
 * [Component specific tokens](#component-specific-tokens)
 
+---
 
 ## Specifications references
 

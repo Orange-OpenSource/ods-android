@@ -4,6 +4,8 @@ title: Tabs
 description: Tabs organize content across different screens, data sets, and other interactions.
 ---
 
+---
+
 **Page Summary**
 
 * [Specifications references](#specifications-references)
@@ -13,6 +15,7 @@ description: Tabs organize content across different screens, data sets, and othe
   * [Scrollable tabs](#scrollable-tabs)
 * [Component specific tokens](#component-specific-tokens)
 
+---
 
 ## Specifications references
 

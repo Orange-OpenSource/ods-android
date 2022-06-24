@@ -4,6 +4,8 @@ title: Radio Button
 description: Radio button selection control allows the user to select options.
 ---
 
+---
+
 **Page Summary**
 
 * [Specifications references](#specifications-references)
@@ -11,6 +13,7 @@ description: Radio button selection control allows the user to select options.
 * [Implementation](#implementation)
 * [Component specific tokens](#component-specific-tokens)
 
+---
 
 Use radio buttons to:
 *   Select a single option from a list

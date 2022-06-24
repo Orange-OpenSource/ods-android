@@ -4,6 +4,8 @@ title: Lists
 description: Lists are continuous, vertical indexes of text or images.
 ---
 
+---
+
 **Page Summary**
 
 * [Specifications references](#specifications-references)
@@ -14,6 +16,7 @@ description: Lists are continuous, vertical indexes of text or images.
   * [Three-line list](#three-line-list)
 * [Component specific tokens](#component-specific-tokens)
 
+---
 
 ## Specifications references
 

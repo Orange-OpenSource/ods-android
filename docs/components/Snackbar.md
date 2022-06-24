@@ -4,6 +4,8 @@ title: Snackbar
 description: Snackbars provide brief messages about app processes at the bottom of the screen.
 ---
 
+---
+
 **Page Summary**
 
 * [Specifications references](#specifications-references)
@@ -13,6 +15,7 @@ description: Snackbars provide brief messages about app processes at the bottom 
     * [Anchoring a snackbar](#anchoring-a-snackbar)
 * [Component specific tokens](#component-specific-tokens)
 
+---
 
 Snackbars inform users of a process that an app has performed or will perform.
 They appear temporarily, towards the bottom of the screen. They shouldn’t

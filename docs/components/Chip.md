@@ -4,6 +4,8 @@ title: Chip
 description: Chips are compact elements that represent an input, attribute, or action.
 ---
 
+---
+
 **Page summary**
 
 * [Specifications references](#specifications-references)
@@ -15,6 +17,7 @@ description: Chips are compact elements that represent an input, attribute, or a
   * [Action chip](#action-chip)
 * [Component specific tokens](#component-specific-tokens)
 
+---
 
 ## Specifications references
 

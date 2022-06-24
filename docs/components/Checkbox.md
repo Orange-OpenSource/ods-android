@@ -4,6 +4,8 @@ title: Checkbox
 description: Checkbox selection control allows the user to select options.
 ---
 
+---
+
 **Page Summary**
 
 * [Specifications references](#specifications-references)
@@ -11,6 +13,7 @@ description: Checkbox selection control allows the user to select options.
 * [Implementation](#implementation)
 * [Component specific tokens](#component-specific-tokens)
 
+---
 
 Use checkboxes to:
 * Select one or more options from a list

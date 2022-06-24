@@ -4,6 +4,8 @@ title: Dialog
 description: Dialogs inform users about a task and can contain critical information, require decisions, or involve multiple tasks.
 ---
 
+---
+
 **Page Summary**
 
 * [Specifications references](#specifications-references)
@@ -13,6 +15,7 @@ description: Dialogs inform users about a task and can contain critical informat
     * [Simple dialog](#simple-dialog)
 * [Component specific tokens](#component-specific-tokens)
 
+---
 
 A dialog is a type of modal window that appears in front of app content to
 provide critical information or ask for a decision. Dialogs disable all app

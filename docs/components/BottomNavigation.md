@@ -4,6 +4,8 @@ title: Bottom navigation
 description: Bottom navigation bars allow movement between primary destinations in an app.
 ---
 
+---
+
 **Page Summary**
 
 * [Specifications references](#specifications-references)
@@ -11,6 +13,7 @@ description: Bottom navigation bars allow movement between primary destinations 
 * [Implementation](#implementation)
 * [Component specific tokens](#component-specific-tokens)
 
+---
 
 ## Specifications references
 

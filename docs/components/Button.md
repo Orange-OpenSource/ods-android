@@ -4,6 +4,8 @@ title: Button
 description: Buttons allow users to take actions, and make choices, with a single tap.
 ---
 
+---
+
 **Page Summary**
 
 * [Specifications references](#specifications-references)
@@ -15,6 +17,7 @@ description: Buttons allow users to take actions, and make choices, with a singl
     * [Toggle button](#toggle-button)
 * [Component specific tokens](#component-specific-tokens)
 
+---
 
 ## Specifications references
 

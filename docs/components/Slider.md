@@ -4,6 +4,8 @@ title: Slider
 description: Sliders allow users to make selections from a range of values.
 ---
 
+---
+
 **Page Summary**
 
 * [Specifications references](#specifications-references)
@@ -15,6 +17,7 @@ description: Sliders allow users to make selections from a range of values.
   * [Discrete lockup slider](#discrete-lockup-slider)
 * [Component specific tokens](#component-specific-tokens)
 
+---
 
 ## Specifications references
 

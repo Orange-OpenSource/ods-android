@@ -4,6 +4,8 @@ title: Top App bar
 description: Top app bars display information and actions relating to the current screen.
 ---
 
+---
+
 **Page Summary**
 
 * [Specifications references](#specifications-references)
@@ -11,6 +13,7 @@ description: Top app bars display information and actions relating to the curren
 * [Implementation](#implementation)
 * [Component specific tokens](#component-specific-tokens)
 
+---
 
 ## Specifications references
 

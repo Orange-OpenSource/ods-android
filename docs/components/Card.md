@@ -4,6 +4,8 @@ title: Card
 description: Cards contain content and actions about a single subject.
 ---
 
+---
+
 **Page Summary**
 
 * [Specifications references](#specifications-references)
@@ -14,6 +16,7 @@ description: Cards contain content and actions about a single subject.
     * [Small card](#small-card)
 * [Component specific tokens](#component-specific-tokens)
 
+---
 
 ## Specifications references
 

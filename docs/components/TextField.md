@@ -4,6 +4,8 @@ title: Text field
 description: Text fields let users enter and edit text.
 ---
 
+---
+
 **Page Summary**
 
 * [Specifications references](#specifications-references)
@@ -13,6 +15,7 @@ description: Text fields let users enter and edit text.
   * [Outlined text field](#outlined-text-field)
 * [Component specific tokens](#component-specific-tokens)
 
+---
 
 ## Specifications references
 
