@@ -4,6 +4,12 @@ title: Radio Button
 description: Radio button selection control allows the user to select options.
 ---
 
+Use radio buttons to:
+*   Select a single option from a list
+*   Expose all available options
+*   If available options can be collapsed, consider using a dropdown menu
+    instead, as it uses less space.
+
 ---
 
 **Page Summary**
@@ -14,12 +20,6 @@ description: Radio button selection control allows the user to select options.
 * [Component specific tokens](#component-specific-tokens)
 
 ---
-
-Use radio buttons to:
-*   Select a single option from a list
-*   Expose all available options
-*   If available options can be collapsed, consider using a dropdown menu
-    instead, as it uses less space.
 
 ## Specifications references
 

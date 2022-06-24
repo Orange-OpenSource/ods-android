@@ -4,6 +4,15 @@ title: Snackbar
 description: Snackbars provide brief messages about app processes at the bottom of the screen.
 ---
 
+Snackbars inform users of a process that an app has performed or will perform.
+They appear temporarily, towards the bottom of the screen. They shouldn’t
+interrupt the user experience, and they don’t require user input to disappear.
+They disappear either after a timeout or after a user interaction elsewhere on
+the screen, but can also be swiped off the screen.
+
+Snackbars can also offer the ability to perform an action, such as undoing an
+action that was just taken, or retrying an action that had failed.
+
 ---
 
 **Page Summary**
@@ -16,15 +25,6 @@ description: Snackbars provide brief messages about app processes at the bottom 
 * [Component specific tokens](#component-specific-tokens)
 
 ---
-
-Snackbars inform users of a process that an app has performed or will perform.
-They appear temporarily, towards the bottom of the screen. They shouldn’t
-interrupt the user experience, and they don’t require user input to disappear.
-They disappear either after a timeout or after a user interaction elsewhere on
-the screen, but can also be swiped off the screen.
-
-Snackbars can also offer the ability to perform an action, such as undoing an
-action that was just taken, or retrying an action that had failed.
 
 ## Specifications references
 

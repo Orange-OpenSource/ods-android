@@ -4,6 +4,9 @@ title: Switch
 description: Switch selection control allows the user to select options.
 ---
 
+Switches toggle the state of a single setting on or off. They are the preferred
+way to adjust settings on mobile.
+
 ---
 
 **Page Summary**
@@ -14,9 +17,6 @@ description: Switch selection control allows the user to select options.
 * [Component specific tokens](#component-specific-tokens)
 
 ---
-
-Switches toggle the state of a single setting on or off. They are the preferred
-way to adjust settings on mobile.
 
 ## Specifications references
 
