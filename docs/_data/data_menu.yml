@@ -15,8 +15,6 @@ toc2:
     subfolderitems:
       - page: Bottom app bars
         url: /ods-android/components/BottomAppBars_docs
-      - page: "Navigation: Bottom"
-        url: /ods-android/components/NavigationBottom_docs
       - page: Buttons
         url: /ods-android/components/Buttons_docs
       - page: Cards
@@ -31,6 +29,8 @@ toc2:
         url: /ods-android/components/FloatingActionButtons_docs
       - page: Lists
         url: /ods-android/components/Lists_docs
+      - page: "Navigation: Bottom"
+        url: /ods-android/components/NavigationBottom_docs
       - page: Progress indicators
         url: /ods-android/components/ProgressIndicators_docs
       - page: Radio buttons
