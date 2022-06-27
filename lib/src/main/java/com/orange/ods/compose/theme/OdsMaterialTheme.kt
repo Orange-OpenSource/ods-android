@@ -18,6 +18,9 @@ import androidx.compose.material.ripple.LocalRippleTheme
 import androidx.compose.material.ripple.RippleTheme
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.CompositionLocalProvider
+import androidx.compose.runtime.compositionLocalOf
+
+val LocalDarkThemeEnabled = compositionLocalOf { false }
 
 /**
  * ODS Material theme is the theme to apply to your screens in an Orange Jetpack Compose application.
@@ -33,6 +36,7 @@ fun OdsMaterialTheme(
     ) {
         CompositionLocalProvider(
             LocalRippleTheme provides OdsRippleTheme,
+            LocalDarkThemeEnabled provides darkTheme,
             content = content
         )
     }
