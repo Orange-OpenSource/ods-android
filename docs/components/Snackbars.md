@@ -1,6 +1,6 @@
 ---
 layout: detail
-title: Snackbar
+title: Snackbars
 description: Snackbars provide brief messages about app processes at the bottom of the screen.
 ---
 

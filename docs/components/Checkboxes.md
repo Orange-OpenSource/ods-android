@@ -1,6 +1,6 @@
 ---
 layout: detail
-title: Checkbox
+title: Checkboxes
 description: Checkbox selection control allows the user to select options.
 ---
 

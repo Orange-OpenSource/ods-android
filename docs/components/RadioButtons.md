@@ -1,6 +1,6 @@
 ---
 layout: detail
-title: Radio Button
+title: Radio Buttons
 description: Radio button selection control allows the user to select options.
 ---
 

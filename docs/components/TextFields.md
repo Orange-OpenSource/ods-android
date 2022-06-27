@@ -1,6 +1,6 @@
 ---
 layout: detail
-title: Text field
+title: Text fields
 description: Text fields let users enter and edit text.
 ---
 

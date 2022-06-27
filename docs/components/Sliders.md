@@ -1,6 +1,6 @@
 ---
 layout: detail
-title: Slider
+title: Sliders
 description: Sliders allow users to make selections from a range of values.
 ---
 

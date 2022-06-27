@@ -1,6 +1,6 @@
 ---
 layout: detail
-title: Switch
+title: Switches
 description: Switch selection control allows the user to select options.
 ---
 
