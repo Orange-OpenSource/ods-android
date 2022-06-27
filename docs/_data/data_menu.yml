@@ -13,8 +13,8 @@ toc2:
 
   - title: Components
     subfolderitems:
-      - page: Bottom app bars
-        url: /ods-android/components/BottomAppBars_docs
+      - page: "App bars: Bottom"
+        url: /ods-android/components/AppBarsBottom_docs
       - page: Buttons
         url: /ods-android/components/Buttons_docs
       - page: Cards
