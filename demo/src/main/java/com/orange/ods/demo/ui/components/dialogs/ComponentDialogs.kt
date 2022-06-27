@@ -30,6 +30,7 @@ import com.orange.ods.compose.component.list.OdsListItem
 import com.orange.ods.demo.R
 import com.orange.ods.demo.ui.components.buttons.fullWidthButton
 import com.orange.ods.demo.ui.components.utilities.clickOnElement
+import com.orange.ods.demo.ui.utilities.composable.SwitchListItem
 import com.orange.ods.demo.ui.utilities.composable.Title
 
 @ExperimentalMaterialApi
@@ -43,8 +44,8 @@ fun ComponentDialogsContent() {
 
     Title(textRes = R.string.component_dialogs_customize, withHorizontalPadding = true)
     Spacer(modifier = Modifier.height(dimensionResource(id = R.dimen.ods_spacing_xs)))
-    DialogCustomizationListItem(R.string.component_element_title, customizationState.titleChecked)
-    DialogCustomizationListItem(R.string.component_dialog_element_dismiss_button, customizationState.dismissButtonChecked)
+    SwitchListItem(labelRes = R.string.component_element_title, checked = customizationState.titleChecked)
+    SwitchListItem(labelRes = R.string.component_dialog_element_dismiss_button, checked = customizationState.dismissButtonChecked)
     OdsButton(
         modifier = Modifier.fullWidthButton(),
         text = stringResource(id = R.string.component_dialogs_open_dialog),
@@ -78,6 +79,7 @@ fun ComponentDialogsContent() {
 @ExperimentalMaterialApi
 @Composable
 private fun DialogCustomizationListItem(@StringRes labelRes: Int, checked: MutableState<Boolean>) {
+
     OdsListItem(
         modifier = Modifier.clickable { checked.value = !checked.value },
         text = stringResource(id = labelRes),
