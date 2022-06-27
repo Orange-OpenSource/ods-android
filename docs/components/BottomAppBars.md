@@ -1,6 +1,6 @@
 ---
 layout: detail
-title: Bottom App bar
+title: Bottom App bars
 description: A bottom app bar displays navigation and key actions at the bottom of mobile screens.
 ---
 
