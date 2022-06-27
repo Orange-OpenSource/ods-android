@@ -1,6 +1,6 @@
 ---
 layout: detail
-title: Navigation\: Bottom
+title: "Navigation: Bottom"
 description: Bottom navigation bars allow movement between primary destinations in an app.
 ---
 
