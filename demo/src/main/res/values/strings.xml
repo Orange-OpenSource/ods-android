@@ -129,12 +129,12 @@
     <!-- Component Progress & activities -->
     <string name="component_progress">Progress &amp; activities</string>
     <string name="component_progress_description">If a process is taking place in the application, it is important to reassure users that something is happening, and if possible, how long it will take.</string>
-    <string name="component_progress_linear">Linear</string>
-    <string name="component_progress_linear_determinate">Linear determinate</string>
-    <string name="component_progress_linear_indeterminate">Linear indeterminate</string>
-    <string name="component_progress_circular">Circular</string>
-    <string name="component_progress_circular_determinate">Circular determinate</string>
-    <string name="component_progress_circular_indeterminate">Circular indeterminate</string>
+    <string name="component_progress_bars">Progress bars</string>
+    <string name="component_progress_bar_determinate">Determinate</string>
+    <string name="component_progress_bar_indeterminate">Indeterminate</string>
+    <string name="component_progress_activity_indicator">Activity indicator</string>
+    <string name="component_progress_activity_indicator_determinate">Determinate</string>
+    <string name="component_progress_activity_indicator_indeterminate">Indeterminate</string>
 
     <!-- Component Lists -->
     <string name="component_lists">Lists</string>
