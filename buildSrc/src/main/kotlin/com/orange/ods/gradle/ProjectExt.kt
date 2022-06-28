@@ -103,13 +103,7 @@ fun Project.findLastTag(pattern: String, before: String?, isAnnotated: Boolean):
     return results.firstOrNull()
 }
 
-fun Project.createTag(tag: String, sha: String) {
-    val (token, repository) = Environment.getVariables("GITHUB_TOKEN", "GITHUB_REPOSITORY")
-    curl(
-        "-X", "POST",
-        "-H", "Authorization: token $token",
-        "-H", "Accept: application/vnd.github.v3+json",
-        "-d", "{\"ref\":\"refs/tags/$tag\",\"sha\":\"$sha\"}",
-        "https://api.github.com/repos/$repository/git/refs"
-    )
+fun Project.gitHubApi(action: GitHubApi.() -> Unit) {
+    val token = Environment.getVariables("GITHUB_TOKEN").first()
+    GitHubApi(token, "Orange-OpenSource/ods-android").action()
 }

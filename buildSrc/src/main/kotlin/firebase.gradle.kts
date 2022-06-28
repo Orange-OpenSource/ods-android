@@ -8,10 +8,10 @@
  * /
  */
 
-import com.orange.ods.gradle.createTag
 import com.orange.ods.gradle.findLastTag
 import com.orange.ods.gradle.findTypedProperty
 import com.orange.ods.gradle.generateReleaseNotes
+import com.orange.ods.gradle.gitHubApi
 
 object AppDistribution {
 
@@ -117,6 +117,8 @@ tasks.register<DefaultTask>("gitTagAppDistribution") {
     doLast {
         val sha = findTypedProperty<String>("appDistributionGitTagSha").orEmpty()
         val tag = "${gitTagPrefix}-${sha.take(7)}"
-        createTag(tag, sha)
+        gitHubApi {
+            createTag(tag, sha)
+        }
     }
 }
