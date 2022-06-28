@@ -41,8 +41,8 @@ fun TextFieldOutlinedContent(customizationState: TextFieldCustomizationState) {
         isError = customizationState.isError,
         value = text,
         onValueChange = { text = it },
-        label = "Label",
-        placeholder = "Placeholder",
+        label = stringResource(id = R.string.component_element_label),
+        placeholder = stringResource(id = R.string.component_text_field_placeholder),
         trailingIcon = if (customizationState.hasTrailingIcon) painterResource(id = R.drawable.ic_eye) else null,
         onTrailingIconClick = if (customizationState.hasTrailingIcon) {
             { clickOnElement(context = context, trailingIconName) }

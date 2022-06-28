@@ -47,6 +47,7 @@
     <string name="component_element_title">Title</string>
     <string name="component_element_subtitle">Subtitle</string>
     <string name="component_element_overline">Overline</string>
+    <string name="component_element_label">Label</string>
     <string name="component_element_caption">Caption</string>
     <string name="component_element_secondary_text">Secondary text</string>
     <string name="component_element_secondary_text_value">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor.</string>
@@ -147,6 +148,7 @@
     <string name="component_text_fields_description">Text fields enable the user to type text into the app. They also provide ways to select text and the opportunity to save time by suggesting options for auto-completion.</string>
     <string name="component_text_fields_filled">Filled text fields</string>
     <string name="component_text_fields_outlined">Outlined text fields</string>
+    <string name="component_text_field_placeholder">Hint text</string>
 
     <!-- Component Tabs -->
     <string name="component_tabs">Tabs</string>
