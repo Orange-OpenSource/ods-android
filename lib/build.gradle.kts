@@ -11,6 +11,7 @@
 import com.orange.ods.gradle.Dependencies
 import com.orange.ods.gradle.Environment
 import com.orange.ods.gradle.Versions
+import com.orange.ods.gradle.execute
 
 plugins {
     id("com.android.library")
@@ -71,7 +72,6 @@ dependencies {
 
 afterEvaluate {
     publishing {
-        val version = "0.1"
         publications {
             create<MavenPublication>("release") {
                 from(components["release"])
@@ -115,7 +115,7 @@ afterEvaluate {
             maven {
                 val releasesRepoUrl = "https://oss.sonatype.org/service/local/staging/deploy/maven2/"
                 val snapshotsRepoUrl = "https://oss.sonatype.org/content/repositories/snapshots/"
-                url = uri(if (version.endsWith("SNAPSHOT")) snapshotsRepoUrl else releasesRepoUrl)
+                url = uri(if (version.toString().endsWith("SNAPSHOT")) snapshotsRepoUrl else releasesRepoUrl)
                 credentials {
                     val (username, password) = Environment.getVariablesOrNull("SONATYPE_USERNAME", "SONATYPE_PASSWORD")
                     this.username = username
@@ -139,4 +139,12 @@ afterEvaluate {
 tasks.register<Jar>("sourcesJar") {
     archiveClassifier.set("sources")
     from(android.sourceSets.getByName("main").java.srcDirs)
+}
+
+tasks.register<DefaultTask>("tagRelease") {
+    doLast {
+        val tag = version.toString()
+        execute("git", "tag", tag)
+        execute("git", "push", "origin", tag)
+    }
 }

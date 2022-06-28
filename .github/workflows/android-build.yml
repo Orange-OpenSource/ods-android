@@ -129,6 +129,6 @@ jobs:
           key-password: ${{ secrets.SIGNING_KEY_PASSWORD }}
 
       - name: Publish release to GitHub
-        run: ./gradlew publishGitHubRelease
+        run: ./gradlew publishToGitHub
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
