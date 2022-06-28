@@ -38,7 +38,7 @@ import com.orange.ods.compose.text.OdsTextSubtitle1
 import com.orange.ods.demo.R
 import com.orange.ods.demo.ui.components.SubComponent
 import com.orange.ods.demo.ui.components.utilities.ComponentCustomizationBottomSheetScaffold
-import com.orange.ods.demo.ui.components.utilities.ComponentCustomizationCheckboxItem
+import com.orange.ods.demo.ui.utilities.composable.CheckboxListItem
 import com.orange.ods.demo.ui.utilities.composable.LabelledRadioButton
 
 private const val FixedTabsCountMin = 2
@@ -106,7 +106,7 @@ fun SubComponentTabs(subComponent: SubComponent, updateTopAppBarTabs: (TabsConfi
                 )
             }
 
-            ComponentCustomizationCheckboxItem(R.string.component_element_text, subComponentTabsState.tabTextEnabled, subComponentTabsState.isTabTextCheckboxEnabled)
+            CheckboxListItem(R.string.component_element_text, subComponentTabsState.tabTextEnabled, subComponentTabsState.isTabTextCheckboxEnabled)
 
             Row(
                 modifier = Modifier
