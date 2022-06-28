@@ -1,6 +1,6 @@
 ---
 layout: detail
-title: Top App bars
+title: "App bars: top"
 description: Top app bars display information and actions relating to the current screen.
 ---
 

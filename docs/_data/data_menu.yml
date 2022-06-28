@@ -13,8 +13,10 @@ toc2:
 
   - title: Components
     subfolderitems:
-      - page: "App bars: Bottom"
+      - page: "App bars: bottom"
         url: /ods-android/components/AppBarsBottom_docs
+      - page: "App bars: top"
+        url: /ods-android/components/AppBarsTop_docs
       - page: Buttons
         url: /ods-android/components/Buttons_docs
       - page: Cards
@@ -25,11 +27,11 @@ toc2:
         url: /ods-android/components/Chips_docs
       - page: Dialogs
         url: /ods-android/components/Dialogs_docs
-      - page: Floating Action Buttons
+      - page: Floating action buttons
         url: /ods-android/components/FloatingActionButtons_docs
       - page: Lists
         url: /ods-android/components/Lists_docs
-      - page: "Navigation: Bottom"
+      - page: "Navigation: bottom"
         url: /ods-android/components/NavigationBottom_docs
       - page: Progress indicators
         url: /ods-android/components/ProgressIndicators_docs
@@ -45,5 +47,3 @@ toc2:
         url: /ods-android/components/Tabs_docs
       - page: Text fields
         url: /ods-android/components/TextFields_docs
-      - page: Top app bars
-        url: /ods-android/components/TopAppBars_docs
