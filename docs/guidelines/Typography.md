@@ -3,13 +3,23 @@ layout: detail
 title: Typography
 ---
 
-**Contents**
+---
 
-*   [Using typography in Jetpack Compose](#using-typography-in-jetpack-compose)
-    *   [TextStyles](#textstyles)
-    *   [OdsText composables](#odstext-composables)
+**Page Summary**
 
-## Using typography in Jetpack Compose
+* [Specifications references](#specifications-references)
+* [Implementation in Jetpack Compose](#implementation-in-jetpack-compose)
+  * [TextStyles](#textstyles)
+  * [OdsText composables](#odstext-composables)
+
+---
+
+## Specifications references
+
+- [Design System Manager - Typography](https://system.design.orange.com/0c1af118d/p/90d1e5-typography)
+- [Material Design - The type system](https://material.io/design/typography/the-type-system.html#type-scale)
+
+## Implementation in Jetpack Compose
 
 ### TextStyles
 

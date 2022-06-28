@@ -3,14 +3,25 @@ layout: detail
 title: Colors
 ---
 
-**Contents**
+---
 
-*   [Using colors in Jetpack Compose](#using-colors-in-jetpack-compose)
-    *   [Theme colors](#theme-colors)
-    *   [Functional colors](#functional-colors)
-    *   [Other colors from Orange Design System](#other-colors-from-orange-design-system)
+**Page Summary**
 
-## Using colors in Jetpack Compose
+* [Specifications references](#specifications-references)
+* [Implementation in Jetpack Compose](#implementation-in-jetpack-compose)
+  * [Theme colors](#theme-colors)
+  * [Functional colors](#functional-colors)
+  * [Other colors from Orange Design System](#other-colors-from-orange-design-system)
+
+---
+
+
+## Specifications references
+
+- [Design System Manager - Colour](https://system.design.orange.com/0c1af118d/p/623630-colour/b/041102)
+- [Material Design - The color system](https://material.io/design/color/the-color-system.html#color-usage-and-palettes)
+
+## Implementation in Jetpack Compose
 
 ### Theme colors
 

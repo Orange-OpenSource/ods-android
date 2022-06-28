@@ -13,37 +13,37 @@ toc2:
 
   - title: Components
     subfolderitems:
-      - page: Bottom app bar
-        url: /ods-android/components/BottomAppBar_docs
-      - page: Bottom navigation
-        url: /ods-android/components/BottomNavigation_docs
-      - page: Button
-        url: /ods-android/components/Button_docs
-      - page: Card
-        url: /ods-android/components/Card_docs
-      - page: Checkbox
-        url: /ods-android/components/Checkbox_docs
-      - page: Chip
-        url: /ods-android/components/Chip_docs
-      - page: Dialog
-        url: /ods-android/components/Dialog_docs
-      - page: Floating Action Button
-        url: /ods-android/components/FloatingActionButton_docs
+      - page: "App bars: bottom"
+        url: /ods-android/components/AppBarsBottom_docs
+      - page: "App bars: top"
+        url: /ods-android/components/AppBarsTop_docs
+      - page: Buttons
+        url: /ods-android/components/Buttons_docs
+      - page: Cards
+        url: /ods-android/components/Cards_docs
+      - page: Checkboxes
+        url: /ods-android/components/Checkboxes_docs
+      - page: Chips
+        url: /ods-android/components/Chips_docs
+      - page: Dialogs
+        url: /ods-android/components/Dialogs_docs
+      - page: Floating action buttons
+        url: /ods-android/components/FloatingActionButtons_docs
       - page: Lists
         url: /ods-android/components/Lists_docs
-      - page: Progress indicator
-        url: /ods-android/components/ProgressIndicator_docs
-      - page: Radio button
-        url: /ods-android/components/RadioButton_docs
-      - page: Slider
-        url: /ods-android/components/Slider_docs
-      - page: Snackbar
-        url: /ods-android/components/Snackbar_docs
-      - page: Switch
-        url: /ods-android/components/Switch_docs
+      - page: "Navigation: bottom"
+        url: /ods-android/components/NavigationBottom_docs
+      - page: Progress indicators
+        url: /ods-android/components/ProgressIndicators_docs
+      - page: Radio buttons
+        url: /ods-android/components/RadioButtons_docs
+      - page: Sliders
+        url: /ods-android/components/Sliders_docs
+      - page: Snackbars
+        url: /ods-android/components/Snackbars_docs
+      - page: Switches
+        url: /ods-android/components/Switches_docs
       - page: Tabs
         url: /ods-android/components/Tabs_docs
-      - page: Text field
-        url: /ods-android/components/TextField_docs
-      - page: Top app bar
-        url: /ods-android/components/TopAppBar_docs
+      - page: Text fields
+        url: /ods-android/components/TextFields_docs

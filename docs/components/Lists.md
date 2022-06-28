@@ -4,48 +4,48 @@ title: Lists
 description: Lists are continuous, vertical indexes of text or images.
 ---
 
-**Contents**
+---
 
-*   [Usage](#usage)
-*   [Material Design](#material-design)
-*   [Implementation with ODS library](#implementation-with-ods-library)
-    *   [In XML](#in-xml)
-    *   [In Jetpack Compose](#in-jetpack-compose)
-        *   [OdsListItem](#odslistitem)
-        *   [OdsListItemWideThumbnail](#odslistitemwidethumbnail)
+**Page Summary**
 
-## Usage
+* [Specifications references](#specifications-references)
+* [Accessibility](#accessibility)
+* [Variants](#variants)
+  * [One-line list](#one-line-list)
+  * [Two-line list](#two-line-list)
+  * [Three-line list](#three-line-list)
+* [Component specific tokens](#component-specific-tokens)
 
-Lists are a continuous group of text or images. They are composed of items containing primary and supplemental actions, which are represented by icons and text.
-Three types of items are identified:
-- Single-line list items containing a maximum of one line of text
-- Two-line list items containing a maximum of two lines of text
-- Three-line list items containing a maximum of three lines of text
+---
 
-## Material Design
+## Specifications references
 
-**Note:** Here is the full documentation of [Material Design Lists](https://material.io/components/lists/)
+- [Design System Manager - Lists](https://system.design.orange.com/0c1af118d/p/09a804-lists/b/669743)
+- [Material Design - Lists](https://material.io/components/lists/)
+- Technical documentation soon available
 
-## Implementation with ODS library
+## Accessibility
 
-### In XML
+Please follow [accessibility criteria for development](https://a11y-guidelines.orange.com/en/mobile/android/development/)
 
-Not available yet
+## Variants
 
-## In Jetpack Compose
+### One-line list
 
-The library offers 2 composables to display lists items. If you need to display a wide thumbnail without start padding in your item use [OdsListItemWideThumbnail](#odslistitemwidethumbnail).  
-In all other cases use [OdsListItem](#odslistitem).
+There are two different displays for a one-line list:
 
-### OdsListItem
+1. with a wide thumbnail (without start padding)
 
-Use this composable in all cases except when you need to display a wide thumbnail in your item, otherwise see [OdsListItemWideThumbnail](#odslistitemwidethumbnail).
+    ![Lists one-line wide thumbnail](images/lists_one_line_wide_thumbnail_light.png) ![Lists one-line wide thumbnail dark](images/lists_one_line_wide_thumbnail_dark.png)
 
-**One-line list**
+2. standard (all other cases)
 
-Here is an example of one-line list item with an optional icon (here an heart Icon) and an optional trailing (here an `OdsCheckbox`).
+    ![Lists one-line](images/lists_one_line_light.png) ![Lists one-line dark](images/lists_one_line_dark.png)
 
-  ![Lists three-line](images/lists_one_line_light.png) ![Lists three-line dark](images/lists_one_line_dark.png)
+> **Jetpack Compose implementation**
+
+The library offers 2 composables to display lists items. If you need to display a wide thumbnail without start padding in your item use `OdsListItemWideThumbnail`.  
+In all other cases use `OdsListItem`.
 
 ```kotlin
     OdsListItem(
@@ -56,11 +56,39 @@ Here is an example of one-line list item with an optional icon (here an heart Ic
     )
 ```
 
-**Two-line list**
+To display a **one-line list item with a wide thumbnail** with a checkbox trailing element:
+
+```kotlin
+        OdsListItemWideThumbnail(
+            modifier = Modifier.clickable { doSomething() },
+            text = "Text",
+            thumbnail = painterResource(id = R.drawable.placeholder),
+            trailing = { OdsCheckbox(checked = itemChecked, onCheckedChange = { itemChecked = it }) }
+        )
+```
+
+> **XML implementation**
+
+*Not available yet*
+
+### Two-line list
+
+There are two different displays for a two-line list:
+
+1. with a wide thumbnail (without start padding)
+
+  ![Lists two-line wide thumbnail](images/lists_two_line_wide_thumbnail_light.png) ![Lists two-line wide thumbnail dark](images/lists_two_line_wide_thumbnail_dark.png)
+
+2. standard (all other cases)
+
+  ![Lists two-line](images/lists_two_line_light.png) ![Lists two-line dark](images/lists_two_line_dark.png)
+
+> **Jetpack Compose implementation**
+
+The library offers 2 composables to display lists items. If you need to display a wide thumbnail without start padding in your item use `OdsListItemWideThumbnail`.  
+In all other cases use `OdsListItem`.
 
 Here is an example of two-line list item with an optional icon (here an `OdsImageCircleShape` provided by the library) and an optional trailing (here a drag Icon).
-
-  ![Lists three-line](images/lists_two_line_light.png) ![Lists three-line dark](images/lists_two_line_dark.png)
 
 ```kotlin
         OdsListItem(
@@ -72,11 +100,40 @@ Here is an example of two-line list item with an optional icon (here an `OdsImag
         )
 ```
 
-**Three-line list**
+To display a **two-line list item with a wide thumbnail** with a drag icon trailing element:
 
-Here is an example of three-line list item with an optional icon (here an `OdsListSquaredThumbnail` provided by the library) and an optional trailing (here a simple Text) .
+```kotlin
+        OdsListItemWideThumbnail(
+            modifier = Modifier.clickable { doSomething() },
+            text = "Text",
+            secondaryText = "Secondary text",
+            thumbnail = painterResource(id = R.drawable.placeholder),
+            trailing = { Icon(painter = painterResource(id = R.drawable.ic_drag_handle), contentDescription = "Drag item") }
+        )
+```
+
+> **XML implementation**
+
+*Not available yet*
+
+### Three-line list
+
+There are two different displays for a two-line list:
+
+1. with a wide thumbnail (without start padding)
+
+  ![Lists three-line wide thumbnail](images/lists_three_line_wide_thumbnail_light.png) ![Lists three-line wide thumbnail dark](images/lists_three_line_wide_thumbnail_dark.png)
+
+2. standard (all other cases)
 
   ![Lists three-line](images/lists_three_line_light.png) ![Lists three-line dark](images/lists_three_line_dark.png)
+
+> **Jetpack Compose implementation**
+
+The library offers 2 composables to display lists items. If you need to display a wide thumbnail without start padding in your item use `OdsListItemWideThumbnail`.  
+In all other cases use `OdsListItem`.
+
+Here is an example of three-line list item with an optional icon (here an `OdsListSquaredThumbnail` provided by the library) and an optional trailing (here a simple Text):
 
 ```kotlin
         OdsListItem(
@@ -89,46 +146,7 @@ Here is an example of three-line list item with an optional icon (here an `OdsLi
         )
 ```
 
-### OdsListItemWideThumbnail
-
-Use this composable if you need to display a wide thumbnail without start padding in you item, otherwise see [OdsListItem](#odslistitem).
-
-**One-line list**
-
-Here is an example of one-line list item with a wide thumbnail and an optional trailing (here an `OdsCheckbox`).
-
-  ![Lists one-line wide thumbnail](images/lists_one_line_wide_thumbnail_light.png) ![Lists one-line wide thumbnail dark](images/lists_one_line_wide_thumbnail_dark.png)
-
-```kotlin
-        OdsListItemWideThumbnail(
-            modifier = Modifier.clickable { doSomething() },
-            text = "Text",
-            thumbnail = painterResource(id = R.drawable.placeholder),
-            trailing = { OdsCheckbox(checked = itemChecked, onCheckedChange = { itemChecked = it }) }
-        )
-```
-
-**Two-line list**
-
-Here is an example of two-line list item with a wide thumbnail and an optional trailing (here a drag Icon).
-
-  ![Lists two-line wide thumbnail](images/lists_two_line_wide_thumbnail_light.png) ![Lists two-line wide thumbnail dark](images/lists_two_line_wide_thumbnail_dark.png)
-
-```kotlin
-        OdsListItemWideThumbnail(
-            modifier = Modifier.clickable { doSomething() },
-            text = "Text",
-            secondaryText = "Secondary text",
-            thumbnail = painterResource(id = R.drawable.placeholder),
-            trailing = { Icon(painter = painterResource(id = R.drawable.ic_drag_handle), contentDescription = "Drag item") }
-        )
-```
-
-**Three-line list**
-
-Here is an example of three-line list item with a wide thumbnail and an optional trailing (here a simple Text).
-
-  ![Lists three-line wide thumbnail](images/lists_three_line_wide_thumbnail_light.png) ![Lists three-line wide thumbnail dark](images/lists_three_line_wide_thumbnail_dark.png)
+To display a **three-line list item with a wide thumbnail** with a text as trailing element:
 
 ```kotlin
         OdsListItemWideThumbnail(
@@ -140,3 +158,11 @@ Here is an example of three-line list item with a wide thumbnail and an optional
             trailing = { Text(text = "Caption") }
         )
 ```
+
+> **XML implementation**
+
+*Not available yet*
+
+## Component specific tokens
+
+_Soon available_
