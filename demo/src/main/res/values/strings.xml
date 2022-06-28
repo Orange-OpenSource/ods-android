@@ -77,14 +77,14 @@
     <string name="component_buttons_description">A button allows a user to perform an action or to navigate to another page. It contains a text label and a supporting icon can be displayed.</string>
     <string name="component_buttons_title_try">Try out our buttons</string>
     <string name="component_buttons_preamble">This demo lets you preview the button component and each of its states.</string>
-    <string name="component_buttons_contained_title">Contained buttons</string>
+    <string name="component_buttons_contained">Contained buttons</string>
     <string name="component_buttons_contained_subtitle_primary">Primary</string>
     <string name="component_buttons_contained_subtitle_standard">Standard</string>
-    <string name="component_buttons_outlined_title">Outlined buttons</string>
-    <string name="component_buttons_text_title">Text buttons</string>
+    <string name="component_buttons_outlined">Outlined buttons</string>
+    <string name="component_buttons_text">Text buttons</string>
     <string name="component_buttons_text_subtitle_default">Default</string>
     <string name="component_buttons_text_subtitle_primary">Primary</string>
-    <string name="component_buttons_toggle_title">Toggle buttons</string>
+    <string name="component_buttons_toggle">Toggle buttons</string>
     <string name="component_buttons_toggle_subtitle_group">Group</string>
     <string name="component_buttons_toggle_subtitle_single">Single</string>
 

@@ -16,7 +16,6 @@ import androidx.compose.material.ExperimentalMaterialApi
 import androidx.compose.runtime.Composable
 import com.orange.ods.demo.R
 import com.orange.ods.demo.ui.components.bottomnavigation.ComponentBottomNavigation
-import com.orange.ods.demo.ui.components.buttons.ComponentButtonsContent
 import com.orange.ods.demo.ui.components.checkboxes.ComponentCheckboxesContent
 import com.orange.ods.demo.ui.components.dialogs.ComponentDialogsContent
 import com.orange.ods.demo.ui.components.progress.ComponentProgressContent
@@ -36,7 +35,14 @@ sealed class Component(
     object BottomNavigation :
         Component(R.string.component_bottom_navigation, R.drawable.il_bottom_navigation, null, R.string.component_bottom_navigation_description)
 
-    object Buttons : Component(R.string.component_buttons, R.drawable.il_buttons, R.drawable.il_buttons_small, R.string.component_buttons_description)
+    object Buttons : Component(
+        R.string.component_buttons,
+        R.drawable.il_buttons,
+        R.drawable.il_buttons_small,
+        R.string.component_buttons_description,
+        listOf(SubComponent.ButtonsContained, SubComponent.ButtonsOutlined, SubComponent.ButtonsText, SubComponent.ButtonsToggle)
+    )
+
     object Cards : Component(
         R.string.component_cards,
         R.drawable.il_cards,
@@ -80,14 +86,13 @@ sealed class Component(
     fun Detail(onSubComponentClick: (Long) -> Unit) {
         return when (this) {
             BottomNavigation -> ComponentBottomNavigation()
-            Buttons -> ComponentDetail(component = this) { ComponentButtonsContent() }
             Checkboxes -> ComponentDetail(component = this) { ComponentCheckboxesContent() }
             Dialogs -> ComponentDetail(component = this) { ComponentDialogsContent() }
             Progress -> ComponentDetail(component = this) { ComponentProgressContent() }
             RadioButtons -> ComponentDetail(component = this) { ComponentRadioButtonsContent() }
             Sliders -> ComponentDetail(component = this) { ComponentSlidersContent() }
             Switches -> ComponentDetail(component = this) { ComponentSwitchesContent() }
-            Cards, Lists, TextFields, Tabs -> ComponentDetailWithSubComponents(component = this, onSubComponentClick = onSubComponentClick)
+            Buttons, Cards, Lists, TextFields, Tabs -> ComponentDetailWithSubComponents(component = this, onSubComponentClick = onSubComponentClick)
         }
     }
 }
@@ -98,6 +103,11 @@ sealed class SubComponent(
     @StringRes val titleRes: Int,
 ) {
     val id: Long = SubComponent::class.sealedSubclasses.indexOf(this::class).toLong()
+
+    object ButtonsContained : SubComponent(R.string.component_buttons_contained)
+    object ButtonsOutlined : SubComponent(R.string.component_buttons_outlined)
+    object ButtonsText : SubComponent(R.string.component_buttons_text)
+    object ButtonsToggle : SubComponent(R.string.component_buttons_toggle)
 
     object CardImageFirst : SubComponent(R.string.component_card_image_first)
     object CardTitleFirst : SubComponent(R.string.component_card_title_first)

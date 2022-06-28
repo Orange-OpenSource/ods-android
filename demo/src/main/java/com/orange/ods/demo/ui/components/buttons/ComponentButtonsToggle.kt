@@ -24,17 +24,14 @@ import androidx.compose.ui.res.dimensionResource
 import com.orange.ods.compose.component.button.OdsButtonToggle
 import com.orange.ods.compose.theme.OdsDisplayAppearance
 import com.orange.ods.demo.R
-import com.orange.ods.demo.ui.utilities.composable.Subtitle
 import com.orange.ods.demo.ui.utilities.composable.Title
 
 @Composable
 fun ButtonsToggle() {
-    Title(R.string.component_buttons_toggle_title, withHorizontalPadding = true)
-
-    Subtitle(R.string.component_buttons_toggle_subtitle_group, withHorizontalPadding = true)
+    Title(R.string.component_buttons_toggle_subtitle_group, withHorizontalPadding = true)
     ToggleGroup()
 
-    Subtitle(R.string.component_buttons_toggle_subtitle_single, withHorizontalPadding = true)
+    Title(R.string.component_buttons_toggle_subtitle_single, withHorizontalPadding = true)
     var toggleChecked by remember { mutableStateOf(false) }
     OdsButtonToggle(
         checked = toggleChecked,
