@@ -9,12 +9,14 @@
  */
 
 import com.orange.ods.gradle.Environment
-import com.orange.ods.gradle.publishGitHubRelease
+import com.orange.ods.gradle.gitHubApi
 
 tasks.register<DefaultTask>("publishToGitHub") {
     doLast {
         val ref = Environment.getVariables("GITHUB_REF").first()
         val tag = ref.substringAfter("refs/tags/")
-        publishGitHubRelease(tag, draft = true, prerelease = true)
+        gitHubApi {
+            publishRelease(tag, draft = true, prerelease = true)
+        }
     }
 }
