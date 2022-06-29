@@ -10,90 +10,48 @@
 
 package com.orange.ods.demo.ui.components.buttons
 
+import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.padding
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.stringResource
 import com.orange.ods.compose.component.button.OdsButton
 import com.orange.ods.compose.theme.OdsDisplayAppearance
 import com.orange.ods.demo.R
-import com.orange.ods.demo.ui.utilities.composable.Subtitle
+import com.orange.ods.demo.ui.utilities.composable.Title
 
 @Composable
 fun ButtonsContained() {
-    Subtitle(R.string.component_buttons_contained_subtitle_primary, withHorizontalPadding = true)
-    OdsButton(
-        modifier = Modifier
-            .fullWidthButton(),
-        text = stringResource(R.string.component_state_enabled),
-        onClick = {},
-        hasPrimaryColor = true
-    )
-    OdsButton(
-        modifier = Modifier.fullWidthButton(false),
-        text = stringResource(R.string.component_state_disabled),
-        onClick = {},
-        enabled = false,
-        hasPrimaryColor = true
-    )
+    Title(R.string.component_buttons_contained_subtitle_primary, withHorizontalPadding = true)
+    ContainedButtons(hasPrimaryColor = true)
 
-    OdsButton(
-        modifier = Modifier.fullWidthButton(),
-        iconRes = R.drawable.ic_search,
-        text = stringResource(R.string.component_state_enabled),
-        onClick = {},
-        hasPrimaryColor = true
-    )
-    OdsButton(
-        modifier = Modifier.fullWidthButton(false),
-        iconRes = R.drawable.ic_search,
-        text = stringResource(R.string.component_state_disabled),
-        onClick = {},
-        enabled = false,
-        hasPrimaryColor = true
-    )
+    Title(R.string.component_buttons_contained_subtitle_standard, withHorizontalPadding = true)
+    ContainedButtons(hasPrimaryColor = false)
+}
 
-    Subtitle(R.string.component_buttons_contained_subtitle_standard, withHorizontalPadding = true)
-    OdsButton(
-        modifier = Modifier.fullWidthButton(),
-        text = stringResource(R.string.component_state_enabled),
-        onClick = {},
-    )
-    OdsButton(
-        modifier = Modifier.fullWidthButton(false),
-        text = stringResource(R.string.component_state_disabled),
-        onClick = {},
-        enabled = false,
-    )
+@Composable
+private fun ContainedButtons(hasPrimaryColor: Boolean) {
+    ContainedButtonsEnabledDisabled(hasPrimaryColor = hasPrimaryColor, hasIcon = false)
+    ContainedButtonsEnabledDisabled(hasPrimaryColor = hasPrimaryColor, hasIcon = true)
 
-    OdsButton(
-        modifier = Modifier.fullWidthButton(),
-        iconRes = R.drawable.ic_search,
-        text = stringResource(R.string.component_state_enabled),
-        onClick = {},
-    )
-    OdsButton(
-        modifier = Modifier.fullWidthButton(false),
-        iconRes = R.drawable.ic_search,
-        text = stringResource(R.string.component_state_disabled),
-        onClick = {},
-        enabled = false,
-    )
+    Spacer(modifier = Modifier.padding(top = dimensionResource(R.dimen.ods_spacing_xs)))
 
     LightSurface {
-        ContainedButtonsFullWidthAppearanceForced(OdsDisplayAppearance.ON_LIGHT)
+        ContainedButtonsAppearanceForced(OdsDisplayAppearance.ON_LIGHT, hasPrimaryColor = hasPrimaryColor)
     }
     DarkSurface {
-        ContainedButtonsFullWidthAppearanceForced(OdsDisplayAppearance.ON_DARK)
+        ContainedButtonsAppearanceForced(OdsDisplayAppearance.ON_DARK, hasPrimaryColor = hasPrimaryColor)
     }
 }
 
 @Composable
-private fun ContainedButtonsFullWidthAppearanceForced(displayAppearance: OdsDisplayAppearance) {
+private fun ContainedButtonsAppearanceForced(displayAppearance: OdsDisplayAppearance, hasPrimaryColor: Boolean) {
     OdsButton(
         modifier = Modifier.fullWidthButton(),
         text = stringResource(R.string.component_state_enabled),
         onClick = {},
-        hasPrimaryColor = true,
+        hasPrimaryColor = hasPrimaryColor,
         displayAppearance = displayAppearance
     )
     OdsButton(
@@ -101,15 +59,27 @@ private fun ContainedButtonsFullWidthAppearanceForced(displayAppearance: OdsDisp
         text = stringResource(R.string.component_state_disabled),
         onClick = {},
         enabled = false,
-        hasPrimaryColor = true,
+        hasPrimaryColor = hasPrimaryColor,
         displayAppearance = displayAppearance
     )
-    OdsButton(modifier = Modifier.fullWidthButton(), text = stringResource(R.string.component_state_enabled), onClick = {}, displayAppearance = displayAppearance)
+}
+
+@Composable
+private fun ContainedButtonsEnabledDisabled(hasPrimaryColor: Boolean, hasIcon: Boolean) {
+    OdsButton(
+        modifier = Modifier.fullWidthButton(),
+        iconRes = if (hasIcon) R.drawable.ic_search else null,
+        text = stringResource(R.string.component_state_enabled),
+        onClick = {},
+        hasPrimaryColor = hasPrimaryColor
+    )
     OdsButton(
         modifier = Modifier.fullWidthButton(false),
+        iconRes = if (hasIcon) R.drawable.ic_search else null,
         text = stringResource(R.string.component_state_disabled),
         onClick = {},
         enabled = false,
-        displayAppearance = displayAppearance
+        hasPrimaryColor = hasPrimaryColor
     )
+
 }

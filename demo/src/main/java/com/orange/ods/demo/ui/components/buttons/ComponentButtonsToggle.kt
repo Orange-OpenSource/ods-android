@@ -12,6 +12,7 @@ package com.orange.ods.demo.ui.components.buttons
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.runtime.Composable
@@ -24,17 +25,14 @@ import androidx.compose.ui.res.dimensionResource
 import com.orange.ods.compose.component.button.OdsButtonToggle
 import com.orange.ods.compose.theme.OdsDisplayAppearance
 import com.orange.ods.demo.R
-import com.orange.ods.demo.ui.utilities.composable.Subtitle
 import com.orange.ods.demo.ui.utilities.composable.Title
 
 @Composable
 fun ButtonsToggle() {
-    Title(R.string.component_buttons_toggle_title, withHorizontalPadding = true)
-
-    Subtitle(R.string.component_buttons_toggle_subtitle_group, withHorizontalPadding = true)
+    Title(R.string.component_buttons_toggle_subtitle_group, withHorizontalPadding = true)
     ToggleGroup()
 
-    Subtitle(R.string.component_buttons_toggle_subtitle_single, withHorizontalPadding = true)
+    Title(R.string.component_buttons_toggle_subtitle_single, withHorizontalPadding = true)
     var toggleChecked by remember { mutableStateOf(false) }
     OdsButtonToggle(
         checked = toggleChecked,
@@ -46,6 +44,8 @@ fun ButtonsToggle() {
             .padding(top = dimensionResource(R.dimen.ods_spacing_xs))
     )
 
+    Spacer(modifier = Modifier.padding(top = dimensionResource(R.dimen.ods_spacing_xs)))
+    
     LightSurface {
         ToggleButtonFullWidthAppearanceForced(OdsDisplayAppearance.ON_LIGHT)
     }

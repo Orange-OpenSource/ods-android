@@ -13,46 +13,36 @@ package com.orange.ods.demo.ui.components.buttons
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.ColumnScope
-import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.composed
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.dimensionResource
-import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
-import com.orange.ods.compose.text.OdsTextBody1
-import com.orange.ods.compose.text.OdsTextH5
 import com.orange.ods.compose.theme.DarkSurfaceDefault
 import com.orange.ods.compose.theme.OdsDisplayAppearance
 import com.orange.ods.compose.theme.White100
 import com.orange.ods.demo.R
+import com.orange.ods.demo.ui.components.SubComponent
 import com.orange.ods.demo.ui.utilities.composable.Subtitle
-import com.orange.ods.demo.ui.utilities.composable.Title
 
 @Composable
-fun ComponentButtonsContent() {
-    OdsTextH5(
-        text = stringResource(R.string.component_buttons_title_try),
-        modifier = Modifier
-            .padding(top = dimensionResource(R.dimen.ods_spacing_m))
-            .padding(horizontal = dimensionResource(R.dimen.ods_screen_horizontal_margin))
-    )
-
-    OdsTextBody1(
-        text = stringResource(R.string.component_buttons_preamble),
-        modifier = Modifier
-            .padding(top = dimensionResource(id = R.dimen.ods_spacing_s))
-            .padding(horizontal = dimensionResource(R.dimen.ods_screen_horizontal_margin))
-    )
-
-    Title(R.string.component_buttons_contained_title, withHorizontalPadding = true)
-    ButtonsContained()
-    ButtonsOutlined()
-    ButtonsText()
-    ButtonsToggle()
+fun ComponentButtons(subComponent: SubComponent) {
+    Column(
+        modifier = Modifier.verticalScroll(rememberScrollState())
+    ) {
+        when (subComponent) {
+            SubComponent.ButtonsContained -> ButtonsContained()
+            SubComponent.ButtonsOutlined -> ButtonsOutlined()
+            SubComponent.ButtonsText -> ButtonsText()
+            SubComponent.ButtonsToggle -> ButtonsToggle()
+            else -> {}
+        }
+    }
 }
 
 fun Modifier.fullWidthButton(withTopPadding: Boolean = true) = composed {
@@ -65,7 +55,6 @@ fun Modifier.fullWidthButton(withTopPadding: Boolean = true) = composed {
 @Composable
 fun DarkSurface(content: @Composable ColumnScope.() -> Unit) {
     val backgroundColor = DarkSurfaceDefault
-    Spacer(modifier = Modifier.padding(top = dimensionResource(R.dimen.ods_spacing_xs)))
     Subtitle(textRes = R.string.component_force_on_dark, OdsDisplayAppearance.ON_DARK, withHorizontalPadding = true)
     ForcedBackgroundColumn(color = backgroundColor, content = content)
 }
@@ -73,7 +62,6 @@ fun DarkSurface(content: @Composable ColumnScope.() -> Unit) {
 @Composable
 fun LightSurface(content: @Composable ColumnScope.() -> Unit) {
     val backgroundColor = White100
-    Spacer(modifier = Modifier.padding(top = dimensionResource(R.dimen.ods_spacing_xs)))
     Subtitle(textRes = R.string.component_force_on_light, OdsDisplayAppearance.ON_LIGHT, withHorizontalPadding = true)
     ForcedBackgroundColumn(color = backgroundColor, content = content)
 }
