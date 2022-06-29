@@ -53,9 +53,18 @@ fun ComponentProgressContent() {
 
         Title(textRes = R.string.component_progress_activity_indicator)
         Subtitle(textRes = R.string.component_progress_activity_indicator_determinate)
-        CircularProgressIndicator(progress = determinateProgressAnimation, modifier = Modifier.padding(top = dimensionResource(id = R.dimen.ods_spacing_s)))
+        CircularProgressIndicator(
+            progress = determinateProgressAnimation,
+            modifier = Modifier
+                .padding(top = dimensionResource(id = R.dimen.ods_spacing_s))
+                .align(alignment = Alignment.CenterHorizontally)
+        )
         Subtitle(textRes = R.string.component_progress_activity_indicator_indeterminate)
-        CircularProgressIndicator(modifier = Modifier.padding(top = dimensionResource(id = R.dimen.ods_spacing_s)))
+        CircularProgressIndicator(
+            modifier = Modifier
+                .padding(top = dimensionResource(id = R.dimen.ods_spacing_s))
+                .align(alignment = Alignment.CenterHorizontally)
+        )
 
         LaunchedEffect(DeterminateProgressTargetValue) {
             determinateProgressValue = DeterminateProgressTargetValue
