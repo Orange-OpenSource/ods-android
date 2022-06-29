@@ -14,6 +14,7 @@ import androidx.compose.animation.core.FastOutSlowInEasing
 import androidx.compose.animation.core.animateFloatAsState
 import androidx.compose.animation.core.tween
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material.CircularProgressIndicator
 import androidx.compose.material.LinearProgressIndicator
@@ -23,6 +24,7 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.dimensionResource
 import com.orange.ods.demo.R
@@ -47,9 +49,16 @@ fun ComponentProgressContent() {
     ) {
         Title(textRes = R.string.component_progress_bars)
         Subtitle(textRes = R.string.component_progress_bar_determinate)
-        LinearProgressIndicator(progress = determinateProgressAnimation, modifier = Modifier.padding(top = dimensionResource(id = R.dimen.ods_spacing_s)))
+        LinearProgressIndicator(
+            progress = determinateProgressAnimation,
+            modifier = Modifier
+                .padding(top = dimensionResource(id = R.dimen.ods_spacing_s))
+                .fillMaxWidth()
+        )
         Subtitle(textRes = R.string.component_progress_bar_indeterminate)
-        LinearProgressIndicator(modifier = Modifier.padding(top = dimensionResource(id = R.dimen.ods_spacing_s)))
+        LinearProgressIndicator(modifier = Modifier
+            .padding(top = dimensionResource(id = R.dimen.ods_spacing_s))
+            .fillMaxWidth())
 
         Title(textRes = R.string.component_progress_activity_indicator)
         Subtitle(textRes = R.string.component_progress_activity_indicator_determinate)
