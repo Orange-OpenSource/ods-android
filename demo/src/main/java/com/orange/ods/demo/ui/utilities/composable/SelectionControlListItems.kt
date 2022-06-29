@@ -26,7 +26,7 @@ import com.orange.ods.compose.component.list.OdsListItem
 @Composable
 fun CheckboxListItem(@StringRes labelRes: Int, checked: MutableState<Boolean>, enabled: Boolean = true) {
     OdsListItem(
-        modifier = Modifier.clickable { checked.value = !checked.value },
+        modifier = if (enabled) Modifier.clickable { checked.value = !checked.value } else Modifier,
         text = stringResource(id = labelRes),
         trailing = {
             OdsCheckbox(
@@ -46,7 +46,7 @@ fun <T> RadioButtonListItem(@StringRes labelRes: Int, selectedRadio: MutableStat
         onClick.invoke()
     }
     OdsListItem(
-        modifier = Modifier.clickable { clickAction() },
+        modifier = if (enabled) Modifier.clickable { clickAction() } else Modifier,
         text = stringResource(id = labelRes),
         trailing = {
             OdsRadioButton(
@@ -62,7 +62,7 @@ fun <T> RadioButtonListItem(@StringRes labelRes: Int, selectedRadio: MutableStat
 @Composable
 fun SwitchListItem(@StringRes labelRes: Int, checked: MutableState<Boolean>, enabled: Boolean = true) {
     OdsListItem(
-        modifier = Modifier.clickable { checked.value = !checked.value },
+        modifier = if (enabled) Modifier.clickable { checked.value = !checked.value } else Modifier,
         text = stringResource(id = labelRes),
         trailing = {
             OdsSwitch(
