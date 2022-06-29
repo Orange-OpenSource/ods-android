@@ -32,21 +32,21 @@ fun ButtonsText() {
 
 @Composable
 private fun TextButtons(hasPrimaryColor: Boolean) {
-    TextButtonsEnabledDisable(hasPrimaryColor = hasPrimaryColor, hasIcon = false)
-    TextButtonsEnabledDisable(hasPrimaryColor = hasPrimaryColor, hasIcon = true)
+    TextButtonsEnabledDisabled(hasPrimaryColor = hasPrimaryColor, hasIcon = false)
+    TextButtonsEnabledDisabled(hasPrimaryColor = hasPrimaryColor, hasIcon = true)
 
     Spacer(modifier = Modifier.padding(top = dimensionResource(R.dimen.ods_spacing_xs)))
 
     LightSurface {
-        TextButtonsEnabledDisable(hasPrimaryColor = hasPrimaryColor, hasIcon = false, displayAppearance = OdsDisplayAppearance.ON_LIGHT)
+        TextButtonsEnabledDisabled(hasPrimaryColor = hasPrimaryColor, hasIcon = false, displayAppearance = OdsDisplayAppearance.ON_LIGHT)
     }
     DarkSurface {
-        TextButtonsEnabledDisable(hasPrimaryColor = hasPrimaryColor, hasIcon = false, displayAppearance = OdsDisplayAppearance.ON_DARK)
+        TextButtonsEnabledDisabled(hasPrimaryColor = hasPrimaryColor, hasIcon = false, displayAppearance = OdsDisplayAppearance.ON_DARK)
     }
 }
 
 @Composable
-private fun TextButtonsEnabledDisable(hasPrimaryColor: Boolean, hasIcon: Boolean, displayAppearance: OdsDisplayAppearance = OdsDisplayAppearance.DEFAULT) {
+private fun TextButtonsEnabledDisabled(hasPrimaryColor: Boolean, hasIcon: Boolean, displayAppearance: OdsDisplayAppearance = OdsDisplayAppearance.DEFAULT) {
     OdsButtonText(
         modifier = Modifier.fullWidthButton(),
         text = stringResource(R.string.component_state_enabled),
