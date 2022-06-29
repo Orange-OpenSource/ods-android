@@ -19,20 +19,18 @@ import com.orange.ods.demo.R
 
 @Composable
 fun ButtonsOutlined() {
-    EnabledDisabledOutlinedButtons(hasIcon = false)
-
-    EnabledDisabledOutlinedButtons(hasIcon = true)
-
+    OutlinedButtonsEnabledDisabled(hasIcon = false)
+    OutlinedButtonsEnabledDisabled(hasIcon = true)
     LightSurface {
-        EnabledDisabledOutlinedButtons(hasIcon = false, displayAppearance = OdsDisplayAppearance.ON_LIGHT)
+        OutlinedButtonsEnabledDisabled(hasIcon = false, displayAppearance = OdsDisplayAppearance.ON_LIGHT)
     }
     DarkSurface {
-        EnabledDisabledOutlinedButtons(hasIcon = false, displayAppearance = OdsDisplayAppearance.ON_DARK)
+        OutlinedButtonsEnabledDisabled(hasIcon = false, displayAppearance = OdsDisplayAppearance.ON_DARK)
     }
 }
 
 @Composable
-private fun EnabledDisabledOutlinedButtons(hasIcon: Boolean, displayAppearance: OdsDisplayAppearance = OdsDisplayAppearance.DEFAULT) {
+private fun OutlinedButtonsEnabledDisabled(hasIcon: Boolean, displayAppearance: OdsDisplayAppearance = OdsDisplayAppearance.DEFAULT) {
     OdsButtonOutlined(
         modifier = Modifier.fullWidthButton(),
         text = stringResource(R.string.component_state_enabled),

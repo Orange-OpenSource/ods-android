@@ -21,29 +21,27 @@ import com.orange.ods.demo.ui.utilities.composable.Title
 @Composable
 fun ButtonsText() {
     Title(R.string.component_buttons_text_subtitle_primary, withHorizontalPadding = true)
-    EnabledDisableTextButtons(hasPrimaryColor = true, hasIcon = false)
-    EnabledDisableTextButtons(hasPrimaryColor = true, hasIcon = true)
-    LightSurface {
-        EnabledDisableTextButtons(hasPrimaryColor = true, hasIcon = false, displayAppearance = OdsDisplayAppearance.ON_LIGHT)
-    }
-    DarkSurface {
-        EnabledDisableTextButtons(hasPrimaryColor = true, hasIcon = false, displayAppearance = OdsDisplayAppearance.ON_DARK)
-    }
+    TextButtons(hasPrimaryColor = true)
 
     Title(R.string.component_buttons_text_subtitle_default, withHorizontalPadding = true)
-    EnabledDisableTextButtons(hasPrimaryColor = false, hasIcon = false)
-    EnabledDisableTextButtons(hasPrimaryColor = false, hasIcon = true)
+    TextButtons(hasPrimaryColor = false)
+}
+
+@Composable
+private fun TextButtons(hasPrimaryColor: Boolean) {
+    TextButtonsEnabledDisable(hasPrimaryColor = hasPrimaryColor, hasIcon = false)
+    TextButtonsEnabledDisable(hasPrimaryColor = hasPrimaryColor, hasIcon = true)
 
     LightSurface {
-        EnabledDisableTextButtons(hasPrimaryColor = false, hasIcon = false, displayAppearance = OdsDisplayAppearance.ON_LIGHT)
+        TextButtonsEnabledDisable(hasPrimaryColor = hasPrimaryColor, hasIcon = false, displayAppearance = OdsDisplayAppearance.ON_LIGHT)
     }
     DarkSurface {
-        EnabledDisableTextButtons(hasPrimaryColor = false, hasIcon = false, displayAppearance = OdsDisplayAppearance.ON_DARK)
+        TextButtonsEnabledDisable(hasPrimaryColor = hasPrimaryColor, hasIcon = false, displayAppearance = OdsDisplayAppearance.ON_DARK)
     }
 }
 
 @Composable
-private fun EnabledDisableTextButtons(hasPrimaryColor: Boolean, hasIcon: Boolean, displayAppearance: OdsDisplayAppearance = OdsDisplayAppearance.DEFAULT) {
+private fun TextButtonsEnabledDisable(hasPrimaryColor: Boolean, hasIcon: Boolean, displayAppearance: OdsDisplayAppearance = OdsDisplayAppearance.DEFAULT) {
     OdsButtonText(
         modifier = Modifier.fullWidthButton(),
         text = stringResource(R.string.component_state_enabled),

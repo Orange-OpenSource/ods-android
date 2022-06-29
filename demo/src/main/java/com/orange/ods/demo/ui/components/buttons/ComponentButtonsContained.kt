@@ -21,23 +21,21 @@ import com.orange.ods.demo.ui.utilities.composable.Title
 @Composable
 fun ButtonsContained() {
     Title(R.string.component_buttons_contained_subtitle_primary, withHorizontalPadding = true)
-    EnabledDisabledContainedButtons(hasPrimaryColor = true, hasIcon = false)
-    EnabledDisabledContainedButtons(hasPrimaryColor = true, hasIcon = true)
-    LightSurface {
-        ContainedButtonsAppearanceForced(OdsDisplayAppearance.ON_LIGHT, hasPrimaryColor = true)
-    }
-    DarkSurface {
-        ContainedButtonsAppearanceForced(OdsDisplayAppearance.ON_DARK, hasPrimaryColor = true)
-    }
+    ContainedButtons(hasPrimaryColor = true)
 
     Title(R.string.component_buttons_contained_subtitle_standard, withHorizontalPadding = true)
-    EnabledDisabledContainedButtons(hasPrimaryColor = false, hasIcon = false)
-    EnabledDisabledContainedButtons(hasPrimaryColor = false, hasIcon = true)
+    ContainedButtons(hasPrimaryColor = false)
+}
+
+@Composable
+private fun ContainedButtons(hasPrimaryColor: Boolean) {
+    ContainedButtonsEnabledDisabled(hasPrimaryColor = hasPrimaryColor, hasIcon = false)
+    ContainedButtonsEnabledDisabled(hasPrimaryColor = hasPrimaryColor, hasIcon = true)
     LightSurface {
-        ContainedButtonsAppearanceForced(OdsDisplayAppearance.ON_LIGHT, hasPrimaryColor = false)
+        ContainedButtonsAppearanceForced(OdsDisplayAppearance.ON_LIGHT, hasPrimaryColor = hasPrimaryColor)
     }
     DarkSurface {
-        ContainedButtonsAppearanceForced(OdsDisplayAppearance.ON_DARK, hasPrimaryColor = false)
+        ContainedButtonsAppearanceForced(OdsDisplayAppearance.ON_DARK, hasPrimaryColor = hasPrimaryColor)
     }
 }
 
@@ -61,7 +59,7 @@ private fun ContainedButtonsAppearanceForced(displayAppearance: OdsDisplayAppear
 }
 
 @Composable
-private fun EnabledDisabledContainedButtons(hasPrimaryColor: Boolean, hasIcon: Boolean) {
+private fun ContainedButtonsEnabledDisabled(hasPrimaryColor: Boolean, hasIcon: Boolean) {
     OdsButton(
         modifier = Modifier.fullWidthButton(),
         iconRes = if (hasIcon) R.drawable.ic_search else null,
