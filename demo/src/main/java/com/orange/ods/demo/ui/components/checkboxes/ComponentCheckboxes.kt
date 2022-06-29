@@ -10,49 +10,42 @@
 
 package com.orange.ods.demo.ui.components.checkboxes
 
-import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.padding
+import androidx.compose.material.ExperimentalMaterialApi
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
-import androidx.compose.ui.Modifier
-import androidx.compose.ui.res.dimensionResource
-import androidx.compose.ui.res.stringResource
 import com.orange.ods.demo.R
-import com.orange.ods.demo.ui.utilities.composable.LabelledCheckbox
+import com.orange.ods.demo.ui.utilities.composable.CheckboxListItem
+import com.orange.ods.demo.ui.utilities.composable.Title
 
+@ExperimentalMaterialApi
 @Composable
 fun ComponentCheckboxesContent() {
-    Row(
-        modifier = Modifier
-            .fillMaxWidth()
-            .padding(top = dimensionResource(id = R.dimen.ods_spacing_s)),
-        horizontalArrangement = Arrangement.SpaceEvenly
-    ) {
-        LabelledCheckbox(
-            checked = remember { mutableStateOf(true) },
-            label = stringResource(id = R.string.component_state_enabled)
-        )
-        LabelledCheckbox(
-            checked = remember { mutableStateOf(false) },
-            label = stringResource(id = R.string.component_state_enabled)
-        )
-    }
-    Row(
-        modifier = Modifier.fillMaxWidth(),
-        horizontalArrangement = Arrangement.SpaceEvenly
-    ) {
-        LabelledCheckbox(
-            checked = remember { mutableStateOf(true) },
-            label = stringResource(id = R.string.component_state_disabled),
-            enabled = false
-        )
-        LabelledCheckbox(
-            checked = remember { mutableStateOf(false) },
-            label = stringResource(id = R.string.component_state_disabled),
-            enabled = false
-        )
-    }
+    Title(textRes = R.string.component_checkboxes_enabled, withHorizontalPadding = true)
+    Checkboxes(enabled = true)
+
+    Title(textRes = R.string.component_checkboxes_disabled, withHorizontalPadding = true)
+    Checkboxes(enabled = false)
+}
+
+@ExperimentalMaterialApi
+@Composable
+private fun Checkboxes(enabled: Boolean) {
+    CheckboxListItem(
+        labelRes = R.string.component_element_item1,
+        checked = remember { mutableStateOf(true) },
+        enabled = enabled
+    )
+
+    CheckboxListItem(
+        labelRes = R.string.component_element_item2,
+        checked = remember { mutableStateOf(false) },
+        enabled = enabled
+    )
+
+    CheckboxListItem(
+        labelRes = R.string.component_element_item3,
+        checked = remember { mutableStateOf(true) },
+        enabled = enabled
+    )
 }

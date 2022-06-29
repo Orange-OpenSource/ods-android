@@ -44,7 +44,9 @@ fun ComponentDetailScreen(
 @Composable
 fun ComponentDetail(component: Component, ComponentContent: @Composable () -> Unit) {
     Column(
-        modifier = Modifier.verticalScroll(rememberScrollState())
+        modifier = Modifier
+            .verticalScroll(rememberScrollState())
+            .padding(bottom = dimensionResource(id = R.dimen.ods_spacing_s))
     ) {
         ComponentHeader(
             imageRes = component.imageRes,

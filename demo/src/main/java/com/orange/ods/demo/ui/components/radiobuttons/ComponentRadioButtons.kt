@@ -10,57 +10,47 @@
 
 package com.orange.ods.demo.ui.components.radiobuttons
 
-import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.padding
+import androidx.compose.material.ExperimentalMaterialApi
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
-import androidx.compose.ui.Modifier
-import androidx.compose.ui.res.dimensionResource
-import androidx.compose.ui.res.stringResource
 import com.orange.ods.demo.R
-import com.orange.ods.demo.ui.utilities.composable.LabelledRadioButton
+import com.orange.ods.demo.ui.utilities.composable.RadioButtonListItem
+import com.orange.ods.demo.ui.utilities.composable.Title
 
+@ExperimentalMaterialApi
 @Composable
 fun ComponentRadioButtonsContent() {
-    val radio1 = "radio1"
-    val radio2 = "radio2"
-    val selectedRadio = remember { mutableStateOf(radio1) }
+    Title(textRes = R.string.component_radio_buttons_enabled, withHorizontalPadding = true)
+    RadioButtons(enabled = true)
 
-    Row(
-        modifier = Modifier
-            .fillMaxWidth()
-            .padding(top = dimensionResource(id = R.dimen.ods_spacing_s)),
-        horizontalArrangement = Arrangement.SpaceEvenly
-    ) {
-        LabelledRadioButton(
-            selectedRadio = selectedRadio,
-            currentRadio = radio1,
-            label = stringResource(id = R.string.component_state_enabled)
-        )
-        LabelledRadioButton(
-            selectedRadio = selectedRadio,
-            currentRadio = radio2,
-            label = stringResource(id = R.string.component_state_enabled)
-        )
-    }
-    Row(
-        modifier = Modifier.fillMaxWidth(),
-        horizontalArrangement = Arrangement.SpaceEvenly
-    ) {
-        LabelledRadioButton(
-            selectedRadio = remember { mutableStateOf(radio1) },
-            currentRadio = radio1,
-            label = stringResource(id = R.string.component_state_disabled),
-            enabled = false
-        )
-        LabelledRadioButton(
-            selectedRadio = remember { mutableStateOf(radio1) },
-            currentRadio = radio2,
-            label = stringResource(id = R.string.component_state_disabled),
-            enabled = false
-        )
-    }
+    Title(textRes = R.string.component_radio_buttons_disabled, withHorizontalPadding = true)
+    RadioButtons(enabled = false)
+}
+
+@ExperimentalMaterialApi
+@Composable
+private fun RadioButtons(enabled: Boolean) {
+    val selectedRadio = remember { mutableStateOf(R.string.component_element_item1) }
+
+    RadioButtonListItem(
+        labelRes = R.string.component_element_item1,
+        selectedRadio = selectedRadio,
+        currentRadio = R.string.component_element_item1,
+        enabled = enabled
+    )
+
+    RadioButtonListItem(
+        labelRes = R.string.component_element_item2,
+        selectedRadio = selectedRadio,
+        currentRadio = R.string.component_element_item2,
+        enabled = enabled
+    )
+
+    RadioButtonListItem(
+        labelRes = R.string.component_element_item3,
+        selectedRadio = selectedRadio,
+        currentRadio = R.string.component_element_item3,
+        enabled = enabled
+    )
 }

@@ -10,76 +10,32 @@
 
 package com.orange.ods.demo.ui.components.switches
 
-import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.padding
+import androidx.compose.material.ExperimentalMaterialApi
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.MutableState
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
-import androidx.compose.ui.Alignment
-import androidx.compose.ui.Modifier
-import androidx.compose.ui.res.dimensionResource
-import androidx.compose.ui.res.stringResource
-import com.orange.ods.compose.component.control.OdsSwitch
-import com.orange.ods.compose.text.OdsTextBody1
 import com.orange.ods.demo.R
+import com.orange.ods.demo.ui.utilities.composable.SwitchListItem
+import com.orange.ods.demo.ui.utilities.composable.Title
 
+@ExperimentalMaterialApi
 @Composable
 fun ComponentSwitchesContent() {
-    Column(
-        modifier = Modifier
-            .padding(horizontal = dimensionResource(id = R.dimen.ods_spacing_s))
-    ) {
-        Row(
-            modifier = Modifier
-                .fillMaxWidth()
-                .padding(top = dimensionResource(id = R.dimen.ods_spacing_s)),
-            horizontalArrangement = Arrangement.SpaceEvenly
-        ) {
-            LabelledSwitch(
-                label = stringResource(id = R.string.component_state_enabled),
-                selected = remember { mutableStateOf(true) }
-            )
-            LabelledSwitch(
-                label = stringResource(id = R.string.component_state_enabled),
-                selected = remember { mutableStateOf(false) }
-            )
-        }
-        Row(
-            modifier = Modifier.fillMaxWidth(),
-            horizontalArrangement = Arrangement.SpaceEvenly
-        ) {
-            LabelledSwitch(
-                label = stringResource(id = R.string.component_state_disabled),
-                selected = remember { mutableStateOf(true) },
-                enabled = false
-            )
-            LabelledSwitch(
-                label = stringResource(id = R.string.component_state_disabled),
-                selected = remember { mutableStateOf(false) },
-                enabled = false
-            )
-        }
-    }
-}
+    Title(textRes = R.string.component_switches_enabled, withHorizontalPadding = true)
+    SwitchListItem(
+        labelRes = R.string.component_element_item1,
+        checked = remember { mutableStateOf(true) }
+    )
 
-@Composable
-private fun LabelledSwitch(
-    selected: MutableState<Boolean>,
-    label: String,
-    enabled: Boolean = true
-) {
-    Row(
-        verticalAlignment = Alignment.CenterVertically,
-    ) {
-        OdsSwitch(
-            checked = selected.value,
-            onCheckedChange = { selected.value = it },
-            enabled = enabled
-        )
-        OdsTextBody1(text = label)
-    }
+    Title(textRes = R.string.component_switches_disabled, withHorizontalPadding = true)
+    SwitchListItem(
+        labelRes = R.string.component_element_item1,
+        checked = remember { mutableStateOf(true) },
+        enabled = false
+    )
+    SwitchListItem(
+        labelRes = R.string.component_element_item2,
+        checked = remember { mutableStateOf(false) },
+        enabled = false
+    )
 }
