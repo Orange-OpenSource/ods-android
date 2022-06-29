@@ -13,7 +13,6 @@ package com.orange.ods.demo.ui.components.buttons
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.ColumnScope
-import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.rememberScrollState
@@ -56,7 +55,6 @@ fun Modifier.fullWidthButton(withTopPadding: Boolean = true) = composed {
 @Composable
 fun DarkSurface(content: @Composable ColumnScope.() -> Unit) {
     val backgroundColor = DarkSurfaceDefault
-    Spacer(modifier = Modifier.padding(top = dimensionResource(R.dimen.ods_spacing_xs)))
     Subtitle(textRes = R.string.component_force_on_dark, OdsDisplayAppearance.ON_DARK, withHorizontalPadding = true)
     ForcedBackgroundColumn(color = backgroundColor, content = content)
 }
@@ -64,7 +62,6 @@ fun DarkSurface(content: @Composable ColumnScope.() -> Unit) {
 @Composable
 fun LightSurface(content: @Composable ColumnScope.() -> Unit) {
     val backgroundColor = White100
-    Spacer(modifier = Modifier.padding(top = dimensionResource(R.dimen.ods_spacing_xs)))
     Subtitle(textRes = R.string.component_force_on_light, OdsDisplayAppearance.ON_LIGHT, withHorizontalPadding = true)
     ForcedBackgroundColumn(color = backgroundColor, content = content)
 }

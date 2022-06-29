@@ -10,8 +10,11 @@
 
 package com.orange.ods.demo.ui.components.buttons
 
+import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.padding
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.stringResource
 import com.orange.ods.compose.component.button.OdsButton
 import com.orange.ods.compose.theme.OdsDisplayAppearance
@@ -31,6 +34,9 @@ fun ButtonsContained() {
 private fun ContainedButtons(hasPrimaryColor: Boolean) {
     ContainedButtonsEnabledDisabled(hasPrimaryColor = hasPrimaryColor, hasIcon = false)
     ContainedButtonsEnabledDisabled(hasPrimaryColor = hasPrimaryColor, hasIcon = true)
+
+    Spacer(modifier = Modifier.padding(top = dimensionResource(R.dimen.ods_spacing_xs)))
+
     LightSurface {
         ContainedButtonsAppearanceForced(OdsDisplayAppearance.ON_LIGHT, hasPrimaryColor = hasPrimaryColor)
     }

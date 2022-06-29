@@ -12,6 +12,7 @@ package com.orange.ods.demo.ui.components.buttons
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.runtime.Composable
@@ -43,6 +44,8 @@ fun ButtonsToggle() {
             .padding(top = dimensionResource(R.dimen.ods_spacing_xs))
     )
 
+    Spacer(modifier = Modifier.padding(top = dimensionResource(R.dimen.ods_spacing_xs)))
+    
     LightSurface {
         ToggleButtonFullWidthAppearanceForced(OdsDisplayAppearance.ON_LIGHT)
     }
