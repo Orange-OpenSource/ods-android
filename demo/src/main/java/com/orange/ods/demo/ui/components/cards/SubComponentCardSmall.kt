@@ -28,7 +28,7 @@ import com.orange.ods.compose.component.card.OdsCardSmall
 import com.orange.ods.demo.R
 import com.orange.ods.demo.ui.components.utilities.ComponentCustomizationBottomSheetScaffold
 import com.orange.ods.demo.ui.components.utilities.clickOnElement
-import com.orange.ods.demo.ui.utilities.composable.LabelledCheckbox
+import com.orange.ods.demo.ui.utilities.composable.SwitchListItem
 
 @ExperimentalMaterialApi
 @Composable
@@ -39,7 +39,7 @@ fun CardSmallContent() {
     ComponentCustomizationBottomSheetScaffold(
         bottomSheetScaffoldState = rememberBottomSheetScaffoldState(),
         bottomSheetContent = {
-            LabelledCheckbox(label = stringResource(id = R.string.component_element_subtitle), checked = subtitleIsChecked)
+            SwitchListItem(labelRes = R.string.component_element_subtitle, checked = subtitleIsChecked)
         }) {
         Row(
             modifier = Modifier

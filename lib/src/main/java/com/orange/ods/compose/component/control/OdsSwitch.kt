@@ -10,11 +10,15 @@
 
 package com.orange.ods.compose.component.control
 
+import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Switch
+import androidx.compose.material.SwitchDefaults
 import androidx.compose.material.ripple.LocalRippleTheme
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.ui.Modifier
+import com.orange.ods.compose.theme.Grey400
+import com.orange.ods.compose.theme.LocalDarkThemeEnabled
 import com.orange.ods.compose.theme.OdsPrimaryRippleTheme
 
 /**
@@ -42,6 +46,10 @@ fun OdsSwitch(
             onCheckedChange = onCheckedChange,
             modifier = modifier,
             enabled = enabled,
+            colors = odsSwitchColors()
         )
     }
 }
+
+@Composable
+private fun odsSwitchColors() = SwitchDefaults.colors(uncheckedThumbColor = if (LocalDarkThemeEnabled.current) Grey400 else MaterialTheme.colors.surface)
