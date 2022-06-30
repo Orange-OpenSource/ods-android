@@ -122,6 +122,7 @@ fun SubComponentChip() {
 private fun ChipContent(customizationState: ChipCustomizationState) {
     val context = LocalContext.current
     val cancelCrossLabel = stringResource(id = R.string.component_element_cancel_cross)
+    val chipLabel = stringResource(id = R.string.component_chip)
 
     if (customizationState.isChoiceChip) {
         FlowRow(modifier = Modifier.fillMaxWidth()) {
@@ -132,7 +133,7 @@ private fun ChipContent(customizationState: ChipCustomizationState) {
     } else {
         OdsChip(
             text = getChipText(chipType = customizationState.chipType.value),
-            onClick = { },
+            onClick = { clickOnElement(context, chipLabel) },
             outlined = customizationState.outlinedChecked.value,
             leadingIcon = if (customizationState.isActionChip || customizationState.hasLeadingIcon) painterResource(id = R.drawable.ic_heart) else null,
             leadingAvatar = if (customizationState.hasLeadingAvatar) painterResource(id = R.drawable.placeholder_small) else null,
