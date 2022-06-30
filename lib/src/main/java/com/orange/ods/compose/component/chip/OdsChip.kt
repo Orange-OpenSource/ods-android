@@ -11,7 +11,6 @@
 package com.orange.ods.compose.component.chip
 
 import androidx.compose.foundation.BorderStroke
-import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.size
 import androidx.compose.material.Chip
@@ -30,6 +29,7 @@ import androidx.compose.ui.unit.dp
 import com.orange.ods.R
 import com.orange.ods.compose.component.utilities.OdsImageCircleShape
 import com.orange.ods.compose.text.OdsTextBody2
+import com.orange.ods.utilities.extension.noRippleClickable
 
 
 /**
@@ -104,7 +104,9 @@ fun OdsChip(
     ) {
         OdsTextBody2(text = text)
         onCancel?.let {
-            val iconModifier = if (enabled) Modifier.clickable { onCancel() } else Modifier
+            val iconModifier = if (enabled) Modifier.noRippleClickable {
+                onCancel()
+            } else Modifier
             Spacer(modifier = Modifier.size(dimensionResource(id = R.dimen.ods_spacing_xs)))
             Icon(
                 modifier = iconModifier.size(18.dp),
