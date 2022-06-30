@@ -1,27 +1,23 @@
 # Developer guide
 
 ## Publication
-We use JitPack (https://jitpack.io/) for publication, so we just have to create a release in Github (and add a git tag) to make a specific version available.
 
-End-user just need to set
-```groovy
-maven { url 'https://jitpack.io' }
-```
-in the `allprojects/repositories` section of their main build.gradle file.
+Artifacts are published on [MavenCentral](https://mvnrepository.com/artifact/com.orange.ods.android).
 
-Then they can use:
-- a specific version:
+Please use the `tagRelease` Gradle task in order to publish a new release. This task will push a tag named like the Gradle `version` property available in `gradle.properties`. This in turn will trigger a GitHub Actions workflow that will publish the new release to MavenCentral and GitHub.
+
+## Gradle
+
+End-user just need to add Maven Central to their repositories and update their dependencies with latest version:
+
 ```groovy
-dependencies {
-    //... 
-    implementation 'com.github.orange-openSource:ods-android:0.0.1'
+repositories {
+    mavenCentral()
 }
 ```
 
-- or a snapshot version (latest commit from a specific branch):
 ```groovy
 dependencies {
-    //... 
-    implementation 'com.github.orange-openSource:ods-android:develop-SNAPSHOT'
+    implementation 'com.orange.ods.android:ods-lib:0.3.0'
 }
 ```
