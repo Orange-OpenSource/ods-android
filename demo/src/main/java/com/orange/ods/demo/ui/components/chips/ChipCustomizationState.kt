@@ -33,7 +33,7 @@ fun rememberChipCustomizationState(
 
 class ChipCustomizationState(
     val chipType: MutableState<ChipType>,
-    val leadingElement: MutableState<LeadingElement> = mutableStateOf(LeadingElement.None),
+    val leadingElement: MutableState<LeadingElement>,
     val disabledChecked: MutableState<Boolean>,
     val outlinedChecked: MutableState<Boolean>,
     val choiceChipIndexSelected: MutableState<Int?>
