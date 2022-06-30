@@ -13,10 +13,8 @@ package com.orange.ods.demo.ui.components.chips
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.ExperimentalMaterialApi
@@ -77,7 +75,7 @@ fun SubComponentChipFilter() {
                     vertical = dimensionResource(id = R.dimen.ods_screen_vertical_margin)
                 )
         ) {
-            FlowRow(modifier = Modifier.fillMaxWidth()) {
+            FlowRow(modifier = Modifier.fillMaxWidth(), mainAxisSpacing = dimensionResource(id = R.dimen.ods_spacing_xs)) {
                 for (index in 1..4) {
                     FilterChip(index, customizationState)
                 }
@@ -98,5 +96,4 @@ private fun FilterChip(index: Int, customizationState: ChipCustomizationState) {
         outlined = customizationState.outlinedChecked.value,
         enabled = !customizationState.disabledChecked.value,
     )
-    Spacer(modifier = Modifier.size(dimensionResource(id = R.dimen.ods_spacing_xs)))
 }
