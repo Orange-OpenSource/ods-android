@@ -125,7 +125,7 @@ fun SubComponentTabs(subComponent: SubComponent, updateTopAppBarTabs: (TabsConfi
                 OdsTextSubtitle1(text = subComponentTabsState.tabs.size.toString())
                 IconButton(onClick = { subComponentTabsState.tabsCount.value++ }, enabled = subComponentTabsState.canAddTab(tabCountMax)) {
                     Icon(
-                        painter = painterResource(id = R.drawable.ic_cancel),
+                        painter = painterResource(id = R.drawable.ic_add),
                         contentDescription = "content description"
                     )
                 }
