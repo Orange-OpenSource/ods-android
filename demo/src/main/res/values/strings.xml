@@ -44,7 +44,6 @@
     <string name="component_state_disabled">Disabled</string>
     <string name="component_state_error">Error</string>
     <string name="component_state_default">Default</string>
-    <string name="component_state_selected">Selected</string>
     <string name="component_state_outlined">Outlined</string>
     <string name="component_on_click_toast">Click on %s</string>
     <string name="component_element_title">Title</string>
@@ -115,7 +114,7 @@
     <string name="component_chip_type_choice">Choice</string>
     <string name="component_chip_type_action">Action</string>
     <string name="component_chip_filter">Filter chip</string>
-    
+
     <!-- Component Dialogs -->
     <string name="component_dialogs">Dialogs</string>
     <string name="component_dialogs_description">Dialogs are for prompting the user when the app requires a decision or further details required to complete a task.</string>
