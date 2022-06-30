@@ -41,6 +41,10 @@ Input chips (referred to as **entry** chips in Android) represent a complex piec
 compact form, such as an entity (person, place, or thing) or text. They enable user input and verify
 that input by converting text into chips.
 
+  ![Light input chip](images/chips_input_light.png) ![Dark input chip](images/chips_input_dark.png)
+
+  ![Light outlined input chip](images/chips_input_outlined_light.png) ![Dark outlined input chip](images/chips_input_outlined_dark.png)
+
 > **Jetpack Compose implementation**
 
 Use the `OdsChip` composable:
@@ -87,6 +91,10 @@ Choice chips allow selection of a single chip from a set of options.
 Choice chips clearly delineate and display options in a compact area. They are a good alternative to
 toggle buttons, radio buttons, and single select menus.
 
+  ![Light choice chips](images/chips_choice_light.png) ![Dark choice chips](images/chips_choice_dark.png)
+
+  ![Light outlined choice chips](images/chips_choice_outlined_light.png) ![Dark outlined choice chips](images/chips_choice_outlined_dark.png)
+
 > **Jetpack Compose implementation**
 
 Use the `OdsChip` composable:
@@ -128,6 +136,10 @@ Filter chips use tags or descriptive words to filter content.
 
 Filter chips clearly delineate and display options in a compact area. They are a good alternative to
 toggle buttons or checkboxes.
+
+  ![Light filter chips](images/chips_filter_light.png) ![Dark filter chips](images/chips_filter_dark.png)
+
+  ![Light filter chips with avatar](images/chips_filter_avatar_light.png) ![Dark filter chips with avatar](images/chips_filter_avatar_dark.png)
 
 > **Jetpack Compose implementation**
 
@@ -174,6 +186,10 @@ Action chips offer actions related to primary content. They should appear dynami
 contextually in a UI.
 
 An alternative to action chips are buttons, which should appear persistently and consistently.
+
+  ![Light action chip](images/chips_action_light.png) ![Dark action chip](images/chips_action_dark.png)
+
+  ![Light outlined action chip](images/chips_action_outlined_light.png) ![Dark outlined action chip](images/chips_action_outlined_dark.png)
 
 > **Jetpack Compose implementation**
 
