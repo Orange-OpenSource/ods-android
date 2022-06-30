@@ -10,14 +10,14 @@ Please use the `tagRelease` Gradle task in order to publish a new release. This 
 
 End-user just need to add Maven Central to their repositories and update their dependencies with latest version:
 
-```kotlin
+```groovy
 repositories {
     mavenCentral()
 }
 ```
 
-```kotlin
+```groovy
 dependencies {
-    implementation("com.orange.ods.android:ods-lib:0.3.0")
+    implementation 'com.orange.ods.android:ods-lib:0.3.0'
 }
 ```
