@@ -17,14 +17,13 @@ Orange Design System for Android is available through [JitPack](https://jitpack.
 Repository. To use it:
 
 1. Open the `build.gradle` file for your application.
-2. Make sure that the `repositories` section includes JitPack Maven Repository
-   `maven { url 'https://jitpack.io' }`. For example:
+2. Make sure that the `repositories` section includes Maven Central. For example:
 
    ```groovy
      allprojects {
        repositories {
          google()
-         maven { url 'https://jitpack.io' }
+         mavenCentral()
        }
      }
    ```
@@ -34,7 +33,7 @@ Repository. To use it:
    ```groovy
      dependencies {
        // ...
-       implementation 'com.github.orange-openSource:ods-android:0.0.1'
+       implementation 'com.orange.ods.android:ods-lib:0.3.0'
        // ...
      }
    ```
