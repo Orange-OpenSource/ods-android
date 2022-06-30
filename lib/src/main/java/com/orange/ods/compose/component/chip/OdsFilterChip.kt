@@ -14,7 +14,6 @@ import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.size
-import androidx.compose.material.ChipDefaults
 import androidx.compose.material.ChipDefaults.LeadingIconOpacity
 import androidx.compose.material.ExperimentalMaterialApi
 import androidx.compose.material.FilterChip
@@ -22,7 +21,6 @@ import androidx.compose.material.Icon
 import androidx.compose.material.LocalContentAlpha
 import androidx.compose.material.LocalContentColor
 import androidx.compose.material.MaterialTheme
-import androidx.compose.material.SelectableChipColors
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
@@ -68,7 +66,7 @@ fun OdsFilterChip(
     leadingContentDescription: String? = null,
 ) {
     val emptyAction = {}
-    
+
     FilterChip(
         selected = selected,
         onClick = if (enabled) onClick else emptyAction,
@@ -118,19 +116,4 @@ private fun OdsChipSelectedIcon(tint: Color = LocalContentColor.current.copy(alp
         contentDescription = null, //TODO
         tint = tint
     )
-}
-
-@ExperimentalMaterialApi
-@Composable
-private fun odsChipColors(outlined: Boolean): SelectableChipColors {
-    return if (outlined) {
-        ChipDefaults.outlinedFilterChipColors(
-            backgroundColor = Color.Transparent
-
-        )
-    } else {
-        ChipDefaults.filterChipColors(
-            backgroundColor = MaterialTheme.colors.onSurface.copy(alpha = 0.08f)
-        )
-    }
 }
