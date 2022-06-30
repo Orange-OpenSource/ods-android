@@ -50,7 +50,7 @@ import com.orange.ods.compose.text.OdsTextBody2
  * disabled and disabled to accessibility services.
  * @param selected Highlight the chip and display a selected icon if set to true.
  * @param leadingAvatar Optional avatar at the start of the chip, preceding the content text.
- * @param leadingAvatarContentDescription Content description associated to the avatar.
+ * @param leadingContentDescription Content description associated to the leading element.
  */
 @ExperimentalMaterialApi
 @Composable
@@ -62,7 +62,7 @@ fun OdsFilterChip(
     enabled: Boolean = true,
     selected: Boolean = false,
     leadingAvatar: Painter? = null,
-    leadingAvatarContentDescription: String? = null,
+    leadingContentDescription: String? = null,
 ) {
     FilterChip(
         selected = selected,
@@ -78,7 +78,7 @@ fun OdsFilterChip(
                     Box(contentAlignment = Alignment.Center) {
                         OdsImageCircleShape(
                             painter = leadingAvatar,
-                            contentDescription = leadingAvatarContentDescription,
+                            contentDescription = leadingContentDescription,
                             circleSize = dimensionResource(id = R.dimen.icon_size),
                             alpha = if (enabled) 1f else LeadingIconOpacity
                         )

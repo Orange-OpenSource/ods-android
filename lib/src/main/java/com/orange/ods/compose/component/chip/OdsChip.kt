@@ -54,7 +54,7 @@ internal const val ChipSurfaceOverlayOpacity = 0.12f
  * @param selected When selected the chip is highlighted (useful for choice chips).
  * @param leadingIcon Optional icon at the start of the chip, preceding the content text.
  * @param leadingAvatar Optional avatar at the start of the chip, preceding the content text.
- * @param leadingElementContentDescription Content description associated to the leading element (icon or avatar).
+ * @param leadingContentDescription Content description associated to the leading element.
  * @param onCancel called when the cancel cross of the chip is clicked. Pass `null` here for no cancel cross.
  */
 @ExperimentalMaterialApi
@@ -68,7 +68,7 @@ fun OdsChip(
     selected: Boolean = false,
     leadingIcon: Painter? = null,
     leadingAvatar: Painter? = null,
-    leadingElementContentDescription: String? = null,
+    leadingContentDescription: String? = null,
     onCancel: (() -> Unit)? = null
 ) {
     Chip(
@@ -85,7 +85,7 @@ fun OdsChip(
                     Icon(
                         modifier = Modifier.size(dimensionResource(id = R.dimen.chip_icon_size)),
                         painter = leadingIcon,
-                        contentDescription = leadingElementContentDescription
+                        contentDescription = leadingContentDescription
                     )
                 }
             }
@@ -93,7 +93,7 @@ fun OdsChip(
                 {
                     OdsImageCircleShape(
                         painter = leadingAvatar,
-                        contentDescription = leadingElementContentDescription,
+                        contentDescription = leadingContentDescription,
                         circleSize = dimensionResource(id = R.dimen.icon_size),
                         alpha = if (enabled) 1f else LeadingIconOpacity
                     )
