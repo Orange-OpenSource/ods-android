@@ -104,11 +104,10 @@ fun OdsChip(
     ) {
         OdsTextBody2(text = text)
         onCancel?.let {
+            val iconModifier = if (enabled) Modifier.clickable { onCancel() } else Modifier
             Spacer(modifier = Modifier.size(dimensionResource(id = R.dimen.ods_spacing_xs)))
             Icon(
-                modifier = Modifier
-                    .size(18.dp)
-                    .clickable { onCancel() },
+                modifier = iconModifier.size(18.dp),
                 painter = painterResource(id = R.drawable.ic_cancel),
                 contentDescription = "cancel",
                 tint = odsChipColors(outlined, selected).leadingIconContentColor(enabled = enabled).value

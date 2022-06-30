@@ -11,6 +11,7 @@
 package com.orange.ods.compose.component.chip
 
 import androidx.compose.foundation.BorderStroke
+import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.size
 import androidx.compose.material.ChipDefaults
@@ -23,6 +24,7 @@ import androidx.compose.material.LocalContentColor
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.SelectableChipColors
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -32,6 +34,7 @@ import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 import com.orange.ods.R
+import com.orange.ods.compose.component.utilities.DisabledInteractionSource
 import com.orange.ods.compose.component.utilities.OdsImageCircleShape
 import com.orange.ods.compose.text.OdsTextBody2
 
@@ -64,14 +67,17 @@ fun OdsFilterChip(
     leadingAvatar: Painter? = null,
     leadingContentDescription: String? = null,
 ) {
+    val emptyAction = {}
+    
     FilterChip(
         selected = selected,
-        onClick = onClick,
+        onClick = if (enabled) onClick else emptyAction,
         modifier = modifier,
         border = if (outlined) {
             BorderStroke(1.dp, MaterialTheme.colors.onSurface.copy(alpha = ChipSurfaceOverlayOpacity))
         } else null,
         enabled = enabled,
+        interactionSource = if (enabled) remember { MutableInteractionSource() } else remember { DisabledInteractionSource() },
         leadingIcon = when {
             leadingAvatar != null -> {
                 {
