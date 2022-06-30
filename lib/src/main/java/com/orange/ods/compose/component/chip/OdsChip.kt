@@ -23,7 +23,6 @@ import androidx.compose.material.Icon
 import androidx.compose.material.MaterialTheme
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.painter.Painter
 import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.painterResource
@@ -132,10 +131,8 @@ private fun odsChipColors(outlined: Boolean, selected: Boolean): ChipColors {
 }
 
 @Composable
-private fun odsChipBorderColor(selected: Boolean, enabled: Boolean): Color {
-    return if (selected) {
-        if (enabled) MaterialTheme.colors.primary else MaterialTheme.colors.primary.copy(alpha = ChipSurfaceOverlayOpacity)
-    } else {
-        MaterialTheme.colors.onSurface.copy(alpha = ChipSurfaceOverlayOpacity)
-    }
+private fun odsChipBorderColor(selected: Boolean, enabled: Boolean) = when {
+    selected && enabled -> MaterialTheme.colors.primary
+    selected && !enabled -> MaterialTheme.colors.primary.copy(alpha = ChipSurfaceOverlayOpacity)
+    else -> MaterialTheme.colors.onSurface.copy(alpha = ChipSurfaceOverlayOpacity)
 }
