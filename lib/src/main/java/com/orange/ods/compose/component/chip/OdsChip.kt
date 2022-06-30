@@ -36,7 +36,7 @@ import com.orange.ods.compose.text.OdsTextBody2
 /**
  * The color opacity used for chip's surface overlay.
  */
-const val ChipSurfaceOverlayOpacity = 0.12f
+internal const val ChipSurfaceOverlayOpacity = 0.12f
 
 /**
  * <a href="https://system.design.orange.com/0c1af118d/p/81aa91-chips/b/13c40e" target="_blank">ODS Chips</a>.
