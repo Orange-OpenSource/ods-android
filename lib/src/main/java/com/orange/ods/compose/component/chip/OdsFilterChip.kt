@@ -30,6 +30,7 @@ import androidx.compose.ui.graphics.painter.ColorPainter
 import androidx.compose.ui.graphics.painter.Painter
 import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import com.orange.ods.R
 import com.orange.ods.compose.component.utilities.DisabledInteractionSource
@@ -113,7 +114,7 @@ private fun OdsChipSelectedIcon(tint: Color = LocalContentColor.current.copy(alp
     Icon(
         modifier = Modifier.size(dimensionResource(id = R.dimen.chip_icon_size)),
         painter = painterResource(id = R.drawable.ic_check),
-        contentDescription = null, //TODO
+        contentDescription = stringResource(id = R.string.content_desc_selected),
         tint = tint
     )
 }
