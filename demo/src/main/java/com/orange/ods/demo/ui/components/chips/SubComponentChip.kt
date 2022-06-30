@@ -33,8 +33,8 @@ import com.orange.ods.demo.R
 import com.orange.ods.demo.ui.components.chips.ChipCustomizationState.ChipType
 import com.orange.ods.demo.ui.components.chips.ChipCustomizationState.LeadingElement
 import com.orange.ods.demo.ui.components.utilities.ComponentCustomizationBottomSheetScaffold
-import com.orange.ods.demo.ui.components.utilities.ComponentCustomizationCheckboxItem
 import com.orange.ods.demo.ui.components.utilities.clickOnElement
+import com.orange.ods.demo.ui.utilities.composable.CheckboxListItem
 import com.orange.ods.demo.ui.utilities.composable.LabelledRadioButton
 import com.orange.ods.demo.ui.utilities.composable.Subtitle
 
@@ -99,8 +99,8 @@ fun SubComponentChip() {
                 customizationState.resetLeadingElement()
             }
 
-            ComponentCustomizationCheckboxItem(labelRes = R.string.component_state_outlined, checked = customizationState.outlinedChecked)
-            ComponentCustomizationCheckboxItem(labelRes = R.string.component_state_disabled, checked = customizationState.disabledChecked)
+            CheckboxListItem(labelRes = R.string.component_state_outlined, checked = customizationState.outlinedChecked)
+            CheckboxListItem(labelRes = R.string.component_state_disabled, checked = customizationState.disabledChecked)
 
         }) {
         Column(

@@ -32,7 +32,7 @@ import com.google.accompanist.flowlayout.FlowRow
 import com.orange.ods.compose.component.chip.OdsFilterChip
 import com.orange.ods.demo.R
 import com.orange.ods.demo.ui.components.utilities.ComponentCustomizationBottomSheetScaffold
-import com.orange.ods.demo.ui.components.utilities.ComponentCustomizationCheckboxItem
+import com.orange.ods.demo.ui.utilities.composable.CheckboxListItem
 import com.orange.ods.demo.ui.utilities.composable.LabelledRadioButton
 import com.orange.ods.demo.ui.utilities.composable.Subtitle
 
@@ -65,8 +65,8 @@ fun SubComponentChipFilter() {
                 )
             }
 
-            ComponentCustomizationCheckboxItem(labelRes = R.string.component_state_outlined, checked = customizationState.outlinedChecked)
-            ComponentCustomizationCheckboxItem(labelRes = R.string.component_state_disabled, checked = customizationState.disabledChecked)
+            CheckboxListItem(labelRes = R.string.component_state_outlined, checked = customizationState.outlinedChecked)
+            CheckboxListItem(labelRes = R.string.component_state_disabled, checked = customizationState.disabledChecked)
 
         }) {
         Column(
