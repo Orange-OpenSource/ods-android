@@ -42,6 +42,7 @@ const val ChipSurfaceOverlayOpacity = 0.12f
  * <a href="https://system.design.orange.com/0c1af118d/p/81aa91-chips/b/13c40e" target="_blank">ODS Chips</a>.
  *
  * Chips are small components containing a number of elements that represent a calendar event or contact.
+ * The [OdsChip] is used to display input chips, choice chips and action chips. To display filter chips please use [OdsFilterChip].
  *
  * Use Accompanist's [Flow Layouts](https://google.github.io/accompanist/flowlayout/) to wrap chips to a new line.
  *
@@ -51,6 +52,7 @@ const val ChipSurfaceOverlayOpacity = 0.12f
  * @param outlined If set to true, a border will be drawn around the chip.
  * @param enabled When disabled, chip will not respond to user input. It will also appear visually
  * disabled and disabled to accessibility services.
+ * @param selected When selected the chip is highlighted (useful for choice chips).
  * @param leadingIcon Optional icon at the start of the chip, preceding the content text.
  * @param leadingAvatar Optional avatar at the start of the chip, preceding the content text.
  * @param leadingElementContentDescription Content description associated to the leading element (icon or avatar).
