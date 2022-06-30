@@ -113,6 +113,7 @@ dependencies {
     implementation(Dependencies.accompanistSystemUiController)
     implementation(Dependencies.accompanistPager)
     implementation(Dependencies.accompanistPagerIndicators)
+    implementation(Dependencies.accompanistFlowLayout)
     implementation(platform(Dependencies.firebaseBom))
     implementation(Dependencies.firebaseCrashlytics)
     implementation(Dependencies.webkit)

@@ -41,9 +41,28 @@ Input chips (referred to as **entry** chips in Android) represent a complex piec
 compact form, such as an entity (person, place, or thing) or text. They enable user input and verify
 that input by converting text into chips.
 
+  ![Light input chip](images/chips_input_light.png) ![Dark input chip](images/chips_input_dark.png)
+
+  ![Light outlined input chip](images/chips_input_outlined_light.png) ![Dark outlined input chip](images/chips_input_outlined_dark.png)
+
 > **Jetpack Compose implementation**
 
-*Not available yet*
+Use the `OdsChip` composable:
+
+```kotlin
+OdsChip(
+    text = "chip text",
+    onClick = {
+        // Something executed on chip click
+    },
+    outlined = false, // Set it to `true` to display an outlined chip
+    leadingAvatar = painterResource(id = R.drawable.avatar),
+    enabled = true, // Set it to `false` to disabled the chip
+    onCancel = { 
+        // Something executed on cancel cross click
+    }
+)
+```
 
 > **XML implementation**
 
@@ -72,9 +91,24 @@ Choice chips allow selection of a single chip from a set of options.
 Choice chips clearly delineate and display options in a compact area. They are a good alternative to
 toggle buttons, radio buttons, and single select menus.
 
+  ![Light choice chips](images/chips_choice_light.png) ![Dark choice chips](images/chips_choice_dark.png)
+
+  ![Light outlined choice chips](images/chips_choice_outlined_light.png) ![Dark outlined choice chips](images/chips_choice_outlined_dark.png)
+
 > **Jetpack Compose implementation**
 
-*Not available yet*
+Use the `OdsChip` composable:
+
+```kotlin
+OdsChip(
+    text = "chip text",
+    onClick = {
+        // Something executed on chip click
+    },
+    outlined = false, // Set it to `true` to display an outlined chip
+    enabled = true, // Set it to `false` to disabled the chip
+)
+```
 
 > **XML implementation**
 
@@ -103,9 +137,29 @@ Filter chips use tags or descriptive words to filter content.
 Filter chips clearly delineate and display options in a compact area. They are a good alternative to
 toggle buttons or checkboxes.
 
+  ![Light filter chips](images/chips_filter_light.png) ![Dark filter chips](images/chips_filter_dark.png)
+
+  ![Light filter chips with avatar](images/chips_filter_avatar_light.png) ![Dark filter chips with avatar](images/chips_filter_avatar_dark.png)
+
 > **Jetpack Compose implementation**
 
-*Not available yet*
+Use the `OdsFilterChip` composable:
+
+```kotlin
+OdsFilterChip(
+    text = "chip text",
+    onClick = {
+        // Something executed on chip click
+    },
+    leadingAvatar = painterResource(id = R.drawable.avatar), // set it to `null` for no avatar
+    onClick = { 
+         // Something executed on chip click
+    },
+    selected = false, // `true` to display the chip selected
+    outlined = false, // Set it to `true` to display an outlined chip
+    enabled = true, // Set it to `false` to disabled the chip
+)
+```
 
 > **XML implementation**
 
@@ -133,9 +187,25 @@ contextually in a UI.
 
 An alternative to action chips are buttons, which should appear persistently and consistently.
 
+  ![Light action chip](images/chips_action_light.png) ![Dark action chip](images/chips_action_dark.png)
+
+  ![Light outlined action chip](images/chips_action_outlined_light.png) ![Dark outlined action chip](images/chips_action_outlined_dark.png)
+
 > **Jetpack Compose implementation**
 
-*Not available yet*
+Use the `OdsChip` composable:
+
+```kotlin
+OdsChip(
+    text = "chip text",
+    onClick = {
+        // Something executed on chip click
+    },
+    leadingIcon = painterResource(id = R.drawable.ic_heart), // set it to `null` for no icon
+    outlined = false, // Set it to `true` to display an outlined chip
+    enabled = true, // Set it to `false` to disabled the chip
+)
+```
 
 > **XML implementation**
 

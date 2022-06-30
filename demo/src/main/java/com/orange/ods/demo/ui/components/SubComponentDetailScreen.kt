@@ -16,6 +16,8 @@ import androidx.compose.runtime.remember
 import com.google.accompanist.pager.ExperimentalPagerApi
 import com.orange.ods.demo.ui.components.buttons.ComponentButtons
 import com.orange.ods.demo.ui.components.cards.SubComponentCard
+import com.orange.ods.demo.ui.components.chips.SubComponentChip
+import com.orange.ods.demo.ui.components.chips.SubComponentChipFilter
 import com.orange.ods.demo.ui.components.lists.SubComponentList
 import com.orange.ods.demo.ui.components.tabs.SubComponentTabs
 import com.orange.ods.demo.ui.components.tabs.TabsConfiguration
@@ -37,6 +39,7 @@ fun SubComponentDetailScreen(
         when (component) {
             Component.Buttons -> ComponentButtons(subComponent = subComponent)
             Component.Cards -> SubComponentCard(subComponent = subComponent)
+            Component.Chips -> if (subComponent == SubComponent.ChipFilter) SubComponentChipFilter() else SubComponentChip()
             Component.Lists -> SubComponentList(subComponent = subComponent)
             Component.TextFields -> SubComponentTextField(subComponent = subComponent)
             Component.Tabs -> SubComponentTabs(subComponent, updateTopAppBarTabs)
