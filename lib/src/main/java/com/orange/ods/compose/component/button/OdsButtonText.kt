@@ -54,7 +54,7 @@ fun OdsButtonText(
     iconRes: Int? = null,
     enabled: Boolean = true,
     hasPrimaryColor: Boolean = false,
-    displaySurface: OdsDisplaySurface = OdsDisplaySurface.DEFAULT
+    displaySurface: OdsDisplaySurface = OdsDisplaySurface.Default
 ) {
     CompositionLocalProvider(LocalRippleTheme provides if (hasPrimaryColor) OdsPrimaryRippleTheme else OdsRippleTheme) {
         TextButton(
@@ -77,9 +77,9 @@ fun OdsButtonText(
 @Composable
 private fun Colors.buttonTextColor(displaySurface: OdsDisplaySurface, hasPrimaryColor: Boolean) =
     when (displaySurface) {
-        OdsDisplaySurface.DEFAULT -> if (hasPrimaryColor) MaterialTheme.colors.primary else MaterialTheme.colors.onSurface
-        OdsDisplaySurface.DARK -> if (hasPrimaryColor) odsDarkThemeColors.primary else odsDarkThemeColors.onSurface
-        OdsDisplaySurface.LIGHT -> if (hasPrimaryColor) odsLightThemeColors.primary else odsLightThemeColors.onSurface
+        OdsDisplaySurface.Default -> if (hasPrimaryColor) MaterialTheme.colors.primary else MaterialTheme.colors.onSurface
+        OdsDisplaySurface.Dark -> if (hasPrimaryColor) odsDarkThemeColors.primary else odsDarkThemeColors.onSurface
+        OdsDisplaySurface.Light -> if (hasPrimaryColor) odsLightThemeColors.primary else odsLightThemeColors.onSurface
     }
 
 @Composable

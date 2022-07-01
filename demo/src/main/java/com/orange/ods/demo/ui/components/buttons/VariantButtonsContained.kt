@@ -17,41 +17,54 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.stringResource
 import com.orange.ods.compose.component.button.OdsButton
+import com.orange.ods.compose.component.button.OdsButtonFunctionalType
 import com.orange.ods.compose.theme.OdsDisplaySurface
 import com.orange.ods.demo.R
 import com.orange.ods.demo.ui.utilities.composable.Title
 
 @Composable
 fun VariantButtonsContained() {
-    Title(R.string.component_buttons_contained_subtitle_primary, withHorizontalPadding = true)
-    ContainedButtons(hasPrimaryColor = true)
+    Title(R.string.component_buttons_contained_primary, withHorizontalPadding = true)
+    ContainedButtons(functionalType = OdsButtonFunctionalType.Primary)
 
-    Title(R.string.component_buttons_contained_subtitle_standard, withHorizontalPadding = true)
-    ContainedButtons(hasPrimaryColor = false)
+    Title(R.string.component_buttons_contained_standard, withHorizontalPadding = true)
+    ContainedButtons(functionalType = OdsButtonFunctionalType.Default)
+
+    Title(R.string.component_buttons_contained_positive, withHorizontalPadding = true)
+    ContainedButtonsOnDefaultSurface(functionalType = OdsButtonFunctionalType.Positive)
+
+    Title(R.string.component_buttons_contained_negative, withHorizontalPadding = true)
+    ContainedButtonsOnDefaultSurface(functionalType = OdsButtonFunctionalType.Negative)
 }
 
 @Composable
-private fun ContainedButtons(hasPrimaryColor: Boolean) {
-    ContainedButtonsEnabledDisabled(hasPrimaryColor = hasPrimaryColor, hasIcon = false)
-    ContainedButtonsEnabledDisabled(hasPrimaryColor = hasPrimaryColor, hasIcon = true)
+private fun ContainedButtonsOnDefaultSurface(functionalType: OdsButtonFunctionalType) {
+    ContainedButtonsEnabledDisabled(functionalType = functionalType, hasIcon = false)
+    ContainedButtonsEnabledDisabled(functionalType = functionalType, hasIcon = true)
+}
+
+@Composable
+private fun ContainedButtons(functionalType: OdsButtonFunctionalType) {
+    ContainedButtonsOnDefaultSurface(functionalType)
 
     Spacer(modifier = Modifier.padding(top = dimensionResource(R.dimen.spacing_s)))
 
     LightSurface {
-        ContainedButtonsAppearanceForced(OdsDisplaySurface.LIGHT, hasPrimaryColor = hasPrimaryColor)
+        ContainedButtonsAppearanceForced(OdsDisplaySurface.Light, functionalType = functionalType)
     }
     DarkSurface {
-        ContainedButtonsAppearanceForced(OdsDisplaySurface.DARK, hasPrimaryColor = hasPrimaryColor)
+        ContainedButtonsAppearanceForced(OdsDisplaySurface.Dark, functionalType = functionalType)
     }
 }
 
+
 @Composable
-private fun ContainedButtonsAppearanceForced(displaySurface: OdsDisplaySurface, hasPrimaryColor: Boolean) {
+private fun ContainedButtonsAppearanceForced(displaySurface: OdsDisplaySurface, functionalType: OdsButtonFunctionalType) {
     OdsButton(
         modifier = Modifier.fullWidthButton(),
         text = stringResource(R.string.component_state_enabled),
         onClick = {},
-        hasPrimaryColor = hasPrimaryColor,
+        functionalType = functionalType,
         displaySurface = displaySurface
     )
     OdsButton(
@@ -59,19 +72,19 @@ private fun ContainedButtonsAppearanceForced(displaySurface: OdsDisplaySurface, 
         text = stringResource(R.string.component_state_disabled),
         onClick = {},
         enabled = false,
-        hasPrimaryColor = hasPrimaryColor,
+        functionalType = functionalType,
         displaySurface = displaySurface
     )
 }
 
 @Composable
-private fun ContainedButtonsEnabledDisabled(hasPrimaryColor: Boolean, hasIcon: Boolean) {
+private fun ContainedButtonsEnabledDisabled(functionalType: OdsButtonFunctionalType, hasIcon: Boolean) {
     OdsButton(
         modifier = Modifier.fullWidthButton(),
         iconRes = if (hasIcon) R.drawable.ic_search else null,
         text = stringResource(R.string.component_state_enabled),
         onClick = {},
-        hasPrimaryColor = hasPrimaryColor
+        functionalType = functionalType
     )
     OdsButton(
         modifier = Modifier.fullWidthButton(false),
@@ -79,7 +92,7 @@ private fun ContainedButtonsEnabledDisabled(hasPrimaryColor: Boolean, hasIcon: B
         text = stringResource(R.string.component_state_disabled),
         onClick = {},
         enabled = false,
-        hasPrimaryColor = hasPrimaryColor
+        functionalType = functionalType
     )
 
 }

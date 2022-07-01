@@ -39,11 +39,11 @@ fun Title(@StringRes textRes: Int, modifier: Modifier = Modifier, withHorizontal
 }
 
 @Composable
-fun Subtitle(@StringRes textRes: Int, displaySurface: OdsDisplaySurface = OdsDisplaySurface.DEFAULT, withHorizontalPadding: Boolean = false) {
+fun Subtitle(@StringRes textRes: Int, displaySurface: OdsDisplaySurface = OdsDisplaySurface.Default, withHorizontalPadding: Boolean = false) {
     val backgroundColor = when (displaySurface) {
-        OdsDisplaySurface.DEFAULT -> Color.Unspecified
-        OdsDisplaySurface.DARK -> odsDarkThemeColors.background
-        OdsDisplaySurface.LIGHT -> odsLightThemeColors.background
+        OdsDisplaySurface.Default -> Color.Unspecified
+        OdsDisplaySurface.Dark -> odsDarkThemeColors.background
+        OdsDisplaySurface.Light -> odsLightThemeColors.background
     }
     OdsTextSubtitle1(
         text = stringResource(textRes),

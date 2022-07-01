@@ -43,14 +43,14 @@ fun VariantButtonsToggle() {
             .fillMaxWidth()
             .padding(top = dimensionResource(R.dimen.spacing_s))
     )
-
+    
     Spacer(modifier = Modifier.padding(top = dimensionResource(R.dimen.spacing_s)))
 
     LightSurface {
-        ToggleButtonFullWidthAppearanceForced(OdsDisplaySurface.LIGHT)
+        ToggleButtonFullWidthAppearanceForced(OdsDisplaySurface.Light)
     }
     DarkSurface {
-        ToggleButtonFullWidthAppearanceForced(OdsDisplaySurface.DARK)
+        ToggleButtonFullWidthAppearanceForced(OdsDisplaySurface.Dark)
     }
 }
 

@@ -33,7 +33,9 @@ import com.orange.ods.demo.ui.utilities.composable.Subtitle
 @Composable
 fun ComponentButtons(variant: Variant) {
     Column(
-        modifier = Modifier.verticalScroll(rememberScrollState())
+        modifier = Modifier
+            .padding(bottom = dimensionResource(id = R.dimen.ods_spacing_xs))
+            .verticalScroll(rememberScrollState())
     ) {
         when (variant) {
             Variant.ButtonsContained -> VariantButtonsContained()
@@ -55,14 +57,14 @@ fun Modifier.fullWidthButton(withTopPadding: Boolean = true) = composed {
 @Composable
 fun DarkSurface(content: @Composable ColumnScope.() -> Unit) {
     val backgroundColor = DarkSurfaceDefault
-    Subtitle(textRes = R.string.component_force_on_dark, OdsDisplaySurface.DARK, withHorizontalPadding = true)
+    Subtitle(textRes = R.string.component_force_on_dark, OdsDisplaySurface.Dark, withHorizontalPadding = true)
     ForcedBackgroundColumn(color = backgroundColor, content = content)
 }
 
 @Composable
 fun LightSurface(content: @Composable ColumnScope.() -> Unit) {
     val backgroundColor = White100
-    Subtitle(textRes = R.string.component_force_on_light, OdsDisplaySurface.LIGHT, withHorizontalPadding = true)
+    Subtitle(textRes = R.string.component_force_on_light, OdsDisplaySurface.Light, withHorizontalPadding = true)
     ForcedBackgroundColumn(color = backgroundColor, content = content)
 }
 

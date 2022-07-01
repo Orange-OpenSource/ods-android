@@ -19,15 +19,15 @@ enum class OdsDisplaySurface {
     /**
      * The element is displayed on a surface corresponding to the Android system theme of the device.
      */
-    DEFAULT,
+    Default,
 
     /**
      * The element is displayed on a dark background even if the device system is set in light theme.
      */
-    DARK,
+    Dark,
 
     /**
-     * The he element is displayed on a light background even if the device system is set in dark theme.
+     * The element is displayed on a light background even if the device system is set in dark theme.
      */
-    LIGHT
+    Light
 }

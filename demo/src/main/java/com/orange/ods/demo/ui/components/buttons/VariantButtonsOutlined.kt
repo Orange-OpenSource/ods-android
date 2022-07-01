@@ -28,15 +28,15 @@ fun VariantButtonsOutlined() {
     Spacer(modifier = Modifier.padding(top = dimensionResource(R.dimen.spacing_s)))
 
     LightSurface {
-        OutlinedButtonsEnabledDisabled(hasIcon = false, displaySurface = OdsDisplaySurface.LIGHT)
+        OutlinedButtonsEnabledDisabled(hasIcon = false, displaySurface = OdsDisplaySurface.Light)
     }
     DarkSurface {
-        OutlinedButtonsEnabledDisabled(hasIcon = false, displaySurface = OdsDisplaySurface.DARK)
+        OutlinedButtonsEnabledDisabled(hasIcon = false, displaySurface = OdsDisplaySurface.Dark)
     }
 }
 
 @Composable
-private fun OutlinedButtonsEnabledDisabled(hasIcon: Boolean, displaySurface: OdsDisplaySurface = OdsDisplaySurface.DEFAULT) {
+private fun OutlinedButtonsEnabledDisabled(hasIcon: Boolean, displaySurface: OdsDisplaySurface = OdsDisplaySurface.Default) {
     OdsButtonOutlined(
         modifier = Modifier.fullWidthButton(),
         text = stringResource(R.string.component_state_enabled),

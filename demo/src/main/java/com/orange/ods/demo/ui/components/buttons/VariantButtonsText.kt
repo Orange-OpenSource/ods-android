@@ -38,15 +38,15 @@ private fun TextButtons(hasPrimaryColor: Boolean) {
     Spacer(modifier = Modifier.padding(top = dimensionResource(R.dimen.spacing_s)))
 
     LightSurface {
-        TextButtonsEnabledDisabled(hasPrimaryColor = hasPrimaryColor, hasIcon = false, displaySurface = OdsDisplaySurface.LIGHT)
+        TextButtonsEnabledDisabled(hasPrimaryColor = hasPrimaryColor, hasIcon = false, displaySurface = OdsDisplaySurface.Light)
     }
     DarkSurface {
-        TextButtonsEnabledDisabled(hasPrimaryColor = hasPrimaryColor, hasIcon = false, displaySurface = OdsDisplaySurface.DARK)
+        TextButtonsEnabledDisabled(hasPrimaryColor = hasPrimaryColor, hasIcon = false, displaySurface = OdsDisplaySurface.Dark)
     }
 }
 
 @Composable
-private fun TextButtonsEnabledDisabled(hasPrimaryColor: Boolean, hasIcon: Boolean, displaySurface: OdsDisplaySurface = OdsDisplaySurface.DEFAULT) {
+private fun TextButtonsEnabledDisabled(hasPrimaryColor: Boolean, hasIcon: Boolean, displaySurface: OdsDisplaySurface = OdsDisplaySurface.Default) {
     OdsButtonText(
         modifier = Modifier.fullWidthButton(),
         text = stringResource(R.string.component_state_enabled),

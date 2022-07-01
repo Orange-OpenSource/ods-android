@@ -50,7 +50,7 @@ fun OdsButtonOutlined(
     @DrawableRes
     iconRes: Int? = null,
     enabled: Boolean = true,
-    displaySurface: OdsDisplaySurface = OdsDisplaySurface.DEFAULT
+    displaySurface: OdsDisplaySurface = OdsDisplaySurface.Default
 ) {
     OutlinedButton(
         onClick = onClick,
@@ -80,9 +80,9 @@ fun OdsButtonOutlined(
 @Composable
 private fun Colors.buttonOutlinedColor(displaySurface: OdsDisplaySurface) =
     when (displaySurface) {
-        OdsDisplaySurface.DEFAULT -> MaterialTheme.colors.onSurface
-        OdsDisplaySurface.DARK -> odsDarkThemeColors.onSurface
-        OdsDisplaySurface.LIGHT -> odsLightThemeColors.onSurface
+        OdsDisplaySurface.Default -> MaterialTheme.colors.onSurface
+        OdsDisplaySurface.Dark -> odsDarkThemeColors.onSurface
+        OdsDisplaySurface.Light -> odsLightThemeColors.onSurface
     }
 
 @Composable
