@@ -17,7 +17,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.stringResource
 import com.orange.ods.compose.component.button.OdsButton
-import com.orange.ods.compose.theme.OdsDisplayAppearance
+import com.orange.ods.compose.theme.OdsDisplaySurface
 import com.orange.ods.demo.R
 import com.orange.ods.demo.ui.utilities.composable.Title
 
@@ -38,21 +38,21 @@ private fun ContainedButtons(hasPrimaryColor: Boolean) {
     Spacer(modifier = Modifier.padding(top = dimensionResource(R.dimen.spacing_s)))
 
     LightSurface {
-        ContainedButtonsAppearanceForced(OdsDisplayAppearance.ON_LIGHT, hasPrimaryColor = hasPrimaryColor)
+        ContainedButtonsAppearanceForced(OdsDisplaySurface.LIGHT, hasPrimaryColor = hasPrimaryColor)
     }
     DarkSurface {
-        ContainedButtonsAppearanceForced(OdsDisplayAppearance.ON_DARK, hasPrimaryColor = hasPrimaryColor)
+        ContainedButtonsAppearanceForced(OdsDisplaySurface.DARK, hasPrimaryColor = hasPrimaryColor)
     }
 }
 
 @Composable
-private fun ContainedButtonsAppearanceForced(displayAppearance: OdsDisplayAppearance, hasPrimaryColor: Boolean) {
+private fun ContainedButtonsAppearanceForced(displaySurface: OdsDisplaySurface, hasPrimaryColor: Boolean) {
     OdsButton(
         modifier = Modifier.fullWidthButton(),
         text = stringResource(R.string.component_state_enabled),
         onClick = {},
         hasPrimaryColor = hasPrimaryColor,
-        displayAppearance = displayAppearance
+        displaySurface = displaySurface
     )
     OdsButton(
         modifier = Modifier.fullWidthButton(false),
@@ -60,7 +60,7 @@ private fun ContainedButtonsAppearanceForced(displayAppearance: OdsDisplayAppear
         onClick = {},
         enabled = false,
         hasPrimaryColor = hasPrimaryColor,
-        displayAppearance = displayAppearance
+        displaySurface = displaySurface
     )
 }
 

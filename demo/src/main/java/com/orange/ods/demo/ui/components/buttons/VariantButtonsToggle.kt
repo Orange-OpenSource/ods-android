@@ -23,7 +23,7 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.dimensionResource
 import com.orange.ods.compose.component.button.OdsButtonToggle
-import com.orange.ods.compose.theme.OdsDisplayAppearance
+import com.orange.ods.compose.theme.OdsDisplaySurface
 import com.orange.ods.demo.R
 import com.orange.ods.demo.ui.utilities.composable.Title
 
@@ -47,10 +47,10 @@ fun VariantButtonsToggle() {
     Spacer(modifier = Modifier.padding(top = dimensionResource(R.dimen.spacing_s)))
 
     LightSurface {
-        ToggleButtonFullWidthAppearanceForced(OdsDisplayAppearance.ON_LIGHT)
+        ToggleButtonFullWidthAppearanceForced(OdsDisplaySurface.LIGHT)
     }
     DarkSurface {
-        ToggleButtonFullWidthAppearanceForced(OdsDisplayAppearance.ON_DARK)
+        ToggleButtonFullWidthAppearanceForced(OdsDisplaySurface.DARK)
     }
 }
 
@@ -75,7 +75,7 @@ private fun ToggleGroup() {
 }
 
 @Composable
-private fun ToggleButtonFullWidthAppearanceForced(displayAppearance: OdsDisplayAppearance) {
+private fun ToggleButtonFullWidthAppearanceForced(displaySurface: OdsDisplaySurface) {
     var toggleChecked by remember { mutableStateOf(false) }
     OdsButtonToggle(
         checked = toggleChecked,
@@ -85,6 +85,6 @@ private fun ToggleButtonFullWidthAppearanceForced(displayAppearance: OdsDisplayA
         modifier = Modifier
             .fullWidthButton()
             .padding(top = dimensionResource(R.dimen.spacing_xs)),
-        displayAppearance = displayAppearance
+        displaySurface = displaySurface
     )
 }

@@ -22,7 +22,7 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import com.orange.ods.compose.text.OdsTextH5
 import com.orange.ods.compose.text.OdsTextSubtitle1
-import com.orange.ods.compose.theme.OdsDisplayAppearance
+import com.orange.ods.compose.theme.OdsDisplaySurface
 import com.orange.ods.compose.theme.odsDarkThemeColors
 import com.orange.ods.compose.theme.odsLightThemeColors
 import com.orange.ods.demo.R
@@ -39,11 +39,11 @@ fun Title(@StringRes textRes: Int, modifier: Modifier = Modifier, withHorizontal
 }
 
 @Composable
-fun Subtitle(@StringRes textRes: Int, displayAppearance: OdsDisplayAppearance = OdsDisplayAppearance.DEFAULT, withHorizontalPadding: Boolean = false) {
-    val backgroundColor = when (displayAppearance) {
-        OdsDisplayAppearance.DEFAULT -> Color.Unspecified
-        OdsDisplayAppearance.ON_DARK -> odsDarkThemeColors.background
-        OdsDisplayAppearance.ON_LIGHT -> odsLightThemeColors.background
+fun Subtitle(@StringRes textRes: Int, displaySurface: OdsDisplaySurface = OdsDisplaySurface.DEFAULT, withHorizontalPadding: Boolean = false) {
+    val backgroundColor = when (displaySurface) {
+        OdsDisplaySurface.DEFAULT -> Color.Unspecified
+        OdsDisplaySurface.DARK -> odsDarkThemeColors.background
+        OdsDisplaySurface.LIGHT -> odsLightThemeColors.background
     }
     OdsTextSubtitle1(
         text = stringResource(textRes),
@@ -52,6 +52,6 @@ fun Subtitle(@StringRes textRes: Int, displayAppearance: OdsDisplayAppearance = 
             .background(backgroundColor)
             .padding(top = dimensionResource(id = R.dimen.spacing_m))
             .padding(horizontal = if (withHorizontalPadding) dimensionResource(R.dimen.ods_screen_horizontal_margin) else 0.dp),
-        displayAppearance = displayAppearance
+        displaySurface = displaySurface
     )
 }

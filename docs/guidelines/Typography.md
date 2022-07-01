@@ -45,4 +45,5 @@ OdsTextSubtitle2(text = "Subtitle2 styled")
 
 Optional parameters are:
 - a `Modifier`
-- an `OdsDisplayAppearance` which allow to force elements appearance to be displayed on light or dark background.
+- an `OdsDisplaySurface` which allow to force elements appearance to be displayed on light or dark surface.
+

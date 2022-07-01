@@ -17,7 +17,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.stringResource
 import com.orange.ods.compose.component.button.OdsButtonText
-import com.orange.ods.compose.theme.OdsDisplayAppearance
+import com.orange.ods.compose.theme.OdsDisplaySurface
 import com.orange.ods.demo.R
 import com.orange.ods.demo.ui.utilities.composable.Title
 
@@ -38,22 +38,22 @@ private fun TextButtons(hasPrimaryColor: Boolean) {
     Spacer(modifier = Modifier.padding(top = dimensionResource(R.dimen.spacing_s)))
 
     LightSurface {
-        TextButtonsEnabledDisabled(hasPrimaryColor = hasPrimaryColor, hasIcon = false, displayAppearance = OdsDisplayAppearance.ON_LIGHT)
+        TextButtonsEnabledDisabled(hasPrimaryColor = hasPrimaryColor, hasIcon = false, displaySurface = OdsDisplaySurface.LIGHT)
     }
     DarkSurface {
-        TextButtonsEnabledDisabled(hasPrimaryColor = hasPrimaryColor, hasIcon = false, displayAppearance = OdsDisplayAppearance.ON_DARK)
+        TextButtonsEnabledDisabled(hasPrimaryColor = hasPrimaryColor, hasIcon = false, displaySurface = OdsDisplaySurface.DARK)
     }
 }
 
 @Composable
-private fun TextButtonsEnabledDisabled(hasPrimaryColor: Boolean, hasIcon: Boolean, displayAppearance: OdsDisplayAppearance = OdsDisplayAppearance.DEFAULT) {
+private fun TextButtonsEnabledDisabled(hasPrimaryColor: Boolean, hasIcon: Boolean, displaySurface: OdsDisplaySurface = OdsDisplaySurface.DEFAULT) {
     OdsButtonText(
         modifier = Modifier.fullWidthButton(),
         text = stringResource(R.string.component_state_enabled),
         onClick = {},
         hasPrimaryColor = hasPrimaryColor,
         iconRes = if (hasIcon) R.drawable.ic_search else null,
-        displayAppearance = displayAppearance
+        displaySurface = displaySurface
     )
     OdsButtonText(
         modifier = Modifier.fullWidthButton(false),
@@ -62,6 +62,6 @@ private fun TextButtonsEnabledDisabled(hasPrimaryColor: Boolean, hasIcon: Boolea
         hasPrimaryColor = hasPrimaryColor,
         iconRes = if (hasIcon) R.drawable.ic_search else null,
         enabled = false,
-        displayAppearance = displayAppearance
+        displaySurface = displaySurface
     )
 }

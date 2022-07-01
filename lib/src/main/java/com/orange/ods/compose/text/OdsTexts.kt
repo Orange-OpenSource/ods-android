@@ -16,68 +16,68 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.TextStyle
-import com.orange.ods.compose.theme.OdsDisplayAppearance
+import com.orange.ods.compose.theme.OdsDisplaySurface
 import com.orange.ods.compose.theme.odsDarkThemeColors
 import com.orange.ods.compose.theme.odsLightThemeColors
 
 @Composable
-fun OdsTextH1(text: String, modifier: Modifier = Modifier, displayAppearance: OdsDisplayAppearance = OdsDisplayAppearance.DEFAULT) =
-    OdsText(text, MaterialTheme.typography.h1, modifier, displayAppearance)
+fun OdsTextH1(text: String, modifier: Modifier = Modifier, displaySurface: OdsDisplaySurface = OdsDisplaySurface.DEFAULT) =
+    OdsText(text, MaterialTheme.typography.h1, modifier, displaySurface)
 
 @Composable
-fun OdsTextH2(text: String, modifier: Modifier = Modifier, displayAppearance: OdsDisplayAppearance = OdsDisplayAppearance.DEFAULT) =
-    OdsText(text, MaterialTheme.typography.h2, modifier, displayAppearance)
+fun OdsTextH2(text: String, modifier: Modifier = Modifier, displaySurface: OdsDisplaySurface = OdsDisplaySurface.DEFAULT) =
+    OdsText(text, MaterialTheme.typography.h2, modifier, displaySurface)
 
 @Composable
-fun OdsTextH3(text: String, modifier: Modifier = Modifier, displayAppearance: OdsDisplayAppearance = OdsDisplayAppearance.DEFAULT) =
-    OdsText(text, MaterialTheme.typography.h3, modifier, displayAppearance)
+fun OdsTextH3(text: String, modifier: Modifier = Modifier, displaySurface: OdsDisplaySurface = OdsDisplaySurface.DEFAULT) =
+    OdsText(text, MaterialTheme.typography.h3, modifier, displaySurface)
 
 @Composable
-fun OdsTextH4(text: String, modifier: Modifier = Modifier, displayAppearance: OdsDisplayAppearance = OdsDisplayAppearance.DEFAULT) =
-    OdsText(text, MaterialTheme.typography.h4, modifier, displayAppearance)
+fun OdsTextH4(text: String, modifier: Modifier = Modifier, displaySurface: OdsDisplaySurface = OdsDisplaySurface.DEFAULT) =
+    OdsText(text, MaterialTheme.typography.h4, modifier, displaySurface)
 
 @Composable
-fun OdsTextH5(text: String, modifier: Modifier = Modifier, displayAppearance: OdsDisplayAppearance = OdsDisplayAppearance.DEFAULT) =
-    OdsText(text, MaterialTheme.typography.h5, modifier, displayAppearance)
+fun OdsTextH5(text: String, modifier: Modifier = Modifier, displaySurface: OdsDisplaySurface = OdsDisplaySurface.DEFAULT) =
+    OdsText(text, MaterialTheme.typography.h5, modifier, displaySurface)
 
 @Composable
-fun OdsTextH6(text: String, modifier: Modifier = Modifier, displayAppearance: OdsDisplayAppearance = OdsDisplayAppearance.DEFAULT) =
-    OdsText(text, MaterialTheme.typography.h6, modifier, displayAppearance)
+fun OdsTextH6(text: String, modifier: Modifier = Modifier, displaySurface: OdsDisplaySurface = OdsDisplaySurface.DEFAULT) =
+    OdsText(text, MaterialTheme.typography.h6, modifier, displaySurface)
 
 @Composable
-fun OdsTextSubtitle1(text: String, modifier: Modifier = Modifier, displayAppearance: OdsDisplayAppearance = OdsDisplayAppearance.DEFAULT) =
-    OdsText(text, MaterialTheme.typography.subtitle1, modifier, displayAppearance)
+fun OdsTextSubtitle1(text: String, modifier: Modifier = Modifier, displaySurface: OdsDisplaySurface = OdsDisplaySurface.DEFAULT) =
+    OdsText(text, MaterialTheme.typography.subtitle1, modifier, displaySurface)
 
 @Composable
-fun OdsTextSubtitle2(text: String, modifier: Modifier = Modifier, displayAppearance: OdsDisplayAppearance = OdsDisplayAppearance.DEFAULT) =
-    OdsText(text, MaterialTheme.typography.subtitle2, modifier, displayAppearance)
+fun OdsTextSubtitle2(text: String, modifier: Modifier = Modifier, displaySurface: OdsDisplaySurface = OdsDisplaySurface.DEFAULT) =
+    OdsText(text, MaterialTheme.typography.subtitle2, modifier, displaySurface)
 
 @Composable
-fun OdsTextBody1(text: String, modifier: Modifier = Modifier, displayAppearance: OdsDisplayAppearance = OdsDisplayAppearance.DEFAULT) =
-    OdsText(text, MaterialTheme.typography.body1, modifier, displayAppearance)
+fun OdsTextBody1(text: String, modifier: Modifier = Modifier, displaySurface: OdsDisplaySurface = OdsDisplaySurface.DEFAULT) =
+    OdsText(text, MaterialTheme.typography.body1, modifier, displaySurface)
 
 @Composable
-fun OdsTextBody2(text: String, modifier: Modifier = Modifier, displayAppearance: OdsDisplayAppearance = OdsDisplayAppearance.DEFAULT) =
-    OdsText(text, MaterialTheme.typography.body2, modifier, displayAppearance)
+fun OdsTextBody2(text: String, modifier: Modifier = Modifier, displaySurface: OdsDisplaySurface = OdsDisplaySurface.DEFAULT) =
+    OdsText(text, MaterialTheme.typography.body2, modifier, displaySurface)
 
 @Composable
-fun OdsTextButton(text: String, modifier: Modifier = Modifier, displayAppearance: OdsDisplayAppearance = OdsDisplayAppearance.DEFAULT) =
-    OdsText(text, MaterialTheme.typography.button, modifier, displayAppearance)
+fun OdsTextButton(text: String, modifier: Modifier = Modifier, displaySurface: OdsDisplaySurface = OdsDisplaySurface.DEFAULT) =
+    OdsText(text, MaterialTheme.typography.button, modifier, displaySurface)
 
 @Composable
-fun OdsTextCaption(text: String, modifier: Modifier = Modifier, displayAppearance: OdsDisplayAppearance = OdsDisplayAppearance.DEFAULT) =
-    OdsText(text, MaterialTheme.typography.caption, modifier, displayAppearance)
+fun OdsTextCaption(text: String, modifier: Modifier = Modifier, displaySurface: OdsDisplaySurface = OdsDisplaySurface.DEFAULT) =
+    OdsText(text, MaterialTheme.typography.caption, modifier, displaySurface)
 
 @Composable
-fun OdsTextOverline(text: String, modifier: Modifier = Modifier, displayAppearance: OdsDisplayAppearance = OdsDisplayAppearance.DEFAULT) =
-    OdsText(text, MaterialTheme.typography.overline, modifier, displayAppearance)
+fun OdsTextOverline(text: String, modifier: Modifier = Modifier, displaySurface: OdsDisplaySurface = OdsDisplaySurface.DEFAULT) =
+    OdsText(text, MaterialTheme.typography.overline, modifier, displaySurface)
 
 @Composable
-private fun OdsText(text: String, textStyle: TextStyle, modifier: Modifier, displayAppearance: OdsDisplayAppearance) {
-    val color = when (displayAppearance) {
-        OdsDisplayAppearance.DEFAULT -> Color.Unspecified
-        OdsDisplayAppearance.ON_DARK -> odsDarkThemeColors.onSurface
-        OdsDisplayAppearance.ON_LIGHT -> odsLightThemeColors.onSurface
+private fun OdsText(text: String, textStyle: TextStyle, modifier: Modifier, displaySurface: OdsDisplaySurface) {
+    val color = when (displaySurface) {
+        OdsDisplaySurface.DEFAULT -> Color.Unspecified
+        OdsDisplaySurface.DARK -> odsDarkThemeColors.onSurface
+        OdsDisplaySurface.LIGHT -> odsLightThemeColors.onSurface
     }
     Text(text = text, style = textStyle, color = color, modifier = modifier)
 }
