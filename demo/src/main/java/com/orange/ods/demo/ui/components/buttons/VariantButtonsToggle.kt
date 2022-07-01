@@ -28,7 +28,7 @@ import com.orange.ods.demo.R
 import com.orange.ods.demo.ui.utilities.composable.Title
 
 @Composable
-fun ButtonsToggle() {
+fun VariantButtonsToggle() {
     Title(R.string.component_buttons_toggle_subtitle_group, withHorizontalPadding = true)
     ToggleGroup()
 
@@ -45,7 +45,7 @@ fun ButtonsToggle() {
     )
 
     Spacer(modifier = Modifier.padding(top = dimensionResource(R.dimen.ods_spacing_xs)))
-    
+
     LightSurface {
         ToggleButtonFullWidthAppearanceForced(OdsDisplayAppearance.ON_LIGHT)
     }

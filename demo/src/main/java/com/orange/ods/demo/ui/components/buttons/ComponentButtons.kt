@@ -27,19 +27,19 @@ import com.orange.ods.compose.theme.DarkSurfaceDefault
 import com.orange.ods.compose.theme.OdsDisplayAppearance
 import com.orange.ods.compose.theme.White100
 import com.orange.ods.demo.R
-import com.orange.ods.demo.ui.components.SubComponent
+import com.orange.ods.demo.ui.components.Variant
 import com.orange.ods.demo.ui.utilities.composable.Subtitle
 
 @Composable
-fun ComponentButtons(subComponent: SubComponent) {
+fun ComponentButtons(variant: Variant) {
     Column(
         modifier = Modifier.verticalScroll(rememberScrollState())
     ) {
-        when (subComponent) {
-            SubComponent.ButtonsContained -> ButtonsContained()
-            SubComponent.ButtonsOutlined -> ButtonsOutlined()
-            SubComponent.ButtonsText -> ButtonsText()
-            SubComponent.ButtonsToggle -> ButtonsToggle()
+        when (variant) {
+            Variant.ButtonsContained -> VariantButtonsContained()
+            Variant.ButtonsOutlined -> VariantButtonsOutlined()
+            Variant.ButtonsText -> VariantButtonsText()
+            Variant.ButtonsToggle -> VariantButtonsToggle()
             else -> {}
         }
     }

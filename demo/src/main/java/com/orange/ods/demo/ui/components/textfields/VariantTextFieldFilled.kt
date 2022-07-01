@@ -12,6 +12,7 @@ package com.orange.ods.demo.ui.components.textfields
 
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
+import androidx.compose.material.ExperimentalMaterialApi
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
@@ -22,17 +23,18 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
-import com.orange.ods.compose.component.textfield.OdsOutlinedTextField
+import com.orange.ods.compose.component.textfield.OdsTextField
 import com.orange.ods.demo.R
 import com.orange.ods.demo.ui.components.utilities.clickOnElement
 
+@ExperimentalMaterialApi
 @Composable
-fun TextFieldOutlinedContent(customizationState: TextFieldCustomizationState) {
+fun VariantTextFieldFilled(customizationState: TextFieldCustomizationState) {
     var text by rememberSaveable { mutableStateOf("") }
     val context = LocalContext.current
     val trailingIconName = stringResource(id = R.string.component_element_trailing)
 
-    OdsOutlinedTextField(
+    OdsTextField(
         modifier = Modifier
             .fillMaxWidth()
             .padding(top = dimensionResource(id = R.dimen.ods_spacing_xs)),

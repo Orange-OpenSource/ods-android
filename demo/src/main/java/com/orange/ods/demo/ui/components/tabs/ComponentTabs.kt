@@ -36,7 +36,7 @@ import com.google.accompanist.pager.ExperimentalPagerApi
 import com.google.accompanist.pager.HorizontalPager
 import com.orange.ods.compose.text.OdsTextSubtitle1
 import com.orange.ods.demo.R
-import com.orange.ods.demo.ui.components.SubComponent
+import com.orange.ods.demo.ui.components.Variant
 import com.orange.ods.demo.ui.components.utilities.ComponentCustomizationBottomSheetScaffold
 import com.orange.ods.demo.ui.utilities.composable.LabelledRadioButton
 import com.orange.ods.demo.ui.utilities.composable.SwitchListItem
@@ -49,11 +49,11 @@ private const val ScrollableTabsCountMax = 6
 @ExperimentalMaterialApi
 @ExperimentalPagerApi
 @Composable
-fun SubComponentTabs(subComponent: SubComponent, updateTopAppBarTabs: (TabsConfiguration) -> Unit) {
+fun ComponentTabs(variant: Variant, updateTopAppBarTabs: (TabsConfiguration) -> Unit) {
     val scrollableTabs: Boolean
     val tabCountMin: Int
     val tabCountMax: Int
-    if (subComponent == SubComponent.TabsScrollable) {
+    if (variant == Variant.TabsScrollable) {
         scrollableTabs = true
         tabCountMin = ScrollableTabsCountMin
         tabCountMax = ScrollableTabsCountMax
@@ -63,19 +63,19 @@ fun SubComponentTabs(subComponent: SubComponent, updateTopAppBarTabs: (TabsConfi
         tabCountMax = FixedTabsCountMax
     }
 
-    val subComponentTabsState = rememberSubComponentTabsState(tabsCount = rememberSaveable { mutableStateOf(tabCountMin) })
+    val variantTabsState = rememberVariantTabsState(tabsCount = rememberSaveable { mutableStateOf(tabCountMin) })
     updateTopAppBarTabs(
         TabsConfiguration(
             scrollableTabs = scrollableTabs,
-            tabs = subComponentTabsState.tabs,
-            pagerState = subComponentTabsState.pagerState,
-            tabIconType = subComponentTabsState.selectedTabIconType.value,
-            tabTextEnabled = subComponentTabsState.tabTextEnabled.value,
+            tabs = variantTabsState.tabs,
+            pagerState = variantTabsState.pagerState,
+            tabIconType = variantTabsState.selectedTabIconType.value,
+            tabTextEnabled = variantTabsState.tabTextEnabled.value,
         )
     )
 
     ComponentCustomizationBottomSheetScaffold(
-        bottomSheetScaffoldState = subComponentTabsState.bottomSheetScaffoldState,
+        bottomSheetScaffoldState = variantTabsState.bottomSheetScaffoldState,
         bottomSheetContent = {
             Row(
                 modifier = Modifier
@@ -87,26 +87,26 @@ fun SubComponentTabs(subComponent: SubComponent, updateTopAppBarTabs: (TabsConfi
             ) {
                 OdsTextSubtitle1(modifier = Modifier.weight(1f), text = stringResource(id = R.string.component_element_icon))
                 LabelledRadioButton(
-                    selectedRadio = subComponentTabsState.selectedTabIconType,
-                    currentRadio = SubComponentTabsState.TabIconType.Leading,
+                    selectedRadio = variantTabsState.selectedTabIconType,
+                    currentRadio = VariantTabsState.TabIconType.Leading,
                     label = stringResource(id = R.string.component_tab_icon_leading),
-                    enabled = subComponentTabsState.areTabIconRadiosEnabled
+                    enabled = variantTabsState.areTabIconRadiosEnabled
                 )
                 LabelledRadioButton(
-                    selectedRadio = subComponentTabsState.selectedTabIconType,
-                    currentRadio = SubComponentTabsState.TabIconType.Top,
+                    selectedRadio = variantTabsState.selectedTabIconType,
+                    currentRadio = VariantTabsState.TabIconType.Top,
                     label = stringResource(id = R.string.component_tab_icon_top),
-                    enabled = subComponentTabsState.areTabIconRadiosEnabled
+                    enabled = variantTabsState.areTabIconRadiosEnabled
                 )
                 LabelledRadioButton(
-                    selectedRadio = subComponentTabsState.selectedTabIconType,
-                    currentRadio = SubComponentTabsState.TabIconType.None,
+                    selectedRadio = variantTabsState.selectedTabIconType,
+                    currentRadio = VariantTabsState.TabIconType.None,
                     label = stringResource(id = R.string.component_element_none),
-                    enabled = subComponentTabsState.areTabIconRadiosEnabled
+                    enabled = variantTabsState.areTabIconRadiosEnabled
                 )
             }
 
-            SwitchListItem(R.string.component_element_text, subComponentTabsState.tabTextEnabled, subComponentTabsState.isTabTextCheckboxEnabled)
+            SwitchListItem(R.string.component_element_text, variantTabsState.tabTextEnabled, variantTabsState.isTabTextCheckboxEnabled)
 
             Row(
                 modifier = Modifier
@@ -116,14 +116,14 @@ fun SubComponentTabs(subComponent: SubComponent, updateTopAppBarTabs: (TabsConfi
                 verticalAlignment = Alignment.CenterVertically
             ) {
                 OdsTextSubtitle1(modifier = Modifier.weight(1f), text = stringResource(id = R.string.component_tabs_count))
-                IconButton(onClick = { subComponentTabsState.tabsCount.value-- }, enabled = subComponentTabsState.canRemoveTab(tabCountMin)) {
+                IconButton(onClick = { variantTabsState.tabsCount.value-- }, enabled = variantTabsState.canRemoveTab(tabCountMin)) {
                     Icon(
                         painter = painterResource(id = R.drawable.ic_remove),
                         contentDescription = "content description"
                     )
                 }
-                OdsTextSubtitle1(text = subComponentTabsState.tabs.size.toString())
-                IconButton(onClick = { subComponentTabsState.tabsCount.value++ }, enabled = subComponentTabsState.canAddTab(tabCountMax)) {
+                OdsTextSubtitle1(text = variantTabsState.tabs.size.toString())
+                IconButton(onClick = { variantTabsState.tabsCount.value++ }, enabled = variantTabsState.canAddTab(tabCountMax)) {
                     Icon(
                         painter = painterResource(id = R.drawable.ic_add),
                         contentDescription = "content description"
@@ -132,8 +132,8 @@ fun SubComponentTabs(subComponent: SubComponent, updateTopAppBarTabs: (TabsConfi
             }
         }) {
 
-        HorizontalPager(state = subComponentTabsState.pagerState, count = subComponentTabsState.tabs.size) { page ->
-            subComponentTabsState.tabs[page].Screen()
+        HorizontalPager(state = variantTabsState.pagerState, count = variantTabsState.tabs.size) { page ->
+            variantTabsState.tabs[page].Screen()
         }
     }
 }

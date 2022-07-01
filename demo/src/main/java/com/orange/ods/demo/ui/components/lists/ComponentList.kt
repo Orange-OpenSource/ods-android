@@ -16,26 +16,26 @@ import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.ExperimentalMaterialApi
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
-import com.orange.ods.demo.ui.components.SubComponent
+import com.orange.ods.demo.ui.components.Variant
 
 @ExperimentalMaterialApi
 @Composable
-fun SubComponentList(subComponent: SubComponent) {
+fun ComponentList(variant: Variant) {
     Column(
         modifier = Modifier
             .verticalScroll(rememberScrollState())
     ) {
-        SubComponentListContent(subComponent)
+        VariantListContent(variant)
     }
 }
 
 @ExperimentalMaterialApi
 @Composable
-private fun SubComponentListContent(subComponent: SubComponent) {
-    when (subComponent) {
-        SubComponent.ListsOneLine -> ListOneLineContent()
-        SubComponent.ListsTwoLines -> ListTwoLinesContent()
-        SubComponent.ListsThreeLines -> ListThreeLinesContent()
+private fun VariantListContent(variant: Variant) {
+    when (variant) {
+        Variant.ListsOneLine -> ListOneLineContent()
+        Variant.ListsTwoLines -> ListTwoLinesContent()
+        Variant.ListsThreeLines -> ListThreeLinesContent()
         else -> {}
     }
 }

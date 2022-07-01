@@ -12,15 +12,15 @@ package com.orange.ods.demo.ui.components.cards
 
 import androidx.compose.material.ExperimentalMaterialApi
 import androidx.compose.runtime.Composable
-import com.orange.ods.demo.ui.components.SubComponent
+import com.orange.ods.demo.ui.components.Variant
 
 @ExperimentalMaterialApi
 @Composable
-fun SubComponentCard(subComponent: SubComponent) {
-    when (subComponent) {
-        SubComponent.CardImageFirst -> CardImageFirstContent()
-        SubComponent.CardSmall -> CardSmallContent()
-        SubComponent.CardTitleFirst -> CardTitleFirstContent()
+fun ComponentCard(variant: Variant) {
+    when (variant) {
+        Variant.CardImageFirst -> VariantCardImageFirst()
+        Variant.CardSmall -> VariantCardSmall()
+        Variant.CardTitleFirst -> VariantCardTitleFirst()
         else -> {}
     }
 }

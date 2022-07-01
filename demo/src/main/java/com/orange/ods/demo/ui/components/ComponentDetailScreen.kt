@@ -29,14 +29,14 @@ import com.orange.ods.demo.ui.components.utilities.ComponentHeader
 @Composable
 fun ComponentDetailScreen(
     componentId: Long,
-    onSubComponentClick: (Long) -> Unit,
+    onVariantClick: (Long) -> Unit,
     updateTopBarTitle: (Int) -> Unit
 ) {
     val component = remember { components.firstOrNull { component -> component.id == componentId } }
 
     component?.let {
         updateTopBarTitle(component.titleRes)
-        component.Detail(onSubComponentClick = onSubComponentClick)
+        component.Detail(onVariantClick = onVariantClick)
     }
 }
 
@@ -58,7 +58,7 @@ fun ComponentDetail(component: Component, ComponentContent: @Composable () -> Un
 
 @ExperimentalMaterialApi
 @Composable
-fun ComponentDetailWithSubComponents(component: Component, onSubComponentClick: (Long) -> Unit) {
+fun ComponentDetailWithVariants(component: Component, onVariantClick: (Long) -> Unit) {
     Column(
         modifier = Modifier
             .verticalScroll(rememberScrollState())
@@ -71,9 +71,9 @@ fun ComponentDetailWithSubComponents(component: Component, onSubComponentClick: 
         Column(
             modifier = Modifier.padding(top = dimensionResource(id = R.dimen.ods_spacing_s))
         ) {
-            component.subComponents.forEach { subComponent ->
-                OdsListItem(text = stringResource(id = subComponent.titleRes), modifier = Modifier.clickable {
-                    onSubComponentClick(subComponent.id)
+            component.variants.forEach { variant ->
+                OdsListItem(text = stringResource(id = variant.titleRes), modifier = Modifier.clickable {
+                    onVariantClick(variant.id)
                 })
             }
         }

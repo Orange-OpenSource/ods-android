@@ -22,7 +22,7 @@ import com.orange.ods.demo.R
 import com.orange.ods.demo.ui.utilities.composable.Title
 
 @Composable
-fun ButtonsContained() {
+fun VariantButtonsContained() {
     Title(R.string.component_buttons_contained_subtitle_primary, withHorizontalPadding = true)
     ContainedButtons(hasPrimaryColor = true)
 

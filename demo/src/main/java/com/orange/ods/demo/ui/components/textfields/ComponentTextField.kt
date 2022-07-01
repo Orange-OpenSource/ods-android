@@ -24,7 +24,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.stringResource
 import com.orange.ods.demo.R
-import com.orange.ods.demo.ui.components.SubComponent
+import com.orange.ods.demo.ui.components.Variant
 import com.orange.ods.demo.ui.components.utilities.ComponentCustomizationBottomSheetScaffold
 import com.orange.ods.demo.ui.utilities.composable.LabelledRadioButton
 import com.orange.ods.demo.ui.utilities.composable.Subtitle
@@ -32,7 +32,7 @@ import com.orange.ods.demo.ui.utilities.composable.SwitchListItem
 
 @ExperimentalMaterialApi
 @Composable
-fun SubComponentTextField(subComponent: SubComponent) {
+fun ComponentTextField(variant: Variant) {
     val customizationState = rememberTextFieldCustomizationState()
 
     ComponentCustomizationBottomSheetScaffold(
@@ -97,9 +97,9 @@ fun SubComponentTextField(subComponent: SubComponent) {
                     vertical = dimensionResource(id = R.dimen.ods_screen_vertical_margin)
                 )
         ) {
-            when (subComponent) {
-                SubComponent.TextFieldsFilled -> TextFieldFilledContent(customizationState)
-                SubComponent.TextFieldsOutlined -> TextFieldOutlinedContent(customizationState)
+            when (variant) {
+                Variant.TextFieldsFilled -> VariantTextFieldFilled(customizationState)
+                Variant.TextFieldsOutlined -> VariantTextFieldOutlined(customizationState)
                 else -> {}
             }
         }

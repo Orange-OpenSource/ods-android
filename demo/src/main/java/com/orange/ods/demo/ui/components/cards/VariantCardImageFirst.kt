@@ -33,7 +33,7 @@ import com.orange.ods.demo.ui.utilities.composable.SwitchListItem
 
 @ExperimentalMaterialApi
 @Composable
-fun CardImageFirstContent() {
+fun VariantCardImageFirst() {
     val context = LocalContext.current
     val textIsChecked = rememberSaveable { mutableStateOf(true) }
     val subtitleIsChecked = rememberSaveable { mutableStateOf(true) }

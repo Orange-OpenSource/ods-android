@@ -19,7 +19,7 @@ import com.orange.ods.compose.component.tab.OdsTabRow
 @ExperimentalMaterialApi
 @ExperimentalPagerApi
 @Composable
-fun TopAppBarFixedTabs(tabs: List<TabItem>, pagerState: PagerState, tabIconType: SubComponentTabsState.TabIconType, tabTextEnabled: Boolean) {
+fun TopAppBarFixedTabs(tabs: List<TabItem>, pagerState: PagerState, tabIconType: VariantTabsState.TabIconType, tabTextEnabled: Boolean) {
 
     OdsTabRow(selectedTabIndex = pagerState.currentPage) {
         TopAppBarTabs(tabs = tabs, pagerState = pagerState, tabIconType = tabIconType, tabTextEnabled = tabTextEnabled)

@@ -28,7 +28,7 @@ sealed class Component(
     @DrawableRes val imageRes: Int,
     @DrawableRes val smallImageRes: Int?,
     @StringRes val descriptionRes: Int,
-    val subComponents: List<SubComponent> = emptyList()
+    val variants: List<Variant> = emptyList()
 ) {
     val id: Long = Component::class.sealedSubclasses.indexOf(this::class).toLong()
 
@@ -40,7 +40,7 @@ sealed class Component(
         R.drawable.il_buttons,
         R.drawable.il_buttons_small,
         R.string.component_buttons_description,
-        listOf(SubComponent.ButtonsContained, SubComponent.ButtonsOutlined, SubComponent.ButtonsText, SubComponent.ButtonsToggle)
+        listOf(Variant.ButtonsContained, Variant.ButtonsOutlined, Variant.ButtonsText, Variant.ButtonsToggle)
     )
 
     object Cards : Component(
@@ -48,7 +48,7 @@ sealed class Component(
         R.drawable.il_cards,
         null,
         R.string.component_card_description,
-        listOf(SubComponent.CardImageFirst, SubComponent.CardTitleFirst, SubComponent.CardSmall)
+        listOf(Variant.CardImageFirst, Variant.CardTitleFirst, Variant.CardSmall)
     )
 
     object Checkboxes : Component(R.string.component_checkboxes, R.drawable.il_checkboxes, null, R.string.component_checkboxes_description)
@@ -57,7 +57,7 @@ sealed class Component(
         R.drawable.il_chips,
         R.drawable.il_chips_small,
         R.string.component_chips_description,
-        listOf(SubComponent.Chip, SubComponent.ChipFilter)
+        listOf(Variant.Chip, Variant.ChipFilter)
     )
 
     object Dialogs : Component(R.string.component_dialogs, R.drawable.il_dialogs, null, R.string.component_dialogs_description)
@@ -67,7 +67,7 @@ sealed class Component(
         R.drawable.il_lists,
         null,
         R.string.component_lists_description,
-        listOf(SubComponent.ListsOneLine, SubComponent.ListsTwoLines, SubComponent.ListsThreeLines)
+        listOf(Variant.ListsOneLine, Variant.ListsTwoLines, Variant.ListsThreeLines)
     )
 
     object Progress : Component(R.string.component_progress, R.drawable.il_progress, null, R.string.component_progress_description)
@@ -79,7 +79,7 @@ sealed class Component(
         R.drawable.il_text_fields,
         R.drawable.il_text_fields_small,
         R.string.component_text_fields_description,
-        listOf(SubComponent.TextFieldsFilled, SubComponent.TextFieldsOutlined)
+        listOf(Variant.TextFieldsFilled, Variant.TextFieldsOutlined)
     )
 
     object Tabs : Component(
@@ -87,12 +87,12 @@ sealed class Component(
         R.drawable.il_tabs,
         R.drawable.il_tabs_small,
         R.string.component_tabs_description,
-        listOf(SubComponent.TabsFixed, SubComponent.TabsScrollable)
+        listOf(Variant.TabsFixed, Variant.TabsScrollable)
     )
 
     @ExperimentalMaterialApi
     @Composable
-    fun Detail(onSubComponentClick: (Long) -> Unit) {
+    fun Detail(onVariantClick: (Long) -> Unit) {
         return when (this) {
             BottomNavigation -> ComponentBottomNavigation()
             Checkboxes -> ComponentDetail(component = this) { ComponentCheckboxesContent() }
@@ -101,37 +101,37 @@ sealed class Component(
             RadioButtons -> ComponentDetail(component = this) { ComponentRadioButtonsContent() }
             Sliders -> ComponentDetail(component = this) { ComponentSlidersContent() }
             Switches -> ComponentDetail(component = this) { ComponentSwitchesContent() }
-            Buttons, Cards, Chips, Lists, TextFields, Tabs -> ComponentDetailWithSubComponents(component = this, onSubComponentClick = onSubComponentClick)
+            Buttons, Cards, Chips, Lists, TextFields, Tabs -> ComponentDetailWithVariants(component = this, onVariantClick = onVariantClick)
         }
     }
 }
 
 val components = Component::class.sealedSubclasses.mapNotNull { it.objectInstance }
 
-sealed class SubComponent(
+sealed class Variant(
     @StringRes val titleRes: Int,
 ) {
-    val id: Long = SubComponent::class.sealedSubclasses.indexOf(this::class).toLong()
+    val id: Long = Variant::class.sealedSubclasses.indexOf(this::class).toLong()
 
-    object ButtonsContained : SubComponent(R.string.component_buttons_contained)
-    object ButtonsOutlined : SubComponent(R.string.component_buttons_outlined)
-    object ButtonsText : SubComponent(R.string.component_buttons_text)
-    object ButtonsToggle : SubComponent(R.string.component_buttons_toggle)
+    object ButtonsContained : Variant(R.string.component_buttons_contained)
+    object ButtonsOutlined : Variant(R.string.component_buttons_outlined)
+    object ButtonsText : Variant(R.string.component_buttons_text)
+    object ButtonsToggle : Variant(R.string.component_buttons_toggle)
 
-    object CardImageFirst : SubComponent(R.string.component_card_image_first)
-    object CardTitleFirst : SubComponent(R.string.component_card_title_first)
-    object CardSmall : SubComponent(R.string.component_card_small)
+    object CardImageFirst : Variant(R.string.component_card_image_first)
+    object CardTitleFirst : Variant(R.string.component_card_title_first)
+    object CardSmall : Variant(R.string.component_card_small)
 
-    object Chip : SubComponent(R.string.component_chip)
-    object ChipFilter : SubComponent(R.string.component_chip_filter)
+    object Chip : Variant(R.string.component_chip)
+    object ChipFilter : Variant(R.string.component_chip_filter)
 
-    object ListsOneLine : SubComponent(R.string.component_lists_one_line)
-    object ListsTwoLines : SubComponent(R.string.component_lists_two_lines)
-    object ListsThreeLines : SubComponent(R.string.component_lists_three_lines)
+    object ListsOneLine : Variant(R.string.component_lists_one_line)
+    object ListsTwoLines : Variant(R.string.component_lists_two_lines)
+    object ListsThreeLines : Variant(R.string.component_lists_three_lines)
 
-    object TextFieldsFilled : SubComponent(R.string.component_text_fields_filled)
-    object TextFieldsOutlined : SubComponent(R.string.component_text_fields_outlined)
+    object TextFieldsFilled : Variant(R.string.component_text_fields_filled)
+    object TextFieldsOutlined : Variant(R.string.component_text_fields_outlined)
 
-    object TabsFixed : SubComponent(R.string.component_tabs_fixed)
-    object TabsScrollable : SubComponent(R.string.component_tabs_scrollable)
+    object TabsFixed : Variant(R.string.component_tabs_fixed)
+    object TabsScrollable : Variant(R.string.component_tabs_scrollable)
 }
