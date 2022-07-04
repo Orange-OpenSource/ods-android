@@ -117,6 +117,7 @@ dependencies {
     implementation(platform(Dependencies.firebaseBom))
     implementation(Dependencies.firebaseCrashlytics)
     implementation(Dependencies.webkit)
+    implementation(Dependencies.browser)
 
     debugImplementation(Dependencies.composeUiTooling)
 }

@@ -12,6 +12,7 @@ package com.orange.ods.demo.ui.about
 
 import android.annotation.SuppressLint
 import android.graphics.Color
+import android.webkit.WebResourceRequest
 import android.webkit.WebView
 import android.webkit.WebViewClient
 import androidx.compose.runtime.Composable
@@ -25,6 +26,7 @@ import androidx.webkit.WebViewFeature
 import com.orange.ods.demo.R
 import com.orange.ods.demo.ui.utilities.Markdown
 import com.orange.ods.demo.ui.utilities.extension.isDarkModeEnabled
+import com.orange.ods.demo.ui.utilities.launchUrl
 import java.io.BufferedReader
 import java.nio.charset.StandardCharsets
 
@@ -52,6 +54,14 @@ fun AboutFileScreen(
                         override fun onPageFinished(view: WebView?, url: String?) {
                             super.onPageFinished(view, url)
                             view?.loadUrl("javascript:(function(){ document.body.style.padding = '${verticalPadding}px ${horizontalPadding}px' })();");
+                        }
+
+                        override fun shouldOverrideUrlLoading(view: WebView?, request: WebResourceRequest?): Boolean {
+                            request?.url?.let { url ->
+                                context.launchUrl(url.toString())
+                            }
+
+                            return true
                         }
                     }
 

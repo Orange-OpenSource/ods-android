@@ -20,6 +20,7 @@ object Versions {
     const val activity = "1.4.0"
     const val androidGradlePlugin = "7.2.0"
     const val appCompat = "1.4.1"
+    const val browser = "1.3.0"
     const val compose = "1.2.0-rc02"
     const val core = "1.7.0"
     const val googleServicesGradlePlugin = "4.3.10"
