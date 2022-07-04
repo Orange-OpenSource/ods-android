@@ -34,7 +34,8 @@ import com.orange.ods.compose.theme.odsDarkThemeColors
 import com.orange.ods.compose.theme.odsLightThemeColors
 
 /**
- * Specifying an [OdsButtonFunctionalType] allow to display a contained button with functional colors.
+ * Specifying an [OdsButtonFunctionalType] allow to display a button with functional colors.
+ * Note that `Positive`and `Negative` values are for contained buttons only.
  */
 enum class OdsButtonFunctionalType {
     Default, Primary, Positive, Negative;
@@ -62,7 +63,8 @@ enum class OdsButtonFunctionalType {
  * @param iconRes Drawable resource of the icon. If `null`, no icon will be displayed.
  * @param enabled Controls the enabled state of the button. When `false`, this button will not
  * be clickable
- * @param hasPrimaryColor Controls the style of the button. When `true`, the button has primary background color, otherwise it has onSurface background color.
+ * @param functionalType Controls the style of the button. Use `OdsButtonFunctionalType.Primary` for an highlighted button style. To get a green/red button
+ * style on contained buttons, you can use `OdsButtonFunctionalType.Positive` or `OdsButtonFunctionalType.Negative` values.
  * @param displaySurface optional allow to force the button display on a dark or light
  * surface. By default the appearance applied is based on the system night mode value.
  */
