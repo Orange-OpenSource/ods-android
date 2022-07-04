@@ -25,20 +25,20 @@ import com.google.accompanist.pager.rememberPagerState
 @ExperimentalMaterialApi
 @ExperimentalPagerApi
 @Composable
-fun rememberSubComponentTabsState(
+fun rememberVariantTabsState(
     bottomSheetScaffoldState: BottomSheetScaffoldState = rememberBottomSheetScaffoldState(),
     tabsCount: MutableState<Int>,
     pagerState: PagerState = rememberPagerState(),
-    selectedTabIconType: MutableState<SubComponentTabsState.TabIconType> = rememberSaveable { mutableStateOf(SubComponentTabsState.TabIconType.Top) },
+    selectedTabIconType: MutableState<VariantTabsState.TabIconType> = rememberSaveable { mutableStateOf(VariantTabsState.TabIconType.Top) },
     tabTextEnabled: MutableState<Boolean> = rememberSaveable { mutableStateOf(true) }
 ) =
     remember(bottomSheetScaffoldState, pagerState, tabsCount, selectedTabIconType, tabTextEnabled) {
-        SubComponentTabsState(bottomSheetScaffoldState, pagerState, tabsCount, selectedTabIconType, tabTextEnabled)
+        VariantTabsState(bottomSheetScaffoldState, pagerState, tabsCount, selectedTabIconType, tabTextEnabled)
     }
 
 @ExperimentalMaterialApi
 @ExperimentalPagerApi
-class SubComponentTabsState(
+class VariantTabsState(
     val bottomSheetScaffoldState: BottomSheetScaffoldState,
     val pagerState: PagerState,
     val tabsCount: MutableState<Int>,

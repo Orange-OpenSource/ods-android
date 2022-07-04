@@ -32,7 +32,7 @@ import com.orange.ods.demo.ui.utilities.composable.SwitchListItem
 
 @ExperimentalMaterialApi
 @Composable
-fun CardSmallContent() {
+fun VariantCardSmall() {
     val context = LocalContext.current
     val subtitleIsChecked = rememberSaveable { mutableStateOf(true) }
 

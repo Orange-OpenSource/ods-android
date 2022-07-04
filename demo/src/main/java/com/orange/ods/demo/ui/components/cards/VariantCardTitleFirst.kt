@@ -33,7 +33,7 @@ import com.orange.ods.demo.ui.utilities.composable.SwitchListItem
 
 @ExperimentalMaterialApi
 @Composable
-fun CardTitleFirstContent() {
+fun VariantCardTitleFirst() {
     val context = LocalContext.current
     val thumbnailIsChecked = rememberSaveable { mutableStateOf(true) }
     val textIsChecked = rememberSaveable { mutableStateOf(true) }

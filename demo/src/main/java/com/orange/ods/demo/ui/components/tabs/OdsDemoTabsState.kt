@@ -11,7 +11,10 @@
 package com.orange.ods.demo.ui.components.tabs
 
 import androidx.compose.material.ExperimentalMaterialApi
-import androidx.compose.runtime.*
+import androidx.compose.runtime.Composable
+import androidx.compose.runtime.MutableState
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.snapshots.SnapshotStateList
 import com.google.accompanist.pager.ExperimentalPagerApi
@@ -23,7 +26,7 @@ import com.orange.ods.demo.ui.utilities.rememberSaveableMutableStateListOf
 @ExperimentalMaterialApi
 fun rememberOdsDemoTabsState(
     tabs: SnapshotStateList<TabItem> = rememberSaveableMutableStateListOf(),
-    tabIconType: MutableState<SubComponentTabsState.TabIconType> = rememberSaveable { mutableStateOf(SubComponentTabsState.TabIconType.Top) },
+    tabIconType: MutableState<VariantTabsState.TabIconType> = rememberSaveable { mutableStateOf(VariantTabsState.TabIconType.Top) },
     tabTextEnabled: MutableState<Boolean> = rememberSaveable { mutableStateOf(true) },
     scrollableTabs: MutableState<Boolean> = rememberSaveable { mutableStateOf(false) }
 ) =
@@ -35,7 +38,7 @@ fun rememberOdsDemoTabsState(
 @ExperimentalMaterialApi
 class OdsDemoTabsState(
     val tabs: SnapshotStateList<TabItem>,
-    val tabIconType: MutableState<SubComponentTabsState.TabIconType>,
+    val tabIconType: MutableState<VariantTabsState.TabIconType>,
     val tabTextEnabled: MutableState<Boolean>,
     val scrollableTabs: MutableState<Boolean>
 ) {
@@ -70,6 +73,6 @@ data class TabsConfiguration @ExperimentalPagerApi @ExperimentalMaterialApi cons
     val scrollableTabs: Boolean,
     val tabs: List<TabItem>,
     val pagerState: PagerState,
-    val tabIconType: SubComponentTabsState.TabIconType,
+    val tabIconType: VariantTabsState.TabIconType,
     val tabTextEnabled: Boolean
 )

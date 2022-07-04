@@ -40,7 +40,7 @@ import com.orange.ods.demo.ui.utilities.composable.Subtitle
 
 @ExperimentalMaterialApi
 @Composable
-fun SubComponentChip() {
+fun VariantChip() {
     val customizationState = rememberChipCustomizationState()
 
     ComponentCustomizationBottomSheetScaffold(
@@ -111,7 +111,7 @@ fun SubComponentChip() {
                     vertical = dimensionResource(id = R.dimen.ods_screen_vertical_margin)
                 )
         ) {
-            ChipContent(customizationState = customizationState)
+            VariantChip(customizationState = customizationState)
         }
     }
 
@@ -119,7 +119,7 @@ fun SubComponentChip() {
 
 @ExperimentalMaterialApi
 @Composable
-private fun ChipContent(customizationState: ChipCustomizationState) {
+private fun VariantChip(customizationState: ChipCustomizationState) {
     val context = LocalContext.current
     val cancelCrossLabel = stringResource(id = R.string.component_element_cancel_cross)
     val chipLabel = stringResource(id = R.string.component_chip)

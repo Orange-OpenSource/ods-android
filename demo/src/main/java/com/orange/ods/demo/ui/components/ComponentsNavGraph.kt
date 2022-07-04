@@ -37,7 +37,7 @@ fun NavGraphBuilder.addComponentsGraph(
         val componentId = arguments.getLong(MainDestinations.COMPONENT_ID_KEY)
         ComponentDetailScreen(
             componentId,
-            onSubComponentClick = { id -> onNavElementClick(MainDestinations.COMPONENT_SUBTYPE_ROUTE, id, from) },
+            onVariantClick = { id -> onNavElementClick(MainDestinations.COMPONENT_SUBTYPE_ROUTE, id, from) },
             updateTopBarTitle = updateTopBarTitle
         )
     }
@@ -47,9 +47,9 @@ fun NavGraphBuilder.addComponentsGraph(
         arguments = listOf(navArgument(MainDestinations.COMPONENT_ID_KEY) { type = NavType.LongType })
     ) { from ->
         val arguments = requireNotNull(from.arguments)
-        val subComponentId = arguments.getLong(MainDestinations.COMPONENT_ID_KEY)
-        SubComponentDetailScreen(
-            subComponentId = subComponentId,
+        val variantId = arguments.getLong(MainDestinations.COMPONENT_ID_KEY)
+        VariantDetailScreen(
+            variantId = variantId,
             updateTopBarTitle = updateTopBarTitle,
             updateTopAppBarTabs = updateTopAppBarTabs
         )
