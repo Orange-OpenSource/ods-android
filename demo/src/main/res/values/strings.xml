@@ -83,8 +83,8 @@
     <string name="component_buttons_contained">Contained buttons</string>
     <string name="component_buttons_contained_primary">Primary</string>
     <string name="component_buttons_contained_standard">Standard</string>
-    <string name="component_buttons_contained_positive">Functional: positive</string>
-    <string name="component_buttons_contained_negative">Functional: negative</string>
+    <string name="component_buttons_contained_functional_positive">Functional: positive</string>
+    <string name="component_buttons_contained_functional_negative">Functional: negative</string>
     <string name="component_buttons_outlined">Outlined buttons</string>
     <string name="component_buttons_text">Text buttons</string>
     <string name="component_buttons_text_subtitle_default">Default</string>

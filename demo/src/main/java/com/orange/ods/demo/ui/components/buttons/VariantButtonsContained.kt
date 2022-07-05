@@ -30,10 +30,10 @@ fun VariantButtonsContained() {
     Title(R.string.component_buttons_contained_standard, withHorizontalPadding = true)
     ContainedButtons(functionalType = OdsButtonFunctionalType.Default)
 
-    Title(R.string.component_buttons_contained_positive, withHorizontalPadding = true)
+    Title(R.string.component_buttons_contained_functional_positive, withHorizontalPadding = true)
     ContainedButtonsOnDefaultSurface(functionalType = OdsButtonFunctionalType.Positive)
 
-    Title(R.string.component_buttons_contained_negative, withHorizontalPadding = true)
+    Title(R.string.component_buttons_contained_functional_negative, withHorizontalPadding = true)
     ContainedButtonsOnDefaultSurface(functionalType = OdsButtonFunctionalType.Negative)
 }
 
