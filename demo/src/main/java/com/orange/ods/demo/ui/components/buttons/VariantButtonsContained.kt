@@ -50,18 +50,22 @@ private fun ContainedButtons(functionalType: OdsButtonFunctionalType) {
     Spacer(modifier = Modifier.padding(top = dimensionResource(R.dimen.spacing_s)))
 
     LightSurface {
-        ContainedButtonsAppearanceForced(OdsDisplaySurface.Light, functionalType = functionalType)
+        ContainedButtonsEnabledDisabled(functionalType = functionalType, hasIcon = false, displaySurface = OdsDisplaySurface.Light)
     }
     DarkSurface {
-        ContainedButtonsAppearanceForced(OdsDisplaySurface.Dark, functionalType = functionalType)
+        ContainedButtonsEnabledDisabled(functionalType = functionalType, hasIcon = false, displaySurface = OdsDisplaySurface.Dark)
     }
 }
 
-
 @Composable
-private fun ContainedButtonsAppearanceForced(displaySurface: OdsDisplaySurface, functionalType: OdsButtonFunctionalType) {
+private fun ContainedButtonsEnabledDisabled(
+    functionalType: OdsButtonFunctionalType,
+    hasIcon: Boolean,
+    displaySurface: OdsDisplaySurface = OdsDisplaySurface.Default
+) {
     OdsButton(
         modifier = Modifier.fullWidthButton(),
+        iconRes = if (hasIcon) R.drawable.ic_search else null,
         text = stringResource(R.string.component_state_enabled),
         onClick = {},
         functionalType = functionalType,
@@ -69,30 +73,12 @@ private fun ContainedButtonsAppearanceForced(displaySurface: OdsDisplaySurface, 
     )
     OdsButton(
         modifier = Modifier.fullWidthButton(false),
+        iconRes = if (hasIcon) R.drawable.ic_search else null,
         text = stringResource(R.string.component_state_disabled),
         onClick = {},
         enabled = false,
         functionalType = functionalType,
         displaySurface = displaySurface
-    )
-}
-
-@Composable
-private fun ContainedButtonsEnabledDisabled(functionalType: OdsButtonFunctionalType, hasIcon: Boolean) {
-    OdsButton(
-        modifier = Modifier.fullWidthButton(),
-        iconRes = if (hasIcon) R.drawable.ic_search else null,
-        text = stringResource(R.string.component_state_enabled),
-        onClick = {},
-        functionalType = functionalType
-    )
-    OdsButton(
-        modifier = Modifier.fullWidthButton(false),
-        iconRes = if (hasIcon) R.drawable.ic_search else null,
-        text = stringResource(R.string.component_state_disabled),
-        onClick = {},
-        enabled = false,
-        functionalType = functionalType
     )
 
 }
