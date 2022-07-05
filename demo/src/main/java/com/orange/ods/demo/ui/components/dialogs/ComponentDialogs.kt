@@ -24,7 +24,7 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.stringResource
 import com.orange.ods.compose.component.button.OdsButton
-import com.orange.ods.compose.component.button.OdsButtonStyle
+import com.orange.ods.compose.component.button.OdsButtonContainedStyle
 import com.orange.ods.compose.component.control.OdsCheckbox
 import com.orange.ods.compose.component.dialog.OdsAlertDialog
 import com.orange.ods.compose.component.list.OdsListItem
@@ -50,7 +50,7 @@ fun ComponentDialogsContent() {
     OdsButton(
         modifier = Modifier.fullWidthButton(),
         text = stringResource(id = R.string.component_dialogs_open_dialog),
-        style = OdsButtonStyle.Primary,
+        style = OdsButtonContainedStyle.Primary,
         onClick = {
             openDialog.value = true
         }

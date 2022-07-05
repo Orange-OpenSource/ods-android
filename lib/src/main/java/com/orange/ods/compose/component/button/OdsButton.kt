@@ -34,10 +34,9 @@ import com.orange.ods.compose.theme.odsDarkThemeColors
 import com.orange.ods.compose.theme.odsLightThemeColors
 
 /**
- * Specifying an [OdsButtonStyle] allow to display a button with specific colors.
- * Note that `FunctionalPositive`and `FunctionalNegative` values are for contained buttons only.
+ * Specifying an [OdsButtonContainedStyle] allow to display a button with specific colors.
  */
-enum class OdsButtonStyle {
+enum class OdsButtonContainedStyle {
     Default, Primary, FunctionalPositive, FunctionalNegative;
 
     @Composable
@@ -76,7 +75,7 @@ fun OdsButton(
     @DrawableRes
     iconRes: Int? = null,
     enabled: Boolean = true,
-    style: OdsButtonStyle = OdsButtonStyle.Default,
+    style: OdsButtonContainedStyle = OdsButtonContainedStyle.Default,
     displaySurface: OdsDisplaySurface = OdsDisplaySurface.Default
 ) {
     CompositionLocalProvider(LocalRippleTheme provides OdsOnPrimaryRippleTheme) {

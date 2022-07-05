@@ -17,7 +17,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.stringResource
 import com.orange.ods.compose.component.button.OdsButton
-import com.orange.ods.compose.component.button.OdsButtonStyle
+import com.orange.ods.compose.component.button.OdsButtonContainedStyle
 import com.orange.ods.compose.theme.OdsDisplaySurface
 import com.orange.ods.demo.R
 import com.orange.ods.demo.ui.utilities.composable.Title
@@ -25,26 +25,26 @@ import com.orange.ods.demo.ui.utilities.composable.Title
 @Composable
 fun VariantButtonsContained() {
     Title(R.string.component_buttons_contained_primary, withHorizontalPadding = true)
-    ContainedButtons(style = OdsButtonStyle.Primary)
+    ContainedButtons(style = OdsButtonContainedStyle.Primary)
 
     Title(R.string.component_buttons_contained_standard, withHorizontalPadding = true)
-    ContainedButtons(style = OdsButtonStyle.Default)
+    ContainedButtons(style = OdsButtonContainedStyle.Default)
 
     Title(R.string.component_buttons_contained_functional_positive, withHorizontalPadding = true)
-    ContainedButtonsOnDefaultSurface(style = OdsButtonStyle.FunctionalPositive)
+    ContainedButtonsOnDefaultSurface(style = OdsButtonContainedStyle.FunctionalPositive)
 
     Title(R.string.component_buttons_contained_functional_negative, withHorizontalPadding = true)
-    ContainedButtonsOnDefaultSurface(style = OdsButtonStyle.FunctionalNegative)
+    ContainedButtonsOnDefaultSurface(style = OdsButtonContainedStyle.FunctionalNegative)
 }
 
 @Composable
-private fun ContainedButtonsOnDefaultSurface(style: OdsButtonStyle) {
+private fun ContainedButtonsOnDefaultSurface(style: OdsButtonContainedStyle) {
     ContainedButtonsEnabledDisabled(style = style, hasIcon = false)
     ContainedButtonsEnabledDisabled(style = style, hasIcon = true)
 }
 
 @Composable
-private fun ContainedButtons(style: OdsButtonStyle) {
+private fun ContainedButtons(style: OdsButtonContainedStyle) {
     ContainedButtonsOnDefaultSurface(style)
 
     Spacer(modifier = Modifier.padding(top = dimensionResource(R.dimen.spacing_s)))
@@ -59,7 +59,7 @@ private fun ContainedButtons(style: OdsButtonStyle) {
 
 @Composable
 private fun ContainedButtonsEnabledDisabled(
-    style: OdsButtonStyle,
+    style: OdsButtonContainedStyle,
     hasIcon: Boolean,
     displaySurface: OdsDisplaySurface = OdsDisplaySurface.Default
 ) {

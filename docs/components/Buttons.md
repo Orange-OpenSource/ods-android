@@ -51,7 +51,8 @@ OdsButtonText(
     text = "Text button", 
     onClick = {}, 
     enabled = true, 
-    iconRes = R.drawable.ic_search // Optional, line can be removed if you don't need any icon
+    iconRes = R.drawable.ic_search, // Optional, line can be removed if you don't need any icon
+    style = OdsButtonTextStyle.Primary
 )
 ```
 
