@@ -35,7 +35,7 @@ private fun ContainedButtons(hasPrimaryColor: Boolean) {
     ContainedButtonsEnabledDisabled(hasPrimaryColor = hasPrimaryColor, hasIcon = false)
     ContainedButtonsEnabledDisabled(hasPrimaryColor = hasPrimaryColor, hasIcon = true)
 
-    Spacer(modifier = Modifier.padding(top = dimensionResource(R.dimen.ods_spacing_xs)))
+    Spacer(modifier = Modifier.padding(top = dimensionResource(R.dimen.spacing_s)))
 
     LightSurface {
         ContainedButtonsAppearanceForced(OdsDisplayAppearance.ON_LIGHT, hasPrimaryColor = hasPrimaryColor)

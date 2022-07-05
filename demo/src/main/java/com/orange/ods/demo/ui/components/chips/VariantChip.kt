@@ -50,8 +50,8 @@ fun VariantChip() {
             Row(
                 modifier = Modifier
                     .fillMaxWidth()
-                    .padding(vertical = dimensionResource(id = R.dimen.ods_spacing_xs))
-                    .padding(start = dimensionResource(id = R.dimen.ods_spacing_s)),
+                    .padding(vertical = dimensionResource(id = R.dimen.spacing_s))
+                    .padding(start = dimensionResource(id = R.dimen.spacing_m)),
                 horizontalArrangement = Arrangement.Start
             ) {
                 LabelledRadioButton(
@@ -75,8 +75,8 @@ fun VariantChip() {
                 Row(
                     modifier = Modifier
                         .fillMaxWidth()
-                        .padding(vertical = dimensionResource(id = R.dimen.ods_spacing_xs))
-                        .padding(start = dimensionResource(id = R.dimen.ods_spacing_s)),
+                        .padding(vertical = dimensionResource(id = R.dimen.spacing_s))
+                        .padding(start = dimensionResource(id = R.dimen.spacing_m)),
                     horizontalArrangement = Arrangement.Start
                 ) {
                     LabelledRadioButton(
@@ -168,5 +168,5 @@ private fun ChoiceChip(index: Int, customizationState: ChipCustomizationState) {
         outlined = customizationState.outlinedChecked.value,
         enabled = !customizationState.disabledChecked.value,
     )
-    Spacer(modifier = Modifier.size(dimensionResource(id = R.dimen.ods_spacing_xs)))
+    Spacer(modifier = Modifier.size(dimensionResource(id = R.dimen.spacing_s)))
 }

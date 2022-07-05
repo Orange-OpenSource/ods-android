@@ -44,8 +44,8 @@ fun VariantCardSmall() {
         Row(
             modifier = Modifier
                 .fillMaxSize()
-                .padding(dimensionResource(id = R.dimen.ods_spacing_s)),
-            horizontalArrangement = Arrangement.spacedBy(dimensionResource(id = R.dimen.ods_spacing_s)),
+                .padding(dimensionResource(id = R.dimen.spacing_m)),
+            horizontalArrangement = Arrangement.spacedBy(dimensionResource(id = R.dimen.spacing_m)),
         ) {
             val cardContainerText = stringResource(id = R.string.component_card_element_container)
 

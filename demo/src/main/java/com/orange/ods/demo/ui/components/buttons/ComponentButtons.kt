@@ -49,7 +49,7 @@ fun Modifier.fullWidthButton(withTopPadding: Boolean = true) = composed {
     this
         .fillMaxWidth()
         .padding(horizontal = dimensionResource(R.dimen.ods_screen_horizontal_margin))
-        .padding(top = if (withTopPadding) dimensionResource(R.dimen.ods_spacing_s) else 0.dp)
+        .padding(top = if (withTopPadding) dimensionResource(R.dimen.spacing_m) else 0.dp)
 }
 
 @Composable
@@ -72,7 +72,7 @@ private fun ForcedBackgroundColumn(color: Color, content: @Composable ColumnScop
         modifier = Modifier
             .fillMaxWidth()
             .background(color = color)
-            .padding(bottom = dimensionResource(R.dimen.ods_spacing_s)),
+            .padding(bottom = dimensionResource(R.dimen.spacing_m)),
         content = content
     )
 }

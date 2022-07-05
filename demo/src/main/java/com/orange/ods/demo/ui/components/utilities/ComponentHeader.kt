@@ -51,7 +51,7 @@ private fun ComponentDescription(
     OdsTextBody1(
         text = stringResource(description),
         modifier = modifier.padding(
-            top = dimensionResource(id = R.dimen.ods_spacing_s)
+            top = dimensionResource(id = R.dimen.spacing_m)
         )
     )
 }

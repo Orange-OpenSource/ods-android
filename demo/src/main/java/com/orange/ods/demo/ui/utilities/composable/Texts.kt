@@ -33,7 +33,7 @@ fun Title(@StringRes textRes: Int, modifier: Modifier = Modifier, withHorizontal
         text = stringResource(textRes),
         modifier = modifier
             .fillMaxWidth()
-            .padding(top = dimensionResource(R.dimen.ods_spacing_l))
+            .padding(top = dimensionResource(R.dimen.spacing_xl))
             .padding(horizontal = if (withHorizontalPadding) dimensionResource(R.dimen.ods_screen_horizontal_margin) else 0.dp)
     )
 }
@@ -50,7 +50,7 @@ fun Subtitle(@StringRes textRes: Int, displayAppearance: OdsDisplayAppearance = 
         modifier = Modifier
             .fillMaxWidth()
             .background(backgroundColor)
-            .padding(top = dimensionResource(id = R.dimen.ods_spacing_s))
+            .padding(top = dimensionResource(id = R.dimen.spacing_m))
             .padding(horizontal = if (withHorizontalPadding) dimensionResource(R.dimen.ods_screen_horizontal_margin) else 0.dp),
         displayAppearance = displayAppearance
     )

@@ -46,7 +46,7 @@ fun ComponentDetail(component: Component, ComponentContent: @Composable () -> Un
     Column(
         modifier = Modifier
             .verticalScroll(rememberScrollState())
-            .padding(bottom = dimensionResource(id = R.dimen.ods_spacing_s))
+            .padding(bottom = dimensionResource(id = R.dimen.spacing_m))
     ) {
         ComponentHeader(
             imageRes = component.imageRes,
@@ -69,7 +69,7 @@ fun ComponentDetailWithVariants(component: Component, onVariantClick: (Long) -> 
             description = component.descriptionRes
         )
         Column(
-            modifier = Modifier.padding(top = dimensionResource(id = R.dimen.ods_spacing_s))
+            modifier = Modifier.padding(top = dimensionResource(id = R.dimen.spacing_m))
         ) {
             component.variants.forEach { variant ->
                 OdsListItem(text = stringResource(id = variant.titleRes), modifier = Modifier.clickable {

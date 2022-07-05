@@ -80,8 +80,8 @@ fun ComponentTabs(variant: Variant, updateTopAppBarTabs: (TabsConfiguration) -> 
             Row(
                 modifier = Modifier
                     .fillMaxWidth()
-                    .padding(top = dimensionResource(id = R.dimen.ods_spacing_xs))
-                    .padding(horizontal = dimensionResource(id = R.dimen.ods_spacing_s)),
+                    .padding(top = dimensionResource(id = R.dimen.spacing_s))
+                    .padding(horizontal = dimensionResource(id = R.dimen.spacing_m)),
                 horizontalArrangement = Arrangement.Start,
                 verticalAlignment = Alignment.CenterVertically
             ) {
@@ -111,7 +111,7 @@ fun ComponentTabs(variant: Variant, updateTopAppBarTabs: (TabsConfiguration) -> 
             Row(
                 modifier = Modifier
                     .fillMaxWidth()
-                    .padding(horizontal = dimensionResource(id = R.dimen.ods_spacing_s)),
+                    .padding(horizontal = dimensionResource(id = R.dimen.spacing_m)),
                 horizontalArrangement = Arrangement.Start,
                 verticalAlignment = Alignment.CenterVertically
             ) {

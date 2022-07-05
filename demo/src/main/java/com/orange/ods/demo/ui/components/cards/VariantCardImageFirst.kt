@@ -51,9 +51,9 @@ fun VariantCardImageFirst() {
         Column(
             modifier = Modifier
                 .fillMaxSize()
-                .padding(dimensionResource(id = R.dimen.ods_spacing_s))
+                .padding(dimensionResource(id = R.dimen.spacing_m))
                 .verticalScroll(state = rememberScrollState()),
-            verticalArrangement = Arrangement.spacedBy(dimensionResource(id = R.dimen.ods_spacing_s))
+            verticalArrangement = Arrangement.spacedBy(dimensionResource(id = R.dimen.spacing_m))
         ) {
             val button1Text = stringResource(id = R.string.component_element_button1)
             val button2Text = stringResource(id = R.string.component_element_button2)

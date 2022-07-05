@@ -44,8 +44,8 @@ fun ComponentTextField(variant: Variant) {
             Row(
                 modifier = Modifier
                     .fillMaxWidth()
-                    .padding(top = dimensionResource(id = R.dimen.ods_spacing_xs))
-                    .padding(start = dimensionResource(id = R.dimen.ods_spacing_s)),
+                    .padding(top = dimensionResource(id = R.dimen.spacing_s))
+                    .padding(start = dimensionResource(id = R.dimen.spacing_m)),
                 horizontalArrangement = Arrangement.Start
             ) {
                 LabelledRadioButton(
@@ -68,8 +68,8 @@ fun ComponentTextField(variant: Variant) {
             Row(
                 modifier = Modifier
                     .fillMaxWidth()
-                    .padding(vertical = dimensionResource(id = R.dimen.ods_spacing_xs))
-                    .padding(start = dimensionResource(id = R.dimen.ods_spacing_s)),
+                    .padding(vertical = dimensionResource(id = R.dimen.spacing_s))
+                    .padding(start = dimensionResource(id = R.dimen.spacing_m)),
                 horizontalArrangement = Arrangement.Start
             ) {
                 LabelledRadioButton(

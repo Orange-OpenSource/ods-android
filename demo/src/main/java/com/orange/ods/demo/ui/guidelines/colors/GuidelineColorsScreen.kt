@@ -61,18 +61,18 @@ fun GuidelineColorsScreen(updateTopBarTitle: (Int) -> Unit) {
 private fun ColorList(colors: List<GuidelineColorItem>) {
     LazyColumn(
         contentPadding = PaddingValues(
-            start = dimensionResource(id = R.dimen.ods_spacing_s),
-            end = dimensionResource(id = R.dimen.ods_spacing_s),
+            start = dimensionResource(id = R.dimen.spacing_m),
+            end = dimensionResource(id = R.dimen.spacing_m),
             bottom = dimensionResource(id = R.dimen.ods_screen_vertical_margin)
         ),
-        verticalArrangement = Arrangement.spacedBy(dimensionResource(id = R.dimen.ods_spacing_s)),
+        verticalArrangement = Arrangement.spacedBy(dimensionResource(id = R.dimen.spacing_m)),
     ) {
         item {
             Title(textRes = R.string.guideline_colour_core, modifier = Modifier.semantics { heading() })
         }
         items(colors.filter { it.colorType == ColorType.CORE }.chunked(2)) { rowColors ->
             Row(
-                horizontalArrangement = Arrangement.spacedBy(dimensionResource(id = R.dimen.ods_spacing_s)),
+                horizontalArrangement = Arrangement.spacedBy(dimensionResource(id = R.dimen.spacing_m)),
             ) {
                 BigColorItem(color = rowColors[0])
                 BigColorItem(color = rowColors[1])
@@ -83,7 +83,7 @@ private fun ColorList(colors: List<GuidelineColorItem>) {
         }
         items(colors.filter { it.colorType == ColorType.FUNCTIONAL }.chunked(2)) { rowColors ->
             Row(
-                horizontalArrangement = Arrangement.spacedBy(dimensionResource(id = R.dimen.ods_spacing_s)),
+                horizontalArrangement = Arrangement.spacedBy(dimensionResource(id = R.dimen.spacing_m)),
             ) {
                 BigColorItem(color = rowColors[0])
                 BigColorItem(color = rowColors[1])
@@ -94,7 +94,7 @@ private fun ColorList(colors: List<GuidelineColorItem>) {
         }
         items(colors.filter { it.colorType == ColorType.SUPPORTING }.chunked(3)) { rowColors ->
             Row(
-                horizontalArrangement = Arrangement.spacedBy(dimensionResource(id = R.dimen.ods_spacing_s)),
+                horizontalArrangement = Arrangement.spacedBy(dimensionResource(id = R.dimen.spacing_m)),
             ) {
                 SmallColorItem(color = rowColors[0])
                 SmallColorItem(color = rowColors[1])
@@ -122,7 +122,7 @@ private fun RowScope.SmallColorItem(color: GuidelineColorItem) {
         )
         OdsTextH6(
             text = color.name,
-            modifier = Modifier.padding(top = dimensionResource(id = R.dimen.ods_spacing_xxs))
+            modifier = Modifier.padding(top = dimensionResource(id = R.dimen.spacing_xs))
         )
         OdsTextCaption(text = color.hexValue)
     }
@@ -160,15 +160,14 @@ private fun RowScope.BigColorItem(color: GuidelineColorItem) {
         )
         OdsTextH6(
             text = color.name,
-            modifier = Modifier.padding(top = dimensionResource(id = R.dimen.ods_spacing_xxs))
+            modifier = Modifier.padding(top = dimensionResource(id = R.dimen.spacing_xs))
         )
         OdsTextBody1(text = color.jetPackName)
         OdsTextCaption(
-            modifier = Modifier.padding(top = dimensionResource(id = R.dimen.ods_spacing_xxxs)),
+            modifier = Modifier.padding(top = dimensionResource(id = R.dimen.spacing_xs)),
             text = color.hexValue
         )
         OdsTextCaption(
-            modifier = Modifier.padding(top = dimensionResource(id = R.dimen.ods_spacing_xxxs)),
             text = color.rgbValue
         )
     }
@@ -194,23 +193,23 @@ private fun DialogColor(color: GuidelineColorItem, openDialog: MutableState<Bool
                 modifier = Modifier
                     .background(color = MaterialTheme.colors.background)
                     .fillMaxWidth()
-                    .padding(dimensionResource(id = R.dimen.ods_spacing_s))
+                    .padding(dimensionResource(id = R.dimen.spacing_m))
             ) {
                 OdsTextH5(text = color.name)
                 OdsTextBody1(
-                    modifier = Modifier.padding(top = dimensionResource(id = R.dimen.ods_spacing_xxs)),
+                    modifier = Modifier.padding(top = dimensionResource(id = R.dimen.spacing_xs)),
                     text = color.jetPackName
                 )
                 OdsTextBody1(
-                    modifier = Modifier.padding(top = dimensionResource(id = R.dimen.ods_spacing_xs)),
+                    modifier = Modifier.padding(top = dimensionResource(id = R.dimen.spacing_s)),
                     text = color.hexValue
                 )
                 OdsTextBody1(
-                    modifier = Modifier.padding(top = dimensionResource(id = R.dimen.ods_spacing_xs)),
+                    modifier = Modifier.padding(top = dimensionResource(id = R.dimen.spacing_s)),
                     text = color.rgbValue
                 )
                 OdsTextBody1(
-                    modifier = Modifier.padding(top = dimensionResource(id = R.dimen.ods_spacing_xs)),
+                    modifier = Modifier.padding(top = dimensionResource(id = R.dimen.spacing_s)),
                     text = stringResource(
                         id = R.string.guideline_colour_xml,
                         context.getStringName(color.xmlResourceValue)

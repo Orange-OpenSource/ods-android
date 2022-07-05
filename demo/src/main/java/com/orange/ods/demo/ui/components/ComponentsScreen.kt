@@ -33,14 +33,14 @@ fun ComponentsScreen(onComponentClick: (Long) -> Unit, updateTopBarTitle: (Int) 
     val scrollState = rememberScrollState()
     Column(
         modifier = Modifier
-            .padding(dimensionResource(id = R.dimen.ods_spacing_s))
+            .padding(dimensionResource(id = R.dimen.spacing_m))
             .fillMaxSize()
             .verticalScroll(scrollState),
-        verticalArrangement = Arrangement.spacedBy(dimensionResource(id = R.dimen.ods_spacing_s))
+        verticalArrangement = Arrangement.spacedBy(dimensionResource(id = R.dimen.spacing_m))
     ) {
         components.chunked(2).forEach { rowCards ->
             Row(
-                horizontalArrangement = Arrangement.spacedBy(dimensionResource(id = R.dimen.ods_spacing_s)),
+                horizontalArrangement = Arrangement.spacedBy(dimensionResource(id = R.dimen.spacing_m)),
             ) {
                 ComponentCard(component = rowCards[0], onComponentClick)
                 if (rowCards.size == 2) {

@@ -41,10 +41,10 @@ fun VariantButtonsToggle() {
         contentDescription = "Search",
         modifier = Modifier
             .fillMaxWidth()
-            .padding(top = dimensionResource(R.dimen.ods_spacing_xs))
+            .padding(top = dimensionResource(R.dimen.spacing_s))
     )
 
-    Spacer(modifier = Modifier.padding(top = dimensionResource(R.dimen.ods_spacing_xs)))
+    Spacer(modifier = Modifier.padding(top = dimensionResource(R.dimen.spacing_s)))
 
     LightSurface {
         ToggleButtonFullWidthAppearanceForced(OdsDisplayAppearance.ON_LIGHT)
@@ -84,7 +84,7 @@ private fun ToggleButtonFullWidthAppearanceForced(displayAppearance: OdsDisplayA
         contentDescription = "Search",
         modifier = Modifier
             .fullWidthButton()
-            .padding(top = dimensionResource(R.dimen.ods_spacing_xxs)),
+            .padding(top = dimensionResource(R.dimen.spacing_xs)),
         displayAppearance = displayAppearance
     )
 }

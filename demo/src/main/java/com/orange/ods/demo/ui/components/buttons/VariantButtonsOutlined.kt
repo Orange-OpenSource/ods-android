@@ -25,7 +25,7 @@ fun VariantButtonsOutlined() {
     OutlinedButtonsEnabledDisabled(hasIcon = false)
     OutlinedButtonsEnabledDisabled(hasIcon = true)
 
-    Spacer(modifier = Modifier.padding(top = dimensionResource(R.dimen.ods_spacing_xs)))
+    Spacer(modifier = Modifier.padding(top = dimensionResource(R.dimen.spacing_s)))
 
     LightSurface {
         OutlinedButtonsEnabledDisabled(hasIcon = false, displayAppearance = OdsDisplayAppearance.ON_LIGHT)
