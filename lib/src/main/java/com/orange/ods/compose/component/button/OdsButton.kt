@@ -34,19 +34,19 @@ import com.orange.ods.compose.theme.odsDarkThemeColors
 import com.orange.ods.compose.theme.odsLightThemeColors
 
 /**
- * Specifying an [OdsButtonFunctionalType] allow to display a button with functional colors.
- * Note that `Positive`and `Negative` values are for contained buttons only.
+ * Specifying an [OdsButtonStyle] allow to display a button with specific colors.
+ * Note that `FunctionalPositive`and `FunctionalNegative` values are for contained buttons only.
  */
-enum class OdsButtonFunctionalType {
-    Default, Primary, Positive, Negative;
+enum class OdsButtonStyle {
+    Default, Primary, FunctionalPositive, FunctionalNegative;
 
     @Composable
     internal fun getColors(displaySurface: OdsDisplaySurface): ButtonColors {
         return when (this) {
             Default -> odsDefaultButtonColors(displaySurface)
             Primary -> odsPrimaryButtonColors(displaySurface)
-            Positive -> odsPositiveButtonColors(displaySurface)
-            Negative -> odsNegativeButtonColors(displaySurface)
+            FunctionalPositive -> odsPositiveButtonColors(displaySurface)
+            FunctionalNegative -> odsNegativeButtonColors(displaySurface)
         }
     }
 }
@@ -63,8 +63,8 @@ enum class OdsButtonFunctionalType {
  * @param iconRes Drawable resource of the icon. If `null`, no icon will be displayed.
  * @param enabled Controls the enabled state of the button. When `false`, this button will not
  * be clickable
- * @param functionalType Controls the style of the button. Use `OdsButtonFunctionalType.Primary` for an highlighted button style. To get a green/red button
- * style on contained buttons, you can use `OdsButtonFunctionalType.Positive` or `OdsButtonFunctionalType.Negative` values.
+ * @param style Controls the style of the button. Use `OdsButtonStyle.Primary` for an highlighted button style. To get a green/red button
+ * style on contained buttons, you can use `OdsButtonStyle.FunctionalPositive` or `OdsButtonStyle.FunctionalNegative` values.
  * @param displaySurface optional allow to force the button display on a dark or light
  * surface. By default the appearance applied is based on the system night mode value.
  */
@@ -76,7 +76,7 @@ fun OdsButton(
     @DrawableRes
     iconRes: Int? = null,
     enabled: Boolean = true,
-    functionalType: OdsButtonFunctionalType = OdsButtonFunctionalType.Default,
+    style: OdsButtonStyle = OdsButtonStyle.Default,
     displaySurface: OdsDisplaySurface = OdsDisplaySurface.Default
 ) {
     CompositionLocalProvider(LocalRippleTheme provides OdsOnPrimaryRippleTheme) {
@@ -87,7 +87,7 @@ fun OdsButton(
             interactionSource = remember { MutableInteractionSource() },
             elevation = null,
             shape = odsButtonShape,
-            colors = functionalType.getColors(displaySurface = displaySurface)
+            colors = style.getColors(displaySurface = displaySurface)
         ) {
             iconRes?.let { ButtonIcon(it) }
             Text(text.uppercase())

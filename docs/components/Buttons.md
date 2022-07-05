@@ -153,7 +153,7 @@ OdsButton(
 )
 ```
 
-To display a primary button or a functional green/red button, you need to pass a `functionalType` parameter:
+To display a primary button or a functional green/red button, you need to pass an `OdsButtonStyle` through the `style` parameter:
 
 ```kotlin
 OdsButton(
@@ -161,7 +161,7 @@ OdsButton(
     onClick = {}, 
     enabled = true,
     iconRes = R.drawable.ic_search, // Optional, line can be removed if you don't need any icon
-    functionalType = OdsButtonFunctionalType.Positive
+    style = OdsButtonStyle.FunctionalPositive
 )
 ```
 

@@ -17,7 +17,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.stringResource
 import com.orange.ods.compose.component.button.OdsButton
-import com.orange.ods.compose.component.button.OdsButtonFunctionalType
+import com.orange.ods.compose.component.button.OdsButtonStyle
 import com.orange.ods.compose.theme.OdsDisplaySurface
 import com.orange.ods.demo.R
 import com.orange.ods.demo.ui.utilities.composable.Title
@@ -25,41 +25,41 @@ import com.orange.ods.demo.ui.utilities.composable.Title
 @Composable
 fun VariantButtonsContained() {
     Title(R.string.component_buttons_contained_primary, withHorizontalPadding = true)
-    ContainedButtons(functionalType = OdsButtonFunctionalType.Primary)
+    ContainedButtons(style = OdsButtonStyle.Primary)
 
     Title(R.string.component_buttons_contained_standard, withHorizontalPadding = true)
-    ContainedButtons(functionalType = OdsButtonFunctionalType.Default)
+    ContainedButtons(style = OdsButtonStyle.Default)
 
     Title(R.string.component_buttons_contained_functional_positive, withHorizontalPadding = true)
-    ContainedButtonsOnDefaultSurface(functionalType = OdsButtonFunctionalType.Positive)
+    ContainedButtonsOnDefaultSurface(style = OdsButtonStyle.FunctionalPositive)
 
     Title(R.string.component_buttons_contained_functional_negative, withHorizontalPadding = true)
-    ContainedButtonsOnDefaultSurface(functionalType = OdsButtonFunctionalType.Negative)
+    ContainedButtonsOnDefaultSurface(style = OdsButtonStyle.FunctionalNegative)
 }
 
 @Composable
-private fun ContainedButtonsOnDefaultSurface(functionalType: OdsButtonFunctionalType) {
-    ContainedButtonsEnabledDisabled(functionalType = functionalType, hasIcon = false)
-    ContainedButtonsEnabledDisabled(functionalType = functionalType, hasIcon = true)
+private fun ContainedButtonsOnDefaultSurface(style: OdsButtonStyle) {
+    ContainedButtonsEnabledDisabled(style = style, hasIcon = false)
+    ContainedButtonsEnabledDisabled(style = style, hasIcon = true)
 }
 
 @Composable
-private fun ContainedButtons(functionalType: OdsButtonFunctionalType) {
-    ContainedButtonsOnDefaultSurface(functionalType)
+private fun ContainedButtons(style: OdsButtonStyle) {
+    ContainedButtonsOnDefaultSurface(style)
 
     Spacer(modifier = Modifier.padding(top = dimensionResource(R.dimen.spacing_s)))
 
     LightSurface {
-        ContainedButtonsEnabledDisabled(functionalType = functionalType, hasIcon = false, displaySurface = OdsDisplaySurface.Light)
+        ContainedButtonsEnabledDisabled(style = style, hasIcon = false, displaySurface = OdsDisplaySurface.Light)
     }
     DarkSurface {
-        ContainedButtonsEnabledDisabled(functionalType = functionalType, hasIcon = false, displaySurface = OdsDisplaySurface.Dark)
+        ContainedButtonsEnabledDisabled(style = style, hasIcon = false, displaySurface = OdsDisplaySurface.Dark)
     }
 }
 
 @Composable
 private fun ContainedButtonsEnabledDisabled(
-    functionalType: OdsButtonFunctionalType,
+    style: OdsButtonStyle,
     hasIcon: Boolean,
     displaySurface: OdsDisplaySurface = OdsDisplaySurface.Default
 ) {
@@ -68,7 +68,7 @@ private fun ContainedButtonsEnabledDisabled(
         iconRes = if (hasIcon) R.drawable.ic_search else null,
         text = stringResource(R.string.component_state_enabled),
         onClick = {},
-        functionalType = functionalType,
+        style = style,
         displaySurface = displaySurface
     )
     OdsButton(
@@ -77,7 +77,7 @@ private fun ContainedButtonsEnabledDisabled(
         text = stringResource(R.string.component_state_disabled),
         onClick = {},
         enabled = false,
-        functionalType = functionalType,
+        style = style,
         displaySurface = displaySurface
     )
 
