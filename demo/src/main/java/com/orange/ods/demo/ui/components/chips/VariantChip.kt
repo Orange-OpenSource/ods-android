@@ -18,6 +18,7 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.selection.toggleable
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.ExperimentalMaterialApi
 import androidx.compose.material.rememberBottomSheetScaffoldState
@@ -27,6 +28,7 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.semantics.Role
 import com.google.accompanist.flowlayout.FlowRow
 import com.orange.ods.compose.component.chip.OdsChip
 import com.orange.ods.demo.R
@@ -161,10 +163,15 @@ private fun getChipText(chipType: ChipType): String {
 @ExperimentalMaterialApi
 @Composable
 private fun ChoiceChip(index: Int, customizationState: ChipCustomizationState) {
+    val selected = customizationState.choiceChipIndexSelected.value == index
     OdsChip(
+        modifier = Modifier.toggleable(
+            value = selected,
+            role = Role.RadioButton,
+            onValueChange = { customizationState.selectChoiceChip(index) }),
         text = "${getChipText(chipType = customizationState.chipType.value)} $index",
-        onClick = { customizationState.selectChoiceChip(index) },
-        selected = customizationState.choiceChipIndexSelected.value == index,
+        onClick = { },
+        selected = selected,
         outlined = customizationState.outlinedChecked.value,
         enabled = !customizationState.disabledChecked.value,
     )
