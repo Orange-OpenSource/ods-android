@@ -34,7 +34,7 @@ import com.orange.ods.demo.ui.utilities.composable.Subtitle
 fun ComponentButtons(variant: Variant) {
     Column(
         modifier = Modifier
-            .padding(bottom = dimensionResource(id = R.dimen.ods_spacing_xs))
+            .padding(bottom = dimensionResource(id = R.dimen.ods_screen_vertical_margin))
             .verticalScroll(rememberScrollState())
     ) {
         when (variant) {
