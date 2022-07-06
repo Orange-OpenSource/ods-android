@@ -35,7 +35,7 @@ fun VariantTextFieldOutlined(customizationState: TextFieldCustomizationState) {
     OdsOutlinedTextField(
         modifier = Modifier
             .fillMaxWidth()
-            .padding(top = dimensionResource(id = R.dimen.ods_spacing_xs)),
+            .padding(top = dimensionResource(id = R.dimen.spacing_s)),
         leadingIcon = if (customizationState.leadingIconChecked.value) painterResource(id = R.drawable.ic_heart) else null,
         enabled = customizationState.isEnabled,
         isError = customizationState.isError,

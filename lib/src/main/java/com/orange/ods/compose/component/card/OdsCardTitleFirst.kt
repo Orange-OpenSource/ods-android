@@ -81,11 +81,11 @@ fun OdsCardTitleFirst(
                 modifier = Modifier
                     .fillMaxWidth()
                     .height(dimensionResource(id = R.dimen.list_two_line_item_with_icon_height))
-                    .padding(horizontal = dimensionResource(id = R.dimen.ods_spacing_s)),
+                    .padding(horizontal = dimensionResource(id = R.dimen.spacing_m)),
                 verticalAlignment = Alignment.CenterVertically
             ) {
                 thumbnailRes?.let { OdsImageCircleShape(painter = painterResource(id = it)) }
-                Column(modifier = Modifier.padding(start = thumbnailRes?.let { dimensionResource(id = R.dimen.ods_spacing_xs) }
+                Column(modifier = Modifier.padding(start = thumbnailRes?.let { dimensionResource(id = R.dimen.spacing_s) }
                     ?: run { 0.dp })) {
                     OdsTextH6(text = title)
                     subtitle?.let {
@@ -106,21 +106,21 @@ fun OdsCardTitleFirst(
             text?.let {
                 OdsTextBody1(
                     modifier = Modifier
-                        .padding(top = dimensionResource(id = R.dimen.ods_spacing_s))
-                        .padding(horizontal = dimensionResource(id = R.dimen.ods_spacing_s)),
+                        .padding(top = dimensionResource(id = R.dimen.spacing_m))
+                        .padding(horizontal = dimensionResource(id = R.dimen.spacing_m)),
                     text = it
                 )
             }
 
             if (button1Text != null || button2Text != null || text != null) {
-                Spacer(modifier = Modifier.height(dimensionResource(id = R.dimen.ods_spacing_s)))
+                Spacer(modifier = Modifier.height(dimensionResource(id = R.dimen.spacing_m)))
             }
 
             Row(
                 modifier = Modifier
                     .fillMaxWidth()
-                    .padding(horizontal = dimensionResource(id = R.dimen.ods_spacing_xs)),
-                horizontalArrangement = Arrangement.spacedBy(dimensionResource(id = R.dimen.ods_spacing_xs))
+                    .padding(horizontal = dimensionResource(id = R.dimen.spacing_s)),
+                horizontalArrangement = Arrangement.spacedBy(dimensionResource(id = R.dimen.spacing_s))
             ) {
                 button1Text?.let {
                     OdsButtonText(

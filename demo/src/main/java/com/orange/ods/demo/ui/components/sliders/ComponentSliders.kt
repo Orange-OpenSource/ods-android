@@ -30,7 +30,7 @@ fun ComponentSlidersContent() {
 
     Column(
         modifier = Modifier
-            .padding(horizontal = dimensionResource(id = R.dimen.ods_spacing_s))
+            .padding(horizontal = dimensionResource(id = R.dimen.spacing_m))
     ) {
         Subtitle(R.string.component_slider_discrete, withHorizontalPadding = false)
         OdsSlider(
@@ -72,7 +72,7 @@ fun ComponentSlidersContent() {
 
         Subtitle(R.string.component_slider_discrete_lockups, withHorizontalPadding = false)
         OdsSliderLockups(
-            modifier = Modifier.padding(top = dimensionResource(id = R.dimen.ods_spacing_s)),
+            modifier = Modifier.padding(top = dimensionResource(id = R.dimen.spacing_m)),
             value = discreteLockupsSliderPosition,
             valueRange = 0f..100f,
             steps = 9,
@@ -83,7 +83,7 @@ fun ComponentSlidersContent() {
 
         Subtitle(R.string.component_slider_continuous_lockups, withHorizontalPadding = false)
         OdsSliderLockups(
-            modifier = Modifier.padding(top = dimensionResource(id = R.dimen.ods_spacing_s)),
+            modifier = Modifier.padding(top = dimensionResource(id = R.dimen.spacing_m)),
             value = continuousLockupsSliderPosition,
             valueRange = 0f..100f,
             onValueChange = { continuousLockupsSliderPosition = it }

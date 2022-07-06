@@ -82,7 +82,7 @@ fun OdsCardImageFirst(
                 )
             Column(
                 modifier = Modifier
-                    .padding(dimensionResource(id = R.dimen.ods_spacing_s))
+                    .padding(dimensionResource(id = R.dimen.spacing_m))
                     .semantics(mergeDescendants = true) {}
             ) {
                 OdsTextH6(text = title)
@@ -92,15 +92,15 @@ fun OdsCardImageFirst(
                 text?.let {
                     OdsTextBody1(
                         modifier = Modifier.padding(
-                            top = dimensionResource(id = R.dimen.ods_spacing_xs)
+                            top = dimensionResource(id = R.dimen.spacing_s)
                         ),
                         text = it
                     )
                 }
             }
             Row(
-                modifier = Modifier.padding(horizontal = dimensionResource(id = R.dimen.ods_spacing_xs)),
-                horizontalArrangement = Arrangement.spacedBy(dimensionResource(id = R.dimen.ods_spacing_xs))
+                modifier = Modifier.padding(horizontal = dimensionResource(id = R.dimen.spacing_s)),
+                horizontalArrangement = Arrangement.spacedBy(dimensionResource(id = R.dimen.spacing_s))
             ) {
                 button1Text?.let {
                     OdsButtonText(

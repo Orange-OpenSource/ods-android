@@ -47,8 +47,8 @@ fun VariantChipFilter() {
             Row(
                 modifier = Modifier
                     .fillMaxWidth()
-                    .padding(vertical = dimensionResource(id = R.dimen.ods_spacing_xs))
-                    .padding(start = dimensionResource(id = R.dimen.ods_spacing_s)),
+                    .padding(vertical = dimensionResource(id = R.dimen.spacing_s))
+                    .padding(start = dimensionResource(id = R.dimen.spacing_m)),
                 horizontalArrangement = Arrangement.Start
             ) {
                 LabelledRadioButton(
@@ -75,7 +75,7 @@ fun VariantChipFilter() {
                     vertical = dimensionResource(id = R.dimen.ods_screen_vertical_margin)
                 )
         ) {
-            FlowRow(modifier = Modifier.fillMaxWidth(), mainAxisSpacing = dimensionResource(id = R.dimen.ods_spacing_xs)) {
+            FlowRow(modifier = Modifier.fillMaxWidth(), mainAxisSpacing = dimensionResource(id = R.dimen.spacing_s)) {
                 for (index in 1..4) {
                     FilterChip(index, customizationState)
                 }

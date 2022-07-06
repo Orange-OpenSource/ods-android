@@ -31,9 +31,9 @@ fun GuidelinesScreen(onGuidelineClick: (String) -> Unit, updateTopBarTitle: (Int
     Column(
         modifier = Modifier
             .fillMaxSize()
-            .padding(dimensionResource(id = R.dimen.ods_spacing_s))
+            .padding(dimensionResource(id = R.dimen.spacing_m))
             .verticalScroll(scrollState),
-        verticalArrangement = Arrangement.spacedBy(dimensionResource(id = R.dimen.ods_spacing_s))
+        verticalArrangement = Arrangement.spacedBy(dimensionResource(id = R.dimen.spacing_m))
     ) {
         guidelines.forEach { item ->
             OdsCardImageFirst(

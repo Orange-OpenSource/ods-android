@@ -59,17 +59,17 @@ fun AboutScreen(onAboutItemClick: (Long) -> Unit, updateTopBarTitle: (Int) -> Un
             Text(
                 text = stringResource(id = R.string.about_app_name),
                 style = MaterialTheme.typography.h4,
-                modifier = Modifier.padding(top = dimensionResource(id = R.dimen.ods_spacing_l))
+                modifier = Modifier.padding(top = dimensionResource(id = R.dimen.spacing_xl))
             )
             Text(
                 text = getVersion(context),
                 style = MaterialTheme.typography.caption,
-                modifier = Modifier.padding(top = dimensionResource(id = R.dimen.ods_spacing_xxs))
+                modifier = Modifier.padding(top = dimensionResource(id = R.dimen.spacing_xs))
             )
             Text(text = stringResource(id = R.string.about_copyright), style = MaterialTheme.typography.caption)
         }
 
-        Spacer(modifier = Modifier.height(dimensionResource(id = R.dimen.ods_spacing_s)))
+        Spacer(modifier = Modifier.height(dimensionResource(id = R.dimen.spacing_m)))
 
         for (aboutItem in aboutItems) {
             OdsListItem(text = stringResource(id = aboutItem.titleRes), modifier = Modifier.clickable {

@@ -45,33 +45,35 @@ fun ComponentProgressContent() {
     Column(
         modifier = Modifier
             .padding(horizontal = dimensionResource(id = R.dimen.ods_screen_horizontal_margin))
-            .padding(bottom = dimensionResource(id = R.dimen.ods_spacing_s))
+            .padding(bottom = dimensionResource(id = R.dimen.spacing_m))
     ) {
         Title(textRes = R.string.component_progress_bars)
         Subtitle(textRes = R.string.component_progress_bar_determinate)
         LinearProgressIndicator(
             progress = determinateProgressAnimation,
             modifier = Modifier
-                .padding(top = dimensionResource(id = R.dimen.ods_spacing_s))
+                .padding(top = dimensionResource(id = R.dimen.spacing_m))
                 .fillMaxWidth()
         )
         Subtitle(textRes = R.string.component_progress_bar_indeterminate)
-        LinearProgressIndicator(modifier = Modifier
-            .padding(top = dimensionResource(id = R.dimen.ods_spacing_s))
-            .fillMaxWidth())
+        LinearProgressIndicator(
+            modifier = Modifier
+                .padding(top = dimensionResource(id = R.dimen.spacing_m))
+                .fillMaxWidth()
+        )
 
         Title(textRes = R.string.component_progress_activity_indicator)
         Subtitle(textRes = R.string.component_progress_activity_indicator_determinate)
         CircularProgressIndicator(
             progress = determinateProgressAnimation,
             modifier = Modifier
-                .padding(top = dimensionResource(id = R.dimen.ods_spacing_s))
+                .padding(top = dimensionResource(id = R.dimen.spacing_m))
                 .align(alignment = Alignment.CenterHorizontally)
         )
         Subtitle(textRes = R.string.component_progress_activity_indicator_indeterminate)
         CircularProgressIndicator(
             modifier = Modifier
-                .padding(top = dimensionResource(id = R.dimen.ods_spacing_s))
+                .padding(top = dimensionResource(id = R.dimen.spacing_m))
                 .align(alignment = Alignment.CenterHorizontally)
         )
 

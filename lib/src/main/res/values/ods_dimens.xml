@@ -13,16 +13,17 @@
 <resources>
 
     <!-- Spacings -->
-    <dimen name="ods_spacing_xxxs">2dp</dimen>
-    <dimen name="ods_spacing_xxs">4dp</dimen>
-    <dimen name="ods_spacing_xs">8dp</dimen>
-    <dimen name="ods_spacing_s">16dp</dimen>
-    <dimen name="ods_spacing_m">24dp</dimen>
-    <dimen name="ods_spacing_l">32dp</dimen>
+    <dimen name="spacing_none">0dp</dimen>
+    <dimen name="spacing_xs">4dp</dimen>
+    <dimen name="spacing_s">8dp</dimen>
+    <dimen name="spacing_m">16dp</dimen>
+    <dimen name="spacing_l">24dp</dimen>
+    <dimen name="spacing_xl">32dp</dimen>
+    <dimen name="spacing_2xl">40dp</dimen>
 
     <!-- Screen margins -->
-    <dimen name="ods_screen_vertical_margin">@dimen/ods_spacing_xs</dimen>
-    <dimen name="ods_screen_horizontal_margin">@dimen/ods_spacing_s</dimen>
+    <dimen name="ods_screen_vertical_margin">@dimen/spacing_s</dimen>
+    <dimen name="ods_screen_horizontal_margin">@dimen/spacing_m</dimen>
 
     <!-- Button -->
     <dimen name="ods_button_outlined_stroke_width">2dp</dimen>

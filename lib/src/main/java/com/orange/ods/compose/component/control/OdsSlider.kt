@@ -182,7 +182,7 @@ fun OdsSliderLockups(
             onValueChange = onValueChange,
             modifier = Modifier
                 .fillMaxWidth()
-                .padding(top = dimensionResource(id = R.dimen.ods_spacing_m))
+                .padding(top = dimensionResource(id = R.dimen.spacing_l))
                 .padding(horizontal = labelMinWidth / 3),
             enabled = enabled,
             valueRange = valueRange,

@@ -43,7 +43,7 @@ fun ComponentDialogsContent() {
     val context = LocalContext.current
 
     Title(textRes = R.string.component_dialogs_customize, withHorizontalPadding = true)
-    Spacer(modifier = Modifier.height(dimensionResource(id = R.dimen.ods_spacing_xs)))
+    Spacer(modifier = Modifier.height(dimensionResource(id = R.dimen.spacing_s)))
     SwitchListItem(labelRes = R.string.component_element_title, checked = customizationState.titleChecked)
     SwitchListItem(labelRes = R.string.component_dialog_element_dismiss_button, checked = customizationState.dismissButtonChecked)
     OdsButton(

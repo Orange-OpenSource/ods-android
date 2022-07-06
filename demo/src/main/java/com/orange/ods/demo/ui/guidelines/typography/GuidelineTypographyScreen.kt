@@ -39,13 +39,13 @@ fun GuidelineTypographyScreen(updateTopBarTitle: (Int) -> Unit) {
     val typographyItems = getTypographyItems()
 
     LazyColumn(
-        contentPadding = PaddingValues(horizontal = dimensionResource(id = R.dimen.ods_spacing_s), vertical = dimensionResource(id = R.dimen.ods_spacing_xs)),
-        verticalArrangement = Arrangement.spacedBy(dimensionResource(id = R.dimen.ods_spacing_s)),
+        contentPadding = PaddingValues(horizontal = dimensionResource(id = R.dimen.spacing_m), vertical = dimensionResource(id = R.dimen.spacing_s)),
+        verticalArrangement = Arrangement.spacedBy(dimensionResource(id = R.dimen.spacing_m)),
     ) {
         items(typographyItems) { typo ->
             TypographyRow(typo)
             Divider(
-                modifier = Modifier.padding(top = dimensionResource(id = R.dimen.ods_spacing_s)),
+                modifier = Modifier.padding(top = dimensionResource(id = R.dimen.spacing_m)),
                 color = ObsGrey700,
                 thickness = 1.dp
             )

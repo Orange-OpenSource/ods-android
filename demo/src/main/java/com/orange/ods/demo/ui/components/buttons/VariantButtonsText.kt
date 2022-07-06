@@ -35,7 +35,7 @@ private fun TextButtons(hasPrimaryColor: Boolean) {
     TextButtonsEnabledDisabled(hasPrimaryColor = hasPrimaryColor, hasIcon = false)
     TextButtonsEnabledDisabled(hasPrimaryColor = hasPrimaryColor, hasIcon = true)
 
-    Spacer(modifier = Modifier.padding(top = dimensionResource(R.dimen.ods_spacing_xs)))
+    Spacer(modifier = Modifier.padding(top = dimensionResource(R.dimen.spacing_s)))
 
     LightSurface {
         TextButtonsEnabledDisabled(hasPrimaryColor = hasPrimaryColor, hasIcon = false, displayAppearance = OdsDisplayAppearance.ON_LIGHT)

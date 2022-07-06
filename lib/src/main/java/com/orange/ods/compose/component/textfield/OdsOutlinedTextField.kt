@@ -135,7 +135,7 @@ fun OdsOutlinedTextField(
             trailingText != null -> {
                 {
                     Text(
-                        modifier = Modifier.padding(end = dimensionResource(id = R.dimen.ods_spacing_xs)),
+                        modifier = Modifier.padding(end = dimensionResource(id = R.dimen.spacing_s)),
                         text = trailingText,
                         style = MaterialTheme.typography.subtitle1,
                         color = MaterialTheme.colors.trailingTextColor(value.isEmpty(), enabled)

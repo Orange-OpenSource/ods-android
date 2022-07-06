@@ -60,7 +60,7 @@ fun ComponentBottomNavigation() {
                     description = R.string.component_bottom_navigation_description
                 )
                 Column(
-                    modifier = Modifier.padding(top = dimensionResource(id = R.dimen.ods_spacing_s))
+                    modifier = Modifier.padding(top = dimensionResource(id = R.dimen.spacing_m))
                 ) {
                     bottomNavigationVariants.forEachIndexed { index, bottomNavigationVariant ->
                         LabelledRadioButton(
