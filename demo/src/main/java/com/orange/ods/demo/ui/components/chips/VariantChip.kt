@@ -19,6 +19,7 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.selection.selectable
+import androidx.compose.foundation.selection.selectableGroup
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.ExperimentalMaterialApi
 import androidx.compose.material.rememberBottomSheetScaffoldState
@@ -127,7 +128,9 @@ private fun VariantChip(customizationState: ChipCustomizationState) {
     val chipLabel = stringResource(id = R.string.component_chip)
 
     if (customizationState.isChoiceChip) {
-        FlowRow(modifier = Modifier.fillMaxWidth()) {
+        FlowRow(modifier = Modifier
+            .fillMaxWidth()
+            .selectableGroup()) {
             for (index in 1..4) {
                 ChoiceChip(index, customizationState)
             }
