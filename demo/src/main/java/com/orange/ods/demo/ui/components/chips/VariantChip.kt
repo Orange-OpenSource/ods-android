@@ -164,13 +164,15 @@ private fun getChipText(chipType: ChipType): String {
 @Composable
 private fun ChoiceChip(index: Int, customizationState: ChipCustomizationState) {
     val selected = customizationState.choiceChipIndexSelected.value == index
+    val onClick: () -> Unit = { customizationState.selectChoiceChip(index) }
     OdsChip(
         modifier = Modifier.toggleable(
             value = selected,
             role = Role.RadioButton,
-            onValueChange = { customizationState.selectChoiceChip(index) }),
+            onValueChange = { onClick() }
+        ),
         text = "${getChipText(chipType = customizationState.chipType.value)} $index",
-        onClick = { },
+        onClick = onClick,
         selected = selected,
         outlined = customizationState.outlinedChecked.value,
         enabled = !customizationState.disabledChecked.value,
