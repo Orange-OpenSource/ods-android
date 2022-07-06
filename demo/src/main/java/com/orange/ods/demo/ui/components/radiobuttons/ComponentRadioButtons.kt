@@ -10,10 +10,13 @@
 
 package com.orange.ods.demo.ui.components.radiobuttons
 
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.selection.selectableGroup
 import androidx.compose.material.ExperimentalMaterialApi
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
+import androidx.compose.ui.Modifier
 import com.orange.ods.demo.R
 import com.orange.ods.demo.ui.utilities.composable.RadioButtonListItem
 import com.orange.ods.demo.ui.utilities.composable.Title
@@ -32,25 +35,26 @@ fun ComponentRadioButtonsContent() {
 @Composable
 private fun RadioButtons(enabled: Boolean) {
     val selectedRadio = remember { mutableStateOf(R.string.component_element_item1) }
+    Column(modifier = Modifier.selectableGroup()) {
+        RadioButtonListItem(
+            labelRes = R.string.component_element_item1,
+            selectedRadio = selectedRadio,
+            currentRadio = R.string.component_element_item1,
+            enabled = enabled
+        )
 
-    RadioButtonListItem(
-        labelRes = R.string.component_element_item1,
-        selectedRadio = selectedRadio,
-        currentRadio = R.string.component_element_item1,
-        enabled = enabled
-    )
+        RadioButtonListItem(
+            labelRes = R.string.component_element_item2,
+            selectedRadio = selectedRadio,
+            currentRadio = R.string.component_element_item2,
+            enabled = enabled
+        )
 
-    RadioButtonListItem(
-        labelRes = R.string.component_element_item2,
-        selectedRadio = selectedRadio,
-        currentRadio = R.string.component_element_item2,
-        enabled = enabled
-    )
-
-    RadioButtonListItem(
-        labelRes = R.string.component_element_item3,
-        selectedRadio = selectedRadio,
-        currentRadio = R.string.component_element_item3,
-        enabled = enabled
-    )
+        RadioButtonListItem(
+            labelRes = R.string.component_element_item3,
+            selectedRadio = selectedRadio,
+            currentRadio = R.string.component_element_item3,
+            enabled = enabled
+        )
+    }
 }

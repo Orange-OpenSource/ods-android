@@ -11,12 +11,14 @@
 package com.orange.ods.demo.ui.utilities.composable
 
 import androidx.annotation.StringRes
-import androidx.compose.foundation.clickable
+import androidx.compose.foundation.selection.selectable
+import androidx.compose.foundation.selection.toggleable
 import androidx.compose.material.ExperimentalMaterialApi
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.MutableState
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.semantics.Role
 import com.orange.ods.compose.component.control.OdsCheckbox
 import com.orange.ods.compose.component.control.OdsRadioButton
 import com.orange.ods.compose.component.control.OdsSwitch
@@ -26,12 +28,17 @@ import com.orange.ods.compose.component.list.OdsListItem
 @Composable
 fun CheckboxListItem(@StringRes labelRes: Int, checked: MutableState<Boolean>, enabled: Boolean = true) {
     OdsListItem(
-        modifier = if (enabled) Modifier.clickable { checked.value = !checked.value } else Modifier,
+        modifier = Modifier.toggleable(
+            value = checked.value,
+            role = Role.Checkbox,
+            enabled = enabled,
+            onValueChange = { checked.value = !checked.value }
+        ),
         text = stringResource(id = labelRes),
         trailing = {
             OdsCheckbox(
                 checked = checked.value,
-                onCheckedChange = { checked.value = it },
+                onCheckedChange = null,
                 enabled = enabled
             )
         }
@@ -41,17 +48,22 @@ fun CheckboxListItem(@StringRes labelRes: Int, checked: MutableState<Boolean>, e
 @ExperimentalMaterialApi
 @Composable
 fun <T> RadioButtonListItem(@StringRes labelRes: Int, selectedRadio: MutableState<T>, currentRadio: T, onClick: () -> Unit = {}, enabled: Boolean = true) {
-    val clickAction = {
-        selectedRadio.value = currentRadio
-        onClick.invoke()
-    }
+    val selected = selectedRadio.value == currentRadio
     OdsListItem(
-        modifier = if (enabled) Modifier.clickable { clickAction() } else Modifier,
+        modifier = Modifier.selectable(
+            selected = selected,
+            role = Role.RadioButton,
+            enabled = enabled,
+            onClick = {
+                selectedRadio.value = currentRadio
+                onClick()
+            }
+        ),
         text = stringResource(id = labelRes),
         trailing = {
             OdsRadioButton(
-                selected = selectedRadio.value == currentRadio,
-                onClick = { clickAction() },
+                selected = selected,
+                onClick = null,
                 enabled = enabled
             )
         }
@@ -62,12 +74,19 @@ fun <T> RadioButtonListItem(@StringRes labelRes: Int, selectedRadio: MutableStat
 @Composable
 fun SwitchListItem(@StringRes labelRes: Int, checked: MutableState<Boolean>, enabled: Boolean = true) {
     OdsListItem(
-        modifier = if (enabled) Modifier.clickable { checked.value = !checked.value } else Modifier,
+        modifier = Modifier.toggleable(
+            value = checked.value,
+            role = Role.Switch,
+            enabled = enabled,
+            onValueChange = {
+                checked.value = !checked.value
+            }
+        ),
         text = stringResource(id = labelRes),
         trailing = {
             OdsSwitch(
                 checked = checked.value,
-                onCheckedChange = { checked.value = it },
+                onCheckedChange = null,
                 enabled = enabled
             )
         }
