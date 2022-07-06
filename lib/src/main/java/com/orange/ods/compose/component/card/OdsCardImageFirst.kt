@@ -28,6 +28,7 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.semantics.semantics
 import com.orange.ods.R
 import com.orange.ods.compose.component.button.OdsButtonText
+import com.orange.ods.compose.component.button.OdsButtonTextStyle
 import com.orange.ods.compose.text.OdsTextBody1
 import com.orange.ods.compose.text.OdsTextH6
 import com.orange.ods.compose.text.OdsTextSubtitle2
@@ -106,14 +107,14 @@ fun OdsCardImageFirst(
                     OdsButtonText(
                         text = it,
                         onClick = { onButton1Click?.invoke() },
-                        hasPrimaryColor = true
+                        style = OdsButtonTextStyle.Primary
                     )
                 }
                 button2Text?.let {
                     OdsButtonText(
                         text = it,
                         onClick = { onButton2Click?.invoke() },
-                        hasPrimaryColor = true
+                        style = OdsButtonTextStyle.Primary
                     )
                 }
             }

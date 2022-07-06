@@ -51,7 +51,8 @@ OdsButtonText(
     text = "Text button", 
     onClick = {}, 
     enabled = true, 
-    iconRes = R.drawable.ic_search // Optional, line can be removed if you don't need any icon
+    iconRes = R.drawable.ic_search, // Optional, line can be removed if you don't need any icon
+    style = OdsButtonTextStyle.Primary
 )
 ```
 
@@ -93,7 +94,7 @@ Use the `OdsButtonOutlined` composable:
 
 ```kotlin
 OdsButtonOutlined(
-    text = "Text button", 
+    text = "Outlined button", 
     onClick = {}, 
     enabled = true,
     iconRes = R.drawable.ic_search // Optional, line can be removed if you don't need any icon
@@ -132,18 +133,39 @@ actions that are primary to your app.
 
   ![ContainedButton](images/button_contained_light.png) ![ContainedButton dark](images/button_contained_dark.png)
 
+Functional positive:
+
+  ![ContainedButton positive light](images/button_contained_positive_light.png) ![ContainedButton positive dark](images/button_contained_positive_dark.png)
+
+Functional negative:
+
+  ![ContainedButton negative light](images/button_contained_negative_light.png) ![ContainedButton negative dark](images/button_contained_negative_dark.png)
+
 > **Jetpack Compose implementation**
 
 Use the `OdsButton` composable:
 
 ```kotlin
 OdsButton(
-    text = "Text button", 
+    text = "Contained button", 
     onClick = {}, 
     enabled = true,
     iconRes = R.drawable.ic_search // Optional, line can be removed if you don't need any icon
 )
 ```
+
+To display a primary button or a functional green/red button, you need to pass an `OdsButtonStyle` through the `style` parameter:
+
+```kotlin
+OdsButton(
+    text = "Positive button", 
+    onClick = {}, 
+    enabled = true,
+    iconRes = R.drawable.ic_search, // Optional, line can be removed if you don't need any icon
+    style = OdsButtonStyle.FunctionalPositive
+)
+```
+
 
 > **XML implementation**
 

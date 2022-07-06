@@ -22,7 +22,7 @@ import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
-import com.orange.ods.compose.theme.OdsDisplayAppearance
+import com.orange.ods.compose.theme.OdsDisplaySurface
 import com.orange.ods.compose.theme.Transparent
 import com.orange.ods.compose.theme.odsDarkThemeColors
 import com.orange.ods.compose.theme.odsLightThemeColors
@@ -39,7 +39,7 @@ import com.orange.ods.compose.theme.odsLightThemeColors
  * @param iconRes Drawable resource of the icon. If `null`, no icon will be displayed.
  * @param enabled Controls the enabled state of the button. When `false`, this button will not
  * be clickable
- * @param displayAppearance optional allow to force the button display on a dark or light
+ * @param displaySurface optional allow to force the button display on a dark or light
  * surface. By default the appearance applied is based on the system night mode value.
  */
 @Composable
@@ -50,7 +50,7 @@ fun OdsButtonOutlined(
     @DrawableRes
     iconRes: Int? = null,
     enabled: Boolean = true,
-    displayAppearance: OdsDisplayAppearance = OdsDisplayAppearance.DEFAULT
+    displaySurface: OdsDisplaySurface = OdsDisplaySurface.Default
 ) {
     OutlinedButton(
         onClick = onClick,
@@ -61,15 +61,15 @@ fun OdsButtonOutlined(
         border = BorderStroke(
             ButtonDefaults.OutlinedBorderSize,
             if (enabled) {
-                MaterialTheme.colors.buttonOutlinedColor(displayAppearance)
+                MaterialTheme.colors.buttonOutlinedColor(displaySurface)
             } else {
-                MaterialTheme.colors.buttonOutlinedDisabledColor(displayAppearance)
+                MaterialTheme.colors.buttonOutlinedDisabledColor(displaySurface)
             }
         ),
         colors = ButtonDefaults.outlinedButtonColors(
             backgroundColor = Transparent,
-            contentColor = MaterialTheme.colors.buttonOutlinedColor(displayAppearance),
-            disabledContentColor = MaterialTheme.colors.buttonOutlinedDisabledColor(displayAppearance)
+            contentColor = MaterialTheme.colors.buttonOutlinedColor(displaySurface),
+            disabledContentColor = MaterialTheme.colors.buttonOutlinedDisabledColor(displaySurface)
         )
     ) {
         iconRes?.let { ButtonIcon(it) }
@@ -78,13 +78,13 @@ fun OdsButtonOutlined(
 }
 
 @Composable
-private fun Colors.buttonOutlinedColor(displayAppearance: OdsDisplayAppearance) =
-    when (displayAppearance) {
-        OdsDisplayAppearance.DEFAULT -> MaterialTheme.colors.onSurface
-        OdsDisplayAppearance.ON_DARK -> odsDarkThemeColors.onSurface
-        OdsDisplayAppearance.ON_LIGHT -> odsLightThemeColors.onSurface
+private fun Colors.buttonOutlinedColor(displaySurface: OdsDisplaySurface) =
+    when (displaySurface) {
+        OdsDisplaySurface.Default -> MaterialTheme.colors.onSurface
+        OdsDisplaySurface.Dark -> odsDarkThemeColors.onSurface
+        OdsDisplaySurface.Light -> odsLightThemeColors.onSurface
     }
 
 @Composable
-private fun Colors.buttonOutlinedDisabledColor(displayAppearance: OdsDisplayAppearance) =
-    buttonOutlinedColor(displayAppearance).copy(alpha = ContentAlpha.disabled)
+private fun Colors.buttonOutlinedDisabledColor(displaySurface: OdsDisplaySurface) =
+    buttonOutlinedColor(displaySurface).copy(alpha = ContentAlpha.disabled)

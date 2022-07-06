@@ -14,8 +14,8 @@ import androidx.annotation.DrawableRes
 import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.material.Button
+import androidx.compose.material.ButtonColors
 import androidx.compose.material.ButtonDefaults
-import androidx.compose.material.Colors
 import androidx.compose.material.ContentAlpha
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Text
@@ -25,9 +25,30 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
-import com.orange.ods.compose.theme.OdsDisplayAppearance
+import com.orange.ods.compose.theme.Black900
+import com.orange.ods.compose.theme.Negative200
+import com.orange.ods.compose.theme.OdsDisplaySurface
+import com.orange.ods.compose.theme.Positive100
+import com.orange.ods.compose.theme.White100
 import com.orange.ods.compose.theme.odsDarkThemeColors
 import com.orange.ods.compose.theme.odsLightThemeColors
+
+/**
+ * Specifying an [OdsButtonContainedStyle] allow to display a button with specific colors.
+ */
+enum class OdsButtonContainedStyle {
+    Default, Primary, FunctionalPositive, FunctionalNegative;
+
+    @Composable
+    internal fun getColors(displaySurface: OdsDisplaySurface): ButtonColors {
+        return when (this) {
+            Default -> odsDefaultButtonColors(displaySurface)
+            Primary -> odsPrimaryButtonColors(displaySurface)
+            FunctionalPositive -> odsPositiveButtonColors(displaySurface)
+            FunctionalNegative -> odsNegativeButtonColors(displaySurface)
+        }
+    }
+}
 
 /**
  * <a href="https://system.design.orange.com/0c1af118d/p/06a393-buttons/b/79b091" target="_blank">ODS Buttons</a>.
@@ -41,8 +62,9 @@ import com.orange.ods.compose.theme.odsLightThemeColors
  * @param iconRes Drawable resource of the icon. If `null`, no icon will be displayed.
  * @param enabled Controls the enabled state of the button. When `false`, this button will not
  * be clickable
- * @param hasPrimaryColor Controls the style of the button. When `true`, the button has primary background color, otherwise it has onSurface background color.
- * @param displayAppearance optional allow to force the button display on a dark or light
+ * @param style Controls the style of the button. Use `OdsButtonStyle.Primary` for an highlighted button style. To get a green/red button
+ * style on contained buttons, you can use `OdsButtonStyle.FunctionalPositive` or `OdsButtonStyle.FunctionalNegative` values.
+ * @param displaySurface optional allow to force the button display on a dark or light
  * surface. By default the appearance applied is based on the system night mode value.
  */
 @Composable
@@ -53,8 +75,8 @@ fun OdsButton(
     @DrawableRes
     iconRes: Int? = null,
     enabled: Boolean = true,
-    hasPrimaryColor: Boolean = false,
-    displayAppearance: OdsDisplayAppearance = OdsDisplayAppearance.DEFAULT
+    style: OdsButtonContainedStyle = OdsButtonContainedStyle.Default,
+    displaySurface: OdsDisplaySurface = OdsDisplaySurface.Default
 ) {
     CompositionLocalProvider(LocalRippleTheme provides OdsOnPrimaryRippleTheme) {
         Button(
@@ -64,12 +86,7 @@ fun OdsButton(
             interactionSource = remember { MutableInteractionSource() },
             elevation = null,
             shape = odsButtonShape,
-            colors = ButtonDefaults.buttonColors(
-                backgroundColor = MaterialTheme.colors.buttonBackgroundColor(displayAppearance, hasPrimaryColor),
-                contentColor = MaterialTheme.colors.buttonContentColor(displayAppearance, hasPrimaryColor),
-                disabledBackgroundColor = MaterialTheme.colors.buttonDisabledColor(displayAppearance).copy(alpha = 0.12f),
-                disabledContentColor = MaterialTheme.colors.buttonDisabledColor(displayAppearance).copy(alpha = ContentAlpha.disabled)
-            )
+            colors = style.getColors(displaySurface = displaySurface)
         ) {
             iconRes?.let { ButtonIcon(it) }
             Text(text.uppercase())
@@ -78,28 +95,66 @@ fun OdsButton(
 }
 
 @Composable
-private fun Colors.buttonBackgroundColor(displayAppearance: OdsDisplayAppearance, hasPrimaryColor: Boolean) =
-    when (displayAppearance) {
-        OdsDisplayAppearance.DEFAULT -> if (hasPrimaryColor) MaterialTheme.colors.primary else MaterialTheme.colors.onSurface
-        OdsDisplayAppearance.ON_DARK -> if (hasPrimaryColor) odsDarkThemeColors.primary else odsDarkThemeColors.onSurface
-        OdsDisplayAppearance.ON_LIGHT -> if (hasPrimaryColor) odsLightThemeColors.primary else odsLightThemeColors.onSurface
-    }
+private fun odsDefaultButtonColors(displaySurface: OdsDisplaySurface) = ButtonDefaults.buttonColors(
+    backgroundColor = when (displaySurface) {
+        OdsDisplaySurface.Default -> MaterialTheme.colors.onSurface
+        OdsDisplaySurface.Dark -> odsDarkThemeColors.onSurface
+        OdsDisplaySurface.Light -> odsLightThemeColors.onSurface
+    },
+    contentColor = when (displaySurface) {
+        OdsDisplaySurface.Default -> MaterialTheme.colors.surface
+        OdsDisplaySurface.Dark -> odsDarkThemeColors.surface
+        OdsDisplaySurface.Light -> odsLightThemeColors.surface
+    },
+    disabledBackgroundColor = disabledButtonBackgroundColor(displaySurface),
+    disabledContentColor = disabledButtonContentColor(displaySurface),
+)
 
 @Composable
-private fun Colors.buttonContentColor(displayAppearance: OdsDisplayAppearance, hasPrimaryColor: Boolean) =
-    when (displayAppearance) {
-        OdsDisplayAppearance.DEFAULT -> if (hasPrimaryColor) MaterialTheme.colors.onPrimary else MaterialTheme.colors.surface
-        OdsDisplayAppearance.ON_DARK -> if (hasPrimaryColor) odsDarkThemeColors.onPrimary else odsDarkThemeColors.surface
-        OdsDisplayAppearance.ON_LIGHT -> if (hasPrimaryColor) odsLightThemeColors.onPrimary else odsLightThemeColors.surface
-    }
+private fun odsPrimaryButtonColors(displaySurface: OdsDisplaySurface) = ButtonDefaults.buttonColors(
+    backgroundColor = when (displaySurface) {
+        OdsDisplaySurface.Default -> MaterialTheme.colors.primary
+        OdsDisplaySurface.Dark -> odsDarkThemeColors.primary
+        OdsDisplaySurface.Light -> odsLightThemeColors.primary
+    },
+    contentColor = when (displaySurface) {
+        OdsDisplaySurface.Default -> MaterialTheme.colors.onPrimary
+        OdsDisplaySurface.Dark -> odsDarkThemeColors.onPrimary
+        OdsDisplaySurface.Light -> odsLightThemeColors.onPrimary
+    },
+    disabledBackgroundColor = disabledButtonBackgroundColor(displaySurface),
+    disabledContentColor = disabledButtonContentColor(displaySurface),
+)
 
 @Composable
-private fun Colors.buttonDisabledColor(displayAppearance: OdsDisplayAppearance) =
-    when (displayAppearance) {
-        OdsDisplayAppearance.DEFAULT -> MaterialTheme.colors.onSurface
-        OdsDisplayAppearance.ON_DARK -> odsDarkThemeColors.onSurface
-        OdsDisplayAppearance.ON_LIGHT -> odsLightThemeColors.onSurface
-    }
+private fun odsPositiveButtonColors(displaySurface: OdsDisplaySurface) = ButtonDefaults.buttonColors(
+    backgroundColor = Positive100,
+    contentColor = Black900,
+    disabledBackgroundColor = disabledButtonBackgroundColor(displaySurface),
+    disabledContentColor = disabledButtonContentColor(displaySurface),
+)
+
+@Composable
+private fun odsNegativeButtonColors(displaySurface: OdsDisplaySurface) = ButtonDefaults.buttonColors(
+    backgroundColor = Negative200,
+    contentColor = White100,
+    disabledBackgroundColor = disabledButtonBackgroundColor(displaySurface),
+    disabledContentColor = disabledButtonContentColor(displaySurface),
+)
+
+@Composable
+private fun disabledButtonColors(displaySurface: OdsDisplaySurface) = when (displaySurface) {
+    OdsDisplaySurface.Default -> MaterialTheme.colors.onSurface
+    OdsDisplaySurface.Dark -> odsDarkThemeColors.onSurface
+    OdsDisplaySurface.Light -> odsLightThemeColors.onSurface
+}
+
+@Composable
+private fun disabledButtonBackgroundColor(displaySurface: OdsDisplaySurface) = disabledButtonColors(displaySurface = displaySurface).copy(alpha = 0.12f)
+
+@Composable
+private fun disabledButtonContentColor(displaySurface: OdsDisplaySurface) =
+    disabledButtonColors(displaySurface = displaySurface).copy(alpha = ContentAlpha.disabled)
 
 /**
  * Ripple theme used on primary color.

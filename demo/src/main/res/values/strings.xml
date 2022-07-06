@@ -81,8 +81,10 @@
     <string name="component_buttons">Buttons</string>
     <string name="component_buttons_description">A button allows a user to perform an action or to navigate to another page. It contains a text label and a supporting icon can be displayed.</string>
     <string name="component_buttons_contained">Contained buttons</string>
-    <string name="component_buttons_contained_subtitle_primary">Primary</string>
-    <string name="component_buttons_contained_subtitle_standard">Standard</string>
+    <string name="component_buttons_contained_primary">Primary</string>
+    <string name="component_buttons_contained_standard">Standard</string>
+    <string name="component_buttons_contained_functional_positive">Functional: positive</string>
+    <string name="component_buttons_contained_functional_negative">Functional: negative</string>
     <string name="component_buttons_outlined">Outlined buttons</string>
     <string name="component_buttons_text">Text buttons</string>
     <string name="component_buttons_text_subtitle_default">Default</string>

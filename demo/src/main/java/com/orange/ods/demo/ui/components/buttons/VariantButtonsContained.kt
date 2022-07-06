@@ -17,61 +17,59 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.stringResource
 import com.orange.ods.compose.component.button.OdsButton
-import com.orange.ods.compose.theme.OdsDisplayAppearance
+import com.orange.ods.compose.component.button.OdsButtonContainedStyle
+import com.orange.ods.compose.theme.OdsDisplaySurface
 import com.orange.ods.demo.R
 import com.orange.ods.demo.ui.utilities.composable.Title
 
 @Composable
 fun VariantButtonsContained() {
-    Title(R.string.component_buttons_contained_subtitle_primary, withHorizontalPadding = true)
-    ContainedButtons(hasPrimaryColor = true)
+    Title(R.string.component_buttons_contained_primary, withHorizontalPadding = true)
+    ContainedButtons(style = OdsButtonContainedStyle.Primary)
 
-    Title(R.string.component_buttons_contained_subtitle_standard, withHorizontalPadding = true)
-    ContainedButtons(hasPrimaryColor = false)
+    Title(R.string.component_buttons_contained_standard, withHorizontalPadding = true)
+    ContainedButtons(style = OdsButtonContainedStyle.Default)
+
+    Title(R.string.component_buttons_contained_functional_positive, withHorizontalPadding = true)
+    ContainedButtonsOnDefaultSurface(style = OdsButtonContainedStyle.FunctionalPositive)
+
+    Title(R.string.component_buttons_contained_functional_negative, withHorizontalPadding = true)
+    ContainedButtonsOnDefaultSurface(style = OdsButtonContainedStyle.FunctionalNegative)
 }
 
 @Composable
-private fun ContainedButtons(hasPrimaryColor: Boolean) {
-    ContainedButtonsEnabledDisabled(hasPrimaryColor = hasPrimaryColor, hasIcon = false)
-    ContainedButtonsEnabledDisabled(hasPrimaryColor = hasPrimaryColor, hasIcon = true)
+private fun ContainedButtonsOnDefaultSurface(style: OdsButtonContainedStyle) {
+    ContainedButtonsEnabledDisabled(style = style, hasIcon = false)
+    ContainedButtonsEnabledDisabled(style = style, hasIcon = true)
+}
+
+@Composable
+private fun ContainedButtons(style: OdsButtonContainedStyle) {
+    ContainedButtonsOnDefaultSurface(style)
 
     Spacer(modifier = Modifier.padding(top = dimensionResource(R.dimen.spacing_s)))
 
     LightSurface {
-        ContainedButtonsAppearanceForced(OdsDisplayAppearance.ON_LIGHT, hasPrimaryColor = hasPrimaryColor)
+        ContainedButtonsEnabledDisabled(style = style, hasIcon = false, displaySurface = OdsDisplaySurface.Light)
     }
     DarkSurface {
-        ContainedButtonsAppearanceForced(OdsDisplayAppearance.ON_DARK, hasPrimaryColor = hasPrimaryColor)
+        ContainedButtonsEnabledDisabled(style = style, hasIcon = false, displaySurface = OdsDisplaySurface.Dark)
     }
 }
 
 @Composable
-private fun ContainedButtonsAppearanceForced(displayAppearance: OdsDisplayAppearance, hasPrimaryColor: Boolean) {
-    OdsButton(
-        modifier = Modifier.fullWidthButton(),
-        text = stringResource(R.string.component_state_enabled),
-        onClick = {},
-        hasPrimaryColor = hasPrimaryColor,
-        displayAppearance = displayAppearance
-    )
-    OdsButton(
-        modifier = Modifier.fullWidthButton(false),
-        text = stringResource(R.string.component_state_disabled),
-        onClick = {},
-        enabled = false,
-        hasPrimaryColor = hasPrimaryColor,
-        displayAppearance = displayAppearance
-    )
-}
-
-@Composable
-private fun ContainedButtonsEnabledDisabled(hasPrimaryColor: Boolean, hasIcon: Boolean) {
+private fun ContainedButtonsEnabledDisabled(
+    style: OdsButtonContainedStyle,
+    hasIcon: Boolean,
+    displaySurface: OdsDisplaySurface = OdsDisplaySurface.Default
+) {
     OdsButton(
         modifier = Modifier.fullWidthButton(),
         iconRes = if (hasIcon) R.drawable.ic_search else null,
         text = stringResource(R.string.component_state_enabled),
         onClick = {},
-        hasPrimaryColor = hasPrimaryColor
+        style = style,
+        displaySurface = displaySurface
     )
     OdsButton(
         modifier = Modifier.fullWidthButton(false),
@@ -79,7 +77,8 @@ private fun ContainedButtonsEnabledDisabled(hasPrimaryColor: Boolean, hasIcon: B
         text = stringResource(R.string.component_state_disabled),
         onClick = {},
         enabled = false,
-        hasPrimaryColor = hasPrimaryColor
+        style = style,
+        displaySurface = displaySurface
     )
 
 }
