@@ -27,10 +27,12 @@ import com.orange.ods.compose.component.list.OdsListItem
 @Composable
 fun CheckboxListItem(@StringRes labelRes: Int, checked: MutableState<Boolean>, enabled: Boolean = true) {
     OdsListItem(
-        modifier = if (enabled) Modifier.toggleable(
+        modifier = Modifier.toggleable(
             value = checked.value,
             role = Role.Checkbox,
-            onValueChange = { checked.value = !checked.value }) else Modifier,
+            enabled = enabled,
+            onValueChange = { checked.value = !checked.value }
+        ),
         text = stringResource(id = labelRes),
         trailing = {
             OdsCheckbox(
@@ -47,13 +49,15 @@ fun CheckboxListItem(@StringRes labelRes: Int, checked: MutableState<Boolean>, e
 fun <T> RadioButtonListItem(@StringRes labelRes: Int, selectedRadio: MutableState<T>, currentRadio: T, onClick: () -> Unit = {}, enabled: Boolean = true) {
     val selected = selectedRadio.value == currentRadio
     OdsListItem(
-        modifier = if (enabled) Modifier.toggleable(
+        modifier = Modifier.toggleable(
             value = selected,
             role = Role.RadioButton,
+            enabled = enabled,
             onValueChange = {
                 selectedRadio.value = currentRadio
                 onClick.invoke()
-            }) else Modifier,
+            }
+        ),
         text = stringResource(id = labelRes),
         trailing = {
             OdsRadioButton(
@@ -69,12 +73,14 @@ fun <T> RadioButtonListItem(@StringRes labelRes: Int, selectedRadio: MutableStat
 @Composable
 fun SwitchListItem(@StringRes labelRes: Int, checked: MutableState<Boolean>, enabled: Boolean = true) {
     OdsListItem(
-        modifier = if (enabled) Modifier.toggleable(
+        modifier = Modifier.toggleable(
             value = checked.value,
             role = Role.Switch,
+            enabled = enabled,
             onValueChange = {
                 checked.value = !checked.value
-            }) else Modifier,
+            }
+        ),
         text = stringResource(id = labelRes),
         trailing = {
             OdsSwitch(
