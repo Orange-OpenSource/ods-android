@@ -13,8 +13,7 @@ Using these resources will allow you to create Orange branded applications faste
 
 ### 1. Depend on our library
 
-Orange Design System for Android is available through [JitPack](https://jitpack.io/) Maven
-Repository. To use it:
+Orange Design System for Android is available through [Maven Central Repository](https://mvnrepository.com/artifact/com.orange.ods.android). To use it:
 
 1. Open the `build.gradle` file for your application.
 2. Make sure that the `repositories` section includes Maven Central. For example:
