@@ -11,6 +11,7 @@
 package com.orange.ods.demo.ui.utilities.composable
 
 import androidx.annotation.StringRes
+import androidx.compose.foundation.selection.selectable
 import androidx.compose.foundation.selection.toggleable
 import androidx.compose.material.ExperimentalMaterialApi
 import androidx.compose.runtime.Composable
@@ -49,13 +50,13 @@ fun CheckboxListItem(@StringRes labelRes: Int, checked: MutableState<Boolean>, e
 fun <T> RadioButtonListItem(@StringRes labelRes: Int, selectedRadio: MutableState<T>, currentRadio: T, onClick: () -> Unit = {}, enabled: Boolean = true) {
     val selected = selectedRadio.value == currentRadio
     OdsListItem(
-        modifier = Modifier.toggleable(
-            value = selected,
+        modifier = Modifier.selectable(
+            selected = selected,
             role = Role.RadioButton,
             enabled = enabled,
-            onValueChange = {
+            onClick = {
                 selectedRadio.value = currentRadio
-                onClick.invoke()
+                onClick()
             }
         ),
         text = stringResource(id = labelRes),
