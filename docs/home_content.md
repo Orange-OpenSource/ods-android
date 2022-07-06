@@ -33,7 +33,7 @@ Repository. To use it:
    ```groovy
      dependencies {
        // ...
-       implementation 'com.orange.ods.android:ods-lib:0.3.0'
+       implementation 'com.orange.ods.android:ods-lib:0.4.0'
        // ...
      }
    ```
