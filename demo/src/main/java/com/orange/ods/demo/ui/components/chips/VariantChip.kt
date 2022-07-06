@@ -18,7 +18,7 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.rememberScrollState
-import androidx.compose.foundation.selection.toggleable
+import androidx.compose.foundation.selection.selectable
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.ExperimentalMaterialApi
 import androidx.compose.material.rememberBottomSheetScaffoldState
@@ -166,10 +166,10 @@ private fun ChoiceChip(index: Int, customizationState: ChipCustomizationState) {
     val selected = customizationState.choiceChipIndexSelected.value == index
     val onClick: () -> Unit = { customizationState.selectChoiceChip(index) }
     OdsChip(
-        modifier = Modifier.toggleable(
-            value = selected,
+        modifier = Modifier.selectable(
+            selected = selected,
             role = Role.RadioButton,
-            onValueChange = { onClick() }
+            onClick = onClick
         ),
         text = "${getChipText(chipType = customizationState.chipType.value)} $index",
         onClick = onClick,
