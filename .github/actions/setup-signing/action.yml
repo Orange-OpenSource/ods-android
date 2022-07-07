@@ -28,8 +28,10 @@ runs:
         echo "SIGNING_STORE_PASSWORD=${{ inputs.store-password }}" >> $GITHUB_ENV
         echo "SIGNING_KEY_ALIAS=${{ inputs.key-alias }}" >> $GITHUB_ENV
         echo "SIGNING_KEY_PASSWORD=${{ inputs.key-password }}" >> $GITHUB_ENV
+        echo "SIGNING_KEYSTORE=${{ inputs.keystore }}" >> $GITHUB_ENV
     - name: Decode keystore
       shell: bash
+      if: "${{ env.SIGNING_KEYSTORE != '' }}"
       run: |
         mkdir "${SIGNING_STORE_FOLDER_PATH}"
-        echo ${{ inputs.keystore }} | base64 -d > ${SIGNING_STORE_FILE_PATH}
+        echo ${SIGNING_KEYSTORE} | base64 -d > ${SIGNING_STORE_FILE_PATH}

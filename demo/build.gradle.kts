@@ -43,19 +43,21 @@ android {
     }
 
     val signingConfigName = "signingConfig"
-
-    signingConfigs {
-        create(signingConfigName) {
-            val (storeFilePath, storePassword, keyAlias, keyPassword) = Environment.getVariablesOrNull(
-                "SIGNING_STORE_FILE_PATH",
-                "SIGNING_STORE_PASSWORD",
-                "SIGNING_KEY_ALIAS",
-                "SIGNING_KEY_PASSWORD"
-            )
-            storeFile = file(storeFilePath ?: "./demo.keystore")
-            this.storePassword = storePassword ?: "storePassword"
-            this.keyAlias = keyAlias ?: "keyAlias"
-            this.keyPassword = keyPassword ?: "keyPassword"
+    val storeFilePath = Environment.getVariablesOrNull("SIGNING_STORE_FILE_PATH").first()
+    val storeFile = file(storeFilePath ?: "./demo.keystore").takeIf { it.exists() }
+    if (storeFile != null) {
+        signingConfigs {
+            create(signingConfigName) {
+                val (storePassword, keyAlias, keyPassword) = Environment.getVariablesOrNull(
+                    "SIGNING_STORE_PASSWORD",
+                    "SIGNING_KEY_ALIAS",
+                    "SIGNING_KEY_PASSWORD"
+                )
+                this.storeFile = storeFile
+                this.storePassword = storePassword ?: "storePassword"
+                this.keyAlias = keyAlias ?: "keyAlias"
+                this.keyPassword = keyPassword ?: "keyPassword"
+            }
         }
     }
 
@@ -63,7 +65,9 @@ android {
         release {
             isMinifyEnabled = false
             proguardFiles(getDefaultProguardFile("proguard-android-optimize.txt"), file("proguard-rules.pro"))
-            signingConfig = this@android.signingConfigs.getByName(signingConfigName)
+            if (storeFile != null) {
+                signingConfig = this@android.signingConfigs.getByName(signingConfigName)
+            }
         }
     }
 
