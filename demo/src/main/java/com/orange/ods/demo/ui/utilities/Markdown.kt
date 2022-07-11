@@ -33,7 +33,10 @@ object Markdown {
         """.trimIndent()
     }
 
-    private fun CharSequence.replaceLinks() = replace("\\[(.[^]]*)]\\(([^)]*)\\)".toRegex(), "<a href=\"$2\">$1</a>")
+    private fun CharSequence.replaceLinks(): String {
+        return replace("<([^>]*)>".toRegex(), "<a href=\"$1\">$1</a>")
+            .replace("\\[(.[^]]*)]\\(([^)]*)\\)".toRegex(), "<a href=\"$2\">$1</a>")
+    }
 
     private fun CharSequence.replaceCode() = replace("`([^`]*)`".toRegex(), "<code>$1</code>")
 
