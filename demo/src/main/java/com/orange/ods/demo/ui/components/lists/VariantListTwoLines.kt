@@ -10,68 +10,62 @@
 
 package com.orange.ods.demo.ui.components.lists
 
-import androidx.compose.foundation.clickable
-import androidx.compose.material.Divider
+import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.padding
 import androidx.compose.material.ExperimentalMaterialApi
 import androidx.compose.material.Icon
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
-import com.orange.ods.compose.component.list.OdsListItem
-import com.orange.ods.compose.component.list.OdsListItemIcon
-import com.orange.ods.compose.component.list.OdsListItemWideThumbnail
-import com.orange.ods.compose.component.utilities.OdsImageCircleShape
+import com.orange.ods.compose.component.control.OdsCheckbox
+import com.orange.ods.compose.component.control.OdsSwitch
 import com.orange.ods.demo.R
+import com.orange.ods.demo.ui.utilities.composable.Title
 
 @ExperimentalMaterialApi
 @Composable
 fun ListTwoLinesContent() {
+    Title(textRes = R.string.component_lists_without_icon, withHorizontalPadding = true)
+    TwoLineList()
 
-    OdsListItem(
-        modifier = Modifier.clickable { },
-        text = stringResource(id = R.string.component_element_text),
-        overlineText = stringResource(id = R.string.component_element_overline)
-    )
-    Divider()
-    OdsListItem(
-        modifier = Modifier.clickable { },
-        text = stringResource(id = R.string.component_element_text),
-        secondaryText = stringResource(id = R.string.component_element_secondary_text),
-        trailing = { ListItemTrailingIcon() })
-    Divider()
-    OdsListItem(
-        modifier = Modifier.clickable { },
-        text = stringResource(id = R.string.component_element_text),
-        secondaryText = stringResource(id = R.string.component_element_secondary_text),
-        icon = { Icon(painter = painterResource(id = R.drawable.ic_heart), contentDescription = "") },
-        trailing = { ListItemTrailingIcon() })
-    Divider()
-    OdsListItem(
-        modifier = Modifier.clickable { },
-        text = stringResource(id = R.string.component_element_text),
-        secondaryText = stringResource(id = R.string.component_element_secondary_text),
-        icon = { OdsListItemIcon(painter = painterResource(id = R.drawable.ic_heart)) },
-        trailing = { ListItemTrailingIcon() })
-    Divider()
-    OdsListItem(
-        modifier = Modifier.clickable { },
-        text = stringResource(id = R.string.component_element_text),
-        secondaryText = stringResource(id = R.string.component_element_secondary_text),
-        icon = { OdsImageCircleShape(painter = painterResource(id = R.drawable.placeholder)) },
-        trailing = { ListItemTrailingIcon() })
-    Divider()
-    OdsListItemWideThumbnail(
-        modifier = Modifier.clickable { },
-        text = stringResource(id = R.string.component_element_text),
-        secondaryText = stringResource(id = R.string.component_element_secondary_text),
-        thumbnail = painterResource(id = R.drawable.placeholder),
-        trailing = { ListItemTrailingIcon() }
-    )
-    Divider()
+    Title(textRes = R.string.component_lists_with_icon_to_the_left, withHorizontalPadding = true)
+    TwoLineList(iconType = ListIconType.Default)
+
+    Title(textRes = R.string.component_lists_with_avatar, withHorizontalPadding = true)
+    TwoLineList(iconType = ListIconType.Avatar)
+
+    Title(textRes = R.string.component_lists_with_small_image, withHorizontalPadding = true)
+    TwoLineList(iconType = ListIconType.SmallImage)
+
+    Title(textRes = R.string.component_lists_with_larger_image, withHorizontalPadding = true)
+    TwoLineList(iconType = ListIconType.WideImage)
+
+    Spacer(modifier = Modifier.padding(bottom = dimensionResource(id = R.dimen.ods_screen_vertical_margin)))
 }
 
+@ExperimentalMaterialApi
 @Composable
-private fun ListItemTrailingIcon() {
-    Icon(painter = painterResource(id = R.drawable.ic_drag_handle), contentDescription = "Drag item")
+private fun TwoLineList(iconType: ListIconType = ListIconType.None) {
+    val text = stringResource(id = R.string.component_element_title)
+    val secondaryText = stringResource(id = R.string.component_element_subtitle)
+    List(size = 4, text = text, secondaryText = secondaryText, iconType = iconType) { index ->
+        if (index > 0) {
+            @Composable {
+                var checked by remember { mutableStateOf(true) }
+                when (index) {
+                    1 -> OdsCheckbox(checked = checked, onCheckedChange = { checked = it })
+                    2 -> OdsSwitch(checked = checked, onCheckedChange = { checked = it })
+                    3 -> Icon(painter = painterResource(id = R.drawable.ic_info), contentDescription = null)
+                }
+            }
+        } else {
+            null
+        }
+    }
 }

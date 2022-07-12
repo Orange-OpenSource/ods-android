@@ -10,72 +10,51 @@
 
 package com.orange.ods.demo.ui.components.lists
 
-import androidx.compose.foundation.clickable
-import androidx.compose.material.Divider
+import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.padding
 import androidx.compose.material.ExperimentalMaterialApi
-import androidx.compose.material.Icon
+import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.stringResource
-import com.orange.ods.compose.component.list.OdsListItem
-import com.orange.ods.compose.component.list.OdsListItemWideThumbnail
-import com.orange.ods.compose.component.list.OdsListSquaredThumbnail
-import com.orange.ods.compose.component.utilities.OdsImageCircleShape
 import com.orange.ods.demo.R
+import com.orange.ods.demo.ui.utilities.composable.Title
 
 @ExperimentalMaterialApi
 @Composable
 fun ListThreeLinesContent() {
+    Title(textRes = R.string.component_lists_without_icon, withHorizontalPadding = true)
+    ThreeLineList()
 
-    OdsListItem(
-        modifier = Modifier.clickable { },
-        text = stringResource(id = R.string.component_element_text),
-        secondaryText = stringResource(id = R.string.component_element_secondary_text_value),
-        singleLineSecondaryText = false,
-        trailing = { Text(stringResource(id = R.string.component_element_caption)) }
-    )
-    Divider()
-    OdsListItem(
-        modifier = Modifier.clickable { },
-        text = stringResource(id = R.string.component_element_text),
-        overlineText = stringResource(id = R.string.component_element_overline),
-        secondaryText = stringResource(id = R.string.component_element_secondary_text_value)
-    )
-    Divider()
-    OdsListItem(
-        modifier = Modifier.clickable { },
-        text = stringResource(id = R.string.component_element_text),
-        secondaryText = stringResource(id = R.string.component_element_secondary_text_value),
-        singleLineSecondaryText = false,
-        icon = { Icon(painter = painterResource(id = R.drawable.ic_heart), contentDescription = null) }
-    )
-    Divider()
-    OdsListItem(
-        modifier = Modifier.clickable { },
-        text = stringResource(id = R.string.component_element_text),
-        secondaryText = stringResource(id = R.string.component_element_secondary_text_value),
-        singleLineSecondaryText = false,
-        icon = { OdsImageCircleShape(painter = painterResource(id = R.drawable.placeholder), contentDescription = null) },
-        trailing = { Text(text = stringResource(id = R.string.component_element_caption)) }
-    )
-    Divider()
-    OdsListItem(
-        modifier = Modifier.clickable { },
-        text = stringResource(id = R.string.component_element_text),
-        secondaryText = stringResource(id = R.string.component_element_secondary_text_value),
-        singleLineSecondaryText = false,
-        icon = { OdsListSquaredThumbnail(painter = painterResource(id = R.drawable.placeholder)) }
-    )
-    Divider()
-    OdsListItemWideThumbnail(
-        modifier = Modifier.clickable { },
-        text = stringResource(id = R.string.component_element_text),
-        secondaryText = stringResource(id = R.string.component_element_secondary_text_value),
-        singleLineSecondaryText = false,
-        thumbnail = painterResource(id = R.drawable.placeholder),
-        trailing = { Text(text = stringResource(id = R.string.component_element_caption)) }
-    )
-    Divider()
+    Title(textRes = R.string.component_lists_with_icon_to_the_left, withHorizontalPadding = true)
+    ThreeLineList(iconType = ListIconType.Default)
+
+    Title(textRes = R.string.component_lists_with_avatar, withHorizontalPadding = true)
+    ThreeLineList(iconType = ListIconType.Avatar)
+
+    Title(textRes = R.string.component_lists_with_small_image, withHorizontalPadding = true)
+    ThreeLineList(iconType = ListIconType.SmallImage)
+
+    Title(textRes = R.string.component_lists_with_larger_image, withHorizontalPadding = true)
+    ThreeLineList(iconType = ListIconType.WideImage)
+
+    Spacer(modifier = Modifier.padding(bottom = dimensionResource(id = R.dimen.ods_screen_vertical_margin)))
+}
+
+@ExperimentalMaterialApi
+@Composable
+private fun ThreeLineList(iconType: ListIconType = ListIconType.None) {
+    val text = stringResource(id = R.string.component_element_title)
+    val secondaryText = stringResource(id = R.string.component_element_secondary_text_value)
+    List(size = 2, text = text, secondaryText = secondaryText, singleLineSecondaryText = false, iconType = iconType) { index ->
+        if (index == 0) {
+            @Composable {
+                Text(text = stringResource(id = R.string.component_element_caption), style = MaterialTheme.typography.caption)
+            }
+        } else {
+            null
+        }
+    }
 }

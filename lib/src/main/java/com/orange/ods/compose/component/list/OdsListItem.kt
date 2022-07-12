@@ -36,6 +36,7 @@ import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.Dp
 import com.orange.ods.R
 import com.orange.ods.compose.text.OdsTextSubtitle1
+import com.orange.ods.utilities.extension.isNotNullOrBlank
 
 /**
  * <a href="https://system.design.orange.com/0c1af118d/p/09a804-lists/b/669743" target="_blank">ODS Lists</a>.
@@ -78,8 +79,9 @@ fun OdsListItem(
     val requiredHeight = computeRequiredHeight(
         hasIcon = icon != null,
         isThumbnailIcon = isThumbnailIcon,
-        hasOverline = overlineText != null,
-        hasSecondaryText = secondaryText != null,
+        hasOverline = overlineText.isNotNullOrBlank(),
+        hasText = text.isNotBlank(),
+        hasSecondaryText = secondaryText.isNotNullOrBlank(),
         singleLineSecondaryText = singleLineSecondaryText
     )
     val secondaryTextLinesNumber = if (singleLineSecondaryText || (overlineText != null && secondaryText != null)) 1 else 2
@@ -88,16 +90,18 @@ fun OdsListItem(
             .fillMaxWidth()
             .requiredHeight(requiredHeight),
         icon = icon,
-        secondaryText = if (secondaryText != null) {
+        secondaryText = if (secondaryText.isNotNullOrBlank()) {
             { Text(text = secondaryText, style = MaterialTheme.typography.body2, maxLines = secondaryTextLinesNumber, overflow = TextOverflow.Ellipsis) }
         } else null,
         singleLineSecondaryText = singleLineSecondaryText,
-        overlineText = if (overlineText != null) {
+        overlineText = if (overlineText.isNotNullOrBlank()) {
             { Text(text = overlineText, style = MaterialTheme.typography.overline, color = MaterialTheme.colors.onSurface.copy(alpha = 0.6f)) }
         } else null,
         trailing = trailing,
         text = {
-            OdsTextSubtitle1(text = text)
+            if (text.isNotBlank()) {
+                OdsTextSubtitle1(text = text)
+            }
         }
     )
 }
@@ -196,10 +200,17 @@ fun OdsListSquaredThumbnail(painter: Painter, contentDescription: String? = null
  * It allows to be able to center vertically elements in the item.
  */
 @Composable
-internal fun computeRequiredHeight(hasIcon: Boolean, isThumbnailIcon: Boolean, hasOverline: Boolean, hasSecondaryText: Boolean, singleLineSecondaryText: Boolean): Dp {
+internal fun computeRequiredHeight(
+    hasIcon: Boolean,
+    isThumbnailIcon: Boolean,
+    hasOverline: Boolean,
+    hasText: Boolean,
+    hasSecondaryText: Boolean,
+    singleLineSecondaryText: Boolean
+): Dp {
     val heightRes = when {
         // single-line
-        !hasOverline && !hasSecondaryText -> when {
+        !hasOverline && (!hasSecondaryText || !hasText) -> when {
             hasIcon && !isThumbnailIcon -> R.dimen.list_single_line_with_icon_item_height
             isThumbnailIcon -> R.dimen.list_single_line_with_thumbnail_item_height
             else -> R.dimen.list_single_line_item_height

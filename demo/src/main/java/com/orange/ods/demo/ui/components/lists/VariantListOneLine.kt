@@ -10,68 +10,67 @@
 
 package com.orange.ods.demo.ui.components.lists
 
-import androidx.compose.foundation.clickable
-import androidx.compose.material.Divider
+import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.padding
 import androidx.compose.material.ExperimentalMaterialApi
+import androidx.compose.material.Icon
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import com.orange.ods.compose.component.control.OdsCheckbox
-import com.orange.ods.compose.component.list.OdsListItem
-import com.orange.ods.compose.component.list.OdsListItemIcon
-import com.orange.ods.compose.component.list.OdsListItemWideThumbnail
-import com.orange.ods.compose.component.list.OdsListSquaredThumbnail
-import com.orange.ods.compose.component.utilities.OdsImageCircleShape
+import com.orange.ods.compose.component.control.OdsSwitch
 import com.orange.ods.demo.R
+import com.orange.ods.demo.ui.utilities.composable.Title
 
 @ExperimentalMaterialApi
 @Composable
 fun ListOneLineContent() {
-    var item1Checked by remember { mutableStateOf(false) }
-    var item2Checked by remember { mutableStateOf(false) }
-    var item3Checked by remember { mutableStateOf(false) }
+    Title(textRes = R.string.component_lists_with_label_text, withHorizontalPadding = true)
+    SingleLineList(text = null, secondaryText = stringResource(id = R.string.component_element_label))
 
-    OdsListItem(
-        modifier = Modifier.clickable { },
-        text = stringResource(id = R.string.component_element_text)
-    )
-    Divider()
-    OdsListItem(
-        modifier = Modifier.clickable { },
-        text = stringResource(id = R.string.component_element_text),
-        trailing = { OdsCheckbox(checked = item1Checked, onCheckedChange = { item1Checked = it }) }
-    )
-    Divider()
-    OdsListItem(
-        modifier = Modifier.clickable { },
-        text = stringResource(id = R.string.component_element_text),
-        icon = { OdsListItemIcon(painter = painterResource(id = R.drawable.ic_heart)) },
-        trailing = { OdsCheckbox(checked = item2Checked, onCheckedChange = { item2Checked = it }) }
-    )
-    Divider()
-    OdsListItem(
-        modifier = Modifier.clickable { },
-        text = stringResource(id = R.string.component_element_text),
-        icon = { OdsImageCircleShape(painter = painterResource(id = R.drawable.placeholder)) }
-    )
-    Divider()
-    OdsListItem(
-        modifier = Modifier.clickable { },
-        text = stringResource(id = R.string.component_element_text),
-        icon = { OdsListSquaredThumbnail(painter = painterResource(id = R.drawable.placeholder)) },
-        isThumbnailIcon = true
-    )
-    Divider()
-    OdsListItemWideThumbnail(
-        modifier = Modifier.clickable { },
-        text = stringResource(id = R.string.component_element_text),
-        thumbnail = painterResource(id = R.drawable.placeholder),
-        trailing = { OdsCheckbox(checked = item3Checked, onCheckedChange = { item3Checked = it }) }
-    )
-    Divider()
+    Title(textRes = R.string.component_lists_with_normal_text, withHorizontalPadding = true)
+    SingleLineList()
+
+    Title(textRes = R.string.component_lists_with_icon_to_the_left, withHorizontalPadding = true)
+    SingleLineList(iconType = ListIconType.Default)
+
+    Title(textRes = R.string.component_lists_with_avatar, withHorizontalPadding = true)
+    SingleLineList(iconType = ListIconType.Avatar)
+
+    Title(textRes = R.string.component_lists_with_small_image, withHorizontalPadding = true)
+    SingleLineList(iconType = ListIconType.SmallImage)
+
+    Title(textRes = R.string.component_lists_with_larger_image, withHorizontalPadding = true)
+    SingleLineList(iconType = ListIconType.WideImage)
+
+    Spacer(modifier = Modifier.padding(bottom = dimensionResource(id = R.dimen.ods_screen_vertical_margin)))
+}
+
+@ExperimentalMaterialApi
+@Composable
+private fun SingleLineList(
+    text: String? = stringResource(id = R.string.component_element_title),
+    secondaryText: String? = null,
+    iconType: ListIconType = ListIconType.None,
+) {
+    List(size = 4, text = text, secondaryText = secondaryText, iconType = iconType) { index ->
+        if (index > 0) {
+            @Composable {
+                var checked by remember { mutableStateOf(true) }
+                when (index) {
+                    1 -> OdsCheckbox(checked = checked, onCheckedChange = { checked = it })
+                    2 -> OdsSwitch(checked = checked, onCheckedChange = { checked = it })
+                    3 -> Icon(painter = painterResource(id = R.drawable.ic_info), contentDescription = null)
+                }
+            }
+        } else {
+            null
+        }
+    }
 }

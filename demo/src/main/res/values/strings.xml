@@ -165,6 +165,13 @@
     <string name="component_lists_one_line">One-line list</string>
     <string name="component_lists_two_lines">Two-line list</string>
     <string name="component_lists_three_lines">Three-line list</string>
+    <string name="component_lists_with_label_text">With label text</string>
+    <string name="component_lists_with_normal_text">With normal text</string>
+    <string name="component_lists_without_icon">No icon/image</string>
+    <string name="component_lists_with_icon_to_the_left">With icon to the left</string>
+    <string name="component_lists_with_avatar">With avatar</string>
+    <string name="component_lists_with_small_image">With small image</string>
+    <string name="component_lists_with_larger_image">With larger image</string>
 
     <!-- Component Text fields -->
     <string name="component_text_fields">Text fields</string>
