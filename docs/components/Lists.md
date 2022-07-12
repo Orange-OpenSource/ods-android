@@ -11,7 +11,7 @@ description: Lists are continuous, vertical indexes of text or images.
 * [Specifications references](#specifications-references)
 * [Accessibility](#accessibility)
 * [Variants](#variants)
-  * [One-line list](#one-line-list)
+  * [Single-line list](#single-line-list)
   * [Two-line list](#two-line-list)
   * [Three-line list](#three-line-list)
 * [Component specific tokens](#component-specific-tokens)
@@ -30,17 +30,17 @@ Please follow [accessibility criteria for development](https://a11y-guidelines.o
 
 ## Variants
 
-### One-line list
+### Single-line list
 
-There are two different displays for a one-line list:
+There are two different displays for a single-line list:
 
 1. with a wide thumbnail (without start padding)
 
-    ![Lists one-line wide thumbnail](images/lists_one_line_wide_thumbnail_light.png) ![Lists one-line wide thumbnail dark](images/lists_one_line_wide_thumbnail_dark.png)
+    ![Lists single-line wide thumbnail](images/lists_single_line_wide_thumbnail_light.png) ![Lists single-line wide thumbnail dark](images/lists_single_line_wide_thumbnail_dark.png)
 
 2. standard (all other cases)
 
-    ![Lists one-line](images/lists_one_line_light.png) ![Lists one-line dark](images/lists_one_line_dark.png)
+    ![Lists single-line](images/lists_single_line_light.png) ![Lists single-line dark](images/lists_single_line_dark.png)
 
 > **Jetpack Compose implementation**
 
@@ -56,7 +56,7 @@ In all other cases use `OdsListItem`.
     )
 ```
 
-To display a **one-line list item with a wide thumbnail** with a checkbox trailing element:
+To display a **single-line list item with a wide thumbnail** with a checkbox trailing element:
 
 ```kotlin
         OdsListItemWideThumbnail(

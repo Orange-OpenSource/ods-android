@@ -30,7 +30,7 @@ import com.orange.ods.demo.ui.utilities.composable.Title
 
 @ExperimentalMaterialApi
 @Composable
-fun ListOneLineContent() {
+fun VariantListSingleLine() {
     Title(textRes = R.string.component_lists_with_label_text, withHorizontalPadding = true)
     SingleLineList(text = null, secondaryText = stringResource(id = R.string.component_element_label))
 
