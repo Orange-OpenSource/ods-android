@@ -162,9 +162,9 @@
     <!-- Component Lists -->
     <string name="component_lists">Lists</string>
     <string name="component_lists_description">A list is a continuous vertical group of data entries like text, icons or images.</string>
-    <string name="component_lists_one_line">One-line list</string>
-    <string name="component_lists_two_lines">Two-line list</string>
-    <string name="component_lists_three_lines">Three-line list</string>
+    <string name="component_lists_single_line">Single-line list</string>
+    <string name="component_lists_two_line">Two-line list</string>
+    <string name="component_lists_three_line">Three-line list</string>
     <string name="component_lists_with_label_text">With label text</string>
     <string name="component_lists_with_normal_text">With normal text</string>
     <string name="component_lists_without_icon">No icon/image</string>

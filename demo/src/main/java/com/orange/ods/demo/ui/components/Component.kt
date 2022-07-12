@@ -81,7 +81,7 @@ sealed class Component(
         R.drawable.il_lists,
         null,
         R.string.component_lists_description,
-        listOf(Variant.ListsOneLine, Variant.ListsTwoLines, Variant.ListsThreeLines)
+        listOf(Variant.ListsSingleLine, Variant.ListsTwoLine, Variant.ListsThreeLine)
     )
 
     object Progress : Component(R.string.component_progress, R.drawable.il_progress, null, R.string.component_progress_description)
@@ -139,9 +139,9 @@ sealed class Variant(
     object Chip : Variant(R.string.component_chip)
     object ChipFilter : Variant(R.string.component_chip_filter)
 
-    object ListsOneLine : Variant(R.string.component_lists_one_line)
-    object ListsTwoLines : Variant(R.string.component_lists_two_lines)
-    object ListsThreeLines : Variant(R.string.component_lists_three_lines)
+    object ListsSingleLine : Variant(R.string.component_lists_single_line)
+    object ListsTwoLine : Variant(R.string.component_lists_two_line)
+    object ListsThreeLine : Variant(R.string.component_lists_three_line)
 
     object TextFieldsFilled : Variant(R.string.component_text_fields_filled)
     object TextFieldsOutlined : Variant(R.string.component_text_fields_outlined)

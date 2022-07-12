@@ -49,9 +49,9 @@ fun ComponentList(variant: Variant) {
 @Composable
 private fun VariantListContent(variant: Variant) {
     when (variant) {
-        Variant.ListsOneLine -> ListOneLineContent()
-        Variant.ListsTwoLines -> ListTwoLinesContent()
-        Variant.ListsThreeLines -> ListThreeLinesContent()
+        Variant.ListsSingleLine -> VariantListSingleLine()
+        Variant.ListsTwoLine -> VariantListTwoLine()
+        Variant.ListsThreeLine -> VariantListThreeLine()
         else -> {}
     }
 }
