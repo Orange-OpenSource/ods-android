@@ -52,7 +52,7 @@
     <string name="component_element_label">Label</string>
     <string name="component_element_caption">Caption</string>
     <string name="component_element_secondary_text">Secondary text</string>
-    <string name="component_element_secondary_text_value">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor.</string>
+    <string name="component_element_lorem_ipsum">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor.</string>
     <string name="component_element_thumbnail">Thumbnail</string>
     <string name="component_element_button1">Button 1</string>
     <string name="component_element_button2">Button 2</string>
@@ -162,16 +162,23 @@
     <!-- Component Lists -->
     <string name="component_lists">Lists</string>
     <string name="component_lists_description">A list is a continuous vertical group of data entries like text, icons or images.</string>
-    <string name="component_lists_single_line">Single-line list</string>
-    <string name="component_lists_two_line">Two-line list</string>
-    <string name="component_lists_three_line">Three-line list</string>
-    <string name="component_lists_with_label_text">With label text</string>
-    <string name="component_lists_with_normal_text">With normal text</string>
-    <string name="component_lists_without_icon">No icon/image</string>
-    <string name="component_lists_with_icon_to_the_left">With icon to the left</string>
-    <string name="component_lists_with_avatar">With avatar</string>
-    <string name="component_lists_with_small_image">With small image</string>
-    <string name="component_lists_with_larger_image">With larger image</string>
+    <string name="component_list_size">List size</string>
+    <string name="component_list_size_single_line">1 line</string>
+    <string name="component_list_size_two_line">2 line</string>
+    <string name="component_list_size_three_line">3 line</string>
+    <string name="component_list_leading">Leading - Before the list text</string>
+    <string name="component_list_leading_none">None</string>
+    <string name="component_list_leading_icon">Icon</string>
+    <string name="component_list_leading_circular_image">Circle</string>
+    <string name="component_list_leading_square_image">Square</string>
+    <string name="component_list_leading_wide_image">Wide</string>
+    <string name="component_list_trailing">Trailing - After the list text</string>
+    <string name="component_list_trailing_none">None</string>
+    <string name="component_list_trailing_checkbox">Checkbox</string>
+    <string name="component_list_trailing_switch">Switch</string>
+    <string name="component_list_trailing_icon">Icon</string>
+    <string name="component_list_trailing_caption">Caption</string>
+    <string name="component_list_divider">Divider</string>
 
     <!-- Component Text fields -->
     <string name="component_text_fields">Text fields</string>

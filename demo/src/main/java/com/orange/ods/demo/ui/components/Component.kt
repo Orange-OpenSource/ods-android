@@ -19,6 +19,9 @@ import com.orange.ods.demo.R
 import com.orange.ods.demo.ui.components.bottomnavigation.ComponentBottomNavigation
 import com.orange.ods.demo.ui.components.checkboxes.ComponentCheckboxesContent
 import com.orange.ods.demo.ui.components.dialogs.ComponentDialogsContent
+import com.orange.ods.demo.ui.components.lists.ComponentListsBottomSheetContent
+import com.orange.ods.demo.ui.components.lists.ComponentListsContent
+import com.orange.ods.demo.ui.components.lists.rememberVariantListsState
 import com.orange.ods.demo.ui.components.progress.ComponentProgressContent
 import com.orange.ods.demo.ui.components.radiobuttons.ComponentRadioButtonsContent
 import com.orange.ods.demo.ui.components.sliders.ComponentSlidersContent
@@ -80,8 +83,7 @@ sealed class Component(
         R.string.component_lists,
         R.drawable.il_lists,
         null,
-        R.string.component_lists_description,
-        listOf(Variant.ListsSingleLine, Variant.ListsTwoLine, Variant.ListsThreeLine)
+        R.string.component_lists_description
     )
 
     object Progress : Component(R.string.component_progress, R.drawable.il_progress, null, R.string.component_progress_description)
@@ -111,11 +113,19 @@ sealed class Component(
             BottomNavigation -> ComponentBottomNavigation()
             Checkboxes -> ComponentDetail(component = this) { ComponentCheckboxesContent() }
             Dialogs -> ComponentDetail(component = this) { ComponentDialogsContent() }
+            Lists -> {
+                val variantListsState = rememberVariantListsState()
+                ComponentDetail(
+                    component = this,
+                    bottomSheetContent = { ComponentListsBottomSheetContent(variantListsState = variantListsState) },
+                    content = { ComponentListsContent(variantListsState = variantListsState) }
+                )
+            }
             Progress -> ComponentDetail(component = this) { ComponentProgressContent() }
             RadioButtons -> ComponentDetail(component = this) { ComponentRadioButtonsContent() }
             Sliders -> ComponentDetail(component = this) { ComponentSlidersContent() }
             Switches -> ComponentDetail(component = this) { ComponentSwitchesContent() }
-            Buttons, Cards, Chips, Lists, TextFields, Tabs -> ComponentDetailWithVariants(component = this, onVariantClick = onVariantClick)
+            Buttons, Cards, Chips, TextFields, Tabs -> ComponentDetailWithVariants(component = this, onVariantClick = onVariantClick)
         }
     }
 }
@@ -138,10 +148,6 @@ sealed class Variant(
 
     object Chip : Variant(R.string.component_chip)
     object ChipFilter : Variant(R.string.component_chip_filter)
-
-    object ListsSingleLine : Variant(R.string.component_lists_single_line)
-    object ListsTwoLine : Variant(R.string.component_lists_two_line)
-    object ListsThreeLine : Variant(R.string.component_lists_three_line)
 
     object TextFieldsFilled : Variant(R.string.component_text_fields_filled)
     object TextFieldsOutlined : Variant(R.string.component_text_fields_outlined)

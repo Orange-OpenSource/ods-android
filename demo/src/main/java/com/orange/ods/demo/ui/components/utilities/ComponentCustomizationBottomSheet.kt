@@ -11,21 +11,28 @@
 package com.orange.ods.demo.ui.components.utilities
 
 import androidx.activity.compose.BackHandler
+import androidx.annotation.StringRes
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.BoxScope
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.selection.selectableGroup
 import androidx.compose.material.BottomSheetScaffold
 import androidx.compose.material.BottomSheetScaffoldState
 import androidx.compose.material.BottomSheetValue
 import androidx.compose.material.ExperimentalMaterialApi
 import androidx.compose.material.Icon
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.MutableState
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
+import com.google.accompanist.flowlayout.FlowRow
+import com.orange.ods.compose.component.chip.OdsChip
 import com.orange.ods.compose.component.list.OdsListItem
 import com.orange.ods.demo.R
 import kotlinx.coroutines.launch
@@ -70,3 +77,23 @@ fun ComponentCustomizationBottomSheetScaffold(
         Box(modifier = Modifier.padding(innerPadding), content = content)
     }
 }
+
+@Composable
+fun <T> ComponentCustomizationChipRow(selectedChip: MutableState<T>, content: @Composable ChipRowScope<T>.() -> Unit) {
+    FlowRow(
+        modifier = Modifier
+            .fillMaxWidth()
+            .selectableGroup()
+            .padding(horizontal = dimensionResource(id = R.dimen.ods_screen_horizontal_margin)),
+        mainAxisSpacing = dimensionResource(id = R.dimen.spacing_s),
+        content = { ChipRowScope(selectedChip).content() }
+    )
+}
+
+@ExperimentalMaterialApi
+@Composable
+fun <T> ChipRowScope<T>.ComponentCustomizationChip(@StringRes textRes: Int, value: T) {
+    OdsChip(text = stringResource(id = textRes), selected = selectedChip.value == value, onClick = { selectedChip.value = value })
+}
+
+data class ChipRowScope<T>(val selectedChip: MutableState<T>)
