@@ -20,6 +20,7 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.requiredHeight
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
+import androidx.compose.material.Divider
 import androidx.compose.material.ExperimentalMaterialApi
 import androidx.compose.material.Icon
 import androidx.compose.material.ListItem
@@ -39,6 +40,7 @@ import com.orange.ods.compose.component.utilities.OdsImageCircleShape
 import com.orange.ods.compose.text.OdsTextSubtitle1
 import com.orange.ods.utilities.extension.getElementOfType
 import com.orange.ods.utilities.extension.isNotNullOrBlank
+import com.orange.ods.utilities.extension.orElse
 
 /**
  * <a href="https://system.design.orange.com/0c1af118d/p/09a804-lists/b/669743" target="_blank">ODS Lists</a>.
@@ -105,6 +107,20 @@ fun OdsListItem(
             overlineText = overlineText,
             trailing = trailing
         )
+    }
+
+    val dividerModifier = modifier.getElementOfType<OdsListItemDividerModifier>()
+    if (dividerModifier != null) {
+        val startIndent = dividerModifier.startIndent.orElse {
+            when (iconType) {
+                OdsListItemIconType.Icon,
+                OdsListItemIconType.CircularImage -> dimensionResource(id = R.dimen.avatar_size) + dimensionResource(id = R.dimen.spacing_m).times(2)
+                OdsListItemIconType.SquareImage -> dimensionResource(id = R.dimen.list_square_image_size) + dimensionResource(id = R.dimen.spacing_m).times(2)
+                OdsListItemIconType.WideImage -> dimensionResource(id = R.dimen.list_wide_image_width) + dimensionResource(id = R.dimen.spacing_m)
+                null -> dimensionResource(id = R.dimen.spacing_m)
+            }
+        }
+        Divider(startIndent = startIndent)
     }
 }
 
@@ -264,9 +280,29 @@ fun Modifier.iconType(iconType: OdsListItemIconType): Modifier {
 }
 
 /**
+ * Displays a divider at the bottom of an [OdsListItem].
+ *
+ * @param startIndent The start indent of the divider
+ */
+fun Modifier.divider(startIndent: Dp? = null): Modifier {
+    return then(object : OdsListItemDividerModifier {
+        override val startIndent: Dp?
+            get() = startIndent
+    })
+}
+
+/**
  * A modifier that allows to configure the icon type in an [OdsListItem].
  */
 private interface OdsListItemIconTypeModifier : Modifier.Element {
 
     val iconType: OdsListItemIconType
+}
+
+/**
+ * A modifier that allows to display a divider at the bottom of an [OdsListItem].
+ */
+private interface OdsListItemDividerModifier : Modifier.Element {
+
+    val startIndent: Dp?
 }

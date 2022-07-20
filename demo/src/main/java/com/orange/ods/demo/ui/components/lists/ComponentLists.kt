@@ -14,7 +14,6 @@ import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
-import androidx.compose.material.Divider
 import androidx.compose.material.ExperimentalMaterialApi
 import androidx.compose.material.Icon
 import androidx.compose.material.MaterialTheme
@@ -25,15 +24,14 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
-import androidx.compose.ui.unit.Dp
 import com.orange.ods.compose.component.control.OdsCheckbox
 import com.orange.ods.compose.component.control.OdsSwitch
 import com.orange.ods.compose.component.list.OdsListItem
 import com.orange.ods.compose.component.list.OdsListItemIcon
 import com.orange.ods.compose.component.list.OdsListItemIconType
+import com.orange.ods.compose.component.list.divider
 import com.orange.ods.compose.component.list.iconType
 import com.orange.ods.demo.R
 import com.orange.ods.demo.ui.components.utilities.ComponentCustomizationBottomSheetScaffold
@@ -104,9 +102,9 @@ private fun ComponentListsContent(variantListsState: VariantListsState) {
             VariantListsState.Leading.SquareImage -> OdsListItemIconType.SquareImage
             VariantListsState.Leading.WideImage -> OdsListItemIconType.WideImage
         }
-        val modifier = with(Modifier.clickable {}) {
-            if (iconType != null) iconType(iconType) else this
-        }
+        val modifier = Modifier.clickable {}
+            .let { if (iconType != null) it.iconType(iconType) else it }
+            .let { if (variantListsState.dividerEnabled.value) it.divider() else it }
         val text = stringResource(id = R.string.component_element_title)
         val secondaryText = when (variantListsState.selectedSize.value) {
             VariantListsState.Size.SingleLine -> null
@@ -131,10 +129,6 @@ private fun ComponentListsContent(variantListsState: VariantListsState) {
                 icon = painter?.let { { OdsListItemIcon(painter = painter) } },
                 trailing = trailing
             )
-
-            if (variantListsState.dividerEnabled.value) {
-                Divider(startIndent = getStartIndent(variantListsState = variantListsState))
-            }
         }
     }
 }
@@ -157,19 +151,5 @@ private fun getTrailing(variantListsState: VariantListsState): (@Composable () -
         }
     } else {
         null
-    }
-}
-
-@ExperimentalMaterialApi
-@Composable
-private fun getStartIndent(variantListsState: VariantListsState): Dp {
-    return when (variantListsState.selectedLeading.value) {
-        VariantListsState.Leading.None -> dimensionResource(id = R.dimen.spacing_m)
-        VariantListsState.Leading.Icon,
-        VariantListsState.Leading.CircularImage -> dimensionResource(id = R.dimen.avatar_size) + dimensionResource(id = R.dimen.spacing_m).times(2)
-        VariantListsState.Leading.SquareImage -> {
-            dimensionResource(id = R.dimen.list_square_image_size) + dimensionResource(id = R.dimen.spacing_m).times(2)
-        }
-        VariantListsState.Leading.WideImage -> dimensionResource(id = R.dimen.list_wide_image_width) + dimensionResource(id = R.dimen.spacing_m)
     }
 }
