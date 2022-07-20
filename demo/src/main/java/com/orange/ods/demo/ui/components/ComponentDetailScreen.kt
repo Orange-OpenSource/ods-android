@@ -16,7 +16,6 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.ExperimentalMaterialApi
-import androidx.compose.material.rememberBottomSheetScaffoldState
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
@@ -24,7 +23,6 @@ import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.stringResource
 import com.orange.ods.compose.component.list.OdsListItem
 import com.orange.ods.demo.R
-import com.orange.ods.demo.ui.components.utilities.ComponentCustomizationBottomSheetScaffold
 import com.orange.ods.demo.ui.components.utilities.ComponentHeader
 
 @ExperimentalMaterialApi
@@ -56,16 +54,6 @@ fun ComponentDetail(component: Component, content: @Composable () -> Unit) {
         )
         content()
     }
-}
-
-@ExperimentalMaterialApi
-@Composable
-fun ComponentDetail(component: Component, bottomSheetContent: (@Composable () -> Unit), content: @Composable () -> Unit) {
-    ComponentCustomizationBottomSheetScaffold(
-        bottomSheetScaffoldState = rememberBottomSheetScaffoldState(),
-        bottomSheetContent = { bottomSheetContent() },
-        content = { ComponentDetail(component = component, content = content) }
-    )
 }
 
 @ExperimentalMaterialApi
