@@ -43,13 +43,13 @@
     <!-- Lists -->
     <dimen name="list_single_line_item_height">48dp</dimen>
     <dimen name="list_single_line_with_icon_item_height">56dp</dimen>
-    <dimen name="list_single_line_with_thumbnail_item_height">72dp</dimen>
+    <dimen name="list_single_line_with_wide_image_item_height">72dp</dimen>
     <dimen name="list_two_line_item_height">64dp</dimen>
-    <dimen name="list_two_line_item_with_icon_height">72dp</dimen>
+    <dimen name="list_two_line_with_icon_item_height">72dp</dimen>
     <dimen name="list_three_line_item_height">88dp</dimen>
-    <dimen name="list_wide_thumbnail_height">56dp</dimen>
-    <dimen name="list_wide_thumbnail_width">100dp</dimen>
-    <dimen name="list_squared_thumbnail_size">56dp</dimen>
+    <dimen name="list_wide_image_height">56dp</dimen>
+    <dimen name="list_wide_image_width">100dp</dimen>
+    <dimen name="list_square_image_size">56dp</dimen>
 
     <!-- Tab -->
     <dimen name="ods_tab_elevation">8dp</dimen>

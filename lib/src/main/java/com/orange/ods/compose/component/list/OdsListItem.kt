@@ -35,7 +35,9 @@ import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.Dp
 import com.orange.ods.R
+import com.orange.ods.compose.component.utilities.OdsImageCircleShape
 import com.orange.ods.compose.text.OdsTextSubtitle1
+import com.orange.ods.utilities.extension.getElementOfType
 import com.orange.ods.utilities.extension.isNotNullOrBlank
 
 /**
@@ -45,6 +47,8 @@ import com.orange.ods.utilities.extension.isNotNullOrBlank
  *
  * To make this [OdsListItem] clickable, use [Modifier.clickable].
  *
+ * To specify an icon type, use [Modifier.iconType] on [modifier] and call [OdsListItemScope.OdsListItemIcon] in the [icon] lambda.
+ *
  * This component can be used to achieve the list item templates existing in the spec. For example:
  * - one-line items
  * @sample androidx.compose.material.samples.OneLineListItems
@@ -53,12 +57,9 @@ import com.orange.ods.utilities.extension.isNotNullOrBlank
  * - three-line items
  * @sample androidx.compose.material.samples.ThreeLineListItems
  *
- * Note: If you want to display a big thumbnail without left margin in your items, please use [OdsListItemWideThumbnail].
- *
  * @param modifier Modifier to be applied to the list item
  * @param text The primary text of the list item
  * @param icon The leading supporting visual of the list item
- * @param isThumbnailIcon Whether the icon is a thumbnail (more space must be allowed in this case)
  * @param secondaryText The secondary text of the list item
  * @param singleLineSecondaryText Whether the secondary text is single line
  * @param overlineText The text displayed above the primary text
@@ -69,17 +70,61 @@ import com.orange.ods.utilities.extension.isNotNullOrBlank
 fun OdsListItem(
     modifier: Modifier = Modifier,
     text: String,
-    icon: @Composable (() -> Unit)? = null,
-    isThumbnailIcon: Boolean = false,
+    icon: @Composable (OdsListItemScope.() -> Unit)? = null,
     secondaryText: String? = null,
     singleLineSecondaryText: Boolean = true,
     overlineText: String? = null,
-    trailing: @Composable (() -> Unit)? = null
+    trailing: @Composable (OdsListItemScope.() -> Unit)? = null
 ) {
+    val iconType = modifier.getElementOfType<OdsListItemIconTypeModifier>()?.iconType
+    val listItemScope = OdsListItemScope(iconType)
+    if (iconType == OdsListItemIconType.WideImage) {
+        Row(modifier = modifier, verticalAlignment = Alignment.CenterVertically) {
+            icon?.let { listItemScope.it() }
+            OdsListItemInternal(
+                modifier = Modifier
+                    .weight(1f)
+                    .iconType(OdsListItemIconType.WideImage),
+                listItemScope = listItemScope,
+                text = text,
+                icon = null,
+                secondaryText = secondaryText,
+                singleLineSecondaryText = singleLineSecondaryText,
+                overlineText = overlineText,
+                trailing = trailing
+            )
+        }
+    } else {
+        OdsListItemInternal(
+            modifier = modifier,
+            listItemScope = listItemScope,
+            text = text,
+            icon = icon,
+            secondaryText = secondaryText,
+            singleLineSecondaryText = singleLineSecondaryText,
+            overlineText = overlineText,
+            trailing = trailing
+        )
+    }
+}
+
+@ExperimentalMaterialApi
+@Composable
+private fun OdsListItemInternal(
+    modifier: Modifier = Modifier,
+    listItemScope: OdsListItemScope,
+    text: String,
+    icon: @Composable (OdsListItemScope.() -> Unit)? = null,
+    secondaryText: String? = null,
+    singleLineSecondaryText: Boolean = true,
+    overlineText: String? = null,
+    trailing: @Composable (OdsListItemScope.() -> Unit)? = null
+) {
+    val iconType = modifier.getElementOfType<OdsListItemIconTypeModifier>()?.iconType
     val requiredHeight = computeRequiredHeight(
         hasIcon = icon != null,
-        isThumbnailIcon = isThumbnailIcon,
-        hasOverline = overlineText.isNotNullOrBlank(),
+        iconType = iconType,
+        hasOverlineText = overlineText.isNotNullOrBlank(),
         hasText = text.isNotBlank(),
         hasSecondaryText = secondaryText.isNotNullOrBlank(),
         singleLineSecondaryText = singleLineSecondaryText
@@ -89,7 +134,7 @@ fun OdsListItem(
         modifier = modifier
             .fillMaxWidth()
             .requiredHeight(requiredHeight),
-        icon = icon,
+        icon = icon?.let { { listItemScope.it() } },
         secondaryText = if (secondaryText.isNotNullOrBlank()) {
             { Text(text = secondaryText, style = MaterialTheme.typography.body2, maxLines = secondaryTextLinesNumber, overflow = TextOverflow.Ellipsis) }
         } else null,
@@ -97,7 +142,7 @@ fun OdsListItem(
         overlineText = if (overlineText.isNotNullOrBlank()) {
             { Text(text = overlineText, style = MaterialTheme.typography.overline, color = MaterialTheme.colors.onSurface.copy(alpha = 0.6f)) }
         } else null,
-        trailing = trailing,
+        trailing = trailing?.let { { listItemScope.it() } },
         text = {
             if (text.isNotBlank()) {
                 OdsTextSubtitle1(text = text)
@@ -107,92 +152,46 @@ fun OdsListItem(
 }
 
 /**
- * Use this list item to display a wide thumbnail without start padding in the item, otherwise use [OdsListItem].
+ * Displays an icon in a list item.
  *
- * To make this [OdsListItemWideThumbnail] clickable, use [Modifier.clickable].
+ * This method throws an exception if no icon type has been specified on the [OdsListItem] modifier using the [Modifier.iconType] method.
  *
- * @param modifier Modifier to be applied to the list item
- * @param text The primary text of the list item
- * @param thumbnail The painter of the thumbnail
- * @param thumbnailContentDescription The content description for the given thumbnail
- * @param secondaryText The secondary text of the list item
- * @param singleLineSecondaryText Whether the secondary text is single line
- * @param overlineText The text displayed above the primary text
- * @param trailing The trailing meta text, icon, switch or checkbox
+ * @param painter to draw
+ * @param contentDescription Content description of the icon
  */
-@ExperimentalMaterialApi
 @Composable
-fun OdsListItemWideThumbnail(
-    modifier: Modifier = Modifier,
-    text: String,
-    thumbnail: Painter,
-    thumbnailContentDescription: String? = null,
-    secondaryText: String? = null,
-    singleLineSecondaryText: Boolean = true,
-    overlineText: String? = null,
-    trailing: @Composable (() -> Unit)? = null
-) {
-    Row(modifier = modifier, verticalAlignment = Alignment.CenterVertically) {
-        OdsListWideThumbnail(painter = thumbnail, contentDescription = thumbnailContentDescription)
-        OdsListItem(
-            modifier = Modifier.weight(1f),
-            isThumbnailIcon = true,
-            text = text,
-            secondaryText = secondaryText,
-            singleLineSecondaryText = singleLineSecondaryText,
-            overlineText = overlineText,
-            trailing = trailing
-        )
+fun OdsListItemScope.OdsListItemIcon(painter: Painter, contentDescription: String? = null) {
+    when (iconType) {
+        OdsListItemIconType.Icon -> {
+            Column(modifier = Modifier.fillMaxHeight(), verticalArrangement = Arrangement.Center) {
+                Icon(painter = painter, contentDescription = contentDescription)
+            }
+        }
+        OdsListItemIconType.CircularImage -> {
+            OdsImageCircleShape(painter = painter, contentDescription = contentDescription)
+        }
+        OdsListItemIconType.SquareImage -> {
+            Image(
+                painter = painter,
+                contentDescription = contentDescription,
+                modifier = Modifier
+                    .size(dimensionResource(id = R.dimen.list_square_image_size))
+                    .clip(MaterialTheme.shapes.medium),
+                contentScale = ContentScale.Crop
+            )
+        }
+        OdsListItemIconType.WideImage -> {
+            Image(
+                painter = painter,
+                contentDescription = contentDescription,
+                contentScale = ContentScale.Crop,
+                modifier = Modifier
+                    .height(dimensionResource(id = R.dimen.list_wide_image_height))
+                    .width(dimensionResource(id = R.dimen.list_wide_image_width))
+            )
+        }
+        null -> throw Exception("OdsListItemIcon(Painter, String?) method has been called without specifying an icon type. Please specify an icon type by calling the Modifier.iconType(OdsListItemIcon) method on the OdsList modifier.")
     }
-}
-
-/**
- * Displays an icon in a list item centered vertically
- *
- * @param painter to draw
- * @param contentDescription Content description of the icon
- */
-@Composable
-fun OdsListItemIcon(painter: Painter, contentDescription: String? = null) {
-    Column(modifier = Modifier.fillMaxHeight(), verticalArrangement = Arrangement.Center) {
-        Icon(painter = painter, contentDescription = contentDescription)
-    }
-}
-
-/**
- * Displays a 56x100 thumbnail in a list item
- *
- * @param painter to draw
- * @param contentDescription Content description of the icon
- */
-@Composable
-fun OdsListWideThumbnail(painter: Painter, contentDescription: String? = null) {
-    Image(
-        painter = painter,
-        contentDescription = contentDescription,
-        contentScale = ContentScale.Crop,
-        modifier = Modifier
-            .height(dimensionResource(id = R.dimen.list_wide_thumbnail_height))
-            .width(dimensionResource(id = R.dimen.list_wide_thumbnail_width))
-    )
-}
-
-/**
- * Displays a 56x56 thumbnail in a list item
- *
- * @param painter to draw
- * @param contentDescription Content description of the icon
- */
-@Composable
-fun OdsListSquaredThumbnail(painter: Painter, contentDescription: String? = null) {
-    Image(
-        painter = painter,
-        contentDescription = contentDescription,
-        modifier = Modifier
-            .size(dimensionResource(id = R.dimen.list_squared_thumbnail_size))
-            .clip(MaterialTheme.shapes.medium),
-        contentScale = ContentScale.Crop
-    )
 }
 
 /**
@@ -200,28 +199,74 @@ fun OdsListSquaredThumbnail(painter: Painter, contentDescription: String? = null
  * It allows to be able to center vertically elements in the item.
  */
 @Composable
-internal fun computeRequiredHeight(
+private fun computeRequiredHeight(
     hasIcon: Boolean,
-    isThumbnailIcon: Boolean,
-    hasOverline: Boolean,
+    iconType: OdsListItemIconType?,
+    hasOverlineText: Boolean,
     hasText: Boolean,
     hasSecondaryText: Boolean,
     singleLineSecondaryText: Boolean
 ): Dp {
+    val wideImage = iconType == OdsListItemIconType.WideImage
     val heightRes = when {
         // single-line
-        !hasOverline && (!hasSecondaryText || !hasText) -> when {
-            hasIcon && !isThumbnailIcon -> R.dimen.list_single_line_with_icon_item_height
-            isThumbnailIcon -> R.dimen.list_single_line_with_thumbnail_item_height
+        !hasOverlineText && (!hasSecondaryText || !hasText) -> when {
+            hasIcon && !wideImage -> R.dimen.list_single_line_with_icon_item_height
+            wideImage -> R.dimen.list_single_line_with_wide_image_item_height
             else -> R.dimen.list_single_line_item_height
         }
         // three-lines
-        hasOverline && hasSecondaryText -> R.dimen.list_three_line_item_height
+        hasOverlineText && hasSecondaryText -> R.dimen.list_three_line_item_height
         // two-lines
-        hasOverline || (hasSecondaryText && singleLineSecondaryText) -> if (hasIcon || isThumbnailIcon) R.dimen.list_two_line_item_with_icon_height else R.dimen.list_two_line_item_height
+        hasOverlineText || (hasSecondaryText && singleLineSecondaryText) -> if (hasIcon || wideImage) R.dimen.list_two_line_with_icon_item_height else R.dimen.list_two_line_item_height
         // three-lines
         else -> R.dimen.list_three_line_item_height
     }
 
     return dimensionResource(id = heightRes)
+}
+
+/**
+ * An [OdsListItemScope] provides a scope for the children of [OdsListItem].
+ *
+ * @param iconType The icon type
+ */
+data class OdsListItemScope(val iconType: OdsListItemIconType?)
+
+/**
+ * Represents the various types of icon that can be displayed in an [OdsListItem].
+ */
+enum class OdsListItemIconType {
+
+    /** A standard icon. */
+    Icon,
+
+    /** An image cropped into a circle. */
+    CircularImage,
+
+    /** An image cropped into a square. */
+    SquareImage,
+
+    /** An image cropped into a rectangle. */
+    WideImage
+}
+
+/**
+ * Specifies the icon type to display in an [OdsListItem].
+ *
+ * @param iconType The icon type
+ */
+fun Modifier.iconType(iconType: OdsListItemIconType): Modifier {
+    return then(object : OdsListItemIconTypeModifier {
+        override val iconType: OdsListItemIconType
+            get() = iconType
+    })
+}
+
+/**
+ * A modifier that allows to configure the icon type in an [OdsListItem].
+ */
+private interface OdsListItemIconTypeModifier : Modifier.Element {
+
+    val iconType: OdsListItemIconType
 }
