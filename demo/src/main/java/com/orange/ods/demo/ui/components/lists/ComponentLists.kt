@@ -33,9 +33,8 @@ import com.orange.ods.compose.component.control.OdsCheckbox
 import com.orange.ods.compose.component.control.OdsSwitch
 import com.orange.ods.compose.component.list.OdsListItem
 import com.orange.ods.compose.component.list.OdsListItemIcon
-import com.orange.ods.compose.component.list.OdsListItemWideThumbnail
-import com.orange.ods.compose.component.list.OdsListSquaredThumbnail
-import com.orange.ods.compose.component.utilities.OdsImageCircleShape
+import com.orange.ods.compose.component.list.OdsListItemIconType
+import com.orange.ods.compose.component.list.iconType
 import com.orange.ods.demo.R
 import com.orange.ods.demo.ui.components.utilities.ComponentCustomizationBottomSheetScaffold
 import com.orange.ods.demo.ui.components.utilities.ComponentCustomizationChip
@@ -98,7 +97,16 @@ private fun ComponentListsContent(variantListsState: VariantListsState) {
             variantListsState.resetTrailing()
         }
 
-        val modifier = Modifier.clickable {}
+        val iconType = when (variantListsState.selectedLeading.value) {
+            VariantListsState.Leading.None -> null
+            VariantListsState.Leading.Icon -> OdsListItemIconType.Icon
+            VariantListsState.Leading.CircularImage -> OdsListItemIconType.CircularImage
+            VariantListsState.Leading.SquareImage -> OdsListItemIconType.SquareImage
+            VariantListsState.Leading.WideImage -> OdsListItemIconType.WideImage
+        }
+        val modifier = with(Modifier.clickable {}) {
+            if (iconType != null) iconType(iconType) else this
+        }
         val text = stringResource(id = R.string.component_element_title)
         val secondaryText = when (variantListsState.selectedSize.value) {
             VariantListsState.Size.SingleLine -> null
@@ -106,43 +114,28 @@ private fun ComponentListsContent(variantListsState: VariantListsState) {
             VariantListsState.Size.ThreeLine -> stringResource(id = R.string.component_element_lorem_ipsum)
         }
         val singleLineSecondaryText = variantListsState.selectedSize.value == VariantListsState.Size.TwoLine
+        val painter = when (variantListsState.selectedLeading.value) {
+            VariantListsState.Leading.None -> null
+            VariantListsState.Leading.Icon -> painterResource(id = R.drawable.ic_address_book)
+            VariantListsState.Leading.CircularImage,
+            VariantListsState.Leading.SquareImage,
+            VariantListsState.Leading.WideImage -> painterResource(id = R.drawable.placeholder)
+        }
         val trailing = getTrailing(variantListsState)
         repeat(4) {
-            if (variantListsState.selectedLeading.value == VariantListsState.Leading.WideImage) {
-                OdsListItemWideThumbnail(
-                    modifier = modifier,
-                    text = text,
-                    secondaryText = secondaryText,
-                    singleLineSecondaryText = singleLineSecondaryText,
-                    thumbnail = painterResource(id = R.drawable.placeholder),
-                    trailing = trailing
-                )
-            } else {
-                OdsListItem(
-                    modifier = modifier,
-                    text = text,
-                    secondaryText = secondaryText,
-                    singleLineSecondaryText = singleLineSecondaryText,
-                    icon = getLeading(variantListsState),
-                    trailing = trailing
-                )
-            }
+            OdsListItem(
+                modifier = modifier,
+                text = text,
+                secondaryText = secondaryText,
+                singleLineSecondaryText = singleLineSecondaryText,
+                icon = painter?.let { { OdsListItemIcon(painter = painter) } },
+                trailing = trailing
+            )
 
             if (variantListsState.dividerEnabled.value) {
                 Divider(startIndent = getStartIndent(variantListsState = variantListsState))
             }
         }
-    }
-}
-
-@ExperimentalMaterialApi
-private fun getLeading(variantListsState: VariantListsState): (@Composable () -> Unit)? {
-    return when (variantListsState.selectedLeading.value) {
-        VariantListsState.Leading.None,
-        VariantListsState.Leading.WideImage -> null
-        VariantListsState.Leading.Icon -> { -> OdsListItemIcon(painter = painterResource(id = R.drawable.ic_address_book)) }
-        VariantListsState.Leading.CircularImage -> { -> OdsImageCircleShape(painter = painterResource(id = R.drawable.placeholder)) }
-        VariantListsState.Leading.SquareImage -> { -> OdsListSquaredThumbnail(painter = painterResource(id = R.drawable.placeholder)) }
     }
 }
 
@@ -175,8 +168,8 @@ private fun getStartIndent(variantListsState: VariantListsState): Dp {
         VariantListsState.Leading.Icon,
         VariantListsState.Leading.CircularImage -> dimensionResource(id = R.dimen.avatar_size) + dimensionResource(id = R.dimen.spacing_m).times(2)
         VariantListsState.Leading.SquareImage -> {
-            dimensionResource(id = R.dimen.list_squared_thumbnail_size) + dimensionResource(id = R.dimen.spacing_m).times(2)
+            dimensionResource(id = R.dimen.list_square_image_size) + dimensionResource(id = R.dimen.spacing_m).times(2)
         }
-        VariantListsState.Leading.WideImage -> dimensionResource(id = R.dimen.list_wide_thumbnail_width) + dimensionResource(id = R.dimen.spacing_m)
+        VariantListsState.Leading.WideImage -> dimensionResource(id = R.dimen.list_wide_image_width) + dimensionResource(id = R.dimen.spacing_m)
     }
 }
