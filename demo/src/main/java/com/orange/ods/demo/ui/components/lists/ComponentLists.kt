@@ -31,6 +31,7 @@ import com.orange.ods.compose.component.control.OdsSwitch
 import com.orange.ods.compose.component.list.OdsListItem
 import com.orange.ods.compose.component.list.OdsListItemIcon
 import com.orange.ods.compose.component.list.OdsListItemIconType
+import com.orange.ods.compose.component.list.OdsListItemScope
 import com.orange.ods.compose.component.list.divider
 import com.orange.ods.compose.component.list.iconType
 import com.orange.ods.demo.R
@@ -39,6 +40,7 @@ import com.orange.ods.demo.ui.components.utilities.ComponentCustomizationChip
 import com.orange.ods.demo.ui.components.utilities.ComponentCustomizationChipRow
 import com.orange.ods.demo.ui.utilities.composable.Subtitle
 import com.orange.ods.demo.ui.utilities.composable.SwitchListItem
+import com.orange.ods.utilities.extension.orElse
 
 @ExperimentalMaterialApi
 @Composable
@@ -72,15 +74,8 @@ private fun ComponentListsBottomSheetContent(variantListsState: VariantListsStat
 
     Subtitle(textRes = R.string.component_list_trailing, withHorizontalPadding = true)
     ComponentCustomizationChipRow(variantListsState.selectedTrailing) {
-        variantListsState.trailings.forEach { trailingValue ->
-            val textRes = when (trailingValue) {
-                VariantListsState.Trailing.None -> R.string.component_list_trailing_none
-                VariantListsState.Trailing.Checkbox -> R.string.component_list_trailing_checkbox
-                VariantListsState.Trailing.Switch -> R.string.component_list_trailing_switch
-                VariantListsState.Trailing.Icon -> R.string.component_list_trailing_icon
-                VariantListsState.Trailing.Caption -> R.string.component_list_trailing_caption
-            }
-            ComponentCustomizationChip(textRes = textRes, value = trailingValue)
+        variantListsState.trailings.forEach { trailing ->
+            ComponentCustomizationChip(textRes = trailing.textResId, value = trailing)
         }
     }
 
@@ -95,61 +90,77 @@ private fun ComponentListsContent(variantListsState: VariantListsState) {
             variantListsState.resetTrailing()
         }
 
-        val iconType = when (variantListsState.selectedLeading.value) {
-            VariantListsState.Leading.None -> null
-            VariantListsState.Leading.Icon -> OdsListItemIconType.Icon
-            VariantListsState.Leading.CircularImage -> OdsListItemIconType.CircularImage
-            VariantListsState.Leading.SquareImage -> OdsListItemIconType.SquareImage
-            VariantListsState.Leading.WideImage -> OdsListItemIconType.WideImage
-        }
-        val modifier = Modifier.clickable {}
-            .let { if (iconType != null) it.iconType(iconType) else it }
-            .let { if (variantListsState.dividerEnabled.value) it.divider() else it }
-        val text = stringResource(id = R.string.component_element_title)
-        val secondaryText = when (variantListsState.selectedSize.value) {
-            VariantListsState.Size.SingleLine -> null
-            VariantListsState.Size.TwoLine -> stringResource(id = R.string.component_element_subtitle)
-            VariantListsState.Size.ThreeLine -> stringResource(id = R.string.component_element_lorem_ipsum)
-        }
-        val singleLineSecondaryText = variantListsState.selectedSize.value == VariantListsState.Size.TwoLine
-        val painter = when (variantListsState.selectedLeading.value) {
-            VariantListsState.Leading.None -> null
-            VariantListsState.Leading.Icon -> painterResource(id = R.drawable.ic_address_book)
-            VariantListsState.Leading.CircularImage,
-            VariantListsState.Leading.SquareImage,
-            VariantListsState.Leading.WideImage -> painterResource(id = R.drawable.placeholder)
-        }
-        val trailing = getTrailing(variantListsState)
         repeat(4) {
             OdsListItem(
-                modifier = modifier,
-                text = text,
-                secondaryText = secondaryText,
-                singleLineSecondaryText = singleLineSecondaryText,
-                icon = painter?.let { { OdsListItemIcon(painter = painter) } },
-                trailing = trailing
+                modifier = Modifier.clickable {}
+                    .let { modifier ->
+                        variantListsState.iconType?.let { modifier.iconType(it) }.orElse { modifier }
+                    }
+                    .let { if (variantListsState.dividerEnabled.value) it.divider() else it },
+                text = stringResource(id = R.string.component_element_title),
+                secondaryText = variantListsState.secondaryTextResId?.let { stringResource(id = it) },
+                singleLineSecondaryText = variantListsState.selectedSize.value == VariantListsState.Size.TwoLine,
+                icon = variantListsState.iconPainterResId?.let { { OdsListItemIcon(painter = painterResource(it)) } },
+                trailing = variantListsState.trailing
             )
         }
     }
 }
 
 @ExperimentalMaterialApi
-private fun getTrailing(variantListsState: VariantListsState): (@Composable () -> Unit)? {
-    return if (variantListsState.selectedTrailing.value != VariantListsState.Trailing.None) {
-        @Composable {
-            var checked by remember { mutableStateOf(true) }
-            when (variantListsState.selectedTrailing.value) {
-                VariantListsState.Trailing.None -> {}
-                VariantListsState.Trailing.Checkbox -> OdsCheckbox(checked = checked, onCheckedChange = { checked = it })
-                VariantListsState.Trailing.Switch -> OdsSwitch(checked = checked, onCheckedChange = { checked = it })
-                VariantListsState.Trailing.Icon -> Icon(painter = painterResource(id = R.drawable.ic_info), contentDescription = null)
-                VariantListsState.Trailing.Caption -> Text(
-                    text = stringResource(id = R.string.component_element_caption),
-                    style = MaterialTheme.typography.caption
-                )
-            }
-        }
-    } else {
-        null
+private val VariantListsState.Trailing.textResId: Int
+    get() = when (this) {
+        VariantListsState.Trailing.None -> R.string.component_list_trailing_none
+        VariantListsState.Trailing.Checkbox -> R.string.component_list_trailing_checkbox
+        VariantListsState.Trailing.Switch -> R.string.component_list_trailing_switch
+        VariantListsState.Trailing.Icon -> R.string.component_list_trailing_icon
+        VariantListsState.Trailing.Caption -> R.string.component_list_trailing_caption
     }
-}
+
+@ExperimentalMaterialApi
+private val VariantListsState.secondaryTextResId: Int?
+    get() = when (selectedSize.value) {
+        VariantListsState.Size.SingleLine -> null
+        VariantListsState.Size.TwoLine -> R.string.component_element_subtitle
+        VariantListsState.Size.ThreeLine -> R.string.component_element_lorem_ipsum
+    }
+
+@ExperimentalMaterialApi
+private val VariantListsState.iconType: OdsListItemIconType?
+    get() = when (selectedLeading.value) {
+        VariantListsState.Leading.None -> null
+        VariantListsState.Leading.Icon -> OdsListItemIconType.Icon
+        VariantListsState.Leading.CircularImage -> OdsListItemIconType.CircularImage
+        VariantListsState.Leading.SquareImage -> OdsListItemIconType.SquareImage
+        VariantListsState.Leading.WideImage -> OdsListItemIconType.WideImage
+    }
+
+@ExperimentalMaterialApi
+private val VariantListsState.iconPainterResId: Int?
+    get() = when (selectedLeading.value) {
+        VariantListsState.Leading.None -> null
+        VariantListsState.Leading.Icon -> R.drawable.ic_address_book
+        VariantListsState.Leading.CircularImage,
+        VariantListsState.Leading.SquareImage,
+        VariantListsState.Leading.WideImage -> R.drawable.placeholder
+    }
+
+@ExperimentalMaterialApi
+private val VariantListsState.trailing: (@Composable OdsListItemScope.() -> Unit)?
+    get() = when (selectedTrailing.value) {
+        VariantListsState.Trailing.None -> null
+        VariantListsState.Trailing.Checkbox -> { ->
+            var checked by remember { mutableStateOf(true) }
+            OdsCheckbox(checked = checked, onCheckedChange = { checked = it })
+        }
+        VariantListsState.Trailing.Switch -> { ->
+            var checked by remember { mutableStateOf(true) }
+            OdsSwitch(checked = checked, onCheckedChange = { checked = it })
+        }
+        VariantListsState.Trailing.Icon -> { ->
+            Icon(painter = painterResource(id = R.drawable.ic_info), contentDescription = null)
+        }
+        VariantListsState.Trailing.Caption -> { ->
+            Text(text = stringResource(id = R.string.component_element_caption), style = MaterialTheme.typography.caption)
+        }
+    }
