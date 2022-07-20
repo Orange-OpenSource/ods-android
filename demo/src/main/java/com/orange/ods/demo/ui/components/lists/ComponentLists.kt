@@ -11,8 +11,9 @@
 package com.orange.ods.demo.ui.components.lists
 
 import androidx.compose.foundation.clickable
-import androidx.compose.foundation.layout.Spacer
-import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.Divider
 import androidx.compose.material.ExperimentalMaterialApi
 import androidx.compose.material.Icon
@@ -36,6 +37,7 @@ import com.orange.ods.compose.component.list.OdsListItemWideThumbnail
 import com.orange.ods.compose.component.list.OdsListSquaredThumbnail
 import com.orange.ods.compose.component.utilities.OdsImageCircleShape
 import com.orange.ods.demo.R
+import com.orange.ods.demo.ui.components.utilities.ComponentCustomizationBottomSheetScaffold
 import com.orange.ods.demo.ui.components.utilities.ComponentCustomizationChip
 import com.orange.ods.demo.ui.components.utilities.ComponentCustomizationChipRow
 import com.orange.ods.demo.ui.utilities.composable.Subtitle
@@ -43,7 +45,18 @@ import com.orange.ods.demo.ui.utilities.composable.SwitchListItem
 
 @ExperimentalMaterialApi
 @Composable
-fun ComponentListsBottomSheetContent(variantListsState: VariantListsState) {
+fun ComponentLists() {
+    val variantListsState = rememberVariantListsState()
+    ComponentCustomizationBottomSheetScaffold(
+        bottomSheetScaffoldState = variantListsState.bottomSheetScaffoldState,
+        bottomSheetContent = { ComponentListsBottomSheetContent(variantListsState) },
+        content = { ComponentListsContent(variantListsState) }
+    )
+}
+
+@ExperimentalMaterialApi
+@Composable
+private fun ComponentListsBottomSheetContent(variantListsState: VariantListsState) {
     Subtitle(textRes = R.string.component_list_size, withHorizontalPadding = true)
     ComponentCustomizationChipRow(variantListsState.selectedSize) {
         ComponentCustomizationChip(textRes = R.string.component_list_size_single_line, value = VariantListsState.Size.SingleLine)
@@ -79,45 +92,45 @@ fun ComponentListsBottomSheetContent(variantListsState: VariantListsState) {
 
 @ExperimentalMaterialApi
 @Composable
-fun ComponentListsContent(variantListsState: VariantListsState) {
-    Spacer(modifier = Modifier.padding(top = dimensionResource(id = R.dimen.spacing_m)))
-
-    if (!variantListsState.trailings.contains(variantListsState.selectedTrailing.value)) {
-        variantListsState.resetTrailing()
-    }
-
-    val modifier = Modifier.clickable {}
-    val text = stringResource(id = R.string.component_element_title)
-    val secondaryText = when (variantListsState.selectedSize.value) {
-        VariantListsState.Size.SingleLine -> null
-        VariantListsState.Size.TwoLine -> stringResource(id = R.string.component_element_subtitle)
-        VariantListsState.Size.ThreeLine -> stringResource(id = R.string.component_element_lorem_ipsum)
-    }
-    val singleLineSecondaryText = variantListsState.selectedSize.value == VariantListsState.Size.TwoLine
-    val trailing = getTrailing(variantListsState)
-    repeat(4) {
-        if (variantListsState.selectedLeading.value == VariantListsState.Leading.WideImage) {
-            OdsListItemWideThumbnail(
-                modifier = modifier,
-                text = text,
-                secondaryText = secondaryText,
-                singleLineSecondaryText = singleLineSecondaryText,
-                thumbnail = painterResource(id = R.drawable.placeholder),
-                trailing = trailing
-            )
-        } else {
-            OdsListItem(
-                modifier = modifier,
-                text = text,
-                secondaryText = secondaryText,
-                singleLineSecondaryText = singleLineSecondaryText,
-                icon = getLeading(variantListsState),
-                trailing = trailing
-            )
+private fun ComponentListsContent(variantListsState: VariantListsState) {
+    Column(modifier = Modifier.verticalScroll(rememberScrollState())) {
+        if (!variantListsState.trailings.contains(variantListsState.selectedTrailing.value)) {
+            variantListsState.resetTrailing()
         }
 
-        if (variantListsState.dividerEnabled.value) {
-            Divider(startIndent = getStartIndent(variantListsState = variantListsState))
+        val modifier = Modifier.clickable {}
+        val text = stringResource(id = R.string.component_element_title)
+        val secondaryText = when (variantListsState.selectedSize.value) {
+            VariantListsState.Size.SingleLine -> null
+            VariantListsState.Size.TwoLine -> stringResource(id = R.string.component_element_subtitle)
+            VariantListsState.Size.ThreeLine -> stringResource(id = R.string.component_element_lorem_ipsum)
+        }
+        val singleLineSecondaryText = variantListsState.selectedSize.value == VariantListsState.Size.TwoLine
+        val trailing = getTrailing(variantListsState)
+        repeat(4) {
+            if (variantListsState.selectedLeading.value == VariantListsState.Leading.WideImage) {
+                OdsListItemWideThumbnail(
+                    modifier = modifier,
+                    text = text,
+                    secondaryText = secondaryText,
+                    singleLineSecondaryText = singleLineSecondaryText,
+                    thumbnail = painterResource(id = R.drawable.placeholder),
+                    trailing = trailing
+                )
+            } else {
+                OdsListItem(
+                    modifier = modifier,
+                    text = text,
+                    secondaryText = secondaryText,
+                    singleLineSecondaryText = singleLineSecondaryText,
+                    icon = getLeading(variantListsState),
+                    trailing = trailing
+                )
+            }
+
+            if (variantListsState.dividerEnabled.value) {
+                Divider(startIndent = getStartIndent(variantListsState = variantListsState))
+            }
         }
     }
 }
