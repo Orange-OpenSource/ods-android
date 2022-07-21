@@ -14,7 +14,7 @@ import kotlin.contracts.ExperimentalContracts
 import kotlin.contracts.contract
 
 @OptIn(ExperimentalContracts::class)
-fun CharSequence?.isNotNullOrBlank(): Boolean {
+internal fun CharSequence?.isNotNullOrBlank(): Boolean {
     contract {
         returns(true) implies (this@isNotNullOrBlank != null)
     }

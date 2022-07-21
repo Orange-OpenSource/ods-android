@@ -32,7 +32,7 @@ inline fun Modifier.noRippleClickable(crossinline onClick: () -> Unit): Modifier
  * @param T The type of the [Modifier.Element].
  * @return The modifier element, or null if it could not be found.
  */
-inline fun <reified T> Modifier.getElementOfType(): T? where T : Modifier.Element {
+internal inline fun <reified T> Modifier.getElementOfType(): T? where T : Modifier.Element {
     return foldOut(null as T?) { currentElement, foundElement ->
         foundElement.orElse { currentElement as? T }
     }
