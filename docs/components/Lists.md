@@ -32,39 +32,38 @@ Please follow [accessibility criteria for development](https://a11y-guidelines.o
 
 ### Single-line list
 
-There are two different displays for a single-line list:
+There are multiple display possibilities for a single-line list, where leading can optionally be an icon, a circular, a square or a wide image.
 
-1. with a wide thumbnail (without start padding)
+Here are two examples:
 
-    ![Lists single-line wide thumbnail](images/lists_single_line_wide_thumbnail_light.png) ![Lists single-line wide thumbnail dark](images/lists_single_line_wide_thumbnail_dark.png)
+- with a wide image and a checkbox
 
-2. standard (all other cases)
+    ![Lists single-line wide image](images/lists_single_line_wide_image_light.png) ![Lists single-line wide image dark](images/lists_single_line_wide_image_dark.png)
+
+- with a standard icon and a checkbox
 
     ![Lists single-line](images/lists_single_line_light.png) ![Lists single-line dark](images/lists_single_line_dark.png)
 
+Please note that there is no start padding with wide images.
+
 > **Jetpack Compose implementation**
 
-The library offers 2 composables to display lists items. If you need to display a wide thumbnail without start padding in your item use `OdsListItemWideThumbnail`.  
-In all other cases use `OdsListItem`.
+The library offers the `OdsListItem` composable to display lists items.
+
+To specify an icon type, use the `Modifier.iconType` method on the `OdsListItem` modifier and call `OdsListItemScope.OdsListItemIcon` in the `icon` lambda.
+
+A divider can also be displayed at the bottom of the list item using the `Modifier.divider` method on the `OdsListItem` modifier.
 
 ```kotlin
-    OdsListItem(
-        modifier = Modifier.clickable { doSomething() },
-        text = "Primary text",
-        icon = { Icon(painter = painterResource(id = R.drawable.ic_heart), contentDescription = "Heart") },
-        isThumbnailIcon = false
-    )
-```
-
-To display a **single-line list item with a wide thumbnail** with a checkbox trailing element:
-
-```kotlin
-        OdsListItemWideThumbnail(
-            modifier = Modifier.clickable { doSomething() },
-            text = "Text",
-            thumbnail = painterResource(id = R.drawable.placeholder),
-            trailing = { OdsCheckbox(checked = itemChecked, onCheckedChange = { itemChecked = it }) }
-        )
+OdsListItem(
+    modifier = Modifier
+        .clickable { doSomething() }
+        .iconType(OdsListItemIconType.Icon)
+        .divider(),
+    text = "Primary text",
+    icon = { OdsListItemIcon(painter = painterResource(id = R.drawable.ic_heart), contentDescription = "Heart") },
+    trailing = { OdsCheckbox(checked = itemChecked, onCheckedChange = { itemChecked = it }) }
+)
 ```
 
 > **XML implementation**
@@ -73,43 +72,33 @@ To display a **single-line list item with a wide thumbnail** with a checkbox tra
 
 ### Two-line list
 
-There are two different displays for a two-line list:
+Like single-line list, two-line list leading can optionally be an icon, a circular, a square or a wide image.
 
-1. with a wide thumbnail (without start padding)
+Here are two examples:
 
-  ![Lists two-line wide thumbnail](images/lists_two_line_wide_thumbnail_light.png) ![Lists two-line wide thumbnail dark](images/lists_two_line_wide_thumbnail_dark.png)
+- with a wide image and a checkbox
 
-2. standard (all other cases)
+    ![Lists two-line wide image](images/lists_two_line_wide_image_light.png) ![Lists two-line wide image dark](images/lists_two_line_wide_image_dark.png)
 
-  ![Lists two-line](images/lists_two_line_light.png) ![Lists two-line dark](images/lists_two_line_dark.png)
+- with a standard icon and a checkbox
+
+    ![Lists two-line](images/lists_two_line_light.png) ![Lists two-line dark](images/lists_two_line_dark.png)
 
 > **Jetpack Compose implementation**
 
-The library offers 2 composables to display lists items. If you need to display a wide thumbnail without start padding in your item use `OdsListItemWideThumbnail`.  
-In all other cases use `OdsListItem`.
-
-Here is an example of two-line list item with an optional icon (here an `OdsImageCircleShape` provided by the library) and an optional trailing (here a drag Icon).
+The only difference with the single-line implementation is that the `secondaryText` property of `OdsListItem` is not null.
 
 ```kotlin
-        OdsListItem(
-            modifier = Modifier.clickable { doSomething() },
-            text = "Primary text",
-            secondaryText = "Secondary text",
-            icon = { OdsImageCircleShape(painter = painterResource(R.drawable.placeholder)) },
-            trailing = { Icon(painter = painterResource(id = R.drawable.ic_drag_handle), contentDescription = "Drag item") }
-        )
-```
-
-To display a **two-line list item with a wide thumbnail** with a drag icon trailing element:
-
-```kotlin
-        OdsListItemWideThumbnail(
-            modifier = Modifier.clickable { doSomething() },
-            text = "Text",
-            secondaryText = "Secondary text",
-            thumbnail = painterResource(id = R.drawable.placeholder),
-            trailing = { Icon(painter = painterResource(id = R.drawable.ic_drag_handle), contentDescription = "Drag item") }
-        )
+OdsListItem(
+    modifier = Modifier
+        .clickable { doSomething() }
+        .iconType(OdsListItemIconType.CircularImage)
+        .divider(),
+    text = "Primary text",
+    secondaryText = "Secondary text",
+    icon = { OdsListItemIcon(painter = painterResource(id = R.drawable.placeholder)) },
+    trailing = { Icon(painter = painterResource(id = R.drawable.ic_drag_handle), contentDescription = "Drag item") }
+)
 ```
 
 > **XML implementation**
@@ -118,45 +107,34 @@ To display a **two-line list item with a wide thumbnail** with a drag icon trail
 
 ### Three-line list
 
-There are two different displays for a two-line list:
+Like single-line list, three-line list leading can optionally be an icon, a circular, a square or a wide image.
 
-1. with a wide thumbnail (without start padding)
+Here are two examples:
 
-  ![Lists three-line wide thumbnail](images/lists_three_line_wide_thumbnail_light.png) ![Lists three-line wide thumbnail dark](images/lists_three_line_wide_thumbnail_dark.png)
+- with a wide image and a checkbox
 
-2. standard (all other cases)
+    ![Lists three-line wide image](images/lists_three_line_wide_image_light.png) ![Lists three-line wide image dark](images/lists_three_line_wide_image_dark.png)
 
-  ![Lists three-line](images/lists_three_line_light.png) ![Lists three-line dark](images/lists_three_line_dark.png)
+- with a standard icon and a checkbox
+
+    ![Lists three-line](images/lists_three_line_light.png) ![Lists three-line dark](images/lists_three_line_dark.png)
 
 > **Jetpack Compose implementation**
 
-The library offers 2 composables to display lists items. If you need to display a wide thumbnail without start padding in your item use `OdsListItemWideThumbnail`.  
-In all other cases use `OdsListItem`.
-
-Here is an example of three-line list item with an optional icon (here an `OdsListSquaredThumbnail` provided by the library) and an optional trailing (here a simple Text):
+The only difference with the two-line implementation is that the `singleLineSecondaryText` property of `OdsListItem` is `false`.
 
 ```kotlin
-        OdsListItem(
-            modifier = Modifier.clickable { doSomething() },
-            text = "Primary text",
-            secondaryText = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor.",
-            singleLineSecondaryText = false,
-            icon = { OdsListSquaredThumbnail(painter = painterResource(R.drawable.placeholder)) },
-            trailing = { Text(text = "Caption") }
-        )
-```
-
-To display a **three-line list item with a wide thumbnail** with a text as trailing element:
-
-```kotlin
-        OdsListItemWideThumbnail(
-            modifier = Modifier.clickable { doSomething() },
-            text = "Text",
-            secondaryText = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor.",
-            singleLineSecondaryText = false,
-            thumbnail = painterResource(id = R.drawable.placeholder),
-            trailing = { Text(text = "Caption") }
-        )
+OdsListItem(
+    modifier = Modifier
+        .clickable { doSomething() }
+        .iconType(OdsListItemIconType.SquareImage)
+        .divider(),
+    text = "Primary text",
+    secondaryText = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor.",
+    singleLineSecondaryText = false,
+    icon = { OdsListItemIcon(painter = painterResource(id = R.drawable.placeholder)) },
+    trailing = { Text(text = "Caption") }
+)
 ```
 
 > **XML implementation**
