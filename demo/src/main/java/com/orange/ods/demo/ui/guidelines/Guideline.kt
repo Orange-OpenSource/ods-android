@@ -26,6 +26,7 @@ data class Guideline(
 val guidelines = listOf(
     Guideline(R.string.guideline_colors, R.drawable.il_colors, MainDestinations.GUIDELINE_COLORS),
     Guideline(R.string.guideline_typography, R.drawable.il_typography, MainDestinations.GUIDELINE_TYPOGRAPHY),
+    Guideline(R.string.guideline_spacings, R.drawable.il_spacings, MainDestinations.GUIDELINE_SPACINGS)
     //Guideline(R.string.guideline_imagery, R.drawable.il_imagery),
     //Guideline(R.string.guideline_iconography, R.drawable.il_iconography)
 )
