@@ -25,14 +25,21 @@
     <!-- Guidelines -->
     <string name="guideline_colors">Colour</string>
     <string name="guideline_typography">Typography</string>
+    <string name="guideline_spacings">Spacing</string>
     <string name="guideline_imagery">Imagery</string>
     <string name="guideline_iconography">Iconography</string>
 
-    <!-- Guideline Colour-->
+    <!-- Guideline Colour -->
     <string name="guideline_colour_core">Core</string>
     <string name="guideline_colour_functional">Functional</string>
     <string name="guideline_colour_supporting">Supporting</string>
     <string name="guideline_colour_xml">xml (%1s)</string>
+
+    <!-- Guideline Spacing -->
+    <string name="guideline_spacing_description">Spacing tokens are used to position elements on the screen and layout within components. Spacing tokens can be applied as padding and margins.</string>
+    <string name="guideline_spacing_subtitle">Spacing units</string>
+    <string name="guideline_spacing_dp">%1d dp</string>
+    <string name="guideline_spacing_ratio">Ratio %1s</string>
 
     <!-- Components -->
     <string name="component_force_on_dark">Forced on dark</string>

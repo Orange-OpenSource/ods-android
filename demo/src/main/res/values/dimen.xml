@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<!--
+  ~ /*
+  ~ * Copyright 2021 Orange
+  ~ *
+  ~ * Use of this source code is governed by an MIT-style
+  ~ * license that can be found in the LICENSE file or at
+  ~ * https://opensource.org/licenses/MIT.
+  ~ */
+  -->
+
+<resources>
+
+    <!-- Guideline spacing -->
+    <dimen name="guideline_spacing_image_width">68dp</dimen>
+    <dimen name="guideline_spacing_image_height">56dp</dimen>
+
+</resources>

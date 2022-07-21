@@ -15,6 +15,7 @@ import androidx.navigation.NavGraphBuilder
 import androidx.navigation.compose.composable
 import com.orange.ods.demo.ui.MainDestinations
 import com.orange.ods.demo.ui.guidelines.colors.GuidelineColorsScreen
+import com.orange.ods.demo.ui.guidelines.spacings.GuidelineSpacingsScreen
 import com.orange.ods.demo.ui.guidelines.typography.GuidelineTypographyScreen
 
 @ExperimentalMaterialApi
@@ -26,5 +27,9 @@ fun NavGraphBuilder.addGuidelinesGraph(updateTopBarTitle: (Int) -> Unit, clearTo
     composable(MainDestinations.GUIDELINE_TYPOGRAPHY) {
         clearTopAppBarTabs()
         GuidelineTypographyScreen(updateTopBarTitle = updateTopBarTitle)
+    }
+    composable(MainDestinations.GUIDELINE_SPACINGS) {
+        clearTopAppBarTabs()
+        GuidelineSpacingsScreen(updateTopBarTitle = updateTopBarTitle)
     }
 }
