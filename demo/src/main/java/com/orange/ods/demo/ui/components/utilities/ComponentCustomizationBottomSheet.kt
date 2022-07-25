@@ -10,6 +10,7 @@
 
 package com.orange.ods.demo.ui.components.utilities
 
+import androidx.activity.compose.BackHandler
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.BoxScope
@@ -40,6 +41,11 @@ fun ComponentCustomizationBottomSheetScaffold(
     val bottomSheetHeaderIconRes = when (bottomSheetScaffoldState.bottomSheetState.currentValue) {
         BottomSheetValue.Collapsed -> R.drawable.ic_chevron_up
         BottomSheetValue.Expanded -> R.drawable.ic_chevron_down
+    }
+    BackHandler(bottomSheetScaffoldState.bottomSheetState.isExpanded) {
+        coroutineScope.launch {
+            bottomSheetScaffoldState.bottomSheetState.collapse()
+        }
     }
     BottomSheetScaffold(
         scaffoldState = bottomSheetScaffoldState,
