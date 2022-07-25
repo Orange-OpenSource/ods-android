@@ -32,6 +32,7 @@ import androidx.compose.ui.res.stringResource
 import com.orange.ods.compose.component.bottomnavigation.OdsBottomNavigation
 import com.orange.ods.compose.component.bottomnavigation.OdsBottomNavigationItem
 import com.orange.ods.demo.R
+import com.orange.ods.demo.ui.components.Component
 import com.orange.ods.demo.ui.components.utilities.ComponentHeader
 import com.orange.ods.demo.ui.components.utilities.clickOnElement
 import com.orange.ods.demo.ui.utilities.composable.LabelledRadioButton
@@ -57,6 +58,8 @@ fun ComponentBottomNavigation() {
             ) {
                 ComponentHeader(
                     imageRes = R.drawable.il_bottom_navigation,
+                    imageBackgroundColor = Component.BottomNavigation.imageBackgroundColor,
+                    imageAlignment = Component.BottomNavigation.imageAlignment,
                     description = R.string.component_bottom_navigation_description
                 )
                 Column(

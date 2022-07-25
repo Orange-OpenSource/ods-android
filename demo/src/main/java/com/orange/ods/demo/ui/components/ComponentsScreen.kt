@@ -21,6 +21,7 @@ import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.stringResource
 import com.orange.ods.compose.component.card.OdsCardSmall
@@ -59,6 +60,9 @@ private fun RowScope.ComponentCard(component: Component, onComponentClick: (Long
         modifier = Modifier.weight(0.5f),
         title = stringResource(id = component.titleRes),
         imageRes = component.smallImageRes.orElse { component.imageRes },
+        imageBackgroundColor = component.imageBackgroundColor,
+        imageContentScale = ContentScale.Fit,
+        imageAlignment = component.imageAlignment,
         onCardClick = {
             onComponentClick(component.id)
         },

@@ -35,11 +35,13 @@ fun GuidelinesScreen(onGuidelineClick: (String) -> Unit, updateTopBarTitle: (Int
             .verticalScroll(scrollState),
         verticalArrangement = Arrangement.spacedBy(dimensionResource(id = R.dimen.spacing_m))
     ) {
-        guidelines.forEach { item ->
+        Guideline.values().forEach { guideline ->
             OdsCardImageFirst(
-                imageRes = item.imageRes,
-                title = stringResource(id = item.titleRes),
-                onCardClick = { onGuidelineClick(item.route) }
+                title = stringResource(id = guideline.titleRes),
+                imageRes = guideline.imageRes,
+                imageContentScale = guideline.imageContentScale,
+                imageBackgroundColor = guideline.imageBackgroundColor,
+                onCardClick = { onGuidelineClick(guideline.route) }
             )
         }
     }

@@ -14,6 +14,8 @@ import androidx.annotation.DrawableRes
 import androidx.annotation.StringRes
 import androidx.compose.material.ExperimentalMaterialApi
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.Alignment
+import androidx.compose.ui.graphics.Color
 import com.orange.ods.demo.R
 import com.orange.ods.demo.ui.components.bottomnavigation.ComponentBottomNavigation
 import com.orange.ods.demo.ui.components.checkboxes.ComponentCheckboxesContent
@@ -31,6 +33,16 @@ sealed class Component(
     val variants: List<Variant> = emptyList()
 ) {
     val id: Long = Component::class.sealedSubclasses.indexOf(this::class).toLong()
+
+    val imageBackgroundColor = Color(0xff1b1b1b)
+
+    val imageAlignment: Alignment
+        get() = when (this) {
+            BottomNavigation -> Alignment.TopCenter
+            Lists -> Alignment.BottomCenter
+            Sliders, TextFields -> Alignment.CenterEnd
+            Buttons, Cards, Checkboxes, Chips, Dialogs, Progress, RadioButtons, Switches, Tabs -> Alignment.Center
+        }
 
     object BottomNavigation :
         Component(R.string.component_bottom_navigation, R.drawable.il_bottom_navigation, null, R.string.component_bottom_navigation_description)

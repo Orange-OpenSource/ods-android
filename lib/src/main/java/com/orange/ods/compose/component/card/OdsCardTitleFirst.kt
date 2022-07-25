@@ -12,6 +12,7 @@ package com.orange.ods.compose.component.card
 
 import androidx.annotation.DrawableRes
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -24,6 +25,7 @@ import androidx.compose.material.Card
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.painterResource
@@ -47,6 +49,9 @@ import com.orange.ods.compose.text.OdsTextSubtitle2
  * @param subtitle Optional subtitle to be displayed in the card.
  * @param imageRes The drawable resource of the card image.
  * @param imageContentDescription Optional card image content description.
+ * @param imageBackgroundColor Optional background color of the card image.
+ * @param imageContentScale The content scale of the card image.
+ * @param imageAlignment The alignment of the card image.
  * @param text Optional text description to be displayed in the card.
  * @param button1Text Optional text of the first button in the card. If not present, button will not be shown. If present, [onButton1Click] need to be  handle.
  * @param button2Text Optional text of the second button in the card. If not present, button will not be shown. If present, [onButton2Click] need to be  handle.
@@ -65,6 +70,9 @@ fun OdsCardTitleFirst(
     @DrawableRes
     imageRes: Int,
     imageContentDescription: String? = null,
+    imageBackgroundColor: Color? = null,
+    imageContentScale: ContentScale = ContentScale.Crop,
+    imageAlignment: Alignment = Alignment.Center,
     text: String? = null,
     button1Text: String? = null,
     button2Text: String? = null,
@@ -97,12 +105,15 @@ fun OdsCardTitleFirst(
             Image(
                 painter = painterResource(imageRes),
                 contentDescription = imageContentDescription,
-                contentScale = ContentScale.Crop,
+                contentScale = imageContentScale,
                 modifier = Modifier
                     .fillMaxWidth()
-                    .height(dimensionResource(R.dimen.ods_card_big_image_width)),
-
-                )
+                    .height(dimensionResource(R.dimen.ods_card_big_image_width))
+                    .let {
+                        if (imageBackgroundColor != null) it.background(imageBackgroundColor) else it
+                    },
+                alignment = imageAlignment
+            )
 
             text?.let {
                 OdsTextBody1(
