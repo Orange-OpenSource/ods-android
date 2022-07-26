@@ -11,11 +11,13 @@
 package com.orange.ods.demo.ui.components
 
 import androidx.compose.foundation.clickable
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.ExperimentalMaterialApi
+import androidx.compose.material.Scaffold
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
@@ -42,18 +44,22 @@ fun ComponentDetailScreen(
 
 @ExperimentalMaterialApi
 @Composable
-fun ComponentDetail(component: Component, ComponentContent: @Composable () -> Unit) {
-    Column(
-        modifier = Modifier
-            .verticalScroll(rememberScrollState())
-            .padding(bottom = dimensionResource(id = R.dimen.spacing_m))
-    ) {
-        ComponentHeader(
-            imageRes = component.imageRes,
-            imageAlignment = component.imageAlignment,
-            description = component.descriptionRes
-        )
-        ComponentContent()
+fun ComponentDetail(component: Component, bottomBar: @Composable () -> Unit = {}, content: @Composable () -> Unit) {
+    Scaffold(bottomBar = bottomBar) { innerPadding ->
+        Box(modifier = Modifier.padding(innerPadding)) {
+            Column(
+                modifier = Modifier
+                    .verticalScroll(rememberScrollState())
+                    .padding(bottom = dimensionResource(id = R.dimen.spacing_m))
+            ) {
+                ComponentHeader(
+                    imageRes = component.imageRes,
+                    imageAlignment = component.imageAlignment,
+                    description = component.descriptionRes
+                )
+                content()
+            }
+        }
     }
 }
 
