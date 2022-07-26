@@ -42,7 +42,7 @@ fun ComponentDetailScreen(
 
 @ExperimentalMaterialApi
 @Composable
-fun ComponentDetail(component: Component, ComponentContent: @Composable () -> Unit) {
+fun ComponentDetail(component: Component, content: @Composable () -> Unit) {
     Column(
         modifier = Modifier
             .verticalScroll(rememberScrollState())
@@ -52,7 +52,7 @@ fun ComponentDetail(component: Component, ComponentContent: @Composable () -> Un
             imageRes = component.imageRes,
             description = component.descriptionRes
         )
-        ComponentContent()
+        content()
     }
 }
 
