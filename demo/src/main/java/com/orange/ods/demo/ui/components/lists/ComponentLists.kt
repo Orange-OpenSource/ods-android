@@ -35,9 +35,9 @@ import com.orange.ods.compose.component.list.OdsListItemScope
 import com.orange.ods.compose.component.list.divider
 import com.orange.ods.compose.component.list.iconType
 import com.orange.ods.demo.R
+import com.orange.ods.demo.ui.components.utilities.ComponentChip
+import com.orange.ods.demo.ui.components.utilities.ComponentChipRow
 import com.orange.ods.demo.ui.components.utilities.ComponentCustomizationBottomSheetScaffold
-import com.orange.ods.demo.ui.components.utilities.ComponentCustomizationChip
-import com.orange.ods.demo.ui.components.utilities.ComponentCustomizationChipRow
 import com.orange.ods.demo.ui.utilities.composable.Subtitle
 import com.orange.ods.demo.ui.utilities.composable.SwitchListItem
 import com.orange.ods.utilities.extension.orElse
@@ -57,25 +57,25 @@ fun ComponentLists() {
 @Composable
 private fun ComponentListsBottomSheetContent(variantListsState: VariantListsState) {
     Subtitle(textRes = R.string.component_list_size, withHorizontalPadding = true)
-    ComponentCustomizationChipRow(variantListsState.selectedSize) {
-        ComponentCustomizationChip(textRes = R.string.component_list_size_single_line, value = VariantListsState.Size.SingleLine)
-        ComponentCustomizationChip(textRes = R.string.component_list_size_two_line, value = VariantListsState.Size.TwoLine)
-        ComponentCustomizationChip(textRes = R.string.component_list_size_three_line, value = VariantListsState.Size.ThreeLine)
+    ComponentChipRow(variantListsState.selectedSize) {
+        ComponentChip(textRes = R.string.component_list_size_single_line, value = VariantListsState.Size.SingleLine)
+        ComponentChip(textRes = R.string.component_list_size_two_line, value = VariantListsState.Size.TwoLine)
+        ComponentChip(textRes = R.string.component_list_size_three_line, value = VariantListsState.Size.ThreeLine)
     }
 
     Subtitle(textRes = R.string.component_list_leading, withHorizontalPadding = true)
-    ComponentCustomizationChipRow(variantListsState.selectedLeading) {
-        ComponentCustomizationChip(textRes = R.string.component_list_leading_none, value = VariantListsState.Leading.None)
-        ComponentCustomizationChip(textRes = R.string.component_list_leading_icon, value = VariantListsState.Leading.Icon)
-        ComponentCustomizationChip(textRes = R.string.component_list_leading_circular_image, value = VariantListsState.Leading.CircularImage)
-        ComponentCustomizationChip(textRes = R.string.component_list_leading_square_image, value = VariantListsState.Leading.SquareImage)
-        ComponentCustomizationChip(textRes = R.string.component_list_leading_wide_image, value = VariantListsState.Leading.WideImage)
+    ComponentChipRow(variantListsState.selectedLeading) {
+        ComponentChip(textRes = R.string.component_list_leading_none, value = VariantListsState.Leading.None)
+        ComponentChip(textRes = R.string.component_list_leading_icon, value = VariantListsState.Leading.Icon)
+        ComponentChip(textRes = R.string.component_list_leading_circular_image, value = VariantListsState.Leading.CircularImage)
+        ComponentChip(textRes = R.string.component_list_leading_square_image, value = VariantListsState.Leading.SquareImage)
+        ComponentChip(textRes = R.string.component_list_leading_wide_image, value = VariantListsState.Leading.WideImage)
     }
 
     Subtitle(textRes = R.string.component_list_trailing, withHorizontalPadding = true)
-    ComponentCustomizationChipRow(variantListsState.selectedTrailing) {
+    ComponentChipRow(variantListsState.selectedTrailing) {
         variantListsState.trailings.forEach { trailing ->
-            ComponentCustomizationChip(textRes = trailing.textResId, value = trailing)
+            ComponentChip(textRes = trailing.textResId, value = trailing)
         }
     }
 
