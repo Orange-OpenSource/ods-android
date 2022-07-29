@@ -10,6 +10,7 @@
 
 package com.orange.ods.compose.component.control
 
+import android.content.res.Configuration
 import androidx.annotation.DrawableRes
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
@@ -25,14 +26,18 @@ import androidx.compose.material.Slider
 import androidx.compose.material.SliderDefaults
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.style.TextAlign
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import com.orange.ods.R
+import com.orange.ods.compose.theme.OdsMaterialTheme
 import com.orange.ods.compose.theme.SliderActiveTickColor
 
 /**
@@ -81,7 +86,7 @@ fun OdsSlider(
     leftIconContentDescription: String? = null,
     @DrawableRes
     rightIconRes: Int? = null,
-    rightIconContentDescription: String? = null,
+    rightIconContentDescription: String? = null
 ) {
     Row(
         modifier = modifier,
@@ -154,7 +159,7 @@ fun OdsSliderLockups(
     enabled: Boolean = true,
     valueRange: ClosedFloatingPointRange<Float> = 0f..1f,
     steps: Int = 0,
-    onValueChangeFinished: (() -> Unit)? = null,
+    onValueChangeFinished: (() -> Unit)? = null
 ) {
     val labelMinWidth = 32.dp
 
@@ -233,3 +238,47 @@ private fun getSliderOffset(
  */
 private fun calcFraction(a: Float, b: Float, pos: Float) =
     (if (b - a == 0f) 0f else (pos - a) / (b - a)).coerceIn(0f, 1f)
+
+@Composable
+private fun PreviewOdsSlider() = OdsMaterialTheme {
+    val sliderValue = remember { mutableStateOf(0.5f) }
+    OdsSlider(
+        value = sliderValue.value,
+        onValueChange = { sliderValue.value = it },
+        steps = 9
+    )
+}
+
+@Preview(name = "OdsSlider - Light")
+@Composable
+private fun PreviewOdsSliderLight() = PreviewOdsSlider()
+
+@Preview(
+    name = "OdsSlider - Dark",
+    uiMode = Configuration.UI_MODE_NIGHT_YES,
+    showBackground = true
+)
+@Composable
+private fun PreviewOdsSliderDark() = PreviewOdsSlider()
+
+@Composable
+private fun PreviewOdsSliderLockups() = OdsMaterialTheme {
+    val sliderValue = remember { mutableStateOf(50.0f) }
+    OdsSliderLockups(
+        value = sliderValue.value,
+        valueRange = 0f..100f,
+        onValueChange = { sliderValue.value = it }
+    )
+}
+
+@Preview(name = "OdsSliderLockups - Light")
+@Composable
+private fun PreviewOdsSliderLockupsLight() = PreviewOdsSliderLockups()
+
+@Preview(
+    name = "OdsSliderLockups - Dark",
+    uiMode = Configuration.UI_MODE_NIGHT_YES,
+    showBackground = true
+)
+@Composable
+private fun PreviewOdsSliderLockupsDark() = PreviewOdsSliderLockups()

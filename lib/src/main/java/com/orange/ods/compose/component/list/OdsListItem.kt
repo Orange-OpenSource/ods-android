@@ -10,7 +10,9 @@
 
 package com.orange.ods.compose.component.list
 
+import android.content.res.Configuration
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -33,11 +35,14 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.painter.Painter
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.dimensionResource
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.style.TextOverflow
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.Dp
 import com.orange.ods.R
 import com.orange.ods.compose.component.utilities.OdsImageCircleShape
 import com.orange.ods.compose.text.OdsTextSubtitle1
+import com.orange.ods.compose.theme.OdsMaterialTheme
 import com.orange.ods.utilities.extension.getElementOfType
 import com.orange.ods.utilities.extension.isNotNullOrBlank
 import com.orange.ods.utilities.extension.orElse
@@ -309,3 +314,30 @@ private interface OdsListItemDividerModifier : Modifier.Element {
 
     val startIndent: Dp?
 }
+
+@Composable
+@ExperimentalMaterialApi
+private fun PreviewOdsListItem() = OdsMaterialTheme {
+    OdsListItem(
+        modifier = Modifier.iconType(OdsListItemIconType.SquareImage),
+        text = "Text",
+        icon = { OdsListItemIcon(painter = painterResource(id = R.drawable.placeholder_small)) },
+        secondaryText = "secondaryText",
+    ) {
+        Icon(painter = painterResource(id = android.R.drawable.ic_input_add), contentDescription = null)
+    }
+}
+
+@Preview(name = "OdsListItem - Light")
+@Composable
+@ExperimentalMaterialApi
+private fun PreviewOdsListItemLight() = PreviewOdsListItem()
+
+@Preview(
+    name = "OdsListItem - Dark",
+    uiMode = Configuration.UI_MODE_NIGHT_YES,
+    showBackground = true
+)
+@Composable
+@ExperimentalMaterialApi
+private fun PreviewOdsListItemDark() = PreviewOdsListItem()

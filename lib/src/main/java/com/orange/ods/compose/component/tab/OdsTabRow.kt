@@ -10,13 +10,20 @@
 
 package com.orange.ods.compose.component.tab
 
+import android.content.res.Configuration
+import androidx.annotation.DrawableRes
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Tab
 import androidx.compose.material.TabRow
 import androidx.compose.material.TabRowDefaults
 import androidx.compose.material.TabRowDefaults.tabIndicatorOffset
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.tooling.preview.Preview
+import com.orange.ods.compose.theme.OdsMaterialTheme
 
 /**
  * <a href="https://system.design.orange.com/0c1af118d/p/513d27-tabs/b/50cb71" class="external" target="_blank">ODS tabs</a>.
@@ -53,3 +60,38 @@ fun OdsTabRow(
         tabs = tabs
     )
 }
+
+@Composable
+private fun PreviewOdsTabRow() = OdsMaterialTheme {
+    data class Tab(@DrawableRes val iconResId: Int, val text: String)
+
+    val tabs = listOf(
+        Tab(android.R.drawable.ic_dialog_email, "First tab"),
+        Tab(android.R.drawable.ic_dialog_map, "Second tab"),
+        Tab(android.R.drawable.ic_dialog_dialer, "Third tab")
+    )
+
+    val selectedTabIndex = remember { mutableStateOf(0) }
+    OdsTabRow(selectedTabIndex = selectedTabIndex.value) {
+        tabs.forEachIndexed { index, tab ->
+            OdsTab(
+                selected = selectedTabIndex.value == index,
+                onClick = { selectedTabIndex.value = index },
+                text = tab.text,
+                icon = painterResource(id = tab.iconResId)
+            )
+        }
+    }
+}
+
+@Preview(name = "OdsTabRow - Light")
+@Composable
+private fun PreviewOdsTabRowLight() = PreviewOdsTabRow()
+
+@Preview(
+    name = "OdsTabRow - Dark",
+    uiMode = Configuration.UI_MODE_NIGHT_YES,
+    showBackground = true
+)
+@Composable
+private fun PreviewOdsTabRowDark() = PreviewOdsTabRow()

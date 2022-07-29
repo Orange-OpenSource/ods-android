@@ -10,6 +10,7 @@
 
 package com.orange.ods.compose.component.card
 
+import android.content.res.Configuration
 import androidx.annotation.DrawableRes
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
@@ -29,8 +30,10 @@ import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.semantics.semantics
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.orange.ods.R
+import com.orange.ods.compose.theme.OdsMaterialTheme
 
 /**
  * <a href="https://system.design.orange.com/0c1af118d/p/272739-cards/b/991690" target="_blank">ODS Card</a>.
@@ -59,7 +62,7 @@ fun OdsCardSmall(
     imageBackgroundColor: Color? = null,
     imageContentScale: ContentScale = ContentScale.Crop,
     imageAlignment: Alignment = Alignment.Center,
-    onCardClick: (() -> Unit)? = null,
+    onCardClick: (() -> Unit)? = null
 ) {
     Card(
         modifier = modifier.clickable {
@@ -98,3 +101,24 @@ fun OdsCardSmall(
         }
     }
 }
+
+@Composable
+private fun PreviewOdsCardSmall() = OdsMaterialTheme {
+    OdsCardSmall(
+        title = "Title",
+        subtitle = "Subtitle",
+        imageRes = R.drawable.placeholder
+    )
+}
+
+@Preview(name = "OdsCardSmall - Light")
+@Composable
+private fun PreviewOdsCardSmallLight() = PreviewOdsCardSmall()
+
+@Preview(
+    name = "OdsCardSmall - Dark",
+    uiMode = Configuration.UI_MODE_NIGHT_YES,
+    showBackground = true
+)
+@Composable
+private fun PreviewOdsCardSmallDark() = PreviewOdsCardSmall()

@@ -10,6 +10,7 @@
 
 package com.orange.ods.compose.component.control
 
+import android.content.res.Configuration
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.material.ContentAlpha
@@ -20,7 +21,11 @@ import androidx.compose.material.Text
 import androidx.compose.material.ripple.LocalRippleTheme
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.CompositionLocalProvider
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.tooling.preview.Preview
+import com.orange.ods.compose.theme.OdsMaterialTheme
 import com.orange.ods.compose.theme.OdsPrimaryRippleTheme
 
 /**
@@ -43,7 +48,7 @@ fun OdsRadioButton(
     selected: Boolean,
     onClick: (() -> Unit)?,
     modifier: Modifier = Modifier,
-    enabled: Boolean = true,
+    enabled: Boolean = true
 ) {
     CompositionLocalProvider(LocalRippleTheme provides OdsPrimaryRippleTheme) {
         RadioButton(
@@ -61,3 +66,24 @@ fun OdsRadioButton(
         )
     }
 }
+
+@Composable
+private fun PreviewOdsRadioButton() = OdsMaterialTheme {
+    val selected = remember { mutableStateOf(false) }
+    OdsRadioButton(
+        selected = selected.value,
+        onClick = { selected.value = !selected.value }
+    )
+}
+
+@Preview(name = "OdsRadioButton - Light")
+@Composable
+private fun PreviewOdsRadioButtonLight() = PreviewOdsRadioButton()
+
+@Preview(
+    name = "OdsRadioButton - Dark",
+    uiMode = Configuration.UI_MODE_NIGHT_YES,
+    showBackground = true
+)
+@Composable
+private fun PreviewOdsRadioButtonDark() = PreviewOdsRadioButton()

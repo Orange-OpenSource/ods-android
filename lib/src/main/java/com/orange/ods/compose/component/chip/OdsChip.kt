@@ -10,6 +10,7 @@
 
 package com.orange.ods.compose.component.chip
 
+import android.content.res.Configuration
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.size
@@ -21,14 +22,18 @@ import androidx.compose.material.ExperimentalMaterialApi
 import androidx.compose.material.Icon
 import androidx.compose.material.MaterialTheme
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.painter.Painter
 import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.orange.ods.R
 import com.orange.ods.compose.component.utilities.OdsImageCircleShape
 import com.orange.ods.compose.text.OdsTextBody2
+import com.orange.ods.compose.theme.OdsMaterialTheme
 import com.orange.ods.utilities.extension.noRippleClickable
 
 
@@ -137,3 +142,29 @@ private fun odsChipBorderColor(selected: Boolean, enabled: Boolean) = when {
     selected && !enabled -> MaterialTheme.colors.primary.copy(alpha = ChipSurfaceOverlayOpacity)
     else -> MaterialTheme.colors.onSurface.copy(alpha = ChipSurfaceOverlayOpacity)
 }
+
+@Composable
+@ExperimentalMaterialApi
+private fun PreviewOdsChip() = OdsMaterialTheme {
+    val selected = remember { mutableStateOf(false) }
+    OdsChip(
+        text = "Text",
+        selected = selected.value,
+        onClick = { selected.value = !selected.value },
+        leadingAvatar = painterResource(id = R.drawable.placeholder_small)
+    )
+}
+
+@Preview(name = "OdsChip - Light")
+@Composable
+@ExperimentalMaterialApi
+private fun PreviewOdsChipLight() = PreviewOdsChip()
+
+@Preview(
+    name = "OdsChip - Dark",
+    uiMode = Configuration.UI_MODE_NIGHT_YES,
+    showBackground = true
+)
+@Composable
+@ExperimentalMaterialApi
+private fun PreviewOdsChipDark() = PreviewOdsChip()

@@ -10,14 +10,20 @@
 
 package com.orange.ods.compose.component.tab
 
+import android.content.res.Configuration
 import androidx.compose.material.Icon
 import androidx.compose.material.LeadingIconTab
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.painter.Painter
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.style.TextOverflow
+import androidx.compose.ui.tooling.preview.Preview
+import com.orange.ods.compose.theme.OdsMaterialTheme
 
 /**
  * <a href="https://system.design.orange.com/0c1af118d/p/513d27-tabs/b/50cb71" class="external" target="_blank">ODS tab</a>.
@@ -57,3 +63,30 @@ fun OdsLeadingIconTab(
         enabled = enabled
     )
 }
+
+@Composable
+private fun PreviewOdsLeadingIconTab() = OdsMaterialTheme {
+    val selected = remember { mutableStateOf(false) }
+    OdsLeadingIconTab(
+        selected = selected.value,
+        onClick = { selected.value = !selected.value },
+        text = "Text",
+        icon = painterResource(id = android.R.drawable.ic_dialog_email)
+    )
+}
+
+@Preview(
+    name = "OdsLeadingIconTab - Light",
+    widthDp = 100
+)
+@Composable
+private fun PreviewOdsLeadingIconTabLight() = PreviewOdsLeadingIconTab()
+
+@Preview(
+    name = "OdsLeadingIconTab - Dark",
+    widthDp = 100,
+    uiMode = Configuration.UI_MODE_NIGHT_YES,
+    showBackground = true
+)
+@Composable
+private fun PreviewOdsLeadingIconTabDark() = PreviewOdsLeadingIconTab()

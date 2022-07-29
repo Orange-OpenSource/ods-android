@@ -10,6 +10,8 @@
 
 package com.orange.ods.compose.component.bottomnavigation
 
+import android.content.res.Configuration
+import androidx.annotation.DrawableRes
 import androidx.compose.foundation.layout.RowScope
 import androidx.compose.material.BottomNavigation
 import androidx.compose.material.BottomNavigationItem
@@ -17,8 +19,13 @@ import androidx.compose.material.Icon
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.style.TextOverflow
+import androidx.compose.ui.tooling.preview.Preview
+import com.orange.ods.compose.theme.OdsMaterialTheme
 
 /**
  * <a href="https://system.design.orange.com/0c1af118d/p/042eb8-bottom-navigation/b/30078d" target="_blank">ODS Bottom navigation</a>.
@@ -81,7 +88,7 @@ fun RowScope.OdsBottomNavigationItem(
     modifier: Modifier = Modifier,
     enabled: Boolean = true,
     label: String?,
-    alwaysShowLabel: Boolean = true,
+    alwaysShowLabel: Boolean = true
 ) {
     BottomNavigationItem(
         selected = selected,
@@ -104,3 +111,39 @@ fun RowScope.OdsBottomNavigationItem(
         unselectedContentColor = MaterialTheme.colors.onSurface
     )
 }
+
+@Composable
+private fun PreviewOdsBottomNavigation() = OdsMaterialTheme {
+    data class Item(@DrawableRes val iconResId: Int, val label: String)
+
+    val items = listOf(
+        Item(android.R.drawable.ic_dialog_email, "First item"),
+        Item(android.R.drawable.ic_dialog_map, "Second item"),
+        Item(android.R.drawable.ic_dialog_dialer, "Third item"),
+        Item(android.R.drawable.ic_dialog_info, "Fourth item")
+    )
+
+    val selectedItemIndex = remember { mutableStateOf(0) }
+    OdsBottomNavigation {
+        items.forEachIndexed { index, item ->
+            OdsBottomNavigationItem(
+                icon = { Icon(painter = painterResource(id = item.iconResId), contentDescription = null) },
+                label = item.label,
+                selected = selectedItemIndex.value == index,
+                onClick = { selectedItemIndex.value = index }
+            )
+        }
+    }
+}
+
+@Preview(name = "OdsBottomNavigation - Light")
+@Composable
+private fun PreviewOdsBottomNavigationLight() = PreviewOdsBottomNavigation()
+
+@Preview(
+    name = "OdsBottomNavigation - Dark",
+    uiMode = Configuration.UI_MODE_NIGHT_YES,
+    showBackground = true
+)
+@Composable
+private fun PreviewOdsBottomNavigationDark() = PreviewOdsBottomNavigation()

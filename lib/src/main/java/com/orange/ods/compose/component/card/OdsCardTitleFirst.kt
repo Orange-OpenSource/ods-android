@@ -10,6 +10,7 @@
 
 package com.orange.ods.compose.component.card
 
+import android.content.res.Configuration
 import androidx.annotation.DrawableRes
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
@@ -29,6 +30,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.orange.ods.R
 import com.orange.ods.compose.component.button.OdsButtonText
@@ -37,6 +39,7 @@ import com.orange.ods.compose.component.utilities.OdsImageCircleShape
 import com.orange.ods.compose.text.OdsTextBody1
 import com.orange.ods.compose.text.OdsTextH6
 import com.orange.ods.compose.text.OdsTextSubtitle2
+import com.orange.ods.compose.theme.OdsMaterialTheme
 
 /**
  * <a href="https://system.design.orange.com/0c1af118d/p/272739-cards/b/991690" target="_blank">ODS Card</a>.
@@ -152,3 +155,28 @@ fun OdsCardTitleFirst(
         }
     }
 }
+
+@Composable
+private fun PreviewOdsCardTitleFirst() = OdsMaterialTheme {
+    OdsCardTitleFirst(
+        title = "Title",
+        subtitle = "Subtitle",
+        text = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed non risus. Suspendisse lectus tortor, dignissim sit amet, adipiscing nec, ultricies sed, dolor.",
+        button1Text = "Button 1",
+        button2Text = "Button 2",
+        imageRes = R.drawable.placeholder,
+        thumbnailRes = R.drawable.placeholder_small
+    )
+}
+
+@Preview(name = "OdsCardTitleFirst - Light")
+@Composable
+private fun PreviewOdsCardTitleFirstLight() = PreviewOdsCardTitleFirst()
+
+@Preview(
+    name = "OdsCardTitleFirst - Dark",
+    uiMode = Configuration.UI_MODE_NIGHT_YES,
+    showBackground = true
+)
+@Composable
+private fun PreviewOdsCardTitleFirstDark() = PreviewOdsCardTitleFirst()
