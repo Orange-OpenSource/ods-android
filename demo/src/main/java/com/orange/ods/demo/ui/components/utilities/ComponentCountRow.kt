@@ -37,11 +37,11 @@ fun ComponentCountRow(
     ) {
         OdsTextSubtitle1(modifier = Modifier.weight(1f), text = title)
         IconButton(onClick = { count.value-- }, enabled = count.value > minCount) {
-            Icon(painter = painterResource(id = R.drawable.ic_remove), contentDescription = "content description")
+            Icon(painter = painterResource(id = R.drawable.ic_remove), contentDescription = "Remove")
         }
         OdsTextSubtitle1(text = count.value.toString())
         IconButton(onClick = { count.value++ }, enabled = count.value < maxCount) {
-            Icon(painter = painterResource(id = R.drawable.ic_add), contentDescription = "content description")
+            Icon(painter = painterResource(id = R.drawable.ic_add), contentDescription = "Add")
         }
     }
 }
