@@ -58,7 +58,6 @@ fun ComponentBottomNavigation() {
             ) {
                 ComponentHeader(
                     imageRes = R.drawable.il_bottom_navigation,
-                    imageBackgroundColor = Component.BottomNavigation.imageBackgroundColor,
                     imageAlignment = Component.BottomNavigation.imageAlignment,
                     description = R.string.component_bottom_navigation_description
                 )

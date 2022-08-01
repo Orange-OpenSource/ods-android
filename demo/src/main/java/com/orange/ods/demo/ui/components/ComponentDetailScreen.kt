@@ -50,7 +50,6 @@ fun ComponentDetail(component: Component, ComponentContent: @Composable () -> Un
     ) {
         ComponentHeader(
             imageRes = component.imageRes,
-            imageBackgroundColor = component.imageBackgroundColor,
             imageAlignment = component.imageAlignment,
             description = component.descriptionRes
         )
@@ -68,7 +67,6 @@ fun ComponentDetailWithVariants(component: Component, onVariantClick: (Long) -> 
     ) {
         ComponentHeader(
             imageRes = component.imageRes,
-            imageBackgroundColor = component.imageBackgroundColor,
             imageAlignment = component.imageAlignment,
             description = component.descriptionRes
         )

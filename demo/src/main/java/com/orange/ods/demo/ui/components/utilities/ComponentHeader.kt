@@ -28,11 +28,11 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import com.orange.ods.compose.text.OdsTextBody1
 import com.orange.ods.demo.R
+import com.orange.ods.demo.ui.components.Component
 
 @Composable
 fun ComponentHeader(
     @DrawableRes imageRes: Int,
-    imageBackgroundColor: Color? = null,
     imageAlignment: Alignment = Alignment.Center,
     @StringRes description: Int
 ) {
@@ -41,9 +41,7 @@ fun ComponentHeader(
         modifier = Modifier
             .fillMaxWidth()
             .height(190.dp)
-            .let {
-                if (imageBackgroundColor != null) it.background(imageBackgroundColor) else it
-            },
+            .background(Color(Component.ImageBackgroundColor)),
         contentScale = ContentScale.Fit,
         contentDescription = null,
         alignment = imageAlignment
