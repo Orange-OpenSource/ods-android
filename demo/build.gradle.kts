@@ -127,7 +127,7 @@ dependencies {
 }
 
 tasks.register<Copy>("copyChangelog") {
-    from("../lib/changelog.md").into("src/main/res/raw")
+    from("../changelog.md").into("src/main/res/raw")
 }
 
 gradle.projectsEvaluated {
