@@ -20,8 +20,6 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.wrapContentSize
 import androidx.compose.material.ExperimentalMaterialApi
-import androidx.compose.material.Icon
-import androidx.compose.material.IconButton
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.mutableStateOf
@@ -29,7 +27,6 @@ import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.dimensionResource
-import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextAlign
 import com.google.accompanist.pager.ExperimentalPagerApi
@@ -37,6 +34,7 @@ import com.google.accompanist.pager.HorizontalPager
 import com.orange.ods.compose.text.OdsTextSubtitle1
 import com.orange.ods.demo.R
 import com.orange.ods.demo.ui.components.Variant
+import com.orange.ods.demo.ui.components.utilities.ComponentCountRow
 import com.orange.ods.demo.ui.components.utilities.ComponentCustomizationBottomSheetScaffold
 import com.orange.ods.demo.ui.utilities.composable.LabelledRadioButton
 import com.orange.ods.demo.ui.utilities.composable.SwitchListItem
@@ -108,28 +106,15 @@ fun ComponentTabs(variant: Variant, updateTopAppBarTabs: (TabsConfiguration) -> 
 
             SwitchListItem(R.string.component_element_text, variantTabsState.tabTextEnabled, variantTabsState.isTabTextCheckboxEnabled)
 
-            Row(
+            ComponentCountRow(
+                title = stringResource(id = R.string.component_tabs_count),
+                count = variantTabsState.tabsCount,
                 modifier = Modifier
                     .fillMaxWidth()
                     .padding(horizontal = dimensionResource(id = R.dimen.spacing_m)),
-                horizontalArrangement = Arrangement.Start,
-                verticalAlignment = Alignment.CenterVertically
-            ) {
-                OdsTextSubtitle1(modifier = Modifier.weight(1f), text = stringResource(id = R.string.component_tabs_count))
-                IconButton(onClick = { variantTabsState.tabsCount.value-- }, enabled = variantTabsState.canRemoveTab(tabCountMin)) {
-                    Icon(
-                        painter = painterResource(id = R.drawable.ic_remove),
-                        contentDescription = "content description"
-                    )
-                }
-                OdsTextSubtitle1(text = variantTabsState.tabs.size.toString())
-                IconButton(onClick = { variantTabsState.tabsCount.value++ }, enabled = variantTabsState.canAddTab(tabCountMax)) {
-                    Icon(
-                        painter = painterResource(id = R.drawable.ic_add),
-                        contentDescription = "content description"
-                    )
-                }
-            }
+                minCount = tabCountMin,
+                maxCount = tabCountMax
+            )
         }) {
 
         HorizontalPager(state = variantTabsState.pagerState, count = variantTabsState.tabs.size) { page ->

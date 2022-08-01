@@ -58,9 +58,5 @@ class VariantTabsState(
         get() = tabTextEnabled.value
 
     val tabs: List<TabItem>
-        get() = availableTabs.take(tabsCount.value)
-
-    fun canRemoveTab(tabCountMin: Int) = tabsCount.value > tabCountMin
-
-    fun canAddTab(tabCountMax: Int) = tabsCount.value < tabCountMax
+        get() = availableTabs.take(tabsCount.value.coerceAtLeast(0))
 }
