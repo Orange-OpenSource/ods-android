@@ -51,17 +51,20 @@ In your composable screen you can use `OdsCardImageFirst` composable:
 
 ```kotlin
 OdsCardImageFirst(
-            title = "Title",
-            imageRes = R.drawable.picture,
-            imageContentDescription = "Picture content description", //Optional
-            subtitle = "Subtitle", //Optional
-            text = "Text", //Optional
-            button1Text = "Button1", //Optional
-            button2Text = "Button2", //Optional
-            onCardClick = {  }, //Optional
-            onButton1Click = {  }, //Optional
-            onButton2Click = {  } //Optional
-        )
+    title = "Title",
+    imageRes = R.drawable.picture,
+    imageContentDescription = "Picture content description", //Optional
+    imageBackgroundColor = Color(0xff1b1b1b), //Optional
+    imageContentScale = ContentScale.Crop,
+    imageAlignment = Alignment.Center,
+    subtitle = "Subtitle", //Optional
+    text = "Text", //Optional
+    button1Text = "Button1", //Optional
+    button2Text = "Button2", //Optional
+    onCardClick = {  }, //Optional
+    onButton1Click = {  }, //Optional
+    onButton2Click = {  } //Optional
+)
 ```
 
 > **XML implementation**
@@ -85,6 +88,9 @@ OdsCardTitleFirst(
     subtitle = "Subtitle", //Optional
     imageRes = R.drawable.picture,
     imageContentDescription = "Picture content description", //Optional
+    imageBackgroundColor = Color(0xff1b1b1b), //Optional
+    imageContentScale = ContentScale.Crop,
+    imageAlignment = Alignment.Center,
     text = "Text", //Optional
     button1Text = "Button1", //Optional
     button2Text = "Button2", //Optional

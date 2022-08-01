@@ -12,6 +12,7 @@ package com.orange.ods.compose.component.card
 
 import androidx.annotation.DrawableRes
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -21,7 +22,9 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material.Card
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.painterResource
@@ -46,6 +49,9 @@ import com.orange.ods.compose.text.OdsTextSubtitle2
  * @param button2Text Optional text of the second button in the card. If not present, button will not be shown. If present, [onButton2Click] need to be  handle.
  * @param imageRes The drawable resource of the card image.
  * @param imageContentDescription Optional card image content description.
+ * @param imageBackgroundColor Optional background color of the card image.
+ * @param imageContentScale The content scale of the card image.
+ * @param imageAlignment The alignment of the card image.
  * @param onCardClick Optional click on the card itself.
  * @param onButton1Click Optional handler for the first button click.
  * @param onButton2Click Optional handler for the second button click.
@@ -62,6 +68,9 @@ fun OdsCardImageFirst(
     @DrawableRes
     imageRes: Int,
     imageContentDescription: String? = null,
+    imageBackgroundColor: Color? = null,
+    imageContentScale: ContentScale = ContentScale.Crop,
+    imageAlignment: Alignment = Alignment.Center,
     onCardClick: (() -> Unit)? = null,
     onButton1Click: (() -> Unit)? = null,
     onButton2Click: (() -> Unit)? = null
@@ -75,12 +84,15 @@ fun OdsCardImageFirst(
             Image(
                 painter = painterResource(imageRes),
                 contentDescription = imageContentDescription,
-                contentScale = ContentScale.Crop,
+                contentScale = imageContentScale,
                 modifier = Modifier
                     .fillMaxWidth()
-                    .height(dimensionResource(R.dimen.ods_card_big_image_width)),
-
-                )
+                    .height(dimensionResource(R.dimen.ods_card_big_image_width))
+                    .let {
+                        if (imageBackgroundColor != null) it.background(imageBackgroundColor) else it
+                    },
+                alignment = imageAlignment
+            )
             Column(
                 modifier = Modifier
                     .padding(dimensionResource(id = R.dimen.spacing_m))

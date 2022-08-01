@@ -12,6 +12,7 @@ package com.orange.ods.compose.component.card
 
 import androidx.annotation.DrawableRes
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -21,7 +22,9 @@ import androidx.compose.material.Card
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.painterResource
@@ -39,6 +42,9 @@ import com.orange.ods.R
  * @param subtitle Optional subtitle to be displayed in the card.
  * @param imageRes The drawable resource of the card image.
  * @param imageContentDescription Optional card image content description.
+ * @param imageBackgroundColor Optional background color of the card image.
+ * @param imageContentScale The content scale of the card image.
+ * @param imageAlignment The alignment of the card image.
  * @param onCardClick Optional click on the card itself.
  *
  */
@@ -50,6 +56,9 @@ fun OdsCardSmall(
     @DrawableRes
     imageRes: Int,
     imageContentDescription: String? = null,
+    imageBackgroundColor: Color? = null,
+    imageContentScale: ContentScale = ContentScale.Crop,
+    imageAlignment: Alignment = Alignment.Center,
     onCardClick: (() -> Unit)? = null,
 ) {
     Card(
@@ -61,12 +70,15 @@ fun OdsCardSmall(
             Image(
                 painter = painterResource(imageRes),
                 contentDescription = imageContentDescription,
-                contentScale = ContentScale.Crop,
+                contentScale = imageContentScale,
                 modifier = Modifier
                     .fillMaxWidth()
-                    .height(dimensionResource(R.dimen.ods_card_small_image_width)),
-
-                )
+                    .height(dimensionResource(R.dimen.ods_card_small_image_width))
+                    .let {
+                        if (imageBackgroundColor != null) it.background(imageBackgroundColor) else it
+                    },
+                alignment = imageAlignment
+            )
             Column(
                 modifier = Modifier
                     .padding(16.dp)
