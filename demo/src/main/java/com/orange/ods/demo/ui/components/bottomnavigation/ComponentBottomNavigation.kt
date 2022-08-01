@@ -29,18 +29,20 @@ import com.orange.ods.compose.component.bottomnavigation.OdsBottomNavigationItem
 import com.orange.ods.demo.R
 import com.orange.ods.demo.ui.components.Component
 import com.orange.ods.demo.ui.components.ComponentDetail
+import com.orange.ods.demo.ui.components.bottomnavigation.ComponentBottomNavigation.MaxNavigationItemCount
+import com.orange.ods.demo.ui.components.bottomnavigation.ComponentBottomNavigation.MinNavigationItemCount
 import com.orange.ods.demo.ui.components.utilities.ComponentCountRow
 import com.orange.ods.demo.ui.components.utilities.clickOnElement
 
 private object ComponentBottomNavigation {
-    const val minNavigationItemCount = 3
-    const val maxNavigationItemCount = 5
+    const val MinNavigationItemCount = 3
+    const val MaxNavigationItemCount = 5
 }
 
 @Composable
 @ExperimentalMaterialApi
 fun ComponentBottomNavigation() {
-    val selectedNavigationItemCount = rememberSaveable { mutableStateOf(minNavigationItemCount) }
+    val selectedNavigationItemCount = rememberSaveable { mutableStateOf(MinNavigationItemCount) }
     ComponentDetail(
         component = Component.BottomNavigation,
         bottomBar = { ComponentBottomNavigationBottomBar(selectedNavigationItemCount = selectedNavigationItemCount) },
@@ -53,8 +55,8 @@ private fun ComponentBottomNavigationContent(selectedNavigationItemCount: Mutabl
         modifier = Modifier.padding(horizontal = dimensionResource(id = R.dimen.ods_screen_horizontal_margin)),
         title = stringResource(id = R.string.component_bottom_navigation_navigation_item_count),
         count = selectedNavigationItemCount,
-        minCount = minNavigationItemCount,
-        maxCount = maxNavigationItemCount
+        minCount = MinNavigationItemCount,
+        maxCount = MaxNavigationItemCount
     )
 }
 
