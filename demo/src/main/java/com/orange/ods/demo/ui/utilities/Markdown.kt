@@ -12,8 +12,11 @@ package com.orange.ods.demo.ui.utilities
 
 object Markdown {
 
+    private const val specialCharacters = "\\`*_{}[]()#+-.!"
+
     fun toHtml(markdown: String): String {
-        val html = markdown.replaceLinks()
+        val html = markdown.replaceEscapedCharacters()
+            .replaceLinks()
             .replaceCode()
             .replaceHeadings()
             .replaceNewlines()
@@ -33,7 +36,15 @@ object Markdown {
         """.trimIndent()
     }
 
-    private fun CharSequence.replaceLinks() = replace("\\[(.[^]]*)]\\(([^)]*)\\)".toRegex(), "<a href=\"$2\">$1</a>")
+    private fun CharSequence.replaceEscapedCharacters(): String {
+        val escapedCharacters = specialCharacters.map { "\\$it" }.joinToString("")
+        return replace("\\\\([$escapedCharacters])".toRegex(), "$1")
+    }
+    
+    private fun CharSequence.replaceLinks(): String {
+        return replace("<([^>]*)>".toRegex(), "<a href=\"$1\">$1</a>")
+            .replace("\\[(.[^]]*)]\\(([^)]*)\\)".toRegex(), "<a href=\"$2\">$1</a>")
+    }
 
     private fun CharSequence.replaceCode() = replace("`([^`]*)`".toRegex(), "<code>$1</code>")
 
