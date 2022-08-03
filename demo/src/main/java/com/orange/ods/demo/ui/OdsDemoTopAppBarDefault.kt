@@ -30,10 +30,10 @@ import com.orange.ods.demo.R
 import com.orange.ods.demo.ui.utilities.extension.isDarkModeEnabled
 
 @Composable
-fun OdsDemoTopAppBar(
+fun OdsDemoTopAppBarDefault(
     titleRes: Int,
     shouldShowUpNavigationIcon: Boolean,
-    navigateUp: () -> Unit,
+    upPress: () -> Unit,
     updateTheme: (Boolean) -> Unit
 ) {
     SystemBarsColorSideEffect(MaterialTheme.colors.background)
@@ -42,7 +42,7 @@ fun OdsDemoTopAppBar(
             Text(text = stringResource(id = titleRes))
         },
         navigationIcon = if (shouldShowUpNavigationIcon) {
-            { UpNavigationIcon(navigateUp) }
+            { UpNavigationIcon(upPress) }
         } else null,
         actions = {
             val configuration = LocalConfiguration.current

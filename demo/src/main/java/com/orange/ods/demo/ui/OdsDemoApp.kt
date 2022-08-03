@@ -42,11 +42,16 @@ import com.orange.ods.compose.component.bottomnavigation.OdsBottomNavigationItem
 import com.orange.ods.compose.theme.OdsMaterialTheme
 import com.orange.ods.demo.ui.about.addAboutGraph
 import com.orange.ods.demo.ui.components.addComponentsGraph
+import com.orange.ods.demo.ui.components.tabs.OdsDemoTabsState
 import com.orange.ods.demo.ui.components.tabs.TabsConfiguration
 import com.orange.ods.demo.ui.components.tabs.TopAppBarFixedTabs
 import com.orange.ods.demo.ui.components.tabs.TopAppBarScrollableTabs
 import com.orange.ods.demo.ui.guidelines.addGuidelinesGraph
 import com.orange.ods.demo.ui.utilities.extension.isDarkModeEnabled
+
+enum class OdsDemoTopAppBarType {
+    Default, Regular, Extended
+}
 
 @ExperimentalMaterialApi
 @ExperimentalPagerApi
@@ -69,34 +74,13 @@ fun OdsDemoApp() {
                     Surface(elevation = AppBarDefaults.TopAppBarElevation) {
                         Column {
                             OdsDemoTopAppBar(
-                                titleRes = appState.topAppBarTitleRes.value,
+                                topAppBarState = appState.topAppBarState,
                                 shouldShowUpNavigationIcon = !appState.shouldShowBottomBar,
-                                navigateUp = appState::upPress,
+                                upPress = appState::upPress,
                                 updateTheme = appState::updateTheme
                             )
                             // Display tabs in the top bar if needed
-                            with(appState.tabsState) {
-                                pagerState?.let { pagerState ->
-                                    if (hasTabs) {
-                                        if (scrollableTabs.value) {
-                                            TopAppBarScrollableTabs(
-                                                tabs = tabs,
-                                                pagerState = pagerState,
-                                                tabIconType = tabIconType.value,
-                                                tabTextEnabled = tabTextEnabled.value
-                                            )
-                                        } else {
-                                            TopAppBarFixedTabs(
-                                                tabs = tabs,
-                                                pagerState = pagerState,
-                                                tabIconType = tabIconType.value,
-                                                tabTextEnabled = tabTextEnabled.value
-                                            )
-                                        }
-                                    }
-                                }
-                            }
-
+                            OdsDemoTabs(tabsState = appState.tabsState)
                         }
                     }
                 },
@@ -118,11 +102,53 @@ fun OdsDemoApp() {
                     NavHost(appState.navController, startDestination = MainDestinations.HOME_ROUTE) {
                         odsDemoNavGraph(
                             onNavElementClick = appState::navigateToElement,
-                            updateTopBarTitle = appState::updateTopAppBarTitle,
+                            updateTopBarTitle = appState.topAppBarState::updateTopAppBarTitle,
                             updateTopAppBarTabs = appState.tabsState::updateTopAppBarTabs,
                             clearTopAppBarTabs = appState.tabsState::clearTopAppBarTabs
                         )
                     }
+                }
+            }
+        }
+    }
+}
+
+@Composable
+private fun OdsDemoTopAppBar(topAppBarState: OdsDemoTopAppBarState, shouldShowUpNavigationIcon: Boolean, upPress: () -> Unit, updateTheme: (Boolean) -> Unit) {
+    when (topAppBarState.topAppBarType.value) {
+        OdsDemoTopAppBarType.Default -> {
+            OdsDemoTopAppBarDefault(
+                titleRes = topAppBarState.topAppBarTitleRes.value,
+                shouldShowUpNavigationIcon = shouldShowUpNavigationIcon,
+                upPress = upPress,
+                updateTheme = updateTheme
+            )
+        }
+        else -> {}
+    }
+}
+
+@ExperimentalMaterialApi
+@ExperimentalPagerApi
+@Composable
+private fun OdsDemoTabs(tabsState: OdsDemoTabsState) {
+    with(tabsState) {
+        pagerState?.let { pagerState ->
+            if (hasTabs) {
+                if (scrollableTabs.value) {
+                    TopAppBarScrollableTabs(
+                        tabs = tabs,
+                        pagerState = pagerState,
+                        tabIconType = tabIconType.value,
+                        tabTextEnabled = tabTextEnabled.value
+                    )
+                } else {
+                    TopAppBarFixedTabs(
+                        tabs = tabs,
+                        pagerState = pagerState,
+                        tabIconType = tabIconType.value,
+                        tabTextEnabled = tabTextEnabled.value
+                    )
                 }
             }
         }
