@@ -89,7 +89,7 @@ fun OdsCardTitleFirst(
             Row(
                 modifier = Modifier
                     .fillMaxWidth()
-                    .height(dimensionResource(id = R.dimen.list_two_line_item_with_icon_height))
+                    .height(dimensionResource(id = R.dimen.list_two_line_with_icon_item_height))
                     .padding(horizontal = dimensionResource(id = R.dimen.spacing_m)),
                 verticalAlignment = Alignment.CenterVertically
             ) {
