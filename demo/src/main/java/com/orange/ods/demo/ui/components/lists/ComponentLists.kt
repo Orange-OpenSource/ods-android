@@ -56,11 +56,11 @@ fun ComponentLists() {
 @ExperimentalMaterialApi
 @Composable
 private fun ComponentListsBottomSheetContent(variantListsState: VariantListsState) {
-    Subtitle(textRes = R.string.component_list_size, withHorizontalPadding = true)
-    ComponentChipRow(variantListsState.selectedSize) {
-        ComponentChip(textRes = R.string.component_list_size_single_line, value = VariantListsState.Size.SingleLine)
-        ComponentChip(textRes = R.string.component_list_size_two_line, value = VariantListsState.Size.TwoLine)
-        ComponentChip(textRes = R.string.component_list_size_three_line, value = VariantListsState.Size.ThreeLine)
+    Subtitle(textRes = R.string.component_list_item_size, withHorizontalPadding = true)
+    ComponentChipRow(variantListsState.selectedItemSize) {
+        ComponentChip(textRes = R.string.component_list_item_size_single_line, value = VariantListsState.ItemSize.SingleLine)
+        ComponentChip(textRes = R.string.component_list_item_size_two_line, value = VariantListsState.ItemSize.TwoLine)
+        ComponentChip(textRes = R.string.component_list_item_size_three_line, value = VariantListsState.ItemSize.ThreeLine)
     }
 
     Subtitle(textRes = R.string.component_list_leading, withHorizontalPadding = true)
@@ -99,7 +99,7 @@ private fun ComponentListsContent(variantListsState: VariantListsState) {
                     .let { if (variantListsState.dividerEnabled.value) it.divider() else it },
                 text = stringResource(id = R.string.component_element_title),
                 secondaryText = variantListsState.secondaryTextResId?.let { stringResource(id = it) },
-                singleLineSecondaryText = variantListsState.selectedSize.value == VariantListsState.Size.TwoLine,
+                singleLineSecondaryText = variantListsState.selectedItemSize.value == VariantListsState.ItemSize.TwoLine,
                 icon = variantListsState.iconPainterResId?.let { { OdsListItemIcon(painter = painterResource(it)) } },
                 trailing = variantListsState.trailing
             )
@@ -119,10 +119,10 @@ private val VariantListsState.Trailing.textResId: Int
 
 @ExperimentalMaterialApi
 private val VariantListsState.secondaryTextResId: Int?
-    get() = when (selectedSize.value) {
-        VariantListsState.Size.SingleLine -> null
-        VariantListsState.Size.TwoLine -> R.string.component_element_subtitle
-        VariantListsState.Size.ThreeLine -> R.string.component_element_lorem_ipsum
+    get() = when (selectedItemSize.value) {
+        VariantListsState.ItemSize.SingleLine -> null
+        VariantListsState.ItemSize.TwoLine -> R.string.component_element_subtitle
+        VariantListsState.ItemSize.ThreeLine -> R.string.component_element_lorem_ipsum
     }
 
 @ExperimentalMaterialApi

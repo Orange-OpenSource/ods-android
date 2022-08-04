@@ -23,23 +23,23 @@ import androidx.compose.runtime.saveable.rememberSaveable
 @Composable
 fun rememberVariantListsState(
     bottomSheetScaffoldState: BottomSheetScaffoldState = rememberBottomSheetScaffoldState(),
-    selectedSize: MutableState<VariantListsState.Size> = rememberSaveable { mutableStateOf(VariantListsState.Size.SingleLine) },
+    selectedItemSize: MutableState<VariantListsState.ItemSize> = rememberSaveable { mutableStateOf(VariantListsState.ItemSize.SingleLine) },
     selectedLeading: MutableState<VariantListsState.Leading> = rememberSaveable { mutableStateOf(VariantListsState.Leading.None) },
     selectedTrailing: MutableState<VariantListsState.Trailing> = rememberSaveable { mutableStateOf(VariantListsState.Trailing.None) },
     dividerEnabled: MutableState<Boolean> = rememberSaveable { mutableStateOf(false) }
-) = remember(selectedSize) {
-    VariantListsState(bottomSheetScaffoldState, selectedSize, selectedLeading, selectedTrailing, dividerEnabled)
+) = remember(selectedItemSize) {
+    VariantListsState(bottomSheetScaffoldState, selectedItemSize, selectedLeading, selectedTrailing, dividerEnabled)
 }
 
 @ExperimentalMaterialApi
 class VariantListsState(
     val bottomSheetScaffoldState: BottomSheetScaffoldState,
-    val selectedSize: MutableState<Size>,
+    val selectedItemSize: MutableState<ItemSize>,
     val selectedLeading: MutableState<Leading>,
     val selectedTrailing: MutableState<Trailing>,
     val dividerEnabled: MutableState<Boolean>
 ) {
-    enum class Size {
+    enum class ItemSize {
         SingleLine, TwoLine, ThreeLine
     }
 
@@ -52,10 +52,10 @@ class VariantListsState(
     }
 
     val trailings: List<Trailing>
-        get() = when (selectedSize.value) {
-            Size.SingleLine,
-            Size.TwoLine -> listOf(Trailing.None, Trailing.Checkbox, Trailing.Switch, Trailing.Icon)
-            Size.ThreeLine -> listOf(Trailing.None, Trailing.Caption)
+        get() = when (selectedItemSize.value) {
+            ItemSize.SingleLine,
+            ItemSize.TwoLine -> listOf(Trailing.None, Trailing.Checkbox, Trailing.Switch, Trailing.Icon)
+            ItemSize.ThreeLine -> listOf(Trailing.None, Trailing.Caption)
         }
 
     fun resetTrailing() {
