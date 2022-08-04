@@ -45,122 +45,122 @@ import com.orange.ods.utilities.extension.orElse
 @ExperimentalMaterialApi
 @Composable
 fun ComponentLists() {
-    val variantListsState = rememberVariantListsState()
+    val listItemCustomizationState = rememberListItemCustomizationState()
     ComponentCustomizationBottomSheetScaffold(
-        bottomSheetScaffoldState = variantListsState.bottomSheetScaffoldState,
-        bottomSheetContent = { ComponentListsBottomSheetContent(variantListsState) },
-        content = { ComponentListsContent(variantListsState) }
+        bottomSheetScaffoldState = listItemCustomizationState.bottomSheetScaffoldState,
+        bottomSheetContent = { ComponentListsBottomSheetContent(listItemCustomizationState) },
+        content = { ComponentListsContent(listItemCustomizationState) }
     )
 }
 
 @ExperimentalMaterialApi
 @Composable
-private fun ComponentListsBottomSheetContent(variantListsState: VariantListsState) {
+private fun ComponentListsBottomSheetContent(listItemCustomizationState: ListItemCustomizationState) {
     Subtitle(textRes = R.string.component_list_item_size, withHorizontalPadding = true)
-    ComponentChipRow(variantListsState.selectedItemSize) {
-        ComponentChip(textRes = R.string.component_list_item_size_single_line, value = VariantListsState.ItemSize.SingleLine)
-        ComponentChip(textRes = R.string.component_list_item_size_two_line, value = VariantListsState.ItemSize.TwoLine)
-        ComponentChip(textRes = R.string.component_list_item_size_three_line, value = VariantListsState.ItemSize.ThreeLine)
+    ComponentChipRow(listItemCustomizationState.selectedItemSize) {
+        ComponentChip(textRes = R.string.component_list_item_size_single_line, value = ListItemCustomizationState.ItemSize.SingleLine)
+        ComponentChip(textRes = R.string.component_list_item_size_two_line, value = ListItemCustomizationState.ItemSize.TwoLine)
+        ComponentChip(textRes = R.string.component_list_item_size_three_line, value = ListItemCustomizationState.ItemSize.ThreeLine)
     }
 
     Subtitle(textRes = R.string.component_list_leading, withHorizontalPadding = true)
-    ComponentChipRow(variantListsState.selectedLeading) {
-        ComponentChip(textRes = R.string.component_list_leading_none, value = VariantListsState.Leading.None)
-        ComponentChip(textRes = R.string.component_list_leading_icon, value = VariantListsState.Leading.Icon)
-        ComponentChip(textRes = R.string.component_list_leading_circular_image, value = VariantListsState.Leading.CircularImage)
-        ComponentChip(textRes = R.string.component_list_leading_square_image, value = VariantListsState.Leading.SquareImage)
-        ComponentChip(textRes = R.string.component_list_leading_wide_image, value = VariantListsState.Leading.WideImage)
+    ComponentChipRow(listItemCustomizationState.selectedLeading) {
+        ComponentChip(textRes = R.string.component_list_leading_none, value = ListItemCustomizationState.Leading.None)
+        ComponentChip(textRes = R.string.component_list_leading_icon, value = ListItemCustomizationState.Leading.Icon)
+        ComponentChip(textRes = R.string.component_list_leading_circular_image, value = ListItemCustomizationState.Leading.CircularImage)
+        ComponentChip(textRes = R.string.component_list_leading_square_image, value = ListItemCustomizationState.Leading.SquareImage)
+        ComponentChip(textRes = R.string.component_list_leading_wide_image, value = ListItemCustomizationState.Leading.WideImage)
     }
 
     Subtitle(textRes = R.string.component_list_trailing, withHorizontalPadding = true)
-    ComponentChipRow(variantListsState.selectedTrailing) {
-        variantListsState.trailings.forEach { trailing ->
+    ComponentChipRow(listItemCustomizationState.selectedTrailing) {
+        listItemCustomizationState.trailings.forEach { trailing ->
             ComponentChip(textRes = trailing.textResId, value = trailing)
         }
     }
 
-    SwitchListItem(R.string.component_list_divider, variantListsState.dividerEnabled)
+    SwitchListItem(R.string.component_list_divider, listItemCustomizationState.dividerEnabled)
 }
 
 @ExperimentalMaterialApi
 @Composable
-private fun ComponentListsContent(variantListsState: VariantListsState) {
+private fun ComponentListsContent(listItemCustomizationState: ListItemCustomizationState) {
     Column(modifier = Modifier.verticalScroll(rememberScrollState())) {
-        if (!variantListsState.trailings.contains(variantListsState.selectedTrailing.value)) {
-            variantListsState.resetTrailing()
+        if (!listItemCustomizationState.trailings.contains(listItemCustomizationState.selectedTrailing.value)) {
+            listItemCustomizationState.resetTrailing()
         }
 
         repeat(4) {
             OdsListItem(
                 modifier = Modifier.clickable {}
                     .let { modifier ->
-                        variantListsState.iconType?.let { modifier.iconType(it) }.orElse { modifier }
+                        listItemCustomizationState.iconType?.let { modifier.iconType(it) }.orElse { modifier }
                     }
-                    .let { if (variantListsState.dividerEnabled.value) it.divider() else it },
+                    .let { if (listItemCustomizationState.dividerEnabled.value) it.divider() else it },
                 text = stringResource(id = R.string.component_element_title),
-                secondaryText = variantListsState.secondaryTextResId?.let { stringResource(id = it) },
-                singleLineSecondaryText = variantListsState.selectedItemSize.value == VariantListsState.ItemSize.TwoLine,
-                icon = variantListsState.iconPainterResId?.let { { OdsListItemIcon(painter = painterResource(it)) } },
-                trailing = variantListsState.trailing
+                secondaryText = listItemCustomizationState.secondaryTextResId?.let { stringResource(id = it) },
+                singleLineSecondaryText = listItemCustomizationState.selectedItemSize.value == ListItemCustomizationState.ItemSize.TwoLine,
+                icon = listItemCustomizationState.iconPainterResId?.let { { OdsListItemIcon(painter = painterResource(it)) } },
+                trailing = listItemCustomizationState.trailing
             )
         }
     }
 }
 
 @ExperimentalMaterialApi
-private val VariantListsState.Trailing.textResId: Int
+private val ListItemCustomizationState.Trailing.textResId: Int
     get() = when (this) {
-        VariantListsState.Trailing.None -> R.string.component_list_trailing_none
-        VariantListsState.Trailing.Checkbox -> R.string.component_list_trailing_checkbox
-        VariantListsState.Trailing.Switch -> R.string.component_list_trailing_switch
-        VariantListsState.Trailing.Icon -> R.string.component_list_trailing_icon
-        VariantListsState.Trailing.Caption -> R.string.component_list_trailing_caption
+        ListItemCustomizationState.Trailing.None -> R.string.component_list_trailing_none
+        ListItemCustomizationState.Trailing.Checkbox -> R.string.component_list_trailing_checkbox
+        ListItemCustomizationState.Trailing.Switch -> R.string.component_list_trailing_switch
+        ListItemCustomizationState.Trailing.Icon -> R.string.component_list_trailing_icon
+        ListItemCustomizationState.Trailing.Caption -> R.string.component_list_trailing_caption
     }
 
 @ExperimentalMaterialApi
-private val VariantListsState.secondaryTextResId: Int?
+private val ListItemCustomizationState.secondaryTextResId: Int?
     get() = when (selectedItemSize.value) {
-        VariantListsState.ItemSize.SingleLine -> null
-        VariantListsState.ItemSize.TwoLine -> R.string.component_element_subtitle
-        VariantListsState.ItemSize.ThreeLine -> R.string.component_element_lorem_ipsum
+        ListItemCustomizationState.ItemSize.SingleLine -> null
+        ListItemCustomizationState.ItemSize.TwoLine -> R.string.component_element_subtitle
+        ListItemCustomizationState.ItemSize.ThreeLine -> R.string.component_element_lorem_ipsum
     }
 
 @ExperimentalMaterialApi
-private val VariantListsState.iconType: OdsListItemIconType?
+private val ListItemCustomizationState.iconType: OdsListItemIconType?
     get() = when (selectedLeading.value) {
-        VariantListsState.Leading.None -> null
-        VariantListsState.Leading.Icon -> OdsListItemIconType.Icon
-        VariantListsState.Leading.CircularImage -> OdsListItemIconType.CircularImage
-        VariantListsState.Leading.SquareImage -> OdsListItemIconType.SquareImage
-        VariantListsState.Leading.WideImage -> OdsListItemIconType.WideImage
+        ListItemCustomizationState.Leading.None -> null
+        ListItemCustomizationState.Leading.Icon -> OdsListItemIconType.Icon
+        ListItemCustomizationState.Leading.CircularImage -> OdsListItemIconType.CircularImage
+        ListItemCustomizationState.Leading.SquareImage -> OdsListItemIconType.SquareImage
+        ListItemCustomizationState.Leading.WideImage -> OdsListItemIconType.WideImage
     }
 
 @ExperimentalMaterialApi
-private val VariantListsState.iconPainterResId: Int?
+private val ListItemCustomizationState.iconPainterResId: Int?
     get() = when (selectedLeading.value) {
-        VariantListsState.Leading.None -> null
-        VariantListsState.Leading.Icon -> R.drawable.ic_address_book
-        VariantListsState.Leading.CircularImage,
-        VariantListsState.Leading.SquareImage,
-        VariantListsState.Leading.WideImage -> R.drawable.placeholder
+        ListItemCustomizationState.Leading.None -> null
+        ListItemCustomizationState.Leading.Icon -> R.drawable.ic_address_book
+        ListItemCustomizationState.Leading.CircularImage,
+        ListItemCustomizationState.Leading.SquareImage,
+        ListItemCustomizationState.Leading.WideImage -> R.drawable.placeholder
     }
 
 @ExperimentalMaterialApi
-private val VariantListsState.trailing: (@Composable OdsListItemScope.() -> Unit)?
+private val ListItemCustomizationState.trailing: (@Composable OdsListItemScope.() -> Unit)?
     get() = when (selectedTrailing.value) {
-        VariantListsState.Trailing.None -> null
-        VariantListsState.Trailing.Checkbox -> { ->
+        ListItemCustomizationState.Trailing.None -> null
+        ListItemCustomizationState.Trailing.Checkbox -> { ->
             var checked by remember { mutableStateOf(true) }
             OdsCheckbox(checked = checked, onCheckedChange = { checked = it })
         }
-        VariantListsState.Trailing.Switch -> { ->
+        ListItemCustomizationState.Trailing.Switch -> { ->
             var checked by remember { mutableStateOf(true) }
             OdsSwitch(checked = checked, onCheckedChange = { checked = it })
         }
-        VariantListsState.Trailing.Icon -> { ->
+        ListItemCustomizationState.Trailing.Icon -> { ->
             Icon(painter = painterResource(id = R.drawable.ic_info), contentDescription = null)
         }
-        VariantListsState.Trailing.Caption -> { ->
+        ListItemCustomizationState.Trailing.Caption -> { ->
             Text(text = stringResource(id = R.string.component_element_caption), style = MaterialTheme.typography.caption)
         }
     }

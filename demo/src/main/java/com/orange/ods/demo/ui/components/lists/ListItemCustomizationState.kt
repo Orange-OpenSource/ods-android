@@ -21,18 +21,18 @@ import androidx.compose.runtime.saveable.rememberSaveable
 
 @ExperimentalMaterialApi
 @Composable
-fun rememberVariantListsState(
+fun rememberListItemCustomizationState(
     bottomSheetScaffoldState: BottomSheetScaffoldState = rememberBottomSheetScaffoldState(),
-    selectedItemSize: MutableState<VariantListsState.ItemSize> = rememberSaveable { mutableStateOf(VariantListsState.ItemSize.SingleLine) },
-    selectedLeading: MutableState<VariantListsState.Leading> = rememberSaveable { mutableStateOf(VariantListsState.Leading.None) },
-    selectedTrailing: MutableState<VariantListsState.Trailing> = rememberSaveable { mutableStateOf(VariantListsState.Trailing.None) },
+    selectedItemSize: MutableState<ListItemCustomizationState.ItemSize> = rememberSaveable { mutableStateOf(ListItemCustomizationState.ItemSize.SingleLine) },
+    selectedLeading: MutableState<ListItemCustomizationState.Leading> = rememberSaveable { mutableStateOf(ListItemCustomizationState.Leading.None) },
+    selectedTrailing: MutableState<ListItemCustomizationState.Trailing> = rememberSaveable { mutableStateOf(ListItemCustomizationState.Trailing.None) },
     dividerEnabled: MutableState<Boolean> = rememberSaveable { mutableStateOf(false) }
 ) = remember(selectedItemSize) {
-    VariantListsState(bottomSheetScaffoldState, selectedItemSize, selectedLeading, selectedTrailing, dividerEnabled)
+    ListItemCustomizationState(bottomSheetScaffoldState, selectedItemSize, selectedLeading, selectedTrailing, dividerEnabled)
 }
 
 @ExperimentalMaterialApi
-class VariantListsState(
+class ListItemCustomizationState(
     val bottomSheetScaffoldState: BottomSheetScaffoldState,
     val selectedItemSize: MutableState<ItemSize>,
     val selectedLeading: MutableState<Leading>,
