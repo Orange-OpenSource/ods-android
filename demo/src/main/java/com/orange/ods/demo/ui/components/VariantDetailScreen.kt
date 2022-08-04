@@ -14,6 +14,7 @@ import androidx.compose.material.ExperimentalMaterialApi
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember
 import com.google.accompanist.pager.ExperimentalPagerApi
+import com.orange.ods.demo.ui.TopAppBarConfiguration
 import com.orange.ods.demo.ui.components.appbars.top.ComponentAppBarsTop
 import com.orange.ods.demo.ui.components.buttons.ComponentButtons
 import com.orange.ods.demo.ui.components.cards.ComponentCard
@@ -30,6 +31,7 @@ import com.orange.ods.demo.ui.components.textfields.ComponentTextField
 fun VariantDetailScreen(
     variantId: Long,
     updateTopBarTitle: (Int) -> Unit,
+    updateTopAppBar: (TopAppBarConfiguration) -> Unit,
     updateTopAppBarTabs: (TabsConfiguration) -> Unit
 ) {
     val component = remember { components.firstOrNull { component -> component.variants.any { variant -> variant.id == variantId } } }
@@ -38,7 +40,7 @@ fun VariantDetailScreen(
     variant?.let {
         updateTopBarTitle(variant.titleRes)
         when (component) {
-            Component.AppBarsTop -> ComponentAppBarsTop(variant = variant)
+            Component.AppBarsTop -> ComponentAppBarsTop(updateTopAppBar)
             Component.Buttons -> ComponentButtons(variant = variant)
             Component.Cards -> ComponentCard(variant = variant)
             Component.Chips -> if (variant == Variant.ChipFilter) VariantChipFilter() else VariantChip()

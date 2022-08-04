@@ -19,31 +19,60 @@ import androidx.compose.runtime.saveable.rememberSaveable
 import com.google.accompanist.pager.ExperimentalPagerApi
 import com.orange.ods.demo.R
 
+private const val DefaultTopAppBarActionCount = 1
+
 @Composable
 @ExperimentalPagerApi
 @ExperimentalMaterialApi
 fun rememberOdsDemoTopAppBarState(
-    topAppBarType: MutableState<OdsDemoTopAppBarType> = rememberSaveable { mutableStateOf(OdsDemoTopAppBarType.Default) },
-    topAppBarTitleRes: MutableState<Int> = rememberSaveable { mutableStateOf(R.string.navigation_item_guidelines) }
+    titleRes: MutableState<Int> = rememberSaveable { mutableStateOf(R.string.navigation_item_guidelines) },
+    actionCount: MutableState<Int> = rememberSaveable { mutableStateOf(DefaultTopAppBarActionCount) },
+    navigationIconEnabled: MutableState<Boolean> = rememberSaveable { mutableStateOf(true) },
+    overflowMenuEnabled: MutableState<Boolean> = rememberSaveable { mutableStateOf(false) }
 ) =
-    remember(topAppBarType, topAppBarTitleRes) {
-        OdsDemoTopAppBarState(topAppBarType, topAppBarTitleRes)
+    remember(titleRes, actionCount, navigationIconEnabled, overflowMenuEnabled) {
+        OdsDemoTopAppBarState(titleRes, actionCount, navigationIconEnabled, overflowMenuEnabled)
     }
 
 class OdsDemoTopAppBarState(
-    val topAppBarType: MutableState<OdsDemoTopAppBarType>,
-    val topAppBarTitleRes: MutableState<Int>,
+    val titleRes: MutableState<Int>,
+    val actionCount: MutableState<Int>,
+    private val navigationIconEnabled: MutableState<Boolean>,
+    private val overflowMenuEnabled: MutableState<Boolean>
 ) {
+
+    companion object {
+        val defaultConfiguration = TopAppBarConfiguration(
+            isNavigationIconEnabled = true,
+            actionCount = DefaultTopAppBarActionCount,
+            isOverflowMenuEnabled = false
+        )
+    }
 
     // ----------------------------------------------------------
     // TopAppBar state source of truth
     // ----------------------------------------------------------
 
-    fun updateTopAppBarType(topAppBarType: OdsDemoTopAppBarType) {
-        this.topAppBarType.value = topAppBarType
+    val isNavigationIconEnabled: Boolean
+        get() = navigationIconEnabled.value
+
+    val isOverflowMenuEnabled: Boolean
+        get() = overflowMenuEnabled.value
+
+    fun updateTopAppBar(topAppBarConfiguration: TopAppBarConfiguration) {
+        navigationIconEnabled.value = topAppBarConfiguration.isNavigationIconEnabled
+        actionCount.value = topAppBarConfiguration.actionCount
+        overflowMenuEnabled.value = topAppBarConfiguration.isOverflowMenuEnabled
     }
 
     fun updateTopAppBarTitle(titleRes: Int) {
-        topAppBarTitleRes.value = titleRes
+        this.titleRes.value = titleRes
     }
+
 }
+
+data class TopAppBarConfiguration constructor(
+    val isNavigationIconEnabled: Boolean,
+    val actionCount: Int,
+    val isOverflowMenuEnabled: Boolean
+)

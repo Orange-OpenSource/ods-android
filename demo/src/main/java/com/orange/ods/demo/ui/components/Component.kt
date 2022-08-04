@@ -51,7 +51,7 @@ sealed class Component(
         R.drawable.il_app_bars_top,
         R.drawable.il_app_bars_top_small,
         R.string.component_app_bars_top_description,
-        listOf(Variant.AppBarsTopRegular, Variant.AppBarsTopExtended)
+        listOf(Variant.AppBarsTopRegular)
     )
 
     object BottomNavigation :
@@ -136,7 +136,6 @@ sealed class Variant(
     val id: Long = Variant::class.sealedSubclasses.indexOf(this::class).toLong()
 
     object AppBarsTopRegular : Variant(R.string.component_app_bars_top_regular)
-    object AppBarsTopExtended : Variant(R.string.component_app_bars_top_extended)
 
     object ButtonsContained : Variant(R.string.component_buttons_contained)
     object ButtonsOutlined : Variant(R.string.component_buttons_outlined)
