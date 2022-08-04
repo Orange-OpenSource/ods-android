@@ -49,7 +49,7 @@ import com.orange.ods.utilities.extension.orElse
  *
  * To make this [OdsListItem] clickable, use [Modifier.clickable].
  *
- * To specify an icon type, use [Modifier.iconType] on [modifier] and call [OdsListItemScope.OdsListItemIcon] in the [icon] lambda.
+ * To specify an icon type, use [Modifier.iconType] on [modifier] and call [OdsListItemIconScope.OdsListItemIcon] in the [icon] lambda.
  *
  * This component can be used to achieve the list item templates existing in the spec. For example:
  * - one-line items
@@ -72,22 +72,22 @@ import com.orange.ods.utilities.extension.orElse
 fun OdsListItem(
     modifier: Modifier = Modifier,
     text: String,
-    icon: @Composable (OdsListItemScope.() -> Unit)? = null,
+    icon: @Composable (OdsListItemIconScope.() -> Unit)? = null,
     secondaryText: String? = null,
     singleLineSecondaryText: Boolean = true,
     overlineText: String? = null,
-    trailing: @Composable (OdsListItemScope.() -> Unit)? = null
+    trailing: @Composable (() -> Unit)? = null
 ) {
     val iconType = modifier.getElementOfType<OdsListItemIconTypeModifier>()?.iconType
-    val listItemScope = OdsListItemScope(iconType)
+    val listItemIconScope = OdsListItemIconScope(iconType)
     if (iconType == OdsListItemIconType.WideImage) {
         Row(modifier = modifier, verticalAlignment = Alignment.CenterVertically) {
-            icon?.let { listItemScope.it() }
+            icon?.let { listItemIconScope.it() }
             OdsListItemInternal(
                 modifier = Modifier
                     .weight(1f)
                     .iconType(OdsListItemIconType.WideImage),
-                listItemScope = listItemScope,
+                listItemScope = listItemIconScope,
                 text = text,
                 icon = null,
                 secondaryText = secondaryText,
@@ -99,7 +99,7 @@ fun OdsListItem(
     } else {
         OdsListItemInternal(
             modifier = modifier,
-            listItemScope = listItemScope,
+            listItemScope = listItemIconScope,
             text = text,
             icon = icon,
             secondaryText = secondaryText,
@@ -128,13 +128,13 @@ fun OdsListItem(
 @Composable
 private fun OdsListItemInternal(
     modifier: Modifier = Modifier,
-    listItemScope: OdsListItemScope,
+    listItemScope: OdsListItemIconScope,
     text: String,
-    icon: @Composable (OdsListItemScope.() -> Unit)? = null,
+    icon: @Composable (OdsListItemIconScope.() -> Unit)? = null,
     secondaryText: String? = null,
     singleLineSecondaryText: Boolean = true,
     overlineText: String? = null,
-    trailing: @Composable (OdsListItemScope.() -> Unit)? = null
+    trailing: @Composable (() -> Unit)? = null
 ) {
     val iconType = modifier.getElementOfType<OdsListItemIconTypeModifier>()?.iconType
     val requiredHeight = computeRequiredHeight(
@@ -158,7 +158,7 @@ private fun OdsListItemInternal(
         overlineText = if (overlineText.isNotNullOrBlank()) {
             { Text(text = overlineText, style = MaterialTheme.typography.overline, color = MaterialTheme.colors.onSurface.copy(alpha = 0.6f)) }
         } else null,
-        trailing = trailing?.let { { listItemScope.it() } },
+        trailing = trailing,
         text = {
             if (text.isNotBlank()) {
                 OdsTextSubtitle1(text = text)
@@ -176,7 +176,7 @@ private fun OdsListItemInternal(
  * @param contentDescription Content description of the icon
  */
 @Composable
-fun OdsListItemScope.OdsListItemIcon(painter: Painter, contentDescription: String? = null) {
+fun OdsListItemIconScope.OdsListItemIcon(painter: Painter, contentDescription: String? = null) {
     when (iconType) {
         OdsListItemIconType.Icon -> {
             Column(modifier = Modifier.fillMaxHeight(), verticalArrangement = Arrangement.Center) {
@@ -243,11 +243,11 @@ private fun computeRequiredHeight(
 }
 
 /**
- * An [OdsListItemScope] provides a scope for the children of [OdsListItem].
+ * An [OdsListItemIconScope] provides a scope for the icon of [OdsListItem].
  *
  * @param iconType The icon type
  */
-data class OdsListItemScope(val iconType: OdsListItemIconType?)
+data class OdsListItemIconScope(val iconType: OdsListItemIconType?)
 
 /**
  * Represents the various types of icon that can be displayed in an [OdsListItem].

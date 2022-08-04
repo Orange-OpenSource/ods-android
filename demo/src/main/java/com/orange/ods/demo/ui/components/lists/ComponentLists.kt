@@ -33,7 +33,6 @@ import com.orange.ods.compose.component.control.OdsSwitch
 import com.orange.ods.compose.component.list.OdsListItem
 import com.orange.ods.compose.component.list.OdsListItemIcon
 import com.orange.ods.compose.component.list.OdsListItemIconType
-import com.orange.ods.compose.component.list.OdsListItemScope
 import com.orange.ods.compose.component.list.divider
 import com.orange.ods.compose.component.list.iconType
 import com.orange.ods.compose.text.OdsTextCaption
@@ -150,7 +149,7 @@ private val ListItemCustomizationState.iconPainterResId: Int?
     }
 
 @ExperimentalMaterialApi
-private val ListItemCustomizationState.trailing: (@Composable OdsListItemScope.() -> Unit)?
+private val ListItemCustomizationState.trailing: (@Composable () -> Unit)?
     get() = when (selectedTrailing.value) {
         ListItemCustomizationState.Trailing.None -> null
         ListItemCustomizationState.Trailing.Checkbox -> { ->
