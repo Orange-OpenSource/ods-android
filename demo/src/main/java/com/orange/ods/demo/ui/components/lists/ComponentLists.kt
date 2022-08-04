@@ -13,6 +13,7 @@ package com.orange.ods.demo.ui.components.lists
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.ExperimentalMaterialApi
 import androidx.compose.material.Icon
@@ -24,8 +25,11 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clip
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.unit.dp
 import com.orange.ods.compose.component.control.OdsCheckbox
 import com.orange.ods.compose.component.control.OdsSwitch
 import com.orange.ods.compose.component.list.OdsListItem
@@ -38,6 +42,7 @@ import com.orange.ods.demo.R
 import com.orange.ods.demo.ui.components.utilities.ComponentChip
 import com.orange.ods.demo.ui.components.utilities.ComponentChipRow
 import com.orange.ods.demo.ui.components.utilities.ComponentCustomizationBottomSheetScaffold
+import com.orange.ods.demo.ui.components.utilities.clickOnElement
 import com.orange.ods.demo.ui.utilities.composable.Subtitle
 import com.orange.ods.demo.ui.utilities.composable.SwitchListItem
 import com.orange.ods.utilities.extension.orElse
@@ -158,7 +163,17 @@ private val ListItemCustomizationState.trailing: (@Composable OdsListItemScope.(
             OdsSwitch(checked = checked, onCheckedChange = { checked = it })
         }
         ListItemCustomizationState.Trailing.Icon -> { ->
-            Icon(painter = painterResource(id = R.drawable.ic_info), contentDescription = null)
+            val context = LocalContext.current
+            val iconText = stringResource(id = R.string.component_element_icon)
+            Icon(
+                modifier = Modifier
+                    .clip(RoundedCornerShape(12.dp))
+                    .clickable {
+                        clickOnElement(context, iconText)
+                    },
+                painter = painterResource(id = R.drawable.ic_info),
+                contentDescription = null
+            )
         }
         ListItemCustomizationState.Trailing.Caption -> { ->
             Text(text = stringResource(id = R.string.component_element_caption), style = MaterialTheme.typography.caption)
