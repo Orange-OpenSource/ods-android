@@ -17,8 +17,6 @@ import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.ExperimentalMaterialApi
 import androidx.compose.material.Icon
-import androidx.compose.material.MaterialTheme
-import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
@@ -38,6 +36,7 @@ import com.orange.ods.compose.component.list.OdsListItemIconType
 import com.orange.ods.compose.component.list.OdsListItemScope
 import com.orange.ods.compose.component.list.divider
 import com.orange.ods.compose.component.list.iconType
+import com.orange.ods.compose.text.OdsTextCaption
 import com.orange.ods.demo.R
 import com.orange.ods.demo.ui.components.utilities.ComponentChip
 import com.orange.ods.demo.ui.components.utilities.ComponentChipRow
@@ -176,6 +175,6 @@ private val ListItemCustomizationState.trailing: (@Composable OdsListItemScope.(
             )
         }
         ListItemCustomizationState.Trailing.Caption -> { ->
-            Text(text = stringResource(id = R.string.component_element_caption), style = MaterialTheme.typography.caption)
+            OdsTextCaption(text = stringResource(id = R.string.component_element_caption))
         }
     }

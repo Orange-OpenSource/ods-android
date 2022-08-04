@@ -32,6 +32,7 @@ import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import com.orange.ods.compose.component.list.OdsListItem
+import com.orange.ods.compose.text.OdsTextCaption
 import com.orange.ods.compose.theme.Blue200
 import com.orange.ods.demo.R
 import com.orange.ods.demo.ui.utilities.extension.versionCode
@@ -66,7 +67,7 @@ fun AboutScreen(onAboutItemClick: (Long) -> Unit, updateTopBarTitle: (Int) -> Un
                 style = MaterialTheme.typography.caption,
                 modifier = Modifier.padding(top = dimensionResource(id = R.dimen.spacing_xs))
             )
-            Text(text = stringResource(id = R.string.about_copyright), style = MaterialTheme.typography.caption)
+            OdsTextCaption(text = stringResource(id = R.string.about_copyright))
         }
 
         Spacer(modifier = Modifier.height(dimensionResource(id = R.dimen.spacing_m)))
