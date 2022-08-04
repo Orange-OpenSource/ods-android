@@ -35,9 +35,9 @@ fun ComponentsScreen(onComponentClick: (Long) -> Unit, updateTopBarTitle: (Int) 
     val scrollState = rememberScrollState()
     Column(
         modifier = Modifier
-            .padding(dimensionResource(id = R.dimen.spacing_m))
             .fillMaxSize()
-            .verticalScroll(scrollState),
+            .verticalScroll(scrollState)
+            .padding(dimensionResource(id = R.dimen.spacing_m)),
         verticalArrangement = Arrangement.spacedBy(dimensionResource(id = R.dimen.spacing_m))
     ) {
         components.chunked(2).forEach { rowCards ->
