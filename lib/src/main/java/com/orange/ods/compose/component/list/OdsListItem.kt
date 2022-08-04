@@ -109,17 +109,10 @@ fun OdsListItem(
         )
     }
 
-    val dividerModifier = modifier.getElementOfType<OdsListItemDividerModifier>()
-    if (dividerModifier != null) {
-        val startIndent = dividerModifier.startIndent.orElse {
-            when (iconType) {
-                OdsListItemIconType.Icon,
-                OdsListItemIconType.CircularImage -> dimensionResource(id = R.dimen.avatar_size) + dimensionResource(id = R.dimen.spacing_m).times(2)
-                OdsListItemIconType.SquareImage -> dimensionResource(id = R.dimen.list_square_image_size) + dimensionResource(id = R.dimen.spacing_m).times(2)
-                OdsListItemIconType.WideImage -> dimensionResource(id = R.dimen.list_wide_image_width) + dimensionResource(id = R.dimen.spacing_m)
-                null -> dimensionResource(id = R.dimen.spacing_m)
-            }
-        }
+    modifier.getElementOfType<OdsListItemDividerModifier>()?.let { dividerModifier ->
+        val startIndent = dividerModifier.startIndent
+            .orElse { iconType?.getDividerStartIndent() }
+            .orElse { dimensionResource(id = R.dimen.spacing_m) }
         Divider(startIndent = startIndent)
     }
 }
@@ -265,6 +258,16 @@ enum class OdsListItemIconType {
 
     /** An image cropped into a rectangle. */
     WideImage
+}
+
+@Composable
+private fun OdsListItemIconType.getDividerStartIndent(): Dp {
+    return when (this) {
+        OdsListItemIconType.Icon,
+        OdsListItemIconType.CircularImage -> dimensionResource(id = R.dimen.avatar_size) + dimensionResource(id = R.dimen.spacing_m).times(2)
+        OdsListItemIconType.SquareImage -> dimensionResource(id = R.dimen.list_square_image_size) + dimensionResource(id = R.dimen.spacing_m).times(2)
+        OdsListItemIconType.WideImage -> dimensionResource(id = R.dimen.list_wide_image_width) + dimensionResource(id = R.dimen.spacing_m)
+    }
 }
 
 /**
