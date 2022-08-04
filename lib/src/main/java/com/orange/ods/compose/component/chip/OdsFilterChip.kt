@@ -38,8 +38,8 @@ import androidx.compose.ui.unit.dp
 import com.orange.ods.R
 import com.orange.ods.compose.component.utilities.DisabledInteractionSource
 import com.orange.ods.compose.component.utilities.OdsImageCircleShape
+import com.orange.ods.compose.component.utilities.Preview
 import com.orange.ods.compose.text.OdsTextBody2
-import com.orange.ods.compose.theme.OdsMaterialTheme
 
 /**
  * <a href="https://system.design.orange.com/0c1af118d/p/81aa91-chips/b/13c40e" target="_blank">ODS Chips</a>.
@@ -125,7 +125,7 @@ private fun OdsChipSelectedIcon(tint: Color = LocalContentColor.current.copy(alp
 
 @Composable
 @ExperimentalMaterialApi
-private fun PreviewOdsFilterChip() = OdsMaterialTheme {
+private fun PreviewOdsFilterChip() = Preview {
     val selected = remember { mutableStateOf(false) }
     OdsFilterChip(
         text = "Text",

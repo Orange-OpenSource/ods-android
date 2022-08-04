@@ -34,10 +34,10 @@ import androidx.compose.ui.tooling.preview.Preview
 import com.orange.ods.R
 import com.orange.ods.compose.component.button.OdsButtonText
 import com.orange.ods.compose.component.button.OdsButtonTextStyle
+import com.orange.ods.compose.component.utilities.Preview
 import com.orange.ods.compose.text.OdsTextBody1
 import com.orange.ods.compose.text.OdsTextH6
 import com.orange.ods.compose.text.OdsTextSubtitle2
-import com.orange.ods.compose.theme.OdsMaterialTheme
 
 /**
  * <a href="https://system.design.orange.com/0c1af118d/p/272739-cards/b/991690" target="_blank">ODS Card</a>.
@@ -138,7 +138,7 @@ fun OdsCardImageFirst(
 }
 
 @Composable
-private fun PreviewOdsCardImageFirst() = OdsMaterialTheme {
+private fun PreviewOdsCardImageFirst() = Preview {
     OdsCardImageFirst(
         title = "Title",
         subtitle = "Subtitle",

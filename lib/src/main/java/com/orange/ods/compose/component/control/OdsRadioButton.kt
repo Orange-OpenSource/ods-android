@@ -25,7 +25,7 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
-import com.orange.ods.compose.theme.OdsMaterialTheme
+import com.orange.ods.compose.component.utilities.Preview
 import com.orange.ods.compose.theme.OdsPrimaryRippleTheme
 
 /**
@@ -68,7 +68,7 @@ fun OdsRadioButton(
 }
 
 @Composable
-private fun PreviewOdsRadioButton() = OdsMaterialTheme {
+private fun PreviewOdsRadioButton() = Preview {
     val selected = remember { mutableStateOf(false) }
     OdsRadioButton(
         selected = selected.value,

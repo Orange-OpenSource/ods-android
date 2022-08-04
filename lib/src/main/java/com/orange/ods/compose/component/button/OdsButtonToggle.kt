@@ -31,8 +31,8 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.orange.ods.compose.component.utilities.DisabledInteractionSource
+import com.orange.ods.compose.component.utilities.Preview
 import com.orange.ods.compose.theme.OdsDisplaySurface
-import com.orange.ods.compose.theme.OdsMaterialTheme
 import com.orange.ods.compose.theme.odsDarkThemeColors
 import com.orange.ods.compose.theme.odsLightThemeColors
 
@@ -107,7 +107,7 @@ private fun Colors.buttonToggleBackgroundColor(displaySurface: OdsDisplaySurface
     }
 
 @Composable
-private fun PreviewOdsButtonToggle() = OdsMaterialTheme {
+private fun PreviewOdsButtonToggle() = Preview {
     val checked = remember { mutableStateOf(false) }
     OdsButtonToggle(
         checked = checked.value,

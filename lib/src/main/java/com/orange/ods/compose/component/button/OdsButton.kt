@@ -27,10 +27,10 @@ import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
+import com.orange.ods.compose.component.utilities.Preview
 import com.orange.ods.compose.theme.Black900
 import com.orange.ods.compose.theme.Negative200
 import com.orange.ods.compose.theme.OdsDisplaySurface
-import com.orange.ods.compose.theme.OdsMaterialTheme
 import com.orange.ods.compose.theme.Positive100
 import com.orange.ods.compose.theme.White100
 import com.orange.ods.compose.theme.odsDarkThemeColors
@@ -178,7 +178,7 @@ private object OdsOnPrimaryRippleTheme : RippleTheme {
 }
 
 @Composable
-private fun PreviewOdsButton() = OdsMaterialTheme {
+private fun PreviewOdsButton() = Preview {
     OdsButton(text = "Text", onClick = {}, style = OdsButtonContainedStyle.Default)
 }
 

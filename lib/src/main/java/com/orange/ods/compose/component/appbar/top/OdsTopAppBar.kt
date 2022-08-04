@@ -26,7 +26,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import com.orange.ods.compose.theme.OdsMaterialTheme
+import com.orange.ods.compose.component.utilities.Preview
 
 /**
  * <a href="https://system.design.orange.com/0c1af118d/p/23e0e6-app-bars/b/620966" class="external" target="_blank">Material ODS Top App Bar</a>.
@@ -76,7 +76,7 @@ fun OdsTopAppBar(
 }
 
 @Composable
-private fun PreviewOdsTopAppBar() = OdsMaterialTheme {
+private fun PreviewOdsTopAppBar() = Preview {
     OdsTopAppBar(
         title = "Title",
         navigationIcon = {

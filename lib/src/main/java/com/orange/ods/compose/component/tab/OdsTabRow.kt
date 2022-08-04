@@ -23,7 +23,7 @@ import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
-import com.orange.ods.compose.theme.OdsMaterialTheme
+import com.orange.ods.compose.component.utilities.Preview
 
 /**
  * <a href="https://system.design.orange.com/0c1af118d/p/513d27-tabs/b/50cb71" class="external" target="_blank">ODS tabs</a>.
@@ -62,7 +62,7 @@ fun OdsTabRow(
 }
 
 @Composable
-private fun PreviewOdsTabRow() = OdsMaterialTheme {
+private fun PreviewOdsTabRow() = Preview {
     data class Tab(@DrawableRes val iconResId: Int, val text: String)
 
     val tabs = listOf(

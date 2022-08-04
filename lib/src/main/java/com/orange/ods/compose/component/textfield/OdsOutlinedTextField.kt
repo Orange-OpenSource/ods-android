@@ -34,7 +34,7 @@ import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.input.VisualTransformation
 import androidx.compose.ui.tooling.preview.Preview
 import com.orange.ods.R
-import com.orange.ods.compose.theme.OdsMaterialTheme
+import com.orange.ods.compose.component.utilities.Preview
 
 /**
  * <a href="https://system.design.orange.com/0c1af118d/p/483f94-text-fields/b/720e3b" target="_blank">ODS Text fields</a>.
@@ -169,7 +169,7 @@ private fun odsOutlinedTextFieldColors() = TextFieldDefaults.outlinedTextFieldCo
 )
 
 @Composable
-private fun PreviewOdsOutlinedTextField() = OdsMaterialTheme {
+private fun PreviewOdsOutlinedTextField() = Preview {
     var text by remember { mutableStateOf("Input text") }
     OdsOutlinedTextField(
         value = text,

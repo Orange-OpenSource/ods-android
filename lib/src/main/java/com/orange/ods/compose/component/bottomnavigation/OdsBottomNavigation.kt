@@ -25,7 +25,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.Preview
-import com.orange.ods.compose.theme.OdsMaterialTheme
+import com.orange.ods.compose.component.utilities.Preview
 
 /**
  * <a href="https://system.design.orange.com/0c1af118d/p/042eb8-bottom-navigation/b/30078d" target="_blank">ODS Bottom navigation</a>.
@@ -113,7 +113,7 @@ fun RowScope.OdsBottomNavigationItem(
 }
 
 @Composable
-private fun PreviewOdsBottomNavigation() = OdsMaterialTheme {
+private fun PreviewOdsBottomNavigation() = Preview {
     data class Item(@DrawableRes val iconResId: Int, val label: String)
 
     val items = listOf(

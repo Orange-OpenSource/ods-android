@@ -23,7 +23,7 @@ import androidx.compose.ui.graphics.painter.Painter
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.Preview
-import com.orange.ods.compose.theme.OdsMaterialTheme
+import com.orange.ods.compose.component.utilities.Preview
 
 /**
  * <a href="https://system.design.orange.com/0c1af118d/p/513d27-tabs/b/50cb71" class="external" target="_blank">ODS tab</a>.
@@ -65,7 +65,7 @@ fun OdsLeadingIconTab(
 }
 
 @Composable
-private fun PreviewOdsLeadingIconTab() = OdsMaterialTheme {
+private fun PreviewOdsLeadingIconTab() = Preview {
     val selected = remember { mutableStateOf(false) }
     OdsLeadingIconTab(
         selected = selected.value,

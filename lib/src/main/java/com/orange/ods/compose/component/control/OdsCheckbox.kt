@@ -22,7 +22,7 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
-import com.orange.ods.compose.theme.OdsMaterialTheme
+import com.orange.ods.compose.component.utilities.Preview
 import com.orange.ods.compose.theme.OdsPrimaryRippleTheme
 
 /**
@@ -62,7 +62,7 @@ fun OdsCheckbox(
 }
 
 @Composable
-private fun PreviewOdsCheckbox() = OdsMaterialTheme {
+private fun PreviewOdsCheckbox() = Preview {
     val checked = remember { mutableStateOf(false) }
     OdsCheckbox(
         checked = checked.value,

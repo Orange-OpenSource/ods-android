@@ -32,8 +32,8 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.orange.ods.R
 import com.orange.ods.compose.component.utilities.OdsImageCircleShape
+import com.orange.ods.compose.component.utilities.Preview
 import com.orange.ods.compose.text.OdsTextBody2
-import com.orange.ods.compose.theme.OdsMaterialTheme
 import com.orange.ods.utilities.extension.noRippleClickable
 
 
@@ -145,7 +145,7 @@ private fun odsChipBorderColor(selected: Boolean, enabled: Boolean) = when {
 
 @Composable
 @ExperimentalMaterialApi
-private fun PreviewOdsChip() = OdsMaterialTheme {
+private fun PreviewOdsChip() = Preview {
     val selected = remember { mutableStateOf(false) }
     OdsChip(
         text = "Text",

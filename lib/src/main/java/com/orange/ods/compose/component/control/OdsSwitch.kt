@@ -21,9 +21,9 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
+import com.orange.ods.compose.component.utilities.Preview
 import com.orange.ods.compose.theme.Grey400
 import com.orange.ods.compose.theme.LocalDarkThemeEnabled
-import com.orange.ods.compose.theme.OdsMaterialTheme
 import com.orange.ods.compose.theme.OdsPrimaryRippleTheme
 
 /**
@@ -60,7 +60,7 @@ fun OdsSwitch(
 private fun odsSwitchColors() = SwitchDefaults.colors(uncheckedThumbColor = if (LocalDarkThemeEnabled.current) Grey400 else MaterialTheme.colors.surface)
 
 @Composable
-private fun PreviewOdsSwitch() = OdsMaterialTheme {
+private fun PreviewOdsSwitch() = Preview {
     val checked = remember { mutableStateOf(false) }
     OdsSwitch(
         checked = checked.value,

@@ -26,10 +26,10 @@ import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
+import com.orange.ods.compose.component.utilities.Preview
 import com.orange.ods.compose.theme.OdsDarkRippleTheme
 import com.orange.ods.compose.theme.OdsDisplaySurface
 import com.orange.ods.compose.theme.OdsLightRippleTheme
-import com.orange.ods.compose.theme.OdsMaterialTheme
 import com.orange.ods.compose.theme.OdsRippleTheme
 import com.orange.ods.compose.theme.Transparent
 import com.orange.ods.compose.theme.odsDarkThemeColors
@@ -106,7 +106,7 @@ private fun Colors.buttonOutlinedDisabledColor(displaySurface: OdsDisplaySurface
     buttonOutlinedColor(displaySurface).copy(alpha = ContentAlpha.disabled)
 
 @Composable
-private fun PreviewOdsButtonOutlined() = OdsMaterialTheme {
+private fun PreviewOdsButtonOutlined() = Preview {
     OdsButtonOutlined(text = "Text", onClick = {})
 }
 

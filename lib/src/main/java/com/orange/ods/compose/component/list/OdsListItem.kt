@@ -41,8 +41,8 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.Dp
 import com.orange.ods.R
 import com.orange.ods.compose.component.utilities.OdsImageCircleShape
+import com.orange.ods.compose.component.utilities.Preview
 import com.orange.ods.compose.text.OdsTextSubtitle1
-import com.orange.ods.compose.theme.OdsMaterialTheme
 import com.orange.ods.utilities.extension.getElementOfType
 import com.orange.ods.utilities.extension.isNotNullOrBlank
 import com.orange.ods.utilities.extension.orElse
@@ -317,7 +317,7 @@ private interface OdsListItemDividerModifier : Modifier.Element {
 
 @Composable
 @ExperimentalMaterialApi
-private fun PreviewOdsListItem() = OdsMaterialTheme {
+private fun PreviewOdsListItem() = Preview {
     OdsListItem(
         modifier = Modifier.iconType(OdsListItemIconType.SquareImage),
         text = "Text",

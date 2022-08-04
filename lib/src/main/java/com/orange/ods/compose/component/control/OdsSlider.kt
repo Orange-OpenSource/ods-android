@@ -37,6 +37,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import com.orange.ods.R
+import com.orange.ods.compose.component.utilities.Preview
 import com.orange.ods.compose.theme.OdsMaterialTheme
 import com.orange.ods.compose.theme.SliderActiveTickColor
 
@@ -262,7 +263,7 @@ private fun PreviewOdsSliderLight() = PreviewOdsSlider()
 private fun PreviewOdsSliderDark() = PreviewOdsSlider()
 
 @Composable
-private fun PreviewOdsSliderLockups() = OdsMaterialTheme {
+private fun PreviewOdsSliderLockups() = Preview {
     val sliderValue = remember { mutableStateOf(50.0f) }
     OdsSliderLockups(
         value = sliderValue.value,

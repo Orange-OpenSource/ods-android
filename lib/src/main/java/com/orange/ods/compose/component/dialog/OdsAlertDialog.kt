@@ -18,9 +18,9 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.window.DialogProperties
 import com.orange.ods.compose.component.button.OdsButtonText
 import com.orange.ods.compose.component.button.OdsButtonTextStyle
+import com.orange.ods.compose.component.utilities.Preview
 import com.orange.ods.compose.text.OdsTextBody2
 import com.orange.ods.compose.text.OdsTextSubtitle1
-import com.orange.ods.compose.theme.OdsMaterialTheme
 import com.orange.ods.utilities.extension.ifNotNull
 
 /**
@@ -77,7 +77,7 @@ fun OdsAlertDialog(
 }
 
 @Composable
-private fun PreviewOdsAlertDialog() = OdsMaterialTheme {
+private fun PreviewOdsAlertDialog() = Preview {
     OdsAlertDialog(
         text = "Text",
         confirmButtonText = "Confirm",
