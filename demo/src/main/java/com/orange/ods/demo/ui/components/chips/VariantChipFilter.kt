@@ -10,9 +10,7 @@
 
 package com.orange.ods.demo.ui.components.chips
 
-import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.rememberScrollState
@@ -27,44 +25,35 @@ import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import com.google.accompanist.flowlayout.FlowRow
+import com.orange.ods.compose.component.chip.OdsChoiceChipsFlowRow
 import com.orange.ods.compose.component.chip.OdsFilterChip
+import com.orange.ods.compose.component.chip.SelectableChip
 import com.orange.ods.demo.R
 import com.orange.ods.demo.ui.components.utilities.ComponentCustomizationBottomSheetScaffold
 import com.orange.ods.demo.ui.utilities.composable.CheckboxListItem
-import com.orange.ods.demo.ui.utilities.composable.LabelledRadioButton
 import com.orange.ods.demo.ui.utilities.composable.Subtitle
 
 @ExperimentalMaterialApi
 @Composable
 fun VariantChipFilter() {
-    val customizationState = rememberChipCustomizationState()
+    val chipCustomizationState = rememberChipCustomizationState()
 
     ComponentCustomizationBottomSheetScaffold(
         bottomSheetScaffoldState = rememberBottomSheetScaffoldState(),
         bottomSheetContent = {
 
             Subtitle(textRes = R.string.component_element_leading, withHorizontalPadding = true)
-            Row(
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .padding(vertical = dimensionResource(id = R.dimen.spacing_s))
-                    .padding(start = dimensionResource(id = R.dimen.spacing_m)),
-                horizontalArrangement = Arrangement.Start
+            OdsChoiceChipsFlowRow(
+                selectedChip = chipCustomizationState.leadingElement,
+                modifier = Modifier.padding(horizontal = dimensionResource(id = R.dimen.ods_screen_horizontal_margin)),
+                outlinedChips = true
             ) {
-                LabelledRadioButton(
-                    selectedRadio = customizationState.leadingElement,
-                    currentRadio = ChipCustomizationState.LeadingElement.None,
-                    label = stringResource(id = R.string.component_element_none)
-                )
-                LabelledRadioButton(
-                    selectedRadio = customizationState.leadingElement,
-                    currentRadio = ChipCustomizationState.LeadingElement.Avatar,
-                    label = stringResource(id = R.string.component_element_avatar)
-                )
+                SelectableChip(textRes = R.string.component_element_none, value = ChipCustomizationState.LeadingElement.None)
+                SelectableChip(textRes = R.string.component_element_avatar, value = ChipCustomizationState.LeadingElement.Avatar)
             }
 
-            CheckboxListItem(labelRes = R.string.component_state_outlined, checked = customizationState.outlinedChecked)
-            CheckboxListItem(labelRes = R.string.component_state_disabled, checked = customizationState.disabledChecked)
+            CheckboxListItem(labelRes = R.string.component_state_outlined, checked = chipCustomizationState.outlinedChecked)
+            CheckboxListItem(labelRes = R.string.component_state_disabled, checked = chipCustomizationState.disabledChecked)
 
         }) {
         Column(
@@ -77,7 +66,7 @@ fun VariantChipFilter() {
         ) {
             FlowRow(modifier = Modifier.fillMaxWidth(), mainAxisSpacing = dimensionResource(id = R.dimen.spacing_s)) {
                 for (index in 1..4) {
-                    FilterChip(index, customizationState)
+                    FilterChip(index, chipCustomizationState)
                 }
             }
         }

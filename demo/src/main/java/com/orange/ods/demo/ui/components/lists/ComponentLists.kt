@@ -64,7 +64,8 @@ private fun ComponentListsBottomSheetContent(listItemCustomizationState: ListIte
     Subtitle(textRes = R.string.component_list_item_size, withHorizontalPadding = true)
     OdsChoiceChipsFlowRow(
         selectedChip = listItemCustomizationState.selectedItemSize,
-        modifier = Modifier.padding(horizontal = dimensionResource(id = R.dimen.ods_screen_horizontal_margin))
+        modifier = Modifier.padding(horizontal = dimensionResource(id = R.dimen.ods_screen_horizontal_margin)),
+        outlinedChips = true
     ) {
         SelectableChip(textRes = R.string.component_list_item_size_single_line, value = ListItemCustomizationState.ItemSize.SingleLine)
         SelectableChip(textRes = R.string.component_list_item_size_two_line, value = ListItemCustomizationState.ItemSize.TwoLine)
@@ -74,7 +75,8 @@ private fun ComponentListsBottomSheetContent(listItemCustomizationState: ListIte
     Subtitle(textRes = R.string.component_list_leading, withHorizontalPadding = true)
     OdsChoiceChipsFlowRow(
         selectedChip = listItemCustomizationState.selectedLeading,
-        modifier = Modifier.padding(horizontal = dimensionResource(id = R.dimen.ods_screen_horizontal_margin))
+        modifier = Modifier.padding(horizontal = dimensionResource(id = R.dimen.ods_screen_horizontal_margin)),
+        outlinedChips = true
     ) {
         SelectableChip(textRes = R.string.component_list_leading_none, value = ListItemCustomizationState.Leading.None)
         SelectableChip(textRes = R.string.component_list_leading_icon, value = ListItemCustomizationState.Leading.Icon)
@@ -84,7 +86,11 @@ private fun ComponentListsBottomSheetContent(listItemCustomizationState: ListIte
     }
 
     Subtitle(textRes = R.string.component_list_trailing, withHorizontalPadding = true)
-    OdsChoiceChipsFlowRow(listItemCustomizationState.selectedTrailing) {
+    OdsChoiceChipsFlowRow(
+        selectedChip = listItemCustomizationState.selectedTrailing,
+        modifier = Modifier.padding(horizontal = dimensionResource(id = R.dimen.ods_screen_horizontal_margin)),
+        outlinedChips = true
+    ) {
         listItemCustomizationState.trailings.forEach { trailing ->
             SelectableChip(textRes = trailing.textResId, value = trailing)
         }

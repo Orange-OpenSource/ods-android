@@ -77,7 +77,8 @@ fun ComponentTabs(variant: Variant, updateTopAppBarTabs: (TabsConfiguration) -> 
             Subtitle(textRes = R.string.component_element_icon, withHorizontalPadding = true)
             OdsChoiceChipsFlowRow(
                 selectedChip = tabsCustomizationState.tabIconType,
-                modifier = Modifier.padding(horizontal = dimensionResource(id = R.dimen.spacing_m))
+                modifier = Modifier.padding(horizontal = dimensionResource(id = R.dimen.spacing_m)),
+                outlinedChips = true
             ) {
                 SelectableChip(
                     textRes = R.string.component_tab_icon_leading,

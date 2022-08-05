@@ -44,7 +44,8 @@ fun VariantChip() {
             Subtitle(textRes = R.string.component_type, withHorizontalPadding = true)
             OdsChoiceChipsFlowRow(
                 selectedChip = chipCustomizationState.chipType,
-                modifier = Modifier.padding(horizontal = dimensionResource(id = R.dimen.ods_screen_horizontal_margin))
+                modifier = Modifier.padding(horizontal = dimensionResource(id = R.dimen.ods_screen_horizontal_margin)),
+                outlinedChips = true
             ) {
                 SelectableChip(textRes = R.string.component_chip_type_input, value = ChipType.Input)
                 SelectableChip(textRes = R.string.component_chip_type_choice, value = ChipType.Choice)
@@ -55,7 +56,8 @@ fun VariantChip() {
                 Subtitle(textRes = R.string.component_element_leading, withHorizontalPadding = true)
                 OdsChoiceChipsFlowRow(
                     selectedChip = chipCustomizationState.leadingElement,
-                    modifier = Modifier.padding(horizontal = dimensionResource(id = R.dimen.ods_screen_horizontal_margin))
+                    modifier = Modifier.padding(horizontal = dimensionResource(id = R.dimen.ods_screen_horizontal_margin)),
+                    outlinedChips = true
                 ) {
                     SelectableChip(textRes = R.string.component_element_none, value = LeadingElement.None)
                     SelectableChip(textRes = R.string.component_element_avatar, value = LeadingElement.Avatar)

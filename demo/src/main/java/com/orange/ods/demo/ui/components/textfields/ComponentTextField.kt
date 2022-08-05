@@ -40,7 +40,8 @@ fun ComponentTextField(variant: Variant) {
             Subtitle(textRes = R.string.component_state, withHorizontalPadding = true)
             OdsChoiceChipsFlowRow(
                 selectedChip = textFieldCustomizationState.displayType,
-                modifier = Modifier.padding(horizontal = dimensionResource(id = R.dimen.spacing_m))
+                modifier = Modifier.padding(horizontal = dimensionResource(id = R.dimen.spacing_m)),
+                outlinedChips = true
             ) {
                 SelectableChip(textRes = R.string.component_state_default, value = TextFieldCustomizationState.DisplayType.DEFAULT)
                 SelectableChip(textRes = R.string.component_state_error, value = TextFieldCustomizationState.DisplayType.ERROR)
@@ -50,7 +51,8 @@ fun ComponentTextField(variant: Variant) {
             Subtitle(textRes = R.string.component_element_trailing, withHorizontalPadding = true)
             OdsChoiceChipsFlowRow(
                 selectedChip = textFieldCustomizationState.trailingElement,
-                modifier = Modifier.padding(horizontal = dimensionResource(id = R.dimen.spacing_m))
+                modifier = Modifier.padding(horizontal = dimensionResource(id = R.dimen.spacing_m)),
+                outlinedChips = true
             ) {
                 SelectableChip(textRes = R.string.component_element_none, value = TextFieldCustomizationState.TrailingElement.NONE)
                 SelectableChip(textRes = R.string.component_element_icon, value = TextFieldCustomizationState.TrailingElement.ICON)
