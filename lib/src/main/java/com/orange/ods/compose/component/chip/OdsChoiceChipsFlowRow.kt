@@ -22,6 +22,14 @@ import androidx.compose.ui.res.stringResource
 import com.google.accompanist.flowlayout.FlowRow
 import com.orange.ods.R
 
+/**
+ * Displays a full width [FlowRow] containing customized choice chips [OdsChoiceChipsFlowRowScope.SelectableChip].
+ *
+ * @param selectedChip The selected chips value state.
+ * @param modifier Modifier to be applied to the flow row.
+ * @param outlinedChips If set to true, a border will be drawn around [FlowRow] chips.
+ * @param content The content of the choice chips [FlowRow].
+ */
 @Composable
 fun <T> OdsChoiceChipsFlowRow(
     selectedChip: MutableState<T>,
@@ -38,6 +46,12 @@ fun <T> OdsChoiceChipsFlowRow(
     )
 }
 
+/**
+ * A selectable chip to display in an [OdsChoiceChipsFlowRow]
+ *
+ * @param text Text displayed in the chip
+ * @param enabled If set to false, the chip is no more clickable and appears as disabled
+ */
 @ExperimentalMaterialApi
 @Composable
 fun <T> OdsChoiceChipsFlowRowScope<T>.SelectableChip(text: String, value: T, enabled: Boolean = true) {
@@ -50,10 +64,19 @@ fun <T> OdsChoiceChipsFlowRowScope<T>.SelectableChip(text: String, value: T, ena
     )
 }
 
+/**
+ * A selectable chip to display in an [OdsChoiceChipsFlowRow]
+ *
+ * @param textRes Text resource identifier to displayed in the chip
+ * @param enabled If set to false, the chip is no more clickable and appears as disabled
+ */
 @ExperimentalMaterialApi
 @Composable
 fun <T> OdsChoiceChipsFlowRowScope<T>.SelectableChip(@StringRes textRes: Int, value: T, enabled: Boolean = true) {
     SelectableChip(text = stringResource(id = textRes), value = value, enabled = enabled)
 }
 
+/**
+ * Scope for the children of [OdsChoiceChipsFlowRow].
+ */
 data class OdsChoiceChipsFlowRowScope<T>(val selectedChip: MutableState<T>, val outlinedChips: Boolean)
