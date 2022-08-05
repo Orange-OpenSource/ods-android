@@ -35,8 +35,10 @@ import com.orange.ods.demo.R
 import com.orange.ods.demo.ui.components.utilities.ComponentHeader
 import com.orange.ods.demo.ui.guidelines.Guideline
 import java.text.DecimalFormat
+import java.text.DecimalFormatSymbols
+import java.util.*
 
-private val ratioFormatter = DecimalFormat("0.#")
+private val ratioFormatter = DecimalFormat("0.#", DecimalFormatSymbols(Locale.ENGLISH))
 
 @ExperimentalMaterialApi
 @Composable
