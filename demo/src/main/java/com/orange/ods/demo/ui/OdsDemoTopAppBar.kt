@@ -86,6 +86,7 @@ fun OdsDemoTopAppBar(
 @Composable
 private fun OverflowMenu() {
     var showMenu by remember { mutableStateOf(false) }
+    val context = LocalContext.current
 
     Box {
         IconButton(onClick = { showMenu = !showMenu }) {
@@ -95,11 +96,10 @@ private fun OverflowMenu() {
             expanded = showMenu,
             onDismissRequest = { showMenu = false }
         ) {
-            DropdownMenuItem(onClick = { /*TODO*/ }) {
-                OdsTextBody1(text = "Account")
-            }
-            DropdownMenuItem(onClick = { /*TODO*/ }) {
-                OdsTextBody1(text = "Settings")
+            appBarTopDemoOverflowActions.forEach {
+                DropdownMenuItem(onClick = { clickOnElement(context, context.getString(it.titleRes)) }) {
+                    OdsTextBody1(text = stringResource(id = it.titleRes))
+                }
             }
         }
     }
@@ -115,10 +115,13 @@ private fun ActionIcon(@DrawableRes iconRes: Int, @StringRes contentDescriptionR
 }
 
 private val appBarTopDemoActions = listOf(
-    AppBarTopAction(R.drawable.ic_heart, R.string.component_tab_favourites),
-    AppBarTopAction(R.drawable.ic_account, R.string.component_tab_account),
-    AppBarTopAction(R.drawable.ic_settings, R.string.component_tab_settings)
+    AppBarTopAction(R.drawable.ic_heart, R.string.component_app_bars_top_action_favourites),
+    AppBarTopAction(R.drawable.ic_alert, R.string.component_app_bars_top_action_alerts),
 )
 
+private val appBarTopDemoOverflowActions = listOf(
+    AppBarTopAction(R.drawable.ic_account, R.string.component_app_bars_top_action_account),
+    AppBarTopAction(R.drawable.ic_settings, R.string.component_app_bars_top_action_settings)
+)
 
 private data class AppBarTopAction(@DrawableRes val iconRes: Int, @StringRes val titleRes: Int)
