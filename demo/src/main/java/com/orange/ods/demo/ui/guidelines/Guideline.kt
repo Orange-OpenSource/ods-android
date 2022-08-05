@@ -28,8 +28,6 @@ enum class Guideline(
     Color(R.string.guideline_colors, R.drawable.il_colors, MainDestinations.GUIDELINE_COLORS),
     Typography(R.string.guideline_typography, R.drawable.il_typography, MainDestinations.GUIDELINE_TYPOGRAPHY),
     Spacing(R.string.guideline_spacings, R.drawable.il_spacings, MainDestinations.GUIDELINE_SPACINGS);
-    //Imagery(R.string.guideline_imagery, R.drawable.il_imagery),
-    //Iconography(R.string.guideline_iconography, R.drawable.il_iconography);
 
     val imageBackgroundColor = Color(0xff1b1b1b)
 
