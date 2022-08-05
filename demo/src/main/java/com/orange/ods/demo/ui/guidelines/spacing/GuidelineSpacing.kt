@@ -8,7 +8,7 @@
  * /
  */
 
-package com.orange.ods.demo.ui.guidelines.spacings
+package com.orange.ods.demo.ui.guidelines.spacing
 
 import androidx.annotation.DimenRes
 import androidx.compose.runtime.Composable
@@ -27,7 +27,7 @@ enum class Spacing(val tokenName: String, @DimenRes val dimenRes: Int) {
 
     @Composable
     fun getDp() = dimensionResource(id = dimenRes)
-    
+
     @Composable
     fun getRatio() = getDp() / Small.getDp()
 }

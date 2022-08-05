@@ -8,7 +8,7 @@
  * /
  */
 
-package com.orange.ods.demo.ui.guidelines.colors
+package com.orange.ods.demo.ui.guidelines.color
 
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.background
@@ -52,8 +52,8 @@ import com.orange.ods.demo.ui.utilities.composable.Title
 import com.orange.ods.demo.ui.utilities.getStringName
 
 @Composable
-fun GuidelineColorsScreen(updateTopBarTitle: (Int) -> Unit) {
-    updateTopBarTitle(R.string.guideline_colors)
+fun GuidelineColorScreen(updateTopBarTitle: (Int) -> Unit) {
+    updateTopBarTitle(R.string.guideline_color)
     ColorList(getColorList(isSystemInDarkTheme()))
 }
 

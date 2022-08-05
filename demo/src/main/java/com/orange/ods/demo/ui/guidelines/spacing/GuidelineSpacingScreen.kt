@@ -8,7 +8,7 @@
  * /
  */
 
-package com.orange.ods.demo.ui.guidelines.spacings
+package com.orange.ods.demo.ui.guidelines.spacing
 
 import androidx.compose.foundation.Canvas
 import androidx.compose.foundation.layout.PaddingValues
@@ -42,13 +42,13 @@ private val ratioFormatter = DecimalFormat("0.#", DecimalFormatSymbols(Locale.EN
 
 @ExperimentalMaterialApi
 @Composable
-fun GuidelineSpacingsScreen(updateTopBarTitle: (Int) -> Unit) {
-    updateTopBarTitle(R.string.guideline_spacings)
+fun GuidelineSpacingScreen(updateTopBarTitle: (Int) -> Unit) {
+    updateTopBarTitle(R.string.guideline_spacing)
 
     LazyColumn(contentPadding = PaddingValues(bottom = dimensionResource(id = R.dimen.spacing_m))) {
         item {
             ComponentHeader(
-                imageRes = R.drawable.il_spacings,
+                imageRes = R.drawable.il_spacing,
                 imageAlignment = Guideline.Spacing.imageAlignment,
                 description = R.string.guideline_spacing_description
             )

@@ -23,9 +23,9 @@
     <string name="back_icon_content_description">Back</string>
 
     <!-- Guidelines -->
-    <string name="guideline_colors">Colour</string>
+    <string name="guideline_color">Colour</string>
     <string name="guideline_typography">Typography</string>
-    <string name="guideline_spacings">Spacing</string>
+    <string name="guideline_spacing">Spacing</string>
 
     <!-- Guideline Colour -->
     <string name="guideline_colour_core">Core</string>

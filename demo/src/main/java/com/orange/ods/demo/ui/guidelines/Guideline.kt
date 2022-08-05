@@ -25,9 +25,9 @@ enum class Guideline(
     @DrawableRes val imageRes: Int,
     val route: String
 ) {
-    Color(R.string.guideline_colors, R.drawable.il_colors, MainDestinations.GUIDELINE_COLORS),
+    Color(R.string.guideline_color, R.drawable.il_color, MainDestinations.GUIDELINE_COLOR),
     Typography(R.string.guideline_typography, R.drawable.il_typography, MainDestinations.GUIDELINE_TYPOGRAPHY),
-    Spacing(R.string.guideline_spacings, R.drawable.il_spacings, MainDestinations.GUIDELINE_SPACINGS);
+    Spacing(R.string.guideline_spacing, R.drawable.il_spacing, MainDestinations.GUIDELINE_SPACING);
 
     val imageBackgroundColor = Color(0xff1b1b1b)
 
