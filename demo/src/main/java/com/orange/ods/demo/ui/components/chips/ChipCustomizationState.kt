@@ -62,11 +62,14 @@ class ChipCustomizationState(
     val hasLeadingIcon
         get() = leadingElement.value == LeadingElement.Icon
 
+    val isEnabled
+        get() = !disabledChecked.value
+
+    val isOutlined
+        get() = outlinedChecked.value
+    
     fun resetLeadingElement() {
         leadingElement.value = LeadingElement.None
     }
 
-    fun selectChoiceChip(chipIndex: Int) {
-        choiceChipIndexSelected.value = chipIndex
-    }
 }
