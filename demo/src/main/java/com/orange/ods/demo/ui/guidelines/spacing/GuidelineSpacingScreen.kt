@@ -18,8 +18,6 @@ import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.material.ExperimentalMaterialApi
-import androidx.compose.material.MaterialTheme
-import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.geometry.Offset
@@ -30,6 +28,7 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import com.orange.ods.compose.component.list.OdsListItem
 import com.orange.ods.compose.component.list.divider
+import com.orange.ods.compose.text.OdsTextCaption
 import com.orange.ods.compose.text.OdsTextSubtitle1
 import com.orange.ods.demo.R
 import com.orange.ods.demo.ui.components.utilities.ComponentHeader
@@ -72,10 +71,7 @@ fun GuidelineSpacingScreen(updateTopBarTitle: (Int) -> Unit) {
                 singleLineSecondaryText = false,
                 icon = { GuidelineSpacingImage(spacing = spacing) },
                 trailing = {
-                    Text(
-                        text = stringResource(id = R.string.guideline_spacing_ratio, if (ratio == 0.0f) "-" else ratioFormatter.format(ratio)),
-                        style = MaterialTheme.typography.caption
-                    )
+                    OdsTextCaption(text = stringResource(id = R.string.guideline_spacing_ratio, if (ratio == 0.0f) "-" else ratioFormatter.format(ratio)))
                 }
             )
         }

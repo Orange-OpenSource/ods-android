@@ -62,9 +62,8 @@ fun AboutScreen(onAboutItemClick: (Long) -> Unit, updateTopBarTitle: (Int) -> Un
                 style = MaterialTheme.typography.h4,
                 modifier = Modifier.padding(top = dimensionResource(id = R.dimen.spacing_xl))
             )
-            Text(
+            OdsTextCaption(
                 text = getVersion(context),
-                style = MaterialTheme.typography.caption,
                 modifier = Modifier.padding(top = dimensionResource(id = R.dimen.spacing_xs))
             )
             OdsTextCaption(text = stringResource(id = R.string.about_copyright))
