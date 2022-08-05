@@ -12,9 +12,7 @@ package com.orange.ods.demo.ui.components.tabs
 
 import androidx.annotation.DrawableRes
 import androidx.annotation.StringRes
-import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
@@ -31,12 +29,13 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextAlign
 import com.google.accompanist.pager.ExperimentalPagerApi
 import com.google.accompanist.pager.HorizontalPager
-import com.orange.ods.compose.text.OdsTextSubtitle1
+import com.orange.ods.compose.component.chip.OdsChoiceChipsFlowRow
+import com.orange.ods.compose.component.chip.SelectableChip
 import com.orange.ods.demo.R
 import com.orange.ods.demo.ui.components.Variant
 import com.orange.ods.demo.ui.components.utilities.ComponentCountRow
 import com.orange.ods.demo.ui.components.utilities.ComponentCustomizationBottomSheetScaffold
-import com.orange.ods.demo.ui.utilities.composable.LabelledRadioButton
+import com.orange.ods.demo.ui.utilities.composable.Subtitle
 import com.orange.ods.demo.ui.utilities.composable.SwitchListItem
 
 private const val FixedTabsCountMin = 2
@@ -61,54 +60,47 @@ fun ComponentTabs(variant: Variant, updateTopAppBarTabs: (TabsConfiguration) -> 
         tabCountMax = FixedTabsCountMax
     }
 
-    val variantTabsState = rememberVariantTabsState(tabsCount = rememberSaveable { mutableStateOf(tabCountMin) })
+    val tabsCustomizationState = rememberTabsCustomizationState(tabsCount = rememberSaveable { mutableStateOf(tabCountMin) })
     updateTopAppBarTabs(
         TabsConfiguration(
             scrollableTabs = scrollableTabs,
-            tabs = variantTabsState.tabs,
-            pagerState = variantTabsState.pagerState,
-            tabIconType = variantTabsState.selectedTabIconType.value,
-            tabTextEnabled = variantTabsState.tabTextEnabled.value,
+            tabs = tabsCustomizationState.tabs,
+            pagerState = tabsCustomizationState.pagerState,
+            tabIconType = tabsCustomizationState.tabIconType.value,
+            tabTextEnabled = tabsCustomizationState.tabTextEnabled.value,
         )
     )
 
     ComponentCustomizationBottomSheetScaffold(
-        bottomSheetScaffoldState = variantTabsState.bottomSheetScaffoldState,
+        bottomSheetScaffoldState = tabsCustomizationState.bottomSheetScaffoldState,
         bottomSheetContent = {
-            Row(
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .padding(top = dimensionResource(id = R.dimen.spacing_s))
-                    .padding(horizontal = dimensionResource(id = R.dimen.spacing_m)),
-                horizontalArrangement = Arrangement.Start,
-                verticalAlignment = Alignment.CenterVertically
+            Subtitle(textRes = R.string.component_element_icon, withHorizontalPadding = true)
+            OdsChoiceChipsFlowRow(
+                selectedChip = tabsCustomizationState.tabIconType,
+                modifier = Modifier.padding(horizontal = dimensionResource(id = R.dimen.spacing_m))
             ) {
-                OdsTextSubtitle1(modifier = Modifier.weight(1f), text = stringResource(id = R.string.component_element_icon))
-                LabelledRadioButton(
-                    selectedRadio = variantTabsState.selectedTabIconType,
-                    currentRadio = VariantTabsState.TabIconType.Leading,
-                    label = stringResource(id = R.string.component_tab_icon_leading),
-                    enabled = variantTabsState.areTabIconRadiosEnabled
+                SelectableChip(
+                    textRes = R.string.component_tab_icon_leading,
+                    value = TabsCustomizationState.TabIconType.Leading,
+                    enabled = tabsCustomizationState.isTabIconCustomizationEnabled
                 )
-                LabelledRadioButton(
-                    selectedRadio = variantTabsState.selectedTabIconType,
-                    currentRadio = VariantTabsState.TabIconType.Top,
-                    label = stringResource(id = R.string.component_tab_icon_top),
-                    enabled = variantTabsState.areTabIconRadiosEnabled
+                SelectableChip(
+                    textRes = R.string.component_tab_icon_top,
+                    value = TabsCustomizationState.TabIconType.Top,
+                    enabled = tabsCustomizationState.isTabIconCustomizationEnabled
                 )
-                LabelledRadioButton(
-                    selectedRadio = variantTabsState.selectedTabIconType,
-                    currentRadio = VariantTabsState.TabIconType.None,
-                    label = stringResource(id = R.string.component_element_none),
-                    enabled = variantTabsState.areTabIconRadiosEnabled
+                SelectableChip(
+                    textRes = R.string.component_element_none,
+                    value = TabsCustomizationState.TabIconType.None,
+                    enabled = tabsCustomizationState.isTabIconCustomizationEnabled
                 )
             }
 
-            SwitchListItem(R.string.component_element_text, variantTabsState.tabTextEnabled, variantTabsState.isTabTextCheckboxEnabled)
+            SwitchListItem(R.string.component_element_text, tabsCustomizationState.tabTextEnabled, tabsCustomizationState.isTabTextCustomizationEnabled)
 
             ComponentCountRow(
                 title = stringResource(id = R.string.component_tabs_count),
-                count = variantTabsState.tabsCount,
+                count = tabsCustomizationState.tabsCount,
                 modifier = Modifier
                     .fillMaxWidth()
                     .padding(horizontal = dimensionResource(id = R.dimen.spacing_m)),
@@ -117,8 +109,8 @@ fun ComponentTabs(variant: Variant, updateTopAppBarTabs: (TabsConfiguration) -> 
             )
         }) {
 
-        HorizontalPager(state = variantTabsState.pagerState, count = variantTabsState.tabs.size) { page ->
-            variantTabsState.tabs[page].Screen()
+        HorizontalPager(state = tabsCustomizationState.pagerState, count = tabsCustomizationState.tabs.size) { page ->
+            tabsCustomizationState.tabs[page].Screen()
         }
     }
 }

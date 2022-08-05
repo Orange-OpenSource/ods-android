@@ -19,7 +19,7 @@ import com.orange.ods.compose.component.tab.OdsScrollableTabRow
 @ExperimentalMaterialApi
 @ExperimentalPagerApi
 @Composable
-fun TopAppBarScrollableTabs(tabs: List<TabItem>, pagerState: PagerState, tabIconType: VariantTabsState.TabIconType, tabTextEnabled: Boolean) {
+fun TopAppBarScrollableTabs(tabs: List<TabItem>, pagerState: PagerState, tabIconType: TabsCustomizationState.TabIconType, tabTextEnabled: Boolean) {
 
     OdsScrollableTabRow(selectedTabIndex = pagerState.currentPage) {
         TopAppBarTabs(tabs = tabs, pagerState = pagerState, tabIconType = tabIconType, tabTextEnabled = tabTextEnabled)
