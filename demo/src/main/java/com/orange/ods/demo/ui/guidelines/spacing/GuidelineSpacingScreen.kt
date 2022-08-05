@@ -83,7 +83,7 @@ fun GuidelineSpacingScreen(updateTopBarTitle: (Int) -> Unit) {
 }
 
 @Composable
-fun GuidelineSpacingImage(spacing: Spacing) {
+private fun GuidelineSpacingImage(spacing: Spacing) {
     // Spacing width is at least 1 dp to make spacing-none visible
     val spacingWidth = dimensionResource(id = spacing.dimenRes).coerceAtLeast(1.dp)
     val imageWidth = dimensionResource(id = R.dimen.guideline_spacing_image_width)
