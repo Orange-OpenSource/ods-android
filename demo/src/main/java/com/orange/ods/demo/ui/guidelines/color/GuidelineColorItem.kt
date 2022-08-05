@@ -8,7 +8,7 @@
  * /
  */
 
-package com.orange.ods.demo.ui.guidelines.colors
+package com.orange.ods.demo.ui.guidelines.color
 
 import androidx.compose.material.MaterialTheme
 import androidx.compose.runtime.Composable

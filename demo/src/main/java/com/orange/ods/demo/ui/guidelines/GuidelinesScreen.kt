@@ -31,8 +31,8 @@ fun GuidelinesScreen(onGuidelineClick: (String) -> Unit, updateTopBarTitle: (Int
     Column(
         modifier = Modifier
             .fillMaxSize()
-            .padding(dimensionResource(id = R.dimen.spacing_m))
-            .verticalScroll(scrollState),
+            .verticalScroll(scrollState)
+            .padding(dimensionResource(id = R.dimen.spacing_m)),
         verticalArrangement = Arrangement.spacedBy(dimensionResource(id = R.dimen.spacing_m))
     ) {
         Guideline.values().forEach { guideline ->
@@ -41,6 +41,7 @@ fun GuidelinesScreen(onGuidelineClick: (String) -> Unit, updateTopBarTitle: (Int
                 imageRes = guideline.imageRes,
                 imageContentScale = guideline.imageContentScale,
                 imageBackgroundColor = guideline.imageBackgroundColor,
+                imageAlignment = guideline.imageAlignment,
                 onCardClick = { onGuidelineClick(guideline.route) }
             )
         }

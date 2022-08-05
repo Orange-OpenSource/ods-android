@@ -12,7 +12,7 @@
 
 <resources>
 
-    <!-- Spacings -->
+    <!-- Spacing -->
     <dimen name="spacing_none">0dp</dimen>
     <dimen name="spacing_xs">4dp</dimen>
     <dimen name="spacing_s">8dp</dimen>

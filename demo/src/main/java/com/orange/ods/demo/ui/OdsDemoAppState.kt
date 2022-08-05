@@ -35,7 +35,8 @@ object MainDestinations {
     const val HOME_ROUTE = "home"
 
     const val GUIDELINE_TYPOGRAPHY = "guideline/typography"
-    const val GUIDELINE_COLORS = "guideline/colors"
+    const val GUIDELINE_COLOR = "guideline/color"
+    const val GUIDELINE_SPACING = "guideline/spacing"
 
     const val COMPONENT_DETAIL_ROUTE = "component"
     const val COMPONENT_ID_KEY = "componentId"

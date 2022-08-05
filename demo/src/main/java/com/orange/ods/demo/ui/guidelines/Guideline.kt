@@ -13,6 +13,7 @@ package com.orange.ods.demo.ui.guidelines
 import androidx.annotation.DrawableRes
 import androidx.annotation.StringRes
 import androidx.compose.runtime.Immutable
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import com.orange.ods.demo.R
@@ -24,16 +25,21 @@ enum class Guideline(
     @DrawableRes val imageRes: Int,
     val route: String
 ) {
-    Color(R.string.guideline_colors, R.drawable.il_colors, MainDestinations.GUIDELINE_COLORS),
-    Typography(R.string.guideline_typography, R.drawable.il_typography, MainDestinations.GUIDELINE_TYPOGRAPHY);
-    //Imagery(R.string.guideline_imagery, R.drawable.il_imagery),
-    //Iconography(R.string.guideline_iconography, R.drawable.il_iconography);
+    Color(R.string.guideline_color, R.drawable.il_color, MainDestinations.GUIDELINE_COLOR),
+    Typography(R.string.guideline_typography, R.drawable.il_typography, MainDestinations.GUIDELINE_TYPOGRAPHY),
+    Spacing(R.string.guideline_spacing, R.drawable.il_spacing, MainDestinations.GUIDELINE_SPACING);
 
     val imageBackgroundColor = Color(0xff1b1b1b)
 
     val imageContentScale: ContentScale
         get() = when (this) {
             Color -> ContentScale.FillBounds
-            Typography -> ContentScale.Fit
+            Typography, Spacing -> ContentScale.Fit
+        }
+
+    val imageAlignment: Alignment
+        get() = when (this) {
+            Color, Typography -> Alignment.Center
+            Spacing -> Alignment.BottomCenter
         }
 }
