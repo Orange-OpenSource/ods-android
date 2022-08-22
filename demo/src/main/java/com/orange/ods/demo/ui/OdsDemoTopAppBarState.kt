@@ -17,14 +17,13 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.saveable.rememberSaveable
 import com.orange.ods.demo.R
 
-private const val DefaultTopAppBarActionCount = 1
 
 @Composable
 fun rememberOdsDemoTopAppBarState(
     titleRes: MutableState<Int> = rememberSaveable { mutableStateOf(R.string.navigation_item_guidelines) },
-    actionCount: MutableState<Int> = rememberSaveable { mutableStateOf(DefaultTopAppBarActionCount) },
-    navigationIconEnabled: MutableState<Boolean> = rememberSaveable { mutableStateOf(true) },
-    overflowMenuEnabled: MutableState<Boolean> = rememberSaveable { mutableStateOf(false) }
+    actionCount: MutableState<Int> = rememberSaveable { mutableStateOf(OdsDemoTopAppBarState.defaultConfiguration.actionCount) },
+    navigationIconEnabled: MutableState<Boolean> = rememberSaveable { mutableStateOf(OdsDemoTopAppBarState.defaultConfiguration.isNavigationIconEnabled) },
+    overflowMenuEnabled: MutableState<Boolean> = rememberSaveable { mutableStateOf(OdsDemoTopAppBarState.defaultConfiguration.isOverflowMenuEnabled) }
 ) =
     remember(titleRes, actionCount, navigationIconEnabled, overflowMenuEnabled) {
         OdsDemoTopAppBarState(titleRes, actionCount, navigationIconEnabled, overflowMenuEnabled)
@@ -40,7 +39,7 @@ class OdsDemoTopAppBarState(
     companion object {
         val defaultConfiguration = TopAppBarConfiguration(
             isNavigationIconEnabled = true,
-            actionCount = DefaultTopAppBarActionCount,
+            actionCount = 1,
             isOverflowMenuEnabled = false
         )
     }
