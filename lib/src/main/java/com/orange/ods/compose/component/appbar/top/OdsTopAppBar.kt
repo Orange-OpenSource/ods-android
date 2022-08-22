@@ -54,7 +54,7 @@ fun OdsTopAppBar(
         navigationIcon = navigationIcon?.let { navIcon ->
             {
                 if (onNavigationIconClick != null) {
-                    IconButton(onClick = { onNavigationIconClick() }) {
+                    IconButton(onClick = onNavigationIconClick) {
                         navIcon()
                     }
                 } else {
