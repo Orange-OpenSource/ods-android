@@ -10,20 +10,16 @@
 
 package com.orange.ods.demo.ui
 
-import androidx.compose.material.ExperimentalMaterialApi
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.MutableState
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.saveable.rememberSaveable
-import com.google.accompanist.pager.ExperimentalPagerApi
 import com.orange.ods.demo.R
 
 private const val DefaultTopAppBarActionCount = 1
 
 @Composable
-@ExperimentalPagerApi
-@ExperimentalMaterialApi
 fun rememberOdsDemoTopAppBarState(
     titleRes: MutableState<Int> = rememberSaveable { mutableStateOf(R.string.navigation_item_guidelines) },
     actionCount: MutableState<Int> = rememberSaveable { mutableStateOf(DefaultTopAppBarActionCount) },
