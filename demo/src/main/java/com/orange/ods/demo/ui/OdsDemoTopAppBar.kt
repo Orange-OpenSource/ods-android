@@ -69,7 +69,7 @@ fun OdsDemoTopAppBar(
                         }
                     }
                 } else {
-                    val action = appBarTopDemoActions[index - 1]
+                    val action = topAppBarDemoActions[index - 1]
                     IconButton(onClick = { clickOnElement(context, context.getString(action.titleRes)) }) {
                         ActionIcon(iconRes = action.iconRes, contentDescriptionRes = action.titleRes)
                     }
@@ -96,7 +96,7 @@ private fun OverflowMenu() {
             expanded = showMenu,
             onDismissRequest = { showMenu = false }
         ) {
-            appBarTopDemoOverflowActions.forEach {
+            topAppBarDemoOverflowActions.forEach {
                 DropdownMenuItem(onClick = { clickOnElement(context, context.getString(it.titleRes)) }) {
                     OdsTextBody1(text = stringResource(id = it.titleRes))
                 }
@@ -114,14 +114,14 @@ private fun ActionIcon(@DrawableRes iconRes: Int, @StringRes contentDescriptionR
     )
 }
 
-private val appBarTopDemoActions = listOf(
-    AppBarTopAction(R.drawable.ic_heart, R.string.component_app_bars_top_action_favourites),
-    AppBarTopAction(R.drawable.ic_alert, R.string.component_app_bars_top_action_alerts),
+private val topAppBarDemoActions = listOf(
+    TopAppBarAction(R.drawable.ic_heart, R.string.component_app_bars_top_action_favourites),
+    TopAppBarAction(R.drawable.ic_alert, R.string.component_app_bars_top_action_alerts),
 )
 
-private val appBarTopDemoOverflowActions = listOf(
-    AppBarTopAction(R.drawable.ic_account, R.string.component_app_bars_top_action_account),
-    AppBarTopAction(R.drawable.ic_settings, R.string.component_app_bars_top_action_settings)
+private val topAppBarDemoOverflowActions = listOf(
+    TopAppBarAction(R.drawable.ic_account, R.string.component_app_bars_top_action_account),
+    TopAppBarAction(R.drawable.ic_settings, R.string.component_app_bars_top_action_settings)
 )
 
-private data class AppBarTopAction(@DrawableRes val iconRes: Int, @StringRes val titleRes: Int)
+private data class TopAppBarAction(@DrawableRes val iconRes: Int, @StringRes val titleRes: Int)

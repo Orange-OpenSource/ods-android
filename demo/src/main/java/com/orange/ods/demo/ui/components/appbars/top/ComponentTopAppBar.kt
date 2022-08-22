@@ -25,8 +25,8 @@ import com.orange.ods.demo.ui.utilities.composable.SwitchListItem
 
 @ExperimentalMaterialApi
 @Composable
-fun ComponentAppBarsTop(updateTopAppBar: (TopAppBarConfiguration) -> Unit) {
-    val customizationState = rememberAppBarTopCustomizationState()
+fun ComponentTopAppBar(updateTopAppBar: (TopAppBarConfiguration) -> Unit) {
+    val customizationState = rememberTopAppBarCustomizationState()
 
     updateTopAppBar(
         TopAppBarConfiguration(

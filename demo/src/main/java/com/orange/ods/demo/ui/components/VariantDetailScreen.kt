@@ -15,7 +15,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember
 import com.google.accompanist.pager.ExperimentalPagerApi
 import com.orange.ods.demo.ui.TopAppBarConfiguration
-import com.orange.ods.demo.ui.components.appbars.top.ComponentAppBarsTop
+import com.orange.ods.demo.ui.components.appbars.top.ComponentTopAppBar
 import com.orange.ods.demo.ui.components.buttons.ComponentButtons
 import com.orange.ods.demo.ui.components.cards.ComponentCard
 import com.orange.ods.demo.ui.components.chips.VariantChip
@@ -40,7 +40,7 @@ fun VariantDetailScreen(
     variant?.let {
         updateTopBarTitle(variant.titleRes)
         when (component) {
-            Component.AppBarsTop -> ComponentAppBarsTop(updateTopAppBar)
+            Component.AppBarsTop -> ComponentTopAppBar(updateTopAppBar)
             Component.Buttons -> ComponentButtons(variant = variant)
             Component.Cards -> ComponentCard(variant = variant)
             Component.Chips -> if (variant == Variant.ChipFilter) VariantChipFilter() else VariantChip()
