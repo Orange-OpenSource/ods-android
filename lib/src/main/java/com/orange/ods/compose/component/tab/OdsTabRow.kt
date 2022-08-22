@@ -42,10 +42,12 @@ fun OdsTabRow(
         contentColor = MaterialTheme.colors.onSurface,
         selectedTabIndex = selectedTabIndex,
         indicator = { tabPositions ->
-            TabRowDefaults.Indicator(
-                modifier = Modifier.tabIndicatorOffset(tabPositions[selectedTabIndex]),
-                color = MaterialTheme.colors.primary
-            )
+            if (selectedTabIndex < tabPositions.size) {
+                TabRowDefaults.Indicator(
+                    modifier = Modifier.tabIndicatorOffset(tabPositions[selectedTabIndex]),
+                    color = MaterialTheme.colors.primary
+                )
+            }
         },
         divider = {},
         tabs = tabs
