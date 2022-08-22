@@ -71,7 +71,7 @@ OdsTopAppBar(
     },
     navigationIcon = {
         Icon(
-            painter = painterResource(id =  R.drawable.ic_back),
+            painter = painterResource(id = R.drawable.ic_back),
             contentDescription = "content description"
         )
     },
@@ -81,7 +81,7 @@ OdsTopAppBar(
     actions = {
         IconButton(onClick = {}) {
             Icon(
-                painter = painterResource(id =  R.drawable.ic_share),
+                painter = painterResource(id = R.drawable.ic_share),
                 contentDescription = "content description"
             )
         }
