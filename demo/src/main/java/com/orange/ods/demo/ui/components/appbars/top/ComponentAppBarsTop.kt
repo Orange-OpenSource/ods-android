@@ -23,11 +23,6 @@ import com.orange.ods.demo.ui.components.utilities.ComponentCountRow
 import com.orange.ods.demo.ui.components.utilities.ComponentCustomizationBottomSheetScaffold
 import com.orange.ods.demo.ui.utilities.composable.SwitchListItem
 
-object ComponentAppBarsTop {
-    const val MinActionCount = 0
-    const val MaxActionCount = 3
-}
-
 @ExperimentalMaterialApi
 @Composable
 fun ComponentAppBarsTop(updateTopAppBar: (TopAppBarConfiguration) -> Unit) {
@@ -49,7 +44,7 @@ fun ComponentAppBarsTop(updateTopAppBar: (TopAppBarConfiguration) -> Unit) {
                 modifier = Modifier.padding(start = dimensionResource(id = R.dimen.ods_screen_horizontal_margin)),
                 title = stringResource(id = R.string.component_app_bars_top_actions_count),
                 count = customizationState.actionCount,
-                minCount = ComponentAppBarsTop.MinActionCount,
+                minCount = customizationState.minActionCount,
                 maxCount = customizationState.maxActionCountSelectable
             )
             SwitchListItem(

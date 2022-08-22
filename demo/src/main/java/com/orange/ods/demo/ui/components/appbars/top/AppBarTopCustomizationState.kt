@@ -32,6 +32,10 @@ class AppBarTopCustomizationState(
     val actionCount: MutableState<Int>,
     val overflowMenuEnabled: MutableState<Boolean>
 ) {
+    private val maxActionCount = 3
+    
+    val minActionCount = 0
+
     val isNavigationIconEnabled: Boolean
         get() = navigationIconEnabled.value
 
@@ -39,9 +43,9 @@ class AppBarTopCustomizationState(
         get() = overflowMenuEnabled.value
 
     val isOverflowMenuSwitchEnabled: Boolean
-        get() = actionCount.value <= ComponentAppBarsTop.MaxActionCount - 1
+        get() = actionCount.value <= maxActionCount - 1
 
     val maxActionCountSelectable: Int
-        get() = if (isOverflowMenuEnabled) ComponentAppBarsTop.MaxActionCount - 1 else ComponentAppBarsTop.MaxActionCount
+        get() = if (isOverflowMenuEnabled) maxActionCount - 1 else maxActionCount
 
 }
