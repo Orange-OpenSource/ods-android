@@ -56,7 +56,7 @@ fun OdsDemoTopAppBar(
         onNavigationIconClick = upPress,
         actions = {
             val context = LocalContext.current
-            (0 until state.actionCount.value).forEach { index ->
+            repeat(state.actionCount.value) { index ->
                 if (index == 0) {
                     val configuration = LocalConfiguration.current
                     IconButton(onClick = {
