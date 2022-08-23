@@ -68,8 +68,8 @@ fun ComponentTextField(variant: Variant) {
                 )
         ) {
             when (variant) {
-                Variant.TextFieldsFilled -> TextFieldFilled(textFieldCustomizationState)
-                Variant.TextFieldsOutlined -> TextFieldOutlined(textFieldCustomizationState)
+                Variant.TextFieldFilledText -> TextFieldFilled(textFieldCustomizationState)
+                Variant.TextFieldOutlinedText -> TextFieldOutlined(textFieldCustomizationState)
                 else -> {}
             }
         }
