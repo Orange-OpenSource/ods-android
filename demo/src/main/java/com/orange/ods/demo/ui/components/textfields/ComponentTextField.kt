@@ -54,6 +54,7 @@ fun ComponentTextField(variant: Variant) {
                 Variant.TextFieldFilledText, Variant.TextFieldOutlinedText -> TextFieldTextCustomization(textFieldCustomizationState)
                 Variant.TextFieldFilledPassword, Variant.TextFieldOutlinedPassword -> TextFieldPasswordCustomization(textFieldCustomizationState)
                 else -> {}
+
             }
         }) {
         Column(
