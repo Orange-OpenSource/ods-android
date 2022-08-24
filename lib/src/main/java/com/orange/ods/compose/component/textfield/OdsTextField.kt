@@ -41,6 +41,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import com.orange.ods.R
 import com.orange.ods.compose.component.utilities.DisabledInteractionSource
 import com.orange.ods.compose.component.utilities.Preview
+import com.orange.ods.compose.text.OdsTextCaption
 
 /**
  * <a href="https://system.design.orange.com/0c1af118d/p/483f94-text-fields/b/720e3b" target="_blank">ODS Text fields</a>.
@@ -113,8 +114,9 @@ fun OdsTextField(
     keyboardOptions: KeyboardOptions = KeyboardOptions.Default,
     keyboardActions: KeyboardActions = KeyboardActions(),
     singleLine: Boolean = false,
-    maxLines: Int = Int.MAX_VALUE
+    maxLines: Int = Int.MAX_VALUE,
 ) {
+
     TextField(
         value = value,
         onValueChange = onValueChange,
@@ -177,6 +179,22 @@ fun OdsTextFieldIcon(painter: Painter, contentDescription: String?, onClick: (()
             tint = color
         )
     }
+}
+
+/**
+ * A counter to display below the text field
+ *
+ * @param valueLength the text field current value length
+ * @param maxChars the maximum of characters to display in the counter. Note: the limitation behavior should be managed by yourself
+ * in the `onValueChange` method of the text field.
+ * @param modifier a [Modifier] for this text field counter
+ * @param enabled set to false to display the text with a disabled color
+ */
+@Composable
+fun OdsTextFieldCounter(valueLength: Int, maxChars: Int, modifier: Modifier = Modifier, enabled: Boolean = false) {
+    OdsTextCaption(
+        modifier = modifier.padding(top = dimensionResource(id = R.dimen.spacing_xs)), text = "$valueLength/$maxChars", enabled = enabled
+    )
 }
 
 @Composable

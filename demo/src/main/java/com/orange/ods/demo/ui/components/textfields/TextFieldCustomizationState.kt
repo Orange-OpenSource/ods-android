@@ -16,40 +16,62 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.saveable.rememberSaveable
 import com.orange.ods.demo.ui.components.textfields.TextFieldCustomizationState.DisplayType
+import com.orange.ods.demo.ui.components.textfields.TextFieldCustomizationState.InputType
 import com.orange.ods.demo.ui.components.textfields.TextFieldCustomizationState.TrailingElement
 
 @Composable
 fun rememberTextFieldCustomizationState(
-    leadingIconChecked: MutableState<Boolean> = rememberSaveable { mutableStateOf(false) },
-    displayType: MutableState<DisplayType> = rememberSaveable { mutableStateOf(DisplayType.DEFAULT) },
-    trailingElement: MutableState<TrailingElement> = rememberSaveable { mutableStateOf(TrailingElement.NONE) }
+    inputType: MutableState<InputType> = rememberSaveable { mutableStateOf(InputType.SingleLine) },
+    leadingIcon: MutableState<Boolean> = rememberSaveable { mutableStateOf(false) },
+    displayType: MutableState<DisplayType> = rememberSaveable { mutableStateOf(DisplayType.Default) },
+    trailingElement: MutableState<TrailingElement> = rememberSaveable { mutableStateOf(TrailingElement.None) },
+    characterCounter: MutableState<Boolean> = rememberSaveable { mutableStateOf(false) }
 ) =
-    remember(leadingIconChecked, displayType, trailingElement) {
-        TextFieldCustomizationState(leadingIconChecked, displayType, trailingElement)
+    remember(inputType, leadingIcon, displayType, trailingElement) {
+        TextFieldCustomizationState(inputType, leadingIcon, displayType, trailingElement, characterCounter)
     }
 
 class TextFieldCustomizationState(
-    val leadingIconChecked: MutableState<Boolean>,
+    val inputType: MutableState<InputType>,
+    val leadingIcon: MutableState<Boolean>,
     val displayType: MutableState<DisplayType>,
-    val trailingElement: MutableState<TrailingElement>
+    val trailingElement: MutableState<TrailingElement>,
+    val characterCounter: MutableState<Boolean>
 ) {
+    companion object {
+        const val TextFieldMaxChars = 20
+    }
+
+    enum class InputType {
+        SingleLine, MultiLine, TextArea
+    }
+
     enum class DisplayType {
-        DEFAULT, ERROR, DISABLED
+        Default, Error, Disabled
     }
 
     enum class TrailingElement {
-        NONE, ICON, TEXT
+        None, Icon, Text
     }
 
     val isEnabled
-        get() = displayType.value != DisplayType.DISABLED
+        get() = displayType.value != DisplayType.Disabled
 
     val isError
-        get() = displayType.value == DisplayType.ERROR
+        get() = displayType.value == DisplayType.Error
+
+    val hasLeadingIcon
+        get() = leadingIcon.value
 
     val hasTrailingIcon
-        get() = trailingElement.value == TrailingElement.ICON
+        get() = trailingElement.value == TrailingElement.Icon
 
     val hasTrailingText
-        get() = trailingElement.value == TrailingElement.TEXT
+        get() = trailingElement.value == TrailingElement.Text
+
+    val isSingleLine
+        get() = inputType.value == InputType.SingleLine
+
+    val hasCharacterCounter
+        get() = characterCounter.value
 }

@@ -211,7 +211,13 @@
     <string name="component_text_field_outlined">Outlined</string>
     <string name="component_text_field_text">Text field</string>
     <string name="component_text_field_password">Password field</string>
+    <string name="component_text_field_input_type">Input type</string>
+    <string name="component_text_field_input_type_single_line">Single line</string>
+    <string name="component_text_field_input_type_multi_line">Multi-line</string>
+    <string name="component_text_field_input_type_text_area">Text area</string>
     <string name="component_text_field_placeholder">Hint text</string>
+    <string name="component_text_field_character_counter">Character counter</string>
+
 
     <!-- Component Tabs -->
     <string name="component_tabs">Tabs</string>

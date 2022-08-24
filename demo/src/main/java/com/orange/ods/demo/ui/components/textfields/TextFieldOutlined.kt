@@ -36,7 +36,7 @@ fun TextFieldOutlined(customizationState: TextFieldCustomizationState) {
         modifier = Modifier
             .fillMaxWidth()
             .padding(top = dimensionResource(id = R.dimen.spacing_s)),
-        leadingIcon = if (customizationState.leadingIconChecked.value) painterResource(id = R.drawable.ic_heart) else null,
+        leadingIcon = if (customizationState.leadingIcon.value) painterResource(id = R.drawable.ic_heart) else null,
         enabled = customizationState.isEnabled,
         isError = customizationState.isError,
         value = text,
@@ -47,6 +47,7 @@ fun TextFieldOutlined(customizationState: TextFieldCustomizationState) {
         onTrailingIconClick = if (customizationState.hasTrailingIcon) {
             { clickOnElement(context = context, trailingIconName) }
         } else null,
-        trailingText = if (customizationState.hasTrailingText) "units" else null
+        trailingText = if (customizationState.hasTrailingText) "units" else null,
+        singleLine = customizationState.isSingleLine
     )
 }

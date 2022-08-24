@@ -19,7 +19,6 @@ import androidx.compose.material.rememberBottomSheetScaffoldState
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.dimensionResource
-import com.orange.ods.compose.component.chip.ChoiceChip
 import com.orange.ods.compose.component.chip.OdsChoiceChipsFlowRow
 import com.orange.ods.demo.R
 import com.orange.ods.demo.ui.components.Variant
@@ -35,7 +34,24 @@ fun ComponentTextField(variant: Variant) {
     ComponentCustomizationBottomSheetScaffold(
         bottomSheetScaffoldState = rememberBottomSheetScaffoldState(),
         bottomSheetContent = {
-            SwitchListItem(labelRes = R.string.component_element_leading_icon, checked = textFieldCustomizationState.leadingIconChecked)
+            SwitchListItem(labelRes = R.string.component_element_leading_icon, checked = textFieldCustomizationState.leadingIcon)
+
+            Subtitle(textRes = R.string.component_text_field_input_type, withHorizontalPadding = true)
+            OdsChoiceChipsFlowRow(
+                selectedChip = textFieldCustomizationState.inputType,
+                modifier = Modifier.padding(horizontal = dimensionResource(id = R.dimen.spacing_m)),
+                outlinedChips = true
+            ) {
+                SelectableChip(textRes = R.string.component_text_field_input_type_single_line, value = TextFieldCustomizationState.InputType.SingleLine)
+                SelectableChip(textRes = R.string.component_text_field_input_type_multi_line, value = TextFieldCustomizationState.InputType.MultiLine)
+                // Note: TextArea chip is disabled cause there is no parameter allowing text area in Jetpack Compose sdk for now
+                // https://issuetracker.google.com/issues/122476634
+                SelectableChip(
+                    textRes = R.string.component_text_field_input_type_text_area,
+                    value = TextFieldCustomizationState.InputType.TextArea,
+                    enabled = false
+                )
+            }
 
             Subtitle(textRes = R.string.component_state, withHorizontalPadding = true)
             OdsChoiceChipsFlowRow(
@@ -43,9 +59,9 @@ fun ComponentTextField(variant: Variant) {
                 modifier = Modifier.padding(horizontal = dimensionResource(id = R.dimen.ods_screen_horizontal_margin)),
                 outlinedChips = true
             ) {
-                ChoiceChip(textRes = R.string.component_state_default, value = TextFieldCustomizationState.DisplayType.DEFAULT)
-                ChoiceChip(textRes = R.string.component_state_error, value = TextFieldCustomizationState.DisplayType.ERROR)
-                ChoiceChip(textRes = R.string.component_state_disabled, value = TextFieldCustomizationState.DisplayType.DISABLED)
+                SelectableChip(textRes = R.string.component_state_default, value = TextFieldCustomizationState.DisplayType.Default)
+                SelectableChip(textRes = R.string.component_state_error, value = TextFieldCustomizationState.DisplayType.Error)
+                SelectableChip(textRes = R.string.component_state_disabled, value = TextFieldCustomizationState.DisplayType.Disabled)
             }
 
             Subtitle(textRes = R.string.component_element_trailing, withHorizontalPadding = true)
@@ -54,10 +70,13 @@ fun ComponentTextField(variant: Variant) {
                 modifier = Modifier.padding(horizontal = dimensionResource(id = R.dimen.ods_screen_horizontal_margin)),
                 outlinedChips = true
             ) {
-                ChoiceChip(textRes = R.string.component_element_none, value = TextFieldCustomizationState.TrailingElement.NONE)
-                ChoiceChip(textRes = R.string.component_element_icon, value = TextFieldCustomizationState.TrailingElement.ICON)
-                ChoiceChip(textRes = R.string.component_element_text, value = TextFieldCustomizationState.TrailingElement.TEXT)
+                SelectableChip(textRes = R.string.component_element_none, value = TextFieldCustomizationState.TrailingElement.None)
+                SelectableChip(textRes = R.string.component_element_icon, value = TextFieldCustomizationState.TrailingElement.Icon)
+                SelectableChip(textRes = R.string.component_element_text, value = TextFieldCustomizationState.TrailingElement.Text)
             }
+
+            SwitchListItem(labelRes = R.string.component_text_field_character_counter, checked = textFieldCustomizationState.characterCounter)
+
         }) {
         Column(
             modifier = Modifier
