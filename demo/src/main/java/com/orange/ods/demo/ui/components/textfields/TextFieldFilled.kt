@@ -17,10 +17,6 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material.ExperimentalMaterialApi
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.saveable.rememberSaveable
-import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
@@ -40,11 +36,6 @@ fun TextFieldFilled(customizationState: TextFieldCustomizationState) {
     val context = LocalContext.current
     val trailingIconName = stringResource(id = R.string.component_element_trailing)
 
-    var text by rememberSaveable { mutableStateOf("") }
-    if (customizationState.hasCharacterCounter && text.length > TextFieldMaxChars) {
-        text = text.substring(0, TextFieldMaxChars) // Limit the length of the text field value to the maximum number of characters
-    }
-
     Column {
         OdsTextField(
             modifier = Modifier
@@ -53,12 +44,8 @@ fun TextFieldFilled(customizationState: TextFieldCustomizationState) {
             leadingIcon = if (customizationState.hasLeadingIcon) painterResource(id = R.drawable.ic_heart) else null,
             enabled = customizationState.isEnabled,
             isError = customizationState.isError,
-            value = text,
-            onValueChange = {
-                if (!customizationState.hasCharacterCounter || it.length <= TextFieldMaxChars) {
-                    text = it
-                }
-            },
+            value = customizationState.text,
+            onValueChange = { customizationState.updateText(it) },
             label = stringResource(id = R.string.component_element_label),
             placeholder = stringResource(id = R.string.component_text_field_placeholder),
             trailingIcon = if (customizationState.hasTrailingIcon) painterResource(id = R.drawable.ic_eye) else null,
@@ -75,7 +62,7 @@ fun TextFieldFilled(customizationState: TextFieldCustomizationState) {
         )
 
         if (customizationState.hasCharacterCounter) {
-            TextFieldCounter(valueLength = text.length, enabled = customizationState.isEnabled)
+            TextFieldCounter(valueLength = customizationState.text.length, enabled = customizationState.isEnabled)
         }
     }
 }

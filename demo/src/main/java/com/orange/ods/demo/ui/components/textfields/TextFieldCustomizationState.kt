@@ -25,6 +25,7 @@ import com.orange.ods.demo.ui.components.textfields.TextFieldCustomizationState.
 
 @Composable
 fun rememberTextFieldCustomizationState(
+    value: MutableState<String> = rememberSaveable { mutableStateOf("") },
     inputType: MutableState<InputType> = rememberSaveable { mutableStateOf(InputType.SingleLine) },
     leadingIcon: MutableState<Boolean> = rememberSaveable { mutableStateOf(false) },
     displayType: MutableState<DisplayType> = rememberSaveable { mutableStateOf(DisplayType.Default) },
@@ -34,8 +35,9 @@ fun rememberTextFieldCustomizationState(
     softKeyboardAction: MutableState<SoftKeyboardAction> = rememberSaveable { mutableStateOf(SoftKeyboardAction.None) },
     softKeyboardCapitalization: MutableState<Boolean> = rememberSaveable { mutableStateOf(false) }
 ) =
-    remember(inputType, leadingIcon, displayType, trailingElement, characterCounter, softKeyboardType, softKeyboardAction, softKeyboardCapitalization) {
+    remember(value, inputType, leadingIcon, displayType, trailingElement, characterCounter, softKeyboardType, softKeyboardAction, softKeyboardCapitalization) {
         TextFieldCustomizationState(
+            value,
             inputType,
             leadingIcon,
             displayType,
@@ -48,6 +50,7 @@ fun rememberTextFieldCustomizationState(
     }
 
 class TextFieldCustomizationState(
+    val value: MutableState<String>,
     val inputType: MutableState<InputType>,
     val leadingIcon: MutableState<Boolean>,
     val displayType: MutableState<DisplayType>,
@@ -101,6 +104,11 @@ class TextFieldCustomizationState(
         }
     }
 
+    val text: String
+        get() = if (hasCharacterCounter && value.value.length > TextFieldMaxChars) {
+            value.value.substring(0, TextFieldMaxChars) // Limit the length of the text field value to the maximum number of characters
+        } else value.value
+
     val isEnabled
         get() = displayType.value != DisplayType.Disabled
 
@@ -121,4 +129,10 @@ class TextFieldCustomizationState(
 
     val hasCharacterCounter
         get() = characterCounter.value
+
+    fun updateText(newText: String) {
+        if (!hasCharacterCounter || newText.length <= TextFieldMaxChars) {
+            value.value = newText
+        }
+    }
 }

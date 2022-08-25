@@ -15,10 +15,6 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.saveable.rememberSaveable
-import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.dimensionResource
@@ -34,11 +30,6 @@ fun TextFieldOutlined(customizationState: TextFieldCustomizationState) {
     val context = LocalContext.current
     val trailingIconName = stringResource(id = R.string.component_element_trailing)
 
-    var text by rememberSaveable { mutableStateOf("") }
-    if (customizationState.hasCharacterCounter && text.length > TextFieldCustomizationState.TextFieldMaxChars) {
-        text = text.substring(0, TextFieldCustomizationState.TextFieldMaxChars) // Limit the length of the text field value to the maximum number of characters
-    }
-    
     Column {
         OdsOutlinedTextField(
             modifier = Modifier
@@ -47,8 +38,8 @@ fun TextFieldOutlined(customizationState: TextFieldCustomizationState) {
             leadingIcon = if (customizationState.leadingIcon.value) painterResource(id = R.drawable.ic_heart) else null,
             enabled = customizationState.isEnabled,
             isError = customizationState.isError,
-            value = text,
-            onValueChange = { text = it },
+            value = customizationState.text,
+            onValueChange = { customizationState.updateText(it) },
             label = stringResource(id = R.string.component_element_label),
             placeholder = stringResource(id = R.string.component_text_field_placeholder),
             trailingIcon = if (customizationState.hasTrailingIcon) painterResource(id = R.drawable.ic_eye) else null,
@@ -65,7 +56,7 @@ fun TextFieldOutlined(customizationState: TextFieldCustomizationState) {
         )
 
         if (customizationState.hasCharacterCounter) {
-            TextFieldCounter(valueLength = text.length, enabled = customizationState.isEnabled)
+            TextFieldCounter(valueLength = customizationState.text.length, enabled = customizationState.isEnabled)
         }
     }
 }
