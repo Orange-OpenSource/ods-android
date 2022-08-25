@@ -206,6 +206,8 @@
 
     <!-- Component Text fields -->
     <string name="component_text_fields">Text fields</string>
+    <string name="component_text_field">Text field</string>
+    <string name="component_text_field_keyboard">Keyboard</string>
     <string name="component_text_fields_description">Text fields enable the user to type text into the app. They also provide ways to select text and the opportunity to save time by suggesting options for auto-completion.</string>
     <string name="component_text_field_filled">Filled</string>
     <string name="component_text_field_outlined">Outlined</string>
@@ -217,6 +219,9 @@
     <string name="component_text_field_input_type_text_area">Text area</string>
     <string name="component_text_field_placeholder">Hint text</string>
     <string name="component_text_field_character_counter">Character counter</string>
+    <string name="component_text_field_keyboard_type">Keyboard type</string>
+    <string name="component_text_field_keyboard_action">Keyboard action</string>
+    <string name="component_text_field_keyboard_capitalization">Capitalization</string>
 
 
     <!-- Component Tabs -->
