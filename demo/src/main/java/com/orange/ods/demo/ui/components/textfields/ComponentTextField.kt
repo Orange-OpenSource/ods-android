@@ -120,7 +120,7 @@ private fun TextFieldPasswordCustomization(textFieldCustomizationState: TextFiel
 
 @ExperimentalMaterialApi
 @Composable
-private fun ComponentCustomizationContent(textFieldCustomizationState: TextFieldCustomizationState) {
+private fun TextFieldCustomizationContent(textFieldCustomizationState: TextFieldCustomizationState) {
     SwitchListItem(labelRes = R.string.component_element_leading_icon, checked = textFieldCustomizationState.leadingIcon)
 
     Subtitle(textRes = R.string.component_text_field_input_type, withHorizontalPadding = true)
@@ -209,7 +209,7 @@ private enum class CustomizationTab(@StringRes val titleRes: Int) {
     @Composable
     fun Content(textFieldCustomizationState: TextFieldCustomizationState) {
         when (this) {
-            TextField -> ComponentCustomizationContent(textFieldCustomizationState = textFieldCustomizationState)
+            TextField -> TextFieldCustomizationContent(textFieldCustomizationState = textFieldCustomizationState)
             Keyboard -> KeyboardCustomizationContent(textFieldCustomizationState = textFieldCustomizationState)
         }
     }

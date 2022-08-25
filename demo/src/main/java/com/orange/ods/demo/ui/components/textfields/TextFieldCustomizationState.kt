@@ -118,7 +118,7 @@ class TextFieldCustomizationState(
         get() = if (hasCharacterCounter && text.value.length > TextFieldMaxChars) {
             text.value.substring(0, TextFieldMaxChars) // Limit the length of the text field value to the maximum number of characters
         } else text.value
-
+    
     val isEnabled
         get() = displayType.value != DisplayType.Disabled
 
