@@ -11,6 +11,7 @@
 package com.orange.ods.demo.ui.components.textfields
 
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.ColumnScope
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.text.KeyboardOptions
@@ -74,12 +75,17 @@ fun TextFieldFilled(customizationState: TextFieldCustomizationState) {
         )
 
         if (customizationState.hasCharacterCounter) {
-            OdsTextFieldCounter(
-                modifier = Modifier.align(Alignment.End),
-                valueLength = text.length,
-                maxChars = TextFieldMaxChars,
-                enabled = customizationState.isEnabled
-            )
+            TextFieldCounter(valueLength = text.length, enabled = customizationState.isEnabled)
         }
     }
+}
+
+@Composable
+fun ColumnScope.TextFieldCounter(valueLength: Int, enabled: Boolean) {
+    OdsTextFieldCounter(
+        modifier = Modifier.align(Alignment.End),
+        valueLength = valueLength,
+        maxChars = TextFieldMaxChars,
+        enabled = enabled
+    )
 }
