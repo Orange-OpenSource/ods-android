@@ -15,6 +15,8 @@ description: Text fields let users enter and edit text.
   * [Filled password text field](#filled-password-text-field)
   * [Outlined text field](#outlined-text-field)
   * [Outlined password text field](#outlined-password-text-field)
+* [Extras](#extras)
+  * [Text field character counter](#text-field-character-counter)
 * [Component specific tokens](#component-specific-tokens)
 
 ---
@@ -65,7 +67,7 @@ an `AccessibilityDelegate` directly on the `EditText`.
 Filled text fields have more visual emphasis than outlined text fields, making them stand out when
 surrounded by other content and components.
 
-  ![TextField filled](images/textfield_filled_light.png)  
+  ![TextField filled light](images/textfield_filled_light.png)  
   ![TextField filled dark](images/textfield_filled_dark.png)
 
 > **Jetpack Compose implementation**
@@ -138,7 +140,7 @@ filledTextField.editText?.doOnTextChanged { inputText, _, _, _ ->
 
 Filled password text fields is a filled text field implementation that includes password visual transformation and optional visualisation icon.
 
-  ![TextField filled password](images/textfield_filled_password_light.png)  
+  ![TextField filled password light](images/textfield_filled_password_light.png)  
   ![TextField filled password dark](images/textfield_filled_password_dark.png)
 
 > **Jetpack Compose implementation**
@@ -172,7 +174,7 @@ Outlined text fields have less visual emphasis than filled text fields. When the
 like forms, where many text fields are placed together, their reduced emphasis helps simplify the
 layout.
 
-  ![TextField outlined](images/textfield_outlined_light.png)  
+  ![TextField outlined light](images/textfield_outlined_light.png)  
   ![TextField outlined dark](images/textfield_outlined_dark.png)
 
 > **Jetpack Compose implementation**
@@ -244,7 +246,7 @@ outlinedTextField.editText?.doOnTextChanged { inputText, _, _, _ ->
 
 Outlined password text fields is an outlined text field implementation that includes password visual transformation and optional visualisation icon.
 
-  ![TextField outlined password](images/textfield_outlined_password_light.png)  
+  ![TextField outlined password light](images/textfield_outlined_password_light.png)  
   ![TextField outlined password dark](images/textfield_outlined_password_dark.png)
 
 > **Jetpack Compose implementation**
@@ -270,6 +272,34 @@ OdsPasswordOutlinedTextField(
 > **XML implementation**
 
 _Not available_
+
+## Extras
+
+### Text field character counter
+
+You can add a character counter if there is a restriction on the number of characters in a field. It has to be placed below the text field, end aligned.
+
+  ![TextField character counter light](images/textfield_character_counter_light.png)  
+  ![TextField character counter dark](images/textfield_character_counter_dark.png)
+
+> **Jetpack Compose implementation**
+
+```kotlin
+OdsTextFieldCounter(
+    modifier = Modifier.align(Alignment.End),
+    valueLength = valueLength, 
+    maxChars = 20,
+    enabled = true // `true` if not set. If `false` the counter is displayed with a disabled color
+)
+```
+
+The limitation behavior should be managed by yourself in the `onValueChange` method of the text field.
+
+```kotlin
+if (text.length <= TextFieldMaxChars) {
+    value = text
+}
+```
 
 ## Component specific tokens
 
