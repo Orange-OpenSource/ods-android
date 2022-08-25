@@ -54,7 +54,6 @@ fun ComponentTextField(variant: Variant) {
                 Variant.TextFieldFilledText, Variant.TextFieldOutlinedText -> TextFieldTextCustomization(textFieldCustomizationState)
                 Variant.TextFieldFilledPassword, Variant.TextFieldOutlinedPassword -> TextFieldPasswordCustomization(textFieldCustomizationState)
                 else -> {}
-
             }
         }) {
         Column(
@@ -120,7 +119,7 @@ private fun TextFieldPasswordCustomization(textFieldCustomizationState: TextFiel
 
 @ExperimentalMaterialApi
 @Composable
-private fun TextFieldCustomizationContent(textFieldCustomizationState: TextFieldCustomizationState) {
+private fun ComponentCustomizationContent(textFieldCustomizationState: TextFieldCustomizationState) {
     SwitchListItem(labelRes = R.string.component_element_leading_icon, checked = textFieldCustomizationState.leadingIcon)
 
     Subtitle(textRes = R.string.component_text_field_input_type, withHorizontalPadding = true)
@@ -209,7 +208,7 @@ private enum class CustomizationTab(@StringRes val titleRes: Int) {
     @Composable
     fun Content(textFieldCustomizationState: TextFieldCustomizationState) {
         when (this) {
-            TextField -> TextFieldCustomizationContent(textFieldCustomizationState = textFieldCustomizationState)
+            TextField -> ComponentCustomizationContent(textFieldCustomizationState = textFieldCustomizationState)
             Keyboard -> KeyboardCustomizationContent(textFieldCustomizationState = textFieldCustomizationState)
         }
     }
