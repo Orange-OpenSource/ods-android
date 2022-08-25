@@ -12,7 +12,9 @@ description: Text fields let users enter and edit text.
 * [Accessibility](#accessibility)
 * [Variants](#variants)
   * [Filled text field](#filled-text-field)
+  * [Filled password text field](#filled-password-text-field)
   * [Outlined text field](#outlined-text-field)
+  * [Outlined password text field](#outlined-password-text-field)
 * [Component specific tokens](#component-specific-tokens)
 
 ---
@@ -132,6 +134,38 @@ filledTextField.editText?.doOnTextChanged { inputText, _, _, _ ->
 }
 ```
 
+### Filled password text field
+
+Filled password text fields is a filled text field implementation that includes password visual transformation and optional visualisation icon.
+
+  ![TextField filled password](images/textfield_filled_password_light.png)  
+  ![TextField filled password dark](images/textfield_filled_password_dark.png)
+
+> **Jetpack Compose implementation**
+
+To add a filled password text field in your composable screen you can use the `OdsPasswordTextField` composable as follow:
+
+```kotlin
+var text by rememberSaveable { mutableStateOf("") }
+OdsPasswordTextField(
+    enabled = true, // true if not set
+    readOnly = false, // false if not set
+    isError = false, // false if not set
+    value = text,
+    onValueChange = { text = it },
+    label = "Label", // Optional
+    placeholder = "Placeholder", // Optional
+    visualisationIcon = true, // `true` if not set
+    keyboardOptions = KeyboardOptions.Default, // `KeyboardOptions.Default` if not set
+    keyboardActions = KeyboardActions() // `KeyboardActions()` if not set
+)
+```
+
+> **XML implementation**
+
+_Not available_
+
+
 ### Outlined text field
 
 Outlined text fields have less visual emphasis than filled text fields. When they appear in places
@@ -205,6 +239,37 @@ outlinedTextField.editText?.doOnTextChanged { inputText, _, _, _ ->
     // Respond to input text change
 }
 ```
+
+### Outlined password text field
+
+Outlined password text fields is an outlined text field implementation that includes password visual transformation and optional visualisation icon.
+
+  ![TextField outlined password](images/textfield_outlined_password_light.png)  
+  ![TextField outlined password dark](images/textfield_outlined_password_dark.png)
+
+> **Jetpack Compose implementation**
+
+To add an outlined password text field in your composable screen you can use the `OdsPasswordOutlinedTextField` composable as follow:
+
+```kotlin
+var text by rememberSaveable { mutableStateOf("") }
+OdsPasswordOutlinedTextField(
+    enabled = true, // true if not set
+    readOnly = false, // false if not set
+    isError = false, // false if not set
+    value = text,
+    onValueChange = { text = it },
+    label = "Label", // Optional
+    placeholder = "Placeholder", // Optional
+    visualisationIcon = true, // `true` if not set
+    keyboardOptions = KeyboardOptions.Default, // `KeyboardOptions.Default` if not set
+    keyboardActions = KeyboardActions() // `KeyboardActions()` if not set
+)
+```
+
+> **XML implementation**
+
+_Not available_
 
 ## Component specific tokens
 
