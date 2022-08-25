@@ -30,18 +30,31 @@ fun rememberTextFieldCustomizationState(
     leadingIcon: MutableState<Boolean> = rememberSaveable { mutableStateOf(false) },
     displayType: MutableState<DisplayType> = rememberSaveable { mutableStateOf(DisplayType.Default) },
     trailingElement: MutableState<TrailingElement> = rememberSaveable { mutableStateOf(TrailingElement.None) },
+    visualisationIcon: MutableState<Boolean> = rememberSaveable { mutableStateOf(true) },
     characterCounter: MutableState<Boolean> = rememberSaveable { mutableStateOf(false) },
     softKeyboardType: MutableState<SoftKeyboardType> = rememberSaveable { mutableStateOf(SoftKeyboardType.Text) },
     softKeyboardAction: MutableState<SoftKeyboardAction> = rememberSaveable { mutableStateOf(SoftKeyboardAction.None) },
     softKeyboardCapitalization: MutableState<Boolean> = rememberSaveable { mutableStateOf(false) }
 ) =
-    remember(value, inputType, leadingIcon, displayType, trailingElement, characterCounter, softKeyboardType, softKeyboardAction, softKeyboardCapitalization) {
+    remember(
+        value,
+        inputType,
+        leadingIcon,
+        displayType,
+        trailingElement,
+        visualisationIcon,
+        characterCounter,
+        softKeyboardType,
+        softKeyboardAction,
+        softKeyboardCapitalization
+    ) {
         TextFieldCustomizationState(
             value,
             inputType,
             leadingIcon,
             displayType,
             trailingElement,
+            visualisationIcon,
             characterCounter,
             softKeyboardType,
             softKeyboardAction,
@@ -55,6 +68,7 @@ class TextFieldCustomizationState(
     val leadingIcon: MutableState<Boolean>,
     val displayType: MutableState<DisplayType>,
     val trailingElement: MutableState<TrailingElement>,
+    val visualisationIcon: MutableState<Boolean>,
     val characterCounter: MutableState<Boolean>,
     val softKeyboardType: MutableState<SoftKeyboardType>,
     val softKeyboardAction: MutableState<SoftKeyboardAction>,
@@ -117,6 +131,9 @@ class TextFieldCustomizationState(
 
     val hasLeadingIcon
         get() = leadingIcon.value
+
+    val hasVisualisationIcon
+        get() = visualisationIcon.value
 
     val hasTrailingIcon
         get() = trailingElement.value == TrailingElement.Icon

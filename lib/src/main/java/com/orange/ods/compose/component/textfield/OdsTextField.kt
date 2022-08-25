@@ -114,7 +114,7 @@ fun OdsTextField(
     keyboardOptions: KeyboardOptions = KeyboardOptions.Default,
     keyboardActions: KeyboardActions = KeyboardActions(),
     singleLine: Boolean = false,
-    maxLines: Int = Int.MAX_VALUE,
+    maxLines: Int = Int.MAX_VALUE
 ) {
 
     TextField(
@@ -214,7 +214,7 @@ fun Colors.textFieldIconColor(enabled: Boolean = true) =
     }
 
 @Composable
-private fun odsTextFieldColors() = TextFieldDefaults.textFieldColors(
+fun odsTextFieldColors() = TextFieldDefaults.textFieldColors(
     focusedLabelColor = MaterialTheme.colors.onSurface
 )
 
