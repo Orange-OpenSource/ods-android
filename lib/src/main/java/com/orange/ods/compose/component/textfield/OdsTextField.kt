@@ -191,7 +191,7 @@ fun OdsTextFieldIcon(painter: Painter, contentDescription: String?, onClick: (()
  * @param enabled set to false to display the text with a disabled color
  */
 @Composable
-fun OdsTextFieldCounter(valueLength: Int, maxChars: Int, modifier: Modifier = Modifier, enabled: Boolean = false) {
+fun OdsTextFieldCounter(valueLength: Int, maxChars: Int, modifier: Modifier = Modifier, enabled: Boolean = true) {
     OdsTextCaption(
         modifier = modifier.padding(top = dimensionResource(id = R.dimen.spacing_xs)), text = "$valueLength/$maxChars", enabled = enabled
     )
