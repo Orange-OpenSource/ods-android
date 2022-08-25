@@ -16,7 +16,7 @@ description: Text fields let users enter and edit text.
   * [Outlined text field](#outlined-text-field)
   * [Outlined password text field](#outlined-password-text-field)
 * [Extras](#extras)
-  * [Text field character counter](#text-field-character-counter)
+  * [Character counter](#character-counter)
 * [Component specific tokens](#component-specific-tokens)
 
 ---
@@ -275,7 +275,7 @@ _Not available_
 
 ## Extras
 
-### Text field character counter
+### Character counter
 
 You can add a character counter if there is a restriction on the number of characters in a field. It has to be placed below the text field, end aligned.
 
