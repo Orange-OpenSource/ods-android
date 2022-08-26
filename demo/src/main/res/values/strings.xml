@@ -73,6 +73,7 @@
     <string name="component_element_item2">Item 2</string>
     <string name="component_element_item3">Item 3</string>
     <string name="component_element_cancel_cross">Cancel cross</string>
+    <string name="component_demo">%s demo</string>
 
 
     <!-- Components App bars: top -->

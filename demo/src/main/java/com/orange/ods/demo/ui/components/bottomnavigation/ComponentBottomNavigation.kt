@@ -11,9 +11,14 @@
 package com.orange.ods.demo.ui.components.bottomnavigation
 
 import androidx.annotation.DrawableRes
+import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.ExperimentalMaterialApi
 import androidx.compose.material.Icon
+import androidx.compose.material.Scaffold
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.MutableState
 import androidx.compose.runtime.mutableStateOf
@@ -27,8 +32,6 @@ import androidx.compose.ui.res.stringResource
 import com.orange.ods.compose.component.bottomnavigation.OdsBottomNavigation
 import com.orange.ods.compose.component.bottomnavigation.OdsBottomNavigationItem
 import com.orange.ods.demo.R
-import com.orange.ods.demo.ui.components.Component
-import com.orange.ods.demo.ui.components.ComponentDetail
 import com.orange.ods.demo.ui.components.bottomnavigation.ComponentBottomNavigation.MaxNavigationItemCount
 import com.orange.ods.demo.ui.components.bottomnavigation.ComponentBottomNavigation.MinNavigationItemCount
 import com.orange.ods.demo.ui.components.utilities.ComponentCountRow
@@ -43,10 +46,18 @@ private object ComponentBottomNavigation {
 @ExperimentalMaterialApi
 fun ComponentBottomNavigation() {
     val selectedNavigationItemCount = rememberSaveable { mutableStateOf(MinNavigationItemCount) }
-    ComponentDetail(
-        component = Component.BottomNavigation,
-        bottomBar = { ComponentBottomNavigationBottomBar(selectedNavigationItemCount = selectedNavigationItemCount) },
-        content = { ComponentBottomNavigationContent(selectedNavigationItemCount = selectedNavigationItemCount) })
+
+    Scaffold(bottomBar = { ComponentBottomNavigationBottomBar(selectedNavigationItemCount = selectedNavigationItemCount) }) { innerPadding ->
+        Box(modifier = Modifier.padding(innerPadding)) {
+            Column(
+                modifier = Modifier
+                    .verticalScroll(rememberScrollState())
+                    .padding(bottom = dimensionResource(id = R.dimen.spacing_m))
+            ) {
+                ComponentBottomNavigationContent(selectedNavigationItemCount = selectedNavigationItemCount)
+            }
+        }
+    }
 }
 
 @Composable

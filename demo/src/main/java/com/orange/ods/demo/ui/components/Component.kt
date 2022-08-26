@@ -12,17 +12,8 @@ package com.orange.ods.demo.ui.components
 
 import androidx.annotation.DrawableRes
 import androidx.annotation.StringRes
-import androidx.compose.material.ExperimentalMaterialApi
-import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import com.orange.ods.demo.R
-import com.orange.ods.demo.ui.components.bottomnavigation.ComponentBottomNavigation
-import com.orange.ods.demo.ui.components.checkboxes.ComponentCheckboxesContent
-import com.orange.ods.demo.ui.components.dialogs.ComponentDialogsContent
-import com.orange.ods.demo.ui.components.progress.ComponentProgressContent
-import com.orange.ods.demo.ui.components.radiobuttons.ComponentRadioButtonsContent
-import com.orange.ods.demo.ui.components.sliders.ComponentSlidersContent
-import com.orange.ods.demo.ui.components.switches.ComponentSwitchesContent
 
 sealed class Component(
     @StringRes val titleRes: Int,
@@ -32,7 +23,6 @@ sealed class Component(
     val variants: List<Variant> = emptyList()
 ) {
     companion object {
-
         const val ImageBackgroundColor = 0xff1b1b1b
     }
 
@@ -88,8 +78,7 @@ sealed class Component(
         R.string.component_lists,
         R.drawable.il_lists,
         null,
-        R.string.component_lists_description,
-        listOf(Variant.Lists)
+        R.string.component_lists_description
     )
 
     object Progress : Component(R.string.component_progress, R.drawable.il_progress, null, R.string.component_progress_description)
@@ -111,21 +100,6 @@ sealed class Component(
         R.string.component_tabs_description,
         listOf(Variant.TabsFixed, Variant.TabsScrollable)
     )
-
-    @ExperimentalMaterialApi
-    @Composable
-    fun Detail(onVariantClick: (Long) -> Unit) {
-        return when (this) {
-            BottomNavigation -> ComponentBottomNavigation()
-            Checkboxes -> ComponentDetail(component = this) { ComponentCheckboxesContent() }
-            Dialogs -> ComponentDetail(component = this) { ComponentDialogsContent() }
-            Progress -> ComponentDetail(component = this) { ComponentProgressContent() }
-            RadioButtons -> ComponentDetail(component = this) { ComponentRadioButtonsContent() }
-            Sliders -> ComponentDetail(component = this) { ComponentSlidersContent() }
-            Switches -> ComponentDetail(component = this) { ComponentSwitchesContent() }
-            AppBarsTop, Buttons, Cards, Chips, Lists, TextFields, Tabs -> ComponentDetailWithVariants(component = this, onVariantClick = onVariantClick)
-        }
-    }
 }
 
 val components = Component::class.sealedSubclasses.mapNotNull { it.objectInstance }
@@ -139,7 +113,7 @@ sealed class Variant(
         TextFieldOutlined(R.string.component_text_field_outlined),
         TextFieldFilled(R.string.component_text_field_filled)
     }
-    
+
     val id: Long = Variant::class.sealedSubclasses.indexOf(this::class).toLong()
 
     object AppBarsTopRegular : Variant(R.string.component_app_bars_top_regular)
@@ -155,8 +129,6 @@ sealed class Variant(
 
     object Chip : Variant(R.string.component_chip)
     object ChipFilter : Variant(R.string.component_chip_filter)
-
-    object Lists : Variant(R.string.component_lists_demo)
 
     object TextFieldFilledText : Variant(R.string.component_text_field_text, Section.TextFieldFilled)
     object TextFieldFilledPassword : Variant(R.string.component_text_field_password, Section.TextFieldFilled)

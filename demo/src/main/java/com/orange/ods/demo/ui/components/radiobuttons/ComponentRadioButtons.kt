@@ -11,24 +11,34 @@
 package com.orange.ods.demo.ui.components.radiobuttons
 
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.selection.selectableGroup
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.ExperimentalMaterialApi
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.dimensionResource
 import com.orange.ods.demo.R
 import com.orange.ods.demo.ui.utilities.composable.RadioButtonListItem
 import com.orange.ods.demo.ui.utilities.composable.Title
 
 @ExperimentalMaterialApi
 @Composable
-fun ComponentRadioButtonsContent() {
-    Title(textRes = R.string.component_radio_buttons_enabled, withHorizontalPadding = true)
-    RadioButtons(enabled = true)
+fun ComponentRadioButtons() {
+    Column(
+        modifier = Modifier
+            .verticalScroll(rememberScrollState())
+            .padding(bottom = dimensionResource(id = R.dimen.spacing_m))
+    ) {
+        Title(textRes = R.string.component_radio_buttons_enabled, withHorizontalPadding = true)
+        RadioButtons(enabled = true)
 
-    Title(textRes = R.string.component_radio_buttons_disabled, withHorizontalPadding = true)
-    RadioButtons(enabled = false)
+        Title(textRes = R.string.component_radio_buttons_disabled, withHorizontalPadding = true)
+        RadioButtons(enabled = false)
+    }
 }
 
 @ExperimentalMaterialApi

@@ -16,6 +16,8 @@ import androidx.compose.animation.core.tween
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.CircularProgressIndicator
 import androidx.compose.material.LinearProgressIndicator
 import androidx.compose.runtime.Composable
@@ -35,7 +37,7 @@ private const val DeterminateProgressTargetValue = 0.9f
 private const val DeterminateProgressAnimDuration = 5000
 
 @Composable
-fun ComponentProgressContent() {
+fun ComponentProgress() {
     var determinateProgressValue by remember { mutableStateOf(0f) }
     val determinateProgressAnimation by animateFloatAsState(
         targetValue = determinateProgressValue,
@@ -44,6 +46,7 @@ fun ComponentProgressContent() {
 
     Column(
         modifier = Modifier
+            .verticalScroll(rememberScrollState())
             .padding(horizontal = dimensionResource(id = R.dimen.ods_screen_horizontal_margin))
             .padding(bottom = dimensionResource(id = R.dimen.spacing_m))
     ) {

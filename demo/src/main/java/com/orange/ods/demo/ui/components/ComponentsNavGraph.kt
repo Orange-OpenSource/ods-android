@@ -43,22 +43,35 @@ fun NavGraphBuilder.addComponentsGraph(
         val componentId = arguments.getLong(MainDestinations.COMPONENT_ID_KEY)
         ComponentDetailScreen(
             componentId,
-            onVariantClick = { id -> onNavElementClick(MainDestinations.COMPONENT_SUBTYPE_ROUTE, id, from) },
+            onVariantClick = { variantId -> onNavElementClick(MainDestinations.COMPONENT_VARIANT_ROUTE, variantId, from) },
+            onDemoClick = { onNavElementClick(MainDestinations.COMPONENT_DEMO_ROUTE, componentId, from) },
             updateTopBarTitle = updateTopBarTitle
         )
     }
 
     composable(
-        "${MainDestinations.COMPONENT_SUBTYPE_ROUTE}/{${MainDestinations.COMPONENT_ID_KEY}}",
-        arguments = listOf(navArgument(MainDestinations.COMPONENT_ID_KEY) { type = NavType.LongType })
+        "${MainDestinations.COMPONENT_VARIANT_ROUTE}/{${MainDestinations.COMPONENT_VARIANT_ID_KEY}}",
+        arguments = listOf(navArgument(MainDestinations.COMPONENT_VARIANT_ID_KEY) { type = NavType.LongType })
     ) { from ->
         val arguments = requireNotNull(from.arguments)
-        val variantId = arguments.getLong(MainDestinations.COMPONENT_ID_KEY)
-        VariantDetailScreen(
+        val variantId = arguments.getLong(MainDestinations.COMPONENT_VARIANT_ID_KEY)
+        ComponentVariantScreen(
             variantId = variantId,
             updateTopBarTitle = updateTopBarTitle,
             updateTopAppBar = updateTopAppBar,
             updateTopAppBarTabs = updateTopAppBarTabs
+        )
+    }
+
+    composable(
+        "${MainDestinations.COMPONENT_DEMO_ROUTE}/{${MainDestinations.COMPONENT_ID_KEY}}",
+        arguments = listOf(navArgument(MainDestinations.COMPONENT_ID_KEY) { type = NavType.LongType })
+    ) { from ->
+        val arguments = requireNotNull(from.arguments)
+        val componentId = arguments.getLong(MainDestinations.COMPONENT_ID_KEY)
+        ComponentDemoScreen(
+            componentId = componentId,
+            updateTopBarTitle = updateTopBarTitle
         )
     }
 }

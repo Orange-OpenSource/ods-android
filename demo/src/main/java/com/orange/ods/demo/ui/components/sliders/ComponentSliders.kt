@@ -12,6 +12,8 @@ package com.orange.ods.demo.ui.components.sliders
 
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
@@ -27,11 +29,12 @@ import com.orange.ods.demo.R
 import com.orange.ods.demo.ui.utilities.composable.Subtitle
 
 @Composable
-fun ComponentSlidersContent() {
+fun ComponentSliders() {
     var discreteSliderPosition by remember { mutableStateOf(0f) }
 
     Column(
         modifier = Modifier
+            .verticalScroll(rememberScrollState())
             .padding(horizontal = dimensionResource(id = R.dimen.spacing_m))
     ) {
         Subtitle(R.string.component_slider_discrete, withHorizontalPadding = false)

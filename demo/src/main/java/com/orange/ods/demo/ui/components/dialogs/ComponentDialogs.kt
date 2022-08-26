@@ -12,8 +12,12 @@ package com.orange.ods.demo.ui.components.dialogs
 
 import androidx.annotation.StringRes
 import androidx.compose.foundation.clickable
+import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.ExperimentalMaterialApi
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.MutableState
@@ -36,44 +40,51 @@ import com.orange.ods.demo.ui.utilities.composable.Title
 
 @ExperimentalMaterialApi
 @Composable
-fun ComponentDialogsContent() {
+fun ComponentDialogs() {
     val customizationState = rememberComponentDialogsContentState()
     val openDialog = rememberSaveable { mutableStateOf(false) }
     val closeDialogAction = { openDialog.value = false }
     val confirmActionRes = if (customizationState.isDismissButtonChecked) R.string.component_dialog_action_confirm else R.string.component_dialog_action_ok
     val context = LocalContext.current
 
-    Title(textRes = R.string.component_dialogs_customize, withHorizontalPadding = true)
-    Spacer(modifier = Modifier.height(dimensionResource(id = R.dimen.spacing_s)))
-    SwitchListItem(labelRes = R.string.component_element_title, checked = customizationState.titleChecked)
-    SwitchListItem(labelRes = R.string.component_dialog_element_dismiss_button, checked = customizationState.dismissButtonChecked)
-    OdsButton(
-        modifier = Modifier.fullWidthButton(),
-        text = stringResource(id = R.string.component_dialogs_open_dialog),
-        style = OdsButtonContainedStyle.Primary,
-        onClick = {
-            openDialog.value = true
-        }
-    )
+    Column(
+        modifier = Modifier
+            .verticalScroll(rememberScrollState())
+            .padding(bottom = dimensionResource(id = R.dimen.spacing_m))
+    ) {
 
-    if (openDialog.value) {
-        val confirmButtonText = stringResource(id = confirmActionRes)
-        val dismissButtonText = stringResource(id = R.string.component_dialog_action_dismiss)
-
-        OdsAlertDialog(
-            titleText = if (customizationState.isTitleChecked) stringResource(id = R.string.component_element_title) else null,
-            text = stringResource(id = R.string.component_dialog_text),
-            confirmButtonText = confirmButtonText,
-            onConfirmButtonClick = {
-                clickOnElement(context = context, clickedElement = confirmButtonText)
-                closeDialogAction()
-            },
-            dismissButtonText = if (customizationState.isDismissButtonChecked) dismissButtonText else null,
-            onDismissButtonClick = {
-                clickOnElement(context = context, clickedElement = dismissButtonText)
-                closeDialogAction()
-            },
+        Title(textRes = R.string.component_dialogs_customize, withHorizontalPadding = true)
+        Spacer(modifier = Modifier.height(dimensionResource(id = R.dimen.spacing_s)))
+        SwitchListItem(labelRes = R.string.component_element_title, checked = customizationState.titleChecked)
+        SwitchListItem(labelRes = R.string.component_dialog_element_dismiss_button, checked = customizationState.dismissButtonChecked)
+        OdsButton(
+            modifier = Modifier.fullWidthButton(),
+            text = stringResource(id = R.string.component_dialogs_open_dialog),
+            style = OdsButtonContainedStyle.Primary,
+            onClick = {
+                openDialog.value = true
+            }
         )
+
+        if (openDialog.value) {
+            val confirmButtonText = stringResource(id = confirmActionRes)
+            val dismissButtonText = stringResource(id = R.string.component_dialog_action_dismiss)
+
+            OdsAlertDialog(
+                titleText = if (customizationState.isTitleChecked) stringResource(id = R.string.component_element_title) else null,
+                text = stringResource(id = R.string.component_dialog_text),
+                confirmButtonText = confirmButtonText,
+                onConfirmButtonClick = {
+                    clickOnElement(context = context, clickedElement = confirmButtonText)
+                    closeDialogAction()
+                },
+                dismissButtonText = if (customizationState.isDismissButtonChecked) dismissButtonText else null,
+                onDismissButtonClick = {
+                    clickOnElement(context = context, clickedElement = dismissButtonText)
+                    closeDialogAction()
+                },
+            )
+        }
     }
 }
 

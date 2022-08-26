@@ -19,11 +19,14 @@ import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.Divider
 import androidx.compose.material.ExperimentalMaterialApi
-import androidx.compose.material.Scaffold
+import androidx.compose.material.Icon
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.PlayArrow
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.stringResource
 import com.orange.ods.compose.component.list.OdsListItem
@@ -36,74 +39,63 @@ import com.orange.ods.demo.ui.components.utilities.ComponentHeader
 fun ComponentDetailScreen(
     componentId: Long,
     onVariantClick: (Long) -> Unit,
+    onDemoClick: () -> Unit,
     updateTopBarTitle: (Int) -> Unit
 ) {
+    val context = LocalContext.current
     val component = remember { components.firstOrNull { component -> component.id == componentId } }
 
     component?.let {
         updateTopBarTitle(component.titleRes)
-        component.Detail(onVariantClick = onVariantClick)
-    }
-}
 
-@ExperimentalMaterialApi
-@Composable
-fun ComponentDetail(component: Component, bottomBar: @Composable () -> Unit = {}, content: @Composable () -> Unit) {
-    Scaffold(bottomBar = bottomBar) { innerPadding ->
-        Box(modifier = Modifier.padding(innerPadding)) {
-            Column(
-                modifier = Modifier
-                    .verticalScroll(rememberScrollState())
-                    .padding(bottom = dimensionResource(id = R.dimen.spacing_m))
-            ) {
-                ComponentHeader(
-                    imageRes = component.imageRes,
-                    imageAlignment = component.imageAlignment,
-                    description = component.descriptionRes
-                )
-                content()
-            }
-        }
-    }
-}
-
-@ExperimentalMaterialApi
-@Composable
-fun ComponentDetailWithVariants(component: Component, onVariantClick: (Long) -> Unit) {
-    Column(
-        modifier = Modifier
-            .verticalScroll(rememberScrollState())
-            .padding(bottom = dimensionResource(id = R.dimen.ods_screen_vertical_margin))
-    ) {
-        ComponentHeader(
-            imageRes = component.imageRes,
-            imageAlignment = component.imageAlignment,
-            description = component.descriptionRes
-        )
         Column(
-            modifier = Modifier.padding(top = dimensionResource(id = R.dimen.spacing_m))
+            modifier = Modifier
+                .verticalScroll(rememberScrollState())
+                .padding(bottom = dimensionResource(id = R.dimen.ods_screen_vertical_margin))
         ) {
-            component.variants.groupBy { it.section }.onEachIndexed { index, (section, variants) ->
-                section?.let {
-                    if (index > 0) {
-                        Divider(modifier = Modifier.padding(top = dimensionResource(id = R.dimen.spacing_s)))
-                    }
-                    Box(modifier = Modifier.height(dimensionResource(id = R.dimen.list_single_line_item_height)), contentAlignment = Alignment.Center) {
-                        OdsTextSubtitle2(
-                            modifier = Modifier
-                                .padding(horizontal = dimensionResource(id = R.dimen.ods_screen_horizontal_margin)),
-                            text = stringResource(id = section.titleRes)
+            ComponentHeader(
+                imageRes = component.imageRes,
+                imageAlignment = component.imageAlignment,
+                description = component.descriptionRes
+            )
+            Column(
+                modifier = Modifier.padding(top = dimensionResource(id = R.dimen.spacing_m))
+            ) {
+                if (component.variants.isEmpty()) {
+                    ComponentDetailLinkItem(
+                        context.getString(
+                            R.string.component_demo,
+                            context.getString(component.titleRes)
                         )
+                    ) { onDemoClick() }
+                } else {
+                    component.variants.groupBy { it.section }.forEach { (section, variants) ->
+                        section?.let {
+                            Divider(modifier = Modifier.padding(top = dimensionResource(id = R.dimen.spacing_s)))
+                            Box(modifier = Modifier.height(dimensionResource(id = R.dimen.list_single_line_item_height)), contentAlignment = Alignment.Center) {
+                                OdsTextSubtitle2(
+                                    modifier = Modifier
+                                        .padding(horizontal = dimensionResource(id = R.dimen.ods_screen_horizontal_margin)),
+                                    text = stringResource(id = section.titleRes)
+                                )
+                            }
+
+                        }
+                        variants.forEach { variant ->
+                            ComponentDetailLinkItem(stringResource(id = variant.titleRes)) { onVariantClick(variant.id) }
+                        }
                     }
-
                 }
-                variants.forEach { variant ->
-                    OdsListItem(text = stringResource(id = variant.titleRes), modifier = Modifier.clickable {
-                        onVariantClick(variant.id)
-                    })
-                }
-
             }
         }
     }
+}
+
+@ExperimentalMaterialApi
+@Composable
+private fun ComponentDetailLinkItem(label: String, onClick: () -> Unit) {
+    OdsListItem(
+        icon = { Icon(imageVector = Icons.Filled.PlayArrow, contentDescription = null) },
+        text = label,
+        modifier = Modifier.clickable { onClick() })
 }

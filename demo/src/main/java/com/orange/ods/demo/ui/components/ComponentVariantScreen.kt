@@ -20,7 +20,6 @@ import com.orange.ods.demo.ui.components.buttons.ComponentButtons
 import com.orange.ods.demo.ui.components.cards.ComponentCard
 import com.orange.ods.demo.ui.components.chips.VariantChip
 import com.orange.ods.demo.ui.components.chips.VariantChipFilter
-import com.orange.ods.demo.ui.components.lists.ComponentLists
 import com.orange.ods.demo.ui.components.tabs.ComponentTabs
 import com.orange.ods.demo.ui.components.tabs.TabsConfiguration
 import com.orange.ods.demo.ui.components.textfields.ComponentTextField
@@ -28,7 +27,7 @@ import com.orange.ods.demo.ui.components.textfields.ComponentTextField
 @ExperimentalMaterialApi
 @ExperimentalPagerApi
 @Composable
-fun VariantDetailScreen(
+fun ComponentVariantScreen(
     variantId: Long,
     updateTopBarTitle: (Int) -> Unit,
     updateTopAppBar: (TopAppBarConfiguration) -> Unit,
@@ -44,7 +43,6 @@ fun VariantDetailScreen(
             Component.Buttons -> ComponentButtons(variant = variant)
             Component.Cards -> ComponentCard(variant = variant)
             Component.Chips -> if (variant == Variant.ChipFilter) VariantChipFilter() else VariantChip()
-            Component.Lists -> ComponentLists()
             Component.TextFields -> ComponentTextField(variant = variant)
             Component.Tabs -> ComponentTabs(variant, updateTopAppBarTabs)
             else -> {}
