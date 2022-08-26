@@ -55,7 +55,7 @@ fun OdsPasswordOutlinedTextField(
         trailingIcon = if (visualisationIcon) {
             {
                 OdsTextFieldIcon(
-                    painter = painterResource(id = R.drawable.ic_eye),
+                    painter = if (isPasswordVisible) painterResource(id = R.drawable.ic_crosset_out_eye) else painterResource(id = R.drawable.ic_eye),
                     contentDescription = if (isPasswordVisible) stringResource(id = R.string.text_field_password_hide) else stringResource(id = R.string.text_field_password_show),
                     onClick = { isPasswordVisible = !isPasswordVisible },
                     color = MaterialTheme.colors.textFieldIconColor(enabled)
