@@ -149,8 +149,6 @@
     <!-- Component Radio Buttons -->
     <string name="component_radio_buttons">Radio Buttons</string>
     <string name="component_radio_buttons_description">Radio buttons enable users to choose one item from a set of mutually exclusive, related choices.</string>
-    <string name="component_radio_buttons_enabled">Enabled radio buttons</string>
-    <string name="component_radio_buttons_disabled">Disabled radio buttons</string>
 
     <!-- Component Switches -->
     <string name="component_switches">Switches</string>
