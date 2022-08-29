@@ -153,9 +153,7 @@
     <!-- Component Switches -->
     <string name="component_switches">Switches</string>
     <string name="component_switches_description">On/off switches toggle the state of a single settings option. The function of the switch should be made clear by the inline label.</string>
-    <string name="component_switches_enabled">Enabled switches</string>
-    <string name="component_switches_disabled">Disabled switches</string>
-
+    
     <!-- Component Sliders -->
     <string name="component_sliders">Sliders</string>
     <string name="component_sliders_description">Sliders enable the user to set a value by moving the slider thumb. The lowest value is always on the left. Sliders can be either continuous or discrete, where the slider thumb snaps to evenly spaced tick marks along the slider rail.</string>
