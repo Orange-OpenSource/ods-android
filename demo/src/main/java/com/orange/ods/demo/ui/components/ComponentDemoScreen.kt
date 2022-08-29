@@ -15,7 +15,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember
 import com.orange.ods.demo.ui.components.bottomnavigation.ComponentBottomNavigation
 import com.orange.ods.demo.ui.components.checkboxes.ComponentCheckboxes
-import com.orange.ods.demo.ui.components.dialogs.ComponentDialogs
+import com.orange.ods.demo.ui.components.dialogs.ComponentDialog
 import com.orange.ods.demo.ui.components.lists.ComponentLists
 import com.orange.ods.demo.ui.components.progress.ComponentProgress
 import com.orange.ods.demo.ui.components.radiobuttons.ComponentRadioButtons
@@ -35,7 +35,7 @@ fun ComponentDemoScreen(
         when (component) {
             Component.BottomNavigation -> ComponentBottomNavigation()
             Component.Checkboxes -> ComponentCheckboxes()
-            Component.Dialogs -> ComponentDialogs()
+            Component.Dialogs -> ComponentDialog()
             Component.Lists -> ComponentLists()
             Component.Progress -> ComponentProgress()
             Component.RadioButtons -> ComponentRadioButtons()

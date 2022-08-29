@@ -17,21 +17,26 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.saveable.rememberSaveable
 
 @Composable
-fun rememberComponentDialogsContentState(
+fun rememberDialogCustomizationState(
     titleChecked: MutableState<Boolean> = rememberSaveable { mutableStateOf(false) },
     dismissButtonChecked: MutableState<Boolean> = rememberSaveable { mutableStateOf(false) },
+    openDialog: MutableState<Boolean> = rememberSaveable { mutableStateOf(false) }
 ) =
-    remember(titleChecked, dismissButtonChecked) {
-        ComponentDialogsContentState(titleChecked, dismissButtonChecked)
+    remember(titleChecked, dismissButtonChecked, openDialog) {
+        ComponentDialogsContentState(titleChecked, dismissButtonChecked, openDialog)
     }
 
 class ComponentDialogsContentState(
     val titleChecked: MutableState<Boolean>,
     val dismissButtonChecked: MutableState<Boolean>,
+    val openDialog: MutableState<Boolean>
 ) {
     val isTitleChecked
         get() = titleChecked.value
 
     val isDismissButtonChecked
         get() = dismissButtonChecked.value
+
+    val shouldOpenDialog
+        get() = openDialog.value
 }
