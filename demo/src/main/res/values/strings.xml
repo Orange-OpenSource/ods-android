@@ -123,8 +123,6 @@
     <!-- Component Checkboxes -->
     <string name="component_checkboxes">Checkboxes</string>
     <string name="component_checkboxes_description">Checkboxes are used to select or deselect an option. Single checkboxes can be used to determine an individual choice and they can be grouped to allow users to select any combination of items.</string>
-    <string name="component_checkboxes_enabled">Enabled checkboxes</string>
-    <string name="component_checkboxes_disabled">Disabled checkboxes</string>
 
     <!-- Component Chips -->
     <string name="component_chips">Chips</string>
