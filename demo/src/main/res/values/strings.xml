@@ -170,8 +170,8 @@
     <string name="component_lists_demo">Lists demo</string>
     <string name="component_list_item_size">List item size</string>
     <string name="component_list_item_size_single_line">1 line</string>
-    <string name="component_list_item_size_two_line">2 line</string>
-    <string name="component_list_item_size_three_line">3 line</string>
+    <string name="component_list_item_size_two_line">2 lines</string>
+    <string name="component_list_item_size_three_line">3 lines</string>
     <string name="component_list_leading">Leading - Before the list text</string>
     <string name="component_list_leading_none">None</string>
     <string name="component_list_leading_icon">Icon</string>
