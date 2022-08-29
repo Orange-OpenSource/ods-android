@@ -30,12 +30,12 @@ import com.orange.ods.demo.ui.utilities.composable.SwitchListItem
 @ExperimentalMaterialApi
 @Composable
 fun ComponentCheckboxes() {
-    val disabled = rememberSaveable { mutableStateOf(false) }
+    val enabled = rememberSaveable { mutableStateOf(true) }
 
     ComponentCustomizationBottomSheetScaffold(
         bottomSheetScaffoldState = rememberBottomSheetScaffoldState(),
         bottomSheetContent = {
-            SwitchListItem(labelRes = R.string.component_state_disabled, checked = disabled)
+            SwitchListItem(labelRes = R.string.component_state_enabled, checked = enabled)
         }) {
         Column(
             modifier = Modifier
@@ -45,19 +45,19 @@ fun ComponentCheckboxes() {
             CheckboxListItem(
                 labelRes = R.string.component_element_item1,
                 checked = remember { mutableStateOf(true) },
-                enabled = !disabled.value
+                enabled = enabled.value
             )
 
             CheckboxListItem(
                 labelRes = R.string.component_element_item2,
                 checked = remember { mutableStateOf(false) },
-                enabled = !disabled.value
+                enabled = enabled.value
             )
 
             CheckboxListItem(
                 labelRes = R.string.component_element_item3,
                 checked = remember { mutableStateOf(true) },
-                enabled = !disabled.value
+                enabled = enabled.value
             )
         }
     }

@@ -31,12 +31,12 @@ import com.orange.ods.demo.ui.utilities.composable.SwitchListItem
 @ExperimentalMaterialApi
 @Composable
 fun ComponentRadioButtons() {
-    val disabled = rememberSaveable { mutableStateOf(false) }
+    val enabled = rememberSaveable { mutableStateOf(true) }
 
     ComponentCustomizationBottomSheetScaffold(
         bottomSheetScaffoldState = rememberBottomSheetScaffoldState(),
         bottomSheetContent = {
-            SwitchListItem(labelRes = R.string.component_state_disabled, checked = disabled)
+            SwitchListItem(labelRes = R.string.component_state_enabled, checked = enabled)
         }) {
         Column(
             modifier = Modifier
@@ -49,21 +49,21 @@ fun ComponentRadioButtons() {
                     labelRes = R.string.component_element_item1,
                     selectedRadio = selectedRadio,
                     currentRadio = R.string.component_element_item1,
-                    enabled = !disabled.value
+                    enabled = enabled.value
                 )
 
                 RadioButtonListItem(
                     labelRes = R.string.component_element_item2,
                     selectedRadio = selectedRadio,
                     currentRadio = R.string.component_element_item2,
-                    enabled = !disabled.value
+                    enabled = enabled.value
                 )
 
                 RadioButtonListItem(
                     labelRes = R.string.component_element_item3,
                     selectedRadio = selectedRadio,
                     currentRadio = R.string.component_element_item3,
-                    enabled = !disabled.value
+                    enabled = enabled.value
                 )
             }
         }
