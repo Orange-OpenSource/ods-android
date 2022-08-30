@@ -11,14 +11,10 @@
 package com.orange.ods.demo.ui.components.bottomnavigation
 
 import androidx.annotation.DrawableRes
-import androidx.compose.foundation.layout.Box
-import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.rememberScrollState
-import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.ExperimentalMaterialApi
 import androidx.compose.material.Icon
-import androidx.compose.material.Scaffold
+import androidx.compose.material.rememberBottomSheetScaffoldState
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.MutableState
 import androidx.compose.runtime.mutableStateOf
@@ -35,6 +31,7 @@ import com.orange.ods.demo.R
 import com.orange.ods.demo.ui.components.bottomnavigation.ComponentBottomNavigation.MaxNavigationItemCount
 import com.orange.ods.demo.ui.components.bottomnavigation.ComponentBottomNavigation.MinNavigationItemCount
 import com.orange.ods.demo.ui.components.utilities.ComponentCountRow
+import com.orange.ods.demo.ui.components.utilities.ComponentCustomizationBottomSheetScaffold
 import com.orange.ods.demo.ui.components.utilities.clickOnElement
 
 private object ComponentBottomNavigation {
@@ -47,23 +44,24 @@ private object ComponentBottomNavigation {
 fun ComponentBottomNavigation() {
     val selectedNavigationItemCount = rememberSaveable { mutableStateOf(MinNavigationItemCount) }
 
-    Scaffold(bottomBar = { ComponentBottomNavigationBottomBar(selectedNavigationItemCount = selectedNavigationItemCount) }) { innerPadding ->
-        Box(modifier = Modifier.padding(innerPadding)) {
-            Column(
-                modifier = Modifier
-                    .verticalScroll(rememberScrollState())
-                    .padding(bottom = dimensionResource(id = R.dimen.spacing_m))
-            ) {
-                ComponentBottomNavigationContent(selectedNavigationItemCount = selectedNavigationItemCount)
-            }
-        }
+    ComponentCustomizationBottomSheetScaffold(
+        bottomSheetScaffoldState = rememberBottomSheetScaffoldState(),
+        bottomSheetContent = {
+            BottomNavigationCustomizationContent(selectedNavigationItemCount = selectedNavigationItemCount)
+        }) {
+        ComponentBottomNavigationBottomBar(
+            modifier = Modifier.padding(top = dimensionResource(id = R.dimen.spacing_l)),
+            selectedNavigationItemCount = selectedNavigationItemCount
+        )
     }
 }
 
 @Composable
-private fun ComponentBottomNavigationContent(selectedNavigationItemCount: MutableState<Int>) {
+private fun BottomNavigationCustomizationContent(selectedNavigationItemCount: MutableState<Int>) {
     ComponentCountRow(
-        modifier = Modifier.padding(horizontal = dimensionResource(id = R.dimen.ods_screen_horizontal_margin)),
+        modifier = Modifier
+            .padding(horizontal = dimensionResource(id = R.dimen.ods_screen_horizontal_margin))
+            .padding(bottom = dimensionResource(id = R.dimen.spacing_m)),
         title = stringResource(id = R.string.component_bottom_navigation_navigation_item_count),
         count = selectedNavigationItemCount,
         minCount = MinNavigationItemCount,
@@ -72,7 +70,7 @@ private fun ComponentBottomNavigationContent(selectedNavigationItemCount: Mutabl
 }
 
 @Composable
-private fun ComponentBottomNavigationBottomBar(selectedNavigationItemCount: MutableState<Int>) {
+private fun ComponentBottomNavigationBottomBar(modifier: Modifier, selectedNavigationItemCount: MutableState<Int>) {
     val context = LocalContext.current
     val navigationItems = listOf(
         NavigationItem("Favorites", R.drawable.ic_heart),
@@ -84,7 +82,7 @@ private fun ComponentBottomNavigationBottomBar(selectedNavigationItemCount: Muta
 
     val selectedNavigationItem = remember { mutableStateOf(navigationItems[0]) }
 
-    OdsBottomNavigation {
+    OdsBottomNavigation(modifier = modifier) {
         navigationItems.take(selectedNavigationItemCount.value)
             .forEach { navigationItem ->
                 OdsBottomNavigationItem(
