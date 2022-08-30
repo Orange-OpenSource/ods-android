@@ -67,7 +67,7 @@ fun <T> OdsChoiceChipsFlowRowScope<T>.SelectableChip(text: String, value: T, ena
 /**
  * A selectable chip to display in an [OdsChoiceChipsFlowRow]
  *
- * @param textRes Text resource identifier to displayed in the chip
+ * @param textRes Text resource identifier to display in the chip
  * @param enabled If set to false, the chip is no more clickable and appears as disabled
  */
 @ExperimentalMaterialApi
