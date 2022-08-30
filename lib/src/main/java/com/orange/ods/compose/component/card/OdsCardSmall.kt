@@ -31,7 +31,6 @@ import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.tooling.preview.Preview
-import androidx.compose.ui.unit.dp
 import com.orange.ods.R
 import com.orange.ods.compose.component.utilities.Preview
 
@@ -64,9 +63,7 @@ fun OdsCardSmall(
     onCardClick: (() -> Unit)? = null
 ) {
     Card(
-        modifier = modifier.clickable {
-            onCardClick?.invoke()
-        }
+        modifier = if (onCardClick != null) modifier.clickable { onCardClick() } else modifier
     ) {
         Column {
             Image(
@@ -83,7 +80,7 @@ fun OdsCardSmall(
             )
             Column(
                 modifier = Modifier
-                    .padding(16.dp)
+                    .padding(dimensionResource(id = R.dimen.spacing_m))
                     .semantics(mergeDescendants = true) {}
             ) {
                 Text(

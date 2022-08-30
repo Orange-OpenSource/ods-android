@@ -83,9 +83,7 @@ fun OdsCardTitleFirst(
     onButton2Click: (() -> Unit)? = null
 ) {
     Card(
-        modifier = modifier.clickable {
-            onCardClick?.invoke()
-        }
+        modifier = if (onCardClick != null) modifier.clickable { onCardClick() } else modifier
     ) {
         Column {
             Row(
