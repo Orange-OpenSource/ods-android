@@ -20,10 +20,10 @@ import androidx.compose.runtime.Composable
  */
 internal object OdsRippleTheme : RippleTheme {
     @Composable
-    override fun defaultColor() = if (isSystemInDarkTheme()) OdsRippleThemeOnDark.defaultColor() else OdsRippleThemeOnLight.defaultColor()
+    override fun defaultColor() = if (isSystemInDarkTheme()) OdsDarkRippleTheme.defaultColor() else OdsLightRippleTheme.defaultColor()
 
     @Composable
-    override fun rippleAlpha() = if (isSystemInDarkTheme()) OdsRippleThemeOnDark.rippleAlpha() else OdsRippleThemeOnLight.rippleAlpha()
+    override fun rippleAlpha() = if (isSystemInDarkTheme()) OdsDarkRippleTheme.rippleAlpha() else OdsLightRippleTheme.rippleAlpha()
 }
 
 /**
@@ -46,7 +46,7 @@ internal object OdsPrimaryRippleTheme : RippleTheme {
 /**
  * Ripple theme when display is forced on light
  */
-internal object OdsRippleThemeOnLight : RippleTheme {
+internal object OdsLightRippleTheme : RippleTheme {
     @Composable
     override fun defaultColor() = RippleTheme.defaultRippleColor(
         contentColor = odsLightThemeColors.onSurface,
@@ -63,7 +63,7 @@ internal object OdsRippleThemeOnLight : RippleTheme {
 /**
  * Ripple theme when display is forced on dark
  */
-internal object OdsRippleThemeOnDark : RippleTheme {
+internal object OdsDarkRippleTheme : RippleTheme {
     @Composable
     override fun defaultColor() = RippleTheme.defaultRippleColor(
         contentColor = odsDarkThemeColors.onSurface,
