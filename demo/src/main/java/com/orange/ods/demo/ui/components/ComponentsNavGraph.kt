@@ -18,6 +18,8 @@ import androidx.navigation.compose.composable
 import androidx.navigation.navArgument
 import com.google.accompanist.pager.ExperimentalPagerApi
 import com.orange.ods.demo.ui.MainDestinations
+import com.orange.ods.demo.ui.OdsDemoTopAppBarState
+import com.orange.ods.demo.ui.TopAppBarConfiguration
 import com.orange.ods.demo.ui.components.tabs.TabsConfiguration
 
 @ExperimentalMaterialApi
@@ -25,6 +27,7 @@ import com.orange.ods.demo.ui.components.tabs.TabsConfiguration
 fun NavGraphBuilder.addComponentsGraph(
     onNavElementClick: (String, Long?, NavBackStackEntry) -> Unit,
     updateTopBarTitle: (Int) -> Unit,
+    updateTopAppBar: (TopAppBarConfiguration) -> Unit,
     updateTopAppBarTabs: (TabsConfiguration) -> Unit,
     clearTopAppBarTabs: () -> Unit
 ) {
@@ -32,7 +35,10 @@ fun NavGraphBuilder.addComponentsGraph(
         "${MainDestinations.COMPONENT_DETAIL_ROUTE}/{${MainDestinations.COMPONENT_ID_KEY}}",
         arguments = listOf(navArgument(MainDestinations.COMPONENT_ID_KEY) { type = NavType.LongType })
     ) { from ->
+        // Restore default values for tabs and top app bar
         clearTopAppBarTabs()
+        updateTopAppBar(OdsDemoTopAppBarState.defaultConfiguration)
+
         val arguments = requireNotNull(from.arguments)
         val componentId = arguments.getLong(MainDestinations.COMPONENT_ID_KEY)
         ComponentDetailScreen(
@@ -51,6 +57,7 @@ fun NavGraphBuilder.addComponentsGraph(
         VariantDetailScreen(
             variantId = variantId,
             updateTopBarTitle = updateTopBarTitle,
+            updateTopAppBar = updateTopAppBar,
             updateTopAppBarTabs = updateTopAppBarTabs
         )
     }

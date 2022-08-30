@@ -75,6 +75,19 @@
     <string name="component_element_cancel_cross">Cancel cross</string>
 
 
+    <!-- Components App bars: top -->
+    <string name="component_app_bars_top">App bars: top</string>
+    <string name="component_app_bars_top_description">The app bar is a key component and organizes titling, navigation and action buttons.</string>
+    <string name="component_app_bars_top_regular">Regular</string>
+    <string name="component_app_bars_top_element_navigation_icon">Navigation icon</string>
+    <string name="component_app_bars_top_element_overflow_menu">Overflow menu</string>
+    <string name="component_app_bars_top_actions_count">Actions count</string>
+    <string name="component_app_bars_top_action_favourites">Favourites</string>
+    <string name="component_app_bars_top_action_alerts">Alerts</string>
+    <string name="component_app_bars_top_action_account">Account</string>
+    <string name="component_app_bars_top_action_settings">Settings</string>
+
+
     <!-- Components Bottom navigation -->
     <string name="component_bottom_navigation">Bottom navigation</string>
     <string name="component_bottom_navigation_description">Enable users to quickly and directly explore top-level destinations.</string>

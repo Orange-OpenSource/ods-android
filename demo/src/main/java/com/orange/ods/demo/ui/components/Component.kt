@@ -40,11 +40,19 @@ sealed class Component(
 
     val imageAlignment: Alignment
         get() = when (this) {
-            BottomNavigation -> Alignment.TopCenter
+            AppBarsTop, BottomNavigation -> Alignment.TopCenter
             Lists -> Alignment.BottomCenter
             Sliders, TextFields -> Alignment.CenterEnd
             Buttons, Cards, Checkboxes, Chips, Dialogs, Progress, RadioButtons, Switches, Tabs -> Alignment.Center
         }
+
+    object AppBarsTop : Component(
+        R.string.component_app_bars_top,
+        R.drawable.il_app_bars_top,
+        R.drawable.il_app_bars_top_small,
+        R.string.component_app_bars_top_description,
+        listOf(Variant.AppBarsTopRegular)
+    )
 
     object BottomNavigation :
         Component(R.string.component_bottom_navigation, R.drawable.il_bottom_navigation, null, R.string.component_bottom_navigation_description)
@@ -115,7 +123,7 @@ sealed class Component(
             RadioButtons -> ComponentDetail(component = this) { ComponentRadioButtonsContent() }
             Sliders -> ComponentDetail(component = this) { ComponentSlidersContent() }
             Switches -> ComponentDetail(component = this) { ComponentSwitchesContent() }
-            Buttons, Cards, Chips, Lists, TextFields, Tabs -> ComponentDetailWithVariants(component = this, onVariantClick = onVariantClick)
+            AppBarsTop, Buttons, Cards, Chips, Lists, TextFields, Tabs -> ComponentDetailWithVariants(component = this, onVariantClick = onVariantClick)
         }
     }
 }
@@ -126,6 +134,8 @@ sealed class Variant(
     @StringRes val titleRes: Int,
 ) {
     val id: Long = Variant::class.sealedSubclasses.indexOf(this::class).toLong()
+
+    object AppBarsTopRegular : Variant(R.string.component_app_bars_top_regular)
 
     object ButtonsContained : Variant(R.string.component_buttons_contained)
     object ButtonsOutlined : Variant(R.string.component_buttons_outlined)

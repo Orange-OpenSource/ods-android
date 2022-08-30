@@ -21,13 +21,16 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.material.AppBarDefaults
 import androidx.compose.material.ExperimentalMaterialApi
 import androidx.compose.material.Icon
+import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Scaffold
 import androidx.compose.material.Surface
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.CompositionLocalProvider
+import androidx.compose.runtime.SideEffect
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalConfiguration
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
@@ -37,11 +40,13 @@ import androidx.navigation.NavGraphBuilder
 import androidx.navigation.compose.NavHost
 import androidx.navigation.navigation
 import com.google.accompanist.pager.ExperimentalPagerApi
+import com.google.accompanist.systemuicontroller.rememberSystemUiController
 import com.orange.ods.compose.component.bottomnavigation.OdsBottomNavigation
 import com.orange.ods.compose.component.bottomnavigation.OdsBottomNavigationItem
 import com.orange.ods.compose.theme.OdsMaterialTheme
 import com.orange.ods.demo.ui.about.addAboutGraph
 import com.orange.ods.demo.ui.components.addComponentsGraph
+import com.orange.ods.demo.ui.components.tabs.OdsDemoTabsState
 import com.orange.ods.demo.ui.components.tabs.TabsConfiguration
 import com.orange.ods.demo.ui.components.tabs.TopAppBarFixedTabs
 import com.orange.ods.demo.ui.components.tabs.TopAppBarScrollableTabs
@@ -68,35 +73,16 @@ fun OdsDemoApp() {
                 topBar = {
                     Surface(elevation = AppBarDefaults.TopAppBarElevation) {
                         Column {
+                            SystemBarsColorSideEffect(MaterialTheme.colors.background)
                             OdsDemoTopAppBar(
-                                titleRes = appState.topAppBarTitleRes.value,
+                                titleRes = appState.topAppBarState.titleRes.value,
                                 shouldShowUpNavigationIcon = !appState.shouldShowBottomBar,
-                                navigateUp = appState::upPress,
+                                state = appState.topAppBarState,
+                                upPress = appState::upPress,
                                 updateTheme = appState::updateTheme
                             )
                             // Display tabs in the top bar if needed
-                            with(appState.tabsState) {
-                                pagerState?.let { pagerState ->
-                                    if (hasTabs) {
-                                        if (scrollableTabs.value) {
-                                            TopAppBarScrollableTabs(
-                                                tabs = tabs,
-                                                pagerState = pagerState,
-                                                tabIconType = tabIconType.value,
-                                                tabTextEnabled = tabTextEnabled.value
-                                            )
-                                        } else {
-                                            TopAppBarFixedTabs(
-                                                tabs = tabs,
-                                                pagerState = pagerState,
-                                                tabIconType = tabIconType.value,
-                                                tabTextEnabled = tabTextEnabled.value
-                                            )
-                                        }
-                                    }
-                                }
-                            }
-
+                            OdsDemoTabs(tabsState = appState.tabsState)
                         }
                     }
                 },
@@ -118,11 +104,49 @@ fun OdsDemoApp() {
                     NavHost(appState.navController, startDestination = MainDestinations.HOME_ROUTE) {
                         odsDemoNavGraph(
                             onNavElementClick = appState::navigateToElement,
-                            updateTopBarTitle = appState::updateTopAppBarTitle,
+                            updateTopBarTitle = appState.topAppBarState::updateTopAppBarTitle,
+                            updateTopAppBar = appState.topAppBarState::updateTopAppBar,
                             updateTopAppBarTabs = appState.tabsState::updateTopAppBarTabs,
                             clearTopAppBarTabs = appState.tabsState::clearTopAppBarTabs
                         )
                     }
+                }
+            }
+        }
+    }
+}
+
+@Composable
+private fun SystemBarsColorSideEffect(backgroundColor: Color) {
+    val systemUiController = rememberSystemUiController()
+    SideEffect {
+        systemUiController.setSystemBarsColor(
+            color = backgroundColor
+        )
+    }
+}
+
+@ExperimentalMaterialApi
+@ExperimentalPagerApi
+@Composable
+private fun OdsDemoTabs(tabsState: OdsDemoTabsState) {
+    with(tabsState) {
+        pagerState?.let { pagerState ->
+            if (hasTabs) {
+                if (scrollableTabs.value) {
+                    TopAppBarScrollableTabs(
+                        tabs = tabs,
+                        pagerState = pagerState,
+                        tabIconType = tabIconType.value,
+                        tabTextEnabled = tabTextEnabled.value
+                    )
+                } else {
+                    TopAppBarFixedTabs(
+                        tabs = tabs,
+                        pagerState = pagerState,
+                        tabIconType = tabIconType.value,
+                        tabTextEnabled = tabTextEnabled.value
+                    )
                 }
             }
         }
@@ -148,6 +172,7 @@ private fun OdsDemoBottomBar(tabs: Array<HomeSections>, currentRoute: String, na
 private fun NavGraphBuilder.odsDemoNavGraph(
     onNavElementClick: (String, Long?, NavBackStackEntry) -> Unit,
     updateTopBarTitle: (Int) -> Unit,
+    updateTopAppBar: (TopAppBarConfiguration) -> Unit,
     updateTopAppBarTabs: (TabsConfiguration) -> Unit,
     clearTopAppBarTabs: () -> Unit
 ) {
@@ -159,6 +184,6 @@ private fun NavGraphBuilder.odsDemoNavGraph(
     }
 
     addGuidelinesGraph(updateTopBarTitle, clearTopAppBarTabs)
-    addComponentsGraph(onNavElementClick, updateTopBarTitle, updateTopAppBarTabs, clearTopAppBarTabs)
+    addComponentsGraph(onNavElementClick, updateTopBarTitle, updateTopAppBar, updateTopAppBarTabs, clearTopAppBarTabs)
     addAboutGraph(updateTopBarTitle, clearTopAppBarTabs)
 }

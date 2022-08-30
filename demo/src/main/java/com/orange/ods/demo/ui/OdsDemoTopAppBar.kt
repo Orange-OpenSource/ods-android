@@ -12,48 +12,71 @@ package com.orange.ods.demo.ui
 
 import androidx.annotation.DrawableRes
 import androidx.annotation.StringRes
+import androidx.compose.foundation.layout.Box
+import androidx.compose.material.DropdownMenu
+import androidx.compose.material.DropdownMenuItem
 import androidx.compose.material.Icon
 import androidx.compose.material.IconButton
-import androidx.compose.material.MaterialTheme
-import androidx.compose.material.Text
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ArrowBack
+import androidx.compose.material.icons.filled.MoreVert
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.SideEffect
-import androidx.compose.ui.graphics.Color
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.platform.LocalConfiguration
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
-import com.google.accompanist.systemuicontroller.rememberSystemUiController
-import com.orange.ods.compose.component.OdsTopAppBar
+import com.orange.ods.compose.component.appbar.top.OdsTopAppBar
+import com.orange.ods.compose.text.OdsTextBody1
 import com.orange.ods.demo.R
+import com.orange.ods.demo.ui.components.utilities.clickOnElement
 import com.orange.ods.demo.ui.utilities.extension.isDarkModeEnabled
 
 @Composable
 fun OdsDemoTopAppBar(
     titleRes: Int,
     shouldShowUpNavigationIcon: Boolean,
-    navigateUp: () -> Unit,
+    state: OdsDemoTopAppBarState,
+    upPress: () -> Unit,
     updateTheme: (Boolean) -> Unit
 ) {
-    SystemBarsColorSideEffect(MaterialTheme.colors.background)
     OdsTopAppBar(
-        title = {
-            Text(text = stringResource(id = titleRes))
-        },
-        navigationIcon = if (shouldShowUpNavigationIcon) {
-            { UpNavigationIcon(navigateUp) }
+        title = stringResource(id = titleRes),
+        navigationIcon = if (shouldShowUpNavigationIcon && state.isNavigationIconEnabled) {
+            {
+                Icon(
+                    imageVector = Icons.Filled.ArrowBack,
+                    contentDescription = stringResource(id = R.string.back_icon_content_description)
+                )
+            }
         } else null,
+        onNavigationIconClick = upPress,
         actions = {
-            val configuration = LocalConfiguration.current
-            IconButton(onClick = {
-                updateTheme(!configuration.isDarkModeEnabled)
-            }) {
-                if (configuration.isDarkModeEnabled) {
-                    ThemeIcon(iconRes = R.drawable.ic_ui_light_mode, contentDescriptionRes = R.string.theme_changer_icon_content_description_light)
+            val context = LocalContext.current
+            repeat(state.actionCount.value) { index ->
+                if (index == 0) {
+                    val configuration = LocalConfiguration.current
+                    IconButton(onClick = {
+                        updateTheme(!configuration.isDarkModeEnabled)
+                    }) {
+                        if (configuration.isDarkModeEnabled) {
+                            ActionIcon(iconRes = R.drawable.ic_ui_light_mode, contentDescriptionRes = R.string.theme_changer_icon_content_description_light)
+                        } else {
+                            ActionIcon(iconRes = R.drawable.ic_ui_dark_mode, contentDescriptionRes = R.string.theme_changer_icon_content_description_dark)
+                        }
+                    }
                 } else {
-                    ThemeIcon(iconRes = R.drawable.ic_ui_dark_mode, contentDescriptionRes = R.string.theme_changer_icon_content_description_dark)
+                    val action = topAppBarDemoActions[index - 1]
+                    IconButton(onClick = { clickOnElement(context, context.getString(action.titleRes)) }) {
+                        ActionIcon(iconRes = action.iconRes, contentDescriptionRes = action.titleRes)
+                    }
                 }
+            }
+            if (state.isOverflowMenuEnabled) {
+                OverflowMenu()
             }
         },
         elevated = false // elevation is managed in [OdsDemoApp] cause of tabs
@@ -61,29 +84,44 @@ fun OdsDemoTopAppBar(
 }
 
 @Composable
-private fun ThemeIcon(@DrawableRes iconRes: Int, @StringRes contentDescriptionRes: Int) {
+private fun OverflowMenu() {
+    var showMenu by remember { mutableStateOf(false) }
+    val context = LocalContext.current
+
+    Box {
+        IconButton(onClick = { showMenu = !showMenu }) {
+            Icon(Icons.Filled.MoreVert, contentDescription = stringResource(id = R.string.component_app_bars_top_element_overflow_menu))
+        }
+        DropdownMenu(
+            expanded = showMenu,
+            onDismissRequest = { showMenu = false }
+        ) {
+            topAppBarDemoOverflowActions.forEach {
+                DropdownMenuItem(onClick = { clickOnElement(context, context.getString(it.titleRes)) }) {
+                    OdsTextBody1(text = stringResource(id = it.titleRes))
+                }
+            }
+        }
+    }
+
+}
+
+@Composable
+private fun ActionIcon(@DrawableRes iconRes: Int, @StringRes contentDescriptionRes: Int) {
     Icon(
         painter = painterResource(id = iconRes),
         contentDescription = stringResource(id = contentDescriptionRes)
     )
 }
 
-@Composable
-private fun UpNavigationIcon(navigateUp: () -> Unit) {
-    IconButton(onClick = { navigateUp() }) {
-        Icon(
-            imageVector = Icons.Filled.ArrowBack,
-            contentDescription = stringResource(id = R.string.back_icon_content_description)
-        )
-    }
-}
+private val topAppBarDemoActions = listOf(
+    TopAppBarAction(R.drawable.ic_heart, R.string.component_app_bars_top_action_favourites),
+    TopAppBarAction(R.drawable.ic_alert, R.string.component_app_bars_top_action_alerts),
+)
 
-@Composable
-private fun SystemBarsColorSideEffect(backgroundColor: Color) {
-    val systemUiController = rememberSystemUiController()
-    SideEffect {
-        systemUiController.setSystemBarsColor(
-            color = backgroundColor
-        )
-    }
-}
+private val topAppBarDemoOverflowActions = listOf(
+    TopAppBarAction(R.drawable.ic_account, R.string.component_app_bars_top_action_account),
+    TopAppBarAction(R.drawable.ic_settings, R.string.component_app_bars_top_action_settings)
+)
+
+private data class TopAppBarAction(@DrawableRes val iconRes: Int, @StringRes val titleRes: Int)
