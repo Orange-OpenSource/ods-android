@@ -237,11 +237,11 @@ The ODS library provides some modules directly related to chips.
 
 ## Choice chips flow row
 
-This is a full width FlowRow containing selectable chips. It works like radio buttons, only one chip of the set can be selected.
+This is a full width `FlowRow` containing selectable chips. It works like radio buttons, only one chip of the set can be selected.
 
   ![Light choice chips flow row](images/chips_choice_flow_row_light.png)
 
-  ![Dark input chip](images/chips_choice_flow_row_dark.png)
+  ![Dark choice chips flow row](images/chips_choice_flow_row_dark.png)
 
 Use `OdsChoiceChipsFlowRow` composable:
 
