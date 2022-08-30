@@ -19,10 +19,15 @@ import androidx.compose.material.ContentAlpha
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.OutlinedButton
 import androidx.compose.material.Text
+import androidx.compose.material.ripple.LocalRippleTheme
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import com.orange.ods.compose.theme.OdsDisplaySurface
+import com.orange.ods.compose.theme.OdsRippleTheme
+import com.orange.ods.compose.theme.OdsRippleThemeOnDark
+import com.orange.ods.compose.theme.OdsRippleThemeOnLight
 import com.orange.ods.compose.theme.Transparent
 import com.orange.ods.compose.theme.odsDarkThemeColors
 import com.orange.ods.compose.theme.odsLightThemeColors
@@ -52,28 +57,36 @@ fun OdsButtonOutlined(
     enabled: Boolean = true,
     displaySurface: OdsDisplaySurface = OdsDisplaySurface.Default
 ) {
-    OutlinedButton(
-        onClick = onClick,
-        enabled = enabled,
-        modifier = modifier,
-        interactionSource = remember { MutableInteractionSource() },
-        shape = odsButtonShape,
-        border = BorderStroke(
-            ButtonDefaults.OutlinedBorderSize,
-            if (enabled) {
-                MaterialTheme.colors.buttonOutlinedColor(displaySurface)
-            } else {
-                MaterialTheme.colors.buttonOutlinedDisabledColor(displaySurface)
-            }
-        ),
-        colors = ButtonDefaults.outlinedButtonColors(
-            backgroundColor = Transparent,
-            contentColor = MaterialTheme.colors.buttonOutlinedColor(displaySurface),
-            disabledContentColor = MaterialTheme.colors.buttonOutlinedDisabledColor(displaySurface)
-        )
+    CompositionLocalProvider(
+        LocalRippleTheme provides when (displaySurface) {
+            OdsDisplaySurface.Default -> OdsRippleTheme
+            OdsDisplaySurface.Light -> OdsRippleThemeOnLight
+            OdsDisplaySurface.Dark -> OdsRippleThemeOnDark
+        }
     ) {
-        iconRes?.let { ButtonIcon(it) }
-        Text(text.uppercase())
+        OutlinedButton(
+            onClick = onClick,
+            enabled = enabled,
+            modifier = modifier,
+            interactionSource = remember { MutableInteractionSource() },
+            shape = odsButtonShape,
+            border = BorderStroke(
+                ButtonDefaults.OutlinedBorderSize,
+                if (enabled) {
+                    MaterialTheme.colors.buttonOutlinedColor(displaySurface)
+                } else {
+                    MaterialTheme.colors.buttonOutlinedDisabledColor(displaySurface)
+                }
+            ),
+            colors = ButtonDefaults.outlinedButtonColors(
+                backgroundColor = Transparent,
+                contentColor = MaterialTheme.colors.buttonOutlinedColor(displaySurface),
+                disabledContentColor = MaterialTheme.colors.buttonOutlinedDisabledColor(displaySurface)
+            )
+        ) {
+            iconRes?.let { ButtonIcon(it) }
+            Text(text.uppercase())
+        }
     }
 }
 
