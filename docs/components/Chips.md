@@ -15,6 +15,8 @@ description: Chips are compact elements that represent an input, attribute, or a
   * [Choice chip](#choice-chip)
   * [Filter chip](#filter-chip)
   * [Action chip](#action-chip)
+* [Modules](#modules)
+  * [Choice chips flow row](#choice-chips-flow-row)
 * [Component specific tokens](#component-specific-tokens)
 
 ---
@@ -90,6 +92,8 @@ Choice chips allow selection of a single chip from a set of options.
 
 Choice chips clearly delineate and display options in a compact area. They are a good alternative to
 toggle buttons, radio buttons, and single select menus.
+
+**Note: To display a set of choice chips please see [Choice chips flow row](#choice-chips-flow-row)**
 
   ![Light choice chips](images/chips_choice_light.png) ![Dark choice chips](images/chips_choice_dark.png)
 
@@ -225,6 +229,31 @@ In the layout:
         android:text="@string/text_choice_1" />
 
 </com.google.android.material.chip.ChipGroup>
+```
+
+## Modules
+
+The ODS library provides some modules directly related to chips.
+
+## Choice chips flow row
+
+This is a full width `FlowRow` containing selectable chips. It works like radio buttons, only one chip of the set can be selected.
+
+  ![Light choice chips flow row](images/chips_choice_flow_row_light.png)
+
+  ![Dark choice chips flow row](images/chips_choice_flow_row_dark.png)
+
+Use `OdsChoiceChipsFlowRow` composable:
+
+```kotlin
+OdsChoiceChipsFlowRow(
+    selectedChip = iconTypeState,
+    modifier = Modifier.padding(horizontal = dimensionResource(id = R.dimen.spacing_m))
+) {
+    SelectableChip(textRes = R.string.component_icon_leading, value = IconType.Leading)
+    SelectableChip(textRes = R.string.component_icon_top, value = IconType.Top)
+    SelectableChip(textRes = R.string.component_element_none, value = IconType.None)
+}
 ```
 
 ## Component specific tokens

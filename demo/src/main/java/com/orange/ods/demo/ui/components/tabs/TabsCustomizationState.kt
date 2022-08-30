@@ -25,24 +25,24 @@ import com.google.accompanist.pager.rememberPagerState
 @ExperimentalMaterialApi
 @ExperimentalPagerApi
 @Composable
-fun rememberVariantTabsState(
+fun rememberTabsCustomizationState(
     bottomSheetScaffoldState: BottomSheetScaffoldState = rememberBottomSheetScaffoldState(),
     tabsCount: MutableState<Int>,
     pagerState: PagerState = rememberPagerState(),
-    selectedTabIconType: MutableState<VariantTabsState.TabIconType> = rememberSaveable { mutableStateOf(VariantTabsState.TabIconType.Top) },
+    selectedTabIconType: MutableState<TabsCustomizationState.TabIconType> = rememberSaveable { mutableStateOf(TabsCustomizationState.TabIconType.Top) },
     tabTextEnabled: MutableState<Boolean> = rememberSaveable { mutableStateOf(true) }
 ) =
     remember(bottomSheetScaffoldState, pagerState, tabsCount, selectedTabIconType, tabTextEnabled) {
-        VariantTabsState(bottomSheetScaffoldState, pagerState, tabsCount, selectedTabIconType, tabTextEnabled)
+        TabsCustomizationState(bottomSheetScaffoldState, pagerState, tabsCount, selectedTabIconType, tabTextEnabled)
     }
 
 @ExperimentalMaterialApi
 @ExperimentalPagerApi
-class VariantTabsState(
+class TabsCustomizationState(
     val bottomSheetScaffoldState: BottomSheetScaffoldState,
     val pagerState: PagerState,
     val tabsCount: MutableState<Int>,
-    val selectedTabIconType: MutableState<TabIconType>,
+    val tabIconType: MutableState<TabIconType>,
     val tabTextEnabled: MutableState<Boolean>
 ) {
     enum class TabIconType {
@@ -51,10 +51,10 @@ class VariantTabsState(
 
     private val availableTabs = TabItem.values().toList()
 
-    val isTabTextCheckboxEnabled: Boolean
-        get() = selectedTabIconType.value != TabIconType.None
+    val isTabTextCustomizationEnabled: Boolean
+        get() = tabIconType.value != TabIconType.None
 
-    val areTabIconRadiosEnabled: Boolean
+    val isTabIconCustomizationEnabled: Boolean
         get() = tabTextEnabled.value
 
     val tabs: List<TabItem>

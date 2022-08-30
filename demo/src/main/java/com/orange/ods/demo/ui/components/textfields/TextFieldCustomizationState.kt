@@ -21,17 +21,17 @@ import com.orange.ods.demo.ui.components.textfields.TextFieldCustomizationState.
 @Composable
 fun rememberTextFieldCustomizationState(
     leadingIconChecked: MutableState<Boolean> = rememberSaveable { mutableStateOf(false) },
-    selectedDisplayType: MutableState<DisplayType> = rememberSaveable { mutableStateOf(DisplayType.DEFAULT) },
-    selectedTrailingElement: MutableState<TrailingElement> = rememberSaveable { mutableStateOf(TrailingElement.NONE) }
+    displayType: MutableState<DisplayType> = rememberSaveable { mutableStateOf(DisplayType.DEFAULT) },
+    trailingElement: MutableState<TrailingElement> = rememberSaveable { mutableStateOf(TrailingElement.NONE) }
 ) =
-    remember(leadingIconChecked, selectedDisplayType, selectedTrailingElement) {
-        TextFieldCustomizationState(leadingIconChecked, selectedDisplayType, selectedTrailingElement)
+    remember(leadingIconChecked, displayType, trailingElement) {
+        TextFieldCustomizationState(leadingIconChecked, displayType, trailingElement)
     }
 
 class TextFieldCustomizationState(
     val leadingIconChecked: MutableState<Boolean>,
-    val selectedState: MutableState<DisplayType>,
-    val selectedTrailingElement: MutableState<TrailingElement>
+    val displayType: MutableState<DisplayType>,
+    val trailingElement: MutableState<TrailingElement>
 ) {
     enum class DisplayType {
         DEFAULT, ERROR, DISABLED
@@ -42,14 +42,14 @@ class TextFieldCustomizationState(
     }
 
     val isEnabled
-        get() = selectedState.value != DisplayType.DISABLED
+        get() = displayType.value != DisplayType.DISABLED
 
     val isError
-        get() = selectedState.value == DisplayType.ERROR
+        get() = displayType.value == DisplayType.ERROR
 
     val hasTrailingIcon
-        get() = selectedTrailingElement.value == TrailingElement.ICON
+        get() = trailingElement.value == TrailingElement.ICON
 
     val hasTrailingText
-        get() = selectedTrailingElement.value == TrailingElement.TEXT
+        get() = trailingElement.value == TrailingElement.TEXT
 }

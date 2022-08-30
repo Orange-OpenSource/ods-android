@@ -10,10 +10,7 @@
 
 package com.orange.ods.demo.ui.components.textfields
 
-import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
@@ -22,71 +19,44 @@ import androidx.compose.material.rememberBottomSheetScaffoldState
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.dimensionResource
-import androidx.compose.ui.res.stringResource
+import com.orange.ods.compose.component.chip.ChoiceChip
+import com.orange.ods.compose.component.chip.OdsChoiceChipsFlowRow
 import com.orange.ods.demo.R
 import com.orange.ods.demo.ui.components.Variant
 import com.orange.ods.demo.ui.components.utilities.ComponentCustomizationBottomSheetScaffold
-import com.orange.ods.demo.ui.utilities.composable.LabelledRadioButton
 import com.orange.ods.demo.ui.utilities.composable.Subtitle
 import com.orange.ods.demo.ui.utilities.composable.SwitchListItem
 
 @ExperimentalMaterialApi
 @Composable
 fun ComponentTextField(variant: Variant) {
-    val customizationState = rememberTextFieldCustomizationState()
+    val textFieldCustomizationState = rememberTextFieldCustomizationState()
 
     ComponentCustomizationBottomSheetScaffold(
         bottomSheetScaffoldState = rememberBottomSheetScaffoldState(),
         bottomSheetContent = {
-            SwitchListItem(labelRes = R.string.component_element_leading_icon, checked = customizationState.leadingIconChecked)
+            SwitchListItem(labelRes = R.string.component_element_leading_icon, checked = textFieldCustomizationState.leadingIconChecked)
 
             Subtitle(textRes = R.string.component_state, withHorizontalPadding = true)
-            Row(
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .padding(top = dimensionResource(id = R.dimen.spacing_s))
-                    .padding(start = dimensionResource(id = R.dimen.spacing_m)),
-                horizontalArrangement = Arrangement.Start
+            OdsChoiceChipsFlowRow(
+                selectedChip = textFieldCustomizationState.displayType,
+                modifier = Modifier.padding(horizontal = dimensionResource(id = R.dimen.ods_screen_horizontal_margin)),
+                outlinedChips = true
             ) {
-                LabelledRadioButton(
-                    selectedRadio = customizationState.selectedState,
-                    currentRadio = TextFieldCustomizationState.DisplayType.DEFAULT,
-                    label = stringResource(id = R.string.component_state_default)
-                )
-                LabelledRadioButton(
-                    selectedRadio = customizationState.selectedState,
-                    currentRadio = TextFieldCustomizationState.DisplayType.ERROR,
-                    label = stringResource(id = R.string.component_state_error)
-                )
-                LabelledRadioButton(
-                    selectedRadio = customizationState.selectedState,
-                    currentRadio = TextFieldCustomizationState.DisplayType.DISABLED,
-                    label = stringResource(id = R.string.component_state_disabled)
-                )
+                ChoiceChip(textRes = R.string.component_state_default, value = TextFieldCustomizationState.DisplayType.DEFAULT)
+                ChoiceChip(textRes = R.string.component_state_error, value = TextFieldCustomizationState.DisplayType.ERROR)
+                ChoiceChip(textRes = R.string.component_state_disabled, value = TextFieldCustomizationState.DisplayType.DISABLED)
             }
+
             Subtitle(textRes = R.string.component_element_trailing, withHorizontalPadding = true)
-            Row(
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .padding(vertical = dimensionResource(id = R.dimen.spacing_s))
-                    .padding(start = dimensionResource(id = R.dimen.spacing_m)),
-                horizontalArrangement = Arrangement.Start
+            OdsChoiceChipsFlowRow(
+                selectedChip = textFieldCustomizationState.trailingElement,
+                modifier = Modifier.padding(horizontal = dimensionResource(id = R.dimen.ods_screen_horizontal_margin)),
+                outlinedChips = true
             ) {
-                LabelledRadioButton(
-                    selectedRadio = customizationState.selectedTrailingElement,
-                    currentRadio = TextFieldCustomizationState.TrailingElement.NONE,
-                    label = stringResource(id = R.string.component_element_none)
-                )
-                LabelledRadioButton(
-                    selectedRadio = customizationState.selectedTrailingElement,
-                    currentRadio = TextFieldCustomizationState.TrailingElement.ICON,
-                    label = stringResource(id = R.string.component_element_icon)
-                )
-                LabelledRadioButton(
-                    selectedRadio = customizationState.selectedTrailingElement,
-                    currentRadio = TextFieldCustomizationState.TrailingElement.TEXT,
-                    label = stringResource(id = R.string.component_element_text)
-                )
+                ChoiceChip(textRes = R.string.component_element_none, value = TextFieldCustomizationState.TrailingElement.NONE)
+                ChoiceChip(textRes = R.string.component_element_icon, value = TextFieldCustomizationState.TrailingElement.ICON)
+                ChoiceChip(textRes = R.string.component_element_text, value = TextFieldCustomizationState.TrailingElement.TEXT)
             }
         }) {
         Column(
@@ -98,8 +68,8 @@ fun ComponentTextField(variant: Variant) {
                 )
         ) {
             when (variant) {
-                Variant.TextFieldsFilled -> VariantTextFieldFilled(customizationState)
-                Variant.TextFieldsOutlined -> VariantTextFieldOutlined(customizationState)
+                Variant.TextFieldsFilled -> VariantTextFieldFilled(textFieldCustomizationState)
+                Variant.TextFieldsOutlined -> VariantTextFieldOutlined(textFieldCustomizationState)
                 else -> {}
             }
         }

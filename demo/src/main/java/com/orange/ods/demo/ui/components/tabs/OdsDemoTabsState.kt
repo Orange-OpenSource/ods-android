@@ -26,7 +26,7 @@ import com.orange.ods.demo.ui.utilities.rememberSaveableMutableStateListOf
 @ExperimentalMaterialApi
 fun rememberOdsDemoTabsState(
     tabs: SnapshotStateList<TabItem> = rememberSaveableMutableStateListOf(),
-    tabIconType: MutableState<VariantTabsState.TabIconType> = rememberSaveable { mutableStateOf(VariantTabsState.TabIconType.Top) },
+    tabIconType: MutableState<TabsCustomizationState.TabIconType> = rememberSaveable { mutableStateOf(TabsCustomizationState.TabIconType.Top) },
     tabTextEnabled: MutableState<Boolean> = rememberSaveable { mutableStateOf(true) },
     scrollableTabs: MutableState<Boolean> = rememberSaveable { mutableStateOf(false) }
 ) =
@@ -38,7 +38,7 @@ fun rememberOdsDemoTabsState(
 @ExperimentalMaterialApi
 class OdsDemoTabsState(
     val tabs: SnapshotStateList<TabItem>,
-    val tabIconType: MutableState<VariantTabsState.TabIconType>,
+    val tabIconType: MutableState<TabsCustomizationState.TabIconType>,
     val tabTextEnabled: MutableState<Boolean>,
     val scrollableTabs: MutableState<Boolean>
 ) {
@@ -73,6 +73,6 @@ data class TabsConfiguration @ExperimentalPagerApi @ExperimentalMaterialApi cons
     val scrollableTabs: Boolean,
     val tabs: List<TabItem>,
     val pagerState: PagerState,
-    val tabIconType: VariantTabsState.TabIconType,
+    val tabIconType: TabsCustomizationState.TabIconType,
     val tabTextEnabled: Boolean
 )

@@ -10,16 +10,9 @@
 
 package com.orange.ods.demo.ui.components.chips
 
-import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.Spacer
-import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.rememberScrollState
-import androidx.compose.foundation.selection.selectable
-import androidx.compose.foundation.selection.selectableGroup
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.ExperimentalMaterialApi
 import androidx.compose.material.rememberBottomSheetScaffoldState
@@ -29,81 +22,53 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
-import androidx.compose.ui.semantics.Role
-import com.google.accompanist.flowlayout.FlowRow
+import com.orange.ods.compose.component.chip.ChoiceChip
 import com.orange.ods.compose.component.chip.OdsChip
+import com.orange.ods.compose.component.chip.OdsChoiceChipsFlowRow
 import com.orange.ods.demo.R
 import com.orange.ods.demo.ui.components.chips.ChipCustomizationState.ChipType
 import com.orange.ods.demo.ui.components.chips.ChipCustomizationState.LeadingElement
 import com.orange.ods.demo.ui.components.utilities.ComponentCustomizationBottomSheetScaffold
 import com.orange.ods.demo.ui.components.utilities.clickOnElement
 import com.orange.ods.demo.ui.utilities.composable.CheckboxListItem
-import com.orange.ods.demo.ui.utilities.composable.LabelledRadioButton
 import com.orange.ods.demo.ui.utilities.composable.Subtitle
 
 @ExperimentalMaterialApi
 @Composable
 fun VariantChip() {
-    val customizationState = rememberChipCustomizationState()
+    val chipCustomizationState = rememberChipCustomizationState()
 
     ComponentCustomizationBottomSheetScaffold(
         bottomSheetScaffoldState = rememberBottomSheetScaffoldState(),
         bottomSheetContent = {
             Subtitle(textRes = R.string.component_type, withHorizontalPadding = true)
-            Row(
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .padding(vertical = dimensionResource(id = R.dimen.spacing_s))
-                    .padding(start = dimensionResource(id = R.dimen.spacing_m)),
-                horizontalArrangement = Arrangement.Start
+            OdsChoiceChipsFlowRow(
+                selectedChip = chipCustomizationState.chipType,
+                modifier = Modifier.padding(horizontal = dimensionResource(id = R.dimen.ods_screen_horizontal_margin)),
+                outlinedChips = true
             ) {
-                LabelledRadioButton(
-                    selectedRadio = customizationState.chipType,
-                    currentRadio = ChipType.Input,
-                    label = stringResource(id = R.string.component_chip_type_input)
-                )
-                LabelledRadioButton(
-                    selectedRadio = customizationState.chipType,
-                    currentRadio = ChipType.Choice,
-                    label = stringResource(id = R.string.component_chip_type_choice)
-                )
-                LabelledRadioButton(
-                    selectedRadio = customizationState.chipType,
-                    currentRadio = ChipType.Action,
-                    label = stringResource(id = R.string.component_chip_type_action)
-                )
-            }
-            if (customizationState.isInputChip) {
-                Subtitle(textRes = R.string.component_element_leading, withHorizontalPadding = true)
-                Row(
-                    modifier = Modifier
-                        .fillMaxWidth()
-                        .padding(vertical = dimensionResource(id = R.dimen.spacing_s))
-                        .padding(start = dimensionResource(id = R.dimen.spacing_m)),
-                    horizontalArrangement = Arrangement.Start
-                ) {
-                    LabelledRadioButton(
-                        selectedRadio = customizationState.leadingElement,
-                        currentRadio = LeadingElement.None,
-                        label = stringResource(id = R.string.component_element_none)
-                    )
-                    LabelledRadioButton(
-                        selectedRadio = customizationState.leadingElement,
-                        currentRadio = LeadingElement.Avatar,
-                        label = stringResource(id = R.string.component_element_avatar)
-                    )
-                    LabelledRadioButton(
-                        selectedRadio = customizationState.leadingElement,
-                        currentRadio = LeadingElement.Icon,
-                        label = stringResource(id = R.string.component_element_icon)
-                    )
-                }
-            } else {
-                customizationState.resetLeadingElement()
+                ChoiceChip(textRes = R.string.component_chip_type_input, value = ChipType.Input)
+                ChoiceChip(textRes = R.string.component_chip_type_choice, value = ChipType.Choice)
+                ChoiceChip(textRes = R.string.component_chip_type_action, value = ChipType.Action)
             }
 
-            CheckboxListItem(labelRes = R.string.component_state_outlined, checked = customizationState.outlinedChecked)
-            CheckboxListItem(labelRes = R.string.component_state_disabled, checked = customizationState.disabledChecked)
+            if (chipCustomizationState.isInputChip) {
+                Subtitle(textRes = R.string.component_element_leading, withHorizontalPadding = true)
+                OdsChoiceChipsFlowRow(
+                    selectedChip = chipCustomizationState.leadingElement,
+                    modifier = Modifier.padding(horizontal = dimensionResource(id = R.dimen.ods_screen_horizontal_margin)),
+                    outlinedChips = true
+                ) {
+                    ChoiceChip(textRes = R.string.component_element_none, value = LeadingElement.None)
+                    ChoiceChip(textRes = R.string.component_element_avatar, value = LeadingElement.Avatar)
+                    ChoiceChip(textRes = R.string.component_element_icon, value = LeadingElement.Icon)
+                }
+            } else {
+                chipCustomizationState.resetLeadingElement()
+            }
+
+            CheckboxListItem(labelRes = R.string.component_state_outlined, checked = chipCustomizationState.outlinedChecked)
+            CheckboxListItem(labelRes = R.string.component_state_disabled, checked = chipCustomizationState.disabledChecked)
 
         }) {
         Column(
@@ -114,7 +79,7 @@ fun VariantChip() {
                     vertical = dimensionResource(id = R.dimen.ods_screen_vertical_margin)
                 )
         ) {
-            VariantChip(customizationState = customizationState)
+            VariantChip(chipCustomizationState = chipCustomizationState)
         }
     }
 
@@ -122,28 +87,30 @@ fun VariantChip() {
 
 @ExperimentalMaterialApi
 @Composable
-private fun VariantChip(customizationState: ChipCustomizationState) {
+private fun VariantChip(chipCustomizationState: ChipCustomizationState) {
     val context = LocalContext.current
     val cancelCrossLabel = stringResource(id = R.string.component_element_cancel_cross)
     val chipLabel = stringResource(id = R.string.component_chip)
 
-    if (customizationState.isChoiceChip) {
-        FlowRow(modifier = Modifier
-            .fillMaxWidth()
-            .selectableGroup()) {
+    if (chipCustomizationState.isChoiceChip) {
+        OdsChoiceChipsFlowRow(selectedChip = chipCustomizationState.choiceChipIndexSelected, outlinedChips = chipCustomizationState.isOutlined) {
             for (index in 1..4) {
-                ChoiceChip(index, customizationState)
+                ChoiceChip(
+                    text = "${getChipText(chipType = chipCustomizationState.chipType.value)} $index",
+                    value = index,
+                    enabled = chipCustomizationState.isEnabled
+                )
             }
         }
     } else {
         OdsChip(
-            text = getChipText(chipType = customizationState.chipType.value),
+            text = getChipText(chipType = chipCustomizationState.chipType.value),
             onClick = { clickOnElement(context, chipLabel) },
-            outlined = customizationState.outlinedChecked.value,
-            leadingIcon = if (customizationState.isActionChip || customizationState.hasLeadingIcon) painterResource(id = R.drawable.ic_heart) else null,
-            leadingAvatar = if (customizationState.hasLeadingAvatar) painterResource(id = R.drawable.placeholder_small) else null,
-            enabled = !customizationState.disabledChecked.value,
-            onCancel = if (customizationState.isInputChip) {
+            outlined = chipCustomizationState.outlinedChecked.value,
+            leadingIcon = if (chipCustomizationState.isActionChip || chipCustomizationState.hasLeadingIcon) painterResource(id = R.drawable.ic_heart) else null,
+            leadingAvatar = if (chipCustomizationState.hasLeadingAvatar) painterResource(id = R.drawable.placeholder_small) else null,
+            enabled = !chipCustomizationState.disabledChecked.value,
+            onCancel = if (chipCustomizationState.isInputChip) {
                 { clickOnElement(context, cancelCrossLabel) }
             } else null
         )
@@ -161,24 +128,4 @@ private fun getChipText(chipType: ChipType): String {
     }
 
     return stringResource(id = R.string.component_chip_type, stringResource(id = chipTypeRes))
-}
-
-@ExperimentalMaterialApi
-@Composable
-private fun ChoiceChip(index: Int, customizationState: ChipCustomizationState) {
-    val selected = customizationState.choiceChipIndexSelected.value == index
-    val onClick: () -> Unit = { customizationState.selectChoiceChip(index) }
-    OdsChip(
-        modifier = Modifier.selectable(
-            selected = selected,
-            role = Role.RadioButton,
-            onClick = onClick
-        ),
-        text = "${getChipText(chipType = customizationState.chipType.value)} $index",
-        onClick = onClick,
-        selected = selected,
-        outlined = customizationState.outlinedChecked.value,
-        enabled = !customizationState.disabledChecked.value,
-    )
-    Spacer(modifier = Modifier.size(dimensionResource(id = R.dimen.spacing_s)))
 }

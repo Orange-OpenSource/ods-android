@@ -63,11 +63,12 @@ dependencies {
 
     api(Dependencies.material)
 
-    implementation(Dependencies.coreKtx)
+    implementation(Dependencies.accompanistFlowLayout)
     implementation(Dependencies.appCompat)
     implementation(Dependencies.composeUi)
     implementation(Dependencies.composeMaterial)
     implementation(Dependencies.composeUiToolingPreview)
+    implementation(Dependencies.coreKtx)
     implementation(Dependencies.lifecycleRuntimeKtx)
 
     testImplementation(Dependencies.jUnit)
