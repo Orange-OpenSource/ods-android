@@ -15,7 +15,6 @@ import androidx.compose.material.MaterialTheme
 import androidx.compose.material.darkColors
 import androidx.compose.material.lightColors
 import androidx.compose.material.ripple.LocalRippleTheme
-import androidx.compose.material.ripple.RippleTheme
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.runtime.compositionLocalOf
@@ -71,37 +70,3 @@ val odsDarkThemeColors = darkColors(
     onSurface = White100,
     onError = Black900
 )
-
-/**
- * Default ripple theme
- */
-internal object OdsRippleTheme : RippleTheme {
-    @Composable
-    override fun defaultColor() = RippleTheme.defaultRippleColor(
-        contentColor = MaterialTheme.colors.onSurface,
-        lightTheme = !isSystemInDarkTheme()
-    )
-
-    @Composable
-    override fun rippleAlpha() = RippleTheme.defaultRippleAlpha(
-        MaterialTheme.colors.surface,
-        lightTheme = !isSystemInDarkTheme()
-    )
-}
-
-/**
- * Ripple theme in primary color. It overrides the default behavior for some components like buttons, checkboxes...
- */
-internal object OdsPrimaryRippleTheme : RippleTheme {
-    @Composable
-    override fun defaultColor() = RippleTheme.defaultRippleColor(
-        contentColor = MaterialTheme.colors.primary,
-        lightTheme = true // allow to force ripple in primary color when in dark mode
-    )
-
-    @Composable
-    override fun rippleAlpha() = RippleTheme.defaultRippleAlpha(
-        MaterialTheme.colors.surface,
-        lightTheme = !isSystemInDarkTheme()
-    )
-}

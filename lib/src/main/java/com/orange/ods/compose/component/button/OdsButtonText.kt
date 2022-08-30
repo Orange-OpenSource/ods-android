@@ -23,7 +23,9 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
+import com.orange.ods.compose.theme.OdsDarkRippleTheme
 import com.orange.ods.compose.theme.OdsDisplaySurface
+import com.orange.ods.compose.theme.OdsLightRippleTheme
 import com.orange.ods.compose.theme.OdsPrimaryRippleTheme
 import com.orange.ods.compose.theme.OdsRippleTheme
 import com.orange.ods.compose.theme.odsDarkThemeColors
@@ -66,7 +68,11 @@ fun OdsButtonText(
     CompositionLocalProvider(
         LocalRippleTheme provides when (style) {
             OdsButtonTextStyle.Primary -> OdsPrimaryRippleTheme
-            OdsButtonTextStyle.Default -> OdsRippleTheme
+            OdsButtonTextStyle.Default -> when (displaySurface) {
+                OdsDisplaySurface.Default -> OdsRippleTheme
+                OdsDisplaySurface.Light -> OdsLightRippleTheme
+                OdsDisplaySurface.Dark -> OdsDarkRippleTheme
+            }
         }
     ) {
         TextButton(
