@@ -25,9 +25,9 @@ import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import com.google.accompanist.flowlayout.FlowRow
+import com.orange.ods.compose.component.chip.ChoiceChip
 import com.orange.ods.compose.component.chip.OdsChoiceChipsFlowRow
 import com.orange.ods.compose.component.chip.OdsFilterChip
-import com.orange.ods.compose.component.chip.SelectableChip
 import com.orange.ods.demo.R
 import com.orange.ods.demo.ui.components.utilities.ComponentCustomizationBottomSheetScaffold
 import com.orange.ods.demo.ui.utilities.composable.CheckboxListItem
@@ -48,8 +48,8 @@ fun VariantChipFilter() {
                 modifier = Modifier.padding(horizontal = dimensionResource(id = R.dimen.ods_screen_horizontal_margin)),
                 outlinedChips = true
             ) {
-                SelectableChip(textRes = R.string.component_element_none, value = ChipCustomizationState.LeadingElement.None)
-                SelectableChip(textRes = R.string.component_element_avatar, value = ChipCustomizationState.LeadingElement.Avatar)
+                ChoiceChip(textRes = R.string.component_element_none, value = ChipCustomizationState.LeadingElement.None)
+                ChoiceChip(textRes = R.string.component_element_avatar, value = ChipCustomizationState.LeadingElement.Avatar)
             }
 
             CheckboxListItem(labelRes = R.string.component_state_outlined, checked = chipCustomizationState.outlinedChecked)

@@ -22,9 +22,9 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
+import com.orange.ods.compose.component.chip.ChoiceChip
 import com.orange.ods.compose.component.chip.OdsChip
 import com.orange.ods.compose.component.chip.OdsChoiceChipsFlowRow
-import com.orange.ods.compose.component.chip.SelectableChip
 import com.orange.ods.demo.R
 import com.orange.ods.demo.ui.components.chips.ChipCustomizationState.ChipType
 import com.orange.ods.demo.ui.components.chips.ChipCustomizationState.LeadingElement
@@ -47,9 +47,9 @@ fun VariantChip() {
                 modifier = Modifier.padding(horizontal = dimensionResource(id = R.dimen.ods_screen_horizontal_margin)),
                 outlinedChips = true
             ) {
-                SelectableChip(textRes = R.string.component_chip_type_input, value = ChipType.Input)
-                SelectableChip(textRes = R.string.component_chip_type_choice, value = ChipType.Choice)
-                SelectableChip(textRes = R.string.component_chip_type_action, value = ChipType.Action)
+                ChoiceChip(textRes = R.string.component_chip_type_input, value = ChipType.Input)
+                ChoiceChip(textRes = R.string.component_chip_type_choice, value = ChipType.Choice)
+                ChoiceChip(textRes = R.string.component_chip_type_action, value = ChipType.Action)
             }
 
             if (chipCustomizationState.isInputChip) {
@@ -59,9 +59,9 @@ fun VariantChip() {
                     modifier = Modifier.padding(horizontal = dimensionResource(id = R.dimen.ods_screen_horizontal_margin)),
                     outlinedChips = true
                 ) {
-                    SelectableChip(textRes = R.string.component_element_none, value = LeadingElement.None)
-                    SelectableChip(textRes = R.string.component_element_avatar, value = LeadingElement.Avatar)
-                    SelectableChip(textRes = R.string.component_element_icon, value = LeadingElement.Icon)
+                    ChoiceChip(textRes = R.string.component_element_none, value = LeadingElement.None)
+                    ChoiceChip(textRes = R.string.component_element_avatar, value = LeadingElement.Avatar)
+                    ChoiceChip(textRes = R.string.component_element_icon, value = LeadingElement.Icon)
                 }
             } else {
                 chipCustomizationState.resetLeadingElement()
@@ -95,7 +95,7 @@ private fun VariantChip(chipCustomizationState: ChipCustomizationState) {
     if (chipCustomizationState.isChoiceChip) {
         OdsChoiceChipsFlowRow(selectedChip = chipCustomizationState.choiceChipIndexSelected, outlinedChips = chipCustomizationState.isOutlined) {
             for (index in 1..4) {
-                SelectableChip(
+                ChoiceChip(
                     text = "${getChipText(chipType = chipCustomizationState.chipType.value)} $index",
                     value = index,
                     enabled = chipCustomizationState.isEnabled

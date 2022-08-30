@@ -30,8 +30,8 @@ import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
+import com.orange.ods.compose.component.chip.ChoiceChip
 import com.orange.ods.compose.component.chip.OdsChoiceChipsFlowRow
-import com.orange.ods.compose.component.chip.SelectableChip
 import com.orange.ods.compose.component.control.OdsCheckbox
 import com.orange.ods.compose.component.control.OdsSwitch
 import com.orange.ods.compose.component.list.OdsListItem
@@ -67,9 +67,9 @@ private fun ComponentListsBottomSheetContent(listItemCustomizationState: ListIte
         modifier = Modifier.padding(horizontal = dimensionResource(id = R.dimen.ods_screen_horizontal_margin)),
         outlinedChips = true
     ) {
-        SelectableChip(textRes = R.string.component_list_item_size_single_line, value = ListItemCustomizationState.ItemSize.SingleLine)
-        SelectableChip(textRes = R.string.component_list_item_size_two_line, value = ListItemCustomizationState.ItemSize.TwoLine)
-        SelectableChip(textRes = R.string.component_list_item_size_three_line, value = ListItemCustomizationState.ItemSize.ThreeLine)
+        ChoiceChip(textRes = R.string.component_list_item_size_single_line, value = ListItemCustomizationState.ItemSize.SingleLine)
+        ChoiceChip(textRes = R.string.component_list_item_size_two_line, value = ListItemCustomizationState.ItemSize.TwoLine)
+        ChoiceChip(textRes = R.string.component_list_item_size_three_line, value = ListItemCustomizationState.ItemSize.ThreeLine)
     }
 
     Subtitle(textRes = R.string.component_list_leading, withHorizontalPadding = true)
@@ -78,11 +78,11 @@ private fun ComponentListsBottomSheetContent(listItemCustomizationState: ListIte
         modifier = Modifier.padding(horizontal = dimensionResource(id = R.dimen.ods_screen_horizontal_margin)),
         outlinedChips = true
     ) {
-        SelectableChip(textRes = R.string.component_list_leading_none, value = ListItemCustomizationState.Leading.None)
-        SelectableChip(textRes = R.string.component_list_leading_icon, value = ListItemCustomizationState.Leading.Icon)
-        SelectableChip(textRes = R.string.component_list_leading_circular_image, value = ListItemCustomizationState.Leading.CircularImage)
-        SelectableChip(textRes = R.string.component_list_leading_square_image, value = ListItemCustomizationState.Leading.SquareImage)
-        SelectableChip(textRes = R.string.component_list_leading_wide_image, value = ListItemCustomizationState.Leading.WideImage)
+        ChoiceChip(textRes = R.string.component_list_leading_none, value = ListItemCustomizationState.Leading.None)
+        ChoiceChip(textRes = R.string.component_list_leading_icon, value = ListItemCustomizationState.Leading.Icon)
+        ChoiceChip(textRes = R.string.component_list_leading_circular_image, value = ListItemCustomizationState.Leading.CircularImage)
+        ChoiceChip(textRes = R.string.component_list_leading_square_image, value = ListItemCustomizationState.Leading.SquareImage)
+        ChoiceChip(textRes = R.string.component_list_leading_wide_image, value = ListItemCustomizationState.Leading.WideImage)
     }
 
     Subtitle(textRes = R.string.component_list_trailing, withHorizontalPadding = true)
@@ -92,7 +92,7 @@ private fun ComponentListsBottomSheetContent(listItemCustomizationState: ListIte
         outlinedChips = true
     ) {
         listItemCustomizationState.trailings.forEach { trailing ->
-            SelectableChip(textRes = trailing.textResId, value = trailing)
+            ChoiceChip(textRes = trailing.textResId, value = trailing)
         }
     }
 

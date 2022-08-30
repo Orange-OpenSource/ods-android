@@ -23,7 +23,7 @@ import com.google.accompanist.flowlayout.FlowRow
 import com.orange.ods.R
 
 /**
- * Displays a full width [FlowRow] containing customized choice chips [OdsChoiceChipsFlowRowScope.SelectableChip].
+ * Displays a full width [FlowRow] containing customized choice chips [OdsChoiceChipsFlowRowScope.ChoiceChip].
  *
  * @param selectedChip The selected chips value state.
  * @param modifier Modifier to be applied to the flow row.
@@ -54,7 +54,7 @@ fun <T> OdsChoiceChipsFlowRow(
  */
 @ExperimentalMaterialApi
 @Composable
-fun <T> OdsChoiceChipsFlowRowScope<T>.SelectableChip(text: String, value: T, enabled: Boolean = true) {
+fun <T> OdsChoiceChipsFlowRowScope<T>.ChoiceChip(text: String, value: T, enabled: Boolean = true) {
     OdsChip(
         text = text,
         selected = selectedChip.value == value,
@@ -72,8 +72,8 @@ fun <T> OdsChoiceChipsFlowRowScope<T>.SelectableChip(text: String, value: T, ena
  */
 @ExperimentalMaterialApi
 @Composable
-fun <T> OdsChoiceChipsFlowRowScope<T>.SelectableChip(@StringRes textRes: Int, value: T, enabled: Boolean = true) {
-    SelectableChip(text = stringResource(id = textRes), value = value, enabled = enabled)
+fun <T> OdsChoiceChipsFlowRowScope<T>.ChoiceChip(@StringRes textRes: Int, value: T, enabled: Boolean = true) {
+    ChoiceChip(text = stringResource(id = textRes), value = value, enabled = enabled)
 }
 
 /**

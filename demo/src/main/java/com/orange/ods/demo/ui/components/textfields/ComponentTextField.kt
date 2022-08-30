@@ -19,8 +19,8 @@ import androidx.compose.material.rememberBottomSheetScaffoldState
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.dimensionResource
+import com.orange.ods.compose.component.chip.ChoiceChip
 import com.orange.ods.compose.component.chip.OdsChoiceChipsFlowRow
-import com.orange.ods.compose.component.chip.SelectableChip
 import com.orange.ods.demo.R
 import com.orange.ods.demo.ui.components.Variant
 import com.orange.ods.demo.ui.components.utilities.ComponentCustomizationBottomSheetScaffold
@@ -43,9 +43,9 @@ fun ComponentTextField(variant: Variant) {
                 modifier = Modifier.padding(horizontal = dimensionResource(id = R.dimen.ods_screen_horizontal_margin)),
                 outlinedChips = true
             ) {
-                SelectableChip(textRes = R.string.component_state_default, value = TextFieldCustomizationState.DisplayType.DEFAULT)
-                SelectableChip(textRes = R.string.component_state_error, value = TextFieldCustomizationState.DisplayType.ERROR)
-                SelectableChip(textRes = R.string.component_state_disabled, value = TextFieldCustomizationState.DisplayType.DISABLED)
+                ChoiceChip(textRes = R.string.component_state_default, value = TextFieldCustomizationState.DisplayType.DEFAULT)
+                ChoiceChip(textRes = R.string.component_state_error, value = TextFieldCustomizationState.DisplayType.ERROR)
+                ChoiceChip(textRes = R.string.component_state_disabled, value = TextFieldCustomizationState.DisplayType.DISABLED)
             }
 
             Subtitle(textRes = R.string.component_element_trailing, withHorizontalPadding = true)
@@ -54,9 +54,9 @@ fun ComponentTextField(variant: Variant) {
                 modifier = Modifier.padding(horizontal = dimensionResource(id = R.dimen.ods_screen_horizontal_margin)),
                 outlinedChips = true
             ) {
-                SelectableChip(textRes = R.string.component_element_none, value = TextFieldCustomizationState.TrailingElement.NONE)
-                SelectableChip(textRes = R.string.component_element_icon, value = TextFieldCustomizationState.TrailingElement.ICON)
-                SelectableChip(textRes = R.string.component_element_text, value = TextFieldCustomizationState.TrailingElement.TEXT)
+                ChoiceChip(textRes = R.string.component_element_none, value = TextFieldCustomizationState.TrailingElement.NONE)
+                ChoiceChip(textRes = R.string.component_element_icon, value = TextFieldCustomizationState.TrailingElement.ICON)
+                ChoiceChip(textRes = R.string.component_element_text, value = TextFieldCustomizationState.TrailingElement.TEXT)
             }
         }) {
         Column(
