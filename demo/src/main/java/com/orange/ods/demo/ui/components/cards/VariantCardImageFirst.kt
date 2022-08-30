@@ -19,8 +19,6 @@ import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.ExperimentalMaterialApi
 import androidx.compose.material.rememberBottomSheetScaffoldState
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.dimensionResource
@@ -36,41 +34,40 @@ import com.orange.ods.demo.ui.utilities.composable.SwitchListItem
 @Composable
 fun VariantCardImageFirst() {
     val context = LocalContext.current
-    val textIsChecked = rememberSaveable { mutableStateOf(true) }
-    val subtitleIsChecked = rememberSaveable { mutableStateOf(true) }
-    val button1IsChecked = rememberSaveable { mutableStateOf(true) }
-    val button2IsChecked = rememberSaveable { mutableStateOf(true) }
+    val cardCustomizationState = rememberCardCustomizationState()
 
-    ComponentCustomizationBottomSheetScaffold(
-        bottomSheetScaffoldState = rememberBottomSheetScaffoldState(),
-        bottomSheetContent = {
-            SwitchListItem(labelRes = R.string.component_element_subtitle, checked = subtitleIsChecked)
-            SwitchListItem(labelRes = R.string.component_element_text, checked = textIsChecked)
-            SwitchListItem(labelRes = R.string.component_element_button1, checked = button1IsChecked)
-            SwitchListItem(labelRes = R.string.component_element_button2, checked = button2IsChecked)
-        }) {
-        Column(
-            modifier = Modifier
-                .fillMaxSize()
-                .padding(dimensionResource(id = R.dimen.spacing_m))
-                .verticalScroll(state = rememberScrollState()),
-            verticalArrangement = Arrangement.spacedBy(dimensionResource(id = R.dimen.spacing_m))
-        ) {
-            val button1Text = stringResource(id = R.string.component_element_button1)
-            val button2Text = stringResource(id = R.string.component_element_button2)
-            val cardContainerText = stringResource(id = R.string.component_card_element_container)
+    with(cardCustomizationState) {
+        ComponentCustomizationBottomSheetScaffold(
+            bottomSheetScaffoldState = rememberBottomSheetScaffoldState(),
+            bottomSheetContent = {
+                SwitchListItem(labelRes = R.string.component_element_subtitle, checked = subtitleChecked)
+                SwitchListItem(labelRes = R.string.component_element_text, checked = textChecked)
+                SwitchListItem(labelRes = R.string.component_element_button1, checked = button1Checked)
+                SwitchListItem(labelRes = R.string.component_element_button2, checked = button2Checked)
+            }) {
+            Column(
+                modifier = Modifier
+                    .fillMaxSize()
+                    .padding(dimensionResource(id = R.dimen.spacing_m))
+                    .verticalScroll(state = rememberScrollState()),
+                verticalArrangement = Arrangement.spacedBy(dimensionResource(id = R.dimen.spacing_m))
+            ) {
+                val button1Text = stringResource(id = R.string.component_element_button1)
+                val button2Text = stringResource(id = R.string.component_element_button2)
+                val cardContainerText = stringResource(id = R.string.component_card_element_container)
 
-            OdsCardImageFirst(
-                title = stringResource(id = R.string.component_element_title),
-                image = painterResource(id = R.drawable.placeholder),
-                subtitle = if (subtitleIsChecked.value) stringResource(id = R.string.component_element_subtitle) else null,
-                text = if (textIsChecked.value) stringResource(id = R.string.component_element_text_value) else null,
-                onCardClick = { clickOnElement(context, cardContainerText) },
-                button1Text = if (button1IsChecked.value) button1Text else null,
-                onButton1Click = { clickOnElement(context, button1Text) },
-                button2Text = if (button2IsChecked.value) button2Text else null,
-                onButton2Click = { clickOnElement(context, button2Text) }
-            )
+                OdsCardImageFirst(
+                    title = stringResource(id = R.string.component_element_title),
+                    image = painterResource(id = R.drawable.placeholder),
+                    subtitle = if (hasSubtitle) stringResource(id = R.string.component_element_subtitle) else null,
+                    text = if (hasText) stringResource(id = R.string.component_element_text_value) else null,
+                    onCardClick = { clickOnElement(context, cardContainerText) },
+                    button1Text = if (hasButton1) button1Text else null,
+                    onButton1Click = { clickOnElement(context, button1Text) },
+                    button2Text = if (hasButton2) button2Text else null,
+                    onButton2Click = { clickOnElement(context, button2Text) }
+                )
+            }
         }
     }
 }

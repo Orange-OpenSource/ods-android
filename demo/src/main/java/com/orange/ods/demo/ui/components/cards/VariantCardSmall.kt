@@ -35,12 +35,12 @@ import com.orange.ods.demo.ui.utilities.composable.SwitchListItem
 @Composable
 fun VariantCardSmall() {
     val context = LocalContext.current
-    val subtitleIsChecked = rememberSaveable { mutableStateOf(true) }
+    val subtitleChecked = rememberSaveable { mutableStateOf(true) }
 
     ComponentCustomizationBottomSheetScaffold(
         bottomSheetScaffoldState = rememberBottomSheetScaffoldState(),
         bottomSheetContent = {
-            SwitchListItem(labelRes = R.string.component_element_subtitle, checked = subtitleIsChecked)
+            SwitchListItem(labelRes = R.string.component_element_subtitle, checked = subtitleChecked)
         }) {
         Row(
             modifier = Modifier
@@ -54,7 +54,7 @@ fun VariantCardSmall() {
                 modifier = Modifier.weight(0.5f),
                 image = painterResource(id = R.drawable.placeholder),
                 title = stringResource(id = R.string.component_element_title),
-                subtitle = if (subtitleIsChecked.value) stringResource(id = R.string.component_element_subtitle) else null,
+                subtitle = if (subtitleChecked.value) stringResource(id = R.string.component_element_subtitle) else null,
                 onCardClick = { clickOnElement(context, cardContainerText) }
             )
             Box(modifier = Modifier.weight(0.5f))
