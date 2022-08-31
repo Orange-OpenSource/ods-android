@@ -110,14 +110,18 @@ private fun PreviewOdsButtonOutlined() = Preview {
     OdsButtonOutlined(text = "Text", onClick = {})
 }
 
-@Preview(name = "OdsButtonOutlined - Light")
+@Preview(
+    name = "OdsButtonOutlined - Light",
+    widthDp = 200
+)
 @Composable
 private fun PreviewOdsButtonOutlinedLight() = PreviewOdsButtonOutlined()
 
 @Preview(
     name = "OdsButtonOutlined - Dark",
     uiMode = Configuration.UI_MODE_NIGHT_YES,
-    showBackground = true
+    showBackground = true,
+    widthDp = 200
 )
 @Composable
 private fun PreviewOdsButtonOutlinedDark() = PreviewOdsButtonOutlined()
