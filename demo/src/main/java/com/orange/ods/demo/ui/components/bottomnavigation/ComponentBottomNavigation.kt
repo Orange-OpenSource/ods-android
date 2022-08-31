@@ -11,6 +11,9 @@
 package com.orange.ods.demo.ui.components.bottomnavigation
 
 import androidx.annotation.DrawableRes
+import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material.ExperimentalMaterialApi
 import androidx.compose.material.Icon
@@ -49,10 +52,14 @@ fun ComponentBottomNavigation() {
         bottomSheetContent = {
             BottomNavigationCustomizationContent(selectedNavigationItemCount = selectedNavigationItemCount)
         }) {
-        ComponentBottomNavigationBottomBar(
-            modifier = Modifier.padding(top = dimensionResource(id = R.dimen.spacing_l)),
-            selectedNavigationItemCount = selectedNavigationItemCount
-        )
+        Column(
+            modifier = Modifier.fillMaxSize(),
+            verticalArrangement = Arrangement.Center
+        ) {
+            ComponentBottomNavigationBottomBar(
+                selectedNavigationItemCount = selectedNavigationItemCount
+            )
+        }
     }
 }
 
@@ -70,7 +77,7 @@ private fun BottomNavigationCustomizationContent(selectedNavigationItemCount: Mu
 }
 
 @Composable
-private fun ComponentBottomNavigationBottomBar(modifier: Modifier, selectedNavigationItemCount: MutableState<Int>) {
+private fun ComponentBottomNavigationBottomBar(selectedNavigationItemCount: MutableState<Int>) {
     val context = LocalContext.current
     val navigationItems = listOf(
         NavigationItem("Favorites", R.drawable.ic_heart),
@@ -82,7 +89,7 @@ private fun ComponentBottomNavigationBottomBar(modifier: Modifier, selectedNavig
 
     val selectedNavigationItem = remember { mutableStateOf(navigationItems[0]) }
 
-    OdsBottomNavigation(modifier = modifier) {
+    OdsBottomNavigation {
         navigationItems.take(selectedNavigationItemCount.value)
             .forEach { navigationItem ->
                 OdsBottomNavigationItem(
