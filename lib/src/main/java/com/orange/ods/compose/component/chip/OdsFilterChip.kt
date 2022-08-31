@@ -34,8 +34,10 @@ import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.tooling.preview.PreviewParameter
 import androidx.compose.ui.unit.dp
 import com.orange.ods.R
+import com.orange.ods.compose.component.utilities.BasicPreviewParameterProvider
 import com.orange.ods.compose.component.utilities.DisabledInteractionSource
 import com.orange.ods.compose.component.utilities.OdsImageCircleShape
 import com.orange.ods.compose.component.utilities.Preview
@@ -125,26 +127,37 @@ private fun OdsChipSelectedIcon(tint: Color = LocalContentColor.current.copy(alp
 
 @Composable
 @ExperimentalMaterialApi
-private fun PreviewOdsFilterChip() = Preview {
+private fun PreviewOdsFilterChip(outlined: Boolean) = Preview {
     val selected = remember { mutableStateOf(false) }
     OdsFilterChip(
         text = "Text",
         selected = selected.value,
         onClick = { selected.value = !selected.value },
-        leadingAvatar = painterResource(id = R.drawable.ic_check)
+        leadingAvatar = painterResource(id = R.drawable.ic_check),
+        outlined = outlined
     )
 }
 
-@Preview(name = "OdsFilterChip - Light")
+@Preview(
+    name = "OdsFilterChip - Light",
+    widthDp = 180
+)
 @Composable
 @ExperimentalMaterialApi
-private fun PreviewOdsFilterChipLight() = PreviewOdsFilterChip()
+private fun PreviewOdsFilterChipLight(@PreviewParameter(OdsFilterChipPreviewParameterProvider::class) outlined: Boolean) {
+    PreviewOdsFilterChip(outlined)
+}
 
 @Preview(
     name = "OdsFilterChip - Dark",
     uiMode = Configuration.UI_MODE_NIGHT_YES,
-    showBackground = true
+    showBackground = true,
+    widthDp = 180
 )
 @Composable
 @ExperimentalMaterialApi
-private fun PreviewOdsFilterChipDark() = PreviewOdsFilterChip()
+private fun PreviewOdsFilterChipDark(@PreviewParameter(OdsFilterChipPreviewParameterProvider::class) outlined: Boolean) {
+    PreviewOdsFilterChip(outlined)
+}
+
+internal class OdsFilterChipPreviewParameterProvider : BasicPreviewParameterProvider<Boolean>(false, true)

@@ -29,8 +29,10 @@ import androidx.compose.ui.graphics.painter.Painter
 import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.tooling.preview.PreviewParameter
 import androidx.compose.ui.unit.dp
 import com.orange.ods.R
+import com.orange.ods.compose.component.utilities.BasicPreviewParameterProvider
 import com.orange.ods.compose.component.utilities.OdsImageCircleShape
 import com.orange.ods.compose.component.utilities.Preview
 import com.orange.ods.compose.text.OdsTextBody2
@@ -145,26 +147,37 @@ private fun odsChipBorderColor(selected: Boolean, enabled: Boolean) = when {
 
 @Composable
 @ExperimentalMaterialApi
-private fun PreviewOdsChip() = Preview {
+private fun PreviewOdsChip(outlined: Boolean) = Preview {
     val selected = remember { mutableStateOf(false) }
     OdsChip(
         text = "Text",
         selected = selected.value,
         onClick = { selected.value = !selected.value },
-        leadingAvatar = painterResource(id = R.drawable.placeholder_small)
+        leadingAvatar = painterResource(id = R.drawable.placeholder_small),
+        outlined = outlined
     )
 }
 
-@Preview(name = "OdsChip - Light")
+@Preview(
+    name = "OdsChip - Light",
+    widthDp = 180
+)
 @Composable
 @ExperimentalMaterialApi
-private fun PreviewOdsChipLight() = PreviewOdsChip()
+private fun PreviewOdsChipLight(@PreviewParameter(OdsChipPreviewParameterProvider::class) outlined: Boolean) {
+    PreviewOdsChip(outlined)
+}
 
 @Preview(
     name = "OdsChip - Dark",
     uiMode = Configuration.UI_MODE_NIGHT_YES,
-    showBackground = true
+    showBackground = true,
+    widthDp = 180
 )
 @Composable
 @ExperimentalMaterialApi
-private fun PreviewOdsChipDark() = PreviewOdsChip()
+private fun PreviewOdsChipDark(@PreviewParameter(OdsChipPreviewParameterProvider::class) outlined: Boolean) {
+    PreviewOdsChip(outlined)
+}
+
+internal class OdsChipPreviewParameterProvider : BasicPreviewParameterProvider<Boolean>(false, true)
