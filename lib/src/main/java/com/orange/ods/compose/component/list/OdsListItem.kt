@@ -22,6 +22,7 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.requiredHeight
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.Divider
 import androidx.compose.material.ExperimentalMaterialApi
 import androidx.compose.material.Icon
@@ -29,6 +30,10 @@ import androidx.compose.material.ListItem
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
@@ -38,8 +43,13 @@ import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.tooling.preview.PreviewParameter
 import androidx.compose.ui.unit.Dp
+import androidx.compose.ui.unit.dp
 import com.orange.ods.R
+import com.orange.ods.compose.component.control.OdsCheckbox
+import com.orange.ods.compose.component.control.OdsSwitch
+import com.orange.ods.compose.component.utilities.BasicPreviewParameterProvider
 import com.orange.ods.compose.component.utilities.OdsImageCircleShape
 import com.orange.ods.compose.component.utilities.Preview
 import com.orange.ods.compose.text.OdsTextSubtitle1
@@ -317,21 +327,33 @@ private interface OdsListItemDividerModifier : Modifier.Element {
 
 @Composable
 @ExperimentalMaterialApi
-private fun PreviewOdsListItem() = Preview {
-    OdsListItem(
-        modifier = Modifier.iconType(OdsListItemIconType.SquareImage),
-        text = "Text",
-        icon = { OdsListItemIcon(painter = painterResource(id = R.drawable.placeholder_small)) },
-        secondaryText = "secondaryText",
-    ) {
-        Icon(painter = painterResource(id = android.R.drawable.ic_input_add), contentDescription = null)
+private fun PreviewOdsListItem(parameter: OdsListItemPreviewParameter) = Preview {
+    val iconType = parameter.second
+    val iconPainterResId = when (iconType) {
+        OdsListItemIconType.Icon -> R.drawable.ic_address_book
+        OdsListItemIconType.CircularImage,
+        OdsListItemIconType.SquareImage,
+        OdsListItemIconType.WideImage -> R.drawable.placeholder_small
+        null -> null
     }
+    OdsListItem(
+        modifier = Modifier.let { modifier ->
+            iconType?.let { modifier.iconType(it) }.orElse { modifier }
+        },
+        text = "Text",
+        icon = iconPainterResId?.let { { OdsListItemIcon(painter = painterResource(it)) } },
+        secondaryText = parameter.first.first,
+        singleLineSecondaryText = parameter.first.second,
+        trailing = parameter.third
+    )
 }
 
 @Preview(name = "OdsListItem - Light")
 @Composable
 @ExperimentalMaterialApi
-private fun PreviewOdsListItemLight() = PreviewOdsListItem()
+private fun PreviewOdsListItemLight(@PreviewParameter(OdsListItemPreviewParameterProvider::class) parameter: OdsListItemPreviewParameter) {
+    PreviewOdsListItem(parameter)
+}
 
 @Preview(
     name = "OdsListItem - Dark",
@@ -340,4 +362,50 @@ private fun PreviewOdsListItemLight() = PreviewOdsListItem()
 )
 @Composable
 @ExperimentalMaterialApi
-private fun PreviewOdsListItemDark() = PreviewOdsListItem()
+private fun PreviewOdsListItemDark(@PreviewParameter(OdsListItemPreviewParameterProvider::class) parameter: OdsListItemPreviewParameter) {
+    PreviewOdsListItem(parameter)
+}
+
+typealias OdsListItemPreviewParameter = Triple<Pair<String?, Boolean>, OdsListItemIconType?, (@Composable () -> Unit)?>
+
+internal class OdsListItemPreviewParameterProvider : BasicPreviewParameterProvider<OdsListItemPreviewParameter>(*previewParameterValues.toTypedArray())
+
+private val previewParameterValues: List<OdsListItemPreviewParameter>
+    get() {
+        // Secondary text configuration
+        // This impacts the number of lines
+        val firstList = listOf(
+            null to false,
+            "Secondary text" to false,
+            "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor." to false
+        )
+        // Leading
+        val secondList = listOf(null, *OdsListItemIconType.values())
+        // Trailing
+        val thirdList: List<(@Composable () -> Unit)?> = listOf(
+            null,
+            {
+                var checked by remember { mutableStateOf(true) }
+                OdsCheckbox(checked = checked, onCheckedChange = { checked = it })
+            },
+            {
+                var checked by remember { mutableStateOf(true) }
+                OdsSwitch(checked = checked, onCheckedChange = { checked = it })
+            },
+            {
+                Icon(
+                    modifier = Modifier.clip(RoundedCornerShape(12.dp)),
+                    painter = painterResource(id = android.R.drawable.ic_dialog_info),
+                    contentDescription = null
+                )
+            }
+        )
+
+        return firstList.flatMap { first ->
+            secondList.flatMap { second ->
+                thirdList.map { third ->
+                    OdsListItemPreviewParameter(first, second, third)
+                }
+            }
+        }
+    }
