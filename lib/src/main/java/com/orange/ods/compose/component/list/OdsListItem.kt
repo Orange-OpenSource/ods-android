@@ -328,24 +328,26 @@ private interface OdsListItemDividerModifier : Modifier.Element {
 @Composable
 @ExperimentalMaterialApi
 private fun PreviewOdsListItem(parameter: OdsListItemPreviewParameter) = Preview {
-    val iconType = parameter.second
-    val iconPainterResId = when (iconType) {
-        OdsListItemIconType.Icon -> R.drawable.ic_address_book
-        OdsListItemIconType.CircularImage,
-        OdsListItemIconType.SquareImage,
-        OdsListItemIconType.WideImage -> R.drawable.placeholder_small
-        null -> null
+    with(parameter) {
+        val iconPainterResId = when (iconType) {
+            OdsListItemIconType.Icon -> R.drawable.ic_address_book
+            OdsListItemIconType.CircularImage,
+            OdsListItemIconType.SquareImage,
+            OdsListItemIconType.WideImage -> R.drawable.placeholder_small
+            null -> null
+        }
+
+        OdsListItem(
+            modifier = Modifier.let { modifier ->
+                iconType?.let { modifier.iconType(it) }.orElse { modifier }
+            },
+            text = "Text",
+            icon = iconPainterResId?.let { { OdsListItemIcon(painter = painterResource(it)) } },
+            secondaryText = secondaryText,
+            singleLineSecondaryText = singleLineSecondaryText,
+            trailing = trailing
+        )
     }
-    OdsListItem(
-        modifier = Modifier.let { modifier ->
-            iconType?.let { modifier.iconType(it) }.orElse { modifier }
-        },
-        text = "Text",
-        icon = iconPainterResId?.let { { OdsListItemIcon(painter = painterResource(it)) } },
-        secondaryText = parameter.first.first,
-        singleLineSecondaryText = parameter.first.second,
-        trailing = parameter.third
-    )
 }
 
 @Preview(name = "OdsListItem - Light")
@@ -366,23 +368,20 @@ private fun PreviewOdsListItemDark(@PreviewParameter(OdsListItemPreviewParameter
     PreviewOdsListItem(parameter)
 }
 
-typealias OdsListItemPreviewParameter = Triple<Pair<String?, Boolean>, OdsListItemIconType?, (@Composable () -> Unit)?>
+internal data class OdsListItemPreviewParameter(
+    val secondaryText: String?,
+    val singleLineSecondaryText: Boolean,
+    val iconType: OdsListItemIconType?,
+    val trailing: (@Composable () -> Unit)?
+)
 
 internal class OdsListItemPreviewParameterProvider : BasicPreviewParameterProvider<OdsListItemPreviewParameter>(*previewParameterValues.toTypedArray())
 
 private val previewParameterValues: List<OdsListItemPreviewParameter>
     get() {
-        // Secondary text configuration
-        // This impacts the number of lines
-        val firstList = listOf(
-            null to false,
-            "Secondary text" to false,
-            "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor." to false
-        )
-        // Leading
-        val secondList = listOf(null, *OdsListItemIconType.values())
-        // Trailing
-        val thirdList: List<(@Composable () -> Unit)?> = listOf(
+        val secondaryTexts = listOf(null, "Secondary text", "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor.")
+        val iconTypes = listOf(null, *OdsListItemIconType.values())
+        val trailings: List<(@Composable () -> Unit)?> = listOf(
             null,
             {
                 var checked by remember { mutableStateOf(true) }
@@ -401,10 +400,11 @@ private val previewParameterValues: List<OdsListItemPreviewParameter>
             }
         )
 
-        return firstList.flatMap { first ->
-            secondList.flatMap { second ->
-                thirdList.map { third ->
-                    OdsListItemPreviewParameter(first, second, third)
+        return secondaryTexts.flatMap { secondaryText ->
+            val singleLineSecondaryText = secondaryText != secondaryTexts.last()
+            iconTypes.flatMap { iconType ->
+                trailings.map { trailing ->
+                    OdsListItemPreviewParameter(secondaryText, singleLineSecondaryText, iconType, trailing)
                 }
             }
         }
