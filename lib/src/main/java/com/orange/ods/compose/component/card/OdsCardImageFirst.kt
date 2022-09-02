@@ -10,6 +10,7 @@
 
 package com.orange.ods.compose.component.card
 
+import android.content.res.Configuration
 import androidx.annotation.DrawableRes
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
@@ -29,9 +30,11 @@ import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.semantics.semantics
+import androidx.compose.ui.tooling.preview.Preview
 import com.orange.ods.R
 import com.orange.ods.compose.component.button.OdsButtonText
 import com.orange.ods.compose.component.button.OdsButtonTextStyle
+import com.orange.ods.compose.component.utilities.Preview
 import com.orange.ods.compose.text.OdsTextBody1
 import com.orange.ods.compose.text.OdsTextH6
 import com.orange.ods.compose.text.OdsTextSubtitle2
@@ -133,3 +136,27 @@ fun OdsCardImageFirst(
         }
     }
 }
+
+@Composable
+private fun PreviewOdsCardImageFirst() = Preview {
+    OdsCardImageFirst(
+        title = "Title",
+        subtitle = "Subtitle",
+        text = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed non risus. Suspendisse lectus tortor, dignissim sit amet, adipiscing nec, ultricies sed, dolor.",
+        button1Text = "Button 1",
+        button2Text = "Button 2",
+        imageRes = R.drawable.placeholder
+    )
+}
+
+@Preview(name = "OdsCardImageFirst - Light")
+@Composable
+private fun PreviewOdsCardImageFirstLight() = PreviewOdsCardImageFirst()
+
+@Preview(
+    name = "OdsCardImageFirst - Dark",
+    uiMode = Configuration.UI_MODE_NIGHT_YES,
+    showBackground = true
+)
+@Composable
+private fun PreviewOdsCardImageFirstDark() = PreviewOdsCardImageFirst()

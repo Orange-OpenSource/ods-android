@@ -10,6 +10,7 @@
 
 package com.orange.ods.compose.component.button
 
+import android.content.res.Configuration
 import androidx.annotation.DrawableRes
 import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.material.ButtonDefaults
@@ -23,6 +24,10 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.tooling.preview.PreviewParameter
+import com.orange.ods.compose.component.utilities.EnumPreviewParameterProvider
+import com.orange.ods.compose.component.utilities.Preview
 import com.orange.ods.compose.theme.OdsDarkRippleTheme
 import com.orange.ods.compose.theme.OdsDisplaySurface
 import com.orange.ods.compose.theme.OdsLightRippleTheme
@@ -112,3 +117,30 @@ private fun Colors.buttonTextColor(displaySurface: OdsDisplaySurface, style: Ods
 @Composable
 private fun Colors.buttonTextDisabledColor(displaySurface: OdsDisplaySurface) =
     buttonTextColor(displaySurface = displaySurface, style = OdsButtonTextStyle.Default).copy(alpha = ContentAlpha.disabled)
+
+@Composable
+private fun PreviewOdsButtonText(style: OdsButtonTextStyle) = Preview {
+    OdsButtonText(text = "Text", onClick = {}, style = style)
+}
+
+@Preview(
+    name = "OdsButtonText - Light",
+    widthDp = 200
+)
+@Composable
+private fun PreviewOdsButtonTextLight(@PreviewParameter(OdsButtonTextPreviewParameterProvider::class) style: OdsButtonTextStyle) {
+    PreviewOdsButtonText(style)
+}
+
+@Preview(
+    name = "OdsButtonText - Dark",
+    uiMode = Configuration.UI_MODE_NIGHT_YES,
+    showBackground = true,
+    widthDp = 200
+)
+@Composable
+private fun PreviewOdsButtonTextDark(@PreviewParameter(OdsButtonTextPreviewParameterProvider::class) style: OdsButtonTextStyle) {
+    PreviewOdsButtonText(style)
+}
+
+internal class OdsButtonTextPreviewParameterProvider : EnumPreviewParameterProvider(OdsButtonTextStyle::class)

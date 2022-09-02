@@ -10,16 +10,23 @@
 
 package com.orange.ods.compose.component.appbar.top
 
+import android.content.res.Configuration
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.RowScope
 import androidx.compose.material.AppBarDefaults
+import androidx.compose.material.Icon
 import androidx.compose.material.IconButton
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Text
 import androidx.compose.material.TopAppBar
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.ArrowBack
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import com.orange.ods.compose.component.utilities.Preview
 
 /**
  * <a href="https://system.design.orange.com/0c1af118d/p/23e0e6-app-bars/b/620966" class="external" target="_blank">Material ODS Top App Bar</a>.
@@ -67,3 +74,32 @@ fun OdsTopAppBar(
         elevation = if (elevated) AppBarDefaults.TopAppBarElevation else 0.dp
     )
 }
+
+@Composable
+private fun PreviewOdsTopAppBar() = Preview {
+    OdsTopAppBar(
+        title = "Title",
+        navigationIcon = {
+            IconButton(onClick = {}) {
+                Icon(imageVector = Icons.Filled.ArrowBack, contentDescription = null)
+            }
+        },
+        actions = {
+            IconButton(onClick = {}) {
+                Icon(painter = painterResource(id = android.R.drawable.ic_dialog_info), contentDescription = null)
+            }
+        }
+    )
+}
+
+@Preview(name = "OdsTopAppBar - Light")
+@Composable
+private fun PreviewOdsTopAppBarLight() = PreviewOdsTopAppBar()
+
+@Preview(
+    name = "OdsTopAppBar - Dark",
+    uiMode = Configuration.UI_MODE_NIGHT_YES,
+    showBackground = true
+)
+@Composable
+private fun PreviewOdsTopAppBarDark() = PreviewOdsTopAppBar()

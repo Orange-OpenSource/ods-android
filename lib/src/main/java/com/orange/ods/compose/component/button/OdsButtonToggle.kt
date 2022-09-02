@@ -10,6 +10,7 @@
 
 package com.orange.ods.compose.component.button
 
+import android.content.res.Configuration
 import androidx.annotation.DrawableRes
 import androidx.compose.animation.animateColorAsState
 import androidx.compose.animation.core.animateFloatAsState
@@ -23,11 +24,14 @@ import androidx.compose.material.IconToggleButton
 import androidx.compose.material.MaterialTheme
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.orange.ods.compose.component.utilities.DisabledInteractionSource
+import com.orange.ods.compose.component.utilities.Preview
 import com.orange.ods.compose.theme.OdsDisplaySurface
 import com.orange.ods.compose.theme.odsDarkThemeColors
 import com.orange.ods.compose.theme.odsLightThemeColors
@@ -101,3 +105,26 @@ private fun Colors.buttonToggleBackgroundColor(displaySurface: OdsDisplaySurface
         OdsDisplaySurface.Dark -> odsDarkThemeColors.primary
         OdsDisplaySurface.Light -> odsLightThemeColors.primary
     }
+
+@Composable
+private fun PreviewOdsButtonToggle() = Preview {
+    val checked = remember { mutableStateOf(false) }
+    OdsButtonToggle(
+        checked = checked.value,
+        onCheckedChange = { checked.value = it },
+        iconRes = android.R.drawable.ic_btn_speak_now,
+        contentDescription = "Microphone"
+    )
+}
+
+@Preview(name = "OdsButtonToggle - Light")
+@Composable
+private fun PreviewOdsButtonToggleLight() = PreviewOdsButtonToggle()
+
+@Preview(
+    name = "OdsButtonToggle - Dark",
+    uiMode = Configuration.UI_MODE_NIGHT_YES,
+    showBackground = true
+)
+@Composable
+private fun PreviewOdsButtonToggleDark() = PreviewOdsButtonToggle()

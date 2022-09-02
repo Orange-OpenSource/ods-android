@@ -10,6 +10,7 @@
 
 package com.orange.ods.compose.component.control
 
+import android.content.res.Configuration
 import androidx.compose.material.Checkbox
 import androidx.compose.material.CheckboxDefaults
 import androidx.compose.material.ContentAlpha
@@ -17,7 +18,11 @@ import androidx.compose.material.MaterialTheme
 import androidx.compose.material.ripple.LocalRippleTheme
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.CompositionLocalProvider
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.tooling.preview.Preview
+import com.orange.ods.compose.component.utilities.Preview
 import com.orange.ods.compose.theme.OdsPrimaryRippleTheme
 
 /**
@@ -39,7 +44,7 @@ fun OdsCheckbox(
     checked: Boolean,
     onCheckedChange: ((Boolean) -> Unit)?,
     modifier: Modifier = Modifier,
-    enabled: Boolean = true,
+    enabled: Boolean = true
 ) {
     CompositionLocalProvider(LocalRippleTheme provides OdsPrimaryRippleTheme) {
         Checkbox(
@@ -55,3 +60,24 @@ fun OdsCheckbox(
         )
     }
 }
+
+@Composable
+private fun PreviewOdsCheckbox() = Preview {
+    val checked = remember { mutableStateOf(false) }
+    OdsCheckbox(
+        checked = checked.value,
+        onCheckedChange = { checked.value = it }
+    )
+}
+
+@Preview(name = "OdsCheckbox - Light")
+@Composable
+private fun PreviewOdsCheckboxLight() = PreviewOdsCheckbox()
+
+@Preview(
+    name = "OdsCheckbox - Dark",
+    uiMode = Configuration.UI_MODE_NIGHT_YES,
+    showBackground = true
+)
+@Composable
+private fun PreviewOdsCheckboxDark() = PreviewOdsCheckbox()

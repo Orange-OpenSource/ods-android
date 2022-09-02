@@ -10,12 +10,15 @@
 
 package com.orange.ods.compose.component.dialog
 
+import android.content.res.Configuration
 import androidx.compose.material.AlertDialog
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.window.DialogProperties
 import com.orange.ods.compose.component.button.OdsButtonText
 import com.orange.ods.compose.component.button.OdsButtonTextStyle
+import com.orange.ods.compose.component.utilities.Preview
 import com.orange.ods.compose.text.OdsTextBody2
 import com.orange.ods.compose.text.OdsTextSubtitle1
 import com.orange.ods.utilities.extension.ifNotNull
@@ -72,3 +75,27 @@ fun OdsAlertDialog(
         properties = properties
     )
 }
+
+@Composable
+private fun PreviewOdsAlertDialog() = Preview {
+    OdsAlertDialog(
+        text = "Text",
+        confirmButtonText = "Confirm",
+        onConfirmButtonClick = {},
+        dismissButtonText = "Dismiss ",
+        onDismissButtonClick = {},
+        titleText = "Title"
+    )
+}
+
+@Preview(name = "OdsAlertDialog - Light")
+@Composable
+private fun PreviewOdsAlertDialogLight() = PreviewOdsAlertDialog()
+
+@Preview(
+    name = "OdsAlertDialog - Dark",
+    uiMode = Configuration.UI_MODE_NIGHT_YES,
+    showBackground = true
+)
+@Composable
+private fun PreviewOdsAlertDialogDark() = PreviewOdsAlertDialog()

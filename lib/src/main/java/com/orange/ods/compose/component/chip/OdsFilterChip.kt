@@ -10,6 +10,7 @@
 
 package com.orange.ods.compose.component.chip
 
+import android.content.res.Configuration
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.layout.Box
@@ -22,6 +23,7 @@ import androidx.compose.material.LocalContentAlpha
 import androidx.compose.material.LocalContentColor
 import androidx.compose.material.MaterialTheme
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -31,10 +33,14 @@ import androidx.compose.ui.graphics.painter.Painter
 import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.tooling.preview.PreviewParameter
 import androidx.compose.ui.unit.dp
 import com.orange.ods.R
+import com.orange.ods.compose.component.utilities.BasicPreviewParameterProvider
 import com.orange.ods.compose.component.utilities.DisabledInteractionSource
 import com.orange.ods.compose.component.utilities.OdsImageCircleShape
+import com.orange.ods.compose.component.utilities.Preview
 import com.orange.ods.compose.text.OdsTextBody2
 
 /**
@@ -64,7 +70,7 @@ fun OdsFilterChip(
     enabled: Boolean = true,
     selected: Boolean = false,
     leadingAvatar: Painter? = null,
-    leadingContentDescription: String? = null,
+    leadingContentDescription: String? = null
 ) {
     val emptyAction = {}
 
@@ -118,3 +124,40 @@ private fun OdsChipSelectedIcon(tint: Color = LocalContentColor.current.copy(alp
         tint = tint
     )
 }
+
+@Composable
+@ExperimentalMaterialApi
+private fun PreviewOdsFilterChip(outlined: Boolean) = Preview {
+    val selected = remember { mutableStateOf(false) }
+    OdsFilterChip(
+        text = "Text",
+        selected = selected.value,
+        onClick = { selected.value = !selected.value },
+        leadingAvatar = painterResource(id = R.drawable.ic_check),
+        outlined = outlined
+    )
+}
+
+@Preview(
+    name = "OdsFilterChip - Light",
+    widthDp = 180
+)
+@Composable
+@ExperimentalMaterialApi
+private fun PreviewOdsFilterChipLight(@PreviewParameter(OdsFilterChipPreviewParameterProvider::class) outlined: Boolean) {
+    PreviewOdsFilterChip(outlined)
+}
+
+@Preview(
+    name = "OdsFilterChip - Dark",
+    uiMode = Configuration.UI_MODE_NIGHT_YES,
+    showBackground = true,
+    widthDp = 180
+)
+@Composable
+@ExperimentalMaterialApi
+private fun PreviewOdsFilterChipDark(@PreviewParameter(OdsFilterChipPreviewParameterProvider::class) outlined: Boolean) {
+    PreviewOdsFilterChip(outlined)
+}
+
+internal class OdsFilterChipPreviewParameterProvider : BasicPreviewParameterProvider<Boolean>(false, true)

@@ -25,6 +25,7 @@ object Dependencies {
     const val composeUiTooling = "androidx.compose.ui:ui-tooling:${Versions.compose}"
     const val composeUiToolingPreview = "androidx.compose.ui:ui-tooling-preview:${Versions.compose}"
     const val coreKtx = "androidx.core:core-ktx:${Versions.core}"
+    const val customViewPoolingContainer = "androidx.customview:customview-poolingcontainer:${Versions.customViewPoolingContainer}"
     const val firebaseAppDistributionGradlePlugin = "com.google.firebase:firebase-appdistribution-gradle:${Versions.firebaseAppDistributionGradlePlugin}"
     const val firebaseBom = "com.google.firebase:firebase-bom:${Versions.firebaseBom}"
     const val firebaseCrashlytics = "com.google.firebase:firebase-crashlytics-ktx"
