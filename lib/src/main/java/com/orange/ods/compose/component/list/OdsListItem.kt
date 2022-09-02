@@ -29,6 +29,8 @@ import androidx.compose.material.Icon
 import androidx.compose.material.ListItem
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Text
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.AccountBox
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
@@ -38,6 +40,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.painter.Painter
+import androidx.compose.ui.graphics.vector.rememberVectorPainter
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.painterResource
@@ -329,11 +332,11 @@ private interface OdsListItemDividerModifier : Modifier.Element {
 @ExperimentalMaterialApi
 private fun PreviewOdsListItem(parameter: OdsListItemPreviewParameter) = Preview {
     with(parameter) {
-        val iconPainterResId = when (iconType) {
-            OdsListItemIconType.Icon -> R.drawable.ic_address_book
+        val painter = when (iconType) {
+            OdsListItemIconType.Icon -> rememberVectorPainter(image = Icons.Default.AccountBox)
             OdsListItemIconType.CircularImage,
             OdsListItemIconType.SquareImage,
-            OdsListItemIconType.WideImage -> R.drawable.placeholder_small
+            OdsListItemIconType.WideImage -> painterResource(R.drawable.placeholder_small)
             null -> null
         }
 
@@ -342,7 +345,7 @@ private fun PreviewOdsListItem(parameter: OdsListItemPreviewParameter) = Preview
                 iconType?.let { modifier.iconType(it) }.orElse { modifier }
             },
             text = "Text",
-            icon = iconPainterResId?.let { { OdsListItemIcon(painter = painterResource(it)) } },
+            icon = painter?.let { { OdsListItemIcon(painter = it) } },
             secondaryText = secondaryText,
             singleLineSecondaryText = singleLineSecondaryText,
             trailing = trailing
