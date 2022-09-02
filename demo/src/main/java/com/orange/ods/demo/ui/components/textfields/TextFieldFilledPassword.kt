@@ -20,7 +20,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.input.KeyboardCapitalization
-import com.orange.ods.compose.component.textfield.OdsPasswordTextField
+import com.orange.ods.compose.component.textfield.password.OdsPasswordTextField
 import com.orange.ods.demo.R
 
 @ExperimentalMaterialApi
