@@ -19,8 +19,10 @@ import androidx.compose.material.ExperimentalMaterialApi
 import androidx.compose.material.rememberBottomSheetScaffoldState
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.MutableState
+import androidx.compose.runtime.getValue
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalFocusManager
 import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.stringResource
 import com.google.accompanist.pager.ExperimentalPagerApi
@@ -35,6 +37,8 @@ import com.orange.ods.demo.ui.components.Variant
 import com.orange.ods.demo.ui.components.utilities.ComponentCustomizationBottomSheetScaffold
 import com.orange.ods.demo.ui.utilities.composable.Subtitle
 import com.orange.ods.demo.ui.utilities.composable.SwitchListItem
+import com.orange.ods.utilities.composable.Keyboard
+import com.orange.ods.utilities.composable.keyboardAsState
 import kotlinx.coroutines.launch
 
 @ExperimentalPagerApi
@@ -78,6 +82,13 @@ private fun TextFieldCustomization(textFieldCustomizationState: TextFieldCustomi
     val pagerState = rememberPagerState()
     val scope = rememberCoroutineScope()
     val tabs = CustomizationTab.values()
+    val localFocusManager = LocalFocusManager.current
+    val keyboardState by keyboardAsState()
+
+    // Clear text field focus each time the keyboard customization is opened and the soft keyboard is closed
+    if (tabs[pagerState.currentPage] == CustomizationTab.Keyboard && keyboardState == Keyboard.Closed) {
+        localFocusManager.clearFocus()
+    }
 
     OdsTabRow(selectedTabIndex = pagerState.currentPage) {
         tabs.forEachIndexed { index, customizationTab ->
@@ -151,7 +162,8 @@ fun KeyboardCustomizationContent(textFieldCustomizationState: TextFieldCustomiza
     Subtitle(textRes = R.string.component_text_field_keyboard_type, withHorizontalPadding = true)
     OdsChoiceChipsFlowRow(
         selectedChip = textFieldCustomizationState.softKeyboardType,
-        modifier = Modifier.padding(horizontal = dimensionResource(id = R.dimen.spacing_m)),
+        modifier = Modifier
+            .padding(horizontal = dimensionResource(id = R.dimen.spacing_m)),
         outlinedChips = true
     ) {
         SelectableChip(text = TextFieldCustomizationState.SoftKeyboardType.Text.name, value = TextFieldCustomizationState.SoftKeyboardType.Text)

@@ -17,8 +17,11 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material.ExperimentalMaterialApi
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.focus.FocusRequester
+import androidx.compose.ui.focus.focusRequester
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.painterResource
@@ -35,12 +38,14 @@ import com.orange.ods.demo.ui.components.utilities.clickOnElement
 fun TextFieldFilled(customizationState: TextFieldCustomizationState) {
     val context = LocalContext.current
     val trailingIconName = stringResource(id = R.string.component_element_trailing)
+    val focusRequester = remember { FocusRequester() }
 
     Column {
         OdsTextField(
             modifier = Modifier
                 .fillMaxWidth()
-                .padding(top = dimensionResource(id = R.dimen.spacing_s)),
+                .padding(top = dimensionResource(id = R.dimen.spacing_s))
+                .focusRequester(focusRequester),
             leadingIcon = if (customizationState.hasLeadingIcon) painterResource(id = R.drawable.ic_heart) else null,
             enabled = customizationState.isEnabled,
             isError = customizationState.isError,
