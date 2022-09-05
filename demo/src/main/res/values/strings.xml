@@ -166,6 +166,9 @@
     <string name="component_slider_continuous_with_icons">Continuous with icons</string>
     <string name="component_slider_discrete_lockups">Discrete lockups</string>
     <string name="component_slider_continuous_lockups">Continuous lockups</string>
+    <string name="component_slider_low_volume">Low volume</string>
+    <string name="component_slider_high_volume">High volume</string>
+
 
     <!-- Component Progress & activities -->
     <string name="component_progress">Progress &amp; activities</string>
