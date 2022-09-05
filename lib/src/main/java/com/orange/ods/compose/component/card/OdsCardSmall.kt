@@ -13,12 +13,11 @@ package com.orange.ods.compose.component.card
 import android.content.res.Configuration
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
-import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
-import androidx.compose.material.Card
+import androidx.compose.material.ExperimentalMaterialApi
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
@@ -50,6 +49,7 @@ import com.orange.ods.compose.component.utilities.Preview
  * @param onCardClick Optional click on the card itself.
  *
  */
+@ExperimentalMaterialApi
 @Composable
 fun OdsCardSmall(
     title: String,
@@ -62,8 +62,9 @@ fun OdsCardSmall(
     imageAlignment: Alignment = Alignment.Center,
     onCardClick: (() -> Unit)? = null
 ) {
-    Card(
-        modifier = if (onCardClick != null) modifier.clickable { onCardClick() } else modifier
+    OdsCard(
+        modifier = modifier,
+        onClick = onCardClick
     ) {
         Column {
             Image(

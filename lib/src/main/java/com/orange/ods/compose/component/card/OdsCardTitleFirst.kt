@@ -13,7 +13,6 @@ package com.orange.ods.compose.component.card
 import android.content.res.Configuration
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
-import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -21,7 +20,7 @@ import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
-import androidx.compose.material.Card
+import androidx.compose.material.ExperimentalMaterialApi
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -64,6 +63,7 @@ import com.orange.ods.utilities.extension.orElse
  * @param onButton2Click Optional handler for the second button click.
  *
  */
+@ExperimentalMaterialApi
 @Composable
 fun OdsCardTitleFirst(
     title: String,
@@ -82,8 +82,9 @@ fun OdsCardTitleFirst(
     onButton1Click: (() -> Unit)? = null,
     onButton2Click: (() -> Unit)? = null
 ) {
-    Card(
-        modifier = if (onCardClick != null) modifier.clickable { onCardClick() } else modifier
+    OdsCard(
+        modifier = modifier,
+        onClick = onCardClick
     ) {
         Column {
             Row(

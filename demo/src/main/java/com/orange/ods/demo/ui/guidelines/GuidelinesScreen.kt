@@ -16,6 +16,7 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
+import androidx.compose.material.ExperimentalMaterialApi
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.dimensionResource
@@ -24,6 +25,7 @@ import androidx.compose.ui.res.stringResource
 import com.orange.ods.compose.component.card.OdsCardImageFirst
 import com.orange.ods.demo.R
 
+@ExperimentalMaterialApi
 @Composable
 fun GuidelinesScreen(onGuidelineClick: (String) -> Unit, updateTopBarTitle: (Int) -> Unit) {
     updateTopBarTitle(R.string.navigation_item_guidelines)
