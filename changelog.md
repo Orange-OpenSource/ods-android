@@ -9,6 +9,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
+- \[Demo\] Allow to enable or disable click on cards in customization bottom sheet ([#247](https://github.com/Orange-OpenSource/ods-android/issues/247))
 - \[Demo\] Add spacing guideline screen ([#211](https://github.com/Orange-OpenSource/ods-android/issues/211))
 - \[Demo\] Add customizable top app bar regular component preview ([#105](https://github.com/Orange-OpenSource/ods-android/issues/105))
 - \[Lib\] Add `OdsChoiceChipsFlowRow`, a composable to display a set of choice chips in a full width flow row ([#169](https://github.com/Orange-OpenSource/ods-android/issues/169))
@@ -30,6 +31,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - \[Demo\] Fix list item number of lines wording ([#252](https://github.com/Orange-OpenSource/ods-android/issues/252))
 - \[Demo\] Fix a bug where guideline and component images were cropped ([#229](https://github.com/Orange-OpenSource/ods-android/issues/229))
 - \[Demo\] Fix a bug where back button did not collapse expanded bottom sheets ([#238](https://github.com/Orange-OpenSource/ods-android/issues/238))
+- \[Lib\] Cards are no more always clickable and corner radius have been added to the ripple effect ([#247](https://github.com/Orange-OpenSource/ods-android/issues/247))
 - \[Lib\] Fix a crash when last tab is selected and the user decreases tabs number ([#245](https://github.com/Orange-OpenSource/ods-android/issues/245))
 - \[Lib\] Fix ripple effect colors for outlined and text buttons when forced on dark or light ([#168](https://github.com/Orange-OpenSource/ods-android/issues/168))
 
