@@ -22,7 +22,7 @@ import com.orange.ods.compose.theme.OdsDisplaySurface
 import com.orange.ods.demo.R
 
 @Composable
-fun VariantButtonsOutlined() {
+fun ButtonsOutlined() {
     OutlinedButtonsEnabledDisabled(hasIcon = false)
     OutlinedButtonsEnabledDisabled(hasIcon = true)
 

@@ -29,7 +29,7 @@ import com.orange.ods.demo.R
 import com.orange.ods.demo.ui.utilities.composable.Title
 
 @Composable
-fun VariantButtonsToggle() {
+fun ButtonsToggle() {
     Title(R.string.component_buttons_toggle_subtitle_group, withHorizontalPadding = true)
     ToggleGroup()
 

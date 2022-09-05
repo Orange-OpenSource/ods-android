@@ -24,7 +24,7 @@ import com.orange.ods.demo.R
 import com.orange.ods.demo.ui.utilities.composable.Title
 
 @Composable
-fun VariantButtonsContained() {
+fun ButtonsContained() {
     Title(R.string.component_buttons_contained_primary, withHorizontalPadding = true)
     ContainedButtons(style = OdsButtonContainedStyle.Primary)
 

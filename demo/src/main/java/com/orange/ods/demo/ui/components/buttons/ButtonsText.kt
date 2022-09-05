@@ -24,7 +24,7 @@ import com.orange.ods.demo.R
 import com.orange.ods.demo.ui.utilities.composable.Title
 
 @Composable
-fun VariantButtonsText() {
+fun ButtonsText() {
     Title(R.string.component_buttons_text_subtitle_primary, withHorizontalPadding = true)
     TextButtons(style = OdsButtonTextStyle.Primary)
 
