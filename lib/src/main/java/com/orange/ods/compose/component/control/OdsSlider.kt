@@ -11,7 +11,6 @@
 package com.orange.ods.compose.component.control
 
 import android.content.res.Configuration
-import androidx.annotation.DrawableRes
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.BoxWithConstraints
@@ -30,8 +29,8 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.painter.Painter
 import androidx.compose.ui.res.dimensionResource
-import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.Dp
@@ -68,9 +67,9 @@ import com.orange.ods.compose.theme.SliderActiveTickColor
  * @param onValueChangeFinished lambda to be invoked when value change has ended. This callback
  * shouldn't be used to update the slider value (use [onValueChange] for that), but rather to
  * know when the user has completed selecting a new value by ending a drag or a click.
- *  @param leftIconRes Drawable resource for left icon if needed
+ *  @param leftIcon Optional icon displayed on the left of the slider
  *  @param leftIconContentDescription Left icon content description
- *  @param rightIconRes Drawable resource for right icon if needed
+ *  @param rightIcon Optional icon displayed on the right of the slider
  *  @param rightIconContentDescription Right icon content description
  */
 @Composable
@@ -82,21 +81,19 @@ fun OdsSlider(
     valueRange: ClosedFloatingPointRange<Float> = 0f..1f,
     steps: Int = 0,
     onValueChangeFinished: (() -> Unit)? = null,
-    @DrawableRes
-    leftIconRes: Int? = null,
+    leftIcon: Painter? = null,
     leftIconContentDescription: String? = null,
-    @DrawableRes
-    rightIconRes: Int? = null,
+    rightIcon: Painter? = null,
     rightIconContentDescription: String? = null
 ) {
     Row(
         modifier = modifier,
         verticalAlignment = Alignment.CenterVertically,
-        horizontalArrangement = Arrangement.spacedBy(16.dp)
+        horizontalArrangement = Arrangement.spacedBy(dimensionResource(id = R.dimen.spacing_m))
     ) {
-        leftIconRes?.let {
+        leftIcon?.let { painter ->
             Icon(
-                painter = painterResource(id = it),
+                painter = painter,
                 contentDescription = leftIconContentDescription
             )
         }
@@ -104,7 +101,7 @@ fun OdsSlider(
         Slider(
             value = value,
             onValueChange = onValueChange,
-            modifier = Modifier.weight(1F),
+            modifier = Modifier.weight(1f),
             enabled = enabled,
             valueRange = valueRange,
             steps = steps,
@@ -113,9 +110,9 @@ fun OdsSlider(
                 activeTickColor = SliderActiveTickColor //Cannot use primary alpha color, it will not be visible, need to use plain color
             )
         )
-        rightIconRes?.let {
+        rightIcon?.let { painter ->
             Icon(
-                painter = painterResource(id = it),
+                painter = painter,
                 contentDescription = rightIconContentDescription
             )
         }

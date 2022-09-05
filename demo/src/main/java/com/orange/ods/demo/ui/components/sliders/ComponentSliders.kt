@@ -19,6 +19,7 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.dimensionResource
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import com.orange.ods.compose.component.control.OdsSlider
 import com.orange.ods.compose.component.control.OdsSliderLockups
@@ -47,9 +48,9 @@ fun ComponentSlidersContent() {
             value = discreteWithIconsSliderPosition,
             steps = 10,
             onValueChange = { discreteWithIconsSliderPosition = it },
-            leftIconRes = R.drawable.ic_volume_status_1,
+            leftIcon = painterResource(id = R.drawable.ic_volume_status_1),
             leftIconContentDescription = stringResource(id = R.string.component_slider_low_volume),
-            rightIconRes = R.drawable.ic_volume_status_4,
+            rightIcon = painterResource(id = R.drawable.ic_volume_status_4),
             rightIconContentDescription = stringResource(id = R.string.component_slider_high_volume)
         )
 
@@ -67,9 +68,9 @@ fun ComponentSlidersContent() {
         OdsSlider(
             value = continuousSliderWithIconsPosition,
             onValueChange = { continuousSliderWithIconsPosition = it },
-            leftIconRes = R.drawable.ic_volume_status_1,
+            leftIcon = painterResource(id = R.drawable.ic_volume_status_1),
             leftIconContentDescription = stringResource(id = R.string.component_slider_low_volume),
-            rightIconRes = R.drawable.ic_volume_status_4,
+            rightIcon = painterResource(id = R.drawable.ic_volume_status_4),
             rightIconContentDescription = stringResource(id = R.string.component_slider_high_volume)
         )
 
