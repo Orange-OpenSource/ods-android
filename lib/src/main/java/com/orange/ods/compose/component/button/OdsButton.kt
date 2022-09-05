@@ -11,7 +11,6 @@
 package com.orange.ods.compose.component.button
 
 import android.content.res.Configuration
-import androidx.annotation.DrawableRes
 import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.material.Button
@@ -26,6 +25,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.painter.Painter
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.tooling.preview.PreviewParameter
 import com.orange.ods.compose.component.utilities.EnumPreviewParameterProvider
@@ -64,7 +64,7 @@ enum class OdsButtonContainedStyle {
  * @param text Text displayed in the button
  * @param onClick Will be called when the user clicks the button
  * @param modifier Modifier to be applied to the button
- * @param iconRes Drawable resource of the icon. If `null`, no icon will be displayed.
+ * @param icon Painter of the icon. If `null`, no icon will be displayed.
  * @param enabled Controls the enabled state of the button. When `false`, this button will not
  * be clickable
  * @param style Controls the style of the button. Use `OdsButtonStyle.Primary` for an highlighted button style. To get a green/red button
@@ -77,8 +77,7 @@ fun OdsButton(
     text: String,
     onClick: () -> Unit,
     modifier: Modifier = Modifier,
-    @DrawableRes
-    iconRes: Int? = null,
+    icon: Painter? = null,
     enabled: Boolean = true,
     style: OdsButtonContainedStyle = OdsButtonContainedStyle.Default,
     displaySurface: OdsDisplaySurface = OdsDisplaySurface.Default
@@ -93,7 +92,7 @@ fun OdsButton(
             shape = odsButtonShape,
             colors = style.getColors(displaySurface = displaySurface)
         ) {
-            iconRes?.let { ButtonIcon(it) }
+            icon?.let { ButtonIcon(it) }
             Text(text.uppercase())
         }
     }
