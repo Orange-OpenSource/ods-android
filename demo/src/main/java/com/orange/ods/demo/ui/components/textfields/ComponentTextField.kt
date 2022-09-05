@@ -28,8 +28,8 @@ import androidx.compose.ui.res.stringResource
 import com.google.accompanist.pager.ExperimentalPagerApi
 import com.google.accompanist.pager.HorizontalPager
 import com.google.accompanist.pager.rememberPagerState
+import com.orange.ods.compose.component.chip.ChoiceChip
 import com.orange.ods.compose.component.chip.OdsChoiceChipsFlowRow
-import com.orange.ods.compose.component.chip.SelectableChip
 import com.orange.ods.compose.component.tab.OdsTab
 import com.orange.ods.compose.component.tab.OdsTabRow
 import com.orange.ods.demo.R
@@ -129,11 +129,11 @@ private fun ComponentCustomizationContent(textFieldCustomizationState: TextField
         modifier = Modifier.padding(horizontal = dimensionResource(id = R.dimen.spacing_m)),
         outlinedChips = true
     ) {
-        SelectableChip(textRes = R.string.component_text_field_input_type_single_line, value = TextFieldCustomizationState.InputType.SingleLine)
-        SelectableChip(textRes = R.string.component_text_field_input_type_multi_line, value = TextFieldCustomizationState.InputType.MultiLine)
+        ChoiceChip(textRes = R.string.component_text_field_input_type_single_line, value = TextFieldCustomizationState.InputType.SingleLine)
+        ChoiceChip(textRes = R.string.component_text_field_input_type_multi_line, value = TextFieldCustomizationState.InputType.MultiLine)
         // Note: TextArea chip is disabled cause there is no parameter allowing text area in Jetpack Compose sdk for now
         // https://issuetracker.google.com/issues/122476634
-        SelectableChip(
+        ChoiceChip(
             textRes = R.string.component_text_field_input_type_text_area,
             value = TextFieldCustomizationState.InputType.TextArea,
             enabled = false
@@ -148,9 +148,9 @@ private fun ComponentCustomizationContent(textFieldCustomizationState: TextField
         modifier = Modifier.padding(horizontal = dimensionResource(id = R.dimen.spacing_m)),
         outlinedChips = true
     ) {
-        SelectableChip(textRes = R.string.component_element_none, value = TextFieldCustomizationState.TrailingElement.None)
-        SelectableChip(textRes = R.string.component_element_icon, value = TextFieldCustomizationState.TrailingElement.Icon)
-        SelectableChip(textRes = R.string.component_element_text, value = TextFieldCustomizationState.TrailingElement.Text)
+        ChoiceChip(textRes = R.string.component_element_none, value = TextFieldCustomizationState.TrailingElement.None)
+        ChoiceChip(textRes = R.string.component_element_icon, value = TextFieldCustomizationState.TrailingElement.Icon)
+        ChoiceChip(textRes = R.string.component_element_text, value = TextFieldCustomizationState.TrailingElement.Text)
     }
 
     SwitchListItem(labelRes = R.string.component_text_field_character_counter, checked = textFieldCustomizationState.characterCounter)
@@ -166,12 +166,12 @@ fun KeyboardCustomizationContent(textFieldCustomizationState: TextFieldCustomiza
             .padding(horizontal = dimensionResource(id = R.dimen.spacing_m)),
         outlinedChips = true
     ) {
-        SelectableChip(text = TextFieldCustomizationState.SoftKeyboardType.Text.name, value = TextFieldCustomizationState.SoftKeyboardType.Text)
-        SelectableChip(text = TextFieldCustomizationState.SoftKeyboardType.Decimal.name, value = TextFieldCustomizationState.SoftKeyboardType.Decimal)
-        SelectableChip(text = TextFieldCustomizationState.SoftKeyboardType.Email.name, value = TextFieldCustomizationState.SoftKeyboardType.Email)
-        SelectableChip(text = TextFieldCustomizationState.SoftKeyboardType.Number.name, value = TextFieldCustomizationState.SoftKeyboardType.Number)
-        SelectableChip(text = TextFieldCustomizationState.SoftKeyboardType.Phone.name, value = TextFieldCustomizationState.SoftKeyboardType.Phone)
-        SelectableChip(text = TextFieldCustomizationState.SoftKeyboardType.Url.name, value = TextFieldCustomizationState.SoftKeyboardType.Url)
+        ChoiceChip(text = TextFieldCustomizationState.SoftKeyboardType.Text.name, value = TextFieldCustomizationState.SoftKeyboardType.Text)
+        ChoiceChip(text = TextFieldCustomizationState.SoftKeyboardType.Decimal.name, value = TextFieldCustomizationState.SoftKeyboardType.Decimal)
+        ChoiceChip(text = TextFieldCustomizationState.SoftKeyboardType.Email.name, value = TextFieldCustomizationState.SoftKeyboardType.Email)
+        ChoiceChip(text = TextFieldCustomizationState.SoftKeyboardType.Number.name, value = TextFieldCustomizationState.SoftKeyboardType.Number)
+        ChoiceChip(text = TextFieldCustomizationState.SoftKeyboardType.Phone.name, value = TextFieldCustomizationState.SoftKeyboardType.Phone)
+        ChoiceChip(text = TextFieldCustomizationState.SoftKeyboardType.Url.name, value = TextFieldCustomizationState.SoftKeyboardType.Url)
     }
 
     SwitchListItem(labelRes = R.string.component_text_field_keyboard_capitalization, checked = textFieldCustomizationState.softKeyboardCapitalization)
@@ -182,20 +182,20 @@ fun KeyboardCustomizationContent(textFieldCustomizationState: TextFieldCustomiza
         modifier = Modifier.padding(horizontal = dimensionResource(id = R.dimen.spacing_m)),
         outlinedChips = true
     ) {
-        SelectableChip(text = TextFieldCustomizationState.SoftKeyboardAction.None.name, value = TextFieldCustomizationState.SoftKeyboardAction.None)
-        SelectableChip(
+        ChoiceChip(text = TextFieldCustomizationState.SoftKeyboardAction.None.name, value = TextFieldCustomizationState.SoftKeyboardAction.None)
+        ChoiceChip(
             text = TextFieldCustomizationState.SoftKeyboardAction.Default.name,
             value = TextFieldCustomizationState.SoftKeyboardAction.Default
         )
-        SelectableChip(text = TextFieldCustomizationState.SoftKeyboardAction.Done.name, value = TextFieldCustomizationState.SoftKeyboardAction.Done)
-        SelectableChip(text = TextFieldCustomizationState.SoftKeyboardAction.Go.name, value = TextFieldCustomizationState.SoftKeyboardAction.Go)
-        SelectableChip(text = TextFieldCustomizationState.SoftKeyboardAction.Search.name, value = TextFieldCustomizationState.SoftKeyboardAction.Search)
-        SelectableChip(text = TextFieldCustomizationState.SoftKeyboardAction.Send.name, value = TextFieldCustomizationState.SoftKeyboardAction.Send)
-        SelectableChip(
+        ChoiceChip(text = TextFieldCustomizationState.SoftKeyboardAction.Done.name, value = TextFieldCustomizationState.SoftKeyboardAction.Done)
+        ChoiceChip(text = TextFieldCustomizationState.SoftKeyboardAction.Go.name, value = TextFieldCustomizationState.SoftKeyboardAction.Go)
+        ChoiceChip(text = TextFieldCustomizationState.SoftKeyboardAction.Search.name, value = TextFieldCustomizationState.SoftKeyboardAction.Search)
+        ChoiceChip(text = TextFieldCustomizationState.SoftKeyboardAction.Send.name, value = TextFieldCustomizationState.SoftKeyboardAction.Send)
+        ChoiceChip(
             text = TextFieldCustomizationState.SoftKeyboardAction.Previous.name,
             value = TextFieldCustomizationState.SoftKeyboardAction.Previous
         )
-        SelectableChip(text = TextFieldCustomizationState.SoftKeyboardAction.Next.name, value = TextFieldCustomizationState.SoftKeyboardAction.Next)
+        ChoiceChip(text = TextFieldCustomizationState.SoftKeyboardAction.Next.name, value = TextFieldCustomizationState.SoftKeyboardAction.Next)
     }
 
 }
@@ -209,9 +209,9 @@ private fun StateCustomization(displayType: MutableState<TextFieldCustomizationS
         modifier = Modifier.padding(horizontal = dimensionResource(id = R.dimen.spacing_m)),
         outlinedChips = true
     ) {
-        SelectableChip(textRes = R.string.component_state_default, value = TextFieldCustomizationState.DisplayType.Default)
-        SelectableChip(textRes = R.string.component_state_error, value = TextFieldCustomizationState.DisplayType.Error)
-        SelectableChip(textRes = R.string.component_state_disabled, value = TextFieldCustomizationState.DisplayType.Disabled)
+        ChoiceChip(textRes = R.string.component_state_default, value = TextFieldCustomizationState.DisplayType.Default)
+        ChoiceChip(textRes = R.string.component_state_error, value = TextFieldCustomizationState.DisplayType.Error)
+        ChoiceChip(textRes = R.string.component_state_disabled, value = TextFieldCustomizationState.DisplayType.Disabled)
     }
 }
 
