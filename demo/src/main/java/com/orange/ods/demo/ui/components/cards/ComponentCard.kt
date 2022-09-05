@@ -18,9 +18,9 @@ import com.orange.ods.demo.ui.components.Variant
 @Composable
 fun ComponentCard(variant: Variant) {
     when (variant) {
-        Variant.CardImageFirst -> VariantCardImageFirst()
-        Variant.CardSmall -> VariantCardSmall()
-        Variant.CardTitleFirst -> VariantCardTitleFirst()
+        Variant.CardImageFirst -> CardImageFirst()
+        Variant.CardSmall -> CardSmall()
+        Variant.CardTitleFirst -> CardTitleFirst()
         else -> {}
     }
 }

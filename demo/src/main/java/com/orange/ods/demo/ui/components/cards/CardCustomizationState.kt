@@ -18,23 +18,28 @@ import androidx.compose.runtime.saveable.rememberSaveable
 
 @Composable
 fun rememberCardCustomizationState(
+    clickable: MutableState<Boolean> = rememberSaveable { mutableStateOf(true) },
     thumbnailChecked: MutableState<Boolean> = rememberSaveable { mutableStateOf(true) },
     textChecked: MutableState<Boolean> = rememberSaveable { mutableStateOf(true) },
     subtitleChecked: MutableState<Boolean> = rememberSaveable { mutableStateOf(true) },
     button1Checked: MutableState<Boolean> = rememberSaveable { mutableStateOf(true) },
     button2Checked: MutableState<Boolean> = rememberSaveable { mutableStateOf(true) }
 ) =
-    remember(thumbnailChecked, textChecked, subtitleChecked, button1Checked, button2Checked) {
-        CardCustomizationState(thumbnailChecked, textChecked, subtitleChecked, button1Checked, button2Checked)
+    remember(clickable, thumbnailChecked, textChecked, subtitleChecked, button1Checked, button2Checked) {
+        CardCustomizationState(clickable, thumbnailChecked, textChecked, subtitleChecked, button1Checked, button2Checked)
     }
 
 class CardCustomizationState(
+    val clickable: MutableState<Boolean>,
     val thumbnailChecked: MutableState<Boolean>,
     val textChecked: MutableState<Boolean>,
     val subtitleChecked: MutableState<Boolean>,
     val button1Checked: MutableState<Boolean>,
     val button2Checked: MutableState<Boolean>
 ) {
+    val isClickable
+        get() = clickable.value
+    
     val hasThumbnail
         get() = thumbnailChecked.value
 
