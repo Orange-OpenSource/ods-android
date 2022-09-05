@@ -24,6 +24,7 @@ import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.dimensionResource
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import com.orange.ods.compose.component.card.OdsCardImageFirst
 import com.orange.ods.demo.R
@@ -60,8 +61,8 @@ fun VariantCardImageFirst() {
             val cardContainerText = stringResource(id = R.string.component_card_element_container)
 
             OdsCardImageFirst(
-                imageRes = R.drawable.placeholder,
                 title = stringResource(id = R.string.component_element_title),
+                image = painterResource(id = R.drawable.placeholder),
                 subtitle = if (subtitleIsChecked.value) stringResource(id = R.string.component_element_subtitle) else null,
                 text = if (textIsChecked.value) stringResource(id = R.string.component_element_text_value) else null,
                 onCardClick = { clickOnElement(context, cardContainerText) },

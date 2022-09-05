@@ -11,7 +11,6 @@
 package com.orange.ods.compose.component.card
 
 import android.content.res.Configuration
-import androidx.annotation.DrawableRes
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
@@ -27,6 +26,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.painter.Painter
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.painterResource
@@ -46,11 +46,11 @@ import com.orange.ods.compose.text.OdsTextSubtitle2
  *
  * Cards contain content and actions about a single subject.
  *
- * @param modifier Modifier to be applied to the layout of the card.
- * @param thumbnailRes Optional drawable resource of the card thumbnail: avatar, logo or icon.
  * @param title The title to be displayed in the card.
+ * @param image The painter of the card image.
+ * @param modifier Modifier to be applied to the layout of the card.
+ * @param thumbnail Optional painter of the card thumbnail: avatar, logo or icon.
  * @param subtitle Optional subtitle to be displayed in the card.
- * @param imageRes The drawable resource of the card image.
  * @param imageContentDescription Optional card image content description.
  * @param imageBackgroundColor Optional background color of the card image.
  * @param imageContentScale The content scale of the card image.
@@ -65,13 +65,11 @@ import com.orange.ods.compose.text.OdsTextSubtitle2
  */
 @Composable
 fun OdsCardTitleFirst(
-    modifier: Modifier = Modifier,
-    @DrawableRes
-    thumbnailRes: Int? = null,
     title: String,
+    image: Painter,
+    modifier: Modifier = Modifier,
+    thumbnail: Painter? = null,
     subtitle: String? = null,
-    @DrawableRes
-    imageRes: Int,
     imageContentDescription: String? = null,
     imageBackgroundColor: Color? = null,
     imageContentScale: ContentScale = ContentScale.Crop,
@@ -96,8 +94,8 @@ fun OdsCardTitleFirst(
                     .padding(horizontal = dimensionResource(id = R.dimen.spacing_m)),
                 verticalAlignment = Alignment.CenterVertically
             ) {
-                thumbnailRes?.let { OdsImageCircleShape(painter = painterResource(id = it)) }
-                Column(modifier = Modifier.padding(start = thumbnailRes?.let { dimensionResource(id = R.dimen.spacing_s) }
+                thumbnail?.let { OdsImageCircleShape(painter = it) }
+                Column(modifier = Modifier.padding(start = thumbnail?.let { dimensionResource(id = R.dimen.spacing_s) }
                     ?: run { 0.dp })) {
                     OdsTextH6(text = title)
                     subtitle?.let {
@@ -106,7 +104,7 @@ fun OdsCardTitleFirst(
                 }
             }
             Image(
-                painter = painterResource(imageRes),
+                painter = image,
                 contentDescription = imageContentDescription,
                 contentScale = imageContentScale,
                 modifier = Modifier
@@ -160,12 +158,12 @@ fun OdsCardTitleFirst(
 private fun PreviewOdsCardTitleFirst() = Preview {
     OdsCardTitleFirst(
         title = "Title",
+        image = painterResource(id = R.drawable.placeholder),
+        thumbnail = painterResource(id = R.drawable.placeholder_small),
         subtitle = "Subtitle",
         text = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed non risus. Suspendisse lectus tortor, dignissim sit amet, adipiscing nec, ultricies sed, dolor.",
         button1Text = "Button 1",
-        button2Text = "Button 2",
-        imageRes = R.drawable.placeholder,
-        thumbnailRes = R.drawable.placeholder_small
+        button2Text = "Button 2"
     )
 }
 

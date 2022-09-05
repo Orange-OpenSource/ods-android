@@ -52,7 +52,7 @@ In your composable screen you can use `OdsCardImageFirst` composable:
 ```kotlin
 OdsCardImageFirst(
     title = "Title",
-    imageRes = R.drawable.picture,
+    image = painterResource(R.drawable.picture),
     imageContentDescription = "Picture content description", //Optional
     imageBackgroundColor = Color(0xff1b1b1b), //Optional
     imageContentScale = ContentScale.Crop,
@@ -83,10 +83,10 @@ In your composable screen you can use `OdsCardTitleFirst`composable:
 
 ```kotlin
 OdsCardTitleFirst(
-    thumbnailRes = R.drawable.thumbnail, //Optional
     title = "Title",
+    image = painterResource(R.drawable.picture),
+    thumbnail = painterResource(R.drawable.thumbnail), //Optional
     subtitle = "Subtitle", //Optional
-    imageRes = R.drawable.picture,
     imageContentDescription = "Picture content description", //Optional
     imageBackgroundColor = Color(0xff1b1b1b), //Optional
     imageContentScale = ContentScale.Crop,
@@ -119,15 +119,15 @@ Row(
     horizontalArrangement = Arrangement.spacedBy(16.dp),
 ) {
     OdsCardSmall(
-        modifier = Modifier.weight(0.5f),
         title = "Title",
-        imageRes = R.drawable.picture,
+        image = painterResource(R.drawable.picture),
+        modifier = Modifier.weight(0.5f),
         onCardClick = {}
     )
     OdsCardSmall(
-        modifier = Modifier.weight(0.5f),
         title = "Title",
-        imageRes = R.drawable.picture,
+        image = painterResource(R.drawable.picture),
+        modifier = Modifier.weight(0.5f),
         onCardClick = {}
     )
 }

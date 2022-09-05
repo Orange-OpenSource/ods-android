@@ -11,7 +11,6 @@
 package com.orange.ods.compose.component.card
 
 import android.content.res.Configuration
-import androidx.annotation.DrawableRes
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
@@ -26,6 +25,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.painter.Painter
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.painterResource
@@ -40,10 +40,10 @@ import com.orange.ods.compose.component.utilities.Preview
  *
  * Cards contain content and actions about a single subject.
  *
- * @param modifier Modifier to be applied to the layout of the card.
  * @param title The title to be displayed in the card.
+ * @param image The painter of the card image.
+ * @param modifier Modifier to be applied to the layout of the card.
  * @param subtitle Optional subtitle to be displayed in the card.
- * @param imageRes The drawable resource of the card image.
  * @param imageContentDescription Optional card image content description.
  * @param imageBackgroundColor Optional background color of the card image.
  * @param imageContentScale The content scale of the card image.
@@ -53,11 +53,10 @@ import com.orange.ods.compose.component.utilities.Preview
  */
 @Composable
 fun OdsCardSmall(
-    modifier: Modifier = Modifier,
     title: String,
+    image: Painter,
+    modifier: Modifier = Modifier,
     subtitle: String? = null,
-    @DrawableRes
-    imageRes: Int,
     imageContentDescription: String? = null,
     imageBackgroundColor: Color? = null,
     imageContentScale: ContentScale = ContentScale.Crop,
@@ -71,7 +70,7 @@ fun OdsCardSmall(
     ) {
         Column {
             Image(
-                painter = painterResource(imageRes),
+                painter = image,
                 contentDescription = imageContentDescription,
                 contentScale = imageContentScale,
                 modifier = Modifier
@@ -107,7 +106,7 @@ private fun PreviewOdsCardSmall() = Preview {
     OdsCardSmall(
         title = "Title",
         subtitle = "Subtitle",
-        imageRes = R.drawable.placeholder
+        image = painterResource(id = R.drawable.placeholder)
     )
 }
 

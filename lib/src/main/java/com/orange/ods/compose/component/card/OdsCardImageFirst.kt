@@ -11,7 +11,6 @@
 package com.orange.ods.compose.component.card
 
 import android.content.res.Configuration
-import androidx.annotation.DrawableRes
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
@@ -26,6 +25,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.painter.Painter
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.painterResource
@@ -44,13 +44,13 @@ import com.orange.ods.compose.text.OdsTextSubtitle2
  *
  * Cards contain content and actions about a single subject.
  *
- * @param modifier Modifier to be applied to the layout of the card.
  * @param title The title to be displayed in the card.
+ * @param image The painter of the card image.
+ * @param modifier Modifier to be applied to the layout of the card.
  * @param subtitle Optional subtitle to be displayed in the card.
  * @param text Optional text description to be displayed in the card.
  * @param button1Text Optional text of the first button in the card. If not present, button will not be shown. If present, [onButton1Click] need to be  handle.
  * @param button2Text Optional text of the second button in the card. If not present, button will not be shown. If present, [onButton2Click] need to be  handle.
- * @param imageRes The drawable resource of the card image.
  * @param imageContentDescription Optional card image content description.
  * @param imageBackgroundColor Optional background color of the card image.
  * @param imageContentScale The content scale of the card image.
@@ -62,14 +62,13 @@ import com.orange.ods.compose.text.OdsTextSubtitle2
  */
 @Composable
 fun OdsCardImageFirst(
-    modifier: Modifier = Modifier,
     title: String,
+    image: Painter,
+    modifier: Modifier = Modifier,
     subtitle: String? = null,
     text: String? = null,
     button1Text: String? = null,
     button2Text: String? = null,
-    @DrawableRes
-    imageRes: Int,
     imageContentDescription: String? = null,
     imageBackgroundColor: Color? = null,
     imageContentScale: ContentScale = ContentScale.Crop,
@@ -85,7 +84,7 @@ fun OdsCardImageFirst(
     ) {
         Column {
             Image(
-                painter = painterResource(imageRes),
+                painter = image,
                 contentDescription = imageContentDescription,
                 contentScale = imageContentScale,
                 modifier = Modifier
@@ -145,7 +144,7 @@ private fun PreviewOdsCardImageFirst() = Preview {
         text = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed non risus. Suspendisse lectus tortor, dignissim sit amet, adipiscing nec, ultricies sed, dolor.",
         button1Text = "Button 1",
         button2Text = "Button 2",
-        imageRes = R.drawable.placeholder
+        image = painterResource(id = R.drawable.placeholder)
     )
 }
 

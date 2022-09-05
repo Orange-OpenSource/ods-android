@@ -24,6 +24,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.dimensionResource
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import com.orange.ods.compose.component.card.OdsCardSmall
 import com.orange.ods.demo.R
@@ -60,7 +61,7 @@ private fun RowScope.ComponentCard(component: Component, onComponentClick: (Long
     OdsCardSmall(
         modifier = Modifier.weight(0.5f),
         title = stringResource(id = component.titleRes),
-        imageRes = component.smallImageRes.orElse { component.imageRes },
+        image = painterResource(id = component.smallImageRes.orElse { component.imageRes }),
         imageBackgroundColor = Color(Component.ImageBackgroundColor),
         imageContentScale = ContentScale.Fit,
         imageAlignment = component.imageAlignment,
