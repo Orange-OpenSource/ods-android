@@ -51,7 +51,7 @@ fun ComponentTextField(variant: Variant) {
         bottomSheetScaffoldState = rememberBottomSheetScaffoldState(),
         bottomSheetContent = {
             when (variant) {
-                Variant.TextFieldFilledText, Variant.TextFieldOutlinedText -> TextFieldCustomization(textFieldCustomizationState)
+                Variant.TextFieldFilledText, Variant.TextFieldOutlinedText -> TextFieldTextCustomization(textFieldCustomizationState)
                 Variant.TextFieldFilledPassword, Variant.TextFieldOutlinedPassword -> TextFieldPasswordCustomization(textFieldCustomizationState)
                 else -> {}
             }
@@ -78,7 +78,7 @@ fun ComponentTextField(variant: Variant) {
 @ExperimentalMaterialApi
 @ExperimentalPagerApi
 @Composable
-private fun TextFieldCustomization(textFieldCustomizationState: TextFieldCustomizationState) {
+private fun TextFieldTextCustomization(textFieldCustomizationState: TextFieldCustomizationState) {
     val pagerState = rememberPagerState()
     val scope = rememberCoroutineScope()
     val tabs = CustomizationTab.values()
