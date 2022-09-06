@@ -13,12 +13,11 @@ package com.orange.ods.compose.component.card
 import android.content.res.Configuration
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
-import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
-import androidx.compose.material.Card
+import androidx.compose.material.ExperimentalMaterialApi
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
@@ -31,7 +30,6 @@ import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.tooling.preview.Preview
-import androidx.compose.ui.unit.dp
 import com.orange.ods.R
 import com.orange.ods.compose.component.utilities.Preview
 
@@ -51,6 +49,7 @@ import com.orange.ods.compose.component.utilities.Preview
  * @param onCardClick Optional click on the card itself.
  *
  */
+@ExperimentalMaterialApi
 @Composable
 fun OdsCardSmall(
     title: String,
@@ -63,10 +62,9 @@ fun OdsCardSmall(
     imageAlignment: Alignment = Alignment.Center,
     onCardClick: (() -> Unit)? = null
 ) {
-    Card(
-        modifier = modifier.clickable {
-            onCardClick?.invoke()
-        }
+    OdsCard(
+        modifier = modifier,
+        onClick = onCardClick
     ) {
         Column {
             Image(
@@ -83,7 +81,7 @@ fun OdsCardSmall(
             )
             Column(
                 modifier = Modifier
-                    .padding(16.dp)
+                    .padding(dimensionResource(id = R.dimen.spacing_m))
                     .semantics(mergeDescendants = true) {}
             ) {
                 Text(
@@ -101,6 +99,7 @@ fun OdsCardSmall(
     }
 }
 
+@ExperimentalMaterialApi
 @Composable
 private fun PreviewOdsCardSmall() = Preview {
     OdsCardSmall(
@@ -111,6 +110,7 @@ private fun PreviewOdsCardSmall() = Preview {
 }
 
 @Preview(name = "OdsCardSmall - Light")
+@ExperimentalMaterialApi
 @Composable
 private fun PreviewOdsCardSmallLight() = PreviewOdsCardSmall()
 
@@ -119,5 +119,6 @@ private fun PreviewOdsCardSmallLight() = PreviewOdsCardSmall()
     uiMode = Configuration.UI_MODE_NIGHT_YES,
     showBackground = true
 )
+@ExperimentalMaterialApi
 @Composable
 private fun PreviewOdsCardSmallDark() = PreviewOdsCardSmall()

@@ -19,6 +19,7 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
+import androidx.compose.material.ExperimentalMaterialApi
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -30,6 +31,7 @@ import com.orange.ods.compose.component.card.OdsCardSmall
 import com.orange.ods.demo.R
 import com.orange.ods.utilities.extension.orElse
 
+@ExperimentalMaterialApi
 @Composable
 fun ComponentsScreen(onComponentClick: (Long) -> Unit, updateTopBarTitle: (Int) -> Unit) {
     updateTopBarTitle(R.string.navigation_item_components)
@@ -56,6 +58,7 @@ fun ComponentsScreen(onComponentClick: (Long) -> Unit, updateTopBarTitle: (Int) 
     }
 }
 
+@ExperimentalMaterialApi
 @Composable
 private fun RowScope.ComponentCard(component: Component, onComponentClick: (Long) -> Unit) {
     OdsCardSmall(
