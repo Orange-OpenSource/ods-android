@@ -95,7 +95,7 @@ fun OdsPasswordTextField(
 }
 
 @Composable
-fun OdsPasswordVisualisationIcon(odsPasswordTextFieldState: OdsPasswordTextFieldState, enabled: Boolean) {
+internal fun OdsPasswordVisualisationIcon(odsPasswordTextFieldState: OdsPasswordTextFieldState, enabled: Boolean) {
     with(odsPasswordTextFieldState) {
         OdsTextFieldIcon(
             painter = if (isPasswordVisible) painterResource(id = R.drawable.ic_crosset_out_eye) else painterResource(id = R.drawable.ic_eye),

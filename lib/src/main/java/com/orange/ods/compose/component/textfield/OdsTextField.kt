@@ -169,18 +169,6 @@ fun OdsTextField(
     )
 }
 
-@Composable
-fun OdsTextFieldIcon(painter: Painter, contentDescription: String?, onClick: (() -> Unit)?, color: Color) {
-    val interactionSource = if (onClick != null) remember { MutableInteractionSource() } else remember { DisabledInteractionSource() }
-    IconButton(onClick = onClick ?: {}, interactionSource = interactionSource) {
-        Icon(
-            painter = painter,
-            contentDescription = contentDescription,
-            tint = color
-        )
-    }
-}
-
 /**
  * A counter to display below the text field
  *
@@ -195,6 +183,18 @@ fun OdsTextFieldCounter(valueLength: Int, maxChars: Int, modifier: Modifier = Mo
     OdsTextCaption(
         modifier = modifier.padding(top = dimensionResource(id = R.dimen.spacing_xs)), text = "$valueLength/$maxChars", enabled = enabled
     )
+}
+
+@Composable
+internal fun OdsTextFieldIcon(painter: Painter, contentDescription: String?, onClick: (() -> Unit)?, color: Color) {
+    val interactionSource = if (onClick != null) remember { MutableInteractionSource() } else remember { DisabledInteractionSource() }
+    IconButton(onClick = onClick ?: {}, interactionSource = interactionSource) {
+        Icon(
+            painter = painter,
+            contentDescription = contentDescription,
+            tint = color
+        )
+    }
 }
 
 @Composable
@@ -214,7 +214,7 @@ fun Colors.textFieldIconColor(enabled: Boolean = true) =
     }
 
 @Composable
-fun odsTextFieldColors() = TextFieldDefaults.textFieldColors(
+internal fun odsTextFieldColors() = TextFieldDefaults.textFieldColors(
     focusedLabelColor = MaterialTheme.colors.onSurface
 )
 
