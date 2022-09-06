@@ -112,7 +112,7 @@ private fun TextFieldTextCustomization(textFieldCustomizationState: TextFieldCus
 @ExperimentalMaterialApi
 @Composable
 private fun TextFieldPasswordCustomization(textFieldCustomizationState: TextFieldCustomizationState) {
-    StateCustomization(textFieldCustomizationState.displayType)
+    DisplayTypeCustomization(textFieldCustomizationState.displayType)
     SwitchListItem(labelRes = R.string.component_text_field_visualisation_icon, checked = textFieldCustomizationState.visualisationIcon)
     SwitchListItem(labelRes = R.string.component_text_field_character_counter, checked = textFieldCustomizationState.characterCounter)
 }
@@ -139,7 +139,7 @@ private fun ComponentCustomizationContent(textFieldCustomizationState: TextField
         )
     }
 
-    StateCustomization(textFieldCustomizationState.displayType)
+    DisplayTypeCustomization(textFieldCustomizationState.displayType)
 
     Subtitle(textRes = R.string.component_element_trailing, withHorizontalPadding = true)
     OdsChoiceChipsFlowRow(
@@ -187,7 +187,7 @@ private fun KeyboardCustomizationContent(textFieldCustomizationState: TextFieldC
 
 @ExperimentalMaterialApi
 @Composable
-private fun StateCustomization(displayType: MutableState<TextFieldCustomizationState.DisplayType>) {
+private fun DisplayTypeCustomization(displayType: MutableState<TextFieldCustomizationState.DisplayType>) {
     Subtitle(textRes = R.string.component_state, withHorizontalPadding = true)
     OdsChoiceChipsFlowRow(
         selectedChip = displayType,
