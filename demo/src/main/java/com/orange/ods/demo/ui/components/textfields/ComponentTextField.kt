@@ -200,7 +200,7 @@ private fun DisplayTypeCustomization(displayType: MutableState<TextFieldCustomiz
     }
 }
 
-enum class CustomizationTab(@StringRes val titleRes: Int) {
+private enum class CustomizationTab(@StringRes val titleRes: Int) {
     TextField(R.string.component_text_field),
     Keyboard(R.string.component_text_field_keyboard);
 
