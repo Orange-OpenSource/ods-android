@@ -13,13 +13,11 @@ package com.orange.ods.demo.ui.components.textfields
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material.ExperimentalMaterialApi
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.stringResource
-import androidx.compose.ui.text.input.KeyboardCapitalization
 import com.orange.ods.compose.component.textfield.password.OdsPasswordOutlinedTextField
 import com.orange.ods.demo.R
 
@@ -39,11 +37,7 @@ fun TextFieldOutlinedPassword(customizationState: TextFieldCustomizationState) {
             label = stringResource(id = R.string.component_element_label),
             placeholder = stringResource(id = R.string.component_text_field_placeholder),
             visualisationIcon = customizationState.hasVisualisationIcon,
-            keyboardOptions = KeyboardOptions(
-                capitalization = if (customizationState.softKeyboardCapitalization.value) KeyboardCapitalization.Characters else KeyboardCapitalization.None,
-                keyboardType = customizationState.softKeyboardType.value.keyboardType,
-                imeAction = customizationState.softKeyboardAction.value.imeAction
-            )
+            keyboardOptions = customizationState.keyboardOptions
         )
 
         if (customizationState.hasCharacterCounter) {

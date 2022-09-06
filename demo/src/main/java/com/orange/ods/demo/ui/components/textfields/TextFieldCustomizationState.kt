@@ -11,12 +11,14 @@
 package com.orange.ods.demo.ui.components.textfields
 
 import androidx.annotation.StringRes
+import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.MutableState
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.ui.text.input.ImeAction
+import androidx.compose.ui.text.input.KeyboardCapitalization
 import androidx.compose.ui.text.input.KeyboardType
 import com.orange.ods.demo.R
 import com.orange.ods.demo.ui.components.textfields.TextFieldCustomizationState.DisplayType
@@ -140,6 +142,13 @@ class TextFieldCustomizationState(
 
     val hasCharacterCounter
         get() = characterCounter.value
+
+    val keyboardOptions
+        get() = KeyboardOptions(
+            capitalization = if (softKeyboardCapitalization.value) KeyboardCapitalization.Characters else KeyboardCapitalization.None,
+            keyboardType = softKeyboardType.value.keyboardType,
+            imeAction = softKeyboardAction.value.imeAction
+        )
 
     fun updateText(newText: String) {
         if (!hasCharacterCounter || newText.length <= TextFieldMaxChars) {
