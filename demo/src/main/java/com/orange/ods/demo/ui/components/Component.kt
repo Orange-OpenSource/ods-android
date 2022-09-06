@@ -130,15 +130,16 @@ sealed class Component(
 
 val components = Component::class.sealedSubclasses.mapNotNull { it.objectInstance }
 
-enum class Section(@StringRes val titleRes: Int) {
-    TextFieldOutlined(R.string.component_text_field_outlined),
-    TextFieldFilled(R.string.component_text_field_filled)
-}
-
 sealed class Variant(
     @StringRes val titleRes: Int,
     val section: Section? = null
 ) {
+
+    enum class Section(@StringRes val titleRes: Int) {
+        TextFieldOutlined(R.string.component_text_field_outlined),
+        TextFieldFilled(R.string.component_text_field_filled)
+    }
+    
     val id: Long = Variant::class.sealedSubclasses.indexOf(this::class).toLong()
 
     object AppBarsTopRegular : Variant(R.string.component_app_bars_top_regular)
