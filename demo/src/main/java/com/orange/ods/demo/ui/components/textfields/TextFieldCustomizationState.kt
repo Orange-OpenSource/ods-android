@@ -27,7 +27,7 @@ import com.orange.ods.demo.ui.components.textfields.TextFieldCustomizationState.
 
 @Composable
 fun rememberTextFieldCustomizationState(
-    value: MutableState<String> = rememberSaveable { mutableStateOf("") },
+    text: MutableState<String> = rememberSaveable { mutableStateOf("") },
     inputType: MutableState<InputType> = rememberSaveable { mutableStateOf(InputType.SingleLine) },
     leadingIcon: MutableState<Boolean> = rememberSaveable { mutableStateOf(false) },
     displayType: MutableState<DisplayType> = rememberSaveable { mutableStateOf(DisplayType.Default) },
@@ -39,7 +39,7 @@ fun rememberTextFieldCustomizationState(
     softKeyboardCapitalization: MutableState<Boolean> = rememberSaveable { mutableStateOf(false) }
 ) =
     remember(
-        value,
+        text,
         inputType,
         leadingIcon,
         displayType,
@@ -51,7 +51,7 @@ fun rememberTextFieldCustomizationState(
         softKeyboardCapitalization
     ) {
         TextFieldCustomizationState(
-            value,
+            text,
             inputType,
             leadingIcon,
             displayType,
@@ -65,7 +65,7 @@ fun rememberTextFieldCustomizationState(
     }
 
 class TextFieldCustomizationState(
-    val value: MutableState<String>,
+    val text: MutableState<String>,
     val inputType: MutableState<InputType>,
     val leadingIcon: MutableState<Boolean>,
     val displayType: MutableState<DisplayType>,
@@ -112,10 +112,10 @@ class TextFieldCustomizationState(
         Next(ImeAction.Next, R.string.component_text_field_keyboard_action_next);
     }
 
-    val text: String
-        get() = if (hasCharacterCounter && value.value.length > TextFieldMaxChars) {
-            value.value.substring(0, TextFieldMaxChars) // Limit the length of the text field value to the maximum number of characters
-        } else value.value
+    val displayedText: String
+        get() = if (hasCharacterCounter && text.value.length > TextFieldMaxChars) {
+            text.value.substring(0, TextFieldMaxChars) // Limit the length of the text field value to the maximum number of characters
+        } else text.value
 
     val isEnabled
         get() = displayType.value != DisplayType.Disabled
@@ -143,7 +143,7 @@ class TextFieldCustomizationState(
 
     fun updateText(newText: String) {
         if (!hasCharacterCounter || newText.length <= TextFieldMaxChars) {
-            value.value = newText
+            text.value = newText
         }
     }
 }
