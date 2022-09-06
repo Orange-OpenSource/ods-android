@@ -99,6 +99,7 @@ fun OdsCardSmall(
     }
 }
 
+@ExperimentalMaterialApi
 @Composable
 private fun PreviewOdsCardSmall() = Preview {
     OdsCardSmall(
@@ -109,6 +110,7 @@ private fun PreviewOdsCardSmall() = Preview {
 }
 
 @Preview(name = "OdsCardSmall - Light")
+@ExperimentalMaterialApi
 @Composable
 private fun PreviewOdsCardSmallLight() = PreviewOdsCardSmall()
 
@@ -117,5 +119,6 @@ private fun PreviewOdsCardSmallLight() = PreviewOdsCardSmall()
     uiMode = Configuration.UI_MODE_NIGHT_YES,
     showBackground = true
 )
+@ExperimentalMaterialApi
 @Composable
 private fun PreviewOdsCardSmallDark() = PreviewOdsCardSmall()

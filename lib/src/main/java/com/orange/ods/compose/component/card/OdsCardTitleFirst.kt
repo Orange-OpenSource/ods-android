@@ -153,6 +153,7 @@ fun OdsCardTitleFirst(
     }
 }
 
+@ExperimentalMaterialApi
 @Composable
 private fun PreviewOdsCardTitleFirst() = Preview {
     OdsCardTitleFirst(
@@ -166,10 +167,12 @@ private fun PreviewOdsCardTitleFirst() = Preview {
     )
 }
 
+@ExperimentalMaterialApi
 @Preview(name = "OdsCardTitleFirst - Light")
 @Composable
 private fun PreviewOdsCardTitleFirstLight() = PreviewOdsCardTitleFirst()
 
+@ExperimentalMaterialApi
 @Preview(
     name = "OdsCardTitleFirst - Dark",
     uiMode = Configuration.UI_MODE_NIGHT_YES,

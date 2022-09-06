@@ -135,6 +135,7 @@ fun OdsCardImageFirst(
     }
 }
 
+@ExperimentalMaterialApi
 @Composable
 private fun PreviewOdsCardImageFirst() = Preview {
     OdsCardImageFirst(
@@ -148,6 +149,7 @@ private fun PreviewOdsCardImageFirst() = Preview {
 }
 
 @Preview(name = "OdsCardImageFirst - Light")
+@ExperimentalMaterialApi
 @Composable
 private fun PreviewOdsCardImageFirstLight() = PreviewOdsCardImageFirst()
 
@@ -156,5 +158,6 @@ private fun PreviewOdsCardImageFirstLight() = PreviewOdsCardImageFirst()
     uiMode = Configuration.UI_MODE_NIGHT_YES,
     showBackground = true
 )
+@ExperimentalMaterialApi
 @Composable
 private fun PreviewOdsCardImageFirstDark() = PreviewOdsCardImageFirst()

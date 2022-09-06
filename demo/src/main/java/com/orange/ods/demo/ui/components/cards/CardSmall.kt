@@ -21,6 +21,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.dimensionResource
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import com.orange.ods.compose.component.card.OdsCardSmall
 import com.orange.ods.demo.R
@@ -51,7 +52,7 @@ fun CardSmall() {
 
                 OdsCardSmall(
                     modifier = Modifier.weight(0.5f),
-                    imageRes = R.drawable.placeholder,
+                    image = painterResource(id = R.drawable.placeholder),
                     title = stringResource(id = R.string.component_element_title),
                     subtitle = if (subtitleChecked.value) stringResource(id = R.string.component_element_subtitle) else null,
                     onCardClick = if (isClickable) {
