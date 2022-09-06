@@ -101,7 +101,7 @@ sealed class Component(
         R.drawable.il_text_fields,
         R.drawable.il_text_fields_small,
         R.string.component_text_fields_description,
-        listOf(Variant.TextFieldsFilled, Variant.TextFieldsOutlined)
+        listOf(Variant.TextFieldFilledText, Variant.TextFieldFilledPassword, Variant.TextFieldOutlinedText, Variant.TextFieldOutlinedPassword)
     )
 
     object Tabs : Component(
@@ -132,7 +132,14 @@ val components = Component::class.sealedSubclasses.mapNotNull { it.objectInstanc
 
 sealed class Variant(
     @StringRes val titleRes: Int,
+    val section: Section? = null
 ) {
+
+    enum class Section(@StringRes val titleRes: Int) {
+        TextFieldOutlined(R.string.component_text_field_outlined),
+        TextFieldFilled(R.string.component_text_field_filled)
+    }
+    
     val id: Long = Variant::class.sealedSubclasses.indexOf(this::class).toLong()
 
     object AppBarsTopRegular : Variant(R.string.component_app_bars_top_regular)
@@ -151,8 +158,10 @@ sealed class Variant(
 
     object Lists : Variant(R.string.component_lists_demo)
 
-    object TextFieldsFilled : Variant(R.string.component_text_fields_filled)
-    object TextFieldsOutlined : Variant(R.string.component_text_fields_outlined)
+    object TextFieldFilledText : Variant(R.string.component_text_field_text, Section.TextFieldFilled)
+    object TextFieldFilledPassword : Variant(R.string.component_text_field_password, Section.TextFieldFilled)
+    object TextFieldOutlinedText : Variant(R.string.component_text_field_text, Section.TextFieldOutlined)
+    object TextFieldOutlinedPassword : Variant(R.string.component_text_field_password, Section.TextFieldOutlined)
 
     object TabsFixed : Variant(R.string.component_tabs_fixed)
     object TabsScrollable : Variant(R.string.component_tabs_scrollable)

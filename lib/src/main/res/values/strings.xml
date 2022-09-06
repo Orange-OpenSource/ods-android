@@ -10,4 +10,8 @@
 
 <resources>
     <string name="content_desc_selected">Selected</string>
+
+    <string name="text_field_password_show">Show password</string>
+    <string name="text_field_password_hide">Hide password</string>
+
 </resources>

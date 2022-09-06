@@ -206,10 +206,37 @@
 
     <!-- Component Text fields -->
     <string name="component_text_fields">Text fields</string>
+    <string name="component_text_field">Text field</string>
+    <string name="component_text_field_keyboard">Keyboard</string>
     <string name="component_text_fields_description">Text fields enable the user to type text into the app. They also provide ways to select text and the opportunity to save time by suggesting options for auto-completion.</string>
-    <string name="component_text_fields_filled">Filled text fields</string>
-    <string name="component_text_fields_outlined">Outlined text fields</string>
+    <string name="component_text_field_filled">Filled</string>
+    <string name="component_text_field_outlined">Outlined</string>
+    <string name="component_text_field_text">Text field</string>
+    <string name="component_text_field_password">Password field</string>
+    <string name="component_text_field_input_type">Input type</string>
+    <string name="component_text_field_input_type_single_line">Single line</string>
+    <string name="component_text_field_input_type_multiline">Multi-line</string>
+    <string name="component_text_field_input_type_text_area">Text area</string>
     <string name="component_text_field_placeholder">Hint text</string>
+    <string name="component_text_field_visualisation_icon">Visualisation icon</string>
+    <string name="component_text_field_character_counter">Character counter</string>
+    <string name="component_text_field_keyboard_type">Keyboard type</string>
+    <string name="component_text_field_keyboard_action">Keyboard action</string>
+    <string name="component_text_field_keyboard_capitalization">Capitalization</string>
+    <string name="component_text_field_keyboard_type_text">Text</string>
+    <string name="component_text_field_keyboard_type_decimal">Decimal</string>
+    <string name="component_text_field_keyboard_type_email">Email</string>
+    <string name="component_text_field_keyboard_type_number">Number</string>
+    <string name="component_text_field_keyboard_type_phone">Phone</string>
+    <string name="component_text_field_keyboard_type_url">Url</string>
+    <string name="component_text_field_keyboard_action_none">None</string>
+    <string name="component_text_field_keyboard_action_default">Default</string>
+    <string name="component_text_field_keyboard_action_done">Done</string>
+    <string name="component_text_field_keyboard_action_go">Go</string>
+    <string name="component_text_field_keyboard_action_search">Search</string>
+    <string name="component_text_field_keyboard_action_send">Send</string>
+    <string name="component_text_field_keyboard_action_previous">Previous</string>
+    <string name="component_text_field_keyboard_action_next">Next</string>
 
     <!-- Component Tabs -->
     <string name="component_tabs">Tabs</string>

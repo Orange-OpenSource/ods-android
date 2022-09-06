@@ -14,7 +14,10 @@ import androidx.activity.compose.BackHandler
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.BoxScope
+import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.BottomSheetScaffold
 import androidx.compose.material.BottomSheetScaffoldState
 import androidx.compose.material.BottomSheetValue
@@ -64,7 +67,9 @@ fun ComponentCustomizationBottomSheetScaffold(
                 text = stringResource(id = R.string.component_customize),
                 icon = { Icon(painter = painterResource(id = bottomSheetHeaderIconRes), contentDescription = null) })
 
-            bottomSheetContent()
+            Column(modifier = Modifier.verticalScroll(rememberScrollState())) {
+                bottomSheetContent()
+            }
         }
     ) { innerPadding ->
         Box(modifier = Modifier.padding(innerPadding), content = content)

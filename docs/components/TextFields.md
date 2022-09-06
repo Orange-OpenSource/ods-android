@@ -12,7 +12,11 @@ description: Text fields let users enter and edit text.
 * [Accessibility](#accessibility)
 * [Variants](#variants)
   * [Filled text field](#filled-text-field)
+  * [Filled password text field](#filled-password-text-field)
   * [Outlined text field](#outlined-text-field)
+  * [Outlined password text field](#outlined-password-text-field)
+* [Extras](#extras)
+  * [Character counter](#character-counter)
 * [Component specific tokens](#component-specific-tokens)
 
 ---
@@ -63,7 +67,7 @@ an `AccessibilityDelegate` directly on the `EditText`.
 Filled text fields have more visual emphasis than outlined text fields, making them stand out when
 surrounded by other content and components.
 
-  ![TextField filled](images/textfield_filled_light.png)  
+  ![TextField filled light](images/textfield_filled_light.png)  
   ![TextField filled dark](images/textfield_filled_dark.png)
 
 > **Jetpack Compose implementation**
@@ -132,13 +136,45 @@ filledTextField.editText?.doOnTextChanged { inputText, _, _, _ ->
 }
 ```
 
+### Filled password text field
+
+Filled password text field is a filled text field implementation that includes password visual transformation and optional visualisation icon.
+
+  ![TextField filled password light](images/textfield_filled_password_light.png)  
+  ![TextField filled password dark](images/textfield_filled_password_dark.png)
+
+> **Jetpack Compose implementation**
+
+To add a filled password text field in your composable screen you can use the `OdsPasswordTextField` composable as follow:
+
+```kotlin
+var text by rememberSaveable { mutableStateOf("") }
+OdsPasswordTextField(
+    enabled = true, // true if not set
+    readOnly = false, // false if not set
+    isError = false, // false if not set
+    value = text,
+    onValueChange = { text = it },
+    label = "Label", // Optional
+    placeholder = "Placeholder", // Optional
+    visualisationIcon = true, // `true` if not set
+    keyboardOptions = KeyboardOptions.Default, // `KeyboardOptions.Default` if not set
+    keyboardActions = KeyboardActions() // `KeyboardActions()` if not set
+)
+```
+
+> **XML implementation**
+
+_Not available_
+
+
 ### Outlined text field
 
 Outlined text fields have less visual emphasis than filled text fields. When they appear in places
 like forms, where many text fields are placed together, their reduced emphasis helps simplify the
 layout.
 
-  ![TextField outlined](images/textfield_outlined_light.png)  
+  ![TextField outlined light](images/textfield_outlined_light.png)  
   ![TextField outlined dark](images/textfield_outlined_dark.png)
 
 > **Jetpack Compose implementation**
@@ -203,6 +239,65 @@ val inputText = outlinedTextField.editText?.text.toString()
 
 outlinedTextField.editText?.doOnTextChanged { inputText, _, _, _ ->
     // Respond to input text change
+}
+```
+
+### Outlined password text field
+
+Outlined password text field is an outlined text field implementation that includes password visual transformation and optional visualisation icon.
+
+  ![TextField outlined password light](images/textfield_outlined_password_light.png)  
+  ![TextField outlined password dark](images/textfield_outlined_password_dark.png)
+
+> **Jetpack Compose implementation**
+
+To add an outlined password text field in your composable screen you can use the `OdsPasswordOutlinedTextField` composable as follow:
+
+```kotlin
+var text by rememberSaveable { mutableStateOf("") }
+OdsPasswordOutlinedTextField(
+    enabled = true, // true if not set
+    readOnly = false, // false if not set
+    isError = false, // false if not set
+    value = text,
+    onValueChange = { text = it },
+    label = "Label", // Optional
+    placeholder = "Placeholder", // Optional
+    visualisationIcon = true, // `true` if not set
+    keyboardOptions = KeyboardOptions.Default, // `KeyboardOptions.Default` if not set
+    keyboardActions = KeyboardActions() // `KeyboardActions()` if not set
+)
+```
+
+> **XML implementation**
+
+_Not available_
+
+## Extras
+
+### Character counter
+
+You can add a character counter if there is a restriction on the number of characters in a field. It has to be placed below the text field, end aligned.
+
+  ![TextField character counter light](images/textfield_character_counter_light.png)  
+  ![TextField character counter dark](images/textfield_character_counter_dark.png)
+
+> **Jetpack Compose implementation**
+
+```kotlin
+OdsTextFieldCounter(
+    modifier = Modifier.align(Alignment.End),
+    valueLength = valueLength, 
+    maxChars = 20,
+    enabled = true // `true` if not set. If `false` the counter is displayed with a disabled color
+)
+```
+
+The limitation behavior should be managed by yourself in the `onValueChange` method of the text field.
+
+```kotlin
+if (text.length <= TextFieldMaxChars) {
+    value = text
 }
 ```
 
