@@ -81,7 +81,7 @@ class TextFieldCustomizationState(
     }
 
     enum class InputType {
-        SingleLine, MultiLine, TextArea
+        SingleLine, Multiline, TextArea
     }
 
     enum class DisplayType {

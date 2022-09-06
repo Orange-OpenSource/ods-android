@@ -129,7 +129,7 @@ private fun ComponentCustomizationContent(textFieldCustomizationState: TextField
         outlinedChips = true
     ) {
         ChoiceChip(textRes = R.string.component_text_field_input_type_single_line, value = TextFieldCustomizationState.InputType.SingleLine)
-        ChoiceChip(textRes = R.string.component_text_field_input_type_multi_line, value = TextFieldCustomizationState.InputType.MultiLine)
+        ChoiceChip(textRes = R.string.component_text_field_input_type_multi_line, value = TextFieldCustomizationState.InputType.Multiline)
         // Note: TextArea chip is disabled cause there is no parameter allowing text area in Jetpack Compose sdk for now
         // https://issuetracker.google.com/issues/122476634
         ChoiceChip(
