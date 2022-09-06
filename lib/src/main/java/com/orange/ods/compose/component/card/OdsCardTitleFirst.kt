@@ -40,6 +40,7 @@ import com.orange.ods.compose.component.utilities.Preview
 import com.orange.ods.compose.text.OdsTextBody1
 import com.orange.ods.compose.text.OdsTextH6
 import com.orange.ods.compose.text.OdsTextSubtitle2
+import com.orange.ods.utilities.extension.orElse
 
 /**
  * <a href="https://system.design.orange.com/0c1af118d/p/272739-cards/b/991690" target="_blank">ODS Card</a>.
@@ -95,8 +96,7 @@ fun OdsCardTitleFirst(
                 verticalAlignment = Alignment.CenterVertically
             ) {
                 thumbnail?.let { OdsImageCircleShape(painter = it) }
-                Column(modifier = Modifier.padding(start = thumbnail?.let { dimensionResource(id = R.dimen.spacing_s) }
-                    ?: run { 0.dp })) {
+                Column(modifier = Modifier.padding(start = thumbnail?.let { dimensionResource(id = R.dimen.spacing_s) }.orElse { 0.dp })) {
                     OdsTextH6(text = title)
                     subtitle?.let {
                         OdsTextSubtitle2(text = it)
