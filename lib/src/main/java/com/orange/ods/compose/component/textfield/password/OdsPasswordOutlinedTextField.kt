@@ -10,6 +10,7 @@
 
 package com.orange.ods.compose.component.textfield.password
 
+import android.content.res.Configuration
 import androidx.compose.foundation.text.KeyboardActions
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material.MaterialTheme
@@ -18,10 +19,16 @@ import androidx.compose.material.Text
 import androidx.compose.material.TextField
 import androidx.compose.material.Typography
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.text.input.KeyboardType
+import androidx.compose.ui.tooling.preview.Preview
 import com.orange.ods.compose.component.textfield.odsOutlinedTextFieldColors
+import com.orange.ods.compose.component.utilities.Preview
 
 /**
  * Outlined password text fields allows to display and use a text field with common password behaviors like a visualisation icon.
@@ -64,7 +71,7 @@ fun OdsPasswordOutlinedTextField(
     visualisationIcon: Boolean = true,
     isError: Boolean = false,
     keyboardOptions: KeyboardOptions = KeyboardOptions.Default,
-    keyboardActions: KeyboardActions = KeyboardActions(),
+    keyboardActions: KeyboardActions = KeyboardActions()
 ) {
     val odsPasswordTextFieldState = rememberOdsPasswordTextFieldState()
 
@@ -89,3 +96,25 @@ fun OdsPasswordOutlinedTextField(
     )
 
 }
+
+@Composable
+private fun PreviewOdsPasswordOutlinedTextField() = Preview {
+    var text by remember { mutableStateOf("Input text") }
+    OdsPasswordOutlinedTextField(
+        value = text,
+        onValueChange = { text = it },
+        placeholder = "Placeholder"
+    )
+}
+
+@Preview(name = "OdsPasswordOutlinedTextField - Light")
+@Composable
+private fun PreviewOdsPasswordOutlinedTextFieldLight() = PreviewOdsPasswordOutlinedTextField()
+
+@Preview(
+    name = "OdsPasswordOutlinedTextField - Dark",
+    uiMode = Configuration.UI_MODE_NIGHT_YES,
+    showBackground = true
+)
+@Composable
+private fun PreviewOdsPasswordOutlinedTextFieldDark() = PreviewOdsPasswordOutlinedTextField()

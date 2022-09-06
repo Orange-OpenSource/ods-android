@@ -12,6 +12,7 @@ package com.orange.ods.compose.component.textfield
 
 import android.content.res.Configuration
 import androidx.compose.foundation.interaction.MutableInteractionSource
+import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.text.KeyboardActions
 import androidx.compose.foundation.text.KeyboardOptions
@@ -29,6 +30,7 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.painter.Painter
@@ -38,7 +40,9 @@ import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.input.VisualTransformation
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.tooling.preview.PreviewParameter
 import com.orange.ods.R
+import com.orange.ods.compose.component.utilities.BasicPreviewParameterProvider
 import com.orange.ods.compose.component.utilities.DisabledInteractionSource
 import com.orange.ods.compose.component.utilities.Preview
 import com.orange.ods.compose.text.OdsTextCaption
@@ -219,20 +223,28 @@ internal fun odsTextFieldColors() = TextFieldDefaults.textFieldColors(
 )
 
 @Composable
-private fun PreviewOdsTextField() = Preview {
+private fun PreviewOdsTextField(hasCounter: Boolean) = Preview {
     var text by remember { mutableStateOf("Input text") }
-    OdsTextField(
-        value = text,
-        onValueChange = { text = it },
-        placeholder = "Placeholder",
-        leadingIcon = painterResource(id = android.R.drawable.ic_dialog_info),
-        trailingIcon = painterResource(id = android.R.drawable.ic_input_add)
-    )
+    Column {
+        OdsTextField(
+            value = text,
+            onValueChange = { text = it },
+            placeholder = "Placeholder",
+            leadingIcon = painterResource(id = android.R.drawable.ic_dialog_info),
+            trailingIcon = painterResource(id = android.R.drawable.ic_input_add)
+        )
+
+        if (hasCounter) {
+            OdsTextFieldCounter(text.length, 30, Modifier.align(Alignment.End))
+        }
+    }
 }
 
 @Preview(name = "OdsTextField - Light")
 @Composable
-private fun PreviewOdsTextFieldLight() = PreviewOdsTextField()
+private fun PreviewOdsTextFieldLight(@PreviewParameter(OdsTextFieldPreviewParameterProvider::class) hasCounter: Boolean) {
+    PreviewOdsTextField(hasCounter)
+}
 
 @Preview(
     name = "OdsTextField - Dark",
@@ -240,4 +252,9 @@ private fun PreviewOdsTextFieldLight() = PreviewOdsTextField()
     showBackground = true
 )
 @Composable
-private fun PreviewOdsTextFieldDark() = PreviewOdsTextField()
+private fun PreviewOdsTextFieldDark(@PreviewParameter(OdsTextFieldPreviewParameterProvider::class) hasCounter: Boolean) {
+    PreviewOdsTextField(hasCounter)
+}
+
+internal class OdsTextFieldPreviewParameterProvider : BasicPreviewParameterProvider<Boolean>(false, true)
+
