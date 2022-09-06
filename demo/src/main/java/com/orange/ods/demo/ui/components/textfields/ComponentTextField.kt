@@ -82,12 +82,11 @@ private fun TextFieldCustomization(textFieldCustomizationState: TextFieldCustomi
     val pagerState = rememberPagerState()
     val scope = rememberCoroutineScope()
     val tabs = CustomizationTab.values()
-    val localFocusManager = LocalFocusManager.current
     val keyboardState by keyboardAsState()
 
     // Clear text field focus each time the keyboard customization is opened and the soft keyboard is closed
     if (tabs[pagerState.currentPage] == CustomizationTab.Keyboard && keyboardState == Keyboard.Closed) {
-        localFocusManager.clearFocus()
+        LocalFocusManager.current.clearFocus()
     }
 
     OdsTabRow(selectedTabIndex = pagerState.currentPage) {
