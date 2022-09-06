@@ -11,7 +11,6 @@
 package com.orange.ods.compose.component.button
 
 import android.content.res.Configuration
-import androidx.annotation.DrawableRes
 import androidx.compose.animation.animateColorAsState
 import androidx.compose.animation.core.animateFloatAsState
 import androidx.compose.foundation.background
@@ -27,6 +26,7 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.painter.Painter
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
@@ -44,7 +44,7 @@ import com.orange.ods.compose.theme.odsLightThemeColors
  *
  * @param checked whether this IconToggleButton is currently checked
  * @param onCheckedChange callback to be invoked when this icon is selected
- * @param iconRes Resource identifier of the icon displayed
+ * @param icon Painter of the icon displayed
  * @param contentDescription Content description associated to the icon
  * @param modifier optional [Modifier] for this IconToggleButton
  * @param enabled enabled whether or not this [IconToggleButton] will handle input events and appear
@@ -56,8 +56,7 @@ import com.orange.ods.compose.theme.odsLightThemeColors
 fun OdsButtonToggle(
     checked: Boolean,
     onCheckedChange: (Boolean) -> Unit,
-    @DrawableRes
-    iconRes: Int,
+    icon: Painter,
     contentDescription: String,
     modifier: Modifier = Modifier,
     enabled: Boolean = true,
@@ -82,7 +81,7 @@ fun OdsButtonToggle(
                 .padding(12.dp)
         ) {
             Icon(
-                painter = painterResource(id = iconRes),
+                painter = icon,
                 contentDescription = contentDescription,
                 tint = iconTint
             )
@@ -112,7 +111,7 @@ private fun PreviewOdsButtonToggle() = Preview {
     OdsButtonToggle(
         checked = checked.value,
         onCheckedChange = { checked.value = it },
-        iconRes = android.R.drawable.ic_btn_speak_now,
+        icon = painterResource(id = android.R.drawable.ic_btn_speak_now),
         contentDescription = "Microphone"
     )
 }

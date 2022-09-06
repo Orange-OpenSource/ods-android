@@ -10,7 +10,6 @@
 
 package com.orange.ods.compose.component.button
 
-import androidx.annotation.DrawableRes
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.RoundedCornerShape
@@ -18,7 +17,7 @@ import androidx.compose.material.ButtonDefaults
 import androidx.compose.material.Icon
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.graphics.painter.Painter
 import androidx.compose.ui.unit.dp
 
 /**
@@ -30,12 +29,12 @@ internal val odsButtonShape = RoundedCornerShape(0.dp)
 /**
  * The icon displayed in every type of buttons
  *
- * @param iconRes Resource identifier of the icon
+ * @param painter Painter of the icon
  */
 @Composable
-internal fun ButtonIcon(@DrawableRes iconRes: Int) {
+internal fun ButtonIcon(painter: Painter) {
     Icon(
-        painter = painterResource(id = iconRes),
+        painter = painter,
         contentDescription = null,
         modifier = Modifier.size(ButtonDefaults.IconSize)
     )

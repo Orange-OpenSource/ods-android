@@ -15,6 +15,7 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.dimensionResource
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import com.orange.ods.compose.component.button.OdsButton
 import com.orange.ods.compose.component.button.OdsButtonContainedStyle
@@ -23,7 +24,7 @@ import com.orange.ods.demo.R
 import com.orange.ods.demo.ui.utilities.composable.Title
 
 @Composable
-fun VariantButtonsContained() {
+fun ButtonsContained() {
     Title(R.string.component_buttons_contained_primary, withHorizontalPadding = true)
     ContainedButtons(style = OdsButtonContainedStyle.Primary)
 
@@ -65,7 +66,7 @@ private fun ContainedButtonsEnabledDisabled(
 ) {
     OdsButton(
         modifier = Modifier.fullWidthButton(),
-        iconRes = if (hasIcon) R.drawable.ic_search else null,
+        icon = if (hasIcon) painterResource(id = R.drawable.ic_search) else null,
         text = stringResource(R.string.component_state_enabled),
         onClick = {},
         style = style,
@@ -73,7 +74,7 @@ private fun ContainedButtonsEnabledDisabled(
     )
     OdsButton(
         modifier = Modifier.fullWidthButton(false),
-        iconRes = if (hasIcon) R.drawable.ic_search else null,
+        icon = if (hasIcon) painterResource(id = R.drawable.ic_search) else null,
         text = stringResource(R.string.component_state_disabled),
         onClick = {},
         enabled = false,

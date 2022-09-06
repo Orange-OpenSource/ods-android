@@ -15,6 +15,7 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.dimensionResource
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import com.orange.ods.compose.component.button.OdsButtonText
 import com.orange.ods.compose.component.button.OdsButtonTextStyle
@@ -23,7 +24,7 @@ import com.orange.ods.demo.R
 import com.orange.ods.demo.ui.utilities.composable.Title
 
 @Composable
-fun VariantButtonsText() {
+fun ButtonsText() {
     Title(R.string.component_buttons_text_subtitle_primary, withHorizontalPadding = true)
     TextButtons(style = OdsButtonTextStyle.Primary)
 
@@ -53,7 +54,7 @@ private fun TextButtonsEnabledDisabled(style: OdsButtonTextStyle, hasIcon: Boole
         text = stringResource(R.string.component_state_enabled),
         onClick = {},
         style = style,
-        iconRes = if (hasIcon) R.drawable.ic_search else null,
+        icon = if (hasIcon) painterResource(id = R.drawable.ic_search) else null,
         displaySurface = displaySurface
     )
     OdsButtonText(
@@ -61,7 +62,7 @@ private fun TextButtonsEnabledDisabled(style: OdsButtonTextStyle, hasIcon: Boole
         text = stringResource(R.string.component_state_disabled),
         onClick = {},
         style = style,
-        iconRes = if (hasIcon) R.drawable.ic_search else null,
+        icon = if (hasIcon) painterResource(id = R.drawable.ic_search) else null,
         enabled = false,
         displaySurface = displaySurface
     )

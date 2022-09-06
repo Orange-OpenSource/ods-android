@@ -15,13 +15,14 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.dimensionResource
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import com.orange.ods.compose.component.button.OdsButtonOutlined
 import com.orange.ods.compose.theme.OdsDisplaySurface
 import com.orange.ods.demo.R
 
 @Composable
-fun VariantButtonsOutlined() {
+fun ButtonsOutlined() {
     OutlinedButtonsEnabledDisabled(hasIcon = false)
     OutlinedButtonsEnabledDisabled(hasIcon = true)
 
@@ -41,14 +42,14 @@ private fun OutlinedButtonsEnabledDisabled(hasIcon: Boolean, displaySurface: Ods
         modifier = Modifier.fullWidthButton(),
         text = stringResource(R.string.component_state_enabled),
         onClick = {},
-        iconRes = if (hasIcon) R.drawable.ic_search else null,
+        icon = if (hasIcon) painterResource(id = R.drawable.ic_search) else null,
         displaySurface = displaySurface
     )
     OdsButtonOutlined(
         modifier = Modifier.fullWidthButton(false),
         text = stringResource(R.string.component_state_disabled),
         onClick = {},
-        iconRes = if (hasIcon) R.drawable.ic_search else null,
+        icon = if (hasIcon) painterResource(id = R.drawable.ic_search) else null,
         enabled = false,
         displaySurface = displaySurface
     )
