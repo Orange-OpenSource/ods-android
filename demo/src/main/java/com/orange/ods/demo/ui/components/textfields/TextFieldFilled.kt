@@ -14,7 +14,6 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.ColumnScope
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material.ExperimentalMaterialApi
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember
@@ -26,7 +25,6 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
-import androidx.compose.ui.text.input.KeyboardCapitalization
 import com.orange.ods.compose.component.textfield.OdsTextField
 import com.orange.ods.compose.component.textfield.OdsTextFieldCounter
 import com.orange.ods.demo.R
@@ -59,11 +57,7 @@ fun TextFieldFilled(customizationState: TextFieldCustomizationState) {
             } else null,
             trailingText = if (customizationState.hasTrailingText) "units" else null,
             singleLine = customizationState.isSingleLine,
-            keyboardOptions = KeyboardOptions(
-                capitalization = if (customizationState.softKeyboardCapitalization.value) KeyboardCapitalization.Characters else KeyboardCapitalization.None,
-                keyboardType = customizationState.softKeyboardType.value.keyboardType,
-                imeAction = customizationState.softKeyboardAction.value.imeAction
-            )
+            keyboardOptions = customizationState.keyboardOptions
         )
 
         if (customizationState.hasCharacterCounter) {

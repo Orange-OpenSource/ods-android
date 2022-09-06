@@ -13,14 +13,12 @@ package com.orange.ods.demo.ui.components.textfields
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
-import androidx.compose.ui.text.input.KeyboardCapitalization
 import com.orange.ods.compose.component.textfield.OdsOutlinedTextField
 import com.orange.ods.demo.R
 import com.orange.ods.demo.ui.components.utilities.clickOnElement
@@ -48,11 +46,7 @@ fun TextFieldOutlined(customizationState: TextFieldCustomizationState) {
             } else null,
             trailingText = if (customizationState.hasTrailingText) "units" else null,
             singleLine = customizationState.isSingleLine,
-            keyboardOptions = KeyboardOptions(
-                capitalization = if (customizationState.softKeyboardCapitalization.value) KeyboardCapitalization.Characters else KeyboardCapitalization.None,
-                keyboardType = customizationState.softKeyboardType.value.keyboardType,
-                imeAction = customizationState.softKeyboardAction.value.imeAction
-            )
+            keyboardOptions = customizationState.keyboardOptions
         )
 
         if (customizationState.hasCharacterCounter) {
