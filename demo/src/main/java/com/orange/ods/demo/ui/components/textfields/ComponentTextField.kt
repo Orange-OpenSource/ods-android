@@ -165,12 +165,9 @@ private fun KeyboardCustomizationContent(textFieldCustomizationState: TextFieldC
             .padding(horizontal = dimensionResource(id = R.dimen.spacing_m)),
         outlinedChips = true
     ) {
-        ChoiceChip(text = TextFieldCustomizationState.SoftKeyboardType.Text.name, value = TextFieldCustomizationState.SoftKeyboardType.Text)
-        ChoiceChip(text = TextFieldCustomizationState.SoftKeyboardType.Decimal.name, value = TextFieldCustomizationState.SoftKeyboardType.Decimal)
-        ChoiceChip(text = TextFieldCustomizationState.SoftKeyboardType.Email.name, value = TextFieldCustomizationState.SoftKeyboardType.Email)
-        ChoiceChip(text = TextFieldCustomizationState.SoftKeyboardType.Number.name, value = TextFieldCustomizationState.SoftKeyboardType.Number)
-        ChoiceChip(text = TextFieldCustomizationState.SoftKeyboardType.Phone.name, value = TextFieldCustomizationState.SoftKeyboardType.Phone)
-        ChoiceChip(text = TextFieldCustomizationState.SoftKeyboardType.Url.name, value = TextFieldCustomizationState.SoftKeyboardType.Url)
+        TextFieldCustomizationState.SoftKeyboardType.values().forEach { softKeyboardType ->
+            ChoiceChip(text = stringResource(id = softKeyboardType.labelRes), value = softKeyboardType)
+        }
     }
 
     SwitchListItem(labelRes = R.string.component_text_field_keyboard_capitalization, checked = textFieldCustomizationState.softKeyboardCapitalization)
@@ -181,20 +178,9 @@ private fun KeyboardCustomizationContent(textFieldCustomizationState: TextFieldC
         modifier = Modifier.padding(horizontal = dimensionResource(id = R.dimen.spacing_m)),
         outlinedChips = true
     ) {
-        ChoiceChip(text = TextFieldCustomizationState.SoftKeyboardAction.None.name, value = TextFieldCustomizationState.SoftKeyboardAction.None)
-        ChoiceChip(
-            text = TextFieldCustomizationState.SoftKeyboardAction.Default.name,
-            value = TextFieldCustomizationState.SoftKeyboardAction.Default
-        )
-        ChoiceChip(text = TextFieldCustomizationState.SoftKeyboardAction.Done.name, value = TextFieldCustomizationState.SoftKeyboardAction.Done)
-        ChoiceChip(text = TextFieldCustomizationState.SoftKeyboardAction.Go.name, value = TextFieldCustomizationState.SoftKeyboardAction.Go)
-        ChoiceChip(text = TextFieldCustomizationState.SoftKeyboardAction.Search.name, value = TextFieldCustomizationState.SoftKeyboardAction.Search)
-        ChoiceChip(text = TextFieldCustomizationState.SoftKeyboardAction.Send.name, value = TextFieldCustomizationState.SoftKeyboardAction.Send)
-        ChoiceChip(
-            text = TextFieldCustomizationState.SoftKeyboardAction.Previous.name,
-            value = TextFieldCustomizationState.SoftKeyboardAction.Previous
-        )
-        ChoiceChip(text = TextFieldCustomizationState.SoftKeyboardAction.Next.name, value = TextFieldCustomizationState.SoftKeyboardAction.Next)
+        TextFieldCustomizationState.SoftKeyboardAction.values().forEach { softKeyboardAction ->
+            ChoiceChip(text = stringResource(id = softKeyboardAction.labelRes), value = softKeyboardAction)
+        }
     }
 
 }

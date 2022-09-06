@@ -50,8 +50,8 @@ fun TextFieldOutlined(customizationState: TextFieldCustomizationState) {
             singleLine = customizationState.isSingleLine,
             keyboardOptions = KeyboardOptions(
                 capitalization = if (customizationState.softKeyboardCapitalization.value) KeyboardCapitalization.Characters else KeyboardCapitalization.None,
-                keyboardType = customizationState.softKeyboardType.value.getKeyboardType(),
-                imeAction = customizationState.softKeyboardAction.value.getImeAction()
+                keyboardType = customizationState.softKeyboardType.value.keyboardType,
+                imeAction = customizationState.softKeyboardAction.value.imeAction
             )
         )
 

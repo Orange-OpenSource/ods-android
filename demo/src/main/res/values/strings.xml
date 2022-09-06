@@ -223,7 +223,20 @@
     <string name="component_text_field_keyboard_type">Keyboard type</string>
     <string name="component_text_field_keyboard_action">Keyboard action</string>
     <string name="component_text_field_keyboard_capitalization">Capitalization</string>
-
+    <string name="component_text_field_keyboard_type_text">Text</string>
+    <string name="component_text_field_keyboard_type_decimal">Decimal</string>
+    <string name="component_text_field_keyboard_type_email">Email</string>
+    <string name="component_text_field_keyboard_type_number">Number</string>
+    <string name="component_text_field_keyboard_type_phone">Phone</string>
+    <string name="component_text_field_keyboard_type_url">Url</string>
+    <string name="component_text_field_keyboard_action_none">None</string>
+    <string name="component_text_field_keyboard_action_default">Default</string>
+    <string name="component_text_field_keyboard_action_done">Done</string>
+    <string name="component_text_field_keyboard_action_go">Go</string>
+    <string name="component_text_field_keyboard_action_search">Search</string>
+    <string name="component_text_field_keyboard_action_send">Send</string>
+    <string name="component_text_field_keyboard_action_previous">Previous</string>
+    <string name="component_text_field_keyboard_action_next">Next</string>
 
     <!-- Component Tabs -->
     <string name="component_tabs">Tabs</string>

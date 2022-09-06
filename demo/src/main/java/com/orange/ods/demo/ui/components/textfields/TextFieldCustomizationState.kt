@@ -10,6 +10,7 @@
 
 package com.orange.ods.demo.ui.components.textfields
 
+import androidx.annotation.StringRes
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.MutableState
 import androidx.compose.runtime.mutableStateOf
@@ -17,6 +18,7 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.text.input.KeyboardType
+import com.orange.ods.demo.R
 import com.orange.ods.demo.ui.components.textfields.TextFieldCustomizationState.DisplayType
 import com.orange.ods.demo.ui.components.textfields.TextFieldCustomizationState.InputType
 import com.orange.ods.demo.ui.components.textfields.TextFieldCustomizationState.SoftKeyboardAction
@@ -90,32 +92,24 @@ class TextFieldCustomizationState(
         None, Icon, Text
     }
 
-    enum class SoftKeyboardType {
-        Text, Number, Decimal, Phone, Url, Email;
-
-        fun getKeyboardType() = when (this) {
-            Text -> KeyboardType.Text
-            Number -> KeyboardType.Number
-            Decimal -> KeyboardType.Decimal
-            Phone -> KeyboardType.Phone
-            Url -> KeyboardType.Uri
-            Email -> KeyboardType.Email
-        }
+    enum class SoftKeyboardType(val keyboardType: KeyboardType, @StringRes val labelRes: Int) {
+        Text(KeyboardType.Text, R.string.component_text_field_keyboard_type_text),
+        Decimal(KeyboardType.Decimal, R.string.component_text_field_keyboard_type_decimal),
+        Email(KeyboardType.Email, R.string.component_text_field_keyboard_type_email),
+        Number(KeyboardType.Number, R.string.component_text_field_keyboard_type_number),
+        Phone(KeyboardType.Phone, R.string.component_text_field_keyboard_type_phone),
+        Url(KeyboardType.Uri, R.string.component_text_field_keyboard_type_url);
     }
 
-    enum class SoftKeyboardAction {
-        None, Default, Go, Search, Send, Previous, Next, Done;
-
-        fun getImeAction() = when (this) {
-            None -> ImeAction.None
-            Default -> ImeAction.Default
-            Go -> ImeAction.Go
-            Search -> ImeAction.Search
-            Send -> ImeAction.Send
-            Previous -> ImeAction.Previous
-            Next -> ImeAction.Next
-            Done -> ImeAction.Done
-        }
+    enum class SoftKeyboardAction(val imeAction: ImeAction, @StringRes val labelRes: Int) {
+        None(ImeAction.None, R.string.component_text_field_keyboard_action_none),
+        Default(ImeAction.Default, R.string.component_text_field_keyboard_action_default),
+        Done(ImeAction.Done, R.string.component_text_field_keyboard_action_done),
+        Go(ImeAction.Go, R.string.component_text_field_keyboard_action_go),
+        Search(ImeAction.Search, R.string.component_text_field_keyboard_action_search),
+        Send(ImeAction.Send, R.string.component_text_field_keyboard_action_send),
+        Previous(ImeAction.Previous, R.string.component_text_field_keyboard_action_previous),
+        Next(ImeAction.Next, R.string.component_text_field_keyboard_action_next);
     }
 
     val text: String
