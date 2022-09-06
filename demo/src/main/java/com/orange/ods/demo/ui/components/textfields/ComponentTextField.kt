@@ -157,7 +157,7 @@ private fun ComponentCustomizationContent(textFieldCustomizationState: TextField
 
 @ExperimentalMaterialApi
 @Composable
-fun KeyboardCustomizationContent(textFieldCustomizationState: TextFieldCustomizationState) {
+private fun KeyboardCustomizationContent(textFieldCustomizationState: TextFieldCustomizationState) {
     Subtitle(textRes = R.string.component_text_field_keyboard_type, withHorizontalPadding = true)
     OdsChoiceChipsFlowRow(
         selectedChip = textFieldCustomizationState.softKeyboardType,
