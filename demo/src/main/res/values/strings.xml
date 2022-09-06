@@ -215,7 +215,7 @@
     <string name="component_text_field_password">Password field</string>
     <string name="component_text_field_input_type">Input type</string>
     <string name="component_text_field_input_type_single_line">Single line</string>
-    <string name="component_text_field_input_type_multi_line">Multi-line</string>
+    <string name="component_text_field_input_type_multiline">Multi-line</string>
     <string name="component_text_field_input_type_text_area">Text area</string>
     <string name="component_text_field_placeholder">Hint text</string>
     <string name="component_text_field_visualisation_icon">Visualisation icon</string>
