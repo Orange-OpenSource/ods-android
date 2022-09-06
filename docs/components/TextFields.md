@@ -138,7 +138,7 @@ filledTextField.editText?.doOnTextChanged { inputText, _, _, _ ->
 
 ### Filled password text field
 
-Filled password text fields is a filled text field implementation that includes password visual transformation and optional visualisation icon.
+Filled password text field is a filled text field implementation that includes password visual transformation and optional visualisation icon.
 
   ![TextField filled password light](images/textfield_filled_password_light.png)  
   ![TextField filled password dark](images/textfield_filled_password_dark.png)
@@ -244,7 +244,7 @@ outlinedTextField.editText?.doOnTextChanged { inputText, _, _, _ ->
 
 ### Outlined password text field
 
-Outlined password text fields is an outlined text field implementation that includes password visual transformation and optional visualisation icon.
+Outlined password text field is an outlined text field implementation that includes password visual transformation and optional visualisation icon.
 
   ![TextField outlined password light](images/textfield_outlined_password_light.png)  
   ![TextField outlined password dark](images/textfield_outlined_password_dark.png)
