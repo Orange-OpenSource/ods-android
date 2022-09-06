@@ -75,8 +75,10 @@ OdsSlider(
     value = 20f,
     valueRange = 0f..100f,
     onValueChange = { },
-    leftIconRes = R.drawable.ic_heart,
-    rightIconRes = R.drawable.ic_heart
+    leftIcon = painterResource(id = R.drawable.ic_volume_status_1),
+    leftIconContentDescription = stringResource(id = R.string.component_slider_low_volume),
+    rightIcon = painterResource(id = R.drawable.ic_volume_status_4),
+    rightIconContentDescription = stringResource(id = R.string.component_slider_high_volume)
 )
 ```
 
@@ -158,8 +160,10 @@ OdsSlider(
     valueRange = 0f..100f,
     steps = 10,
     onValueChange = { },
-    leftIconRes = R.drawable.ic_heart,
-    rightIconRes = R.drawable.ic_heart
+    leftIcon = painterResource(id = R.drawable.ic_volume_status_1),
+    leftIconContentDescription = stringResource(id = R.string.component_slider_low_volume),
+    rightIcon = painterResource(id = R.drawable.ic_volume_status_4),
+    rightIconContentDescription = stringResource(id = R.string.component_slider_high_volume)
 )
 ```
 
