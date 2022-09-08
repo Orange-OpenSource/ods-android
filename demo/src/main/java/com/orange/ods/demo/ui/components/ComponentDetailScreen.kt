@@ -68,9 +68,11 @@ fun ComponentDetailScreen(
                         )
                     ) { onDemoClick() }
                 } else {
-                    component.variants.groupBy { it.section }.forEach { (section, variants) ->
+                    component.variants.groupBy { it.section }.onEachIndexed { index, (section, variants) ->
                         section?.let {
-                            Divider(modifier = Modifier.padding(top = dimensionResource(id = R.dimen.spacing_s)))
+                            if (index > 0) {
+                                Divider(modifier = Modifier.padding(top = dimensionResource(id = R.dimen.spacing_s)))
+                            }
                             Box(modifier = Modifier.height(dimensionResource(id = R.dimen.list_single_line_item_height)), contentAlignment = Alignment.Center) {
                                 OdsTextSubtitle2(
                                     modifier = Modifier
