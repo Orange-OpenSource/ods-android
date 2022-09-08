@@ -20,14 +20,13 @@ import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.Divider
 import androidx.compose.material.ExperimentalMaterialApi
 import androidx.compose.material.Icon
-import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.PlayArrow
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.dimensionResource
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import com.orange.ods.compose.component.list.OdsListItem
 import com.orange.ods.compose.text.OdsTextSubtitle2
@@ -95,7 +94,7 @@ fun ComponentDetailScreen(
 @Composable
 private fun ComponentDetailLinkItem(label: String, onClick: () -> Unit) {
     OdsListItem(
-        icon = { Icon(imageVector = Icons.Filled.PlayArrow, contentDescription = null) },
+        icon = { Icon(painter = painterResource(id = R.drawable.ic_play_outline), contentDescription = null) },
         text = label,
         modifier = Modifier.clickable { onClick() })
 }
