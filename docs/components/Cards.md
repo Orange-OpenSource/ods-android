@@ -47,10 +47,10 @@ This is a full width card displayed with an image as first element.
 
 > **Jetpack Compose implementation**
 
-In your composable screen you can use `OdsCardImageFirst` composable:
+In your composable screen you can use `OdsImageFirstCard` composable:
 
 ```kotlin
-OdsCardImageFirst(
+OdsImageFirstCard(
     title = "Title",
     image = painterResource(R.drawable.picture),
     imageContentDescription = "Picture content description", //Optional
@@ -79,10 +79,10 @@ This is a full width card displaying with a title and a thumbnail on top as firs
 
 > **Jetpack Compose implementation**
 
-In your composable screen you can use `OdsCardTitleFirst`composable:
+In your composable screen you can use `OdsTitleFirstCard`composable:
 
 ```kotlin
-OdsCardTitleFirst(
+OdsTitleFirstCard(
     title = "Title",
     image = painterResource(R.drawable.picture),
     thumbnail = painterResource(R.drawable.thumbnail), //Optional
@@ -112,19 +112,19 @@ This is a small card which takes the half screen width.
 
 > **Jetpack Compose implementation**
 
-You can add an `OdsCardSmall`composable in your screen to add a small card:
+You can add an `OdsSmallCard`composable in your screen to add a small card:
 
 ```kotlin
 Row(
     horizontalArrangement = Arrangement.spacedBy(16.dp),
 ) {
-    OdsCardSmall(
+    OdsSmallCard(
         title = "Title",
         image = painterResource(R.drawable.picture),
         modifier = Modifier.weight(0.5f),
         onCardClick = {}
     )
-    OdsCardSmall(
+    OdsSmallCard(
         title = "Title",
         image = painterResource(R.drawable.picture),
         modifier = Modifier.weight(0.5f),

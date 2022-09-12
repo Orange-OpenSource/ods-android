@@ -23,7 +23,7 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
-import com.orange.ods.compose.component.card.OdsCardSmall
+import com.orange.ods.compose.component.card.OdsSmallCard
 import com.orange.ods.demo.R
 import com.orange.ods.demo.ui.components.utilities.ComponentCustomizationBottomSheetScaffold
 import com.orange.ods.demo.ui.components.utilities.clickOnElement
@@ -50,7 +50,7 @@ fun CardSmall() {
             ) {
                 val cardContainerText = stringResource(id = R.string.component_card_element_container)
 
-                OdsCardSmall(
+                OdsSmallCard(
                     modifier = Modifier.weight(0.5f),
                     image = painterResource(id = R.drawable.placeholder),
                     title = stringResource(id = R.string.component_element_title),

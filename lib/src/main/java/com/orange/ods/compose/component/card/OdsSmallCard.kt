@@ -51,7 +51,7 @@ import com.orange.ods.compose.component.utilities.Preview
  */
 @ExperimentalMaterialApi
 @Composable
-fun OdsCardSmall(
+fun OdsSmallCard(
     title: String,
     image: Painter,
     modifier: Modifier = Modifier,
@@ -101,24 +101,24 @@ fun OdsCardSmall(
 
 @ExperimentalMaterialApi
 @Composable
-private fun PreviewOdsCardSmall() = Preview {
-    OdsCardSmall(
+private fun PreviewOdsSmallCard() = Preview {
+    OdsSmallCard(
         title = "Title",
         subtitle = "Subtitle",
         image = painterResource(id = R.drawable.placeholder)
     )
 }
 
-@Preview(name = "OdsCardSmall - Light")
+@Preview(name = "OdsSmallCard - Light")
 @ExperimentalMaterialApi
 @Composable
-private fun PreviewOdsCardSmallLight() = PreviewOdsCardSmall()
+private fun PreviewOdsSmallCardLight() = PreviewOdsSmallCard()
 
 @Preview(
-    name = "OdsCardSmall - Dark",
+    name = "OdsSmallCard - Dark",
     uiMode = Configuration.UI_MODE_NIGHT_YES,
     showBackground = true
 )
 @ExperimentalMaterialApi
 @Composable
-private fun PreviewOdsCardSmallDark() = PreviewOdsCardSmall()
+private fun PreviewOdsSmallCardDark() = PreviewOdsSmallCard()

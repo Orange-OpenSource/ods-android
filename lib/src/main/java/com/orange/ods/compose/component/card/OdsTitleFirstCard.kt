@@ -65,7 +65,7 @@ import com.orange.ods.utilities.extension.orElse
  */
 @ExperimentalMaterialApi
 @Composable
-fun OdsCardTitleFirst(
+fun OdsTitleFirstCard(
     title: String,
     image: Painter,
     modifier: Modifier = Modifier,
@@ -155,8 +155,8 @@ fun OdsCardTitleFirst(
 
 @ExperimentalMaterialApi
 @Composable
-private fun PreviewOdsCardTitleFirst() = Preview {
-    OdsCardTitleFirst(
+private fun PreviewOdsTitleFirstCard() = Preview {
+    OdsTitleFirstCard(
         title = "Title",
         image = painterResource(id = R.drawable.placeholder),
         thumbnail = painterResource(id = R.drawable.placeholder_small),
@@ -168,15 +168,15 @@ private fun PreviewOdsCardTitleFirst() = Preview {
 }
 
 @ExperimentalMaterialApi
-@Preview(name = "OdsCardTitleFirst - Light")
+@Preview(name = "OdsTitleFirstCard - Light")
 @Composable
-private fun PreviewOdsCardTitleFirstLight() = PreviewOdsCardTitleFirst()
+private fun PreviewOdsTitleFirstCardLight() = PreviewOdsTitleFirstCard()
 
 @ExperimentalMaterialApi
 @Preview(
-    name = "OdsCardTitleFirst - Dark",
+    name = "OdsTitleFirstCard - Dark",
     uiMode = Configuration.UI_MODE_NIGHT_YES,
     showBackground = true
 )
 @Composable
-private fun PreviewOdsCardTitleFirstDark() = PreviewOdsCardTitleFirst()
+private fun PreviewOdsTitleFirstCardDark() = PreviewOdsTitleFirstCard()

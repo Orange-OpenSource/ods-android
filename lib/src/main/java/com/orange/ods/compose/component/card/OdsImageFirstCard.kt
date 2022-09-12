@@ -61,7 +61,7 @@ import com.orange.ods.compose.text.OdsTextSubtitle2
  */
 @ExperimentalMaterialApi
 @Composable
-fun OdsCardImageFirst(
+fun OdsImageFirstCard(
     title: String,
     image: Painter,
     modifier: Modifier = Modifier,
@@ -137,8 +137,8 @@ fun OdsCardImageFirst(
 
 @ExperimentalMaterialApi
 @Composable
-private fun PreviewOdsCardImageFirst() = Preview {
-    OdsCardImageFirst(
+private fun PreviewOdsImageFirstCard() = Preview {
+    OdsImageFirstCard(
         title = "Title",
         subtitle = "Subtitle",
         text = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed non risus. Suspendisse lectus tortor, dignissim sit amet, adipiscing nec, ultricies sed, dolor.",
@@ -148,16 +148,16 @@ private fun PreviewOdsCardImageFirst() = Preview {
     )
 }
 
-@Preview(name = "OdsCardImageFirst - Light")
+@Preview(name = "OdsImageFirstCard - Light")
 @ExperimentalMaterialApi
 @Composable
-private fun PreviewOdsCardImageFirstLight() = PreviewOdsCardImageFirst()
+private fun PreviewOdsImageFirstCardLight() = PreviewOdsImageFirstCard()
 
 @Preview(
-    name = "OdsCardImageFirst - Dark",
+    name = "OdsImageFirstCard - Dark",
     uiMode = Configuration.UI_MODE_NIGHT_YES,
     showBackground = true
 )
 @ExperimentalMaterialApi
 @Composable
-private fun PreviewOdsCardImageFirstDark() = PreviewOdsCardImageFirst()
+private fun PreviewOdsImageFirstCardDark() = PreviewOdsImageFirstCard()
