@@ -35,7 +35,7 @@ import com.orange.ods.demo.ui.utilities.composable.Subtitle
 
 @ExperimentalMaterialApi
 @Composable
-fun VariantChipFilter() {
+fun ChipFilter() {
     val chipCustomizationState = rememberChipCustomizationState()
 
     ComponentCustomizationBottomSheetScaffold(

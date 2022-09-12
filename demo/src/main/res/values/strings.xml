@@ -73,6 +73,7 @@
     <string name="component_element_item2">Item 2</string>
     <string name="component_element_item3">Item 3</string>
     <string name="component_element_cancel_cross">Cancel cross</string>
+    <string name="component_demo">%s demo</string>
 
 
     <!-- Components App bars: top -->
@@ -122,8 +123,6 @@
     <!-- Component Checkboxes -->
     <string name="component_checkboxes">Checkboxes</string>
     <string name="component_checkboxes_description">Checkboxes are used to select or deselect an option. Single checkboxes can be used to determine an individual choice and they can be grouped to allow users to select any combination of items.</string>
-    <string name="component_checkboxes_enabled">Enabled checkboxes</string>
-    <string name="component_checkboxes_disabled">Disabled checkboxes</string>
 
     <!-- Component Chips -->
     <string name="component_chips">Chips</string>
@@ -138,8 +137,8 @@
     <!-- Component Dialogs -->
     <string name="component_dialogs">Dialogs</string>
     <string name="component_dialogs_description">Dialogs are for prompting the user when the app requires a decision or further details required to complete a task.</string>
-    <string name="component_dialogs_customize">Customize dialog</string>
-    <string name="component_dialogs_open_dialog">Open dialog</string>
+    <string name="component_dialog_customize">Customize the dialog before opening it.</string>
+    <string name="component_dialog_open">Open dialog</string>
     <string name="component_dialog_title">Dialog sample</string>
     <string name="component_dialog_text">A dialog box asks the user for further information that the app needs in order to continue. The user has to tap one of the action buttons at the bottom of the box to continue.</string>
     <string name="component_dialog_element_dismiss_button">Dismiss button</string>
@@ -150,14 +149,10 @@
     <!-- Component Radio Buttons -->
     <string name="component_radio_buttons">Radio Buttons</string>
     <string name="component_radio_buttons_description">Radio buttons enable users to choose one item from a set of mutually exclusive, related choices.</string>
-    <string name="component_radio_buttons_enabled">Enabled radio buttons</string>
-    <string name="component_radio_buttons_disabled">Disabled radio buttons</string>
 
     <!-- Component Switches -->
     <string name="component_switches">Switches</string>
     <string name="component_switches_description">On/off switches toggle the state of a single settings option. The function of the switch should be made clear by the inline label.</string>
-    <string name="component_switches_enabled">Enabled switches</string>
-    <string name="component_switches_disabled">Disabled switches</string>
 
     <!-- Component Sliders -->
     <string name="component_sliders">Sliders</string>
@@ -185,7 +180,6 @@
     <!-- Component Lists -->
     <string name="component_lists">Lists</string>
     <string name="component_lists_description">A list is a continuous vertical group of data entries like text, icons or images.</string>
-    <string name="component_lists_demo">Lists demo</string>
     <string name="component_list_item_size">List item size</string>
     <string name="component_list_item_size_single_line">1 line</string>
     <string name="component_list_item_size_two_line">2 lines</string>

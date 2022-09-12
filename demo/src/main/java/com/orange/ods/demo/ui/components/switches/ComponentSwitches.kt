@@ -10,32 +10,42 @@
 
 package com.orange.ods.demo.ui.components.switches
 
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.ExperimentalMaterialApi
+import androidx.compose.material.rememberBottomSheetScaffoldState
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
+import androidx.compose.runtime.saveable.rememberSaveable
+import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.dimensionResource
 import com.orange.ods.demo.R
+import com.orange.ods.demo.ui.components.utilities.ComponentCustomizationBottomSheetScaffold
 import com.orange.ods.demo.ui.utilities.composable.SwitchListItem
-import com.orange.ods.demo.ui.utilities.composable.Title
 
 @ExperimentalMaterialApi
 @Composable
-fun ComponentSwitchesContent() {
-    Title(textRes = R.string.component_switches_enabled, withHorizontalPadding = true)
-    SwitchListItem(
-        labelRes = R.string.component_element_item1,
-        checked = remember { mutableStateOf(true) }
-    )
+fun ComponentSwitches() {
+    val checked = rememberSaveable { mutableStateOf(false) }
+    val enabled = rememberSaveable { mutableStateOf(true) }
 
-    Title(textRes = R.string.component_switches_disabled, withHorizontalPadding = true)
-    SwitchListItem(
-        labelRes = R.string.component_element_item1,
-        checked = remember { mutableStateOf(true) },
-        enabled = false
-    )
-    SwitchListItem(
-        labelRes = R.string.component_element_item2,
-        checked = remember { mutableStateOf(false) },
-        enabled = false
-    )
+    ComponentCustomizationBottomSheetScaffold(
+        bottomSheetScaffoldState = rememberBottomSheetScaffoldState(),
+        bottomSheetContent = {
+            SwitchListItem(labelRes = R.string.component_state_enabled, checked = enabled)
+        }) {
+        Column(
+            modifier = Modifier
+                .verticalScroll(rememberScrollState())
+                .padding(bottom = dimensionResource(id = R.dimen.spacing_m))
+        ) {
+            SwitchListItem(
+                labelRes = R.string.component_element_label,
+                checked = checked,
+                enabled = enabled.value
+            )
+        }
+    }
 }
