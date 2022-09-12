@@ -19,7 +19,6 @@ import androidx.compose.material.ExperimentalMaterialApi
 import androidx.compose.material.Icon
 import androidx.compose.material.rememberBottomSheetScaffoldState
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.MutableState
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.saveable.rememberSaveable
@@ -45,39 +44,6 @@ private object ComponentBottomNavigation {
 @Composable
 @ExperimentalMaterialApi
 fun ComponentBottomNavigation() {
-    val selectedNavigationItemCount = rememberSaveable { mutableStateOf(MinNavigationItemCount) }
-
-    ComponentCustomizationBottomSheetScaffold(
-        bottomSheetScaffoldState = rememberBottomSheetScaffoldState(),
-        bottomSheetContent = {
-            BottomNavigationCustomizationContent(selectedNavigationItemCount = selectedNavigationItemCount)
-        }) {
-        Column(
-            modifier = Modifier.fillMaxSize(),
-            verticalArrangement = Arrangement.Center
-        ) {
-            ComponentBottomNavigationBottomBar(
-                selectedNavigationItemCount = selectedNavigationItemCount
-            )
-        }
-    }
-}
-
-@Composable
-private fun BottomNavigationCustomizationContent(selectedNavigationItemCount: MutableState<Int>) {
-    ComponentCountRow(
-        modifier = Modifier
-            .padding(horizontal = dimensionResource(id = R.dimen.ods_screen_horizontal_margin))
-            .padding(bottom = dimensionResource(id = R.dimen.spacing_m)),
-        title = stringResource(id = R.string.component_bottom_navigation_navigation_item_count),
-        count = selectedNavigationItemCount,
-        minCount = MinNavigationItemCount,
-        maxCount = MaxNavigationItemCount
-    )
-}
-
-@Composable
-private fun ComponentBottomNavigationBottomBar(selectedNavigationItemCount: MutableState<Int>) {
     val context = LocalContext.current
     val navigationItems = listOf(
         NavigationItem("Favorites", R.drawable.ic_heart),
@@ -87,21 +53,41 @@ private fun ComponentBottomNavigationBottomBar(selectedNavigationItemCount: Muta
         NavigationItem("Settings", R.drawable.ic_settings)
     )
 
+    val selectedNavigationItemCount = rememberSaveable { mutableStateOf(MinNavigationItemCount) }
     val selectedNavigationItem = remember { mutableStateOf(navigationItems[0]) }
 
-    OdsBottomNavigation {
-        navigationItems.take(selectedNavigationItemCount.value)
-            .forEach { navigationItem ->
-                OdsBottomNavigationItem(
-                    icon = { Icon(painter = painterResource(id = navigationItem.icon), contentDescription = null) },
-                    label = navigationItem.title,
-                    selected = selectedNavigationItem.value.title == navigationItem.title,
-                    onClick = {
-                        selectedNavigationItem.value = navigationItem
-                        clickOnElement(context, navigationItem.title)
+    ComponentCustomizationBottomSheetScaffold(
+        bottomSheetScaffoldState = rememberBottomSheetScaffoldState(),
+        bottomSheetContent = {
+            ComponentCountRow(
+                modifier = Modifier
+                    .padding(horizontal = dimensionResource(id = R.dimen.ods_screen_horizontal_margin))
+                    .padding(bottom = dimensionResource(id = R.dimen.spacing_m)),
+                title = stringResource(id = R.string.component_bottom_navigation_navigation_item_count),
+                count = selectedNavigationItemCount,
+                minCount = MinNavigationItemCount,
+                maxCount = MaxNavigationItemCount
+            )
+        }) {
+        Column(
+            modifier = Modifier.fillMaxSize(),
+            verticalArrangement = Arrangement.Center
+        ) {
+            OdsBottomNavigation {
+                navigationItems.take(selectedNavigationItemCount.value)
+                    .forEach { navigationItem ->
+                        OdsBottomNavigationItem(
+                            icon = { Icon(painter = painterResource(id = navigationItem.icon), contentDescription = null) },
+                            label = navigationItem.title,
+                            selected = selectedNavigationItem.value.title == navigationItem.title,
+                            onClick = {
+                                selectedNavigationItem.value = navigationItem
+                                clickOnElement(context, navigationItem.title)
+                            }
+                        )
                     }
-                )
             }
+        }
     }
 }
 
