@@ -62,10 +62,7 @@ fun ComponentDetailScreen(
             ) {
                 if (component.variants.isEmpty()) {
                     ComponentDetailLinkItem(
-                        context.getString(
-                            R.string.component_demo,
-                            context.getString(component.titleRes)
-                        )
+                        label = context.getString(R.string.component_demo, context.getString(component.titleRes))
                     ) { onDemoClick() }
                 } else {
                     component.variants.groupBy { it.section }.onEachIndexed { index, (section, variants) ->
@@ -83,7 +80,7 @@ fun ComponentDetailScreen(
 
                         }
                         variants.forEach { variant ->
-                            ComponentDetailLinkItem(stringResource(id = variant.titleRes)) { onVariantClick(variant.id) }
+                            ComponentDetailLinkItem(label = stringResource(id = variant.titleRes)) { onVariantClick(variant.id) }
                         }
                     }
                 }
