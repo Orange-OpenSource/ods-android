@@ -44,15 +44,15 @@ cards. In cards, text buttons help maintain an emphasis on card content.
 
 > **Jetpack Compose implementation**
 
-Use the `OdsButtonText` composable:
+Use the `OdsTextButton` composable:
 
 ```kotlin
-OdsButtonText(
+OdsTextButton(
     text = "Text button", 
     onClick = {}, 
     enabled = true, 
     icon = painterResource(R.drawable.ic_search), // Optional, line can be removed if you don't need any icon
-    style = OdsButtonTextStyle.Primary
+    style = OdsTextButtonStyle.Primary
 )
 ```
 
@@ -90,10 +90,10 @@ the primary action in an app.
 
 > **Jetpack Compose implementation**
 
-Use the `OdsButtonOutlined` composable:
+Use the `OdsOutlinedButton` composable:
 
 ```kotlin
-OdsButtonOutlined(
+OdsOutlinedButton(
     text = "Outlined button", 
     onClick = {}, 
     enabled = true,
@@ -211,10 +211,10 @@ To emphasize groups of related toggle buttons, a group should share a common con
 
 > **Jetpack Compose implementation**
 
-Use the `OdsButtonToggle` composable:
+Use the `OdsIconToggleButton` composable:
 
 ```kotlin
-OdsButtonToggle(
+OdsIconToggleButton(
     checked = false, 
     onCheckedChange = { }, 
     icon = painterResource(R.drawable.ic_search), 

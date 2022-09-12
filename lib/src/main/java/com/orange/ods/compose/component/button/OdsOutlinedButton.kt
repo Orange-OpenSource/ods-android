@@ -51,7 +51,7 @@ import com.orange.ods.compose.theme.odsLightThemeColors
  * surface. By default the appearance applied is based on the system night mode value.
  */
 @Composable
-fun OdsButtonOutlined(
+fun OdsOutlinedButton(
     text: String,
     onClick: () -> Unit,
     modifier: Modifier = Modifier,
@@ -105,22 +105,22 @@ private fun Colors.buttonOutlinedDisabledColor(displaySurface: OdsDisplaySurface
     buttonOutlinedColor(displaySurface).copy(alpha = ContentAlpha.disabled)
 
 @Composable
-private fun PreviewOdsButtonOutlined() = Preview {
-    OdsButtonOutlined(text = "Text", onClick = {})
+private fun PreviewOdsOutlinedButton() = Preview {
+    OdsOutlinedButton(text = "Text", onClick = {})
 }
 
 @Preview(
-    name = "OdsButtonOutlined - Light",
+    name = "OdsOutlinedButton - Light",
     widthDp = 200
 )
 @Composable
-private fun PreviewOdsButtonOutlinedLight() = PreviewOdsButtonOutlined()
+private fun PreviewOdsOutlinedButtonLight() = PreviewOdsOutlinedButton()
 
 @Preview(
-    name = "OdsButtonOutlined - Dark",
+    name = "OdsOutlinedButton - Dark",
     uiMode = Configuration.UI_MODE_NIGHT_YES,
     showBackground = true,
     widthDp = 200
 )
 @Composable
-private fun PreviewOdsButtonOutlinedDark() = PreviewOdsButtonOutlined()
+private fun PreviewOdsOutlinedButtonDark() = PreviewOdsOutlinedButton()

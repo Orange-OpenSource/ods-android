@@ -53,7 +53,7 @@ import com.orange.ods.compose.theme.odsLightThemeColors
  * surface. By default the appearance applied is based on the system night mode value.
  */
 @Composable
-fun OdsButtonToggle(
+fun OdsIconToggleButton(
     checked: Boolean,
     onCheckedChange: (Boolean) -> Unit,
     icon: Painter,
@@ -106,9 +106,9 @@ private fun Colors.buttonToggleBackgroundColor(displaySurface: OdsDisplaySurface
     }
 
 @Composable
-private fun PreviewOdsButtonToggle() = Preview {
+private fun PreviewOdsIconToggleButton() = Preview {
     val checked = remember { mutableStateOf(false) }
-    OdsButtonToggle(
+    OdsIconToggleButton(
         checked = checked.value,
         onCheckedChange = { checked.value = it },
         icon = painterResource(id = android.R.drawable.ic_btn_speak_now),
@@ -116,14 +116,14 @@ private fun PreviewOdsButtonToggle() = Preview {
     )
 }
 
-@Preview(name = "OdsButtonToggle - Light")
+@Preview(name = "OdsIconToggleButton - Light")
 @Composable
-private fun PreviewOdsButtonToggleLight() = PreviewOdsButtonToggle()
+private fun PreviewOdsIconToggleButtonLight() = PreviewOdsIconToggleButton()
 
 @Preview(
-    name = "OdsButtonToggle - Dark",
+    name = "OdsIconToggleButton - Dark",
     uiMode = Configuration.UI_MODE_NIGHT_YES,
     showBackground = true
 )
 @Composable
-private fun PreviewOdsButtonToggleDark() = PreviewOdsButtonToggle()
+private fun PreviewOdsIconToggleButtonDark() = PreviewOdsIconToggleButton()

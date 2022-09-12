@@ -16,8 +16,8 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.window.DialogProperties
-import com.orange.ods.compose.component.button.OdsButtonText
-import com.orange.ods.compose.component.button.OdsButtonTextStyle
+import com.orange.ods.compose.component.button.OdsTextButton
+import com.orange.ods.compose.component.button.OdsTextButtonStyle
 import com.orange.ods.compose.component.utilities.Preview
 import com.orange.ods.compose.text.OdsTextBody2
 import com.orange.ods.compose.text.OdsTextSubtitle1
@@ -65,11 +65,11 @@ fun OdsAlertDialog(
         },
         text = { OdsTextBody2(text) },
         confirmButton = {
-            OdsButtonText(text = confirmButtonText, style = OdsButtonTextStyle.Primary, onClick = onConfirmButtonClick)
+            OdsTextButton(text = confirmButtonText, style = OdsTextButtonStyle.Primary, onClick = onConfirmButtonClick)
         },
         dismissButton = ifNotNull(dismissButtonText, onDismissButtonClick) { dismissText, onDismissClick ->
             {
-                OdsButtonText(text = dismissText, style = OdsButtonTextStyle.Primary, onClick = onDismissClick)
+                OdsTextButton(text = dismissText, style = OdsTextButtonStyle.Primary, onClick = onDismissClick)
             }
         },
         properties = properties

@@ -37,9 +37,9 @@ import com.orange.ods.compose.theme.odsDarkThemeColors
 import com.orange.ods.compose.theme.odsLightThemeColors
 
 /**
- * Specifying an [OdsButtonTextStyle] allow to display a button with specific colors.
+ * Specifying an [OdsTextButtonStyle] allow to display a button with specific colors.
  */
-enum class OdsButtonTextStyle {
+enum class OdsTextButtonStyle {
     Default, Primary
 }
 
@@ -60,19 +60,19 @@ enum class OdsButtonTextStyle {
  * surface. By default the appearance applied is based on the system night mode value.
  */
 @Composable
-fun OdsButtonText(
+fun OdsTextButton(
     text: String,
     onClick: () -> Unit,
     modifier: Modifier = Modifier,
     icon: Painter? = null,
     enabled: Boolean = true,
-    style: OdsButtonTextStyle = OdsButtonTextStyle.Default,
+    style: OdsTextButtonStyle = OdsTextButtonStyle.Default,
     displaySurface: OdsDisplaySurface = OdsDisplaySurface.Default
 ) {
     CompositionLocalProvider(
         LocalRippleTheme provides when (style) {
-            OdsButtonTextStyle.Primary -> OdsPrimaryRippleTheme
-            OdsButtonTextStyle.Default -> when (displaySurface) {
+            OdsTextButtonStyle.Primary -> OdsPrimaryRippleTheme
+            OdsTextButtonStyle.Default -> when (displaySurface) {
                 OdsDisplaySurface.Default -> OdsRippleTheme
                 OdsDisplaySurface.Light -> OdsLightRippleTheme
                 OdsDisplaySurface.Dark -> OdsDarkRippleTheme
@@ -97,49 +97,49 @@ fun OdsButtonText(
 }
 
 @Composable
-private fun Colors.buttonTextColor(displaySurface: OdsDisplaySurface, style: OdsButtonTextStyle) =
+private fun Colors.buttonTextColor(displaySurface: OdsDisplaySurface, style: OdsTextButtonStyle) =
     when (displaySurface) {
         OdsDisplaySurface.Default -> when (style) {
-            OdsButtonTextStyle.Primary -> MaterialTheme.colors.primary
-            OdsButtonTextStyle.Default -> MaterialTheme.colors.onSurface
+            OdsTextButtonStyle.Primary -> MaterialTheme.colors.primary
+            OdsTextButtonStyle.Default -> MaterialTheme.colors.onSurface
         }
         OdsDisplaySurface.Dark -> when (style) {
-            OdsButtonTextStyle.Primary -> odsDarkThemeColors.primary
-            OdsButtonTextStyle.Default -> odsDarkThemeColors.onSurface
+            OdsTextButtonStyle.Primary -> odsDarkThemeColors.primary
+            OdsTextButtonStyle.Default -> odsDarkThemeColors.onSurface
         }
         OdsDisplaySurface.Light -> when (style) {
-            OdsButtonTextStyle.Primary -> odsLightThemeColors.primary
-            OdsButtonTextStyle.Default -> odsLightThemeColors.onSurface
+            OdsTextButtonStyle.Primary -> odsLightThemeColors.primary
+            OdsTextButtonStyle.Default -> odsLightThemeColors.onSurface
         }
     }
 
 @Composable
 private fun Colors.buttonTextDisabledColor(displaySurface: OdsDisplaySurface) =
-    buttonTextColor(displaySurface = displaySurface, style = OdsButtonTextStyle.Default).copy(alpha = ContentAlpha.disabled)
+    buttonTextColor(displaySurface = displaySurface, style = OdsTextButtonStyle.Default).copy(alpha = ContentAlpha.disabled)
 
 @Composable
-private fun PreviewOdsButtonText(style: OdsButtonTextStyle) = Preview {
-    OdsButtonText(text = "Text", onClick = {}, style = style)
+private fun PreviewOdsTextButton(style: OdsTextButtonStyle) = Preview {
+    OdsTextButton(text = "Text", onClick = {}, style = style)
 }
 
 @Preview(
-    name = "OdsButtonText - Light",
+    name = "OdsTextButton - Light",
     widthDp = 200
 )
 @Composable
-private fun PreviewOdsButtonTextLight(@PreviewParameter(OdsButtonTextPreviewParameterProvider::class) style: OdsButtonTextStyle) {
-    PreviewOdsButtonText(style)
+private fun PreviewOdsTextButtonLight(@PreviewParameter(OdsTextButtonPreviewParameterProvider::class) style: OdsTextButtonStyle) {
+    PreviewOdsTextButton(style)
 }
 
 @Preview(
-    name = "OdsButtonText - Dark",
+    name = "OdsTextButton - Dark",
     uiMode = Configuration.UI_MODE_NIGHT_YES,
     showBackground = true,
     widthDp = 200
 )
 @Composable
-private fun PreviewOdsButtonTextDark(@PreviewParameter(OdsButtonTextPreviewParameterProvider::class) style: OdsButtonTextStyle) {
-    PreviewOdsButtonText(style)
+private fun PreviewOdsTextButtonDark(@PreviewParameter(OdsTextButtonPreviewParameterProvider::class) style: OdsTextButtonStyle) {
+    PreviewOdsTextButton(style)
 }
 
-internal class OdsButtonTextPreviewParameterProvider : EnumPreviewParameterProvider(OdsButtonTextStyle::class)
+internal class OdsTextButtonPreviewParameterProvider : EnumPreviewParameterProvider(OdsTextButtonStyle::class)
