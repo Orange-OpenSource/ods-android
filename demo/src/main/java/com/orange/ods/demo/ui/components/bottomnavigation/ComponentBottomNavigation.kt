@@ -60,9 +60,7 @@ fun ComponentBottomNavigation() {
         bottomSheetScaffoldState = rememberBottomSheetScaffoldState(),
         bottomSheetContent = {
             ComponentCountRow(
-                modifier = Modifier
-                    .padding(horizontal = dimensionResource(id = R.dimen.ods_screen_horizontal_margin))
-                    .padding(bottom = dimensionResource(id = R.dimen.spacing_m)),
+                modifier = Modifier.padding(horizontal = dimensionResource(id = R.dimen.ods_screen_horizontal_margin)),
                 title = stringResource(id = R.string.component_bottom_navigation_navigation_item_count),
                 count = selectedNavigationItemCount,
                 minCount = MinNavigationItemCount,
