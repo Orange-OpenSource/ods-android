@@ -19,7 +19,6 @@ import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.Divider
 import androidx.compose.material.ExperimentalMaterialApi
-import androidx.compose.material.Icon
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
@@ -29,6 +28,9 @@ import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import com.orange.ods.compose.component.list.OdsListItem
+import com.orange.ods.compose.component.list.OdsListItemIcon
+import com.orange.ods.compose.component.list.OdsListItemIconType
+import com.orange.ods.compose.component.list.iconType
 import com.orange.ods.compose.text.OdsTextSubtitle2
 import com.orange.ods.demo.R
 import com.orange.ods.demo.ui.components.utilities.ComponentHeader
@@ -93,7 +95,9 @@ fun ComponentDetailScreen(
 @Composable
 private fun ComponentDetailLinkItem(label: String, onClick: () -> Unit) {
     OdsListItem(
-        icon = { Icon(painter = painterResource(id = R.drawable.ic_play_outline), contentDescription = null) },
+        icon = { OdsListItemIcon(painter = painterResource(id = R.drawable.ic_play_outline), contentDescription = null) },
         text = label,
-        modifier = Modifier.clickable { onClick() })
+        modifier = Modifier
+            .iconType(OdsListItemIconType.Icon)
+            .clickable { onClick() })
 }
