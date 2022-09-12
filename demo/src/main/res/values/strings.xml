@@ -153,7 +153,7 @@
     <!-- Component Switches -->
     <string name="component_switches">Switches</string>
     <string name="component_switches_description">On/off switches toggle the state of a single settings option. The function of the switch should be made clear by the inline label.</string>
-    
+
     <!-- Component Sliders -->
     <string name="component_sliders">Sliders</string>
     <string name="component_sliders_description">Sliders enable the user to set a value by moving the slider thumb. The lowest value is always on the left. Sliders can be either continuous or discrete, where the slider thumb snaps to evenly spaced tick marks along the slider rail.</string>
@@ -180,7 +180,6 @@
     <!-- Component Lists -->
     <string name="component_lists">Lists</string>
     <string name="component_lists_description">A list is a continuous vertical group of data entries like text, icons or images.</string>
-    <string name="component_lists_demo">Lists demo</string>
     <string name="component_list_item_size">List item size</string>
     <string name="component_list_item_size_single_line">1 line</string>
     <string name="component_list_item_size_two_line">2 lines</string>
