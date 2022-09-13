@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## Unreleased
 
+### Added
+
+- \[Demo\] Display composable name associated to each component or variant ([#267](https://github.com/Orange-OpenSource/ods-android/issues/267))
+
 ### Changed
 
 - \[Lib\] Cards and buttons composables have been renamed to match with Jetpack compose SDK naming ([#267](https://github.com/Orange-OpenSource/ods-android/issues/267))

@@ -64,7 +64,8 @@ fun ComponentDetailScreen(
             ) {
                 if (component.variants.isEmpty()) {
                     ComponentDetailLinkItem(
-                        label = context.getString(R.string.component_demo, context.getString(component.titleRes))
+                        label = context.getString(R.string.component_demo, context.getString(component.titleRes)),
+                        composableName = component.composableName
                     ) { onDemoClick() }
                 } else {
                     component.variants.groupBy { it.section }.onEachIndexed { index, (section, variants) ->
@@ -82,7 +83,11 @@ fun ComponentDetailScreen(
 
                         }
                         variants.forEach { variant ->
-                            ComponentDetailLinkItem(label = stringResource(id = variant.titleRes)) { onVariantClick(variant.id) }
+                            ComponentDetailLinkItem(label = stringResource(id = variant.titleRes), composableName = variant.composableName) {
+                                onVariantClick(
+                                    variant.id
+                                )
+                            }
                         }
                     }
                 }
@@ -93,10 +98,11 @@ fun ComponentDetailScreen(
 
 @ExperimentalMaterialApi
 @Composable
-private fun ComponentDetailLinkItem(label: String, onClick: () -> Unit) {
+private fun ComponentDetailLinkItem(label: String, composableName: String?, onClick: () -> Unit) {
     OdsListItem(
         icon = { OdsListItemIcon(painter = painterResource(id = R.drawable.ic_play_outline), contentDescription = null) },
         text = label,
+        secondaryText = composableName,
         modifier = Modifier
             .iconType(OdsListItemIconType.Icon)
             .clickable { onClick() })
