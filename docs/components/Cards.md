@@ -11,8 +11,8 @@ description: Cards contain content and actions about a single subject.
 * [Specifications references](#specifications-references)
 * [Accessibility](#accessibility)
 * [Variants](#variants)
-    * [Card image first](#card-image-first)
-    * [Card title first](#card-title-first)
+    * [Image first card](#image-first-card)
+    * [Title first card](#title-first-card)
     * [Small card](#small-card)
 * [Component specific tokens](#component-specific-tokens)
 
@@ -39,7 +39,7 @@ See the [draggable card section](https://material.io/components/cards/android#ma
 
 The library offers several Composables for Jetpack Compose implementation. In XML, the library is only styling `MaterialCardView`.
 
-### Card image first
+### Image first card
 
 This is a full width card displayed with an image as first element.
 
@@ -71,7 +71,7 @@ OdsImageFirstCard(
 
 See [Cards implementation in XML](#cards-implementation-in-xml)
 
-### Card title first
+### Title first card
 
 This is a full width card displaying with a title and a thumbnail on top as first element.
 
