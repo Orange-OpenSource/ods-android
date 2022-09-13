@@ -25,10 +25,10 @@ import com.orange.ods.demo.ui.utilities.composable.Title
 
 @Composable
 fun ButtonsText() {
-    Title(R.string.component_buttons_text_subtitle_primary, withHorizontalPadding = true)
+    Title(R.string.component_buttons_low_emphasis_primary, withHorizontalPadding = true)
     TextButtons(style = OdsTextButtonStyle.Primary)
 
-    Title(R.string.component_buttons_text_subtitle_default, withHorizontalPadding = true)
+    Title(R.string.component_buttons_low_emphasis_default, withHorizontalPadding = true)
     TextButtons(style = OdsTextButtonStyle.Default)
 }
 
