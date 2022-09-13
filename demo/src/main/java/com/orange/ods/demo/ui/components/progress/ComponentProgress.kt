@@ -29,6 +29,7 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.dimensionResource
+import com.orange.ods.compose.text.OdsTextBody2
 import com.orange.ods.demo.R
 import com.orange.ods.demo.ui.utilities.composable.Subtitle
 import com.orange.ods.demo.ui.utilities.composable.Title
@@ -51,6 +52,8 @@ fun ComponentProgress() {
             .padding(bottom = dimensionResource(id = R.dimen.spacing_m))
     ) {
         Title(textRes = R.string.component_progress_bars)
+        OdsTextBody2(text = "LinearProgressIndicator")
+
         Subtitle(textRes = R.string.component_progress_bar_determinate)
         LinearProgressIndicator(
             progress = determinateProgressAnimation,
@@ -66,6 +69,8 @@ fun ComponentProgress() {
         )
 
         Title(textRes = R.string.component_progress_activity_indicator)
+        OdsTextBody2(text = "CircularProgressIndicator")
+
         Subtitle(textRes = R.string.component_progress_activity_indicator_determinate)
         CircularProgressIndicator(
             progress = determinateProgressAnimation,

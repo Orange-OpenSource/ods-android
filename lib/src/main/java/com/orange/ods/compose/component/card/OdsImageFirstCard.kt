@@ -31,8 +31,8 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.tooling.preview.Preview
 import com.orange.ods.R
-import com.orange.ods.compose.component.button.OdsButtonText
-import com.orange.ods.compose.component.button.OdsButtonTextStyle
+import com.orange.ods.compose.component.button.OdsTextButton
+import com.orange.ods.compose.component.button.OdsTextButtonStyle
 import com.orange.ods.compose.component.utilities.Preview
 import com.orange.ods.compose.text.OdsTextBody1
 import com.orange.ods.compose.text.OdsTextH6
@@ -61,7 +61,7 @@ import com.orange.ods.compose.text.OdsTextSubtitle2
  */
 @ExperimentalMaterialApi
 @Composable
-fun OdsCardImageFirst(
+fun OdsImageFirstCard(
     title: String,
     image: Painter,
     modifier: Modifier = Modifier,
@@ -117,17 +117,17 @@ fun OdsCardImageFirst(
                 horizontalArrangement = Arrangement.spacedBy(dimensionResource(id = R.dimen.spacing_s))
             ) {
                 button1Text?.let {
-                    OdsButtonText(
+                    OdsTextButton(
                         text = it,
                         onClick = { onButton1Click?.invoke() },
-                        style = OdsButtonTextStyle.Primary
+                        style = OdsTextButtonStyle.Primary
                     )
                 }
                 button2Text?.let {
-                    OdsButtonText(
+                    OdsTextButton(
                         text = it,
                         onClick = { onButton2Click?.invoke() },
-                        style = OdsButtonTextStyle.Primary
+                        style = OdsTextButtonStyle.Primary
                     )
                 }
             }
@@ -137,8 +137,8 @@ fun OdsCardImageFirst(
 
 @ExperimentalMaterialApi
 @Composable
-private fun PreviewOdsCardImageFirst() = Preview {
-    OdsCardImageFirst(
+private fun PreviewOdsImageFirstCard() = Preview {
+    OdsImageFirstCard(
         title = "Title",
         subtitle = "Subtitle",
         text = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed non risus. Suspendisse lectus tortor, dignissim sit amet, adipiscing nec, ultricies sed, dolor.",
@@ -148,16 +148,16 @@ private fun PreviewOdsCardImageFirst() = Preview {
     )
 }
 
-@Preview(name = "OdsCardImageFirst - Light")
+@Preview(name = "OdsImageFirstCard - Light")
 @ExperimentalMaterialApi
 @Composable
-private fun PreviewOdsCardImageFirstLight() = PreviewOdsCardImageFirst()
+private fun PreviewOdsImageFirstCardLight() = PreviewOdsImageFirstCard()
 
 @Preview(
-    name = "OdsCardImageFirst - Dark",
+    name = "OdsImageFirstCard - Dark",
     uiMode = Configuration.UI_MODE_NIGHT_YES,
     showBackground = true
 )
 @ExperimentalMaterialApi
 @Composable
-private fun PreviewOdsCardImageFirstDark() = PreviewOdsCardImageFirst()
+private fun PreviewOdsImageFirstCardDark() = PreviewOdsImageFirstCard()

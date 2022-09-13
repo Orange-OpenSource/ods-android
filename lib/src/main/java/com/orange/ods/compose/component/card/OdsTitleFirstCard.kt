@@ -32,8 +32,8 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.orange.ods.R
-import com.orange.ods.compose.component.button.OdsButtonText
-import com.orange.ods.compose.component.button.OdsButtonTextStyle
+import com.orange.ods.compose.component.button.OdsTextButton
+import com.orange.ods.compose.component.button.OdsTextButtonStyle
 import com.orange.ods.compose.component.utilities.OdsImageCircleShape
 import com.orange.ods.compose.component.utilities.Preview
 import com.orange.ods.compose.text.OdsTextBody1
@@ -65,7 +65,7 @@ import com.orange.ods.utilities.extension.orElse
  */
 @ExperimentalMaterialApi
 @Composable
-fun OdsCardTitleFirst(
+fun OdsTitleFirstCard(
     title: String,
     image: Painter,
     modifier: Modifier = Modifier,
@@ -135,17 +135,17 @@ fun OdsCardTitleFirst(
                 horizontalArrangement = Arrangement.spacedBy(dimensionResource(id = R.dimen.spacing_s))
             ) {
                 button1Text?.let {
-                    OdsButtonText(
+                    OdsTextButton(
                         text = it,
                         onClick = { onButton1Click?.invoke() },
-                        style = OdsButtonTextStyle.Primary
+                        style = OdsTextButtonStyle.Primary
                     )
                 }
                 button2Text?.let {
-                    OdsButtonText(
+                    OdsTextButton(
                         text = it,
                         onClick = { onButton2Click?.invoke() },
-                        style = OdsButtonTextStyle.Primary
+                        style = OdsTextButtonStyle.Primary
                     )
                 }
             }
@@ -155,8 +155,8 @@ fun OdsCardTitleFirst(
 
 @ExperimentalMaterialApi
 @Composable
-private fun PreviewOdsCardTitleFirst() = Preview {
-    OdsCardTitleFirst(
+private fun PreviewOdsTitleFirstCard() = Preview {
+    OdsTitleFirstCard(
         title = "Title",
         image = painterResource(id = R.drawable.placeholder),
         thumbnail = painterResource(id = R.drawable.placeholder_small),
@@ -168,15 +168,15 @@ private fun PreviewOdsCardTitleFirst() = Preview {
 }
 
 @ExperimentalMaterialApi
-@Preview(name = "OdsCardTitleFirst - Light")
+@Preview(name = "OdsTitleFirstCard - Light")
 @Composable
-private fun PreviewOdsCardTitleFirstLight() = PreviewOdsCardTitleFirst()
+private fun PreviewOdsTitleFirstCardLight() = PreviewOdsTitleFirstCard()
 
 @ExperimentalMaterialApi
 @Preview(
-    name = "OdsCardTitleFirst - Dark",
+    name = "OdsTitleFirstCard - Dark",
     uiMode = Configuration.UI_MODE_NIGHT_YES,
     showBackground = true
 )
 @Composable
-private fun PreviewOdsCardTitleFirstDark() = PreviewOdsCardTitleFirst()
+private fun PreviewOdsTitleFirstCardDark() = PreviewOdsTitleFirstCard()

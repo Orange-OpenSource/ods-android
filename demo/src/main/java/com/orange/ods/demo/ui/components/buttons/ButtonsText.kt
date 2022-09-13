@@ -17,8 +17,8 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
-import com.orange.ods.compose.component.button.OdsButtonText
-import com.orange.ods.compose.component.button.OdsButtonTextStyle
+import com.orange.ods.compose.component.button.OdsTextButton
+import com.orange.ods.compose.component.button.OdsTextButtonStyle
 import com.orange.ods.compose.theme.OdsDisplaySurface
 import com.orange.ods.demo.R
 import com.orange.ods.demo.ui.utilities.composable.Title
@@ -26,14 +26,14 @@ import com.orange.ods.demo.ui.utilities.composable.Title
 @Composable
 fun ButtonsText() {
     Title(R.string.component_buttons_text_subtitle_primary, withHorizontalPadding = true)
-    TextButtons(style = OdsButtonTextStyle.Primary)
+    TextButtons(style = OdsTextButtonStyle.Primary)
 
     Title(R.string.component_buttons_text_subtitle_default, withHorizontalPadding = true)
-    TextButtons(style = OdsButtonTextStyle.Default)
+    TextButtons(style = OdsTextButtonStyle.Default)
 }
 
 @Composable
-private fun TextButtons(style: OdsButtonTextStyle) {
+private fun TextButtons(style: OdsTextButtonStyle) {
     TextButtonsEnabledDisabled(style = style, hasIcon = false)
     TextButtonsEnabledDisabled(style = style, hasIcon = true)
 
@@ -48,8 +48,8 @@ private fun TextButtons(style: OdsButtonTextStyle) {
 }
 
 @Composable
-private fun TextButtonsEnabledDisabled(style: OdsButtonTextStyle, hasIcon: Boolean, displaySurface: OdsDisplaySurface = OdsDisplaySurface.Default) {
-    OdsButtonText(
+private fun TextButtonsEnabledDisabled(style: OdsTextButtonStyle, hasIcon: Boolean, displaySurface: OdsDisplaySurface = OdsDisplaySurface.Default) {
+    OdsTextButton(
         modifier = Modifier.fullWidthButton(),
         text = stringResource(R.string.component_state_enabled),
         onClick = {},
@@ -57,7 +57,7 @@ private fun TextButtonsEnabledDisabled(style: OdsButtonTextStyle, hasIcon: Boole
         icon = if (hasIcon) painterResource(id = R.drawable.ic_search) else null,
         displaySurface = displaySurface
     )
-    OdsButtonText(
+    OdsTextButton(
         modifier = Modifier.fullWidthButton(false),
         text = stringResource(R.string.component_state_disabled),
         onClick = {},

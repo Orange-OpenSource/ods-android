@@ -11,8 +11,8 @@ description: Cards contain content and actions about a single subject.
 * [Specifications references](#specifications-references)
 * [Accessibility](#accessibility)
 * [Variants](#variants)
-    * [Card image first](#card-image-first)
-    * [Card title first](#card-title-first)
+    * [Image first card](#image-first-card)
+    * [Title first card](#title-first-card)
     * [Small card](#small-card)
 * [Component specific tokens](#component-specific-tokens)
 
@@ -39,7 +39,7 @@ See the [draggable card section](https://material.io/components/cards/android#ma
 
 The library offers several Composables for Jetpack Compose implementation. In XML, the library is only styling `MaterialCardView`.
 
-### Card image first
+### Image first card
 
 This is a full width card displayed with an image as first element.
 
@@ -47,10 +47,10 @@ This is a full width card displayed with an image as first element.
 
 > **Jetpack Compose implementation**
 
-In your composable screen you can use `OdsCardImageFirst` composable:
+In your composable screen you can use `OdsImageFirstCard` composable:
 
 ```kotlin
-OdsCardImageFirst(
+OdsImageFirstCard(
     title = "Title",
     image = painterResource(R.drawable.picture),
     imageContentDescription = "Picture content description", //Optional
@@ -71,7 +71,7 @@ OdsCardImageFirst(
 
 See [Cards implementation in XML](#cards-implementation-in-xml)
 
-### Card title first
+### Title first card
 
 This is a full width card displaying with a title and a thumbnail on top as first element.
 
@@ -79,10 +79,10 @@ This is a full width card displaying with a title and a thumbnail on top as firs
 
 > **Jetpack Compose implementation**
 
-In your composable screen you can use `OdsCardTitleFirst`composable:
+In your composable screen you can use `OdsTitleFirstCard`composable:
 
 ```kotlin
-OdsCardTitleFirst(
+OdsTitleFirstCard(
     title = "Title",
     image = painterResource(R.drawable.picture),
     thumbnail = painterResource(R.drawable.thumbnail), //Optional
@@ -112,19 +112,19 @@ This is a small card which takes the half screen width.
 
 > **Jetpack Compose implementation**
 
-You can add an `OdsCardSmall`composable in your screen to add a small card:
+You can add an `OdsSmallCard`composable in your screen to add a small card:
 
 ```kotlin
 Row(
     horizontalArrangement = Arrangement.spacedBy(16.dp),
 ) {
-    OdsCardSmall(
+    OdsSmallCard(
         title = "Title",
         image = painterResource(R.drawable.picture),
         modifier = Modifier.weight(0.5f),
         onCardClick = {}
     )
-    OdsCardSmall(
+    OdsSmallCard(
         title = "Title",
         image = painterResource(R.drawable.picture),
         modifier = Modifier.weight(0.5f),

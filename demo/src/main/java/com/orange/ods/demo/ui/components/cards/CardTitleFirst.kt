@@ -24,7 +24,7 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
-import com.orange.ods.compose.component.card.OdsCardTitleFirst
+import com.orange.ods.compose.component.card.OdsTitleFirstCard
 import com.orange.ods.demo.R
 import com.orange.ods.demo.ui.components.utilities.ComponentCustomizationBottomSheetScaffold
 import com.orange.ods.demo.ui.components.utilities.clickOnElement
@@ -58,7 +58,7 @@ fun CardTitleFirst() {
                 val button2Text = stringResource(id = R.string.component_element_button2)
                 val cardContainerText = stringResource(id = R.string.component_card_element_container)
 
-                OdsCardTitleFirst(
+                OdsTitleFirstCard(
                     title = stringResource(id = R.string.component_element_title),
                     image = painterResource(id = R.drawable.placeholder),
                     thumbnail = if (hasThumbnail) painterResource(id = R.drawable.placeholder) else null,

@@ -20,7 +20,8 @@ sealed class Component(
     @DrawableRes val imageRes: Int,
     @DrawableRes val smallImageRes: Int?,
     @StringRes val descriptionRes: Int,
-    val variants: List<Variant> = emptyList()
+    val variants: List<Variant> = emptyList(),
+    val composableName: String? = null
 ) {
     companion object {
         const val ImageBackgroundColor = 0xff1b1b1b
@@ -45,7 +46,13 @@ sealed class Component(
     )
 
     object BottomNavigation :
-        Component(R.string.component_bottom_navigation, R.drawable.il_bottom_navigation, null, R.string.component_bottom_navigation_description)
+        Component(
+            R.string.component_bottom_navigation,
+            R.drawable.il_bottom_navigation,
+            null,
+            R.string.component_bottom_navigation_description,
+            composableName = "OdsBottomNavigation"
+        )
 
     object Buttons : Component(
         R.string.component_buttons,
@@ -63,7 +70,14 @@ sealed class Component(
         listOf(Variant.CardImageFirst, Variant.CardTitleFirst, Variant.CardSmall)
     )
 
-    object Checkboxes : Component(R.string.component_checkboxes, R.drawable.il_checkboxes, null, R.string.component_checkboxes_description)
+    object Checkboxes : Component(
+        R.string.component_checkboxes,
+        R.drawable.il_checkboxes,
+        null,
+        R.string.component_checkboxes_description,
+        composableName = "OdsCheckbox"
+    )
+
     object Chips : Component(
         R.string.component_chips,
         R.drawable.il_chips,
@@ -72,19 +86,53 @@ sealed class Component(
         listOf(Variant.Chip, Variant.ChipFilter)
     )
 
-    object Dialogs : Component(R.string.component_dialogs, R.drawable.il_dialogs, null, R.string.component_dialogs_description)
+    object Dialogs : Component(
+        R.string.component_dialogs,
+        R.drawable.il_dialogs,
+        null,
+        R.string.component_dialogs_description,
+        composableName = "OdsAlertDialog"
+    )
 
     object Lists : Component(
         R.string.component_lists,
         R.drawable.il_lists,
         null,
-        R.string.component_lists_description
+        R.string.component_lists_description,
+        composableName = "OdsListItem"
     )
 
-    object Progress : Component(R.string.component_progress, R.drawable.il_progress, null, R.string.component_progress_description)
-    object RadioButtons : Component(R.string.component_radio_buttons, R.drawable.il_radio_buttons, null, R.string.component_radio_buttons_description)
-    object Sliders : Component(R.string.component_sliders, R.drawable.il_sliders, null, R.string.component_sliders_description)
-    object Switches : Component(R.string.component_switches, R.drawable.il_switches, R.drawable.il_switches_small, R.string.component_switches_description)
+    object Progress : Component(
+        R.string.component_progress,
+        R.drawable.il_progress,
+        null,
+        R.string.component_progress_description
+    )
+
+    object RadioButtons : Component(
+        R.string.component_radio_buttons,
+        R.drawable.il_radio_buttons,
+        null,
+        R.string.component_radio_buttons_description,
+        composableName = "OdsRadioButton"
+    )
+
+    object Sliders : Component(
+        R.string.component_sliders,
+        R.drawable.il_sliders,
+        null,
+        R.string.component_sliders_description,
+        composableName = "OdsSlider"
+    )
+
+    object Switches : Component(
+        R.string.component_switches,
+        R.drawable.il_switches,
+        R.drawable.il_switches_small,
+        R.string.component_switches_description,
+        composableName = "OdsSwitch"
+    )
+
     object TextFields : Component(
         R.string.component_text_fields,
         R.drawable.il_text_fields,
@@ -106,6 +154,7 @@ val components = Component::class.sealedSubclasses.mapNotNull { it.objectInstanc
 
 sealed class Variant(
     @StringRes val titleRes: Int,
+    val composableName: String,
     val section: Section? = null
 ) {
 
@@ -116,25 +165,25 @@ sealed class Variant(
 
     val id: Long = Variant::class.sealedSubclasses.indexOf(this::class).toLong()
 
-    object AppBarsTopRegular : Variant(R.string.component_app_bars_top_regular)
+    object AppBarsTopRegular : Variant(R.string.component_app_bars_top_regular, "OdsTopAppBar")
 
-    object ButtonsContained : Variant(R.string.component_buttons_contained)
-    object ButtonsOutlined : Variant(R.string.component_buttons_outlined)
-    object ButtonsText : Variant(R.string.component_buttons_text)
-    object ButtonsToggle : Variant(R.string.component_buttons_toggle)
+    object ButtonsContained : Variant(R.string.component_buttons_contained, "OdsButton")
+    object ButtonsOutlined : Variant(R.string.component_buttons_outlined, "OdsOutlinedButton")
+    object ButtonsText : Variant(R.string.component_buttons_text, "OdsTextButton")
+    object ButtonsToggle : Variant(R.string.component_buttons_toggle, "OdsIconToggleButton")
 
-    object CardImageFirst : Variant(R.string.component_card_image_first)
-    object CardTitleFirst : Variant(R.string.component_card_title_first)
-    object CardSmall : Variant(R.string.component_card_small)
+    object CardImageFirst : Variant(R.string.component_card_image_first, "OdsImageFirstCard")
+    object CardTitleFirst : Variant(R.string.component_card_title_first, "OdsTitleFirstCard")
+    object CardSmall : Variant(R.string.component_card_small, "OdsSmallCard")
 
-    object Chip : Variant(R.string.component_chip)
-    object ChipFilter : Variant(R.string.component_chip_filter)
+    object Chip : Variant(R.string.component_chip, "OdsChip")
+    object ChipFilter : Variant(R.string.component_chip_filter, "OdsFilterChip")
 
-    object TextFieldFilledText : Variant(R.string.component_text_field_text, Section.TextFieldFilled)
-    object TextFieldFilledPassword : Variant(R.string.component_text_field_password, Section.TextFieldFilled)
-    object TextFieldOutlinedText : Variant(R.string.component_text_field_text, Section.TextFieldOutlined)
-    object TextFieldOutlinedPassword : Variant(R.string.component_text_field_password, Section.TextFieldOutlined)
+    object TextFieldFilledText : Variant(R.string.component_text_field_text, "OdsTextField", Section.TextFieldFilled)
+    object TextFieldFilledPassword : Variant(R.string.component_text_field_password, "OdsPasswordTextField", Section.TextFieldFilled)
+    object TextFieldOutlinedText : Variant(R.string.component_text_field_text, "OdsOutlinedTextField", Section.TextFieldOutlined)
+    object TextFieldOutlinedPassword : Variant(R.string.component_text_field_password, "OdsPasswordOutlinedTextField", Section.TextFieldOutlined)
 
-    object TabsFixed : Variant(R.string.component_tabs_fixed)
-    object TabsScrollable : Variant(R.string.component_tabs_scrollable)
+    object TabsFixed : Variant(R.string.component_tabs_fixed, "OdsTabRow")
+    object TabsScrollable : Variant(R.string.component_tabs_scrollable, "OdsScrollableTabRow")
 }
