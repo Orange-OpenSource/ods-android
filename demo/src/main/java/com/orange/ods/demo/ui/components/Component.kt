@@ -70,8 +70,13 @@ sealed class Component(
         listOf(Variant.CardImageFirst, Variant.CardTitleFirst, Variant.CardSmall)
     )
 
-    object Checkboxes :
-        Component(R.string.component_checkboxes, R.drawable.il_checkboxes, null, R.string.component_checkboxes_description, composableName = "OdsCheckbox")
+    object Checkboxes : Component(
+        R.string.component_checkboxes,
+        R.drawable.il_checkboxes,
+        null,
+        R.string.component_checkboxes_description,
+        composableName = "OdsCheckbox"
+    )
 
     object Chips : Component(
         R.string.component_chips,
@@ -81,8 +86,13 @@ sealed class Component(
         listOf(Variant.Chip, Variant.ChipFilter)
     )
 
-    object Dialogs :
-        Component(R.string.component_dialogs, R.drawable.il_dialogs, null, R.string.component_dialogs_description, composableName = "OdsAlertDialog")
+    object Dialogs : Component(
+        R.string.component_dialogs,
+        R.drawable.il_dialogs,
+        null,
+        R.string.component_dialogs_description,
+        composableName = "OdsAlertDialog"
+    )
 
     object Lists : Component(
         R.string.component_lists,
@@ -107,7 +117,14 @@ sealed class Component(
         composableName = "OdsRadioButton"
     )
 
-    object Sliders : Component(R.string.component_sliders, R.drawable.il_sliders, null, R.string.component_sliders_description, composableName = "OdsSlider")
+    object Sliders : Component(
+        R.string.component_sliders,
+        R.drawable.il_sliders,
+        null,
+        R.string.component_sliders_description,
+        composableName = "OdsSlider"
+    )
+
     object Switches : Component(
         R.string.component_switches,
         R.drawable.il_switches,
