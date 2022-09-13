@@ -27,22 +27,22 @@ import com.orange.ods.demo.ui.utilities.composable.Title
 @Composable
 fun ButtonsHighEmphasis() {
     Title(R.string.component_buttons_high_emphasis_primary, withHorizontalPadding = true)
-    TechnicalText(text = "style = OdsButtonStyle.Primary", withHorizontalPadding = true)
+    TechnicalText(text = "OdsButtonStyle.Primary", withHorizontalPadding = true)
     ContainedButtons(style = OdsButtonStyle.Primary)
 
     Title(R.string.component_buttons_high_emphasis_standard, withHorizontalPadding = true)
-    TechnicalText(text = "style = OdsButtonStyle.Default", withHorizontalPadding = true)
+    TechnicalText(text = "OdsButtonStyle.Default", withHorizontalPadding = true)
     ContainedButtons(style = OdsButtonStyle.Default)
 }
 
 @Composable
 fun ButtonsFunctional() {
     Title(R.string.component_buttons_functional_positive, withHorizontalPadding = true)
-    TechnicalText(text = "style = OdsButtonStyle.FunctionalPositive", withHorizontalPadding = true)
+    TechnicalText(text = "OdsButtonStyle.FunctionalPositive", withHorizontalPadding = true)
     ContainedButtonsOnDefaultSurface(style = OdsButtonStyle.FunctionalPositive)
 
     Title(R.string.component_buttons_functional_negative, withHorizontalPadding = true)
-    TechnicalText(text = "style = OdsButtonStyle.FunctionalNegative", withHorizontalPadding = true)
+    TechnicalText(text = "OdsButtonStyle.FunctionalNegative", withHorizontalPadding = true)
     ContainedButtonsOnDefaultSurface(style = OdsButtonStyle.FunctionalNegative)
 }
 
