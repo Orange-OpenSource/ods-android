@@ -13,6 +13,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Changed
 
+- \[Demo\] Components detail screens have been homogenized ([#254](https://github.com/Orange-OpenSource/ods-android/issues/254))
 - \[Lib\] Cards and buttons composables have been renamed to match with Jetpack compose SDK naming ([#267](https://github.com/Orange-OpenSource/ods-android/issues/267))
 
 ## 0.5.0 - 2022-09-07
@@ -31,7 +32,6 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Changed
 
-- \[Demo\] Components detail screens have been homogenized ([#254](https://github.com/Orange-OpenSource/ods-android/issues/254))
 - \[Demo\] Customization radio buttons has been replaced by chips ([#169](https://github.com/Orange-OpenSource/ods-android/issues/169))
 - \[Demo\] The number of items in bottom navigation can now be changed using plus and minus buttons ([#172](https://github.com/Orange-OpenSource/ods-android/issues/172))
 - \[Demo\] Update lists component UI ([#141](https://github.com/Orange-OpenSource/ods-android/issues/141))
