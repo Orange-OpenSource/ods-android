@@ -18,6 +18,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - \[Lib\] Cards and buttons composables have been renamed to match with Jetpack compose SDK naming ([#267](https://github.com/Orange-OpenSource/ods-android/issues/267))
 - \[Lib\] `OdsButtonContainedStyle` has been renamed into `OdsButtonStyle` ([#260](https://github.com/Orange-OpenSource/ods-android/issues/260))
 
+### Fixed
+
+- \[Demo\] Fix vocalization of counters values on change ([#266](https://github.com/Orange-OpenSource/ods-android/issues/266))
+
 ## 0.5.0 - 2022-09-07
 
 ### Added
