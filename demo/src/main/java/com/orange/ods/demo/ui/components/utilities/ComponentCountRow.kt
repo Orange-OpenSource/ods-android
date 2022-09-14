@@ -19,6 +19,10 @@ import androidx.compose.runtime.MutableState
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.semantics.LiveRegionMode
+import androidx.compose.ui.semantics.contentDescription
+import androidx.compose.ui.semantics.liveRegion
+import androidx.compose.ui.semantics.semantics
 import com.orange.ods.compose.text.OdsTextSubtitle1
 import com.orange.ods.demo.R
 
@@ -26,6 +30,8 @@ import com.orange.ods.demo.R
 fun ComponentCountRow(
     title: String,
     count: MutableState<Int>,
+    minusIconContentDescription: String,
+    plusIconContentDescription: String,
     modifier: Modifier = Modifier,
     minCount: Int = 1,
     maxCount: Int = Int.MAX_VALUE
@@ -37,11 +43,14 @@ fun ComponentCountRow(
     ) {
         OdsTextSubtitle1(modifier = Modifier.weight(1f), text = title)
         IconButton(onClick = { count.value-- }, enabled = count.value > minCount) {
-            Icon(painter = painterResource(id = R.drawable.ic_remove), contentDescription = "Remove")
+            Icon(painter = painterResource(id = R.drawable.ic_remove), contentDescription = minusIconContentDescription)
         }
-        OdsTextSubtitle1(text = count.value.toString())
+        OdsTextSubtitle1(text = count.value.toString(), modifier = Modifier.semantics {
+            this.contentDescription = count.value.toString()
+            liveRegion = LiveRegionMode.Polite
+        })
         IconButton(onClick = { count.value++ }, enabled = count.value < maxCount) {
-            Icon(painter = painterResource(id = R.drawable.ic_add), contentDescription = "Add")
+            Icon(painter = painterResource(id = R.drawable.ic_add), contentDescription = plusIconContentDescription)
         }
     }
 }

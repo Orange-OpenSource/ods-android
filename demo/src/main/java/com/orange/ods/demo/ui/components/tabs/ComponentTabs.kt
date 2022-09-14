@@ -102,6 +102,8 @@ fun ComponentTabs(variant: Variant, updateTopAppBarTabs: (TabsConfiguration) -> 
             ComponentCountRow(
                 title = stringResource(id = R.string.component_tabs_count),
                 count = tabsCustomizationState.tabsCount,
+                minusIconContentDescription = stringResource(id = R.string.component_tabs_remove_tab),
+                plusIconContentDescription = stringResource(id = R.string.component_tabs_add_tab),
                 modifier = Modifier
                     .fillMaxWidth()
                     .padding(horizontal = dimensionResource(id = R.dimen.ods_screen_horizontal_margin)),

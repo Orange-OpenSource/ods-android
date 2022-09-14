@@ -63,6 +63,8 @@ fun ComponentBottomNavigation() {
                 modifier = Modifier.padding(horizontal = dimensionResource(id = R.dimen.ods_screen_horizontal_margin)),
                 title = stringResource(id = R.string.component_bottom_navigation_navigation_item_count),
                 count = selectedNavigationItemCount,
+                minusIconContentDescription = stringResource(id = R.string.component_bottom_navigation_remove_item),
+                plusIconContentDescription = stringResource(id = R.string.component_bottom_navigation_add_item),
                 minCount = MinNavigationItemCount,
                 maxCount = MaxNavigationItemCount
             )
