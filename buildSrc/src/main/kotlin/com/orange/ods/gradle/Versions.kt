@@ -30,6 +30,8 @@ object Versions {
     const val firebaseCrashlyticsGradlePlugin = "2.8.1"
     const val jUnit = "4.13.2"
     const val kotlin = "1.6.21"
+    const val kotlinPoet = "1.12.0"
+    const val ksp = "$kotlin-1.0.6"
     const val lifecycle = "2.4.1"
     const val material = "1.5.0"
     const val navigation = "2.4.1"
