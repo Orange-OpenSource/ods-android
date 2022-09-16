@@ -29,7 +29,7 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextAlign
 import com.google.accompanist.pager.ExperimentalPagerApi
 import com.google.accompanist.pager.HorizontalPager
-import com.orange.ods.compose.component.chip.ChoiceChip
+import com.orange.ods.compose.component.chip.OdsChoiceChip
 import com.orange.ods.compose.component.chip.OdsChoiceChipsFlowRow
 import com.orange.ods.demo.R
 import com.orange.ods.demo.ui.components.Variant
@@ -80,17 +80,17 @@ fun ComponentTabs(variant: Variant, updateTopAppBarTabs: (TabsConfiguration) -> 
                 modifier = Modifier.padding(horizontal = dimensionResource(id = R.dimen.ods_screen_horizontal_margin)),
                 outlinedChips = true
             ) {
-                ChoiceChip(
+                OdsChoiceChip(
                     textRes = R.string.component_tab_icon_leading,
                     value = TabsCustomizationState.TabIconType.Leading,
                     enabled = tabsCustomizationState.isTabIconCustomizationEnabled
                 )
-                ChoiceChip(
+                OdsChoiceChip(
                     textRes = R.string.component_tab_icon_top,
                     value = TabsCustomizationState.TabIconType.Top,
                     enabled = tabsCustomizationState.isTabIconCustomizationEnabled
                 )
-                ChoiceChip(
+                OdsChoiceChip(
                     textRes = R.string.component_element_none,
                     value = TabsCustomizationState.TabIconType.None,
                     enabled = tabsCustomizationState.isTabIconCustomizationEnabled

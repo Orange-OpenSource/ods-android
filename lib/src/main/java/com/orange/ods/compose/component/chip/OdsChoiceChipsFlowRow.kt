@@ -24,7 +24,7 @@ import com.orange.ods.R
 import com.orange.ods.compose.component.OdsComponentApi
 
 /**
- * Displays a full width [FlowRow] containing customized choice chips [OdsChoiceChipsFlowRowScope.ChoiceChip].
+ * Displays a full width [FlowRow] containing customized choice chips [OdsChoiceChipsFlowRowScope.OdsChoiceChip].
  *
  * @param selectedChip The selected chips value state.
  * @param modifier Modifier to be applied to the flow row.
@@ -57,7 +57,7 @@ fun <T> OdsChoiceChipsFlowRow(
 @ExperimentalMaterialApi
 @Composable
 @OdsComponentApi
-fun <T> OdsChoiceChipsFlowRowScope<T>.ChoiceChip(text: String, value: T, enabled: Boolean = true) {
+fun <T> OdsChoiceChipsFlowRowScope<T>.OdsChoiceChip(text: String, value: T, enabled: Boolean = true) {
     OdsChip(
         text = text,
         selected = selectedChip.value == value,
@@ -75,8 +75,8 @@ fun <T> OdsChoiceChipsFlowRowScope<T>.ChoiceChip(text: String, value: T, enabled
  */
 @ExperimentalMaterialApi
 @Composable
-fun <T> OdsChoiceChipsFlowRowScope<T>.ChoiceChip(@StringRes textRes: Int, value: T, enabled: Boolean = true) {
-    ChoiceChip(text = stringResource(id = textRes), value = value, enabled = enabled)
+fun <T> OdsChoiceChipsFlowRowScope<T>.OdsChoiceChip(@StringRes textRes: Int, value: T, enabled: Boolean = true) {
+    OdsChoiceChip(text = stringResource(id = textRes), value = value, enabled = enabled)
 }
 
 /**
