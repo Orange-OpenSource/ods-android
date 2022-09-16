@@ -31,6 +31,7 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.tooling.preview.Preview
 import com.orange.ods.R
+import com.orange.ods.compose.component.OdsComponentApi
 import com.orange.ods.compose.component.button.OdsTextButton
 import com.orange.ods.compose.component.button.OdsTextButtonStyle
 import com.orange.ods.compose.component.utilities.Preview
@@ -61,6 +62,7 @@ import com.orange.ods.compose.text.OdsTextSubtitle2
  */
 @ExperimentalMaterialApi
 @Composable
+@OdsComponentApi
 fun OdsImageFirstCard(
     title: String,
     image: Painter,

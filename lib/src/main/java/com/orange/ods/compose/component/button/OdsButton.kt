@@ -28,6 +28,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.painter.Painter
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.tooling.preview.PreviewParameter
+import com.orange.ods.compose.component.OdsComponentApi
 import com.orange.ods.compose.component.utilities.EnumPreviewParameterProvider
 import com.orange.ods.compose.component.utilities.Preview
 import com.orange.ods.compose.theme.Black900
@@ -72,7 +73,9 @@ enum class OdsButtonStyle {
  * @param displaySurface optional allow to force the button display on a dark or light
  * surface. By default the appearance applied is based on the system night mode value.
  */
+
 @Composable
+@OdsComponentApi
 fun OdsButton(
     text: String,
     onClick: () -> Unit,

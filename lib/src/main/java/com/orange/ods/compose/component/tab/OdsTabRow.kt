@@ -23,6 +23,7 @@ import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
+import com.orange.ods.compose.component.OdsComponentApi
 import com.orange.ods.compose.component.utilities.Preview
 
 /**
@@ -38,6 +39,7 @@ import com.orange.ods.compose.component.utilities.Preview
  * space. Use [OdsTab] to display Orange styled tabs.
  */
 @Composable
+@OdsComponentApi
 fun OdsTabRow(
     selectedTabIndex: Int,
     modifier: Modifier = Modifier,

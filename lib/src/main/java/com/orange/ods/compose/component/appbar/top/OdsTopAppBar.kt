@@ -26,6 +26,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import com.orange.ods.compose.component.OdsComponentApi
 import com.orange.ods.compose.component.utilities.Preview
 
 /**
@@ -47,6 +48,7 @@ import com.orange.ods.compose.component.utilities.Preview
  * @param elevated True to set an elevation to the top app bar (shadow displayed), false otherwise.
  */
 @Composable
+@OdsComponentApi
 fun OdsTopAppBar(
     modifier: Modifier = Modifier,
     title: String? = null,

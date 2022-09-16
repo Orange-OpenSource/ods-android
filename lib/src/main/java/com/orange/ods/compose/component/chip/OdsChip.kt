@@ -35,6 +35,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.tooling.preview.PreviewParameter
 import androidx.compose.ui.unit.dp
 import com.orange.ods.R
+import com.orange.ods.compose.component.OdsComponentApi
 import com.orange.ods.compose.component.utilities.BasicPreviewParameterProvider
 import com.orange.ods.compose.component.utilities.OdsImageCircleShape
 import com.orange.ods.compose.component.utilities.Preview
@@ -69,6 +70,7 @@ internal const val ChipSurfaceOverlayOpacity = 0.12f
  */
 @ExperimentalMaterialApi
 @Composable
+@OdsComponentApi
 fun OdsChip(
     text: String,
     onClick: () -> Unit,

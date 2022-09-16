@@ -25,6 +25,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.Preview
+import com.orange.ods.compose.component.OdsComponentApi
 import com.orange.ods.compose.component.utilities.Preview
 
 /**
@@ -43,6 +44,7 @@ import com.orange.ods.compose.component.utilities.Preview
  * [OdsBottomNavigationItem]s
  */
 @Composable
+@OdsComponentApi
 fun OdsBottomNavigation(
     modifier: Modifier = Modifier,
     content: @Composable RowScope.() -> Unit
@@ -81,6 +83,7 @@ fun OdsBottomNavigation(
  * only be shown when this item is selected.
  */
 @Composable
+@OdsComponentApi
 fun RowScope.OdsBottomNavigationItem(
     selected: Boolean,
     onClick: () -> Unit,

@@ -21,6 +21,7 @@ import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.stringResource
 import com.google.accompanist.flowlayout.FlowRow
 import com.orange.ods.R
+import com.orange.ods.compose.component.OdsComponentApi
 
 /**
  * Displays a full width [FlowRow] containing customized choice chips [OdsChoiceChipsFlowRowScope.ChoiceChip].
@@ -31,6 +32,7 @@ import com.orange.ods.R
  * @param content The content of the choice chips [FlowRow].
  */
 @Composable
+@OdsComponentApi
 fun <T> OdsChoiceChipsFlowRow(
     selectedChip: MutableState<T>,
     modifier: Modifier = Modifier,
@@ -54,6 +56,7 @@ fun <T> OdsChoiceChipsFlowRow(
  */
 @ExperimentalMaterialApi
 @Composable
+@OdsComponentApi
 fun <T> OdsChoiceChipsFlowRowScope<T>.ChoiceChip(text: String, value: T, enabled: Boolean = true) {
     OdsChip(
         text = text,

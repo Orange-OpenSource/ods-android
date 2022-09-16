@@ -27,6 +27,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.tooling.preview.Preview
+import com.orange.ods.compose.component.OdsComponentApi
 import com.orange.ods.compose.component.textfield.odsOutlinedTextFieldColors
 import com.orange.ods.compose.component.utilities.Preview
 
@@ -60,6 +61,7 @@ import com.orange.ods.compose.component.utilities.Preview
  * [KeyboardOptions.imeAction].
  */
 @Composable
+@OdsComponentApi
 fun OdsPasswordOutlinedTextField(
     value: String,
     onValueChange: (String) -> Unit,
