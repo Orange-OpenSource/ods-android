@@ -73,7 +73,7 @@ android {
 
     firebaseAppDistribution {
         releaseNotesFile = Firebase_gradle.AppDistribution.releaseNotesFilePath
-        groups = "ods-android-internal-tests"
+        groups = project.findTypedProperty("appDistributionGroup")
     }
 
     compileOptions {
