@@ -44,6 +44,8 @@ fun ComponentTopAppBar(updateTopAppBar: (TopAppBarConfiguration) -> Unit) {
                 modifier = Modifier.padding(start = dimensionResource(id = R.dimen.ods_screen_horizontal_margin)),
                 title = stringResource(id = R.string.component_app_bars_top_actions_count),
                 count = customizationState.actionCount,
+                minusIconContentDescription = stringResource(id = R.string.component_app_bars_top_remove_action),
+                plusIconContentDescription = stringResource(id = R.string.component_app_bars_top_add_action),
                 minCount = customizationState.minActionCount,
                 maxCount = customizationState.maxActionCountSelectable
             )
