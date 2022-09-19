@@ -38,9 +38,10 @@ fun ComponentButtons(variant: Variant) {
             .verticalScroll(rememberScrollState())
     ) {
         when (variant) {
-            Variant.ButtonsContained -> ButtonsContained()
+            Variant.ButtonsContained -> ButtonsHighEmphasis()
             Variant.ButtonsOutlined -> ButtonsOutlined()
             Variant.ButtonsText -> ButtonsText()
+            Variant.ButtonsFunctional -> ButtonsFunctional()
             Variant.ButtonsToggle -> ButtonsToggle()
             else -> {}
         }

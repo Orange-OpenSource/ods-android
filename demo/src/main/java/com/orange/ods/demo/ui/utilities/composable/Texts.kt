@@ -14,6 +14,9 @@ import androidx.annotation.StringRes
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
+import androidx.compose.material.ContentAlpha
+import androidx.compose.material.MaterialTheme
+import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -53,5 +56,17 @@ fun Subtitle(@StringRes textRes: Int, displaySurface: OdsDisplaySurface = OdsDis
             .padding(top = dimensionResource(id = R.dimen.spacing_m))
             .padding(horizontal = if (withHorizontalPadding) dimensionResource(R.dimen.ods_screen_horizontal_margin) else 0.dp),
         displaySurface = displaySurface
+    )
+}
+
+@Composable
+fun TechnicalText(text: String, withHorizontalPadding: Boolean = false) {
+    Text(
+        text = text,
+        modifier = Modifier
+            .fillMaxWidth()
+            .padding(horizontal = if (withHorizontalPadding) dimensionResource(R.dimen.ods_screen_horizontal_margin) else 0.dp),
+        style = MaterialTheme.typography.body2,
+        color = MaterialTheme.colors.onBackground.copy(alpha = ContentAlpha.medium)
     )
 }

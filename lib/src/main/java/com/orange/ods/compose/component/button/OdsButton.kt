@@ -39,9 +39,9 @@ import com.orange.ods.compose.theme.odsDarkThemeColors
 import com.orange.ods.compose.theme.odsLightThemeColors
 
 /**
- * Specifying an [OdsButtonContainedStyle] allow to display a button with specific colors.
+ * Specifying an [OdsButtonStyle] allow to display a button with specific colors.
  */
-enum class OdsButtonContainedStyle {
+enum class OdsButtonStyle {
     Default, Primary, FunctionalPositive, FunctionalNegative;
 
     @Composable
@@ -79,7 +79,7 @@ fun OdsButton(
     modifier: Modifier = Modifier,
     icon: Painter? = null,
     enabled: Boolean = true,
-    style: OdsButtonContainedStyle = OdsButtonContainedStyle.Default,
+    style: OdsButtonStyle = OdsButtonStyle.Default,
     displaySurface: OdsDisplaySurface = OdsDisplaySurface.Default
 ) {
     CompositionLocalProvider(LocalRippleTheme provides OdsOnPrimaryRippleTheme) {
@@ -179,7 +179,7 @@ private object OdsOnPrimaryRippleTheme : RippleTheme {
 }
 
 @Composable
-private fun PreviewOdsButton(style: OdsButtonContainedStyle) = Preview {
+private fun PreviewOdsButton(style: OdsButtonStyle) = Preview {
     OdsButton(text = "Text", onClick = {}, style = style)
 }
 
@@ -188,7 +188,7 @@ private fun PreviewOdsButton(style: OdsButtonContainedStyle) = Preview {
     name = "OdsButton - Light",
     widthDp = 200
 )
-private fun PreviewOdsButtonLight(@PreviewParameter(OdsButtonPreviewParameterProvider::class) style: OdsButtonContainedStyle) {
+private fun PreviewOdsButtonLight(@PreviewParameter(OdsButtonPreviewParameterProvider::class) style: OdsButtonStyle) {
     PreviewOdsButton(style)
 }
 
@@ -199,8 +199,8 @@ private fun PreviewOdsButtonLight(@PreviewParameter(OdsButtonPreviewParameterPro
     showBackground = true,
     widthDp = 200
 )
-private fun PreviewOdsButtonDark(@PreviewParameter(OdsButtonPreviewParameterProvider::class) style: OdsButtonContainedStyle) {
+private fun PreviewOdsButtonDark(@PreviewParameter(OdsButtonPreviewParameterProvider::class) style: OdsButtonStyle) {
     PreviewOdsButton(style)
 }
 
-internal class OdsButtonPreviewParameterProvider : EnumPreviewParameterProvider(OdsButtonContainedStyle::class)
+internal class OdsButtonPreviewParameterProvider : EnumPreviewParameterProvider(OdsButtonStyle::class)

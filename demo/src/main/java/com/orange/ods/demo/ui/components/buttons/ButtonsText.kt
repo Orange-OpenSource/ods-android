@@ -17,18 +17,23 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
+import com.orange.ods.compose.component.button.OdsButtonStyle
 import com.orange.ods.compose.component.button.OdsTextButton
 import com.orange.ods.compose.component.button.OdsTextButtonStyle
 import com.orange.ods.compose.theme.OdsDisplaySurface
 import com.orange.ods.demo.R
+import com.orange.ods.demo.ui.utilities.composable.TechnicalText
 import com.orange.ods.demo.ui.utilities.composable.Title
+import com.orange.ods.utilities.extension.fullName
 
 @Composable
 fun ButtonsText() {
-    Title(R.string.component_buttons_text_subtitle_primary, withHorizontalPadding = true)
+    Title(R.string.component_buttons_low_emphasis_primary, withHorizontalPadding = true)
+    TechnicalText(text = OdsButtonStyle.Primary.fullName, withHorizontalPadding = true)
     TextButtons(style = OdsTextButtonStyle.Primary)
 
-    Title(R.string.component_buttons_text_subtitle_default, withHorizontalPadding = true)
+    Title(R.string.component_buttons_low_emphasis_default, withHorizontalPadding = true)
+    TechnicalText(text = OdsButtonStyle.Default.fullName, withHorizontalPadding = true)
     TextButtons(style = OdsTextButtonStyle.Default)
 }
 

@@ -18,34 +18,43 @@ import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import com.orange.ods.compose.component.button.OdsButton
-import com.orange.ods.compose.component.button.OdsButtonContainedStyle
+import com.orange.ods.compose.component.button.OdsButtonStyle
 import com.orange.ods.compose.theme.OdsDisplaySurface
 import com.orange.ods.demo.R
+import com.orange.ods.demo.ui.utilities.composable.TechnicalText
 import com.orange.ods.demo.ui.utilities.composable.Title
+import com.orange.ods.utilities.extension.fullName
 
 @Composable
-fun ButtonsContained() {
-    Title(R.string.component_buttons_contained_primary, withHorizontalPadding = true)
-    ContainedButtons(style = OdsButtonContainedStyle.Primary)
+fun ButtonsHighEmphasis() {
+    Title(R.string.component_buttons_high_emphasis_primary, withHorizontalPadding = true)
+    TechnicalText(text = OdsButtonStyle.Primary.fullName, withHorizontalPadding = true)
+    ContainedButtons(style = OdsButtonStyle.Primary)
 
-    Title(R.string.component_buttons_contained_standard, withHorizontalPadding = true)
-    ContainedButtons(style = OdsButtonContainedStyle.Default)
-
-    Title(R.string.component_buttons_contained_functional_positive, withHorizontalPadding = true)
-    ContainedButtonsOnDefaultSurface(style = OdsButtonContainedStyle.FunctionalPositive)
-
-    Title(R.string.component_buttons_contained_functional_negative, withHorizontalPadding = true)
-    ContainedButtonsOnDefaultSurface(style = OdsButtonContainedStyle.FunctionalNegative)
+    Title(R.string.component_buttons_high_emphasis_standard, withHorizontalPadding = true)
+    TechnicalText(text = OdsButtonStyle.Default.fullName, withHorizontalPadding = true)
+    ContainedButtons(style = OdsButtonStyle.Default)
 }
 
 @Composable
-private fun ContainedButtonsOnDefaultSurface(style: OdsButtonContainedStyle) {
+fun ButtonsFunctional() {
+    Title(R.string.component_buttons_functional_positive, withHorizontalPadding = true)
+    TechnicalText(text = OdsButtonStyle.FunctionalPositive.fullName, withHorizontalPadding = true)
+    ContainedButtonsOnDefaultSurface(style = OdsButtonStyle.FunctionalPositive)
+
+    Title(R.string.component_buttons_functional_negative, withHorizontalPadding = true)
+    TechnicalText(text = OdsButtonStyle.FunctionalNegative.fullName, withHorizontalPadding = true)
+    ContainedButtonsOnDefaultSurface(style = OdsButtonStyle.FunctionalNegative)
+}
+
+@Composable
+private fun ContainedButtonsOnDefaultSurface(style: OdsButtonStyle) {
     ContainedButtonsEnabledDisabled(style = style, hasIcon = false)
     ContainedButtonsEnabledDisabled(style = style, hasIcon = true)
 }
 
 @Composable
-private fun ContainedButtons(style: OdsButtonContainedStyle) {
+private fun ContainedButtons(style: OdsButtonStyle) {
     ContainedButtonsOnDefaultSurface(style)
 
     Spacer(modifier = Modifier.padding(top = dimensionResource(R.dimen.spacing_s)))
@@ -60,7 +69,7 @@ private fun ContainedButtons(style: OdsButtonContainedStyle) {
 
 @Composable
 private fun ContainedButtonsEnabledDisabled(
-    style: OdsButtonContainedStyle,
+    style: OdsButtonStyle,
     hasIcon: Boolean,
     displaySurface: OdsDisplaySurface = OdsDisplaySurface.Default
 ) {
