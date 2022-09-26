@@ -59,7 +59,7 @@ sealed class Component(
         R.drawable.il_buttons,
         R.drawable.il_buttons_small,
         R.string.component_buttons_description,
-        listOf(Variant.ButtonsContained, Variant.ButtonsOutlined, Variant.ButtonsText, Variant.ButtonsFunctional, Variant.ButtonsToggle)
+        listOf(Variant.ButtonsPrimary, Variant.ButtonsContained, Variant.ButtonsOutlined, Variant.ButtonsText, Variant.ButtonsFunctional, Variant.ButtonsToggle)
     )
 
     object Cards : Component(
@@ -168,7 +168,8 @@ sealed class Variant(
 
     object AppBarsTopRegular : Variant(R.string.component_app_bars_top_regular, "OdsTopAppBar")
 
-    object ButtonsContained : Variant(R.string.component_buttons_high_emphasis, "OdsButton with an high emphasis style")
+    object ButtonsPrimary : Variant(R.string.component_buttons_highest_emphasis, "OdsButton with OdsButtonStyle.Primary")
+    object ButtonsContained : Variant(R.string.component_buttons_high_emphasis, "OdsButton with OdsButtonStyle.Default")
     object ButtonsOutlined : Variant(R.string.component_buttons_medium_emphasis, "OdsOutlinedButton")
     object ButtonsText : Variant(R.string.component_buttons_low_emphasis, "OdsTextButton")
     object ButtonsFunctional : Variant(R.string.component_buttons_functional, "OdsButton with a functional style")

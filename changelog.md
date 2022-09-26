@@ -15,7 +15,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - \[Demo\] Progress & activities components have been split in two variants ([#282](https://github.com/Orange-OpenSource/ods-android/issues/282))
 - \[Demo\] Components detail screens have been homogenized ([#254](https://github.com/Orange-OpenSource/ods-android/issues/254))
-- \[Demo\] Variants displayed in buttons detail screen have been changed ([#260](https://github.com/Orange-OpenSource/ods-android/issues/260))
+- \[Demo\] Variants displayed in buttons detail screen have been changed ([#260](https://github.com/Orange-OpenSource/ods-android/issues/260), [#278](https://github.com/Orange-OpenSource/ods-android/issues/278))
 - \[Demo\] Expand components customization bottom sheets by default ([#284](https://github.com/Orange-OpenSource/ods-android/issues/284))
 - \[Lib\] Cards and buttons composables have been renamed to match with Jetpack compose SDK naming ([#267](https://github.com/Orange-OpenSource/ods-android/issues/267))
 - \[Lib\] `OdsButtonContainedStyle` has been renamed into `OdsButtonStyle` ([#260](https://github.com/Orange-OpenSource/ods-android/issues/260))
