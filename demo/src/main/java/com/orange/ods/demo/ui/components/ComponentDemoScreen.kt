@@ -17,7 +17,6 @@ import com.orange.ods.demo.ui.components.bottomnavigation.ComponentBottomNavigat
 import com.orange.ods.demo.ui.components.checkboxes.ComponentCheckboxes
 import com.orange.ods.demo.ui.components.dialogs.ComponentDialog
 import com.orange.ods.demo.ui.components.lists.ComponentLists
-import com.orange.ods.demo.ui.components.progress.ComponentProgress
 import com.orange.ods.demo.ui.components.radiobuttons.ComponentRadioButtons
 import com.orange.ods.demo.ui.components.sliders.ComponentSliders
 import com.orange.ods.demo.ui.components.switches.ComponentSwitches
@@ -37,7 +36,6 @@ fun ComponentDemoScreen(
             Component.Checkboxes -> ComponentCheckboxes()
             Component.Dialogs -> ComponentDialog()
             Component.Lists -> ComponentLists()
-            Component.Progress -> ComponentProgress()
             Component.RadioButtons -> ComponentRadioButtons()
             Component.Sliders -> ComponentSliders()
             Component.Switches -> ComponentSwitches()
