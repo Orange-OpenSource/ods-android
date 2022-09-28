@@ -9,7 +9,8 @@
   -->
 
 <resources>
-    <string name="content_desc_selected">Selected</string>
+    <string name="state_selected">Selected</string>
+    <string name="state_not_selected">Not selected</string>
 
     <string name="text_field_password_show">Show password</string>
     <string name="text_field_password_hide">Hide password</string>

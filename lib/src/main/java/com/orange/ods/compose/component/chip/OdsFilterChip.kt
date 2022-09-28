@@ -120,7 +120,7 @@ private fun OdsChipSelectedIcon(tint: Color = LocalContentColor.current.copy(alp
     Icon(
         modifier = Modifier.size(dimensionResource(id = R.dimen.chip_icon_size)),
         painter = painterResource(id = R.drawable.ic_check),
-        contentDescription = stringResource(id = R.string.content_desc_selected),
+        contentDescription = stringResource(id = R.string.state_selected),
         tint = tint
     )
 }
