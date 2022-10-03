@@ -42,7 +42,7 @@
     <!-- Components -->
     <string name="component_force_on_dark">Forced on dark</string>
     <string name="component_force_on_light">Forced on light</string>
-    <string name="component_customize">Click to customize</string>
+    <string name="component_customize">Customize</string>
     <string name="component_type">Type</string>
     <string name="component_state">State</string>
     <string name="component_state_enabled">Enabled</string>
