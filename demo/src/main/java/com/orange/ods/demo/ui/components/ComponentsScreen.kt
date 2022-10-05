@@ -29,12 +29,13 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import com.orange.ods.compose.component.card.OdsSmallCard
 import com.orange.ods.demo.R
+import com.orange.ods.demo.ui.LocalTopAppBarManager
 import com.orange.ods.utilities.extension.orElse
 
 @ExperimentalMaterialApi
 @Composable
-fun ComponentsScreen(onComponentClick: (Long) -> Unit, updateTopBarTitle: (Int) -> Unit) {
-    updateTopBarTitle(R.string.navigation_item_components)
+fun ComponentsScreen(onComponentClick: (Long) -> Unit) {
+    LocalTopAppBarManager.current.updateTopAppBarTitle(R.string.navigation_item_components)
     val scrollState = rememberScrollState()
     Column(
         modifier = Modifier

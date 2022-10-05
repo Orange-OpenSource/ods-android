@@ -46,8 +46,8 @@ import com.orange.ods.compose.component.bottomnavigation.OdsBottomNavigationItem
 import com.orange.ods.compose.theme.OdsMaterialTheme
 import com.orange.ods.demo.ui.about.addAboutGraph
 import com.orange.ods.demo.ui.components.addComponentsGraph
+import com.orange.ods.demo.ui.components.tabs.LocalTabsManager
 import com.orange.ods.demo.ui.components.tabs.OdsDemoTabsState
-import com.orange.ods.demo.ui.components.tabs.TabsConfiguration
 import com.orange.ods.demo.ui.components.tabs.TopAppBarFixedTabs
 import com.orange.ods.demo.ui.components.tabs.TopAppBarScrollableTabs
 import com.orange.ods.demo.ui.guidelines.addGuidelinesGraph
@@ -67,7 +67,11 @@ fun OdsDemoApp() {
         isDarkModeEnabled = appState.darkModeEnabled.value
     }
 
-    CompositionLocalProvider(LocalConfiguration provides configuration) {
+    CompositionLocalProvider(
+        LocalConfiguration provides configuration,
+        LocalTopAppBarManager provides appState.topAppBarState,
+        LocalTabsManager provides appState.tabsState
+    ) {
         OdsMaterialTheme(configuration.isDarkModeEnabled) {
             Scaffold(
                 topBar = {
@@ -102,13 +106,7 @@ fun OdsDemoApp() {
             ) { innerPadding ->
                 Box(modifier = Modifier.padding(innerPadding)) {
                     NavHost(appState.navController, startDestination = MainDestinations.HOME_ROUTE) {
-                        odsDemoNavGraph(
-                            onNavElementClick = appState::navigateToElement,
-                            updateTopBarTitle = appState.topAppBarState::updateTopAppBarTitle,
-                            updateTopAppBar = appState.topAppBarState::updateTopAppBar,
-                            updateTopAppBarTabs = appState.tabsState::updateTopAppBarTabs,
-                            clearTopAppBarTabs = appState.tabsState::clearTopAppBarTabs
-                        )
+                        odsDemoNavGraph(navigateToElement = appState::navigateToElement)
                     }
                 }
             }
@@ -169,21 +167,15 @@ private fun OdsDemoBottomBar(tabs: Array<HomeSections>, currentRoute: String, na
 
 @ExperimentalPagerApi
 @ExperimentalMaterialApi
-private fun NavGraphBuilder.odsDemoNavGraph(
-    onNavElementClick: (String, Long?, NavBackStackEntry) -> Unit,
-    updateTopBarTitle: (Int) -> Unit,
-    updateTopAppBar: (TopAppBarConfiguration) -> Unit,
-    updateTopAppBarTabs: (TabsConfiguration) -> Unit,
-    clearTopAppBarTabs: () -> Unit
-) {
+private fun NavGraphBuilder.odsDemoNavGraph(navigateToElement: (String, Long?, NavBackStackEntry) -> Unit) {
     navigation(
         route = MainDestinations.HOME_ROUTE,
         startDestination = HomeSections.GUIDELINES.route
     ) {
-        addHomeGraph(onNavElementClick, updateTopBarTitle, clearTopAppBarTabs)
+        addHomeGraph(navigateToElement)
     }
 
-    addGuidelinesGraph(updateTopBarTitle, clearTopAppBarTabs)
-    addComponentsGraph(onNavElementClick, updateTopBarTitle, updateTopAppBar, updateTopAppBarTabs, clearTopAppBarTabs)
-    addAboutGraph(updateTopBarTitle, clearTopAppBarTabs)
+    addGuidelinesGraph()
+    addComponentsGraph(navigateToElement)
+    addAboutGraph()
 }

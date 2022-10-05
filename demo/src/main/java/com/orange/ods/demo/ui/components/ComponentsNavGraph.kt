@@ -17,35 +17,28 @@ import androidx.navigation.NavType
 import androidx.navigation.compose.composable
 import androidx.navigation.navArgument
 import com.google.accompanist.pager.ExperimentalPagerApi
+import com.orange.ods.demo.ui.LocalTopAppBarManager
 import com.orange.ods.demo.ui.MainDestinations
 import com.orange.ods.demo.ui.OdsDemoTopAppBarState
-import com.orange.ods.demo.ui.TopAppBarConfiguration
-import com.orange.ods.demo.ui.components.tabs.TabsConfiguration
+import com.orange.ods.demo.ui.components.tabs.LocalTabsManager
 
 @ExperimentalMaterialApi
 @ExperimentalPagerApi
-fun NavGraphBuilder.addComponentsGraph(
-    onNavElementClick: (String, Long?, NavBackStackEntry) -> Unit,
-    updateTopBarTitle: (Int) -> Unit,
-    updateTopAppBar: (TopAppBarConfiguration) -> Unit,
-    updateTopAppBarTabs: (TabsConfiguration) -> Unit,
-    clearTopAppBarTabs: () -> Unit
-) {
+fun NavGraphBuilder.addComponentsGraph(navigateToElement: (String, Long?, NavBackStackEntry) -> Unit) {
     composable(
         "${MainDestinations.COMPONENT_DETAIL_ROUTE}/{${MainDestinations.COMPONENT_ID_KEY}}",
         arguments = listOf(navArgument(MainDestinations.COMPONENT_ID_KEY) { type = NavType.LongType })
     ) { from ->
         // Restore default values for tabs and top app bar
-        clearTopAppBarTabs()
-        updateTopAppBar(OdsDemoTopAppBarState.DefaultConfiguration)
+        LocalTabsManager.current.clearTopAppBarTabs()
+        LocalTopAppBarManager.current.updateTopAppBar(OdsDemoTopAppBarState.DefaultConfiguration)
 
         val arguments = requireNotNull(from.arguments)
         val componentId = arguments.getLong(MainDestinations.COMPONENT_ID_KEY)
         ComponentDetailScreen(
-            componentId,
-            onVariantClick = { variantId -> onNavElementClick(MainDestinations.COMPONENT_VARIANT_ROUTE, variantId, from) },
-            onDemoClick = { onNavElementClick(MainDestinations.COMPONENT_DEMO_ROUTE, componentId, from) },
-            updateTopBarTitle = updateTopBarTitle
+            componentId = componentId,
+            onVariantClick = { variantId -> navigateToElement(MainDestinations.COMPONENT_VARIANT_ROUTE, variantId, from) },
+            onDemoClick = { navigateToElement(MainDestinations.COMPONENT_DEMO_ROUTE, componentId, from) }
         )
     }
 
@@ -55,12 +48,7 @@ fun NavGraphBuilder.addComponentsGraph(
     ) { from ->
         val arguments = requireNotNull(from.arguments)
         val variantId = arguments.getLong(MainDestinations.COMPONENT_VARIANT_ID_KEY)
-        ComponentVariantScreen(
-            variantId = variantId,
-            updateTopBarTitle = updateTopBarTitle,
-            updateTopAppBar = updateTopAppBar,
-            updateTopAppBarTabs = updateTopAppBarTabs
-        )
+        ComponentVariantScreen(variantId = variantId)
     }
 
     composable(
@@ -69,9 +57,6 @@ fun NavGraphBuilder.addComponentsGraph(
     ) { from ->
         val arguments = requireNotNull(from.arguments)
         val componentId = arguments.getLong(MainDestinations.COMPONENT_ID_KEY)
-        ComponentDemoScreen(
-            componentId = componentId,
-            updateTopBarTitle = updateTopBarTitle
-        )
+        ComponentDemoScreen(componentId = componentId)
     }
 }

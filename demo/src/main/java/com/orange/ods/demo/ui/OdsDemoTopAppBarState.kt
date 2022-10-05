@@ -34,7 +34,7 @@ class OdsDemoTopAppBarState(
     val actionCount: MutableState<Int>,
     private val navigationIconEnabled: MutableState<Boolean>,
     private val overflowMenuEnabled: MutableState<Boolean>
-) {
+) : OdsDemoTopAppBarManager {
 
     companion object {
         val DefaultConfiguration = TopAppBarConfiguration(
@@ -54,13 +54,13 @@ class OdsDemoTopAppBarState(
     val isOverflowMenuEnabled: Boolean
         get() = overflowMenuEnabled.value
 
-    fun updateTopAppBar(topAppBarConfiguration: TopAppBarConfiguration) {
+    override fun updateTopAppBar(topAppBarConfiguration: TopAppBarConfiguration) {
         navigationIconEnabled.value = topAppBarConfiguration.isNavigationIconEnabled
         actionCount.value = topAppBarConfiguration.actionCount
         overflowMenuEnabled.value = topAppBarConfiguration.isOverflowMenuEnabled
     }
 
-    fun updateTopAppBarTitle(titleRes: Int) {
+    override fun updateTopAppBarTitle(titleRes: Int) {
         this.titleRes.value = titleRes
     }
 

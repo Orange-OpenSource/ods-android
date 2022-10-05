@@ -46,7 +46,7 @@ private const val ScrollableTabsCountMax = 6
 @ExperimentalMaterialApi
 @ExperimentalPagerApi
 @Composable
-fun ComponentTabs(variant: Variant, updateTopAppBarTabs: (TabsConfiguration) -> Unit) {
+fun ComponentTabs(variant: Variant) {
     val scrollableTabs: Boolean
     val tabCountMin: Int
     val tabCountMax: Int
@@ -61,7 +61,7 @@ fun ComponentTabs(variant: Variant, updateTopAppBarTabs: (TabsConfiguration) -> 
     }
 
     val tabsCustomizationState = rememberTabsCustomizationState(tabsCount = rememberSaveable { mutableStateOf(tabCountMin) })
-    updateTopAppBarTabs(
+    LocalTabsManager.current.updateTopAppBarTabs(
         TabsConfiguration(
             scrollableTabs = scrollableTabs,
             tabs = tabsCustomizationState.tabs,

@@ -48,12 +48,13 @@ import com.orange.ods.compose.text.OdsTextH6
 import com.orange.ods.compose.theme.Black900
 import com.orange.ods.compose.theme.White100
 import com.orange.ods.demo.R
+import com.orange.ods.demo.ui.LocalTopAppBarManager
 import com.orange.ods.demo.ui.utilities.composable.Title
 import com.orange.ods.demo.ui.utilities.getStringName
 
 @Composable
-fun GuidelineColorScreen(updateTopBarTitle: (Int) -> Unit) {
-    updateTopBarTitle(R.string.guideline_color)
+fun GuidelineColorScreen() {
+    LocalTopAppBarManager.current.updateTopAppBarTitle(R.string.guideline_color)
     ColorList(getColorList(isSystemInDarkTheme()))
 }
 

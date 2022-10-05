@@ -24,6 +24,7 @@ import androidx.compose.ui.viewinterop.AndroidView
 import androidx.webkit.WebSettingsCompat
 import androidx.webkit.WebViewFeature
 import com.orange.ods.demo.R
+import com.orange.ods.demo.ui.LocalTopAppBarManager
 import com.orange.ods.demo.ui.utilities.Markdown
 import com.orange.ods.demo.ui.utilities.extension.isDarkModeEnabled
 import com.orange.ods.demo.ui.utilities.launchUrl
@@ -33,14 +34,11 @@ import java.nio.charset.StandardCharsets
 private const val FILE_PATH = "file:///android_res/raw/"
 
 @Composable
-fun AboutFileScreen(
-    aboutItemId: Long,
-    updateTopBarTitle: (Int) -> Unit
-) {
+fun AboutFileScreen(aboutItemId: Long) {
     val aboutItem = remember { aboutItems.firstOrNull { item -> item.id == aboutItemId } }
 
     aboutItem?.let { item ->
-        updateTopBarTitle(item.titleRes)
+        LocalTopAppBarManager.current.updateTopAppBarTitle(item.titleRes)
         val context = LocalContext.current
         val configuration = LocalConfiguration.current
         val horizontalPadding = dimensionResource(id = R.dimen.ods_screen_horizontal_margin).value

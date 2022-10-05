@@ -31,11 +31,12 @@ import androidx.compose.ui.text.withStyle
 import androidx.compose.ui.unit.dp
 import com.orange.ods.compose.theme.ObsGrey700
 import com.orange.ods.demo.R
+import com.orange.ods.demo.ui.LocalTopAppBarManager
 import com.orange.ods.demo.ui.utilities.getStringName
 
 @Composable
-fun GuidelineTypographyScreen(updateTopBarTitle: (Int) -> Unit) {
-    updateTopBarTitle(R.string.guideline_typography)
+fun GuidelineTypographyScreen() {
+    LocalTopAppBarManager.current.updateTopAppBarTitle(R.string.guideline_typography)
     val typographyItems = getTypographyItems()
 
     LazyColumn(

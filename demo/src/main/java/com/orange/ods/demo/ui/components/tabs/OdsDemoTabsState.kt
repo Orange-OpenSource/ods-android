@@ -41,7 +41,7 @@ class OdsDemoTabsState(
     val tabIconType: MutableState<TabsCustomizationState.TabIconType>,
     val tabTextEnabled: MutableState<Boolean>,
     val scrollableTabs: MutableState<Boolean>
-) {
+) : OdsDemoTabsManager {
     var pagerState: PagerState? = null
         private set
 
@@ -52,7 +52,7 @@ class OdsDemoTabsState(
     // Tabs state source of truth
     // ----------------------------------------------------------
 
-    fun updateTopAppBarTabs(tabsConfiguration: TabsConfiguration) {
+    override fun updateTopAppBarTabs(tabsConfiguration: TabsConfiguration) {
         with(tabs) {
             clear()
             addAll(tabsConfiguration.tabs)
@@ -63,7 +63,7 @@ class OdsDemoTabsState(
         scrollableTabs.value = tabsConfiguration.scrollableTabs
     }
 
-    fun clearTopAppBarTabs() {
+    override fun clearTopAppBarTabs() {
         tabs.clear()
         pagerState = null
     }
