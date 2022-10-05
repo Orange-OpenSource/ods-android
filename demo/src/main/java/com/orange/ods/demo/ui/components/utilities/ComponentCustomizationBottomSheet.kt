@@ -28,6 +28,8 @@ import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.semantics.semantics
+import androidx.compose.ui.semantics.stateDescription
 import androidx.compose.ui.unit.dp
 import com.orange.ods.compose.component.list.OdsListItem
 import com.orange.ods.demo.R
@@ -45,6 +47,10 @@ fun ComponentCustomizationBottomSheetScaffold(
         BottomSheetValue.Collapsed -> R.drawable.ic_chevron_up
         BottomSheetValue.Expanded -> R.drawable.ic_chevron_down
     }
+    val bottomSheetHeaderStateDescription = when (bottomSheetScaffoldState.bottomSheetState.currentValue) {
+        BottomSheetValue.Collapsed -> stringResource(R.string.component_state_collapsed)
+        BottomSheetValue.Expanded -> stringResource(R.string.component_state_expanded)
+    }
     BackHandler(bottomSheetScaffoldState.bottomSheetState.isExpanded) {
         coroutineScope.launch {
             bottomSheetScaffoldState.bottomSheetState.collapse()
@@ -55,15 +61,19 @@ fun ComponentCustomizationBottomSheetScaffold(
         sheetPeekHeight = 56.dp,
         sheetContent = {
             OdsListItem(
-                modifier = Modifier.clickable {
-                    coroutineScope.launch {
-                        if (bottomSheetScaffoldState.bottomSheetState.isExpanded) {
-                            bottomSheetScaffoldState.bottomSheetState.collapse()
-                        } else {
-                            bottomSheetScaffoldState.bottomSheetState.expand()
+                modifier = Modifier
+                    .clickable {
+                        coroutineScope.launch {
+                            if (bottomSheetScaffoldState.bottomSheetState.isExpanded) {
+                                bottomSheetScaffoldState.bottomSheetState.collapse()
+                            } else {
+                                bottomSheetScaffoldState.bottomSheetState.expand()
+                            }
                         }
                     }
-                },
+                    .semantics {
+                        stateDescription = bottomSheetHeaderStateDescription
+                    },
                 text = stringResource(id = R.string.component_customize),
                 icon = { Icon(painter = painterResource(id = bottomSheetHeaderIconRes), contentDescription = null) })
 

@@ -21,6 +21,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Fixed
 
+- \[Demo\] Fix state vocalization for customization bottom sheets ([#279](https://github.com/Orange-OpenSource/ods-android/issues/279))
 - \[Demo\] Fix vocalization of counters values on change ([#266](https://github.com/Orange-OpenSource/ods-android/issues/266))
 
 ## 0.5.0 - 2022-09-07

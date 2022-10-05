@@ -50,6 +50,8 @@
     <string name="component_state_error">Error</string>
     <string name="component_state_default">Default</string>
     <string name="component_state_outlined">Outlined</string>
+    <string name="component_state_expanded">Expanded</string>
+    <string name="component_state_collapsed">Collapsed</string>
     <string name="component_on_click_toast">Click on %s</string>
     <string name="component_element_title">Title</string>
     <string name="component_element_subtitle">Subtitle</string>
