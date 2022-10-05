@@ -28,6 +28,9 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.painter.Painter
 import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.semantics.semantics
+import androidx.compose.ui.semantics.stateDescription
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.tooling.preview.PreviewParameter
 import androidx.compose.ui.unit.dp
@@ -78,9 +81,12 @@ fun OdsChip(
     leadingContentDescription: String? = null,
     onCancel: (() -> Unit)? = null
 ) {
+    val chipStateDescription = if (selected) stringResource(id = R.string.state_selected) else stringResource(id = R.string.state_not_selected)
     Chip(
         onClick = onClick,
-        modifier = modifier,
+        modifier = modifier.semantics {
+            stateDescription = chipStateDescription
+        },
         border = if (outlined) {
             BorderStroke(1.dp, odsChipBorderColor(selected = selected, enabled = enabled))
         } else null,
