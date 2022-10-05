@@ -106,7 +106,8 @@ sealed class Component(
         R.string.component_progress,
         R.drawable.il_progress,
         null,
-        R.string.component_progress_description
+        R.string.component_progress_description,
+        listOf(Variant.ProgressBar, Variant.ProgressActivityIndicator)
     )
 
     object RadioButtons : Component(
@@ -179,6 +180,9 @@ sealed class Variant(
 
     object Chip : Variant(R.string.component_chip, "OdsChip")
     object ChipFilter : Variant(R.string.component_chip_filter, "OdsFilterChip")
+
+    object ProgressBar : Variant(R.string.component_progress_bar, "LinearProgressIndicator")
+    object ProgressActivityIndicator : Variant(R.string.component_progress_activity_indicator, "CircularProgressIndicator")
 
     object TextFieldFilledText : Variant(R.string.component_text_field_text, "OdsTextField", Section.TextFieldFilled)
     object TextFieldFilledPassword : Variant(R.string.component_text_field_password, "OdsPasswordTextField", Section.TextFieldFilled)

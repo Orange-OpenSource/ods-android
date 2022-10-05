@@ -176,7 +176,7 @@
     <!-- Component Progress & activities -->
     <string name="component_progress">Progress &amp; activities</string>
     <string name="component_progress_description">If a process is taking place in the application, it is important to reassure users that something is happening, and if possible, how long it will take.</string>
-    <string name="component_progress_bars">Progress bars</string>
+    <string name="component_progress_bar">Progress bar</string>
     <string name="component_progress_bar_determinate">Determinate</string>
     <string name="component_progress_bar_indeterminate">Indeterminate</string>
     <string name="component_progress_activity_indicator">Activity indicator</string>
