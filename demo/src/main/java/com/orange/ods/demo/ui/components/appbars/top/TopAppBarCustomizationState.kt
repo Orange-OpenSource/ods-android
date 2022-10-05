@@ -19,9 +19,9 @@ import com.orange.ods.demo.ui.OdsDemoTopAppBarState
 
 @Composable
 fun rememberTopAppBarCustomizationState(
-    navigationIconEnabled: MutableState<Boolean> = rememberSaveable { mutableStateOf(OdsDemoTopAppBarState.defaultConfiguration.isNavigationIconEnabled) },
-    actionCount: MutableState<Int> = rememberSaveable { mutableStateOf(OdsDemoTopAppBarState.defaultConfiguration.actionCount) },
-    overflowMenuEnabled: MutableState<Boolean> = rememberSaveable { mutableStateOf(OdsDemoTopAppBarState.defaultConfiguration.isOverflowMenuEnabled) },
+    navigationIconEnabled: MutableState<Boolean> = rememberSaveable { mutableStateOf(OdsDemoTopAppBarState.DefaultConfiguration.isNavigationIconEnabled) },
+    actionCount: MutableState<Int> = rememberSaveable { mutableStateOf(OdsDemoTopAppBarState.DefaultConfiguration.actionCount) },
+    overflowMenuEnabled: MutableState<Boolean> = rememberSaveable { mutableStateOf(OdsDemoTopAppBarState.DefaultConfiguration.isOverflowMenuEnabled) },
 ) =
     remember(navigationIconEnabled, actionCount, overflowMenuEnabled) {
         TopAppBarCustomizationState(navigationIconEnabled, actionCount, overflowMenuEnabled)

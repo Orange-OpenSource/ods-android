@@ -23,9 +23,9 @@ class OdsComponentProcessor(private val environment: SymbolProcessorEnvironment)
 
     companion object {
 
-        private const val odsComponentClassName = "OdsComponent"
+        private const val OdsComponentClassName = "OdsComponent"
 
-        private const val odsComponentPackageName = "com.orange.ods.compose.component"
+        private const val OdsComponentPackageName = "com.orange.ods.compose.component"
     }
 
     override fun process(resolver: Resolver): List<KSAnnotated> {
@@ -38,10 +38,10 @@ class OdsComponentProcessor(private val environment: SymbolProcessorEnvironment)
                 .sorted()
 
             if (functionNames.isNotEmpty()) {
-                val odsComponentType = TypeSpec.enumBuilder(odsComponentClassName)
+                val odsComponentType = TypeSpec.enumBuilder(OdsComponentClassName)
                     .apply { functionNames.forEach { addEnumConstant(it) } }
                     .build()
-                val file = FileSpec.builder(odsComponentPackageName, odsComponentClassName)
+                val file = FileSpec.builder(OdsComponentPackageName, OdsComponentClassName)
                     .addType(odsComponentType)
                     .build()
                 file.writeTo(environment.codeGenerator, false)
