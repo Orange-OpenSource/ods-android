@@ -11,7 +11,7 @@
 package com.orange.ods.demo.ui.components.utilities
 
 import androidx.activity.compose.BackHandler
-import androidx.compose.animation.Crossfade
+import androidx.compose.animation.core.animateFloatAsState
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.BoxScope
@@ -25,8 +25,10 @@ import androidx.compose.material.BottomSheetValue
 import androidx.compose.material.ExperimentalMaterialApi
 import androidx.compose.material.Icon
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.rotate
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.semantics.semantics
@@ -74,13 +76,12 @@ fun ComponentCustomizationBottomSheetScaffold(
                     },
                 text = stringResource(id = R.string.component_customize),
                 icon = {
-                    Crossfade(targetState = bottomSheetScaffoldState.bottomSheetState.isExpanded) { expanded ->
-                        if (expanded) {
-                            Icon(painter = painterResource(id = R.drawable.ic_chevron_down), contentDescription = null)
-                        } else {
-                            Icon(painter = painterResource(id = R.drawable.ic_chevron_up), contentDescription = null)
-                        }
-                    }
+                    val degrees = if (bottomSheetScaffoldState.bottomSheetState.isExpanded) 0f else -180f
+                    val angle by animateFloatAsState(targetValue = degrees)
+                    Icon(
+                        modifier = Modifier.rotate(angle),
+                        painter = painterResource(id = R.drawable.ic_chevron_down), contentDescription = null
+                    )
                 })
 
             Column(modifier = Modifier.verticalScroll(rememberScrollState())) {
