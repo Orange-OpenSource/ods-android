@@ -29,7 +29,7 @@ import com.orange.ods.utilities.extension.fullName
 fun ButtonsPrimary() = ContainedButtons(style = OdsButtonStyle.Primary)
 
 @Composable
-fun ButtonsContained() = ContainedButtons(style = OdsButtonStyle.Default)
+fun ButtonsDefault() = ContainedButtons(style = OdsButtonStyle.Default)
 
 @Composable
 fun ButtonsFunctional() {

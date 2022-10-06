@@ -39,7 +39,7 @@ fun ComponentButtons(variant: Variant) {
     ) {
         when (variant) {
             Variant.ButtonsPrimary -> ButtonsPrimary()
-            Variant.ButtonsContained -> ButtonsContained()
+            Variant.ButtonsDefault -> ButtonsDefault()
             Variant.ButtonsOutlined -> ButtonsOutlined()
             Variant.ButtonsText -> ButtonsText()
             Variant.ButtonsFunctional -> ButtonsFunctional()
