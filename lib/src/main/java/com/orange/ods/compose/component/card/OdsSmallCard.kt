@@ -31,6 +31,7 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.tooling.preview.Preview
 import com.orange.ods.R
+import com.orange.ods.compose.component.OdsComponentApi
 import com.orange.ods.compose.component.utilities.Preview
 
 /**
@@ -51,6 +52,7 @@ import com.orange.ods.compose.component.utilities.Preview
  */
 @ExperimentalMaterialApi
 @Composable
+@OdsComponentApi
 fun OdsSmallCard(
     title: String,
     image: Painter,

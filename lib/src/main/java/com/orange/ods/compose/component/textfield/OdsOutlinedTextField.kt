@@ -34,6 +34,7 @@ import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.input.VisualTransformation
 import androidx.compose.ui.tooling.preview.Preview
 import com.orange.ods.R
+import com.orange.ods.compose.component.OdsComponentApi
 import com.orange.ods.compose.component.utilities.Preview
 
 /**
@@ -88,6 +89,7 @@ import com.orange.ods.compose.component.utilities.Preview
  * set to 1 if [singleLine] is set to true.
  */
 @Composable
+@OdsComponentApi
 fun OdsOutlinedTextField(
     value: String,
     onValueChange: (String) -> Unit,

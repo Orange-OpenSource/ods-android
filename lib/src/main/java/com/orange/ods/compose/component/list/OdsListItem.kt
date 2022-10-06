@@ -50,6 +50,7 @@ import androidx.compose.ui.tooling.preview.PreviewParameter
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import com.orange.ods.R
+import com.orange.ods.compose.component.OdsComponentApi
 import com.orange.ods.compose.component.control.OdsCheckbox
 import com.orange.ods.compose.component.control.OdsSwitch
 import com.orange.ods.compose.component.utilities.BasicPreviewParameterProvider
@@ -87,6 +88,7 @@ import com.orange.ods.utilities.extension.orElse
  */
 @Composable
 @ExperimentalMaterialApi
+@OdsComponentApi
 fun OdsListItem(
     modifier: Modifier = Modifier,
     text: String,
@@ -187,6 +189,7 @@ private fun OdsListItemInternal(
  * @param contentDescription Content description of the icon
  */
 @Composable
+@OdsComponentApi
 fun OdsListItemIconScope.OdsListItemIcon(painter: Painter, contentDescription: String? = null) {
     when (iconType) {
         OdsListItemIconType.Icon -> {

@@ -23,6 +23,7 @@ import androidx.compose.ui.graphics.painter.Painter
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.Preview
+import com.orange.ods.compose.component.OdsComponentApi
 import com.orange.ods.compose.component.utilities.Preview
 
 /**
@@ -44,6 +45,7 @@ import com.orange.ods.compose.component.utilities.Preview
  * @see OdsTab
  */
 @Composable
+@OdsComponentApi
 fun OdsLeadingIconTab(
     selected: Boolean,
     onClick: () -> Unit,

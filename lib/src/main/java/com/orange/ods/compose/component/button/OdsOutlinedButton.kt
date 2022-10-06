@@ -26,6 +26,7 @@ import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.painter.Painter
 import androidx.compose.ui.tooling.preview.Preview
+import com.orange.ods.compose.component.OdsComponentApi
 import com.orange.ods.compose.component.utilities.Preview
 import com.orange.ods.compose.theme.OdsDarkRippleTheme
 import com.orange.ods.compose.theme.OdsDisplaySurface
@@ -51,6 +52,7 @@ import com.orange.ods.compose.theme.odsLightThemeColors
  * surface. By default the appearance applied is based on the system night mode value.
  */
 @Composable
+@OdsComponentApi
 fun OdsOutlinedButton(
     text: String,
     onClick: () -> Unit,

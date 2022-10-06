@@ -36,6 +36,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import com.orange.ods.R
+import com.orange.ods.compose.component.OdsComponentApi
 import com.orange.ods.compose.component.utilities.Preview
 import com.orange.ods.compose.theme.OdsMaterialTheme
 import com.orange.ods.compose.theme.SliderActiveTickColor
@@ -73,6 +74,7 @@ import com.orange.ods.compose.theme.SliderActiveTickColor
  *  @param rightIconContentDescription Right icon content description
  */
 @Composable
+@OdsComponentApi
 fun OdsSlider(
     value: Float,
     onValueChange: (Float) -> Unit,
@@ -150,6 +152,7 @@ fun OdsSlider(
  * know when the user has completed selecting a new value by ending a drag or a click.
  */
 @Composable
+@OdsComponentApi
 fun OdsSliderLockups(
     value: Float,
     onValueChange: (Float) -> Unit,

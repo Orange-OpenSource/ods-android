@@ -13,6 +13,8 @@ package com.orange.ods.demo.ui.components
 import androidx.annotation.DrawableRes
 import androidx.annotation.StringRes
 import androidx.compose.ui.Alignment
+import com.orange.ods.compose.component.OdsComponent
+import com.orange.ods.compose.component.button.OdsButtonStyle
 import com.orange.ods.demo.R
 
 sealed class Component(
@@ -51,7 +53,7 @@ sealed class Component(
             R.drawable.il_bottom_navigation,
             null,
             R.string.component_bottom_navigation_description,
-            composableName = "OdsBottomNavigation"
+            composableName = OdsComponent.OdsBottomNavigation.name
         )
 
     object Buttons : Component(
@@ -75,7 +77,7 @@ sealed class Component(
         R.drawable.il_checkboxes,
         null,
         R.string.component_checkboxes_description,
-        composableName = "OdsCheckbox"
+        composableName = OdsComponent.OdsCheckbox.name
     )
 
     object Chips : Component(
@@ -91,7 +93,7 @@ sealed class Component(
         R.drawable.il_dialogs,
         null,
         R.string.component_dialogs_description,
-        composableName = "OdsAlertDialog"
+        composableName = OdsComponent.OdsAlertDialog.name
     )
 
     object Lists : Component(
@@ -99,7 +101,7 @@ sealed class Component(
         R.drawable.il_lists,
         null,
         R.string.component_lists_description,
-        composableName = "OdsListItem"
+        composableName = OdsComponent.OdsListItem.name
     )
 
     object Progress : Component(
@@ -115,7 +117,7 @@ sealed class Component(
         R.drawable.il_radio_buttons,
         null,
         R.string.component_radio_buttons_description,
-        composableName = "OdsRadioButton"
+        composableName = OdsComponent.OdsRadioButton.name
     )
 
     object Sliders : Component(
@@ -123,7 +125,7 @@ sealed class Component(
         R.drawable.il_sliders,
         null,
         R.string.component_sliders_description,
-        composableName = "OdsSlider"
+        composableName = OdsComponent.OdsSlider.name
     )
 
     object Switches : Component(
@@ -131,7 +133,7 @@ sealed class Component(
         R.drawable.il_switches,
         R.drawable.il_switches_small,
         R.string.component_switches_description,
-        composableName = "OdsSwitch"
+        composableName = OdsComponent.OdsSwitch.name
     )
 
     object TextFields : Component(
@@ -166,30 +168,31 @@ sealed class Variant(
 
     val id: Long = Variant::class.sealedSubclasses.indexOf(this::class).toLong()
 
-    object AppBarsTopRegular : Variant(R.string.component_app_bars_top_regular, "OdsTopAppBar")
+    object AppBarsTopRegular : Variant(R.string.component_app_bars_top_regular, OdsComponent.OdsTopAppBar.name)
 
-    object ButtonsPrimary : Variant(R.string.component_buttons_highest_emphasis, "OdsButton with OdsButtonStyle.Primary")
-    object ButtonsDefault : Variant(R.string.component_buttons_high_emphasis, "OdsButton with OdsButtonStyle.Default")
-    object ButtonsOutlined : Variant(R.string.component_buttons_medium_emphasis, "OdsOutlinedButton")
-    object ButtonsText : Variant(R.string.component_buttons_low_emphasis, "OdsTextButton")
-    object ButtonsFunctional : Variant(R.string.component_buttons_functional, "OdsButton with a functional style")
-    object ButtonsToggle : Variant(R.string.component_buttons_toggle, "OdsIconToggleButton")
+    object ButtonsPrimary : Variant(R.string.component_buttons_highest_emphasis, "${OdsComponent.OdsButton.name} with ${OdsButtonStyle.Primary.name}")
+    object ButtonsDefault : Variant(R.string.component_buttons_high_emphasis, "${OdsComponent.OdsButton.name} with ${OdsButtonStyle.Default.name}")
+    object ButtonsOutlined : Variant(R.string.component_buttons_medium_emphasis, OdsComponent.OdsOutlinedButton.name)
+    object ButtonsText : Variant(R.string.component_buttons_low_emphasis, OdsComponent.OdsTextButton.name)
+    object ButtonsFunctional : Variant(R.string.component_buttons_functional, "${OdsComponent.OdsButton.name} with a functional style")
+    object ButtonsToggle : Variant(R.string.component_buttons_toggle, OdsComponent.OdsIconToggleButton.name)
 
-    object CardImageFirst : Variant(R.string.component_card_image_first, "OdsImageFirstCard")
-    object CardTitleFirst : Variant(R.string.component_card_title_first, "OdsTitleFirstCard")
-    object CardSmall : Variant(R.string.component_card_small, "OdsSmallCard")
+    object CardImageFirst : Variant(R.string.component_card_image_first, OdsComponent.OdsImageFirstCard.name)
+    object CardTitleFirst : Variant(R.string.component_card_title_first, OdsComponent.OdsTitleFirstCard.name)
+    object CardSmall : Variant(R.string.component_card_small, OdsComponent.OdsSmallCard.name)
 
-    object Chip : Variant(R.string.component_chip, "OdsChip")
-    object ChipFilter : Variant(R.string.component_chip_filter, "OdsFilterChip")
+    object Chip : Variant(R.string.component_chip, OdsComponent.OdsChip.name)
+    object ChipFilter : Variant(R.string.component_chip_filter, OdsComponent.OdsFilterChip.name)
 
     object ProgressBar : Variant(R.string.component_progress_bar, "LinearProgressIndicator")
     object ProgressActivityIndicator : Variant(R.string.component_progress_activity_indicator, "CircularProgressIndicator")
 
-    object TextFieldFilledText : Variant(R.string.component_text_field_text, "OdsTextField", Section.TextFieldFilled)
-    object TextFieldFilledPassword : Variant(R.string.component_text_field_password, "OdsPasswordTextField", Section.TextFieldFilled)
-    object TextFieldOutlinedText : Variant(R.string.component_text_field_text, "OdsOutlinedTextField", Section.TextFieldOutlined)
-    object TextFieldOutlinedPassword : Variant(R.string.component_text_field_password, "OdsPasswordOutlinedTextField", Section.TextFieldOutlined)
+    object TextFieldFilledText : Variant(R.string.component_text_field_text, OdsComponent.OdsTextField.name, Section.TextFieldFilled)
+    object TextFieldFilledPassword : Variant(R.string.component_text_field_password, OdsComponent.OdsPasswordTextField.name, Section.TextFieldFilled)
+    object TextFieldOutlinedText : Variant(R.string.component_text_field_text, OdsComponent.OdsOutlinedTextField.name, Section.TextFieldOutlined)
+    object TextFieldOutlinedPassword :
+        Variant(R.string.component_text_field_password, OdsComponent.OdsPasswordOutlinedTextField.name, Section.TextFieldOutlined)
 
-    object TabsFixed : Variant(R.string.component_tabs_fixed, "OdsTabRow")
-    object TabsScrollable : Variant(R.string.component_tabs_scrollable, "OdsScrollableTabRow")
+    object TabsFixed : Variant(R.string.component_tabs_fixed, OdsComponent.OdsTabRow.name)
+    object TabsScrollable : Variant(R.string.component_tabs_scrollable, OdsComponent.OdsScrollableTabRow.name)
 }

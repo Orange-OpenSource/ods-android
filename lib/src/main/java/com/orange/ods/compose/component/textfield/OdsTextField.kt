@@ -42,6 +42,7 @@ import androidx.compose.ui.text.input.VisualTransformation
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.tooling.preview.PreviewParameter
 import com.orange.ods.R
+import com.orange.ods.compose.component.OdsComponentApi
 import com.orange.ods.compose.component.utilities.BasicPreviewParameterProvider
 import com.orange.ods.compose.component.utilities.DisabledInteractionSource
 import com.orange.ods.compose.component.utilities.Preview
@@ -98,6 +99,7 @@ import com.orange.ods.compose.text.OdsTextCaption
  * set to 1 if [singleLine] is set to true.
  */
 @Composable
+@OdsComponentApi
 fun OdsTextField(
     value: String,
     onValueChange: (String) -> Unit,
@@ -183,6 +185,7 @@ fun OdsTextField(
  * @param enabled set to false to display the text with a disabled color
  */
 @Composable
+@OdsComponentApi
 fun OdsTextFieldCounter(valueLength: Int, maxChars: Int, modifier: Modifier = Modifier, enabled: Boolean = true) {
     OdsTextCaption(
         modifier = modifier.padding(top = dimensionResource(id = R.dimen.spacing_xs)), text = "$valueLength/$maxChars", enabled = enabled

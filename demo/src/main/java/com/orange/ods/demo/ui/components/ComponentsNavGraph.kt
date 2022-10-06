@@ -37,7 +37,7 @@ fun NavGraphBuilder.addComponentsGraph(
     ) { from ->
         // Restore default values for tabs and top app bar
         clearTopAppBarTabs()
-        updateTopAppBar(OdsDemoTopAppBarState.defaultConfiguration)
+        updateTopAppBar(OdsDemoTopAppBarState.DefaultConfiguration)
 
         val arguments = requireNotNull(from.arguments)
         val componentId = arguments.getLong(MainDestinations.COMPONENT_ID_KEY)

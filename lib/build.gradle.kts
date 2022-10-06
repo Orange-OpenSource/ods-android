@@ -14,6 +14,7 @@ import com.orange.ods.gradle.Versions
 import com.orange.ods.gradle.execute
 
 plugins {
+    id("com.google.devtools.ksp").version(com.orange.ods.gradle.Versions.ksp)
     id("com.android.library")
     id("kotlin-android")
     id("github")
@@ -56,10 +57,15 @@ android {
     composeOptions {
         kotlinCompilerExtensionVersion = Versions.compose
     }
+
+    sourceSets.configureEach {
+        java.srcDir("$buildDir/generated/ksp/$name/kotlin/")
+    }
 }
 
 dependencies {
     implementation(Dependencies.kotlinStdlibJdk8)
+    implementation(project(":component-processor"))
 
     api(Dependencies.material)
 
@@ -75,6 +81,8 @@ dependencies {
 
     testImplementation(Dependencies.jUnit)
     androidTestImplementation(Dependencies.testExtJUnit)
+
+    ksp(project(":component-processor"))
 }
 
 afterEvaluate {

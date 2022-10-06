@@ -28,7 +28,7 @@ import androidx.compose.ui.res.stringResource
 import com.google.accompanist.pager.ExperimentalPagerApi
 import com.google.accompanist.pager.HorizontalPager
 import com.google.accompanist.pager.rememberPagerState
-import com.orange.ods.compose.component.chip.ChoiceChip
+import com.orange.ods.compose.component.chip.OdsChoiceChip
 import com.orange.ods.compose.component.chip.OdsChoiceChipsFlowRow
 import com.orange.ods.compose.component.tab.OdsTab
 import com.orange.ods.compose.component.tab.OdsTabRow
@@ -128,11 +128,11 @@ private fun ComponentCustomizationContent(textFieldCustomizationState: TextField
         modifier = Modifier.padding(horizontal = dimensionResource(id = R.dimen.spacing_m)),
         outlinedChips = true
     ) {
-        ChoiceChip(textRes = R.string.component_text_field_input_type_single_line, value = TextFieldCustomizationState.InputType.SingleLine)
-        ChoiceChip(textRes = R.string.component_text_field_input_type_multiline, value = TextFieldCustomizationState.InputType.Multiline)
+        OdsChoiceChip(textRes = R.string.component_text_field_input_type_single_line, value = TextFieldCustomizationState.InputType.SingleLine)
+        OdsChoiceChip(textRes = R.string.component_text_field_input_type_multiline, value = TextFieldCustomizationState.InputType.Multiline)
         // Note: TextArea chip is disabled cause there is no parameter allowing text area in Jetpack Compose sdk for now
         // https://issuetracker.google.com/issues/122476634
-        ChoiceChip(
+        OdsChoiceChip(
             textRes = R.string.component_text_field_input_type_text_area,
             value = TextFieldCustomizationState.InputType.TextArea,
             enabled = false
@@ -147,9 +147,9 @@ private fun ComponentCustomizationContent(textFieldCustomizationState: TextField
         modifier = Modifier.padding(horizontal = dimensionResource(id = R.dimen.spacing_m)),
         outlinedChips = true
     ) {
-        ChoiceChip(textRes = R.string.component_element_none, value = TextFieldCustomizationState.TrailingElement.None)
-        ChoiceChip(textRes = R.string.component_element_icon, value = TextFieldCustomizationState.TrailingElement.Icon)
-        ChoiceChip(textRes = R.string.component_element_text, value = TextFieldCustomizationState.TrailingElement.Text)
+        OdsChoiceChip(textRes = R.string.component_element_none, value = TextFieldCustomizationState.TrailingElement.None)
+        OdsChoiceChip(textRes = R.string.component_element_icon, value = TextFieldCustomizationState.TrailingElement.Icon)
+        OdsChoiceChip(textRes = R.string.component_element_text, value = TextFieldCustomizationState.TrailingElement.Text)
     }
 
     SwitchListItem(labelRes = R.string.component_text_field_character_counter, checked = textFieldCustomizationState.characterCounter)
@@ -166,7 +166,7 @@ private fun KeyboardCustomizationContent(textFieldCustomizationState: TextFieldC
         outlinedChips = true
     ) {
         TextFieldCustomizationState.SoftKeyboardType.values().forEach { softKeyboardType ->
-            ChoiceChip(text = stringResource(id = softKeyboardType.labelRes), value = softKeyboardType)
+            OdsChoiceChip(text = stringResource(id = softKeyboardType.labelRes), value = softKeyboardType)
         }
     }
 
@@ -179,7 +179,7 @@ private fun KeyboardCustomizationContent(textFieldCustomizationState: TextFieldC
         outlinedChips = true
     ) {
         TextFieldCustomizationState.SoftKeyboardAction.values().forEach { softKeyboardAction ->
-            ChoiceChip(text = stringResource(id = softKeyboardAction.labelRes), value = softKeyboardAction)
+            OdsChoiceChip(text = stringResource(id = softKeyboardAction.labelRes), value = softKeyboardAction)
         }
     }
 
@@ -194,9 +194,9 @@ private fun DisplayTypeCustomization(displayType: MutableState<TextFieldCustomiz
         modifier = Modifier.padding(horizontal = dimensionResource(id = R.dimen.spacing_m)),
         outlinedChips = true
     ) {
-        ChoiceChip(textRes = R.string.component_state_default, value = TextFieldCustomizationState.DisplayType.Default)
-        ChoiceChip(textRes = R.string.component_state_error, value = TextFieldCustomizationState.DisplayType.Error)
-        ChoiceChip(textRes = R.string.component_state_disabled, value = TextFieldCustomizationState.DisplayType.Disabled)
+        OdsChoiceChip(textRes = R.string.component_state_default, value = TextFieldCustomizationState.DisplayType.Default)
+        OdsChoiceChip(textRes = R.string.component_state_error, value = TextFieldCustomizationState.DisplayType.Error)
+        OdsChoiceChip(textRes = R.string.component_state_disabled, value = TextFieldCustomizationState.DisplayType.Disabled)
     }
 }
 

@@ -29,6 +29,7 @@ import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.tooling.preview.Preview
 import com.orange.ods.R
+import com.orange.ods.compose.component.OdsComponentApi
 import com.orange.ods.compose.component.textfield.OdsTextFieldIcon
 import com.orange.ods.compose.component.textfield.odsTextFieldColors
 import com.orange.ods.compose.component.textfield.textFieldIconColor
@@ -64,6 +65,7 @@ import com.orange.ods.compose.component.utilities.Preview
  * [KeyboardOptions.imeAction].
  */
 @Composable
+@OdsComponentApi
 fun OdsPasswordTextField(
     value: String,
     onValueChange: (String) -> Unit,

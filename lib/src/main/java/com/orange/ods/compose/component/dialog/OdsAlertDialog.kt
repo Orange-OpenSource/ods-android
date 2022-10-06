@@ -16,6 +16,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.window.DialogProperties
+import com.orange.ods.compose.component.OdsComponentApi
 import com.orange.ods.compose.component.button.OdsTextButton
 import com.orange.ods.compose.component.button.OdsTextButtonStyle
 import com.orange.ods.compose.component.utilities.Preview
@@ -46,6 +47,7 @@ import com.orange.ods.utilities.extension.ifNotNull
  * @param properties Typically platform specific properties to further configure the dialog.
  */
 @Composable
+@OdsComponentApi
 fun OdsAlertDialog(
     text: String,
     confirmButtonText: String,

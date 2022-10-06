@@ -26,6 +26,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.painter.Painter
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.tooling.preview.PreviewParameter
+import com.orange.ods.compose.component.OdsComponentApi
 import com.orange.ods.compose.component.utilities.EnumPreviewParameterProvider
 import com.orange.ods.compose.component.utilities.Preview
 import com.orange.ods.compose.theme.OdsDarkRippleTheme
@@ -60,6 +61,7 @@ enum class OdsTextButtonStyle {
  * surface. By default the appearance applied is based on the system night mode value.
  */
 @Composable
+@OdsComponentApi
 fun OdsTextButton(
     text: String,
     onClick: () -> Unit,

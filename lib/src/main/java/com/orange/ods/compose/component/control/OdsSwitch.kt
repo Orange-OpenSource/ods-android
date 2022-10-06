@@ -21,6 +21,7 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
+import com.orange.ods.compose.component.OdsComponentApi
 import com.orange.ods.compose.component.utilities.Preview
 import com.orange.ods.compose.theme.Grey400
 import com.orange.ods.compose.theme.LocalDarkThemeEnabled
@@ -39,6 +40,7 @@ import com.orange.ods.compose.theme.OdsPrimaryRippleTheme
  * @param enabled whether the component is enabled or grayed out
  */
 @Composable
+@OdsComponentApi
 fun OdsSwitch(
     checked: Boolean,
     onCheckedChange: ((Boolean) -> Unit)?,
