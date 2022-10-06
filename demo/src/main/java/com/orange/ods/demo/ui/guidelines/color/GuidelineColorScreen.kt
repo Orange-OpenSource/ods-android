@@ -10,10 +10,13 @@
 
 package com.orange.ods.demo.ui.guidelines.color
 
+import android.content.Context
+import android.widget.Toast
 import androidx.compose.foundation.BorderStroke
+import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
-import androidx.compose.foundation.clickable
+import androidx.compose.foundation.combinedClickable
 import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
@@ -34,13 +37,17 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.ClipboardManager
+import androidx.compose.ui.platform.LocalClipboardManager
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.semantics.heading
 import androidx.compose.ui.semantics.semantics
+import androidx.compose.ui.text.AnnotatedString
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.window.Dialog
+import com.orange.ods.compose.component.button.OdsButton
 import com.orange.ods.compose.text.OdsTextBody1
 import com.orange.ods.compose.text.OdsTextCaption
 import com.orange.ods.compose.text.OdsTextH5
@@ -105,15 +112,19 @@ private fun ColorList(colors: List<GuidelineColorItem>) {
     }
 }
 
+@OptIn(ExperimentalFoundationApi::class)
 @Composable
 private fun RowScope.SmallColorItem(color: GuidelineColorItem) {
     val openDialog = remember { mutableStateOf(false) }
+    val context = LocalContext.current
+    val clipboardManager = LocalClipboardManager.current
     Column(
         modifier = Modifier
             .weight(0.33f)
-            .clickable {
-                openDialog.value = true
-            },
+            .combinedClickable(
+                onLongClick = { copyColorToClipboard(context, color, clipboardManager) },
+                onClick = { openDialog.value = true }
+            )
     ) {
         Box(
             modifier = Modifier
@@ -132,15 +143,19 @@ private fun RowScope.SmallColorItem(color: GuidelineColorItem) {
     }
 }
 
+@OptIn(ExperimentalFoundationApi::class)
 @Composable
 private fun RowScope.BigColorItem(color: GuidelineColorItem) {
     val openDialog = remember { mutableStateOf(false) }
+    val context = LocalContext.current
+    val clipboardManager = LocalClipboardManager.current
     Column(
         modifier = Modifier
             .weight(0.5f)
-            .clickable {
-                openDialog.value = true
-            },
+            .combinedClickable(
+                onLongClick = { copyColorToClipboard(context, color, clipboardManager) },
+                onClick = { openDialog.value = true }
+            ),
     ) {
         val boxColorModifier = Modifier
             .background(color = color.jetPackValue)
@@ -148,15 +163,9 @@ private fun RowScope.BigColorItem(color: GuidelineColorItem) {
             .aspectRatio(1f)
         Box(
             modifier = when (color.jetPackValue) {
-                White100 -> {
-                    boxColorModifier.border(BorderStroke(1.dp, Color(0xff979797)))
-                }
-                Black900 -> {
-                    boxColorModifier.border(BorderStroke(1.dp, White100))
-                }
-                else -> {
-                    boxColorModifier
-                }
+                White100 -> boxColorModifier.border(BorderStroke(1.dp, Color(0xff979797)))
+                Black900 -> boxColorModifier.border(BorderStroke(1.dp, White100))
+                else -> boxColorModifier
             }
         )
         OdsTextH6(
@@ -180,6 +189,7 @@ private fun RowScope.BigColorItem(color: GuidelineColorItem) {
 @Composable
 private fun DialogColor(color: GuidelineColorItem, openDialog: MutableState<Boolean>) {
     val context = LocalContext.current
+    val clipboardManager = LocalClipboardManager.current
     Dialog(
         onDismissRequest = { openDialog.value = false },
     ) {
@@ -194,7 +204,7 @@ private fun DialogColor(color: GuidelineColorItem, openDialog: MutableState<Bool
                 modifier = Modifier
                     .background(color = MaterialTheme.colors.background)
                     .fillMaxWidth()
-                    .padding(dimensionResource(id = R.dimen.spacing_m))
+                    .padding(horizontal = dimensionResource(id = R.dimen.spacing_m), vertical = dimensionResource(id = R.dimen.spacing_s))
             ) {
                 OdsTextH5(text = color.name)
                 OdsTextBody1(
@@ -216,6 +226,10 @@ private fun DialogColor(color: GuidelineColorItem, openDialog: MutableState<Bool
                         context.getStringName(color.xmlResourceValue)
                     )
                 )
+                OdsButton(
+                    modifier = Modifier.padding(top = dimensionResource(id = R.dimen.spacing_s)),
+                    text = stringResource(id = R.string.guideline_colour_copy_to_clipboard_button_title),
+                    onClick = { copyColorToClipboard(context, color, clipboardManager) })
             }
         }
     }
@@ -226,4 +240,12 @@ private fun getColorList(systemInDarkTheme: Boolean): List<GuidelineColorItem> {
     return getCoreColors(systemInDarkTheme)
         .plus(getFunctionalColors(systemInDarkTheme))
         .plus(getSupportingColors())
+}
+
+private fun copyColorToClipboard(context: Context, color: GuidelineColorItem, clipboardManager: ClipboardManager) {
+    clipboardManager.setText(AnnotatedString(color.hexValue))
+    val text = String.format(context.getString(R.string.guideline_colour_copy_to_clipboard_toast))
+    Toast
+        .makeText(context, text, Toast.LENGTH_SHORT)
+        .show()
 }
