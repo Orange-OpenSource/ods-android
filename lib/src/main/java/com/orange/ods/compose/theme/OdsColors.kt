@@ -11,7 +11,6 @@
 package com.orange.ods.compose.theme
 
 import androidx.compose.material.Colors
-import androidx.compose.runtime.Composable
 import androidx.compose.ui.graphics.Color
 
 // Core colors
@@ -71,13 +70,10 @@ val Transparent = Color(0x00000000)
 val SliderActiveTickColor = Color(0xffEBA66C)
 
 val Colors.functionalPositive: Color
-    @Composable
     get() = if (isLight) Positive200 else Positive100
 
 val Colors.functionalInfo: Color
-    @Composable
     get() = if (isLight) Info200 else Info100
 
 val Colors.functionalAlert: Color
-    @Composable
     get() = if (isLight) Alert200 else Alert100

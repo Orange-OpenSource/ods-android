@@ -17,7 +17,6 @@ import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.combinedClickable
-import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -62,11 +61,7 @@ import com.orange.ods.demo.ui.utilities.getStringName
 @Composable
 fun GuidelineColorScreen() {
     LocalMainTopAppBarManager.current.updateTopAppBarTitle(R.string.guideline_color)
-    ColorList(getColorList(isSystemInDarkTheme()))
-}
-
-@Composable
-private fun ColorList(colors: List<GuidelineColorItem>) {
+    
     LazyColumn(
         contentPadding = PaddingValues(
             start = dimensionResource(id = R.dimen.spacing_m),
@@ -78,7 +73,7 @@ private fun ColorList(colors: List<GuidelineColorItem>) {
         item {
             Title(textRes = R.string.guideline_colour_core, modifier = Modifier.semantics { heading() })
         }
-        items(colors.filter { it.colorType == ColorType.CORE }.chunked(2)) { rowColors ->
+        items(GuidelineColor.coreColors.chunked(2)) { rowColors ->
             Row(
                 horizontalArrangement = Arrangement.spacedBy(dimensionResource(id = R.dimen.spacing_m)),
             ) {
@@ -89,7 +84,7 @@ private fun ColorList(colors: List<GuidelineColorItem>) {
         item {
             Title(textRes = R.string.guideline_colour_functional, modifier = Modifier.semantics { heading() })
         }
-        items(colors.filter { it.colorType == ColorType.FUNCTIONAL }.chunked(2)) { rowColors ->
+        items(GuidelineColor.functionalColors.chunked(2)) { rowColors ->
             Row(
                 horizontalArrangement = Arrangement.spacedBy(dimensionResource(id = R.dimen.spacing_m)),
             ) {
@@ -100,7 +95,7 @@ private fun ColorList(colors: List<GuidelineColorItem>) {
         item {
             Title(textRes = R.string.guideline_colour_supporting, modifier = Modifier.semantics { heading() })
         }
-        items(colors.filter { it.colorType == ColorType.SUPPORTING }.chunked(3)) { rowColors ->
+        items(GuidelineColor.supportingColors.chunked(3)) { rowColors ->
             Row(
                 horizontalArrangement = Arrangement.spacedBy(dimensionResource(id = R.dimen.spacing_m)),
             ) {
@@ -114,29 +109,30 @@ private fun ColorList(colors: List<GuidelineColorItem>) {
 
 @OptIn(ExperimentalFoundationApi::class)
 @Composable
-private fun RowScope.SmallColorItem(color: GuidelineColorItem) {
+private fun RowScope.SmallColorItem(color: GuidelineColor) {
     val openDialog = remember { mutableStateOf(false) }
     val context = LocalContext.current
     val clipboardManager = LocalClipboardManager.current
+    val colorValue = color.getValue()
     Column(
         modifier = Modifier
             .weight(0.33f)
             .combinedClickable(
-                onLongClick = { copyColorToClipboard(context, color, clipboardManager) },
+                onLongClick = { copyColorToClipboard(context, colorValue, clipboardManager) },
                 onClick = { openDialog.value = true }
             )
     ) {
         Box(
             modifier = Modifier
-                .background(color = color.jetPackValue)
+                .background(color = colorValue)
                 .fillMaxWidth()
                 .aspectRatio(1f)
         )
         OdsTextH6(
-            text = color.name,
+            text = color.getName(),
             modifier = Modifier.padding(top = dimensionResource(id = R.dimen.spacing_xs))
         )
-        OdsTextCaption(text = color.hexValue)
+        OdsTextCaption(text = colorValue.toHexString())
     }
     if (openDialog.value) {
         DialogColor(color = color, openDialog)
@@ -145,40 +141,41 @@ private fun RowScope.SmallColorItem(color: GuidelineColorItem) {
 
 @OptIn(ExperimentalFoundationApi::class)
 @Composable
-private fun RowScope.BigColorItem(color: GuidelineColorItem) {
+private fun RowScope.BigColorItem(color: GuidelineColor) {
     val openDialog = remember { mutableStateOf(false) }
     val context = LocalContext.current
     val clipboardManager = LocalClipboardManager.current
+    val colorValue = color.getValue()
     Column(
         modifier = Modifier
             .weight(0.5f)
             .combinedClickable(
-                onLongClick = { copyColorToClipboard(context, color, clipboardManager) },
+                onLongClick = { copyColorToClipboard(context, colorValue, clipboardManager) },
                 onClick = { openDialog.value = true }
             ),
     ) {
         val boxColorModifier = Modifier
-            .background(color = color.jetPackValue)
+            .background(color = colorValue)
             .fillMaxWidth()
             .aspectRatio(1f)
         Box(
-            modifier = when (color.jetPackValue) {
+            modifier = when (colorValue) {
                 White100 -> boxColorModifier.border(BorderStroke(1.dp, Color(0xff979797)))
                 Black900 -> boxColorModifier.border(BorderStroke(1.dp, White100))
                 else -> boxColorModifier
             }
         )
         OdsTextH6(
-            text = color.name,
+            text = color.getName(),
             modifier = Modifier.padding(top = dimensionResource(id = R.dimen.spacing_xs))
         )
-        OdsTextBody1(text = color.jetPackName)
+        OdsTextBody1(text = color.callable.name)
         OdsTextCaption(
             modifier = Modifier.padding(top = dimensionResource(id = R.dimen.spacing_xs)),
-            text = color.hexValue
+            text = colorValue.toHexString()
         )
         OdsTextCaption(
-            text = color.rgbValue
+            text = colorValue.toRgbString()
         )
     }
     if (openDialog.value) {
@@ -187,16 +184,17 @@ private fun RowScope.BigColorItem(color: GuidelineColorItem) {
 }
 
 @Composable
-private fun DialogColor(color: GuidelineColorItem, openDialog: MutableState<Boolean>) {
+private fun DialogColor(color: GuidelineColor, openDialog: MutableState<Boolean>) {
     val context = LocalContext.current
     val clipboardManager = LocalClipboardManager.current
+    val colorValue = color.getValue()
     Dialog(
         onDismissRequest = { openDialog.value = false },
     ) {
         Column {
             Box(
                 modifier = Modifier
-                    .background(color = color.jetPackValue)
+                    .background(color = colorValue)
                     .fillMaxWidth()
                     .height(190.dp)
             )
@@ -206,44 +204,37 @@ private fun DialogColor(color: GuidelineColorItem, openDialog: MutableState<Bool
                     .fillMaxWidth()
                     .padding(horizontal = dimensionResource(id = R.dimen.spacing_m), vertical = dimensionResource(id = R.dimen.spacing_s))
             ) {
-                OdsTextH5(text = color.name)
+                OdsTextH5(text = color.getName())
                 OdsTextBody1(
                     modifier = Modifier.padding(top = dimensionResource(id = R.dimen.spacing_xs)),
-                    text = color.jetPackName
+                    text = color.callable.name
                 )
                 OdsTextBody1(
                     modifier = Modifier.padding(top = dimensionResource(id = R.dimen.spacing_s)),
-                    text = color.hexValue
+                    text = colorValue.toHexString()
                 )
                 OdsTextBody1(
                     modifier = Modifier.padding(top = dimensionResource(id = R.dimen.spacing_s)),
-                    text = color.rgbValue
+                    text = colorValue.toRgbString()
                 )
                 OdsTextBody1(
                     modifier = Modifier.padding(top = dimensionResource(id = R.dimen.spacing_s)),
                     text = stringResource(
                         id = R.string.guideline_colour_xml,
-                        context.getStringName(color.xmlResourceValue)
+                        context.getStringName(color.xmlRes)
                     )
                 )
                 OdsButton(
                     modifier = Modifier.padding(top = dimensionResource(id = R.dimen.spacing_s)),
                     text = stringResource(id = R.string.guideline_colour_copy_to_clipboard_button_title),
-                    onClick = { copyColorToClipboard(context, color, clipboardManager) })
+                    onClick = { copyColorToClipboard(context, colorValue, clipboardManager) })
             }
         }
     }
 }
 
-@Composable
-private fun getColorList(systemInDarkTheme: Boolean): List<GuidelineColorItem> {
-    return getCoreColors(systemInDarkTheme)
-        .plus(getFunctionalColors(systemInDarkTheme))
-        .plus(getSupportingColors())
-}
-
-private fun copyColorToClipboard(context: Context, color: GuidelineColorItem, clipboardManager: ClipboardManager) {
-    clipboardManager.setText(AnnotatedString(color.hexValue))
+private fun copyColorToClipboard(context: Context, color: Color, clipboardManager: ClipboardManager) {
+    clipboardManager.setText(AnnotatedString(color.toHexString()))
     val text = String.format(context.getString(R.string.guideline_colour_copy_to_clipboard_toast))
     Toast
         .makeText(context, text, Toast.LENGTH_SHORT)
