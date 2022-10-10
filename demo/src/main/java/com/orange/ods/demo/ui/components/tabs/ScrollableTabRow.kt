@@ -14,15 +14,15 @@ import androidx.compose.material.ExperimentalMaterialApi
 import androidx.compose.runtime.Composable
 import com.google.accompanist.pager.ExperimentalPagerApi
 import com.google.accompanist.pager.PagerState
-import com.orange.ods.compose.component.tab.OdsTabRow
+import com.orange.ods.compose.component.tab.OdsScrollableTabRow
 
 @ExperimentalMaterialApi
 @ExperimentalPagerApi
 @Composable
-fun TopAppBarFixedTabs(tabs: List<TabItem>, pagerState: PagerState, tabIconType: TabsCustomizationState.TabIconType, tabTextEnabled: Boolean) {
+fun ScrollableTabRow(tabs: List<TabItem>, pagerState: PagerState, tabIconType: MainTabsCustomizationState.TabIconType, tabTextEnabled: Boolean) {
 
-    OdsTabRow(selectedTabIndex = pagerState.currentPage) {
-        TopAppBarTabs(tabs = tabs, pagerState = pagerState, tabIconType = tabIconType, tabTextEnabled = tabTextEnabled)
+    OdsScrollableTabRow(selectedTabIndex = pagerState.currentPage) {
+        Tabs(tabs = tabs, pagerState = pagerState, tabIconType = tabIconType, tabTextEnabled = tabTextEnabled)
     }
 
 }

@@ -33,7 +33,7 @@ import com.orange.ods.compose.component.list.OdsListItemIconType
 import com.orange.ods.compose.component.list.iconType
 import com.orange.ods.compose.text.OdsTextSubtitle2
 import com.orange.ods.demo.R
-import com.orange.ods.demo.ui.LocalTopAppBarManager
+import com.orange.ods.demo.ui.LocalMainTopAppBarManager
 import com.orange.ods.demo.ui.components.utilities.ComponentHeader
 
 @ExperimentalMaterialApi
@@ -47,7 +47,7 @@ fun ComponentDetailScreen(
     val component = remember { components.firstOrNull { component -> component.id == componentId } }
 
     component?.let {
-        LocalTopAppBarManager.current.updateTopAppBarTitle(component.titleRes)
+        LocalMainTopAppBarManager.current.updateTopAppBarTitle(component.titleRes)
 
         Column(
             modifier = Modifier

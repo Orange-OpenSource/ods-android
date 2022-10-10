@@ -13,7 +13,7 @@ package com.orange.ods.demo.ui.components
 import androidx.compose.material.ExperimentalMaterialApi
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember
-import com.orange.ods.demo.ui.LocalTopAppBarManager
+import com.orange.ods.demo.ui.LocalMainTopAppBarManager
 import com.orange.ods.demo.ui.components.bottomnavigation.ComponentBottomNavigation
 import com.orange.ods.demo.ui.components.checkboxes.ComponentCheckboxes
 import com.orange.ods.demo.ui.components.dialogs.ComponentDialog
@@ -28,7 +28,7 @@ fun ComponentDemoScreen(componentId: Long) {
     val component = remember { components.firstOrNull { it.id == componentId } }
 
     component?.let {
-        LocalTopAppBarManager.current.updateTopAppBarTitle(component.titleRes)
+        LocalMainTopAppBarManager.current.updateTopAppBarTitle(component.titleRes)
         when (component) {
             Component.BottomNavigation -> ComponentBottomNavigation()
             Component.Checkboxes -> ComponentCheckboxes()

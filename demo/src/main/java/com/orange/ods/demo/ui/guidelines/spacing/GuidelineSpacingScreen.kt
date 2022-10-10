@@ -31,7 +31,7 @@ import com.orange.ods.compose.component.list.divider
 import com.orange.ods.compose.text.OdsTextCaption
 import com.orange.ods.compose.text.OdsTextSubtitle1
 import com.orange.ods.demo.R
-import com.orange.ods.demo.ui.LocalTopAppBarManager
+import com.orange.ods.demo.ui.LocalMainTopAppBarManager
 import com.orange.ods.demo.ui.components.utilities.ComponentHeader
 import com.orange.ods.demo.ui.guidelines.Guideline
 import java.text.DecimalFormat
@@ -43,7 +43,7 @@ private val ratioFormatter = DecimalFormat("0.#", DecimalFormatSymbols(Locale.EN
 @ExperimentalMaterialApi
 @Composable
 fun GuidelineSpacingScreen() {
-    LocalTopAppBarManager.current.updateTopAppBarTitle(R.string.guideline_spacing)
+    LocalMainTopAppBarManager.current.updateTopAppBarTitle(R.string.guideline_spacing)
 
     LazyColumn(contentPadding = PaddingValues(bottom = dimensionResource(id = R.dimen.spacing_m))) {
         item {

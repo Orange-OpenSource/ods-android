@@ -8,7 +8,7 @@
  * /
  */
 
-package com.orange.ods.demo.ui.components.tabs
+package com.orange.ods.demo.ui
 
 import androidx.compose.material.ExperimentalMaterialApi
 import androidx.compose.runtime.Composable
@@ -17,31 +17,43 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.snapshots.SnapshotStateList
+import androidx.compose.runtime.staticCompositionLocalOf
 import com.google.accompanist.pager.ExperimentalPagerApi
 import com.google.accompanist.pager.PagerState
+import com.orange.ods.demo.ui.components.tabs.MainTabsCustomizationState
+import com.orange.ods.demo.ui.components.tabs.TabItem
 import com.orange.ods.demo.ui.utilities.rememberSaveableMutableStateListOf
+
+val LocalMainTabsManager = staticCompositionLocalOf<MainTabsManager> { error("CompositionLocal LocalMainTabsManager not present") }
+
+interface MainTabsManager {
+
+    fun updateTopAppBarTabs(tabsConfiguration: MainTabsConfiguration)
+
+    fun clearTopAppBarTabs()
+}
 
 @Composable
 @ExperimentalPagerApi
 @ExperimentalMaterialApi
-fun rememberOdsDemoTabsState(
+fun rememberMainTabsState(
     tabs: SnapshotStateList<TabItem> = rememberSaveableMutableStateListOf(),
-    tabIconType: MutableState<TabsCustomizationState.TabIconType> = rememberSaveable { mutableStateOf(TabsCustomizationState.TabIconType.Top) },
+    tabIconType: MutableState<MainTabsCustomizationState.TabIconType> = rememberSaveable { mutableStateOf(MainTabsCustomizationState.TabIconType.Top) },
     tabTextEnabled: MutableState<Boolean> = rememberSaveable { mutableStateOf(true) },
     scrollableTabs: MutableState<Boolean> = rememberSaveable { mutableStateOf(false) }
 ) =
     remember(tabs, tabIconType, tabTextEnabled, scrollableTabs) {
-        OdsDemoTabsState(tabs, tabIconType, tabTextEnabled, scrollableTabs)
+        MainTabsState(tabs, tabIconType, tabTextEnabled, scrollableTabs)
     }
 
 @ExperimentalPagerApi
 @ExperimentalMaterialApi
-class OdsDemoTabsState(
+class MainTabsState(
     val tabs: SnapshotStateList<TabItem>,
-    val tabIconType: MutableState<TabsCustomizationState.TabIconType>,
+    val tabIconType: MutableState<MainTabsCustomizationState.TabIconType>,
     val tabTextEnabled: MutableState<Boolean>,
     val scrollableTabs: MutableState<Boolean>
-) : OdsDemoTabsManager {
+) : MainTabsManager {
     var pagerState: PagerState? = null
         private set
 
@@ -52,7 +64,7 @@ class OdsDemoTabsState(
     // Tabs state source of truth
     // ----------------------------------------------------------
 
-    override fun updateTopAppBarTabs(tabsConfiguration: TabsConfiguration) {
+    override fun updateTopAppBarTabs(tabsConfiguration: MainTabsConfiguration) {
         with(tabs) {
             clear()
             addAll(tabsConfiguration.tabs)
@@ -69,10 +81,10 @@ class OdsDemoTabsState(
     }
 }
 
-data class TabsConfiguration @ExperimentalPagerApi @ExperimentalMaterialApi constructor(
+data class MainTabsConfiguration @ExperimentalPagerApi @ExperimentalMaterialApi constructor(
     val scrollableTabs: Boolean,
     val tabs: List<TabItem>,
     val pagerState: PagerState,
-    val tabIconType: TabsCustomizationState.TabIconType,
+    val tabIconType: MainTabsCustomizationState.TabIconType,
     val tabTextEnabled: Boolean
 )

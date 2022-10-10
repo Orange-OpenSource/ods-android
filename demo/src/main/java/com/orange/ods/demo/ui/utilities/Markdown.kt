@@ -12,7 +12,7 @@ package com.orange.ods.demo.ui.utilities
 
 object Markdown {
 
-    private const val specialCharacters = "\\`*_{}[]()#+-.!"
+    private const val SpecialCharacters = "\\`*_{}[]()#+-.!"
 
     fun toHtml(markdown: String): String {
         val html = markdown.replaceEscapedCharacters()
@@ -37,10 +37,10 @@ object Markdown {
     }
 
     private fun CharSequence.replaceEscapedCharacters(): String {
-        val escapedCharacters = specialCharacters.map { "\\$it" }.joinToString("")
+        val escapedCharacters = SpecialCharacters.map { "\\$it" }.joinToString("")
         return replace("\\\\([$escapedCharacters])".toRegex(), "$1")
     }
-    
+
     private fun CharSequence.replaceLinks(): String {
         return replace("<([^>]*)>".toRegex(), "<a href=\"$1\">$1</a>")
             .replace("\\[(.[^]]*)]\\(([^)]*)\\)".toRegex(), "<a href=\"$2\">$1</a>")

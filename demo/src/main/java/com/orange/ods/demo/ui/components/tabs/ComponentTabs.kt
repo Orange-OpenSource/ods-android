@@ -32,6 +32,8 @@ import com.google.accompanist.pager.HorizontalPager
 import com.orange.ods.compose.component.chip.OdsChoiceChip
 import com.orange.ods.compose.component.chip.OdsChoiceChipsFlowRow
 import com.orange.ods.demo.R
+import com.orange.ods.demo.ui.LocalMainTabsManager
+import com.orange.ods.demo.ui.MainTabsConfiguration
 import com.orange.ods.demo.ui.components.Variant
 import com.orange.ods.demo.ui.components.utilities.ComponentCountRow
 import com.orange.ods.demo.ui.components.utilities.ComponentCustomizationBottomSheetScaffold
@@ -60,9 +62,9 @@ fun ComponentTabs(variant: Variant) {
         tabCountMax = FixedTabsCountMax
     }
 
-    val tabsCustomizationState = rememberTabsCustomizationState(tabsCount = rememberSaveable { mutableStateOf(tabCountMin) })
-    LocalTabsManager.current.updateTopAppBarTabs(
-        TabsConfiguration(
+    val tabsCustomizationState = rememberMainTabsCustomizationState(tabsCount = rememberSaveable { mutableStateOf(tabCountMin) })
+    LocalMainTabsManager.current.updateTopAppBarTabs(
+        MainTabsConfiguration(
             scrollableTabs = scrollableTabs,
             tabs = tabsCustomizationState.tabs,
             pagerState = tabsCustomizationState.pagerState,
@@ -82,17 +84,17 @@ fun ComponentTabs(variant: Variant) {
             ) {
                 OdsChoiceChip(
                     textRes = R.string.component_tab_icon_leading,
-                    value = TabsCustomizationState.TabIconType.Leading,
+                    value = MainTabsCustomizationState.TabIconType.Leading,
                     enabled = tabsCustomizationState.isTabIconCustomizationEnabled
                 )
                 OdsChoiceChip(
                     textRes = R.string.component_tab_icon_top,
-                    value = TabsCustomizationState.TabIconType.Top,
+                    value = MainTabsCustomizationState.TabIconType.Top,
                     enabled = tabsCustomizationState.isTabIconCustomizationEnabled
                 )
                 OdsChoiceChip(
                     textRes = R.string.component_element_none,
-                    value = TabsCustomizationState.TabIconType.None,
+                    value = MainTabsCustomizationState.TabIconType.None,
                     enabled = tabsCustomizationState.isTabIconCustomizationEnabled
                 )
             }

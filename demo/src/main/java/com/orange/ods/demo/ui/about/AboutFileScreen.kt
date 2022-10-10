@@ -24,21 +24,21 @@ import androidx.compose.ui.viewinterop.AndroidView
 import androidx.webkit.WebSettingsCompat
 import androidx.webkit.WebViewFeature
 import com.orange.ods.demo.R
-import com.orange.ods.demo.ui.LocalTopAppBarManager
+import com.orange.ods.demo.ui.LocalMainTopAppBarManager
 import com.orange.ods.demo.ui.utilities.Markdown
 import com.orange.ods.demo.ui.utilities.extension.isDarkModeEnabled
 import com.orange.ods.demo.ui.utilities.launchUrl
 import java.io.BufferedReader
 import java.nio.charset.StandardCharsets
 
-private const val FILE_PATH = "file:///android_res/raw/"
+private const val FilePath = "file:///android_res/raw/"
 
 @Composable
 fun AboutFileScreen(aboutItemId: Long) {
     val aboutItem = remember { aboutItems.firstOrNull { item -> item.id == aboutItemId } }
 
     aboutItem?.let { item ->
-        LocalTopAppBarManager.current.updateTopAppBarTitle(item.titleRes)
+        LocalMainTopAppBarManager.current.updateTopAppBarTitle(item.titleRes)
         val context = LocalContext.current
         val configuration = LocalConfiguration.current
         val horizontalPadding = dimensionResource(id = R.dimen.ods_screen_horizontal_margin).value
@@ -71,7 +71,7 @@ fun AboutFileScreen(aboutItemId: Long) {
                         AboutItem.FileFormat.Markdown -> Markdown.toHtml(fileContent)
                     }
                     // Use loadDataWithBaseURL instead of loadData otherwise CSS won't work
-                    loadDataWithBaseURL(FILE_PATH, html, "text/html; charset=UTF-8", StandardCharsets.UTF_8.name(), null)
+                    loadDataWithBaseURL(FilePath, html, "text/html; charset=UTF-8", StandardCharsets.UTF_8.name(), null)
 
                     setBackgroundColor(Color.TRANSPARENT)
                     if (WebViewFeature.isFeatureSupported(WebViewFeature.FORCE_DARK_STRATEGY)) {

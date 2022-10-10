@@ -20,11 +20,11 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextAlign
 import com.orange.ods.demo.R
-import com.orange.ods.demo.ui.LocalTopAppBarManager
+import com.orange.ods.demo.ui.LocalMainTopAppBarManager
 
 @Composable
 fun ModulesScreen() {
-    LocalTopAppBarManager.current.updateTopAppBarTitle(R.string.navigation_item_modules)
+    LocalMainTopAppBarManager.current.updateTopAppBarTitle(R.string.navigation_item_modules)
     Column(
         modifier = Modifier
             .fillMaxSize()

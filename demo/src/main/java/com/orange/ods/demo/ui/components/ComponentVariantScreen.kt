@@ -14,7 +14,7 @@ import androidx.compose.material.ExperimentalMaterialApi
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember
 import com.google.accompanist.pager.ExperimentalPagerApi
-import com.orange.ods.demo.ui.LocalTopAppBarManager
+import com.orange.ods.demo.ui.LocalMainTopAppBarManager
 import com.orange.ods.demo.ui.components.appbars.top.ComponentTopAppBar
 import com.orange.ods.demo.ui.components.buttons.ComponentButtons
 import com.orange.ods.demo.ui.components.cards.ComponentCard
@@ -32,7 +32,7 @@ fun ComponentVariantScreen(variantId: Long) {
     val variant = remember { components.flatMap { it.variants }.firstOrNull { it.id == variantId } }
 
     variant?.let {
-        LocalTopAppBarManager.current.updateTopAppBarTitle(variant.titleRes)
+        LocalMainTopAppBarManager.current.updateTopAppBarTitle(variant.titleRes)
         when (component) {
             Component.AppBarsTop -> ComponentTopAppBar()
             Component.Buttons -> ComponentButtons(variant = variant)

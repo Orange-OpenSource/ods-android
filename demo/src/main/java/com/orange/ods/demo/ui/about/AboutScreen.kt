@@ -35,14 +35,14 @@ import com.orange.ods.compose.component.list.OdsListItem
 import com.orange.ods.compose.text.OdsTextCaption
 import com.orange.ods.compose.theme.Blue200
 import com.orange.ods.demo.R
-import com.orange.ods.demo.ui.LocalTopAppBarManager
+import com.orange.ods.demo.ui.LocalMainTopAppBarManager
 import com.orange.ods.demo.ui.utilities.extension.versionCode
 import com.orange.ods.utilities.extension.orElse
 
 @Composable
 @ExperimentalMaterialApi
 fun AboutScreen(onAboutItemClick: (Long) -> Unit) {
-    LocalTopAppBarManager.current.updateTopAppBarTitle(R.string.navigation_item_about)
+    LocalMainTopAppBarManager.current.updateTopAppBarTitle(R.string.navigation_item_about)
     Column(
         modifier = Modifier
             .verticalScroll(rememberScrollState())
