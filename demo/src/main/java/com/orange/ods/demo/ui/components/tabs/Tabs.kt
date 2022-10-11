@@ -24,7 +24,7 @@ import kotlinx.coroutines.launch
 @ExperimentalMaterialApi
 @ExperimentalPagerApi
 @Composable
-fun TopAppBarTabs(tabs: List<TabItem>, pagerState: PagerState, tabIconType: TabsCustomizationState.TabIconType, tabTextEnabled: Boolean) {
+fun Tabs(tabs: List<TabItem>, pagerState: PagerState, tabIconType: MainTabsCustomizationState.TabIconType, tabTextEnabled: Boolean) {
     val scope = rememberCoroutineScope()
 
     tabs.forEachIndexed { index, tab ->
@@ -35,7 +35,7 @@ fun TopAppBarTabs(tabs: List<TabItem>, pagerState: PagerState, tabIconType: Tabs
             }
         }
 
-        if (tabIconType == TabsCustomizationState.TabIconType.Leading && tabTextEnabled) {
+        if (tabIconType == MainTabsCustomizationState.TabIconType.Leading && tabTextEnabled) {
             OdsLeadingIconTab(
                 icon = painterResource(id = tab.icon),
                 text = stringResource(id = tab.titleRes),
@@ -44,7 +44,7 @@ fun TopAppBarTabs(tabs: List<TabItem>, pagerState: PagerState, tabIconType: Tabs
             )
         } else {
             OdsTab(
-                icon = if (tabIconType == TabsCustomizationState.TabIconType.None) null else painterResource(id = tab.icon),
+                icon = if (tabIconType == MainTabsCustomizationState.TabIconType.None) null else painterResource(id = tab.icon),
                 text = if (tabTextEnabled) stringResource(id = tab.titleRes) else null,
                 selected = selected,
                 onClick = onClick

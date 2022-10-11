@@ -22,49 +22,47 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
 import com.google.accompanist.pager.ExperimentalPagerApi
-import com.orange.ods.demo.ui.components.tabs.OdsDemoTabsState
-import com.orange.ods.demo.ui.components.tabs.rememberOdsDemoTabsState
 
 /**
- * Destinations used in the [OdsDemoApp].
+ * Destinations used in the [MainScreen].
  */
 object MainDestinations {
-    const val HOME_ROUTE = "home"
+    const val HomeRoute = "home"
 
-    const val GUIDELINE_TYPOGRAPHY = "guideline/typography"
-    const val GUIDELINE_COLOR = "guideline/color"
-    const val GUIDELINE_SPACING = "guideline/spacing"
+    const val GuidelineTypography = "guideline/typography"
+    const val GuidelineColor = "guideline/color"
+    const val GuidelineSpacing = "guideline/spacing"
 
-    const val COMPONENT_DETAIL_ROUTE = "component"
-    const val COMPONENT_ID_KEY = "componentId"
-    const val COMPONENT_VARIANT_ROUTE = "component/variant"
-    const val COMPONENT_VARIANT_ID_KEY = "componentVariantId"
-    const val COMPONENT_DEMO_ROUTE = "component/demo"
+    const val ComponentDetailRoute = "component"
+    const val ComponentIdKey = "componentId"
+    const val ComponentVariantRoute = "component/variant"
+    const val ComponentVariantIdKey = "componentVariantId"
+    const val ComponentDemoRoute = "component/demo"
 
-    const val ABOUT_ITEM_DETAIL_ROUTE = "aboutItem"
-    const val ABOUT_ITEM_ID_KEY = "aboutItemId"
+    const val AboutItemDetailRoute = "aboutItem"
+    const val AboutItemIdKey = "aboutItemId"
 }
 
 @Composable
 @ExperimentalPagerApi
 @ExperimentalMaterialApi
-fun rememberOdsDemoAppState(
+fun rememberMainState(
     navController: NavHostController = rememberNavController(),
     darkModeEnabled: MutableState<Boolean>,
-    topAppBarState: OdsDemoTopAppBarState = rememberOdsDemoTopAppBarState(),
-    tabsState: OdsDemoTabsState = rememberOdsDemoTabsState()
+    topAppBarState: MainTopAppBarState = rememberMainTopAppBarState(),
+    tabsState: MainTabsState = rememberMainTabsState()
 ) =
     remember(navController, darkModeEnabled, topAppBarState, tabsState) {
-        OdsDemoAppState(navController, darkModeEnabled, topAppBarState, tabsState)
+        MainState(navController, darkModeEnabled, topAppBarState, tabsState)
     }
 
 @ExperimentalPagerApi
 @ExperimentalMaterialApi
-class OdsDemoAppState(
+class MainState(
     val navController: NavHostController,
     val darkModeEnabled: MutableState<Boolean>,
-    val topAppBarState: OdsDemoTopAppBarState,
-    val tabsState: OdsDemoTabsState
+    val topAppBarState: MainTopAppBarState,
+    val tabsState: MainTabsState
 ) {
 
     fun updateTheme(isDark: Boolean) {
@@ -75,8 +73,8 @@ class OdsDemoAppState(
     // BottomBar state source of truth
     // ----------------------------------------------------------
 
-    val bottomBarTabs = HomeSections.values()
-    private val bottomBarRoutes = bottomBarTabs.map { it.route }
+    val bottomBarItems = BottomNavigationSections.values()
+    private val bottomBarRoutes = bottomBarItems.map { it.route }
 
     // Reading this attribute will cause recompositions when the bottom bar needs shown, or not.
     // Not all routes need to show the bottom bar.

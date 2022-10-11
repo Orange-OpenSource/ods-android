@@ -36,10 +36,10 @@ import com.orange.ods.demo.ui.components.utilities.clickOnElement
 import com.orange.ods.demo.ui.utilities.extension.isDarkModeEnabled
 
 @Composable
-fun OdsDemoTopAppBar(
+fun MainTopAppBar(
     titleRes: Int,
     shouldShowUpNavigationIcon: Boolean,
-    state: OdsDemoTopAppBarState,
+    state: MainTopAppBarState,
     upPress: () -> Unit,
     updateTheme: (Boolean) -> Unit
 ) {
@@ -79,7 +79,7 @@ fun OdsDemoTopAppBar(
                 OverflowMenu()
             }
         },
-        elevated = false // elevation is managed in [OdsDemoApp] cause of tabs
+        elevated = false // elevation is managed in [MainScreen] cause of tabs
     )
 }
 

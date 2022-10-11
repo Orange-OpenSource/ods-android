@@ -18,6 +18,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.stringResource
 import com.orange.ods.demo.R
+import com.orange.ods.demo.ui.LocalMainTopAppBarManager
 import com.orange.ods.demo.ui.TopAppBarConfiguration
 import com.orange.ods.demo.ui.components.utilities.ComponentCountRow
 import com.orange.ods.demo.ui.components.utilities.ComponentCustomizationBottomSheetScaffold
@@ -25,10 +26,10 @@ import com.orange.ods.demo.ui.utilities.composable.SwitchListItem
 
 @ExperimentalMaterialApi
 @Composable
-fun ComponentTopAppBar(updateTopAppBar: (TopAppBarConfiguration) -> Unit) {
+fun ComponentTopAppBar() {
     val customizationState = rememberTopAppBarCustomizationState()
 
-    updateTopAppBar(
+    LocalMainTopAppBarManager.current.updateTopAppBar(
         TopAppBarConfiguration(
             isNavigationIconEnabled = customizationState.isNavigationIconEnabled,
             actionCount = customizationState.actionCount.value,
