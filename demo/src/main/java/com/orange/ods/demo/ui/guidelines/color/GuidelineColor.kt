@@ -43,167 +43,44 @@ import kotlin.reflect.full.extensionReceiverParameter
 import kotlin.reflect.full.memberProperties
 
 data class GuidelineColor(
-    val lightThemeName: String,
-    val darkThemeName: String = lightThemeName,
     val callable: KCallable<Color>,
     @ColorRes @AttrRes val xmlRes: Int,
-    val type: Type
+    val lightThemeName: String,
+    val darkThemeName: String = lightThemeName
 ) {
 
     companion object {
 
         val coreColors = listOf(
-            GuidelineColor(
-                lightThemeName = "Orange 100",
-                darkThemeName = "Orange 200",
-                callable = Colors::primary,
-                xmlRes = R.attr.colorPrimary,
-                type = Type.Core,
-            ),
-            GuidelineColor(
-                lightThemeName = "Black 900",
-                darkThemeName = "White 100",
-                callable = Colors::background,
-                xmlRes = R.attr.backgroundColor,
-                type = Type.Core
-            ),
-            GuidelineColor(
-                lightThemeName = "Secondary Background",
-                darkThemeName = "White 100",
-                callable = Colors::surface,
-                xmlRes = R.attr.colorSurface,
-                type = Type.Core
-            ),
-            GuidelineColor(
-                lightThemeName = "OBS Grey 700",
-                callable = ::ObsGrey700,
-                xmlRes = R.color.ods_color_core_obsgrey_700,
-                type = Type.Core
-            )
+            GuidelineColor(Colors::primary, R.attr.colorPrimary, "Orange 100", "Orange 200"),
+            GuidelineColor(Colors::background, R.attr.backgroundColor, "Black 900", "White 100"),
+            GuidelineColor(Colors::surface, R.attr.colorSurface, "Secondary Background", "White 100"),
+            GuidelineColor(::ObsGrey700, R.color.ods_color_core_obsgrey_700, "OBS Grey 700")
         )
 
         val functionalColors = listOf(
-            GuidelineColor(
-                lightThemeName = "Positive 100",
-                darkThemeName = "Positive 200",
-                callable = Colors::functionalPositive,
-                xmlRes = R.attr.functionalPositive,
-                type = Type.Functional
-            ),
-            GuidelineColor(
-                lightThemeName = "Negative 100",
-                darkThemeName = "Negative 200",
-                callable = Colors::error,
-                xmlRes = R.attr.colorError,
-                type = Type.Functional
-            ),
-            GuidelineColor(
-                lightThemeName = "Info 100",
-                darkThemeName = "Info 200",
-                callable = Colors::functionalInfo,
-                xmlRes = R.attr.functionalInfo,
-                type = Type.Functional
-            ),
-            GuidelineColor(
-                lightThemeName = "Alert 100",
-                darkThemeName = "Alert 200",
-                callable = Colors::functionalAlert,
-                xmlRes = R.attr.functionalAlert,
-                type = Type.Functional
-            )
+            GuidelineColor(Colors::functionalPositive, R.attr.functionalPositive, "Positive 100", "Positive 200"),
+            GuidelineColor(Colors::error, R.attr.colorError, "Negative 100", "Negative 200"),
+            GuidelineColor(Colors::functionalInfo, R.attr.functionalInfo, "Info 100", "Info 200"),
+            GuidelineColor(Colors::functionalAlert, R.attr.functionalAlert, "Alert 100", "Alert 200")
         )
 
         val supportingColors = listOf(
-            GuidelineColor(
-                lightThemeName = "Blue 100",
-                callable = ::Blue100,
-                xmlRes = R.color.ods_color_supporting_blue_100,
-                type = Type.Supporting
-            ),
-            GuidelineColor(
-                lightThemeName = "Blue 200",
-                callable = ::Blue200,
-                xmlRes = R.color.ods_color_supporting_blue_200,
-                type = Type.Supporting
-            ),
-            GuidelineColor(
-                lightThemeName = "Blue 300",
-                callable = ::Blue300,
-                xmlRes = R.color.ods_color_supporting_blue_300,
-                type = Type.Supporting
-            ),
-            GuidelineColor(
-                lightThemeName = "Green 100",
-                callable = ::Green100,
-                xmlRes = R.color.ods_color_supporting_green_100,
-                type = Type.Supporting
-            ),
-            GuidelineColor(
-                lightThemeName = "Green 200",
-                callable = ::Green200,
-                xmlRes = R.color.ods_color_supporting_green_200,
-                type = Type.Supporting
-            ),
-            GuidelineColor(
-                lightThemeName = "Green 300",
-                callable = ::Green300,
-                xmlRes = R.color.ods_color_supporting_green_300,
-                type = Type.Supporting
-            ),
-            GuidelineColor(
-                lightThemeName = "Pink 100",
-                callable = ::Pink100,
-                xmlRes = R.color.ods_color_supporting_pink_100,
-                type = Type.Supporting
-            ),
-            GuidelineColor(
-                lightThemeName = "Pink 200",
-                callable = ::Pink200,
-                xmlRes = R.color.ods_color_supporting_pink_200,
-                type = Type.Supporting
-            ),
-            GuidelineColor(
-                lightThemeName = "Pink 300",
-                callable = ::Pink300,
-                xmlRes = R.color.ods_color_supporting_pink_300,
-                type = Type.Supporting
-            ),
-            GuidelineColor(
-                lightThemeName = "Purple 100",
-                callable = ::Purple100,
-                xmlRes = R.color.ods_color_supporting_purple_100,
-                type = Type.Supporting
-            ),
-            GuidelineColor(
-                lightThemeName = "Purple 200",
-                callable = ::Purple200,
-                xmlRes = R.color.ods_color_supporting_purple_200,
-                type = Type.Supporting
-            ),
-            GuidelineColor(
-                lightThemeName = "Purple 300",
-                callable = ::Purple300,
-                xmlRes = R.color.ods_color_supporting_purple_300,
-                type = Type.Supporting
-            ),
-            GuidelineColor(
-                lightThemeName = "Yellow 100",
-                callable = ::Yellow100,
-                xmlRes = R.color.ods_color_supporting_yellow_100,
-                type = Type.Supporting
-            ),
-            GuidelineColor(
-                lightThemeName = "Yellow 200",
-                callable = ::Yellow200,
-                xmlRes = R.color.ods_color_supporting_yellow_200,
-                type = Type.Supporting
-            ),
-            GuidelineColor(
-                lightThemeName = "Yellow 300",
-                callable = ::Yellow300,
-                xmlRes = R.color.ods_color_supporting_yellow_300,
-                type = Type.Supporting
-            )
+            GuidelineColor(::Blue100, R.color.ods_color_supporting_blue_100, "Blue 100"),
+            GuidelineColor(::Blue200, R.color.ods_color_supporting_blue_200, "Blue 200"),
+            GuidelineColor(::Blue300, R.color.ods_color_supporting_blue_300, "Blue 300"),
+            GuidelineColor(::Green100, R.color.ods_color_supporting_green_100, "Green 100"),
+            GuidelineColor(::Green200, R.color.ods_color_supporting_green_200, "Green 200"),
+            GuidelineColor(::Green300, R.color.ods_color_supporting_green_300, "Green 300"),
+            GuidelineColor(::Pink100, R.color.ods_color_supporting_pink_100, "Pink 100"),
+            GuidelineColor(::Pink200, R.color.ods_color_supporting_pink_200, "Pink 200"),
+            GuidelineColor(::Pink300, R.color.ods_color_supporting_pink_300, "Pink 300"),
+            GuidelineColor(::Purple100, R.color.ods_color_supporting_purple_100, "Purple 100"),
+            GuidelineColor(::Purple200, R.color.ods_color_supporting_purple_200, "Purple 200"),
+            GuidelineColor(::Purple300, R.color.ods_color_supporting_purple_300, "Purple 300"),
+            GuidelineColor(::Yellow100, R.color.ods_color_supporting_yellow_100, "Yellow 100"),
+            GuidelineColor(::Yellow200, R.color.ods_color_supporting_yellow_200, "Yellow 200"),
+            GuidelineColor(::Yellow300, R.color.ods_color_supporting_yellow_300, "Yellow 300")
         )
     }
 
@@ -218,12 +95,6 @@ data class GuidelineColor(
         val isColorsExtensionProperty = callable.extensionReceiverParameter?.type?.classifier == Colors::class
 
         return if (isColorsProperty || isColorsExtensionProperty) callable.call(MaterialTheme.colors) else callable.call()
-    }
-
-    enum class Type {
-        Core,
-        Functional,
-        Supporting
     }
 }
 
