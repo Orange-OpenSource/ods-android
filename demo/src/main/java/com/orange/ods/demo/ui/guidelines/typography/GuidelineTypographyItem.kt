@@ -87,7 +87,7 @@ internal fun getTypographyItems(): List<TypographyItem> = listOf(
         xmlResource = R.attr.textAppearanceBody2,
     ),
     TypographyItem(
-        name = "Button",
+        name = "BUTTON",
         style = OdsTheme.typography.button,
         jetpackUsage = "OdsTheme.typography.button",
         xmlResource = R.attr.textAppearanceButton,

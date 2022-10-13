@@ -27,12 +27,12 @@ val OrangeTypography = Typography(
     h1 = TextStyle(
         fontSize = 96.sp,
         fontWeight = FontWeight.Bold,
-        letterSpacing = (-0.015625).sp
+        letterSpacing = (-1.5).sp
     ),
     h2 = TextStyle(
         fontSize = 60.sp,
         fontWeight = FontWeight.Bold,
-        letterSpacing = (-0.00833333333).sp
+        letterSpacing = (-0.5).sp
     ),
     h3 = TextStyle(
         fontSize = 48.sp,
@@ -41,7 +41,7 @@ val OrangeTypography = Typography(
     h4 = TextStyle(
         fontSize = 34.sp,
         fontWeight = FontWeight.Bold,
-        letterSpacing = (0.00735294118).sp
+        letterSpacing = (0.25).sp
     ),
     h5 = TextStyle(
         fontSize = 24.sp,
@@ -51,41 +51,41 @@ val OrangeTypography = Typography(
     h6 = TextStyle(
         fontSize = 20.sp,
         fontWeight = FontWeight.Bold,
-        letterSpacing = (0.0075).sp
+        letterSpacing = (0.15).sp
     ),
     subtitle1 = TextStyle(
         fontSize = 16.sp,
         fontWeight = FontWeight.Bold,
-        letterSpacing = (0.009375).sp
+        letterSpacing = (0.15).sp
     ),
     subtitle2 = TextStyle(
         fontSize = 14.sp,
         fontWeight = FontWeight.Normal,
-        letterSpacing = (0.00714285714).sp
+        letterSpacing = (0.1).sp
     ),
     body1 = TextStyle(
         fontSize = 16.sp,
         fontWeight = FontWeight.Normal,
-        letterSpacing = (0.03125).sp
+        letterSpacing = (0.5).sp
     ),
     body2 = TextStyle(
         fontSize = 14.sp,
         fontWeight = FontWeight.Normal,
-        letterSpacing = (0.0178571429).sp
+        letterSpacing = (0.25).sp
     ),
     button = TextStyle(
         fontSize = 14.sp,
         fontWeight = FontWeight.Bold,
-        letterSpacing = (0.0892857142).sp
+        letterSpacing = (1.25).sp
     ),
     caption = TextStyle(
         fontSize = 12.sp,
         fontWeight = FontWeight.Normal,
-        letterSpacing = (0.0333333333).sp
+        letterSpacing = (0.4).sp
     ),
     overline = TextStyle(
         fontSize = 10.sp,
         fontWeight = FontWeight.Bold,
-        letterSpacing = (0.15).sp
+        letterSpacing = (1.5).sp
     )
 )
