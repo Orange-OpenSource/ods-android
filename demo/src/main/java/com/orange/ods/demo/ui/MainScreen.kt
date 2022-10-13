@@ -45,18 +45,18 @@ import com.orange.ods.demo.ui.components.tabs.ScrollableTabRow
 import com.orange.ods.demo.ui.guidelines.addGuidelinesGraph
 import com.orange.ods.demo.ui.utilities.extension.isDarkModeEnabled
 import com.orange.ods.demo.ui.utilities.rememberSaveableMutableStateListOf
-import com.orange.ods.theme.OdsSupportedTheme
+import com.orange.ods.theme.OdsThemeSettings
 
 @ExperimentalMaterialApi
 @ExperimentalPagerApi
 @Preview(showBackground = true, uiMode = UI_MODE_NIGHT_YES)
 @Preview(showBackground = true)
 @Composable
-fun MainScreen(odsSupportedThemes: Set<OdsSupportedTheme>) {
+fun MainScreen(odsThemeSettings: Set<OdsThemeSettings>) {
     val isSystemInDarkTheme = isSystemInDarkTheme()
     val mainState = rememberMainState(
-        odsSupportedThemes = rememberSaveableMutableStateListOf(elements = odsSupportedThemes.toList()),
-        currentTheme = rememberSaveable { mutableStateOf(odsSupportedThemes.first()) },
+        odsThemeSettings = rememberSaveableMutableStateListOf(elements = odsThemeSettings.toList()),
+        currentThemeSettings = rememberSaveable { mutableStateOf(odsThemeSettings.first()) },
         darkModeEnabled = rememberSaveable { mutableStateOf(isSystemInDarkTheme) }
     )
 
@@ -69,10 +69,10 @@ fun MainScreen(odsSupportedThemes: Set<OdsSupportedTheme>) {
         LocalConfiguration provides configuration,
         LocalMainTopAppBarManager provides mainState.topAppBarState,
         LocalMainTabsManager provides mainState.tabsState,
-        LocalCurrentTheme provides mainState.currentTheme.value,
+        LocalCurrentThemeSettings provides mainState.currentThemeSettings.value,
     ) {
         OdsTheme(
-            supportedTheme = LocalCurrentTheme.current,
+            odsThemeSettings = LocalCurrentThemeSettings.current,
             darkThemeEnabled = configuration.isDarkModeEnabled
         ) {
             Scaffold(

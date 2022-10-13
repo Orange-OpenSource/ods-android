@@ -30,7 +30,7 @@ android {
         minSdk = Versions.minSdk
 
         val value = "new ${findTypedProperty<String>("previewThemeClass").orEmpty()}()"
-        buildConfigField("com.orange.ods.theme.OdsSupportedTheme", "THEME", value)
+        buildConfigField("com.orange.ods.theme.OdsThemeSettings", "THEME_SETTINGS", value)
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         consumerProguardFile("consumer-rules.pro")
@@ -75,7 +75,7 @@ dependencies {
     compileOnly(project(":component-processor"))
 
     api(Dependencies.material)
-    
+
     implementation(Dependencies.accompanistFlowLayout)
     implementation(Dependencies.appCompat)
     implementation(Dependencies.composeUi)

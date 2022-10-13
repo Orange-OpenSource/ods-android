@@ -23,7 +23,7 @@ import kotlin.reflect.KClass
  * @param content The content of the preview.
  */
 @Composable
-internal fun Preview(content: @Composable () -> Unit) = OdsTheme(BuildConfig.THEME) {
+internal fun Preview(content: @Composable () -> Unit) = OdsTheme(BuildConfig.THEME_SETTINGS) {
     Surface(color = OdsTheme.colors.surface, content = content)
 }
 

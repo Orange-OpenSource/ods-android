@@ -15,8 +15,6 @@ import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.TextStyle
-import com.orange.ods.compose.theme.LocalDarkThemeColors
-import com.orange.ods.compose.theme.LocalLightThemeColors
 import com.orange.ods.compose.theme.OdsDisplaySurface
 import com.orange.ods.compose.theme.OdsTheme
 
@@ -76,8 +74,8 @@ fun OdsTextOverline(text: String, modifier: Modifier = Modifier, displaySurface:
 private fun OdsText(text: String, textStyle: TextStyle, modifier: Modifier, displaySurface: OdsDisplaySurface, enabled: Boolean) {
     val color = when (displaySurface) {
         OdsDisplaySurface.Default -> if (enabled) OdsTheme.colors.onSurface else OdsTheme.colors.onSurface.copy(alpha = ContentAlpha.disabled)
-        OdsDisplaySurface.Dark -> if (enabled) LocalDarkThemeColors.current.onSurface else LocalDarkThemeColors.current.onSurface.copy(alpha = ContentAlpha.disabled)
-        OdsDisplaySurface.Light -> if (enabled) LocalLightThemeColors.current.onSurface else LocalLightThemeColors.current.onSurface.copy(alpha = ContentAlpha.disabled)
+        OdsDisplaySurface.Dark -> if (enabled) OdsTheme.darkThemeColors.onSurface else OdsTheme.darkThemeColors.onSurface.copy(alpha = ContentAlpha.disabled)
+        OdsDisplaySurface.Light -> if (enabled) OdsTheme.lightThemeColors.onSurface else OdsTheme.lightThemeColors.onSurface.copy(alpha = ContentAlpha.disabled)
     }
 
     Text(text = text, style = textStyle, color = color, modifier = modifier)

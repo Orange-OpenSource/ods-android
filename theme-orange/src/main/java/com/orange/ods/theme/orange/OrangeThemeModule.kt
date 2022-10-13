@@ -10,7 +10,7 @@
 
 package com.orange.ods.theme.orange
 
-import com.orange.ods.theme.OdsSupportedTheme
+import com.orange.ods.theme.OdsThemeSettings
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -23,6 +23,6 @@ object OrangeThemeModule {
 
     @Provides
     @IntoSet
-    fun provideOrangeTheme(): OdsSupportedTheme = OrangeTheme()
+    fun provideOrangeThemeSettings(): OdsThemeSettings = OrangeThemeSettings()
 
 }

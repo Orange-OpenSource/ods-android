@@ -52,10 +52,9 @@ import com.orange.ods.compose.text.OdsTextBody1
 import com.orange.ods.compose.text.OdsTextCaption
 import com.orange.ods.compose.text.OdsTextH5
 import com.orange.ods.compose.text.OdsTextH6
-import com.orange.ods.compose.theme.LocalColors
 import com.orange.ods.compose.theme.OdsTheme
 import com.orange.ods.demo.R
-import com.orange.ods.demo.ui.LocalCurrentTheme
+import com.orange.ods.demo.ui.LocalCurrentThemeSettings
 import com.orange.ods.demo.ui.LocalMainTopAppBarManager
 import com.orange.ods.demo.ui.utilities.composable.Title
 import com.orange.ods.demo.ui.utilities.getStringName
@@ -72,8 +71,8 @@ import kotlin.reflect.full.memberProperties
 fun GuidelineColorScreen() {
     LocalMainTopAppBarManager.current.updateTopAppBarTitle(R.string.guideline_color)
 
-    val guidelineColors = LocalCurrentTheme.current.guidelineColors
-    
+    val guidelineColors = LocalCurrentThemeSettings.current.guidelineColors
+
     val coreColors = guidelineColors.filter { it.type == GuidelineColorType.Core }
     val functionalColors = guidelineColors.filter { it.type == GuidelineColorType.Functional }
     val supportingColors = guidelineColors.filter { it.type == GuidelineColorType.Supporting }
@@ -183,8 +182,8 @@ private fun RowScope.BigColorItem(color: GuidelineColor) {
             .fillMaxWidth()
             .aspectRatio(1f)
         Box(
-            modifier = if (colorValue.toHexString() == LocalColors.current.background.toHexString()) {
-                boxColorModifier.border(BorderStroke(1.dp, LocalColors.current.onBackground))
+            modifier = if (colorValue.toHexString() == OdsTheme.colors.background.toHexString()) {
+                boxColorModifier.border(BorderStroke(1.dp, OdsTheme.colors.onBackground))
             } else {
                 boxColorModifier
             }

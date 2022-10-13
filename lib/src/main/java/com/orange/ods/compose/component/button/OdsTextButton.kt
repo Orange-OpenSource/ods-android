@@ -27,8 +27,6 @@ import androidx.compose.ui.tooling.preview.PreviewParameter
 import com.orange.ods.compose.component.OdsComponentApi
 import com.orange.ods.compose.component.utilities.EnumPreviewParameterProvider
 import com.orange.ods.compose.component.utilities.Preview
-import com.orange.ods.compose.theme.LocalDarkThemeColors
-import com.orange.ods.compose.theme.LocalLightThemeColors
 import com.orange.ods.compose.theme.OdsDarkRippleTheme
 import com.orange.ods.compose.theme.OdsDisplaySurface
 import com.orange.ods.compose.theme.OdsLightRippleTheme
@@ -106,12 +104,12 @@ private fun OdsSupportedColors.buttonTextColor(displaySurface: OdsDisplaySurface
             OdsTextButtonStyle.Default -> OdsTheme.colors.onSurface
         }
         OdsDisplaySurface.Dark -> when (style) {
-            OdsTextButtonStyle.Primary -> LocalDarkThemeColors.current.primary
-            OdsTextButtonStyle.Default -> LocalDarkThemeColors.current.onSurface
+            OdsTextButtonStyle.Primary -> OdsTheme.darkThemeColors.primary
+            OdsTextButtonStyle.Default -> OdsTheme.darkThemeColors.onSurface
         }
         OdsDisplaySurface.Light -> when (style) {
-            OdsTextButtonStyle.Primary -> LocalLightThemeColors.current.primary
-            OdsTextButtonStyle.Default -> LocalLightThemeColors.current.onSurface
+            OdsTextButtonStyle.Primary -> OdsTheme.lightThemeColors.primary
+            OdsTextButtonStyle.Default -> OdsTheme.lightThemeColors.onSurface
         }
     }
 

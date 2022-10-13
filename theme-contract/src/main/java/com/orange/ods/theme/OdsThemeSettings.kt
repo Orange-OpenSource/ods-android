@@ -13,7 +13,7 @@ package com.orange.ods.theme
 import android.os.Parcelable
 import androidx.compose.material.Typography
 
-interface OdsSupportedTheme : Parcelable {
+interface OdsThemeSettings : Parcelable {
 
     val lightThemeColors: OdsSupportedColors
 

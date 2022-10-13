@@ -25,7 +25,7 @@ import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
 import com.google.accompanist.pager.ExperimentalPagerApi
 import com.orange.ods.demo.ui.utilities.rememberSaveableMutableStateListOf
-import com.orange.ods.theme.OdsSupportedTheme
+import com.orange.ods.theme.OdsThemeSettings
 
 /**
  * Destinations used in the [MainScreen].
@@ -47,29 +47,29 @@ object MainDestinations {
     const val AboutItemIdKey = "aboutItemId"
 }
 
-val LocalCurrentTheme = staticCompositionLocalOf<OdsSupportedTheme> { error("CompositionLocal LocalCurrentTheme not present") }
+val LocalCurrentThemeSettings = staticCompositionLocalOf<OdsThemeSettings> { error("CompositionLocal OdsThemeSettings not present") }
 
 @Composable
 @ExperimentalPagerApi
 @ExperimentalMaterialApi
 fun rememberMainState(
     navController: NavHostController = rememberNavController(),
-    odsSupportedThemes: SnapshotStateList<OdsSupportedTheme> = rememberSaveableMutableStateListOf(),
-    currentTheme: MutableState<OdsSupportedTheme>,
+    odsThemeSettings: SnapshotStateList<OdsThemeSettings> = rememberSaveableMutableStateListOf(),
+    currentThemeSettings: MutableState<OdsThemeSettings>,
     darkModeEnabled: MutableState<Boolean>,
     topAppBarState: MainTopAppBarState = rememberMainTopAppBarState(),
     tabsState: MainTabsState = rememberMainTabsState()
 ) =
-    remember(navController, odsSupportedThemes, currentTheme, darkModeEnabled, topAppBarState, tabsState) {
-        MainState(navController, odsSupportedThemes, currentTheme, darkModeEnabled, topAppBarState, tabsState)
+    remember(navController, odsThemeSettings, currentThemeSettings, darkModeEnabled, topAppBarState, tabsState) {
+        MainState(navController, odsThemeSettings, currentThemeSettings, darkModeEnabled, topAppBarState, tabsState)
     }
 
 @ExperimentalPagerApi
 @ExperimentalMaterialApi
 class MainState(
     val navController: NavHostController,
-    val odsTheme: SnapshotStateList<OdsSupportedTheme>,
-    val currentTheme: MutableState<OdsSupportedTheme>,
+    val odsTheme: SnapshotStateList<OdsThemeSettings>,
+    val currentThemeSettings: MutableState<OdsThemeSettings>,
     val darkModeEnabled: MutableState<Boolean>,
     val topAppBarState: MainTopAppBarState,
     val tabsState: MainTabsState
@@ -79,8 +79,8 @@ class MainState(
     // Theme state source of truth
     // ----------------------------------------------------------
 
-    fun updateCurrentTheme(theme: OdsSupportedTheme) {
-        currentTheme.value = theme
+    fun updateCurrentThemeSettings(themeSettings: OdsThemeSettings) {
+        currentThemeSettings.value = themeSettings
     }
 
     fun updateTheme(isDark: Boolean) {

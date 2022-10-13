@@ -20,19 +20,28 @@ import androidx.compose.runtime.compositionLocalOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.staticCompositionLocalOf
 import com.orange.ods.theme.OdsSupportedColors
-import com.orange.ods.theme.OdsSupportedTheme
+import com.orange.ods.theme.OdsThemeSettings
 
-internal val LocalTypography = staticCompositionLocalOf { Typography() }
-val LocalColors = staticCompositionLocalOf { odsLightColors() }
+private val LocalTypography = staticCompositionLocalOf { Typography() }
 
-val LocalLightThemeColors = compositionLocalOf { odsLightColors() }
-val LocalDarkThemeColors = compositionLocalOf { odsDarkColors() }
+private val LocalColors = staticCompositionLocalOf<OdsSupportedColors> { error("CompositionLocal LocalColors not present") }
+private val LocalLightThemeColors = compositionLocalOf<OdsSupportedColors> { error("CompositionLocal LocalLightThemeColors not present") }
+private val LocalDarkThemeColors = compositionLocalOf<OdsSupportedColors> { error("CompositionLocal LocalDarkThemeColors not present") }
 
 object OdsTheme {
     val colors: OdsSupportedColors
         @Composable
         @ReadOnlyComposable
         get() = LocalColors.current
+    val lightThemeColors: OdsSupportedColors
+        @Composable
+        @ReadOnlyComposable
+        get() = LocalLightThemeColors.current
+    val darkThemeColors: OdsSupportedColors
+        @Composable
+        @ReadOnlyComposable
+        get() = LocalDarkThemeColors.current
+
     val typography: Typography
         @Composable
         @ReadOnlyComposable
@@ -44,19 +53,19 @@ object OdsTheme {
  */
 @Composable
 fun OdsTheme(
-    supportedTheme: OdsSupportedTheme,
+    odsThemeSettings: OdsThemeSettings,
     darkThemeEnabled: Boolean = isSystemInDarkTheme(),
     content: @Composable () -> Unit
 ) {
-    val colors = if (darkThemeEnabled) supportedTheme.darkThemeColors else supportedTheme.lightThemeColors
+    val colors = if (darkThemeEnabled) odsThemeSettings.darkThemeColors else odsThemeSettings.lightThemeColors
     // creating a new object for colors to not mutate the initial colors set when updating the values
     val rememberedColors = remember { colors.copy() }.apply { updateColorsFrom(colors) }
     CompositionLocalProvider(
         LocalRippleTheme provides OdsRippleTheme,
         LocalColors provides rememberedColors,
-        LocalLightThemeColors provides supportedTheme.lightThemeColors,
-        LocalDarkThemeColors provides supportedTheme.darkThemeColors,
-        LocalTypography provides supportedTheme.typography,
+        LocalLightThemeColors provides odsThemeSettings.lightThemeColors,
+        LocalDarkThemeColors provides odsThemeSettings.darkThemeColors,
+        LocalTypography provides odsThemeSettings.typography,
         content = content
     )
 }

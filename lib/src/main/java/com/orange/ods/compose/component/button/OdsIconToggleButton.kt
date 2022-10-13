@@ -31,8 +31,6 @@ import androidx.compose.ui.unit.dp
 import com.orange.ods.compose.component.OdsComponentApi
 import com.orange.ods.compose.component.utilities.DisabledInteractionSource
 import com.orange.ods.compose.component.utilities.Preview
-import com.orange.ods.compose.theme.LocalDarkThemeColors
-import com.orange.ods.compose.theme.LocalLightThemeColors
 import com.orange.ods.compose.theme.OdsDisplaySurface
 import com.orange.ods.compose.theme.OdsTheme
 import com.orange.ods.theme.OdsSupportedColors
@@ -95,16 +93,16 @@ fun OdsIconToggleButton(
 private fun OdsSupportedColors.buttonToggleIconColor(displaySurface: OdsDisplaySurface, checked: Boolean) =
     when (displaySurface) {
         OdsDisplaySurface.Default -> if (checked) OdsTheme.colors.primary else OdsTheme.colors.onSurface
-        OdsDisplaySurface.Dark -> if (checked) LocalDarkThemeColors.current.primary else LocalDarkThemeColors.current.onSurface
-        OdsDisplaySurface.Light -> if (checked) LocalLightThemeColors.current.primary else LocalLightThemeColors.current.onSurface
+        OdsDisplaySurface.Dark -> if (checked) OdsTheme.darkThemeColors.primary else OdsTheme.darkThemeColors.onSurface
+        OdsDisplaySurface.Light -> if (checked) OdsTheme.lightThemeColors.primary else OdsTheme.lightThemeColors.onSurface
     }
 
 @Composable
 private fun OdsSupportedColors.buttonToggleBackgroundColor(displaySurface: OdsDisplaySurface) =
     when (displaySurface) {
         OdsDisplaySurface.Default -> OdsTheme.colors.primary
-        OdsDisplaySurface.Dark -> LocalDarkThemeColors.current.primary
-        OdsDisplaySurface.Light -> LocalLightThemeColors.current.primary
+        OdsDisplaySurface.Dark -> OdsTheme.darkThemeColors.primary
+        OdsDisplaySurface.Light -> OdsTheme.lightThemeColors.primary
     }
 
 @Composable

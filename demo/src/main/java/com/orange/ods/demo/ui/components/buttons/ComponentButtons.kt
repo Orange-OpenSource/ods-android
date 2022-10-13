@@ -23,9 +23,8 @@ import androidx.compose.ui.composed
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.unit.dp
-import com.orange.ods.compose.theme.LocalDarkThemeColors
-import com.orange.ods.compose.theme.LocalLightThemeColors
 import com.orange.ods.compose.theme.OdsDisplaySurface
+import com.orange.ods.compose.theme.OdsTheme
 import com.orange.ods.demo.R
 import com.orange.ods.demo.ui.components.Variant
 import com.orange.ods.demo.ui.utilities.composable.Subtitle
@@ -59,13 +58,13 @@ fun Modifier.fullWidthButton(withTopPadding: Boolean = true) = composed {
 @Composable
 fun DarkSurface(content: @Composable ColumnScope.() -> Unit) {
     Subtitle(textRes = R.string.component_force_on_dark, OdsDisplaySurface.Dark, withHorizontalPadding = true)
-    ForcedBackgroundColumn(color = LocalDarkThemeColors.current.surface, content = content)
+    ForcedBackgroundColumn(color = OdsTheme.darkThemeColors.surface, content = content)
 }
 
 @Composable
 fun LightSurface(content: @Composable ColumnScope.() -> Unit) {
     Subtitle(textRes = R.string.component_force_on_light, OdsDisplaySurface.Light, withHorizontalPadding = true)
-    ForcedBackgroundColumn(color = LocalLightThemeColors.current.surface, content = content)
+    ForcedBackgroundColumn(color = OdsTheme.lightThemeColors.surface, content = content)
 }
 
 @Composable

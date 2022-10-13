@@ -30,8 +30,6 @@ import androidx.compose.ui.tooling.preview.PreviewParameter
 import com.orange.ods.compose.component.OdsComponentApi
 import com.orange.ods.compose.component.utilities.EnumPreviewParameterProvider
 import com.orange.ods.compose.component.utilities.Preview
-import com.orange.ods.compose.theme.LocalDarkThemeColors
-import com.orange.ods.compose.theme.LocalLightThemeColors
 import com.orange.ods.compose.theme.OdsDisplaySurface
 import com.orange.ods.compose.theme.OdsTheme
 
@@ -101,13 +99,13 @@ fun OdsButton(
 private fun odsDefaultButtonColors(displaySurface: OdsDisplaySurface) = ButtonDefaults.buttonColors(
     backgroundColor = when (displaySurface) {
         OdsDisplaySurface.Default -> OdsTheme.colors.onSurface
-        OdsDisplaySurface.Dark -> LocalDarkThemeColors.current.onSurface
-        OdsDisplaySurface.Light -> LocalLightThemeColors.current.onSurface
+        OdsDisplaySurface.Dark -> OdsTheme.darkThemeColors.onSurface
+        OdsDisplaySurface.Light -> OdsTheme.lightThemeColors.onSurface
     },
     contentColor = when (displaySurface) {
         OdsDisplaySurface.Default -> OdsTheme.colors.surface
-        OdsDisplaySurface.Dark -> LocalDarkThemeColors.current.surface
-        OdsDisplaySurface.Light -> LocalLightThemeColors.current.surface
+        OdsDisplaySurface.Dark -> OdsTheme.darkThemeColors.surface
+        OdsDisplaySurface.Light -> OdsTheme.lightThemeColors.surface
     },
     disabledBackgroundColor = disabledButtonBackgroundColor(displaySurface),
     disabledContentColor = disabledButtonContentColor(displaySurface),
@@ -117,13 +115,13 @@ private fun odsDefaultButtonColors(displaySurface: OdsDisplaySurface) = ButtonDe
 private fun odsPrimaryButtonColors(displaySurface: OdsDisplaySurface) = ButtonDefaults.buttonColors(
     backgroundColor = when (displaySurface) {
         OdsDisplaySurface.Default -> OdsTheme.colors.primary
-        OdsDisplaySurface.Dark -> LocalDarkThemeColors.current.primary
-        OdsDisplaySurface.Light -> LocalLightThemeColors.current.primary
+        OdsDisplaySurface.Dark -> OdsTheme.darkThemeColors.primary
+        OdsDisplaySurface.Light -> OdsTheme.lightThemeColors.primary
     },
     contentColor = when (displaySurface) {
         OdsDisplaySurface.Default -> OdsTheme.colors.onPrimary
-        OdsDisplaySurface.Dark -> LocalDarkThemeColors.current.onPrimary
-        OdsDisplaySurface.Light -> LocalLightThemeColors.current.onPrimary
+        OdsDisplaySurface.Dark -> OdsTheme.darkThemeColors.onPrimary
+        OdsDisplaySurface.Light -> OdsTheme.lightThemeColors.onPrimary
     },
     disabledBackgroundColor = disabledButtonBackgroundColor(displaySurface),
     disabledContentColor = disabledButtonContentColor(displaySurface),
@@ -148,15 +146,15 @@ private fun odsNegativeButtonColors(displaySurface: OdsDisplaySurface) = ButtonD
 @Composable
 private fun positiveBackgroundColor(displaySurface: OdsDisplaySurface) = when (displaySurface) {
     OdsDisplaySurface.Default -> OdsTheme.colors.onSurface
-    OdsDisplaySurface.Dark -> LocalDarkThemeColors.current.onSurface
-    OdsDisplaySurface.Light -> LocalLightThemeColors.current.onSurface
+    OdsDisplaySurface.Dark -> OdsTheme.darkThemeColors.onSurface
+    OdsDisplaySurface.Light -> OdsTheme.lightThemeColors.onSurface
 }
 
 @Composable
 private fun disabledButtonColors(displaySurface: OdsDisplaySurface) = when (displaySurface) {
     OdsDisplaySurface.Default -> OdsTheme.colors.onSurface
-    OdsDisplaySurface.Dark -> LocalDarkThemeColors.current.onSurface
-    OdsDisplaySurface.Light -> LocalLightThemeColors.current.onSurface
+    OdsDisplaySurface.Dark -> OdsTheme.darkThemeColors.onSurface
+    OdsDisplaySurface.Light -> OdsTheme.lightThemeColors.onSurface
 }
 
 @Composable

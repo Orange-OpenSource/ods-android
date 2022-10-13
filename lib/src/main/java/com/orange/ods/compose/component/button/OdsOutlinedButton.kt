@@ -26,8 +26,6 @@ import androidx.compose.ui.graphics.painter.Painter
 import androidx.compose.ui.tooling.preview.Preview
 import com.orange.ods.compose.component.OdsComponentApi
 import com.orange.ods.compose.component.utilities.Preview
-import com.orange.ods.compose.theme.LocalDarkThemeColors
-import com.orange.ods.compose.theme.LocalLightThemeColors
 import com.orange.ods.compose.theme.OdsDarkRippleTheme
 import com.orange.ods.compose.theme.OdsDisplaySurface
 import com.orange.ods.compose.theme.OdsLightRippleTheme
@@ -98,8 +96,8 @@ fun OdsOutlinedButton(
 private fun OdsSupportedColors.buttonOutlinedColor(displaySurface: OdsDisplaySurface) =
     when (displaySurface) {
         OdsDisplaySurface.Default -> OdsTheme.colors.onSurface
-        OdsDisplaySurface.Dark -> LocalDarkThemeColors.current.onSurface
-        OdsDisplaySurface.Light -> LocalLightThemeColors.current.onSurface
+        OdsDisplaySurface.Dark -> OdsTheme.darkThemeColors.onSurface
+        OdsDisplaySurface.Light -> OdsTheme.lightThemeColors.onSurface
     }
 
 @Composable
