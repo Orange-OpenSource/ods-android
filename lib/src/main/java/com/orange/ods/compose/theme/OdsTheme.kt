@@ -25,8 +25,6 @@ import com.orange.ods.theme.OdsSupportedTheme
 internal val LocalTypography = staticCompositionLocalOf { Typography() }
 val LocalColors = staticCompositionLocalOf { odsLightColors() }
 
-val LocalDarkThemeEnabled = compositionLocalOf { false }
-
 val LocalLightThemeColors = compositionLocalOf { odsLightColors() }
 val LocalDarkThemeColors = compositionLocalOf { odsDarkColors() }
 
@@ -55,7 +53,6 @@ fun OdsTheme(
     val rememberedColors = remember { colors.copy() }.apply { updateColorsFrom(colors) }
     CompositionLocalProvider(
         LocalRippleTheme provides OdsRippleTheme,
-        LocalDarkThemeEnabled provides darkThemeEnabled,
         LocalColors provides rememberedColors,
         LocalLightThemeColors provides supportedTheme.lightThemeColors,
         LocalDarkThemeColors provides supportedTheme.darkThemeColors,

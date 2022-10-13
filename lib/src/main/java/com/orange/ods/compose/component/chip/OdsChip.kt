@@ -44,7 +44,6 @@ import com.orange.ods.compose.component.chip.OdsChipDefaults.SurfaceOverlayOpaci
 import com.orange.ods.compose.component.utilities.BasicPreviewParameterProvider
 import com.orange.ods.compose.component.utilities.OdsImageCircleShape
 import com.orange.ods.compose.component.utilities.Preview
-import com.orange.ods.compose.theme.LocalDarkThemeEnabled
 import com.orange.ods.compose.theme.OdsTheme
 import com.orange.ods.utilities.extension.noRippleClickable
 
@@ -102,7 +101,6 @@ fun OdsChip(
                         modifier = Modifier.size(dimensionResource(id = R.dimen.chip_icon_size)),
                         painter = leadingIcon,
                         contentDescription = leadingContentDescription,
-                        tint = if (enabled) OdsTheme.colors.onSurface else OdsTheme.colors.onSurface.copy(alpha = ContentAlpha.disabled)
                     )
                 }
             }
@@ -190,7 +188,7 @@ internal object OdsChipDefaults {
     ) = ChipDefaults.outlinedChipColors(
         backgroundColor = backgroundColor,
         contentColor = contentColor,
-        leadingIconContentColor = if (LocalDarkThemeEnabled.current) contentColor else contentColor.copy(alpha = LeadingIconOpacity)
+        leadingIconContentColor = OdsTheme.colors.onSurface
     )
 }
 
