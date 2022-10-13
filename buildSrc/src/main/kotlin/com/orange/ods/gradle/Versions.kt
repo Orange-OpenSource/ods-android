@@ -28,6 +28,7 @@ object Versions {
     const val firebaseAppDistributionGradlePlugin = "3.0.1"
     const val firebaseBom = "30.0.0"
     const val firebaseCrashlyticsGradlePlugin = "2.8.1"
+    const val hilt = "2.42"
     const val jUnit = "4.13.2"
     const val kotlin = "1.6.21"
     const val kotlinPoet = "1.12.0"

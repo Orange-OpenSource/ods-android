@@ -16,8 +16,6 @@ import androidx.compose.foundation.layout.RowScope
 import androidx.compose.material.AppBarDefaults
 import androidx.compose.material.Icon
 import androidx.compose.material.IconButton
-import androidx.compose.material.MaterialTheme
-import androidx.compose.material.Text
 import androidx.compose.material.TopAppBar
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ArrowBack
@@ -28,6 +26,8 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.orange.ods.compose.component.OdsComponentApi
 import com.orange.ods.compose.component.utilities.Preview
+import com.orange.ods.compose.text.OdsTextH6
+import com.orange.ods.compose.theme.OdsTheme
 
 /**
  * <a href="https://system.design.orange.com/0c1af118d/p/23e0e6-app-bars/b/620966" class="external" target="_blank">Material ODS Top App Bar</a>.
@@ -58,7 +58,7 @@ fun OdsTopAppBar(
     elevated: Boolean = true
 ) {
     TopAppBar(
-        title = { title?.let { Text(text = title) } },
+        title = { title?.let { OdsTextH6(text = title) } },
         modifier = modifier,
         navigationIcon = navigationIcon?.let { navIcon ->
             {
@@ -72,7 +72,8 @@ fun OdsTopAppBar(
             }
         },
         actions = actions,
-        backgroundColor = MaterialTheme.colors.surface,
+        backgroundColor = OdsTheme.colors.surface,
+        contentColor = OdsTheme.colors.onSurface,
         elevation = if (elevated) AppBarDefaults.TopAppBarElevation else 0.dp
     )
 }
@@ -83,12 +84,12 @@ private fun PreviewOdsTopAppBar() = Preview {
         title = "Title",
         navigationIcon = {
             IconButton(onClick = {}) {
-                Icon(imageVector = Icons.Filled.ArrowBack, contentDescription = null)
+                Icon(imageVector = Icons.Filled.ArrowBack, contentDescription = null, tint = OdsTheme.colors.onSurface)
             }
         },
         actions = {
             IconButton(onClick = {}) {
-                Icon(painter = painterResource(id = android.R.drawable.ic_dialog_info), contentDescription = null)
+                Icon(painter = painterResource(id = android.R.drawable.ic_dialog_info), contentDescription = null, tint = OdsTheme.colors.onSurface)
             }
         }
     )

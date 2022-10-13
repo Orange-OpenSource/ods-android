@@ -19,16 +19,19 @@ import androidx.compose.foundation.layout.defaultMinSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material.ContentAlpha
 import androidx.compose.material.Icon
-import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Slider
 import androidx.compose.material.SliderDefaults
 import androidx.compose.material.Text
+import androidx.compose.material.contentColorFor
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.compositeOver
 import androidx.compose.ui.graphics.painter.Painter
 import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.text.style.TextAlign
@@ -38,8 +41,9 @@ import androidx.compose.ui.unit.dp
 import com.orange.ods.R
 import com.orange.ods.compose.component.OdsComponentApi
 import com.orange.ods.compose.component.utilities.Preview
-import com.orange.ods.compose.theme.OdsMaterialTheme
-import com.orange.ods.compose.theme.SliderActiveTickColor
+import com.orange.ods.compose.theme.OdsTheme
+
+private const val ActiveTickColorAlpha = 0.4f
 
 /**
  * <a href="https://system.design.orange.com/0c1af118d/p/14638a-selection-controls/b/352c00" class="external" target="_blank">ODS slider</a>.
@@ -96,7 +100,8 @@ fun OdsSlider(
         leftIcon?.let { painter ->
             Icon(
                 painter = painter,
-                contentDescription = leftIconContentDescription
+                contentDescription = leftIconContentDescription,
+                tint = OdsTheme.colors.onSurface
             )
         }
         // For the moment we cannot change the height of the slider track (need to check in jetpack compose future versions)
@@ -108,14 +113,13 @@ fun OdsSlider(
             valueRange = valueRange,
             steps = steps,
             onValueChangeFinished = onValueChangeFinished,
-            colors = SliderDefaults.colors(
-                activeTickColor = SliderActiveTickColor //Cannot use primary alpha color, it will not be visible, need to use plain color
-            )
+            colors = OdsSliderDefaults.colors(activeTickColor = OdsTheme.colors.surface.copy(alpha = ActiveTickColorAlpha))
         )
         rightIcon?.let { painter ->
             Icon(
                 painter = painter,
-                contentDescription = rightIconContentDescription
+                contentDescription = rightIconContentDescription,
+                tint = OdsTheme.colors.onSurface
             )
         }
     }
@@ -194,9 +198,7 @@ fun OdsSliderLockups(
             valueRange = valueRange,
             steps = steps,
             onValueChangeFinished = onValueChangeFinished,
-            colors = SliderDefaults.colors(
-                activeTickColor = SliderActiveTickColor // Cannot use primary alpha color, it will not be visible, need to use plain color
-            )
+            colors = OdsSliderDefaults.colors(activeTickColor = OdsTheme.colors.surface.copy(alpha = ActiveTickColorAlpha))
         )
     }
 }
@@ -210,10 +212,10 @@ private fun SliderLabel(
     Text(
         text = label,
         textAlign = TextAlign.Center,
-        color = MaterialTheme.colors.onPrimary,
+        color = OdsTheme.colors.onPrimary,
         modifier = modifier
             .background(
-                color = MaterialTheme.colors.primary,
+                color = OdsTheme.colors.primary,
                 shape = RoundedCornerShape(16.dp)
             )
             .padding(4.dp)
@@ -240,8 +242,32 @@ private fun getSliderOffset(
 private fun calcFraction(a: Float, b: Float, pos: Float) =
     (if (b - a == 0f) 0f else (pos - a) / (b - a)).coerceIn(0f, 1f)
 
+
+private object OdsSliderDefaults {
+
+    @Composable
+    fun colors(
+        thumbColor: Color = OdsTheme.colors.primary,
+        disabledThumbColor: Color = OdsTheme.colors.onSurface
+            .copy(alpha = ContentAlpha.disabled)
+            .compositeOver(OdsTheme.colors.surface),
+        activeTrackColor: Color = OdsTheme.colors.primary,
+        disabledActiveTrackColor: Color =
+            OdsTheme.colors.onSurface.copy(alpha = SliderDefaults.DisabledActiveTrackAlpha),
+        activeTickColor: Color = contentColorFor(activeTrackColor).copy(alpha = SliderDefaults.TickAlpha)
+    ) = SliderDefaults.colors(
+        thumbColor = thumbColor,
+        disabledThumbColor = disabledThumbColor,
+        activeTrackColor = activeTrackColor,
+        disabledActiveTrackColor = disabledActiveTrackColor,
+        activeTickColor = activeTickColor
+    )
+
+}
+
+
 @Composable
-private fun PreviewOdsSlider() = OdsMaterialTheme {
+private fun PreviewOdsSlider() = Preview {
     val sliderValue = remember { mutableStateOf(0.5f) }
     OdsSlider(
         value = sliderValue.value,

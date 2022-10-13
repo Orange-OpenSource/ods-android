@@ -8,7 +8,7 @@
  * /
  */
 
-package com.orange.ods.compose.theme
+package com.orange.ods.theme.orange
 
 import androidx.compose.material.Typography
 import androidx.compose.ui.text.TextStyle
@@ -16,14 +16,13 @@ import androidx.compose.ui.text.font.Font
 import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.sp
-import com.orange.ods.R
 
 private val Roboto = FontFamily(
     Font(R.font.roboto_regular, FontWeight.Normal),
     Font(R.font.roboto_bold, FontWeight.Bold)
 )
 
-val OdsTypography = Typography(
+val OrangeTypography = Typography(
     defaultFontFamily = Roboto,
     h1 = TextStyle(
         fontSize = 96.sp,

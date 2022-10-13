@@ -13,7 +13,6 @@ package com.orange.ods.demo.ui.utilities.composable
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Row
 import androidx.compose.material.ContentAlpha
-import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.MutableState
@@ -22,6 +21,7 @@ import androidx.compose.ui.Modifier
 import com.orange.ods.compose.component.control.OdsCheckbox
 import com.orange.ods.compose.component.control.OdsRadioButton
 import com.orange.ods.compose.text.OdsTextBody1
+import com.orange.ods.compose.theme.OdsTheme
 
 @Composable
 fun LabelledCheckbox(
@@ -62,8 +62,8 @@ fun <T> LabelledRadioButton(
         )
         Text(
             text = label,
-            style = MaterialTheme.typography.body1,
-            color = MaterialTheme.colors.onSurface.copy(alpha = if (enabled) ContentAlpha.high else ContentAlpha.disabled)
+            style = OdsTheme.typography.body1,
+            color = OdsTheme.colors.onSurface.copy(alpha = if (enabled) ContentAlpha.high else ContentAlpha.disabled)
         )
     }
 }

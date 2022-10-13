@@ -17,14 +17,18 @@ import androidx.compose.foundation.layout.size
 import androidx.compose.material.Chip
 import androidx.compose.material.ChipColors
 import androidx.compose.material.ChipDefaults
+import androidx.compose.material.ChipDefaults.ContentOpacity
 import androidx.compose.material.ChipDefaults.LeadingIconOpacity
+import androidx.compose.material.ContentAlpha
 import androidx.compose.material.ExperimentalMaterialApi
 import androidx.compose.material.Icon
-import androidx.compose.material.MaterialTheme
+import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.compositeOver
 import androidx.compose.ui.graphics.painter.Painter
 import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.painterResource
@@ -36,17 +40,14 @@ import androidx.compose.ui.tooling.preview.PreviewParameter
 import androidx.compose.ui.unit.dp
 import com.orange.ods.R
 import com.orange.ods.compose.component.OdsComponentApi
+import com.orange.ods.compose.component.chip.OdsChipDefaults.SurfaceOverlayOpacity
 import com.orange.ods.compose.component.utilities.BasicPreviewParameterProvider
 import com.orange.ods.compose.component.utilities.OdsImageCircleShape
 import com.orange.ods.compose.component.utilities.Preview
-import com.orange.ods.compose.text.OdsTextBody2
+import com.orange.ods.compose.theme.LocalDarkThemeEnabled
+import com.orange.ods.compose.theme.OdsTheme
 import com.orange.ods.utilities.extension.noRippleClickable
 
-
-/**
- * The color opacity used for chip's surface overlay.
- */
-internal const val ChipSurfaceOverlayOpacity = 0.12f
 
 /**
  * <a href="https://system.design.orange.com/0c1af118d/p/81aa91-chips/b/13c40e" target="_blank">ODS Chips</a>.
@@ -100,7 +101,8 @@ fun OdsChip(
                     Icon(
                         modifier = Modifier.size(dimensionResource(id = R.dimen.chip_icon_size)),
                         painter = leadingIcon,
-                        contentDescription = leadingContentDescription
+                        contentDescription = leadingContentDescription,
+                        tint = if (enabled) OdsTheme.colors.onSurface else OdsTheme.colors.onSurface.copy(alpha = ContentAlpha.disabled)
                     )
                 }
             }
@@ -117,7 +119,11 @@ fun OdsChip(
             else -> null
         }
     ) {
-        OdsTextBody2(text = text)
+        Text(
+            text = text,
+            style = OdsTheme.typography.body2
+        ) // Don't use an OdsText here cause the color of the chip content is already managed by odsChipColors()
+
         onCancel?.let {
             val iconModifier = if (enabled) Modifier.noRippleClickable {
                 onCancel()
@@ -136,21 +142,56 @@ fun OdsChip(
 @ExperimentalMaterialApi
 @Composable
 private fun odsChipColors(outlined: Boolean, selected: Boolean): ChipColors {
-    val selectedBackgroundColor = MaterialTheme.colors.primary.copy(alpha = ChipSurfaceOverlayOpacity)
-    val selectedContentColor = MaterialTheme.colors.primary
+    val selectedBackgroundColor = OdsTheme.colors.primary.copy(alpha = SurfaceOverlayOpacity)
+    val selectedContentColor = OdsTheme.colors.primary
     return when {
-        outlined && !selected -> ChipDefaults.outlinedChipColors()
-        outlined && selected -> ChipDefaults.outlinedChipColors(backgroundColor = selectedBackgroundColor, contentColor = selectedContentColor)
-        !outlined && selected -> ChipDefaults.chipColors(backgroundColor = selectedBackgroundColor, contentColor = selectedContentColor)
-        else -> ChipDefaults.chipColors()
+        outlined && !selected -> OdsChipDefaults.outlinedChipColors()
+        outlined && selected -> OdsChipDefaults.outlinedChipColors(backgroundColor = selectedBackgroundColor, contentColor = selectedContentColor)
+        !outlined && selected -> OdsChipDefaults.chipColors(backgroundColor = selectedBackgroundColor, contentColor = selectedContentColor)
+        else -> OdsChipDefaults.chipColors()
     }
 }
 
 @Composable
 private fun odsChipBorderColor(selected: Boolean, enabled: Boolean) = when {
-    selected && enabled -> MaterialTheme.colors.primary
-    selected && !enabled -> MaterialTheme.colors.primary.copy(alpha = ChipSurfaceOverlayOpacity)
-    else -> MaterialTheme.colors.onSurface.copy(alpha = ChipSurfaceOverlayOpacity)
+    selected && enabled -> OdsTheme.colors.primary
+    selected && !enabled -> OdsTheme.colors.primary.copy(alpha = SurfaceOverlayOpacity)
+    else -> OdsTheme.colors.onSurface.copy(alpha = SurfaceOverlayOpacity)
+}
+
+
+internal object OdsChipDefaults {
+
+    /**
+     * The color opacity used for chip's surface overlay.
+     */
+    internal const val SurfaceOverlayOpacity = 0.12f
+
+    @OptIn(ExperimentalMaterialApi::class)
+    @Composable
+    fun chipColors(
+        backgroundColor: Color = OdsTheme.colors.onSurface.copy(alpha = SurfaceOverlayOpacity)
+            .compositeOver(OdsTheme.colors.surface),
+        contentColor: Color = OdsTheme.colors.onSurface.copy(alpha = ContentOpacity)
+    ) = ChipDefaults.chipColors(
+        backgroundColor = backgroundColor,
+        contentColor = contentColor,
+        leadingIconContentColor = contentColor.copy(alpha = LeadingIconOpacity),
+        disabledBackgroundColor = backgroundColor.copy(
+            alpha = ContentAlpha.disabled * SurfaceOverlayOpacity
+        ).compositeOver(OdsTheme.colors.surface)
+    )
+
+    @OptIn(ExperimentalMaterialApi::class)
+    @Composable
+    fun outlinedChipColors(
+        backgroundColor: Color = OdsTheme.colors.surface,
+        contentColor: Color = OdsTheme.colors.onSurface.copy(alpha = ContentOpacity),
+    ) = ChipDefaults.outlinedChipColors(
+        backgroundColor = backgroundColor,
+        contentColor = contentColor,
+        leadingIconContentColor = if (LocalDarkThemeEnabled.current) contentColor else contentColor.copy(alpha = LeadingIconOpacity)
+    )
 }
 
 @Composable

@@ -12,6 +12,7 @@ import com.orange.ods.gradle.Dependencies
 import com.orange.ods.gradle.Environment
 import com.orange.ods.gradle.Versions
 import com.orange.ods.gradle.execute
+import com.orange.ods.gradle.findTypedProperty
 
 plugins {
     id("com.google.devtools.ksp").version(com.orange.ods.gradle.Versions.ksp)
@@ -27,6 +28,9 @@ android {
 
     defaultConfig {
         minSdk = Versions.minSdk
+
+        val value = "new ${findTypedProperty<String>("previewThemeClass").orEmpty()}()"
+        buildConfigField("com.orange.ods.theme.OdsSupportedTheme", "THEME", value)
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         consumerProguardFile("consumer-rules.pro")
@@ -64,11 +68,14 @@ android {
 }
 
 dependencies {
+    api(project(":theme-contract"))
+    implementation(project(":theme-orange"))
+
     implementation(Dependencies.kotlinStdlibJdk8)
     compileOnly(project(":component-processor"))
 
     api(Dependencies.material)
-
+    
     implementation(Dependencies.accompanistFlowLayout)
     implementation(Dependencies.appCompat)
     implementation(Dependencies.composeUi)

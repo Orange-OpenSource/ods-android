@@ -15,7 +15,6 @@ import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material.ContentAlpha
-import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
@@ -25,9 +24,10 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import com.orange.ods.compose.text.OdsTextH5
 import com.orange.ods.compose.text.OdsTextSubtitle1
+import com.orange.ods.compose.theme.LocalDarkThemeColors
+import com.orange.ods.compose.theme.LocalLightThemeColors
 import com.orange.ods.compose.theme.OdsDisplaySurface
-import com.orange.ods.compose.theme.odsDarkThemeColors
-import com.orange.ods.compose.theme.odsLightThemeColors
+import com.orange.ods.compose.theme.OdsTheme
 import com.orange.ods.demo.R
 
 @Composable
@@ -45,8 +45,8 @@ fun Title(@StringRes textRes: Int, modifier: Modifier = Modifier, withHorizontal
 fun Subtitle(@StringRes textRes: Int, displaySurface: OdsDisplaySurface = OdsDisplaySurface.Default, withHorizontalPadding: Boolean = false) {
     val backgroundColor = when (displaySurface) {
         OdsDisplaySurface.Default -> Color.Unspecified
-        OdsDisplaySurface.Dark -> odsDarkThemeColors.background
-        OdsDisplaySurface.Light -> odsLightThemeColors.background
+        OdsDisplaySurface.Dark -> LocalDarkThemeColors.current.background
+        OdsDisplaySurface.Light -> LocalLightThemeColors.current.background
     }
     OdsTextSubtitle1(
         text = stringResource(textRes),
@@ -66,7 +66,7 @@ fun TechnicalText(text: String, withHorizontalPadding: Boolean = false) {
         modifier = Modifier
             .fillMaxWidth()
             .padding(horizontal = if (withHorizontalPadding) dimensionResource(R.dimen.ods_screen_horizontal_margin) else 0.dp),
-        style = MaterialTheme.typography.body2,
-        color = MaterialTheme.colors.onBackground.copy(alpha = ContentAlpha.medium)
+        style = OdsTheme.typography.body2,
+        color = OdsTheme.colors.onBackground.copy(alpha = ContentAlpha.medium)
     )
 }

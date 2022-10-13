@@ -184,8 +184,8 @@ sealed class Variant(
     object Chip : Variant(R.string.component_chip, OdsComponent.OdsChip.name)
     object ChipFilter : Variant(R.string.component_chip_filter, OdsComponent.OdsFilterChip.name)
 
-    object ProgressBar : Variant(R.string.component_progress_bar, "LinearProgressIndicator")
-    object ProgressActivityIndicator : Variant(R.string.component_progress_activity_indicator, "CircularProgressIndicator")
+    object ProgressBar : Variant(R.string.component_progress_bar, OdsComponent.OdsLinearProgressIndicator.name)
+    object ProgressActivityIndicator : Variant(R.string.component_progress_activity_indicator, OdsComponent.OdsCircularProgressIndicator.name)
 
     object TextFieldFilledText : Variant(R.string.component_text_field_text, OdsComponent.OdsTextField.name, Section.TextFieldFilled)
     object TextFieldFilledPassword : Variant(R.string.component_text_field_password, OdsComponent.OdsPasswordTextField.name, Section.TextFieldFilled)

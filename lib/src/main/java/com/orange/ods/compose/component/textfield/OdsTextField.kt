@@ -16,14 +16,14 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.text.KeyboardActions
 import androidx.compose.foundation.text.KeyboardOptions
-import androidx.compose.material.Colors
 import androidx.compose.material.ContentAlpha
 import androidx.compose.material.Icon
 import androidx.compose.material.IconButton
-import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Text
 import androidx.compose.material.TextField
 import androidx.compose.material.TextFieldDefaults
+import androidx.compose.material.TextFieldDefaults.BackgroundOpacity
+import androidx.compose.material.TextFieldDefaults.UnfocusedIndicatorLineOpacity
 import androidx.compose.material.Typography
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
@@ -32,7 +32,6 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.painter.Painter
 import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.painterResource
@@ -47,6 +46,8 @@ import com.orange.ods.compose.component.utilities.BasicPreviewParameterProvider
 import com.orange.ods.compose.component.utilities.DisabledInteractionSource
 import com.orange.ods.compose.component.utilities.Preview
 import com.orange.ods.compose.text.OdsTextCaption
+import com.orange.ods.compose.theme.OdsTheme
+import com.orange.ods.theme.OdsSupportedColors
 
 /**
  * <a href="https://system.design.orange.com/0c1af118d/p/483f94-text-fields/b/720e3b" target="_blank">ODS Text fields</a>.
@@ -129,16 +130,15 @@ fun OdsTextField(
         modifier = modifier,
         enabled = enabled,
         readOnly = readOnly,
-        textStyle = MaterialTheme.typography.subtitle1,
+        textStyle = OdsTheme.typography.subtitle1,
         label = label?.let { { Text(label) } },
-        placeholder = placeholder?.let { { Text(text = placeholder, style = MaterialTheme.typography.subtitle1) } },
+        placeholder = placeholder?.let { { Text(text = placeholder, style = OdsTheme.typography.subtitle1) } },
         leadingIcon = leadingIcon?.let {
             {
                 OdsTextFieldIcon(
                     painter = leadingIcon,
                     contentDescription = leadingIconContentDescription,
                     onClick = if (enabled) onLeadingIconClick else null,
-                    color = MaterialTheme.colors.textFieldIconColor(enabled)
                 )
             }
         },
@@ -149,7 +149,6 @@ fun OdsTextField(
                         painter = trailingIcon,
                         contentDescription = trailingIconContentDescription,
                         onClick = if (enabled) onTrailingIconClick else null,
-                        color = MaterialTheme.colors.textFieldIconColor(enabled)
                     )
                 }
             }
@@ -158,8 +157,8 @@ fun OdsTextField(
                     Text(
                         modifier = Modifier.padding(end = dimensionResource(id = R.dimen.spacing_s)),
                         text = trailingText,
-                        style = MaterialTheme.typography.subtitle1,
-                        color = MaterialTheme.colors.trailingTextColor(value.isEmpty(), enabled)
+                        style = OdsTheme.typography.subtitle1,
+                        color = OdsTheme.colors.trailingTextColor(value.isEmpty(), enabled)
                     )
                 }
             }
@@ -171,7 +170,7 @@ fun OdsTextField(
         keyboardActions = keyboardActions,
         singleLine = singleLine,
         maxLines = maxLines,
-        colors = odsTextFieldColors()
+        colors = OdsTextFieldDefaults.colors()
     )
 }
 
@@ -193,37 +192,53 @@ fun OdsTextFieldCounter(valueLength: Int, maxChars: Int, modifier: Modifier = Mo
 }
 
 @Composable
-internal fun OdsTextFieldIcon(painter: Painter, contentDescription: String?, onClick: (() -> Unit)?, color: Color) {
+internal fun OdsTextFieldIcon(painter: Painter, contentDescription: String?, onClick: (() -> Unit)?) {
     val interactionSource = if (onClick != null) remember { MutableInteractionSource() } else remember { DisabledInteractionSource() }
     IconButton(onClick = onClick ?: {}, interactionSource = interactionSource) {
         Icon(
             painter = painter,
             contentDescription = contentDescription,
-            tint = color
         )
     }
 }
 
 @Composable
-fun Colors.trailingTextColor(isValueEmpty: Boolean, isTextFieldEnabled: Boolean) =
+fun OdsSupportedColors.trailingTextColor(isValueEmpty: Boolean, isTextFieldEnabled: Boolean) =
     if (isValueEmpty || !isTextFieldEnabled) {
-        MaterialTheme.colors.onSurface.copy(alpha = ContentAlpha.disabled)
+        OdsTheme.colors.onSurface.copy(alpha = ContentAlpha.disabled)
     } else {
-        MaterialTheme.colors.onSurface
+        OdsTheme.colors.onSurface
     }
 
 @Composable
-fun Colors.textFieldIconColor(enabled: Boolean = true) =
+fun OdsSupportedColors.textFieldIconColor(enabled: Boolean = true) =
     if (enabled) {
-        MaterialTheme.colors.onSurface
+        OdsTheme.colors.onSurface
     } else {
-        MaterialTheme.colors.onSurface.copy(alpha = ContentAlpha.disabled)
+        OdsTheme.colors.onSurface.copy(alpha = ContentAlpha.disabled)
     }
 
-@Composable
-internal fun odsTextFieldColors() = TextFieldDefaults.textFieldColors(
-    focusedLabelColor = MaterialTheme.colors.onSurface
-)
+internal object OdsTextFieldDefaults {
+
+    @Composable
+    fun colors() = TextFieldDefaults.textFieldColors(
+        textColor = OdsTheme.colors.onSurface,
+        backgroundColor = OdsTheme.colors.onSurface.copy(alpha = BackgroundOpacity),
+        cursorColor = OdsTheme.colors.primary,
+        errorCursorColor = OdsTheme.colors.error,
+        focusedIndicatorColor = OdsTheme.colors.primary.copy(alpha = ContentAlpha.high),
+        unfocusedIndicatorColor = OdsTheme.colors.onSurface.copy(alpha = UnfocusedIndicatorLineOpacity),
+        errorIndicatorColor = OdsTheme.colors.error,
+        leadingIconColor = OdsTheme.colors.onSurface,
+        trailingIconColor = OdsTheme.colors.onSurface,
+        errorTrailingIconColor = OdsTheme.colors.onSurface,
+        focusedLabelColor = OdsTheme.colors.onSurface,
+        unfocusedLabelColor = OdsTheme.colors.onSurface.copy(ContentAlpha.medium),
+        errorLabelColor = OdsTheme.colors.error,
+        placeholderColor = OdsTheme.colors.onSurface.copy(ContentAlpha.medium)
+    )
+
+}
 
 @Composable
 private fun PreviewOdsTextField(hasCounter: Boolean) = Preview {

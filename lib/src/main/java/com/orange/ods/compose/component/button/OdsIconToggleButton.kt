@@ -16,11 +16,9 @@ import androidx.compose.animation.core.animateFloatAsState
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.padding
-import androidx.compose.material.Colors
 import androidx.compose.material.Icon
 import androidx.compose.material.IconButton
 import androidx.compose.material.IconToggleButton
-import androidx.compose.material.MaterialTheme
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
@@ -33,9 +31,11 @@ import androidx.compose.ui.unit.dp
 import com.orange.ods.compose.component.OdsComponentApi
 import com.orange.ods.compose.component.utilities.DisabledInteractionSource
 import com.orange.ods.compose.component.utilities.Preview
+import com.orange.ods.compose.theme.LocalDarkThemeColors
+import com.orange.ods.compose.theme.LocalLightThemeColors
 import com.orange.ods.compose.theme.OdsDisplaySurface
-import com.orange.ods.compose.theme.odsDarkThemeColors
-import com.orange.ods.compose.theme.odsLightThemeColors
+import com.orange.ods.compose.theme.OdsTheme
+import com.orange.ods.theme.OdsSupportedColors
 
 /**
  * <a href="https://system.design.orange.com/0c1af118d/p/06a393-buttons/b/79b091" target="_blank">ODS Buttons</a>.
@@ -71,12 +71,12 @@ fun OdsIconToggleButton(
         enabled = enabled,
         interactionSource = remember { DisabledInteractionSource() }
     ) {
-        val iconTint by animateColorAsState(MaterialTheme.colors.buttonToggleIconColor(displaySurface, checked))
+        val iconTint by animateColorAsState(OdsTheme.colors.buttonToggleIconColor(displaySurface, checked))
         val backgroundAlpha by animateFloatAsState(if (checked) 0.12f else 0f)
         Box(
             modifier = Modifier
                 .background(
-                    color = MaterialTheme.colors
+                    color = OdsTheme.colors
                         .buttonToggleBackgroundColor(displaySurface)
                         .copy(alpha = backgroundAlpha)
                 )
@@ -92,19 +92,19 @@ fun OdsIconToggleButton(
 }
 
 @Composable
-private fun Colors.buttonToggleIconColor(displaySurface: OdsDisplaySurface, checked: Boolean) =
+private fun OdsSupportedColors.buttonToggleIconColor(displaySurface: OdsDisplaySurface, checked: Boolean) =
     when (displaySurface) {
-        OdsDisplaySurface.Default -> if (checked) MaterialTheme.colors.primary else MaterialTheme.colors.onSurface
-        OdsDisplaySurface.Dark -> if (checked) odsDarkThemeColors.primary else odsDarkThemeColors.onSurface
-        OdsDisplaySurface.Light -> if (checked) odsLightThemeColors.primary else odsLightThemeColors.onSurface
+        OdsDisplaySurface.Default -> if (checked) OdsTheme.colors.primary else OdsTheme.colors.onSurface
+        OdsDisplaySurface.Dark -> if (checked) LocalDarkThemeColors.current.primary else LocalDarkThemeColors.current.onSurface
+        OdsDisplaySurface.Light -> if (checked) LocalLightThemeColors.current.primary else LocalLightThemeColors.current.onSurface
     }
 
 @Composable
-private fun Colors.buttonToggleBackgroundColor(displaySurface: OdsDisplaySurface) =
+private fun OdsSupportedColors.buttonToggleBackgroundColor(displaySurface: OdsDisplaySurface) =
     when (displaySurface) {
-        OdsDisplaySurface.Default -> MaterialTheme.colors.primary
-        OdsDisplaySurface.Dark -> odsDarkThemeColors.primary
-        OdsDisplaySurface.Light -> odsLightThemeColors.primary
+        OdsDisplaySurface.Default -> OdsTheme.colors.primary
+        OdsDisplaySurface.Dark -> LocalDarkThemeColors.current.primary
+        OdsDisplaySurface.Light -> LocalLightThemeColors.current.primary
     }
 
 @Composable

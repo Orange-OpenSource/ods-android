@@ -19,6 +19,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextAlign
+import com.orange.ods.compose.theme.OdsTheme
 import com.orange.ods.demo.R
 import com.orange.ods.demo.ui.LocalMainTopAppBarManager
 
@@ -33,7 +34,9 @@ fun ModulesScreen() {
         Text(
             text = stringResource(id = R.string.modules_coming_soon),
             modifier = Modifier.align(Alignment.CenterHorizontally),
-            textAlign = TextAlign.Center
+            textAlign = TextAlign.Center,
+            color = OdsTheme.colors.onSurface,
+            style = OdsTheme.typography.body1
         )
     }
 }

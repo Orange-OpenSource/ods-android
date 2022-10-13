@@ -12,8 +12,6 @@ package com.orange.ods.demo.ui.components.utilities
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Row
-import androidx.compose.material.Icon
-import androidx.compose.material.IconButton
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.MutableState
 import androidx.compose.ui.Alignment
@@ -23,6 +21,7 @@ import androidx.compose.ui.semantics.LiveRegionMode
 import androidx.compose.ui.semantics.contentDescription
 import androidx.compose.ui.semantics.liveRegion
 import androidx.compose.ui.semantics.semantics
+import com.orange.ods.compose.component.button.OdsIconButton
 import com.orange.ods.compose.text.OdsTextSubtitle1
 import com.orange.ods.demo.R
 
@@ -42,15 +41,22 @@ fun ComponentCountRow(
         verticalAlignment = Alignment.CenterVertically
     ) {
         OdsTextSubtitle1(modifier = Modifier.weight(1f), text = title)
-        IconButton(onClick = { count.value-- }, enabled = count.value > minCount) {
-            Icon(painter = painterResource(id = R.drawable.ic_remove), contentDescription = minusIconContentDescription)
-        }
+        OdsIconButton(
+            onClick = { count.value-- },
+            painter = painterResource(id = R.drawable.ic_remove),
+            contentDescription = minusIconContentDescription,
+            enabled = count.value > minCount
+        )
+
         OdsTextSubtitle1(text = count.value.toString(), modifier = Modifier.semantics {
             this.contentDescription = count.value.toString()
             liveRegion = LiveRegionMode.Polite
         })
-        IconButton(onClick = { count.value++ }, enabled = count.value < maxCount) {
-            Icon(painter = painterResource(id = R.drawable.ic_add), contentDescription = plusIconContentDescription)
-        }
+        OdsIconButton(
+            onClick = { count.value++ },
+            painter = painterResource(id = R.drawable.ic_add),
+            contentDescription = plusIconContentDescription,
+            enabled = count.value < maxCount
+        )
     }
 }

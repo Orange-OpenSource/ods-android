@@ -14,7 +14,7 @@ import android.content.res.Configuration
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.text.KeyboardActions
 import androidx.compose.foundation.text.KeyboardOptions
-import androidx.compose.material.MaterialTheme
+import androidx.compose.material.ContentAlpha
 import androidx.compose.material.OutlinedTextField
 import androidx.compose.material.Text
 import androidx.compose.material.TextField
@@ -36,6 +36,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import com.orange.ods.R
 import com.orange.ods.compose.component.OdsComponentApi
 import com.orange.ods.compose.component.utilities.Preview
+import com.orange.ods.compose.theme.OdsTheme
 
 /**
  * <a href="https://system.design.orange.com/0c1af118d/p/483f94-text-fields/b/720e3b" target="_blank">ODS Text fields</a>.
@@ -118,16 +119,15 @@ fun OdsOutlinedTextField(
         modifier = modifier,
         enabled = enabled,
         readOnly = readOnly,
-        textStyle = MaterialTheme.typography.subtitle1,
+        textStyle = OdsTheme.typography.subtitle1,
         label = label?.let { { Text(label) } },
-        placeholder = placeholder?.let { { Text(text = placeholder, style = MaterialTheme.typography.subtitle1) } },
+        placeholder = placeholder?.let { { Text(text = placeholder, style = OdsTheme.typography.subtitle1) } },
         leadingIcon = leadingIcon?.let {
             {
                 OdsTextFieldIcon(
                     painter = leadingIcon,
                     contentDescription = leadingIconContentDescription,
                     onClick = if (enabled) onLeadingIconClick else null,
-                    color = MaterialTheme.colors.textFieldIconColor(enabled)
                 )
             }
         },
@@ -138,7 +138,6 @@ fun OdsOutlinedTextField(
                         painter = trailingIcon,
                         contentDescription = trailingIconContentDescription,
                         onClick = if (enabled) onTrailingIconClick else null,
-                        color = MaterialTheme.colors.textFieldIconColor(enabled)
                     )
                 }
             }
@@ -147,8 +146,8 @@ fun OdsOutlinedTextField(
                     Text(
                         modifier = Modifier.padding(end = dimensionResource(id = R.dimen.spacing_s)),
                         text = trailingText,
-                        style = MaterialTheme.typography.subtitle1,
-                        color = MaterialTheme.colors.trailingTextColor(value.isEmpty(), enabled)
+                        style = OdsTheme.typography.subtitle1,
+                        color = OdsTheme.colors.trailingTextColor(value.isEmpty(), enabled)
                     )
                 }
             }
@@ -160,15 +159,30 @@ fun OdsOutlinedTextField(
         keyboardActions = keyboardActions,
         singleLine = singleLine,
         maxLines = maxLines,
-        colors = odsOutlinedTextFieldColors()
+        colors = OdsOutlinedTextFieldDefaults.colors()
     )
 }
 
-@Composable
-internal fun odsOutlinedTextFieldColors() = TextFieldDefaults.outlinedTextFieldColors(
-    focusedLabelColor = MaterialTheme.colors.onSurface,
-    errorLabelColor = MaterialTheme.colors.onSurface
-)
+internal object OdsOutlinedTextFieldDefaults {
+
+    @Composable
+    fun colors() = TextFieldDefaults.outlinedTextFieldColors(
+        textColor = OdsTheme.colors.onSurface,
+        cursorColor = OdsTheme.colors.primary,
+        errorCursorColor = OdsTheme.colors.error,
+        focusedBorderColor = OdsTheme.colors.primary.copy(alpha = ContentAlpha.high),
+        unfocusedBorderColor = OdsTheme.colors.onSurface.copy(alpha = ContentAlpha.disabled),
+        errorBorderColor = OdsTheme.colors.error,
+        leadingIconColor = OdsTheme.colors.onSurface,
+        trailingIconColor = OdsTheme.colors.onSurface,
+        errorTrailingIconColor = OdsTheme.colors.onSurface,
+        focusedLabelColor = OdsTheme.colors.onSurface,
+        unfocusedLabelColor = OdsTheme.colors.onSurface.copy(ContentAlpha.medium),
+        errorLabelColor = OdsTheme.colors.onSurface,
+        placeholderColor = OdsTheme.colors.onSurface.copy(ContentAlpha.medium),
+    )
+
+}
 
 @Composable
 private fun PreviewOdsOutlinedTextField() = Preview {

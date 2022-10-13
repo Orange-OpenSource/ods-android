@@ -15,15 +15,22 @@ import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.material.ExperimentalMaterialApi
 import com.google.accompanist.pager.ExperimentalPagerApi
+import com.orange.ods.theme.OdsSupportedTheme
+import dagger.hilt.android.AndroidEntryPoint
+import javax.inject.Inject
 
-@ExperimentalMaterialApi // Used for BottomSheetScaffold in the ComponentsCardScreen
+@AndroidEntryPoint
+@ExperimentalMaterialApi
 @ExperimentalPagerApi
 class MainActivity : ComponentActivity() {
+
+    @Inject
+    lateinit var odsThemes: Set<@JvmSuppressWildcards OdsSupportedTheme>
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
-            MainScreen()
+            MainScreen(odsThemes)
         }
     }
 }

@@ -12,10 +12,12 @@ package com.orange.ods.demo.ui.components.utilities
 
 import androidx.activity.compose.BackHandler
 import androidx.compose.animation.core.animateFloatAsState
+import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.BoxScope
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
@@ -35,6 +37,7 @@ import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.semantics.stateDescription
 import androidx.compose.ui.unit.dp
 import com.orange.ods.compose.component.list.OdsListItem
+import com.orange.ods.compose.theme.OdsTheme
 import com.orange.ods.demo.R
 import com.orange.ods.demo.ui.utilities.composable.OnResumeEffect
 import kotlinx.coroutines.launch
@@ -57,6 +60,7 @@ fun ComponentCustomizationBottomSheetScaffold(
         }
     }
     BottomSheetScaffold(
+        sheetBackgroundColor = OdsTheme.colors.surface,
         scaffoldState = bottomSheetScaffoldState,
         sheetPeekHeight = 56.dp,
         sheetContent = {
@@ -80,7 +84,9 @@ fun ComponentCustomizationBottomSheetScaffold(
                     val angle by animateFloatAsState(targetValue = degrees)
                     Icon(
                         modifier = Modifier.rotate(angle),
-                        painter = painterResource(id = R.drawable.ic_chevron_down), contentDescription = null
+                        painter = painterResource(id = R.drawable.ic_chevron_down),
+                        contentDescription = null,
+                        tint = OdsTheme.colors.onSurface
                     )
                 })
 
@@ -89,7 +95,13 @@ fun ComponentCustomizationBottomSheetScaffold(
             }
         }
     ) { innerPadding ->
-        Box(modifier = Modifier.padding(innerPadding), content = content)
+        Box(
+            modifier = Modifier
+                .padding(innerPadding)
+                .fillMaxSize()
+                .background(OdsTheme.colors.background),
+            content = content
+        )
     }
 
     OnResumeEffect {

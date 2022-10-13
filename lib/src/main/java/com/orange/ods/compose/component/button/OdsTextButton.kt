@@ -13,9 +13,7 @@ package com.orange.ods.compose.component.button
 import android.content.res.Configuration
 import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.material.ButtonDefaults
-import androidx.compose.material.Colors
 import androidx.compose.material.ContentAlpha
-import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Text
 import androidx.compose.material.TextButton
 import androidx.compose.material.ripple.LocalRippleTheme
@@ -29,13 +27,15 @@ import androidx.compose.ui.tooling.preview.PreviewParameter
 import com.orange.ods.compose.component.OdsComponentApi
 import com.orange.ods.compose.component.utilities.EnumPreviewParameterProvider
 import com.orange.ods.compose.component.utilities.Preview
+import com.orange.ods.compose.theme.LocalDarkThemeColors
+import com.orange.ods.compose.theme.LocalLightThemeColors
 import com.orange.ods.compose.theme.OdsDarkRippleTheme
 import com.orange.ods.compose.theme.OdsDisplaySurface
 import com.orange.ods.compose.theme.OdsLightRippleTheme
 import com.orange.ods.compose.theme.OdsPrimaryRippleTheme
 import com.orange.ods.compose.theme.OdsRippleTheme
-import com.orange.ods.compose.theme.odsDarkThemeColors
-import com.orange.ods.compose.theme.odsLightThemeColors
+import com.orange.ods.compose.theme.OdsTheme
+import com.orange.ods.theme.OdsSupportedColors
 
 /**
  * Specifying an [OdsTextButtonStyle] allow to display a button with specific colors.
@@ -88,35 +88,35 @@ fun OdsTextButton(
             interactionSource = remember { MutableInteractionSource() },
             shape = odsButtonShape,
             colors = ButtonDefaults.textButtonColors(
-                contentColor = MaterialTheme.colors.buttonTextColor(displaySurface, style),
-                disabledContentColor = MaterialTheme.colors.buttonTextDisabledColor(displaySurface)
+                contentColor = OdsTheme.colors.buttonTextColor(displaySurface, style),
+                disabledContentColor = OdsTheme.colors.buttonTextDisabledColor(displaySurface)
             )
         ) {
             icon?.let { ButtonIcon(it) }
-            Text(text.uppercase())
+            Text(text = text.uppercase(), style = OdsTheme.typography.button)
         }
     }
 }
 
 @Composable
-private fun Colors.buttonTextColor(displaySurface: OdsDisplaySurface, style: OdsTextButtonStyle) =
+private fun OdsSupportedColors.buttonTextColor(displaySurface: OdsDisplaySurface, style: OdsTextButtonStyle) =
     when (displaySurface) {
         OdsDisplaySurface.Default -> when (style) {
-            OdsTextButtonStyle.Primary -> MaterialTheme.colors.primary
-            OdsTextButtonStyle.Default -> MaterialTheme.colors.onSurface
+            OdsTextButtonStyle.Primary -> OdsTheme.colors.primary
+            OdsTextButtonStyle.Default -> OdsTheme.colors.onSurface
         }
         OdsDisplaySurface.Dark -> when (style) {
-            OdsTextButtonStyle.Primary -> odsDarkThemeColors.primary
-            OdsTextButtonStyle.Default -> odsDarkThemeColors.onSurface
+            OdsTextButtonStyle.Primary -> LocalDarkThemeColors.current.primary
+            OdsTextButtonStyle.Default -> LocalDarkThemeColors.current.onSurface
         }
         OdsDisplaySurface.Light -> when (style) {
-            OdsTextButtonStyle.Primary -> odsLightThemeColors.primary
-            OdsTextButtonStyle.Default -> odsLightThemeColors.onSurface
+            OdsTextButtonStyle.Primary -> LocalLightThemeColors.current.primary
+            OdsTextButtonStyle.Default -> LocalLightThemeColors.current.onSurface
         }
     }
 
 @Composable
-private fun Colors.buttonTextDisabledColor(displaySurface: OdsDisplaySurface) =
+private fun OdsSupportedColors.buttonTextDisabledColor(displaySurface: OdsDisplaySurface) =
     buttonTextColor(displaySurface = displaySurface, style = OdsTextButtonStyle.Default).copy(alpha = ContentAlpha.disabled)
 
 @Composable

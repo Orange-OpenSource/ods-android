@@ -11,9 +11,9 @@
 package com.orange.ods.demo.ui.guidelines.typography
 
 import androidx.annotation.AttrRes
-import androidx.compose.material.MaterialTheme
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.text.TextStyle
+import com.orange.ods.compose.theme.OdsTheme
 import com.orange.ods.demo.R
 
 data class TypographyItem(
@@ -28,80 +28,80 @@ data class TypographyItem(
 internal fun getTypographyItems(): List<TypographyItem> = listOf(
     TypographyItem(
         name = "Headline 1",
-        style = MaterialTheme.typography.h1,
-        jetpackUsage = "MaterialTheme.typography.h1",
+        style = OdsTheme.typography.h1,
+        jetpackUsage = "OdsTheme.typography.h1",
         xmlResource = R.attr.textAppearanceHeadline1,
     ),
     TypographyItem(
         name = "Headline 2",
-        style = MaterialTheme.typography.h2,
-        jetpackUsage = "MaterialTheme.typography.h2",
+        style = OdsTheme.typography.h2,
+        jetpackUsage = "OdsTheme.typography.h2",
         xmlResource = R.attr.textAppearanceHeadline2,
     ),
     TypographyItem(
         name = "Headline 3",
-        style = MaterialTheme.typography.h3,
-        jetpackUsage = "MaterialTheme.typography.h3",
+        style = OdsTheme.typography.h3,
+        jetpackUsage = "OdsTheme.typography.h3",
         xmlResource = R.attr.textAppearanceHeadline3,
     ),
     TypographyItem(
         name = "Headline 4",
-        style = MaterialTheme.typography.h4,
-        jetpackUsage = "MaterialTheme.typography.h4",
+        style = OdsTheme.typography.h4,
+        jetpackUsage = "OdsTheme.typography.h4",
         xmlResource = R.attr.textAppearanceHeadline4,
     ),
     TypographyItem(
         name = "Headline 5",
-        style = MaterialTheme.typography.h5,
-        jetpackUsage = "MaterialTheme.typography.h5",
+        style = OdsTheme.typography.h5,
+        jetpackUsage = "OdsTheme.typography.h5",
         xmlResource = R.attr.textAppearanceHeadline5,
     ),
     TypographyItem(
         name = "Headline 6",
-        style = MaterialTheme.typography.h6,
-        jetpackUsage = "MaterialTheme.typography.h6",
+        style = OdsTheme.typography.h6,
+        jetpackUsage = "OdsTheme.typography.h6",
         xmlResource = R.attr.textAppearanceHeadline6,
     ),
     TypographyItem(
         name = "Subtitle1",
-        style = MaterialTheme.typography.subtitle1,
-        jetpackUsage = "MaterialTheme.typography.subtitle1",
+        style = OdsTheme.typography.subtitle1,
+        jetpackUsage = "OdsTheme.typography.subtitle1",
         xmlResource = R.attr.textAppearanceSubtitle1,
     ),
     TypographyItem(
         name = "Subtitle2",
-        style = MaterialTheme.typography.subtitle2,
-        jetpackUsage = "MaterialTheme.typography.subtitle2",
+        style = OdsTheme.typography.subtitle2,
+        jetpackUsage = "OdsTheme.typography.subtitle2",
         xmlResource = R.attr.textAppearanceSubtitle2,
     ),
     TypographyItem(
         name = "Body1",
-        style = MaterialTheme.typography.body1,
-        jetpackUsage = "MaterialTheme.typography.body1",
+        style = OdsTheme.typography.body1,
+        jetpackUsage = "OdsTheme.typography.body1",
         xmlResource = R.attr.textAppearanceBody1,
     ),
     TypographyItem(
         name = "Body2",
-        style = MaterialTheme.typography.body2,
-        jetpackUsage = "MaterialTheme.typography.body2",
+        style = OdsTheme.typography.body2,
+        jetpackUsage = "OdsTheme.typography.body2",
         xmlResource = R.attr.textAppearanceBody2,
     ),
     TypographyItem(
         name = "Button",
-        style = MaterialTheme.typography.button,
-        jetpackUsage = "MaterialTheme.typography.button",
+        style = OdsTheme.typography.button,
+        jetpackUsage = "OdsTheme.typography.button",
         xmlResource = R.attr.textAppearanceButton,
     ),
     TypographyItem(
         name = "Caption",
-        style = MaterialTheme.typography.caption,
-        jetpackUsage = "MaterialTheme.typography.caption",
+        style = OdsTheme.typography.caption,
+        jetpackUsage = "OdsTheme.typography.caption",
         xmlResource = R.attr.textAppearanceCaption,
     ),
     TypographyItem(
         name = "Overline",
-        style = MaterialTheme.typography.overline,
-        jetpackUsage = "MaterialTheme.typography.overline",
+        style = OdsTheme.typography.overline,
+        jetpackUsage = "OdsTheme.typography.overline",
         xmlResource = R.attr.textAppearanceOverline,
     )
 )

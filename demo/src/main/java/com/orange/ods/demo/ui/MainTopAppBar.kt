@@ -16,7 +16,6 @@ import androidx.compose.foundation.layout.Box
 import androidx.compose.material.DropdownMenu
 import androidx.compose.material.DropdownMenuItem
 import androidx.compose.material.Icon
-import androidx.compose.material.IconButton
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ArrowBack
 import androidx.compose.material.icons.filled.MoreVert
@@ -30,6 +29,7 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import com.orange.ods.compose.component.appbar.top.OdsTopAppBar
+import com.orange.ods.compose.component.button.OdsIconButton
 import com.orange.ods.compose.text.OdsTextBody1
 import com.orange.ods.demo.R
 import com.orange.ods.demo.ui.components.utilities.clickOnElement
@@ -59,20 +59,29 @@ fun MainTopAppBar(
             repeat(state.actionCount.value) { index ->
                 if (index == 0) {
                     val configuration = LocalConfiguration.current
-                    IconButton(onClick = {
-                        updateTheme(!configuration.isDarkModeEnabled)
-                    }) {
-                        if (configuration.isDarkModeEnabled) {
-                            ActionIcon(iconRes = R.drawable.ic_ui_light_mode, contentDescriptionRes = R.string.theme_changer_icon_content_description_light)
-                        } else {
-                            ActionIcon(iconRes = R.drawable.ic_ui_dark_mode, contentDescriptionRes = R.string.theme_changer_icon_content_description_dark)
-                        }
+                    val onChangeModeClick = { updateTheme(!configuration.isDarkModeEnabled) }
+
+                    if (configuration.isDarkModeEnabled) {
+                        OdsIconButton(
+                            onClick = onChangeModeClick,
+                            painter = painterResource(id = R.drawable.ic_ui_light_mode),
+                            contentDescription = stringResource(id = R.string.theme_changer_icon_content_description_light)
+                        )
+                    } else {
+                        OdsIconButton(
+                            onClick = onChangeModeClick,
+                            painter = painterResource(id = R.drawable.ic_ui_dark_mode),
+                            contentDescription = stringResource(id = R.string.theme_changer_icon_content_description_dark)
+                        )
                     }
+
                 } else {
                     val action = topAppBarDemoActions[index - 1]
-                    IconButton(onClick = { clickOnElement(context, context.getString(action.titleRes)) }) {
-                        ActionIcon(iconRes = action.iconRes, contentDescriptionRes = action.titleRes)
-                    }
+                    OdsIconButton(
+                        onClick = { clickOnElement(context, context.getString(action.titleRes)) },
+                        painter = painterResource(id = action.iconRes),
+                        contentDescription = stringResource(id = action.titleRes)
+                    )
                 }
             }
             if (state.isOverflowMenuEnabled) {
@@ -89,9 +98,11 @@ private fun OverflowMenu() {
     val context = LocalContext.current
 
     Box {
-        IconButton(onClick = { showMenu = !showMenu }) {
-            Icon(Icons.Filled.MoreVert, contentDescription = stringResource(id = R.string.component_app_bars_top_element_overflow_menu))
-        }
+        OdsIconButton(
+            onClick = { showMenu = !showMenu },
+            imageVector = Icons.Filled.MoreVert,
+            contentDescription = stringResource(id = R.string.component_app_bars_top_element_overflow_menu)
+        )
         DropdownMenu(
             expanded = showMenu,
             onDismissRequest = { showMenu = false }
@@ -104,14 +115,6 @@ private fun OverflowMenu() {
         }
     }
 
-}
-
-@Composable
-private fun ActionIcon(@DrawableRes iconRes: Int, @StringRes contentDescriptionRes: Int) {
-    Icon(
-        painter = painterResource(id = iconRes),
-        contentDescription = stringResource(id = contentDescriptionRes)
-    )
 }
 
 private val topAppBarDemoActions = listOf(

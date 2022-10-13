@@ -14,7 +14,6 @@ import android.content.res.Configuration
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.material.ContentAlpha
-import androidx.compose.material.MaterialTheme
 import androidx.compose.material.RadioButton
 import androidx.compose.material.RadioButtonDefaults
 import androidx.compose.material.Text
@@ -24,10 +23,12 @@ import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.tooling.preview.Preview
 import com.orange.ods.compose.component.OdsComponentApi
 import com.orange.ods.compose.component.utilities.Preview
 import com.orange.ods.compose.theme.OdsPrimaryRippleTheme
+import com.orange.ods.compose.theme.OdsTheme
 
 /**
  * <a href="https://system.design.orange.com/0c1af118d/p/14638a-selection-controls/b/352c00" class="external" target="_blank">ODS radio button</a>.
@@ -59,15 +60,27 @@ fun OdsRadioButton(
             modifier = modifier,
             enabled = enabled,
             colors = if (selected) {
-                RadioButtonDefaults.colors(
-                    disabledColor = MaterialTheme.colors.secondary.copy(alpha = ContentAlpha.disabled)
+                OdsRadioButtonDefaults.colors(
+                    disabledColor = OdsTheme.colors.secondary.copy(alpha = ContentAlpha.disabled)
                 )
             } else {
-                RadioButtonDefaults.colors()
+                OdsRadioButtonDefaults.colors()
             }
         )
     }
 }
+
+private object OdsRadioButtonDefaults {
+
+    @Composable
+    fun colors(
+        selectedColor: Color = OdsTheme.colors.secondary,
+        unselectedColor: Color = OdsTheme.colors.onSurface.copy(alpha = 0.6f),
+        disabledColor: Color = OdsTheme.colors.onSurface.copy(alpha = ContentAlpha.disabled)
+    ) = RadioButtonDefaults.colors(selectedColor, unselectedColor, disabledColor)
+
+}
+
 
 @Composable
 private fun PreviewOdsRadioButton() = Preview {

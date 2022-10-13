@@ -13,7 +13,6 @@ package com.orange.ods.compose.component.textfield.password
 import android.content.res.Configuration
 import androidx.compose.foundation.text.KeyboardActions
 import androidx.compose.foundation.text.KeyboardOptions
-import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Text
 import androidx.compose.material.TextField
 import androidx.compose.material.Typography
@@ -30,10 +29,10 @@ import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.tooling.preview.Preview
 import com.orange.ods.R
 import com.orange.ods.compose.component.OdsComponentApi
+import com.orange.ods.compose.component.textfield.OdsTextFieldDefaults
 import com.orange.ods.compose.component.textfield.OdsTextFieldIcon
-import com.orange.ods.compose.component.textfield.odsTextFieldColors
-import com.orange.ods.compose.component.textfield.textFieldIconColor
 import com.orange.ods.compose.component.utilities.Preview
+import com.orange.ods.compose.theme.OdsTheme
 
 /**
  * Filled password text fields allows to display and use a text field with common password behaviors like a visualisation icon.
@@ -87,29 +86,28 @@ fun OdsPasswordTextField(
         modifier = modifier,
         enabled = enabled,
         readOnly = readOnly,
-        textStyle = MaterialTheme.typography.subtitle1,
+        textStyle = OdsTheme.typography.subtitle1,
         label = label?.let { { Text(label) } },
-        placeholder = placeholder?.let { { Text(text = placeholder, style = MaterialTheme.typography.subtitle1) } },
+        placeholder = placeholder?.let { { Text(text = placeholder, style = OdsTheme.typography.subtitle1) } },
         trailingIcon = if (visualisationIcon) {
-            { OdsPasswordVisualisationIcon(odsPasswordTextFieldState, enabled) }
+            { OdsPasswordVisualisationIcon(odsPasswordTextFieldState) }
         } else null,
         isError = isError,
         visualTransformation = odsPasswordTextFieldState.visualTransformation,
         keyboardOptions = keyboardOptions,
         keyboardActions = keyboardActions,
         singleLine = true,
-        colors = odsTextFieldColors()
+        colors = OdsTextFieldDefaults.colors()
     )
 }
 
 @Composable
-internal fun OdsPasswordVisualisationIcon(odsPasswordTextFieldState: OdsPasswordTextFieldState, enabled: Boolean) {
+internal fun OdsPasswordVisualisationIcon(odsPasswordTextFieldState: OdsPasswordTextFieldState) {
     with(odsPasswordTextFieldState) {
         OdsTextFieldIcon(
             painter = if (isPasswordVisible) painterResource(id = R.drawable.ic_crosset_out_eye) else painterResource(id = R.drawable.ic_eye),
             contentDescription = if (isPasswordVisible) stringResource(id = R.string.text_field_password_hide) else stringResource(id = R.string.text_field_password_show),
             onClick = { passwordVisible.value = !isPasswordVisible },
-            color = MaterialTheme.colors.textFieldIconColor(enabled)
         )
     }
 }

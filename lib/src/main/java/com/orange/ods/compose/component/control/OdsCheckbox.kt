@@ -14,17 +14,18 @@ import android.content.res.Configuration
 import androidx.compose.material.Checkbox
 import androidx.compose.material.CheckboxDefaults
 import androidx.compose.material.ContentAlpha
-import androidx.compose.material.MaterialTheme
 import androidx.compose.material.ripple.LocalRippleTheme
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.tooling.preview.Preview
 import com.orange.ods.compose.component.OdsComponentApi
 import com.orange.ods.compose.component.utilities.Preview
 import com.orange.ods.compose.theme.OdsPrimaryRippleTheme
+import com.orange.ods.compose.theme.OdsTheme
 
 /**
  * <a href="https://system.design.orange.com/0c1af118d/p/14638a-selection-controls/b/352c00" class="external" target="_blank">ODS Checkbox</a>.
@@ -55,13 +56,27 @@ fun OdsCheckbox(
             onCheckedChange = onCheckedChange,
             enabled = enabled,
             colors = if (checked) {
-                CheckboxDefaults.colors(disabledColor = MaterialTheme.colors.secondary.copy(alpha = ContentAlpha.disabled))
+                OdsCheckboxDefault.colors(disabledColor = OdsTheme.colors.secondary.copy(alpha = ContentAlpha.disabled))
             } else {
-                CheckboxDefaults.colors()
+                OdsCheckboxDefault.colors()
             }
         )
     }
 }
+
+private object OdsCheckboxDefault {
+
+    @Composable
+    fun colors(
+        checkedColor: Color = OdsTheme.colors.secondary,
+        uncheckedColor: Color = OdsTheme.colors.onSurface.copy(alpha = 0.6f),
+        checkmarkColor: Color = OdsTheme.colors.surface,
+        disabledColor: Color = OdsTheme.colors.onSurface.copy(alpha = ContentAlpha.disabled),
+        disabledIndeterminateColor: Color = checkedColor.copy(alpha = ContentAlpha.disabled)
+    ) = CheckboxDefaults.colors(checkedColor, uncheckedColor, checkmarkColor, disabledColor, disabledIndeterminateColor)
+
+}
+
 
 @Composable
 private fun PreviewOdsCheckbox() = Preview {

@@ -14,13 +14,21 @@ import androidx.compose.material.Card
 import androidx.compose.material.ExperimentalMaterialApi
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import com.orange.ods.compose.theme.OdsTheme
 
 @ExperimentalMaterialApi
 @Composable
 internal fun OdsCard(modifier: Modifier, onClick: (() -> Unit)?, content: @Composable () -> Unit) {
+    val backgroundColor = OdsTheme.colors.surface
+    val contentColor = OdsTheme.colors.onSurface
+
     if (onClick != null) {
-        Card(modifier = modifier, onClick = onClick, content = content)
+        Card(
+            modifier = modifier, backgroundColor = backgroundColor, contentColor = contentColor, onClick = onClick, content = content
+        )
     } else {
-        Card(modifier = modifier, content = content)
+        Card(
+            modifier = modifier, backgroundColor = backgroundColor, contentColor = contentColor, content = content
+        )
     }
 }

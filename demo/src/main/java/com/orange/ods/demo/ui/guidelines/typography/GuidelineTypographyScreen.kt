@@ -16,7 +16,6 @@ import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
-import androidx.compose.material.Divider
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
@@ -28,8 +27,8 @@ import androidx.compose.ui.text.buildAnnotatedString
 import androidx.compose.ui.text.font.FontStyle
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.text.withStyle
-import androidx.compose.ui.unit.dp
-import com.orange.ods.compose.theme.ObsGrey700
+import com.orange.ods.compose.component.divider.OdsDivider
+import com.orange.ods.compose.theme.OdsTheme
 import com.orange.ods.demo.R
 import com.orange.ods.demo.ui.LocalMainTopAppBarManager
 import com.orange.ods.demo.ui.utilities.getStringName
@@ -45,11 +44,7 @@ fun GuidelineTypographyScreen() {
     ) {
         items(typographyItems) { typo ->
             TypographyRow(typo)
-            Divider(
-                modifier = Modifier.padding(top = dimensionResource(id = R.dimen.spacing_m)),
-                color = ObsGrey700,
-                thickness = 1.dp
-            )
+            OdsDivider(modifier = Modifier.padding(top = dimensionResource(id = R.dimen.spacing_m)))
         }
     }
 }
@@ -57,28 +52,32 @@ fun GuidelineTypographyScreen() {
 @Composable
 private fun TypographyRow(typography: TypographyItem) {
     val context = LocalContext.current
+    val textColor = OdsTheme.colors.onBackground
     Column(modifier = Modifier.semantics(mergeDescendants = true) {}) {
         Text(
             text = typography.name,
             style = typography.style,
             maxLines = 1,
-            overflow = TextOverflow.Ellipsis
+            overflow = TextOverflow.Ellipsis,
+            color = textColor
         )
         Text(
-            buildAnnotatedString {
+            text = buildAnnotatedString {
                 append("Compose: ")
                 withStyle(style = SpanStyle(fontStyle = FontStyle.Italic)) {
                     append(typography.jetpackUsage)
                 }
-            }
+            },
+            color = textColor
         )
         Text(
-            buildAnnotatedString {
+            text = buildAnnotatedString {
                 append("Resource: ")
                 withStyle(style = SpanStyle(fontStyle = FontStyle.Italic)) {
                     append("?attr/${context.getStringName(typography.xmlResource)}")
                 }
-            }
+            },
+            color = textColor
         )
     }
 }

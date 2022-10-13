@@ -15,8 +15,8 @@ dependencies {
     api 'androidx.gridlayout:gridlayout:1.0.0'
 
     api 'com.google.guava:guava:27.0.1-android'
-
-    api project(':lib')
+    
+    api project(':theme-orange')
 
 //  api compatibility("recyclerViewSelection")
     api 'androidx.recyclerview:recyclerview-selection:1.0.0'
