@@ -10,9 +10,9 @@
 
 package com.orange.ods.theme.orange
 
-import com.orange.ods.theme.OdsSupportedColors
+import com.orange.ods.theme.OdsColors
 
-val OrangeLightColors = OdsSupportedColors(
+val OrangeLightColors = OdsColors(
     primary = Orange200,
     primaryVariant = Orange200,
     secondary = Orange200,
@@ -38,7 +38,7 @@ val OrangeLightColors = OdsSupportedColors(
     isLight = true
 )
 
-val OrangeDarkColors = OdsSupportedColors(
+val OrangeDarkColors = OdsColors(
     primary = Orange100,
     primaryVariant = Orange200,
     secondary = Orange200,

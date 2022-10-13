@@ -60,7 +60,7 @@ import com.orange.ods.demo.ui.utilities.composable.Title
 import com.orange.ods.demo.ui.utilities.getStringName
 import com.orange.ods.theme.GuidelineColor
 import com.orange.ods.theme.GuidelineColorType
-import com.orange.ods.theme.OdsSupportedColors
+import com.orange.ods.theme.OdsColors
 import com.orange.ods.theme.toHexString
 import com.orange.ods.theme.toRgbString
 import kotlin.reflect.KProperty
@@ -266,7 +266,7 @@ private fun copyColorToClipboard(context: Context, color: Color, clipboardManage
 
 @Composable
 private fun GuidelineColor.getValue(): Color {
-    val isColorsProperty = OdsSupportedColors::class.memberProperties.filterIsInstance<KProperty<Color>>().contains(callable)
+    val isColorsProperty = OdsColors::class.memberProperties.filterIsInstance<KProperty<Color>>().contains(callable)
     val isColorsExtensionProperty = callable.extensionReceiverParameter?.type?.classifier == Colors::class
 
     return if (isColorsProperty || isColorsExtensionProperty) callable.call(OdsTheme.colors) else callable.call()

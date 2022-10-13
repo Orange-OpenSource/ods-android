@@ -19,25 +19,25 @@ import androidx.compose.runtime.ReadOnlyComposable
 import androidx.compose.runtime.compositionLocalOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.staticCompositionLocalOf
-import com.orange.ods.theme.OdsSupportedColors
+import com.orange.ods.theme.OdsColors
 import com.orange.ods.theme.OdsThemeSettings
 
 private val LocalTypography = staticCompositionLocalOf { Typography() }
 
-private val LocalColors = staticCompositionLocalOf<OdsSupportedColors> { error("CompositionLocal LocalColors not present") }
-private val LocalLightThemeColors = compositionLocalOf<OdsSupportedColors> { error("CompositionLocal LocalLightThemeColors not present") }
-private val LocalDarkThemeColors = compositionLocalOf<OdsSupportedColors> { error("CompositionLocal LocalDarkThemeColors not present") }
+private val LocalColors = staticCompositionLocalOf<OdsColors> { error("CompositionLocal LocalColors not present") }
+private val LocalLightThemeColors = compositionLocalOf<OdsColors> { error("CompositionLocal LocalLightThemeColors not present") }
+private val LocalDarkThemeColors = compositionLocalOf<OdsColors> { error("CompositionLocal LocalDarkThemeColors not present") }
 
 object OdsTheme {
-    val colors: OdsSupportedColors
+    val colors: OdsColors
         @Composable
         @ReadOnlyComposable
         get() = LocalColors.current
-    val lightThemeColors: OdsSupportedColors
+    val lightThemeColors: OdsColors
         @Composable
         @ReadOnlyComposable
         get() = LocalLightThemeColors.current
-    val darkThemeColors: OdsSupportedColors
+    val darkThemeColors: OdsColors
         @Composable
         @ReadOnlyComposable
         get() = LocalDarkThemeColors.current

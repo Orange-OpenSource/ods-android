@@ -33,7 +33,7 @@ import com.orange.ods.compose.component.utilities.DisabledInteractionSource
 import com.orange.ods.compose.component.utilities.Preview
 import com.orange.ods.compose.theme.OdsDisplaySurface
 import com.orange.ods.compose.theme.OdsTheme
-import com.orange.ods.theme.OdsSupportedColors
+import com.orange.ods.theme.OdsColors
 
 /**
  * <a href="https://system.design.orange.com/0c1af118d/p/06a393-buttons/b/79b091" target="_blank">ODS Buttons</a>.
@@ -90,7 +90,7 @@ fun OdsIconToggleButton(
 }
 
 @Composable
-private fun OdsSupportedColors.buttonToggleIconColor(displaySurface: OdsDisplaySurface, checked: Boolean) =
+private fun OdsColors.buttonToggleIconColor(displaySurface: OdsDisplaySurface, checked: Boolean) =
     when (displaySurface) {
         OdsDisplaySurface.Default -> if (checked) OdsTheme.colors.primary else OdsTheme.colors.onSurface
         OdsDisplaySurface.Dark -> if (checked) OdsTheme.darkThemeColors.primary else OdsTheme.darkThemeColors.onSurface
@@ -98,7 +98,7 @@ private fun OdsSupportedColors.buttonToggleIconColor(displaySurface: OdsDisplayS
     }
 
 @Composable
-private fun OdsSupportedColors.buttonToggleBackgroundColor(displaySurface: OdsDisplaySurface) =
+private fun OdsColors.buttonToggleBackgroundColor(displaySurface: OdsDisplaySurface) =
     when (displaySurface) {
         OdsDisplaySurface.Default -> OdsTheme.colors.primary
         OdsDisplaySurface.Dark -> OdsTheme.darkThemeColors.primary

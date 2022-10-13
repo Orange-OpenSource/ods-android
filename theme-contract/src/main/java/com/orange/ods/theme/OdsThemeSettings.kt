@@ -15,9 +15,9 @@ import androidx.compose.material.Typography
 
 interface OdsThemeSettings : Parcelable {
 
-    val lightThemeColors: OdsSupportedColors
+    val lightThemeColors: OdsColors
 
-    val darkThemeColors: OdsSupportedColors
+    val darkThemeColors: OdsColors
 
     val typography: Typography
 

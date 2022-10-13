@@ -47,7 +47,7 @@ import com.orange.ods.compose.component.utilities.DisabledInteractionSource
 import com.orange.ods.compose.component.utilities.Preview
 import com.orange.ods.compose.text.OdsTextCaption
 import com.orange.ods.compose.theme.OdsTheme
-import com.orange.ods.theme.OdsSupportedColors
+import com.orange.ods.theme.OdsColors
 
 /**
  * <a href="https://system.design.orange.com/0c1af118d/p/483f94-text-fields/b/720e3b" target="_blank">ODS Text fields</a>.
@@ -203,7 +203,7 @@ internal fun OdsTextFieldIcon(painter: Painter, contentDescription: String?, onC
 }
 
 @Composable
-fun OdsSupportedColors.trailingTextColor(isValueEmpty: Boolean, isTextFieldEnabled: Boolean) =
+fun OdsColors.trailingTextColor(isValueEmpty: Boolean, isTextFieldEnabled: Boolean) =
     if (isValueEmpty || !isTextFieldEnabled) {
         OdsTheme.colors.onSurface.copy(alpha = ContentAlpha.disabled)
     } else {
@@ -211,7 +211,7 @@ fun OdsSupportedColors.trailingTextColor(isValueEmpty: Boolean, isTextFieldEnabl
     }
 
 @Composable
-fun OdsSupportedColors.textFieldIconColor(enabled: Boolean = true) =
+fun OdsColors.textFieldIconColor(enabled: Boolean = true) =
     if (enabled) {
         OdsTheme.colors.onSurface
     } else {

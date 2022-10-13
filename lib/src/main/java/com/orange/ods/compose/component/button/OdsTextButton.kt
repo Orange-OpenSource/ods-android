@@ -33,7 +33,7 @@ import com.orange.ods.compose.theme.OdsLightRippleTheme
 import com.orange.ods.compose.theme.OdsPrimaryRippleTheme
 import com.orange.ods.compose.theme.OdsRippleTheme
 import com.orange.ods.compose.theme.OdsTheme
-import com.orange.ods.theme.OdsSupportedColors
+import com.orange.ods.theme.OdsColors
 
 /**
  * Specifying an [OdsTextButtonStyle] allow to display a button with specific colors.
@@ -97,7 +97,7 @@ fun OdsTextButton(
 }
 
 @Composable
-private fun OdsSupportedColors.buttonTextColor(displaySurface: OdsDisplaySurface, style: OdsTextButtonStyle) =
+private fun OdsColors.buttonTextColor(displaySurface: OdsDisplaySurface, style: OdsTextButtonStyle) =
     when (displaySurface) {
         OdsDisplaySurface.Default -> when (style) {
             OdsTextButtonStyle.Primary -> OdsTheme.colors.primary
@@ -114,7 +114,7 @@ private fun OdsSupportedColors.buttonTextColor(displaySurface: OdsDisplaySurface
     }
 
 @Composable
-private fun OdsSupportedColors.buttonTextDisabledColor(displaySurface: OdsDisplaySurface) =
+private fun OdsColors.buttonTextDisabledColor(displaySurface: OdsDisplaySurface) =
     buttonTextColor(displaySurface = displaySurface, style = OdsTextButtonStyle.Default).copy(alpha = ContentAlpha.disabled)
 
 @Composable

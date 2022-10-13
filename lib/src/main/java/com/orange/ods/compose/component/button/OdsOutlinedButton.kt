@@ -32,7 +32,7 @@ import com.orange.ods.compose.theme.OdsLightRippleTheme
 import com.orange.ods.compose.theme.OdsRippleTheme
 import com.orange.ods.compose.theme.OdsTheme
 import com.orange.ods.compose.theme.Transparent
-import com.orange.ods.theme.OdsSupportedColors
+import com.orange.ods.theme.OdsColors
 
 /**
  * <a href="https://system.design.orange.com/0c1af118d/p/06a393-buttons/b/79b091" target="_blank">ODS Buttons</a>.
@@ -93,7 +93,7 @@ fun OdsOutlinedButton(
 }
 
 @Composable
-private fun OdsSupportedColors.buttonOutlinedColor(displaySurface: OdsDisplaySurface) =
+private fun OdsColors.buttonOutlinedColor(displaySurface: OdsDisplaySurface) =
     when (displaySurface) {
         OdsDisplaySurface.Default -> OdsTheme.colors.onSurface
         OdsDisplaySurface.Dark -> OdsTheme.darkThemeColors.onSurface
@@ -101,7 +101,7 @@ private fun OdsSupportedColors.buttonOutlinedColor(displaySurface: OdsDisplaySur
     }
 
 @Composable
-private fun OdsSupportedColors.buttonOutlinedDisabledColor(displaySurface: OdsDisplaySurface) =
+private fun OdsColors.buttonOutlinedDisabledColor(displaySurface: OdsDisplaySurface) =
     buttonOutlinedColor(displaySurface).copy(alpha = ContentAlpha.disabled)
 
 @Composable

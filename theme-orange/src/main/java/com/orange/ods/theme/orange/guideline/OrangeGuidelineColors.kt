@@ -12,7 +12,7 @@ package com.orange.ods.theme.orange.guideline
 
 import com.orange.ods.theme.GuidelineColor
 import com.orange.ods.theme.GuidelineColorType
-import com.orange.ods.theme.OdsSupportedColors
+import com.orange.ods.theme.OdsColors
 import com.orange.ods.theme.orange.Blue100
 import com.orange.ods.theme.orange.Blue200
 import com.orange.ods.theme.orange.Blue300
@@ -32,15 +32,15 @@ import com.orange.ods.theme.orange.Yellow200
 import com.orange.ods.theme.orange.Yellow300
 
 val OrangeGuidelineColors = listOf(
-    GuidelineColor(OdsSupportedColors::primary, R.attr.colorPrimary, GuidelineColorType.Core, "Orange 100", "Orange 200"),
-    GuidelineColor(OdsSupportedColors::background, R.attr.backgroundColor, GuidelineColorType.Core, "White 100", "Black 900"),
-    GuidelineColor(OdsSupportedColors::surface, R.attr.colorSurface, GuidelineColorType.Core, "White 100", "Secondary Background"),
+    GuidelineColor(OdsColors::primary, R.attr.colorPrimary, GuidelineColorType.Core, "Orange 100", "Orange 200"),
+    GuidelineColor(OdsColors::background, R.attr.backgroundColor, GuidelineColorType.Core, "White 100", "Black 900"),
+    GuidelineColor(OdsColors::surface, R.attr.colorSurface, GuidelineColorType.Core, "White 100", "Secondary Background"),
     GuidelineColor(::ObsGrey700, R.color.ods_color_core_obsgrey_700, GuidelineColorType.Core, "OBS Grey 700"),
 
-    GuidelineColor(OdsSupportedColors::functionalPositive, R.attr.functionalPositive, GuidelineColorType.Functional, "Positive 200", "Positive 100"),
-    GuidelineColor(OdsSupportedColors::error, R.attr.colorError, GuidelineColorType.Functional, "Negative 200", "Negative 100"),
-    GuidelineColor(OdsSupportedColors::functionalInfo, R.attr.functionalInfo, GuidelineColorType.Functional, "Info 200", "Info 100"),
-    GuidelineColor(OdsSupportedColors::functionalAlert, R.attr.functionalAlert, GuidelineColorType.Functional, "Alert 200", "Alert 100"),
+    GuidelineColor(OdsColors::functionalPositive, R.attr.functionalPositive, GuidelineColorType.Functional, "Positive 200", "Positive 100"),
+    GuidelineColor(OdsColors::error, R.attr.colorError, GuidelineColorType.Functional, "Negative 200", "Negative 100"),
+    GuidelineColor(OdsColors::functionalInfo, R.attr.functionalInfo, GuidelineColorType.Functional, "Info 200", "Info 100"),
+    GuidelineColor(OdsColors::functionalAlert, R.attr.functionalAlert, GuidelineColorType.Functional, "Alert 200", "Alert 100"),
 
     GuidelineColor(::Blue100, R.color.ods_color_supporting_blue_100, GuidelineColorType.Supporting, "Blue 100"),
     GuidelineColor(::Blue200, R.color.ods_color_supporting_blue_200, GuidelineColorType.Supporting, "Blue 200"),

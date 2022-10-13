@@ -12,7 +12,7 @@ package com.orange.ods.theme.orange
 
 import androidx.compose.material.Typography
 import com.orange.ods.theme.GuidelineColor
-import com.orange.ods.theme.OdsSupportedColors
+import com.orange.ods.theme.OdsColors
 import com.orange.ods.theme.OdsThemeSettings
 import com.orange.ods.theme.orange.guideline.OrangeGuidelineColors
 import kotlinx.parcelize.Parcelize
@@ -20,10 +20,10 @@ import kotlinx.parcelize.Parcelize
 @Parcelize
 class OrangeThemeSettings : OdsThemeSettings {
 
-    override val lightThemeColors: OdsSupportedColors
+    override val lightThemeColors: OdsColors
         get() = OrangeLightColors
 
-    override val darkThemeColors: OdsSupportedColors
+    override val darkThemeColors: OdsColors
         get() = OrangeDarkColors
 
     override val typography: Typography

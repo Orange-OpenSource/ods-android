@@ -15,7 +15,7 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.graphics.Color
 
-class OdsSupportedColors(
+class OdsColors(
     primary: Color,
     primaryVariant: Color,
     secondary: Color,
@@ -102,7 +102,7 @@ class OdsSupportedColors(
         functionalAlert: Color = this.functionalAlert,
         switchUncheckedThumb: Color = this.switchUncheckedThumb,
         isLight: Boolean = this.isLight
-    ): OdsSupportedColors = OdsSupportedColors(
+    ): OdsColors = OdsColors(
         primary,
         primaryVariant,
         secondary,
@@ -125,7 +125,7 @@ class OdsSupportedColors(
         isLight
     )
 
-    fun updateColorsFrom(other: OdsSupportedColors) {
+    fun updateColorsFrom(other: OdsColors) {
         primary = other.primary
         primaryVariant = other.primaryVariant
         secondary = other.secondary
