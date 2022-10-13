@@ -71,6 +71,7 @@ fun GuidelineColorScreen() {
     LocalMainTopAppBarManager.current.updateTopAppBarTitle(R.string.guideline_color)
 
     val guidelineColors = LocalOdsDemoGuideline.current.guidelineColors
+
     val coreColors = guidelineColors.filter { it.type == GuidelineColorType.Core }
     val functionalColors = guidelineColors.filter { it.type == GuidelineColorType.Functional }
     val supportingColors = guidelineColors.filter { it.type == GuidelineColorType.Supporting }

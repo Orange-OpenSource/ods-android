@@ -96,8 +96,8 @@ fun OdsOutlinedButton(
 private fun OdsColors.buttonOutlinedColor(displaySurface: OdsDisplaySurface) =
     when (displaySurface) {
         OdsDisplaySurface.Default -> OdsTheme.colors.onSurface
-        OdsDisplaySurface.Dark -> OdsTheme.colors.onSurface
-        OdsDisplaySurface.Light -> OdsTheme.colors.onSurface
+        OdsDisplaySurface.Dark -> OdsTheme.darkThemeColors.onSurface
+        OdsDisplaySurface.Light -> OdsTheme.lightThemeColors.onSurface
     }
 
 @Composable

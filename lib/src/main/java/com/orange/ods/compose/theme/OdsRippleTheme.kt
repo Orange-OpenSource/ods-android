@@ -48,13 +48,13 @@ internal object OdsPrimaryRippleTheme : RippleTheme {
 internal object OdsLightRippleTheme : RippleTheme {
     @Composable
     override fun defaultColor() = RippleTheme.defaultRippleColor(
-        contentColor = OdsTheme.colors.onSurface,
+        contentColor = OdsTheme.lightThemeColors.onSurface,
         lightTheme = true
     )
 
     @Composable
     override fun rippleAlpha() = RippleTheme.defaultRippleAlpha(
-        OdsTheme.colors.surface,
+        OdsTheme.lightThemeColors.surface,
         lightTheme = true
     )
 }
@@ -65,13 +65,13 @@ internal object OdsLightRippleTheme : RippleTheme {
 internal object OdsDarkRippleTheme : RippleTheme {
     @Composable
     override fun defaultColor() = RippleTheme.defaultRippleColor(
-        contentColor = OdsTheme.colors.onSurface,
+        contentColor = OdsTheme.darkThemeColors.onSurface,
         lightTheme = false
     )
 
     @Composable
     override fun rippleAlpha() = RippleTheme.defaultRippleAlpha(
-        OdsTheme.colors.surface,
+        OdsTheme.darkThemeColors.surface,
         lightTheme = false
     )
 }

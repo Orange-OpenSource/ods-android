@@ -43,8 +43,8 @@ fun Title(@StringRes textRes: Int, modifier: Modifier = Modifier, withHorizontal
 fun Subtitle(@StringRes textRes: Int, displaySurface: OdsDisplaySurface = OdsDisplaySurface.Default, withHorizontalPadding: Boolean = false) {
     val backgroundColor = when (displaySurface) {
         OdsDisplaySurface.Default -> Color.Unspecified
-        OdsDisplaySurface.Dark -> OdsTheme.colors.background
-        OdsDisplaySurface.Light -> OdsTheme.colors.background
+        OdsDisplaySurface.Dark -> OdsTheme.darkThemeColors.background
+        OdsDisplaySurface.Light -> OdsTheme.lightThemeColors.background
     }
     OdsTextSubtitle1(
         text = stringResource(textRes),
