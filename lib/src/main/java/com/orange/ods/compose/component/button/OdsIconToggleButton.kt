@@ -93,16 +93,16 @@ fun OdsIconToggleButton(
 private fun OdsColors.buttonToggleIconColor(displaySurface: OdsDisplaySurface, checked: Boolean) =
     when (displaySurface) {
         OdsDisplaySurface.Default -> if (checked) OdsTheme.colors.primary else OdsTheme.colors.onSurface
-        OdsDisplaySurface.Dark -> if (checked) OdsTheme.darkThemeColors.primary else OdsTheme.darkThemeColors.onSurface
-        OdsDisplaySurface.Light -> if (checked) OdsTheme.lightThemeColors.primary else OdsTheme.lightThemeColors.onSurface
+        OdsDisplaySurface.Dark -> if (checked) OdsTheme.colors.primary else OdsTheme.colors.onSurface
+        OdsDisplaySurface.Light -> if (checked) OdsTheme.colors.primary else OdsTheme.colors.onSurface
     }
 
 @Composable
 private fun OdsColors.buttonToggleBackgroundColor(displaySurface: OdsDisplaySurface) =
     when (displaySurface) {
         OdsDisplaySurface.Default -> OdsTheme.colors.primary
-        OdsDisplaySurface.Dark -> OdsTheme.darkThemeColors.primary
-        OdsDisplaySurface.Light -> OdsTheme.lightThemeColors.primary
+        OdsDisplaySurface.Dark -> OdsTheme.colors.primary
+        OdsDisplaySurface.Light -> OdsTheme.colors.primary
     }
 
 @Composable

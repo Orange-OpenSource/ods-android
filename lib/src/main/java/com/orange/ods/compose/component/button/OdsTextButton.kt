@@ -104,12 +104,12 @@ private fun OdsColors.buttonTextColor(displaySurface: OdsDisplaySurface, style: 
             OdsTextButtonStyle.Default -> OdsTheme.colors.onSurface
         }
         OdsDisplaySurface.Dark -> when (style) {
-            OdsTextButtonStyle.Primary -> OdsTheme.darkThemeColors.primary
-            OdsTextButtonStyle.Default -> OdsTheme.darkThemeColors.onSurface
+            OdsTextButtonStyle.Primary -> OdsTheme.colors.primary
+            OdsTextButtonStyle.Default -> OdsTheme.colors.onSurface
         }
         OdsDisplaySurface.Light -> when (style) {
-            OdsTextButtonStyle.Primary -> OdsTheme.lightThemeColors.primary
-            OdsTextButtonStyle.Default -> OdsTheme.lightThemeColors.onSurface
+            OdsTextButtonStyle.Primary -> OdsTheme.colors.primary
+            OdsTextButtonStyle.Default -> OdsTheme.colors.onSurface
         }
     }
 

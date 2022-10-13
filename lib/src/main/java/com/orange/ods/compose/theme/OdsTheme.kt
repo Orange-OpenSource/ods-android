@@ -22,11 +22,13 @@ import androidx.compose.runtime.staticCompositionLocalOf
 import com.orange.ods.theme.OdsColors
 import com.orange.ods.theme.OdsThemeConfigurationContract
 
-private val LocalTypography = staticCompositionLocalOf { Typography() }
-
 private val LocalColors = staticCompositionLocalOf<OdsColors> { error("CompositionLocal LocalColors not present") }
 private val LocalLightThemeColors = compositionLocalOf<OdsColors> { error("CompositionLocal LocalLightThemeColors not present") }
 private val LocalDarkThemeColors = compositionLocalOf<OdsColors> { error("CompositionLocal LocalDarkThemeColors not present") }
+
+private val LocalTypography = staticCompositionLocalOf { Typography() }
+
+val LocalDarkThemeEnabled = compositionLocalOf { false }
 
 object OdsTheme {
 
@@ -65,10 +67,12 @@ fun OdsTheme(
     content: @Composable () -> Unit
 ) {
     val colors = if (darkThemeEnabled) themeConfiguration.darkThemeColors else themeConfiguration.lightThemeColors
+
     // creating a new object for colors to not mutate the initial colors set when updating the values
     val rememberedColors = remember { colors.copy() }.apply { updateColorsFrom(colors) }
     CompositionLocalProvider(
         LocalRippleTheme provides OdsRippleTheme,
+        LocalDarkThemeEnabled provides darkThemeEnabled,
         LocalColors provides rememberedColors,
         LocalLightThemeColors provides themeConfiguration.lightThemeColors,
         LocalDarkThemeColors provides themeConfiguration.darkThemeColors,

@@ -14,6 +14,7 @@ import androidx.compose.material.ExperimentalMaterialApi
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.MutableState
 import androidx.compose.runtime.remember
+import androidx.compose.runtime.snapshots.SnapshotStateList
 import androidx.compose.runtime.staticCompositionLocalOf
 import androidx.lifecycle.Lifecycle
 import androidx.navigation.NavBackStackEntry
@@ -23,6 +24,7 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
 import com.google.accompanist.pager.ExperimentalPagerApi
+import com.orange.ods.demo.ui.utilities.rememberSaveableMutableStateListOf
 import com.orange.ods.theme.OdsThemeConfigurationContract
 import com.orange.ods.theme.guideline.OdsDemoGuideline
 
@@ -53,19 +55,21 @@ val LocalOdsDemoGuideline = staticCompositionLocalOf<OdsDemoGuideline> { error("
 @ExperimentalMaterialApi
 fun rememberMainState(
     navController: NavHostController = rememberNavController(),
+    themeConfigurations: SnapshotStateList<OdsThemeConfigurationContract> = rememberSaveableMutableStateListOf(),
     currentThemeConfiguration: MutableState<OdsThemeConfigurationContract>,
     darkModeEnabled: MutableState<Boolean>,
     topAppBarState: MainTopAppBarState = rememberMainTopAppBarState(),
     tabsState: MainTabsState = rememberMainTabsState()
 ) =
-    remember(navController, currentThemeConfiguration, darkModeEnabled, topAppBarState, tabsState) {
-        MainState(navController, currentThemeConfiguration, darkModeEnabled, topAppBarState, tabsState)
+    remember(navController, themeConfigurations, currentThemeConfiguration, darkModeEnabled, topAppBarState, tabsState) {
+        MainState(navController, themeConfigurations, currentThemeConfiguration, darkModeEnabled, topAppBarState, tabsState)
     }
 
 @ExperimentalPagerApi
 @ExperimentalMaterialApi
 class MainState(
     val navController: NavHostController,
+    val themeConfigurations: SnapshotStateList<OdsThemeConfigurationContract>,
     val currentThemeConfiguration: MutableState<OdsThemeConfigurationContract>,
     val darkModeEnabled: MutableState<Boolean>,
     val topAppBarState: MainTopAppBarState,
