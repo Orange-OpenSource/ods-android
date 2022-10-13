@@ -21,7 +21,11 @@ data class GuidelineColor(
     val type: GuidelineColorType,
     val lightThemeName: String,
     val darkThemeName: String = lightThemeName
-)
+) {
+    fun getName(systemInDarkTheme: Boolean): String {
+        return if (systemInDarkTheme) darkThemeName else lightThemeName
+    }
+}
 
 enum class GuidelineColorType {
     Core,

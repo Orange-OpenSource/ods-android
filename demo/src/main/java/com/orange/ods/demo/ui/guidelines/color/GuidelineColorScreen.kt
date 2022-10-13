@@ -152,7 +152,7 @@ private fun RowScope.SmallColorItem(color: GuidelineColor) {
                 .aspectRatio(1f)
         )
         OdsTextH6(
-            text = color.getName(),
+            text = color.getName(isSystemInDarkTheme()),
             modifier = Modifier.padding(top = dimensionResource(id = R.dimen.spacing_xs))
         )
         OdsTextCaption(text = colorValue.toHexString())
@@ -189,7 +189,7 @@ private fun RowScope.BigColorItem(color: GuidelineColor) {
             }
         )
         OdsTextH6(
-            text = color.getName(),
+            text = color.getName(isSystemInDarkTheme()),
             modifier = Modifier.padding(top = dimensionResource(id = R.dimen.spacing_xs))
         )
         OdsTextBody1(text = color.callable.name)
@@ -227,7 +227,7 @@ private fun DialogColor(color: GuidelineColor, openDialog: MutableState<Boolean>
                     .fillMaxWidth()
                     .padding(horizontal = dimensionResource(id = R.dimen.spacing_m), vertical = dimensionResource(id = R.dimen.spacing_s))
             ) {
-                OdsTextH5(text = color.getName())
+                OdsTextH5(text = color.getName(isSystemInDarkTheme()))
                 OdsTextBody1(
                     modifier = Modifier.padding(top = dimensionResource(id = R.dimen.spacing_xs)),
                     text = color.callable.name
@@ -262,11 +262,6 @@ private fun copyColorToClipboard(context: Context, color: Color, clipboardManage
     Toast
         .makeText(context, text, Toast.LENGTH_SHORT)
         .show()
-}
-
-@Composable
-private fun GuidelineColor.getName(): String {
-    return if (isSystemInDarkTheme()) darkThemeName else lightThemeName
 }
 
 @Composable
