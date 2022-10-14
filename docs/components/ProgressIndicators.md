@@ -57,16 +57,16 @@ Linear progress indicators support both determinate and indeterminate operations
 
  > **Jetpack Compose implementation**
 
-You can use the native composable `LinearProgressIndicator` like this:
+You can use the composable `OdsLinearProgressIndicator` like this:
 
 For a **determinate** linear progress indicator
 ```kotlin
-LinearProgressIndicator(progress = 0.2f)
+OdsLinearProgressIndicator(progress = 0.2f)
 ```
 
 For an **indeterminate** linear progress indicator
 ```kotlin
-LinearProgressIndicator()
+OdsLinearProgressIndicator()
 ```
 
  > **XML implementation**
@@ -117,18 +117,18 @@ processes.
 
 > **Jetpack Compose implementation**
 
-You can use the native `CircularProgressIndicator` like this:
+You can use the `OdsCircularProgressIndicator` composable like this:
 
 - For a **determinate** circular progress indicator
 
 ```kotlin
-CircularProgressIndicator(progress = 0.2f)
+OdsCircularProgressIndicator(progress = 0.2f)
 ```
 
 - For an **indeterminate** circular progress indicator
 
 ```kotlin
-CircularProgressIndicator()
+OdsCircularProgressIndicator()
 ```
 
 > **XML implementation**
