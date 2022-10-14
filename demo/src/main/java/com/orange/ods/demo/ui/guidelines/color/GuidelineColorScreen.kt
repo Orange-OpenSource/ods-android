@@ -77,53 +77,63 @@ fun GuidelineColorScreen() {
     val functionalColors = guidelineColors.filter { it.type == GuidelineColorType.Functional }
     val supportingColors = guidelineColors.filter { it.type == GuidelineColorType.Supporting }
 
-    LazyColumn(
-        contentPadding = PaddingValues(
-            start = dimensionResource(id = R.dimen.spacing_m),
-            end = dimensionResource(id = R.dimen.spacing_m),
-            bottom = dimensionResource(id = R.dimen.ods_screen_vertical_margin)
-        ),
-        verticalArrangement = Arrangement.spacedBy(dimensionResource(id = R.dimen.spacing_m)),
-    ) {
-        if (coreColors.isNotEmpty()) {
-            item {
-                Title(textRes = R.string.guideline_colour_core, modifier = Modifier.semantics { heading() })
-            }
-            items(coreColors.chunked(2)) { rowColors ->
-                Row(
-                    horizontalArrangement = Arrangement.spacedBy(dimensionResource(id = R.dimen.spacing_m)),
-                ) {
-                    BigColorItem(color = rowColors[0])
-                    BigColorItem(color = rowColors[1])
+    if (guidelineColors.isEmpty()) {
+        OdsTextBody1(
+            modifier = Modifier.padding(
+                horizontal = dimensionResource(id = R.dimen.ods_screen_horizontal_margin),
+                vertical = dimensionResource(id = R.dimen.ods_screen_vertical_margin)
+            ),
+            text = stringResource(id = R.string.guideline_colour_no_colours_defined)
+        )
+    } else {
+        LazyColumn(
+            contentPadding = PaddingValues(
+                start = dimensionResource(id = R.dimen.spacing_m),
+                end = dimensionResource(id = R.dimen.spacing_m),
+                bottom = dimensionResource(id = R.dimen.ods_screen_vertical_margin)
+            ),
+            verticalArrangement = Arrangement.spacedBy(dimensionResource(id = R.dimen.spacing_m)),
+        ) {
+            if (coreColors.isNotEmpty()) {
+                item {
+                    Title(textRes = R.string.guideline_colour_core, modifier = Modifier.semantics { heading() })
+                }
+                items(coreColors.chunked(2)) { rowColors ->
+                    Row(
+                        horizontalArrangement = Arrangement.spacedBy(dimensionResource(id = R.dimen.spacing_m)),
+                    ) {
+                        BigColorItem(color = rowColors[0])
+                        BigColorItem(color = rowColors[1])
+                    }
                 }
             }
-        }
 
-        if (functionalColors.isNotEmpty()) {
-            item {
-                Title(textRes = R.string.guideline_colour_functional, modifier = Modifier.semantics { heading() })
-            }
-            items(functionalColors.chunked(2)) { rowColors ->
-                Row(
-                    horizontalArrangement = Arrangement.spacedBy(dimensionResource(id = R.dimen.spacing_m)),
-                ) {
-                    BigColorItem(color = rowColors[0])
-                    BigColorItem(color = rowColors[1])
+            if (functionalColors.isNotEmpty()) {
+                item {
+                    Title(textRes = R.string.guideline_colour_functional, modifier = Modifier.semantics { heading() })
+                }
+                items(functionalColors.chunked(2)) { rowColors ->
+                    Row(
+                        horizontalArrangement = Arrangement.spacedBy(dimensionResource(id = R.dimen.spacing_m)),
+                    ) {
+                        BigColorItem(color = rowColors[0])
+                        BigColorItem(color = rowColors[1])
+                    }
                 }
             }
-        }
 
-        if (supportingColors.isNotEmpty()) {
-            item {
-                Title(textRes = R.string.guideline_colour_supporting, modifier = Modifier.semantics { heading() })
-            }
-            items(supportingColors.chunked(3)) { rowColors ->
-                Row(
-                    horizontalArrangement = Arrangement.spacedBy(dimensionResource(id = R.dimen.spacing_m)),
-                ) {
-                    SmallColorItem(color = rowColors[0])
-                    SmallColorItem(color = rowColors[1])
-                    SmallColorItem(color = rowColors[2])
+            if (supportingColors.isNotEmpty()) {
+                item {
+                    Title(textRes = R.string.guideline_colour_supporting, modifier = Modifier.semantics { heading() })
+                }
+                items(supportingColors.chunked(3)) { rowColors ->
+                    Row(
+                        horizontalArrangement = Arrangement.spacedBy(dimensionResource(id = R.dimen.spacing_m)),
+                    ) {
+                        SmallColorItem(color = rowColors[0])
+                        SmallColorItem(color = rowColors[1])
+                        SmallColorItem(color = rowColors[2])
+                    }
                 }
             }
         }
