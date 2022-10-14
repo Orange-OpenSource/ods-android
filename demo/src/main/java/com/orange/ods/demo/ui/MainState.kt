@@ -26,7 +26,7 @@ import androidx.navigation.compose.rememberNavController
 import com.google.accompanist.pager.ExperimentalPagerApi
 import com.orange.ods.demo.ui.utilities.rememberSaveableMutableStateListOf
 import com.orange.ods.theme.OdsThemeSettings
-import com.orange.ods.theme.demo.OdsDemoGuideline
+import com.orange.ods.theme.guideline.OdsDemoGuideline
 
 /**
  * Destinations used in the [MainScreen].

@@ -8,9 +8,7 @@
  * /
  */
 
-package com.orange.ods.theme.demo
-
-import com.orange.ods.theme.GuidelineColor
+package com.orange.ods.theme.guideline
 
 /**
  * This class defines what will be displayed in the ODS Demo Application guideline part.
@@ -23,6 +21,12 @@ open class OdsDemoGuideline {
      * The colors of the [OdsThemeSettings] guideline
      */
     open val guidelineColors: List<GuidelineColor>
+        get() = emptyList()
+
+    /**
+     * The typographies of the [OdsThemeSettings] guideline
+     */
+    open val guidelineTypographies: List<GuidelineTypography>
         get() = emptyList()
 
 }

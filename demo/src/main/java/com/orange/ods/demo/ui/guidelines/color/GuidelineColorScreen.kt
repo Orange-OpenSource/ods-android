@@ -58,11 +58,11 @@ import com.orange.ods.demo.ui.LocalMainTopAppBarManager
 import com.orange.ods.demo.ui.LocalOdsDemoGuideline
 import com.orange.ods.demo.ui.utilities.composable.Title
 import com.orange.ods.demo.ui.utilities.getStringName
-import com.orange.ods.theme.GuidelineColor
-import com.orange.ods.theme.GuidelineColorType
 import com.orange.ods.theme.OdsColors
-import com.orange.ods.theme.toHexString
-import com.orange.ods.theme.toRgbString
+import com.orange.ods.theme.guideline.GuidelineColor
+import com.orange.ods.theme.guideline.GuidelineColorType
+import com.orange.ods.theme.guideline.toHexString
+import com.orange.ods.theme.guideline.toRgbString
 import kotlin.reflect.KProperty
 import kotlin.reflect.full.extensionReceiverParameter
 import kotlin.reflect.full.memberProperties
@@ -254,7 +254,7 @@ private fun DialogColor(color: GuidelineColor, openDialog: MutableState<Boolean>
                     modifier = Modifier.padding(top = dimensionResource(id = R.dimen.spacing_s)),
                     text = stringResource(
                         id = R.string.guideline_colour_xml,
-                        context.getStringName(color.xmlRes)
+                        context.getStringName(color.xmlResource)
                     )
                 )
                 OdsButton(

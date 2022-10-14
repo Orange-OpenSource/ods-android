@@ -13,8 +13,8 @@ package com.orange.ods.theme.orange
 import androidx.compose.material.Typography
 import com.orange.ods.theme.OdsColors
 import com.orange.ods.theme.OdsThemeSettings
-import com.orange.ods.theme.demo.OdsDemoGuideline
-import com.orange.ods.theme.orange.demo.OrangeDemoGuideline
+import com.orange.ods.theme.guideline.OdsDemoGuideline
+import com.orange.ods.theme.orange.guideline.OrangeGuideline
 import kotlinx.parcelize.Parcelize
 
 @Parcelize
@@ -30,5 +30,5 @@ class OrangeThemeSettings : OdsThemeSettings {
         get() = OrangeTypography
 
     override val odsDemoGuideline: OdsDemoGuideline
-        get() = OrangeDemoGuideline()
+        get() = OrangeGuideline()
 }

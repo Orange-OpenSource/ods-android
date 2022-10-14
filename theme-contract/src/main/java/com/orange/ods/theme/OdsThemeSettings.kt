@@ -12,7 +12,7 @@ package com.orange.ods.theme
 
 import android.os.Parcelable
 import androidx.compose.material.Typography
-import com.orange.ods.theme.demo.OdsDemoGuideline
+import com.orange.ods.theme.guideline.OdsDemoGuideline
 
 interface OdsThemeSettings : Parcelable {
 

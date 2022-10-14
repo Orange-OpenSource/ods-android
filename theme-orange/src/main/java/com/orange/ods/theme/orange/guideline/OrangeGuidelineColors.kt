@@ -8,11 +8,11 @@
  * /
  */
 
-package com.orange.ods.theme.orange.demo
+package com.orange.ods.theme.orange.guideline
 
-import com.orange.ods.theme.GuidelineColor
-import com.orange.ods.theme.GuidelineColorType
 import com.orange.ods.theme.OdsColors
+import com.orange.ods.theme.guideline.GuidelineColor
+import com.orange.ods.theme.guideline.GuidelineColorType
 import com.orange.ods.theme.orange.Blue100
 import com.orange.ods.theme.orange.Blue200
 import com.orange.ods.theme.orange.Blue300

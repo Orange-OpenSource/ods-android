@@ -31,18 +31,21 @@ import com.orange.ods.compose.component.divider.OdsDivider
 import com.orange.ods.compose.theme.OdsTheme
 import com.orange.ods.demo.R
 import com.orange.ods.demo.ui.LocalMainTopAppBarManager
+import com.orange.ods.demo.ui.LocalOdsDemoGuideline
 import com.orange.ods.demo.ui.utilities.getStringName
+import com.orange.ods.theme.guideline.GuidelineTypography
 
 @Composable
 fun GuidelineTypographyScreen() {
     LocalMainTopAppBarManager.current.updateTopAppBarTitle(R.string.guideline_typography)
-    val typographyItems = getTypographyItems()
+
+    val guidelineTypographies = LocalOdsDemoGuideline.current.guidelineTypographies
 
     LazyColumn(
         contentPadding = PaddingValues(horizontal = dimensionResource(id = R.dimen.spacing_m), vertical = dimensionResource(id = R.dimen.spacing_s)),
         verticalArrangement = Arrangement.spacedBy(dimensionResource(id = R.dimen.spacing_m)),
     ) {
-        items(typographyItems) { typo ->
+        items(guidelineTypographies) { typo ->
             TypographyRow(typo)
             OdsDivider(modifier = Modifier.padding(top = dimensionResource(id = R.dimen.spacing_m)))
         }
@@ -50,13 +53,13 @@ fun GuidelineTypographyScreen() {
 }
 
 @Composable
-private fun TypographyRow(typography: TypographyItem) {
+private fun TypographyRow(typography: GuidelineTypography) {
     val context = LocalContext.current
     val textColor = OdsTheme.colors.onBackground
     Column(modifier = Modifier.semantics(mergeDescendants = true) {}) {
         Text(
             text = typography.name,
-            style = typography.style,
+            style = typography.textStyle,
             maxLines = 1,
             overflow = TextOverflow.Ellipsis,
             color = textColor
@@ -65,7 +68,7 @@ private fun TypographyRow(typography: TypographyItem) {
             text = buildAnnotatedString {
                 append("Compose: ")
                 withStyle(style = SpanStyle(fontStyle = FontStyle.Italic)) {
-                    append(typography.jetpackUsage)
+                    append(typography.composeStyle)
                 }
             },
             color = textColor
