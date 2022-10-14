@@ -29,14 +29,17 @@ private val LocalLightThemeColors = compositionLocalOf<OdsColors> { error("Compo
 private val LocalDarkThemeColors = compositionLocalOf<OdsColors> { error("CompositionLocal LocalDarkThemeColors not present") }
 
 object OdsTheme {
+
     val colors: OdsColors
         @Composable
         @ReadOnlyComposable
         get() = LocalColors.current
+
     val lightThemeColors: OdsColors
         @Composable
         @ReadOnlyComposable
         get() = LocalLightThemeColors.current
+    
     val darkThemeColors: OdsColors
         @Composable
         @ReadOnlyComposable
@@ -50,6 +53,10 @@ object OdsTheme {
 
 /**
  * ODS theme is the theme to apply to your screens in an Orange Jetpack Compose application.
+ *
+ * @param odsThemeSettings The settings (colors, typography...) applied to the OdsTheme
+ * @param darkThemeEnabled Indicates whether the dark theme is enabled or not
+ * @param content The content of the theme
  */
 @Composable
 fun OdsTheme(

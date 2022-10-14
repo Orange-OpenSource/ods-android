@@ -12,4 +12,4 @@ package com.orange.ods.compose.theme
 
 import androidx.compose.ui.graphics.Color
 
-val Transparent = Color(0x00000000) // Defined here cause it's independent to the theme applied
+val Transparent = Color(0x00000000) // Defined here cause it's independent to the theme settings applied
