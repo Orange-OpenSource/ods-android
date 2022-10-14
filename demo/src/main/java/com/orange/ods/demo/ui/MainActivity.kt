@@ -25,12 +25,12 @@ import javax.inject.Inject
 class MainActivity : ComponentActivity() {
 
     @Inject
-    lateinit var odsThemes: Set<@JvmSuppressWildcards OdsThemeSettings>
+    lateinit var odsThemeSettings: Set<@JvmSuppressWildcards OdsThemeSettings>
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
-            MainScreen(odsThemes)
+            MainScreen(odsThemeSettings)
         }
     }
 }
