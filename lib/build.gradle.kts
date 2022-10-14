@@ -12,7 +12,6 @@ import com.orange.ods.gradle.Dependencies
 import com.orange.ods.gradle.Environment
 import com.orange.ods.gradle.Versions
 import com.orange.ods.gradle.execute
-import com.orange.ods.gradle.findTypedProperty
 
 plugins {
     id("com.google.devtools.ksp").version(com.orange.ods.gradle.Versions.ksp)
@@ -23,14 +22,20 @@ plugins {
     signing
 }
 
+/**
+ * The OdsThemeSettings implementation used by Android Studio previews for the ODS library.
+ * Please change this value if you want to have a custom theme preview  for the ODS library and
+ * don't forget to add a dependency to your custom theme in this case.
+ */
+val previewThemeClass = "com.orange.ods.theme.orange.OrangeThemeSettings"
+
 android {
     compileSdk = Versions.compileSdk
 
     defaultConfig {
         minSdk = Versions.minSdk
 
-        val value = "new ${findTypedProperty<String>("previewThemeClass").orEmpty()}()"
-        buildConfigField("com.orange.ods.theme.OdsThemeSettings", "THEME_SETTINGS", value)
+        buildConfigField("com.orange.ods.theme.OdsThemeSettings", "THEME_SETTINGS", "new $previewThemeClass()")
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         consumerProguardFile("consumer-rules.pro")
