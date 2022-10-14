@@ -26,6 +26,7 @@ import androidx.navigation.compose.rememberNavController
 import com.google.accompanist.pager.ExperimentalPagerApi
 import com.orange.ods.demo.ui.utilities.rememberSaveableMutableStateListOf
 import com.orange.ods.theme.OdsThemeSettings
+import com.orange.ods.theme.demo.OdsDemoGuideline
 
 /**
  * Destinations used in the [MainScreen].
@@ -47,7 +48,7 @@ object MainDestinations {
     const val AboutItemIdKey = "aboutItemId"
 }
 
-val LocalCurrentThemeSettings = staticCompositionLocalOf<OdsThemeSettings> { error("CompositionLocal OdsThemeSettings not present") }
+val LocalOdsDemoGuideline = staticCompositionLocalOf<OdsDemoGuideline> { error("CompositionLocal LocalOdsDemoGuideline not present") }
 
 @Composable
 @ExperimentalPagerApi

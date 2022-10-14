@@ -12,6 +12,7 @@ package com.orange.ods.theme
 
 import android.os.Parcelable
 import androidx.compose.material.Typography
+import com.orange.ods.theme.demo.OdsDemoGuideline
 
 interface OdsThemeSettings : Parcelable {
 
@@ -21,9 +22,6 @@ interface OdsThemeSettings : Parcelable {
 
     val typography: Typography
 
-    /**
-     * The colors of the supported theme guideline
-     * Note: These colors are only used to be displayed in the theme demo application.
-     */
-    val guidelineColors: List<GuidelineColor>
+    val odsDemoGuideline: OdsDemoGuideline
+        get() = OdsDemoGuideline()
 }

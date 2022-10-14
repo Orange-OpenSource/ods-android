@@ -54,8 +54,8 @@ import com.orange.ods.compose.text.OdsTextH5
 import com.orange.ods.compose.text.OdsTextH6
 import com.orange.ods.compose.theme.OdsTheme
 import com.orange.ods.demo.R
-import com.orange.ods.demo.ui.LocalCurrentThemeSettings
 import com.orange.ods.demo.ui.LocalMainTopAppBarManager
+import com.orange.ods.demo.ui.LocalOdsDemoGuideline
 import com.orange.ods.demo.ui.utilities.composable.Title
 import com.orange.ods.demo.ui.utilities.getStringName
 import com.orange.ods.theme.GuidelineColor
@@ -71,7 +71,7 @@ import kotlin.reflect.full.memberProperties
 fun GuidelineColorScreen() {
     LocalMainTopAppBarManager.current.updateTopAppBarTitle(R.string.guideline_color)
 
-    val guidelineColors = LocalCurrentThemeSettings.current.guidelineColors
+    val guidelineColors = LocalOdsDemoGuideline.current.guidelineColors
 
     val coreColors = guidelineColors.filter { it.type == GuidelineColorType.Core }
     val functionalColors = guidelineColors.filter { it.type == GuidelineColorType.Functional }

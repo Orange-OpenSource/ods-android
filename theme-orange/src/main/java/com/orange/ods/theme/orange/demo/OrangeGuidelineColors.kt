@@ -8,7 +8,7 @@
  * /
  */
 
-package com.orange.ods.theme.orange.guideline
+package com.orange.ods.theme.orange.demo
 
 import com.orange.ods.theme.GuidelineColor
 import com.orange.ods.theme.GuidelineColorType

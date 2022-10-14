@@ -69,10 +69,10 @@ fun MainScreen(odsThemeSettings: Set<OdsThemeSettings>) {
         LocalConfiguration provides configuration,
         LocalMainTopAppBarManager provides mainState.topAppBarState,
         LocalMainTabsManager provides mainState.tabsState,
-        LocalCurrentThemeSettings provides mainState.currentThemeSettings.value,
+        LocalOdsDemoGuideline provides mainState.currentThemeSettings.value.odsDemoGuideline
     ) {
         OdsTheme(
-            odsThemeSettings = LocalCurrentThemeSettings.current,
+            odsThemeSettings = mainState.currentThemeSettings.value,
             darkThemeEnabled = configuration.isDarkModeEnabled
         ) {
             Scaffold(
