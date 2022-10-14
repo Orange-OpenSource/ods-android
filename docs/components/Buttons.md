@@ -15,6 +15,7 @@ description: Buttons allow users to take actions, and make choices, with a singl
     * [Outlined button](#outlined-button)
     * [Contained button](#contained-button)
     * [Toggle button](#toggle-button)
+    * [Icon button](#icon-button)
 * [Component specific tokens](#component-specific-tokens)
 
 ---
@@ -271,6 +272,25 @@ style `@style/Widget.Orange.Button.Outlined.IconOnly` on your `Button` layout.
           style="@style/Widget.Orange.Button.Outlined.IconOnly" />
 </com.google.android.material.button.MaterialButtonToggleGroup>
 ```
+
+### Icon button
+
+An icon button is a clickable icon, used to represent actions. This component is typically used inside an App Bar for the navigation icon / actions.
+
+  ![OdsIconButton](images/button_icon_light.png) ![OdsIconButton dark](images/button_icon_dark.png)
+
+> **Jetpack Compose implementation**
+
+Use the `OdsIconButton` composable:
+
+```kotlin
+OdsIconButton(
+    onClick = { },
+    painter = painterResource(id = R.drawable.ic_ui_light_mode),
+    contentDescription = stringResource(id = R.string.theme_changer_icon_content_description_light)
+)
+```
+
 
 ## Component specific tokens
 
