@@ -74,7 +74,7 @@ android {
 
 dependencies {
     api(project(":theme-contract"))
-    implementation(project(":theme-orange"))
+    api(project(":theme-orange"))
 
     implementation(Dependencies.kotlinStdlibJdk8)
     compileOnly(project(":component-processor"))

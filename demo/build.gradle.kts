@@ -106,7 +106,6 @@ android {
 
 dependencies {
     implementation(project(":lib"))
-    implementation(project(":theme-orange"))
 
     implementation(Dependencies.coreKtx)
     implementation(Dependencies.kotlinReflect)
