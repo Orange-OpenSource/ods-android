@@ -43,7 +43,6 @@ import com.orange.ods.demo.ui.components.tabs.FixedTabRow
 import com.orange.ods.demo.ui.components.tabs.ScrollableTabRow
 import com.orange.ods.demo.ui.guidelines.addGuidelinesGraph
 import com.orange.ods.demo.ui.utilities.extension.isDarkModeEnabled
-import com.orange.ods.demo.ui.utilities.rememberSaveableMutableStateListOf
 import com.orange.ods.theme.OdsThemeConfigurationContract
 
 @ExperimentalMaterialApi
@@ -54,24 +53,27 @@ import com.orange.ods.theme.OdsThemeConfigurationContract
 fun MainScreen(odsThemeConfigurations: Set<OdsThemeConfigurationContract>) {
     val isSystemInDarkTheme = isSystemInDarkTheme()
     val mainState = rememberMainState(
-        themeConfigurations = rememberSaveableMutableStateListOf(elements = odsThemeConfigurations.toList()),
-        currentThemeConfiguration = rememberSaveable { mutableStateOf(odsThemeConfigurations.first()) },
-        darkModeEnabled = rememberSaveable { mutableStateOf(isSystemInDarkTheme) }
+        themingState = rememberMainThemingState(
+            currentThemeSettings = rememberSaveable { mutableStateOf(odsThemeConfigurations.last()) },
+            darkModeEnabled = rememberSaveable { mutableStateOf(isSystemInDarkTheme) },
+            themeSettings = odsThemeConfigurations.toList()
+        )
     )
 
     // Change isSystemInDarkTheme() value to make switching theme working with custom color
     val configuration = LocalConfiguration.current.apply {
-        isDarkModeEnabled = mainState.darkModeEnabled.value
+        isDarkModeEnabled = mainState.themingState.darkModeEnabled.value
     }
 
     CompositionLocalProvider(
         LocalConfiguration provides configuration,
         LocalMainTopAppBarManager provides mainState.topAppBarState,
         LocalMainTabsManager provides mainState.tabsState,
-        LocalOdsDemoGuideline provides mainState.currentThemeConfiguration.value.demoGuideline
+        LocalMainThemingManager provides mainState.themingState,
+        LocalOdsDemoGuideline provides mainState.themingState.getCurrentThemeConfiguration().demoGuideline,
     ) {
         OdsTheme(
-            themeConfiguration = mainState.currentThemeConfiguration.value,
+            themeConfiguration = mainState.themingState.getCurrentThemeConfiguration(),
             darkThemeEnabled = configuration.isDarkModeEnabled
         ) {
             Scaffold(
@@ -84,8 +86,7 @@ fun MainScreen(odsThemeConfigurations: Set<OdsThemeConfigurationContract>) {
                                 titleRes = mainState.topAppBarState.titleRes.value,
                                 shouldShowUpNavigationIcon = !mainState.shouldShowBottomBar,
                                 state = mainState.topAppBarState,
-                                upPress = mainState::upPress,
-                                updateTheme = mainState::updateTheme
+                                upPress = mainState::upPress
                             )
                             // Display tabs in the top bar if needed
                             MainTabs(mainTabsState = mainState.tabsState)

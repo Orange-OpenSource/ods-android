@@ -47,7 +47,7 @@ fun CheckboxListItem(@StringRes labelRes: Int, checked: MutableState<Boolean>, e
 
 @ExperimentalMaterialApi
 @Composable
-fun <T> RadioButtonListItem(@StringRes labelRes: Int, selectedRadio: MutableState<T>, currentRadio: T, onClick: () -> Unit = {}, enabled: Boolean = true) {
+fun <T> RadioButtonListItem(label: String, selectedRadio: MutableState<T>, currentRadio: T, onClick: () -> Unit = {}, enabled: Boolean = true) {
     val selected = selectedRadio.value == currentRadio
     OdsListItem(
         modifier = Modifier.selectable(
@@ -59,7 +59,7 @@ fun <T> RadioButtonListItem(@StringRes labelRes: Int, selectedRadio: MutableStat
                 onClick()
             }
         ),
-        text = stringResource(id = labelRes),
+        text = label,
         trailing = {
             OdsRadioButton(
                 selected = selected,

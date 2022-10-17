@@ -12,10 +12,7 @@ package com.orange.ods.demo.ui
 
 import androidx.compose.material.ExperimentalMaterialApi
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.MutableState
 import androidx.compose.runtime.remember
-import androidx.compose.runtime.snapshots.SnapshotStateList
-import androidx.compose.runtime.staticCompositionLocalOf
 import androidx.lifecycle.Lifecycle
 import androidx.navigation.NavBackStackEntry
 import androidx.navigation.NavDestination
@@ -24,9 +21,6 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
 import com.google.accompanist.pager.ExperimentalPagerApi
-import com.orange.ods.demo.ui.utilities.rememberSaveableMutableStateListOf
-import com.orange.ods.theme.OdsThemeConfigurationContract
-import com.orange.ods.theme.guideline.OdsDemoGuideline
 
 /**
  * Destinations used in the [MainScreen].
@@ -48,45 +42,27 @@ object MainDestinations {
     const val AboutItemIdKey = "aboutItemId"
 }
 
-val LocalOdsDemoGuideline = staticCompositionLocalOf<OdsDemoGuideline> { error("CompositionLocal LocalOdsDemoGuideline not present") }
-
 @Composable
 @ExperimentalPagerApi
 @ExperimentalMaterialApi
 fun rememberMainState(
+    themingState: MainThemingState,
     navController: NavHostController = rememberNavController(),
-    themeConfigurations: SnapshotStateList<OdsThemeConfigurationContract> = rememberSaveableMutableStateListOf(),
-    currentThemeConfiguration: MutableState<OdsThemeConfigurationContract>,
-    darkModeEnabled: MutableState<Boolean>,
     topAppBarState: MainTopAppBarState = rememberMainTopAppBarState(),
     tabsState: MainTabsState = rememberMainTabsState()
 ) =
-    remember(navController, themeConfigurations, currentThemeConfiguration, darkModeEnabled, topAppBarState, tabsState) {
-        MainState(navController, themeConfigurations, currentThemeConfiguration, darkModeEnabled, topAppBarState, tabsState)
+    remember(themingState, navController, topAppBarState, tabsState) {
+        MainState(themingState, navController, topAppBarState, tabsState)
     }
 
 @ExperimentalPagerApi
 @ExperimentalMaterialApi
 class MainState(
+    val themingState: MainThemingState,
     val navController: NavHostController,
-    val themeConfigurations: SnapshotStateList<OdsThemeConfigurationContract>,
-    val currentThemeConfiguration: MutableState<OdsThemeConfigurationContract>,
-    val darkModeEnabled: MutableState<Boolean>,
     val topAppBarState: MainTopAppBarState,
     val tabsState: MainTabsState
 ) {
-
-    // ----------------------------------------------------------
-    // Theme state source of truth
-    // ----------------------------------------------------------
-
-    fun updateCurrentThemeConfiguration(themeConfiguration: OdsThemeConfigurationContract) {
-        currentThemeConfiguration.value = themeConfiguration
-    }
-
-    fun updateTheme(isDark: Boolean) {
-        darkModeEnabled.value = isDark
-    }
 
     // ----------------------------------------------------------
     // BottomBar state source of truth

@@ -270,5 +270,6 @@
     <string name="about_menu_legal_notice">Legal notice</string>
     <string name="about_menu_privacy_policy">Privacy policy</string>
     <string name="about_menu_changelog">Changelog</string>
+    <string name="about_menu_theme">Theme</string>
 
 </resources>
