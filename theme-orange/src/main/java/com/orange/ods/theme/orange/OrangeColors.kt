@@ -33,6 +33,16 @@ val OrangeLightColors = OdsColors(
     functionalInfo = Info200,
     functionalAlert = Alert200,
 
+    systemBarsBackground = White100,
+
+    bottomNavigationBarBackground = White100,
+    bottomNavigationBarContent = Black900,
+    bottomNavigationItemSelected = Orange200,
+    bottomNavigationItemUnselected = Black900,
+
+    topAppBarBackground = White100,
+    topAppBarContent = Black900,
+
     switchUncheckedThumb = White100,
 
     isLight = true
@@ -58,6 +68,16 @@ val OrangeDarkColors = OdsColors(
     onFunctionalNegative = White100,
     functionalInfo = Info100,
     functionalAlert = Alert100,
+
+    systemBarsBackground = Black900,
+    
+    bottomNavigationBarBackground = Black900,
+    bottomNavigationBarContent = White100,
+    bottomNavigationItemSelected = Orange200,
+    bottomNavigationItemUnselected = White100,
+
+    topAppBarBackground = DarkSurfaceDefault,
+    topAppBarContent = White100,
 
     switchUncheckedThumb = Grey400,
 

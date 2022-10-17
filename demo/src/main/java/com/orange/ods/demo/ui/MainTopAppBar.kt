@@ -29,6 +29,7 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import com.orange.ods.compose.component.appbar.top.OdsTopAppBar
+import com.orange.ods.compose.component.appbar.top.OdsTopAppBarActionItem
 import com.orange.ods.compose.component.button.OdsIconButton
 import com.orange.ods.compose.text.OdsTextBody1
 import com.orange.ods.demo.R
@@ -62,14 +63,14 @@ fun MainTopAppBar(
                     val painterRes = if (configuration.isDarkModeEnabled) R.drawable.ic_ui_light_mode else R.drawable.ic_ui_dark_mode
                     val contentDescriptionRes =
                         if (configuration.isDarkModeEnabled) R.string.theme_changer_icon_content_description_light else R.string.theme_changer_icon_content_description_dark
-                    OdsIconButton(
+                    OdsTopAppBarActionItem(
                         onClick = { updateTheme(!configuration.isDarkModeEnabled) },
                         painter = painterResource(id = painterRes),
                         contentDescription = stringResource(id = contentDescriptionRes)
                     )
                 } else {
                     val action = topAppBarDemoActions[index - 1]
-                    OdsIconButton(
+                    OdsTopAppBarActionItem(
                         onClick = { clickOnElement(context, context.getString(action.titleRes)) },
                         painter = painterResource(id = action.iconRes),
                         contentDescription = stringResource(id = action.titleRes)

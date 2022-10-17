@@ -26,6 +26,7 @@ val SecondaryTextColor = Color(0xff000000)
 
 // TODO define new colors (Orange theme)
 val White100 = Color(0xffffffff)
+val Black900 = Color(0xff000000)
 
 val Info100 = Color(0xff527EDB)
 val Info200 = Color(0xff4170D8)

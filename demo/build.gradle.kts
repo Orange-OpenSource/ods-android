@@ -106,6 +106,7 @@ android {
 
 dependencies {
     implementation(project(":lib"))
+    implementation(project(":theme-innovationcup"))
 
     implementation(Dependencies.coreKtx)
     implementation(Dependencies.kotlinReflect)

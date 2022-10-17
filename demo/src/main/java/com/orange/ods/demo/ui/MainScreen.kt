@@ -28,7 +28,6 @@ import androidx.compose.runtime.SideEffect
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalConfiguration
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.navigation.NavBackStackEntry
@@ -80,7 +79,7 @@ fun MainScreen(odsThemeConfigurations: Set<OdsThemeConfigurationContract>) {
                 topBar = {
                     Surface(elevation = AppBarDefaults.TopAppBarElevation) {
                         Column {
-                            SystemBarsColorSideEffect(OdsTheme.colors.background)
+                            SystemBarsColorSideEffect()
                             MainTopAppBar(
                                 titleRes = mainState.topAppBarState.titleRes.value,
                                 shouldShowUpNavigationIcon = !mainState.shouldShowBottomBar,
@@ -118,11 +117,12 @@ fun MainScreen(odsThemeConfigurations: Set<OdsThemeConfigurationContract>) {
 }
 
 @Composable
-private fun SystemBarsColorSideEffect(backgroundColor: Color) {
+private fun SystemBarsColorSideEffect() {
     val systemUiController = rememberSystemUiController()
+    val systemBarsBackground = OdsTheme.colors.systemBarsBackground
     SideEffect {
         systemUiController.setSystemBarsColor(
-            color = backgroundColor
+            color = systemBarsBackground
         )
     }
 }

@@ -12,11 +12,11 @@ package com.orange.ods.theme.innovationcup
 
 import androidx.compose.material.Typography
 import com.orange.ods.theme.OdsColors
-import com.orange.ods.theme.OdsThemeSettings
+import com.orange.ods.theme.OdsThemeConfigurationContract
 import kotlinx.parcelize.Parcelize
 
 @Parcelize
-class InnovationCupThemeSettings : OdsThemeSettings {
+class InnovationCupThemeConfiguration : OdsThemeConfigurationContract {
 
     override val lightThemeColors: OdsColors
         get() = InnovationCupLightColors

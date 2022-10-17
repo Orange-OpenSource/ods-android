@@ -10,7 +10,7 @@
 
 package com.orange.ods.theme.innovationcup
 
-import com.orange.ods.theme.OdsThemeSettings
+import com.orange.ods.theme.OdsThemeConfigurationContract
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -24,6 +24,6 @@ object InnovationCupThemeModule {
 
     @Provides
     @IntoSet
-    fun provideInnovationCupThemeSettings(): OdsThemeSettings = InnovationCupThemeSettings()
+    fun provideInnovationCupThemeConfiguration(): OdsThemeConfigurationContract = InnovationCupThemeConfiguration()
 
 }
