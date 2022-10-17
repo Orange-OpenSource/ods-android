@@ -65,7 +65,7 @@ android {
 
 dependencies {
     implementation(Dependencies.kotlinStdlibJdk8)
-    implementation(project(":component-processor"))
+    compileOnly(project(":component-processor"))
 
     api(Dependencies.material)
 
