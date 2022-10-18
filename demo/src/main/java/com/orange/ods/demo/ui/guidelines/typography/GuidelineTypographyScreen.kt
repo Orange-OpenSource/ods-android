@@ -21,6 +21,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.dimensionResource
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.text.SpanStyle
 import androidx.compose.ui.text.buildAnnotatedString
@@ -28,6 +29,7 @@ import androidx.compose.ui.text.font.FontStyle
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.text.withStyle
 import com.orange.ods.compose.component.divider.OdsDivider
+import com.orange.ods.compose.text.OdsTextBody1
 import com.orange.ods.compose.theme.OdsTheme
 import com.orange.ods.demo.R
 import com.orange.ods.demo.ui.LocalMainTopAppBarManager
@@ -41,13 +43,23 @@ fun GuidelineTypographyScreen() {
 
     val guidelineTypography = LocalOdsDemoGuideline.current.guidelineTypography
 
-    LazyColumn(
-        contentPadding = PaddingValues(horizontal = dimensionResource(id = R.dimen.spacing_m), vertical = dimensionResource(id = R.dimen.spacing_s)),
-        verticalArrangement = Arrangement.spacedBy(dimensionResource(id = R.dimen.spacing_m)),
-    ) {
-        items(guidelineTypography) { guidelineTextStyle ->
-            TextStyleRow(guidelineTextStyle)
-            OdsDivider(modifier = Modifier.padding(top = dimensionResource(id = R.dimen.spacing_m)))
+    if (guidelineTypography.isEmpty()) {
+        OdsTextBody1(
+            modifier = Modifier.padding(
+                horizontal = dimensionResource(id = R.dimen.screen_horizontal_margin),
+                vertical = dimensionResource(id = R.dimen.screen_vertical_margin)
+            ),
+            text = stringResource(id = R.string.guideline_typography_no_typographies_defined)
+        )
+    } else {
+        LazyColumn(
+            contentPadding = PaddingValues(horizontal = dimensionResource(id = R.dimen.spacing_m), vertical = dimensionResource(id = R.dimen.spacing_s)),
+            verticalArrangement = Arrangement.spacedBy(dimensionResource(id = R.dimen.spacing_m)),
+        ) {
+            items(guidelineTypography) { textStyle ->
+                TextStyleRow(textStyle)
+                OdsDivider(modifier = Modifier.padding(top = dimensionResource(id = R.dimen.spacing_m)))
+            }
         }
     }
 }
