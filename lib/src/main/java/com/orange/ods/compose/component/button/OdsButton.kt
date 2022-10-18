@@ -86,7 +86,7 @@ fun OdsButton(
             modifier = modifier,
             interactionSource = remember { MutableInteractionSource() },
             elevation = null,
-            shape = odsButtonShape,
+            shape = OdsTheme.shapes.small,
             colors = style.getColors(displaySurface = displaySurface)
         ) {
             icon?.let { ButtonIcon(it) }

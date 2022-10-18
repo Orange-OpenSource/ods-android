@@ -11,6 +11,7 @@
 package com.orange.ods.theme
 
 import android.os.Parcelable
+import androidx.compose.material.Shapes
 import androidx.compose.material.Typography
 import com.orange.ods.theme.guideline.OdsDemoGuideline
 
@@ -25,9 +26,18 @@ interface OdsThemeConfigurationContract : Parcelable {
     val colors: ThemeColors
 
     /**
-     * Customization of the typography
+     * Customization of the typography if needed
+     * Note: If not overridden the MaterialTheme typography will be used
      */
-    val typography: Typography
+    val typography: Typography?
+        get() = null
+
+    /**
+     * Customization of the shapes if needed
+     * Note: If not overridden the MaterialTheme shapes will be used
+     */
+    val shapes: Shapes?
+        get() = null
 
     /**
      * Demo Guideline definition

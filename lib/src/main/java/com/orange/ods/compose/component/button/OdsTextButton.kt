@@ -84,7 +84,7 @@ fun OdsTextButton(
             modifier = modifier,
             enabled = enabled,
             interactionSource = remember { MutableInteractionSource() },
-            shape = odsButtonShape,
+            shape = OdsTheme.shapes.small,
             colors = ButtonDefaults.textButtonColors(
                 contentColor = OdsTheme.colors.buttonTextColor(displaySurface, style),
                 disabledContentColor = OdsTheme.colors.buttonTextDisabledColor(displaySurface)

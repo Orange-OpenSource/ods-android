@@ -71,7 +71,7 @@ fun OdsOutlinedButton(
             enabled = enabled,
             modifier = modifier,
             interactionSource = remember { MutableInteractionSource() },
-            shape = odsButtonShape,
+            shape = OdsTheme.shapes.small,
             border = BorderStroke(
                 ButtonDefaults.OutlinedBorderSize,
                 if (enabled) {

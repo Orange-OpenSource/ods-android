@@ -11,6 +11,7 @@
 package com.orange.ods.compose.theme
 
 import androidx.compose.foundation.isSystemInDarkTheme
+import androidx.compose.material.Shapes
 import androidx.compose.material.Typography
 import androidx.compose.material.ripple.LocalRippleTheme
 import androidx.compose.runtime.Composable
@@ -21,6 +22,8 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.staticCompositionLocalOf
 import com.orange.ods.theme.OdsColors
 import com.orange.ods.theme.OdsThemeConfigurationContract
+
+private val LocalShapes = staticCompositionLocalOf { Shapes() }
 
 private val LocalColors = staticCompositionLocalOf<OdsColors> { error("CompositionLocal LocalColors not present") }
 private val LocalLightThemeColors = compositionLocalOf<OdsColors> { error("CompositionLocal LocalLightThemeColors not present") }
@@ -51,6 +54,11 @@ object OdsTheme {
         @Composable
         @ReadOnlyComposable
         get() = LocalTypography.current
+
+    val shapes: Shapes
+        @Composable
+        @ReadOnlyComposable
+        get() = LocalShapes.current
 }
 
 /**
@@ -70,13 +78,24 @@ fun OdsTheme(
 
     // creating a new object for colors to not mutate the initial colors set when updating the values
     val rememberedColors = remember { colors.copy() }.apply { updateColorsFrom(colors) }
-    CompositionLocalProvider(
+
+    val providedValues = mutableListOf(
         LocalRippleTheme provides OdsRippleTheme,
         LocalDarkThemeEnabled provides darkThemeEnabled,
         LocalColors provides rememberedColors,
         LocalLightThemeColors provides themeConfiguration.colors.lightColors,
         LocalDarkThemeColors provides themeConfiguration.colors.darkColors,
-        LocalTypography provides themeConfiguration.typography,
+    ).apply {
+        themeConfiguration.typography?.let { typography ->
+            add(LocalTypography provides typography)
+        }
+        themeConfiguration.shapes?.let { shapes ->
+            add(LocalShapes provides shapes)
+        }
+    }.toTypedArray()
+
+    CompositionLocalProvider(
+        *providedValues,
         content = content
     )
 }
