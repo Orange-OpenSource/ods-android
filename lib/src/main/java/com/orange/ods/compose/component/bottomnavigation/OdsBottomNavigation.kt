@@ -52,8 +52,8 @@ fun OdsBottomNavigation(
     BottomNavigation(
         modifier = modifier,
         // Need to define backgroundColor cause in Compose default backgroundColor is primarySurface
-        backgroundColor = OdsTheme.colors.bottomNavigationBarBackground,
-        contentColor = OdsTheme.colors.bottomNavigationBarContent,
+        backgroundColor = OdsTheme.colors.bottomNavigation.barBackground,
+        contentColor = OdsTheme.colors.bottomNavigation.barContent,
         content = content
     )
 }
@@ -111,8 +111,8 @@ fun RowScope.OdsBottomNavigationItem(
             }
         },
         alwaysShowLabel = alwaysShowLabel,
-        selectedContentColor = OdsTheme.colors.bottomNavigationItemSelected,
-        unselectedContentColor = OdsTheme.colors.bottomNavigationItemUnselected
+        selectedContentColor = OdsTheme.colors.bottomNavigation.itemSelected,
+        unselectedContentColor = OdsTheme.colors.bottomNavigation.itemUnselected
     )
 }
 

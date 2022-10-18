@@ -12,7 +12,6 @@ package com.orange.ods.theme.innovationcup
 
 import com.orange.ods.theme.OdsColors
 
-
 val InnovationCupLightColors = OdsColors(
     primary = Primary,
     primaryVariant = PrimaryDark,
@@ -20,21 +19,21 @@ val InnovationCupLightColors = OdsColors(
     secondaryVariant = SecondaryDark,
     background = White100,
     surface = White100,
-    error = Negative200,
-    onPrimary = PrimaryTextColor,
-    onSecondary = SecondaryTextColor,
-    onBackground = SecondaryTextColor,
-    onSurface = SecondaryTextColor,
-    onError = SecondaryTextColor,
+    error = Negative,
+    onPrimary = White100,
+    onSecondary = Black900,
+    onBackground = Black900,
+    onSurface = Black900,
+    onError = Black900,
 
     systemBarsBackground = PrimaryDark,
 
-    functionalPositive = Positive200,
+    functionalPositive = Positive,
     onFunctionalPositive = White100,
-    functionalNegative = Negative200,
+    functionalNegative = Negative,
     onFunctionalNegative = White100,
-    functionalInfo = Info200,
-    functionalAlert = Alert200,
+    functionalInfo = Info,
+    functionalAlert = Alert,
 
     isLight = true
 )
@@ -46,21 +45,21 @@ val InnovationCupDarkColors = OdsColors(
     secondaryVariant = SecondaryDark,
     background = Black900,
     surface = Black900,
-    error = Negative200,
-    onPrimary = PrimaryTextColor,
-    onSecondary = SecondaryTextColor,
+    error = Negative,
+    onPrimary = White100,
+    onSecondary = Black900,
     onBackground = White100,
     onSurface = White100,
-    onError = SecondaryTextColor,
+    onError = Black900,
 
     systemBarsBackground = Black900,
 
-    functionalPositive = Positive200,
+    functionalPositive = Positive,
     onFunctionalPositive = White100,
-    functionalNegative = Negative200,
+    functionalNegative = Negative,
     onFunctionalNegative = White100,
-    functionalInfo = Info200,
-    functionalAlert = Alert200,
+    functionalInfo = Info,
+    functionalAlert = Alert,
 
     isLight = false
 )

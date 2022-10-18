@@ -74,8 +74,8 @@ fun OdsTopAppBar(
             }
         },
         actions = actions,
-        backgroundColor = OdsTheme.colors.topAppBarBackground,
-        contentColor = OdsTheme.colors.topAppBarContent,
+        backgroundColor = OdsTheme.colors.topAppBar.barBackground,
+        contentColor = OdsTheme.colors.topAppBar.barContent,
         elevation = if (elevated) AppBarDefaults.TopAppBarElevation else 0.dp
     )
 }
@@ -95,7 +95,7 @@ fun RowScope.OdsTopAppBarActionItem(
         contentDescription = contentDescription,
         modifier = modifier,
         enabled = enabled,
-        tint = OdsTheme.colors.topAppBarContent
+        tint = OdsTheme.colors.topAppBar.barContent
     )
 }
 
@@ -106,12 +106,12 @@ private fun PreviewOdsTopAppBar() = Preview {
         title = "Title",
         navigationIcon = {
             IconButton(onClick = {}) {
-                Icon(imageVector = Icons.Filled.ArrowBack, contentDescription = null, tint = OdsTheme.colors.topAppBarContent)
+                Icon(imageVector = Icons.Filled.ArrowBack, contentDescription = null, tint = OdsTheme.colors.topAppBar.barContent)
             }
         },
         actions = {
             IconButton(onClick = {}) {
-                Icon(painter = painterResource(id = android.R.drawable.ic_dialog_info), contentDescription = null, tint = OdsTheme.colors.topAppBarContent)
+                Icon(painter = painterResource(id = android.R.drawable.ic_dialog_info), contentDescription = null, tint = OdsTheme.colors.topAppBar.barContent)
             }
         }
     )

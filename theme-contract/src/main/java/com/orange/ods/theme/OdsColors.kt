@@ -15,7 +15,7 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.graphics.Color
 
-class OdsColors(
+open class OdsColors(
     isLight: Boolean,
     primary: Color,
     primaryVariant: Color,
@@ -36,13 +36,9 @@ class OdsColors(
     functionalInfo: Color,
     functionalAlert: Color,
     systemBarsBackground: Color,
-    bottomNavigationBarBackground: Color = if (isLight) primary else surface,
-    bottomNavigationBarContent: Color = if (isLight) onPrimary else onSurface,
-    bottomNavigationItemSelected: Color = if (isLight) onPrimary else onSurface,
-    bottomNavigationItemUnselected: Color = bottomNavigationItemSelected.copy(alpha = 0.74f),
-    topAppBarBackground: Color = if (isLight) primary else surface,
-    topAppBarContent: Color = if (isLight) onPrimary else onSurface,
-    switchUncheckedThumb: Color = surface,
+    bottomNavigation: OdsBottomNavigationColors? = null,
+    topAppBar: OdsTopAppBarColors? = null,
+    switch: OdsSwitchColors? = null
 ) {
 
     var isLight by mutableStateOf(isLight)
@@ -87,21 +83,28 @@ class OdsColors(
     var systemBarsBackground by mutableStateOf(systemBarsBackground)
         private set
 
-    var bottomNavigationBarBackground by mutableStateOf(bottomNavigationBarBackground)
-        private set
-    var bottomNavigationBarContent by mutableStateOf(bottomNavigationBarContent)
-        private set
-    var bottomNavigationItemSelected by mutableStateOf(bottomNavigationItemSelected)
-        private set
-    var bottomNavigationItemUnselected by mutableStateOf(bottomNavigationItemUnselected)
-        private set
-
-    var topAppBarBackground by mutableStateOf(topAppBarBackground)
-        private set
-    var topAppBarContent by mutableStateOf(topAppBarContent)
+    var bottomNavigation by mutableStateOf(
+        bottomNavigation ?: OdsBottomNavigationColors(
+            barBackground = if (isLight) primary else surface,
+            barContent = if (isLight) onPrimary else onSurface,
+            itemSelected = if (isLight) onPrimary else onSurface,
+        )
+    )
         private set
 
-    var switchUncheckedThumb by mutableStateOf(switchUncheckedThumb)
+    var topAppBar by mutableStateOf(
+        topAppBar ?: OdsTopAppBarColors(
+            barBackground = if (isLight) primary else surface,
+            barContent = if (isLight) onPrimary else onSurface,
+        )
+    )
+        private set
+
+    var switch by mutableStateOf(
+        switch ?: OdsSwitchColors(
+            uncheckedThumb = surface,
+        )
+    )
         private set
 
 
@@ -130,13 +133,9 @@ class OdsColors(
         functionalAlert: Color = this.functionalAlert,
         systemBarsBackground: Color = this.systemBarsBackground,
 
-        bottomNavigationBarBackground: Color = this.bottomNavigationBarBackground,
-        bottomNavigationBarContent: Color = this.bottomNavigationBarContent,
-        bottomNavigationItemSelected: Color = this.bottomNavigationItemSelected,
-        bottomNavigationItemUnselected: Color = this.bottomNavigationItemUnselected,
-        topAppBarBackground: Color = this.topAppBarBackground,
-        topAppBarContent: Color = this.topAppBarContent,
-        switchUncheckedThumb: Color = this.switchUncheckedThumb
+        bottomNavigation: OdsBottomNavigationColors = this.bottomNavigation,
+        topAppBar: OdsTopAppBarColors = this.topAppBar,
+        switch: OdsSwitchColors = this.switch
     ): OdsColors = OdsColors(
         isLight,
         primary,
@@ -158,13 +157,9 @@ class OdsColors(
         functionalInfo,
         functionalAlert,
         systemBarsBackground,
-        bottomNavigationBarBackground,
-        bottomNavigationBarContent,
-        bottomNavigationItemSelected,
-        bottomNavigationItemUnselected,
-        topAppBarBackground,
-        topAppBarContent,
-        switchUncheckedThumb
+        bottomNavigation,
+        topAppBar,
+        switch
     )
 
     fun updateColorsFrom(other: OdsColors) {
@@ -188,14 +183,9 @@ class OdsColors(
         functionalAlert = other.functionalAlert
         systemBarsBackground = other.systemBarsBackground
 
-        bottomNavigationBarBackground = other.bottomNavigationBarBackground
-        bottomNavigationBarContent = other.bottomNavigationBarContent
-        bottomNavigationItemSelected = other.bottomNavigationItemSelected
-        bottomNavigationItemUnselected = other.bottomNavigationItemUnselected
+        bottomNavigation = other.bottomNavigation
+        topAppBar = other.topAppBar
 
-        topAppBarBackground = other.topAppBarBackground
-        topAppBarContent = other.topAppBarContent
-
-        switchUncheckedThumb = other.switchUncheckedThumb
+        switch = other.switch
     }
 }
