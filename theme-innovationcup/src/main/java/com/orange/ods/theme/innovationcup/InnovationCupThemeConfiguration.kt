@@ -18,6 +18,9 @@ import kotlinx.parcelize.Parcelize
 @Parcelize
 class InnovationCupThemeConfiguration : OdsThemeConfigurationContract {
 
+    override val name: String
+        get() = "Innovation Cup"
+
     override val lightThemeColors: OdsColors
         get() = InnovationCupLightColors
 

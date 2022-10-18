@@ -91,16 +91,16 @@ fun AboutScreen(onAboutItemClick: (Long) -> Unit) {
 
 
     if (dialogVisibleState.value) {
-        val selectedRadio = remember { mutableStateOf(mainThemingManager.getCurrentThemeConfiguration().javaClass.simpleName) }
+        val selectedRadio = remember { mutableStateOf(mainThemingManager.getCurrentThemeConfiguration().name) }
 
         Dialog(onDismissRequest = { dialogVisibleState.value = false }) {
             Column(modifier = Modifier.background(OdsTheme.colors.surface)) {
-                mainThemingManager.getAvailableThemeConfigurations().forEach { themeSettings ->
+                mainThemingManager.getAvailableThemeConfigurations().forEach { themeConfiguration ->
                     RadioButtonListItem(
-                        label = themeSettings.javaClass.simpleName,
+                        label = themeConfiguration.name,
                         selectedRadio = selectedRadio,
-                        currentRadio = themeSettings.javaClass.simpleName,
-                        onClick = { mainThemingManager.setCurrentThemeConfiguration(themeSettings) }
+                        currentRadio = themeConfiguration.name,
+                        onClick = { mainThemingManager.setCurrentThemeConfiguration(themeConfiguration) }
                     )
                 }
             }
