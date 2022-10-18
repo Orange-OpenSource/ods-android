@@ -66,7 +66,7 @@ fun OdsTheme(
     darkThemeEnabled: Boolean = isSystemInDarkTheme(),
     content: @Composable () -> Unit
 ) {
-    val colors = if (darkThemeEnabled) themeConfiguration.darkThemeColors else themeConfiguration.lightThemeColors
+    val colors = if (darkThemeEnabled) themeConfiguration.colors.darkColors else themeConfiguration.colors.lightColors
 
     // creating a new object for colors to not mutate the initial colors set when updating the values
     val rememberedColors = remember { colors.copy() }.apply { updateColorsFrom(colors) }
@@ -74,8 +74,8 @@ fun OdsTheme(
         LocalRippleTheme provides OdsRippleTheme,
         LocalDarkThemeEnabled provides darkThemeEnabled,
         LocalColors provides rememberedColors,
-        LocalLightThemeColors provides themeConfiguration.lightThemeColors,
-        LocalDarkThemeColors provides themeConfiguration.darkThemeColors,
+        LocalLightThemeColors provides themeConfiguration.colors.lightColors,
+        LocalDarkThemeColors provides themeConfiguration.colors.darkColors,
         LocalTypography provides themeConfiguration.typography,
         content = content
     )

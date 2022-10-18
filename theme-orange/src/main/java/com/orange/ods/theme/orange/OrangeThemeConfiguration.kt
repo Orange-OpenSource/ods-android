@@ -11,8 +11,8 @@
 package com.orange.ods.theme.orange
 
 import androidx.compose.material.Typography
-import com.orange.ods.theme.OdsColors
 import com.orange.ods.theme.OdsThemeConfigurationContract
+import com.orange.ods.theme.ThemeColors
 import com.orange.ods.theme.guideline.OdsDemoGuideline
 import com.orange.ods.theme.orange.guideline.OrangeGuideline
 import kotlinx.parcelize.Parcelize
@@ -22,11 +22,8 @@ class OrangeThemeConfiguration : OdsThemeConfigurationContract {
     override val name: String
         get() = "Orange"
 
-    override val lightThemeColors: OdsColors
-        get() = OrangeLightColors
-
-    override val darkThemeColors: OdsColors
-        get() = OrangeDarkColors
+    override val colors: ThemeColors
+        get() = ThemeColors(OrangeLightColors, OrangeDarkColors)
 
     override val typography: Typography
         get() = OrangeTypography

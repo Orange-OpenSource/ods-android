@@ -17,22 +17,18 @@ import com.orange.ods.theme.guideline.OdsDemoGuideline
 interface OdsThemeConfigurationContract : Parcelable {
 
     /**
-     * The name of the theme settings
+     * The name of this theme settings
      */
     val name: String
 
     /**
-     * Colors definition applied in light mode.
+     * The colors of the theme settings
+     * Colors are different in light and dark
      */
-    val lightThemeColors: OdsColors
+    val colors: ThemeColors
 
     /**
-     * Colors definition applied in dark mode.
-     */
-    val darkThemeColors: OdsColors
-
-    /**
-     * Typography definition
+     * Definition of the typography for this theme settings
      */
     val typography: Typography
 
@@ -42,5 +38,7 @@ interface OdsThemeConfigurationContract : Parcelable {
      */
     val demoGuideline: OdsDemoGuideline
         get() = OdsDemoGuideline(typography)
-    
+
 }
+
+data class ThemeColors(val lightColors: OdsColors, val darkColors: OdsColors)

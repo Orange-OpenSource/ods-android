@@ -11,8 +11,8 @@
 package com.orange.ods.theme.innovationcup
 
 import androidx.compose.material.Typography
-import com.orange.ods.theme.OdsColors
 import com.orange.ods.theme.OdsThemeConfigurationContract
+import com.orange.ods.theme.ThemeColors
 import kotlinx.parcelize.Parcelize
 
 @Parcelize
@@ -21,11 +21,8 @@ class InnovationCupThemeConfiguration : OdsThemeConfigurationContract {
     override val name: String
         get() = "Innovation Cup"
 
-    override val lightThemeColors: OdsColors
-        get() = InnovationCupLightColors
-
-    override val darkThemeColors: OdsColors
-        get() = InnovationCupDarkColors
+    override val colors: ThemeColors
+        get() = ThemeColors(InnovationCupLightColors, InnovationCupDarkColors)
 
     override val typography: Typography
         get() = InnovationCupTypography
