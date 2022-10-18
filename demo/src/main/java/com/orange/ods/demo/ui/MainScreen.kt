@@ -50,13 +50,13 @@ import com.orange.ods.theme.OdsThemeConfigurationContract
 @Preview(showBackground = true, uiMode = UI_MODE_NIGHT_YES)
 @Preview(showBackground = true)
 @Composable
-fun MainScreen(odsThemeConfigurations: Set<OdsThemeConfigurationContract>) {
+fun MainScreen(themeConfigurations: Set<OdsThemeConfigurationContract>) {
     val isSystemInDarkTheme = isSystemInDarkTheme()
     val mainState = rememberMainState(
         themingState = rememberMainThemingState(
-            currentThemeSettings = rememberSaveable { mutableStateOf(odsThemeConfigurations.last()) },
+            currentThemeConfiguration = rememberSaveable { mutableStateOf(themeConfigurations.last()) },
             darkModeEnabled = rememberSaveable { mutableStateOf(isSystemInDarkTheme) },
-            themeSettings = odsThemeConfigurations.toList()
+            themeConfigurations = themeConfigurations.toList()
         )
     )
 

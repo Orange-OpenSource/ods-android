@@ -16,19 +16,16 @@ import com.orange.ods.theme.guideline.OdsDemoGuideline
 
 interface OdsThemeConfigurationContract : Parcelable {
 
-    /**
-     * The name of this theme settings
-     */
     val name: String
 
     /**
-     * The colors of the theme settings
+     * Customization of the colors
      * Colors are different in light and dark
      */
     val colors: ThemeColors
 
     /**
-     * Definition of the typography for this theme settings
+     * Customization of the typography
      */
     val typography: Typography
 

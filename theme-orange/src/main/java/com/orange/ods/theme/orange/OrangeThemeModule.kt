@@ -25,4 +25,5 @@ object OrangeThemeModule {
     @IntoSet
     fun provideOrangeThemeConfiguration(): OdsThemeConfigurationContract = OrangeThemeConfiguration()
 
+
 }

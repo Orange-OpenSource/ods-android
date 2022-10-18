@@ -19,6 +19,7 @@ import kotlinx.parcelize.Parcelize
 
 @Parcelize
 class OrangeThemeConfiguration : OdsThemeConfigurationContract {
+
     override val name: String
         get() = "Orange"
 

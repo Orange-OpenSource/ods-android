@@ -37,12 +37,12 @@ interface MainThemingManager {
 @ExperimentalPagerApi
 @ExperimentalMaterialApi
 fun rememberMainThemingState(
-    themeSettings: List<OdsThemeConfigurationContract>,
-    currentThemeSettings: MutableState<OdsThemeConfigurationContract>,
+    themeConfigurations: List<OdsThemeConfigurationContract>,
+    currentThemeConfiguration: MutableState<OdsThemeConfigurationContract>,
     darkModeEnabled: MutableState<Boolean>,
 ) =
-    remember(themeSettings, currentThemeSettings, darkModeEnabled) {
-        MainThemingState(themeSettings, currentThemeSettings, darkModeEnabled)
+    remember(themeConfigurations, currentThemeConfiguration, darkModeEnabled) {
+        MainThemingState(themeConfigurations, currentThemeConfiguration, darkModeEnabled)
     }
 
 @ExperimentalPagerApi

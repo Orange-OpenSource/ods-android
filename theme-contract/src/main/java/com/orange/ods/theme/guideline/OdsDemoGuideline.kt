@@ -16,18 +16,18 @@ import com.orange.ods.theme.R
 /**
  * This class defines what will be displayed in the ODS Demo Application guideline part.
  * Extend this class and override its properties to allow the Demo Application to display the guideline
- * elements (colors, typography) of your custom theme.
+ * elements (colors, typography) of your theme configuration.
  */
 open class OdsDemoGuideline(private val typography: Typography) {
 
     /**
-     * The colors of the theme configuration guideline
+     * Colors displayed in the guideline part of the ODS Demo Application
      */
     open val guidelineColors: List<GuidelineColor>
         get() = emptyList()
 
     /**
-     * The typography of the theme configuration guideline
+     * Typography displayed in the guideline part of the ODS Demo Application
      */
     open val guidelineTypography: List<GuidelineTextStyle>
         get() {
