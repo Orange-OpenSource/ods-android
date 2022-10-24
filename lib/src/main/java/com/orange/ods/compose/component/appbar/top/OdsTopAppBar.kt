@@ -82,7 +82,7 @@ fun OdsTopAppBar(
 
 @Composable
 @OdsComponentApi
-fun RowScope.OdsTopAppBarActionItem(
+fun OdsTopAppBarActionItem(
     onClick: () -> Unit,
     painter: Painter,
     contentDescription: String,

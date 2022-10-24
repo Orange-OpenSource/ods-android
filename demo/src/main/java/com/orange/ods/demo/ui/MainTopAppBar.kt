@@ -24,13 +24,13 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
+import androidx.compose.ui.graphics.vector.rememberVectorPainter
 import androidx.compose.ui.platform.LocalConfiguration
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import com.orange.ods.compose.component.appbar.top.OdsTopAppBar
 import com.orange.ods.compose.component.appbar.top.OdsTopAppBarActionItem
-import com.orange.ods.compose.component.button.OdsIconButton
 import com.orange.ods.compose.text.OdsTextBody1
 import com.orange.ods.demo.R
 import com.orange.ods.demo.ui.components.utilities.clickOnElement
@@ -92,9 +92,9 @@ private fun OverflowMenu() {
     val context = LocalContext.current
 
     Box {
-        OdsIconButton(
+        OdsTopAppBarActionItem(
             onClick = { showMenu = !showMenu },
-            imageVector = Icons.Filled.MoreVert,
+            painter = rememberVectorPainter(image = Icons.Filled.MoreVert),
             contentDescription = stringResource(id = R.string.component_app_bars_top_element_overflow_menu)
         )
         DropdownMenu(
