@@ -79,23 +79,14 @@ fun OdsTheme(
     // creating a new object for colors to not mutate the initial colors set when updating the values
     val rememberedColors = remember { colors.copy() }.apply { updateColorsFrom(colors) }
 
-    val providedValues = mutableListOf(
+    CompositionLocalProvider(
         LocalRippleTheme provides OdsRippleTheme,
         LocalDarkThemeEnabled provides darkThemeEnabled,
         LocalColors provides rememberedColors,
         LocalLightThemeColors provides themeConfiguration.colors.lightColors,
         LocalDarkThemeColors provides themeConfiguration.colors.darkColors,
-    ).apply {
-        themeConfiguration.typography?.let { typography ->
-            add(LocalTypography provides typography)
-        }
-        themeConfiguration.shapes?.let { shapes ->
-            add(LocalShapes provides shapes)
-        }
-    }.toTypedArray()
-
-    CompositionLocalProvider(
-        *providedValues,
+        LocalTypography provides themeConfiguration.typography,
+        LocalShapes provides themeConfiguration.shapes,
         content = content
     )
 }

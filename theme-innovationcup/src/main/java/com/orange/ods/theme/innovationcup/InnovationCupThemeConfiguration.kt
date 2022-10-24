@@ -32,4 +32,5 @@ class InnovationCupThemeConfiguration : OdsThemeConfigurationContract {
             medium = RoundedCornerShape(8.dp),
             large = RoundedCornerShape(4.dp)
         )
+
 }

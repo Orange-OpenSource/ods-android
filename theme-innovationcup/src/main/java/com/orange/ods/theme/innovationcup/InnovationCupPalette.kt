@@ -20,12 +20,11 @@ val Secondary = Color(0xffb0bec5)
 val SecondaryLight = Color(0xffe2f1f8)
 val SecondaryDark = Color(0xff808e95)
 
-// TODO define new colors (Orange theme)
-val White100 = Color(0xffffffff)
-val Black900 = Color(0xff000000)
+val White = Color(0xffffffff)
+val Black = Color(0xff000000)
 
 val Info = Color(0xff4170D8)
-val Alert = Color(0xffffcc00)
-val Positive = Color(0xff43A047)
-val Negative = Color(0xffB00020)
+val Yellow = Color(0xffffcc00)
+val Green = Color(0xff43A047)
+val Red = Color(0xffB00020)
 

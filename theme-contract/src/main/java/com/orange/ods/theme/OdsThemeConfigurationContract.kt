@@ -29,19 +29,19 @@ interface OdsThemeConfigurationContract : Parcelable {
      * Customization of the typography if needed
      * Note: If not overridden the MaterialTheme typography will be used
      */
-    val typography: Typography?
-        get() = null
+    val typography: Typography
+        get() = Typography()
 
     /**
      * Customization of the shapes if needed
      * Note: If not overridden the MaterialTheme shapes will be used
      */
-    val shapes: Shapes?
-        get() = null
+    val shapes: Shapes
+        get() = Shapes()
 
     /**
      * Demo Guideline definition
-     * If not overridden, no guideline will be displayed in the ODS Demo Application
+     * By default a guideline typography is generated based on the theme configuration typography defined.
      */
     val demoGuideline: OdsDemoGuideline
         get() = OdsDemoGuideline(typography)

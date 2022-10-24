@@ -22,17 +22,17 @@ import kotlin.reflect.KCallable
  * A color displayed in the guideline color part of the ODS Demo Application
  *
  * @property callable The function or property to call to apply this color
- * @property xmlResource The resource used to use this color in XML
  * @property type The [GuidelineColorType] of the color
  * @property lightThemeName The color name when light theme is applied
  * @property darkThemeName The color name when dark theme is applied
+ * @property xmlResource Optional resource used to use this color in XML
  */
 data class GuidelineColor(
     val callable: KCallable<Color>,
-    @ColorRes @AttrRes val xmlResource: Int,
     val type: GuidelineColorType,
     val lightThemeName: String,
-    val darkThemeName: String = lightThemeName
+    val darkThemeName: String = lightThemeName,
+    @ColorRes @AttrRes val xmlResource: Int? = null
 ) {
 
     /**

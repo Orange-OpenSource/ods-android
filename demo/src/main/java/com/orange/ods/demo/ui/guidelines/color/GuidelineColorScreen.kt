@@ -249,13 +249,15 @@ private fun DialogColor(color: GuidelineColor, openDialog: MutableState<Boolean>
                     modifier = Modifier.padding(top = dimensionResource(id = R.dimen.spacing_s)),
                     text = colorValue.toRgbString()
                 )
-                OdsTextBody1(
-                    modifier = Modifier.padding(top = dimensionResource(id = R.dimen.spacing_s)),
-                    text = stringResource(
-                        id = R.string.guideline_colour_xml,
-                        context.getStringName(color.xmlResource)
+                color.xmlResource?.let { xmlResource ->
+                    OdsTextBody1(
+                        modifier = Modifier.padding(top = dimensionResource(id = R.dimen.spacing_s)),
+                        text = stringResource(
+                            id = R.string.guideline_colour_xml,
+                            context.getStringName(xmlResource)
+                        )
                     )
-                )
+                }
                 OdsButton(
                     modifier = Modifier.padding(top = dimensionResource(id = R.dimen.spacing_s)),
                     text = stringResource(id = R.string.guideline_colour_copy_to_clipboard_button_title),
