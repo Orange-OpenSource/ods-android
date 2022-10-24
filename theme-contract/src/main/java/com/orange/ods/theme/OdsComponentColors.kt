@@ -12,12 +12,13 @@ package com.orange.ods.theme
 
 import androidx.compose.ui.graphics.Color
 
+private const val ContentUnselectedAlpha = 0.74f
 
 data class OdsBottomNavigationColors(
     val barBackground: Color,
     val barContent: Color,
     val itemSelected: Color,
-    val itemUnselected: Color = itemSelected.copy(alpha = 0.74f)
+    val itemUnselected: Color = itemSelected.copy(alpha = ContentUnselectedAlpha)
 )
 
 data class OdsTopAppBarColors(
@@ -27,4 +28,10 @@ data class OdsTopAppBarColors(
 
 data class OdsSwitchColors(
     val uncheckedThumb: Color
+)
+
+data class OdsTabColors(
+    val background: Color,
+    val selectedContent: Color,
+    val unselectedContent: Color = selectedContent.copy(alpha = ContentUnselectedAlpha)
 )

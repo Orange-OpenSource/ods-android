@@ -13,6 +13,7 @@ package com.orange.ods.theme.orange
 import com.orange.ods.theme.OdsBottomNavigationColors
 import com.orange.ods.theme.OdsColors
 import com.orange.ods.theme.OdsSwitchColors
+import com.orange.ods.theme.OdsTabColors
 import com.orange.ods.theme.OdsTopAppBarColors
 
 val OrangeLightColors = OdsColors(
@@ -51,6 +52,8 @@ val OrangeLightColors = OdsColors(
     ),
 
     switch = OdsSwitchColors(uncheckedThumb = White100),
+
+    tab = OdsTabColors(background = White100, selectedContent = Orange200, unselectedContent = Black900),
 
     isLight = true
 )
@@ -91,6 +94,8 @@ val OrangeDarkColors = OdsColors(
     ),
 
     switch = OdsSwitchColors(uncheckedThumb = Grey400),
+
+    tab = OdsTabColors(background = DarkSurfaceDefault, selectedContent = Orange100, unselectedContent = White100),
 
     isLight = false
 )

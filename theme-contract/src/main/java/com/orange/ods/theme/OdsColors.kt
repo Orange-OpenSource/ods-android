@@ -38,8 +38,11 @@ open class OdsColors(
     systemBarsBackground: Color,
     bottomNavigation: OdsBottomNavigationColors? = null,
     topAppBar: OdsTopAppBarColors? = null,
-    switch: OdsSwitchColors? = null
+    switch: OdsSwitchColors? = null,
+    tab: OdsTabColors? = null
 ) {
+    private val primarySurface = if (isLight) primary else surface
+    private val onPrimarySurface = if (isLight) onPrimary else onSurface
 
     var isLight by mutableStateOf(isLight)
         internal set
@@ -85,17 +88,17 @@ open class OdsColors(
 
     var bottomNavigation by mutableStateOf(
         bottomNavigation ?: OdsBottomNavigationColors(
-            barBackground = if (isLight) primary else surface,
-            barContent = if (isLight) onPrimary else onSurface,
-            itemSelected = if (isLight) onPrimary else onSurface,
+            barBackground = primarySurface,
+            barContent = onPrimarySurface,
+            itemSelected = onPrimarySurface,
         )
     )
         private set
 
     var topAppBar by mutableStateOf(
         topAppBar ?: OdsTopAppBarColors(
-            barBackground = if (isLight) primary else surface,
-            barContent = if (isLight) onPrimary else onSurface,
+            barBackground = primarySurface,
+            barContent = onPrimarySurface,
         )
     )
         private set
@@ -107,6 +110,13 @@ open class OdsColors(
     )
         private set
 
+    var tab by mutableStateOf(
+        tab ?: OdsTabColors(
+            background = primarySurface,
+            selectedContent = onPrimarySurface
+        )
+    )
+        private set
 
     /**
      * Returns a copy of this Colors, optionally overriding some of the values.
@@ -135,7 +145,8 @@ open class OdsColors(
 
         bottomNavigation: OdsBottomNavigationColors = this.bottomNavigation,
         topAppBar: OdsTopAppBarColors = this.topAppBar,
-        switch: OdsSwitchColors = this.switch
+        switch: OdsSwitchColors = this.switch,
+        tab: OdsTabColors = this.tab
     ): OdsColors = OdsColors(
         isLight,
         primary,
@@ -159,7 +170,8 @@ open class OdsColors(
         systemBarsBackground,
         bottomNavigation,
         topAppBar,
-        switch
+        switch,
+        tab
     )
 
     fun updateColorsFrom(other: OdsColors) {
@@ -187,5 +199,8 @@ open class OdsColors(
         topAppBar = other.topAppBar
 
         switch = other.switch
+
+        tab = other.tab
     }
+
 }
