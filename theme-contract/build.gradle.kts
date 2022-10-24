@@ -8,16 +8,18 @@
  * /
  */
 
+import com.orange.ods.gradle.Versions
+
 plugins {
     id("com.android.library")
     id("org.jetbrains.kotlin.android")
 }
 
 android {
-    compileSdk = com.orange.ods.gradle.Versions.compileSdk
+    compileSdk = Versions.compileSdk
 
     defaultConfig {
-        minSdk = com.orange.ods.gradle.Versions.minSdk
+        minSdk = Versions.minSdk
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         consumerProguardFiles("consumer-rules.pro")
