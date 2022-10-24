@@ -37,6 +37,18 @@ Orange Design System for Android is available through [Maven Central Repository]
      }
    ```
 
+4. (Optional) Add an `OdsThemeConfiguration` implementation library to the `dependencies` section:
+
+You have the possibility to use the ODS library with another theme than the Orange theme.
+
+   ```groovy
+     dependencies {
+       // ...
+       implementation(project(":theme-innovationcup"))
+       // ...
+     }
+   ```
+
 ### 2. Compile your app with Android 11
 
 Orange Design System library depends on Material Design library from Google. For this reason, you
