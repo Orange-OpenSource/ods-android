@@ -12,6 +12,8 @@ package com.orange.ods.theme.guideline
 
 import androidx.annotation.AttrRes
 import androidx.annotation.ColorRes
+import androidx.compose.foundation.isSystemInDarkTheme
+import androidx.compose.runtime.Composable
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.TextStyle
 import kotlin.reflect.KCallable
@@ -32,11 +34,13 @@ data class GuidelineColor(
     val lightThemeName: String,
     val darkThemeName: String = lightThemeName
 ) {
+
     /**
-     * Returns the name of the color according to the value of [systemInDarkTheme].
+     * Returns the name of the color in light or dark depending on the system theme used.
      */
-    fun getName(systemInDarkTheme: Boolean): String {
-        return if (systemInDarkTheme) darkThemeName else lightThemeName
+    @Composable
+    fun getName(): String {
+        return if (isSystemInDarkTheme()) darkThemeName else lightThemeName
     }
 }
 

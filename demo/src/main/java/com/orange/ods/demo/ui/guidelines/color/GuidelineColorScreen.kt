@@ -17,7 +17,6 @@ import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.combinedClickable
-import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -162,7 +161,7 @@ private fun RowScope.SmallColorItem(color: GuidelineColor) {
                 .aspectRatio(1f)
         )
         OdsTextH6(
-            text = color.getName(isSystemInDarkTheme()),
+            text = color.getName(),
             modifier = Modifier.padding(top = dimensionResource(id = R.dimen.spacing_xs))
         )
         OdsTextCaption(text = colorValue.toHexString())
@@ -199,7 +198,7 @@ private fun RowScope.BigColorItem(color: GuidelineColor) {
             }
         )
         OdsTextH6(
-            text = color.getName(isSystemInDarkTheme()),
+            text = color.getName(),
             modifier = Modifier.padding(top = dimensionResource(id = R.dimen.spacing_xs))
         )
         OdsTextBody1(text = color.callable.name)
@@ -237,7 +236,7 @@ private fun DialogColor(color: GuidelineColor, openDialog: MutableState<Boolean>
                     .fillMaxWidth()
                     .padding(horizontal = dimensionResource(id = R.dimen.spacing_m), vertical = dimensionResource(id = R.dimen.spacing_s))
             ) {
-                OdsTextH5(text = color.getName(isSystemInDarkTheme()))
+                OdsTextH5(text = color.getName())
                 OdsTextBody1(
                     modifier = Modifier.padding(top = dimensionResource(id = R.dimen.spacing_xs)),
                     text = color.callable.name
