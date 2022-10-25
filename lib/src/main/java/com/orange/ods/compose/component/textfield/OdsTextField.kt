@@ -203,7 +203,7 @@ internal fun OdsTextFieldIcon(painter: Painter, contentDescription: String?, onC
 }
 
 @Composable
-fun OdsColors.trailingTextColor(isValueEmpty: Boolean, isTextFieldEnabled: Boolean) =
+internal fun OdsColors.trailingTextColor(isValueEmpty: Boolean, isTextFieldEnabled: Boolean) =
     if (isValueEmpty || !isTextFieldEnabled) {
         OdsTheme.colors.onSurface.copy(alpha = ContentAlpha.disabled)
     } else {
