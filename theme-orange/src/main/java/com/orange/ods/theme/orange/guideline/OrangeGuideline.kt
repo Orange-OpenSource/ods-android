@@ -10,6 +10,7 @@
 
 package com.orange.ods.theme.orange.guideline
 
+import androidx.compose.runtime.Composable
 import com.orange.ods.theme.guideline.GuidelineColor
 import com.orange.ods.theme.guideline.GuidelineTextStyle
 import com.orange.ods.theme.guideline.OdsDemoGuideline
@@ -20,5 +21,5 @@ class OrangeGuideline : OdsDemoGuideline() {
         get() = OrangeGuidelineColors
 
     override val guidelineTypography: List<GuidelineTextStyle>
-        get() = OrangeGuidelineTypography
+        @Composable get() = OrangeGuidelineTypography
 }

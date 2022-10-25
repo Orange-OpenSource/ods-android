@@ -53,6 +53,7 @@ android {
 dependencies {
     implementation(com.orange.ods.gradle.Dependencies.coreKtx)
     implementation(com.orange.ods.gradle.Dependencies.appCompat)
+    implementation(com.orange.ods.gradle.Dependencies.material)
     implementation(com.orange.ods.gradle.Dependencies.composeMaterial)
     implementation(com.orange.ods.gradle.Dependencies.kotlinReflect)
 }
