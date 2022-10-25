@@ -47,6 +47,14 @@ android {
         jvmTarget = "11"
         allWarningsAsErrors = true
     }
+
+    buildFeatures {
+        compose = true
+    }
+
+    composeOptions {
+        kotlinCompilerExtensionVersion = Versions.compose
+    }
 }
 
 dependencies {
