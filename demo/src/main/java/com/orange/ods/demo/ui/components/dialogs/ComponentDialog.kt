@@ -48,12 +48,12 @@ fun ComponentDialog() {
         Column(
             modifier = Modifier
                 .verticalScroll(rememberScrollState())
-                .padding(top = dimensionResource(id = R.dimen.ods_screen_vertical_margin), bottom = dimensionResource(id = R.dimen.spacing_s))
+                .padding(top = dimensionResource(id = R.dimen.screen_vertical_margin), bottom = dimensionResource(id = R.dimen.spacing_s))
         ) {
 
             OdsTextBody1(
                 modifier = Modifier
-                    .padding(horizontal = dimensionResource(id = R.dimen.ods_screen_horizontal_margin)),
+                    .padding(horizontal = dimensionResource(id = R.dimen.screen_horizontal_margin)),
                 text = stringResource(id = R.string.component_dialog_customize)
             )
 

@@ -48,7 +48,7 @@ fun ComponentHeader(
     )
     ComponentDescription(
         modifier = Modifier.padding(
-            horizontal = dimensionResource(id = R.dimen.ods_screen_horizontal_margin)
+            horizontal = dimensionResource(id = R.dimen.screen_horizontal_margin)
         ),
         description = description
     )

@@ -13,7 +13,6 @@ package com.orange.ods.compose.component.tab
 import android.content.res.Configuration
 import androidx.compose.material.Icon
 import androidx.compose.material.LeadingIconTab
-import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.mutableStateOf
@@ -25,6 +24,7 @@ import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.Preview
 import com.orange.ods.compose.component.OdsComponentApi
 import com.orange.ods.compose.component.utilities.Preview
+import com.orange.ods.compose.theme.OdsTheme
 
 /**
  * <a href="https://system.design.orange.com/0c1af118d/p/513d27-tabs/b/50cb71" class="external" target="_blank">ODS tab</a>.
@@ -57,10 +57,10 @@ fun OdsLeadingIconTab(
     LeadingIconTab(
         modifier = modifier,
         icon = { Icon(painter = icon, contentDescription = null) },
-        text = { Text(text = text.uppercase(), maxLines = 1, overflow = TextOverflow.Ellipsis) },
+        text = { Text(text = text.uppercase(), maxLines = 1, overflow = TextOverflow.Ellipsis, style = OdsTheme.typography.button) },
         selected = selected,
-        selectedContentColor = MaterialTheme.colors.primary,
-        unselectedContentColor = MaterialTheme.colors.onSurface,
+        selectedContentColor = OdsTheme.colors.primary,
+        unselectedContentColor = OdsTheme.colors.onSurface,
         onClick = onClick,
         enabled = enabled
     )

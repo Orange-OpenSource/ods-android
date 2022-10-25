@@ -79,7 +79,7 @@ fun ComponentTabs(variant: Variant) {
             Subtitle(textRes = R.string.component_element_icon, withHorizontalPadding = true)
             OdsChoiceChipsFlowRow(
                 selectedChip = tabsCustomizationState.tabIconType,
-                modifier = Modifier.padding(horizontal = dimensionResource(id = R.dimen.ods_screen_horizontal_margin)),
+                modifier = Modifier.padding(horizontal = dimensionResource(id = R.dimen.screen_horizontal_margin)),
                 outlinedChips = true
             ) {
                 OdsChoiceChip(
@@ -108,7 +108,7 @@ fun ComponentTabs(variant: Variant) {
                 plusIconContentDescription = stringResource(id = R.string.component_tabs_add_tab),
                 modifier = Modifier
                     .fillMaxWidth()
-                    .padding(horizontal = dimensionResource(id = R.dimen.ods_screen_horizontal_margin)),
+                    .padding(horizontal = dimensionResource(id = R.dimen.screen_horizontal_margin)),
                 minCount = tabCountMin,
                 maxCount = tabCountMax
             )

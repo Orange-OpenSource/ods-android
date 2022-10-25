@@ -21,7 +21,6 @@ import androidx.compose.material.FilterChip
 import androidx.compose.material.Icon
 import androidx.compose.material.LocalContentAlpha
 import androidx.compose.material.LocalContentColor
-import androidx.compose.material.MaterialTheme
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
@@ -43,6 +42,7 @@ import com.orange.ods.compose.component.utilities.DisabledInteractionSource
 import com.orange.ods.compose.component.utilities.OdsImageCircleShape
 import com.orange.ods.compose.component.utilities.Preview
 import com.orange.ods.compose.text.OdsTextBody2
+import com.orange.ods.compose.theme.OdsTheme
 
 /**
  * <a href="https://system.design.orange.com/0c1af118d/p/81aa91-chips/b/13c40e" target="_blank">ODS Chips</a>.
@@ -81,7 +81,7 @@ fun OdsFilterChip(
         onClick = if (enabled) onClick else emptyAction,
         modifier = modifier,
         border = if (outlined) {
-            BorderStroke(1.dp, MaterialTheme.colors.onSurface.copy(alpha = ChipSurfaceOverlayOpacity))
+            BorderStroke(1.dp, OdsTheme.colors.onSurface.copy(alpha = OdsChipDefaults.SurfaceOverlayOpacity))
         } else null,
         enabled = enabled,
         interactionSource = if (enabled) remember { MutableInteractionSource() } else remember { DisabledInteractionSource() },
@@ -102,7 +102,7 @@ fun OdsFilterChip(
                                 circleSize = dimensionResource(id = R.dimen.icon_size),
                                 alpha = LeadingIconOpacity
                             )
-                            OdsChipSelectedIcon(tint = MaterialTheme.colors.onSurface)
+                            OdsChipSelectedIcon(tint = OdsTheme.colors.onSurface)
                         }
                     }
                 }

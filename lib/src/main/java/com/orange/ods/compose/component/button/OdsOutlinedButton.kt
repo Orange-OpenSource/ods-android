@@ -14,9 +14,7 @@ import android.content.res.Configuration
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.material.ButtonDefaults
-import androidx.compose.material.Colors
 import androidx.compose.material.ContentAlpha
-import androidx.compose.material.MaterialTheme
 import androidx.compose.material.OutlinedButton
 import androidx.compose.material.Text
 import androidx.compose.material.ripple.LocalRippleTheme
@@ -24,6 +22,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.painter.Painter
 import androidx.compose.ui.tooling.preview.Preview
 import com.orange.ods.compose.component.OdsComponentApi
@@ -32,9 +31,8 @@ import com.orange.ods.compose.theme.OdsDarkRippleTheme
 import com.orange.ods.compose.theme.OdsDisplaySurface
 import com.orange.ods.compose.theme.OdsLightRippleTheme
 import com.orange.ods.compose.theme.OdsRippleTheme
-import com.orange.ods.compose.theme.Transparent
-import com.orange.ods.compose.theme.odsDarkThemeColors
-import com.orange.ods.compose.theme.odsLightThemeColors
+import com.orange.ods.compose.theme.OdsTheme
+import com.orange.ods.theme.OdsColors
 
 /**
  * <a href="https://system.design.orange.com/0c1af118d/p/06a393-buttons/b/79b091" target="_blank">ODS Buttons</a>.
@@ -77,33 +75,33 @@ fun OdsOutlinedButton(
             border = BorderStroke(
                 ButtonDefaults.OutlinedBorderSize,
                 if (enabled) {
-                    MaterialTheme.colors.buttonOutlinedColor(displaySurface)
+                    OdsTheme.colors.buttonOutlinedColor(displaySurface)
                 } else {
-                    MaterialTheme.colors.buttonOutlinedDisabledColor(displaySurface)
+                    OdsTheme.colors.buttonOutlinedDisabledColor(displaySurface)
                 }
             ),
             colors = ButtonDefaults.outlinedButtonColors(
-                backgroundColor = Transparent,
-                contentColor = MaterialTheme.colors.buttonOutlinedColor(displaySurface),
-                disabledContentColor = MaterialTheme.colors.buttonOutlinedDisabledColor(displaySurface)
+                backgroundColor = Color.Transparent,
+                contentColor = OdsTheme.colors.buttonOutlinedColor(displaySurface),
+                disabledContentColor = OdsTheme.colors.buttonOutlinedDisabledColor(displaySurface)
             )
         ) {
             icon?.let { ButtonIcon(it) }
-            Text(text.uppercase())
+            Text(text = text.uppercase(), style = OdsTheme.typography.button)
         }
     }
 }
 
 @Composable
-private fun Colors.buttonOutlinedColor(displaySurface: OdsDisplaySurface) =
+private fun OdsColors.buttonOutlinedColor(displaySurface: OdsDisplaySurface) =
     when (displaySurface) {
-        OdsDisplaySurface.Default -> MaterialTheme.colors.onSurface
-        OdsDisplaySurface.Dark -> odsDarkThemeColors.onSurface
-        OdsDisplaySurface.Light -> odsLightThemeColors.onSurface
+        OdsDisplaySurface.Default -> OdsTheme.colors.onSurface
+        OdsDisplaySurface.Dark -> OdsTheme.darkThemeColors.onSurface
+        OdsDisplaySurface.Light -> OdsTheme.lightThemeColors.onSurface
     }
 
 @Composable
-private fun Colors.buttonOutlinedDisabledColor(displaySurface: OdsDisplaySurface) =
+private fun OdsColors.buttonOutlinedDisabledColor(displaySurface: OdsDisplaySurface) =
     buttonOutlinedColor(displaySurface).copy(alpha = ContentAlpha.disabled)
 
 @Composable

@@ -13,7 +13,8 @@ package com.orange.ods.compose.component.utilities
 import androidx.compose.material.Surface
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.tooling.preview.PreviewParameterProvider
-import com.orange.ods.compose.theme.OdsMaterialTheme
+import com.orange.ods.BuildConfig
+import com.orange.ods.compose.theme.OdsTheme
 import kotlin.reflect.KClass
 
 /**
@@ -22,8 +23,8 @@ import kotlin.reflect.KClass
  * @param content The content of the preview.
  */
 @Composable
-internal fun Preview(content: @Composable () -> Unit) = OdsMaterialTheme {
-    Surface(content = content)
+internal fun Preview(content: @Composable () -> Unit) = OdsTheme(BuildConfig.PREVIEW_THEME_CONFIGURATION) {
+    Surface(color = OdsTheme.colors.surface, content = content)
 }
 
 /**

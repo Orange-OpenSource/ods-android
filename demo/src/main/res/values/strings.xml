@@ -33,7 +33,8 @@
     <string name="guideline_colour_supporting">Supporting</string>
     <string name="guideline_colour_xml">xml (%1s)</string>
     <string name="guideline_colour_copy_to_clipboard_button_title">Copy</string>
-    <string name="guideline_colour_copy_to_clipboard_toast">Color hex value copied to the clipboard</string>
+    <string name="guideline_colour_copy_to_clipboard_toast">Colour hex value copied to the clipboard</string>
+    <string name="guideline_colour_no_colours_defined">No guideline colours defined for current theme settings.</string>
 
     <!-- Guideline Spacing -->
     <string name="guideline_spacing_description">Spacing tokens are used to position elements on the screen and layout within components. Spacing tokens can be applied as padding and margins.</string>

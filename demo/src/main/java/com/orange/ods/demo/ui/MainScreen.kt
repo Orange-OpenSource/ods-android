@@ -20,7 +20,6 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material.AppBarDefaults
 import androidx.compose.material.ExperimentalMaterialApi
-import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Scaffold
 import androidx.compose.material.Surface
 import androidx.compose.runtime.Composable
@@ -38,22 +37,26 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.navigation
 import com.google.accompanist.pager.ExperimentalPagerApi
 import com.google.accompanist.systemuicontroller.rememberSystemUiController
-import com.orange.ods.compose.theme.OdsMaterialTheme
+import com.orange.ods.compose.theme.OdsTheme
 import com.orange.ods.demo.ui.about.addAboutGraph
 import com.orange.ods.demo.ui.components.addComponentsGraph
 import com.orange.ods.demo.ui.components.tabs.FixedTabRow
 import com.orange.ods.demo.ui.components.tabs.ScrollableTabRow
 import com.orange.ods.demo.ui.guidelines.addGuidelinesGraph
 import com.orange.ods.demo.ui.utilities.extension.isDarkModeEnabled
+import com.orange.ods.theme.OdsThemeConfigurationContract
 
 @ExperimentalMaterialApi
 @ExperimentalPagerApi
 @Preview(showBackground = true, uiMode = UI_MODE_NIGHT_YES)
 @Preview(showBackground = true)
 @Composable
-fun MainScreen() {
+fun MainScreen(odsThemeConfigurations: Set<OdsThemeConfigurationContract>) {
     val isSystemInDarkTheme = isSystemInDarkTheme()
-    val mainState = rememberMainState(darkModeEnabled = rememberSaveable { mutableStateOf(isSystemInDarkTheme) })
+    val mainState = rememberMainState(
+        currentThemeConfiguration = rememberSaveable { mutableStateOf(odsThemeConfigurations.first()) },
+        darkModeEnabled = rememberSaveable { mutableStateOf(isSystemInDarkTheme) }
+    )
 
     // Change isSystemInDarkTheme() value to make switching theme working with custom color
     val configuration = LocalConfiguration.current.apply {
@@ -63,14 +66,19 @@ fun MainScreen() {
     CompositionLocalProvider(
         LocalConfiguration provides configuration,
         LocalMainTopAppBarManager provides mainState.topAppBarState,
-        LocalMainTabsManager provides mainState.tabsState
+        LocalMainTabsManager provides mainState.tabsState,
+        LocalOdsDemoGuideline provides mainState.currentThemeConfiguration.value.demoGuideline
     ) {
-        OdsMaterialTheme(configuration.isDarkModeEnabled) {
+        OdsTheme(
+            themeConfiguration = mainState.currentThemeConfiguration.value,
+            darkThemeEnabled = configuration.isDarkModeEnabled
+        ) {
             Scaffold(
+                backgroundColor = OdsTheme.colors.background,
                 topBar = {
                     Surface(elevation = AppBarDefaults.TopAppBarElevation) {
                         Column {
-                            SystemBarsColorSideEffect(MaterialTheme.colors.background)
+                            SystemBarsColorSideEffect(OdsTheme.colors.background)
                             MainTopAppBar(
                                 titleRes = mainState.topAppBarState.titleRes.value,
                                 shouldShowUpNavigationIcon = !mainState.shouldShowBottomBar,

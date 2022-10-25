@@ -45,7 +45,7 @@ fun ChipFilter() {
             Subtitle(textRes = R.string.component_element_leading, withHorizontalPadding = true)
             OdsChoiceChipsFlowRow(
                 selectedChip = chipCustomizationState.leadingElement,
-                modifier = Modifier.padding(horizontal = dimensionResource(id = R.dimen.ods_screen_horizontal_margin)),
+                modifier = Modifier.padding(horizontal = dimensionResource(id = R.dimen.screen_horizontal_margin)),
                 outlinedChips = true
             ) {
                 OdsChoiceChip(textRes = R.string.component_element_none, value = ChipCustomizationState.LeadingElement.None)
@@ -60,8 +60,8 @@ fun ChipFilter() {
             modifier = Modifier
                 .verticalScroll(rememberScrollState())
                 .padding(
-                    horizontal = dimensionResource(id = R.dimen.ods_screen_horizontal_margin),
-                    vertical = dimensionResource(id = R.dimen.ods_screen_vertical_margin)
+                    horizontal = dimensionResource(id = R.dimen.screen_horizontal_margin),
+                    vertical = dimensionResource(id = R.dimen.screen_vertical_margin)
                 )
         ) {
             FlowRow(modifier = Modifier.fillMaxWidth(), mainAxisSpacing = dimensionResource(id = R.dimen.spacing_s)) {

@@ -23,9 +23,8 @@ import androidx.compose.ui.composed
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.unit.dp
-import com.orange.ods.compose.theme.DarkSurfaceDefault
 import com.orange.ods.compose.theme.OdsDisplaySurface
-import com.orange.ods.compose.theme.White100
+import com.orange.ods.compose.theme.OdsTheme
 import com.orange.ods.demo.R
 import com.orange.ods.demo.ui.components.Variant
 import com.orange.ods.demo.ui.utilities.composable.Subtitle
@@ -34,7 +33,7 @@ import com.orange.ods.demo.ui.utilities.composable.Subtitle
 fun ComponentButtons(variant: Variant) {
     Column(
         modifier = Modifier
-            .padding(bottom = dimensionResource(id = R.dimen.ods_screen_vertical_margin))
+            .padding(bottom = dimensionResource(id = R.dimen.screen_vertical_margin))
             .verticalScroll(rememberScrollState())
     ) {
         when (variant) {
@@ -52,22 +51,20 @@ fun ComponentButtons(variant: Variant) {
 fun Modifier.fullWidthButton(withTopPadding: Boolean = true) = composed {
     this
         .fillMaxWidth()
-        .padding(horizontal = dimensionResource(R.dimen.ods_screen_horizontal_margin))
+        .padding(horizontal = dimensionResource(R.dimen.screen_horizontal_margin))
         .padding(top = if (withTopPadding) dimensionResource(R.dimen.spacing_m) else 0.dp)
 }
 
 @Composable
 fun DarkSurface(content: @Composable ColumnScope.() -> Unit) {
-    val backgroundColor = DarkSurfaceDefault
     Subtitle(textRes = R.string.component_force_on_dark, OdsDisplaySurface.Dark, withHorizontalPadding = true)
-    ForcedBackgroundColumn(color = backgroundColor, content = content)
+    ForcedBackgroundColumn(color = OdsTheme.darkThemeColors.surface, content = content)
 }
 
 @Composable
 fun LightSurface(content: @Composable ColumnScope.() -> Unit) {
-    val backgroundColor = White100
     Subtitle(textRes = R.string.component_force_on_light, OdsDisplaySurface.Light, withHorizontalPadding = true)
-    ForcedBackgroundColumn(color = backgroundColor, content = content)
+    ForcedBackgroundColumn(color = OdsTheme.lightThemeColors.surface, content = content)
 }
 
 @Composable

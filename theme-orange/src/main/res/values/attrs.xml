@@ -1,0 +1,25 @@
+<!--
+  ~ /*
+  ~ * Copyright 2021 Orange
+  ~ *
+  ~ * Use of this source code is governed by an MIT-style
+  ~ * license that can be found in the LICENSE file or at
+  ~ * https://opensource.org/licenses/MIT.
+  ~ */
+  -->
+
+<resources>
+
+    <!-- Custom attributes that must be defined on each themes -->
+
+    <!-- Slider halo color -->
+    <attr name="orangeSliderHaloBackground" format="color" />
+
+    <!-- Badge color -->
+    <attr name="orangeBadgeTextColor" format="color" />
+
+    <!-- Functional colors -->
+    <attr name="functionalInfo" format="color" />
+    <attr name="functionalPositive" format="color" />
+    <attr name="functionalAlert" format="color" />
+</resources>

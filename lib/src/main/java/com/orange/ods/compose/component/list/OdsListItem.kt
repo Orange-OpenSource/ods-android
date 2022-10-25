@@ -23,7 +23,6 @@ import androidx.compose.foundation.layout.requiredHeight
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material.Divider
 import androidx.compose.material.ExperimentalMaterialApi
 import androidx.compose.material.Icon
 import androidx.compose.material.ListItem
@@ -53,10 +52,12 @@ import com.orange.ods.R
 import com.orange.ods.compose.component.OdsComponentApi
 import com.orange.ods.compose.component.control.OdsCheckbox
 import com.orange.ods.compose.component.control.OdsSwitch
+import com.orange.ods.compose.component.divider.OdsDivider
 import com.orange.ods.compose.component.utilities.BasicPreviewParameterProvider
 import com.orange.ods.compose.component.utilities.OdsImageCircleShape
 import com.orange.ods.compose.component.utilities.Preview
 import com.orange.ods.compose.text.OdsTextSubtitle1
+import com.orange.ods.compose.theme.OdsTheme
 import com.orange.ods.utilities.extension.getElementOfType
 import com.orange.ods.utilities.extension.isNotNullOrBlank
 import com.orange.ods.utilities.extension.orElse
@@ -133,7 +134,7 @@ fun OdsListItem(
         val startIndent = dividerModifier.startIndent
             .orElse { iconType?.getDividerStartIndent() }
             .orElse { dimensionResource(id = R.dimen.spacing_m) }
-        Divider(startIndent = startIndent)
+        OdsDivider(startIndent = startIndent)
     }
 }
 
@@ -165,11 +166,19 @@ private fun OdsListItemInternal(
             .requiredHeight(requiredHeight),
         icon = icon?.let { { listItemScope.it() } },
         secondaryText = if (secondaryText.isNotNullOrBlank()) {
-            { Text(text = secondaryText, style = MaterialTheme.typography.body2, maxLines = secondaryTextLinesNumber, overflow = TextOverflow.Ellipsis) }
+            {
+                Text(
+                    text = secondaryText,
+                    style = OdsTheme.typography.body2,
+                    maxLines = secondaryTextLinesNumber,
+                    overflow = TextOverflow.Ellipsis,
+                    color = OdsTheme.colors.onSurface
+                )
+            }
         } else null,
         singleLineSecondaryText = singleLineSecondaryText,
         overlineText = if (overlineText.isNotNullOrBlank()) {
-            { Text(text = overlineText, style = MaterialTheme.typography.overline, color = MaterialTheme.colors.onSurface.copy(alpha = 0.6f)) }
+            { Text(text = overlineText, style = OdsTheme.typography.overline, color = OdsTheme.colors.onSurface.copy(alpha = 0.6f)) }
         } else null,
         trailing = trailing,
         text = {
@@ -194,7 +203,7 @@ fun OdsListItemIconScope.OdsListItemIcon(painter: Painter, contentDescription: S
     when (iconType) {
         OdsListItemIconType.Icon -> {
             Column(modifier = Modifier.fillMaxHeight(), verticalArrangement = Arrangement.Center) {
-                Icon(painter = painter, contentDescription = contentDescription)
+                Icon(painter = painter, contentDescription = contentDescription, tint = OdsTheme.colors.onSurface)
             }
         }
         OdsListItemIconType.CircularImage -> {
@@ -319,7 +328,6 @@ fun Modifier.divider(startIndent: Dp? = null): Modifier {
  * A modifier that allows to configure the icon type in an [OdsListItem].
  */
 private interface OdsListItemIconTypeModifier : Modifier.Element {
-
     val iconType: OdsListItemIconType
 }
 
@@ -327,7 +335,6 @@ private interface OdsListItemIconTypeModifier : Modifier.Element {
  * A modifier that allows to display a divider at the bottom of an [OdsListItem].
  */
 private interface OdsListItemDividerModifier : Modifier.Element {
-
     val startIndent: Dp?
 }
 

@@ -17,7 +17,6 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
-import androidx.compose.material.Divider
 import androidx.compose.material.ExperimentalMaterialApi
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember
@@ -27,6 +26,7 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
+import com.orange.ods.compose.component.divider.OdsDivider
 import com.orange.ods.compose.component.list.OdsListItem
 import com.orange.ods.compose.component.list.OdsListItemIcon
 import com.orange.ods.compose.component.list.OdsListItemIconType
@@ -52,7 +52,7 @@ fun ComponentDetailScreen(
         Column(
             modifier = Modifier
                 .verticalScroll(rememberScrollState())
-                .padding(bottom = dimensionResource(id = R.dimen.ods_screen_vertical_margin))
+                .padding(bottom = dimensionResource(id = R.dimen.screen_vertical_margin))
         ) {
             ComponentHeader(
                 imageRes = component.imageRes,
@@ -71,12 +71,12 @@ fun ComponentDetailScreen(
                     component.variants.groupBy { it.section }.onEachIndexed { index, (section, variants) ->
                         section?.let {
                             if (index > 0) {
-                                Divider(modifier = Modifier.padding(top = dimensionResource(id = R.dimen.spacing_s)))
+                                OdsDivider(modifier = Modifier.padding(top = dimensionResource(id = R.dimen.spacing_s)))
                             }
                             Box(modifier = Modifier.height(dimensionResource(id = R.dimen.list_single_line_item_height)), contentAlignment = Alignment.Center) {
                                 OdsTextSubtitle2(
                                     modifier = Modifier
-                                        .padding(horizontal = dimensionResource(id = R.dimen.ods_screen_horizontal_margin)),
+                                        .padding(horizontal = dimensionResource(id = R.dimen.screen_horizontal_margin)),
                                     text = stringResource(id = section.titleRes)
                                 )
                             }

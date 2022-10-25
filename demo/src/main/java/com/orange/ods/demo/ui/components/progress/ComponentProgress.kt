@@ -19,8 +19,6 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
-import androidx.compose.material.CircularProgressIndicator
-import androidx.compose.material.LinearProgressIndicator
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
@@ -30,6 +28,8 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.dimensionResource
+import com.orange.ods.compose.component.progressindicator.OdsCircularProgressIndicator
+import com.orange.ods.compose.component.progressindicator.OdsLinearProgressIndicator
 import com.orange.ods.demo.R
 import com.orange.ods.demo.ui.components.Variant
 import com.orange.ods.demo.ui.utilities.composable.Subtitle
@@ -47,8 +47,8 @@ fun ComponentProgress(variant: Variant) {
 
     Column(
         modifier = Modifier
-            .padding(bottom = dimensionResource(id = R.dimen.ods_screen_vertical_margin))
-            .padding(horizontal = dimensionResource(id = R.dimen.ods_screen_horizontal_margin))
+            .padding(bottom = dimensionResource(id = R.dimen.screen_vertical_margin))
+            .padding(horizontal = dimensionResource(id = R.dimen.screen_horizontal_margin))
             .verticalScroll(rememberScrollState())
     ) {
         when (variant) {
@@ -66,14 +66,14 @@ fun ComponentProgress(variant: Variant) {
 @Composable
 private fun ColumnScope.ProgressBar(determinateProgressAnimation: Float) {
     Subtitle(textRes = R.string.component_progress_bar_determinate)
-    LinearProgressIndicator(
+    OdsLinearProgressIndicator(
         progress = determinateProgressAnimation,
         modifier = Modifier
             .padding(top = dimensionResource(id = R.dimen.spacing_m))
             .fillMaxWidth()
     )
     Subtitle(textRes = R.string.component_progress_bar_indeterminate)
-    LinearProgressIndicator(
+    OdsLinearProgressIndicator(
         modifier = Modifier
             .padding(top = dimensionResource(id = R.dimen.spacing_m))
             .fillMaxWidth()
@@ -83,14 +83,14 @@ private fun ColumnScope.ProgressBar(determinateProgressAnimation: Float) {
 @Composable
 private fun ColumnScope.ProgressActivityIndicator(determinateProgressAnimation: Float) {
     Subtitle(textRes = R.string.component_progress_activity_indicator_determinate)
-    CircularProgressIndicator(
+    OdsCircularProgressIndicator(
         progress = determinateProgressAnimation,
         modifier = Modifier
             .padding(top = dimensionResource(id = R.dimen.spacing_m))
             .align(alignment = Alignment.CenterHorizontally)
     )
     Subtitle(textRes = R.string.component_progress_activity_indicator_indeterminate)
-    CircularProgressIndicator(
+    OdsCircularProgressIndicator(
         modifier = Modifier
             .padding(top = dimensionResource(id = R.dimen.spacing_m))
             .align(alignment = Alignment.CenterHorizontally)

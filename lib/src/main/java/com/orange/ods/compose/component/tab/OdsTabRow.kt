@@ -12,7 +12,6 @@ package com.orange.ods.compose.component.tab
 
 import android.content.res.Configuration
 import androidx.annotation.DrawableRes
-import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Tab
 import androidx.compose.material.TabRow
 import androidx.compose.material.TabRowDefaults
@@ -25,6 +24,7 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import com.orange.ods.compose.component.OdsComponentApi
 import com.orange.ods.compose.component.utilities.Preview
+import com.orange.ods.compose.theme.OdsTheme
 
 /**
  * <a href="https://system.design.orange.com/0c1af118d/p/513d27-tabs/b/50cb71" class="external" target="_blank">ODS tabs</a>.
@@ -47,14 +47,14 @@ fun OdsTabRow(
 ) {
     TabRow(
         modifier = modifier,
-        backgroundColor = MaterialTheme.colors.surface,
-        contentColor = MaterialTheme.colors.onSurface,
+        backgroundColor = OdsTheme.colors.surface,
+        contentColor = OdsTheme.colors.onSurface,
         selectedTabIndex = selectedTabIndex,
         indicator = { tabPositions ->
             if (selectedTabIndex < tabPositions.size) {
                 TabRowDefaults.Indicator(
                     modifier = Modifier.tabIndicatorOffset(tabPositions[selectedTabIndex]),
-                    color = MaterialTheme.colors.primary
+                    color = OdsTheme.colors.primary
                 )
             }
         },

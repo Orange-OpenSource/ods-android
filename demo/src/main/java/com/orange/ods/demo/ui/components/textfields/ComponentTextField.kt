@@ -60,8 +60,8 @@ fun ComponentTextField(variant: Variant) {
             modifier = Modifier
                 .verticalScroll(rememberScrollState())
                 .padding(
-                    horizontal = dimensionResource(id = R.dimen.ods_screen_horizontal_margin),
-                    vertical = dimensionResource(id = R.dimen.ods_screen_vertical_margin)
+                    horizontal = dimensionResource(id = R.dimen.screen_horizontal_margin),
+                    vertical = dimensionResource(id = R.dimen.screen_vertical_margin)
                 )
         ) {
             when (variant) {

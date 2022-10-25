@@ -14,6 +14,7 @@ import androidx.compose.material.ExperimentalMaterialApi
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.MutableState
 import androidx.compose.runtime.remember
+import androidx.compose.runtime.staticCompositionLocalOf
 import androidx.lifecycle.Lifecycle
 import androidx.navigation.NavBackStackEntry
 import androidx.navigation.NavDestination
@@ -22,6 +23,8 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
 import com.google.accompanist.pager.ExperimentalPagerApi
+import com.orange.ods.theme.OdsThemeConfigurationContract
+import com.orange.ods.theme.guideline.OdsDemoGuideline
 
 /**
  * Destinations used in the [MainScreen].
@@ -43,27 +46,39 @@ object MainDestinations {
     const val AboutItemIdKey = "aboutItemId"
 }
 
+val LocalOdsDemoGuideline = staticCompositionLocalOf<OdsDemoGuideline> { error("CompositionLocal LocalOdsDemoGuideline not present") }
+
 @Composable
 @ExperimentalPagerApi
 @ExperimentalMaterialApi
 fun rememberMainState(
     navController: NavHostController = rememberNavController(),
+    currentThemeConfiguration: MutableState<OdsThemeConfigurationContract>,
     darkModeEnabled: MutableState<Boolean>,
     topAppBarState: MainTopAppBarState = rememberMainTopAppBarState(),
     tabsState: MainTabsState = rememberMainTabsState()
 ) =
-    remember(navController, darkModeEnabled, topAppBarState, tabsState) {
-        MainState(navController, darkModeEnabled, topAppBarState, tabsState)
+    remember(navController, currentThemeConfiguration, darkModeEnabled, topAppBarState, tabsState) {
+        MainState(navController, currentThemeConfiguration, darkModeEnabled, topAppBarState, tabsState)
     }
 
 @ExperimentalPagerApi
 @ExperimentalMaterialApi
 class MainState(
     val navController: NavHostController,
+    val currentThemeConfiguration: MutableState<OdsThemeConfigurationContract>,
     val darkModeEnabled: MutableState<Boolean>,
     val topAppBarState: MainTopAppBarState,
     val tabsState: MainTabsState
 ) {
+
+    // ----------------------------------------------------------
+    // Theme state source of truth
+    // ----------------------------------------------------------
+
+    fun updateCurrentThemeConfiguration(themeConfiguration: OdsThemeConfigurationContract) {
+        currentThemeConfiguration.value = themeConfiguration
+    }
 
     fun updateTheme(isDark: Boolean) {
         darkModeEnabled.value = isDark

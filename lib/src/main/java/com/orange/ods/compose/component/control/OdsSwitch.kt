@@ -11,7 +11,7 @@
 package com.orange.ods.compose.component.control
 
 import android.content.res.Configuration
-import androidx.compose.material.MaterialTheme
+import androidx.compose.material.ContentAlpha
 import androidx.compose.material.Switch
 import androidx.compose.material.SwitchDefaults
 import androidx.compose.material.ripple.LocalRippleTheme
@@ -20,12 +20,13 @@ import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.compositeOver
 import androidx.compose.ui.tooling.preview.Preview
 import com.orange.ods.compose.component.OdsComponentApi
 import com.orange.ods.compose.component.utilities.Preview
-import com.orange.ods.compose.theme.Grey400
-import com.orange.ods.compose.theme.LocalDarkThemeEnabled
 import com.orange.ods.compose.theme.OdsPrimaryRippleTheme
+import com.orange.ods.compose.theme.OdsTheme
 
 /**
  * <a href="https://system.design.orange.com/0c1af118d/p/14638a-selection-controls/b/352c00" class="external" target="_blank">ODS switch</a>.
@@ -53,13 +54,44 @@ fun OdsSwitch(
             onCheckedChange = onCheckedChange,
             modifier = modifier,
             enabled = enabled,
-            colors = odsSwitchColors()
+            colors = OdsSwitchDefaults.colors(uncheckedThumbColor = OdsTheme.colors.switchUncheckedThumb)
         )
     }
 }
 
-@Composable
-private fun odsSwitchColors() = SwitchDefaults.colors(uncheckedThumbColor = if (LocalDarkThemeEnabled.current) Grey400 else MaterialTheme.colors.surface)
+private object OdsSwitchDefaults {
+
+    @Composable
+    fun colors(
+        checkedThumbColor: Color = OdsTheme.colors.secondaryVariant,
+        checkedTrackColor: Color = checkedThumbColor,
+        uncheckedThumbColor: Color = OdsTheme.colors.surface,
+        uncheckedTrackColor: Color = OdsTheme.colors.onSurface,
+        disabledCheckedThumbColor: Color = checkedThumbColor
+            .copy(alpha = ContentAlpha.disabled)
+            .compositeOver(OdsTheme.colors.surface),
+        disabledCheckedTrackColor: Color = checkedTrackColor
+            .copy(alpha = ContentAlpha.disabled)
+            .compositeOver(OdsTheme.colors.surface),
+        disabledUncheckedThumbColor: Color = uncheckedThumbColor
+            .copy(alpha = ContentAlpha.disabled)
+            .compositeOver(OdsTheme.colors.surface),
+        disabledUncheckedTrackColor: Color = uncheckedTrackColor
+            .copy(alpha = ContentAlpha.disabled)
+            .compositeOver(OdsTheme.colors.surface)
+    ) = SwitchDefaults.colors(
+        checkedThumbColor = checkedThumbColor,
+        checkedTrackColor = checkedTrackColor,
+        uncheckedThumbColor = uncheckedThumbColor,
+        uncheckedTrackColor = uncheckedTrackColor,
+        disabledCheckedThumbColor = disabledCheckedThumbColor,
+        disabledCheckedTrackColor = disabledCheckedTrackColor,
+        disabledUncheckedThumbColor = disabledUncheckedThumbColor,
+        disabledUncheckedTrackColor = disabledUncheckedTrackColor
+    )
+
+}
+
 
 @Composable
 private fun PreviewOdsSwitch() = Preview {

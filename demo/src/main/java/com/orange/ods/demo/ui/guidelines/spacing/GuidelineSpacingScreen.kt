@@ -56,7 +56,7 @@ fun GuidelineSpacingScreen() {
         item {
             OdsTextSubtitle1(
                 modifier = Modifier
-                    .padding(horizontal = dimensionResource(id = R.dimen.ods_screen_horizontal_margin))
+                    .padding(horizontal = dimensionResource(id = R.dimen.screen_horizontal_margin))
                     .padding(vertical = dimensionResource(id = R.dimen.spacing_m)),
                 text = stringResource(id = R.string.guideline_spacing_subtitle)
             )

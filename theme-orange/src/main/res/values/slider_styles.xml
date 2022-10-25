@@ -1,0 +1,37 @@
+<!--
+  ~ /*
+  ~ * Copyright 2021 Orange
+  ~ *
+  ~ * Use of this source code is governed by an MIT-style
+  ~ * license that can be found in the LICENSE file or at
+  ~ * https://opensource.org/licenses/MIT.
+  ~ */
+  -->
+
+<resources>
+
+    <style name="Widget.Orange.Slider" parent="Widget.MaterialComponents.Slider">
+        <item name="trackHeight">@dimen/slider_track_height</item>
+        <item name="thumbRadius">@dimen/slider_thumb_radius</item>
+        <item name="haloRadius">@dimen/slider_halo_radius</item>
+        <item name="haloColor">@color/slider_halo_color_selector</item>
+
+        <item name="labelStyle">@style/Widget.Orange.Tooltip</item>
+    </style>
+
+    <style name="Widget.Orange.Tooltip" parent="Widget.MaterialComponents.Tooltip">
+        <item name="android:textAppearance">@style/TextAppearance.Orange.Tooltip</item>
+        <item name="shapeAppearance">@style/ShapeAppearance.Orange.Tooltip</item>
+        <item name="backgroundTint">?attr/colorPrimary</item>
+    </style>
+
+    <style name="TextAppearance.Orange.Tooltip" parent="TextAppearance.Orange.Body2">
+        <item name="android:textColor">?attr/colorOnPrimary</item>
+    </style>
+
+    <style name="ShapeAppearance.Orange.Tooltip" parent="">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSize">@dimen/slider_tooltip_corner_size</item>
+    </style>
+
+</resources>

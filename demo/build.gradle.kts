@@ -18,9 +18,11 @@ plugins {
     id("com.android.application")
     id("com.google.gms.google-services")
     id("kotlin-android")
+    id("kotlin-kapt")
     id("com.google.firebase.appdistribution")
     id("com.google.firebase.crashlytics")
     id("firebase")
+    id("dagger.hilt.android.plugin")
 }
 
 android {
@@ -110,6 +112,7 @@ dependencies {
     implementation(Dependencies.appCompat)
     implementation(Dependencies.material)
     implementation(Dependencies.composeUi)
+    implementation(Dependencies.lifecycleViewModelKtx)
     implementation(Dependencies.composeMaterial)
     implementation(Dependencies.composeUiToolingPreview)
     implementation(Dependencies.lifecycleRuntimeKtx)
@@ -123,8 +126,17 @@ dependencies {
     implementation(Dependencies.firebaseCrashlytics)
     implementation(Dependencies.webkit)
     implementation(Dependencies.browser)
+    implementation(Dependencies.hiltAndroid)
+    kapt(Dependencies.hiltCompiler)
+
+
 
     debugImplementation(Dependencies.composeUiTooling)
+}
+
+// Allow references to generated code
+kapt {
+    correctErrorTypes = true
 }
 
 tasks.register<Copy>("copyChangelog") {

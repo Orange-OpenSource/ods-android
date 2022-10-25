@@ -1,0 +1,123 @@
+<!--
+  ~ /*
+  ~ * Copyright 2021 Orange
+  ~ *
+  ~ * Use of this source code is governed by an MIT-style
+  ~ * license that can be found in the LICENSE file or at
+  ~ * https://opensource.org/licenses/MIT.
+  ~ */
+  -->
+
+<resources xmlns:tools="http://schemas.android.com/tools">
+
+    <!-- Orange Design System theme. -->
+    <style name="Theme.Orange" parent="Base.Theme.Orange">
+        <item name="colorPrimary">@color/core_orange_200</item>
+        <item name="colorPrimaryVariant">@color/core_orange_200</item>
+        <item name="colorOnPrimary">@color/core_black_900</item>
+
+        <item name="colorSecondary">@color/core_orange_200</item>
+        <item name="colorSecondaryVariant">@color/core_orange_200</item>
+        <item name="colorOnSecondary">@color/core_black_900</item>
+
+        <item name="android:colorBackground">@color/core_white_100</item>
+        <item name="colorOnBackground">@color/core_black_900</item>
+
+        <item name="colorSurface">@color/core_white_100</item>
+        <item name="colorOnSurface">@color/core_black_900</item>
+
+        <item name="colorError">@color/functional_negative_200</item>
+        <item name="colorOnError">@color/core_black_900</item>
+
+        <item name="android:textColorPrimary">@color/core_black_900</item>
+        <item name="android:textColorSecondary">@color/core_black_900</item>
+
+        <!-- Custom ODS attributes -->
+        <item name="orangeSliderHaloBackground">@color/core_black_900</item>
+        <item name="orangeBadgeTextColor">@color/core_white_100</item>
+        <item name="functionalAlert">@color/functional_alert_200</item>
+        <item name="functionalPositive">@color/functional_positive_200</item>
+        <item name="functionalInfo">@color/functional_info_200</item>
+
+
+    </style>
+
+    <style name="Theme.Orange.NoActionBar">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+    </style>
+
+    <style name="Base.Theme.Orange" parent="Theme.MaterialComponents.DayNight">
+        <item name="textAppearanceHeadline1">@style/TextAppearance.Orange.Headline1</item>
+        <item name="textAppearanceHeadline2">@style/TextAppearance.Orange.Headline2</item>
+        <item name="textAppearanceHeadline3">@style/TextAppearance.Orange.Headline3</item>
+        <item name="textAppearanceHeadline4">@style/TextAppearance.Orange.Headline4</item>
+        <item name="textAppearanceHeadline5">@style/TextAppearance.Orange.Headline5</item>
+        <item name="textAppearanceHeadline6">@style/TextAppearance.Orange.Headline6</item>
+        <item name="textAppearanceSubtitle1">@style/TextAppearance.Orange.Subtitle1</item>
+        <item name="textAppearanceSubtitle2">@style/TextAppearance.Orange.Subtitle2</item>
+        <item name="textAppearanceBody1">@style/TextAppearance.Orange.Body1</item>
+        <item name="textAppearanceBody2">@style/TextAppearance.Orange.Body2</item>
+        <item name="textAppearanceButton">@style/TextAppearance.Orange.Button</item>
+        <item name="textAppearanceCaption">@style/TextAppearance.Orange.Caption</item>
+        <item name="textAppearanceOverline">@style/TextAppearance.Orange.Overline</item>
+
+        <item name="materialButtonStyle">@style/Widget.Orange.Button</item>
+        <item name="materialButtonOutlinedStyle">@style/Widget.Orange.Button.Outlined</item>
+
+        <item name="toolbarStyle">@style/Widget.Orange.Toolbar</item>
+        <item name="tabStyle">@style/Widget.Orange.Tab</item>
+        <item name="bottomNavigationStyle">@style/Widget.Orange.BottomNavigation</item>
+        <item name="bottomAppBarStyle">@style/Widget.Orange.BottomAppBar</item>
+        <item name="snackbarStyle">@style/Widget.Orange.Snackbar</item>
+        <item name="sliderStyle">@style/Widget.Orange.Slider</item>
+        <item name="badgeStyle">@style/Widget.Orange.Badge</item>
+
+        <item name="materialAlertDialogTheme">@style/Widget.Orange.Dialog</item>
+
+        <item name="android:statusBarColor" tools:ignore="NewApi">?attr/colorSurface</item>
+        <item name="android:windowLightStatusBar" tools:ignore="NewApi">true</item>
+        <item name="android:navigationBarColor" tools:ignore="NewApi">
+            ?android:attr/colorBackground
+        </item>
+        <item name="android:windowLightNavigationBar" tools:ignore="NewApi">true</item>
+        <item name="android:navigationBarDividerColor" tools:ignore="NewApi">
+            ?attr/colorControlHighlight
+        </item>
+
+        <item name="appBarLayoutStyle">@style/Widget.Orange.AppBarLayout</item>
+
+    </style>
+
+    <style name="Widget.Orange.Dialog" parent="ThemeOverlay.MaterialComponents.MaterialAlertDialog">
+        <item name="materialAlertDialogBodyTextStyle">@style/Widget.Orange.Dialog.Body.Text</item>
+        <item name="materialAlertDialogTitleIconStyle">@style/Widget.Orange.Dialog.Icon</item>
+        <item name="android:checkedTextViewStyle">@style/Widget.Orange.Dialog.CheckedTextView</item>
+    </style>
+
+    <style name="Widget.Orange.Dialog.Centered" parent="ThemeOverlay.MaterialComponents.MaterialAlertDialog.Centered">
+        <item name="materialAlertDialogBodyTextStyle">@style/Widget.Orange.Dialog.Body.Text</item>
+        <item name="materialAlertDialogTitleIconStyle">
+            @style/Widget.Orange.Dialog.Icon.CenterStacked
+        </item>
+        <item name="android:checkedTextViewStyle">@style/Widget.Orange.Dialog.CheckedTextView</item>
+    </style>
+
+    <style name="Widget.Orange.Dialog.Body.Text" parent="MaterialAlertDialog.MaterialComponents.Body.Text">
+        <item name="android:textColor">?attr/colorOnSurface</item>
+    </style>
+
+    <style name="Widget.Orange.Dialog.Icon" parent="MaterialAlertDialog.MaterialComponents.Title.Icon">
+        <item name="android:tint">?attr/colorPrimary</item>
+    </style>
+
+    <style name="Widget.Orange.Dialog.Icon.CenterStacked" parent="MaterialAlertDialog.MaterialComponents.Title.Icon.CenterStacked">
+        <item name="android:tint">?attr/colorPrimary</item>
+        <item name="android:layout_marginBottom">6dp</item>
+    </style>
+
+    <style name="Widget.Orange.Dialog.CheckedTextView" parent="Widget.MaterialComponents.CheckedTextView">
+        <item name="android:textColor">?attr/colorOnSurface</item>
+    </style>
+
+</resources>

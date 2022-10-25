@@ -13,7 +13,6 @@ package com.orange.ods.compose.component.textfield.password
 import android.content.res.Configuration
 import androidx.compose.foundation.text.KeyboardActions
 import androidx.compose.foundation.text.KeyboardOptions
-import androidx.compose.material.MaterialTheme
 import androidx.compose.material.OutlinedTextField
 import androidx.compose.material.Text
 import androidx.compose.material.TextField
@@ -28,8 +27,9 @@ import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.tooling.preview.Preview
 import com.orange.ods.compose.component.OdsComponentApi
-import com.orange.ods.compose.component.textfield.odsOutlinedTextFieldColors
+import com.orange.ods.compose.component.textfield.OdsOutlinedTextFieldDefaults
 import com.orange.ods.compose.component.utilities.Preview
+import com.orange.ods.compose.theme.OdsTheme
 
 /**
  * Outlined password text fields allows to display and use a text field with common password behaviors like a visualisation icon.
@@ -83,18 +83,18 @@ fun OdsPasswordOutlinedTextField(
         modifier = modifier,
         enabled = enabled,
         readOnly = readOnly,
-        textStyle = MaterialTheme.typography.subtitle1,
+        textStyle = OdsTheme.typography.subtitle1,
         label = label?.let { { Text(label) } },
-        placeholder = placeholder?.let { { Text(text = placeholder, style = MaterialTheme.typography.subtitle1) } },
+        placeholder = placeholder?.let { { Text(text = placeholder, style = OdsTheme.typography.subtitle1) } },
         trailingIcon = if (visualisationIcon) {
-            { OdsPasswordVisualisationIcon(odsPasswordTextFieldState, enabled) }
+            { OdsPasswordVisualisationIcon(odsPasswordTextFieldState) }
         } else null,
         isError = isError,
         visualTransformation = odsPasswordTextFieldState.visualTransformation,
         keyboardOptions = keyboardOptions,
         keyboardActions = keyboardActions,
         singleLine = true,
-        colors = odsOutlinedTextFieldColors()
+        colors = OdsOutlinedTextFieldDefaults.colors()
     )
 
 }

@@ -16,7 +16,6 @@ import androidx.compose.foundation.layout.RowScope
 import androidx.compose.material.BottomNavigation
 import androidx.compose.material.BottomNavigationItem
 import androidx.compose.material.Icon
-import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.mutableStateOf
@@ -27,6 +26,7 @@ import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.Preview
 import com.orange.ods.compose.component.OdsComponentApi
 import com.orange.ods.compose.component.utilities.Preview
+import com.orange.ods.compose.theme.OdsTheme
 
 /**
  * <a href="https://system.design.orange.com/0c1af118d/p/042eb8-bottom-navigation/b/30078d" target="_blank">ODS Bottom navigation</a>.
@@ -52,7 +52,7 @@ fun OdsBottomNavigation(
     BottomNavigation(
         modifier = modifier,
         // Need to define backgroundColor cause in Compose default backgroundColor is primarySurface
-        backgroundColor = MaterialTheme.colors.surface,
+        backgroundColor = OdsTheme.colors.surface,
         content = content
     )
 }
@@ -104,14 +104,15 @@ fun RowScope.OdsBottomNavigationItem(
                 Text(
                     text = label,
                     maxLines = 1,
-                    overflow = TextOverflow.Ellipsis
+                    overflow = TextOverflow.Ellipsis,
+                    style = OdsTheme.typography.caption
                 )
             }
         },
         alwaysShowLabel = alwaysShowLabel,
         // Need to define these attributes cause they are not taken from style
-        selectedContentColor = MaterialTheme.colors.primary,
-        unselectedContentColor = MaterialTheme.colors.onSurface
+        selectedContentColor = OdsTheme.colors.primary,
+        unselectedContentColor = OdsTheme.colors.onSurface
     )
 }
 

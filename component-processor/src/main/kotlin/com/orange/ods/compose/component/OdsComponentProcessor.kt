@@ -10,6 +10,7 @@
 
 package com.orange.ods.compose.component
 
+import com.google.devtools.ksp.processing.Dependencies
 import com.google.devtools.ksp.processing.Resolver
 import com.google.devtools.ksp.processing.SymbolProcessor
 import com.google.devtools.ksp.processing.SymbolProcessorEnvironment
@@ -44,7 +45,7 @@ class OdsComponentProcessor(private val environment: SymbolProcessorEnvironment)
                 val file = FileSpec.builder(OdsComponentPackageName, OdsComponentClassName)
                     .addType(odsComponentType)
                     .build()
-                file.writeTo(environment.codeGenerator, false)
+                file.writeTo(environment.codeGenerator, Dependencies.ALL_FILES)
             }
         }
 
