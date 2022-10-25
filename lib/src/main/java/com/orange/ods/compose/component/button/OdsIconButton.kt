@@ -65,6 +65,7 @@ fun OdsIconButton(
  * semantics purposes
  */
 @Composable
+@OdsComponentApi
 fun OdsIconButton(
     onClick: () -> Unit,
     imageVector: ImageVector,
