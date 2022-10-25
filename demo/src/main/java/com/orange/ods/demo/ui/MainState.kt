@@ -14,7 +14,6 @@ import androidx.compose.material.ExperimentalMaterialApi
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.MutableState
 import androidx.compose.runtime.remember
-import androidx.compose.runtime.snapshots.SnapshotStateList
 import androidx.compose.runtime.staticCompositionLocalOf
 import androidx.lifecycle.Lifecycle
 import androidx.navigation.NavBackStackEntry
@@ -24,7 +23,6 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
 import com.google.accompanist.pager.ExperimentalPagerApi
-import com.orange.ods.demo.ui.utilities.rememberSaveableMutableStateListOf
 import com.orange.ods.theme.OdsThemeSettings
 import com.orange.ods.theme.guideline.OdsDemoGuideline
 
@@ -55,21 +53,19 @@ val LocalOdsDemoGuideline = staticCompositionLocalOf<OdsDemoGuideline> { error("
 @ExperimentalMaterialApi
 fun rememberMainState(
     navController: NavHostController = rememberNavController(),
-    odsThemeSettings: SnapshotStateList<OdsThemeSettings> = rememberSaveableMutableStateListOf(),
     currentThemeSettings: MutableState<OdsThemeSettings>,
     darkModeEnabled: MutableState<Boolean>,
     topAppBarState: MainTopAppBarState = rememberMainTopAppBarState(),
     tabsState: MainTabsState = rememberMainTabsState()
 ) =
-    remember(navController, odsThemeSettings, currentThemeSettings, darkModeEnabled, topAppBarState, tabsState) {
-        MainState(navController, odsThemeSettings, currentThemeSettings, darkModeEnabled, topAppBarState, tabsState)
+    remember(navController, currentThemeSettings, darkModeEnabled, topAppBarState, tabsState) {
+        MainState(navController, currentThemeSettings, darkModeEnabled, topAppBarState, tabsState)
     }
 
 @ExperimentalPagerApi
 @ExperimentalMaterialApi
 class MainState(
     val navController: NavHostController,
-    val odsTheme: SnapshotStateList<OdsThemeSettings>,
     val currentThemeSettings: MutableState<OdsThemeSettings>,
     val darkModeEnabled: MutableState<Boolean>,
     val topAppBarState: MainTopAppBarState,

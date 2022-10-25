@@ -44,7 +44,6 @@ import com.orange.ods.demo.ui.components.tabs.FixedTabRow
 import com.orange.ods.demo.ui.components.tabs.ScrollableTabRow
 import com.orange.ods.demo.ui.guidelines.addGuidelinesGraph
 import com.orange.ods.demo.ui.utilities.extension.isDarkModeEnabled
-import com.orange.ods.demo.ui.utilities.rememberSaveableMutableStateListOf
 import com.orange.ods.theme.OdsThemeSettings
 
 @ExperimentalMaterialApi
@@ -55,7 +54,6 @@ import com.orange.ods.theme.OdsThemeSettings
 fun MainScreen(odsThemeSettings: Set<OdsThemeSettings>) {
     val isSystemInDarkTheme = isSystemInDarkTheme()
     val mainState = rememberMainState(
-        odsThemeSettings = rememberSaveableMutableStateListOf(elements = odsThemeSettings.toList()),
         currentThemeSettings = rememberSaveable { mutableStateOf(odsThemeSettings.first()) },
         darkModeEnabled = rememberSaveable { mutableStateOf(isSystemInDarkTheme) }
     )
