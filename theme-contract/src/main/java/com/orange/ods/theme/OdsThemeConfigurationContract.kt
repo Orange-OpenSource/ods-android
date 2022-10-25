@@ -23,5 +23,5 @@ interface OdsThemeConfigurationContract : Parcelable {
     val typography: Typography
 
     val demoGuideline: OdsDemoGuideline
-        get() = OdsDemoGuideline()
+        get() = OdsDemoGuideline(typography)
 }

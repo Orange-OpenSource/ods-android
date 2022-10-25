@@ -10,8 +10,7 @@
 
 package com.orange.ods.theme.guideline
 
-import androidx.compose.material.MaterialTheme.typography
-import androidx.compose.runtime.Composable
+import androidx.compose.material.Typography
 import com.orange.ods.theme.R
 
 /**
@@ -19,7 +18,7 @@ import com.orange.ods.theme.R
  * Extend this class and override its properties to allow the Demo Application to display the guideline
  * elements (colors, typography) of your custom theme.
  */
-open class OdsDemoGuideline {
+open class OdsDemoGuideline(private val typography: Typography) {
 
     /**
      * The colors of the theme configuration guideline
@@ -31,7 +30,7 @@ open class OdsDemoGuideline {
      * The typography of the theme configuration guideline
      */
     open val guidelineTypography: List<GuidelineTextStyle>
-        @Composable get() {
+        get() {
             with(typography) {
                 val properties = listOf(::h1, ::h2, ::h3, ::h4, ::h5, ::h6, ::subtitle1, ::subtitle2, ::body1, ::body2, ::button, ::caption, ::overline)
 

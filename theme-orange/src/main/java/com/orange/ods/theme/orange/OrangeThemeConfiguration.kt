@@ -30,5 +30,5 @@ class OrangeThemeConfiguration : OdsThemeConfigurationContract {
         get() = OrangeTypography
 
     override val demoGuideline: OdsDemoGuideline
-        get() = OrangeGuideline()
+        get() = OrangeGuideline(typography)
 }
