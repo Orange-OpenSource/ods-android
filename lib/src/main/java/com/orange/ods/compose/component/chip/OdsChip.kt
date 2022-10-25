@@ -100,7 +100,7 @@ fun OdsChip(
                     Icon(
                         modifier = Modifier.size(dimensionResource(id = R.dimen.chip_icon_size)),
                         painter = leadingIcon,
-                        contentDescription = leadingContentDescription,
+                        contentDescription = leadingContentDescription
                     )
                 }
             }
