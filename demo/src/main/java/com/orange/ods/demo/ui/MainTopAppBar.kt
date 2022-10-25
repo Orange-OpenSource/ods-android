@@ -59,22 +59,14 @@ fun MainTopAppBar(
             repeat(state.actionCount.value) { index ->
                 if (index == 0) {
                     val configuration = LocalConfiguration.current
-                    val onChangeModeClick = { updateTheme(!configuration.isDarkModeEnabled) }
-
-                    if (configuration.isDarkModeEnabled) {
-                        OdsIconButton(
-                            onClick = onChangeModeClick,
-                            painter = painterResource(id = R.drawable.ic_ui_light_mode),
-                            contentDescription = stringResource(id = R.string.theme_changer_icon_content_description_light)
-                        )
-                    } else {
-                        OdsIconButton(
-                            onClick = onChangeModeClick,
-                            painter = painterResource(id = R.drawable.ic_ui_dark_mode),
-                            contentDescription = stringResource(id = R.string.theme_changer_icon_content_description_dark)
-                        )
-                    }
-
+                    val painterRes = if (configuration.isDarkModeEnabled) R.drawable.ic_ui_light_mode else R.drawable.ic_ui_dark_mode
+                    val contentDescriptionRes =
+                        if (configuration.isDarkModeEnabled) R.string.theme_changer_icon_content_description_light else R.string.theme_changer_icon_content_description_dark
+                    OdsIconButton(
+                        onClick = { updateTheme(!configuration.isDarkModeEnabled) },
+                        painter = painterResource(id = painterRes),
+                        contentDescription = stringResource(id = contentDescriptionRes)
+                    )
                 } else {
                     val action = topAppBarDemoActions[index - 1]
                     OdsIconButton(
