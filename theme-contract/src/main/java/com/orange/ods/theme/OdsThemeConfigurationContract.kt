@@ -14,7 +14,7 @@ import android.os.Parcelable
 import androidx.compose.material.Typography
 import com.orange.ods.theme.guideline.OdsDemoGuideline
 
-interface OdsThemeSettings : Parcelable {
+interface OdsThemeConfigurationContract : Parcelable {
 
     val lightThemeColors: OdsColors
 

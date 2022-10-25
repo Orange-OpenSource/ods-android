@@ -20,7 +20,7 @@ import androidx.compose.runtime.compositionLocalOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.staticCompositionLocalOf
 import com.orange.ods.theme.OdsColors
-import com.orange.ods.theme.OdsThemeSettings
+import com.orange.ods.theme.OdsThemeConfigurationContract
 
 private val LocalTypography = staticCompositionLocalOf { Typography() }
 
@@ -54,25 +54,25 @@ object OdsTheme {
 /**
  * ODS theme is the theme to apply to your screens in an Orange Jetpack Compose application.
  *
- * @param themeSettings The settings (colors, typography...) applied to the OdsTheme
+ * @param themeConfiguration The configuration of the OdsTheme: colors, typography...
  * @param darkThemeEnabled Indicates whether the dark theme is enabled or not
  * @param content The content of the theme
  */
 @Composable
 fun OdsTheme(
-    themeSettings: OdsThemeSettings,
+    themeConfiguration: OdsThemeConfigurationContract,
     darkThemeEnabled: Boolean = isSystemInDarkTheme(),
     content: @Composable () -> Unit
 ) {
-    val colors = if (darkThemeEnabled) themeSettings.darkThemeColors else themeSettings.lightThemeColors
+    val colors = if (darkThemeEnabled) themeConfiguration.darkThemeColors else themeConfiguration.lightThemeColors
     // creating a new object for colors to not mutate the initial colors set when updating the values
     val rememberedColors = remember { colors.copy() }.apply { updateColorsFrom(colors) }
     CompositionLocalProvider(
         LocalRippleTheme provides OdsRippleTheme,
         LocalColors provides rememberedColors,
-        LocalLightThemeColors provides themeSettings.lightThemeColors,
-        LocalDarkThemeColors provides themeSettings.darkThemeColors,
-        LocalTypography provides themeSettings.typography,
+        LocalLightThemeColors provides themeConfiguration.lightThemeColors,
+        LocalDarkThemeColors provides themeConfiguration.darkThemeColors,
+        LocalTypography provides themeConfiguration.typography,
         content = content
     )
 }

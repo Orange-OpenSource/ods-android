@@ -15,7 +15,7 @@ import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.material.ExperimentalMaterialApi
 import com.google.accompanist.pager.ExperimentalPagerApi
-import com.orange.ods.theme.OdsThemeSettings
+import com.orange.ods.theme.OdsThemeConfigurationContract
 import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
 
@@ -25,12 +25,12 @@ import javax.inject.Inject
 class MainActivity : ComponentActivity() {
 
     @Inject
-    lateinit var odsThemeSettings: Set<@JvmSuppressWildcards OdsThemeSettings>
+    lateinit var odsThemeConfigurations: Set<@JvmSuppressWildcards OdsThemeConfigurationContract>
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
-            MainScreen(odsThemeSettings)
+            MainScreen(odsThemeConfigurations)
         }
     }
 }

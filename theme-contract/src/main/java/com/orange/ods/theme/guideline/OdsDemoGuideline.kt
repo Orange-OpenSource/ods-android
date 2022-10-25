@@ -18,13 +18,13 @@ package com.orange.ods.theme.guideline
 open class OdsDemoGuideline {
 
     /**
-     * The colors of the [OdsThemeSettings] guideline
+     * The colors of the theme configuration guideline
      */
     open val guidelineColors: List<GuidelineColor>
         get() = emptyList()
 
     /**
-     * The typographies of the [OdsThemeSettings] guideline
+     * The typographies of the theme configuration guideline
      */
     open val guidelineTypographies: List<GuidelineTypography>
         get() = emptyList()

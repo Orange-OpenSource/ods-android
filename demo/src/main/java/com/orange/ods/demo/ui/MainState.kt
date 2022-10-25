@@ -23,7 +23,7 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
 import com.google.accompanist.pager.ExperimentalPagerApi
-import com.orange.ods.theme.OdsThemeSettings
+import com.orange.ods.theme.OdsThemeConfigurationContract
 import com.orange.ods.theme.guideline.OdsDemoGuideline
 
 /**
@@ -53,20 +53,20 @@ val LocalOdsDemoGuideline = staticCompositionLocalOf<OdsDemoGuideline> { error("
 @ExperimentalMaterialApi
 fun rememberMainState(
     navController: NavHostController = rememberNavController(),
-    currentThemeSettings: MutableState<OdsThemeSettings>,
+    currentThemeConfiguration: MutableState<OdsThemeConfigurationContract>,
     darkModeEnabled: MutableState<Boolean>,
     topAppBarState: MainTopAppBarState = rememberMainTopAppBarState(),
     tabsState: MainTabsState = rememberMainTabsState()
 ) =
-    remember(navController, currentThemeSettings, darkModeEnabled, topAppBarState, tabsState) {
-        MainState(navController, currentThemeSettings, darkModeEnabled, topAppBarState, tabsState)
+    remember(navController, currentThemeConfiguration, darkModeEnabled, topAppBarState, tabsState) {
+        MainState(navController, currentThemeConfiguration, darkModeEnabled, topAppBarState, tabsState)
     }
 
 @ExperimentalPagerApi
 @ExperimentalMaterialApi
 class MainState(
     val navController: NavHostController,
-    val currentThemeSettings: MutableState<OdsThemeSettings>,
+    val currentThemeConfiguration: MutableState<OdsThemeConfigurationContract>,
     val darkModeEnabled: MutableState<Boolean>,
     val topAppBarState: MainTopAppBarState,
     val tabsState: MainTabsState
@@ -76,8 +76,8 @@ class MainState(
     // Theme state source of truth
     // ----------------------------------------------------------
 
-    fun updateCurrentThemeSettings(themeSettings: OdsThemeSettings) {
-        currentThemeSettings.value = themeSettings
+    fun updateCurrentThemeConfiguration(themeConfiguration: OdsThemeConfigurationContract) {
+        currentThemeConfiguration.value = themeConfiguration
     }
 
     fun updateTheme(isDark: Boolean) {
