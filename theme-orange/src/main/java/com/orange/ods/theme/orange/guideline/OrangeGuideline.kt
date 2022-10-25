@@ -11,7 +11,7 @@
 package com.orange.ods.theme.orange.guideline
 
 import com.orange.ods.theme.guideline.GuidelineColor
-import com.orange.ods.theme.guideline.GuidelineTypography
+import com.orange.ods.theme.guideline.GuidelineTextStyle
 import com.orange.ods.theme.guideline.OdsDemoGuideline
 
 class OrangeGuideline : OdsDemoGuideline() {
@@ -19,6 +19,6 @@ class OrangeGuideline : OdsDemoGuideline() {
     override val guidelineColors: List<GuidelineColor>
         get() = OrangeGuidelineColors
 
-    override val guidelineTypographies: List<GuidelineTypography>
-        get() = OrangeGuidelineTypographies
+    override val guidelineTypography: List<GuidelineTextStyle>
+        get() = OrangeGuidelineTypography
 }

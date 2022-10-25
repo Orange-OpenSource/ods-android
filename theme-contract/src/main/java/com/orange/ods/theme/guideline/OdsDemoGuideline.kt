@@ -24,9 +24,9 @@ open class OdsDemoGuideline {
         get() = emptyList()
 
     /**
-     * The typographies of the theme configuration guideline
+     * The typography of the theme configuration guideline
      */
-    open val guidelineTypographies: List<GuidelineTypography>
+    open val guidelineTypography: List<GuidelineTextStyle>
         get() = emptyList()
 
 }

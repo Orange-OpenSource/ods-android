@@ -33,33 +33,33 @@ import com.orange.ods.demo.R
 import com.orange.ods.demo.ui.LocalMainTopAppBarManager
 import com.orange.ods.demo.ui.LocalOdsDemoGuideline
 import com.orange.ods.demo.ui.utilities.getStringName
-import com.orange.ods.theme.guideline.GuidelineTypography
+import com.orange.ods.theme.guideline.GuidelineTextStyle
 
 @Composable
 fun GuidelineTypographyScreen() {
     LocalMainTopAppBarManager.current.updateTopAppBarTitle(R.string.guideline_typography)
 
-    val guidelineTypographies = LocalOdsDemoGuideline.current.guidelineTypographies
+    val guidelineTypography = LocalOdsDemoGuideline.current.guidelineTypography
 
     LazyColumn(
         contentPadding = PaddingValues(horizontal = dimensionResource(id = R.dimen.spacing_m), vertical = dimensionResource(id = R.dimen.spacing_s)),
         verticalArrangement = Arrangement.spacedBy(dimensionResource(id = R.dimen.spacing_m)),
     ) {
-        items(guidelineTypographies) { typo ->
-            TypographyRow(typo)
+        items(guidelineTypography) { guidelineTextStyle ->
+            TextStyleRow(guidelineTextStyle)
             OdsDivider(modifier = Modifier.padding(top = dimensionResource(id = R.dimen.spacing_m)))
         }
     }
 }
 
 @Composable
-private fun TypographyRow(typography: GuidelineTypography) {
+private fun TextStyleRow(guidelineTextStyle: GuidelineTextStyle) {
     val context = LocalContext.current
     val textColor = OdsTheme.colors.onBackground
     Column(modifier = Modifier.semantics(mergeDescendants = true) {}) {
         Text(
-            text = typography.name,
-            style = typography.textStyle,
+            text = guidelineTextStyle.name,
+            style = guidelineTextStyle.textStyle,
             maxLines = 1,
             overflow = TextOverflow.Ellipsis,
             color = textColor
@@ -68,7 +68,7 @@ private fun TypographyRow(typography: GuidelineTypography) {
             text = buildAnnotatedString {
                 append("Compose: ")
                 withStyle(style = SpanStyle(fontStyle = FontStyle.Italic)) {
-                    append(typography.composeStyle)
+                    append(guidelineTextStyle.composeStyle)
                 }
             },
             color = textColor
@@ -77,7 +77,7 @@ private fun TypographyRow(typography: GuidelineTypography) {
             text = buildAnnotatedString {
                 append("Resource: ")
                 withStyle(style = SpanStyle(fontStyle = FontStyle.Italic)) {
-                    append("?attr/${context.getStringName(typography.xmlResource)}")
+                    append("?attr/${context.getStringName(guidelineTextStyle.xmlResource)}")
                 }
             },
             color = textColor

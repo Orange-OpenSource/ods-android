@@ -72,7 +72,7 @@ fun Color.toRgbString(): String {
  * @property composeStyle The typography style to use for a composable
  * @property xmlResource The typography style to use in XML
  */
-data class GuidelineTypography(
+data class GuidelineTextStyle(
     val name: String,
     val textStyle: TextStyle,
     val composeStyle: String,
