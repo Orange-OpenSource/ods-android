@@ -79,8 +79,6 @@ dependencies {
     implementation(Dependencies.kotlinStdlibJdk8)
     compileOnly(project(":component-processor"))
 
-    api(Dependencies.material)
-
     implementation(Dependencies.accompanistFlowLayout)
     implementation(Dependencies.appCompat)
     implementation(Dependencies.composeUi)
