@@ -72,7 +72,7 @@ fun MainScreen(odsThemeSettings: Set<OdsThemeSettings>) {
         LocalOdsDemoGuideline provides mainState.currentThemeSettings.value.odsDemoGuideline
     ) {
         OdsTheme(
-            odsThemeSettings = mainState.currentThemeSettings.value,
+            themeSettings = mainState.currentThemeSettings.value,
             darkThemeEnabled = configuration.isDarkModeEnabled
         ) {
             Scaffold(

@@ -39,7 +39,7 @@ object OdsTheme {
         @Composable
         @ReadOnlyComposable
         get() = LocalLightThemeColors.current
-    
+
     val darkThemeColors: OdsColors
         @Composable
         @ReadOnlyComposable
@@ -54,25 +54,25 @@ object OdsTheme {
 /**
  * ODS theme is the theme to apply to your screens in an Orange Jetpack Compose application.
  *
- * @param odsThemeSettings The settings (colors, typography...) applied to the OdsTheme
+ * @param themeSettings The settings (colors, typography...) applied to the OdsTheme
  * @param darkThemeEnabled Indicates whether the dark theme is enabled or not
  * @param content The content of the theme
  */
 @Composable
 fun OdsTheme(
-    odsThemeSettings: OdsThemeSettings,
+    themeSettings: OdsThemeSettings,
     darkThemeEnabled: Boolean = isSystemInDarkTheme(),
     content: @Composable () -> Unit
 ) {
-    val colors = if (darkThemeEnabled) odsThemeSettings.darkThemeColors else odsThemeSettings.lightThemeColors
+    val colors = if (darkThemeEnabled) themeSettings.darkThemeColors else themeSettings.lightThemeColors
     // creating a new object for colors to not mutate the initial colors set when updating the values
     val rememberedColors = remember { colors.copy() }.apply { updateColorsFrom(colors) }
     CompositionLocalProvider(
         LocalRippleTheme provides OdsRippleTheme,
         LocalColors provides rememberedColors,
-        LocalLightThemeColors provides odsThemeSettings.lightThemeColors,
-        LocalDarkThemeColors provides odsThemeSettings.darkThemeColors,
-        LocalTypography provides odsThemeSettings.typography,
+        LocalLightThemeColors provides themeSettings.lightThemeColors,
+        LocalDarkThemeColors provides themeSettings.darkThemeColors,
+        LocalTypography provides themeSettings.typography,
         content = content
     )
 }
