@@ -192,7 +192,7 @@ private fun RowScope.BigColorItem(color: GuidelineColor) {
             .fillMaxWidth()
             .aspectRatio(1f)
         Box(
-            modifier = if (colorValue.toHexString() == OdsTheme.colors.background.toHexString()) {
+            modifier = if (colorValue == OdsTheme.colors.background) {
                 boxColorModifier.border(BorderStroke(1.dp, OdsTheme.colors.onBackground))
             } else {
                 boxColorModifier
