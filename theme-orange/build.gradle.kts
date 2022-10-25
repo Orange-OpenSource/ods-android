@@ -43,7 +43,10 @@ android {
         targetCompatibility = JavaVersion.VERSION_11
     }
 
-    kotlinOptions.jvmTarget = "11"
+    kotlinOptions {
+        jvmTarget = "11"
+        allWarningsAsErrors = true
+    }
 }
 
 dependencies {

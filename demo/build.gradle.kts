@@ -112,6 +112,7 @@ dependencies {
     implementation(Dependencies.appCompat)
     implementation(Dependencies.material)
     implementation(Dependencies.composeUi)
+    implementation(Dependencies.lifecycleViewModel)
     implementation(Dependencies.composeMaterial)
     implementation(Dependencies.composeUiToolingPreview)
     implementation(Dependencies.lifecycleRuntimeKtx)
@@ -127,6 +128,7 @@ dependencies {
     implementation(Dependencies.browser)
     implementation(Dependencies.hiltAndroid)
     kapt(Dependencies.hiltCompiler)
+
 
 
     debugImplementation(Dependencies.composeUiTooling)
