@@ -41,8 +41,8 @@ fun AboutFileScreen(aboutItemId: Long) {
         LocalMainTopAppBarManager.current.updateTopAppBarTitle(item.titleRes)
         val context = LocalContext.current
         val configuration = LocalConfiguration.current
-        val horizontalPadding = dimensionResource(id = R.dimen.ods_screen_horizontal_margin).value
-        val verticalPadding = dimensionResource(id = R.dimen.ods_screen_vertical_margin).value
+        val horizontalPadding = dimensionResource(id = R.dimen.screen_horizontal_margin).value
+        val verticalPadding = dimensionResource(id = R.dimen.screen_vertical_margin).value
         AndroidView(
             factory = {
                 WebView(context).apply {

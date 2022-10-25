@@ -32,18 +32,18 @@
 
     <style name="Widget.Orange.Button.Outlined" parent="Widget.MaterialComponents.Button.OutlinedButton">
         <item name="shapeAppearance">@style/ShapeAppearance.Orange.Button</item>
-        <item name="strokeWidth">@dimen/ods_button_outlined_stroke_width</item>
-        <item name="strokeColor">@color/ods_btn_stroke_color_selector</item>
-        <item name="android:textColor">@color/ods_btn_outlined_text_color_selector</item>
-        <item name="iconTint">@color/ods_btn_outlined_text_color_selector</item>
+        <item name="strokeWidth">@dimen/button_outlined_stroke_width</item>
+        <item name="strokeColor">@color/button_stroke_color_selector</item>
+        <item name="android:textColor">@color/button_outlined_text_color_selector</item>
+        <item name="iconTint">@color/button_outlined_text_color_selector</item>
     </style>
 
     <style name="Widget.Orange.Button.Outlined.Icon" parent="Widget.MaterialComponents.Button.OutlinedButton.Icon">
         <item name="shapeAppearance">@style/ShapeAppearance.Orange.Button</item>
-        <item name="strokeWidth">@dimen/ods_button_outlined_stroke_width</item>
-        <item name="strokeColor">@color/ods_btn_stroke_color_selector</item>
-        <item name="android:textColor">@color/ods_btn_outlined_text_color_selector</item>
-        <item name="iconTint">@color/ods_btn_outlined_text_color_selector</item>
+        <item name="strokeWidth">@dimen/button_outlined_stroke_width</item>
+        <item name="strokeColor">@color/button_stroke_color_selector</item>
+        <item name="android:textColor">@color/button_outlined_text_color_selector</item>
+        <item name="iconTint">@color/button_outlined_text_color_selector</item>
     </style>
 
     <style name="Widget.Orange.Button.Outlined.IconOnly" parent="Widget.Orange.Button.Outlined.Icon">
@@ -57,7 +57,7 @@
     </style>
 
     <style name="ShapeAppearance.Orange.Button" parent="ShapeAppearance.MaterialComponents.SmallComponent">
-        <item name="cornerSize">@dimen/ods_button_corner_size</item>
+        <item name="cornerSize">@dimen/button_corner_size</item>
     </style>
 
 </resources>

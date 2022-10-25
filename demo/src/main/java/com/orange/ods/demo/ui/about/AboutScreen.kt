@@ -43,7 +43,7 @@ fun AboutScreen(onAboutItemClick: (Long) -> Unit) {
     Column(
         modifier = Modifier
             .verticalScroll(rememberScrollState())
-            .padding(bottom = dimensionResource(id = R.dimen.ods_screen_vertical_margin))
+            .padding(bottom = dimensionResource(id = R.dimen.screen_vertical_margin))
     ) {
         val context = LocalContext.current
         Image(
@@ -53,7 +53,7 @@ fun AboutScreen(onAboutItemClick: (Long) -> Unit) {
             contentScale = ContentScale.Crop,
             contentDescription = null
         )
-        Column(Modifier.padding(horizontal = dimensionResource(id = R.dimen.ods_screen_horizontal_margin))) {
+        Column(Modifier.padding(horizontal = dimensionResource(id = R.dimen.screen_horizontal_margin))) {
             OdsTextH4(
                 text = stringResource(id = R.string.about_app_name),
                 modifier = Modifier.padding(top = dimensionResource(id = R.dimen.spacing_xl))

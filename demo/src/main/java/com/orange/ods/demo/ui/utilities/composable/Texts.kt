@@ -35,7 +35,7 @@ fun Title(@StringRes textRes: Int, modifier: Modifier = Modifier, withHorizontal
         modifier = modifier
             .fillMaxWidth()
             .padding(top = dimensionResource(R.dimen.spacing_xl))
-            .padding(horizontal = if (withHorizontalPadding) dimensionResource(R.dimen.ods_screen_horizontal_margin) else 0.dp)
+            .padding(horizontal = if (withHorizontalPadding) dimensionResource(R.dimen.screen_horizontal_margin) else 0.dp)
     )
 }
 
@@ -52,7 +52,7 @@ fun Subtitle(@StringRes textRes: Int, displaySurface: OdsDisplaySurface = OdsDis
             .fillMaxWidth()
             .background(backgroundColor)
             .padding(top = dimensionResource(id = R.dimen.spacing_m))
-            .padding(horizontal = if (withHorizontalPadding) dimensionResource(R.dimen.ods_screen_horizontal_margin) else 0.dp),
+            .padding(horizontal = if (withHorizontalPadding) dimensionResource(R.dimen.screen_horizontal_margin) else 0.dp),
         displaySurface = displaySurface
     )
 }
@@ -63,7 +63,7 @@ fun TechnicalText(text: String, withHorizontalPadding: Boolean = false) {
         text = text,
         modifier = Modifier
             .fillMaxWidth()
-            .padding(horizontal = if (withHorizontalPadding) dimensionResource(R.dimen.ods_screen_horizontal_margin) else 0.dp),
+            .padding(horizontal = if (withHorizontalPadding) dimensionResource(R.dimen.screen_horizontal_margin) else 0.dp),
         style = OdsTheme.typography.body2,
         color = OdsTheme.colors.onBackground.copy(alpha = ContentAlpha.medium)
     )

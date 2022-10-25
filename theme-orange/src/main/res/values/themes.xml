@@ -12,32 +12,32 @@
 
     <!-- Orange Design System theme. -->
     <style name="Theme.Orange" parent="Base.Theme.Orange">
-        <item name="colorPrimary">@color/ods_color_core_orange_200</item>
-        <item name="colorPrimaryVariant">@color/ods_color_core_orange_200</item>
-        <item name="colorOnPrimary">@color/ods_color_core_black_900</item>
+        <item name="colorPrimary">@color/core_orange_200</item>
+        <item name="colorPrimaryVariant">@color/core_orange_200</item>
+        <item name="colorOnPrimary">@color/core_black_900</item>
 
-        <item name="colorSecondary">@color/ods_color_core_orange_200</item>
-        <item name="colorSecondaryVariant">@color/ods_color_core_orange_200</item>
-        <item name="colorOnSecondary">@color/ods_color_core_black_900</item>
+        <item name="colorSecondary">@color/core_orange_200</item>
+        <item name="colorSecondaryVariant">@color/core_orange_200</item>
+        <item name="colorOnSecondary">@color/core_black_900</item>
 
-        <item name="android:colorBackground">@color/ods_color_core_white_100</item>
-        <item name="colorOnBackground">@color/ods_color_core_black_900</item>
+        <item name="android:colorBackground">@color/core_white_100</item>
+        <item name="colorOnBackground">@color/core_black_900</item>
 
-        <item name="colorSurface">@color/ods_color_core_white_100</item>
-        <item name="colorOnSurface">@color/ods_color_core_black_900</item>
+        <item name="colorSurface">@color/core_white_100</item>
+        <item name="colorOnSurface">@color/core_black_900</item>
 
-        <item name="colorError">@color/ods_color_functional_negative_200</item>
-        <item name="colorOnError">@color/ods_color_core_black_900</item>
+        <item name="colorError">@color/functional_negative_200</item>
+        <item name="colorOnError">@color/core_black_900</item>
 
-        <item name="android:textColorPrimary">@color/ods_color_core_black_900</item>
-        <item name="android:textColorSecondary">@color/ods_color_core_black_900</item>
+        <item name="android:textColorPrimary">@color/core_black_900</item>
+        <item name="android:textColorSecondary">@color/core_black_900</item>
 
         <!-- Custom ODS attributes -->
-        <item name="odsSliderHaloBackground">@color/ods_color_core_black_900</item>
-        <item name="odsBadgeTextColor">@color/ods_color_core_white_100</item>
-        <item name="functionalAlert">@color/ods_color_functional_alert_200</item>
-        <item name="functionalPositive">@color/ods_color_functional_positive_200</item>
-        <item name="functionalInfo">@color/ods_color_functional_info_200</item>
+        <item name="orangeSliderHaloBackground">@color/core_black_900</item>
+        <item name="orangeBadgeTextColor">@color/core_white_100</item>
+        <item name="functionalAlert">@color/functional_alert_200</item>
+        <item name="functionalPositive">@color/functional_positive_200</item>
+        <item name="functionalInfo">@color/functional_info_200</item>
 
 
     </style>

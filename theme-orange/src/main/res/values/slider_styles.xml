@@ -11,10 +11,10 @@
 <resources>
 
     <style name="Widget.Orange.Slider" parent="Widget.MaterialComponents.Slider">
-        <item name="trackHeight">@dimen/ods_slider_track_height</item>
-        <item name="thumbRadius">@dimen/ods_slider_thumb_radius</item>
-        <item name="haloRadius">@dimen/ods_slider_halo_radius</item>
-        <item name="haloColor">@color/ods_slider_halo_color_selector</item>
+        <item name="trackHeight">@dimen/slider_track_height</item>
+        <item name="thumbRadius">@dimen/slider_thumb_radius</item>
+        <item name="haloRadius">@dimen/slider_halo_radius</item>
+        <item name="haloColor">@color/slider_halo_color_selector</item>
 
         <item name="labelStyle">@style/Widget.Orange.Tooltip</item>
     </style>
@@ -31,7 +31,7 @@
 
     <style name="ShapeAppearance.Orange.Tooltip" parent="">
         <item name="cornerFamily">rounded</item>
-        <item name="cornerSize">@dimen/ods_slider_tooltip_corner_size</item>
+        <item name="cornerSize">@dimen/slider_tooltip_corner_size</item>
     </style>
 
 </resources>

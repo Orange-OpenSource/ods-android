@@ -64,7 +64,7 @@ private fun ComponentListsBottomSheetContent(listItemCustomizationState: ListIte
     Subtitle(textRes = R.string.component_list_item_size, withHorizontalPadding = true)
     OdsChoiceChipsFlowRow(
         selectedChip = listItemCustomizationState.selectedItemSize,
-        modifier = Modifier.padding(horizontal = dimensionResource(id = R.dimen.ods_screen_horizontal_margin)),
+        modifier = Modifier.padding(horizontal = dimensionResource(id = R.dimen.screen_horizontal_margin)),
         outlinedChips = true
     ) {
         OdsChoiceChip(textRes = R.string.component_list_item_size_single_line, value = ListItemCustomizationState.ItemSize.SingleLine)
@@ -75,7 +75,7 @@ private fun ComponentListsBottomSheetContent(listItemCustomizationState: ListIte
     Subtitle(textRes = R.string.component_list_leading, withHorizontalPadding = true)
     OdsChoiceChipsFlowRow(
         selectedChip = listItemCustomizationState.selectedLeading,
-        modifier = Modifier.padding(horizontal = dimensionResource(id = R.dimen.ods_screen_horizontal_margin)),
+        modifier = Modifier.padding(horizontal = dimensionResource(id = R.dimen.screen_horizontal_margin)),
         outlinedChips = true
     ) {
         OdsChoiceChip(textRes = R.string.component_list_leading_none, value = ListItemCustomizationState.Leading.None)
@@ -88,7 +88,7 @@ private fun ComponentListsBottomSheetContent(listItemCustomizationState: ListIte
     Subtitle(textRes = R.string.component_list_trailing, withHorizontalPadding = true)
     OdsChoiceChipsFlowRow(
         selectedChip = listItemCustomizationState.selectedTrailing,
-        modifier = Modifier.padding(horizontal = dimensionResource(id = R.dimen.ods_screen_horizontal_margin)),
+        modifier = Modifier.padding(horizontal = dimensionResource(id = R.dimen.screen_horizontal_margin)),
         outlinedChips = true
     ) {
         listItemCustomizationState.trailings.forEach { trailing ->

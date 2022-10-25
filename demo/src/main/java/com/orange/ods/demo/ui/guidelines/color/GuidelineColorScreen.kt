@@ -79,8 +79,8 @@ fun GuidelineColorScreen() {
     if (guidelineColors.isEmpty()) {
         OdsTextBody1(
             modifier = Modifier.padding(
-                horizontal = dimensionResource(id = R.dimen.ods_screen_horizontal_margin),
-                vertical = dimensionResource(id = R.dimen.ods_screen_vertical_margin)
+                horizontal = dimensionResource(id = R.dimen.screen_horizontal_margin),
+                vertical = dimensionResource(id = R.dimen.screen_vertical_margin)
             ),
             text = stringResource(id = R.string.guideline_colour_no_colours_defined)
         )
@@ -89,7 +89,7 @@ fun GuidelineColorScreen() {
             contentPadding = PaddingValues(
                 start = dimensionResource(id = R.dimen.spacing_m),
                 end = dimensionResource(id = R.dimen.spacing_m),
-                bottom = dimensionResource(id = R.dimen.ods_screen_vertical_margin)
+                bottom = dimensionResource(id = R.dimen.screen_vertical_margin)
             ),
             verticalArrangement = Arrangement.spacedBy(dimensionResource(id = R.dimen.spacing_m)),
         ) {

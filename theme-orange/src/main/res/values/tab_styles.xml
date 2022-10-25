@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?><!--
+<!--
   ~ /*
   ~ * Copyright 2021 Orange
   ~ *
@@ -10,7 +10,8 @@
 
 <resources>
 
-    <style name="Widget.Orange.Badge" parent="Widget.MaterialComponents.Badge">
-        <item name="badgeTextColor">?attr/odsBadgeTextColor</item>
+    <style name="Widget.Orange.Tab" parent="Widget.MaterialComponents.TabLayout">
+        <item name="android:elevation">@dimen/tab_elevation</item>
     </style>
+
 </resources>

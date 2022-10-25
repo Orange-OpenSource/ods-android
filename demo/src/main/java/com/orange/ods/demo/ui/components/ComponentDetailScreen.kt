@@ -52,7 +52,7 @@ fun ComponentDetailScreen(
         Column(
             modifier = Modifier
                 .verticalScroll(rememberScrollState())
-                .padding(bottom = dimensionResource(id = R.dimen.ods_screen_vertical_margin))
+                .padding(bottom = dimensionResource(id = R.dimen.screen_vertical_margin))
         ) {
             ComponentHeader(
                 imageRes = component.imageRes,
@@ -76,7 +76,7 @@ fun ComponentDetailScreen(
                             Box(modifier = Modifier.height(dimensionResource(id = R.dimen.list_single_line_item_height)), contentAlignment = Alignment.Center) {
                                 OdsTextSubtitle2(
                                     modifier = Modifier
-                                        .padding(horizontal = dimensionResource(id = R.dimen.ods_screen_horizontal_margin)),
+                                        .padding(horizontal = dimensionResource(id = R.dimen.screen_horizontal_margin)),
                                     text = stringResource(id = section.titleRes)
                                 )
                             }

@@ -33,7 +33,7 @@ import com.orange.ods.demo.ui.utilities.composable.Subtitle
 fun ComponentButtons(variant: Variant) {
     Column(
         modifier = Modifier
-            .padding(bottom = dimensionResource(id = R.dimen.ods_screen_vertical_margin))
+            .padding(bottom = dimensionResource(id = R.dimen.screen_vertical_margin))
             .verticalScroll(rememberScrollState())
     ) {
         when (variant) {
@@ -51,7 +51,7 @@ fun ComponentButtons(variant: Variant) {
 fun Modifier.fullWidthButton(withTopPadding: Boolean = true) = composed {
     this
         .fillMaxWidth()
-        .padding(horizontal = dimensionResource(R.dimen.ods_screen_horizontal_margin))
+        .padding(horizontal = dimensionResource(R.dimen.screen_horizontal_margin))
         .padding(top = if (withTopPadding) dimensionResource(R.dimen.spacing_m) else 0.dp)
 }
 

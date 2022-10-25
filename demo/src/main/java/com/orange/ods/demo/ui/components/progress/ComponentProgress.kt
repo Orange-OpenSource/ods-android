@@ -47,8 +47,8 @@ fun ComponentProgress(variant: Variant) {
 
     Column(
         modifier = Modifier
-            .padding(bottom = dimensionResource(id = R.dimen.ods_screen_vertical_margin))
-            .padding(horizontal = dimensionResource(id = R.dimen.ods_screen_horizontal_margin))
+            .padding(bottom = dimensionResource(id = R.dimen.screen_vertical_margin))
+            .padding(horizontal = dimensionResource(id = R.dimen.screen_horizontal_margin))
             .verticalScroll(rememberScrollState())
     ) {
         when (variant) {
