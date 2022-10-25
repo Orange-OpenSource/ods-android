@@ -22,6 +22,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.painter.Painter
 import androidx.compose.ui.tooling.preview.Preview
 import com.orange.ods.compose.component.OdsComponentApi
@@ -31,7 +32,6 @@ import com.orange.ods.compose.theme.OdsDisplaySurface
 import com.orange.ods.compose.theme.OdsLightRippleTheme
 import com.orange.ods.compose.theme.OdsRippleTheme
 import com.orange.ods.compose.theme.OdsTheme
-import com.orange.ods.compose.theme.Transparent
 import com.orange.ods.theme.OdsColors
 
 /**
@@ -81,7 +81,7 @@ fun OdsOutlinedButton(
                 }
             ),
             colors = ButtonDefaults.outlinedButtonColors(
-                backgroundColor = Transparent,
+                backgroundColor = Color.Transparent,
                 contentColor = OdsTheme.colors.buttonOutlinedColor(displaySurface),
                 disabledContentColor = OdsTheme.colors.buttonOutlinedDisabledColor(displaySurface)
             )
