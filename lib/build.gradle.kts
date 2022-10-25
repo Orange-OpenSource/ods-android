@@ -27,7 +27,7 @@ plugins {
  * Please change this value if you want to have a custom theme preview  for the ODS library and
  * don't forget to add a dependency to your custom theme in this case.
  */
-val previewThemeClass = "com.orange.ods.theme.orange.OrangeThemeSettings"
+val previewThemeSettingsClass = "com.orange.ods.theme.orange.OrangeThemeSettings"
 
 android {
     compileSdk = Versions.compileSdk
@@ -35,7 +35,7 @@ android {
     defaultConfig {
         minSdk = Versions.minSdk
 
-        buildConfigField("com.orange.ods.theme.OdsThemeSettings", "THEME_SETTINGS", "new $previewThemeClass()")
+        buildConfigField("com.orange.ods.theme.OdsThemeSettings", "PREVIEW_THEME_SETTINGS", "new $previewThemeSettingsClass()")
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         consumerProguardFile("consumer-rules.pro")
