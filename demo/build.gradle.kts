@@ -112,7 +112,7 @@ dependencies {
     implementation(Dependencies.appCompat)
     implementation(Dependencies.material)
     implementation(Dependencies.composeUi)
-    implementation(Dependencies.lifecycleViewModel)
+    implementation(Dependencies.lifecycleViewModelKtx)
     implementation(Dependencies.composeMaterial)
     implementation(Dependencies.composeUiToolingPreview)
     implementation(Dependencies.lifecycleRuntimeKtx)

@@ -42,7 +42,7 @@ object Dependencies {
     const val kotlinStdlibJdk8 = "org.jetbrains.kotlin:kotlin-stdlib-jdk8:${Versions.kotlin}"
     const val ksp = "com.google.devtools.ksp:symbol-processing-api:${Versions.ksp}"
     const val lifecycleRuntimeKtx = "androidx.lifecycle:lifecycle-runtime-ktx:${Versions.lifecycle}"
-    const val lifecycleViewModel = "androidx.lifecycle:lifecycle-viewmodel-ktx:${Versions.lifecycle}"
+    const val lifecycleViewModelKtx = "androidx.lifecycle:lifecycle-viewmodel-ktx:${Versions.lifecycle}"
     const val material = "com.google.android.material:material:${Versions.material}"
     const val navigationCompose = "androidx.navigation:navigation-compose:${Versions.navigation}"
     const val testExtJUnit = "androidx.test.ext:junit:${Versions.testExtJUnit}"
