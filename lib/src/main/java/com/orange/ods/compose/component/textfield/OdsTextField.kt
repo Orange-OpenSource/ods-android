@@ -210,14 +210,6 @@ fun OdsColors.trailingTextColor(isValueEmpty: Boolean, isTextFieldEnabled: Boole
         OdsTheme.colors.onSurface
     }
 
-@Composable
-fun OdsColors.textFieldIconColor(enabled: Boolean = true) =
-    if (enabled) {
-        OdsTheme.colors.onSurface
-    } else {
-        OdsTheme.colors.onSurface.copy(alpha = ContentAlpha.disabled)
-    }
-
 internal object OdsTextFieldDefaults {
 
     @Composable
