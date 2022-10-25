@@ -67,7 +67,7 @@ fun MainScreen(odsThemeSettings: Set<OdsThemeSettings>) {
         LocalConfiguration provides configuration,
         LocalMainTopAppBarManager provides mainState.topAppBarState,
         LocalMainTabsManager provides mainState.tabsState,
-        LocalOdsDemoGuideline provides mainState.currentThemeSettings.value.odsDemoGuideline
+        LocalOdsDemoGuideline provides mainState.currentThemeSettings.value.demoGuideline
     ) {
         OdsTheme(
             themeSettings = mainState.currentThemeSettings.value,

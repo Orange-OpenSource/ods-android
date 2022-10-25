@@ -29,6 +29,6 @@ class OrangeThemeSettings : OdsThemeSettings {
     override val typography: Typography
         get() = OrangeTypography
 
-    override val odsDemoGuideline: OdsDemoGuideline
+    override val demoGuideline: OdsDemoGuideline
         get() = OrangeGuideline()
 }

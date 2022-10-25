@@ -22,6 +22,6 @@ interface OdsThemeSettings : Parcelable {
 
     val typography: Typography
 
-    val odsDemoGuideline: OdsDemoGuideline
+    val demoGuideline: OdsDemoGuideline
         get() = OdsDemoGuideline()
 }
