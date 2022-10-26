@@ -19,29 +19,32 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.saveable.rememberSaveable
 
+object ComponentListItem {
+    const val DefaultLineCount = 2
+    const val MinLineCount = 1
+    const val MaxLineCount = 3
+}
+
 @ExperimentalMaterialApi
 @Composable
 fun rememberListItemCustomizationState(
     bottomSheetScaffoldState: BottomSheetScaffoldState = rememberBottomSheetScaffoldState(),
-    selectedItemSize: MutableState<ListItemCustomizationState.ItemSize> = rememberSaveable { mutableStateOf(ListItemCustomizationState.ItemSize.SingleLine) },
+    lineCount: MutableState<Int> = rememberSaveable { mutableStateOf(ComponentListItem.DefaultLineCount) },
     selectedLeading: MutableState<ListItemCustomizationState.Leading> = rememberSaveable { mutableStateOf(ListItemCustomizationState.Leading.None) },
     selectedTrailing: MutableState<ListItemCustomizationState.Trailing> = rememberSaveable { mutableStateOf(ListItemCustomizationState.Trailing.None) },
     dividerEnabled: MutableState<Boolean> = rememberSaveable { mutableStateOf(false) }
-) = remember(selectedItemSize) {
-    ListItemCustomizationState(bottomSheetScaffoldState, selectedItemSize, selectedLeading, selectedTrailing, dividerEnabled)
+) = remember(lineCount) {
+    ListItemCustomizationState(bottomSheetScaffoldState, lineCount, selectedLeading, selectedTrailing, dividerEnabled)
 }
 
 @ExperimentalMaterialApi
 class ListItemCustomizationState(
     val bottomSheetScaffoldState: BottomSheetScaffoldState,
-    val selectedItemSize: MutableState<ItemSize>,
+    val lineCount: MutableState<Int>,
     val selectedLeading: MutableState<Leading>,
     val selectedTrailing: MutableState<Trailing>,
     val dividerEnabled: MutableState<Boolean>
 ) {
-    enum class ItemSize {
-        SingleLine, TwoLine, ThreeLine
-    }
 
     enum class Leading {
         None, Icon, CircularImage, SquareImage, WideImage
@@ -52,10 +55,10 @@ class ListItemCustomizationState(
     }
 
     val trailings: List<Trailing>
-        get() = when (selectedItemSize.value) {
-            ItemSize.SingleLine,
-            ItemSize.TwoLine -> listOf(Trailing.None, Trailing.Checkbox, Trailing.Switch, Trailing.Icon)
-            ItemSize.ThreeLine -> listOf(Trailing.None, Trailing.Caption)
+        get() = if (lineCount.value < ComponentListItem.MaxLineCount) {
+            listOf(Trailing.None, Trailing.Checkbox, Trailing.Switch, Trailing.Icon)
+        } else {
+            listOf(Trailing.None, Trailing.Caption)
         }
 
     fun resetTrailing() {
