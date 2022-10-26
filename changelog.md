@@ -12,6 +12,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - \[ThemeConfigurationContract\] Add module to create themes
 - \[ThemeOrange\] Add module for Orange theme
 
+### Changed
+
+- \[Demo\] Display an illustration and description header on guideline typography screen ([#301](https://github.com/Orange-OpenSource/ods-android/issues/301))
+
 ## 0.6.0 - 2022-10-17
 
 ### Added
