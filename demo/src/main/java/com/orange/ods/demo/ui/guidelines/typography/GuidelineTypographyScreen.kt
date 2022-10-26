@@ -49,7 +49,7 @@ fun GuidelineTypographyScreen() {
                 horizontal = dimensionResource(id = R.dimen.screen_horizontal_margin),
                 vertical = dimensionResource(id = R.dimen.screen_vertical_margin)
             ),
-            text = stringResource(id = R.string.guideline_typography_no_typographies_defined)
+            text = stringResource(id = R.string.guideline_typography_no_typography_defined)
         )
     } else {
         LazyColumn(
