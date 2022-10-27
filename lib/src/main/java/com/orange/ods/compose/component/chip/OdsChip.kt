@@ -16,8 +16,6 @@ import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.size
 import androidx.compose.material.Chip
 import androidx.compose.material.ChipColors
-import androidx.compose.material.ChipDefaults
-import androidx.compose.material.ChipDefaults.ContentOpacity
 import androidx.compose.material.ChipDefaults.LeadingIconOpacity
 import androidx.compose.material.ContentAlpha
 import androidx.compose.material.ExperimentalMaterialApi
@@ -27,8 +25,6 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.graphics.compositeOver
 import androidx.compose.ui.graphics.painter.Painter
 import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.painterResource
@@ -44,7 +40,6 @@ import com.orange.ods.compose.component.chip.OdsChipDefaults.SurfaceOverlayOpaci
 import com.orange.ods.compose.component.utilities.BasicPreviewParameterProvider
 import com.orange.ods.compose.component.utilities.OdsImageCircleShape
 import com.orange.ods.compose.component.utilities.Preview
-import com.orange.ods.compose.theme.LocalDarkThemeEnabled
 import com.orange.ods.compose.theme.OdsTheme
 import com.orange.ods.utilities.extension.noRippleClickable
 
@@ -157,41 +152,6 @@ private fun odsChipBorderColor(selected: Boolean, enabled: Boolean) = when {
     selected && enabled -> OdsTheme.colors.primary
     selected && !enabled -> OdsTheme.colors.primary.copy(alpha = SurfaceOverlayOpacity)
     else -> OdsTheme.colors.onSurface.copy(alpha = SurfaceOverlayOpacity)
-}
-
-
-internal object OdsChipDefaults {
-
-    /**
-     * The color opacity used for chip's surface overlay.
-     */
-    internal const val SurfaceOverlayOpacity = 0.12f
-
-    @OptIn(ExperimentalMaterialApi::class)
-    @Composable
-    fun chipColors(
-        backgroundColor: Color = OdsTheme.colors.onSurface.copy(alpha = SurfaceOverlayOpacity)
-            .compositeOver(OdsTheme.colors.surface),
-        contentColor: Color = OdsTheme.colors.onSurface.copy(alpha = ContentOpacity)
-    ) = ChipDefaults.chipColors(
-        backgroundColor = backgroundColor,
-        contentColor = contentColor,
-        leadingIconContentColor = contentColor.copy(alpha = LeadingIconOpacity),
-        disabledBackgroundColor = backgroundColor.copy(
-            alpha = ContentAlpha.disabled * SurfaceOverlayOpacity
-        ).compositeOver(OdsTheme.colors.surface)
-    )
-
-    @OptIn(ExperimentalMaterialApi::class)
-    @Composable
-    fun outlinedChipColors(
-        backgroundColor: Color = OdsTheme.colors.surface,
-        contentColor: Color = OdsTheme.colors.onSurface.copy(alpha = ContentOpacity),
-    ) = ChipDefaults.outlinedChipColors(
-        backgroundColor = backgroundColor,
-        contentColor = contentColor,
-        leadingIconContentColor = if (LocalDarkThemeEnabled.current) contentColor else contentColor.copy(alpha = LeadingIconOpacity)
-    )
 }
 
 @Composable
