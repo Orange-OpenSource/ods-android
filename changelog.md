@@ -16,6 +16,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - \[Demo\] Display an illustration and description header on guideline typography screen ([#301](https://github.com/Orange-OpenSource/ods-android/issues/301))
 - \[Demo\] Use step counter for list item line count customization ([#306](https://github.com/Orange-OpenSource/ods-android/issues/306))
+- \[Demo\] Display the chip name and a short description for each type of chip ([#304](https://github.com/Orange-OpenSource/ods-android/issues/304))
 
 ## 0.6.0 - 2022-10-17
 
