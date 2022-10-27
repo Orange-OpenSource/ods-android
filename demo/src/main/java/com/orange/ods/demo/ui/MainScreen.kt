@@ -44,6 +44,7 @@ import com.orange.ods.demo.ui.components.tabs.ScrollableTabRow
 import com.orange.ods.demo.ui.guidelines.addGuidelinesGraph
 import com.orange.ods.demo.ui.utilities.extension.isDarkModeEnabled
 import com.orange.ods.theme.OdsThemeConfigurationContract
+import com.orange.ods.theme.OrangeThemeName
 
 @ExperimentalMaterialApi
 @ExperimentalPagerApi
@@ -54,7 +55,7 @@ fun MainScreen(themeConfigurations: Set<OdsThemeConfigurationContract>) {
     val isSystemInDarkTheme = isSystemInDarkTheme()
     val mainState = rememberMainState(
         themingState = rememberMainThemingState(
-            currentThemeConfiguration = rememberSaveable { mutableStateOf(themeConfigurations.last()) },
+            currentThemeConfiguration = rememberSaveable { mutableStateOf(getCurrentThemeConfiguration(themeConfigurations)) },
             darkModeEnabled = rememberSaveable { mutableStateOf(isSystemInDarkTheme) },
             themeConfigurations = themeConfigurations.toList()
         )
@@ -115,6 +116,11 @@ fun MainScreen(themeConfigurations: Set<OdsThemeConfigurationContract>) {
             }
         }
     }
+}
+
+private fun getCurrentThemeConfiguration(themeConfigurations: Set<OdsThemeConfigurationContract>): OdsThemeConfigurationContract {
+    // If another theme than Orange is injected, select it otherwise take the Orange theme which is always present
+    return themeConfigurations.firstOrNull { it.name != OrangeThemeName } ?: themeConfigurations.first()
 }
 
 @Composable

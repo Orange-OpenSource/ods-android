@@ -15,6 +15,8 @@ import androidx.compose.material.Shapes
 import androidx.compose.material.Typography
 import com.orange.ods.theme.guideline.OdsDemoGuideline
 
+const val OrangeThemeName = "Orange"
+
 interface OdsThemeConfigurationContract : Parcelable {
 
     val name: String
