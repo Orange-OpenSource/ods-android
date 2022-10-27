@@ -182,7 +182,7 @@ sealed class Variant(
     object CardSmall : Variant(R.string.component_card_small, OdsComponent.OdsSmallCard.name)
 
     object Chip : Variant(R.string.component_chip, OdsComponent.OdsChip.name)
-    object ChipFilter : Variant(R.string.component_chip_filter, OdsComponent.OdsFilterChip.name)
+    object ChipFilter : Variant(R.string.component_chip_type_filter, OdsComponent.OdsFilterChip.name)
 
     object ProgressBar : Variant(R.string.component_progress_bar, OdsComponent.OdsLinearProgressIndicator.name)
     object ProgressActivityIndicator : Variant(R.string.component_progress_activity_indicator, OdsComponent.OdsCircularProgressIndicator.name)

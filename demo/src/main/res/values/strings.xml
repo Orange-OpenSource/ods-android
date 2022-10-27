@@ -144,9 +144,13 @@
     <string name="component_chip">Chip</string>
     <string name="component_chip_type">%s chip</string>
     <string name="component_chip_type_input">Input</string>
+    <string name="component_chip_type_input_description">The user input searches are transformed into chips that can be added or deleted.</string>
     <string name="component_chip_type_choice">Choice</string>
+    <string name="component_chip_type_choice_description">The chips allow the user to select only one items within the proposed items.</string>
     <string name="component_chip_type_action">Action</string>
-    <string name="component_chip_filter">Filter chip</string>
+    <string name="component_chip_type_action_description">The user can initiate actions by tapping on a chip.</string>
+    <string name="component_chip_type_filter">Filter chip</string>
+    <string name="component_chip_type_filter_description">In a search by tags us user can activated the chips upon will.</string>
 
     <!-- Component Dialogs -->
     <string name="component_dialogs">Dialogs</string>
