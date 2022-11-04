@@ -9,17 +9,14 @@
  */
 
 import com.orange.ods.gradle.Dependencies
-import com.orange.ods.gradle.Environment
 import com.orange.ods.gradle.Versions
-import com.orange.ods.gradle.execute
 
 plugins {
-    id("com.google.devtools.ksp").version(com.orange.ods.gradle.Versions.ksp)
+    id("com.google.devtools.ksp") version "1.6.21-1.0.6"
     id("com.android.library")
     id("kotlin-android")
     id("github")
-    `maven-publish`
-    signing
+    id("maven-central-publish")
 }
 
 /**
@@ -93,83 +90,4 @@ dependencies {
     androidTestImplementation(Dependencies.testExtJUnit)
 
     ksp(project(":component-processor"))
-}
-
-afterEvaluate {
-    publishing {
-        publications {
-            create<MavenPublication>("release") {
-                from(components["release"])
-                val artifactId = "ods-lib"
-                groupId = "com.orange.ods.android"
-                this.artifactId = artifactId
-                this.version = version
-                artifact(tasks["sourcesJar"])
-
-                pom {
-                    name.set(artifactId)
-                    description.set("Orange Design System for Android")
-                    val gitHubUrl = "https://github.com/Orange-OpenSource/ods-android"
-                    url.set(gitHubUrl)
-                    licenses {
-                        license {
-                            name.set("MIT License")
-                            url.set("https://github.com/Orange-OpenSource/ods-android/blob/master/LICENSE")
-                        }
-                    }
-                    scm {
-                        url.set(gitHubUrl)
-                        connection.set("scm:git:git://github.com/Orange-OpenSource/ods-android.git")
-                        developerConnection.set("scm:git:ssh://git@github.com/Orange-OpenSource/ods-android.git")
-                    }
-                    developers {
-                        developer {
-                            name.set("Pauline Auvray")
-                            email.set("pauline.auvray@orange.com")
-                        }
-                        developer {
-                            name.set("Florent Maitre")
-                            email.set("florent.maitre@orange.com")
-                        }
-                    }
-                }
-            }
-        }
-
-        repositories {
-            maven {
-                val releasesRepoUrl = "https://oss.sonatype.org/service/local/staging/deploy/maven2/"
-                val snapshotsRepoUrl = "https://oss.sonatype.org/content/repositories/snapshots/"
-                url = uri(if (version.toString().endsWith("SNAPSHOT")) snapshotsRepoUrl else releasesRepoUrl)
-                credentials {
-                    val (username, password) = Environment.getVariablesOrNull("SONATYPE_USERNAME", "SONATYPE_PASSWORD")
-                    this.username = username
-                    this.password = password
-                }
-            }
-        }
-    }
-
-    signing {
-        val (signingKeyId, signingSecretKey, signingPassword) = Environment.getVariablesOrNull(
-            "GNUPG_SIGNING_KEY_ID",
-            "GNUPG_SIGNING_SECRET_KEY",
-            "GNUPG_SIGNING_PASSWORD"
-        )
-        useInMemoryPgpKeys(signingKeyId, signingSecretKey, signingPassword)
-        sign(publishing.publications["release"])
-    }
-}
-
-tasks.register<Jar>("sourcesJar") {
-    archiveClassifier.set("sources")
-    from(android.sourceSets.getByName("main").java.srcDirs)
-}
-
-tasks.register<DefaultTask>("tagRelease") {
-    doLast {
-        val tag = version.toString()
-        execute("git", "tag", tag)
-        execute("git", "push", "origin", tag)
-    }
 }
