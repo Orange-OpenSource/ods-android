@@ -33,5 +33,5 @@ val AboutItem.id: Long
 val aboutItems = listOf(
     AboutItem(R.string.about_menu_legal_notice, R.raw.about_legal_notice, AboutItem.FileFormat.Html),
     AboutItem(R.string.about_menu_privacy_policy, R.raw.about_privacy_policy, AboutItem.FileFormat.Html),
-    AboutItem(R.string.about_menu_changelog, R.raw.changelog, AboutItem.FileFormat.Markdown),
+    AboutItem(R.string.about_menu_changelog, R.raw.changelog, AboutItem.FileFormat.Markdown)
 )
