@@ -43,7 +43,7 @@ val OrangeLightColors = OdsColors(
         barBackground = White100,
         barContent = Black900,
         itemSelected = Orange200,
-        itemUnselected = Black900,
+        itemUnselected = Black900
     ),
 
     topAppBar = OdsTopAppBarColors(
