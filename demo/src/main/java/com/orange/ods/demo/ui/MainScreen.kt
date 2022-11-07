@@ -54,7 +54,7 @@ import com.orange.ods.theme.OrangeThemeName
 fun MainScreen(themeConfigurations: Set<OdsThemeConfigurationContract>) {
     val isSystemInDarkTheme = isSystemInDarkTheme()
     val mainState = rememberMainState(
-        themingState = rememberMainThemingState(
+        themeState = rememberMainThemeState(
             currentThemeConfiguration = rememberSaveable { mutableStateOf(getCurrentThemeConfiguration(themeConfigurations)) },
             darkModeEnabled = rememberSaveable { mutableStateOf(isSystemInDarkTheme) },
             themeConfigurations = themeConfigurations.toList()
@@ -63,18 +63,18 @@ fun MainScreen(themeConfigurations: Set<OdsThemeConfigurationContract>) {
 
     // Change isSystemInDarkTheme() value to make switching theme working with custom color
     val configuration = LocalConfiguration.current.apply {
-        isDarkModeEnabled = mainState.themingState.darkModeEnabled.value
+        isDarkModeEnabled = mainState.themeState.darkModeEnabled.value
     }
 
     CompositionLocalProvider(
         LocalConfiguration provides configuration,
         LocalMainTopAppBarManager provides mainState.topAppBarState,
         LocalMainTabsManager provides mainState.tabsState,
-        LocalMainThemingManager provides mainState.themingState,
-        LocalOdsDemoGuideline provides mainState.themingState.getCurrentThemeConfiguration().demoGuideline,
+        LocalMainThemeManager provides mainState.themeState,
+        LocalOdsDemoGuideline provides mainState.themeState.getCurrentThemeConfiguration().demoGuideline,
     ) {
         OdsTheme(
-            themeConfiguration = mainState.themingState.getCurrentThemeConfiguration(),
+            themeConfiguration = mainState.themeState.getCurrentThemeConfiguration(),
             darkThemeEnabled = configuration.isDarkModeEnabled
         ) {
             Scaffold(

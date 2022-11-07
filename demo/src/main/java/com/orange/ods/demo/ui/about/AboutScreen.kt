@@ -38,7 +38,7 @@ import com.orange.ods.compose.text.OdsTextCaption
 import com.orange.ods.compose.text.OdsTextH4
 import com.orange.ods.compose.theme.OdsTheme
 import com.orange.ods.demo.R
-import com.orange.ods.demo.ui.LocalMainThemingManager
+import com.orange.ods.demo.ui.LocalMainThemeManager
 import com.orange.ods.demo.ui.LocalMainTopAppBarManager
 import com.orange.ods.demo.ui.utilities.composable.RadioButtonListItem
 import com.orange.ods.demo.ui.utilities.extension.versionCode
@@ -49,7 +49,7 @@ import com.orange.ods.utilities.extension.orElse
 fun AboutScreen(onAboutItemClick: (Long) -> Unit) {
     LocalMainTopAppBarManager.current.updateTopAppBarTitle(R.string.navigation_item_about)
 
-    val mainThemingManager = LocalMainThemingManager.current
+    val mainThemeManager = LocalMainThemeManager.current
     val dialogVisibleState = rememberSaveable { mutableStateOf(false) }
 
     Column(
@@ -91,16 +91,16 @@ fun AboutScreen(onAboutItemClick: (Long) -> Unit) {
 
 
     if (dialogVisibleState.value) {
-        val selectedRadio = remember { mutableStateOf(mainThemingManager.getCurrentThemeConfiguration().name) }
+        val selectedRadio = remember { mutableStateOf(mainThemeManager.getCurrentThemeConfiguration().name) }
 
         Dialog(onDismissRequest = { dialogVisibleState.value = false }) {
             Column(modifier = Modifier.background(OdsTheme.colors.surface)) {
-                mainThemingManager.getAvailableThemeConfigurations().forEach { themeConfiguration ->
+                mainThemeManager.getAvailableThemeConfigurations().forEach { themeConfiguration ->
                     RadioButtonListItem(
                         label = themeConfiguration.name,
                         selectedRadio = selectedRadio,
                         currentRadio = themeConfiguration.name,
-                        onClick = { mainThemingManager.setCurrentThemeConfiguration(themeConfiguration) }
+                        onClick = { mainThemeManager.setCurrentThemeConfiguration(themeConfiguration) }
                     )
                 }
             }

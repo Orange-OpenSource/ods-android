@@ -19,10 +19,10 @@ import com.google.accompanist.pager.ExperimentalPagerApi
 import com.orange.ods.theme.OdsThemeConfigurationContract
 import com.orange.ods.theme.guideline.OdsDemoGuideline
 
-val LocalMainThemingManager = staticCompositionLocalOf<MainThemingManager> { error("CompositionLocal LocalMainThemingManager not present") }
+val LocalMainThemeManager = staticCompositionLocalOf<MainThemeManager> { error("CompositionLocal LocalMainThemeManager not present") }
 val LocalOdsDemoGuideline = staticCompositionLocalOf<OdsDemoGuideline> { error("CompositionLocal LocalOdsDemoGuideline not present") }
 
-interface MainThemingManager {
+interface MainThemeManager {
 
     fun getAvailableThemeConfigurations(): List<OdsThemeConfigurationContract>
 
@@ -36,22 +36,22 @@ interface MainThemingManager {
 @Composable
 @ExperimentalPagerApi
 @ExperimentalMaterialApi
-fun rememberMainThemingState(
+fun rememberMainThemeState(
     themeConfigurations: List<OdsThemeConfigurationContract>,
     currentThemeConfiguration: MutableState<OdsThemeConfigurationContract>,
     darkModeEnabled: MutableState<Boolean>,
 ) =
     remember(themeConfigurations, currentThemeConfiguration, darkModeEnabled) {
-        MainThemingState(themeConfigurations, currentThemeConfiguration, darkModeEnabled)
+        MainThemeState(themeConfigurations, currentThemeConfiguration, darkModeEnabled)
     }
 
 @ExperimentalPagerApi
 @ExperimentalMaterialApi
-class MainThemingState(
+class MainThemeState(
     private val themeConfigurations: List<OdsThemeConfigurationContract>,
     private val currentThemeConfiguration: MutableState<OdsThemeConfigurationContract>,
     val darkModeEnabled: MutableState<Boolean>
-) : MainThemingManager {
+) : MainThemeManager {
 
     // ----------------------------------------------------------
     // Theme state source of truth

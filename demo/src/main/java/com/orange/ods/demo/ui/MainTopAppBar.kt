@@ -59,13 +59,13 @@ fun MainTopAppBar(
             repeat(state.actionCount.value) { index ->
                 if (index == 0) {
                     val configuration = LocalConfiguration.current
-                    val mainThemingManager = LocalMainThemingManager.current
+                    val mainThemeManager = LocalMainThemeManager.current
 
                     val painterRes = if (configuration.isDarkModeEnabled) R.drawable.ic_ui_light_mode else R.drawable.ic_ui_dark_mode
                     val contentDescriptionRes =
                         if (configuration.isDarkModeEnabled) R.string.theme_changer_icon_content_description_light else R.string.theme_changer_icon_content_description_dark
                     OdsTopAppBarActionItem(
-                        onClick = { mainThemingManager.setDarkMode(!configuration.isDarkModeEnabled) },
+                        onClick = { mainThemeManager.setDarkMode(!configuration.isDarkModeEnabled) },
                         painter = painterResource(id = painterRes),
                         contentDescription = stringResource(id = contentDescriptionRes)
                     )

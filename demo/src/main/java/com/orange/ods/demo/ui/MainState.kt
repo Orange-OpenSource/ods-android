@@ -46,19 +46,19 @@ object MainDestinations {
 @ExperimentalPagerApi
 @ExperimentalMaterialApi
 fun rememberMainState(
-    themingState: MainThemingState,
+    themeState: MainThemeState,
     navController: NavHostController = rememberNavController(),
     topAppBarState: MainTopAppBarState = rememberMainTopAppBarState(),
     tabsState: MainTabsState = rememberMainTabsState()
 ) =
-    remember(themingState, navController, topAppBarState, tabsState) {
-        MainState(themingState, navController, topAppBarState, tabsState)
+    remember(themeState, navController, topAppBarState, tabsState) {
+        MainState(themeState, navController, topAppBarState, tabsState)
     }
 
 @ExperimentalPagerApi
 @ExperimentalMaterialApi
 class MainState(
-    val themingState: MainThemingState,
+    val themeState: MainThemeState,
     val navController: NavHostController,
     val topAppBarState: MainTopAppBarState,
     val tabsState: MainTabsState
