@@ -80,14 +80,14 @@ fun AboutScreen(onAboutItemClick: (Long) -> Unit) {
 
         Spacer(modifier = Modifier.height(dimensionResource(id = R.dimen.spacing_m)))
 
+        OdsListItem(text = stringResource(id = R.string.about_menu_theme), modifier = Modifier.clickable {
+            dialogVisible = true
+        })
         for (aboutItem in aboutItems) {
             OdsListItem(text = stringResource(id = aboutItem.titleRes), modifier = Modifier.clickable {
                 onAboutItemClick(aboutItem.id)
             })
         }
-        OdsListItem(text = stringResource(id = R.string.about_menu_theme), modifier = Modifier.clickable {
-            dialogVisible = true
-        })
     }
 
 
