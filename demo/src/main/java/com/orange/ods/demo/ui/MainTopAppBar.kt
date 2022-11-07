@@ -30,7 +30,7 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import com.orange.ods.compose.component.appbar.top.OdsTopAppBar
-import com.orange.ods.compose.component.appbar.top.OdsTopAppBarActionItem
+import com.orange.ods.compose.component.appbar.top.OdsTopAppBarActionButton
 import com.orange.ods.compose.text.OdsTextBody1
 import com.orange.ods.demo.R
 import com.orange.ods.demo.ui.components.utilities.clickOnElement
@@ -64,14 +64,14 @@ fun MainTopAppBar(
                     val painterRes = if (configuration.isDarkModeEnabled) R.drawable.ic_ui_light_mode else R.drawable.ic_ui_dark_mode
                     val contentDescriptionRes =
                         if (configuration.isDarkModeEnabled) R.string.theme_changer_icon_content_description_light else R.string.theme_changer_icon_content_description_dark
-                    OdsTopAppBarActionItem(
+                    OdsTopAppBarActionButton(
                         onClick = { mainThemeManager.darkModeEnabled = !configuration.isDarkModeEnabled },
                         painter = painterResource(id = painterRes),
                         contentDescription = stringResource(id = contentDescriptionRes)
                     )
                 } else {
                     val action = topAppBarDemoActions[index - 1]
-                    OdsTopAppBarActionItem(
+                    OdsTopAppBarActionButton(
                         onClick = { clickOnElement(context, context.getString(action.titleRes)) },
                         painter = painterResource(id = action.iconRes),
                         contentDescription = stringResource(id = action.titleRes)
@@ -92,7 +92,7 @@ private fun OverflowMenu() {
     val context = LocalContext.current
 
     Box {
-        OdsTopAppBarActionItem(
+        OdsTopAppBarActionButton(
             onClick = { showMenu = !showMenu },
             painter = rememberVectorPainter(image = Icons.Filled.MoreVert),
             contentDescription = stringResource(id = R.string.component_app_bars_top_element_overflow_menu)

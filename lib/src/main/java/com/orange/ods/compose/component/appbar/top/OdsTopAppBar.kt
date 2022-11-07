@@ -45,7 +45,7 @@ import com.orange.ods.compose.theme.OdsTheme
  * @param title The title to be displayed in the center of the TopAppBar
  * @param navigationIcon Optional navigation icon displayed at the start of the TopAppBar. This should be an [Icon].
  * @param onNavigationIconClick Optional action executed on the navigation icon click.
- * @param actions The actions displayed at the end of the TopAppBar. This should be [OdsTopAppBarActionItem]s.
+ * @param actions The actions displayed at the end of the TopAppBar. This should be [OdsTopAppBarActionButton]s.
  * The default layout here is a [Row], so icons inside will be placed horizontally.
  * @param elevated True to set an elevation to the top app bar (shadow displayed), false otherwise.
  */
@@ -82,7 +82,7 @@ fun OdsTopAppBar(
 
 @Composable
 @OdsComponentApi
-fun OdsTopAppBarActionItem(
+fun OdsTopAppBarActionButton(
     onClick: () -> Unit,
     painter: Painter,
     contentDescription: String,

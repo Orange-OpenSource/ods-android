@@ -79,11 +79,11 @@ OdsTopAppBar(
         // Do something
     },
     actions = {
-        OdsTopAppBarActionItem(
+        OdsTopAppBarActionButton(
             onClick = { },
             painter = painterResource(id = R.drawable.ic_share),
             contentDescription = "content description"
-        ) // Each action should be an `OdsTopAppBarActionItem`. They are displayed in a `Row`, so icons inside will be placed horizontally.
+        ) // Each action should be an `OdsTopAppBarActionButton`. They are displayed in a `Row`, so icons inside will be placed horizontally.
     }
 )
 ```
