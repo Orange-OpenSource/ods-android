@@ -23,9 +23,10 @@ import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.ExperimentalMaterialApi
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
-import androidx.compose.runtime.saveable.rememberSaveable
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
@@ -50,7 +51,7 @@ fun AboutScreen(onAboutItemClick: (Long) -> Unit) {
     LocalMainTopAppBarManager.current.updateTopAppBarTitle(R.string.navigation_item_about)
 
     val mainThemeManager = LocalMainThemeManager.current
-    val dialogVisibleState = rememberSaveable { mutableStateOf(false) }
+    var dialogVisible by remember { mutableStateOf(false) }
 
     Column(
         modifier = Modifier
@@ -85,15 +86,15 @@ fun AboutScreen(onAboutItemClick: (Long) -> Unit) {
             })
         }
         OdsListItem(text = stringResource(id = R.string.about_menu_theme), modifier = Modifier.clickable {
-            dialogVisibleState.value = true
+            dialogVisible = true
         })
     }
 
 
-    if (dialogVisibleState.value) {
+    if (dialogVisible) {
         val selectedRadio = remember { mutableStateOf(mainThemeManager.currentThemeConfiguration.name) }
 
-        Dialog(onDismissRequest = { dialogVisibleState.value = false }) {
+        Dialog(onDismissRequest = { dialogVisible = false }) {
             Column(modifier = Modifier.background(OdsTheme.colors.surface)) {
                 mainThemeManager.themeConfigurations.forEach { themeConfiguration ->
                     RadioButtonListItem(
