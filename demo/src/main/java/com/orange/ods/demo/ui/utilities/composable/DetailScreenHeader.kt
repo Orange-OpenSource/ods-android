@@ -50,17 +50,17 @@ fun DetailScreenHeader(
         modifier = Modifier.padding(
             horizontal = dimensionResource(id = R.dimen.screen_horizontal_margin)
         ),
-        description = descriptionRes
+        descriptionRes = descriptionRes
     )
 }
 
 @Composable
 private fun DetailScreenDescription(
     modifier: Modifier = Modifier,
-    @StringRes description: Int
+    @StringRes descriptionRes: Int
 ) {
     OdsTextBody1(
-        text = stringResource(description),
+        text = stringResource(descriptionRes),
         modifier = modifier.padding(
             top = dimensionResource(id = R.dimen.spacing_m)
         )
