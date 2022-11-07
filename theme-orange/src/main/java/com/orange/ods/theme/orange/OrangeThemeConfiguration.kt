@@ -15,7 +15,6 @@ import androidx.compose.material.Shapes
 import androidx.compose.material.Typography
 import androidx.compose.ui.unit.dp
 import com.orange.ods.theme.OdsThemeConfigurationContract
-import com.orange.ods.theme.OrangeThemeName
 import com.orange.ods.theme.ThemeColors
 import com.orange.ods.theme.guideline.OdsDemoGuideline
 import com.orange.ods.theme.orange.guideline.OrangeGuideline
@@ -23,6 +22,10 @@ import kotlinx.parcelize.Parcelize
 
 @Parcelize
 class OrangeThemeConfiguration : OdsThemeConfigurationContract {
+
+    companion object {
+        const val OrangeThemeName = "Orange"
+    }
 
     override val name: String
         get() = OrangeThemeName

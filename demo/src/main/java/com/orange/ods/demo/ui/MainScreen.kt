@@ -44,7 +44,7 @@ import com.orange.ods.demo.ui.components.tabs.ScrollableTabRow
 import com.orange.ods.demo.ui.guidelines.addGuidelinesGraph
 import com.orange.ods.demo.ui.utilities.extension.isDarkModeEnabled
 import com.orange.ods.theme.OdsThemeConfigurationContract
-import com.orange.ods.theme.OrangeThemeName
+import com.orange.ods.theme.orange.OrangeThemeConfiguration
 import com.orange.ods.utilities.extension.orElse
 
 @ExperimentalMaterialApi
@@ -121,7 +121,7 @@ fun MainScreen(themeConfigurations: Set<OdsThemeConfigurationContract>) {
 
 private fun getCurrentThemeConfiguration(themeConfigurations: Set<OdsThemeConfigurationContract>): OdsThemeConfigurationContract {
     // If another theme than Orange is injected, select it otherwise take the Orange theme which is always present
-    return themeConfigurations.firstOrNull { it.name != OrangeThemeName }.orElse { themeConfigurations.first() }
+    return themeConfigurations.firstOrNull { it.name != OrangeThemeConfiguration.Companion.OrangeThemeName }.orElse { themeConfigurations.first() }
 }
 
 @Composable
