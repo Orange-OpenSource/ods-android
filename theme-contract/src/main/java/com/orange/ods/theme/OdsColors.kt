@@ -90,7 +90,7 @@ open class OdsColors(
         bottomNavigation ?: OdsBottomNavigationColors(
             barBackground = primarySurface,
             barContent = onPrimarySurface,
-            itemSelected = onPrimarySurface,
+            itemSelected = onPrimarySurface
         )
     )
         private set
@@ -98,14 +98,14 @@ open class OdsColors(
     var topAppBar by mutableStateOf(
         topAppBar ?: OdsTopAppBarColors(
             barBackground = primarySurface,
-            barContent = onPrimarySurface,
+            barContent = onPrimarySurface
         )
     )
         private set
 
     var switch by mutableStateOf(
         switch ?: OdsSwitchColors(
-            uncheckedThumb = surface,
+            uncheckedThumb = surface
         )
     )
         private set
