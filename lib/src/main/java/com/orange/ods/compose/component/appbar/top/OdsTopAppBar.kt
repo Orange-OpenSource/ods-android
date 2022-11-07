@@ -110,9 +110,11 @@ private fun PreviewOdsTopAppBar() = Preview {
             }
         },
         actions = {
-            IconButton(onClick = {}) {
-                Icon(painter = painterResource(id = android.R.drawable.ic_dialog_info), contentDescription = null, tint = OdsTheme.colors.topAppBar.barContent)
-            }
+            OdsTopAppBarActionButton(
+                onClick = {},
+                painter = painterResource(id = android.R.drawable.ic_dialog_info),
+                contentDescription = "Info"
+            )
         }
     )
 }
