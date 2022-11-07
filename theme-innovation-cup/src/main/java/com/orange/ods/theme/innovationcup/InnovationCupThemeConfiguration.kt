@@ -13,8 +13,8 @@ package com.orange.ods.theme.innovationcup
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.Shapes
 import androidx.compose.ui.unit.dp
+import com.orange.ods.theme.OdsThemeColors
 import com.orange.ods.theme.OdsThemeConfigurationContract
-import com.orange.ods.theme.ThemeColors
 import kotlinx.parcelize.Parcelize
 
 @Parcelize
@@ -23,8 +23,8 @@ class InnovationCupThemeConfiguration : OdsThemeConfigurationContract {
     override val name: String
         get() = "Innovation Cup"
 
-    override val colors: ThemeColors
-        get() = ThemeColors(InnovationCupLightColors, InnovationCupDarkColors)
+    override val colors: OdsThemeColors
+        get() = OdsThemeColors(InnovationCupLightColors, InnovationCupDarkColors)
 
     override val shapes: Shapes
         get() = Shapes().copy(

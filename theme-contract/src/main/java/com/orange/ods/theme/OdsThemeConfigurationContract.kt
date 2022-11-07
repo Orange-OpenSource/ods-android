@@ -23,7 +23,7 @@ interface OdsThemeConfigurationContract : Parcelable {
      * Customization of the colors
      * Colors are different in light and dark
      */
-    val colors: ThemeColors
+    val colors: OdsThemeColors
 
     /**
      * Customization of the typography if needed
@@ -48,4 +48,4 @@ interface OdsThemeConfigurationContract : Parcelable {
 
 }
 
-data class ThemeColors(val lightColors: OdsColors, val darkColors: OdsColors)
+data class OdsThemeColors(val lightColors: OdsColors, val darkColors: OdsColors)
