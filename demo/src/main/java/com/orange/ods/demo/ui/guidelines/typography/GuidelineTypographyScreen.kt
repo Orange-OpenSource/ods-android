@@ -12,6 +12,7 @@ package com.orange.ods.demo.ui.guidelines.typography
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.itemsIndexed
@@ -44,7 +45,7 @@ fun GuidelineTypographyScreen() {
     val guidelineTypography = LocalOdsDemoGuideline.current.guidelineTypography
 
     LazyColumn(
-        modifier = Modifier.padding(bottom = dimensionResource(id = R.dimen.screen_vertical_margin)),
+        contentPadding = PaddingValues(bottom = dimensionResource(id = R.dimen.screen_vertical_margin)),
         verticalArrangement = Arrangement.spacedBy(dimensionResource(id = R.dimen.spacing_m))
     ) {
         item {
