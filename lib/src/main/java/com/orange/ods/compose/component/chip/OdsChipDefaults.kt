@@ -10,13 +10,13 @@
 
 package com.orange.ods.compose.component.chip
 
+import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.material.ChipDefaults
 import androidx.compose.material.ContentAlpha
 import androidx.compose.material.ExperimentalMaterialApi
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.compositeOver
-import com.orange.ods.compose.theme.LocalDarkThemeEnabled
 import com.orange.ods.compose.theme.OdsTheme
 
 internal object OdsChipDefaults {
@@ -47,7 +47,7 @@ internal object OdsChipDefaults {
     ) = ChipDefaults.outlinedChipColors(
         backgroundColor = backgroundColor,
         contentColor = contentColor,
-        leadingIconContentColor = if (LocalDarkThemeEnabled.current) contentColor else contentColor.copy(alpha = ChipDefaults.LeadingIconOpacity)
+        leadingIconContentColor = if (isSystemInDarkTheme()) contentColor else contentColor.copy(alpha = ChipDefaults.LeadingIconOpacity)
     )
 
     @OptIn(ExperimentalMaterialApi::class)

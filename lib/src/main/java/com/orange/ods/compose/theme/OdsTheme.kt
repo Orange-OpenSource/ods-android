@@ -31,8 +31,6 @@ private val LocalDarkThemeColors = compositionLocalOf<OdsColors> { error("Compos
 
 private val LocalTypography = staticCompositionLocalOf { Typography() }
 
-val LocalDarkThemeEnabled = compositionLocalOf { false }
-
 object OdsTheme {
 
     val colors: OdsColors
@@ -81,7 +79,6 @@ fun OdsTheme(
 
     CompositionLocalProvider(
         LocalRippleTheme provides OdsRippleTheme,
-        LocalDarkThemeEnabled provides darkThemeEnabled,
         LocalColors provides rememberedColors,
         LocalLightThemeColors provides themeConfiguration.colors.lightColors,
         LocalDarkThemeColors provides themeConfiguration.colors.darkColors,
