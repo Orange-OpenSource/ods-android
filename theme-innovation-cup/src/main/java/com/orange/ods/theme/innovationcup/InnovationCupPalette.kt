@@ -22,7 +22,7 @@ val SecondaryDark = Color(0xff808e95)
 
 val White = Color(0xffffffff)
 val Black = Color(0xff000000)
-val DarkGrey = Color(0xFF121212)
+val DarkGrey = Color(0xff121212)
 
 val Info = Color(0xff4170D8)
 val Yellow = Color(0xffffcc00)
