@@ -51,9 +51,15 @@ val OrangeLightColors = OdsColors(
         barContent = Black900
     ),
 
-    switch = OdsSwitchColors(uncheckedThumb = White100),
+    switch = OdsSwitchColors(
+        uncheckedThumb = White100
+    ),
 
-    tab = OdsTabColors(background = White100, selectedContent = Orange200, unselectedContent = Black900),
+    tab = OdsTabColors(
+        background = White100,
+        selectedContent = Orange200,
+        unselectedContent = Black900
+    ),
 
     isLight = true
 )
@@ -93,9 +99,15 @@ val OrangeDarkColors = OdsColors(
         barContent = White100
     ),
 
-    switch = OdsSwitchColors(uncheckedThumb = Grey400),
+    switch = OdsSwitchColors(
+        uncheckedThumb = Grey400
+    ),
 
-    tab = OdsTabColors(background = DarkSurfaceDefault, selectedContent = Orange100, unselectedContent = White100),
+    tab = OdsTabColors(
+        background = DarkSurfaceDefault,
+        selectedContent = Orange100,
+        unselectedContent = White100
+    ),
 
     isLight = false
 )
