@@ -10,7 +10,7 @@
 
 include(":lib", ":catalog", ":demo", ":component-processor")
 include(":theme-orange")
-include(":theme-innovationcup")
+include(":theme-innovation-cup")
 include(":theme-contract")
 
 rootProject.name = "Orange Design System Android"

@@ -44,7 +44,7 @@ You have the possibility to use the ODS library with another theme than the Oran
    ```groovy
      dependencies {
        // ...
-       implementation(project(":theme-innovationcup"))
+       implementation(project(":theme-innovation-cup"))
        // ...
      }
    ```
