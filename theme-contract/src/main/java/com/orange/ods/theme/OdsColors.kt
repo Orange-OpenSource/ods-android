@@ -45,7 +45,7 @@ open class OdsColors(
     private val onPrimarySurface = if (isLight) onPrimary else onSurface
 
     var isLight by mutableStateOf(isLight)
-        internal set
+        private set
 
     var primary by mutableStateOf(primary)
         private set
