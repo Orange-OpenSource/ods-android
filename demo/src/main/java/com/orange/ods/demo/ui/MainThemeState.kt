@@ -13,7 +13,9 @@ package com.orange.ods.demo.ui
 import androidx.compose.material.ExperimentalMaterialApi
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.MutableState
+import androidx.compose.runtime.getValue
 import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.runtime.staticCompositionLocalOf
 import com.google.accompanist.pager.ExperimentalPagerApi
 import com.orange.ods.theme.OdsThemeConfigurationContract
@@ -24,12 +26,11 @@ val LocalOdsDemoGuideline = staticCompositionLocalOf<OdsDemoGuideline> { error("
 
 interface MainThemeManager {
 
-    fun getAvailableThemeConfigurations(): List<OdsThemeConfigurationContract>
+    val themeConfigurations: List<OdsThemeConfigurationContract>
 
-    fun getCurrentThemeConfiguration(): OdsThemeConfigurationContract
-    fun setCurrentThemeConfiguration(themeConfiguration: OdsThemeConfigurationContract)
+    var currentThemeConfiguration: OdsThemeConfigurationContract
 
-    fun setDarkMode(enabled: Boolean)
+    var darkModeEnabled: Boolean
 
 }
 
@@ -48,25 +49,17 @@ fun rememberMainThemeState(
 @ExperimentalPagerApi
 @ExperimentalMaterialApi
 class MainThemeState(
-    private val themeConfigurations: List<OdsThemeConfigurationContract>,
-    private val currentThemeConfiguration: MutableState<OdsThemeConfigurationContract>,
-    val darkModeEnabled: MutableState<Boolean>
+    override val themeConfigurations: List<OdsThemeConfigurationContract>,
+    currentThemeConfiguration: MutableState<OdsThemeConfigurationContract>,
+    darkModeEnabled: MutableState<Boolean>
 ) : MainThemeManager {
 
     // ----------------------------------------------------------
     // Theme state source of truth
     // ----------------------------------------------------------
 
-    override fun getAvailableThemeConfigurations() = themeConfigurations
+    override var currentThemeConfiguration by currentThemeConfiguration
 
-    override fun getCurrentThemeConfiguration() = currentThemeConfiguration.value
-
-    override fun setCurrentThemeConfiguration(themeConfiguration: OdsThemeConfigurationContract) {
-        currentThemeConfiguration.value = themeConfiguration
-    }
-
-    override fun setDarkMode(enabled: Boolean) {
-        darkModeEnabled.value = enabled
-    }
+    override var darkModeEnabled by darkModeEnabled
 
 }

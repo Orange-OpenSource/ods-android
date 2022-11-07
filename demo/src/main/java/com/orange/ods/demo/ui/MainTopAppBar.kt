@@ -65,7 +65,7 @@ fun MainTopAppBar(
                     val contentDescriptionRes =
                         if (configuration.isDarkModeEnabled) R.string.theme_changer_icon_content_description_light else R.string.theme_changer_icon_content_description_dark
                     OdsTopAppBarActionItem(
-                        onClick = { mainThemeManager.setDarkMode(!configuration.isDarkModeEnabled) },
+                        onClick = { mainThemeManager.darkModeEnabled = !configuration.isDarkModeEnabled },
                         painter = painterResource(id = painterRes),
                         contentDescription = stringResource(id = contentDescriptionRes)
                     )
