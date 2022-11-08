@@ -60,7 +60,6 @@ fun ChipFilter() {
                 }
             }
         }
-
     }
 }
 
