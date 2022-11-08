@@ -43,20 +43,21 @@ class ChipCustomizationState(
     enum class ChipType {
         Input, Action, Choice, Filter;
 
-        fun getNameRes() = when (this) {
-            Input -> R.string.component_chip_type_input
-            Action -> R.string.component_chip_type_action
-            Choice -> R.string.component_chip_type_choice
-            Filter -> R.string.component_chip_type_filter
-        }
-
-        fun getDescriptionRes() = when (this) {
-            Input -> R.string.component_chip_type_input_description
-            Action -> R.string.component_chip_type_action_description
-            Choice -> R.string.component_chip_type_choice_description
-            Filter -> R.string.component_chip_type_filter_description
-
-        }
+        val nameRes: Int
+            get() = when (this) {
+                Input -> R.string.component_chip_type_input
+                Action -> R.string.component_chip_type_action
+                Choice -> R.string.component_chip_type_choice
+                Filter -> R.string.component_chip_type_filter
+            }
+        
+        val descriptionRes: Int
+            get() = when (this) {
+                Input -> R.string.component_chip_type_input_description
+                Action -> R.string.component_chip_type_action_description
+                Choice -> R.string.component_chip_type_choice_description
+                Filter -> R.string.component_chip_type_filter_description
+            }
     }
 
     enum class LeadingElement {

@@ -86,10 +86,10 @@ fun ChipTypeDemo(chipType: ChipType, content: @Composable () -> Unit) {
             .verticalScroll(rememberScrollState())
             .padding(horizontal = dimensionResource(id = R.dimen.screen_horizontal_margin))
     ) {
-        Subtitle(textRes = chipType.getNameRes())
+        Subtitle(textRes = chipType.nameRes)
         OdsTextBody2(
             modifier = Modifier.padding(top = dimensionResource(id = R.dimen.spacing_xs), bottom = dimensionResource(id = R.dimen.spacing_s)),
-            text = stringResource(id = chipType.getDescriptionRes())
+            text = stringResource(id = chipType.descriptionRes)
         )
         content()
     }
@@ -107,7 +107,7 @@ private fun Chip(chipCustomizationState: ChipCustomizationState) {
             OdsChoiceChipsFlowRow(selectedChip = choiceChipIndexSelected, outlinedChips = isOutlined) {
                 for (index in 1..4) {
                     OdsChoiceChip(
-                        text = "${stringResource(id = chipType.value.getNameRes())} $index",
+                        text = "${stringResource(id = chipType.value.nameRes)} $index",
                         value = index,
                         enabled = isEnabled
                     )
@@ -115,7 +115,7 @@ private fun Chip(chipCustomizationState: ChipCustomizationState) {
             }
         } else {
             OdsChip(
-                text = stringResource(id = R.string.component_chip_type, stringResource(id = chipType.value.getNameRes())),
+                text = stringResource(id = R.string.component_chip_type, stringResource(id = chipType.value.nameRes)),
                 onClick = { clickOnElement(context, chipLabel) },
                 outlined = outlinedChecked.value,
                 leadingIcon = if (isActionChip || hasLeadingIcon) painterResource(id = R.drawable.ic_heart) else null,
