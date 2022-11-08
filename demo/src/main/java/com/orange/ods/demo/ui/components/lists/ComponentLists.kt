@@ -41,6 +41,7 @@ import com.orange.ods.compose.component.list.divider
 import com.orange.ods.compose.component.list.iconType
 import com.orange.ods.compose.text.OdsTextCaption
 import com.orange.ods.demo.R
+import com.orange.ods.demo.ui.components.utilities.ComponentCountRow
 import com.orange.ods.demo.ui.components.utilities.ComponentCustomizationBottomSheetScaffold
 import com.orange.ods.demo.ui.components.utilities.clickOnElement
 import com.orange.ods.demo.ui.utilities.composable.Subtitle
@@ -61,16 +62,15 @@ fun ComponentLists() {
 @ExperimentalMaterialApi
 @Composable
 private fun ComponentListsBottomSheetContent(listItemCustomizationState: ListItemCustomizationState) {
-    Subtitle(textRes = R.string.component_list_item_size, withHorizontalPadding = true)
-    OdsChoiceChipsFlowRow(
-        selectedChip = listItemCustomizationState.selectedItemSize,
+    ComponentCountRow(
         modifier = Modifier.padding(horizontal = dimensionResource(id = R.dimen.screen_horizontal_margin)),
-        outlinedChips = true
-    ) {
-        OdsChoiceChip(textRes = R.string.component_list_item_size_single_line, value = ListItemCustomizationState.ItemSize.SingleLine)
-        OdsChoiceChip(textRes = R.string.component_list_item_size_two_line, value = ListItemCustomizationState.ItemSize.TwoLine)
-        OdsChoiceChip(textRes = R.string.component_list_item_size_three_line, value = ListItemCustomizationState.ItemSize.ThreeLine)
-    }
+        title = stringResource(id = R.string.component_list_item_size),
+        count = listItemCustomizationState.lineCount,
+        minusIconContentDescription = stringResource(id = R.string.component_list_item_remove_line),
+        plusIconContentDescription = stringResource(id = R.string.component_list_item_add_line),
+        minCount = ComponentListItem.MinLineCount,
+        maxCount = ComponentListItem.MaxLineCount
+    )
 
     Subtitle(textRes = R.string.component_list_leading, withHorizontalPadding = true)
     OdsChoiceChipsFlowRow(
@@ -116,7 +116,7 @@ private fun ComponentListsContent(listItemCustomizationState: ListItemCustomizat
                     .let { if (listItemCustomizationState.dividerEnabled.value) it.divider() else it },
                 text = stringResource(id = R.string.component_element_title),
                 secondaryText = listItemCustomizationState.secondaryTextResId?.let { stringResource(id = it) },
-                singleLineSecondaryText = listItemCustomizationState.selectedItemSize.value == ListItemCustomizationState.ItemSize.TwoLine,
+                singleLineSecondaryText = listItemCustomizationState.lineCount.value == 2,
                 icon = listItemCustomizationState.iconPainterResId?.let { { OdsListItemIcon(painter = painterResource(it)) } },
                 trailing = listItemCustomizationState.trailing
             )
@@ -136,10 +136,10 @@ private val ListItemCustomizationState.Trailing.textResId: Int
 
 @ExperimentalMaterialApi
 private val ListItemCustomizationState.secondaryTextResId: Int?
-    get() = when (selectedItemSize.value) {
-        ListItemCustomizationState.ItemSize.SingleLine -> null
-        ListItemCustomizationState.ItemSize.TwoLine -> R.string.component_element_subtitle
-        ListItemCustomizationState.ItemSize.ThreeLine -> R.string.component_element_lorem_ipsum
+    get() = when (lineCount.value) {
+        2 -> R.string.component_element_subtitle
+        3 -> R.string.component_element_lorem_ipsum
+        else -> null
     }
 
 @ExperimentalMaterialApi
