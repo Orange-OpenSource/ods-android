@@ -27,6 +27,6 @@ java {
 
 dependencies {
     implementation("com.android.tools.build:gradle:7.2.0")
-    implementation("org.jetbrains.kotlin:kotlin-gradle-plugin:1.6.21") //https://issuetracker.google.com/issues/176079157#comment14
+    implementation("org.jetbrains.kotlin:kotlin-gradle-plugin:1.6.21") // https://issuetracker.google.com/issues/176079157#comment14
     implementation("com.squareup:javapoet:1.13.0") // https://github.com/google/dagger/issues/3282
 }
