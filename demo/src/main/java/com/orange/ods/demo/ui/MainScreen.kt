@@ -121,7 +121,7 @@ fun MainScreen(themeConfigurations: Set<OdsThemeConfigurationContract>) {
 
 private fun getCurrentThemeConfiguration(themeConfigurations: Set<OdsThemeConfigurationContract>): OdsThemeConfigurationContract {
     // If another theme than Orange is injected, select it otherwise take the Orange theme which is always present
-    return themeConfigurations.firstOrNull { it.name != OrangeThemeConfiguration.Companion.OrangeThemeName }.orElse { themeConfigurations.first() }
+    return themeConfigurations.firstOrNull { it.name != OrangeThemeConfiguration.OrangeThemeName }.orElse { themeConfigurations.first() }
 }
 
 @Composable
