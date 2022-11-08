@@ -150,7 +150,7 @@
     <string name="component_chip_type_action">Action</string>
     <string name="component_chip_type_action_description">The user can initiate actions by tapping on a chip.</string>
     <string name="component_chip_type_filter">Filter chip</string>
-    <string name="component_chip_type_filter_description">In a search by tags us user can activated the chips upon will.</string>
+    <string name="component_chip_type_filter_description">In a search by tags user can activated the chips upon will.</string>
 
     <!-- Component Dialogs -->
     <string name="component_dialogs">Dialogs</string>
