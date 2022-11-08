@@ -8,7 +8,7 @@
  * /
  */
 
-package com.orange.ods.theme.orange
+package com.orange.ods.theme.innovationcup
 
 import com.orange.ods.theme.OdsThemeConfigurationContract
 import dagger.Module
@@ -17,12 +17,13 @@ import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
 import dagger.multibindings.IntoSet
 
+
 @Module
 @InstallIn(SingletonComponent::class)
-object OrangeThemeModule {
+object InnovationCupThemeModule {
 
     @Provides
     @IntoSet
-    fun provideOrangeThemeConfiguration(): OdsThemeConfigurationContract = OrangeThemeConfiguration()
-    
+    fun provideInnovationCupThemeConfiguration(): OdsThemeConfigurationContract = InnovationCupThemeConfiguration()
+
 }

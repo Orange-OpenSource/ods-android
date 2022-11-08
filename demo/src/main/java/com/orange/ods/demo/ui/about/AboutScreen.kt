@@ -12,6 +12,7 @@ package com.orange.ods.demo.ui.about
 
 import android.content.Context
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
@@ -22,17 +23,25 @@ import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.ExperimentalMaterialApi
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.window.Dialog
 import com.orange.ods.compose.component.list.OdsListItem
 import com.orange.ods.compose.text.OdsTextCaption
 import com.orange.ods.compose.text.OdsTextH4
+import com.orange.ods.compose.theme.OdsTheme
 import com.orange.ods.demo.R
+import com.orange.ods.demo.ui.LocalMainThemeManager
 import com.orange.ods.demo.ui.LocalMainTopAppBarManager
+import com.orange.ods.demo.ui.utilities.composable.RadioButtonListItem
 import com.orange.ods.demo.ui.utilities.extension.versionCode
 import com.orange.ods.utilities.extension.orElse
 
@@ -40,6 +49,10 @@ import com.orange.ods.utilities.extension.orElse
 @ExperimentalMaterialApi
 fun AboutScreen(onAboutItemClick: (Long) -> Unit) {
     LocalMainTopAppBarManager.current.updateTopAppBarTitle(R.string.navigation_item_about)
+
+    val mainThemeManager = LocalMainThemeManager.current
+    var dialogVisible by remember { mutableStateOf(false) }
+
     Column(
         modifier = Modifier
             .verticalScroll(rememberScrollState())
@@ -67,12 +80,34 @@ fun AboutScreen(onAboutItemClick: (Long) -> Unit) {
 
         Spacer(modifier = Modifier.height(dimensionResource(id = R.dimen.spacing_m)))
 
+        OdsListItem(text = stringResource(id = R.string.about_menu_theme), modifier = Modifier.clickable {
+            dialogVisible = true
+        })
         for (aboutItem in aboutItems) {
             OdsListItem(text = stringResource(id = aboutItem.titleRes), modifier = Modifier.clickable {
                 onAboutItemClick(aboutItem.id)
             })
         }
     }
+
+
+    if (dialogVisible) {
+        val selectedRadio = remember { mutableStateOf(mainThemeManager.currentThemeConfiguration.name) }
+
+        Dialog(onDismissRequest = { dialogVisible = false }) {
+            Column(modifier = Modifier.background(OdsTheme.colors.surface)) {
+                mainThemeManager.themeConfigurations.forEach { themeConfiguration ->
+                    RadioButtonListItem(
+                        label = themeConfiguration.name,
+                        selectedRadio = selectedRadio,
+                        currentRadio = themeConfiguration.name,
+                        onClick = { mainThemeManager.currentThemeConfiguration = themeConfiguration }
+                    )
+                }
+            }
+        }
+    }
+
 }
 
 private fun getVersion(context: Context): String {

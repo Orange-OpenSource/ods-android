@@ -15,7 +15,8 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.graphics.Color
 
-class OdsColors(
+open class OdsColors(
+    isLight: Boolean,
     primary: Color,
     primaryVariant: Color,
     secondary: Color,
@@ -34,9 +35,18 @@ class OdsColors(
     onFunctionalNegative: Color,
     functionalInfo: Color,
     functionalAlert: Color,
-    switchUncheckedThumb: Color,
-    isLight: Boolean
+    systemBarsBackground: Color,
+    bottomNavigation: OdsBottomNavigationColors? = null,
+    topAppBar: OdsTopAppBarColors? = null,
+    switch: OdsSwitchColors? = null,
+    tab: OdsTabColors? = null
 ) {
+    private val primarySurface = if (isLight) primary else surface
+    private val onPrimarySurface = if (isLight) onPrimary else onSurface
+
+    var isLight by mutableStateOf(isLight)
+        private set
+
     var primary by mutableStateOf(primary)
         private set
     var primaryVariant by mutableStateOf(primaryVariant)
@@ -73,15 +83,46 @@ class OdsColors(
         private set
     var functionalAlert by mutableStateOf(functionalAlert)
         private set
-    var switchUncheckedThumb by mutableStateOf(switchUncheckedThumb)
+    var systemBarsBackground by mutableStateOf(systemBarsBackground)
         private set
-    var isLight by mutableStateOf(isLight)
-        internal set
+
+    var bottomNavigation by mutableStateOf(
+        bottomNavigation ?: OdsBottomNavigationColors(
+            barBackground = primarySurface,
+            barContent = onPrimarySurface,
+            itemSelected = onPrimarySurface
+        )
+    )
+        private set
+
+    var topAppBar by mutableStateOf(
+        topAppBar ?: OdsTopAppBarColors(
+            barBackground = primarySurface,
+            barContent = onPrimarySurface
+        )
+    )
+        private set
+
+    var switch by mutableStateOf(
+        switch ?: OdsSwitchColors(
+            uncheckedThumb = surface
+        )
+    )
+        private set
+
+    var tab by mutableStateOf(
+        tab ?: OdsTabColors(
+            background = primarySurface,
+            selectedContent = onPrimarySurface
+        )
+    )
+        private set
 
     /**
      * Returns a copy of this Colors, optionally overriding some of the values.
      */
     fun copy(
+        isLight: Boolean = this.isLight,
         primary: Color = this.primary,
         primaryVariant: Color = this.primaryVariant,
         secondary: Color = this.secondary,
@@ -100,9 +141,14 @@ class OdsColors(
         onFunctionalNegative: Color = this.onFunctionalNegative,
         functionalInfo: Color = this.functionalInfo,
         functionalAlert: Color = this.functionalAlert,
-        switchUncheckedThumb: Color = this.switchUncheckedThumb,
-        isLight: Boolean = this.isLight
+        systemBarsBackground: Color = this.systemBarsBackground,
+
+        bottomNavigation: OdsBottomNavigationColors = this.bottomNavigation,
+        topAppBar: OdsTopAppBarColors = this.topAppBar,
+        switch: OdsSwitchColors = this.switch,
+        tab: OdsTabColors = this.tab
     ): OdsColors = OdsColors(
+        isLight,
         primary,
         primaryVariant,
         secondary,
@@ -121,8 +167,11 @@ class OdsColors(
         onFunctionalNegative,
         functionalInfo,
         functionalAlert,
-        switchUncheckedThumb,
-        isLight
+        systemBarsBackground,
+        bottomNavigation,
+        topAppBar,
+        switch,
+        tab
     )
 
     fun updateColorsFrom(other: OdsColors) {
@@ -144,6 +193,14 @@ class OdsColors(
         onFunctionalNegative = other.onFunctionalNegative
         functionalInfo = other.functionalInfo
         functionalAlert = other.functionalAlert
-        switchUncheckedThumb = other.switchUncheckedThumb
+        systemBarsBackground = other.systemBarsBackground
+
+        bottomNavigation = other.bottomNavigation
+        topAppBar = other.topAppBar
+
+        switch = other.switch
+
+        tab = other.tab
     }
+
 }

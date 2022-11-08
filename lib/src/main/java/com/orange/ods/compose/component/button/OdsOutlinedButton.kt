@@ -71,7 +71,7 @@ fun OdsOutlinedButton(
             enabled = enabled,
             modifier = modifier,
             interactionSource = remember { MutableInteractionSource() },
-            shape = odsButtonShape,
+            shape = OdsTheme.shapes.small,
             border = BorderStroke(
                 ButtonDefaults.OutlinedBorderSize,
                 if (enabled) {
@@ -101,8 +101,7 @@ private fun OdsColors.buttonOutlinedColor(displaySurface: OdsDisplaySurface) =
     }
 
 @Composable
-private fun OdsColors.buttonOutlinedDisabledColor(displaySurface: OdsDisplaySurface) =
-    buttonOutlinedColor(displaySurface).copy(alpha = ContentAlpha.disabled)
+private fun OdsColors.buttonOutlinedDisabledColor(displaySurface: OdsDisplaySurface) = buttonOutlinedColor(displaySurface).copy(alpha = ContentAlpha.disabled)
 
 @Composable
 private fun PreviewOdsOutlinedButton() = Preview {

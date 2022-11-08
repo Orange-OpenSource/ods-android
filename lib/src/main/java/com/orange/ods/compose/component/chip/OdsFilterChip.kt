@@ -21,6 +21,7 @@ import androidx.compose.material.FilterChip
 import androidx.compose.material.Icon
 import androidx.compose.material.LocalContentAlpha
 import androidx.compose.material.LocalContentColor
+import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
@@ -41,7 +42,6 @@ import com.orange.ods.compose.component.utilities.BasicPreviewParameterProvider
 import com.orange.ods.compose.component.utilities.DisabledInteractionSource
 import com.orange.ods.compose.component.utilities.OdsImageCircleShape
 import com.orange.ods.compose.component.utilities.Preview
-import com.orange.ods.compose.text.OdsTextBody2
 import com.orange.ods.compose.theme.OdsTheme
 
 /**
@@ -85,6 +85,7 @@ fun OdsFilterChip(
         } else null,
         enabled = enabled,
         interactionSource = if (enabled) remember { MutableInteractionSource() } else remember { DisabledInteractionSource() },
+        colors = OdsChipDefaults.filterChipColors(),
         leadingIcon = when {
             leadingAvatar != null -> {
                 {
@@ -113,7 +114,10 @@ fun OdsFilterChip(
             else -> null
         }
     ) {
-        OdsTextBody2(text = text)
+        Text(
+            text = text,
+            style = OdsTheme.typography.body2
+        ) // Don't use an `OdsText` here cause the color of the chip content is already managed by `OdsChipDefaults.filterChipColors()`
     }
 }
 

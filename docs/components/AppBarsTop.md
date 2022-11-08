@@ -79,20 +79,14 @@ OdsTopAppBar(
         // Do something
     },
     actions = {
-        IconButton(onClick = {}) {
-            Icon(
-                painter = painterResource(id = R.drawable.ic_share),
-                contentDescription = "content description"
-            )
-        }
+        OdsTopAppBarActionButton(
+            onClick = { },
+            painter = painterResource(id = R.drawable.ic_share),
+            contentDescription = "content description"
+        ) // Each action should be an `OdsTopAppBarActionButton`. They are displayed in a `Row`, so icons inside will be placed horizontally.
     }
 )
 ```
-
-- title - The title to be displayed in the center of the `OdsTopAppBar`.
-- navigationIcon (optional) - The navigation icon displayed at the start of the `OdsTopAppBar`. This should be an `Icon`.
-- onNavigationIconClick (optional) - The action executed on navigation icon click.
-- actions (optional) - The actions displayed at the end of the `OdsTopAppBar`. This should typically be `IconButtons`. The default layout here is a `Row`, so icons inside will be placed horizontally.
 
 Note: By default, the `OdsTopAppBar` is elevated but you can set `elevated` parameter to `false` if you don't want any shadow below it (for example if you want to display tabs below).
 

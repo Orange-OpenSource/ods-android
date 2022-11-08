@@ -23,6 +23,7 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.dimensionResource
+import androidx.compose.ui.res.stringResource
 import com.orange.ods.demo.R
 import com.orange.ods.demo.ui.components.utilities.ComponentCustomizationBottomSheetScaffold
 import com.orange.ods.demo.ui.utilities.composable.RadioButtonListItem
@@ -46,21 +47,21 @@ fun ComponentRadioButtons() {
             val selectedRadio = remember { mutableStateOf(R.string.component_element_item1) }
             Column(modifier = Modifier.selectableGroup()) {
                 RadioButtonListItem(
-                    labelRes = R.string.component_element_item1,
+                    label = stringResource(id = R.string.component_element_item1),
                     selectedRadio = selectedRadio,
                     currentRadio = R.string.component_element_item1,
                     enabled = enabled.value
                 )
 
                 RadioButtonListItem(
-                    labelRes = R.string.component_element_item2,
+                    label = stringResource(id = R.string.component_element_item2),
                     selectedRadio = selectedRadio,
                     currentRadio = R.string.component_element_item2,
                     enabled = enabled.value
                 )
 
                 RadioButtonListItem(
-                    labelRes = R.string.component_element_item3,
+                    label = stringResource(id = R.string.component_element_item3),
                     selectedRadio = selectedRadio,
                     currentRadio = R.string.component_element_item3,
                     enabled = enabled.value

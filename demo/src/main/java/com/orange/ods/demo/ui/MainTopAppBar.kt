@@ -24,12 +24,13 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
+import androidx.compose.ui.graphics.vector.rememberVectorPainter
 import androidx.compose.ui.platform.LocalConfiguration
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import com.orange.ods.compose.component.appbar.top.OdsTopAppBar
-import com.orange.ods.compose.component.button.OdsIconButton
+import com.orange.ods.compose.component.appbar.top.OdsTopAppBarActionButton
 import com.orange.ods.compose.text.OdsTextBody1
 import com.orange.ods.demo.R
 import com.orange.ods.demo.ui.components.utilities.clickOnElement
@@ -40,8 +41,7 @@ fun MainTopAppBar(
     titleRes: Int,
     shouldShowUpNavigationIcon: Boolean,
     state: MainTopAppBarState,
-    upPress: () -> Unit,
-    updateTheme: (Boolean) -> Unit
+    upPress: () -> Unit
 ) {
     OdsTopAppBar(
         title = stringResource(id = titleRes),
@@ -59,17 +59,19 @@ fun MainTopAppBar(
             repeat(state.actionCount.value) { index ->
                 if (index == 0) {
                     val configuration = LocalConfiguration.current
+                    val mainThemeManager = LocalMainThemeManager.current
+
                     val painterRes = if (configuration.isDarkModeEnabled) R.drawable.ic_ui_light_mode else R.drawable.ic_ui_dark_mode
                     val contentDescriptionRes =
                         if (configuration.isDarkModeEnabled) R.string.theme_changer_icon_content_description_light else R.string.theme_changer_icon_content_description_dark
-                    OdsIconButton(
-                        onClick = { updateTheme(!configuration.isDarkModeEnabled) },
+                    OdsTopAppBarActionButton(
+                        onClick = { mainThemeManager.darkModeEnabled = !configuration.isDarkModeEnabled },
                         painter = painterResource(id = painterRes),
                         contentDescription = stringResource(id = contentDescriptionRes)
                     )
                 } else {
                     val action = topAppBarDemoActions[index - 1]
-                    OdsIconButton(
+                    OdsTopAppBarActionButton(
                         onClick = { clickOnElement(context, context.getString(action.titleRes)) },
                         painter = painterResource(id = action.iconRes),
                         contentDescription = stringResource(id = action.titleRes)
@@ -90,9 +92,9 @@ private fun OverflowMenu() {
     val context = LocalContext.current
 
     Box {
-        OdsIconButton(
+        OdsTopAppBarActionButton(
             onClick = { showMenu = !showMenu },
-            imageVector = Icons.Filled.MoreVert,
+            painter = rememberVectorPainter(image = Icons.Filled.MoreVert),
             contentDescription = stringResource(id = R.string.component_app_bars_top_element_overflow_menu)
         )
         DropdownMenu(

@@ -16,17 +16,19 @@ import androidx.compose.foundation.layout.RowScope
 import androidx.compose.material.AppBarDefaults
 import androidx.compose.material.Icon
 import androidx.compose.material.IconButton
+import androidx.compose.material.Text
 import androidx.compose.material.TopAppBar
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ArrowBack
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.painter.Painter
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.orange.ods.compose.component.OdsComponentApi
+import com.orange.ods.compose.component.button.OdsIconButton
 import com.orange.ods.compose.component.utilities.Preview
-import com.orange.ods.compose.text.OdsTextH6
 import com.orange.ods.compose.theme.OdsTheme
 
 /**
@@ -43,8 +45,8 @@ import com.orange.ods.compose.theme.OdsTheme
  * @param title The title to be displayed in the center of the TopAppBar
  * @param navigationIcon Optional navigation icon displayed at the start of the TopAppBar. This should be an [Icon].
  * @param onNavigationIconClick Optional action executed on the navigation icon click.
- * @param actions The actions displayed at the end of the TopAppBar. This should typically be
- * [IconButton]s. The default layout here is a [Row], so icons inside will be placed horizontally.
+ * @param actions The actions displayed at the end of the TopAppBar. This should be [OdsTopAppBarActionButton]s.
+ * The default layout here is a [Row], so icons inside will be placed horizontally.
  * @param elevated True to set an elevation to the top app bar (shadow displayed), false otherwise.
  */
 @Composable
@@ -58,7 +60,7 @@ fun OdsTopAppBar(
     elevated: Boolean = true
 ) {
     TopAppBar(
-        title = { title?.let { OdsTextH6(text = title) } },
+        title = { title?.let { Text(text = title, style = OdsTheme.typography.h6) } },
         modifier = modifier,
         navigationIcon = navigationIcon?.let { navIcon ->
             {
@@ -72,11 +74,31 @@ fun OdsTopAppBar(
             }
         },
         actions = actions,
-        backgroundColor = OdsTheme.colors.surface,
-        contentColor = OdsTheme.colors.onSurface,
+        backgroundColor = OdsTheme.colors.topAppBar.barBackground,
+        contentColor = OdsTheme.colors.topAppBar.barContent,
         elevation = if (elevated) AppBarDefaults.TopAppBarElevation else 0.dp
     )
 }
+
+@Composable
+@OdsComponentApi
+fun OdsTopAppBarActionButton(
+    onClick: () -> Unit,
+    painter: Painter,
+    contentDescription: String,
+    modifier: Modifier = Modifier,
+    enabled: Boolean = true
+) {
+    OdsIconButton(
+        onClick = onClick,
+        painter = painter,
+        contentDescription = contentDescription,
+        modifier = modifier,
+        enabled = enabled,
+        tint = OdsTheme.colors.topAppBar.barContent
+    )
+}
+
 
 @Composable
 private fun PreviewOdsTopAppBar() = Preview {
@@ -84,13 +106,15 @@ private fun PreviewOdsTopAppBar() = Preview {
         title = "Title",
         navigationIcon = {
             IconButton(onClick = {}) {
-                Icon(imageVector = Icons.Filled.ArrowBack, contentDescription = null, tint = OdsTheme.colors.onSurface)
+                Icon(imageVector = Icons.Filled.ArrowBack, contentDescription = null, tint = OdsTheme.colors.topAppBar.barContent)
             }
         },
         actions = {
-            IconButton(onClick = {}) {
-                Icon(painter = painterResource(id = android.R.drawable.ic_dialog_info), contentDescription = null, tint = OdsTheme.colors.onSurface)
-            }
+            OdsTopAppBarActionButton(
+                onClick = {},
+                painter = painterResource(id = android.R.drawable.ic_dialog_info),
+                contentDescription = "Info"
+            )
         }
     )
 }

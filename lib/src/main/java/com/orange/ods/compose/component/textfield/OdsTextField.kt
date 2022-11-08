@@ -211,7 +211,7 @@ internal fun OdsColors.trailingTextColor(isValueEmpty: Boolean, isTextFieldEnabl
     }
 
 internal object OdsTextFieldDefaults {
-
+    
     @Composable
     fun colors() = TextFieldDefaults.textFieldColors(
         textColor = OdsTheme.colors.onSurface,

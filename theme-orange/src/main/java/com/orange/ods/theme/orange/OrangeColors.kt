@@ -10,7 +10,11 @@
 
 package com.orange.ods.theme.orange
 
+import com.orange.ods.theme.OdsBottomNavigationColors
 import com.orange.ods.theme.OdsColors
+import com.orange.ods.theme.OdsSwitchColors
+import com.orange.ods.theme.OdsTabColors
+import com.orange.ods.theme.OdsTopAppBarColors
 
 val OrangeLightColors = OdsColors(
     primary = Orange200,
@@ -33,7 +37,29 @@ val OrangeLightColors = OdsColors(
     functionalInfo = Info200,
     functionalAlert = Alert200,
 
-    switchUncheckedThumb = White100,
+    systemBarsBackground = White100,
+
+    bottomNavigation = OdsBottomNavigationColors(
+        barBackground = White100,
+        barContent = Black900,
+        itemSelected = Orange200,
+        itemUnselected = Black900
+    ),
+
+    topAppBar = OdsTopAppBarColors(
+        barBackground = White100,
+        barContent = Black900
+    ),
+
+    switch = OdsSwitchColors(
+        uncheckedThumb = White100
+    ),
+
+    tab = OdsTabColors(
+        background = White100,
+        selectedContent = Orange200,
+        unselectedContent = Black900
+    ),
 
     isLight = true
 )
@@ -59,7 +85,29 @@ val OrangeDarkColors = OdsColors(
     functionalInfo = Info100,
     functionalAlert = Alert100,
 
-    switchUncheckedThumb = Grey400,
+    systemBarsBackground = Black900,
+
+    bottomNavigation = OdsBottomNavigationColors(
+        barBackground = Black900,
+        barContent = White100,
+        itemSelected = Orange200,
+        itemUnselected = White100
+    ),
+
+    topAppBar = OdsTopAppBarColors(
+        barBackground = DarkSurfaceDefault,
+        barContent = White100
+    ),
+
+    switch = OdsSwitchColors(
+        uncheckedThumb = Grey400
+    ),
+
+    tab = OdsTabColors(
+        background = DarkSurfaceDefault,
+        selectedContent = Orange100,
+        unselectedContent = White100
+    ),
 
     isLight = false
 )

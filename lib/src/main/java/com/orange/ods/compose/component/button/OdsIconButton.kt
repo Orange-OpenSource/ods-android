@@ -15,6 +15,7 @@ import androidx.compose.material.Icon
 import androidx.compose.material.IconButton
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.painter.Painter
 import androidx.compose.ui.graphics.vector.ImageVector
 import com.orange.ods.compose.component.OdsComponentApi
@@ -33,7 +34,8 @@ import com.orange.ods.compose.theme.OdsTheme
  * @param contentDescription the content description associated to this OdsIconButton.
  * @param modifier optional [Modifier] for this IconButton
  * @param enabled whether or not this OdsIconButton will handle input events and appear enabled for
- * semantics purposes
+ * semantics purposes, true by default
+ * @param tint the icon tint, onSurface by default
  */
 @Composable
 @OdsComponentApi
@@ -43,9 +45,10 @@ fun OdsIconButton(
     contentDescription: String,
     modifier: Modifier = Modifier,
     enabled: Boolean = true,
+    tint: Color = OdsTheme.colors.onSurface
 ) {
     IconButton(onClick = onClick, modifier = modifier, enabled = enabled) {
-        Icon(painter = painter, contentDescription = contentDescription, tint = getIconTint(enabled = enabled))
+        Icon(painter = painter, contentDescription = contentDescription, tint = getIconColor(tint = tint, enabled = enabled))
     }
 }
 
@@ -62,7 +65,8 @@ fun OdsIconButton(
  * @param contentDescription the content description associated to this OdsIconButton.
  * @param modifier optional [Modifier] for this IconButton
  * @param enabled whether or not this OdsIconButton will handle input events and appear enabled for
- * semantics purposes
+ * semantics purposes, true by default
+ * @param tint the icon tint, onSurface by default
  */
 @Composable
 @OdsComponentApi
@@ -72,11 +76,12 @@ fun OdsIconButton(
     contentDescription: String,
     modifier: Modifier = Modifier,
     enabled: Boolean = true,
+    tint: Color = OdsTheme.colors.onSurface
 ) {
     IconButton(onClick = onClick, modifier = modifier, enabled = enabled) {
-        Icon(imageVector = imageVector, contentDescription = contentDescription, tint = getIconTint(enabled = enabled))
+        Icon(imageVector = imageVector, contentDescription = contentDescription, tint = getIconColor(tint = tint, enabled = enabled))
     }
 }
 
 @Composable
-private fun getIconTint(enabled: Boolean) = if (enabled) OdsTheme.colors.onSurface else OdsTheme.colors.onSurface.copy(alpha = ContentAlpha.disabled)
+private fun getIconColor(tint: Color, enabled: Boolean) = if (enabled) tint else tint.copy(alpha = ContentAlpha.disabled)

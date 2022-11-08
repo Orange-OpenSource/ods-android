@@ -28,7 +28,6 @@ import androidx.compose.runtime.SideEffect
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalConfiguration
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.navigation.NavBackStackEntry
@@ -45,32 +44,38 @@ import com.orange.ods.demo.ui.components.tabs.ScrollableTabRow
 import com.orange.ods.demo.ui.guidelines.addGuidelinesGraph
 import com.orange.ods.demo.ui.utilities.extension.isDarkModeEnabled
 import com.orange.ods.theme.OdsThemeConfigurationContract
+import com.orange.ods.theme.orange.OrangeThemeConfiguration
+import com.orange.ods.utilities.extension.orElse
 
 @ExperimentalMaterialApi
 @ExperimentalPagerApi
 @Preview(showBackground = true, uiMode = UI_MODE_NIGHT_YES)
 @Preview(showBackground = true)
 @Composable
-fun MainScreen(odsThemeConfigurations: Set<OdsThemeConfigurationContract>) {
+fun MainScreen(themeConfigurations: Set<OdsThemeConfigurationContract>) {
     val isSystemInDarkTheme = isSystemInDarkTheme()
     val mainState = rememberMainState(
-        currentThemeConfiguration = rememberSaveable { mutableStateOf(odsThemeConfigurations.first()) },
-        darkModeEnabled = rememberSaveable { mutableStateOf(isSystemInDarkTheme) }
+        themeState = rememberMainThemeState(
+            currentThemeConfiguration = rememberSaveable { mutableStateOf(getCurrentThemeConfiguration(themeConfigurations)) },
+            darkModeEnabled = rememberSaveable { mutableStateOf(isSystemInDarkTheme) },
+            themeConfigurations = themeConfigurations.toList()
+        )
     )
 
     // Change isSystemInDarkTheme() value to make switching theme working with custom color
     val configuration = LocalConfiguration.current.apply {
-        isDarkModeEnabled = mainState.darkModeEnabled.value
+        isDarkModeEnabled = mainState.themeState.darkModeEnabled
     }
 
     CompositionLocalProvider(
         LocalConfiguration provides configuration,
         LocalMainTopAppBarManager provides mainState.topAppBarState,
         LocalMainTabsManager provides mainState.tabsState,
-        LocalOdsDemoGuideline provides mainState.currentThemeConfiguration.value.demoGuideline
+        LocalMainThemeManager provides mainState.themeState,
+        LocalOdsDemoGuideline provides mainState.themeState.currentThemeConfiguration.demoGuideline,
     ) {
         OdsTheme(
-            themeConfiguration = mainState.currentThemeConfiguration.value,
+            themeConfiguration = mainState.themeState.currentThemeConfiguration,
             darkThemeEnabled = configuration.isDarkModeEnabled
         ) {
             Scaffold(
@@ -78,13 +83,12 @@ fun MainScreen(odsThemeConfigurations: Set<OdsThemeConfigurationContract>) {
                 topBar = {
                     Surface(elevation = AppBarDefaults.TopAppBarElevation) {
                         Column {
-                            SystemBarsColorSideEffect(OdsTheme.colors.background)
+                            SystemBarsColorSideEffect()
                             MainTopAppBar(
                                 titleRes = mainState.topAppBarState.titleRes.value,
                                 shouldShowUpNavigationIcon = !mainState.shouldShowBottomBar,
                                 state = mainState.topAppBarState,
-                                upPress = mainState::upPress,
-                                updateTheme = mainState::updateTheme
+                                upPress = mainState::upPress
                             )
                             // Display tabs in the top bar if needed
                             MainTabs(mainTabsState = mainState.tabsState)
@@ -115,12 +119,18 @@ fun MainScreen(odsThemeConfigurations: Set<OdsThemeConfigurationContract>) {
     }
 }
 
+private fun getCurrentThemeConfiguration(themeConfigurations: Set<OdsThemeConfigurationContract>): OdsThemeConfigurationContract {
+    // If another theme than Orange is injected, select it otherwise take the Orange theme which is always present
+    return themeConfigurations.firstOrNull { it.name != OrangeThemeConfiguration.OrangeThemeName }.orElse { themeConfigurations.first() }
+}
+
 @Composable
-private fun SystemBarsColorSideEffect(backgroundColor: Color) {
+private fun SystemBarsColorSideEffect() {
     val systemUiController = rememberSystemUiController()
+    val systemBarsBackground = OdsTheme.colors.systemBarsBackground
     SideEffect {
         systemUiController.setSystemBarsColor(
-            color = backgroundColor
+            color = systemBarsBackground
         )
     }
 }

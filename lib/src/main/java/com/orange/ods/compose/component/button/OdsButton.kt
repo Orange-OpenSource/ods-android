@@ -13,10 +13,13 @@ package com.orange.ods.compose.component.button
 import android.content.res.Configuration
 import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.isSystemInDarkTheme
+import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.size
 import androidx.compose.material.Button
 import androidx.compose.material.ButtonColors
 import androidx.compose.material.ButtonDefaults
 import androidx.compose.material.ContentAlpha
+import androidx.compose.material.Icon
 import androidx.compose.material.Text
 import androidx.compose.material.ripple.LocalRippleTheme
 import androidx.compose.material.ripple.RippleTheme
@@ -86,13 +89,28 @@ fun OdsButton(
             modifier = modifier,
             interactionSource = remember { MutableInteractionSource() },
             elevation = null,
-            shape = odsButtonShape,
+            shape = OdsTheme.shapes.small,
             colors = style.getColors(displaySurface = displaySurface)
         ) {
             icon?.let { ButtonIcon(it) }
             Text(text = text.uppercase(), style = OdsTheme.typography.button)
         }
     }
+}
+
+/**
+ * The icon displayed in every type of buttons
+ *
+ * @param painter Painter of the icon
+ */
+@Composable
+internal fun ButtonIcon(painter: Painter) {
+    Icon(
+        painter = painter,
+        contentDescription = null,
+        modifier = Modifier.size(ButtonDefaults.IconSize)
+    )
+    Spacer(Modifier.size(ButtonDefaults.IconSpacing))
 }
 
 @Composable
