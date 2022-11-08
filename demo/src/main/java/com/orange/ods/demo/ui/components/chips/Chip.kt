@@ -25,6 +25,7 @@ import androidx.compose.ui.res.stringResource
 import com.orange.ods.compose.component.chip.OdsChip
 import com.orange.ods.compose.component.chip.OdsChoiceChip
 import com.orange.ods.compose.component.chip.OdsChoiceChipsFlowRow
+import com.orange.ods.compose.text.OdsTextBody2
 import com.orange.ods.demo.R
 import com.orange.ods.demo.ui.components.chips.ChipCustomizationState.ChipType
 import com.orange.ods.demo.ui.components.chips.ChipCustomizationState.LeadingElement
@@ -71,18 +72,27 @@ fun Chip() {
             CheckboxListItem(labelRes = R.string.component_state_disabled, checked = chipCustomizationState.disabledChecked)
 
         }) {
-        Column(
-            modifier = Modifier
-                .verticalScroll(rememberScrollState())
-                .padding(
-                    horizontal = dimensionResource(id = R.dimen.screen_horizontal_margin),
-                    vertical = dimensionResource(id = R.dimen.screen_vertical_margin)
-                )
-        ) {
+        ChipTypeDemo(chipCustomizationState.chipType.value) {
             Chip(chipCustomizationState = chipCustomizationState)
         }
     }
 
+}
+
+@Composable
+fun ChipTypeDemo(chipType: ChipType, content: @Composable () -> Unit) {
+    Column(
+        modifier = Modifier
+            .verticalScroll(rememberScrollState())
+            .padding(horizontal = dimensionResource(id = R.dimen.screen_horizontal_margin))
+    ) {
+        Subtitle(textRes = chipType.nameRes)
+        OdsTextBody2(
+            modifier = Modifier.padding(top = dimensionResource(id = R.dimen.spacing_xs), bottom = dimensionResource(id = R.dimen.spacing_s)),
+            text = stringResource(id = chipType.descriptionRes)
+        )
+        content()
+    }
 }
 
 @ExperimentalMaterialApi
@@ -92,40 +102,29 @@ private fun Chip(chipCustomizationState: ChipCustomizationState) {
     val cancelCrossLabel = stringResource(id = R.string.component_element_cancel_cross)
     val chipLabel = stringResource(id = R.string.component_chip)
 
-    if (chipCustomizationState.isChoiceChip) {
-        OdsChoiceChipsFlowRow(selectedChip = chipCustomizationState.choiceChipIndexSelected, outlinedChips = chipCustomizationState.isOutlined) {
-            for (index in 1..4) {
-                OdsChoiceChip(
-                    text = "${getChipText(chipType = chipCustomizationState.chipType.value)} $index",
-                    value = index,
-                    enabled = chipCustomizationState.isEnabled
-                )
+    with(chipCustomizationState) {
+        if (isChoiceChip) {
+            OdsChoiceChipsFlowRow(selectedChip = choiceChipIndexSelected, outlinedChips = isOutlined) {
+                for (index in 1..4) {
+                    OdsChoiceChip(
+                        text = "${stringResource(id = chipType.value.nameRes)} $index",
+                        value = index,
+                        enabled = isEnabled
+                    )
+                }
             }
+        } else {
+            OdsChip(
+                text = stringResource(id = R.string.component_chip_type, stringResource(id = chipType.value.nameRes)),
+                onClick = { clickOnElement(context, chipLabel) },
+                outlined = outlinedChecked.value,
+                leadingIcon = if (isActionChip || hasLeadingIcon) painterResource(id = R.drawable.ic_heart) else null,
+                leadingAvatar = if (hasLeadingAvatar) painterResource(id = R.drawable.placeholder_small) else null,
+                enabled = !disabledChecked.value,
+                onCancel = if (isInputChip) {
+                    { clickOnElement(context, cancelCrossLabel) }
+                } else null
+            )
         }
-    } else {
-        OdsChip(
-            text = getChipText(chipType = chipCustomizationState.chipType.value),
-            onClick = { clickOnElement(context, chipLabel) },
-            outlined = chipCustomizationState.outlinedChecked.value,
-            leadingIcon = if (chipCustomizationState.isActionChip || chipCustomizationState.hasLeadingIcon) painterResource(id = R.drawable.ic_heart) else null,
-            leadingAvatar = if (chipCustomizationState.hasLeadingAvatar) painterResource(id = R.drawable.placeholder_small) else null,
-            enabled = !chipCustomizationState.disabledChecked.value,
-            onCancel = if (chipCustomizationState.isInputChip) {
-                { clickOnElement(context, cancelCrossLabel) }
-            } else null
-        )
     }
-
-
-}
-
-@Composable
-private fun getChipText(chipType: ChipType): String {
-    val chipTypeRes = when (chipType) {
-        ChipType.Input -> R.string.component_chip_type_input
-        ChipType.Action -> R.string.component_chip_type_action
-        ChipType.Choice -> R.string.component_chip_type_choice
-    }
-
-    return stringResource(id = R.string.component_chip_type, stringResource(id = chipTypeRes))
 }

@@ -10,11 +10,8 @@
 
 package com.orange.ods.demo.ui.components.chips
 
-import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.rememberScrollState
-import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.ExperimentalMaterialApi
 import androidx.compose.material.rememberBottomSheetScaffoldState
 import androidx.compose.runtime.Composable
@@ -36,7 +33,7 @@ import com.orange.ods.demo.ui.utilities.composable.Subtitle
 @ExperimentalMaterialApi
 @Composable
 fun ChipFilter() {
-    val chipCustomizationState = rememberChipCustomizationState()
+    val chipCustomizationState = rememberChipCustomizationState(chipType = rememberSaveable { mutableStateOf(ChipCustomizationState.ChipType.Filter) })
 
     ComponentCustomizationBottomSheetScaffold(
         bottomSheetScaffoldState = rememberBottomSheetScaffoldState(),
@@ -56,17 +53,10 @@ fun ChipFilter() {
             CheckboxListItem(labelRes = R.string.component_state_disabled, checked = chipCustomizationState.disabledChecked)
 
         }) {
-        Column(
-            modifier = Modifier
-                .verticalScroll(rememberScrollState())
-                .padding(
-                    horizontal = dimensionResource(id = R.dimen.screen_horizontal_margin),
-                    vertical = dimensionResource(id = R.dimen.screen_vertical_margin)
-                )
-        ) {
+        ChipTypeDemo(chipType = chipCustomizationState.chipType.value) {
             FlowRow(modifier = Modifier.fillMaxWidth(), mainAxisSpacing = dimensionResource(id = R.dimen.spacing_s)) {
                 for (index in 1..4) {
-                    FilterChip(index, chipCustomizationState)
+                    FilterChip(index = index, customizationState = chipCustomizationState)
                 }
             }
         }
@@ -78,7 +68,7 @@ fun ChipFilter() {
 private fun FilterChip(index: Int, customizationState: ChipCustomizationState) {
     val selected = rememberSaveable { mutableStateOf(false) }
     OdsFilterChip(
-        text = "${stringResource(id = R.string.component_chip_filter)} $index",
+        text = "${stringResource(id = R.string.component_chip_type_filter)} $index",
         leadingAvatar = if (customizationState.hasLeadingAvatar) painterResource(id = R.drawable.placeholder_small) else null,
         onClick = { selected.value = !selected.value },
         selected = selected.value,

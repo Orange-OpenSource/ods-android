@@ -15,6 +15,7 @@ import androidx.compose.runtime.MutableState
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.saveable.rememberSaveable
+import com.orange.ods.demo.R
 import com.orange.ods.demo.ui.components.chips.ChipCustomizationState.ChipType
 import com.orange.ods.demo.ui.components.chips.ChipCustomizationState.LeadingElement
 
@@ -40,7 +41,23 @@ class ChipCustomizationState(
 ) {
 
     enum class ChipType {
-        Input, Action, Choice
+        Input, Action, Choice, Filter;
+
+        val nameRes: Int
+            get() = when (this) {
+                Input -> R.string.component_chip_type_input
+                Action -> R.string.component_chip_type_action
+                Choice -> R.string.component_chip_type_choice
+                Filter -> R.string.component_chip_type_filter
+            }
+        
+        val descriptionRes: Int
+            get() = when (this) {
+                Input -> R.string.component_chip_type_input_description
+                Action -> R.string.component_chip_type_action_description
+                Choice -> R.string.component_chip_type_choice_description
+                Filter -> R.string.component_chip_type_filter_description
+            }
     }
 
     enum class LeadingElement {
@@ -67,7 +84,7 @@ class ChipCustomizationState(
 
     val isOutlined
         get() = outlinedChecked.value
-    
+
     fun resetLeadingElement() {
         leadingElement.value = LeadingElement.None
     }
