@@ -12,7 +12,7 @@ import com.orange.ods.gradle.Dependencies
 
 plugins {
     kotlin("jvm")
-    id("com.google.devtools.ksp").version(com.orange.ods.gradle.Versions.ksp)
+    id("com.google.devtools.ksp") version "1.6.21-1.0.6"
 }
 
 sourceSets.main {
