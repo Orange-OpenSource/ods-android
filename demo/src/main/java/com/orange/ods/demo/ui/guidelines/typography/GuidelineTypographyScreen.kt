@@ -15,7 +15,7 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
-import androidx.compose.foundation.lazy.items
+import androidx.compose.foundation.lazy.itemsIndexed
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
@@ -34,6 +34,7 @@ import com.orange.ods.compose.theme.OdsTheme
 import com.orange.ods.demo.R
 import com.orange.ods.demo.ui.LocalMainTopAppBarManager
 import com.orange.ods.demo.ui.LocalOdsDemoGuideline
+import com.orange.ods.demo.ui.utilities.composable.DetailScreenHeader
 import com.orange.ods.demo.ui.utilities.getStringName
 import com.orange.ods.theme.guideline.GuidelineTextStyle
 
@@ -43,22 +44,33 @@ fun GuidelineTypographyScreen() {
 
     val guidelineTypography = LocalOdsDemoGuideline.current.guidelineTypography
 
-    if (guidelineTypography.isEmpty()) {
-        OdsTextBody1(
-            modifier = Modifier.padding(
-                horizontal = dimensionResource(id = R.dimen.screen_horizontal_margin),
-                vertical = dimensionResource(id = R.dimen.screen_vertical_margin)
-            ),
-            text = stringResource(id = R.string.guideline_typography_no_typography_defined)
-        )
-    } else {
-        LazyColumn(
-            contentPadding = PaddingValues(horizontal = dimensionResource(id = R.dimen.spacing_m), vertical = dimensionResource(id = R.dimen.spacing_s)),
-            verticalArrangement = Arrangement.spacedBy(dimensionResource(id = R.dimen.spacing_m)),
-        ) {
-            items(guidelineTypography) { textStyle ->
+    LazyColumn(
+        contentPadding = PaddingValues(bottom = dimensionResource(id = R.dimen.screen_vertical_margin)),
+        verticalArrangement = Arrangement.spacedBy(dimensionResource(id = R.dimen.spacing_m))
+    ) {
+        item {
+            DetailScreenHeader(imageRes = R.drawable.il_typography, descriptionRes = R.string.guideline_typography_description)
+        }
+        if (guidelineTypography.isEmpty()) {
+            item {
+                OdsTextBody1(
+                    modifier = Modifier.padding(
+                        horizontal = dimensionResource(id = R.dimen.screen_horizontal_margin),
+                        vertical = dimensionResource(id = R.dimen.screen_vertical_margin)
+                    ),
+                    text = stringResource(id = R.string.guideline_typography_no_typography_defined)
+                )
+            }
+        } else {
+            itemsIndexed(guidelineTypography) { index, textStyle ->
                 TextStyleRow(textStyle)
-                OdsDivider(modifier = Modifier.padding(top = dimensionResource(id = R.dimen.spacing_m)))
+                if (index < guidelineTypography.lastIndex) {
+                    OdsDivider(
+                        modifier = Modifier
+                            .padding(top = dimensionResource(id = R.dimen.spacing_m))
+                            .padding(horizontal = dimensionResource(id = R.dimen.screen_horizontal_margin))
+                    )
+                }
             }
         }
     }
@@ -68,7 +80,9 @@ fun GuidelineTypographyScreen() {
 private fun TextStyleRow(guidelineTextStyle: GuidelineTextStyle) {
     val context = LocalContext.current
     val textColor = OdsTheme.colors.onBackground
-    Column(modifier = Modifier.semantics(mergeDescendants = true) {}) {
+    Column(modifier = Modifier
+        .padding(horizontal = dimensionResource(id = R.dimen.screen_horizontal_margin))
+        .semantics(mergeDescendants = true) {}) {
         Text(
             text = guidelineTextStyle.name,
             style = guidelineTextStyle.textStyle,

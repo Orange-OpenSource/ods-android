@@ -25,6 +25,7 @@
     <!-- Guidelines -->
     <string name="guideline_color">Colour</string>
     <string name="guideline_typography">Typography</string>
+    <string name="guideline_typography_description">You should use Roboto in your app, which is the Android system font. You should use the platform standard set of sizes.</string>
     <string name="guideline_spacing">Spacing</string>
 
     <!-- Guideline Colour -->

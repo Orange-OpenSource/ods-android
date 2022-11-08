@@ -34,7 +34,7 @@ import com.orange.ods.compose.component.list.iconType
 import com.orange.ods.compose.text.OdsTextSubtitle2
 import com.orange.ods.demo.R
 import com.orange.ods.demo.ui.LocalMainTopAppBarManager
-import com.orange.ods.demo.ui.components.utilities.ComponentHeader
+import com.orange.ods.demo.ui.utilities.composable.DetailScreenHeader
 
 @ExperimentalMaterialApi
 @Composable
@@ -54,10 +54,10 @@ fun ComponentDetailScreen(
                 .verticalScroll(rememberScrollState())
                 .padding(bottom = dimensionResource(id = R.dimen.screen_vertical_margin))
         ) {
-            ComponentHeader(
+            DetailScreenHeader(
                 imageRes = component.imageRes,
                 imageAlignment = component.imageAlignment,
-                description = component.descriptionRes
+                descriptionRes = component.descriptionRes
             )
             Column(
                 modifier = Modifier.padding(top = dimensionResource(id = R.dimen.spacing_m))

@@ -8,7 +8,7 @@
  * /
  */
 
-package com.orange.ods.demo.ui.components.utilities
+package com.orange.ods.demo.ui.utilities.composable
 
 import androidx.annotation.DrawableRes
 import androidx.annotation.StringRes
@@ -31,10 +31,10 @@ import com.orange.ods.demo.R
 import com.orange.ods.demo.ui.components.Component
 
 @Composable
-fun ComponentHeader(
+fun DetailScreenHeader(
     @DrawableRes imageRes: Int,
     imageAlignment: Alignment = Alignment.Center,
-    @StringRes description: Int
+    @StringRes descriptionRes: Int
 ) {
     Image(
         painter = painterResource(id = imageRes),
@@ -46,21 +46,21 @@ fun ComponentHeader(
         contentDescription = null,
         alignment = imageAlignment
     )
-    ComponentDescription(
+    DetailScreenDescription(
         modifier = Modifier.padding(
             horizontal = dimensionResource(id = R.dimen.screen_horizontal_margin)
         ),
-        description = description
+        descriptionRes = descriptionRes
     )
 }
 
 @Composable
-private fun ComponentDescription(
+private fun DetailScreenDescription(
     modifier: Modifier = Modifier,
-    @StringRes description: Int
+    @StringRes descriptionRes: Int
 ) {
     OdsTextBody1(
-        text = stringResource(description),
+        text = stringResource(descriptionRes),
         modifier = modifier.padding(
             top = dimensionResource(id = R.dimen.spacing_m)
         )

@@ -32,8 +32,8 @@ import com.orange.ods.compose.text.OdsTextCaption
 import com.orange.ods.compose.text.OdsTextSubtitle1
 import com.orange.ods.demo.R
 import com.orange.ods.demo.ui.LocalMainTopAppBarManager
-import com.orange.ods.demo.ui.components.utilities.ComponentHeader
 import com.orange.ods.demo.ui.guidelines.Guideline
+import com.orange.ods.demo.ui.utilities.composable.DetailScreenHeader
 import java.text.DecimalFormat
 import java.text.DecimalFormatSymbols
 import java.util.*
@@ -47,10 +47,10 @@ fun GuidelineSpacingScreen() {
 
     LazyColumn(contentPadding = PaddingValues(bottom = dimensionResource(id = R.dimen.spacing_m))) {
         item {
-            ComponentHeader(
+            DetailScreenHeader(
                 imageRes = R.drawable.il_spacing,
                 imageAlignment = Guideline.Spacing.imageAlignment,
-                description = R.string.guideline_spacing_description
+                descriptionRes = R.string.guideline_spacing_description
             )
         }
         item {
