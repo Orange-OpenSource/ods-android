@@ -20,7 +20,7 @@ import com.orange.ods.compose.component.button.OdsButtonStyle
 
 @Composable
 fun rememberButtonCustomizationState(
-    buttonStyle: MutableState<OdsButtonStyle>,
+    buttonStyle: MutableState<OdsButtonStyle> = rememberSaveable { mutableStateOf(OdsButtonStyle.Default) },
     leadingIcon: MutableState<Boolean> = rememberSaveable { mutableStateOf(false) },
     variableWidth: MutableState<Boolean> = rememberSaveable { mutableStateOf(false) },
     disabled: MutableState<Boolean> = rememberSaveable { mutableStateOf(false) }
