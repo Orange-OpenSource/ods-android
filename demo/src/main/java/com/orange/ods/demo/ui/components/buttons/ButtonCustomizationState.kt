@@ -16,21 +16,24 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.saveable.rememberSaveable
 import com.orange.ods.compose.component.button.OdsButtonStyle
+import com.orange.ods.compose.component.button.OdsTextButtonStyle
 
 
 @Composable
 fun rememberButtonCustomizationState(
-    buttonStyle: MutableState<OdsButtonStyle> = rememberSaveable { mutableStateOf(OdsButtonStyle.Default) },
+    containedButtonStyle: MutableState<OdsButtonStyle> = rememberSaveable { mutableStateOf(OdsButtonStyle.Default) },
+    textButtonStyle: MutableState<OdsTextButtonStyle> = rememberSaveable { mutableStateOf(OdsTextButtonStyle.Default) },
     leadingIcon: MutableState<Boolean> = rememberSaveable { mutableStateOf(false) },
     variableWidth: MutableState<Boolean> = rememberSaveable { mutableStateOf(false) },
     disabled: MutableState<Boolean> = rememberSaveable { mutableStateOf(false) }
 ) =
-    remember(buttonStyle, leadingIcon, variableWidth, disabled) {
-        ButtonCustomizationState(buttonStyle, leadingIcon, variableWidth, disabled)
+    remember(containedButtonStyle, textButtonStyle, leadingIcon, variableWidth, disabled) {
+        ButtonCustomizationState(containedButtonStyle, textButtonStyle, leadingIcon, variableWidth, disabled)
     }
 
 class ButtonCustomizationState(
-    val buttonStyle: MutableState<OdsButtonStyle>,
+    val containedButtonStyle: MutableState<OdsButtonStyle>,
+    val textButtonStyle: MutableState<OdsTextButtonStyle>,
     val leadingIcon: MutableState<Boolean>,
     val variableWidth: MutableState<Boolean>,
     val disabled: MutableState<Boolean>

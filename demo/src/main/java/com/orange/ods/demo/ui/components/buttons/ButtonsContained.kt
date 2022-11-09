@@ -47,7 +47,7 @@ fun ButtonsContained(style: OdsButtonStyle) {
             bottomSheetContent = {
                 Subtitle(textRes = R.string.component_style, withHorizontalPadding = true)
                 OdsChoiceChipsFlowRow(
-                    selectedChip = buttonStyle,
+                    selectedChip = containedButtonStyle,
                     modifier = Modifier.padding(horizontal = dimensionResource(id = R.dimen.screen_horizontal_margin)),
                     outlinedChips = true
                 ) {
@@ -55,10 +55,10 @@ fun ButtonsContained(style: OdsButtonStyle) {
                     OdsChoiceChip(textRes = R.string.component_button_style_default, value = OdsButtonStyle.Default)
                     OdsChoiceChip(textRes = R.string.component_button_style_functional, value = OdsButtonStyle.FunctionalPositive)
                 }
-                if (buttonStyle.value in listOf(OdsButtonStyle.FunctionalPositive, OdsButtonStyle.FunctionalNegative)) {
+                if (containedButtonStyle.value in listOf(OdsButtonStyle.FunctionalPositive, OdsButtonStyle.FunctionalNegative)) {
                     Subtitle(textRes = R.string.component_button_style_functional, withHorizontalPadding = true)
                     OdsChoiceChipsFlowRow(
-                        selectedChip = buttonStyle,
+                        selectedChip = containedButtonStyle,
                         modifier = Modifier.padding(horizontal = dimensionResource(id = R.dimen.screen_horizontal_margin)),
                         outlinedChips = true
                     ) {
@@ -84,14 +84,14 @@ fun ButtonsContained(style: OdsButtonStyle) {
                 modifier = Modifier
                     .verticalScroll(rememberScrollState())
             ) {
-                ContainedButton(style = buttonStyle.value, leadingIcon = hasLeadingIcon, enabled = isEnabled, variableWidth = hasVariableWidth)
+                ContainedButton(style = containedButtonStyle.value, leadingIcon = hasLeadingIcon, enabled = isEnabled, variableWidth = hasVariableWidth)
 
                 Spacer(modifier = Modifier.padding(top = dimensionResource(R.dimen.spacing_s)))
 
                 if (isSystemInDarkTheme()) {
                     LightSurface {
                         ContainedButton(
-                            style = buttonStyle.value,
+                            style = containedButtonStyle.value,
                             leadingIcon = hasLeadingIcon,
                             enabled = isEnabled,
                             variableWidth = hasVariableWidth,
@@ -101,7 +101,7 @@ fun ButtonsContained(style: OdsButtonStyle) {
                 } else {
                     DarkSurface {
                         ContainedButton(
-                            style = buttonStyle.value,
+                            style = containedButtonStyle.value,
                             leadingIcon = hasLeadingIcon,
                             enabled = isEnabled,
                             variableWidth = hasVariableWidth,
