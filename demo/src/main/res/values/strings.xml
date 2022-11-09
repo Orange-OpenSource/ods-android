@@ -51,6 +51,7 @@
     <string name="component_force_on_light">Forced on light</string>
     <string name="component_customize">Customize</string>
     <string name="component_type">Type</string>
+    <string name="component_style">Style</string>
     <string name="component_state">State</string>
     <string name="component_state_enabled">Enabled</string>
     <string name="component_state_disabled">Disabled</string>
@@ -123,6 +124,13 @@
     <string name="component_buttons_toggle">Toggle buttons</string>
     <string name="component_buttons_toggle_subtitle_group">Group</string>
     <string name="component_buttons_toggle_subtitle_single">Single</string>
+    <string name="component_buttons_variable_width">Variable width</string>
+    <string name="component_button_style_primary">Primary</string>
+    <string name="component_button_style_default">Default</string>
+    <string name="component_button_style_functional">Functional</string>
+    <string name="component_button_style_functional_positive">Positive</string>
+    <string name="component_button_style_functional_negative">Negative</string>
+
 
     <!-- Components Cards -->
     <string name="component_cards">Cards</string>

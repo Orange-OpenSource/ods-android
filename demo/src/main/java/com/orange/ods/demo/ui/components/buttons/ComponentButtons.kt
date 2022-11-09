@@ -15,14 +15,13 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.ColumnScope
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.rememberScrollState
-import androidx.compose.foundation.verticalScroll
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.composed
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.unit.dp
+import com.orange.ods.compose.component.button.OdsButtonStyle
 import com.orange.ods.compose.theme.OdsDisplaySurface
 import com.orange.ods.compose.theme.OdsTheme
 import com.orange.ods.demo.R
@@ -31,20 +30,14 @@ import com.orange.ods.demo.ui.utilities.composable.Subtitle
 
 @Composable
 fun ComponentButtons(variant: Variant) {
-    Column(
-        modifier = Modifier
-            .padding(bottom = dimensionResource(id = R.dimen.screen_vertical_margin))
-            .verticalScroll(rememberScrollState())
-    ) {
-        when (variant) {
-            Variant.ButtonsPrimary -> ButtonsPrimary()
-            Variant.ButtonsDefault -> ButtonsDefault()
-            Variant.ButtonsOutlined -> ButtonsOutlined()
-            Variant.ButtonsText -> ButtonsText()
-            Variant.ButtonsFunctional -> ButtonsFunctional()
-            Variant.ButtonsToggle -> ButtonsToggle()
-            else -> {}
-        }
+    when (variant) {
+        Variant.ButtonsPrimary -> ButtonsContained(OdsButtonStyle.Primary)
+        Variant.ButtonsDefault -> ButtonsContained(OdsButtonStyle.Default)
+        Variant.ButtonsOutlined -> ButtonsOutlined()
+        Variant.ButtonsText -> ButtonsText()
+        Variant.ButtonsFunctional -> ButtonsContained(OdsButtonStyle.FunctionalPositive)
+        Variant.ButtonsToggle -> ButtonsToggle()
+        else -> {}
     }
 }
 
