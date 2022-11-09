@@ -5,12 +5,13 @@ All notable changes done in ODS library will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-## Unreleased
+## 0.7.0 - 2022-11-09
 
 ### Added
 
 - \[ThemeConfigurationContract\] Add module to create themes
 - \[ThemeOrange\] Add module for Orange theme
+- \[ThemeInnovationCup\] Add module for Innovation Cup theme
 
 ### Changed
 
@@ -95,7 +96,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - \[Lib\] Add `OdsMaterialTheme` which is a Material theme extension for Jetpack Compose applications ([#36](https://github.com/Orange-OpenSource/ods-android/issues/36))
 - \[Lib\] Add `Theme.Orange` and `Theme.Orange.NoActionBar`, the Orange Design System theme for XML applications
 
-\[Unreleased\]: <https://github.com/Orange-OpenSource/ods-android/compare/0.6.0...master>
+\[Unreleased\]: <https://github.com/Orange-OpenSource/ods-android/compare/0.7.0...master>
+\[0.7.0\]: <https://github.com/Orange-OpenSource/ods-android/compare/0.6.0...0.7.0>
 \[0.6.0\]: <https://github.com/Orange-OpenSource/ods-android/compare/0.5.0...0.6.0>
 \[0.5.0\]: <https://github.com/Orange-OpenSource/ods-android/compare/0.4.0...0.5.0>
 \[0.4.0\]: <https://github.com/Orange-OpenSource/ods-android/compare/0.0.1...0.4.0>
