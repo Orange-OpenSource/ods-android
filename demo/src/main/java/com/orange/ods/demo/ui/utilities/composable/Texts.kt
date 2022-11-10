@@ -58,12 +58,12 @@ fun Subtitle(@StringRes textRes: Int, displaySurface: OdsDisplaySurface = OdsDis
 }
 
 @Composable
-fun TechnicalText(text: String, withHorizontalPadding: Boolean = false) {
+fun TechnicalText(text: String, horizontalPadding: Boolean = false) {
     Text(
         text = text,
         modifier = Modifier
             .fillMaxWidth()
-            .padding(horizontal = if (withHorizontalPadding) dimensionResource(R.dimen.screen_horizontal_margin) else 0.dp),
+            .padding(horizontal = if (horizontalPadding) dimensionResource(R.dimen.screen_horizontal_margin) else 0.dp),
         style = OdsTheme.typography.body2,
         color = OdsTheme.colors.onBackground.copy(alpha = ContentAlpha.medium)
     )

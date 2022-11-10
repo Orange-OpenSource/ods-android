@@ -11,9 +11,12 @@
 package com.orange.ods.demo.ui.components.sliders
 
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
+import androidx.compose.material.ExperimentalMaterialApi
+import androidx.compose.material.rememberBottomSheetScaffoldState
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
@@ -23,79 +26,75 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
+import com.orange.ods.compose.component.OdsComponent
 import com.orange.ods.compose.component.control.OdsSlider
 import com.orange.ods.compose.component.control.OdsSliderLockups
 import com.orange.ods.demo.R
-import com.orange.ods.demo.ui.utilities.composable.Subtitle
+import com.orange.ods.demo.ui.components.utilities.ComponentCustomizationBottomSheetScaffold
+import com.orange.ods.demo.ui.utilities.composable.SwitchListItem
+import com.orange.ods.demo.ui.utilities.composable.TechnicalText
+import com.orange.ods.demo.ui.utilities.composable.Title
 
+@OptIn(ExperimentalMaterialApi::class)
 @Composable
 fun ComponentSliders() {
-    var discreteSliderPosition by remember { mutableStateOf(0f) }
+    //var discreteSliderPosition by remember { mutableStateOf(0f) }
+    val sliderCustomizationState = rememberSliderCustomizationState()
 
-    Column(
-        modifier = Modifier
-            .verticalScroll(rememberScrollState())
-            .padding(horizontal = dimensionResource(id = R.dimen.spacing_m))
-    ) {
-        Subtitle(R.string.component_slider_discrete, withHorizontalPadding = false)
-        OdsSlider(
-            value = discreteSliderPosition,
-            steps = 10,
-            onValueChange = { discreteSliderPosition = it },
-        )
+    with(sliderCustomizationState) {
+        ComponentCustomizationBottomSheetScaffold(
+            bottomSheetScaffoldState = rememberBottomSheetScaffoldState(),
+            bottomSheetContent = {
+                SwitchListItem(labelRes = R.string.component_slider_side_icons, checked = sideIcons)
+                SwitchListItem(labelRes = R.string.component_slider_value_displayed, checked = valueDisplayed)
+                SwitchListItem(labelRes = R.string.component_slider_stepped, checked = stepped)
+            }) {
+            Column(
+                modifier = Modifier
+                    .verticalScroll(rememberScrollState())
+                    .padding(horizontal = dimensionResource(id = R.dimen.spacing_m))
+            ) {
+                val technicalText = if (shouldDisplayValue) OdsComponent.OdsSliderLockups.name else OdsComponent.OdsSlider.name
 
-        var discreteWithIconsSliderPosition by remember { mutableStateOf(0f) }
+                Title(textRes = getTitleRes(isStepped, hasSideIcons, shouldDisplayValue))
+                TechnicalText(text = technicalText)
 
-        Subtitle(R.string.component_slider_discrete_with_icons, withHorizontalPadding = false)
-        OdsSlider(
-            value = discreteWithIconsSliderPosition,
-            steps = 10,
-            onValueChange = { discreteWithIconsSliderPosition = it },
-            leftIcon = painterResource(id = R.drawable.ic_volume_status_1),
-            leftIconContentDescription = stringResource(id = R.string.component_slider_low_volume),
-            rightIcon = painterResource(id = R.drawable.ic_volume_status_4),
-            rightIconContentDescription = stringResource(id = R.string.component_slider_high_volume)
-        )
+                Spacer(modifier = Modifier.padding(top = dimensionResource(R.dimen.spacing_s)))
 
-        var continuousSliderPosition by remember { mutableStateOf(0f) }
+                if (shouldDisplayValue) {
+                    var sliderLockupPosition by remember { mutableStateOf(0f) }
 
-        Subtitle(R.string.component_slider_continuous, withHorizontalPadding = false)
-        OdsSlider(
-            value = continuousSliderPosition,
-            onValueChange = { continuousSliderPosition = it }
-        )
+                    OdsSliderLockups(
+                        modifier = Modifier.padding(top = dimensionResource(id = R.dimen.spacing_m)),
+                        value = sliderLockupPosition,
+                        valueRange = 0f..100f,
+                        steps = if (isStepped) 9 else 0,
+                        onValueChange = { sliderLockupPosition = it }
+                    )
+                } else {
+                    var sliderPosition by remember { mutableStateOf(0f) }
 
-        var continuousSliderWithIconsPosition by remember { mutableStateOf(0f) }
-
-        Subtitle(R.string.component_slider_continuous_with_icons, withHorizontalPadding = false)
-        OdsSlider(
-            value = continuousSliderWithIconsPosition,
-            onValueChange = { continuousSliderWithIconsPosition = it },
-            leftIcon = painterResource(id = R.drawable.ic_volume_status_1),
-            leftIconContentDescription = stringResource(id = R.string.component_slider_low_volume),
-            rightIcon = painterResource(id = R.drawable.ic_volume_status_4),
-            rightIconContentDescription = stringResource(id = R.string.component_slider_high_volume)
-        )
-
-        var discreteLockupsSliderPosition by remember { mutableStateOf(0f) }
-
-        Subtitle(R.string.component_slider_discrete_lockups, withHorizontalPadding = false)
-        OdsSliderLockups(
-            modifier = Modifier.padding(top = dimensionResource(id = R.dimen.spacing_m)),
-            value = discreteLockupsSliderPosition,
-            valueRange = 0f..100f,
-            steps = 9,
-            onValueChange = { discreteLockupsSliderPosition = it }
-        )
-
-        var continuousLockupsSliderPosition by remember { mutableStateOf(0f) }
-
-        Subtitle(R.string.component_slider_continuous_lockups, withHorizontalPadding = false)
-        OdsSliderLockups(
-            modifier = Modifier.padding(top = dimensionResource(id = R.dimen.spacing_m)),
-            value = continuousLockupsSliderPosition,
-            valueRange = 0f..100f,
-            onValueChange = { continuousLockupsSliderPosition = it }
-        )
+                    OdsSlider(
+                        value = sliderPosition,
+                        steps = if (isStepped) 10 else 0,
+                        onValueChange = { sliderPosition = it },
+                        leftIcon = if (hasSideIcons) painterResource(id = R.drawable.ic_volume_status_1) else null,
+                        leftIconContentDescription = if (hasSideIcons) stringResource(id = R.string.component_slider_low_volume) else null,
+                        rightIcon = if (hasSideIcons) painterResource(id = R.drawable.ic_volume_status_4) else null,
+                        rightIconContentDescription = if (hasSideIcons) stringResource(id = R.string.component_slider_high_volume) else null
+                    )
+                }
+            }
+        }
     }
+}
+
+private fun getTitleRes(isStepped: Boolean, hasSideIcons: Boolean, shouldDisplayValue: Boolean) = when {
+    isStepped && !hasSideIcons && !shouldDisplayValue -> R.string.component_slider_discrete
+    isStepped && hasSideIcons && !shouldDisplayValue -> R.string.component_slider_discrete_with_icons
+    !isStepped && !hasSideIcons && !shouldDisplayValue -> R.string.component_slider_continuous
+    !isStepped && hasSideIcons && !shouldDisplayValue -> R.string.component_slider_continuous_with_icons
+    isStepped && shouldDisplayValue -> R.string.component_slider_discrete_lockups
+    !isStepped && shouldDisplayValue -> R.string.component_slider_continuous_lockups
+    else -> R.string.empty
 }

@@ -45,7 +45,7 @@ fun ComponentButtons(variant: Variant) {
 @Composable
 fun StyleTitle(@StringRes titleRes: Int, technicalText: String) {
     Title(titleRes, horizontalPadding = true)
-    TechnicalText(text = technicalText, withHorizontalPadding = true)
+    TechnicalText(text = technicalText, horizontalPadding = true)
 }
 
 @Composable
