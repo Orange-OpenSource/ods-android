@@ -119,8 +119,6 @@
     <string name="component_buttons_low_emphasis_default">Default</string>
     <string name="component_buttons_low_emphasis_primary">Primary</string>
     <string name="component_buttons_functional">Functional buttons</string>
-    <string name="component_buttons_functional_positive">Positive</string>
-    <string name="component_buttons_functional_negative">Negative</string>
     <string name="component_buttons_toggle">Toggle buttons</string>
     <string name="component_buttons_toggle_subtitle_group">Group</string>
     <string name="component_buttons_toggle_subtitle_single">Single</string>
