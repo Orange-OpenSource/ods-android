@@ -31,6 +31,14 @@ fun rememberButtonCustomizationState(
         ButtonCustomizationState(containedButtonStyle, textButtonStyle, leadingIcon, variableWidth, disabled)
     }
 
+@Composable
+fun rememberButtonToggleCustomizationState(
+    toggleCount: MutableState<Int> = rememberSaveable { mutableStateOf(ButtonToggleCustomizationState.ToggleCountMin) }
+) =
+    remember(toggleCount) {
+        ButtonToggleCustomizationState(toggleCount)
+    }
+
 class ButtonCustomizationState(
     val containedButtonStyle: MutableState<OdsButtonStyle>,
     val textButtonStyle: MutableState<OdsTextButtonStyle>,
@@ -47,4 +55,13 @@ class ButtonCustomizationState(
 
     val hasVariableWidth
         get() = variableWidth.value
+}
+
+class ButtonToggleCustomizationState(
+    val toggleCount: MutableState<Int>,
+) {
+    companion object {
+        const val ToggleCountMin = 1
+        const val ToggleCountMax = 3
+    }
 }

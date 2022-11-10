@@ -56,6 +56,7 @@ fun ButtonsOutlined() {
             Column(
                 modifier = Modifier
                     .verticalScroll(rememberScrollState())
+                    .padding(vertical = dimensionResource(id = R.dimen.screen_vertical_margin))
             ) {
                 OutlinedButton(leadingIcon = hasLeadingIcon, enabled = isEnabled, variableWidth = hasVariableWidth)
 

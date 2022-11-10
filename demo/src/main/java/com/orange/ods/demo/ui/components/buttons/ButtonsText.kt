@@ -82,8 +82,9 @@ fun ButtonsText() {
             Column(
                 modifier = Modifier
                     .verticalScroll(rememberScrollState())
+                    .padding(vertical = dimensionResource(id = R.dimen.screen_vertical_margin))
             ) {
-                Title(titleRes, withHorizontalPadding = true)
+                Title(titleRes, horizontalPadding = true)
                 TechnicalText(text = technicalText, withHorizontalPadding = true)
 
                 TextButton(style = textButtonStyle.value, leadingIcon = hasLeadingIcon, enabled = isEnabled)

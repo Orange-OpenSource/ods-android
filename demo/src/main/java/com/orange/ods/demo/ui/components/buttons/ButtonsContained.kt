@@ -83,6 +83,7 @@ fun ButtonsContained(style: OdsButtonStyle) {
             Column(
                 modifier = Modifier
                     .verticalScroll(rememberScrollState())
+                    .padding(vertical = dimensionResource(id = R.dimen.screen_vertical_margin))
             ) {
                 ContainedButton(style = containedButtonStyle.value, leadingIcon = hasLeadingIcon, enabled = isEnabled, variableWidth = hasVariableWidth)
 
