@@ -10,20 +10,16 @@
 
 package com.orange.ods.demo.ui.components
 
-import androidx.compose.material.ExperimentalMaterialApi
 import androidx.navigation.NavBackStackEntry
 import androidx.navigation.NavGraphBuilder
 import androidx.navigation.NavType
 import androidx.navigation.compose.composable
 import androidx.navigation.navArgument
-import com.google.accompanist.pager.ExperimentalPagerApi
 import com.orange.ods.demo.ui.LocalMainTabsManager
 import com.orange.ods.demo.ui.LocalMainTopAppBarManager
 import com.orange.ods.demo.ui.MainDestinations
 import com.orange.ods.demo.ui.MainTopAppBarState
 
-@ExperimentalMaterialApi
-@ExperimentalPagerApi
 fun NavGraphBuilder.addComponentsGraph(navigateToElement: (String, Long?, NavBackStackEntry) -> Unit) {
     composable(
         "${MainDestinations.ComponentDetailRoute}/{${MainDestinations.ComponentIdKey}}",

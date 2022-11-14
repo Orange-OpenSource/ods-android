@@ -21,7 +21,6 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
-import androidx.compose.material.ExperimentalMaterialApi
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
@@ -46,7 +45,6 @@ import com.orange.ods.demo.ui.utilities.extension.versionCode
 import com.orange.ods.utilities.extension.orElse
 
 @Composable
-@ExperimentalMaterialApi
 fun AboutScreen(onAboutItemClick: (Long) -> Unit) {
     LocalMainTopAppBarManager.current.updateTopAppBarTitle(R.string.navigation_item_about)
 

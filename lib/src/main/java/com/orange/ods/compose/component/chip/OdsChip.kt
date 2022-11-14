@@ -64,7 +64,7 @@ import com.orange.ods.utilities.extension.noRippleClickable
  * @param leadingContentDescription Content description associated to the leading element.
  * @param onCancel called when the cancel cross of the chip is clicked. Pass `null` here for no cancel cross.
  */
-@ExperimentalMaterialApi
+@OptIn(ExperimentalMaterialApi::class)
 @Composable
 @OdsComponentApi
 fun OdsChip(
@@ -134,7 +134,7 @@ fun OdsChip(
     }
 }
 
-@ExperimentalMaterialApi
+@OptIn(ExperimentalMaterialApi::class)
 @Composable
 private fun odsChipColors(outlined: Boolean, selected: Boolean): ChipColors {
     val selectedBackgroundColor = OdsTheme.colors.primary.copy(alpha = SurfaceOverlayOpacity)
@@ -155,7 +155,6 @@ private fun odsChipBorderColor(selected: Boolean, enabled: Boolean) = when {
 }
 
 @Composable
-@ExperimentalMaterialApi
 private fun PreviewOdsChip(outlined: Boolean) = Preview {
     val selected = remember { mutableStateOf(false) }
     OdsChip(
@@ -172,7 +171,6 @@ private fun PreviewOdsChip(outlined: Boolean) = Preview {
     widthDp = 180
 )
 @Composable
-@ExperimentalMaterialApi
 private fun PreviewOdsChipLight(@PreviewParameter(OdsChipPreviewParameterProvider::class) outlined: Boolean) {
     PreviewOdsChip(outlined)
 }
@@ -184,7 +182,6 @@ private fun PreviewOdsChipLight(@PreviewParameter(OdsChipPreviewParameterProvide
     widthDp = 180
 )
 @Composable
-@ExperimentalMaterialApi
 private fun PreviewOdsChipDark(@PreviewParameter(OdsChipPreviewParameterProvider::class) outlined: Boolean) {
     PreviewOdsChip(outlined)
 }

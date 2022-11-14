@@ -13,7 +13,6 @@ package com.orange.ods.demo.ui.utilities.composable
 import androidx.annotation.StringRes
 import androidx.compose.foundation.selection.selectable
 import androidx.compose.foundation.selection.toggleable
-import androidx.compose.material.ExperimentalMaterialApi
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.MutableState
 import androidx.compose.ui.Modifier
@@ -24,7 +23,6 @@ import com.orange.ods.compose.component.control.OdsRadioButton
 import com.orange.ods.compose.component.control.OdsSwitch
 import com.orange.ods.compose.component.list.OdsListItem
 
-@ExperimentalMaterialApi
 @Composable
 fun CheckboxListItem(@StringRes labelRes: Int, checked: MutableState<Boolean>, enabled: Boolean = true) {
     OdsListItem(
@@ -45,7 +43,6 @@ fun CheckboxListItem(@StringRes labelRes: Int, checked: MutableState<Boolean>, e
     )
 }
 
-@ExperimentalMaterialApi
 @Composable
 fun <T> RadioButtonListItem(label: String, selectedRadio: MutableState<T>, currentRadio: T, onClick: () -> Unit = {}, enabled: Boolean = true) {
     val selected = selectedRadio.value == currentRadio
@@ -70,7 +67,6 @@ fun <T> RadioButtonListItem(label: String, selectedRadio: MutableState<T>, curre
     )
 }
 
-@ExperimentalMaterialApi
 @Composable
 fun SwitchListItem(@StringRes labelRes: Int, checked: MutableState<Boolean>, enabled: Boolean = true) {
     OdsListItem(

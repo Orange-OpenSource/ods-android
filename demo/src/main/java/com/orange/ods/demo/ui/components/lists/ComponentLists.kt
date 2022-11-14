@@ -48,7 +48,7 @@ import com.orange.ods.demo.ui.utilities.composable.Subtitle
 import com.orange.ods.demo.ui.utilities.composable.SwitchListItem
 import com.orange.ods.utilities.extension.orElse
 
-@ExperimentalMaterialApi
+@OptIn(ExperimentalMaterialApi::class)
 @Composable
 fun ComponentLists() {
     val listItemCustomizationState = rememberListItemCustomizationState()
@@ -59,7 +59,6 @@ fun ComponentLists() {
     )
 }
 
-@ExperimentalMaterialApi
 @Composable
 private fun ComponentListsBottomSheetContent(listItemCustomizationState: ListItemCustomizationState) {
     ComponentCountRow(
@@ -99,7 +98,6 @@ private fun ComponentListsBottomSheetContent(listItemCustomizationState: ListIte
     SwitchListItem(R.string.component_list_divider, listItemCustomizationState.dividerEnabled)
 }
 
-@ExperimentalMaterialApi
 @Composable
 private fun ComponentListsContent(listItemCustomizationState: ListItemCustomizationState) {
     Column(modifier = Modifier.verticalScroll(rememberScrollState())) {
@@ -124,7 +122,6 @@ private fun ComponentListsContent(listItemCustomizationState: ListItemCustomizat
     }
 }
 
-@ExperimentalMaterialApi
 private val ListItemCustomizationState.Trailing.textResId: Int
     get() = when (this) {
         ListItemCustomizationState.Trailing.None -> R.string.component_list_trailing_none
@@ -134,7 +131,6 @@ private val ListItemCustomizationState.Trailing.textResId: Int
         ListItemCustomizationState.Trailing.Caption -> R.string.component_list_trailing_caption
     }
 
-@ExperimentalMaterialApi
 private val ListItemCustomizationState.secondaryTextResId: Int?
     get() = when (lineCount.value) {
         2 -> R.string.component_element_subtitle
@@ -142,7 +138,6 @@ private val ListItemCustomizationState.secondaryTextResId: Int?
         else -> null
     }
 
-@ExperimentalMaterialApi
 private val ListItemCustomizationState.iconType: OdsListItemIconType?
     get() = when (selectedLeading.value) {
         ListItemCustomizationState.Leading.None -> null
@@ -152,7 +147,6 @@ private val ListItemCustomizationState.iconType: OdsListItemIconType?
         ListItemCustomizationState.Leading.WideImage -> OdsListItemIconType.WideImage
     }
 
-@ExperimentalMaterialApi
 private val ListItemCustomizationState.iconPainterResId: Int?
     get() = when (selectedLeading.value) {
         ListItemCustomizationState.Leading.None -> null
@@ -162,7 +156,6 @@ private val ListItemCustomizationState.iconPainterResId: Int?
         ListItemCustomizationState.Leading.WideImage -> R.drawable.placeholder
     }
 
-@ExperimentalMaterialApi
 private val ListItemCustomizationState.trailing: (@Composable () -> Unit)?
     get() = when (selectedTrailing.value) {
         ListItemCustomizationState.Trailing.None -> null

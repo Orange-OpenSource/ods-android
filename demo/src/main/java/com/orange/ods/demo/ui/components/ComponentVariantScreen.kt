@@ -10,10 +10,8 @@
 
 package com.orange.ods.demo.ui.components
 
-import androidx.compose.material.ExperimentalMaterialApi
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember
-import com.google.accompanist.pager.ExperimentalPagerApi
 import com.orange.ods.demo.ui.LocalMainTopAppBarManager
 import com.orange.ods.demo.ui.components.appbars.top.ComponentTopAppBar
 import com.orange.ods.demo.ui.components.buttons.ComponentButtons
@@ -24,8 +22,6 @@ import com.orange.ods.demo.ui.components.progress.ComponentProgress
 import com.orange.ods.demo.ui.components.tabs.ComponentTabs
 import com.orange.ods.demo.ui.components.textfields.ComponentTextField
 
-@ExperimentalMaterialApi
-@ExperimentalPagerApi
 @Composable
 fun ComponentVariantScreen(variantId: Long) {
     val component = remember { components.firstOrNull { component -> component.variants.any { variant -> variant.id == variantId } } }

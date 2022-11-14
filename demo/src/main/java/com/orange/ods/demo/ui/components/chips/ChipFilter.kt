@@ -30,7 +30,7 @@ import com.orange.ods.demo.ui.components.utilities.ComponentCustomizationBottomS
 import com.orange.ods.demo.ui.utilities.composable.CheckboxListItem
 import com.orange.ods.demo.ui.utilities.composable.Subtitle
 
-@ExperimentalMaterialApi
+@OptIn(ExperimentalMaterialApi::class)
 @Composable
 fun ChipFilter() {
     val chipCustomizationState = rememberChipCustomizationState(chipType = rememberSaveable { mutableStateOf(ChipCustomizationState.ChipType.Filter) })
@@ -63,7 +63,6 @@ fun ChipFilter() {
     }
 }
 
-@ExperimentalMaterialApi
 @Composable
 private fun FilterChip(index: Int, customizationState: ChipCustomizationState) {
     val selected = rememberSaveable { mutableStateOf(false) }

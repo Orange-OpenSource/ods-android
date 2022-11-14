@@ -29,7 +29,7 @@ import com.orange.ods.demo.ui.components.utilities.ComponentCustomizationBottomS
 import com.orange.ods.demo.ui.utilities.composable.RadioButtonListItem
 import com.orange.ods.demo.ui.utilities.composable.SwitchListItem
 
-@ExperimentalMaterialApi
+@OptIn(ExperimentalMaterialApi::class)
 @Composable
 fun ComponentRadioButtons() {
     val enabled = rememberSaveable { mutableStateOf(true) }

@@ -60,7 +60,7 @@ import com.orange.ods.compose.text.OdsTextSubtitle2
  * @param onButton2Click Optional handler for the second button click.
  *
  */
-@ExperimentalMaterialApi
+@OptIn(ExperimentalMaterialApi::class)
 @Composable
 @OdsComponentApi
 fun OdsImageFirstCard(
@@ -137,7 +137,6 @@ fun OdsImageFirstCard(
     }
 }
 
-@ExperimentalMaterialApi
 @Composable
 private fun PreviewOdsImageFirstCard() = Preview {
     OdsImageFirstCard(
@@ -151,7 +150,6 @@ private fun PreviewOdsImageFirstCard() = Preview {
 }
 
 @Preview(name = "OdsImageFirstCard - Light")
-@ExperimentalMaterialApi
 @Composable
 private fun PreviewOdsImageFirstCardLight() = PreviewOdsImageFirstCard()
 
@@ -160,6 +158,5 @@ private fun PreviewOdsImageFirstCardLight() = PreviewOdsImageFirstCard()
     uiMode = Configuration.UI_MODE_NIGHT_YES,
     showBackground = true
 )
-@ExperimentalMaterialApi
 @Composable
 private fun PreviewOdsImageFirstCardDark() = PreviewOdsImageFirstCard()

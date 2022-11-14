@@ -12,7 +12,6 @@ package com.orange.ods.demo.ui
 
 import androidx.annotation.DrawableRes
 import androidx.annotation.StringRes
-import androidx.compose.material.ExperimentalMaterialApi
 import androidx.compose.material.Icon
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.res.painterResource
@@ -42,7 +41,6 @@ fun MainBottomNavigation(items: Array<BottomNavigationSections>, currentRoute: S
     }
 }
 
-@ExperimentalMaterialApi
 fun NavGraphBuilder.addBottomNavigationGraph(navigateToElement: (String, Long?, NavBackStackEntry) -> Unit) {
     composable(BottomNavigationSections.Guidelines.route) { from ->
         LocalMainTabsManager.current.clearTopAppBarTabs()

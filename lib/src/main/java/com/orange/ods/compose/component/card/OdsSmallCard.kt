@@ -50,7 +50,7 @@ import com.orange.ods.compose.theme.OdsTheme
  * @param onCardClick Optional click on the card itself.
  *
  */
-@ExperimentalMaterialApi
+@OptIn(ExperimentalMaterialApi::class)
 @Composable
 @OdsComponentApi
 fun OdsSmallCard(
@@ -101,7 +101,6 @@ fun OdsSmallCard(
     }
 }
 
-@ExperimentalMaterialApi
 @Composable
 private fun PreviewOdsSmallCard() = Preview {
     OdsSmallCard(
@@ -112,7 +111,6 @@ private fun PreviewOdsSmallCard() = Preview {
 }
 
 @Preview(name = "OdsSmallCard - Light")
-@ExperimentalMaterialApi
 @Composable
 private fun PreviewOdsSmallCardLight() = PreviewOdsSmallCard()
 
@@ -121,6 +119,5 @@ private fun PreviewOdsSmallCardLight() = PreviewOdsSmallCard()
     uiMode = Configuration.UI_MODE_NIGHT_YES,
     showBackground = true
 )
-@ExperimentalMaterialApi
 @Composable
 private fun PreviewOdsSmallCardDark() = PreviewOdsSmallCard()

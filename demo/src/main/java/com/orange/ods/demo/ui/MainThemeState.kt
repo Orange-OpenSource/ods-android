@@ -10,14 +10,12 @@
 
 package com.orange.ods.demo.ui
 
-import androidx.compose.material.ExperimentalMaterialApi
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.MutableState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.runtime.staticCompositionLocalOf
-import com.google.accompanist.pager.ExperimentalPagerApi
 import com.orange.ods.theme.OdsThemeConfigurationContract
 import com.orange.ods.theme.guideline.OdsDemoGuideline
 
@@ -35,8 +33,6 @@ interface MainThemeManager {
 }
 
 @Composable
-@ExperimentalPagerApi
-@ExperimentalMaterialApi
 fun rememberMainThemeState(
     themeConfigurations: List<OdsThemeConfigurationContract>,
     currentThemeConfiguration: MutableState<OdsThemeConfigurationContract>,
@@ -46,8 +42,6 @@ fun rememberMainThemeState(
         MainThemeState(themeConfigurations, currentThemeConfiguration, darkModeEnabled)
     }
 
-@ExperimentalPagerApi
-@ExperimentalMaterialApi
 class MainThemeState(
     override val themeConfigurations: List<OdsThemeConfigurationContract>,
     currentThemeConfiguration: MutableState<OdsThemeConfigurationContract>,

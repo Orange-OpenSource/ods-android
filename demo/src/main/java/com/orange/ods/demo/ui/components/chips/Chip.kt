@@ -34,7 +34,7 @@ import com.orange.ods.demo.ui.components.utilities.clickOnElement
 import com.orange.ods.demo.ui.utilities.composable.CheckboxListItem
 import com.orange.ods.demo.ui.utilities.composable.Subtitle
 
-@ExperimentalMaterialApi
+@OptIn(ExperimentalMaterialApi::class)
 @Composable
 fun Chip() {
     val chipCustomizationState = rememberChipCustomizationState()
@@ -95,7 +95,6 @@ fun ChipTypeDemo(chipType: ChipType, content: @Composable () -> Unit) {
     }
 }
 
-@ExperimentalMaterialApi
 @Composable
 private fun Chip(chipCustomizationState: ChipCustomizationState) {
     val context = LocalContext.current

@@ -19,7 +19,6 @@ import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material.AppBarDefaults
-import androidx.compose.material.ExperimentalMaterialApi
 import androidx.compose.material.Scaffold
 import androidx.compose.material.Surface
 import androidx.compose.runtime.Composable
@@ -47,8 +46,6 @@ import com.orange.ods.theme.OdsThemeConfigurationContract
 import com.orange.ods.theme.orange.OrangeThemeConfiguration
 import com.orange.ods.utilities.extension.orElse
 
-@ExperimentalMaterialApi
-@ExperimentalPagerApi
 @Preview(showBackground = true, uiMode = UI_MODE_NIGHT_YES)
 @Preview(showBackground = true)
 @Composable
@@ -135,8 +132,7 @@ private fun SystemBarsColorSideEffect() {
     }
 }
 
-@ExperimentalMaterialApi
-@ExperimentalPagerApi
+@OptIn(ExperimentalPagerApi::class)
 @Composable
 private fun MainTabs(mainTabsState: MainTabsState) {
     with(mainTabsState) {
@@ -162,8 +158,6 @@ private fun MainTabs(mainTabsState: MainTabsState) {
     }
 }
 
-@ExperimentalPagerApi
-@ExperimentalMaterialApi
 private fun NavGraphBuilder.mainNavGraph(navigateToElement: (String, Long?, NavBackStackEntry) -> Unit) {
     navigation(
         route = MainDestinations.HomeRoute,

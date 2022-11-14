@@ -42,8 +42,8 @@ import com.orange.ods.demo.R
 import com.orange.ods.demo.ui.utilities.composable.OnResumeEffect
 import kotlinx.coroutines.launch
 
+@OptIn(ExperimentalMaterialApi::class)
 @Composable
-@ExperimentalMaterialApi
 fun ComponentCustomizationBottomSheetScaffold(
     bottomSheetScaffoldState: BottomSheetScaffoldState,
     bottomSheetContent: @Composable () -> Unit,

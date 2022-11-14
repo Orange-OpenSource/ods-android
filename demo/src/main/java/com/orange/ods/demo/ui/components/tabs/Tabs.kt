@@ -10,7 +10,6 @@
 
 package com.orange.ods.demo.ui.components.tabs
 
-import androidx.compose.material.ExperimentalMaterialApi
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.res.painterResource
@@ -21,8 +20,7 @@ import com.orange.ods.compose.component.tab.OdsLeadingIconTab
 import com.orange.ods.compose.component.tab.OdsTab
 import kotlinx.coroutines.launch
 
-@ExperimentalMaterialApi
-@ExperimentalPagerApi
+@OptIn(ExperimentalPagerApi::class)
 @Composable
 fun Tabs(tabs: List<TabItem>, pagerState: PagerState, tabIconType: MainTabsCustomizationState.TabIconType, tabTextEnabled: Boolean) {
     val scope = rememberCoroutineScope()

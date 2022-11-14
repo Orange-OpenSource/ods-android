@@ -13,7 +13,6 @@ package com.orange.ods.demo.ui.components.textfields
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
-import androidx.compose.material.ExperimentalMaterialApi
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.dimensionResource
@@ -21,7 +20,6 @@ import androidx.compose.ui.res.stringResource
 import com.orange.ods.compose.component.textfield.password.OdsPasswordTextField
 import com.orange.ods.demo.R
 
-@ExperimentalMaterialApi
 @Composable
 fun TextFieldFilledPassword(customizationState: TextFieldCustomizationState) {
 

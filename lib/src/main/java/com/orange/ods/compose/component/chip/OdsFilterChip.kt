@@ -61,7 +61,7 @@ import com.orange.ods.compose.theme.OdsTheme
  * @param leadingAvatar Optional avatar at the start of the chip, preceding the content text.
  * @param leadingContentDescription Content description associated to the leading element.
  */
-@ExperimentalMaterialApi
+@OptIn(ExperimentalMaterialApi::class)
 @Composable
 @OdsComponentApi
 fun OdsFilterChip(
@@ -132,7 +132,6 @@ private fun OdsChipSelectedIcon(tint: Color = LocalContentColor.current.copy(alp
 }
 
 @Composable
-@ExperimentalMaterialApi
 private fun PreviewOdsFilterChip(outlined: Boolean) = Preview {
     val selected = remember { mutableStateOf(false) }
     OdsFilterChip(
@@ -149,7 +148,6 @@ private fun PreviewOdsFilterChip(outlined: Boolean) = Preview {
     widthDp = 180
 )
 @Composable
-@ExperimentalMaterialApi
 private fun PreviewOdsFilterChipLight(@PreviewParameter(OdsFilterChipPreviewParameterProvider::class) outlined: Boolean) {
     PreviewOdsFilterChip(outlined)
 }
@@ -161,7 +159,6 @@ private fun PreviewOdsFilterChipLight(@PreviewParameter(OdsFilterChipPreviewPara
     widthDp = 180
 )
 @Composable
-@ExperimentalMaterialApi
 private fun PreviewOdsFilterChipDark(@PreviewParameter(OdsFilterChipPreviewParameterProvider::class) outlined: Boolean) {
     PreviewOdsFilterChip(outlined)
 }

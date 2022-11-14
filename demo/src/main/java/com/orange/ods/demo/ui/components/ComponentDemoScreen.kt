@@ -10,7 +10,6 @@
 
 package com.orange.ods.demo.ui.components
 
-import androidx.compose.material.ExperimentalMaterialApi
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember
 import com.orange.ods.demo.ui.LocalMainTopAppBarManager
@@ -22,7 +21,6 @@ import com.orange.ods.demo.ui.components.radiobuttons.ComponentRadioButtons
 import com.orange.ods.demo.ui.components.sliders.ComponentSliders
 import com.orange.ods.demo.ui.components.switches.ComponentSwitches
 
-@ExperimentalMaterialApi
 @Composable
 fun ComponentDemoScreen(componentId: Long) {
     val component = remember { components.firstOrNull { it.id == componentId } }

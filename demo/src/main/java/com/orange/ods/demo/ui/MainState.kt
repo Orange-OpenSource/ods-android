@@ -10,7 +10,6 @@
 
 package com.orange.ods.demo.ui
 
-import androidx.compose.material.ExperimentalMaterialApi
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember
 import androidx.lifecycle.Lifecycle
@@ -20,7 +19,6 @@ import androidx.navigation.NavGraph
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
-import com.google.accompanist.pager.ExperimentalPagerApi
 
 /**
  * Destinations used in the [MainScreen].
@@ -43,8 +41,6 @@ object MainDestinations {
 }
 
 @Composable
-@ExperimentalPagerApi
-@ExperimentalMaterialApi
 fun rememberMainState(
     themeState: MainThemeState,
     navController: NavHostController = rememberNavController(),
@@ -55,8 +51,6 @@ fun rememberMainState(
         MainState(themeState, navController, topAppBarState, tabsState)
     }
 
-@ExperimentalPagerApi
-@ExperimentalMaterialApi
 class MainState(
     val themeState: MainThemeState,
     val navController: NavHostController,
