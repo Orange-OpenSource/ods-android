@@ -13,12 +13,17 @@ package com.orange.ods.compose.component.button
 import androidx.compose.material.ContentAlpha
 import androidx.compose.material.Icon
 import androidx.compose.material.IconButton
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Add
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.painter.Painter
 import androidx.compose.ui.graphics.vector.ImageVector
+import androidx.compose.ui.res.painterResource
 import com.orange.ods.compose.component.OdsComponentApi
+import com.orange.ods.compose.component.utilities.Preview
+import com.orange.ods.compose.component.utilities.UiModePreviews
 import com.orange.ods.compose.theme.OdsTheme
 
 /**
@@ -85,3 +90,23 @@ fun OdsIconButton(
 
 @Composable
 private fun getIconColor(tint: Color, enabled: Boolean) = if (enabled) tint else tint.copy(alpha = ContentAlpha.disabled)
+
+@UiModePreviews.Default
+@Composable
+private fun PreviewOdsIconButtonWithPainter() = Preview {
+    OdsIconButton(
+        onClick = {},
+        painter = painterResource(id = android.R.drawable.ic_dialog_info),
+        contentDescription = ""
+    )
+}
+
+@UiModePreviews.Default
+@Composable
+private fun PreviewOdsIconButtonWithImageVector() = Preview {
+    OdsIconButton(
+        onClick = {},
+        imageVector = Icons.Filled.Add,
+        contentDescription = ""
+    )
+}

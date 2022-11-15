@@ -13,7 +13,11 @@ package com.orange.ods.compose.component.progressindicator
 import androidx.compose.material.CircularProgressIndicator
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.tooling.preview.PreviewParameter
 import com.orange.ods.compose.component.OdsComponentApi
+import com.orange.ods.compose.component.utilities.BasicPreviewParameterProvider
+import com.orange.ods.compose.component.utilities.Preview
+import com.orange.ods.compose.component.utilities.UiModePreviews
 import com.orange.ods.compose.theme.OdsTheme
 import com.orange.ods.utilities.extension.orElse
 
@@ -40,3 +44,11 @@ fun OdsCircularProgressIndicator(
         CircularProgressIndicator(modifier = modifier, color = progressIndicatorColor)
     }
 }
+
+@UiModePreviews.Default
+@Composable
+fun PreviewOdsCircularProgressIndicator(@PreviewParameter(OdsCircularProgressIndicatorPreviewParameterProvider::class) progress: Float?) = Preview {
+    OdsCircularProgressIndicator(progress = progress)
+}
+
+internal class OdsCircularProgressIndicatorPreviewParameterProvider : BasicPreviewParameterProvider<Float?>(0.75f, null)
