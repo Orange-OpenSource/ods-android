@@ -16,8 +16,10 @@ import androidx.compose.material.Tab
 import androidx.compose.material.TabRowDefaults
 import androidx.compose.material.TabRowDefaults.tabIndicatorOffset
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.painterResource
 import com.orange.ods.compose.component.OdsComponentApi
@@ -68,18 +70,18 @@ private fun PreviewOdsScrollableTabRow() = Preview {
     data class Tab(@DrawableRes val iconResId: Int, val text: String)
 
     val tabs = listOf(
-        Tab(android.R.drawable.ic_dialog_email, "First tab"),
-        Tab(android.R.drawable.ic_dialog_map, "Second tab"),
-        Tab(android.R.drawable.ic_dialog_dialer, "Third tab"),
-        Tab(android.R.drawable.ic_dialog_info, "Fourth tab")
+        Tab(android.R.drawable.ic_dialog_email, "First"),
+        Tab(android.R.drawable.ic_dialog_map, "Second"),
+        Tab(android.R.drawable.ic_dialog_dialer, "Third"),
+        Tab(android.R.drawable.ic_dialog_info, "Fourth")
     )
 
-    val selectedTabIndex = remember { mutableStateOf(0) }
-    OdsScrollableTabRow(selectedTabIndex = selectedTabIndex.value) {
+    var selectedTabIndex by remember { mutableStateOf(0) }
+    OdsScrollableTabRow(selectedTabIndex = selectedTabIndex) {
         tabs.forEachIndexed { index, tab ->
             OdsTab(
-                selected = selectedTabIndex.value == index,
-                onClick = { selectedTabIndex.value = index },
+                selected = selectedTabIndex == index,
+                onClick = { selectedTabIndex = index },
                 text = tab.text,
                 icon = painterResource(id = tab.iconResId)
             )

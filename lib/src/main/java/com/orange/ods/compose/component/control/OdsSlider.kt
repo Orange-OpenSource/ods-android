@@ -25,8 +25,10 @@ import androidx.compose.material.SliderDefaults
 import androidx.compose.material.Text
 import androidx.compose.material.contentColorFor
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -278,10 +280,10 @@ private fun PreviewOdsSlider() = Preview {
 @UiModePreviews.Default
 @Composable
 private fun PreviewOdsSliderLockups() = Preview {
-    val sliderValue = remember { mutableStateOf(50.0f) }
+    var value by remember { mutableStateOf(50.0f) }
     OdsSliderLockups(
-        value = sliderValue.value,
+        value = value,
         valueRange = 0f..100f,
-        onValueChange = { sliderValue.value = it }
+        onValueChange = { value = it }
     )
 }

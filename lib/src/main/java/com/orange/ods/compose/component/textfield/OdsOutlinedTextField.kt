@@ -186,10 +186,10 @@ internal object OdsOutlinedTextFieldDefaults {
 @UiModePreviews.Default
 @Composable
 private fun PreviewOdsOutlinedTextField() = Preview {
-    var text by remember { mutableStateOf("Input text") }
+    var value by remember { mutableStateOf("Input text") }
     OdsOutlinedTextField(
-        value = text,
-        onValueChange = { text = it },
+        value = value,
+        onValueChange = { value = it },
         placeholder = "Placeholder",
         leadingIcon = painterResource(id = android.R.drawable.ic_dialog_info),
         trailingIcon = painterResource(id = android.R.drawable.ic_input_add)

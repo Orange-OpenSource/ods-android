@@ -22,8 +22,10 @@ import androidx.compose.material.LocalContentAlpha
 import androidx.compose.material.LocalContentColor
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -133,11 +135,11 @@ private fun OdsChipSelectedIcon(tint: Color = LocalContentColor.current.copy(alp
 @UiModePreviews.OdsFilterChip
 @Composable
 private fun PreviewOdsFilterChip(@PreviewParameter(OdsFilterChipPreviewParameterProvider::class) outlined: Boolean) = Preview {
-    val selected = remember { mutableStateOf(false) }
+    var selected by remember { mutableStateOf(false) }
     OdsFilterChip(
         text = "Text",
-        selected = selected.value,
-        onClick = { selected.value = !selected.value },
+        selected = selected,
+        onClick = { selected = !selected },
         leadingAvatar = painterResource(id = R.drawable.ic_check),
         outlined = outlined
     )

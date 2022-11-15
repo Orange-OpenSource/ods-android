@@ -16,8 +16,10 @@ import androidx.compose.material.ContentAlpha
 import androidx.compose.material.ripple.LocalRippleTheme
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.CompositionLocalProvider
+import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import com.orange.ods.compose.component.OdsComponentApi
@@ -79,9 +81,9 @@ private object OdsCheckboxDefault {
 @UiModePreviews.Default
 @Composable
 private fun PreviewOdsCheckbox() = Preview {
-    val checked = remember { mutableStateOf(false) }
+    var checked by remember { mutableStateOf(false) }
     OdsCheckbox(
-        checked = checked.value,
-        onCheckedChange = { checked.value = it }
+        checked = checked,
+        onCheckedChange = { checked = it }
     )
 }

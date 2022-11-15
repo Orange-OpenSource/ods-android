@@ -101,10 +101,10 @@ fun OdsPasswordOutlinedTextField(
 @UiModePreviews.Default
 @Composable
 private fun PreviewOdsPasswordOutlinedTextField() = Preview {
-    var text by remember { mutableStateOf("Input text") }
+    var value by remember { mutableStateOf("Input text") }
     OdsPasswordOutlinedTextField(
-        value = text,
-        onValueChange = { text = it },
+        value = value,
+        onValueChange = { value = it },
         placeholder = "Placeholder"
     )
 }

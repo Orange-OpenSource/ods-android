@@ -22,6 +22,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.painter.Painter
 import androidx.compose.ui.res.painterResource
@@ -107,10 +108,10 @@ private fun OdsColors.buttonToggleBackgroundColor(displaySurface: OdsDisplaySurf
 @UiModePreviews.Default
 @Composable
 private fun PreviewOdsIconToggleButton() = Preview {
-    val checked = remember { mutableStateOf(false) }
+    var checked by remember { mutableStateOf(false) }
     OdsIconToggleButton(
-        checked = checked.value,
-        onCheckedChange = { checked.value = it },
+        checked = checked,
+        onCheckedChange = { checked = it },
         icon = painterResource(id = android.R.drawable.ic_btn_speak_now),
         contentDescription = "Microphone"
     )

@@ -234,18 +234,18 @@ internal object OdsTextFieldDefaults {
 @UiModePreviews.Default
 @Composable
 private fun PreviewOdsTextField(@PreviewParameter(OdsTextFieldPreviewParameterProvider::class) hasCounter: Boolean) = Preview {
-    var text by remember { mutableStateOf("Input text") }
+    var value by remember { mutableStateOf("Input text") }
     Column {
         OdsTextField(
-            value = text,
-            onValueChange = { text = it },
+            value = value,
+            onValueChange = { value = it },
             placeholder = "Placeholder",
             leadingIcon = painterResource(id = android.R.drawable.ic_dialog_info),
             trailingIcon = painterResource(id = android.R.drawable.ic_input_add)
         )
 
         if (hasCounter) {
-            OdsTextFieldCounter(text.length, 30, Modifier.align(Alignment.End))
+            OdsTextFieldCounter(value.length, 30, Modifier.align(Alignment.End))
         }
     }
 }

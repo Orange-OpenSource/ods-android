@@ -114,10 +114,10 @@ internal fun OdsPasswordVisualisationIcon(odsPasswordTextFieldState: OdsPassword
 @UiModePreviews.Default
 @Composable
 private fun PreviewOdsPasswordTextField() = Preview {
-    var text by remember { mutableStateOf("Input text") }
+    var value by remember { mutableStateOf("Input text") }
     OdsPasswordTextField(
-        value = text,
-        onValueChange = { text = it },
+        value = value,
+        onValueChange = { value = it },
         placeholder = "Placeholder"
     )
 }

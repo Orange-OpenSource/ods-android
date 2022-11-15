@@ -21,8 +21,10 @@ import androidx.compose.material.ExperimentalMaterialApi
 import androidx.compose.material.Icon
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.painter.Painter
 import androidx.compose.ui.res.dimensionResource
@@ -156,11 +158,11 @@ private fun odsChipBorderColor(selected: Boolean, enabled: Boolean) = when {
 @UiModePreviews.OdsChip
 @Composable
 private fun PreviewOdsChip(@PreviewParameter(OdsChipPreviewParameterProvider::class) outlined: Boolean) = Preview {
-    val selected = remember { mutableStateOf(false) }
+    var selected by remember { mutableStateOf(false) }
     OdsChip(
         text = "Text",
-        selected = selected.value,
-        onClick = { selected.value = !selected.value },
+        selected = selected,
+        onClick = { selected = !selected },
         leadingAvatar = painterResource(id = R.drawable.placeholder_small),
         outlined = outlined
     )
