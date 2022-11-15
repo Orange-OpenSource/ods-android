@@ -10,7 +10,6 @@
 
 package com.orange.ods.compose.component.control
 
-import android.content.res.Configuration
 import androidx.compose.material.ContentAlpha
 import androidx.compose.material.Switch
 import androidx.compose.material.SwitchDefaults
@@ -22,9 +21,9 @@ import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.compositeOver
-import androidx.compose.ui.tooling.preview.Preview
 import com.orange.ods.compose.component.OdsComponentApi
 import com.orange.ods.compose.component.utilities.Preview
+import com.orange.ods.compose.component.utilities.UiModePreviews
 import com.orange.ods.compose.theme.OdsPrimaryRippleTheme
 import com.orange.ods.compose.theme.OdsTheme
 
@@ -92,7 +91,7 @@ private object OdsSwitchDefaults {
 
 }
 
-
+@UiModePreviews.Default
 @Composable
 private fun PreviewOdsSwitch() = Preview {
     val checked = remember { mutableStateOf(false) }
@@ -101,15 +100,3 @@ private fun PreviewOdsSwitch() = Preview {
         onCheckedChange = { checked.value = it }
     )
 }
-
-@Preview(name = "OdsSwitch - Light")
-@Composable
-private fun PreviewOdsSwitchLight() = PreviewOdsSwitch()
-
-@Preview(
-    name = "OdsSwitch - Dark",
-    uiMode = Configuration.UI_MODE_NIGHT_YES,
-    showBackground = true
-)
-@Composable
-private fun PreviewOdsSwitchDark() = PreviewOdsSwitch()

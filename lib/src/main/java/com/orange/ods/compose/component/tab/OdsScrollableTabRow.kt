@@ -10,7 +10,6 @@
 
 package com.orange.ods.compose.component.tab
 
-import android.content.res.Configuration
 import androidx.annotation.DrawableRes
 import androidx.compose.material.ScrollableTabRow
 import androidx.compose.material.Tab
@@ -21,9 +20,9 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.painterResource
-import androidx.compose.ui.tooling.preview.Preview
 import com.orange.ods.compose.component.OdsComponentApi
 import com.orange.ods.compose.component.utilities.Preview
+import com.orange.ods.compose.component.utilities.UiModePreviews
 import com.orange.ods.compose.theme.OdsTheme
 
 /**
@@ -63,6 +62,7 @@ fun OdsScrollableTabRow(
     )
 }
 
+@UiModePreviews.Default
 @Composable
 private fun PreviewOdsScrollableTabRow() = Preview {
     data class Tab(@DrawableRes val iconResId: Int, val text: String)
@@ -86,15 +86,3 @@ private fun PreviewOdsScrollableTabRow() = Preview {
         }
     }
 }
-
-@Preview(name = "OdsScrollableTabRow - Light")
-@Composable
-private fun PreviewOdsScrollableTabRowLight() = PreviewOdsScrollableTabRow()
-
-@Preview(
-    name = "OdsScrollableTabRow - Dark",
-    uiMode = Configuration.UI_MODE_NIGHT_YES,
-    showBackground = true
-)
-@Composable
-private fun PreviewOdsScrollableTabRowDark() = PreviewOdsScrollableTabRow()

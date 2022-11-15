@@ -10,7 +10,6 @@
 
 package com.orange.ods.compose.component.button
 
-import android.content.res.Configuration
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.material.ButtonDefaults
@@ -24,9 +23,9 @@ import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.painter.Painter
-import androidx.compose.ui.tooling.preview.Preview
 import com.orange.ods.compose.component.OdsComponentApi
 import com.orange.ods.compose.component.utilities.Preview
+import com.orange.ods.compose.component.utilities.UiModePreviews
 import com.orange.ods.compose.theme.OdsDarkRippleTheme
 import com.orange.ods.compose.theme.OdsDisplaySurface
 import com.orange.ods.compose.theme.OdsLightRippleTheme
@@ -103,23 +102,8 @@ private fun OdsColors.buttonOutlinedColor(displaySurface: OdsDisplaySurface) =
 @Composable
 private fun OdsColors.buttonOutlinedDisabledColor(displaySurface: OdsDisplaySurface) = buttonOutlinedColor(displaySurface).copy(alpha = ContentAlpha.disabled)
 
+@UiModePreviews.OdsOutlinedButton
 @Composable
 private fun PreviewOdsOutlinedButton() = Preview {
     OdsOutlinedButton(text = "Text", onClick = {})
 }
-
-@Preview(
-    name = "OdsOutlinedButton - Light",
-    widthDp = 200
-)
-@Composable
-private fun PreviewOdsOutlinedButtonLight() = PreviewOdsOutlinedButton()
-
-@Preview(
-    name = "OdsOutlinedButton - Dark",
-    uiMode = Configuration.UI_MODE_NIGHT_YES,
-    showBackground = true,
-    widthDp = 200
-)
-@Composable
-private fun PreviewOdsOutlinedButtonDark() = PreviewOdsOutlinedButton()

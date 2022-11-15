@@ -10,7 +10,6 @@
 
 package com.orange.ods.compose.component.button
 
-import android.content.res.Configuration
 import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.material.ButtonDefaults
 import androidx.compose.material.ContentAlpha
@@ -22,11 +21,11 @@ import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.painter.Painter
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.tooling.preview.PreviewParameter
 import com.orange.ods.compose.component.OdsComponentApi
 import com.orange.ods.compose.component.utilities.EnumPreviewParameterProvider
 import com.orange.ods.compose.component.utilities.Preview
+import com.orange.ods.compose.component.utilities.UiModePreviews
 import com.orange.ods.compose.theme.OdsDarkRippleTheme
 import com.orange.ods.compose.theme.OdsDisplaySurface
 import com.orange.ods.compose.theme.OdsLightRippleTheme
@@ -117,29 +116,10 @@ private fun OdsColors.buttonTextColor(displaySurface: OdsDisplaySurface, style: 
 private fun OdsColors.buttonTextDisabledColor(displaySurface: OdsDisplaySurface) =
     buttonTextColor(displaySurface = displaySurface, style = OdsTextButtonStyle.Default).copy(alpha = ContentAlpha.disabled)
 
+@UiModePreviews.OdsTextButton
 @Composable
-private fun PreviewOdsTextButton(style: OdsTextButtonStyle) = Preview {
+private fun PreviewOdsTextButton(@PreviewParameter(OdsTextButtonPreviewParameterProvider::class) style: OdsTextButtonStyle) = Preview {
     OdsTextButton(text = "Text", onClick = {}, style = style)
-}
-
-@Preview(
-    name = "OdsTextButton - Light",
-    widthDp = 200
-)
-@Composable
-private fun PreviewOdsTextButtonLight(@PreviewParameter(OdsTextButtonPreviewParameterProvider::class) style: OdsTextButtonStyle) {
-    PreviewOdsTextButton(style)
-}
-
-@Preview(
-    name = "OdsTextButton - Dark",
-    uiMode = Configuration.UI_MODE_NIGHT_YES,
-    showBackground = true,
-    widthDp = 200
-)
-@Composable
-private fun PreviewOdsTextButtonDark(@PreviewParameter(OdsTextButtonPreviewParameterProvider::class) style: OdsTextButtonStyle) {
-    PreviewOdsTextButton(style)
 }
 
 internal class OdsTextButtonPreviewParameterProvider : EnumPreviewParameterProvider(OdsTextButtonStyle::class)

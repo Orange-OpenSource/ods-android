@@ -10,7 +10,6 @@
 
 package com.orange.ods.compose.component.list
 
-import android.content.res.Configuration
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
@@ -44,7 +43,6 @@ import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.style.TextOverflow
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.tooling.preview.PreviewParameter
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
@@ -56,6 +54,7 @@ import com.orange.ods.compose.component.divider.OdsDivider
 import com.orange.ods.compose.component.utilities.BasicPreviewParameterProvider
 import com.orange.ods.compose.component.utilities.OdsImageCircleShape
 import com.orange.ods.compose.component.utilities.Preview
+import com.orange.ods.compose.component.utilities.UiModePreviews
 import com.orange.ods.compose.text.OdsTextSubtitle1
 import com.orange.ods.compose.theme.OdsTheme
 import com.orange.ods.utilities.extension.getElementOfType
@@ -338,8 +337,9 @@ private interface OdsListItemDividerModifier : Modifier.Element {
     val startIndent: Dp?
 }
 
+@UiModePreviews.Default
 @Composable
-private fun PreviewOdsListItem(parameter: OdsListItemPreviewParameter) = Preview {
+private fun PreviewOdsListItem(@PreviewParameter(OdsListItemPreviewParameterProvider::class) parameter: OdsListItemPreviewParameter) = Preview {
     with(parameter) {
         val painter = when (iconType) {
             OdsListItemIconType.Icon -> rememberVectorPainter(image = Icons.Default.AccountBox)
@@ -360,22 +360,6 @@ private fun PreviewOdsListItem(parameter: OdsListItemPreviewParameter) = Preview
             trailing = trailing
         )
     }
-}
-
-@Preview(name = "OdsListItem - Light")
-@Composable
-private fun PreviewOdsListItemLight(@PreviewParameter(OdsListItemPreviewParameterProvider::class) parameter: OdsListItemPreviewParameter) {
-    PreviewOdsListItem(parameter)
-}
-
-@Preview(
-    name = "OdsListItem - Dark",
-    uiMode = Configuration.UI_MODE_NIGHT_YES,
-    showBackground = true
-)
-@Composable
-private fun PreviewOdsListItemDark(@PreviewParameter(OdsListItemPreviewParameterProvider::class) parameter: OdsListItemPreviewParameter) {
-    PreviewOdsListItem(parameter)
 }
 
 internal data class OdsListItemPreviewParameter(

@@ -10,7 +10,6 @@
 
 package com.orange.ods.compose.component.tab
 
-import android.content.res.Configuration
 import androidx.compose.material.Icon
 import androidx.compose.material.LeadingIconTab
 import androidx.compose.material.Text
@@ -21,9 +20,9 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.painter.Painter
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.style.TextOverflow
-import androidx.compose.ui.tooling.preview.Preview
 import com.orange.ods.compose.component.OdsComponentApi
 import com.orange.ods.compose.component.utilities.Preview
+import com.orange.ods.compose.component.utilities.UiModePreviews
 import com.orange.ods.compose.theme.OdsTheme
 
 /**
@@ -66,6 +65,7 @@ fun OdsLeadingIconTab(
     )
 }
 
+@UiModePreviews.OdsLeadingIconTab
 @Composable
 private fun PreviewOdsLeadingIconTab() = Preview {
     val selected = remember { mutableStateOf(false) }
@@ -76,19 +76,3 @@ private fun PreviewOdsLeadingIconTab() = Preview {
         icon = painterResource(id = android.R.drawable.ic_dialog_email)
     )
 }
-
-@Preview(
-    name = "OdsLeadingIconTab - Light",
-    widthDp = 100
-)
-@Composable
-private fun PreviewOdsLeadingIconTabLight() = PreviewOdsLeadingIconTab()
-
-@Preview(
-    name = "OdsLeadingIconTab - Dark",
-    widthDp = 100,
-    uiMode = Configuration.UI_MODE_NIGHT_YES,
-    showBackground = true
-)
-@Composable
-private fun PreviewOdsLeadingIconTabDark() = PreviewOdsLeadingIconTab()

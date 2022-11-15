@@ -10,7 +10,6 @@
 
 package com.orange.ods.compose.component.textfield
 
-import android.content.res.Configuration
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.text.KeyboardActions
 import androidx.compose.foundation.text.KeyboardOptions
@@ -32,10 +31,10 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.input.VisualTransformation
-import androidx.compose.ui.tooling.preview.Preview
 import com.orange.ods.R
 import com.orange.ods.compose.component.OdsComponentApi
 import com.orange.ods.compose.component.utilities.Preview
+import com.orange.ods.compose.component.utilities.UiModePreviews
 import com.orange.ods.compose.theme.OdsTheme
 
 /**
@@ -184,6 +183,7 @@ internal object OdsOutlinedTextFieldDefaults {
 
 }
 
+@UiModePreviews.Default
 @Composable
 private fun PreviewOdsOutlinedTextField() = Preview {
     var text by remember { mutableStateOf("Input text") }
@@ -195,15 +195,3 @@ private fun PreviewOdsOutlinedTextField() = Preview {
         trailingIcon = painterResource(id = android.R.drawable.ic_input_add)
     )
 }
-
-@Preview(name = "OdsOutlinedTextField - Light")
-@Composable
-private fun PreviewOdsOutlinedTextFieldLight() = PreviewOdsOutlinedTextField()
-
-@Preview(
-    name = "OdsOutlinedTextField - Dark",
-    uiMode = Configuration.UI_MODE_NIGHT_YES,
-    showBackground = true
-)
-@Composable
-private fun PreviewOdsOutlinedTextFieldDark() = PreviewOdsOutlinedTextField()

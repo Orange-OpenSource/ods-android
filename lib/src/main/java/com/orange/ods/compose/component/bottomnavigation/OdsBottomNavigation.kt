@@ -10,7 +10,6 @@
 
 package com.orange.ods.compose.component.bottomnavigation
 
-import android.content.res.Configuration
 import androidx.annotation.DrawableRes
 import androidx.compose.foundation.layout.RowScope
 import androidx.compose.material.BottomNavigation
@@ -23,9 +22,9 @@ import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.style.TextOverflow
-import androidx.compose.ui.tooling.preview.Preview
 import com.orange.ods.compose.component.OdsComponentApi
 import com.orange.ods.compose.component.utilities.Preview
+import com.orange.ods.compose.component.utilities.UiModePreviews
 import com.orange.ods.compose.theme.OdsTheme
 
 /**
@@ -116,6 +115,7 @@ fun RowScope.OdsBottomNavigationItem(
     )
 }
 
+@UiModePreviews.Default
 @Composable
 private fun PreviewOdsBottomNavigation() = Preview {
     data class Item(@DrawableRes val iconResId: Int, val label: String)
@@ -139,15 +139,3 @@ private fun PreviewOdsBottomNavigation() = Preview {
         }
     }
 }
-
-@Preview(name = "OdsBottomNavigation - Light")
-@Composable
-private fun PreviewOdsBottomNavigationLight() = PreviewOdsBottomNavigation()
-
-@Preview(
-    name = "OdsBottomNavigation - Dark",
-    uiMode = Configuration.UI_MODE_NIGHT_YES,
-    showBackground = true
-)
-@Composable
-private fun PreviewOdsBottomNavigationDark() = PreviewOdsBottomNavigation()

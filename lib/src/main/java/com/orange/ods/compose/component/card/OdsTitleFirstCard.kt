@@ -10,7 +10,6 @@
 
 package com.orange.ods.compose.component.card
 
-import android.content.res.Configuration
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
@@ -20,7 +19,6 @@ import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
-import androidx.compose.material.ExperimentalMaterialApi
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -29,7 +27,6 @@ import androidx.compose.ui.graphics.painter.Painter
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.painterResource
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.orange.ods.R
 import com.orange.ods.compose.component.OdsComponentApi
@@ -37,6 +34,7 @@ import com.orange.ods.compose.component.button.OdsTextButton
 import com.orange.ods.compose.component.button.OdsTextButtonStyle
 import com.orange.ods.compose.component.utilities.OdsImageCircleShape
 import com.orange.ods.compose.component.utilities.Preview
+import com.orange.ods.compose.component.utilities.UiModePreviews
 import com.orange.ods.compose.text.OdsTextBody1
 import com.orange.ods.compose.text.OdsTextH6
 import com.orange.ods.compose.text.OdsTextSubtitle2
@@ -154,6 +152,7 @@ fun OdsTitleFirstCard(
     }
 }
 
+@UiModePreviews.Default
 @Composable
 private fun PreviewOdsTitleFirstCard() = Preview {
     OdsTitleFirstCard(
@@ -166,15 +165,3 @@ private fun PreviewOdsTitleFirstCard() = Preview {
         button2Text = "Button 2"
     )
 }
-
-@Preview(name = "OdsTitleFirstCard - Light")
-@Composable
-private fun PreviewOdsTitleFirstCardLight() = PreviewOdsTitleFirstCard()
-
-@Preview(
-    name = "OdsTitleFirstCard - Dark",
-    uiMode = Configuration.UI_MODE_NIGHT_YES,
-    showBackground = true
-)
-@Composable
-private fun PreviewOdsTitleFirstCardDark() = PreviewOdsTitleFirstCard()

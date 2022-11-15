@@ -10,7 +10,6 @@
 
 package com.orange.ods.compose.component.control
 
-import android.content.res.Configuration
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.BoxWithConstraints
@@ -35,12 +34,12 @@ import androidx.compose.ui.graphics.compositeOver
 import androidx.compose.ui.graphics.painter.Painter
 import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.text.style.TextAlign
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import com.orange.ods.R
 import com.orange.ods.compose.component.OdsComponentApi
 import com.orange.ods.compose.component.utilities.Preview
+import com.orange.ods.compose.component.utilities.UiModePreviews
 import com.orange.ods.compose.theme.OdsTheme
 
 private const val ActiveTickColorAlpha = 0.4f
@@ -265,7 +264,7 @@ private object OdsSliderDefaults {
 
 }
 
-
+@UiModePreviews.Default
 @Composable
 private fun PreviewOdsSlider() = Preview {
     val sliderValue = remember { mutableStateOf(0.5f) }
@@ -276,18 +275,7 @@ private fun PreviewOdsSlider() = Preview {
     )
 }
 
-@Preview(name = "OdsSlider - Light")
-@Composable
-private fun PreviewOdsSliderLight() = PreviewOdsSlider()
-
-@Preview(
-    name = "OdsSlider - Dark",
-    uiMode = Configuration.UI_MODE_NIGHT_YES,
-    showBackground = true
-)
-@Composable
-private fun PreviewOdsSliderDark() = PreviewOdsSlider()
-
+@UiModePreviews.Default
 @Composable
 private fun PreviewOdsSliderLockups() = Preview {
     val sliderValue = remember { mutableStateOf(50.0f) }
@@ -297,15 +285,3 @@ private fun PreviewOdsSliderLockups() = Preview {
         onValueChange = { sliderValue.value = it }
     )
 }
-
-@Preview(name = "OdsSliderLockups - Light")
-@Composable
-private fun PreviewOdsSliderLockupsLight() = PreviewOdsSliderLockups()
-
-@Preview(
-    name = "OdsSliderLockups - Dark",
-    uiMode = Configuration.UI_MODE_NIGHT_YES,
-    showBackground = true
-)
-@Composable
-private fun PreviewOdsSliderLockupsDark() = PreviewOdsSliderLockups()
