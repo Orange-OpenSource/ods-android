@@ -12,7 +12,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - \[All\] Version numbers in changelog now display changes on GitHub when clicked ([#322](https://github.com/Orange-OpenSource/ods-android/issues/322))
 - \[Lib\] Use `OptIn` annotation instead of propagating `ExperimentalMaterialApi` and `ExperimentalPagerApi` ([#320](https://github.com/Orange-OpenSource/ods-android/issues/320))
 
-## [0.7.0 - 2022-11-09](https://github.com/Orange-OpenSource/ods-android/compare/0.6.0...0.7.0)
+## [0.7.0](https://github.com/Orange-OpenSource/ods-android/compare/0.6.0...0.7.0) - 2022-11-09
 
 ### Added
 
@@ -26,7 +26,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - \[Demo\] Use step counter for list item line count customization ([#306](https://github.com/Orange-OpenSource/ods-android/issues/306))
 - \[Demo\] Display the chip name and a short description for each type of chip ([#304](https://github.com/Orange-OpenSource/ods-android/issues/304))
 
-## [0.6.0 - 2022-10-17](https://github.com/Orange-OpenSource/ods-android/compare/0.5.0...0.6.0)
+## [0.6.0](https://github.com/Orange-OpenSource/ods-android/compare/0.5.0...0.6.0) - 2022-10-17
 
 ### Added
 
@@ -49,7 +49,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - \[Demo\] Fix vocalization of counters values on change ([#266](https://github.com/Orange-OpenSource/ods-android/issues/266))
 - \[Lib\] Fix state vocalization for chips: selected/not selected ([#280](https://github.com/Orange-OpenSource/ods-android/issues/280))
 
-## [0.5.0 - 2022-09-07](https://github.com/Orange-OpenSource/ods-android/compare/0.4.0...0.5.0)
+## [0.5.0](https://github.com/Orange-OpenSource/ods-android/compare/0.4.0...0.5.0) - 2022-09-07
 
 ### Added
 
@@ -86,7 +86,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - \[Lib\] Remove `OdsListItemWideThumbnail`, `OdsListWideThumbnail` and `OdsListSquaredThumbnail` methods ([#141](https://github.com/Orange-OpenSource/ods-android/issues/141))
 
-## [0.4.0 - 2022-07-06](https://github.com/Orange-OpenSource/ods-android/compare/0.0.1...0.4.0)
+## [0.4.0](https://github.com/Orange-OpenSource/ods-android/compare/0.0.1...0.4.0) - 2022-07-06
 
 ### Added
 
