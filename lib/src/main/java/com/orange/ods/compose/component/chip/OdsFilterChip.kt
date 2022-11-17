@@ -132,7 +132,7 @@ private fun OdsChipSelectedIcon(tint: Color = LocalContentColor.current.copy(alp
     )
 }
 
-@UiModePreviews.OdsFilterChip
+@UiModePreviews.Chip
 @Composable
 private fun PreviewOdsFilterChip(@PreviewParameter(OdsFilterChipPreviewParameterProvider::class) outlined: Boolean) = Preview {
     var selected by remember { mutableStateOf(false) }

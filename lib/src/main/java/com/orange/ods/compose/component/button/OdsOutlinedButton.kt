@@ -102,7 +102,7 @@ private fun OdsColors.buttonOutlinedColor(displaySurface: OdsDisplaySurface) =
 @Composable
 private fun OdsColors.buttonOutlinedDisabledColor(displaySurface: OdsDisplaySurface) = buttonOutlinedColor(displaySurface).copy(alpha = ContentAlpha.disabled)
 
-@UiModePreviews.OdsOutlinedButton
+@UiModePreviews.Button
 @Composable
 private fun PreviewOdsOutlinedButton() = Preview {
     OdsOutlinedButton(text = "Text", onClick = {})

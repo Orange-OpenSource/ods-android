@@ -70,25 +70,13 @@ internal annotation class UiModePreviews {
 
     @Preview(name = LightName, widthDp = ButtonWidthDp)
     @Preview(name = DarkName, uiMode = Configuration.UI_MODE_NIGHT_YES, showBackground = true, widthDp = ButtonWidthDp)
-    annotation class OdsButton
-
-    @OdsButton
-    annotation class OdsOutlinedButton
-
-    @OdsButton
-    annotation class OdsTextButton
+    annotation class Button
 
     @Preview(name = LightName, widthDp = ChipWidthDp)
     @Preview(name = DarkName, uiMode = Configuration.UI_MODE_NIGHT_YES, showBackground = true, widthDp = ChipWidthDp)
-    annotation class OdsChip
-
-    @OdsChip
-    annotation class OdsFilterChip
+    annotation class Chip
 
     @Preview(name = LightName, widthDp = TabWidthDp)
     @Preview(name = DarkName, uiMode = Configuration.UI_MODE_NIGHT_YES, showBackground = true, widthDp = TabWidthDp)
-    annotation class OdsTab
-
-    @OdsTab
-    annotation class OdsLeadingIconTab
+    annotation class Tab
 }

@@ -67,7 +67,7 @@ fun OdsLeadingIconTab(
     )
 }
 
-@UiModePreviews.OdsLeadingIconTab
+@UiModePreviews.Tab
 @Composable
 private fun PreviewOdsLeadingIconTab() = Preview {
     var selected by remember { mutableStateOf(false) }

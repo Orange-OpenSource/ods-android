@@ -155,7 +155,7 @@ private fun odsChipBorderColor(selected: Boolean, enabled: Boolean) = when {
     else -> OdsTheme.colors.onSurface.copy(alpha = SurfaceOverlayOpacity)
 }
 
-@UiModePreviews.OdsChip
+@UiModePreviews.Chip
 @Composable
 private fun PreviewOdsChip(@PreviewParameter(OdsChipPreviewParameterProvider::class) outlined: Boolean) = Preview {
     var selected by remember { mutableStateOf(false) }

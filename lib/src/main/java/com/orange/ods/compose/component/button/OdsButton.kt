@@ -192,7 +192,7 @@ private object OdsOnPrimaryRippleTheme : RippleTheme {
     )
 }
 
-@UiModePreviews.OdsButton
+@UiModePreviews.Button
 @Composable
 private fun PreviewOdsButton(@PreviewParameter(OdsButtonPreviewParameterProvider::class) style: OdsButtonStyle) = Preview {
     OdsButton(text = "Text", onClick = {}, style = style)

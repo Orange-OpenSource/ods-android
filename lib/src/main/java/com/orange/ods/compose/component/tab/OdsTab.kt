@@ -67,7 +67,7 @@ fun OdsTab(
     )
 }
 
-@UiModePreviews.OdsTab
+@UiModePreviews.Tab
 @Composable
 private fun PreviewOdsTab() = Preview {
     var selected by remember { mutableStateOf(false) }

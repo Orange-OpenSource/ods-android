@@ -116,7 +116,7 @@ private fun OdsColors.buttonTextColor(displaySurface: OdsDisplaySurface, style: 
 private fun OdsColors.buttonTextDisabledColor(displaySurface: OdsDisplaySurface) =
     buttonTextColor(displaySurface = displaySurface, style = OdsTextButtonStyle.Default).copy(alpha = ContentAlpha.disabled)
 
-@UiModePreviews.OdsTextButton
+@UiModePreviews.Button
 @Composable
 private fun PreviewOdsTextButton(@PreviewParameter(OdsTextButtonPreviewParameterProvider::class) style: OdsTextButtonStyle) = Preview {
     OdsTextButton(text = "Text", onClick = {}, style = style)
