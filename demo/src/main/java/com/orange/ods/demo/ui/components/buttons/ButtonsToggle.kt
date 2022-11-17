@@ -59,9 +59,7 @@ fun ButtonsToggle() {
             Column(
                 modifier = Modifier
                     .verticalScroll(rememberScrollState())
-                    .padding(
-                        vertical = dimensionResource(id = R.dimen.screen_vertical_margin)
-                    )
+                    .padding(vertical = dimensionResource(id = R.dimen.screen_vertical_margin))
             ) {
                 if (toggleCount.value > 1) {
                     Title(textRes = R.string.component_buttons_toggle_subtitle_group, horizontalPadding = true)
