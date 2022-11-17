@@ -35,6 +35,7 @@ import com.orange.ods.demo.R
 import com.orange.ods.demo.ui.components.utilities.ComponentCustomizationBottomSheetScaffold
 import com.orange.ods.demo.ui.utilities.composable.Subtitle
 import com.orange.ods.demo.ui.utilities.composable.SwitchListItem
+import com.orange.ods.utilities.extension.fullName
 
 @OptIn(ExperimentalMaterialApi::class)
 @Composable
@@ -76,6 +77,8 @@ fun ButtonsContained(style: OdsButtonStyle) {
                     .verticalScroll(rememberScrollState())
                     .padding(vertical = dimensionResource(id = R.dimen.screen_vertical_margin))
             ) {
+                ButtonStyleTitle(style = containedButtonStyle.value)
+
                 ContainedButton(style = containedButtonStyle.value, leadingIcon = hasLeadingIcon, enabled = isEnabled, variableWidth = hasVariableWidth)
 
                 Spacer(modifier = Modifier.padding(top = dimensionResource(R.dimen.spacing_s)))
@@ -104,6 +107,32 @@ fun ButtonsContained(style: OdsButtonStyle) {
             }
         }
     }
+}
+
+@Composable
+private fun ButtonStyleTitle(style: OdsButtonStyle) {
+    val titleRes: Int
+    val technicalText: String
+    when (style) {
+        OdsButtonStyle.Default -> {
+            titleRes = R.string.component_button_style_default
+            technicalText = OdsButtonStyle.Default.fullName
+        }
+        OdsButtonStyle.Primary -> {
+            titleRes = R.string.component_button_style_primary
+            technicalText = OdsButtonStyle.Primary.fullName
+        }
+        OdsButtonStyle.FunctionalNegative -> {
+            titleRes = R.string.component_button_style_functional_negative
+            technicalText = OdsButtonStyle.FunctionalNegative.fullName
+        }
+        OdsButtonStyle.FunctionalPositive -> {
+            titleRes = R.string.component_button_style_functional_positive
+            technicalText = OdsButtonStyle.FunctionalPositive.fullName
+        }
+    }
+
+    StyleTitle(titleRes = titleRes, technicalText = technicalText)
 }
 
 @Composable

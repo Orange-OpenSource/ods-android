@@ -10,6 +10,7 @@
 
 package com.orange.ods.demo.ui.components.buttons
 
+import androidx.annotation.StringRes
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.ColumnScope
@@ -27,6 +28,8 @@ import com.orange.ods.compose.theme.OdsTheme
 import com.orange.ods.demo.R
 import com.orange.ods.demo.ui.components.Variant
 import com.orange.ods.demo.ui.utilities.composable.Subtitle
+import com.orange.ods.demo.ui.utilities.composable.TechnicalText
+import com.orange.ods.demo.ui.utilities.composable.Title
 
 @Composable
 fun ComponentButtons(variant: Variant) {
@@ -46,6 +49,12 @@ fun Modifier.fullWidthButton(withTopPadding: Boolean = true) = composed {
         .fillMaxWidth()
         .padding(horizontal = dimensionResource(R.dimen.screen_horizontal_margin))
         .padding(top = if (withTopPadding) dimensionResource(R.dimen.spacing_m) else 0.dp)
+}
+
+@Composable
+fun StyleTitle(@StringRes titleRes: Int, technicalText: String) {
+    Title(titleRes, horizontalPadding = true)
+    TechnicalText(text = technicalText, withHorizontalPadding = true)
 }
 
 @Composable
