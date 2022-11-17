@@ -15,7 +15,6 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
-import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
@@ -63,10 +62,10 @@ fun ButtonsToggle() {
             ) {
                 if (toggleCount.value > 1) {
                     Title(textRes = R.string.component_buttons_toggle_subtitle_group, horizontalPadding = true)
-                    ToggleGroup(toggleCount = toggleCount.value)
+                    ToggleItems(toggleCount = toggleCount.value)
                 } else {
                     Title(textRes = R.string.component_buttons_toggle_subtitle_single, horizontalPadding = true)
-                    ToggleSingle(modifier = Modifier.padding(top = dimensionResource(R.dimen.spacing_m)))
+                    ToggleItems(modifier = Modifier.padding(top = dimensionResource(R.dimen.spacing_m)))
                 }
 
                 Spacer(modifier = Modifier.padding(top = dimensionResource(R.dimen.spacing_s)))
@@ -89,44 +88,29 @@ fun ButtonsToggle() {
 @Composable
 private fun ToggleDisplay(toggleCount: Int, displaySurface: OdsDisplaySurface) {
     if (toggleCount > 1) {
-        ToggleGroup(toggleCount = toggleCount, displaySurface = displaySurface)
+        ToggleItems(toggleCount = toggleCount, displaySurface = displaySurface)
     } else {
-        ToggleSingle(displaySurface = displaySurface)
+        ToggleItems(displaySurface = displaySurface)
     }
 }
 
 @Composable
-private fun ToggleGroup(toggleCount: Int, displaySurface: OdsDisplaySurface = OdsDisplaySurface.Default) {
+private fun ToggleItems(modifier: Modifier = Modifier, toggleCount: Int = 1, displaySurface: OdsDisplaySurface = OdsDisplaySurface.Default) {
     val iconsResources = listOf(R.drawable.ic_info, R.drawable.ic_search, R.drawable.ic_guideline_dna)
-    var checkedIcon by remember { mutableStateOf(R.drawable.ic_info) }
+    var checkedIcon by remember { mutableStateOf(if (toggleCount == 1) null else R.drawable.ic_info) }
 
     Row(
-        modifier = Modifier.fullWidthButton(),
+        modifier = modifier.fullWidthButton(),
         horizontalArrangement = Arrangement.Center
     ) {
         iconsResources.take(toggleCount).forEach { iconRes ->
             OdsIconToggleButton(
                 checked = checkedIcon == iconRes,
-                onCheckedChange = { checkedIcon = iconRes },
+                onCheckedChange = { checkedIcon = if (!it && toggleCount == 1) null else iconRes },
                 icon = painterResource(id = iconRes),
                 contentDescription = "",
-                displaySurface = displaySurface,
+                displaySurface = displaySurface
             )
         }
     }
-}
-
-
-@Composable
-private fun ToggleSingle(modifier: Modifier = Modifier, displaySurface: OdsDisplaySurface = OdsDisplaySurface.Default) {
-    var toggleChecked by remember { mutableStateOf(false) }
-    OdsIconToggleButton(
-        checked = toggleChecked,
-        onCheckedChange = { toggleChecked = it },
-        icon = painterResource(id = R.drawable.ic_module_molecule),
-        contentDescription = "Search",
-        modifier = modifier
-            .fillMaxWidth(),
-        displaySurface = displaySurface
-    )
 }
