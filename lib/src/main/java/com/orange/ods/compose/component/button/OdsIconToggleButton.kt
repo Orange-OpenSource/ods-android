@@ -76,8 +76,8 @@ fun OdsIconToggleButton(
         Box(
             modifier = Modifier
                 .border(
-                    width = 1.dp, color = OdsTheme.colors
-                        .buttonToggleBorderColor(displaySurface)
+                    width = 1.dp,
+                    color = OdsTheme.colors.buttonToggleBorderColor(displaySurface)
                 )
                 .background(
                     color = OdsTheme.colors
