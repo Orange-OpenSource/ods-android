@@ -56,14 +56,8 @@ fun ButtonsText() {
                     OdsChoiceChip(textRes = R.string.component_button_style_primary, value = OdsTextButtonStyle.Primary)
                     OdsChoiceChip(textRes = R.string.component_button_style_default, value = OdsTextButtonStyle.Default)
                 }
-                SwitchListItem(
-                    labelRes = R.string.component_element_icon,
-                    checked = leadingIcon,
-                )
-                SwitchListItem(
-                    labelRes = R.string.component_state_disabled,
-                    checked = disabled,
-                )
+                SwitchListItem(labelRes = R.string.component_element_icon, checked = leadingIcon)
+                SwitchListItem(labelRes = R.string.component_state_disabled, checked = disabled)
             }) {
 
             val titleRes: Int

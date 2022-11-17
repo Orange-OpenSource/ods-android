@@ -66,18 +66,9 @@ fun ButtonsContained(style: OdsButtonStyle) {
                         OdsChoiceChip(textRes = R.string.component_button_style_functional_negative, value = OdsButtonStyle.FunctionalNegative)
                     }
                 }
-                SwitchListItem(
-                    labelRes = R.string.component_element_icon,
-                    checked = leadingIcon,
-                )
-                SwitchListItem(
-                    labelRes = R.string.component_buttons_variable_width,
-                    checked = variableWidth,
-                )
-                SwitchListItem(
-                    labelRes = R.string.component_state_disabled,
-                    checked = disabled,
-                )
+                SwitchListItem(labelRes = R.string.component_element_icon, checked = leadingIcon)
+                SwitchListItem(labelRes = R.string.component_buttons_variable_width, checked = variableWidth)
+                SwitchListItem(labelRes = R.string.component_state_disabled, checked = disabled)
             }) {
 
             Column(
