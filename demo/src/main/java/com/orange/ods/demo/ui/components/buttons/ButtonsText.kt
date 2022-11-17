@@ -54,7 +54,7 @@ fun ButtonsText() {
                     OdsChoiceChip(textRes = R.string.component_button_style_default, value = OdsTextButtonStyle.Default)
                 }
                 SwitchListItem(labelRes = R.string.component_element_icon, checked = leadingIcon)
-                SwitchListItem(labelRes = R.string.component_buttons_variable_width, checked = variableWidth)
+                SwitchListItem(labelRes = R.string.component_button_variable_width, checked = variableWidth)
                 SwitchListItem(labelRes = R.string.component_state_disabled, checked = disabled)
             }) {
 

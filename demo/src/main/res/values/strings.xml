@@ -123,7 +123,7 @@
     <string name="component_buttons_toggle_count">Toggle count</string>
     <string name="component_buttons_toggle_remove">Remove toggle</string>
     <string name="component_buttons_toggle_add">Add toggle</string>
-    <string name="component_buttons_variable_width">Variable width</string>
+    <string name="component_button_variable_width">Variable width</string>
     <string name="component_button_style_primary">Primary</string>
     <string name="component_button_style_default">Default</string>
     <string name="component_button_style_functional">Functional</string>
