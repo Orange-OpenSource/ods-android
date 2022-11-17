@@ -39,7 +39,7 @@ jobs:
       - name: Run Android Linter
         run: ./gradlew lintDebug
 
-      - name: Build lib, catalog and demo app
+      - name: Build
         run: |
           # Git SHA is equal to github.event.pull_request.head.sha for pull requests
           # This value is unset if workflow has not been triggered by a pull request, use GITHUB_SHA instead
@@ -47,23 +47,16 @@ jobs:
           COMMIT_SHA=${BRANCH_SHA:-$GITHUB_SHA}
           ./gradlew assemble -PversionNameSuffix="-${COMMIT_SHA::7}" -PversionCode=$GITHUB_RUN_NUMBER --stacktrace
 
-      - name: Store library
+      - name: Store artifacts
         uses: actions/upload-artifact@v2
         with:
           name: library
-          path: lib/build/outputs/aar/*.aar
-
-      - name: Store catalog app
-        uses: actions/upload-artifact@v2
-        with:
-          name: catalog
-          path: catalog/build/outputs/apk/*/*.apk
-
-      - name: Store demo app
-        uses: actions/upload-artifact@v2
-        with:
-          name: demo
-          path: demo/build/outputs/apk/*/*.apk
+          path:
+            demo/build/outputs/apk/*/*.apk
+            lib/build/outputs/aar/*.aar
+            theme-contract/build/outputs/aar/*.aar
+            theme-innovation-cup/build/outputs/aar/*.aar
+            theme-orange/build/outputs/aar/*.aar
 
   maven-central-release:
     runs-on: ubuntu-latest
