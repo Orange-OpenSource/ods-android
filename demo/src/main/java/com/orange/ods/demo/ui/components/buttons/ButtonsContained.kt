@@ -39,7 +39,7 @@ import com.orange.ods.demo.ui.utilities.composable.SwitchListItem
 @OptIn(ExperimentalMaterialApi::class)
 @Composable
 fun ButtonsContained(style: OdsButtonStyle) {
-    val buttonCustomizationState = rememberButtonCustomizationState(rememberSaveable { mutableStateOf(style) })
+    val buttonCustomizationState = rememberButtonCustomizationState(containedButtonStyle = rememberSaveable { mutableStateOf(style) })
 
     with(buttonCustomizationState) {
         ComponentCustomizationBottomSheetScaffold(
