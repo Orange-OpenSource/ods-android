@@ -5,7 +5,13 @@ All notable changes done in ODS library will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-## 0.7.0 - 2022-11-09
+## [Unreleased](https://github.com/Orange-OpenSource/ods-android/compare/0.7.0...master)
+
+### Changed
+
+- \[All\] Version numbers in changelog now display changes on GitHub when clicked ([#322](https://github.com/Orange-OpenSource/ods-android/issues/322))
+
+## [0.7.0 - 2022-11-09](https://github.com/Orange-OpenSource/ods-android/compare/0.6.0...0.7.0)
 
 ### Added
 
@@ -19,7 +25,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - \[Demo\] Use step counter for list item line count customization ([#306](https://github.com/Orange-OpenSource/ods-android/issues/306))
 - \[Demo\] Display the chip name and a short description for each type of chip ([#304](https://github.com/Orange-OpenSource/ods-android/issues/304))
 
-## 0.6.0 - 2022-10-17
+## [0.6.0 - 2022-10-17](https://github.com/Orange-OpenSource/ods-android/compare/0.5.0...0.6.0)
 
 ### Added
 
@@ -42,7 +48,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - \[Demo\] Fix vocalization of counters values on change ([#266](https://github.com/Orange-OpenSource/ods-android/issues/266))
 - \[Lib\] Fix state vocalization for chips: selected/not selected ([#280](https://github.com/Orange-OpenSource/ods-android/issues/280))
 
-## 0.5.0 - 2022-09-07
+## [0.5.0 - 2022-09-07](https://github.com/Orange-OpenSource/ods-android/compare/0.4.0...0.5.0)
 
 ### Added
 
@@ -79,7 +85,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - \[Lib\] Remove `OdsListItemWideThumbnail`, `OdsListWideThumbnail` and `OdsListSquaredThumbnail` methods ([#141](https://github.com/Orange-OpenSource/ods-android/issues/141))
 
-## 0.4.0 - 2022-07-06
+## [0.4.0 - 2022-07-06](https://github.com/Orange-OpenSource/ods-android/compare/0.0.1...0.4.0)
 
 ### Added
 
@@ -95,10 +101,3 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - \[Lib\] Add `OdsBottomNavigation` and `OdsBottomNavigationItem` components ([#20](https://github.com/Orange-OpenSource/ods-android/issues/20))
 - \[Lib\] Add `OdsMaterialTheme` which is a Material theme extension for Jetpack Compose applications ([#36](https://github.com/Orange-OpenSource/ods-android/issues/36))
 - \[Lib\] Add `Theme.Orange` and `Theme.Orange.NoActionBar`, the Orange Design System theme for XML applications
-
-\[Unreleased\]: <https://github.com/Orange-OpenSource/ods-android/compare/0.7.0...master>
-\[0.7.0\]: <https://github.com/Orange-OpenSource/ods-android/compare/0.6.0...0.7.0>
-\[0.6.0\]: <https://github.com/Orange-OpenSource/ods-android/compare/0.5.0...0.6.0>
-\[0.5.0\]: <https://github.com/Orange-OpenSource/ods-android/compare/0.4.0...0.5.0>
-\[0.4.0\]: <https://github.com/Orange-OpenSource/ods-android/compare/0.0.1...0.4.0>
-\[0.0.1\]: <https://github.com/Orange-OpenSource/ods-android/tree/0.0.1>
