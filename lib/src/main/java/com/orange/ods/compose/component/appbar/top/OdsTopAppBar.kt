@@ -10,7 +10,6 @@
 
 package com.orange.ods.compose.component.appbar.top
 
-import android.content.res.Configuration
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.RowScope
 import androidx.compose.material.AppBarDefaults
@@ -24,11 +23,11 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.painter.Painter
 import androidx.compose.ui.res.painterResource
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.orange.ods.compose.component.OdsComponentApi
 import com.orange.ods.compose.component.button.OdsIconButton
 import com.orange.ods.compose.component.utilities.Preview
+import com.orange.ods.compose.component.utilities.UiModePreviews
 import com.orange.ods.compose.theme.OdsTheme
 
 /**
@@ -99,7 +98,7 @@ fun OdsTopAppBarActionButton(
     )
 }
 
-
+@UiModePreviews.Default
 @Composable
 private fun PreviewOdsTopAppBar() = Preview {
     OdsTopAppBar(
@@ -118,15 +117,3 @@ private fun PreviewOdsTopAppBar() = Preview {
         }
     )
 }
-
-@Preview(name = "OdsTopAppBar - Light")
-@Composable
-private fun PreviewOdsTopAppBarLight() = PreviewOdsTopAppBar()
-
-@Preview(
-    name = "OdsTopAppBar - Dark",
-    uiMode = Configuration.UI_MODE_NIGHT_YES,
-    showBackground = true
-)
-@Composable
-private fun PreviewOdsTopAppBarDark() = PreviewOdsTopAppBar()

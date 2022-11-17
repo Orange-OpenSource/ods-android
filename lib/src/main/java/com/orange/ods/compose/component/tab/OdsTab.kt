@@ -10,20 +10,21 @@
 
 package com.orange.ods.compose.component.tab
 
-import android.content.res.Configuration
 import androidx.compose.material.Icon
 import androidx.compose.material.Tab
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.painter.Painter
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.style.TextOverflow
-import androidx.compose.ui.tooling.preview.Preview
 import com.orange.ods.compose.component.OdsComponentApi
 import com.orange.ods.compose.component.utilities.Preview
+import com.orange.ods.compose.component.utilities.UiModePreviews
 import com.orange.ods.compose.theme.OdsTheme
 
 /**
@@ -66,29 +67,14 @@ fun OdsTab(
     )
 }
 
+@UiModePreviews.Tab
 @Composable
 private fun PreviewOdsTab() = Preview {
-    val selected = remember { mutableStateOf(false) }
+    var selected by remember { mutableStateOf(false) }
     OdsTab(
-        selected = selected.value,
-        onClick = { selected.value = !selected.value },
+        selected = selected,
+        onClick = { selected = !selected },
         text = "Text",
         icon = painterResource(id = android.R.drawable.ic_dialog_email)
     )
 }
-
-@Preview(
-    name = "OdsTab - Light",
-    widthDp = 100
-)
-@Composable
-private fun PreviewOdsTabLight() = PreviewOdsTab()
-
-@Preview(
-    name = "OdsTab - Dark",
-    widthDp = 100,
-    uiMode = Configuration.UI_MODE_NIGHT_YES,
-    showBackground = true
-)
-@Composable
-private fun PreviewOdsTabDark() = PreviewOdsTab()

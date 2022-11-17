@@ -10,7 +10,6 @@
 
 package com.orange.ods.compose.component.button
 
-import android.content.res.Configuration
 import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.foundation.layout.Spacer
@@ -28,11 +27,11 @@ import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.painter.Painter
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.tooling.preview.PreviewParameter
 import com.orange.ods.compose.component.OdsComponentApi
 import com.orange.ods.compose.component.utilities.EnumPreviewParameterProvider
 import com.orange.ods.compose.component.utilities.Preview
+import com.orange.ods.compose.component.utilities.UiModePreviews
 import com.orange.ods.compose.theme.OdsDisplaySurface
 import com.orange.ods.compose.theme.OdsTheme
 
@@ -193,30 +192,10 @@ private object OdsOnPrimaryRippleTheme : RippleTheme {
     )
 }
 
-
+@UiModePreviews.Button
 @Composable
-private fun PreviewOdsButton(style: OdsButtonStyle) = Preview {
+private fun PreviewOdsButton(@PreviewParameter(OdsButtonPreviewParameterProvider::class) style: OdsButtonStyle) = Preview {
     OdsButton(text = "Text", onClick = {}, style = style)
-}
-
-@Composable
-@Preview(
-    name = "OdsButton - Light",
-    widthDp = 200
-)
-private fun PreviewOdsButtonLight(@PreviewParameter(OdsButtonPreviewParameterProvider::class) style: OdsButtonStyle) {
-    PreviewOdsButton(style)
-}
-
-@Composable
-@Preview(
-    name = "OdsButton - Dark",
-    uiMode = Configuration.UI_MODE_NIGHT_YES,
-    showBackground = true,
-    widthDp = 200
-)
-private fun PreviewOdsButtonDark(@PreviewParameter(OdsButtonPreviewParameterProvider::class) style: OdsButtonStyle) {
-    PreviewOdsButton(style)
 }
 
 internal class OdsButtonPreviewParameterProvider : EnumPreviewParameterProvider(OdsButtonStyle::class)

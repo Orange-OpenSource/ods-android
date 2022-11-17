@@ -10,20 +10,21 @@
 
 package com.orange.ods.compose.component.tab
 
-import android.content.res.Configuration
 import androidx.annotation.DrawableRes
 import androidx.compose.material.Tab
 import androidx.compose.material.TabRow
 import androidx.compose.material.TabRowDefaults
 import androidx.compose.material.TabRowDefaults.tabIndicatorOffset
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.painterResource
-import androidx.compose.ui.tooling.preview.Preview
 import com.orange.ods.compose.component.OdsComponentApi
 import com.orange.ods.compose.component.utilities.Preview
+import com.orange.ods.compose.component.utilities.UiModePreviews
 import com.orange.ods.compose.theme.OdsTheme
 
 /**
@@ -63,6 +64,7 @@ fun OdsTabRow(
     )
 }
 
+@UiModePreviews.Default
 @Composable
 private fun PreviewOdsTabRow() = Preview {
     data class Tab(@DrawableRes val iconResId: Int, val text: String)
@@ -73,27 +75,15 @@ private fun PreviewOdsTabRow() = Preview {
         Tab(android.R.drawable.ic_dialog_dialer, "Third tab")
     )
 
-    val selectedTabIndex = remember { mutableStateOf(0) }
-    OdsTabRow(selectedTabIndex = selectedTabIndex.value) {
+    var selectedTabIndex by remember { mutableStateOf(0) }
+    OdsTabRow(selectedTabIndex = selectedTabIndex) {
         tabs.forEachIndexed { index, tab ->
             OdsTab(
-                selected = selectedTabIndex.value == index,
-                onClick = { selectedTabIndex.value = index },
+                selected = selectedTabIndex == index,
+                onClick = { selectedTabIndex = index },
                 text = tab.text,
                 icon = painterResource(id = tab.iconResId)
             )
         }
     }
 }
-
-@Preview(name = "OdsTabRow - Light")
-@Composable
-private fun PreviewOdsTabRowLight() = PreviewOdsTabRow()
-
-@Preview(
-    name = "OdsTabRow - Dark",
-    uiMode = Configuration.UI_MODE_NIGHT_YES,
-    showBackground = true
-)
-@Composable
-private fun PreviewOdsTabRowDark() = PreviewOdsTabRow()

@@ -16,6 +16,8 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import com.orange.ods.compose.component.OdsComponentApi
+import com.orange.ods.compose.component.utilities.Preview
+import com.orange.ods.compose.component.utilities.UiModePreviews
 import com.orange.ods.compose.theme.OdsTheme
 
 private const val OdsDividerAlpha = 0.12f
@@ -33,4 +35,10 @@ fun OdsDivider(
     startIndent: Dp = 0.dp
 ) {
     Divider(modifier = modifier, startIndent = startIndent, color = OdsTheme.colors.onSurface.copy(alpha = OdsDividerAlpha))
+}
+
+@UiModePreviews.Default
+@Composable
+fun PreviewOdsDivider() = Preview {
+    OdsDivider()
 }
