@@ -45,8 +45,7 @@ private const val FixedTabsCountMax = 3
 private const val ScrollableTabsCountMin = 4
 private const val ScrollableTabsCountMax = 6
 
-@ExperimentalMaterialApi
-@ExperimentalPagerApi
+@OptIn(ExperimentalMaterialApi::class, ExperimentalPagerApi::class)
 @Composable
 fun ComponentTabs(variant: Variant) {
     val scrollableTabs: Boolean

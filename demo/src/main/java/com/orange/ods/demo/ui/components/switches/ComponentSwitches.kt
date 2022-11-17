@@ -25,7 +25,7 @@ import com.orange.ods.demo.R
 import com.orange.ods.demo.ui.components.utilities.ComponentCustomizationBottomSheetScaffold
 import com.orange.ods.demo.ui.utilities.composable.SwitchListItem
 
-@ExperimentalMaterialApi
+@OptIn(ExperimentalMaterialApi::class)
 @Composable
 fun ComponentSwitches() {
     val checked = rememberSaveable { mutableStateOf(false) }

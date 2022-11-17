@@ -10,7 +10,6 @@
 
 package com.orange.ods.demo.ui.guidelines
 
-import androidx.compose.material.ExperimentalMaterialApi
 import androidx.navigation.NavGraphBuilder
 import androidx.navigation.compose.composable
 import com.orange.ods.demo.ui.LocalMainTabsManager
@@ -19,7 +18,6 @@ import com.orange.ods.demo.ui.guidelines.color.GuidelineColorScreen
 import com.orange.ods.demo.ui.guidelines.spacing.GuidelineSpacingScreen
 import com.orange.ods.demo.ui.guidelines.typography.GuidelineTypographyScreen
 
-@ExperimentalMaterialApi
 fun NavGraphBuilder.addGuidelinesGraph() {
     composable(MainDestinations.GuidelineColor) {
         LocalMainTabsManager.current.clearTopAppBarTabs()

@@ -17,7 +17,6 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
-import androidx.compose.material.ExperimentalMaterialApi
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.geometry.Offset
@@ -40,7 +39,6 @@ import java.util.*
 
 private val ratioFormatter = DecimalFormat("0.#", DecimalFormatSymbols(Locale.ENGLISH))
 
-@ExperimentalMaterialApi
 @Composable
 fun GuidelineSpacingScreen() {
     LocalMainTopAppBarManager.current.updateTopAppBarTitle(R.string.guideline_spacing)

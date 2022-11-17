@@ -10,11 +10,9 @@
 
 package com.orange.ods.demo.ui.components.cards
 
-import androidx.compose.material.ExperimentalMaterialApi
 import androidx.compose.runtime.Composable
 import com.orange.ods.demo.ui.components.Variant
 
-@ExperimentalMaterialApi
 @Composable
 fun ComponentCard(variant: Variant) {
     when (variant) {

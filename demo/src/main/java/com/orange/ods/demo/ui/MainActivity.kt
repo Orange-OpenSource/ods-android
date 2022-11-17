@@ -13,15 +13,11 @@ package com.orange.ods.demo.ui
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
-import androidx.compose.material.ExperimentalMaterialApi
-import com.google.accompanist.pager.ExperimentalPagerApi
 import com.orange.ods.theme.OdsThemeConfigurationContract
 import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
 
 @AndroidEntryPoint
-@ExperimentalMaterialApi
-@ExperimentalPagerApi
 class MainActivity : ComponentActivity() {
 
     @Inject

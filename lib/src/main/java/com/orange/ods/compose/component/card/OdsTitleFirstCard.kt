@@ -64,7 +64,6 @@ import com.orange.ods.utilities.extension.orElse
  * @param onButton2Click Optional handler for the second button click.
  *
  */
-@ExperimentalMaterialApi
 @Composable
 @OdsComponentApi
 fun OdsTitleFirstCard(
@@ -155,7 +154,6 @@ fun OdsTitleFirstCard(
     }
 }
 
-@ExperimentalMaterialApi
 @Composable
 private fun PreviewOdsTitleFirstCard() = Preview {
     OdsTitleFirstCard(
@@ -169,12 +167,10 @@ private fun PreviewOdsTitleFirstCard() = Preview {
     )
 }
 
-@ExperimentalMaterialApi
 @Preview(name = "OdsTitleFirstCard - Light")
 @Composable
 private fun PreviewOdsTitleFirstCardLight() = PreviewOdsTitleFirstCard()
 
-@ExperimentalMaterialApi
 @Preview(
     name = "OdsTitleFirstCard - Dark",
     uiMode = Configuration.UI_MODE_NIGHT_YES,

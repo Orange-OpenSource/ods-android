@@ -22,8 +22,7 @@ import com.google.accompanist.pager.ExperimentalPagerApi
 import com.google.accompanist.pager.PagerState
 import com.google.accompanist.pager.rememberPagerState
 
-@ExperimentalMaterialApi
-@ExperimentalPagerApi
+@OptIn(ExperimentalMaterialApi::class, ExperimentalPagerApi::class)
 @Composable
 fun rememberMainTabsCustomizationState(
     bottomSheetScaffoldState: BottomSheetScaffoldState = rememberBottomSheetScaffoldState(),
@@ -36,8 +35,7 @@ fun rememberMainTabsCustomizationState(
         MainTabsCustomizationState(bottomSheetScaffoldState, pagerState, tabsCount, selectedTabIconType, tabTextEnabled)
     }
 
-@ExperimentalMaterialApi
-@ExperimentalPagerApi
+@OptIn(ExperimentalMaterialApi::class, ExperimentalPagerApi::class)
 class MainTabsCustomizationState(
     val bottomSheetScaffoldState: BottomSheetScaffoldState,
     val pagerState: PagerState,

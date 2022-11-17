@@ -30,7 +30,7 @@ import com.orange.ods.demo.ui.components.utilities.ComponentCustomizationBottomS
 import com.orange.ods.demo.ui.components.utilities.clickOnElement
 import com.orange.ods.demo.ui.utilities.composable.SwitchListItem
 
-@ExperimentalMaterialApi
+@OptIn(ExperimentalMaterialApi::class)
 @Composable
 fun CardImageFirst() {
     val context = LocalContext.current

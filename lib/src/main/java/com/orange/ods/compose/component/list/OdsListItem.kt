@@ -87,8 +87,8 @@ import com.orange.ods.utilities.extension.orElse
  * @param overlineText The text displayed above the primary text
  * @param trailing The trailing meta text, icon, switch or checkbox
  */
+@OptIn(ExperimentalMaterialApi::class)
 @Composable
-@ExperimentalMaterialApi
 @OdsComponentApi
 fun OdsListItem(
     modifier: Modifier = Modifier,
@@ -138,7 +138,7 @@ fun OdsListItem(
     }
 }
 
-@ExperimentalMaterialApi
+@OptIn(ExperimentalMaterialApi::class)
 @Composable
 private fun OdsListItemInternal(
     modifier: Modifier = Modifier,
@@ -339,7 +339,6 @@ private interface OdsListItemDividerModifier : Modifier.Element {
 }
 
 @Composable
-@ExperimentalMaterialApi
 private fun PreviewOdsListItem(parameter: OdsListItemPreviewParameter) = Preview {
     with(parameter) {
         val painter = when (iconType) {
@@ -365,7 +364,6 @@ private fun PreviewOdsListItem(parameter: OdsListItemPreviewParameter) = Preview
 
 @Preview(name = "OdsListItem - Light")
 @Composable
-@ExperimentalMaterialApi
 private fun PreviewOdsListItemLight(@PreviewParameter(OdsListItemPreviewParameterProvider::class) parameter: OdsListItemPreviewParameter) {
     PreviewOdsListItem(parameter)
 }
@@ -376,7 +374,6 @@ private fun PreviewOdsListItemLight(@PreviewParameter(OdsListItemPreviewParamete
     showBackground = true
 )
 @Composable
-@ExperimentalMaterialApi
 private fun PreviewOdsListItemDark(@PreviewParameter(OdsListItemPreviewParameterProvider::class) parameter: OdsListItemPreviewParameter) {
     PreviewOdsListItem(parameter)
 }

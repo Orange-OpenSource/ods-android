@@ -10,7 +10,6 @@
 
 package com.orange.ods.demo.ui
 
-import androidx.compose.material.ExperimentalMaterialApi
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.MutableState
 import androidx.compose.runtime.mutableStateOf
@@ -34,8 +33,6 @@ interface MainTabsManager {
 }
 
 @Composable
-@ExperimentalPagerApi
-@ExperimentalMaterialApi
 fun rememberMainTabsState(
     tabs: SnapshotStateList<TabItem> = rememberSaveableMutableStateListOf(),
     tabIconType: MutableState<MainTabsCustomizationState.TabIconType> = rememberSaveable { mutableStateOf(MainTabsCustomizationState.TabIconType.Top) },
@@ -46,8 +43,7 @@ fun rememberMainTabsState(
         MainTabsState(tabs, tabIconType, tabTextEnabled, scrollableTabs)
     }
 
-@ExperimentalPagerApi
-@ExperimentalMaterialApi
+@OptIn(ExperimentalPagerApi::class)
 class MainTabsState(
     val tabs: SnapshotStateList<TabItem>,
     val tabIconType: MutableState<MainTabsCustomizationState.TabIconType>,
@@ -81,7 +77,8 @@ class MainTabsState(
     }
 }
 
-data class MainTabsConfiguration @ExperimentalPagerApi @ExperimentalMaterialApi constructor(
+@OptIn(ExperimentalPagerApi::class)
+data class MainTabsConfiguration(
     val scrollableTabs: Boolean,
     val tabs: List<TabItem>,
     val pagerState: PagerState,

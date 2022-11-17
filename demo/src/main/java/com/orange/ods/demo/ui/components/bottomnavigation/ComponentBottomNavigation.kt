@@ -41,8 +41,8 @@ private object ComponentBottomNavigation {
     const val MaxNavigationItemCount = 5
 }
 
+@OptIn(ExperimentalMaterialApi::class)
 @Composable
-@ExperimentalMaterialApi
 fun ComponentBottomNavigation() {
     val context = LocalContext.current
     val navigationItems = listOf(

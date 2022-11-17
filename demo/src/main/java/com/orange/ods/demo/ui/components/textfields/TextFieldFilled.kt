@@ -14,7 +14,6 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.ColumnScope
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
-import androidx.compose.material.ExperimentalMaterialApi
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
@@ -31,7 +30,6 @@ import com.orange.ods.demo.R
 import com.orange.ods.demo.ui.components.textfields.TextFieldCustomizationState.Companion.TextFieldMaxChars
 import com.orange.ods.demo.ui.components.utilities.clickOnElement
 
-@ExperimentalMaterialApi
 @Composable
 fun TextFieldFilled(customizationState: TextFieldCustomizationState) {
     val context = LocalContext.current

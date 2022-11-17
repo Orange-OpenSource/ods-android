@@ -10,14 +10,12 @@
 
 package com.orange.ods.demo.ui.components.tabs
 
-import androidx.compose.material.ExperimentalMaterialApi
 import androidx.compose.runtime.Composable
 import com.google.accompanist.pager.ExperimentalPagerApi
 import com.google.accompanist.pager.PagerState
 import com.orange.ods.compose.component.tab.OdsScrollableTabRow
 
-@ExperimentalMaterialApi
-@ExperimentalPagerApi
+@OptIn(ExperimentalPagerApi::class)
 @Composable
 fun ScrollableTabRow(tabs: List<TabItem>, pagerState: PagerState, tabIconType: MainTabsCustomizationState.TabIconType, tabTextEnabled: Boolean) {
 

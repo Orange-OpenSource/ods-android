@@ -25,7 +25,7 @@ object ComponentListItem {
     const val MaxLineCount = 3
 }
 
-@ExperimentalMaterialApi
+@OptIn(ExperimentalMaterialApi::class)
 @Composable
 fun rememberListItemCustomizationState(
     bottomSheetScaffoldState: BottomSheetScaffoldState = rememberBottomSheetScaffoldState(),
@@ -37,7 +37,7 @@ fun rememberListItemCustomizationState(
     ListItemCustomizationState(bottomSheetScaffoldState, lineCount, selectedLeading, selectedTrailing, dividerEnabled)
 }
 
-@ExperimentalMaterialApi
+@OptIn(ExperimentalMaterialApi::class)
 class ListItemCustomizationState(
     val bottomSheetScaffoldState: BottomSheetScaffoldState,
     val lineCount: MutableState<Int>,

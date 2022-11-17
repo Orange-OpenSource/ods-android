@@ -41,8 +41,7 @@ import com.orange.ods.utilities.composable.Keyboard
 import com.orange.ods.utilities.composable.keyboardAsState
 import kotlinx.coroutines.launch
 
-@ExperimentalPagerApi
-@ExperimentalMaterialApi
+@OptIn(ExperimentalMaterialApi::class)
 @Composable
 fun ComponentTextField(variant: Variant) {
     val textFieldCustomizationState = rememberTextFieldCustomizationState()
@@ -75,8 +74,7 @@ fun ComponentTextField(variant: Variant) {
     }
 }
 
-@ExperimentalMaterialApi
-@ExperimentalPagerApi
+@OptIn(ExperimentalPagerApi::class)
 @Composable
 private fun TextFieldTextCustomization(textFieldCustomizationState: TextFieldCustomizationState) {
     val pagerState = rememberPagerState()
@@ -109,7 +107,6 @@ private fun TextFieldTextCustomization(textFieldCustomizationState: TextFieldCus
     }
 }
 
-@ExperimentalMaterialApi
 @Composable
 private fun TextFieldPasswordCustomization(textFieldCustomizationState: TextFieldCustomizationState) {
     DisplayTypeCustomization(textFieldCustomizationState.displayType)
@@ -117,7 +114,6 @@ private fun TextFieldPasswordCustomization(textFieldCustomizationState: TextFiel
     SwitchListItem(labelRes = R.string.component_text_field_character_counter, checked = textFieldCustomizationState.characterCounter)
 }
 
-@ExperimentalMaterialApi
 @Composable
 private fun ComponentCustomizationContent(textFieldCustomizationState: TextFieldCustomizationState) {
     SwitchListItem(labelRes = R.string.component_element_leading_icon, checked = textFieldCustomizationState.leadingIcon)
@@ -155,7 +151,6 @@ private fun ComponentCustomizationContent(textFieldCustomizationState: TextField
     SwitchListItem(labelRes = R.string.component_text_field_character_counter, checked = textFieldCustomizationState.characterCounter)
 }
 
-@ExperimentalMaterialApi
 @Composable
 private fun KeyboardCustomizationContent(textFieldCustomizationState: TextFieldCustomizationState) {
     Subtitle(textRes = R.string.component_text_field_keyboard_type, withHorizontalPadding = true)
@@ -185,7 +180,6 @@ private fun KeyboardCustomizationContent(textFieldCustomizationState: TextFieldC
 
 }
 
-@ExperimentalMaterialApi
 @Composable
 private fun DisplayTypeCustomization(displayType: MutableState<TextFieldCustomizationState.DisplayType>) {
     Subtitle(textRes = R.string.component_state, withHorizontalPadding = true)
@@ -204,7 +198,6 @@ private enum class CustomizationTab(@StringRes val titleRes: Int) {
     TextField(R.string.component_text_field),
     Keyboard(R.string.component_text_field_keyboard);
 
-    @ExperimentalMaterialApi
     @Composable
     fun Content(textFieldCustomizationState: TextFieldCustomizationState) {
         when (this) {

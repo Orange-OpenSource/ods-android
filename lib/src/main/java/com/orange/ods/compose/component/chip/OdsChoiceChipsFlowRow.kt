@@ -13,7 +13,6 @@ package com.orange.ods.compose.component.chip
 import androidx.annotation.StringRes
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.selection.selectableGroup
-import androidx.compose.material.ExperimentalMaterialApi
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.MutableState
 import androidx.compose.ui.Modifier
@@ -54,7 +53,6 @@ fun <T> OdsChoiceChipsFlowRow(
  * @param text Text displayed in the chip
  * @param enabled If set to false, the chip is no more clickable and appears as disabled
  */
-@ExperimentalMaterialApi
 @Composable
 @OdsComponentApi
 fun <T> OdsChoiceChipsFlowRowScope<T>.OdsChoiceChip(text: String, value: T, enabled: Boolean = true) {
@@ -73,7 +71,6 @@ fun <T> OdsChoiceChipsFlowRowScope<T>.OdsChoiceChip(text: String, value: T, enab
  * @param textRes Text resource identifier to display in the chip
  * @param enabled If set to false, the chip is no more clickable and appears as disabled
  */
-@ExperimentalMaterialApi
 @Composable
 fun <T> OdsChoiceChipsFlowRowScope<T>.OdsChoiceChip(@StringRes textRes: Int, value: T, enabled: Boolean = true) {
     OdsChoiceChip(text = stringResource(id = textRes), value = value, enabled = enabled)
