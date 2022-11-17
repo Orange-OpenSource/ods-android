@@ -104,7 +104,7 @@ private fun ToggleGroup(toggleCount: Int, displaySurface: OdsDisplaySurface = Od
         modifier = Modifier.fullWidthButton(),
         horizontalArrangement = Arrangement.Center
     ) {
-        iconsResources.subList(0, toggleCount).forEach { iconRes ->
+        iconsResources.take(toggleCount).forEach { iconRes ->
             OdsIconToggleButton(
                 checked = checkedIcon == iconRes,
                 onCheckedChange = { checkedIcon = iconRes },
