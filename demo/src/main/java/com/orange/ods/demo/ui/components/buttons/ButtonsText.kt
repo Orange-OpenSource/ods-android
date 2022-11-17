@@ -54,6 +54,7 @@ fun ButtonsText() {
                     OdsChoiceChip(textRes = R.string.component_button_style_default, value = OdsTextButtonStyle.Default)
                 }
                 SwitchListItem(labelRes = R.string.component_element_icon, checked = leadingIcon)
+                SwitchListItem(labelRes = R.string.component_buttons_variable_width, checked = variableWidth)
                 SwitchListItem(labelRes = R.string.component_state_disabled, checked = disabled)
             }) {
 
@@ -64,7 +65,7 @@ fun ButtonsText() {
             ) {
                 ButtonStyleTitle(style = textButtonStyle.value)
 
-                TextButton(style = textButtonStyle.value, leadingIcon = hasLeadingIcon, enabled = isEnabled)
+                TextButton(style = textButtonStyle.value, leadingIcon = hasLeadingIcon, enabled = isEnabled, variableWidth = hasVariableWidth)
 
                 Spacer(modifier = Modifier.padding(top = dimensionResource(R.dimen.spacing_s)))
 
@@ -74,6 +75,7 @@ fun ButtonsText() {
                             style = textButtonStyle.value,
                             leadingIcon = hasLeadingIcon,
                             enabled = isEnabled,
+                            variableWidth = hasVariableWidth,
                             displaySurface = OdsDisplaySurface.Light
                         )
                     }
@@ -83,6 +85,7 @@ fun ButtonsText() {
                             style = textButtonStyle.value,
                             leadingIcon = hasLeadingIcon,
                             enabled = isEnabled,
+                            variableWidth = hasVariableWidth,
                             displaySurface = OdsDisplaySurface.Dark
                         )
                     }
@@ -115,14 +118,15 @@ private fun TextButton(
     style: OdsTextButtonStyle,
     leadingIcon: Boolean,
     enabled: Boolean,
+    variableWidth: Boolean,
     displaySurface: OdsDisplaySurface = OdsDisplaySurface.Default
 ) {
+    val modifier = Modifier
+        .padding(horizontal = dimensionResource(R.dimen.screen_horizontal_margin))
+        .padding(top = dimensionResource(R.dimen.spacing_m))
 
     OdsTextButton(
-        modifier = Modifier
-            .padding(horizontal = dimensionResource(R.dimen.screen_horizontal_margin))
-            .padding(top = dimensionResource(R.dimen.spacing_m))
-            .fillMaxWidth(),
+        modifier = if (variableWidth) modifier else modifier.fillMaxWidth(),
         icon = if (leadingIcon) painterResource(id = R.drawable.ic_search) else null,
         text = stringResource(if (enabled) R.string.component_state_enabled else R.string.component_state_disabled),
         onClick = {},
