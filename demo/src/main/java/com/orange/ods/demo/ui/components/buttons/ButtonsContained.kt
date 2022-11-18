@@ -46,7 +46,7 @@ fun ButtonsContained(style: OdsButtonStyle) {
         ComponentCustomizationBottomSheetScaffold(
             bottomSheetScaffoldState = rememberBottomSheetScaffoldState(),
             bottomSheetContent = {
-                Subtitle(textRes = R.string.component_style, withHorizontalPadding = true)
+                Subtitle(textRes = R.string.component_style, horizontalPadding = true)
                 OdsChoiceChipsFlowRow(
                     selectedChip = containedButtonStyle,
                     modifier = Modifier.padding(horizontal = dimensionResource(id = R.dimen.screen_horizontal_margin)),
@@ -57,7 +57,7 @@ fun ButtonsContained(style: OdsButtonStyle) {
                     OdsChoiceChip(textRes = R.string.component_button_style_functional, value = OdsButtonStyle.FunctionalPositive)
                 }
                 if (containedButtonStyle.value in listOf(OdsButtonStyle.FunctionalPositive, OdsButtonStyle.FunctionalNegative)) {
-                    Subtitle(textRes = R.string.component_button_style_functional, withHorizontalPadding = true)
+                    Subtitle(textRes = R.string.component_button_style_functional, horizontalPadding = true)
                     OdsChoiceChipsFlowRow(
                         selectedChip = containedButtonStyle,
                         modifier = Modifier.padding(horizontal = dimensionResource(id = R.dimen.screen_horizontal_margin)),

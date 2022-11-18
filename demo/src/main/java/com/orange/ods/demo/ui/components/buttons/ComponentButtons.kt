@@ -51,7 +51,7 @@ fun StyleTitle(@StringRes titleRes: Int, technicalText: String) {
 @Composable
 fun DarkSurface(content: @Composable ColumnScope.() -> Unit) {
     ForcedBackgroundColumn(color = OdsTheme.darkThemeColors.surface) {
-        Subtitle(textRes = R.string.component_force_on_dark, displaySurface = OdsDisplaySurface.Dark, withHorizontalPadding = true)
+        Subtitle(textRes = R.string.component_force_on_dark, displaySurface = OdsDisplaySurface.Dark, horizontalPadding = true)
         content()
     }
 }
@@ -59,7 +59,7 @@ fun DarkSurface(content: @Composable ColumnScope.() -> Unit) {
 @Composable
 fun LightSurface(content: @Composable ColumnScope.() -> Unit) {
     ForcedBackgroundColumn(color = OdsTheme.lightThemeColors.surface) {
-        Subtitle(textRes = R.string.component_force_on_light, displaySurface = OdsDisplaySurface.Light, withHorizontalPadding = true)
+        Subtitle(textRes = R.string.component_force_on_light, displaySurface = OdsDisplaySurface.Light, horizontalPadding = true)
         content()
     }
 }

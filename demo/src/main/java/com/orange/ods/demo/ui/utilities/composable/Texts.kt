@@ -40,7 +40,7 @@ fun Title(@StringRes textRes: Int, modifier: Modifier = Modifier, horizontalPadd
 }
 
 @Composable
-fun Subtitle(@StringRes textRes: Int, displaySurface: OdsDisplaySurface = OdsDisplaySurface.Default, withHorizontalPadding: Boolean = false) {
+fun Subtitle(@StringRes textRes: Int, displaySurface: OdsDisplaySurface = OdsDisplaySurface.Default, horizontalPadding: Boolean = false) {
     val backgroundColor = when (displaySurface) {
         OdsDisplaySurface.Default -> Color.Unspecified
         OdsDisplaySurface.Dark -> OdsTheme.darkThemeColors.surface
@@ -52,7 +52,7 @@ fun Subtitle(@StringRes textRes: Int, displaySurface: OdsDisplaySurface = OdsDis
             .fillMaxWidth()
             .background(backgroundColor)
             .padding(top = dimensionResource(id = R.dimen.spacing_m))
-            .padding(horizontal = if (withHorizontalPadding) dimensionResource(R.dimen.screen_horizontal_margin) else 0.dp),
+            .padding(horizontal = if (horizontalPadding) dimensionResource(R.dimen.screen_horizontal_margin) else 0.dp),
         displaySurface = displaySurface
     )
 }

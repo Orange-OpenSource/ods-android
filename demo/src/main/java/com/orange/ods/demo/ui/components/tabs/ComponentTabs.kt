@@ -74,7 +74,7 @@ fun ComponentTabs(variant: Variant) {
     ComponentCustomizationBottomSheetScaffold(
         bottomSheetScaffoldState = tabsCustomizationState.bottomSheetScaffoldState,
         bottomSheetContent = {
-            Subtitle(textRes = R.string.component_element_icon, withHorizontalPadding = true)
+            Subtitle(textRes = R.string.component_element_icon, horizontalPadding = true)
             OdsChoiceChipsFlowRow(
                 selectedChip = tabsCustomizationState.tabIconType,
                 modifier = Modifier.padding(horizontal = dimensionResource(id = R.dimen.screen_horizontal_margin)),

@@ -44,7 +44,7 @@ fun ButtonsText() {
         ComponentCustomizationBottomSheetScaffold(
             bottomSheetScaffoldState = rememberBottomSheetScaffoldState(),
             bottomSheetContent = {
-                Subtitle(textRes = R.string.component_style, withHorizontalPadding = true)
+                Subtitle(textRes = R.string.component_style, horizontalPadding = true)
                 OdsChoiceChipsFlowRow(
                     selectedChip = textButtonStyle,
                     modifier = Modifier.padding(horizontal = dimensionResource(id = R.dimen.screen_horizontal_margin)),
