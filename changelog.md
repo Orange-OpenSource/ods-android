@@ -13,6 +13,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - \[Demo\] Add customization bottom sheets for buttons ([#303](https://github.com/Orange-OpenSource/ods-android/issues/303))
 - \[Demo\] Replace action buttons switches by a counter in cards customization bottom sheet ([#327](https://github.com/Orange-OpenSource/ods-android/issues/327))
 - \[Demo\] Add customization bottom sheets for sliders ([#307](https://github.com/Orange-OpenSource/ods-android/issues/307))
+- \[Lib\] Allow to add side icons to `OdsSliderLockups` ([#307](https://github.com/Orange-OpenSource/ods-android/issues/307))
 - \[Lib\] Use `OptIn` annotation instead of propagating `ExperimentalMaterialApi` and `ExperimentalPagerApi` ([#320](https://github.com/Orange-OpenSource/ods-android/issues/320))
 - \[Lib\] Use multipreview annotation instead of duplicating `Preview` annotations ([#324](https://github.com/Orange-OpenSource/ods-android/issues/324))
 - \[Lib\] Change `OdsIconToggleButton` display ([#303](https://github.com/Orange-OpenSource/ods-android/issues/303))
