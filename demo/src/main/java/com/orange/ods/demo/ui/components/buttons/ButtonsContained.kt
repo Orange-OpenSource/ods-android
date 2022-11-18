@@ -10,81 +10,150 @@
 
 package com.orange.ods.demo.ui.components.buttons
 
+import androidx.compose.foundation.isSystemInDarkTheme
+import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.verticalScroll
+import androidx.compose.material.ExperimentalMaterialApi
+import androidx.compose.material.rememberBottomSheetScaffoldState
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import com.orange.ods.compose.component.button.OdsButton
 import com.orange.ods.compose.component.button.OdsButtonStyle
+import com.orange.ods.compose.component.chip.OdsChoiceChip
+import com.orange.ods.compose.component.chip.OdsChoiceChipsFlowRow
 import com.orange.ods.compose.theme.OdsDisplaySurface
 import com.orange.ods.demo.R
-import com.orange.ods.demo.ui.utilities.composable.TechnicalText
-import com.orange.ods.demo.ui.utilities.composable.Title
+import com.orange.ods.demo.ui.components.utilities.ComponentCustomizationBottomSheetScaffold
+import com.orange.ods.demo.ui.utilities.composable.Subtitle
+import com.orange.ods.demo.ui.utilities.composable.SwitchListItem
 import com.orange.ods.utilities.extension.fullName
 
+@OptIn(ExperimentalMaterialApi::class)
 @Composable
-fun ButtonsPrimary() = ContainedButtons(style = OdsButtonStyle.Primary)
+fun ButtonsContained(style: OdsButtonStyle) {
+    val buttonCustomizationState = rememberButtonCustomizationState(containedButtonStyle = rememberSaveable { mutableStateOf(style) })
 
-@Composable
-fun ButtonsDefault() = ContainedButtons(style = OdsButtonStyle.Default)
+    with(buttonCustomizationState) {
+        ComponentCustomizationBottomSheetScaffold(
+            bottomSheetScaffoldState = rememberBottomSheetScaffoldState(),
+            bottomSheetContent = {
+                Subtitle(textRes = R.string.component_style, withHorizontalPadding = true)
+                OdsChoiceChipsFlowRow(
+                    selectedChip = containedButtonStyle,
+                    modifier = Modifier.padding(horizontal = dimensionResource(id = R.dimen.screen_horizontal_margin)),
+                    outlinedChips = true
+                ) {
+                    OdsChoiceChip(textRes = R.string.component_button_style_primary, value = OdsButtonStyle.Primary)
+                    OdsChoiceChip(textRes = R.string.component_button_style_default, value = OdsButtonStyle.Default)
+                    OdsChoiceChip(textRes = R.string.component_button_style_functional, value = OdsButtonStyle.FunctionalPositive)
+                }
+                if (containedButtonStyle.value in listOf(OdsButtonStyle.FunctionalPositive, OdsButtonStyle.FunctionalNegative)) {
+                    Subtitle(textRes = R.string.component_button_style_functional, withHorizontalPadding = true)
+                    OdsChoiceChipsFlowRow(
+                        selectedChip = containedButtonStyle,
+                        modifier = Modifier.padding(horizontal = dimensionResource(id = R.dimen.screen_horizontal_margin)),
+                        outlinedChips = true
+                    ) {
+                        OdsChoiceChip(textRes = R.string.component_button_style_functional_positive, value = OdsButtonStyle.FunctionalPositive)
+                        OdsChoiceChip(textRes = R.string.component_button_style_functional_negative, value = OdsButtonStyle.FunctionalNegative)
+                    }
+                }
+                SwitchListItem(labelRes = R.string.component_element_icon, checked = leadingIcon)
+                SwitchListItem(labelRes = R.string.component_button_variable_width, checked = variableWidth)
+                SwitchListItem(labelRes = R.string.component_state_disabled, checked = disabled)
+            }) {
 
-@Composable
-fun ButtonsFunctional() {
-    Title(R.string.component_buttons_functional_positive, withHorizontalPadding = true)
-    TechnicalText(text = OdsButtonStyle.FunctionalPositive.fullName, withHorizontalPadding = true)
-    ContainedButtonsOnDefaultSurface(style = OdsButtonStyle.FunctionalPositive)
+            Column(
+                modifier = Modifier
+                    .verticalScroll(rememberScrollState())
+                    .padding(vertical = dimensionResource(id = R.dimen.screen_vertical_margin))
+            ) {
+                ButtonStyleTitle(style = containedButtonStyle.value)
 
-    Title(R.string.component_buttons_functional_negative, withHorizontalPadding = true)
-    TechnicalText(text = OdsButtonStyle.FunctionalNegative.fullName, withHorizontalPadding = true)
-    ContainedButtonsOnDefaultSurface(style = OdsButtonStyle.FunctionalNegative)
-}
+                ContainedButton(style = containedButtonStyle.value, leadingIcon = hasLeadingIcon, enabled = isEnabled, variableWidth = hasVariableWidth)
 
+                Spacer(modifier = Modifier.padding(top = dimensionResource(R.dimen.spacing_s)))
 
-@Composable
-private fun ContainedButtonsOnDefaultSurface(style: OdsButtonStyle) {
-    ContainedButtonsEnabledDisabled(style = style, hasIcon = false)
-    ContainedButtonsEnabledDisabled(style = style, hasIcon = true)
-}
-
-@Composable
-private fun ContainedButtons(style: OdsButtonStyle) {
-    ContainedButtonsOnDefaultSurface(style)
-
-    Spacer(modifier = Modifier.padding(top = dimensionResource(R.dimen.spacing_s)))
-
-    LightSurface {
-        ContainedButtonsEnabledDisabled(style = style, hasIcon = false, displaySurface = OdsDisplaySurface.Light)
+                if (isSystemInDarkTheme()) {
+                    LightSurface {
+                        ContainedButton(
+                            style = containedButtonStyle.value,
+                            leadingIcon = hasLeadingIcon,
+                            enabled = isEnabled,
+                            variableWidth = hasVariableWidth,
+                            displaySurface = OdsDisplaySurface.Light
+                        )
+                    }
+                } else {
+                    DarkSurface {
+                        ContainedButton(
+                            style = containedButtonStyle.value,
+                            leadingIcon = hasLeadingIcon,
+                            enabled = isEnabled,
+                            variableWidth = hasVariableWidth,
+                            displaySurface = OdsDisplaySurface.Dark
+                        )
+                    }
+                }
+            }
+        }
     }
-    DarkSurface {
-        ContainedButtonsEnabledDisabled(style = style, hasIcon = false, displaySurface = OdsDisplaySurface.Dark)
-    }
 }
 
 @Composable
-private fun ContainedButtonsEnabledDisabled(
+private fun ButtonStyleTitle(style: OdsButtonStyle) {
+    val titleRes: Int
+    val technicalText: String
+    when (style) {
+        OdsButtonStyle.Default -> {
+            titleRes = R.string.component_button_style_default
+            technicalText = OdsButtonStyle.Default.fullName
+        }
+        OdsButtonStyle.Primary -> {
+            titleRes = R.string.component_button_style_primary
+            technicalText = OdsButtonStyle.Primary.fullName
+        }
+        OdsButtonStyle.FunctionalNegative -> {
+            titleRes = R.string.component_button_style_functional_negative
+            technicalText = OdsButtonStyle.FunctionalNegative.fullName
+        }
+        OdsButtonStyle.FunctionalPositive -> {
+            titleRes = R.string.component_button_style_functional_positive
+            technicalText = OdsButtonStyle.FunctionalPositive.fullName
+        }
+    }
+
+    StyleTitle(titleRes = titleRes, technicalText = technicalText)
+}
+
+@Composable
+private fun ContainedButton(
     style: OdsButtonStyle,
-    hasIcon: Boolean,
+    leadingIcon: Boolean,
+    enabled: Boolean,
+    variableWidth: Boolean,
     displaySurface: OdsDisplaySurface = OdsDisplaySurface.Default
 ) {
-    OdsButton(
-        modifier = Modifier.fullWidthButton(),
-        icon = if (hasIcon) painterResource(id = R.drawable.ic_search) else null,
-        text = stringResource(R.string.component_state_enabled),
-        onClick = {},
-        style = style,
-        displaySurface = displaySurface
-    )
-    OdsButton(
-        modifier = Modifier.fullWidthButton(false),
-        icon = if (hasIcon) painterResource(id = R.drawable.ic_search) else null,
-        text = stringResource(R.string.component_state_disabled),
-        onClick = {},
-        enabled = false,
-        style = style,
-        displaySurface = displaySurface
-    )
+    val modifier = Modifier
+        .padding(horizontal = dimensionResource(R.dimen.screen_horizontal_margin))
+        .padding(top = dimensionResource(R.dimen.spacing_m))
 
+    OdsButton(
+        modifier = if (variableWidth) modifier else modifier.fillMaxWidth(),
+        icon = if (leadingIcon) painterResource(id = R.drawable.ic_search) else null,
+        text = stringResource(if (enabled) R.string.component_state_enabled else R.string.component_state_disabled),
+        onClick = {},
+        enabled = enabled,
+        style = style,
+        displaySurface = displaySurface
+    )
 }

@@ -89,6 +89,7 @@ fun GuidelineColorScreen() {
             contentPadding = PaddingValues(
                 start = dimensionResource(id = R.dimen.spacing_m),
                 end = dimensionResource(id = R.dimen.spacing_m),
+                top = dimensionResource(id = R.dimen.screen_vertical_margin),
                 bottom = dimensionResource(id = R.dimen.screen_vertical_margin)
             ),
             verticalArrangement = Arrangement.spacedBy(dimensionResource(id = R.dimen.spacing_m)),
@@ -109,7 +110,7 @@ fun GuidelineColorScreen() {
 
             if (functionalColors.isNotEmpty()) {
                 item {
-                    Title(textRes = R.string.guideline_colour_functional, modifier = Modifier.semantics { heading() })
+                    Title(textRes = R.string.guideline_colour_functional, modifier = Modifier.semantics { heading() }, topPadding = true)
                 }
                 items(functionalColors.chunked(2)) { rowColors ->
                     Row(
@@ -123,7 +124,7 @@ fun GuidelineColorScreen() {
 
             if (supportingColors.isNotEmpty()) {
                 item {
-                    Title(textRes = R.string.guideline_colour_supporting, modifier = Modifier.semantics { heading() })
+                    Title(textRes = R.string.guideline_colour_supporting, modifier = Modifier.semantics { heading() }, topPadding = true)
                 }
                 items(supportingColors.chunked(3)) { rowColors ->
                     Row(

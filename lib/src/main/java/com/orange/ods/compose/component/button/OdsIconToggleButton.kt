@@ -13,6 +13,7 @@ package com.orange.ods.compose.component.button
 import androidx.compose.animation.animateColorAsState
 import androidx.compose.animation.core.animateFloatAsState
 import androidx.compose.foundation.background
+import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material.Icon
@@ -71,8 +72,13 @@ fun OdsIconToggleButton(
     ) {
         val iconTint by animateColorAsState(OdsTheme.colors.buttonToggleIconColor(displaySurface, checked))
         val backgroundAlpha by animateFloatAsState(if (checked) 0.12f else 0f)
+
         Box(
             modifier = Modifier
+                .border(
+                    width = 1.dp,
+                    color = OdsTheme.colors.buttonToggleBorderColor(displaySurface)
+                )
                 .background(
                     color = OdsTheme.colors
                         .buttonToggleBackgroundColor(displaySurface)
@@ -106,6 +112,15 @@ private fun OdsColors.buttonToggleBackgroundColor(displaySurface: OdsDisplaySurf
     }
 
 @UiModePreviews.Default
+@Composable
+private fun OdsColors.buttonToggleBorderColor(displaySurface: OdsDisplaySurface) =
+    when (displaySurface) {
+        OdsDisplaySurface.Default -> OdsTheme.colors.onSurface
+        OdsDisplaySurface.Dark -> OdsTheme.darkThemeColors.onSurface
+        OdsDisplaySurface.Light -> OdsTheme.lightThemeColors.onSurface
+    }.copy(alpha = 0.12f)
+
+
 @Composable
 private fun PreviewOdsIconToggleButton() = Preview {
     var checked by remember { mutableStateOf(false) }

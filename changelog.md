@@ -10,8 +10,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Changed
 
 - \[All\] Version numbers in changelog now display changes on GitHub when clicked ([#322](https://github.com/Orange-OpenSource/ods-android/issues/322))
+- \[Demo\] Add customization bottom sheets for buttons ([#303](https://github.com/Orange-OpenSource/ods-android/issues/303))
 - \[Lib\] Use `OptIn` annotation instead of propagating `ExperimentalMaterialApi` and `ExperimentalPagerApi` ([#320](https://github.com/Orange-OpenSource/ods-android/issues/320))
 - \[Lib\] Use multipreview annotation instead of duplicating `Preview` annotations ([#324](https://github.com/Orange-OpenSource/ods-android/issues/324))
+- \[Lib\] Change `OdsIconToggleButton` display ([#303](https://github.com/Orange-OpenSource/ods-android/issues/303))
 
 ## [0.7.0](https://github.com/Orange-OpenSource/ods-android/compare/0.6.0...0.7.0) - 2022-11-09
 

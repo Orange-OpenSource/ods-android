@@ -51,6 +51,7 @@
     <string name="component_force_on_light">Forced on light</string>
     <string name="component_customize">Customize</string>
     <string name="component_type">Type</string>
+    <string name="component_style">Style</string>
     <string name="component_state">State</string>
     <string name="component_state_enabled">Enabled</string>
     <string name="component_state_disabled">Disabled</string>
@@ -115,14 +116,20 @@
     <string name="component_buttons_high_emphasis">High emphasis buttons</string>
     <string name="component_buttons_medium_emphasis">Medium emphasis buttons</string>
     <string name="component_buttons_low_emphasis">Low emphasis buttons</string>
-    <string name="component_buttons_low_emphasis_default">Default</string>
-    <string name="component_buttons_low_emphasis_primary">Primary</string>
     <string name="component_buttons_functional">Functional buttons</string>
-    <string name="component_buttons_functional_positive">Positive</string>
-    <string name="component_buttons_functional_negative">Negative</string>
     <string name="component_buttons_toggle">Toggle buttons</string>
     <string name="component_buttons_toggle_subtitle_group">Group</string>
     <string name="component_buttons_toggle_subtitle_single">Single</string>
+    <string name="component_buttons_toggle_count">Toggle count</string>
+    <string name="component_buttons_toggle_remove">Remove toggle</string>
+    <string name="component_buttons_toggle_add">Add toggle</string>
+    <string name="component_button_variable_width">Variable width</string>
+    <string name="component_button_style_primary">Primary</string>
+    <string name="component_button_style_default">Default</string>
+    <string name="component_button_style_functional">Functional</string>
+    <string name="component_button_style_functional_positive">Positive</string>
+    <string name="component_button_style_functional_negative">Negative</string>
+
 
     <!-- Components Cards -->
     <string name="component_cards">Cards</string>

@@ -11,6 +11,7 @@
 package com.orange.ods.demo.ui.components.dialogs
 
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
@@ -26,7 +27,6 @@ import com.orange.ods.compose.component.button.OdsButtonStyle
 import com.orange.ods.compose.component.dialog.OdsAlertDialog
 import com.orange.ods.compose.text.OdsTextBody1
 import com.orange.ods.demo.R
-import com.orange.ods.demo.ui.components.buttons.fullWidthButton
 import com.orange.ods.demo.ui.components.utilities.ComponentCustomizationBottomSheetScaffold
 import com.orange.ods.demo.ui.components.utilities.clickOnElement
 import com.orange.ods.demo.ui.utilities.composable.SwitchListItem
@@ -58,7 +58,10 @@ fun ComponentDialog() {
             )
 
             OdsButton(
-                modifier = Modifier.fullWidthButton(),
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(horizontal = dimensionResource(R.dimen.screen_horizontal_margin))
+                    .padding(top = dimensionResource(R.dimen.spacing_m)),
                 text = stringResource(id = R.string.component_dialog_open),
                 style = OdsButtonStyle.Primary,
                 onClick = {
