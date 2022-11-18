@@ -18,10 +18,8 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.composed
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.dimensionResource
-import androidx.compose.ui.unit.dp
 import com.orange.ods.compose.component.button.OdsButtonStyle
 import com.orange.ods.compose.theme.OdsDisplaySurface
 import com.orange.ods.compose.theme.OdsTheme
@@ -44,13 +42,6 @@ fun ComponentButtons(variant: Variant) {
     }
 }
 
-fun Modifier.fullWidthButton(withTopPadding: Boolean = true) = composed {
-    this
-        .fillMaxWidth()
-        .padding(horizontal = dimensionResource(R.dimen.screen_horizontal_margin))
-        .padding(top = if (withTopPadding) dimensionResource(R.dimen.spacing_m) else 0.dp)
-}
-
 @Composable
 fun StyleTitle(@StringRes titleRes: Int, technicalText: String) {
     Title(titleRes, horizontalPadding = true)
@@ -59,14 +50,18 @@ fun StyleTitle(@StringRes titleRes: Int, technicalText: String) {
 
 @Composable
 fun DarkSurface(content: @Composable ColumnScope.() -> Unit) {
-    Subtitle(textRes = R.string.component_force_on_dark, OdsDisplaySurface.Dark, withHorizontalPadding = true)
-    ForcedBackgroundColumn(color = OdsTheme.darkThemeColors.surface, content = content)
+    ForcedBackgroundColumn(color = OdsTheme.darkThemeColors.surface) {
+        Subtitle(textRes = R.string.component_force_on_dark, displaySurface = OdsDisplaySurface.Dark, withHorizontalPadding = true)
+        content()
+    }
 }
 
 @Composable
 fun LightSurface(content: @Composable ColumnScope.() -> Unit) {
-    Subtitle(textRes = R.string.component_force_on_light, OdsDisplaySurface.Light, withHorizontalPadding = true)
-    ForcedBackgroundColumn(color = OdsTheme.lightThemeColors.surface, content = content)
+    ForcedBackgroundColumn(color = OdsTheme.lightThemeColors.surface) {
+        Subtitle(textRes = R.string.component_force_on_light, displaySurface = OdsDisplaySurface.Light, withHorizontalPadding = true)
+        content()
+    }
 }
 
 @Composable

@@ -15,16 +15,16 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.ExperimentalMaterialApi
 import androidx.compose.material.rememberBottomSheetScaffoldState
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.getValue
+import androidx.compose.runtime.MutableState
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
-import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.painterResource
@@ -60,23 +60,50 @@ fun ButtonsToggle() {
                     .verticalScroll(rememberScrollState())
                     .padding(vertical = dimensionResource(id = R.dimen.screen_vertical_margin))
             ) {
-                if (toggleCount.value > 1) {
-                    Title(textRes = R.string.component_buttons_toggle_subtitle_group, horizontalPadding = true)
-                    ToggleItems(toggleCount = toggleCount.value)
-                } else {
-                    Title(textRes = R.string.component_buttons_toggle_subtitle_single, horizontalPadding = true)
-                    ToggleItems(modifier = Modifier.padding(top = dimensionResource(R.dimen.spacing_m)))
+                val textRes = if (toggleCount.value > 1) R.string.component_buttons_toggle_subtitle_group else R.string.component_buttons_toggle_subtitle_single
+                Title(textRes = textRes, horizontalPadding = true)
+
+                val onCheckedToggleChanged: (MutableState<Set<Int>>, Int, Boolean) -> Unit = { checkedToggleIndexes, index, checked ->
+                    with(checkedToggleIndexes) {
+                        value = if (checked) value + index else value - index
+                    }
                 }
+
+                val defaultCheckedToggleIndexes = remember { mutableStateOf(emptySet<Int>()) }
+
+                ToggleRow(
+                    checkedToggleIndexes = defaultCheckedToggleIndexes.value,
+                    onCheckedToggleChanged = { index, checked ->
+                        onCheckedToggleChanged(defaultCheckedToggleIndexes, index, checked)
+                    },
+                    toggleCount = toggleCount.value
+                )
 
                 Spacer(modifier = Modifier.padding(top = dimensionResource(R.dimen.spacing_s)))
 
+                val forcedCheckedToggleIndexes = remember { mutableStateOf(emptySet<Int>()) }
+
                 if (isSystemInDarkTheme()) {
                     LightSurface {
-                        ToggleDisplay(toggleCount = toggleCount.value, displaySurface = OdsDisplaySurface.Light)
+                        ToggleRow(
+                            checkedToggleIndexes = forcedCheckedToggleIndexes.value,
+                            onCheckedToggleChanged = { index, changed ->
+                                onCheckedToggleChanged(forcedCheckedToggleIndexes, index, changed)
+                            },
+                            toggleCount = toggleCount.value,
+                            displaySurface = OdsDisplaySurface.Light
+                        )
                     }
                 } else {
                     DarkSurface {
-                        ToggleDisplay(toggleCount = toggleCount.value, displaySurface = OdsDisplaySurface.Dark)
+                        ToggleRow(
+                            checkedToggleIndexes = forcedCheckedToggleIndexes.value,
+                            onCheckedToggleChanged = { index, changed ->
+                                onCheckedToggleChanged(forcedCheckedToggleIndexes, index, changed)
+                            },
+                            toggleCount = toggleCount.value,
+                            displaySurface = OdsDisplaySurface.Dark
+                        )
                     }
                 }
             }
@@ -86,27 +113,27 @@ fun ButtonsToggle() {
 }
 
 @Composable
-private fun ToggleDisplay(toggleCount: Int, displaySurface: OdsDisplaySurface) {
-    if (toggleCount > 1) {
-        ToggleItems(toggleCount = toggleCount, displaySurface = displaySurface)
-    } else {
-        ToggleItems(displaySurface = displaySurface)
-    }
-}
-
-@Composable
-private fun ToggleItems(modifier: Modifier = Modifier, toggleCount: Int = 1, displaySurface: OdsDisplaySurface = OdsDisplaySurface.Default) {
+private fun ToggleRow(
+    checkedToggleIndexes: Set<Int>,
+    onCheckedToggleChanged: (Int, Boolean) -> Unit,
+    toggleCount: Int = 1,
+    displaySurface: OdsDisplaySurface = OdsDisplaySurface.Default
+) {
     val iconsResources = listOf(R.drawable.ic_info, R.drawable.ic_search, R.drawable.ic_guideline_dna)
-    var checkedIcon by remember { mutableStateOf(if (toggleCount == 1) null else R.drawable.ic_info) }
 
     Row(
-        modifier = modifier.fullWidthButton(),
+        modifier = Modifier
+            .fillMaxWidth()
+            .padding(top = dimensionResource(R.dimen.spacing_m))
+            .padding(horizontal = dimensionResource(R.dimen.screen_horizontal_margin)),
         horizontalArrangement = Arrangement.Center
     ) {
-        iconsResources.take(toggleCount).forEach { iconRes ->
+        iconsResources.take(toggleCount).forEachIndexed { index, iconRes ->
             OdsIconToggleButton(
-                checked = checkedIcon == iconRes,
-                onCheckedChange = { checkedIcon = if (!it && toggleCount == 1) null else iconRes },
+                checked = checkedToggleIndexes.contains(index),
+                onCheckedChange = { checked ->
+                    onCheckedToggleChanged(index, checked)
+                },
                 icon = painterResource(id = iconRes),
                 contentDescription = "",
                 displaySurface = displaySurface
