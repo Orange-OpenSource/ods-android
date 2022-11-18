@@ -116,16 +116,34 @@ The modes of `app:labelBehavior` are:
 
 ![Continuous lockups slider](images/slider_continuous_lockups_light.png) ![Continuous lockups slider dark](images/slider_continuous_lockups_light.png)
 
+With icons:
+
+![Continuous lockups slider with icons](images/slider_continuous_lockups_with_icon_light.png) ![Continuous lockups slider with icons dark](images/slider_continuous_lockups_with_icon_dark.png)
+
 > **Jetpack Compose implementation**
 
 In your composable screen you can use:
 
 ```kotlin
-        OdsSliderLockups(
-            value = 20f,
-            valueRange = 0f..100f,
-            onValueChange = { }
-        )
+OdsSliderLockups(
+    value = 20f,
+    valueRange = 0f..100f,
+    onValueChange = { }
+)
+```
+
+You can add icons to the continuous lockup slider like this:
+
+```kotlin
+OdsSliderLockups(
+    value = 20f,
+    valueRange = 0f..100f,
+    onValueChange = { },
+    leftIcon = painterResource(id = R.drawable.ic_volume_status_1),
+    leftIconContentDescription = stringResource(id = R.string.component_slider_low_volume),
+    rightIcon = painterResource(id = R.drawable.ic_volume_status_4),
+    rightIconContentDescription = stringResource(id = R.string.component_slider_high_volume)
+)
 ```
 
 ### Discrete slider
@@ -191,16 +209,36 @@ In the layout:
 
 ![Discrete lockups slider](images/slider_discrete_lockups_light.png) ![Discrete lockups slider dark](images/slider_discrete_lockups_dark.png)
 
+With icons:
+
+![Discrete lockups slider with icons](images/slider_discrete_lockups_with_icon_light.png) ![Discrete lockups slider with icons dark](images/slider_discrete_lockups_with_icon_dark.png)
+
 > **Jetpack Compose implementation**
 
 In your composable screen you can use:
 
 ```kotlin
-        OdsSliderLockups(
-            value = 20f,
-            valueRange = 0f..100f,
-            onValueChange = { }
-        )
+OdsSliderLockups(
+    value = 20f,
+    valueRange = 0f..100f,
+    steps = 10,
+    onValueChange = { }
+)
+```
+
+You can add icons to the continuous lockup slider like this:
+
+```kotlin
+OdsSliderLockups(
+    value = 20f,
+    valueRange = 0f..100f,
+    steps = 10,
+    onValueChange = { },
+    leftIcon = painterResource(id = R.drawable.ic_volume_status_1),
+    leftIconContentDescription = stringResource(id = R.string.component_slider_low_volume),
+    rightIcon = painterResource(id = R.drawable.ic_volume_status_4),
+    rightIconContentDescription = stringResource(id = R.string.component_slider_high_volume)
+)
 ```
 
 ## Component specific tokens
