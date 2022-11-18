@@ -38,7 +38,6 @@ import com.orange.ods.demo.ui.utilities.composable.Title
 @OptIn(ExperimentalMaterialApi::class)
 @Composable
 fun ComponentSliders() {
-    //var discreteSliderPosition by remember { mutableStateOf(0f) }
     val sliderCustomizationState = rememberSliderCustomizationState()
 
     with(sliderCustomizationState) {
@@ -65,11 +64,14 @@ fun ComponentSliders() {
                     var sliderLockupPosition by remember { mutableStateOf(0f) }
 
                     OdsSliderLockups(
-                        modifier = Modifier.padding(top = dimensionResource(id = R.dimen.spacing_m)),
                         value = sliderLockupPosition,
                         valueRange = 0f..100f,
                         steps = if (isStepped) 9 else 0,
-                        onValueChange = { sliderLockupPosition = it }
+                        onValueChange = { sliderLockupPosition = it },
+                        leftIcon = if (hasSideIcons) painterResource(id = R.drawable.ic_volume_status_1) else null,
+                        leftIconContentDescription = if (hasSideIcons) stringResource(id = R.string.component_slider_low_volume) else null,
+                        rightIcon = if (hasSideIcons) painterResource(id = R.drawable.ic_volume_status_4) else null,
+                        rightIconContentDescription = if (hasSideIcons) stringResource(id = R.string.component_slider_high_volume) else null
                     )
                 } else {
                     var sliderPosition by remember { mutableStateOf(0f) }

@@ -73,10 +73,10 @@ private const val ActiveTickColorAlpha = 0.4f
  * @param onValueChangeFinished lambda to be invoked when value change has ended. This callback
  * shouldn't be used to update the slider value (use [onValueChange] for that), but rather to
  * know when the user has completed selecting a new value by ending a drag or a click.
- *  @param leftIcon Optional icon displayed on the left of the slider
- *  @param leftIconContentDescription Left icon content description
- *  @param rightIcon Optional icon displayed on the right of the slider
- *  @param rightIconContentDescription Right icon content description
+ * @param leftIcon Optional icon displayed on the left of the slider
+ * @param leftIconContentDescription Left icon content description
+ * @param rightIcon Optional icon displayed on the right of the slider
+ * @param rightIconContentDescription Right icon content description
  */
 @Composable
 @OdsComponentApi
@@ -109,7 +109,8 @@ fun OdsSlider(
         Slider(
             value = value,
             onValueChange = onValueChange,
-            modifier = Modifier.weight(1f),
+            modifier = Modifier
+                .weight(1f),
             enabled = enabled,
             valueRange = valueRange,
             steps = steps,
@@ -155,6 +156,10 @@ fun OdsSlider(
  * @param onValueChangeFinished lambda to be invoked when value change has ended. This callback
  * shouldn't be used to update the slider value (use [onValueChange] for that), but rather to
  * know when the user has completed selecting a new value by ending a drag or a click.
+ * @param leftIcon Optional icon displayed on the left of the slider
+ * @param leftIconContentDescription Left icon content description
+ * @param rightIcon Optional icon displayed on the right of the slider
+ * @param rightIconContentDescription Right icon content description
  */
 @Composable
 @OdsComponentApi
@@ -165,42 +170,72 @@ fun OdsSliderLockups(
     enabled: Boolean = true,
     valueRange: ClosedFloatingPointRange<Float> = 0f..1f,
     steps: Int = 0,
-    onValueChangeFinished: (() -> Unit)? = null
+    onValueChangeFinished: (() -> Unit)? = null,
+    leftIcon: Painter? = null,
+    leftIconContentDescription: String? = null,
+    rightIcon: Painter? = null,
+    rightIconContentDescription: String? = null
 ) {
     val labelMinWidth = 32.dp
+    val sideIconBottomPadding = 12.dp
 
-    BoxWithConstraints(modifier = modifier.fillMaxWidth()) {
-        val offset = getSliderOffset(
-            value = value,
-            valueRange = valueRange,
-            boxWidth = maxWidth,
-            labelWidth = labelMinWidth + 4.dp
-        )
-
-        if (value > valueRange.start) {
-            SliderLabel(
-                label = value.toInt().toString(),
-                minWidth = labelMinWidth,
-                modifier = Modifier.padding(start = offset)
+    Row(
+        modifier = modifier,
+        horizontalArrangement = Arrangement.spacedBy(dimensionResource(id = R.dimen.spacing_xs))
+    ) {
+        leftIcon?.let { painter ->
+            Icon(
+                modifier = Modifier
+                    .align(alignment = Alignment.Bottom)
+                    .padding(bottom = sideIconBottomPadding),
+                painter = painter,
+                contentDescription = leftIconContentDescription,
+                tint = OdsTheme.colors.onSurface
             )
-        } else {
-            SliderLabel(label = valueRange.start.toInt().toString(), minWidth = labelMinWidth)
         }
+        BoxWithConstraints(modifier = modifier.weight(1f)) {
+            val offset = getSliderOffset(
+                value = value,
+                valueRange = valueRange,
+                boxWidth = maxWidth,
+                labelWidth = labelMinWidth + 4.dp
+            )
 
-        // For the moment we cannot change the height of the slider track (need to check in jetpack compose future versions)
-        Slider(
-            value = value,
-            onValueChange = onValueChange,
-            modifier = Modifier
-                .fillMaxWidth()
-                .padding(top = dimensionResource(id = R.dimen.spacing_l))
-                .padding(horizontal = labelMinWidth / 3),
-            enabled = enabled,
-            valueRange = valueRange,
-            steps = steps,
-            onValueChangeFinished = onValueChangeFinished,
-            colors = OdsSliderDefaults.colors(activeTickColor = OdsTheme.colors.surface.copy(alpha = ActiveTickColorAlpha))
-        )
+            if (value > valueRange.start) {
+                SliderLabel(
+                    label = value.toInt().toString(),
+                    minWidth = labelMinWidth,
+                    modifier = Modifier.padding(start = offset)
+                )
+            } else {
+                SliderLabel(label = valueRange.start.toInt().toString(), minWidth = labelMinWidth)
+            }
+
+            // For the moment we cannot change the height of the slider track (need to check in jetpack compose future versions)
+            Slider(
+                value = value,
+                onValueChange = onValueChange,
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(top = dimensionResource(id = R.dimen.spacing_l))
+                    .padding(horizontal = labelMinWidth / 3),
+                enabled = enabled,
+                valueRange = valueRange,
+                steps = steps,
+                onValueChangeFinished = onValueChangeFinished,
+                colors = OdsSliderDefaults.colors(activeTickColor = OdsTheme.colors.surface.copy(alpha = ActiveTickColorAlpha))
+            )
+        }
+        rightIcon?.let { painter ->
+            Icon(
+                modifier = Modifier
+                    .align(alignment = Alignment.Bottom)
+                    .padding(bottom = sideIconBottomPadding),
+                painter = painter,
+                contentDescription = rightIconContentDescription,
+                tint = OdsTheme.colors.onSurface
+            )
+        }
     }
 }
 
