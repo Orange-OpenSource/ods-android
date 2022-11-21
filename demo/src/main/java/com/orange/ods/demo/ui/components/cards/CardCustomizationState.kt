@@ -22,11 +22,10 @@ fun rememberCardCustomizationState(
     thumbnailChecked: MutableState<Boolean> = rememberSaveable { mutableStateOf(true) },
     textChecked: MutableState<Boolean> = rememberSaveable { mutableStateOf(true) },
     subtitleChecked: MutableState<Boolean> = rememberSaveable { mutableStateOf(true) },
-    button1Checked: MutableState<Boolean> = rememberSaveable { mutableStateOf(true) },
-    button2Checked: MutableState<Boolean> = rememberSaveable { mutableStateOf(true) }
+    actionButtonCount: MutableState<Int> = rememberSaveable { mutableStateOf(CardCustomizationState.MinActionButtonCount) }
 ) =
-    remember(clickable, thumbnailChecked, textChecked, subtitleChecked, button1Checked, button2Checked) {
-        CardCustomizationState(clickable, thumbnailChecked, textChecked, subtitleChecked, button1Checked, button2Checked)
+    remember(clickable, thumbnailChecked, textChecked, subtitleChecked, actionButtonCount) {
+        CardCustomizationState(clickable, thumbnailChecked, textChecked, subtitleChecked, actionButtonCount)
     }
 
 class CardCustomizationState(
@@ -34,12 +33,17 @@ class CardCustomizationState(
     val thumbnailChecked: MutableState<Boolean>,
     val textChecked: MutableState<Boolean>,
     val subtitleChecked: MutableState<Boolean>,
-    val button1Checked: MutableState<Boolean>,
-    val button2Checked: MutableState<Boolean>
+    val actionButtonCount: MutableState<Int>
 ) {
+
+    companion object {
+        const val MinActionButtonCount = 0
+        const val MaxActionButtonCount = 2
+    }
+
     val isClickable
         get() = clickable.value
-    
+
     val hasThumbnail
         get() = thumbnailChecked.value
 
@@ -50,8 +54,8 @@ class CardCustomizationState(
         get() = subtitleChecked.value
 
     val hasButton1
-        get() = button1Checked.value
+        get() = actionButtonCount.value > 0
 
     val hasButton2
-        get() = button2Checked.value
+        get() = actionButtonCount.value > 1
 }

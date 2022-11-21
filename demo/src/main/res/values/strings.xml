@@ -139,7 +139,9 @@
     <string name="component_card_description">Cards are important components that can be used to organise and present a number of different types of related information.</string>
     <string name="component_card_element_container">Card container</string>
     <string name="component_card_clickable">Clickable card</string>
-
+    <string name="component_card_action_button_count">Action buttons</string>
+    <string name="component_card_remove_action_button">Remove action button</string>
+    <string name="component_card_add_action_button">Add action button</string>
 
     <!-- Component Checkboxes -->
     <string name="component_checkboxes">Checkboxes</string>
