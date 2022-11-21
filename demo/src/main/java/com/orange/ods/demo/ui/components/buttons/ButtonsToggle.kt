@@ -51,8 +51,8 @@ fun ButtonsToggle() {
                     count = toggleCount,
                     minusIconContentDescription = stringResource(id = R.string.component_buttons_toggle_remove),
                     plusIconContentDescription = stringResource(id = R.string.component_buttons_toggle_add),
-                    minCount = ButtonToggleCustomizationState.ToggleCountMin,
-                    maxCount = ButtonToggleCustomizationState.ToggleCountMax
+                    minCount = ButtonToggleCustomizationState.MinToggleCount,
+                    maxCount = ButtonToggleCustomizationState.MaxToggleCount
                 )
             }) {
             Column(

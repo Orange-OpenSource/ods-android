@@ -33,7 +33,7 @@ fun rememberButtonCustomizationState(
 
 @Composable
 fun rememberButtonToggleCustomizationState(
-    toggleCount: MutableState<Int> = rememberSaveable { mutableStateOf(ButtonToggleCustomizationState.ToggleCountMin) }
+    toggleCount: MutableState<Int> = rememberSaveable { mutableStateOf(ButtonToggleCustomizationState.MinToggleCount) }
 ) =
     remember(toggleCount) {
         ButtonToggleCustomizationState(toggleCount)
@@ -61,7 +61,7 @@ class ButtonToggleCustomizationState(
     val toggleCount: MutableState<Int>,
 ) {
     companion object {
-        const val ToggleCountMin = 1
-        const val ToggleCountMax = 3
+        const val MinToggleCount = 1
+        const val MaxToggleCount = 3
     }
 }
