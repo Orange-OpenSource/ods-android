@@ -230,6 +230,11 @@
     <string name="component_list_trailing_caption">Caption</string>
     <string name="component_list_divider">Divider</string>
 
+    <!-- Component Snackbars -->
+    <string name="component_snackbars">Snackbars</string>
+    <string name="component_snackbars_description">There are two ways to show users short, non permanent messages giving system information or feedback about an operation.</string>
+
+
     <!-- Component Text fields -->
     <string name="component_text_fields">Text fields</string>
     <string name="component_text_field">Text field</string>
