@@ -20,8 +20,6 @@ action that was just taken, or retrying an action that had failed.
 * [Specifications references](#specifications-references)
 * [Accessibility](#accessibility)
 * [Implementation](#implementation)
-    * [Adding an action](#adding-an-action)
-    * [Anchoring a snackbar](#anchoring-a-snackbar)
 * [Component specific tokens](#component-specific-tokens)
 
 ---
@@ -43,6 +41,51 @@ unnecessary.
 
 ### Implementation
 
+  ![Snackbar light](images/snackbar_light.png)
+
+  ![Snackbar dark](images/snackbar_dark.png)
+
+With action button:
+
+  ![Snackbar with action light](images/snackbar_with_action_light.png)
+
+  ![Snackbar with action dark](images/snackbar_with_action_dark.png)
+
+> **Jetpack Compose implementation**
+
+We advise you to use a `Scaffold` to add an `OdsSnackbar` in order to make sure everything is displayed together in the right place according to Material Design.
+Then use `OdsSnackbarHost` which provides the good margins to display the snackbar and `OdsSnackbar` as follow:
+
+```kotlin
+val scaffoldState = rememberScaffoldState()
+val coroutineScope: CoroutineScope = rememberCoroutineScope()
+
+Scaffold(
+    scaffoldState = scaffoldState,
+    snackbarHost = {
+        OdsSnackbarHost(hostState = it) { data ->
+            OdsSnackbar(snackbarData = data)
+        }
+    }) {
+    OdsButton(
+        modifier = Modifier
+            .padding(horizontal = dimensionResource(id = R.dimen.screen_horizontal_margin))
+            .padding(top = dimensionResource(id = R.dimen.screen_vertical_margin)),
+        text = "Show snackbar",
+        onClick = {
+            coroutineScope.launch {
+                scaffoldState.snackbarHostState.showSnackbar(
+                    message = "This is the message of the Snackbar.",
+                    actionLabel = "Action"
+                )
+            }
+        }
+    )
+}
+```
+
+> **XML implementation**
+
 Calling `make` creates the snackbar, but doesn't cause it to be visible on the
 screen. To show it, use the `show` method on the returned `Snackbar` instance.
 Note that only one snackbar will be shown at a time. Showing a new snackbar will
@@ -61,7 +104,7 @@ Snackbar.make(contextView, R.string.text_label, Snackbar.LENGTH_SHORT)
     .show()
 ```
 
-#### Adding an action
+**Adding an action**
 
 To add an action, use the `setAction` method on the object returned from `make`.
 Snackbars are automatically dismissed when the action is clicked.
@@ -76,7 +119,7 @@ Snackbar.make(contextView, R.string.text_label, Snackbar.LENGTH_LONG)
     .show()
 ```
 
-#### Anchoring a snackbar
+**Anchoring a snackbar**
 
 By default, `Snackbar`s will be anchored to the bottom edge of their parent
 view. However, you can use the `setAnchorView` method to make a `Snackbar`
