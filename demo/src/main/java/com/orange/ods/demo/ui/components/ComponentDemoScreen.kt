@@ -19,6 +19,7 @@ import com.orange.ods.demo.ui.components.dialogs.ComponentDialog
 import com.orange.ods.demo.ui.components.lists.ComponentLists
 import com.orange.ods.demo.ui.components.radiobuttons.ComponentRadioButtons
 import com.orange.ods.demo.ui.components.sliders.ComponentSliders
+import com.orange.ods.demo.ui.components.snackbars.ComponentSnackbars
 import com.orange.ods.demo.ui.components.switches.ComponentSwitches
 
 @Composable
@@ -34,6 +35,7 @@ fun ComponentDemoScreen(componentId: Long) {
             Component.Lists -> ComponentLists()
             Component.RadioButtons -> ComponentRadioButtons()
             Component.Sliders -> ComponentSliders()
+            Component.Snackbars -> ComponentSnackbars()
             Component.Switches -> ComponentSwitches()
             else -> {}
         }

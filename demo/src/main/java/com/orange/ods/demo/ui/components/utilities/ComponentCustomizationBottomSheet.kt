@@ -26,6 +26,8 @@ import androidx.compose.material.BottomSheetScaffoldState
 import androidx.compose.material.BottomSheetValue
 import androidx.compose.material.ExperimentalMaterialApi
 import androidx.compose.material.Icon
+import androidx.compose.material.SnackbarHost
+import androidx.compose.material.SnackbarHostState
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.rememberCoroutineScope
@@ -46,6 +48,7 @@ import kotlinx.coroutines.launch
 @Composable
 fun ComponentCustomizationBottomSheetScaffold(
     bottomSheetScaffoldState: BottomSheetScaffoldState,
+    snackbarHost: @Composable (SnackbarHostState) -> Unit = { SnackbarHost(it) },
     bottomSheetContent: @Composable () -> Unit,
     content: @Composable BoxScope.() -> Unit
 ) {
@@ -62,6 +65,7 @@ fun ComponentCustomizationBottomSheetScaffold(
     BottomSheetScaffold(
         sheetBackgroundColor = OdsTheme.colors.surface,
         scaffoldState = bottomSheetScaffoldState,
+        snackbarHost = snackbarHost,
         sheetPeekHeight = 56.dp,
         sheetContent = {
             OdsListItem(
