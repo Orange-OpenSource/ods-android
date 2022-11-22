@@ -60,8 +60,8 @@ fun OdsLeadingIconTab(
         icon = { Icon(painter = icon, contentDescription = null) },
         text = { Text(text = text.uppercase(), maxLines = 1, overflow = TextOverflow.Ellipsis, style = OdsTheme.typography.button) },
         selected = selected,
-        selectedContentColor = OdsTheme.colors.primary,
-        unselectedContentColor = OdsTheme.colors.onSurface,
+        selectedContentColor = OdsTheme.colors.tab.selectedContent,
+        unselectedContentColor = OdsTheme.colors.tab.unselectedContent,
         onClick = onClick,
         enabled = enabled
     )
