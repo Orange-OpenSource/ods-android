@@ -237,8 +237,7 @@
     <string name="component_snackbar_show">Show snackbar</string>
     <string name="component_snackbar_message">This is the message of the Snackbar.</string>
     <string name="component_snackbar_action_label">Action</string>
-
-
+    
     <!-- Component Text fields -->
     <string name="component_text_fields">Text fields</string>
     <string name="component_text_field">Text field</string>
