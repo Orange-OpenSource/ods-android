@@ -102,7 +102,8 @@ private fun getTitleRes(isStepped: Boolean, hasSideIcons: Boolean, shouldDisplay
     isStepped && hasSideIcons && !shouldDisplayValue -> R.string.component_slider_discrete_with_icons
     !isStepped && !hasSideIcons && !shouldDisplayValue -> R.string.component_slider_continuous
     !isStepped && hasSideIcons && !shouldDisplayValue -> R.string.component_slider_continuous_with_icons
-    isStepped && shouldDisplayValue -> R.string.component_slider_discrete_lockups
-    !isStepped && shouldDisplayValue -> R.string.component_slider_continuous_lockups
-    else -> R.string.empty
+    isStepped && shouldDisplayValue && !hasSideIcons -> R.string.component_slider_discrete_lockups
+    isStepped && shouldDisplayValue && hasSideIcons -> R.string.component_slider_discrete_lockups_with_icons
+    !hasSideIcons -> R.string.component_slider_continuous_lockups
+    else -> R.string.component_slider_continuous_lockups_with_icons
 }
