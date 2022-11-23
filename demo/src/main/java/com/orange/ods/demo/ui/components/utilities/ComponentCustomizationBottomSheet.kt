@@ -48,7 +48,7 @@ import kotlinx.coroutines.launch
 @Composable
 fun ComponentCustomizationBottomSheetScaffold(
     bottomSheetScaffoldState: BottomSheetScaffoldState,
-    snackbarHost: @Composable (SnackbarHostState) -> Unit = { SnackbarHost(it) },
+    snackbarHost: @Composable (SnackbarHostState) -> Unit = { SnackbarHost(hostState = it) },
     bottomSheetContent: @Composable () -> Unit,
     content: @Composable BoxScope.() -> Unit
 ) {

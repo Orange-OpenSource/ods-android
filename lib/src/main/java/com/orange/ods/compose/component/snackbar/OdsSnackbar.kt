@@ -111,7 +111,7 @@ fun OdsSnackbar(
 fun OdsSnackbarHost(
     hostState: SnackbarHostState,
     modifier: Modifier = Modifier,
-    snackbar: @Composable (SnackbarData) -> Unit = { OdsSnackbar(it) }
+    snackbar: @Composable (SnackbarData) -> Unit = { OdsSnackbar(snackbarData = it) }
 ) {
     SnackbarHost(
         modifier = modifier.padding(dimensionResource(id = R.dimen.spacing_s)),
@@ -135,10 +135,9 @@ private object OdsSnackbarDefaults {
      */
     val backgroundColor: Color
         @Composable
-        get() =
-            OdsTheme.colors.onSurface
-                .copy(alpha = OdsSnackbarOverlayAlpha)
-                .compositeOver(OdsTheme.colors.surface)
+        get() = OdsTheme.colors.onSurface
+            .copy(alpha = OdsSnackbarOverlayAlpha)
+            .compositeOver(OdsTheme.colors.surface)
 
     val actionButtonDisplaySurface: OdsDisplaySurface
         @Composable
