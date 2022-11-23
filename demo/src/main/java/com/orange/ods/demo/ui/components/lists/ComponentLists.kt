@@ -62,7 +62,7 @@ fun ComponentLists() {
 @Composable
 private fun ComponentListsBottomSheetContent(listItemCustomizationState: ListItemCustomizationState) {
     ComponentCountRow(
-        modifier = Modifier.padding(horizontal = dimensionResource(id = R.dimen.screen_horizontal_margin)),
+        modifier = Modifier.padding(start = dimensionResource(id = R.dimen.screen_horizontal_margin)),
         title = stringResource(id = R.string.component_list_item_size),
         count = listItemCustomizationState.lineCount,
         minusIconContentDescription = stringResource(id = R.string.component_list_item_remove_line),

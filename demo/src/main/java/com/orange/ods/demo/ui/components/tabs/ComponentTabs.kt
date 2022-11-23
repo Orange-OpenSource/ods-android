@@ -14,7 +14,6 @@ import androidx.annotation.DrawableRes
 import androidx.annotation.StringRes
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.wrapContentSize
 import androidx.compose.material.ExperimentalMaterialApi
@@ -40,10 +39,10 @@ import com.orange.ods.demo.ui.components.utilities.ComponentCustomizationBottomS
 import com.orange.ods.demo.ui.utilities.composable.Subtitle
 import com.orange.ods.demo.ui.utilities.composable.SwitchListItem
 
-private const val FixedTabsCountMin = 2
-private const val FixedTabsCountMax = 3
-private const val ScrollableTabsCountMin = 4
-private const val ScrollableTabsCountMax = 6
+private const val MinFixedTabCount = 2
+private const val MaxFixedTabCount = 3
+private const val MinScrollableTabCount = 4
+private const val MaxScrollableTabCount = 6
 
 @OptIn(ExperimentalMaterialApi::class, ExperimentalPagerApi::class)
 @Composable
@@ -53,12 +52,12 @@ fun ComponentTabs(variant: Variant) {
     val tabCountMax: Int
     if (variant == Variant.TabsScrollable) {
         scrollableTabs = true
-        tabCountMin = ScrollableTabsCountMin
-        tabCountMax = ScrollableTabsCountMax
+        tabCountMin = MinScrollableTabCount
+        tabCountMax = MaxScrollableTabCount
     } else {
         scrollableTabs = false
-        tabCountMin = FixedTabsCountMin
-        tabCountMax = FixedTabsCountMax
+        tabCountMin = MinFixedTabCount
+        tabCountMax = MaxFixedTabCount
     }
 
     val tabsCustomizationState = rememberMainTabsCustomizationState(tabsCount = rememberSaveable { mutableStateOf(tabCountMin) })
@@ -101,13 +100,11 @@ fun ComponentTabs(variant: Variant) {
             SwitchListItem(R.string.component_element_text, tabsCustomizationState.tabTextEnabled, tabsCustomizationState.isTabTextCustomizationEnabled)
 
             ComponentCountRow(
+                modifier = Modifier.padding(start = dimensionResource(id = R.dimen.screen_horizontal_margin)),
                 title = stringResource(id = R.string.component_tabs_count),
                 count = tabsCustomizationState.tabsCount,
                 minusIconContentDescription = stringResource(id = R.string.component_tabs_remove_tab),
                 plusIconContentDescription = stringResource(id = R.string.component_tabs_add_tab),
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .padding(horizontal = dimensionResource(id = R.dimen.screen_horizontal_margin)),
                 minCount = tabCountMin,
                 maxCount = tabCountMax
             )
