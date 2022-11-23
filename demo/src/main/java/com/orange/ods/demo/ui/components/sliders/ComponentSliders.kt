@@ -23,6 +23,7 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.painter.Painter
 import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
@@ -60,6 +61,7 @@ fun ComponentSliders() {
                 val rightIcon = if (hasSideIcons) painterResource(id = R.drawable.ic_volume_status_4) else null
                 val rightIconContentDescription = if (hasSideIcons) stringResource(id = R.string.component_slider_high_volume) else null
 
+                var sliderPosition by remember { mutableStateOf(0f) }
 
                 Title(textRes = getTitleRes(isStepped, hasSideIcons, shouldDisplayValue))
                 TechnicalText(text = technicalText)
@@ -67,23 +69,18 @@ fun ComponentSliders() {
                 Spacer(modifier = Modifier.padding(top = dimensionResource(R.dimen.spacing_m)))
 
                 if (shouldDisplayValue) {
-                    var sliderLockupPosition by remember { mutableStateOf(0f) }
-
-                    OdsSliderLockups(
-                        value = sliderLockupPosition,
-                        valueRange = 0f..100f,
+                    DemoSliderLockups(
+                        sliderPosition = sliderPosition,
                         steps = steps,
-                        onValueChange = { sliderLockupPosition = it },
+                        onValueChange = { sliderPosition = it },
                         leftIcon = leftIcon,
                         leftIconContentDescription = leftIconContentDescription,
                         rightIcon = rightIcon,
                         rightIconContentDescription = rightIconContentDescription
                     )
                 } else {
-                    var sliderPosition by remember { mutableStateOf(0f) }
-
-                    OdsSlider(
-                        value = sliderPosition,
+                    DemoSlider(
+                        sliderPosition = sliderPosition,
                         steps = steps,
                         onValueChange = { sliderPosition = it },
                         leftIcon = leftIcon,
@@ -96,6 +93,55 @@ fun ComponentSliders() {
         }
     }
 }
+
+@Composable
+private fun DemoSliderLockups(
+    sliderPosition: Float,
+    steps: Int,
+    onValueChange: (Float) -> Unit,
+    leftIcon: Painter?,
+    leftIconContentDescription: String?,
+    rightIcon: Painter?,
+    rightIconContentDescription: String?
+
+) {
+    OdsSliderLockups(
+        value = sliderPosition,
+        valueRange = 0f..100f,
+        steps = steps,
+        onValueChange = { value ->
+            onValueChange(value)
+        },
+        leftIcon = leftIcon,
+        leftIconContentDescription = leftIconContentDescription,
+        rightIcon = rightIcon,
+        rightIconContentDescription = rightIconContentDescription
+    )
+}
+
+@Composable
+private fun DemoSlider(
+    sliderPosition: Float,
+    steps: Int,
+    onValueChange: (Float) -> Unit,
+    leftIcon: Painter?,
+    leftIconContentDescription: String?,
+    rightIcon: Painter?,
+    rightIconContentDescription: String?
+
+) {
+    OdsSlider(
+        value = sliderPosition,
+        valueRange = 0f..100f,
+        steps = steps,
+        onValueChange = { value -> onValueChange(value) },
+        leftIcon = leftIcon,
+        leftIconContentDescription = leftIconContentDescription,
+        rightIcon = rightIcon,
+        rightIconContentDescription = rightIconContentDescription
+    )
+}
+
 
 private fun getTitleRes(isStepped: Boolean, hasSideIcons: Boolean, shouldDisplayValue: Boolean) = when {
     isStepped && !hasSideIcons && !shouldDisplayValue -> R.string.component_slider_discrete
