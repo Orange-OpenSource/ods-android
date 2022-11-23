@@ -9,7 +9,7 @@ The Orange Design System has been implemented in a code library that provides:
 
 Using these resources will allow you to create Orange branded applications faster and will inherit all the work that was done to make sure that all presented codes are fully tested with regard to the brand and the accessibility compliance.
 
-The ODS library is compatible with **Android 5.0 (API Level 21) and higher**.
+The ODS library is compatible with **Android 5.0 (API level 21) and higher**.
 
 ## Instructions
 
@@ -20,36 +20,36 @@ Orange Design System for Android is available through [Maven Central Repository]
 1. Open the `build.gradle` file for your application.
 2. Make sure that the `repositories` section includes Maven Central. For example:
 
-   ```groovy
-     allprojects {
-       repositories {
-         google()
-         mavenCentral()
-       }
-     }
-   ```
+    ```groovy
+    allprojects {
+      repositories {
+        google()
+        mavenCentral()
+      }
+    }
+    ```
 
 3. Add the library to the `dependencies` section:
 
-   ```groovy
-     dependencies {
-       // ...
-       implementation 'com.orange.ods.android:ods-lib:0.7.0'
-       // ...
-     }
-   ```
+    ```groovy
+    dependencies {
+      // ...
+      implementation 'com.orange.ods.android:ods-lib:0.7.0'
+      // ...
+    }
+    ```
 
 4. (Optional) Add an `OdsThemeConfiguration` implementation library to the `dependencies` section:
 
-You have the possibility to use the ODS library with another theme than the Orange theme.
-
-   ```groovy
-     dependencies {
-       // ...
-       implementation(project(":theme-innovation-cup"))
-       // ...
-     }
-   ```
+    You have the possibility to use the ODS library with another theme than the Orange theme.
+  
+    ```groovy
+    dependencies {
+      // ...
+      implementation(project(":theme-innovation-cup"))
+      // ...
+    }
+    ```
 
 ### 2. Compile your app with Android 11
 
@@ -88,15 +88,15 @@ This theme will use the default `Toolbar`. If you want to provide your own `Tool
 
 In the `Manifest.xml` file, add `Theme.Orange.NoActionBar` to your application:
 ```xml
-    <application
-        android:theme="@style/Theme.Orange.NoActionBar">
-        <!-- ... -->
-    </application>
+<application
+    android:theme="@style/Theme.Orange.NoActionBar">
+    <!-- ... -->
+</application>
 ```
 
 Use the `OdsMaterialTheme` in your screens which is a Material theme extension for Jetpack Compose applications:
 ```kotlin
-    OdsMaterialTheme {
-        //...
-    }
+OdsMaterialTheme {
+    //...
+}
 ```
