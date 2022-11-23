@@ -9,6 +9,8 @@ The Orange Design System has been implemented in a code library that provides:
 
 Using these resources will allow you to create Orange branded applications faster and will inherit all the work that was done to make sure that all presented codes are fully tested with regard to the brand and the accessibility compliance.
 
+The ODS library is compatible with **Android 5.0 (API Level 21) and higher**.
+
 ## Instructions
 
 ### 1. Depend on our library
