@@ -26,6 +26,11 @@ internal object OdsChipDefaults {
      */
     internal const val SurfaceOverlayOpacity = 0.12f
 
+    /**
+     * The color opacity used for a selected chip's leading icon or content overlay.
+     */
+    private const val SelectedOverlayOpacity = 0.16f
+
     @OptIn(ExperimentalMaterialApi::class)
     @Composable
     fun chipColors(
@@ -53,14 +58,32 @@ internal object OdsChipDefaults {
     @OptIn(ExperimentalMaterialApi::class)
     @Composable
     fun filterChipColors(
-        backgroundColor: Color = OdsTheme.colors.onSurface.copy(alpha = SurfaceOverlayOpacity)
-            .compositeOver(OdsTheme.colors.surface),
+        backgroundColor: Color = OdsTheme.colors.onSurface.copy(alpha = SurfaceOverlayOpacity).compositeOver(OdsTheme.colors.surface),
         contentColor: Color = OdsTheme.colors.onSurface.copy(alpha = ChipDefaults.ContentOpacity),
+        leadingIconColor: Color = contentColor.copy(alpha = ChipDefaults.LeadingIconOpacity)
     ) = ChipDefaults.filterChipColors(
         backgroundColor = backgroundColor,
         contentColor = contentColor,
-        leadingIconColor = contentColor.copy(alpha = ChipDefaults.LeadingIconOpacity),
+        leadingIconColor = leadingIconColor,
+        selectedBackgroundColor = OdsTheme.colors.onSurface.copy(alpha = SurfaceOverlayOpacity).compositeOver(backgroundColor),
+        selectedContentColor = OdsTheme.colors.onSurface.copy(alpha = SelectedOverlayOpacity).compositeOver(contentColor),
+        selectedLeadingIconColor = OdsTheme.colors.onSurface.copy(alpha = SelectedOverlayOpacity).compositeOver(leadingIconColor),
         disabledBackgroundColor = backgroundColor.copy(alpha = ContentAlpha.disabled)
     )
 
+    @OptIn(ExperimentalMaterialApi::class)
+    @Composable
+    fun outlinedFilterChipColors(
+        backgroundColor: Color = OdsTheme.colors.surface,
+        contentColor: Color = OdsTheme.colors.onSurface.copy(alpha = ChipDefaults.ContentOpacity),
+        leadingIconColor: Color = contentColor.copy(alpha = ChipDefaults.LeadingIconOpacity)
+    ) = ChipDefaults.outlinedFilterChipColors(
+        backgroundColor = backgroundColor,
+        contentColor = contentColor,
+        leadingIconColor = leadingIconColor,
+        selectedBackgroundColor = OdsTheme.colors.onSurface.copy(alpha = SurfaceOverlayOpacity).compositeOver(backgroundColor),
+        selectedContentColor = OdsTheme.colors.onSurface.copy(alpha = SelectedOverlayOpacity).compositeOver(contentColor),
+        selectedLeadingIconColor = OdsTheme.colors.onSurface.copy(alpha = SelectedOverlayOpacity).compositeOver(leadingIconColor),
+        disabledBackgroundColor = backgroundColor.copy(alpha = ContentAlpha.disabled)
+    )
 }
