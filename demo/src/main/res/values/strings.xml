@@ -234,10 +234,11 @@
     <string name="component_snackbars">Snackbars</string>
     <string name="component_snackbars_description">There are two ways to show users short, non permanent messages giving system information or feedback about an operation.</string>
     <string name="component_snackbar_action_button">Action button</string>
+    <string name="component_snackbar_customize">Customize the snackbar before displaying it.</string>
     <string name="component_snackbar_show">Show snackbar</string>
     <string name="component_snackbar_message">This is the message of the Snackbar.</string>
     <string name="component_snackbar_action_label">Action</string>
-    
+
     <!-- Component Text fields -->
     <string name="component_text_fields">Text fields</string>
     <string name="component_text_field">Text field</string>
