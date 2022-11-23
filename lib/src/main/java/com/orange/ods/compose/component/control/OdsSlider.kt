@@ -35,11 +35,14 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.compositeOver
 import androidx.compose.ui.graphics.painter.Painter
 import androidx.compose.ui.res.dimensionResource
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.style.TextAlign
+import androidx.compose.ui.tooling.preview.PreviewParameter
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import com.orange.ods.R
 import com.orange.ods.compose.component.OdsComponentApi
+import com.orange.ods.compose.component.utilities.BasicPreviewParameterProvider
 import com.orange.ods.compose.component.utilities.Preview
 import com.orange.ods.compose.component.utilities.UiModePreviews
 import com.orange.ods.compose.theme.OdsTheme
@@ -303,22 +306,29 @@ private object OdsSliderDefaults {
 
 @UiModePreviews.Default
 @Composable
-private fun PreviewOdsSlider() = Preview {
+private fun PreviewOdsSlider(@PreviewParameter(OdsSliderPreviewParameterProvider::class) withIcons: Boolean) = Preview {
     val sliderValue = remember { mutableStateOf(0.5f) }
+
     OdsSlider(
         value = sliderValue.value,
         onValueChange = { sliderValue.value = it },
-        steps = 9
+        steps = 9,
+        leftIcon = if (withIcons) painterResource(id = R.drawable.ic_crosset_out_eye) else null,
+        rightIcon = if (withIcons) painterResource(id = R.drawable.ic_eye) else null,
     )
 }
 
 @UiModePreviews.Default
 @Composable
-private fun PreviewOdsSliderLockups() = Preview {
+private fun PreviewOdsSliderLockups(@PreviewParameter(OdsSliderPreviewParameterProvider::class) withIcons: Boolean) = Preview {
     var value by remember { mutableStateOf(50.0f) }
     OdsSliderLockups(
         value = value,
         valueRange = 0f..100f,
-        onValueChange = { value = it }
+        onValueChange = { value = it },
+        leftIcon = if (withIcons) painterResource(id = R.drawable.ic_crosset_out_eye) else null,
+        rightIcon = if (withIcons) painterResource(id = R.drawable.ic_eye) else null,
     )
 }
+
+internal class OdsSliderPreviewParameterProvider : BasicPreviewParameterProvider<Boolean>(false, true)
