@@ -46,6 +46,12 @@ interface OdsThemeConfigurationContract : Parcelable {
     val demoGuideline: OdsDemoGuideline
         get() = OdsDemoGuideline(typography)
 
+    /**
+     * Chip type customization
+     * By default the chips are outlined. If your theme needs to use filled chips, set this parameter to false.
+     */
+    val outlinedChips: Boolean
+        get() = true
 }
 
 data class OdsThemeColors(val lightColors: OdsColors, val darkColors: OdsColors)

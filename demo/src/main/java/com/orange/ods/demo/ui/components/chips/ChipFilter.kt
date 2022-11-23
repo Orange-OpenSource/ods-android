@@ -26,6 +26,7 @@ import com.orange.ods.compose.component.chip.OdsChoiceChip
 import com.orange.ods.compose.component.chip.OdsChoiceChipsFlowRow
 import com.orange.ods.compose.component.chip.OdsFilterChip
 import com.orange.ods.demo.R
+import com.orange.ods.demo.ui.LocalMainThemeManager
 import com.orange.ods.demo.ui.components.utilities.ComponentCustomizationBottomSheetScaffold
 import com.orange.ods.demo.ui.utilities.composable.CheckboxListItem
 import com.orange.ods.demo.ui.utilities.composable.Subtitle
@@ -64,11 +65,13 @@ fun ChipFilter() {
 
 @Composable
 private fun FilterChip(index: Int, customizationState: ChipCustomizationState) {
+    val outlinedChips = LocalMainThemeManager.current.currentThemeConfiguration.outlinedChips
     val selected = rememberSaveable { mutableStateOf(false) }
     OdsFilterChip(
         text = "${stringResource(id = R.string.component_chip_type_filter)} $index",
         leadingAvatar = if (customizationState.hasLeadingAvatar) painterResource(id = R.drawable.placeholder_small) else null,
         onClick = { selected.value = !selected.value },
+        outlined = outlinedChips,
         selected = selected.value,
         enabled = !customizationState.disabledChecked.value,
     )

@@ -33,4 +33,7 @@ class InnovationCupThemeConfiguration : OdsThemeConfigurationContract {
             large = RoundedCornerShape(4.dp)
         )
 
+    override val outlinedChips: Boolean
+        get() = false
+
 }
