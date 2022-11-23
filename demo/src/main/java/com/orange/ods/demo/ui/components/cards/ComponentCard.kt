@@ -10,7 +10,6 @@
 
 package com.orange.ods.demo.ui.components.cards
 
-import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material.ExperimentalMaterialApi
 import androidx.compose.material.rememberBottomSheetScaffoldState
@@ -45,9 +44,7 @@ fun ComponentCard(variant: Variant) {
                         count = actionButtonCount,
                         minusIconContentDescription = stringResource(id = R.string.component_card_remove_action_button),
                         plusIconContentDescription = stringResource(id = R.string.component_card_add_action_button),
-                        modifier = Modifier
-                            .fillMaxWidth()
-                            .padding(horizontal = dimensionResource(id = R.dimen.screen_horizontal_margin)),
+                        modifier = Modifier.padding(start = dimensionResource(id = R.dimen.screen_horizontal_margin)),
                         minCount = CardCustomizationState.MinActionButtonCount,
                         maxCount = CardCustomizationState.MaxActionButtonCount
                     )
