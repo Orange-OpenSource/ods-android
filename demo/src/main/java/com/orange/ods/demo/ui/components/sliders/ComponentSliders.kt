@@ -58,7 +58,7 @@ fun ComponentSliders() {
                 Title(textRes = getTitleRes(isStepped, hasSideIcons, shouldDisplayValue))
                 TechnicalText(text = technicalText)
 
-                Spacer(modifier = Modifier.padding(top = dimensionResource(R.dimen.spacing_s)))
+                Spacer(modifier = Modifier.padding(top = dimensionResource(R.dimen.spacing_m)))
 
                 if (shouldDisplayValue) {
                     var sliderLockupPosition by remember { mutableStateOf(0f) }
