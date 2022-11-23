@@ -42,9 +42,10 @@ import com.orange.ods.compose.theme.OdsTheme
  *
  * @param message text displayed in the snackbar
  * @param modifier modifiers for the Snackbar layout
- * @param actionLabel If set, it displays an [OdsTextButton] with the given [actionLabel] as an action of the snackbar.
+ * @param actionLabel if set, it displays an [OdsTextButton] with the given [actionLabel] as an action of the snackbar.
  * @param actionOnNewLine whether or not action should be put on the separate line. Recommended
  * for action with long action text
+ * @param onActionClick executed on action button click.
  */
 @Composable
 @OdsComponentApi
@@ -52,7 +53,8 @@ fun OdsSnackbar(
     message: String,
     modifier: Modifier = Modifier,
     actionLabel: String? = null,
-    actionOnNewLine: Boolean = false
+    actionOnNewLine: Boolean = false,
+    onActionClick: () -> Unit = {}
 ) {
     Snackbar(
         modifier = modifier,
@@ -62,7 +64,8 @@ fun OdsSnackbar(
                     style = OdsTextButtonStyle.Primary,
                     displaySurface = OdsSnackbarDefaults.actionButtonDisplaySurface,
                     text = it,
-                    onClick = {})
+                    onClick = onActionClick
+                )
             }
         },
         actionOnNewLine = actionOnNewLine,
@@ -80,18 +83,21 @@ fun OdsSnackbar(
  * @param modifier modifiers for the Snackbar layout
  * @param actionOnNewLine whether or not action should be put on the separate line. Recommended
  * for action with long action text
+ * @param onActionClick executed on action button click.
  */
 @Composable
 fun OdsSnackbar(
     snackbarData: SnackbarData,
     modifier: Modifier = Modifier,
-    actionOnNewLine: Boolean = false
+    actionOnNewLine: Boolean = false,
+    onActionClick: () -> Unit = {}
 ) {
     OdsSnackbar(
         modifier = modifier,
         message = snackbarData.message,
         actionLabel = snackbarData.actionLabel,
-        actionOnNewLine = actionOnNewLine
+        actionOnNewLine = actionOnNewLine,
+        onActionClick = onActionClick
     )
 }
 

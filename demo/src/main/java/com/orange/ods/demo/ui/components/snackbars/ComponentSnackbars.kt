@@ -16,12 +16,14 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.runtime.saveable.rememberSaveable
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
 import com.orange.ods.compose.component.snackbar.OdsSnackbar
 import com.orange.ods.compose.component.snackbar.OdsSnackbarHost
 import com.orange.ods.demo.R
 import com.orange.ods.demo.ui.components.utilities.ComponentCustomizationBottomSheetScaffold
 import com.orange.ods.demo.ui.components.utilities.ComponentLaunchContentColumn
+import com.orange.ods.demo.ui.components.utilities.clickOnElement
 import com.orange.ods.demo.ui.utilities.composable.SwitchListItem
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.launch
@@ -29,6 +31,7 @@ import kotlinx.coroutines.launch
 @OptIn(ExperimentalMaterialApi::class)
 @Composable
 fun ComponentSnackbars() {
+    val context = LocalContext.current
     val bottomSheetScaffoldState = rememberBottomSheetScaffoldState()
     val coroutineScope: CoroutineScope = rememberCoroutineScope()
 
@@ -40,12 +43,15 @@ fun ComponentSnackbars() {
 
     val snackbarMessage = stringResource(id = R.string.component_snackbar_message)
     val snackbarActionLabel = stringResource(id = R.string.component_snackbar_action_label)
+    val snackbarActionButton = stringResource(id = R.string.component_snackbar_action_button)
 
     ComponentCustomizationBottomSheetScaffold(
         bottomSheetScaffoldState = bottomSheetScaffoldState,
         snackbarHost = {
             OdsSnackbarHost(hostState = it) { data ->
-                OdsSnackbar(snackbarData = data, actionOnNewLine = actionOnNewLineChecked.value)
+                OdsSnackbar(snackbarData = data, actionOnNewLine = actionOnNewLineChecked.value, onActionClick = {
+                    clickOnElement(context = context, clickedElement = snackbarActionButton)
+                })
             }
         },
         bottomSheetContent = {
