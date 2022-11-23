@@ -33,6 +33,11 @@ fun ComponentSnackbars() {
     val coroutineScope: CoroutineScope = rememberCoroutineScope()
 
     val actionButtonChecked = rememberSaveable { mutableStateOf(false) }
+    val actionOnNewLineChecked = rememberSaveable { mutableStateOf(false) }
+    if (!actionButtonChecked.value) {
+        actionOnNewLineChecked.value = false
+    }
+
     val snackbarMessage = stringResource(id = R.string.component_snackbar_message)
     val snackbarActionLabel = stringResource(id = R.string.component_snackbar_action_label)
 
@@ -40,17 +45,18 @@ fun ComponentSnackbars() {
         bottomSheetScaffoldState = bottomSheetScaffoldState,
         snackbarHost = {
             OdsSnackbarHost(hostState = it) { data ->
-                OdsSnackbar(snackbarData = data)
+                OdsSnackbar(snackbarData = data, actionOnNewLine = actionOnNewLineChecked.value)
             }
         },
         bottomSheetContent = {
             SwitchListItem(labelRes = R.string.component_snackbar_action_button, checked = actionButtonChecked)
+            SwitchListItem(labelRes = R.string.component_snackbar_action_on_new_line, checked = actionOnNewLineChecked, enabled = actionButtonChecked.value)
         }) {
         ComponentLaunchContentColumn(textRes = R.string.component_snackbar_customize, buttonLabelRes = R.string.component_snackbar_show) {
             coroutineScope.launch {
                 bottomSheetScaffoldState.snackbarHostState.showSnackbar(
                     message = snackbarMessage,
-                    actionLabel = if (actionButtonChecked.value) snackbarActionLabel else null
+                    actionLabel = if (actionButtonChecked.value) snackbarActionLabel else null,
                 )
             }
         }
