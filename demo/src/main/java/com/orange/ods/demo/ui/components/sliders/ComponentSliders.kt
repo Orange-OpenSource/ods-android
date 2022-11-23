@@ -54,6 +54,12 @@ fun ComponentSliders() {
                     .padding(horizontal = dimensionResource(id = R.dimen.spacing_m))
             ) {
                 val technicalText = if (shouldDisplayValue) OdsComponent.OdsSliderLockups.name else OdsComponent.OdsSlider.name
+                val steps = if (isStepped) 9 else 0
+                val leftIcon = if (hasSideIcons) painterResource(id = R.drawable.ic_volume_status_1) else null
+                val leftIconContentDescription = if (hasSideIcons) stringResource(id = R.string.component_slider_low_volume) else null
+                val rightIcon = if (hasSideIcons) painterResource(id = R.drawable.ic_volume_status_4) else null
+                val rightIconContentDescription = if (hasSideIcons) stringResource(id = R.string.component_slider_high_volume) else null
+
 
                 Title(textRes = getTitleRes(isStepped, hasSideIcons, shouldDisplayValue))
                 TechnicalText(text = technicalText)
@@ -66,24 +72,24 @@ fun ComponentSliders() {
                     OdsSliderLockups(
                         value = sliderLockupPosition,
                         valueRange = 0f..100f,
-                        steps = if (isStepped) 9 else 0,
+                        steps = steps,
                         onValueChange = { sliderLockupPosition = it },
-                        leftIcon = if (hasSideIcons) painterResource(id = R.drawable.ic_volume_status_1) else null,
-                        leftIconContentDescription = if (hasSideIcons) stringResource(id = R.string.component_slider_low_volume) else null,
-                        rightIcon = if (hasSideIcons) painterResource(id = R.drawable.ic_volume_status_4) else null,
-                        rightIconContentDescription = if (hasSideIcons) stringResource(id = R.string.component_slider_high_volume) else null
+                        leftIcon = leftIcon,
+                        leftIconContentDescription = leftIconContentDescription,
+                        rightIcon = rightIcon,
+                        rightIconContentDescription = rightIconContentDescription
                     )
                 } else {
                     var sliderPosition by remember { mutableStateOf(0f) }
 
                     OdsSlider(
                         value = sliderPosition,
-                        steps = if (isStepped) 9 else 0,
+                        steps = steps,
                         onValueChange = { sliderPosition = it },
-                        leftIcon = if (hasSideIcons) painterResource(id = R.drawable.ic_volume_status_1) else null,
-                        leftIconContentDescription = if (hasSideIcons) stringResource(id = R.string.component_slider_low_volume) else null,
-                        rightIcon = if (hasSideIcons) painterResource(id = R.drawable.ic_volume_status_4) else null,
-                        rightIconContentDescription = if (hasSideIcons) stringResource(id = R.string.component_slider_high_volume) else null
+                        leftIcon = leftIcon,
+                        leftIconContentDescription = leftIconContentDescription,
+                        rightIcon = rightIcon,
+                        rightIconContentDescription = rightIconContentDescription
                     )
                 }
             }
