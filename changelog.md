@@ -17,7 +17,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Fixed
 
-- \[Demo\] Fix leading icon tab display for Innovation Cup theme ([#330](https://github.com/Orange-OpenSource/ods-android/issues/330))
+- \[Lib\] Fix leading icon tab display for Innovation Cup theme ([#330](https://github.com/Orange-OpenSource/ods-android/issues/330))
 
 ## [0.7.0](https://github.com/Orange-OpenSource/ods-android/compare/0.6.0...0.7.0) - 2022-11-09
 
