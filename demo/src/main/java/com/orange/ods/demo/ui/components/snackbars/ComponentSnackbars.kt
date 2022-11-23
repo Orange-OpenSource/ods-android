@@ -29,7 +29,7 @@ import kotlinx.coroutines.launch
 @OptIn(ExperimentalMaterialApi::class)
 @Composable
 fun ComponentSnackbars() {
-    val scaffoldState = rememberBottomSheetScaffoldState()
+    val bottomSheetScaffoldState = rememberBottomSheetScaffoldState()
     val coroutineScope: CoroutineScope = rememberCoroutineScope()
 
     val actionButtonChecked = rememberSaveable { mutableStateOf(false) }
@@ -37,7 +37,7 @@ fun ComponentSnackbars() {
     val snackbarActionLabel = stringResource(id = R.string.component_snackbar_action_label)
 
     ComponentCustomizationBottomSheetScaffold(
-        bottomSheetScaffoldState = scaffoldState,
+        bottomSheetScaffoldState = bottomSheetScaffoldState,
         snackbarHost = {
             OdsSnackbarHost(hostState = it) { data ->
                 OdsSnackbar(snackbarData = data)
@@ -48,7 +48,7 @@ fun ComponentSnackbars() {
         }) {
         ComponentLaunchContentColumn(textRes = R.string.component_snackbar_customize, buttonLabelRes = R.string.component_snackbar_show) {
             coroutineScope.launch {
-                scaffoldState.snackbarHostState.showSnackbar(
+                bottomSheetScaffoldState.snackbarHostState.showSnackbar(
                     message = snackbarMessage,
                     actionLabel = if (actionButtonChecked.value) snackbarActionLabel else null
                 )
