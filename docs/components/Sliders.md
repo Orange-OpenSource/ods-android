@@ -14,7 +14,7 @@ description: Sliders allow users to make selections from a range of values.
   * [Continuous slider](#continuous-slider)
   * [Continuous lockups slider](#continuous-lockups-slider)
   * [Discrete slider](#discrete-slider)
-  * [Discrete lockup slider](#discrete-lockup-slider)
+  * [Discrete lockups slider](#discrete-lockups-slider)
 * [Component specific tokens](#component-specific-tokens)
 
 ---
@@ -132,7 +132,7 @@ OdsSliderLockups(
 )
 ```
 
-You can add icons to the continuous lockup slider like this:
+You can add icons to the continuous lockups slider like this:
 
 ```kotlin
 OdsSliderLockups(
@@ -205,7 +205,7 @@ In the layout:
     android:stepSize="5.0" />
 ```
 
-### Discrete lockup slider
+### Discrete lockups slider
 
 ![Discrete lockups slider](images/slider_discrete_lockups_light.png) ![Discrete lockups slider dark](images/slider_discrete_lockups_dark.png)
 
@@ -226,7 +226,7 @@ OdsSliderLockups(
 )
 ```
 
-You can add icons to the continuous lockup slider like this:
+You can add icons to the continuous lockups slider like this:
 
 ```kotlin
 OdsSliderLockups(
