@@ -7,6 +7,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased](https://github.com/Orange-OpenSource/ods-android/compare/0.7.0...master)
 
+### Added
+
+- \[Demo\] Add Snackbar component ([#114](https://github.com/Orange-OpenSource/ods-android/issues/114))
+- \[Lib\] Add `OdsSnackbar` and `OdsSnackbarHost` composable to manage snackbars display ([#114](https://github.com/Orange-OpenSource/ods-android/issues/114))
+
 ### Changed
 
 - \[All\] Version numbers in changelog now display changes on GitHub when clicked ([#322](https://github.com/Orange-OpenSource/ods-android/issues/322))

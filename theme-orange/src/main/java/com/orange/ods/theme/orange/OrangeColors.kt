@@ -18,7 +18,7 @@ import com.orange.ods.theme.OdsTopAppBarColors
 
 val OrangeLightColors = OdsColors(
     primary = Orange200,
-    primaryVariant = Orange200,
+    primaryVariant = Orange100,
     secondary = Orange200,
     secondaryVariant = Orange200,
     background = White100,
