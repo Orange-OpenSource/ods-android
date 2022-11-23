@@ -49,7 +49,6 @@ fun ChipFilter() {
                 OdsChoiceChip(textRes = R.string.component_element_avatar, value = ChipCustomizationState.LeadingElement.Avatar)
             }
 
-            CheckboxListItem(labelRes = R.string.component_state_outlined, checked = chipCustomizationState.outlinedChecked)
             CheckboxListItem(labelRes = R.string.component_state_disabled, checked = chipCustomizationState.disabledChecked)
 
         }) {
@@ -71,7 +70,6 @@ private fun FilterChip(index: Int, customizationState: ChipCustomizationState) {
         leadingAvatar = if (customizationState.hasLeadingAvatar) painterResource(id = R.drawable.placeholder_small) else null,
         onClick = { selected.value = !selected.value },
         selected = selected.value,
-        outlined = customizationState.outlinedChecked.value,
         enabled = !customizationState.disabledChecked.value,
     )
 }

@@ -68,7 +68,6 @@ fun Chip() {
                 chipCustomizationState.resetLeadingElement()
             }
 
-            CheckboxListItem(labelRes = R.string.component_state_outlined, checked = chipCustomizationState.outlinedChecked)
             CheckboxListItem(labelRes = R.string.component_state_disabled, checked = chipCustomizationState.disabledChecked)
 
         }) {
@@ -103,7 +102,7 @@ private fun Chip(chipCustomizationState: ChipCustomizationState) {
 
     with(chipCustomizationState) {
         if (isChoiceChip) {
-            OdsChoiceChipsFlowRow(selectedChip = choiceChipIndexSelected, outlinedChips = isOutlined) {
+            OdsChoiceChipsFlowRow(selectedChip = choiceChipIndexSelected) {
                 for (index in 1..4) {
                     OdsChoiceChip(
                         text = "${stringResource(id = chipType.value.nameRes)} $index",
@@ -116,7 +115,6 @@ private fun Chip(chipCustomizationState: ChipCustomizationState) {
             OdsChip(
                 text = stringResource(id = R.string.component_chip_type, stringResource(id = chipType.value.nameRes)),
                 onClick = { clickOnElement(context, chipLabel) },
-                outlined = outlinedChecked.value,
                 leadingIcon = if (isActionChip || hasLeadingIcon) painterResource(id = R.drawable.ic_heart) else null,
                 leadingAvatar = if (hasLeadingAvatar) painterResource(id = R.drawable.placeholder_small) else null,
                 enabled = !disabledChecked.value,

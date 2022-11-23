@@ -25,18 +25,16 @@ fun rememberChipCustomizationState(
     chipType: MutableState<ChipType> = rememberSaveable { mutableStateOf(ChipType.Input) },
     leadingElement: MutableState<LeadingElement> = rememberSaveable { mutableStateOf(LeadingElement.None) },
     disabledChecked: MutableState<Boolean> = rememberSaveable { mutableStateOf(false) },
-    outlinedChecked: MutableState<Boolean> = rememberSaveable { mutableStateOf(false) },
     choiceChipIndexSelected: MutableState<Int?> = rememberSaveable { mutableStateOf(null) }
 ) =
-    remember(chipType, leadingElement, disabledChecked, outlinedChecked, choiceChipIndexSelected) {
-        ChipCustomizationState(chipType, leadingElement, disabledChecked, outlinedChecked, choiceChipIndexSelected)
+    remember(chipType, leadingElement, disabledChecked, choiceChipIndexSelected) {
+        ChipCustomizationState(chipType, leadingElement, disabledChecked, choiceChipIndexSelected)
     }
 
 class ChipCustomizationState(
     val chipType: MutableState<ChipType>,
     val leadingElement: MutableState<LeadingElement>,
     val disabledChecked: MutableState<Boolean>,
-    val outlinedChecked: MutableState<Boolean>,
     val choiceChipIndexSelected: MutableState<Int?>
 ) {
 
@@ -50,7 +48,7 @@ class ChipCustomizationState(
                 Choice -> R.string.component_chip_type_choice
                 Filter -> R.string.component_chip_type_filter
             }
-        
+
         val descriptionRes: Int
             get() = when (this) {
                 Input -> R.string.component_chip_type_input_description
@@ -81,9 +79,6 @@ class ChipCustomizationState(
 
     val isEnabled
         get() = !disabledChecked.value
-
-    val isOutlined
-        get() = outlinedChecked.value
 
     fun resetLeadingElement() {
         leadingElement.value = LeadingElement.None
