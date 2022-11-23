@@ -71,7 +71,7 @@ private fun ComponentListsBottomSheetContent(listItemCustomizationState: ListIte
         maxCount = ComponentListItem.MaxLineCount
     )
 
-    Subtitle(textRes = R.string.component_list_leading, withHorizontalPadding = true)
+    Subtitle(textRes = R.string.component_list_leading, horizontalPadding = true)
     OdsChoiceChipsFlowRow(
         selectedChip = listItemCustomizationState.selectedLeading,
         modifier = Modifier.padding(horizontal = dimensionResource(id = R.dimen.screen_horizontal_margin)),
@@ -84,7 +84,7 @@ private fun ComponentListsBottomSheetContent(listItemCustomizationState: ListIte
         OdsChoiceChip(textRes = R.string.component_list_leading_wide_image, value = ListItemCustomizationState.Leading.WideImage)
     }
 
-    Subtitle(textRes = R.string.component_list_trailing, withHorizontalPadding = true)
+    Subtitle(textRes = R.string.component_list_trailing, horizontalPadding = true)
     OdsChoiceChipsFlowRow(
         selectedChip = listItemCustomizationState.selectedTrailing,
         modifier = Modifier.padding(horizontal = dimensionResource(id = R.dimen.screen_horizontal_margin)),

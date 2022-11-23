@@ -11,6 +11,8 @@
 <resources>
     <string name="app_name">ODS Preview</string>
 
+    <string name="empty"></string>
+
     <!-- Navigation -->
     <string name="navigation_item_guidelines">Guidelines</string>
     <string name="navigation_item_components">Components</string>
@@ -189,10 +191,14 @@
     <string name="component_slider_continuous">Continuous</string>
     <string name="component_slider_continuous_with_icons">Continuous with icons</string>
     <string name="component_slider_discrete_lockups">Discrete lockups</string>
+    <string name="component_slider_discrete_lockups_with_icons">Discrete lockups with icons</string>
     <string name="component_slider_continuous_lockups">Continuous lockups</string>
+    <string name="component_slider_continuous_lockups_with_icons">Continuous lockups with icons</string>
     <string name="component_slider_low_volume">Low volume</string>
     <string name="component_slider_high_volume">High volume</string>
-
+    <string name="component_slider_side_icons">Side icons</string>
+    <string name="component_slider_value_displayed">Display value</string>
+    <string name="component_slider_stepped">Stepped</string>
 
     <!-- Component Progress & activities -->
     <string name="component_progress">Progress &amp; activities</string>

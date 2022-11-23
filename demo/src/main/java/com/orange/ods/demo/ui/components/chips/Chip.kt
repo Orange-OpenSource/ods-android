@@ -42,7 +42,7 @@ fun Chip() {
     ComponentCustomizationBottomSheetScaffold(
         bottomSheetScaffoldState = rememberBottomSheetScaffoldState(),
         bottomSheetContent = {
-            Subtitle(textRes = R.string.component_type, withHorizontalPadding = true)
+            Subtitle(textRes = R.string.component_type, horizontalPadding = true)
             OdsChoiceChipsFlowRow(
                 selectedChip = chipCustomizationState.chipType,
                 modifier = Modifier.padding(horizontal = dimensionResource(id = R.dimen.screen_horizontal_margin)),
@@ -54,7 +54,7 @@ fun Chip() {
             }
 
             if (chipCustomizationState.isInputChip) {
-                Subtitle(textRes = R.string.component_element_leading, withHorizontalPadding = true)
+                Subtitle(textRes = R.string.component_element_leading, horizontalPadding = true)
                 OdsChoiceChipsFlowRow(
                     selectedChip = chipCustomizationState.leadingElement,
                     modifier = Modifier.padding(horizontal = dimensionResource(id = R.dimen.screen_horizontal_margin)),

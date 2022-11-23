@@ -118,7 +118,7 @@ private fun TextFieldPasswordCustomization(textFieldCustomizationState: TextFiel
 private fun ComponentCustomizationContent(textFieldCustomizationState: TextFieldCustomizationState) {
     SwitchListItem(labelRes = R.string.component_element_leading_icon, checked = textFieldCustomizationState.leadingIcon)
 
-    Subtitle(textRes = R.string.component_text_field_input_type, withHorizontalPadding = true)
+    Subtitle(textRes = R.string.component_text_field_input_type, horizontalPadding = true)
     OdsChoiceChipsFlowRow(
         selectedChip = textFieldCustomizationState.inputType,
         modifier = Modifier.padding(horizontal = dimensionResource(id = R.dimen.spacing_m)),
@@ -137,7 +137,7 @@ private fun ComponentCustomizationContent(textFieldCustomizationState: TextField
 
     DisplayTypeCustomization(textFieldCustomizationState.displayType)
 
-    Subtitle(textRes = R.string.component_element_trailing, withHorizontalPadding = true)
+    Subtitle(textRes = R.string.component_element_trailing, horizontalPadding = true)
     OdsChoiceChipsFlowRow(
         selectedChip = textFieldCustomizationState.trailingElement,
         modifier = Modifier.padding(horizontal = dimensionResource(id = R.dimen.spacing_m)),
@@ -153,7 +153,7 @@ private fun ComponentCustomizationContent(textFieldCustomizationState: TextField
 
 @Composable
 private fun KeyboardCustomizationContent(textFieldCustomizationState: TextFieldCustomizationState) {
-    Subtitle(textRes = R.string.component_text_field_keyboard_type, withHorizontalPadding = true)
+    Subtitle(textRes = R.string.component_text_field_keyboard_type, horizontalPadding = true)
     OdsChoiceChipsFlowRow(
         selectedChip = textFieldCustomizationState.softKeyboardType,
         modifier = Modifier
@@ -167,7 +167,7 @@ private fun KeyboardCustomizationContent(textFieldCustomizationState: TextFieldC
 
     SwitchListItem(labelRes = R.string.component_text_field_keyboard_capitalization, checked = textFieldCustomizationState.softKeyboardCapitalization)
 
-    Subtitle(textRes = R.string.component_text_field_keyboard_action, withHorizontalPadding = true)
+    Subtitle(textRes = R.string.component_text_field_keyboard_action, horizontalPadding = true)
     OdsChoiceChipsFlowRow(
         selectedChip = textFieldCustomizationState.softKeyboardAction,
         modifier = Modifier.padding(horizontal = dimensionResource(id = R.dimen.spacing_m)),
@@ -182,7 +182,7 @@ private fun KeyboardCustomizationContent(textFieldCustomizationState: TextFieldC
 
 @Composable
 private fun DisplayTypeCustomization(displayType: MutableState<TextFieldCustomizationState.DisplayType>) {
-    Subtitle(textRes = R.string.component_state, withHorizontalPadding = true)
+    Subtitle(textRes = R.string.component_state, horizontalPadding = true)
     OdsChoiceChipsFlowRow(
         selectedChip = displayType,
         modifier = Modifier.padding(horizontal = dimensionResource(id = R.dimen.spacing_m)),
