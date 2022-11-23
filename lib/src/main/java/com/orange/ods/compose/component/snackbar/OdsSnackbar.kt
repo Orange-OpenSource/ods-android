@@ -24,10 +24,14 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.compositeOver
 import androidx.compose.ui.res.dimensionResource
+import androidx.compose.ui.tooling.preview.PreviewParameter
 import com.orange.ods.R
 import com.orange.ods.compose.component.OdsComponentApi
 import com.orange.ods.compose.component.button.OdsTextButton
 import com.orange.ods.compose.component.button.OdsTextButtonStyle
+import com.orange.ods.compose.component.utilities.BasicPreviewParameterProvider
+import com.orange.ods.compose.component.utilities.Preview
+import com.orange.ods.compose.component.utilities.UiModePreviews
 import com.orange.ods.compose.theme.OdsDisplaySurface
 import com.orange.ods.compose.theme.OdsTheme
 
@@ -141,3 +145,15 @@ private object OdsSnackbarDefaults {
         get() = if (isSystemInDarkTheme()) OdsDisplaySurface.Light else OdsDisplaySurface.Dark
 
 }
+
+@UiModePreviews.Default
+@Composable
+private fun PreviewOdsSnackbar(@PreviewParameter(OdsSnackbarPreviewParameterProvider::class) actionOnNewLine: Boolean) = Preview {
+    OdsSnackbar(
+        message = "This is the message of the snackbar.",
+        actionLabel = "Action",
+        actionOnNewLine = actionOnNewLine
+    )
+}
+
+internal class OdsSnackbarPreviewParameterProvider : BasicPreviewParameterProvider<Boolean>(false, true)
