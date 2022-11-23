@@ -78,7 +78,7 @@ fun ComponentSliders() {
 
                     OdsSlider(
                         value = sliderPosition,
-                        steps = if (isStepped) 10 else 0,
+                        steps = if (isStepped) 9 else 0,
                         onValueChange = { sliderPosition = it },
                         leftIcon = if (hasSideIcons) painterResource(id = R.drawable.ic_volume_status_1) else null,
                         leftIconContentDescription = if (hasSideIcons) stringResource(id = R.string.component_slider_low_volume) else null,
