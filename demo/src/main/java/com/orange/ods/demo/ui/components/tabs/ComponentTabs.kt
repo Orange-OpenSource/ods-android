@@ -14,7 +14,6 @@ import androidx.annotation.DrawableRes
 import androidx.annotation.StringRes
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.wrapContentSize
 import androidx.compose.material.ExperimentalMaterialApi
@@ -101,13 +100,11 @@ fun ComponentTabs(variant: Variant) {
             SwitchListItem(R.string.component_element_text, tabsCustomizationState.tabTextEnabled, tabsCustomizationState.isTabTextCustomizationEnabled)
 
             ComponentCountRow(
+                modifier = Modifier.padding(start = dimensionResource(id = R.dimen.screen_horizontal_margin)),
                 title = stringResource(id = R.string.component_tabs_count),
                 count = tabsCustomizationState.tabsCount,
                 minusIconContentDescription = stringResource(id = R.string.component_tabs_remove_tab),
                 plusIconContentDescription = stringResource(id = R.string.component_tabs_add_tab),
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .padding(horizontal = dimensionResource(id = R.dimen.screen_horizontal_margin)),
                 minCount = tabCountMin,
                 maxCount = tabCountMax
             )
