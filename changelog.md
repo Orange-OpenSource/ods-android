@@ -11,6 +11,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - \[Demo\] Add Snackbar component ([#114](https://github.com/Orange-OpenSource/ods-android/issues/114))
 - \[Lib\] Add `OdsSnackbar` and `OdsSnackbarHost` composable to manage snackbars display ([#114](https://github.com/Orange-OpenSource/ods-android/issues/114))
+- \[Lib\] Add `errorMessage` parameter to `OdsTextField`, `OdsOutlinedTextField`, `OdsPasswordTextField` and `OdsPasswordOutlinedTextField` to allow the display of an error message below text fields ([#338](https://github.com/Orange-OpenSource/ods-android/issues/338))
 - \[ThemeConfigurationContract\] Add `outlinedChips` boolean in the theme contract to allow to choose between outlined or filled chips in a custom theme ([#305](https://github.com/Orange-OpenSource/ods-android/issues/305))
 
 ### Changed
