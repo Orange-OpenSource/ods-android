@@ -83,6 +83,7 @@ OdsTextField(
     enabled = true, // true if not set
     readOnly = false, // false if not set
     isError = false, // false if not set
+    errorMessage = "Error message", // Optional
     value = text,
     onValueChange = { text = it },
     label = "Label", // Optional
@@ -153,6 +154,7 @@ OdsPasswordTextField(
     enabled = true, // true if not set
     readOnly = false, // false if not set
     isError = false, // false if not set
+    errorMessage = "Error message", // Optional
     value = text,
     onValueChange = { text = it },
     label = "Label", // Optional
@@ -190,6 +192,7 @@ OdsOutlinedTextField(
     enabled = true, // true if not set
     readOnly = false, // false if not set
     isError = false, // false if not set
+    errorMessage = "Error message", // Optional
     value = text,
     onValueChange = { text = it },
     label = "Label", // Optional
@@ -259,6 +262,7 @@ OdsPasswordOutlinedTextField(
     enabled = true, // true if not set
     readOnly = false, // false if not set
     isError = false, // false if not set
+    errorMessage = "Error message", // Optional
     value = text,
     onValueChange = { text = it },
     label = "Label", // Optional
