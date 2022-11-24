@@ -10,6 +10,7 @@
 
 package com.orange.ods.compose.component.textfield.password
 
+import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.text.KeyboardActions
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material.OutlinedTextField
@@ -24,8 +25,11 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.text.input.KeyboardType
+import androidx.compose.ui.tooling.preview.PreviewParameter
 import com.orange.ods.compose.component.OdsComponentApi
-import com.orange.ods.compose.component.textfield.OdsOutlinedTextFieldDefaults
+import com.orange.ods.compose.component.textfield.OdsTextField
+import com.orange.ods.compose.component.textfield.OdsTextFieldDefaults
+import com.orange.ods.compose.component.textfield.OdsTextFieldErrorText
 import com.orange.ods.compose.component.utilities.Preview
 import com.orange.ods.compose.component.utilities.UiModePreviews
 import com.orange.ods.compose.theme.OdsTheme
@@ -53,6 +57,7 @@ import com.orange.ods.compose.theme.OdsTheme
  * @param visualisationIcon If `true`, an eye icon will be display to allow showing/hiding password.
  * @param isError indicates if the text field's current value is in error state. If set to
  * true, the label, bottom indicator and trailing icon by default will be displayed in error color
+ * @param errorMessage displayed when the [OdsTextField] is in error
  * @param keyboardOptions software keyboard options that contains configuration such as
  * [KeyboardType] and [ImeAction].
  * @param keyboardActions when the input service emits an IME action, the corresponding callback
@@ -71,40 +76,49 @@ fun OdsPasswordOutlinedTextField(
     placeholder: String? = null,
     visualisationIcon: Boolean = true,
     isError: Boolean = false,
+    errorMessage: String? = null,
     keyboardOptions: KeyboardOptions = KeyboardOptions.Default,
     keyboardActions: KeyboardActions = KeyboardActions()
 ) {
     val odsPasswordTextFieldState = rememberOdsPasswordTextFieldState()
 
-    OutlinedTextField(
-        value = value,
-        onValueChange = onValueChange,
-        modifier = modifier,
-        enabled = enabled,
-        readOnly = readOnly,
-        textStyle = OdsTheme.typography.subtitle1,
-        label = label?.let { { Text(label) } },
-        placeholder = placeholder?.let { { Text(text = placeholder, style = OdsTheme.typography.subtitle1) } },
-        trailingIcon = if (visualisationIcon) {
-            { OdsPasswordVisualisationIcon(odsPasswordTextFieldState) }
-        } else null,
-        isError = isError,
-        visualTransformation = odsPasswordTextFieldState.visualTransformation,
-        keyboardOptions = keyboardOptions,
-        keyboardActions = keyboardActions,
-        singleLine = true,
-        colors = OdsOutlinedTextFieldDefaults.colors()
-    )
+    Column {
+        OutlinedTextField(
+            value = value,
+            onValueChange = onValueChange,
+            modifier = modifier,
+            enabled = enabled,
+            readOnly = readOnly,
+            textStyle = OdsTheme.typography.subtitle1,
+            label = label?.let { { Text(label) } },
+            placeholder = placeholder?.let { { Text(text = placeholder, style = OdsTheme.typography.subtitle1) } },
+            trailingIcon = if (visualisationIcon) {
+                { OdsPasswordVisualisationIcon(odsPasswordTextFieldState) }
+            } else null,
+            isError = isError,
+            visualTransformation = odsPasswordTextFieldState.visualTransformation,
+            keyboardOptions = keyboardOptions,
+            keyboardActions = keyboardActions,
+            singleLine = true,
+            colors = OdsTextFieldDefaults.outlinedTextFieldColors()
+        )
+
+        if (isError && errorMessage != null) {
+            OdsTextFieldErrorText(message = errorMessage)
+        }
+    }
 
 }
 
 @UiModePreviews.Default
 @Composable
-private fun PreviewOdsPasswordOutlinedTextField() = Preview {
+private fun PreviewOdsPasswordOutlinedTextField(@PreviewParameter(OdsPasswordTextFieldPreviewParameterProvider::class) hasErrorMessage: Boolean) = Preview {
     var value by remember { mutableStateOf("Input text") }
     OdsPasswordOutlinedTextField(
         value = value,
         onValueChange = { value = it },
-        placeholder = "Placeholder"
+        placeholder = "Placeholder",
+        isError = hasErrorMessage,
+        errorMessage = if (hasErrorMessage) "Error message" else null
     )
 }

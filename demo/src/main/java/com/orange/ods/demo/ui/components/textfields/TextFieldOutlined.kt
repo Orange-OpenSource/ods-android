@@ -36,6 +36,7 @@ fun TextFieldOutlined(customizationState: TextFieldCustomizationState) {
             leadingIcon = if (customizationState.leadingIcon.value) painterResource(id = R.drawable.ic_heart) else null,
             enabled = customizationState.isEnabled,
             isError = customizationState.isError,
+            errorMessage = if (customizationState.isError) stringResource(id = R.string.component_text_field_error_message) else null,
             value = customizationState.displayedText,
             onValueChange = { customizationState.updateText(it) },
             label = stringResource(id = R.string.component_element_label),

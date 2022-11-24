@@ -10,20 +10,20 @@
 
 package com.orange.ods.compose.component.textfield
 
+import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.text.KeyboardActions
 import androidx.compose.foundation.text.KeyboardOptions
-import androidx.compose.material.ContentAlpha
 import androidx.compose.material.OutlinedTextField
 import androidx.compose.material.Text
 import androidx.compose.material.TextField
-import androidx.compose.material.TextFieldDefaults
 import androidx.compose.material.Typography
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.painter.Painter
 import androidx.compose.ui.res.dimensionResource
@@ -31,6 +31,7 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.input.VisualTransformation
+import androidx.compose.ui.tooling.preview.PreviewParameter
 import com.orange.ods.R
 import com.orange.ods.compose.component.OdsComponentApi
 import com.orange.ods.compose.component.utilities.Preview
@@ -72,6 +73,7 @@ import com.orange.ods.compose.theme.OdsTheme
  * @param trailingText the optional trailing text displayed at the end of the text field container
  * @param isError indicates if the text field's current value is in error state. If set to
  * true, the label, bottom indicator and trailing icon by default will be displayed in error color
+ * @param errorMessage displayed when the [OdsTextField] is in error
  * @param visualTransformation transforms the visual representation of the input [value].
  * For example, you can use [androidx.compose.ui.text.input.PasswordVisualTransformation] to create a password
  * text field. By default no visual transformation is applied
@@ -106,92 +108,86 @@ fun OdsOutlinedTextField(
     onTrailingIconClick: (() -> Unit)? = null,
     trailingText: String? = null,
     isError: Boolean = false,
+    errorMessage: String? = null,
     visualTransformation: VisualTransformation = VisualTransformation.None,
     keyboardOptions: KeyboardOptions = KeyboardOptions.Default,
     keyboardActions: KeyboardActions = KeyboardActions(),
     singleLine: Boolean = false,
     maxLines: Int = Int.MAX_VALUE
 ) {
-    OutlinedTextField(
-        value = value,
-        onValueChange = onValueChange,
-        modifier = modifier,
-        enabled = enabled,
-        readOnly = readOnly,
-        textStyle = OdsTheme.typography.subtitle1,
-        label = label?.let { { Text(label) } },
-        placeholder = placeholder?.let { { Text(text = placeholder, style = OdsTheme.typography.subtitle1) } },
-        leadingIcon = leadingIcon?.let {
-            {
-                OdsTextFieldIcon(
-                    painter = leadingIcon,
-                    contentDescription = leadingIconContentDescription,
-                    onClick = if (enabled) onLeadingIconClick else null,
-                )
-            }
-        },
-        trailingIcon = when {
-            trailingIcon != null -> {
+    Column {
+        OutlinedTextField(
+            value = value,
+            onValueChange = onValueChange,
+            modifier = modifier,
+            enabled = enabled,
+            readOnly = readOnly,
+            textStyle = OdsTheme.typography.subtitle1,
+            label = label?.let { { Text(label) } },
+            placeholder = placeholder?.let { { Text(text = placeholder, style = OdsTheme.typography.subtitle1) } },
+            leadingIcon = leadingIcon?.let {
                 {
                     OdsTextFieldIcon(
-                        painter = trailingIcon,
-                        contentDescription = trailingIconContentDescription,
-                        onClick = if (enabled) onTrailingIconClick else null,
+                        painter = leadingIcon,
+                        contentDescription = leadingIconContentDescription,
+                        onClick = if (enabled) onLeadingIconClick else null,
                     )
                 }
-            }
-            trailingText != null -> {
-                {
-                    Text(
-                        modifier = Modifier.padding(end = dimensionResource(id = R.dimen.spacing_s)),
-                        text = trailingText,
-                        style = OdsTheme.typography.subtitle1,
-                        color = OdsTheme.colors.trailingTextColor(value.isEmpty(), enabled)
-                    )
+            },
+            trailingIcon = when {
+                trailingIcon != null -> {
+                    {
+                        OdsTextFieldIcon(
+                            painter = trailingIcon,
+                            contentDescription = trailingIconContentDescription,
+                            onClick = if (enabled) onTrailingIconClick else null,
+                        )
+                    }
                 }
-            }
-            else -> null
-        },
-        isError = isError,
-        visualTransformation = visualTransformation,
-        keyboardOptions = keyboardOptions,
-        keyboardActions = keyboardActions,
-        singleLine = singleLine,
-        maxLines = maxLines,
-        colors = OdsOutlinedTextFieldDefaults.colors()
-    )
-}
+                trailingText != null -> {
+                    {
+                        Text(
+                            modifier = Modifier.padding(end = dimensionResource(id = R.dimen.spacing_s)),
+                            text = trailingText,
+                            style = OdsTheme.typography.subtitle1,
+                            color = OdsTheme.colors.trailingTextColor(value.isEmpty(), enabled)
+                        )
+                    }
+                }
+                else -> null
+            },
+            isError = isError,
+            visualTransformation = visualTransformation,
+            keyboardOptions = keyboardOptions,
+            keyboardActions = keyboardActions,
+            singleLine = singleLine,
+            maxLines = maxLines,
+            colors = OdsTextFieldDefaults.outlinedTextFieldColors()
+        )
 
-internal object OdsOutlinedTextFieldDefaults {
-
-    @Composable
-    fun colors() = TextFieldDefaults.outlinedTextFieldColors(
-        textColor = OdsTheme.colors.onSurface,
-        cursorColor = OdsTheme.colors.primary,
-        errorCursorColor = OdsTheme.colors.error,
-        focusedBorderColor = OdsTheme.colors.primary.copy(alpha = ContentAlpha.high),
-        unfocusedBorderColor = OdsTheme.colors.onSurface.copy(alpha = ContentAlpha.disabled),
-        errorBorderColor = OdsTheme.colors.error,
-        leadingIconColor = OdsTheme.colors.onSurface,
-        trailingIconColor = OdsTheme.colors.onSurface,
-        errorTrailingIconColor = OdsTheme.colors.onSurface,
-        focusedLabelColor = OdsTheme.colors.onSurface,
-        unfocusedLabelColor = OdsTheme.colors.onSurface.copy(ContentAlpha.medium),
-        errorLabelColor = OdsTheme.colors.onSurface,
-        placeholderColor = OdsTheme.colors.onSurface.copy(ContentAlpha.medium),
-    )
-
+        if (isError && errorMessage != null) {
+            OdsTextFieldErrorText(message = errorMessage)
+        }
+    }
 }
 
 @UiModePreviews.Default
 @Composable
-private fun PreviewOdsOutlinedTextField() = Preview {
+private fun PreviewOdsOutlinedTextField(@PreviewParameter(OdsTextFieldPreviewParameterProvider::class) parameter: OdsTextFieldPreviewParameter) = Preview {
     var value by remember { mutableStateOf("Input text") }
-    OdsOutlinedTextField(
-        value = value,
-        onValueChange = { value = it },
-        placeholder = "Placeholder",
-        leadingIcon = painterResource(id = android.R.drawable.ic_dialog_info),
-        trailingIcon = painterResource(id = android.R.drawable.ic_input_add)
-    )
+    Column {
+        OdsOutlinedTextField(
+            value = value,
+            onValueChange = { value = it },
+            placeholder = "Placeholder",
+            leadingIcon = painterResource(id = android.R.drawable.ic_dialog_info),
+            trailingIcon = painterResource(id = android.R.drawable.ic_input_add),
+            isError = parameter.hasErrorMessage,
+            errorMessage = if (parameter.hasErrorMessage) "Error message" else null
+        )
+
+        if (parameter.hasCounter) {
+            OdsTextFieldCounter(value.length, 30, Modifier.align(Alignment.End))
+        }
+    }
 }
