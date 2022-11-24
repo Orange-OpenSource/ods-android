@@ -30,6 +30,7 @@ import com.orange.ods.demo.ui.LocalMainThemeManager
 import com.orange.ods.demo.ui.components.utilities.ComponentCustomizationBottomSheetScaffold
 import com.orange.ods.demo.ui.utilities.composable.CheckboxListItem
 import com.orange.ods.demo.ui.utilities.composable.Subtitle
+import com.orange.ods.theme.OdsComponentCustomizations.Companion.ChipStyle
 
 @OptIn(ExperimentalMaterialApi::class)
 @Composable
@@ -65,7 +66,7 @@ fun ChipFilter() {
 
 @Composable
 private fun FilterChip(index: Int, customizationState: ChipCustomizationState) {
-    val outlinedChips = LocalMainThemeManager.current.currentThemeConfiguration.outlinedChips
+    val outlinedChips = LocalMainThemeManager.current.currentThemeConfiguration.components.chipStyle == ChipStyle.Outlined
     val selected = rememberSaveable { mutableStateOf(false) }
     OdsFilterChip(
         text = "${stringResource(id = R.string.component_chip_type_filter)} $index",

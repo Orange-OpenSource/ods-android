@@ -34,6 +34,7 @@ import com.orange.ods.demo.ui.components.utilities.ComponentCustomizationBottomS
 import com.orange.ods.demo.ui.components.utilities.clickOnElement
 import com.orange.ods.demo.ui.utilities.composable.CheckboxListItem
 import com.orange.ods.demo.ui.utilities.composable.Subtitle
+import com.orange.ods.theme.OdsComponentCustomizations.Companion.ChipStyle
 
 @OptIn(ExperimentalMaterialApi::class)
 @Composable
@@ -98,7 +99,7 @@ fun ChipTypeDemo(chipType: ChipType, content: @Composable () -> Unit) {
 @Composable
 private fun Chip(chipCustomizationState: ChipCustomizationState) {
     val context = LocalContext.current
-    val outlinedChips = LocalMainThemeManager.current.currentThemeConfiguration.outlinedChips
+    val outlinedChips = LocalMainThemeManager.current.currentThemeConfiguration.components.chipStyle == ChipStyle.Outlined
     val cancelCrossLabel = stringResource(id = R.string.component_element_cancel_cross)
     val chipLabel = stringResource(id = R.string.component_chip)
 

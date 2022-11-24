@@ -40,18 +40,18 @@ interface OdsThemeConfigurationContract : Parcelable {
         get() = Shapes()
 
     /**
+     * Customization of the ODS components if needed
+     */
+    val components: OdsComponentCustomizations
+        get() = OdsComponentCustomizations()
+
+    /**
      * Demo Guideline definition
      * By default a guideline typography is generated based on the theme configuration typography defined.
      */
     val demoGuideline: OdsDemoGuideline
         get() = OdsDemoGuideline(typography)
 
-    /**
-     * Chip type customization
-     * By default the chips are outlined. If your theme needs to use filled chips, set this parameter to false.
-     */
-    val outlinedChips: Boolean
-        get() = true
 }
 
 data class OdsThemeColors(val lightColors: OdsColors, val darkColors: OdsColors)
