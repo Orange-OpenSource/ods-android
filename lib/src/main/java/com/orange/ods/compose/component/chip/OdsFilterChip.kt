@@ -55,7 +55,7 @@ import com.orange.ods.compose.theme.OdsTheme
  * @param text Text to display in the chip.
  * @param onClick called when the chip is clicked.
  * @param modifier Modifier to be applied to the chip
- * @param outlined If set to true, a border will be drawn around the chip.
+ * @param outlined If true, a border will be drawn around the chip otherwise the chip will be filled.
  * @param enabled When disabled, chip will not respond to user input. It will also appear visually
  * disabled and disabled to accessibility services.
  * @param selected Highlight the chip and display a selected icon if set to true.
@@ -69,7 +69,7 @@ fun OdsFilterChip(
     text: String,
     onClick: () -> Unit,
     modifier: Modifier = Modifier,
-    outlined: Boolean = false,
+    outlined: Boolean = true,
     enabled: Boolean = true,
     selected: Boolean = false,
     leadingAvatar: Painter? = null,
@@ -86,7 +86,7 @@ fun OdsFilterChip(
         } else null,
         enabled = enabled,
         interactionSource = if (enabled) remember { MutableInteractionSource() } else remember { DisabledInteractionSource() },
-        colors = OdsChipDefaults.filterChipColors(),
+        colors = odsFilterChipColors(outlined = outlined),
         leadingIcon = when {
             leadingAvatar != null -> {
                 {
@@ -121,6 +121,10 @@ fun OdsFilterChip(
         ) // Don't use an `OdsText` here cause the color of the chip content is already managed by `OdsChipDefaults.filterChipColors()`
     }
 }
+
+@OptIn(ExperimentalMaterialApi::class)
+@Composable
+private fun odsFilterChipColors(outlined: Boolean) = if (outlined) OdsChipDefaults.outlinedFilterChipColors() else OdsChipDefaults.filterChipColors()
 
 @Composable
 private fun OdsChipSelectedIcon(tint: Color = LocalContentColor.current.copy(alpha = LocalContentAlpha.current)) {

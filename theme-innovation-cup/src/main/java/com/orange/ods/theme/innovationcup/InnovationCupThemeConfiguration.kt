@@ -13,6 +13,8 @@ package com.orange.ods.theme.innovationcup
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.Shapes
 import androidx.compose.ui.unit.dp
+import com.orange.ods.theme.OdsComponentCustomizations
+import com.orange.ods.theme.OdsComponentCustomizations.Companion.ChipStyle
 import com.orange.ods.theme.OdsThemeColors
 import com.orange.ods.theme.OdsThemeConfigurationContract
 import kotlinx.parcelize.Parcelize
@@ -32,5 +34,11 @@ class InnovationCupThemeConfiguration : OdsThemeConfigurationContract {
             medium = RoundedCornerShape(8.dp),
             large = RoundedCornerShape(4.dp)
         )
+
+    override val components: OdsComponentCustomizations
+        get() = object : OdsComponentCustomizations() {
+            override val chipStyle: ChipStyle
+                get() = ChipStyle.Filled
+        }
 
 }

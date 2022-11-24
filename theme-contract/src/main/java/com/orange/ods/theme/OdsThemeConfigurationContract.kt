@@ -40,6 +40,12 @@ interface OdsThemeConfigurationContract : Parcelable {
         get() = Shapes()
 
     /**
+     * Customization of the ODS components if needed
+     */
+    val components: OdsComponentCustomizations
+        get() = OdsComponentCustomizations()
+
+    /**
      * Demo Guideline definition
      * By default a guideline typography is generated based on the theme configuration typography defined.
      */

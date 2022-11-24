@@ -27,12 +27,14 @@ import com.orange.ods.compose.component.chip.OdsChoiceChip
 import com.orange.ods.compose.component.chip.OdsChoiceChipsFlowRow
 import com.orange.ods.compose.text.OdsTextBody2
 import com.orange.ods.demo.R
+import com.orange.ods.demo.ui.LocalMainThemeManager
 import com.orange.ods.demo.ui.components.chips.ChipCustomizationState.ChipType
 import com.orange.ods.demo.ui.components.chips.ChipCustomizationState.LeadingElement
 import com.orange.ods.demo.ui.components.utilities.ComponentCustomizationBottomSheetScaffold
 import com.orange.ods.demo.ui.components.utilities.clickOnElement
 import com.orange.ods.demo.ui.utilities.composable.CheckboxListItem
 import com.orange.ods.demo.ui.utilities.composable.Subtitle
+import com.orange.ods.theme.OdsComponentCustomizations.Companion.ChipStyle
 
 @OptIn(ExperimentalMaterialApi::class)
 @Composable
@@ -68,7 +70,6 @@ fun Chip() {
                 chipCustomizationState.resetLeadingElement()
             }
 
-            CheckboxListItem(labelRes = R.string.component_state_outlined, checked = chipCustomizationState.outlinedChecked)
             CheckboxListItem(labelRes = R.string.component_state_disabled, checked = chipCustomizationState.disabledChecked)
 
         }) {
@@ -98,12 +99,13 @@ fun ChipTypeDemo(chipType: ChipType, content: @Composable () -> Unit) {
 @Composable
 private fun Chip(chipCustomizationState: ChipCustomizationState) {
     val context = LocalContext.current
+    val outlinedChips = LocalMainThemeManager.current.currentThemeConfiguration.components.chipStyle == ChipStyle.Outlined
     val cancelCrossLabel = stringResource(id = R.string.component_element_cancel_cross)
     val chipLabel = stringResource(id = R.string.component_chip)
 
     with(chipCustomizationState) {
         if (isChoiceChip) {
-            OdsChoiceChipsFlowRow(selectedChip = choiceChipIndexSelected, outlinedChips = isOutlined) {
+            OdsChoiceChipsFlowRow(selectedChip = choiceChipIndexSelected, outlinedChips = outlinedChips) {
                 for (index in 1..4) {
                     OdsChoiceChip(
                         text = "${stringResource(id = chipType.value.nameRes)} $index",
@@ -116,7 +118,7 @@ private fun Chip(chipCustomizationState: ChipCustomizationState) {
             OdsChip(
                 text = stringResource(id = R.string.component_chip_type, stringResource(id = chipType.value.nameRes)),
                 onClick = { clickOnElement(context, chipLabel) },
-                outlined = outlinedChecked.value,
+                outlined = outlinedChips,
                 leadingIcon = if (isActionChip || hasLeadingIcon) painterResource(id = R.drawable.ic_heart) else null,
                 leadingAvatar = if (hasLeadingAvatar) painterResource(id = R.drawable.placeholder_small) else null,
                 enabled = !disabledChecked.value,

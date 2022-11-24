@@ -56,7 +56,7 @@ import com.orange.ods.utilities.extension.noRippleClickable
  * @param text Text to display in the chip.
  * @param onClick called when the chip is clicked.
  * @param modifier Modifier to be applied to the chip
- * @param outlined If set to true, a border will be drawn around the chip.
+ * @param outlined If true, a border will be drawn around the chip otherwise a filled chip will be displayed.
  * @param enabled When disabled, chip will not respond to user input. It will also appear visually
  * disabled and disabled to accessibility services.
  * @param selected When selected the chip is highlighted (useful for choice chips).
@@ -72,7 +72,7 @@ fun OdsChip(
     text: String,
     onClick: () -> Unit,
     modifier: Modifier = Modifier,
-    outlined: Boolean = false,
+    outlined: Boolean = true,
     enabled: Boolean = true,
     selected: Boolean = false,
     leadingIcon: Painter? = null,

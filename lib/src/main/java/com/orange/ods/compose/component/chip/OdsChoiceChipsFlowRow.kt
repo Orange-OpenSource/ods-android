@@ -33,7 +33,7 @@ import com.orange.ods.compose.component.utilities.UiModePreviews
  *
  * @param selectedChip The selected chips value state.
  * @param modifier Modifier to be applied to the flow row.
- * @param outlinedChips If set to true, a border will be drawn around [FlowRow] chips.
+ * @param outlinedChips If true, a border will be drawn around [FlowRow] chips. Otherwise chips will be filled.
  * @param content The content of the choice chips [FlowRow].
  */
 @Composable
@@ -41,7 +41,7 @@ import com.orange.ods.compose.component.utilities.UiModePreviews
 fun <T> OdsChoiceChipsFlowRow(
     selectedChip: MutableState<T>,
     modifier: Modifier = Modifier,
-    outlinedChips: Boolean = false,
+    outlinedChips: Boolean = true,
     content: @Composable OdsChoiceChipsFlowRowScope<T>.() -> Unit
 ) {
     FlowRow(
