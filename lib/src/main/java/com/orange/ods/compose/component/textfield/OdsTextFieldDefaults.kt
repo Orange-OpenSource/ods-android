@@ -51,4 +51,12 @@ internal object OdsTextFieldDefaults {
         errorLabelColor = OdsTheme.colors.onSurface,
         placeholderColor = OdsTheme.colors.onSurface.copy(ContentAlpha.medium),
     )
+
+    @Composable
+    fun trailingTextColor(isValueEmpty: Boolean, isTextFieldEnabled: Boolean) =
+        if (isValueEmpty || !isTextFieldEnabled) {
+            OdsTheme.colors.onSurface.copy(alpha = ContentAlpha.disabled)
+        } else {
+            OdsTheme.colors.onSurface
+        }
 }

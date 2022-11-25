@@ -36,11 +36,12 @@ fun TextFieldOutlinedPassword(customizationState: TextFieldCustomizationState) {
             label = stringResource(id = R.string.component_element_label),
             placeholder = stringResource(id = R.string.component_text_field_placeholder),
             visualisationIcon = customizationState.hasVisualisationIcon,
-            keyboardOptions = customizationState.keyboardOptions
+            keyboardOptions = customizationState.keyboardOptions,
+            characterCounter = if (customizationState.hasCharacterCounter) {
+                {
+                    TextFieldCharacterCounter(valueLength = customizationState.displayedText.length, enabled = customizationState.isEnabled)
+                }
+            } else null
         )
-
-        if (customizationState.hasCharacterCounter) {
-            TextFieldCounter(valueLength = customizationState.displayedText.length, enabled = customizationState.isEnabled)
-        }
     }
 }

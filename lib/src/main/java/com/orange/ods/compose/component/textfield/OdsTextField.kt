@@ -11,12 +11,14 @@
 package com.orange.ods.compose.component.textfield
 
 import androidx.compose.foundation.interaction.MutableInteractionSource
+import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.BoxScope
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.ColumnScope
+import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.text.KeyboardActions
 import androidx.compose.foundation.text.KeyboardOptions
-import androidx.compose.material.ContentAlpha
 import androidx.compose.material.Icon
 import androidx.compose.material.IconButton
 import androidx.compose.material.Text
@@ -44,7 +46,6 @@ import com.orange.ods.compose.component.utilities.Preview
 import com.orange.ods.compose.component.utilities.UiModePreviews
 import com.orange.ods.compose.text.OdsTextCaption
 import com.orange.ods.compose.theme.OdsTheme
-import com.orange.ods.theme.OdsColors
 
 /**
  * <a href="https://system.design.orange.com/0c1af118d/p/483f94-text-fields/b/720e3b" target="_blank">ODS Text fields</a>.
@@ -96,6 +97,7 @@ import com.orange.ods.theme.OdsColors
  * @param maxLines the maximum height in terms of maximum number of visible lines. Should be
  * equal or greater than 1. Note that this parameter will be ignored and instead maxLines will be
  * set to 1 if [singleLine] is set to true.
+ * @param characterCounter displayed below the text field. Please use the appropriate [OdsTextFieldCharacterCounter] composable.
  */
 @Composable
 @OdsComponentApi
@@ -120,13 +122,14 @@ fun OdsTextField(
     keyboardOptions: KeyboardOptions = KeyboardOptions.Default,
     keyboardActions: KeyboardActions = KeyboardActions(),
     singleLine: Boolean = false,
-    maxLines: Int = Int.MAX_VALUE
+    maxLines: Int = Int.MAX_VALUE,
+    characterCounter: (@Composable BoxScope.() -> Unit)? = null
 ) {
-    Column {
+    Column(modifier = modifier) {
         TextField(
+            modifier = Modifier.fillMaxWidth(),
             value = value,
             onValueChange = onValueChange,
-            modifier = modifier,
             enabled = enabled,
             readOnly = readOnly,
             textStyle = OdsTheme.typography.subtitle1,
@@ -157,7 +160,7 @@ fun OdsTextField(
                             modifier = Modifier.padding(end = dimensionResource(id = R.dimen.spacing_s)),
                             text = trailingText,
                             style = OdsTheme.typography.subtitle1,
-                            color = OdsTheme.colors.trailingTextColor(value.isEmpty(), enabled)
+                            color = OdsTextFieldDefaults.trailingTextColor(value.isEmpty(), enabled)
                         )
                     }
                 }
@@ -172,31 +175,42 @@ fun OdsTextField(
             colors = OdsTextFieldDefaults.textFieldColors()
         )
 
-        if (isError && errorMessage != null) {
-            OdsTextFieldErrorText(message = errorMessage)
-        }
+        OdsTextFieldBottomRow(isError = isError, errorMessage = errorMessage, characterCounter = characterCounter)
     }
 }
 
 /**
- * A counter to display below the text field
+ * A character counter to display below the text field
  *
  * @param valueLength the text field current value length
  * @param maxChars the maximum of characters to display in the counter. Note: the limitation behavior should be managed by yourself
  * in the `onValueChange` method of the text field.
- * @param modifier a [Modifier] for this text field counter
  * @param enabled set to false to display the text with a disabled color
  */
 @Composable
 @OdsComponentApi
-fun OdsTextFieldCounter(valueLength: Int, maxChars: Int, modifier: Modifier = Modifier, enabled: Boolean = true) {
+fun BoxScope.OdsTextFieldCharacterCounter(valueLength: Int, maxChars: Int, enabled: Boolean = true) {
     OdsTextCaption(
-        modifier = modifier.padding(top = dimensionResource(id = R.dimen.spacing_xs)), text = "$valueLength/$maxChars", enabled = enabled
+        modifier = Modifier
+            .padding(top = dimensionResource(id = R.dimen.spacing_xs), end = dimensionResource(id = R.dimen.spacing_m))
+            .align(Alignment.TopEnd),
+        text = "$valueLength/$maxChars",
+        enabled = enabled
     )
 }
 
 @Composable
-internal fun ColumnScope.OdsTextFieldErrorText(message: String) {
+internal fun OdsTextFieldBottomRow(isError: Boolean, errorMessage: String?, characterCounter: (@Composable BoxScope.() -> Unit)?) {
+    Row {
+        if (isError && errorMessage != null) {
+            OdsTextFieldErrorText(message = errorMessage)
+        }
+        characterCounter?.let { Box(modifier = Modifier.weight(1f)) { characterCounter() } }
+    }
+}
+
+@Composable
+private fun OdsTextFieldErrorText(message: String) {
     Text(
         modifier = Modifier.padding(
             start = dimensionResource(id = R.dimen.spacing_m),
@@ -219,14 +233,6 @@ internal fun OdsTextFieldIcon(painter: Painter, contentDescription: String?, onC
     }
 }
 
-@Composable
-internal fun OdsColors.trailingTextColor(isValueEmpty: Boolean, isTextFieldEnabled: Boolean) =
-    if (isValueEmpty || !isTextFieldEnabled) {
-        OdsTheme.colors.onSurface.copy(alpha = ContentAlpha.disabled)
-    } else {
-        OdsTheme.colors.onSurface
-    }
-
 internal data class OdsTextFieldPreviewParameter(
     val hasCounter: Boolean,
     val hasErrorMessage: Boolean
@@ -246,12 +252,13 @@ private fun PreviewOdsTextField(@PreviewParameter(OdsTextFieldPreviewParameterPr
             leadingIcon = painterResource(id = android.R.drawable.ic_dialog_info),
             trailingIcon = painterResource(id = android.R.drawable.ic_input_add),
             isError = parameter.hasErrorMessage,
-            errorMessage = if (parameter.hasErrorMessage) "Error message" else null
+            errorMessage = if (parameter.hasErrorMessage) "Error message" else null,
+            characterCounter = if (parameter.hasCounter) {
+                {
+                    OdsTextFieldCharacterCounter(value.length, 30)
+                }
+            } else null
         )
-
-        if (parameter.hasCounter) {
-            OdsTextFieldCounter(value.length, 30, Modifier.align(Alignment.End))
-        }
     }
 }
 

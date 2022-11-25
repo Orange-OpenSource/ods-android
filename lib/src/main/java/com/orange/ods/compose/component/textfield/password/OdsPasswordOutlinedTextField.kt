@@ -10,6 +10,7 @@
 
 package com.orange.ods.compose.component.textfield.password
 
+import androidx.compose.foundation.layout.BoxScope
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.text.KeyboardActions
 import androidx.compose.foundation.text.KeyboardOptions
@@ -28,8 +29,9 @@ import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.tooling.preview.PreviewParameter
 import com.orange.ods.compose.component.OdsComponentApi
 import com.orange.ods.compose.component.textfield.OdsTextField
+import com.orange.ods.compose.component.textfield.OdsTextFieldBottomRow
+import com.orange.ods.compose.component.textfield.OdsTextFieldCharacterCounter
 import com.orange.ods.compose.component.textfield.OdsTextFieldDefaults
-import com.orange.ods.compose.component.textfield.OdsTextFieldErrorText
 import com.orange.ods.compose.component.utilities.Preview
 import com.orange.ods.compose.component.utilities.UiModePreviews
 import com.orange.ods.compose.theme.OdsTheme
@@ -63,6 +65,7 @@ import com.orange.ods.compose.theme.OdsTheme
  * @param keyboardActions when the input service emits an IME action, the corresponding callback
  * is called. Note that this IME action may be different from what you specified in
  * [KeyboardOptions.imeAction].
+ * @param characterCounter displayed below the text field. Please use the appropriate [OdsTextFieldCharacterCounter] composable.
  */
 @Composable
 @OdsComponentApi
@@ -78,7 +81,8 @@ fun OdsPasswordOutlinedTextField(
     isError: Boolean = false,
     errorMessage: String? = null,
     keyboardOptions: KeyboardOptions = KeyboardOptions.Default,
-    keyboardActions: KeyboardActions = KeyboardActions()
+    keyboardActions: KeyboardActions = KeyboardActions(),
+    characterCounter: (@Composable BoxScope.() -> Unit)? = null
 ) {
     val odsPasswordTextFieldState = rememberOdsPasswordTextFieldState()
 
@@ -103,9 +107,7 @@ fun OdsPasswordOutlinedTextField(
             colors = OdsTextFieldDefaults.outlinedTextFieldColors()
         )
 
-        if (isError && errorMessage != null) {
-            OdsTextFieldErrorText(message = errorMessage)
-        }
+        OdsTextFieldBottomRow(isError = isError, errorMessage = errorMessage, characterCounter = characterCounter)
     }
 
 }

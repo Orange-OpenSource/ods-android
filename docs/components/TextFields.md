@@ -97,8 +97,17 @@ OdsTextField(
     keyboardActions = KeyboardActions(), // `KeyboardActions()` if not set
     singleLine = false, // false if not set
     maxLines = Int.MAX_VALUE, // `Int.MAX_VALUE` if not set
+    characterCounter = {
+        OdsTextFieldCharacterCounter(
+            valueLength = valueLength,
+            maxChars = TextFieldMaxChars,
+            enabled = enabled
+        )    
+    } // Optional
 )
 ```
+
+Note: You will find more information about the character counter in [Extras](#extras)
 
 > **XML implementation**
 
@@ -161,7 +170,14 @@ OdsPasswordTextField(
     placeholder = "Placeholder", // Optional
     visualisationIcon = true, // `true` if not set
     keyboardOptions = KeyboardOptions.Default, // `KeyboardOptions.Default` if not set
-    keyboardActions = KeyboardActions() // `KeyboardActions()` if not set
+    keyboardActions = KeyboardActions(), // `KeyboardActions()` if not set
+    characterCounter = {
+        OdsTextFieldCharacterCounter(
+            valueLength = valueLength,
+            maxChars = TextFieldMaxChars,
+            enabled = enabled
+        )    
+    } // Optional
 )
 ```
 
@@ -206,6 +222,13 @@ OdsOutlinedTextField(
     keyboardActions = KeyboardActions(), // `KeyboardActions()` if not set
     singleLine = false, // false if not set
     maxLines = Int.MAX_VALUE, // `Int.MAX_VALUE` if not set
+    characterCounter = {
+        OdsTextFieldCharacterCounter(
+            valueLength = valueLength,
+            maxChars = TextFieldMaxChars,
+            enabled = enabled
+        )    
+    } // Optional
 )
 ```
 
@@ -269,7 +292,14 @@ OdsPasswordOutlinedTextField(
     placeholder = "Placeholder", // Optional
     visualisationIcon = true, // `true` if not set
     keyboardOptions = KeyboardOptions.Default, // `KeyboardOptions.Default` if not set
-    keyboardActions = KeyboardActions() // `KeyboardActions()` if not set
+    keyboardActions = KeyboardActions(), // `KeyboardActions()` if not set
+    characterCounter = {
+        OdsTextFieldCharacterCounter(
+            valueLength = valueLength,
+            maxChars = TextFieldMaxChars,
+            enabled = enabled
+        )    
+    } // Optional
 )
 ```
 
@@ -281,15 +311,18 @@ _Not available_
 
 ### Character counter
 
-You can add a character counter if there is a restriction on the number of characters in a field. It has to be placed below the text field, end aligned.
-
   ![TextField character counter light](images/textfield_character_counter_light.png)  
   ![TextField character counter dark](images/textfield_character_counter_dark.png)
 
 > **Jetpack Compose implementation**
 
+In each TextField component, you can use the `characterCounter` parameter to add a character counter if there is a restriction on the number of characters in a field.  
+It will be placed properly below the text field, end aligned.
+
+Please use the provided `OdsTextFieldCharacterCounter` composable for this behavior as shown below:
+
 ```kotlin
-OdsTextFieldCounter(
+OdsTextFieldCharacterCounter(
     modifier = Modifier.align(Alignment.End),
     valueLength = valueLength, 
     maxChars = 20,
@@ -297,7 +330,7 @@ OdsTextFieldCounter(
 )
 ```
 
-The limitation behavior should be managed by yourself in the `onValueChange` method of the text field.
+Be careful, the limitation behavior should be managed by yourself in the `onValueChange` method of the text field:
 
 ```kotlin
 if (text.length <= TextFieldMaxChars) {

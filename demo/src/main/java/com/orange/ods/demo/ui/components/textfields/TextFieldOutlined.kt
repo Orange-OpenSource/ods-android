@@ -47,11 +47,12 @@ fun TextFieldOutlined(customizationState: TextFieldCustomizationState) {
             } else null,
             trailingText = if (customizationState.hasTrailingText) "units" else null,
             singleLine = customizationState.isSingleLine,
-            keyboardOptions = customizationState.keyboardOptions
+            keyboardOptions = customizationState.keyboardOptions,
+            characterCounter = if (customizationState.hasCharacterCounter) {
+                {
+                    TextFieldCharacterCounter(valueLength = customizationState.displayedText.length, enabled = customizationState.isEnabled)
+                }
+            } else null
         )
-
-        if (customizationState.hasCharacterCounter) {
-            TextFieldCounter(valueLength = customizationState.displayedText.length, enabled = customizationState.isEnabled)
-        }
     }
 }

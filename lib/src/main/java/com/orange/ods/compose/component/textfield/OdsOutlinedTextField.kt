@@ -10,6 +10,7 @@
 
 package com.orange.ods.compose.component.textfield
 
+import androidx.compose.foundation.layout.BoxScope
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.text.KeyboardActions
@@ -23,7 +24,6 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
-import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.painter.Painter
 import androidx.compose.ui.res.dimensionResource
@@ -89,6 +89,7 @@ import com.orange.ods.compose.theme.OdsTheme
  * @param maxLines the maximum height in terms of maximum number of visible lines. Should be
  * equal or greater than 1. Note that this parameter will be ignored and instead maxLines will be
  * set to 1 if [singleLine] is set to true.
+ * @param characterCounter displayed below the text field. Please use the appropriate [OdsTextFieldCharacterCounter] composable.
  */
 @Composable
 @OdsComponentApi
@@ -113,7 +114,8 @@ fun OdsOutlinedTextField(
     keyboardOptions: KeyboardOptions = KeyboardOptions.Default,
     keyboardActions: KeyboardActions = KeyboardActions(),
     singleLine: Boolean = false,
-    maxLines: Int = Int.MAX_VALUE
+    maxLines: Int = Int.MAX_VALUE,
+    characterCounter: (@Composable BoxScope.() -> Unit)? = null
 ) {
     Column {
         OutlinedTextField(
@@ -150,7 +152,7 @@ fun OdsOutlinedTextField(
                             modifier = Modifier.padding(end = dimensionResource(id = R.dimen.spacing_s)),
                             text = trailingText,
                             style = OdsTheme.typography.subtitle1,
-                            color = OdsTheme.colors.trailingTextColor(value.isEmpty(), enabled)
+                            color = OdsTextFieldDefaults.trailingTextColor(value.isEmpty(), enabled)
                         )
                     }
                 }
@@ -165,9 +167,7 @@ fun OdsOutlinedTextField(
             colors = OdsTextFieldDefaults.outlinedTextFieldColors()
         )
 
-        if (isError && errorMessage != null) {
-            OdsTextFieldErrorText(message = errorMessage)
-        }
+        OdsTextFieldBottomRow(isError = isError, errorMessage = errorMessage, characterCounter = characterCounter)
     }
 }
 
@@ -187,7 +187,7 @@ private fun PreviewOdsOutlinedTextField(@PreviewParameter(OdsTextFieldPreviewPar
         )
 
         if (parameter.hasCounter) {
-            OdsTextFieldCounter(value.length, 30, Modifier.align(Alignment.End))
+            // OdsTextFieldCounter(value.length, 30, Modifier.align(Alignment.End))
         }
     }
 }
