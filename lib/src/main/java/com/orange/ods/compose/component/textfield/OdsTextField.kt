@@ -11,25 +11,23 @@
 package com.orange.ods.compose.component.textfield
 
 import androidx.compose.foundation.interaction.MutableInteractionSource
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.text.KeyboardActions
 import androidx.compose.foundation.text.KeyboardOptions
-import androidx.compose.material.ContentAlpha
 import androidx.compose.material.Icon
 import androidx.compose.material.IconButton
 import androidx.compose.material.Text
 import androidx.compose.material.TextField
-import androidx.compose.material.TextFieldDefaults
-import androidx.compose.material.TextFieldDefaults.BackgroundOpacity
-import androidx.compose.material.TextFieldDefaults.UnfocusedIndicatorLineOpacity
 import androidx.compose.material.Typography
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
-import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.painter.Painter
 import androidx.compose.ui.res.dimensionResource
@@ -46,7 +44,6 @@ import com.orange.ods.compose.component.utilities.Preview
 import com.orange.ods.compose.component.utilities.UiModePreviews
 import com.orange.ods.compose.text.OdsTextCaption
 import com.orange.ods.compose.theme.OdsTheme
-import com.orange.ods.theme.OdsColors
 
 /**
  * <a href="https://system.design.orange.com/0c1af118d/p/483f94-text-fields/b/720e3b" target="_blank">ODS Text fields</a>.
@@ -82,6 +79,7 @@ import com.orange.ods.theme.OdsColors
  * @param trailingText the optional trailing text displayed at the end of the text field container
  * @param isError indicates if the text field's current value is in error state. If set to
  * true, the label, bottom indicator and trailing icon by default will be displayed in error color
+ * @param errorMessage displayed when the [OdsTextField] is in error
  * @param visualTransformation transforms the visual representation of the input [value].
  * For example, you can use [androidx.compose.ui.text.input.PasswordVisualTransformation] to create a password
  * text field. By default no visual transformation is applied
@@ -97,6 +95,7 @@ import com.orange.ods.theme.OdsColors
  * @param maxLines the maximum height in terms of maximum number of visible lines. Should be
  * equal or greater than 1. Note that this parameter will be ignored and instead maxLines will be
  * set to 1 if [singleLine] is set to true.
+ * @param characterCounter displayed below the text field. Please use the appropriate [OdsTextFieldCharacterCounter] composable.
  */
 @Composable
 @OdsComponentApi
@@ -116,77 +115,109 @@ fun OdsTextField(
     onTrailingIconClick: (() -> Unit)? = null,
     trailingText: String? = null,
     isError: Boolean = false,
+    errorMessage: String? = null,
     visualTransformation: VisualTransformation = VisualTransformation.None,
     keyboardOptions: KeyboardOptions = KeyboardOptions.Default,
     keyboardActions: KeyboardActions = KeyboardActions(),
     singleLine: Boolean = false,
-    maxLines: Int = Int.MAX_VALUE
+    maxLines: Int = Int.MAX_VALUE,
+    characterCounter: (@Composable () -> Unit)? = null
 ) {
-
-    TextField(
-        value = value,
-        onValueChange = onValueChange,
-        modifier = modifier,
-        enabled = enabled,
-        readOnly = readOnly,
-        textStyle = OdsTheme.typography.subtitle1,
-        label = label?.let { { Text(label) } },
-        placeholder = placeholder?.let { { Text(text = placeholder, style = OdsTheme.typography.subtitle1) } },
-        leadingIcon = leadingIcon?.let {
-            {
-                OdsTextFieldIcon(
-                    painter = leadingIcon,
-                    contentDescription = leadingIconContentDescription,
-                    onClick = if (enabled) onLeadingIconClick else null,
-                )
-            }
-        },
-        trailingIcon = when {
-            trailingIcon != null -> {
+    Column(modifier = modifier) {
+        TextField(
+            modifier = Modifier.fillMaxWidth(),
+            value = value,
+            onValueChange = onValueChange,
+            enabled = enabled,
+            readOnly = readOnly,
+            textStyle = OdsTheme.typography.subtitle1,
+            label = label?.let { { Text(label) } },
+            placeholder = placeholder?.let { { Text(text = placeholder, style = OdsTheme.typography.subtitle1) } },
+            leadingIcon = leadingIcon?.let {
                 {
                     OdsTextFieldIcon(
-                        painter = trailingIcon,
-                        contentDescription = trailingIconContentDescription,
-                        onClick = if (enabled) onTrailingIconClick else null,
+                        painter = leadingIcon,
+                        contentDescription = leadingIconContentDescription,
+                        onClick = if (enabled) onLeadingIconClick else null,
                     )
                 }
-            }
-            trailingText != null -> {
-                {
-                    Text(
-                        modifier = Modifier.padding(end = dimensionResource(id = R.dimen.spacing_s)),
-                        text = trailingText,
-                        style = OdsTheme.typography.subtitle1,
-                        color = OdsTheme.colors.trailingTextColor(value.isEmpty(), enabled)
-                    )
+            },
+            trailingIcon = when {
+                trailingIcon != null -> {
+                    {
+                        OdsTextFieldIcon(
+                            painter = trailingIcon,
+                            contentDescription = trailingIconContentDescription,
+                            onClick = if (enabled) onTrailingIconClick else null,
+                        )
+                    }
                 }
-            }
-            else -> null
-        },
-        isError = isError,
-        visualTransformation = visualTransformation,
-        keyboardOptions = keyboardOptions,
-        keyboardActions = keyboardActions,
-        singleLine = singleLine,
-        maxLines = maxLines,
-        colors = OdsTextFieldDefaults.colors()
-    )
+                trailingText != null -> {
+                    {
+                        Text(
+                            modifier = Modifier.padding(end = dimensionResource(id = R.dimen.spacing_s)),
+                            text = trailingText,
+                            style = OdsTheme.typography.subtitle1,
+                            color = OdsTextFieldDefaults.trailingTextColor(value.isEmpty(), enabled)
+                        )
+                    }
+                }
+                else -> null
+            },
+            isError = isError,
+            visualTransformation = visualTransformation,
+            keyboardOptions = keyboardOptions,
+            keyboardActions = keyboardActions,
+            singleLine = singleLine,
+            maxLines = maxLines,
+            colors = OdsTextFieldDefaults.textFieldColors()
+        )
+
+        OdsTextFieldBottomRow(isError = isError, errorMessage = errorMessage, characterCounter = characterCounter)
+    }
 }
 
 /**
- * A counter to display below the text field
+ * A character counter to display below the text field
  *
  * @param valueLength the text field current value length
  * @param maxChars the maximum of characters to display in the counter. Note: the limitation behavior should be managed by yourself
  * in the `onValueChange` method of the text field.
- * @param modifier a [Modifier] for this text field counter
  * @param enabled set to false to display the text with a disabled color
  */
 @Composable
 @OdsComponentApi
-fun OdsTextFieldCounter(valueLength: Int, maxChars: Int, modifier: Modifier = Modifier, enabled: Boolean = true) {
+fun OdsTextFieldCharacterCounter(valueLength: Int, maxChars: Int, enabled: Boolean = true) {
     OdsTextCaption(
-        modifier = modifier.padding(top = dimensionResource(id = R.dimen.spacing_xs)), text = "$valueLength/$maxChars", enabled = enabled
+        modifier = Modifier
+            .padding(top = dimensionResource(id = R.dimen.spacing_xs), end = dimensionResource(id = R.dimen.spacing_m)),
+        text = "$valueLength/$maxChars",
+        enabled = enabled
+    )
+}
+
+@Composable
+internal fun OdsTextFieldBottomRow(isError: Boolean, errorMessage: String?, characterCounter: (@Composable () -> Unit)?) {
+    Row {
+        Box(modifier = Modifier.weight(1f)) {
+            if (isError && errorMessage != null) {
+                OdsTextFieldErrorText(message = errorMessage)
+            }
+        }
+        characterCounter?.invoke()
+    }
+}
+
+@Composable
+private fun OdsTextFieldErrorText(message: String) {
+    Text(
+        modifier = Modifier.padding(
+            start = dimensionResource(id = R.dimen.spacing_m),
+            top = dimensionResource(id = R.dimen.spacing_xs)
+        ),
+        text = message,
+        style = OdsTheme.typography.caption,
+        color = OdsTheme.colors.error
     )
 }
 
@@ -201,39 +232,17 @@ internal fun OdsTextFieldIcon(painter: Painter, contentDescription: String?, onC
     }
 }
 
-@Composable
-internal fun OdsColors.trailingTextColor(isValueEmpty: Boolean, isTextFieldEnabled: Boolean) =
-    if (isValueEmpty || !isTextFieldEnabled) {
-        OdsTheme.colors.onSurface.copy(alpha = ContentAlpha.disabled)
-    } else {
-        OdsTheme.colors.onSurface
-    }
+internal data class OdsTextFieldPreviewParameter(
+    val hasCounter: Boolean,
+    val hasErrorMessage: Boolean,
+    val isVeryLongErrorMessage: Boolean
+)
 
-internal object OdsTextFieldDefaults {
-    
-    @Composable
-    fun colors() = TextFieldDefaults.textFieldColors(
-        textColor = OdsTheme.colors.onSurface,
-        backgroundColor = OdsTheme.colors.onSurface.copy(alpha = BackgroundOpacity),
-        cursorColor = OdsTheme.colors.primary,
-        errorCursorColor = OdsTheme.colors.error,
-        focusedIndicatorColor = OdsTheme.colors.primary.copy(alpha = ContentAlpha.high),
-        unfocusedIndicatorColor = OdsTheme.colors.onSurface.copy(alpha = UnfocusedIndicatorLineOpacity),
-        errorIndicatorColor = OdsTheme.colors.error,
-        leadingIconColor = OdsTheme.colors.onSurface,
-        trailingIconColor = OdsTheme.colors.onSurface,
-        errorTrailingIconColor = OdsTheme.colors.onSurface,
-        focusedLabelColor = OdsTheme.colors.onSurface,
-        unfocusedLabelColor = OdsTheme.colors.onSurface.copy(ContentAlpha.medium),
-        errorLabelColor = OdsTheme.colors.error,
-        placeholderColor = OdsTheme.colors.onSurface.copy(ContentAlpha.medium)
-    )
-
-}
+internal class OdsTextFieldPreviewParameterProvider : BasicPreviewParameterProvider<OdsTextFieldPreviewParameter>(*previewParameterValues.toTypedArray())
 
 @UiModePreviews.Default
 @Composable
-private fun PreviewOdsTextField(@PreviewParameter(OdsTextFieldPreviewParameterProvider::class) hasCounter: Boolean) = Preview {
+private fun PreviewOdsTextField(@PreviewParameter(OdsTextFieldPreviewParameterProvider::class) parameter: OdsTextFieldPreviewParameter) = Preview {
     var value by remember { mutableStateOf("Input text") }
     Column {
         OdsTextField(
@@ -241,14 +250,29 @@ private fun PreviewOdsTextField(@PreviewParameter(OdsTextFieldPreviewParameterPr
             onValueChange = { value = it },
             placeholder = "Placeholder",
             leadingIcon = painterResource(id = android.R.drawable.ic_dialog_info),
-            trailingIcon = painterResource(id = android.R.drawable.ic_input_add)
+            trailingIcon = painterResource(id = android.R.drawable.ic_input_add),
+            isError = parameter.hasErrorMessage,
+            errorMessage = getPreviewErrorMessage(parameter.hasErrorMessage, parameter.isVeryLongErrorMessage),
+            characterCounter = if (parameter.hasCounter) {
+                {
+                    OdsTextFieldCharacterCounter(value.length, 30)
+                }
+            } else null
         )
-
-        if (hasCounter) {
-            OdsTextFieldCounter(value.length, 30, Modifier.align(Alignment.End))
-        }
     }
 }
 
-internal class OdsTextFieldPreviewParameterProvider : BasicPreviewParameterProvider<Boolean>(false, true)
+private fun getPreviewErrorMessage(hasErrorMessage: Boolean, isVeryLongErrorMessage: Boolean) = when {
+    hasErrorMessage && !isVeryLongErrorMessage -> "Error message"
+    hasErrorMessage && isVeryLongErrorMessage -> "Very very very very very very very very very long error message"
+    else -> null
+}
 
+private val previewParameterValues: List<OdsTextFieldPreviewParameter> = listOf(
+    OdsTextFieldPreviewParameter(hasCounter = false, hasErrorMessage = false, isVeryLongErrorMessage = false),
+    OdsTextFieldPreviewParameter(hasCounter = false, hasErrorMessage = true, isVeryLongErrorMessage = false),
+    OdsTextFieldPreviewParameter(hasCounter = false, hasErrorMessage = true, isVeryLongErrorMessage = true),
+    OdsTextFieldPreviewParameter(hasCounter = true, hasErrorMessage = false, isVeryLongErrorMessage = false),
+    OdsTextFieldPreviewParameter(hasCounter = true, hasErrorMessage = true, isVeryLongErrorMessage = false),
+    OdsTextFieldPreviewParameter(hasCounter = true, hasErrorMessage = true, isVeryLongErrorMessage = true)
+)

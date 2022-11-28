@@ -10,6 +10,7 @@
 
 package com.orange.ods.compose.component.textfield.password
 
+import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.text.KeyboardActions
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material.Text
@@ -25,10 +26,15 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.text.input.KeyboardType
+import androidx.compose.ui.tooling.preview.PreviewParameter
 import com.orange.ods.R
 import com.orange.ods.compose.component.OdsComponentApi
+import com.orange.ods.compose.component.textfield.OdsTextField
+import com.orange.ods.compose.component.textfield.OdsTextFieldBottomRow
+import com.orange.ods.compose.component.textfield.OdsTextFieldCharacterCounter
 import com.orange.ods.compose.component.textfield.OdsTextFieldDefaults
 import com.orange.ods.compose.component.textfield.OdsTextFieldIcon
+import com.orange.ods.compose.component.utilities.BasicPreviewParameterProvider
 import com.orange.ods.compose.component.utilities.Preview
 import com.orange.ods.compose.component.utilities.UiModePreviews
 import com.orange.ods.compose.theme.OdsTheme
@@ -56,11 +62,13 @@ import com.orange.ods.compose.theme.OdsTheme
  * @param visualisationIcon If `true`, an eye icon will be display to allow showing/hiding password.
  * @param isError indicates if the text field's current value is in error state. If set to
  * true, the label, bottom indicator and trailing icon by default will be displayed in error color
+ * @param errorMessage displayed when the [OdsTextField] is in error
  * @param keyboardOptions software keyboard options that contains configuration such as
  * [KeyboardType] and [ImeAction].
  * @param keyboardActions when the input service emits an IME action, the corresponding callback
  * is called. Note that this IME action may be different from what you specified in
  * [KeyboardOptions.imeAction].
+ * @param characterCounter displayed below the text field. Please use the appropriate [OdsTextFieldCharacterCounter] composable.
  */
 @Composable
 @OdsComponentApi
@@ -74,30 +82,36 @@ fun OdsPasswordTextField(
     placeholder: String? = null,
     visualisationIcon: Boolean = true,
     isError: Boolean = false,
+    errorMessage: String? = null,
     keyboardOptions: KeyboardOptions = KeyboardOptions.Default,
-    keyboardActions: KeyboardActions = KeyboardActions()
+    keyboardActions: KeyboardActions = KeyboardActions(),
+    characterCounter: (@Composable () -> Unit)? = null
 ) {
     val odsPasswordTextFieldState = rememberOdsPasswordTextFieldState()
 
-    TextField(
-        value = value,
-        onValueChange = onValueChange,
-        modifier = modifier,
-        enabled = enabled,
-        readOnly = readOnly,
-        textStyle = OdsTheme.typography.subtitle1,
-        label = label?.let { { Text(label) } },
-        placeholder = placeholder?.let { { Text(text = placeholder, style = OdsTheme.typography.subtitle1) } },
-        trailingIcon = if (visualisationIcon) {
-            { OdsPasswordVisualisationIcon(odsPasswordTextFieldState) }
-        } else null,
-        isError = isError,
-        visualTransformation = odsPasswordTextFieldState.visualTransformation,
-        keyboardOptions = keyboardOptions,
-        keyboardActions = keyboardActions,
-        singleLine = true,
-        colors = OdsTextFieldDefaults.colors()
-    )
+    Column {
+        TextField(
+            value = value,
+            onValueChange = onValueChange,
+            modifier = modifier,
+            enabled = enabled,
+            readOnly = readOnly,
+            textStyle = OdsTheme.typography.subtitle1,
+            label = label?.let { { Text(label) } },
+            placeholder = placeholder?.let { { Text(text = placeholder, style = OdsTheme.typography.subtitle1) } },
+            trailingIcon = if (visualisationIcon) {
+                { OdsPasswordVisualisationIcon(odsPasswordTextFieldState) }
+            } else null,
+            isError = isError,
+            visualTransformation = odsPasswordTextFieldState.visualTransformation,
+            keyboardOptions = keyboardOptions,
+            keyboardActions = keyboardActions,
+            singleLine = true,
+            colors = OdsTextFieldDefaults.textFieldColors()
+        )
+
+        OdsTextFieldBottomRow(isError = isError, errorMessage = errorMessage, characterCounter = characterCounter)
+    }
 }
 
 @Composable
@@ -113,11 +127,16 @@ internal fun OdsPasswordVisualisationIcon(odsPasswordTextFieldState: OdsPassword
 
 @UiModePreviews.Default
 @Composable
-private fun PreviewOdsPasswordTextField() = Preview {
+private fun PreviewOdsPasswordTextField(@PreviewParameter(OdsPasswordTextFieldPreviewParameterProvider::class) hasErrorMessage: Boolean) = Preview {
     var value by remember { mutableStateOf("Input text") }
     OdsPasswordTextField(
         value = value,
         onValueChange = { value = it },
-        placeholder = "Placeholder"
+        placeholder = "Placeholder",
+        isError = hasErrorMessage,
+        errorMessage = if (hasErrorMessage) "Error message" else null
     )
 }
+
+internal class OdsPasswordTextFieldPreviewParameterProvider : BasicPreviewParameterProvider<Boolean>(false, true)
+

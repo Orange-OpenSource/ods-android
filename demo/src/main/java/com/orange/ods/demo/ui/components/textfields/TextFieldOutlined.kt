@@ -36,6 +36,7 @@ fun TextFieldOutlined(customizationState: TextFieldCustomizationState) {
             leadingIcon = if (customizationState.leadingIcon.value) painterResource(id = R.drawable.ic_heart) else null,
             enabled = customizationState.isEnabled,
             isError = customizationState.isError,
+            errorMessage = if (customizationState.isError) stringResource(id = R.string.component_text_field_error_message) else null,
             value = customizationState.displayedText,
             onValueChange = { customizationState.updateText(it) },
             label = stringResource(id = R.string.component_element_label),
@@ -46,11 +47,12 @@ fun TextFieldOutlined(customizationState: TextFieldCustomizationState) {
             } else null,
             trailingText = if (customizationState.hasTrailingText) "units" else null,
             singleLine = customizationState.isSingleLine,
-            keyboardOptions = customizationState.keyboardOptions
+            keyboardOptions = customizationState.keyboardOptions,
+            characterCounter = if (customizationState.hasCharacterCounter) {
+                {
+                    TextFieldCharacterCounter(valueLength = customizationState.displayedText.length, enabled = customizationState.isEnabled)
+                }
+            } else null
         )
-
-        if (customizationState.hasCharacterCounter) {
-            TextFieldCounter(valueLength = customizationState.displayedText.length, enabled = customizationState.isEnabled)
-        }
     }
 }

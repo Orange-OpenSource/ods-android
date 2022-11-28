@@ -11,21 +11,16 @@
 package com.orange.ods.demo.ui.components.textfields
 
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.ColumnScope
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.remember
-import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.focus.FocusRequester
-import androidx.compose.ui.focus.focusRequester
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import com.orange.ods.compose.component.textfield.OdsTextField
-import com.orange.ods.compose.component.textfield.OdsTextFieldCounter
+import com.orange.ods.compose.component.textfield.OdsTextFieldCharacterCounter
 import com.orange.ods.demo.R
 import com.orange.ods.demo.ui.components.textfields.TextFieldCustomizationState.Companion.TextFieldMaxChars
 import com.orange.ods.demo.ui.components.utilities.clickOnElement
@@ -34,17 +29,16 @@ import com.orange.ods.demo.ui.components.utilities.clickOnElement
 fun TextFieldFilled(customizationState: TextFieldCustomizationState) {
     val context = LocalContext.current
     val trailingIconName = stringResource(id = R.string.component_element_trailing)
-    val focusRequester = remember { FocusRequester() }
 
     Column {
         OdsTextField(
             modifier = Modifier
                 .fillMaxWidth()
-                .padding(top = dimensionResource(id = R.dimen.spacing_s))
-                .focusRequester(focusRequester),
+                .padding(top = dimensionResource(id = R.dimen.spacing_s)),
             leadingIcon = if (customizationState.hasLeadingIcon) painterResource(id = R.drawable.ic_heart) else null,
             enabled = customizationState.isEnabled,
             isError = customizationState.isError,
+            errorMessage = if (customizationState.isError) stringResource(id = R.string.component_text_field_error_message) else null,
             value = customizationState.displayedText,
             onValueChange = { customizationState.updateText(it) },
             label = stringResource(id = R.string.component_element_label),
@@ -55,21 +49,22 @@ fun TextFieldFilled(customizationState: TextFieldCustomizationState) {
             } else null,
             trailingText = if (customizationState.hasTrailingText) "units" else null,
             singleLine = customizationState.isSingleLine,
-            keyboardOptions = customizationState.keyboardOptions
+            keyboardOptions = customizationState.keyboardOptions,
+            characterCounter = if (customizationState.hasCharacterCounter) {
+                {
+                    TextFieldCharacterCounter(valueLength = customizationState.displayedText.length, enabled = customizationState.isEnabled)
+                }
+            } else null
         )
-
-        if (customizationState.hasCharacterCounter) {
-            TextFieldCounter(valueLength = customizationState.displayedText.length, enabled = customizationState.isEnabled)
-        }
     }
 }
 
 @Composable
-fun ColumnScope.TextFieldCounter(valueLength: Int, enabled: Boolean) {
-    OdsTextFieldCounter(
-        modifier = Modifier.align(Alignment.End),
+fun TextFieldCharacterCounter(valueLength: Int, enabled: Boolean) {
+    OdsTextFieldCharacterCounter(
         valueLength = valueLength,
         maxChars = TextFieldMaxChars,
         enabled = enabled
     )
 }
+

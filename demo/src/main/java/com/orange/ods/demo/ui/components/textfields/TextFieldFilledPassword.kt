@@ -30,16 +30,18 @@ fun TextFieldFilledPassword(customizationState: TextFieldCustomizationState) {
                 .padding(top = dimensionResource(id = R.dimen.spacing_s)),
             enabled = customizationState.isEnabled,
             isError = customizationState.isError,
+            errorMessage = if (customizationState.isError) stringResource(id = R.string.component_text_field_error_message) else null,
             value = customizationState.displayedText,
             onValueChange = { customizationState.updateText(it) },
             label = stringResource(id = R.string.component_element_label),
             placeholder = stringResource(id = R.string.component_text_field_placeholder),
             visualisationIcon = customizationState.hasVisualisationIcon,
-            keyboardOptions = customizationState.keyboardOptions
+            keyboardOptions = customizationState.keyboardOptions,
+            characterCounter = if (customizationState.hasCharacterCounter) {
+                {
+                    TextFieldCharacterCounter(valueLength = customizationState.displayedText.length, enabled = customizationState.isEnabled)
+                }
+            } else null
         )
-
-        if (customizationState.hasCharacterCounter) {
-            TextFieldCounter(valueLength = customizationState.displayedText.length, enabled = customizationState.isEnabled)
-        }
     }
 }
