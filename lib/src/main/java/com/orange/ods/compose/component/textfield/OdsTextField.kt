@@ -126,8 +126,12 @@ fun OdsTextField(
     Column(modifier = modifier) {
         TextField(
             modifier = Modifier.fillMaxWidth(),
-            value = value,
-            onValueChange = onValueChange,
+            value = if (singleLine) value.filter { it != '\n' } else value,
+            onValueChange = { newValue ->
+                if (!singleLine || !newValue.contains('\n')) {
+                    onValueChange(newValue)
+                }
+            },
             enabled = enabled,
             readOnly = readOnly,
             textStyle = OdsTheme.typography.subtitle1,

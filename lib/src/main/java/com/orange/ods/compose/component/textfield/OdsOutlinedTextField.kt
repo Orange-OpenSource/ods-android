@@ -118,8 +118,12 @@ fun OdsOutlinedTextField(
 ) {
     Column {
         OutlinedTextField(
-            value = value,
-            onValueChange = onValueChange,
+            value = if (singleLine) value.filter { it != '\n' } else value,
+            onValueChange = { newValue ->
+                if (!singleLine || !newValue.contains('\n')) {
+                    onValueChange(newValue)
+                }
+            },
             modifier = modifier,
             enabled = enabled,
             readOnly = readOnly,

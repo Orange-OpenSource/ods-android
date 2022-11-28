@@ -34,6 +34,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - \[Lib\] Fix filter chips display for custom themes ([#305](https://github.com/Orange-OpenSource/ods-android/issues/305))
 - \[Lib\] Fix leading icon tab display for Innovation Cup theme ([#330](https://github.com/Orange-OpenSource/ods-android/issues/330))
+- \[Lib\] Fix a bug where keyboard return key adds a new line in single line `OdsTextField` and `OdsOutlinedTextField` ([#350](https://github.com/Orange-OpenSource/ods-android/issues/350))
 
 ### Removed
 
