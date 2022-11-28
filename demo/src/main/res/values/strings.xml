@@ -11,8 +11,6 @@
 <resources>
     <string name="app_name">ODS Preview</string>
 
-    <string name="empty"></string>
-
     <!-- Navigation -->
     <string name="navigation_item_guidelines">Guidelines</string>
     <string name="navigation_item_components">Components</string>
@@ -64,10 +62,8 @@
     <string name="component_on_click_toast">Click on %s</string>
     <string name="component_element_title">Title</string>
     <string name="component_element_subtitle">Subtitle</string>
-    <string name="component_element_overline">Overline</string>
     <string name="component_element_label">Label</string>
     <string name="component_element_caption">Caption</string>
-    <string name="component_element_secondary_text">Secondary text</string>
     <string name="component_element_lorem_ipsum">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor.</string>
     <string name="component_element_thumbnail">Thumbnail</string>
     <string name="component_element_button1">Button 1</string>
@@ -167,7 +163,6 @@
     <string name="component_dialogs_description">Dialogs are for prompting the user when the app requires a decision or further details required to complete a task.</string>
     <string name="component_dialog_customize">Customize the dialog before opening it.</string>
     <string name="component_dialog_open">Open dialog</string>
-    <string name="component_dialog_title">Dialog sample</string>
     <string name="component_dialog_text">A dialog box asks the user for further information that the app needs in order to continue. The user has to tap one of the action buttons at the bottom of the box to continue.</string>
     <string name="component_dialog_element_dismiss_button">Dismiss button</string>
     <string name="component_dialog_action_dismiss">Decline</string>
@@ -297,7 +292,6 @@
     <!-- About -->
     <string name="about_app_name">Orange Design</string>
     <string name="about_app_version">Version %1$s (%2$d)</string>
-    <string name="about_app_version_unknown">Unknown</string>
     <string name="about_copyright">Copyright notice</string>
     <string name="about_menu_legal_notice">Legal notice</string>
     <string name="about_menu_privacy_policy">Privacy policy</string>

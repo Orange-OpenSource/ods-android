@@ -33,10 +33,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Fixed
 
 - \[Lib\] Fix filter chips display for custom themes ([#305](https://github.com/Orange-OpenSource/ods-android/issues/305))
-
-### Fixed
-
 - \[Lib\] Fix leading icon tab display for Innovation Cup theme ([#330](https://github.com/Orange-OpenSource/ods-android/issues/330))
+
+### Removed
+
+- \[Demo\] Removed unused resources ([#352](https://github.com/Orange-OpenSource/ods-android/issues/352))
 
 ## [0.7.0](https://github.com/Orange-OpenSource/ods-android/compare/0.6.0...0.7.0) - 2022-11-09
 
