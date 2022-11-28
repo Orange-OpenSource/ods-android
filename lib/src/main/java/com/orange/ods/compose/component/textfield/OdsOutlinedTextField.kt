@@ -10,7 +10,6 @@
 
 package com.orange.ods.compose.component.textfield
 
-import androidx.compose.foundation.layout.BoxScope
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.text.KeyboardActions
@@ -115,7 +114,7 @@ fun OdsOutlinedTextField(
     keyboardActions: KeyboardActions = KeyboardActions(),
     singleLine: Boolean = false,
     maxLines: Int = Int.MAX_VALUE,
-    characterCounter: (@Composable BoxScope.() -> Unit)? = null
+    characterCounter: (@Composable () -> Unit)? = null
 ) {
     Column {
         OutlinedTextField(

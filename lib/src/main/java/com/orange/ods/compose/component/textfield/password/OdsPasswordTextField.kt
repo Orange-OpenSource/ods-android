@@ -10,7 +10,6 @@
 
 package com.orange.ods.compose.component.textfield.password
 
-import androidx.compose.foundation.layout.BoxScope
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.text.KeyboardActions
 import androidx.compose.foundation.text.KeyboardOptions
@@ -86,7 +85,7 @@ fun OdsPasswordTextField(
     errorMessage: String? = null,
     keyboardOptions: KeyboardOptions = KeyboardOptions.Default,
     keyboardActions: KeyboardActions = KeyboardActions(),
-    characterCounter: (@Composable BoxScope.() -> Unit)? = null
+    characterCounter: (@Composable () -> Unit)? = null
 ) {
     val odsPasswordTextFieldState = rememberOdsPasswordTextFieldState()
 

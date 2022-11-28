@@ -10,7 +10,6 @@
 
 package com.orange.ods.demo.ui.components.textfields
 
-import androidx.compose.foundation.layout.BoxScope
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
@@ -61,7 +60,7 @@ fun TextFieldFilled(customizationState: TextFieldCustomizationState) {
 }
 
 @Composable
-fun BoxScope.TextFieldCharacterCounter(valueLength: Int, enabled: Boolean) {
+fun TextFieldCharacterCounter(valueLength: Int, enabled: Boolean) {
     OdsTextFieldCharacterCounter(
         valueLength = valueLength,
         maxChars = TextFieldMaxChars,

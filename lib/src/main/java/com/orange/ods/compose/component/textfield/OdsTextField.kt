@@ -12,7 +12,6 @@ package com.orange.ods.compose.component.textfield
 
 import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.layout.Box
-import androidx.compose.foundation.layout.BoxScope
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -29,7 +28,6 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
-import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.painter.Painter
 import androidx.compose.ui.res.dimensionResource
@@ -123,7 +121,7 @@ fun OdsTextField(
     keyboardActions: KeyboardActions = KeyboardActions(),
     singleLine: Boolean = false,
     maxLines: Int = Int.MAX_VALUE,
-    characterCounter: (@Composable BoxScope.() -> Unit)? = null
+    characterCounter: (@Composable () -> Unit)? = null
 ) {
     Column(modifier = modifier) {
         TextField(
@@ -189,23 +187,24 @@ fun OdsTextField(
  */
 @Composable
 @OdsComponentApi
-fun BoxScope.OdsTextFieldCharacterCounter(valueLength: Int, maxChars: Int, enabled: Boolean = true) {
+fun OdsTextFieldCharacterCounter(valueLength: Int, maxChars: Int, enabled: Boolean = true) {
     OdsTextCaption(
         modifier = Modifier
-            .padding(top = dimensionResource(id = R.dimen.spacing_xs), end = dimensionResource(id = R.dimen.spacing_m))
-            .align(Alignment.TopEnd),
+            .padding(top = dimensionResource(id = R.dimen.spacing_xs), end = dimensionResource(id = R.dimen.spacing_m)),
         text = "$valueLength/$maxChars",
         enabled = enabled
     )
 }
 
 @Composable
-internal fun OdsTextFieldBottomRow(isError: Boolean, errorMessage: String?, characterCounter: (@Composable BoxScope.() -> Unit)?) {
+internal fun OdsTextFieldBottomRow(isError: Boolean, errorMessage: String?, characterCounter: (@Composable () -> Unit)?) {
     Row {
-        if (isError && errorMessage != null) {
-            OdsTextFieldErrorText(message = errorMessage)
+        Box(modifier = Modifier.weight(1f)) {
+            if (isError && errorMessage != null) {
+                OdsTextFieldErrorText(message = errorMessage)
+            }
         }
-        characterCounter?.let { Box(modifier = Modifier.weight(1f)) { characterCounter() } }
+        characterCounter?.invoke()
     }
 }
 
@@ -235,7 +234,8 @@ internal fun OdsTextFieldIcon(painter: Painter, contentDescription: String?, onC
 
 internal data class OdsTextFieldPreviewParameter(
     val hasCounter: Boolean,
-    val hasErrorMessage: Boolean
+    val hasErrorMessage: Boolean,
+    val isVeryLongErrorMessage: Boolean
 )
 
 internal class OdsTextFieldPreviewParameterProvider : BasicPreviewParameterProvider<OdsTextFieldPreviewParameter>(*previewParameterValues.toTypedArray())
@@ -252,7 +252,7 @@ private fun PreviewOdsTextField(@PreviewParameter(OdsTextFieldPreviewParameterPr
             leadingIcon = painterResource(id = android.R.drawable.ic_dialog_info),
             trailingIcon = painterResource(id = android.R.drawable.ic_input_add),
             isError = parameter.hasErrorMessage,
-            errorMessage = if (parameter.hasErrorMessage) "Error message" else null,
+            errorMessage = getPreviewErrorMessage(parameter.hasErrorMessage, parameter.isVeryLongErrorMessage),
             characterCounter = if (parameter.hasCounter) {
                 {
                     OdsTextFieldCharacterCounter(value.length, 30)
@@ -262,9 +262,17 @@ private fun PreviewOdsTextField(@PreviewParameter(OdsTextFieldPreviewParameterPr
     }
 }
 
+private fun getPreviewErrorMessage(hasErrorMessage: Boolean, isVeryLongErrorMessage: Boolean) = when {
+    hasErrorMessage && !isVeryLongErrorMessage -> "Error message"
+    hasErrorMessage && isVeryLongErrorMessage -> "Very very very very very very very very very long error message"
+    else -> null
+}
+
 private val previewParameterValues: List<OdsTextFieldPreviewParameter> = listOf(
-    OdsTextFieldPreviewParameter(hasCounter = false, hasErrorMessage = false),
-    OdsTextFieldPreviewParameter(hasCounter = false, hasErrorMessage = true),
-    OdsTextFieldPreviewParameter(hasCounter = true, hasErrorMessage = false),
-    OdsTextFieldPreviewParameter(hasCounter = true, hasErrorMessage = true)
+    OdsTextFieldPreviewParameter(hasCounter = false, hasErrorMessage = false, isVeryLongErrorMessage = false),
+    OdsTextFieldPreviewParameter(hasCounter = false, hasErrorMessage = true, isVeryLongErrorMessage = false),
+    OdsTextFieldPreviewParameter(hasCounter = false, hasErrorMessage = true, isVeryLongErrorMessage = true),
+    OdsTextFieldPreviewParameter(hasCounter = true, hasErrorMessage = false, isVeryLongErrorMessage = false),
+    OdsTextFieldPreviewParameter(hasCounter = true, hasErrorMessage = true, isVeryLongErrorMessage = false),
+    OdsTextFieldPreviewParameter(hasCounter = true, hasErrorMessage = true, isVeryLongErrorMessage = true)
 )
