@@ -20,6 +20,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - \[All\] Version numbers in changelog now display changes on GitHub when clicked ([#322](https://github.com/Orange-OpenSource/ods-android/issues/322))
 - \[All\] Update documentation [#334](https://github.com/Orange-OpenSource/ods-android/issues/334)
+- \[All\] Update compile and target SDK versions to 33 [#343](https://github.com/Orange-OpenSource/ods-android/issues/343)
 - \[Demo\] Add customization bottom sheets for buttons ([#303](https://github.com/Orange-OpenSource/ods-android/issues/303))
 - \[Demo\] Replace action buttons switches by a counter in cards customization bottom sheet ([#327](https://github.com/Orange-OpenSource/ods-android/issues/327))
 - \[Demo\] Add customization bottom sheets for sliders ([#307](https://github.com/Orange-OpenSource/ods-android/issues/307))
