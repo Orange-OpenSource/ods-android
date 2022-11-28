@@ -184,9 +184,5 @@ private fun PreviewOdsOutlinedTextField(@PreviewParameter(OdsTextFieldPreviewPar
             isError = parameter.hasErrorMessage,
             errorMessage = if (parameter.hasErrorMessage) "Error message" else null
         )
-
-        if (parameter.hasCounter) {
-            // OdsTextFieldCounter(value.length, 30, Modifier.align(Alignment.End))
-        }
     }
 }
