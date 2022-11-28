@@ -12,19 +12,19 @@ package com.orange.ods.gradle
 
 object Versions {
 
-    const val compileSdk = 32
+    const val compileSdk = 33
     const val minSdk = 21
     const val targetSdk = compileSdk
 
     const val accompanist = "0.23.1"
     const val activity = "1.4.0"
-    const val androidGradlePlugin = "7.2.0"
+    const val androidGradlePlugin = "7.3.1"
     const val appCompat = "1.5.1"
     const val browser = "1.3.0"
     const val compose = "1.2.0-rc02"
     const val core = "1.7.0"
     const val customViewPoolingContainer = "1.0.0"
-    const val googleServicesGradlePlugin = "4.3.10"
+    const val googleServicesGradlePlugin = "4.3.14"
     const val firebaseAppDistributionGradlePlugin = "3.0.1"
     const val firebaseBom = "30.0.0"
     const val firebaseCrashlyticsGradlePlugin = "2.8.1"

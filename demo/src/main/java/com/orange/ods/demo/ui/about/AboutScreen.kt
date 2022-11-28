@@ -40,8 +40,10 @@ import com.orange.ods.compose.theme.OdsTheme
 import com.orange.ods.demo.R
 import com.orange.ods.demo.ui.LocalMainThemeManager
 import com.orange.ods.demo.ui.LocalMainTopAppBarManager
+import com.orange.ods.demo.ui.utilities.compat.PackageManagerCompat
 import com.orange.ods.demo.ui.utilities.composable.RadioButtonListItem
 import com.orange.ods.demo.ui.utilities.extension.versionCode
+import com.orange.ods.utilities.extension.ifNotNull
 import com.orange.ods.utilities.extension.orElse
 
 @Composable
@@ -109,8 +111,8 @@ fun AboutScreen(onAboutItemClick: (Long) -> Unit) {
 }
 
 private fun getVersion(context: Context): String {
-    val packageInfo = context.packageName?.let { packageName ->
-        context.packageManager?.getPackageInfo(packageName, 0)
+    val packageInfo = ifNotNull(context.packageManager, context.packageName) { packageManager, packageName ->
+        PackageManagerCompat.getPackageInfo(packageManager, packageName, 0)
     }
     return packageInfo?.let {
         String.format(context.resources.getString(R.string.about_app_version), packageInfo.versionName, packageInfo.versionCode())
