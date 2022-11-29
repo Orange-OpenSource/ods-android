@@ -129,6 +129,7 @@ dependencies {
     implementation(Dependencies.browser)
     implementation(Dependencies.hiltAndroid)
     kapt(Dependencies.hiltCompiler)
+    implementation(Dependencies.datastorePreferences)
 
     debugImplementation(Dependencies.composeUiTooling)
 }

@@ -36,6 +36,7 @@ import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.window.Dialog
+import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavBackStackEntry
 import androidx.navigation.NavGraphBuilder
 import androidx.navigation.compose.NavHost
@@ -59,11 +60,18 @@ import com.orange.ods.utilities.extension.orElse
 @Preview(showBackground = true, uiMode = UI_MODE_NIGHT_YES)
 @Preview(showBackground = true)
 @Composable
-fun MainScreen(themeConfigurations: Set<OdsThemeConfigurationContract>) {
+fun MainScreen(themeConfigurations: Set<OdsThemeConfigurationContract>, mainViewModel: MainViewModel = viewModel()) {
     val isSystemInDarkTheme = isSystemInDarkTheme()
     val mainState = rememberMainState(
         themeState = rememberMainThemeState(
-            currentThemeConfiguration = rememberSaveable { mutableStateOf(getCurrentThemeConfiguration(themeConfigurations)) },
+            currentThemeConfiguration = rememberSaveable {
+                mutableStateOf(
+                    getCurrentThemeConfiguration(
+                        mainViewModel.getUserThemeName(),
+                        themeConfigurations
+                    )
+                )
+            },
             darkModeEnabled = rememberSaveable { mutableStateOf(isSystemInDarkTheme) },
             themeConfigurations = themeConfigurations.toList()
         )
@@ -127,6 +135,7 @@ fun MainScreen(themeConfigurations: Set<OdsThemeConfigurationContract>) {
 
                 if (changeThemeDialogVisible) {
                     ChangeThemeDialog(themeState = mainState.themeState, onDismiss = {
+                        mainViewModel.storeUserThemeName(mainState.themeState.currentThemeConfiguration.name)
                         changeThemeDialogVisible = false
                     })
                 }
@@ -135,9 +144,11 @@ fun MainScreen(themeConfigurations: Set<OdsThemeConfigurationContract>) {
     }
 }
 
-private fun getCurrentThemeConfiguration(themeConfigurations: Set<OdsThemeConfigurationContract>): OdsThemeConfigurationContract {
-    // If another theme than Orange is injected, select it otherwise take the Orange theme which is always present
-    return themeConfigurations.firstOrNull { it.name != OrangeThemeConfiguration.OrangeThemeName }.orElse { themeConfigurations.first() }
+private fun getCurrentThemeConfiguration(storedUserThemeName: String?, themeConfigurations: Set<OdsThemeConfigurationContract>): OdsThemeConfigurationContract {
+    // Return the stored user theme configuration if it exists. If not, return the Orange theme configuration or the first existing theme configuration
+    return themeConfigurations.firstOrNull { it.name == storedUserThemeName }.takeIf { it != null }.orElse {
+        themeConfigurations.firstOrNull { it.name == OrangeThemeConfiguration.OrangeThemeName }.orElse { themeConfigurations.first() }
+    }
 }
 
 @Composable
