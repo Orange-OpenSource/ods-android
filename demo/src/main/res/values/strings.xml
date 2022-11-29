@@ -18,9 +18,10 @@
     <string name="navigation_item_about">About</string>
 
     <!-- TopAppBar -->
-    <string name="theme_changer_icon_content_description_dark">Change to dark mode</string>
-    <string name="theme_changer_icon_content_description_light">Change to light mode</string>
-    <string name="back_icon_content_description">Back</string>
+    <string name="top_app_bar_back_icon_desc">Back</string>
+    <string name="top_app_bar_action_change_theme_desc">Change theme</string>
+    <string name="top_app_bar_action_change_mode_to_dark_desc">Change to dark mode</string>
+    <string name="top_app_bar_action_change_mode_to_light_desc">Change to light mode</string>
 
     <!-- Guidelines -->
     <string name="guideline_color">Colour</string>
@@ -296,6 +297,5 @@
     <string name="about_menu_legal_notice">Legal notice</string>
     <string name="about_menu_privacy_policy">Privacy policy</string>
     <string name="about_menu_changelog">Changelog</string>
-    <string name="about_menu_theme">Theme</string>
 
 </resources>

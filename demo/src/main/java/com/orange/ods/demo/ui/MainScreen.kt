@@ -14,6 +14,7 @@ import android.content.res.Configuration.UI_MODE_NIGHT_YES
 import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.animation.fadeIn
 import androidx.compose.animation.fadeOut
+import androidx.compose.foundation.background
 import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -24,23 +25,32 @@ import androidx.compose.material.Surface
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.runtime.SideEffect
+import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
 import androidx.compose.runtime.saveable.rememberSaveable
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalConfiguration
+import androidx.compose.ui.res.dimensionResource
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.window.Dialog
 import androidx.navigation.NavBackStackEntry
 import androidx.navigation.NavGraphBuilder
 import androidx.navigation.compose.NavHost
 import androidx.navigation.navigation
 import com.google.accompanist.pager.ExperimentalPagerApi
 import com.google.accompanist.systemuicontroller.rememberSystemUiController
+import com.orange.ods.compose.text.OdsTextH6
 import com.orange.ods.compose.theme.OdsTheme
+import com.orange.ods.demo.R
 import com.orange.ods.demo.ui.about.addAboutGraph
 import com.orange.ods.demo.ui.components.addComponentsGraph
 import com.orange.ods.demo.ui.components.tabs.FixedTabRow
 import com.orange.ods.demo.ui.components.tabs.ScrollableTabRow
 import com.orange.ods.demo.ui.guidelines.addGuidelinesGraph
+import com.orange.ods.demo.ui.utilities.composable.RadioButtonListItem
 import com.orange.ods.demo.ui.utilities.extension.isDarkModeEnabled
 import com.orange.ods.theme.OdsThemeConfigurationContract
 import com.orange.ods.theme.orange.OrangeThemeConfiguration
@@ -71,6 +81,8 @@ fun MainScreen(themeConfigurations: Set<OdsThemeConfigurationContract>) {
         LocalMainThemeManager provides mainState.themeState,
         LocalOdsDemoGuideline provides mainState.themeState.currentThemeConfiguration.demoGuideline,
     ) {
+        var changeThemeDialogVisible by remember { mutableStateOf(false) }
+
         OdsTheme(
             themeConfiguration = mainState.themeState.currentThemeConfiguration,
             darkThemeEnabled = configuration.isDarkModeEnabled
@@ -85,7 +97,8 @@ fun MainScreen(themeConfigurations: Set<OdsThemeConfigurationContract>) {
                                 titleRes = mainState.topAppBarState.titleRes.value,
                                 shouldShowUpNavigationIcon = !mainState.shouldShowBottomBar,
                                 state = mainState.topAppBarState,
-                                upPress = mainState::upPress
+                                upPress = mainState::upPress,
+                                onChangeThemeActionClick = { changeThemeDialogVisible = true }
                             )
                             // Display tabs in the top bar if needed
                             MainTabs(mainTabsState = mainState.tabsState)
@@ -111,6 +124,12 @@ fun MainScreen(themeConfigurations: Set<OdsThemeConfigurationContract>) {
                         mainNavGraph(navigateToElement = mainState::navigateToElement)
                     }
                 }
+
+                if (changeThemeDialogVisible) {
+                    ChangeThemeDialog(themeState = mainState.themeState, onDismiss = {
+                        changeThemeDialogVisible = false
+                    })
+                }
             }
         }
     }
@@ -119,6 +138,35 @@ fun MainScreen(themeConfigurations: Set<OdsThemeConfigurationContract>) {
 private fun getCurrentThemeConfiguration(themeConfigurations: Set<OdsThemeConfigurationContract>): OdsThemeConfigurationContract {
     // If another theme than Orange is injected, select it otherwise take the Orange theme which is always present
     return themeConfigurations.firstOrNull { it.name != OrangeThemeConfiguration.OrangeThemeName }.orElse { themeConfigurations.first() }
+}
+
+@Composable
+private fun ChangeThemeDialog(themeState: MainThemeState, onDismiss: () -> Unit) {
+    val selectedRadio = rememberSaveable { mutableStateOf(themeState.currentThemeConfiguration.name) }
+
+    Box(modifier = Modifier.padding(horizontal = dimensionResource(id = R.dimen.spacing_m))) {
+        Dialog(onDismissRequest = onDismiss) {
+            Column(modifier = Modifier.background(OdsTheme.colors.surface)) {
+                OdsTextH6(
+                    text = stringResource(R.string.top_app_bar_action_change_theme_desc),
+                    modifier = Modifier
+                        .padding(top = dimensionResource(R.dimen.spacing_m), bottom = dimensionResource(id = R.dimen.spacing_s))
+                        .padding(horizontal = dimensionResource(R.dimen.screen_horizontal_margin))
+                )
+                themeState.themeConfigurations.forEach { themeConfiguration ->
+                    RadioButtonListItem(
+                        label = themeConfiguration.name,
+                        selectedRadio = selectedRadio,
+                        currentRadio = themeConfiguration.name,
+                        onClick = {
+                            themeState.currentThemeConfiguration = themeConfiguration
+                            onDismiss()
+                        }
+                    )
+                }
+            }
+        }
+    }
 }
 
 @Composable
