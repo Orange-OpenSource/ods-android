@@ -57,6 +57,6 @@ fun ComponentTopAppBar() {
             )
 
         }) {
-        // Nothing to display in screen
+        // Nothing to display in screen (see MainTopAppBar.kt)
     }
 }
