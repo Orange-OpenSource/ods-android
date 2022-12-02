@@ -9,6 +9,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
+- \[All\] Add `NOTICE.txt` file ([#356](https://github.com/Orange-OpenSource/ods-android/issues/356))
 - \[Demo\] Add Snackbar component ([#114](https://github.com/Orange-OpenSource/ods-android/issues/114))
 - \[Demo\] Display an error message below text fields if customization error switch is on ([#338](https://github.com/Orange-OpenSource/ods-android/issues/338))
 - \[Lib\] Add `OdsSnackbar` and `OdsSnackbarHost` composable to manage snackbars display ([#114](https://github.com/Orange-OpenSource/ods-android/issues/114))
