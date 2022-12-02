@@ -5,6 +5,16 @@ All notable changes done in ODS library will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [Unreleased](https://github.com/Orange-OpenSource/ods-android/compare/0.8.0...master)
+
+### Added
+
+- \[Lib\] Add `OdsTopAppBarOverFlowMenuBox` and `OdsDropdownMenu` composables to display an overflow menu in the top app bar ([#349](https://github.com/Orange-OpenSource/ods-android/issues/349))
+
+### Fixed
+
+- \[Lib\] Fix top app bar overflow menu colors ([#349](https://github.com/Orange-OpenSource/ods-android/issues/349))
+
 ## [0.8.0](https://github.com/Orange-OpenSource/ods-android/compare/0.7.0...0.8.0) - 2022-12-07
 
 ### Added
