@@ -146,9 +146,9 @@ fun MainScreen(themeConfigurations: Set<OdsThemeConfigurationContract>, mainView
 
 private fun getCurrentThemeConfiguration(storedUserThemeName: String?, themeConfigurations: Set<OdsThemeConfigurationContract>): OdsThemeConfigurationContract {
     // Return the stored user theme configuration if it exists. If not, return the Orange theme configuration or the first existing theme configuration
-    return themeConfigurations.firstOrNull { it.name == storedUserThemeName }.takeIf { it != null }.orElse {
-        themeConfigurations.firstOrNull { it.name == OrangeThemeConfiguration.OrangeThemeName }.orElse { themeConfigurations.first() }
-    }
+    return themeConfigurations.firstOrNull { it.name == storedUserThemeName }
+        .orElse { themeConfigurations.firstOrNull { it.name == OrangeThemeConfiguration.OrangeThemeName } }
+        .orElse { themeConfigurations.first() }
 }
 
 @Composable
