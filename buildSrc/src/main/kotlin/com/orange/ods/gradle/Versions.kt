@@ -24,7 +24,7 @@ object Versions {
     const val compose = "1.2.0-rc02"
     const val core = "1.7.0"
     const val customViewPoolingContainer = "1.0.0"
-    const val datastorePreferences = "1.0.0"
+    const val dataStorePreferences = "1.0.0"
     const val firebaseAppDistributionGradlePlugin = "3.0.1"
     const val firebaseBom = "30.0.0"
     const val firebaseCrashlyticsGradlePlugin = "2.8.1"
