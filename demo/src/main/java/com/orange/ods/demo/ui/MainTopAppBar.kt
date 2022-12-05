@@ -41,7 +41,8 @@ fun MainTopAppBar(
     titleRes: Int,
     shouldShowUpNavigationIcon: Boolean,
     state: MainTopAppBarState,
-    upPress: () -> Unit
+    upPress: () -> Unit,
+    onChangeThemeActionClick: () -> Unit
 ) {
     OdsTopAppBar(
         title = stringResource(id = titleRes),
@@ -49,7 +50,7 @@ fun MainTopAppBar(
             {
                 Icon(
                     imageVector = Icons.Filled.ArrowBack,
-                    contentDescription = stringResource(id = R.string.back_icon_content_description)
+                    contentDescription = stringResource(id = R.string.top_app_bar_back_icon_desc)
                 )
             }
         } else null,
@@ -57,25 +58,17 @@ fun MainTopAppBar(
         actions = {
             val context = LocalContext.current
             repeat(state.actionCount.value) { index ->
-                if (index == 0) {
-                    val configuration = LocalConfiguration.current
-                    val mainThemeManager = LocalMainThemeManager.current
-
-                    val painterRes = if (configuration.isDarkModeEnabled) R.drawable.ic_ui_light_mode else R.drawable.ic_ui_dark_mode
-                    val contentDescriptionRes =
-                        if (configuration.isDarkModeEnabled) R.string.theme_changer_icon_content_description_light else R.string.theme_changer_icon_content_description_dark
-                    OdsTopAppBarActionButton(
-                        onClick = { mainThemeManager.darkModeEnabled = !configuration.isDarkModeEnabled },
-                        painter = painterResource(id = painterRes),
-                        contentDescription = stringResource(id = contentDescriptionRes)
-                    )
-                } else {
-                    val action = topAppBarDemoActions[index - 1]
-                    OdsTopAppBarActionButton(
-                        onClick = { clickOnElement(context, context.getString(action.titleRes)) },
-                        painter = painterResource(id = action.iconRes),
-                        contentDescription = stringResource(id = action.titleRes)
-                    )
+                when (index) {
+                    0 -> TopAppBarChangeThemeActionButton(onClick = onChangeThemeActionClick)
+                    1 -> TopAppBarChangeModeActionButton()
+                    else -> {
+                        val action = topAppBarDemoActions[index - 1]
+                        OdsTopAppBarActionButton(
+                            onClick = { clickOnElement(context, context.getString(action.titleRes)) },
+                            painter = painterResource(id = action.iconRes),
+                            contentDescription = stringResource(id = action.titleRes)
+                        )
+                    }
                 }
             }
             if (state.isOverflowMenuEnabled) {
@@ -83,6 +76,31 @@ fun MainTopAppBar(
             }
         },
         elevated = false // elevation is managed in [MainScreen] cause of tabs
+    )
+}
+
+@Composable
+private fun TopAppBarChangeThemeActionButton(onClick: () -> Unit) {
+    OdsTopAppBarActionButton(
+        onClick = { onClick() },
+        painter = painterResource(id = R.drawable.ic_palette),
+        contentDescription = stringResource(id = R.string.top_app_bar_action_change_theme_desc)
+    )
+}
+
+@Composable
+private fun TopAppBarChangeModeActionButton() {
+    val configuration = LocalConfiguration.current
+    val mainThemeManager = LocalMainThemeManager.current
+
+    val painterRes = if (configuration.isDarkModeEnabled) R.drawable.ic_ui_light_mode else R.drawable.ic_ui_dark_mode
+    val iconDesc =
+        if (configuration.isDarkModeEnabled) R.string.top_app_bar_action_change_mode_to_light_desc else R.string.top_app_bar_action_change_mode_to_dark_desc
+
+    OdsTopAppBarActionButton(
+        onClick = { mainThemeManager.darkModeEnabled = !configuration.isDarkModeEnabled },
+        painter = painterResource(id = painterRes),
+        contentDescription = stringResource(id = iconDesc)
     )
 }
 

@@ -10,6 +10,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Added
 
 - \[All\] Add `NOTICE.txt` file ([#356](https://github.com/Orange-OpenSource/ods-android/issues/356))
+- \[Demo\] Save the user theme selection in order to reopen the app with this theme [#335](https://github.com/Orange-OpenSource/ods-android/issues/335)
 - \[Demo\] Add Snackbar component ([#114](https://github.com/Orange-OpenSource/ods-android/issues/114))
 - \[Demo\] Display an error message below text fields if customization error switch is on ([#338](https://github.com/Orange-OpenSource/ods-android/issues/338))
 - \[Lib\] Add `OdsSnackbar` and `OdsSnackbarHost` composable to manage snackbars display ([#114](https://github.com/Orange-OpenSource/ods-android/issues/114))
@@ -22,6 +23,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - \[All\] Version numbers in changelog now display changes on GitHub when clicked ([#322](https://github.com/Orange-OpenSource/ods-android/issues/322))
 - \[All\] Update documentation [#334](https://github.com/Orange-OpenSource/ods-android/issues/334)
 - \[All\] Upgrade compile and target SDK versions to 33 [#343](https://github.com/Orange-OpenSource/ods-android/issues/343)
+- \[Demo\] Move change theme feature in top app bar by clicking on a palette icon [#335](https://github.com/Orange-OpenSource/ods-android/issues/335)
 - \[Demo\] Add customization bottom sheets for buttons ([#303](https://github.com/Orange-OpenSource/ods-android/issues/303))
 - \[Demo\] Replace action buttons switches by a counter in cards customization bottom sheet ([#327](https://github.com/Orange-OpenSource/ods-android/issues/327))
 - \[Demo\] Add customization bottom sheets for sliders ([#307](https://github.com/Orange-OpenSource/ods-android/issues/307))
