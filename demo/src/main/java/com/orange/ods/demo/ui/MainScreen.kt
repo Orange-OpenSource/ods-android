@@ -155,26 +155,24 @@ private fun getCurrentThemeConfiguration(storedUserThemeName: String?, themeConf
 private fun ChangeThemeDialog(themeState: MainThemeState, onDismiss: () -> Unit) {
     val selectedRadio = rememberSaveable { mutableStateOf(themeState.currentThemeConfiguration.name) }
 
-    Box(modifier = Modifier.padding(horizontal = dimensionResource(id = R.dimen.spacing_m))) {
-        Dialog(onDismissRequest = onDismiss) {
-            Column(modifier = Modifier.background(OdsTheme.colors.surface)) {
-                OdsTextH6(
-                    text = stringResource(R.string.top_app_bar_action_change_theme_desc),
-                    modifier = Modifier
-                        .padding(top = dimensionResource(R.dimen.spacing_m), bottom = dimensionResource(id = R.dimen.spacing_s))
-                        .padding(horizontal = dimensionResource(R.dimen.screen_horizontal_margin))
+    Dialog(onDismissRequest = onDismiss) {
+        Column(modifier = Modifier.background(OdsTheme.colors.surface)) {
+            OdsTextH6(
+                text = stringResource(R.string.top_app_bar_action_change_theme_desc),
+                modifier = Modifier
+                    .padding(top = dimensionResource(R.dimen.spacing_m), bottom = dimensionResource(id = R.dimen.spacing_s))
+                    .padding(horizontal = dimensionResource(R.dimen.screen_horizontal_margin))
+            )
+            themeState.themeConfigurations.forEach { themeConfiguration ->
+                RadioButtonListItem(
+                    label = themeConfiguration.name,
+                    selectedRadio = selectedRadio,
+                    currentRadio = themeConfiguration.name,
+                    onClick = {
+                        themeState.currentThemeConfiguration = themeConfiguration
+                        onDismiss()
+                    }
                 )
-                themeState.themeConfigurations.forEach { themeConfiguration ->
-                    RadioButtonListItem(
-                        label = themeConfiguration.name,
-                        selectedRadio = selectedRadio,
-                        currentRadio = themeConfiguration.name,
-                        onClick = {
-                            themeState.currentThemeConfiguration = themeConfiguration
-                            onDismiss()
-                        }
-                    )
-                }
             }
         }
     }
