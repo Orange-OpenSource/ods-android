@@ -134,10 +134,15 @@ fun MainScreen(themeConfigurations: Set<OdsThemeConfigurationContract>, mainView
                 }
 
                 if (changeThemeDialogVisible) {
-                    ChangeThemeDialog(themeState = mainState.themeState, onDismiss = {
-                        mainViewModel.storeUserThemeName(mainState.themeState.currentThemeConfiguration.name)
-                        changeThemeDialogVisible = false
-                    })
+                    ChangeThemeDialog(
+                        themeState = mainState.themeState,
+                        dismissDialog = {
+                            changeThemeDialogVisible = false
+                        },
+                        onThemeSelected = {
+                            mainViewModel.storeUserThemeName(mainState.themeState.currentThemeConfiguration.name)
+                        }
+                    )
                 }
             }
         }
@@ -152,10 +157,10 @@ private fun getCurrentThemeConfiguration(storedUserThemeName: String?, themeConf
 }
 
 @Composable
-private fun ChangeThemeDialog(themeState: MainThemeState, onDismiss: () -> Unit) {
+private fun ChangeThemeDialog(themeState: MainThemeState, dismissDialog: () -> Unit, onThemeSelected: () -> Unit) {
     val selectedRadio = rememberSaveable { mutableStateOf(themeState.currentThemeConfiguration.name) }
 
-    Dialog(onDismissRequest = onDismiss) {
+    Dialog(onDismissRequest = dismissDialog) {
         Column(modifier = Modifier.background(OdsTheme.colors.surface)) {
             OdsTextH6(
                 text = stringResource(R.string.top_app_bar_action_change_theme_desc),
@@ -169,8 +174,11 @@ private fun ChangeThemeDialog(themeState: MainThemeState, onDismiss: () -> Unit)
                     selectedRadio = selectedRadio,
                     currentRadio = themeConfiguration.name,
                     onClick = {
-                        themeState.currentThemeConfiguration = themeConfiguration
-                        onDismiss()
+                        if (themeConfiguration != themeState.currentThemeConfiguration) {
+                            themeState.currentThemeConfiguration = themeConfiguration
+                            onThemeSelected()
+                        }
+                        dismissDialog()
                     }
                 )
             }
