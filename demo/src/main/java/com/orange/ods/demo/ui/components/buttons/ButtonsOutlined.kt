@@ -24,10 +24,13 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
+import com.orange.ods.compose.component.OdsComponent
 import com.orange.ods.compose.component.button.OdsOutlinedButton
 import com.orange.ods.compose.theme.OdsDisplaySurface
 import com.orange.ods.demo.R
 import com.orange.ods.demo.ui.components.utilities.ComponentCustomizationBottomSheetScaffold
+import com.orange.ods.demo.ui.utilities.composable.ButtonTechnicalText
+import com.orange.ods.demo.ui.utilities.composable.CodeImplementationColumn
 import com.orange.ods.demo.ui.utilities.composable.SwitchListItem
 
 @OptIn(ExperimentalMaterialApi::class)
@@ -71,6 +74,15 @@ fun ButtonsOutlined() {
                             displaySurface = OdsDisplaySurface.Dark
                         )
                     }
+                }
+
+                CodeImplementationColumn {
+                    ButtonTechnicalText(
+                        componentName = OdsComponent.OdsOutlinedButton.name,
+                        enabled = isEnabled,
+                        variableWidth = hasVariableWidth,
+                        icon = hasLeadingIcon
+                    )
                 }
             }
         }
