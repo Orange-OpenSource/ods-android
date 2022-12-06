@@ -29,7 +29,10 @@ import com.orange.ods.compose.theme.OdsTheme
  * @param expanded Whether the menu is currently open and visible to the user
  * @param onDismissRequest Called when the user requests to dismiss the menu, such as by
  * tapping outside the menu's bounds
+ * @param modifier The modifier to be applied to the menu
  * @param offset [DpOffset] to be added to the position of the menu
+ * @param properties [PopupProperties] for further customization of the popup's behavior
+ * @param menuItems List of [OdsMenuItem] to display in the menu
  */
 @Composable
 fun OdsDropdownMenu(
@@ -58,7 +61,6 @@ fun OdsDropdownMenu(
  *
  * @param text The text of the menu item
  * @param onClick Called when the menu item was clicked
- * @param modifier The modifier to be applied to the menu item
  * @param enabled Controls the enabled state of the menu item - when `false`, the menu item
  * will not be clickable and [onClick] will not be invoked
  */
