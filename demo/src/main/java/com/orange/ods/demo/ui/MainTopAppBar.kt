@@ -23,7 +23,7 @@ import androidx.compose.ui.res.stringResource
 import com.orange.ods.compose.component.appbar.top.OdsTopAppBar
 import com.orange.ods.compose.component.appbar.top.OdsTopAppBarActionButton
 import com.orange.ods.compose.component.appbar.top.OdsTopAppBarOverflowMenuBox
-import com.orange.ods.compose.component.menu.OdsMenuItem
+import com.orange.ods.compose.component.menu.OdsDropdownMenuItem
 import com.orange.ods.demo.R
 import com.orange.ods.demo.ui.components.utilities.clickOnElement
 import com.orange.ods.demo.ui.utilities.extension.isDarkModeEnabled
@@ -65,18 +65,17 @@ fun MainTopAppBar(
             }
             if (state.isOverflowMenuEnabled) {
                 OdsTopAppBarOverflowMenuBox(
-                    overflowIconContentDescription = stringResource(id = R.string.component_app_bars_top_element_overflow_menu),
-                    overflowMenuItems = listOf(
-                        OdsMenuItem(
-                            text = stringResource(id = R.string.component_app_bars_top_action_account),
-                            onClick = { clickOnElement(context, context.getString(R.string.component_app_bars_top_action_account)) }
-                        ),
-                        OdsMenuItem(
-                            text = stringResource(id = R.string.component_app_bars_top_action_settings),
-                            onClick = { clickOnElement(context, context.getString(R.string.component_app_bars_top_action_settings)) }
-                        )
+                    overflowIconContentDescription = stringResource(id = R.string.component_app_bars_top_element_overflow_menu)
+                ) {
+                    OdsDropdownMenuItem(
+                        text = stringResource(id = R.string.component_app_bars_top_action_account),
+                        onClick = { clickOnElement(context, context.getString(R.string.component_app_bars_top_action_account)) }
                     )
-                )
+                    OdsDropdownMenuItem(
+                        text = stringResource(id = R.string.component_app_bars_top_action_settings),
+                        onClick = { clickOnElement(context, context.getString(R.string.component_app_bars_top_action_settings)) }
+                    )
+                }
             }
         },
         elevated = false // elevation is managed in [MainScreen] cause of tabs

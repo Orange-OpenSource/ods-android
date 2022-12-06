@@ -11,6 +11,7 @@
 package com.orange.ods.compose.component.menu
 
 import androidx.compose.foundation.background
+import androidx.compose.foundation.layout.ColumnScope
 import androidx.compose.material.DropdownMenu
 import androidx.compose.material.DropdownMenuItem
 import androidx.compose.material.Text
@@ -32,7 +33,7 @@ import com.orange.ods.compose.theme.OdsTheme
  * @param modifier The modifier to be applied to the menu
  * @param offset [DpOffset] to be added to the position of the menu
  * @param properties [PopupProperties] for further customization of the popup's behavior
- * @param menuItems List of [OdsMenuItem] to display in the menu
+ * @param content The content of the dropdown menu
  */
 @Composable
 fun OdsDropdownMenu(
@@ -41,19 +42,16 @@ fun OdsDropdownMenu(
     modifier: Modifier = Modifier,
     offset: DpOffset = DpOffset(0.dp, 0.dp),
     properties: PopupProperties = PopupProperties(focusable = true),
-    menuItems: List<OdsMenuItem> = emptyList()
+    content: @Composable ColumnScope.() -> Unit
 ) {
     DropdownMenu(
         expanded = expanded,
         onDismissRequest = onDismissRequest,
         modifier = modifier.background(OdsTheme.colors.surface),
         offset = offset,
-        properties = properties
-    ) {
-        menuItems.forEach { item ->
-            OdsDropdownMenuItem(text = item.text, onClick = item.onClick, enabled = item.enabled)
-        }
-    }
+        properties = properties,
+        content = content
+    )
 }
 
 /**
@@ -65,7 +63,7 @@ fun OdsDropdownMenu(
  * will not be clickable and [onClick] will not be invoked
  */
 @Composable
-private fun OdsDropdownMenuItem(
+fun ColumnScope.OdsDropdownMenuItem(
     text: String,
     onClick: () -> Unit,
     enabled: Boolean = true
@@ -77,12 +75,3 @@ private fun OdsDropdownMenuItem(
         Text(text = text, style = OdsTheme.typography.body1, color = OdsTheme.colors.onSurface)
     }
 }
-
-/**
- * An item displayed in a menu
- *
- * @property text The text of the menu item
- * @property onClick Action executed when the menu item was clicked
- * @property enabled Determines the enabled state of the menu item
- */
-data class OdsMenuItem(val text: String, val onClick: () -> Unit, val enabled: Boolean = true)

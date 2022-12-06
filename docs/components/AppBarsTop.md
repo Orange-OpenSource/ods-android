@@ -248,23 +248,20 @@ If you need to have a top app bar with some elevation you can set the `@style/Wi
 You can easily add an overflow menu to your top app bar by using the `OdsTopAppBarOverflowMenuBox` composable as follow:
 
 ```kotlin
-OdsTopAppBarOverflowMenuBox(
-    overflowIconContentDescription = "more actions",
-    overflowMenuItems = listOf(
-        OdsMenuItem(
-            text = "Account",
-            onClick = { 
-                // do something
-            }
-        ),
-        OdsMenuItem(
-            text = "Settings",
-            onClick = { 
-                // do something
-            }
-        )
+OdsTopAppBarOverflowMenuBox(overflowIconContentDescription = "more actions") {
+    OdsDropdownMenuItem(
+        text = "account",
+        onClick = { 
+            // Do something
+        }
     )
-)
+    OdsDropdownMenuItem(
+        text = "settings",
+        onClick = { 
+            // Do something
+        }
+    )
+}
 ```
 
 ## Component specific tokens

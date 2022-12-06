@@ -11,6 +11,7 @@
 package com.orange.ods.compose.component.appbar.top
 
 import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.ColumnScope
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.RowScope
 import androidx.compose.material.AppBarDefaults
@@ -34,7 +35,7 @@ import androidx.compose.ui.unit.dp
 import com.orange.ods.compose.component.OdsComponentApi
 import com.orange.ods.compose.component.button.OdsIconButton
 import com.orange.ods.compose.component.menu.OdsDropdownMenu
-import com.orange.ods.compose.component.menu.OdsMenuItem
+import com.orange.ods.compose.component.menu.OdsDropdownMenuItem
 import com.orange.ods.compose.component.utilities.Preview
 import com.orange.ods.compose.component.utilities.UiModePreviews
 import com.orange.ods.compose.theme.OdsTheme
@@ -121,12 +122,12 @@ fun OdsTopAppBarActionButton(
  * Overflow menu displayed in an [OdsTopAppBar]. It displays the overflow icon (3 vertical dots) and the menu appearing on click.
  *
  * @param overflowIconContentDescription The content description of the overflow icon.
- * @param overflowMenuItems The list of the [OdsMenuItem] to display in the menu.
+ * @param content The content of the overflow dropdown menu
  */
 @Composable
 fun OdsTopAppBarOverflowMenuBox(
     overflowIconContentDescription: String,
-    overflowMenuItems: List<OdsMenuItem> = emptyList()
+    content: @Composable ColumnScope.() -> Unit
 ) {
     var showMenu by remember { mutableStateOf(false) }
 
@@ -139,7 +140,7 @@ fun OdsTopAppBarOverflowMenuBox(
         OdsDropdownMenu(
             expanded = showMenu,
             onDismissRequest = { showMenu = false },
-            menuItems = overflowMenuItems
+            content = content
         )
     }
 }
@@ -161,12 +162,11 @@ private fun PreviewOdsTopAppBar() = Preview {
                 contentDescription = "Info"
             )
             OdsTopAppBarOverflowMenuBox(
-                overflowIconContentDescription = "more options",
-                overflowMenuItems = listOf(
-                    OdsMenuItem(text = "settings", {}),
-                    OdsMenuItem(text = "account", {})
-                )
-            )
+                overflowIconContentDescription = "more options"
+            ) {
+                OdsDropdownMenuItem(text = "settings", onClick = { })
+                OdsDropdownMenuItem(text = "account", onClick = { })
+            }
         }
     )
 }
