@@ -245,10 +245,10 @@ If you need to have a top app bar with some elevation you can set the `@style/Wi
 ![Overflow menu light](images/app_bar_top_overflow_menu_light.png)  
 ![Overflow menu dark](images/app_bar_top_overflow_menu_dark.png)
 
-You can easily add an overflow menu to your top app bar by using the `OdsTopAppBarOverFlowMenuBox` composable as follow:
+You can easily add an overflow menu to your top app bar by using the `OdsTopAppBarOverflowMenuBox` composable as follow:
 
 ```kotlin
-OdsTopAppBarOverFlowMenuBox(
+OdsTopAppBarOverflowMenuBox(
     overflowIconContentDescription = "more actions",
     overflowMenuItems = listOf(
         OdsMenuItem(

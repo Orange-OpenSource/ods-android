@@ -22,7 +22,7 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import com.orange.ods.compose.component.appbar.top.OdsTopAppBar
 import com.orange.ods.compose.component.appbar.top.OdsTopAppBarActionButton
-import com.orange.ods.compose.component.appbar.top.OdsTopAppBarOverFlowMenuBox
+import com.orange.ods.compose.component.appbar.top.OdsTopAppBarOverflowMenuBox
 import com.orange.ods.compose.component.menu.OdsMenuItem
 import com.orange.ods.demo.R
 import com.orange.ods.demo.ui.components.utilities.clickOnElement
@@ -64,7 +64,7 @@ fun MainTopAppBar(
                 }
             }
             if (state.isOverflowMenuEnabled) {
-                OdsTopAppBarOverFlowMenuBox(
+                OdsTopAppBarOverflowMenuBox(
                     overflowIconContentDescription = stringResource(id = R.string.component_app_bars_top_element_overflow_menu),
                     overflowMenuItems = listOf(
                         OdsMenuItem(

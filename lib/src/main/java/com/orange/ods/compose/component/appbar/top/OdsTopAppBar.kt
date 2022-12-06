@@ -124,7 +124,7 @@ fun OdsTopAppBarActionButton(
  * @param overflowMenuItems The list of the [OdsMenuItem] to display in the menu.
  */
 @Composable
-fun OdsTopAppBarOverFlowMenuBox(
+fun OdsTopAppBarOverflowMenuBox(
     overflowIconContentDescription: String,
     overflowMenuItems: List<OdsMenuItem> = emptyList()
 ) {
@@ -160,7 +160,7 @@ private fun PreviewOdsTopAppBar() = Preview {
                 painter = painterResource(id = android.R.drawable.ic_dialog_info),
                 contentDescription = "Info"
             )
-            OdsTopAppBarOverFlowMenuBox(
+            OdsTopAppBarOverflowMenuBox(
                 overflowIconContentDescription = "more options",
                 overflowMenuItems = listOf(
                     OdsMenuItem(text = "settings", {}),
