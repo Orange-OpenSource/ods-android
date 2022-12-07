@@ -224,6 +224,7 @@
     <string name="component_list_trailing_icon">Icon</string>
     <string name="component_list_trailing_caption">Caption</string>
     <string name="component_list_divider">Divider</string>
+    <string name="component_list_information">Information</string>
 
     <!-- Component Snackbars -->
     <string name="component_snackbars">Snackbars</string>

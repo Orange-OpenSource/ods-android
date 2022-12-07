@@ -40,6 +40,7 @@ import com.orange.ods.compose.component.list.OdsListItemIconType
 import com.orange.ods.compose.component.list.divider
 import com.orange.ods.compose.component.list.iconType
 import com.orange.ods.compose.text.OdsTextCaption
+import com.orange.ods.compose.theme.OdsTheme
 import com.orange.ods.demo.R
 import com.orange.ods.demo.ui.components.utilities.ComponentCountRow
 import com.orange.ods.demo.ui.components.utilities.ComponentCustomizationBottomSheetScaffold
@@ -177,7 +178,8 @@ private val ListItemCustomizationState.trailing: (@Composable () -> Unit)?
                         clickOnElement(context, iconText)
                     },
                 painter = painterResource(id = R.drawable.ic_info),
-                contentDescription = null
+                tint = OdsTheme.colors.onSurface,
+                contentDescription = stringResource(id = R.string.component_list_information)
             )
         }
         ListItemCustomizationState.Trailing.Caption -> { ->
