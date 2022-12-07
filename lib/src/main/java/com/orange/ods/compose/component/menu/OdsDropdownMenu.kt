@@ -20,6 +20,8 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.DpOffset
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.window.PopupProperties
+import com.orange.ods.compose.component.utilities.Preview
+import com.orange.ods.compose.component.utilities.UiModePreviews
 import com.orange.ods.compose.theme.OdsTheme
 
 /**
@@ -73,5 +75,26 @@ fun ColumnScope.OdsDropdownMenuItem(
         enabled = enabled
     ) {
         Text(text = text, style = OdsTheme.typography.body1, color = OdsTheme.colors.onSurface)
+    }
+}
+
+/**
+ * Note: Please use Android Studio preview interactive mode to see the OdsDropdownMenu preview cause expanded is a target state.
+ */
+@UiModePreviews.Default
+@Composable
+private fun PreviewOdsDropdownMenu() = Preview {
+    OdsDropdownMenu(
+        expanded = true,
+        onDismissRequest = { },
+    ) {
+        OdsDropdownMenuItem(
+            text = "Account",
+            onClick = { }
+        )
+        OdsDropdownMenuItem(
+            text = "Settings",
+            onClick = { }
+        )
     }
 }
