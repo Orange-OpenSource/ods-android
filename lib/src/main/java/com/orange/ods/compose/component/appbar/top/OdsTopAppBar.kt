@@ -10,6 +10,8 @@
 
 package com.orange.ods.compose.component.appbar.top
 
+import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.ColumnScope
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.RowScope
 import androidx.compose.material.AppBarDefaults
@@ -19,13 +21,21 @@ import androidx.compose.material.Text
 import androidx.compose.material.TopAppBar
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ArrowBack
+import androidx.compose.material.icons.filled.MoreVert
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.painter.Painter
+import androidx.compose.ui.graphics.vector.rememberVectorPainter
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 import com.orange.ods.compose.component.OdsComponentApi
 import com.orange.ods.compose.component.button.OdsIconButton
+import com.orange.ods.compose.component.menu.OdsDropdownMenu
+import com.orange.ods.compose.component.menu.OdsDropdownMenuItem
 import com.orange.ods.compose.component.utilities.Preview
 import com.orange.ods.compose.component.utilities.UiModePreviews
 import com.orange.ods.compose.theme.OdsTheme
@@ -79,6 +89,16 @@ fun OdsTopAppBar(
     )
 }
 
+/**
+ * Action icon button displayed in an [OdsTopAppBar].
+ *
+ * @param onClick Will be called when the user clicks on the action icon button.
+ * @param painter Painter of the icon.
+ * @param contentDescription The content description associated to this OdsTopAppBarActionButton.
+ * @param modifier The [Modifier] to be applied to this OdsTopAppBarActionButton.
+ * @param enabled whether or not this OdsTopAppBarActionButton will handle input events and appear enabled for
+ * semantics purposes, true by default.
+ */
 @Composable
 @OdsComponentApi
 fun OdsTopAppBarActionButton(
@@ -98,6 +118,33 @@ fun OdsTopAppBarActionButton(
     )
 }
 
+/**
+ * Overflow menu displayed in an [OdsTopAppBar]. It displays the overflow icon (3 vertical dots) and the menu appearing on click.
+ *
+ * @param overflowIconContentDescription The content description of the overflow icon.
+ * @param content The content of the overflow dropdown menu
+ */
+@Composable
+fun OdsTopAppBarOverflowMenuBox(
+    overflowIconContentDescription: String,
+    content: @Composable ColumnScope.() -> Unit
+) {
+    var showMenu by remember { mutableStateOf(false) }
+
+    Box {
+        OdsTopAppBarActionButton(
+            onClick = { showMenu = !showMenu },
+            painter = rememberVectorPainter(image = Icons.Filled.MoreVert),
+            contentDescription = overflowIconContentDescription
+        )
+        OdsDropdownMenu(
+            expanded = showMenu,
+            onDismissRequest = { showMenu = false },
+            content = content
+        )
+    }
+}
+
 @UiModePreviews.Default
 @Composable
 private fun PreviewOdsTopAppBar() = Preview {
@@ -114,6 +161,12 @@ private fun PreviewOdsTopAppBar() = Preview {
                 painter = painterResource(id = android.R.drawable.ic_dialog_info),
                 contentDescription = "Info"
             )
+            OdsTopAppBarOverflowMenuBox(
+                overflowIconContentDescription = "more options"
+            ) {
+                OdsDropdownMenuItem(text = "settings", onClick = { })
+                OdsDropdownMenuItem(text = "account", onClick = { })
+            }
         }
     )
 }

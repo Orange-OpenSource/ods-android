@@ -11,6 +11,8 @@ description: Top app bars display information and actions relating to the curren
 * [Specifications references](#specifications-references)
 * [Accessibility](#accessibility)
 * [Implementation](#implementation)
+* [Extras](#extras)
+  * [Overflow menu](#overflow-menu)
 * [Component specific tokens](#component-specific-tokens)
 
 ---
@@ -234,6 +236,32 @@ If you need to have a top app bar with some elevation you can set the `@style/Wi
     </com.google.android.material.appbar.AppBarLayout>
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>
+```
+
+## Extras
+
+### Overflow menu
+
+![Overflow menu light](images/app_bar_top_overflow_menu_light.png)  
+![Overflow menu dark](images/app_bar_top_overflow_menu_dark.png)
+
+You can easily add an overflow menu to your top app bar by using the `OdsTopAppBarOverflowMenuBox` composable as follow:
+
+```kotlin
+OdsTopAppBarOverflowMenuBox(overflowIconContentDescription = "more actions") {
+    OdsDropdownMenuItem(
+        text = "account",
+        onClick = { 
+            // Do something
+        }
+    )
+    OdsDropdownMenuItem(
+        text = "settings",
+        onClick = { 
+            // Do something
+        }
+    )
+}
 ```
 
 ## Component specific tokens
