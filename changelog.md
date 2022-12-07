@@ -9,6 +9,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
+- \[Doc\] Add Orange small logo favicon to the documentation ([#346](https://github.com/Orange-OpenSource/ods-android/issues/346))
 - \[Lib\] Add `OdsTopAppBarOverflowMenuBox` and `OdsDropdownMenu` composables to display an overflow menu in the top app bar ([#349](https://github.com/Orange-OpenSource/ods-android/issues/349))
 
 ### Fixed
