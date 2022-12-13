@@ -53,7 +53,7 @@ fun ButtonTechnicalText(
             }
             style?.let { TechnicalText(text = "style = $style,") }
             if (icon == true) {
-                TechnicalText(text = "icon = painterResource(id = R.drawable.ic_search)")
+                TechnicalText(text = "icon = painterResource(id = R.drawable.ic_search),")
             }
             if (!enabled) {
                 TechnicalText(text = "enabled = false,")
