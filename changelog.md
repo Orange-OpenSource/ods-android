@@ -11,6 +11,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - \[Lib\] Add `OdsTopAppBarOverflowMenuBox` and `OdsDropdownMenu` composables to display an overflow menu in the top app bar ([#349](https://github.com/Orange-OpenSource/ods-android/issues/349))
 
+### Changed
+
+- \[Doc\] Use ODS Jekyll theme header to display favicons on documentation github pages ([#370](https://github.com/Orange-OpenSource/ods-android/issues/370))
+
 ### Fixed
 
 - \[Demo\] Fix list item trailing icon vocalization and display ([#337](https://github.com/Orange-OpenSource/ods-android/issues/337))
