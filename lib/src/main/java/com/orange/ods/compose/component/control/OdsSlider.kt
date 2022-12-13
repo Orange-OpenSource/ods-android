@@ -18,7 +18,6 @@ import androidx.compose.foundation.layout.defaultMinSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material.ContentAlpha
 import androidx.compose.material.Icon
 import androidx.compose.material.Slider
 import androidx.compose.material.SliderDefaults
@@ -46,6 +45,7 @@ import com.orange.ods.compose.component.utilities.BasicPreviewParameterProvider
 import com.orange.ods.compose.component.utilities.Preview
 import com.orange.ods.compose.component.utilities.UiModePreviews
 import com.orange.ods.compose.theme.OdsTheme
+import com.orange.ods.utilities.extension.disabled
 
 private const val ActiveTickColorAlpha = 0.4f
 
@@ -287,9 +287,7 @@ private object OdsSliderDefaults {
     @Composable
     fun colors(
         thumbColor: Color = OdsTheme.colors.primary,
-        disabledThumbColor: Color = OdsTheme.colors.onSurface
-            .copy(alpha = ContentAlpha.disabled)
-            .compositeOver(OdsTheme.colors.surface),
+        disabledThumbColor: Color = OdsTheme.colors.onSurface.disabled.compositeOver(OdsTheme.colors.surface),
         activeTrackColor: Color = OdsTheme.colors.primary,
         disabledActiveTrackColor: Color =
             OdsTheme.colors.onSurface.copy(alpha = SliderDefaults.DisabledActiveTrackAlpha),

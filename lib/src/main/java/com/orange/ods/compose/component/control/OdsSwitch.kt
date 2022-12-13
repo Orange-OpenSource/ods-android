@@ -10,7 +10,6 @@
 
 package com.orange.ods.compose.component.control
 
-import androidx.compose.material.ContentAlpha
 import androidx.compose.material.Switch
 import androidx.compose.material.SwitchDefaults
 import androidx.compose.material.ripple.LocalRippleTheme
@@ -28,6 +27,7 @@ import com.orange.ods.compose.component.utilities.Preview
 import com.orange.ods.compose.component.utilities.UiModePreviews
 import com.orange.ods.compose.theme.OdsPrimaryRippleTheme
 import com.orange.ods.compose.theme.OdsTheme
+import com.orange.ods.utilities.extension.disabled
 
 /**
  * <a href="https://system.design.orange.com/0c1af118d/p/14638a-selection-controls/b/352c00" class="external" target="_blank">ODS switch</a>.
@@ -68,18 +68,10 @@ private object OdsSwitchDefaults {
         checkedTrackColor: Color = checkedThumbColor,
         uncheckedThumbColor: Color = OdsTheme.colors.surface,
         uncheckedTrackColor: Color = OdsTheme.colors.onSurface,
-        disabledCheckedThumbColor: Color = checkedThumbColor
-            .copy(alpha = ContentAlpha.disabled)
-            .compositeOver(OdsTheme.colors.surface),
-        disabledCheckedTrackColor: Color = checkedTrackColor
-            .copy(alpha = ContentAlpha.disabled)
-            .compositeOver(OdsTheme.colors.surface),
-        disabledUncheckedThumbColor: Color = uncheckedThumbColor
-            .copy(alpha = ContentAlpha.disabled)
-            .compositeOver(OdsTheme.colors.surface),
-        disabledUncheckedTrackColor: Color = uncheckedTrackColor
-            .copy(alpha = ContentAlpha.disabled)
-            .compositeOver(OdsTheme.colors.surface)
+        disabledCheckedThumbColor: Color = checkedThumbColor.disabled.compositeOver(OdsTheme.colors.surface),
+        disabledCheckedTrackColor: Color = checkedTrackColor.disabled.compositeOver(OdsTheme.colors.surface),
+        disabledUncheckedThumbColor: Color = uncheckedThumbColor.disabled.compositeOver(OdsTheme.colors.surface),
+        disabledUncheckedTrackColor: Color = uncheckedTrackColor.disabled.compositeOver(OdsTheme.colors.surface)
     ) = SwitchDefaults.colors(
         checkedThumbColor = checkedThumbColor,
         checkedTrackColor = checkedTrackColor,

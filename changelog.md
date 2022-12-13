@@ -10,6 +10,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Added
 
 - \[Lib\] Add `OdsTopAppBarOverflowMenuBox` and `OdsDropdownMenu` composables to display an overflow menu in the top app bar ([#349](https://github.com/Orange-OpenSource/ods-android/issues/349))
+- \[Lib\] Add `disabled` and `setEnabled` extensions on Compose `Color` ([#314](https://github.com/Orange-OpenSource/ods-android/issues/314))
 
 ### Changed
 

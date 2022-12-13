@@ -16,7 +16,6 @@ import androidx.compose.foundation.layout.size
 import androidx.compose.material.Chip
 import androidx.compose.material.ChipColors
 import androidx.compose.material.ChipDefaults.LeadingIconOpacity
-import androidx.compose.material.ContentAlpha
 import androidx.compose.material.ExperimentalMaterialApi
 import androidx.compose.material.Icon
 import androidx.compose.material.Text
@@ -42,6 +41,7 @@ import com.orange.ods.compose.component.utilities.OdsImageCircleShape
 import com.orange.ods.compose.component.utilities.Preview
 import com.orange.ods.compose.component.utilities.UiModePreviews
 import com.orange.ods.compose.theme.OdsTheme
+import com.orange.ods.utilities.extension.disabled
 import com.orange.ods.utilities.extension.noRippleClickable
 
 
@@ -98,7 +98,7 @@ fun OdsChip(
                         modifier = Modifier.size(dimensionResource(id = R.dimen.chip_icon_size)),
                         painter = leadingIcon,
                         contentDescription = leadingContentDescription,
-                        tint = if (enabled) OdsTheme.colors.onSurface else OdsTheme.colors.onSurface.copy(alpha = ContentAlpha.disabled)
+                        tint = if (enabled) OdsTheme.colors.onSurface else OdsTheme.colors.onSurface.disabled
                     )
                 }
             }

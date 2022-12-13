@@ -12,7 +12,6 @@ package com.orange.ods.compose.component.control
 
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
-import androidx.compose.material.ContentAlpha
 import androidx.compose.material.RadioButton
 import androidx.compose.material.RadioButtonDefaults
 import androidx.compose.material.Text
@@ -30,6 +29,7 @@ import com.orange.ods.compose.component.utilities.Preview
 import com.orange.ods.compose.component.utilities.UiModePreviews
 import com.orange.ods.compose.theme.OdsPrimaryRippleTheme
 import com.orange.ods.compose.theme.OdsTheme
+import com.orange.ods.utilities.extension.disabled
 
 /**
  * <a href="https://system.design.orange.com/0c1af118d/p/14638a-selection-controls/b/352c00" class="external" target="_blank">ODS radio button</a>.
@@ -62,7 +62,7 @@ fun OdsRadioButton(
             enabled = enabled,
             colors = if (selected) {
                 OdsRadioButtonDefaults.colors(
-                    disabledColor = OdsTheme.colors.secondary.copy(alpha = ContentAlpha.disabled)
+                    disabledColor = OdsTheme.colors.secondary.disabled
                 )
             } else {
                 OdsRadioButtonDefaults.colors()
@@ -77,7 +77,7 @@ private object OdsRadioButtonDefaults {
     fun colors(
         selectedColor: Color = OdsTheme.colors.secondary,
         unselectedColor: Color = OdsTheme.colors.onSurface.copy(alpha = 0.6f),
-        disabledColor: Color = OdsTheme.colors.onSurface.copy(alpha = ContentAlpha.disabled)
+        disabledColor: Color = OdsTheme.colors.onSurface.disabled
     ) = RadioButtonDefaults.colors(selectedColor, unselectedColor, disabledColor)
 
 }

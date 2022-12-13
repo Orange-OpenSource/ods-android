@@ -17,7 +17,6 @@ import androidx.compose.foundation.layout.size
 import androidx.compose.material.Button
 import androidx.compose.material.ButtonColors
 import androidx.compose.material.ButtonDefaults
-import androidx.compose.material.ContentAlpha
 import androidx.compose.material.Icon
 import androidx.compose.material.Text
 import androidx.compose.material.ripple.LocalRippleTheme
@@ -34,6 +33,7 @@ import com.orange.ods.compose.component.utilities.Preview
 import com.orange.ods.compose.component.utilities.UiModePreviews
 import com.orange.ods.compose.theme.OdsDisplaySurface
 import com.orange.ods.compose.theme.OdsTheme
+import com.orange.ods.utilities.extension.disabled
 
 /**
  * Specifying an [OdsButtonStyle] allow to display a button with specific colors.
@@ -172,7 +172,7 @@ private fun disabledButtonBackgroundColor(displaySurface: OdsDisplaySurface) = d
 
 @Composable
 private fun disabledButtonContentColor(displaySurface: OdsDisplaySurface) =
-    disabledButtonColors(displaySurface = displaySurface).copy(alpha = ContentAlpha.disabled)
+    disabledButtonColors(displaySurface = displaySurface).disabled
 
 /**
  * Ripple theme used on primary color.
