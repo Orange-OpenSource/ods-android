@@ -24,7 +24,8 @@ import com.orange.ods.compose.component.OdsComponentApi
 import com.orange.ods.compose.component.utilities.Preview
 import com.orange.ods.compose.component.utilities.UiModePreviews
 import com.orange.ods.compose.theme.OdsTheme
-import com.orange.ods.utilities.extension.enabled
+import com.orange.ods.utilities.extension.enable
+
 
 /**
  * OdsIconButton is a clickable icon, used to represent actions. An OdsIconButton has an overall minimum
@@ -53,7 +54,7 @@ fun OdsIconButton(
     tint: Color = OdsTheme.colors.onSurface
 ) {
     IconButton(onClick = onClick, modifier = modifier, enabled = enabled) {
-        Icon(painter = painter, contentDescription = contentDescription, tint = tint.enabled(enabled = enabled))
+        Icon(painter = painter, contentDescription = contentDescription, tint = tint.enable(enabled = enabled))
     }
 }
 
@@ -84,7 +85,7 @@ fun OdsIconButton(
     tint: Color = OdsTheme.colors.onSurface
 ) {
     IconButton(onClick = onClick, modifier = modifier, enabled = enabled) {
-        Icon(imageVector = imageVector, contentDescription = contentDescription, tint = tint.enabled(enabled = enabled))
+        Icon(imageVector = imageVector, contentDescription = contentDescription, tint = tint.enable(enabled = enabled))
     }
 }
 

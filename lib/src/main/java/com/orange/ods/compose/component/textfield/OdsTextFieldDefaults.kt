@@ -14,7 +14,7 @@ import androidx.compose.material.ContentAlpha
 import androidx.compose.material.TextFieldDefaults
 import androidx.compose.runtime.Composable
 import com.orange.ods.compose.theme.OdsTheme
-import com.orange.ods.utilities.extension.disabled
+import com.orange.ods.utilities.extension.enable
 
 internal object OdsTextFieldDefaults {
 
@@ -42,7 +42,7 @@ internal object OdsTextFieldDefaults {
         cursorColor = OdsTheme.colors.primary,
         errorCursorColor = OdsTheme.colors.error,
         focusedBorderColor = OdsTheme.colors.primary.copy(alpha = ContentAlpha.high),
-        unfocusedBorderColor = OdsTheme.colors.onSurface.disabled,
+        unfocusedBorderColor = OdsTheme.colors.onSurface.enable(enabled = false),
         errorBorderColor = OdsTheme.colors.error,
         leadingIconColor = OdsTheme.colors.onSurface,
         trailingIconColor = OdsTheme.colors.onSurface,
@@ -56,7 +56,7 @@ internal object OdsTextFieldDefaults {
     @Composable
     fun trailingTextColor(isValueEmpty: Boolean, isTextFieldEnabled: Boolean) =
         if (isValueEmpty || !isTextFieldEnabled) {
-            OdsTheme.colors.onSurface.disabled
+            OdsTheme.colors.onSurface.enable(enabled = false)
         } else {
             OdsTheme.colors.onSurface
         }

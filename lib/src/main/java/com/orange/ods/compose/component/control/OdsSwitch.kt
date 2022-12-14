@@ -27,7 +27,7 @@ import com.orange.ods.compose.component.utilities.Preview
 import com.orange.ods.compose.component.utilities.UiModePreviews
 import com.orange.ods.compose.theme.OdsPrimaryRippleTheme
 import com.orange.ods.compose.theme.OdsTheme
-import com.orange.ods.utilities.extension.disabled
+import com.orange.ods.utilities.extension.enable
 
 /**
  * <a href="https://system.design.orange.com/0c1af118d/p/14638a-selection-controls/b/352c00" class="external" target="_blank">ODS switch</a>.
@@ -68,10 +68,10 @@ private object OdsSwitchDefaults {
         checkedTrackColor: Color = checkedThumbColor,
         uncheckedThumbColor: Color = OdsTheme.colors.surface,
         uncheckedTrackColor: Color = OdsTheme.colors.onSurface,
-        disabledCheckedThumbColor: Color = checkedThumbColor.disabled.compositeOver(OdsTheme.colors.surface),
-        disabledCheckedTrackColor: Color = checkedTrackColor.disabled.compositeOver(OdsTheme.colors.surface),
-        disabledUncheckedThumbColor: Color = uncheckedThumbColor.disabled.compositeOver(OdsTheme.colors.surface),
-        disabledUncheckedTrackColor: Color = uncheckedTrackColor.disabled.compositeOver(OdsTheme.colors.surface)
+        disabledCheckedThumbColor: Color = checkedThumbColor.enable(enabled = false).compositeOver(OdsTheme.colors.surface),
+        disabledCheckedTrackColor: Color = checkedTrackColor.enable(enabled = false).compositeOver(OdsTheme.colors.surface),
+        disabledUncheckedThumbColor: Color = uncheckedThumbColor.enable(enabled = false).compositeOver(OdsTheme.colors.surface),
+        disabledUncheckedTrackColor: Color = uncheckedTrackColor.enable(enabled = false).compositeOver(OdsTheme.colors.surface)
     ) = SwitchDefaults.colors(
         checkedThumbColor = checkedThumbColor,
         checkedTrackColor = checkedTrackColor,

@@ -26,7 +26,7 @@ import com.orange.ods.compose.component.utilities.Preview
 import com.orange.ods.compose.component.utilities.UiModePreviews
 import com.orange.ods.compose.theme.OdsPrimaryRippleTheme
 import com.orange.ods.compose.theme.OdsTheme
-import com.orange.ods.utilities.extension.disabled
+import com.orange.ods.utilities.extension.enable
 
 /**
  * <a href="https://system.design.orange.com/0c1af118d/p/14638a-selection-controls/b/352c00" class="external" target="_blank">ODS Checkbox</a>.
@@ -57,7 +57,7 @@ fun OdsCheckbox(
             onCheckedChange = onCheckedChange,
             enabled = enabled,
             colors = if (checked) {
-                OdsCheckboxDefault.colors(disabledColor = OdsTheme.colors.secondary.disabled)
+                OdsCheckboxDefault.colors(disabledColor = OdsTheme.colors.secondary.enable(enabled = false))
             } else {
                 OdsCheckboxDefault.colors()
             }
@@ -72,8 +72,8 @@ private object OdsCheckboxDefault {
         checkedColor: Color = OdsTheme.colors.secondary,
         uncheckedColor: Color = OdsTheme.colors.onSurface.copy(alpha = 0.6f),
         checkmarkColor: Color = OdsTheme.colors.surface,
-        disabledColor: Color = OdsTheme.colors.onSurface.disabled,
-        disabledIndeterminateColor: Color = checkedColor.disabled
+        disabledColor: Color = OdsTheme.colors.onSurface.enable(enabled = false),
+        disabledIndeterminateColor: Color = checkedColor.enable(enabled = false)
     ) = CheckboxDefaults.colors(checkedColor, uncheckedColor, checkmarkColor, disabledColor, disabledIndeterminateColor)
 
 }

@@ -29,7 +29,7 @@ import com.orange.ods.compose.component.utilities.Preview
 import com.orange.ods.compose.component.utilities.UiModePreviews
 import com.orange.ods.compose.theme.OdsPrimaryRippleTheme
 import com.orange.ods.compose.theme.OdsTheme
-import com.orange.ods.utilities.extension.disabled
+import com.orange.ods.utilities.extension.enable
 
 /**
  * <a href="https://system.design.orange.com/0c1af118d/p/14638a-selection-controls/b/352c00" class="external" target="_blank">ODS radio button</a>.
@@ -62,7 +62,7 @@ fun OdsRadioButton(
             enabled = enabled,
             colors = if (selected) {
                 OdsRadioButtonDefaults.colors(
-                    disabledColor = OdsTheme.colors.secondary.disabled
+                    disabledColor = OdsTheme.colors.secondary.enable(enabled = false)
                 )
             } else {
                 OdsRadioButtonDefaults.colors()
@@ -77,7 +77,7 @@ private object OdsRadioButtonDefaults {
     fun colors(
         selectedColor: Color = OdsTheme.colors.secondary,
         unselectedColor: Color = OdsTheme.colors.onSurface.copy(alpha = 0.6f),
-        disabledColor: Color = OdsTheme.colors.onSurface.disabled
+        disabledColor: Color = OdsTheme.colors.onSurface.enable(enabled = false)
     ) = RadioButtonDefaults.colors(selectedColor, unselectedColor, disabledColor)
 
 }

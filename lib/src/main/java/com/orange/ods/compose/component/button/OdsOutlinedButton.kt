@@ -31,7 +31,7 @@ import com.orange.ods.compose.theme.OdsLightRippleTheme
 import com.orange.ods.compose.theme.OdsRippleTheme
 import com.orange.ods.compose.theme.OdsTheme
 import com.orange.ods.theme.OdsColors
-import com.orange.ods.utilities.extension.disabled
+import com.orange.ods.utilities.extension.enable
 
 /**
  * <a href="https://system.design.orange.com/0c1af118d/p/06a393-buttons/b/79b091" target="_blank">ODS Buttons</a>.
@@ -100,7 +100,7 @@ private fun OdsColors.buttonOutlinedColor(displaySurface: OdsDisplaySurface) =
     }
 
 @Composable
-private fun OdsColors.buttonOutlinedDisabledColor(displaySurface: OdsDisplaySurface) = buttonOutlinedColor(displaySurface).disabled
+private fun OdsColors.buttonOutlinedDisabledColor(displaySurface: OdsDisplaySurface) = buttonOutlinedColor(displaySurface).enable(enabled = false)
 
 @UiModePreviews.Button
 @Composable

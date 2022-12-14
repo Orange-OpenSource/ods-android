@@ -17,7 +17,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.compositeOver
 import com.orange.ods.compose.theme.OdsTheme
-import com.orange.ods.utilities.extension.disabled
+import com.orange.ods.utilities.extension.enable
 
 internal object OdsChipDefaults {
 
@@ -41,7 +41,7 @@ internal object OdsChipDefaults {
         backgroundColor = backgroundColor,
         contentColor = contentColor,
         leadingIconContentColor = contentColor.copy(alpha = ChipDefaults.LeadingIconOpacity),
-        disabledBackgroundColor = backgroundColor.disabled
+        disabledBackgroundColor = backgroundColor.enable(enabled = false)
     )
 
     @OptIn(ExperimentalMaterialApi::class)
@@ -68,7 +68,7 @@ internal object OdsChipDefaults {
         selectedBackgroundColor = OdsTheme.colors.onSurface.copy(alpha = SurfaceOverlayOpacity).compositeOver(backgroundColor),
         selectedContentColor = OdsTheme.colors.onSurface.copy(alpha = SelectedOverlayOpacity).compositeOver(contentColor),
         selectedLeadingIconColor = OdsTheme.colors.onSurface.copy(alpha = SelectedOverlayOpacity).compositeOver(leadingIconColor),
-        disabledBackgroundColor = backgroundColor.disabled
+        disabledBackgroundColor = backgroundColor.enable(enabled = false)
     )
 
     @OptIn(ExperimentalMaterialApi::class)
@@ -84,6 +84,6 @@ internal object OdsChipDefaults {
         selectedBackgroundColor = OdsTheme.colors.onSurface.copy(alpha = SurfaceOverlayOpacity).compositeOver(backgroundColor),
         selectedContentColor = OdsTheme.colors.onSurface.copy(alpha = SelectedOverlayOpacity).compositeOver(contentColor),
         selectedLeadingIconColor = OdsTheme.colors.onSurface.copy(alpha = SelectedOverlayOpacity).compositeOver(leadingIconColor),
-        disabledBackgroundColor = backgroundColor.disabled
+        disabledBackgroundColor = backgroundColor.enable(enabled = false)
     )
 }

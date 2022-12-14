@@ -14,9 +14,5 @@ import androidx.compose.material.ContentAlpha
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.graphics.Color
 
-val Color.disabled: Color
-    @Composable
-    get() = copy(alpha = ContentAlpha.disabled)
-
 @Composable
-fun Color.enabled(enabled: Boolean) = if (enabled) this else disabled
+fun Color.enable(enabled: Boolean) = if (enabled) this else copy(alpha = ContentAlpha.disabled)

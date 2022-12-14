@@ -33,7 +33,7 @@ import com.orange.ods.compose.component.utilities.Preview
 import com.orange.ods.compose.component.utilities.UiModePreviews
 import com.orange.ods.compose.theme.OdsDisplaySurface
 import com.orange.ods.compose.theme.OdsTheme
-import com.orange.ods.utilities.extension.disabled
+import com.orange.ods.utilities.extension.enable
 
 /**
  * Specifying an [OdsButtonStyle] allow to display a button with specific colors.
@@ -172,7 +172,7 @@ private fun disabledButtonBackgroundColor(displaySurface: OdsDisplaySurface) = d
 
 @Composable
 private fun disabledButtonContentColor(displaySurface: OdsDisplaySurface) =
-    disabledButtonColors(displaySurface = displaySurface).disabled
+    disabledButtonColors(displaySurface = displaySurface).enable(enabled = false)
 
 /**
  * Ripple theme used on primary color.

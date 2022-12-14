@@ -41,7 +41,7 @@ import com.orange.ods.compose.component.utilities.OdsImageCircleShape
 import com.orange.ods.compose.component.utilities.Preview
 import com.orange.ods.compose.component.utilities.UiModePreviews
 import com.orange.ods.compose.theme.OdsTheme
-import com.orange.ods.utilities.extension.disabled
+import com.orange.ods.utilities.extension.enable
 import com.orange.ods.utilities.extension.noRippleClickable
 
 
@@ -98,7 +98,7 @@ fun OdsChip(
                         modifier = Modifier.size(dimensionResource(id = R.dimen.chip_icon_size)),
                         painter = leadingIcon,
                         contentDescription = leadingContentDescription,
-                        tint = if (enabled) OdsTheme.colors.onSurface else OdsTheme.colors.onSurface.disabled
+                        tint = if (enabled) OdsTheme.colors.onSurface else OdsTheme.colors.onSurface.enable(enabled = false)
                     )
                 }
             }
