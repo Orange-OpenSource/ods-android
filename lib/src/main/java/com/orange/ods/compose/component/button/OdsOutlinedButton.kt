@@ -13,7 +13,6 @@ package com.orange.ods.compose.component.button
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.material.ButtonDefaults
-import androidx.compose.material.ContentAlpha
 import androidx.compose.material.OutlinedButton
 import androidx.compose.material.Text
 import androidx.compose.material.ripple.LocalRippleTheme
@@ -32,6 +31,7 @@ import com.orange.ods.compose.theme.OdsLightRippleTheme
 import com.orange.ods.compose.theme.OdsRippleTheme
 import com.orange.ods.compose.theme.OdsTheme
 import com.orange.ods.theme.OdsColors
+import com.orange.ods.utilities.extension.enable
 
 /**
  * <a href="https://system.design.orange.com/0c1af118d/p/06a393-buttons/b/79b091" target="_blank">ODS Buttons</a>.
@@ -100,7 +100,7 @@ private fun OdsColors.buttonOutlinedColor(displaySurface: OdsDisplaySurface) =
     }
 
 @Composable
-private fun OdsColors.buttonOutlinedDisabledColor(displaySurface: OdsDisplaySurface) = buttonOutlinedColor(displaySurface).copy(alpha = ContentAlpha.disabled)
+private fun OdsColors.buttonOutlinedDisabledColor(displaySurface: OdsDisplaySurface) = buttonOutlinedColor(displaySurface).enable(enabled = false)
 
 @UiModePreviews.Button
 @Composable

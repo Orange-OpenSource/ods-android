@@ -12,7 +12,6 @@ package com.orange.ods.compose.component.button
 
 import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.material.ButtonDefaults
-import androidx.compose.material.ContentAlpha
 import androidx.compose.material.Text
 import androidx.compose.material.TextButton
 import androidx.compose.material.ripple.LocalRippleTheme
@@ -33,6 +32,7 @@ import com.orange.ods.compose.theme.OdsPrimaryRippleTheme
 import com.orange.ods.compose.theme.OdsRippleTheme
 import com.orange.ods.compose.theme.OdsTheme
 import com.orange.ods.theme.OdsColors
+import com.orange.ods.utilities.extension.enable
 
 /**
  * Specifying an [OdsTextButtonStyle] allow to display a button with specific colors.
@@ -114,7 +114,7 @@ private fun OdsColors.buttonTextColor(displaySurface: OdsDisplaySurface, style: 
 
 @Composable
 private fun OdsColors.buttonTextDisabledColor(displaySurface: OdsDisplaySurface) =
-    buttonTextColor(displaySurface = displaySurface, style = OdsTextButtonStyle.Default).copy(alpha = ContentAlpha.disabled)
+    buttonTextColor(displaySurface = displaySurface, style = OdsTextButtonStyle.Default).enable(enabled = false)
 
 @UiModePreviews.Button
 @Composable
