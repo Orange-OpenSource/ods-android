@@ -61,7 +61,15 @@ sealed class Component(
         R.drawable.il_buttons,
         R.drawable.il_buttons_small,
         R.string.component_buttons_description,
-        listOf(Variant.ButtonsPrimary, Variant.ButtonsDefault, Variant.ButtonsOutlined, Variant.ButtonsText, Variant.ButtonsFunctional, Variant.ButtonsToggle)
+        listOf(
+            Variant.ButtonsPrimary,
+            Variant.ButtonsDefault,
+            Variant.ButtonsOutlined,
+            Variant.ButtonsText,
+            Variant.ButtonsFunctional,
+            Variant.ButtonsToggle,
+            Variant.ButtonsIcon,
+        )
     )
 
     object Cards : Component(
@@ -184,6 +192,7 @@ sealed class Variant(
     object ButtonsText : Variant(R.string.component_buttons_low_emphasis, OdsComponent.OdsTextButton.name)
     object ButtonsFunctional : Variant(R.string.component_buttons_functional, "${OdsComponent.OdsButton.name} with a functional style")
     object ButtonsToggle : Variant(R.string.component_buttons_toggle, OdsComponent.OdsIconToggleButton.name)
+    object ButtonsIcon : Variant(R.string.component_buttons_icon, OdsComponent.OdsIconButton.name)
 
     object CardImageFirst : Variant(R.string.component_card_image_first, OdsComponent.OdsImageFirstCard.name)
     object CardTitleFirst : Variant(R.string.component_card_title_first, OdsComponent.OdsTitleFirstCard.name)
