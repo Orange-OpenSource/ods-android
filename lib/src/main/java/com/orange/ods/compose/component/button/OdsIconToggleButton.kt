@@ -111,7 +111,6 @@ private fun OdsColors.buttonToggleBackgroundColor(displaySurface: OdsDisplaySurf
         OdsDisplaySurface.Light -> OdsTheme.lightThemeColors.primary
     }
 
-@UiModePreviews.Default
 @Composable
 private fun OdsColors.buttonToggleBorderColor(displaySurface: OdsDisplaySurface) =
     when (displaySurface) {
@@ -120,7 +119,7 @@ private fun OdsColors.buttonToggleBorderColor(displaySurface: OdsDisplaySurface)
         OdsDisplaySurface.Light -> OdsTheme.lightThemeColors.onSurface
     }.copy(alpha = 0.12f)
 
-
+@UiModePreviews.Default
 @Composable
 private fun PreviewOdsIconToggleButton() = Preview {
     var checked by remember { mutableStateOf(false) }
