@@ -10,7 +10,6 @@
 
 package com.orange.ods.demo.ui.components.buttons
 
-import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -28,7 +27,6 @@ import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.painterResource
 import com.orange.ods.compose.component.OdsComponent
 import com.orange.ods.compose.component.button.OdsIconButton
-import com.orange.ods.compose.theme.OdsDisplaySurface
 import com.orange.ods.demo.R
 import com.orange.ods.demo.ui.components.utilities.ComponentCustomizationBottomSheetScaffold
 import com.orange.ods.demo.ui.utilities.composable.ButtonTechnicalText
@@ -65,26 +63,14 @@ fun ButtonsIcon() {
 
                 Spacer(modifier = Modifier.padding(top = dimensionResource(R.dimen.spacing_s)))
 
-                if (isSystemInDarkTheme()) {
-                    LightSurface(horizontalAlignment = Alignment.CenterHorizontally) {
-                        OdsIconButton(
-                            onClick = {},
-                            painter = painterResource(id = R.drawable.ic_search),
-                            contentDescription = "",
-                            enabled = isEnabled,
-                            displaySurface = OdsDisplaySurface.Light
-                        )
-                    }
-                } else {
-                    DarkSurface(horizontalAlignment = Alignment.CenterHorizontally) {
-                        OdsIconButton(
-                            onClick = {},
-                            painter = painterResource(id = R.drawable.ic_search),
-                            contentDescription = "",
-                            enabled = isEnabled,
-                            displaySurface = OdsDisplaySurface.Dark
-                        )
-                    }
+                InvertedBackgroundColumn(horizontalAlignment = Alignment.CenterHorizontally) {
+                    OdsIconButton(
+                        onClick = {},
+                        painter = painterResource(id = R.drawable.ic_search),
+                        contentDescription = "",
+                        enabled = isEnabled,
+                        displaySurface = displaySurface
+                    )
                 }
 
                 CodeImplementationColumn {

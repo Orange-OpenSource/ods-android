@@ -10,7 +10,6 @@
 
 package com.orange.ods.demo.ui.components.buttons
 
-import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -56,26 +55,15 @@ fun ButtonsOutlined() {
 
                 Spacer(modifier = Modifier.padding(top = dimensionResource(R.dimen.spacing_s)))
 
-                if (isSystemInDarkTheme()) {
-                    LightSurface {
-                        OutlinedButton(
-                            leadingIcon = hasLeadingIcon,
-                            enabled = isEnabled,
-                            variableWidth = hasVariableWidth,
-                            displaySurface = OdsDisplaySurface.Light
-                        )
-                    }
-                } else {
-                    DarkSurface {
-                        OutlinedButton(
-                            leadingIcon = hasLeadingIcon,
-                            enabled = isEnabled,
-                            variableWidth = hasVariableWidth,
-                            displaySurface = OdsDisplaySurface.Dark
-                        )
-                    }
+                InvertedBackgroundColumn {
+                    OutlinedButton(
+                        leadingIcon = hasLeadingIcon,
+                        enabled = isEnabled,
+                        variableWidth = hasVariableWidth,
+                        displaySurface = displaySurface
+                    )
                 }
-
+                
                 CodeImplementationColumn {
                     ButtonTechnicalText(
                         componentName = OdsComponent.OdsOutlinedButton.name,

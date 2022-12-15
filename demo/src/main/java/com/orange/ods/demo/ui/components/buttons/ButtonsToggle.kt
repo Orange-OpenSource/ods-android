@@ -10,7 +10,6 @@
 
 package com.orange.ods.demo.ui.components.buttons
 
-import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -87,28 +86,15 @@ fun ButtonsToggle() {
 
                 val forcedCheckedToggleIndexes = remember { mutableStateOf(emptySet<Int>()) }
 
-                if (isSystemInDarkTheme()) {
-                    LightSurface {
-                        ToggleRow(
-                            checkedToggleIndexes = forcedCheckedToggleIndexes.value,
-                            onCheckedToggleChanged = { index, changed ->
-                                onCheckedToggleChanged(forcedCheckedToggleIndexes, index, changed)
-                            },
-                            toggleCount = toggleCount.value,
-                            displaySurface = OdsDisplaySurface.Light
-                        )
-                    }
-                } else {
-                    DarkSurface {
-                        ToggleRow(
-                            checkedToggleIndexes = forcedCheckedToggleIndexes.value,
-                            onCheckedToggleChanged = { index, changed ->
-                                onCheckedToggleChanged(forcedCheckedToggleIndexes, index, changed)
-                            },
-                            toggleCount = toggleCount.value,
-                            displaySurface = OdsDisplaySurface.Dark
-                        )
-                    }
+                InvertedBackgroundColumn {
+                    ToggleRow(
+                        checkedToggleIndexes = forcedCheckedToggleIndexes.value,
+                        onCheckedToggleChanged = { index, changed ->
+                            onCheckedToggleChanged(forcedCheckedToggleIndexes, index, changed)
+                        },
+                        toggleCount = toggleCount.value,
+                        displaySurface = displaySurface
+                    )
                 }
 
                 CodeImplementationColumn {
