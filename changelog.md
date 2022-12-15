@@ -12,12 +12,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - \[Demo\] Add `OdsIconButton` demo ([#294](https://github.com/Orange-OpenSource/ods-android/issues/294))
 - \[Lib\] Add `OdsTopAppBarOverflowMenuBox` and `OdsDropdownMenu` composables to display an overflow menu in the top app bar ([#349](https://github.com/Orange-OpenSource/ods-android/issues/349))
 - \[Lib\] Add `enabled` extension method on Compose `Color` ([#314](https://github.com/Orange-OpenSource/ods-android/issues/314))
-- \[Lib\] Add new composable methods for `OdsIconButton` ([#294](https://github.com/Orange-OpenSource/ods-android/issues/294))
 
 ### Changed
 
 - \[Demo\] Change buttons screens by removing style customization and adding a code implementation section ([#339](https://github.com/Orange-OpenSource/ods-android/issues/339))
 - \[Doc\] Use ODS Jekyll theme header to display favicons on documentation github pages ([#370](https://github.com/Orange-OpenSource/ods-android/issues/370))
+- \[Lib\] Replace `tint` parameter of `OdsIconButton` composable methods by `displaySurface` ([#294](https://github.com/Orange-OpenSource/ods-android/issues/294))
 
 ### Fixed
 

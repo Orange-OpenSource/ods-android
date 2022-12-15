@@ -48,37 +48,6 @@ import com.orange.ods.utilities.extension.enable
  * @param modifier optional [Modifier] for this IconButton
  * @param enabled whether or not this OdsIconButton will handle input events and appear enabled for
  * semantics purposes, true by default
- * @param tint the icon tint
- */
-@Composable
-@OdsComponentApi
-fun OdsIconButton(
-    onClick: () -> Unit,
-    painter: Painter,
-    contentDescription: String,
-    modifier: Modifier = Modifier,
-    enabled: Boolean = true,
-    tint: Color
-) {
-    IconButton(onClick = onClick, modifier = modifier, enabled = enabled) {
-        Icon(painter = painter, contentDescription = contentDescription, tint = tint.enable(enabled = enabled))
-    }
-}
-
-/**
- * OdsIconButton is a clickable icon, used to represent actions. An OdsIconButton has an overall minimum
- * touch target size of 48 x 48dp, to meet accessibility guidelines. It contains an [Icon] centered
- * inside the OdsIconButton.
- * If using a custom icon, note that the typical size for the internal icon is 24 x 24 dp.
- *
- * This component is typically used inside an App Bar for the navigation icon / actions.
- *
- * @param onClick the lambda to be invoked when this icon is pressed
- * @param painter the painter to be drawn inside the IconButton
- * @param contentDescription the content description associated to this OdsIconButton.
- * @param modifier optional [Modifier] for this IconButton
- * @param enabled whether or not this OdsIconButton will handle input events and appear enabled for
- * semantics purposes, true by default
  * @param displaySurface optional allow to force the button display on a dark or light
  * surface. By default the appearance applied is based on the system night mode value.
  */
@@ -124,37 +93,6 @@ fun OdsIconButton(
  * @param modifier optional [Modifier] for this IconButton
  * @param enabled whether or not this OdsIconButton will handle input events and appear enabled for
  * semantics purposes, true by default
- * @param tint the icon tint
- */
-@Composable
-@OdsComponentApi
-fun OdsIconButton(
-    onClick: () -> Unit,
-    imageVector: ImageVector,
-    contentDescription: String,
-    modifier: Modifier = Modifier,
-    enabled: Boolean = true,
-    tint: Color
-) {
-    IconButton(onClick = onClick, modifier = modifier, enabled = enabled) {
-        Icon(imageVector = imageVector, contentDescription = contentDescription, tint = tint.enable(enabled = enabled))
-    }
-}
-
-/**
- * OdsIconButton is a clickable icon, used to represent actions. An OdsIconButton has an overall minimum
- * touch target size of 48 x 48dp, to meet accessibility guidelines. It contains an [Icon] centered
- * inside the OdsIconButton.
- * If using a custom icon, note that the typical size for the internal icon is 24 x 24 dp.
- *
- * This component is typically used inside an App Bar for the navigation icon / actions.
- *
- * @param onClick the lambda to be invoked when this icon is pressed
- * @param imageVector the ImageVector to be drawn inside the IconButton
- * @param contentDescription the content description associated to this OdsIconButton.
- * @param modifier optional [Modifier] for this IconButton
- * @param enabled whether or not this OdsIconButton will handle input events and appear enabled for
- * semantics purposes, true by default
  * @param displaySurface optional allow to force the button display on a dark or light
  * surface. By default the appearance applied is based on the system night mode value.
  */
@@ -183,6 +121,34 @@ fun OdsIconButton(
             enabled = enabled,
             tint = OdsTheme.colors.iconButtonIconColor(displaySurface = displaySurface)
         )
+    }
+}
+
+@Composable
+internal fun OdsIconButton(
+    onClick: () -> Unit,
+    painter: Painter,
+    contentDescription: String,
+    modifier: Modifier = Modifier,
+    enabled: Boolean = true,
+    tint: Color
+) {
+    IconButton(onClick = onClick, modifier = modifier, enabled = enabled) {
+        Icon(painter = painter, contentDescription = contentDescription, tint = tint.enable(enabled = enabled))
+    }
+}
+
+@Composable
+internal fun OdsIconButton(
+    onClick: () -> Unit,
+    imageVector: ImageVector,
+    contentDescription: String,
+    modifier: Modifier = Modifier,
+    enabled: Boolean = true,
+    tint: Color
+) {
+    IconButton(onClick = onClick, modifier = modifier, enabled = enabled) {
+        Icon(imageVector = imageVector, contentDescription = contentDescription, tint = tint.enable(enabled = enabled))
     }
 }
 
