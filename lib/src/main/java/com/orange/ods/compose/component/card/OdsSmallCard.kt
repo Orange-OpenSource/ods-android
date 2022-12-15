@@ -27,6 +27,7 @@ import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.semantics.semantics
+import androidx.compose.ui.text.style.TextOverflow
 import com.orange.ods.R
 import com.orange.ods.compose.component.OdsComponentApi
 import com.orange.ods.compose.component.utilities.Preview
@@ -87,7 +88,9 @@ fun OdsSmallCard(
             ) {
                 Text(
                     text = title,
-                    style = OdsTheme.typography.h6
+                    style = OdsTheme.typography.h6,
+                    maxLines = 1,
+                    overflow = TextOverflow.Ellipsis
                 )
                 subtitle?.let {
                     Text(
