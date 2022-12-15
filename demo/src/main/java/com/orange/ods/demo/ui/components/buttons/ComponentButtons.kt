@@ -20,14 +20,13 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.dimensionResource
+import androidx.compose.ui.res.stringResource
 import com.orange.ods.compose.component.button.OdsButtonStyle
+import com.orange.ods.compose.text.OdsTextBody2
 import com.orange.ods.compose.theme.OdsDisplaySurface
 import com.orange.ods.compose.theme.OdsTheme
 import com.orange.ods.demo.R
 import com.orange.ods.demo.ui.components.Variant
-import com.orange.ods.demo.ui.utilities.composable.Subtitle
-import com.orange.ods.demo.ui.utilities.composable.TechnicalText
-import com.orange.ods.demo.ui.utilities.composable.Title
 
 @Composable
 fun ComponentButtons(variant: Variant) {
@@ -43,34 +42,43 @@ fun ComponentButtons(variant: Variant) {
 }
 
 @Composable
-fun StyleTitle(@StringRes titleRes: Int, technicalText: String) {
-    Title(titleRes, horizontalPadding = true)
-    TechnicalText(text = technicalText, horizontalPadding = true)
-}
-
-@Composable
 fun DarkSurface(content: @Composable ColumnScope.() -> Unit) {
-    ForcedBackgroundColumn(color = OdsTheme.darkThemeColors.surface) {
-        Subtitle(textRes = R.string.component_force_on_dark, displaySurface = OdsDisplaySurface.Dark, horizontalPadding = true)
-        content()
-    }
+    ForcedBackgroundColumn(darkSurface = true, content = content)
 }
 
 @Composable
 fun LightSurface(content: @Composable ColumnScope.() -> Unit) {
-    ForcedBackgroundColumn(color = OdsTheme.lightThemeColors.surface) {
-        Subtitle(textRes = R.string.component_force_on_light, displaySurface = OdsDisplaySurface.Light, horizontalPadding = true)
-        content()
-    }
+    ForcedBackgroundColumn(darkSurface = false, content = content)
 }
 
 @Composable
-private fun ForcedBackgroundColumn(color: Color, content: @Composable ColumnScope.() -> Unit) {
+private fun ForcedBackgroundColumn(darkSurface: Boolean, content: @Composable ColumnScope.() -> Unit) {
+    val backgroundColor: Color
+    @StringRes val textRes: Int
+    val displaySurface: OdsDisplaySurface
+    if (darkSurface) {
+        backgroundColor = OdsTheme.darkThemeColors.surface
+        textRes = R.string.component_force_on_dark
+        displaySurface = OdsDisplaySurface.Dark
+    } else {
+        backgroundColor = OdsTheme.lightThemeColors.surface
+        textRes = R.string.component_force_on_light
+        displaySurface = OdsDisplaySurface.Light
+    }
+
     Column(
         modifier = Modifier
             .fillMaxWidth()
-            .background(color = color)
-            .padding(bottom = dimensionResource(R.dimen.spacing_m)),
-        content = content
-    )
+            .background(color = backgroundColor)
+            .padding(bottom = dimensionResource(R.dimen.spacing_m))
+    ) {
+        OdsTextBody2(
+            modifier = Modifier
+                .padding(horizontal = dimensionResource(id = R.dimen.spacing_m))
+                .padding(top = dimensionResource(id = R.dimen.spacing_s)),
+            text = stringResource(id = textRes),
+            displaySurface = displaySurface
+        )
+        content()
+    }
 }

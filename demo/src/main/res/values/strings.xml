@@ -10,6 +10,7 @@
 
 <resources>
     <string name="app_name">ODS Preview</string>
+    <string name="code_implementation">Code implementation</string>
 
     <!-- Navigation -->
     <string name="navigation_item_guidelines">Guidelines</string>
@@ -127,7 +128,6 @@
     <string name="component_button_style_functional">Functional</string>
     <string name="component_button_style_functional_positive">Positive</string>
     <string name="component_button_style_functional_negative">Negative</string>
-
 
     <!-- Components Cards -->
     <string name="component_cards">Cards</string>

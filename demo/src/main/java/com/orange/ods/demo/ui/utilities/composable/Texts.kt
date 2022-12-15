@@ -21,7 +21,10 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.text.font.Font
+import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import com.orange.ods.compose.text.OdsTextH5
 import com.orange.ods.compose.text.OdsTextSubtitle1
 import com.orange.ods.compose.theme.OdsDisplaySurface
@@ -58,13 +61,13 @@ fun Subtitle(@StringRes textRes: Int, displaySurface: OdsDisplaySurface = OdsDis
 }
 
 @Composable
-fun TechnicalText(text: String, horizontalPadding: Boolean = false) {
+fun TechnicalText(text: String, modifier: Modifier = Modifier) {
+    val courier = FontFamily(Font(R.font.courier_prime_regular))
     Text(
         text = text,
-        modifier = Modifier
-            .fillMaxWidth()
-            .padding(horizontal = if (horizontalPadding) dimensionResource(R.dimen.screen_horizontal_margin) else 0.dp),
-        style = OdsTheme.typography.body2,
-        color = OdsTheme.colors.onBackground.copy(alpha = ContentAlpha.medium)
+        modifier = modifier.fillMaxWidth(),
+        fontFamily = courier,
+        fontSize = 14.sp,
+        color = OdsTheme.colors.onSurface.copy(alpha = ContentAlpha.medium)
     )
 }

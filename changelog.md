@@ -14,6 +14,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Changed
 
+- \[Demo\] Change buttons screens by removing style customization and adding a code implementation section ([#339](https://github.com/Orange-OpenSource/ods-android/issues/339))
 - \[Doc\] Use ODS Jekyll theme header to display favicons on documentation github pages ([#370](https://github.com/Orange-OpenSource/ods-android/issues/370))
 
 ### Fixed

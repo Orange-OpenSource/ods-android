@@ -24,6 +24,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
+import com.orange.ods.compose.component.OdsComponent
 import com.orange.ods.compose.component.button.OdsTextButton
 import com.orange.ods.compose.component.button.OdsTextButtonStyle
 import com.orange.ods.compose.component.chip.OdsChoiceChip
@@ -31,8 +32,11 @@ import com.orange.ods.compose.component.chip.OdsChoiceChipsFlowRow
 import com.orange.ods.compose.theme.OdsDisplaySurface
 import com.orange.ods.demo.R
 import com.orange.ods.demo.ui.components.utilities.ComponentCustomizationBottomSheetScaffold
+import com.orange.ods.demo.ui.utilities.composable.ButtonTechnicalText
+import com.orange.ods.demo.ui.utilities.composable.CodeImplementationColumn
 import com.orange.ods.demo.ui.utilities.composable.Subtitle
 import com.orange.ods.demo.ui.utilities.composable.SwitchListItem
+import com.orange.ods.demo.ui.utilities.composable.Title
 import com.orange.ods.utilities.extension.fullName
 
 @OptIn(ExperimentalMaterialApi::class)
@@ -63,7 +67,10 @@ fun ButtonsText() {
                     .verticalScroll(rememberScrollState())
                     .padding(vertical = dimensionResource(id = R.dimen.screen_vertical_margin))
             ) {
-                ButtonStyleTitle(style = textButtonStyle.value)
+                Title(
+                    textRes = if (textButtonStyle.value == OdsTextButtonStyle.Default) R.string.component_button_style_default else R.string.component_button_style_primary,
+                    horizontalPadding = true
+                )
 
                 TextButton(style = textButtonStyle.value, leadingIcon = hasLeadingIcon, enabled = isEnabled, variableWidth = hasVariableWidth)
 
@@ -90,27 +97,19 @@ fun ButtonsText() {
                         )
                     }
                 }
+
+                CodeImplementationColumn {
+                    ButtonTechnicalText(
+                        componentName = OdsComponent.OdsTextButton.name,
+                        style = textButtonStyle.value.fullName,
+                        enabled = isEnabled,
+                        variableWidth = hasVariableWidth,
+                        icon = hasLeadingIcon
+                    )
+                }
             }
         }
     }
-}
-
-@Composable
-private fun ButtonStyleTitle(style: OdsTextButtonStyle) {
-    val titleRes: Int
-    val technicalText: String
-    when (style) {
-        OdsTextButtonStyle.Default -> {
-            titleRes = R.string.component_button_style_default
-            technicalText = OdsTextButtonStyle.Default.fullName
-        }
-        OdsTextButtonStyle.Primary -> {
-            titleRes = R.string.component_button_style_primary
-            technicalText = OdsTextButtonStyle.Primary.fullName
-        }
-    }
-
-    StyleTitle(titleRes = titleRes, technicalText = technicalText)
 }
 
 @Composable
