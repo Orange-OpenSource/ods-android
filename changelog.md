@@ -25,6 +25,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - \[Demo\] Fix a bug where dark mode did not work properly in about screens on Android 13 ([#375](https://github.com/Orange-OpenSource/ods-android/issues/375))
 - \[Lib\] Fix top app bar overflow menu colors ([#349](https://github.com/Orange-OpenSource/ods-android/issues/349))
 - \[Lib\] `OdsSmallCard` title is now single line and truncated if needed ([#302](https://github.com/Orange-OpenSource/ods-android/issues/302))
+- \[Lib\] Fix a bug where password was not hidden in `OdsTextField` and `OdsOutlinedTextField` ([#376](https://github.com/Orange-OpenSource/ods-android/issues/376))
 
 ## [0.8.0](https://github.com/Orange-OpenSource/ods-android/compare/0.7.0...0.8.0) - 2022-12-07
 

@@ -84,7 +84,10 @@ fun OdsPasswordOutlinedTextField(
     characterCounter: (@Composable () -> Unit)? = null
 ) {
     val odsPasswordTextFieldState = rememberOdsPasswordTextFieldState()
-
+    if (!visualisationIcon) {
+        odsPasswordTextFieldState.passwordVisible.value = false
+    }
+    
     Column {
         OutlinedTextField(
             value = value,
