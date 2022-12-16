@@ -10,11 +10,14 @@
 
 package com.orange.ods.compose.component.button
 
+import androidx.compose.foundation.background
 import androidx.compose.material.Icon
 import androidx.compose.material.IconButton
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Add
+import androidx.compose.material.ripple.LocalRippleTheme
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.painter.Painter
@@ -23,9 +26,13 @@ import androidx.compose.ui.res.painterResource
 import com.orange.ods.compose.component.OdsComponentApi
 import com.orange.ods.compose.component.utilities.Preview
 import com.orange.ods.compose.component.utilities.UiModePreviews
+import com.orange.ods.compose.theme.OdsDarkRippleTheme
+import com.orange.ods.compose.theme.OdsDisplaySurface
+import com.orange.ods.compose.theme.OdsLightRippleTheme
+import com.orange.ods.compose.theme.OdsRippleTheme
 import com.orange.ods.compose.theme.OdsTheme
+import com.orange.ods.theme.OdsColors
 import com.orange.ods.utilities.extension.enable
-
 
 /**
  * OdsIconButton is a clickable icon, used to represent actions. An OdsIconButton has an overall minimum
@@ -41,7 +48,8 @@ import com.orange.ods.utilities.extension.enable
  * @param modifier optional [Modifier] for this IconButton
  * @param enabled whether or not this OdsIconButton will handle input events and appear enabled for
  * semantics purposes, true by default
- * @param tint the icon tint, onSurface by default
+ * @param displaySurface optional allow to force the button display on a dark or light
+ * surface. By default the appearance applied is based on the system night mode value.
  */
 @Composable
 @OdsComponentApi
@@ -51,10 +59,23 @@ fun OdsIconButton(
     contentDescription: String,
     modifier: Modifier = Modifier,
     enabled: Boolean = true,
-    tint: Color = OdsTheme.colors.onSurface
+    displaySurface: OdsDisplaySurface = OdsDisplaySurface.Default
 ) {
-    IconButton(onClick = onClick, modifier = modifier, enabled = enabled) {
-        Icon(painter = painter, contentDescription = contentDescription, tint = tint.enable(enabled = enabled))
+    CompositionLocalProvider(
+        LocalRippleTheme provides when (displaySurface) {
+            OdsDisplaySurface.Default -> OdsRippleTheme
+            OdsDisplaySurface.Light -> OdsLightRippleTheme
+            OdsDisplaySurface.Dark -> OdsDarkRippleTheme
+        }
+    ) {
+        OdsIconButton(
+            onClick = onClick,
+            painter = painter,
+            contentDescription = contentDescription,
+            modifier = modifier.background(color = OdsTheme.colors.iconButtonBackgroundColor(displaySurface = displaySurface)),
+            enabled = enabled,
+            tint = OdsTheme.colors.iconButtonIconColor(displaySurface = displaySurface)
+        )
     }
 }
 
@@ -72,7 +93,8 @@ fun OdsIconButton(
  * @param modifier optional [Modifier] for this IconButton
  * @param enabled whether or not this OdsIconButton will handle input events and appear enabled for
  * semantics purposes, true by default
- * @param tint the icon tint, onSurface by default
+ * @param displaySurface optional allow to force the button display on a dark or light
+ * surface. By default the appearance applied is based on the system night mode value.
  */
 @Composable
 @OdsComponentApi
@@ -82,12 +104,69 @@ fun OdsIconButton(
     contentDescription: String,
     modifier: Modifier = Modifier,
     enabled: Boolean = true,
-    tint: Color = OdsTheme.colors.onSurface
+    displaySurface: OdsDisplaySurface = OdsDisplaySurface.Default
+) {
+    CompositionLocalProvider(
+        LocalRippleTheme provides when (displaySurface) {
+            OdsDisplaySurface.Default -> OdsRippleTheme
+            OdsDisplaySurface.Light -> OdsLightRippleTheme
+            OdsDisplaySurface.Dark -> OdsDarkRippleTheme
+        }
+    ) {
+        OdsIconButton(
+            onClick = onClick,
+            imageVector = imageVector,
+            contentDescription = contentDescription,
+            modifier = modifier.background(color = OdsTheme.colors.iconButtonBackgroundColor(displaySurface = displaySurface)),
+            enabled = enabled,
+            tint = OdsTheme.colors.iconButtonIconColor(displaySurface = displaySurface)
+        )
+    }
+}
+
+@Composable
+internal fun OdsIconButton(
+    onClick: () -> Unit,
+    painter: Painter,
+    contentDescription: String,
+    modifier: Modifier = Modifier,
+    enabled: Boolean = true,
+    tint: Color
+) {
+    IconButton(onClick = onClick, modifier = modifier, enabled = enabled) {
+        Icon(painter = painter, contentDescription = contentDescription, tint = tint.enable(enabled = enabled))
+    }
+}
+
+@Composable
+internal fun OdsIconButton(
+    onClick: () -> Unit,
+    imageVector: ImageVector,
+    contentDescription: String,
+    modifier: Modifier = Modifier,
+    enabled: Boolean = true,
+    tint: Color
 ) {
     IconButton(onClick = onClick, modifier = modifier, enabled = enabled) {
         Icon(imageVector = imageVector, contentDescription = contentDescription, tint = tint.enable(enabled = enabled))
     }
 }
+
+@Composable
+private fun OdsColors.iconButtonBackgroundColor(displaySurface: OdsDisplaySurface) =
+    when (displaySurface) {
+        OdsDisplaySurface.Default -> Color.Unspecified
+        OdsDisplaySurface.Dark -> OdsTheme.darkThemeColors.surface
+        OdsDisplaySurface.Light -> OdsTheme.lightThemeColors.surface
+    }
+
+@Composable
+private fun OdsColors.iconButtonIconColor(displaySurface: OdsDisplaySurface) =
+    when (displaySurface) {
+        OdsDisplaySurface.Default -> OdsTheme.colors.onSurface
+        OdsDisplaySurface.Dark -> OdsTheme.darkThemeColors.onSurface
+        OdsDisplaySurface.Light -> OdsTheme.lightThemeColors.onSurface
+    }
 
 @UiModePreviews.Default
 @Composable

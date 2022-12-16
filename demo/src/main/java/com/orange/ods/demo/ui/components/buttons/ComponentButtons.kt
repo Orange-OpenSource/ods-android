@@ -17,6 +17,7 @@ import androidx.compose.foundation.layout.ColumnScope
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.dimensionResource
@@ -37,22 +38,27 @@ fun ComponentButtons(variant: Variant) {
         Variant.ButtonsText -> ButtonsText()
         Variant.ButtonsFunctional -> ButtonsContained(OdsButtonStyle.FunctionalPositive)
         Variant.ButtonsToggle -> ButtonsToggle()
+        Variant.ButtonsIcon -> ButtonsIcon()
         else -> {}
     }
 }
 
 @Composable
-fun DarkSurface(content: @Composable ColumnScope.() -> Unit) {
-    ForcedBackgroundColumn(darkSurface = true, content = content)
+fun DarkSurface(horizontalAlignment: Alignment.Horizontal = Alignment.Start, content: @Composable ColumnScope.() -> Unit) {
+    ForcedBackgroundColumn(horizontalAlignment = horizontalAlignment, darkSurface = true, content = content)
 }
 
 @Composable
-fun LightSurface(content: @Composable ColumnScope.() -> Unit) {
-    ForcedBackgroundColumn(darkSurface = false, content = content)
+fun LightSurface(horizontalAlignment: Alignment.Horizontal = Alignment.Start, content: @Composable ColumnScope.() -> Unit) {
+    ForcedBackgroundColumn(horizontalAlignment = horizontalAlignment, darkSurface = false, content = content)
 }
 
 @Composable
-private fun ForcedBackgroundColumn(darkSurface: Boolean, content: @Composable ColumnScope.() -> Unit) {
+private fun ForcedBackgroundColumn(
+    horizontalAlignment: Alignment.Horizontal = Alignment.Start,
+    darkSurface: Boolean,
+    content: @Composable ColumnScope.() -> Unit
+) {
     val backgroundColor: Color
     @StringRes val textRes: Int
     val displaySurface: OdsDisplaySurface
@@ -70,12 +76,15 @@ private fun ForcedBackgroundColumn(darkSurface: Boolean, content: @Composable Co
         modifier = Modifier
             .fillMaxWidth()
             .background(color = backgroundColor)
-            .padding(bottom = dimensionResource(R.dimen.spacing_m))
+            .padding(bottom = dimensionResource(R.dimen.spacing_m)),
+        horizontalAlignment = horizontalAlignment
     ) {
         OdsTextBody2(
             modifier = Modifier
                 .padding(horizontal = dimensionResource(id = R.dimen.spacing_m))
-                .padding(top = dimensionResource(id = R.dimen.spacing_s)),
+                .padding(top = dimensionResource(id = R.dimen.spacing_s))
+                .fillMaxWidth()
+                .align(Alignment.Start),
             text = stringResource(id = textRes),
             displaySurface = displaySurface
         )

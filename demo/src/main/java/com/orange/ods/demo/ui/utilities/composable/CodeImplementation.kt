@@ -43,7 +43,8 @@ fun ButtonTechnicalText(
     modifier: Modifier = Modifier,
     style: String? = null,
     variableWidth: Boolean? = null,
-    icon: Boolean? = null
+    icon: Boolean? = null,
+    painter: Boolean? = null
 ) {
     Column(modifier = modifier) {
         TechnicalText(text = "$componentName(")
@@ -54,6 +55,9 @@ fun ButtonTechnicalText(
             style?.let { TechnicalText(text = "style = $style,") }
             if (icon == true) {
                 TechnicalText(text = "icon = painterResource(id = R.drawable.ic_search),")
+            }
+            if (painter == true) {
+                TechnicalText(text = "painter = painterResource(id = R.drawable.ic_search),")
             }
             if (!enabled) {
                 TechnicalText(text = "enabled = false,")
