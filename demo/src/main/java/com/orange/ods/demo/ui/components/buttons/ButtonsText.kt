@@ -10,7 +10,6 @@
 
 package com.orange.ods.demo.ui.components.buttons
 
-import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -76,26 +75,14 @@ fun ButtonsText() {
 
                 Spacer(modifier = Modifier.padding(top = dimensionResource(R.dimen.spacing_s)))
 
-                if (isSystemInDarkTheme()) {
-                    LightSurface {
-                        TextButton(
-                            style = textButtonStyle.value,
-                            leadingIcon = hasLeadingIcon,
-                            enabled = isEnabled,
-                            variableWidth = hasVariableWidth,
-                            displaySurface = OdsDisplaySurface.Light
-                        )
-                    }
-                } else {
-                    DarkSurface {
-                        TextButton(
-                            style = textButtonStyle.value,
-                            leadingIcon = hasLeadingIcon,
-                            enabled = isEnabled,
-                            variableWidth = hasVariableWidth,
-                            displaySurface = OdsDisplaySurface.Dark
-                        )
-                    }
+                InvertedBackgroundColumn {
+                    TextButton(
+                        style = textButtonStyle.value,
+                        leadingIcon = hasLeadingIcon,
+                        enabled = isEnabled,
+                        variableWidth = hasVariableWidth,
+                        displaySurface = displaySurface
+                    )
                 }
 
                 CodeImplementationColumn {

@@ -12,6 +12,7 @@ package com.orange.ods.demo.ui.components.buttons
 
 import androidx.annotation.StringRes
 import androidx.compose.foundation.background
+import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.ColumnScope
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -44,32 +45,21 @@ fun ComponentButtons(variant: Variant) {
 }
 
 @Composable
-fun DarkSurface(horizontalAlignment: Alignment.Horizontal = Alignment.Start, content: @Composable ColumnScope.() -> Unit) {
-    ForcedBackgroundColumn(horizontalAlignment = horizontalAlignment, darkSurface = true, content = content)
-}
-
-@Composable
-fun LightSurface(horizontalAlignment: Alignment.Horizontal = Alignment.Start, content: @Composable ColumnScope.() -> Unit) {
-    ForcedBackgroundColumn(horizontalAlignment = horizontalAlignment, darkSurface = false, content = content)
-}
-
-@Composable
-private fun ForcedBackgroundColumn(
+fun InvertedBackgroundColumn(
     horizontalAlignment: Alignment.Horizontal = Alignment.Start,
-    darkSurface: Boolean,
-    content: @Composable ColumnScope.() -> Unit
+    content: @Composable InvertedBackgroundColumnScope.() -> Unit
 ) {
     val backgroundColor: Color
     @StringRes val textRes: Int
     val displaySurface: OdsDisplaySurface
-    if (darkSurface) {
-        backgroundColor = OdsTheme.darkThemeColors.surface
-        textRes = R.string.component_force_on_dark
-        displaySurface = OdsDisplaySurface.Dark
-    } else {
+    if (isSystemInDarkTheme()) {
         backgroundColor = OdsTheme.lightThemeColors.surface
         textRes = R.string.component_force_on_light
         displaySurface = OdsDisplaySurface.Light
+    } else {
+        backgroundColor = OdsTheme.darkThemeColors.surface
+        textRes = R.string.component_force_on_dark
+        displaySurface = OdsDisplaySurface.Dark
     }
 
     Column(
@@ -88,6 +78,8 @@ private fun ForcedBackgroundColumn(
             text = stringResource(id = textRes),
             displaySurface = displaySurface
         )
-        content()
+        InvertedBackgroundColumnScope(this, displaySurface).content()
     }
 }
+
+class InvertedBackgroundColumnScope(scope: ColumnScope, val displaySurface: OdsDisplaySurface) : ColumnScope by scope
