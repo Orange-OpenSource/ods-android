@@ -15,25 +15,11 @@ object Markdown {
     private const val SpecialCharacters = "\\`*_{}[]()#+-.!"
 
     fun toHtml(markdown: String): String {
-        val html = markdown.replaceEscapedCharacters()
+        return markdown.replaceEscapedCharacters()
             .replaceLinks()
             .replaceCode()
             .replaceHeadings()
             .replaceNewlines()
-
-        return """
-            <html>
-                <head>
-                <meta
-                    name="color-scheme"
-                    content="dark light">    
-                <link
-                    rel="stylesheet"
-                    type="text/css"
-                    href="file:///android_res/raw/base_style.css">
-            </head>
-            $html
-        """.trimIndent()
     }
 
     private fun CharSequence.replaceEscapedCharacters(): String {

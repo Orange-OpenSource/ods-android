@@ -21,11 +21,10 @@ import androidx.compose.ui.platform.LocalConfiguration
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.viewinterop.AndroidView
-import androidx.webkit.WebSettingsCompat
-import androidx.webkit.WebViewFeature
 import com.orange.ods.demo.R
 import com.orange.ods.demo.ui.LocalMainTopAppBarManager
 import com.orange.ods.demo.ui.utilities.Markdown
+import com.orange.ods.demo.ui.utilities.extension.injectLightDarkModeCss
 import com.orange.ods.demo.ui.utilities.extension.isDarkModeEnabled
 import com.orange.ods.demo.ui.utilities.launchUrl
 import java.io.BufferedReader
@@ -52,6 +51,7 @@ fun AboutFileScreen(aboutItemId: Long) {
                         override fun onPageFinished(view: WebView?, url: String?) {
                             super.onPageFinished(view, url)
                             view?.loadUrl("javascript:(function(){ document.body.style.padding = '${verticalPadding}px ${horizontalPadding}px' })();");
+                            view?.injectLightDarkModeCss(configuration.isDarkModeEnabled)
                         }
 
                         override fun shouldOverrideUrlLoading(view: WebView?, request: WebResourceRequest?): Boolean {
@@ -74,16 +74,10 @@ fun AboutFileScreen(aboutItemId: Long) {
                     loadDataWithBaseURL(FilePath, html, "text/html; charset=UTF-8", StandardCharsets.UTF_8.name(), null)
 
                     setBackgroundColor(Color.TRANSPARENT)
-                    if (WebViewFeature.isFeatureSupported(WebViewFeature.FORCE_DARK_STRATEGY)) {
-                        WebSettingsCompat.setForceDarkStrategy(settings, WebSettingsCompat.DARK_STRATEGY_WEB_THEME_DARKENING_ONLY)
-                    }
                 }
             },
             update = {
-                if (WebViewFeature.isFeatureSupported(WebViewFeature.FORCE_DARK)) {
-                    val forceDarkMode = if (configuration.isDarkModeEnabled) WebSettingsCompat.FORCE_DARK_ON else WebSettingsCompat.FORCE_DARK_OFF
-                    WebSettingsCompat.setForceDark(it.settings, forceDarkMode)
-                }
+                it.injectLightDarkModeCss(configuration.isDarkModeEnabled)
             })
     }
 }
