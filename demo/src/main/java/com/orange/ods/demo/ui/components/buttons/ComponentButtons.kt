@@ -78,8 +78,7 @@ fun InvertedBackgroundColumn(
             text = stringResource(id = textRes),
             displaySurface = displaySurface
         )
-        val scope = InvertedBackgroundColumnScope(this, displaySurface)
-        scope.content()
+        InvertedBackgroundColumnScope(this, displaySurface).content()
     }
 }
 
