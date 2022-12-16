@@ -29,6 +29,7 @@ import androidx.compose.ui.res.stringResource
 import com.orange.ods.compose.component.card.OdsSmallCard
 import com.orange.ods.demo.R
 import com.orange.ods.demo.ui.LocalMainTopAppBarManager
+import com.orange.ods.demo.ui.utilities.DrawableManager
 import com.orange.ods.utilities.extension.orElse
 
 @Composable
@@ -59,10 +60,12 @@ fun ComponentsScreen(onComponentClick: (Long) -> Unit) {
 
 @Composable
 private fun RowScope.ComponentCard(component: Component, onComponentClick: (Long) -> Unit) {
+    val smallImageResId = component.smallImageRes?.let { DrawableManager.getDrawableResIdForCurrentTheme(resId = it) }
+    val imageResId = DrawableManager.getDrawableResIdForCurrentTheme(resId = component.imageRes)
     OdsSmallCard(
         modifier = Modifier.weight(0.5f),
         title = stringResource(id = component.titleRes),
-        image = painterResource(id = component.smallImageRes.orElse { component.imageRes }),
+        image = painterResource(id = smallImageResId.orElse { imageResId }),
         imageBackgroundColor = Color(Component.ImageBackgroundColor),
         imageContentScale = ContentScale.Fit,
         imageAlignment = component.imageAlignment,

@@ -34,6 +34,7 @@ import com.orange.ods.compose.theme.OdsTheme
 import com.orange.ods.demo.R
 import com.orange.ods.demo.ui.LocalMainTopAppBarManager
 import com.orange.ods.demo.ui.LocalOdsDemoGuideline
+import com.orange.ods.demo.ui.utilities.DrawableManager
 import com.orange.ods.demo.ui.utilities.composable.DetailScreenHeader
 import com.orange.ods.demo.ui.utilities.getStringName
 import com.orange.ods.theme.guideline.GuidelineTextStyle
@@ -49,7 +50,10 @@ fun GuidelineTypographyScreen() {
         verticalArrangement = Arrangement.spacedBy(dimensionResource(id = R.dimen.spacing_m))
     ) {
         item {
-            DetailScreenHeader(imageRes = R.drawable.il_typography, descriptionRes = R.string.guideline_typography_description)
+            DetailScreenHeader(
+                imageRes = DrawableManager.getDrawableResIdForCurrentTheme(resId = R.drawable.il_typography),
+                descriptionRes = R.string.guideline_typography_description
+            )
         }
         if (guidelineTypography.isEmpty()) {
             item {

@@ -30,9 +30,12 @@ import com.orange.ods.compose.component.list.divider
 import com.orange.ods.compose.text.OdsTextCaption
 import com.orange.ods.compose.text.OdsTextSubtitle1
 import com.orange.ods.demo.R
+import com.orange.ods.demo.ui.LocalMainThemeManager
 import com.orange.ods.demo.ui.LocalMainTopAppBarManager
 import com.orange.ods.demo.ui.guidelines.Guideline
+import com.orange.ods.demo.ui.utilities.DrawableManager
 import com.orange.ods.demo.ui.utilities.composable.DetailScreenHeader
+import com.orange.ods.demo.ui.utilities.extension.isOrange
 import java.text.DecimalFormat
 import java.text.DecimalFormatSymbols
 import java.util.*
@@ -46,7 +49,7 @@ fun GuidelineSpacingScreen() {
     LazyColumn(contentPadding = PaddingValues(bottom = dimensionResource(id = R.dimen.spacing_m))) {
         item {
             DetailScreenHeader(
-                imageRes = R.drawable.il_spacing,
+                imageRes = DrawableManager.getDrawableResIdForCurrentTheme(resId = R.drawable.il_spacing),
                 imageAlignment = Guideline.Spacing.imageAlignment,
                 descriptionRes = R.string.guideline_spacing_description
             )
@@ -83,6 +86,7 @@ private fun GuidelineSpacingImage(spacing: Spacing) {
     val spacingWidth = dimensionResource(id = spacing.dimenRes).coerceAtLeast(1.dp)
     val imageWidth = dimensionResource(id = R.dimen.guideline_spacing_image_width)
     val imageHeight = dimensionResource(id = R.dimen.guideline_spacing_image_height)
+    val isOrangeTheme = LocalMainThemeManager.current.currentThemeConfiguration.isOrange
 
     Canvas(
         modifier = Modifier
@@ -99,8 +103,9 @@ private fun GuidelineSpacingImage(spacing: Spacing) {
             Size(imageWidth.toPx(), bannerHeight.toPx())
         )
         // Spacing
+        val spacingColor = if (isOrangeTheme) 0xff4bb4e6 else 0xff949494
         drawRect(
-            Color(0xff4bb4e6),
+            Color(spacingColor),
             Offset(((imageWidth - spacingWidth) / 2.0f).toPx(), 0.0f),
             Size(spacingWidth.toPx(), imageHeight.toPx())
         )
