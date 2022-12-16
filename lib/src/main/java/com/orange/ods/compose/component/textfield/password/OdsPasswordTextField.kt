@@ -87,11 +87,10 @@ fun OdsPasswordTextField(
     keyboardActions: KeyboardActions = KeyboardActions(),
     characterCounter: (@Composable () -> Unit)? = null
 ) {
-    val odsPasswordTextFieldState = rememberOdsPasswordTextFieldState()
-    if (!visualisationIcon) {
-        odsPasswordTextFieldState.passwordVisible.value = false
+    val odsPasswordTextFieldState = rememberOdsPasswordTextFieldState().apply {
+        this.visualisationIcon.value = visualisationIcon
     }
-    
+
     Column {
         TextField(
             value = value,

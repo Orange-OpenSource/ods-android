@@ -20,17 +20,19 @@ import androidx.compose.ui.text.input.VisualTransformation
 
 @Composable
 fun rememberOdsPasswordTextFieldState(
+    visualisationIcon: MutableState<Boolean> = rememberSaveable { mutableStateOf(true) },
     passwordVisible: MutableState<Boolean> = rememberSaveable { mutableStateOf(false) }
 ) =
-    remember(passwordVisible) {
-        OdsPasswordTextFieldState(passwordVisible)
+    remember(visualisationIcon, passwordVisible) {
+        OdsPasswordTextFieldState(visualisationIcon, passwordVisible)
     }
 
 class OdsPasswordTextFieldState(
+    val visualisationIcon: MutableState<Boolean>,
     val passwordVisible: MutableState<Boolean>
 ) {
     val isPasswordVisible
-        get() = passwordVisible.value
+        get() = if (!visualisationIcon.value) false else passwordVisible.value
 
     val visualTransformation
         get() = if (isPasswordVisible) VisualTransformation.None else PasswordVisualTransformation()
