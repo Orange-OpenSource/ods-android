@@ -8,11 +8,11 @@
  * /
  */
 
-package com.orange.ods.demo.domain
+package com.orange.ods.demo.domain.recipes
 
-interface DataStoreService {
+import kotlinx.coroutines.flow.Flow
 
-    suspend fun putString(key: String, value: String)
+interface RecipesRepository {
     
-    suspend fun getString(key: String): String?
+    fun getRecipes(): Flow<List<Recipe>>
 }

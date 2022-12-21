@@ -11,16 +11,30 @@
 package com.orange.ods.demo.ui
 
 import androidx.lifecycle.ViewModel
-import com.orange.ods.demo.domain.DataStoreService
+import androidx.lifecycle.viewModelScope
+import com.orange.ods.demo.domain.datastore.DataStoreService
+import com.orange.ods.demo.domain.recipes.Recipe
+import com.orange.ods.demo.domain.recipes.RecipesRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.flow.firstOrNull
+import kotlinx.coroutines.launch
 import kotlinx.coroutines.runBlocking
 import javax.inject.Inject
 
 @HiltViewModel
-class MainViewModel @Inject constructor(private val dataStoreService: DataStoreService) : ViewModel() {
+class MainViewModel @Inject constructor(private val dataStoreService: DataStoreService, private val recipesRepository: RecipesRepository) : ViewModel() {
 
     companion object {
         private const val UserThemeNameKey = "userThemeName"
+    }
+
+    var recipes = emptyList<Recipe>()
+        private set
+
+    init {
+        viewModelScope.launch {
+            recipes = recipesRepository.getRecipes().firstOrNull().orEmpty()
+        }
     }
 
     fun storeUserThemeName(themeName: String) = runBlocking {

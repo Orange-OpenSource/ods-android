@@ -8,11 +8,11 @@
  * /
  */
 
-package com.orange.ods.demo.domain
+package com.orange.ods.demo.data
 
 import android.content.Context
-import com.orange.ods.demo.domain.datastore.DataStoreService
-import com.orange.ods.demo.domain.datastore.DataStoreServiceImpl
+import com.orange.ods.demo.data.recipes.RecipesRepositoryImpl
+import com.orange.ods.demo.domain.recipes.RecipesRepository
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -22,9 +22,9 @@ import javax.inject.Singleton
 
 @Module
 @InstallIn(SingletonComponent::class)
-object DomainModule {
+object DataModule {
 
     @Singleton
     @Provides
-    fun provideDataStoreService(@ApplicationContext context: Context): DataStoreService = DataStoreServiceImpl(context)
+    fun provideRecipesRepositoryImpl(@ApplicationContext context: Context): RecipesRepository = RecipesRepositoryImpl(context)
 }
