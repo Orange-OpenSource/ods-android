@@ -10,21 +10,23 @@
 
 package com.orange.ods.demo.ui
 
-import androidx.annotation.DrawableRes
-import androidx.annotation.StringRes
+import androidx.compose.foundation.layout.height
 import androidx.compose.material.Icon
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ArrowBack
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalConfiguration
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.unit.dp
 import com.orange.ods.compose.component.appbar.top.OdsTopAppBar
 import com.orange.ods.compose.component.appbar.top.OdsTopAppBarActionButton
 import com.orange.ods.compose.component.appbar.top.OdsTopAppBarOverflowMenuBox
 import com.orange.ods.compose.component.menu.OdsDropdownMenuItem
 import com.orange.ods.demo.R
+import com.orange.ods.demo.domain.recipes.LocalRecipes
 import com.orange.ods.demo.ui.components.utilities.clickOnElement
 import com.orange.ods.demo.ui.utilities.extension.isDarkModeEnabled
 
@@ -54,11 +56,11 @@ fun MainTopAppBar(
                     0 -> TopAppBarChangeThemeActionButton(onClick = onChangeThemeActionClick)
                     1 -> TopAppBarChangeModeActionButton()
                     else -> {
-                        val action = topAppBarDemoActions[index - 1]
                         OdsTopAppBarActionButton(
-                            onClick = { clickOnElement(context, context.getString(action.titleRes)) },
-                            painter = painterResource(id = action.iconRes),
-                            contentDescription = stringResource(id = action.titleRes)
+                            modifier = Modifier.height(24.dp),
+                            onClick = { clickOnElement(context, context.getString(R.string.component_app_bars_top_action_ice_cream)) },
+                            painter = painterResource(id = R.drawable.ic_ice_cream),
+                            contentDescription = stringResource(id = R.string.component_app_bars_top_action_ice_cream)
                         )
                     }
                 }
@@ -67,14 +69,12 @@ fun MainTopAppBar(
                 OdsTopAppBarOverflowMenuBox(
                     overflowIconContentDescription = stringResource(id = R.string.component_app_bars_top_element_overflow_menu)
                 ) {
-                    OdsDropdownMenuItem(
-                        text = stringResource(id = R.string.component_app_bars_top_action_account),
-                        onClick = { clickOnElement(context, context.getString(R.string.component_app_bars_top_action_account)) }
-                    )
-                    OdsDropdownMenuItem(
-                        text = stringResource(id = R.string.component_app_bars_top_action_settings),
-                        onClick = { clickOnElement(context, context.getString(R.string.component_app_bars_top_action_settings)) }
-                    )
+                    LocalRecipes.current.forEach { recipe ->
+                        OdsDropdownMenuItem(
+                            text = recipe.title,
+                            onClick = { clickOnElement(context, recipe.title) }
+                        )
+                    }
                 }
             }
         },
@@ -106,11 +106,3 @@ private fun TopAppBarChangeModeActionButton() {
         contentDescription = stringResource(id = iconDesc)
     )
 }
-
-private val topAppBarDemoActions = listOf(
-    TopAppBarAction(R.drawable.ic_heart, R.string.component_app_bars_top_action_favourites),
-    TopAppBarAction(R.drawable.ic_alert, R.string.component_app_bars_top_action_alerts),
-)
-
-private data class TopAppBarAction(@DrawableRes val iconRes: Int, @StringRes val titleRes: Int)
-

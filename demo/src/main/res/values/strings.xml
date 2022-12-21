@@ -92,10 +92,7 @@
     <string name="component_app_bars_top_actions_count">Actions count</string>
     <string name="component_app_bars_top_remove_action">Remove action</string>
     <string name="component_app_bars_top_add_action">Add action</string>
-    <string name="component_app_bars_top_action_favourites">Favourites</string>
-    <string name="component_app_bars_top_action_alerts">Alerts</string>
-    <string name="component_app_bars_top_action_account">Account</string>
-    <string name="component_app_bars_top_action_settings">Settings</string>
+    <string name="component_app_bars_top_action_ice_cream">Ice Cream</string>
 
 
     <!-- Components Bottom navigation -->
