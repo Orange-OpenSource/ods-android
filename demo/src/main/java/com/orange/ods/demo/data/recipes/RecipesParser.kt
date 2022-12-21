@@ -10,6 +10,7 @@
 
 package com.orange.ods.demo.data.recipes
 
+import com.orange.ods.demo.R
 import com.orange.ods.demo.domain.recipes.Ingredient
 import com.orange.ods.demo.domain.recipes.Recipe
 import org.json.JSONArray
@@ -28,6 +29,10 @@ class RecipesParser {
         private const val Quantity = "quantity"
         private const val Name = "name"
         private const val Image = "image"
+        private const val Cafe = "Cafe"
+        private const val CookingPot = "CookingPot"
+        private const val IceCream = "IceCream"
+        private const val Restaurant = "Restaurant"
     }
 
     @Throws
@@ -43,10 +48,11 @@ class RecipesParser {
         val description = jsonRecipe.getString(Description)
         val url = jsonRecipe.getString(Url)
         val iconName = jsonRecipe.getString(IconName)
+        val iconResId = getIconResId(iconName)
         val jsonIngredients = jsonRecipe.getJSONArray(Ingredients)
         val ingredients = List(jsonIngredients.length()) { parseIngredient(jsonIngredients.getJSONObject(it)) }
 
-        return Recipe(title, subtitle, ingredients, description, url, iconName)
+        return Recipe(title, subtitle, ingredients, description, url, iconResId)
     }
 
     private fun parseIngredient(jsonIngredient: JSONObject): Ingredient {
@@ -55,5 +61,13 @@ class RecipesParser {
         val image = jsonIngredient.getString(Image)
 
         return Ingredient(quantity, name, image)
+    }
+
+    private fun getIconResId(iconName: String) = when (iconName) {
+        Cafe -> R.drawable.ic_cafe
+        CookingPot -> R.drawable.ic_cooking_pot
+        IceCream -> R.drawable.ic_ice_cream
+        Restaurant -> R.drawable.ic_restaurant
+        else -> null
     }
 }

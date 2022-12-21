@@ -20,6 +20,8 @@ object Dependencies {
     const val androidGradlePlugin = "com.android.tools.build:gradle:${Versions.androidGradlePlugin}"
     const val appCompat = "androidx.appcompat:appcompat:${Versions.appCompat}"
     const val browser = "androidx.browser:browser:${Versions.browser}"
+    const val coil = "io.coil-kt:coil:${Versions.coil}"
+    const val coilCompose = "io.coil-kt:coil-compose:${Versions.coil}"
     const val composeMaterial = "androidx.compose.material:material:${Versions.compose}"
     const val composeUi = "androidx.compose.ui:ui:${Versions.compose}"
     const val composeUiTooling = "androidx.compose.ui:ui-tooling:${Versions.compose}"

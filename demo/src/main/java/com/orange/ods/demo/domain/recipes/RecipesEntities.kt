@@ -10,13 +10,18 @@
 
 package com.orange.ods.demo.domain.recipes
 
+import androidx.annotation.DrawableRes
+import androidx.compose.runtime.staticCompositionLocalOf
+
+val LocalRecipes = staticCompositionLocalOf<List<Recipe>> { error("CompositionLocal LocalRecipes not present") }
+
 data class Recipe(
     val title: String,
     val subtitle: String,
     val ingredients: List<Ingredient>,
     val description: String,
     val url: String,
-    val iconName: String
+    @DrawableRes val iconResId: Int?
 )
 
 data class Ingredient(

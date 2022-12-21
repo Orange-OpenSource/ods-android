@@ -46,6 +46,7 @@ import com.orange.ods.compose.component.list.OdsRadioButtonTrailing
 import com.orange.ods.compose.text.OdsTextH6
 import com.orange.ods.compose.theme.OdsTheme
 import com.orange.ods.demo.R
+import com.orange.ods.demo.domain.recipes.LocalRecipes
 import com.orange.ods.demo.ui.about.addAboutGraph
 import com.orange.ods.demo.ui.components.addComponentsGraph
 import com.orange.ods.demo.ui.components.tabs.FixedTabRow
@@ -85,6 +86,7 @@ fun MainScreen(themeConfigurations: Set<OdsThemeConfigurationContract>, mainView
         LocalMainTabsManager provides mainState.tabsState,
         LocalMainThemeManager provides mainState.themeState,
         LocalOdsDemoGuideline provides mainState.themeState.currentThemeConfiguration.demoGuideline,
+        LocalRecipes provides mainViewModel.recipes
     ) {
         var changeThemeDialogVisible by remember { mutableStateOf(false) }
 

@@ -130,6 +130,8 @@ dependencies {
     implementation(Dependencies.hiltAndroid)
     kapt(Dependencies.hiltCompiler)
     implementation(Dependencies.dataStorePreferences)
+    implementation(Dependencies.coil)
+    implementation(Dependencies.coilCompose)
 
     debugImplementation(Dependencies.composeUiTooling)
 }
