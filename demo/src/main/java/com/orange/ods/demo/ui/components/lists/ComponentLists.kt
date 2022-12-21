@@ -180,7 +180,7 @@ private fun ListItemCustomizationState.getIconPainter(recipe: Recipe): Painter? 
         ListItemCustomizationState.Leading.CircularImage,
         ListItemCustomizationState.Leading.SquareImage,
         ListItemCustomizationState.Leading.WideImage -> rememberAsyncImagePainter(
-            model = recipe.url,
+            model = recipe.imageUrl,
             placeholder = painterResource(id = R.drawable.placeholder_small),
             error = painterResource(id = R.drawable.placeholder_small)
         )

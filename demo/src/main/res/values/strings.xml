@@ -66,12 +66,10 @@
     <string name="component_element_subtitle">Subtitle</string>
     <string name="component_element_label">Label</string>
     <string name="component_element_caption">Caption</string>
-    <string name="component_element_lorem_ipsum">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor.</string>
     <string name="component_element_thumbnail">Thumbnail</string>
     <string name="component_element_button1">Button 1</string>
     <string name="component_element_button2">Button 2</string>
     <string name="component_element_text">Text</string>
-    <string name="component_element_text_value">Lorem ipsum dolor sit amet, at blandit nec tristique porttitor.</string>
     <string name="component_element_avatar">Avatar</string>
     <string name="component_element_icon">Icon</string>
     <string name="component_element_none">None</string>

@@ -20,12 +20,12 @@ data class Recipe(
     val subtitle: String,
     val ingredients: List<Ingredient>,
     val description: String,
-    val url: String,
+    val imageUrl: String,
     @DrawableRes val iconResId: Int?
 )
 
 data class Ingredient(
     val quantity: String,
     val name: String,
-    val image: String
+    val imageUrl: String
 )
