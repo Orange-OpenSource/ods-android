@@ -18,7 +18,7 @@ import androidx.compose.runtime.saveable.rememberSaveable
 
 @Composable
 fun rememberDialogCustomizationState(
-    titleChecked: MutableState<Boolean> = rememberSaveable { mutableStateOf(false) },
+    titleChecked: MutableState<Boolean> = rememberSaveable { mutableStateOf(true) },
     dismissButtonChecked: MutableState<Boolean> = rememberSaveable { mutableStateOf(false) },
     openDialog: MutableState<Boolean> = rememberSaveable { mutableStateOf(false) }
 ) =
