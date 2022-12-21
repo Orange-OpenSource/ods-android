@@ -329,18 +329,7 @@
   {
     "title": "Fajitas",
     "subtitle": "13min",
-    "ingredients": [
-      {
-        "quantity": "",
-        "name": "",
-        "image": ""
-      },
-      {
-        "quantity": "",
-        "name": "",
-        "image": ""
-      }
-    ],
+    "ingredients": [],
     "description": "",
     "url": "https://images.unsplash.com/photo-1569692062823-f1196218f0a2?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=686&q=80",
     "iconName": "Restaurant"

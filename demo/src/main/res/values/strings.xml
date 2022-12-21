@@ -147,7 +147,6 @@
     <string name="component_chips">Chips</string>
     <string name="component_chips_description">Chips are small components containing a number of elements that represent a calendar event or contact.</string>
     <string name="component_chip">Chip</string>
-    <string name="component_chip_type">%s chip</string>
     <string name="component_chip_type_input">Input</string>
     <string name="component_chip_type_input_description">The user input searches are transformed into chips that can be added or deleted.</string>
     <string name="component_chip_type_choice">Choice</string>

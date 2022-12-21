@@ -16,11 +16,12 @@ import androidx.compose.material.ExperimentalMaterialApi
 import androidx.compose.material.rememberBottomSheetScaffoldState
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.painterResource
-import androidx.compose.ui.res.stringResource
+import coil.compose.rememberAsyncImagePainter
 import com.google.accompanist.flowlayout.FlowRow
 import com.orange.ods.compose.component.chip.OdsChoiceChip
 import com.orange.ods.compose.component.chip.OdsChoiceChipsFlowRow
@@ -28,6 +29,8 @@ import com.orange.ods.compose.component.chip.OdsFilterChip
 import com.orange.ods.compose.component.list.OdsCheckboxTrailing
 import com.orange.ods.compose.component.list.OdsListItem
 import com.orange.ods.demo.R
+import com.orange.ods.demo.domain.recipes.Ingredient
+import com.orange.ods.demo.domain.recipes.LocalRecipes
 import com.orange.ods.demo.ui.LocalMainThemeManager
 import com.orange.ods.demo.ui.components.utilities.ComponentCustomizationBottomSheetScaffold
 import com.orange.ods.demo.ui.utilities.composable.Subtitle
@@ -37,6 +40,8 @@ import com.orange.ods.theme.OdsComponentCustomizations.Companion.ChipStyle
 @Composable
 fun ChipFilter() {
     val chipCustomizationState = rememberChipCustomizationState(chipType = rememberSaveable { mutableStateOf(ChipCustomizationState.ChipType.Filter) })
+    val recipes = LocalRecipes.current
+    val recipe = remember { recipes.filter { it.ingredients.count() >= 2 }.random() }
 
     ComponentCustomizationBottomSheetScaffold(
         bottomSheetScaffoldState = rememberBottomSheetScaffoldState(),
@@ -61,8 +66,8 @@ fun ChipFilter() {
         }) {
         ChipTypeDemo(chipType = chipCustomizationState.chipType.value) {
             FlowRow(modifier = Modifier.fillMaxWidth(), mainAxisSpacing = dimensionResource(id = R.dimen.spacing_s)) {
-                for (index in 1..4) {
-                    FilterChip(index = index, customizationState = chipCustomizationState)
+                recipe.ingredients.forEach { ingredient ->
+                    FilterChip(ingredient = ingredient, customizationState = chipCustomizationState)
                 }
             }
         }
@@ -70,12 +75,18 @@ fun ChipFilter() {
 }
 
 @Composable
-private fun FilterChip(index: Int, customizationState: ChipCustomizationState) {
+private fun FilterChip(ingredient: Ingredient, customizationState: ChipCustomizationState) {
     val outlinedChips = LocalMainThemeManager.current.currentThemeConfiguration.components.chipStyle == ChipStyle.Outlined
     val selected = rememberSaveable { mutableStateOf(false) }
     OdsFilterChip(
-        text = "${stringResource(id = R.string.component_chip_type_filter)} $index",
-        leadingAvatar = if (customizationState.hasLeadingAvatar) painterResource(id = R.drawable.placeholder_small) else null,
+        text = ingredient.name,
+        leadingAvatar = if (customizationState.hasLeadingAvatar) {
+            rememberAsyncImagePainter(
+                model = ingredient.imageUrl,
+                placeholder = painterResource(id = R.drawable.placeholder_small),
+                error = painterResource(id = R.drawable.placeholder_small)
+            )
+        } else null,
         onClick = { selected.value = !selected.value },
         outlined = outlinedChips,
         selected = selected.value,
