@@ -53,8 +53,8 @@ import com.orange.ods.demo.ui.components.tabs.ScrollableTabRow
 import com.orange.ods.demo.ui.guidelines.addGuidelinesGraph
 import com.orange.ods.demo.ui.utilities.composable.RadioButtonListItem
 import com.orange.ods.demo.ui.utilities.extension.isDarkModeEnabled
+import com.orange.ods.demo.ui.utilities.extension.isOrange
 import com.orange.ods.theme.OdsThemeConfigurationContract
-import com.orange.ods.theme.orange.OrangeThemeConfiguration
 import com.orange.ods.utilities.extension.orElse
 
 @Preview(showBackground = true, uiMode = UI_MODE_NIGHT_YES)
@@ -152,7 +152,7 @@ fun MainScreen(themeConfigurations: Set<OdsThemeConfigurationContract>, mainView
 private fun getCurrentThemeConfiguration(storedUserThemeName: String?, themeConfigurations: Set<OdsThemeConfigurationContract>): OdsThemeConfigurationContract {
     // Return the stored user theme configuration if it exists. If not, return the Orange theme configuration or the first existing theme configuration
     return themeConfigurations.firstOrNull { it.name == storedUserThemeName }
-        .orElse { themeConfigurations.firstOrNull { it.name == OrangeThemeConfiguration.OrangeThemeName } }
+        .orElse { themeConfigurations.firstOrNull { it.isOrange } }
         .orElse { themeConfigurations.first() }
 }
 

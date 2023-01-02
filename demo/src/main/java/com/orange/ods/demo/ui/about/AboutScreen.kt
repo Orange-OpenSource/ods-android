@@ -32,6 +32,7 @@ import com.orange.ods.compose.text.OdsTextCaption
 import com.orange.ods.compose.text.OdsTextH4
 import com.orange.ods.demo.R
 import com.orange.ods.demo.ui.LocalMainTopAppBarManager
+import com.orange.ods.demo.ui.utilities.DrawableManager
 import com.orange.ods.demo.ui.utilities.compat.PackageManagerCompat
 import com.orange.ods.demo.ui.utilities.extension.versionCode
 import com.orange.ods.utilities.extension.ifNotNull
@@ -50,7 +51,7 @@ fun AboutScreen(onAboutItemClick: (Long) -> Unit) {
         Image(
             modifier = Modifier
                 .fillMaxWidth(),
-            painter = painterResource(id = R.drawable.il_about),
+            painter = painterResource(id = DrawableManager.getDrawableResIdForCurrentTheme(resId = R.drawable.il_about)),
             contentScale = ContentScale.Crop,
             contentDescription = null
         )

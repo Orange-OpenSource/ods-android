@@ -33,6 +33,7 @@ import com.orange.ods.compose.component.list.iconType
 import com.orange.ods.compose.text.OdsTextSubtitle2
 import com.orange.ods.demo.R
 import com.orange.ods.demo.ui.LocalMainTopAppBarManager
+import com.orange.ods.demo.ui.utilities.DrawableManager
 import com.orange.ods.demo.ui.utilities.composable.DetailScreenHeader
 
 @Composable
@@ -53,7 +54,7 @@ fun ComponentDetailScreen(
                 .padding(bottom = dimensionResource(id = R.dimen.screen_vertical_margin))
         ) {
             DetailScreenHeader(
-                imageRes = component.imageRes,
+                imageRes = DrawableManager.getDrawableResIdForCurrentTheme(resId = component.imageRes),
                 imageAlignment = component.imageAlignment,
                 descriptionRes = component.descriptionRes
             )
