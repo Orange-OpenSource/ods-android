@@ -17,7 +17,6 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.wrapContentSize
 import androidx.compose.material.ExperimentalMaterialApi
-import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.saveable.rememberSaveable
@@ -25,13 +24,13 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.stringResource
-import androidx.compose.ui.text.style.TextAlign
 import com.google.accompanist.pager.ExperimentalPagerApi
 import com.google.accompanist.pager.HorizontalPager
 import com.orange.ods.compose.component.chip.OdsChoiceChip
 import com.orange.ods.compose.component.chip.OdsChoiceChipsFlowRow
 import com.orange.ods.compose.component.list.OdsListItem
 import com.orange.ods.compose.component.list.OdsSwitchTrailing
+import com.orange.ods.compose.text.OdsTextBody1
 import com.orange.ods.demo.R
 import com.orange.ods.demo.ui.LocalMainTabsManager
 import com.orange.ods.demo.ui.MainTabsConfiguration
@@ -127,20 +126,17 @@ private fun TabsPagerContentScreen(text: String) {
             .fillMaxSize()
             .wrapContentSize(Alignment.Center)
     ) {
-        Text(
-            text = text,
-            textAlign = TextAlign.Center
-        )
+        OdsTextBody1(text = text)
     }
 }
 
 enum class TabItem(@DrawableRes val icon: Int, @StringRes val titleRes: Int) {
-    Favourites(R.drawable.ic_heart, R.string.component_tab_favourites),
-    Calls(R.drawable.ic_call, R.string.component_tab_calls),
-    Alerts(R.drawable.ic_alert, R.string.component_tab_alerts),
-    Calendar(R.drawable.ic_calendar, R.string.component_tab_calendar),
-    Account(R.drawable.ic_account, R.string.component_tab_account),
-    Settings(R.drawable.ic_settings, R.string.component_tab_settings);
+    Coffee(R.drawable.ic_cafe, R.string.component_tab_coffee),
+    CookingPot(R.drawable.ic_cooking_pot, R.string.component_tab_cooking_pot),
+    IceCream(R.drawable.ic_ice_cream, R.string.component_tab_ice_cream),
+    Restaurant(R.drawable.ic_restaurant, R.string.component_tab_restaurant),
+    Favorites(R.drawable.ic_heart, R.string.component_tab_favorites),
+    Information(R.drawable.ic_info, R.string.component_tab_information);
 
     @Composable
     fun Screen() {

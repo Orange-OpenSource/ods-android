@@ -10,6 +10,7 @@
 
 package com.orange.ods.compose.component.tab
 
+import androidx.compose.foundation.layout.size
 import androidx.compose.material.Icon
 import androidx.compose.material.Tab
 import androidx.compose.material.Text
@@ -22,6 +23,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.painter.Painter
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.style.TextOverflow
+import androidx.compose.ui.unit.dp
 import com.orange.ods.compose.component.OdsComponentApi
 import com.orange.ods.compose.component.utilities.Preview
 import com.orange.ods.compose.component.utilities.UiModePreviews
@@ -60,7 +62,7 @@ fun OdsTab(
         onClick = onClick,
         modifier = modifier,
         enabled = enabled,
-        icon = icon?.let { { Icon(painter = icon, contentDescription = null) } },
+        icon = icon?.let { { Icon(modifier = Modifier.size(24.dp), painter = icon, contentDescription = null) } },
         text = text?.let { { Text(text.uppercase(), maxLines = 1, overflow = TextOverflow.Ellipsis, style = OdsTheme.typography.button) } },
         selectedContentColor = OdsTheme.colors.tab.selectedContent,
         unselectedContentColor = OdsTheme.colors.tab.unselectedContent,
