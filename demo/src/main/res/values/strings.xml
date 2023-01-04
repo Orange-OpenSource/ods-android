@@ -98,6 +98,11 @@
     <string name="component_bottom_navigation_navigation_item_count">Navigation item count</string>
     <string name="component_bottom_navigation_remove_item">Remove item</string>
     <string name="component_bottom_navigation_add_item">Add item</string>
+    <string name="component_bottom_navigation_coffee">Coffee</string>
+    <string name="component_bottom_navigation_cooking_pot">Cooking Pot</string>
+    <string name="component_bottom_navigation_ice_cream">Ice Cream</string>
+    <string name="component_bottom_navigation_restaurant">Restaurant</string>
+    <string name="component_bottom_navigation_favorites">Favorites</string>
 
 
     <!-- Components Buttons -->

@@ -11,10 +11,12 @@
 package com.orange.ods.demo.ui.components.bottomnavigation
 
 import androidx.annotation.DrawableRes
+import androidx.annotation.StringRes
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
 import androidx.compose.material.ExperimentalMaterialApi
 import androidx.compose.material.Icon
 import androidx.compose.material.rememberBottomSheetScaffoldState
@@ -27,6 +29,7 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.unit.dp
 import com.orange.ods.compose.component.bottomnavigation.OdsBottomNavigation
 import com.orange.ods.compose.component.bottomnavigation.OdsBottomNavigationItem
 import com.orange.ods.demo.R
@@ -46,11 +49,11 @@ private object ComponentBottomNavigation {
 fun ComponentBottomNavigation() {
     val context = LocalContext.current
     val navigationItems = listOf(
-        NavigationItem("Favorites", R.drawable.ic_heart),
-        NavigationItem("Search", R.drawable.ic_search),
-        NavigationItem("Information", R.drawable.ic_info),
-        NavigationItem("Notification", R.drawable.ic_notification),
-        NavigationItem("Settings", R.drawable.ic_settings)
+        NavigationItem(R.string.component_bottom_navigation_coffee, R.drawable.ic_cafe),
+        NavigationItem(R.string.component_bottom_navigation_cooking_pot, R.drawable.ic_cooking_pot),
+        NavigationItem(R.string.component_bottom_navigation_ice_cream, R.drawable.ic_ice_cream),
+        NavigationItem(R.string.component_bottom_navigation_restaurant, R.drawable.ic_restaurant),
+        NavigationItem(R.string.component_bottom_navigation_favorites, R.drawable.ic_heart)
     )
 
     val selectedNavigationItemCount = rememberSaveable { mutableStateOf(MinNavigationItemCount) }
@@ -76,13 +79,20 @@ fun ComponentBottomNavigation() {
             OdsBottomNavigation {
                 navigationItems.take(selectedNavigationItemCount.value)
                     .forEach { navigationItem ->
+                        val label = stringResource(id = navigationItem.titleResId)
                         OdsBottomNavigationItem(
-                            icon = { Icon(painter = painterResource(id = navigationItem.icon), contentDescription = null) },
-                            label = navigationItem.title,
-                            selected = selectedNavigationItem.value.title == navigationItem.title,
+                            icon = {
+                                Icon(
+                                    modifier = Modifier.size(24.dp),
+                                    painter = painterResource(id = navigationItem.iconResId),
+                                    contentDescription = null
+                                )
+                            },
+                            label = label,
+                            selected = selectedNavigationItem.value.titleResId == navigationItem.titleResId,
                             onClick = {
                                 selectedNavigationItem.value = navigationItem
-                                clickOnElement(context, navigationItem.title)
+                                clickOnElement(context, label)
                             }
                         )
                     }
@@ -91,4 +101,4 @@ fun ComponentBottomNavigation() {
     }
 }
 
-private data class NavigationItem(val title: String, @DrawableRes val icon: Int)
+private data class NavigationItem(@StringRes val titleResId: Int, @DrawableRes val iconResId: Int)
