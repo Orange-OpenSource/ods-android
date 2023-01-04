@@ -123,7 +123,7 @@ private fun TextButton(
 
     OdsTextButton(
         modifier = if (variableWidth) modifier else modifier.fillMaxWidth(),
-        icon = if (leadingIcon) painterResource(id = R.drawable.ic_search) else null,
+        icon = if (leadingIcon) painterResource(id = R.drawable.ic_coffee) else null,
         text = stringResource(if (enabled) R.string.component_state_enabled else R.string.component_state_disabled),
         onClick = {},
         enabled = enabled,

@@ -16,7 +16,6 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.size
 import androidx.compose.material.ExperimentalMaterialApi
 import androidx.compose.material.Icon
 import androidx.compose.material.rememberBottomSheetScaffoldState
@@ -29,7 +28,6 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
-import androidx.compose.ui.unit.dp
 import com.orange.ods.compose.component.bottomnavigation.OdsBottomNavigation
 import com.orange.ods.compose.component.bottomnavigation.OdsBottomNavigationItem
 import com.orange.ods.demo.R
@@ -49,7 +47,7 @@ private object ComponentBottomNavigation {
 fun ComponentBottomNavigation() {
     val context = LocalContext.current
     val navigationItems = listOf(
-        NavigationItem(R.string.component_bottom_navigation_coffee, R.drawable.ic_cafe),
+        NavigationItem(R.string.component_bottom_navigation_coffee, R.drawable.ic_coffee),
         NavigationItem(R.string.component_bottom_navigation_cooking_pot, R.drawable.ic_cooking_pot),
         NavigationItem(R.string.component_bottom_navigation_ice_cream, R.drawable.ic_ice_cream),
         NavigationItem(R.string.component_bottom_navigation_restaurant, R.drawable.ic_restaurant),
@@ -83,7 +81,6 @@ fun ComponentBottomNavigation() {
                         OdsBottomNavigationItem(
                             icon = {
                                 Icon(
-                                    modifier = Modifier.size(24.dp),
                                     painter = painterResource(id = navigationItem.iconResId),
                                     contentDescription = null
                                 )

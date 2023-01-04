@@ -56,10 +56,10 @@ fun ButtonTechnicalText(
             }
             style?.let { TechnicalText(text = "style = $style,") }
             if (icon == true) {
-                TechnicalText(text = "icon = painterResource(id = R.drawable.ic_search),")
+                TechnicalText(text = "icon = painterResource(id = R.drawable.ic_coffee),")
             }
             if (painter == true) {
-                TechnicalText(text = "painter = painterResource(id = R.drawable.ic_search),")
+                TechnicalText(text = "painter = painterResource(id = R.drawable.ic_coffee),")
             }
             if (!enabled) {
                 TechnicalText(text = "enabled = false,")

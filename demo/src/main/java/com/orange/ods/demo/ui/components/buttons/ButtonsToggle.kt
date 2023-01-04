@@ -128,7 +128,7 @@ private fun ToggleRow(
     toggleCount: Int = 1,
     displaySurface: OdsDisplaySurface = OdsDisplaySurface.Default
 ) {
-    val iconsResources = listOf(R.drawable.ic_info, R.drawable.ic_search, R.drawable.ic_guideline_dna)
+    val iconsResources = listOf(R.drawable.ic_coffee, R.drawable.ic_cooking_pot, R.drawable.ic_ice_cream)
 
     Row(
         modifier = Modifier

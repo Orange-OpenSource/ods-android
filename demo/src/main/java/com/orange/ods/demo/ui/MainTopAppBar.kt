@@ -10,17 +10,14 @@
 
 package com.orange.ods.demo.ui
 
-import androidx.compose.foundation.layout.height
 import androidx.compose.material.Icon
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ArrowBack
 import androidx.compose.runtime.Composable
-import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalConfiguration
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
-import androidx.compose.ui.unit.dp
 import com.orange.ods.compose.component.appbar.top.OdsTopAppBar
 import com.orange.ods.compose.component.appbar.top.OdsTopAppBarActionButton
 import com.orange.ods.compose.component.appbar.top.OdsTopAppBarOverflowMenuBox
@@ -57,7 +54,6 @@ fun MainTopAppBar(
                     1 -> TopAppBarChangeModeActionButton()
                     else -> {
                         OdsTopAppBarActionButton(
-                            modifier = Modifier.height(24.dp),
                             onClick = { clickOnElement(context, context.getString(R.string.component_app_bars_top_action_ice_cream)) },
                             painter = painterResource(id = R.drawable.ic_ice_cream),
                             contentDescription = stringResource(id = R.string.component_app_bars_top_action_ice_cream)

@@ -64,7 +64,7 @@ class RecipesParser {
     }
 
     private fun getIconResId(iconName: String) = when (iconName) {
-        Cafe -> R.drawable.ic_cafe
+        Cafe -> R.drawable.ic_coffee
         CookingPot -> R.drawable.ic_cooking_pot
         IceCream -> R.drawable.ic_ice_cream
         Restaurant -> R.drawable.ic_restaurant

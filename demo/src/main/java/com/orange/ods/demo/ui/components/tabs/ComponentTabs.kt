@@ -131,7 +131,7 @@ private fun TabsPagerContentScreen(text: String) {
 }
 
 enum class TabItem(@DrawableRes val icon: Int, @StringRes val titleRes: Int) {
-    Coffee(R.drawable.ic_cafe, R.string.component_tab_coffee),
+    Coffee(R.drawable.ic_coffee, R.string.component_tab_coffee),
     CookingPot(R.drawable.ic_cooking_pot, R.string.component_tab_cooking_pot),
     IceCream(R.drawable.ic_ice_cream, R.string.component_tab_ice_cream),
     Restaurant(R.drawable.ic_restaurant, R.string.component_tab_restaurant),
