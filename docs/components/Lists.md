@@ -50,9 +50,21 @@ Please note that there is no start padding with wide images.
 
 The library offers the `OdsListItem` composable to display lists items.
 
+**Leading icon:**
+
 To specify an icon type, use the `Modifier.iconType` method on the `OdsListItem` modifier and call `OdsListItemScope.OdsListItemIcon` in the `icon` lambda.
 
+**Trailing element:**
+
+The `OdsListItem` composable allows you to display an `OdsListItemTrailing` (Checkbox, Switch, RadioButton, Icon or a Caption text) as trailing element. If this does not meet your
+needs and only in this case, you can use the `OdsListItem` method signature which accept any Composable as trailing.
+
+Note: The first signature (with `OdsListItemTrailing`) automatically manages accessibility, if you use the second one, don't forget to manage it on your side.
+
+**Dividers:**
+
 A divider can also be displayed at the bottom of the list item using the `Modifier.divider` method on the `OdsListItem` modifier.
+
 
 ```kotlin
 OdsListItem(
@@ -62,7 +74,7 @@ OdsListItem(
         .divider(),
     text = "Primary text",
     icon = { OdsListItemIcon(painter = painterResource(id = R.drawable.ic_heart), contentDescription = "Heart") },
-    trailing = { OdsCheckbox(checked = itemChecked, onCheckedChange = { itemChecked = it }) }
+    trailing = OdsCheckboxTrailing(checked = itemChecked)
 )
 ```
 
@@ -97,7 +109,7 @@ OdsListItem(
     text = "Primary text",
     secondaryText = "Secondary text",
     icon = { OdsListItemIcon(painter = painterResource(id = R.drawable.placeholder)) },
-    trailing = { Icon(painter = painterResource(id = R.drawable.ic_drag_handle), contentDescription = "Drag item") }
+    trailing = OdsIconTrailing(painter = painterResource(id = R.drawable.ic_drag_handle), contentDescription = "Drag item")
 )
 ```
 
@@ -133,7 +145,7 @@ OdsListItem(
     secondaryText = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor.",
     singleLineSecondaryText = false,
     icon = { OdsListItemIcon(painter = painterResource(id = R.drawable.placeholder)) },
-    trailing = { Text(text = "Caption") }
+    trailing = OdsCaptionTrailing(text = "Caption")
 )
 ```
 

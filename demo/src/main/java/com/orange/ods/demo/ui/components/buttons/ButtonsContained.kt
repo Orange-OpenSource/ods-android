@@ -30,13 +30,14 @@ import com.orange.ods.compose.component.button.OdsButton
 import com.orange.ods.compose.component.button.OdsButtonStyle
 import com.orange.ods.compose.component.chip.OdsChoiceChip
 import com.orange.ods.compose.component.chip.OdsChoiceChipsFlowRow
+import com.orange.ods.compose.component.list.OdsListItem
+import com.orange.ods.compose.component.list.OdsSwitchTrailing
 import com.orange.ods.compose.theme.OdsDisplaySurface
 import com.orange.ods.demo.R
 import com.orange.ods.demo.ui.components.utilities.ComponentCustomizationBottomSheetScaffold
 import com.orange.ods.demo.ui.utilities.composable.ButtonTechnicalText
 import com.orange.ods.demo.ui.utilities.composable.CodeImplementationColumn
 import com.orange.ods.demo.ui.utilities.composable.Subtitle
-import com.orange.ods.demo.ui.utilities.composable.SwitchListItem
 import com.orange.ods.demo.ui.utilities.composable.Title
 import com.orange.ods.utilities.extension.fullName
 
@@ -60,9 +61,18 @@ fun ButtonsContained(style: OdsButtonStyle) {
                         OdsChoiceChip(textRes = R.string.component_button_style_functional_negative, value = OdsButtonStyle.FunctionalNegative)
                     }
                 }
-                SwitchListItem(labelRes = R.string.component_element_icon, checked = leadingIcon)
-                SwitchListItem(labelRes = R.string.component_button_variable_width, checked = variableWidth)
-                SwitchListItem(labelRes = R.string.component_state_disabled, checked = disabled)
+                OdsListItem(
+                    text = stringResource(id = R.string.component_element_icon),
+                    trailing = OdsSwitchTrailing(checked = leadingIcon)
+                )
+                OdsListItem(
+                    text = stringResource(id = R.string.component_button_variable_width),
+                    trailing = OdsSwitchTrailing(checked = variableWidth)
+                )
+                OdsListItem(
+                    text = stringResource(id = R.string.component_state_disabled),
+                    trailing = OdsSwitchTrailing(checked = disabled)
+                )
             }) {
 
             Column(

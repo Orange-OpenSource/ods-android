@@ -43,6 +43,8 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.navigation
 import com.google.accompanist.pager.ExperimentalPagerApi
 import com.google.accompanist.systemuicontroller.rememberSystemUiController
+import com.orange.ods.compose.component.list.OdsListItem
+import com.orange.ods.compose.component.list.OdsRadioButtonTrailing
 import com.orange.ods.compose.text.OdsTextH6
 import com.orange.ods.compose.theme.OdsTheme
 import com.orange.ods.demo.R
@@ -51,7 +53,6 @@ import com.orange.ods.demo.ui.components.addComponentsGraph
 import com.orange.ods.demo.ui.components.tabs.FixedTabRow
 import com.orange.ods.demo.ui.components.tabs.ScrollableTabRow
 import com.orange.ods.demo.ui.guidelines.addGuidelinesGraph
-import com.orange.ods.demo.ui.utilities.composable.RadioButtonListItem
 import com.orange.ods.demo.ui.utilities.extension.isDarkModeEnabled
 import com.orange.ods.demo.ui.utilities.extension.isOrange
 import com.orange.ods.theme.OdsThemeConfigurationContract
@@ -169,17 +170,19 @@ private fun ChangeThemeDialog(themeState: MainThemeState, dismissDialog: () -> U
                     .padding(horizontal = dimensionResource(R.dimen.screen_horizontal_margin))
             )
             themeState.themeConfigurations.forEach { themeConfiguration ->
-                RadioButtonListItem(
-                    label = themeConfiguration.name,
-                    selectedRadio = selectedRadio,
-                    currentRadio = themeConfiguration.name,
-                    onClick = {
-                        if (themeConfiguration != themeState.currentThemeConfiguration) {
-                            themeState.currentThemeConfiguration = themeConfiguration
-                            onThemeSelected()
+                OdsListItem(
+                    text = themeConfiguration.name,
+                    trailing = OdsRadioButtonTrailing(
+                        selectedRadio = selectedRadio,
+                        currentRadio = themeConfiguration.name,
+                        onClick = {
+                            if (themeConfiguration != themeState.currentThemeConfiguration) {
+                                themeState.currentThemeConfiguration = themeConfiguration
+                                onThemeSelected()
+                            }
+                            dismissDialog()
                         }
-                        dismissDialog()
-                    }
+                    )
                 )
             }
         }

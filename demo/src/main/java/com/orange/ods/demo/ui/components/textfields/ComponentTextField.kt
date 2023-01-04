@@ -30,13 +30,14 @@ import com.google.accompanist.pager.HorizontalPager
 import com.google.accompanist.pager.rememberPagerState
 import com.orange.ods.compose.component.chip.OdsChoiceChip
 import com.orange.ods.compose.component.chip.OdsChoiceChipsFlowRow
+import com.orange.ods.compose.component.list.OdsListItem
+import com.orange.ods.compose.component.list.OdsSwitchTrailing
 import com.orange.ods.compose.component.tab.OdsTab
 import com.orange.ods.compose.component.tab.OdsTabRow
 import com.orange.ods.demo.R
 import com.orange.ods.demo.ui.components.Variant
 import com.orange.ods.demo.ui.components.utilities.ComponentCustomizationBottomSheetScaffold
 import com.orange.ods.demo.ui.utilities.composable.Subtitle
-import com.orange.ods.demo.ui.utilities.composable.SwitchListItem
 import com.orange.ods.utilities.composable.Keyboard
 import com.orange.ods.utilities.composable.keyboardAsState
 import kotlinx.coroutines.launch
@@ -110,13 +111,22 @@ private fun TextFieldTextCustomization(textFieldCustomizationState: TextFieldCus
 @Composable
 private fun TextFieldPasswordCustomization(textFieldCustomizationState: TextFieldCustomizationState) {
     DisplayTypeCustomization(textFieldCustomizationState.displayType)
-    SwitchListItem(labelRes = R.string.component_text_field_visualisation_icon, checked = textFieldCustomizationState.visualisationIcon)
-    SwitchListItem(labelRes = R.string.component_text_field_character_counter, checked = textFieldCustomizationState.characterCounter)
+    OdsListItem(
+        text = stringResource(id = R.string.component_text_field_visualisation_icon),
+        trailing = OdsSwitchTrailing(checked = textFieldCustomizationState.visualisationIcon)
+    )
+    OdsListItem(
+        text = stringResource(id = R.string.component_text_field_character_counter),
+        trailing = OdsSwitchTrailing(checked = textFieldCustomizationState.characterCounter)
+    )
 }
 
 @Composable
 private fun ComponentCustomizationContent(textFieldCustomizationState: TextFieldCustomizationState) {
-    SwitchListItem(labelRes = R.string.component_element_leading_icon, checked = textFieldCustomizationState.leadingIcon)
+    OdsListItem(
+        text = stringResource(id = R.string.component_element_leading_icon),
+        trailing = OdsSwitchTrailing(checked = textFieldCustomizationState.leadingIcon)
+    )
 
     Subtitle(textRes = R.string.component_text_field_input_type, horizontalPadding = true)
     OdsChoiceChipsFlowRow(
@@ -148,7 +158,10 @@ private fun ComponentCustomizationContent(textFieldCustomizationState: TextField
         OdsChoiceChip(textRes = R.string.component_element_text, value = TextFieldCustomizationState.TrailingElement.Text)
     }
 
-    SwitchListItem(labelRes = R.string.component_text_field_character_counter, checked = textFieldCustomizationState.characterCounter)
+    OdsListItem(
+        text = stringResource(id = R.string.component_text_field_character_counter),
+        trailing = OdsSwitchTrailing(checked = textFieldCustomizationState.characterCounter)
+    )
 }
 
 @Composable
@@ -165,7 +178,10 @@ private fun KeyboardCustomizationContent(textFieldCustomizationState: TextFieldC
         }
     }
 
-    SwitchListItem(labelRes = R.string.component_text_field_keyboard_capitalization, checked = textFieldCustomizationState.softKeyboardCapitalization)
+    OdsListItem(
+        text = stringResource(id = R.string.component_text_field_keyboard_capitalization),
+        trailing = OdsSwitchTrailing(checked = textFieldCustomizationState.softKeyboardCapitalization)
+    )
 
     Subtitle(textRes = R.string.component_text_field_keyboard_action, horizontalPadding = true)
     OdsChoiceChipsFlowRow(

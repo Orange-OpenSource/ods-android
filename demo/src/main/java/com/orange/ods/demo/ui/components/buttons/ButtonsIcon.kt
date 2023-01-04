@@ -29,12 +29,13 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import com.orange.ods.compose.component.OdsComponent
 import com.orange.ods.compose.component.button.OdsIconButton
+import com.orange.ods.compose.component.list.OdsListItem
+import com.orange.ods.compose.component.list.OdsSwitchTrailing
 import com.orange.ods.demo.R
 import com.orange.ods.demo.ui.components.utilities.ComponentCustomizationBottomSheetScaffold
 import com.orange.ods.demo.ui.components.utilities.clickOnElement
 import com.orange.ods.demo.ui.utilities.composable.ButtonTechnicalText
 import com.orange.ods.demo.ui.utilities.composable.CodeImplementationColumn
-import com.orange.ods.demo.ui.utilities.composable.SwitchListItem
 
 @OptIn(ExperimentalMaterialApi::class)
 @Composable
@@ -46,7 +47,10 @@ fun ButtonsIcon() {
         ComponentCustomizationBottomSheetScaffold(
             bottomSheetScaffoldState = rememberBottomSheetScaffoldState(),
             bottomSheetContent = {
-                SwitchListItem(labelRes = R.string.component_state_disabled, checked = disabled)
+                OdsListItem(
+                    text = stringResource(id = R.string.component_state_disabled),
+                    trailing = OdsSwitchTrailing(checked = disabled)
+                )
             }) {
             Column(
                 modifier = Modifier
