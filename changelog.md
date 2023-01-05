@@ -10,6 +10,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Fixed
 
 - \[Demo\] In buttons screens, group lines of code into one vocalisation ([#392](https://github.com/Orange-OpenSource/ods-android/issues/392))
+- \[Demo\] Fix an accessibility bug where icon buttons were not focusable with Talkback ([#393](https://github.com/Orange-OpenSource/ods-android/issues/393))
 - \[Lib\] Fix cards vocalization when clickable ([#391](https://github.com/Orange-OpenSource/ods-android/issues/391))
 
 ## [0.9.0](https://github.com/Orange-OpenSource/ods-android/compare/0.8.0...0.9.0) - 2023-01-06
