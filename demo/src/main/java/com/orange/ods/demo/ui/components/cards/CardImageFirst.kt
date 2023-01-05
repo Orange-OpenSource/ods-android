@@ -17,7 +17,7 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.remember
+import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.dimensionResource
@@ -33,7 +33,7 @@ import com.orange.ods.demo.ui.components.utilities.clickOnElement
 fun CardImageFirst(customizationState: CardCustomizationState) {
     val context = LocalContext.current
     val recipes = LocalRecipes.current
-    val recipe = remember { recipes.filter { it.description.isNotBlank() }.random() }
+    val recipe = rememberSaveable { recipes.filter { it.description.isNotBlank() }.random() }
 
     with(customizationState) {
         Column(

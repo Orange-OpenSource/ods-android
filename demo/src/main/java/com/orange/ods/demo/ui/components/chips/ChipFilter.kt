@@ -16,7 +16,6 @@ import androidx.compose.material.ExperimentalMaterialApi
 import androidx.compose.material.rememberBottomSheetScaffoldState
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.dimensionResource
@@ -42,7 +41,7 @@ import com.orange.ods.theme.OdsComponentCustomizations.Companion.ChipStyle
 fun ChipFilter() {
     val chipCustomizationState = rememberChipCustomizationState(chipType = rememberSaveable { mutableStateOf(ChipCustomizationState.ChipType.Filter) })
     val recipes = LocalRecipes.current
-    val recipe = remember { recipes.filter { it.ingredients.count() >= 2 }.random() }
+    val recipe = rememberSaveable { recipes.filter { it.ingredients.count() >= 3 }.random() }
 
     ComponentCustomizationBottomSheetScaffold(
         bottomSheetScaffoldState = rememberBottomSheetScaffoldState(),

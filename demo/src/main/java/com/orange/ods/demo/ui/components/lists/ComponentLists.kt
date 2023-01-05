@@ -103,7 +103,7 @@ private fun ComponentListsBottomSheetContent(listItemCustomizationState: ListIte
 
 @Composable
 private fun ComponentListsContent(listItemCustomizationState: ListItemCustomizationState) {
-    val recipes = LocalRecipes.current
+    val recipes = LocalRecipes.current.filter { it.description.isNotBlank() }
     with(listItemCustomizationState) {
         Column(modifier = Modifier.verticalScroll(rememberScrollState())) {
             if (!trailings.contains(selectedTrailing.value)) {
@@ -117,7 +117,7 @@ private fun ComponentListsContent(listItemCustomizationState: ListItemCustomizat
                 .let { if (dividerEnabled.value) it.divider() else it }
             val singleLineSecondaryText = lineCount.value == 2
 
-            recipes.filter { it.description.isNotBlank() }.forEach { recipe ->
+            recipes.forEach { recipe ->
                 val text = recipe.title
                 val secondaryText = listItemCustomizationState.getSecondaryText(recipe)
                 val icon: @Composable (OdsListItemIconScope.() -> Unit)? =

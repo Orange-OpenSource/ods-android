@@ -18,7 +18,6 @@ import androidx.compose.material.ExperimentalMaterialApi
 import androidx.compose.material.rememberBottomSheetScaffoldState
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.dimensionResource
@@ -35,7 +34,7 @@ import com.orange.ods.demo.ui.components.utilities.ComponentCustomizationBottomS
 fun ComponentCheckboxes() {
     val enabled = rememberSaveable { mutableStateOf(true) }
     val recipes = LocalRecipes.current
-    val recipe = remember { recipes.filter { it.ingredients.count() >= 3 }.random() }
+    val recipe = rememberSaveable { recipes.filter { it.ingredients.count() >= 3 }.random() }
 
     ComponentCustomizationBottomSheetScaffold(
         bottomSheetScaffoldState = rememberBottomSheetScaffoldState(),
@@ -54,7 +53,7 @@ fun ComponentCheckboxes() {
                 OdsListItem(
                     text = ingredient.name,
                     trailing = OdsCheckboxTrailing(
-                        checked = remember { mutableStateOf(index == 0) },
+                        checked = rememberSaveable { androidx.compose.runtime.mutableStateOf(index == 0) },
                         enabled = enabled.value
                     )
                 )

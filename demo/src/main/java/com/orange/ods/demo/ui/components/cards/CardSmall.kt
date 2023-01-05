@@ -16,7 +16,7 @@ import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.remember
+import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.dimensionResource
@@ -32,7 +32,7 @@ import com.orange.ods.demo.ui.components.utilities.clickOnElement
 fun CardSmall(customizationState: CardCustomizationState) {
     val context = LocalContext.current
     val recipes = LocalRecipes.current
-    val recipe = remember { recipes.random() }
+    val recipe = rememberSaveable { recipes.random() }
 
     with(customizationState) {
         Row(

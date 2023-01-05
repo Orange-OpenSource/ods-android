@@ -19,6 +19,7 @@ plugins {
     id("com.google.gms.google-services")
     id("kotlin-android")
     id("kotlin-kapt")
+    id("kotlin-parcelize")
     id("com.google.firebase.appdistribution")
     id("com.google.firebase.crashlytics")
     id("firebase")

@@ -10,11 +10,14 @@
 
 package com.orange.ods.demo.domain.recipes
 
+import android.os.Parcelable
 import androidx.annotation.DrawableRes
 import androidx.compose.runtime.staticCompositionLocalOf
+import kotlinx.parcelize.Parcelize
 
 val LocalRecipes = staticCompositionLocalOf<List<Recipe>> { error("CompositionLocal LocalRecipes not present") }
 
+@Parcelize
 data class Recipe(
     val title: String,
     val subtitle: String,
@@ -22,10 +25,11 @@ data class Recipe(
     val description: String,
     val imageUrl: String,
     @DrawableRes val iconResId: Int?
-)
+) : Parcelable
 
+@Parcelize
 data class Ingredient(
     val quantity: String,
     val name: String,
     val imageUrl: String
-)
+) : Parcelable

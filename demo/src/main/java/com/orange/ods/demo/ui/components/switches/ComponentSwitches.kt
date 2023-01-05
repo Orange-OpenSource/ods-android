@@ -17,9 +17,7 @@ import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.ExperimentalMaterialApi
 import androidx.compose.material.rememberBottomSheetScaffoldState
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.dimensionResource
@@ -36,7 +34,7 @@ fun ComponentSwitches() {
     val checked = rememberSaveable { mutableStateOf(false) }
     val enabled = rememberSaveable { mutableStateOf(true) }
     val recipes = LocalRecipes.current
-    val recipe by remember { mutableStateOf(recipes.random()) }
+    val recipe = rememberSaveable { recipes.random() }
 
     ComponentCustomizationBottomSheetScaffold(
         bottomSheetScaffoldState = rememberBottomSheetScaffoldState(),

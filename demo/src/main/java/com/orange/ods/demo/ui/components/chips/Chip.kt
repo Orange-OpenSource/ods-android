@@ -108,13 +108,12 @@ private fun Chip(chipCustomizationState: ChipCustomizationState) {
     val context = LocalContext.current
     val outlinedChips = LocalMainThemeManager.current.currentThemeConfiguration.components.chipStyle == ChipStyle.Outlined
     val cancelCrossLabel = stringResource(id = R.string.component_element_cancel_cross)
-    val recipes = LocalRecipes.current
+    val recipes = LocalRecipes.current.take(4)
 
     with(chipCustomizationState) {
         if (isChoiceChip) {
             OdsChoiceChipsFlowRow(selectedChip = choiceChipIndexSelected, outlinedChips = outlinedChips) {
-                for (index in 1..4) {
-                    val recipe = recipes[(index - 1) % recipes.size]
+                recipes.forEachIndexed { index, recipe ->
                     OdsChoiceChip(
                         text = recipe.title,
                         value = index,

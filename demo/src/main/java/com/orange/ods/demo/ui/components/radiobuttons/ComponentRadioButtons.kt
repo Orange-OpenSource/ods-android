@@ -49,7 +49,7 @@ fun ComponentRadioButtons() {
                 .verticalScroll(rememberScrollState())
                 .padding(bottom = dimensionResource(id = R.dimen.spacing_m))
         ) {
-            val recipes = LocalRecipes.current.take(5)
+            val recipes = LocalRecipes.current.take(3)
             val selectedRadio = remember { mutableStateOf(recipes.firstOrNull()?.title) }
             Column(modifier = Modifier.selectableGroup()) {
                 recipes.forEach { recipe ->

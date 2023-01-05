@@ -23,7 +23,7 @@ import androidx.compose.material.rememberBottomSheetScaffoldState
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.MutableState
 import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
+import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.painterResource
@@ -72,7 +72,7 @@ fun ButtonsToggle() {
                     }
                 }
 
-                val defaultCheckedToggleIndexes = remember { mutableStateOf(emptySet<Int>()) }
+                val defaultCheckedToggleIndexes = rememberSaveable { mutableStateOf(emptySet<Int>()) }
 
                 ToggleRow(
                     checkedToggleIndexes = defaultCheckedToggleIndexes.value,
@@ -84,7 +84,7 @@ fun ButtonsToggle() {
 
                 Spacer(modifier = Modifier.padding(top = dimensionResource(R.dimen.spacing_s)))
 
-                val forcedCheckedToggleIndexes = remember { mutableStateOf(emptySet<Int>()) }
+                val forcedCheckedToggleIndexes = rememberSaveable { mutableStateOf(emptySet<Int>()) }
 
                 InvertedBackgroundColumn {
                     ToggleRow(
