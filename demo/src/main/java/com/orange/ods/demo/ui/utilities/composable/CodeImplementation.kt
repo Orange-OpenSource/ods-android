@@ -19,6 +19,7 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.dimensionResource
+import androidx.compose.ui.semantics.semantics
 import com.orange.ods.compose.theme.OdsTheme
 import com.orange.ods.demo.R
 
@@ -30,7 +31,8 @@ fun CodeImplementationColumn(content: @Composable ColumnScope.() -> Unit) {
         Column(
             modifier = Modifier
                 .background(OdsTheme.colors.onSurface.copy(alpha = 0.12f))
-                .padding(horizontal = dimensionResource(id = R.dimen.spacing_s), vertical = dimensionResource(id = R.dimen.spacing_s)),
+                .padding(horizontal = dimensionResource(id = R.dimen.spacing_s), vertical = dimensionResource(id = R.dimen.spacing_s))
+                .semantics(mergeDescendants = true) {},
             content = content
         )
     }
