@@ -27,7 +27,6 @@ import androidx.compose.ui.graphics.painter.Painter
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.painterResource
-import androidx.compose.ui.semantics.semantics
 import com.orange.ods.R
 import com.orange.ods.compose.component.OdsComponentApi
 import com.orange.ods.compose.component.button.OdsTextButton
@@ -98,7 +97,6 @@ fun OdsImageFirstCard(
             Column(
                 modifier = Modifier
                     .padding(dimensionResource(id = R.dimen.spacing_m))
-                    .semantics(mergeDescendants = true) {}
             ) {
                 OdsTextH6(text = title)
                 subtitle?.let {

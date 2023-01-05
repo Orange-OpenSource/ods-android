@@ -14,6 +14,9 @@ import androidx.compose.material.Card
 import androidx.compose.material.ExperimentalMaterialApi
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.semantics.Role
+import androidx.compose.ui.semantics.role
+import androidx.compose.ui.semantics.semantics
 import com.orange.ods.compose.theme.OdsTheme
 
 @OptIn(ExperimentalMaterialApi::class)
@@ -24,7 +27,9 @@ internal fun OdsCard(modifier: Modifier, onClick: (() -> Unit)?, content: @Compo
 
     if (onClick != null) {
         Card(
-            modifier = modifier, backgroundColor = backgroundColor, contentColor = contentColor, onClick = onClick, content = content
+            modifier = modifier.semantics(mergeDescendants = true) {
+                role = Role.Button
+            }, backgroundColor = backgroundColor, contentColor = contentColor, onClick = onClick, content = content
         )
     } else {
         Card(
