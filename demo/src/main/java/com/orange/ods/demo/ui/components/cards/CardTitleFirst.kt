@@ -24,6 +24,8 @@ import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import coil.compose.rememberAsyncImagePainter
+import coil.request.ImageRequest
+import coil.size.Size
 import com.orange.ods.compose.component.card.OdsTitleFirstCard
 import com.orange.ods.demo.R
 import com.orange.ods.demo.domain.recipes.LocalRecipes
@@ -47,7 +49,10 @@ fun CardTitleFirst(customizationState: CardCustomizationState) {
             val button2Text = stringResource(id = R.string.component_element_button2)
             val cardContainerText = stringResource(id = R.string.component_card_element_container)
             val imagePainter = rememberAsyncImagePainter(
-                model = recipe.imageUrl,
+                model = ImageRequest.Builder(context)
+                    .data(recipe.imageUrl)
+                    .size(Size.ORIGINAL)
+                    .build(),
                 placeholder = painterResource(id = R.drawable.placeholder),
                 error = painterResource(id = R.drawable.placeholder)
             )

@@ -88,7 +88,7 @@ fun OdsImageFirstCard(
                 contentScale = imageContentScale,
                 modifier = Modifier
                     .fillMaxWidth()
-                    .height(dimensionResource(R.dimen.card_big_image_width))
+                    .height(dimensionResource(R.dimen.card_big_image_height))
                     .let {
                         if (imageBackgroundColor != null) it.background(imageBackgroundColor) else it
                     },

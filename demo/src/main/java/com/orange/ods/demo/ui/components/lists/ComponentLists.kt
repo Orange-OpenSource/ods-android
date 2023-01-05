@@ -22,10 +22,14 @@ import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.painter.Painter
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import coil.compose.rememberAsyncImagePainter
+import coil.request.ImageRequest
+import coil.size.Scale
+import coil.size.Size
 import com.orange.ods.compose.component.chip.OdsChoiceChip
 import com.orange.ods.compose.component.chip.OdsChoiceChipsFlowRow
 import com.orange.ods.compose.component.list.OdsCaptionTrailing
@@ -179,11 +183,19 @@ private fun ListItemCustomizationState.getIconPainter(recipe: Recipe): Painter? 
         ListItemCustomizationState.Leading.Icon -> recipe.iconResId?.let { painterResource(id = it) }
         ListItemCustomizationState.Leading.CircularImage,
         ListItemCustomizationState.Leading.SquareImage,
-        ListItemCustomizationState.Leading.WideImage -> rememberAsyncImagePainter(
-            model = recipe.imageUrl,
-            placeholder = painterResource(id = R.drawable.placeholder_small),
-            error = painterResource(id = R.drawable.placeholder_small)
-        )
+        ListItemCustomizationState.Leading.WideImage -> {
+            val wideImageSizeWidthPx = with(LocalDensity.current) { dimensionResource(id = R.dimen.list_wide_image_width).toPx() }
+            val wideImageSizeHeightPx = with(LocalDensity.current) { dimensionResource(id = R.dimen.list_wide_image_height).toPx() }
+            rememberAsyncImagePainter(
+                model = ImageRequest.Builder(LocalContext.current)
+                    .data(recipe.imageUrl)
+                    .scale(Scale.FILL)
+                    .size(Size(wideImageSizeWidthPx.toInt(), wideImageSizeHeightPx.toInt()))
+                    .build(),
+                placeholder = painterResource(id = R.drawable.placeholder_small),
+                error = painterResource(id = R.drawable.placeholder_small)
+            )
+        }
     }
 }
 
