@@ -26,7 +26,6 @@ import androidx.compose.ui.graphics.painter.Painter
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.painterResource
-import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.text.style.TextOverflow
 import com.orange.ods.R
 import com.orange.ods.compose.component.OdsComponentApi
@@ -84,7 +83,6 @@ fun OdsSmallCard(
             Column(
                 modifier = Modifier
                     .padding(dimensionResource(id = R.dimen.spacing_m))
-                    .semantics(mergeDescendants = true) {}
             ) {
                 Text(
                     text = title,

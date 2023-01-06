@@ -5,6 +5,10 @@ All notable changes done in ODS library will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [Unreleased](https://github.com/Orange-OpenSource/ods-android/compare/0.9.0...master)
+
+- \[Lib\] Fix cards vocalization when clickable ([#391](https://github.com/Orange-OpenSource/ods-android/issues/391))
+
 ## [0.9.0](https://github.com/Orange-OpenSource/ods-android/compare/0.8.0...0.9.0) - 2023-01-06
 
 ### Added
