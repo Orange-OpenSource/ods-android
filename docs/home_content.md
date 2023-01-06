@@ -34,7 +34,7 @@ Orange Design System for Android is available through [Maven Central Repository]
     ```groovy
     dependencies {
       // ...
-      implementation 'com.orange.ods.android:ods-lib:0.8.0'
+      implementation 'com.orange.ods.android:ods-lib:0.9.0'
       // ...
     }
     ```
