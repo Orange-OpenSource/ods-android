@@ -393,7 +393,8 @@ class OdsSwitchTrailing(val checked: MutableState<Boolean>, val enabled: Boolean
 
 class OdsRadioButtonTrailing<T>(val selectedRadio: MutableState<T>, val currentRadio: T, val enabled: Boolean = true, onClick: () -> Unit = {}) :
     OdsListItemTrailing() {
-    val selected = selectedRadio.value == currentRadio
+    val selected: Boolean
+        get() = selectedRadio.value == currentRadio
     val onClick: () -> Unit = {
         selectedRadio.value = currentRadio
         onClick()
