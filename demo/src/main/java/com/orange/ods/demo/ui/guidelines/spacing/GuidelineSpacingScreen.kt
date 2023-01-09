@@ -72,7 +72,12 @@ fun GuidelineSpacingScreen() {
                 secondaryText = stringResource(id = R.string.guideline_spacing_dp, dp.value.toInt()) + "\n",
                 singleLineSecondaryText = false,
                 icon = { GuidelineSpacingImage(spacing = spacing) },
-                trailing = OdsCaptionTrailing(stringResource(id = R.string.guideline_spacing_ratio, if (ratio == 0.0f) "-" else ratioFormatter.format(ratio)))
+                trailing = OdsCaptionTrailing(
+                    text = stringResource(
+                        id = R.string.guideline_spacing_ratio,
+                        if (ratio == 0.0f) "-" else ratioFormatter.format(ratio)
+                    )
+                )
             )
         }
     }
