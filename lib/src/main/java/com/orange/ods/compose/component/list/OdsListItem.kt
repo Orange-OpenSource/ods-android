@@ -480,16 +480,28 @@ private fun PreviewOdsListItem(@PreviewParameter(OdsListItemPreviewParameterProv
             null -> null
         }
 
-        OdsListItem(
-            modifier = Modifier.let { modifier ->
-                iconType?.let { modifier.iconType(it) }.orElse { modifier }
-            },
-            text = "Text",
-            icon = painter?.let { { OdsListItemIcon(painter = it) } },
-            secondaryText = secondaryText,
-            singleLineSecondaryText = singleLineSecondaryText,
-            trailing = trailing
-        )
+        if (trailing == null) {
+            OdsListItem(
+                modifier = Modifier.let { modifier ->
+                    iconType?.let { modifier.iconType(it) }.orElse { modifier }
+                },
+                text = "Text",
+                icon = painter?.let { { OdsListItemIcon(painter = it) } },
+                secondaryText = secondaryText,
+                singleLineSecondaryText = singleLineSecondaryText
+            )
+        } else {
+            OdsListItem(
+                modifier = Modifier.let { modifier ->
+                    iconType?.let { modifier.iconType(it) }.orElse { modifier }
+                },
+                text = "Text",
+                icon = painter?.let { { OdsListItemIcon(painter = it) } },
+                secondaryText = secondaryText,
+                singleLineSecondaryText = singleLineSecondaryText,
+                trailing = trailing
+            )
+        }
     }
 }
 
@@ -497,7 +509,7 @@ internal data class OdsListItemPreviewParameter(
     val secondaryText: String?,
     val singleLineSecondaryText: Boolean,
     val iconType: OdsListItemIconType?,
-    val trailing: (@Composable () -> Unit)?
+    val trailing: OdsListItemTrailing?
 )
 
 internal class OdsListItemPreviewParameterProvider : BasicPreviewParameterProvider<OdsListItemPreviewParameter>(*previewParameterValues.toTypedArray())
@@ -506,17 +518,15 @@ private val previewParameterValues: List<OdsListItemPreviewParameter>
     get() {
         val secondaryTexts = listOf(null, "Secondary text", "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor.")
         val iconTypes = listOf(null, *OdsListItemIconType.values())
-        val trailings: List<(@Composable () -> Unit)?> = listOf(
+        val trailings: List<OdsListItemTrailing?> = listOf(
             null,
-            { OdsCheckboxTrailing(checked = mutableStateOf(false), enabled = true) },
-            { OdsSwitchTrailing(checked = mutableStateOf(false)) },
-            {
-                OdsIconTrailing(
-                    iconRes = android.R.drawable.ic_dialog_info,
-                    contentDescription = null
-                )
-            },
-            { OdsCaptionTrailing(text = "caption") }
+            OdsCheckboxTrailing(checked = mutableStateOf(false), enabled = true),
+            OdsSwitchTrailing(checked = mutableStateOf(false)),
+            OdsIconTrailing(
+                iconRes = android.R.drawable.ic_dialog_info,
+                contentDescription = null
+            ),
+            OdsCaptionTrailing(text = "caption")
         )
 
         return secondaryTexts.flatMap { secondaryText ->
