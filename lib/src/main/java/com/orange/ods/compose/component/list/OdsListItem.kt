@@ -353,26 +353,26 @@ private interface OdsListItemIconTypeModifier : Modifier.Element {
 //region OdsListItem Trailing
 
 private fun Modifier.trailing(trailing: OdsListItemTrailing): Modifier = when (trailing) {
-    is OdsCheckboxTrailing -> toggleable(
+    is OdsCheckboxTrailing -> then(toggleable(
         value = trailing.checked.value,
         role = Role.Checkbox,
         enabled = trailing.enabled,
         onValueChange = { trailing.onCheckedChange() }
-    )
-    is OdsRadioButtonTrailing<*> -> selectable(
+    ))
+    is OdsRadioButtonTrailing<*> -> then(selectable(
         selected = trailing.selected,
         role = Role.RadioButton,
         enabled = trailing.enabled,
         onClick = {
             trailing.onClick()
         }
-    )
-    is OdsSwitchTrailing -> toggleable(
+    ))
+    is OdsSwitchTrailing -> then(toggleable(
         value = trailing.checked.value,
         role = Role.Switch,
         enabled = trailing.enabled,
         onValueChange = { trailing.onCheckedChange() }
-    )
+    ))
     else -> this
 }
 
