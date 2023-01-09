@@ -94,7 +94,7 @@ fun OdsListItem(
     trailing: OdsListItemTrailing,
 ) {
     OdsListItem(
-        modifier = modifier.trailingModifier(trailing),
+        modifier = modifier.trailing(trailing),
         text = text,
         icon = icon,
         secondaryText = secondaryText,
@@ -352,7 +352,7 @@ private interface OdsListItemIconTypeModifier : Modifier.Element {
 
 //region OdsListItem Trailing
 
-private fun Modifier.trailingModifier(trailing: OdsListItemTrailing): Modifier = when (trailing) {
+private fun Modifier.trailing(trailing: OdsListItemTrailing): Modifier = when (trailing) {
     is OdsCheckboxTrailing -> toggleable(
         value = trailing.checked.value,
         role = Role.Checkbox,
