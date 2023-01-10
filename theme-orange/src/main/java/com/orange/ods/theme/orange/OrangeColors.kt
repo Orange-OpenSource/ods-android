@@ -12,6 +12,7 @@ package com.orange.ods.theme.orange
 
 import com.orange.ods.theme.OdsBottomNavigationColors
 import com.orange.ods.theme.OdsColors
+import com.orange.ods.theme.OdsFloatingActionButtonColors
 import com.orange.ods.theme.OdsSwitchColors
 import com.orange.ods.theme.OdsTabColors
 import com.orange.ods.theme.OdsTopAppBarColors
@@ -44,6 +45,11 @@ val OrangeLightColors = OdsColors(
         barContent = Black900,
         itemSelected = Orange200,
         itemUnselected = Black900
+    ),
+
+    floatingActionButton = OdsFloatingActionButtonColors(
+        background = Orange200,
+        content = Black900
     ),
 
     topAppBar = OdsTopAppBarColors(
@@ -92,6 +98,11 @@ val OrangeDarkColors = OdsColors(
         barContent = White100,
         itemSelected = Orange200,
         itemUnselected = White100
+    ),
+
+    floatingActionButton = OdsFloatingActionButtonColors(
+        background = Orange100,
+        content = White100
     ),
 
     topAppBar = OdsTopAppBarColors(

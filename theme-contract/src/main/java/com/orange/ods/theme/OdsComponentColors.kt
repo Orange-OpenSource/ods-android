@@ -21,6 +21,11 @@ data class OdsBottomNavigationColors(
     val itemUnselected: Color = itemSelected.copy(alpha = ContentUnselectedAlpha)
 )
 
+data class OdsFloatingActionButtonColors(
+    val background: Color,
+    val content: Color
+)
+
 data class OdsTopAppBarColors(
     val barBackground: Color,
     val barContent: Color
