@@ -138,10 +138,10 @@ fun OdsListItem(
     val iconType = modifier.getElementOfType<OdsListItemIconTypeModifier>()?.iconType
     val listItemIconScope = OdsListItemIconScope(iconType)
     if (iconType == OdsListItemIconType.WideImage) {
-        Row(verticalAlignment = Alignment.CenterVertically) {
+        Row(modifier = modifier, verticalAlignment = Alignment.CenterVertically) {
             icon?.let { listItemIconScope.it() }
             OdsListItemInternal(
-                modifier = modifier
+                modifier = Modifier
                     .weight(1f)
                     .iconType(OdsListItemIconType.WideImage),
                 listItemScope = listItemIconScope,
