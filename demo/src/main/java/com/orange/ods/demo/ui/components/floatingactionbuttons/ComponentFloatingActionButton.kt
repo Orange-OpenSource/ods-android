@@ -12,7 +12,6 @@ package com.orange.ods.demo.ui.components.floatingactionbuttons
 
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.size
 import androidx.compose.material.ExperimentalMaterialApi
 import androidx.compose.material.FabPosition
 import androidx.compose.material.rememberBottomSheetScaffoldState
@@ -51,12 +50,6 @@ fun ComponentFloatingActionButton() {
                     .fillMaxWidth()
                 else it
             }
-            .let {
-                when (size.value) {
-                    FabCustomizationState.Size.Default -> it
-                    FabCustomizationState.Size.Mini -> it.size(40.dp)
-                }
-            }
 
         ComponentCustomizationBottomSheetScaffold(
             bottomSheetScaffoldState = rememberBottomSheetScaffoldState(),
@@ -71,6 +64,7 @@ fun ComponentFloatingActionButton() {
                 } else {
                     OdsFloatingActionButton(
                         onClick = { /*TODO*/ },
+                        mini = size.value == FabCustomizationState.Size.Mini,
                         icon = painterResource(id = R.drawable.ic_plus),
                         iconContentDescription = stringResource(id = R.string.component_floating_action_button_add),
                         modifier = modifier

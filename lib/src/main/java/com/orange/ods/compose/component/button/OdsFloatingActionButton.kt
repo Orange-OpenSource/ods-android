@@ -10,6 +10,7 @@
 
 package com.orange.ods.compose.component.button
 
+import androidx.compose.foundation.layout.size
 import androidx.compose.material.ExtendedFloatingActionButton
 import androidx.compose.material.FloatingActionButton
 import androidx.compose.material.Icon
@@ -17,8 +18,11 @@ import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.painter.Painter
+import androidx.compose.ui.unit.dp
 import com.orange.ods.compose.component.OdsComponentApi
 import com.orange.ods.compose.theme.OdsTheme
+
+private val MiniFabSize = 40.dp
 
 /**
  * <a href="https://system.design.orange.com/0c1af118d/p/577022-buttons-fab/b/101b2a" target="_blank">ODS Floating Action Buttons</a>.
@@ -32,6 +36,7 @@ import com.orange.ods.compose.theme.OdsTheme
  *
  * @param onClick callback invoked when this FAB is clicked
  * @param modifier [Modifier] to be applied to this FAB.
+ * @param mini If `true`, the [MiniFabSize] will be applied, otherwise the default size will be used.
  * @param icon [Painter] of the FAB icon.
  * @param iconContentDescription [icon] content description.
  */
@@ -40,12 +45,13 @@ import com.orange.ods.compose.theme.OdsTheme
 fun OdsFloatingActionButton(
     onClick: () -> Unit,
     modifier: Modifier = Modifier,
+    mini: Boolean = false,
     icon: Painter,
     iconContentDescription: String
 ) {
     FloatingActionButton(
         onClick = onClick,
-        modifier = modifier,
+        modifier = modifier.let { if (mini) it.size(MiniFabSize) else it },
         backgroundColor = OdsTheme.colors.floatingActionButton.background,
         contentColor = OdsTheme.colors.floatingActionButton.content
     ) {
