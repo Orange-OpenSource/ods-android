@@ -46,7 +46,34 @@ Regular FABs are FABs that are not expanded and are a regular size.
 
 > **Jetpack Compose implementation**
 
-*Not available yet*
+To display a Floating Action Button in your composable screen, two composables are available:
+
+- Use `OdsFloatingActionButton` to display a Floating Action Button with only one icon or to display the mini version of the FAB
+
+```kotlin
+OdsFloatingActionButton(
+    onClick = { 
+        // Do something
+    },
+    mini = false, // Set to `true` to display a Mini version of the FAB
+    icon = painterResource(id = R.drawable.ic_plus),
+    iconContentDescription = stringResource(id = R.string.add),
+    modifier = modifier
+)
+```
+
+- Use `OdsExtendedFloatingActionButton` for a Floating Action Button with a text
+
+```kotlin
+OdsExtendedFloatingActionButton(
+    onClick = {
+        // Do something       
+    },
+    text = stringResource(id = R.string.add),
+    icon = painterResource(id = R.drawable.ic_plus),
+    modifier = modifier
+)
+```
 
 > **XML implementation**
 
@@ -93,7 +120,19 @@ Mini FABs can also be used to create visual continuity with other screen element
 
 > **Jetpack Compose implementation**
 
-*Not available yet*
+To display a mini FAB in your composable screen use `OdsFloatingActionButton`
+
+```kotlin
+OdsFloatingActionButton(
+    onClick = { 
+        // Do something
+    },
+    mini = true,
+    icon = painterResource(id = R.drawable.ic_plus),
+    iconContentDescription = stringResource(id = R.string.add),
+    modifier = modifier
+)
+```
 
 > **XML implementation**
 
