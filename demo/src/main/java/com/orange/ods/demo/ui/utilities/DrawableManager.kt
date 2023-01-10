@@ -37,6 +37,7 @@ object DrawableManager {
         R.drawable.il_chips_generic to R.drawable.il_chips,
         R.drawable.il_chips_small_generic to R.drawable.il_chips_small,
         R.drawable.il_dialogs_generic to R.drawable.il_dialogs,
+        R.drawable.il_fab_generic to R.drawable.il_fab,
         R.drawable.il_lists_generic to R.drawable.il_lists,
         R.drawable.il_progress_generic to R.drawable.il_progress,
         R.drawable.il_radio_buttons_generic to R.drawable.il_radio_buttons,

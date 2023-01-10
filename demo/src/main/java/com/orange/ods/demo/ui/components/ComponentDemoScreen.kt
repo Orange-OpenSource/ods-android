@@ -16,6 +16,7 @@ import com.orange.ods.demo.ui.LocalMainTopAppBarManager
 import com.orange.ods.demo.ui.components.bottomnavigation.ComponentBottomNavigation
 import com.orange.ods.demo.ui.components.checkboxes.ComponentCheckboxes
 import com.orange.ods.demo.ui.components.dialogs.ComponentDialog
+import com.orange.ods.demo.ui.components.floatingactionbuttons.ComponentFloatingActionButton
 import com.orange.ods.demo.ui.components.lists.ComponentLists
 import com.orange.ods.demo.ui.components.radiobuttons.ComponentRadioButtons
 import com.orange.ods.demo.ui.components.sliders.ComponentSliders
@@ -32,6 +33,7 @@ fun ComponentDemoScreen(componentId: Long) {
             Component.BottomNavigation -> ComponentBottomNavigation()
             Component.Checkboxes -> ComponentCheckboxes()
             Component.Dialogs -> ComponentDialog()
+            Component.FloatingActionButtons -> ComponentFloatingActionButton()
             Component.Lists -> ComponentLists()
             Component.RadioButtons -> ComponentRadioButtons()
             Component.Sliders -> ComponentSliders()
