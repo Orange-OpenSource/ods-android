@@ -20,17 +20,17 @@ import androidx.compose.runtime.saveable.rememberSaveable
 fun rememberFabCustomizationState(
     size: MutableState<FabCustomizationState.Size> = rememberSaveable { mutableStateOf(FabCustomizationState.Size.Default) },
     text: MutableState<Boolean> = rememberSaveable { mutableStateOf(false) },
-    variableWidth: MutableState<Boolean> = rememberSaveable { mutableStateOf(false) }
+    fullScreenWidth: MutableState<Boolean> = rememberSaveable { mutableStateOf(false) }
 ) =
     remember(
         size,
         text,
-        variableWidth
+        fullScreenWidth
     ) {
         FabCustomizationState(
             size,
             text,
-            variableWidth
+            fullScreenWidth
         )
     }
 
