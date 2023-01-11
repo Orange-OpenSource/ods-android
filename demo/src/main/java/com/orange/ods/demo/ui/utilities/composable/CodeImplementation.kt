@@ -44,14 +44,14 @@ fun ButtonTechnicalText(
     enabled: Boolean,
     modifier: Modifier = Modifier,
     style: String? = null,
-    variableWidth: Boolean? = null,
+    fullScreenWidth: Boolean? = null,
     icon: Boolean? = null,
     painter: Boolean? = null
 ) {
     Column(modifier = modifier) {
         TechnicalText(text = "$componentName(")
         Column(modifier = Modifier.padding(start = dimensionResource(id = R.dimen.spacing_s))) {
-            if (variableWidth == false) {
+            if (fullScreenWidth == true) {
                 TechnicalText(text = "modifier = Modifier.fillMaxWidth(),")
             }
             style?.let { TechnicalText(text = "style = $style,") }

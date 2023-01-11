@@ -47,8 +47,8 @@ fun ButtonsOutlined() {
                     trailing = OdsSwitchTrailing(checked = leadingIcon)
                 )
                 OdsListItem(
-                    text = stringResource(id = R.string.component_button_variable_width),
-                    trailing = OdsSwitchTrailing(checked = variableWidth)
+                    text = stringResource(id = R.string.component_button_full_screen_width),
+                    trailing = OdsSwitchTrailing(checked = fullScreenWidth)
                 )
                 OdsListItem(
                     text = stringResource(id = R.string.component_state_enabled),
@@ -61,7 +61,7 @@ fun ButtonsOutlined() {
                     .verticalScroll(rememberScrollState())
                     .padding(vertical = dimensionResource(id = R.dimen.screen_vertical_margin))
             ) {
-                OutlinedButton(leadingIcon = hasLeadingIcon, enabled = isEnabled, variableWidth = hasVariableWidth)
+                OutlinedButton(leadingIcon = hasLeadingIcon, enabled = isEnabled, fullScreenWidth = hasFullScreenWidth)
 
                 Spacer(modifier = Modifier.padding(top = dimensionResource(R.dimen.spacing_s)))
 
@@ -69,7 +69,7 @@ fun ButtonsOutlined() {
                     OutlinedButton(
                         leadingIcon = hasLeadingIcon,
                         enabled = isEnabled,
-                        variableWidth = hasVariableWidth,
+                        fullScreenWidth = hasFullScreenWidth,
                         displaySurface = displaySurface
                     )
                 }
@@ -78,7 +78,7 @@ fun ButtonsOutlined() {
                     ButtonTechnicalText(
                         componentName = OdsComponent.OdsOutlinedButton.name,
                         enabled = isEnabled,
-                        variableWidth = hasVariableWidth,
+                        fullScreenWidth = hasFullScreenWidth,
                         icon = hasLeadingIcon
                     )
                 }
@@ -91,7 +91,7 @@ fun ButtonsOutlined() {
 private fun OutlinedButton(
     leadingIcon: Boolean,
     enabled: Boolean,
-    variableWidth: Boolean,
+    fullScreenWidth: Boolean,
     displaySurface: OdsDisplaySurface = OdsDisplaySurface.Default
 ) {
     val modifier = Modifier
@@ -99,7 +99,7 @@ private fun OutlinedButton(
         .padding(top = dimensionResource(R.dimen.spacing_m))
 
     OdsOutlinedButton(
-        modifier = if (variableWidth) modifier else modifier.fillMaxWidth(),
+        modifier = if (fullScreenWidth) modifier.fillMaxWidth() else modifier,
         text = stringResource(if (enabled) R.string.component_state_enabled else R.string.component_state_disabled),
         onClick = {},
         icon = if (leadingIcon) painterResource(id = R.drawable.ic_coffee) else null,
