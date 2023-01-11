@@ -8,21 +8,20 @@ in whole or part of, in any medium, except as required for reasonable and custom
 and reproducing the content of the NOTICE and DOCUMENTATION files.
 Any use or displaying shall constitute an infringement under intellectual property laws of France and international conventions.
 
-demo/src/main/res/drawable/ic_account.xml
 demo/src/main/res/drawable/ic_address_book.xml
-demo/src/main/res/drawable/ic_alert.xml
-demo/src/main/res/drawable/ic_calendar.xml
-demo/src/main/res/drawable/ic_call.xml
+demo/src/main/res/drawable/ic_coffee.xml
 demo/src/main/res/drawable/ic_component_atom.xml
+demo/src/main/res/drawable/ic_cooking_pot.xml
 demo/src/main/res/drawable/ic_guideline_dna.xml
 demo/src/main/res/drawable/ic_heart.xml
+demo/src/main/res/drawable/ic_ice_cream.xml
 demo/src/main/res/drawable/ic_info.xml
 demo/src/main/res/drawable/ic_launcher_foreground.xml
 demo/src/main/res/drawable/ic_module_molecule.xml
 demo/src/main/res/drawable/ic_notification.xml
+demo/src/main/res/drawable/ic_palette.xml
 demo/src/main/res/drawable/ic_play_outline.xml
-demo/src/main/res/drawable/ic_search.xml
-demo/src/main/res/drawable/ic_settings.xml
+demo/src/main/res/drawable/ic_restaurant.xml
 demo/src/main/res/drawable/ic_ui_dark_mode.xml
 demo/src/main/res/drawable/ic_ui_light_mode.xml
 demo/src/main/res/drawable/ic_volume_status_1.xml
