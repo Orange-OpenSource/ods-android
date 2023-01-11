@@ -14,7 +14,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.orange.ods.demo.domain.datastore.DataStoreService
 import com.orange.ods.demo.domain.recipes.Recipe
-import com.orange.ods.demo.domain.recipes.RecipesRepository
+import com.orange.ods.demo.domain.recipes.RecipesService
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.firstOrNull
 import kotlinx.coroutines.launch
@@ -22,7 +22,7 @@ import kotlinx.coroutines.runBlocking
 import javax.inject.Inject
 
 @HiltViewModel
-class MainViewModel @Inject constructor(private val dataStoreService: DataStoreService, private val recipesRepository: RecipesRepository) : ViewModel() {
+class MainViewModel @Inject constructor(private val dataStoreService: DataStoreService, private val recipesService: RecipesService) : ViewModel() {
 
     companion object {
         private const val UserThemeNameKey = "userThemeName"
@@ -33,7 +33,7 @@ class MainViewModel @Inject constructor(private val dataStoreService: DataStoreS
 
     init {
         viewModelScope.launch {
-            recipes = recipesRepository.getRecipes().firstOrNull().orEmpty()
+            recipes = recipesService.getRecipes().firstOrNull().orEmpty()
         }
     }
 

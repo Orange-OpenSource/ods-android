@@ -13,6 +13,9 @@ package com.orange.ods.demo.domain
 import android.content.Context
 import com.orange.ods.demo.domain.datastore.DataStoreService
 import com.orange.ods.demo.domain.datastore.DataStoreServiceImpl
+import com.orange.ods.demo.domain.recipes.RecipesRepository
+import com.orange.ods.demo.domain.recipes.RecipesService
+import com.orange.ods.demo.domain.recipes.RecipesServiceImpl
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -27,4 +30,8 @@ object DomainModule {
     @Singleton
     @Provides
     fun provideDataStoreService(@ApplicationContext context: Context): DataStoreService = DataStoreServiceImpl(context)
+
+    @Singleton
+    @Provides
+    fun provideRecipesService(recipesRepository: RecipesRepository): RecipesService = RecipesServiceImpl(recipesRepository)
 }
