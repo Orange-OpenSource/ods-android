@@ -31,10 +31,7 @@ import com.orange.ods.demo.ui.components.utilities.ComponentCustomizationBottomS
 @OptIn(ExperimentalMaterialApi::class)
 @Composable
 fun ComponentSwitches() {
-    val checked = rememberSaveable { mutableStateOf(false) }
     val enabled = rememberSaveable { mutableStateOf(true) }
-    val recipes = LocalRecipes.current
-    val recipe = rememberSaveable { recipes.random() }
 
     ComponentCustomizationBottomSheetScaffold(
         bottomSheetScaffoldState = rememberBottomSheetScaffoldState(),
@@ -51,13 +48,17 @@ fun ComponentSwitches() {
                 .verticalScroll(rememberScrollState())
                 .padding(bottom = dimensionResource(id = R.dimen.spacing_m))
         ) {
-            OdsListItem(
-                text = recipe.title,
-                trailing = OdsSwitchTrailing(
-                    checked = checked,
-                    enabled = enabled.value
+            val recipes = LocalRecipes.current.take(3)
+            recipes.forEach { recipe ->
+                val checked = rememberSaveable { mutableStateOf(false) }
+                OdsListItem(
+                    text = recipe.title,
+                    trailing = OdsSwitchTrailing(
+                        checked = checked,
+                        enabled = enabled.value
+                    )
                 )
-            )
+            }
         }
     }
 }
