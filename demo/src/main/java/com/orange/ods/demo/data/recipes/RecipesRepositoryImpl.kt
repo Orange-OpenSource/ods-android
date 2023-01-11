@@ -21,13 +21,13 @@ import javax.inject.Inject
 
 class RecipesRepositoryImpl @Inject constructor(private val context: Context) : RecipesRepository {
 
-    private val foodParser = RecipesParser()
+    private val recipesParser = RecipesParser()
 
     override fun getRecipes(): Flow<List<Recipe>> {
         return flow {
             try {
                 val jsonString = context.resources.openRawResource(R.raw.recipes).contentAsString().orEmpty()
-                val recipes = foodParser.parseRecipes(jsonString)
+                val recipes = recipesParser.parseRecipes(jsonString)
                 emit(recipes)
             } catch (_: Exception) {
             }
