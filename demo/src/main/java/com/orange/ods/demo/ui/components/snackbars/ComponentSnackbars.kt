@@ -18,13 +18,14 @@ import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
+import com.orange.ods.compose.component.list.OdsListItem
+import com.orange.ods.compose.component.list.OdsSwitchTrailing
 import com.orange.ods.compose.component.snackbar.OdsSnackbar
 import com.orange.ods.compose.component.snackbar.OdsSnackbarHost
 import com.orange.ods.demo.R
 import com.orange.ods.demo.ui.components.utilities.ComponentCustomizationBottomSheetScaffold
 import com.orange.ods.demo.ui.components.utilities.ComponentLaunchContentColumn
 import com.orange.ods.demo.ui.components.utilities.clickOnElement
-import com.orange.ods.demo.ui.utilities.composable.SwitchListItem
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.launch
 
@@ -55,8 +56,14 @@ fun ComponentSnackbars() {
             }
         },
         bottomSheetContent = {
-            SwitchListItem(labelRes = R.string.component_snackbar_action_button, checked = actionButtonChecked)
-            SwitchListItem(labelRes = R.string.component_snackbar_action_on_new_line, checked = actionOnNewLineChecked, enabled = actionButtonChecked.value)
+            OdsListItem(
+                text = stringResource(id = R.string.component_snackbar_action_button),
+                trailing = OdsSwitchTrailing(checked = actionButtonChecked)
+            )
+            OdsListItem(
+                text = stringResource(id = R.string.component_snackbar_action_on_new_line),
+                trailing = OdsSwitchTrailing(checked = actionOnNewLineChecked, enabled = actionButtonChecked.value)
+            )
         }) {
         ComponentLaunchContentColumn(textRes = R.string.component_snackbar_customize, buttonLabelRes = R.string.component_snackbar_show) {
             coroutineScope.launch {

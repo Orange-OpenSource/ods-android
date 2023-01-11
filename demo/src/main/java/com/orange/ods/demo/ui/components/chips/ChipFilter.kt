@@ -25,10 +25,11 @@ import com.google.accompanist.flowlayout.FlowRow
 import com.orange.ods.compose.component.chip.OdsChoiceChip
 import com.orange.ods.compose.component.chip.OdsChoiceChipsFlowRow
 import com.orange.ods.compose.component.chip.OdsFilterChip
+import com.orange.ods.compose.component.list.OdsCheckboxTrailing
+import com.orange.ods.compose.component.list.OdsListItem
 import com.orange.ods.demo.R
 import com.orange.ods.demo.ui.LocalMainThemeManager
 import com.orange.ods.demo.ui.components.utilities.ComponentCustomizationBottomSheetScaffold
-import com.orange.ods.demo.ui.utilities.composable.CheckboxListItem
 import com.orange.ods.demo.ui.utilities.composable.Subtitle
 import com.orange.ods.theme.OdsComponentCustomizations.Companion.ChipStyle
 
@@ -51,8 +52,12 @@ fun ChipFilter() {
                 OdsChoiceChip(textRes = R.string.component_element_avatar, value = ChipCustomizationState.LeadingElement.Avatar)
             }
 
-            CheckboxListItem(labelRes = R.string.component_state_disabled, checked = chipCustomizationState.disabledChecked)
-
+            OdsListItem(
+                text = stringResource(id = R.string.component_state_disabled),
+                trailing = OdsCheckboxTrailing(
+                    checked = chipCustomizationState.disabledChecked
+                )
+            )
         }) {
         ChipTypeDemo(chipType = chipCustomizationState.chipType.value) {
             FlowRow(modifier = Modifier.fillMaxWidth(), mainAxisSpacing = dimensionResource(id = R.dimen.spacing_s)) {

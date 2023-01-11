@@ -25,12 +25,13 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import com.orange.ods.compose.component.OdsComponent
 import com.orange.ods.compose.component.button.OdsOutlinedButton
+import com.orange.ods.compose.component.list.OdsListItem
+import com.orange.ods.compose.component.list.OdsSwitchTrailing
 import com.orange.ods.compose.theme.OdsDisplaySurface
 import com.orange.ods.demo.R
 import com.orange.ods.demo.ui.components.utilities.ComponentCustomizationBottomSheetScaffold
 import com.orange.ods.demo.ui.utilities.composable.ButtonTechnicalText
 import com.orange.ods.demo.ui.utilities.composable.CodeImplementationColumn
-import com.orange.ods.demo.ui.utilities.composable.SwitchListItem
 
 @OptIn(ExperimentalMaterialApi::class)
 @Composable
@@ -41,9 +42,18 @@ fun ButtonsOutlined() {
         ComponentCustomizationBottomSheetScaffold(
             bottomSheetScaffoldState = rememberBottomSheetScaffoldState(),
             bottomSheetContent = {
-                SwitchListItem(labelRes = R.string.component_element_icon, checked = leadingIcon)
-                SwitchListItem(labelRes = R.string.component_button_variable_width, checked = variableWidth)
-                SwitchListItem(labelRes = R.string.component_state_disabled, checked = disabled)
+                OdsListItem(
+                    text = stringResource(id = R.string.component_element_icon),
+                    trailing = OdsSwitchTrailing(checked = leadingIcon)
+                )
+                OdsListItem(
+                    text = stringResource(id = R.string.component_button_variable_width),
+                    trailing = OdsSwitchTrailing(checked = variableWidth)
+                )
+                OdsListItem(
+                    text = stringResource(id = R.string.component_state_disabled),
+                    trailing = OdsSwitchTrailing(checked = disabled)
+                )
             }) {
 
             Column(
@@ -63,7 +73,7 @@ fun ButtonsOutlined() {
                         displaySurface = displaySurface
                     )
                 }
-                
+
                 CodeImplementationColumn {
                     ButtonTechnicalText(
                         componentName = OdsComponent.OdsOutlinedButton.name,

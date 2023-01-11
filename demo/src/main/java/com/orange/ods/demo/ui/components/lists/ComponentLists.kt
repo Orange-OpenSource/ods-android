@@ -14,39 +14,34 @@ import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.rememberScrollState
-import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.ExperimentalMaterialApi
-import androidx.compose.material.Icon
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
-import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.draw.clip
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
-import androidx.compose.ui.unit.dp
 import com.orange.ods.compose.component.chip.OdsChoiceChip
 import com.orange.ods.compose.component.chip.OdsChoiceChipsFlowRow
-import com.orange.ods.compose.component.control.OdsCheckbox
-import com.orange.ods.compose.component.control.OdsSwitch
+import com.orange.ods.compose.component.list.OdsCaptionTrailing
+import com.orange.ods.compose.component.list.OdsCheckboxTrailing
+import com.orange.ods.compose.component.list.OdsIconTrailing
 import com.orange.ods.compose.component.list.OdsListItem
 import com.orange.ods.compose.component.list.OdsListItemIcon
+import com.orange.ods.compose.component.list.OdsListItemIconScope
 import com.orange.ods.compose.component.list.OdsListItemIconType
+import com.orange.ods.compose.component.list.OdsListItemTrailing
+import com.orange.ods.compose.component.list.OdsSwitchTrailing
 import com.orange.ods.compose.component.list.divider
 import com.orange.ods.compose.component.list.iconType
-import com.orange.ods.compose.text.OdsTextCaption
-import com.orange.ods.compose.theme.OdsTheme
 import com.orange.ods.demo.R
 import com.orange.ods.demo.ui.components.utilities.ComponentCountRow
 import com.orange.ods.demo.ui.components.utilities.ComponentCustomizationBottomSheetScaffold
 import com.orange.ods.demo.ui.components.utilities.clickOnElement
 import com.orange.ods.demo.ui.utilities.composable.Subtitle
-import com.orange.ods.demo.ui.utilities.composable.SwitchListItem
 import com.orange.ods.utilities.extension.orElse
 
 @OptIn(ExperimentalMaterialApi::class)
@@ -96,29 +91,52 @@ private fun ComponentListsBottomSheetContent(listItemCustomizationState: ListIte
         }
     }
 
-    SwitchListItem(R.string.component_list_divider, listItemCustomizationState.dividerEnabled)
+    OdsListItem(
+        text = stringResource(id = R.string.component_list_divider),
+        trailing = OdsSwitchTrailing(checked = listItemCustomizationState.dividerEnabled)
+    )
 }
 
 @Composable
 private fun ComponentListsContent(listItemCustomizationState: ListItemCustomizationState) {
-    Column(modifier = Modifier.verticalScroll(rememberScrollState())) {
-        if (!listItemCustomizationState.trailings.contains(listItemCustomizationState.selectedTrailing.value)) {
-            listItemCustomizationState.resetTrailing()
-        }
+    with(listItemCustomizationState) {
+        Column(modifier = Modifier.verticalScroll(rememberScrollState())) {
+            if (!trailings.contains(selectedTrailing.value)) {
+                resetTrailing()
+            }
 
-        repeat(4) {
-            OdsListItem(
-                modifier = Modifier.clickable {}
-                    .let { modifier ->
-                        listItemCustomizationState.iconType?.let { modifier.iconType(it) }.orElse { modifier }
-                    }
-                    .let { if (listItemCustomizationState.dividerEnabled.value) it.divider() else it },
-                text = stringResource(id = R.string.component_element_title),
-                secondaryText = listItemCustomizationState.secondaryTextResId?.let { stringResource(id = it) },
-                singleLineSecondaryText = listItemCustomizationState.lineCount.value == 2,
-                icon = listItemCustomizationState.iconPainterResId?.let { { OdsListItemIcon(painter = painterResource(it)) } },
-                trailing = listItemCustomizationState.trailing
-            )
+            val modifier = Modifier
+                .let { modifier ->
+                    iconType?.let { modifier.iconType(it) }.orElse { modifier }
+                }
+                .let { if (dividerEnabled.value) it.divider() else it }
+            val text = stringResource(id = R.string.component_element_title)
+            val secondaryText = secondaryTextResId?.let { stringResource(id = it) }
+            val singleLineSecondaryText = lineCount.value == 2
+            val icon: @Composable (OdsListItemIconScope.() -> Unit)? = iconPainterResId?.let { { OdsListItemIcon(painter = painterResource(it)) } }
+
+            repeat(4) {
+                trailing?.let { listItemTrailing ->
+                    OdsListItem(
+                        modifier = modifier,
+                        text = text,
+                        secondaryText = secondaryText,
+                        singleLineSecondaryText = singleLineSecondaryText,
+                        icon = icon,
+                        trailing = listItemTrailing
+                    )
+                }.orElse {
+                    val context = LocalContext.current
+                    OdsListItem(
+                        modifier = modifier.clickable { clickOnElement(context = context, context.getString(R.string.component_list_item)) },
+                        text = text,
+                        secondaryText = secondaryText,
+                        singleLineSecondaryText = singleLineSecondaryText,
+                        icon = icon
+                    )
+                }
+
+            }
         }
     }
 }
@@ -157,32 +175,30 @@ private val ListItemCustomizationState.iconPainterResId: Int?
         ListItemCustomizationState.Leading.WideImage -> R.drawable.placeholder
     }
 
-private val ListItemCustomizationState.trailing: (@Composable () -> Unit)?
+private val ListItemCustomizationState.trailing: OdsListItemTrailing?
+    @Composable
     get() = when (selectedTrailing.value) {
         ListItemCustomizationState.Trailing.None -> null
-        ListItemCustomizationState.Trailing.Checkbox -> { ->
-            var checked by remember { mutableStateOf(true) }
-            OdsCheckbox(checked = checked, onCheckedChange = { checked = it })
+        ListItemCustomizationState.Trailing.Checkbox -> {
+            val checked = remember { mutableStateOf(true) }
+            OdsCheckboxTrailing(checked = checked)
         }
-        ListItemCustomizationState.Trailing.Switch -> { ->
-            var checked by remember { mutableStateOf(true) }
-            OdsSwitch(checked = checked, onCheckedChange = { checked = it })
+        ListItemCustomizationState.Trailing.Switch -> {
+            val checked = remember { mutableStateOf(true) }
+            OdsSwitchTrailing(checked = checked)
         }
-        ListItemCustomizationState.Trailing.Icon -> { ->
+        ListItemCustomizationState.Trailing.Icon -> {
             val context = LocalContext.current
             val iconText = stringResource(id = R.string.component_element_icon)
-            Icon(
-                modifier = Modifier
-                    .clip(RoundedCornerShape(12.dp))
-                    .clickable {
-                        clickOnElement(context, iconText)
-                    },
-                painter = painterResource(id = R.drawable.ic_info),
-                tint = OdsTheme.colors.onSurface,
+            OdsIconTrailing(
+                modifier = Modifier.clickable {
+                    clickOnElement(context, iconText)
+                },
+                iconRes = R.drawable.ic_info,
                 contentDescription = stringResource(id = R.string.component_list_information)
             )
         }
-        ListItemCustomizationState.Trailing.Caption -> { ->
-            OdsTextCaption(text = stringResource(id = R.string.component_element_caption))
+        ListItemCustomizationState.Trailing.Caption -> {
+            OdsCaptionTrailing(text = stringResource(id = R.string.component_element_caption))
         }
     }

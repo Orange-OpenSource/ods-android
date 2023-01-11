@@ -25,9 +25,9 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
+import com.orange.ods.compose.component.list.OdsCaptionTrailing
 import com.orange.ods.compose.component.list.OdsListItem
 import com.orange.ods.compose.component.list.divider
-import com.orange.ods.compose.text.OdsTextCaption
 import com.orange.ods.compose.text.OdsTextSubtitle1
 import com.orange.ods.demo.R
 import com.orange.ods.demo.ui.LocalMainThemeManager
@@ -72,9 +72,12 @@ fun GuidelineSpacingScreen() {
                 secondaryText = stringResource(id = R.string.guideline_spacing_dp, dp.value.toInt()) + "\n",
                 singleLineSecondaryText = false,
                 icon = { GuidelineSpacingImage(spacing = spacing) },
-                trailing = {
-                    OdsTextCaption(text = stringResource(id = R.string.guideline_spacing_ratio, if (ratio == 0.0f) "-" else ratioFormatter.format(ratio)))
-                }
+                trailing = OdsCaptionTrailing(
+                    text = stringResource(
+                        id = R.string.guideline_spacing_ratio,
+                        if (ratio == 0.0f) "-" else ratioFormatter.format(ratio)
+                    )
+                )
             )
         }
     }

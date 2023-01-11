@@ -16,11 +16,12 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
 import com.orange.ods.compose.component.dialog.OdsAlertDialog
+import com.orange.ods.compose.component.list.OdsListItem
+import com.orange.ods.compose.component.list.OdsSwitchTrailing
 import com.orange.ods.demo.R
 import com.orange.ods.demo.ui.components.utilities.ComponentCustomizationBottomSheetScaffold
 import com.orange.ods.demo.ui.components.utilities.ComponentLaunchContentColumn
 import com.orange.ods.demo.ui.components.utilities.clickOnElement
-import com.orange.ods.demo.ui.utilities.composable.SwitchListItem
 
 @OptIn(ExperimentalMaterialApi::class)
 @Composable
@@ -33,8 +34,14 @@ fun ComponentDialog() {
     ComponentCustomizationBottomSheetScaffold(
         bottomSheetScaffoldState = rememberBottomSheetScaffoldState(),
         bottomSheetContent = {
-            SwitchListItem(labelRes = R.string.component_element_title, checked = customizationState.titleChecked)
-            SwitchListItem(labelRes = R.string.component_dialog_element_dismiss_button, checked = customizationState.dismissButtonChecked)
+            OdsListItem(
+                text = stringResource(id = R.string.component_element_title),
+                trailing = OdsSwitchTrailing(checked = customizationState.titleChecked)
+            )
+            OdsListItem(
+                text = stringResource(id = R.string.component_dialog_element_dismiss_button),
+                trailing = OdsSwitchTrailing(checked = customizationState.dismissButtonChecked)
+            )
         }) {
         ComponentLaunchContentColumn(textRes = R.string.component_dialog_customize, buttonLabelRes = R.string.component_dialog_open) {
             customizationState.openDialog.value = true

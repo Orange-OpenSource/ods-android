@@ -29,9 +29,10 @@ import androidx.compose.ui.res.stringResource
 import com.orange.ods.compose.component.OdsComponent
 import com.orange.ods.compose.component.control.OdsSlider
 import com.orange.ods.compose.component.control.OdsSliderLockups
+import com.orange.ods.compose.component.list.OdsListItem
+import com.orange.ods.compose.component.list.OdsSwitchTrailing
 import com.orange.ods.demo.R
 import com.orange.ods.demo.ui.components.utilities.ComponentCustomizationBottomSheetScaffold
-import com.orange.ods.demo.ui.utilities.composable.SwitchListItem
 import com.orange.ods.demo.ui.utilities.composable.TechnicalText
 import com.orange.ods.demo.ui.utilities.composable.Title
 
@@ -44,9 +45,18 @@ fun ComponentSliders() {
         ComponentCustomizationBottomSheetScaffold(
             bottomSheetScaffoldState = rememberBottomSheetScaffoldState(),
             bottomSheetContent = {
-                SwitchListItem(labelRes = R.string.component_slider_side_icons, checked = sideIcons)
-                SwitchListItem(labelRes = R.string.component_slider_value_displayed, checked = valueDisplayed)
-                SwitchListItem(labelRes = R.string.component_slider_stepped, checked = stepped)
+                OdsListItem(
+                    text = stringResource(id = R.string.component_slider_side_icons),
+                    trailing = OdsSwitchTrailing(checked = sideIcons)
+                )
+                OdsListItem(
+                    text = stringResource(id = R.string.component_slider_value_displayed),
+                    trailing = OdsSwitchTrailing(checked = valueDisplayed)
+                )
+                OdsListItem(
+                    text = stringResource(id = R.string.component_slider_stepped),
+                    trailing = OdsSwitchTrailing(checked = stepped)
+                )
             }) {
             Column(
                 modifier = Modifier

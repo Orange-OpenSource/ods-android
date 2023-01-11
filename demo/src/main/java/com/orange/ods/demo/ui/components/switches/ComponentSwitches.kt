@@ -21,9 +21,11 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.dimensionResource
+import androidx.compose.ui.res.stringResource
+import com.orange.ods.compose.component.list.OdsListItem
+import com.orange.ods.compose.component.list.OdsSwitchTrailing
 import com.orange.ods.demo.R
 import com.orange.ods.demo.ui.components.utilities.ComponentCustomizationBottomSheetScaffold
-import com.orange.ods.demo.ui.utilities.composable.SwitchListItem
 
 @OptIn(ExperimentalMaterialApi::class)
 @Composable
@@ -34,17 +36,24 @@ fun ComponentSwitches() {
     ComponentCustomizationBottomSheetScaffold(
         bottomSheetScaffoldState = rememberBottomSheetScaffoldState(),
         bottomSheetContent = {
-            SwitchListItem(labelRes = R.string.component_state_enabled, checked = enabled)
+            OdsListItem(
+                text = stringResource(id = R.string.component_state_enabled),
+                trailing = OdsSwitchTrailing(
+                    checked = enabled,
+                )
+            )
         }) {
         Column(
             modifier = Modifier
                 .verticalScroll(rememberScrollState())
                 .padding(bottom = dimensionResource(id = R.dimen.spacing_m))
         ) {
-            SwitchListItem(
-                labelRes = R.string.component_element_label,
-                checked = checked,
-                enabled = enabled.value
+            OdsListItem(
+                text = stringResource(id = R.string.component_element_label),
+                trailing = OdsSwitchTrailing(
+                    checked = checked,
+                    enabled = enabled.value
+                )
             )
         }
     }
