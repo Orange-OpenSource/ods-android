@@ -10,8 +10,6 @@
 
 package com.orange.ods.demo.ui.components.bottomnavigation
 
-import androidx.annotation.DrawableRes
-import androidx.annotation.StringRes
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
@@ -36,6 +34,7 @@ import com.orange.ods.demo.ui.components.bottomnavigation.ComponentBottomNavigat
 import com.orange.ods.demo.ui.components.utilities.ComponentCountRow
 import com.orange.ods.demo.ui.components.utilities.ComponentCustomizationBottomSheetScaffold
 import com.orange.ods.demo.ui.components.utilities.clickOnElement
+import com.orange.ods.demo.ui.utilities.NavigationItem
 
 private object ComponentBottomNavigation {
     const val MinNavigationItemCount = 3
@@ -46,14 +45,7 @@ private object ComponentBottomNavigation {
 @Composable
 fun ComponentBottomNavigation() {
     val context = LocalContext.current
-    val navigationItems = listOf(
-        NavigationItem(R.string.component_bottom_navigation_coffee, R.drawable.ic_coffee),
-        NavigationItem(R.string.component_bottom_navigation_cooking_pot, R.drawable.ic_cooking_pot),
-        NavigationItem(R.string.component_bottom_navigation_ice_cream, R.drawable.ic_ice_cream),
-        NavigationItem(R.string.component_bottom_navigation_restaurant, R.drawable.ic_restaurant),
-        NavigationItem(R.string.component_bottom_navigation_favorites, R.drawable.ic_heart)
-    )
-
+    val navigationItems = NavigationItem.values()
     val selectedNavigationItemCount = rememberSaveable { mutableStateOf(MinNavigationItemCount) }
     val selectedNavigationItem = remember { mutableStateOf(navigationItems[0]) }
 
@@ -77,7 +69,7 @@ fun ComponentBottomNavigation() {
             OdsBottomNavigation {
                 navigationItems.take(selectedNavigationItemCount.value)
                     .forEach { navigationItem ->
-                        val label = stringResource(id = navigationItem.titleResId)
+                        val label = stringResource(id = navigationItem.textResId)
                         OdsBottomNavigationItem(
                             icon = {
                                 Icon(
@@ -86,7 +78,7 @@ fun ComponentBottomNavigation() {
                                 )
                             },
                             label = label,
-                            selected = selectedNavigationItem.value.titleResId == navigationItem.titleResId,
+                            selected = selectedNavigationItem.value.textResId == navigationItem.textResId,
                             onClick = {
                                 selectedNavigationItem.value = navigationItem
                                 clickOnElement(context, label)
@@ -97,5 +89,3 @@ fun ComponentBottomNavigation() {
         }
     }
 }
-
-private data class NavigationItem(@StringRes val titleResId: Int, @DrawableRes val iconResId: Int)

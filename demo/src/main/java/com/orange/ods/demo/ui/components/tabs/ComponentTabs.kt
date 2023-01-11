@@ -10,8 +10,6 @@
 
 package com.orange.ods.demo.ui.components.tabs
 
-import androidx.annotation.DrawableRes
-import androidx.annotation.StringRes
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
@@ -114,7 +112,8 @@ fun ComponentTabs(variant: Variant) {
         }) {
 
         HorizontalPager(state = tabsCustomizationState.pagerState, count = tabsCustomizationState.tabs.size) { page ->
-            tabsCustomizationState.tabs[page].Screen()
+            val textResId = tabsCustomizationState.tabs[page].textResId
+            TabsPagerContentScreen(stringResource(id = textResId))
         }
     }
 }
@@ -127,19 +126,5 @@ private fun TabsPagerContentScreen(text: String) {
             .wrapContentSize(Alignment.Center)
     ) {
         OdsTextBody1(text = text)
-    }
-}
-
-enum class TabItem(@DrawableRes val icon: Int, @StringRes val titleRes: Int) {
-    Coffee(R.drawable.ic_coffee, R.string.component_tab_coffee),
-    CookingPot(R.drawable.ic_cooking_pot, R.string.component_tab_cooking_pot),
-    IceCream(R.drawable.ic_ice_cream, R.string.component_tab_ice_cream),
-    Restaurant(R.drawable.ic_restaurant, R.string.component_tab_restaurant),
-    Favorites(R.drawable.ic_heart, R.string.component_tab_favorites),
-    Information(R.drawable.ic_info, R.string.component_tab_information);
-
-    @Composable
-    fun Screen() {
-        TabsPagerContentScreen(stringResource(id = titleRes))
     }
 }

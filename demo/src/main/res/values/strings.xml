@@ -98,12 +98,6 @@
     <string name="component_bottom_navigation_navigation_item_count">Navigation item count</string>
     <string name="component_bottom_navigation_remove_item">Remove item</string>
     <string name="component_bottom_navigation_add_item">Add item</string>
-    <string name="component_bottom_navigation_coffee">Coffee</string>
-    <string name="component_bottom_navigation_cooking_pot">Cooking Pot</string>
-    <string name="component_bottom_navigation_ice_cream">Ice Cream</string>
-    <string name="component_bottom_navigation_restaurant">Restaurant</string>
-    <string name="component_bottom_navigation_favorites">Favorites</string>
-
 
     <!-- Components Buttons -->
     <string name="component_buttons">Buttons</string>
@@ -281,12 +275,6 @@
     <string name="component_tabs_add_tab">Add tab</string>
     <string name="component_tab_icon_leading">Leading</string>
     <string name="component_tab_icon_top">Top</string>
-    <string name="component_tab_coffee">Coffee</string>
-    <string name="component_tab_cooking_pot">Cooking Pot</string>
-    <string name="component_tab_ice_cream">Ice Cream</string>
-    <string name="component_tab_restaurant">Restaurant</string>
-    <string name="component_tab_favorites">Favorites</string>
-    <string name="component_tab_information">Information</string>
 
     <!-- Modules -->
     <string name="modules_coming_soon">Coming soon…</string>
@@ -298,5 +286,13 @@
     <string name="about_menu_legal_notice">Legal notice</string>
     <string name="about_menu_privacy_policy">Privacy policy</string>
     <string name="about_menu_changelog">Changelog</string>
+
+    <!-- Navigation items -->
+    <string name="navigation_item_coffee">Coffee</string>
+    <string name="navigation_item_cooking_pot">Cooking Pot</string>
+    <string name="navigation_item_ice_cream">Ice Cream</string>
+    <string name="navigation_item_restaurant">Restaurant</string>
+    <string name="navigation_item_favorites">Favorites</string>
+    <string name="navigation_item_information">Information</string>
 
 </resources>

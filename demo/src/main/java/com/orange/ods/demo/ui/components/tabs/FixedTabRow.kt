@@ -14,13 +14,12 @@ import androidx.compose.runtime.Composable
 import com.google.accompanist.pager.ExperimentalPagerApi
 import com.google.accompanist.pager.PagerState
 import com.orange.ods.compose.component.tab.OdsTabRow
+import com.orange.ods.demo.ui.utilities.NavigationItem
 
 @OptIn(ExperimentalPagerApi::class)
 @Composable
-fun FixedTabRow(tabs: List<TabItem>, pagerState: PagerState, tabIconType: MainTabsCustomizationState.TabIconType, tabTextEnabled: Boolean) {
-
+fun FixedTabRow(tabs: List<NavigationItem>, pagerState: PagerState, tabIconType: MainTabsCustomizationState.TabIconType, tabTextEnabled: Boolean) {
     OdsTabRow(selectedTabIndex = pagerState.currentPage) {
         Tabs(tabs = tabs, pagerState = pagerState, tabIconType = tabIconType, tabTextEnabled = tabTextEnabled)
     }
-
 }
