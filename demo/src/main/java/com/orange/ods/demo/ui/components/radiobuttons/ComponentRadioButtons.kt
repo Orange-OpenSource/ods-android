@@ -19,7 +19,6 @@ import androidx.compose.material.ExperimentalMaterialApi
 import androidx.compose.material.rememberBottomSheetScaffoldState
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.dimensionResource
@@ -50,7 +49,7 @@ fun ComponentRadioButtons() {
                 .padding(bottom = dimensionResource(id = R.dimen.spacing_m))
         ) {
             val recipes = LocalRecipes.current.take(3)
-            val selectedRadio = remember { mutableStateOf(recipes.firstOrNull()?.title) }
+            val selectedRadio = rememberSaveable { mutableStateOf(recipes.firstOrNull()?.title) }
             Column(modifier = Modifier.selectableGroup()) {
                 recipes.forEach { recipe ->
                     OdsListItem(
