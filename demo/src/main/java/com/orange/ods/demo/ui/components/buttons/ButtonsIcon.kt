@@ -63,7 +63,7 @@ fun ButtonsIcon() {
                 ) {
                     OdsIconButton(
                         onClick = { clickOnElement(context, context.getString(R.string.component_button_icon)) },
-                        painter = painterResource(id = R.drawable.ic_search),
+                        painter = painterResource(id = R.drawable.ic_coffee),
                         contentDescription = stringResource(id = R.string.component_button_icon_search_desc),
                         enabled = isEnabled
                     )
@@ -74,7 +74,7 @@ fun ButtonsIcon() {
                 InvertedBackgroundColumn(horizontalAlignment = Alignment.CenterHorizontally) {
                     OdsIconButton(
                         onClick = { clickOnElement(context, context.getString(R.string.component_button_icon)) },
-                        painter = painterResource(id = R.drawable.ic_search),
+                        painter = painterResource(id = R.drawable.ic_coffee),
                         contentDescription = stringResource(id = R.string.component_button_icon_search_desc),
                         enabled = isEnabled,
                         displaySurface = displaySurface

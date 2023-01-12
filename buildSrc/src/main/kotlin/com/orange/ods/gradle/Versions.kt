@@ -22,6 +22,7 @@ object Versions {
     const val appCompat = "1.5.1"
     const val browser = "1.3.0"
     const val compose = "1.2.0-rc02"
+    const val coil = "2.2.2"
     const val core = "1.7.0"
     const val customViewPoolingContainer = "1.0.0"
     const val dataStorePreferences = "1.0.0"
@@ -38,5 +39,6 @@ object Versions {
     const val material = "1.5.0"
     const val navigation = "2.4.1"
     const val testExtJUnit = "1.1.3"
+    const val timber = "5.0.1"
     const val webkit = "1.4.0"
 }

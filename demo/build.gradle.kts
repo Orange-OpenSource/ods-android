@@ -19,6 +19,7 @@ plugins {
     id("com.google.gms.google-services")
     id("kotlin-android")
     id("kotlin-kapt")
+    id("kotlin-parcelize")
     id("com.google.firebase.appdistribution")
     id("com.google.firebase.crashlytics")
     id("firebase")
@@ -130,6 +131,9 @@ dependencies {
     implementation(Dependencies.hiltAndroid)
     kapt(Dependencies.hiltCompiler)
     implementation(Dependencies.dataStorePreferences)
+    implementation(Dependencies.coil)
+    implementation(Dependencies.coilCompose)
+    implementation(Dependencies.timber)
 
     debugImplementation(Dependencies.composeUiTooling)
 }

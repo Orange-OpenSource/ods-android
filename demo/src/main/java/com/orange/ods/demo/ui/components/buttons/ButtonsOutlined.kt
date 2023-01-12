@@ -102,7 +102,7 @@ private fun OutlinedButton(
         modifier = if (variableWidth) modifier else modifier.fillMaxWidth(),
         text = stringResource(if (enabled) R.string.component_state_enabled else R.string.component_state_disabled),
         onClick = {},
-        icon = if (leadingIcon) painterResource(id = R.drawable.ic_search) else null,
+        icon = if (leadingIcon) painterResource(id = R.drawable.ic_coffee) else null,
         enabled = enabled,
         displaySurface = displaySurface
     )

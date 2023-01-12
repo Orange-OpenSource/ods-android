@@ -18,7 +18,6 @@ import androidx.compose.material.ExperimentalMaterialApi
 import androidx.compose.material.rememberBottomSheetScaffoldState
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.dimensionResource
@@ -27,12 +26,15 @@ import com.orange.ods.compose.component.list.OdsCheckboxTrailing
 import com.orange.ods.compose.component.list.OdsListItem
 import com.orange.ods.compose.component.list.OdsSwitchTrailing
 import com.orange.ods.demo.R
+import com.orange.ods.demo.domain.recipes.LocalRecipes
 import com.orange.ods.demo.ui.components.utilities.ComponentCustomizationBottomSheetScaffold
 
 @OptIn(ExperimentalMaterialApi::class)
 @Composable
 fun ComponentCheckboxes() {
     val enabled = rememberSaveable { mutableStateOf(true) }
+    val recipes = LocalRecipes.current
+    val recipe = rememberSaveable { recipes.filter { it.ingredients.count() >= 3 }.random() }
 
     ComponentCustomizationBottomSheetScaffold(
         bottomSheetScaffoldState = rememberBottomSheetScaffoldState(),
@@ -47,29 +49,15 @@ fun ComponentCheckboxes() {
                 .verticalScroll(rememberScrollState())
                 .padding(bottom = dimensionResource(id = R.dimen.spacing_m))
         ) {
-            OdsListItem(
-                text = stringResource(id = R.string.component_element_item1),
-                trailing = OdsCheckboxTrailing(
-                    checked = remember { mutableStateOf(true) },
-                    enabled = enabled.value
+            recipe.ingredients.forEachIndexed { index, ingredient ->
+                OdsListItem(
+                    text = ingredient.name,
+                    trailing = OdsCheckboxTrailing(
+                        checked = rememberSaveable { androidx.compose.runtime.mutableStateOf(index == 0) },
+                        enabled = enabled.value
+                    )
                 )
-            )
-
-            OdsListItem(
-                text = stringResource(id = R.string.component_element_item2),
-                trailing = OdsCheckboxTrailing(
-                    checked = remember { mutableStateOf(false) },
-                    enabled = enabled.value
-                )
-            )
-
-            OdsListItem(
-                text = stringResource(id = R.string.component_element_item3),
-                trailing = OdsCheckboxTrailing(
-                    checked = remember { mutableStateOf(true) },
-                    enabled = enabled.value
-                )
-            )
+            }
         }
     }
 }

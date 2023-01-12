@@ -19,7 +19,6 @@ import androidx.compose.material.ExperimentalMaterialApi
 import androidx.compose.material.rememberBottomSheetScaffoldState
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.dimensionResource
@@ -28,6 +27,7 @@ import com.orange.ods.compose.component.list.OdsListItem
 import com.orange.ods.compose.component.list.OdsRadioButtonTrailing
 import com.orange.ods.compose.component.list.OdsSwitchTrailing
 import com.orange.ods.demo.R
+import com.orange.ods.demo.domain.recipes.LocalRecipes
 import com.orange.ods.demo.ui.components.utilities.ComponentCustomizationBottomSheetScaffold
 
 @OptIn(ExperimentalMaterialApi::class)
@@ -48,34 +48,19 @@ fun ComponentRadioButtons() {
                 .verticalScroll(rememberScrollState())
                 .padding(bottom = dimensionResource(id = R.dimen.spacing_m))
         ) {
-            val selectedRadio = remember { mutableStateOf(R.string.component_element_item1) }
+            val recipes = LocalRecipes.current.take(3)
+            val selectedRadio = rememberSaveable { mutableStateOf(recipes.firstOrNull()?.title) }
             Column(modifier = Modifier.selectableGroup()) {
-                OdsListItem(
-                    text = stringResource(id = R.string.component_element_item1),
-                    trailing = OdsRadioButtonTrailing(
-                        selectedRadio = selectedRadio,
-                        currentRadio = R.string.component_element_item1,
-                        enabled = enabled.value
+                recipes.forEach { recipe ->
+                    OdsListItem(
+                        text = recipe.title,
+                        trailing = OdsRadioButtonTrailing(
+                            selectedRadio = selectedRadio,
+                            currentRadio = recipe.title,
+                            enabled = enabled.value
+                        )
                     )
-                )
-
-                OdsListItem(
-                    text = stringResource(id = R.string.component_element_item2),
-                    trailing = OdsRadioButtonTrailing(
-                        selectedRadio = selectedRadio,
-                        currentRadio = R.string.component_element_item2,
-                        enabled = enabled.value
-                    )
-                )
-
-                OdsListItem(
-                    text = stringResource(id = R.string.component_element_item3),
-                    trailing = OdsRadioButtonTrailing(
-                        selectedRadio = selectedRadio,
-                        currentRadio = R.string.component_element_item3,
-                        enabled = enabled.value
-                    )
-                )
+                }
             }
         }
     }

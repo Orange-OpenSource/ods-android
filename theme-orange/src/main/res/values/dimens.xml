@@ -30,7 +30,7 @@
     <dimen name="button_corner_size">0dp</dimen>
 
     <!-- Card -->
-    <dimen name="card_big_image_width">194dp</dimen>
+    <dimen name="card_big_image_height">194dp</dimen>
     <dimen name="card_small_image_width">95dp</dimen>
 
     <!-- Images -->

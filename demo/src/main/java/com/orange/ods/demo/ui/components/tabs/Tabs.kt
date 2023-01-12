@@ -18,11 +18,12 @@ import com.google.accompanist.pager.ExperimentalPagerApi
 import com.google.accompanist.pager.PagerState
 import com.orange.ods.compose.component.tab.OdsLeadingIconTab
 import com.orange.ods.compose.component.tab.OdsTab
+import com.orange.ods.demo.ui.utilities.NavigationItem
 import kotlinx.coroutines.launch
 
 @OptIn(ExperimentalPagerApi::class)
 @Composable
-fun Tabs(tabs: List<TabItem>, pagerState: PagerState, tabIconType: MainTabsCustomizationState.TabIconType, tabTextEnabled: Boolean) {
+fun Tabs(tabs: List<NavigationItem>, pagerState: PagerState, tabIconType: MainTabsCustomizationState.TabIconType, tabTextEnabled: Boolean) {
     val scope = rememberCoroutineScope()
 
     tabs.forEachIndexed { index, tab ->
@@ -35,15 +36,15 @@ fun Tabs(tabs: List<TabItem>, pagerState: PagerState, tabIconType: MainTabsCusto
 
         if (tabIconType == MainTabsCustomizationState.TabIconType.Leading && tabTextEnabled) {
             OdsLeadingIconTab(
-                icon = painterResource(id = tab.icon),
-                text = stringResource(id = tab.titleRes),
+                icon = painterResource(id = tab.iconResId),
+                text = stringResource(id = tab.textResId),
                 selected = selected,
                 onClick = onClick
             )
         } else {
             OdsTab(
-                icon = if (tabIconType == MainTabsCustomizationState.TabIconType.None) null else painterResource(id = tab.icon),
-                text = if (tabTextEnabled) stringResource(id = tab.titleRes) else null,
+                icon = if (tabIconType == MainTabsCustomizationState.TabIconType.None) null else painterResource(id = tab.iconResId),
+                text = if (tabTextEnabled) stringResource(id = tab.textResId) else null,
                 selected = selected,
                 onClick = onClick
             )

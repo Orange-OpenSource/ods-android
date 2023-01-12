@@ -22,6 +22,7 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
+import coil.compose.rememberAsyncImagePainter
 import com.orange.ods.compose.component.chip.OdsChip
 import com.orange.ods.compose.component.chip.OdsChoiceChip
 import com.orange.ods.compose.component.chip.OdsChoiceChipsFlowRow
@@ -29,6 +30,7 @@ import com.orange.ods.compose.component.list.OdsCheckboxTrailing
 import com.orange.ods.compose.component.list.OdsListItem
 import com.orange.ods.compose.text.OdsTextBody2
 import com.orange.ods.demo.R
+import com.orange.ods.demo.domain.recipes.LocalRecipes
 import com.orange.ods.demo.ui.LocalMainThemeManager
 import com.orange.ods.demo.ui.components.chips.ChipCustomizationState.ChipType
 import com.orange.ods.demo.ui.components.chips.ChipCustomizationState.LeadingElement
@@ -106,26 +108,33 @@ private fun Chip(chipCustomizationState: ChipCustomizationState) {
     val context = LocalContext.current
     val outlinedChips = LocalMainThemeManager.current.currentThemeConfiguration.components.chipStyle == ChipStyle.Outlined
     val cancelCrossLabel = stringResource(id = R.string.component_element_cancel_cross)
-    val chipLabel = stringResource(id = R.string.component_chip)
+    val recipes = LocalRecipes.current.take(4)
 
     with(chipCustomizationState) {
         if (isChoiceChip) {
             OdsChoiceChipsFlowRow(selectedChip = choiceChipIndexSelected, outlinedChips = outlinedChips) {
-                for (index in 1..4) {
+                recipes.forEachIndexed { index, recipe ->
                     OdsChoiceChip(
-                        text = "${stringResource(id = chipType.value.nameRes)} $index",
+                        text = recipe.title,
                         value = index,
                         enabled = isEnabled
                     )
                 }
             }
         } else {
+            val recipe = recipes.firstOrNull()
             OdsChip(
-                text = stringResource(id = R.string.component_chip_type, stringResource(id = chipType.value.nameRes)),
-                onClick = { clickOnElement(context, chipLabel) },
+                text = recipe?.title.orEmpty(),
+                onClick = { clickOnElement(context, recipe?.title.orEmpty()) },
                 outlined = outlinedChips,
-                leadingIcon = if (isActionChip || hasLeadingIcon) painterResource(id = R.drawable.ic_heart) else null,
-                leadingAvatar = if (hasLeadingAvatar) painterResource(id = R.drawable.placeholder_small) else null,
+                leadingIcon = if (isActionChip || hasLeadingIcon) recipe?.iconResId?.let { painterResource(id = it) } else null,
+                leadingAvatar = if (hasLeadingAvatar) {
+                    rememberAsyncImagePainter(
+                        model = recipe?.imageUrl,
+                        placeholder = painterResource(id = R.drawable.placeholder_small),
+                        error = painterResource(id = R.drawable.placeholder_small)
+                    )
+                } else null,
                 enabled = !disabledChecked.value,
                 onCancel = if (isInputChip) {
                     { clickOnElement(context, cancelCrossLabel) }

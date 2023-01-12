@@ -66,21 +66,16 @@
     <string name="component_element_subtitle">Subtitle</string>
     <string name="component_element_label">Label</string>
     <string name="component_element_caption">Caption</string>
-    <string name="component_element_lorem_ipsum">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor.</string>
     <string name="component_element_thumbnail">Thumbnail</string>
     <string name="component_element_button1">Button 1</string>
     <string name="component_element_button2">Button 2</string>
     <string name="component_element_text">Text</string>
-    <string name="component_element_text_value">Lorem ipsum dolor sit amet, at blandit nec tristique porttitor.</string>
     <string name="component_element_avatar">Avatar</string>
     <string name="component_element_icon">Icon</string>
     <string name="component_element_none">None</string>
     <string name="component_element_trailing">Trailing element</string>
     <string name="component_element_leading">Leading element</string>
     <string name="component_element_leading_icon">Leading icon</string>
-    <string name="component_element_item1">Item 1</string>
-    <string name="component_element_item2">Item 2</string>
-    <string name="component_element_item3">Item 3</string>
     <string name="component_element_cancel_cross">Cancel cross</string>
     <string name="component_demo">%s demo</string>
 
@@ -94,10 +89,7 @@
     <string name="component_app_bars_top_actions_count">Actions count</string>
     <string name="component_app_bars_top_remove_action">Remove action</string>
     <string name="component_app_bars_top_add_action">Add action</string>
-    <string name="component_app_bars_top_action_favourites">Favourites</string>
-    <string name="component_app_bars_top_action_alerts">Alerts</string>
-    <string name="component_app_bars_top_action_account">Account</string>
-    <string name="component_app_bars_top_action_settings">Settings</string>
+    <string name="component_app_bars_top_action_ice_cream">Ice Cream</string>
 
 
     <!-- Components Bottom navigation -->
@@ -106,7 +98,6 @@
     <string name="component_bottom_navigation_navigation_item_count">Navigation item count</string>
     <string name="component_bottom_navigation_remove_item">Remove item</string>
     <string name="component_bottom_navigation_add_item">Add item</string>
-
 
     <!-- Components Buttons -->
     <string name="component_buttons">Buttons</string>
@@ -152,7 +143,6 @@
     <string name="component_chips">Chips</string>
     <string name="component_chips_description">Chips are small components containing a number of elements that represent a calendar event or contact.</string>
     <string name="component_chip">Chip</string>
-    <string name="component_chip_type">%s chip</string>
     <string name="component_chip_type_input">Input</string>
     <string name="component_chip_type_input_description">The user input searches are transformed into chips that can be added or deleted.</string>
     <string name="component_chip_type_choice">Choice</string>
@@ -285,12 +275,6 @@
     <string name="component_tabs_add_tab">Add tab</string>
     <string name="component_tab_icon_leading">Leading</string>
     <string name="component_tab_icon_top">Top</string>
-    <string name="component_tab_favourites">Favourites</string>
-    <string name="component_tab_calls">Calls</string>
-    <string name="component_tab_alerts">Alerts</string>
-    <string name="component_tab_calendar">Calendar</string>
-    <string name="component_tab_account">Account</string>
-    <string name="component_tab_settings">Settings</string>
 
     <!-- Modules -->
     <string name="modules_coming_soon">Coming soon…</string>
@@ -302,5 +286,13 @@
     <string name="about_menu_legal_notice">Legal notice</string>
     <string name="about_menu_privacy_policy">Privacy policy</string>
     <string name="about_menu_changelog">Changelog</string>
+
+    <!-- Navigation items -->
+    <string name="navigation_item_coffee">Coffee</string>
+    <string name="navigation_item_cooking_pot">Cooking Pot</string>
+    <string name="navigation_item_ice_cream">Ice Cream</string>
+    <string name="navigation_item_restaurant">Restaurant</string>
+    <string name="navigation_item_favorites">Favorites</string>
+    <string name="navigation_item_information">Information</string>
 
 </resources>

@@ -13,12 +13,14 @@ package com.orange.ods.demo.ui.components.dialogs
 import androidx.compose.material.ExperimentalMaterialApi
 import androidx.compose.material.rememberBottomSheetScaffoldState
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
 import com.orange.ods.compose.component.dialog.OdsAlertDialog
 import com.orange.ods.compose.component.list.OdsListItem
 import com.orange.ods.compose.component.list.OdsSwitchTrailing
 import com.orange.ods.demo.R
+import com.orange.ods.demo.domain.recipes.LocalRecipes
 import com.orange.ods.demo.ui.components.utilities.ComponentCustomizationBottomSheetScaffold
 import com.orange.ods.demo.ui.components.utilities.ComponentLaunchContentColumn
 import com.orange.ods.demo.ui.components.utilities.clickOnElement
@@ -30,6 +32,7 @@ fun ComponentDialog() {
 
     val closeDialogAction = { customizationState.openDialog.value = false }
     val context = LocalContext.current
+    val recipes = LocalRecipes.current.filter { it.description.isNotBlank() }
 
     ComponentCustomizationBottomSheetScaffold(
         bottomSheetScaffoldState = rememberBottomSheetScaffoldState(),
@@ -50,10 +53,11 @@ fun ComponentDialog() {
             val confirmButtonText =
                 stringResource(id = if (customizationState.isDismissButtonChecked) R.string.component_dialog_action_confirm else R.string.component_dialog_action_ok)
             val dismissButtonText = stringResource(id = R.string.component_dialog_action_dismiss)
+            val recipe = rememberSaveable { recipes.random() }
 
             OdsAlertDialog(
-                titleText = if (customizationState.isTitleChecked) stringResource(id = R.string.component_element_title) else null,
-                text = stringResource(id = R.string.component_dialog_text),
+                titleText = if (customizationState.isTitleChecked) recipe.title else null,
+                text = recipe.description,
                 confirmButtonText = confirmButtonText,
                 onConfirmButtonClick = {
                     clickOnElement(context = context, clickedElement = confirmButtonText)
@@ -66,6 +70,5 @@ fun ComponentDialog() {
                 },
             )
         }
-
     }
 }

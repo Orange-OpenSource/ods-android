@@ -59,12 +59,14 @@ In your composable screen, use the `OdsBottomNavigation` composable. It should c
 Here is an example:
 
 ```kotlin
+    private data class NavigationItem(@StringRes val titleResId: Int, @DrawableRes val iconResId: Int)
+
     val navigationItems = listOf(
-        NavigationItem("Favorites", R.drawable.ic_heart),
-        NavigationItem("Search", R.drawable.ic_search),
-        NavigationItem("Information", R.drawable.ic_info),
-        NavigationItem("Notification", R.drawable.ic_notification),
-        NavigationItem("Settings", R.drawable.ic_settings)
+        NavigationItem(R.string.component_bottom_navigation_coffee, R.drawable.ic_coffee),
+        NavigationItem(R.string.component_bottom_navigation_cooking_pot, R.drawable.ic_cooking_pot),
+        NavigationItem(R.string.component_bottom_navigation_ice_cream, R.drawable.ic_ice_cream),
+        NavigationItem(R.string.component_bottom_navigation_restaurant, R.drawable.ic_restaurant),
+        NavigationItem(R.string.component_bottom_navigation_favorites, R.drawable.ic_heart)
     )
 
     val selectedItem = remember { mutableStateOf(navigationItems[0]) }
@@ -72,9 +74,9 @@ Here is an example:
     OdsBottomNavigation {
         for (item in navigationItems) {
             OdsBottomNavigationItem(
-                icon = { Icon(painter = painterResource(id = item.icon), contentDescription = null) }, // contentDescription is null cause Talkback already read the item's title
-                label = item.title,
-                selected = selectedItem.value.title == item.title,
+                icon = { Icon(painter = painterResource(id = item.iconResId), contentDescription = null) }, // contentDescription is null cause Talkback already read the item's title
+                label = stringResource(id = item.titleResId),
+                selected = selectedItem.value.titleResId == item.titleResId,
                 onClick = {
                     selectedItem.value = item
                     // Do what you want with a piece of code

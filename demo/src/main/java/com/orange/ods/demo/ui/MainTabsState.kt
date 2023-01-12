@@ -20,7 +20,7 @@ import androidx.compose.runtime.staticCompositionLocalOf
 import com.google.accompanist.pager.ExperimentalPagerApi
 import com.google.accompanist.pager.PagerState
 import com.orange.ods.demo.ui.components.tabs.MainTabsCustomizationState
-import com.orange.ods.demo.ui.components.tabs.TabItem
+import com.orange.ods.demo.ui.utilities.NavigationItem
 import com.orange.ods.demo.ui.utilities.rememberSaveableMutableStateListOf
 
 val LocalMainTabsManager = staticCompositionLocalOf<MainTabsManager> { error("CompositionLocal LocalMainTabsManager not present") }
@@ -34,7 +34,7 @@ interface MainTabsManager {
 
 @Composable
 fun rememberMainTabsState(
-    tabs: SnapshotStateList<TabItem> = rememberSaveableMutableStateListOf(),
+    tabs: SnapshotStateList<NavigationItem> = rememberSaveableMutableStateListOf(),
     tabIconType: MutableState<MainTabsCustomizationState.TabIconType> = rememberSaveable { mutableStateOf(MainTabsCustomizationState.TabIconType.Top) },
     tabTextEnabled: MutableState<Boolean> = rememberSaveable { mutableStateOf(true) },
     scrollableTabs: MutableState<Boolean> = rememberSaveable { mutableStateOf(false) }
@@ -45,7 +45,7 @@ fun rememberMainTabsState(
 
 @OptIn(ExperimentalPagerApi::class)
 class MainTabsState(
-    val tabs: SnapshotStateList<TabItem>,
+    val tabs: SnapshotStateList<NavigationItem>,
     val tabIconType: MutableState<MainTabsCustomizationState.TabIconType>,
     val tabTextEnabled: MutableState<Boolean>,
     val scrollableTabs: MutableState<Boolean>
@@ -80,7 +80,7 @@ class MainTabsState(
 @OptIn(ExperimentalPagerApi::class)
 data class MainTabsConfiguration(
     val scrollableTabs: Boolean,
-    val tabs: List<TabItem>,
+    val tabs: List<NavigationItem>,
     val pagerState: PagerState,
     val tabIconType: MainTabsCustomizationState.TabIconType,
     val tabTextEnabled: Boolean

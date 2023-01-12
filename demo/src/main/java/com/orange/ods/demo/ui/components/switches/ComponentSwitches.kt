@@ -25,12 +25,12 @@ import androidx.compose.ui.res.stringResource
 import com.orange.ods.compose.component.list.OdsListItem
 import com.orange.ods.compose.component.list.OdsSwitchTrailing
 import com.orange.ods.demo.R
+import com.orange.ods.demo.domain.recipes.LocalRecipes
 import com.orange.ods.demo.ui.components.utilities.ComponentCustomizationBottomSheetScaffold
 
 @OptIn(ExperimentalMaterialApi::class)
 @Composable
 fun ComponentSwitches() {
-    val checked = rememberSaveable { mutableStateOf(false) }
     val enabled = rememberSaveable { mutableStateOf(true) }
 
     ComponentCustomizationBottomSheetScaffold(
@@ -48,13 +48,17 @@ fun ComponentSwitches() {
                 .verticalScroll(rememberScrollState())
                 .padding(bottom = dimensionResource(id = R.dimen.spacing_m))
         ) {
-            OdsListItem(
-                text = stringResource(id = R.string.component_element_label),
-                trailing = OdsSwitchTrailing(
-                    checked = checked,
-                    enabled = enabled.value
+            val recipes = LocalRecipes.current.take(3)
+            recipes.forEach { recipe ->
+                val checked = rememberSaveable { mutableStateOf(false) }
+                OdsListItem(
+                    text = recipe.title,
+                    trailing = OdsSwitchTrailing(
+                        checked = checked,
+                        enabled = enabled.value
+                    )
                 )
-            )
+            }
         }
     }
 }

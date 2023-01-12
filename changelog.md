@@ -11,6 +11,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - \[Lib\] Add `OdsListItem` composable signature with an `OdsListItemTrailing` as trailing parameter in order to manage accessibility ([#387](https://github.com/Orange-OpenSource/ods-android/issues/387))
 
+### Changed
+
+- \[Demo\] Display food content ([#388](https://github.com/Orange-OpenSource/ods-android/issues/388))
+
 ### Fixed
 
 - \[Demo\] In buttons screens, group lines of code into one vocalisation ([#392](https://github.com/Orange-OpenSource/ods-android/issues/392))

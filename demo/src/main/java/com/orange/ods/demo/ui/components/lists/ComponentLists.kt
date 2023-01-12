@@ -20,10 +20,16 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.painter.Painter
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
+import coil.compose.rememberAsyncImagePainter
+import coil.request.ImageRequest
+import coil.size.Scale
+import coil.size.Size
 import com.orange.ods.compose.component.chip.OdsChoiceChip
 import com.orange.ods.compose.component.chip.OdsChoiceChipsFlowRow
 import com.orange.ods.compose.component.list.OdsCaptionTrailing
@@ -38,6 +44,8 @@ import com.orange.ods.compose.component.list.OdsSwitchTrailing
 import com.orange.ods.compose.component.list.divider
 import com.orange.ods.compose.component.list.iconType
 import com.orange.ods.demo.R
+import com.orange.ods.demo.domain.recipes.LocalRecipes
+import com.orange.ods.demo.domain.recipes.Recipe
 import com.orange.ods.demo.ui.components.utilities.ComponentCountRow
 import com.orange.ods.demo.ui.components.utilities.ComponentCustomizationBottomSheetScaffold
 import com.orange.ods.demo.ui.components.utilities.clickOnElement
@@ -99,6 +107,7 @@ private fun ComponentListsBottomSheetContent(listItemCustomizationState: ListIte
 
 @Composable
 private fun ComponentListsContent(listItemCustomizationState: ListItemCustomizationState) {
+    val recipes = LocalRecipes.current.filter { it.description.isNotBlank() }
     with(listItemCustomizationState) {
         Column(modifier = Modifier.verticalScroll(rememberScrollState())) {
             if (!trailings.contains(selectedTrailing.value)) {
@@ -110,12 +119,13 @@ private fun ComponentListsContent(listItemCustomizationState: ListItemCustomizat
                     iconType?.let { modifier.iconType(it) }.orElse { modifier }
                 }
                 .let { if (dividerEnabled.value) it.divider() else it }
-            val text = stringResource(id = R.string.component_element_title)
-            val secondaryText = secondaryTextResId?.let { stringResource(id = it) }
             val singleLineSecondaryText = lineCount.value == 2
-            val icon: @Composable (OdsListItemIconScope.() -> Unit)? = iconPainterResId?.let { { OdsListItemIcon(painter = painterResource(it)) } }
 
-            repeat(4) {
+            recipes.forEach { recipe ->
+                val text = recipe.title
+                val secondaryText = listItemCustomizationState.getSecondaryText(recipe)
+                val icon: @Composable (OdsListItemIconScope.() -> Unit)? =
+                    listItemCustomizationState.getIconPainter(recipe)?.let { { OdsListItemIcon(painter = it) } }
                 trailing?.let { listItemTrailing ->
                     OdsListItem(
                         modifier = modifier,
@@ -135,7 +145,6 @@ private fun ComponentListsContent(listItemCustomizationState: ListItemCustomizat
                         icon = icon
                     )
                 }
-
             }
         }
     }
@@ -150,12 +159,13 @@ private val ListItemCustomizationState.Trailing.textResId: Int
         ListItemCustomizationState.Trailing.Caption -> R.string.component_list_trailing_caption
     }
 
-private val ListItemCustomizationState.secondaryTextResId: Int?
-    get() = when (lineCount.value) {
-        2 -> R.string.component_element_subtitle
-        3 -> R.string.component_element_lorem_ipsum
+private fun ListItemCustomizationState.getSecondaryText(recipe: Recipe): String? {
+    return when (lineCount.value) {
+        2 -> recipe.subtitle
+        3 -> recipe.description
         else -> null
     }
+}
 
 private val ListItemCustomizationState.iconType: OdsListItemIconType?
     get() = when (selectedLeading.value) {
@@ -166,14 +176,28 @@ private val ListItemCustomizationState.iconType: OdsListItemIconType?
         ListItemCustomizationState.Leading.WideImage -> OdsListItemIconType.WideImage
     }
 
-private val ListItemCustomizationState.iconPainterResId: Int?
-    get() = when (selectedLeading.value) {
+@Composable
+private fun ListItemCustomizationState.getIconPainter(recipe: Recipe): Painter? {
+    return when (selectedLeading.value) {
         ListItemCustomizationState.Leading.None -> null
-        ListItemCustomizationState.Leading.Icon -> R.drawable.ic_address_book
+        ListItemCustomizationState.Leading.Icon -> recipe.iconResId?.let { painterResource(id = it) }
         ListItemCustomizationState.Leading.CircularImage,
         ListItemCustomizationState.Leading.SquareImage,
-        ListItemCustomizationState.Leading.WideImage -> R.drawable.placeholder
+        ListItemCustomizationState.Leading.WideImage -> {
+            val wideImageSizeWidthPx = with(LocalDensity.current) { dimensionResource(id = R.dimen.list_wide_image_width).toPx() }
+            val wideImageSizeHeightPx = with(LocalDensity.current) { dimensionResource(id = R.dimen.list_wide_image_height).toPx() }
+            rememberAsyncImagePainter(
+                model = ImageRequest.Builder(LocalContext.current)
+                    .data(recipe.imageUrl)
+                    .scale(Scale.FILL)
+                    .size(Size(wideImageSizeWidthPx.toInt(), wideImageSizeHeightPx.toInt()))
+                    .build(),
+                placeholder = painterResource(id = R.drawable.placeholder_small),
+                error = painterResource(id = R.drawable.placeholder_small)
+            )
+        }
     }
+}
 
 private val ListItemCustomizationState.trailing: OdsListItemTrailing?
     @Composable

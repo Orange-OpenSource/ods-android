@@ -10,14 +10,11 @@
 
 package com.orange.ods.demo.ui.components.tabs
 
-import androidx.annotation.DrawableRes
-import androidx.annotation.StringRes
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.wrapContentSize
 import androidx.compose.material.ExperimentalMaterialApi
-import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.saveable.rememberSaveable
@@ -25,13 +22,13 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.stringResource
-import androidx.compose.ui.text.style.TextAlign
 import com.google.accompanist.pager.ExperimentalPagerApi
 import com.google.accompanist.pager.HorizontalPager
 import com.orange.ods.compose.component.chip.OdsChoiceChip
 import com.orange.ods.compose.component.chip.OdsChoiceChipsFlowRow
 import com.orange.ods.compose.component.list.OdsListItem
 import com.orange.ods.compose.component.list.OdsSwitchTrailing
+import com.orange.ods.compose.text.OdsTextBody1
 import com.orange.ods.demo.R
 import com.orange.ods.demo.ui.LocalMainTabsManager
 import com.orange.ods.demo.ui.MainTabsConfiguration
@@ -115,7 +112,8 @@ fun ComponentTabs(variant: Variant) {
         }) {
 
         HorizontalPager(state = tabsCustomizationState.pagerState, count = tabsCustomizationState.tabs.size) { page ->
-            tabsCustomizationState.tabs[page].Screen()
+            val textResId = tabsCustomizationState.tabs[page].textResId
+            TabsPagerContentScreen(stringResource(id = textResId))
         }
     }
 }
@@ -127,23 +125,6 @@ private fun TabsPagerContentScreen(text: String) {
             .fillMaxSize()
             .wrapContentSize(Alignment.Center)
     ) {
-        Text(
-            text = text,
-            textAlign = TextAlign.Center
-        )
-    }
-}
-
-enum class TabItem(@DrawableRes val icon: Int, @StringRes val titleRes: Int) {
-    Favourites(R.drawable.ic_heart, R.string.component_tab_favourites),
-    Calls(R.drawable.ic_call, R.string.component_tab_calls),
-    Alerts(R.drawable.ic_alert, R.string.component_tab_alerts),
-    Calendar(R.drawable.ic_calendar, R.string.component_tab_calendar),
-    Account(R.drawable.ic_account, R.string.component_tab_account),
-    Settings(R.drawable.ic_settings, R.string.component_tab_settings);
-
-    @Composable
-    fun Screen() {
-        TabsPagerContentScreen(stringResource(id = titleRes))
+        OdsTextBody1(text = text)
     }
 }

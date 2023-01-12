@@ -21,6 +21,7 @@ import androidx.compose.runtime.saveable.rememberSaveable
 import com.google.accompanist.pager.ExperimentalPagerApi
 import com.google.accompanist.pager.PagerState
 import com.google.accompanist.pager.rememberPagerState
+import com.orange.ods.demo.ui.utilities.NavigationItem
 
 @OptIn(ExperimentalMaterialApi::class, ExperimentalPagerApi::class)
 @Composable
@@ -47,7 +48,7 @@ class MainTabsCustomizationState(
         Leading, Top, None
     }
 
-    private val availableTabs = TabItem.values().toList()
+    private val availableTabs = NavigationItem.values().toList()
 
     val isTabTextCustomizationEnabled: Boolean
         get() = tabIconType.value != TabIconType.None
@@ -55,6 +56,6 @@ class MainTabsCustomizationState(
     val isTabIconCustomizationEnabled: Boolean
         get() = tabTextEnabled.value
 
-    val tabs: List<TabItem>
+    val tabs: List<NavigationItem>
         get() = availableTabs.take(tabsCount.value.coerceAtLeast(0))
 }
