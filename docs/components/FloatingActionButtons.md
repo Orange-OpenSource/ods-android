@@ -44,33 +44,20 @@ so additional content labels are usually unnecessary.
 
 Regular FABs are FABs that are not expanded and are a regular size.
 
+  ![FAB light](images/fab_light.png)  ![FAB dark](images/fab_dark.png)
+
 > **Jetpack Compose implementation**
 
-To display a Floating Action Button in your composable screen, two composables are available:
-
-- Use `OdsFloatingActionButton` to display a Floating Action Button with only one icon or to display the mini version of the FAB
+To display a regular Floating Action Button in your composable screen, use `OdsFloatingActionButton`:
 
 ```kotlin
 OdsFloatingActionButton(
     onClick = { 
         // Do something
     },
-    mini = false, // Set to `true` to display a Mini version of the FAB
+    mini = false, // Set to `true` for Mini FAB variant
     icon = painterResource(id = R.drawable.ic_plus),
     iconContentDescription = stringResource(id = R.string.add),
-    modifier = modifier
-)
-```
-
-- Use `OdsExtendedFloatingActionButton` for a Floating Action Button with a text
-
-```kotlin
-OdsExtendedFloatingActionButton(
-    onClick = {
-        // Do something       
-    },
-    text = stringResource(id = R.string.add),
-    icon = painterResource(id = R.drawable.ic_plus),
     modifier = modifier
 )
 ```
@@ -117,6 +104,8 @@ fab.setOnClickListener {
 A mini FAB should be used on smaller screens.
 
 Mini FABs can also be used to create visual continuity with other screen elements.
+
+  ![FAB mini light](images/fab_mini_light.png)  ![FAB mini dark](images/fab_mini_dark.png)
 
 > **Jetpack Compose implementation**
 
@@ -166,9 +155,24 @@ fab.setOnClickListener {
 
 The extended FAB is wider, and it includes a text label.
 
+  ![FAB extended light](images/fab_extended_light.png)  ![FAB extended dark](images/fab_extended_dark.png)
+
+  ![FAB extended full width light](images/fab_extended_full_width_light.png)  ![FAB extended full width dark](images/fab_extended_full_width_dark.png)
+
 > **Jetpack Compose implementation**
 
-*Not available yet*
+To display an extended FAB, use `OdsExtendedFloatingActionButton`:
+
+```kotlin
+OdsExtendedFloatingActionButton(
+    onClick = {
+        // Do something       
+    },
+    text = stringResource(id = R.string.add),
+    icon = painterResource(id = R.drawable.ic_plus),
+    modifier = modifier
+)
+```
 
 > **XML implementation**
 
