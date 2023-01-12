@@ -48,7 +48,7 @@ class FabCustomizationState(
         get() = if (size.value == Size.Mini) false else text.value
 
     val isTextEnabled
-        get() = size.value != Size.Mini
+        get() = size.value != Size.Mini && !isFullScreenWidth
 
     val isFullScreenWidth
         get() = fullScreenWidth.value
