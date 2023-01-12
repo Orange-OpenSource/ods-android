@@ -102,7 +102,7 @@ val OrangeDarkColors = OdsColors(
 
     floatingActionButton = OdsFloatingActionButtonColors(
         background = Orange100,
-        content = White100
+        content = Black900
     ),
 
     topAppBar = OdsTopAppBarColors(
