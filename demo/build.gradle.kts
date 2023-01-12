@@ -133,6 +133,7 @@ dependencies {
     implementation(Dependencies.dataStorePreferences)
     implementation(Dependencies.coil)
     implementation(Dependencies.coilCompose)
+    implementation(Dependencies.timber)
 
     debugImplementation(Dependencies.composeUiTooling)
 }

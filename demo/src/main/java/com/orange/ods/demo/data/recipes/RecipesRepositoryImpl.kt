@@ -17,6 +17,7 @@ import com.orange.ods.demo.domain.recipes.RecipesRepository
 import com.orange.ods.demo.ui.utilities.extension.contentAsString
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
+import timber.log.Timber
 import javax.inject.Inject
 
 class RecipesRepositoryImpl @Inject constructor(private val context: Context) : RecipesRepository {
@@ -30,6 +31,7 @@ class RecipesRepositoryImpl @Inject constructor(private val context: Context) : 
                 val recipes = recipesParser.parseRecipes(jsonString)
                 emit(recipes)
             } catch (_: Exception) {
+                Timber.d("Fail to parse JSON file")
             }
         }
     }
