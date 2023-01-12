@@ -27,12 +27,13 @@ import com.orange.ods.compose.component.button.OdsExtendedFloatingActionButton
 import com.orange.ods.compose.component.button.OdsFloatingActionButton
 import com.orange.ods.compose.component.chip.OdsChoiceChip
 import com.orange.ods.compose.component.chip.OdsChoiceChipsFlowRow
+import com.orange.ods.compose.component.list.OdsListItem
+import com.orange.ods.compose.component.list.OdsSwitchTrailing
 import com.orange.ods.demo.R
 import com.orange.ods.demo.ui.components.utilities.ComponentCustomizationBottomSheetScaffold
 import com.orange.ods.demo.ui.components.utilities.clickOnElement
 import com.orange.ods.demo.ui.utilities.composable.CodeImplementationColumn
 import com.orange.ods.demo.ui.utilities.composable.FloatingActionButtonTechnicalText
-import com.orange.ods.demo.ui.utilities.composable.SwitchListItem
 
 @OptIn(ExperimentalMaterialApi::class)
 @Composable
@@ -91,11 +92,13 @@ fun ComponentFloatingActionButton() {
                     OdsChoiceChip(textRes = R.string.component_floating_action_button_size_default, value = FabCustomizationState.Size.Default)
                     OdsChoiceChip(textRes = R.string.component_floating_action_button_size_mini, value = FabCustomizationState.Size.Mini)
                 }
-                SwitchListItem(labelRes = R.string.component_element_text, checked = text, enabled = isTextEnabled)
-                SwitchListItem(
-                    labelRes = R.string.component_floating_action_button_full_screen_width,
-                    checked = fullScreenWidth,
-                    enabled = isFullScreenWidthEnabled
+                OdsListItem(
+                    text = stringResource(id = R.string.component_element_text),
+                    trailing = OdsSwitchTrailing(checked = text, enabled = isTextEnabled)
+                )
+                OdsListItem(
+                    text = stringResource(id = R.string.component_floating_action_button_full_screen_width),
+                    trailing = OdsSwitchTrailing(checked = fullScreenWidth, enabled = isFullScreenWidthEnabled)
                 )
             }) {
 
