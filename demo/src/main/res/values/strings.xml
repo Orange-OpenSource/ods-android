@@ -164,8 +164,8 @@
     <string name="component_dialog_action_ok">OK</string>
 
     <!-- Component Dialogs -->
-    <string name="component_floating_action_buttons">FAB</string>
-    <string name="component_floating_action_buttons_description">A floating action button is an interactive element that enables the user to initiate an immediate action. There are a number of different options for how they can be presented.</string>
+    <string name="component_floating_action_buttons">Buttons: FAB</string>
+    <string name="component_floating_action_buttons_description">A Floating Action Button (FAB) is an interactive element that enables the user to initiate an immediate action. There are a number of different options for how they can be presented.</string>
     <string name="component_floating_action_button_add">Add</string>
     <string name="component_floating_action_button_size_default">Default</string>
     <string name="component_floating_action_button_size_mini">Mini</string>
