@@ -9,6 +9,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
+- \[Lib\] Add `OdsFloatingActionButton` and `OdsExtendedFloatingActionButton` components ([#109](https://github.com/Orange-OpenSource/ods-android/issues/109))
 - \[Lib\] Add `OdsListItem` composable signature with an `OdsListItemTrailing` as trailing parameter in order to manage accessibility ([#387](https://github.com/Orange-OpenSource/ods-android/issues/387))
 
 ### Changed
@@ -29,7 +30,6 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Added
 
 - \[Demo\] Add `OdsIconButton` demo ([#294](https://github.com/Orange-OpenSource/ods-android/issues/294))
-- \[Lib\] Add `OdsFloatingActionButton` and `OdsExtendedFloatingActionButton` components ([#109](https://github.com/Orange-OpenSource/ods-android/issues/109))
 - \[Lib\] Add `OdsTopAppBarOverflowMenuBox` and `OdsDropdownMenu` composables to display an overflow menu in the top app bar ([#349](https://github.com/Orange-OpenSource/ods-android/issues/349))
 - \[Lib\] Add `enabled` extension method on Compose `Color` ([#314](https://github.com/Orange-OpenSource/ods-android/issues/314))
 
