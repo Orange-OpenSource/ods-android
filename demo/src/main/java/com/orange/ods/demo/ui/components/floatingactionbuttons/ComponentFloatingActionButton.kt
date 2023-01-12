@@ -17,21 +17,27 @@ import androidx.compose.material.FabPosition
 import androidx.compose.material.rememberBottomSheetScaffoldState
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
+import com.orange.ods.compose.component.OdsComponent
 import com.orange.ods.compose.component.button.OdsExtendedFloatingActionButton
 import com.orange.ods.compose.component.button.OdsFloatingActionButton
 import com.orange.ods.compose.component.chip.OdsChoiceChip
 import com.orange.ods.compose.component.chip.OdsChoiceChipsFlowRow
 import com.orange.ods.demo.R
 import com.orange.ods.demo.ui.components.utilities.ComponentCustomizationBottomSheetScaffold
+import com.orange.ods.demo.ui.components.utilities.clickOnElement
+import com.orange.ods.demo.ui.utilities.composable.CodeImplementationColumn
+import com.orange.ods.demo.ui.utilities.composable.FloatingActionButtonTechnicalText
 import com.orange.ods.demo.ui.utilities.composable.SwitchListItem
 
 @OptIn(ExperimentalMaterialApi::class)
 @Composable
 fun ComponentFloatingActionButton() {
+    val context = LocalContext.current
     val fabCustomizationState = rememberFabCustomizationState()
 
     with(fabCustomizationState) {
@@ -56,14 +62,18 @@ fun ComponentFloatingActionButton() {
             floatingActionButton = {
                 if (hasText) {
                     OdsExtendedFloatingActionButton(
-                        onClick = { /*TODO*/ },
+                        onClick = {
+                            clickOnElement(context, context.getString(R.string.component_floating_action_button))
+                        },
                         text = stringResource(id = R.string.component_floating_action_button_add),
                         icon = painterResource(id = R.drawable.ic_plus),
                         modifier = modifier
                     )
                 } else {
                     OdsFloatingActionButton(
-                        onClick = { /*TODO*/ },
+                        onClick = {
+                            clickOnElement(context, context.getString(R.string.component_floating_action_button))
+                        },
                         mini = size.value == FabCustomizationState.Size.Mini,
                         icon = painterResource(id = R.drawable.ic_plus),
                         iconContentDescription = stringResource(id = R.string.component_floating_action_button_add),
@@ -89,7 +99,14 @@ fun ComponentFloatingActionButton() {
                 )
             }) {
 
-
+            CodeImplementationColumn {
+                FloatingActionButtonTechnicalText(
+                    componentName = if (hasText) OdsComponent.OdsExtendedFloatingActionButton.name else OdsComponent.OdsFloatingActionButton.name,
+                    text = hasText,
+                    fullScreenWidth = isFullScreenWidth,
+                    mini = size.value == FabCustomizationState.Size.Mini
+                )
+            }
         }
     }
 }

@@ -70,6 +70,34 @@ fun ButtonTechnicalText(
     }
 }
 
+
+@Composable
+fun FloatingActionButtonTechnicalText(
+    componentName: String,
+    modifier: Modifier = Modifier,
+    text: Boolean = false,
+    fullScreenWidth: Boolean = false,
+    mini: Boolean = false
+) {
+    Column(modifier = modifier) {
+        TechnicalText(text = "$componentName(")
+        Column(modifier = Modifier.padding(start = dimensionResource(id = R.dimen.spacing_s))) {
+            if (fullScreenWidth) {
+                TechnicalText(text = "modifier = Modifier.fillMaxWidth(),")
+            }
+            if (mini) {
+                TechnicalText(text = "mini = true,")
+            }
+            TechnicalText(text = "icon = painterResource(id = R.drawable.ic_add),")
+            if (text) {
+                TechnicalText(text = "text = \"Add\",")
+            }
+            TechnicalText(text = "//...")
+        }
+        TechnicalText(text = ")")
+    }
+}
+
 @Composable
 fun RowSurroundedTechnicalText(content: @Composable () -> Unit) {
     TechnicalText(text = "Row {")
