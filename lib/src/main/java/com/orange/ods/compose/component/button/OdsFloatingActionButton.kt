@@ -36,7 +36,7 @@ private val MiniFabSize = 40.dp
  *
  * @param onClick callback invoked when this FAB is clicked
  * @param modifier [Modifier] to be applied to this FAB.
- * @param mini If `true`, the [MiniFabSize] will be applied, otherwise the default size will be used.
+ * @param mini If `true`, the size of the FAB will be 40dp, otherwise the default size will be used.
  * @param icon [Painter] of the FAB icon.
  * @param iconContentDescription [icon] content description.
  */
