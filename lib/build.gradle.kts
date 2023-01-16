@@ -12,7 +12,7 @@ import com.orange.ods.gradle.Dependencies
 import com.orange.ods.gradle.Versions
 
 plugins {
-    id("com.google.devtools.ksp") version "1.6.21-1.0.6"
+    id("com.google.devtools.ksp") version "1.7.10-1.0.6"
     id("com.android.library")
     id("kotlin-android")
     id("github")
@@ -75,7 +75,7 @@ dependencies {
 
     implementation(Dependencies.kotlinStdlibJdk8)
     compileOnly(project(":component-processor"))
-   
+
     implementation(Dependencies.accompanistFlowLayout)
     implementation(Dependencies.appCompat)
     implementation(Dependencies.composeUi)

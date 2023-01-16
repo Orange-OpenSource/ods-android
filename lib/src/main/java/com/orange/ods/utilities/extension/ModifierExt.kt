@@ -19,7 +19,7 @@ import androidx.compose.ui.composed
 /**
  * Allow to activate click on an element without any ripple effect
  */
-inline fun Modifier.noRippleClickable(crossinline onClick: () -> Unit): Modifier = composed {
+fun Modifier.noRippleClickable(onClick: () -> Unit): Modifier = composed {
     clickable(indication = null,
         interactionSource = remember { MutableInteractionSource() }) {
         onClick()
