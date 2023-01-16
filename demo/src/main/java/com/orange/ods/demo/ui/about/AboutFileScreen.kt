@@ -21,6 +21,7 @@ import androidx.compose.ui.platform.LocalConfiguration
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.viewinterop.AndroidView
+import com.orange.ods.compose.theme.OdsTheme
 import com.orange.ods.demo.R
 import com.orange.ods.demo.ui.LocalMainTopAppBarManager
 import com.orange.ods.demo.ui.utilities.Markdown
@@ -40,6 +41,7 @@ fun AboutFileScreen(aboutItemId: Long) {
         LocalMainTopAppBarManager.current.updateTopAppBarTitle(item.titleRes)
         val context = LocalContext.current
         val configuration = LocalConfiguration.current
+        val colors = OdsTheme.colors
         val horizontalPadding = dimensionResource(id = R.dimen.screen_horizontal_margin).value
         val verticalPadding = dimensionResource(id = R.dimen.screen_vertical_margin).value
         AndroidView(
@@ -51,7 +53,7 @@ fun AboutFileScreen(aboutItemId: Long) {
                         override fun onPageFinished(view: WebView?, url: String?) {
                             super.onPageFinished(view, url)
                             view?.loadUrl("javascript:(function(){ document.body.style.padding = '${verticalPadding}px ${horizontalPadding}px' })();");
-                            view?.injectLightDarkModeCss(configuration.isDarkModeEnabled)
+                            view?.injectLightDarkModeCss(configuration.isDarkModeEnabled, colors)
                         }
 
                         override fun shouldOverrideUrlLoading(view: WebView?, request: WebResourceRequest?): Boolean {
@@ -77,7 +79,7 @@ fun AboutFileScreen(aboutItemId: Long) {
                 }
             },
             update = {
-                it.injectLightDarkModeCss(configuration.isDarkModeEnabled)
+                it.injectLightDarkModeCss(configuration.isDarkModeEnabled, colors)
             })
     }
 }

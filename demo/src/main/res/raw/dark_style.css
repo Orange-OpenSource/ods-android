@@ -16,3 +16,7 @@ a:hover {
 a:active, a:focus {
     color: #FFFFFF;
 }
+
+a:link {
+    color: <<OdsTheme.colors.primary>>;
+}
