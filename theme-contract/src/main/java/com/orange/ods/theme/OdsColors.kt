@@ -102,6 +102,8 @@ open class OdsColors(
             content = onSecondary
         )
     )
+        private set
+
     var topAppBar by mutableStateOf(
         topAppBar ?: OdsTopAppBarColors(
             barBackground = primarySurface,
