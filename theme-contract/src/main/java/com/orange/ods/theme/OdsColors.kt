@@ -37,6 +37,7 @@ open class OdsColors(
     functionalAlert: Color,
     systemBarsBackground: Color,
     bottomNavigation: OdsBottomNavigationColors? = null,
+    floatingActionButton: OdsFloatingActionButtonColors? = null,
     topAppBar: OdsTopAppBarColors? = null,
     switch: OdsSwitchColors? = null,
     tab: OdsTabColors? = null
@@ -95,6 +96,14 @@ open class OdsColors(
     )
         private set
 
+    var floatingActionButton by mutableStateOf(
+        floatingActionButton ?: OdsFloatingActionButtonColors(
+            background = secondary,
+            content = onSecondary
+        )
+    )
+        private set
+
     var topAppBar by mutableStateOf(
         topAppBar ?: OdsTopAppBarColors(
             barBackground = primarySurface,
@@ -144,6 +153,7 @@ open class OdsColors(
         systemBarsBackground: Color = this.systemBarsBackground,
 
         bottomNavigation: OdsBottomNavigationColors = this.bottomNavigation,
+        floatingActionButton: OdsFloatingActionButtonColors = this.floatingActionButton,
         topAppBar: OdsTopAppBarColors = this.topAppBar,
         switch: OdsSwitchColors = this.switch,
         tab: OdsTabColors = this.tab
@@ -169,6 +179,7 @@ open class OdsColors(
         functionalAlert,
         systemBarsBackground,
         bottomNavigation,
+        floatingActionButton,
         topAppBar,
         switch,
         tab
@@ -196,6 +207,7 @@ open class OdsColors(
         systemBarsBackground = other.systemBarsBackground
 
         bottomNavigation = other.bottomNavigation
+        floatingActionButton = other.floatingActionButton
         topAppBar = other.topAppBar
 
         switch = other.switch

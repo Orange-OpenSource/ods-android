@@ -116,7 +116,7 @@
     <string name="component_buttons_icon">Icon buttons</string>
     <string name="component_button_icon">Icon button</string>
     <string name="component_button_icon_search_desc">Search</string>
-    <string name="component_button_variable_width">Variable width</string>
+    <string name="component_button_full_screen_width">Full screen width</string>
     <string name="component_button_style_primary">Primary</string>
     <string name="component_button_style_default">Default</string>
     <string name="component_button_style_functional">Functional</string>
@@ -162,6 +162,16 @@
     <string name="component_dialog_action_dismiss">Decline</string>
     <string name="component_dialog_action_confirm">Accept</string>
     <string name="component_dialog_action_ok">OK</string>
+
+    <!-- Component FAB -->
+    <string name="component_floating_action_buttons">Buttons: FAB</string>
+    <string name="component_floating_action_buttons_description">A Floating Action Button (FAB) is an interactive element that enables the user to initiate an immediate action. There are a number of different options for how they can be presented.</string>
+    <string name="component_floating_action_button">FAB</string>
+    <string name="component_floating_action_button_add">Add</string>
+    <string name="component_floating_action_button_size_default">Default</string>
+    <string name="component_floating_action_button_size_mini">Mini</string>
+    <string name="component_floating_action_button_full_screen_width">Full screen width</string>
+
 
     <!-- Component Radio Buttons -->
     <string name="component_radio_buttons">Radio Buttons</string>

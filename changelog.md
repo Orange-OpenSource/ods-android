@@ -9,6 +9,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
+- \[Lib\] Add `OdsFloatingActionButton` and `OdsExtendedFloatingActionButton` components ([#109](https://github.com/Orange-OpenSource/ods-android/issues/109))
 - \[Lib\] Add `OdsListItem` composable signature with an `OdsListItemTrailing` as trailing parameter in order to manage accessibility ([#387](https://github.com/Orange-OpenSource/ods-android/issues/387))
 
 ### Changed

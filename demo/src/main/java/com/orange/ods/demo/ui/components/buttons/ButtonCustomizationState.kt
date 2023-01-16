@@ -24,11 +24,11 @@ fun rememberButtonCustomizationState(
     containedButtonStyle: MutableState<OdsButtonStyle> = rememberSaveable { mutableStateOf(OdsButtonStyle.Default) },
     textButtonStyle: MutableState<OdsTextButtonStyle> = rememberSaveable { mutableStateOf(OdsTextButtonStyle.Default) },
     leadingIcon: MutableState<Boolean> = rememberSaveable { mutableStateOf(false) },
-    variableWidth: MutableState<Boolean> = rememberSaveable { mutableStateOf(false) },
+    fullScreenWidth: MutableState<Boolean> = rememberSaveable { mutableStateOf(false) },
     enabled: MutableState<Boolean> = rememberSaveable { mutableStateOf(true) }
 ) =
-    remember(containedButtonStyle, textButtonStyle, leadingIcon, variableWidth, enabled) {
-        ButtonCustomizationState(containedButtonStyle, textButtonStyle, leadingIcon, variableWidth, enabled)
+    remember(containedButtonStyle, textButtonStyle, leadingIcon, fullScreenWidth, enabled) {
+        ButtonCustomizationState(containedButtonStyle, textButtonStyle, leadingIcon, fullScreenWidth, enabled)
     }
 
 @Composable
@@ -43,7 +43,7 @@ class ButtonCustomizationState(
     val containedButtonStyle: MutableState<OdsButtonStyle>,
     val textButtonStyle: MutableState<OdsTextButtonStyle>,
     val leadingIcon: MutableState<Boolean>,
-    val variableWidth: MutableState<Boolean>,
+    val fullScreenWidth: MutableState<Boolean>,
     val enabled: MutableState<Boolean>
 ) {
 
@@ -53,8 +53,8 @@ class ButtonCustomizationState(
     val isEnabled
         get() = enabled.value
 
-    val hasVariableWidth
-        get() = variableWidth.value
+    val hasFullScreenWidth
+        get() = fullScreenWidth.value
 }
 
 class ButtonToggleCustomizationState(

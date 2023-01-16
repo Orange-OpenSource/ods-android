@@ -39,34 +39,46 @@ fun CodeImplementationColumn(content: @Composable ColumnScope.() -> Unit) {
 }
 
 @Composable
-fun ButtonTechnicalText(
+fun ButtonTechnicalTextColumn(
     componentName: String,
     enabled: Boolean,
     modifier: Modifier = Modifier,
     style: String? = null,
-    variableWidth: Boolean? = null,
+    fullScreenWidth: Boolean? = null,
     icon: Boolean? = null,
     painter: Boolean? = null
 ) {
-    Column(modifier = modifier) {
-        TechnicalText(text = "$componentName(")
-        Column(modifier = Modifier.padding(start = dimensionResource(id = R.dimen.spacing_s))) {
-            if (variableWidth == false) {
-                TechnicalText(text = "modifier = Modifier.fillMaxWidth(),")
-            }
-            style?.let { TechnicalText(text = "style = $style,") }
-            if (icon == true) {
-                TechnicalText(text = "icon = painterResource(id = R.drawable.ic_coffee),")
-            }
-            if (painter == true) {
-                TechnicalText(text = "painter = painterResource(id = R.drawable.ic_coffee),")
-            }
-            if (!enabled) {
-                TechnicalText(text = "enabled = false,")
-            }
-            TechnicalText(text = "//...")
+    CommonButtonTechnicalTextColumn(modifier = modifier, componentName = componentName, fullScreenWidth = fullScreenWidth) {
+        style?.let { TechnicalText(text = "style = $style,") }
+        if (icon == true) {
+            TechnicalText(text = "icon = painterResource(id = R.drawable.ic_coffee),")
         }
-        TechnicalText(text = ")")
+        if (painter == true) {
+            TechnicalText(text = "painter = painterResource(id = R.drawable.ic_coffee),")
+        }
+        if (!enabled) {
+            TechnicalText(text = "enabled = false,")
+        }
+    }
+}
+
+
+@Composable
+fun FloatingActionButtonTechnicalTextColumn(
+    componentName: String,
+    modifier: Modifier = Modifier,
+    text: Boolean = false,
+    fullScreenWidth: Boolean = false,
+    mini: Boolean = false
+) {
+    CommonButtonTechnicalTextColumn(modifier = modifier, componentName = componentName, fullScreenWidth = fullScreenWidth) {
+        if (mini) {
+            TechnicalText(text = "mini = true,")
+        }
+        TechnicalText(text = "icon = painterResource(id = R.drawable.ic_add),")
+        if (text) {
+            TechnicalText(text = "text = \"Add\",")
+        }
     }
 }
 
@@ -75,5 +87,24 @@ fun RowSurroundedTechnicalText(content: @Composable () -> Unit) {
     TechnicalText(text = "Row {")
     content()
     TechnicalText(text = "}")
+}
 
+@Composable
+private fun CommonButtonTechnicalTextColumn(
+    componentName: String,
+    fullScreenWidth: Boolean?,
+    modifier: Modifier = Modifier,
+    content: @Composable () -> Unit = {}
+) {
+    Column(modifier = modifier) {
+        TechnicalText(text = "$componentName(")
+        Column(modifier = Modifier.padding(start = dimensionResource(id = R.dimen.spacing_s))) {
+            if (fullScreenWidth == true) {
+                TechnicalText(text = "modifier = Modifier.fillMaxWidth(),")
+            }
+            content()
+            TechnicalText(text = "//...")
+        }
+        TechnicalText(text = ")")
+    }
 }

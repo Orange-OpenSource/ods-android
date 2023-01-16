@@ -33,7 +33,7 @@ import com.orange.ods.compose.component.list.OdsSwitchTrailing
 import com.orange.ods.compose.theme.OdsDisplaySurface
 import com.orange.ods.demo.R
 import com.orange.ods.demo.ui.components.utilities.ComponentCustomizationBottomSheetScaffold
-import com.orange.ods.demo.ui.utilities.composable.ButtonTechnicalText
+import com.orange.ods.demo.ui.utilities.composable.ButtonTechnicalTextColumn
 import com.orange.ods.demo.ui.utilities.composable.CodeImplementationColumn
 import com.orange.ods.demo.ui.utilities.composable.Subtitle
 import com.orange.ods.demo.ui.utilities.composable.Title
@@ -62,8 +62,8 @@ fun ButtonsText() {
                     trailing = OdsSwitchTrailing(checked = leadingIcon)
                 )
                 OdsListItem(
-                    text = stringResource(id = R.string.component_button_variable_width),
-                    trailing = OdsSwitchTrailing(checked = variableWidth)
+                    text = stringResource(id = R.string.component_button_full_screen_width),
+                    trailing = OdsSwitchTrailing(checked = fullScreenWidth)
                 )
                 OdsListItem(
                     text = stringResource(id = R.string.component_state_enabled),
@@ -81,7 +81,7 @@ fun ButtonsText() {
                     horizontalPadding = true
                 )
 
-                TextButton(style = textButtonStyle.value, leadingIcon = hasLeadingIcon, enabled = isEnabled, variableWidth = hasVariableWidth)
+                TextButton(style = textButtonStyle.value, leadingIcon = hasLeadingIcon, enabled = isEnabled, fullScreenWidth = hasFullScreenWidth)
 
                 Spacer(modifier = Modifier.padding(top = dimensionResource(R.dimen.spacing_s)))
 
@@ -90,17 +90,17 @@ fun ButtonsText() {
                         style = textButtonStyle.value,
                         leadingIcon = hasLeadingIcon,
                         enabled = isEnabled,
-                        variableWidth = hasVariableWidth,
+                        fullScreenWidth = hasFullScreenWidth,
                         displaySurface = displaySurface
                     )
                 }
 
                 CodeImplementationColumn {
-                    ButtonTechnicalText(
+                    ButtonTechnicalTextColumn(
                         componentName = OdsComponent.OdsTextButton.name,
                         style = textButtonStyle.value.fullName,
                         enabled = isEnabled,
-                        variableWidth = hasVariableWidth,
+                        fullScreenWidth = hasFullScreenWidth,
                         icon = hasLeadingIcon
                     )
                 }
@@ -114,7 +114,7 @@ private fun TextButton(
     style: OdsTextButtonStyle,
     leadingIcon: Boolean,
     enabled: Boolean,
-    variableWidth: Boolean,
+    fullScreenWidth: Boolean,
     displaySurface: OdsDisplaySurface = OdsDisplaySurface.Default
 ) {
     val modifier = Modifier
@@ -122,7 +122,7 @@ private fun TextButton(
         .padding(top = dimensionResource(R.dimen.spacing_m))
 
     OdsTextButton(
-        modifier = if (variableWidth) modifier else modifier.fillMaxWidth(),
+        modifier = if (fullScreenWidth) modifier.fillMaxWidth() else modifier,
         icon = if (leadingIcon) painterResource(id = R.drawable.ic_coffee) else null,
         text = stringResource(if (enabled) R.string.component_state_enabled else R.string.component_state_disabled),
         onClick = {},
