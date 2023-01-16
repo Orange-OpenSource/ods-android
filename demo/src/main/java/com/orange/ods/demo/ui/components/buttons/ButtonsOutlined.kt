@@ -51,8 +51,8 @@ fun ButtonsOutlined() {
                     trailing = OdsSwitchTrailing(checked = variableWidth)
                 )
                 OdsListItem(
-                    text = stringResource(id = R.string.component_state_disabled),
-                    trailing = OdsSwitchTrailing(checked = disabled)
+                    text = stringResource(id = R.string.component_state_enabled),
+                    trailing = OdsSwitchTrailing(checked = enabled)
                 )
             }) {
 
