@@ -112,4 +112,4 @@ private fun PreviewOdsChoiceChipsFlowRow(@PreviewParameter(OdsChoiceChipsFlowRow
     }
 }
 
-internal class OdsChoiceChipsFlowRowPreviewParameterProvider : BasicPreviewParameterProvider<Boolean>(false, true)
+private class OdsChoiceChipsFlowRowPreviewParameterProvider : BasicPreviewParameterProvider<Boolean>(false, true)

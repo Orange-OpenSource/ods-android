@@ -51,4 +51,4 @@ fun PreviewOdsLinearProgressIndicator(@PreviewParameter(OdsLinearProgressIndicat
     OdsLinearProgressIndicator(progress = progress)
 }
 
-internal class OdsLinearProgressIndicatorPreviewParameterProvider : BasicPreviewParameterProvider<Float?>(0.75f, null)
+private class OdsLinearProgressIndicatorPreviewParameterProvider : BasicPreviewParameterProvider<Float?>(0.75f, null)

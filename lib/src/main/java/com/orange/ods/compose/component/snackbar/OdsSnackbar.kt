@@ -161,4 +161,4 @@ private fun PreviewOdsSnackbar(@PreviewParameter(OdsSnackbarPreviewParameterProv
     )
 }
 
-internal class OdsSnackbarPreviewParameterProvider : BasicPreviewParameterProvider<Boolean>(false, true)
+private class OdsSnackbarPreviewParameterProvider : BasicPreviewParameterProvider<Boolean>(false, true)

@@ -122,4 +122,4 @@ private fun PreviewOdsTextButton(@PreviewParameter(OdsTextButtonPreviewParameter
     OdsTextButton(text = "Text", onClick = {}, style = style)
 }
 
-internal class OdsTextButtonPreviewParameterProvider : EnumPreviewParameterProvider(OdsTextButtonStyle::class)
+private class OdsTextButtonPreviewParameterProvider : EnumPreviewParameterProvider(OdsTextButtonStyle::class)

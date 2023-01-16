@@ -51,4 +51,4 @@ fun PreviewOdsCircularProgressIndicator(@PreviewParameter(OdsCircularProgressInd
     OdsCircularProgressIndicator(progress = progress)
 }
 
-internal class OdsCircularProgressIndicatorPreviewParameterProvider : BasicPreviewParameterProvider<Float?>(0.75f, null)
+private class OdsCircularProgressIndicatorPreviewParameterProvider : BasicPreviewParameterProvider<Float?>(0.75f, null)
