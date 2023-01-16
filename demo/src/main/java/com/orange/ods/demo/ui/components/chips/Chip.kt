@@ -74,9 +74,9 @@ fun Chip() {
             }
 
             OdsListItem(
-                text = stringResource(id = R.string.component_state_disabled),
+                text = stringResource(id = R.string.component_state_enabled),
                 trailing = OdsCheckboxTrailing(
-                    checked = chipCustomizationState.disabledChecked
+                    checked = chipCustomizationState.enabled
                 )
             )
         }) {
@@ -135,7 +135,7 @@ private fun Chip(chipCustomizationState: ChipCustomizationState) {
                         error = painterResource(id = R.drawable.placeholder_small)
                     )
                 } else null,
-                enabled = !disabledChecked.value,
+                enabled = isEnabled,
                 onCancel = if (isInputChip) {
                     { clickOnElement(context, cancelCrossLabel) }
                 } else null
