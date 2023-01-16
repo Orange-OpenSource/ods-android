@@ -26,8 +26,8 @@ import com.google.accompanist.flowlayout.FlowRow
 import com.orange.ods.compose.component.chip.OdsChoiceChip
 import com.orange.ods.compose.component.chip.OdsChoiceChipsFlowRow
 import com.orange.ods.compose.component.chip.OdsFilterChip
-import com.orange.ods.compose.component.list.OdsCheckboxTrailing
 import com.orange.ods.compose.component.list.OdsListItem
+import com.orange.ods.compose.component.list.OdsSwitchTrailing
 import com.orange.ods.demo.R
 import com.orange.ods.demo.domain.recipes.Ingredient
 import com.orange.ods.demo.domain.recipes.LocalRecipes
@@ -60,7 +60,7 @@ fun ChipFilter() {
 
                 OdsListItem(
                     text = stringResource(id = R.string.component_state_enabled),
-                    trailing = OdsCheckboxTrailing(
+                    trailing = OdsSwitchTrailing(
                         checked = enabled
                     )
                 )
