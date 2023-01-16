@@ -23,6 +23,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
@@ -34,6 +35,7 @@ import com.orange.ods.utilities.extension.orElse
 
 @Composable
 fun ComponentsScreen(onComponentClick: (Long) -> Unit) {
+    val context = LocalContext.current
     LocalMainTopAppBarManager.current.updateTopAppBarTitle(R.string.navigation_item_components)
     val scrollState = rememberScrollState()
     Column(
@@ -43,7 +45,7 @@ fun ComponentsScreen(onComponentClick: (Long) -> Unit) {
             .padding(dimensionResource(id = R.dimen.spacing_m)),
         verticalArrangement = Arrangement.spacedBy(dimensionResource(id = R.dimen.spacing_m))
     ) {
-        components.chunked(2).forEach { rowCards ->
+        components.sortedBy { context.getString(it.titleRes) }.chunked(2).forEach { rowCards ->
             Row(
                 horizontalArrangement = Arrangement.spacedBy(dimensionResource(id = R.dimen.spacing_m)),
             ) {
