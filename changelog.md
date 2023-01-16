@@ -13,6 +13,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Changed
 
+- \[All\] Upgrade dependencies ([#401](https://github.com/Orange-OpenSource/ods-android/issues/401))
 - \[Demo\] Display food content ([#388](https://github.com/Orange-OpenSource/ods-android/issues/388))
 
 ### Fixed
