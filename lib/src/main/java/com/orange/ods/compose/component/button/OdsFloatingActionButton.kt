@@ -10,6 +10,9 @@
 
 package com.orange.ods.compose.component.button
 
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.material.ExtendedFloatingActionButton
 import androidx.compose.material.FloatingActionButton
@@ -18,8 +21,15 @@ import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.painter.Painter
+import androidx.compose.ui.res.dimensionResource
+import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.tooling.preview.PreviewParameter
 import androidx.compose.ui.unit.dp
+import com.orange.ods.R
 import com.orange.ods.compose.component.OdsComponentApi
+import com.orange.ods.compose.component.utilities.BasicPreviewParameterProvider
+import com.orange.ods.compose.component.utilities.Preview
+import com.orange.ods.compose.component.utilities.UiModePreviews
 import com.orange.ods.compose.theme.OdsTheme
 
 private val MiniFabSize = 40.dp
@@ -92,4 +102,34 @@ fun OdsExtendedFloatingActionButton(
         contentColor = OdsTheme.colors.floatingActionButton.content,
         icon = { Icon(painter = icon, contentDescription = iconContentDescription) }
     )
+}
+
+
+@UiModePreviews.Default
+@Composable
+private fun PreviewOdsFloatingActionButton(@PreviewParameter(OdsFloatingActionButtonPreviewParameterProvider::class) isMini: Boolean) =
+    Preview {
+        Column(modifier = Modifier.padding(dimensionResource(id = R.dimen.spacing_s))) {
+            OdsFloatingActionButton(
+                onClick = {},
+                mini = isMini,
+                icon = painterResource(id = android.R.drawable.ic_input_add),
+                iconContentDescription = "Add"
+            )
+        }
+    }
+
+internal class OdsFloatingActionButtonPreviewParameterProvider : BasicPreviewParameterProvider<Boolean>(false, true)
+
+@UiModePreviews.Button
+@Composable
+private fun PreviewOdsExtendedFloatingActionButton() = Preview {
+    Column(modifier = Modifier.padding(dimensionResource(id = R.dimen.spacing_s))) {
+        OdsExtendedFloatingActionButton(
+            modifier = Modifier.fillMaxWidth(),
+            onClick = {},
+            icon = painterResource(id = android.R.drawable.ic_input_add),
+            text = "Add"
+        )
+    }
 }
