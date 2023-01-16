@@ -26,8 +26,8 @@ import com.google.accompanist.flowlayout.FlowRow
 import com.orange.ods.compose.component.chip.OdsChoiceChip
 import com.orange.ods.compose.component.chip.OdsChoiceChipsFlowRow
 import com.orange.ods.compose.component.chip.OdsFilterChip
-import com.orange.ods.compose.component.list.OdsCheckboxTrailing
 import com.orange.ods.compose.component.list.OdsListItem
+import com.orange.ods.compose.component.list.OdsSwitchTrailing
 import com.orange.ods.demo.R
 import com.orange.ods.demo.domain.recipes.Ingredient
 import com.orange.ods.demo.domain.recipes.LocalRecipes
@@ -43,31 +43,33 @@ fun ChipFilter() {
     val recipes = LocalRecipes.current
     val recipe = rememberSaveable { recipes.filter { it.ingredients.count() >= 3 }.random() }
 
-    ComponentCustomizationBottomSheetScaffold(
-        bottomSheetScaffoldState = rememberBottomSheetScaffoldState(),
-        bottomSheetContent = {
+    with(chipCustomizationState) {
+        ComponentCustomizationBottomSheetScaffold(
+            bottomSheetScaffoldState = rememberBottomSheetScaffoldState(),
+            bottomSheetContent = {
 
-            Subtitle(textRes = R.string.component_element_leading, horizontalPadding = true)
-            OdsChoiceChipsFlowRow(
-                selectedChip = chipCustomizationState.leadingElement,
-                modifier = Modifier.padding(horizontal = dimensionResource(id = R.dimen.screen_horizontal_margin)),
-                outlinedChips = true
-            ) {
-                OdsChoiceChip(textRes = R.string.component_element_none, value = ChipCustomizationState.LeadingElement.None)
-                OdsChoiceChip(textRes = R.string.component_element_avatar, value = ChipCustomizationState.LeadingElement.Avatar)
-            }
+                Subtitle(textRes = R.string.component_element_leading, horizontalPadding = true)
+                OdsChoiceChipsFlowRow(
+                    selectedChip = leadingElement,
+                    modifier = Modifier.padding(horizontal = dimensionResource(id = R.dimen.screen_horizontal_margin)),
+                    outlinedChips = true
+                ) {
+                    OdsChoiceChip(textRes = R.string.component_element_none, value = ChipCustomizationState.LeadingElement.None)
+                    OdsChoiceChip(textRes = R.string.component_element_avatar, value = ChipCustomizationState.LeadingElement.Avatar)
+                }
 
-            OdsListItem(
-                text = stringResource(id = R.string.component_state_disabled),
-                trailing = OdsCheckboxTrailing(
-                    checked = chipCustomizationState.disabledChecked
+                OdsListItem(
+                    text = stringResource(id = R.string.component_state_enabled),
+                    trailing = OdsSwitchTrailing(
+                        checked = enabled
+                    )
                 )
-            )
-        }) {
-        ChipTypeDemo(chipType = chipCustomizationState.chipType.value) {
-            FlowRow(modifier = Modifier.fillMaxWidth(), mainAxisSpacing = dimensionResource(id = R.dimen.spacing_s)) {
-                recipe.ingredients.forEach { ingredient ->
-                    FilterChip(ingredient = ingredient, customizationState = chipCustomizationState)
+            }) {
+            ChipTypeDemo(chipType = chipType.value) {
+                FlowRow(modifier = Modifier.fillMaxWidth(), mainAxisSpacing = dimensionResource(id = R.dimen.spacing_s)) {
+                    recipe.ingredients.forEach { ingredient ->
+                        FilterChip(ingredient = ingredient, customizationState = chipCustomizationState)
+                    }
                 }
             }
         }
@@ -90,6 +92,6 @@ private fun FilterChip(ingredient: Ingredient, customizationState: ChipCustomiza
         onClick = { selected.value = !selected.value },
         outlined = outlinedChips,
         selected = selected.value,
-        enabled = !customizationState.disabledChecked.value,
+        enabled = customizationState.isEnabled,
     )
 }

@@ -25,10 +25,10 @@ fun rememberButtonCustomizationState(
     textButtonStyle: MutableState<OdsTextButtonStyle> = rememberSaveable { mutableStateOf(OdsTextButtonStyle.Default) },
     leadingIcon: MutableState<Boolean> = rememberSaveable { mutableStateOf(false) },
     variableWidth: MutableState<Boolean> = rememberSaveable { mutableStateOf(false) },
-    disabled: MutableState<Boolean> = rememberSaveable { mutableStateOf(false) }
+    enabled: MutableState<Boolean> = rememberSaveable { mutableStateOf(true) }
 ) =
-    remember(containedButtonStyle, textButtonStyle, leadingIcon, variableWidth, disabled) {
-        ButtonCustomizationState(containedButtonStyle, textButtonStyle, leadingIcon, variableWidth, disabled)
+    remember(containedButtonStyle, textButtonStyle, leadingIcon, variableWidth, enabled) {
+        ButtonCustomizationState(containedButtonStyle, textButtonStyle, leadingIcon, variableWidth, enabled)
     }
 
 @Composable
@@ -44,14 +44,14 @@ class ButtonCustomizationState(
     val textButtonStyle: MutableState<OdsTextButtonStyle>,
     val leadingIcon: MutableState<Boolean>,
     val variableWidth: MutableState<Boolean>,
-    val disabled: MutableState<Boolean>
+    val enabled: MutableState<Boolean>
 ) {
 
     val hasLeadingIcon
         get() = leadingIcon.value
 
     val isEnabled
-        get() = !disabled.value
+        get() = enabled.value
 
     val hasVariableWidth
         get() = variableWidth.value

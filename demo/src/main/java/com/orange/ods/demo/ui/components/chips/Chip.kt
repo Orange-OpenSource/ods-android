@@ -26,8 +26,8 @@ import coil.compose.rememberAsyncImagePainter
 import com.orange.ods.compose.component.chip.OdsChip
 import com.orange.ods.compose.component.chip.OdsChoiceChip
 import com.orange.ods.compose.component.chip.OdsChoiceChipsFlowRow
-import com.orange.ods.compose.component.list.OdsCheckboxTrailing
 import com.orange.ods.compose.component.list.OdsListItem
+import com.orange.ods.compose.component.list.OdsSwitchTrailing
 import com.orange.ods.compose.text.OdsTextBody2
 import com.orange.ods.demo.R
 import com.orange.ods.demo.domain.recipes.LocalRecipes
@@ -74,9 +74,9 @@ fun Chip() {
             }
 
             OdsListItem(
-                text = stringResource(id = R.string.component_state_disabled),
-                trailing = OdsCheckboxTrailing(
-                    checked = chipCustomizationState.disabledChecked
+                text = stringResource(id = R.string.component_state_enabled),
+                trailing = OdsSwitchTrailing(
+                    checked = chipCustomizationState.enabled
                 )
             )
         }) {
@@ -135,7 +135,7 @@ private fun Chip(chipCustomizationState: ChipCustomizationState) {
                         error = painterResource(id = R.drawable.placeholder_small)
                     )
                 } else null,
-                enabled = !disabledChecked.value,
+                enabled = isEnabled,
                 onCancel = if (isInputChip) {
                     { clickOnElement(context, cancelCrossLabel) }
                 } else null

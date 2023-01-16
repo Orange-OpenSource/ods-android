@@ -24,17 +24,17 @@ import com.orange.ods.demo.ui.components.chips.ChipCustomizationState.LeadingEle
 fun rememberChipCustomizationState(
     chipType: MutableState<ChipType> = rememberSaveable { mutableStateOf(ChipType.Input) },
     leadingElement: MutableState<LeadingElement> = rememberSaveable { mutableStateOf(LeadingElement.None) },
-    disabledChecked: MutableState<Boolean> = rememberSaveable { mutableStateOf(false) },
+    enabled: MutableState<Boolean> = rememberSaveable { mutableStateOf(true) },
     choiceChipIndexSelected: MutableState<Int?> = rememberSaveable { mutableStateOf(null) }
 ) =
-    remember(chipType, leadingElement, disabledChecked, choiceChipIndexSelected) {
-        ChipCustomizationState(chipType, leadingElement, disabledChecked, choiceChipIndexSelected)
+    remember(chipType, leadingElement, enabled, choiceChipIndexSelected) {
+        ChipCustomizationState(chipType, leadingElement, enabled, choiceChipIndexSelected)
     }
 
 class ChipCustomizationState(
     val chipType: MutableState<ChipType>,
     val leadingElement: MutableState<LeadingElement>,
-    val disabledChecked: MutableState<Boolean>,
+    val enabled: MutableState<Boolean>,
     val choiceChipIndexSelected: MutableState<Int?>
 ) {
 
@@ -78,7 +78,7 @@ class ChipCustomizationState(
         get() = leadingElement.value == LeadingElement.Icon
 
     val isEnabled
-        get() = !disabledChecked.value
+        get() = enabled.value
 
     fun resetLeadingElement() {
         leadingElement.value = LeadingElement.None

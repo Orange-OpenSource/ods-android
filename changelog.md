@@ -15,6 +15,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - \[All\] Upgrade dependencies ([#401](https://github.com/Orange-OpenSource/ods-android/issues/401))
 - \[Demo\] Display food content ([#388](https://github.com/Orange-OpenSource/ods-android/issues/388))
+- \[Demo\] Use `Enabled` wording in customization bottom sheets to be consistent with the code implementation ([#395](https://github.com/Orange-OpenSource/ods-android/issues/395))
 
 ### Fixed
 
