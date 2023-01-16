@@ -33,7 +33,7 @@ import com.orange.ods.demo.R
 import com.orange.ods.demo.ui.components.utilities.ComponentCustomizationBottomSheetScaffold
 import com.orange.ods.demo.ui.components.utilities.clickOnElement
 import com.orange.ods.demo.ui.utilities.composable.CodeImplementationColumn
-import com.orange.ods.demo.ui.utilities.composable.FloatingActionButtonTechnicalText
+import com.orange.ods.demo.ui.utilities.composable.FloatingActionButtonTechnicalTextColumn
 
 @OptIn(ExperimentalMaterialApi::class)
 @Composable
@@ -103,7 +103,7 @@ fun ComponentFloatingActionButton() {
             }) {
 
             CodeImplementationColumn {
-                FloatingActionButtonTechnicalText(
+                FloatingActionButtonTechnicalTextColumn(
                     componentName = if (hasText) OdsComponent.OdsExtendedFloatingActionButton.name else OdsComponent.OdsFloatingActionButton.name,
                     text = hasText,
                     fullScreenWidth = isFullScreenWidth,

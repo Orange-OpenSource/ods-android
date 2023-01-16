@@ -35,7 +35,7 @@ import com.orange.ods.compose.component.list.OdsSwitchTrailing
 import com.orange.ods.compose.theme.OdsDisplaySurface
 import com.orange.ods.demo.R
 import com.orange.ods.demo.ui.components.utilities.ComponentCustomizationBottomSheetScaffold
-import com.orange.ods.demo.ui.utilities.composable.ButtonTechnicalText
+import com.orange.ods.demo.ui.utilities.composable.ButtonTechnicalTextColumn
 import com.orange.ods.demo.ui.utilities.composable.CodeImplementationColumn
 import com.orange.ods.demo.ui.utilities.composable.Subtitle
 import com.orange.ods.demo.ui.utilities.composable.Title
@@ -104,7 +104,7 @@ fun ButtonsContained(style: OdsButtonStyle) {
                 }
 
                 CodeImplementationColumn {
-                    ButtonTechnicalText(
+                    ButtonTechnicalTextColumn(
                         componentName = OdsComponent.OdsButton.name,
                         style = containedButtonStyle.value.fullName,
                         enabled = isEnabled,

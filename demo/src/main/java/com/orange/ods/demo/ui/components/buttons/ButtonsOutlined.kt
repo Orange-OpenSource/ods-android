@@ -30,7 +30,7 @@ import com.orange.ods.compose.component.list.OdsSwitchTrailing
 import com.orange.ods.compose.theme.OdsDisplaySurface
 import com.orange.ods.demo.R
 import com.orange.ods.demo.ui.components.utilities.ComponentCustomizationBottomSheetScaffold
-import com.orange.ods.demo.ui.utilities.composable.ButtonTechnicalText
+import com.orange.ods.demo.ui.utilities.composable.ButtonTechnicalTextColumn
 import com.orange.ods.demo.ui.utilities.composable.CodeImplementationColumn
 
 @OptIn(ExperimentalMaterialApi::class)
@@ -75,7 +75,7 @@ fun ButtonsOutlined() {
                 }
 
                 CodeImplementationColumn {
-                    ButtonTechnicalText(
+                    ButtonTechnicalTextColumn(
                         componentName = OdsComponent.OdsOutlinedButton.name,
                         enabled = isEnabled,
                         fullScreenWidth = hasFullScreenWidth,
