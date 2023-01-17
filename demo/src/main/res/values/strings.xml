@@ -172,6 +172,9 @@
     <string name="component_floating_action_button_size_mini">Mini</string>
     <string name="component_floating_action_button_full_screen_width">Full screen width</string>
 
+    <!-- Compoenent Menus -->
+    <string name="component_menus">Menus</string>
+    <string name="component_menus_description">Menus appear from a button, action, or other control. It contains at least 2 items that can affect the app, the view or elements within the view.</string>
 
     <!-- Component Radio Buttons -->
     <string name="component_radio_buttons">Radio Buttons</string>

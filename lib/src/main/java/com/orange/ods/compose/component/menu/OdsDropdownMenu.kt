@@ -20,6 +20,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.DpOffset
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.window.PopupProperties
+import com.orange.ods.compose.component.OdsComponentApi
 import com.orange.ods.compose.component.utilities.Preview
 import com.orange.ods.compose.component.utilities.UiModePreviews
 import com.orange.ods.compose.theme.OdsTheme
@@ -37,6 +38,7 @@ import com.orange.ods.compose.theme.OdsTheme
  * @param properties [PopupProperties] for further customization of the popup's behavior
  * @param content The content of the dropdown menu
  */
+@OdsComponentApi
 @Composable
 fun OdsDropdownMenu(
     expanded: Boolean,

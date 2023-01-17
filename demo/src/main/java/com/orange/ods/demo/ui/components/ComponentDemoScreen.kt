@@ -18,6 +18,7 @@ import com.orange.ods.demo.ui.components.checkboxes.ComponentCheckboxes
 import com.orange.ods.demo.ui.components.dialogs.ComponentDialog
 import com.orange.ods.demo.ui.components.floatingactionbuttons.ComponentFloatingActionButton
 import com.orange.ods.demo.ui.components.lists.ComponentLists
+import com.orange.ods.demo.ui.components.menus.ComponentMenus
 import com.orange.ods.demo.ui.components.radiobuttons.ComponentRadioButtons
 import com.orange.ods.demo.ui.components.sliders.ComponentSliders
 import com.orange.ods.demo.ui.components.snackbars.ComponentSnackbars
@@ -35,6 +36,7 @@ fun ComponentDemoScreen(componentId: Long) {
             Component.Dialogs -> ComponentDialog()
             Component.FloatingActionButtons -> ComponentFloatingActionButton()
             Component.Lists -> ComponentLists()
+            Component.Menus -> ComponentMenus()
             Component.RadioButtons -> ComponentRadioButtons()
             Component.Sliders -> ComponentSliders()
             Component.Snackbars -> ComponentSnackbars()

@@ -36,7 +36,7 @@ sealed class Component(
             AppBarsTop, BottomNavigation -> Alignment.TopCenter
             Lists -> Alignment.BottomCenter
             Sliders, TextFields -> Alignment.CenterEnd
-            Buttons, Cards, Checkboxes, Chips, Dialogs, FloatingActionButtons, Progress, RadioButtons, Snackbars, Switches, Tabs -> Alignment.Center
+            Buttons, Cards, Checkboxes, Chips, Dialogs, FloatingActionButtons, Menus, Progress, RadioButtons, Snackbars, Switches, Tabs -> Alignment.Center
         }
 
     object AppBarsTop : Component(
@@ -118,6 +118,14 @@ sealed class Component(
         null,
         R.string.component_lists_description,
         composableName = OdsComponent.OdsListItem.name
+    )
+
+    object Menus : Component(
+        R.string.component_menus,
+        R.drawable.il_menus,
+        null,
+        R.string.component_menus_description,
+        composableName = OdsComponent.OdsDropdownMenu.name
     )
 
     object Progress : Component(
