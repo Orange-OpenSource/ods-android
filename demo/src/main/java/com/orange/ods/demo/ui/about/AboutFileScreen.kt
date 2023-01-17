@@ -35,7 +35,7 @@ private const val FilePath = "file:///android_res/raw/"
 
 @Composable
 fun AboutFileScreen(aboutItemId: Long) {
-    val aboutItem = remember { aboutItems.firstOrNull { item -> item.id == aboutItemId } }
+    val aboutItem = remember { aboutItems.firstOrNull { item -> item.id == aboutItemId } as? FileAboutItem }
 
     aboutItem?.let { item ->
         LocalMainTopAppBarManager.current.updateTopAppBarTitle(item.titleRes)
@@ -69,8 +69,8 @@ fun AboutFileScreen(aboutItemId: Long) {
                         .bufferedReader()
                         .use(BufferedReader::readText)
                     val html = when (item.fileFormat) {
-                        AboutItem.FileFormat.Html -> fileContent
-                        AboutItem.FileFormat.Markdown -> Markdown.toHtml(fileContent)
+                        FileAboutItem.FileFormat.Html -> fileContent
+                        FileAboutItem.FileFormat.Markdown -> Markdown.toHtml(fileContent)
                     }
                     // Use loadDataWithBaseURL instead of loadData otherwise CSS won't work
                     loadDataWithBaseURL(FilePath, html, "text/html; charset=UTF-8", StandardCharsets.UTF_8.name(), null)

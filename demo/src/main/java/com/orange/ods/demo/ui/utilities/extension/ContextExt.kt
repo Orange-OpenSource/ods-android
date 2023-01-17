@@ -25,6 +25,6 @@ fun Context.launchUrl(url: String) {
             .setUrlBarHidingEnabled(true)
             .build()
             .launchUrl(this, Uri.parse(url))
-    } catch (e: ActivityNotFoundException) {
+    } catch (_: ActivityNotFoundException) {
     }
 }
