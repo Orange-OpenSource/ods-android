@@ -81,10 +81,10 @@ private fun FilterChip(ingredient: Ingredient, customizationState: ChipCustomiza
     val outlinedChips = LocalMainThemeManager.current.currentThemeConfiguration.components.chipStyle == ChipStyle.Outlined
     val selected = rememberSaveable { mutableStateOf(false) }
     OdsFilterChip(
-        text = ingredient.name,
+        text = ingredient.food.name,
         leadingAvatar = if (customizationState.hasLeadingAvatar) {
             rememberAsyncImagePainter(
-                model = ingredient.imageUrl,
+                model = ingredient.food.imageUrl,
                 placeholder = painterResource(id = R.drawable.placeholder_small),
                 error = painterResource(id = R.drawable.placeholder_small)
             )
