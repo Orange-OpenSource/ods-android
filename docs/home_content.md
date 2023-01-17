@@ -86,7 +86,7 @@ OdsTheme(themeConfiguration = OrangeThemeConfiguration()) {
 }
 ```
 
-Note: Use another provided `OdsThemeConfigurationContract` implementation if you want to use a custom theme. For example `InnovationCupThemeConfiguration`
+Note: Use another provided `OdsThemeConfigurationContract` implementation if you want to use a custom theme. For example `InnovationCupThemeConfiguration`.
 
 #### In XML app
 
