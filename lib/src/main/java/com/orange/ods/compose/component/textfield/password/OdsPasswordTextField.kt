@@ -22,19 +22,14 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.res.painterResource
-import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.tooling.preview.PreviewParameter
-import com.orange.ods.R
 import com.orange.ods.compose.component.OdsComponentApi
 import com.orange.ods.compose.component.textfield.OdsTextField
 import com.orange.ods.compose.component.textfield.OdsTextFieldBottomRow
 import com.orange.ods.compose.component.textfield.OdsTextFieldCharacterCounter
 import com.orange.ods.compose.component.textfield.OdsTextFieldDefaults
-import com.orange.ods.compose.component.textfield.OdsTextFieldIcon
-import com.orange.ods.compose.component.utilities.BasicPreviewParameterProvider
 import com.orange.ods.compose.component.utilities.Preview
 import com.orange.ods.compose.component.utilities.UiModePreviews
 import com.orange.ods.compose.theme.OdsTheme
@@ -117,18 +112,6 @@ fun OdsPasswordTextField(
     }
 }
 
-@Composable
-internal fun OdsPasswordVisualisationIcon(odsPasswordTextFieldState: OdsPasswordTextFieldState) {
-    with(odsPasswordTextFieldState) {
-        OdsTextFieldIcon(
-            painter = if (isPasswordVisible) painterResource(id = R.drawable.ic_crosset_out_eye) else painterResource(id = R.drawable.ic_eye),
-            contentDescription = if (isPasswordVisible) stringResource(id = R.string.text_field_password_hide) else stringResource(id = R.string.text_field_password_show),
-            onClick = if (enabled.value) {
-                { passwordVisible.value = !isPasswordVisible }
-            } else null,
-        )
-    }
-}
 
 @UiModePreviews.Default
 @Composable
@@ -142,6 +125,4 @@ private fun PreviewOdsPasswordTextField(@PreviewParameter(OdsPasswordTextFieldPr
         errorMessage = if (hasErrorMessage) "Error message" else null
     )
 }
-
-internal class OdsPasswordTextFieldPreviewParameterProvider : BasicPreviewParameterProvider<Boolean>(false, true)
 

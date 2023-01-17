@@ -12,12 +12,9 @@ package com.orange.ods.compose.component.button
 
 import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.isSystemInDarkTheme
-import androidx.compose.foundation.layout.Spacer
-import androidx.compose.foundation.layout.size
 import androidx.compose.material.Button
 import androidx.compose.material.ButtonColors
 import androidx.compose.material.ButtonDefaults
-import androidx.compose.material.Icon
 import androidx.compose.material.Text
 import androidx.compose.material.ripple.LocalRippleTheme
 import androidx.compose.material.ripple.RippleTheme
@@ -95,21 +92,6 @@ fun OdsButton(
             Text(text = text.uppercase(), style = OdsTheme.typography.button)
         }
     }
-}
-
-/**
- * The icon displayed in every type of buttons
- *
- * @param painter Painter of the icon
- */
-@Composable
-internal fun ButtonIcon(painter: Painter) {
-    Icon(
-        painter = painter,
-        contentDescription = null,
-        modifier = Modifier.size(ButtonDefaults.IconSize)
-    )
-    Spacer(Modifier.size(ButtonDefaults.IconSpacing))
 }
 
 @Composable
@@ -198,4 +180,4 @@ private fun PreviewOdsButton(@PreviewParameter(OdsButtonPreviewParameterProvider
     OdsButton(text = "Text", onClick = {}, style = style)
 }
 
-internal class OdsButtonPreviewParameterProvider : EnumPreviewParameterProvider(OdsButtonStyle::class)
+private class OdsButtonPreviewParameterProvider : EnumPreviewParameterProvider(OdsButtonStyle::class)
