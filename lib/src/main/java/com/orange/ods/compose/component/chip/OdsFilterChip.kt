@@ -149,4 +149,4 @@ private fun PreviewOdsFilterChip(@PreviewParameter(OdsFilterChipPreviewParameter
     )
 }
 
-internal class OdsFilterChipPreviewParameterProvider : BasicPreviewParameterProvider<Boolean>(false, true)
+private class OdsFilterChipPreviewParameterProvider : BasicPreviewParameterProvider<Boolean>(false, true)

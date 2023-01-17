@@ -512,7 +512,7 @@ internal data class OdsListItemPreviewParameter(
     val trailing: OdsListItemTrailing?
 )
 
-internal class OdsListItemPreviewParameterProvider : BasicPreviewParameterProvider<OdsListItemPreviewParameter>(*previewParameterValues.toTypedArray())
+private class OdsListItemPreviewParameterProvider : BasicPreviewParameterProvider<OdsListItemPreviewParameter>(*previewParameterValues.toTypedArray())
 
 private val previewParameterValues: List<OdsListItemPreviewParameter>
     get() {

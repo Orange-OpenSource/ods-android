@@ -329,4 +329,4 @@ private fun PreviewOdsSliderLockups(@PreviewParameter(OdsSliderPreviewParameterP
     )
 }
 
-internal class OdsSliderPreviewParameterProvider : BasicPreviewParameterProvider<Boolean>(false, true)
+private class OdsSliderPreviewParameterProvider : BasicPreviewParameterProvider<Boolean>(false, true)

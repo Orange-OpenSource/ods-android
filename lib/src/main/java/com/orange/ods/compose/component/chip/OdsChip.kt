@@ -168,4 +168,4 @@ private fun PreviewOdsChip(@PreviewParameter(OdsChipPreviewParameterProvider::cl
     )
 }
 
-internal class OdsChipPreviewParameterProvider : BasicPreviewParameterProvider<Boolean>(false, true)
+private class OdsChipPreviewParameterProvider : BasicPreviewParameterProvider<Boolean>(false, true)
