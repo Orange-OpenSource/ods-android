@@ -68,6 +68,26 @@ other important things.
 
 Note that Orange theme supports both light and dark mode.
 
+#### In Jetpack Compose app
+
+In the `Manifest.xml` file, add `Theme.Orange.NoActionBar` to your application:
+```xml
+<application
+    android:theme="@style/Theme.Orange.NoActionBar">
+    <!-- ... -->
+</application>
+```
+
+Use the `OdsTheme` in your screens which is a Material theme extension for Jetpack Compose applications.
+Cause ODS support multi-theme, you should pass the `OrangeThemeConfiguration` as theme configuration to use the Orange theme.
+```kotlin
+OdsTheme(themeConfiguration = OrangeThemeConfiguration()) {
+    //...
+}
+```
+
+Note: Use another provided `OdsThemeConfigurationContract` implementation if you want to use a custom theme. For example `InnovationCupThemeConfiguration`
+
 #### In XML app
 
 Update your app theme to inherit from Orange theme, e.g.:
@@ -82,21 +102,4 @@ This theme will use the default `Toolbar`. If you want to provide your own `Tool
 <style name="Theme.MyApp" parent="Theme.Orange.NoActionBar">
     <!-- ... -->
 </style>
-```
-
-#### In Jetpack Compose app
-
-In the `Manifest.xml` file, add `Theme.Orange.NoActionBar` to your application:
-```xml
-<application
-    android:theme="@style/Theme.Orange.NoActionBar">
-    <!-- ... -->
-</application>
-```
-
-Use the `OdsMaterialTheme` in your screens which is a Material theme extension for Jetpack Compose applications:
-```kotlin
-OdsMaterialTheme {
-    //...
-}
 ```
