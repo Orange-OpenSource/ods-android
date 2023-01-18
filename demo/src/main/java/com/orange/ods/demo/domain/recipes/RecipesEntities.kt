@@ -29,7 +29,13 @@ data class Recipe(
 
 @Parcelize
 data class Ingredient(
-    val quantity: String,
+    val food: Food,
+    val quantity: String
+) : Parcelable
+
+@Parcelize
+data class Food(
+    val id: Int,
     val name: String,
     val imageUrl: String
 ) : Parcelable

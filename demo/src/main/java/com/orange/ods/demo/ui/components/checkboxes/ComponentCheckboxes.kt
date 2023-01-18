@@ -51,7 +51,7 @@ fun ComponentCheckboxes() {
         ) {
             recipe.ingredients.forEachIndexed { index, ingredient ->
                 OdsListItem(
-                    text = ingredient.name,
+                    text = ingredient.food.name,
                     trailing = OdsCheckboxTrailing(
                         checked = rememberSaveable { androidx.compose.runtime.mutableStateOf(index == 0) },
                         enabled = enabled.value
