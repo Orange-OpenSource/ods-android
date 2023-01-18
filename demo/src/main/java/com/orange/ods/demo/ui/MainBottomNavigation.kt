@@ -14,6 +14,7 @@ import androidx.annotation.DrawableRes
 import androidx.annotation.StringRes
 import androidx.compose.material.Icon
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.navigation.NavBackStackEntry
@@ -23,9 +24,13 @@ import com.orange.ods.compose.component.bottomnavigation.OdsBottomNavigation
 import com.orange.ods.compose.component.bottomnavigation.OdsBottomNavigationItem
 import com.orange.ods.demo.R
 import com.orange.ods.demo.ui.about.AboutScreen
+import com.orange.ods.demo.ui.about.UrlAboutItem
+import com.orange.ods.demo.ui.about.aboutItems
+import com.orange.ods.demo.ui.about.id
 import com.orange.ods.demo.ui.components.ComponentsScreen
 import com.orange.ods.demo.ui.guidelines.GuidelinesScreen
 import com.orange.ods.demo.ui.modules.ModulesScreen
+import com.orange.ods.demo.ui.utilities.launchUrl
 
 @Composable
 fun MainBottomNavigation(items: Array<BottomNavigationSections>, currentRoute: String, navigateToRoute: (String) -> Unit) {
@@ -55,8 +60,16 @@ fun NavGraphBuilder.addBottomNavigationGraph(navigateToElement: (String, Long?, 
         ModulesScreen()
     }
     composable(BottomNavigationSections.About.route) { from ->
+        val context = LocalContext.current
         LocalMainTabsManager.current.clearTopAppBarTabs()
-        AboutScreen(onAboutItemClick = { id -> navigateToElement(MainDestinations.AboutItemDetailRoute, id, from) })
+        AboutScreen(onAboutItemClick = { id ->
+            val aboutItem = aboutItems.firstOrNull { it.id == id }
+            if (aboutItem is UrlAboutItem) {
+                context.launchUrl(aboutItem.url)
+            } else {
+                navigateToElement(MainDestinations.AboutItemDetailRoute, id, from)
+            }
+        })
     }
 }
 
