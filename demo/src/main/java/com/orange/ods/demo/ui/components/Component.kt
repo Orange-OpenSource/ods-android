@@ -125,7 +125,7 @@ sealed class Component(
         R.drawable.il_menus,
         null,
         R.string.component_menus_description,
-        composableName = OdsComponent.OdsDropdownMenu.name
+        listOf(Variant.DropdownMenu, Variant.ExposedDropdownMenu)
     )
 
     object Progress : Component(
@@ -210,6 +210,9 @@ sealed class Variant(
 
     object Chip : Variant(R.string.component_chip, OdsComponent.OdsChip.name)
     object ChipFilter : Variant(R.string.component_chip_type_filter, OdsComponent.OdsFilterChip.name)
+
+    object DropdownMenu : Variant(R.string.component_menu_dropdown, OdsComponent.OdsDropdownMenu.name)
+    object ExposedDropdownMenu : Variant(R.string.component_menu_exposed_dropdown, OdsComponent.OdsDropdownMenu.name)
 
     object ProgressBar : Variant(R.string.component_progress_bar, OdsComponent.OdsLinearProgressIndicator.name)
     object ProgressActivityIndicator : Variant(R.string.component_progress_activity_indicator, OdsComponent.OdsCircularProgressIndicator.name)

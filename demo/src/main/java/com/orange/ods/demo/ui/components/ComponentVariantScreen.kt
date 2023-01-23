@@ -18,6 +18,7 @@ import com.orange.ods.demo.ui.components.buttons.ComponentButtons
 import com.orange.ods.demo.ui.components.cards.ComponentCard
 import com.orange.ods.demo.ui.components.chips.Chip
 import com.orange.ods.demo.ui.components.chips.ChipFilter
+import com.orange.ods.demo.ui.components.menus.ComponentMenu
 import com.orange.ods.demo.ui.components.progress.ComponentProgress
 import com.orange.ods.demo.ui.components.tabs.ComponentTabs
 import com.orange.ods.demo.ui.components.textfields.ComponentTextField
@@ -34,6 +35,7 @@ fun ComponentVariantScreen(variantId: Long) {
             Component.Buttons -> ComponentButtons(variant = variant)
             Component.Cards -> ComponentCard(variant = variant)
             Component.Chips -> if (variant == Variant.ChipFilter) ChipFilter() else Chip()
+            Component.Menus -> ComponentMenu(variant = variant)
             Component.Progress -> ComponentProgress(variant = variant)
             Component.TextFields -> ComponentTextField(variant = variant)
             Component.Tabs -> ComponentTabs(variant)
