@@ -10,6 +10,7 @@
 
 package com.orange.ods.compose.component.menu
 
+import androidx.annotation.DrawableRes
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.ColumnScope
 import androidx.compose.foundation.layout.padding
@@ -21,6 +22,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.painter.Painter
 import androidx.compose.ui.res.dimensionResource
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.DpOffset
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.window.PopupProperties
@@ -101,17 +103,25 @@ fun ColumnScope.OdsDropdownMenuItem(
 @UiModePreviews.Default
 @Composable
 private fun PreviewOdsDropdownMenu() = Preview {
+    data class Item(@DrawableRes val iconResId: Int, val label: String)
+
+    val items = listOf(
+        Item(android.R.drawable.ic_dialog_email, "First menu item"),
+        Item(android.R.drawable.ic_dialog_map, "Second menu item"),
+        Item(android.R.drawable.ic_dialog_dialer, "Third menu item"),
+        Item(android.R.drawable.ic_dialog_info, "Fourth menu item")
+    )
+
     OdsDropdownMenu(
         expanded = true,
         onDismissRequest = { },
     ) {
-        OdsDropdownMenuItem(
-            text = "Account",
-            onClick = { }
-        )
-        OdsDropdownMenuItem(
-            text = "Settings",
-            onClick = { }
-        )
+        items.forEach { item ->
+            OdsDropdownMenuItem(
+                text = item.label,
+                icon = painterResource(id = item.iconResId),
+                onClick = { }
+            )
+        }
     }
 }
