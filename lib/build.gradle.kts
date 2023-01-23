@@ -85,6 +85,7 @@ dependencies {
     implementation(Dependencies.composeUiToolingPreview)
     implementation(Dependencies.coreKtx)
     implementation(Dependencies.customViewPoolingContainer) // This dependency is needed otherwise the compose preview does not work properly
+    implementation(Dependencies.kotlinReflect)
     implementation(Dependencies.lifecycleRuntimeKtx)
 
     testImplementation(Dependencies.jUnit)

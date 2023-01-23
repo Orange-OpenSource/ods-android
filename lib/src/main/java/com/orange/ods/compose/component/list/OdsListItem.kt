@@ -401,7 +401,7 @@ class OdsRadioButtonTrailing<T>(val selectedRadio: MutableState<T>, val currentR
     }
 }
 
-class OdsIconTrailing(val iconRes: Int, val contentDescription: String?, val modifier: Modifier = Modifier) : OdsListItemTrailing()
+class OdsIconTrailing(val painter: Painter, val contentDescription: String?, val modifier: Modifier = Modifier) : OdsListItemTrailing()
 class OdsCaptionTrailing(val text: String) : OdsListItemTrailing()
 
 @Composable
@@ -420,7 +420,7 @@ private fun OdsListItemTrailing(trailing: OdsListItemTrailing) {
             with(trailing) {
                 Icon(
                     modifier = modifier.clip(RoundedCornerShape(12.dp)),
-                    painter = painterResource(id = iconRes),
+                    painter = painter,
                     tint = OdsTheme.colors.onSurface,
                     contentDescription = contentDescription
                 )
@@ -499,7 +499,16 @@ private fun PreviewOdsListItem(@PreviewParameter(OdsListItemPreviewParameterProv
                 icon = painter?.let { { OdsListItemIcon(painter = it) } },
                 secondaryText = secondaryText,
                 singleLineSecondaryText = singleLineSecondaryText,
-                trailing = trailing
+                trailing = when (trailing) {
+                    is OdsCheckboxTrailing -> OdsCheckboxTrailing(checked = mutableStateOf(false), enabled = true)
+                    is OdsSwitchTrailing -> OdsSwitchTrailing(checked = mutableStateOf(false))
+                    is OdsRadioButtonTrailing<*> -> OdsRadioButtonTrailing(selectedRadio = mutableStateOf(0), currentRadio = 0)
+                    is OdsIconTrailing -> OdsIconTrailing(
+                        painter = painterResource(id = android.R.drawable.ic_dialog_info),
+                        contentDescription = null
+                    )
+                    is OdsCaptionTrailing -> OdsCaptionTrailing(text = "caption")
+                }
             )
         }
     }
@@ -518,16 +527,7 @@ private val previewParameterValues: List<OdsListItemPreviewParameter>
     get() {
         val secondaryTexts = listOf(null, "Secondary text", "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor.")
         val iconTypes = listOf(null, *OdsListItemIconType.values())
-        val trailings: List<OdsListItemTrailing?> = listOf(
-            null,
-            OdsCheckboxTrailing(checked = mutableStateOf(false), enabled = true),
-            OdsSwitchTrailing(checked = mutableStateOf(false)),
-            OdsIconTrailing(
-                iconRes = android.R.drawable.ic_dialog_info,
-                contentDescription = null
-            ),
-            OdsCaptionTrailing(text = "caption")
-        )
+        val trailings: List<OdsListItemTrailing?> = OdsListItemTrailing::class.sealedSubclasses.map { it.objectInstance }.toMutableList().apply { add(null) }
 
         return secondaryTexts.flatMap { secondaryText ->
             val singleLineSecondaryText = secondaryText != secondaryTexts.last()
