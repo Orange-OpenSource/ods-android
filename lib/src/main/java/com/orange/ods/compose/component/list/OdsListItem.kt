@@ -76,22 +76,22 @@ import com.orange.ods.utilities.extension.orElse
  *
  * @param modifier Modifier to be applied to the list item
  * @param text The primary text of the list item
+ * @param trailing The `OdsListItemTrailing` element to display at the end of the list item
  * @param icon The leading supporting visual of the list item
  * @param secondaryText The secondary text of the list item
  * @param singleLineSecondaryText Whether the secondary text is single line
  * @param overlineText The text displayed above the primary text
- * @param trailing The `OdsListItemTrailing` element to display at the end of the list item
  */
 @Composable
 @OdsComponentApi
 fun OdsListItem(
     modifier: Modifier = Modifier,
     text: String,
+    trailing: OdsListItemTrailing,
     icon: @Composable (OdsListItemIconScope.() -> Unit)? = null,
     secondaryText: String? = null,
     singleLineSecondaryText: Boolean = true,
-    overlineText: String? = null,
-    trailing: OdsListItemTrailing,
+    overlineText: String? = null
 ) {
     OdsListItem(
         modifier = modifier.trailing(trailing),
