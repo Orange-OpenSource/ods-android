@@ -176,7 +176,7 @@
     <string name="component_menus">Menus</string>
     <string name="component_menus_description">Menus appear from a button, action, or other control. It contains at least 2 items that can affect the app, the view or elements within the view.</string>
     <string name="component_menu_dropdown">Dropdown menu</string>
-    <string name="component_menu_dropdown_description">Dropdown menus display a list of options, triggered by an icon, button, or action. \n\nClick on the following icon button to open a dropdown menu.</string>
+    <string name="component_menu_dropdown_description">Dropdown menus display a list of options, triggered by an icon, button, or action. \n\nClick on the vertical more icon to open a dropdown menu.</string>
     <string name="component_menu_exposed_dropdown">Exposed dropdown menu</string>
     <string name="component_menu_icons">Icons</string>
     <string name="component_menu_divider">Divider example</string>
