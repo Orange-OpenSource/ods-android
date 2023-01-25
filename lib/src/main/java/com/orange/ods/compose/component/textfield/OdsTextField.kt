@@ -132,16 +132,14 @@ fun OdsTextField(
 /**
  * <a href="https://system.design.orange.com/0c1af118d/p/483f94-text-fields/b/720e3b" target="_blank">ODS Text fields</a>.
  *
- * The OdsTextField is displayed filled or outlined according the theme component configuration provided. In Orange theme,
- * text fields are outlined cause they are more accessible in term of contrast.
+ * Filled text fields have more visual emphasis than outlined text fields, making them stand out
+ * when surrounded by other content and components.
  *
- * @see [OdsOutlinedTextField]
- * @see [OdsFilledTextField]
+ * If you are looking for an outlined version, see [OdsOutlinedTextField].
  *
  * @param value the input text to be shown in the text field
  * @param onValueChange the callback that is triggered when the input service updates the text. An
  * updated text comes as a parameter of the callback
- * @param trailing The `OdsTextFieldTrailing` element to display at the end of the text field
  * @param modifier a [Modifier] for this text field
  * @param enabled controls the enabled state of the [TextField]. When `false`, the text field will
  * be neither editable nor focusable, the input of the text field will not be selectable,
@@ -159,7 +157,7 @@ fun OdsTextField(
  * @param leadingIconContentDescription the optional content description for the leading icon
  * @param onLeadingIconClick the optional action executed on leading icon click
  * @param trailing The trailing composable. Prefer other [OdsTextField] signature with an [OdsTextFieldTrailing] parameter as trailing if the trailing is one of
- * the following elements: Text or Icon
+ * the following elements: Text, Icon or Dropdown menu arrow
  * @param isError indicates if the text field's current value is in error state. If set to
  * true, the label, bottom indicator and trailing icon by default will be displayed in error color
  * @param errorMessage displayed when the [OdsTextField] is in error

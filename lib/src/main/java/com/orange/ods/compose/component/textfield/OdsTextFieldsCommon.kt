@@ -14,6 +14,8 @@ import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.padding
+import androidx.compose.material.ExperimentalMaterialApi
+import androidx.compose.material.ExposedDropdownMenuDefaults
 import androidx.compose.material.Icon
 import androidx.compose.material.IconButton
 import androidx.compose.material.Text
@@ -53,6 +55,7 @@ fun OdsTextFieldCharacterCounter(valueLength: Int, maxChars: Int, enabled: Boole
 sealed class OdsTextFieldTrailing
 class OdsTextTrailing(val text: String) : OdsTextFieldTrailing()
 class OdsIconTrailing(val painter: Painter, val contentDescription: String? = null, val onClick: () -> Unit = {}) : OdsTextFieldTrailing()
+class OdsDropdownMenuTrailing(val expanded: Boolean) : OdsTextFieldTrailing()
 
 @Composable
 internal fun OdsTextFieldBottomRow(isError: Boolean, errorMessage: String?, characterCounter: (@Composable () -> Unit)?) {
@@ -77,6 +80,7 @@ internal fun OdsTextFieldIcon(painter: Painter, contentDescription: String?, onC
     }
 }
 
+@OptIn(ExperimentalMaterialApi::class)
 internal fun getTrailing(trailing: OdsTextFieldTrailing, value: String, enabled: Boolean = true): @Composable (() -> Unit) {
     return when (trailing) {
         is OdsTextTrailing -> {
@@ -95,6 +99,13 @@ internal fun getTrailing(trailing: OdsTextFieldTrailing, value: String, enabled:
                     painter = trailing.painter,
                     contentDescription = trailing.contentDescription,
                     onClick = if (enabled) trailing.onClick else null,
+                )
+            }
+        }
+        is OdsDropdownMenuTrailing -> {
+            {
+                ExposedDropdownMenuDefaults.TrailingIcon(
+                    expanded = trailing.expanded
                 )
             }
         }
