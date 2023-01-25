@@ -17,17 +17,19 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.saveable.rememberSaveable
 
 @Composable
-fun rememberMenuCustomizationState(
+fun rememberMenuDropdownCustomizationState(
     icons: MutableState<Boolean> = rememberSaveable { mutableStateOf(false) },
-    dividerExample: MutableState<Boolean> = rememberSaveable { mutableStateOf(false) }
+    dividerExample: MutableState<Boolean> = rememberSaveable { mutableStateOf(false) },
+    enabled: MutableState<Boolean> = rememberSaveable { mutableStateOf(true) }
 ) =
-    remember(icons, dividerExample) {
-        ComponentMenuContentState(icons, dividerExample)
+    remember(icons, dividerExample, enabled) {
+        ComponentMenuContentState(icons, dividerExample, enabled)
     }
 
 class ComponentMenuContentState(
     val icons: MutableState<Boolean>,
-    val dividerExample: MutableState<Boolean>
+    val dividerExample: MutableState<Boolean>,
+    val enabled: MutableState<Boolean>
 ) {
     companion object {
         const val MenuItemCount = 5
@@ -39,4 +41,6 @@ class ComponentMenuContentState(
     val hasDividerExample
         get() = dividerExample.value
 
+    val isEnabled
+        get() = enabled.value
 }
