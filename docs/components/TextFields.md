@@ -81,6 +81,7 @@ OdsTextField(
     leadingIcon = painterResource(id = R.drawable.ic_heart), // Optional
     leadingIconContentDescription = "Like", // Optional
     onLeadingIconClick = { doSomething() }, // Optional
+    trailing = OdsTextTrailing(text = "units"), // Optional, it can be one of the provided `OdsTextFieldTrailing`. See more information below.
     enabled = true, // true if not set
     readOnly = false, // false if not set
     isError = false, // false if not set
@@ -89,10 +90,6 @@ OdsTextField(
     onValueChange = { text = it },
     label = "Label", // Optional
     placeholder = "Placeholder", // Optional
-    trailingIcon = painterResource(id = R.drawable.ic_eye), // Optional
-    trailingIconContentDescription = "Show password", // Optional
-    onTrailingIconClick = { doSomething() }, // Optional
-    trailingText = "units", // Optional
     visualTransformation = VisualTransformation.None, // `VisualTransformation.None` if not set
     keyboardOptions = KeyboardOptions.Default, // `KeyboardOptions.Default` if not set
     keyboardActions = KeyboardActions(), // `KeyboardActions()` if not set
@@ -107,6 +104,12 @@ OdsTextField(
     } // Optional
 )
 ```
+
+The library provides several `OdsTextFieldTrailing` that you can use as a trailing element for text field:
+- `OdsIconTrailing`: Displays an icon as trailing element
+- `OdsTextTrailing`: Displays a text as trailing element
+
+If you want a more complex trailing element, you can use the other `OdsTextField` API which allows you to pass directly a composable as trailing but you will have to maintain it and to manage the accessibility by yourself.
 
 **Note:** You will find more information about the character counter in [Extras](#extras)
 
