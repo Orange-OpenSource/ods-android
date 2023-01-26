@@ -21,6 +21,7 @@ import androidx.compose.runtime.compositionLocalOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.staticCompositionLocalOf
 import com.orange.ods.theme.OdsColors
+import com.orange.ods.theme.OdsComponentsConfiguration
 import com.orange.ods.theme.OdsThemeConfigurationContract
 
 private val LocalShapes = staticCompositionLocalOf { Shapes() }
@@ -30,6 +31,8 @@ private val LocalLightThemeColors = compositionLocalOf<OdsColors> { error("Compo
 private val LocalDarkThemeColors = compositionLocalOf<OdsColors> { error("CompositionLocal LocalDarkThemeColors not present") }
 
 private val LocalTypography = staticCompositionLocalOf { Typography() }
+private val LocalComponentsConfiguration = staticCompositionLocalOf { OdsComponentsConfiguration() }
+
 
 object OdsTheme {
 
@@ -57,6 +60,11 @@ object OdsTheme {
         @Composable
         @ReadOnlyComposable
         get() = LocalShapes.current
+
+    val componentsConfiguration: OdsComponentsConfiguration
+        @Composable
+        @ReadOnlyComposable
+        get() = LocalComponentsConfiguration.current
 }
 
 /**
@@ -84,6 +92,7 @@ fun OdsTheme(
         LocalDarkThemeColors provides themeConfiguration.colors.darkColors,
         LocalTypography provides themeConfiguration.typography,
         LocalShapes provides themeConfiguration.shapes,
+        LocalComponentsConfiguration provides themeConfiguration.components,
         content = content
     )
 }

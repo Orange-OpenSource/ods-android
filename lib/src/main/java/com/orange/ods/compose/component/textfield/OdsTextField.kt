@@ -10,9 +10,7 @@
 
 package com.orange.ods.compose.component.textfield
 
-import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.text.KeyboardActions
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material.Text
@@ -25,25 +23,25 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.painter.Painter
-import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.input.VisualTransformation
 import androidx.compose.ui.tooling.preview.PreviewParameter
-import com.orange.ods.R
 import com.orange.ods.compose.component.OdsComponentApi
 import com.orange.ods.compose.component.utilities.Preview
 import com.orange.ods.compose.component.utilities.UiModePreviews
 import com.orange.ods.compose.theme.OdsTheme
+import com.orange.ods.theme.OdsComponentsConfiguration
 
 /**
  * <a href="https://system.design.orange.com/0c1af118d/p/483f94-text-fields/b/720e3b" target="_blank">ODS Text fields</a>.
  *
- * Filled text fields have more visual emphasis than outlined text fields, making them stand out
- * when surrounded by other content and components.
+ * The OdsTextField is displayed filled or outlined according the theme component configuration provided. In Orange theme,
+ * text fields are outlined cause they are more accessible in term of contrast.
  *
- * If you are looking for an outlined version, see [OdsOutlinedTextField].
+ * @see [OdsOutlinedTextField]
+ * @see [OdsFilledTextField]
  *
  * @param value the input text to be shown in the text field
  * @param onValueChange the callback that is triggered when the input service updates the text. An
@@ -115,61 +113,58 @@ fun OdsTextField(
     maxLines: Int = Int.MAX_VALUE,
     characterCounter: (@Composable () -> Unit)? = null
 ) {
-    Column(modifier = modifier) {
-        TextField(
-            modifier = Modifier.fillMaxWidth(),
-            value = if (singleLine) value.filter { it != '\n' } else value,
-            onValueChange = { newValue ->
-                if (!singleLine || !newValue.contains('\n')) {
-                    onValueChange(newValue)
-                }
-            },
+    val filledTextField = OdsTheme.componentsConfiguration.textFieldStyle == OdsComponentsConfiguration.Companion.ComponentStyle.Filled
+
+    if (filledTextField) {
+        OdsFilledTextField(
+            value = value,
+            onValueChange = onValueChange,
+            modifier = modifier,
             enabled = enabled,
             readOnly = readOnly,
-            textStyle = OdsTheme.typography.subtitle1,
-            label = label?.let { { Text(label) } },
-            placeholder = placeholder?.let { { Text(text = placeholder, style = OdsTheme.typography.subtitle1) } },
-            leadingIcon = leadingIcon?.let {
-                {
-                    OdsTextFieldIcon(
-                        painter = leadingIcon,
-                        contentDescription = leadingIconContentDescription,
-                        onClick = if (enabled) onLeadingIconClick else null,
-                    )
-                }
-            },
-            trailingIcon = when {
-                trailingIcon != null -> {
-                    {
-                        OdsTextFieldIcon(
-                            painter = trailingIcon,
-                            contentDescription = trailingIconContentDescription,
-                            onClick = if (enabled) onTrailingIconClick else null,
-                        )
-                    }
-                }
-                trailingText != null -> {
-                    {
-                        Text(
-                            modifier = Modifier.padding(end = dimensionResource(id = R.dimen.spacing_s)),
-                            text = trailingText,
-                            style = OdsTheme.typography.subtitle1,
-                            color = OdsTextFieldDefaults.trailingTextColor(value.isEmpty(), enabled)
-                        )
-                    }
-                }
-                else -> null
-            },
+            label = label,
+            placeholder = placeholder,
+            leadingIcon = leadingIcon,
+            leadingIconContentDescription = leadingIconContentDescription,
+            onLeadingIconClick = onLeadingIconClick,
+            trailingIcon = trailingIcon,
+            trailingIconContentDescription = trailingIconContentDescription,
+            onTrailingIconClick = onTrailingIconClick,
+            trailingText = trailingText,
             isError = isError,
+            errorMessage = errorMessage,
             visualTransformation = visualTransformation,
             keyboardOptions = keyboardOptions,
             keyboardActions = keyboardActions,
             singleLine = singleLine,
             maxLines = maxLines,
-            colors = OdsTextFieldDefaults.textFieldColors()
+            characterCounter = characterCounter
         )
-
-        OdsTextFieldBottomRow(isError = isError, errorMessage = errorMessage, characterCounter = characterCounter)
+    } else {
+        OdsOutlinedTextField(
+            value = value,
+            onValueChange = onValueChange,
+            modifier = modifier,
+            enabled = enabled,
+            readOnly = readOnly,
+            label = label,
+            placeholder = placeholder,
+            leadingIcon = leadingIcon,
+            leadingIconContentDescription = leadingIconContentDescription,
+            onLeadingIconClick = onLeadingIconClick,
+            trailingIcon = trailingIcon,
+            trailingIconContentDescription = trailingIconContentDescription,
+            onTrailingIconClick = onTrailingIconClick,
+            trailingText = trailingText,
+            isError = isError,
+            errorMessage = errorMessage,
+            visualTransformation = visualTransformation,
+            keyboardOptions = keyboardOptions,
+            keyboardActions = keyboardActions,
+            singleLine = singleLine,
+            maxLines = maxLines,
+            characterCounter = characterCounter
+        )
     }
 }
 
@@ -177,22 +172,21 @@ fun OdsTextField(
 @Composable
 private fun PreviewOdsTextField(@PreviewParameter(OdsTextFieldPreviewParameterProvider::class) parameter: OdsTextFieldPreviewParameter) = Preview {
     var value by remember { mutableStateOf("Input text") }
-    Column {
-        OdsTextField(
-            value = value,
-            onValueChange = { value = it },
-            placeholder = "Placeholder",
-            leadingIcon = painterResource(id = android.R.drawable.ic_dialog_info),
-            trailingIcon = painterResource(id = android.R.drawable.ic_input_add),
-            isError = parameter.hasErrorMessage,
-            errorMessage = getPreviewErrorMessage(parameter.hasErrorMessage, parameter.isVeryLongErrorMessage),
-            characterCounter = if (parameter.hasCounter) {
-                {
-                    OdsTextFieldCharacterCounter(value.length, 30)
-                }
-            } else null
-        )
-    }
+    OdsTextField(
+        modifier = Modifier.fillMaxWidth(),
+        value = value,
+        onValueChange = { value = it },
+        placeholder = "Placeholder",
+        leadingIcon = painterResource(id = android.R.drawable.ic_dialog_info),
+        trailingIcon = painterResource(id = android.R.drawable.ic_input_add),
+        isError = parameter.hasErrorMessage,
+        errorMessage = getPreviewErrorMessage(parameter.hasErrorMessage, parameter.isVeryLongErrorMessage),
+        characterCounter = if (parameter.hasCounter) {
+            {
+                OdsTextFieldCharacterCounter(value.length, 30)
+            }
+        } else null
+    )
 }
 
 private fun getPreviewErrorMessage(hasErrorMessage: Boolean, isVeryLongErrorMessage: Boolean) = when {
