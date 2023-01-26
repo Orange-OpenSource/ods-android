@@ -12,6 +12,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - \[Demo\] Add new entries in about screen ([#403](https://github.com/Orange-OpenSource/ods-android/issues/403))
 - \[Lib\] Add `OdsFloatingActionButton` and `OdsExtendedFloatingActionButton` components ([#109](https://github.com/Orange-OpenSource/ods-android/issues/109))
 - \[Lib\] Add `OdsListItem` composable signature with an `OdsListItemTrailing` as trailing parameter in order to manage accessibility ([#387](https://github.com/Orange-OpenSource/ods-android/issues/387))
+- \[ThemeConfigurationContract\] Add `textFieldStyle` boolean in the theme contract to allow to choose between outlined or filled text fields in a custom theme ([#415](https://github.com/Orange-OpenSource/ods-android/issues/415))
 
 ### Changed
 
@@ -19,6 +20,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - \[Demo\] Display food content ([#388](https://github.com/Orange-OpenSource/ods-android/issues/388))
 - \[Demo\] Use `Enabled` wording in customization bottom sheets to be consistent with the code implementation ([#395](https://github.com/Orange-OpenSource/ods-android/issues/395))
 - \[Demo\] Update structure of JSON file for recipes ([#385](https://github.com/Orange-OpenSource/ods-android/issues/385))
+- \[Demo\] Remove filled and outlined sections for text fields. From now, there is only one version of text field and password text field which are styled through the theme configuration ([#415](https://github.com/Orange-OpenSource/ods-android/issues/415))
 - \[Doc\] Update documentation home content for Jetpack Compose integration ([#409](https://github.com/Orange-OpenSource/ods-android/issues/409))
 
 ### Fixed
@@ -28,6 +30,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - \[Demo\] Fix list item selection controls trailing vocalization: Checkboxes, Switches and Radio Buttons in lists ([#387](https://github.com/Orange-OpenSource/ods-android/issues/387))
 - \[Demo\] Screens in about section now use current theme colors ([#390](https://github.com/Orange-OpenSource/ods-android/issues/390))
 - \[Lib\] Fix cards vocalization when clickable ([#391](https://github.com/Orange-OpenSource/ods-android/issues/391))
+
+### Removed
+
+- \[Lib\] `OdsOutlinedTextfield` and `OdsPasswordOutlinedTextField` have been removed and replaced by `OdsTextField` and `OdsPasswordTextField`. Text fields appearance (outlined or filled) is now managed by the theme configuration. ([#415](https://github.com/Orange-OpenSource/ods-android/issues/415))
 
 ## [0.9.0](https://github.com/Orange-OpenSource/ods-android/compare/0.8.0...0.9.0) - 2023-01-06
 
