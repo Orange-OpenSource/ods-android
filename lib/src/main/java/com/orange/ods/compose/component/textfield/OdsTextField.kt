@@ -46,6 +46,7 @@ import com.orange.ods.theme.OdsComponentsConfiguration
  * @param value the input text to be shown in the text field
  * @param onValueChange the callback that is triggered when the input service updates the text. An
  * updated text comes as a parameter of the callback
+ * @param trailing The `OdsTextFieldTrailing` element to display at the end of the text field
  * @param modifier a [Modifier] for this text field
  * @param enabled controls the enabled state of the [TextField]. When `false`, the text field will
  * be neither editable nor focusable, the input of the text field will not be selectable,
@@ -62,11 +63,103 @@ import com.orange.ods.theme.OdsComponentsConfiguration
  * container
  * @param leadingIconContentDescription the optional content description for the leading icon
  * @param onLeadingIconClick the optional action executed on leading icon click
- * @param trailingIcon the optional trailing icon painter to be displayed at the end of the text field
+ * @param isError indicates if the text field's current value is in error state. If set to
+ * true, the label, bottom indicator and trailing icon by default will be displayed in error color
+ * @param errorMessage displayed when the [OdsTextField] is in error
+ * @param visualTransformation transforms the visual representation of the input [value].
+ * For example, you can use [androidx.compose.ui.text.input.PasswordVisualTransformation] to create a password
+ * text field. By default no visual transformation is applied
+ * @param keyboardOptions software keyboard options that contains configuration such as
+ * [KeyboardType] and [ImeAction].
+ * @param keyboardActions when the input service emits an IME action, the corresponding callback
+ * is called. Note that this IME action may be different from what you specified in
+ * [KeyboardOptions.imeAction].
+ * @param singleLine when set to true, this text field becomes a single horizontally scrolling
+ * text field instead of wrapping onto multiple lines. The keyboard will be informed to not show
+ * the return key as the [ImeAction]. Note that [maxLines] parameter will be ignored as the
+ * maxLines attribute will be automatically set to 1.
+ * @param maxLines the maximum height in terms of maximum number of visible lines. Should be
+ * equal or greater than 1. Note that this parameter will be ignored and instead maxLines will be
+ * set to 1 if [singleLine] is set to true.
+ * @param characterCounter displayed below the text field. Please use the appropriate [OdsTextFieldCharacterCounter] composable.
+ */
+@Composable
+@OdsComponentApi
+fun OdsTextField(
+    value: String,
+    onValueChange: (String) -> Unit,
+    trailing: OdsTextFieldTrailing,
+    modifier: Modifier = Modifier,
+    enabled: Boolean = true,
+    readOnly: Boolean = false,
+    label: String? = null,
+    placeholder: String? = null,
+    leadingIcon: Painter? = null,
+    leadingIconContentDescription: String? = null,
+    onLeadingIconClick: (() -> Unit)? = null,
+    isError: Boolean = false,
+    errorMessage: String? = null,
+    visualTransformation: VisualTransformation = VisualTransformation.None,
+    keyboardOptions: KeyboardOptions = KeyboardOptions.Default,
+    keyboardActions: KeyboardActions = KeyboardActions(),
+    singleLine: Boolean = false,
+    maxLines: Int = Int.MAX_VALUE,
+    characterCounter: (@Composable () -> Unit)? = null
+) {
+    OdsTextField(
+        value = value,
+        onValueChange = onValueChange,
+        modifier = modifier,
+        enabled = enabled,
+        readOnly = readOnly,
+        label = label,
+        placeholder = placeholder,
+        leadingIcon = leadingIcon,
+        leadingIconContentDescription = leadingIconContentDescription,
+        onLeadingIconClick = onLeadingIconClick,
+        trailing = { OdsTextFieldTrailing(trailing = trailing, value = value, enabled = enabled) },
+        isError = isError,
+        errorMessage = errorMessage,
+        visualTransformation = visualTransformation,
+        keyboardOptions = keyboardOptions,
+        keyboardActions = keyboardActions,
+        singleLine = singleLine,
+        maxLines = maxLines,
+        characterCounter = characterCounter
+    )
+}
+
+/**
+ * <a href="https://system.design.orange.com/0c1af118d/p/483f94-text-fields/b/720e3b" target="_blank">ODS Text fields</a>.
+ *
+ * The OdsTextField is displayed filled or outlined according the theme component configuration provided. In Orange theme,
+ * text fields are outlined cause they are more accessible in term of contrast.
+ *
+ * @see [OdsOutlinedTextField]
+ * @see [OdsFilledTextField]
+ *
+ * @param value the input text to be shown in the text field
+ * @param onValueChange the callback that is triggered when the input service updates the text. An
+ * updated text comes as a parameter of the callback
+ * @param trailing The `OdsTextFieldTrailing` element to display at the end of the text field
+ * @param modifier a [Modifier] for this text field
+ * @param enabled controls the enabled state of the [TextField]. When `false`, the text field will
+ * be neither editable nor focusable, the input of the text field will not be selectable,
+ * visually text field will appear in the disabled UI state
+ * @param readOnly controls the editable state of the [TextField]. When `true`, the text
+ * field can not be modified, however, a user can focus it and copy text from it. Read-only text
+ * fields are usually used to display pre-filled forms that user can not edit
+ * @param label the optional label to be displayed inside the text field container. The default
+ * text style for internal [Text] is [Typography.caption] when the text field is in focus and
+ * [Typography.subtitle1] when the text field is not in focus
+ * @param placeholder the optional placeholder to be displayed when the text field is in focus and
+ * the input text is empty. The default text style for internal [Text] is [Typography.subtitle1]
+ * @param leadingIcon the optional leading icon painter to be displayed at the beginning of the text field
  * container
- * @param trailingIconContentDescription the optional content description for the trailing icon
- * @param onTrailingIconClick the optional action executed on trailing icon click
- * @param trailingText the optional trailing text displayed at the end of the text field container
+ * @param leadingIconContentDescription the optional content description for the leading icon
+ * @param onLeadingIconClick the optional action executed on leading icon click
+ * @param trailing The trailing composable. Prefer other [OdsTextField] signature with an [OdsTextFieldTrailing] parameter as trailing if the trailing is one of
+ * the following elements: Text, Icon, Password visibility
  * @param isError indicates if the text field's current value is in error state. If set to
  * true, the label, bottom indicator and trailing icon by default will be displayed in error color
  * @param errorMessage displayed when the [OdsTextField] is in error
@@ -100,10 +193,7 @@ fun OdsTextField(
     leadingIcon: Painter? = null,
     leadingIconContentDescription: String? = null,
     onLeadingIconClick: (() -> Unit)? = null,
-    trailingIcon: Painter? = null,
-    trailingIconContentDescription: String? = null,
-    onTrailingIconClick: (() -> Unit)? = null,
-    trailingText: String? = null,
+    trailing: @Composable (() -> Unit)? = null,
     isError: Boolean = false,
     errorMessage: String? = null,
     visualTransformation: VisualTransformation = VisualTransformation.None,
@@ -111,7 +201,7 @@ fun OdsTextField(
     keyboardActions: KeyboardActions = KeyboardActions(),
     singleLine: Boolean = false,
     maxLines: Int = Int.MAX_VALUE,
-    characterCounter: (@Composable () -> Unit)? = null
+    characterCounter: @Composable (() -> Unit)? = null
 ) {
     val filledTextField = OdsTheme.componentsConfiguration.textFieldStyle == OdsComponentsConfiguration.Companion.ComponentStyle.Filled
 
@@ -127,10 +217,7 @@ fun OdsTextField(
             leadingIcon = leadingIcon,
             leadingIconContentDescription = leadingIconContentDescription,
             onLeadingIconClick = onLeadingIconClick,
-            trailingIcon = trailingIcon,
-            trailingIconContentDescription = trailingIconContentDescription,
-            onTrailingIconClick = onTrailingIconClick,
-            trailingText = trailingText,
+            trailing = trailing,
             isError = isError,
             errorMessage = errorMessage,
             visualTransformation = visualTransformation,
@@ -152,10 +239,7 @@ fun OdsTextField(
             leadingIcon = leadingIcon,
             leadingIconContentDescription = leadingIconContentDescription,
             onLeadingIconClick = onLeadingIconClick,
-            trailingIcon = trailingIcon,
-            trailingIconContentDescription = trailingIconContentDescription,
-            onTrailingIconClick = onTrailingIconClick,
-            trailingText = trailingText,
+            trailing = trailing,
             isError = isError,
             errorMessage = errorMessage,
             visualTransformation = visualTransformation,
@@ -178,7 +262,9 @@ private fun PreviewOdsTextField(@PreviewParameter(OdsTextFieldPreviewParameterPr
         onValueChange = { value = it },
         placeholder = "Placeholder",
         leadingIcon = painterResource(id = android.R.drawable.ic_dialog_info),
-        trailingIcon = painterResource(id = android.R.drawable.ic_input_add),
+        trailing = if (parameter.previewTrailingType != PreviewTrailingType.None) {
+            { TrailingPreview(parameter.previewTrailingType, value) }
+        } else null,
         isError = parameter.hasErrorMessage,
         errorMessage = getPreviewErrorMessage(parameter.hasErrorMessage, parameter.isVeryLongErrorMessage),
         characterCounter = if (parameter.hasCounter) {

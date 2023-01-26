@@ -12,7 +12,6 @@ package com.orange.ods.compose.component.textfield
 
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.text.KeyboardActions
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material.Text
@@ -24,11 +23,9 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.painter.Painter
-import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.input.VisualTransformation
 import androidx.compose.ui.tooling.preview.PreviewParameter
-import com.orange.ods.R
 import com.orange.ods.compose.component.utilities.Preview
 import com.orange.ods.compose.component.utilities.UiModePreviews
 import com.orange.ods.compose.theme.OdsTheme
@@ -45,10 +42,7 @@ internal fun OdsFilledTextField(
     leadingIcon: Painter? = null,
     leadingIconContentDescription: String? = null,
     onLeadingIconClick: (() -> Unit)? = null,
-    trailingIcon: Painter? = null,
-    trailingIconContentDescription: String? = null,
-    onTrailingIconClick: (() -> Unit)? = null,
-    trailingText: String? = null,
+    trailing: @Composable (() -> Unit)? = null,
     isError: Boolean = false,
     errorMessage: String? = null,
     visualTransformation: VisualTransformation = VisualTransformation.None,
@@ -81,28 +75,7 @@ internal fun OdsFilledTextField(
                     )
                 }
             },
-            trailingIcon = when {
-                trailingIcon != null -> {
-                    {
-                        OdsTextFieldIcon(
-                            painter = trailingIcon,
-                            contentDescription = trailingIconContentDescription,
-                            onClick = if (enabled) onTrailingIconClick else null,
-                        )
-                    }
-                }
-                trailingText != null -> {
-                    {
-                        Text(
-                            modifier = Modifier.padding(end = dimensionResource(id = R.dimen.spacing_s)),
-                            text = trailingText,
-                            style = OdsTheme.typography.subtitle1,
-                            color = OdsTextFieldDefaults.trailingTextColor(value.isEmpty(), enabled)
-                        )
-                    }
-                }
-                else -> null
-            },
+            trailingIcon = trailing,
             isError = isError,
             visualTransformation = visualTransformation,
             keyboardOptions = keyboardOptions,
@@ -126,7 +99,9 @@ private fun PreviewOdsTextField(@PreviewParameter(OdsTextFieldPreviewParameterPr
         onValueChange = { value = it },
         placeholder = "Placeholder",
         leadingIcon = painterResource(id = android.R.drawable.ic_dialog_info),
-        trailingIcon = painterResource(id = android.R.drawable.ic_input_add),
+        trailing = if (parameter.previewTrailingType != PreviewTrailingType.None) {
+            { TrailingPreview(parameter.previewTrailingType, value) }
+        } else null,
         isError = parameter.hasErrorMessage,
         errorMessage = getPreviewErrorMessage(parameter.hasErrorMessage, parameter.isVeryLongErrorMessage),
         characterCounter = if (parameter.hasCounter) {
