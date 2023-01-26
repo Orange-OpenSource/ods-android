@@ -159,7 +159,7 @@ fun OdsTextField(
  * @param leadingIconContentDescription the optional content description for the leading icon
  * @param onLeadingIconClick the optional action executed on leading icon click
  * @param trailing The trailing composable. Prefer other [OdsTextField] signature with an [OdsTextFieldTrailing] parameter as trailing if the trailing is one of
- * the following elements: Text, Icon, Password visibility
+ * the following elements: Text or Icon
  * @param isError indicates if the text field's current value is in error state. If set to
  * true, the label, bottom indicator and trailing icon by default will be displayed in error color
  * @param errorMessage displayed when the [OdsTextField] is in error
