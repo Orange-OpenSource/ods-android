@@ -120,6 +120,11 @@
             <div class="ods-layout container-xxl">
                 <main class="ods-main order-1">
                     {% if site.data.data_menu.toc2[0] %}
+                    {% if page.version == "" %}
+                    {% assign urlPrefix = "" %}
+                    {% else %}
+                    {% assign urlPrefix = "/" | append: page.version %}
+                    {% endif %}
                     {% for item in site.data.data_menu.toc2 %}
                     <div class="ods-intro pt-md-4 ps-lg-4">
                         <h3>{{ item.title }}</h3>
@@ -128,11 +133,11 @@
                     <div class="ods-content ps-lg-4 mb-3">
                         <ul>
                             {% for entry in item.subfolderitems %}
-                            <li><a href="{{ entry.url }}">{{ entry.page }}</a>
+                            <li><a href="{{ urlPrefix }}{{ entry.url }}">{{ entry.page }}</a>
                                 {% if entry.subsubfolderitems[0] %}
                                 <ul>
                                     {% for subentry in entry.subsubfolderitems %}
-                                    <li><a href="{{ subentry.url }}">{{ subentry.page }}</a></li>
+                                    <li><a href="{{ urlPrefix }}{{ subentry.url }}">{{ subentry.page }}</a></li>
                                     {% endfor %}
                                 </ul>
                                 {% endif %}
