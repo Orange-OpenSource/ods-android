@@ -8,7 +8,9 @@
  * /
  */
 
-import com.orange.ods.gradle.execute
+plugins {
+    id("release")
+}
 
 buildscript {
     repositories {
@@ -36,12 +38,4 @@ allprojects {
 tasks.register<Delete>("clean") {
     group = "cleanup"
     delete(rootProject.buildDir)
-}
-
-tasks.register<DefaultTask>("tagRelease") {
-    doLast {
-        val tag = version.toString()
-        execute("git", "tag", tag)
-        execute("git", "push", "origin", tag)
-    }
 }
