@@ -99,9 +99,7 @@ private fun PreviewOdsOutlinedTextField(@PreviewParameter(OdsTextFieldPreviewPar
         onValueChange = { value = it },
         placeholder = "Placeholder",
         leadingIcon = painterResource(id = android.R.drawable.ic_dialog_info),
-        trailing = if (parameter.previewTrailingType != PreviewTrailingType.None) {
-            { TrailingPreview(parameter.previewTrailingType, value) }
-        } else null,
+        trailing = getTrailingPreview(parameter = parameter, value = value),
         isError = parameter.hasErrorMessage,
         errorMessage = if (parameter.hasErrorMessage) "Error message" else null
     )

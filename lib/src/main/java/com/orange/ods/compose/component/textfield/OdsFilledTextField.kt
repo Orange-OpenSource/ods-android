@@ -99,9 +99,7 @@ private fun PreviewOdsTextField(@PreviewParameter(OdsTextFieldPreviewParameterPr
         onValueChange = { value = it },
         placeholder = "Placeholder",
         leadingIcon = painterResource(id = android.R.drawable.ic_dialog_info),
-        trailing = if (parameter.previewTrailingType != PreviewTrailingType.None) {
-            { TrailingPreview(parameter.previewTrailingType, value) }
-        } else null,
+        trailing = getTrailingPreview(parameter = parameter, value = value),
         isError = parameter.hasErrorMessage,
         errorMessage = getPreviewErrorMessage(parameter.hasErrorMessage, parameter.isVeryLongErrorMessage),
         characterCounter = if (parameter.hasCounter) {

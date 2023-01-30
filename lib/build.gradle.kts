@@ -74,6 +74,7 @@ dependencies {
     api(project(":theme-orange"))
 
     implementation(Dependencies.kotlinStdlibJdk8)
+    implementation(Dependencies.kotlinReflect)
     compileOnly(project(":component-processor"))
 
     implementation(Dependencies.accompanistFlowLayout)

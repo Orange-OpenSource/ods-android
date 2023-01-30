@@ -29,6 +29,7 @@ import com.orange.ods.compose.component.utilities.BasicPreviewParameterProvider
 import com.orange.ods.compose.component.utilities.DisabledInteractionSource
 import com.orange.ods.compose.text.OdsTextCaption
 import com.orange.ods.compose.theme.OdsTheme
+import kotlin.reflect.KClass
 
 /**
  * A character counter to display below the text field
@@ -76,23 +77,26 @@ internal fun OdsTextFieldIcon(painter: Painter, contentDescription: String?, onC
     }
 }
 
-@Composable
-internal fun OdsTextFieldTrailing(trailing: OdsTextFieldTrailing, value: String, enabled: Boolean = true) {
-    when (trailing) {
+internal fun getTrailing(trailing: OdsTextFieldTrailing, value: String, enabled: Boolean = true): @Composable (() -> Unit) {
+    return when (trailing) {
         is OdsTextTrailing -> {
-            Text(
-                modifier = Modifier.padding(end = dimensionResource(id = R.dimen.spacing_s)),
-                text = trailing.text,
-                style = OdsTheme.typography.subtitle1,
-                color = OdsTextFieldDefaults.trailingTextColor(value.isEmpty(), enabled)
-            )
+            {
+                Text(
+                    modifier = Modifier.padding(end = dimensionResource(id = R.dimen.spacing_s)),
+                    text = trailing.text,
+                    style = OdsTheme.typography.subtitle1,
+                    color = OdsTextFieldDefaults.trailingTextColor(value.isEmpty(), enabled)
+                )
+            }
         }
         is OdsIconTrailing -> {
-            OdsTextFieldIcon(
-                painter = trailing.painter,
-                contentDescription = trailing.contentDescription,
-                onClick = if (enabled) trailing.onClick else null,
-            )
+            {
+                OdsTextFieldIcon(
+                    painter = trailing.painter,
+                    contentDescription = trailing.contentDescription,
+                    onClick = if (enabled) trailing.onClick else null,
+                )
+            }
         }
     }
 }
@@ -110,31 +114,22 @@ private fun OdsTextFieldErrorText(message: String) {
     )
 }
 
-internal enum class PreviewTrailingType {
-    Text, Icon, None
-}
-
 @Composable
-internal fun TrailingPreview(previewTrailingType: PreviewTrailingType, value: String) {
-    when (previewTrailingType) {
-        PreviewTrailingType.Icon -> {
-            OdsTextFieldTrailing(
-                trailing = OdsIconTrailing(painter = painterResource(id = android.R.drawable.ic_input_add)),
-                value = value
-            )
-        }
-        PreviewTrailingType.Text -> {
-            OdsTextFieldTrailing(trailing = OdsTextTrailing(text = "units"), value = value)
-        }
-        else -> {}
+internal fun getTrailingPreview(parameter: OdsTextFieldPreviewParameter, value: String): @Composable (() -> Unit)? {
+    val trailing = when (parameter.previewTrailingType) {
+        OdsTextTrailing::class -> OdsTextTrailing(text = "units")
+        OdsIconTrailing::class -> OdsIconTrailing(painter = painterResource(id = android.R.drawable.ic_input_add))
+        else -> null
     }
+
+    return trailing?.let { getTrailing(trailing = it, value = value) }
 }
 
 internal data class OdsTextFieldPreviewParameter(
     val hasCounter: Boolean,
     val hasErrorMessage: Boolean,
     val isVeryLongErrorMessage: Boolean,
-    val previewTrailingType: PreviewTrailingType
+    val previewTrailingType: KClass<out OdsTextFieldTrailing>?
 )
 
 internal class OdsTextFieldPreviewParameterProvider : BasicPreviewParameterProvider<OdsTextFieldPreviewParameter>(*previewParameterValues.toTypedArray())
@@ -142,7 +137,7 @@ internal class OdsTextFieldPreviewParameterProvider : BasicPreviewParameterProvi
 private val previewParameterValues: List<OdsTextFieldPreviewParameter>
     get() {
         val booleanValues = listOf(true, false)
-        val trailings = PreviewTrailingType.values().toList()
+        val trailings = listOf(null, OdsTextTrailing::class, OdsIconTrailing::class)
 
         return booleanValues.flatMap { hasCounter ->
             booleanValues.flatMap { hasErrorMessage ->
