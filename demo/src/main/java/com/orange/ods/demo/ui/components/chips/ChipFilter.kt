@@ -34,7 +34,7 @@ import com.orange.ods.demo.domain.recipes.LocalRecipes
 import com.orange.ods.demo.ui.LocalMainThemeManager
 import com.orange.ods.demo.ui.components.utilities.ComponentCustomizationBottomSheetScaffold
 import com.orange.ods.demo.ui.utilities.composable.Subtitle
-import com.orange.ods.theme.OdsComponentsConfiguration.Companion.ComponentStyle
+import com.orange.ods.theme.OdsComponentsConfiguration.ComponentStyle
 
 @OptIn(ExperimentalMaterialApi::class)
 @Composable

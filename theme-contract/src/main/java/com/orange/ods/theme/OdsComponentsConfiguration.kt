@@ -16,10 +16,8 @@ package com.orange.ods.theme
  */
 open class OdsComponentsConfiguration {
 
-    companion object {
-        enum class ComponentStyle {
-            Filled, Outlined
-        }
+    enum class ComponentStyle {
+        Filled, Outlined
     }
 
     /**

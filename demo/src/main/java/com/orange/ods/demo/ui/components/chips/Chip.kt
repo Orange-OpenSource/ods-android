@@ -37,7 +37,7 @@ import com.orange.ods.demo.ui.components.chips.ChipCustomizationState.LeadingEle
 import com.orange.ods.demo.ui.components.utilities.ComponentCustomizationBottomSheetScaffold
 import com.orange.ods.demo.ui.components.utilities.clickOnElement
 import com.orange.ods.demo.ui.utilities.composable.Subtitle
-import com.orange.ods.theme.OdsComponentsConfiguration.Companion.ComponentStyle
+import com.orange.ods.theme.OdsComponentsConfiguration.ComponentStyle
 
 @OptIn(ExperimentalMaterialApi::class)
 @Composable
