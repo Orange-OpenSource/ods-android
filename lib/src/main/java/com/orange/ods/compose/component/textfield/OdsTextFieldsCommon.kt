@@ -141,6 +141,7 @@ internal fun getTrailingPreview(parameter: OdsTextFieldPreviewParameter, value: 
     val trailing = when (parameter.previewTrailingType) {
         OdsTextTrailing::class -> OdsTextTrailing(text = "units")
         OdsIconTrailing::class -> OdsIconTrailing(painter = painterResource(id = android.R.drawable.ic_input_add))
+        OdsDropdownMenuTrailing::class -> OdsDropdownMenuTrailing(expanded = false, enabled = true)
         else -> null
     }
 
@@ -159,7 +160,7 @@ internal class OdsTextFieldPreviewParameterProvider : BasicPreviewParameterProvi
 private val previewParameterValues: List<OdsTextFieldPreviewParameter>
     get() {
         val booleanValues = listOf(true, false)
-        val trailings = listOf(null, OdsTextTrailing::class, OdsIconTrailing::class)
+        val trailings = listOf(null, OdsTextTrailing::class, OdsIconTrailing::class, OdsDropdownMenuTrailing::class)
 
         return booleanValues.flatMap { hasCounter ->
             booleanValues.flatMap { hasErrorMessage ->
