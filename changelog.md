@@ -20,7 +20,6 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - \[Demo\] Display food content ([#388](https://github.com/Orange-OpenSource/ods-android/issues/388))
 - \[Demo\] Use `Enabled` wording in customization bottom sheets to be consistent with the code implementation ([#395](https://github.com/Orange-OpenSource/ods-android/issues/395))
 - \[Demo\] Update structure of JSON file for recipes ([#385](https://github.com/Orange-OpenSource/ods-android/issues/385))
-- \[Demo\] Remove filled and outlined sections for text fields. From now, there is only one version of text field and password text field which are styled through the theme configuration ([#415](https://github.com/Orange-OpenSource/ods-android/issues/415))
 - \[Doc\] Update documentation home content for Jetpack Compose integration ([#409](https://github.com/Orange-OpenSource/ods-android/issues/409))
 - \[ThemeConfigurationContract\] `OdsComponentCustomizations` has been renamed into `OdsComponentsConfiguration` ([#415](https://github.com/Orange-OpenSource/ods-android/issues/415))
 
@@ -34,7 +33,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Removed
 
-- \[Lib\] `OdsOutlinedTextfield` and `OdsPasswordOutlinedTextField` have been removed and replaced by `OdsTextField` and `OdsPasswordTextField`. Text fields appearance (outlined or filled) is now managed by the theme configuration. ([#415](https://github.com/Orange-OpenSource/ods-android/issues/415))
+- \[All\] `OdsOutlinedTextfield` and `OdsPasswordOutlinedTextField` have been removed and replaced by `OdsTextField` and `OdsPasswordTextField`. Text fields appearance (outlined or filled) is now managed by the theme configuration. ([#415](https://github.com/Orange-OpenSource/ods-android/issues/415))
 
 ## [0.9.0](https://github.com/Orange-OpenSource/ods-android/compare/0.8.0...0.9.0) - 2023-01-06
 
