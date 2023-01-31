@@ -31,6 +31,8 @@ toc2:
         url: /components/FloatingActionButtons_docs
       - page: Lists
         url: /components/Lists_docs
+      - page: Menus
+        url: /components/Menus_docs
       - page: "Navigation: bottom"
         url: /components/NavigationBottom_docs
       - page: Progress indicators
