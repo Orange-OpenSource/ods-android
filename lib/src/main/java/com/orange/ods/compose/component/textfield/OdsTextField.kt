@@ -203,7 +203,7 @@ fun OdsTextField(
     maxLines: Int = Int.MAX_VALUE,
     characterCounter: @Composable (() -> Unit)? = null
 ) {
-    val filledTextField = OdsTheme.componentsConfiguration.textFieldStyle == OdsComponentsConfiguration.Companion.ComponentStyle.Filled
+    val filledTextField = OdsTheme.componentsConfiguration.textFieldStyle == OdsComponentsConfiguration.ComponentStyle.Filled
 
     if (filledTextField) {
         OdsFilledTextField(

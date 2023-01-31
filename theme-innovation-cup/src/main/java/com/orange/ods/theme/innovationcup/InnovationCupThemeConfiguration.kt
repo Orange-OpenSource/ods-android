@@ -34,7 +34,7 @@ class InnovationCupThemeConfiguration : OdsThemeConfigurationContract {
             large = RoundedCornerShape(4.dp)
         )
 
-    override val components: OdsComponentsConfiguration
+    override val componentsConfiguration: OdsComponentsConfiguration
         get() = object : OdsComponentsConfiguration() {
             override val chipStyle: ComponentStyle
                 get() = ComponentStyle.Filled

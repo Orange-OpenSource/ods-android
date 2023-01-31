@@ -92,7 +92,7 @@ fun OdsTheme(
         LocalDarkThemeColors provides themeConfiguration.colors.darkColors,
         LocalTypography provides themeConfiguration.typography,
         LocalShapes provides themeConfiguration.shapes,
-        LocalComponentsConfiguration provides themeConfiguration.components,
+        LocalComponentsConfiguration provides themeConfiguration.componentsConfiguration,
         content = content
     )
 }

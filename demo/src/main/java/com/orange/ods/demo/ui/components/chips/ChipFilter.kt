@@ -78,7 +78,7 @@ fun ChipFilter() {
 
 @Composable
 private fun FilterChip(ingredient: Ingredient, customizationState: ChipCustomizationState) {
-    val outlinedChips = LocalMainThemeManager.current.currentThemeConfiguration.components.chipStyle == ComponentStyle.Outlined
+    val outlinedChips = LocalMainThemeManager.current.currentThemeConfiguration.componentsConfiguration.chipStyle == ComponentStyle.Outlined
     val selected = rememberSaveable { mutableStateOf(false) }
     OdsFilterChip(
         text = ingredient.food.name,

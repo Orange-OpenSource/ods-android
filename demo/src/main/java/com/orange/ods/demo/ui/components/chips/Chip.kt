@@ -106,7 +106,7 @@ fun ChipTypeDemo(chipType: ChipType, content: @Composable () -> Unit) {
 @Composable
 private fun Chip(chipCustomizationState: ChipCustomizationState) {
     val context = LocalContext.current
-    val outlinedChips = LocalMainThemeManager.current.currentThemeConfiguration.components.chipStyle == ComponentStyle.Outlined
+    val outlinedChips = LocalMainThemeManager.current.currentThemeConfiguration.componentsConfiguration.chipStyle == ComponentStyle.Outlined
     val cancelCrossLabel = stringResource(id = R.string.component_element_cancel_cross)
     val recipes = LocalRecipes.current.take(4)
 

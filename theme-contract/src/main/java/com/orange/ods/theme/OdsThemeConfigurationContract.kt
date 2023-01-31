@@ -42,7 +42,7 @@ interface OdsThemeConfigurationContract : Parcelable {
     /**
      * Customization of the ODS components if needed
      */
-    val components: OdsComponentsConfiguration
+    val componentsConfiguration: OdsComponentsConfiguration
         get() = OdsComponentsConfiguration()
 
     /**
