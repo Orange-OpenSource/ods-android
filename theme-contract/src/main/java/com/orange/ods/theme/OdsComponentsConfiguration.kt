@@ -28,7 +28,7 @@ open class OdsComponentsConfiguration {
     open val chipStyle: ComponentStyle = ComponentStyle.Outlined
 
     /**
-     * By default, the text fields are outlined and more accessible in term of contrast like that. If your theme needs to use filled text fields, ser this parameter to `ComponentStyle.Filled`.
+     * By default, the text fields are outlined and more accessible in term of contrast like that. If your theme needs to use filled text fields, set this parameter to `ComponentStyle.Filled`.
      */
     open val textFieldStyle: ComponentStyle = ComponentStyle.Outlined
 }
