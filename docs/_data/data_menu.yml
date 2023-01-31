@@ -2,48 +2,48 @@ toc2:
   - title: Getting Started
     subfolderitems:
       - page: Instructions
-        url: /ods-android/index.html
+        url: /index.html
 
   - title: Guidelines
     subfolderitems:
       - page: Colors
-        url: /ods-android/guidelines/Colors_docs
+        url: /guidelines/Colors_docs
       - page: Typography
-        url: /ods-android/guidelines/Typography_docs
+        url: /guidelines/Typography_docs
 
   - title: Components
     subfolderitems:
       - page: "App bars: bottom"
-        url: /ods-android/components/AppBarsBottom_docs
+        url: /components/AppBarsBottom_docs
       - page: "App bars: top"
-        url: /ods-android/components/AppBarsTop_docs
+        url: /components/AppBarsTop_docs
       - page: Buttons
-        url: /ods-android/components/Buttons_docs
+        url: /components/Buttons_docs
       - page: Cards
-        url: /ods-android/components/Cards_docs
+        url: /components/Cards_docs
       - page: Checkboxes
-        url: /ods-android/components/Checkboxes_docs
+        url: /components/Checkboxes_docs
       - page: Chips
-        url: /ods-android/components/Chips_docs
+        url: /components/Chips_docs
       - page: Dialogs
-        url: /ods-android/components/Dialogs_docs
+        url: /components/Dialogs_docs
       - page: Floating action buttons
-        url: /ods-android/components/FloatingActionButtons_docs
+        url: /components/FloatingActionButtons_docs
       - page: Lists
-        url: /ods-android/components/Lists_docs
+        url: /components/Lists_docs
       - page: "Navigation: bottom"
-        url: /ods-android/components/NavigationBottom_docs
+        url: /components/NavigationBottom_docs
       - page: Progress indicators
-        url: /ods-android/components/ProgressIndicators_docs
+        url: /components/ProgressIndicators_docs
       - page: Radio buttons
-        url: /ods-android/components/RadioButtons_docs
+        url: /components/RadioButtons_docs
       - page: Sliders
-        url: /ods-android/components/Sliders_docs
+        url: /components/Sliders_docs
       - page: Snackbars
-        url: /ods-android/components/Snackbars_docs
+        url: /components/Snackbars_docs
       - page: Switches
-        url: /ods-android/components/Switches_docs
+        url: /components/Switches_docs
       - page: Tabs
-        url: /ods-android/components/Tabs_docs
+        url: /components/Tabs_docs
       - page: Text fields
-        url: /ods-android/components/TextFields_docs
+        url: /components/TextFields_docs
