@@ -37,7 +37,7 @@ import com.orange.ods.demo.ui.components.chips.ChipCustomizationState.LeadingEle
 import com.orange.ods.demo.ui.components.utilities.ComponentCustomizationBottomSheetScaffold
 import com.orange.ods.demo.ui.components.utilities.clickOnElement
 import com.orange.ods.demo.ui.utilities.composable.Subtitle
-import com.orange.ods.theme.OdsComponentCustomizations.Companion.ChipStyle
+import com.orange.ods.theme.OdsComponentsConfiguration.ComponentStyle
 
 @OptIn(ExperimentalMaterialApi::class)
 @Composable
@@ -106,7 +106,7 @@ fun ChipTypeDemo(chipType: ChipType, content: @Composable () -> Unit) {
 @Composable
 private fun Chip(chipCustomizationState: ChipCustomizationState) {
     val context = LocalContext.current
-    val outlinedChips = LocalMainThemeManager.current.currentThemeConfiguration.components.chipStyle == ChipStyle.Outlined
+    val outlinedChips = LocalMainThemeManager.current.currentThemeConfiguration.componentsConfiguration.chipStyle == ComponentStyle.Outlined
     val cancelCrossLabel = stringResource(id = R.string.component_element_cancel_cross)
     val recipes = LocalRecipes.current.take(4)
 

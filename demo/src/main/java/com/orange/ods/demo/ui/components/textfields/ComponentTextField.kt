@@ -51,8 +51,8 @@ fun ComponentTextField(variant: Variant) {
         bottomSheetScaffoldState = rememberBottomSheetScaffoldState(),
         bottomSheetContent = {
             when (variant) {
-                Variant.TextFieldFilledText, Variant.TextFieldOutlinedText -> TextFieldTextCustomization(textFieldCustomizationState)
-                Variant.TextFieldFilledPassword, Variant.TextFieldOutlinedPassword -> TextFieldPasswordCustomization(textFieldCustomizationState)
+                Variant.TextField -> TextFieldTextCustomization(textFieldCustomizationState)
+                Variant.TextFieldPassword -> TextFieldPasswordCustomization(textFieldCustomizationState)
                 else -> {}
             }
         }) {
@@ -65,10 +65,8 @@ fun ComponentTextField(variant: Variant) {
                 )
         ) {
             when (variant) {
-                Variant.TextFieldFilledText -> TextFieldFilled(customizationState = textFieldCustomizationState)
-                Variant.TextFieldFilledPassword -> TextFieldFilledPassword(customizationState = textFieldCustomizationState)
-                Variant.TextFieldOutlinedText -> TextFieldOutlined(customizationState = textFieldCustomizationState)
-                Variant.TextFieldOutlinedPassword -> TextFieldOutlinedPassword(customizationState = textFieldCustomizationState)
+                Variant.TextField -> TextField(customizationState = textFieldCustomizationState)
+                Variant.TextFieldPassword -> TextFieldPassword(customizationState = textFieldCustomizationState)
                 else -> {}
             }
         }

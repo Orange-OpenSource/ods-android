@@ -22,22 +22,26 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.tooling.preview.PreviewParameter
+import com.orange.ods.R
 import com.orange.ods.compose.component.OdsComponentApi
 import com.orange.ods.compose.component.textfield.OdsTextField
 import com.orange.ods.compose.component.textfield.OdsTextFieldBottomRow
 import com.orange.ods.compose.component.textfield.OdsTextFieldCharacterCounter
-import com.orange.ods.compose.component.textfield.OdsTextFieldDefaults
+import com.orange.ods.compose.component.textfield.OdsTextFieldIcon
+import com.orange.ods.compose.component.utilities.BasicPreviewParameterProvider
 import com.orange.ods.compose.component.utilities.Preview
 import com.orange.ods.compose.component.utilities.UiModePreviews
-import com.orange.ods.compose.theme.OdsTheme
 
 /**
- * Filled password text fields allows to display and use a text field with common password behaviors like a visualisation icon.
+ * Password text field allows to display and use a text field with common password behaviors like a visualisation icon.
+ * It relies on OdsTextField.
  *
- * If you are looking for an outlined version, see [OdsPasswordOutlinedTextField].
+ * @see [OdsTextField]
  *
  * @param value the input text to be shown in the text field
  * @param onValueChange the callback that is triggered when the input service updates the text. An
@@ -88,30 +92,42 @@ fun OdsPasswordTextField(
     }
 
     Column {
-        TextField(
+        OdsTextField(
             value = value,
             onValueChange = onValueChange,
             modifier = modifier,
             enabled = enabled,
             readOnly = readOnly,
-            textStyle = OdsTheme.typography.subtitle1,
-            label = label?.let { { Text(label) } },
-            placeholder = placeholder?.let { { Text(text = placeholder, style = OdsTheme.typography.subtitle1) } },
-            trailingIcon = if (visualisationIcon) {
+            label = label,
+            placeholder = placeholder,
+            trailing = if (visualisationIcon) {
                 { OdsPasswordVisualisationIcon(odsPasswordTextFieldState) }
             } else null,
             isError = isError,
             visualTransformation = odsPasswordTextFieldState.visualTransformation,
             keyboardOptions = keyboardOptions,
             keyboardActions = keyboardActions,
-            singleLine = true,
-            colors = OdsTextFieldDefaults.textFieldColors()
+            singleLine = true
         )
 
         OdsTextFieldBottomRow(isError = isError, errorMessage = errorMessage, characterCounter = characterCounter)
     }
 }
 
+@Composable
+private fun OdsPasswordVisualisationIcon(odsPasswordTextFieldState: OdsPasswordTextFieldState) {
+    with(odsPasswordTextFieldState) {
+        OdsTextFieldIcon(
+            painter = if (isPasswordVisible) painterResource(id = R.drawable.ic_crosset_out_eye) else painterResource(id = R.drawable.ic_eye),
+            contentDescription = if (isPasswordVisible) stringResource(id = R.string.text_field_password_hide) else stringResource(id = R.string.text_field_password_show),
+            onClick = if (enabled.value) {
+                { passwordVisible.value = !isPasswordVisible }
+            } else null,
+        )
+    }
+}
+
+private class OdsPasswordTextFieldPreviewParameterProvider : BasicPreviewParameterProvider<Boolean>(false, true)
 
 @UiModePreviews.Default
 @Composable

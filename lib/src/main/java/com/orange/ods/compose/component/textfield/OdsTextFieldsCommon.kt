@@ -22,12 +22,14 @@ import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.painter.Painter
 import androidx.compose.ui.res.dimensionResource
+import androidx.compose.ui.res.painterResource
 import com.orange.ods.R
 import com.orange.ods.compose.component.OdsComponentApi
 import com.orange.ods.compose.component.utilities.BasicPreviewParameterProvider
 import com.orange.ods.compose.component.utilities.DisabledInteractionSource
 import com.orange.ods.compose.text.OdsTextCaption
 import com.orange.ods.compose.theme.OdsTheme
+import kotlin.reflect.KClass
 
 /**
  * A character counter to display below the text field
@@ -47,6 +49,10 @@ fun OdsTextFieldCharacterCounter(valueLength: Int, maxChars: Int, enabled: Boole
         enabled = enabled
     )
 }
+
+sealed class OdsTextFieldTrailing
+class OdsTextTrailing(val text: String) : OdsTextFieldTrailing()
+class OdsIconTrailing(val painter: Painter, val contentDescription: String? = null, val onClick: () -> Unit = {}) : OdsTextFieldTrailing()
 
 @Composable
 internal fun OdsTextFieldBottomRow(isError: Boolean, errorMessage: String?, characterCounter: (@Composable () -> Unit)?) {
@@ -71,6 +77,30 @@ internal fun OdsTextFieldIcon(painter: Painter, contentDescription: String?, onC
     }
 }
 
+internal fun getTrailing(trailing: OdsTextFieldTrailing, value: String, enabled: Boolean = true): @Composable (() -> Unit) {
+    return when (trailing) {
+        is OdsTextTrailing -> {
+            {
+                Text(
+                    modifier = Modifier.padding(end = dimensionResource(id = R.dimen.spacing_s)),
+                    text = trailing.text,
+                    style = OdsTheme.typography.subtitle1,
+                    color = OdsTextFieldDefaults.trailingTextColor(value.isEmpty(), enabled)
+                )
+            }
+        }
+        is OdsIconTrailing -> {
+            {
+                OdsTextFieldIcon(
+                    painter = trailing.painter,
+                    contentDescription = trailing.contentDescription,
+                    onClick = if (enabled) trailing.onClick else null,
+                )
+            }
+        }
+    }
+}
+
 @Composable
 private fun OdsTextFieldErrorText(message: String) {
     Text(
@@ -84,19 +114,43 @@ private fun OdsTextFieldErrorText(message: String) {
     )
 }
 
+@Composable
+internal fun getTrailingPreview(parameter: OdsTextFieldPreviewParameter, value: String): @Composable (() -> Unit)? {
+    val trailing = when (parameter.previewTrailingType) {
+        OdsTextTrailing::class -> OdsTextTrailing(text = "units")
+        OdsIconTrailing::class -> OdsIconTrailing(painter = painterResource(id = android.R.drawable.ic_input_add))
+        else -> null
+    }
+
+    return trailing?.let { getTrailing(trailing = it, value = value) }
+}
+
 internal data class OdsTextFieldPreviewParameter(
     val hasCounter: Boolean,
     val hasErrorMessage: Boolean,
-    val isVeryLongErrorMessage: Boolean
+    val isVeryLongErrorMessage: Boolean,
+    val previewTrailingType: KClass<out OdsTextFieldTrailing>?
 )
 
 internal class OdsTextFieldPreviewParameterProvider : BasicPreviewParameterProvider<OdsTextFieldPreviewParameter>(*previewParameterValues.toTypedArray())
 
-private val previewParameterValues: List<OdsTextFieldPreviewParameter> = listOf(
-    OdsTextFieldPreviewParameter(hasCounter = false, hasErrorMessage = false, isVeryLongErrorMessage = false),
-    OdsTextFieldPreviewParameter(hasCounter = false, hasErrorMessage = true, isVeryLongErrorMessage = false),
-    OdsTextFieldPreviewParameter(hasCounter = false, hasErrorMessage = true, isVeryLongErrorMessage = true),
-    OdsTextFieldPreviewParameter(hasCounter = true, hasErrorMessage = false, isVeryLongErrorMessage = false),
-    OdsTextFieldPreviewParameter(hasCounter = true, hasErrorMessage = true, isVeryLongErrorMessage = false),
-    OdsTextFieldPreviewParameter(hasCounter = true, hasErrorMessage = true, isVeryLongErrorMessage = true)
-)
+private val previewParameterValues: List<OdsTextFieldPreviewParameter>
+    get() {
+        val booleanValues = listOf(true, false)
+        val trailings = listOf(null, OdsTextTrailing::class, OdsIconTrailing::class)
+
+        return booleanValues.flatMap { hasCounter ->
+            booleanValues.flatMap { hasErrorMessage ->
+                booleanValues.flatMap { isVeryLongErrorMessage ->
+                    trailings.map { trailing ->
+                        OdsTextFieldPreviewParameter(
+                            hasCounter = hasCounter,
+                            hasErrorMessage = hasErrorMessage,
+                            isVeryLongErrorMessage = isVeryLongErrorMessage,
+                            previewTrailingType = trailing
+                        )
+                    }
+                }
+            }
+        }
+    }

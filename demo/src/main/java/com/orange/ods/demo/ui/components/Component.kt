@@ -165,7 +165,7 @@ sealed class Component(
         R.drawable.il_text_fields,
         R.drawable.il_text_fields_small,
         R.string.component_text_fields_description,
-        listOf(Variant.TextFieldFilledText, Variant.TextFieldFilledPassword, Variant.TextFieldOutlinedText, Variant.TextFieldOutlinedPassword)
+        listOf(Variant.TextField, Variant.TextFieldPassword)
     )
 
     object Tabs : Component(
@@ -181,14 +181,8 @@ val components = Component::class.sealedSubclasses.mapNotNull { it.objectInstanc
 
 sealed class Variant(
     @StringRes val titleRes: Int,
-    val composableName: String,
-    val section: Section? = null
+    val composableName: String
 ) {
-
-    enum class Section(@StringRes val titleRes: Int) {
-        TextFieldOutlined(R.string.component_text_field_outlined),
-        TextFieldFilled(R.string.component_text_field_filled)
-    }
 
     val id: Long = Variant::class.sealedSubclasses.indexOf(this::class).toLong()
 
@@ -212,11 +206,8 @@ sealed class Variant(
     object ProgressBar : Variant(R.string.component_progress_bar, OdsComponent.OdsLinearProgressIndicator.name)
     object ProgressActivityIndicator : Variant(R.string.component_progress_activity_indicator, OdsComponent.OdsCircularProgressIndicator.name)
 
-    object TextFieldFilledText : Variant(R.string.component_text_field_text, OdsComponent.OdsTextField.name, Section.TextFieldFilled)
-    object TextFieldFilledPassword : Variant(R.string.component_text_field_password, OdsComponent.OdsPasswordTextField.name, Section.TextFieldFilled)
-    object TextFieldOutlinedText : Variant(R.string.component_text_field_text, OdsComponent.OdsOutlinedTextField.name, Section.TextFieldOutlined)
-    object TextFieldOutlinedPassword :
-        Variant(R.string.component_text_field_password, OdsComponent.OdsPasswordOutlinedTextField.name, Section.TextFieldOutlined)
+    object TextField : Variant(R.string.component_text_field_text, OdsComponent.OdsTextField.name)
+    object TextFieldPassword : Variant(R.string.component_text_field_password, OdsComponent.OdsPasswordTextField.name)
 
     object TabsFixed : Variant(R.string.component_tabs_fixed, OdsComponent.OdsTabRow.name)
     object TabsScrollable : Variant(R.string.component_tabs_scrollable, OdsComponent.OdsScrollableTabRow.name)

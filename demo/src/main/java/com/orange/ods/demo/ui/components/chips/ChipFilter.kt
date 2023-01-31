@@ -34,7 +34,7 @@ import com.orange.ods.demo.domain.recipes.LocalRecipes
 import com.orange.ods.demo.ui.LocalMainThemeManager
 import com.orange.ods.demo.ui.components.utilities.ComponentCustomizationBottomSheetScaffold
 import com.orange.ods.demo.ui.utilities.composable.Subtitle
-import com.orange.ods.theme.OdsComponentCustomizations.Companion.ChipStyle
+import com.orange.ods.theme.OdsComponentsConfiguration.ComponentStyle
 
 @OptIn(ExperimentalMaterialApi::class)
 @Composable
@@ -78,7 +78,7 @@ fun ChipFilter() {
 
 @Composable
 private fun FilterChip(ingredient: Ingredient, customizationState: ChipCustomizationState) {
-    val outlinedChips = LocalMainThemeManager.current.currentThemeConfiguration.components.chipStyle == ChipStyle.Outlined
+    val outlinedChips = LocalMainThemeManager.current.currentThemeConfiguration.componentsConfiguration.chipStyle == ComponentStyle.Outlined
     val selected = rememberSaveable { mutableStateOf(false) }
     OdsFilterChip(
         text = ingredient.food.name,

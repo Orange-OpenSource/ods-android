@@ -14,8 +14,8 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.text.KeyboardActions
 import androidx.compose.foundation.text.KeyboardOptions
-import androidx.compose.material.OutlinedTextField
 import androidx.compose.material.Text
+import androidx.compose.material.TextField
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
@@ -31,7 +31,7 @@ import com.orange.ods.compose.component.utilities.UiModePreviews
 import com.orange.ods.compose.theme.OdsTheme
 
 @Composable
-internal fun OdsOutlinedTextField(
+internal fun OdsFilledTextField(
     value: String,
     onValueChange: (String) -> Unit,
     modifier: Modifier = Modifier,
@@ -52,15 +52,15 @@ internal fun OdsOutlinedTextField(
     maxLines: Int = Int.MAX_VALUE,
     characterCounter: (@Composable () -> Unit)? = null
 ) {
-    Column {
-        OutlinedTextField(
+    Column(modifier = modifier) {
+        TextField(
+            modifier = Modifier.fillMaxWidth(),
             value = if (singleLine) value.filter { it != '\n' } else value,
             onValueChange = { newValue ->
                 if (!singleLine || !newValue.contains('\n')) {
                     onValueChange(newValue)
                 }
             },
-            modifier = modifier,
             enabled = enabled,
             readOnly = readOnly,
             textStyle = OdsTheme.typography.subtitle1,
@@ -82,7 +82,7 @@ internal fun OdsOutlinedTextField(
             keyboardActions = keyboardActions,
             singleLine = singleLine,
             maxLines = maxLines,
-            colors = OdsTextFieldDefaults.outlinedTextFieldColors()
+            colors = OdsTextFieldDefaults.textFieldColors()
         )
 
         OdsTextFieldBottomRow(isError = isError, errorMessage = errorMessage, characterCounter = characterCounter)
@@ -91,9 +91,9 @@ internal fun OdsOutlinedTextField(
 
 @UiModePreviews.Default
 @Composable
-private fun PreviewOdsOutlinedTextField(@PreviewParameter(OdsTextFieldPreviewParameterProvider::class) parameter: OdsTextFieldPreviewParameter) = Preview {
+private fun PreviewOdsTextField(@PreviewParameter(OdsTextFieldPreviewParameterProvider::class) parameter: OdsTextFieldPreviewParameter) = Preview {
     var value by remember { mutableStateOf("Input text") }
-    OdsOutlinedTextField(
+    OdsFilledTextField(
         modifier = Modifier.fillMaxWidth(),
         value = value,
         onValueChange = { value = it },
@@ -101,6 +101,17 @@ private fun PreviewOdsOutlinedTextField(@PreviewParameter(OdsTextFieldPreviewPar
         leadingIcon = painterResource(id = android.R.drawable.ic_dialog_info),
         trailing = getTrailingPreview(parameter = parameter, value = value),
         isError = parameter.hasErrorMessage,
-        errorMessage = if (parameter.hasErrorMessage) "Error message" else null
+        errorMessage = getPreviewErrorMessage(parameter.hasErrorMessage, parameter.isVeryLongErrorMessage),
+        characterCounter = if (parameter.hasCounter) {
+            {
+                OdsTextFieldCharacterCounter(value.length, 30)
+            }
+        } else null
     )
+}
+
+private fun getPreviewErrorMessage(hasErrorMessage: Boolean, isVeryLongErrorMessage: Boolean) = when {
+    hasErrorMessage && !isVeryLongErrorMessage -> "Error message"
+    hasErrorMessage && isVeryLongErrorMessage -> "Very very very very very very very very very long error message"
+    else -> null
 }

@@ -11,26 +11,21 @@
 package com.orange.ods.demo.ui.components
 
 import androidx.compose.foundation.clickable
-import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember
-import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
-import com.orange.ods.compose.component.divider.OdsDivider
 import com.orange.ods.compose.component.list.OdsListItem
 import com.orange.ods.compose.component.list.OdsListItemIcon
 import com.orange.ods.compose.component.list.OdsListItemIconType
 import com.orange.ods.compose.component.list.iconType
-import com.orange.ods.compose.text.OdsTextSubtitle2
 import com.orange.ods.demo.R
 import com.orange.ods.demo.ui.LocalMainTopAppBarManager
 import com.orange.ods.demo.ui.utilities.DrawableManager
@@ -67,29 +62,13 @@ fun ComponentDetailScreen(
                         composableName = component.composableName
                     ) { onDemoClick() }
                 } else {
-                    component.variants.groupBy { it.section }.onEachIndexed { index, (section, variants) ->
-                        section?.let {
-                            if (index > 0) {
-                                OdsDivider(modifier = Modifier.padding(top = dimensionResource(id = R.dimen.spacing_s)))
-                            }
-                            Box(modifier = Modifier.height(dimensionResource(id = R.dimen.list_single_line_item_height)), contentAlignment = Alignment.Center) {
-                                OdsTextSubtitle2(
-                                    modifier = Modifier
-                                        .padding(horizontal = dimensionResource(id = R.dimen.screen_horizontal_margin)),
-                                    text = stringResource(id = section.titleRes)
-                                )
-                            }
-
-                        }
-                        variants.forEach { variant ->
-                            ComponentDetailLinkItem(label = stringResource(id = variant.titleRes), composableName = variant.composableName) {
-                                onVariantClick(
-                                    variant.id
-                                )
-                            }
+                    component.variants.forEach { variant ->
+                        ComponentDetailLinkItem(label = stringResource(id = variant.titleRes), composableName = variant.composableName) {
+                            onVariantClick(variant.id)
                         }
                     }
                 }
+
             }
         }
     }
