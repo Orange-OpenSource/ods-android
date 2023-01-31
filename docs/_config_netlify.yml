@@ -1,11 +1,10 @@
-# If you update this file, please also update _config_netlify.yml with the exact same changes
+# If you update this file, please also update _config.yml with the exact same changes
 plugins:
   - jekyll-relative-links
 relative_links:
   enabled: true
   collections: true
 remote_theme: Orange-OpenSource/ods-jekyll-theme
-baseurl: "/ods-android"
 defaults:
   - scope:
       path: ""

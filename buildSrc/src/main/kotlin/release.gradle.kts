@@ -68,14 +68,13 @@ fun archiveDocumentation(version: String) {
         exclude("_*", "Gemfile*")
     }
 
-    val jekyllConfigFile = File("docs/_config.yml")
-    jekyllConfigFile.appendText(
-        """
+    val text = """
             |  - scope:
             |      path: "$version"
             |    values:
             |      version: "$version"
             |
             """.trimMargin()
-    )
+    File("docs/_config.yml").appendText(text)
+    File("docs/_config_netlify.yml").appendText(text)
 }
