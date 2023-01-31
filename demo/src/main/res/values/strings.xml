@@ -48,6 +48,10 @@
     <string name="guideline_spacing_dp">%1d dp</string>
     <string name="guideline_spacing_ratio">Ratio %1s</string>
 
+    <!-- Data -->
+    <string name="data_recipe">Recipe</string>
+
+
     <!-- Components -->
     <string name="component_force_on_dark">Forced on dark</string>
     <string name="component_force_on_light">Forced on light</string>
@@ -172,7 +176,7 @@
     <string name="component_floating_action_button_size_mini">Mini</string>
     <string name="component_floating_action_button_full_screen_width">Full screen width</string>
 
-    <!-- Compoenent Menus -->
+    <!-- Component Menus -->
     <string name="component_menus">Menus</string>
     <string name="component_menus_description">Menus appear from a button, action, or other control. It contains at least 2 items that can affect the app, the view or elements within the view.</string>
     <string name="component_menu_dropdown">Dropdown menu</string>

@@ -10,39 +10,49 @@
 
 package com.orange.ods.compose.component.menu
 
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.material.ExperimentalMaterialApi
 import androidx.compose.material.ExposedDropdownMenuBox
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.MutableState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.painter.Painter
+import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.tooling.preview.PreviewParameter
 import com.orange.ods.compose.component.OdsComponentApi
 import com.orange.ods.compose.component.textfield.OdsDropdownMenuTrailing
 import com.orange.ods.compose.component.textfield.OdsTextField
+import com.orange.ods.compose.component.utilities.BasicPreviewParameterProvider
 import com.orange.ods.compose.component.utilities.Preview
 import com.orange.ods.compose.component.utilities.UiModePreviews
 
 /**
  * <a href="https://system.design.orange.com/0c1af118d/p/07a69b-menus/b/862cbb" class="external" target="_blank">ODS menus</a>.
  *
- * @see androidx.compose.material.DropdownMenu
- *
+ * @param label The label of the text field
+ * @param items The [OdsExposedDropdownMenuItem]s displayed in the dropdown menu
+ * @param selectedItem The selected item displayed in the text field
+ * @param onItemSelectionChange The action executed when a dropdown menu item is selected
  * @param modifier The modifier to be applied to the menu
+ * @param enabled controls the enabled state of the [OdsExposedDropdownMenu]. When `false`, the dropdown menu text field will
+ * be neither clickable nor focusable, visually it will appear in the disabled UI state
  */
 @OdsComponentApi
 @OptIn(ExperimentalMaterialApi::class)
 @Composable
 fun OdsExposedDropdownMenu(
-    items: List<String>,
+    label: String,
+    items: List<OdsExposedDropdownMenuItem>,
+    selectedItem: MutableState<OdsExposedDropdownMenuItem>,
+    onItemSelectionChange: (OdsExposedDropdownMenuItem) -> Unit,
     modifier: Modifier = Modifier,
     enabled: Boolean = true
 ) {
     var expanded by remember { mutableStateOf(false) }
-    var selectedItem by remember {
-        mutableStateOf(items[0])
-    }
 
     ExposedDropdownMenuBox(
         modifier = modifier,
@@ -52,21 +62,25 @@ fun OdsExposedDropdownMenu(
         }
     ) {
         OdsTextField(
-            value = selectedItem,
+            modifier = Modifier.fillMaxWidth(),
+            value = selectedItem.value.label,
             onValueChange = {},
             readOnly = true,
-            label = "Label",
-            trailing = OdsDropdownMenuTrailing(expanded = expanded),
+            label = label,
+            leadingIcon = selectedItem.value.icon,
+            trailing = OdsDropdownMenuTrailing(expanded = if (enabled) expanded else false, enabled = enabled),
             enabled = enabled
         )
         OdsDropdownMenu(
-            expanded = expanded,
+            modifier = Modifier.exposedDropdownSize(),
+            expanded = if (enabled) expanded else false,
             onDismissRequest = { expanded = false },
             content = {
                 items.forEach { item ->
-                    OdsDropdownMenuItem(text = item, onClick = {
-                        selectedItem = item
+                    OdsDropdownMenuItem(text = item.label, icon = item.icon, onClick = {
+                        selectedItem.value = item
                         expanded = false
+                        onItemSelectionChange(item)
                     })
                 }
             }
@@ -74,11 +88,30 @@ fun OdsExposedDropdownMenu(
     }
 }
 
+data class OdsExposedDropdownMenuItem(val label: String, val icon: Painter? = null)
+
 /**
  * Note: Please use Android Studio preview interactive mode to see the OdsExposedDropdownMenu preview cause expanded is a target state.
  */
 @UiModePreviews.Default
 @Composable
-private fun PreviewOdsDropdownMenu() = Preview {
-
+private fun PreviewOdsDropdownMenu(@PreviewParameter(OdsDropdownMenuPreviewParameterProvider::class) enabled: Boolean) = Preview {
+    val items = listOf(
+        OdsExposedDropdownMenuItem("Email", painterResource(id = android.R.drawable.ic_dialog_email)),
+        OdsExposedDropdownMenuItem("Map", painterResource(id = android.R.drawable.ic_dialog_map)),
+        OdsExposedDropdownMenuItem("Dialer", painterResource(id = android.R.drawable.ic_dialog_dialer)),
+        OdsExposedDropdownMenuItem("Info", painterResource(id = android.R.drawable.ic_dialog_info))
+    )
+    val selectedItem = remember { mutableStateOf(items.first()) }
+    OdsExposedDropdownMenu(
+        label = "Label",
+        items = items,
+        selectedItem = selectedItem,
+        onItemSelectionChange = { item ->
+            selectedItem.value = item
+        },
+        enabled = enabled
+    )
 }
+
+private class OdsDropdownMenuPreviewParameterProvider : BasicPreviewParameterProvider<Boolean>(false, true)

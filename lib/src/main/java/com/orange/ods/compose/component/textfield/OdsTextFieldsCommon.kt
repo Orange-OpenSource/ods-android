@@ -19,10 +19,13 @@ import androidx.compose.material.ExposedDropdownMenuDefaults
 import androidx.compose.material.Icon
 import androidx.compose.material.IconButton
 import androidx.compose.material.Text
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.ArrowDropDown
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.painter.Painter
+import androidx.compose.ui.graphics.vector.rememberVectorPainter
 import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.painterResource
 import com.orange.ods.R
@@ -55,7 +58,7 @@ fun OdsTextFieldCharacterCounter(valueLength: Int, maxChars: Int, enabled: Boole
 sealed class OdsTextFieldTrailing
 class OdsTextTrailing(val text: String) : OdsTextFieldTrailing()
 class OdsIconTrailing(val painter: Painter, val contentDescription: String? = null, val onClick: () -> Unit = {}) : OdsTextFieldTrailing()
-class OdsDropdownMenuTrailing(val expanded: Boolean) : OdsTextFieldTrailing()
+class OdsDropdownMenuTrailing(val expanded: Boolean, val enabled: Boolean) : OdsTextFieldTrailing()
 
 @Composable
 internal fun OdsTextFieldBottomRow(isError: Boolean, errorMessage: String?, characterCounter: (@Composable () -> Unit)?) {
@@ -104,9 +107,17 @@ internal fun getTrailing(trailing: OdsTextFieldTrailing, value: String, enabled:
         }
         is OdsDropdownMenuTrailing -> {
             {
-                ExposedDropdownMenuDefaults.TrailingIcon(
-                    expanded = trailing.expanded
-                )
+                if (enabled) {
+                    ExposedDropdownMenuDefaults.TrailingIcon(
+                        expanded = trailing.expanded
+                    )
+                } else {
+                    OdsTextFieldIcon(
+                        painter = rememberVectorPainter(image = Icons.Filled.ArrowDropDown),
+                        contentDescription = null,
+                        onClick = null,
+                    )
+                }
             }
         }
     }
