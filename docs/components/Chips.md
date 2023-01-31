@@ -156,9 +156,6 @@ OdsFilterChip(
         // Something executed on chip click
     },
     leadingAvatar = painterResource(id = R.drawable.avatar), // set it to `null` for no avatar
-    onClick = { 
-         // Something executed on chip click
-    },
     selected = false, // `true` to display the chip selected
     outlined = false, // Set it to `true` to display an outlined chip
     enabled = true, // Set it to `false` to disabled the chip
