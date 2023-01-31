@@ -22,6 +22,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - \[Demo\] Update structure of JSON file for recipes ([#385](https://github.com/Orange-OpenSource/ods-android/issues/385))
 - \[Demo\] Remove filled and outlined sections for text fields. From now, there is only one version of text field and password text field which are styled through the theme configuration ([#415](https://github.com/Orange-OpenSource/ods-android/issues/415))
 - \[Doc\] Update documentation home content for Jetpack Compose integration ([#409](https://github.com/Orange-OpenSource/ods-android/issues/409))
+- \[ThemeConfigurationContract\] `OdsComponentCustomizations` has been renamed into `OdsComponentsConfiguration` ([#415](https://github.com/Orange-OpenSource/ods-android/issues/415))
 
 ### Fixed
 
