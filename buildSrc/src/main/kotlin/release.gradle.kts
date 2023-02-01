@@ -66,16 +66,17 @@ fun archiveDocumentation(version: String) {
         from("docs")
         into("docs/$version")
         exclude("_*", "Gemfile*")
+        val versionRegex = "^\\d+.\\d+.\\d+$".toRegex()
+        exclude { versionRegex.matches(it.name) }
     }
 
-    val jekyllConfigFile = File("docs/_config.yml")
-    jekyllConfigFile.appendText(
-        """
+    val text = """
             |  - scope:
             |      path: "$version"
             |    values:
             |      version: "$version"
             |
             """.trimMargin()
-    )
+    File("docs/_config.yml").appendText(text)
+    File("docs/_config_netlify.yml").appendText(text)
 }
