@@ -58,7 +58,7 @@ fun OdsTextFieldCharacterCounter(valueLength: Int, maxChars: Int, enabled: Boole
 sealed class OdsTextFieldTrailing
 class OdsTextTrailing(val text: String) : OdsTextFieldTrailing()
 class OdsIconTrailing(val painter: Painter, val contentDescription: String? = null, val onClick: () -> Unit = {}) : OdsTextFieldTrailing()
-class OdsDropdownMenuTrailing(val expanded: Boolean, val enabled: Boolean) : OdsTextFieldTrailing()
+internal class OdsExposedDropdownMenuTrailing(val expanded: Boolean, val enabled: Boolean) : OdsTextFieldTrailing()
 
 @Composable
 internal fun OdsTextFieldBottomRow(isError: Boolean, errorMessage: String?, characterCounter: (@Composable () -> Unit)?) {
@@ -105,7 +105,7 @@ internal fun getTrailing(trailing: OdsTextFieldTrailing, value: String, enabled:
                 )
             }
         }
-        is OdsDropdownMenuTrailing -> {
+        is OdsExposedDropdownMenuTrailing -> {
             {
                 if (enabled) {
                     ExposedDropdownMenuDefaults.TrailingIcon(
@@ -141,7 +141,7 @@ internal fun getTrailingPreview(parameter: OdsTextFieldPreviewParameter, value: 
     val trailing = when (parameter.previewTrailingType) {
         OdsTextTrailing::class -> OdsTextTrailing(text = "units")
         OdsIconTrailing::class -> OdsIconTrailing(painter = painterResource(id = android.R.drawable.ic_input_add))
-        OdsDropdownMenuTrailing::class -> OdsDropdownMenuTrailing(expanded = false, enabled = true)
+        OdsExposedDropdownMenuTrailing::class -> OdsExposedDropdownMenuTrailing(expanded = false, enabled = true)
         else -> null
     }
 
@@ -160,7 +160,7 @@ internal class OdsTextFieldPreviewParameterProvider : BasicPreviewParameterProvi
 private val previewParameterValues: List<OdsTextFieldPreviewParameter>
     get() {
         val booleanValues = listOf(true, false)
-        val trailings = listOf(null, OdsTextTrailing::class, OdsIconTrailing::class, OdsDropdownMenuTrailing::class)
+        val trailings = listOf(null, OdsTextTrailing::class, OdsIconTrailing::class, OdsExposedDropdownMenuTrailing::class)
 
         return booleanValues.flatMap { hasCounter ->
             booleanValues.flatMap { hasErrorMessage ->
