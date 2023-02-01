@@ -14,13 +14,18 @@ import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.padding
+import androidx.compose.material.ExperimentalMaterialApi
 import androidx.compose.material.Icon
 import androidx.compose.material.IconButton
 import androidx.compose.material.Text
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.ArrowDropDown
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.rotate
 import androidx.compose.ui.graphics.painter.Painter
+import androidx.compose.ui.graphics.vector.rememberVectorPainter
 import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.painterResource
 import com.orange.ods.R
@@ -53,6 +58,7 @@ fun OdsTextFieldCharacterCounter(valueLength: Int, maxChars: Int, enabled: Boole
 sealed class OdsTextFieldTrailing
 class OdsTextTrailing(val text: String) : OdsTextFieldTrailing()
 class OdsIconTrailing(val painter: Painter, val contentDescription: String? = null, val onClick: () -> Unit = {}) : OdsTextFieldTrailing()
+internal class OdsExposedDropdownMenuTrailing(val expanded: Boolean, val enabled: Boolean) : OdsTextFieldTrailing()
 
 @Composable
 internal fun OdsTextFieldBottomRow(isError: Boolean, errorMessage: String?, characterCounter: (@Composable () -> Unit)?) {
@@ -77,6 +83,7 @@ internal fun OdsTextFieldIcon(painter: Painter, contentDescription: String?, onC
     }
 }
 
+@OptIn(ExperimentalMaterialApi::class)
 internal fun getTrailing(trailing: OdsTextFieldTrailing, value: String, enabled: Boolean = true): @Composable (() -> Unit) {
     return when (trailing) {
         is OdsTextTrailing -> {
@@ -96,6 +103,19 @@ internal fun getTrailing(trailing: OdsTextFieldTrailing, value: String, enabled:
                     contentDescription = trailing.contentDescription,
                     onClick = if (enabled) trailing.onClick else null,
                 )
+            }
+        }
+        is OdsExposedDropdownMenuTrailing -> {
+            {
+                val degrees = if (trailing.expanded && enabled) 180f else 0f
+                Box(modifier = Modifier.rotate(degrees)) {
+                    OdsTextFieldIcon(
+                        painter = rememberVectorPainter(image = Icons.Filled.ArrowDropDown),
+                        contentDescription = null,
+                        onClick = null
+                    )
+
+                }
             }
         }
     }
@@ -119,6 +139,7 @@ internal fun getTrailingPreview(parameter: OdsTextFieldPreviewParameter, value: 
     val trailing = when (parameter.previewTrailingType) {
         OdsTextTrailing::class -> OdsTextTrailing(text = "units")
         OdsIconTrailing::class -> OdsIconTrailing(painter = painterResource(id = android.R.drawable.ic_input_add))
+        OdsExposedDropdownMenuTrailing::class -> OdsExposedDropdownMenuTrailing(expanded = false, enabled = true)
         else -> null
     }
 
@@ -137,7 +158,7 @@ internal class OdsTextFieldPreviewParameterProvider : BasicPreviewParameterProvi
 private val previewParameterValues: List<OdsTextFieldPreviewParameter>
     get() {
         val booleanValues = listOf(true, false)
-        val trailings = listOf(null, OdsTextTrailing::class, OdsIconTrailing::class)
+        val trailings = listOf(null, OdsTextTrailing::class, OdsIconTrailing::class, OdsExposedDropdownMenuTrailing::class)
 
         return booleanValues.flatMap { hasCounter ->
             booleanValues.flatMap { hasErrorMessage ->

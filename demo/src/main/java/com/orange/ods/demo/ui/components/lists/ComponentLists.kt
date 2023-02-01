@@ -218,7 +218,7 @@ private val ListItemCustomizationState.trailing: OdsListItemTrailing?
                 modifier = Modifier.clickable {
                     clickOnElement(context, iconText)
                 },
-                iconRes = R.drawable.ic_info,
+                painter = painterResource(id = R.drawable.ic_info),
                 contentDescription = stringResource(id = R.string.component_list_information)
             )
         }

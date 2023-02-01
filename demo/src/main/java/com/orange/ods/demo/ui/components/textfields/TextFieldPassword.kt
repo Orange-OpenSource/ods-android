@@ -22,7 +22,6 @@ import com.orange.ods.demo.R
 
 @Composable
 fun TextFieldPassword(customizationState: TextFieldCustomizationState) {
-
     Column {
         OdsPasswordTextField(
             modifier = Modifier

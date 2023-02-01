@@ -10,16 +10,24 @@
 
 package com.orange.ods.compose.component.menu
 
+import androidx.annotation.DrawableRes
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.ColumnScope
+import androidx.compose.foundation.layout.padding
 import androidx.compose.material.DropdownMenu
 import androidx.compose.material.DropdownMenuItem
+import androidx.compose.material.Icon
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.painter.Painter
+import androidx.compose.ui.res.dimensionResource
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.DpOffset
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.window.PopupProperties
+import com.orange.ods.R
+import com.orange.ods.compose.component.OdsComponentApi
 import com.orange.ods.compose.component.utilities.Preview
 import com.orange.ods.compose.component.utilities.UiModePreviews
 import com.orange.ods.compose.theme.OdsTheme
@@ -37,6 +45,7 @@ import com.orange.ods.compose.theme.OdsTheme
  * @param properties [PopupProperties] for further customization of the popup's behavior
  * @param content The content of the dropdown menu
  */
+@OdsComponentApi
 @Composable
 fun OdsDropdownMenu(
     expanded: Boolean,
@@ -61,6 +70,7 @@ fun OdsDropdownMenu(
  *
  * @param text The text of the menu item
  * @param onClick Called when the menu item was clicked
+ * @param icon Optional icon to display in the menu item
  * @param enabled Controls the enabled state of the menu item - when `false`, the menu item
  * will not be clickable and [onClick] will not be invoked
  */
@@ -68,12 +78,21 @@ fun OdsDropdownMenu(
 fun ColumnScope.OdsDropdownMenuItem(
     text: String,
     onClick: () -> Unit,
+    icon: Painter? = null,
     enabled: Boolean = true
 ) {
     DropdownMenuItem(
         onClick = onClick,
         enabled = enabled
     ) {
+        icon?.let {
+            Icon(
+                modifier = Modifier.padding(end = dimensionResource(id = R.dimen.spacing_m)),
+                painter = icon,
+                contentDescription = null,
+                tint = OdsTheme.colors.onSurface
+            )
+        }
         Text(text = text, style = OdsTheme.typography.body1, color = OdsTheme.colors.onSurface)
     }
 }
@@ -84,17 +103,25 @@ fun ColumnScope.OdsDropdownMenuItem(
 @UiModePreviews.Default
 @Composable
 private fun PreviewOdsDropdownMenu() = Preview {
+    data class Item(@DrawableRes val iconResId: Int, val text: String)
+
+    val items = listOf(
+        Item(android.R.drawable.ic_dialog_email, "First menu item"),
+        Item(android.R.drawable.ic_dialog_map, "Second menu item"),
+        Item(android.R.drawable.ic_dialog_dialer, "Third menu item"),
+        Item(android.R.drawable.ic_dialog_info, "Fourth menu item")
+    )
+
     OdsDropdownMenu(
         expanded = true,
         onDismissRequest = { },
     ) {
-        OdsDropdownMenuItem(
-            text = "Account",
-            onClick = { }
-        )
-        OdsDropdownMenuItem(
-            text = "Settings",
-            onClick = { }
-        )
+        items.forEach { item ->
+            OdsDropdownMenuItem(
+                text = item.text,
+                icon = painterResource(id = item.iconResId),
+                onClick = { }
+            )
+        }
     }
 }
