@@ -23,10 +23,10 @@ fun rememberMenuDropdownCustomizationState(
     enabled: MutableState<Boolean> = rememberSaveable { mutableStateOf(true) }
 ) =
     remember(icons, dividerExample, enabled) {
-        ComponentMenuContentState(icons, dividerExample, enabled)
+        MenuDropdownCustomizationState(icons, dividerExample, enabled)
     }
 
-class ComponentMenuContentState(
+class MenuDropdownCustomizationState(
     val icons: MutableState<Boolean>,
     val dividerExample: MutableState<Boolean>,
     val enabled: MutableState<Boolean>

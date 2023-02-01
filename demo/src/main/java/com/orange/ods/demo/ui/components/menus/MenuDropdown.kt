@@ -92,7 +92,7 @@ fun MenuDropdown() {
                         )
                     )
                     OdsDropdownMenu(expanded = menuExpanded, onDismissRequest = { menuExpanded = false }, offset = DpOffset(x = (-100).dp, y = (-10).dp)) {
-                        recipes.take(ComponentMenuContentState.MenuItemCount).forEachIndexed { index, recipe ->
+                        recipes.take(MenuDropdownCustomizationState.MenuItemCount).forEachIndexed { index, recipe ->
                             OdsDropdownMenuItem(
                                 text = recipe.title,
                                 icon = if (hasIcons && recipe.iconResId != null) painterResource(id = recipe.iconResId) else null,
