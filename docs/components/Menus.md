@@ -92,7 +92,7 @@ OdsExposedDropdownMenu(
     items = items,
     selectedItem = selectedItem,
     onItemSelectionChange = { item ->
-        selectedItem.value = item
+        // Do something like retrieving the selected item
     },
     enabled = true
 )

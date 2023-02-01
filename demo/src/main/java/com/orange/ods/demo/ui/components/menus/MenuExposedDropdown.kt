@@ -103,7 +103,6 @@ fun MenuExposedDropdown() {
                     items = items,
                     selectedItem = selectedItem,
                     onItemSelectionChange = { item ->
-                        selectedItem.value = item
                         clickOnElement(context, item.label)
                     },
                     enabled = isEnabled

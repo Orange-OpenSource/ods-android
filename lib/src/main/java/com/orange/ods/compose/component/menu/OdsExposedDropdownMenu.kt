@@ -36,7 +36,7 @@ import com.orange.ods.compose.component.utilities.UiModePreviews
  * @param label The label of the text field
  * @param items The [OdsExposedDropdownMenuItem]s displayed in the dropdown menu
  * @param selectedItem The selected item displayed in the text field
- * @param onItemSelectionChange The action executed when a dropdown menu item is selected
+ * @param onItemSelectionChange The action executed when a dropdown menu item is selected. Can be used to get the menu value.
  * @param modifier The modifier to be applied to the menu
  * @param enabled controls the enabled state of the [OdsExposedDropdownMenu]. When `false`, the dropdown menu text field will
  * be neither clickable nor focusable, visually it will appear in the disabled UI state
@@ -107,9 +107,7 @@ private fun PreviewOdsDropdownMenu(@PreviewParameter(OdsDropdownMenuPreviewParam
         label = "Label",
         items = items,
         selectedItem = selectedItem,
-        onItemSelectionChange = { item ->
-            selectedItem.value = item
-        },
+        onItemSelectionChange = { },
         enabled = enabled
     )
 }
