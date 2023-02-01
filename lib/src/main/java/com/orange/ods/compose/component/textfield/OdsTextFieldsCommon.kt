@@ -15,7 +15,6 @@ import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material.ExperimentalMaterialApi
-import androidx.compose.material.ExposedDropdownMenuDefaults
 import androidx.compose.material.Icon
 import androidx.compose.material.IconButton
 import androidx.compose.material.Text
@@ -24,6 +23,7 @@ import androidx.compose.material.icons.filled.ArrowDropDown
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.rotate
 import androidx.compose.ui.graphics.painter.Painter
 import androidx.compose.ui.graphics.vector.rememberVectorPainter
 import androidx.compose.ui.res.dimensionResource
@@ -107,16 +107,14 @@ internal fun getTrailing(trailing: OdsTextFieldTrailing, value: String, enabled:
         }
         is OdsExposedDropdownMenuTrailing -> {
             {
-                if (enabled) {
-                    ExposedDropdownMenuDefaults.TrailingIcon(
-                        expanded = trailing.expanded
-                    )
-                } else {
+                val degrees = if (trailing.expanded && enabled) 180f else 0f
+                Box(modifier = Modifier.rotate(degrees)) {
                     OdsTextFieldIcon(
                         painter = rememberVectorPainter(image = Icons.Filled.ArrowDropDown),
                         contentDescription = null,
-                        onClick = null,
+                        onClick = null
                     )
+
                 }
             }
         }
