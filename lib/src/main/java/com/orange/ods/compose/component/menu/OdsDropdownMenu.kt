@@ -103,7 +103,7 @@ fun ColumnScope.OdsDropdownMenuItem(
 @UiModePreviews.Default
 @Composable
 private fun PreviewOdsDropdownMenu() = Preview {
-    data class Item(@DrawableRes val iconResId: Int, val label: String)
+    data class Item(@DrawableRes val iconResId: Int, val text: String)
 
     val items = listOf(
         Item(android.R.drawable.ic_dialog_email, "First menu item"),
@@ -118,7 +118,7 @@ private fun PreviewOdsDropdownMenu() = Preview {
     ) {
         items.forEach { item ->
             OdsDropdownMenuItem(
-                text = item.label,
+                text = item.text,
                 icon = painterResource(id = item.iconResId),
                 onClick = { }
             )
