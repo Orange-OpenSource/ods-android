@@ -22,6 +22,8 @@ import androidx.compose.runtime.MutableState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
+import androidx.compose.runtime.saveable.mapSaver
+import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
@@ -53,17 +55,28 @@ fun MenuExposedDropdown() {
     }
 
     var items by remember { mutableStateOf(dropdownItems) }
+    val itemSaver = run {
+        val itemKey = "item"
+        mapSaver(
+            save = {
+                mapOf(itemKey to it.label)
+            },
+            restore = {
+                OdsExposedDropdownMenuItem(it[itemKey] as String)
+            }
+        )
+    }
 
     with(customizationState) {
         val selectedItem: MutableState<OdsExposedDropdownMenuItem>
         if (hasIcons) {
             items = dropdownItems
-            selectedItem = remember { mutableStateOf(dropdownItems.first()) }
+            selectedItem = rememberSaveable(stateSaver = itemSaver) { mutableStateOf(dropdownItems.first()) }
         } else {
             items = textOnlyDropdownItems
-            selectedItem = remember { mutableStateOf(textOnlyDropdownItems.first()) }
+            selectedItem = rememberSaveable(stateSaver = itemSaver) { mutableStateOf(textOnlyDropdownItems.first()) }
         }
-
+        
         ComponentCustomizationBottomSheetScaffold(
             bottomSheetScaffoldState = rememberBottomSheetScaffoldState(),
             bottomSheetContent = {
