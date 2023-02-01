@@ -68,15 +68,15 @@ fun MenuExposedDropdown() {
     }
 
     with(customizationState) {
-        val selectedItem: MutableState<OdsExposedDropdownMenuItem>
+        val selectedItem: MutableState<OdsExposedDropdownMenuItem> = rememberSaveable(stateSaver = itemSaver) { mutableStateOf(dropdownItems.first()) }
         if (hasIcons) {
             items = dropdownItems
-            selectedItem = rememberSaveable(stateSaver = itemSaver) { mutableStateOf(dropdownItems.first()) }
+            selectedItem.value = dropdownItems.first { selectedItem.value.label == it.label }
         } else {
             items = textOnlyDropdownItems
-            selectedItem = rememberSaveable(stateSaver = itemSaver) { mutableStateOf(textOnlyDropdownItems.first()) }
+            selectedItem.value = textOnlyDropdownItems.first { selectedItem.value.label == it.label }
         }
-        
+
         ComponentCustomizationBottomSheetScaffold(
             bottomSheetScaffoldState = rememberBottomSheetScaffoldState(),
             bottomSheetContent = {
