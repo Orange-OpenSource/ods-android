@@ -10,3 +10,7 @@ defaults:
       path: ""
     values:
       version: ""
+  - scope:
+      path: "0.10.0"
+    values:
+      version: "0.10.0"
