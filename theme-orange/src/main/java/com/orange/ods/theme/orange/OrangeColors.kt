@@ -10,6 +10,7 @@
 
 package com.orange.ods.theme.orange
 
+import androidx.compose.material.Colors
 import com.orange.ods.theme.OdsBottomNavigationColors
 import com.orange.ods.theme.OdsColors
 import com.orange.ods.theme.OdsFloatingActionButtonColors
@@ -18,18 +19,21 @@ import com.orange.ods.theme.OdsTabColors
 import com.orange.ods.theme.OdsTopAppBarColors
 
 val OrangeLightColors = OdsColors(
-    primary = Orange200,
-    primaryVariant = Orange100,
-    secondary = Orange200,
-    secondaryVariant = Orange200,
-    background = White100,
-    surface = White100,
-    error = Negative200,
-    onPrimary = Black900,
-    onSecondary = Black900,
-    onBackground = Black900,
-    onSurface = Black900,
-    onError = Black900,
+    materialColors = Colors(
+        primary = Orange200,
+        primaryVariant = Orange100,
+        secondary = Orange200,
+        secondaryVariant = Orange200,
+        background = White100,
+        surface = White100,
+        error = Negative200,
+        onPrimary = Black900,
+        onSecondary = Black900,
+        onBackground = Black900,
+        onSurface = Black900,
+        onError = Black900,
+        isLight = true
+    ),
 
     functionalPositive = Positive200,
     onFunctionalPositive = White100,
@@ -65,24 +69,25 @@ val OrangeLightColors = OdsColors(
         background = White100,
         selectedContent = Orange200,
         unselectedContent = Black900
-    ),
-
-    isLight = true
+    )
 )
 
 val OrangeDarkColors = OdsColors(
-    primary = Orange100,
-    primaryVariant = Orange200,
-    secondary = Orange200,
-    secondaryVariant = Orange200,
-    background = Black900,
-    surface = DarkSurfaceDefault,
-    error = Negative100,
-    onPrimary = Black900,
-    onSecondary = Black900,
-    onBackground = White100,
-    onSurface = White100,
-    onError = Black900,
+    materialColors = Colors(
+        primary = Orange100,
+        primaryVariant = Orange200,
+        secondary = Orange200,
+        secondaryVariant = Orange200,
+        background = Black900,
+        surface = DarkSurfaceDefault,
+        error = Negative100,
+        onPrimary = Black900,
+        onSecondary = Black900,
+        onBackground = White100,
+        onSurface = White100,
+        onError = Black900,
+        isLight = false
+    ),
 
     functionalPositive = Positive100,
     onFunctionalPositive = Black900,
@@ -118,7 +123,5 @@ val OrangeDarkColors = OdsColors(
         background = DarkSurfaceDefault,
         selectedContent = Orange100,
         unselectedContent = White100
-    ),
-
-    isLight = false
+    )
 )

@@ -10,25 +10,14 @@
 
 package com.orange.ods.theme
 
+import androidx.compose.material.Colors
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.graphics.Color
 
 open class OdsColors(
-    isLight: Boolean,
-    primary: Color,
-    primaryVariant: Color,
-    secondary: Color,
-    secondaryVariant: Color,
-    background: Color,
-    surface: Color,
-    error: Color,
-    onPrimary: Color,
-    onSecondary: Color,
-    onBackground: Color,
-    onSurface: Color,
-    onError: Color,
+    private var materialColors: Colors,
     functionalPositive: Color,
     onFunctionalPositive: Color,
     functionalNegative: Color,
@@ -42,108 +31,68 @@ open class OdsColors(
     switch: OdsSwitchColors? = null,
     tab: OdsTabColors? = null
 ) {
-    private val primarySurface = if (isLight) primary else surface
-    private val onPrimarySurface = if (isLight) onPrimary else onSurface
+    var primary = materialColors.primary
+        private set
+    var primaryVariant = materialColors.primaryVariant
+        private set
+    var secondary = materialColors.secondary
+        private set
+    var secondaryVariant = materialColors.secondaryVariant
+        private set
+    var background = materialColors.background
+        private set
+    var surface = materialColors.surface
+        private set
+    var error = materialColors.error
+        private set
+    var onPrimary = materialColors.onPrimary
+        private set
+    var onSecondary = materialColors.onSecondary
+        private set
+    var onBackground = materialColors.onBackground
+        private set
+    var onSurface = materialColors.onSurface
+        private set
+    var onError = materialColors.onError
 
-    var isLight by mutableStateOf(isLight)
+    var functionalPositive = functionalPositive
         private set
-
-    var primary by mutableStateOf(primary)
+    var onFunctionalPositive = onFunctionalPositive
         private set
-    var primaryVariant by mutableStateOf(primaryVariant)
+    var functionalNegative = functionalNegative
         private set
-    var secondary by mutableStateOf(secondary)
+    var onFunctionalNegative = onFunctionalNegative
         private set
-    var secondaryVariant by mutableStateOf(secondaryVariant)
+    var functionalInfo = functionalInfo
         private set
-    var background by mutableStateOf(background)
+    var functionalAlert = functionalAlert
         private set
-    var surface by mutableStateOf(surface)
-        private set
-    var error by mutableStateOf(error)
-        private set
-    var onPrimary by mutableStateOf(onPrimary)
-        private set
-    var onSecondary by mutableStateOf(onSecondary)
-        private set
-    var onBackground by mutableStateOf(onBackground)
-        private set
-    var onSurface by mutableStateOf(onSurface)
-        private set
-    var onError by mutableStateOf(onError)
-        private set
-    var functionalPositive by mutableStateOf(functionalPositive)
-        private set
-    var onFunctionalPositive by mutableStateOf(onFunctionalPositive)
-        private set
-    var functionalNegative by mutableStateOf(functionalNegative)
-        private set
-    var onFunctionalNegative by mutableStateOf(onFunctionalNegative)
-        private set
-    var functionalInfo by mutableStateOf(functionalInfo)
-        private set
-    var functionalAlert by mutableStateOf(functionalAlert)
-        private set
-    var systemBarsBackground by mutableStateOf(systemBarsBackground)
+    var systemBarsBackground = systemBarsBackground
         private set
 
     var bottomNavigation by mutableStateOf(
-        bottomNavigation ?: OdsBottomNavigationColors(
-            barBackground = primarySurface,
-            barContent = onPrimarySurface,
-            itemSelected = onPrimarySurface
-        )
+        bottomNavigation ?: materialColors.DefaultOdsBottomNavigationColors
     )
         private set
 
-    var floatingActionButton by mutableStateOf(
-        floatingActionButton ?: OdsFloatingActionButtonColors(
-            background = secondary,
-            content = onSecondary
-        )
-    )
+    var floatingActionButton = floatingActionButton ?: materialColors.DefaultOdsFloatingActionButtonColors
         private set
 
-    var topAppBar by mutableStateOf(
-        topAppBar ?: OdsTopAppBarColors(
-            barBackground = primarySurface,
-            barContent = onPrimarySurface
-        )
-    )
+    var topAppBar = topAppBar ?: materialColors.DefaultOdsTopAppBarColors
         private set
 
-    var switch by mutableStateOf(
-        switch ?: OdsSwitchColors(
-            uncheckedThumb = surface
-        )
-    )
+    var switch = switch ?: materialColors.DefaultOdsSwitchColors
         private set
 
-    var tab by mutableStateOf(
-        tab ?: OdsTabColors(
-            background = primarySurface,
-            selectedContent = onPrimarySurface
-        )
-    )
+    var tab = tab ?: materialColors.DefaultOdsTabColors
         private set
 
     /**
      * Returns a copy of this Colors, optionally overriding some of the values.
      */
     fun copy(
-        isLight: Boolean = this.isLight,
-        primary: Color = this.primary,
-        primaryVariant: Color = this.primaryVariant,
-        secondary: Color = this.secondary,
-        secondaryVariant: Color = this.secondaryVariant,
-        background: Color = this.background,
-        surface: Color = this.surface,
-        error: Color = this.error,
-        onPrimary: Color = this.onPrimary,
-        onSecondary: Color = this.onSecondary,
-        onBackground: Color = this.onBackground,
-        onSurface: Color = this.onSurface,
-        onError: Color = this.onError,
+        materialColors: Colors = this.materialColors,
+
         functionalPositive: Color = this.functionalPositive,
         onFunctionalPositive: Color = this.onFunctionalPositive,
         functionalNegative: Color = this.functionalNegative,
@@ -158,19 +107,7 @@ open class OdsColors(
         switch: OdsSwitchColors = this.switch,
         tab: OdsTabColors = this.tab
     ): OdsColors = OdsColors(
-        isLight,
-        primary,
-        primaryVariant,
-        secondary,
-        secondaryVariant,
-        background,
-        surface,
-        error,
-        onPrimary,
-        onSecondary,
-        onBackground,
-        onSurface,
-        onError,
+        materialColors,
         functionalPositive,
         onFunctionalPositive,
         functionalNegative,
@@ -186,18 +123,20 @@ open class OdsColors(
     )
 
     fun updateColorsFrom(other: OdsColors) {
-        primary = other.primary
-        primaryVariant = other.primaryVariant
-        secondary = other.secondary
-        secondaryVariant = other.secondaryVariant
-        background = other.background
-        surface = other.surface
-        error = other.error
-        onPrimary = other.onPrimary
-        onSecondary = other.onSecondary
-        onBackground = other.onBackground
-        onSurface = other.onSurface
-        onError = other.onError
+        materialColors = other.materialColors
+        primary = other.materialColors.primary
+        primaryVariant = other.materialColors.primaryVariant
+        secondary = other.materialColors.secondary
+        secondaryVariant = other.materialColors.secondaryVariant
+        background = other.materialColors.background
+        surface = other.materialColors.surface
+        error = other.materialColors.error
+        onPrimary = other.materialColors.onPrimary
+        onSecondary = other.materialColors.onSecondary
+        onBackground = other.materialColors.onBackground
+        onSurface = other.materialColors.onSurface
+        onError = other.materialColors.onError
+
         functionalPositive = other.functionalPositive
         onFunctionalPositive = other.onFunctionalPositive
         functionalNegative = other.functionalNegative

@@ -10,21 +10,25 @@
 
 package com.orange.ods.theme.innovationcup
 
+import androidx.compose.material.Colors
 import com.orange.ods.theme.OdsColors
 
 val InnovationCupLightColors = OdsColors(
-    primary = Primary,
-    primaryVariant = PrimaryDark,
-    secondary = Secondary,
-    secondaryVariant = SecondaryDark,
-    background = White,
-    surface = White,
-    error = Red,
-    onPrimary = White,
-    onSecondary = Black,
-    onBackground = Black,
-    onSurface = Black,
-    onError = Black,
+    materialColors = Colors(
+        primary = Primary,
+        primaryVariant = PrimaryDark,
+        secondary = Secondary,
+        secondaryVariant = SecondaryDark,
+        background = White,
+        surface = White,
+        error = Red,
+        onPrimary = White,
+        onSecondary = Black,
+        onBackground = Black,
+        onSurface = Black,
+        onError = Black,
+        isLight = true
+    ),
 
     systemBarsBackground = PrimaryDark,
 
@@ -34,23 +38,24 @@ val InnovationCupLightColors = OdsColors(
     onFunctionalNegative = White,
     functionalInfo = Info,
     functionalAlert = Yellow,
-
-    isLight = true
 )
 
 val InnovationCupDarkColors = OdsColors(
-    primary = Primary,
-    primaryVariant = PrimaryDark,
-    secondary = Secondary,
-    secondaryVariant = SecondaryDark,
-    background = Black,
-    surface = DarkGrey,
-    error = Red,
-    onPrimary = White,
-    onSecondary = Black,
-    onBackground = White,
-    onSurface = White,
-    onError = Black,
+    materialColors = Colors(
+        primary = Primary,
+        primaryVariant = PrimaryDark,
+        secondary = Secondary,
+        secondaryVariant = SecondaryDark,
+        background = Black,
+        surface = DarkGrey,
+        error = Red,
+        onPrimary = White,
+        onSecondary = Black,
+        onBackground = White,
+        onSurface = White,
+        onError = Black,
+        isLight = false
+    ),
 
     systemBarsBackground = Black,
 
@@ -60,6 +65,4 @@ val InnovationCupDarkColors = OdsColors(
     onFunctionalNegative = White,
     functionalInfo = Info,
     functionalAlert = Yellow,
-
-    isLight = false
 )
