@@ -16,6 +16,13 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.graphics.Color
 
+/**
+ * ODS color system.
+ *
+ * The ODS color system can help you create an ODS color theme that reflects your brand or style.
+ * Default components' colors are based on the provided [materialColors] but you can override these colors by providing your colors for each component. As an
+ * example, if you need to change the switches' colors you can provide your own [OdsSwitchColors] in the ODS color system.
+ */
 open class OdsColors(
     private var materialColors: Colors,
     functionalPositive: Color,
@@ -122,6 +129,10 @@ open class OdsColors(
         tab
     )
 
+    /**
+     * Updates the internal values of the given OdsColors with values from the other. T
+     * his allows efficiently updating a subset of OdsColors, without recomposing every composable that consumes values from LocalColors.
+     */
     fun updateColorsFrom(other: OdsColors) {
         materialColors = other.materialColors
         primary = other.materialColors.primary
