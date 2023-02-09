@@ -30,6 +30,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - \[Demo\] Fix an accessibility bug where icon buttons were not focusable with Talkback ([#393](https://github.com/Orange-OpenSource/ods-android/issues/393))
 - \[Demo\] Fix list item selection controls trailing vocalization: Checkboxes, Switches and Radio Buttons in lists ([#387](https://github.com/Orange-OpenSource/ods-android/issues/387))
 - \[Demo\] Screens in about section now use current theme colors ([#390](https://github.com/Orange-OpenSource/ods-android/issues/390))
+- \[Demo\] Fix crash when exiting the fixed tabs screen ([#418](https://github.com/Orange-OpenSource/ods-android/issues/418))
 - \[Lib\] Fix cards vocalization when clickable ([#391](https://github.com/Orange-OpenSource/ods-android/issues/391))
 
 ### Removed

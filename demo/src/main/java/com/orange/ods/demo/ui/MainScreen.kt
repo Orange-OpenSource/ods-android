@@ -204,6 +204,9 @@ private fun MainTabs(mainTabsState: MainTabsState) {
     with(mainTabsState) {
         pagerState?.let { pagerState ->
             if (hasTabs) {
+                // Do not use tabs directly because this is a SnapshotStateList
+                // Thus its value can be modified and can lead to crashes if it becomes empty
+                val tabs = tabs.toList()
                 if (scrollableTabs.value) {
                     ScrollableTabRow(
                         tabs = tabs,
