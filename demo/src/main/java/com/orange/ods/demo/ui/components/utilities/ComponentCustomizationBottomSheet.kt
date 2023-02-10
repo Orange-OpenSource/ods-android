@@ -87,17 +87,17 @@ fun ComponentCustomizationBottomSheetScaffold(
                     .semantics {
                         stateDescription = bottomSheetHeaderStateDescription
                     },
-                text = stringResource(id = R.string.component_customize),
-                icon = {
-                    val degrees = if (bottomSheetScaffoldState.bottomSheetState.isExpanded) 0f else -180f
-                    val angle by animateFloatAsState(targetValue = degrees)
-                    Icon(
-                        modifier = Modifier.rotate(angle),
-                        painter = painterResource(id = R.drawable.ic_chevron_down),
-                        contentDescription = null,
-                        tint = OdsTheme.colors.onSurface
-                    )
-                })
+                text = stringResource(id = R.string.component_customize)
+            ) {
+                val degrees = if (bottomSheetScaffoldState.bottomSheetState.isExpanded) 0f else -180f
+                val angle by animateFloatAsState(targetValue = degrees)
+                Icon(
+                    modifier = Modifier.rotate(angle),
+                    painter = painterResource(id = R.drawable.ic_chevron_down),
+                    contentDescription = null,
+                    tint = OdsTheme.colors.onSurface
+                )
+            }
 
             Column(modifier = Modifier.verticalScroll(rememberScrollState())) {
                 bottomSheetContent()

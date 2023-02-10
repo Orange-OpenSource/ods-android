@@ -101,9 +101,8 @@ fun OdsListItem(
         icon = icon,
         secondaryText = secondaryText,
         singleLineSecondaryText = singleLineSecondaryText,
-        overlineText = overlineText,
-        trailing = { OdsListItemTrailing(trailing = trailing) }
-    )
+        overlineText = overlineText
+    ) { OdsListItemTrailing(trailing = trailing) }
 }
 
 /**

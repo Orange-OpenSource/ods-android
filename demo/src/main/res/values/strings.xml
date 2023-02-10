@@ -244,6 +244,14 @@
     <string name="component_list_divider">Divider</string>
     <string name="component_list_information">Information</string>
 
+    <!-- Components Sheets -->
+    <string name="component_sheets">Sheets : bottom</string>
+    <string name="component_sheet_description">Bottom sheets are surfaces anchored to the bottom of the screen that present users supplemental content.</string>
+    <string name="component_content">Content</string>
+    <string name="component_sheet_customize">Customize the bottom sheet</string>
+    <string name="component_sheet_empty">Empty</string>
+    <string name="component_sheet_example">Example</string>
+
     <!-- Component Snackbars -->
     <string name="component_snackbars">Snackbars</string>
     <string name="component_snackbars_description">There are two ways to show users short, non permanent messages giving system information or feedback about an operation.</string>
