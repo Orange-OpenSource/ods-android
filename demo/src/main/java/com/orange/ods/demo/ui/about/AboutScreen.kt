@@ -64,7 +64,14 @@ fun AboutScreen(onAboutItemClick: (Long) -> Unit) {
                 text = getVersion(context),
                 modifier = Modifier.padding(top = dimensionResource(id = R.dimen.spacing_xs))
             )
-            OdsTextCaption(text = stringResource(id = R.string.about_copyright))
+            OdsTextCaption(
+                text = stringResource(id = R.string.about_description),
+                modifier = Modifier.padding(top = dimensionResource(id = R.dimen.spacing_xs))
+            )
+            OdsTextCaption(
+                text = stringResource(id = R.string.about_copyright),
+                modifier = Modifier.padding(top = dimensionResource(id = R.dimen.spacing_xs))
+            )
         }
 
         Spacer(modifier = Modifier.height(dimensionResource(id = R.dimen.spacing_m)))
