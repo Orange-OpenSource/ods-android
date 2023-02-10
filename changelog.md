@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased](https://github.com/Orange-OpenSource/ods-android/compare/0.10.0...develop)
 
+### Added
+
+- \[Demo\] Add label for FAB size customization ([#431](https://github.com/Orange-OpenSource/ods-android/issues/431))
+
 ### Fixed
 
 - \[Demo\] Update application name and description in about page ([#413](https://github.com/Orange-OpenSource/ods-android/issues/413))
