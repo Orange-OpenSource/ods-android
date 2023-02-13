@@ -100,7 +100,7 @@ fun OdsHorizontalCard(
                         backgroundColor = imageBackgroundColor
                     )
                 }
-                
+
                 Column(
                     modifier = Modifier
                         .weight(1f)
@@ -117,7 +117,7 @@ fun OdsHorizontalCard(
                             ),
                             text = it,
                             style = OdsTheme.typography.body1,
-                            maxLines = 2,
+                            maxLines = if (subtitle == null) 3 else 2,
                             overflow = TextOverflow.Ellipsis
                         )
                     }
@@ -192,7 +192,7 @@ private fun PreviewOdsHorizontalCard(@PreviewParameter(OdsHorizontalCardPreviewP
     Preview {
         OdsHorizontalCard(
             title = "Title",
-            subtitle = "Subtitle",
+            subtitle = parameter.subtitle,
             text = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed non risus. Suspendisse lectus tortor, dignissim sit amet, adipiscing nec, ultricies sed, dolor.",
             button1Text = parameter.button1Text,
             button2Text = parameter.button2Text,
@@ -203,6 +203,7 @@ private fun PreviewOdsHorizontalCard(@PreviewParameter(OdsHorizontalCardPreviewP
     }
 
 internal data class OdsHorizontalCardPreviewParameter(
+    val subtitle: String?,
     val imagePosition: OdsHorizontalCardImagePosition,
     val dividerEnabled: Boolean,
     val button1Text: String?,
@@ -214,12 +215,14 @@ private class OdsHorizontalCardPreviewParameterProvider :
 
 private val previewParameterValues: List<OdsHorizontalCardPreviewParameter>
     get() {
+        val subtitle = "Subtitle"
         val button1Text = "Button 1"
         val button2Text = "Button 2"
 
         return listOf(
-            OdsHorizontalCardPreviewParameter(OdsHorizontalCardImagePosition.Start, true, button1Text, button2Text),
-            OdsHorizontalCardPreviewParameter(OdsHorizontalCardImagePosition.End, false, button1Text, null),
-            OdsHorizontalCardPreviewParameter(OdsHorizontalCardImagePosition.Start, true, null, null)
+            OdsHorizontalCardPreviewParameter(subtitle, OdsHorizontalCardImagePosition.Start, true, button1Text, button2Text),
+            OdsHorizontalCardPreviewParameter(subtitle, OdsHorizontalCardImagePosition.End, false, button1Text, null),
+            OdsHorizontalCardPreviewParameter(subtitle, OdsHorizontalCardImagePosition.Start, true, null, null),
+            OdsHorizontalCardPreviewParameter(null, OdsHorizontalCardImagePosition.Start, false, button1Text, null)
         )
     }
