@@ -57,6 +57,7 @@
     <string name="component_force_on_light">Forced on light</string>
     <string name="component_customize">Customize</string>
     <string name="component_type">Type</string>
+    <string name="component_size">Size</string>
     <string name="component_style">Style</string>
     <string name="component_state">State</string>
     <string name="component_state_enabled">Enabled</string>
