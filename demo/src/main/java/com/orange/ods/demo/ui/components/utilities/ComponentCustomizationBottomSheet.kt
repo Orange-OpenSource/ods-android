@@ -21,7 +21,6 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
-import androidx.compose.material.BottomSheetScaffold
 import androidx.compose.material.BottomSheetScaffoldState
 import androidx.compose.material.BottomSheetValue
 import androidx.compose.material.ExperimentalMaterialApi
@@ -39,6 +38,7 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.semantics.stateDescription
 import androidx.compose.ui.unit.dp
+import com.orange.ods.compose.component.bottomsheet.OdsBottomSheetScaffold
 import com.orange.ods.compose.component.list.OdsListItem
 import com.orange.ods.compose.theme.OdsTheme
 import com.orange.ods.demo.R
@@ -50,6 +50,7 @@ import kotlinx.coroutines.launch
 fun ComponentCustomizationBottomSheetScaffold(
     bottomSheetScaffoldState: BottomSheetScaffoldState,
     snackbarHost: @Composable (SnackbarHostState) -> Unit = { SnackbarHost(hostState = it) },
+    titleResId: Int = R.string.component_customize,
     floatingActionButton: (@Composable () -> Unit)? = null,
     floatingActionButtonPosition: FabPosition = FabPosition.End,
     bottomSheetContent: @Composable () -> Unit,
@@ -65,8 +66,7 @@ fun ComponentCustomizationBottomSheetScaffold(
             bottomSheetScaffoldState.bottomSheetState.collapse()
         }
     }
-    BottomSheetScaffold(
-        sheetBackgroundColor = OdsTheme.colors.surface,
+    OdsBottomSheetScaffold(
         scaffoldState = bottomSheetScaffoldState,
         floatingActionButton = floatingActionButton,
         floatingActionButtonPosition = floatingActionButtonPosition,
@@ -87,17 +87,17 @@ fun ComponentCustomizationBottomSheetScaffold(
                     .semantics {
                         stateDescription = bottomSheetHeaderStateDescription
                     },
-                text = stringResource(id = R.string.component_customize)
-            ) {
-                val degrees = if (bottomSheetScaffoldState.bottomSheetState.isExpanded) 0f else -180f
-                val angle by animateFloatAsState(targetValue = degrees)
-                Icon(
-                    modifier = Modifier.rotate(angle),
-                    painter = painterResource(id = R.drawable.ic_chevron_down),
-                    contentDescription = null,
-                    tint = OdsTheme.colors.onSurface
-                )
-            }
+                text = stringResource(id = titleResId),
+                icon = {
+                    val degrees = if (bottomSheetScaffoldState.bottomSheetState.isExpanded) 0f else -180f
+                    val angle by animateFloatAsState(targetValue = degrees)
+                    Icon(
+                        modifier = Modifier.rotate(angle),
+                        painter = painterResource(id = R.drawable.ic_chevron_down),
+                        contentDescription = null,
+                        tint = OdsTheme.colors.onSurface
+                    )
+                })
 
             Column(modifier = Modifier.verticalScroll(rememberScrollState())) {
                 bottomSheetContent()

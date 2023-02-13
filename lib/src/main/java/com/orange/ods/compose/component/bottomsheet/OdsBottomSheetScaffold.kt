@@ -17,15 +17,11 @@ import androidx.compose.material.BottomSheetScaffoldDefaults
 import androidx.compose.material.BottomSheetScaffoldState
 import androidx.compose.material.ExperimentalMaterialApi
 import androidx.compose.material.FabPosition
-import androidx.compose.material.MaterialTheme
 import androidx.compose.material.SnackbarHost
 import androidx.compose.material.SnackbarHostState
-import androidx.compose.material.contentColorFor
 import androidx.compose.material.rememberBottomSheetScaffoldState
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.graphics.Shape
 import androidx.compose.ui.unit.Dp
 import com.orange.ods.compose.component.OdsComponentApi
 import com.orange.ods.compose.theme.OdsTheme
@@ -33,7 +29,7 @@ import com.orange.ods.compose.theme.OdsTheme
 @Composable
 @ExperimentalMaterialApi
 @OdsComponentApi
-fun OdsBottomSheet(
+fun OdsBottomSheetScaffold(
     sheetContent: @Composable ColumnScope.() -> Unit,
     modifier: Modifier = Modifier,
     scaffoldState: BottomSheetScaffoldState = rememberBottomSheetScaffoldState(),
@@ -42,13 +38,7 @@ fun OdsBottomSheet(
     floatingActionButton: (@Composable () -> Unit)? = null,
     floatingActionButtonPosition: FabPosition = FabPosition.End,
     sheetGesturesEnabled: Boolean = true,
-    sheetShape: Shape = MaterialTheme.shapes.large,
-    sheetElevation: Dp = BottomSheetScaffoldDefaults.SheetElevation,
-    sheetBackgroundColor: Color = MaterialTheme.colors.surface,
-    sheetContentColor: Color = contentColorFor(sheetBackgroundColor),
     sheetPeekHeight: Dp = BottomSheetScaffoldDefaults.SheetPeekHeight,
-    backgroundColor: Color = OdsTheme.colors.surface,
-    contentColor: Color = contentColorFor(backgroundColor),
     content: @Composable (PaddingValues) -> Unit
 
 ) {
@@ -60,14 +50,13 @@ fun OdsBottomSheet(
         snackbarHost = snackbarHost,
         floatingActionButton = floatingActionButton,
         floatingActionButtonPosition = floatingActionButtonPosition,
-        sheetElevation = sheetElevation,
         sheetGesturesEnabled = sheetGesturesEnabled,
-        sheetShape = sheetShape,
-        sheetBackgroundColor = MaterialTheme.colors.surface,
-        sheetContentColor = sheetContentColor,
+        sheetShape = OdsTheme.shapes.large,
+        sheetBackgroundColor = OdsTheme.colors.surface,
+        sheetContentColor = OdsTheme.colors.onSurface,
         sheetPeekHeight = sheetPeekHeight,
         backgroundColor = OdsTheme.colors.surface,
-        contentColor = contentColor,
+        contentColor = OdsTheme.colors.onSurface,
         content = content
     )
 }
