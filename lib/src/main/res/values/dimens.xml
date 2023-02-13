@@ -32,6 +32,7 @@
     <!-- Card -->
     <dimen name="card_big_image_height">194dp</dimen>
     <dimen name="card_small_image_width">95dp</dimen>
+    <dimen name="card_horizontal_image_size">128dp</dimen>
 
     <!-- Images -->
     <dimen name="avatar_size">40dp</dimen>
