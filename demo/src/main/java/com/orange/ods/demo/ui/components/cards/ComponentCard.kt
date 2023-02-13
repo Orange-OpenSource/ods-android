@@ -17,6 +17,9 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.stringResource
+import com.orange.ods.compose.component.card.OdsHorizontalCardImagePosition
+import com.orange.ods.compose.component.chip.OdsChoiceChip
+import com.orange.ods.compose.component.chip.OdsChoiceChipsFlowRow
 import com.orange.ods.compose.component.list.OdsListItem
 import com.orange.ods.compose.component.list.OdsSwitchTrailing
 import com.orange.ods.demo.R
@@ -42,12 +45,25 @@ fun ComponentCard(variant: Variant) {
                         text = stringResource(id = R.string.component_element_thumbnail),
                         trailing = OdsSwitchTrailing(checked = thumbnailChecked)
                     )
+                } else if (variant == Variant.CardHorizontal) {
+                    OdsChoiceChipsFlowRow(
+                        selectedChip = imagePosition,
+                        modifier = Modifier.padding(horizontal = dimensionResource(id = R.dimen.screen_horizontal_margin)),
+                        outlinedChips = true
+                    ) {
+                        OdsChoiceChip(textRes = R.string.component_card_horizontal_position_start, value = OdsHorizontalCardImagePosition.Start)
+                        OdsChoiceChip(textRes = R.string.component_card_horizontal_position_end, value = OdsHorizontalCardImagePosition.End)
+                    }
+                    OdsListItem(
+                        text = stringResource(id = R.string.component_element_divider),
+                        trailing = OdsSwitchTrailing(checked = dividerEnabled)
+                    )
                 }
                 OdsListItem(
                     text = stringResource(id = R.string.component_element_subtitle),
                     trailing = OdsSwitchTrailing(checked = subtitleChecked)
                 )
-                if (variant in listOf(Variant.CardTitleFirst, Variant.CardImageFirst)) {
+                if (variant in listOf(Variant.CardTitleFirst, Variant.CardImageFirst, Variant.CardHorizontal)) {
                     OdsListItem(
                         text = stringResource(id = R.string.component_element_text),
                         trailing = OdsSwitchTrailing(checked = textChecked)
@@ -67,6 +83,7 @@ fun ComponentCard(variant: Variant) {
                 Variant.CardImageFirst -> CardImageFirst(customizationState = cardCustomizationState)
                 Variant.CardSmall -> CardSmall(customizationState = cardCustomizationState)
                 Variant.CardTitleFirst -> CardTitleFirst(customizationState = cardCustomizationState)
+                Variant.CardHorizontal -> CardHorizontal(customizationState = cardCustomizationState)
                 else -> {}
             }
         }

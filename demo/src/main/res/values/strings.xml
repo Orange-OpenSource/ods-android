@@ -82,6 +82,7 @@
     <string name="component_element_leading">Leading element</string>
     <string name="component_element_leading_icon">Leading icon</string>
     <string name="component_element_cancel_cross">Cancel cross</string>
+    <string name="component_element_divider">Divider</string>
     <string name="component_demo">%s demo</string>
 
 
@@ -133,12 +134,15 @@
     <string name="component_card_image_first">Card image first</string>
     <string name="component_card_title_first">Card title first</string>
     <string name="component_card_small">Card small</string>
+    <string name="component_card_horizontal">Horizontal card</string>
     <string name="component_card_description">Cards are important components that can be used to organise and present a number of different types of related information.</string>
     <string name="component_card_element_container">Card container</string>
     <string name="component_card_clickable">Clickable card</string>
     <string name="component_card_action_button_count">Action buttons</string>
     <string name="component_card_remove_action_button">Remove action button</string>
     <string name="component_card_add_action_button">Add action button</string>
+    <string name="component_card_horizontal_position_start">Start</string>
+    <string name="component_card_horizontal_position_end">End</string>
 
     <!-- Component Checkboxes -->
     <string name="component_checkboxes">Checkboxes</string>
@@ -242,7 +246,6 @@
     <string name="component_list_trailing_switch">Switch</string>
     <string name="component_list_trailing_icon">Icon</string>
     <string name="component_list_trailing_caption">Caption</string>
-    <string name="component_list_divider">Divider</string>
     <string name="component_list_information">Information</string>
 
     <!-- Components Sheets -->
