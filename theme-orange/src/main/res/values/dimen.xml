@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?><!--
+  ~ /*
+  ~ * Copyright 2021 Orange
+  ~ *
+  ~ * Use of this source code is governed by an MIT-style
+  ~ * license that can be found in the LICENSE file or at
+  ~ * https://opensource.org/licenses/MIT.
+  ~ */
+  -->
+
+<resources>
+    <!-- Button -->
+    <dimen name="button_outlined_stroke_width">2dp</dimen>
+    <dimen name="button_corner_size">0dp</dimen>
+
+    <!-- Toolbar -->
+    <dimen name="toolbar_elevation">4dp</dimen>
+
+    <!-- Slider -->
+    <dimen name="slider_track_height">2dp</dimen>
+    <dimen name="slider_thumb_radius">6dp</dimen>
+    <dimen name="slider_halo_radius">24dp</dimen>
+    <dimen name="slider_tooltip_corner_size">16dp</dimen>
+
+    <!-- Tab -->
+    <dimen name="tab_elevation">8dp</dimen>
+</resources>

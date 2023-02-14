@@ -25,10 +25,6 @@
     <dimen name="screen_vertical_margin">@dimen/spacing_s</dimen>
     <dimen name="screen_horizontal_margin">@dimen/spacing_m</dimen>
 
-    <!-- Button -->
-    <dimen name="button_outlined_stroke_width">2dp</dimen>
-    <dimen name="button_corner_size">0dp</dimen>
-
     <!-- Card -->
     <dimen name="card_big_image_height">194dp</dimen>
     <dimen name="card_small_image_width">95dp</dimen>
@@ -51,17 +47,5 @@
     <dimen name="list_wide_image_height">56dp</dimen>
     <dimen name="list_wide_image_width">100dp</dimen>
     <dimen name="list_square_image_size">56dp</dimen>
-
-    <!-- Tab -->
-    <dimen name="tab_elevation">8dp</dimen>
-
-    <!-- Toolbar -->
-    <dimen name="toolbar_elevation">4dp</dimen>
-
-    <!-- Slider -->
-    <dimen name="slider_track_height">2dp</dimen>
-    <dimen name="slider_thumb_radius">6dp</dimen>
-    <dimen name="slider_halo_radius">24dp</dimen>
-    <dimen name="slider_tooltip_corner_size">16dp</dimen>
 
 </resources>
