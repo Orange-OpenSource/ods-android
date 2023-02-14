@@ -19,6 +19,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - \[Lib\] Add label, current value and icon parameters to `OdsLinearProgressIndicator` component to display text and/or icon above the indicator, and the current value below if necessary ([#362](https://github.com/Orange-OpenSource/ods-android/issues/362))
 - \[Lib\] Add label parameter to `OdsCircularProgressIndicator` component to display a text below the indicator ([#362](https://github.com/Orange-OpenSource/ods-android/issues/362))
 
+### Changed
+
+- \[Lib\] Rename `OdsTitleFirstCard` and `OdsImageFirstCard` respectively into `OdsVerticalTitleFirstCard` and `OdsVerticalImageFirstCard` ([#432](https://github.com/Orange-OpenSource/ods-android/issues/432))
+
 ### Fixed
 
 - \[Demo\] Update application name and description in about page ([#419](https://github.com/Orange-OpenSource/ods-android/issues/419))
