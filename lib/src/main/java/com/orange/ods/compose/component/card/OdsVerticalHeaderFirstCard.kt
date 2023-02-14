@@ -64,7 +64,7 @@ import com.orange.ods.utilities.extension.orElse
  */
 @Composable
 @OdsComponentApi
-fun OdsVerticalTitleFirstCard(
+fun OdsVerticalHeaderFirstCard(
     title: String,
     image: Painter,
     modifier: Modifier = Modifier,
@@ -154,8 +154,8 @@ fun OdsVerticalTitleFirstCard(
 
 @UiModePreviews.Default
 @Composable
-private fun PreviewOdsVerticalTitleFirstCard() = Preview {
-    OdsVerticalTitleFirstCard(
+private fun PreviewOdsVerticalHeaderFirstCard() = Preview {
+    OdsVerticalHeaderFirstCard(
         title = "Title",
         image = painterResource(id = R.drawable.placeholder),
         thumbnail = painterResource(id = R.drawable.placeholder_small),

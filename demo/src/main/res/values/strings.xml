@@ -132,7 +132,7 @@
     <!-- Components Cards -->
     <string name="component_cards">Cards</string>
     <string name="component_card_vertical_image_first">Vertical image first card</string>
-    <string name="component_card_vertical_title_first">Vertical title first card</string>
+    <string name="component_card_vertical_header_first">Vertical header first card</string>
     <string name="component_card_small">Small card</string>
     <string name="component_card_horizontal">Horizontal card</string>
     <string name="component_card_description">Cards are important components that can be used to organise and present a number of different types of related information.</string>

@@ -77,7 +77,7 @@ sealed class Component(
         R.drawable.il_cards,
         null,
         R.string.component_card_description,
-        listOf(Variant.CardVerticalImageFirst, Variant.CardVerticalTitleFirst, Variant.CardSmall, Variant.CardHorizontal)
+        listOf(Variant.CardVerticalImageFirst, Variant.CardVerticalHeaderFirst, Variant.CardSmall, Variant.CardHorizontal)
     )
 
     object Checkboxes : Component(
@@ -213,7 +213,7 @@ sealed class Variant(
     object ButtonsIcon : Variant(R.string.component_buttons_icon, OdsComponent.OdsIconButton.name)
 
     object CardVerticalImageFirst : Variant(R.string.component_card_vertical_image_first, OdsComponent.OdsVerticalImageFirstCard.name)
-    object CardVerticalTitleFirst : Variant(R.string.component_card_vertical_title_first, OdsComponent.OdsVerticalTitleFirstCard.name)
+    object CardVerticalHeaderFirst : Variant(R.string.component_card_vertical_header_first, OdsComponent.OdsVerticalHeaderFirstCard.name)
     object CardSmall : Variant(R.string.component_card_small, OdsComponent.OdsSmallCard.name)
     object CardHorizontal : Variant(R.string.component_card_horizontal, OdsComponent.OdsHorizontalCard.name)
 

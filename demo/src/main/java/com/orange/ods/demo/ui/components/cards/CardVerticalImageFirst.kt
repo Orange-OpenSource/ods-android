@@ -29,7 +29,7 @@ import com.orange.ods.demo.domain.recipes.LocalRecipes
 import com.orange.ods.demo.ui.components.utilities.clickOnElement
 
 @Composable
-fun CardImageFirst(customizationState: CardCustomizationState) {
+fun CardVerticalImageFirst(customizationState: CardCustomizationState) {
     val context = LocalContext.current
     val recipes = LocalRecipes.current
     val recipe = rememberSaveable { recipes.filter { it.description.isNotBlank() }.random() }

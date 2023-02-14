@@ -25,13 +25,13 @@ import androidx.compose.ui.res.stringResource
 import coil.compose.rememberAsyncImagePainter
 import coil.request.ImageRequest
 import coil.size.Size
-import com.orange.ods.compose.component.card.OdsVerticalTitleFirstCard
+import com.orange.ods.compose.component.card.OdsVerticalHeaderFirstCard
 import com.orange.ods.demo.R
 import com.orange.ods.demo.domain.recipes.LocalRecipes
 import com.orange.ods.demo.ui.components.utilities.clickOnElement
 
 @Composable
-fun CardTitleFirst(customizationState: CardCustomizationState) {
+fun CardVerticalHeaderFirst(customizationState: CardCustomizationState) {
     val context = LocalContext.current
     val recipes = LocalRecipes.current
     val recipe = rememberSaveable { recipes.filter { it.description.isNotBlank() }.random() }
@@ -55,7 +55,7 @@ fun CardTitleFirst(customizationState: CardCustomizationState) {
                 error = painterResource(id = R.drawable.placeholder)
             )
 
-            OdsVerticalTitleFirstCard(
+            OdsVerticalHeaderFirstCard(
                 title = recipe.title,
                 image = imagePainter,
                 thumbnail = if (hasThumbnail) imagePainter else null,
