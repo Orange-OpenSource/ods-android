@@ -30,6 +30,10 @@ Use Sheets bottom to:
 
 Please follow [accessibility criteria for development](https://a11y-guidelines.orange.com/en/mobile/android/development/)
 
+## Implementation
+
+![BottomSheet light](images/sheetbottom_light.png) ![BottomSheet dark](images/sheetbottom_dark.png)
+
 > **Jetpack Compose implementation**
 
 ```kotlin
