@@ -41,7 +41,7 @@ fun ComponentCard(variant: Variant) {
                     text = stringResource(id = R.string.component_card_clickable),
                     trailing = OdsSwitchTrailing(checked = clickable)
                 )
-                if (variant == Variant.CardTitleFirst) {
+                if (variant == Variant.CardVerticalTitleFirst) {
                     OdsListItem(
                         text = stringResource(id = R.string.component_element_thumbnail),
                         trailing = OdsSwitchTrailing(checked = thumbnailChecked)
@@ -61,7 +61,7 @@ fun ComponentCard(variant: Variant) {
                     text = stringResource(id = R.string.component_element_subtitle),
                     trailing = OdsSwitchTrailing(checked = subtitleChecked)
                 )
-                if (variant in listOf(Variant.CardTitleFirst, Variant.CardImageFirst, Variant.CardHorizontal)) {
+                if (variant in listOf(Variant.CardVerticalTitleFirst, Variant.CardVerticalImageFirst, Variant.CardHorizontal)) {
                     OdsListItem(
                         text = stringResource(id = R.string.component_element_text),
                         trailing = OdsSwitchTrailing(checked = textChecked)
@@ -85,9 +85,9 @@ fun ComponentCard(variant: Variant) {
                 }
             }) {
             when (variant) {
-                Variant.CardImageFirst -> CardImageFirst(customizationState = cardCustomizationState)
+                Variant.CardVerticalImageFirst -> CardImageFirst(customizationState = cardCustomizationState)
                 Variant.CardSmall -> CardSmall(customizationState = cardCustomizationState)
-                Variant.CardTitleFirst -> CardTitleFirst(customizationState = cardCustomizationState)
+                Variant.CardVerticalTitleFirst -> CardTitleFirst(customizationState = cardCustomizationState)
                 Variant.CardHorizontal -> CardHorizontal(customizationState = cardCustomizationState)
                 else -> {}
             }

@@ -25,7 +25,7 @@ import androidx.compose.ui.res.stringResource
 import coil.compose.rememberAsyncImagePainter
 import coil.request.ImageRequest
 import coil.size.Size
-import com.orange.ods.compose.component.card.OdsTitleFirstCard
+import com.orange.ods.compose.component.card.OdsVerticalTitleFirstCard
 import com.orange.ods.demo.R
 import com.orange.ods.demo.domain.recipes.LocalRecipes
 import com.orange.ods.demo.ui.components.utilities.clickOnElement
@@ -55,7 +55,7 @@ fun CardTitleFirst(customizationState: CardCustomizationState) {
                 error = painterResource(id = R.drawable.placeholder)
             )
 
-            OdsTitleFirstCard(
+            OdsVerticalTitleFirstCard(
                 title = recipe.title,
                 image = imagePainter,
                 thumbnail = if (hasThumbnail) imagePainter else null,

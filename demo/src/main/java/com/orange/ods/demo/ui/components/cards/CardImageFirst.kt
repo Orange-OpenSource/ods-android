@@ -23,7 +23,7 @@ import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import coil.compose.rememberAsyncImagePainter
-import com.orange.ods.compose.component.card.OdsImageFirstCard
+import com.orange.ods.compose.component.card.OdsVerticalImageFirstCard
 import com.orange.ods.demo.R
 import com.orange.ods.demo.domain.recipes.LocalRecipes
 import com.orange.ods.demo.ui.components.utilities.clickOnElement
@@ -45,7 +45,7 @@ fun CardImageFirst(customizationState: CardCustomizationState) {
             val button2Text = stringResource(id = R.string.component_element_button2)
             val cardText = stringResource(id = R.string.component_card_element_card)
 
-            OdsImageFirstCard(
+            OdsVerticalImageFirstCard(
                 title = recipe.title,
                 image = rememberAsyncImagePainter(
                     model = recipe.imageUrl,
