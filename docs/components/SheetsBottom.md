@@ -22,8 +22,8 @@ Use Sheets bottom to:
 
 ## Specifications references
 
-- [Design System Manager - Sheets](https://system.design.orange.com/0c1af118d/p/79b010-radio-buttons/b/07a1dc)
-- [Material Design - Sheets : bottom](https://material.io/components/sheets-bottom)
+- [Design System Manager - Sheets](https://system.design.orange.com/0c1af118d/p/81f927-sheets-bottom/b/47b99b)
+- [Material Design - Sheets: bottom](https://material.io/components/sheets-bottom)
 - Technical documentation soon available
 
 ## Accessibility
@@ -50,3 +50,7 @@ OdsBottomSheetScaffold(
     content = {}
 )
 ```
+
+## Component specific tokens
+
+_Soon available_

@@ -18,18 +18,16 @@ import androidx.compose.runtime.saveable.rememberSaveable
 
 
 @Composable
-fun rememberSheetsbottomCustomizationState(
-    content: MutableState<SheetsbottomCustomizationState.Content> = rememberSaveable { mutableStateOf(SheetsbottomCustomizationState.Content.Empty) },
+fun rememberSheetsBottomCustomizationState(
+    content: MutableState<SheetsBottomCustomizationState.Content> = rememberSaveable { mutableStateOf(SheetsBottomCustomizationState.Content.Empty) },
 ) =
     remember(
         content,
     ) {
-        SheetsbottomCustomizationState(
-            content,
-        )
+        SheetsBottomCustomizationState(content)
     }
 
-class SheetsbottomCustomizationState(
+class SheetsBottomCustomizationState(
 
     val content: MutableState<Content>,
 ) {

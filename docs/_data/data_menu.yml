@@ -40,7 +40,7 @@ toc2:
       - page: Radio buttons
         url: /components/RadioButtons_docs
       - page: "Sheets: bottom"
-        url: /components/SheetBottom_docs
+        url: /components/SheetsBottom_docs
       - page: Sliders
         url: /components/Sliders_docs
       - page: Snackbars

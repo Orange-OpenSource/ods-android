@@ -41,24 +41,22 @@ import com.orange.ods.demo.ui.utilities.composable.TechnicalText
 
 @OptIn(ExperimentalMaterialApi::class)
 @Composable
-fun ComponentSheetBottom() {
+fun ComponentSheetsBottom() {
 
-    val sheetsbottomCustomizationState = rememberSheetsbottomCustomizationState()
+    val customizationState = rememberSheetsBottomCustomizationState()
 
-    with(sheetsbottomCustomizationState) {
-
-
+    with(customizationState) {
         ComponentCustomizationBottomSheetScaffold(
             titleResId = R.string.component_sheet_recipes,
             bottomSheetScaffoldState = rememberBottomSheetScaffoldState(),
 
             bottomSheetContent = {
                 when (content.value) {
-                    SheetsbottomCustomizationState.Content.Empty -> {
+                    SheetsBottomCustomizationState.Content.Empty -> {
                         Box(modifier = Modifier.height(200.dp))
                     }
 
-                    SheetsbottomCustomizationState.Content.Example -> {
+                    SheetsBottomCustomizationState.Content.Example -> {
                         val recipes = LocalRecipes.current
                         recipes.take(3).forEach { recipe ->
                             OdsListItem(
@@ -95,8 +93,8 @@ fun ComponentSheetBottom() {
                         outlinedChips = true,
                         modifier = Modifier.padding(top = dimensionResource(id = R.dimen.spacing_xs))
                     ) {
-                        OdsChoiceChip(textRes = R.string.component_sheet_empty, value = SheetsbottomCustomizationState.Content.Empty)
-                        OdsChoiceChip(textRes = R.string.component_sheet_example, value = SheetsbottomCustomizationState.Content.Example)
+                        OdsChoiceChip(textRes = R.string.component_sheet_empty, value = SheetsBottomCustomizationState.Content.Empty)
+                        OdsChoiceChip(textRes = R.string.component_sheet_example, value = SheetsBottomCustomizationState.Content.Example)
                     }
                 }
 
