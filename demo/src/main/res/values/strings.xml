@@ -245,9 +245,9 @@
     <string name="component_list_information">Information</string>
 
     <!-- Components Sheets -->
-    <string name="component_sheets">Sheets : bottom</string>
+    <string name="component_sheets_bottom">Sheets: bottom</string>
     <string name="component_sheet_bottom_description">Bottom sheets are surfaces anchored to the bottom of the screen that present users supplemental content.</string>
-    <string name="component_content">Content</string>
+    <string name="component_sheet_bottom_content">Content</string>
     <string name="component_sheet_bottom_customize">Customize the bottom sheet</string>
     <string name="component_sheet_bottom_empty">Empty</string>
     <string name="component_sheet_bottom_example">Example</string>

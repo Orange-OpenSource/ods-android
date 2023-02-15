@@ -145,7 +145,7 @@ sealed class Component(
     )
 
     object SheetsBottom : Component(
-        R.string.component_sheets,
+        R.string.component_sheets_bottom,
         R.drawable.il_bottom_sheet,
         null,
         R.string.component_sheet_bottom_description,

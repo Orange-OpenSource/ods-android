@@ -84,7 +84,7 @@ fun ComponentSheetsBottom() {
                     OdsTextBody1(text = stringResource(id = R.string.component_sheet_bottom_customize))
 
                     OdsTextSubtitle1(
-                        text = stringResource(id = R.string.component_content),
+                        text = stringResource(id = R.string.component_sheet_bottom_content),
                         modifier = Modifier.padding(top = dimensionResource(id = R.dimen.spacing_s))
                     )
 
