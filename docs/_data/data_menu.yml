@@ -39,6 +39,8 @@ toc2:
         url: /components/ProgressIndicators_docs
       - page: Radio buttons
         url: /components/RadioButtons_docs
+      - page: "Sheets: bottom"
+        url: /components/SheetsBottom_docs
       - page: Sliders
         url: /components/Sliders_docs
       - page: Snackbars

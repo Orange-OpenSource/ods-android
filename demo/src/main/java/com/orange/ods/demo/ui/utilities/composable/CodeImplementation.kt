@@ -90,21 +90,33 @@ fun RowSurroundedTechnicalText(content: @Composable () -> Unit) {
 }
 
 @Composable
-private fun CommonButtonTechnicalTextColumn(
+fun CommonTechnicalTextColumn(
     componentName: String,
-    fullScreenWidth: Boolean?,
     modifier: Modifier = Modifier,
     content: @Composable () -> Unit = {}
 ) {
     Column(modifier = modifier) {
         TechnicalText(text = "$componentName(")
         Column(modifier = Modifier.padding(start = dimensionResource(id = R.dimen.spacing_s))) {
-            if (fullScreenWidth == true) {
-                TechnicalText(text = "modifier = Modifier.fillMaxWidth(),")
-            }
             content()
-            TechnicalText(text = "//...")
         }
         TechnicalText(text = ")")
     }
+}
+
+@Composable
+private fun CommonButtonTechnicalTextColumn(
+    componentName: String,
+    fullScreenWidth: Boolean?,
+    modifier: Modifier = Modifier,
+    content: @Composable () -> Unit = {}
+) {
+    CommonTechnicalTextColumn(componentName = componentName, modifier = modifier){
+        if (fullScreenWidth == true) {
+            TechnicalText(text = "modifier = Modifier.fillMaxWidth(),")
+        }
+        content()
+        TechnicalText(text = "//...")
+    }
+
 }
