@@ -218,6 +218,7 @@
     <string name="component_progress_bar">Progress bar</string>
     <string name="component_progress_bar_determinate">Determinate</string>
     <string name="component_progress_bar_indeterminate">Indeterminate</string>
+    <string name="component_progress_bar_value">Current value</string>
     <string name="component_progress_activity_indicator">Activity indicator</string>
     <string name="component_progress_activity_indicator_determinate">Determinate</string>
     <string name="component_progress_activity_indicator_indeterminate">Indeterminate</string>

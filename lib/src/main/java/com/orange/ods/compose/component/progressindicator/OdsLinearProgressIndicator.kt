@@ -13,6 +13,7 @@ package com.orange.ods.compose.component.progressindicator
 import androidx.compose.material.LinearProgressIndicator
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.painter.Painter
 import androidx.compose.ui.tooling.preview.PreviewParameter
 import com.orange.ods.compose.component.OdsComponentApi
 import com.orange.ods.compose.component.utilities.BasicPreviewParameterProvider

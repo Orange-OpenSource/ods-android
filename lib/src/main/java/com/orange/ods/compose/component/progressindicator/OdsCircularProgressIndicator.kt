@@ -10,16 +10,23 @@
 
 package com.orange.ods.compose.component.progressindicator
 
+import android.text.Layout
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.padding
 import androidx.compose.material.CircularProgressIndicator
+import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.PreviewParameter
+import androidx.compose.ui.unit.dp
 import com.orange.ods.compose.component.OdsComponentApi
 import com.orange.ods.compose.component.utilities.BasicPreviewParameterProvider
 import com.orange.ods.compose.component.utilities.Preview
 import com.orange.ods.compose.component.utilities.UiModePreviews
 import com.orange.ods.compose.theme.OdsTheme
 import com.orange.ods.utilities.extension.orElse
+import androidx.compose.ui.Alignment
+
 
 /**
  * Progress indicators express an unspecified wait time or display the length of a process.
@@ -35,20 +42,39 @@ import com.orange.ods.utilities.extension.orElse
 @OdsComponentApi
 fun OdsCircularProgressIndicator(
     modifier: Modifier = Modifier,
+    label : String? = null,
     progress: Float? = null
 ) {
     val progressIndicatorColor = OdsTheme.colors.primary
     progress?.let {
-        CircularProgressIndicator(progress = progress, modifier = modifier, color = progressIndicatorColor)
+        Column(horizontalAlignment = Alignment.CenterHorizontally, modifier = modifier)
+        {
+            CircularProgressIndicator(
+                progress = progress,
+                modifier = modifier,
+                color = progressIndicatorColor
+            )
+            if (label != null){
+                Text(
+                    text = label,
+                    modifier = Modifier
+                        .padding(top = 8.dp)
+
+                )
+            }
+
+        }
+
     }.orElse {
         CircularProgressIndicator(modifier = modifier, color = progressIndicatorColor)
     }
 }
 
+
 @UiModePreviews.Default
 @Composable
 fun PreviewOdsCircularProgressIndicator(@PreviewParameter(OdsCircularProgressIndicatorPreviewParameterProvider::class) progress: Float?) = Preview {
-    OdsCircularProgressIndicator(progress = progress)
+    OdsCircularProgressIndicator(progress = progress,label="Downloading …")
 }
 
 private class OdsCircularProgressIndicatorPreviewParameterProvider : BasicPreviewParameterProvider<Float?>(0.75f, null)
