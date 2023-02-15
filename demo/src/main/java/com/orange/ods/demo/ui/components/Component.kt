@@ -148,7 +148,7 @@ sealed class Component(
         R.string.component_sheets,
         R.drawable.il_bottom_sheet,
         null,
-        R.string.component_sheet_description,
+        R.string.component_sheet_bottom_description,
         composableName = ""
     )
 

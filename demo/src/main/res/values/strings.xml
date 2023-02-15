@@ -246,12 +246,12 @@
 
     <!-- Components Sheets -->
     <string name="component_sheets">Sheets : bottom</string>
-    <string name="component_sheet_description">Bottom sheets are surfaces anchored to the bottom of the screen that present users supplemental content.</string>
+    <string name="component_sheet_bottom_description">Bottom sheets are surfaces anchored to the bottom of the screen that present users supplemental content.</string>
     <string name="component_content">Content</string>
-    <string name="component_sheet_customize">Customize the bottom sheet</string>
-    <string name="component_sheet_empty">Empty</string>
-    <string name="component_sheet_example">Example</string>
-    <string name="component_sheet_recipes">Recipes</string>
+    <string name="component_sheet_bottom_customize">Customize the bottom sheet</string>
+    <string name="component_sheet_bottom_empty">Empty</string>
+    <string name="component_sheet_bottom_example">Example</string>
+    <string name="component_sheet_bottom_recipes">Recipes</string>
 
     <!-- Component Snackbars -->
     <string name="component_snackbars">Snackbars</string>

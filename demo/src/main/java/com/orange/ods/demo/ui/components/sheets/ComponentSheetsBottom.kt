@@ -47,7 +47,7 @@ fun ComponentSheetsBottom() {
 
     with(customizationState) {
         ComponentCustomizationBottomSheetScaffold(
-            titleResId = R.string.component_sheet_recipes,
+            titleResId = R.string.component_sheet_bottom_recipes,
             bottomSheetScaffoldState = rememberBottomSheetScaffoldState(),
 
             bottomSheetContent = {
@@ -81,7 +81,7 @@ fun ComponentSheetsBottom() {
                         .padding(top = dimensionResource(id = R.dimen.screen_vertical_margin))
                         .padding(horizontal = dimensionResource(id = R.dimen.screen_horizontal_margin))
                 ) {
-                    OdsTextBody1(text = stringResource(id = R.string.component_sheet_customize))
+                    OdsTextBody1(text = stringResource(id = R.string.component_sheet_bottom_customize))
 
                     OdsTextSubtitle1(
                         text = stringResource(id = R.string.component_content),
@@ -93,8 +93,8 @@ fun ComponentSheetsBottom() {
                         outlinedChips = true,
                         modifier = Modifier.padding(top = dimensionResource(id = R.dimen.spacing_xs))
                     ) {
-                        OdsChoiceChip(textRes = R.string.component_sheet_empty, value = SheetsBottomCustomizationState.Content.Empty)
-                        OdsChoiceChip(textRes = R.string.component_sheet_example, value = SheetsBottomCustomizationState.Content.Example)
+                        OdsChoiceChip(textRes = R.string.component_sheet_bottom_empty, value = SheetsBottomCustomizationState.Content.Empty)
+                        OdsChoiceChip(textRes = R.string.component_sheet_bottom_example, value = SheetsBottomCustomizationState.Content.Example)
                     }
                 }
 
