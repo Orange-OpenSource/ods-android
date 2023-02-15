@@ -14,6 +14,7 @@ import androidx.compose.animation.core.FastOutSlowInEasing
 import androidx.compose.animation.core.animateFloatAsState
 import androidx.compose.animation.core.tween
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
@@ -29,12 +30,15 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.stringResource
+import com.orange.ods.compose.component.OdsComponent
 import com.orange.ods.compose.component.list.OdsListItem
 import com.orange.ods.compose.component.list.OdsSwitchTrailing
 import com.orange.ods.compose.component.progressindicator.OdsCircularProgressIndicator
 import com.orange.ods.demo.R
 import com.orange.ods.demo.ui.components.utilities.ComponentCustomizationBottomSheetScaffold
 import com.orange.ods.demo.ui.utilities.composable.CodeImplementationColumn
+import com.orange.ods.demo.ui.utilities.composable.CommonTechnicalTextColumn
+import com.orange.ods.demo.ui.utilities.composable.TechnicalText
 
 private const val DeterminateProgressTargetValue = 0.9f
 private const val DeterminateProgressAnimDuration = 5000
@@ -58,32 +62,35 @@ fun ProgressActivityIndicator() {
                     trailing = OdsSwitchTrailing(checked = label)
                 )
             }) {
-            Column() {
+            Column(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .verticalScroll(rememberScrollState())
 
-
-                Column(
+            ) {
+                val label = if (hasLabel) "Downloading …" else null
+                OdsCircularProgressIndicator(
+                    progress = determinateProgressAnimation,
+                    label = label,
                     modifier = Modifier
-                        .verticalScroll(rememberScrollState())
-                        .padding(bottom = dimensionResource(id = R.dimen.screen_vertical_margin))
-                        .padding(horizontal = dimensionResource(id = R.dimen.screen_horizontal_margin))
+                        .padding(top = dimensionResource(id = R.dimen.spacing_m))
+                        .align(alignment = Alignment.CenterHorizontally)
+                )
 
-                ) {
-                    val label = if (hasLabel) "Downloading …" else null
-                    OdsCircularProgressIndicator(
-                        progress = determinateProgressAnimation,
-                        label = label,
-                        modifier = Modifier
-                            .padding(top = dimensionResource(id = R.dimen.spacing_m))
-                            .align(alignment = Alignment.CenterHorizontally)
-                    )
+                LaunchedEffect(DeterminateProgressTargetValue) {
+                    determinateProgressValue = DeterminateProgressTargetValue
+                }
 
-                    LaunchedEffect(DeterminateProgressTargetValue) {
-                        determinateProgressValue = DeterminateProgressTargetValue
+                CodeImplementationColumn {
+                    CommonTechnicalTextColumn(
+                        componentName = OdsComponent.OdsCircularProgressIndicator.name
+                    ) {
+                        TechnicalText(text = "{")
+                        TechnicalText(text = "  // add your content here")
+                        TechnicalText(text = "}")
                     }
                 }
-                CodeImplementationColumn {
-                   
-                }
+
             }
 
         }
