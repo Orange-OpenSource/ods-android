@@ -20,14 +20,11 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.graphics.compositeOver
 import com.orange.ods.compose.component.OdsComponentApi
 import com.orange.ods.compose.component.utilities.Preview
 import com.orange.ods.compose.component.utilities.UiModePreviews
 import com.orange.ods.compose.theme.OdsPrimaryRippleTheme
 import com.orange.ods.compose.theme.OdsTheme
-import com.orange.ods.utilities.extension.enable
 
 /**
  * <a href="https://system.design.orange.com/0c1af118d/p/14638a-selection-controls/b/352c00" class="external" target="_blank">ODS switch</a>.
@@ -55,34 +52,9 @@ fun OdsSwitch(
             onCheckedChange = onCheckedChange,
             modifier = modifier,
             enabled = enabled,
-            colors = OdsSwitchDefaults.colors(uncheckedThumbColor = OdsTheme.colors.switch.uncheckedThumb)
+            colors = SwitchDefaults.colors(uncheckedThumbColor = OdsTheme.colors.component.switch.uncheckedThumb)
         )
     }
-}
-
-private object OdsSwitchDefaults {
-
-    @Composable
-    fun colors(
-        checkedThumbColor: Color = OdsTheme.colors.secondaryVariant,
-        checkedTrackColor: Color = checkedThumbColor,
-        uncheckedThumbColor: Color = OdsTheme.colors.surface,
-        uncheckedTrackColor: Color = OdsTheme.colors.onSurface,
-        disabledCheckedThumbColor: Color = checkedThumbColor.enable(enabled = false).compositeOver(OdsTheme.colors.surface),
-        disabledCheckedTrackColor: Color = checkedTrackColor.enable(enabled = false).compositeOver(OdsTheme.colors.surface),
-        disabledUncheckedThumbColor: Color = uncheckedThumbColor.enable(enabled = false).compositeOver(OdsTheme.colors.surface),
-        disabledUncheckedTrackColor: Color = uncheckedTrackColor.enable(enabled = false).compositeOver(OdsTheme.colors.surface)
-    ) = SwitchDefaults.colors(
-        checkedThumbColor = checkedThumbColor,
-        checkedTrackColor = checkedTrackColor,
-        uncheckedThumbColor = uncheckedThumbColor,
-        uncheckedTrackColor = uncheckedTrackColor,
-        disabledCheckedThumbColor = disabledCheckedThumbColor,
-        disabledCheckedTrackColor = disabledCheckedTrackColor,
-        disabledUncheckedThumbColor = disabledUncheckedThumbColor,
-        disabledUncheckedTrackColor = disabledUncheckedTrackColor
-    )
-
 }
 
 @UiModePreviews.Default

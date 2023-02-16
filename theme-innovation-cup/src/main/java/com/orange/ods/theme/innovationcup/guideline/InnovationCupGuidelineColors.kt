@@ -10,7 +10,7 @@
 
 package com.orange.ods.theme.innovationcup.guideline
 
-import com.orange.ods.theme.OdsColors
+import com.orange.ods.theme.colors.OdsColors
 import com.orange.ods.theme.guideline.GuidelineColor
 import com.orange.ods.theme.guideline.GuidelineColorType
 

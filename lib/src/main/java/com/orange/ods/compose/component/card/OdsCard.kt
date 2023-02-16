@@ -15,21 +15,17 @@ import androidx.compose.material.ExperimentalMaterialApi
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.semantics.semantics
-import com.orange.ods.compose.theme.OdsTheme
 
 @OptIn(ExperimentalMaterialApi::class)
 @Composable
 internal fun OdsCard(modifier: Modifier, onClick: (() -> Unit)?, content: @Composable () -> Unit) {
-    val backgroundColor = OdsTheme.colors.surface
-    val contentColor = OdsTheme.colors.onSurface
-
     if (onClick != null) {
         Card(
-            modifier = modifier, backgroundColor = backgroundColor, contentColor = contentColor, onClick = onClick, content = content
+            modifier = modifier, onClick = onClick, content = content
         )
     } else {
         Card(
-            modifier = modifier.semantics(mergeDescendants = true) {}, backgroundColor = backgroundColor, contentColor = contentColor, content = content
+            modifier = modifier.semantics(mergeDescendants = true) {}, content = content
         )
     }
 }

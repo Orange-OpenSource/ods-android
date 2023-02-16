@@ -8,9 +8,12 @@
  * /
  */
 
-package com.orange.ods.theme
+package com.orange.ods.theme.colors
 
 import androidx.compose.material.Colors
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.graphics.Color
 
 private const val ContentUnselectedAlpha = 0.74f
@@ -21,6 +24,58 @@ private val Colors.primarySurface
 private val Colors.onPrimarySurface
     get() = if (isLight) onPrimary else onSurface
 
+data class OdsComponentColors(
+    val systemBarsBackground: Color,
+    val bottomNavigation: OdsBottomNavigationColors? = null,
+    val floatingActionButton: OdsFloatingActionButtonColors? = null,
+    val switch: OdsSwitchColors? = null,
+    val tab: OdsTabColors? = null,
+    val topAppBar: OdsTopAppBarColors? = null
+)
+
+class OdsComponentColorsInternal(
+    systemBarsBackground: Color,
+    bottomNavigation: OdsBottomNavigationColors,
+    floatingActionButton: OdsFloatingActionButtonColors,
+    switch: OdsSwitchColors,
+    tab: OdsTabColors,
+    topAppBar: OdsTopAppBarColors
+) {
+
+    var systemBarsBackground = systemBarsBackground
+        private set
+
+    var bottomNavigation by mutableStateOf(bottomNavigation)
+        private set
+
+    var floatingActionButton = floatingActionButton
+        private set
+
+    var switch = switch
+        private set
+
+    var tab = tab
+        private set
+
+    var topAppBar = topAppBar
+        private set
+
+    /**
+     * Updates the internal values of the given OdsColors with values from the other. T
+     * his allows efficiently updating a subset of OdsColors, without recomposing every composable that consumes values from LocalColors.
+     */
+    internal fun updateColorsFrom(other: OdsComponentColorsInternal) {
+        systemBarsBackground = other.systemBarsBackground
+
+        bottomNavigation = other.bottomNavigation
+        floatingActionButton = other.floatingActionButton
+        topAppBar = other.topAppBar
+
+        switch = other.switch
+
+        tab = other.tab
+    }
+}
 
 /**
  * Customizable colors for `OdsBottomNavigation` component

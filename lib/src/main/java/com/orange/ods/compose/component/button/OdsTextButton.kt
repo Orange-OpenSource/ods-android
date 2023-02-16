@@ -31,7 +31,7 @@ import com.orange.ods.compose.theme.OdsLightRippleTheme
 import com.orange.ods.compose.theme.OdsPrimaryRippleTheme
 import com.orange.ods.compose.theme.OdsRippleTheme
 import com.orange.ods.compose.theme.OdsTheme
-import com.orange.ods.theme.OdsColors
+import com.orange.ods.theme.colors.OdsColors
 import com.orange.ods.utilities.extension.enable
 
 /**

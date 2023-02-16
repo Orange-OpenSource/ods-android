@@ -64,7 +64,6 @@ fun OdsLinearProgressIndicator(
     icon: Painter? = null,
     iconContentDescription: String? = null
 ) {
-    val progressIndicatorColor = OdsTheme.colors.primary
     Column(
         modifier = modifier
             .padding(horizontal = dimensionResource(id = R.dimen.spacing_m))
@@ -93,7 +92,7 @@ fun OdsLinearProgressIndicator(
             }
         }
         progress?.let {
-            LinearProgressIndicator(progress = progress, modifier = Modifier.fillMaxWidth(), color = progressIndicatorColor)
+            LinearProgressIndicator(progress = progress, modifier = Modifier.fillMaxWidth())
 
             if (showCurrentValue) {
                 Row(horizontalArrangement = Arrangement.End, modifier = Modifier.fillMaxWidth()) {
@@ -108,7 +107,7 @@ fun OdsLinearProgressIndicator(
                 }
             }
         }.orElse {
-            LinearProgressIndicator(modifier = Modifier.fillMaxWidth(), color = progressIndicatorColor)
+            LinearProgressIndicator(modifier = Modifier.fillMaxWidth())
         }
     }
 }

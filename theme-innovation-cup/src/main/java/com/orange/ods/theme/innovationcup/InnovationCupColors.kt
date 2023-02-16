@@ -11,7 +11,9 @@
 package com.orange.ods.theme.innovationcup
 
 import androidx.compose.material.Colors
-import com.orange.ods.theme.OdsColors
+import com.orange.ods.theme.colors.OdsColors
+import com.orange.ods.theme.colors.OdsComponentColors
+import com.orange.ods.theme.colors.OdsFunctionalColors
 
 val InnovationCupLightColors = OdsColors(
     materialColors = Colors(
@@ -30,14 +32,18 @@ val InnovationCupLightColors = OdsColors(
         isLight = true
     ),
 
-    systemBarsBackground = PrimaryDark,
+    functionalColors = OdsFunctionalColors(
+        functionalPositive = Green,
+        onFunctionalPositive = White,
+        functionalNegative = Red,
+        onFunctionalNegative = White,
+        functionalInfo = Info,
+        functionalAlert = Yellow
+    ),
 
-    functionalPositive = Green,
-    onFunctionalPositive = White,
-    functionalNegative = Red,
-    onFunctionalNegative = White,
-    functionalInfo = Info,
-    functionalAlert = Yellow,
+    componentColors = OdsComponentColors(
+        systemBarsBackground = PrimaryDark
+    )
 )
 
 val InnovationCupDarkColors = OdsColors(
@@ -57,12 +63,16 @@ val InnovationCupDarkColors = OdsColors(
         isLight = false
     ),
 
-    systemBarsBackground = Black,
+    functionalColors = OdsFunctionalColors(
+        functionalPositive = Green,
+        onFunctionalPositive = White,
+        functionalNegative = Red,
+        onFunctionalNegative = White,
+        functionalInfo = Info,
+        functionalAlert = Yellow
+    ),
 
-    functionalPositive = Green,
-    onFunctionalPositive = White,
-    functionalNegative = Red,
-    onFunctionalNegative = White,
-    functionalInfo = Info,
-    functionalAlert = Yellow,
+    componentColors = OdsComponentColors(
+        systemBarsBackground = Black
+    )
 )

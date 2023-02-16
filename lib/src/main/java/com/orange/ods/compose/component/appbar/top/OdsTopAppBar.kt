@@ -83,8 +83,8 @@ fun OdsTopAppBar(
             }
         },
         actions = actions,
-        backgroundColor = OdsTheme.colors.topAppBar.barBackground,
-        contentColor = OdsTheme.colors.topAppBar.barContent,
+        backgroundColor = OdsTheme.colors.component.topAppBar.barBackground,
+        contentColor = OdsTheme.colors.component.topAppBar.barContent,
         elevation = if (elevated) AppBarDefaults.TopAppBarElevation else 0.dp
     )
 }
@@ -114,7 +114,7 @@ fun OdsTopAppBarActionButton(
         contentDescription = contentDescription,
         modifier = modifier,
         enabled = enabled,
-        tint = OdsTheme.colors.topAppBar.barContent
+        tint = OdsTheme.colors.component.topAppBar.barContent
     )
 }
 
@@ -152,7 +152,7 @@ private fun PreviewOdsTopAppBar() = Preview {
         title = "Title",
         navigationIcon = {
             IconButton(onClick = {}) {
-                Icon(imageVector = Icons.Filled.ArrowBack, contentDescription = null, tint = OdsTheme.colors.topAppBar.barContent)
+                Icon(imageVector = Icons.Filled.ArrowBack, contentDescription = null, tint = OdsTheme.colors.component.topAppBar.barContent)
             }
         },
         actions = {

@@ -21,7 +21,6 @@ import com.orange.ods.compose.component.utilities.Preview
 import com.orange.ods.compose.component.utilities.UiModePreviews
 import com.orange.ods.compose.text.OdsTextBody2
 import com.orange.ods.compose.text.OdsTextSubtitle1
-import com.orange.ods.compose.theme.OdsTheme
 import com.orange.ods.utilities.extension.ifNotNull
 
 /**
@@ -74,8 +73,7 @@ fun OdsAlertDialog(
                 OdsTextButton(text = dismissText, style = OdsTextButtonStyle.Primary, onClick = onDismissClick)
             }
         },
-        properties = properties,
-        backgroundColor = OdsTheme.colors.surface
+        properties = properties
     )
 }
 
