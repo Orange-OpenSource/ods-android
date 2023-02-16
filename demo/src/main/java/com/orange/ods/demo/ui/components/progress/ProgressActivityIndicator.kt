@@ -31,6 +31,8 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.stringResource
 import com.orange.ods.compose.component.OdsComponent
+import com.orange.ods.compose.component.chip.OdsChoiceChip
+import com.orange.ods.compose.component.chip.OdsChoiceChipsFlowRow
 import com.orange.ods.compose.component.list.OdsListItem
 import com.orange.ods.compose.component.list.OdsSwitchTrailing
 import com.orange.ods.compose.component.progressindicator.OdsCircularProgressIndicator
@@ -57,6 +59,14 @@ fun ProgressActivityIndicator() {
         ComponentCustomizationBottomSheetScaffold(
             bottomSheetScaffoldState = rememberBottomSheetScaffoldState(),
             bottomSheetContent = {
+                OdsChoiceChipsFlowRow(
+                    selectedChip = value,
+                    modifier = Modifier.padding(horizontal = dimensionResource(id = R.dimen.spacing_m)),
+                    outlinedChips = true
+                ) {
+                    OdsChoiceChip(textRes = R.string.component_progress_bar_determinate, value = ProgressCustomizationState.Value.Determinate)
+                    OdsChoiceChip(textRes = R.string.component_progress_bar_indeterminate, value = ProgressCustomizationState.Value.Indeterminate)
+                }
                 OdsListItem(
                     text = stringResource(id = R.string.component_element_label),
                     trailing = OdsSwitchTrailing(checked = label)
@@ -66,19 +76,27 @@ fun ProgressActivityIndicator() {
                 modifier = Modifier
                     .fillMaxWidth()
                     .verticalScroll(rememberScrollState())
-
             ) {
-                val label = if (hasLabel) "Downloading …" else null
-                OdsCircularProgressIndicator(
-                    progress = determinateProgressAnimation,
-                    label = label,
-                    modifier = Modifier
-                        .padding(top = dimensionResource(id = R.dimen.spacing_m))
-                        .align(alignment = Alignment.CenterHorizontally)
-                )
-
-                LaunchedEffect(DeterminateProgressTargetValue) {
-                    determinateProgressValue = DeterminateProgressTargetValue
+                val text = stringResource(id = R.string.component_progress_circular_download)
+                val label = if (hasLabel) text else null
+                if (value.value == ProgressCustomizationState.Value.Determinate) {
+                    OdsCircularProgressIndicator(
+                        progress = determinateProgressAnimation,
+                        label = label,
+                        modifier = Modifier
+                            .padding(top = dimensionResource(id = R.dimen.spacing_m))
+                            .align(alignment = Alignment.CenterHorizontally)
+                    )
+                    LaunchedEffect(DeterminateProgressTargetValue) {
+                        determinateProgressValue = DeterminateProgressTargetValue
+                    }
+                } else {
+                    OdsCircularProgressIndicator(
+                        label = label,
+                        modifier = Modifier
+                            .padding(top = dimensionResource(id = R.dimen.spacing_m))
+                            .align(alignment = Alignment.CenterHorizontally)
+                    )
                 }
 
                 CodeImplementationColumn {
@@ -86,13 +104,12 @@ fun ProgressActivityIndicator() {
                         componentName = OdsComponent.OdsCircularProgressIndicator.name
                     ) {
                         TechnicalText(text = "{")
+                        if (hasLabel) TechnicalText(text = " label = $text")
                         TechnicalText(text = "  // add your content here")
                         TechnicalText(text = "}")
                     }
                 }
-
             }
-
         }
     }
 }
