@@ -60,7 +60,6 @@ fun OdsCircularProgressIndicator(
                         .padding(top = 8.dp)
                 )
             }
-
         }
 
     }.orElse {

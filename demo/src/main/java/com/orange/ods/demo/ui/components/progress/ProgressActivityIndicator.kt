@@ -40,6 +40,7 @@ import com.orange.ods.demo.R
 import com.orange.ods.demo.ui.components.utilities.ComponentCustomizationBottomSheetScaffold
 import com.orange.ods.demo.ui.utilities.composable.CodeImplementationColumn
 import com.orange.ods.demo.ui.utilities.composable.CommonTechnicalTextColumn
+import com.orange.ods.demo.ui.utilities.composable.Subtitle
 import com.orange.ods.demo.ui.utilities.composable.TechnicalText
 
 private const val DeterminateProgressTargetValue = 0.9f
@@ -64,6 +65,7 @@ fun ProgressActivityIndicator() {
                     modifier = Modifier.padding(horizontal = dimensionResource(id = R.dimen.spacing_m)),
                     outlinedChips = true
                 ) {
+                    Subtitle(textRes = R.string.component_progress_type)
                     OdsChoiceChip(textRes = R.string.component_progress_bar_determinate, value = ProgressCustomizationState.Value.Determinate)
                     OdsChoiceChip(textRes = R.string.component_progress_bar_indeterminate, value = ProgressCustomizationState.Value.Indeterminate)
                 }
@@ -78,35 +80,26 @@ fun ProgressActivityIndicator() {
                     .verticalScroll(rememberScrollState())
             ) {
                 val text = stringResource(id = R.string.component_progress_circular_download)
-                val label = if (hasLabel) text else null
+                OdsCircularProgressIndicator(
+                    progress = if (value.value == ProgressCustomizationState.Value.Determinate) determinateProgressAnimation else null,
+                    label = if (hasLabel) text else null,
+                    modifier = Modifier
+                        .padding(top = dimensionResource(id = R.dimen.spacing_m))
+                        .align(alignment = Alignment.CenterHorizontally)
+                )
                 if (value.value == ProgressCustomizationState.Value.Determinate) {
-                    OdsCircularProgressIndicator(
-                        progress = determinateProgressAnimation,
-                        label = label,
-                        modifier = Modifier
-                            .padding(top = dimensionResource(id = R.dimen.spacing_m))
-                            .align(alignment = Alignment.CenterHorizontally)
-                    )
                     LaunchedEffect(DeterminateProgressTargetValue) {
                         determinateProgressValue = DeterminateProgressTargetValue
                     }
-                } else {
-                    OdsCircularProgressIndicator(
-                        label = label,
-                        modifier = Modifier
-                            .padding(top = dimensionResource(id = R.dimen.spacing_m))
-                            .align(alignment = Alignment.CenterHorizontally)
-                    )
                 }
 
                 CodeImplementationColumn {
                     CommonTechnicalTextColumn(
                         componentName = OdsComponent.OdsCircularProgressIndicator.name
                     ) {
-                        TechnicalText(text = "{")
-                        if (hasLabel) TechnicalText(text = " label = $text")
+                        if (value.value == ProgressCustomizationState.Value.Determinate) TechnicalText(text = " progress = $determinateProgressValue")
+                        if (hasLabel) TechnicalText(text = " label = \"$text\"")
                         TechnicalText(text = "  // add your content here")
-                        TechnicalText(text = "}")
                     }
                 }
             }

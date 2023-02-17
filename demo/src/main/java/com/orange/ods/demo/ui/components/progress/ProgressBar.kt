@@ -40,6 +40,7 @@ import com.orange.ods.demo.R
 import com.orange.ods.demo.ui.components.utilities.ComponentCustomizationBottomSheetScaffold
 import com.orange.ods.demo.ui.utilities.composable.CodeImplementationColumn
 import com.orange.ods.demo.ui.utilities.composable.CommonTechnicalTextColumn
+import com.orange.ods.demo.ui.utilities.composable.Subtitle
 import com.orange.ods.demo.ui.utilities.composable.TechnicalText
 
 private const val DeterminateProgressTargetValue = 0.9f
@@ -65,6 +66,7 @@ fun ProgressBar() {
                     modifier = Modifier.padding(horizontal = dimensionResource(id = R.dimen.spacing_m)),
                     outlinedChips = true
                 ) {
+                    Subtitle(textRes = R.string.component_progress_type)
                     OdsChoiceChip(textRes = R.string.component_progress_bar_determinate, value = ProgressCustomizationState.Value.Determinate)
                     OdsChoiceChip(textRes = R.string.component_progress_bar_indeterminate, value = ProgressCustomizationState.Value.Indeterminate)
                 }
@@ -76,10 +78,19 @@ fun ProgressBar() {
                     text = stringResource(id = R.string.component_element_icon),
                     trailing = OdsSwitchTrailing(checked = icon)
                 )
-                OdsListItem(
-                    text = stringResource(id = R.string.component_progress_bar_value),
-                    trailing = OdsSwitchTrailing(checked = currentValue)
-                )
+
+                if (value.value == ProgressCustomizationState.Value.Determinate) {
+                    OdsListItem(
+                        text = stringResource(id = R.string.component_progress_bar_value),
+                        trailing = OdsSwitchTrailing(checked = currentValue),
+                    )
+                } else {
+                    OdsListItem(
+                        text = stringResource(id = R.string.component_progress_bar_value),
+                        trailing = OdsSwitchTrailing(checked = currentValue, enabled = false),
+                    )
+                }
+
             }) {
             Column(
                 modifier = Modifier
@@ -87,39 +98,30 @@ fun ProgressBar() {
                     .verticalScroll(rememberScrollState())
             ) {
                 val text = stringResource(id = R.string.component_progress_circular_download)
-                val current_value = stringResource(id = R.string.component_progress_current_value)
+                val currentValue = stringResource(id = R.string.component_progress_current_value)
+                OdsLinearProgressIndicator(
+                    progress = if (value.value == ProgressCustomizationState.Value.Determinate) determinateProgressAnimation else null,
+                    label = if (hasLabel) text else null,
+                    currentValue = if (hasCurrentValue) currentValue else null,
+                    icon = if (hasIcon) painterResource(id = R.drawable.ic_arrow_down) else null,
+                    modifier = Modifier
+                        .padding(top = dimensionResource(id = R.dimen.spacing_m))
+                        .fillMaxWidth()
+                )
                 if (value.value == ProgressCustomizationState.Value.Determinate) {
-                    OdsLinearProgressIndicator(
-                        progress = determinateProgressAnimation,
-                        label = if (hasLabel) text else null,
-                        currentValue = if (hasCurrentValue) current_value else null,
-                        icon = if (hasIcon) painterResource(id = R.drawable.ic_arrow_down) else null,
-                        modifier = Modifier
-                            .padding(top = dimensionResource(id = R.dimen.spacing_m))
-                            .fillMaxWidth()
-                    )
                     LaunchedEffect(DeterminateProgressTargetValue) {
                         determinateProgressValue = DeterminateProgressTargetValue
                     }
-                } else {
-                    OdsLinearProgressIndicator(
-                        label = if (hasLabel) text else null,
-                        icon = if (hasIcon) painterResource(id = R.drawable.ic_arrow_down) else null,
-                        modifier = Modifier
-                            .padding(top = dimensionResource(id = R.dimen.spacing_m))
-                            .fillMaxWidth()
-                    )
                 }
                 CodeImplementationColumn {
                     CommonTechnicalTextColumn(
                         componentName = OdsComponent.OdsLinearProgressIndicator.name
                     ) {
-                        TechnicalText(text = "{")
-                        if (hasLabel) TechnicalText(text = " label = $text")
-                        if (hasCurrentValue && value.value == ProgressCustomizationState.Value.Determinate) TechnicalText(text = " current value = $current_value")
+                        if (value.value == ProgressCustomizationState.Value.Determinate) TechnicalText(text = " progress = $determinateProgressValue")
+                        if (hasLabel) TechnicalText(text = " label = \"$text\"")
+                        if (hasCurrentValue && value.value == ProgressCustomizationState.Value.Determinate) TechnicalText(text = " currentValue = \"$currentValue\"")
                         if (hasIcon) TechnicalText(text = " icon = painterResource(id = R.drawable.ic_arrow_down)")
                         TechnicalText(text = "  // add your content here")
-                        TechnicalText(text = "}")
                     }
                 }
             }

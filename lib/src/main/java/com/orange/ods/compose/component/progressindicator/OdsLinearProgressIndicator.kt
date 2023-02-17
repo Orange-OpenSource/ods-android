@@ -13,6 +13,7 @@ package com.orange.ods.compose.component.progressindicator
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material.Icon
 import androidx.compose.material.LinearProgressIndicator
@@ -58,11 +59,10 @@ fun OdsLinearProgressIndicator(
     progress?.let {
         Column(
             modifier = modifier
-                .padding(bottom = dimensionResource(id = R.dimen.screen_vertical_margin))
                 .padding(horizontal = dimensionResource(id = R.dimen.screen_horizontal_margin))
+                .padding(top = 16.dp)
         ) {
             Row(
-                modifier = modifier,
                 verticalAlignment = Alignment.CenterVertically,
                 horizontalArrangement = Arrangement.spacedBy(dimensionResource(id = R.dimen.spacing_s))
             ) {
@@ -78,30 +78,30 @@ fun OdsLinearProgressIndicator(
                 if (label != null) {
                     Text(
                         text = label,
-                        modifier = modifier
+                        modifier = Modifier
                             .padding(bottom = 8.dp)
                     )
                 }
             }
-            LinearProgressIndicator(progress = progress, modifier = modifier, color = progressIndicatorColor)
+            LinearProgressIndicator(progress = progress, modifier = Modifier.fillMaxWidth(), color = progressIndicatorColor)
 
             if (currentValue != null) {
-                OdsTextCaption(
-                    modifier = Modifier
-                        .padding(top = dimensionResource(id = R.dimen.spacing_xs), end = dimensionResource(id = R.dimen.spacing_l)),
-                    text = currentValue
-                )
+                Row(horizontalArrangement = Arrangement.End, modifier = Modifier.fillMaxWidth()) {
+                    OdsTextCaption(
+                        modifier = Modifier
+                            .padding(top = dimensionResource(id = R.dimen.spacing_xs)),
+                        text = currentValue
+                    )
+                }
             }
         }
-
     }.orElse {
         Column(
             modifier = modifier
-                .padding(bottom = dimensionResource(id = R.dimen.screen_vertical_margin))
                 .padding(horizontal = dimensionResource(id = R.dimen.screen_horizontal_margin))
+                .padding(top = 16.dp)
         ) {
             Row(
-                modifier = modifier,
                 verticalAlignment = Alignment.CenterVertically,
                 horizontalArrangement = Arrangement.spacedBy(dimensionResource(id = R.dimen.spacing_s))
             ) {
@@ -117,14 +117,12 @@ fun OdsLinearProgressIndicator(
                 if (label != null) {
                     Text(
                         text = label,
-                        modifier = modifier
+                        modifier = Modifier
                             .padding(bottom = 8.dp)
-                            
                     )
                 }
             }
-
-            LinearProgressIndicator(modifier = modifier, color = progressIndicatorColor)
+            LinearProgressIndicator(modifier = Modifier.fillMaxWidth(), color = progressIndicatorColor)
         }
     }
 }
