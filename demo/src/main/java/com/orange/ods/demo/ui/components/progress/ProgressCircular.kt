@@ -66,8 +66,8 @@ fun ProgressActivityIndicator() {
                     outlinedChips = true
                 ) {
                     Subtitle(textRes = R.string.component_progress_type)
-                    OdsChoiceChip(textRes = R.string.component_progress_bar_determinate, value = ProgressCustomizationState.Value.Determinate)
-                    OdsChoiceChip(textRes = R.string.component_progress_bar_indeterminate, value = ProgressCustomizationState.Value.Indeterminate)
+                    OdsChoiceChip(textRes = R.string.component_progress_indicator_determinate, value = ProgressCustomizationState.Value.Determinate)
+                    OdsChoiceChip(textRes = R.string.component_progress_indicator_indeterminate, value = ProgressCustomizationState.Value.Indeterminate)
                 }
                 OdsListItem(
                     text = stringResource(id = R.string.component_element_label),

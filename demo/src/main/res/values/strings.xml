@@ -215,14 +215,12 @@
     <!-- Component Progress Indicators -->
     <string name="component_progress">Progress Indicators</string>
     <string name="component_progress_description">Progress bar and activity indicator are used when a process is taking place to illustrate progress and to reassure users that something is happening, and if possible, how long it will take.</string>
-    <string name="component_progress_bar">Linear</string>
+    <string name="component_progress_linear">Linear</string>
     <string name="component_progress_type">Types</string>
-    <string name="component_progress_bar_determinate">Determinate</string>
-    <string name="component_progress_bar_indeterminate">Indeterminate</string>
-    <string name="component_progress_bar_value">Current value</string>
-    <string name="component_progress_activity_indicator">Circular</string>
-    <string name="component_progress_activity_indicator_determinate">Determinate</string>
-    <string name="component_progress_activity_indicator_indeterminate">Indeterminate</string>
+    <string name="component_progress_indicator_determinate">Determinate</string>
+    <string name="component_progress_indicator_indeterminate">Indeterminate</string>
+    <string name="component_progress_linear_value">Current value</string>
+    <string name="component_progress_circular">Circular</string>
     <string name="component_progress_circular_download">Downloading …</string>
     <string name="component_progress_current_value">70%</string>
 
