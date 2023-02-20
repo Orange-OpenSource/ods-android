@@ -99,7 +99,6 @@ fun ProgressCircular() {
                     ) {
                         if (type.value == ProgressCustomizationState.Type.Determinate) TechnicalText(text = " progress = $determinateProgressValue")
                         if (hasLabel) TechnicalText(text = " label = \"$text\"")
-                        TechnicalText(text = "  // add your content here")
                     }
                 }
             }
