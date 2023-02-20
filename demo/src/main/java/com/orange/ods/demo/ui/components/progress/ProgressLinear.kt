@@ -103,7 +103,7 @@ fun ProgressLinear() {
                 OdsLinearProgressIndicator(
                     progress = if (type.value == ProgressCustomizationState.Type.Determinate) determinateProgressAnimation else null,
                     label = if (hasLabel) text else null,
-                    currentValue = if (hasCurrentValue) currentValue else null,
+                    showCurrentValue = if (hasCurrentValue) currentValue else null,
                     icon = if (hasIcon) painterResource(id = R.drawable.ic_arrow_down) else null,
                     modifier = Modifier
                         .padding(top = dimensionResource(id = R.dimen.spacing_m))

@@ -13,6 +13,7 @@ package com.orange.ods.compose.component.progressindicator
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material.CircularProgressIndicator
+import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -23,7 +24,6 @@ import com.orange.ods.compose.component.OdsComponentApi
 import com.orange.ods.compose.component.utilities.BasicPreviewParameterProvider
 import com.orange.ods.compose.component.utilities.Preview
 import com.orange.ods.compose.component.utilities.UiModePreviews
-import com.orange.ods.compose.text.OdsTextCaption
 import com.orange.ods.compose.theme.OdsTheme
 import com.orange.ods.utilities.extension.orElse
 
@@ -34,6 +34,7 @@ import com.orange.ods.utilities.extension.orElse
  * @see androidx.compose.material.CircularProgressIndicator
  *
  * @param modifier The modifier applied to this progress indicator
+ * @param label The label displayed below the circular progress
  * @param progress The progress of this progress indicator, where 0.0 represents no progress and 1.0
  * represents full progress. Values outside of this range are coerced into the range. If set to `null`,
  * the progress indicator is indeterminate.
@@ -60,7 +61,7 @@ fun OdsCircularProgressIndicator(
             CircularProgressIndicator(modifier = modifier, color = progressIndicatorColor)
         }
         if (label != null) {
-            OdsTextCaption(
+            Text(
                 text = label,
                 modifier = Modifier
                     .padding(top = dimensionResource(id = R.dimen.spacing_s))

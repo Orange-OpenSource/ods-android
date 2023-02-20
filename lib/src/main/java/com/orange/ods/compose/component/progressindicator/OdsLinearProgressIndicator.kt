@@ -17,12 +17,14 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material.Icon
 import androidx.compose.material.LinearProgressIndicator
+import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.painter.Painter
 import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.PreviewParameter
 import com.orange.ods.R
 import com.orange.ods.compose.component.OdsComponentApi
@@ -39,6 +41,9 @@ import com.orange.ods.utilities.extension.orElse
  * @see androidx.compose.material.LinearProgressIndicator
  *
  * @param modifier The modifier applied to this progress indicator
+ * @param label The label displayed above the linear progress
+ * @param icon The icon displayed above the linear progress
+ * @param showCurrentValue The label displayed below the linear progress for present the real value
  * @param progress The progress of this progress indicator, where 0.0 represents no progress and 1.0
  * represents full progress. Values outside of this range are coerced into the range. If set to `null`,
  * the progress indicator is indeterminate.
@@ -73,8 +78,10 @@ fun OdsLinearProgressIndicator(
                 )
             }
             if (label != null) {
-                OdsTextCaption(
+                Text(
                     text = label,
+                    overflow = TextOverflow.Ellipsis,
+                    maxLines = 1,
                     modifier = Modifier
                         .padding(bottom = dimensionResource(id = R.dimen.spacing_s))
                 )
