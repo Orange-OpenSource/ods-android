@@ -48,7 +48,7 @@ private const val DeterminateProgressAnimDuration = 5000
 
 @OptIn(ExperimentalMaterialApi::class)
 @Composable
-fun ProgressActivityIndicator() {
+fun ProgressCircular() {
     val customizationState = rememberProgressCustomizationState()
     var determinateProgressValue by remember { mutableStateOf(0f) }
     val determinateProgressAnimation by animateFloatAsState(

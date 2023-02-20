@@ -37,6 +37,7 @@ import com.orange.ods.compose.component.list.OdsListItem
 import com.orange.ods.compose.component.list.OdsSwitchTrailing
 import com.orange.ods.compose.component.progressindicator.OdsLinearProgressIndicator
 import com.orange.ods.demo.R
+import com.orange.ods.demo.ui.components.Variant
 import com.orange.ods.demo.ui.components.utilities.ComponentCustomizationBottomSheetScaffold
 import com.orange.ods.demo.ui.utilities.composable.CodeImplementationColumn
 import com.orange.ods.demo.ui.utilities.composable.CommonTechnicalTextColumn
@@ -48,7 +49,7 @@ private const val DeterminateProgressAnimDuration = 5000
 
 @OptIn(ExperimentalMaterialApi::class)
 @Composable
-fun ProgressBar() {
+fun ProgressLinear() {
 
     val customizationState = rememberProgressCustomizationState()
     var determinateProgressValue by remember { mutableStateOf(0f) }

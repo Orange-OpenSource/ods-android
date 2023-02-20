@@ -22,8 +22,8 @@ fun ComponentProgress(variant: Variant) {
 
     Column {
         when (variant) {
-            Variant.ProgressLinear -> ProgressBar()
-            Variant.ProgressCircular -> ProgressActivityIndicator()
+            Variant.ProgressLinear -> ProgressLinear()
+            Variant.ProgressCircular -> ProgressCircular()
             else -> {}
         }
 
