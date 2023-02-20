@@ -98,7 +98,7 @@ fun ProgressLinear() {
                     .fillMaxWidth()
                     .verticalScroll(rememberScrollState())
             ) {
-                val text = stringResource(id = R.string.component_progress_circular_download)
+                val text = stringResource(id = R.string.component_progress_label)
                 val currentValue = stringResource(id = R.string.component_progress_current_value)
                 OdsLinearProgressIndicator(
                     progress = if (type.value == ProgressCustomizationState.Type.Determinate) determinateProgressAnimation else null,
