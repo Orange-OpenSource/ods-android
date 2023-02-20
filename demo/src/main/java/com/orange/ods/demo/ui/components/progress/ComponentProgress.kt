@@ -29,39 +29,3 @@ fun ComponentProgress(variant: Variant) {
 
     }
 }
-
-/*@Composable
-private fun ColumnScope.ProgressBar(determinateProgressAnimation: Float) {
-    Subtitle(textRes = R.string.component_progress_bar_determinate)
-    OdsLinearProgressIndicator(
-        progress = determinateProgressAnimation,
-        modifier = Modifier
-            .padding(top = dimensionResource(id = R.dimen.spacing_m))
-            .fillMaxWidth()
-    )
-    Subtitle(textRes = R.string.component_progress_bar_indeterminate)
-    OdsLinearProgressIndicator(
-        modifier = Modifier
-            .padding(top = dimensionResource(id = R.dimen.spacing_m))
-            .fillMaxWidth()
-    )
-}*/
-
-/*
-@Composable
-private fun ColumnScope.ProgressActivityIndicator(determinateProgressAnimation: Float) {
-    Subtitle(textRes = R.string.component_progress_activity_indicator_determinate)
-    OdsCircularProgressIndicator(
-        progress = determinateProgressAnimation,
-        modifier = Modifier
-            .padding(top = dimensionResource(id = R.dimen.spacing_m))
-            .align(alignment = Alignment.CenterHorizontally)
-    )
-    Subtitle(textRes = R.string.component_progress_activity_indicator_indeterminate)
-    OdsCircularProgressIndicator(
-        modifier = Modifier
-            .padding(top = dimensionResource(id = R.dimen.spacing_m))
-            .align(alignment = Alignment.CenterHorizontally)
-    )
-
-}*/
