@@ -18,22 +18,22 @@ import androidx.compose.runtime.saveable.rememberSaveable
 
 @Composable
 fun rememberProgressCustomizationState(
-    value: MutableState<ProgressCustomizationState.Value> = rememberSaveable { mutableStateOf(ProgressCustomizationState.Value.Determinate) },
+    type: MutableState<ProgressCustomizationState.Type> = rememberSaveable { mutableStateOf(ProgressCustomizationState.Type.Determinate) },
     icon: MutableState<Boolean> = rememberSaveable { mutableStateOf(false) },
     currentValue: MutableState<Boolean> = rememberSaveable { mutableStateOf(false) },
     label: MutableState<Boolean> = rememberSaveable { mutableStateOf(false) }
 ) =
-    remember(icon, currentValue, label, value) {
-        ProgressCustomizationState(value, icon, currentValue, label)
+    remember(icon, currentValue, label, type) {
+        ProgressCustomizationState(type, icon, currentValue, label)
     }
 
 class ProgressCustomizationState(
-    val value: MutableState<ProgressCustomizationState.Value>,
+    val type: MutableState<ProgressCustomizationState.Type>,
     val icon: MutableState<Boolean>,
     val currentValue: MutableState<Boolean>,
     val label: MutableState<Boolean>
 ) {
-    enum class Value {
+    enum class Type {
         Determinate, Indeterminate
     }
 

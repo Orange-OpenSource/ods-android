@@ -63,13 +63,13 @@ fun ProgressLinear() {
             bottomSheetScaffoldState = rememberBottomSheetScaffoldState(),
             bottomSheetContent = {
                 OdsChoiceChipsFlowRow(
-                    selectedChip = value,
+                    selectedChip = type,
                     modifier = Modifier.padding(horizontal = dimensionResource(id = R.dimen.spacing_m)),
                     outlinedChips = true
                 ) {
                     Subtitle(textRes = R.string.component_progress_type)
-                    OdsChoiceChip(textRes = R.string.component_progress_indicator_determinate, value = ProgressCustomizationState.Value.Determinate)
-                    OdsChoiceChip(textRes = R.string.component_progress_indicator_indeterminate, value = ProgressCustomizationState.Value.Indeterminate)
+                    OdsChoiceChip(textRes = R.string.component_progress_indicator_determinate, value = ProgressCustomizationState.Type.Determinate)
+                    OdsChoiceChip(textRes = R.string.component_progress_indicator_indeterminate, value = ProgressCustomizationState.Type.Indeterminate)
                 }
                 OdsListItem(
                     text = stringResource(id = R.string.component_element_label),
@@ -80,7 +80,7 @@ fun ProgressLinear() {
                     trailing = OdsSwitchTrailing(checked = icon)
                 )
 
-                if (value.value == ProgressCustomizationState.Value.Determinate) {
+                if (type.value == ProgressCustomizationState.Type.Determinate) {
                     OdsListItem(
                         text = stringResource(id = R.string.component_progress_linear_value),
                         trailing = OdsSwitchTrailing(checked = currentValue),
@@ -101,7 +101,7 @@ fun ProgressLinear() {
                 val text = stringResource(id = R.string.component_progress_circular_download)
                 val currentValue = stringResource(id = R.string.component_progress_current_value)
                 OdsLinearProgressIndicator(
-                    progress = if (value.value == ProgressCustomizationState.Value.Determinate) determinateProgressAnimation else null,
+                    progress = if (type.value == ProgressCustomizationState.Type.Determinate) determinateProgressAnimation else null,
                     label = if (hasLabel) text else null,
                     currentValue = if (hasCurrentValue) currentValue else null,
                     icon = if (hasIcon) painterResource(id = R.drawable.ic_arrow_down) else null,
@@ -109,7 +109,7 @@ fun ProgressLinear() {
                         .padding(top = dimensionResource(id = R.dimen.spacing_m))
                         .fillMaxWidth()
                 )
-                if (value.value == ProgressCustomizationState.Value.Determinate) {
+                if (type.value == ProgressCustomizationState.Type.Determinate) {
                     LaunchedEffect(DeterminateProgressTargetValue) {
                         determinateProgressValue = DeterminateProgressTargetValue
                     }
@@ -118,9 +118,9 @@ fun ProgressLinear() {
                     CommonTechnicalTextColumn(
                         componentName = OdsComponent.OdsLinearProgressIndicator.name
                     ) {
-                        if (value.value == ProgressCustomizationState.Value.Determinate) TechnicalText(text = " progress = $determinateProgressValue")
+                        if (type.value == ProgressCustomizationState.Type.Determinate) TechnicalText(text = " progress = $determinateProgressValue")
                         if (hasLabel) TechnicalText(text = " label = \"$text\"")
-                        if (hasCurrentValue && value.value == ProgressCustomizationState.Value.Determinate) TechnicalText(text = " currentValue = \"$currentValue\"")
+                        if (hasCurrentValue && type.value == ProgressCustomizationState.Type.Determinate) TechnicalText(text = " currentValue = \"$currentValue\"")
                         if (hasIcon) TechnicalText(text = " icon = painterResource(id = R.drawable.ic_arrow_down)")
                     }
                 }

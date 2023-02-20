@@ -61,13 +61,13 @@ fun ProgressCircular() {
             bottomSheetScaffoldState = rememberBottomSheetScaffoldState(),
             bottomSheetContent = {
                 OdsChoiceChipsFlowRow(
-                    selectedChip = value,
+                    selectedChip = type,
                     modifier = Modifier.padding(horizontal = dimensionResource(id = R.dimen.spacing_m)),
                     outlinedChips = true
                 ) {
                     Subtitle(textRes = R.string.component_progress_type)
-                    OdsChoiceChip(textRes = R.string.component_progress_indicator_determinate, value = ProgressCustomizationState.Value.Determinate)
-                    OdsChoiceChip(textRes = R.string.component_progress_indicator_indeterminate, value = ProgressCustomizationState.Value.Indeterminate)
+                    OdsChoiceChip(textRes = R.string.component_progress_indicator_determinate, value = ProgressCustomizationState.Type.Determinate)
+                    OdsChoiceChip(textRes = R.string.component_progress_indicator_indeterminate, value = ProgressCustomizationState.Type.Indeterminate)
                 }
                 OdsListItem(
                     text = stringResource(id = R.string.component_element_label),
@@ -81,13 +81,13 @@ fun ProgressCircular() {
             ) {
                 val text = stringResource(id = R.string.component_progress_circular_download)
                 OdsCircularProgressIndicator(
-                    progress = if (value.value == ProgressCustomizationState.Value.Determinate) determinateProgressAnimation else null,
+                    progress = if (type.value == ProgressCustomizationState.Type.Determinate) determinateProgressAnimation else null,
                     label = if (hasLabel) text else null,
                     modifier = Modifier
                         .padding(top = dimensionResource(id = R.dimen.spacing_m))
                         .align(alignment = Alignment.CenterHorizontally)
                 )
-                if (value.value == ProgressCustomizationState.Value.Determinate) {
+                if (type.value == ProgressCustomizationState.Type.Determinate) {
                     LaunchedEffect(DeterminateProgressTargetValue) {
                         determinateProgressValue = DeterminateProgressTargetValue
                     }
@@ -97,7 +97,7 @@ fun ProgressCircular() {
                     CommonTechnicalTextColumn(
                         componentName = OdsComponent.OdsCircularProgressIndicator.name
                     ) {
-                        if (value.value == ProgressCustomizationState.Value.Determinate) TechnicalText(text = " progress = $determinateProgressValue")
+                        if (type.value == ProgressCustomizationState.Type.Determinate) TechnicalText(text = " progress = $determinateProgressValue")
                         if (hasLabel) TechnicalText(text = " label = \"$text\"")
                         TechnicalText(text = "  // add your content here")
                     }
