@@ -17,7 +17,6 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material.Icon
 import androidx.compose.material.LinearProgressIndicator
-import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -25,7 +24,6 @@ import androidx.compose.ui.graphics.painter.Painter
 import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.PreviewParameter
-import androidx.compose.ui.unit.dp
 import com.orange.ods.R
 import com.orange.ods.compose.component.OdsComponentApi
 import com.orange.ods.compose.component.utilities.BasicPreviewParameterProvider
@@ -56,33 +54,33 @@ fun OdsLinearProgressIndicator(
     progress: Float? = null,
 ) {
     val progressIndicatorColor = OdsTheme.colors.primary
-    progress?.let {
-        Column(
-            modifier = modifier
-                .padding(horizontal = dimensionResource(id = R.dimen.screen_horizontal_margin))
-                .padding(top = 16.dp)
+    Column(
+        modifier = modifier
+            .padding(horizontal = dimensionResource(id = R.dimen.spacing_m))
+            .padding(top = dimensionResource(id = R.dimen.spacing_m))
+    ) {
+        Row(
+            verticalAlignment = Alignment.CenterVertically,
+            horizontalArrangement = Arrangement.spacedBy(dimensionResource(id = R.dimen.spacing_s))
         ) {
-            Row(
-                verticalAlignment = Alignment.CenterVertically,
-                horizontalArrangement = Arrangement.spacedBy(dimensionResource(id = R.dimen.spacing_s))
-            ) {
-                icon?.let { painter ->
-                    Icon(
-                        painter = painter, contentDescription = iconContentDescription,
-                        modifier = Modifier
-                            .align(alignment = Alignment.Bottom)
-                            .padding(bottom = 4.dp),
-                        tint = OdsTheme.colors.onSurface
-                    )
-                }
-                if (label != null) {
-                    Text(
-                        text = label,
-                        modifier = Modifier
-                            .padding(bottom = 8.dp)
-                    )
-                }
+            icon?.let { painter ->
+                Icon(
+                    painter = painter, contentDescription = iconContentDescription,
+                    modifier = Modifier
+                        .align(alignment = Alignment.Bottom)
+                        .padding(bottom = dimensionResource(id = R.dimen.spacing_xs)),
+                    tint = OdsTheme.colors.onSurface
+                )
             }
+            if (label != null) {
+                OdsTextCaption(
+                    text = label,
+                    modifier = Modifier
+                        .padding(bottom = dimensionResource(id = R.dimen.spacing_s))
+                )
+            }
+        }
+        progress?.let {
             LinearProgressIndicator(progress = progress, modifier = Modifier.fillMaxWidth(), color = progressIndicatorColor)
 
             if (currentValue != null) {
@@ -94,34 +92,7 @@ fun OdsLinearProgressIndicator(
                     )
                 }
             }
-        }
-    }.orElse {
-        Column(
-            modifier = modifier
-                .padding(horizontal = dimensionResource(id = R.dimen.screen_horizontal_margin))
-                .padding(top = 16.dp)
-        ) {
-            Row(
-                verticalAlignment = Alignment.CenterVertically,
-                horizontalArrangement = Arrangement.spacedBy(dimensionResource(id = R.dimen.spacing_s))
-            ) {
-                icon?.let { painter ->
-                    Icon(
-                        painter = painter, contentDescription = iconContentDescription,
-                        modifier = Modifier
-                            .align(alignment = Alignment.Bottom)
-                            .padding(bottom = 4.dp),
-                        tint = OdsTheme.colors.onSurface
-                    )
-                }
-                if (label != null) {
-                    Text(
-                        text = label,
-                        modifier = Modifier
-                            .padding(bottom = 8.dp)
-                    )
-                }
-            }
+        }.orElse {
             LinearProgressIndicator(modifier = Modifier.fillMaxWidth(), color = progressIndicatorColor)
         }
     }
