@@ -48,7 +48,7 @@ import com.orange.ods.utilities.extension.orElse
 fun OdsLinearProgressIndicator(
     modifier: Modifier = Modifier,
     label: String? = null,
-    currentValue: String? = null,
+    showCurrentValue: String? = null,
     iconContentDescription: String? = null,
     icon: Painter? = null,
     progress: Float? = null,
@@ -83,12 +83,12 @@ fun OdsLinearProgressIndicator(
         progress?.let {
             LinearProgressIndicator(progress = progress, modifier = Modifier.fillMaxWidth(), color = progressIndicatorColor)
 
-            if (currentValue != null) {
+            if (showCurrentValue != null) {
                 Row(horizontalArrangement = Arrangement.End, modifier = Modifier.fillMaxWidth()) {
                     OdsTextCaption(
                         modifier = Modifier
                             .padding(top = dimensionResource(id = R.dimen.spacing_xs)),
-                        text = currentValue
+                        text = showCurrentValue
                     )
                 }
             }
@@ -105,7 +105,7 @@ fun PreviewOdsLinearProgressIndicator(@PreviewParameter(OdsLinearProgressIndicat
         progress = progress,
         icon = painterResource(id = android.R.drawable.stat_sys_download),
         label = "Downloading …",
-        currentValue = "70%"
+        showCurrentValue = "70%"
     )
 }
 
