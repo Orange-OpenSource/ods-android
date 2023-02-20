@@ -130,7 +130,12 @@ fun OdsLinearProgressIndicator(
 @UiModePreviews.Default
 @Composable
 fun PreviewOdsLinearProgressIndicator(@PreviewParameter(OdsLinearProgressIndicatorPreviewParameterProvider::class) progress: Float?) = Preview {
-    OdsLinearProgressIndicator(progress = progress, icon = painterResource(id = R.drawable.ic_arrow_down), label = "Downloading …", currentValue = "70%")
+    OdsLinearProgressIndicator(
+        progress = progress,
+        icon = painterResource(id = android.R.drawable.stat_sys_download),
+        label = "Downloading …",
+        currentValue = "70%"
+    )
 }
 
 private class OdsLinearProgressIndicatorPreviewParameterProvider : BasicPreviewParameterProvider<Float?>(0.75f, null)
