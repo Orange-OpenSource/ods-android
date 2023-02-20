@@ -13,6 +13,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - \[Demo\] Add bottom sheet component ([#360](https://github.com/Orange-OpenSource/ods-android/issues/360))
 - \[Lib\] Add `OdsBottomSheetScaffold` component ([#360](https://github.com/Orange-OpenSource/ods-android/issues/360))
 
+### Changed
+
+- \[Lib\] Add label and icon parameters to `OdsLinearProgressIndicator` component to display text and icon above the indicator ([#362](https://github.com/Orange-OpenSource/ods-android/issues/362))
+- \[Lib\] Show current value to `OdsLinearProgressIndicator` component to display current value below the indicator ([#362](https://github.com/Orange-OpenSource/ods-android/issues/362))
+- \[Lib\] Add label parameter to `OdsCircularProgressIndicator` component to display a text below the indicator ([#362](https://github.com/Orange-OpenSource/ods-android/issues/362))
+
 ### Fixed
 
 - \[Demo\] Update application name and description in about page ([#419](https://github.com/Orange-OpenSource/ods-android/issues/419))
