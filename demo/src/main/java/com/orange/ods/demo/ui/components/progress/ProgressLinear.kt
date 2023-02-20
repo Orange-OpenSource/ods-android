@@ -122,7 +122,6 @@ fun ProgressLinear() {
                         if (hasLabel) TechnicalText(text = " label = \"$text\"")
                         if (hasCurrentValue && value.value == ProgressCustomizationState.Value.Determinate) TechnicalText(text = " currentValue = \"$currentValue\"")
                         if (hasIcon) TechnicalText(text = " icon = painterResource(id = R.drawable.ic_arrow_down)")
-                        TechnicalText(text = "  // add your content here")
                     }
                 }
             }
