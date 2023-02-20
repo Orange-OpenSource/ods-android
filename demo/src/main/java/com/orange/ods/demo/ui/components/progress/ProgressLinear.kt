@@ -68,8 +68,8 @@ fun ProgressLinear() {
                     outlinedChips = true
                 ) {
                     Subtitle(textRes = R.string.component_progress_type)
-                    OdsChoiceChip(textRes = R.string.component_progress_indicator_determinate, value = ProgressCustomizationState.Type.Determinate)
-                    OdsChoiceChip(textRes = R.string.component_progress_indicator_indeterminate, value = ProgressCustomizationState.Type.Indeterminate)
+                    OdsChoiceChip(textRes = R.string.component_progress_determinate, value = ProgressCustomizationState.Type.Determinate)
+                    OdsChoiceChip(textRes = R.string.component_progress_indeterminate, value = ProgressCustomizationState.Type.Indeterminate)
                 }
                 OdsListItem(
                     text = stringResource(id = R.string.component_element_label),
