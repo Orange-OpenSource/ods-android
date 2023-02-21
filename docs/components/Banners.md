@@ -24,7 +24,7 @@ Only one banner should be shown at a time
 ## Specifications references
 
 - [Design System Manager - Banners](https://system.design.orange.com/0c1af118d/p/19a040-banners/b/497b77)
-- [Material Design - Snackbars](https://m2.material.io/components/banners)
+- [Material Design - Banners](https://m2.material.io/components/banners)
 - Technical documentation soon available
 
 ## Accessibility
