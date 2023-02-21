@@ -97,13 +97,20 @@
     <string name="component_app_bars_top_add_action">Add action</string>
     <string name="component_app_bars_top_action_ice_cream">Ice Cream</string>
 
-
     <!-- Components Bottom navigation -->
     <string name="component_bottom_navigation">Bottom navigation</string>
     <string name="component_bottom_navigation_description">Enable users to quickly and directly explore top-level destinations.</string>
     <string name="component_bottom_navigation_navigation_item_count">Navigation item count</string>
     <string name="component_bottom_navigation_remove_item">Remove item</string>
     <string name="component_bottom_navigation_add_item">Add item</string>
+
+    <!-- Components Banners -->
+    <string name="component_banners">Banners</string>
+    <string name="component_banners_twoButtom">Two lines</string>
+    <string name="component_banners_image">Two lines with image</string>
+    <string name="component_banners_description">A banner displays an important message which requires an action to be dismissed.</string>
+    <string name="component_banners_oneLine">One line text string with one action.</string>
+    <string name="component_banners_twoLine">Two lines text string with two actions. One to two lines is preferable on mobile and tablet.</string>
 
     <!-- Components Buttons -->
     <string name="component_buttons">Buttons</string>

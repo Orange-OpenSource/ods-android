@@ -13,6 +13,7 @@ package com.orange.ods.demo.ui.components
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember
 import com.orange.ods.demo.ui.LocalMainTopAppBarManager
+import com.orange.ods.demo.ui.components.banners.ComponentBanners
 import com.orange.ods.demo.ui.components.bottomnavigation.ComponentBottomNavigation
 import com.orange.ods.demo.ui.components.checkboxes.ComponentCheckboxes
 import com.orange.ods.demo.ui.components.dialogs.ComponentDialog
@@ -31,6 +32,7 @@ fun ComponentDemoScreen(componentId: Long) {
     component?.let {
         LocalMainTopAppBarManager.current.updateTopAppBarTitle(component.titleRes)
         when (component) {
+            Component.Banners -> ComponentBanners()
             Component.BottomNavigation -> ComponentBottomNavigation()
             Component.Checkboxes -> ComponentCheckboxes()
             Component.Dialogs -> ComponentDialog()
