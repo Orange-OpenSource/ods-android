@@ -17,6 +17,8 @@ toc2:
         url: /components/AppBarsBottom_docs
       - page: "App bars: top"
         url: /components/AppBarsTop_docs
+      - page: Banners
+        url: /components/Banners_docs
       - page: Buttons
         url: /components/Buttons_docs
       - page: Cards
