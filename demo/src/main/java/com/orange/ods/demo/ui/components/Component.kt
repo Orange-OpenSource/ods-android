@@ -74,7 +74,7 @@ sealed class Component(
 
     object Banners : Component(
         R.string.component_banners,
-        R.drawable.il_snackbars,
+        R.drawable.il_banners,
         null,
         R.string.component_banners_description,
         composableName = OdsComponent.OdsBanner.name

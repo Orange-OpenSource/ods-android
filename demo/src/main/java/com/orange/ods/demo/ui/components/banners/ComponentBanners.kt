@@ -11,11 +11,12 @@
 package com.orange.ods.demo.ui.components.banners
 
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.padding
 import androidx.compose.material.ExperimentalMaterialApi
 import androidx.compose.material.rememberBottomSheetScaffoldState
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.saveable.rememberSaveable
+import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import com.orange.ods.compose.component.OdsComponent
@@ -23,6 +24,7 @@ import com.orange.ods.compose.component.banner.OdsBanner
 import com.orange.ods.compose.component.list.OdsListItem
 import com.orange.ods.compose.component.list.OdsSwitchTrailing
 import com.orange.ods.demo.R
+import com.orange.ods.demo.ui.components.utilities.ComponentCountRow
 import com.orange.ods.demo.ui.components.utilities.ComponentCustomizationBottomSheetScaffold
 import com.orange.ods.demo.ui.utilities.composable.CodeImplementationColumn
 import com.orange.ods.demo.ui.utilities.composable.CommonTechnicalTextColumn
@@ -32,42 +34,61 @@ import com.orange.ods.demo.ui.utilities.composable.TechnicalText
 @Composable
 fun ComponentBanners() {
 
-    val actionIconChecked = rememberSaveable { mutableStateOf(false) }
-    val actionOnNewLineChecked = rememberSaveable { mutableStateOf(false) }
-    if (!actionOnNewLineChecked.value) {
-        actionIconChecked.value = false
-    }
+    val bannerCustomizationState = rememberBannerCustomizationState()
 
-    ComponentCustomizationBottomSheetScaffold(
-        bottomSheetScaffoldState = rememberBottomSheetScaffoldState(),
-        bottomSheetContent = {
-            OdsListItem(
-                text = stringResource(id = R.string.component_banners_twoButtom),
-                trailing = OdsSwitchTrailing(checked = actionOnNewLineChecked)
-            )
-            OdsListItem(
-                text = stringResource(id = R.string.component_banners_image),
-                trailing = OdsSwitchTrailing(checked = actionIconChecked, enabled = actionOnNewLineChecked.value)
-            )
-        }
-    ) {
-        Column {
-            OdsBanner(
-                message = if (actionOnNewLineChecked.value) stringResource(id = R.string.component_banners_twoLine) else stringResource(id = R.string.component_banners_oneLine),
-                actionLabel = stringResource(id = R.string.component_snackbar_action_label),
-                actionOnNewLine = !actionOnNewLineChecked.value,
-                image = if (actionIconChecked.value) painterResource(id = com.orange.ods.R.drawable.placeholder) else null
-            )
+    with(bannerCustomizationState) {
+        ComponentCustomizationBottomSheetScaffold(
+            bottomSheetScaffoldState = rememberBottomSheetScaffoldState(),
+            bottomSheetContent = {
+                ComponentCountRow(
+                    title = stringResource(id = R.string.component_banners_textLines),
+                    count = textLinesCount,
+                    minusIconContentDescription = stringResource(id = R.string.component_card_remove_action_button),
+                    plusIconContentDescription = stringResource(id = R.string.component_card_add_action_button),
+                    modifier = Modifier.padding(start = dimensionResource(id = R.dimen.screen_horizontal_margin)),
+                    minCount = BannerCustomizationState.MinTextCount,
+                    maxCount = BannerCustomizationState.MaxTextCount
+                )
+                ComponentCountRow(
+                    title = stringResource(id = R.string.component_banners_Buttons),
+                    count = buttonsCount,
+                    minusIconContentDescription = stringResource(id = R.string.component_banner_remove_action_button),
+                    plusIconContentDescription = stringResource(id = R.string.component_banner_add_action_button),
+                    modifier = Modifier.padding(start = dimensionResource(id = R.dimen.screen_horizontal_margin)),
+                    minCount = BannerCustomizationState.MinActionButtonCount,
+                    maxCount = BannerCustomizationState.MaxActionButtonCount
+                )
+                OdsListItem(
+                    text = stringResource(id = R.string.component_banners_image),
+                    trailing = OdsSwitchTrailing(checked = iconChecked, enabled = hasTextLines)
+                )
+                OdsListItem(
+                    text = stringResource(id = R.string.component_banners_divider),
+                    trailing = OdsSwitchTrailing(checked = dividerChecked)
+                )
+            }
+        ) {
+            Column {
+                OdsBanner(
+                    message = if (hasTextLines) stringResource(id = R.string.component_banners_twoLine) else stringResource(id = R.string.component_banners_oneLine),
+                    button1Text = stringResource(id = R.string.component_snackbar_action_label),
+                    buttonText = if (hasTextLines && hasButton) stringResource(id = R.string.component_snackbar_action_label) else null,
+                    actionOnNewLine = !hasTextLines,
+                    image = if (hasIcon) painterResource(id = com.orange.ods.R.drawable.placeholder) else null,
+                    divider = hasDivider
+                )
 
-            CodeImplementationColumn {
-                CommonTechnicalTextColumn(
-                    componentName = OdsComponent.OdsBanner.name
-                ) {
-                    if (actionOnNewLineChecked.value) TechnicalText(text = " message = \"${stringResource(id = R.string.component_banners_twoLine)}\"")
-                    else TechnicalText(text = "Message : \"${stringResource(id = R.string.component_banners_oneLine)}\"")
-                    TechnicalText("")
-                    if (actionIconChecked.value) TechnicalText(text = " image = painterResource(id = R.drawable.placeholder)")
-
+                CodeImplementationColumn {
+                    CommonTechnicalTextColumn(
+                        componentName = OdsComponent.OdsBanner.name
+                    ) {
+                        if (hasTextLines) TechnicalText(text = " message = \"${stringResource(id = R.string.component_banners_twoLine)}\"")
+                        else TechnicalText(text = " message = \"${stringResource(id = R.string.component_banners_oneLine)}\"")
+                        TechnicalText("")
+                        TechnicalText(" divider = $hasDivider")
+                        TechnicalText("")
+                        if (hasIcon) TechnicalText(text = " image = painterResource(id = R.drawable.placeholder)")
+                    }
                 }
             }
         }

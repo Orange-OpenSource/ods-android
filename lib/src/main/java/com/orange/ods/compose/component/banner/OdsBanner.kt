@@ -42,13 +42,16 @@ import com.orange.ods.compose.text.OdsTextBody2
  * <a href="https://system.design.orange.com/0c1af118d/p/19a040-banners/b/497b77" class="external" target="_blank">ODS banners</a>.
  *
  *
- * @param message text displayed in the banner
- * @param modifier modifiers for the Banner layout
- * @param image image display in the banner
- * @param actionLabel if set, it displays an [OdsTextButton] with the given [actionLabel] as an action of the banner.
- * @param actionOnNewLine whether or not action should be put on the separate line. Recommended
- * for action with long action text
- * @param onActionClick executed on action button click.
+ * @param message text displayed in the banner.
+ * @param modifier modifiers for the Banner layout.
+ * @param image image display in the banner.
+ * @param imageContentDescription Optional image content description.
+ * @param buttonText Optional text of the second button in the banner. If not present, button will not be shown. If present, [onButton2Click] need to be  handle.
+ * @param button1Text principal button in the banner, it displays an [OdsTextButton] with the given [button1Text] as an action of the banner.
+ * @param actionOnNewLine whether or not action should be put on the separate line.
+ * @param divider add the line at the end of the banner.
+ * @param onButtonClick Optional handler for the button click.
+ * @param onButton1Click executed on action button2 click.
  */
 @Composable
 @OdsComponentApi
@@ -56,10 +59,13 @@ fun OdsBanner(
     modifier: Modifier = Modifier,
     message: String,
     image: Painter? = null,
-    iconContentDescription: String? = null,
+    imageContentDescription: String? = null,
     actionOnNewLine: Boolean = false,
-    actionLabel: String,
-    onActionClick: () -> Unit = {}
+    divider: Boolean = true,
+    button1Text: String,
+    buttonText: String? = null,
+    onButtonClick: (() -> Unit)? = null,
+    onButton1Click: () -> Unit = {}
 ) {
     Column(
         modifier = modifier
@@ -75,15 +81,17 @@ fun OdsBanner(
             modifier = Modifier.fillMaxWidth(),
             horizontalArrangement = Arrangement.SpaceBetween,
         ) {
-            image?.let {
-                Image(
-                    painter = image,
-                    contentDescription = iconContentDescription,
-                    contentScale = ContentScale.Crop,// crop the image if it's not a square
-                    modifier = Modifier
-                        .size(60.dp)
-                        .clip(CircleShape)
-                )
+            if (!actionOnNewLine) {
+                image?.let {
+                    Image(
+                        painter = image,
+                        contentDescription = imageContentDescription,
+                        contentScale = ContentScale.Crop,// crop the image if it's not a square
+                        modifier = Modifier
+                            .size(50.dp)
+                            .clip(CircleShape)
+                    )
+                }
             }
             OdsTextBody2(
                 modifier = Modifier
@@ -94,7 +102,6 @@ fun OdsBanner(
                     ),
                 text = message
             )
-
             if (actionOnNewLine) {
                 Row(
                     modifier = Modifier
@@ -104,8 +111,8 @@ fun OdsBanner(
                     OdsTextButton(
                         modifier = Modifier.padding(end = dimensionResource(id = R.dimen.spacing_s)),
                         style = OdsTextButtonStyle.Primary,
-                        text = actionLabel.uppercase(),
-                        onClick = onActionClick
+                        text = button1Text.uppercase(),
+                        onClick = onButton1Click
                     )
                 }
             }
@@ -119,18 +126,20 @@ fun OdsBanner(
                 OdsTextButton(
                     modifier = Modifier.padding(end = dimensionResource(id = R.dimen.spacing_s)),
                     style = OdsTextButtonStyle.Primary,
-                    text = actionLabel,
-                    onClick = onActionClick
+                    text = button1Text,
+                    onClick = onButton1Click
                 )
-                OdsTextButton(
-                    modifier = Modifier.padding(end = dimensionResource(id = R.dimen.spacing_s)),
-                    style = OdsTextButtonStyle.Primary,
-                    text = actionLabel,
-                    onClick = onActionClick
-                )
+                buttonText?.let {
+                    OdsTextButton(
+                        modifier = Modifier.padding(end = dimensionResource(id = R.dimen.spacing_s)),
+                        style = OdsTextButtonStyle.Primary,
+                        text = buttonText,
+                        onClick = { onButtonClick?.invoke() }
+                    )
+                }
             }
         }
-        Divider()
+        if (divider) Divider()
     }
 }
 
@@ -139,7 +148,7 @@ fun OdsBanner(
 private fun PreviewOdsBanner(@PreviewParameter(OdsBannerPreviewParameterProvider::class) actionOnNewLine: Boolean) = Preview {
     OdsBanner(
         message = "Two lines text string with two actions.", modifier = Modifier,
-        actionLabel = "Action",
+        button1Text = "Action",
         actionOnNewLine = actionOnNewLine
     )
 }
