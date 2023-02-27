@@ -28,7 +28,7 @@ fun rememberProgressCustomizationState(
     }
 
 class ProgressCustomizationState(
-    val type: MutableState<ProgressCustomizationState.Type>,
+    val type: MutableState<Type>,
     val icon: MutableState<Boolean>,
     val currentValue: MutableState<Boolean>,
     val label: MutableState<Boolean>

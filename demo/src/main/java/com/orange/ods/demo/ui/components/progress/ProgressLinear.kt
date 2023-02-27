@@ -37,7 +37,6 @@ import com.orange.ods.compose.component.list.OdsListItem
 import com.orange.ods.compose.component.list.OdsSwitchTrailing
 import com.orange.ods.compose.component.progressindicator.OdsLinearProgressIndicator
 import com.orange.ods.demo.R
-import com.orange.ods.demo.ui.components.Variant
 import com.orange.ods.demo.ui.components.utilities.ComponentCustomizationBottomSheetScaffold
 import com.orange.ods.demo.ui.utilities.composable.CodeImplementationColumn
 import com.orange.ods.demo.ui.utilities.composable.CommonTechnicalTextColumn
@@ -79,19 +78,10 @@ fun ProgressLinear() {
                     text = stringResource(id = R.string.component_element_icon),
                     trailing = OdsSwitchTrailing(checked = icon)
                 )
-
-                if (type.value == ProgressCustomizationState.Type.Determinate) {
-                    OdsListItem(
-                        text = stringResource(id = R.string.component_progress_linear_value),
-                        trailing = OdsSwitchTrailing(checked = currentValue),
-                    )
-                } else {
-                    OdsListItem(
-                        text = stringResource(id = R.string.component_progress_linear_value),
-                        trailing = OdsSwitchTrailing(checked = currentValue, enabled = false),
-                    )
-                }
-
+                OdsListItem(
+                    text = stringResource(id = R.string.component_progress_linear_value),
+                    trailing = if (type.value == ProgressCustomizationState.Type.Determinate) OdsSwitchTrailing(checked = currentValue) else OdsSwitchTrailing(checked = currentValue, enabled = false),
+                )
             }) {
             Column(
                 modifier = Modifier
@@ -103,7 +93,7 @@ fun ProgressLinear() {
                 OdsLinearProgressIndicator(
                     progress = if (type.value == ProgressCustomizationState.Type.Determinate) determinateProgressAnimation else null,
                     label = if (hasLabel) text else null,
-                    showCurrentValue = if (hasCurrentValue) currentValue else null,
+                    showCurrentValue = hasCurrentValue,
                     icon = if (hasIcon) painterResource(id = R.drawable.ic_arrow_down) else null,
                     modifier = Modifier
                         .padding(top = dimensionResource(id = R.dimen.spacing_m))

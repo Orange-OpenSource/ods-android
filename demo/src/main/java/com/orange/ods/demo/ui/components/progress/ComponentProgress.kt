@@ -14,9 +14,6 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.runtime.Composable
 import com.orange.ods.demo.ui.components.Variant
 
-private const val DeterminateProgressTargetValue = 0.9f
-private const val DeterminateProgressAnimDuration = 5000
-
 @Composable
 fun ComponentProgress(variant: Variant) {
 

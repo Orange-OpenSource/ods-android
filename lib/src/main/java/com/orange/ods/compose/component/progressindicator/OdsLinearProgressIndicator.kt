@@ -24,6 +24,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.painter.Painter
 import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.PreviewParameter
 import com.orange.ods.R
@@ -43,8 +44,8 @@ import com.orange.ods.utilities.extension.orElse
  * @param modifier The modifier applied to this progress indicator
  * @param label The label displayed above the linear progress
  * @param icon The icon displayed above the linear progress
- * @param showCurrentValue The label displayed below the linear progress for present the real value
- * @param progress The progress of this progress indicator, where 0.0 represents no progress and 1.0
+ * @param showCurrentValue To indicated if we have or not the current value
+ * @param progress The value of this progress indicator, where 0.0 represents no progress and 1.0
  * represents full progress. Values outside of this range are coerced into the range. If set to `null`,
  * the progress indicator is indeterminate.
  */
@@ -53,7 +54,7 @@ import com.orange.ods.utilities.extension.orElse
 fun OdsLinearProgressIndicator(
     modifier: Modifier = Modifier,
     label: String? = null,
-    showCurrentValue: String? = null,
+    showCurrentValue: Boolean = false,
     iconContentDescription: String? = null,
     icon: Painter? = null,
     progress: Float? = null,
@@ -65,37 +66,36 @@ fun OdsLinearProgressIndicator(
             .padding(top = dimensionResource(id = R.dimen.spacing_m))
     ) {
         Row(
-            verticalAlignment = Alignment.CenterVertically,
+            modifier = Modifier
+                .padding(bottom = dimensionResource(id = R.dimen.spacing_xs)),
             horizontalArrangement = Arrangement.spacedBy(dimensionResource(id = R.dimen.spacing_s))
         ) {
             icon?.let { painter ->
                 Icon(
                     painter = painter, contentDescription = iconContentDescription,
-                    modifier = Modifier
-                        .align(alignment = Alignment.Bottom)
-                        .padding(bottom = dimensionResource(id = R.dimen.spacing_xs)),
                     tint = OdsTheme.colors.onSurface
                 )
             }
             if (label != null) {
                 Text(
                     text = label,
+                    style = OdsTheme.typography.caption,
+                    color = OdsTheme.colors.onSurface,
                     overflow = TextOverflow.Ellipsis,
                     maxLines = 1,
-                    modifier = Modifier
-                        .padding(bottom = dimensionResource(id = R.dimen.spacing_s))
+                    modifier = Modifier.align(Alignment.CenterVertically)
                 )
             }
         }
         progress?.let {
             LinearProgressIndicator(progress = progress, modifier = Modifier.fillMaxWidth(), color = progressIndicatorColor)
 
-            if (showCurrentValue != null) {
+            if (showCurrentValue) {
                 Row(horizontalArrangement = Arrangement.End, modifier = Modifier.fillMaxWidth()) {
                     OdsTextCaption(
                         modifier = Modifier
                             .padding(top = dimensionResource(id = R.dimen.spacing_xs)),
-                        text = showCurrentValue
+                        text = String.format(stringResource(id = R.string.progress_linear_indicator_value), (progress * 100).toInt())
                     )
                 }
             }
@@ -107,13 +107,36 @@ fun OdsLinearProgressIndicator(
 
 @UiModePreviews.Default
 @Composable
-fun PreviewOdsLinearProgressIndicator(@PreviewParameter(OdsLinearProgressIndicatorPreviewParameterProvider::class) progress: Float?) = Preview {
-    OdsLinearProgressIndicator(
-        progress = progress,
-        icon = painterResource(id = android.R.drawable.stat_sys_download),
-        label = "Downloading …",
-        showCurrentValue = "70%"
-    )
-}
+private fun PreviewOdsLinearProgressIndicator(@PreviewParameter(OdsLinearProgressIndicatorPreviewParameterProvider::class) parameter: OdsLinearProgressIndicatorPreviewParameter) =
+    Preview {
+        with(parameter) {
+            OdsLinearProgressIndicator(
+                progress = progress,
+                icon = iconRes?.let { painterResource(id = it) },
+                label = label,
+                showCurrentValue = showCurrentValue
+            )
+        }
+    }
 
-private class OdsLinearProgressIndicatorPreviewParameterProvider : BasicPreviewParameterProvider<Float?>(0.75f, null)
+private data class OdsLinearProgressIndicatorPreviewParameter(
+    val progress: Float?,
+    val iconRes: Int?,
+    val label: String?,
+    val showCurrentValue: Boolean
+)
+
+private class OdsLinearProgressIndicatorPreviewParameterProvider :
+    BasicPreviewParameterProvider<OdsLinearProgressIndicatorPreviewParameter>(*previewParameterValues.toTypedArray())
+
+private val previewParameterValues: List<OdsLinearProgressIndicatorPreviewParameter>
+    get() {
+        val iconRes = android.R.drawable.ic_dialog_alert
+        val shortLabel = "Downloading …"
+        val longLabel = "Downloading file Applications/ODS/demo/src/main/java/utilities/file_to_download.txt"
+
+        return listOf(
+            OdsLinearProgressIndicatorPreviewParameter(0.75f, iconRes, shortLabel, true),
+            OdsLinearProgressIndicatorPreviewParameter(0.75f, iconRes, longLabel, false),
+        )
+    }

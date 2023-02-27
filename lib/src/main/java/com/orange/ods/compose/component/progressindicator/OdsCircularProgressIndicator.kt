@@ -24,6 +24,7 @@ import com.orange.ods.compose.component.OdsComponentApi
 import com.orange.ods.compose.component.utilities.BasicPreviewParameterProvider
 import com.orange.ods.compose.component.utilities.Preview
 import com.orange.ods.compose.component.utilities.UiModePreviews
+import com.orange.ods.compose.text.OdsTextCaption
 import com.orange.ods.compose.theme.OdsTheme
 import com.orange.ods.utilities.extension.orElse
 
@@ -61,7 +62,7 @@ fun OdsCircularProgressIndicator(
             CircularProgressIndicator(modifier = modifier, color = progressIndicatorColor)
         }
         if (label != null) {
-            Text(
+            OdsTextCaption(
                 text = label,
                 modifier = Modifier
                     .padding(top = dimensionResource(id = R.dimen.spacing_s))

@@ -15,15 +15,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Changed
 
-- \[Lib\] Add label and icon parameters to `OdsLinearProgressIndicator` component to display text and icon above the indicator ([#362](https://github.com/Orange-OpenSource/ods-android/issues/362))
-- \[Lib\] Show current value to `OdsLinearProgressIndicator` component to display current value below the indicator ([#362](https://github.com/Orange-OpenSource/ods-android/issues/362))
+- \[Lib\] Add label, current value and icon parameters to `OdsLinearProgressIndicator` component to display text and/or icon above the indicator, and the current value below if necessary ([#362](https://github.com/Orange-OpenSource/ods-android/issues/362))
 - \[Lib\] Add label parameter to `OdsCircularProgressIndicator` component to display a text below the indicator ([#362](https://github.com/Orange-OpenSource/ods-android/issues/362))
 
 ### Fixed
 
 - \[Demo\] Update application name and description in about page ([#419](https://github.com/Orange-OpenSource/ods-android/issues/419))
-- \[Demo\] Update application name and customization in progress Indicator ([#362](https://github.com/Orange-OpenSource/ods-android/issues/362))
-- \[Lib\] Update `OdsCircularProgressIndicator` and `OdsLinearProgressIndicator` components ([#362](https://github.com/Orange-OpenSource/ods-android/issues/362))
 
 ## [0.10.0](https://github.com/Orange-OpenSource/ods-android/compare/0.9.0...0.10.0) - 2023-02-07
 
