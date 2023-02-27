@@ -41,6 +41,7 @@ import com.orange.ods.compose.component.utilities.BasicPreviewParameterProvider
 import com.orange.ods.compose.component.utilities.Preview
 import com.orange.ods.compose.component.utilities.UiModePreviews
 import com.orange.ods.compose.theme.OdsTheme
+import com.orange.ods.theme.OdsColors
 
 /**
  * <a href="https://system.design.orange.com/0c1af118d/p/19a040-banners/b/497b77" class="external" target="_blank">ODS banners</a>.
@@ -103,6 +104,7 @@ fun OdsBanner(
                     ),
                 text = message,
                 style = OdsTheme.typography.body2,
+                color = OdsTheme.colors.onSurface,
                 maxLines = 2,
                 overflow = TextOverflow.Ellipsis
             )
@@ -153,7 +155,7 @@ private fun PreviewOdsBanner(@PreviewParameter(OdsBannerPreviewParameterProvider
     OdsBanner(
         message = "Two lines text string with two actions.", modifier = Modifier,
         button1Text = "Action",
-        image = painterResource(id = R.drawable.ic_eye),
+        image = painterResource(id = R.drawable.placeholder),
         actionOnNewLine = actionOnNewLine
     )
 }
