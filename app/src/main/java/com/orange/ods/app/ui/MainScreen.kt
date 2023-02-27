@@ -17,10 +17,19 @@ import androidx.compose.foundation.background
 import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material.AppBarDefaults
+import androidx.compose.material.ContentAlpha
+import androidx.compose.material.Icon
+import androidx.compose.material.IconButton
+import androidx.compose.material.OutlinedTextField
 import androidx.compose.material.Scaffold
 import androidx.compose.material.Surface
+import androidx.compose.material.TextFieldDefaults
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Close
+import androidx.compose.material.icons.filled.Search
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.runtime.SideEffect
@@ -30,6 +39,7 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalConfiguration
 import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.stringResource
@@ -54,6 +64,17 @@ import com.orange.ods.compose.component.list.OdsListItem
 import com.orange.ods.compose.component.list.OdsRadioButtonTrailing
 import com.orange.ods.compose.text.OdsTextH6
 import com.orange.ods.compose.theme.OdsTheme
+import com.orange.ods.demo.R
+import com.orange.ods.demo.domain.recipes.LocalRecipes
+import com.orange.ods.demo.ui.about.addAboutGraph
+import com.orange.ods.demo.ui.components.ComponentSearchScreen
+import com.orange.ods.demo.ui.components.addComponentsGraph
+import com.orange.ods.demo.ui.components.tabs.FixedTabRow
+import com.orange.ods.demo.ui.components.tabs.ScrollableTabRow
+import com.orange.ods.demo.ui.guidelines.addGuidelinesGraph
+import com.orange.ods.demo.ui.modules.ModulesScreen
+import com.orange.ods.demo.ui.utilities.extension.isDarkModeEnabled
+import com.orange.ods.demo.ui.utilities.extension.isOrange
 import com.orange.ods.theme.OdsThemeConfigurationContract
 import com.orange.ods.utilities.extension.orElse
 
@@ -89,6 +110,7 @@ fun MainScreen(themeConfigurations: Set<OdsThemeConfigurationContract>, mainView
         LocalRecipes provides mainViewModel.recipes
     ) {
         var changeThemeDialogVisible by remember { mutableStateOf(false) }
+        var searchPageVisible by remember { mutableStateOf(false) }
 
         OdsTheme(
             themeConfiguration = mainState.themeState.currentThemeConfiguration,
@@ -105,7 +127,8 @@ fun MainScreen(themeConfigurations: Set<OdsThemeConfigurationContract>, mainView
                                 shouldShowUpNavigationIcon = !mainState.shouldShowBottomBar,
                                 state = mainState.topAppBarState,
                                 upPress = mainState::upPress,
-                                onChangeThemeActionClick = { changeThemeDialogVisible = true }
+                                onChangeThemeActionClick = { changeThemeDialogVisible = true },
+                                onSearchComponentClick = { searchPageVisible = true }
                             )
                             // Display tabs in the top bar if needed
                             MainTabs(mainTabsState = mainState.tabsState)
@@ -143,6 +166,9 @@ fun MainScreen(themeConfigurations: Set<OdsThemeConfigurationContract>, mainView
                         }
                     )
                 }
+                if (searchPageVisible) {
+
+                }
             }
         }
     }
@@ -153,6 +179,40 @@ private fun getCurrentThemeConfiguration(storedUserThemeName: String?, themeConf
     return themeConfigurations.firstOrNull { it.name == storedUserThemeName }
         .orElse { themeConfigurations.firstOrNull { it.isOrange } }
         .orElse { themeConfigurations.first() }
+}
+
+@Composable
+private fun SearchAppBar() {
+    OutlinedTextField(
+        modifier = Modifier.fillMaxWidth(),
+        value = "",
+        onValueChange = {},
+        leadingIcon = {
+            Icon(
+                imageVector = Icons.Filled.Search,
+                contentDescription = "Search Icon",
+                tint = Color.White.copy(
+                    alpha = ContentAlpha.medium
+                )
+            )
+        },
+        trailingIcon = {
+            IconButton(onClick = { }) {
+                Icon(
+                    imageVector = Icons.Filled.Close,
+                    contentDescription = "Close Icon",
+                    tint = Color.White
+                )
+            }
+        },
+        colors = TextFieldDefaults.outlinedTextFieldColors(
+            unfocusedBorderColor = Color.White.copy(
+                alpha = ContentAlpha.medium
+            ),
+            focusedBorderColor = Color.White,
+            cursorColor = Color.White
+        )
+    )
 }
 
 @Composable

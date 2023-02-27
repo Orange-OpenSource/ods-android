@@ -48,7 +48,7 @@ class MainTopAppBarState(
     companion object {
         val DefaultConfiguration = TopAppBarConfiguration(
             isNavigationIconEnabled = true,
-            actionCount = 2,
+            actionCount = 3,
             isOverflowMenuEnabled = false
         )
     }

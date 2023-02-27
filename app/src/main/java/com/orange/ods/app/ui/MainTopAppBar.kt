@@ -33,7 +33,8 @@ fun MainTopAppBar(
     shouldShowUpNavigationIcon: Boolean,
     state: MainTopAppBarState,
     upPress: () -> Unit,
-    onChangeThemeActionClick: () -> Unit
+    onChangeThemeActionClick: () -> Unit,
+    onSearchComponentClick: () -> Unit
 ) {
     OdsTopAppBar(
         title = stringResource(id = titleRes),
@@ -50,8 +51,9 @@ fun MainTopAppBar(
             val context = LocalContext.current
             repeat(state.actionCount.value) { index ->
                 when (index) {
-                    0 -> TopAppBarChangeThemeActionButton(onClick = onChangeThemeActionClick)
-                    1 -> TopAppBarChangeModeActionButton()
+                    0 -> TopAppBarSearchComponentButton(onClick = onSearchComponentClick, id = titleRes)
+                    1 -> TopAppBarChangeThemeActionButton(onClick = onChangeThemeActionClick)
+                    2 -> TopAppBarChangeModeActionButton()
                     else -> {
                         OdsTopAppBarActionButton(
                             onClick = { clickOnElement(context, context.getString(R.string.component_app_bars_top_action_ice_cream)) },
@@ -79,11 +81,24 @@ fun MainTopAppBar(
 }
 
 @Composable
+private fun TopAppBarSearchComponentButton(onClick: () -> Unit, id: Int) {
+    if (id == R.string.navigation_item_components) {
+        OdsTopAppBarActionButton(
+            onClick = { onClick() },
+            painter = painterResource(id = R.drawable.ic_search),
+            contentDescription = ""
+        )
+    }
+
+}
+
+@Composable
 private fun TopAppBarChangeThemeActionButton(onClick: () -> Unit) {
+
     OdsTopAppBarActionButton(
         onClick = { onClick() },
         painter = painterResource(id = R.drawable.ic_palette),
-        contentDescription = stringResource(id = R.string.top_app_bar_action_change_theme_desc)
+        contentDescription = stringResource(id = R.string.top_app_bar_action_change_mode_to_dark_desc)
     )
 }
 
