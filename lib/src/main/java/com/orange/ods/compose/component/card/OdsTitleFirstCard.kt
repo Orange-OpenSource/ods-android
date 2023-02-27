@@ -55,8 +55,8 @@ import com.orange.ods.utilities.extension.orElse
  * @param imageContentScale The content scale of the card image.
  * @param imageAlignment The alignment of the card image.
  * @param text Optional text description to be displayed in the card.
- * @param button1Text Optional text of the first button in the card. If not present, button will not be shown. If present, [onButton1Click] need to be  handle.
- * @param button2Text Optional text of the second button in the card. If not present, button will not be shown. If present, [onButton2Click] need to be  handle.
+ * @param button1Text Optional text of the first button in the card. If not present, button will not be shown. If present, [onButton1Click] need to be handled.
+ * @param button2Text Optional text of the second button in the card. If not present, button will not be shown. If present, [onButton2Click] need to be handled.
  * @param onCardClick Optional click on the card itself.
  * @param onButton1Click Optional handler for the first button click.
  * @param onButton2Click Optional handler for the second button click.

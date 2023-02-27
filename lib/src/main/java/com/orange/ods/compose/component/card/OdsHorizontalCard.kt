@@ -51,8 +51,8 @@ import com.orange.ods.compose.theme.OdsTheme
  * @param modifier Modifier to be applied to the layout of the card.
  * @param subtitle Optional subtitle to be displayed in the card.
  * @param text Optional text description to be displayed in the card. It is truncated to fit on 2 lines.
- * @param button1Text Optional text of the first button in the card. If not present, button will not be shown. If present, [onButton1Click] need to be  handle.
- * @param button2Text Optional text of the second button in the card. If not present, button will not be shown. If present, [onButton2Click] need to be  handle.
+ * @param button1Text Optional text of the first button in the card. If not present, button will not be shown. If present, [onButton1Click] need to be handled.
+ * @param button2Text Optional text of the second button in the card. If not present, button will not be shown. If present, [onButton2Click] need to be handled.
  * @param imageContentDescription Optional card image content description.
  * @param imageBackgroundColor Optional background color of the card image.
  * @param imageContentScale Optional scale parameter used to determine the aspect ratio scaling to be used
