@@ -20,6 +20,8 @@ import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material.Divider
+import androidx.compose.material.MaterialTheme
+import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -27,6 +29,8 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.painter.Painter
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.dimensionResource
+import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.PreviewParameter
 import androidx.compose.ui.unit.dp
 import com.orange.ods.R
@@ -36,7 +40,7 @@ import com.orange.ods.compose.component.button.OdsTextButtonStyle
 import com.orange.ods.compose.component.utilities.BasicPreviewParameterProvider
 import com.orange.ods.compose.component.utilities.Preview
 import com.orange.ods.compose.component.utilities.UiModePreviews
-import com.orange.ods.compose.text.OdsTextBody2
+import com.orange.ods.compose.theme.OdsTheme
 
 /**
  * <a href="https://system.design.orange.com/0c1af118d/p/19a040-banners/b/497b77" class="external" target="_blank">ODS banners</a>.
@@ -70,15 +74,12 @@ fun OdsBanner(
     Column(
         modifier = modifier
             .fillMaxWidth()
-            .padding(
-                top = dimensionResource(id = R.dimen.spacing_s),
-                start = dimensionResource(id = R.dimen.spacing_s),
-                end = dimensionResource(id = R.dimen.spacing_s)
-            )
     ) {
         Row(
             verticalAlignment = Alignment.CenterVertically,
-            modifier = Modifier.fillMaxWidth(),
+            modifier = Modifier.fillMaxWidth()
+                .padding(top = dimensionResource(id = R.dimen.spacing_m),
+                    bottom = dimensionResource(id = R.dimen.spacing_s)),
             horizontalArrangement = Arrangement.SpaceBetween,
         ) {
             if (!actionOnNewLine) {
@@ -88,19 +89,22 @@ fun OdsBanner(
                         contentDescription = imageContentDescription,
                         contentScale = ContentScale.Crop,// crop the image if it's not a square
                         modifier = Modifier
+                            .padding(start = dimensionResource(id = R.dimen.spacing_m))
                             .size(50.dp)
                             .clip(CircleShape)
                     )
                 }
             }
-            OdsTextBody2(
+            Text(
                 modifier = Modifier
                     .padding(
-                        start = dimensionResource(id = R.dimen.spacing_s),
-                        top = dimensionResource(id = R.dimen.spacing_s),
-                        bottom = dimensionResource(id = R.dimen.spacing_s)
+                        start = dimensionResource(id = R.dimen.spacing_m),
+                        end = dimensionResource(id = R.dimen.spacing_s)
                     ),
-                text = message
+                text = message,
+                style = OdsTheme.typography.body2,
+                maxLines = 2,
+                overflow = TextOverflow.Ellipsis
             )
             if (actionOnNewLine) {
                 Row(
@@ -149,6 +153,7 @@ private fun PreviewOdsBanner(@PreviewParameter(OdsBannerPreviewParameterProvider
     OdsBanner(
         message = "Two lines text string with two actions.", modifier = Modifier,
         button1Text = "Action",
+        image = painterResource(id = R.drawable.ic_eye),
         actionOnNewLine = actionOnNewLine
     )
 }
