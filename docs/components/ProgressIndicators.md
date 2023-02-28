@@ -27,7 +27,7 @@ description: Progress indicators express an unspecified wait time or display the
 
 Please follow [accessibility criteria for development](https://a11y-guidelines.orange.com/en/mobile/android/development/)
 
-Progress indicators inherit accessibility support from the `ProgressLinear` class in the framework.
+Progress indicators inherit accessibility support from the `LinearProgressIndicator` class in the framework.
 Please consider setting the content descriptor for use with screen readers.
 
 That can be done in XML via the `android:contentDescription` attribute or programmatically like so:
@@ -59,22 +59,23 @@ Linear progress indicators support both determinate and indeterminate operations
 
 You can use the composable `OdsLinearProgressIndicator` like this:
 
-For a **determinate** linear progress indicator
+For a **determinate** linear progress indicator, provide the progress value:
 
 ```kotlin
 OdsLinearProgressIndicator(
-    progress = 0.2f,
-    label = "Downloading ...",
-    icon = painterResource(id = R.drawable.ic_arrow_down)
+    progress = 0.9f,
+    label = "Downloading ...", // Optional
+    icon = painterResource(id = R.drawable.ic_arrow_down), // Optional
+    showCurrentValue = true // Display the value in percent below the progress bar if set to true
 )
 ```
 
-For an **indeterminate** linear progress indicator
+For an **indeterminate** linear progress indicator, no need to provide a progress value:
 
 ```kotlin
 OdsLinearProgressIndicator(
-    label = "Downloading ...",
-    icon = painterResource(id = R.drawable.ic_arrow_down)
+    label = "Downloading ...", // Optional
+    icon = painterResource(id = R.drawable.ic_arrow_down) // Optional
 )
 ```
 
@@ -128,16 +129,21 @@ processes.
 
 You can use the `OdsCircularProgressIndicator` composable like this:
 
-- For a **determinate** circular progress indicator
+- For a **determinate** circular progress indicator, provide the progress value:
 
 ```kotlin
-OdsCircularProgressIndicator(progress = 0.2f, label = "Downloading ...")
+OdsCircularProgressIndicator(
+    progress = 0.9f, 
+    label = "Downloading ..." // Optional
+)
 ```
 
-- For an **indeterminate** circular progress indicator
+- For an **indeterminate** circular progress indicator, no need to provide a progress value:
 
 ```kotlin
-OdsCircularProgressIndicator(label = "Downloading ...")
+OdsCircularProgressIndicator(
+    label = "Downloading ..." // Optional
+)
 ```
 
 > **XML implementation**
