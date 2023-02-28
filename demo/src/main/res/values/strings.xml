@@ -142,8 +142,8 @@
     <string name="component_card_remove_action_button">Remove action button</string>
     <string name="component_card_add_action_button">Add action button</string>
     <string name="component_card_horizontal_image_position">Image position</string>
-    <string name="component_card_horizontal_position_start">Start</string>
-    <string name="component_card_horizontal_position_end">End</string>
+    <string name="component_card_horizontal_image_position_start">Start</string>
+    <string name="component_card_horizontal_image_position_end">End</string>
 
     <!-- Component Checkboxes -->
     <string name="component_checkboxes">Checkboxes</string>

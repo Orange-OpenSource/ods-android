@@ -53,8 +53,8 @@ fun ComponentCard(variant: Variant) {
                         modifier = Modifier.padding(horizontal = dimensionResource(id = R.dimen.screen_horizontal_margin)),
                         outlinedChips = true
                     ) {
-                        OdsChoiceChip(textRes = R.string.component_card_horizontal_position_start, value = OdsHorizontalCardImagePosition.Start)
-                        OdsChoiceChip(textRes = R.string.component_card_horizontal_position_end, value = OdsHorizontalCardImagePosition.End)
+                        OdsChoiceChip(textRes = R.string.component_card_horizontal_image_position_start, value = OdsHorizontalCardImagePosition.Start)
+                        OdsChoiceChip(textRes = R.string.component_card_horizontal_image_position_end, value = OdsHorizontalCardImagePosition.End)
                     }
                 }
                 OdsListItem(
