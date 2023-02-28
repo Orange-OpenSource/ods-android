@@ -58,6 +58,7 @@ fun ProgressLinear() {
     )
 
     with(customizationState) {
+        if (type.value == ProgressCustomizationState.Type.Indeterminate) currentValue.value = false
         ComponentCustomizationBottomSheetScaffold(
             bottomSheetScaffoldState = rememberBottomSheetScaffoldState(),
             bottomSheetContent = {
@@ -80,9 +81,9 @@ fun ProgressLinear() {
                 )
                 OdsListItem(
                     text = stringResource(id = R.string.component_progress_linear_value),
-                    trailing = if (type.value == ProgressCustomizationState.Type.Determinate) OdsSwitchTrailing(checked = currentValue) else OdsSwitchTrailing(
+                    trailing = OdsSwitchTrailing(
                         checked = currentValue,
-                        enabled = false
+                        enabled = isCurrentValueSwitchEnabled
                     ),
                 )
             }) {

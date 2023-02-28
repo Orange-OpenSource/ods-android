@@ -46,4 +46,6 @@ class ProgressCustomizationState(
     val hasLabel
         get() = label.value
 
+    val isCurrentValueSwitchEnabled
+        get() = type.value != Type.Indeterminate
 }
