@@ -14,10 +14,13 @@ import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.IntrinsicSize
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.layout.width
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
@@ -100,7 +103,7 @@ fun OdsHorizontalCard(
         onClick = onCardClick
     ) {
         Column {
-            Row {
+            Row(modifier = Modifier.height(IntrinsicSize.Min)) {
                 if (imagePosition == OdsHorizontalCardImagePosition.Start) {
                     imageComposable()
                 }
@@ -176,7 +179,8 @@ private fun HorizontalCardImage(
         contentDescription = contentDescription,
         contentScale = contentScale,
         modifier = Modifier
-            .size(dimensionResource(R.dimen.card_horizontal_image_size))
+            .width(dimensionResource(R.dimen.card_horizontal_image_size))
+            .fillMaxHeight()
             .let {
                 if (backgroundColor != null) it.background(backgroundColor) else it
             },
