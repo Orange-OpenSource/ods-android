@@ -212,15 +212,16 @@
     <string name="component_slider_value_displayed">Display value</string>
     <string name="component_slider_stepped">Stepped</string>
 
-    <!-- Component Progress & activities -->
-    <string name="component_progress">Progress &amp; activities</string>
-    <string name="component_progress_description">If a process is taking place in the application, it is important to reassure users that something is happening, and if possible, how long it will take.</string>
-    <string name="component_progress_bar">Progress bar</string>
-    <string name="component_progress_bar_determinate">Determinate</string>
-    <string name="component_progress_bar_indeterminate">Indeterminate</string>
-    <string name="component_progress_activity_indicator">Activity indicator</string>
-    <string name="component_progress_activity_indicator_determinate">Determinate</string>
-    <string name="component_progress_activity_indicator_indeterminate">Indeterminate</string>
+    <!-- Component Progress Indicators -->
+    <string name="component_progress">Progress Indicators</string>
+    <string name="component_progress_description">Progress bar and activity indicator are used when a process is taking place to illustrate progress and to reassure users that something is happening, and if possible, how long it will take.</string>
+    <string name="component_progress_linear">Linear</string>
+    <string name="component_progress_type">Type</string>
+    <string name="component_progress_determinate">Determinate</string>
+    <string name="component_progress_indeterminate">Indeterminate</string>
+    <string name="component_progress_linear_value">Current value</string>
+    <string name="component_progress_circular">Circular</string>
+    <string name="component_progress_label">Downloading …</string>
 
     <!-- Component Lists -->
     <string name="component_lists">Lists</string>

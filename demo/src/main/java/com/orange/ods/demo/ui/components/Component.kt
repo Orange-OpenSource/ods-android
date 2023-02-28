@@ -133,7 +133,7 @@ sealed class Component(
         R.drawable.il_progress,
         null,
         R.string.component_progress_description,
-        listOf(Variant.ProgressBar, Variant.ProgressActivityIndicator)
+        listOf(Variant.ProgressLinear, Variant.ProgressCircular)
     )
 
     object RadioButtons : Component(
@@ -222,8 +222,8 @@ sealed class Variant(
     object DropdownMenu : Variant(R.string.component_menu_dropdown, OdsComponent.OdsDropdownMenu.name)
     object ExposedDropdownMenu : Variant(R.string.component_menu_exposed_dropdown, OdsComponent.OdsExposedDropdownMenu.name)
 
-    object ProgressBar : Variant(R.string.component_progress_bar, OdsComponent.OdsLinearProgressIndicator.name)
-    object ProgressActivityIndicator : Variant(R.string.component_progress_activity_indicator, OdsComponent.OdsCircularProgressIndicator.name)
+    object ProgressLinear : Variant(R.string.component_progress_linear, OdsComponent.OdsLinearProgressIndicator.name)
+    object ProgressCircular : Variant(R.string.component_progress_circular, OdsComponent.OdsCircularProgressIndicator.name)
 
     object TextField : Variant(R.string.component_text_field_text, OdsComponent.OdsTextField.name)
     object TextFieldPassword : Variant(R.string.component_text_field_password, OdsComponent.OdsPasswordTextField.name)
