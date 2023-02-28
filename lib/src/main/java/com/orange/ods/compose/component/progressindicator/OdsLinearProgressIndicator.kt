@@ -42,22 +42,23 @@ import com.orange.ods.utilities.extension.orElse
  * @see androidx.compose.material.LinearProgressIndicator
  *
  * @param modifier The modifier applied to this progress indicator
- * @param label The label displayed above the linear progress
- * @param icon The icon displayed above the linear progress
  * @param showCurrentValue To indicated if we have or not the current value
  * @param progress The value of this progress indicator, where 0.0 represents no progress and 1.0
  * represents full progress. Values outside of this range are coerced into the range. If set to `null`,
  * the progress indicator is indeterminate.
+ * @param label The label displayed above the linear progress
+ * @param icon The icon displayed above the linear progress
+ * @param iconContentDescription The content description for the icon displayed above the linear progress
  */
 @Composable
 @OdsComponentApi
 fun OdsLinearProgressIndicator(
     modifier: Modifier = Modifier,
-    label: String? = null,
     showCurrentValue: Boolean = false,
-    iconContentDescription: String? = null,
-    icon: Painter? = null,
     progress: Float? = null,
+    label: String? = null,
+    icon: Painter? = null,
+    iconContentDescription: String? = null
 ) {
     val progressIndicatorColor = OdsTheme.colors.primary
     Column(
