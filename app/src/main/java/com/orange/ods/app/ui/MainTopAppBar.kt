@@ -14,10 +14,12 @@ import androidx.compose.material.Icon
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ArrowBack
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.MutableState
 import androidx.compose.ui.platform.LocalConfiguration
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.text.input.TextFieldValue
 import com.orange.ods.compose.component.appbar.top.OdsTopAppBar
 import com.orange.ods.compose.component.appbar.top.OdsTopAppBarActionButton
 import com.orange.ods.compose.component.appbar.top.OdsTopAppBarOverflowMenuBox
@@ -26,6 +28,11 @@ import com.orange.ods.app.R
 import com.orange.ods.app.domain.recipes.LocalRecipes
 import com.orange.ods.app.ui.components.utilities.clickOnElement
 import com.orange.ods.app.ui.utilities.extension.isDarkModeEnabled
+import com.orange.ods.demo.R
+import com.orange.ods.demo.domain.recipes.LocalRecipes
+import com.orange.ods.demo.ui.components.SearchView
+import com.orange.ods.demo.ui.components.utilities.clickOnElement
+import com.orange.ods.demo.ui.utilities.extension.isDarkModeEnabled
 
 @Composable
 fun MainTopAppBar(
@@ -34,7 +41,8 @@ fun MainTopAppBar(
     state: MainTopAppBarState,
     upPress: () -> Unit,
     onChangeThemeActionClick: () -> Unit,
-    onSearchComponentClick: () -> Unit
+    onSearchComponentClick: () -> Unit,
+    textState: MutableState<TextFieldValue>
 ) {
     OdsTopAppBar(
         title = stringResource(id = titleRes),
@@ -49,29 +57,31 @@ fun MainTopAppBar(
         onNavigationIconClick = upPress,
         actions = {
             val context = LocalContext.current
-            repeat(state.actionCount.value) { index ->
-                when (index) {
-                    0 -> TopAppBarSearchComponentButton(onClick = onSearchComponentClick, id = titleRes)
-                    1 -> TopAppBarChangeThemeActionButton(onClick = onChangeThemeActionClick)
-                    2 -> TopAppBarChangeModeActionButton()
-                    else -> {
-                        OdsTopAppBarActionButton(
-                            onClick = { clickOnElement(context, context.getString(R.string.component_app_bars_top_action_ice_cream)) },
-                            painter = painterResource(id = R.drawable.ic_ice_cream),
-                            contentDescription = stringResource(id = R.string.component_app_bars_top_action_ice_cream)
-                        )
+            TopAppBarSearchComponentButton(onClick = onSearchComponentClick, id = titleRes, textState)
+            if (titleRes != R.string.navigation_item_search) {
+                repeat(state.actionCount.value) { index ->
+                    when (index) {
+                        0 -> TopAppBarChangeThemeActionButton(onClick = onChangeThemeActionClick)
+                        1 -> TopAppBarChangeModeActionButton()
+                        else -> {
+                            OdsTopAppBarActionButton(
+                                onClick = { clickOnElement(context, context.getString(R.string.component_app_bars_top_action_ice_cream)) },
+                                painter = painterResource(id = R.drawable.ic_ice_cream),
+                                contentDescription = stringResource(id = R.string.component_app_bars_top_action_ice_cream)
+                            )
+                        }
                     }
                 }
-            }
-            if (state.isOverflowMenuEnabled) {
-                OdsTopAppBarOverflowMenuBox(
-                    overflowIconContentDescription = stringResource(id = R.string.component_app_bars_top_element_overflow_menu)
-                ) {
-                    LocalRecipes.current.forEach { recipe ->
-                        OdsDropdownMenuItem(
-                            text = recipe.title,
-                            onClick = { clickOnElement(context, recipe.title) }
-                        )
+                if (state.isOverflowMenuEnabled) {
+                    OdsTopAppBarOverflowMenuBox(
+                        overflowIconContentDescription = stringResource(id = R.string.component_app_bars_top_element_overflow_menu)
+                    ) {
+                        LocalRecipes.current.forEach { recipe ->
+                            OdsDropdownMenuItem(
+                                text = recipe.title,
+                                onClick = { clickOnElement(context, recipe.title) }
+                            )
+                        }
                     }
                 }
             }
@@ -81,22 +91,23 @@ fun MainTopAppBar(
 }
 
 @Composable
-private fun TopAppBarSearchComponentButton(onClick: () -> Unit, id: Int) {
+private fun TopAppBarSearchComponentButton(onClick: () -> Unit, id: Int, textState: MutableState<TextFieldValue>) {
     if (id == R.string.navigation_item_components) {
         OdsTopAppBarActionButton(
-            onClick = { onClick() },
+            onClick = onClick,
             painter = painterResource(id = R.drawable.ic_search),
             contentDescription = ""
         )
     }
-
+    if (id == R.string.navigation_item_search) {
+        SearchView(textState)
+    }
 }
 
 @Composable
 private fun TopAppBarChangeThemeActionButton(onClick: () -> Unit) {
-
     OdsTopAppBarActionButton(
-        onClick = { onClick() },
+        onClick = onClick,
         painter = painterResource(id = R.drawable.ic_palette),
         contentDescription = stringResource(id = R.string.top_app_bar_action_change_mode_to_dark_desc)
     )
@@ -117,3 +128,4 @@ private fun TopAppBarChangeModeActionButton() {
         contentDescription = stringResource(id = iconDesc)
     )
 }
+

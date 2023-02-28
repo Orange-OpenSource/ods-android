@@ -17,6 +17,7 @@
     <string name="navigation_item_components">Components</string>
     <string name="navigation_item_modules">Modules</string>
     <string name="navigation_item_about">About</string>
+    <string name="navigation_item_search"></string>
 
     <!-- TopAppBar -->
     <string name="top_app_bar_back_icon_desc">Back</string>

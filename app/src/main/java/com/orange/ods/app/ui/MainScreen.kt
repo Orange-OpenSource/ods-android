@@ -32,6 +32,7 @@ import androidx.compose.material.icons.filled.Close
 import androidx.compose.material.icons.filled.Search
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.CompositionLocalProvider
+import androidx.compose.runtime.MutableState
 import androidx.compose.runtime.SideEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
@@ -43,11 +44,13 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalConfiguration
 import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.text.input.TextFieldValue
 import androidx.compose.ui.window.Dialog
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavBackStackEntry
 import androidx.navigation.NavGraphBuilder
 import androidx.navigation.compose.NavHost
+import androidx.navigation.compose.composable
 import androidx.navigation.navigation
 import com.google.accompanist.pager.ExperimentalPagerApi
 import com.google.accompanist.systemuicontroller.rememberSystemUiController
@@ -72,7 +75,6 @@ import com.orange.ods.demo.ui.components.addComponentsGraph
 import com.orange.ods.demo.ui.components.tabs.FixedTabRow
 import com.orange.ods.demo.ui.components.tabs.ScrollableTabRow
 import com.orange.ods.demo.ui.guidelines.addGuidelinesGraph
-import com.orange.ods.demo.ui.modules.ModulesScreen
 import com.orange.ods.demo.ui.utilities.extension.isDarkModeEnabled
 import com.orange.ods.demo.ui.utilities.extension.isOrange
 import com.orange.ods.theme.OdsThemeConfigurationContract
@@ -112,6 +114,8 @@ fun MainScreen(themeConfigurations: Set<OdsThemeConfigurationContract>, mainView
         var changeThemeDialogVisible by remember { mutableStateOf(false) }
         var searchPageVisible by remember { mutableStateOf(false) }
 
+        val textState = remember { mutableStateOf(TextFieldValue("")) }
+
         OdsTheme(
             themeConfiguration = mainState.themeState.currentThemeConfiguration,
             darkThemeEnabled = configuration.isDarkModeEnabled
@@ -128,7 +132,10 @@ fun MainScreen(themeConfigurations: Set<OdsThemeConfigurationContract>, mainView
                                 state = mainState.topAppBarState,
                                 upPress = mainState::upPress,
                                 onChangeThemeActionClick = { changeThemeDialogVisible = true },
-                                onSearchComponentClick = { searchPageVisible = true }
+                                onSearchComponentClick =  {
+                                    mainState.navController.navigate(MainDestinations.SearchRoute, null)
+                                },
+                                textState = textState
                             )
                             // Display tabs in the top bar if needed
                             MainTabs(mainTabsState = mainState.tabsState)
@@ -151,7 +158,7 @@ fun MainScreen(themeConfigurations: Set<OdsThemeConfigurationContract>, mainView
             ) { innerPadding ->
                 Box(modifier = Modifier.padding(innerPadding)) {
                     NavHost(mainState.navController, startDestination = MainDestinations.HomeRoute) {
-                        mainNavGraph(navigateToElement = mainState::navigateToElement)
+                        mainNavGraph(navigateToElement = mainState::navigateToElement, textState = textState)
                     }
                 }
 
@@ -165,9 +172,6 @@ fun MainScreen(themeConfigurations: Set<OdsThemeConfigurationContract>, mainView
                             mainViewModel.storeUserThemeName(mainState.themeState.currentThemeConfiguration.name)
                         }
                     )
-                }
-                if (searchPageVisible) {
-
                 }
             }
         }
@@ -287,7 +291,7 @@ private fun MainTabs(mainTabsState: MainTabsState) {
     }
 }
 
-private fun NavGraphBuilder.mainNavGraph(navigateToElement: (String, Long?, NavBackStackEntry) -> Unit) {
+private fun NavGraphBuilder.mainNavGraph(navigateToElement: (String, Long?, NavBackStackEntry) -> Unit, textState: MutableState<TextFieldValue>) {
     navigation(
         route = MainDestinations.HomeRoute,
         startDestination = BottomNavigationSections.Guidelines.route
@@ -298,4 +302,11 @@ private fun NavGraphBuilder.mainNavGraph(navigateToElement: (String, Long?, NavB
     addGuidelinesGraph()
     addComponentsGraph(navigateToElement)
     addAboutGraph()
+
+    composable(
+        MainDestinations.SearchRoute
+    ) {
+        LocalMainTabsManager.current.clearTopAppBarTabs()
+        ComponentSearchScreen(textState)
+    }
 }
