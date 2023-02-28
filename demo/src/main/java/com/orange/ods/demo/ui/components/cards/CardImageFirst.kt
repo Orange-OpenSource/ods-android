@@ -10,7 +10,6 @@
 
 package com.orange.ods.demo.ui.components.cards
 
-import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
@@ -41,11 +40,10 @@ fun CardImageFirst(customizationState: CardCustomizationState) {
                 .fillMaxSize()
                 .padding(dimensionResource(id = R.dimen.spacing_m))
                 .verticalScroll(state = rememberScrollState()),
-            verticalArrangement = Arrangement.spacedBy(dimensionResource(id = R.dimen.spacing_m))
         ) {
             val button1Text = stringResource(id = R.string.component_element_button1)
             val button2Text = stringResource(id = R.string.component_element_button2)
-            val cardContainerText = stringResource(id = R.string.component_card_element_container)
+            val cardText = stringResource(id = R.string.component_card_element_card)
 
             OdsImageFirstCard(
                 title = recipe.title,
@@ -57,7 +55,7 @@ fun CardImageFirst(customizationState: CardCustomizationState) {
                 subtitle = if (hasSubtitle) recipe.subtitle else null,
                 text = if (hasText) recipe.description else null,
                 onCardClick = if (isClickable) {
-                    { clickOnElement(context, cardContainerText) }
+                    { clickOnElement(context, cardText) }
                 } else null,
                 button1Text = if (hasButton1) button1Text else null,
                 onButton1Click = { clickOnElement(context, button1Text) },

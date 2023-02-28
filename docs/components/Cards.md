@@ -14,6 +14,7 @@ description: Cards contain content and actions about a single subject.
     * [Image first card](#image-first-card)
     * [Title first card](#title-first-card)
     * [Small card](#small-card)
+    * [Horizontal card](#horizontal-card)
 * [Component specific tokens](#component-specific-tokens)
 
 ---
@@ -132,6 +133,41 @@ Row(
     )
 }
 ```
+
+> **XML implementation**
+
+See [Cards implementation in XML](#cards-implementation-in-xml)
+
+### Horizontal card
+
+This is a full screen width card with an image on the side. The image can be displayed on the left or on the right.
+
+  ![Horizontal card light](images/card_horizontal_light.png) ![Horizontal card dark](images/card_horizontal_dark.png)
+
+> **Jetpack Compose implementation**
+
+In your screen you can use `OdsHorizontalCard` composable:
+
+```kotlin
+OdsHorizontalCard(
+    title = "Title",
+    image = painterResource(R.drawable.picture),
+    imageContentDescription = "Picture content description", //Optional
+    imageBackgroundColor = Color(0xff1b1b1b), //Optional
+    imageContentScale = ContentScale.Crop,
+    imageAlignment = Alignment.Center,
+    subtitle = "Subtitle", //Optional
+    text = "Text", //Optional
+    button1Text = "Button1", //Optional
+    button2Text = "Button2", //Optional
+    imagePosition = OdsHorizontalCardImagePosition.Start,  //Optional. Start by default.
+    dividerEnabled = false, // Optional. True by default.
+    onCardClick = {  }, //Optional
+    onButton1Click = {  }, //Optional
+    onButton2Click = {  } //Optional
+)
+```
+
 
 > **XML implementation**
 
