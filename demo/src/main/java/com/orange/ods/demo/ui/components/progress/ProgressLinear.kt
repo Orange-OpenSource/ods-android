@@ -80,7 +80,10 @@ fun ProgressLinear() {
                 )
                 OdsListItem(
                     text = stringResource(id = R.string.component_progress_linear_value),
-                    trailing = if (type.value == ProgressCustomizationState.Type.Determinate) OdsSwitchTrailing(checked = currentValue) else OdsSwitchTrailing(checked = currentValue, enabled = false),
+                    trailing = if (type.value == ProgressCustomizationState.Type.Determinate) OdsSwitchTrailing(checked = currentValue) else OdsSwitchTrailing(
+                        checked = currentValue,
+                        enabled = false
+                    ),
                 )
             }) {
             Column(
@@ -89,7 +92,6 @@ fun ProgressLinear() {
                     .verticalScroll(rememberScrollState())
             ) {
                 val text = stringResource(id = R.string.component_progress_label)
-                val currentValue = stringResource(id = R.string.component_progress_current_value)
                 OdsLinearProgressIndicator(
                     progress = if (type.value == ProgressCustomizationState.Type.Determinate) determinateProgressAnimation else null,
                     label = if (hasLabel) text else null,
@@ -110,7 +112,7 @@ fun ProgressLinear() {
                     ) {
                         if (type.value == ProgressCustomizationState.Type.Determinate) TechnicalText(text = " progress = $determinateProgressValue")
                         if (hasLabel) TechnicalText(text = " label = \"$text\"")
-                        if (hasCurrentValue && type.value == ProgressCustomizationState.Type.Determinate) TechnicalText(text = " currentValue = \"$currentValue\"")
+                        if (hasCurrentValue && type.value == ProgressCustomizationState.Type.Determinate) TechnicalText(text = " currentValue = \"${(DeterminateProgressTargetValue * 100).toInt()}\"")
                         if (hasIcon) TechnicalText(text = " icon = painterResource(id = R.drawable.ic_arrow_down)")
                     }
                 }

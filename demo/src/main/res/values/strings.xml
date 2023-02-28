@@ -222,7 +222,6 @@
     <string name="component_progress_linear_value">Current value</string>
     <string name="component_progress_circular">Circular</string>
     <string name="component_progress_label">Downloading …</string>
-    <string name="component_progress_current_value">70%</string>
 
     <!-- Component Lists -->
     <string name="component_lists">Lists</string>
