@@ -11,8 +11,8 @@ description: Cards contain content and actions about a single subject.
 * [Specifications references](#specifications-references)
 * [Accessibility](#accessibility)
 * [Variants](#variants)
-    * [Image first card](#image-first-card)
-    * [Title first card](#title-first-card)
+    * [Vertical image first card](#vertical-image-first-card)
+    * [Vertical header first card](#vertical-header-first-card)
     * [Small card](#small-card)
     * [Horizontal card](#horizontal-card)
 * [Component specific tokens](#component-specific-tokens)
@@ -40,18 +40,18 @@ See the [draggable card section](https://material.io/components/cards/android#ma
 
 The library offers several Composables for Jetpack Compose implementation. In XML, the library is only styling `MaterialCardView`.
 
-### Image first card
+### Vertical image first card
 
-This is a full width card displayed with an image as first element.
+This is a full width card containing elements arranged vertically with an image as first element.
 
-  ![CardImageFisrt](images/card_image_first_light.png) ![CardImageFirst dark](images/card_image_first_dark.png)
+  ![Vertical image first card light](images/card_vertical_image_first_light.png) ![Vertical image first card dark](images/card_vertical_image_first_dark.png)
 
 > **Jetpack Compose implementation**
 
-In your composable screen you can use `OdsImageFirstCard` composable:
+In your composable screen you can use `OdsVerticalImageFirstCard` composable:
 
 ```kotlin
-OdsImageFirstCard(
+OdsVerticalImageFirstCard(
     title = "Title",
     image = painterResource(R.drawable.picture),
     imageContentDescription = "Picture content description", //Optional
@@ -72,18 +72,18 @@ OdsImageFirstCard(
 
 See [Cards implementation in XML](#cards-implementation-in-xml)
 
-### Title first card
+### Vertical header first card
 
-This is a full width card displaying with a title and a thumbnail on top as first element.
+This is a full width card containing elements arranged vertically with a header (thumbnail, title & subtitle) as first element.
 
-  ![CardTitleFirst](images/card_title_first_light.png) ![CardTitleFirst dark](images/card_title_first_dark.png)
+  ![Vertical header first card light](images/card_vertical_header_first_light.png) ![Vertical header first card dark](images/card_vertical_header_first_dark.png)
 
 > **Jetpack Compose implementation**
 
-In your composable screen you can use `OdsTitleFirstCard`composable:
+In your composable screen you can use `OdsVerticalHeaderFirstCard`composable:
 
 ```kotlin
-OdsTitleFirstCard(
+OdsVerticalHeaderFirstCard(
     title = "Title",
     image = painterResource(R.drawable.picture),
     thumbnail = painterResource(R.drawable.thumbnail), //Optional

@@ -23,15 +23,13 @@ import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import coil.compose.rememberAsyncImagePainter
-import coil.request.ImageRequest
-import coil.size.Size
-import com.orange.ods.compose.component.card.OdsTitleFirstCard
+import com.orange.ods.compose.component.card.OdsVerticalImageFirstCard
 import com.orange.ods.demo.R
 import com.orange.ods.demo.domain.recipes.LocalRecipes
 import com.orange.ods.demo.ui.components.utilities.clickOnElement
 
 @Composable
-fun CardTitleFirst(customizationState: CardCustomizationState) {
+fun CardVerticalImageFirst(customizationState: CardCustomizationState) {
     val context = LocalContext.current
     val recipes = LocalRecipes.current
     val recipe = rememberSaveable { recipes.filter { it.description.isNotBlank() }.random() }
@@ -46,19 +44,14 @@ fun CardTitleFirst(customizationState: CardCustomizationState) {
             val button1Text = stringResource(id = R.string.component_element_button1)
             val button2Text = stringResource(id = R.string.component_element_button2)
             val cardText = stringResource(id = R.string.component_card_element_card)
-            val imagePainter = rememberAsyncImagePainter(
-                model = ImageRequest.Builder(context)
-                    .data(recipe.imageUrl)
-                    .size(Size.ORIGINAL)
-                    .build(),
-                placeholder = painterResource(id = R.drawable.placeholder),
-                error = painterResource(id = R.drawable.placeholder)
-            )
 
-            OdsTitleFirstCard(
+            OdsVerticalImageFirstCard(
                 title = recipe.title,
-                image = imagePainter,
-                thumbnail = if (hasThumbnail) imagePainter else null,
+                image = rememberAsyncImagePainter(
+                    model = recipe.imageUrl,
+                    placeholder = painterResource(id = R.drawable.placeholder),
+                    error = painterResource(id = R.drawable.placeholder)
+                ),
                 subtitle = if (hasSubtitle) recipe.subtitle else null,
                 text = if (hasText) recipe.description else null,
                 onCardClick = if (isClickable) {
