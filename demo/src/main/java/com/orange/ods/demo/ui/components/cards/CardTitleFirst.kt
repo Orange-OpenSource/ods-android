@@ -10,7 +10,6 @@
 
 package com.orange.ods.demo.ui.components.cards
 
-import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
@@ -43,7 +42,6 @@ fun CardTitleFirst(customizationState: CardCustomizationState) {
                 .fillMaxSize()
                 .padding(dimensionResource(id = R.dimen.spacing_m))
                 .verticalScroll(state = rememberScrollState()),
-            verticalArrangement = Arrangement.spacedBy(dimensionResource(id = R.dimen.spacing_m))
         ) {
             val button1Text = stringResource(id = R.string.component_element_button1)
             val button2Text = stringResource(id = R.string.component_element_button2)
