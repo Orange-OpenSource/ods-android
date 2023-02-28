@@ -27,7 +27,7 @@ description: Progress indicators express an unspecified wait time or display the
 
 Please follow [accessibility criteria for development](https://a11y-guidelines.orange.com/en/mobile/android/development/)
 
-Progress indicators inherit accessibility support from the `ProgressBar` class in the framework.
+Progress indicators inherit accessibility support from the `ProgressLinear` class in the framework.
 Please consider setting the content descriptor for use with screen readers.
 
 That can be done in XML via the `android:contentDescription` attribute or programmatically like so:
@@ -51,32 +51,41 @@ Linear progress indicators support both determinate and indeterminate operations
 * Indeterminate operations display the indicator continually growing
   and shrinking along the track until the process is complete.
 
-  ![Progress bar light](images/progress_bar_light.png)
+  ![Progress bar light](images/progress_linear_light.png)
 
-  ![Progress bar dark](images/progress_bar_dark.png)
+  ![Progress bar dark](images/progress_linear_dark.png)
 
- > **Jetpack Compose implementation**
+> **Jetpack Compose implementation**
 
 You can use the composable `OdsLinearProgressIndicator` like this:
 
 For a **determinate** linear progress indicator
+
 ```kotlin
-OdsLinearProgressIndicator(progress = 0.2f)
+OdsLinearProgressIndicator(
+    progress = 0.2f,
+    label = "Downloading ...",
+    icon = painterResource(id = R.drawable.ic_arrow_down)
+)
 ```
 
 For an **indeterminate** linear progress indicator
+
 ```kotlin
-OdsLinearProgressIndicator()
+OdsLinearProgressIndicator(
+    label = "Downloading ...",
+    icon = painterResource(id = R.drawable.ic_arrow_down)
+)
 ```
 
- > **XML implementation**
+> **XML implementation**
 
 To create a linear progress indicator you will need to
 add `com.google.android.material.progressindicator.LinearProgressIndicator` in your layout
 
 API and source code:
 
-*   `LinearProgressIndicator`: [Class description](https://developer.android.com/reference/com/google/android/material/progressindicator/LinearProgressIndicator), [Class source](https://github.com/material-components/material-components-android/tree/master/lib/java/com/google/android/material/progressindicator/LinearProgressIndicator.java)
+* `LinearProgressIndicator`: [Class description](https://developer.android.com/reference/com/google/android/material/progressindicator/LinearProgressIndicator), [Class source](https://github.com/material-components/material-components-android/tree/master/lib/java/com/google/android/material/progressindicator/LinearProgressIndicator.java)
 
 The following example shows a **determinate** linear progress indicator.
 
@@ -108,12 +117,12 @@ to a surface, such as a button or card.
 Circular progress indicators support both determinate and indeterminate
 processes.
 
-*   Determinate circular indicators fill the invisible, circular track with
-    color, as the indicator moves from 0 to 360 degrees.
-*   Indeterminate circular indicators grow and shrink in size while moving along
-    the invisible track.
+* Determinate circular indicators fill the invisible, circular track with
+  color, as the indicator moves from 0 to 360 degrees.
+* Indeterminate circular indicators grow and shrink in size while moving along
+  the invisible track.
 
-  ![Activity indicator light](images/progress_activity_light.png)  ![Activity indicator dark](images/progress_activity_dark.png)
+![Activity indicator light](images/progress_circular_light.png)  ![Activity indicator dark](images/progress_circular_dark.png)
 
 > **Jetpack Compose implementation**
 
@@ -122,13 +131,13 @@ You can use the `OdsCircularProgressIndicator` composable like this:
 - For a **determinate** circular progress indicator
 
 ```kotlin
-OdsCircularProgressIndicator(progress = 0.2f)
+OdsCircularProgressIndicator(progress = 0.2f, label = "Downloading ...")
 ```
 
 - For an **indeterminate** circular progress indicator
 
 ```kotlin
-OdsCircularProgressIndicator()
+OdsCircularProgressIndicator(label = "Downloading ...")
 ```
 
 > **XML implementation**
@@ -138,16 +147,16 @@ add `com.google.android.material.progressindicator.CircularProgressIndicator` in
 
 API and source code:
 
-*   `CircularProgressIndicator`: [Class description](https://developer.android.com/reference/com/google/android/material/progressindicator/CircularProgressIndicator), [Class source](https://github.com/material-components/material-components-android/tree/master/lib/java/com/google/android/material/progressindicator/CircularProgressIndicator.java)
+* `CircularProgressIndicator`: [Class description](https://developer.android.com/reference/com/google/android/material/progressindicator/CircularProgressIndicator), [Class source](https://github.com/material-components/material-components-android/tree/master/lib/java/com/google/android/material/progressindicator/CircularProgressIndicator.java)
 
 The following example shows a **determinate** circular progress indicator.
 
 In the layout:
 
 ```xml
+
 <com.google.android.material.progressindicator.CircularProgressIndicator
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content" />
+    android:layout_width="wrap_content" android:layout_height="wrap_content" />
 ```
 
 The following example shows an **indeterminate** circular progress indicator.
@@ -155,11 +164,12 @@ The following example shows an **indeterminate** circular progress indicator.
 In the layout:
 
 ```xml
+
 <com.google.android.material.progressindicator.CircularProgressIndicator
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
+    android:layout_width="wrap_content" android:layout_height="wrap_content"
     android:indeterminate="true" />
 ```
+
 ## Component specific tokens
 
 _Soon available_
