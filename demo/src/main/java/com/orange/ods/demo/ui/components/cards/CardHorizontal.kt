@@ -43,7 +43,7 @@ fun CardHorizontal(customizationState: CardCustomizationState) {
         ) {
             val button1Text = stringResource(id = R.string.component_element_button1)
             val button2Text = stringResource(id = R.string.component_element_button2)
-            val cardContainerText = stringResource(id = R.string.component_card_element_container)
+            val cardText = stringResource(id = R.string.component_card_element_card)
 
             OdsHorizontalCard(
                 title = recipe.title,
@@ -55,7 +55,7 @@ fun CardHorizontal(customizationState: CardCustomizationState) {
                 subtitle = if (hasSubtitle) recipe.subtitle else null,
                 text = if (hasText) recipe.description else null,
                 onCardClick = if (isClickable) {
-                    { clickOnElement(context, cardContainerText) }
+                    { clickOnElement(context, cardText) }
                 } else null,
                 button1Text = if (hasButton1) button1Text else null,
                 onButton1Click = { clickOnElement(context, button1Text) },
