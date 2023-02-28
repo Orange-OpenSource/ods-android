@@ -26,6 +26,7 @@ import com.orange.ods.demo.R
 import com.orange.ods.demo.ui.components.Variant
 import com.orange.ods.demo.ui.components.utilities.ComponentCountRow
 import com.orange.ods.demo.ui.components.utilities.ComponentCustomizationBottomSheetScaffold
+import com.orange.ods.demo.ui.utilities.composable.Subtitle
 
 @OptIn(ExperimentalMaterialApi::class)
 @Composable
@@ -46,6 +47,7 @@ fun ComponentCard(variant: Variant) {
                         trailing = OdsSwitchTrailing(checked = thumbnailChecked)
                     )
                 } else if (variant == Variant.CardHorizontal) {
+                    Subtitle(textRes = R.string.component_card_horizontal_image_position, horizontalPadding = true)
                     OdsChoiceChipsFlowRow(
                         selectedChip = imagePosition,
                         modifier = Modifier.padding(horizontal = dimensionResource(id = R.dimen.screen_horizontal_margin)),
