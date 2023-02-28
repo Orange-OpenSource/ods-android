@@ -56,10 +56,6 @@ fun ComponentCard(variant: Variant) {
                         OdsChoiceChip(textRes = R.string.component_card_horizontal_position_start, value = OdsHorizontalCardImagePosition.Start)
                         OdsChoiceChip(textRes = R.string.component_card_horizontal_position_end, value = OdsHorizontalCardImagePosition.End)
                     }
-                    OdsListItem(
-                        text = stringResource(id = R.string.component_element_divider),
-                        trailing = OdsSwitchTrailing(checked = dividerEnabled)
-                    )
                 }
                 OdsListItem(
                     text = stringResource(id = R.string.component_element_subtitle),
@@ -78,6 +74,13 @@ fun ComponentCard(variant: Variant) {
                         modifier = Modifier.padding(start = dimensionResource(id = R.dimen.screen_horizontal_margin)),
                         minCount = CardCustomizationState.MinActionButtonCount,
                         maxCount = CardCustomizationState.MaxActionButtonCount
+                    )
+                }
+                if (variant == Variant.CardHorizontal) {
+                    if (!hasButton1) dividerChecked.value = false
+                    OdsListItem(
+                        text = stringResource(id = R.string.component_element_divider),
+                        trailing = OdsSwitchTrailing(checked = dividerChecked, enabled = hasButton1)
                     )
                 }
             }) {

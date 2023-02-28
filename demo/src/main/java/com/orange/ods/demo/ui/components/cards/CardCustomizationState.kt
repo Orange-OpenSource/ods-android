@@ -24,11 +24,11 @@ fun rememberCardCustomizationState(
     textChecked: MutableState<Boolean> = rememberSaveable { mutableStateOf(true) },
     subtitleChecked: MutableState<Boolean> = rememberSaveable { mutableStateOf(true) },
     actionButtonCount: MutableState<Int> = rememberSaveable { mutableStateOf(CardCustomizationState.MinActionButtonCount) },
-    dividerEnabled: MutableState<Boolean> = rememberSaveable { mutableStateOf(true) },
+    dividerChecked: MutableState<Boolean> = rememberSaveable { mutableStateOf(true) },
     imagePosition: MutableState<OdsHorizontalCardImagePosition> = rememberSaveable { mutableStateOf(OdsHorizontalCardImagePosition.Start) }
 ) =
-    remember(clickable, thumbnailChecked, textChecked, subtitleChecked, actionButtonCount, dividerEnabled, imagePosition) {
-        CardCustomizationState(clickable, thumbnailChecked, textChecked, subtitleChecked, actionButtonCount, dividerEnabled, imagePosition)
+    remember(clickable, thumbnailChecked, textChecked, subtitleChecked, actionButtonCount, dividerChecked, imagePosition) {
+        CardCustomizationState(clickable, thumbnailChecked, textChecked, subtitleChecked, actionButtonCount, dividerChecked, imagePosition)
     }
 
 class CardCustomizationState(
@@ -37,7 +37,7 @@ class CardCustomizationState(
     val textChecked: MutableState<Boolean>,
     val subtitleChecked: MutableState<Boolean>,
     val actionButtonCount: MutableState<Int>,
-    val dividerEnabled: MutableState<Boolean>,
+    val dividerChecked: MutableState<Boolean>,
     val imagePosition: MutableState<OdsHorizontalCardImagePosition>
 ) {
 
@@ -65,5 +65,5 @@ class CardCustomizationState(
         get() = actionButtonCount.value > 1
 
     val hasDivider
-        get() = dividerEnabled.value
+        get() = if (!hasButton1) false else dividerChecked.value
 }
