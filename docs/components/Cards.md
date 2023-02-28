@@ -74,7 +74,7 @@ See [Cards implementation in XML](#cards-implementation-in-xml)
 
 ### Vertical header first card
 
-This is a full width card containing elements arranged vertically with an header (thumbnail, title & subtitle) as first element.
+This is a full width card containing elements arranged vertically with a header (thumbnail, title & subtitle) as first element.
 
   ![Vertical header first card light](images/card_vertical_header_first_light.png) ![Vertical header first card dark](images/card_vertical_header_first_dark.png)
 
