@@ -85,6 +85,16 @@ fun OdsHorizontalCard(
     onButton1Click: (() -> Unit)? = null,
     onButton2Click: (() -> Unit)? = null
 ) {
+    val imageComposable: @Composable () -> Unit = {
+        HorizontalCardImage(
+            image = image,
+            contentScale = imageContentScale,
+            alignment = imageAlignment,
+            contentDescription = imageContentDescription,
+            backgroundColor = imageBackgroundColor
+        )
+    }
+
     OdsCard(
         modifier = modifier.fillMaxWidth(),
         onClick = onCardClick
@@ -92,13 +102,7 @@ fun OdsHorizontalCard(
         Column {
             Row {
                 if (imagePosition == OdsHorizontalCardImagePosition.Start) {
-                    HorizontalCardImage(
-                        image = image,
-                        contentScale = imageContentScale,
-                        alignment = imageAlignment,
-                        contentDescription = imageContentDescription,
-                        backgroundColor = imageBackgroundColor
-                    )
+                    imageComposable()
                 }
 
                 Column(
@@ -124,13 +128,7 @@ fun OdsHorizontalCard(
                 }
 
                 if (imagePosition == OdsHorizontalCardImagePosition.End) {
-                    HorizontalCardImage(
-                        image = image,
-                        contentScale = imageContentScale,
-                        alignment = imageAlignment,
-                        contentDescription = imageContentDescription,
-                        backgroundColor = imageBackgroundColor
-                    )
+                    imageComposable()
                 }
             }
 
