@@ -9,18 +9,18 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
+- \[Demo\] Add banner component ([#115](https://github.com/Orange-OpenSource/ods-android/issues/115))
 - \[Demo\] Add label for FAB size customization ([#413](https://github.com/Orange-OpenSource/ods-android/issues/413))
 - \[Demo\] Add bottom sheet component ([#360](https://github.com/Orange-OpenSource/ods-android/issues/360))
 - \[Lib\] Add `OdsBottomSheetScaffold` component ([#360](https://github.com/Orange-OpenSource/ods-android/issues/360))
 - \[Lib\] Add `OdsHorizontalCard` component ([#35](https://github.com/Orange-OpenSource/ods-android/issues/35))
+- \[Lib\] Add `OdsBanner` component ([#115](https://github.com/Orange-OpenSource/ods-android/issues/115))
 
 ### Changed
 
-- \[Demo\] Add banner component ([#115](https://github.com/Orange-OpenSource/ods-android/issues/115))
 - \[Lib\] Add label, current value and icon parameters to `OdsLinearProgressIndicator` component to display text and/or icon above the indicator, and the current value below if necessary ([#362](https://github.com/Orange-OpenSource/ods-android/issues/362))
 - \[Lib\] Add label parameter to `OdsCircularProgressIndicator` component to display a text below the indicator ([#362](https://github.com/Orange-OpenSource/ods-android/issues/362))
 - \[Lib\] Rename `OdsTitleFirstCard` and `OdsImageFirstCard` respectively into `OdsVerticalHeaderFirstCard` and `OdsVerticalImageFirstCard` ([#432](https://github.com/Orange-OpenSource/ods-android/issues/432))
-- \[Lib\] Add `OdsBanner` component ([#115](https://github.com/Orange-OpenSource/ods-android/issues/115))
 
 ### Fixed
 
