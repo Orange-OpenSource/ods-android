@@ -17,7 +17,6 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.CircleShape
-import androidx.compose.material.Divider
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
@@ -46,8 +45,8 @@ import com.orange.ods.compose.theme.OdsTheme
  *
  * @param message text displayed in the banner.
  * @param button1Text principal button in the banner, it displays an [OdsTextButton] with the given [button1Text] as an action of the banner.
+ * @param onButton1Click executed on button1 click.
  * @param modifier modifiers for the Banner layout.
- * @param onButton1Click executed on action button1 click.
  * @param image image display in the banner.
  * @param imageContentDescription Optional image content description.
  * @param button2Text Optional text of the second button in the banner. If not present, button will not be shown. If present, [onButton2Click] need to be  handle.
@@ -58,8 +57,8 @@ import com.orange.ods.compose.theme.OdsTheme
 fun OdsBanner(
     message: String,
     button1Text: String,
+    onButton1Click: () -> Unit,
     modifier: Modifier = Modifier,
-    onButton1Click: () -> Unit = {},
     image: Painter? = null,
     imageContentDescription: String? = null,
     button2Text: String? = null,
@@ -145,6 +144,7 @@ private fun PreviewOdsBanner(@PreviewParameter(OdsBannerPreviewParameterProvider
             OdsBanner(
                 message = message,
                 button1Text = button1Text,
+                onButton1Click = {},
                 button2Text = button2Text,
                 image = imageRes?.let { painterResource(id = it) },
             )
@@ -155,9 +155,8 @@ private data class OdsBannerPreviewParameter(
     val message: String,
     val button1Text: String,
     val button2Text: String? = null,
-    val imageRes: Int? = null,
-
-    )
+    val imageRes: Int? = null
+)
 
 private class OdsBannerPreviewParameterProvider :
     BasicPreviewParameterProvider<OdsBannerPreviewParameter>(*previewParameterValues.toTypedArray())
