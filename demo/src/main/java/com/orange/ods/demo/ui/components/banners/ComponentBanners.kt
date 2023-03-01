@@ -50,7 +50,7 @@ fun ComponentBanners() {
                     maxCount = BannerCustomizationState.MaxTextCount
                 )
                 ComponentCountRow(
-                    title = stringResource(id = R.string.component_banners_Buttons_count),
+                    title = stringResource(id = R.string.component_banner_buttons_count),
                     count = buttonsCount,
                     minusIconContentDescription = stringResource(id = R.string.component_banner_remove_action_button),
                     plusIconContentDescription = stringResource(id = R.string.component_banner_add_action_button),
@@ -70,7 +70,7 @@ fun ComponentBanners() {
         ) {
             Column {
                 OdsBanner(
-                    message = if (hasTextLines) stringResource(id = R.string.component_banners_two_line_text) else stringResource(id = R.string.component_banners_one_line_text),
+                    message = if (hasTextLines) stringResource(id = R.string.component_banner_two_line_text) else stringResource(id = R.string.component_banner_one_line_text),
                     button1Text = stringResource(id = R.string.component_snackbar_action_label),
                     buttonText = if (hasTextLines && hasButton) stringResource(id = R.string.component_snackbar_action_label) else null,
                     actionOnNewLine = !hasTextLines,
@@ -82,8 +82,8 @@ fun ComponentBanners() {
                     CommonTechnicalTextColumn(
                         componentName = OdsComponent.OdsBanner.name
                     ) {
-                        if (hasTextLines) TechnicalText(text = " message = \"${stringResource(id = R.string.component_banners_two_line_text)}\"")
-                        else TechnicalText(text = " message = \"${stringResource(id = R.string.component_banners_one_line_text)}\"")
+                        if (hasTextLines) TechnicalText(text = " message = \"${stringResource(id = R.string.component_banner_two_line_text)}\"")
+                        else TechnicalText(text = " message = \"${stringResource(id = R.string.component_banner_one_line_text)}\"")
                         TechnicalText("")
                         TechnicalText(" divider = $hasDivider")
                         TechnicalText("")

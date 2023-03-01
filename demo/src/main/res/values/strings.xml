@@ -110,13 +110,13 @@
     <string name="component_banners">Banners</string>
     <string name="component_banners_description">A banner displays an important message which requires an action to be dismissed.</string>
     <string name="component_banner_text_lines_count">Text lines count</string>
-    <string name="component_banners_Buttons_count">Buttons count</string>
+    <string name="component_banner_buttons_count">Buttons count</string>
     <string name="component_banner_divider">Divider</string>
     <string name="component_banner_image">Image</string>
     <string name="component_banner_remove_action_button">Remove Line</string>
     <string name="component_banner_add_action_button">Add Line</string>
-    <string name="component_banners_one_line_text">One line text string with one action.</string>
-    <string name="component_banners_two_line_text">Two lines text string with two actions. One to two lines is preferable on mobile and tablet.</string>
+    <string name="component_banner_one_line_text">One line text string with one action.</string>
+    <string name="component_banner_two_line_text">Two lines text string with two actions. One to two lines is preferable on mobile and tablet.</string>
 
     <!-- Components Buttons -->
     <string name="component_buttons">Buttons</string>
