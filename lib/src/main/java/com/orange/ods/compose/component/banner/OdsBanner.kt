@@ -47,14 +47,14 @@ import com.orange.ods.theme.OdsColors
  * <a href="https://system.design.orange.com/0c1af118d/p/19a040-banners/b/497b77" class="external" target="_blank">ODS banners</a>.
  *
  *
- * @param message text displayed in the banner.
  * @param modifier modifiers for the Banner layout.
+ * @param message text displayed in the banner.
  * @param image image display in the banner.
  * @param imageContentDescription Optional image content description.
- * @param buttonText Optional text of the second button in the banner. If not present, button will not be shown. If present, [onButton2Click] need to be  handle.
- * @param button1Text principal button in the banner, it displays an [OdsTextButton] with the given [button1Text] as an action of the banner.
  * @param actionOnNewLine whether or not action should be put on the separate line.
  * @param divider add the line at the end of the banner.
+ * @param buttonText Optional text of the second button in the banner. If not present, button will not be shown. If present, [onButton2Click] need to be  handle.
+ * @param button1Text principal button in the banner, it displays an [OdsTextButton] with the given [button1Text] as an action of the banner.
  * @param onButtonClick Optional handler for the button click.
  * @param onButton1Click executed on action button2 click.
  */
@@ -67,8 +67,8 @@ fun OdsBanner(
     imageContentDescription: String? = null,
     actionOnNewLine: Boolean = false,
     divider: Boolean = true,
-    button1Text: String,
     buttonText: String? = null,
+    button1Text: String,
     onButtonClick: (() -> Unit)? = null,
     onButton1Click: () -> Unit = {}
 ) {
