@@ -16,6 +16,7 @@ import androidx.compose.material.ExperimentalMaterialApi
 import androidx.compose.material.rememberBottomSheetScaffoldState
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
@@ -26,6 +27,7 @@ import com.orange.ods.compose.component.list.OdsSwitchTrailing
 import com.orange.ods.demo.R
 import com.orange.ods.demo.ui.components.utilities.ComponentCountRow
 import com.orange.ods.demo.ui.components.utilities.ComponentCustomizationBottomSheetScaffold
+import com.orange.ods.demo.ui.components.utilities.clickOnElement
 import com.orange.ods.demo.ui.utilities.composable.CodeImplementationColumn
 import com.orange.ods.demo.ui.utilities.composable.CommonTechnicalTextColumn
 import com.orange.ods.demo.ui.utilities.composable.TechnicalText
@@ -60,17 +62,21 @@ fun ComponentBanners() {
                 )
                 OdsListItem(
                     text = stringResource(id = R.string.component_banner_image),
-                    trailing = OdsSwitchTrailing(checked = iconChecked, enabled = hasTwoTextLines)
+                    trailing = OdsSwitchTrailing(checked = iconChecked)
                 )
             }
         ) {
+            val context = LocalContext.current
+            val button1Text = stringResource(id = R.string.component_element_button1)
+            val button2Text = stringResource(id = R.string.component_element_button2)
             Column {
                 OdsBanner(
                     message = if (hasTwoTextLines) stringResource(id = R.string.component_banner_two_line_text) else stringResource(id = R.string.component_banner_one_line_text),
                     button1Text = stringResource(id = R.string.component_snackbar_action_label),
-                    button2Text = if (hasTwoTextLines && hasButton2) stringResource(id = R.string.component_snackbar_action_label) else null,
-                    actionOnNewLine = !hasTwoTextLines,
+                    button2Text = if (hasButton2) stringResource(id = R.string.component_snackbar_action_label) else null,
                     image = if (hasIcon) painterResource(id = com.orange.ods.R.drawable.placeholder) else null,
+                    onButton1Click = { clickOnElement(context, button1Text) },
+                    onButton2Click = { clickOnElement(context, button2Text) },
                 )
 
                 CodeImplementationColumn {
@@ -80,6 +86,8 @@ fun ComponentBanners() {
                         if (hasTwoTextLines) TechnicalText(text = " message = \"${stringResource(id = R.string.component_banner_two_line_text)}\"")
                         else TechnicalText(text = " message = \"${stringResource(id = R.string.component_banner_one_line_text)}\"")
                         if (hasIcon) TechnicalText(text = " image = painterResource(id = R.drawable.placeholder)")
+                        TechnicalText(text = " button1Text = \"${stringResource(id = R.string.component_snackbar_action_label)}\"")
+                        if (hasButton2) TechnicalText(text = " button2Text = \"${stringResource(id = R.string.component_snackbar_action_label)}\"")
                     }
                 }
             }

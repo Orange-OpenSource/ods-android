@@ -11,13 +11,11 @@
 package com.orange.ods.compose.component.banner
 
 import androidx.compose.foundation.Image
-import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
-import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material.Divider
 import androidx.compose.material.Text
@@ -36,6 +34,7 @@ import com.orange.ods.R
 import com.orange.ods.compose.component.OdsComponentApi
 import com.orange.ods.compose.component.button.OdsTextButton
 import com.orange.ods.compose.component.button.OdsTextButtonStyle
+import com.orange.ods.compose.component.divider.OdsDivider
 import com.orange.ods.compose.component.utilities.BasicPreviewParameterProvider
 import com.orange.ods.compose.component.utilities.Preview
 import com.orange.ods.compose.component.utilities.UiModePreviews
@@ -53,7 +52,6 @@ import com.orange.ods.compose.theme.OdsTheme
  * @param imageContentDescription Optional image content description.
  * @param button2Text Optional text of the second button in the banner. If not present, button will not be shown. If present, [onButton2Click] need to be  handle.
  * @param onButton2Click Optional handler for the button2 click.
- * @param actionOnNewLine whether or not action should be put on the separate line.
  */
 @Composable
 @OdsComponentApi
@@ -65,9 +63,9 @@ fun OdsBanner(
     image: Painter? = null,
     imageContentDescription: String? = null,
     button2Text: String? = null,
-    onButton2Click: (() -> Unit)? = null,
-    actionOnNewLine: Boolean = false
+    onButton2Click: (() -> Unit)? = null
 ) {
+    val isSingleLineBanner = image == null && button2Text == null
     Column(
         modifier = modifier
             .fillMaxWidth()
@@ -77,52 +75,43 @@ fun OdsBanner(
             modifier = Modifier
                 .fillMaxWidth()
                 .padding(
-                    top = dimensionResource(id = R.dimen.spacing_m),
+                    top = if (isSingleLineBanner) dimensionResource(id = R.dimen.spacing_s) else dimensionResource(id = R.dimen.spacing_l),
                     bottom = dimensionResource(id = R.dimen.spacing_s)
-                ),
-            horizontalArrangement = Arrangement.SpaceBetween,
+                )
+                .padding(horizontal = dimensionResource(id = R.dimen.spacing_m))
         ) {
-            if (!actionOnNewLine) {
-                image?.let {
-                    Image(
-                        painter = image,
-                        contentDescription = imageContentDescription,
-                        contentScale = ContentScale.Crop,// crop the image if it's not a square
-                        modifier = Modifier
-                            .padding(start = dimensionResource(id = R.dimen.spacing_m))
-                            .size(40.dp)
-                            .clip(CircleShape)
-                    )
-                }
-            }
-            Text(
-                modifier = Modifier
-                    .padding(
-                        start = dimensionResource(id = R.dimen.spacing_m),
-                        end = dimensionResource(id = R.dimen.spacing_s)
-                    ),
-                text = message,
-                style = OdsTheme.typography.body2,
-                color = OdsTheme.colors.onSurface,
-                maxLines = 2,
-                overflow = TextOverflow.Ellipsis
-            )
-            if (actionOnNewLine) {
-                Row(
+            image?.let {
+                Image(
+                    painter = image,
+                    contentDescription = imageContentDescription,
+                    contentScale = ContentScale.Crop,// crop the image if it's not a square
                     modifier = Modifier
-                        .width(250.dp),
-                    horizontalArrangement = Arrangement.End,
-                ) {
+                        .padding(end = dimensionResource(id = R.dimen.spacing_m))
+                        .size(40.dp)
+                        .clip(CircleShape),
+                )
+            }
+            Row(verticalAlignment = Alignment.CenterVertically) {
+                Text(
+                    modifier = Modifier.weight(1f),
+                    text = message,
+                    style = OdsTheme.typography.body2,
+                    color = OdsTheme.colors.onSurface,
+                    maxLines = 2,
+                    overflow = TextOverflow.Ellipsis
+                )
+                if (isSingleLineBanner) {
                     OdsTextButton(
-                        modifier = Modifier.padding(end = dimensionResource(id = R.dimen.spacing_s)),
+                        modifier = Modifier
+                            .padding(start = dimensionResource(id = R.dimen.spacing_s)),
                         style = OdsTextButtonStyle.Primary,
-                        text = button1Text.uppercase(),
+                        text = button1Text,
                         onClick = onButton1Click
                     )
                 }
             }
         }
-        if (!actionOnNewLine) {
+        if (!isSingleLineBanner) {
             Row(
                 modifier = Modifier
                     .padding(bottom = dimensionResource(id = R.dimen.spacing_s))
@@ -144,21 +133,9 @@ fun OdsBanner(
                 }
             }
         }
-        Divider()
+        OdsDivider()
     }
 }
-
-@UiModePreviews.Default
-@Composable
-private fun PreviewOdsBanner(@PreviewParameter(OdsBannerPreviewParameterProvider::class) actionOnNewLine: Boolean) = Preview {
-    OdsBanner(
-        message = "Two lines text string with two actions.", modifier = Modifier,
-        button1Text = "Action",
-        image = painterResource(id = R.drawable.placeholder),
-        actionOnNewLine = actionOnNewLine
-    )
-}
-
 
 @UiModePreviews.Default
 @Composable
@@ -197,6 +174,7 @@ private val previewParameterValues: List<OdsBannerPreviewParameter>
             OdsBannerPreviewParameter(longMessage, button1Text, button2Text, imageRes),
             OdsBannerPreviewParameter(shortMessage, button1Text),
             OdsBannerPreviewParameter(longMessage, button1Text, button2Text),
-            OdsBannerPreviewParameter(longMessage, button1Text)
+            OdsBannerPreviewParameter(longMessage, button1Text),
+            OdsBannerPreviewParameter(shortMessage, button1Text, imageRes = imageRes)
         )
     }
