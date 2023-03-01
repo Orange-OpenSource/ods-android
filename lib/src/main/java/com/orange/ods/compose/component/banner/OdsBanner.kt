@@ -20,7 +20,6 @@ import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material.Divider
-import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
@@ -41,7 +40,6 @@ import com.orange.ods.compose.component.utilities.BasicPreviewParameterProvider
 import com.orange.ods.compose.component.utilities.Preview
 import com.orange.ods.compose.component.utilities.UiModePreviews
 import com.orange.ods.compose.theme.OdsTheme
-import com.orange.ods.theme.OdsColors
 
 /**
  * <a href="https://system.design.orange.com/0c1af118d/p/19a040-banners/b/497b77" class="external" target="_blank">ODS banners</a>.
@@ -160,4 +158,44 @@ private fun PreviewOdsBanner(@PreviewParameter(OdsBannerPreviewParameterProvider
     )
 }
 
-private class OdsBannerPreviewParameterProvider : BasicPreviewParameterProvider<Boolean>(false, true)
+
+@UiModePreviews.Default
+@Composable
+private fun PreviewOdsBanner(@PreviewParameter(OdsBannerPreviewParameterProvider::class) parameter: OdsBannerPreviewParameter) =
+    Preview {
+        with(parameter) {
+            OdsBanner(
+                message = message,
+                button1Text = button1Text,
+                buttonText = button2Text,
+                image = imageRes?.let { painterResource(id = it) },
+            )
+        }
+    }
+
+private data class OdsBannerPreviewParameter(
+    val message: String,
+    val button1Text: String,
+    val button2Text: String? = null,
+    val imageRes: Int? = null,
+
+)
+
+private class OdsBannerPreviewParameterProvider :
+    BasicPreviewParameterProvider<OdsBannerPreviewParameter>(*previewParameterValues.toTypedArray())
+
+private val previewParameterValues: List<OdsBannerPreviewParameter>
+    get() {
+        val imageRes = R.drawable.placeholder
+        val shortMessage = "Two lines text string with two actions."
+        val longMessage = "Two lines text string with two actions. One to two lines is preferable on mobile and tablet."
+        val button1Text = "ACTION"
+        val button2Text = "ACTION"
+
+        return listOf(
+            OdsBannerPreviewParameter(longMessage, button1Text, button2Text, imageRes),
+            OdsBannerPreviewParameter(shortMessage, button1Text),
+            OdsBannerPreviewParameter(longMessage, button1Text, button2Text),
+            OdsBannerPreviewParameter(longMessage, button1Text)
+        )
+    }
