@@ -84,9 +84,7 @@ fun ComponentBanners() {
                     ) {
                         if (hasTextLines) TechnicalText(text = " message = \"${stringResource(id = R.string.component_banner_two_line_text)}\"")
                         else TechnicalText(text = " message = \"${stringResource(id = R.string.component_banner_one_line_text)}\"")
-                        TechnicalText("")
                         TechnicalText(" divider = $hasDivider")
-                        TechnicalText("")
                         if (hasIcon) TechnicalText(text = " image = painterResource(id = R.drawable.placeholder)")
                     }
                 }
