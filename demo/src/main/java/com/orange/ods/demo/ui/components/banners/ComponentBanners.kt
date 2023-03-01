@@ -41,7 +41,7 @@ fun ComponentBanners() {
             bottomSheetScaffoldState = rememberBottomSheetScaffoldState(),
             bottomSheetContent = {
                 ComponentCountRow(
-                    title = stringResource(id = R.string.component_banners_textLines),
+                    title = stringResource(id = R.string.component_banner_text_lines_count),
                     count = textLinesCount,
                     minusIconContentDescription = stringResource(id = R.string.component_card_remove_action_button),
                     plusIconContentDescription = stringResource(id = R.string.component_card_add_action_button),
@@ -50,7 +50,7 @@ fun ComponentBanners() {
                     maxCount = BannerCustomizationState.MaxTextCount
                 )
                 ComponentCountRow(
-                    title = stringResource(id = R.string.component_banners_Buttons),
+                    title = stringResource(id = R.string.component_banners_Buttons_count),
                     count = buttonsCount,
                     minusIconContentDescription = stringResource(id = R.string.component_banner_remove_action_button),
                     plusIconContentDescription = stringResource(id = R.string.component_banner_add_action_button),
@@ -59,18 +59,18 @@ fun ComponentBanners() {
                     maxCount = BannerCustomizationState.MaxActionButtonCount
                 )
                 OdsListItem(
-                    text = stringResource(id = R.string.component_banners_image),
+                    text = stringResource(id = R.string.component_banner_image),
                     trailing = OdsSwitchTrailing(checked = iconChecked, enabled = hasTextLines)
                 )
                 OdsListItem(
-                    text = stringResource(id = R.string.component_banners_divider),
+                    text = stringResource(id = R.string.component_banner_divider),
                     trailing = OdsSwitchTrailing(checked = dividerChecked)
                 )
             }
         ) {
             Column {
                 OdsBanner(
-                    message = if (hasTextLines) stringResource(id = R.string.component_banners_twoLine) else stringResource(id = R.string.component_banners_oneLine),
+                    message = if (hasTextLines) stringResource(id = R.string.component_banners_two_line_text) else stringResource(id = R.string.component_banners_one_line_text),
                     button1Text = stringResource(id = R.string.component_snackbar_action_label),
                     buttonText = if (hasTextLines && hasButton) stringResource(id = R.string.component_snackbar_action_label) else null,
                     actionOnNewLine = !hasTextLines,
@@ -82,8 +82,8 @@ fun ComponentBanners() {
                     CommonTechnicalTextColumn(
                         componentName = OdsComponent.OdsBanner.name
                     ) {
-                        if (hasTextLines) TechnicalText(text = " message = \"${stringResource(id = R.string.component_banners_twoLine)}\"")
-                        else TechnicalText(text = " message = \"${stringResource(id = R.string.component_banners_oneLine)}\"")
+                        if (hasTextLines) TechnicalText(text = " message = \"${stringResource(id = R.string.component_banners_two_line_text)}\"")
+                        else TechnicalText(text = " message = \"${stringResource(id = R.string.component_banners_one_line_text)}\"")
                         TechnicalText("")
                         TechnicalText(" divider = $hasDivider")
                         TechnicalText("")
