@@ -47,10 +47,17 @@ You can use the `OdsBanner` composable like this:
 
 ```kotlin
 OdsBanner(
-    message = "",
+    message = "Message displayed in the banner.",
     button1Text = "Dismiss",
     button2Text = "Detail", // Optional
-    image = painterResource(id = R.drawable.placeholder) // Optional
+    image = painterResource(id = R.drawable.placeholder), // Optional
+    imageContentDescription = "", // Optional
+    onButton1Click = { 
+        // Do something
+    },
+    onButton2Click = {
+        // Do something
+    }, // Optional
 )
 ```
 
