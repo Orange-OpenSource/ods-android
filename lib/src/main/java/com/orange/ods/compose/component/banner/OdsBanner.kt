@@ -54,7 +54,6 @@ import com.orange.ods.compose.theme.OdsTheme
  * @param button2Text Optional text of the second button in the banner. If not present, button will not be shown. If present, [onButton2Click] need to be  handle.
  * @param onButton2Click Optional handler for the button2 click.
  * @param actionOnNewLine whether or not action should be put on the separate line.
- * @param divider add the line at the end of the banner.
  */
 @Composable
 @OdsComponentApi
@@ -67,8 +66,7 @@ fun OdsBanner(
     imageContentDescription: String? = null,
     button2Text: String? = null,
     onButton2Click: (() -> Unit)? = null,
-    actionOnNewLine: Boolean = false,
-    divider: Boolean = true,
+    actionOnNewLine: Boolean = false
 ) {
     Column(
         modifier = modifier
@@ -146,7 +144,7 @@ fun OdsBanner(
                 }
             }
         }
-        if (divider) Divider()
+        Divider()
     }
 }
 

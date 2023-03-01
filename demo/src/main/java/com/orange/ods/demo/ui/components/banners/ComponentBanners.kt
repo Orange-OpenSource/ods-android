@@ -62,10 +62,6 @@ fun ComponentBanners() {
                     text = stringResource(id = R.string.component_banner_image),
                     trailing = OdsSwitchTrailing(checked = iconChecked, enabled = hasTwoTextLines)
                 )
-                OdsListItem(
-                    text = stringResource(id = R.string.component_banner_divider),
-                    trailing = OdsSwitchTrailing(checked = dividerChecked)
-                )
             }
         ) {
             Column {
@@ -75,7 +71,6 @@ fun ComponentBanners() {
                     button2Text = if (hasTwoTextLines && hasButton2) stringResource(id = R.string.component_snackbar_action_label) else null,
                     actionOnNewLine = !hasTwoTextLines,
                     image = if (hasIcon) painterResource(id = com.orange.ods.R.drawable.placeholder) else null,
-                    divider = hasDivider
                 )
 
                 CodeImplementationColumn {
@@ -84,7 +79,6 @@ fun ComponentBanners() {
                     ) {
                         if (hasTwoTextLines) TechnicalText(text = " message = \"${stringResource(id = R.string.component_banner_two_line_text)}\"")
                         else TechnicalText(text = " message = \"${stringResource(id = R.string.component_banner_one_line_text)}\"")
-                        TechnicalText(" divider = $hasDivider")
                         if (hasIcon) TechnicalText(text = " image = painterResource(id = R.drawable.placeholder)")
                     }
                 }

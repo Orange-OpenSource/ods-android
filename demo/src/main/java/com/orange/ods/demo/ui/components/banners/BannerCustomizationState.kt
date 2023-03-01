@@ -20,17 +20,15 @@ import androidx.compose.runtime.saveable.rememberSaveable
 fun rememberBannerCustomizationState(
     buttonsCount: MutableState<Int> = rememberSaveable { mutableStateOf(BannerCustomizationState.MinActionButtonCount) },
     textLinesCount: MutableState<Int> = rememberSaveable { mutableStateOf(BannerCustomizationState.MaxTextCount) },
-    dividerChecked: MutableState<Boolean> = rememberSaveable { mutableStateOf(true) },
     iconChecked: MutableState<Boolean> = rememberSaveable { mutableStateOf(false) }
 ) =
-    remember(buttonsCount, textLinesCount, dividerChecked, iconChecked) {
-        BannerCustomizationState(buttonsCount, textLinesCount, dividerChecked, iconChecked)
+    remember(buttonsCount, textLinesCount, iconChecked) {
+        BannerCustomizationState(buttonsCount, textLinesCount, iconChecked)
     }
 
 class BannerCustomizationState(
     val buttonsCount: MutableState<Int>,
     val textLinesCount: MutableState<Int>,
-    val dividerChecked: MutableState<Boolean>,
     val iconChecked: MutableState<Boolean>,
 ) {
 
@@ -40,9 +38,6 @@ class BannerCustomizationState(
         const val MinTextCount = 1
         const val MaxTextCount = 2
     }
-
-    val hasDivider
-        get() = dividerChecked.value
 
     val hasIcon
         get() = iconChecked.value
