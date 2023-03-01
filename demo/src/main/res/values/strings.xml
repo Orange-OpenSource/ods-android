@@ -114,8 +114,8 @@
     <string name="component_banner_image">Image</string>
     <string name="component_banner_remove_action_button">Remove Line</string>
     <string name="component_banner_add_action_button">Add Line</string>
-    <string name="component_banner_one_line_text">One line text string with one action.</string>
-    <string name="component_banner_two_line_text">Two lines text string with two actions. One to two lines is preferable on mobile and tablet.</string>
+    <string name="component_banner_dismiss">Dismiss</string>
+    <string name="component_banner_detail">Detail</string>
 
     <!-- Components Buttons -->
     <string name="component_buttons">Buttons</string>
