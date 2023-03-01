@@ -37,6 +37,23 @@ Recommendation is available at the Orange Accessibility site
 
 ## Implementation
 
+![Banner light](images/banner_light.png)
+
+![Banner dark](images/banner_dark.png)
+
+> **Jetpack Compose implementation**
+
+You can use the `OdsBanner` composable like this:
+
+```kotlin
+OdsBanner(
+    message = "",
+    button1Text = "Dismiss",
+    button2Text = "Detail", // Optional
+    image = painterResource(id = R.drawable.placeholder) // Optional
+)
+```
+
 ## Component specific tokens
 
 _Soon available_
