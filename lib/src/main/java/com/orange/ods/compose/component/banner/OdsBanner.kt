@@ -91,7 +91,7 @@ fun OdsBanner(
                         contentScale = ContentScale.Crop,// crop the image if it's not a square
                         modifier = Modifier
                             .padding(start = dimensionResource(id = R.dimen.spacing_m))
-                            .size(50.dp)
+                            .size(40.dp)
                             .clip(CircleShape)
                     )
                 }
