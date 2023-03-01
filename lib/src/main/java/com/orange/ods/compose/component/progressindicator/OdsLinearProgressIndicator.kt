@@ -20,11 +20,14 @@ import androidx.compose.material.LinearProgressIndicator
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
+import androidx.compose.ui.ExperimentalComposeUiApi
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.painter.Painter
 import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.semantics.invisibleToUser
+import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.PreviewParameter
 import com.orange.ods.R
@@ -50,6 +53,7 @@ import com.orange.ods.utilities.extension.orElse
  * @param icon The icon displayed above the linear progress
  * @param iconContentDescription The content description for the icon displayed above the linear progress
  */
+@OptIn(ExperimentalComposeUiApi::class)
 @Composable
 @OdsComponentApi
 fun OdsLinearProgressIndicator(
@@ -95,7 +99,10 @@ fun OdsLinearProgressIndicator(
                 Row(horizontalArrangement = Arrangement.End, modifier = Modifier.fillMaxWidth()) {
                     OdsTextCaption(
                         modifier = Modifier
-                            .padding(top = dimensionResource(id = R.dimen.spacing_xs)),
+                            .padding(top = dimensionResource(id = R.dimen.spacing_xs))
+                            .semantics {
+                                this.invisibleToUser() // Prevent Talkback to focus this Text cause the value of the progress is already read on LinearProgressIndicator focus
+                            },
                         text = String.format(stringResource(id = R.string.progress_linear_indicator_value), (progress * 100).toInt())
                     )
                 }
