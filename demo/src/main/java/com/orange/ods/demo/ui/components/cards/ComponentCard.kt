@@ -69,8 +69,8 @@ fun ComponentCard(variant: Variant) {
                     ComponentCountRow(
                         title = stringResource(id = R.string.component_card_action_button_count),
                         count = actionButtonCount,
-                        minusIconContentDescription = stringResource(id = R.string.component_card_remove_action_button),
-                        plusIconContentDescription = stringResource(id = R.string.component_card_add_action_button),
+                        minusIconContentDescription = stringResource(id = R.string.component_remove_action_button),
+                        plusIconContentDescription = stringResource(id = R.string.component_add_action_button),
                         modifier = Modifier.padding(start = dimensionResource(id = R.dimen.screen_horizontal_margin)),
                         minCount = CardCustomizationState.MinActionButtonCount,
                         maxCount = CardCustomizationState.MaxActionButtonCount

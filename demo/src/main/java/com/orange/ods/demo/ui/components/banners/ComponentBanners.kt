@@ -43,8 +43,8 @@ fun ComponentBanners() {
                 ComponentCountRow(
                     title = stringResource(id = R.string.component_banner_text_lines_count),
                     count = textLinesCount,
-                    minusIconContentDescription = stringResource(id = R.string.component_card_remove_action_button),
-                    plusIconContentDescription = stringResource(id = R.string.component_card_add_action_button),
+                    minusIconContentDescription = stringResource(id = R.string.component_remove_action_button),
+                    plusIconContentDescription = stringResource(id = R.string.component_add_action_button),
                     modifier = Modifier.padding(start = dimensionResource(id = R.dimen.screen_horizontal_margin)),
                     minCount = BannerCustomizationState.MinTextCount,
                     maxCount = BannerCustomizationState.MaxTextCount
