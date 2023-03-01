@@ -47,9 +47,9 @@ class BannerCustomizationState(
     val hasIcon
         get() = iconChecked.value
 
-    val hasButton
+    val hasButton2
         get() = buttonsCount.value > 1
 
-    val hasTextLines
+    val hasTwoTextLines
         get() = textLinesCount.value > 1
 }
