@@ -45,30 +45,30 @@ import com.orange.ods.compose.theme.OdsTheme
  * <a href="https://system.design.orange.com/0c1af118d/p/19a040-banners/b/497b77" class="external" target="_blank">ODS banners</a>.
  *
  *
- * @param modifier modifiers for the Banner layout.
  * @param message text displayed in the banner.
+ * @param button1Text principal button in the banner, it displays an [OdsTextButton] with the given [button1Text] as an action of the banner.
+ * @param modifier modifiers for the Banner layout.
+ * @param onButton1Click executed on action button1 click.
  * @param image image display in the banner.
  * @param imageContentDescription Optional image content description.
+ * @param button2Text Optional text of the second button in the banner. If not present, button will not be shown. If present, [onButton2Click] need to be  handle.
+ * @param onButton2Click Optional handler for the button2 click.
  * @param actionOnNewLine whether or not action should be put on the separate line.
  * @param divider add the line at the end of the banner.
- * @param buttonText Optional text of the second button in the banner. If not present, button will not be shown. If present, [onButton2Click] need to be  handle.
- * @param button1Text principal button in the banner, it displays an [OdsTextButton] with the given [button1Text] as an action of the banner.
- * @param onButtonClick Optional handler for the button click.
- * @param onButton1Click executed on action button2 click.
  */
 @Composable
 @OdsComponentApi
 fun OdsBanner(
-    modifier: Modifier = Modifier,
     message: String,
+    button1Text: String,
+    modifier: Modifier = Modifier,
+    onButton1Click: () -> Unit = {},
     image: Painter? = null,
     imageContentDescription: String? = null,
+    button2Text: String? = null,
+    onButton2Click: (() -> Unit)? = null,
     actionOnNewLine: Boolean = false,
     divider: Boolean = true,
-    buttonText: String? = null,
-    button1Text: String,
-    onButtonClick: (() -> Unit)? = null,
-    onButton1Click: () -> Unit = {}
 ) {
     Column(
         modifier = modifier
@@ -76,9 +76,12 @@ fun OdsBanner(
     ) {
         Row(
             verticalAlignment = Alignment.CenterVertically,
-            modifier = Modifier.fillMaxWidth()
-                .padding(top = dimensionResource(id = R.dimen.spacing_m),
-                    bottom = dimensionResource(id = R.dimen.spacing_s)),
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(
+                    top = dimensionResource(id = R.dimen.spacing_m),
+                    bottom = dimensionResource(id = R.dimen.spacing_s)
+                ),
             horizontalArrangement = Arrangement.SpaceBetween,
         ) {
             if (!actionOnNewLine) {
@@ -133,12 +136,12 @@ fun OdsBanner(
                     text = button1Text,
                     onClick = onButton1Click
                 )
-                buttonText?.let {
+                button2Text?.let {
                     OdsTextButton(
                         modifier = Modifier.padding(end = dimensionResource(id = R.dimen.spacing_s)),
                         style = OdsTextButtonStyle.Primary,
-                        text = buttonText,
-                        onClick = { onButtonClick?.invoke() }
+                        text = button2Text,
+                        onClick = { onButton2Click?.invoke() }
                     )
                 }
             }
@@ -167,7 +170,7 @@ private fun PreviewOdsBanner(@PreviewParameter(OdsBannerPreviewParameterProvider
             OdsBanner(
                 message = message,
                 button1Text = button1Text,
-                buttonText = button2Text,
+                button2Text = button2Text,
                 image = imageRes?.let { painterResource(id = it) },
             )
         }
@@ -179,7 +182,7 @@ private data class OdsBannerPreviewParameter(
     val button2Text: String? = null,
     val imageRes: Int? = null,
 
-)
+    )
 
 private class OdsBannerPreviewParameterProvider :
     BasicPreviewParameterProvider<OdsBannerPreviewParameter>(*previewParameterValues.toTypedArray())

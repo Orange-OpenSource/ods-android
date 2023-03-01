@@ -72,7 +72,7 @@ fun ComponentBanners() {
                 OdsBanner(
                     message = if (hasTextLines) stringResource(id = R.string.component_banner_two_line_text) else stringResource(id = R.string.component_banner_one_line_text),
                     button1Text = stringResource(id = R.string.component_snackbar_action_label),
-                    buttonText = if (hasTextLines && hasButton) stringResource(id = R.string.component_snackbar_action_label) else null,
+                    button2Text = if (hasTextLines && hasButton) stringResource(id = R.string.component_snackbar_action_label) else null,
                     actionOnNewLine = !hasTextLines,
                     image = if (hasIcon) painterResource(id = com.orange.ods.R.drawable.placeholder) else null,
                     divider = hasDivider
