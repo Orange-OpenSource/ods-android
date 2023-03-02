@@ -53,7 +53,7 @@ fun ComponentSheetsBottom() {
             bottomSheetContent = {
                 when (content.value) {
                     SheetsBottomCustomizationState.Content.Empty -> {
-                        Box(modifier = Modifier.height(200.dp))
+                        Box(modifier = Modifier.height(168.dp))
                     }
 
                     SheetsBottomCustomizationState.Content.Example -> {
