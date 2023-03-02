@@ -10,18 +10,16 @@
 
 package com.orange.ods.demo.ui.components.sheets
 
-import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material.ExperimentalMaterialApi
 import androidx.compose.material.rememberBottomSheetScaffoldState
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.alpha
 import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
-import androidx.compose.ui.unit.dp
 import com.orange.ods.compose.component.OdsComponent
 import com.orange.ods.compose.component.chip.OdsChoiceChip
 import com.orange.ods.compose.component.chip.OdsChoiceChipsFlowRow
@@ -49,29 +47,19 @@ fun ComponentSheetsBottom() {
         ComponentCustomizationBottomSheetScaffold(
             titleResId = R.string.component_sheet_bottom_recipes,
             bottomSheetScaffoldState = rememberBottomSheetScaffoldState(),
-
             bottomSheetContent = {
-                when (content.value) {
-                    SheetsBottomCustomizationState.Content.Empty -> {
-                        Box(modifier = Modifier.height(200.dp))
-                    }
-
-                    SheetsBottomCustomizationState.Content.Example -> {
-                        val recipes = LocalRecipes.current
-                        recipes.take(3).forEach { recipe ->
-                            OdsListItem(
-                                Modifier.iconType(OdsListItemIconType.Icon),
-                                icon = recipe.iconResId?.let { iconRes ->
-                                    {
-                                        OdsListItemIcon(
-                                            painterResource(id = iconRes)
-                                        )
-                                    }
-                                },
-                                text = recipe.title
-                            )
-                        }
-                    }
+                val isEmpty = content.value == SheetsBottomCustomizationState.Content.Empty
+                val recipes = LocalRecipes.current
+                recipes.take(3).forEach { recipe ->
+                    OdsListItem(
+                        Modifier
+                            .iconType(OdsListItemIconType.Icon)
+                            .alpha(if (isEmpty) 0.0f else 1.0f),
+                        icon = recipe.iconResId?.let { iconRes ->
+                            { OdsListItemIcon(painterResource(id = iconRes)) }
+                        },
+                        text = recipe.title
+                    )
                 }
             }
         ) {
