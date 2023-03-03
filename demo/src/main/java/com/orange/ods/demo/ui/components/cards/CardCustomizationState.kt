@@ -15,6 +15,7 @@ import androidx.compose.runtime.MutableState
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.saveable.rememberSaveable
+import com.orange.ods.compose.component.card.OdsHorizontalCardImagePosition
 
 @Composable
 fun rememberCardCustomizationState(
@@ -22,10 +23,12 @@ fun rememberCardCustomizationState(
     thumbnailChecked: MutableState<Boolean> = rememberSaveable { mutableStateOf(true) },
     textChecked: MutableState<Boolean> = rememberSaveable { mutableStateOf(true) },
     subtitleChecked: MutableState<Boolean> = rememberSaveable { mutableStateOf(true) },
-    actionButtonCount: MutableState<Int> = rememberSaveable { mutableStateOf(CardCustomizationState.MinActionButtonCount) }
+    actionButtonCount: MutableState<Int> = rememberSaveable { mutableStateOf(CardCustomizationState.MinActionButtonCount) },
+    dividerChecked: MutableState<Boolean> = rememberSaveable { mutableStateOf(true) },
+    imagePosition: MutableState<OdsHorizontalCardImagePosition> = rememberSaveable { mutableStateOf(OdsHorizontalCardImagePosition.Start) }
 ) =
-    remember(clickable, thumbnailChecked, textChecked, subtitleChecked, actionButtonCount) {
-        CardCustomizationState(clickable, thumbnailChecked, textChecked, subtitleChecked, actionButtonCount)
+    remember(clickable, thumbnailChecked, textChecked, subtitleChecked, actionButtonCount, dividerChecked, imagePosition) {
+        CardCustomizationState(clickable, thumbnailChecked, textChecked, subtitleChecked, actionButtonCount, dividerChecked, imagePosition)
     }
 
 class CardCustomizationState(
@@ -33,7 +36,9 @@ class CardCustomizationState(
     val thumbnailChecked: MutableState<Boolean>,
     val textChecked: MutableState<Boolean>,
     val subtitleChecked: MutableState<Boolean>,
-    val actionButtonCount: MutableState<Int>
+    val actionButtonCount: MutableState<Int>,
+    val dividerChecked: MutableState<Boolean>,
+    val imagePosition: MutableState<OdsHorizontalCardImagePosition>
 ) {
 
     companion object {
@@ -58,4 +63,7 @@ class CardCustomizationState(
 
     val hasButton2
         get() = actionButtonCount.value > 1
+
+    val hasDivider
+        get() = if (!hasButton1) false else dividerChecked.value
 }

@@ -100,7 +100,7 @@ private fun ComponentListsBottomSheetContent(listItemCustomizationState: ListIte
     }
 
     OdsListItem(
-        text = stringResource(id = R.string.component_list_divider),
+        text = stringResource(id = R.string.component_element_divider),
         trailing = OdsSwitchTrailing(checked = listItemCustomizationState.dividerEnabled)
     )
 }

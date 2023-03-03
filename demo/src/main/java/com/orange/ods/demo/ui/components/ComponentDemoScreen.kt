@@ -13,12 +13,14 @@ package com.orange.ods.demo.ui.components
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember
 import com.orange.ods.demo.ui.LocalMainTopAppBarManager
+import com.orange.ods.demo.ui.components.banners.ComponentBanners
 import com.orange.ods.demo.ui.components.bottomnavigation.ComponentBottomNavigation
 import com.orange.ods.demo.ui.components.checkboxes.ComponentCheckboxes
 import com.orange.ods.demo.ui.components.dialogs.ComponentDialog
 import com.orange.ods.demo.ui.components.floatingactionbuttons.ComponentFloatingActionButton
 import com.orange.ods.demo.ui.components.lists.ComponentLists
 import com.orange.ods.demo.ui.components.radiobuttons.ComponentRadioButtons
+import com.orange.ods.demo.ui.components.sheets.ComponentSheetsBottom
 import com.orange.ods.demo.ui.components.sliders.ComponentSliders
 import com.orange.ods.demo.ui.components.snackbars.ComponentSnackbars
 import com.orange.ods.demo.ui.components.switches.ComponentSwitches
@@ -30,12 +32,14 @@ fun ComponentDemoScreen(componentId: Long) {
     component?.let {
         LocalMainTopAppBarManager.current.updateTopAppBarTitle(component.titleRes)
         when (component) {
+            Component.Banners -> ComponentBanners()
             Component.BottomNavigation -> ComponentBottomNavigation()
             Component.Checkboxes -> ComponentCheckboxes()
             Component.Dialogs -> ComponentDialog()
             Component.FloatingActionButtons -> ComponentFloatingActionButton()
             Component.Lists -> ComponentLists()
             Component.RadioButtons -> ComponentRadioButtons()
+            Component.SheetsBottom -> ComponentSheetsBottom()
             Component.Sliders -> ComponentSliders()
             Component.Snackbars -> ComponentSnackbars()
             Component.Switches -> ComponentSwitches()

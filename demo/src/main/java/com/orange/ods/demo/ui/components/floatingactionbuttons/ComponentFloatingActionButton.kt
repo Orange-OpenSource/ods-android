@@ -34,6 +34,7 @@ import com.orange.ods.demo.ui.components.utilities.ComponentCustomizationBottomS
 import com.orange.ods.demo.ui.components.utilities.clickOnElement
 import com.orange.ods.demo.ui.utilities.composable.CodeImplementationColumn
 import com.orange.ods.demo.ui.utilities.composable.FloatingActionButtonTechnicalTextColumn
+import com.orange.ods.demo.ui.utilities.composable.Subtitle
 
 @OptIn(ExperimentalMaterialApi::class)
 @Composable
@@ -83,7 +84,8 @@ fun ComponentFloatingActionButton() {
                 }
             },
             floatingActionButtonPosition = if (isFullScreenWidth) FabPosition.Center else FabPosition.End,
-            bottomSheetContent = {
+            bottomSheetContent = { 
+                Subtitle(textRes = R.string.component_size, horizontalPadding = true)
                 OdsChoiceChipsFlowRow(
                     selectedChip = size,
                     modifier = Modifier.padding(horizontal = dimensionResource(id = R.dimen.spacing_m)),

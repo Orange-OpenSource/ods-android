@@ -36,7 +36,7 @@ sealed class Component(
             AppBarsTop, BottomNavigation -> Alignment.TopCenter
             Lists -> Alignment.BottomCenter
             Sliders, TextFields -> Alignment.CenterEnd
-            Buttons, Cards, Checkboxes, Chips, Dialogs, FloatingActionButtons, Menus, Progress, RadioButtons, Snackbars, Switches, Tabs -> Alignment.Center
+            Banners, Buttons, Cards, SheetsBottom, Checkboxes, Chips, Dialogs, FloatingActionButtons, Menus, Progress, RadioButtons, Snackbars, Switches, Tabs -> Alignment.Center
         }
 
     object AppBarsTop : Component(
@@ -72,12 +72,20 @@ sealed class Component(
         )
     )
 
+    object Banners : Component(
+        R.string.component_banners,
+        R.drawable.il_banners,
+        null,
+        R.string.component_banners_description,
+        composableName = OdsComponent.OdsBanner.name
+    )
+
     object Cards : Component(
         R.string.component_cards,
         R.drawable.il_cards,
         null,
         R.string.component_card_description,
-        listOf(Variant.CardImageFirst, Variant.CardTitleFirst, Variant.CardSmall)
+        listOf(Variant.CardVerticalImageFirst, Variant.CardVerticalHeaderFirst, Variant.CardSmall, Variant.CardHorizontal)
     )
 
     object Checkboxes : Component(
@@ -133,7 +141,7 @@ sealed class Component(
         R.drawable.il_progress,
         null,
         R.string.component_progress_description,
-        listOf(Variant.ProgressBar, Variant.ProgressActivityIndicator)
+        listOf(Variant.ProgressLinear, Variant.ProgressCircular)
     )
 
     object RadioButtons : Component(
@@ -142,6 +150,14 @@ sealed class Component(
         null,
         R.string.component_radio_buttons_description,
         composableName = OdsComponent.OdsRadioButton.name
+    )
+
+    object SheetsBottom : Component(
+        R.string.component_sheets_bottom,
+        R.drawable.il_bottom_sheet,
+        null,
+        R.string.component_sheet_bottom_description,
+        composableName = ""
     )
 
     object Sliders : Component(
@@ -204,9 +220,10 @@ sealed class Variant(
     object ButtonsToggle : Variant(R.string.component_buttons_toggle, OdsComponent.OdsIconToggleButton.name)
     object ButtonsIcon : Variant(R.string.component_buttons_icon, OdsComponent.OdsIconButton.name)
 
-    object CardImageFirst : Variant(R.string.component_card_image_first, OdsComponent.OdsImageFirstCard.name)
-    object CardTitleFirst : Variant(R.string.component_card_title_first, OdsComponent.OdsTitleFirstCard.name)
+    object CardVerticalImageFirst : Variant(R.string.component_card_vertical_image_first, OdsComponent.OdsVerticalImageFirstCard.name)
+    object CardVerticalHeaderFirst : Variant(R.string.component_card_vertical_header_first, OdsComponent.OdsVerticalHeaderFirstCard.name)
     object CardSmall : Variant(R.string.component_card_small, OdsComponent.OdsSmallCard.name)
+    object CardHorizontal : Variant(R.string.component_card_horizontal, OdsComponent.OdsHorizontalCard.name)
 
     object Chip : Variant(R.string.component_chip, OdsComponent.OdsChip.name)
     object ChipFilter : Variant(R.string.component_chip_type_filter, OdsComponent.OdsFilterChip.name)
@@ -214,8 +231,8 @@ sealed class Variant(
     object DropdownMenu : Variant(R.string.component_menu_dropdown, OdsComponent.OdsDropdownMenu.name)
     object ExposedDropdownMenu : Variant(R.string.component_menu_exposed_dropdown, OdsComponent.OdsExposedDropdownMenu.name)
 
-    object ProgressBar : Variant(R.string.component_progress_bar, OdsComponent.OdsLinearProgressIndicator.name)
-    object ProgressActivityIndicator : Variant(R.string.component_progress_activity_indicator, OdsComponent.OdsCircularProgressIndicator.name)
+    object ProgressLinear : Variant(R.string.component_progress_linear, OdsComponent.OdsLinearProgressIndicator.name)
+    object ProgressCircular : Variant(R.string.component_progress_circular, OdsComponent.OdsCircularProgressIndicator.name)
 
     object TextField : Variant(R.string.component_text_field_text, OdsComponent.OdsTextField.name)
     object TextFieldPassword : Variant(R.string.component_text_field_password, OdsComponent.OdsPasswordTextField.name)

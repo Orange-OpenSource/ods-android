@@ -4,6 +4,7 @@ on:
   push:
     branches:
       - master
+      - develop
     tags:
       - '[0-9]+.[0-9]+.[0-9]+'
   pull_request:
@@ -18,12 +19,12 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
         with:
           fetch-depth: 0
 
       - name: Set up our JDK environment
-        uses: actions/setup-java@v2
+        uses: actions/setup-java@v3
         with:
           distribution: 'zulu'
           java-version: '11'
@@ -47,16 +48,35 @@ jobs:
           COMMIT_SHA=${BRANCH_SHA:-$GITHUB_SHA}
           ./gradlew assemble -PversionNameSuffix="-${COMMIT_SHA::7}" -PversionCode=$GITHUB_RUN_NUMBER --stacktrace
 
-      - name: Store artifacts
-        uses: actions/upload-artifact@v2
+      - name: Store demo artifacts
+        uses: actions/upload-artifact@v3
         with:
-          name: library
-          path:
-            demo/build/outputs/apk/*/*.apk
-            lib/build/outputs/aar/*.aar
-            theme-contract/build/outputs/aar/*.aar
-            theme-innovation-cup/build/outputs/aar/*.aar
-            theme-orange/build/outputs/aar/*.aar
+          name: demo
+          path: demo/build/outputs/apk/*/*.apk
+
+      - name: Store lib artifacts
+        uses: actions/upload-artifact@v3
+        with:
+          name: lib
+          path: lib/build/outputs/aar/*.aar
+
+      - name: Store theme-contract artifacts
+        uses: actions/upload-artifact@v3
+        with:
+          name: theme-contract
+          path: theme-contract/build/outputs/aar/*.aar
+
+      - name: Store theme-innovation-cup artifacts
+        uses: actions/upload-artifact@v3
+        with:
+          name: theme-innovation-cup
+          path: theme-innovation-cup/build/outputs/aar/*.aar
+
+      - name: Store theme-orange artifacts
+        uses: actions/upload-artifact@v3
+        with:
+          name: theme-orange
+          path: theme-orange/build/outputs/aar/*.aar
 
   maven-central-release:
     runs-on: ubuntu-latest
@@ -67,12 +87,12 @@ jobs:
       url: https://mvnrepository.com/artifact/com.orange.ods.android
     steps:
       - name: Checkout code
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
         with:
           fetch-depth: 0
 
       - name: Set up our JDK environment
-        uses: actions/setup-java@v2
+        uses: actions/setup-java@v3
         with:
           distribution: 'zulu'
           java-version: '11'
@@ -103,12 +123,12 @@ jobs:
       url: https://github.com/Orange-OpenSource/ods-android/releases
     steps:
       - name: Checkout code
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
         with:
           fetch-depth: 0
 
       - name: Set up our JDK environment
-        uses: actions/setup-java@v2
+        uses: actions/setup-java@v3
         with:
           distribution: 'zulu'
           java-version: '11'
@@ -135,12 +155,12 @@ jobs:
       url: https://appdistribution.firebase.google.com/testerapps
     steps:
       - name: Checkout code
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
         with:
           fetch-depth: 0
 
       - name: Set up our JDK environment
-        uses: actions/setup-java@v2
+        uses: actions/setup-java@v3
         with:
           distribution: 'zulu'
           java-version: '11'

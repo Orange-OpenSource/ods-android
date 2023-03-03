@@ -5,6 +5,29 @@ All notable changes done in ODS library will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.11.0](https://github.com/Orange-OpenSource/ods-android/compare/0.10.0...0.11.0) - 2023-03-03
+
+### Added
+
+- \[Demo\] Add banner component ([#115](https://github.com/Orange-OpenSource/ods-android/issues/115))
+- \[Demo\] Add label for FAB size customization ([#413](https://github.com/Orange-OpenSource/ods-android/issues/413))
+- \[Demo\] Add bottom sheet component ([#360](https://github.com/Orange-OpenSource/ods-android/issues/360))
+- \[Lib\] Add `OdsBottomSheetScaffold` component ([#360](https://github.com/Orange-OpenSource/ods-android/issues/360))
+- \[Lib\] Add `OdsHorizontalCard` component ([#35](https://github.com/Orange-OpenSource/ods-android/issues/35))
+- \[Lib\] Add `OdsBanner` component ([#115](https://github.com/Orange-OpenSource/ods-android/issues/115))
+
+### Changed
+
+- \[Lib\] Add label, current value and icon parameters to `OdsLinearProgressIndicator` component to display text and/or icon above the indicator, and the current value below if necessary ([#362](https://github.com/Orange-OpenSource/ods-android/issues/362))
+- \[Lib\] Add label parameter to `OdsCircularProgressIndicator` component to display a text below the indicator ([#362](https://github.com/Orange-OpenSource/ods-android/issues/362))
+- \[Lib\] Rename `OdsTitleFirstCard` and `OdsImageFirstCard` respectively into `OdsVerticalHeaderFirstCard` and `OdsVerticalImageFirstCard` ([#432](https://github.com/Orange-OpenSource/ods-android/issues/432))
+
+### Fixed
+
+- \[Demo\] Update application name and description in about page ([#419](https://github.com/Orange-OpenSource/ods-android/issues/419))
+- \[Demo\] Fix accessibility bug by preventing Talkback to read the linear progress value twice ([#441](https://github.com/Orange-OpenSource/ods-android/issues/441))
+- \[Demo\] Keep same bottom sheet height when content or not ([#447](https://github.com/Orange-OpenSource/ods-android/issues/447))
+
 ## [0.10.0](https://github.com/Orange-OpenSource/ods-android/compare/0.9.0...0.10.0) - 2023-02-07
 
 ### Added
@@ -30,6 +53,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - \[Demo\] Fix an accessibility bug where icon buttons were not focusable with Talkback ([#393](https://github.com/Orange-OpenSource/ods-android/issues/393))
 - \[Demo\] Fix list item selection controls trailing vocalization: Checkboxes, Switches and Radio Buttons in lists ([#387](https://github.com/Orange-OpenSource/ods-android/issues/387))
 - \[Demo\] Screens in about section now use current theme colors ([#390](https://github.com/Orange-OpenSource/ods-android/issues/390))
+- \[Demo\] Fix crash when exiting the fixed tabs screen ([#418](https://github.com/Orange-OpenSource/ods-android/issues/418))
 - \[Lib\] Fix cards vocalization when clickable ([#391](https://github.com/Orange-OpenSource/ods-android/issues/391))
 
 ### Removed

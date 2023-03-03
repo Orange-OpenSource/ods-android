@@ -41,7 +41,7 @@ fun CardSmall(customizationState: CardCustomizationState) {
                 .padding(dimensionResource(id = R.dimen.spacing_m)),
             horizontalArrangement = Arrangement.spacedBy(dimensionResource(id = R.dimen.spacing_m)),
         ) {
-            val cardContainerText = stringResource(id = R.string.component_card_element_container)
+            val cardText = stringResource(id = R.string.component_card_element_card)
 
             OdsSmallCard(
                 modifier = Modifier.weight(0.5f),
@@ -53,7 +53,7 @@ fun CardSmall(customizationState: CardCustomizationState) {
                 title = recipe.title,
                 subtitle = if (subtitleChecked.value) recipe.subtitle else null,
                 onCardClick = if (isClickable) {
-                    { clickOnElement(context, cardContainerText) }
+                    { clickOnElement(context, cardText) }
                 } else null
             )
             Box(modifier = Modifier.weight(0.5f))

@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<!--
+  ~ /*
+  ~ * Copyright 2021 Orange
+  ~ *
+  ~ * Use of this source code is governed by an MIT-style
+  ~ * license that can be found in the LICENSE file or at
+  ~ * https://opensource.org/licenses/MIT.
+  ~ */
+  -->
+
+<resources>
+
+    <!-- Spacing -->
+    <dimen name="spacing_none">0dp</dimen>
+    <dimen name="spacing_xs">4dp</dimen>
+    <dimen name="spacing_s">8dp</dimen>
+    <dimen name="spacing_m">16dp</dimen>
+    <dimen name="spacing_l">24dp</dimen>
+    <dimen name="spacing_xl">32dp</dimen>
+    <dimen name="spacing_2xl">40dp</dimen>
+
+    <!-- Screen margins -->
+    <dimen name="screen_vertical_margin">@dimen/spacing_s</dimen>
+    <dimen name="screen_horizontal_margin">@dimen/spacing_m</dimen>
+
+    <!-- Card -->
+    <dimen name="card_big_image_height">194dp</dimen>
+    <dimen name="card_small_image_width">95dp</dimen>
+    <dimen name="card_horizontal_image_size">128dp</dimen>
+
+    <!-- Images -->
+    <dimen name="avatar_size">40dp</dimen>
+    <dimen name="icon_size">24dp</dimen>
+
+    <!-- Chip -->
+    <dimen name="chip_icon_size">20dp</dimen>
+
+    <!-- Lists -->
+    <dimen name="list_single_line_item_height">48dp</dimen>
+    <dimen name="list_single_line_with_icon_item_height">56dp</dimen>
+    <dimen name="list_single_line_with_wide_image_item_height">72dp</dimen>
+    <dimen name="list_two_line_item_height">64dp</dimen>
+    <dimen name="list_two_line_with_icon_item_height">72dp</dimen>
+    <dimen name="list_three_line_item_height">88dp</dimen>
+    <dimen name="list_wide_image_height">56dp</dimen>
+    <dimen name="list_wide_image_width">100dp</dimen>
+    <dimen name="list_square_image_size">56dp</dimen>
+
+</resources>
