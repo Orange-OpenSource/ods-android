@@ -36,30 +36,31 @@ tasks.register<DefaultTask>("tagRelease") {
 }
 
 fun updateVersion(version: String) {
-    execute("sed", "-Ei", "", "s/^(version=).*/\\1$version/", "gradle.properties")
+    File("gradle.properties").replace("(version=).*".toRegex()) { matchResult ->
+        "${matchResult.groupValues[1]}$version"
+    }
 }
 
 fun updateDependencies(version: String) {
-    val substituteDependencyArg = "s/(com\\.orange\\.ods\\.android:ods-[^:]*:)[[:digit:]]+\\.[[:digit:]]+\\.[[:digit:]]+/\\1$version/"
-    execute("sed", "-Ei", "", substituteDependencyArg, "docs/home_content.md")
-    execute("sed", "-Ei", "", substituteDependencyArg, "DEVELOP.md")
+    val regex = "(com\\.orange\\.ods\\.android:ods-[^:]*:)\\d+\\.\\d+\\.\\d+".toRegex()
+    val transform: (MatchResult) -> CharSequence = { matchResult ->
+        "${matchResult.groupValues[1]}$version"
+    }
+    File("docs/home_content.md").replace(regex, transform)
+    File("DEVELOP.md").replace(regex, transform)
 }
 
 fun updateChangelog(version: String) {
-    val previousVersion = execute(
-        "sed",
-        "-En",
-        "s/^## \\[([[:digit:]]+\\.[[:digit:]]+\\.[[:digit:]])\\].*/\\1/p",
-        "changelog.md"
-    ).substringBefore("\n")
+    val versionRegex = "## \\[(\\d+\\.\\d+\\.\\d+)\\]".toRegex()
+    val previousVersion = File("changelog.md").readLines()
+        .firstOrNull { versionRegex.find(it) != null }
+        ?.run { versionRegex.find(this)?.groupValues?.get(1) }
+        ?.substringBefore("\n")
+        .orEmpty()
     val date = SimpleDateFormat("yyyy-MM-dd").format(Date())
-    execute(
-        "sed",
-        "-Ei",
-        "",
-        "s/^## \\[Unreleased\\].*/## [$version](https:\\/\\/github.com\\/Orange-OpenSource\\/ods-android\\/compare\\/$previousVersion...$version) - $date/",
-        "changelog.md"
-    )
+    File("changelog.md").replace("## \\[Unreleased\\].*".toRegex()) { matchResult ->
+        "## [$version](https://github.com/Orange-OpenSource/ods-android/compare/$previousVersion...$version) - $date"
+    }
 }
 
 fun archiveDocumentation(version: String) {
