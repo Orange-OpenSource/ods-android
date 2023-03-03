@@ -5,6 +5,12 @@ All notable changes done in ODS library will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## Unreleased
+
+### Fixed
+
+- \[Demo\] Fix accessibility bug where content change on chip type selection was not read by Talkback ([#332](https://github.com/Orange-OpenSource/ods-android/issues/332))
+
 ## [0.11.0](https://github.com/Orange-OpenSource/ods-android/compare/0.10.0...0.11.0) - 2023-03-03
 
 ### Added
