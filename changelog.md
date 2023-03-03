@@ -10,6 +10,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Fixed
 
 - \[Demo\] Fix accessibility bug where content change on chip type selection was not read by Talkback ([#332](https://github.com/Orange-OpenSource/ods-android/issues/332))
+- \[Demo\] Fix accessibility bug where text fields error messages were not read by Talkback on state change ([#359](https://github.com/Orange-OpenSource/ods-android/issues/359))
+- \[Lib\] Implement workaround by adding content description to `OdsOutlinedTextField` in order to allow Talkback to focus this type of text field ([#359](https://github.com/Orange-OpenSource/ods-android/issues/359))
 
 ## [0.11.0](https://github.com/Orange-OpenSource/ods-android/compare/0.10.0...0.11.0) - 2023-03-03
 
