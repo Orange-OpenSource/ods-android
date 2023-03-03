@@ -17,19 +17,10 @@ import androidx.compose.foundation.background
 import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material.AppBarDefaults
-import androidx.compose.material.ContentAlpha
-import androidx.compose.material.Icon
-import androidx.compose.material.IconButton
-import androidx.compose.material.OutlinedTextField
 import androidx.compose.material.Scaffold
 import androidx.compose.material.Surface
-import androidx.compose.material.TextFieldDefaults
-import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.Close
-import androidx.compose.material.icons.filled.Search
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.runtime.MutableState
@@ -40,7 +31,6 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalConfiguration
 import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.stringResource
@@ -97,7 +87,6 @@ fun MainScreen(themeConfigurations: Set<OdsThemeConfigurationContract>, mainView
             themeConfigurations = themeConfigurations.toList()
         )
     )
-
     // Change isSystemInDarkTheme() value to make switching theme working with custom color
     val configuration = LocalConfiguration.current.apply {
         isDarkModeEnabled = mainState.themeState.darkModeEnabled
@@ -112,8 +101,6 @@ fun MainScreen(themeConfigurations: Set<OdsThemeConfigurationContract>, mainView
         LocalRecipes provides mainViewModel.recipes
     ) {
         var changeThemeDialogVisible by remember { mutableStateOf(false) }
-        var searchPageVisible by remember { mutableStateOf(false) }
-
         val textState = remember { mutableStateOf(TextFieldValue("")) }
 
         OdsTheme(
@@ -132,7 +119,7 @@ fun MainScreen(themeConfigurations: Set<OdsThemeConfigurationContract>, mainView
                                 state = mainState.topAppBarState,
                                 upPress = mainState::upPress,
                                 onChangeThemeActionClick = { changeThemeDialogVisible = true },
-                                onSearchComponentClick =  {
+                                onSearchComponentClick = {
                                     mainState.navController.navigate(MainDestinations.SearchRoute, null)
                                 },
                                 textState = textState
@@ -183,40 +170,6 @@ private fun getCurrentThemeConfiguration(storedUserThemeName: String?, themeConf
     return themeConfigurations.firstOrNull { it.name == storedUserThemeName }
         .orElse { themeConfigurations.firstOrNull { it.isOrange } }
         .orElse { themeConfigurations.first() }
-}
-
-@Composable
-private fun SearchAppBar() {
-    OutlinedTextField(
-        modifier = Modifier.fillMaxWidth(),
-        value = "",
-        onValueChange = {},
-        leadingIcon = {
-            Icon(
-                imageVector = Icons.Filled.Search,
-                contentDescription = "Search Icon",
-                tint = Color.White.copy(
-                    alpha = ContentAlpha.medium
-                )
-            )
-        },
-        trailingIcon = {
-            IconButton(onClick = { }) {
-                Icon(
-                    imageVector = Icons.Filled.Close,
-                    contentDescription = "Close Icon",
-                    tint = Color.White
-                )
-            }
-        },
-        colors = TextFieldDefaults.outlinedTextFieldColors(
-            unfocusedBorderColor = Color.White.copy(
-                alpha = ContentAlpha.medium
-            ),
-            focusedBorderColor = Color.White,
-            cursorColor = Color.White
-        )
-    )
 }
 
 @Composable

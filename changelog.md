@@ -34,6 +34,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - \[App\] Add banner component ([#115](https://github.com/Orange-OpenSource/ods-android/issues/115))
 - \[App\] Add label for FAB size customization ([#413](https://github.com/Orange-OpenSource/ods-android/issues/413))
 - \[App\] Add bottom sheet component ([#360](https://github.com/Orange-OpenSource/ods-android/issues/360))
+- \[App\] Add componentSearchScreen page ([#16](https://github.com/Orange-OpenSource/ods-android/issues/16))
 - \[Lib\] Add `OdsBottomSheetScaffold` component ([#360](https://github.com/Orange-OpenSource/ods-android/issues/360))
 - \[Lib\] Add `OdsHorizontalCard` component ([#35](https://github.com/Orange-OpenSource/ods-android/issues/35))
 - \[Lib\] Add `OdsBanner` component ([#115](https://github.com/Orange-OpenSource/ods-android/issues/115))
