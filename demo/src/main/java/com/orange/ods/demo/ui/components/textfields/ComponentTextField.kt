@@ -22,9 +22,12 @@ import androidx.compose.runtime.MutableState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalFocusManager
 import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.semantics.error
+import androidx.compose.ui.semantics.semantics
 import com.google.accompanist.pager.ExperimentalPagerApi
 import com.google.accompanist.pager.HorizontalPager
 import com.google.accompanist.pager.rememberPagerState
@@ -202,8 +205,13 @@ private fun DisplayTypeCustomization(displayType: MutableState<TextFieldCustomiz
         modifier = Modifier.padding(horizontal = dimensionResource(id = R.dimen.spacing_m)),
         outlinedChips = true
     ) {
+        val context = LocalContext.current
         OdsChoiceChip(textRes = R.string.component_state_default, value = TextFieldCustomizationState.DisplayType.Default)
-        OdsChoiceChip(textRes = R.string.component_state_error, value = TextFieldCustomizationState.DisplayType.Error)
+        OdsChoiceChip(textRes = R.string.component_state_error, value = TextFieldCustomizationState.DisplayType.Error, modifier = Modifier.semantics {
+            if (displayType.value == TextFieldCustomizationState.DisplayType.Error) {
+                this.error(context.getString(R.string.component_text_field_error_message))
+            }
+        })
         OdsChoiceChip(textRes = R.string.component_state_disabled, value = TextFieldCustomizationState.DisplayType.Disabled)
     }
 }
