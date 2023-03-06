@@ -5,8 +5,6 @@ relative_links:
   enabled: true
   collections: true
 remote_theme: Orange-OpenSource/ods-jekyll-theme
-exclude:
-  - release
 defaults:
   - scope:
       path: ""

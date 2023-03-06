@@ -6,8 +6,6 @@ relative_links:
   collections: true
 remote_theme: Orange-OpenSource/ods-jekyll-theme
 baseurl: "/ods-android"
-exclude:
-  - release
 defaults:
   - scope:
       path: ""
