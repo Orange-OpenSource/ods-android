@@ -10,9 +10,7 @@ This file lists all the steps to follow when releasing a new version of ODS Andr
 
 ## Prepare release
 
-- Create a new issue on GitHub to prepare the new release for ODS Android version X.Y.Z.
-
-- Create a branch for this issue.
+- Create a branch named `prepare-release` to prepare the new release for ODS Android version X.Y.Z.
 
 - Switch to this branch and launch the `prepareRelease` Gradle task:
 
@@ -41,13 +39,13 @@ This file lists all the steps to follow when releasing a new version of ODS Andr
     
     Once the Jekyll server is started, the documentation for version X.Y.Z should be available at http://127.0.0.1:4000/ods-android/X.Y.Z/.
 
-- Create a new pull request on GitHub to merge your branch into `develop`.
+- Create a new pull request named `Prepare release X.Y.Z` on GitHub to merge your branch into `develop`.
 
 - Review and merge this pull request on GitHub.<br /><br />
 
 ## Release
 
-- Create a new pull request on GitHub to merge `develop` into `master`.
+- Create a new pull request named `Release X.Y.Z` on GitHub to merge `develop` into `master`.
 
 - Review and merge this pull request on GitHub.
 
