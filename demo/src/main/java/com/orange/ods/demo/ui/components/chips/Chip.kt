@@ -123,7 +123,7 @@ fun ChipTypeDemo(chipType: ChipType, content: @Composable () -> Unit) {
 
 private fun Modifier.chipTypeSemantics(context: Context, focusedChipType: ChipType, selectedChipType: ChipType) = this.semantics {
     stateDescription = if (selectedChipType == focusedChipType) {
-        "${context.getString(R.string.state_selected)}, ${context.getString(focusedChipType.nameRes)} ${context.getString(focusedChipType.descriptionRes)}"
+        "${context.getString(R.string.state_selected)}\n${context.getString(focusedChipType.nameRes)}\n${context.getString(focusedChipType.descriptionRes)}"
     } else context.getString(R.string.state_not_selected)
 }
 
