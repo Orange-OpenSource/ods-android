@@ -9,9 +9,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Fixed
 
-- \[Demo\] Fix accessibility bug where content change on chip type selection was not read by Talkback ([#332](https://github.com/Orange-OpenSource/ods-android/issues/332))
-- \[Demo\] Fix accessibility bug where text fields error messages were not read by Talkback on state change ([#359](https://github.com/Orange-OpenSource/ods-android/issues/359))
-- \[Lib\] Implement workaround by adding content description to `OdsOutlinedTextField` in order to allow Talkback to focus this type of text field ([#359](https://github.com/Orange-OpenSource/ods-android/issues/359))
+- \[Demo\] Fix accessibility bug where content change on chip type selection was not read by TalkBack ([#332](https://github.com/Orange-OpenSource/ods-android/issues/332))
+- \[Demo\] Fix accessibility bug where text fields error messages were not read by TalkBack on state change ([#359](https://github.com/Orange-OpenSource/ods-android/issues/359))
+- \[Lib\] Implement workaround by adding content description to `OdsOutlinedTextField` in order to allow TalkBack to focus this type of text field ([#359](https://github.com/Orange-OpenSource/ods-android/issues/359))
 
 ## [0.11.0](https://github.com/Orange-OpenSource/ods-android/compare/0.10.0...0.11.0) - 2023-03-03
 
@@ -33,7 +33,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Fixed
 
 - \[Demo\] Update application name and description in about page ([#419](https://github.com/Orange-OpenSource/ods-android/issues/419))
-- \[Demo\] Fix accessibility bug by preventing Talkback to read the linear progress value twice ([#441](https://github.com/Orange-OpenSource/ods-android/issues/441))
+- \[Demo\] Fix accessibility bug by preventing TalkBack to read the linear progress value twice ([#441](https://github.com/Orange-OpenSource/ods-android/issues/441))
 - \[Demo\] Keep same bottom sheet height when content or not ([#447](https://github.com/Orange-OpenSource/ods-android/issues/447))
 
 ## [0.10.0](https://github.com/Orange-OpenSource/ods-android/compare/0.9.0...0.10.0) - 2023-02-07
@@ -58,7 +58,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Fixed
 
 - \[Demo\] In buttons screens, group lines of code into one vocalisation ([#392](https://github.com/Orange-OpenSource/ods-android/issues/392))
-- \[Demo\] Fix an accessibility bug where icon buttons were not focusable with Talkback ([#393](https://github.com/Orange-OpenSource/ods-android/issues/393))
+- \[Demo\] Fix an accessibility bug where icon buttons were not focusable with TalkBack ([#393](https://github.com/Orange-OpenSource/ods-android/issues/393))
 - \[Demo\] Fix list item selection controls trailing vocalization: Checkboxes, Switches and Radio Buttons in lists ([#387](https://github.com/Orange-OpenSource/ods-android/issues/387))
 - \[Demo\] Screens in about section now use current theme colors ([#390](https://github.com/Orange-OpenSource/ods-android/issues/390))
 - \[Demo\] Fix crash when exiting the fixed tabs screen ([#418](https://github.com/Orange-OpenSource/ods-android/issues/418))
