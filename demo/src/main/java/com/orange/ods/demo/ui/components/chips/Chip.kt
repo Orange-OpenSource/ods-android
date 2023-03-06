@@ -94,11 +94,11 @@ fun Chip() {
                 OdsListItem(
                     text = stringResource(id = R.string.component_state_enabled),
                     trailing = OdsSwitchTrailing(
-                        checked = chipCustomizationState.enabled
+                        checked = enabled
                     )
                 )
             }) {
-            ChipTypeDemo(chipCustomizationState.chipType.value) {
+            ChipTypeDemo(chipType.value) {
                 Chip(chipCustomizationState = chipCustomizationState)
             }
         }
