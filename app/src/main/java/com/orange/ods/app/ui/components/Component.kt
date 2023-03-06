@@ -37,7 +37,7 @@ sealed class Component(
         R.drawable.il_app_bars_top,
         R.drawable.il_app_bars_top_small,
         R.string.component_app_bars_top_description,
-        variants = listOf(Variant.AppBarsTopRegular),
+        variants = listOf(Variant.AppBarsTopRegular, Variant.AppBarsTopExtended),
         imageAlignment = Alignment.TopCenter
     )
 
@@ -233,6 +233,7 @@ sealed class Variant(
     val id: Long = Variant::class.sealedSubclasses.indexOf(this::class).toLong()
 
     object AppBarsTopRegular : Variant(R.string.component_app_bars_top_regular, OdsComposable.OdsTopAppBar.name)
+    object AppBarsTopExtended : Variant(R.string.component_app_bars_top_extended, OdsComposable.OdsTopAppBar.name)
 
     object ButtonsPrimary : Variant(R.string.component_buttons_highest_emphasis, "${OdsComposable.OdsButton.name} with ${OdsButtonStyle.Primary.name}")
     object ButtonsDefault : Variant(R.string.component_buttons_high_emphasis, "${OdsComposable.OdsButton.name} with ${OdsButtonStyle.Default.name}")

@@ -99,6 +99,7 @@
     <string name="component_app_bars_top">App bars: top</string>
     <string name="component_app_bars_top_description">The app bar is a key component and organizes titling, navigation and action buttons.</string>
     <string name="component_app_bars_top_regular">Regular</string>
+    <string name="component_app_bars_top_extended">Extended</string>
     <string name="component_app_bars_top_element_navigation_icon">Navigation icon</string>
     <string name="component_app_bars_top_element_overflow_menu">Overflow menu</string>
     <string name="component_app_bars_top_actions_count">Actions count</string>
