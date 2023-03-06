@@ -14,6 +14,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember
 import com.orange.ods.app.ui.LocalMainTopAppBarManager
 import com.orange.ods.app.ui.components.appbars.top.ComponentTopAppBar
+import com.orange.ods.app.ui.components.appbars.top.ComponentTopAppBarExtended
 import com.orange.ods.app.ui.components.buttons.ComponentButtons
 import com.orange.ods.app.ui.components.cards.ComponentCard
 import com.orange.ods.app.ui.components.chips.Chip
@@ -31,7 +32,7 @@ fun ComponentVariantScreen(variantId: Long) {
     variant?.let {
         LocalMainTopAppBarManager.current.updateTopAppBarTitle(variant.titleRes)
         when (component) {
-            Component.AppBarsTop -> ComponentTopAppBar()
+            Component.AppBarsTop -> if (variant == Variant.AppBarsTopExtended) ComponentTopAppBarExtended() else ComponentTopAppBar()
             Component.Buttons -> ComponentButtons(variant = variant)
             Component.Cards -> ComponentCard(variant = variant)
             Component.Chips -> if (variant == Variant.ChipFilter) ChipFilter() else Chip()
