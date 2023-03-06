@@ -209,7 +209,7 @@ private fun DisplayTypeCustomization(displayType: MutableState<TextFieldCustomiz
         OdsChoiceChip(textRes = R.string.component_state_default, value = TextFieldCustomizationState.DisplayType.Default)
         OdsChoiceChip(textRes = R.string.component_state_error, value = TextFieldCustomizationState.DisplayType.Error, modifier = Modifier.semantics {
             if (displayType.value == TextFieldCustomizationState.DisplayType.Error) {
-                this.error(context.getString(R.string.component_text_field_error_message))
+                error(context.getString(R.string.component_text_field_error_message))
             }
         })
         OdsChoiceChip(textRes = R.string.component_state_disabled, value = TextFieldCustomizationState.DisplayType.Disabled)
