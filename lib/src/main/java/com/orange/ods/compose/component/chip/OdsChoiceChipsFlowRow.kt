@@ -58,7 +58,7 @@ fun <T> OdsChoiceChipsFlowRow(
 /**
  * A selectable chip to display in an [OdsChoiceChipsFlowRow]
  *
- * @param text Text displayed in the chip * @param value The chip value
+ * @param text Text displayed in the chip
  * @param value The chip value
  * @param modifier The modifier applied to the OdsChoiceChip
  * @param enabled If set to false, the chip is no more clickable and appears as disabled
