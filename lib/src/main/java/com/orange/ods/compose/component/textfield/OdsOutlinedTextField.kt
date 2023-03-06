@@ -65,7 +65,7 @@ internal fun OdsOutlinedTextField(
             },
             modifier = modifier.semantics {
                 contentDescription =
-                    label.orElse { "Text field" } // TODO Remove it when switching to Compose 1.4.0 which is supposed to fix the problem of OutlinedTextField TalkBack focus: https://issuetracker.google.com/issues/251162419
+                    label.orElse { "Text field" } //TODO: Remove it when switching to Compose 1.4.0 which is supposed to fix the problem of OutlinedTextField TalkBack focus: https://issuetracker.google.com/issues/251162419
             },
             enabled = enabled,
             readOnly = readOnly,
