@@ -10,6 +10,7 @@
 
 package com.orange.ods.demo.ui.components
 
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
@@ -23,8 +24,12 @@ import androidx.compose.material.TextFieldDefaults
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Close
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.MutableState
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.focus.FocusRequester
+import androidx.compose.ui.focus.focusRequester
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
@@ -42,14 +47,15 @@ import com.orange.ods.demo.ui.LocalMainTopAppBarManager
 import com.orange.ods.utilities.extension.orElse
 
 @Composable
-fun ComponentSearchScreen(state: MutableState<TextFieldValue>) {
+fun ComponentSearchScreen(state: MutableState<TextFieldValue>, onComponentClick: (Long) -> Unit) {
 
     LocalMainTopAppBarManager.current.updateTopAppBarTitle(R.string.navigation_item_search)
-    ComponentList(state = state)
+    ComponentList(state = state, onComponentClick)
 }
 
 @Composable
 fun SearchView(state: MutableState<TextFieldValue>) {
+    val focusRequester = remember { FocusRequester() }
     TextField(
         value = state.value,
         onValueChange = { value ->
@@ -59,7 +65,8 @@ fun SearchView(state: MutableState<TextFieldValue>) {
             Text(text = stringResource(id = R.string.component_search), color = Color.Gray, fontSize = 18.sp)
         },
         modifier = Modifier
-            .fillMaxWidth(),
+            .fillMaxWidth()
+            .focusRequester(focusRequester),
         textStyle = TextStyle(color = OdsTheme.colors.onSurface, fontSize = 18.sp),
         trailingIcon = {
             IconButton(
@@ -88,10 +95,13 @@ fun SearchView(state: MutableState<TextFieldValue>) {
             focusedIndicatorColor = Color.Transparent
         )
     )
+    LaunchedEffect(Unit) {
+        focusRequester.requestFocus()
+    }
 }
 
 @Composable
-fun ComponentList(state: MutableState<TextFieldValue>) {
+fun ComponentList(state: MutableState<TextFieldValue>, onComponentClick: (Long) -> Unit) {
 
     val searchedText = state.value.text
     val filterComponents = components.filter { component ->
@@ -107,7 +117,9 @@ fun ComponentList(state: MutableState<TextFieldValue>) {
                 text = stringResource(id = component.titleRes),
                 secondaryText = null,
                 singleLineSecondaryText = false,
-                modifier = Modifier.iconType(OdsListItemIconType.SquareImage),
+                modifier = Modifier
+                    .iconType(OdsListItemIconType.SquareImage)
+                    .clickable { onComponentClick(component.id) },
                 icon = {
                     OdsListItemIcon(
                         painterResource(id = componentImageRes)

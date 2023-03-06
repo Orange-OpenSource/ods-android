@@ -61,6 +61,7 @@ import com.orange.ods.demo.R
 import com.orange.ods.demo.domain.recipes.LocalRecipes
 import com.orange.ods.demo.ui.about.addAboutGraph
 import com.orange.ods.demo.ui.components.ComponentSearchScreen
+import com.orange.ods.demo.ui.components.ComponentsScreen
 import com.orange.ods.demo.ui.components.addComponentsGraph
 import com.orange.ods.demo.ui.components.tabs.FixedTabRow
 import com.orange.ods.demo.ui.components.tabs.ScrollableTabRow
@@ -255,11 +256,15 @@ private fun NavGraphBuilder.mainNavGraph(navigateToElement: (String, Long?, NavB
     addGuidelinesGraph()
     addComponentsGraph(navigateToElement)
     addAboutGraph()
+    composable(BottomNavigationSections.Components.route) { from ->
+        LocalMainTabsManager.current.clearTopAppBarTabs()
+        ComponentsScreen(onComponentClick = { id -> navigateToElement(MainDestinations.ComponentDetailRoute, id, from) })
+    }
 
     composable(
-        MainDestinations.SearchRoute
-    ) {
+        route = MainDestinations.SearchRoute
+    ) { from ->
         LocalMainTabsManager.current.clearTopAppBarTabs()
-        ComponentSearchScreen(textState)
+        ComponentSearchScreen(textState, onComponentClick = { id -> navigateToElement(MainDestinations.ComponentDetailRoute, id, from) })
     }
 }
