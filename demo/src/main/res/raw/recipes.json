@@ -407,8 +407,29 @@
       "title": "Tomatoes & Mozzarella di Buffala",
       "catId": "2",
       "subtitle": "15min",
-      "ingredients": [],
-      "description": "",
+      "ingredients": [
+        {
+          "foodId": 16,
+          "quantity": "20"
+        },
+        {
+          "foodId": 34,
+          "quantity": "2"
+        },
+        {
+          "foodId": 52,
+          "quantity": "20"
+        },
+        {
+          "foodId": 53,
+          "quantity": "8 leaves"
+        },
+        {
+          "foodId": 13,
+          "quantity": "a limp"
+        }
+      ],
+      "description": "A basic marvel from the italian cuisine, very simple and quick for the summer.",
       "url": "https://images.unsplash.com/photo-1580638149300-65f0b9e8fbff?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8NXx8cGxhdCUyMGVudHIlQzMlQTllfGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=500&q=60",
       "iconName": "Restaurant"
     },
@@ -416,8 +437,41 @@
       "title": "Tapenade Brochetta",
       "catId": "2",
       "subtitle": "15min",
-      "ingredients": [],
-      "description": "",
+      "ingredients": [
+        {
+          "foodId": 54,
+          "quantity": "1"
+        },
+        {
+          "foodId": 13,
+          "quantity": "3 Table Spoons"
+        },
+        {
+          "foodId": 1,
+          "quantity": "5"
+        },
+        {
+          "foodId": 14,
+          "quantity": "1"
+        },
+        {
+          "foodId": 23,
+          "quantity": "1"
+        },
+        {
+          "foodId": 53,
+          "quantity": "3 branches"
+        },
+        {
+          "foodId": 55,
+          "quantity": "1 Table Spoon"
+        },
+        {
+          "foodId": 56,
+          "quantity": "300 g"
+        }
+      ],
+      "description": "Tapenade is the name for a type of spread that is made primarily out of chopped olives, capers, or anchovies. Originally from the Provence area of France, it’s savory, salty, and briny in flavor. ",
       "url": "https://images.unsplash.com/photo-1625938144755-652e08e359b7?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTF8fHBsYXQlMjBlbnRyJUMzJUE5ZXxlbnwwfHwwfHw%3D&auto=format&fit=crop&w=500&q=60",
       "iconName": "Restaurant"
     },
@@ -425,17 +479,83 @@
       "title": "Lemon Pie",
       "catId": "4",
       "subtitle": "15min",
-      "ingredients": [],
-      "description": "",
+      "ingredients": [
+        {
+          "foodId": 38,
+          "quantity": "1 cup"
+        },
+        {
+          "foodId": 10,
+          "quantity": "2 tablespoons"
+        },
+        {
+          "foodId": 57,
+          "quantity": "3 tablespoons"
+        },
+        {
+          "foodId": 37,
+          "quantity": "1/4 teaspoon"
+        },
+        {
+          "foodId": 40,
+          "quantity": "1 1/2 cup"
+        },
+        {
+          "foodId": 23,
+          "quantity": "2"
+        },
+        {
+          "foodId": 9,
+          "quantity": "2 tablespoons"
+        },
+        {
+          "foodId": 58,
+          "quantity": "4"
+        },
+        {
+          "foodId": 59,
+          "quantity": "1"
+        }
+      ],
+      "description": "A lemon meringue pie is a fantastic addition to any dessert table. This old-fashioned lemon meringue pie recipe has stood the test of time because it's easy to make, absolutely gorgeous, and totally irresistible.",
       "url": "https://images.unsplash.com/photo-1519915028121-7d3463d20b13?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8NHx8bGVtb24lMjBwaWV8ZW58MHx8MHx8&auto=format&fit=crop&w=500&q=60",
-      "iconName": "IceCream"
+      "iconName": "InformationData"
     },
     {
       "title": "Brownies",
       "catId": "4",
       "subtitle": "15min",
-      "ingredients": [],
-      "description": "",
+      "ingredients": [
+        {
+          "foodId": 50,
+          "quantity": "75 g"
+        },
+        {
+          "foodId": 9,
+          "quantity": "80 g"
+        },
+        {
+          "foodId": 38,
+          "quantity": "240 g"
+        },
+        {
+          "foodId": 20,
+          "quantity": "2"
+        },
+        {
+          "foodId": 10,
+          "quantity": "90 g"
+        },
+        {
+          "foodId": 21,
+          "quantity": "1/2 tea spoon"
+        },
+        {
+          "foodId": 51,
+          "quantity": "1 cup"
+        }
+      ],
+      "description": "An iconic chocolate baked cake that comes in a variety of forms and may be either fudgy or cakey, depending on their density. Brownies often, have a glossy 'skin' on their upper crust. Brownies was a direct request from Bertha Palmer to a pastry chef for a dessert suitable for ladies attending the Chicago World's Columbian Exposition. She requested a cake-like confection smaller than a piece of cake that could be included in boxed lunches.",
       "url": "https://images.unsplash.com/photo-1611625358975-06a668e3a45f?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mjh8fGJyb3duaWVzfGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=500&q=60",
       "iconName": "IceCream"
     },
@@ -443,8 +563,41 @@
       "title": "Chocolate Chips Cookies",
       "catId": "4",
       "subtitle": "15min",
-      "ingredients": [],
-      "description": "",
+      "ingredients": [
+        {
+          "foodId": 50,
+          "quantity": "350 g"
+        },
+        {
+          "foodId": 39,
+          "quantity": "350 g"
+        },
+        {
+          "foodId": 9,
+          "quantity": "250 g"
+        },
+        {
+          "foodId": 20,
+          "quantity": "1"
+        },
+        {
+          "foodId": 10,
+          "quantity": "375 g"
+        },
+        {
+          "foodId": 22,
+          "quantity": "11 g"
+        },
+        {
+          "foodId": 37,
+          "quantity": "1 pinch"
+        },
+        {
+          "foodId": 21,
+          "quantity": "1/2 bag"
+        }
+      ],
+      "description": "A Cookie Monster's heaven... Cookies are most commonly baked until crisp or else for just long enough to ensure soft interior. The American name derives from the Dutch word 'koekje' or more precisely its informal, dialect variant koekie which means little cake, and arrived in American English with the Dutch settlement of New Netherland, in the early 1600s.",
       "url": "https://images.unsplash.com/photo-1499636136210-6f4ee915583e?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTF8fGxlJTIwZGVzc2VydHxlbnwwfHwwfHw%3D&auto=format&fit=crop&w=500&q=60",
       "iconName": "IceCream"
     },
@@ -452,37 +605,141 @@
       "title": "Red Berries Crêpes",
       "catId": "4",
       "subtitle": "15min",
-      "ingredients": [],
-      "description": "",
+      "ingredients": [
+        {
+          "foodId": 11,
+          "quantity": "750 ml"
+        },
+        {
+          "foodId": 10,
+          "quantity": "250 g"
+        },
+        {
+          "foodId": 20,
+          "quantity": "6"
+        },
+        {
+          "foodId": 9,
+          "quantity": "80 g"
+        },
+        {
+          "foodId": 37,
+          "quantity": "a pinch"
+        },
+        {
+          "foodId": 24,
+          "quantity": "100 g"
+        },
+        {
+          "foodId": 60,
+          "quantity": "50 g"
+        },
+        {
+          "foodId": 61,
+          "quantity": "1 cup"
+        },
+        {
+          "foodId": 38,
+          "quantity": "1 tablespoon"
+        },
+        {
+          "foodId": 22,
+          "quantity": "1 teaspoon"
+        }
+      ],
+      "description": "A simple delightment of these French crêpes accompanied with red berries and with this homemade whipped cream that is very easy to make and it holds its shape perfectly.",
       "url": "https://images.unsplash.com/photo-1587314168485-3236d6710814?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Nnx8bGUlMjBkZXNzZXJ0fGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=500&q=60",
-      "iconName": "IceCream"
+      "iconName": "OrangeExpert"
     },
     {
       "title": "Baguette",
       "catId": "5",
       "subtitle": "French Bread",
-      "ingredients": [],
-      "description": "A baguette is a long, thin type of bread of French origin that is commonly made from basic lean dough.",
+      "ingredients": [
+        {
+          "foodId": 10,
+          "quantity": "420 g"
+        },
+        {
+          "foodId": 40,
+          "quantity": "255 ml"
+        },
+        {
+          "foodId": 21,
+          "quantity": "11 g"
+        },
+        {
+          "foodId": 37,
+          "quantity": "12 g"
+        }
+      ],
+      "description": "There is nothing like a freshly baked French baguette on a Sunday morning. Or any morning for that matter. A delight when crusty and beautifully colored on the outside, buttery soft and chewy on the inside, and with a tiny bit of butter.",
       "url": "https://unexisting.com/file/missing/on/purpose.png",
-      "iconName": "HandUp"
+      "iconName": "Heart"
     },
     {
       "title": "Pain de Campagne",
       "catId": "5",
       "subtitle": "15min",
-      "ingredients": [],
-      "description": "",
+      "ingredients": [
+        {
+          "foodId": 62,
+          "quantity": "500 g"
+        },
+        {
+          "foodId": 40,
+          "quantity": "200 ml"
+        },
+        {
+          "foodId": 21,
+          "quantity": "11 g"
+        },
+        {
+          "foodId": 37,
+          "quantity": "12 g"
+        }
+      ],
+      "description": "Best bread ever.",
       "url": "https://images.unsplash.com/photo-1589367920969-ab8e050bbb04?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8M3x8cGFpbnxlbnwwfHwwfHw%3D&auto=format&fit=crop&w=500&q=60",
-      "iconName": ""
+      "iconName": "HandUp"
     },
     {
       "title": "Brioche Tressée",
       "catId": "5",
       "subtitle": "15min",
-      "ingredients": [],
+      "ingredients": [
+        {
+          "foodId": 10,
+          "quantity": "500 g"
+        },
+        {
+          "foodId": 11,
+          "quantity": "180 ml"
+        },
+        {
+          "foodId": 21,
+          "quantity": "25 g"
+        },
+        {
+          "foodId": 37,
+          "quantity": "8 g"
+        },
+        {
+          "foodId": 38,
+          "quantity": "80 g"
+        },
+        {
+          "foodId": 20,
+          "quantity": "80 g"
+        },
+        {
+          "foodId": 9,
+          "quantity": "100 g"
+        }
+      ],
       "description": "",
       "url": "https://images.unsplash.com/photo-1620416328855-f56e4e98637b?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8NjJ8fHBhaW58ZW58MHx8MHx8&auto=format&fit=crop&w=500&q=60",
-      "iconName": ""
+      "iconName": "Tag"
     },
     {
       "title": "Bagels",
@@ -506,7 +763,7 @@
           "quantity": "303g"
         }
       ],
-      "description": "A bagel (Yiddish: בײגל, romanized: beygl; Polish: bajgiel; also spelled beigel)[1] is a bread roll originating in the Jewish communities of Poland.[2] It is traditionally shaped by hand into a roughly hand-sized ring from yeasted wheat dough that is first boiled for a short time in water and then baked. The result is a dense, chewy, doughy interior with a browned and sometimes crisp exterior. Bagels are often topped with seeds baked on the outer crust—traditional choices include poppy and sesame seeds—or with salt grains. Different dough types include whole-grain and rye.[3][4] The basic roll-with-a-hole design, hundreds of years old, allows even cooking and baking of the dough; it also allows groups of bagels to be gathered on a string or dowel for handling, transportation, and retail display.",
+      "description": "A bagel (Yiddish: בײגל, romanized: beygl; Polish: bajgiel; also spelled beigel)[1] is a bread roll originating in the Jewish communities of Poland. It is traditionally shaped by hand into a roughly hand-sized ring from yeasted wheat dough that is first boiled for a short time in water and then baked. The result is a dense, chewy, doughy interior with a browned and sometimes crisp exterior. Bagels are often topped with seeds baked on the outer crust—traditional choices include poppy and sesame seeds—or with salt grains. Different dough types include whole-grain and rye.[3][4] The basic roll-with-a-hole design, hundreds of years old, allows even cooking and baking of the dough; it also allows groups of bagels to be gathered on a string or dowel for handling, transportation, and retail display.",
       "url": "https://www.seekpng.com/png/full/199-1993606_royalty-free-stock-bagel-transparent-french-toast-maple.png",
       "iconName": "Bagel-does-not-exist"
     }
@@ -727,67 +984,132 @@
     {
       "id": 37,
       "name": "Salt",
-      "image": ""
+      "image": "https://media.istockphoto.com/id/668551038/es/foto/sal-marina.jpg?s=612x612&w=0&k=20&c=2fzrFySOFc0Fc9i-Rq-3iUjQh5JBaItgjzoo8spnbbs="
     },
     {
       "id": 38,
       "name": "Sugar",
-      "image": ""
+      "image": "https://media.istockphoto.com/id/499842394/es/foto/de-az%C3%BAcar.jpg?s=612x612&w=0&k=20&c=khz4jN_iqwRhhOzFJa0AGZbEb1ktFgMHmtjhvFygs80="
     },
     {
       "id": 39,
       "name": "Brown sugar",
-      "image": ""
+      "image": "https://media.istockphoto.com/id/104676536/es/foto/ca%C3%B1a-de-az%C3%BAcar-hill-aislado-en-blanco.jpg?s=612x612&w=0&k=20&c=XeJv77eRb7HBzwC7SPd5_aQwl3dOuOpMAXmxs4PIzAc="
     },
     {
       "id": 40,
       "name": "Water",
-      "image": ""
+      "image": "https://media.istockphoto.com/id/485685046/es/foto/vaso-de-agua.jpg?s=612x612&w=0&k=20&c=okNxhczP-wl_5-_Fo3RnFz2vsb9VSucIuE5Kq4PmGr4="
     },
     {
       "id": 41,
       "name": "Sparkling water",
-      "image": ""
+      "image": "https://media.istockphoto.com/id/181957643/es/foto/soda-agua.jpg?s=612x612&w=0&k=20&c=ci6ZURhAPD3FxyfA1peu5mRCW8T3IX0ugCEWee1UFfM="
     },
     {
       "id": 42,
       "name": "Lime",
-      "image": ""
+      "image": "https://media.istockphoto.com/id/106491732/es/foto/lim%C3%B3n.jpg?s=612x612&w=0&k=20&c=Wv_WKA9VnujGkli4qWjiQGjou9PhXYcWcL8BtKrOhfw="
     },
     {
       "id": 43,
       "name": "Sugar cane Syrup",
-      "image": ""
+      "image": "https://media.istockphoto.com/id/175438109/es/foto/estrellas-de-cuchara-de-miel.jpg?s=612x612&w=0&k=20&c=2MFpjH-5Kb2P-mYMRrRoIPwLjt3CkDqqYm8wrLyXojY="
     },
     {
       "id": 44,
       "name": "Mint",
-      "image": ""
+      "image": "https://media.istockphoto.com/id/183754081/es/foto/mint.jpg?s=612x612&w=0&k=20&c=mt3p6aITKQV1vnt31bT6VIuNBebSmISjepzntbC-jvk="
     },
     {
       "id": 45,
       "name": "Crunched ice",
-      "image": ""
+      "image": "https://media.istockphoto.com/id/500399462/es/foto/hielo-picado-en-cubo.jpg?s=612x612&w=0&k=20&c=a8KSq4WkTAbVsDiYFKn3aHWwaZqCVOeQeBpQVrO3nI8="
     },
     {
       "id": 46,
       "name": "Ice cubes",
-      "image": ""
+      "image": "https://media.istockphoto.com/id/177131518/es/foto/cubos-de-hielo.jpg?s=612x612&w=0&k=20&c=71wDtnaGnZJVXV9NFsU2wl9H6AGbzICa2uiufEUv8nY="
     },
     {
       "id": 47,
       "name": "Orange juice",
-      "image": ""
+      "image": "https://media.istockphoto.com/id/175022686/es/foto/jugo-fresco-de-naranja.jpg?s=612x612&w=0&k=20&c=NmwQZgjQwm0EXufK78filJaW-oUYEu0dzEc7OLCyLxY="
     },
     {
       "id": 48,
       "name": "Pineapple juice",
-      "image": ""
+      "image": "https://media.istockphoto.com/id/176851361/es/foto/jugo-de-pi%C3%B1a.jpg?s=612x612&w=0&k=20&c=SNOvEr2rlyW7dfCnlvy5NQWfo7QOsHik2qKClCWiyQw="
     },
     {
       "id": 49,
       "name": "Grenadine",
-      "image": ""
+      "image": "https://media.istockphoto.com/id/475373289/es/foto/semillas-de-granada.jpg?s=612x612&w=0&k=20&c=06oAwzqd7-gRTPRnGR3AJfyP3GWZzx6SLzmoJlO3x8Q="
+    },
+    {
+      "id": 50,
+      "name": "Chocolate",
+      "image": "https://media.istockphoto.com/id/924850604/es/foto/tres-piezas-de-chocolate-con-leche.jpg?s=612x612&w=0&k=20&c=c46gdGCxMSYXf0OvF1sXv_EogHo5AAOIJNkY_dD6hTU="
+    },
+    {
+      "id": 51,
+      "name": "Walnuts",
+      "image": "https://media.istockphoto.com/id/639478614/fr/photo/walnut-seul-sur-fond-blanc-avec-trait-de-coupe.jpg?s=612x612&w=0&k=20&c=CQb72_wmJMqmpE3jqry_MEl5AWlDozQGzPnaf6PCvgI="
+    },
+    {
+      "id": 52,
+      "name": "Yellow tomato",
+      "image": "https://media.istockphoto.com/id/638646596/photo/tomatoes.jpg?s=612x612&w=0&k=20&c=n68zxSwjJMEW1Kc3xGDVEfvbXb7Ag4qvkj-bXBG77OE="
+    },
+    {
+      "id": 53,
+      "name": "Basil",
+      "image": "https://media.istockphoto.com/id/182173388/photo/basil-leafs.jpg?s=612x612&w=0&k=20&c=JPooP0Fjbc32DGrxvs9DZDX2nVEaTKrfrcR4n-_L66g="
+    },
+    {
+      "id": 54,
+      "name": "Baguette",
+      "image": "https://media.istockphoto.com/id/537246627/photo/wall.jpg?s=612x612&w=0&k=20&c=buK9BzxJNbAqvAdAQgzukOeWA8wiEBA5g9xEHpP22H4="
+    },
+    {
+      "id": 55,
+      "name": "Balsamic vinegar",
+      "image": "https://media.istockphoto.com/id/117489777/photo/balsamic-vinegar.jpg?s=612x612&w=0&k=20&c=DUQq-u3LiZwMA2XvrOXy5rfxJ1Z7hqgQumC-K_-VXsw="
+    },
+    {
+      "id": 56,
+      "name": "Olives",
+      "image": "https://media.istockphoto.com/id/97863822/photo/antipasti-olives-isolated-iii.jpg?s=612x612&w=0&k=20&c=0uUyRU3ZTZnZSgWhPcULQpDOSGrib-eKbO70Jt5Ru7Y="
+    },
+    {
+      "id": 57,
+      "name": "Cornstarch",
+      "image": "https://media.istockphoto.com/id/1207945185/photo/petri-dish-with-corn-starch-and-yellow-kernels-on-a-white-background-closeup-of-tapioca.jpg?s=612x612&w=0&k=20&c=dHobmfoGPUJJbPz0x8M9OB5z4OPwznOwPgUyjko-FCA="
+    },
+    {
+      "id": 58,
+      "name": "Egg yolks",
+      "image": "https://media.istockphoto.com/id/165160671/photo/brown-eggs.jpg?s=612x612&w=0&k=20&c=6w6AdAlBwmk9dMrkqdhxPtRpe51Sfz-WW1bJl-47bC0="
+    },
+    {
+      "id": 59,
+      "name": "Pie crust",
+      "image": "https://media.istockphoto.com/id/1007686728/photo/rolling-a-pastry-for-baking-a-pie-and-pricking-it-with-fork-recipe-concept.jpg?s=612x612&w=0&k=20&c=UBCe7na3L4mw_j-T5yaaXxqI5Pa33StQkfDuEYP0Ezg="
+    },
+    {
+      "id": 60,
+      "name": "Strawberries",
+      "image": "https://media.istockphoto.com/id/471674664/photo/two-strawberries-isolated-on-white-background.jpg?s=612x612&w=0&k=20&c=a5g5o0t4M5qGInHo4gKNa07TRdz0HHzZ31UmGW9HuBk="
+    },
+    {
+      "id": 61,
+      "name": "Heavy Cream",
+      "image": "https://media.istockphoto.com/id/478216750/photo/sour-cream.jpg?s=612x612&w=0&k=20&c=N029hQO6Rvb8onl-iQfOlu4wX3HmfnY6GwGGT9JXHk4="
+    },
+    {
+      "id": 62,
+      "name": "Wholemeal flour",
+      "image": "https://media.istockphoto.com/id/672050170/photo/rye-flour.jpg?s=612x612&w=0&k=20&c=A1Xo8sPiiFCGn4lUC2Z337HEleOIJmgDFlzOAjaXchk="
     }
   ]
 }
