@@ -87,7 +87,9 @@
     <string name="component_demo">%s demo</string>
     <string name="component_remove_action_button">Remove action button</string>
     <string name="component_add_action_button">Add action button</string>
-
+    <string name="component_element_empty">Empty</string>
+    <string name="component_element_example">Example</string>
+    <string name="component_element_content">Content</string>
 
     <!-- Components App bars: top -->
     <string name="component_app_bars_top">App bars: top</string>
@@ -203,6 +205,19 @@
     <string name="component_menu_divider">Divider example</string>
     <string name="component_menu_show_ingredients">Show ingredients</string>
 
+    <!-- Component Navigation Drawers -->
+    <string name="component_navigation_drawers">Navigation Drawers</string>
+    <string name="component_navigation_drawers_description">The navigation drawer slides in from the left when the nav icon is tapped. The content should be concerned with identity and/or navigation.</string>
+    <string name="component_navigation_drawer_content">The content of the navigation drawer is scrollable. You will be able to test it in the demo.</string>
+    <string name="component_navigation_drawer_open">See the navigation drawers</string>
+    <string name="component_navigation_drawer_subtitle">Subtitle</string>
+    <string name="component_navigation_drawer_list_icon">List item icon</string>
+    <string name="component_navigation_drawer_list_divider">Secondary list &amp; divider</string>
+    <string name="component_navigation_drawer_background">Background</string>
+    <string name="component_navigation_drawer_header_image">Header image</string>
+    <string name="component_navigation_drawer_content_example">Content example</string>
+    <string name="component_navigation_drawer_label">Section label</string>
+
     <!-- Component Radio Buttons -->
     <string name="component_radio_buttons">Radio Buttons</string>
     <string name="component_radio_buttons_description">Radio buttons enable users to choose one item from a set of mutually exclusive, related choices.</string>
@@ -263,10 +278,7 @@
     <!-- Components Sheets -->
     <string name="component_sheets_bottom">Sheets: bottom</string>
     <string name="component_sheet_bottom_description">Bottom sheets are surfaces anchored to the bottom of the screen that present users supplemental content.</string>
-    <string name="component_sheet_bottom_content">Content</string>
     <string name="component_sheet_bottom_customize">Customize the bottom sheet</string>
-    <string name="component_sheet_bottom_empty">Empty</string>
-    <string name="component_sheet_bottom_example">Example</string>
     <string name="component_sheet_bottom_recipes">Recipes</string>
 
     <!-- Component Snackbars -->
