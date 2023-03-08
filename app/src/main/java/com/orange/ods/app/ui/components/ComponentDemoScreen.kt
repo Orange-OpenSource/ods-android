@@ -19,7 +19,7 @@ import com.orange.ods.app.ui.components.checkboxes.ComponentCheckboxes
 import com.orange.ods.app.ui.components.dialogs.ComponentDialog
 import com.orange.ods.app.ui.components.floatingactionbuttons.ComponentFloatingActionButton
 import com.orange.ods.app.ui.components.lists.ComponentLists
-import com.orange.ods.app.ui.components.navigationdrawers.ComponentNavigationDrawers
+import com.orange.ods.app.ui.components.navigationdrawers.ComponentModalDrawers
 import com.orange.ods.app.ui.components.radiobuttons.ComponentRadioButtons
 import com.orange.ods.app.ui.components.sheets.ComponentSheetsBottom
 import com.orange.ods.app.ui.components.sliders.ComponentSliders
@@ -39,7 +39,7 @@ fun ComponentDemoScreen(componentId: Long) {
             Component.Dialogs -> ComponentDialog()
             Component.FloatingActionButtons -> ComponentFloatingActionButton()
             Component.Lists -> ComponentLists()
-            Component.NavigationDrawers -> ComponentNavigationDrawers()
+            Component.ModalDrawers -> ComponentModalDrawers()
             Component.RadioButtons -> ComponentRadioButtons()
             Component.SheetsBottom -> ComponentSheetsBottom()
             Component.Sliders -> ComponentSliders()

@@ -20,21 +20,25 @@ import androidx.compose.runtime.saveable.rememberSaveable
 fun rememberNavigationDrawersCustomizationState(
     subTitleChecked: MutableState<Boolean> = rememberSaveable { mutableStateOf(true) },
     listIconChecked: MutableState<Boolean> = rememberSaveable { mutableStateOf(false) },
-    listDividerChecked: MutableState<Boolean> = rememberSaveable { mutableStateOf(false) },
     contentExampleChecked: MutableState<Boolean> = rememberSaveable { mutableStateOf(true) },
-    sectionLabelChecked: MutableState<Boolean> = rememberSaveable { mutableStateOf(true) },
     header: MutableState<ComponentNavigationDrawersContentState.Header> = rememberSaveable { mutableStateOf(ComponentNavigationDrawersContentState.Header.Avatar) },
+    content: MutableState<ComponentNavigationDrawersContentState.Content> = rememberSaveable { mutableStateOf(ComponentNavigationDrawersContentState.Content.None) }
 ) =
-    remember(subTitleChecked, listIconChecked, listDividerChecked, contentExampleChecked, header, sectionLabelChecked) {
-        ComponentNavigationDrawersContentState(subTitleChecked, listIconChecked, listDividerChecked, contentExampleChecked, sectionLabelChecked, header)
+    remember(subTitleChecked, listIconChecked, contentExampleChecked, header, content) {
+        ComponentNavigationDrawersContentState(
+            subTitleChecked,
+            listIconChecked,
+            contentExampleChecked,
+            content,
+            header
+        )
     }
 
 class ComponentNavigationDrawersContentState(
     val subTitleChecked: MutableState<Boolean>,
     val listIconChecked: MutableState<Boolean>,
     val contentExampleChecked: MutableState<Boolean>,
-    val listDividerChecked: MutableState<Boolean>,
-    val sectionLabelChecked: MutableState<Boolean>,
+    val content: MutableState<Content>,
     val header: MutableState<Header>
 ) {
     val isSubTitleChecked
@@ -43,16 +47,26 @@ class ComponentNavigationDrawersContentState(
     val isListIcon
         get() = listIconChecked.value
 
-    val isListDivider
-        get() = listDividerChecked.value
-
     val isContentExample
         get() = contentExampleChecked.value
-
-    val isSectionLabel
-        get() = sectionLabelChecked.value
 
     enum class Header {
         Avatar, Background, None
     }
+
+    enum class Content {
+        Divider, Label, None
+    }
+    
+    val hasAvatar
+        get() = header.value == Header.Avatar
+
+    val hasBackground
+        get() = header.value == Header.Background
+
+    val hasDivider
+        get() = content.value == Content.Divider
+
+    val hasLabel
+        get() = content.value == Content.Label
 }

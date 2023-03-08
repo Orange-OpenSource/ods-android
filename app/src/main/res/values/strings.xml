@@ -206,17 +206,16 @@
     <string name="component_menu_show_ingredients">Show ingredients</string>
 
     <!-- Component Navigation Drawers -->
-    <string name="component_navigation_drawers">Navigation Drawers</string>
-    <string name="component_navigation_drawers_description">The navigation drawer slides in from the left when the nav icon is tapped. The content should be concerned with identity and/or navigation.</string>
-    <string name="component_navigation_drawer_content">The content of the navigation drawer is scrollable. You will be able to test it in the demo.</string>
-    <string name="component_navigation_drawer_open">See the navigation drawers</string>
-    <string name="component_navigation_drawer_subtitle">Subtitle</string>
-    <string name="component_navigation_drawer_list_icon">List item icon</string>
-    <string name="component_navigation_drawer_list_divider">Secondary list &amp; divider</string>
-    <string name="component_navigation_drawer_background">Background</string>
-    <string name="component_navigation_drawer_header_image">Header image</string>
-    <string name="component_navigation_drawer_content_example">Content example</string>
-    <string name="component_navigation_drawer_label">Section label</string>
+    <string name="component_modal_drawers">Navigation Drawers</string>
+    <string name="component_modal_drawers_description">The navigation drawer slides in from the left when the nav icon is tapped. The content should be concerned with identity and/or navigation.</string>
+    <string name="component_modal_drawer_content">>>>Swipe to open drawer >>></string>
+    <string name="component_modal_drawer_open">Open drawer</string>
+    <string name="component_modal_drawer_subtitle">Subtitle</string>
+    <string name="component_modal_drawer_list_icon">List icon</string>
+    <string name="component_modal_drawer_background">Background</string>
+    <string name="component_modal_drawer_header_image">Header image</string>
+    <string name="component_modal_drawer_content_example">Content example</string>
+    <string name="component_modal_drawer_list_example">Section list example</string>
 
     <!-- Component Radio Buttons -->
     <string name="component_radio_buttons">Radio Buttons</string>
