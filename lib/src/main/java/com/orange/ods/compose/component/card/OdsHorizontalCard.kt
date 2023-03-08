@@ -12,15 +12,10 @@ package com.orange.ods.compose.component.card
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
-import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.IntrinsicSize
-import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.fillMaxHeight
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.width
+import androidx.compose.material.SnackbarDefaults.backgroundColor
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
@@ -32,6 +27,11 @@ import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.PreviewParameter
+import androidx.constraintlayout.compose.ChainStyle
+import androidx.constraintlayout.compose.ConstraintLayout
+import androidx.constraintlayout.compose.Dimension
+import androidx.constraintlayout.compose.Visibility
+import androidx.constraintlayout.compose.atLeast
 import com.orange.ods.R
 import com.orange.ods.compose.component.OdsComponentApi
 import com.orange.ods.compose.component.button.OdsTextButton
@@ -88,104 +88,135 @@ fun OdsHorizontalCard(
     onButton1Click: (() -> Unit)? = null,
     onButton2Click: (() -> Unit)? = null
 ) {
-    val imageComposable: @Composable () -> Unit = {
-        HorizontalCardImage(
-            image = image,
-            contentScale = imageContentScale,
-            alignment = imageAlignment,
-            contentDescription = imageContentDescription,
-            backgroundColor = imageBackgroundColor
-        )
-    }
-
     OdsCard(
         modifier = modifier.fillMaxWidth(),
         onClick = onCardClick
     ) {
-        Column {
-            Row(modifier = Modifier.height(IntrinsicSize.Min)) {
-                if (imagePosition == OdsHorizontalCardImagePosition.Start) {
-                    imageComposable()
-                }
+        ConstraintLayout {
+            val (
+                imageRef,
+                titleRef,
+                subtitleRef,
+                textRef,
+                chainBottomSpacerRef, // A 0 dp spacer located at the bottom of the vertical chain composed of title, subtitle and text. Without this spacer, when text is gone, bottom margin of the chain is not respected
+                dividerRef,
+                button1Ref,
+                button2Ref
+            ) = createRefs()
 
-                Column(
-                    modifier = Modifier
-                        .weight(1f)
-                        .padding(dimensionResource(id = R.dimen.spacing_m))
-                ) {
-                    OdsTextH6(text = title)
-                    subtitle?.let {
-                        OdsTextSubtitle2(text = it)
+            // Divider is not always visible thus we need to add this barrier otherwise margin between divider and text vertical chain is not respected
+            val dividerTopBarrier = createTopBarrier(dividerRef)
+            val buttonsTopBarrier = createTopBarrier(button1Ref, button2Ref)
+
+            val imageSize = dimensionResource(R.dimen.card_horizontal_image_size)
+            val smallSpacing = dimensionResource(id = R.dimen.spacing_s)
+            val mediumSpacing = dimensionResource(id = R.dimen.spacing_m)
+
+            Image(
+                painter = image,
+                contentDescription = imageContentDescription,
+                contentScale = imageContentScale,
+                modifier = Modifier
+                    .let { if (imageBackgroundColor != null) it.background(backgroundColor) else it }
+                    .constrainAs(imageRef) {
+                        top.linkTo(parent.top)
+                        bottom.linkTo(dividerTopBarrier)
+                        when (imagePosition) {
+                            OdsHorizontalCardImagePosition.Start -> start.linkTo(parent.start)
+                            OdsHorizontalCardImagePosition.End -> end.linkTo(parent.end)
+                        }
+                        width = Dimension.value(imageSize)
+                        height = Dimension.fillToConstraints.atLeast(imageSize)
+                    },
+                alignment = imageAlignment
+            )
+
+            val chainRef = createVerticalChain(titleRef, subtitleRef, textRef, chainBottomSpacerRef, chainStyle = ChainStyle.Packed)
+            constrain(chainRef) {
+                top.linkTo(parent.top, margin = mediumSpacing)
+                bottom.linkTo(dividerTopBarrier, margin = mediumSpacing)
+            }
+
+            OdsTextH6(
+                text = title,
+                modifier = Modifier.constrainAs(titleRef) {
+                    when (imagePosition) {
+                        OdsHorizontalCardImagePosition.Start -> {
+                            start.linkTo(imageRef.end, margin = mediumSpacing)
+                            end.linkTo(parent.end, margin = mediumSpacing)
+                        }
+                        OdsHorizontalCardImagePosition.End -> {
+                            start.linkTo(parent.start, margin = mediumSpacing)
+                            end.linkTo(imageRef.start, margin = mediumSpacing)
+                        }
                     }
-                    text?.let {
-                        Text(
-                            modifier = Modifier.padding(
-                                top = dimensionResource(id = R.dimen.spacing_s)
-                            ),
-                            text = it,
-                            style = OdsTheme.typography.body1,
-                            maxLines = if (subtitle == null) 3 else 2,
-                            overflow = TextOverflow.Ellipsis
-                        )
-                    }
+                    width = Dimension.fillToConstraints
                 }
+            )
 
-                if (imagePosition == OdsHorizontalCardImagePosition.End) {
-                    imageComposable()
+            OdsTextSubtitle2(
+                text = subtitle.orEmpty(),
+                modifier = Modifier.constrainAs(subtitleRef) {
+                    start.linkTo(titleRef.start)
+                    end.linkTo(titleRef.end)
+                    width = Dimension.fillToConstraints
+                    visibility = if (subtitle != null) Visibility.Visible else Visibility.Gone
                 }
-            }
+            )
 
-            if (dividerEnabled && (button1Text != null || button2Text != null)) {
-                OdsDivider()
-            }
+            Text(
+                modifier = Modifier
+                    .padding(top = smallSpacing) // For some reason, margins inside a chain are not applied, a workaround is to apply padding before the constraints
+                    .constrainAs(textRef) {
+                        start.linkTo(titleRef.start)
+                        end.linkTo(titleRef.end)
+                        width = Dimension.fillToConstraints
+                        visibility = if (text != null) Visibility.Visible else Visibility.Gone
+                    },
+                text = text.orEmpty(),
+                style = OdsTheme.typography.body1,
+                maxLines = if (subtitle == null) 3 else 2,
+                overflow = TextOverflow.Ellipsis
+            )
 
-            Row(
-                modifier = Modifier.padding(horizontal = dimensionResource(id = R.dimen.spacing_s)),
-                horizontalArrangement = Arrangement.spacedBy(dimensionResource(id = R.dimen.spacing_s))
-            ) {
-                button1Text?.let {
-                    OdsTextButton(
-                        text = it,
-                        onClick = { onButton1Click?.invoke() },
-                        style = OdsTextButtonStyle.Primary
-                    )
+            Spacer(modifier = Modifier.constrainAs(chainBottomSpacerRef) {})
+
+            OdsDivider(
+                modifier = Modifier.constrainAs(dividerRef) {
+                    bottom.linkTo(buttonsTopBarrier)
+                    start.linkTo(parent.start)
+                    end.linkTo(parent.end)
+                    visibility = if (dividerEnabled && (button1Text != null || button2Text != null)) Visibility.Visible else Visibility.Gone
                 }
-                button2Text?.let {
-                    OdsTextButton(
-                        text = it,
-                        onClick = { onButton2Click?.invoke() },
-                        style = OdsTextButtonStyle.Primary
-                    )
-                }
-            }
+            )
+
+            OdsTextButton(
+                modifier = Modifier.constrainAs(button1Ref) {
+                    bottom.linkTo(parent.bottom)
+                    start.linkTo(parent.start, margin = smallSpacing)
+                    visibility = if (button1Text != null) Visibility.Visible else Visibility.Gone
+                },
+                text = button1Text.orEmpty(),
+                onClick = { onButton1Click?.invoke() },
+                style = OdsTextButtonStyle.Primary
+            )
+
+            OdsTextButton(
+                modifier = Modifier.constrainAs(button2Ref) {
+                    bottom.linkTo(parent.bottom)
+                    start.linkTo(button1Ref.end, margin = smallSpacing, goneMargin = smallSpacing)
+                    visibility = if (button2Text != null) Visibility.Visible else Visibility.Gone
+                },
+                text = button2Text.orEmpty(),
+                onClick = { onButton2Click?.invoke() },
+                style = OdsTextButtonStyle.Primary
+            )
         }
     }
 }
 
 enum class OdsHorizontalCardImagePosition {
     Start, End
-}
-
-@Composable
-private fun HorizontalCardImage(
-    image: Painter,
-    contentScale: ContentScale,
-    alignment: Alignment,
-    contentDescription: String? = null,
-    backgroundColor: Color? = null
-) {
-    Image(
-        painter = image,
-        contentDescription = contentDescription,
-        contentScale = contentScale,
-        modifier = Modifier
-            .width(dimensionResource(R.dimen.card_horizontal_image_size))
-            .fillMaxHeight()
-            .let {
-                if (backgroundColor != null) it.background(backgroundColor) else it
-            },
-        alignment = alignment
-    )
 }
 
 @UiModePreviews.Default
@@ -225,6 +256,6 @@ private val previewParameterValues: List<OdsHorizontalCardPreviewParameter>
             OdsHorizontalCardPreviewParameter(subtitle, OdsHorizontalCardImagePosition.Start, true, button1Text, button2Text),
             OdsHorizontalCardPreviewParameter(subtitle, OdsHorizontalCardImagePosition.End, false, button1Text, null),
             OdsHorizontalCardPreviewParameter(subtitle, OdsHorizontalCardImagePosition.Start, true, null, null),
-            OdsHorizontalCardPreviewParameter(null, OdsHorizontalCardImagePosition.Start, false, button1Text, null)
+            OdsHorizontalCardPreviewParameter(null, OdsHorizontalCardImagePosition.Start, false, null, button2Text)
         )
     }
