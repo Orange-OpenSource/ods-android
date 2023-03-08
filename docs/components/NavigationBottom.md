@@ -74,7 +74,7 @@ Here is an example:
     OdsBottomNavigation {
         for (item in navigationItems) {
             OdsBottomNavigationItem(
-                icon = { Icon(painter = painterResource(id = item.iconResId), contentDescription = null) }, // contentDescription is null cause Talkback already read the item's title
+                icon = { Icon(painter = painterResource(id = item.iconResId), contentDescription = null) }, // contentDescription is null cause TalkBack already read the item's title
                 label = stringResource(id = item.titleResId),
                 selected = selectedItem.value.titleResId == item.titleResId,
                 onClick = {
