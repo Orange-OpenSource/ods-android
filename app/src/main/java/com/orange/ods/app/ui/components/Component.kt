@@ -141,7 +141,7 @@ sealed class Component(
         R.drawable.il_menus,
         null,
         R.string.component_menus_description,
-        composableName = OdsComponent.OdsNavigationDrawer.name
+        composableName = OdsComponent.OdsModalDrawer.name
     )
 
     object Progress : Component(

@@ -23,7 +23,6 @@ import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import com.orange.ods.app.R
-import com.orange.ods.app.domain.recipes.LocalRecipes
 import com.orange.ods.app.ui.components.utilities.ComponentCustomizationBottomSheetScaffold
 import com.orange.ods.app.ui.components.utilities.ComponentLaunchContentColumn
 import com.orange.ods.app.ui.utilities.composable.CodeImplementationColumn
@@ -35,7 +34,7 @@ import com.orange.ods.compose.component.chip.OdsChoiceChipsFlowRow
 import com.orange.ods.compose.component.list.OdsListItem
 import com.orange.ods.compose.component.list.OdsSwitchTrailing
 import com.orange.ods.compose.component.navigationdrawer.OdsModalDrawer
-import com.orange.ods.compose.component.navigationdrawer.OdsModalDrawerHeader
+import com.orange.ods.compose.component.navigationdrawer.OdsModalDrawerHeaderParametersProvider
 import kotlinx.coroutines.launch
 
 @OptIn(ExperimentalMaterialApi::class)
@@ -44,23 +43,14 @@ fun ComponentModalDrawers() {
     val customizationState = rememberNavigationDrawersCustomizationState()
     val scope = rememberCoroutineScope()
     var drawerState = rememberDrawerState(DrawerValue.Closed)
-    val recipes = LocalRecipes.current
     OdsModalDrawer(
-        firstList = recipes,
-        header = {
-            OdsModalDrawerHeader(
-                title = "Healine6",
-                backgroundImage = if (customizationState.hasBackground) painterResource(id = R.drawable.placeholder) else null,
-                subtitle = if (customizationState.isSubTitleChecked) stringResource(id = R.string.component_modal_drawer_list_icon) else null,
-                avatar = if (customizationState.hasAvatar) painterResource(id = R.drawable.placeholder) else null
-            )
-        },
+        headerParametersProvider = OdsModalDrawerHeaderParametersProvider(
+            title = "Headline 6",
+            backgroundImage = if (customizationState.hasBackground) painterResource(id = R.drawable.placeholder) else null,
+            subtitle = if (customizationState.isSubTitleChecked) stringResource(id = R.string.component_modal_drawer_list_icon) else null,
+            avatar = if (customizationState.hasAvatar) painterResource(id = R.drawable.placeholder) else null
+        ),
         /*hasIcon = customizationState.isListIcon,
-        imageBackgroundColor = if (customizationState.hasAvatar)
-            stringResource(id = R.string.component_element_avatar)
-        else if (customizationState.hasBackground)
-            stringResource(id = R.string.component_navigation_drawer_background) else null,
-        subtitle = if (customizationState.isSubTitleChecked) stringResource(id = R.string.component_navigation_drawer_label) else null,
         secondList = if (customizationState.isListDivider) recipes else null,*/
         drawerState = drawerState,
         content = {
@@ -70,7 +60,7 @@ fun ComponentModalDrawers() {
                     bottomSheetContent = {
                         OdsListItem(
                             text = stringResource(id = R.string.component_modal_drawer_content_example),
-                            trailing = OdsSwitchTrailing(checked = customizationState.subTitleChecked)
+                            trailing = OdsSwitchTrailing(checked = contentExampleChecked)
                         )
                         OdsChoiceChipsFlowRow(
                             selectedChip = header,
@@ -87,11 +77,17 @@ fun ComponentModalDrawers() {
                         }
                         OdsListItem(
                             text = stringResource(id = R.string.component_modal_drawer_subtitle),
-                            trailing = OdsSwitchTrailing(checked = customizationState.subTitleChecked, enabled = isContentExample)
+                            trailing = OdsSwitchTrailing(
+                                checked = subTitleChecked,
+                                enabled = isContentExample
+                            )
                         )
                         OdsListItem(
                             text = stringResource(id = R.string.component_modal_drawer_list_icon),
-                            trailing = OdsSwitchTrailing(checked = customizationState.listIconChecked, enabled = isContentExample),
+                            trailing = OdsSwitchTrailing(
+                                checked = listIconChecked,
+                                enabled = isContentExample
+                            ),
                         )
                         OdsChoiceChipsFlowRow(
                             selectedChip = content,
@@ -99,9 +95,9 @@ fun ComponentModalDrawers() {
                             modifier = Modifier.padding(horizontal = dimensionResource(id = R.dimen.screen_horizontal_margin)),
                         ) {
                             Subtitle(textRes = R.string.component_modal_drawer_list_example)
-                            OdsChoiceChip(textRes = R.string.component_element_avatar, value = ComponentNavigationDrawersContentState.Content.Divider)
+                            OdsChoiceChip(textRes = R.string.component_element_divider, value = ComponentNavigationDrawersContentState.Content.Divider)
                             OdsChoiceChip(
-                                textRes = R.string.component_modal_drawer_background,
+                                textRes = R.string.component_element_label,
                                 value = ComponentNavigationDrawersContentState.Content.Label
                             )
                             OdsChoiceChip(textRes = R.string.component_element_none, value = ComponentNavigationDrawersContentState.Content.None)
@@ -115,7 +111,7 @@ fun ComponentModalDrawers() {
                         )
                         CodeImplementationColumn {
                             CommonTechnicalTextColumn(
-                                componentName = OdsComponent.OdsNavigationDrawer.name
+                                componentName = OdsComponent.OdsModalDrawer.name
                             ) {
                             }
                         }

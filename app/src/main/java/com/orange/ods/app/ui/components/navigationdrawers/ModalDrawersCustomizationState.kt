@@ -57,7 +57,7 @@ class ComponentNavigationDrawersContentState(
     enum class Content {
         Divider, Label, None
     }
-    
+
     val hasAvatar
         get() = header.value == Header.Avatar
 
