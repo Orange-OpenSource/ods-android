@@ -6,7 +6,8 @@ This file lists all the steps to follow when releasing a new version of ODS Andr
 - [Release](#release)
   * [Publish release to Maven Central](#publish-release-to-maven-central)
   * [Publish release to GitHub](#publish-release-to-github)
-  * [Upload APK to Firebase App Distribution](#upload-apk-to-firebase-app-distribution)<br /><br />
+  * [Upload APK to Firebase App Distribution](#upload-apk-to-firebase-app-distribution)
+  * [Announce the new release on FoODS](#announce-the-new-release-on-foods)<br /><br />
 
 ## Prepare release
 
@@ -118,3 +119,24 @@ This file lists all the steps to follow when releasing a new version of ODS Andr
 - Go to [GitHub Actions](https://github.com/Orange-OpenSource/ods-android/actions), click `Review deployments`, select `app-distribution-release` and click `Approve and deploy`.
 
 - Test release APK using `Firebase App Tester` app.
+
+### Announce the new release on FoODS
+
+- Go to [Teams - FoODS: ODS Mobile Android](https://teams.microsoft.com/l/channel/19%3a62efff7aca9f4865a841076b4a6c428f%40thread.tacv2/4-ODS%2520Mobile%2520Android?groupId=a9581e9e-6775-46f5-9e4a-3ce57096e6be&tenantId=90c7a20a-f34b-40bf-bc48-b9253b6f5d20)
+
+- Post a message to announce the release:
+```markdown
+Release X.Y.Z is available!
+
+New components:
+    - C8
+    - C9
+    
+New module:
+    - M1
+    
+[Release note link](https://github.com/Orange-OpenSource/ods-android/releases/tag/X.Y.Z)
+[Demo app link](https://appdistribution.firebase.google.com/testerapps/1:212698857200:android:84f9ae5c588f21f25ecc35/releases/489r7j172cqn8?utm_source=firebase-console)
+```
+
+Note: The demo app link can be copied from the release Firebase console. In `App Distribution`, find the X.Y.Z release and click on the `Copy` button.
