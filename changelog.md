@@ -5,13 +5,19 @@ All notable changes done in ODS library will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-## [Unreleased](https://github.com/Orange-OpenSource/ods-android/compare/0.11.0...develop)
+## [Unreleased](https://github.com/Orange-OpenSource/ods-android/compare/0.11.1...develop)
 
 ### Fixed
 
 - \[Demo\] Fix accessibility bug where content change on chip type selection was not read by TalkBack ([#332](https://github.com/Orange-OpenSource/ods-android/issues/332))
 - \[Demo\] Fix accessibility bug where text fields error messages were not read by TalkBack on state change ([#359](https://github.com/Orange-OpenSource/ods-android/issues/359))
 - \[Lib\] Implement workaround by adding content description to `OdsOutlinedTextField` in order to allow TalkBack to focus this type of text field ([#359](https://github.com/Orange-OpenSource/ods-android/issues/359))
+
+## [0.11.1](https://github.com/Orange-OpenSource/ods-android/compare/0.11.0...0.11.1) - 2023-03-10
+
+### Fixed
+
+- \[Demo\] Fix security vulnerability in the Manifest ([#463](https://github.com/Orange-OpenSource/ods-android/issues/463))
 
 ## [0.11.0](https://github.com/Orange-OpenSource/ods-android/compare/0.10.0...0.11.0) - 2023-03-03
 
