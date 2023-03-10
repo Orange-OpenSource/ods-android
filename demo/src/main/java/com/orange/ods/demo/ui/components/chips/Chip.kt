@@ -10,6 +10,7 @@
 
 package com.orange.ods.demo.ui.components.chips
 
+import android.content.Context
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.rememberScrollState
@@ -22,6 +23,8 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.semantics.semantics
+import androidx.compose.ui.semantics.stateDescription
 import coil.compose.rememberAsyncImagePainter
 import com.orange.ods.compose.component.chip.OdsChip
 import com.orange.ods.compose.component.chip.OdsChoiceChip
@@ -42,49 +45,64 @@ import com.orange.ods.theme.OdsComponentsConfiguration.ComponentStyle
 @OptIn(ExperimentalMaterialApi::class)
 @Composable
 fun Chip() {
+    val context = LocalContext.current
     val chipCustomizationState = rememberChipCustomizationState()
 
-    ComponentCustomizationBottomSheetScaffold(
-        bottomSheetScaffoldState = rememberBottomSheetScaffoldState(),
-        bottomSheetContent = {
-            Subtitle(textRes = R.string.component_type, horizontalPadding = true)
-            OdsChoiceChipsFlowRow(
-                selectedChip = chipCustomizationState.chipType,
-                modifier = Modifier.padding(horizontal = dimensionResource(id = R.dimen.screen_horizontal_margin)),
-                outlinedChips = true
-            ) {
-                OdsChoiceChip(textRes = R.string.component_chip_type_input, value = ChipType.Input)
-                OdsChoiceChip(textRes = R.string.component_chip_type_choice, value = ChipType.Choice)
-                OdsChoiceChip(textRes = R.string.component_chip_type_action, value = ChipType.Action)
-            }
-
-            if (chipCustomizationState.isInputChip) {
-                Subtitle(textRes = R.string.component_element_leading, horizontalPadding = true)
+    with(chipCustomizationState) {
+        ComponentCustomizationBottomSheetScaffold(
+            bottomSheetScaffoldState = rememberBottomSheetScaffoldState(),
+            bottomSheetContent = {
+                Subtitle(textRes = R.string.component_type, horizontalPadding = true)
                 OdsChoiceChipsFlowRow(
-                    selectedChip = chipCustomizationState.leadingElement,
-                    modifier = Modifier.padding(horizontal = dimensionResource(id = R.dimen.screen_horizontal_margin)),
+                    selectedChip = chipType,
+                    modifier = Modifier
+                        .padding(horizontal = dimensionResource(id = R.dimen.screen_horizontal_margin)),
                     outlinedChips = true
                 ) {
-                    OdsChoiceChip(textRes = R.string.component_element_none, value = LeadingElement.None)
-                    OdsChoiceChip(textRes = R.string.component_element_avatar, value = LeadingElement.Avatar)
-                    OdsChoiceChip(textRes = R.string.component_element_icon, value = LeadingElement.Icon)
+                    OdsChoiceChip(
+                        textRes = R.string.component_chip_type_input,
+                        value = ChipType.Input,
+                        modifier = Modifier.chipTypeSemantics(
+                            context = context, focusedChipType = ChipType.Input, selectedChipType = chipType.value
+                        )
+                    )
+                    OdsChoiceChip(
+                        textRes = R.string.component_chip_type_choice, value = ChipType.Choice,
+                        modifier = Modifier.chipTypeSemantics(context = context, focusedChipType = ChipType.Choice, selectedChipType = chipType.value)
+                    )
+                    OdsChoiceChip(
+                        textRes = R.string.component_chip_type_action, value = ChipType.Action,
+                        modifier = Modifier.chipTypeSemantics(context = context, focusedChipType = ChipType.Action, selectedChipType = chipType.value)
+                    )
                 }
-            } else {
-                chipCustomizationState.resetLeadingElement()
-            }
 
-            OdsListItem(
-                text = stringResource(id = R.string.component_state_enabled),
-                trailing = OdsSwitchTrailing(
-                    checked = chipCustomizationState.enabled
+                if (isInputChip) {
+                    Subtitle(textRes = R.string.component_element_leading, horizontalPadding = true)
+                    OdsChoiceChipsFlowRow(
+                        selectedChip = leadingElement,
+                        modifier = Modifier.padding(horizontal = dimensionResource(id = R.dimen.screen_horizontal_margin)),
+                        outlinedChips = true
+                    ) {
+                        OdsChoiceChip(textRes = R.string.component_element_none, value = LeadingElement.None)
+                        OdsChoiceChip(textRes = R.string.component_element_avatar, value = LeadingElement.Avatar)
+                        OdsChoiceChip(textRes = R.string.component_element_icon, value = LeadingElement.Icon)
+                    }
+                } else {
+                    resetLeadingElement()
+                }
+
+                OdsListItem(
+                    text = stringResource(id = R.string.component_state_enabled),
+                    trailing = OdsSwitchTrailing(
+                        checked = enabled
+                    )
                 )
-            )
-        }) {
-        ChipTypeDemo(chipCustomizationState.chipType.value) {
-            Chip(chipCustomizationState = chipCustomizationState)
+            }) {
+            ChipTypeDemo(chipType.value) {
+                Chip(chipCustomizationState = chipCustomizationState)
+            }
         }
     }
-
 }
 
 @Composable
@@ -101,6 +119,12 @@ fun ChipTypeDemo(chipType: ChipType, content: @Composable () -> Unit) {
         )
         content()
     }
+}
+
+private fun Modifier.chipTypeSemantics(context: Context, focusedChipType: ChipType, selectedChipType: ChipType) = this.semantics {
+    stateDescription = if (selectedChipType == focusedChipType) {
+        "${context.getString(R.string.state_selected)}\n${context.getString(focusedChipType.nameRes)}\n${context.getString(focusedChipType.descriptionRes)}"
+    } else context.getString(R.string.state_not_selected)
 }
 
 @Composable
