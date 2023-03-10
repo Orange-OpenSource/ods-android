@@ -12,6 +12,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - \[Demo\] Fix accessibility bug where content change on chip type selection was not read by TalkBack ([#332](https://github.com/Orange-OpenSource/ods-android/issues/332))
 - \[Demo\] Fix accessibility bug where text fields error messages were not read by TalkBack on state change ([#359](https://github.com/Orange-OpenSource/ods-android/issues/359))
 - \[Lib\] Implement workaround by adding content description to `OdsOutlinedTextField` in order to allow TalkBack to focus this type of text field ([#359](https://github.com/Orange-OpenSource/ods-android/issues/359))
+- \[Lib\] Fix a bug where image height is wrong in some cases in `OdsHorizontalCard` ([#445](https://github.com/Orange-OpenSource/ods-android/issues/445))
 
 ## [0.11.1](https://github.com/Orange-OpenSource/ods-android/compare/0.11.0...0.11.1) - 2023-03-10
 
