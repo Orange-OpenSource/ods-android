@@ -39,7 +39,6 @@ fun ComponentDemoScreen(componentId: Long) {
             Component.Dialogs -> ComponentDialog()
             Component.FloatingActionButtons -> ComponentFloatingActionButton()
             Component.Lists -> ComponentLists()
-            Component.ModalDrawers -> ComponentModalDrawers()
             Component.RadioButtons -> ComponentRadioButtons()
             Component.SheetsBottom -> ComponentSheetsBottom()
             Component.Sliders -> ComponentSliders()

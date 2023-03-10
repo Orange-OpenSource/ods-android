@@ -19,6 +19,7 @@ import com.orange.ods.app.ui.components.cards.ComponentCard
 import com.orange.ods.app.ui.components.chips.Chip
 import com.orange.ods.app.ui.components.chips.ChipFilter
 import com.orange.ods.app.ui.components.menus.ComponentMenu
+import com.orange.ods.app.ui.components.navigationdrawers.ComponentModalDrawer
 import com.orange.ods.app.ui.components.progress.ComponentProgress
 import com.orange.ods.app.ui.components.tabs.ComponentTabs
 import com.orange.ods.app.ui.components.textfields.ComponentTextField
@@ -36,6 +37,7 @@ fun ComponentVariantScreen(variantId: Long) {
             Component.Cards -> ComponentCard(variant = variant)
             Component.Chips -> if (variant == Variant.ChipFilter) ChipFilter() else Chip()
             Component.Menus -> ComponentMenu(variant = variant)
+            Component.ModalDrawers -> ComponentModalDrawer(variant = variant)
             Component.Progress -> ComponentProgress(variant = variant)
             Component.TextFields -> ComponentTextField(variant = variant)
             Component.Tabs -> ComponentTabs(variant)

@@ -10,6 +10,7 @@
 
 package com.orange.ods.compose.component.navigationdrawer
 
+import androidx.annotation.DrawableRes
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -17,13 +18,12 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
-import androidx.compose.material.Divider
 import androidx.compose.material.DrawerDefaults
 import androidx.compose.material.DrawerState
 import androidx.compose.material.DrawerValue
-import androidx.compose.material.MaterialTheme
 import androidx.compose.material.ModalDrawer
 import androidx.compose.material.Surface
+import androidx.compose.material.Text
 import androidx.compose.material.contentColorFor
 import androidx.compose.material.rememberDrawerState
 import androidx.compose.runtime.Composable
@@ -35,13 +35,18 @@ import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.PreviewParameter
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import com.orange.ods.R
 import com.orange.ods.compose.component.OdsComponentApi
+import com.orange.ods.compose.component.divider.OdsDivider
+import com.orange.ods.compose.component.list.OdsListItem
+import com.orange.ods.compose.component.list.OdsListItemIcon
+import com.orange.ods.compose.component.list.OdsListItemIconType
+import com.orange.ods.compose.component.list.iconType
 import com.orange.ods.compose.component.utilities.BasicPreviewParameterProvider
 import com.orange.ods.compose.component.utilities.OdsImageCircleShape
 import com.orange.ods.compose.component.utilities.Preview
 import com.orange.ods.compose.component.utilities.UiModePreviews
-import com.orange.ods.compose.text.OdsTextBody2
 import com.orange.ods.compose.text.OdsTextH6
 import com.orange.ods.compose.text.OdsTextSubtitle2
 import com.orange.ods.compose.theme.OdsTheme
@@ -53,58 +58,59 @@ fun OdsModalDrawer(
     drawerState: DrawerState = rememberDrawerState(DrawerValue.Closed),
     content: @Composable () -> Unit,
     headerParametersProvider: OdsModalDrawerHeaderParametersProvider,
-    //firstList: List<Any>,
+    listContent: List<OdsModalDrawerItem>
 
 ) {
     ModalDrawer(
         drawerContent = {
             OdsModalDrawerHeader(headerContent = headerParametersProvider)
-            Divider()
-            /*firstList.forEach { recipe ->
-                OdsListItem(
-                    Modifier
-                        .iconType(OdsListItemIconType.Icon),
-                    //icon = if hasIcon painterResource (id =) else null,
-                    text = recipe.toString()
-                )
-            }*/
+            OdsDivider()
+            listContent.forEach { item ->
+                getItem(item = item).invoke()
+            }
         },
         drawerState = drawerState,
         modifier = modifier,
-        drawerBackgroundColor = MaterialTheme.colors.surface,
-        scrimColor = DrawerDefaults.scrimColor,
-        content = content
-    )
-}
-
-@Composable
-fun OdsModalDrawer(
-    modifier: Modifier = Modifier,
-    drawerState: DrawerState = rememberDrawerState(DrawerValue.Closed),
-    gesturesEnabled: Boolean = true,
-    content: @Composable () -> Unit,
-    //header: @Composable () -> Unit,
-) {
-    ModalDrawer(
-        drawerContent = {
-            Divider()
-        },
-        drawerState = drawerState,
-        modifier = modifier,
-        gesturesEnabled = gesturesEnabled,
-        drawerElevation = DrawerDefaults.Elevation,
         drawerBackgroundColor = OdsTheme.colors.surface,
-        drawerContentColor = contentColorFor(OdsTheme.colors.surface),
+        drawerContentColor = contentColorFor(OdsTheme.colors.onSurface),
         scrimColor = DrawerDefaults.scrimColor,
         content = content
     )
 }
 
-sealed class OdsModalDrawerItems
-class OdsModalDrawerText(val text: String) : OdsModalDrawerItems()
-class OdsModalDrawerList(val list: List<Any>) : OdsModalDrawerItems()
+sealed class OdsModalDrawerItem
+class OdsModalDrawerSectionLabel(val label: String) : OdsModalDrawerItem()
+object OdsModalDrawerDivider : OdsModalDrawerItem()
+class OdsModalDrawerListItem(@DrawableRes val icon: Int?, val text: String) : OdsModalDrawerItem()
 
-
+internal fun getItem(item: OdsModalDrawerItem): @Composable (() -> Unit) {
+    return when (item) {
+        is OdsModalDrawerSectionLabel -> {
+            {
+                Column {
+                    OdsDivider()
+                    OdsTextSubtitle2(
+                        modifier = Modifier.padding(top = dimensionResource(id = R.dimen.spacing_m), start = dimensionResource(id = R.dimen.spacing_m)),
+                        text = item.label
+                    )
+                }
+            }
+        }
+        is OdsModalDrawerListItem -> {
+            {
+                OdsListItem(
+                    modifier = Modifier.iconType(OdsListItemIconType.Icon),
+                    text = item.text,
+                    icon = item.icon?.let { { OdsListItemIcon(painterResource(id = it)) } })
+            }
+        }
+        is OdsModalDrawerDivider -> {
+            {
+                OdsDivider()
+            }
+        }
+    }
+}
 
 data class OdsModalDrawerHeaderParametersProvider(
     var modifier: Modifier = Modifier,
@@ -164,7 +170,7 @@ internal fun OdsModalDrawerHeader(
                 )
             }
             Surface(
-                color = Color.Black.copy(alpha = 0.6f),
+                color = Color.Black.copy(alpha = 0.8f),
                 modifier = if (headerContent.subtitle != null) {
                     Modifier
                         .fillMaxSize()
@@ -179,15 +185,14 @@ internal fun OdsModalDrawerHeader(
                     modifier = Modifier
                         .padding(start = dimensionResource(id = R.dimen.spacing_m), top = 12.dp, bottom = 12.dp)
                 ) {
-                    OdsTextH6(text = headerContent.title)
+                    Text(text = headerContent.title, color = Color.White, fontSize = 20.sp)
                     headerContent.subtitle?.let {
-                        OdsTextBody2(text = it)
+                        Text(text = it, color = Color.White, fontSize = 14.sp)
                     }
                 }
             }
         }
     }
-
 }
 
 @UiModePreviews.Default
@@ -202,7 +207,8 @@ private fun PreviewOdsModalDrawer(@PreviewParameter(OdsModalDrawerPreviewParamet
                 subtitle = parameter.subtitle,
                 avatar = parameter.avatar?.let { painterResource(id = it) },
                 backgroundImage = parameter.backgroundImage?.let { painterResource(id = it) },
-            )
+            ),
+            listContent = parameter.list
         )
     }
 
@@ -210,7 +216,8 @@ private data class OdsModalDrawerPreviewParameter(
     val backgroundImage: Int?,
     val title: String,
     val avatar: Int?,
-    val subtitle: String?
+    val subtitle: String?,
+    val list: List<OdsModalDrawerItem>
 )
 
 private class OdsModalDrawerPreviewParameterProvider :
@@ -223,13 +230,28 @@ private val previewParameterValues: List<OdsModalDrawerPreviewParameter>
         val avatar = R.drawable.ic_check
         val subtitle = "Body 2"
         val noPicture = null
+        val list = listOf(
+            OdsModalDrawerListItem(avatar, "label1"),
+            OdsModalDrawerDivider,
+            OdsModalDrawerListItem(avatar, "label2"),
+            OdsModalDrawerSectionLabel("Label"),
+            OdsModalDrawerListItem(avatar, "label3"),
+        )
 
         return listOf(
-            OdsModalDrawerPreviewParameter(backgroundImage, title, avatar = noPicture, subtitle = subtitle),
-            OdsModalDrawerPreviewParameter(backgroundImage, title, avatar = noPicture, subtitle = noPicture),
-            OdsModalDrawerPreviewParameter(backgroundImage = noPicture, title = title, avatar = avatar, subtitle = subtitle),
-            OdsModalDrawerPreviewParameter(backgroundImage = noPicture, title = title, avatar = avatar, subtitle = noPicture),
-            OdsModalDrawerPreviewParameter(backgroundImage = noPicture, title = title, avatar = noPicture, subtitle = noPicture),
-            OdsModalDrawerPreviewParameter(backgroundImage = noPicture, title = title, avatar = noPicture, subtitle = subtitle),
+            OdsModalDrawerPreviewParameter(backgroundImage = backgroundImage, title = title, avatar = noPicture, subtitle = subtitle, list),
+            OdsModalDrawerPreviewParameter(backgroundImage, title, avatar = noPicture, subtitle = noPicture, list),
+            OdsModalDrawerPreviewParameter(backgroundImage = noPicture, title = title, avatar = avatar, subtitle = subtitle, list),
+            OdsModalDrawerPreviewParameter(backgroundImage = noPicture, title = title, avatar = avatar, subtitle = noPicture, list),
+            OdsModalDrawerPreviewParameter(
+                backgroundImage = noPicture, title = title, avatar = noPicture,
+                subtitle = noPicture,
+                list = emptyList()
+            ),
+            OdsModalDrawerPreviewParameter(
+                backgroundImage = noPicture, title = title, avatar = noPicture,
+                subtitle = subtitle,
+                list
+            ),
         )
     }
