@@ -104,10 +104,6 @@ fun OdsHorizontalCard(
                 button2Ref
             ) = createRefs()
 
-            // Divider is not always visible thus we need to add this barrier otherwise margin between divider and text vertical chain is not respected
-            val dividerTopBarrier = createTopBarrier(dividerRef)
-            val buttonsTopBarrier = createTopBarrier(button1Ref, button2Ref)
-
             val imageSize = dimensionResource(R.dimen.card_horizontal_image_size)
             val smallSpacing = dimensionResource(id = R.dimen.spacing_s)
             val mediumSpacing = dimensionResource(id = R.dimen.spacing_m)
@@ -120,7 +116,7 @@ fun OdsHorizontalCard(
                     .let { if (imageBackgroundColor != null) it.background(backgroundColor) else it }
                     .constrainAs(imageRef) {
                         top.linkTo(parent.top)
-                        bottom.linkTo(dividerTopBarrier)
+                        bottom.linkTo(dividerRef.top)
                         when (imagePosition) {
                             OdsHorizontalCardImagePosition.Start -> start.linkTo(parent.start)
                             OdsHorizontalCardImagePosition.End -> end.linkTo(parent.end)
@@ -134,7 +130,7 @@ fun OdsHorizontalCard(
             val chainRef = createVerticalChain(titleRef, subtitleRef, textRef, chainBottomSpacerRef, chainStyle = ChainStyle.Packed)
             constrain(chainRef) {
                 top.linkTo(parent.top, margin = mediumSpacing)
-                bottom.linkTo(dividerTopBarrier, margin = mediumSpacing)
+                bottom.linkTo(imageRef.bottom, margin = mediumSpacing)
             }
 
             OdsTextH6(
@@ -183,7 +179,7 @@ fun OdsHorizontalCard(
 
             OdsDivider(
                 modifier = Modifier.constrainAs(dividerRef) {
-                    bottom.linkTo(buttonsTopBarrier)
+                    top.linkTo(imageRef.bottom)
                     start.linkTo(parent.start)
                     end.linkTo(parent.end)
                     visibility = if (dividerEnabled && (button1Text != null || button2Text != null)) Visibility.Visible else Visibility.Gone
@@ -192,7 +188,7 @@ fun OdsHorizontalCard(
 
             OdsTextButton(
                 modifier = Modifier.constrainAs(button1Ref) {
-                    bottom.linkTo(parent.bottom)
+                    top.linkTo(dividerRef.bottom)
                     start.linkTo(parent.start, margin = smallSpacing)
                     visibility = if (button1Text != null) Visibility.Visible else Visibility.Gone
                 },
@@ -203,7 +199,7 @@ fun OdsHorizontalCard(
 
             OdsTextButton(
                 modifier = Modifier.constrainAs(button2Ref) {
-                    bottom.linkTo(parent.bottom)
+                    top.linkTo(dividerRef.bottom)
                     start.linkTo(button1Ref.end, margin = smallSpacing, goneMargin = smallSpacing)
                     visibility = if (button2Text != null) Visibility.Visible else Visibility.Gone
                 },
