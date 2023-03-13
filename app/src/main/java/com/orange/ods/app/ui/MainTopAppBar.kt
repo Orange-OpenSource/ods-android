@@ -41,8 +41,7 @@ fun MainTopAppBar(
     state: MainTopAppBarState,
     upPress: () -> Unit,
     onChangeThemeActionClick: () -> Unit,
-    onSearchActionClick: () -> Unit,
-    searchedText: MutableState<TextFieldValue>
+    onSearchActionClick: () -> Unit
 ) {
     OdsTopAppBar(
         title = stringResource(id = titleRes),
@@ -56,39 +55,54 @@ fun MainTopAppBar(
         } else null,
         onNavigationIconClick = upPress,
         actions = {
-            val context = LocalContext.current
-            TopAppBarSearchComponentButton(onClick = onSearchActionClick, id = titleRes, searchedText)
-            if (titleRes != R.string.navigation_item_search) {
-                repeat(state.actionCount.value) { index ->
-                    when (index) {
-                        0 -> TopAppBarChangeThemeActionButton(onClick = onChangeThemeActionClick)
-                        1 -> TopAppBarChangeModeActionButton()
-                        else -> {
-                            OdsTopAppBarActionButton(
-                                onClick = { clickOnElement(context, context.getString(R.string.component_app_bars_top_action_ice_cream)) },
-                                painter = painterResource(id = R.drawable.ic_ice_cream),
-                                contentDescription = stringResource(id = R.string.component_app_bars_top_action_ice_cream)
-                            )
-                        }
-                    }
-                }
-                if (state.isOverflowMenuEnabled) {
-                    OdsTopAppBarOverflowMenuBox(
-                        overflowIconContentDescription = stringResource(id = R.string.component_app_bars_top_element_overflow_menu)
-                    ) {
-                        LocalRecipes.current.forEach { recipe ->
-                            OdsDropdownMenuItem(
-                                text = recipe.title,
-                                onClick = { clickOnElement(context, recipe.title) }
-                            )
-                        }
-                    }
-                }
+            if (state.titleRes.value == R.string.navigation_item_search) {
+                SearchTextField(state.searchedText)
+            } else {
+                TopAppBarActions(state, titleRes, onSearchActionClick, onChangeThemeActionClick)
             }
         },
         elevated = false // elevation is managed in [MainScreen] cause of tabs
     )
 }
+
+@Composable
+private fun TopAppBarActions(state: MainTopAppBarState, titleRes: Int, onSearchActionClick: () -> Unit, onChangeThemeActionClick: () -> Unit) {
+    val context = LocalContext.current
+    if (titleRes == R.string.navigation_item_components) {
+        OdsTopAppBarActionButton(
+            onClick = onSearchActionClick,
+            painter = painterResource(id = R.drawable.ic_search),
+            contentDescription = ""
+        )
+    } else {
+        repeat(state.actionCount.value) { index ->
+            when (index) {
+                0 -> TopAppBarChangeThemeActionButton(onClick = onChangeThemeActionClick)
+                1 -> TopAppBarChangeModeActionButton()
+                else -> {
+                    OdsTopAppBarActionButton(
+                        onClick = { clickOnElement(context, context.getString(R.string.component_app_bars_top_action_ice_cream)) },
+                        painter = painterResource(id = R.drawable.ic_ice_cream),
+                        contentDescription = stringResource(id = R.string.component_app_bars_top_action_ice_cream)
+                    )
+                }
+            }
+        }
+        if (state.isOverflowMenuEnabled) {
+            OdsTopAppBarOverflowMenuBox(
+                overflowIconContentDescription = stringResource(id = R.string.component_app_bars_top_element_overflow_menu)
+            ) {
+                LocalRecipes.current.forEach { recipe ->
+                    OdsDropdownMenuItem(
+                        text = recipe.title,
+                        onClick = { clickOnElement(context, recipe.title) }
+                    )
+                }
+            }
+        }
+    }
+}
+
 
 @Composable
 private fun TopAppBarSearchComponentButton(onClick: () -> Unit, id: Int, textState: MutableState<TextFieldValue>) {

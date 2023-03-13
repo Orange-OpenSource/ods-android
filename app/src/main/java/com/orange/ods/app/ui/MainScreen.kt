@@ -61,7 +61,6 @@ import com.orange.ods.demo.R
 import com.orange.ods.demo.domain.recipes.LocalRecipes
 import com.orange.ods.demo.ui.about.addAboutGraph
 import com.orange.ods.demo.ui.components.ComponentSearchScreen
-import com.orange.ods.demo.ui.components.ComponentsScreen
 import com.orange.ods.demo.ui.components.addComponentsGraph
 import com.orange.ods.demo.ui.components.tabs.FixedTabRow
 import com.orange.ods.demo.ui.components.tabs.ScrollableTabRow
@@ -122,8 +121,7 @@ fun MainScreen(themeConfigurations: Set<OdsThemeConfigurationContract>, mainView
                                 onChangeThemeActionClick = { changeThemeDialogVisible = true },
                                 onSearchActionClick = {
                                     mainState.navController.navigate(MainDestinations.SearchRoute)
-                                },
-                                searchedText = searchedText
+                                }
                             )
                             // Display tabs in the top bar if needed
                             MainTabs(mainTabsState = mainState.tabsState)
@@ -256,10 +254,6 @@ private fun NavGraphBuilder.mainNavGraph(navigateToElement: (String, Long?, NavB
     addGuidelinesGraph()
     addComponentsGraph(navigateToElement)
     addAboutGraph()
-    composable(BottomNavigationSections.Components.route) { from ->
-        LocalMainTabsManager.current.clearTopAppBarTabs()
-        ComponentsScreen(onComponentClick = { id -> navigateToElement(MainDestinations.ComponentDetailRoute, id, from) })
-    }
 
     composable(
         route = MainDestinations.SearchRoute

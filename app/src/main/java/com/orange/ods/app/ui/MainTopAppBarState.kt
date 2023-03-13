@@ -17,6 +17,8 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.staticCompositionLocalOf
 import com.orange.ods.app.R
+import androidx.compose.ui.text.input.TextFieldValue
+import com.orange.ods.demo.R
 
 val LocalMainTopAppBarManager = staticCompositionLocalOf<MainTopAppBarManager> { error("CompositionLocal LocalMainTopAppBarManager not present") }
 
@@ -32,17 +34,21 @@ fun rememberMainTopAppBarState(
     titleRes: MutableState<Int> = rememberSaveable { mutableStateOf(R.string.navigation_item_guidelines) },
     actionCount: MutableState<Int> = rememberSaveable { mutableStateOf(MainTopAppBarState.DefaultConfiguration.actionCount) },
     navigationIconEnabled: MutableState<Boolean> = rememberSaveable { mutableStateOf(MainTopAppBarState.DefaultConfiguration.isNavigationIconEnabled) },
-    overflowMenuEnabled: MutableState<Boolean> = rememberSaveable { mutableStateOf(MainTopAppBarState.DefaultConfiguration.isOverflowMenuEnabled) }
+    overflowMenuEnabled: MutableState<Boolean> = rememberSaveable { mutableStateOf(MainTopAppBarState.DefaultConfiguration.isOverflowMenuEnabled) },
+    searchedText: MutableState<TextFieldValue> = remember { mutableStateOf(TextFieldValue("")) },
 ) =
-    remember(titleRes, actionCount, navigationIconEnabled, overflowMenuEnabled) {
-        MainTopAppBarState(titleRes, actionCount, navigationIconEnabled, overflowMenuEnabled)
+    remember(titleRes, actionCount, searchedText, navigationIconEnabled, overflowMenuEnabled) {
+        MainTopAppBarState(titleRes, actionCount, searchedText, navigationIconEnabled, overflowMenuEnabled)
     }
+
 
 class MainTopAppBarState(
     val titleRes: MutableState<Int>,
     val actionCount: MutableState<Int>,
+    val searchedText: MutableState<TextFieldValue>,
     private val navigationIconEnabled: MutableState<Boolean>,
     private val overflowMenuEnabled: MutableState<Boolean>
+
 ) : MainTopAppBarManager {
 
     companion object {
