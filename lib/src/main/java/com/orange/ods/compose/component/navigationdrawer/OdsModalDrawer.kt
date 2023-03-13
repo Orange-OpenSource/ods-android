@@ -47,7 +47,6 @@ import com.orange.ods.compose.component.utilities.BasicPreviewParameterProvider
 import com.orange.ods.compose.component.utilities.OdsImageCircleShape
 import com.orange.ods.compose.component.utilities.Preview
 import com.orange.ods.compose.component.utilities.UiModePreviews
-import com.orange.ods.compose.text.OdsTextH6
 import com.orange.ods.compose.text.OdsTextSubtitle2
 import com.orange.ods.compose.theme.OdsTheme
 
@@ -140,35 +139,15 @@ internal fun OdsModalDrawerHeader(
                 .fillMaxWidth()
                 .height(48.dp)
         }
-
     ) {
-        if (headerContent.backgroundImage == null) {
-            Column(
-                if (headerContent.avatar != null) {
-                    Modifier.padding(start = dimensionResource(id = R.dimen.spacing_m), top = 40.dp)
-                } else {
-                    Modifier.padding(start = dimensionResource(id = R.dimen.spacing_m), top = 10.dp)
-                }
-            ) {
-                headerContent.avatar?.let {
-                    OdsImageCircleShape(painter = it)
-                }
-                if (headerContent.avatar != null) OdsTextH6(text = headerContent.title, Modifier.padding(top = 30.dp))
-                else OdsTextH6(text = headerContent.title)
-                headerContent.subtitle?.let {
-                    OdsTextSubtitle2(text = it)
-                }
-            }
-        } else {
-            headerContent.backgroundImage?.let {
-                Image(
-                    painter = it,
-                    contentDescription = headerContent.imageContentDescription,
-                    contentScale = ContentScale.Crop,
-                    modifier = headerContent.modifier
-                        .fillMaxWidth()
-                )
-            }
+        headerContent.backgroundImage?.let {
+            Image(
+                painter = it,
+                contentDescription = headerContent.imageContentDescription,
+                contentScale = ContentScale.Crop,
+                modifier = headerContent.modifier
+                    .fillMaxWidth()
+            )
             Surface(
                 color = Color.Black.copy(alpha = 0.8f),
                 modifier = if (headerContent.subtitle != null) {
@@ -181,16 +160,32 @@ internal fun OdsModalDrawerHeader(
                         .padding(top = 119.dp)
                 }
             ) {
-                Column(
-                    modifier = Modifier
-                        .padding(start = dimensionResource(id = R.dimen.spacing_m), top = 12.dp, bottom = 12.dp)
-                ) {
-                    Text(text = headerContent.title, color = Color.White, fontSize = 20.sp)
-                    headerContent.subtitle?.let {
-                        Text(text = it, color = Color.White, fontSize = 14.sp)
-                    }
-                }
+                OdsHeaderText(headerContent = headerContent, color = Color.White)
             }
+        }
+        headerContent.avatar?.let {
+            OdsImageCircleShape(
+                painter = it,
+                Modifier.padding(start = dimensionResource(id = R.dimen.spacing_m), top = 40.dp)
+            )
+            Column(Modifier.padding(top = 98.dp)) {
+                OdsHeaderText(headerContent = headerContent, color = Color.Black)
+            }
+
+        }
+       if(headerContent.backgroundImage == null && headerContent.avatar == null) OdsHeaderText(headerContent = headerContent, color = Color.Black)
+    }
+}
+
+@Composable
+fun OdsHeaderText(headerContent: OdsModalDrawerHeaderParametersProvider, color: Color) {
+    Column(
+        Modifier
+            .padding(start = dimensionResource(id = R.dimen.spacing_m), top = 12.dp, bottom = 12.dp)
+    ) {
+        Text(text = headerContent.title, color = color, fontSize = 20.sp)
+        headerContent.subtitle?.let {
+            Text(text = it, color = color, fontSize = 14.sp)
         }
     }
 }
