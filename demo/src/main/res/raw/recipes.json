@@ -39,7 +39,7 @@
       "iconName": "Restaurant"
     },
     {
-      "title": "Brocoli Soup",
+      "title": "Broccoli Soup",
       "catId": "2",
       "subtitle": "12min",
       "ingredients": [
@@ -255,7 +255,6 @@
         }
       ],
       "description": "A wonderful pasta dish that smells like a piece of Italy.",
-
       "url": "https://images.unsplash.com/photo-1481931098730-318b6f776db0?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=780&q=80",
       "iconName": "Restaurant"
     },
@@ -282,7 +281,6 @@
         }
       ],
       "description": "A simple revisit of the pizza that makes your ordinary a little more extraordinary.",
-
       "url": "https://images.unsplash.com/photo-1593560708920-61dd98c46a4e?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=870&q=80",
       "iconName": "IceCream"
     },
@@ -332,7 +330,6 @@
         }
       ],
       "description": "The mojito is one of the world's most popular cocktails, It is originating from Cuba, and this virgin version is the perfect summer drink for the entire family.",
-
       "url": "https://images.unsplash.com/photo-1551538827-9c037cb4f32a?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8NXx8Y29ja3RhaWx8ZW58MHx8MHx8&auto=format&fit=crop&w=500&q=60",
       "iconName": "vOrangeDetente"
     },
@@ -433,12 +430,11 @@
         }
       ],
       "description": "A basic marvel from the Italian cuisine, very simple and quick for the summer.",
-
       "url": "https://images.unsplash.com/photo-1580638149300-65f0b9e8fbff?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8NXx8cGxhdCUyMGVudHIlQzMlQTllfGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=500&q=60",
       "iconName": "Restaurant"
     },
     {
-      "title": "Tapenade Brochetta",
+      "title": "Tapenade Bruschetta",
       "catId": "2",
       "subtitle": "15min",
       "ingredients": [
