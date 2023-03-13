@@ -102,7 +102,7 @@ fun MainScreen(themeConfigurations: Set<OdsThemeConfigurationContract>, mainView
         LocalRecipes provides mainViewModel.recipes
     ) {
         var changeThemeDialogVisible by remember { mutableStateOf(false) }
-        val textState = remember { mutableStateOf(TextFieldValue("")) }
+        val searchedText = remember { mutableStateOf(TextFieldValue("")) }
 
         OdsTheme(
             themeConfiguration = mainState.themeState.currentThemeConfiguration,
@@ -121,9 +121,9 @@ fun MainScreen(themeConfigurations: Set<OdsThemeConfigurationContract>, mainView
                                 upPress = mainState::upPress,
                                 onChangeThemeActionClick = { changeThemeDialogVisible = true },
                                 onSearchComponentClick = {
-                                    mainState.navController.navigate(MainDestinations.SearchRoute, null)
+                                    mainState.navController.navigate(MainDestinations.SearchRoute)
                                 },
-                                textState = textState
+                                searchedText = searchedText
                             )
                             // Display tabs in the top bar if needed
                             MainTabs(mainTabsState = mainState.tabsState)
@@ -146,7 +146,7 @@ fun MainScreen(themeConfigurations: Set<OdsThemeConfigurationContract>, mainView
             ) { innerPadding ->
                 Box(modifier = Modifier.padding(innerPadding)) {
                     NavHost(mainState.navController, startDestination = MainDestinations.HomeRoute) {
-                        mainNavGraph(navigateToElement = mainState::navigateToElement, textState = textState)
+                        mainNavGraph(navigateToElement = mainState::navigateToElement, searchedText = searchedText)
                     }
                 }
 
@@ -245,7 +245,7 @@ private fun MainTabs(mainTabsState: MainTabsState) {
     }
 }
 
-private fun NavGraphBuilder.mainNavGraph(navigateToElement: (String, Long?, NavBackStackEntry) -> Unit, textState: MutableState<TextFieldValue>) {
+private fun NavGraphBuilder.mainNavGraph(navigateToElement: (String, Long?, NavBackStackEntry) -> Unit, searchedText: MutableState<TextFieldValue>) {
     navigation(
         route = MainDestinations.HomeRoute,
         startDestination = BottomNavigationSections.Guidelines.route
@@ -265,6 +265,6 @@ private fun NavGraphBuilder.mainNavGraph(navigateToElement: (String, Long?, NavB
         route = MainDestinations.SearchRoute
     ) { from ->
         LocalMainTabsManager.current.clearTopAppBarTabs()
-        ComponentSearchScreen(textState, onComponentClick = { id -> navigateToElement(MainDestinations.ComponentDetailRoute, id, from) })
+        ComponentSearchScreen(searchedText, onComponentClick = { id -> navigateToElement(MainDestinations.ComponentDetailRoute, id, from) })
     }
 }

@@ -50,16 +50,16 @@ import com.orange.ods.utilities.extension.orElse
 fun ComponentSearchScreen(state: MutableState<TextFieldValue>, onComponentClick: (Long) -> Unit) {
 
     LocalMainTopAppBarManager.current.updateTopAppBarTitle(R.string.navigation_item_search)
-    ComponentList(state = state, onComponentClick)
+    ComponentList(searchedText = state, onComponentClick)
 }
 
 @Composable
-fun SearchView(state: MutableState<TextFieldValue>) {
+fun SearchTextField(searchedText: MutableState<TextFieldValue>) {
     val focusRequester = remember { FocusRequester() }
     TextField(
-        value = state.value,
+        value = searchedText.value,
         onValueChange = { value ->
-            state.value = value
+            searchedText.value = value
         },
         placeholder = {
             Text(text = stringResource(id = R.string.component_search), color = Color.Gray, fontSize = 18.sp)
@@ -71,11 +71,11 @@ fun SearchView(state: MutableState<TextFieldValue>) {
         trailingIcon = {
             IconButton(
                 onClick = {
-                    state.value =
+                    searchedText.value =
                         TextFieldValue("")// Remove text from TextField when you press the 'X' icon
                 }
             ) {
-                if (state.value != TextFieldValue("")) {
+                if (searchedText.value != TextFieldValue("")) {
                     Icon(
                         Icons.Default.Close,
                         contentDescription = "",
@@ -101,9 +101,9 @@ fun SearchView(state: MutableState<TextFieldValue>) {
 }
 
 @Composable
-fun ComponentList(state: MutableState<TextFieldValue>, onComponentClick: (Long) -> Unit) {
+fun ComponentList(searchedText: MutableState<TextFieldValue>, onComponentClick: (Long) -> Unit) {
 
-    val searchedText = state.value.text
+    val searchedText = searchedText.value.text
     val filterComponents = components.filter { component ->
         searchedText.isEmpty() || stringResource(id = component.titleRes).lowercase().contains(searchedText.lowercase())
     }

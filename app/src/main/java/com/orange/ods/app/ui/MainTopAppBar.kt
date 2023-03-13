@@ -30,7 +30,7 @@ import com.orange.ods.app.ui.components.utilities.clickOnElement
 import com.orange.ods.app.ui.utilities.extension.isDarkModeEnabled
 import com.orange.ods.demo.R
 import com.orange.ods.demo.domain.recipes.LocalRecipes
-import com.orange.ods.demo.ui.components.SearchView
+import com.orange.ods.demo.ui.components.SearchTextField
 import com.orange.ods.demo.ui.components.utilities.clickOnElement
 import com.orange.ods.demo.ui.utilities.extension.isDarkModeEnabled
 
@@ -42,7 +42,7 @@ fun MainTopAppBar(
     upPress: () -> Unit,
     onChangeThemeActionClick: () -> Unit,
     onSearchComponentClick: () -> Unit,
-    textState: MutableState<TextFieldValue>
+    searchedText: MutableState<TextFieldValue>
 ) {
     OdsTopAppBar(
         title = stringResource(id = titleRes),
@@ -57,7 +57,7 @@ fun MainTopAppBar(
         onNavigationIconClick = upPress,
         actions = {
             val context = LocalContext.current
-            TopAppBarSearchComponentButton(onClick = onSearchComponentClick, id = titleRes, textState)
+            TopAppBarSearchComponentButton(onClick = onSearchComponentClick, id = titleRes, searchedText)
             if (titleRes != R.string.navigation_item_search) {
                 repeat(state.actionCount.value) { index ->
                     when (index) {
@@ -100,7 +100,7 @@ private fun TopAppBarSearchComponentButton(onClick: () -> Unit, id: Int, textSta
         )
     }
     if (id == R.string.navigation_item_search) {
-        SearchView(textState)
+        SearchTextField(textState)
     }
 }
 
