@@ -86,7 +86,7 @@ android {
 
     kotlinOptions {
         jvmTarget = "11"
-        //allWarningsAsErrors = true
+        allWarningsAsErrors = true
         freeCompilerArgs = freeCompilerArgs + "-opt-in=kotlin.RequiresOptIn"
     }
 
