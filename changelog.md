@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased](https://github.com/Orange-OpenSource/ods-android/compare/0.11.1...develop)
 
+### Changed
+
+- \[Demo\] Update foods content
+
 ### Fixed
 
 - \[Demo\] Fix accessibility bug where content change on chip type selection was not read by TalkBack ([#332](https://github.com/Orange-OpenSource/ods-android/issues/332))
