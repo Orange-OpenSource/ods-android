@@ -88,6 +88,7 @@
     <string name="component_remove_action_button">Remove action button</string>
     <string name="component_add_action_button">Add action button</string>
     <string name="component_search">Search components</string>
+    <string name="search_clear">Clear search</string>
 
     <!-- Components App bars: top -->
     <string name="component_app_bars_top">App bars: top</string>

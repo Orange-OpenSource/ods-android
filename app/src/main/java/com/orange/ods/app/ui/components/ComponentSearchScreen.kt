@@ -12,12 +12,8 @@ package com.orange.ods.demo.ui.components
 
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
-import androidx.compose.material.Icon
-import androidx.compose.material.IconButton
 import androidx.compose.material.Text
 import androidx.compose.material.TextField
 import androidx.compose.material.TextFieldDefaults
@@ -35,8 +31,8 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.input.TextFieldValue
-import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.orange.ods.compose.component.button.OdsIconButton
 import com.orange.ods.compose.component.list.OdsListItem
 import com.orange.ods.compose.component.list.OdsListItemIcon
 import com.orange.ods.compose.component.list.OdsListItemIconType
@@ -68,24 +64,17 @@ fun SearchTextField(searchedText: MutableState<TextFieldValue>) {
             .fillMaxWidth()
             .focusRequester(focusRequester),
         textStyle = TextStyle(color = OdsTheme.colors.onSurface, fontSize = 18.sp),
-        trailingIcon = {
-            IconButton(
-                onClick = {
-                    searchedText.value =
-                        TextFieldValue("")// Remove text from TextField when you press the 'X' icon
-                }
-            ) {
-                if (searchedText.value != TextFieldValue("")) {
-                    Icon(
-                        Icons.Default.Close,
-                        contentDescription = "",
-                        modifier = Modifier
-                            .padding(15.dp)
-                            .size(24.dp)
-                    )
-                }
+        trailingIcon = if (searchedText.value.text.isNotEmpty()) {
+            {
+                OdsIconButton(
+                    onClick = {
+                        searchedText.value = TextFieldValue("") // Remove text from TextField when you press the 'X' icon
+                    },
+                    imageVector = Icons.Default.Close,
+                    contentDescription = stringResource(id = R.string.search_clear)
+                )
             }
-        },
+        } else null,
         singleLine = true,
         colors = TextFieldDefaults.textFieldColors(
             cursorColor = OdsTheme.colors.primary,
@@ -103,9 +92,8 @@ fun SearchTextField(searchedText: MutableState<TextFieldValue>) {
 @Composable
 fun ComponentList(searchedText: MutableState<TextFieldValue>, onComponentClick: (Long) -> Unit) {
 
-    val searchedText = searchedText.value.text
     val filterComponents = components.filter { component ->
-        searchedText.isEmpty() || stringResource(id = component.titleRes).lowercase().contains(searchedText.lowercase())
+        searchedText.value.text.isEmpty() || stringResource(id = component.titleRes).lowercase().contains(searchedText.value.text.lowercase())
     }
     LazyColumn(
         modifier = Modifier

@@ -41,7 +41,7 @@ fun MainTopAppBar(
     state: MainTopAppBarState,
     upPress: () -> Unit,
     onChangeThemeActionClick: () -> Unit,
-    onSearchComponentClick: () -> Unit,
+    onSearchActionClick: () -> Unit,
     searchedText: MutableState<TextFieldValue>
 ) {
     OdsTopAppBar(
@@ -57,7 +57,7 @@ fun MainTopAppBar(
         onNavigationIconClick = upPress,
         actions = {
             val context = LocalContext.current
-            TopAppBarSearchComponentButton(onClick = onSearchComponentClick, id = titleRes, searchedText)
+            TopAppBarSearchComponentButton(onClick = onSearchActionClick, id = titleRes, searchedText)
             if (titleRes != R.string.navigation_item_search) {
                 repeat(state.actionCount.value) { index ->
                     when (index) {

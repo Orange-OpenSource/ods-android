@@ -120,7 +120,7 @@ fun MainScreen(themeConfigurations: Set<OdsThemeConfigurationContract>, mainView
                                 state = mainState.topAppBarState,
                                 upPress = mainState::upPress,
                                 onChangeThemeActionClick = { changeThemeDialogVisible = true },
-                                onSearchComponentClick = {
+                                onSearchActionClick = {
                                     mainState.navController.navigate(MainDestinations.SearchRoute)
                                 },
                                 searchedText = searchedText
