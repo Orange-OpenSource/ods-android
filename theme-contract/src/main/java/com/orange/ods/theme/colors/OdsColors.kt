@@ -74,8 +74,8 @@ open class OdsColors(
     )
 
     /**
-     * Updates the internal values of the given OdsColors with values from the other. T
-     * his allows efficiently updating a subset of OdsColors, without recomposing every composable that consumes values from LocalColors.
+     * Updates the internal values of the given OdsColors with values from the other.
+     * This allows efficiently updating a subset of OdsColors, without recomposing every composable that consumes values from LocalColors.
      */
     fun updateColorsFrom(other: OdsColors) {
         primary = other.primary
