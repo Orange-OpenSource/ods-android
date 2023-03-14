@@ -69,8 +69,6 @@ fun OdsBottomSheetScaffold(
         floatingActionButtonPosition = floatingActionButtonPosition,
         sheetGesturesEnabled = sheetGesturesEnabled,
         sheetShape = OdsTheme.shapes.large,
-        sheetBackgroundColor = OdsTheme.colors.surface,
-        sheetContentColor = OdsTheme.colors.onSurface,
         sheetPeekHeight = sheetPeekHeight,
         backgroundColor = OdsTheme.colors.surface,
         contentColor = OdsTheme.colors.onSurface,
