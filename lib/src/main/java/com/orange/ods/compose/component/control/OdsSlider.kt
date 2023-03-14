@@ -100,7 +100,8 @@ fun OdsSlider(
         leftIcon?.let { painter ->
             Icon(
                 painter = painter,
-                contentDescription = leftIconContentDescription
+                contentDescription = leftIconContentDescription,
+                tint = OdsTheme.colors.onSurface
             )
         }
         // For the moment we cannot change the height of the slider track (need to check in jetpack compose future versions)
@@ -118,7 +119,8 @@ fun OdsSlider(
         rightIcon?.let { painter ->
             Icon(
                 painter = painter,
-                contentDescription = rightIconContentDescription
+                contentDescription = rightIconContentDescription,
+                tint = OdsTheme.colors.onSurface
             )
         }
     }
@@ -187,6 +189,7 @@ fun OdsSliderLockups(
                     .padding(bottom = sideIconBottomPadding),
                 painter = painter,
                 contentDescription = leftIconContentDescription,
+                tint = OdsTheme.colors.onSurface
             )
         }
         BoxWithConstraints(modifier = modifier.weight(1f)) {
@@ -228,6 +231,7 @@ fun OdsSliderLockups(
                     .padding(bottom = sideIconBottomPadding),
                 painter = painter,
                 contentDescription = rightIconContentDescription,
+                tint = OdsTheme.colors.onSurface
             )
         }
     }
