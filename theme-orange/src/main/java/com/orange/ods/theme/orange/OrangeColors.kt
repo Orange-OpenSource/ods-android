@@ -38,12 +38,12 @@ val OrangeLightColors = OdsColors(
     ),
 
     functionalColors = OdsFunctionalColors(
-        functionalPositive = Positive200,
-        onFunctionalPositive = White100,
-        functionalNegative = Negative200,
-        onFunctionalNegative = White100,
-        functionalInfo = Info200,
-        functionalAlert = Alert200
+        positive = Positive200,
+        onPositive = White100,
+        negative = Negative200,
+        onNegative = White100,
+        info = Info200,
+        alert = Alert200
     ),
 
     componentColors = OdsComponentColors(
@@ -96,12 +96,12 @@ val OrangeDarkColors = OdsColors(
     ),
 
     functionalColors = OdsFunctionalColors(
-        functionalPositive = Positive100,
-        onFunctionalPositive = Black900,
-        functionalNegative = Negative100,
-        onFunctionalNegative = White100,
-        functionalInfo = Info100,
-        functionalAlert = Alert100
+        positive = Positive100,
+        onPositive = Black900,
+        negative = Negative100,
+        onNegative = White100,
+        info = Info100,
+        alert = Alert100
     ),
 
     componentColors = OdsComponentColors(

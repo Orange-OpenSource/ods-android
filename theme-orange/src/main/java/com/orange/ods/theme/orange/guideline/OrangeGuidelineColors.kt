@@ -11,6 +11,7 @@
 package com.orange.ods.theme.orange.guideline
 
 import com.orange.ods.theme.colors.OdsColors
+import com.orange.ods.theme.colors.OdsFunctionalColors
 import com.orange.ods.theme.guideline.GuidelineColor
 import com.orange.ods.theme.guideline.GuidelineColorType
 import com.orange.ods.theme.orange.Blue100
@@ -37,10 +38,10 @@ val OrangeGuidelineColors = listOf(
     GuidelineColor(OdsColors::surface, GuidelineColorType.Core, "White 100", "Secondary Background", R.attr.colorSurface),
     GuidelineColor(::ObsGrey700, GuidelineColorType.Core, "OBS Grey 700", xmlResource = R.color.core_obsgrey_700),
 
-    GuidelineColor(OdsColors::functionalPositive, GuidelineColorType.Functional, "Positive 200", "Positive 100", R.attr.functionalPositive),
+    GuidelineColor(OdsFunctionalColors::positive, GuidelineColorType.Functional, "Positive 200", "Positive 100", R.attr.functionalPositive),
     GuidelineColor(OdsColors::error, GuidelineColorType.Functional, "Negative 200", "Negative 100", R.attr.colorError),
-    GuidelineColor(OdsColors::functionalInfo, GuidelineColorType.Functional, "Info 200", "Info 100", R.attr.functionalInfo),
-    GuidelineColor(OdsColors::functionalAlert, GuidelineColorType.Functional, "Alert 200", "Alert 100", R.attr.functionalAlert),
+    GuidelineColor(OdsFunctionalColors::info, GuidelineColorType.Functional, "Info 200", "Info 100", R.attr.functionalInfo),
+    GuidelineColor(OdsFunctionalColors::alert, GuidelineColorType.Functional, "Alert 200", "Alert 100", R.attr.functionalAlert),
 
     GuidelineColor(::Blue100, GuidelineColorType.Supporting, "Blue 100", xmlResource = R.color.supporting_blue_100),
     GuidelineColor(::Blue200, GuidelineColorType.Supporting, "Blue 200", xmlResource = R.color.supporting_blue_200),

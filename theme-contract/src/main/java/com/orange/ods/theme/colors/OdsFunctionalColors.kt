@@ -13,39 +13,53 @@ package com.orange.ods.theme.colors
 import androidx.compose.ui.graphics.Color
 
 class OdsFunctionalColors(
-    functionalPositive: Color,
-    onFunctionalPositive: Color,
-    functionalNegative: Color,
-    onFunctionalNegative: Color,
-    functionalInfo: Color,
-    functionalAlert: Color
+    positive: Color,
+    onPositive: Color,
+    negative: Color,
+    onNegative: Color,
+    info: Color,
+    alert: Color
 ) {
-    var functionalPositive = functionalPositive
+    var positive = positive
         private set
-    var onFunctionalPositive = onFunctionalPositive
+    var onPositive = onPositive
         private set
-    var functionalNegative = functionalNegative
+    var negative = negative
         private set
-    var onFunctionalNegative = onFunctionalNegative
+    var onNegative = onNegative
         private set
-    var functionalInfo = functionalInfo
+    var info = info
         private set
-    var functionalAlert = functionalAlert
+    var alert = alert
         private set
 
     fun copy(
-        functionalPositive: Color = this.functionalPositive,
-        onFunctionalPositive: Color = this.onFunctionalPositive,
-        functionalNegative: Color = this.functionalNegative,
-        onFunctionalNegative: Color = this.onFunctionalNegative,
-        functionalInfo: Color = this.functionalInfo,
-        functionalAlert: Color = this.functionalAlert,
+        positive: Color = this.positive,
+        onPositive: Color = this.onPositive,
+        negative: Color = this.negative,
+        onNegative: Color = this.onNegative,
+        info: Color = this.info,
+        alert: Color = this.alert,
     ): OdsFunctionalColors = OdsFunctionalColors(
-        functionalPositive,
-        onFunctionalPositive,
-        functionalNegative,
-        onFunctionalNegative,
-        functionalInfo,
-        functionalAlert
+        positive,
+        onPositive,
+        negative,
+        onNegative,
+        info,
+        alert
     )
+
+    /**
+     * Updates the internal values of the given OdsFunctionalColors with values from the other.
+     * This allows efficiently updating a subset of OdsFunctionalColors, without recomposing every composable that consumes values from LocalColors.
+     */
+    internal fun updateColorsFrom(other: OdsFunctionalColors) {
+        positive = other.positive
+        onPositive = other.onPositive
+        negative = other.negative
+        onNegative = other.onNegative
+        info = other.info
+        alert = other.alert
+    }
 }
+

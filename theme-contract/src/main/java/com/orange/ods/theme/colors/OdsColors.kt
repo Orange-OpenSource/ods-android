@@ -21,7 +21,7 @@ import androidx.compose.material.Colors
  */
 open class OdsColors(
     val materialColors: Colors,
-    private var functionalColors: OdsFunctionalColors,
+    functionalColors: OdsFunctionalColors,
     private var componentColors: OdsComponentColors
 ) {
     var primary = materialColors.primary
@@ -48,17 +48,7 @@ open class OdsColors(
         private set
     var onError = materialColors.onError
 
-    var functionalPositive = functionalColors.functionalPositive
-        private set
-    var onFunctionalPositive = functionalColors.onFunctionalPositive
-        private set
-    var functionalNegative = functionalColors.functionalNegative
-        private set
-    var onFunctionalNegative = functionalColors.onFunctionalNegative
-        private set
-    var functionalInfo = functionalColors.functionalInfo
-        private set
-    var functionalAlert = functionalColors.functionalAlert
+    var functional = functionalColors
         private set
 
     val component = OdsComponentColorsInternal(
@@ -75,7 +65,7 @@ open class OdsColors(
      */
     fun copy(
         materialColors: Colors = this.materialColors,
-        functionalColors: OdsFunctionalColors = this.functionalColors,
+        functionalColors: OdsFunctionalColors = this.functional,
         componentColors: OdsComponentColors = this.componentColors
     ): OdsColors = OdsColors(
         materialColors,
@@ -101,12 +91,7 @@ open class OdsColors(
         onSurface = other.onSurface
         onError = other.onError
 
-        functionalPositive = other.functionalPositive
-        onFunctionalPositive = other.onFunctionalPositive
-        functionalNegative = other.functionalNegative
-        onFunctionalNegative = other.onFunctionalNegative
-        functionalInfo = other.functionalInfo
-        functionalAlert = other.functionalAlert
+        functional.updateColorsFrom(other.functional)
 
         component.updateColorsFrom(other.component)
     }

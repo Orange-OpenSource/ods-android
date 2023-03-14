@@ -33,12 +33,12 @@ val InnovationCupLightColors = OdsColors(
     ),
 
     functionalColors = OdsFunctionalColors(
-        functionalPositive = Green,
-        onFunctionalPositive = White,
-        functionalNegative = Red,
-        onFunctionalNegative = White,
-        functionalInfo = Info,
-        functionalAlert = Yellow
+        positive = Green,
+        onPositive = White,
+        negative = Red,
+        onNegative = White,
+        info = Info,
+        alert = Yellow
     ),
 
     componentColors = OdsComponentColors(
@@ -64,12 +64,12 @@ val InnovationCupDarkColors = OdsColors(
     ),
 
     functionalColors = OdsFunctionalColors(
-        functionalPositive = Green,
-        onFunctionalPositive = White,
-        functionalNegative = Red,
-        onFunctionalNegative = White,
-        functionalInfo = Info,
-        functionalAlert = Yellow
+        positive = Green,
+        onPositive = White,
+        negative = Red,
+        onNegative = White,
+        info = Info,
+        alert = Yellow
     ),
 
     componentColors = OdsComponentColors(
