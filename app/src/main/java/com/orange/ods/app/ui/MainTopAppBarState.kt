@@ -45,7 +45,7 @@ fun rememberMainTopAppBarState(
 class MainTopAppBarState(
     val titleRes: MutableState<Int>,
     val actionCount: MutableState<Int>,
-    val searchedText: MutableState<TextFieldValue>,
+    var searchedText: MutableState<TextFieldValue>,
     private val navigationIconEnabled: MutableState<Boolean>,
     private val overflowMenuEnabled: MutableState<Boolean>
 

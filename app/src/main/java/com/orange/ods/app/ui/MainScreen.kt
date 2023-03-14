@@ -60,11 +60,11 @@ import com.orange.ods.compose.theme.OdsTheme
 import com.orange.ods.demo.R
 import com.orange.ods.demo.domain.recipes.LocalRecipes
 import com.orange.ods.demo.ui.about.addAboutGraph
-import com.orange.ods.demo.ui.components.ComponentSearchScreen
 import com.orange.ods.demo.ui.components.addComponentsGraph
 import com.orange.ods.demo.ui.components.tabs.FixedTabRow
 import com.orange.ods.demo.ui.components.tabs.ScrollableTabRow
 import com.orange.ods.demo.ui.guidelines.addGuidelinesGraph
+import com.orange.ods.demo.ui.search.SearchScreen
 import com.orange.ods.demo.ui.utilities.extension.isDarkModeEnabled
 import com.orange.ods.demo.ui.utilities.extension.isOrange
 import com.orange.ods.theme.OdsThemeConfigurationContract
@@ -113,6 +113,7 @@ fun MainScreen(themeConfigurations: Set<OdsThemeConfigurationContract>, mainView
                     Surface(elevation = AppBarDefaults.TopAppBarElevation) {
                         Column {
                             SystemBarsColorSideEffect()
+                            mainState.topAppBarState.searchedText = searchedText
                             MainTopAppBar(
                                 titleRes = mainState.topAppBarState.titleRes.value,
                                 shouldShowUpNavigationIcon = !mainState.shouldShowBottomBar,
@@ -259,6 +260,6 @@ private fun NavGraphBuilder.mainNavGraph(navigateToElement: (String, Long?, NavB
         route = MainDestinations.SearchRoute
     ) { from ->
         LocalMainTabsManager.current.clearTopAppBarTabs()
-        ComponentSearchScreen(searchedText, onComponentClick = { id -> navigateToElement(MainDestinations.ComponentDetailRoute, id, from) })
+        SearchScreen(searchedText, onComponentClick = { id -> navigateToElement(MainDestinations.ComponentDetailRoute, id, from) })
     }
 }
