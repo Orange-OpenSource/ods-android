@@ -124,7 +124,7 @@ This file lists all the steps to follow when releasing a new version of ODS Andr
 
 - Go to [Teams - FoODS: ODS Mobile Android](https://teams.microsoft.com/l/channel/19%3a62efff7aca9f4865a841076b4a6c428f%40thread.tacv2/4-ODS%2520Mobile%2520Android?groupId=a9581e9e-6775-46f5-9e4a-3ce57096e6be&tenantId=90c7a20a-f34b-40bf-bc48-b9253b6f5d20)
 
-- Post a message to announce the release:
+- Post a message with screenshots of new elements to announce the release:
 ```markdown
 Release X.Y.Z is available!
 
