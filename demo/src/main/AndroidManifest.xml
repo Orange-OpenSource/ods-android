@@ -10,7 +10,7 @@
   ~ */
   -->
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.orange.ods.demo">
+    package="com.orange.ods.app">
 
     <application
         android:name=".OdsDemoApplication"
