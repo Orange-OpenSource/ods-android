@@ -48,11 +48,11 @@ jobs:
           COMMIT_SHA=${BRANCH_SHA:-$GITHUB_SHA}
           ./gradlew assemble -PversionNameSuffix="-${COMMIT_SHA::7}" -PversionCode=$GITHUB_RUN_NUMBER --stacktrace
 
-      - name: Store demo artifacts
+      - name: Store app artifacts
         uses: actions/upload-artifact@v3
         with:
-          name: demo
-          path: demo/build/outputs/apk/*/*.apk
+          name: app
+          path: app/build/outputs/apk/*/*.apk
 
       - name: Store lib artifacts
         uses: actions/upload-artifact@v3

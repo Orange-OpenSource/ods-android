@@ -140,7 +140,7 @@ private val previewParameterValues: List<OdsLinearProgressIndicatorPreviewParame
     get() {
         val iconRes = android.R.drawable.ic_dialog_alert
         val shortLabel = "Downloading …"
-        val longLabel = "Downloading file Applications/ODS/demo/src/main/java/utilities/file_to_download.txt"
+        val longLabel = "Downloading file Applications/ODS/app/src/main/java/utilities/file_to_download.txt"
 
         return listOf(
             OdsLinearProgressIndicatorPreviewParameter(0.75f, iconRes, shortLabel, true),
