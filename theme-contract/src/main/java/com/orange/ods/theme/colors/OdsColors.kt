@@ -20,13 +20,10 @@ import androidx.compose.material.Colors
  * example, if you need to change the switches' colors you can provide your own [OdsSwitchColors] in the ODS color system.
  */
 open class OdsColors(
-    materialColors: Colors,
+    val materialColors: Colors,
     private var functionalColors: OdsFunctionalColors,
     private var componentColors: OdsComponentColors
 ) {
-    var materialColors = materialColors
-        private set
-
     var primary = materialColors.primary
         private set
     var primaryVariant = materialColors.primaryVariant
