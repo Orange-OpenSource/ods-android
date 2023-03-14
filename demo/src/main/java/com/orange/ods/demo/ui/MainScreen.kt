@@ -190,7 +190,7 @@ private fun ChangeThemeDialog(themeState: MainThemeState, dismissDialog: () -> U
 @Composable
 private fun SystemBarsColorSideEffect() {
     val systemUiController = rememberSystemUiController()
-    val systemBarsBackground = OdsTheme.colors.systemBarsBackground
+    val systemBarsBackground = OdsTheme.colors.component.systemBarsBackground
     SideEffect {
         systemUiController.setSystemBarsColor(
             color = systemBarsBackground

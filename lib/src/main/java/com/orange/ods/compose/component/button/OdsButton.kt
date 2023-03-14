@@ -128,16 +128,16 @@ private fun odsPrimaryButtonColors(displaySurface: OdsDisplaySurface) = ButtonDe
 
 @Composable
 private fun odsPositiveButtonColors(displaySurface: OdsDisplaySurface) = ButtonDefaults.buttonColors(
-    backgroundColor = OdsTheme.colors.functionalPositive,
-    contentColor = OdsTheme.colors.onFunctionalPositive,
+    backgroundColor = OdsTheme.colors.functional.positive,
+    contentColor = OdsTheme.colors.functional.onPositive,
     disabledBackgroundColor = disabledButtonBackgroundColor(displaySurface),
     disabledContentColor = disabledButtonContentColor(displaySurface),
 )
 
 @Composable
 private fun odsNegativeButtonColors(displaySurface: OdsDisplaySurface) = ButtonDefaults.buttonColors(
-    backgroundColor = OdsTheme.colors.functionalNegative,
-    contentColor = OdsTheme.colors.onFunctionalNegative,
+    backgroundColor = OdsTheme.colors.functional.negative,
+    contentColor = OdsTheme.colors.functional.onNegative,
     disabledBackgroundColor = disabledButtonBackgroundColor(displaySurface),
     disabledContentColor = disabledButtonContentColor(displaySurface),
 )

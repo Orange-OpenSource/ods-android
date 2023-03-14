@@ -22,7 +22,6 @@ import androidx.compose.material.Icon
 import androidx.compose.material.Slider
 import androidx.compose.material.SliderDefaults
 import androidx.compose.material.Text
-import androidx.compose.material.contentColorFor
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
@@ -30,8 +29,6 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.graphics.compositeOver
 import androidx.compose.ui.graphics.painter.Painter
 import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.painterResource
@@ -45,7 +42,6 @@ import com.orange.ods.compose.component.utilities.BasicPreviewParameterProvider
 import com.orange.ods.compose.component.utilities.Preview
 import com.orange.ods.compose.component.utilities.UiModePreviews
 import com.orange.ods.compose.theme.OdsTheme
-import com.orange.ods.utilities.extension.enable
 
 private const val ActiveTickColorAlpha = 0.4f
 
@@ -118,7 +114,7 @@ fun OdsSlider(
             valueRange = valueRange,
             steps = steps,
             onValueChangeFinished = onValueChangeFinished,
-            colors = OdsSliderDefaults.colors(activeTickColor = OdsTheme.colors.surface.copy(alpha = ActiveTickColorAlpha))
+            colors = SliderDefaults.colors(activeTickColor = OdsTheme.colors.surface.copy(alpha = ActiveTickColorAlpha))
         )
         rightIcon?.let { painter ->
             Icon(
@@ -226,7 +222,6 @@ fun OdsSliderLockups(
                 valueRange = valueRange,
                 steps = steps,
                 onValueChangeFinished = onValueChangeFinished,
-                colors = OdsSliderDefaults.colors(activeTickColor = OdsTheme.colors.surface.copy(alpha = ActiveTickColorAlpha))
             )
         }
         rightIcon?.let { painter ->
@@ -281,26 +276,6 @@ private fun getSliderOffset(
 private fun calcFraction(a: Float, b: Float, pos: Float) =
     (if (b - a == 0f) 0f else (pos - a) / (b - a)).coerceIn(0f, 1f)
 
-
-private object OdsSliderDefaults {
-
-    @Composable
-    fun colors(
-        thumbColor: Color = OdsTheme.colors.primary,
-        disabledThumbColor: Color = OdsTheme.colors.onSurface.enable(enabled = false).compositeOver(OdsTheme.colors.surface),
-        activeTrackColor: Color = OdsTheme.colors.primary,
-        disabledActiveTrackColor: Color =
-            OdsTheme.colors.onSurface.copy(alpha = SliderDefaults.DisabledActiveTrackAlpha),
-        activeTickColor: Color = contentColorFor(activeTrackColor).copy(alpha = SliderDefaults.TickAlpha)
-    ) = SliderDefaults.colors(
-        thumbColor = thumbColor,
-        disabledThumbColor = disabledThumbColor,
-        activeTrackColor = activeTrackColor,
-        disabledActiveTrackColor = disabledActiveTrackColor,
-        activeTickColor = activeTickColor
-    )
-
-}
 
 @UiModePreviews.Default
 @Composable

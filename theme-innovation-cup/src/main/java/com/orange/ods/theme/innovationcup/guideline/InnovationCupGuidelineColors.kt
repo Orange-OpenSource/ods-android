@@ -10,7 +10,8 @@
 
 package com.orange.ods.theme.innovationcup.guideline
 
-import com.orange.ods.theme.OdsColors
+import com.orange.ods.theme.colors.OdsColors
+import com.orange.ods.theme.colors.OdsFunctionalColors
 import com.orange.ods.theme.guideline.GuidelineColor
 import com.orange.ods.theme.guideline.GuidelineColorType
 
@@ -20,8 +21,8 @@ val InnovationCupGuidelineColors = listOf(
     GuidelineColor(OdsColors::background, GuidelineColorType.Core, "White 100", "Black 900"),
     GuidelineColor(OdsColors::surface, GuidelineColorType.Core, "White 100", "Secondary Background"),
 
-    GuidelineColor(OdsColors::functionalPositive, GuidelineColorType.Functional, "Green"),
+    GuidelineColor(OdsFunctionalColors::positive, GuidelineColorType.Functional, "Green"),
     GuidelineColor(OdsColors::error, GuidelineColorType.Functional, "Red"),
-    GuidelineColor(OdsColors::functionalInfo, GuidelineColorType.Functional, "Info"),
-    GuidelineColor(OdsColors::functionalAlert, GuidelineColorType.Functional, "Yellow")
+    GuidelineColor(OdsFunctionalColors::info, GuidelineColorType.Functional, "Info"),
+    GuidelineColor(OdsFunctionalColors::alert, GuidelineColorType.Functional, "Yellow")
 )

@@ -15,14 +15,11 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.material.Scaffold
 import androidx.compose.material.Snackbar
 import androidx.compose.material.SnackbarData
-import androidx.compose.material.SnackbarDefaults.backgroundColor
 import androidx.compose.material.SnackbarHost
 import androidx.compose.material.SnackbarHostState
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.graphics.compositeOver
 import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.tooling.preview.PreviewParameter
 import com.orange.ods.R
@@ -33,7 +30,6 @@ import com.orange.ods.compose.component.utilities.BasicPreviewParameterProvider
 import com.orange.ods.compose.component.utilities.Preview
 import com.orange.ods.compose.component.utilities.UiModePreviews
 import com.orange.ods.compose.theme.OdsDisplaySurface
-import com.orange.ods.compose.theme.OdsTheme
 
 /**
  * <a href="https://system.design.orange.com/0c1af118d/p/887440-toast--snackbars/b/043ece" class="external" target="_blank">ODS snackbar</a>.
@@ -62,15 +58,13 @@ fun OdsSnackbar(
             {
                 OdsTextButton(
                     style = OdsTextButtonStyle.Primary,
-                    displaySurface = OdsSnackbarDefaults.actionButtonDisplaySurface,
+                    displaySurface = if (isSystemInDarkTheme()) OdsDisplaySurface.Light else OdsDisplaySurface.Dark,
                     text = it,
                     onClick = onActionClick
                 )
             }
         },
-        actionOnNewLine = actionOnNewLine,
-        backgroundColor = OdsSnackbarDefaults.backgroundColor,
-        contentColor = OdsTheme.colors.surface,
+        actionOnNewLine = actionOnNewLine
     ) { Text(text = message) }
 }
 
@@ -124,31 +118,6 @@ fun OdsSnackbarHost(
         hostState = hostState,
         snackbar = snackbar
     )
-}
-
-/**
- * Object to hold defaults used by [OdsSnackbar]
- */
-private object OdsSnackbarDefaults {
-
-    /**
-     * Default alpha of the overlay applied to the [backgroundColor]
-     */
-    private const val OdsSnackbarOverlayAlpha = 0.87f
-
-    /**
-     * Default background color of the [OdsSnackbar]
-     */
-    val backgroundColor: Color
-        @Composable
-        get() = OdsTheme.colors.onSurface
-            .copy(alpha = OdsSnackbarOverlayAlpha)
-            .compositeOver(OdsTheme.colors.surface)
-
-    val actionButtonDisplaySurface: OdsDisplaySurface
-        @Composable
-        get() = if (isSystemInDarkTheme()) OdsDisplaySurface.Light else OdsDisplaySurface.Dark
-
 }
 
 @UiModePreviews.Default

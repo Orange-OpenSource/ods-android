@@ -11,6 +11,7 @@
 package com.orange.ods.compose.theme
 
 import androidx.compose.foundation.isSystemInDarkTheme
+import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Shapes
 import androidx.compose.material.Typography
 import androidx.compose.material.ripple.LocalRippleTheme
@@ -20,9 +21,9 @@ import androidx.compose.runtime.ReadOnlyComposable
 import androidx.compose.runtime.compositionLocalOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.staticCompositionLocalOf
-import com.orange.ods.theme.OdsColors
 import com.orange.ods.theme.OdsComponentsConfiguration
 import com.orange.ods.theme.OdsThemeConfigurationContract
+import com.orange.ods.theme.colors.OdsColors
 
 private val LocalShapes = staticCompositionLocalOf { Shapes() }
 
@@ -93,7 +94,11 @@ fun OdsTheme(
         LocalTypography provides themeConfiguration.typography,
         LocalShapes provides themeConfiguration.shapes,
         LocalComponentsConfiguration provides themeConfiguration.componentsConfiguration,
-        content = content
-    )
+    ) {
+        MaterialTheme(
+            colors = colors.materialColors
+        ) {
+            content()
+        }
+    }
 }
-

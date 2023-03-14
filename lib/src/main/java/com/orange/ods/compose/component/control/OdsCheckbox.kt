@@ -20,7 +20,6 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
 import com.orange.ods.compose.component.OdsComponentApi
 import com.orange.ods.compose.component.utilities.Preview
 import com.orange.ods.compose.component.utilities.UiModePreviews
@@ -57,25 +56,12 @@ fun OdsCheckbox(
             onCheckedChange = onCheckedChange,
             enabled = enabled,
             colors = if (checked) {
-                OdsCheckboxDefault.colors(disabledColor = OdsTheme.colors.secondary.enable(enabled = false))
+                CheckboxDefaults.colors(disabledColor = OdsTheme.colors.secondary.enable(enabled = false))
             } else {
-                OdsCheckboxDefault.colors()
+                CheckboxDefaults.colors()
             }
         )
     }
-}
-
-private object OdsCheckboxDefault {
-
-    @Composable
-    fun colors(
-        checkedColor: Color = OdsTheme.colors.secondary,
-        uncheckedColor: Color = OdsTheme.colors.onSurface.copy(alpha = 0.6f),
-        checkmarkColor: Color = OdsTheme.colors.surface,
-        disabledColor: Color = OdsTheme.colors.onSurface.enable(enabled = false),
-        disabledIndeterminateColor: Color = checkedColor.enable(enabled = false)
-    ) = CheckboxDefaults.colors(checkedColor, uncheckedColor, checkmarkColor, disabledColor, disabledIndeterminateColor)
-
 }
 
 @UiModePreviews.Default

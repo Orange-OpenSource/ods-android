@@ -10,56 +10,69 @@
 
 package com.orange.ods.theme.innovationcup
 
-import com.orange.ods.theme.OdsColors
+import androidx.compose.material.Colors
+import com.orange.ods.theme.colors.OdsColors
+import com.orange.ods.theme.colors.OdsComponentColors
+import com.orange.ods.theme.colors.OdsFunctionalColors
 
 val InnovationCupLightColors = OdsColors(
-    primary = Primary,
-    primaryVariant = PrimaryDark,
-    secondary = Secondary,
-    secondaryVariant = SecondaryDark,
-    background = White,
-    surface = White,
-    error = Red,
-    onPrimary = White,
-    onSecondary = Black,
-    onBackground = Black,
-    onSurface = Black,
-    onError = Black,
+    materialColors = Colors(
+        primary = Primary,
+        primaryVariant = PrimaryDark,
+        secondary = Secondary,
+        secondaryVariant = SecondaryDark,
+        background = White,
+        surface = White,
+        error = Red,
+        onPrimary = White,
+        onSecondary = Black,
+        onBackground = Black,
+        onSurface = Black,
+        onError = Black,
+        isLight = true
+    ),
 
-    systemBarsBackground = PrimaryDark,
+    functionalColors = OdsFunctionalColors(
+        positive = Green,
+        onPositive = White,
+        negative = Red,
+        onNegative = White,
+        info = Info,
+        alert = Yellow
+    ),
 
-    functionalPositive = Green,
-    onFunctionalPositive = White,
-    functionalNegative = Red,
-    onFunctionalNegative = White,
-    functionalInfo = Info,
-    functionalAlert = Yellow,
-
-    isLight = true
+    componentColors = OdsComponentColors(
+        systemBarsBackground = PrimaryDark
+    )
 )
 
 val InnovationCupDarkColors = OdsColors(
-    primary = Primary,
-    primaryVariant = PrimaryDark,
-    secondary = Secondary,
-    secondaryVariant = SecondaryDark,
-    background = Black,
-    surface = DarkGrey,
-    error = Red,
-    onPrimary = White,
-    onSecondary = Black,
-    onBackground = White,
-    onSurface = White,
-    onError = Black,
+    materialColors = Colors(
+        primary = Primary,
+        primaryVariant = PrimaryDark,
+        secondary = Secondary,
+        secondaryVariant = SecondaryDark,
+        background = Black,
+        surface = DarkGrey,
+        error = Red,
+        onPrimary = White,
+        onSecondary = Black,
+        onBackground = White,
+        onSurface = White,
+        onError = Black,
+        isLight = false
+    ),
 
-    systemBarsBackground = Black,
+    functionalColors = OdsFunctionalColors(
+        positive = Green,
+        onPositive = White,
+        negative = Red,
+        onNegative = White,
+        info = Info,
+        alert = Yellow
+    ),
 
-    functionalPositive = Green,
-    onFunctionalPositive = White,
-    functionalNegative = Red,
-    onFunctionalNegative = White,
-    functionalInfo = Info,
-    functionalAlert = Yellow,
-
-    isLight = false
+    componentColors = OdsComponentColors(
+        systemBarsBackground = Black
+    )
 )

@@ -62,8 +62,8 @@ fun OdsTab(
         enabled = enabled,
         icon = icon?.let { { Icon(painter = icon, contentDescription = null) } },
         text = text?.let { { Text(text.uppercase(), maxLines = 1, overflow = TextOverflow.Ellipsis, style = OdsTheme.typography.button) } },
-        selectedContentColor = OdsTheme.colors.tab.selectedContent,
-        unselectedContentColor = OdsTheme.colors.tab.unselectedContent,
+        selectedContentColor = OdsTheme.colors.component.tab.selectedContent,
+        unselectedContentColor = OdsTheme.colors.component.tab.unselectedContent,
     )
 }
 

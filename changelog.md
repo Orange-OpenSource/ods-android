@@ -10,6 +10,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Changed
 
 - \[Demo\] Update foods content
+- \[Lib\] Encapsulate a `MaterialTheme` in the `OdsTheme` to take directly benefits of colors set in Jetpack Compose SDK  ([#430](https://github.com/Orange-OpenSource/ods-android/issues/430))
+- \[ThemeConfigurationContract\] Change colors contract by respectively grouping Material, functional and components colors in `materialColors`, `functionalColors` and `componentColors` properties of `OdsColors` ([#430](https://github.com/Orange-OpenSource/ods-android/issues/430))
 
 ### Fixed
 
