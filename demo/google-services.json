@@ -7,6 +7,35 @@
   "client": [
     {
       "client_info": {
+        "mobilesdk_app_id": "1:212698857200:android:3c1bbef73f8089dd5ecc35",
+        "android_client_info": {
+          "package_name": "com.orange.ods.app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "212698857200-mvqaopuseqhqeaglk7jm0g8qg0dcvsab.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAIY6bMaglXBkcA72v_vja3yI6-7uaR-8U"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "212698857200-mvqaopuseqhqeaglk7jm0g8qg0dcvsab.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
         "mobilesdk_app_id": "1:212698857200:android:84f9ae5c588f21f25ecc35",
         "android_client_info": {
           "package_name": "com.orange.ods.demo"

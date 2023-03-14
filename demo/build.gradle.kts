@@ -30,7 +30,7 @@ android {
     compileSdk = Versions.compileSdk
 
     defaultConfig {
-        applicationId = "com.orange.ods.demo"
+        applicationId = "com.orange.ods.app"
         minSdk = Versions.minSdk
         targetSdk = Versions.targetSdk
         val versionCodeProperty = project.findTypedProperty<String>("versionCode")
