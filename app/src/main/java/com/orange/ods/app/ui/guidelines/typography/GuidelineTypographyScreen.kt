@@ -28,22 +28,22 @@ import androidx.compose.ui.text.buildAnnotatedString
 import androidx.compose.ui.text.font.FontStyle
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.text.withStyle
-import com.orange.ods.compose.component.divider.OdsDivider
-import com.orange.ods.compose.text.OdsTextBody1
-import com.orange.ods.compose.theme.OdsTheme
 import com.orange.ods.app.R
 import com.orange.ods.app.ui.LocalMainTopAppBarManager
-import com.orange.ods.app.ui.LocalOdsDemoGuideline
+import com.orange.ods.app.ui.LocalOdsGuideline
 import com.orange.ods.app.ui.utilities.DrawableManager
 import com.orange.ods.app.ui.utilities.composable.DetailScreenHeader
 import com.orange.ods.app.ui.utilities.getStringName
+import com.orange.ods.compose.component.divider.OdsDivider
+import com.orange.ods.compose.text.OdsTextBody1
+import com.orange.ods.compose.theme.OdsTheme
 import com.orange.ods.theme.guideline.GuidelineTextStyle
 
 @Composable
 fun GuidelineTypographyScreen() {
     LocalMainTopAppBarManager.current.updateTopAppBarTitle(R.string.guideline_typography)
 
-    val guidelineTypography = LocalOdsDemoGuideline.current.guidelineTypography
+    val guidelineTypography = LocalOdsGuideline.current.guidelineTypography
 
     LazyColumn(
         contentPadding = PaddingValues(bottom = dimensionResource(id = R.dimen.screen_vertical_margin)),

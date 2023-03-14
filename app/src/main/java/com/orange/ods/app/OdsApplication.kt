@@ -16,7 +16,7 @@ import com.google.firebase.ktx.Firebase
 import dagger.hilt.android.HiltAndroidApp
 
 @HiltAndroidApp
-class OdsDemoApplication : Application() {
+class OdsApplication : Application() {
 
     override fun onCreate() {
         super.onCreate()

@@ -41,10 +41,6 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.navigation
 import com.google.accompanist.pager.ExperimentalPagerApi
 import com.google.accompanist.systemuicontroller.rememberSystemUiController
-import com.orange.ods.compose.component.list.OdsListItem
-import com.orange.ods.compose.component.list.OdsRadioButtonTrailing
-import com.orange.ods.compose.text.OdsTextH6
-import com.orange.ods.compose.theme.OdsTheme
 import com.orange.ods.app.R
 import com.orange.ods.app.domain.recipes.LocalRecipes
 import com.orange.ods.app.ui.about.addAboutGraph
@@ -54,6 +50,10 @@ import com.orange.ods.app.ui.components.tabs.ScrollableTabRow
 import com.orange.ods.app.ui.guidelines.addGuidelinesGraph
 import com.orange.ods.app.ui.utilities.extension.isDarkModeEnabled
 import com.orange.ods.app.ui.utilities.extension.isOrange
+import com.orange.ods.compose.component.list.OdsListItem
+import com.orange.ods.compose.component.list.OdsRadioButtonTrailing
+import com.orange.ods.compose.text.OdsTextH6
+import com.orange.ods.compose.theme.OdsTheme
 import com.orange.ods.theme.OdsThemeConfigurationContract
 import com.orange.ods.utilities.extension.orElse
 
@@ -85,7 +85,7 @@ fun MainScreen(themeConfigurations: Set<OdsThemeConfigurationContract>, mainView
         LocalMainTopAppBarManager provides mainState.topAppBarState,
         LocalMainTabsManager provides mainState.tabsState,
         LocalMainThemeManager provides mainState.themeState,
-        LocalOdsDemoGuideline provides mainState.themeState.currentThemeConfiguration.demoGuideline,
+        LocalOdsGuideline provides mainState.themeState.currentThemeConfiguration.guideline,
         LocalRecipes provides mainViewModel.recipes
     ) {
         var changeThemeDialogVisible by remember { mutableStateOf(false) }

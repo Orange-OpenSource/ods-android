@@ -47,7 +47,7 @@ android {
 
     val signingConfigName = "signingConfig"
     val storeFilePath = Environment.getVariablesOrNull("SIGNING_STORE_FILE_PATH").first()
-    val storeFile = file(storeFilePath ?: "./demo.keystore").takeIf { it.exists() }
+    val storeFile = file(storeFilePath ?: "./app.keystore").takeIf { it.exists() }
     if (storeFile != null) {
         signingConfigs {
             create(signingConfigName) {

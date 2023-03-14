@@ -1,4 +1,4 @@
 /build
-demo.keystore
+app.keystore
 /release
 /src/main/res/raw/changelog.md

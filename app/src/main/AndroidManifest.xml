@@ -13,7 +13,7 @@
     package="com.orange.ods.app">
 
     <application
-        android:name=".OdsDemoApplication"
+        android:name=".OdsApplication"
         android:allowBackup="true"
         android:taskAffinity=""
         android:icon="@mipmap/ic_launcher"

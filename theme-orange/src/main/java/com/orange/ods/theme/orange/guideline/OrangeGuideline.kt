@@ -12,11 +12,11 @@ package com.orange.ods.theme.orange.guideline
 
 import androidx.compose.material.Typography
 import com.orange.ods.theme.guideline.GuidelineColor
-import com.orange.ods.theme.guideline.OdsDemoGuideline
+import com.orange.ods.theme.guideline.OdsGuideline
 
-class OrangeGuideline(typography: Typography) : OdsDemoGuideline(typography) {
+class OrangeGuideline(typography: Typography) : OdsGuideline(typography) {
 
     override val guidelineColors: List<GuidelineColor>
         get() = OrangeGuidelineColors
-    
+
 }

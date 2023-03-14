@@ -17,10 +17,10 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.runtime.staticCompositionLocalOf
 import com.orange.ods.theme.OdsThemeConfigurationContract
-import com.orange.ods.theme.guideline.OdsDemoGuideline
+import com.orange.ods.theme.guideline.OdsGuideline
 
 val LocalMainThemeManager = staticCompositionLocalOf<MainThemeManager> { error("CompositionLocal LocalMainThemeManager not present") }
-val LocalOdsDemoGuideline = staticCompositionLocalOf<OdsDemoGuideline> { error("CompositionLocal LocalOdsDemoGuideline not present") }
+val LocalOdsGuideline = staticCompositionLocalOf<OdsGuideline> { error("CompositionLocal LocalOdsGuideline not present") }
 
 interface MainThemeManager {
 

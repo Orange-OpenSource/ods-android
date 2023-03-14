@@ -176,7 +176,7 @@ jobs:
       - name: Upload APK to Firebase App Distribution
         uses: ./.github/actions/app-distribution
         with:
-          git-tag-prefix: 'ci/release-demo'
-          group: 'ods-demo-android'
+          git-tag-prefix: 'ci/release-app'
+          group: 'ods-app-android'
           github-token: ${{ secrets.GITHUB_TOKEN }}
           firebase-token: ${{ secrets.FIREBASE_TOKEN }}

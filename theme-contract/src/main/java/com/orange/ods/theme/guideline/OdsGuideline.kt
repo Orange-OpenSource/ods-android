@@ -14,20 +14,20 @@ import androidx.compose.material.Typography
 import com.orange.ods.theme.R
 
 /**
- * This class defines what will be displayed in the ODS Demo Application guideline part.
- * Extend this class and override its properties to allow the Demo Application to display the guideline
+ * This class defines what will be displayed in the ODS application guideline part.
+ * Extend this class and override its properties to allow the application to display the guideline
  * elements (colors, typography) of your theme configuration.
  */
-open class OdsDemoGuideline(private val typography: Typography) {
+open class OdsGuideline(private val typography: Typography) {
 
     /**
-     * Colors displayed in the guideline part of the ODS Demo Application
+     * Colors displayed in the guideline part of the ODS application
      */
     open val guidelineColors: List<GuidelineColor>
         get() = emptyList()
 
     /**
-     * Typography displayed in the guideline part of the ODS Demo Application
+     * Typography displayed in the guideline part of the ODS application
      */
     open val guidelineTypography: List<GuidelineTextStyle>
         get() {
