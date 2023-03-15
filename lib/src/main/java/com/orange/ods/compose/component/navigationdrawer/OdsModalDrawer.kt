@@ -21,6 +21,7 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.material.DrawerDefaults
 import androidx.compose.material.DrawerState
 import androidx.compose.material.DrawerValue
+import androidx.compose.material.Icon
 import androidx.compose.material.ModalDrawer
 import androidx.compose.material.Surface
 import androidx.compose.material.Text
@@ -50,6 +51,17 @@ import com.orange.ods.compose.component.utilities.UiModePreviews
 import com.orange.ods.compose.text.OdsTextSubtitle2
 import com.orange.ods.compose.theme.OdsTheme
 
+
+/**
+ * Navigation drawers provide ergonomic access to destinations in an app.
+ *
+ *
+ * @param drawerState state of the drawer
+ * @param modifier to be applied to this drawer
+ * @param content content of the rest of the UI
+ * @param headerParametersProvider content inside the header of the drawer
+ * @param listContent content inside the body of the drawer
+ */
 @Composable
 @OdsComponentApi
 fun OdsModalDrawer(
@@ -58,7 +70,6 @@ fun OdsModalDrawer(
     content: @Composable () -> Unit,
     headerParametersProvider: OdsModalDrawerHeaderParametersProvider,
     listContent: List<OdsModalDrawerItem>
-
 ) {
     ModalDrawer(
         drawerContent = {
@@ -125,20 +136,9 @@ internal fun OdsModalDrawerHeader(
     headerContent: OdsModalDrawerHeaderParametersProvider
 ) {
     Box(
-        modifier = if (headerContent.backgroundImage != null || headerContent.avatar != null
-        ) {
-            headerContent.modifier
-                .fillMaxWidth()
-                .height(167.dp)
-        } else if (headerContent.subtitle != null) {
-            headerContent.modifier
-                .fillMaxWidth()
-                .height(67.dp)
-        } else {
-            headerContent.modifier
-                .fillMaxWidth()
-                .height(48.dp)
-        }
+        modifier = headerContent.modifier
+            .fillMaxWidth()
+            .height(if (headerContent.backgroundImage != null || headerContent.avatar != null) 167.dp else if (headerContent.subtitle != null) 67.dp else 48.dp),
     ) {
         headerContent.backgroundImage?.let {
             Image(
@@ -150,15 +150,9 @@ internal fun OdsModalDrawerHeader(
             )
             Surface(
                 color = Color.Black.copy(alpha = 0.8f),
-                modifier = if (headerContent.subtitle != null) {
-                    Modifier
+                modifier = Modifier
                         .fillMaxSize()
-                        .padding(top = 98.dp)
-                } else {
-                    Modifier
-                        .fillMaxSize()
-                        .padding(top = 119.dp)
-                }
+                        .padding(top =  if (headerContent.subtitle != null) 98.dp else 119.dp)
             ) {
                 OdsHeaderText(headerContent = headerContent, color = Color.White)
             }
