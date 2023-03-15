@@ -58,32 +58,10 @@ fun SearchTextField(searchedText: MutableState<TextFieldValue>) {
         onValueChange = { value ->
             searchedText.value = value
         },
-        placeholder = {
-            Text(text = stringResource(id = R.string.component_search), color = Color.Gray, fontSize = 18.sp)
-        },
+        placeholder = stringResource(id = R.string.component_search),
         modifier = Modifier
             .fillMaxWidth()
-            .focusRequester(focusRequester),
-        textStyle = TextStyle(color = OdsTheme.colors.onSurface, fontSize = 18.sp),
-        trailingIcon = if (searchedText.value.text.isNotEmpty()) {
-            {
-                OdsIconButton(
-                    onClick = {
-                        searchedText.value = TextFieldValue("") // Remove text from TextField when you press the 'X' icon
-                    },
-                    imageVector = Icons.Default.Close,
-                    contentDescription = stringResource(id = R.string.search_clear)
-                )
-            }
-        } else null,
-        colors = TextFieldDefaults.textFieldColors(
-            cursorColor = OdsTheme.colors.primary,
-            leadingIconColor = OdsTheme.colors.onSurface,
-            trailingIconColor = OdsTheme.colors.onSurface,
-            backgroundColor = Color.Transparent,
-            focusedIndicatorColor = Color.Transparent
-        )
-
+            .focusRequester(focusRequester)
     )
     LaunchedEffect(Unit) {
         focusRequester.requestFocus()

@@ -70,7 +70,7 @@ private fun TopAppBarActions(state: MainTopAppBarState, titleRes: Int, onSearchA
         OdsTopAppBarActionButton(
             onClick = onSearchActionClick,
             painter = painterResource(id = R.drawable.ic_search),
-            contentDescription = ""
+            contentDescription = stringResource(id = R.string.search_content_description)
         )
     }
     repeat(state.actionCount.value) { index ->

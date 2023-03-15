@@ -10,31 +10,26 @@
 
 package com.orange.ods.compose.component.textfield.search
 
-import androidx.compose.material.LocalTextStyle
 import androidx.compose.material.Text
 import androidx.compose.material.TextField
-import androidx.compose.material.TextFieldColors
 import androidx.compose.material.TextFieldDefaults
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Close
-import androidx.compose.material.icons.filled.Search
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.vector.ImageVector
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.stringResource
-import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.input.TextFieldValue
 import androidx.compose.ui.tooling.preview.PreviewParameter
-import androidx.compose.ui.unit.sp
+import com.orange.ods.R
 import com.orange.ods.compose.component.OdsComponentApi
 import com.orange.ods.compose.component.button.OdsIconButton
-import com.orange.ods.compose.component.textfield.OdsTextFieldDefaults
 import com.orange.ods.compose.component.utilities.BasicPreviewParameterProvider
 import com.orange.ods.compose.component.utilities.Preview
 import com.orange.ods.compose.component.utilities.UiModePreviews
+import com.orange.ods.compose.theme.OdsTheme
 
 /**
- * Progress indicators express an unspecified wait time or display the length of a process.
  *
  * @see androidx.compose.material.TextField
  *
@@ -42,12 +37,8 @@ import com.orange.ods.compose.component.utilities.UiModePreviews
  * @param onValueChange the callback that is triggered when the input service updates the text. An
  * updated text comes as a parameter of the callback
  * @param modifier a [Modifier] for this text field
- * @param placeholder the optional placeholder to be displayed when the text field is in focus and
- * the input text is empty. The default text style for internal [Text] is [Typography.subtitle1]
- * @param trailingIcon the optional trailing icon painter to be displayed at the end of the text field
- * container
- * @param leadingIcon the optional leading icon painter to be displayed at the beginning of the text field
- * container
+ * @param placeholder the placeholder to be displayed when the text field is in focus and
+ * the input text is empty.
  */
 @Composable
 @OdsComponentApi
@@ -55,22 +46,29 @@ fun OdsSearchTextField(
     value: TextFieldValue,
     onValueChange: (TextFieldValue) -> Unit,
     modifier: Modifier = Modifier,
-    textStyle: TextStyle = LocalTextStyle.current,
-    placeholder: @Composable (() -> Unit)? = null,
-    trailingIcon: @Composable (() -> Unit)? = null,
-    leadingIcon: @Composable (() -> Unit)? = null,
-    colors: TextFieldColors = OdsTextFieldDefaults.textFieldColors()
+    placeholder: String
 ) {
     TextField(
         value = value,
         onValueChange = onValueChange,
-        placeholder = placeholder,
+        placeholder = { Text(text = placeholder, style = OdsTheme.typography.body1) },
         modifier = modifier,
-        textStyle = textStyle,
-        leadingIcon = leadingIcon,
-        trailingIcon = trailingIcon,
+        textStyle = OdsTheme.typography.h6,
+        trailingIcon = {
+            OdsIconButton(
+                onClick = { onValueChange(TextFieldValue("")) },
+                imageVector = Icons.Default.Close,
+                contentDescription = stringResource(id = R.string.search_clear)
+            )
+        },
         singleLine = false,
-        colors = colors
+        colors = TextFieldDefaults.textFieldColors(
+            cursorColor = OdsTheme.colors.primary,
+            leadingIconColor = OdsTheme.colors.onSurface,
+            trailingIconColor = OdsTheme.colors.onSurface,
+            backgroundColor = Color.Transparent,
+            focusedIndicatorColor = Color.Transparent
+        )
     )
 }
 
@@ -83,19 +81,7 @@ private fun PreviewOdsSearchTextField(@PreviewParameter(OdsSearchTextFieldPrevie
                 value = value,
                 onValueChange = {
                 },
-                placeholder = {
-                    if (placeholder != 0) {
-                        Text(text = stringResource(id = placeholder), fontSize = 18.sp)
-                    } else Text(text = "", fontSize = 18.sp)
-                },
-                trailingIcon = {
-                    OdsIconButton(
-                        onClick = {
-                        },
-                        imageVector = trailingIcon,
-                        contentDescription = stringResource(id = android.R.string.VideoView_error_text_unknown)
-                    )
-                }
+                placeholder = stringResource(id = placeholder),
             )
         }
     }
@@ -103,7 +89,6 @@ private fun PreviewOdsSearchTextField(@PreviewParameter(OdsSearchTextFieldPrevie
 private data class OdsSearchTextFieldPreviewParameter(
     val value: TextFieldValue,
     val placeholder: Int,
-    val trailingIcon: ImageVector,
     val singleLine: Boolean = false
 )
 
@@ -112,13 +97,11 @@ private class OdsSearchTextFieldPreviewParameterProvider :
 
 private val previewParameterValues: List<OdsSearchTextFieldPreviewParameter>
     get() {
-        var value = TextFieldValue("")
-        val trailingIcon = Icons.Filled.Search
-        val trailing = Icons.Default.Close
+        val value = TextFieldValue("")
         val placeholder = android.R.string.VideoView_error_text_unknown
 
         return listOf(
-            OdsSearchTextFieldPreviewParameter(value, trailingIcon = trailingIcon, placeholder = 0),
-            OdsSearchTextFieldPreviewParameter(value, trailingIcon = trailing, placeholder = placeholder),
+            OdsSearchTextFieldPreviewParameter(value, placeholder = 0),
+            OdsSearchTextFieldPreviewParameter(value, placeholder = placeholder),
         )
     }
