@@ -26,6 +26,15 @@ interface MainTopAppBarManager {
     fun updateTopAppBar(topAppBarConfiguration: TopAppBarConfiguration)
 
     fun updateTopAppBarTitle(titleRes: Int)
+
+    fun setExtended(extended: Boolean)
+
+    fun updateTopAppBarTabs(tabsConfiguration: MainTabsConfiguration)
+
+    /**
+     * Reset top app bar to default display
+     */
+    fun reset()
 }
 
 @Composable
@@ -35,9 +44,11 @@ fun rememberMainTopAppBarState(
     navigationIconEnabled: MutableState<Boolean> = rememberSaveable { mutableStateOf(MainTopAppBarState.DefaultConfiguration.isNavigationIconEnabled) },
     overflowMenuEnabled: MutableState<Boolean> = rememberSaveable { mutableStateOf(MainTopAppBarState.DefaultConfiguration.isOverflowMenuEnabled) },
     searchedText: MutableState<TextFieldValue> = remember { mutableStateOf(TextFieldValue("")) },
+    extended: MutableState<Boolean> = rememberSaveable { mutableStateOf(false) },
+    tabsState: MainTabsState = rememberMainTabsState()
 ) =
-    remember(titleRes, actionCount, searchedText, navigationIconEnabled, overflowMenuEnabled) {
-        MainTopAppBarState(titleRes, actionCount, searchedText, navigationIconEnabled, overflowMenuEnabled)
+    remember(titleRes, actionCount, searchedText, navigationIconEnabled, overflowMenuEnabled, extended, tabsState) {
+        MainTopAppBarState(titleRes, actionCount, searchedText, navigationIconEnabled, overflowMenuEnabled, extended, tabsState)
     }
 
 
@@ -46,8 +57,9 @@ class MainTopAppBarState(
     val actionCount: MutableState<Int>,
     var searchedText: MutableState<TextFieldValue>,
     private val navigationIconEnabled: MutableState<Boolean>,
-    private val overflowMenuEnabled: MutableState<Boolean>
-
+    private val overflowMenuEnabled: MutableState<Boolean>,
+    private var extended: MutableState<Boolean>,
+    val tabsState: MainTabsState
 ) : MainTopAppBarManager {
 
     companion object {
@@ -68,6 +80,9 @@ class MainTopAppBarState(
     val isOverflowMenuEnabled: Boolean
         get() = overflowMenuEnabled.value
 
+    val isExtended: Boolean
+        get() = extended.value
+
     override fun updateTopAppBar(topAppBarConfiguration: TopAppBarConfiguration) {
         navigationIconEnabled.value = topAppBarConfiguration.isNavigationIconEnabled
         actionCount.value = topAppBarConfiguration.actionCount
@@ -78,6 +93,19 @@ class MainTopAppBarState(
         this.titleRes.value = titleRes
     }
 
+    override fun setExtended(extended: Boolean) {
+        this.extended.value = extended
+    }
+
+    override fun updateTopAppBarTabs(tabsConfiguration: MainTabsConfiguration) {
+        tabsState.updateTopAppBarTabs(tabsConfiguration)
+    }
+
+    override fun reset() {
+        setExtended(false)
+        tabsState.clearTopAppBarTabs()
+        updateTopAppBar(DefaultConfiguration)
+    }
 }
 
 data class TopAppBarConfiguration constructor(

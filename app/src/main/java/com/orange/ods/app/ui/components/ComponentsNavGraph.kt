@@ -10,24 +10,21 @@
 
 package com.orange.ods.app.ui.components
 
+import androidx.compose.runtime.remember
 import androidx.navigation.NavBackStackEntry
 import androidx.navigation.NavGraphBuilder
 import androidx.navigation.NavType
 import androidx.navigation.compose.composable
 import androidx.navigation.navArgument
-import com.orange.ods.app.ui.LocalMainTabsManager
 import com.orange.ods.app.ui.LocalMainTopAppBarManager
 import com.orange.ods.app.ui.MainDestinations
-import com.orange.ods.app.ui.MainTopAppBarState
 
 fun NavGraphBuilder.addComponentsGraph(navigateToElement: (String, Long?, NavBackStackEntry) -> Unit) {
     composable(
         "${MainDestinations.ComponentDetailRoute}/{${MainDestinations.ComponentIdKey}}",
         arguments = listOf(navArgument(MainDestinations.ComponentIdKey) { type = NavType.LongType })
     ) { from ->
-        // Restore default values for tabs and top app bar
-        LocalMainTabsManager.current.clearTopAppBarTabs()
-        LocalMainTopAppBarManager.current.updateTopAppBar(MainTopAppBarState.DefaultConfiguration)
+        LocalMainTopAppBarManager.current.reset()
 
         val arguments = requireNotNull(from.arguments)
         val componentId = arguments.getLong(MainDestinations.ComponentIdKey)
@@ -44,7 +41,16 @@ fun NavGraphBuilder.addComponentsGraph(navigateToElement: (String, Long?, NavBac
     ) { from ->
         val arguments = requireNotNull(from.arguments)
         val variantId = arguments.getLong(MainDestinations.ComponentVariantIdKey)
-        ComponentVariantScreen(variantId = variantId)
+        val variant = remember { components.flatMap { it.variants }.firstOrNull { it.id == variantId } }
+
+        variant?.let {
+            with(LocalMainTopAppBarManager.current) {
+                updateTopAppBarTitle(variant.titleRes)
+                setExtended(variant.extendedTopAppBar)
+            }
+
+            variant.ScreenContent()
+        }
     }
 
     composable(
@@ -53,6 +59,11 @@ fun NavGraphBuilder.addComponentsGraph(navigateToElement: (String, Long?, NavBac
     ) { from ->
         val arguments = requireNotNull(from.arguments)
         val componentId = arguments.getLong(MainDestinations.ComponentIdKey)
-        ComponentDemoScreen(componentId = componentId)
+        val component = remember { components.firstOrNull { it.id == componentId } }
+
+        component?.let {
+            LocalMainTopAppBarManager.current.updateTopAppBarTitle(component.titleRes)
+            component.ScreenContent?.let { it() }
+        }
     }
 }

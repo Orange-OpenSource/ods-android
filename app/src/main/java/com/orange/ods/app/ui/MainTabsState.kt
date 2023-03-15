@@ -16,21 +16,11 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.snapshots.SnapshotStateList
-import androidx.compose.runtime.staticCompositionLocalOf
 import com.google.accompanist.pager.ExperimentalPagerApi
 import com.google.accompanist.pager.PagerState
 import com.orange.ods.app.ui.components.tabs.MainTabsCustomizationState
 import com.orange.ods.app.ui.utilities.NavigationItem
 import com.orange.ods.app.ui.utilities.rememberSaveableMutableStateListOf
-
-val LocalMainTabsManager = staticCompositionLocalOf<MainTabsManager> { error("CompositionLocal LocalMainTabsManager not present") }
-
-interface MainTabsManager {
-
-    fun updateTopAppBarTabs(tabsConfiguration: MainTabsConfiguration)
-
-    fun clearTopAppBarTabs()
-}
 
 @Composable
 fun rememberMainTabsState(
@@ -49,7 +39,7 @@ class MainTabsState(
     val tabIconType: MutableState<MainTabsCustomizationState.TabIconType>,
     val tabTextEnabled: MutableState<Boolean>,
     val scrollableTabs: MutableState<Boolean>
-) : MainTabsManager {
+) {
     var pagerState: PagerState? = null
         private set
 
@@ -60,7 +50,7 @@ class MainTabsState(
     // Tabs state source of truth
     // ----------------------------------------------------------
 
-    override fun updateTopAppBarTabs(tabsConfiguration: MainTabsConfiguration) {
+    fun updateTopAppBarTabs(tabsConfiguration: MainTabsConfiguration) {
         with(tabs) {
             clear()
             addAll(tabsConfiguration.tabs)
@@ -71,7 +61,7 @@ class MainTabsState(
         scrollableTabs.value = tabsConfiguration.scrollableTabs
     }
 
-    override fun clearTopAppBarTabs() {
+    fun clearTopAppBarTabs() {
         tabs.clear()
         pagerState = null
     }

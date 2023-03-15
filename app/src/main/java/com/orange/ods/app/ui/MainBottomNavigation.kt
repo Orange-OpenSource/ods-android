@@ -48,20 +48,20 @@ fun MainBottomNavigation(items: Array<BottomNavigationSections>, currentRoute: S
 
 fun NavGraphBuilder.addBottomNavigationGraph(navigateToElement: (String, Long?, NavBackStackEntry) -> Unit) {
     composable(BottomNavigationSections.Guidelines.route) { from ->
-        LocalMainTabsManager.current.clearTopAppBarTabs()
+        LocalMainTopAppBarManager.current.reset()
         GuidelinesScreen(onGuidelineClick = { route -> navigateToElement(route, null, from) })
     }
     composable(BottomNavigationSections.Components.route) { from ->
-        LocalMainTabsManager.current.clearTopAppBarTabs()
+        LocalMainTopAppBarManager.current.reset()
         ComponentsScreen(onComponentClick = { id -> navigateToElement(MainDestinations.ComponentDetailRoute, id, from) })
     }
     composable(BottomNavigationSections.Modules.route) {
-        LocalMainTabsManager.current.clearTopAppBarTabs()
+        LocalMainTopAppBarManager.current.reset()
         ModulesScreen()
     }
     composable(BottomNavigationSections.About.route) { from ->
         val context = LocalContext.current
-        LocalMainTabsManager.current.clearTopAppBarTabs()
+        LocalMainTopAppBarManager.current.reset()
         AboutScreen(onAboutItemClick = { id ->
             val aboutItem = aboutItems.firstOrNull { it.id == id }
             if (aboutItem is UrlAboutItem) {

@@ -46,18 +46,16 @@ object MainDestinations {
 fun rememberMainState(
     themeState: MainThemeState,
     navController: NavHostController = rememberNavController(),
-    topAppBarState: MainTopAppBarState = rememberMainTopAppBarState(),
-    tabsState: MainTabsState = rememberMainTabsState()
+    topAppBarState: MainTopAppBarState = rememberMainTopAppBarState()
 ) =
-    remember(themeState, navController, topAppBarState, tabsState) {
-        MainState(themeState, navController, topAppBarState, tabsState)
+    remember(themeState, navController, topAppBarState) {
+        MainState(themeState, navController, topAppBarState)
     }
 
 class MainState(
     val themeState: MainThemeState,
     val navController: NavHostController,
     val topAppBarState: MainTopAppBarState,
-    val tabsState: MainTabsState
 ) {
 
     // ----------------------------------------------------------

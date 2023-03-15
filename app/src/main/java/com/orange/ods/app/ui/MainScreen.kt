@@ -15,7 +15,6 @@ import androidx.compose.animation.fadeIn
 import androidx.compose.animation.fadeOut
 import androidx.compose.foundation.background
 import androidx.compose.foundation.isSystemInDarkTheme
-import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material.AppBarDefaults
@@ -86,7 +85,6 @@ fun MainScreen(themeConfigurations: Set<OdsThemeConfigurationContract>, mainView
     CompositionLocalProvider(
         LocalConfiguration provides configuration,
         LocalMainTopAppBarManager provides mainState.topAppBarState,
-        LocalMainTabsManager provides mainState.tabsState,
         LocalMainThemeManager provides mainState.themeState,
         LocalOdsGuideline provides mainState.themeState.currentThemeConfiguration.guideline,
         LocalRecipes provides mainViewModel.recipes
@@ -100,21 +98,24 @@ fun MainScreen(themeConfigurations: Set<OdsThemeConfigurationContract>, mainView
             Scaffold(
                 backgroundColor = OdsTheme.colors.background,
                 topBar = {
-                    Surface(elevation = AppBarDefaults.TopAppBarElevation) {
-                        Column {
-                            SystemBarsColorSideEffect()
-                            MainTopAppBar(
-                                titleRes = mainState.topAppBarState.titleRes.value,
-                                shouldShowUpNavigationIcon = !mainState.shouldShowBottomBar,
-                                state = mainState.topAppBarState,
-                                upPress = mainState::upPress,
-                                onChangeThemeActionClick = { changeThemeDialogVisible = true },
-                                onSearchActionClick = {
-                                    mainState.navController.navigate(MainDestinations.SearchRoute)
-                                }
-                            )
-                            // Display tabs in the top bar if needed
-                            MainTabs(mainTabsState = mainState.tabsState)
+                    // The extended top app bar is managed by a custom layout instead of a TopAppBar
+                    if (!mainState.topAppBarState.isExtended) {
+                        Surface(elevation = AppBarDefaults.TopAppBarElevation) {
+                            Column {
+                                SystemBarsColorSideEffect()
+                                MainTopAppBar(
+                                    titleRes = mainState.topAppBarState.titleRes.value,
+                                    shouldShowUpNavigationIcon = !mainState.shouldShowBottomBar,
+                                    state = mainState.topAppBarState,
+                                    upPress = mainState::upPress,
+                                    onChangeThemeActionClick = { changeThemeDialogVisible = true },
+                                    onSearchActionClick = {
+                                        mainState.navController.navigate(MainDestinations.SearchRoute)
+                                    }
+                                )
+                                // Display tabs in the top bar if needed
+                                MainTabs(mainTabsState = mainState.topAppBarState.tabsState)
+                            }
                         }
                     }
                 },
@@ -132,10 +133,12 @@ fun MainScreen(themeConfigurations: Set<OdsThemeConfigurationContract>, mainView
                     }
                 }
             ) { innerPadding ->
-                Box(modifier = Modifier.padding(innerPadding)) {
-                    NavHost(mainState.navController, startDestination = MainDestinations.HomeRoute) {
-                        mainNavGraph(navigateToElement = mainState::navigateToElement, searchedText = mainState.topAppBarState.searchedText)
-                    }
+                NavHost(
+                    navController = mainState.navController,
+                    startDestination = MainDestinations.HomeRoute,
+                    modifier = Modifier.padding(innerPadding)
+                ) {
+                    mainNavGraph(navigateToElement = mainState::navigateToElement, searchedText = mainState.topAppBarState.searchedText)
                 }
 
                 if (changeThemeDialogVisible) {
@@ -154,7 +157,10 @@ fun MainScreen(themeConfigurations: Set<OdsThemeConfigurationContract>, mainView
     }
 }
 
-private fun getCurrentThemeConfiguration(storedUserThemeName: String?, themeConfigurations: Set<OdsThemeConfigurationContract>): OdsThemeConfigurationContract {
+private fun getCurrentThemeConfiguration(
+    storedUserThemeName: String?,
+    themeConfigurations: Set<OdsThemeConfigurationContract>
+): OdsThemeConfigurationContract {
     // Return the stored user theme configuration if it exists. If not, return the Orange theme configuration or the first existing theme configuration
     return themeConfigurations.firstOrNull { it.name == storedUserThemeName }
         .orElse { themeConfigurations.firstOrNull { it.isOrange } }
@@ -248,8 +254,10 @@ private fun NavGraphBuilder.mainNavGraph(navigateToElement: (String, Long?, NavB
     composable(
         route = MainDestinations.SearchRoute
     ) { from ->
-        LocalMainTabsManager.current.clearTopAppBarTabs()
-        LocalMainTopAppBarManager.current.updateTopAppBarTitle(R.string.navigation_item_search)
+        with(LocalMainTopAppBarManager.current) {
+            reset()
+            updateTopAppBarTitle(R.string.navigation_item_search)
+        }
         SearchScreen(searchedText, onComponentClick = { id -> navigateToElement(MainDestinations.ComponentDetailRoute, id, from) })
     }
 }
