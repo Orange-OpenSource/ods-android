@@ -138,7 +138,7 @@ sealed class Component(
 
     object ModalDrawers : Component(
         R.string.component_modal_drawers,
-        R.drawable.il_menus,
+        R.drawable.il_navigation_drawers,
         null,
         R.string.component_menus_description,
         listOf(Variant.ModalDrawer)

@@ -12,22 +12,22 @@ package com.orange.ods.compose.component.navigationdrawer
 
 import androidx.annotation.DrawableRes
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material.DrawerDefaults
 import androidx.compose.material.DrawerState
 import androidx.compose.material.DrawerValue
-import androidx.compose.material.Icon
 import androidx.compose.material.ModalDrawer
 import androidx.compose.material.Surface
 import androidx.compose.material.Text
 import androidx.compose.material.contentColorFor
 import androidx.compose.material.rememberDrawerState
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.painter.Painter
@@ -109,7 +109,9 @@ internal fun getItem(item: OdsModalDrawerItem): @Composable (() -> Unit) {
         is OdsModalDrawerListItem -> {
             {
                 OdsListItem(
-                    modifier = Modifier.iconType(OdsListItemIconType.Icon),
+                    modifier = Modifier
+                        .iconType(OdsListItemIconType.Icon)
+                        .background(color = Color.Red),
                     text = item.text,
                     icon = item.icon?.let { { OdsListItemIcon(painterResource(id = it)) } })
             }
@@ -138,7 +140,11 @@ internal fun OdsModalDrawerHeader(
     Box(
         modifier = headerContent.modifier
             .fillMaxWidth()
-            .height(if (headerContent.backgroundImage != null || headerContent.avatar != null) 167.dp else if (headerContent.subtitle != null) 67.dp else 48.dp),
+            .height(
+                if (headerContent.backgroundImage != null || headerContent.avatar != null) 167.dp else if (headerContent.subtitle != null) dimensionResource(
+                    id = R.dimen.list_two_line_item_height
+                ) else dimensionResource(id = R.dimen.list_single_line_item_height)
+            ),
     ) {
         headerContent.backgroundImage?.let {
             Image(
@@ -151,8 +157,8 @@ internal fun OdsModalDrawerHeader(
             Surface(
                 color = Color.Black.copy(alpha = 0.8f),
                 modifier = Modifier
-                        .fillMaxSize()
-                        .padding(top =  if (headerContent.subtitle != null) 98.dp else 119.dp)
+                    .align(Alignment.BottomStart)
+                    .fillMaxWidth()
             ) {
                 OdsHeaderText(headerContent = headerContent, color = Color.White)
             }
@@ -162,12 +168,12 @@ internal fun OdsModalDrawerHeader(
                 painter = it,
                 Modifier.padding(start = dimensionResource(id = R.dimen.spacing_m), top = 40.dp)
             )
-            Column(Modifier.padding(top = 98.dp)) {
+            Column(Modifier.align(Alignment.BottomStart)) {
                 OdsHeaderText(headerContent = headerContent, color = Color.Black)
             }
 
         }
-       if(headerContent.backgroundImage == null && headerContent.avatar == null) OdsHeaderText(headerContent = headerContent, color = Color.Black)
+        if (headerContent.backgroundImage == null && headerContent.avatar == null) OdsHeaderText(headerContent = headerContent, color = Color.Black)
     }
 }
 
@@ -177,9 +183,9 @@ fun OdsHeaderText(headerContent: OdsModalDrawerHeaderParametersProvider, color: 
         Modifier
             .padding(start = dimensionResource(id = R.dimen.spacing_m), top = 12.dp, bottom = 12.dp)
     ) {
-        Text(text = headerContent.title, color = color, fontSize = 20.sp)
+        Text(text = headerContent.title, color = color, style = OdsTheme.typography.h6)
         headerContent.subtitle?.let {
-            Text(text = it, color = color, fontSize = 14.sp)
+            Text(text = it, color = color, style = OdsTheme.typography.body2)
         }
     }
 }
@@ -216,15 +222,16 @@ private val previewParameterValues: List<OdsModalDrawerPreviewParameter>
     get() {
         val backgroundImage = R.drawable.placeholder_small
         val title = "Headline 6"
-        val avatar = R.drawable.ic_check
+        val avatar = R.drawable.placeholder
+        val icon = R.drawable.ic_check
         val subtitle = "Body 2"
         val noPicture = null
         val list = listOf(
-            OdsModalDrawerListItem(avatar, "label1"),
+            OdsModalDrawerListItem(icon, "label1"),
             OdsModalDrawerDivider,
-            OdsModalDrawerListItem(avatar, "label2"),
+            OdsModalDrawerListItem(icon, "label2"),
             OdsModalDrawerSectionLabel("Label"),
-            OdsModalDrawerListItem(avatar, "label3"),
+            OdsModalDrawerListItem(icon, "label3")
         )
 
         return listOf(
