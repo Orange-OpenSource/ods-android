@@ -10,6 +10,7 @@
 
 package com.orange.ods.compose.component.textfield.search
 
+import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material.Text
 import androidx.compose.material.TextField
 import androidx.compose.material.TextFieldDefaults
@@ -19,8 +20,11 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.text.input.ImeAction
+import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.input.TextFieldValue
 import androidx.compose.ui.tooling.preview.PreviewParameter
+import androidx.compose.ui.unit.sp
 import com.orange.ods.R
 import com.orange.ods.compose.component.OdsComponentApi
 import com.orange.ods.compose.component.button.OdsIconButton
@@ -52,7 +56,13 @@ fun OdsSearchTextField(
     TextField(
         value = value,
         onValueChange = onValueChange,
-        placeholder = { Text(text = placeholder, style = OdsTheme.typography.body1) },
+        placeholder = {
+            Text(
+                text = placeholder,
+                style = OdsTheme.typography.body1,
+                fontSize = 20.sp
+            )
+        },
         modifier = modifier,
         textStyle = OdsTheme.typography.h6,
         trailingIcon = {
@@ -63,7 +73,12 @@ fun OdsSearchTextField(
             )
         },
         singleLine = false,
+        keyboardOptions = KeyboardOptions(
+            keyboardType = KeyboardType.Text,
+            imeAction = ImeAction.Search
+        ),
         colors = TextFieldDefaults.textFieldColors(
+            textColor = OdsTheme.colors.onSurface,
             cursorColor = OdsTheme.colors.primary,
             leadingIconColor = OdsTheme.colors.onSurface,
             trailingIconColor = OdsTheme.colors.onSurface,
