@@ -17,6 +17,7 @@
     <string name="navigation_item_components">Components</string>
     <string name="navigation_item_modules">Modules</string>
     <string name="navigation_item_about">About</string>
+    <string name="navigation_item_search" />
 
     <!-- TopAppBar -->
     <string name="top_app_bar_back_icon_desc">Back</string>
@@ -343,5 +344,9 @@
     <string name="navigation_item_restaurant">Restaurant</string>
     <string name="navigation_item_favorites">Favorites</string>
     <string name="navigation_item_information">Information</string>
+
+    <!-- Search -->
+    <string name="search_text_field_hint">Search components</string>
+    <string name="search_content_description">Search icon</string>
 
 </resources>

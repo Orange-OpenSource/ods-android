@@ -38,6 +38,8 @@ object MainDestinations {
 
     const val AboutItemDetailRoute = "aboutItem"
     const val AboutItemIdKey = "aboutItemId"
+
+    const val SearchRoute = "search"
 }
 
 @Composable

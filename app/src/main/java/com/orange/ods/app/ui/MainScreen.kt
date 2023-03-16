@@ -23,6 +23,7 @@ import androidx.compose.material.Scaffold
 import androidx.compose.material.Surface
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.CompositionLocalProvider
+import androidx.compose.runtime.MutableState
 import androidx.compose.runtime.SideEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
@@ -33,11 +34,13 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalConfiguration
 import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.text.input.TextFieldValue
 import androidx.compose.ui.window.Dialog
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavBackStackEntry
 import androidx.navigation.NavGraphBuilder
 import androidx.navigation.compose.NavHost
+import androidx.navigation.compose.composable
 import androidx.navigation.navigation
 import com.google.accompanist.pager.ExperimentalPagerApi
 import com.google.accompanist.systemuicontroller.rememberSystemUiController
@@ -48,6 +51,7 @@ import com.orange.ods.app.ui.components.addComponentsGraph
 import com.orange.ods.app.ui.components.tabs.FixedTabRow
 import com.orange.ods.app.ui.components.tabs.ScrollableTabRow
 import com.orange.ods.app.ui.guidelines.addGuidelinesGraph
+import com.orange.ods.app.ui.search.SearchScreen
 import com.orange.ods.app.ui.utilities.extension.isDarkModeEnabled
 import com.orange.ods.app.ui.utilities.extension.isOrange
 import com.orange.ods.compose.component.list.OdsListItem
@@ -74,7 +78,6 @@ fun MainScreen(themeConfigurations: Set<OdsThemeConfigurationContract>, mainView
             themeConfigurations = themeConfigurations.toList()
         )
     )
-
     // Change isSystemInDarkTheme() value to make switching theme working with custom color
     val configuration = LocalConfiguration.current.apply {
         isDarkModeEnabled = mainState.themeState.darkModeEnabled
@@ -105,7 +108,10 @@ fun MainScreen(themeConfigurations: Set<OdsThemeConfigurationContract>, mainView
                                 shouldShowUpNavigationIcon = !mainState.shouldShowBottomBar,
                                 state = mainState.topAppBarState,
                                 upPress = mainState::upPress,
-                                onChangeThemeActionClick = { changeThemeDialogVisible = true }
+                                onChangeThemeActionClick = { changeThemeDialogVisible = true },
+                                onSearchActionClick = {
+                                    mainState.navController.navigate(MainDestinations.SearchRoute)
+                                }
                             )
                             // Display tabs in the top bar if needed
                             MainTabs(mainTabsState = mainState.tabsState)
@@ -128,7 +134,7 @@ fun MainScreen(themeConfigurations: Set<OdsThemeConfigurationContract>, mainView
             ) { innerPadding ->
                 Box(modifier = Modifier.padding(innerPadding)) {
                     NavHost(mainState.navController, startDestination = MainDestinations.HomeRoute) {
-                        mainNavGraph(navigateToElement = mainState::navigateToElement)
+                        mainNavGraph(navigateToElement = mainState::navigateToElement, searchedText = mainState.topAppBarState.searchedText)
                     }
                 }
 
@@ -227,7 +233,7 @@ private fun MainTabs(mainTabsState: MainTabsState) {
     }
 }
 
-private fun NavGraphBuilder.mainNavGraph(navigateToElement: (String, Long?, NavBackStackEntry) -> Unit) {
+private fun NavGraphBuilder.mainNavGraph(navigateToElement: (String, Long?, NavBackStackEntry) -> Unit, searchedText: MutableState<TextFieldValue>) {
     navigation(
         route = MainDestinations.HomeRoute,
         startDestination = BottomNavigationSections.Guidelines.route
@@ -238,4 +244,12 @@ private fun NavGraphBuilder.mainNavGraph(navigateToElement: (String, Long?, NavB
     addGuidelinesGraph()
     addComponentsGraph(navigateToElement)
     addAboutGraph()
+
+    composable(
+        route = MainDestinations.SearchRoute
+    ) { from ->
+        LocalMainTabsManager.current.clearTopAppBarTabs()
+        LocalMainTopAppBarManager.current.updateTopAppBarTitle(R.string.navigation_item_search)
+        SearchScreen(searchedText, onComponentClick = { id -> navigateToElement(MainDestinations.ComponentDetailRoute, id, from) })
+    }
 }

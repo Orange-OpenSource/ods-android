@@ -19,9 +19,9 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextAlign
-import com.orange.ods.compose.theme.OdsTheme
 import com.orange.ods.app.R
 import com.orange.ods.app.ui.LocalMainTopAppBarManager
+import com.orange.ods.compose.theme.OdsTheme
 
 @Composable
 fun ModulesScreen() {
