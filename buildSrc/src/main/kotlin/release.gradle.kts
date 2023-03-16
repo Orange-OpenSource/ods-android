@@ -96,12 +96,12 @@ tasks.register<DefaultTask>("testSonatypeRepository") {
             "${matchResult.value}${indent}maven(url = \"https://oss.sonatype.org/content/repositories/comorange-$sonatypeRepositoryId\")"
         }
 
-        // Replace project dependencies with module dependencies in demo
-        File("demo/build.gradle.kts").replace("implementation\\(project\\(\":(.*)\"\\)\\)".toRegex()) { matchResult ->
+        // Replace project dependencies with module dependencies in app
+        File("app/build.gradle.kts").replace("implementation\\(project\\(\":(.*)\"\\)\\)".toRegex()) { matchResult ->
             "implementation(\"com.orange.ods.android:ods-${matchResult.groupValues[1]}:$version\")"
         }
 
-        // Remove all Android Studio modules except demo
-        File("settings.gradle.kts").replace("(include\\(.*\\)(\\n)?)+".toRegex(), "include(\":demo\")\n")
+        // Remove all Android Studio modules except app
+        File("settings.gradle.kts").replace("(include\\(.*\\)(\\n)?)+".toRegex(), "include(\":app\")\n")
     }
 }

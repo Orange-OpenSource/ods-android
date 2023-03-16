@@ -1,0 +1,4 @@
+/build
+app.keystore
+/release
+/src/main/res/raw/changelog.md

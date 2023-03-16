@@ -24,7 +24,7 @@ runs:
       run: |
         SIGNING_STORE_FOLDER_PATH=${RUNNER_TEMP}/keystore
         echo "SIGNING_STORE_FOLDER_PATH=${SIGNING_STORE_FOLDER_PATH}" >> $GITHUB_ENV
-        echo "SIGNING_STORE_FILE_PATH=${SIGNING_STORE_FOLDER_PATH}/demo.keystore" >> $GITHUB_ENV
+        echo "SIGNING_STORE_FILE_PATH=${SIGNING_STORE_FOLDER_PATH}/app.keystore" >> $GITHUB_ENV
         echo "SIGNING_STORE_PASSWORD=${{ inputs.store-password }}" >> $GITHUB_ENV
         echo "SIGNING_KEY_ALIAS=${{ inputs.key-alias }}" >> $GITHUB_ENV
         echo "SIGNING_KEY_PASSWORD=${{ inputs.key-password }}" >> $GITHUB_ENV

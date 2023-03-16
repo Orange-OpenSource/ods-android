@@ -48,11 +48,11 @@ jobs:
           COMMIT_SHA=${BRANCH_SHA:-$GITHUB_SHA}
           ./gradlew assemble -PversionNameSuffix="-${COMMIT_SHA::7}" -PversionCode=$GITHUB_RUN_NUMBER --stacktrace
 
-      - name: Store demo artifacts
+      - name: Store app artifacts
         uses: actions/upload-artifact@v3
         with:
-          name: demo
-          path: demo/build/outputs/apk/*/*.apk
+          name: app
+          path: app/build/outputs/apk/*/*.apk
 
       - name: Store lib artifacts
         uses: actions/upload-artifact@v3
@@ -176,7 +176,7 @@ jobs:
       - name: Upload APK to Firebase App Distribution
         uses: ./.github/actions/app-distribution
         with:
-          git-tag-prefix: 'ci/release-demo'
-          group: 'ods-demo-android'
+          git-tag-prefix: 'ci/release-app'
+          group: 'ods-app-android'
           github-token: ${{ secrets.GITHUB_TOKEN }}
           firebase-token: ${{ secrets.FIREBASE_TOKEN }}

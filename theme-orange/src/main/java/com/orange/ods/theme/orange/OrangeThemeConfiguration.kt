@@ -16,7 +16,7 @@ import androidx.compose.material.Typography
 import androidx.compose.ui.unit.dp
 import com.orange.ods.theme.OdsThemeColors
 import com.orange.ods.theme.OdsThemeConfigurationContract
-import com.orange.ods.theme.guideline.OdsDemoGuideline
+import com.orange.ods.theme.guideline.OdsGuideline
 import com.orange.ods.theme.orange.guideline.OrangeGuideline
 import kotlinx.parcelize.Parcelize
 
@@ -41,6 +41,6 @@ class OrangeThemeConfiguration : OdsThemeConfigurationContract {
             small = RoundedCornerShape(0.dp)
         )
 
-    override val demoGuideline: OdsDemoGuideline
+    override val guideline: OdsGuideline
         get() = OrangeGuideline(typography)
 }

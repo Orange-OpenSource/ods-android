@@ -19,7 +19,7 @@ import androidx.compose.ui.text.TextStyle
 import kotlin.reflect.KCallable
 
 /**
- * A color displayed in the guideline color part of the ODS Demo Application
+ * A color displayed in the guideline color part of the ODS application
  *
  * @property callable The function or property to call to apply this color
  * @property type The [GuidelineColorType] of the color
@@ -65,7 +65,7 @@ fun Color.toRgbString(): String {
 }
 
 /**
- * A typography displayed in the guideline color part of the ODS Demo Application
+ * A typography displayed in the guideline color part of the ODS application
  *
  * @property name The name of the typography (ex. Headline 1)
  * @property textStyle The [TextStyle] of the typography

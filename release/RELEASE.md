@@ -89,8 +89,8 @@ This file lists all the steps to follow when releasing a new version of ODS Andr
     This task allows you to test the release before it is deployed to Maven Central and performs the following changes to the project:
     
     - Add Sonatype Maven repository.
-    - Remove all Android Studio modules except `demo`.
-    - Replace project dependencies with module dependencies in `demo`.<br /><br />
+    - Remove all Android Studio modules except `app`.
+    - Replace project dependencies with module dependencies in `app`.<br /><br />
 
 - Synchronize Gradle, build app, deploy and test on device.
 
