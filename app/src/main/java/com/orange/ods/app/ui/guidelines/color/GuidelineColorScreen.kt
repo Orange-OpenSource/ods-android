@@ -58,6 +58,7 @@ import com.orange.ods.compose.text.OdsTextH5
 import com.orange.ods.compose.text.OdsTextH6
 import com.orange.ods.compose.theme.OdsTheme
 import com.orange.ods.theme.colors.OdsColors
+import com.orange.ods.theme.colors.OdsFunctionalColors
 import com.orange.ods.theme.guideline.GuidelineColor
 import com.orange.ods.theme.guideline.GuidelineColorType
 import com.orange.ods.theme.guideline.toHexString
@@ -279,7 +280,12 @@ private fun copyColorToClipboard(context: Context, color: Color, clipboardManage
 @Composable
 private fun GuidelineColor.getValue(): Color {
     val isColorsProperty = OdsColors::class.memberProperties.filterIsInstance<KProperty<Color>>().contains(callable)
+    val isFunctionalColorsProperty = OdsFunctionalColors::class.memberProperties.filterIsInstance<KProperty<Color>>().contains(callable)
     val isColorsExtensionProperty = callable.extensionReceiverParameter?.type?.classifier == Colors::class
 
-    return if (isColorsProperty || isColorsExtensionProperty) callable.call(OdsTheme.colors) else callable.call()
+    return when {
+        isColorsProperty || isColorsExtensionProperty -> callable.call(OdsTheme.colors)
+        isFunctionalColorsProperty -> callable.call(OdsTheme.colors.functional)
+        else -> callable.call()
+    }
 }
