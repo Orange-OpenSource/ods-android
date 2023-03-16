@@ -16,9 +16,8 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.staticCompositionLocalOf
-import com.orange.ods.app.R
 import androidx.compose.ui.text.input.TextFieldValue
-import com.orange.ods.demo.R
+import com.orange.ods.app.R
 
 val LocalMainTopAppBarManager = staticCompositionLocalOf<MainTopAppBarManager> { error("CompositionLocal LocalMainTopAppBarManager not present") }
 

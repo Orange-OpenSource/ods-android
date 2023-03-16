@@ -8,7 +8,7 @@
  * /
  */
 
-package com.orange.ods.demo.ui.search
+package com.orange.ods.app.ui.search
 
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -20,25 +20,15 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.input.TextFieldValue
+import com.orange.ods.app.ui.components.components
 import com.orange.ods.compose.component.list.OdsListItem
 import com.orange.ods.compose.component.list.OdsListItemIcon
 import com.orange.ods.compose.component.list.OdsListItemIconType
 import com.orange.ods.compose.component.list.iconType
-import com.orange.ods.demo.R
-import com.orange.ods.demo.ui.LocalMainTopAppBarManager
-import com.orange.ods.demo.ui.components.components
 import com.orange.ods.utilities.extension.orElse
 
 @Composable
 fun SearchScreen(searchedText: MutableState<TextFieldValue>, onComponentClick: (Long) -> Unit) {
-
-    LocalMainTopAppBarManager.current.updateTopAppBarTitle(R.string.navigation_item_search)
-    ComponentList(searchedText = searchedText, onComponentClick)
-}
-
-@Composable
-private fun ComponentList(searchedText: MutableState<TextFieldValue>, onComponentClick: (Long) -> Unit) {
-
     val filterComponents = components.filter { component ->
         searchedText.value.text.isEmpty() || stringResource(id = component.titleRes).lowercase().contains(searchedText.value.text.lowercase())
     }

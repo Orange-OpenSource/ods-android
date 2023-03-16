@@ -24,19 +24,15 @@ import androidx.compose.ui.platform.LocalConfiguration
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
-import com.orange.ods.compose.component.appbar.top.OdsTopAppBar
-import com.orange.ods.compose.component.appbar.top.OdsTopAppBarActionButton
-import com.orange.ods.compose.component.appbar.top.OdsTopAppBarOverflowMenuBox
-import com.orange.ods.compose.component.menu.OdsDropdownMenuItem
 import com.orange.ods.app.R
 import com.orange.ods.app.domain.recipes.LocalRecipes
 import com.orange.ods.app.ui.components.utilities.clickOnElement
 import com.orange.ods.app.ui.utilities.extension.isDarkModeEnabled
+import com.orange.ods.compose.component.appbar.top.OdsTopAppBar
+import com.orange.ods.compose.component.appbar.top.OdsTopAppBarActionButton
+import com.orange.ods.compose.component.appbar.top.OdsTopAppBarOverflowMenuBox
+import com.orange.ods.compose.component.menu.OdsDropdownMenuItem
 import com.orange.ods.compose.component.textfield.search.OdsSearchTextField
-import com.orange.ods.demo.R
-import com.orange.ods.demo.domain.recipes.LocalRecipes
-import com.orange.ods.demo.ui.components.utilities.clickOnElement
-import com.orange.ods.demo.ui.utilities.extension.isDarkModeEnabled
 
 @Composable
 fun MainTopAppBar(

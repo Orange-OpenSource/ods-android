@@ -51,22 +51,13 @@ import com.orange.ods.app.ui.components.addComponentsGraph
 import com.orange.ods.app.ui.components.tabs.FixedTabRow
 import com.orange.ods.app.ui.components.tabs.ScrollableTabRow
 import com.orange.ods.app.ui.guidelines.addGuidelinesGraph
+import com.orange.ods.app.ui.search.SearchScreen
 import com.orange.ods.app.ui.utilities.extension.isDarkModeEnabled
 import com.orange.ods.app.ui.utilities.extension.isOrange
 import com.orange.ods.compose.component.list.OdsListItem
 import com.orange.ods.compose.component.list.OdsRadioButtonTrailing
 import com.orange.ods.compose.text.OdsTextH6
 import com.orange.ods.compose.theme.OdsTheme
-import com.orange.ods.demo.R
-import com.orange.ods.demo.domain.recipes.LocalRecipes
-import com.orange.ods.demo.ui.about.addAboutGraph
-import com.orange.ods.demo.ui.components.addComponentsGraph
-import com.orange.ods.demo.ui.components.tabs.FixedTabRow
-import com.orange.ods.demo.ui.components.tabs.ScrollableTabRow
-import com.orange.ods.demo.ui.guidelines.addGuidelinesGraph
-import com.orange.ods.demo.ui.search.SearchScreen
-import com.orange.ods.demo.ui.utilities.extension.isDarkModeEnabled
-import com.orange.ods.demo.ui.utilities.extension.isOrange
 import com.orange.ods.theme.OdsThemeConfigurationContract
 import com.orange.ods.utilities.extension.orElse
 
@@ -258,6 +249,7 @@ private fun NavGraphBuilder.mainNavGraph(navigateToElement: (String, Long?, NavB
         route = MainDestinations.SearchRoute
     ) { from ->
         LocalMainTabsManager.current.clearTopAppBarTabs()
+        LocalMainTopAppBarManager.current.updateTopAppBarTitle(R.string.navigation_item_search)
         SearchScreen(searchedText, onComponentClick = { id -> navigateToElement(MainDestinations.ComponentDetailRoute, id, from) })
     }
 }
