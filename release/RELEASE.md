@@ -139,4 +139,4 @@ New module:
 [Demo app link](https://appdistribution.firebase.google.com/testerapps/1:212698857200:android:84f9ae5c588f21f25ecc35/releases/489r7j172cqn8?utm_source=firebase-console)
 ```
 
-Note: The demo app link can be copied from the release Firebase console. In `App Distribution`, find the X.Y.Z release and click on the `Copy` button.
+Note: The Orange Design System app link can be copied from the release Firebase console. In `App Distribution`, find the X.Y.Z release and click on the `Copy` button.

@@ -9,7 +9,7 @@
   -->
 
 <resources>
-    <string name="app_name">ODS Preview</string>
+    <string name="app_name">Orange Design System</string>
     <string name="code_implementation">Code implementation</string>
 
     <!-- Navigation -->
@@ -327,7 +327,7 @@
     <string name="modules_coming_soon">Coming soon…</string>
 
     <!-- About -->
-    <string name="about_app_name">ODS Demo</string>
+    <string name="about_app_name">Orange Design System</string>
     <string name="about_app_version">Version %1$s (%2$d)</string>
     <string name="about_copyright">Copyright notice</string>
     <string name="about_description">In this app you\'ll find implemented code examples of the guidelines, components and modules, for the themes of the Orange Design System.</string>
