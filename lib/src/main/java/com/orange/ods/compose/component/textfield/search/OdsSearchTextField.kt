@@ -82,15 +82,14 @@ private fun PreviewOdsSearchTextField(@PreviewParameter(OdsSearchTextFieldPrevie
                 value = value,
                 onValueChange = {
                 },
-                placeholder = placeholder,
+                placeholder = placeholder
             )
         }
     }
 
 private data class OdsSearchTextFieldPreviewParameter(
     val value: TextFieldValue,
-    val placeholder: String,
-    val singleLine: Boolean = false
+    val placeholder: String
 )
 
 private class OdsSearchTextFieldPreviewParameterProvider :
@@ -98,10 +97,10 @@ private class OdsSearchTextFieldPreviewParameterProvider :
 
 private val previewParameterValues: List<OdsSearchTextFieldPreviewParameter>
     get() {
-        val value = TextFieldValue("")
         val placeholder = "Search something"
 
         return listOf(
-            OdsSearchTextFieldPreviewParameter(value, placeholder = placeholder),
+            OdsSearchTextFieldPreviewParameter(TextFieldValue(""), placeholder),
+            OdsSearchTextFieldPreviewParameter(TextFieldValue("Text"), placeholder),
         )
     }
