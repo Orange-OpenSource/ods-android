@@ -10,10 +10,16 @@
 
 package com.orange.ods.app.ui
 
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.material.Icon
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ArrowBack
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.remember
+import androidx.compose.ui.Modifier
+import androidx.compose.ui.focus.FocusRequester
+import androidx.compose.ui.focus.focusRequester
 import androidx.compose.ui.platform.LocalConfiguration
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
@@ -26,10 +32,10 @@ import com.orange.ods.app.R
 import com.orange.ods.app.domain.recipes.LocalRecipes
 import com.orange.ods.app.ui.components.utilities.clickOnElement
 import com.orange.ods.app.ui.utilities.extension.isDarkModeEnabled
+import com.orange.ods.compose.component.textfield.search.OdsSearchTextField
 import com.orange.ods.demo.R
 import com.orange.ods.demo.domain.recipes.LocalRecipes
 import com.orange.ods.demo.ui.components.utilities.clickOnElement
-import com.orange.ods.demo.ui.search.SearchTextField
 import com.orange.ods.demo.ui.utilities.extension.isDarkModeEnabled
 
 @Composable
@@ -54,7 +60,20 @@ fun MainTopAppBar(
         onNavigationIconClick = upPress,
         actions = {
             if (state.titleRes.value == R.string.navigation_item_search) {
-                SearchTextField(state.searchedText)
+                val focusRequester = remember { FocusRequester() }
+                OdsSearchTextField(
+                    value = state.searchedText.value,
+                    onValueChange = { value ->
+                        state.searchedText.value = value
+                    },
+                    placeholder = stringResource(id = R.string.search_text_field_hint),
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .focusRequester(focusRequester)
+                )
+                LaunchedEffect(Unit) {
+                    focusRequester.requestFocus()
+                }
             } else {
                 TopAppBarActions(state, titleRes, onSearchActionClick, onChangeThemeActionClick)
             }

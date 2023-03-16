@@ -15,12 +15,8 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.MutableState
-import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.focus.FocusRequester
-import androidx.compose.ui.focus.focusRequester
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.input.TextFieldValue
@@ -28,7 +24,6 @@ import com.orange.ods.compose.component.list.OdsListItem
 import com.orange.ods.compose.component.list.OdsListItemIcon
 import com.orange.ods.compose.component.list.OdsListItemIconType
 import com.orange.ods.compose.component.list.iconType
-import com.orange.ods.compose.component.textfield.search.OdsSearchTextField
 import com.orange.ods.demo.R
 import com.orange.ods.demo.ui.LocalMainTopAppBarManager
 import com.orange.ods.demo.ui.components.components
@@ -39,24 +34,6 @@ fun SearchScreen(searchedText: MutableState<TextFieldValue>, onComponentClick: (
 
     LocalMainTopAppBarManager.current.updateTopAppBarTitle(R.string.navigation_item_search)
     ComponentList(searchedText = searchedText, onComponentClick)
-}
-
-@Composable
-fun SearchTextField(searchedText: MutableState<TextFieldValue>) {
-    val focusRequester = remember { FocusRequester() }
-    OdsSearchTextField(
-        value = searchedText.value,
-        onValueChange = { value ->
-            searchedText.value = value
-        },
-        placeholder = stringResource(id = R.string.search_text_field_hint),
-        modifier = Modifier
-            .fillMaxWidth()
-            .focusRequester(focusRequester)
-    )
-    LaunchedEffect(Unit) {
-        focusRequester.requestFocus()
-    }
 }
 
 @Composable
