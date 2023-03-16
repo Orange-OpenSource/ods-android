@@ -101,7 +101,6 @@ fun MainScreen(themeConfigurations: Set<OdsThemeConfigurationContract>, mainView
         LocalRecipes provides mainViewModel.recipes
     ) {
         var changeThemeDialogVisible by remember { mutableStateOf(false) }
-        val searchedText = remember { mutableStateOf(TextFieldValue("")) }
 
         OdsTheme(
             themeConfiguration = mainState.themeState.currentThemeConfiguration,
@@ -113,7 +112,6 @@ fun MainScreen(themeConfigurations: Set<OdsThemeConfigurationContract>, mainView
                     Surface(elevation = AppBarDefaults.TopAppBarElevation) {
                         Column {
                             SystemBarsColorSideEffect()
-                            mainState.topAppBarState.searchedText = searchedText
                             MainTopAppBar(
                                 titleRes = mainState.topAppBarState.titleRes.value,
                                 shouldShowUpNavigationIcon = !mainState.shouldShowBottomBar,
@@ -145,7 +143,7 @@ fun MainScreen(themeConfigurations: Set<OdsThemeConfigurationContract>, mainView
             ) { innerPadding ->
                 Box(modifier = Modifier.padding(innerPadding)) {
                     NavHost(mainState.navController, startDestination = MainDestinations.HomeRoute) {
-                        mainNavGraph(navigateToElement = mainState::navigateToElement, searchedText = searchedText)
+                        mainNavGraph(navigateToElement = mainState::navigateToElement, searchedText = mainState.topAppBarState.searchedText)
                     }
                 }
 
