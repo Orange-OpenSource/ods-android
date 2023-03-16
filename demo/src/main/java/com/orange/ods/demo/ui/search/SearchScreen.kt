@@ -49,7 +49,7 @@ fun SearchTextField(searchedText: MutableState<TextFieldValue>) {
         onValueChange = { value ->
             searchedText.value = value
         },
-        placeholder = stringResource(id = R.string.component_search),
+        placeholder = stringResource(id = R.string.search_text_field_hint),
         modifier = Modifier
             .fillMaxWidth()
             .focusRequester(focusRequester)

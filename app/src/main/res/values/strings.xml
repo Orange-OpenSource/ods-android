@@ -346,7 +346,7 @@
     <string name="navigation_item_information">Information</string>
 
     <!-- Search -->
-    <string name="component_search">Search components</string>
+    <string name="search_text_field_hint">Search components</string>
     <string name="search_content_description">Search icon</string>
 
 </resources>
