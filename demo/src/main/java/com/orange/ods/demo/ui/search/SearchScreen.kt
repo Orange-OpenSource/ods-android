@@ -60,7 +60,7 @@ fun SearchTextField(searchedText: MutableState<TextFieldValue>) {
 }
 
 @Composable
-fun ComponentList(searchedText: MutableState<TextFieldValue>, onComponentClick: (Long) -> Unit) {
+private fun ComponentList(searchedText: MutableState<TextFieldValue>, onComponentClick: (Long) -> Unit) {
 
     val filterComponents = components.filter { component ->
         searchedText.value.text.isEmpty() || stringResource(id = component.titleRes).lowercase().contains(searchedText.value.text.lowercase())
