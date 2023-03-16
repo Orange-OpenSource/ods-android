@@ -14,10 +14,6 @@ import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
-import androidx.compose.material.Text
-import androidx.compose.material.TextFieldDefaults
-import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.Close
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.MutableState
@@ -25,29 +21,24 @@ import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.focus.FocusRequester
 import androidx.compose.ui.focus.focusRequester
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
-import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.input.TextFieldValue
-import androidx.compose.ui.unit.sp
-import com.orange.ods.compose.component.button.OdsIconButton
 import com.orange.ods.compose.component.list.OdsListItem
 import com.orange.ods.compose.component.list.OdsListItemIcon
 import com.orange.ods.compose.component.list.OdsListItemIconType
 import com.orange.ods.compose.component.list.iconType
 import com.orange.ods.compose.component.textfield.search.OdsSearchTextField
-import com.orange.ods.compose.theme.OdsTheme
 import com.orange.ods.demo.R
 import com.orange.ods.demo.ui.LocalMainTopAppBarManager
 import com.orange.ods.demo.ui.components.components
 import com.orange.ods.utilities.extension.orElse
 
 @Composable
-fun SearchScreen(state: MutableState<TextFieldValue>, onComponentClick: (Long) -> Unit) {
+fun SearchScreen(searchedText: MutableState<TextFieldValue>, onComponentClick: (Long) -> Unit) {
 
     LocalMainTopAppBarManager.current.updateTopAppBarTitle(R.string.navigation_item_search)
-    ComponentList(searchedText = state, onComponentClick)
+    ComponentList(searchedText = searchedText, onComponentClick)
 }
 
 @Composable
