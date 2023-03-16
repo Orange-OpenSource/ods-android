@@ -82,14 +82,14 @@ private fun PreviewOdsSearchTextField(@PreviewParameter(OdsSearchTextFieldPrevie
                 value = value,
                 onValueChange = {
                 },
-                placeholder = stringResource(id = placeholder),
+                placeholder = placeholder,
             )
         }
     }
 
 private data class OdsSearchTextFieldPreviewParameter(
     val value: TextFieldValue,
-    val placeholder: Int,
+    val placeholder: String,
     val singleLine: Boolean = false
 )
 
@@ -99,10 +99,9 @@ private class OdsSearchTextFieldPreviewParameterProvider :
 private val previewParameterValues: List<OdsSearchTextFieldPreviewParameter>
     get() {
         val value = TextFieldValue("")
-        val placeholder = android.R.string.VideoView_error_text_unknown
+        val placeholder = "Search something"
 
         return listOf(
-            OdsSearchTextFieldPreviewParameter(value, placeholder = 0),
             OdsSearchTextFieldPreviewParameter(value, placeholder = placeholder),
         )
     }
