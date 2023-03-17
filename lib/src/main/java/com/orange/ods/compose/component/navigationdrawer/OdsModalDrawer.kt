@@ -36,7 +36,6 @@ import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.PreviewParameter
 import androidx.compose.ui.unit.dp
-import androidx.compose.ui.unit.sp
 import com.orange.ods.R
 import com.orange.ods.compose.component.OdsComponentApi
 import com.orange.ods.compose.component.divider.OdsDivider
@@ -58,24 +57,24 @@ import com.orange.ods.compose.theme.OdsTheme
  *
  * @param drawerState state of the drawer
  * @param modifier to be applied to this drawer
- * @param content content of the rest of the UI
  * @param headerParametersProvider content inside the header of the drawer
- * @param listContent content inside the body of the drawer
+ * @param drawerContentList content inside the body of the drawer
+ * @param content content of the rest of the UI
  */
 @Composable
 @OdsComponentApi
 fun OdsModalDrawer(
     modifier: Modifier = Modifier,
     drawerState: DrawerState = rememberDrawerState(DrawerValue.Closed),
-    content: @Composable () -> Unit,
-    headerParametersProvider: OdsModalDrawerHeaderParametersProvider,
-    listContent: List<OdsModalDrawerItem>
+    headerParametersProvider: OdsModalDrawerHeader,
+    drawerContentList: List<OdsModalDrawerItem>,
+    content: @Composable () -> Unit
 ) {
     ModalDrawer(
         drawerContent = {
-            OdsModalDrawerHeader(headerContent = headerParametersProvider)
+            DrawerHeader(headerContent = headerParametersProvider)
             OdsDivider()
-            listContent.forEach { item ->
+            drawerContentList.forEach { item ->
                 getItem(item = item).invoke()
             }
         },
@@ -124,7 +123,7 @@ internal fun getItem(item: OdsModalDrawerItem): @Composable (() -> Unit) {
     }
 }
 
-data class OdsModalDrawerHeaderParametersProvider(
+data class OdsModalDrawerHeader(
     var modifier: Modifier = Modifier,
     var title: String,
     var imageContentDescription: String? = null,
@@ -134,8 +133,8 @@ data class OdsModalDrawerHeaderParametersProvider(
 )
 
 @Composable
-internal fun OdsModalDrawerHeader(
-    headerContent: OdsModalDrawerHeaderParametersProvider
+internal fun DrawerHeader(
+    headerContent: OdsModalDrawerHeader
 ) {
     Box(
         modifier = headerContent.modifier
@@ -146,9 +145,9 @@ internal fun OdsModalDrawerHeader(
                 ) else dimensionResource(id = R.dimen.list_single_line_item_height)
             ),
     ) {
-        headerContent.backgroundImage?.let {
+        headerContent.backgroundImage?.let { backgroundPainter ->
             Image(
-                painter = it,
+                painter = backgroundPainter,
                 contentDescription = headerContent.imageContentDescription,
                 contentScale = ContentScale.Crop,
                 modifier = headerContent.modifier
@@ -163,9 +162,9 @@ internal fun OdsModalDrawerHeader(
                 OdsHeaderText(headerContent = headerContent, color = Color.White)
             }
         }
-        headerContent.avatar?.let {
+        headerContent.avatar?.let { avatarPainter ->
             OdsImageCircleShape(
-                painter = it,
+                painter = avatarPainter,
                 Modifier.padding(start = dimensionResource(id = R.dimen.spacing_m), top = 40.dp)
             )
             Column(Modifier.align(Alignment.BottomStart)) {
@@ -178,7 +177,7 @@ internal fun OdsModalDrawerHeader(
 }
 
 @Composable
-fun OdsHeaderText(headerContent: OdsModalDrawerHeaderParametersProvider, color: Color) {
+fun OdsHeaderText(headerContent: OdsModalDrawerHeader, color: Color) {
     Column(
         Modifier
             .padding(start = dimensionResource(id = R.dimen.spacing_m), top = 12.dp, bottom = 12.dp)
@@ -197,13 +196,13 @@ private fun PreviewOdsModalDrawer(@PreviewParameter(OdsModalDrawerPreviewParamet
         OdsModalDrawer(
             drawerState = rememberDrawerState(DrawerValue.Open),
             content = {},
-            headerParametersProvider = OdsModalDrawerHeaderParametersProvider(
+            headerParametersProvider = OdsModalDrawerHeader(
                 title = parameter.title,
                 subtitle = parameter.subtitle,
                 avatar = parameter.avatar?.let { painterResource(id = it) },
                 backgroundImage = parameter.backgroundImage?.let { painterResource(id = it) },
             ),
-            listContent = parameter.list
+            drawerContentList = parameter.list
         )
     }
 

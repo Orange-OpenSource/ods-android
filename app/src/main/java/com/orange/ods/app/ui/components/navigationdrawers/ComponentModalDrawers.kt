@@ -39,7 +39,7 @@ import com.orange.ods.compose.component.list.OdsListItem
 import com.orange.ods.compose.component.list.OdsSwitchTrailing
 import com.orange.ods.compose.component.navigationdrawer.OdsModalDrawer
 import com.orange.ods.compose.component.navigationdrawer.OdsModalDrawerDivider
-import com.orange.ods.compose.component.navigationdrawer.OdsModalDrawerHeaderParametersProvider
+import com.orange.ods.compose.component.navigationdrawer.OdsModalDrawerHeader
 import com.orange.ods.compose.component.navigationdrawer.OdsModalDrawerItem
 import com.orange.ods.compose.component.navigationdrawer.OdsModalDrawerListItem
 import com.orange.ods.compose.component.navigationdrawer.OdsModalDrawerSectionLabel
@@ -61,31 +61,31 @@ fun ComponentModalDrawers() {
     val scope = rememberCoroutineScope()
     val drawerState = rememberDrawerState(DrawerValue.Closed)
     val recipes = LocalRecipes.current
-    val recipe = rememberSaveable { recipes.filter { it.description.isNotBlank() }.random() }
     val list = mutableListOf<OdsModalDrawerItem>(
-        OdsModalDrawerListItem(if (customizationState.isListIcon) R.drawable.ic_heart else null, "label1"),
-        OdsModalDrawerListItem(if (customizationState.isListIcon) R.drawable.ic_heart else null, "label2"),
-        OdsModalDrawerListItem(if (customizationState.isListIcon) R.drawable.ic_heart else null, "label3")
+        OdsModalDrawerListItem(if (customizationState.isListIconChecked) R.drawable.ic_heart else null, "label1"),
+        OdsModalDrawerListItem(if (customizationState.isListIconChecked) R.drawable.ic_heart else null, "label2"),
+        OdsModalDrawerListItem(if (customizationState.isListIconChecked) R.drawable.ic_heart else null, "label3")
     )
     if (customizationState.hasDivider) list.add(2, OdsModalDrawerDivider)
     if (customizationState.hasLabel) list.add(2, OdsModalDrawerSectionLabel("Label"))
     OdsModalDrawer(
-        headerParametersProvider = OdsModalDrawerHeaderParametersProvider(
-            title = "Headline 6",
+        headerParametersProvider = OdsModalDrawerHeader(
+            title = stringResource(id = R.string.component_modal_drawers),
             backgroundImage = if (customizationState.hasBackground) rememberAsyncImagePainter(
-                model = recipe.imageUrl,
+                model = rememberSaveable { recipes.filter { it.description.isNotBlank() }.random() }.imageUrl,
                 placeholder = painterResource(id = R.drawable.placeholder),
                 error = painterResource(id = R.drawable.placeholder)
             ) else null,
-            subtitle = if (customizationState.isSubTitleChecked) stringResource(id = R.string.component_modal_drawer_list_icon) else null,
+            subtitle = if (customizationState.isSubTitleChecked) stringResource(id = R.string.component_element_example) else null,
             avatar = if (customizationState.hasAvatar) painterResource(id = R.drawable.placeholder) else null
         ),
-        listContent = if (customizationState.isContentExample) list else emptyList(),
+        drawerContentList = if (customizationState.isContentExampleChecked) list else emptyList(),
         drawerState = drawerState,
         content = {
             with(customizationState) {
-                if (!isContentExample) {
-                    listIconChecked.value = false; subTitleChecked.value = false
+                if (!isContentExampleChecked) {
+                    listIconChecked.value = false
+                    subTitleChecked.value = false
                 }
                 ComponentCustomizationBottomSheetScaffold(
                     bottomSheetScaffoldState = rememberBottomSheetScaffoldState(),
@@ -111,14 +111,14 @@ fun ComponentModalDrawers() {
                             text = stringResource(id = R.string.component_modal_drawer_subtitle),
                             trailing = OdsSwitchTrailing(
                                 checked = subTitleChecked,
-                                enabled = isContentExample
+                                enabled = isContentExampleChecked
                             )
                         )
                         OdsListItem(
                             text = stringResource(id = R.string.component_modal_drawer_list_icon),
                             trailing = OdsSwitchTrailing(
                                 checked = listIconChecked,
-                                enabled = isContentExample
+                                enabled = isContentExampleChecked
                             ),
                         )
                         OdsChoiceChipsFlowRow(

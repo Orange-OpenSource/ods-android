@@ -44,10 +44,10 @@ class ComponentNavigationDrawersContentState(
     val isSubTitleChecked
         get() = subTitleChecked.value
 
-    val isListIcon
+    val isListIconChecked
         get() = listIconChecked.value
 
-    val isContentExample
+    val isContentExampleChecked
         get() = contentExampleChecked.value
 
     enum class Header {
