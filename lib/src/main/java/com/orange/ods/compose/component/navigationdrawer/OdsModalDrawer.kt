@@ -168,11 +168,14 @@ internal fun DrawerHeader(
                 Modifier.padding(start = dimensionResource(id = R.dimen.spacing_m), top = 40.dp)
             )
             Column(Modifier.align(Alignment.BottomStart)) {
-                OdsHeaderText(headerContent = headerContent, color = Color.Black)
+                OdsHeaderText(headerContent = headerContent, color = OdsTheme.colors.onSurface)
             }
 
         }
-        if (headerContent.backgroundImage == null && headerContent.avatar == null) OdsHeaderText(headerContent = headerContent, color = Color.Black)
+        if (headerContent.backgroundImage == null && headerContent.avatar == null) OdsHeaderText(
+            headerContent = headerContent,
+            color = OdsTheme.colors.onSurface
+        )
     }
 }
 
@@ -219,12 +222,10 @@ private class OdsModalDrawerPreviewParameterProvider :
 
 private val previewParameterValues: List<OdsModalDrawerPreviewParameter>
     get() {
-        val backgroundImage = R.drawable.placeholder_small
         val title = "Headline 6"
         val avatar = R.drawable.placeholder
         val icon = R.drawable.ic_check
         val subtitle = "Body 2"
-        val noPicture = null
         val list = listOf(
             OdsModalDrawerListItem(icon, "label1"),
             OdsModalDrawerDivider,
@@ -234,17 +235,17 @@ private val previewParameterValues: List<OdsModalDrawerPreviewParameter>
         )
 
         return listOf(
-            OdsModalDrawerPreviewParameter(backgroundImage = backgroundImage, title = title, avatar = noPicture, subtitle = subtitle, list),
-            OdsModalDrawerPreviewParameter(backgroundImage, title, avatar = noPicture, subtitle = noPicture, list),
-            OdsModalDrawerPreviewParameter(backgroundImage = noPicture, title = title, avatar = avatar, subtitle = subtitle, list),
-            OdsModalDrawerPreviewParameter(backgroundImage = noPicture, title = title, avatar = avatar, subtitle = noPicture, list),
+            OdsModalDrawerPreviewParameter(backgroundImage = R.drawable.placeholder_small, title = title, avatar = null, subtitle = subtitle, list),
+            OdsModalDrawerPreviewParameter(R.drawable.placeholder_small, title, avatar = null, subtitle = null, list),
+            OdsModalDrawerPreviewParameter(backgroundImage = null, title = title, avatar = avatar, subtitle = subtitle, list),
+            OdsModalDrawerPreviewParameter(backgroundImage = null, title = title, avatar = avatar, subtitle = null, list),
             OdsModalDrawerPreviewParameter(
-                backgroundImage = noPicture, title = title, avatar = noPicture,
-                subtitle = noPicture,
+                backgroundImage = null, title = title, avatar = null,
+                subtitle = null,
                 list = emptyList()
             ),
             OdsModalDrawerPreviewParameter(
-                backgroundImage = noPicture, title = title, avatar = noPicture,
+                backgroundImage = null, title = title, avatar = null,
                 subtitle = subtitle,
                 list
             ),
