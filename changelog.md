@@ -7,9 +7,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased](https://github.com/Orange-OpenSource/ods-android/compare/0.11.1...develop)
 
-### Changed
+### Added
 
 - \[App\] Add component search feature ([#16](https://github.com/Orange-OpenSource/ods-android/issues/16))
+
+### Changed
+
 - \[App\] Update foods content
 - \[App\] Rename application ID to `com.orange.ods.app` and replace `demo` with `app` in the project ([#469](https://github.com/Orange-OpenSource/ods-android/issues/469))
 - \[App\] Update application name ([#474](https://github.com/Orange-OpenSource/ods-android/issues/474))
@@ -20,6 +23,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - \[App\] Fix accessibility bug where content change on chip type selection was not read by TalkBack ([#332](https://github.com/Orange-OpenSource/ods-android/issues/332))
 - \[App\] Fix accessibility bug where text fields error messages were not read by TalkBack on state change ([#359](https://github.com/Orange-OpenSource/ods-android/issues/359))
+- \[App\] Fix crash on scrolling in guideline colors screen ([#477](https://github.com/Orange-OpenSource/ods-android/issues/477))
 - \[Lib\] Implement workaround by adding content description to `OdsOutlinedTextField` in order to allow TalkBack to focus this type of text field ([#359](https://github.com/Orange-OpenSource/ods-android/issues/359))
 - \[Lib\] Fix a bug where image height is wrong in some cases in `OdsHorizontalCard` ([#445](https://github.com/Orange-OpenSource/ods-android/issues/445))
 
