@@ -34,16 +34,35 @@ You can use the `OdsModalDrawer` composable like this:
 ```kotlin
 OdsModalDrawer(
     drawerState = rememberDrawerState(DrawerValue.Closed),// or rememberDrawerState(DrawerValue.Open)
-    content = {
-        // Do something
+    drawerHeader = {
+        title = "Navigation Drawers" // title is mandatory in an `OdsModalDrawer`
+        imageContentDescription = "" // optional
+        backgroundImage =
+            painterResource(id = R.drawable.placeholder) //optional, we use it or avatar
+        subtitle = "Example" // optional
+        avatar = painterResource(id = R.drawable.placeholder) // optional, we use it or background
     },
-    headerParametersProvider = {
-        // Do something
-    },
-    listContent = {
-        // Do something
-    },
-)
+    drawerContentList = mutableListOf<OdsModalDrawerItem>(
+        OdsModalDrawerListItem( // `OdsModalDrawerListItem` is used to specified an item of the list
+            icon = R.drawable.ic_heart,
+            text = "label1"
+        ),
+        OdsModalDrawerListItem(
+            icon = R.drawable.ic_heart,
+            text = "label2"
+        ),
+        OdsModalDrawerDivider, // Optional, `OdsModalDrawerDivider` is used to apply a divider in a specific level of the list
+        OdsModalDrawerSectionLabel(
+            label = "Label"
+        ), // Optional, `OdsModalDrawerSectionLabel` is used to apply a divider and the text above the divider
+        OdsModalDrawerListItem(
+            icon = R.drawable.ic_heart,
+            text = "label3"
+        )
+    )
+) {
+    // The content of the rest of the UI
+}
 ```
 
 ## Component specific tokens

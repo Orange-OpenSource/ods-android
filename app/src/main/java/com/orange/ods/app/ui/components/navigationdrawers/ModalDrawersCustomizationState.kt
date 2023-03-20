@@ -21,16 +21,20 @@ fun rememberNavigationDrawersCustomizationState(
     subTitleChecked: MutableState<Boolean> = rememberSaveable { mutableStateOf(true) },
     listIconChecked: MutableState<Boolean> = rememberSaveable { mutableStateOf(false) },
     contentExampleChecked: MutableState<Boolean> = rememberSaveable { mutableStateOf(true) },
-    header: MutableState<ComponentNavigationDrawersContentState.Header> = rememberSaveable { mutableStateOf(ComponentNavigationDrawersContentState.Header.Avatar) },
-    content: MutableState<ComponentNavigationDrawersContentState.Content> = rememberSaveable { mutableStateOf(ComponentNavigationDrawersContentState.Content.None) }
+    headerImage: MutableState<ComponentNavigationDrawersContentState.HeaderImage> = rememberSaveable { mutableStateOf(ComponentNavigationDrawersContentState.HeaderImage.Avatar) },
+    sectionListExample: MutableState<ComponentNavigationDrawersContentState.SectionListExample> = rememberSaveable {
+        mutableStateOf(
+            ComponentNavigationDrawersContentState.SectionListExample.None
+        )
+    }
 ) =
-    remember(subTitleChecked, listIconChecked, contentExampleChecked, header, content) {
+    remember(subTitleChecked, listIconChecked, contentExampleChecked, headerImage, sectionListExample) {
         ComponentNavigationDrawersContentState(
             subTitleChecked,
             listIconChecked,
             contentExampleChecked,
-            content,
-            header
+            sectionListExample,
+            headerImage
         )
     }
 
@@ -38,8 +42,8 @@ class ComponentNavigationDrawersContentState(
     val subTitleChecked: MutableState<Boolean>,
     val listIconChecked: MutableState<Boolean>,
     val contentExampleChecked: MutableState<Boolean>,
-    val content: MutableState<Content>,
-    val header: MutableState<Header>
+    val content: MutableState<SectionListExample>,
+    val header: MutableState<HeaderImage>
 ) {
     val isSubTitleChecked
         get() = subTitleChecked.value
@@ -50,23 +54,23 @@ class ComponentNavigationDrawersContentState(
     val isContentExampleChecked
         get() = contentExampleChecked.value
 
-    enum class Header {
+    enum class HeaderImage {
         Avatar, Background, None
     }
 
-    enum class Content {
+    enum class SectionListExample {
         Divider, Label, None
     }
 
     val hasAvatar
-        get() = header.value == Header.Avatar
+        get() = header.value == HeaderImage.Avatar
 
     val hasBackground
-        get() = header.value == Header.Background
+        get() = header.value == HeaderImage.Background
 
     val hasDivider
-        get() = content.value == Content.Divider
+        get() = content.value == SectionListExample.Divider
 
     val hasLabel
-        get() = content.value == Content.Label
+        get() = content.value == SectionListExample.Label
 }

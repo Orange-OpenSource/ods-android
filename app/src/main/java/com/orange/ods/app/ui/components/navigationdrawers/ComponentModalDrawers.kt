@@ -69,7 +69,7 @@ fun ComponentModalDrawers() {
     if (customizationState.hasDivider) list.add(2, OdsModalDrawerDivider)
     if (customizationState.hasLabel) list.add(2, OdsModalDrawerSectionLabel("Label"))
     OdsModalDrawer(
-        headerParametersProvider = OdsModalDrawerHeader(
+        drawerHeader = OdsModalDrawerHeader(
             title = stringResource(id = R.string.component_modal_drawers),
             backgroundImage = if (customizationState.hasBackground) rememberAsyncImagePainter(
                 model = rememberSaveable { recipes.filter { it.description.isNotBlank() }.random() }.imageUrl,
@@ -100,12 +100,12 @@ fun ComponentModalDrawers() {
                             modifier = Modifier.padding(horizontal = dimensionResource(id = R.dimen.screen_horizontal_margin)),
                         ) {
                             Subtitle(textRes = R.string.component_modal_drawer_header_image)
-                            OdsChoiceChip(textRes = R.string.component_element_avatar, value = ComponentNavigationDrawersContentState.Header.Avatar)
+                            OdsChoiceChip(textRes = R.string.component_element_avatar, value = ComponentNavigationDrawersContentState.HeaderImage.Avatar)
                             OdsChoiceChip(
                                 textRes = R.string.component_modal_drawer_background,
-                                value = ComponentNavigationDrawersContentState.Header.Background
+                                value = ComponentNavigationDrawersContentState.HeaderImage.Background
                             )
-                            OdsChoiceChip(textRes = R.string.component_element_none, value = ComponentNavigationDrawersContentState.Header.None)
+                            OdsChoiceChip(textRes = R.string.component_element_none, value = ComponentNavigationDrawersContentState.HeaderImage.None)
                         }
                         OdsListItem(
                             text = stringResource(id = R.string.component_modal_drawer_subtitle),
@@ -127,12 +127,15 @@ fun ComponentModalDrawers() {
                             modifier = Modifier.padding(horizontal = dimensionResource(id = R.dimen.screen_horizontal_margin)),
                         ) {
                             Subtitle(textRes = R.string.component_modal_drawer_list_example)
-                            OdsChoiceChip(textRes = R.string.component_element_divider, value = ComponentNavigationDrawersContentState.Content.Divider)
+                            OdsChoiceChip(
+                                textRes = R.string.component_element_divider,
+                                value = ComponentNavigationDrawersContentState.SectionListExample.Divider
+                            )
                             OdsChoiceChip(
                                 textRes = R.string.component_element_label,
-                                value = ComponentNavigationDrawersContentState.Content.Label
+                                value = ComponentNavigationDrawersContentState.SectionListExample.Label
                             )
-                            OdsChoiceChip(textRes = R.string.component_element_none, value = ComponentNavigationDrawersContentState.Content.None)
+                            OdsChoiceChip(textRes = R.string.component_element_none, value = ComponentNavigationDrawersContentState.SectionListExample.None)
                         }
                     }) {
                     Column {

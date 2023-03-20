@@ -35,6 +35,7 @@ import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.PreviewParameter
+import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import com.orange.ods.R
 import com.orange.ods.compose.component.OdsComponentApi
@@ -57,7 +58,7 @@ import com.orange.ods.compose.theme.OdsTheme
  *
  * @param drawerState state of the drawer
  * @param modifier to be applied to this drawer
- * @param headerParametersProvider content inside the header of the drawer
+ * @param drawerHeader content inside the header of the drawer
  * @param drawerContentList content inside the body of the drawer
  * @param content content of the rest of the UI
  */
@@ -66,13 +67,13 @@ import com.orange.ods.compose.theme.OdsTheme
 fun OdsModalDrawer(
     modifier: Modifier = Modifier,
     drawerState: DrawerState = rememberDrawerState(DrawerValue.Closed),
-    headerParametersProvider: OdsModalDrawerHeader,
+    drawerHeader: OdsModalDrawerHeader,
     drawerContentList: List<OdsModalDrawerItem>,
     content: @Composable () -> Unit
 ) {
     ModalDrawer(
         drawerContent = {
-            DrawerHeader(headerContent = headerParametersProvider)
+            ModalDrawerHeader(drawerHeader = drawerHeader)
             OdsDivider()
             drawerContentList.forEach { item ->
                 getItem(item = item).invoke()
@@ -133,24 +134,25 @@ data class OdsModalDrawerHeader(
 )
 
 @Composable
-internal fun DrawerHeader(
-    headerContent: OdsModalDrawerHeader
+internal fun ModalDrawerHeader(
+    drawerHeader: OdsModalDrawerHeader,
+    DrawerHeaderMaxHeight: Dp = 167.dp
 ) {
     Box(
-        modifier = headerContent.modifier
+        modifier = drawerHeader.modifier
             .fillMaxWidth()
             .height(
-                if (headerContent.backgroundImage != null || headerContent.avatar != null) 167.dp else if (headerContent.subtitle != null) dimensionResource(
-                    id = R.dimen.list_two_line_item_height
+                if (drawerHeader.backgroundImage != null || drawerHeader.avatar != null) DrawerHeaderMaxHeight else if (drawerHeader.subtitle != null) dimensionResource(
+                    id = R.dimen.list_two_line_with_icon_item_height
                 ) else dimensionResource(id = R.dimen.list_single_line_item_height)
             ),
     ) {
-        headerContent.backgroundImage?.let { backgroundPainter ->
+        drawerHeader.backgroundImage?.let { backgroundPainter ->
             Image(
                 painter = backgroundPainter,
-                contentDescription = headerContent.imageContentDescription,
+                contentDescription = drawerHeader.imageContentDescription,
                 contentScale = ContentScale.Crop,
-                modifier = headerContent.modifier
+                modifier = drawerHeader.modifier
                     .fillMaxWidth()
             )
             Surface(
@@ -159,31 +161,30 @@ internal fun DrawerHeader(
                     .align(Alignment.BottomStart)
                     .fillMaxWidth()
             ) {
-                OdsHeaderText(headerContent = headerContent, color = Color.White)
+                OdsHeaderText(headerContent = drawerHeader, color = Color.White)
             }
         }
-        headerContent.avatar?.let { avatarPainter ->
+        drawerHeader.avatar?.let { avatarPainter ->
             OdsImageCircleShape(
                 painter = avatarPainter,
-                Modifier.padding(start = dimensionResource(id = R.dimen.spacing_m), top = 40.dp)
+                Modifier.padding(start = dimensionResource(id = R.dimen.spacing_m), top = dimensionResource(id = R.dimen.avatar_size))
             )
             Column(Modifier.align(Alignment.BottomStart)) {
-                OdsHeaderText(headerContent = headerContent, color = OdsTheme.colors.onSurface)
+                OdsHeaderText(headerContent = drawerHeader, color = OdsTheme.colors.onSurface)
             }
-
         }
-        if (headerContent.backgroundImage == null && headerContent.avatar == null) OdsHeaderText(
-            headerContent = headerContent,
+        if (drawerHeader.backgroundImage == null && drawerHeader.avatar == null) OdsHeaderText(
+            headerContent = drawerHeader,
             color = OdsTheme.colors.onSurface
         )
     }
 }
 
 @Composable
-fun OdsHeaderText(headerContent: OdsModalDrawerHeader, color: Color) {
+fun OdsHeaderText(headerContent: OdsModalDrawerHeader, color: Color, headerTextHeight: Dp = 12.dp) {
     Column(
         Modifier
-            .padding(start = dimensionResource(id = R.dimen.spacing_m), top = 12.dp, bottom = 12.dp)
+            .padding(start = dimensionResource(id = R.dimen.spacing_m), top = headerTextHeight, bottom = headerTextHeight)
     ) {
         Text(text = headerContent.title, color = color, style = OdsTheme.typography.h6)
         headerContent.subtitle?.let {
@@ -199,7 +200,7 @@ private fun PreviewOdsModalDrawer(@PreviewParameter(OdsModalDrawerPreviewParamet
         OdsModalDrawer(
             drawerState = rememberDrawerState(DrawerValue.Open),
             content = {},
-            headerParametersProvider = OdsModalDrawerHeader(
+            drawerHeader = OdsModalDrawerHeader(
                 title = parameter.title,
                 subtitle = parameter.subtitle,
                 avatar = parameter.avatar?.let { painterResource(id = it) },
