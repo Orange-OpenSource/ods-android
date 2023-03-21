@@ -13,7 +13,6 @@ package com.orange.ods.app.ui
 import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.animation.fadeIn
 import androidx.compose.animation.fadeOut
-import androidx.compose.foundation.background
 import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.padding
@@ -24,18 +23,12 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.runtime.MutableState
 import androidx.compose.runtime.SideEffect
-import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
 import androidx.compose.runtime.saveable.rememberSaveable
-import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalConfiguration
-import androidx.compose.ui.res.dimensionResource
-import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.input.TextFieldValue
 import androidx.compose.ui.unit.dp
-import androidx.compose.ui.window.Dialog
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavBackStackEntry
 import androidx.navigation.NavGraphBuilder
@@ -54,9 +47,6 @@ import com.orange.ods.app.ui.guidelines.addGuidelinesGraph
 import com.orange.ods.app.ui.search.SearchScreen
 import com.orange.ods.app.ui.utilities.extension.isDarkModeEnabled
 import com.orange.ods.app.ui.utilities.extension.isOrange
-import com.orange.ods.compose.component.list.OdsListItem
-import com.orange.ods.compose.component.list.OdsRadioButtonTrailing
-import com.orange.ods.compose.text.OdsTextH6
 import com.orange.ods.compose.theme.OdsTheme
 import com.orange.ods.theme.OdsThemeConfigurationContract
 import com.orange.ods.utilities.extension.orElse
@@ -86,12 +76,10 @@ fun MainScreen(themeConfigurations: Set<OdsThemeConfigurationContract>, mainView
     CompositionLocalProvider(
         LocalConfiguration provides configuration,
         LocalMainTopAppBarManager provides mainState.topAppBarState,
-        LocalMainThemeManager provides mainState.themeState,
+        LocalThemeManager provides mainState.themeState,
         LocalOdsGuideline provides mainState.themeState.currentThemeConfiguration.guideline,
         LocalRecipes provides mainViewModel.recipes
     ) {
-        var changeThemeDialogVisible by remember { mutableStateOf(false) }
-
         OdsTheme(
             themeConfiguration = mainState.themeState.currentThemeConfiguration,
             darkThemeEnabled = configuration.isDarkModeEnabled
@@ -106,14 +94,13 @@ fun MainScreen(themeConfigurations: Set<OdsThemeConfigurationContract>, mainView
                                 SystemBarsColorSideEffect()
                                 MainTopAppBar(
                                     shouldShowUpNavigationIcon = !mainState.shouldShowBottomBar,
-                                    state = mainState.topAppBarState,
+                                    topAppBarState = mainState.topAppBarState,
                                     upPress = mainState::upPress,
-                                    onChangeThemeActionClick = { changeThemeDialogVisible = true },
                                     onSearchActionClick = {
                                         mainState.navController.navigate(MainDestinations.SearchRoute)
-                                    }
-                                )
-                                // Display tabs in the top bar if needed
+                                    },
+                                    extended = false
+                                )                                // Display tabs in the top bar if needed
                                 MainTabs(mainTabsState = mainState.topAppBarState.tabsState)
                             }
                         }
@@ -140,18 +127,6 @@ fun MainScreen(themeConfigurations: Set<OdsThemeConfigurationContract>, mainView
                 ) {
                     mainNavGraph(navigateToElement = mainState::navigateToElement, searchedText = mainState.topAppBarState.searchedText)
                 }
-
-                if (changeThemeDialogVisible) {
-                    ChangeThemeDialog(
-                        themeState = mainState.themeState,
-                        dismissDialog = {
-                            changeThemeDialogVisible = false
-                        },
-                        onThemeSelected = {
-                            mainViewModel.storeUserThemeName(mainState.themeState.currentThemeConfiguration.name)
-                        }
-                    )
-                }
             }
         }
     }
@@ -165,38 +140,6 @@ private fun getCurrentThemeConfiguration(
     return themeConfigurations.firstOrNull { it.name == storedUserThemeName }
         .orElse { themeConfigurations.firstOrNull { it.isOrange } }
         .orElse { themeConfigurations.first() }
-}
-
-@Composable
-private fun ChangeThemeDialog(themeState: MainThemeState, dismissDialog: () -> Unit, onThemeSelected: () -> Unit) {
-    val selectedRadio = rememberSaveable { mutableStateOf(themeState.currentThemeConfiguration.name) }
-
-    Dialog(onDismissRequest = dismissDialog) {
-        Column(modifier = Modifier.background(OdsTheme.colors.surface)) {
-            OdsTextH6(
-                text = stringResource(R.string.top_app_bar_action_change_theme_desc),
-                modifier = Modifier
-                    .padding(top = dimensionResource(R.dimen.spacing_m), bottom = dimensionResource(id = R.dimen.spacing_s))
-                    .padding(horizontal = dimensionResource(R.dimen.screen_horizontal_margin))
-            )
-            themeState.themeConfigurations.forEach { themeConfiguration ->
-                OdsListItem(
-                    text = themeConfiguration.name,
-                    trailing = OdsRadioButtonTrailing(
-                        selectedRadio = selectedRadio,
-                        currentRadio = themeConfiguration.name,
-                        onClick = {
-                            if (themeConfiguration != themeState.currentThemeConfiguration) {
-                                themeState.currentThemeConfiguration = themeConfiguration
-                                onThemeSelected()
-                            }
-                            dismissDialog()
-                        }
-                    )
-                )
-            }
-        }
-    }
 }
 
 @Composable

@@ -25,17 +25,17 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
-import com.orange.ods.compose.component.list.OdsCaptionTrailing
-import com.orange.ods.compose.component.list.OdsListItem
-import com.orange.ods.compose.component.list.divider
-import com.orange.ods.compose.text.OdsTextSubtitle1
 import com.orange.ods.app.R
-import com.orange.ods.app.ui.LocalMainThemeManager
 import com.orange.ods.app.ui.LocalMainTopAppBarManager
+import com.orange.ods.app.ui.LocalThemeManager
 import com.orange.ods.app.ui.guidelines.Guideline
 import com.orange.ods.app.ui.utilities.DrawableManager
 import com.orange.ods.app.ui.utilities.composable.DetailScreenHeader
 import com.orange.ods.app.ui.utilities.extension.isOrange
+import com.orange.ods.compose.component.list.OdsCaptionTrailing
+import com.orange.ods.compose.component.list.OdsListItem
+import com.orange.ods.compose.component.list.divider
+import com.orange.ods.compose.text.OdsTextSubtitle1
 import java.text.DecimalFormat
 import java.text.DecimalFormatSymbols
 import java.util.*
@@ -89,7 +89,7 @@ private fun GuidelineSpacingImage(spacing: Spacing) {
     val spacingWidth = dimensionResource(id = spacing.dimenRes).coerceAtLeast(1.dp)
     val imageWidth = dimensionResource(id = R.dimen.guideline_spacing_image_width)
     val imageHeight = dimensionResource(id = R.dimen.guideline_spacing_image_height)
-    val isOrangeTheme = LocalMainThemeManager.current.currentThemeConfiguration.isOrange
+    val isOrangeTheme = LocalThemeManager.current.currentThemeConfiguration.isOrange
 
     Canvas(
         modifier = Modifier

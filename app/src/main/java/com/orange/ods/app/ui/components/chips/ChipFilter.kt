@@ -23,17 +23,17 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import coil.compose.rememberAsyncImagePainter
 import com.google.accompanist.flowlayout.FlowRow
+import com.orange.ods.app.R
+import com.orange.ods.app.domain.recipes.Ingredient
+import com.orange.ods.app.domain.recipes.LocalRecipes
+import com.orange.ods.app.ui.LocalThemeManager
+import com.orange.ods.app.ui.components.utilities.ComponentCustomizationBottomSheetScaffold
+import com.orange.ods.app.ui.utilities.composable.Subtitle
 import com.orange.ods.compose.component.chip.OdsChoiceChip
 import com.orange.ods.compose.component.chip.OdsChoiceChipsFlowRow
 import com.orange.ods.compose.component.chip.OdsFilterChip
 import com.orange.ods.compose.component.list.OdsListItem
 import com.orange.ods.compose.component.list.OdsSwitchTrailing
-import com.orange.ods.app.R
-import com.orange.ods.app.domain.recipes.Ingredient
-import com.orange.ods.app.domain.recipes.LocalRecipes
-import com.orange.ods.app.ui.LocalMainThemeManager
-import com.orange.ods.app.ui.components.utilities.ComponentCustomizationBottomSheetScaffold
-import com.orange.ods.app.ui.utilities.composable.Subtitle
 import com.orange.ods.theme.OdsComponentsConfiguration.ComponentStyle
 
 @OptIn(ExperimentalMaterialApi::class)
@@ -78,7 +78,7 @@ fun ChipFilter() {
 
 @Composable
 private fun FilterChip(ingredient: Ingredient, customizationState: ChipCustomizationState) {
-    val outlinedChips = LocalMainThemeManager.current.currentThemeConfiguration.componentsConfiguration.chipStyle == ComponentStyle.Outlined
+    val outlinedChips = LocalThemeManager.current.currentThemeConfiguration.componentsConfiguration.chipStyle == ComponentStyle.Outlined
     val selected = rememberSaveable { mutableStateOf(false) }
     OdsFilterChip(
         text = ingredient.food.name,
