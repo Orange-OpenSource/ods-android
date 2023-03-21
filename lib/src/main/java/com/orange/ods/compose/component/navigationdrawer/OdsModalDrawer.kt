@@ -55,7 +55,6 @@ import com.orange.ods.compose.theme.OdsTheme
 /**
  * Navigation drawers provide ergonomic access to destinations in an app.
  *
- *
  * @param drawerState state of the drawer
  * @param modifier to be applied to this drawer
  * @param drawerHeader content inside the header of the drawer

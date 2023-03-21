@@ -11,6 +11,7 @@
 package com.orange.ods.app.data.recipes
 
 import com.orange.ods.app.R
+import com.orange.ods.app.domain.recipes.Category
 import com.orange.ods.app.domain.recipes.Food
 import com.orange.ods.app.domain.recipes.Ingredient
 import com.orange.ods.app.domain.recipes.Recipe
@@ -38,16 +39,20 @@ class RecipesParser {
         private const val Id = "id"
         private const val Name = "name"
         private const val Image = "image"
+        private const val CategoryId = "catId"
+        private const val Category = "category"
     }
 
     @Throws(JSONException::class, NoSuchElementException::class)
     fun parseRecipes(jsonString: String): List<Recipe> {
         val jsonObject = JSONObject(jsonString)
+        val jsonCategories = jsonObject.getJSONArray(Category)
+        val categories = List(jsonCategories.length()) { parseCategory(jsonCategories.getJSONObject(it)) }
         val jsonFoods = jsonObject.getJSONArray(Foods)
         val foods = List(jsonFoods.length()) { parseFood(jsonFoods.getJSONObject(it)) }
         val jsonRecipes = jsonObject.getJSONArray(Recipes)
 
-        return List(jsonRecipes.length()) { parseRecipe(jsonRecipes.getJSONObject(it), foods) }
+        return List(jsonRecipes.length()) { parseRecipe(jsonRecipes.getJSONObject(it), foods, categories) }
     }
 
     @Throws(JSONException::class)
@@ -59,10 +64,22 @@ class RecipesParser {
         return Food(id, name, image)
     }
 
+    @Throws(JSONException::class)
+    fun parseCategory(jsonCategory: JSONObject): Category {
+        val id = jsonCategory.getInt(Id)
+        val name = jsonCategory.getString(Name)
+        val iconName = jsonCategory.getString(IconName)
+        val iconResId = getIconResId(iconName)
+
+        return Category(id, name, iconResId)
+    }
+
     @Throws(JSONException::class, NoSuchElementException::class)
-    private fun parseRecipe(jsonRecipe: JSONObject, foods: List<Food>): Recipe {
+    private fun parseRecipe(jsonRecipe: JSONObject, foods: List<Food>, categories: List<Category>): Recipe {
         val title = jsonRecipe.getString(Title)
         val subtitle = jsonRecipe.getString(Subtitle)
+        val categoryId = jsonRecipe.getInt(CategoryId)
+        val category = categories.first { it.id == categoryId }
         val description = jsonRecipe.getString(Description)
         val url = jsonRecipe.getString(Url)
         val iconName = jsonRecipe.getString(IconName)
@@ -70,7 +87,7 @@ class RecipesParser {
         val jsonIngredients = jsonRecipe.getJSONArray(Ingredients)
         val ingredients = List(jsonIngredients.length()) { parseIngredient(jsonIngredients.getJSONObject(it), foods) }
 
-        return Recipe(title, subtitle, ingredients, description, url, iconResId)
+        return Recipe(title, category, subtitle, ingredients, description, url, iconResId)
     }
 
     @Throws(JSONException::class, NoSuchElementException::class)

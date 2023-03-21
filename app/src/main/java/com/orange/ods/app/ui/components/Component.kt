@@ -141,7 +141,6 @@ sealed class Component(
         R.drawable.il_navigation_drawers,
         null,
         R.string.component_menus_description,
-        listOf(Variant.ModalDrawer)
     )
 
     object Progress : Component(
@@ -241,8 +240,6 @@ sealed class Variant(
 
     object ProgressLinear : Variant(R.string.component_progress_linear, OdsComponent.OdsLinearProgressIndicator.name)
     object ProgressCircular : Variant(R.string.component_progress_circular, OdsComponent.OdsCircularProgressIndicator.name)
-
-    object ModalDrawer : Variant(R.string.component_modal_drawer_side, OdsComponent.OdsModalDrawer.name)
 
     object TextField : Variant(R.string.component_text_field_text, OdsComponent.OdsTextField.name)
     object TextFieldPassword : Variant(R.string.component_text_field_password, OdsComponent.OdsPasswordTextField.name)

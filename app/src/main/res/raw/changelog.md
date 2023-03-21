@@ -10,6 +10,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Added
 
 - \[App\] Add component search feature ([#16](https://github.com/Orange-OpenSource/ods-android/issues/16))
+- \[App\] Add modal drawers component ([#112](https://github.com/Orange-OpenSource/ods-android/issues/112))
+- \[Lib\] Add `OdsModalDrawer` component ([#112](https://github.com/Orange-OpenSource/ods-android/issues/112))
 
 ### Changed
 

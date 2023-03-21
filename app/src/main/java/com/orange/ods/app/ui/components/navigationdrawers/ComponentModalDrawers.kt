@@ -25,8 +25,8 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import coil.compose.rememberAsyncImagePainter
 import com.orange.ods.app.R
+import com.orange.ods.app.domain.recipes.LocalCategories
 import com.orange.ods.app.domain.recipes.LocalRecipes
-import com.orange.ods.app.ui.components.Variant
 import com.orange.ods.app.ui.components.utilities.ComponentCustomizationBottomSheetScaffold
 import com.orange.ods.app.ui.components.utilities.ComponentLaunchContentColumn
 import com.orange.ods.app.ui.utilities.composable.CodeImplementationColumn
@@ -45,15 +45,6 @@ import com.orange.ods.compose.component.navigationdrawer.OdsModalDrawerListItem
 import com.orange.ods.compose.component.navigationdrawer.OdsModalDrawerSectionLabel
 import kotlinx.coroutines.launch
 
-
-@Composable
-fun ComponentModalDrawer(variant: Variant) {
-    when (variant) {
-        Variant.ModalDrawer -> ComponentModalDrawers()
-        else -> {}
-    }
-}
-
 @OptIn(ExperimentalMaterialApi::class)
 @Composable
 fun ComponentModalDrawers() {
@@ -61,13 +52,12 @@ fun ComponentModalDrawers() {
     val scope = rememberCoroutineScope()
     val drawerState = rememberDrawerState(DrawerValue.Closed)
     val recipes = LocalRecipes.current
-    val list = mutableListOf<OdsModalDrawerItem>(
-        OdsModalDrawerListItem(if (customizationState.isListIconChecked) R.drawable.ic_heart else null, "label1"),
-        OdsModalDrawerListItem(if (customizationState.isListIconChecked) R.drawable.ic_heart else null, "label2"),
-        OdsModalDrawerListItem(if (customizationState.isListIconChecked) R.drawable.ic_heart else null, "label3")
-    )
-    if (customizationState.hasDivider) list.add(2, OdsModalDrawerDivider)
-    if (customizationState.hasLabel) list.add(2, OdsModalDrawerSectionLabel("Label"))
+    val categories = LocalCategories.current
+    val list: MutableList<OdsModalDrawerItem> = categories.map {
+        OdsModalDrawerListItem(if (customizationState.isListIconChecked) recipes[1].iconResId else null, it.name)
+    }.toMutableList()
+    if (customizationState.hasDivider) list.add(3, OdsModalDrawerDivider)
+    if (customizationState.hasLabel) list.add(3, OdsModalDrawerSectionLabel("Ingredients"))
     OdsModalDrawer(
         drawerHeader = OdsModalDrawerHeader(
             title = stringResource(id = R.string.component_modal_drawers),
