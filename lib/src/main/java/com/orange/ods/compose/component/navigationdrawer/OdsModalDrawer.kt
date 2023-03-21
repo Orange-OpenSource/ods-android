@@ -12,12 +12,13 @@ package com.orange.ods.compose.component.navigationdrawer
 
 import androidx.annotation.DrawableRes
 import androidx.compose.foundation.Image
-import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.items
 import androidx.compose.material.DrawerDefaults
 import androidx.compose.material.DrawerState
 import androidx.compose.material.DrawerValue
@@ -74,8 +75,10 @@ fun OdsModalDrawer(
         drawerContent = {
             ModalDrawerHeader(drawerHeader = drawerHeader)
             OdsDivider()
-            drawerContentList.forEach { item ->
-                getItem(item = item).invoke()
+            LazyColumn {
+                items(drawerContentList) { item ->
+                    getItem(item = item).invoke()
+                }
             }
         },
         drawerState = drawerState,
@@ -109,8 +112,7 @@ internal fun getItem(item: OdsModalDrawerItem): @Composable (() -> Unit) {
             {
                 OdsListItem(
                     modifier = Modifier
-                        .iconType(OdsListItemIconType.Icon)
-                        .background(color = Color.Red),
+                        .iconType(OdsListItemIconType.Icon),
                     text = item.text,
                     icon = item.icon?.let { { OdsListItemIcon(painterResource(id = it)) } })
             }
@@ -248,6 +250,6 @@ private val previewParameterValues: List<OdsModalDrawerPreviewParameter>
                 backgroundImage = null, title = title, avatar = null,
                 subtitle = subtitle,
                 list
-            ),
+            )
         )
     }

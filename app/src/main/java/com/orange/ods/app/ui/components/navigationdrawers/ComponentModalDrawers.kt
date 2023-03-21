@@ -54,10 +54,11 @@ fun ComponentModalDrawers() {
     val recipes = LocalRecipes.current
     val categories = LocalCategories.current
     val list: MutableList<OdsModalDrawerItem> = categories.map {
-        OdsModalDrawerListItem(if (customizationState.isListIconChecked) recipes[1].iconResId else null, it.name)
+        OdsModalDrawerListItem(if (customizationState.isListIconChecked) it.iconResId else null, it.name)
     }.toMutableList()
     if (customizationState.hasDivider) list.add(3, OdsModalDrawerDivider)
-    if (customizationState.hasLabel) list.add(3, OdsModalDrawerSectionLabel("Ingredients"))
+    if (customizationState.hasLabel) list.add(3, OdsModalDrawerSectionLabel(stringResource(id = R.string.component_modal_drawer_label_example)))
+
     OdsModalDrawer(
         drawerHeader = OdsModalDrawerHeader(
             title = stringResource(id = R.string.component_modal_drawers),
@@ -69,7 +70,7 @@ fun ComponentModalDrawers() {
             subtitle = if (customizationState.isSubTitleChecked) stringResource(id = R.string.component_element_example) else null,
             avatar = if (customizationState.hasAvatar) painterResource(id = R.drawable.placeholder) else null
         ),
-        drawerContentList = if (customizationState.isContentExampleChecked) list else emptyList(),
+        drawerContentList = if (customizationState.isContentExampleChecked) list.distinct() else emptyList(),
         drawerState = drawerState,
         content = {
             with(customizationState) {

@@ -217,6 +217,7 @@
     <string name="component_modal_drawer_header_image">Header image</string>
     <string name="component_modal_drawer_content_example">Content example</string>
     <string name="component_modal_drawer_list_example">Section list example</string>
+    <string name="component_modal_drawer_label_example">Ingredients</string>
 
     <!-- Component Radio Buttons -->
     <string name="component_radio_buttons">Radio Buttons</string>
