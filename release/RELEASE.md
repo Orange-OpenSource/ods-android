@@ -6,7 +6,7 @@ This file lists all the steps to follow when releasing a new version of ODS Andr
 - [Release](#release)
   * [Publish release to Maven Central](#publish-release-to-maven-central)
   * [Publish release to GitHub](#publish-release-to-github)
-  * [Build unsigned APK for Google Play Store](#build-unsigned-apk-for-google-play-store)
+  * [Build unsigned APK and bundle for Google Play Store](#build-unsigned-apk-and-bundle-for-google-play-store)
   * [Announce the new release on FoODS](#announce-the-new-release-on-foods)<br /><br />
 
 ## Prepare release
@@ -114,11 +114,11 @@ This file lists all the steps to follow when releasing a new version of ODS Andr
 
 - Optionally check `Set as a pre-release` and click `Publish release`.<br /><br />
 
-### Build unsigned APK for Google Play Store
+### Build unsigned APK and bundle for Google Play Store
 
 - Go to [GitHub Actions](https://github.com/Orange-OpenSource/ods-android/actions), open the release workflow, click `Review deployments`, select `google-play-store-release` and click `Approve and deploy`.
 
-- Click `google-play-store` in the artifacts section to download the unsigned APK.<br /><br />
+- Click `google-play-store` in the artifacts section to download unsigned APK and bundle.<br /><br />
 
 ### Announce the new release on FoODS
 

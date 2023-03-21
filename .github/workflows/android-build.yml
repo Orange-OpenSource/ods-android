@@ -165,11 +165,13 @@ jobs:
           distribution: 'zulu'
           java-version: '11'
 
-      - name: Build unsigned APK for Google Play Store
-        run: ./gradlew assembleRelease
+      - name: Build unsigned APK and bundle for Google Play Store
+        run: ./gradlew assembleRelease bundleRelease
 
       - name: Store Google Play Store artifacts
         uses: actions/upload-artifact@v3
         with:
           name: google-play-store
-          path: app/build/outputs/apk/*/*.apk
+          path: |
+            app/build/outputs/apk/*/*.apk
+            app/build/outputs/bundle/*/*.aab
