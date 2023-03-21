@@ -105,7 +105,6 @@ fun MainScreen(themeConfigurations: Set<OdsThemeConfigurationContract>, mainView
                             Column {
                                 SystemBarsColorSideEffect()
                                 MainTopAppBar(
-                                    titleRes = mainState.topAppBarState.titleRes.value,
                                     shouldShowUpNavigationIcon = !mainState.shouldShowBottomBar,
                                     state = mainState.topAppBarState,
                                     upPress = mainState::upPress,

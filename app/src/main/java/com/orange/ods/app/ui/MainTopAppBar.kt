@@ -36,15 +36,15 @@ import com.orange.ods.compose.component.textfield.search.OdsSearchTextField
 
 @Composable
 fun MainTopAppBar(
-    titleRes: Int,
     shouldShowUpNavigationIcon: Boolean,
     state: MainTopAppBarState,
     upPress: () -> Unit,
     onChangeThemeActionClick: () -> Unit,
     onSearchActionClick: () -> Unit
 ) {
+    val titleResId = state.titleRes.value
     OdsTopAppBar(
-        title = stringResource(id = titleRes),
+        title = stringResource(id = titleResId),
         navigationIcon = if (shouldShowUpNavigationIcon && state.isNavigationIconEnabled) {
             {
                 Icon(
@@ -71,7 +71,7 @@ fun MainTopAppBar(
                     focusRequester.requestFocus()
                 }
             } else {
-                TopAppBarActions(state, titleRes, onSearchActionClick, onChangeThemeActionClick)
+                TopAppBarActions(state, titleResId, onSearchActionClick, onChangeThemeActionClick)
             }
         },
         elevated = false // elevation is managed in [MainScreen] cause of tabs
@@ -79,9 +79,9 @@ fun MainTopAppBar(
 }
 
 @Composable
-private fun TopAppBarActions(state: MainTopAppBarState, titleRes: Int, onSearchActionClick: () -> Unit, onChangeThemeActionClick: () -> Unit) {
+private fun TopAppBarActions(state: MainTopAppBarState, titleResId: Int, onSearchActionClick: () -> Unit, onChangeThemeActionClick: () -> Unit) {
     val context = LocalContext.current
-    if (titleRes == R.string.navigation_item_components) {
+    if (titleResId == R.string.navigation_item_components) {
         OdsTopAppBarActionButton(
             onClick = onSearchActionClick,
             painter = painterResource(id = R.drawable.ic_search),
