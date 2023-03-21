@@ -87,7 +87,7 @@ fun archiveDocumentation(version: String) {
 
 fun updateVersionCode() {
     val versionCodeRegex = "(versionCode = versionCodeProperty\\?\\.toInt\\(\\) \\?: )(\\d+)".toRegex()
-    File("demo/build.gradle.kts").replace(versionCodeRegex) { matchResult ->
+    File("app/build.gradle.kts").replace(versionCodeRegex) { matchResult ->
         val versionCode = matchResult.groupValues[2].toInt() + 1
         "${matchResult.groupValues[1]}$versionCode"
     }
