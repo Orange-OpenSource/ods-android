@@ -34,6 +34,7 @@ import androidx.compose.ui.platform.LocalConfiguration
 import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.input.TextFieldValue
+import androidx.compose.ui.unit.dp
 import androidx.compose.ui.window.Dialog
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavBackStackEntry
@@ -100,7 +101,7 @@ fun MainScreen(themeConfigurations: Set<OdsThemeConfigurationContract>, mainView
                 topBar = {
                     // The extended top app bar is managed by a custom layout instead of a TopAppBar
                     if (!mainState.topAppBarState.isExtended) {
-                        Surface(elevation = AppBarDefaults.TopAppBarElevation) {
+                        Surface(elevation = if (isSystemInDarkTheme()) 0.dp else AppBarDefaults.TopAppBarElevation) {
                             Column {
                                 SystemBarsColorSideEffect()
                                 MainTopAppBar(
