@@ -146,13 +146,13 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
-  app-distribution-release:
+  google-play-store-release:
     runs-on: ubuntu-latest
     if: github.event_name == 'push' && contains(github.ref, 'refs/tags/')
     needs: build
     environment:
-      name: app-distribution-release
-      url: https://appdistribution.firebase.google.com/testerapps
+      name: google-play-store-release
+      url: https://play.google.com/store/apps
     steps:
       - name: Checkout code
         uses: actions/checkout@v3
@@ -165,18 +165,13 @@ jobs:
           distribution: 'zulu'
           java-version: '11'
 
-      - name: Set up signing configuration
-        uses: ./.github/actions/setup-signing
-        with:
-          keystore: ${{ secrets.SIGNING_KEYSTORE }}
-          store-password: ${{ secrets.SIGNING_STORE_PASSWORD }}
-          key-alias: ${{ secrets.SIGNING_KEY_ALIAS }}
-          key-password: ${{ secrets.SIGNING_KEY_PASSWORD }}
+      - name: Build unsigned APK and bundle for Google Play Store
+        run: ./gradlew assembleRelease bundleRelease
 
-      - name: Upload APK to Firebase App Distribution
-        uses: ./.github/actions/app-distribution
+      - name: Store Google Play Store artifacts
+        uses: actions/upload-artifact@v3
         with:
-          git-tag-prefix: 'ci/release-app'
-          group: 'ods-app-android'
-          github-token: ${{ secrets.GITHUB_TOKEN }}
-          firebase-token: ${{ secrets.FIREBASE_TOKEN }}
+          name: google-play-store
+          path: |
+            app/build/outputs/apk/*/*.apk
+            app/build/outputs/bundle/*/*.aab

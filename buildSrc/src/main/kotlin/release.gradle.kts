@@ -24,6 +24,7 @@ tasks.register<DefaultTask>("prepareRelease") {
         updateDependencies(newVersion)
         updateChangelog(newVersion)
         archiveDocumentation(newVersion)
+        updateVersionCode()
     }
 }
 
@@ -58,9 +59,10 @@ fun updateChangelog(version: String) {
         ?.substringBefore("\n")
         .orEmpty()
     val date = SimpleDateFormat("yyyy-MM-dd").format(Date())
-    File("changelog.md").replace("## \\[Unreleased\\].*".toRegex()) { matchResult ->
+    File("changelog.md").replace(
+        "## \\[Unreleased\\].*".toRegex(),
         "## [$version](https://github.com/Orange-OpenSource/ods-android/compare/$previousVersion...$version) - $date"
-    }
+    )
 }
 
 fun archiveDocumentation(version: String) {
@@ -81,6 +83,14 @@ fun archiveDocumentation(version: String) {
             """.trimMargin()
     File("docs/_config.yml").appendText(text)
     File("docs/_config_netlify.yml").appendText(text)
+}
+
+fun updateVersionCode() {
+    val versionCodeRegex = "(versionCode = versionCodeProperty\\?\\.toInt\\(\\) \\?: )(\\d+)".toRegex()
+    File("app/build.gradle.kts").replace(versionCodeRegex) { matchResult ->
+        val versionCode = matchResult.groupValues[2].toInt() + 1
+        "${matchResult.groupValues[1]}$versionCode"
+    }
 }
 
 tasks.register<DefaultTask>("testSonatypeRepository") {
