@@ -331,7 +331,7 @@
       ],
       "description": "The mojito is one of the world's most popular cocktails, It is originating from Cuba, and this virgin version is the perfect summer drink for the entire family.",
       "url": "https://images.unsplash.com/photo-1551538827-9c037cb4f32a?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8NXx8Y29ja3RhaWx8ZW58MHx8MHx8&auto=format&fit=crop&w=500&q=60",
-      "iconName": "vOrangeDetente"
+      "iconName": "OrangeDetente"
     },
     {
       "title": "Virgin Sunrise Mocktail",
@@ -771,32 +771,32 @@
   "category": [
     {
       "id": 1,
-      "name": "drinks",
+      "name": "Drinks",
       "iconName": "OrangeDetente"
     },
     {
       "id": 2,
-      "name": "starter",
+      "name": "Starter",
       "iconName": "Food_and_Entertainment"
     },
     {
       "id": 3,
-      "name": "main course",
+      "name": "Main course",
       "iconName": "CookingPot"
     },
     {
       "id": 4,
-      "name": "desert",
-      "iconName": "ice_cream"
+      "name": "Desert",
+      "iconName": "IceCream"
     },
     {
       "id": 5,
-      "name": "bread",
+      "name": "Bread",
       "iconName": "Cafe"
     },
     {
       "id": 6,
-      "name": "space food",
+      "name": "Space food",
       "iconName": "medicine"
     }
   ],

@@ -51,10 +51,10 @@ OdsModalDrawer(
             icon = R.drawable.ic_heart,
             text = "label2"
         ),
-        OdsModalDrawerDivider, // Optional, `OdsModalDrawerDivider` is used to apply a divider in a specific level of the list
+        OdsModalDrawerDivider, // `OdsModalDrawerDivider` is used to add a divider in a specific level of the list
         OdsModalDrawerSectionLabel(
             label = "Label"
-        ), // Optional, `OdsModalDrawerSectionLabel` is used to apply a divider and the text above the divider
+        ), // `OdsModalDrawerSectionLabel` is used to add a divider and the text above the divider
         OdsModalDrawerListItem(
             icon = R.drawable.ic_heart,
             text = "label3"

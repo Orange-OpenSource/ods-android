@@ -56,6 +56,7 @@ fun ComponentModalDrawers() {
     val list: MutableList<OdsModalDrawerItem> = categories.map {
         OdsModalDrawerListItem(if (customizationState.isListIconChecked) it.iconResId else null, it.name)
     }.toMutableList()
+    list.removeAt(0)
     if (customizationState.hasDivider) list.add(3, OdsModalDrawerDivider)
     if (customizationState.hasLabel) list.add(3, OdsModalDrawerSectionLabel(stringResource(id = R.string.component_modal_drawer_label_example)))
 

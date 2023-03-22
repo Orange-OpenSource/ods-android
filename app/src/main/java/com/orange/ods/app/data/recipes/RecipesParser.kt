@@ -35,6 +35,9 @@ class RecipesParser {
         private const val CookingPot = "CookingPot"
         private const val IceCream = "IceCream"
         private const val Restaurant = "Restaurant"
+        private const val Medicine = "medicine"
+        private const val OrangeDetente = "OrangeDetente"
+        private const val FoodAndEntertainment = "Food_and_Entertainment"
         private const val Foods = "foods"
         private const val Id = "id"
         private const val Name = "name"
@@ -104,6 +107,9 @@ class RecipesParser {
         CookingPot -> R.drawable.ic_cooking_pot
         IceCream -> R.drawable.ic_ice_cream
         Restaurant -> R.drawable.ic_restaurant
+        OrangeDetente -> R.drawable.ic_orange_detente
+        Medicine -> R.drawable.ic_medicine
+        FoodAndEntertainment -> R.drawable.ic_food_and_entertainment
         else -> null
     }
 }
