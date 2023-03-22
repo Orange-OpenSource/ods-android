@@ -37,10 +37,11 @@ OdsModalDrawer(
     drawerHeader = {
         title = "Navigation Drawers" // title is mandatory in an `OdsModalDrawer`
         imageContentDescription = "" // optional
-        backgroundImage =
-            painterResource(id = R.drawable.placeholder) //optional, we use it or avatar
+        imageDisplayType =
+            OdsModalDrawerHeaderImageDisplayType.None // or OdsModalDrawerHeaderImageDisplayType.Avatar or OdsModalDrawerHeaderImageDisplayType.Background
         subtitle = "Example" // optional
-        avatar = painterResource(id = R.drawable.placeholder) // optional, we use it or background
+        image =
+            painterResource(id = R.drawable.placeholder) // it's null if imageDisplayType is None
     },
     drawerContentList = mutableListOf<OdsModalDrawerItem>(
         OdsModalDrawerListItem( // `OdsModalDrawerListItem` is used to specified an item of the list

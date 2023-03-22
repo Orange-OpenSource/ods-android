@@ -40,6 +40,7 @@ import com.orange.ods.compose.component.list.OdsSwitchTrailing
 import com.orange.ods.compose.component.navigationdrawer.OdsModalDrawer
 import com.orange.ods.compose.component.navigationdrawer.OdsModalDrawerDivider
 import com.orange.ods.compose.component.navigationdrawer.OdsModalDrawerHeader
+import com.orange.ods.compose.component.navigationdrawer.OdsModalDrawerHeaderImageDisplayType
 import com.orange.ods.compose.component.navigationdrawer.OdsModalDrawerItem
 import com.orange.ods.compose.component.navigationdrawer.OdsModalDrawerListItem
 import com.orange.ods.compose.component.navigationdrawer.OdsModalDrawerSectionLabel
@@ -63,13 +64,17 @@ fun ComponentModalDrawers() {
     OdsModalDrawer(
         drawerHeader = OdsModalDrawerHeader(
             title = stringResource(id = R.string.component_modal_drawers),
-            backgroundImage = if (customizationState.hasBackground) rememberAsyncImagePainter(
-                model = rememberSaveable { recipes.filter { it.description.isNotBlank() }.random() }.imageUrl,
-                placeholder = painterResource(id = R.drawable.placeholder),
-                error = painterResource(id = R.drawable.placeholder)
-            ) else null,
+            image = if (customizationState.hasBackground) {
+                rememberAsyncImagePainter(
+                    model = rememberSaveable { recipes.filter { it.description.isNotBlank() }.random() }.imageUrl,
+                    placeholder = painterResource(id = R.drawable.placeholder),
+                    error = painterResource(id = R.drawable.placeholder)
+                )
+            } else if (customizationState.hasAvatar) {
+                painterResource(id = R.drawable.placeholder)
+            } else null,
             subtitle = if (customizationState.isSubTitleChecked) stringResource(id = R.string.component_element_example) else null,
-            avatar = if (customizationState.hasAvatar) painterResource(id = R.drawable.placeholder) else null
+            imageDisplayType = if (customizationState.hasAvatar) OdsModalDrawerHeaderImageDisplayType.Avatar else if (customizationState.hasBackground) OdsModalDrawerHeaderImageDisplayType.Background else OdsModalDrawerHeaderImageDisplayType.None
         ),
         drawerContentList = if (customizationState.isContentExampleChecked) list.distinct() else emptyList(),
         drawerState = drawerState,
