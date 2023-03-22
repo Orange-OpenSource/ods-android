@@ -24,6 +24,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - \[App\] Fix accessibility bug where content change on chip type selection was not read by TalkBack ([#332](https://github.com/Orange-OpenSource/ods-android/issues/332))
 - \[App\] Fix accessibility bug where text fields error messages were not read by TalkBack on state change ([#359](https://github.com/Orange-OpenSource/ods-android/issues/359))
 - \[App\] Fix crash on scrolling in guideline colors screen ([#477](https://github.com/Orange-OpenSource/ods-android/issues/477))
+- \[App\] Fix a bug where the customization bottom sheet did not expand automatically in tabs component demo ([#458](https://github.com/Orange-OpenSource/ods-android/issues/458))
 - \[Doc\] Fix a bug where documentation is displayed several times on the same page ([#457](https://github.com/Orange-OpenSource/ods-android/issues/457))
 - \[Lib\] Implement workaround by adding content description to `OdsOutlinedTextField` in order to allow TalkBack to focus this type of text field ([#359](https://github.com/Orange-OpenSource/ods-android/issues/359))
 - \[Lib\] Fix a bug where image height is wrong in some cases in `OdsHorizontalCard` ([#445](https://github.com/Orange-OpenSource/ods-android/issues/445))
