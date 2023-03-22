@@ -35,13 +35,13 @@ You can use the `OdsModalDrawer` composable like this:
 OdsModalDrawer(
     drawerState = rememberDrawerState(DrawerValue.Closed),// or rememberDrawerState(DrawerValue.Open)
     drawerHeader = {
-        title = "Navigation Drawers" // title is mandatory in an `OdsModalDrawer`
+        title = "Side navigation drawer" // title is mandatory in an `OdsModalDrawer`
         imageContentDescription = "" // optional
         imageDisplayType =
             OdsModalDrawerHeaderImageDisplayType.None // or OdsModalDrawerHeaderImageDisplayType.Avatar or OdsModalDrawerHeaderImageDisplayType.Background
         subtitle = "Example" // optional
         image =
-            painterResource(id = R.drawable.placeholder) // it's null if imageDisplayType is None
+            painterResource(id = R.drawable.placeholder)
     },
     drawerContentList = mutableListOf<OdsModalDrawerItem>(
         OdsModalDrawerListItem( // `OdsModalDrawerListItem` is used to specified an item of the list

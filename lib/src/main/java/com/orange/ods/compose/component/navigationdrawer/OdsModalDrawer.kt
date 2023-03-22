@@ -49,7 +49,7 @@ import com.orange.ods.compose.component.utilities.BasicPreviewParameterProvider
 import com.orange.ods.compose.component.utilities.OdsImageCircleShape
 import com.orange.ods.compose.component.utilities.Preview
 import com.orange.ods.compose.component.utilities.UiModePreviews
-import com.orange.ods.compose.text.OdsTextSubtitle2
+import com.orange.ods.compose.text.OdsTextBody2
 import com.orange.ods.compose.theme.OdsTheme
 
 private val DrawerHeaderMaxHeight = 167.dp
@@ -102,7 +102,7 @@ internal fun getItem(item: OdsModalDrawerItem): @Composable (() -> Unit) {
             {
                 Column {
                     OdsDivider()
-                    OdsTextSubtitle2(
+                    OdsTextBody2(
                         modifier = Modifier.padding(top = dimensionResource(id = R.dimen.spacing_m), start = dimensionResource(id = R.dimen.spacing_m)),
                         text = item.label
                     )
