@@ -12,9 +12,11 @@ package com.orange.ods.app.ui
 
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.MutableState
+import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.saveable.rememberSaveable
+import androidx.compose.runtime.setValue
 import androidx.compose.runtime.staticCompositionLocalOf
 import androidx.compose.ui.text.input.TextFieldValue
 import com.orange.ods.app.R
@@ -22,14 +24,16 @@ import com.orange.ods.app.R
 val LocalMainTopAppBarManager = staticCompositionLocalOf<MainTopAppBarManager> { error("CompositionLocal LocalMainTopAppBarManager not present") }
 
 interface MainTopAppBarManager {
+    var titleResId: Int
+    var searchedTextState: MutableState<TextFieldValue>
+    val overflowMenuEnabled: Boolean
+    val actionCount: Int
+    var extended: Boolean
+    val navigationIconEnabled: Boolean
 
-    fun updateTopAppBar(topAppBarConfiguration: TopAppBarConfiguration)
+    fun setConfiguration(configuration: TopAppBarConfiguration)
 
-    fun updateTopAppBarTitle(titleRes: Int)
-
-    fun setExtended(extended: Boolean)
-
-    fun updateTopAppBarTabs(tabsConfiguration: MainTabsConfiguration)
+    fun setTabs(tabsConfiguration: MainTabsConfiguration)
 
     /**
      * Reset top app bar to default display
@@ -39,26 +43,26 @@ interface MainTopAppBarManager {
 
 @Composable
 fun rememberMainTopAppBarState(
-    titleRes: MutableState<Int> = rememberSaveable { mutableStateOf(R.string.navigation_item_guidelines) },
-    actionCount: MutableState<Int> = rememberSaveable { mutableStateOf(MainTopAppBarState.DefaultConfiguration.actionCount) },
-    navigationIconEnabled: MutableState<Boolean> = rememberSaveable { mutableStateOf(MainTopAppBarState.DefaultConfiguration.isNavigationIconEnabled) },
-    overflowMenuEnabled: MutableState<Boolean> = rememberSaveable { mutableStateOf(MainTopAppBarState.DefaultConfiguration.isOverflowMenuEnabled) },
-    searchedText: MutableState<TextFieldValue> = remember { mutableStateOf(TextFieldValue("")) },
-    extended: MutableState<Boolean> = rememberSaveable { mutableStateOf(false) },
+    titleResIdState: MutableState<Int> = rememberSaveable { mutableStateOf(R.string.navigation_item_guidelines) },
+    actionCountState: MutableState<Int> = rememberSaveable { mutableStateOf(MainTopAppBarState.DefaultConfiguration.actionCount) },
+    navigationIconState: MutableState<Boolean> = rememberSaveable { mutableStateOf(MainTopAppBarState.DefaultConfiguration.isNavigationIconEnabled) },
+    overflowMenuState: MutableState<Boolean> = rememberSaveable { mutableStateOf(MainTopAppBarState.DefaultConfiguration.isOverflowMenuEnabled) },
+    searchedTextState: MutableState<TextFieldValue> = remember { mutableStateOf(TextFieldValue("")) },
+    extendedState: MutableState<Boolean> = rememberSaveable { mutableStateOf(false) },
     tabsState: MainTabsState = rememberMainTabsState()
 ) =
-    remember(titleRes, actionCount, searchedText, navigationIconEnabled, overflowMenuEnabled, extended, tabsState) {
-        MainTopAppBarState(titleRes, actionCount, searchedText, navigationIconEnabled, overflowMenuEnabled, extended, tabsState)
+    remember(titleResIdState, searchedTextState, actionCountState, navigationIconState, overflowMenuState, extendedState, tabsState) {
+        MainTopAppBarState(titleResIdState, searchedTextState, actionCountState, navigationIconState, overflowMenuState, extendedState, tabsState)
     }
 
 
 class MainTopAppBarState(
-    val titleRes: MutableState<Int>,
-    val actionCount: MutableState<Int>,
-    var searchedText: MutableState<TextFieldValue>,
-    private val navigationIconEnabled: MutableState<Boolean>,
-    private val overflowMenuEnabled: MutableState<Boolean>,
-    private var extended: MutableState<Boolean>,
+    titleResIdState: MutableState<Int>,
+    override var searchedTextState: MutableState<TextFieldValue>,
+    private val actionCountState: MutableState<Int>,
+    private val navigationIconState: MutableState<Boolean>,
+    private val overflowMenuState: MutableState<Boolean>,
+    private var extendedState: MutableState<Boolean>,
     val tabsState: MainTabsState
 ) : MainTopAppBarManager {
 
@@ -74,37 +78,26 @@ class MainTopAppBarState(
     // TopAppBar state source of truth
     // ----------------------------------------------------------
 
-    val isNavigationIconEnabled: Boolean
-        get() = navigationIconEnabled.value
+    override var titleResId by titleResIdState
+    override val overflowMenuEnabled by overflowMenuState
+    override val actionCount by actionCountState
+    override var extended by extendedState
+    override val navigationIconEnabled by navigationIconState
 
-    val isOverflowMenuEnabled: Boolean
-        get() = overflowMenuEnabled.value
-
-    val isExtended: Boolean
-        get() = extended.value
-
-    override fun updateTopAppBar(topAppBarConfiguration: TopAppBarConfiguration) {
-        navigationIconEnabled.value = topAppBarConfiguration.isNavigationIconEnabled
-        actionCount.value = topAppBarConfiguration.actionCount
-        overflowMenuEnabled.value = topAppBarConfiguration.isOverflowMenuEnabled
+    override fun setConfiguration(configuration: TopAppBarConfiguration) {
+        navigationIconState.value = configuration.isNavigationIconEnabled
+        actionCountState.value = configuration.actionCount
+        overflowMenuState.value = configuration.isOverflowMenuEnabled
     }
 
-    override fun updateTopAppBarTitle(titleRes: Int) {
-        this.titleRes.value = titleRes
-    }
-
-    override fun setExtended(extended: Boolean) {
-        this.extended.value = extended
-    }
-
-    override fun updateTopAppBarTabs(tabsConfiguration: MainTabsConfiguration) {
+    override fun setTabs(tabsConfiguration: MainTabsConfiguration) {
         tabsState.updateTopAppBarTabs(tabsConfiguration)
     }
 
     override fun reset() {
-        setExtended(false)
+        extended = false
         tabsState.clearTopAppBarTabs()
-        updateTopAppBar(DefaultConfiguration)
+        setConfiguration(DefaultConfiguration)
     }
 }
 

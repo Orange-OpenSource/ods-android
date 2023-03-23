@@ -41,7 +41,7 @@ import com.orange.ods.theme.guideline.GuidelineTextStyle
 
 @Composable
 fun GuidelineTypographyScreen() {
-    LocalMainTopAppBarManager.current.updateTopAppBarTitle(R.string.guideline_typography)
+    LocalMainTopAppBarManager.current.titleResId = R.string.guideline_typography
 
     val guidelineTypography = LocalOdsGuideline.current.guidelineTypography
 

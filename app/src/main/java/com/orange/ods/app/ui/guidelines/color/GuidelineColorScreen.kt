@@ -69,7 +69,7 @@ import kotlin.reflect.full.memberProperties
 
 @Composable
 fun GuidelineColorScreen() {
-    LocalMainTopAppBarManager.current.updateTopAppBarTitle(R.string.guideline_color)
+    LocalMainTopAppBarManager.current.titleResId = R.string.guideline_color
 
     val guidelineColors = LocalOdsGuideline.current.guidelineColors
 

@@ -21,14 +21,14 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
-import com.orange.ods.compose.component.card.OdsVerticalImageFirstCard
 import com.orange.ods.app.R
 import com.orange.ods.app.ui.LocalMainTopAppBarManager
 import com.orange.ods.app.ui.utilities.DrawableManager
+import com.orange.ods.compose.component.card.OdsVerticalImageFirstCard
 
 @Composable
 fun GuidelinesScreen(onGuidelineClick: (String) -> Unit) {
-    LocalMainTopAppBarManager.current.updateTopAppBarTitle(R.string.navigation_item_guidelines)
+    LocalMainTopAppBarManager.current.titleResId = R.string.navigation_item_guidelines
     val scrollState = rememberScrollState()
 
     Column(

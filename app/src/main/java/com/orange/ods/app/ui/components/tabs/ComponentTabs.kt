@@ -59,7 +59,7 @@ fun ComponentTabs(variant: Variant) {
     }
 
     val tabsCustomizationState = rememberMainTabsCustomizationState(tabsCount = rememberSaveable { mutableStateOf(tabCountMin) })
-    LocalMainTopAppBarManager.current.updateTopAppBarTabs(
+    LocalMainTopAppBarManager.current.setTabs(
         MainTabsConfiguration(
             scrollableTabs = scrollableTabs,
             tabs = tabsCustomizationState.tabs,

@@ -18,8 +18,9 @@ import androidx.navigation.compose.composable
 import androidx.navigation.navArgument
 import com.orange.ods.app.ui.LocalMainTopAppBarManager
 import com.orange.ods.app.ui.MainDestinations
+import com.orange.ods.app.ui.MainTopAppBar
 
-fun NavGraphBuilder.addComponentsGraph(navigateToElement: (String, Long?, NavBackStackEntry) -> Unit) {
+fun NavGraphBuilder.addComponentsGraph(navigateToElement: (String, Long?, NavBackStackEntry) -> Unit, navigateUp: () -> Unit, navigateToSearch: () -> Unit) {
     composable(
         "${MainDestinations.ComponentDetailRoute}/{${MainDestinations.ComponentIdKey}}",
         arguments = listOf(navArgument(MainDestinations.ComponentIdKey) { type = NavType.LongType })
@@ -35,6 +36,7 @@ fun NavGraphBuilder.addComponentsGraph(navigateToElement: (String, Long?, NavBac
         )
     }
 
+
     composable(
         "${MainDestinations.ComponentVariantRoute}/{${MainDestinations.ComponentVariantIdKey}}",
         arguments = listOf(navArgument(MainDestinations.ComponentVariantIdKey) { type = NavType.LongType })
@@ -45,11 +47,22 @@ fun NavGraphBuilder.addComponentsGraph(navigateToElement: (String, Long?, NavBac
 
         variant?.let {
             with(LocalMainTopAppBarManager.current) {
-                updateTopAppBarTitle(variant.titleRes)
-                setExtended(variant.extendedTopAppBar)
+                titleResId = variant.titleRes
+                extended = variant.extendedTopAppBar
             }
 
-            variant.ScreenContent()
+            if (variant.extendedTopAppBar) {
+                MainTopAppBar(
+                    shouldShowUpNavigationIcon = true,
+                    onUpPress = navigateUp,
+                    onSearchActionClick = navigateToSearch,
+                    extended = true
+                ) {
+                    variant.ScreenContent()
+                }
+            } else {
+                variant.ScreenContent()
+            }
         }
     }
 
@@ -62,7 +75,7 @@ fun NavGraphBuilder.addComponentsGraph(navigateToElement: (String, Long?, NavBac
         val component = remember { components.firstOrNull { it.id == componentId } }
 
         component?.let {
-            LocalMainTopAppBarManager.current.updateTopAppBarTitle(component.titleRes)
+            LocalMainTopAppBarManager.current.titleResId = component.titleRes
             component.ScreenContent?.let { it() }
         }
     }

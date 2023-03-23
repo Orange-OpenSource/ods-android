@@ -22,14 +22,14 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
-import com.orange.ods.compose.component.list.OdsListItem
-import com.orange.ods.compose.component.list.OdsListItemIcon
-import com.orange.ods.compose.component.list.OdsListItemIconType
-import com.orange.ods.compose.component.list.iconType
 import com.orange.ods.app.R
 import com.orange.ods.app.ui.LocalMainTopAppBarManager
 import com.orange.ods.app.ui.utilities.DrawableManager
 import com.orange.ods.app.ui.utilities.composable.DetailScreenHeader
+import com.orange.ods.compose.component.list.OdsListItem
+import com.orange.ods.compose.component.list.OdsListItemIcon
+import com.orange.ods.compose.component.list.OdsListItemIconType
+import com.orange.ods.compose.component.list.iconType
 
 @Composable
 fun ComponentDetailScreen(
@@ -41,7 +41,7 @@ fun ComponentDetailScreen(
     val component = remember { components.firstOrNull { component -> component.id == componentId } }
 
     component?.let {
-        LocalMainTopAppBarManager.current.updateTopAppBarTitle(component.titleRes)
+        LocalMainTopAppBarManager.current.titleResId = component.titleRes
 
         Column(
             modifier = Modifier

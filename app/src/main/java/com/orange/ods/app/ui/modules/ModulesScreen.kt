@@ -25,7 +25,7 @@ import com.orange.ods.compose.theme.OdsTheme
 
 @Composable
 fun ModulesScreen() {
-    LocalMainTopAppBarManager.current.updateTopAppBarTitle(R.string.navigation_item_modules)
+    LocalMainTopAppBarManager.current.titleResId = R.string.navigation_item_modules
     Column(
         modifier = Modifier
             .fillMaxSize()

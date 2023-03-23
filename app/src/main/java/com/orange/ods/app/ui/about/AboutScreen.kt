@@ -27,20 +27,20 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
-import com.orange.ods.compose.component.list.OdsListItem
-import com.orange.ods.compose.text.OdsTextCaption
-import com.orange.ods.compose.text.OdsTextH4
 import com.orange.ods.app.R
 import com.orange.ods.app.ui.LocalMainTopAppBarManager
 import com.orange.ods.app.ui.utilities.DrawableManager
 import com.orange.ods.app.ui.utilities.compat.PackageManagerCompat
 import com.orange.ods.app.ui.utilities.extension.versionCode
+import com.orange.ods.compose.component.list.OdsListItem
+import com.orange.ods.compose.text.OdsTextCaption
+import com.orange.ods.compose.text.OdsTextH4
 import com.orange.ods.utilities.extension.ifNotNull
 import com.orange.ods.utilities.extension.orElse
 
 @Composable
 fun AboutScreen(onAboutItemClick: (Long) -> Unit) {
-    LocalMainTopAppBarManager.current.updateTopAppBarTitle(R.string.navigation_item_about)
+    LocalMainTopAppBarManager.current.titleResId = R.string.navigation_item_about
 
     Column(
         modifier = Modifier

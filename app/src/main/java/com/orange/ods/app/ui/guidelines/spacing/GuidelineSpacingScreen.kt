@@ -44,7 +44,7 @@ private val ratioFormatter = DecimalFormat("0.#", DecimalFormatSymbols(Locale.EN
 
 @Composable
 fun GuidelineSpacingScreen() {
-    LocalMainTopAppBarManager.current.updateTopAppBarTitle(R.string.guideline_spacing)
+    LocalMainTopAppBarManager.current.titleResId = R.string.guideline_spacing
 
     LazyColumn(contentPadding = PaddingValues(bottom = dimensionResource(id = R.dimen.spacing_m))) {
         item {

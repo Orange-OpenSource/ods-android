@@ -22,7 +22,6 @@ import androidx.compose.material.Surface
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.runtime.MutableState
-import androidx.compose.runtime.SideEffect
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.ui.Modifier
@@ -36,7 +35,6 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.navigation
 import com.google.accompanist.pager.ExperimentalPagerApi
-import com.google.accompanist.systemuicontroller.rememberSystemUiController
 import com.orange.ods.app.R
 import com.orange.ods.app.domain.recipes.LocalRecipes
 import com.orange.ods.app.ui.about.addAboutGraph
@@ -88,19 +86,15 @@ fun MainScreen(themeConfigurations: Set<OdsThemeConfigurationContract>, mainView
                 backgroundColor = OdsTheme.colors.background,
                 topBar = {
                     // The extended top app bar is managed by a custom layout instead of a TopAppBar
-                    if (!mainState.topAppBarState.isExtended) {
+                    if (!mainState.topAppBarState.extended) {
                         Surface(elevation = if (isSystemInDarkTheme()) 0.dp else AppBarDefaults.TopAppBarElevation) {
                             Column {
-                                SystemBarsColorSideEffect()
                                 MainTopAppBar(
                                     shouldShowUpNavigationIcon = !mainState.shouldShowBottomBar,
-                                    topAppBarState = mainState.topAppBarState,
-                                    upPress = mainState::upPress,
-                                    onSearchActionClick = {
-                                        mainState.navController.navigate(MainDestinations.SearchRoute)
-                                    },
-                                    extended = false
-                                )                                // Display tabs in the top bar if needed
+                                    onUpPress = mainState::navigateUp,
+                                    onSearchActionClick = mainState::navigateToSearch
+                                )
+                                // Display tabs in the top bar if needed
                                 MainTabs(mainTabsState = mainState.topAppBarState.tabsState)
                             }
                         }
@@ -125,7 +119,12 @@ fun MainScreen(themeConfigurations: Set<OdsThemeConfigurationContract>, mainView
                     startDestination = MainDestinations.HomeRoute,
                     modifier = Modifier.padding(innerPadding)
                 ) {
-                    mainNavGraph(navigateToElement = mainState::navigateToElement, searchedText = mainState.topAppBarState.searchedText)
+                    mainNavGraph(
+                        navigateToElement = mainState::navigateToElement,
+                        navigateUp = mainState::navigateUp,
+                        navigateToSearch = mainState::navigateToSearch,
+                        searchedText = mainState.topAppBarState.searchedTextState
+                    )
                 }
             }
         }
@@ -140,17 +139,6 @@ private fun getCurrentThemeConfiguration(
     return themeConfigurations.firstOrNull { it.name == storedUserThemeName }
         .orElse { themeConfigurations.firstOrNull { it.isOrange } }
         .orElse { themeConfigurations.first() }
-}
-
-@Composable
-private fun SystemBarsColorSideEffect() {
-    val systemUiController = rememberSystemUiController()
-    val systemBarsBackground = OdsTheme.colors.component.systemBarsBackground
-    SideEffect {
-        systemUiController.setSystemBarsColor(
-            color = systemBarsBackground
-        )
-    }
 }
 
 @OptIn(ExperimentalPagerApi::class)
@@ -182,7 +170,12 @@ private fun MainTabs(mainTabsState: MainTabsState) {
     }
 }
 
-private fun NavGraphBuilder.mainNavGraph(navigateToElement: (String, Long?, NavBackStackEntry) -> Unit, searchedText: MutableState<TextFieldValue>) {
+private fun NavGraphBuilder.mainNavGraph(
+    navigateToElement: (String, Long?, NavBackStackEntry) -> Unit,
+    navigateUp: () -> Unit,
+    navigateToSearch: () -> Unit,
+    searchedText: MutableState<TextFieldValue>
+) {
     navigation(
         route = MainDestinations.HomeRoute,
         startDestination = BottomNavigationSections.Guidelines.route
@@ -191,7 +184,7 @@ private fun NavGraphBuilder.mainNavGraph(navigateToElement: (String, Long?, NavB
     }
 
     addGuidelinesGraph()
-    addComponentsGraph(navigateToElement)
+    addComponentsGraph(navigateToElement, navigateUp, navigateToSearch)
     addAboutGraph()
 
     composable(
@@ -199,7 +192,7 @@ private fun NavGraphBuilder.mainNavGraph(navigateToElement: (String, Long?, NavB
     ) { from ->
         with(LocalMainTopAppBarManager.current) {
             reset()
-            updateTopAppBarTitle(R.string.navigation_item_search)
+            titleResId = R.string.navigation_item_search
         }
         SearchScreen(searchedText, onComponentClick = { id -> navigateToElement(MainDestinations.ComponentDetailRoute, id, from) })
     }

@@ -78,7 +78,7 @@ class MainState(
     val currentRoute: String?
         get() = navController.currentDestination?.route
 
-    fun upPress() {
+    fun navigateUp() {
         navController.navigateUp()
     }
 
@@ -97,6 +97,10 @@ class MainState(
                 }
             }
         }
+    }
+
+    fun navigateToSearch() {
+        navController.navigate(MainDestinations.SearchRoute)
     }
 
     fun navigateToElement(route: String, elementId: Long?, from: NavBackStackEntry) {
