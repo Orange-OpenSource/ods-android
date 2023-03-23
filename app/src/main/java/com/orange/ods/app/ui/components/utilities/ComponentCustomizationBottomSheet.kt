@@ -22,6 +22,7 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.BottomSheetScaffoldState
+import androidx.compose.material.BottomSheetState
 import androidx.compose.material.BottomSheetValue
 import androidx.compose.material.ExperimentalMaterialApi
 import androidx.compose.material.FabPosition
@@ -38,11 +39,13 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.semantics.stateDescription
 import androidx.compose.ui.unit.dp
+import com.orange.ods.app.R
+import com.orange.ods.app.ui.utilities.composable.OnResumeEffect
 import com.orange.ods.compose.component.bottomsheet.OdsBottomSheetScaffold
 import com.orange.ods.compose.component.list.OdsListItem
 import com.orange.ods.compose.theme.OdsTheme
-import com.orange.ods.app.R
-import com.orange.ods.app.ui.utilities.composable.OnResumeEffect
+import kotlinx.coroutines.CancellationException
+import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.launch
 
 @OptIn(ExperimentalMaterialApi::class)
@@ -114,9 +117,20 @@ fun ComponentCustomizationBottomSheetScaffold(
     }
 
     OnResumeEffect {
-        coroutineScope.launch {
-            bottomSheetScaffoldState.bottomSheetState.expand()
+        tryExpandBottomSheet(coroutineScope, bottomSheetScaffoldState.bottomSheetState)
+    }
+}
+
+@OptIn(ExperimentalMaterialApi::class)
+private fun tryExpandBottomSheet(coroutineScope: CoroutineScope, bottomSheetState: BottomSheetState, retryCount: Int = 0) {
+    coroutineScope.launch {
+        try {
+            bottomSheetState.expand()
+        } catch (exception: CancellationException) {
+            // Retry up to 3 times if animation was interrupted by a composition
+            if (retryCount < 3) {
+                tryExpandBottomSheet(coroutineScope, bottomSheetState, retryCount + 1)
+            }
         }
     }
-
 }
