@@ -169,7 +169,7 @@ private fun ModalDrawerHeader(
                         .align(Alignment.BottomStart)
                         .fillMaxWidth()
                 ) {
-                    OdsHeaderText(headerContent = drawerHeader, color = Color.White)
+                    OdsHeaderText(drawerHeader = drawerHeader, color = Color.White)
                 }
             }
         OdsModalDrawerHeaderImageDisplayType.Avatar ->
@@ -185,28 +185,28 @@ private fun ModalDrawerHeader(
                         modifier = Modifier.padding(start = dimensionResource(id = R.dimen.spacing_m), bottom = dimensionResource(id = R.dimen.spacing_m))
                     )
                 }
-                OdsHeaderText(headerContent = drawerHeader, color = OdsTheme.colors.onSurface)
+                OdsHeaderText(drawerHeader = drawerHeader, color = OdsTheme.colors.onSurface)
             }
         OdsModalDrawerHeaderImageDisplayType.None -> OdsHeaderText(
-            headerContent = drawerHeader,
+            drawerHeader = drawerHeader,
             color = OdsTheme.colors.onSurface
         )
     }
 }
 
 @Composable
-private fun OdsHeaderText(headerContent: OdsModalDrawerHeader, color: Color) {
+private fun OdsHeaderText(drawerHeader: OdsModalDrawerHeader, color: Color) {
     Column(
         modifier = Modifier
             .padding(start = dimensionResource(id = R.dimen.spacing_m))
             .height(
-                if (headerContent.subtitle != null) dimensionResource(id = R.dimen.list_two_line_with_icon_item_height)
+                if (drawerHeader.subtitle != null) dimensionResource(id = R.dimen.list_two_line_with_icon_item_height)
                 else dimensionResource(id = R.dimen.list_single_line_item_height)
             ),
         verticalArrangement = Arrangement.Center
     ) {
-        Text(text = headerContent.title, color = color, style = OdsTheme.typography.h6)
-        headerContent.subtitle?.let { Text(text = it, color = color, style = OdsTheme.typography.body2) }
+        Text(text = drawerHeader.title, color = color, style = OdsTheme.typography.h6)
+        drawerHeader.subtitle?.let { Text(text = it, color = color, style = OdsTheme.typography.body2) }
     }
 }
 

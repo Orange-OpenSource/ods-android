@@ -42,7 +42,7 @@ OdsModalDrawer(
         image =
             painterResource(id = R.drawable.placeholder)
     },
-    drawerContentList = mutableListOf<OdsModalDrawerItem>(
+    drawerContentList = listOf<OdsModalDrawerItem>(
         OdsModalDrawerListItem( // `OdsModalDrawerListItem` is used to specified an item of the list
             icon = R.drawable.ic_heart,
             text = "label1"
