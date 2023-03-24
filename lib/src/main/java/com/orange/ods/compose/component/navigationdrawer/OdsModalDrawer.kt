@@ -78,7 +78,7 @@ fun OdsModalDrawer(
             OdsDivider()
             LazyColumn {
                 items(drawerContentList) { item ->
-                    getItem(item = item).invoke()
+                    ModalDrawerItem(item = item)
                 }
             }
         },
@@ -96,32 +96,29 @@ class OdsModalDrawerSectionLabel(val label: String) : OdsModalDrawerItem()
 object OdsModalDrawerDivider : OdsModalDrawerItem()
 class OdsModalDrawerListItem(@DrawableRes val icon: Int?, val text: String) : OdsModalDrawerItem()
 
-private fun getItem(item: OdsModalDrawerItem): @Composable (() -> Unit) {
+@Composable
+private fun ModalDrawerItem(item: OdsModalDrawerItem) {
     return when (item) {
         is OdsModalDrawerSectionLabel -> {
-            {
-                Column {
-                    OdsDivider()
-                    OdsTextBody2(
-                        modifier = Modifier.padding(top = dimensionResource(id = R.dimen.spacing_m), start = dimensionResource(id = R.dimen.spacing_m)),
-                        text = item.label
-                    )
-                }
+            Column {
+                OdsDivider()
+                OdsTextBody2(
+                    modifier = Modifier.padding(top = dimensionResource(id = R.dimen.spacing_m), start = dimensionResource(id = R.dimen.spacing_m)),
+                    text = item.label
+                )
             }
         }
         is OdsModalDrawerListItem -> {
-            {
-                OdsListItem(
-                    modifier = Modifier
-                        .iconType(OdsListItemIconType.Icon),
-                    text = item.text,
-                    icon = item.icon?.let { { OdsListItemIcon(painterResource(id = it)) } })
-            }
+
+            OdsListItem(
+                modifier = Modifier
+                    .iconType(OdsListItemIconType.Icon),
+                text = item.text,
+                icon = item.icon?.let { { OdsListItemIcon(painterResource(id = it)) } })
+
         }
         is OdsModalDrawerDivider -> {
-            {
-                OdsDivider()
-            }
+            OdsDivider()
         }
     }
 }
