@@ -33,7 +33,6 @@ You can use the `OdsModalDrawer` composable like this:
 
 ```kotlin
 OdsModalDrawer(
-    drawerState = rememberDrawerState(DrawerValue.Closed),// or rememberDrawerState(DrawerValue.Open)
     drawerHeader = {
         title = "Side navigation drawer" // title is mandatory in an `OdsModalDrawer`
         imageContentDescription = "" // optional
@@ -60,7 +59,8 @@ OdsModalDrawer(
             icon = R.drawable.ic_heart,
             text = "label3"
         )
-    )
+    ),
+    drawerState = rememberDrawerState(DrawerValue.Closed),// or rememberDrawerState(DrawerValue.Open)
 ) {
     // The content of the rest of the UI
 }

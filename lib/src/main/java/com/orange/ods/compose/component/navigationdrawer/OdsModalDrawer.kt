@@ -57,19 +57,19 @@ private val DrawerHeaderMaxHeight = 167.dp
 /**
  * Navigation drawers provide ergonomic access to destinations in an app.
  *
- * @param drawerState state of the drawer
- * @param modifier to be applied to this drawer
  * @param drawerHeader content inside the header of the drawer
  * @param drawerContentList content inside the body of the drawer
+ * @param modifier to be applied to this drawer
+ * @param drawerState state of the drawer
  * @param content content of the rest of the UI
  */
 @Composable
 @OdsComponentApi
 fun OdsModalDrawer(
-    modifier: Modifier = Modifier,
-    drawerState: DrawerState = rememberDrawerState(DrawerValue.Closed),
     drawerHeader: OdsModalDrawerHeader,
     drawerContentList: List<OdsModalDrawerItem>,
+    modifier: Modifier = Modifier,
+    drawerState: DrawerState = rememberDrawerState(DrawerValue.Closed),
     content: @Composable () -> Unit
 ) {
     ModalDrawer(
