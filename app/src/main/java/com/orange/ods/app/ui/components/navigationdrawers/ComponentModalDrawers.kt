@@ -96,6 +96,7 @@ fun ComponentModalDrawers() {
                 if (!isContentExampleChecked) {
                     listIconChecked.value = false
                     subtitleChecked.value = false
+                    content.value = ComponentNavigationDrawersContentState.SectionListExample.None
                 }
                 ComponentCustomizationBottomSheetScaffold(
                     bottomSheetScaffoldState = rememberBottomSheetScaffoldState(),
@@ -139,13 +140,19 @@ fun ComponentModalDrawers() {
                             Subtitle(textRes = R.string.component_modal_drawer_list_example)
                             OdsChoiceChip(
                                 textRes = R.string.component_element_divider,
-                                value = ComponentNavigationDrawersContentState.SectionListExample.Divider
+                                value = ComponentNavigationDrawersContentState.SectionListExample.Divider,
+                                enabled = isContentExampleChecked
                             )
                             OdsChoiceChip(
                                 textRes = R.string.component_element_label,
-                                value = ComponentNavigationDrawersContentState.SectionListExample.Label
+                                value = ComponentNavigationDrawersContentState.SectionListExample.Label,
+                                enabled = isContentExampleChecked
                             )
-                            OdsChoiceChip(textRes = R.string.component_element_none, value = ComponentNavigationDrawersContentState.SectionListExample.None)
+                            OdsChoiceChip(
+                                textRes = R.string.component_element_none,
+                                value = ComponentNavigationDrawersContentState.SectionListExample.None,
+                                enabled = isContentExampleChecked
+                            )
                         }
                     }) {
                     Column {
