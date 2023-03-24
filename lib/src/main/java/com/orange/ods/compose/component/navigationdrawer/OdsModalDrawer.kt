@@ -182,7 +182,7 @@ private fun ModalDrawerHeader(
                 drawerHeader.image?.let {
                     OdsImageCircleShape(
                         painter = it,
-                        Modifier.padding(start = dimensionResource(id = R.dimen.spacing_m), bottom = dimensionResource(id = R.dimen.spacing_m))
+                        modifier = Modifier.padding(start = dimensionResource(id = R.dimen.spacing_m), bottom = dimensionResource(id = R.dimen.spacing_m))
                     )
                 }
                 OdsHeaderText(headerContent = drawerHeader, color = OdsTheme.colors.onSurface)
