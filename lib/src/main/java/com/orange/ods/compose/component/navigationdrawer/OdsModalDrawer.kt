@@ -157,7 +157,7 @@ private fun ModalDrawerHeader(
                     painter = backgroundPainter,
                     contentDescription = drawerHeader.imageContentDescription,
                     contentScale = ContentScale.Crop,
-                    modifier = drawerHeader.modifier
+                    modifier = Modifier
                         .fillMaxWidth()
                         .height(DrawerHeaderMaxHeight)
                 )
