@@ -96,7 +96,7 @@ class OdsModalDrawerSectionLabel(val label: String) : OdsModalDrawerItem()
 object OdsModalDrawerDivider : OdsModalDrawerItem()
 class OdsModalDrawerListItem(@DrawableRes val icon: Int?, val text: String) : OdsModalDrawerItem()
 
-internal fun getItem(item: OdsModalDrawerItem): @Composable (() -> Unit) {
+private fun getItem(item: OdsModalDrawerItem): @Composable (() -> Unit) {
     return when (item) {
         is OdsModalDrawerSectionLabel -> {
             {
@@ -147,7 +147,7 @@ data class OdsModalDrawerHeader(
 )
 
 @Composable
-internal fun ModalDrawerHeader(
+private fun ModalDrawerHeader(
     drawerHeader: OdsModalDrawerHeader
 ) {
     if (drawerHeader.imageDisplayType == OdsModalDrawerHeaderImageDisplayType.Background) {
@@ -199,7 +199,7 @@ internal fun ModalDrawerHeader(
 }
 
 @Composable
-fun OdsHeaderText(headerContent: OdsModalDrawerHeader, color: Color) {
+private fun OdsHeaderText(headerContent: OdsModalDrawerHeader, color: Color) {
     Column(
         modifier = Modifier
             .padding(start = dimensionResource(id = R.dimen.spacing_m))
