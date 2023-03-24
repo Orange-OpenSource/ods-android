@@ -18,7 +18,7 @@ import androidx.compose.runtime.saveable.rememberSaveable
 
 @Composable
 fun rememberNavigationDrawersCustomizationState(
-    subTitleChecked: MutableState<Boolean> = rememberSaveable { mutableStateOf(true) },
+    subtitleChecked: MutableState<Boolean> = rememberSaveable { mutableStateOf(true) },
     listIconChecked: MutableState<Boolean> = rememberSaveable { mutableStateOf(false) },
     contentExampleChecked: MutableState<Boolean> = rememberSaveable { mutableStateOf(true) },
     headerImage: MutableState<ComponentNavigationDrawersContentState.HeaderImage> = rememberSaveable { mutableStateOf(ComponentNavigationDrawersContentState.HeaderImage.Avatar) },
@@ -28,9 +28,9 @@ fun rememberNavigationDrawersCustomizationState(
         )
     }
 ) =
-    remember(subTitleChecked, listIconChecked, contentExampleChecked, headerImage, sectionListExample) {
+    remember(subtitleChecked, listIconChecked, contentExampleChecked, headerImage, sectionListExample) {
         ComponentNavigationDrawersContentState(
-            subTitleChecked,
+            subtitleChecked,
             listIconChecked,
             contentExampleChecked,
             sectionListExample,
@@ -39,14 +39,14 @@ fun rememberNavigationDrawersCustomizationState(
     }
 
 class ComponentNavigationDrawersContentState(
-    val subTitleChecked: MutableState<Boolean>,
+    val subtitleChecked: MutableState<Boolean>,
     val listIconChecked: MutableState<Boolean>,
     val contentExampleChecked: MutableState<Boolean>,
     val content: MutableState<SectionListExample>,
     val header: MutableState<HeaderImage>
 ) {
     val isSubTitleChecked
-        get() = subTitleChecked.value
+        get() = subtitleChecked.value
 
     val isListIconChecked
         get() = listIconChecked.value

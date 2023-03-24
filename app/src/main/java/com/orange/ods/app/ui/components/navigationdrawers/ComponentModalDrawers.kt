@@ -95,7 +95,7 @@ fun ComponentModalDrawers() {
             with(customizationState) {
                 if (!isContentExampleChecked) {
                     listIconChecked.value = false
-                    subTitleChecked.value = false
+                    subtitleChecked.value = false
                 }
                 ComponentCustomizationBottomSheetScaffold(
                     bottomSheetScaffoldState = rememberBottomSheetScaffoldState(),
@@ -120,7 +120,7 @@ fun ComponentModalDrawers() {
                         OdsListItem(
                             text = stringResource(id = R.string.component_modal_drawer_subtitle),
                             trailing = OdsSwitchTrailing(
-                                checked = subTitleChecked,
+                                checked = subtitleChecked,
                                 enabled = isContentExampleChecked
                             )
                         )
