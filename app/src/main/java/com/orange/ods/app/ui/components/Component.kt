@@ -140,7 +140,7 @@ sealed class Component(
         R.string.component_modal_drawers,
         R.drawable.il_navigation_drawers,
         null,
-        R.string.component_menus_description,
+        R.string.component_modal_drawers_description,
     )
 
     object Progress : Component(

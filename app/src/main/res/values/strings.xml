@@ -209,7 +209,7 @@
     <string name="component_modal_drawers">Navigation Drawers</string>
     <string name="component_modal_drawers_description">The navigation drawer slides in from the left when the nav icon is tapped. The content should be concerned with identity and/or navigation.</string>
     <string name="component_modal_drawer_side">Side navigation drawer</string>
-    <string name="component_modal_drawer_content">>>>Swipe to open drawer >>></string>
+    <string name="component_modal_drawer_content">>>> Swipe to open drawer >>></string>
     <string name="component_modal_drawer_open">Open drawer</string>
     <string name="component_modal_drawer_subtitle">Subtitle</string>
     <string name="component_modal_drawer_list_icon">List icon</string>
