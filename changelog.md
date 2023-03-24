@@ -29,6 +29,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - \[Lib\] Implement workaround by adding content description to `OdsOutlinedTextField` in order to allow TalkBack to focus this type of text field ([#359](https://github.com/Orange-OpenSource/ods-android/issues/359))
 - \[Lib\] Fix a bug where image height is wrong in some cases in `OdsHorizontalCard` ([#445](https://github.com/Orange-OpenSource/ods-android/issues/445))
 
+### Removed
+
+- \[Demo\] Remove copyright text in the about screen ([#486](https://github.com/Orange-OpenSource/ods-android/issues/486))
+
 ## [0.11.1](https://github.com/Orange-OpenSource/ods-android/compare/0.11.0...0.11.1) - 2023-03-10
 
 ### Fixed
