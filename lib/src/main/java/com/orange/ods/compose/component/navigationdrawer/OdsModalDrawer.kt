@@ -135,8 +135,8 @@ enum class OdsModalDrawerHeaderImageDisplayType {
 }
 
 data class OdsModalDrawerHeader(
-    var modifier: Modifier = Modifier,
     var title: String,
+    var modifier: Modifier = Modifier,
     var imageDisplayType: OdsModalDrawerHeaderImageDisplayType = OdsModalDrawerHeaderImageDisplayType.None,
     var imageContentDescription: String? = null,
     var image: Painter? = null,
