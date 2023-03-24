@@ -147,52 +147,51 @@ data class OdsModalDrawerHeader(
 private fun ModalDrawerHeader(
     drawerHeader: OdsModalDrawerHeader
 ) {
-    if (drawerHeader.imageDisplayType == OdsModalDrawerHeaderImageDisplayType.Background) {
-        Box(
-            modifier = drawerHeader.modifier
-                .fillMaxWidth()
-        ) {
-            drawerHeader.image?.let { backgroundPainter ->
-                Image(
-                    painter = backgroundPainter,
-                    contentDescription = drawerHeader.imageContentDescription,
-                    contentScale = ContentScale.Crop,
-                    modifier = Modifier
-                        .fillMaxWidth()
-                        .height(DrawerHeaderMaxHeight)
-                )
-            }
-            Surface(
-                color = Color.Black.copy(alpha = 0.8f),
-                modifier = Modifier
-                    .align(Alignment.BottomStart)
+    when (drawerHeader.imageDisplayType) {
+        OdsModalDrawerHeaderImageDisplayType.Background ->
+            Box(
+                modifier = drawerHeader.modifier
                     .fillMaxWidth()
             ) {
-                OdsHeaderText(headerContent = drawerHeader, color = Color.White)
+                drawerHeader.image?.let { backgroundPainter ->
+                    Image(
+                        painter = backgroundPainter,
+                        contentDescription = drawerHeader.imageContentDescription,
+                        contentScale = ContentScale.Crop,
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .height(DrawerHeaderMaxHeight)
+                    )
+                }
+                Surface(
+                    color = Color.Black.copy(alpha = 0.8f),
+                    modifier = Modifier
+                        .align(Alignment.BottomStart)
+                        .fillMaxWidth()
+                ) {
+                    OdsHeaderText(headerContent = drawerHeader, color = Color.White)
+                }
             }
-        }
-    }
-
-    if (drawerHeader.imageDisplayType == OdsModalDrawerHeaderImageDisplayType.Avatar) {
-        Column(
-            modifier = drawerHeader.modifier
-                .fillMaxWidth()
-                .height(DrawerHeaderMaxHeight),
-            verticalArrangement = Arrangement.Bottom
-        ) {
-            drawerHeader.image?.let {
-                OdsImageCircleShape(
-                    painter = it,
-                    Modifier.padding(start = dimensionResource(id = R.dimen.spacing_m), bottom = dimensionResource(id = R.dimen.spacing_m))
-                )
+        OdsModalDrawerHeaderImageDisplayType.Avatar ->
+            Column(
+                modifier = drawerHeader.modifier
+                    .fillMaxWidth()
+                    .height(DrawerHeaderMaxHeight),
+                verticalArrangement = Arrangement.Bottom
+            ) {
+                drawerHeader.image?.let {
+                    OdsImageCircleShape(
+                        painter = it,
+                        Modifier.padding(start = dimensionResource(id = R.dimen.spacing_m), bottom = dimensionResource(id = R.dimen.spacing_m))
+                    )
+                }
+                OdsHeaderText(headerContent = drawerHeader, color = OdsTheme.colors.onSurface)
             }
-            OdsHeaderText(headerContent = drawerHeader, color = OdsTheme.colors.onSurface)
-        }
+        OdsModalDrawerHeaderImageDisplayType.None -> OdsHeaderText(
+            headerContent = drawerHeader,
+            color = OdsTheme.colors.onSurface
+        )
     }
-    if (drawerHeader.imageDisplayType == OdsModalDrawerHeaderImageDisplayType.None) OdsHeaderText(
-        headerContent = drawerHeader,
-        color = OdsTheme.colors.onSurface
-    )
 }
 
 @Composable
