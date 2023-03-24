@@ -54,23 +54,23 @@ fun ComponentModalDrawers() {
     val drawerState = rememberDrawerState(DrawerValue.Closed)
     val recipes = LocalRecipes.current
     val categories = LocalCategories.current
-    val list: MutableList<OdsModalDrawerItem> = categories.map {
+
+    val modalDrawerItems: MutableList<OdsModalDrawerItem> = categories.subList(1, categories.size).map {
         OdsModalDrawerListItem(if (customizationState.isListIconChecked) it.iconResId else null, it.name)
     }.toMutableList()
-    list.removeAt(0)
 
-    val listCategories = recipes.filter { recipe ->
-        recipe.category.id == 1
+    val sectionListCategory = categories.first()
+    val sectionListRecipes = recipes.filter { recipe ->
+        recipe.category.id == sectionListCategory.id
     }
-    val listDrinks: MutableList<OdsModalDrawerItem> = listCategories.map { recipe ->
-        OdsModalDrawerListItem(if (customizationState.isListIconChecked) recipe.iconResId else null, recipe.title)
-    }.toMutableList()
 
     if (customizationState.hasLabel || customizationState.hasDivider) {
-        if (customizationState.hasDivider) list.add(4, OdsModalDrawerDivider)
-        if (customizationState.hasLabel) list.add(4, OdsModalDrawerSectionLabel(stringResource(id = R.string.component_modal_drawer_label_example)))
-        listDrinks.forEach {
-            list.add(5, it)
+        if (customizationState.hasDivider) modalDrawerItems.add(OdsModalDrawerDivider)
+        if (customizationState.hasLabel) modalDrawerItems.add(OdsModalDrawerSectionLabel(sectionListCategory.name))
+        sectionListRecipes.map { recipe ->
+            OdsModalDrawerListItem(if (customizationState.isListIconChecked) recipe.iconResId else null, recipe.title)
+        }.forEach {
+            modalDrawerItems.add(it)
         }
     }
 
@@ -79,7 +79,7 @@ fun ComponentModalDrawers() {
             title = stringResource(id = R.string.component_modal_drawer_side),
             image = if (customizationState.hasBackground) {
                 rememberAsyncImagePainter(
-                    model = rememberSaveable { recipes.filter { it.description.isNotBlank() }.random() }.imageUrl,
+                    model = rememberSaveable { recipes.random() }.imageUrl,
                     placeholder = painterResource(id = R.drawable.placeholder),
                     error = painterResource(id = R.drawable.placeholder)
                 )
@@ -89,7 +89,7 @@ fun ComponentModalDrawers() {
             subtitle = if (customizationState.isSubTitleChecked) stringResource(id = R.string.component_element_example) else null,
             imageDisplayType = if (customizationState.hasAvatar) OdsModalDrawerHeaderImageDisplayType.Avatar else if (customizationState.hasBackground) OdsModalDrawerHeaderImageDisplayType.Background else OdsModalDrawerHeaderImageDisplayType.None
         ),
-        drawerContentList = if (customizationState.isContentExampleChecked) list.distinct() else emptyList(),
+        drawerContentList = if (customizationState.isContentExampleChecked) modalDrawerItems else emptyList(),
         drawerState = drawerState,
         content = {
             with(customizationState) {
