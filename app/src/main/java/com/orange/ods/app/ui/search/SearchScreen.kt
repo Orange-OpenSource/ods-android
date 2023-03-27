@@ -26,41 +26,78 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.input.TextFieldValue
 import com.orange.ods.app.R
 import com.orange.ods.app.ui.LocalOdsGuideline
+import com.orange.ods.app.ui.components.Component
+import com.orange.ods.app.ui.components.Variant
 import com.orange.ods.app.ui.components.components
 import com.orange.ods.app.ui.guidelines.color.DialogColor
 import com.orange.ods.app.ui.guidelines.color.getValue
+import com.orange.ods.app.ui.guidelines.spacing.Spacing
 import com.orange.ods.compose.component.list.OdsListItem
 import com.orange.ods.compose.component.list.OdsListItemIcon
 import com.orange.ods.compose.component.list.OdsListItemIconType
 import com.orange.ods.compose.component.list.iconType
+import com.orange.ods.theme.guideline.GuidelineColor
+import com.orange.ods.theme.guideline.toHexString
 import com.orange.ods.utilities.extension.orElse
 
 @Composable
 fun SearchScreen(searchedText: MutableState<TextFieldValue>, onComponentClick: (Long) -> Unit) {
     val filterComponents = components.filter { component ->
-        searchedText.value.text.isEmpty() || stringResource(id = component.titleRes).lowercase().contains(searchedText.value.text.lowercase())
+        searchedText.value.text.isEmpty() || stringResource(id = component.titleRes).lowercase()
+            .contains(searchedText.value.text.lowercase())
     }
+
     val guidelineColors = LocalOdsGuideline.current.guidelineColors
     val filterGuidelines = guidelineColors.filter { color ->
         searchedText.value.text.isEmpty() || color.getName().lowercase().contains(searchedText.value.text.lowercase()) ||
                 color.lightThemeName.lowercase().contains(searchedText.value.text.lowercase()) ||
                 color.darkThemeName.lowercase().contains(searchedText.value.text.lowercase())
     }
-    
+
+    val list = filterComponents.filter { it.variants.isNotEmpty() }
+        .flatMap {
+            val componentImageRes = it.smallImageRes.orElse { it.imageRes }
+            it.variants.map { variant ->
+                componentImageRes to variant
+            }
+        }
+
     data class OdsSearchParameter(
         val title: String,
         val route: Long,
         val image: Int?,
-        val color: Color?
+        val subtitle: String?,
+        val color: Color?,
+        val data: Any
     )
 
-    //
-    val searchList: List<OdsSearchParameter> = filterComponents.map {
-        val componentImageRes = it.smallImageRes.orElse { it.imageRes }
-        OdsSearchParameter(stringResource(id = it.titleRes), it.id, componentImageRes, color = null)
-    }.plus(filterGuidelines.map {
-        OdsSearchParameter(it.getName(), 0, image = null, color = it.getValue())
-    }).sortedBy { it.title }
+    val searchList: List<OdsSearchParameter> = filterComponents.filter { it.variants.isEmpty() }
+        .map {
+            val componentImageRes = it.smallImageRes.orElse { it.imageRes }
+            OdsSearchParameter(stringResource(id = it.titleRes), it.id, componentImageRes, color = null, subtitle = it.composableName, data = it)
+        }
+        .plus(filterGuidelines.map {
+            OdsSearchParameter(it.getName(), 0, image = null, color = it.getValue(), subtitle = it.getValue().toHexString(), data = it)
+        })
+        .plus(list.map {
+            OdsSearchParameter(
+                stringResource(id = it.second.titleRes),
+                it.second.id,
+                image = it.first,
+                color = null,
+                subtitle = it.second.composableName,
+                data = it.second
+            )
+        }).plus(Spacing.values().map {
+            OdsSearchParameter(
+                it.tokenName,
+                0,
+                image = R.drawable.il_spacing,
+                color = null,
+                subtitle = stringResource(id = R.string.guideline_spacing_dp, it.getDp().value.toInt()) + "\n",
+                data = it
+            )
+        }).sortedBy { it.title }
 
     LazyColumn(
         modifier = Modifier
@@ -68,20 +105,19 @@ fun SearchScreen(searchedText: MutableState<TextFieldValue>, onComponentClick: (
     ) {
         items(searchList) { item ->
             val openDialog = remember { mutableStateOf(false) }
-            var guideline = filterGuidelines.filter {
+            val guideline = filterGuidelines.filter {
                 it.getName() == item.title && it.getValue() == item.color
             }
             OdsListItem(
                 text = item.title,
-                secondaryText = null,
+                secondaryText = item.subtitle,
                 singleLineSecondaryText = false,
                 modifier = Modifier
                     .iconType(OdsListItemIconType.SquareImage)
                     .clickable {
-                        if (item.image != null) {
-                            onComponentClick(item.route)
-                        } else if (item.color != null) {
-                            openDialog.value = true
+                        when (item.data) {
+                            is Component, is Variant -> onComponentClick(item.route)
+                            is GuidelineColor -> openDialog.value = true
                         }
                     },
                 icon = {
@@ -100,16 +136,6 @@ fun SearchScreen(searchedText: MutableState<TextFieldValue>, onComponentClick: (
                 DialogColor(color = guideline[0], openDialog)
             }
         }
-        /*items(Spacing.values()) { spacing ->
-            val dp = spacing.getDp()
-            OdsListItem(
-                text = spacing.tokenName,
-                secondaryText = stringResource(id = R.string.guideline_spacing_dp, dp.value.toInt()) + "\n",
-                singleLineSecondaryText = false,
-                modifier = Modifier
-                    .clickable { },
-                icon = { GuidelineSpacingImage(spacing = spacing) },
-            )
-        }*/
     }
 }
+
