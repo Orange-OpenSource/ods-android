@@ -179,9 +179,9 @@ private fun ModalDrawerHeader(
                     .height(DrawerHeaderMaxHeight),
                 verticalArrangement = Arrangement.Bottom
             ) {
-                drawerHeader.image?.let {
+                drawerHeader.image?.let { painter ->
                     OdsImageCircleShape(
-                        painter = it,
+                        painter = painter,
                         modifier = Modifier.padding(start = dimensionResource(id = R.dimen.spacing_m), bottom = dimensionResource(id = R.dimen.spacing_m))
                     )
                 }
@@ -223,7 +223,7 @@ private fun PreviewOdsModalDrawer(@PreviewParameter(OdsModalDrawerPreviewParamet
                 imageDisplayType = parameter.imageDisplayType,
                 image = parameter.image?.let { painterResource(id = it) },
             ),
-            drawerContentList = parameter.list
+            drawerContentList = parameter.items
         )
     }
 
@@ -232,7 +232,7 @@ private data class OdsModalDrawerPreviewParameter(
     val title: String,
     val imageDisplayType: OdsModalDrawerHeaderImageDisplayType,
     val subtitle: String?,
-    val list: List<OdsModalDrawerItem>
+    val items: List<OdsModalDrawerItem>
 )
 
 private class OdsModalDrawerPreviewParameterProvider :
@@ -245,7 +245,7 @@ private val previewParameterValues: List<OdsModalDrawerPreviewParameter>
         val image = R.drawable.placeholder
         val icon = R.drawable.ic_check
         val subtitle = "Body 2"
-        val list = listOf(
+        val items = listOf(
             OdsModalDrawerListItem(icon, "label1"),
             OdsModalDrawerDivider,
             OdsModalDrawerListItem(icon, "label2"),
@@ -254,27 +254,11 @@ private val previewParameterValues: List<OdsModalDrawerPreviewParameter>
         )
 
         return listOf(
-            OdsModalDrawerPreviewParameter(
-                image = image,
-                title = title,
-                imageDisplayType = OdsModalDrawerHeaderImageDisplayType.Background,
-                subtitle = subtitle,
-                list
-            ),
-            OdsModalDrawerPreviewParameter(image = image, title, imageDisplayType = OdsModalDrawerHeaderImageDisplayType.Background, subtitle = null, list),
-            OdsModalDrawerPreviewParameter(
-                image = image,
-                title = title,
-                imageDisplayType = OdsModalDrawerHeaderImageDisplayType.Avatar,
-                subtitle = subtitle,
-                list
-            ),
-            OdsModalDrawerPreviewParameter(image = image, title = title, imageDisplayType = OdsModalDrawerHeaderImageDisplayType.Avatar, subtitle = null, list),
-            OdsModalDrawerPreviewParameter(
-                image = image, title = title, imageDisplayType = imageDisplayType, subtitle = null, list = emptyList()
-            ),
-            OdsModalDrawerPreviewParameter(
-                image = image, title = title, imageDisplayType = imageDisplayType, subtitle = subtitle, list
-            )
+            OdsModalDrawerPreviewParameter(image, title, OdsModalDrawerHeaderImageDisplayType.Background, subtitle, items),
+            OdsModalDrawerPreviewParameter(image, title, OdsModalDrawerHeaderImageDisplayType.Background, null, items),
+            OdsModalDrawerPreviewParameter(image, title, OdsModalDrawerHeaderImageDisplayType.Avatar, subtitle, items),
+            OdsModalDrawerPreviewParameter(image, title, OdsModalDrawerHeaderImageDisplayType.Avatar, null, items),
+            OdsModalDrawerPreviewParameter(image, title, imageDisplayType, null, emptyList()),
+            OdsModalDrawerPreviewParameter(image, title, imageDisplayType, subtitle, items)
         )
     }

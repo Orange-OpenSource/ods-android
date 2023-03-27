@@ -60,17 +60,14 @@ fun ComponentModalDrawers() {
     }.toMutableList()
 
     val sectionListCategory = categories.first()
-    val sectionListRecipes = recipes.filter { recipe ->
-        recipe.category.id == sectionListCategory.id
-    }
+    val sectionListRecipes = recipes.filter { it.category.id == sectionListCategory.id }
 
     if (customizationState.hasLabel || customizationState.hasDivider) {
         if (customizationState.hasDivider) modalDrawerItems.add(OdsModalDrawerDivider)
         if (customizationState.hasLabel) modalDrawerItems.add(OdsModalDrawerSectionLabel(sectionListCategory.name))
-        sectionListRecipes.map { recipe ->
-            OdsModalDrawerListItem(if (customizationState.isListIconChecked) recipe.iconResId else null, recipe.title)
-        }.forEach {
-            modalDrawerItems.add(it)
+        sectionListRecipes.forEach { recipe ->
+            val item = OdsModalDrawerListItem(if (customizationState.isListIconChecked) recipe.iconResId else null, recipe.title)
+            modalDrawerItems.add(item)
         }
     }
 
