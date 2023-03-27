@@ -143,6 +143,9 @@
     <string name="component_button_style_functional_positive">Positive</string>
     <string name="component_button_style_functional_negative">Negative</string>
 
+    <!-- Components Buttons: Icons -->
+    <string name="component_buttons_icons">Buttons: Icons</string>
+
     <!-- Components Cards -->
     <string name="component_cards">Cards</string>
     <string name="component_card_vertical_image_first">Vertical image first card</string>

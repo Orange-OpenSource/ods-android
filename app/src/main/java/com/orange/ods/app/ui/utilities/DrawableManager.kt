@@ -33,6 +33,7 @@ object DrawableManager {
         R.drawable.il_bottom_navigation_generic to R.drawable.il_bottom_navigation,
         R.drawable.il_buttons_generic to R.drawable.il_buttons,
         R.drawable.il_buttons_small_generic to R.drawable.il_buttons_small,
+        R.drawable.il_buttons_icons_generic to R.drawable.il_buttons_icons,
         R.drawable.il_cards_generic to R.drawable.il_cards,
         R.drawable.il_checkboxes_generic to R.drawable.il_checkboxes,
         R.drawable.il_chips_generic to R.drawable.il_chips,

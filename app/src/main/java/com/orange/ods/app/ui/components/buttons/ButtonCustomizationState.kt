@@ -21,26 +21,18 @@ import com.orange.ods.compose.component.button.OdsTextButtonStyle
 
 @Composable
 fun rememberButtonCustomizationState(
-    containedButtonStyle: MutableState<OdsButtonStyle> = rememberSaveable { mutableStateOf(OdsButtonStyle.Default) },
+    buttonStyle: MutableState<OdsButtonStyle> = rememberSaveable { mutableStateOf(OdsButtonStyle.Default) },
     textButtonStyle: MutableState<OdsTextButtonStyle> = rememberSaveable { mutableStateOf(OdsTextButtonStyle.Default) },
     leadingIcon: MutableState<Boolean> = rememberSaveable { mutableStateOf(false) },
     fullScreenWidth: MutableState<Boolean> = rememberSaveable { mutableStateOf(false) },
     enabled: MutableState<Boolean> = rememberSaveable { mutableStateOf(true) }
 ) =
-    remember(containedButtonStyle, textButtonStyle, leadingIcon, fullScreenWidth, enabled) {
-        ButtonCustomizationState(containedButtonStyle, textButtonStyle, leadingIcon, fullScreenWidth, enabled)
-    }
-
-@Composable
-fun rememberButtonToggleCustomizationState(
-    toggleCount: MutableState<Int> = rememberSaveable { mutableStateOf(ButtonToggleCustomizationState.MinToggleCount) }
-) =
-    remember(toggleCount) {
-        ButtonToggleCustomizationState(toggleCount)
+    remember(buttonStyle, textButtonStyle, leadingIcon, fullScreenWidth, enabled) {
+        ButtonCustomizationState(buttonStyle, textButtonStyle, leadingIcon, fullScreenWidth, enabled)
     }
 
 class ButtonCustomizationState(
-    val containedButtonStyle: MutableState<OdsButtonStyle>,
+    val buttonStyle: MutableState<OdsButtonStyle>,
     val textButtonStyle: MutableState<OdsTextButtonStyle>,
     val leadingIcon: MutableState<Boolean>,
     val fullScreenWidth: MutableState<Boolean>,
@@ -55,13 +47,4 @@ class ButtonCustomizationState(
 
     val hasFullScreenWidth
         get() = fullScreenWidth.value
-}
-
-class ButtonToggleCustomizationState(
-    val toggleCount: MutableState<Int>,
-) {
-    companion object {
-        const val MinToggleCount = 1
-        const val MaxToggleCount = 3
-    }
 }

@@ -15,6 +15,7 @@ import androidx.compose.runtime.remember
 import com.orange.ods.app.ui.LocalMainTopAppBarManager
 import com.orange.ods.app.ui.components.appbars.top.ComponentTopAppBar
 import com.orange.ods.app.ui.components.buttons.ComponentButtons
+import com.orange.ods.app.ui.components.buttons.ComponentButtonsIcons
 import com.orange.ods.app.ui.components.cards.ComponentCard
 import com.orange.ods.app.ui.components.chips.Chip
 import com.orange.ods.app.ui.components.chips.ChipFilter
@@ -33,6 +34,7 @@ fun ComponentVariantScreen(variantId: Long) {
         when (component) {
             Component.AppBarsTop -> ComponentTopAppBar()
             Component.Buttons -> ComponentButtons(variant = variant)
+            Component.ButtonsIcons -> ComponentButtonsIcons(variant = variant)
             Component.Cards -> ComponentCard(variant = variant)
             Component.Chips -> if (variant == Variant.ChipFilter) ChipFilter() else Chip(variant = variant)
             Component.Menus -> ComponentMenu(variant = variant)
