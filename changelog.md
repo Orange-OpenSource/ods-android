@@ -16,6 +16,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - \[App\] Update foods content
 - \[App\] Rename application ID to `com.orange.ods.app` and replace `demo` with `app` in the project ([#469](https://github.com/Orange-OpenSource/ods-android/issues/469))
 - \[App\] Update application name ([#474](https://github.com/Orange-OpenSource/ods-android/issues/474))
+- \[App\] Remove copyright text in the about screen ([#486](https://github.com/Orange-OpenSource/ods-android/issues/486))
 - \[Lib\] Encapsulate a `MaterialTheme` in the `OdsTheme` to take directly benefits of colors set in Jetpack Compose SDK ([#430](https://github.com/Orange-OpenSource/ods-android/issues/430))
 - \[ThemeConfigurationContract\] Change colors contract by respectively grouping Material, functional and components colors in `materialColors`, `functionalColors` and `componentColors` properties of `OdsColors` ([#430](https://github.com/Orange-OpenSource/ods-android/issues/430))
 
