@@ -21,6 +21,7 @@ import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.painter.ColorPainter
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.input.TextFieldValue
@@ -32,6 +33,7 @@ import com.orange.ods.app.ui.components.components
 import com.orange.ods.app.ui.guidelines.color.DialogColor
 import com.orange.ods.app.ui.guidelines.color.getValue
 import com.orange.ods.app.ui.guidelines.spacing.Spacing
+import com.orange.ods.app.ui.utilities.DrawableManager
 import com.orange.ods.compose.component.list.OdsListItem
 import com.orange.ods.compose.component.list.OdsListItemIcon
 import com.orange.ods.compose.component.list.OdsListItemIconType
@@ -41,23 +43,33 @@ import com.orange.ods.theme.guideline.toHexString
 import com.orange.ods.utilities.extension.orElse
 
 @Composable
-fun SearchScreen(searchedText: MutableState<TextFieldValue>, onComponentClick: (Long) -> Unit) {
+fun SearchScreen(searchedText: MutableState<TextFieldValue>, onComponentClick: (Long) -> Unit, onVariantClick: (Long) -> Unit) {
+
+    val context = LocalContext.current
+
     val filterComponents = components.filter { component ->
         searchedText.value.text.isEmpty() || stringResource(id = component.titleRes).lowercase()
             .contains(searchedText.value.text.lowercase())
     }
 
-    val guidelineColors = LocalOdsGuideline.current.guidelineColors
-    val filterGuidelines = guidelineColors.filter { color ->
+    val filterSpacing = Spacing.values().filter { spacing ->
+        searchedText.value.text.isEmpty() || spacing.tokenName.lowercase()
+            .contains(searchedText.value.text.lowercase())
+    }
+
+    val filterGuidelines = LocalOdsGuideline.current.guidelineColors.filter { color ->
         searchedText.value.text.isEmpty() || color.getName().lowercase().contains(searchedText.value.text.lowercase()) ||
                 color.lightThemeName.lowercase().contains(searchedText.value.text.lowercase()) ||
                 color.darkThemeName.lowercase().contains(searchedText.value.text.lowercase())
     }
 
-    val list = filterComponents.filter { it.variants.isNotEmpty() }
-        .flatMap {
-            val componentImageRes = it.smallImageRes.orElse { it.imageRes }
-            it.variants.map { variant ->
+    val list = components.filter { it.variants.isNotEmpty() }
+        .flatMap { component ->
+            val componentImageRes = component.smallImageRes.orElse { component.imageRes }
+            component.variants.filter { variant ->
+                searchedText.value.text.isEmpty() || context.getString(variant.titleRes).lowercase()
+                    .contains(searchedText.value.text.lowercase())
+            }.map { variant ->
                 componentImageRes to variant
             }
         }
@@ -72,30 +84,44 @@ fun SearchScreen(searchedText: MutableState<TextFieldValue>, onComponentClick: (
     )
 
     val searchList: List<OdsSearchParameter> = filterComponents.filter { it.variants.isEmpty() }
-        .map {
-            val componentImageRes = it.smallImageRes.orElse { it.imageRes }
-            OdsSearchParameter(stringResource(id = it.titleRes), it.id, componentImageRes, color = null, subtitle = it.composableName, data = it)
+        .map { component ->
+            val componentImageRes = component.smallImageRes.orElse { component.imageRes }
+            OdsSearchParameter(
+                stringResource(id = component.titleRes),
+                component.id,
+                componentImageRes,
+                color = null,
+                subtitle = component.composableName,
+                data = component
+            )
         }
-        .plus(filterGuidelines.map {
-            OdsSearchParameter(it.getName(), 0, image = null, color = it.getValue(), subtitle = it.getValue().toHexString(), data = it)
+        .plus(filterGuidelines.map { guidelineColor ->
+            OdsSearchParameter(
+                guidelineColor.getName(),
+                0,
+                image = null,
+                color = guidelineColor.getValue(),
+                subtitle = guidelineColor.getValue().toHexString(),
+                data = guidelineColor
+            )
         })
         .plus(list.map {
             OdsSearchParameter(
                 stringResource(id = it.second.titleRes),
-                it.second.id,
+                route = it.second.id,
                 image = it.first,
                 color = null,
                 subtitle = it.second.composableName,
                 data = it.second
             )
-        }).plus(Spacing.values().map {
+        }).plus(filterSpacing.map { spacing ->
             OdsSearchParameter(
-                it.tokenName,
+                spacing.tokenName,
                 0,
                 image = R.drawable.il_spacing,
                 color = null,
-                subtitle = stringResource(id = R.string.guideline_spacing_dp, it.getDp().value.toInt()) + "\n",
-                data = it
+                subtitle = stringResource(id = R.string.guideline_spacing_dp, spacing.getDp().value.toInt()) + "\n",
+                data = spacing
             )
         }).sortedBy { it.title }
 
@@ -111,19 +137,21 @@ fun SearchScreen(searchedText: MutableState<TextFieldValue>, onComponentClick: (
             OdsListItem(
                 text = item.title,
                 secondaryText = item.subtitle,
-                singleLineSecondaryText = false,
+                singleLineSecondaryText = true,
                 modifier = Modifier
                     .iconType(OdsListItemIconType.SquareImage)
                     .clickable {
                         when (item.data) {
-                            is Component, is Variant -> onComponentClick(item.route)
+                            is Component -> onComponentClick(item.route)
+                            is Variant -> onVariantClick(item.route)
                             is GuidelineColor -> openDialog.value = true
                         }
                     },
                 icon = {
+                    print(item)
                     OdsListItemIcon(
                         painter = if (item.image != null) {
-                            painterResource(id = item.image)
+                            painterResource(id = DrawableManager.getDrawableResIdForCurrentTheme(resId = item.image))
                         } else if (item.color != null) {
                             ColorPainter(item.color)
                         } else {

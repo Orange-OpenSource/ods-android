@@ -11,6 +11,7 @@
 package com.orange.ods.compose.component.textfield.search
 
 import androidx.compose.foundation.text.KeyboardOptions
+import androidx.compose.material.ContentAlpha
 import androidx.compose.material.Text
 import androidx.compose.material.TextField
 import androidx.compose.material.TextFieldDefaults
@@ -69,7 +70,8 @@ fun OdsSearchTextField(
             OdsIconButton(
                 onClick = { onValueChange(TextFieldValue("")) },
                 imageVector = Icons.Default.Close,
-                contentDescription = stringResource(id = R.string.search_clear)
+                contentDescription = stringResource(id = R.string.search_clear),
+                tint = OdsTheme.colors.component.topAppBar.barContent
             )
         },
         singleLine = false,
@@ -78,12 +80,13 @@ fun OdsSearchTextField(
             imeAction = ImeAction.Search
         ),
         colors = TextFieldDefaults.textFieldColors(
-            textColor = OdsTheme.colors.onSurface,
-            cursorColor = OdsTheme.colors.primary,
-            leadingIconColor = OdsTheme.colors.onSurface,
-            trailingIconColor = OdsTheme.colors.onSurface,
+            textColor = OdsTheme.colors.component.topAppBar.barContent,
+            cursorColor = OdsTheme.colors.component.topAppBar.barContent,
+            leadingIconColor = OdsTheme.colors.component.topAppBar.barContent,
+            trailingIconColor = OdsTheme.colors.component.topAppBar.barContent,
             backgroundColor = Color.Transparent,
-            focusedIndicatorColor = Color.Transparent
+            focusedIndicatorColor = Color.Transparent,
+            placeholderColor = OdsTheme.colors.component.topAppBar.barContent.copy(ContentAlpha.medium),
         )
     )
 }

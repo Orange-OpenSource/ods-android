@@ -106,7 +106,7 @@ sealed class Component(
 
     object Dialogs : Component(
         R.string.component_dialogs,
-        R.drawable.il_dialogs_generic,
+        R.drawable.il_dialogs,
         null,
         R.string.component_dialogs_description,
         composableName = OdsComponent.OdsAlertDialog.name
