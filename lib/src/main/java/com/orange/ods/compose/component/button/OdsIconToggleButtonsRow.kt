@@ -26,7 +26,6 @@ import androidx.compose.foundation.selection.selectableGroup
 import androidx.compose.material.Divider
 import androidx.compose.material.Icon
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.MutableState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
@@ -48,7 +47,8 @@ import com.orange.ods.compose.theme.OdsTheme
  * Selecting one option deselects any other.
  *
  * @param iconToggleButtons Contains the buttons to display in the toggle group
- * @param selectedButtonIndex The index of the selected button in [iconToggleButtons] list.
+ * @param selectedIndex The [iconToggleButtons] list index of the selected button.
+ * @param onSelectedIndexChange Callback to be invoked when the selection change.
  * @param modifier optional [Modifier] for this IconToggleButton
  * @param displaySurface optional allow to force the button display on a dark or light
  * surface. By default the appearance applied is based on the system night mode value.
@@ -57,7 +57,8 @@ import com.orange.ods.compose.theme.OdsTheme
 @OdsComponentApi
 fun OdsIconToggleButtonsRow(
     iconToggleButtons: List<OdsIconToggleButtonsRowItem>,
-    selectedButtonIndex: MutableState<Int>,
+    selectedIndex: Int,
+    onSelectedIndexChange: (Int) -> Unit,
     modifier: Modifier = Modifier,
     displaySurface: OdsDisplaySurface = OdsDisplaySurface.Default
 ) {
@@ -72,11 +73,12 @@ fun OdsIconToggleButtonsRow(
     ) {
         iconToggleButtons.forEachIndexed { index, iconToggleButton ->
             IconToggleButtonsRowItem(
+                index = index,
                 iconToggleButton = iconToggleButton,
-                selected = selectedButtonIndex.value == index,
+                selected = selectedIndex == index,
                 displaySurface = displaySurface
-            ) {
-                selectedButtonIndex.value = index
+            ) { clickedButtonIndex ->
+                onSelectedIndexChange(clickedButtonIndex)
             }
             if (index < iconToggleButtons.size) {
                 Divider(
@@ -98,10 +100,11 @@ data class OdsIconToggleButtonsRowItem(
 
 @Composable
 private fun IconToggleButtonsRowItem(
+    index: Int,
     iconToggleButton: OdsIconToggleButtonsRowItem,
     selected: Boolean,
     displaySurface: OdsDisplaySurface,
-    onClick: () -> Unit
+    onClick: (Int) -> Unit
 ) {
     val iconTint by animateColorAsState(buttonToggleIconColor(displaySurface, selected))
     val backgroundAlpha by animateFloatAsState(if (selected) 0.12f else 0f)
@@ -113,7 +116,7 @@ private fun IconToggleButtonsRowItem(
                     .copy(alpha = backgroundAlpha)
             )
             .padding(12.dp)
-            .clickable(interactionSource = remember { DisabledInteractionSource() }, indication = null) { onClick() }
+            .clickable(interactionSource = remember { DisabledInteractionSource() }, indication = null) { onClick(index) }
     ) {
         Icon(
             painter = iconToggleButton.icon,
@@ -156,9 +159,11 @@ private fun PreviewOdsIconToggleButtonsGroupRow() = Preview {
         OdsIconToggleButtonsRowItem(painterResource(id = android.R.drawable.ic_dialog_email), "Day"),
         OdsIconToggleButtonsRowItem(painterResource(id = android.R.drawable.ic_dialog_alert), "Month")
     )
+    val selectedIndexState = remember { mutableStateOf(0) }
 
     OdsIconToggleButtonsRow(
         iconToggleButtons = iconToggleButtons,
-        selectedButtonIndex = remember { mutableStateOf(0) }
+        selectedIndex = selectedIndexState.value,
+        onSelectedIndexChange = { index -> selectedIndexState.value = index }
     )
 }

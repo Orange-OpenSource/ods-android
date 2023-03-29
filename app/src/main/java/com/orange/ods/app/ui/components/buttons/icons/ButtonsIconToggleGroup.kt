@@ -19,7 +19,6 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.MutableState
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.ui.Modifier
@@ -43,7 +42,7 @@ fun ButtonsIconToggleGroup(customizationState: ButtonIconCustomizationState) {
             OdsIconToggleButtonsRowItem(painterResource(id = recipe.iconResId!!), recipe.title)
         }
 
-    val selectedButtonIndex = rememberSaveable { mutableStateOf(0) }
+    val selectedIndexState = rememberSaveable { mutableStateOf(0) }
 
     with(customizationState) {
         Column(
@@ -53,7 +52,8 @@ fun ButtonsIconToggleGroup(customizationState: ButtonIconCustomizationState) {
         ) {
             ToggleButtonsRow(
                 iconToggleButtons = iconToggleButtons,
-                selectedButtonIndex = selectedButtonIndex,
+                selectedIndex = selectedIndexState.value,
+                onSelectedIndexChange = { index -> selectedIndexState.value = index },
                 toggleCount = toggleCount.value
             )
 
@@ -62,7 +62,8 @@ fun ButtonsIconToggleGroup(customizationState: ButtonIconCustomizationState) {
             InvertedBackgroundColumn {
                 ToggleButtonsRow(
                     iconToggleButtons = iconToggleButtons,
-                    selectedButtonIndex = selectedButtonIndex,
+                    selectedIndex = selectedIndexState.value,
+                    onSelectedIndexChange = { index -> selectedIndexState.value = index },
                     toggleCount = toggleCount.value,
                     displaySurface = displaySurface
                 )
@@ -77,7 +78,7 @@ fun ButtonsIconToggleGroup(customizationState: ButtonIconCustomizationState) {
                         TechnicalText(text = "  ),")
                     }
                     TechnicalText(text = "),")
-                    TechnicalText(text = "selectedButtonIndex = ${selectedButtonIndex.value}")
+                    TechnicalText(text = "selectedButtonIndex = ${selectedIndexState.value}")
                 }
             }
         }
@@ -87,7 +88,8 @@ fun ButtonsIconToggleGroup(customizationState: ButtonIconCustomizationState) {
 @Composable
 private fun ToggleButtonsRow(
     iconToggleButtons: List<OdsIconToggleButtonsRowItem>,
-    selectedButtonIndex: MutableState<Int>,
+    selectedIndex: Int,
+    onSelectedIndexChange: (Int) -> Unit,
     toggleCount: Int,
     displaySurface: OdsDisplaySurface = OdsDisplaySurface.Default
 ) {
@@ -100,7 +102,8 @@ private fun ToggleButtonsRow(
     ) {
         OdsIconToggleButtonsRow(
             iconToggleButtons = iconToggleButtons.take(toggleCount),
-            selectedButtonIndex = selectedButtonIndex,
+            selectedIndex = selectedIndex,
+            onSelectedIndexChange = onSelectedIndexChange,
             displaySurface = displaySurface
         )
     }
