@@ -52,18 +52,18 @@ fun SearchScreen(searchedText: MutableState<TextFieldValue>, onComponentClick: (
             .contains(searchedText.value.text.lowercase())
     }
 
-    val filterSpacing = Spacing.values().filter { spacing ->
+    val filterSpacings = Spacing.values().filter { spacing ->
         searchedText.value.text.isEmpty() || spacing.tokenName.lowercase()
             .contains(searchedText.value.text.lowercase())
     }
 
-    val filterGuidelines = LocalOdsGuideline.current.guidelineColors.filter { color ->
-        searchedText.value.text.isEmpty() || color.getName().lowercase().contains(searchedText.value.text.lowercase()) ||
-                color.lightThemeName.lowercase().contains(searchedText.value.text.lowercase()) ||
-                color.darkThemeName.lowercase().contains(searchedText.value.text.lowercase())
+    val filterGuidelines = LocalOdsGuideline.current.guidelineColors.filter { guidelineColor ->
+        searchedText.value.text.isEmpty() || guidelineColor.getName().lowercase().contains(searchedText.value.text.lowercase()) ||
+                guidelineColor.lightThemeName.lowercase().contains(searchedText.value.text.lowercase()) ||
+                guidelineColor.darkThemeName.lowercase().contains(searchedText.value.text.lowercase())
     }
 
-    val list = components.filter { it.variants.isNotEmpty() }
+    val filterVariants = components.filter { it.variants.isNotEmpty() }
         .flatMap { component ->
             val componentImageRes = component.smallImageRes.orElse { component.imageRes }
             component.variants.filter { variant ->
@@ -105,16 +105,16 @@ fun SearchScreen(searchedText: MutableState<TextFieldValue>, onComponentClick: (
                 data = guidelineColor
             )
         })
-        .plus(list.map {
+        .plus(filterVariants.map { variant ->
             OdsSearchParameter(
-                stringResource(id = it.second.titleRes),
-                route = it.second.id,
-                image = it.first,
+                stringResource(id = variant.second.titleRes),
+                route = variant.second.id,
+                image = variant.first,
                 color = null,
-                subtitle = it.second.composableName,
-                data = it.second
+                subtitle = variant.second.composableName,
+                data = variant.second
             )
-        }).plus(filterSpacing.map { spacing ->
+        }).plus(filterSpacings.map { spacing ->
             OdsSearchParameter(
                 spacing.tokenName,
                 0,
@@ -161,7 +161,7 @@ fun SearchScreen(searchedText: MutableState<TextFieldValue>, onComponentClick: (
                 }
             )
             if (openDialog.value) {
-                DialogColor(color = guideline[0], openDialog)
+                DialogColor(color = guideline.first(), openDialog)
             }
         }
     }
