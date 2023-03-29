@@ -8,7 +8,7 @@
  * /
  */
 
-package com.orange.ods.app.ui.components.buttons
+package com.orange.ods.app.ui.components.buttons.icons
 
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.MutableState
@@ -31,8 +31,8 @@ class ButtonIconCustomizationState(
     val enabled: MutableState<Boolean>
 ) {
     companion object {
-        const val MinToggleCount = 1
-        const val MaxToggleCount = 3
+        const val MinToggleCount = 2
+        const val MaxToggleCount = 4
     }
 
     val isEnabled

@@ -8,7 +8,7 @@
  * /
  */
 
-package com.orange.ods.app.ui.components.buttons
+package com.orange.ods.app.ui.components.buttons.icons
 
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material.ExperimentalMaterialApi
@@ -33,26 +33,28 @@ fun ComponentButtonsIcons(variant: Variant) {
         ComponentCustomizationBottomSheetScaffold(
             bottomSheetScaffoldState = rememberBottomSheetScaffoldState(),
             bottomSheetContent = {
-                if (variant == Variant.ButtonsToggle) {
+                if (variant == Variant.ButtonsIconToggleGroup) {
                     ComponentCountRow(
                         modifier = Modifier.padding(start = dimensionResource(id = R.dimen.screen_horizontal_margin)),
-                        title = stringResource(id = R.string.component_buttons_toggle_count),
+                        title = stringResource(id = R.string.component_button_icon_toggle_count),
                         count = toggleCount,
-                        minusIconContentDescription = stringResource(id = R.string.component_buttons_toggle_remove),
-                        plusIconContentDescription = stringResource(id = R.string.component_buttons_toggle_add),
+                        minusIconContentDescription = stringResource(id = R.string.component_button_icon_toggle_remove),
+                        plusIconContentDescription = stringResource(id = R.string.component_button_icon_toggle_add),
                         minCount = ButtonIconCustomizationState.MinToggleCount,
                         maxCount = ButtonIconCustomizationState.MaxToggleCount
                     )
+                } else {
+                    OdsListItem(
+                        text = stringResource(id = R.string.component_state_enabled),
+                        trailing = OdsSwitchTrailing(checked = enabled)
+                    )
                 }
-                OdsListItem(
-                    text = stringResource(id = R.string.component_state_enabled),
-                    trailing = OdsSwitchTrailing(checked = enabled)
-                )
             }) {
 
             when (variant) {
-                Variant.ButtonsToggle -> ButtonsIconToggle(customizationState)
                 Variant.ButtonsIcon -> ButtonsIcon(customizationState)
+                Variant.ButtonsIconToggle -> ButtonsIconToggle(customizationState)
+                Variant.ButtonsIconToggleGroup -> ButtonsIconToggleGroup(customizationState)
                 else -> {}
             }
         }

@@ -79,8 +79,9 @@ sealed class Component(
         null,
         R.string.component_buttons_description,
         listOf(
-            Variant.ButtonsToggle,
-            Variant.ButtonsIcon
+            Variant.ButtonsIcon,
+            Variant.ButtonsIconToggle,
+            Variant.ButtonsIconToggleGroup
         )
     )
 
@@ -231,8 +232,9 @@ sealed class Variant(
     object ButtonsText : Variant(R.string.component_buttons_low_emphasis, OdsComponent.OdsTextButton.name)
     object ButtonsFunctional : Variant(R.string.component_buttons_functional, "${OdsComponent.OdsButton.name} with a functional style")
 
-    object ButtonsToggle : Variant(R.string.component_buttons_toggle, OdsComponent.OdsIconToggleButton.name)
     object ButtonsIcon : Variant(R.string.component_buttons_icon, OdsComponent.OdsIconButton.name)
+    object ButtonsIconToggle : Variant(R.string.component_buttons_icon_toggle, OdsComponent.OdsIconToggleButton.name)
+    object ButtonsIconToggleGroup : Variant(R.string.component_buttons_icon_toggle_group, OdsComponent.OdsIconToggleButtonsRow.name)
 
     object CardVerticalImageFirst : Variant(R.string.component_card_vertical_image_first, OdsComponent.OdsVerticalImageFirstCard.name)
     object CardVerticalHeaderFirst : Variant(R.string.component_card_vertical_header_first, OdsComponent.OdsVerticalHeaderFirstCard.name)

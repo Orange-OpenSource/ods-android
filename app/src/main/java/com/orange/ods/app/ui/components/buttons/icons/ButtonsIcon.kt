@@ -8,7 +8,7 @@
  * /
  */
 
-package com.orange.ods.app.ui.components.buttons
+package com.orange.ods.app.ui.components.buttons.icons
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -26,9 +26,11 @@ import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import com.orange.ods.app.R
+import com.orange.ods.app.ui.components.buttons.InvertedBackgroundColumn
 import com.orange.ods.app.ui.components.utilities.clickOnElement
-import com.orange.ods.app.ui.utilities.composable.ButtonTechnicalTextColumn
 import com.orange.ods.app.ui.utilities.composable.CodeImplementationColumn
+import com.orange.ods.app.ui.utilities.composable.CommonButtonTechnicalTextColumn
+import com.orange.ods.app.ui.utilities.composable.TechnicalText
 import com.orange.ods.compose.component.OdsComponent
 import com.orange.ods.compose.component.button.OdsIconButton
 
@@ -48,7 +50,7 @@ fun ButtonsIcon(customizationState: ButtonIconCustomizationState) {
             ) {
                 OdsIconButton(
                     onClick = { clickOnElement(context, context.getString(R.string.component_button_icon)) },
-                    painter = painterResource(id = R.drawable.ic_coffee),
+                    painter = painterResource(id = R.drawable.ic_search),
                     contentDescription = stringResource(id = R.string.component_button_icon_search_desc),
                     enabled = isEnabled
                 )
@@ -59,7 +61,7 @@ fun ButtonsIcon(customizationState: ButtonIconCustomizationState) {
             InvertedBackgroundColumn(horizontalAlignment = Alignment.CenterHorizontally) {
                 OdsIconButton(
                     onClick = { clickOnElement(context, context.getString(R.string.component_button_icon)) },
-                    painter = painterResource(id = R.drawable.ic_coffee),
+                    painter = painterResource(id = R.drawable.ic_search),
                     contentDescription = stringResource(id = R.string.component_button_icon_search_desc),
                     enabled = isEnabled,
                     displaySurface = displaySurface
@@ -67,11 +69,12 @@ fun ButtonsIcon(customizationState: ButtonIconCustomizationState) {
             }
 
             CodeImplementationColumn {
-                ButtonTechnicalTextColumn(
-                    componentName = OdsComponent.OdsIconButton.name,
-                    enabled = isEnabled,
-                    painter = true
-                )
+                CommonButtonTechnicalTextColumn(componentName = OdsComponent.OdsIconButton.name) {
+                    TechnicalText(text = "painter = painterResource(id = R.drawable.ic_search),")
+                    if (!isEnabled) {
+                        TechnicalText(text = "enabled = false,")
+                    }
+                }
             }
         }
     }

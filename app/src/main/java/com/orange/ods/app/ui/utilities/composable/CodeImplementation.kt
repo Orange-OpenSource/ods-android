@@ -20,8 +20,8 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.semantics.semantics
-import com.orange.ods.compose.theme.OdsTheme
 import com.orange.ods.app.R
+import com.orange.ods.compose.theme.OdsTheme
 
 @Composable
 fun CodeImplementationColumn(content: @Composable ColumnScope.() -> Unit) {
@@ -44,24 +44,19 @@ fun ButtonTechnicalTextColumn(
     enabled: Boolean,
     modifier: Modifier = Modifier,
     style: String? = null,
-    fullScreenWidth: Boolean? = null,
+    fullScreenWidth: Boolean = false,
     icon: Boolean? = null,
-    painter: Boolean? = null
 ) {
     CommonButtonTechnicalTextColumn(modifier = modifier, componentName = componentName, fullScreenWidth = fullScreenWidth) {
         style?.let { TechnicalText(text = "style = $style,") }
         if (icon == true) {
             TechnicalText(text = "icon = painterResource(id = R.drawable.ic_coffee),")
         }
-        if (painter == true) {
-            TechnicalText(text = "painter = painterResource(id = R.drawable.ic_coffee),")
-        }
         if (!enabled) {
             TechnicalText(text = "enabled = false,")
         }
     }
 }
-
 
 @Composable
 fun FloatingActionButtonTechnicalTextColumn(
@@ -83,13 +78,6 @@ fun FloatingActionButtonTechnicalTextColumn(
 }
 
 @Composable
-fun RowSurroundedTechnicalText(content: @Composable () -> Unit) {
-    TechnicalText(text = "Row {")
-    content()
-    TechnicalText(text = "}")
-}
-
-@Composable
 fun CommonTechnicalTextColumn(
     componentName: String,
     modifier: Modifier = Modifier,
@@ -105,14 +93,14 @@ fun CommonTechnicalTextColumn(
 }
 
 @Composable
-private fun CommonButtonTechnicalTextColumn(
+fun CommonButtonTechnicalTextColumn(
     componentName: String,
-    fullScreenWidth: Boolean?,
     modifier: Modifier = Modifier,
+    fullScreenWidth: Boolean = false,
     content: @Composable () -> Unit = {}
 ) {
-    CommonTechnicalTextColumn(componentName = componentName, modifier = modifier){
-        if (fullScreenWidth == true) {
+    CommonTechnicalTextColumn(componentName = componentName, modifier = modifier) {
+        if (fullScreenWidth) {
             TechnicalText(text = "modifier = Modifier.fillMaxWidth(),")
         }
         content()

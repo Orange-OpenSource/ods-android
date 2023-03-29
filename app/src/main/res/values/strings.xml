@@ -127,15 +127,7 @@
     <string name="component_buttons_medium_emphasis">Medium emphasis buttons</string>
     <string name="component_buttons_low_emphasis">Low emphasis buttons</string>
     <string name="component_buttons_functional">Functional buttons</string>
-    <string name="component_buttons_toggle">Toggle buttons</string>
-    <string name="component_buttons_toggle_subtitle_group">Group</string>
-    <string name="component_buttons_toggle_subtitle_single">Single</string>
-    <string name="component_buttons_toggle_count">Toggle count</string>
-    <string name="component_buttons_toggle_remove">Remove toggle</string>
-    <string name="component_buttons_toggle_add">Add toggle</string>
-    <string name="component_buttons_icon">Icon buttons</string>
-    <string name="component_button_icon">Icon button</string>
-    <string name="component_button_icon_search_desc">Search</string>
+
     <string name="component_button_full_screen_width">Full screen width</string>
     <string name="component_button_style_primary">Primary</string>
     <string name="component_button_style_default">Default</string>
@@ -145,6 +137,17 @@
 
     <!-- Components Buttons: Icons -->
     <string name="component_buttons_icons">Buttons: Icons</string>
+    <string name="component_buttons_icon">Icon buttons</string>
+    <string name="component_buttons_icon_toggle">Toggle icon buttons</string>
+    <string name="component_buttons_icon_toggle_group">Toggle icon buttons group</string>
+    <string name="component_button_icon">Icon button</string>
+    <string name="component_button_icon_search_desc">Search</string>
+    <string name="component_button_icon_toggle">Toggle icon button</string>
+    <string name="component_button_icon_toggle_group">Toggle icon button group</string>
+    <string name="component_button_icon_toggle_favorite_icon_desc">Add to favorites</string>
+    <string name="component_button_icon_toggle_count">Toggle count</string>
+    <string name="component_button_icon_toggle_remove">Remove toggle</string>
+    <string name="component_button_icon_toggle_add">Add toggle</string>
 
     <!-- Components Cards -->
     <string name="component_cards">Cards</string>

@@ -15,7 +15,7 @@ import androidx.compose.runtime.remember
 import com.orange.ods.app.ui.LocalMainTopAppBarManager
 import com.orange.ods.app.ui.components.appbars.top.ComponentTopAppBar
 import com.orange.ods.app.ui.components.buttons.ComponentButtons
-import com.orange.ods.app.ui.components.buttons.ComponentButtonsIcons
+import com.orange.ods.app.ui.components.buttons.icons.ComponentButtonsIcons
 import com.orange.ods.app.ui.components.cards.ComponentCard
 import com.orange.ods.app.ui.components.chips.Chip
 import com.orange.ods.app.ui.components.chips.ChipFilter
