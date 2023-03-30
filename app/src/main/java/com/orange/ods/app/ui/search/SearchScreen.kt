@@ -150,12 +150,10 @@ fun SearchScreen(searchedText: MutableState<TextFieldValue>, onComponentClick: (
                 icon = {
                     print(item)
                     OdsListItemIcon(
-                        painter = if (item.image != null) {
-                            painterResource(id = DrawableManager.getDrawableResIdForCurrentTheme(resId = item.image))
-                        } else if (item.color != null) {
-                            ColorPainter(item.color)
-                        } else {
-                            painterResource(id = R.drawable.placeholder)
+                        painter = when {
+                            item.image != null -> painterResource(id = DrawableManager.getDrawableResIdForCurrentTheme(resId = item.image))
+                            item.color != null -> ColorPainter(item.color)
+                            else -> painterResource(id = R.drawable.placeholder)
                         }
                     )
                 }
