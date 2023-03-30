@@ -57,7 +57,7 @@ fun SearchScreen(searchedText: MutableState<TextFieldValue>, onComponentClick: (
             .contains(searchedText.value.text.lowercase())
     }
 
-    val filteredGuidelines = LocalOdsGuideline.current.guidelineColors.filter { guidelineColor ->
+    val filteredGuidelineColors = LocalOdsGuideline.current.guidelineColors.filter { guidelineColor ->
         searchedText.value.text.isEmpty() || guidelineColor.getName().lowercase().contains(searchedText.value.text.lowercase()) ||
                 guidelineColor.lightThemeName.lowercase().contains(searchedText.value.text.lowercase()) ||
                 guidelineColor.darkThemeName.lowercase().contains(searchedText.value.text.lowercase())
@@ -94,7 +94,7 @@ fun SearchScreen(searchedText: MutableState<TextFieldValue>, onComponentClick: (
                 data = component
             )
         }
-        .plus(filteredGuidelines.map { guidelineColor ->
+        .plus(filteredGuidelineColors.map { guidelineColor ->
             SearchResult(
                 guidelineColor.getName(),
                 0,
@@ -130,8 +130,8 @@ fun SearchScreen(searchedText: MutableState<TextFieldValue>, onComponentClick: (
     ) {
         items(searchResults) { item ->
             val openDialog = remember { mutableStateOf(false) }
-            val guidelineColors = filteredGuidelines.firstOrNull { filteredGuidelineColors ->
-                filteredGuidelineColors.getName() == item.title && filteredGuidelineColors.getValue() == item.color
+            val guidelineColor = filteredGuidelineColors.firstOrNull { guidelineColor ->
+                guidelineColor.getName() == item.title && guidelineColor.getValue() == item.color
             }
             OdsListItem(
                 text = item.title,
@@ -157,8 +157,8 @@ fun SearchScreen(searchedText: MutableState<TextFieldValue>, onComponentClick: (
                     )
                 }
             )
-            if (openDialog.value) {
-                guidelineColors?.let { DialogColor(color = it, openDialog) }
+            if (openDialog.value && guidelineColor != null) {
+                DialogColor(color = guidelineColor, openDialog)
             }
         }
     }
