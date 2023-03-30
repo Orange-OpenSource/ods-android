@@ -74,7 +74,7 @@ fun SearchScreen(searchedText: MutableState<TextFieldValue>, onComponentClick: (
             }
         }
 
-    data class OdsSearchParameter(
+    data class SearchResult(
         val title: String,
         val route: Long,
         val image: Int?,
@@ -83,20 +83,19 @@ fun SearchScreen(searchedText: MutableState<TextFieldValue>, onComponentClick: (
         val data: Any
     )
 
-    val searchList: List<OdsSearchParameter> = filteredComponents.filter { it.variants.isEmpty() }
+    val searchResults: List<SearchResult> = filteredComponents.filter { it.variants.isEmpty() }
         .map { component ->
-            val componentImageRes = component.smallImageRes.orElse { component.imageRes }
-            OdsSearchParameter(
+            SearchResult(
                 context.getString(component.titleRes),
                 component.id,
-                componentImageRes,
+                component.smallImageRes.orElse { component.imageRes },
                 color = null,
                 subtitle = component.composableName,
                 data = component
             )
         }
         .plus(filteredGuidelines.map { guidelineColor ->
-            OdsSearchParameter(
+            SearchResult(
                 guidelineColor.getName(),
                 0,
                 image = null,
@@ -106,7 +105,7 @@ fun SearchScreen(searchedText: MutableState<TextFieldValue>, onComponentClick: (
             )
         })
         .plus(filteredVariants.map { variant ->
-            OdsSearchParameter(
+            SearchResult(
                 stringResource(id = variant.second.titleRes),
                 route = variant.second.id,
                 image = variant.first,
@@ -115,12 +114,12 @@ fun SearchScreen(searchedText: MutableState<TextFieldValue>, onComponentClick: (
                 data = variant.second
             )
         }).plus(filteredSpacings.map { spacing ->
-            OdsSearchParameter(
+            SearchResult(
                 spacing.tokenName,
                 0,
                 image = R.drawable.il_spacing,
                 color = null,
-                subtitle = stringResource(id = R.string.guideline_spacing_dp, spacing.getDp().value.toInt()) + "\n",
+                subtitle = stringResource(id = R.string.guideline_spacing_dp, spacing.getDp().value.toInt()),
                 data = spacing
             )
         }).sortedBy { it.title }.toList()
@@ -129,7 +128,7 @@ fun SearchScreen(searchedText: MutableState<TextFieldValue>, onComponentClick: (
         modifier = Modifier
             .fillMaxWidth()
     ) {
-        items(searchList) { item ->
+        items(searchResults) { item ->
             val openDialog = remember { mutableStateOf(false) }
             val guidelineColors = filteredGuidelines.firstOrNull { filteredGuidelineColors ->
                 filteredGuidelineColors.getName() == item.title && filteredGuidelineColors.getValue() == item.color
