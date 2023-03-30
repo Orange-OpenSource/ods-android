@@ -131,7 +131,7 @@ fun SearchScreen(searchedText: MutableState<TextFieldValue>, onComponentClick: (
     ) {
         items(searchList) { item ->
             val openDialog = remember { mutableStateOf(false) }
-            val guideline = filteredGuidelines.filter { filteredGuidelineColors ->
+            val guidelineColors = filteredGuidelines.firstOrNull { filteredGuidelineColors ->
                 filteredGuidelineColors.getName() == item.title && filteredGuidelineColors.getValue() == item.color
             }
             OdsListItem(
@@ -159,7 +159,7 @@ fun SearchScreen(searchedText: MutableState<TextFieldValue>, onComponentClick: (
                 }
             )
             if (openDialog.value) {
-                DialogColor(color = guideline.first(), openDialog)
+                guidelineColors?.let { DialogColor(color = it, openDialog) }
             }
         }
     }
