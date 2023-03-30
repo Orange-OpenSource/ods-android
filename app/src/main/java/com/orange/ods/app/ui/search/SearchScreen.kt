@@ -50,7 +50,7 @@ fun SearchScreen(searchedText: MutableState<TextFieldValue>, onComponentClick: (
     val filteredComponents = components.filter { component ->
         searchedText.value.text.isEmpty() || stringResource(id = component.titleRes).lowercase()
             .contains(searchedText.value.text.lowercase())
-    }
+    }.asSequence()
 
     val filteredSpacings = Spacing.values().filter { spacing ->
         searchedText.value.text.isEmpty() || spacing.tokenName.lowercase()
@@ -87,7 +87,7 @@ fun SearchScreen(searchedText: MutableState<TextFieldValue>, onComponentClick: (
         .map { component ->
             val componentImageRes = component.smallImageRes.orElse { component.imageRes }
             OdsSearchParameter(
-                stringResource(id = component.titleRes),
+                context.getString(component.titleRes),
                 component.id,
                 componentImageRes,
                 color = null,
@@ -123,7 +123,7 @@ fun SearchScreen(searchedText: MutableState<TextFieldValue>, onComponentClick: (
                 subtitle = stringResource(id = R.string.guideline_spacing_dp, spacing.getDp().value.toInt()) + "\n",
                 data = spacing
             )
-        }).sortedBy { it.title }
+        }).sortedBy { it.title }.toList()
 
     LazyColumn(
         modifier = Modifier
