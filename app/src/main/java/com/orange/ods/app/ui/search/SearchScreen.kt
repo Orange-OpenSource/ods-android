@@ -47,23 +47,23 @@ fun SearchScreen(searchedText: MutableState<TextFieldValue>, onComponentClick: (
 
     val context = LocalContext.current
 
-    val filterComponents = components.filter { component ->
+    val filteredComponents = components.filter { component ->
         searchedText.value.text.isEmpty() || stringResource(id = component.titleRes).lowercase()
             .contains(searchedText.value.text.lowercase())
     }
 
-    val filterSpacings = Spacing.values().filter { spacing ->
+    val filteredSpacings = Spacing.values().filter { spacing ->
         searchedText.value.text.isEmpty() || spacing.tokenName.lowercase()
             .contains(searchedText.value.text.lowercase())
     }
 
-    val filterGuidelines = LocalOdsGuideline.current.guidelineColors.filter { guidelineColor ->
+    val filteredGuidelines = LocalOdsGuideline.current.guidelineColors.filter { guidelineColor ->
         searchedText.value.text.isEmpty() || guidelineColor.getName().lowercase().contains(searchedText.value.text.lowercase()) ||
                 guidelineColor.lightThemeName.lowercase().contains(searchedText.value.text.lowercase()) ||
                 guidelineColor.darkThemeName.lowercase().contains(searchedText.value.text.lowercase())
     }
 
-    val filterVariants = components.filter { it.variants.isNotEmpty() }
+    val filteredVariants = components.filter { it.variants.isNotEmpty() }
         .flatMap { component ->
             val componentImageRes = component.smallImageRes.orElse { component.imageRes }
             component.variants.filter { variant ->
@@ -83,7 +83,7 @@ fun SearchScreen(searchedText: MutableState<TextFieldValue>, onComponentClick: (
         val data: Any
     )
 
-    val searchList: List<OdsSearchParameter> = filterComponents.filter { it.variants.isEmpty() }
+    val searchList: List<OdsSearchParameter> = filteredComponents.filter { it.variants.isEmpty() }
         .map { component ->
             val componentImageRes = component.smallImageRes.orElse { component.imageRes }
             OdsSearchParameter(
@@ -95,7 +95,7 @@ fun SearchScreen(searchedText: MutableState<TextFieldValue>, onComponentClick: (
                 data = component
             )
         }
-        .plus(filterGuidelines.map { guidelineColor ->
+        .plus(filteredGuidelines.map { guidelineColor ->
             OdsSearchParameter(
                 guidelineColor.getName(),
                 0,
@@ -105,7 +105,7 @@ fun SearchScreen(searchedText: MutableState<TextFieldValue>, onComponentClick: (
                 data = guidelineColor
             )
         })
-        .plus(filterVariants.map { variant ->
+        .plus(filteredVariants.map { variant ->
             OdsSearchParameter(
                 stringResource(id = variant.second.titleRes),
                 route = variant.second.id,
@@ -114,7 +114,7 @@ fun SearchScreen(searchedText: MutableState<TextFieldValue>, onComponentClick: (
                 subtitle = variant.second.composableName,
                 data = variant.second
             )
-        }).plus(filterSpacings.map { spacing ->
+        }).plus(filteredSpacings.map { spacing ->
             OdsSearchParameter(
                 spacing.tokenName,
                 0,
@@ -131,7 +131,7 @@ fun SearchScreen(searchedText: MutableState<TextFieldValue>, onComponentClick: (
     ) {
         items(searchList) { item ->
             val openDialog = remember { mutableStateOf(false) }
-            val guideline = filterGuidelines.filter {
+            val guideline = filteredGuidelines.filter {
                 it.getName() == item.title && it.getValue() == item.color
             }
             OdsListItem(
