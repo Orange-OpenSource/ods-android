@@ -12,6 +12,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - \[App\] Add component search feature ([#16](https://github.com/Orange-OpenSource/ods-android/issues/16))
 - \[App\] Add modal drawers component ([#112](https://github.com/Orange-OpenSource/ods-android/issues/112))
 - \[Lib\] Add `OdsModalDrawer` component ([#112](https://github.com/Orange-OpenSource/ods-android/issues/112))
+- \[Lib\] Add `OdsIconToggleButtonsRow` composable to display a group of toggle buttons ([#484](https://github.com/Orange-OpenSource/ods-android/issues/484))
 
 ### Changed
 
@@ -21,7 +22,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - \[App\] Remove copyright text in the about screen ([#486](https://github.com/Orange-OpenSource/ods-android/issues/486))
 - \[App\] Update search with guidelines ([#478](https://github.com/Orange-OpenSource/ods-android/issues/478))
 - \[App\] Update chips variants in order to have "Action chips", "Choice chips" and "Input chips" in the chips detail screen ([#494](https://github.com/Orange-OpenSource/ods-android/issues/494))
+- \[App\] Split buttons and icons buttons in two different components ([#484](https://github.com/Orange-OpenSource/ods-android/issues/484))
 - \[Lib\] Encapsulate a `MaterialTheme` in the `OdsTheme` to take directly benefits of colors set in Jetpack Compose SDK ([#430](https://github.com/Orange-OpenSource/ods-android/issues/430))
+- \[Lib\] Update `OdsIconToggleButton` which displays a single icon button with two states. Use `OdsIconToggleButtonsRow` to display a group of toggle buttons ([#484](https://github.com/Orange-OpenSource/ods-android/issues/484))
 - \[ThemeConfigurationContract\] Change colors contract by respectively grouping Material, functional and components colors in `materialColors`, `functionalColors` and `componentColors` properties of `OdsColors` ([#430](https://github.com/Orange-OpenSource/ods-android/issues/430))
 
 ### Fixed
