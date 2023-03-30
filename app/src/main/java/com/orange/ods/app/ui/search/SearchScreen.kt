@@ -131,8 +131,8 @@ fun SearchScreen(searchedText: MutableState<TextFieldValue>, onComponentClick: (
     ) {
         items(searchList) { item ->
             val openDialog = remember { mutableStateOf(false) }
-            val guideline = filteredGuidelines.filter {
-                it.getName() == item.title && it.getValue() == item.color
+            val guideline = filteredGuidelines.filter { filteredGuidelineColors ->
+                filteredGuidelineColors.getName() == item.title && filteredGuidelineColors.getValue() == item.color
             }
             OdsListItem(
                 text = item.title,
