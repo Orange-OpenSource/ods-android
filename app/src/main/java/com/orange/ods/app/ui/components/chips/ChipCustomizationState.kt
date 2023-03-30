@@ -16,13 +16,14 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.saveable.rememberSaveable
 import com.orange.ods.app.R
+import com.orange.ods.app.ui.components.Variant
 import com.orange.ods.app.ui.components.chips.ChipCustomizationState.ChipType
 import com.orange.ods.app.ui.components.chips.ChipCustomizationState.LeadingElement
 
 
 @Composable
 fun rememberChipCustomizationState(
-    chipType: MutableState<ChipType> = rememberSaveable { mutableStateOf(ChipType.Input) },
+    chipType: MutableState<ChipType>,
     leadingElement: MutableState<LeadingElement> = rememberSaveable { mutableStateOf(LeadingElement.None) },
     enabled: MutableState<Boolean> = rememberSaveable { mutableStateOf(true) },
     choiceChipIndexSelected: MutableState<Int?> = rememberSaveable { mutableStateOf(null) }
@@ -41,20 +42,21 @@ class ChipCustomizationState(
     enum class ChipType {
         Input, Action, Choice, Filter;
 
-        val nameRes: Int
-            get() = when (this) {
-                Input -> R.string.component_chip_type_input
-                Action -> R.string.component_chip_type_action
-                Choice -> R.string.component_chip_type_choice
-                Filter -> R.string.component_chip_type_filter
+        companion object {
+            fun fromVariant(variant: Variant) = when (variant) {
+                Variant.ChipChoice -> Choice
+                Variant.ChipInput -> Input
+                Variant.ChipFilter -> Filter
+                else -> Action
             }
+        }
 
         val descriptionRes: Int
             get() = when (this) {
-                Input -> R.string.component_chip_type_input_description
-                Action -> R.string.component_chip_type_action_description
-                Choice -> R.string.component_chip_type_choice_description
-                Filter -> R.string.component_chip_type_filter_description
+                Input -> R.string.component_chip_input_description
+                Action -> R.string.component_chip_action_description
+                Choice -> R.string.component_chip_choice_description
+                Filter -> R.string.component_chip_filter_description
             }
     }
 

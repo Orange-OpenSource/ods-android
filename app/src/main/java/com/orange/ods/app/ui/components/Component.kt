@@ -101,7 +101,7 @@ sealed class Component(
         R.drawable.il_chips,
         R.drawable.il_chips_small,
         R.string.component_chips_description,
-        listOf(Variant.Chip, Variant.ChipFilter)
+        listOf(Variant.ChipAction, Variant.ChipChoice, Variant.ChipInput, Variant.ChipFilter)
     )
 
     object Dialogs : Component(
@@ -232,8 +232,10 @@ sealed class Variant(
     object CardSmall : Variant(R.string.component_card_small, OdsComponent.OdsSmallCard.name)
     object CardHorizontal : Variant(R.string.component_card_horizontal, OdsComponent.OdsHorizontalCard.name)
 
-    object Chip : Variant(R.string.component_chip, OdsComponent.OdsChip.name)
-    object ChipFilter : Variant(R.string.component_chip_type_filter, OdsComponent.OdsFilterChip.name)
+    object ChipAction : Variant(R.string.component_chip_action, OdsComponent.OdsChip.name)
+    object ChipChoice : Variant(R.string.component_chip_choice, OdsComponent.OdsChip.name)
+    object ChipInput : Variant(R.string.component_chip_input, OdsComponent.OdsChip.name)
+    object ChipFilter : Variant(R.string.component_chip_filter, OdsComponent.OdsFilterChip.name)
 
     object DropdownMenu : Variant(R.string.component_menu_dropdown, OdsComponent.OdsDropdownMenu.name)
     object ExposedDropdownMenu : Variant(R.string.component_menu_exposed_dropdown, OdsComponent.OdsExposedDropdownMenu.name)
