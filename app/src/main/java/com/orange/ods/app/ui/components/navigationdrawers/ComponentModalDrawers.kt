@@ -17,6 +17,8 @@ import androidx.compose.material.ExperimentalMaterialApi
 import androidx.compose.material.rememberBottomSheetScaffoldState
 import androidx.compose.material.rememberDrawerState
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.ui.Modifier
@@ -71,6 +73,7 @@ fun ComponentModalDrawers() {
         }
     }
 
+    val selectedItemState = remember { mutableStateOf(modalDrawerItems.firstOrNull{ it is OdsModalDrawerListItem }) }
     OdsModalDrawer(
         drawerHeader = OdsModalDrawerHeader(
             title = stringResource(id = R.string.component_modal_drawer_side),
@@ -88,6 +91,10 @@ fun ComponentModalDrawers() {
         ),
         drawerContentList = if (customizationState.isContentExampleChecked) modalDrawerItems else emptyList(),
         drawerState = drawerState,
+        selectedItem =  selectedItemState.value,
+        onItemClick = { item ->
+            selectedItemState.value = item
+        },
         content = {
             with(customizationState) {
                 if (!isContentExampleChecked) {

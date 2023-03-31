@@ -12,6 +12,8 @@ package com.orange.ods.compose.component.navigationdrawer
 
 import androidx.annotation.DrawableRes
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.background
+import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -20,6 +22,7 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
+import androidx.compose.foundation.selection.selectable
 import androidx.compose.material.DrawerDefaults
 import androidx.compose.material.DrawerState
 import androidx.compose.material.DrawerValue
@@ -28,7 +31,9 @@ import androidx.compose.material.Surface
 import androidx.compose.material.Text
 import androidx.compose.material.contentColorFor
 import androidx.compose.material.rememberDrawerState
+import androidx.compose.material.ripple.rememberRipple
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -70,6 +75,8 @@ fun OdsModalDrawer(
     drawerContentList: List<OdsModalDrawerItem>,
     modifier: Modifier = Modifier,
     drawerState: DrawerState = rememberDrawerState(DrawerValue.Closed),
+    selectedItem: OdsModalDrawerItem? = null,
+    onItemClick: (OdsModalDrawerListItem) -> Unit = {},
     content: @Composable () -> Unit
 ) {
     ModalDrawer(
@@ -78,7 +85,7 @@ fun OdsModalDrawer(
             OdsDivider()
             LazyColumn {
                 items(drawerContentList) { item ->
-                    ModalDrawerItem(item = item)
+                    ModalDrawerItem(item = item, isSelected = item == selectedItem, onItemClick)
                 }
             }
         },
@@ -92,12 +99,12 @@ fun OdsModalDrawer(
 }
 
 sealed class OdsModalDrawerItem
-class OdsModalDrawerSectionLabel(val label: String) : OdsModalDrawerItem()
+data class OdsModalDrawerSectionLabel(val label: String) : OdsModalDrawerItem()
 object OdsModalDrawerDivider : OdsModalDrawerItem()
-class OdsModalDrawerListItem(@DrawableRes val icon: Int?, val text: String) : OdsModalDrawerItem()
+data class OdsModalDrawerListItem(@DrawableRes val icon: Int?, val text: String) : OdsModalDrawerItem()
 
 @Composable
-private fun ModalDrawerItem(item: OdsModalDrawerItem) {
+private fun ModalDrawerItem(item: OdsModalDrawerItem, isSelected: Boolean, onClick: (OdsModalDrawerListItem) -> Unit) {
     return when (item) {
         is OdsModalDrawerSectionLabel -> {
             Column {
@@ -109,13 +116,20 @@ private fun ModalDrawerItem(item: OdsModalDrawerItem) {
             }
         }
         is OdsModalDrawerListItem -> {
-
             OdsListItem(
                 modifier = Modifier
-                    .iconType(OdsListItemIconType.Icon),
+                    .iconType(OdsListItemIconType.Icon)
+                    .selectable(
+                        isSelected,
+                        interactionSource = remember { MutableInteractionSource() },
+                        indication = rememberRipple(color = OdsTheme.colors.primaryVariant),
+                        onClick = { onClick(item) }
+                    )
+                    .let {
+                        if (isSelected) it.background(OdsTheme.colors.primaryVariant) else it
+                    },
                 text = item.text,
                 icon = item.icon?.let { { OdsListItemIcon(painterResource(id = it)) } })
-
         }
         is OdsModalDrawerDivider -> {
             OdsDivider()
