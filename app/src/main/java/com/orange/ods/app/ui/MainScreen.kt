@@ -250,6 +250,9 @@ private fun NavGraphBuilder.mainNavGraph(navigateToElement: (String, Long?, NavB
     ) { from ->
         LocalMainTabsManager.current.clearTopAppBarTabs()
         LocalMainTopAppBarManager.current.updateTopAppBarTitle(R.string.navigation_item_search)
-        SearchScreen(searchedText, onComponentClick = { id -> navigateToElement(MainDestinations.ComponentDetailRoute, id, from) })
+        SearchScreen(
+            searchedText,
+            onResultItemClick = { route, id -> navigateToElement(route, id, from) }
+        )
     }
 }

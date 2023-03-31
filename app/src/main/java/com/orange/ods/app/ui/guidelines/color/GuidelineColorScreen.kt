@@ -218,7 +218,7 @@ private fun RowScope.BigColorItem(color: GuidelineColor) {
 }
 
 @Composable
-private fun DialogColor(color: GuidelineColor, openDialog: MutableState<Boolean>) {
+fun DialogColor(color: GuidelineColor, openDialog: MutableState<Boolean>) {
     val context = LocalContext.current
     val clipboardManager = LocalClipboardManager.current
     val colorValue = color.getValue()
@@ -278,7 +278,7 @@ private fun copyColorToClipboard(context: Context, color: Color, clipboardManage
 }
 
 @Composable
-private fun GuidelineColor.getValue(): Color {
+fun GuidelineColor.getValue(): Color {
     val isColorsProperty = OdsColors::class.memberProperties.filterIsInstance<KProperty<Color>>().contains(callable)
     val isFunctionalColorsProperty = OdsFunctionalColors::class.memberProperties.filterIsInstance<KProperty<Color>>().contains(callable)
     val isColorsExtensionProperty = callable.extensionReceiverParameter?.type?.classifier == Colors::class

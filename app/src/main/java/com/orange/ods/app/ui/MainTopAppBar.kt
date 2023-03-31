@@ -81,7 +81,7 @@ fun MainTopAppBar(
 @Composable
 private fun TopAppBarActions(state: MainTopAppBarState, titleRes: Int, onSearchActionClick: () -> Unit, onChangeThemeActionClick: () -> Unit) {
     val context = LocalContext.current
-    if (titleRes == R.string.navigation_item_components) {
+    if (titleRes == R.string.navigation_item_components || titleRes == R.string.navigation_item_guidelines) {
         OdsTopAppBarActionButton(
             onClick = onSearchActionClick,
             painter = painterResource(id = R.drawable.ic_search),

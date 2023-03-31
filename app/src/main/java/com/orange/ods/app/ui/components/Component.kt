@@ -13,9 +13,9 @@ package com.orange.ods.app.ui.components
 import androidx.annotation.DrawableRes
 import androidx.annotation.StringRes
 import androidx.compose.ui.Alignment
+import com.orange.ods.app.R
 import com.orange.ods.compose.component.OdsComponent
 import com.orange.ods.compose.component.button.OdsButtonStyle
-import com.orange.ods.app.R
 
 sealed class Component(
     @StringRes val titleRes: Int,
@@ -106,7 +106,7 @@ sealed class Component(
 
     object Dialogs : Component(
         R.string.component_dialogs,
-        R.drawable.il_dialogs_generic,
+        R.drawable.il_dialogs,
         null,
         R.string.component_dialogs_description,
         composableName = OdsComponent.OdsAlertDialog.name
@@ -157,7 +157,7 @@ sealed class Component(
         R.drawable.il_bottom_sheet,
         null,
         R.string.component_sheet_bottom_description,
-        composableName = ""
+        composableName = OdsComponent.OdsBottomSheetScaffold.name
     )
 
     object Sliders : Component(
