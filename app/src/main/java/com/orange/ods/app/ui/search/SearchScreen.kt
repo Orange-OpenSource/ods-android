@@ -81,7 +81,7 @@ fun SearchScreen(
 
     data class SearchResult(
         val title: String,
-        val route: Long,
+        val id: Long,
         val image: Int?,
         val subtitle: String?,
         val color: Color?,
@@ -112,7 +112,7 @@ fun SearchScreen(
         .plus(filteredVariants.map { variant ->
             SearchResult(
                 stringResource(id = variant.second.titleRes),
-                route = variant.second.id,
+                id = variant.second.id,
                 image = variant.first,
                 color = null,
                 subtitle = variant.second.composableName,
@@ -146,9 +146,9 @@ fun SearchScreen(
                     .iconType(OdsListItemIconType.SquareImage)
                     .clickable {
                         when (item.data) {
-                            is Component -> onComponentClick(item.route)
-                            is Variant -> onVariantClick(item.route)
-                            is Spacing -> onGuidelineSpacingClick(item.route)
+                            is Component -> onComponentClick(item.id)
+                            is Variant -> onVariantClick(item.id)
+                            is Spacing -> onGuidelineSpacingClick(item.id)
                             is GuidelineColor -> openDialog.value = true
                         }
                     },
