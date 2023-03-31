@@ -252,9 +252,7 @@ private fun NavGraphBuilder.mainNavGraph(navigateToElement: (String, Long?, NavB
         LocalMainTopAppBarManager.current.updateTopAppBarTitle(R.string.navigation_item_search)
         SearchScreen(
             searchedText,
-            onComponentClick = { id -> navigateToElement(MainDestinations.ComponentDetailRoute, id, from) },
-            onVariantClick = { id -> navigateToElement(MainDestinations.ComponentVariantRoute, id, from) },
-            onGuidelineSpacingClick = { navigateToElement(MainDestinations.GuidelineSpacing, null, from) }
+            onResultItemClick = { route, id -> navigateToElement(route, id, from) }
         )
     }
 }

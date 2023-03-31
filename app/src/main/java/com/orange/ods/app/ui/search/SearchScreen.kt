@@ -27,6 +27,7 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.input.TextFieldValue
 import com.orange.ods.app.R
 import com.orange.ods.app.ui.LocalOdsGuideline
+import com.orange.ods.app.ui.MainDestinations
 import com.orange.ods.app.ui.components.Component
 import com.orange.ods.app.ui.components.Variant
 import com.orange.ods.app.ui.components.components
@@ -45,9 +46,7 @@ import com.orange.ods.utilities.extension.orElse
 @Composable
 fun SearchScreen(
     searchedText: MutableState<TextFieldValue>,
-    onComponentClick: (Long) -> Unit,
-    onVariantClick: (Long) -> Unit,
-    onGuidelineSpacingClick: (Long) -> Unit
+    onResultItemClick: (String, Long?) -> Unit
 ) {
 
     val context = LocalContext.current
@@ -146,9 +145,9 @@ fun SearchScreen(
                     .iconType(OdsListItemIconType.SquareImage)
                     .clickable {
                         when (item.data) {
-                            is Component -> onComponentClick(item.id)
-                            is Variant -> onVariantClick(item.id)
-                            is Spacing -> onGuidelineSpacingClick(item.id)
+                            is Component -> onResultItemClick(MainDestinations.ComponentDetailRoute, item.id)
+                            is Variant -> onResultItemClick(MainDestinations.ComponentVariantRoute, item.id)
+                            is Spacing -> onResultItemClick(MainDestinations.GuidelineSpacing, null)
                             is GuidelineColor -> openDialog.value = true
                         }
                     },
