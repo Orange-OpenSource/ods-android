@@ -43,7 +43,12 @@ import com.orange.ods.theme.guideline.toHexString
 import com.orange.ods.utilities.extension.orElse
 
 @Composable
-fun SearchScreen(searchedText: MutableState<TextFieldValue>, onComponentClick: (Long) -> Unit, onVariantClick: (Long) -> Unit) {
+fun SearchScreen(
+    searchedText: MutableState<TextFieldValue>,
+    onComponentClick: (Long) -> Unit,
+    onVariantClick: (Long) -> Unit,
+    onGuidelineSpacingClick: (Long) -> Unit
+) {
 
     val context = LocalContext.current
 
@@ -143,6 +148,7 @@ fun SearchScreen(searchedText: MutableState<TextFieldValue>, onComponentClick: (
                         when (item.data) {
                             is Component -> onComponentClick(item.route)
                             is Variant -> onVariantClick(item.route)
+                            is Spacing -> onGuidelineSpacingClick(item.route)
                             is GuidelineColor -> openDialog.value = true
                         }
                     },

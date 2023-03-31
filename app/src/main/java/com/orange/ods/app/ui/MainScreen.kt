@@ -253,6 +253,8 @@ private fun NavGraphBuilder.mainNavGraph(navigateToElement: (String, Long?, NavB
         SearchScreen(
             searchedText,
             onComponentClick = { id -> navigateToElement(MainDestinations.ComponentDetailRoute, id, from) },
-            onVariantClick = { id -> navigateToElement(MainDestinations.ComponentVariantRoute, id, from) })
+            onVariantClick = { id -> navigateToElement(MainDestinations.ComponentVariantRoute, id, from) },
+            onGuidelineSpacingClick = { navigateToElement(MainDestinations.GuidelineSpacing, null, from) }
+        )
     }
 }
