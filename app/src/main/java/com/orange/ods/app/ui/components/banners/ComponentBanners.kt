@@ -22,18 +22,17 @@ import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import coil.compose.rememberAsyncImagePainter
-import com.orange.ods.compose.component.OdsComponent
-import com.orange.ods.compose.component.banner.OdsBanner
-import com.orange.ods.compose.component.list.OdsListItem
-import com.orange.ods.compose.component.list.OdsSwitchTrailing
 import com.orange.ods.app.R
 import com.orange.ods.app.domain.recipes.LocalRecipes
 import com.orange.ods.app.ui.components.utilities.ComponentCountRow
 import com.orange.ods.app.ui.components.utilities.ComponentCustomizationBottomSheetScaffold
 import com.orange.ods.app.ui.components.utilities.clickOnElement
-import com.orange.ods.app.ui.utilities.composable.CodeImplementationColumn
-import com.orange.ods.app.ui.utilities.composable.CommonTechnicalTextColumn
-import com.orange.ods.app.ui.utilities.composable.TechnicalText
+import com.orange.ods.app.ui.utilities.composable.CodeImplementation
+import com.orange.ods.app.ui.utilities.composable.ComponentParameter
+import com.orange.ods.compose.component.OdsComponent
+import com.orange.ods.compose.component.banner.OdsBanner
+import com.orange.ods.compose.component.list.OdsListItem
+import com.orange.ods.compose.component.list.OdsSwitchTrailing
 
 @OptIn(ExperimentalMaterialApi::class)
 @Composable
@@ -67,7 +66,7 @@ fun ComponentBanners() {
                 )
                 OdsListItem(
                     text = stringResource(id = R.string.component_banner_image),
-                    trailing = OdsSwitchTrailing(checked = iconChecked)
+                    trailing = OdsSwitchTrailing(checked = imageChecked)
                 )
             }
         ) {
@@ -79,26 +78,24 @@ fun ComponentBanners() {
                     message = if (hasTwoTextLines) recipe.description else recipe.title,
                     button1Text = stringResource(id = R.string.component_banner_dismiss),
                     button2Text = if (hasButton2) stringResource(id = R.string.component_banner_detail) else null,
-                    image = if (hasIcon) rememberAsyncImagePainter(
+                    image = if (hasImage) rememberAsyncImagePainter(
                         model = recipe.imageUrl,
                         placeholder = painterResource(id = R.drawable.placeholder),
                         error = painterResource(id = R.drawable.placeholder)
                     ) else null,
                     onButton1Click = { clickOnElement(context, button1Text) },
-                    onButton2Click = { clickOnElement(context, button2Text) },
+                    onButton2Click = { clickOnElement(context, button2Text) }
                 )
 
-                CodeImplementationColumn {
-                    CommonTechnicalTextColumn(
-                        componentName = OdsComponent.OdsBanner.name
-                    ) {
-                        if (hasTwoTextLines) TechnicalText(text = " message = \"${recipe.description}\"")
-                        else TechnicalText(text = " message = \"${recipe.title}\"")
-                        if (hasIcon) TechnicalText(text = " image = painterResource(id = R.drawable.image)")
-                        TechnicalText(text = " button1Text = \"${stringResource(id = R.string.component_banner_dismiss)}\"")
-                        if (hasButton2) TechnicalText(text = " button2Text = \"${stringResource(id = R.string.component_banner_detail)}\"")
+                CodeImplementation(OdsComponent.OdsBanner.name).CodeImplementationColumn(
+                    componentParameters = mutableListOf(
+                        ComponentParameter("message", if (hasTwoTextLines) recipe.description else recipe.title),
+                        ComponentParameter("button1Text", stringResource(id = R.string.component_banner_dismiss)),
+                    ).apply {
+                        if (hasImage) add(ComponentParameter("image", "<image painter>"))
+                        if (hasButton2) add(ComponentParameter("button2Text", stringResource(id = R.string.component_banner_detail)))
                     }
-                }
+                )
             }
         }
     }

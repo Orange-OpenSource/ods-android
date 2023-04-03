@@ -26,8 +26,6 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
-import com.orange.ods.compose.component.bottomnavigation.OdsBottomNavigation
-import com.orange.ods.compose.component.bottomnavigation.OdsBottomNavigationItem
 import com.orange.ods.app.R
 import com.orange.ods.app.ui.components.bottomnavigation.ComponentBottomNavigation.MaxNavigationItemCount
 import com.orange.ods.app.ui.components.bottomnavigation.ComponentBottomNavigation.MinNavigationItemCount
@@ -35,6 +33,11 @@ import com.orange.ods.app.ui.components.utilities.ComponentCountRow
 import com.orange.ods.app.ui.components.utilities.ComponentCustomizationBottomSheetScaffold
 import com.orange.ods.app.ui.components.utilities.clickOnElement
 import com.orange.ods.app.ui.utilities.NavigationItem
+import com.orange.ods.app.ui.utilities.composable.CodeImplementation
+import com.orange.ods.app.ui.utilities.composable.ComponentParameter
+import com.orange.ods.compose.component.OdsComponent
+import com.orange.ods.compose.component.bottomnavigation.OdsBottomNavigation
+import com.orange.ods.compose.component.bottomnavigation.OdsBottomNavigationItem
 
 private object ComponentBottomNavigation {
     const val MinNavigationItemCount = 3
@@ -67,24 +70,34 @@ fun ComponentBottomNavigation() {
             verticalArrangement = Arrangement.Center
         ) {
             OdsBottomNavigation {
-                navigationItems.take(selectedNavigationItemCount.value)
-                    .forEach { navigationItem ->
-                        val label = stringResource(id = navigationItem.textResId)
-                        OdsBottomNavigationItem(
-                            icon = {
-                                Icon(
-                                    painter = painterResource(id = navigationItem.iconResId),
-                                    contentDescription = null
-                                )
-                            },
-                            label = label,
-                            selected = selectedNavigationItem.value.textResId == navigationItem.textResId,
-                            onClick = {
-                                selectedNavigationItem.value = navigationItem
-                                clickOnElement(context, label)
-                            }
-                        )
-                    }
+                navigationItems.take(selectedNavigationItemCount.value).forEach { navigationItem ->
+                    val label = stringResource(id = navigationItem.textResId)
+                    OdsBottomNavigationItem(
+                        icon = {
+                            Icon(
+                                painter = painterResource(id = navigationItem.iconResId),
+                                contentDescription = null
+                            )
+                        },
+                        label = label,
+                        selected = selectedNavigationItem.value.textResId == navigationItem.textResId,
+                        onClick = {
+                            selectedNavigationItem.value = navigationItem
+                            clickOnElement(context, label)
+                        }
+                    )
+                }
+            }
+
+            CodeImplementation(OdsComponent.OdsBottomNavigation.name).CodeImplementationColumn(componentParameters = emptyList()) {
+                navigationItems.take(2).forEach { item ->
+                    CodeImplementation("OdsBottomNavigationItem").ComponentCode(parameters = listOf(
+                        ComponentParameter("icon", "<icon composable>"),
+                        ComponentParameter("label", stringResource(id = item.textResId)),
+                        ComponentParameter("selected", "${selectedNavigationItem.value.textResId == item.textResId}"),
+                        ComponentParameter("onClick", "{}"),
+                    ))
+                }
             }
         }
     }
