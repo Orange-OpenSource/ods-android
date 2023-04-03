@@ -117,6 +117,10 @@ private fun ModalDrawerItem(item: OdsModalDrawerItem, isSelected: Boolean, onCli
         }
         is OdsModalDrawerListItem -> {
             OdsListItem(
+                text = {
+                    Text(text = item.text, color = if (isSelected) OdsTheme.colors.primaryVariant else OdsTheme.colors.onSurface)
+                },
+                hasText = true,
                 modifier = Modifier
                     .iconType(OdsListItemIconType.Icon)
                     .selectable(
@@ -124,12 +128,18 @@ private fun ModalDrawerItem(item: OdsModalDrawerItem, isSelected: Boolean, onCli
                         interactionSource = remember { MutableInteractionSource() },
                         indication = rememberRipple(color = OdsTheme.colors.primaryVariant),
                         onClick = { onClick(item) }
-                    )
-                    .let {
-                        if (isSelected) it.background(OdsTheme.colors.primaryVariant) else it
+                    ).let {
+                        if (isSelected) it.background(OdsTheme.colors.primaryVariant.copy(alpha = 0.2f)) else it
                     },
-                text = item.text,
-                icon = item.icon?.let { { OdsListItemIcon(painterResource(id = it)) } })
+                icon = item.icon?.let {
+                    {
+                        OdsListItemIcon(
+                            painterResource(id = it),
+                            tint = if (isSelected) OdsTheme.colors.primaryVariant else OdsTheme.colors.onSurface
+                        )
+                    }
+                }
+            )
         }
         is OdsModalDrawerDivider -> {
             OdsDivider()

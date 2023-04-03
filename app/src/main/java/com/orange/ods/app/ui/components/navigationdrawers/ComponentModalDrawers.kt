@@ -73,7 +73,7 @@ fun ComponentModalDrawers() {
         }
     }
 
-    val selectedItemState = remember { mutableStateOf(modalDrawerItems.firstOrNull{ it is OdsModalDrawerListItem }) }
+    val selectedItemState = remember { mutableStateOf(modalDrawerItems.firstOrNull { it is OdsModalDrawerListItem }) }
     OdsModalDrawer(
         drawerHeader = OdsModalDrawerHeader(
             title = stringResource(id = R.string.component_modal_drawer_side),
@@ -91,7 +91,7 @@ fun ComponentModalDrawers() {
         ),
         drawerContentList = if (customizationState.isContentExampleChecked) modalDrawerItems else emptyList(),
         drawerState = drawerState,
-        selectedItem =  selectedItemState.value,
+        selectedItem = selectedItemState.value,
         onItemClick = { item ->
             selectedItemState.value = item
         },
