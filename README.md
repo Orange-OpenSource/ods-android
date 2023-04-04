@@ -1,4 +1,4 @@
-<h1 align="center">ODS Android</h1>
+<h1 align="center">Orange Design System Android</h1>
 
 <p align="center">
   ODS Android provides Orange Android components to developers and a demo application.
