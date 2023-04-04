@@ -36,7 +36,7 @@ sealed class Component(
             AppBarsTop, BottomNavigation -> Alignment.TopCenter
             Lists -> Alignment.BottomCenter
             Sliders, TextFields -> Alignment.CenterEnd
-            Banners, Buttons, Cards, SheetsBottom, Checkboxes, Chips, Dialogs, FloatingActionButtons, Menus, Progress, RadioButtons, Snackbars, Switches, Tabs -> Alignment.Center
+            Banners, Buttons, Cards, SheetsBottom, Checkboxes, Chips, Dialogs, FloatingActionButtons, Menus, ModalDrawers, Progress, RadioButtons, Snackbars, Switches, Tabs -> Alignment.Center
         }
 
     object AppBarsTop : Component(
@@ -134,6 +134,13 @@ sealed class Component(
         null,
         R.string.component_menus_description,
         listOf(Variant.DropdownMenu, Variant.ExposedDropdownMenu)
+    )
+
+    object ModalDrawers : Component(
+        R.string.component_modal_drawers,
+        R.drawable.il_navigation_drawers,
+        null,
+        R.string.component_modal_drawers_description,
     )
 
     object Progress : Component(

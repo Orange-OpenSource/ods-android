@@ -45,6 +45,7 @@ import androidx.navigation.navigation
 import com.google.accompanist.pager.ExperimentalPagerApi
 import com.google.accompanist.systemuicontroller.rememberSystemUiController
 import com.orange.ods.app.R
+import com.orange.ods.app.domain.recipes.LocalCategories
 import com.orange.ods.app.domain.recipes.LocalRecipes
 import com.orange.ods.app.ui.about.addAboutGraph
 import com.orange.ods.app.ui.components.addComponentsGraph
@@ -89,7 +90,8 @@ fun MainScreen(themeConfigurations: Set<OdsThemeConfigurationContract>, mainView
         LocalMainTabsManager provides mainState.tabsState,
         LocalMainThemeManager provides mainState.themeState,
         LocalOdsGuideline provides mainState.themeState.currentThemeConfiguration.guideline,
-        LocalRecipes provides mainViewModel.recipes
+        LocalRecipes provides mainViewModel.recipes,
+        LocalCategories provides mainViewModel.categories
     ) {
         var changeThemeDialogVisible by remember { mutableStateOf(false) }
 

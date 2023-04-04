@@ -57,7 +57,6 @@ fun OdsBottomSheetScaffold(
     sheetGesturesEnabled: Boolean = true,
     sheetPeekHeight: Dp = BottomSheetScaffoldDefaults.SheetPeekHeight,
     content: @Composable (PaddingValues) -> Unit
-
 ) {
     BottomSheetScaffold(
         sheetContent = sheetContent,

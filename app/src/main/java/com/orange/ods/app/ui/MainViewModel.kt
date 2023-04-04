@@ -13,6 +13,7 @@ package com.orange.ods.app.ui
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.orange.ods.app.domain.datastore.DataStoreService
+import com.orange.ods.app.domain.recipes.Category
 import com.orange.ods.app.domain.recipes.Recipe
 import com.orange.ods.app.domain.recipes.RecipesService
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -31,9 +32,13 @@ class MainViewModel @Inject constructor(private val dataStoreService: DataStoreS
     var recipes = emptyList<Recipe>()
         private set
 
+    var categories = emptyList<Category>()
+        private set
+
     init {
         viewModelScope.launch {
             recipes = recipesService.getRecipes().firstOrNull().orEmpty()
+            categories = recipes.map { it.category }.distinct().sortedBy { it.id }
         }
     }
 

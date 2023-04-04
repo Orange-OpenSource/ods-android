@@ -41,6 +41,7 @@ object DrawableManager {
         R.drawable.il_fab_generic to R.drawable.il_fab,
         R.drawable.il_lists_generic to R.drawable.il_lists,
         R.drawable.il_menus_generic to R.drawable.il_menus,
+        R.drawable.il_navigation_drawers_generic to R.drawable.il_navigation_drawers,
         R.drawable.il_progress_generic to R.drawable.il_progress,
         R.drawable.il_radio_buttons_generic to R.drawable.il_radio_buttons,
         R.drawable.il_sliders_generic to R.drawable.il_sliders,
