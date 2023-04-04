@@ -30,18 +30,17 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
+import com.orange.ods.app.R
+import com.orange.ods.app.ui.components.utilities.ComponentCustomizationBottomSheetScaffold
+import com.orange.ods.app.ui.utilities.composable.CodeImplementation
+import com.orange.ods.app.ui.utilities.composable.ComponentParameter
+import com.orange.ods.app.ui.utilities.composable.Subtitle
 import com.orange.ods.compose.component.OdsComponent
 import com.orange.ods.compose.component.chip.OdsChoiceChip
 import com.orange.ods.compose.component.chip.OdsChoiceChipsFlowRow
 import com.orange.ods.compose.component.list.OdsListItem
 import com.orange.ods.compose.component.list.OdsSwitchTrailing
 import com.orange.ods.compose.component.progressindicator.OdsLinearProgressIndicator
-import com.orange.ods.app.R
-import com.orange.ods.app.ui.components.utilities.ComponentCustomizationBottomSheetScaffold
-import com.orange.ods.app.ui.utilities.composable.CodeImplementationColumn
-import com.orange.ods.app.ui.utilities.composable.CommonTechnicalTextColumn
-import com.orange.ods.app.ui.utilities.composable.Subtitle
-import com.orange.ods.app.ui.utilities.composable.TechnicalText
 
 private const val DeterminateProgressTargetValue = 0.9f
 private const val DeterminateProgressAnimDuration = 5000
@@ -107,16 +106,20 @@ fun ProgressLinear() {
                         determinateProgressValue = DeterminateProgressTargetValue
                     }
                 }
-                CodeImplementationColumn {
-                    CommonTechnicalTextColumn(
-                        componentName = OdsComponent.OdsLinearProgressIndicator.name
-                    ) {
-                        if (type.value == ProgressCustomizationState.Type.Determinate) TechnicalText(text = " progress = $determinateProgressValue")
-                        if (hasLabel) TechnicalText(text = " label = \"$text\"")
-                        if (hasCurrentValue && type.value == ProgressCustomizationState.Type.Determinate) TechnicalText(text = " currentValue = \"${(DeterminateProgressTargetValue * 100).toInt()}\"")
-                        if (hasIcon) TechnicalText(text = " icon = painterResource(id = R.drawable.ic_arrow_down)")
+
+                CodeImplementation(OdsComponent.OdsLinearProgressIndicator.name).CodeImplementationColumn(
+                    componentParameters = mutableListOf<ComponentParameter>().apply {
+                        if (type.value == ProgressCustomizationState.Type.Determinate) add(
+                            ComponentParameter.TypedValueParameter(
+                                "progress",
+                                determinateProgressValue
+                            )
+                        )
+                        if (hasLabel) add(ComponentParameter.TextValueParameter("label", text))
+                        if (hasIcon) add(ComponentParameter.Icon)
+                        if (hasCurrentValue) add(ComponentParameter.TypedValueParameter("showCurrentValue", hasCurrentValue))
                     }
-                }
+                )
             }
 
         }

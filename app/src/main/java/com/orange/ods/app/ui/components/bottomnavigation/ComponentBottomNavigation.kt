@@ -89,14 +89,18 @@ fun ComponentBottomNavigation() {
                 }
             }
 
-            CodeImplementation(OdsComponent.OdsBottomNavigation.name).CodeImplementationColumn(componentParameters = emptyList()) {
+            CodeImplementation(OdsComponent.OdsBottomNavigation.name).CodeImplementationColumn(
+                modifier = Modifier.padding(horizontal = dimensionResource(id = R.dimen.screen_horizontal_margin))
+            ) {
                 navigationItems.take(2).forEach { item ->
-                    CodeImplementation("OdsBottomNavigationItem").ComponentCode(parameters = listOf(
-                        ComponentParameter("icon", "<icon composable>"),
-                        ComponentParameter("label", stringResource(id = item.textResId)),
-                        ComponentParameter("selected", "${selectedNavigationItem.value.textResId == item.textResId}"),
-                        ComponentParameter("onClick", "{}"),
-                    ))
+                    CodeImplementation("OdsBottomNavigationItem").ComponentCode(
+                        parameters = listOf(
+                            ComponentParameter.Icon,
+                            ComponentParameter.TextValueParameter("label", stringResource(id = item.textResId)),
+                            ComponentParameter.Selected(selectedNavigationItem.value.textResId == item.textResId),
+                            ComponentParameter.OnClick,
+                        )
+                    )
                 }
             }
         }

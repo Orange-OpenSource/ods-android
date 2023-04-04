@@ -23,17 +23,21 @@ import androidx.compose.ui.semantics.semantics
 import com.orange.ods.app.R
 import com.orange.ods.compose.theme.OdsTheme
 
-class CodeImplementation(val componentName: String) {
+class CodeImplementation(private val componentName: String) {
+
+    companion object {
+        const val IconPainterValue = "<icon painter>"
+        const val ImagePainterValue = "<image painter>"
+    }
 
     @Composable
     fun CodeImplementationColumn(
-        componentParameters: List<ComponentParameter>,
         modifier: Modifier = Modifier,
+        componentParameters: List<ComponentParameter> = emptyList(),
         componentContent: @Composable (() -> Unit)? = null
     ) {
         Column(
             modifier = modifier.padding(
-                horizontal = dimensionResource(id = R.dimen.spacing_m),
                 vertical = dimensionResource(id = R.dimen.spacing_s)
             )
         ) {
@@ -52,31 +56,29 @@ class CodeImplementation(val componentName: String) {
 
     @Composable
     fun ComponentCode(
-        parameters: List<ComponentParameter>,
+        parameters: List<ComponentParameter> = emptyList(),
         content: @Composable (() -> Unit)? = null
     ) {
-        when {
-            parameters.isEmpty() && content == null -> TechnicalText(text = "Error: No parameter and no content set for the component")
-            parameters.isEmpty() && content != null -> ComponentWithContentOnlyCode { content() }
-            else -> {
-                TechnicalText(text = "$componentName(")
+        if (parameters.isEmpty() && content != null) {
+            ComponentWithContentOnlyCode { content() }
+        } else {
+            TechnicalText(text = "$componentName(")
+            Column(modifier = Modifier.padding(start = dimensionResource(id = R.dimen.spacing_s))) {
+                parameters.forEach { parameter ->
+                    TechnicalText(text = "${parameter.name} = ${parameter.value},")
+                }
+                TechnicalText(text = "//...")
+            }
+
+            if (content != null) {
+                TechnicalText(text = ") {")
                 Column(modifier = Modifier.padding(start = dimensionResource(id = R.dimen.spacing_s))) {
-                    parameters.forEach { parameter ->
-                        TechnicalText(text = "${parameter.name} = \"${parameter.value}\",")
-                    }
+                    content()
                     TechnicalText(text = "//...")
                 }
-
-                if (content != null) {
-                    TechnicalText(text = ") {")
-                    Column(modifier = Modifier.padding(start = dimensionResource(id = R.dimen.spacing_s))) {
-                        content()
-                        TechnicalText(text = "//...")
-                    }
-                    TechnicalText(text = "}")
-                } else {
-                    TechnicalText(text = ")")
-                }
+                TechnicalText(text = "}")
+            } else {
+                TechnicalText(text = ")")
             }
         }
     }
@@ -92,7 +94,34 @@ class CodeImplementation(val componentName: String) {
     }
 }
 
-data class ComponentParameter(val name: String, val value: String)
+sealed class ComponentParameter(val name: String, val value: String) {
+    open class SimpleValueParameter(name: String, displayValue: String) : ComponentParameter(name, displayValue)
+    object Icon : SimpleValueParameter("icon", CodeImplementation.IconPainterValue)
+    object Image : SimpleValueParameter("image", CodeImplementation.ImagePainterValue)
+    object FillMaxWidth : SimpleValueParameter("modifier", "Modifier.fillMaxWidth()")
+
+    open class TypedValueParameter<T>(name: String, typedValue: T) : ComponentParameter(name, typedValue.toString())
+    class Enabled(val enabled: Boolean) : TypedValueParameter<Boolean>("enabled", enabled)
+    class Checked(val checked: Boolean) : TypedValueParameter<Boolean>("checked", checked)
+    class Selected(val selected: Boolean) : TypedValueParameter<Boolean>("selected", selected)
+
+
+    open class TextValueParameter(name: String, textValue: String) : ComponentParameter(name, "\"$textValue\"")
+    class Title(val text: String) : TextValueParameter("title", text)
+    class Subtitle(val text: String) : TextValueParameter("subtitle", text)
+    class Label(val text: String) : TextValueParameter("label", text)
+    class Placeholder(val text: String) : TextValueParameter("placeholder", text)
+    class Button1Text(val text: String) : TextValueParameter("button1Text", text)
+    class Button2Text(val text: String) : TextValueParameter("button2Text", text)
+
+
+    open class LambdaValueParameter(name: String) : ComponentParameter(name, "{ }")
+    object OnClick : LambdaValueParameter("onClick")
+    object OnCheckedChange : LambdaValueParameter("onCheckedChange")
+    object OnCardClick : LambdaValueParameter("onCardClick")
+    object OnButton1Click : LambdaValueParameter("onButton1Click")
+    object OnButton2Click : LambdaValueParameter("onButton2Click")
+}
 
 @Composable
 fun CodeImplementationColumn(content: @Composable ColumnScope.() -> Unit) {
@@ -107,75 +136,4 @@ fun CodeImplementationColumn(content: @Composable ColumnScope.() -> Unit) {
             content = content
         )
     }
-}
-
-@Composable
-fun ButtonTechnicalTextColumn(
-    componentName: String,
-    enabled: Boolean,
-    modifier: Modifier = Modifier,
-    style: String? = null,
-    fullScreenWidth: Boolean = false,
-    icon: Boolean? = null,
-) {
-    CommonButtonTechnicalTextColumn(modifier = modifier, componentName = componentName, fullScreenWidth = fullScreenWidth) {
-        style?.let { TechnicalText(text = "style = $style,") }
-        if (icon == true) {
-            TechnicalText(text = "icon = painterResource(id = R.drawable.ic_coffee),")
-        }
-        if (!enabled) {
-            TechnicalText(text = "enabled = false,")
-        }
-    }
-}
-
-@Composable
-fun FloatingActionButtonTechnicalTextColumn(
-    componentName: String,
-    modifier: Modifier = Modifier,
-    text: Boolean = false,
-    fullScreenWidth: Boolean = false,
-    mini: Boolean = false
-) {
-    CommonButtonTechnicalTextColumn(modifier = modifier, componentName = componentName, fullScreenWidth = fullScreenWidth) {
-        if (mini) {
-            TechnicalText(text = "mini = true,")
-        }
-        TechnicalText(text = "icon = painterResource(id = R.drawable.ic_add),")
-        if (text) {
-            TechnicalText(text = "text = \"Add\",")
-        }
-    }
-}
-
-@Composable
-fun CommonTechnicalTextColumn(
-    componentName: String,
-    modifier: Modifier = Modifier,
-    content: @Composable () -> Unit = {}
-) {
-    Column(modifier = modifier) {
-        TechnicalText(text = "$componentName(")
-        Column(modifier = Modifier.padding(start = dimensionResource(id = R.dimen.spacing_s))) {
-            content()
-        }
-        TechnicalText(text = ")")
-    }
-}
-
-@Composable
-fun CommonButtonTechnicalTextColumn(
-    componentName: String,
-    modifier: Modifier = Modifier,
-    fullScreenWidth: Boolean = false,
-    content: @Composable () -> Unit = {}
-) {
-    CommonTechnicalTextColumn(componentName = componentName, modifier = modifier) {
-        if (fullScreenWidth) {
-            TechnicalText(text = "modifier = Modifier.fillMaxWidth(),")
-        }
-        content()
-        TechnicalText(text = "//...")
-    }
-
 }

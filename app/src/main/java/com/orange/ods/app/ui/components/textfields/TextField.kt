@@ -19,13 +19,16 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
+import com.orange.ods.app.R
+import com.orange.ods.app.ui.components.textfields.TextFieldCustomizationState.Companion.TextFieldMaxChars
+import com.orange.ods.app.ui.components.utilities.clickOnElement
+import com.orange.ods.app.ui.utilities.composable.CodeImplementation
+import com.orange.ods.app.ui.utilities.composable.ComponentParameter
+import com.orange.ods.compose.component.OdsComponent
 import com.orange.ods.compose.component.textfield.OdsIconTrailing
 import com.orange.ods.compose.component.textfield.OdsTextField
 import com.orange.ods.compose.component.textfield.OdsTextFieldCharacterCounter
 import com.orange.ods.compose.component.textfield.OdsTextTrailing
-import com.orange.ods.app.R
-import com.orange.ods.app.ui.components.textfields.TextFieldCustomizationState.Companion.TextFieldMaxChars
-import com.orange.ods.app.ui.components.utilities.clickOnElement
 
 @Composable
 fun TextField(customizationState: TextFieldCustomizationState) {
@@ -48,9 +51,10 @@ fun TextField(customizationState: TextFieldCustomizationState) {
     val characterCounter: (@Composable () -> Unit)? = if (customizationState.hasCharacterCounter) {
         { TextFieldCharacterCounter(valueLength = customizationState.displayedText.length, enabled = customizationState.isEnabled) }
     } else null
+    val hasTrailing = customizationState.hasTrailingText || customizationState.hasTrailingIcon
 
     Column {
-        if (customizationState.hasTrailingText || customizationState.hasTrailingIcon) {
+        if (hasTrailing) {
             OdsTextField(
                 modifier = modifier,
                 leadingIcon = leadingIcon,
@@ -88,6 +92,26 @@ fun TextField(customizationState: TextFieldCustomizationState) {
                 characterCounter = characterCounter
             )
         }
+
+        CodeImplementation(OdsComponent.OdsTextField.name).CodeImplementationColumn(
+            componentParameters = mutableListOf(
+                ComponentParameter.TextValueParameter("value", value),
+                ComponentParameter.LambdaValueParameter("onValueChange"),
+                ComponentParameter.Label(label),
+                ComponentParameter.Placeholder(placeholder),
+                ComponentParameter.SimpleValueParameter("keyboardOptions", "<KeyboardOptions>") // TODO
+            ).apply {
+                if (leadingIcon != null) add(ComponentParameter.Icon)
+                if (!enabled) add(ComponentParameter.Enabled(false))
+                if (isError) {
+                    add(ComponentParameter.TypedValueParameter("isError", true))
+                    errorMessage?.let { add(ComponentParameter.TextValueParameter("errorMessage", it)) }
+                }
+                if (singleLine) add(ComponentParameter.TypedValueParameter("singleLine", true))
+                if (hasTrailing) add(ComponentParameter.SimpleValueParameter("trailing", "<trailing composable>"))
+                if (characterCounter != null) add(ComponentParameter.SimpleValueParameter("characterCounter", "<OdsTextFieldCharacterCounter>")) // TODO
+            }
+        )
     }
 }
 

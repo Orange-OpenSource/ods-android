@@ -11,6 +11,7 @@
 package com.orange.ods.app.ui.components.cards
 
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.rememberScrollState
@@ -23,10 +24,13 @@ import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import coil.compose.rememberAsyncImagePainter
-import com.orange.ods.compose.component.card.OdsHorizontalCard
 import com.orange.ods.app.R
 import com.orange.ods.app.domain.recipes.LocalRecipes
 import com.orange.ods.app.ui.components.utilities.clickOnElement
+import com.orange.ods.app.ui.utilities.composable.CodeImplementation
+import com.orange.ods.app.ui.utilities.composable.ComponentParameter
+import com.orange.ods.compose.component.OdsComponent
+import com.orange.ods.compose.component.card.OdsHorizontalCard
 
 @Composable
 fun CardHorizontal(customizationState: CardCustomizationState) {
@@ -63,6 +67,29 @@ fun CardHorizontal(customizationState: CardCustomizationState) {
                 onButton2Click = { clickOnElement(context, button2Text) },
                 imagePosition = imagePosition.value,
                 dividerEnabled = hasDivider
+            )
+
+            Spacer(modifier = Modifier.padding(top = dimensionResource(R.dimen.spacing_s)))
+
+            CodeImplementation(OdsComponent.OdsHorizontalCard.name).CodeImplementationColumn(
+                componentParameters = mutableListOf(
+                    ComponentParameter.SimpleValueParameter("imagePosition", imagePosition.value.name), // TODO verifier affichage
+                    ComponentParameter.Title(recipe.title),
+                    ComponentParameter.Image
+                ).apply {
+                    if (hasSubtitle) add(ComponentParameter.Subtitle(recipe.subtitle))
+                    if (hasText) add(ComponentParameter.SimpleValueParameter("text", "<card text>"))
+                    if (isClickable) add(ComponentParameter.OnCardClick)
+                    if (hasButton1) {
+                        add(ComponentParameter.Button1Text(button1Text))
+                        add(ComponentParameter.OnButton1Click)
+                    }
+                    if (hasButton2) {
+                        add(ComponentParameter.Button2Text(button2Text))
+                        add(ComponentParameter.OnButton2Click)
+                    }
+                    if (!hasDivider) add(ComponentParameter.TypedValueParameter("dividerEnabled", hasDivider))
+                }
             )
         }
     }

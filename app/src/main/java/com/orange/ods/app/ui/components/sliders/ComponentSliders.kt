@@ -26,15 +26,17 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
+import com.orange.ods.app.R
+import com.orange.ods.app.ui.components.utilities.ComponentCustomizationBottomSheetScaffold
+import com.orange.ods.app.ui.utilities.composable.CodeImplementation
+import com.orange.ods.app.ui.utilities.composable.ComponentParameter
+import com.orange.ods.app.ui.utilities.composable.TechnicalText
+import com.orange.ods.app.ui.utilities.composable.Title
 import com.orange.ods.compose.component.OdsComponent
 import com.orange.ods.compose.component.control.OdsSlider
 import com.orange.ods.compose.component.control.OdsSliderLockups
 import com.orange.ods.compose.component.list.OdsListItem
 import com.orange.ods.compose.component.list.OdsSwitchTrailing
-import com.orange.ods.app.R
-import com.orange.ods.app.ui.components.utilities.ComponentCustomizationBottomSheetScaffold
-import com.orange.ods.app.ui.utilities.composable.TechnicalText
-import com.orange.ods.app.ui.utilities.composable.Title
 
 @OptIn(ExperimentalMaterialApi::class)
 @Composable
@@ -71,17 +73,20 @@ fun ComponentSliders() {
                 val rightIconContentDescription = if (hasSideIcons) stringResource(id = R.string.component_slider_high_volume) else null
 
                 var sliderPosition by remember { mutableStateOf(0f) }
+                val valueRange = 0f..100f
 
                 Title(textRes = getTitleRes(isStepped, hasSideIcons, shouldDisplayValue))
                 TechnicalText(text = technicalText)
 
                 Spacer(modifier = Modifier.padding(top = dimensionResource(R.dimen.spacing_m)))
 
+                val componentName: String
                 if (shouldDisplayValue) {
+                    componentName = OdsComponent.OdsSliderLockups.name
                     OdsSliderLockups(
                         value = sliderPosition,
                         steps = steps,
-                        valueRange = 0f..100f,
+                        valueRange = valueRange,
                         onValueChange = { sliderPosition = it },
                         leftIcon = leftIcon,
                         leftIconContentDescription = leftIconContentDescription,
@@ -89,10 +94,11 @@ fun ComponentSliders() {
                         rightIconContentDescription = rightIconContentDescription
                     )
                 } else {
+                    componentName = OdsComponent.OdsSlider.name
                     OdsSlider(
                         value = sliderPosition,
                         steps = steps,
-                        valueRange = 0f..100f,
+                        valueRange = valueRange,
                         onValueChange = { sliderPosition = it },
                         leftIcon = leftIcon,
                         leftIconContentDescription = leftIconContentDescription,
@@ -100,6 +106,23 @@ fun ComponentSliders() {
                         rightIconContentDescription = rightIconContentDescription
                     )
                 }
+
+                CodeImplementation(componentName).CodeImplementationColumn(
+                    componentParameters = mutableListOf<ComponentParameter>(
+                        ComponentParameter.TypedValueParameter("value", sliderPosition),
+                        ComponentParameter.SimpleValueParameter("valueRange", "0f..100f"),
+                        ComponentParameter.LambdaValueParameter("onValueChange")
+                    ).apply {
+                        if (isStepped) add(ComponentParameter.TypedValueParameter("steps", steps))
+                        if (hasSideIcons) {
+                            add(ComponentParameter.SimpleValueParameter("leftIcon", CodeImplementation.IconPainterValue))
+                            leftIconContentDescription?.let { add(ComponentParameter.TextValueParameter("leftIconContentDescription", it)) }
+                            add(ComponentParameter.SimpleValueParameter("rightIcon", CodeImplementation.IconPainterValue))
+                            rightIconContentDescription?.let { add(ComponentParameter.TextValueParameter("rightIconContentDescription", it)) }
+                        }
+
+                    }
+                )
             }
         }
     }

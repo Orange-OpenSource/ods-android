@@ -20,6 +20,11 @@ import androidx.compose.ui.draw.alpha
 import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
+import com.orange.ods.app.R
+import com.orange.ods.app.domain.recipes.LocalRecipes
+import com.orange.ods.app.ui.components.utilities.ComponentCustomizationBottomSheetScaffold
+import com.orange.ods.app.ui.utilities.composable.CodeImplementation
+import com.orange.ods.app.ui.utilities.composable.ComponentParameter
 import com.orange.ods.compose.component.OdsComponent
 import com.orange.ods.compose.component.chip.OdsChoiceChip
 import com.orange.ods.compose.component.chip.OdsChoiceChipsFlowRow
@@ -29,12 +34,6 @@ import com.orange.ods.compose.component.list.OdsListItemIconType
 import com.orange.ods.compose.component.list.iconType
 import com.orange.ods.compose.text.OdsTextBody1
 import com.orange.ods.compose.text.OdsTextSubtitle1
-import com.orange.ods.app.R
-import com.orange.ods.app.domain.recipes.LocalRecipes
-import com.orange.ods.app.ui.components.utilities.ComponentCustomizationBottomSheetScaffold
-import com.orange.ods.app.ui.utilities.composable.CodeImplementationColumn
-import com.orange.ods.app.ui.utilities.composable.CommonTechnicalTextColumn
-import com.orange.ods.app.ui.utilities.composable.TechnicalText
 
 
 @OptIn(ExperimentalMaterialApi::class)
@@ -85,15 +84,9 @@ fun ComponentSheetsBottom() {
                     }
                 }
 
-                CodeImplementationColumn {
-                    CommonTechnicalTextColumn(
-                        componentName = OdsComponent.OdsBottomSheetScaffold.name
-                    ) {
-                        TechnicalText(text = "sheetContent = {")
-                        TechnicalText(text = "  // add your content here")
-                        TechnicalText(text = "}")
-                    }
-                }
+                CodeImplementation(OdsComponent.OdsBottomSheetScaffold.name).CodeImplementationColumn(
+                    componentParameters = listOf(ComponentParameter.LambdaValueParameter("sheetContent"))
+                )
             }
         }
     }

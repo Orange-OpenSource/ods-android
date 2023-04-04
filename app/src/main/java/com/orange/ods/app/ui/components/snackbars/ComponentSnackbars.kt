@@ -10,22 +10,29 @@
 
 package com.orange.ods.app.ui.components.snackbars
 
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.padding
 import androidx.compose.material.ExperimentalMaterialApi
 import androidx.compose.material.rememberBottomSheetScaffoldState
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.runtime.saveable.rememberSaveable
+import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.stringResource
-import com.orange.ods.compose.component.list.OdsListItem
-import com.orange.ods.compose.component.list.OdsSwitchTrailing
-import com.orange.ods.compose.component.snackbar.OdsSnackbar
-import com.orange.ods.compose.component.snackbar.OdsSnackbarHost
 import com.orange.ods.app.R
 import com.orange.ods.app.ui.components.utilities.ComponentCustomizationBottomSheetScaffold
 import com.orange.ods.app.ui.components.utilities.ComponentLaunchContentColumn
 import com.orange.ods.app.ui.components.utilities.clickOnElement
+import com.orange.ods.app.ui.utilities.composable.CodeImplementation
+import com.orange.ods.app.ui.utilities.composable.ComponentParameter
+import com.orange.ods.compose.component.OdsComponent
+import com.orange.ods.compose.component.list.OdsListItem
+import com.orange.ods.compose.component.list.OdsSwitchTrailing
+import com.orange.ods.compose.component.snackbar.OdsSnackbar
+import com.orange.ods.compose.component.snackbar.OdsSnackbarHost
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.launch
 
@@ -65,11 +72,28 @@ fun ComponentSnackbars() {
                 trailing = OdsSwitchTrailing(checked = actionOnNewLineChecked, enabled = actionButtonChecked.value)
             )
         }) {
-        ComponentLaunchContentColumn(textRes = R.string.component_snackbar_customize, buttonLabelRes = R.string.component_snackbar_show) {
-            coroutineScope.launch {
-                bottomSheetScaffoldState.snackbarHostState.showSnackbar(
-                    message = snackbarMessage,
-                    actionLabel = if (actionButtonChecked.value) snackbarActionLabel else null,
+        Column {
+            ComponentLaunchContentColumn(textRes = R.string.component_snackbar_customize, buttonLabelRes = R.string.component_snackbar_show) {
+                coroutineScope.launch {
+                    bottomSheetScaffoldState.snackbarHostState.showSnackbar(
+                        message = snackbarMessage,
+                        actionLabel = if (actionButtonChecked.value) snackbarActionLabel else null,
+                    )
+                }
+            }
+
+            // TODO afficher code lancement
+            CodeImplementation("OdsSnackbarHost").CodeImplementationColumn(
+                modifier = Modifier.padding(horizontal = dimensionResource(id = R.dimen.screen_horizontal_margin)),
+                componentParameters = listOf(ComponentParameter.SimpleValueParameter("hostState", "<SnackbarHostState>"))
+            ) {
+                CodeImplementation(OdsComponent.OdsSnackbar.name).ComponentCode(
+                    parameters = mutableListOf<ComponentParameter>(
+                        ComponentParameter.SimpleValueParameter("snackbarData", "data") // TODO supprimer les "
+                    ).apply {
+                        if (actionOnNewLineChecked.value) add(ComponentParameter.TypedValueParameter("actionOnNewLine", true))
+                        add(ComponentParameter.LambdaValueParameter("onActionClick"))
+                    }
                 )
             }
         }

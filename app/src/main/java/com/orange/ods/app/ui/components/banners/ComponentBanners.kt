@@ -88,12 +88,15 @@ fun ComponentBanners() {
                 )
 
                 CodeImplementation(OdsComponent.OdsBanner.name).CodeImplementationColumn(
+                    modifier = Modifier.padding(horizontal = dimensionResource(id = R.dimen.screen_horizontal_margin)),
                     componentParameters = mutableListOf(
-                        ComponentParameter("message", if (hasTwoTextLines) recipe.description else recipe.title),
-                        ComponentParameter("button1Text", stringResource(id = R.string.component_banner_dismiss)),
+                        ComponentParameter.TextValueParameter("message", if (hasTwoTextLines) recipe.description else recipe.title),
+                        ComponentParameter.Button1Text(stringResource(id = R.string.component_banner_dismiss)),
                     ).apply {
-                        if (hasImage) add(ComponentParameter("image", "<image painter>"))
-                        if (hasButton2) add(ComponentParameter("button2Text", stringResource(id = R.string.component_banner_detail)))
+                        if (hasImage) ComponentParameter.Image
+                        if (hasButton2) add(
+                            ComponentParameter.Button2Text(stringResource(id = R.string.component_banner_detail))
+                        )
                     }
                 )
             }

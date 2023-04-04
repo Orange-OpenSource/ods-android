@@ -22,6 +22,12 @@ import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
+import com.orange.ods.app.R
+import com.orange.ods.app.ui.components.utilities.ComponentCustomizationBottomSheetScaffold
+import com.orange.ods.app.ui.components.utilities.clickOnElement
+import com.orange.ods.app.ui.utilities.composable.CodeImplementation
+import com.orange.ods.app.ui.utilities.composable.ComponentParameter
+import com.orange.ods.app.ui.utilities.composable.Subtitle
 import com.orange.ods.compose.component.OdsComponent
 import com.orange.ods.compose.component.button.OdsExtendedFloatingActionButton
 import com.orange.ods.compose.component.button.OdsFloatingActionButton
@@ -29,12 +35,6 @@ import com.orange.ods.compose.component.chip.OdsChoiceChip
 import com.orange.ods.compose.component.chip.OdsChoiceChipsFlowRow
 import com.orange.ods.compose.component.list.OdsListItem
 import com.orange.ods.compose.component.list.OdsSwitchTrailing
-import com.orange.ods.app.R
-import com.orange.ods.app.ui.components.utilities.ComponentCustomizationBottomSheetScaffold
-import com.orange.ods.app.ui.components.utilities.clickOnElement
-import com.orange.ods.app.ui.utilities.composable.CodeImplementationColumn
-import com.orange.ods.app.ui.utilities.composable.FloatingActionButtonTechnicalTextColumn
-import com.orange.ods.app.ui.utilities.composable.Subtitle
 
 @OptIn(ExperimentalMaterialApi::class)
 @Composable
@@ -84,7 +84,7 @@ fun ComponentFloatingActionButton() {
                 }
             },
             floatingActionButtonPosition = if (isFullScreenWidth) FabPosition.Center else FabPosition.End,
-            bottomSheetContent = { 
+            bottomSheetContent = {
                 Subtitle(textRes = R.string.component_size, horizontalPadding = true)
                 OdsChoiceChipsFlowRow(
                     selectedChip = size,
@@ -104,14 +104,17 @@ fun ComponentFloatingActionButton() {
                 )
             }) {
 
-            CodeImplementationColumn {
-                FloatingActionButtonTechnicalTextColumn(
-                    componentName = if (hasText) OdsComponent.OdsExtendedFloatingActionButton.name else OdsComponent.OdsFloatingActionButton.name,
-                    text = hasText,
-                    fullScreenWidth = isFullScreenWidth,
-                    mini = size.value == FabCustomizationState.Size.Mini
-                )
-            }
+            val usedComponentName = if (hasText) OdsComponent.OdsExtendedFloatingActionButton.name else OdsComponent.OdsFloatingActionButton.name
+            CodeImplementation(usedComponentName).CodeImplementationColumn(
+                modifier = Modifier.padding(horizontal = dimensionResource(id = R.dimen.screen_horizontal_margin)),
+                componentParameters = mutableListOf<ComponentParameter>(
+                    ComponentParameter.Icon
+                ).apply {
+                    if (this@with.size.value == FabCustomizationState.Size.Mini) add(ComponentParameter.TypedValueParameter("mini", true))
+                    if (hasText) add(ComponentParameter.TextValueParameter("text", "Add"))
+                    if (isFullScreenWidth) add(ComponentParameter.FillMaxWidth)
+                }
+            )
         }
     }
 }

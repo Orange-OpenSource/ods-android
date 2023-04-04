@@ -30,14 +30,17 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
-import com.orange.ods.compose.component.list.OdsListItem
-import com.orange.ods.compose.component.list.OdsSwitchTrailing
-import com.orange.ods.compose.component.menu.OdsExposedDropdownMenu
-import com.orange.ods.compose.component.menu.OdsExposedDropdownMenuItem
 import com.orange.ods.app.R
 import com.orange.ods.app.domain.recipes.LocalRecipes
 import com.orange.ods.app.ui.components.utilities.ComponentCustomizationBottomSheetScaffold
 import com.orange.ods.app.ui.components.utilities.clickOnElement
+import com.orange.ods.app.ui.utilities.composable.CodeImplementation
+import com.orange.ods.app.ui.utilities.composable.ComponentParameter
+import com.orange.ods.compose.component.OdsComponent
+import com.orange.ods.compose.component.list.OdsListItem
+import com.orange.ods.compose.component.list.OdsSwitchTrailing
+import com.orange.ods.compose.component.menu.OdsExposedDropdownMenu
+import com.orange.ods.compose.component.menu.OdsExposedDropdownMenuItem
 
 @OptIn(ExperimentalMaterialApi::class)
 @Composable
@@ -95,17 +98,30 @@ fun MenuExposedDropdown() {
                     .padding(top = dimensionResource(id = R.dimen.screen_vertical_margin), bottom = dimensionResource(id = R.dimen.spacing_s))
                     .padding(horizontal = dimensionResource(id = R.dimen.screen_horizontal_margin)),
             ) {
+                val label = stringResource(id = R.string.data_recipe)
                 OdsExposedDropdownMenu(
                     modifier = Modifier
                         .fillMaxWidth()
                         .padding(top = dimensionResource(id = R.dimen.spacing_s)),
-                    label = stringResource(id = R.string.data_recipe),
+                    label = label,
                     items = items,
                     selectedItem = selectedItem,
                     onItemSelectionChange = { item ->
                         clickOnElement(context, item.label)
                     },
                     enabled = isEnabled
+                )
+
+                // TODO manage icon display in code
+                CodeImplementation(OdsComponent.OdsExposedDropdownMenu.name).CodeImplementationColumn(
+                    componentParameters = mutableListOf<ComponentParameter>(
+                        ComponentParameter.TextValueParameter("label", label),
+                        ComponentParameter.SimpleValueParameter("items", "<OdsExposedDropdownMenuItem list>"), // TODO
+                        ComponentParameter.SimpleValueParameter("selectedItem", "<OdsExposedDropdownMenuItem mutable state>"), // TODO
+                        ComponentParameter.LambdaValueParameter("onItemSelectionChange")
+                    ).apply {
+                        if (!isEnabled) add(ComponentParameter.Enabled(false))
+                    }
                 )
             }
         }

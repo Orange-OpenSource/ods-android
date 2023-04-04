@@ -22,11 +22,14 @@ import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.stringResource
-import com.orange.ods.compose.component.list.OdsListItem
-import com.orange.ods.compose.component.list.OdsSwitchTrailing
 import com.orange.ods.app.R
 import com.orange.ods.app.domain.recipes.LocalRecipes
 import com.orange.ods.app.ui.components.utilities.ComponentCustomizationBottomSheetScaffold
+import com.orange.ods.app.ui.utilities.composable.CodeImplementation
+import com.orange.ods.app.ui.utilities.composable.ComponentParameter
+import com.orange.ods.compose.component.OdsComponent
+import com.orange.ods.compose.component.list.OdsListItem
+import com.orange.ods.compose.component.list.OdsSwitchTrailing
 
 @OptIn(ExperimentalMaterialApi::class)
 @Composable
@@ -46,7 +49,7 @@ fun ComponentSwitches() {
         Column(
             modifier = Modifier
                 .verticalScroll(rememberScrollState())
-                .padding(bottom = dimensionResource(id = R.dimen.spacing_m))
+                .padding(vertical = dimensionResource(id = R.dimen.spacing_s))
         ) {
             val recipes = LocalRecipes.current.take(3)
             recipes.forEach { recipe ->
@@ -59,6 +62,16 @@ fun ComponentSwitches() {
                     )
                 )
             }
+
+            CodeImplementation(OdsComponent.OdsSwitch.name).CodeImplementationColumn(
+                modifier = Modifier.padding(horizontal = dimensionResource(id = R.dimen.screen_horizontal_margin)),
+                componentParameters = mutableListOf(
+                    ComponentParameter.Checked(false),
+                    ComponentParameter.OnCheckedChange
+                ).apply {
+                    if (!enabled.value) add(ComponentParameter.Enabled(false))
+                }
+            )
         }
     }
 }

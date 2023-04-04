@@ -11,6 +11,7 @@
 package com.orange.ods.app.ui.components.cards
 
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.rememberScrollState
@@ -23,10 +24,13 @@ import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import coil.compose.rememberAsyncImagePainter
-import com.orange.ods.compose.component.card.OdsVerticalImageFirstCard
 import com.orange.ods.app.R
 import com.orange.ods.app.domain.recipes.LocalRecipes
 import com.orange.ods.app.ui.components.utilities.clickOnElement
+import com.orange.ods.app.ui.utilities.composable.CodeImplementation
+import com.orange.ods.app.ui.utilities.composable.ComponentParameter
+import com.orange.ods.compose.component.OdsComponent
+import com.orange.ods.compose.component.card.OdsVerticalImageFirstCard
 
 @Composable
 fun CardVerticalImageFirst(customizationState: CardCustomizationState) {
@@ -61,6 +65,27 @@ fun CardVerticalImageFirst(customizationState: CardCustomizationState) {
                 onButton1Click = { clickOnElement(context, button1Text) },
                 button2Text = if (hasButton2) button2Text else null,
                 onButton2Click = { clickOnElement(context, button2Text) }
+            )
+
+            Spacer(modifier = Modifier.padding(top = dimensionResource(R.dimen.spacing_s)))
+
+            CodeImplementation(OdsComponent.OdsVerticalImageFirstCard.name).CodeImplementationColumn(
+                componentParameters = mutableListOf<ComponentParameter>(
+                    ComponentParameter.Title(recipe.title),
+                    ComponentParameter.Image
+                ).apply {
+                    if (hasSubtitle) add(ComponentParameter.Subtitle(recipe.subtitle))
+                    if (hasText) add(ComponentParameter.SimpleValueParameter("text", "<card text>"))
+                    if (isClickable) add(ComponentParameter.OnCardClick)
+                    if (hasButton1) {
+                        add(ComponentParameter.Button1Text(button1Text))
+                        add(ComponentParameter.OnButton1Click)
+                    }
+                    if (hasButton2) {
+                        add(ComponentParameter.Button2Text(button2Text))
+                        add(ComponentParameter.OnButton2Click)
+                    }
+                }
             )
         }
     }
