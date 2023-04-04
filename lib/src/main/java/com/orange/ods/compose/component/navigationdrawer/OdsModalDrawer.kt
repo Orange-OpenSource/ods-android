@@ -13,7 +13,6 @@ package com.orange.ods.compose.component.navigationdrawer
 import androidx.annotation.DrawableRes
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
-import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -31,9 +30,11 @@ import androidx.compose.material.Surface
 import androidx.compose.material.Text
 import androidx.compose.material.contentColorFor
 import androidx.compose.material.rememberDrawerState
-import androidx.compose.material.ripple.rememberRipple
+import androidx.compose.material.ripple.LocalRippleTheme
+import androidx.compose.material.ripple.RippleAlpha
+import androidx.compose.material.ripple.RippleTheme
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.remember
+import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -58,6 +59,8 @@ import com.orange.ods.compose.text.OdsTextBody2
 import com.orange.ods.compose.theme.OdsTheme
 
 private val DrawerHeaderMaxHeight = 167.dp
+
+private const val SelectedItemOpacity = 20f / 255f
 
 /**
  * Navigation drawers provide ergonomic access to destinations in an app.
@@ -85,7 +88,7 @@ fun OdsModalDrawer(
             OdsDivider()
             LazyColumn {
                 items(drawerContentList) { item ->
-                    ModalDrawerItem(item = item, isSelected = item == selectedItem, onItemClick)
+                    ModalDrawerItem(item = item, selected = item == selectedItem, onItemClick)
                 }
             }
         },
@@ -104,7 +107,7 @@ object OdsModalDrawerDivider : OdsModalDrawerItem()
 data class OdsModalDrawerListItem(@DrawableRes val icon: Int?, val text: String) : OdsModalDrawerItem()
 
 @Composable
-private fun ModalDrawerItem(item: OdsModalDrawerItem, isSelected: Boolean, onClick: (OdsModalDrawerListItem) -> Unit) {
+private fun ModalDrawerItem(item: OdsModalDrawerItem, selected: Boolean, onClick: (OdsModalDrawerListItem) -> Unit) {
     return when (item) {
         is OdsModalDrawerSectionLabel -> {
             Column {
@@ -116,30 +119,32 @@ private fun ModalDrawerItem(item: OdsModalDrawerItem, isSelected: Boolean, onCli
             }
         }
         is OdsModalDrawerListItem -> {
-            OdsListItem(
-                text = {
-                    Text(text = item.text, color = if (isSelected) OdsTheme.colors.primaryVariant else OdsTheme.colors.onSurface)
-                },
-                hasText = true,
-                modifier = Modifier
-                    .iconType(OdsListItemIconType.Icon)
-                    .selectable(
-                        isSelected,
-                        interactionSource = remember { MutableInteractionSource() },
-                        indication = rememberRipple(color = OdsTheme.colors.primaryVariant),
-                        onClick = { onClick(item) }
-                    ).let {
-                        if (isSelected) it.background(OdsTheme.colors.primaryVariant.copy(alpha = 0.2f)) else it
-                    },
-                icon = item.icon?.let {
-                    {
-                        OdsListItemIcon(
-                            painterResource(id = it),
-                            tint = if (isSelected) OdsTheme.colors.primaryVariant else OdsTheme.colors.onSurface
+            CompositionLocalProvider(LocalRippleTheme provides OdsModalDrawerListItemRippleTheme) {
+                OdsListItem(
+                    text = {
+                        Text(
+                            text = item.text,
+                            color = if (selected) OdsTheme.colors.primaryVariant else OdsTheme.colors.onSurface,
+                            style = OdsTheme.typography.subtitle1
                         )
+                    },
+                    hasText = true,
+                    modifier = Modifier
+                        .iconType(OdsListItemIconType.Icon)
+                        .selectable(selected = selected, onClick = { onClick(item) })
+                        .let {
+                            if (selected) it.background(OdsTheme.colors.primaryVariant.copy(alpha = SelectedItemOpacity)) else it
+                        },
+                    icon = item.icon?.let {
+                        {
+                            OdsListItemIcon(
+                                painter = painterResource(id = it),
+                                tint = if (selected) OdsTheme.colors.primaryVariant else OdsTheme.colors.onSurface
+                            )
+                        }
                     }
-                }
-            )
+                )
+            }
         }
         is OdsModalDrawerDivider -> {
             OdsDivider()
@@ -166,6 +171,15 @@ data class OdsModalDrawerHeader(
     var image: Painter? = null,
     var subtitle: String? = null
 )
+
+private object OdsModalDrawerListItemRippleTheme : RippleTheme {
+
+    @Composable
+    override fun defaultColor() = OdsTheme.colors.primaryVariant
+
+    @Composable
+    override fun rippleAlpha() = RippleAlpha(SelectedItemOpacity, SelectedItemOpacity, SelectedItemOpacity, SelectedItemOpacity)
+}
 
 @Composable
 private fun ModalDrawerHeader(

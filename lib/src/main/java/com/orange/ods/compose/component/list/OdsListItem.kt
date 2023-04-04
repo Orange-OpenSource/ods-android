@@ -60,6 +60,7 @@ import com.orange.ods.compose.component.utilities.OdsImageCircleShape
 import com.orange.ods.compose.component.utilities.Preview
 import com.orange.ods.compose.component.utilities.UiModePreviews
 import com.orange.ods.compose.text.OdsTextCaption
+import com.orange.ods.compose.text.OdsTextSubtitle1
 import com.orange.ods.compose.theme.OdsTheme
 import com.orange.ods.utilities.extension.getElementOfType
 import com.orange.ods.utilities.extension.isNotNullOrBlank
@@ -137,18 +138,15 @@ fun OdsListItem(
     overlineText: String? = null,
     trailing: @Composable (() -> Unit)? = null
 ) {
+    val hasText = text.isNotBlank()
     OdsListItem(
         modifier = modifier,
         text = {
-            if (text.isNotBlank()) {
-                Text(
-                    text = text,
-                    style = OdsTheme.typography.subtitle1,
-                    color = OdsTheme.colors.onSurface
-                )
+            if (hasText) {
+                OdsTextSubtitle1(text = text)
             }
         },
-        hasText = text.isNotBlank(),
+        hasText = hasText,
         icon = icon,
         secondaryText = secondaryText,
         singleLineSecondaryText = singleLineSecondaryText,
@@ -299,9 +297,9 @@ private fun computeRequiredHeight(
  *
  * This method throws an exception if no icon type has been specified on the [OdsListItem] modifier using the [Modifier.iconType] method.
  *
- * @param painter to draw
+ * @param painter Painter of the icon
  * @param contentDescription Content description of the icon
- * @param tint icon color
+ * @param tint Icon color. Has not effect if icon type is different from `OdsListItemIconType.Icon`
  */
 @Composable
 @OdsComponentApi
