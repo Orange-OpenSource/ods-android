@@ -50,7 +50,7 @@ import com.orange.ods.compose.theme.OdsTheme
  * @param selectedIndex The [iconToggleButtons] list index of the selected button.
  * @param onSelectedIndexChange Callback to be invoked when the selection change.
  * @param modifier optional [Modifier] for this IconToggleButton
- * @param displaySurface optional allow to force the button display on a dark or light
+ * @param displaySurface optional allow to force the group display on a dark or light
  * surface. By default the appearance applied is based on the system night mode value.
  */
 @Composable
