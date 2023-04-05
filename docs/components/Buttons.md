@@ -232,9 +232,9 @@ Use the `OdsIconToggleButton` composable:
 OdsIconToggleButton(
     checked = false,
     onCheckedChange = { },
-    painter = painterResource(R.drawable.ic_heart_outlined),
-    painterDescription = "Add to favourites",
-    painterChecked = painterResource(R.drawable.ic_heart)
+    uncheckedPainter = painterResource(R.drawable.ic_heart_outlined),
+    checkedPainter = painterResource(R.drawable.ic_heart),
+    painterDescription = "Add to favourites"
 )
 ```
 

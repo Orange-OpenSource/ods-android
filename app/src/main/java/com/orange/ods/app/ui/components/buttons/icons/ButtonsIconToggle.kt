@@ -50,9 +50,9 @@ fun ButtonsIconToggle(customizationState: ButtonIconCustomizationState) {
             ) {
                 OdsIconToggleButton(
                     checked = buttonCheckedState.value,
-                    painter = painterResource(id = R.drawable.ic_heart_outlined),
-                    painterChecked = painterResource(id = R.drawable.ic_heart),
-                    painterDescription = stringResource(id = R.string.component_button_icon_toggle_favorite_icon_desc),
+                    uncheckedPainter = painterResource(id = R.drawable.ic_heart_outlined),
+                    checkedPainter = painterResource(id = R.drawable.ic_heart),
+                    iconContentDescription = stringResource(id = R.string.component_button_icon_toggle_favorite_icon_desc),
                     onCheckedChange = { checked -> buttonCheckedState.value = checked },
                     enabled = isEnabled
                 )
@@ -63,9 +63,9 @@ fun ButtonsIconToggle(customizationState: ButtonIconCustomizationState) {
             InvertedBackgroundColumn(horizontalAlignment = Alignment.CenterHorizontally) {
                 OdsIconToggleButton(
                     checked = buttonCheckedState.value,
-                    painter = painterResource(id = R.drawable.ic_heart_outlined),
-                    painterChecked = painterResource(id = R.drawable.ic_heart),
-                    painterDescription = stringResource(id = R.string.component_button_icon_toggle_favorite_icon_desc),
+                    uncheckedPainter = painterResource(id = R.drawable.ic_heart_outlined),
+                    checkedPainter = painterResource(id = R.drawable.ic_heart),
+                    iconContentDescription = stringResource(id = R.string.component_button_icon_toggle_favorite_icon_desc),
                     onCheckedChange = { checked -> buttonCheckedState.value = checked },
                     enabled = isEnabled,
                     displaySurface = displaySurface

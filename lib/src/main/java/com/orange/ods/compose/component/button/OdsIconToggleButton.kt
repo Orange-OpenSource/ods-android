@@ -40,9 +40,9 @@ import com.orange.ods.utilities.extension.enable
  *
  * @param checked whether this IconToggleButton is currently checked
  * @param onCheckedChange callback to be invoked when this icon is selected
- * @param painter Painter of the icon displayed when unchecked
- * @param painterDescription Content description associated to the icon
- * @param painterChecked Painter of the icon displayed when checked
+ * @param uncheckedPainter Painter of the icon displayed when unchecked
+ * @param checkedPainter Painter of the icon displayed when checked
+ * @param iconContentDescription Content description associated to the icon
  * @param modifier optional [Modifier] for this IconToggleButton
  * @param enabled enabled whether or not this [IconToggleButton] will handle input events and appear
  * enabled for semantics purposes
@@ -54,9 +54,9 @@ import com.orange.ods.utilities.extension.enable
 fun OdsIconToggleButton(
     checked: Boolean,
     onCheckedChange: (Boolean) -> Unit,
-    painter: Painter,
-    painterDescription: String,
-    painterChecked: Painter,
+    uncheckedPainter: Painter,
+    checkedPainter: Painter,
+    iconContentDescription: String,
     modifier: Modifier = Modifier,
     enabled: Boolean = true,
     displaySurface: OdsDisplaySurface = OdsDisplaySurface.Default
@@ -75,8 +75,8 @@ fun OdsIconToggleButton(
             enabled = enabled
         ) {
             Icon(
-                painter = if (checked) painterChecked else painter,
-                contentDescription = painterDescription,
+                painter = if (checked) checkedPainter else uncheckedPainter,
+                contentDescription = iconContentDescription,
                 tint = iconButtonTintColor(displaySurface).enable(enabled = enabled)
             )
         }
@@ -90,8 +90,8 @@ private fun PreviewOdsIconToggleButton() = Preview {
     OdsIconToggleButton(
         checked = checked,
         onCheckedChange = { checked = it },
-        painter = painterResource(id = android.R.drawable.ic_media_play),
-        painterChecked = painterResource(id = android.R.drawable.ic_media_pause),
-        painterDescription = "Play"
+        uncheckedPainter = painterResource(id = android.R.drawable.ic_media_play),
+        checkedPainter = painterResource(id = android.R.drawable.ic_media_pause),
+        iconContentDescription = "Play"
     )
 }
