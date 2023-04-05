@@ -85,11 +85,9 @@ fun ComponentButtons(variant: Variant) {
             }) {
 
             when (variant) {
-                Variant.ButtonsPrimary -> ButtonsContained(customizationState)
-                Variant.ButtonsDefault -> ButtonsContained(customizationState)
+                Variant.ButtonsPrimary, Variant.ButtonsDefault, Variant.ButtonsFunctional -> ButtonsContained(customizationState)
                 Variant.ButtonsOutlined -> ButtonsOutlined(customizationState)
                 Variant.ButtonsText -> ButtonsText(customizationState)
-                Variant.ButtonsFunctional -> ButtonsContained(customizationState)
                 else -> {}
             }
         }
