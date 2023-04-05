@@ -29,8 +29,7 @@ description: Buttons allow users to take actions, and make choices, with a singl
 
 ## Accessibility
 
-Please
-follow [accessibility criteria for development](https://a11y-guidelines.orange.com/en/mobile/android/development/)
+Please follow [accessibility criteria for development](https://a11y-guidelines.orange.com/en/mobile/android/development/)
 
 Buttons support content labeling for accessibility and are readable by most screen readers, such as
 TalkBack. Text rendered in buttons is automatically provided to accessibility services. Additional
