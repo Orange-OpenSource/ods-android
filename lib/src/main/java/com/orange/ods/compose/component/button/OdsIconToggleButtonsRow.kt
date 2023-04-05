@@ -110,21 +110,15 @@ private fun IconToggleButtonsRowItem(
     val iconTint by animateColorAsState(buttonToggleIconColor(displaySurface, selected))
     val backgroundAlpha by animateFloatAsState(if (selected) 0.12f else 0f)
 
-    Box(
+    Icon(
         modifier = Modifier
-            .background(
-                color = buttonToggleBackgroundColor(displaySurface)
-                    .copy(alpha = backgroundAlpha)
-            )
+            .background(color = buttonToggleBackgroundColor(displaySurface).copy(alpha = backgroundAlpha))
             .padding(12.dp)
-            .clickable(interactionSource = remember { DisabledInteractionSource() }, indication = null) { onClick(index) }
-    ) {
-        Icon(
-            painter = iconToggleButton.icon,
-            contentDescription = iconToggleButton.iconDescription,
-            tint = iconTint
-        )
-    }
+            .clickable(interactionSource = remember { DisabledInteractionSource() }, indication = null) { onClick(index) },
+        painter = iconToggleButton.icon,
+        contentDescription = iconToggleButton.iconDescription,
+        tint = iconTint
+    )
 }
 
 @Composable
