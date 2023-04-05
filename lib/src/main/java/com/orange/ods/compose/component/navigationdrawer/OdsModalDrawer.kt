@@ -42,6 +42,7 @@ import androidx.compose.ui.graphics.painter.Painter
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.PreviewParameter
 import androidx.compose.ui.unit.dp
 import com.orange.ods.R
@@ -125,7 +126,7 @@ private fun ModalDrawerItem(item: OdsModalDrawerItem, selected: Boolean, onClick
                         Text(
                             text = item.text,
                             color = if (selected) OdsTheme.colors.primaryVariant else OdsTheme.colors.onSurface,
-                            style = OdsTheme.typography.subtitle1
+                            style = if (selected) OdsTheme.typography.subtitle2 else OdsTheme.typography.subtitle2.copy(fontWeight = FontWeight.Bold)
                         )
                     },
                     hasText = true,
