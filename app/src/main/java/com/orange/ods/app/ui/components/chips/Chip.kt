@@ -10,7 +10,6 @@
 
 package com.orange.ods.app.ui.components.chips
 
-import android.content.Context
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.rememberScrollState
@@ -18,64 +17,40 @@ import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.ExperimentalMaterialApi
 import androidx.compose.material.rememberBottomSheetScaffoldState
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
-import androidx.compose.ui.semantics.semantics
-import androidx.compose.ui.semantics.stateDescription
 import coil.compose.rememberAsyncImagePainter
+import com.orange.ods.app.R
+import com.orange.ods.app.domain.recipes.LocalRecipes
+import com.orange.ods.app.ui.LocalMainThemeManager
+import com.orange.ods.app.ui.components.Variant
+import com.orange.ods.app.ui.components.chips.ChipCustomizationState.ChipType
+import com.orange.ods.app.ui.components.chips.ChipCustomizationState.LeadingElement
+import com.orange.ods.app.ui.components.utilities.ComponentCustomizationBottomSheetScaffold
+import com.orange.ods.app.ui.components.utilities.clickOnElement
+import com.orange.ods.app.ui.utilities.composable.Subtitle
 import com.orange.ods.compose.component.chip.OdsChip
 import com.orange.ods.compose.component.chip.OdsChoiceChip
 import com.orange.ods.compose.component.chip.OdsChoiceChipsFlowRow
 import com.orange.ods.compose.component.list.OdsListItem
 import com.orange.ods.compose.component.list.OdsSwitchTrailing
 import com.orange.ods.compose.text.OdsTextBody2
-import com.orange.ods.app.R
-import com.orange.ods.app.domain.recipes.LocalRecipes
-import com.orange.ods.app.ui.LocalMainThemeManager
-import com.orange.ods.app.ui.components.chips.ChipCustomizationState.ChipType
-import com.orange.ods.app.ui.components.chips.ChipCustomizationState.LeadingElement
-import com.orange.ods.app.ui.components.utilities.ComponentCustomizationBottomSheetScaffold
-import com.orange.ods.app.ui.components.utilities.clickOnElement
-import com.orange.ods.app.ui.utilities.composable.Subtitle
 import com.orange.ods.theme.OdsComponentsConfiguration.ComponentStyle
 
 @OptIn(ExperimentalMaterialApi::class)
 @Composable
-fun Chip() {
-    val context = LocalContext.current
-    val chipCustomizationState = rememberChipCustomizationState()
+fun Chip(variant: Variant) {
+    val chipCustomizationState = rememberChipCustomizationState(chipType = rememberSaveable { mutableStateOf(ChipType.fromVariant(variant)) })
 
     with(chipCustomizationState) {
         ComponentCustomizationBottomSheetScaffold(
             bottomSheetScaffoldState = rememberBottomSheetScaffoldState(),
             bottomSheetContent = {
-                Subtitle(textRes = R.string.component_type, horizontalPadding = true)
-                OdsChoiceChipsFlowRow(
-                    selectedChip = chipType,
-                    modifier = Modifier
-                        .padding(horizontal = dimensionResource(id = R.dimen.screen_horizontal_margin)),
-                    outlinedChips = true
-                ) {
-                    OdsChoiceChip(
-                        textRes = R.string.component_chip_type_input,
-                        value = ChipType.Input,
-                        modifier = Modifier.chipTypeSemantics(
-                            context = context, focusedChipType = ChipType.Input, selectedChipType = chipType.value
-                        )
-                    )
-                    OdsChoiceChip(
-                        textRes = R.string.component_chip_type_choice, value = ChipType.Choice,
-                        modifier = Modifier.chipTypeSemantics(context = context, focusedChipType = ChipType.Choice, selectedChipType = chipType.value)
-                    )
-                    OdsChoiceChip(
-                        textRes = R.string.component_chip_type_action, value = ChipType.Action,
-                        modifier = Modifier.chipTypeSemantics(context = context, focusedChipType = ChipType.Action, selectedChipType = chipType.value)
-                    )
-                }
-
                 if (isInputChip) {
                     Subtitle(textRes = R.string.component_element_leading, horizontalPadding = true)
                     OdsChoiceChipsFlowRow(
@@ -110,21 +85,14 @@ fun ChipTypeDemo(chipType: ChipType, content: @Composable () -> Unit) {
     Column(
         modifier = Modifier
             .verticalScroll(rememberScrollState())
-            .padding(horizontal = dimensionResource(id = R.dimen.screen_horizontal_margin))
+            .padding(horizontal = dimensionResource(id = R.dimen.screen_horizontal_margin), vertical = dimensionResource(id = R.dimen.screen_vertical_margin))
     ) {
-        Subtitle(textRes = chipType.nameRes)
         OdsTextBody2(
-            modifier = Modifier.padding(top = dimensionResource(id = R.dimen.spacing_xs), bottom = dimensionResource(id = R.dimen.spacing_s)),
+            modifier = Modifier.padding(bottom = dimensionResource(id = R.dimen.spacing_s)),
             text = stringResource(id = chipType.descriptionRes)
         )
         content()
     }
-}
-
-private fun Modifier.chipTypeSemantics(context: Context, focusedChipType: ChipType, selectedChipType: ChipType) = this.semantics {
-    stateDescription = if (selectedChipType == focusedChipType) {
-        "${context.getString(R.string.state_selected)}\n${context.getString(focusedChipType.nameRes)}\n${context.getString(focusedChipType.descriptionRes)}"
-    } else context.getString(R.string.state_not_selected)
 }
 
 @Composable

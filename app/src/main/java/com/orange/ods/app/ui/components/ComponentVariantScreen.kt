@@ -34,7 +34,7 @@ fun ComponentVariantScreen(variantId: Long) {
             Component.AppBarsTop -> ComponentTopAppBar()
             Component.Buttons -> ComponentButtons(variant = variant)
             Component.Cards -> ComponentCard(variant = variant)
-            Component.Chips -> if (variant == Variant.ChipFilter) ChipFilter() else Chip()
+            Component.Chips -> if (variant == Variant.ChipFilter) ChipFilter() else Chip(variant = variant)
             Component.Menus -> ComponentMenu(variant = variant)
             Component.Progress -> ComponentProgress(variant = variant)
             Component.TextFields -> ComponentTextField(variant = variant)

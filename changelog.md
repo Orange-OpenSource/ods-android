@@ -20,6 +20,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - \[App\] Update application name ([#474](https://github.com/Orange-OpenSource/ods-android/issues/474))
 - \[App\] Remove copyright text in the about screen ([#486](https://github.com/Orange-OpenSource/ods-android/issues/486))
 - \[App\] Update search with guidelines ([#478](https://github.com/Orange-OpenSource/ods-android/issues/478))
+- \[App\] Update chips variants in order to have "Action chips", "Choice chips" and "Input chips" in the chips detail screen ([#494](https://github.com/Orange-OpenSource/ods-android/issues/494))
 - \[Lib\] Encapsulate a `MaterialTheme` in the `OdsTheme` to take directly benefits of colors set in Jetpack Compose SDK ([#430](https://github.com/Orange-OpenSource/ods-android/issues/430))
 - \[ThemeConfigurationContract\] Change colors contract by respectively grouping Material, functional and components colors in `materialColors`, `functionalColors` and `componentColors` properties of `OdsColors` ([#430](https://github.com/Orange-OpenSource/ods-android/issues/430))
 
