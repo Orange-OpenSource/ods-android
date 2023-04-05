@@ -23,28 +23,30 @@ sealed class Component(
     @DrawableRes val smallImageRes: Int?,
     @StringRes val descriptionRes: Int,
     val variants: List<Variant> = emptyList(),
-    val composableName: String? = null
+    val composableName: String? = null,
+    val imageAlignment: Alignment = Alignment.Center
 ) {
     companion object {
         const val ImageBackgroundColor = 0xff1b1b1b
     }
 
     val id: Long = Component::class.sealedSubclasses.indexOf(this::class).toLong()
-
-    val imageAlignment: Alignment
-        get() = when (this) {
-            AppBarsTop, BottomNavigation -> Alignment.TopCenter
-            Lists -> Alignment.BottomCenter
-            Sliders, TextFields -> Alignment.CenterEnd
-            Banners, Buttons, Cards, SheetsBottom, Checkboxes, Chips, Dialogs, FloatingActionButtons, Menus, ModalDrawers, Progress, RadioButtons, Snackbars, Switches, Tabs -> Alignment.Center
-        }
-
+    
     object AppBarsTop : Component(
         R.string.component_app_bars_top,
         R.drawable.il_app_bars_top,
         R.drawable.il_app_bars_top_small,
         R.string.component_app_bars_top_description,
-        listOf(Variant.AppBarsTopRegular)
+        variants = listOf(Variant.AppBarsTopRegular),
+        imageAlignment = Alignment.TopCenter
+    )
+
+    object Banners : Component(
+        R.string.component_banners,
+        R.drawable.il_banners,
+        null,
+        R.string.component_banners_description,
+        composableName = OdsComponent.OdsBanner.name
     )
 
     object BottomNavigation :
@@ -53,7 +55,8 @@ sealed class Component(
             R.drawable.il_bottom_navigation,
             null,
             R.string.component_bottom_navigation_description,
-            composableName = OdsComponent.OdsBottomNavigation.name
+            composableName = OdsComponent.OdsBottomNavigation.name,
+            imageAlignment = Alignment.TopCenter
         )
 
     object Buttons : Component(
@@ -66,18 +69,20 @@ sealed class Component(
             Variant.ButtonsDefault,
             Variant.ButtonsOutlined,
             Variant.ButtonsText,
-            Variant.ButtonsFunctional,
-            Variant.ButtonsToggle,
-            Variant.ButtonsIcon,
+            Variant.ButtonsFunctional
         )
     )
 
-    object Banners : Component(
-        R.string.component_banners,
-        R.drawable.il_banners,
+    object ButtonsIcons : Component(
+        R.string.component_buttons_icons,
+        R.drawable.il_buttons_icons,
         null,
-        R.string.component_banners_description,
-        composableName = OdsComponent.OdsBanner.name
+        R.string.component_buttons_description,
+        listOf(
+            Variant.ButtonsIcon,
+            Variant.ButtonsIconToggle,
+            Variant.ButtonsIconToggleGroup
+        )
     )
 
     object Cards : Component(
@@ -125,7 +130,8 @@ sealed class Component(
         R.drawable.il_lists,
         null,
         R.string.component_lists_description,
-        composableName = OdsComponent.OdsListItem.name
+        composableName = OdsComponent.OdsListItem.name,
+        imageAlignment = Alignment.BottomCenter
     )
 
     object Menus : Component(
@@ -172,7 +178,8 @@ sealed class Component(
         R.drawable.il_sliders,
         null,
         R.string.component_sliders_description,
-        composableName = OdsComponent.OdsSlider.name
+        composableName = OdsComponent.OdsSlider.name,
+        imageAlignment = Alignment.CenterEnd
     )
 
     object Snackbars : Component(
@@ -196,7 +203,8 @@ sealed class Component(
         R.drawable.il_text_fields,
         R.drawable.il_text_fields_small,
         R.string.component_text_fields_description,
-        listOf(Variant.TextField, Variant.TextFieldPassword)
+        listOf(Variant.TextField, Variant.TextFieldPassword),
+        imageAlignment = Alignment.CenterEnd
     )
 
     object Tabs : Component(
@@ -214,7 +222,6 @@ sealed class Variant(
     @StringRes val titleRes: Int,
     val composableName: String
 ) {
-
     val id: Long = Variant::class.sealedSubclasses.indexOf(this::class).toLong()
 
     object AppBarsTopRegular : Variant(R.string.component_app_bars_top_regular, OdsComponent.OdsTopAppBar.name)
@@ -224,8 +231,10 @@ sealed class Variant(
     object ButtonsOutlined : Variant(R.string.component_buttons_medium_emphasis, OdsComponent.OdsOutlinedButton.name)
     object ButtonsText : Variant(R.string.component_buttons_low_emphasis, OdsComponent.OdsTextButton.name)
     object ButtonsFunctional : Variant(R.string.component_buttons_functional, "${OdsComponent.OdsButton.name} with a functional style")
-    object ButtonsToggle : Variant(R.string.component_buttons_toggle, OdsComponent.OdsIconToggleButton.name)
+
     object ButtonsIcon : Variant(R.string.component_buttons_icon, OdsComponent.OdsIconButton.name)
+    object ButtonsIconToggle : Variant(R.string.component_buttons_icon_toggle, OdsComponent.OdsIconToggleButton.name)
+    object ButtonsIconToggleGroup : Variant(R.string.component_buttons_icon_toggle_group, OdsComponent.OdsIconToggleButtonsRow.name)
 
     object CardVerticalImageFirst : Variant(R.string.component_card_vertical_image_first, OdsComponent.OdsVerticalImageFirstCard.name)
     object CardVerticalHeaderFirst : Variant(R.string.component_card_vertical_header_first, OdsComponent.OdsVerticalHeaderFirstCard.name)
