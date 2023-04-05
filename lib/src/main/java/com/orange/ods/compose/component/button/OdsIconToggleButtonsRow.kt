@@ -29,6 +29,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.painter.Painter
 import androidx.compose.ui.res.painterResource
@@ -159,11 +160,11 @@ private fun PreviewOdsIconToggleButtonsGroupRow() = Preview {
         OdsIconToggleButtonsRowItem(painterResource(id = android.R.drawable.ic_dialog_email), "Day"),
         OdsIconToggleButtonsRowItem(painterResource(id = android.R.drawable.ic_dialog_alert), "Month")
     )
-    val selectedIndexState = remember { mutableStateOf(0) }
+    var selectedIndex by remember { mutableStateOf(0) }
 
     OdsIconToggleButtonsRow(
         iconToggleButtons = iconToggleButtons,
-        selectedIndex = selectedIndexState.value,
-        onSelectedIndexChange = { index -> selectedIndexState.value = index }
+        selectedIndex = selectedIndex,
+        onSelectedIndexChange = { index -> selectedIndex = index }
     )
 }
