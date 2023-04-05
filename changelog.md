@@ -36,6 +36,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - \[Doc\] Fix a bug where documentation is displayed several times on the same page ([#457](https://github.com/Orange-OpenSource/ods-android/issues/457))
 - \[Lib\] Implement workaround by adding content description to `OdsOutlinedTextField` in order to allow TalkBack to focus this type of text field ([#359](https://github.com/Orange-OpenSource/ods-android/issues/359))
 - \[Lib\] Fix a bug where image height is wrong in some cases in `OdsHorizontalCard` ([#445](https://github.com/Orange-OpenSource/ods-android/issues/445))
+- \[Lib\] Fix a bug where selected text in modal drawer is bold ([#502](https://github.com/Orange-OpenSource/ods-android/issues/502))
 
 ## [0.11.1](https://github.com/Orange-OpenSource/ods-android/compare/0.11.0...0.11.1) - 2023-03-10
 
