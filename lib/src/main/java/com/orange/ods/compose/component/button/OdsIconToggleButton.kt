@@ -77,7 +77,7 @@ fun OdsIconToggleButton(
             Icon(
                 painter = if (checked) painterChecked else painter,
                 contentDescription = painterDescription,
-                tint = iconButtonIconColor(displaySurface).enable(enabled = enabled)
+                tint = iconButtonTintColor(displaySurface).enable(enabled = enabled)
             )
         }
     }

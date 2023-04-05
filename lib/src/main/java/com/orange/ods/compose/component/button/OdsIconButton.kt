@@ -13,16 +13,12 @@ package com.orange.ods.compose.component.button
 import androidx.compose.foundation.background
 import androidx.compose.material.Icon
 import androidx.compose.material.IconButton
-import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.Add
 import androidx.compose.material.ripple.LocalRippleTheme
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.painter.Painter
-import androidx.compose.ui.graphics.vector.ImageVector
-import androidx.compose.ui.graphics.vector.rememberVectorPainter
 import androidx.compose.ui.res.painterResource
 import com.orange.ods.compose.component.OdsComponentApi
 import com.orange.ods.compose.component.utilities.Preview
@@ -74,7 +70,7 @@ fun OdsIconButton(
             contentDescription = contentDescription,
             modifier = modifier.background(color = iconButtonBackgroundColor(displaySurface = displaySurface)),
             enabled = enabled,
-            tint = iconButtonIconColor(displaySurface = displaySurface)
+            tint = iconButtonTintColor(displaySurface = displaySurface)
         )
     }
 }
