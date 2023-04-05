@@ -38,13 +38,13 @@ import com.orange.ods.utilities.extension.enable
  * An [IconButton] with two states, for icons that can be toggled 'on' and 'off', such as a
  * bookmark icon, or a navigation icon that opens a drawer.
  *
- * @param checked whether this IconToggleButton is currently checked
+ * @param checked whether this OdsIconToggleButton is currently checked
  * @param onCheckedChange callback to be invoked when this icon is selected
  * @param uncheckedPainter Painter of the icon displayed when unchecked
  * @param checkedPainter Painter of the icon displayed when checked
  * @param iconContentDescription Content description associated to the icon
- * @param modifier optional [Modifier] for this IconToggleButton
- * @param enabled enabled whether or not this [IconToggleButton] will handle input events and appear
+ * @param modifier optional [Modifier] for this OdsIconToggleButton
+ * @param enabled enabled whether or not this OdsIconToggleButton will handle input events and appear
  * enabled for semantics purposes
  * @param displaySurface optional allow to force the button display on a dark or light
  * surface. By default the appearance applied is based on the system night mode value.

@@ -46,10 +46,10 @@ import com.orange.ods.compose.theme.OdsTheme
  * A group of toggle buttons. Only one option in a group of toggle buttons can be selected and active at a time.
  * Selecting one option deselects any other.
  *
- * @param iconToggleButtons Contains the buttons to display in the toggle group
+ * @param iconToggleButtons Contains the [OdsIconToggleButtonsRowItem] to display in the toggle group
  * @param selectedIndex The [iconToggleButtons] list index of the selected button.
  * @param onSelectedIndexChange Callback to be invoked when the selection change.
- * @param modifier optional [Modifier] for this IconToggleButton
+ * @param modifier optional [Modifier] for this OdsIconToggleButtonsRow
  * @param displaySurface optional allow to force the group display on a dark or light
  * surface. By default the appearance applied is based on the system night mode value.
  */
