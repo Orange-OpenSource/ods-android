@@ -100,7 +100,7 @@ private fun iconButtonBackgroundColor(displaySurface: OdsDisplaySurface) =
 
 @UiModePreviews.Default
 @Composable
-private fun PreviewOdsIconButtonWithPainter() = Preview {
+private fun PreviewOdsIconButton() = Preview {
     OdsIconButton(
         onClick = {},
         painter = painterResource(id = android.R.drawable.ic_dialog_info),
