@@ -48,14 +48,14 @@ fun OdsScrollableTabRow(
 ) {
     ScrollableTabRow(
         modifier = modifier,
-        backgroundColor = OdsTheme.colors.tab.background,
-        contentColor = OdsTheme.colors.tab.unselectedContent,
+        backgroundColor = OdsTheme.colors.component.tab.background,
+        contentColor = OdsTheme.colors.component.tab.unselectedContent,
         selectedTabIndex = selectedTabIndex,
         indicator = { tabPositions ->
             if (selectedTabIndex < tabPositions.size) {
                 TabRowDefaults.Indicator(
                     modifier = Modifier.tabIndicatorOffset(tabPositions[selectedTabIndex]),
-                    color = OdsTheme.colors.tab.selectedContent
+                    color = OdsTheme.colors.component.tab.selectedContent
                 )
             }
         },

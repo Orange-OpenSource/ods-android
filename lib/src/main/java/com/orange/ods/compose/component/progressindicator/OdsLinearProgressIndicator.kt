@@ -64,7 +64,6 @@ fun OdsLinearProgressIndicator(
     icon: Painter? = null,
     iconContentDescription: String? = null
 ) {
-    val progressIndicatorColor = OdsTheme.colors.primary
     Column(
         modifier = modifier
             .padding(horizontal = dimensionResource(id = R.dimen.spacing_m))
@@ -93,7 +92,7 @@ fun OdsLinearProgressIndicator(
             }
         }
         progress?.let {
-            LinearProgressIndicator(progress = progress, modifier = Modifier.fillMaxWidth(), color = progressIndicatorColor)
+            LinearProgressIndicator(progress = progress, modifier = Modifier.fillMaxWidth())
 
             if (showCurrentValue) {
                 Row(horizontalArrangement = Arrangement.End, modifier = Modifier.fillMaxWidth()) {
@@ -101,14 +100,14 @@ fun OdsLinearProgressIndicator(
                         modifier = Modifier
                             .padding(top = dimensionResource(id = R.dimen.spacing_xs))
                             .semantics {
-                                this.invisibleToUser() // Prevent Talkback to focus this Text cause the value of the progress is already read on LinearProgressIndicator focus
+                                this.invisibleToUser() // Prevent TalkBack to focus this Text cause the value of the progress is already read on LinearProgressIndicator focus
                             },
                         text = String.format(stringResource(id = R.string.progress_linear_indicator_value), (progress * 100).toInt())
                     )
                 }
             }
         }.orElse {
-            LinearProgressIndicator(modifier = Modifier.fillMaxWidth(), color = progressIndicatorColor)
+            LinearProgressIndicator(modifier = Modifier.fillMaxWidth())
         }
     }
 }
@@ -141,7 +140,7 @@ private val previewParameterValues: List<OdsLinearProgressIndicatorPreviewParame
     get() {
         val iconRes = android.R.drawable.ic_dialog_alert
         val shortLabel = "Downloading …"
-        val longLabel = "Downloading file Applications/ODS/demo/src/main/java/utilities/file_to_download.txt"
+        val longLabel = "Downloading file Applications/ODS/app/src/main/java/utilities/file_to_download.txt"
 
         return listOf(
             OdsLinearProgressIndicatorPreviewParameter(0.75f, iconRes, shortLabel, true),

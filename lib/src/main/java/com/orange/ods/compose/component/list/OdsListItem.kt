@@ -38,6 +38,7 @@ import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.painter.Painter
 import androidx.compose.ui.graphics.vector.rememberVectorPainter
 import androidx.compose.ui.layout.ContentScale
@@ -137,6 +138,34 @@ fun OdsListItem(
     overlineText: String? = null,
     trailing: @Composable (() -> Unit)? = null
 ) {
+    val hasText = text.isNotBlank()
+    OdsListItem(
+        modifier = modifier,
+        text = {
+            if (hasText) {
+                OdsTextSubtitle1(text = text)
+            }
+        },
+        hasText = hasText,
+        icon = icon,
+        secondaryText = secondaryText,
+        singleLineSecondaryText = singleLineSecondaryText,
+        overlineText = overlineText,
+        trailing = trailing
+    )
+}
+
+@Composable
+internal fun OdsListItem(
+    modifier: Modifier = Modifier,
+    text: @Composable () -> Unit,
+    hasText: Boolean,
+    icon: @Composable (OdsListItemIconScope.() -> Unit)? = null,
+    secondaryText: String? = null,
+    singleLineSecondaryText: Boolean = true,
+    overlineText: String? = null,
+    trailing: @Composable (() -> Unit)? = null
+) {
     val iconType = modifier.getElementOfType<OdsListItemIconTypeModifier>()?.iconType
     val listItemIconScope = OdsListItemIconScope(iconType)
     if (iconType == OdsListItemIconType.WideImage) {
@@ -148,6 +177,7 @@ fun OdsListItem(
                     .iconType(OdsListItemIconType.WideImage),
                 listItemScope = listItemIconScope,
                 text = text,
+                hasText = hasText,
                 icon = null,
                 secondaryText = secondaryText,
                 singleLineSecondaryText = singleLineSecondaryText,
@@ -160,6 +190,7 @@ fun OdsListItem(
             modifier = modifier,
             listItemScope = listItemIconScope,
             text = text,
+            hasText = hasText,
             icon = icon,
             secondaryText = secondaryText,
             singleLineSecondaryText = singleLineSecondaryText,
@@ -181,19 +212,20 @@ fun OdsListItem(
 private fun OdsListItemInternal(
     modifier: Modifier = Modifier,
     listItemScope: OdsListItemIconScope,
-    text: String,
+    text: @Composable () -> Unit,
+    hasText: Boolean,
     icon: @Composable (OdsListItemIconScope.() -> Unit)? = null,
     secondaryText: String? = null,
     singleLineSecondaryText: Boolean = true,
     overlineText: String? = null,
-    trailing: @Composable (() -> Unit)? = null
+    trailing: @Composable (() -> Unit)? = null,
 ) {
     val iconType = modifier.getElementOfType<OdsListItemIconTypeModifier>()?.iconType
     val requiredHeight = computeRequiredHeight(
         hasIcon = icon != null,
         iconType = iconType,
         hasOverlineText = overlineText.isNotNullOrBlank(),
-        hasText = text.isNotBlank(),
+        hasText = hasText,
         hasSecondaryText = secondaryText.isNotNullOrBlank(),
         singleLineSecondaryText = singleLineSecondaryText
     )
@@ -203,7 +235,9 @@ private fun OdsListItemInternal(
         modifier = modifier
             .fillMaxWidth()
             .requiredHeight(requiredHeight),
+
         icon = icon?.let { { listItemScope.it() } },
+
         secondaryText = if (secondaryText.isNotNullOrBlank()) {
             {
                 Text(
@@ -220,11 +254,7 @@ private fun OdsListItemInternal(
             { Text(text = overlineText, style = OdsTheme.typography.overline, color = OdsTheme.colors.onSurface.copy(alpha = 0.6f)) }
         } else null,
         trailing = trailing,
-        text = {
-            if (text.isNotBlank()) {
-                OdsTextSubtitle1(text = text)
-            }
-        }
+        text = text
     )
 }
 
@@ -267,16 +297,17 @@ private fun computeRequiredHeight(
  *
  * This method throws an exception if no icon type has been specified on the [OdsListItem] modifier using the [Modifier.iconType] method.
  *
- * @param painter to draw
+ * @param painter Painter of the icon
  * @param contentDescription Content description of the icon
+ * @param tint Icon color. Has not effect if icon type is different from `OdsListItemIconType.Icon`
  */
 @Composable
 @OdsComponentApi
-fun OdsListItemIconScope.OdsListItemIcon(painter: Painter, contentDescription: String? = null) {
+fun OdsListItemIconScope.OdsListItemIcon(painter: Painter, contentDescription: String? = null, tint: Color = OdsTheme.colors.onSurface) {
     when (iconType) {
         OdsListItemIconType.Icon -> {
             Column(modifier = Modifier.fillMaxHeight(), verticalArrangement = Arrangement.Center) {
-                Icon(painter = painter, contentDescription = contentDescription, tint = OdsTheme.colors.onSurface)
+                Icon(painter = painter, contentDescription = contentDescription, tint = tint)
             }
         }
         OdsListItemIconType.CircularImage -> {

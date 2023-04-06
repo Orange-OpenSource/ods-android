@@ -24,11 +24,14 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.painter.Painter
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.semantics.contentDescription
+import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.text.input.VisualTransformation
 import androidx.compose.ui.tooling.preview.PreviewParameter
 import com.orange.ods.compose.component.utilities.Preview
 import com.orange.ods.compose.component.utilities.UiModePreviews
 import com.orange.ods.compose.theme.OdsTheme
+import com.orange.ods.utilities.extension.orElse
 
 @Composable
 internal fun OdsOutlinedTextField(
@@ -60,7 +63,10 @@ internal fun OdsOutlinedTextField(
                     onValueChange(newValue)
                 }
             },
-            modifier = modifier,
+            modifier = modifier.semantics {
+                contentDescription =
+                    label.orElse { "Text field" } //TODO: Remove it when switching to Compose 1.4.0 which is supposed to fix the problem of OutlinedTextField TalkBack focus: https://issuetracker.google.com/issues/251162419
+            },
             enabled = enabled,
             readOnly = readOnly,
             textStyle = OdsTheme.typography.subtitle1,

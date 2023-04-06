@@ -12,9 +12,9 @@ package com.orange.ods.theme.innovationcup.guideline
 
 import androidx.compose.material.Typography
 import com.orange.ods.theme.guideline.GuidelineColor
-import com.orange.ods.theme.guideline.OdsDemoGuideline
+import com.orange.ods.theme.guideline.OdsGuideline
 
-class InnovationCupGuideline(typography: Typography) : OdsDemoGuideline(typography) {
+class InnovationCupGuideline(typography: Typography) : OdsGuideline(typography) {
 
     override val guidelineColors: List<GuidelineColor>
         get() = InnovationCupGuidelineColors

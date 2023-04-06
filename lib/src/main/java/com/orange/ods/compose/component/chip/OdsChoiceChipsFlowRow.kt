@@ -20,6 +20,8 @@ import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.semantics.semantics
+import androidx.compose.ui.semantics.stateDescription
 import androidx.compose.ui.tooling.preview.PreviewParameter
 import com.google.accompanist.flowlayout.FlowRow
 import com.orange.ods.R
@@ -57,14 +59,21 @@ fun <T> OdsChoiceChipsFlowRow(
  * A selectable chip to display in an [OdsChoiceChipsFlowRow]
  *
  * @param text Text displayed in the chip
+ * @param value The chip value
+ * @param modifier The modifier applied to the OdsChoiceChip
  * @param enabled If set to false, the chip is no more clickable and appears as disabled
  */
 @Composable
 @OdsComponentApi
-fun <T> OdsChoiceChipsFlowRowScope<T>.OdsChoiceChip(text: String, value: T, enabled: Boolean = true) {
+fun <T> OdsChoiceChipsFlowRowScope<T>.OdsChoiceChip(text: String, value: T, modifier: Modifier = Modifier, enabled: Boolean = true) {
+    val selected = selectedChip.value == value
+    val chipStateDescription = odsChipStateDescription(selected = selected)
     OdsChip(
         text = text,
-        selected = selectedChip.value == value,
+        modifier = modifier.semantics {
+            stateDescription = chipStateDescription
+        },
+        selected = selected,
         onClick = { selectedChip.value = value },
         outlined = outlinedChips,
         enabled = enabled
@@ -75,11 +84,13 @@ fun <T> OdsChoiceChipsFlowRowScope<T>.OdsChoiceChip(text: String, value: T, enab
  * A selectable chip to display in an [OdsChoiceChipsFlowRow]
  *
  * @param textRes Text resource identifier to display in the chip
+ * @param value The chip value
+ * @param modifier The modifier applied to the OdsChoiceChip
  * @param enabled If set to false, the chip is no more clickable and appears as disabled
  */
 @Composable
-fun <T> OdsChoiceChipsFlowRowScope<T>.OdsChoiceChip(@StringRes textRes: Int, value: T, enabled: Boolean = true) {
-    OdsChoiceChip(text = stringResource(id = textRes), value = value, enabled = enabled)
+fun <T> OdsChoiceChipsFlowRowScope<T>.OdsChoiceChip(@StringRes textRes: Int, value: T, modifier: Modifier = Modifier, enabled: Boolean = true) {
+    OdsChoiceChip(text = stringResource(id = textRes), value = value, modifier = modifier, enabled = enabled)
 }
 
 /**

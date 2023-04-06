@@ -17,6 +17,8 @@ import androidx.compose.material.Icon
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.painter.Painter
+import com.orange.ods.compose.theme.OdsDisplaySurface
+import com.orange.ods.compose.theme.OdsTheme
 
 /**
  * The icon displayed in every type of buttons
@@ -32,3 +34,11 @@ internal fun ButtonIcon(painter: Painter) {
     )
     Spacer(Modifier.size(ButtonDefaults.IconSpacing))
 }
+
+@Composable
+internal fun iconButtonTintColor(displaySurface: OdsDisplaySurface) =
+    when (displaySurface) {
+        OdsDisplaySurface.Default -> OdsTheme.colors.onSurface
+        OdsDisplaySurface.Dark -> OdsTheme.darkThemeColors.onSurface
+        OdsDisplaySurface.Light -> OdsTheme.lightThemeColors.onSurface
+    }

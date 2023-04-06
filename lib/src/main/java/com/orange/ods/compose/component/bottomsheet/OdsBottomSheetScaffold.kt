@@ -57,7 +57,6 @@ fun OdsBottomSheetScaffold(
     sheetGesturesEnabled: Boolean = true,
     sheetPeekHeight: Dp = BottomSheetScaffoldDefaults.SheetPeekHeight,
     content: @Composable (PaddingValues) -> Unit
-
 ) {
     BottomSheetScaffold(
         sheetContent = sheetContent,
@@ -69,8 +68,6 @@ fun OdsBottomSheetScaffold(
         floatingActionButtonPosition = floatingActionButtonPosition,
         sheetGesturesEnabled = sheetGesturesEnabled,
         sheetShape = OdsTheme.shapes.large,
-        sheetBackgroundColor = OdsTheme.colors.surface,
-        sheetContentColor = OdsTheme.colors.onSurface,
         sheetPeekHeight = sheetPeekHeight,
         backgroundColor = OdsTheme.colors.surface,
         contentColor = OdsTheme.colors.onSurface,

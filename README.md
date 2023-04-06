@@ -1,10 +1,4 @@
-<p align="center">
-  <a href="https://orange-opensource.github.io/ods-android">
-    <img src="https://c.woopic.com/logo-orange.png" alt="ODS Android" width="50" height="50">
-  </a>
-</p>
-
-<h3 align="center">ODS Android</h3>
+<h1 align="center">Orange Design System Android</h1>
 
 <p align="center">
   ODS Android provides Orange Android components to developers and a demo application.

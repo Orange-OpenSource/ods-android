@@ -23,7 +23,6 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
 import com.orange.ods.compose.component.OdsComponentApi
 import com.orange.ods.compose.component.utilities.Preview
 import com.orange.ods.compose.component.utilities.UiModePreviews
@@ -61,25 +60,14 @@ fun OdsRadioButton(
             modifier = modifier,
             enabled = enabled,
             colors = if (selected) {
-                OdsRadioButtonDefaults.colors(
+                RadioButtonDefaults.colors(
                     disabledColor = OdsTheme.colors.secondary.enable(enabled = false)
                 )
             } else {
-                OdsRadioButtonDefaults.colors()
+                RadioButtonDefaults.colors()
             }
         )
     }
-}
-
-private object OdsRadioButtonDefaults {
-
-    @Composable
-    fun colors(
-        selectedColor: Color = OdsTheme.colors.secondary,
-        unselectedColor: Color = OdsTheme.colors.onSurface.copy(alpha = 0.6f),
-        disabledColor: Color = OdsTheme.colors.onSurface.enable(enabled = false)
-    ) = RadioButtonDefaults.colors(selectedColor, unselectedColor, disabledColor)
-
 }
 
 @UiModePreviews.Default

@@ -80,7 +80,8 @@ fun OdsChip(
     leadingContentDescription: String? = null,
     onCancel: (() -> Unit)? = null
 ) {
-    val chipStateDescription = if (selected) stringResource(id = R.string.state_selected) else stringResource(id = R.string.state_not_selected)
+    val chipStateDescription = odsChipStateDescription(selected)
+
     Chip(
         onClick = onClick,
         modifier = modifier.semantics {
@@ -134,6 +135,10 @@ fun OdsChip(
         }
     }
 }
+
+@Composable
+internal fun odsChipStateDescription(selected: Boolean) =
+    if (selected) stringResource(id = R.string.state_selected) else stringResource(id = R.string.state_not_selected)
 
 @OptIn(ExperimentalMaterialApi::class)
 @Composable
