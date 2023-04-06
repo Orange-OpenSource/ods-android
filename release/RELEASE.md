@@ -29,14 +29,7 @@ This file lists all the steps to follow when releasing a new version of ODS Andr
 
 - Verify the changes mentioned above, then commit and push.
 
-    Please note that you have to launch the following commands from the `docs` folder to build and verify the documentation:
-
-    ```shell
-    bundle install
-    ```
-    ```shell
-    bundle exec jekyll server --trace
-    ```
+    Please see [DEVELOP.md](../DEVELOP.md#documentation) to get more information about how to build and verify the documentation.
     
     Once the Jekyll server is started, the documentation for version X.Y.Z should be available at http://127.0.0.1:4000/ods-android/X.Y.Z/.
 
