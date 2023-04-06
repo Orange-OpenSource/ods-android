@@ -18,7 +18,7 @@ repositories {
 
 ```groovy
 dependencies {
-    implementation 'com.orange.ods.android:ods-lib:0.11.1'
+    implementation 'com.orange.ods.android:ods-lib:0.12.0'
 }
 ```
 
