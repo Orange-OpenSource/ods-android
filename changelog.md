@@ -5,6 +5,12 @@ All notable changes done in ODS library will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [Unreleased](https://github.com/Orange-OpenSource/ods-android/compare/0.12.0...develop)
+
+### Fixed
+
+- \[App\] Fix a bug where avatar have a default image ([#504](https://github.com/Orange-OpenSource/ods-android/issues/504))
+
 ## [0.12.0](https://github.com/Orange-OpenSource/ods-android/compare/0.11.1...0.12.0) - 2023-04-06
 
 ### Added
