@@ -84,7 +84,11 @@ fun ComponentModalDrawers() {
                     error = painterResource(id = R.drawable.placeholder)
                 )
             } else if (customizationState.hasAvatar) {
-                painterResource(id = R.drawable.placeholder)
+                rememberAsyncImagePainter(
+                    model = rememberSaveable { recipes.random() }.imageUrl,
+                    placeholder = painterResource(id = R.drawable.placeholder),
+                    error = painterResource(id = R.drawable.placeholder)
+                )
             } else null,
             subtitle = if (customizationState.isSubTitleChecked) stringResource(id = R.string.component_element_example) else null,
             imageDisplayType = if (customizationState.hasAvatar) OdsModalDrawerHeaderImageDisplayType.Avatar else if (customizationState.hasBackground) OdsModalDrawerHeaderImageDisplayType.Background else OdsModalDrawerHeaderImageDisplayType.None
