@@ -65,7 +65,17 @@ class CodeImplementation(private val componentName: String) {
             TechnicalText(text = "$componentName(")
             Column(modifier = Modifier.padding(start = dimensionResource(id = R.dimen.spacing_s))) {
                 parameters.forEach { parameter ->
-                    TechnicalText(text = "${parameter.name} = ${parameter.value},")
+                    when {
+                        parameter.value != null -> TechnicalText(text = "${parameter.name} = ${parameter.value},")
+                        parameter.composableValue != null -> {
+                            TechnicalText(text = "${parameter.name} = {")
+                            Column(modifier = Modifier.padding(start = dimensionResource(id = R.dimen.spacing_s))) {
+                                parameter.composableValue.invoke()
+                            }
+                            TechnicalText(text = "},")
+                        }
+                    }
+
                 }
                 TechnicalText(text = "//...")
             }
@@ -94,7 +104,7 @@ class CodeImplementation(private val componentName: String) {
     }
 }
 
-sealed class ComponentParameter(val name: String, val value: String) {
+sealed class ComponentParameter(val name: String, val value: String? = null, val composableValue: (@Composable () -> Unit)? = null) {
     open class SimpleValueParameter(name: String, displayValue: String) : ComponentParameter(name, displayValue)
     object Icon : SimpleValueParameter("icon", CodeImplementation.IconPainterValue)
     object Image : SimpleValueParameter("image", CodeImplementation.ImagePainterValue)
@@ -113,6 +123,7 @@ sealed class ComponentParameter(val name: String, val value: String) {
     class Placeholder(val text: String) : TextValueParameter("placeholder", text)
     class Button1Text(val text: String) : TextValueParameter("button1Text", text)
     class Button2Text(val text: String) : TextValueParameter("button2Text", text)
+    class ContentDescription(val text: String) : TextValueParameter("contentDescription", text)
 
 
     open class LambdaValueParameter(name: String) : ComponentParameter(name, "{ }")
@@ -121,6 +132,8 @@ sealed class ComponentParameter(val name: String, val value: String) {
     object OnCardClick : LambdaValueParameter("onCardClick")
     object OnButton1Click : LambdaValueParameter("onButton1Click")
     object OnButton2Click : LambdaValueParameter("onButton2Click")
+
+    class ComposableValueParameter(name: String, composableValue: @Composable () -> Unit) : ComponentParameter(name, composableValue = composableValue)
 }
 
 @Composable
