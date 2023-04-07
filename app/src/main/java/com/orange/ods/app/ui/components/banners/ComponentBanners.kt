@@ -12,6 +12,8 @@ package com.orange.ods.app.ui.components.banners
 
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.ExperimentalMaterialApi
 import androidx.compose.material.rememberBottomSheetScaffoldState
 import androidx.compose.runtime.Composable
@@ -73,7 +75,10 @@ fun ComponentBanners() {
             val context = LocalContext.current
             val button1Text = stringResource(id = R.string.component_element_button1)
             val button2Text = stringResource(id = R.string.component_element_button2)
-            Column {
+            Column(
+                modifier = Modifier
+                    .verticalScroll(rememberScrollState())
+            ) {
                 OdsBanner(
                     message = if (hasTwoTextLines) recipe.description else recipe.title,
                     button1Text = stringResource(id = R.string.component_banner_dismiss),

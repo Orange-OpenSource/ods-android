@@ -12,6 +12,8 @@ package com.orange.ods.app.ui.components.sheets
 
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.ExperimentalMaterialApi
 import androidx.compose.material.rememberBottomSheetScaffoldState
 import androidx.compose.runtime.Composable
@@ -62,7 +64,7 @@ fun ComponentSheetsBottom() {
                 }
             }
         ) {
-            Column {
+            Column(modifier = Modifier.verticalScroll(rememberScrollState())) {
                 Column(
                     modifier = Modifier
                         .padding(top = dimensionResource(id = R.dimen.screen_vertical_margin))

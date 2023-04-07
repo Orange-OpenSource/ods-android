@@ -12,6 +12,8 @@ package com.orange.ods.app.ui.components.dialogs
 
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.ExperimentalMaterialApi
 import androidx.compose.material.rememberBottomSheetScaffoldState
 import androidx.compose.runtime.Composable
@@ -58,7 +60,9 @@ fun ComponentDialog() {
         val dismissButtonText = stringResource(id = R.string.component_dialog_action_dismiss)
         val recipe = rememberSaveable { recipes.random() }
 
-        Column {
+        Column(
+            modifier = Modifier.verticalScroll(rememberScrollState())
+        ) {
             ComponentLaunchContentColumn(textRes = R.string.component_dialog_customize, buttonLabelRes = R.string.component_dialog_open) {
                 customizationState.openDialog.value = true
             }

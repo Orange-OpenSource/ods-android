@@ -10,8 +10,11 @@
 
 package com.orange.ods.app.ui.components.floatingactionbuttons
 
+import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.ExperimentalMaterialApi
 import androidx.compose.material.FabPosition
 import androidx.compose.material.rememberBottomSheetScaffoldState
@@ -103,18 +106,19 @@ fun ComponentFloatingActionButton() {
                     trailing = OdsSwitchTrailing(checked = fullScreenWidth, enabled = isFullScreenWidthEnabled)
                 )
             }) {
-
-            val usedComponentName = if (hasText) OdsComponent.OdsExtendedFloatingActionButton.name else OdsComponent.OdsFloatingActionButton.name
-            CodeImplementation(usedComponentName).CodeImplementationColumn(
-                modifier = Modifier.padding(horizontal = dimensionResource(id = R.dimen.screen_horizontal_margin)),
-                componentParameters = mutableListOf<ComponentParameter>(
-                    ComponentParameter.Icon
-                ).apply {
-                    if (this@with.size.value == FabCustomizationState.Size.Mini) add(ComponentParameter.TypedValueParameter("mini", true))
-                    if (hasText) add(ComponentParameter.TextValueParameter("text", "Add"))
-                    if (isFullScreenWidth) add(ComponentParameter.FillMaxWidth)
-                }
-            )
+            Column(modifier = Modifier.verticalScroll(rememberScrollState())) {
+                val usedComponentName = if (hasText) OdsComponent.OdsExtendedFloatingActionButton.name else OdsComponent.OdsFloatingActionButton.name
+                CodeImplementation(usedComponentName).CodeImplementationColumn(
+                    modifier = Modifier.padding(horizontal = dimensionResource(id = R.dimen.screen_horizontal_margin)),
+                    componentParameters = mutableListOf<ComponentParameter>(
+                        ComponentParameter.Icon
+                    ).apply {
+                        if (this@with.size.value == FabCustomizationState.Size.Mini) add(ComponentParameter.TypedValueParameter("mini", true))
+                        if (hasText) add(ComponentParameter.TextValueParameter("text", "Add"))
+                        if (isFullScreenWidth) add(ComponentParameter.FillMaxWidth)
+                    }
+                )
+            }
         }
     }
 }
