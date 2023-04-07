@@ -61,11 +61,9 @@ This file lists all the steps to follow when releasing a new version of ODS Andr
 
 - Go to [Sonatype Nexus Repository Manager](https://oss.sonatype.org).
 
-- Go to `Staging Repositories`.
+- Click `Staging Repositories` and verify the content of the ODS Android repository.
 
-- Verify the content of the ODS Android repository.
-
-    ![Sonatype repository content](images/maven_central_release_02.png)
+    ![Sonatype staging repositories](images/maven_central_release_02.png)
 
 - Click `Close` if content is OK or `Drop` otherwise.
 
@@ -97,39 +95,52 @@ This file lists all the steps to follow when releasing a new version of ODS Andr
 
 - Edit the new release draft.
 
-    ![GitHub release deployment](images/github_release_01.png)
+    ![Edit GitHub release](images/github_release_01.png)
 
 - Set previous tag and click `Generate release notes` to automatically generate the release notes.
 
-    ![GitHub release deployment](images/github_release_02.png)
+    ![Generate GitHub release notes](images/github_release_02.png)
 
 - Verify the release notes using the preview tab.
 
 - Optionally check `Set as a pre-release` and click `Publish release`.<br /><br />
 
-### Build unsigned APK and bundle for Google Play Store
+### Publish release to Google Play Store
 
 - Go to [GitHub Actions](https://github.com/Orange-OpenSource/ods-android/actions), open the release workflow, click `Review deployments`, select `google-play-store-release` and click `Approve and deploy`.
 
-- Click `google-play-store` in the artifacts section to download unsigned APK and bundle.<br /><br />
+- Go to [OMA Portal](https://oma-portal.orange.fr) and open the `Orange Design System Demo` dashboard.
+
+- Click `Integrations`, find the uploaded bundle in the `Artifacts` sections and click `Create release`.
+
+    ![Create OMA Portal release](images/google_play_store_release_01.png) 
+
+- Progress through the various submission steps.
+
+- When step is `Store submissions`, select `Closed beta with Google Groups`, set `Email addresses` to `odsapp@googlegroups.com` and click `Go to store submission`.
+
+    ![OMA Portal store submission](images/google_play_store_release_02.png)<br /><br />
 
 ### Announce the new release on FoODS
 
 - Go to [Teams - FoODS: ODS Mobile Android](https://teams.microsoft.com/l/channel/19%3a62efff7aca9f4865a841076b4a6c428f%40thread.tacv2/4-ODS%2520Mobile%2520Android?groupId=a9581e9e-6775-46f5-9e4a-3ce57096e6be&tenantId=90c7a20a-f34b-40bf-bc48-b9253b6f5d20)
 
-- Post a message with screenshots of new elements to announce the release:
-```markdown
-Release X.Y.Z is available!
+- Post a message with screenshots of new elements to announce the release.
 
-New components:
-    - C8
-    - C9
-    
-New module:
-    - M1
-    
-[Release note link](https://github.com/Orange-OpenSource/ods-android/releases/tag/X.Y.Z)
-[Demo app link](https://appdistribution.firebase.google.com/testerapps/1:212698857200:android:84f9ae5c588f21f25ecc35/releases/489r7j172cqn8?utm_source=firebase-console)
-```
+    As Microsoft Teams does not support pasting Markdown, open the text below in a Markdown editor that produces rich text, copy the rich text and paste it to Microsoft Teams. Finally edit the message to display the emojis and add newlines wherever needed.
 
-Note: The Orange Design System app link can be copied from the release Firebase console. In `App Distribution`, find the X.Y.Z release and click on the `Copy` button.
+
+    > (rocket) Release X.Y.Z is available!
+    >
+    > **New components**
+    >- C8
+    >- C9
+    >
+    >**New module**
+    >- M1
+    >
+    >(page) [Release note](https://github.com/Orange-OpenSource/ods-android/releases/tag/X.Y.Z)
+    >
+    >(phone) [Demo app](https://play.google.com/apps/testing/com.orange.ods.app)
+    >
+    >Note: Please subscribe to the [Orange Design System Google group](https://groups.google.com/g/odsapp) in order to be able to install the demo app.
