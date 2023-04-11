@@ -202,6 +202,10 @@
     <string name="component_floating_action_button_size_mini">Mini</string>
     <string name="component_floating_action_button_full_screen_width">Full screen width</string>
 
+    <!-- Component Image Lists -->
+    <string name="component_image_lists">Lists: image</string>
+    <string name="component_image_lists_description">A Floating Action Button (FAB) is an interactive element that enables the user to initiate an immediate action. There are a number of different options for how they can be presented.</string>
+
     <!-- Component Menus -->
     <string name="component_menus">Menus</string>
     <string name="component_menus_description">Menus appear from a button, action, or other control. It contains at least 2 items that can affect the app, the view or elements within the view.</string>
