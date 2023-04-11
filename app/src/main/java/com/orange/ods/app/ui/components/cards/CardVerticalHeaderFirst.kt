@@ -29,7 +29,8 @@ import coil.size.Size
 import com.orange.ods.app.R
 import com.orange.ods.app.domain.recipes.LocalRecipes
 import com.orange.ods.app.ui.components.utilities.clickOnElement
-import com.orange.ods.app.ui.utilities.composable.CodeImplementation
+import com.orange.ods.app.ui.utilities.composable.CodeImplementationColumn
+import com.orange.ods.app.ui.utilities.composable.ComponentCode
 import com.orange.ods.app.ui.utilities.composable.TextValueParameter
 import com.orange.ods.compose.component.OdsComponent
 import com.orange.ods.compose.component.card.OdsVerticalHeaderFirstCard
@@ -76,8 +77,8 @@ fun CardVerticalHeaderFirst(customizationState: CardCustomizationState) {
 
             Spacer(modifier = Modifier.padding(top = dimensionResource(R.dimen.spacing_s)))
 
-            CodeImplementation(OdsComponent.OdsVerticalHeaderFirstCard.name).CodeImplementationColumn(
-                codeParameters = mutableListOf<TextValueParameter>(
+            CodeImplementationColumn {
+                ComponentCode(name = OdsComponent.OdsVerticalHeaderFirstCard.name, parameters = mutableListOf(
                     TextValueParameter.Title(recipe.title),
                     TextValueParameter.Image
                 ).apply {
@@ -93,8 +94,8 @@ fun CardVerticalHeaderFirst(customizationState: CardCustomizationState) {
                         add(TextValueParameter.Button2Text(button2Text))
                         add(TextValueParameter.OnButton2Click)
                     }
-                }
-            )
+                })
+            }
         }
     }
 }

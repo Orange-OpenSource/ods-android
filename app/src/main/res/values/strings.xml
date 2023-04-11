@@ -294,6 +294,8 @@
     <string name="component_snackbar_show">Show snackbar</string>
     <string name="component_snackbar_message">This is the message of the Snackbar.</string>
     <string name="component_snackbar_action_label">Action</string>
+    <string name="component_snackbar_code_first_step">1 - Use OdsSnackbarHost in a Scaffold:</string>
+    <string name="component_snackbar_code_second_step">2 - Display the snackbar:</string>
 
     <!-- Component Text fields -->
     <string name="component_text_fields">Text fields</string>

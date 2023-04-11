@@ -28,7 +28,9 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import com.orange.ods.app.R
 import com.orange.ods.app.ui.components.utilities.ComponentCustomizationBottomSheetScaffold
-import com.orange.ods.app.ui.utilities.composable.CodeImplementation
+import com.orange.ods.app.ui.utilities.composable.CodeImplementationColumn
+import com.orange.ods.app.ui.utilities.composable.ComponentCode
+import com.orange.ods.app.ui.utilities.composable.IconPainterValue
 import com.orange.ods.app.ui.utilities.composable.TechnicalText
 import com.orange.ods.app.ui.utilities.composable.TextValueParameter
 import com.orange.ods.app.ui.utilities.composable.Title
@@ -107,22 +109,21 @@ fun ComponentSliders() {
                     )
                 }
 
-                CodeImplementation(componentName).CodeImplementationColumn(
-                    codeParameters = mutableListOf<TextValueParameter>(
+                CodeImplementationColumn {
+                    ComponentCode(name = componentName, parameters = mutableListOf(
                         TextValueParameter.StringRepresentationParameter("value", sliderPosition),
                         TextValueParameter.ValueOnlyParameter("valueRange", "0f..100f"),
                         TextValueParameter.LambdaParameter("onValueChange")
                     ).apply {
                         if (isStepped) add(TextValueParameter.StringRepresentationParameter("steps", steps))
                         if (hasSideIcons) {
-                            add(TextValueParameter.ValueOnlyParameter("leftIcon", CodeImplementation.IconPainterValue))
+                            add(TextValueParameter.ValueOnlyParameter("leftIcon", IconPainterValue))
                             leftIconContentDescription?.let { add(TextValueParameter.BetweenQuotesParameter("leftIconContentDescription", it)) }
-                            add(TextValueParameter.ValueOnlyParameter("rightIcon", CodeImplementation.IconPainterValue))
+                            add(TextValueParameter.ValueOnlyParameter("rightIcon", IconPainterValue))
                             rightIconContentDescription?.let { add(TextValueParameter.BetweenQuotesParameter("rightIconContentDescription", it)) }
                         }
-
-                    }
-                )
+                    })
+                }
             }
         }
     }

@@ -18,7 +18,8 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.stringResource
 import com.orange.ods.app.R
-import com.orange.ods.app.ui.utilities.composable.CodeImplementation
+import com.orange.ods.app.ui.utilities.composable.CodeImplementationColumn
+import com.orange.ods.app.ui.utilities.composable.ComponentCode
 import com.orange.ods.app.ui.utilities.composable.TextValueParameter
 import com.orange.ods.compose.component.OdsComponent
 import com.orange.ods.compose.component.textfield.password.OdsPasswordTextField
@@ -51,8 +52,8 @@ fun TextFieldPassword(customizationState: TextFieldCustomizationState) {
                 } else null
             )
 
-            CodeImplementation(OdsComponent.OdsPasswordTextField.name).CodeImplementationColumn(
-                codeParameters = mutableListOf(
+            CodeImplementationColumn {
+                ComponentCode(name = OdsComponent.OdsPasswordTextField.name, parameters = mutableListOf(
                     TextValueParameter.BetweenQuotesParameter("value", displayedText),
                     TextValueParameter.LambdaParameter("onValueChange"),
                     TextValueParameter.Label(label),
@@ -71,8 +72,8 @@ fun TextFieldPassword(customizationState: TextFieldCustomizationState) {
                             "<OdsTextFieldCharacterCounter>"
                         )
                     ) // TODO
-                }
-            )
+                })
+            }
         }
     }
 }

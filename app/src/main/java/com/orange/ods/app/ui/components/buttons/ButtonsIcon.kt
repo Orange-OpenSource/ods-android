@@ -30,7 +30,8 @@ import androidx.compose.ui.res.stringResource
 import com.orange.ods.app.R
 import com.orange.ods.app.ui.components.utilities.ComponentCustomizationBottomSheetScaffold
 import com.orange.ods.app.ui.components.utilities.clickOnElement
-import com.orange.ods.app.ui.utilities.composable.CodeImplementation
+import com.orange.ods.app.ui.utilities.composable.CodeImplementationColumn
+import com.orange.ods.app.ui.utilities.composable.ComponentCode
 import com.orange.ods.app.ui.utilities.composable.TextValueParameter
 import com.orange.ods.compose.component.OdsComponent
 import com.orange.ods.compose.component.button.OdsIconButton
@@ -81,14 +82,15 @@ fun ButtonsIcon() {
                     )
                 }
 
-                CodeImplementation(OdsComponent.OdsIconButton.name).CodeImplementationColumn(
-                    modifier = Modifier.padding(horizontal = dimensionResource(id = R.dimen.screen_horizontal_margin)),
-                    codeParameters = mutableListOf<TextValueParameter>(
+                CodeImplementationColumn(
+                    modifier = Modifier.padding(horizontal = dimensionResource(id = R.dimen.screen_horizontal_margin))
+                ) {
+                    ComponentCode(name = OdsComponent.OdsIconButton.name, parameters = mutableListOf<TextValueParameter>(
                         TextValueParameter.Icon
                     ).apply {
                         if (!isEnabled) add(TextValueParameter.Enabled(false))
-                    }
-                )
+                    })
+                }
             }
         }
     }

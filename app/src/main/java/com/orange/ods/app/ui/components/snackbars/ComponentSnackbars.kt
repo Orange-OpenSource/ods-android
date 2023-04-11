@@ -28,13 +28,17 @@ import com.orange.ods.app.R
 import com.orange.ods.app.ui.components.utilities.ComponentCustomizationBottomSheetScaffold
 import com.orange.ods.app.ui.components.utilities.ComponentLaunchContentColumn
 import com.orange.ods.app.ui.components.utilities.clickOnElement
-import com.orange.ods.app.ui.utilities.composable.CodeImplementation
+import com.orange.ods.app.ui.utilities.composable.CodeImplementationColumn
+import com.orange.ods.app.ui.utilities.composable.ComponentCode
+import com.orange.ods.app.ui.utilities.composable.IndentCodeColumn
+import com.orange.ods.app.ui.utilities.composable.TechnicalText
 import com.orange.ods.app.ui.utilities.composable.TextValueParameter
 import com.orange.ods.compose.component.OdsComponent
 import com.orange.ods.compose.component.list.OdsListItem
 import com.orange.ods.compose.component.list.OdsSwitchTrailing
 import com.orange.ods.compose.component.snackbar.OdsSnackbar
 import com.orange.ods.compose.component.snackbar.OdsSnackbarHost
+import com.orange.ods.compose.text.OdsTextBody2
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.launch
 
@@ -81,25 +85,44 @@ fun ComponentSnackbars() {
                 coroutineScope.launch {
                     bottomSheetScaffoldState.snackbarHostState.showSnackbar(
                         message = snackbarMessage,
-                        actionLabel = if (actionButtonChecked.value) snackbarActionLabel else null,
+                        actionLabel = if (actionButtonChecked.value) snackbarActionLabel else null
                     )
                 }
             }
 
-            // TODO afficher code lancement
-            CodeImplementation("OdsSnackbarHost").CodeImplementationColumn(
-                modifier = Modifier.padding(horizontal = dimensionResource(id = R.dimen.screen_horizontal_margin)),
-                codeParameters = listOf(TextValueParameter.ValueOnlyParameter("hostState", "<SnackbarHostState>"))
-            ) {
-                CodeImplementation(OdsComponent.OdsSnackbar.name).ComponentCode(
-                    parameters = mutableListOf<TextValueParameter>(
-                        TextValueParameter.ValueOnlyParameter("snackbarData", "data") // TODO supprimer les "
-                    ).apply {
-                        if (actionOnNewLineChecked.value) add(TextValueParameter.StringRepresentationParameter("actionOnNewLine", true))
-                        add(TextValueParameter.LambdaParameter("onActionClick"))
-                    }
+            CodeImplementationColumn(modifier = Modifier.padding(horizontal = dimensionResource(id = R.dimen.screen_horizontal_margin))) {
+                OdsTextBody2(
+                    modifier = Modifier.padding(bottom = dimensionResource(id = R.dimen.spacing_xs)),
+                    text = stringResource(id = R.string.component_snackbar_code_first_step)
                 )
+                ComponentCode(name = "OdsSnackbarHost", parameters = listOf(TextValueParameter.ValueOnlyParameter("hostState", "<SnackbarHostState>"))) {
+                    ComponentCode(
+                        name = OdsComponent.OdsSnackbar.name,
+                        parameters = mutableListOf<TextValueParameter>(
+                            TextValueParameter.ValueOnlyParameter("snackbarData", "data")
+                        ).apply {
+                            if (actionOnNewLineChecked.value) add(TextValueParameter.StringRepresentationParameter("actionOnNewLine", true))
+                            add(TextValueParameter.LambdaParameter("onActionClick"))
+                        }
+                    )
+                }
+
+                OdsTextBody2(
+                    modifier = Modifier.padding(top = dimensionResource(id = R.dimen.spacing_s), bottom = dimensionResource(id = R.dimen.spacing_xs)),
+                    text = stringResource(id = R.string.component_snackbar_code_second_step)
+                )
+                TechnicalText(text = "coroutineScope.launch {")
+                IndentCodeColumn {
+                    TechnicalText(text = "scaffoldState.snackbarHostState.showSnackbar(")
+                    IndentCodeColumn {
+                        TechnicalText(text = "message = $snackbarMessage")
+                        if (actionButtonChecked.value) TechnicalText(text = snackbarActionLabel)
+                    }
+                    TechnicalText(text = ")")
+                }
+                TechnicalText(text = "}")
             }
+
         }
     }
 }

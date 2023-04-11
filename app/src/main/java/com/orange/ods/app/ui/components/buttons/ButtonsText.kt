@@ -22,7 +22,8 @@ import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import com.orange.ods.app.R
-import com.orange.ods.app.ui.utilities.composable.CodeImplementation
+import com.orange.ods.app.ui.utilities.composable.CodeImplementationColumn
+import com.orange.ods.app.ui.utilities.composable.ComponentCode
 import com.orange.ods.app.ui.utilities.composable.TextValueParameter
 import com.orange.ods.app.ui.utilities.composable.Title
 import com.orange.ods.compose.component.OdsComponent
@@ -33,7 +34,6 @@ import com.orange.ods.utilities.extension.fullName
 
 @Composable
 fun ButtonsText(customizationState: ButtonCustomizationState) {
-
     with(customizationState) {
         Column(
             modifier = Modifier
@@ -49,7 +49,6 @@ fun ButtonsText(customizationState: ButtonCustomizationState) {
 
             Spacer(modifier = Modifier.padding(top = dimensionResource(R.dimen.spacing_s)))
 
-
             InvertedBackgroundColumn {
                 TextButton(
                     style = textButtonStyle.value,
@@ -60,16 +59,17 @@ fun ButtonsText(customizationState: ButtonCustomizationState) {
                 )
             }
 
-            CodeImplementation(OdsComponent.OdsTextButton.name).CodeImplementationColumn(
-                modifier = Modifier.padding(horizontal = dimensionResource(id = R.dimen.screen_horizontal_margin)),
-                codeParameters = mutableListOf<TextValueParameter>(
+            CodeImplementationColumn(
+                modifier = Modifier.padding(horizontal = dimensionResource(id = R.dimen.screen_horizontal_margin))
+            ) {
+                ComponentCode(name = OdsComponent.OdsTextButton.name, parameters = mutableListOf<TextValueParameter>(
                     TextValueParameter.ValueOnlyParameter("style", textButtonStyle.value.fullName)
                 ).apply {
                     if (hasFullScreenWidth) add(TextValueParameter.FillMaxWidth)
                     if (hasLeadingIcon) add(TextValueParameter.Icon)
                     if (!isEnabled) add(TextValueParameter.Enabled(false))
-                }
-            )
+                })
+            }
         }
     }
 }

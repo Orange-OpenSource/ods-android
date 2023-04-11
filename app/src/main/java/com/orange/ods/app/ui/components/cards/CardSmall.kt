@@ -30,7 +30,8 @@ import coil.compose.rememberAsyncImagePainter
 import com.orange.ods.app.R
 import com.orange.ods.app.domain.recipes.LocalRecipes
 import com.orange.ods.app.ui.components.utilities.clickOnElement
-import com.orange.ods.app.ui.utilities.composable.CodeImplementation
+import com.orange.ods.app.ui.utilities.composable.CodeImplementationColumn
+import com.orange.ods.app.ui.utilities.composable.ComponentCode
 import com.orange.ods.app.ui.utilities.composable.TextValueParameter
 import com.orange.ods.compose.component.OdsComponent
 import com.orange.ods.compose.component.card.OdsSmallCard
@@ -73,15 +74,15 @@ fun CardSmall(customizationState: CardCustomizationState) {
 
             Spacer(modifier = Modifier.padding(top = dimensionResource(R.dimen.spacing_s)))
 
-            CodeImplementation(OdsComponent.OdsSmallCard.name).CodeImplementationColumn(
-                codeParameters = mutableListOf<TextValueParameter>(
+            CodeImplementationColumn {
+                ComponentCode(name = OdsComponent.OdsSmallCard.name, parameters = mutableListOf(
                     TextValueParameter.Title(recipe.title),
                     TextValueParameter.Image
                 ).apply {
                     if (hasSubtitle) add(TextValueParameter.Subtitle(recipe.subtitle))
                     if (isClickable) add(TextValueParameter.OnCardClick)
-                }
-            )
+                })
+            }
         }
     }
 }

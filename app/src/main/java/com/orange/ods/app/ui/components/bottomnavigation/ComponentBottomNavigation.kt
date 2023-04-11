@@ -35,7 +35,8 @@ import com.orange.ods.app.ui.components.utilities.ComponentCountRow
 import com.orange.ods.app.ui.components.utilities.ComponentCustomizationBottomSheetScaffold
 import com.orange.ods.app.ui.components.utilities.clickOnElement
 import com.orange.ods.app.ui.utilities.NavigationItem
-import com.orange.ods.app.ui.utilities.composable.CodeImplementation
+import com.orange.ods.app.ui.utilities.composable.CodeImplementationColumn
+import com.orange.ods.app.ui.utilities.composable.ComponentCode
 import com.orange.ods.app.ui.utilities.composable.TextValueParameter
 import com.orange.ods.compose.component.OdsComponent
 import com.orange.ods.compose.component.bottomnavigation.OdsBottomNavigation
@@ -93,18 +94,21 @@ fun ComponentBottomNavigation() {
                 }
             }
 
-            CodeImplementation(OdsComponent.OdsBottomNavigation.name).CodeImplementationColumn(
+            CodeImplementationColumn(
                 modifier = Modifier.padding(horizontal = dimensionResource(id = R.dimen.screen_horizontal_margin))
             ) {
-                navigationItems.take(2).forEach { item ->
-                    CodeImplementation("OdsBottomNavigationItem").ComponentCode(
-                        parameters = listOf(
-                            TextValueParameter.Icon,
-                            TextValueParameter.BetweenQuotesParameter("label", stringResource(id = item.textResId)),
-                            TextValueParameter.Selected(selectedNavigationItem.value.textResId == item.textResId),
-                            TextValueParameter.OnClick,
+                ComponentCode(name = OdsComponent.OdsBottomNavigation.name) {
+                    navigationItems.take(2).forEach { item ->
+                        ComponentCode(
+                            name = "OdsBottomNavigationItem",
+                            parameters = listOf(
+                                TextValueParameter.Icon,
+                                TextValueParameter.BetweenQuotesParameter("label", stringResource(id = item.textResId)),
+                                TextValueParameter.Selected(selectedNavigationItem.value.textResId == item.textResId),
+                                TextValueParameter.OnClick,
+                            )
                         )
-                    )
+                    }
                 }
             }
         }

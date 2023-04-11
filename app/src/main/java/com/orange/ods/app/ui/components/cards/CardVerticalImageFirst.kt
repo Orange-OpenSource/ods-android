@@ -27,7 +27,8 @@ import coil.compose.rememberAsyncImagePainter
 import com.orange.ods.app.R
 import com.orange.ods.app.domain.recipes.LocalRecipes
 import com.orange.ods.app.ui.components.utilities.clickOnElement
-import com.orange.ods.app.ui.utilities.composable.CodeImplementation
+import com.orange.ods.app.ui.utilities.composable.CodeImplementationColumn
+import com.orange.ods.app.ui.utilities.composable.ComponentCode
 import com.orange.ods.app.ui.utilities.composable.TextValueParameter
 import com.orange.ods.compose.component.OdsComponent
 import com.orange.ods.compose.component.card.OdsVerticalImageFirstCard
@@ -69,8 +70,8 @@ fun CardVerticalImageFirst(customizationState: CardCustomizationState) {
 
             Spacer(modifier = Modifier.padding(top = dimensionResource(R.dimen.spacing_s)))
 
-            CodeImplementation(OdsComponent.OdsVerticalImageFirstCard.name).CodeImplementationColumn(
-                codeParameters = mutableListOf<TextValueParameter>(
+            CodeImplementationColumn {
+                ComponentCode(name = OdsComponent.OdsVerticalImageFirstCard.name, parameters = mutableListOf<TextValueParameter>(
                     TextValueParameter.Title(recipe.title),
                     TextValueParameter.Image
                 ).apply {
@@ -85,8 +86,8 @@ fun CardVerticalImageFirst(customizationState: CardCustomizationState) {
                         add(TextValueParameter.Button2Text(button2Text))
                         add(TextValueParameter.OnButton2Click)
                     }
-                }
-            )
+                })
+            }
         }
     }
 }

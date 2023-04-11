@@ -22,7 +22,8 @@ import androidx.compose.ui.res.stringResource
 import com.orange.ods.app.R
 import com.orange.ods.app.ui.components.textfields.TextFieldCustomizationState.Companion.TextFieldMaxChars
 import com.orange.ods.app.ui.components.utilities.clickOnElement
-import com.orange.ods.app.ui.utilities.composable.CodeImplementation
+import com.orange.ods.app.ui.utilities.composable.CodeImplementationColumn
+import com.orange.ods.app.ui.utilities.composable.ComponentCode
 import com.orange.ods.app.ui.utilities.composable.TextValueParameter
 import com.orange.ods.compose.component.OdsComponent
 import com.orange.ods.compose.component.textfield.OdsIconTrailing
@@ -93,8 +94,8 @@ fun TextField(customizationState: TextFieldCustomizationState) {
             )
         }
 
-        CodeImplementation(OdsComponent.OdsTextField.name).CodeImplementationColumn(
-            codeParameters = mutableListOf(
+        CodeImplementationColumn {
+            ComponentCode(name = OdsComponent.OdsTextField.name, parameters = mutableListOf(
                 TextValueParameter.BetweenQuotesParameter("value", value),
                 TextValueParameter.LambdaParameter("onValueChange"),
                 TextValueParameter.Label(label),
@@ -110,8 +111,8 @@ fun TextField(customizationState: TextFieldCustomizationState) {
                 if (singleLine) add(TextValueParameter.StringRepresentationParameter("singleLine", true))
                 if (hasTrailing) add(TextValueParameter.ValueOnlyParameter("trailing", "<trailing composable>"))
                 if (characterCounter != null) add(TextValueParameter.ValueOnlyParameter("characterCounter", "<OdsTextFieldCharacterCounter>")) // TODO
-            }
-        )
+            })
+        }
     }
 }
 

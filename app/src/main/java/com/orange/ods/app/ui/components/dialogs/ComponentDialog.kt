@@ -27,7 +27,8 @@ import com.orange.ods.app.domain.recipes.LocalRecipes
 import com.orange.ods.app.ui.components.utilities.ComponentCustomizationBottomSheetScaffold
 import com.orange.ods.app.ui.components.utilities.ComponentLaunchContentColumn
 import com.orange.ods.app.ui.components.utilities.clickOnElement
-import com.orange.ods.app.ui.utilities.composable.CodeImplementation
+import com.orange.ods.app.ui.utilities.composable.CodeImplementationColumn
+import com.orange.ods.app.ui.utilities.composable.ComponentCode
 import com.orange.ods.app.ui.utilities.composable.TextValueParameter
 import com.orange.ods.compose.component.OdsComponent
 import com.orange.ods.compose.component.dialog.OdsAlertDialog
@@ -67,9 +68,10 @@ fun ComponentDialog() {
                 customizationState.openDialog.value = true
             }
 
-            CodeImplementation(OdsComponent.OdsAlertDialog.name).CodeImplementationColumn(
-                modifier = Modifier.padding(horizontal = dimensionResource(id = R.dimen.screen_horizontal_margin)),
-                codeParameters = mutableListOf(
+            CodeImplementationColumn(
+                modifier = Modifier.padding(horizontal = dimensionResource(id = R.dimen.screen_horizontal_margin))
+            ) {
+                ComponentCode(name = OdsComponent.OdsAlertDialog.name, parameters = mutableListOf(
                     TextValueParameter.ValueOnlyParameter("text", "<dialog text>"),
                     TextValueParameter.BetweenQuotesParameter("confirmButtonText", confirmButtonText),
                     TextValueParameter.LambdaParameter("onConfirmButtonClick")
@@ -79,8 +81,8 @@ fun ComponentDialog() {
                         add(TextValueParameter.BetweenQuotesParameter("dismissButtonText", dismissButtonText))
                         add(TextValueParameter.LambdaParameter("onDismissButtonClick"))
                     }
-                }
-            )
+                })
+            }
 
             if (customizationState.shouldOpenDialog) {
                 OdsAlertDialog(

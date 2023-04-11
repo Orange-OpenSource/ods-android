@@ -26,7 +26,8 @@ import androidx.compose.ui.res.stringResource
 import com.orange.ods.app.R
 import com.orange.ods.app.domain.recipes.LocalRecipes
 import com.orange.ods.app.ui.components.utilities.ComponentCustomizationBottomSheetScaffold
-import com.orange.ods.app.ui.utilities.composable.CodeImplementation
+import com.orange.ods.app.ui.utilities.composable.CodeImplementationColumn
+import com.orange.ods.app.ui.utilities.composable.ComponentCode
 import com.orange.ods.app.ui.utilities.composable.TextValueParameter
 import com.orange.ods.compose.component.OdsComponent
 import com.orange.ods.compose.component.list.OdsListItem
@@ -66,15 +67,14 @@ fun ComponentRadioButtons() {
                 }
             }
 
-            CodeImplementation(OdsComponent.OdsRadioButton.name).CodeImplementationColumn(
-                modifier = Modifier.padding(horizontal = dimensionResource(id = R.dimen.screen_horizontal_margin)),
-                codeParameters = mutableListOf(
+            CodeImplementationColumn(modifier = Modifier.padding(horizontal = dimensionResource(id = R.dimen.screen_horizontal_margin))) {
+                ComponentCode(name = OdsComponent.OdsRadioButton.name, parameters = mutableListOf(
                     TextValueParameter.Selected(false),
                     TextValueParameter.OnClick
                 ).apply {
                     if (!enabled.value) add(TextValueParameter.Enabled(false))
-                }
-            )
+                })
+            }
         }
     }
 }

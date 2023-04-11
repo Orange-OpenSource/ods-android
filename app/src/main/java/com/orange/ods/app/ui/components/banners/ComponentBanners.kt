@@ -29,7 +29,8 @@ import com.orange.ods.app.domain.recipes.LocalRecipes
 import com.orange.ods.app.ui.components.utilities.ComponentCountRow
 import com.orange.ods.app.ui.components.utilities.ComponentCustomizationBottomSheetScaffold
 import com.orange.ods.app.ui.components.utilities.clickOnElement
-import com.orange.ods.app.ui.utilities.composable.CodeImplementation
+import com.orange.ods.app.ui.utilities.composable.CodeImplementationColumn
+import com.orange.ods.app.ui.utilities.composable.ComponentCode
 import com.orange.ods.app.ui.utilities.composable.TextValueParameter
 import com.orange.ods.compose.component.OdsComponent
 import com.orange.ods.compose.component.banner.OdsBanner
@@ -92,9 +93,10 @@ fun ComponentBanners() {
                     onButton2Click = { clickOnElement(context, button2Text) }
                 )
 
-                CodeImplementation(OdsComponent.OdsBanner.name).CodeImplementationColumn(
-                    modifier = Modifier.padding(horizontal = dimensionResource(id = R.dimen.screen_horizontal_margin)),
-                    codeParameters = mutableListOf<TextValueParameter>(
+                CodeImplementationColumn(
+                    modifier = Modifier.padding(horizontal = dimensionResource(id = R.dimen.screen_horizontal_margin))
+                ) {
+                    ComponentCode(name = OdsComponent.OdsBanner.name, parameters = mutableListOf<TextValueParameter>(
                         TextValueParameter.BetweenQuotesParameter("message", if (hasTwoTextLines) recipe.description else recipe.title),
                         TextValueParameter.Button1Text(stringResource(id = R.string.component_banner_dismiss)),
                     ).apply {
@@ -102,8 +104,8 @@ fun ComponentBanners() {
                         if (hasButton2) add(
                             TextValueParameter.Button2Text(stringResource(id = R.string.component_banner_detail))
                         )
-                    }
-                )
+                    })
+                }
             }
         }
     }

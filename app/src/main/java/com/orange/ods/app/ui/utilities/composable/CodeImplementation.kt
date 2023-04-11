@@ -12,7 +12,6 @@ package com.orange.ods.app.ui.utilities.composable
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.ColumnScope
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
@@ -23,101 +22,15 @@ import androidx.compose.ui.semantics.semantics
 import com.orange.ods.app.R
 import com.orange.ods.compose.theme.OdsTheme
 
-class CodeImplementation(private val componentName: String) {
-
-    companion object {
-        const val IconPainterValue = "<icon painter>"
-        const val ImagePainterValue = "<image painter>"
-    }
-
-    @Composable
-    fun CodeImplementationColumn(
-        modifier: Modifier = Modifier,
-        codeParameters: List<CodeParameter> = emptyList(),
-        componentContent: @Composable (() -> Unit)? = null
-    ) {
-        Column(
-            modifier = modifier.padding(
-                vertical = dimensionResource(id = R.dimen.spacing_s)
-            )
-        ) {
-            Subtitle(textRes = R.string.code_implementation)
-            Spacer(modifier = Modifier.height(dimensionResource(id = R.dimen.spacing_s)))
-            Column(
-                modifier = Modifier
-                    .background(OdsTheme.colors.onSurface.copy(alpha = 0.12f))
-                    .padding(horizontal = dimensionResource(id = R.dimen.spacing_s), vertical = dimensionResource(id = R.dimen.spacing_s))
-                    .semantics(mergeDescendants = true) {},
-            ) {
-                ComponentCode(parameters = codeParameters, content = componentContent)
-            }
-        }
-    }
-
-    @Composable
-    fun ComponentCode(
-        parameters: List<CodeParameter> = emptyList(),
-        content: @Composable (() -> Unit)? = null
-    ) {
-        if (parameters.isEmpty() && content != null) {
-            ComponentWithContentOnlyCode { content() }
-        } else {
-            TechnicalText(text = "$componentName(")
-            Column(modifier = Modifier.padding(start = dimensionResource(id = R.dimen.spacing_s))) {
-                parameters.forEach { parameter ->
-                    when (parameter) {
-                        is TextValueParameter -> TechnicalText(text = "${parameter.name} = ${parameter.value},")
-                        is ComposableParameter -> {
-                            TechnicalText(text = "${parameter.name} = {")
-                            Column(modifier = Modifier.padding(start = dimensionResource(id = R.dimen.spacing_s))) {
-                                parameter.value.invoke()
-                            }
-                            TechnicalText(text = "},")
-                        }
-                        is ListParameter -> {
-                            TechnicalText(text = "${parameter.name} = listOf(")
-                            Column(modifier = Modifier.padding(start = dimensionResource(id = R.dimen.spacing_s))) {
-                                parameter.value.forEach { item ->
-                                    CodeImplementation(item.className).ComponentCode(parameters = item.parameters)
-                                }
-                            }
-                            TechnicalText(text = "),")
-                        }
-                    }
-                }
-                TechnicalText(text = "//...")
-            }
-
-            if (content != null) {
-                TechnicalText(text = ") {")
-                Column(modifier = Modifier.padding(start = dimensionResource(id = R.dimen.spacing_s))) {
-                    content()
-                    TechnicalText(text = "//...")
-                }
-                TechnicalText(text = "}")
-            } else {
-                TechnicalText(text = ")")
-            }
-        }
-    }
-
-    @Composable
-    private fun ComponentWithContentOnlyCode(content: @Composable () -> Unit) {
-        TechnicalText(text = "$componentName {")
-        Column(modifier = Modifier.padding(start = dimensionResource(id = R.dimen.spacing_s))) {
-            content()
-        }
-        TechnicalText(text = "//...")
-        TechnicalText(text = "}")
-    }
-}
+const val IconPainterValue = "<icon painter>"
+const val ImagePainterValue = "<image painter>"
 
 open class CodeParameter(val name: String)
 
 sealed class TextValueParameter(name: String, val value: String) : CodeParameter(name) {
     open class ValueOnlyParameter(name: String, displayValue: String) : TextValueParameter(name, displayValue)
-    object Icon : ValueOnlyParameter("icon", CodeImplementation.IconPainterValue)
-    object Image : ValueOnlyParameter("image", CodeImplementation.ImagePainterValue)
+    object Icon : ValueOnlyParameter("icon", IconPainterValue)
+    object Image : ValueOnlyParameter("image", ImagePainterValue)
     object FillMaxWidth : ValueOnlyParameter("modifier", "Modifier.fillMaxWidth()")
     class MutableStateParameter(name: String, stateValue: String) : ValueOnlyParameter(name, "remember { mutableStateOf($stateValue) }")
 
@@ -150,8 +63,15 @@ data class ListParameterValue(val className: String, val parameters: List<CodePa
 
 
 @Composable
-fun CodeImplementationColumn(content: @Composable ColumnScope.() -> Unit) {
-    Column(modifier = Modifier.padding(horizontal = dimensionResource(id = R.dimen.spacing_m), vertical = dimensionResource(id = R.dimen.spacing_s))) {
+fun CodeImplementationColumn(
+    modifier: Modifier = Modifier,
+    content: @Composable () -> Unit
+) {
+    Column(
+        modifier = modifier.padding(
+            vertical = dimensionResource(id = R.dimen.spacing_s)
+        )
+    ) {
         Subtitle(textRes = R.string.code_implementation)
         Spacer(modifier = Modifier.height(dimensionResource(id = R.dimen.spacing_s)))
         Column(
@@ -159,7 +79,71 @@ fun CodeImplementationColumn(content: @Composable ColumnScope.() -> Unit) {
                 .background(OdsTheme.colors.onSurface.copy(alpha = 0.12f))
                 .padding(horizontal = dimensionResource(id = R.dimen.spacing_s), vertical = dimensionResource(id = R.dimen.spacing_s))
                 .semantics(mergeDescendants = true) {},
-            content = content
-        )
+        ) {
+            content()
+        }
     }
+}
+
+@Composable
+fun IndentCodeColumn(content: @Composable () -> Unit) {
+    Column(modifier = Modifier.padding(start = dimensionResource(id = R.dimen.spacing_s))) {
+        content()
+    }
+}
+
+@Composable
+fun ComponentCode(
+    name: String,
+    parameters: List<CodeParameter> = emptyList(),
+    content: @Composable (() -> Unit)? = null
+) {
+    if (parameters.isEmpty() && content != null) {
+        ComponentWithContentOnlyCode(name) { content() }
+    } else {
+        TechnicalText(text = "$name(")
+        IndentCodeColumn {
+            parameters.forEach { parameter ->
+                when (parameter) {
+                    is TextValueParameter -> TechnicalText(text = "${parameter.name} = ${parameter.value},")
+                    is ComposableParameter -> {
+                        TechnicalText(text = "${parameter.name} = {")
+                        Column(modifier = Modifier.padding(start = dimensionResource(id = R.dimen.spacing_s))) {
+                            parameter.value.invoke()
+                        }
+                        TechnicalText(text = "},")
+                    }
+                    is ListParameter -> {
+                        TechnicalText(text = "${parameter.name} = listOf(")
+                        Column(modifier = Modifier.padding(start = dimensionResource(id = R.dimen.spacing_s))) {
+                            parameter.value.forEach { item ->
+                                ComponentCode(name = item.className, parameters = item.parameters)
+                            }
+                        }
+                        TechnicalText(text = "),")
+                    }
+                }
+            }
+            TechnicalText(text = "//...")
+        }
+
+        if (content != null) {
+            TechnicalText(text = ") {")
+            IndentCodeColumn {
+                content()
+                TechnicalText(text = "//...")
+            }
+            TechnicalText(text = "}")
+        } else {
+            TechnicalText(text = ")")
+        }
+    }
+}
+
+@Composable
+private fun ComponentWithContentOnlyCode(name: String, content: @Composable () -> Unit) {
+    TechnicalText(text = "$name {")
+    IndentCodeColumn(content)
+    TechnicalText(text = "//...")
+    TechnicalText(text = "}")
 }

@@ -27,7 +27,8 @@ import coil.compose.rememberAsyncImagePainter
 import com.orange.ods.app.R
 import com.orange.ods.app.domain.recipes.LocalRecipes
 import com.orange.ods.app.ui.components.utilities.clickOnElement
-import com.orange.ods.app.ui.utilities.composable.CodeImplementation
+import com.orange.ods.app.ui.utilities.composable.CodeImplementationColumn
+import com.orange.ods.app.ui.utilities.composable.ComponentCode
 import com.orange.ods.app.ui.utilities.composable.TextValueParameter
 import com.orange.ods.compose.component.OdsComponent
 import com.orange.ods.compose.component.card.OdsHorizontalCard
@@ -71,8 +72,8 @@ fun CardHorizontal(customizationState: CardCustomizationState) {
 
             Spacer(modifier = Modifier.padding(top = dimensionResource(R.dimen.spacing_s)))
 
-            CodeImplementation(OdsComponent.OdsHorizontalCard.name).CodeImplementationColumn(
-                codeParameters = mutableListOf(
+            CodeImplementationColumn {
+                ComponentCode(name = OdsComponent.OdsHorizontalCard.name, parameters = mutableListOf(
                     TextValueParameter.ValueOnlyParameter("imagePosition", imagePosition.value.name),
                     TextValueParameter.Title(recipe.title),
                     TextValueParameter.Image
@@ -89,8 +90,8 @@ fun CardHorizontal(customizationState: CardCustomizationState) {
                         add(TextValueParameter.OnButton2Click)
                     }
                     if (!hasDivider) add(TextValueParameter.StringRepresentationParameter("dividerEnabled", hasDivider))
-                }
-            )
+                })
+            }
         }
     }
 }

@@ -31,7 +31,8 @@ import androidx.compose.ui.res.stringResource
 import com.orange.ods.app.R
 import com.orange.ods.app.ui.components.utilities.ComponentCountRow
 import com.orange.ods.app.ui.components.utilities.ComponentCustomizationBottomSheetScaffold
-import com.orange.ods.app.ui.utilities.composable.CodeImplementation
+import com.orange.ods.app.ui.utilities.composable.CodeImplementationColumn
+import com.orange.ods.app.ui.utilities.composable.ComponentCode
 import com.orange.ods.app.ui.utilities.composable.Title
 import com.orange.ods.compose.component.OdsComponent
 import com.orange.ods.compose.component.button.OdsIconToggleButton
@@ -96,17 +97,21 @@ fun ButtonsToggle() {
                 }
 
                 if (toggleCount.value > 1) {
-                    CodeImplementation("Row").CodeImplementationColumn(
-                        modifier = Modifier.padding(horizontal = dimensionResource(id = R.dimen.screen_horizontal_margin)),
+                    CodeImplementationColumn(
+                        modifier = Modifier.padding(horizontal = dimensionResource(id = R.dimen.screen_horizontal_margin))
                     ) {
-                        repeat(toggleCount.value) {
-                            CodeImplementation(OdsComponent.OdsIconToggleButton.name).ComponentCode()
+                        ComponentCode(name = "Row") {
+                            repeat(toggleCount.value) {
+                                ComponentCode(name = OdsComponent.OdsIconToggleButton.name)
+                            }
                         }
                     }
                 } else {
-                    CodeImplementation(OdsComponent.OdsIconToggleButton.name).CodeImplementationColumn(
-                        modifier = Modifier.padding(horizontal = dimensionResource(id = R.dimen.screen_horizontal_margin)),
-                    )
+                    CodeImplementationColumn(
+                        modifier = Modifier.padding(horizontal = dimensionResource(id = R.dimen.screen_horizontal_margin))
+                    ) {
+                        ComponentCode(name = OdsComponent.OdsIconToggleButton.name)
+                    }
                 }
             }
         }

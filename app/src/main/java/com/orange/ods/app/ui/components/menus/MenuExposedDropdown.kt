@@ -34,8 +34,9 @@ import com.orange.ods.app.R
 import com.orange.ods.app.domain.recipes.LocalRecipes
 import com.orange.ods.app.ui.components.utilities.ComponentCustomizationBottomSheetScaffold
 import com.orange.ods.app.ui.components.utilities.clickOnElement
-import com.orange.ods.app.ui.utilities.composable.CodeImplementation
+import com.orange.ods.app.ui.utilities.composable.CodeImplementationColumn
 import com.orange.ods.app.ui.utilities.composable.CodeParameter
+import com.orange.ods.app.ui.utilities.composable.ComponentCode
 import com.orange.ods.app.ui.utilities.composable.ListParameter
 import com.orange.ods.app.ui.utilities.composable.ListParameterValue
 import com.orange.ods.app.ui.utilities.composable.TextValueParameter
@@ -126,16 +127,16 @@ fun MenuExposedDropdown() {
                         )
                     )
                 }
-                CodeImplementation(OdsComponent.OdsExposedDropdownMenu.name).CodeImplementationColumn(
-                    codeParameters = mutableListOf(
+                CodeImplementationColumn {
+                    ComponentCode(name = OdsComponent.OdsExposedDropdownMenu.name, parameters = mutableListOf(
                         TextValueParameter.BetweenQuotesParameter("label", label),
                         ListParameter("items", itemsValues),
                         TextValueParameter.MutableStateParameter("selectedItem", "<selected item>"),
                         TextValueParameter.LambdaParameter("onItemSelectionChange")
                     ).apply {
                         if (!isEnabled) add(TextValueParameter.Enabled(false))
-                    }
-                )
+                    })
+                }
             }
         }
     }

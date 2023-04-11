@@ -38,7 +38,8 @@ import com.orange.ods.app.R
 import com.orange.ods.app.domain.recipes.LocalRecipes
 import com.orange.ods.app.ui.components.utilities.ComponentCustomizationBottomSheetScaffold
 import com.orange.ods.app.ui.components.utilities.clickOnElement
-import com.orange.ods.app.ui.utilities.composable.CodeImplementation
+import com.orange.ods.app.ui.utilities.composable.CodeImplementationColumn
+import com.orange.ods.app.ui.utilities.composable.ComponentCode
 import com.orange.ods.app.ui.utilities.composable.TextValueParameter
 import com.orange.ods.compose.component.OdsComponent
 import com.orange.ods.compose.component.divider.OdsDivider
@@ -108,24 +109,29 @@ fun MenuDropdown() {
                     }
                 }
 
-                CodeImplementation(OdsComponent.OdsDropdownMenu.name).CodeImplementationColumn(
-                    modifier = Modifier.padding(horizontal = dimensionResource(id = R.dimen.screen_horizontal_margin)),
-                    codeParameters = mutableListOf(
-                        TextValueParameter.StringRepresentationParameter("expanded", menuExpanded),
-                        TextValueParameter.LambdaParameter("onDismissRequest"),
-                    )
+                CodeImplementationColumn(
+                    modifier = Modifier.padding(horizontal = dimensionResource(id = R.dimen.screen_horizontal_margin))
                 ) {
-                    recipes.take(2).forEachIndexed { index, recipe ->
-                        CodeImplementation("OdsDropdownMenuItem").ComponentCode(
-                            parameters = mutableListOf(
-                                TextValueParameter.BetweenQuotesParameter("text", recipe.title),
-                                TextValueParameter.OnClick
-                            ).apply {
-                                if (hasIcons && recipe.iconResId != null) add(TextValueParameter.Icon)
-                            }
+                    ComponentCode(
+                        name = OdsComponent.OdsDropdownMenu.name,
+                        parameters = mutableListOf(
+                            TextValueParameter.StringRepresentationParameter("expanded", menuExpanded),
+                            TextValueParameter.LambdaParameter("onDismissRequest")
                         )
-                        if (hasDividerExample && index == 0) {
-                            CodeImplementation("OdsDivider").ComponentCode()
+                    ) {
+                        recipes.take(2).forEachIndexed { index, recipe ->
+                            ComponentCode(
+                                name = "OdsDropdownMenuItem",
+                                parameters = mutableListOf(
+                                    TextValueParameter.BetweenQuotesParameter("text", recipe.title),
+                                    TextValueParameter.OnClick
+                                ).apply {
+                                    if (hasIcons && recipe.iconResId != null) add(TextValueParameter.Icon)
+                                }
+                            )
+                            if (hasDividerExample && index == 0) {
+                                ComponentCode(name = "OdsDivider")
+                            }
                         }
                     }
                 }

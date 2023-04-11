@@ -31,7 +31,8 @@ import com.orange.ods.app.domain.recipes.LocalCategories
 import com.orange.ods.app.domain.recipes.LocalRecipes
 import com.orange.ods.app.ui.components.utilities.ComponentCustomizationBottomSheetScaffold
 import com.orange.ods.app.ui.components.utilities.ComponentLaunchContentColumn
-import com.orange.ods.app.ui.utilities.composable.CodeImplementation
+import com.orange.ods.app.ui.utilities.composable.CodeImplementationColumn
+import com.orange.ods.app.ui.utilities.composable.ComponentCode
 import com.orange.ods.app.ui.utilities.composable.Subtitle
 import com.orange.ods.compose.component.OdsComponent
 import com.orange.ods.compose.component.chip.OdsChoiceChip
@@ -168,9 +169,11 @@ fun ComponentModalDrawers() {
                             buttonLabelRes = R.string.component_modal_drawer_open,
                             onButtonClick = { scope.launch { drawerState.open() } }
                         )
-                        CodeImplementation(OdsComponent.OdsModalDrawer.name).CodeImplementationColumn(
-                            modifier = Modifier.padding(horizontal = dimensionResource(id = R.dimen.screen_horizontal_margin))
-                        )
+
+                        // TODO
+                        CodeImplementationColumn(modifier = Modifier.padding(horizontal = dimensionResource(id = R.dimen.screen_horizontal_margin))) {
+                            ComponentCode(name = OdsComponent.OdsModalDrawer.name)
+                        }
                     }
                 }
             }
