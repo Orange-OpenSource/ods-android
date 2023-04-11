@@ -74,6 +74,15 @@ class CodeImplementation(private val componentName: String) {
                             }
                             TechnicalText(text = "},")
                         }
+                        is ListParameter -> {
+                            TechnicalText(text = "${parameter.name} = listOf(")
+                            Column(modifier = Modifier.padding(start = dimensionResource(id = R.dimen.spacing_s))) {
+                                parameter.value.forEach { item ->
+                                    CodeImplementation(item.className).ComponentCode(parameters = item.parameters)
+                                }
+                            }
+                            TechnicalText(text = "),")
+                        }
                     }
                 }
                 TechnicalText(text = "//...")
@@ -110,6 +119,7 @@ sealed class TextValueParameter(name: String, val value: String) : CodeParameter
     object Icon : ValueOnlyParameter("icon", CodeImplementation.IconPainterValue)
     object Image : ValueOnlyParameter("image", CodeImplementation.ImagePainterValue)
     object FillMaxWidth : ValueOnlyParameter("modifier", "Modifier.fillMaxWidth()")
+    class MutableStateParameter(name: String, stateValue: String) : ValueOnlyParameter(name, "remember { mutableStateOf($stateValue) }")
 
     open class StringRepresentationParameter<T>(name: String, typedValue: T) : TextValueParameter(name, typedValue.toString())
     class Enabled(val enabled: Boolean) : StringRepresentationParameter<Boolean>("enabled", enabled)
@@ -135,6 +145,8 @@ sealed class TextValueParameter(name: String, val value: String) : CodeParameter
 
 class ComposableParameter(name: String, val value: @Composable () -> Unit) : CodeParameter(name)
 
+class ListParameter(name: String, val value: List<ListParameterValue>) : CodeParameter(name)
+data class ListParameterValue(val className: String, val parameters: List<CodeParameter>)
 
 
 @Composable

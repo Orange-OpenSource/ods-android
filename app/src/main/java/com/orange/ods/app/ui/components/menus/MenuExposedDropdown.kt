@@ -115,10 +115,22 @@ fun MenuExposedDropdown() {
                     enabled = isEnabled
                 )
 
-                // TODO manage icon display in code
+                val itemsValues = mutableListOf<ListParameterValue>()
+                items.forEach { item ->
+                    itemsValues.add(
+                        ListParameterValue(
+                            "OdsExposedDropdownMenuItem",
+                            mutableListOf<CodeParameter>(TextValueParameter.BetweenQuotesParameter("label", item.label)).apply {
+                                if (hasIcons) add(TextValueParameter.Icon)
+                            }
+                        )
+                    )
+                }
                 CodeImplementation(OdsComponent.OdsExposedDropdownMenu.name).CodeImplementationColumn(
                     codeParameters = mutableListOf(
                         TextValueParameter.BetweenQuotesParameter("label", label),
+                        ListParameter("items", itemsValues),
+                        TextValueParameter.MutableStateParameter("selectedItem", "<selected item>"),
                         TextValueParameter.LambdaParameter("onItemSelectionChange")
                     ).apply {
                         if (!isEnabled) add(TextValueParameter.Enabled(false))
