@@ -38,7 +38,7 @@ import com.orange.ods.app.ui.utilities.composable.CodeImplementationColumn
 import com.orange.ods.app.ui.utilities.composable.CodeParameter
 import com.orange.ods.app.ui.utilities.composable.ComponentCode
 import com.orange.ods.app.ui.utilities.composable.ListParameter
-import com.orange.ods.app.ui.utilities.composable.ListParameterValue
+import com.orange.ods.app.ui.utilities.composable.ObjectInstance
 import com.orange.ods.app.ui.utilities.composable.TextValueParameter
 import com.orange.ods.compose.component.OdsComponent
 import com.orange.ods.compose.component.list.OdsListItem
@@ -116,10 +116,10 @@ fun MenuExposedDropdown() {
                     enabled = isEnabled
                 )
 
-                val itemsValues = mutableListOf<ListParameterValue>()
+                val itemsValues = mutableListOf<ObjectInstance>()
                 items.forEach { item ->
                     itemsValues.add(
-                        ListParameterValue(
+                        ObjectInstance(
                             "OdsExposedDropdownMenuItem",
                             mutableListOf<CodeParameter>(TextValueParameter.BetweenQuotesParameter("label", item.label)).apply {
                                 if (hasIcons) add(TextValueParameter.Icon)

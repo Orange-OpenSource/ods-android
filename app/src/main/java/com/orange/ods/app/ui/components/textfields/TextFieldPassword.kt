@@ -13,13 +13,18 @@ package com.orange.ods.app.ui.components.textfields
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.text.input.KeyboardCapitalization
 import com.orange.ods.app.R
 import com.orange.ods.app.ui.utilities.composable.CodeImplementationColumn
+import com.orange.ods.app.ui.utilities.composable.CodeParameter
 import com.orange.ods.app.ui.utilities.composable.ComponentCode
+import com.orange.ods.app.ui.utilities.composable.ObjectInstance
+import com.orange.ods.app.ui.utilities.composable.ObjectParameter
 import com.orange.ods.app.ui.utilities.composable.TextValueParameter
 import com.orange.ods.compose.component.OdsComponent
 import com.orange.ods.compose.component.textfield.password.OdsPasswordTextField
@@ -52,28 +57,14 @@ fun TextFieldPassword(customizationState: TextFieldCustomizationState) {
                 } else null
             )
 
-            CodeImplementationColumn {
-                ComponentCode(name = OdsComponent.OdsPasswordTextField.name, parameters = mutableListOf(
-                    TextValueParameter.BetweenQuotesParameter("value", displayedText),
-                    TextValueParameter.LambdaParameter("onValueChange"),
-                    TextValueParameter.Label(label),
-                    TextValueParameter.Placeholder(placeholder),
-                    TextValueParameter.ValueOnlyParameter("keyboardOptions", "<KeyboardOptions>") // TODO
-                ).apply {
-                    if (!hasVisualisationIcon) add(TextValueParameter.StringRepresentationParameter("visualisationIcon", false))
-                    if (!isEnabled) add(TextValueParameter.Enabled(false))
-                    if (isError) {
-                        add(TextValueParameter.StringRepresentationParameter("isError", true))
-                        add(TextValueParameter.BetweenQuotesParameter("errorMessage", errorMessage))
-                    }
-                    if (hasCharacterCounter) add(
-                        TextValueParameter.ValueOnlyParameter(
-                            "characterCounter",
-                            "<OdsTextFieldCharacterCounter>"
-                        )
-                    ) // TODO
-                })
-            }
+            TextFieldCodeImplementationColumn(
+                componentName = OdsComponent.OdsPasswordTextField.name,
+                customizationState = customizationState,
+                label = label,
+                placeholder = placeholder,
+                errorMessage = errorMessage,
+                hasTrailing = false
+            )
         }
     }
 }

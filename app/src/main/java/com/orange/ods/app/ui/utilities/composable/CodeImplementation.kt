@@ -57,9 +57,10 @@ sealed class TextValueParameter(name: String, val value: String) : CodeParameter
 }
 
 class ComposableParameter(name: String, val value: @Composable () -> Unit) : CodeParameter(name)
+class ObjectParameter(name: String, val objectInstance: ObjectInstance) : CodeParameter(name)
+class ListParameter(name: String, val value: List<ObjectInstance>) : CodeParameter(name)
 
-class ListParameter(name: String, val value: List<ListParameterValue>) : CodeParameter(name)
-data class ListParameterValue(val className: String, val parameters: List<CodeParameter>)
+data class ObjectInstance(val className: String, val parameters: List<CodeParameter>)
 
 
 @Composable
@@ -102,30 +103,7 @@ fun ComponentCode(
         ComponentWithContentOnlyCode(name) { content() }
     } else {
         TechnicalText(text = "$name(")
-        IndentCodeColumn {
-            parameters.forEach { parameter ->
-                when (parameter) {
-                    is TextValueParameter -> TechnicalText(text = "${parameter.name} = ${parameter.value},")
-                    is ComposableParameter -> {
-                        TechnicalText(text = "${parameter.name} = {")
-                        Column(modifier = Modifier.padding(start = dimensionResource(id = R.dimen.spacing_s))) {
-                            parameter.value.invoke()
-                        }
-                        TechnicalText(text = "},")
-                    }
-                    is ListParameter -> {
-                        TechnicalText(text = "${parameter.name} = listOf(")
-                        Column(modifier = Modifier.padding(start = dimensionResource(id = R.dimen.spacing_s))) {
-                            parameter.value.forEach { item ->
-                                ComponentCode(name = item.className, parameters = item.parameters)
-                            }
-                        }
-                        TechnicalText(text = "),")
-                    }
-                }
-            }
-            TechnicalText(text = "//...")
-        }
+        ComponentParametersCode(parameters = parameters)
 
         if (content != null) {
             TechnicalText(text = ") {")
@@ -137,6 +115,39 @@ fun ComponentCode(
         } else {
             TechnicalText(text = ")")
         }
+    }
+}
+
+@Composable
+private fun ComponentParametersCode(parameters: List<CodeParameter>) {
+    IndentCodeColumn {
+        parameters.forEach { parameter ->
+            when (parameter) {
+                is TextValueParameter -> TechnicalText(text = "${parameter.name} = ${parameter.value},")
+                is ComposableParameter -> {
+                    TechnicalText(text = "${parameter.name} = {")
+                    IndentCodeColumn {
+                        parameter.value.invoke()
+                    }
+                    TechnicalText(text = "},")
+                }
+                is ListParameter -> {
+                    TechnicalText(text = "${parameter.name} = listOf(")
+                    IndentCodeColumn {
+                        parameter.value.forEach { item ->
+                            ComponentCode(name = item.className, parameters = item.parameters)
+                        }
+                    }
+                    TechnicalText(text = "),")
+                }
+                is ObjectParameter -> {
+                    TechnicalText(text = "${parameter.name} = ${parameter.objectInstance.className}(")
+                    ComponentParametersCode(parameters = parameter.objectInstance.parameters)
+                    TechnicalText(text = "),")
+                }
+            }
+        }
+        TechnicalText(text = "//...")
     }
 }
 
