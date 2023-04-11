@@ -35,7 +35,10 @@ import com.orange.ods.app.domain.recipes.LocalRecipes
 import com.orange.ods.app.ui.components.utilities.ComponentCustomizationBottomSheetScaffold
 import com.orange.ods.app.ui.components.utilities.clickOnElement
 import com.orange.ods.app.ui.utilities.composable.CodeImplementation
-import com.orange.ods.app.ui.utilities.composable.ComponentParameter
+import com.orange.ods.app.ui.utilities.composable.CodeParameter
+import com.orange.ods.app.ui.utilities.composable.ListParameter
+import com.orange.ods.app.ui.utilities.composable.ListParameterValue
+import com.orange.ods.app.ui.utilities.composable.TextValueParameter
 import com.orange.ods.compose.component.OdsComponent
 import com.orange.ods.compose.component.list.OdsListItem
 import com.orange.ods.compose.component.list.OdsSwitchTrailing
@@ -114,13 +117,11 @@ fun MenuExposedDropdown() {
 
                 // TODO manage icon display in code
                 CodeImplementation(OdsComponent.OdsExposedDropdownMenu.name).CodeImplementationColumn(
-                    componentParameters = mutableListOf<ComponentParameter>(
-                        ComponentParameter.TextValueParameter("label", label),
-                        ComponentParameter.SimpleValueParameter("items", "<OdsExposedDropdownMenuItem list>"), // TODO
-                        ComponentParameter.SimpleValueParameter("selectedItem", "<OdsExposedDropdownMenuItem mutable state>"), // TODO
-                        ComponentParameter.LambdaValueParameter("onItemSelectionChange")
+                    codeParameters = mutableListOf(
+                        TextValueParameter.BetweenQuotesParameter("label", label),
+                        TextValueParameter.LambdaParameter("onItemSelectionChange")
                     ).apply {
-                        if (!isEnabled) add(ComponentParameter.Enabled(false))
+                        if (!isEnabled) add(TextValueParameter.Enabled(false))
                     }
                 )
             }

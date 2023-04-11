@@ -28,7 +28,7 @@ import com.orange.ods.app.R
 import com.orange.ods.app.domain.recipes.LocalRecipes
 import com.orange.ods.app.ui.components.utilities.clickOnElement
 import com.orange.ods.app.ui.utilities.composable.CodeImplementation
-import com.orange.ods.app.ui.utilities.composable.ComponentParameter
+import com.orange.ods.app.ui.utilities.composable.TextValueParameter
 import com.orange.ods.compose.component.OdsComponent
 import com.orange.ods.compose.component.card.OdsHorizontalCard
 
@@ -72,23 +72,23 @@ fun CardHorizontal(customizationState: CardCustomizationState) {
             Spacer(modifier = Modifier.padding(top = dimensionResource(R.dimen.spacing_s)))
 
             CodeImplementation(OdsComponent.OdsHorizontalCard.name).CodeImplementationColumn(
-                componentParameters = mutableListOf(
-                    ComponentParameter.SimpleValueParameter("imagePosition", imagePosition.value.name), // TODO verifier affichage
-                    ComponentParameter.Title(recipe.title),
-                    ComponentParameter.Image
+                codeParameters = mutableListOf(
+                    TextValueParameter.ValueOnlyParameter("imagePosition", imagePosition.value.name),
+                    TextValueParameter.Title(recipe.title),
+                    TextValueParameter.Image
                 ).apply {
-                    if (hasSubtitle) add(ComponentParameter.Subtitle(recipe.subtitle))
-                    if (hasText) add(ComponentParameter.SimpleValueParameter("text", "<card text>"))
-                    if (isClickable) add(ComponentParameter.OnCardClick)
+                    if (hasSubtitle) add(TextValueParameter.Subtitle(recipe.subtitle))
+                    if (hasText) add(TextValueParameter.ValueOnlyParameter("text", "<card text>"))
+                    if (isClickable) add(TextValueParameter.OnCardClick)
                     if (hasButton1) {
-                        add(ComponentParameter.Button1Text(button1Text))
-                        add(ComponentParameter.OnButton1Click)
+                        add(TextValueParameter.Button1Text(button1Text))
+                        add(TextValueParameter.OnButton1Click)
                     }
                     if (hasButton2) {
-                        add(ComponentParameter.Button2Text(button2Text))
-                        add(ComponentParameter.OnButton2Click)
+                        add(TextValueParameter.Button2Text(button2Text))
+                        add(TextValueParameter.OnButton2Click)
                     }
-                    if (!hasDivider) add(ComponentParameter.TypedValueParameter("dividerEnabled", hasDivider))
+                    if (!hasDivider) add(TextValueParameter.StringRepresentationParameter("dividerEnabled", hasDivider))
                 }
             )
         }

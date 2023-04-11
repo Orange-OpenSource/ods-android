@@ -23,7 +23,7 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import com.orange.ods.app.R
 import com.orange.ods.app.ui.utilities.composable.CodeImplementation
-import com.orange.ods.app.ui.utilities.composable.ComponentParameter
+import com.orange.ods.app.ui.utilities.composable.TextValueParameter
 import com.orange.ods.app.ui.utilities.composable.Title
 import com.orange.ods.compose.component.OdsComponent
 import com.orange.ods.compose.component.button.OdsButton
@@ -65,12 +65,12 @@ fun ButtonsContained(customizationState: ButtonCustomizationState) {
 
             CodeImplementation(OdsComponent.OdsButton.name).CodeImplementationColumn(
                 modifier = Modifier.padding(horizontal = dimensionResource(id = R.dimen.screen_horizontal_margin)),
-                componentParameters = mutableListOf<ComponentParameter>(
-                    ComponentParameter.SimpleValueParameter("style", buttonStyle.value.fullName)
+                codeParameters = mutableListOf<TextValueParameter>(
+                    TextValueParameter.ValueOnlyParameter("style", buttonStyle.value.fullName)
                 ).apply {
-                    if (hasFullScreenWidth) add(ComponentParameter.FillMaxWidth)
-                    if (hasLeadingIcon) add(ComponentParameter.Icon)
-                    if (!isEnabled) add(ComponentParameter.Enabled(false))
+                    if (hasFullScreenWidth) add(TextValueParameter.FillMaxWidth)
+                    if (hasLeadingIcon) add(TextValueParameter.Icon)
+                    if (!isEnabled) add(TextValueParameter.Enabled(false))
                 }
             )
         }

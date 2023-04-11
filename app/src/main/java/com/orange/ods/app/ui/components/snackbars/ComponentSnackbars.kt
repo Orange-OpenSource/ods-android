@@ -29,7 +29,7 @@ import com.orange.ods.app.ui.components.utilities.ComponentCustomizationBottomSh
 import com.orange.ods.app.ui.components.utilities.ComponentLaunchContentColumn
 import com.orange.ods.app.ui.components.utilities.clickOnElement
 import com.orange.ods.app.ui.utilities.composable.CodeImplementation
-import com.orange.ods.app.ui.utilities.composable.ComponentParameter
+import com.orange.ods.app.ui.utilities.composable.TextValueParameter
 import com.orange.ods.compose.component.OdsComponent
 import com.orange.ods.compose.component.list.OdsListItem
 import com.orange.ods.compose.component.list.OdsSwitchTrailing
@@ -89,14 +89,14 @@ fun ComponentSnackbars() {
             // TODO afficher code lancement
             CodeImplementation("OdsSnackbarHost").CodeImplementationColumn(
                 modifier = Modifier.padding(horizontal = dimensionResource(id = R.dimen.screen_horizontal_margin)),
-                componentParameters = listOf(ComponentParameter.SimpleValueParameter("hostState", "<SnackbarHostState>"))
+                codeParameters = listOf(TextValueParameter.ValueOnlyParameter("hostState", "<SnackbarHostState>"))
             ) {
                 CodeImplementation(OdsComponent.OdsSnackbar.name).ComponentCode(
-                    parameters = mutableListOf<ComponentParameter>(
-                        ComponentParameter.SimpleValueParameter("snackbarData", "data") // TODO supprimer les "
+                    parameters = mutableListOf<TextValueParameter>(
+                        TextValueParameter.ValueOnlyParameter("snackbarData", "data") // TODO supprimer les "
                     ).apply {
-                        if (actionOnNewLineChecked.value) add(ComponentParameter.TypedValueParameter("actionOnNewLine", true))
-                        add(ComponentParameter.LambdaValueParameter("onActionClick"))
+                        if (actionOnNewLineChecked.value) add(TextValueParameter.StringRepresentationParameter("actionOnNewLine", true))
+                        add(TextValueParameter.LambdaParameter("onActionClick"))
                     }
                 )
             }

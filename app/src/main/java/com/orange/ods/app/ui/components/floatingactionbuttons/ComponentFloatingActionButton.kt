@@ -29,8 +29,8 @@ import com.orange.ods.app.R
 import com.orange.ods.app.ui.components.utilities.ComponentCustomizationBottomSheetScaffold
 import com.orange.ods.app.ui.components.utilities.clickOnElement
 import com.orange.ods.app.ui.utilities.composable.CodeImplementation
-import com.orange.ods.app.ui.utilities.composable.ComponentParameter
 import com.orange.ods.app.ui.utilities.composable.Subtitle
+import com.orange.ods.app.ui.utilities.composable.TextValueParameter
 import com.orange.ods.compose.component.OdsComponent
 import com.orange.ods.compose.component.button.OdsExtendedFloatingActionButton
 import com.orange.ods.compose.component.button.OdsFloatingActionButton
@@ -110,12 +110,12 @@ fun ComponentFloatingActionButton() {
                 val usedComponentName = if (hasText) OdsComponent.OdsExtendedFloatingActionButton.name else OdsComponent.OdsFloatingActionButton.name
                 CodeImplementation(usedComponentName).CodeImplementationColumn(
                     modifier = Modifier.padding(horizontal = dimensionResource(id = R.dimen.screen_horizontal_margin)),
-                    componentParameters = mutableListOf<ComponentParameter>(
-                        ComponentParameter.Icon
+                    codeParameters = mutableListOf<TextValueParameter>(
+                        TextValueParameter.Icon
                     ).apply {
-                        if (this@with.size.value == FabCustomizationState.Size.Mini) add(ComponentParameter.TypedValueParameter("mini", true))
-                        if (hasText) add(ComponentParameter.TextValueParameter("text", "Add"))
-                        if (isFullScreenWidth) add(ComponentParameter.FillMaxWidth)
+                        if (this@with.size.value == FabCustomizationState.Size.Mini) add(TextValueParameter.StringRepresentationParameter("mini", true))
+                        if (hasText) add(TextValueParameter.BetweenQuotesParameter("text", "Add"))
+                        if (isFullScreenWidth) add(TextValueParameter.FillMaxWidth)
                     }
                 )
             }

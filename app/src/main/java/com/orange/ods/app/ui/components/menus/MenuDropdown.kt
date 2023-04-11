@@ -39,7 +39,7 @@ import com.orange.ods.app.domain.recipes.LocalRecipes
 import com.orange.ods.app.ui.components.utilities.ComponentCustomizationBottomSheetScaffold
 import com.orange.ods.app.ui.components.utilities.clickOnElement
 import com.orange.ods.app.ui.utilities.composable.CodeImplementation
-import com.orange.ods.app.ui.utilities.composable.ComponentParameter
+import com.orange.ods.app.ui.utilities.composable.TextValueParameter
 import com.orange.ods.compose.component.OdsComponent
 import com.orange.ods.compose.component.divider.OdsDivider
 import com.orange.ods.compose.component.list.OdsIconTrailing
@@ -110,18 +110,18 @@ fun MenuDropdown() {
 
                 CodeImplementation(OdsComponent.OdsDropdownMenu.name).CodeImplementationColumn(
                     modifier = Modifier.padding(horizontal = dimensionResource(id = R.dimen.screen_horizontal_margin)),
-                    componentParameters = mutableListOf(
-                        ComponentParameter.TypedValueParameter("expanded", menuExpanded),
-                        ComponentParameter.LambdaValueParameter("onDismissRequest"),
+                    codeParameters = mutableListOf(
+                        TextValueParameter.StringRepresentationParameter("expanded", menuExpanded),
+                        TextValueParameter.LambdaParameter("onDismissRequest"),
                     )
                 ) {
                     recipes.take(2).forEachIndexed { index, recipe ->
                         CodeImplementation("OdsDropdownMenuItem").ComponentCode(
                             parameters = mutableListOf(
-                                ComponentParameter.TextValueParameter("text", recipe.title),
-                                ComponentParameter.OnClick
+                                TextValueParameter.BetweenQuotesParameter("text", recipe.title),
+                                TextValueParameter.OnClick
                             ).apply {
-                                if (hasIcons && recipe.iconResId != null) add(ComponentParameter.Icon)
+                                if (hasIcons && recipe.iconResId != null) add(TextValueParameter.Icon)
                             }
                         )
                         if (hasDividerExample && index == 0) {

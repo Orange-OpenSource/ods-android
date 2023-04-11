@@ -30,7 +30,7 @@ import com.orange.ods.app.ui.components.utilities.ComponentCountRow
 import com.orange.ods.app.ui.components.utilities.ComponentCustomizationBottomSheetScaffold
 import com.orange.ods.app.ui.components.utilities.clickOnElement
 import com.orange.ods.app.ui.utilities.composable.CodeImplementation
-import com.orange.ods.app.ui.utilities.composable.ComponentParameter
+import com.orange.ods.app.ui.utilities.composable.TextValueParameter
 import com.orange.ods.compose.component.OdsComponent
 import com.orange.ods.compose.component.banner.OdsBanner
 import com.orange.ods.compose.component.list.OdsListItem
@@ -94,13 +94,13 @@ fun ComponentBanners() {
 
                 CodeImplementation(OdsComponent.OdsBanner.name).CodeImplementationColumn(
                     modifier = Modifier.padding(horizontal = dimensionResource(id = R.dimen.screen_horizontal_margin)),
-                    componentParameters = mutableListOf<ComponentParameter>(
-                        ComponentParameter.TextValueParameter("message", if (hasTwoTextLines) recipe.description else recipe.title),
-                        ComponentParameter.Button1Text(stringResource(id = R.string.component_banner_dismiss)),
+                    codeParameters = mutableListOf<TextValueParameter>(
+                        TextValueParameter.BetweenQuotesParameter("message", if (hasTwoTextLines) recipe.description else recipe.title),
+                        TextValueParameter.Button1Text(stringResource(id = R.string.component_banner_dismiss)),
                     ).apply {
-                        if (hasImage) add(ComponentParameter.Image)
+                        if (hasImage) add(TextValueParameter.Image)
                         if (hasButton2) add(
-                            ComponentParameter.Button2Text(stringResource(id = R.string.component_banner_detail))
+                            TextValueParameter.Button2Text(stringResource(id = R.string.component_banner_detail))
                         )
                     }
                 )

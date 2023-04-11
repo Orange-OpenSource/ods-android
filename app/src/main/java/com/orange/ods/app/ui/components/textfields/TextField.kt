@@ -23,7 +23,7 @@ import com.orange.ods.app.R
 import com.orange.ods.app.ui.components.textfields.TextFieldCustomizationState.Companion.TextFieldMaxChars
 import com.orange.ods.app.ui.components.utilities.clickOnElement
 import com.orange.ods.app.ui.utilities.composable.CodeImplementation
-import com.orange.ods.app.ui.utilities.composable.ComponentParameter
+import com.orange.ods.app.ui.utilities.composable.TextValueParameter
 import com.orange.ods.compose.component.OdsComponent
 import com.orange.ods.compose.component.textfield.OdsIconTrailing
 import com.orange.ods.compose.component.textfield.OdsTextField
@@ -94,22 +94,22 @@ fun TextField(customizationState: TextFieldCustomizationState) {
         }
 
         CodeImplementation(OdsComponent.OdsTextField.name).CodeImplementationColumn(
-            componentParameters = mutableListOf(
-                ComponentParameter.TextValueParameter("value", value),
-                ComponentParameter.LambdaValueParameter("onValueChange"),
-                ComponentParameter.Label(label),
-                ComponentParameter.Placeholder(placeholder),
-                ComponentParameter.SimpleValueParameter("keyboardOptions", "<KeyboardOptions>") // TODO
+            codeParameters = mutableListOf(
+                TextValueParameter.BetweenQuotesParameter("value", value),
+                TextValueParameter.LambdaParameter("onValueChange"),
+                TextValueParameter.Label(label),
+                TextValueParameter.Placeholder(placeholder),
+                TextValueParameter.ValueOnlyParameter("keyboardOptions", "<KeyboardOptions>") // TODO
             ).apply {
-                if (leadingIcon != null) add(ComponentParameter.Icon)
-                if (!enabled) add(ComponentParameter.Enabled(false))
+                if (leadingIcon != null) add(TextValueParameter.Icon)
+                if (!enabled) add(TextValueParameter.Enabled(false))
                 if (isError) {
-                    add(ComponentParameter.TypedValueParameter("isError", true))
-                    errorMessage?.let { add(ComponentParameter.TextValueParameter("errorMessage", it)) }
+                    add(TextValueParameter.StringRepresentationParameter("isError", true))
+                    errorMessage?.let { add(TextValueParameter.BetweenQuotesParameter("errorMessage", it)) }
                 }
-                if (singleLine) add(ComponentParameter.TypedValueParameter("singleLine", true))
-                if (hasTrailing) add(ComponentParameter.SimpleValueParameter("trailing", "<trailing composable>"))
-                if (characterCounter != null) add(ComponentParameter.SimpleValueParameter("characterCounter", "<OdsTextFieldCharacterCounter>")) // TODO
+                if (singleLine) add(TextValueParameter.StringRepresentationParameter("singleLine", true))
+                if (hasTrailing) add(TextValueParameter.ValueOnlyParameter("trailing", "<trailing composable>"))
+                if (characterCounter != null) add(TextValueParameter.ValueOnlyParameter("characterCounter", "<OdsTextFieldCharacterCounter>")) // TODO
             }
         )
     }

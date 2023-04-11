@@ -33,7 +33,7 @@ class CodeImplementation(private val componentName: String) {
     @Composable
     fun CodeImplementationColumn(
         modifier: Modifier = Modifier,
-        componentParameters: List<ComponentParameter> = emptyList(),
+        codeParameters: List<CodeParameter> = emptyList(),
         componentContent: @Composable (() -> Unit)? = null
     ) {
         Column(
@@ -49,14 +49,14 @@ class CodeImplementation(private val componentName: String) {
                     .padding(horizontal = dimensionResource(id = R.dimen.spacing_s), vertical = dimensionResource(id = R.dimen.spacing_s))
                     .semantics(mergeDescendants = true) {},
             ) {
-                ComponentCode(parameters = componentParameters, content = componentContent)
+                ComponentCode(parameters = codeParameters, content = componentContent)
             }
         }
     }
 
     @Composable
     fun ComponentCode(
-        parameters: List<ComponentParameter> = emptyList(),
+        parameters: List<CodeParameter> = emptyList(),
         content: @Composable (() -> Unit)? = null
     ) {
         if (parameters.isEmpty() && content != null) {
@@ -65,17 +65,16 @@ class CodeImplementation(private val componentName: String) {
             TechnicalText(text = "$componentName(")
             Column(modifier = Modifier.padding(start = dimensionResource(id = R.dimen.spacing_s))) {
                 parameters.forEach { parameter ->
-                    when {
-                        parameter.value != null -> TechnicalText(text = "${parameter.name} = ${parameter.value},")
-                        parameter.composableValue != null -> {
+                    when (parameter) {
+                        is TextValueParameter -> TechnicalText(text = "${parameter.name} = ${parameter.value},")
+                        is ComposableParameter -> {
                             TechnicalText(text = "${parameter.name} = {")
                             Column(modifier = Modifier.padding(start = dimensionResource(id = R.dimen.spacing_s))) {
-                                parameter.composableValue.invoke()
+                                parameter.value.invoke()
                             }
                             TechnicalText(text = "},")
                         }
                     }
-
                 }
                 TechnicalText(text = "//...")
             }
@@ -104,37 +103,39 @@ class CodeImplementation(private val componentName: String) {
     }
 }
 
-sealed class ComponentParameter(val name: String, val value: String? = null, val composableValue: (@Composable () -> Unit)? = null) {
-    open class SimpleValueParameter(name: String, displayValue: String) : ComponentParameter(name, displayValue)
-    object Icon : SimpleValueParameter("icon", CodeImplementation.IconPainterValue)
-    object Image : SimpleValueParameter("image", CodeImplementation.ImagePainterValue)
-    object FillMaxWidth : SimpleValueParameter("modifier", "Modifier.fillMaxWidth()")
+open class CodeParameter(val name: String)
 
-    open class TypedValueParameter<T>(name: String, typedValue: T) : ComponentParameter(name, typedValue.toString())
-    class Enabled(val enabled: Boolean) : TypedValueParameter<Boolean>("enabled", enabled)
-    class Checked(val checked: Boolean) : TypedValueParameter<Boolean>("checked", checked)
-    class Selected(val selected: Boolean) : TypedValueParameter<Boolean>("selected", selected)
+sealed class TextValueParameter(name: String, val value: String) : CodeParameter(name) {
+    open class ValueOnlyParameter(name: String, displayValue: String) : TextValueParameter(name, displayValue)
+    object Icon : ValueOnlyParameter("icon", CodeImplementation.IconPainterValue)
+    object Image : ValueOnlyParameter("image", CodeImplementation.ImagePainterValue)
+    object FillMaxWidth : ValueOnlyParameter("modifier", "Modifier.fillMaxWidth()")
 
+    open class StringRepresentationParameter<T>(name: String, typedValue: T) : TextValueParameter(name, typedValue.toString())
+    class Enabled(val enabled: Boolean) : StringRepresentationParameter<Boolean>("enabled", enabled)
+    class Checked(val checked: Boolean) : StringRepresentationParameter<Boolean>("checked", checked)
+    class Selected(val selected: Boolean) : StringRepresentationParameter<Boolean>("selected", selected)
 
-    open class TextValueParameter(name: String, textValue: String) : ComponentParameter(name, "\"$textValue\"")
-    class Title(val text: String) : TextValueParameter("title", text)
-    class Subtitle(val text: String) : TextValueParameter("subtitle", text)
-    class Label(val text: String) : TextValueParameter("label", text)
-    class Placeholder(val text: String) : TextValueParameter("placeholder", text)
-    class Button1Text(val text: String) : TextValueParameter("button1Text", text)
-    class Button2Text(val text: String) : TextValueParameter("button2Text", text)
-    class ContentDescription(val text: String) : TextValueParameter("contentDescription", text)
+    open class BetweenQuotesParameter(name: String, textValue: String) : TextValueParameter(name, "\"$textValue\"")
+    class Title(val text: String) : BetweenQuotesParameter("title", text)
+    class Subtitle(val text: String) : BetweenQuotesParameter("subtitle", text)
+    class Label(val text: String) : BetweenQuotesParameter("label", text)
+    class Placeholder(val text: String) : BetweenQuotesParameter("placeholder", text)
+    class Button1Text(val text: String) : BetweenQuotesParameter("button1Text", text)
+    class Button2Text(val text: String) : BetweenQuotesParameter("button2Text", text)
+    class ContentDescription(val text: String) : BetweenQuotesParameter("contentDescription", text)
 
-
-    open class LambdaValueParameter(name: String) : ComponentParameter(name, "{ }")
-    object OnClick : LambdaValueParameter("onClick")
-    object OnCheckedChange : LambdaValueParameter("onCheckedChange")
-    object OnCardClick : LambdaValueParameter("onCardClick")
-    object OnButton1Click : LambdaValueParameter("onButton1Click")
-    object OnButton2Click : LambdaValueParameter("onButton2Click")
-
-    class ComposableValueParameter(name: String, composableValue: @Composable () -> Unit) : ComponentParameter(name, composableValue = composableValue)
+    open class LambdaParameter(name: String) : TextValueParameter(name, "{ }")
+    object OnClick : LambdaParameter("onClick")
+    object OnCheckedChange : LambdaParameter("onCheckedChange")
+    object OnCardClick : LambdaParameter("onCardClick")
+    object OnButton1Click : LambdaParameter("onButton1Click")
+    object OnButton2Click : LambdaParameter("onButton2Click")
 }
+
+class ComposableParameter(name: String, val value: @Composable () -> Unit) : CodeParameter(name)
+
+
 
 @Composable
 fun CodeImplementationColumn(content: @Composable ColumnScope.() -> Unit) {

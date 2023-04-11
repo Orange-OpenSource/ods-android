@@ -36,7 +36,7 @@ import com.orange.ods.app.ui.components.utilities.ComponentCustomizationBottomSh
 import com.orange.ods.app.ui.components.utilities.clickOnElement
 import com.orange.ods.app.ui.utilities.NavigationItem
 import com.orange.ods.app.ui.utilities.composable.CodeImplementation
-import com.orange.ods.app.ui.utilities.composable.ComponentParameter
+import com.orange.ods.app.ui.utilities.composable.TextValueParameter
 import com.orange.ods.compose.component.OdsComponent
 import com.orange.ods.compose.component.bottomnavigation.OdsBottomNavigation
 import com.orange.ods.compose.component.bottomnavigation.OdsBottomNavigationItem
@@ -99,10 +99,10 @@ fun ComponentBottomNavigation() {
                 navigationItems.take(2).forEach { item ->
                     CodeImplementation("OdsBottomNavigationItem").ComponentCode(
                         parameters = listOf(
-                            ComponentParameter.Icon,
-                            ComponentParameter.TextValueParameter("label", stringResource(id = item.textResId)),
-                            ComponentParameter.Selected(selectedNavigationItem.value.textResId == item.textResId),
-                            ComponentParameter.OnClick,
+                            TextValueParameter.Icon,
+                            TextValueParameter.BetweenQuotesParameter("label", stringResource(id = item.textResId)),
+                            TextValueParameter.Selected(selectedNavigationItem.value.textResId == item.textResId),
+                            TextValueParameter.OnClick,
                         )
                     )
                 }
