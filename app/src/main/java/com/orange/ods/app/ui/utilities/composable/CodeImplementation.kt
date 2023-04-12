@@ -60,7 +60,7 @@ class ComposableParameter(name: String, val value: @Composable () -> Unit) : Cod
 class ObjectParameter(name: String, val objectInstance: ObjectInstance) : CodeParameter(name)
 class ListParameter(name: String, val value: List<ObjectInstance>) : CodeParameter(name)
 
-data class ObjectInstance(val className: String, val parameters: List<CodeParameter>)
+data class ObjectInstance(val className: String, val parameters: List<CodeParameter> = emptyList())
 
 
 @Composable
@@ -97,29 +97,32 @@ fun IndentCodeColumn(content: @Composable () -> Unit) {
 fun ComponentCode(
     name: String,
     parameters: List<CodeParameter> = emptyList(),
+    exhaustiveParameters: Boolean = false,
     content: @Composable (() -> Unit)? = null
 ) {
-    if (parameters.isEmpty() && content != null) {
-        ComponentWithContentOnlyCode(name) { content() }
-    } else {
-        TechnicalText(text = "$name(")
-        ComponentParametersCode(parameters = parameters)
+    when {
+        parameters.isEmpty() && content != null -> ComponentWithContentOnlyCode(name) { content() }
+        parameters.isEmpty() && content == null -> TechnicalText(text = "$name()")
+        else -> {
+            TechnicalText(text = "$name(")
+            ComponentParametersCode(parameters = parameters, exhaustiveParameters = exhaustiveParameters)
 
-        if (content != null) {
-            TechnicalText(text = ") {")
-            IndentCodeColumn {
-                content()
-                TechnicalText(text = "//...")
+            if (content != null) {
+                TechnicalText(text = ") {")
+                IndentCodeColumn {
+                    content()
+                    TechnicalText(text = "//...")
+                }
+                TechnicalText(text = "}")
+            } else {
+                TechnicalText(text = ")")
             }
-            TechnicalText(text = "}")
-        } else {
-            TechnicalText(text = ")")
         }
     }
 }
 
 @Composable
-private fun ComponentParametersCode(parameters: List<CodeParameter>) {
+private fun ComponentParametersCode(parameters: List<CodeParameter>, exhaustiveParameters: Boolean) {
     IndentCodeColumn {
         parameters.forEach { parameter ->
             when (parameter) {
@@ -135,19 +138,19 @@ private fun ComponentParametersCode(parameters: List<CodeParameter>) {
                     TechnicalText(text = "${parameter.name} = listOf(")
                     IndentCodeColumn {
                         parameter.value.forEach { item ->
-                            ComponentCode(name = item.className, parameters = item.parameters)
+                            ComponentCode(name = item.className, parameters = item.parameters, exhaustiveParameters = true)
                         }
                     }
                     TechnicalText(text = "),")
                 }
                 is ObjectParameter -> {
                     TechnicalText(text = "${parameter.name} = ${parameter.objectInstance.className}(")
-                    ComponentParametersCode(parameters = parameter.objectInstance.parameters)
+                    ComponentParametersCode(parameters = parameter.objectInstance.parameters, exhaustiveParameters = true)
                     TechnicalText(text = "),")
                 }
             }
         }
-        TechnicalText(text = "//...")
+        if (!exhaustiveParameters) TechnicalText(text = "//...")
     }
 }
 

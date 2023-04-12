@@ -33,7 +33,11 @@ import com.orange.ods.app.ui.components.utilities.ComponentCustomizationBottomSh
 import com.orange.ods.app.ui.components.utilities.ComponentLaunchContentColumn
 import com.orange.ods.app.ui.utilities.composable.CodeImplementationColumn
 import com.orange.ods.app.ui.utilities.composable.ComponentCode
+import com.orange.ods.app.ui.utilities.composable.ListParameter
+import com.orange.ods.app.ui.utilities.composable.ObjectInstance
+import com.orange.ods.app.ui.utilities.composable.ObjectParameter
 import com.orange.ods.app.ui.utilities.composable.Subtitle
+import com.orange.ods.app.ui.utilities.composable.TextValueParameter
 import com.orange.ods.compose.component.OdsComponent
 import com.orange.ods.compose.component.chip.OdsChoiceChip
 import com.orange.ods.compose.component.chip.OdsChoiceChipsFlowRow
@@ -57,50 +61,53 @@ fun ComponentModalDrawers() {
     val recipes = LocalRecipes.current
     val categories = LocalCategories.current
 
-    val modalDrawerItems: MutableList<OdsModalDrawerItem> = categories.subList(1, categories.size).map {
-        OdsModalDrawerListItem(if (customizationState.isListIconChecked) it.iconResId else null, it.name)
-    }.toMutableList()
+    with(customizationState) {
+        val modalDrawerItems: MutableList<OdsModalDrawerItem> = categories.subList(1, categories.size).map {
+            OdsModalDrawerListItem(if (isListIconChecked) it.iconResId else null, it.name)
+        }.toMutableList()
 
-    val sectionListCategory = categories.first()
-    val sectionListRecipes = recipes.filter { it.category.id == sectionListCategory.id }
+        val sectionListCategory = categories.first()
+        val sectionListRecipes = recipes.filter { it.category.id == sectionListCategory.id }
 
-    if (customizationState.hasLabel || customizationState.hasDivider) {
-        if (customizationState.hasDivider) modalDrawerItems.add(OdsModalDrawerDivider)
-        if (customizationState.hasLabel) modalDrawerItems.add(OdsModalDrawerSectionLabel(sectionListCategory.name))
-        sectionListRecipes.forEach { recipe ->
-            val item = OdsModalDrawerListItem(if (customizationState.isListIconChecked) recipe.iconResId else null, recipe.title)
-            modalDrawerItems.add(item)
+        if (hasLabel || hasDivider) {
+            if (hasDivider) modalDrawerItems.add(OdsModalDrawerDivider)
+            if (hasLabel) modalDrawerItems.add(OdsModalDrawerSectionLabel(sectionListCategory.name))
+            sectionListRecipes.forEach { recipe ->
+                val item = OdsModalDrawerListItem(if (isListIconChecked) recipe.iconResId else null, recipe.title)
+                modalDrawerItems.add(item)
+            }
         }
-    }
 
-    val selectedItemState = remember { mutableStateOf(modalDrawerItems.firstOrNull { it is OdsModalDrawerListItem }) }
-    OdsModalDrawer(
-        drawerHeader = OdsModalDrawerHeader(
-            title = stringResource(id = R.string.component_modal_drawer_side),
-            image = if (customizationState.hasBackground) {
-                rememberAsyncImagePainter(
-                    model = rememberSaveable { recipes.random() }.imageUrl,
-                    placeholder = painterResource(id = R.drawable.placeholder),
-                    error = painterResource(id = R.drawable.placeholder)
-                )
-            } else if (customizationState.hasAvatar) {
-                rememberAsyncImagePainter(
-                    model = rememberSaveable { recipes.random() }.imageUrl,
-                    placeholder = painterResource(id = R.drawable.placeholder),
-                    error = painterResource(id = R.drawable.placeholder)
-                )
-            } else null,
-            subtitle = if (customizationState.isSubTitleChecked) stringResource(id = R.string.component_element_example) else null,
-            imageDisplayType = if (customizationState.hasAvatar) OdsModalDrawerHeaderImageDisplayType.Avatar else if (customizationState.hasBackground) OdsModalDrawerHeaderImageDisplayType.Background else OdsModalDrawerHeaderImageDisplayType.None
-        ),
-        drawerContentList = if (customizationState.isContentExampleChecked) modalDrawerItems else emptyList(),
-        drawerState = drawerState,
-        selectedItem = selectedItemState.value,
-        onItemClick = { item ->
-            selectedItemState.value = item
-        },
-        content = {
-            with(customizationState) {
+        val title = stringResource(id = R.string.component_modal_drawer_side)
+        val subtitle = if (isSubTitleChecked) stringResource(id = R.string.component_element_example) else null
+        val imageDisplayType = when {
+            hasAvatar -> OdsModalDrawerHeaderImageDisplayType.Avatar
+            hasBackground -> OdsModalDrawerHeaderImageDisplayType.Background
+            else -> OdsModalDrawerHeaderImageDisplayType.None
+        }
+        val selectedItemState = remember { mutableStateOf(modalDrawerItems.firstOrNull { it is OdsModalDrawerListItem }) }
+        OdsModalDrawer(
+            drawerHeader = OdsModalDrawerHeader(
+                title = title,
+                image = if (hasBackground) {
+                    rememberAsyncImagePainter(
+                        model = rememberSaveable { recipes.random() }.imageUrl,
+                        placeholder = painterResource(id = R.drawable.placeholder),
+                        error = painterResource(id = R.drawable.placeholder)
+                    )
+                } else if (hasAvatar) {
+                    painterResource(id = R.drawable.placeholder)
+                } else null,
+                subtitle = subtitle,
+                imageDisplayType = imageDisplayType
+            ),
+            drawerContentList = if (isContentExampleChecked) modalDrawerItems else emptyList(),
+            drawerState = drawerState,
+            selectedItem = selectedItemState.value,
+            onItemClick = { item ->
+                selectedItemState.value = item
+            },
+            content = {
                 if (!isContentExampleChecked) {
                     listIconChecked.value = false
                     subtitleChecked.value = false
@@ -170,13 +177,49 @@ fun ComponentModalDrawers() {
                             onButtonClick = { scope.launch { drawerState.open() } }
                         )
 
-                        // TODO
                         CodeImplementationColumn(modifier = Modifier.padding(horizontal = dimensionResource(id = R.dimen.screen_horizontal_margin))) {
-                            ComponentCode(name = OdsComponent.OdsModalDrawer.name)
+                            ComponentCode(
+                                name = OdsComponent.OdsModalDrawer.name,
+                                parameters = listOf(
+                                    ObjectParameter(
+                                        "drawerHeader", ObjectInstance(OdsModalDrawerHeader::class.java.simpleName, mutableListOf(
+                                            TextValueParameter.Title(title),
+                                            TextValueParameter.Image,
+                                            TextValueParameter.ValueOnlyParameter("imageDisplayType", imageDisplayType.toString())
+                                        ).apply {
+                                            subtitle?.let { add(TextValueParameter.Subtitle(it)) }
+                                        })
+                                    ),
+                                    ListParameter("drawerContentList", mutableListOf<ObjectInstance>().apply {
+                                        if (isContentExampleChecked) {
+                                            if (hasLabel) {
+                                                add(
+                                                    ObjectInstance(
+                                                        OdsModalDrawerSectionLabel::class.java.simpleName,
+                                                        listOf(TextValueParameter.Label("Section"))
+                                                    )
+                                                )
+                                            }
+                                            add(
+                                                ObjectInstance(
+                                                    OdsModalDrawerListItem::class.java.simpleName, listOf(
+                                                        TextValueParameter.Icon,
+                                                        TextValueParameter.ValueOnlyParameter("text", "<item label>")
+                                                    )
+                                                )
+                                            )
+                                            if (hasDivider) add(ObjectInstance(OdsModalDrawerDivider::class.java.simpleName))
+                                        }
+                                    }),
+                                    TextValueParameter.ValueOnlyParameter("selectedItem", "<OdsModalDrawerItem>"),
+                                    TextValueParameter.LambdaParameter("onItemClick"),
+                                    TextValueParameter.LambdaParameter("content")
+                                )
+                            )
                         }
                     }
                 }
             }
-        }
-    )
+        )
+    }
 }
