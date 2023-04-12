@@ -123,7 +123,7 @@ fun ComponentTopAppBar() {
                                                 ComposableCode(
                                                     name = "OdsDropdownMenuItem",
                                                     parameters = listOf(
-                                                        BetweenQuotesStringParameter("text", "Menu $i"),
+                                                        PredefinedParameter.Text("Menu $i"),
                                                         PredefinedParameter.OnClick
                                                     )
                                                 )

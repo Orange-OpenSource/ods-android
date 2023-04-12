@@ -24,6 +24,7 @@ import com.orange.ods.compose.theme.OdsTheme
 
 const val IconPainterValue = "<icon painter>"
 const val ImagePainterValue = "<image painter>"
+const val CardTextValue = "<card text>"
 
 abstract class CodeParameter(val name: String) {
     abstract val code: @Composable () -> Unit
@@ -81,12 +82,14 @@ sealed class PredefinedParameter {
     object Icon : StringParameter("icon", IconPainterValue)
     object Painter : StringParameter("painter", IconPainterValue)
     object Image : StringParameter("image", ImagePainterValue)
+    object CardText : StringParameter("cardText", CardTextValue)
     object FillMaxWidth : StringParameter("modifier", "Modifier.fillMaxWidth()")
 
     class Enabled(val enabled: Boolean) : StringRepresentationParameter<Boolean>("enabled", enabled)
     class Checked(val checked: Boolean) : StringRepresentationParameter<Boolean>("checked", checked)
     class Selected(val selected: Boolean) : StringRepresentationParameter<Boolean>("selected", selected)
 
+    class Text(val text: String) : BetweenQuotesStringParameter("text", text)
     class Title(val text: String) : BetweenQuotesStringParameter("title", text)
     class Subtitle(val text: String) : BetweenQuotesStringParameter("subtitle", text)
     class Label(val text: String) : BetweenQuotesStringParameter("label", text)

@@ -81,7 +81,7 @@ fun CardHorizontal(customizationState: CardCustomizationState) {
                     PredefinedParameter.Image
                 ).apply {
                     if (hasSubtitle) add(PredefinedParameter.Subtitle(recipe.subtitle))
-                    if (hasText) add(StringParameter("text", "<card text>"))
+                    if (hasText) add(PredefinedParameter.CardText)
                     if (isClickable) add(PredefinedParameter.OnCardClick)
                     if (hasButton1) {
                         add(PredefinedParameter.Button1Text(button1Text))
