@@ -32,12 +32,12 @@ import com.orange.ods.app.domain.recipes.LocalRecipes
 import com.orange.ods.app.ui.components.utilities.ComponentCustomizationBottomSheetScaffold
 import com.orange.ods.app.ui.components.utilities.ComponentLaunchContentColumn
 import com.orange.ods.app.ui.utilities.composable.CodeImplementationColumn
-import com.orange.ods.app.ui.utilities.composable.ComponentCode
+import com.orange.ods.app.ui.utilities.composable.ComposableCode
 import com.orange.ods.app.ui.utilities.composable.ListParameter
-import com.orange.ods.app.ui.utilities.composable.ObjectInstance
+import com.orange.ods.app.ui.utilities.composable.ObjectInstanceCode
 import com.orange.ods.app.ui.utilities.composable.ObjectParameter
+import com.orange.ods.app.ui.utilities.composable.SimpleParameter
 import com.orange.ods.app.ui.utilities.composable.Subtitle
-import com.orange.ods.app.ui.utilities.composable.TextValueParameter
 import com.orange.ods.compose.component.OdsComponent
 import com.orange.ods.compose.component.chip.OdsChoiceChip
 import com.orange.ods.compose.component.chip.OdsChoiceChipsFlowRow
@@ -178,42 +178,42 @@ fun ComponentModalDrawers() {
                         )
 
                         CodeImplementationColumn(modifier = Modifier.padding(horizontal = dimensionResource(id = R.dimen.screen_horizontal_margin))) {
-                            ComponentCode(
+                            ComposableCode(
                                 name = OdsComponent.OdsModalDrawer.name,
                                 parameters = listOf(
                                     ObjectParameter(
-                                        "drawerHeader", ObjectInstance(OdsModalDrawerHeader::class.java.simpleName, mutableListOf(
-                                            TextValueParameter.Title(title),
-                                            TextValueParameter.Image,
-                                            TextValueParameter.ValueOnlyParameter("imageDisplayType", imageDisplayType.toString())
+                                        "drawerHeader", ObjectInstanceCode(OdsModalDrawerHeader::class.java.simpleName, mutableListOf(
+                                            SimpleParameter.Title(title),
+                                            SimpleParameter.Image,
+                                            SimpleParameter.ValueOnlyParameter("imageDisplayType", imageDisplayType.toString())
                                         ).apply {
-                                            subtitle?.let { add(TextValueParameter.Subtitle(it)) }
+                                            subtitle?.let { add(SimpleParameter.Subtitle(it)) }
                                         })
                                     ),
-                                    ListParameter("drawerContentList", mutableListOf<ObjectInstance>().apply {
+                                    ListParameter("drawerContentList", mutableListOf<ObjectInstanceCode>().apply {
                                         if (isContentExampleChecked) {
                                             if (hasLabel) {
                                                 add(
-                                                    ObjectInstance(
+                                                    ObjectInstanceCode(
                                                         OdsModalDrawerSectionLabel::class.java.simpleName,
-                                                        listOf(TextValueParameter.Label("Section"))
+                                                        listOf(SimpleParameter.Label("Section"))
                                                     )
                                                 )
                                             }
                                             add(
-                                                ObjectInstance(
+                                                ObjectInstanceCode(
                                                     OdsModalDrawerListItem::class.java.simpleName, listOf(
-                                                        TextValueParameter.Icon,
-                                                        TextValueParameter.ValueOnlyParameter("text", "<item label>")
+                                                        SimpleParameter.Icon,
+                                                        SimpleParameter.ValueOnlyParameter("text", "<item label>")
                                                     )
                                                 )
                                             )
-                                            if (hasDivider) add(ObjectInstance(OdsModalDrawerDivider::class.java.simpleName))
+                                            if (hasDivider) add(ObjectInstanceCode(OdsModalDrawerDivider::class.java.simpleName))
                                         }
                                     }),
-                                    TextValueParameter.ValueOnlyParameter("selectedItem", "<OdsModalDrawerItem>"),
-                                    TextValueParameter.LambdaParameter("onItemClick"),
-                                    TextValueParameter.LambdaParameter("content")
+                                    SimpleParameter.ValueOnlyParameter("selectedItem", "<OdsModalDrawerItem>"),
+                                    SimpleParameter.LambdaParameter("onItemClick"),
+                                    SimpleParameter.LambdaParameter("content")
                                 )
                             )
                         }

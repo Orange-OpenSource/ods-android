@@ -29,9 +29,9 @@ import com.orange.ods.app.R
 import com.orange.ods.app.ui.components.utilities.ComponentCustomizationBottomSheetScaffold
 import com.orange.ods.app.ui.components.utilities.clickOnElement
 import com.orange.ods.app.ui.utilities.composable.CodeImplementationColumn
-import com.orange.ods.app.ui.utilities.composable.ComponentCode
+import com.orange.ods.app.ui.utilities.composable.ComposableCode
+import com.orange.ods.app.ui.utilities.composable.SimpleParameter
 import com.orange.ods.app.ui.utilities.composable.Subtitle
-import com.orange.ods.app.ui.utilities.composable.TextValueParameter
 import com.orange.ods.compose.component.OdsComponent
 import com.orange.ods.compose.component.button.OdsExtendedFloatingActionButton
 import com.orange.ods.compose.component.button.OdsFloatingActionButton
@@ -112,12 +112,12 @@ fun ComponentFloatingActionButton() {
                 CodeImplementationColumn(
                     modifier = Modifier.padding(horizontal = dimensionResource(id = R.dimen.screen_horizontal_margin))
                 ) {
-                    ComponentCode(name = usedComponentName, parameters = mutableListOf<TextValueParameter>(
-                        TextValueParameter.Icon
+                    ComposableCode(name = usedComponentName, parameters = mutableListOf<SimpleParameter>(
+                        SimpleParameter.Icon
                     ).apply {
-                        if (this@with.size.value == FabCustomizationState.Size.Mini) add(TextValueParameter.StringRepresentationParameter("mini", true))
-                        if (hasText) add(TextValueParameter.BetweenQuotesParameter("text", "Add"))
-                        if (isFullScreenWidth) add(TextValueParameter.FillMaxWidth)
+                        if (this@with.size.value == FabCustomizationState.Size.Mini) add(SimpleParameter.StringRepresentationParameter("mini", true))
+                        if (hasText) add(SimpleParameter.BetweenQuotesParameter("text", "Add"))
+                        if (isFullScreenWidth) add(SimpleParameter.FillMaxWidth)
                     })
                 }
             }

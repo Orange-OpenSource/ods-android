@@ -28,8 +28,8 @@ import com.orange.ods.app.ui.components.utilities.ComponentCustomizationBottomSh
 import com.orange.ods.app.ui.components.utilities.ComponentLaunchContentColumn
 import com.orange.ods.app.ui.components.utilities.clickOnElement
 import com.orange.ods.app.ui.utilities.composable.CodeImplementationColumn
-import com.orange.ods.app.ui.utilities.composable.ComponentCode
-import com.orange.ods.app.ui.utilities.composable.TextValueParameter
+import com.orange.ods.app.ui.utilities.composable.ComposableCode
+import com.orange.ods.app.ui.utilities.composable.SimpleParameter
 import com.orange.ods.compose.component.OdsComponent
 import com.orange.ods.compose.component.dialog.OdsAlertDialog
 import com.orange.ods.compose.component.list.OdsListItem
@@ -71,15 +71,15 @@ fun ComponentDialog() {
             CodeImplementationColumn(
                 modifier = Modifier.padding(horizontal = dimensionResource(id = R.dimen.screen_horizontal_margin))
             ) {
-                ComponentCode(name = OdsComponent.OdsAlertDialog.name, parameters = mutableListOf(
-                    TextValueParameter.ValueOnlyParameter("text", "<dialog text>"),
-                    TextValueParameter.BetweenQuotesParameter("confirmButtonText", confirmButtonText),
-                    TextValueParameter.LambdaParameter("onConfirmButtonClick")
+                ComposableCode(name = OdsComponent.OdsAlertDialog.name, parameters = mutableListOf(
+                    SimpleParameter.ValueOnlyParameter("text", "<dialog text>"),
+                    SimpleParameter.BetweenQuotesParameter("confirmButtonText", confirmButtonText),
+                    SimpleParameter.LambdaParameter("onConfirmButtonClick")
                 ).apply {
-                    if (customizationState.isTitleChecked) add(TextValueParameter.BetweenQuotesParameter("titleText", recipe.title))
+                    if (customizationState.isTitleChecked) add(SimpleParameter.BetweenQuotesParameter("titleText", recipe.title))
                     if (customizationState.isDismissButtonChecked) {
-                        add(TextValueParameter.BetweenQuotesParameter("dismissButtonText", dismissButtonText))
-                        add(TextValueParameter.LambdaParameter("onDismissButtonClick"))
+                        add(SimpleParameter.BetweenQuotesParameter("dismissButtonText", dismissButtonText))
+                        add(SimpleParameter.LambdaParameter("onDismissButtonClick"))
                     }
                 })
             }

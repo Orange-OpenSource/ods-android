@@ -26,8 +26,8 @@ import com.orange.ods.app.R
 import com.orange.ods.app.domain.recipes.LocalRecipes
 import com.orange.ods.app.ui.components.utilities.ComponentCustomizationBottomSheetScaffold
 import com.orange.ods.app.ui.utilities.composable.CodeImplementationColumn
-import com.orange.ods.app.ui.utilities.composable.ComponentCode
-import com.orange.ods.app.ui.utilities.composable.TextValueParameter
+import com.orange.ods.app.ui.utilities.composable.ComposableCode
+import com.orange.ods.app.ui.utilities.composable.SimpleParameter
 import com.orange.ods.compose.component.OdsComponent
 import com.orange.ods.compose.component.list.OdsCheckboxTrailing
 import com.orange.ods.compose.component.list.OdsListItem
@@ -64,12 +64,13 @@ fun ComponentCheckboxes() {
             }
 
             CodeImplementationColumn(
-                modifier = Modifier.padding(horizontal = dimensionResource(id = R.dimen.screen_horizontal_margin))) {
-                ComponentCode(name = OdsComponent.OdsCheckbox.name, parameters = mutableListOf<TextValueParameter>(
-                    TextValueParameter.Checked(false),
-                    TextValueParameter.OnCheckedChange
+                modifier = Modifier.padding(horizontal = dimensionResource(id = R.dimen.screen_horizontal_margin))
+            ) {
+                ComposableCode(name = OdsComponent.OdsCheckbox.name, parameters = mutableListOf<SimpleParameter>(
+                    SimpleParameter.Checked(false),
+                    SimpleParameter.OnCheckedChange
                 ).apply {
-                    if (!enabled.value) add(TextValueParameter.Enabled(false))
+                    if (!enabled.value) add(SimpleParameter.Enabled(false))
                 })
             }
         }

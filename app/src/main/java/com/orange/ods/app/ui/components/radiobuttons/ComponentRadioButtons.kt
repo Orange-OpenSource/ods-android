@@ -27,8 +27,8 @@ import com.orange.ods.app.R
 import com.orange.ods.app.domain.recipes.LocalRecipes
 import com.orange.ods.app.ui.components.utilities.ComponentCustomizationBottomSheetScaffold
 import com.orange.ods.app.ui.utilities.composable.CodeImplementationColumn
-import com.orange.ods.app.ui.utilities.composable.ComponentCode
-import com.orange.ods.app.ui.utilities.composable.TextValueParameter
+import com.orange.ods.app.ui.utilities.composable.ComposableCode
+import com.orange.ods.app.ui.utilities.composable.SimpleParameter
 import com.orange.ods.compose.component.OdsComponent
 import com.orange.ods.compose.component.list.OdsListItem
 import com.orange.ods.compose.component.list.OdsRadioButtonTrailing
@@ -68,11 +68,11 @@ fun ComponentRadioButtons() {
             }
 
             CodeImplementationColumn(modifier = Modifier.padding(horizontal = dimensionResource(id = R.dimen.screen_horizontal_margin))) {
-                ComponentCode(name = OdsComponent.OdsRadioButton.name, parameters = mutableListOf(
-                    TextValueParameter.Selected(false),
-                    TextValueParameter.OnClick
+                ComposableCode(name = OdsComponent.OdsRadioButton.name, parameters = mutableListOf(
+                    SimpleParameter.Selected(false),
+                    SimpleParameter.OnClick
                 ).apply {
-                    if (!enabled.value) add(TextValueParameter.Enabled(false))
+                    if (!enabled.value) add(SimpleParameter.Enabled(false))
                 })
             }
         }

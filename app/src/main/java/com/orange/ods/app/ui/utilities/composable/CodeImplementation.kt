@@ -25,21 +25,21 @@ import com.orange.ods.compose.theme.OdsTheme
 const val IconPainterValue = "<icon painter>"
 const val ImagePainterValue = "<image painter>"
 
-open class CodeParameter(val name: String)
+open class ParameterCode(val name: String)
 
-sealed class TextValueParameter(name: String, val value: String) : CodeParameter(name) {
-    open class ValueOnlyParameter(name: String, displayValue: String) : TextValueParameter(name, displayValue)
+sealed class SimpleParameter(name: String, val value: String) : ParameterCode(name) {
+    open class ValueOnlyParameter(name: String, displayValue: String) : SimpleParameter(name, displayValue)
     object Icon : ValueOnlyParameter("icon", IconPainterValue)
     object Image : ValueOnlyParameter("image", ImagePainterValue)
     object FillMaxWidth : ValueOnlyParameter("modifier", "Modifier.fillMaxWidth()")
     class MutableStateParameter(name: String, stateValue: String) : ValueOnlyParameter(name, "remember { mutableStateOf($stateValue) }")
 
-    open class StringRepresentationParameter<T>(name: String, typedValue: T) : TextValueParameter(name, typedValue.toString())
+    open class StringRepresentationParameter<T>(name: String, typedValue: T) : SimpleParameter(name, typedValue.toString())
     class Enabled(val enabled: Boolean) : StringRepresentationParameter<Boolean>("enabled", enabled)
     class Checked(val checked: Boolean) : StringRepresentationParameter<Boolean>("checked", checked)
     class Selected(val selected: Boolean) : StringRepresentationParameter<Boolean>("selected", selected)
 
-    open class BetweenQuotesParameter(name: String, textValue: String) : TextValueParameter(name, "\"$textValue\"")
+    open class BetweenQuotesParameter(name: String, textValue: String) : SimpleParameter(name, "\"$textValue\"")
     class Title(val text: String) : BetweenQuotesParameter("title", text)
     class Subtitle(val text: String) : BetweenQuotesParameter("subtitle", text)
     class Label(val text: String) : BetweenQuotesParameter("label", text)
@@ -48,7 +48,7 @@ sealed class TextValueParameter(name: String, val value: String) : CodeParameter
     class Button2Text(val text: String) : BetweenQuotesParameter("button2Text", text)
     class ContentDescription(val text: String) : BetweenQuotesParameter("contentDescription", text)
 
-    open class LambdaParameter(name: String) : TextValueParameter(name, "{ }")
+    open class LambdaParameter(name: String) : SimpleParameter(name, "{ }")
     object OnClick : LambdaParameter("onClick")
     object OnCheckedChange : LambdaParameter("onCheckedChange")
     object OnCardClick : LambdaParameter("onCardClick")
@@ -56,11 +56,11 @@ sealed class TextValueParameter(name: String, val value: String) : CodeParameter
     object OnButton2Click : LambdaParameter("onButton2Click")
 }
 
-class ComposableParameter(name: String, val value: @Composable () -> Unit) : CodeParameter(name)
-class ObjectParameter(name: String, val objectInstance: ObjectInstance) : CodeParameter(name)
-class ListParameter(name: String, val value: List<ObjectInstance>) : CodeParameter(name)
+class ComposableParameter(name: String, val value: @Composable () -> Unit) : ParameterCode(name)
+class ObjectParameter(name: String, val objectInstanceCode: ObjectInstanceCode) : ParameterCode(name)
+class ListParameter(name: String, val value: List<ObjectInstanceCode>) : ParameterCode(name)
 
-data class ObjectInstance(val className: String, val parameters: List<CodeParameter> = emptyList())
+data class ObjectInstanceCode(val className: String, val parameters: List<ParameterCode> = emptyList())
 
 
 @Composable
@@ -94,18 +94,18 @@ fun IndentCodeColumn(content: @Composable () -> Unit) {
 }
 
 @Composable
-fun ComponentCode(
+fun ComposableCode(
     name: String,
-    parameters: List<CodeParameter> = emptyList(),
+    parameters: List<ParameterCode> = emptyList(),
     exhaustiveParameters: Boolean = false,
     content: @Composable (() -> Unit)? = null
 ) {
     when {
-        parameters.isEmpty() && content != null -> ComponentWithContentOnlyCode(name) { content() }
+        parameters.isEmpty() && content != null -> ComposableWithContentOnlyCode(name) { content() }
         parameters.isEmpty() && content == null -> TechnicalText(text = "$name()")
         else -> {
             TechnicalText(text = "$name(")
-            ComponentParametersCode(parameters = parameters, exhaustiveParameters = exhaustiveParameters)
+            ComposableParametersCode(parameters = parameters, exhaustiveParameters = exhaustiveParameters)
 
             if (content != null) {
                 TechnicalText(text = ") {")
@@ -122,11 +122,11 @@ fun ComponentCode(
 }
 
 @Composable
-private fun ComponentParametersCode(parameters: List<CodeParameter>, exhaustiveParameters: Boolean) {
+private fun ComposableParametersCode(parameters: List<ParameterCode>, exhaustiveParameters: Boolean) {
     IndentCodeColumn {
         parameters.forEach { parameter ->
             when (parameter) {
-                is TextValueParameter -> TechnicalText(text = "${parameter.name} = ${parameter.value},")
+                is SimpleParameter -> TechnicalText(text = "${parameter.name} = ${parameter.value},")
                 is ComposableParameter -> {
                     TechnicalText(text = "${parameter.name} = {")
                     IndentCodeColumn {
@@ -138,14 +138,14 @@ private fun ComponentParametersCode(parameters: List<CodeParameter>, exhaustiveP
                     TechnicalText(text = "${parameter.name} = listOf(")
                     IndentCodeColumn {
                         parameter.value.forEach { item ->
-                            ComponentCode(name = item.className, parameters = item.parameters, exhaustiveParameters = true)
+                            ComposableCode(name = item.className, parameters = item.parameters, exhaustiveParameters = true)
                         }
                     }
                     TechnicalText(text = "),")
                 }
                 is ObjectParameter -> {
-                    TechnicalText(text = "${parameter.name} = ${parameter.objectInstance.className}(")
-                    ComponentParametersCode(parameters = parameter.objectInstance.parameters, exhaustiveParameters = true)
+                    TechnicalText(text = "${parameter.name} = ${parameter.objectInstanceCode.className}(")
+                    ComposableParametersCode(parameters = parameter.objectInstanceCode.parameters, exhaustiveParameters = true)
                     TechnicalText(text = "),")
                 }
             }
@@ -155,7 +155,7 @@ private fun ComponentParametersCode(parameters: List<CodeParameter>, exhaustiveP
 }
 
 @Composable
-private fun ComponentWithContentOnlyCode(name: String, content: @Composable () -> Unit) {
+private fun ComposableWithContentOnlyCode(name: String, content: @Composable () -> Unit) {
     TechnicalText(text = "$name {")
     IndentCodeColumn(content)
     TechnicalText(text = "//...")

@@ -32,7 +32,7 @@ import com.orange.ods.app.R
 import com.orange.ods.app.ui.components.utilities.ComponentCountRow
 import com.orange.ods.app.ui.components.utilities.ComponentCustomizationBottomSheetScaffold
 import com.orange.ods.app.ui.utilities.composable.CodeImplementationColumn
-import com.orange.ods.app.ui.utilities.composable.ComponentCode
+import com.orange.ods.app.ui.utilities.composable.ComposableCode
 import com.orange.ods.app.ui.utilities.composable.Title
 import com.orange.ods.compose.component.OdsComponent
 import com.orange.ods.compose.component.button.OdsIconToggleButton
@@ -100,9 +100,9 @@ fun ButtonsToggle() {
                     CodeImplementationColumn(
                         modifier = Modifier.padding(horizontal = dimensionResource(id = R.dimen.screen_horizontal_margin))
                     ) {
-                        ComponentCode(name = "Row") {
+                        ComposableCode(name = "Row") {
                             repeat(toggleCount.value) {
-                                ComponentCode(name = OdsComponent.OdsIconToggleButton.name)
+                                ComposableCode(name = OdsComponent.OdsIconToggleButton.name)
                             }
                         }
                     }
@@ -110,7 +110,7 @@ fun ButtonsToggle() {
                     CodeImplementationColumn(
                         modifier = Modifier.padding(horizontal = dimensionResource(id = R.dimen.screen_horizontal_margin))
                     ) {
-                        ComponentCode(name = OdsComponent.OdsIconToggleButton.name)
+                        ComposableCode(name = OdsComponent.OdsIconToggleButton.name)
                     }
                 }
             }

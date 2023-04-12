@@ -29,10 +29,10 @@ import com.orange.ods.app.ui.components.utilities.ComponentCustomizationBottomSh
 import com.orange.ods.app.ui.components.utilities.ComponentLaunchContentColumn
 import com.orange.ods.app.ui.components.utilities.clickOnElement
 import com.orange.ods.app.ui.utilities.composable.CodeImplementationColumn
-import com.orange.ods.app.ui.utilities.composable.ComponentCode
+import com.orange.ods.app.ui.utilities.composable.ComposableCode
 import com.orange.ods.app.ui.utilities.composable.IndentCodeColumn
+import com.orange.ods.app.ui.utilities.composable.SimpleParameter
 import com.orange.ods.app.ui.utilities.composable.TechnicalText
-import com.orange.ods.app.ui.utilities.composable.TextValueParameter
 import com.orange.ods.compose.component.OdsComponent
 import com.orange.ods.compose.component.list.OdsListItem
 import com.orange.ods.compose.component.list.OdsSwitchTrailing
@@ -95,14 +95,14 @@ fun ComponentSnackbars() {
                     modifier = Modifier.padding(bottom = dimensionResource(id = R.dimen.spacing_xs)),
                     text = stringResource(id = R.string.component_snackbar_code_first_step)
                 )
-                ComponentCode(name = "OdsSnackbarHost", parameters = listOf(TextValueParameter.ValueOnlyParameter("hostState", "<SnackbarHostState>"))) {
-                    ComponentCode(
+                ComposableCode(name = "OdsSnackbarHost", parameters = listOf(SimpleParameter.ValueOnlyParameter("hostState", "<SnackbarHostState>"))) {
+                    ComposableCode(
                         name = OdsComponent.OdsSnackbar.name,
-                        parameters = mutableListOf<TextValueParameter>(
-                            TextValueParameter.ValueOnlyParameter("snackbarData", "data")
+                        parameters = mutableListOf<SimpleParameter>(
+                            SimpleParameter.ValueOnlyParameter("snackbarData", "data")
                         ).apply {
-                            if (actionOnNewLineChecked.value) add(TextValueParameter.StringRepresentationParameter("actionOnNewLine", true))
-                            add(TextValueParameter.LambdaParameter("onActionClick"))
+                            if (actionOnNewLineChecked.value) add(SimpleParameter.StringRepresentationParameter("actionOnNewLine", true))
+                            add(SimpleParameter.LambdaParameter("onActionClick"))
                         }
                     )
                 }

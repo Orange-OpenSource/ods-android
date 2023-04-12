@@ -33,9 +33,9 @@ import androidx.compose.ui.res.stringResource
 import com.orange.ods.app.R
 import com.orange.ods.app.ui.components.utilities.ComponentCustomizationBottomSheetScaffold
 import com.orange.ods.app.ui.utilities.composable.CodeImplementationColumn
-import com.orange.ods.app.ui.utilities.composable.ComponentCode
+import com.orange.ods.app.ui.utilities.composable.ComposableCode
+import com.orange.ods.app.ui.utilities.composable.SimpleParameter
 import com.orange.ods.app.ui.utilities.composable.Subtitle
-import com.orange.ods.app.ui.utilities.composable.TextValueParameter
 import com.orange.ods.compose.component.OdsComponent
 import com.orange.ods.compose.component.chip.OdsChoiceChip
 import com.orange.ods.compose.component.chip.OdsChoiceChipsFlowRow
@@ -94,13 +94,13 @@ fun ProgressCircular() {
                 }
 
                 CodeImplementationColumn {
-                    ComponentCode(
+                    ComposableCode(
                         name = OdsComponent.OdsCircularProgressIndicator.name,
-                        parameters = mutableListOf<TextValueParameter>().apply {
+                        parameters = mutableListOf<SimpleParameter>().apply {
                             if (type.value == ProgressCustomizationState.Type.Determinate) {
-                                add(TextValueParameter.StringRepresentationParameter("progress", determinateProgressValue))
+                                add(SimpleParameter.StringRepresentationParameter("progress", determinateProgressValue))
                             }
-                            if (hasLabel) add(TextValueParameter.Label(text))
+                            if (hasLabel) add(SimpleParameter.Label(text))
                         }
                     )
                 }

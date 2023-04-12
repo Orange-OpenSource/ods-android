@@ -26,11 +26,11 @@ import com.orange.ods.app.ui.TopAppBarConfiguration
 import com.orange.ods.app.ui.components.utilities.ComponentCountRow
 import com.orange.ods.app.ui.components.utilities.ComponentCustomizationBottomSheetScaffold
 import com.orange.ods.app.ui.utilities.composable.CodeImplementationColumn
-import com.orange.ods.app.ui.utilities.composable.CodeParameter
-import com.orange.ods.app.ui.utilities.composable.ComponentCode
+import com.orange.ods.app.ui.utilities.composable.ComposableCode
 import com.orange.ods.app.ui.utilities.composable.ComposableParameter
 import com.orange.ods.app.ui.utilities.composable.IconPainterValue
-import com.orange.ods.app.ui.utilities.composable.TextValueParameter
+import com.orange.ods.app.ui.utilities.composable.ParameterCode
+import com.orange.ods.app.ui.utilities.composable.SimpleParameter
 import com.orange.ods.compose.component.OdsComponent
 import com.orange.ods.compose.component.list.OdsListItem
 import com.orange.ods.compose.component.list.OdsSwitchTrailing
@@ -79,19 +79,19 @@ fun ComponentTopAppBar() {
 
             Column(modifier = Modifier.verticalScroll(rememberScrollState())) {
                 CodeImplementationColumn(modifier = Modifier.padding(horizontal = dimensionResource(id = R.dimen.screen_horizontal_margin))) {
-                    ComponentCode(
+                    ComposableCode(
                         name = OdsComponent.OdsTopAppBar.name,
-                        parameters = mutableListOf<CodeParameter>(
-                            TextValueParameter.Title(stringResource(id = R.string.component_app_bars_top_regular))
+                        parameters = mutableListOf<ParameterCode>(
+                            SimpleParameter.Title(stringResource(id = R.string.component_app_bars_top_regular))
                         ).apply {
                             if (isNavigationIconEnabled) add(ComposableParameter(
                                 name = "navigationIcon",
                                 value = {
-                                    ComponentCode(
+                                    ComposableCode(
                                         name = "Icon",
                                         parameters = listOf(
-                                            TextValueParameter.ValueOnlyParameter("imageVector", "<image vector>"),
-                                            TextValueParameter.ContentDescription(stringResource(id = R.string.top_app_bar_back_icon_desc))
+                                            SimpleParameter.ValueOnlyParameter("imageVector", "<image vector>"),
+                                            SimpleParameter.ContentDescription(stringResource(id = R.string.top_app_bar_back_icon_desc))
                                         )
                                     )
                                 }
@@ -101,28 +101,28 @@ fun ComponentTopAppBar() {
                                 name = "actions",
                                 value = {
                                     repeat(actionCount.value) {
-                                        ComponentCode(
+                                        ComposableCode(
                                             name = "OdsTopAppBarActionButton",
                                             parameters = listOf(
-                                                TextValueParameter.OnClick,
-                                                TextValueParameter.ValueOnlyParameter("painter", IconPainterValue),
-                                                TextValueParameter.ContentDescription("icon description")
+                                                SimpleParameter.OnClick,
+                                                SimpleParameter.ValueOnlyParameter("painter", IconPainterValue),
+                                                SimpleParameter.ContentDescription("icon description")
                                             )
                                         )
                                     }
                                     if (isOverflowMenuEnabled) {
-                                        ComponentCode(
+                                        ComposableCode(
                                             name = "OdsTopAppBarOverflowMenuBox",
                                             parameters = listOf(
-                                                TextValueParameter.BetweenQuotesParameter("overflowIconContentDescription", "Open overflow menu"),
+                                                SimpleParameter.BetweenQuotesParameter("overflowIconContentDescription", "Open overflow menu"),
                                             )
                                         ) {
                                             for (i in 1..2) {
-                                                ComponentCode(
+                                                ComposableCode(
                                                     name = "OdsDropdownMenuItem",
                                                     parameters = listOf(
-                                                        TextValueParameter.BetweenQuotesParameter("text", "Menu $i"),
-                                                        TextValueParameter.OnClick
+                                                        SimpleParameter.BetweenQuotesParameter("text", "Menu $i"),
+                                                        SimpleParameter.OnClick
                                                     )
                                                 )
 

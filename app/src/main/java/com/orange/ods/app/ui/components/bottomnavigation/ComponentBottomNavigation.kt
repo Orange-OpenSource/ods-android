@@ -36,8 +36,8 @@ import com.orange.ods.app.ui.components.utilities.ComponentCustomizationBottomSh
 import com.orange.ods.app.ui.components.utilities.clickOnElement
 import com.orange.ods.app.ui.utilities.NavigationItem
 import com.orange.ods.app.ui.utilities.composable.CodeImplementationColumn
-import com.orange.ods.app.ui.utilities.composable.ComponentCode
-import com.orange.ods.app.ui.utilities.composable.TextValueParameter
+import com.orange.ods.app.ui.utilities.composable.ComposableCode
+import com.orange.ods.app.ui.utilities.composable.SimpleParameter
 import com.orange.ods.compose.component.OdsComponent
 import com.orange.ods.compose.component.bottomnavigation.OdsBottomNavigation
 import com.orange.ods.compose.component.bottomnavigation.OdsBottomNavigationItem
@@ -97,15 +97,15 @@ fun ComponentBottomNavigation() {
             CodeImplementationColumn(
                 modifier = Modifier.padding(horizontal = dimensionResource(id = R.dimen.screen_horizontal_margin))
             ) {
-                ComponentCode(name = OdsComponent.OdsBottomNavigation.name) {
+                ComposableCode(name = OdsComponent.OdsBottomNavigation.name) {
                     navigationItems.take(2).forEach { item ->
-                        ComponentCode(
+                        ComposableCode(
                             name = "OdsBottomNavigationItem",
                             parameters = listOf(
-                                TextValueParameter.Icon,
-                                TextValueParameter.BetweenQuotesParameter("label", stringResource(id = item.textResId)),
-                                TextValueParameter.Selected(selectedNavigationItem.value.textResId == item.textResId),
-                                TextValueParameter.OnClick,
+                                SimpleParameter.Icon,
+                                SimpleParameter.BetweenQuotesParameter("label", stringResource(id = item.textResId)),
+                                SimpleParameter.Selected(selectedNavigationItem.value.textResId == item.textResId),
+                                SimpleParameter.OnClick,
                             )
                         )
                     }

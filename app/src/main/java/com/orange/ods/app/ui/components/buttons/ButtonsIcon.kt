@@ -31,8 +31,8 @@ import com.orange.ods.app.R
 import com.orange.ods.app.ui.components.utilities.ComponentCustomizationBottomSheetScaffold
 import com.orange.ods.app.ui.components.utilities.clickOnElement
 import com.orange.ods.app.ui.utilities.composable.CodeImplementationColumn
-import com.orange.ods.app.ui.utilities.composable.ComponentCode
-import com.orange.ods.app.ui.utilities.composable.TextValueParameter
+import com.orange.ods.app.ui.utilities.composable.ComposableCode
+import com.orange.ods.app.ui.utilities.composable.SimpleParameter
 import com.orange.ods.compose.component.OdsComponent
 import com.orange.ods.compose.component.button.OdsIconButton
 import com.orange.ods.compose.component.list.OdsListItem
@@ -85,10 +85,10 @@ fun ButtonsIcon() {
                 CodeImplementationColumn(
                     modifier = Modifier.padding(horizontal = dimensionResource(id = R.dimen.screen_horizontal_margin))
                 ) {
-                    ComponentCode(name = OdsComponent.OdsIconButton.name, parameters = mutableListOf<TextValueParameter>(
-                        TextValueParameter.Icon
+                    ComposableCode(name = OdsComponent.OdsIconButton.name, parameters = mutableListOf<SimpleParameter>(
+                        SimpleParameter.Icon
                     ).apply {
-                        if (!isEnabled) add(TextValueParameter.Enabled(false))
+                        if (!isEnabled) add(SimpleParameter.Enabled(false))
                     })
                 }
             }
