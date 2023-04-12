@@ -42,7 +42,6 @@ open class BetweenQuotesStringParameter(name: String, textValue: String) : Strin
 open class LambdaParameter(name: String) : StringParameter(name, "{ }")
 class MutableStateParameter(name: String, stateValue: String) : StringParameter(name, "remember { mutableStateOf($stateValue) }")
 
-
 class ComposableParameter(name: String, val value: @Composable () -> Unit) : CodeParameter(name) {
     override val code
         get() = @Composable {
