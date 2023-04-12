@@ -16,7 +16,6 @@ import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
-import androidx.compose.material.Icon
 import androidx.compose.material.Surface
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
@@ -30,14 +29,18 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.PreviewParameter
 import com.orange.ods.R
 import com.orange.ods.compose.component.OdsComponentApi
+import com.orange.ods.compose.component.button.OdsIconToggleButton
 import com.orange.ods.compose.component.utilities.BasicPreviewParameterProvider
 import com.orange.ods.compose.component.utilities.Preview
 import com.orange.ods.compose.component.utilities.UiModePreviews
+import com.orange.ods.compose.theme.OdsDisplaySurface
 import com.orange.ods.compose.theme.OdsTheme
 
 /**
  *
  * @param image image display in the ImageList.
+ * @param checkedIcon specified if icon is currently checkedIcon
+ * @param onCheckedChange callback to be invoked when this icon is selected
  * @param modifier to be applied to this ImageList
  * @param imageContentDescription Optional image content description.
  * @param icon Optional icon display in front of the test.
@@ -48,11 +51,13 @@ import com.orange.ods.compose.theme.OdsTheme
 @OdsComponentApi
 fun OdsImageList(
     image: Painter,
+    checkedIcon: Boolean,
+    onCheckedChange: (Boolean) -> Unit,
     modifier: Modifier = Modifier,
     imageContentDescription: String? = null,
     icon: Painter? = null,
-    iconContentDescription: String? = null,
-    title: String? = null
+    iconContentDescription: String,
+    title: String? = null,
 ) {
     Box(
         modifier = modifier
@@ -74,20 +79,27 @@ fun OdsImageList(
             ) {
                 Row(
                     horizontalArrangement = Arrangement.SpaceBetween,
-                    modifier = modifier.padding(top = dimensionResource(id = R.dimen.spacing_m), bottom = dimensionResource(id = R.dimen.spacing_m))
+                    verticalAlignment = Alignment.CenterVertically
                 ) {
                     Text(
                         text = it,
-                        modifier.padding(start = dimensionResource(id = R.dimen.spacing_s)),
+                        modifier.padding(
+                            start = dimensionResource(id = R.dimen.spacing_m),
+                            top = dimensionResource(id = R.dimen.spacing_m),
+                            bottom = dimensionResource(id = R.dimen.spacing_m)
+                        ),
                         color = Color.White,
                         style = OdsTheme.typography.subtitle1
                     )
                     icon?.let {
-                        Icon(
-                            painter = it,
-                            modifier = modifier.padding(end = dimensionResource(id = R.dimen.spacing_s)),
-                            contentDescription = iconContentDescription,
-                            tint = Color.White
+                        OdsIconToggleButton(
+                            checked = checkedIcon,
+                            onCheckedChange = onCheckedChange,
+                            uncheckedPainter = it,
+                            checkedPainter = it,
+                            iconContentDescription = iconContentDescription,
+                            enabled = true,
+                            displaySurface = OdsDisplaySurface.Dark
                         )
                     }
                 }
@@ -103,14 +115,18 @@ private fun PreviewOdsImageList(@PreviewParameter(OdsImageListPreviewParameterPr
         OdsImageList(
             image = painterResource(id = parameter.image),
             icon = parameter.icon?.let { painterResource(id = it) },
-            title = parameter.title
+            title = parameter.title,
+            checkedIcon = parameter.checked,
+            iconContentDescription = "",
+            onCheckedChange = { parameter.checked }
         )
     }
 
 private data class OdsImageListPreviewParameter(
     val image: Int,
     val title: String?,
-    val icon: Int?
+    val icon: Int?,
+    val checked: Boolean
 )
 
 private class OdsImageListPreviewParameterProvider :
@@ -123,8 +139,8 @@ private val previewParameterValues: List<OdsImageListPreviewParameter>
         val icon = R.drawable.ic_check
 
         return listOf(
-            OdsImageListPreviewParameter(image, title = null, icon),
-            OdsImageListPreviewParameter(image, title, icon = null),
-            OdsImageListPreviewParameter(image, title, icon)
+            OdsImageListPreviewParameter(image, title = null, icon, checked = false),
+            OdsImageListPreviewParameter(image, title, icon = null, checked = false),
+            OdsImageListPreviewParameter(image, title, icon, checked = true)
         )
     }

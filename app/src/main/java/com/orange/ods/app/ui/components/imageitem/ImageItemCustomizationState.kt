@@ -8,7 +8,7 @@
  * /
  */
 
-package com.orange.ods.app.ui.components.imagelists
+package com.orange.ods.app.ui.components.imageitem
 
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.MutableState
@@ -17,15 +17,15 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.saveable.rememberSaveable
 
 @Composable
-fun rememberImageListsCustomizationState(
+fun rememberImageItemCustomizationState(
     sideIcons: MutableState<Boolean> = rememberSaveable { mutableStateOf(false) },
     textDisplayed: MutableState<Boolean> = rememberSaveable { mutableStateOf(true) }
 ) =
     remember(sideIcons, textDisplayed) {
-        ImageListsCustomizationState(sideIcons, textDisplayed)
+        ImageItemCustomizationState(sideIcons, textDisplayed)
     }
 
-class ImageListsCustomizationState(
+class ImageItemCustomizationState(
     val sideIcons: MutableState<Boolean>,
     val textDisplayed: MutableState<Boolean>
 ) {

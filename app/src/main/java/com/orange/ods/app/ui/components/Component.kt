@@ -126,10 +126,10 @@ sealed class Component(
     )
 
     object ImageLists : Component(
-        R.string.component_image_lists,
+        R.string.component_image_item,
         R.drawable.il_fab,
         null,
-        R.string.component_floating_action_buttons_description
+        R.string.component_image_item_description
     )
 
     object Lists : Component(
