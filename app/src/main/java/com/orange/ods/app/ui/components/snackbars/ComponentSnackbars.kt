@@ -28,6 +28,7 @@ import com.orange.ods.app.R
 import com.orange.ods.app.ui.components.utilities.ComponentCustomizationBottomSheetScaffold
 import com.orange.ods.app.ui.components.utilities.ComponentLaunchContentColumn
 import com.orange.ods.app.ui.components.utilities.clickOnElement
+import com.orange.ods.app.ui.utilities.composable.BetweenQuotesStringParameter
 import com.orange.ods.app.ui.utilities.composable.CodeImplementationColumn
 import com.orange.ods.app.ui.utilities.composable.CodeParameter
 import com.orange.ods.app.ui.utilities.composable.ComposableCode
@@ -100,7 +101,6 @@ fun ComponentSnackbars() {
                 )
                 ComposableCode(
                     name = "OdsSnackbarHost",
-                    exhaustiveParameters = false,
                     parameters = listOf(StringParameter("hostState", "<SnackbarHostState>"))
                 ) {
                     ComposableCode(
@@ -120,12 +120,11 @@ fun ComponentSnackbars() {
                 )
                 TechnicalText(text = "coroutineScope.launch {")
                 IndentCodeColumn {
-                    TechnicalText(text = "scaffoldState.snackbarHostState.showSnackbar(")
-                    IndentCodeColumn {
-                        TechnicalText(text = "message = $snackbarMessage")
-                        if (actionButtonChecked.value) TechnicalText(text = snackbarActionLabel)
-                    }
-                    TechnicalText(text = ")")
+                    ComposableCode(name = "scaffoldState.snackbarHostState.showSnackbar", parameters = mutableListOf<CodeParameter>(
+                        BetweenQuotesStringParameter("message", snackbarMessage)
+                    ).apply {
+                        if (actionButtonChecked.value) add(BetweenQuotesStringParameter("actionLabel", snackbarActionLabel))
+                    })
                 }
                 TechnicalText(text = "}")
             }
