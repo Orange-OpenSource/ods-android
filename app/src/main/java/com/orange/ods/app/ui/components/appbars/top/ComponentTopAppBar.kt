@@ -30,7 +30,6 @@ import com.orange.ods.app.ui.utilities.composable.CodeImplementationColumn
 import com.orange.ods.app.ui.utilities.composable.CodeParameter
 import com.orange.ods.app.ui.utilities.composable.ComposableCode
 import com.orange.ods.app.ui.utilities.composable.ComposableParameter
-import com.orange.ods.app.ui.utilities.composable.IconPainterValue
 import com.orange.ods.app.ui.utilities.composable.PredefinedParameter
 import com.orange.ods.app.ui.utilities.composable.StringParameter
 import com.orange.ods.compose.component.OdsComponent
@@ -108,7 +107,7 @@ fun ComponentTopAppBar() {
                                             name = "OdsTopAppBarActionButton",
                                             parameters = listOf(
                                                 PredefinedParameter.OnClick,
-                                                StringParameter("painter", IconPainterValue),
+                                                PredefinedParameter.Painter,
                                                 PredefinedParameter.ContentDescription("icon description")
                                             )
                                         )

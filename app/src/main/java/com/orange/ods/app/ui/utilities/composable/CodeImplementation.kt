@@ -79,6 +79,7 @@ data class ObjectInstance(val className: String, val parameters: List<CodeParame
 
 sealed class PredefinedParameter {
     object Icon : StringParameter("icon", IconPainterValue)
+    object Painter : StringParameter("painter", IconPainterValue)
     object Image : StringParameter("image", ImagePainterValue)
     object FillMaxWidth : StringParameter("modifier", "Modifier.fillMaxWidth()")
 

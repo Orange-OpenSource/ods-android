@@ -29,8 +29,11 @@ import androidx.compose.ui.res.stringResource
 import com.orange.ods.app.R
 import com.orange.ods.app.ui.components.buttons.InvertedBackgroundColumn
 import com.orange.ods.app.ui.utilities.composable.CodeImplementationColumn
-import com.orange.ods.app.ui.utilities.composable.CommonButtonTechnicalTextColumn
-import com.orange.ods.app.ui.utilities.composable.TechnicalText
+import com.orange.ods.app.ui.utilities.composable.CodeParameter
+import com.orange.ods.app.ui.utilities.composable.ComposableCode
+import com.orange.ods.app.ui.utilities.composable.IconPainterValue
+import com.orange.ods.app.ui.utilities.composable.PredefinedParameter
+import com.orange.ods.app.ui.utilities.composable.StringParameter
 import com.orange.ods.compose.component.OdsComponent
 import com.orange.ods.compose.component.button.OdsIconToggleButton
 
@@ -72,15 +75,18 @@ fun ButtonsIconToggle(customizationState: ButtonIconCustomizationState) {
                 )
             }
 
-            CodeImplementationColumn {
-                CommonButtonTechnicalTextColumn(componentName = OdsComponent.OdsIconToggleButton.name) {
-                    TechnicalText(text = "painter = painterResource(id = R.drawable.ic_heart_outlined),")
-                    TechnicalText(text = "painterChecked = painterResource(id = R.drawable.ic_heart),")
-                    TechnicalText(text = "checked = ${buttonCheckedState.value},")
+            CodeImplementationColumn(
+                modifier = Modifier.padding(horizontal = dimensionResource(id = R.dimen.screen_horizontal_margin))
+            ) {
+                ComposableCode(name = OdsComponent.OdsIconToggleButton.name, exhaustiveParameters = false, parameters = mutableListOf<CodeParameter>(
+                    PredefinedParameter.Painter,
+                    StringParameter("painterChecked", IconPainterValue),
+                    PredefinedParameter.Checked(buttonCheckedState.value)
+                ).apply {
                     if (!isEnabled) {
-                        TechnicalText(text = "enabled = false,")
+                        add(PredefinedParameter.Enabled(false))
                     }
-                }
+                })
             }
         }
     }
