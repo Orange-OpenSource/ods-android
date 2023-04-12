@@ -8,13 +8,13 @@
  * /
  */
 
-package com.orange.ods.compose.component.imagelist
+package com.orange.ods.compose.component.imageitem
 
 import androidx.compose.foundation.Image
-import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material.Surface
 import androidx.compose.material.Text
@@ -26,7 +26,9 @@ import androidx.compose.ui.graphics.painter.Painter
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.PreviewParameter
+import androidx.compose.ui.unit.dp
 import com.orange.ods.R
 import com.orange.ods.compose.component.OdsComponentApi
 import com.orange.ods.compose.component.button.OdsIconToggleButton
@@ -49,7 +51,7 @@ import com.orange.ods.compose.theme.OdsTheme
  */
 @Composable
 @OdsComponentApi
-fun OdsImageList(
+fun OdsImageItem(
     image: Painter,
     checkedIcon: Boolean,
     onCheckedChange: (Boolean) -> Unit,
@@ -78,18 +80,18 @@ fun OdsImageList(
                     .fillMaxWidth()
             ) {
                 Row(
-                    horizontalArrangement = Arrangement.SpaceBetween,
-                    verticalAlignment = Alignment.CenterVertically
+                    verticalAlignment = Alignment.CenterVertically,
+                    modifier = Modifier
+                        .height(48.dp)
                 ) {
                     Text(
                         text = it,
-                        modifier.padding(
-                            start = dimensionResource(id = R.dimen.spacing_m),
-                            top = dimensionResource(id = R.dimen.spacing_m),
-                            bottom = dimensionResource(id = R.dimen.spacing_m)
-                        ),
                         color = Color.White,
-                        style = OdsTheme.typography.subtitle1
+                        style = OdsTheme.typography.subtitle1,
+                        modifier = Modifier.weight(1f)
+                            .padding(start = dimensionResource(id = R.dimen.spacing_m)),
+                        maxLines = 1,
+                        overflow = TextOverflow.Ellipsis
                     )
                     icon?.let {
                         OdsIconToggleButton(
@@ -98,7 +100,6 @@ fun OdsImageList(
                             uncheckedPainter = it,
                             checkedPainter = it,
                             iconContentDescription = iconContentDescription,
-                            enabled = true,
                             displaySurface = OdsDisplaySurface.Dark
                         )
                     }
@@ -112,7 +113,7 @@ fun OdsImageList(
 @Composable
 private fun PreviewOdsImageList(@PreviewParameter(OdsImageListPreviewParameterProvider::class) parameter: OdsImageListPreviewParameter) =
     Preview {
-        OdsImageList(
+        OdsImageItem(
             image = painterResource(id = parameter.image),
             icon = parameter.icon?.let { painterResource(id = it) },
             title = parameter.title,

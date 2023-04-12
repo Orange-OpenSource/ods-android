@@ -125,11 +125,12 @@ sealed class Component(
         composableName = OdsComposable.OdsFloatingActionButton.name
     )
 
-    object ImageLists : Component(
+    object ImageItem : Component(
         R.string.component_image_item,
-        R.drawable.il_fab,
+        R.drawable.il_image_item,
         null,
-        R.string.component_image_item_description
+        R.string.component_image_item_description,
+        composableName = OdsComponent.OdsImageItem.name
     )
 
     object Lists : Component(

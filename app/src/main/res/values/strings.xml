@@ -204,7 +204,10 @@
 
     <!-- Component Image Lists -->
     <string name="component_image_item">Image item</string>
-    <string name="component_image_item_description">The Image item component is the individual image display used in the Image list module, and it allows to display image lists or media categories.</string>
+    <string name="component_image_item_description">An Image Item contains primary information which is usually an image. It can also contains secondary information such as a title or an action.</string>
+    <string name="component_image_item_sizes">Image item sizes</string>
+    <string name="component_image_item_small">Small image</string>
+    <string name="component_image_item_large">Large image</string>
 
     <!-- Component Menus -->
     <string name="component_menus">Menus</string>

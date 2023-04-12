@@ -16,8 +16,11 @@ import androidx.compose.foundation.layout.size
 import androidx.compose.material.ExperimentalMaterialApi
 import androidx.compose.material.rememberBottomSheetScaffoldState
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
 import androidx.compose.runtime.saveable.rememberSaveable
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.painterResource
@@ -27,7 +30,9 @@ import coil.compose.rememberAsyncImagePainter
 import com.orange.ods.app.R
 import com.orange.ods.app.domain.recipes.LocalRecipes
 import com.orange.ods.app.ui.components.utilities.ComponentCustomizationBottomSheetScaffold
-import com.orange.ods.compose.component.imagelist.OdsImageList
+import com.orange.ods.app.ui.utilities.composable.Subtitle
+import com.orange.ods.compose.component.control.OdsSlider
+import com.orange.ods.compose.component.imageitem.OdsImageItem
 import com.orange.ods.compose.component.list.OdsListItem
 import com.orange.ods.compose.component.list.OdsSwitchTrailing
 
@@ -39,6 +44,11 @@ fun ComponentImageItem() {
     val iconCheckedState = rememberSaveable { mutableStateOf(false) }
     val recipes = LocalRecipes.current
     val recipe = rememberSaveable { recipes.random() }
+    var sliderPosition by remember { mutableStateOf(0f) }
+    val leftIcon = painterResource(id = R.drawable.ic_display_standard_small)
+    val leftIconContentDescription = stringResource(id = R.string.component_image_item_small)
+    val rightIcon = painterResource(id = R.drawable.ic_display_standard)
+    val rightIconContentDescription = stringResource(id = R.string.component_image_item_large)
 
     with(imageItemCustomizationState) {
         if (!hasText) {
@@ -55,13 +65,39 @@ fun ComponentImageItem() {
                     text = stringResource(id = R.string.component_element_icon),
                     trailing = OdsSwitchTrailing(checked = sideIcons, enabled = hasText)
                 )
+                Column(modifier = Modifier.padding(start = 16.dp, end = 16.dp)) {
+                    Subtitle(textRes = R.string.component_image_item_sizes)
+                    OdsSlider(
+                        value = sliderPosition,
+                        steps = 1,
+                        valueRange = 0f..20f,
+                        onValueChange = { sliderPosition = it },
+                        leftIcon = leftIcon,
+                        leftIconContentDescription = leftIconContentDescription,
+                        rightIcon = rightIcon,
+                        rightIconContentDescription = rightIconContentDescription
+                    )
+                }
             }) {
             Column(
-                modifier = Modifier
-                    .size(400.dp, 250.dp)
-                    .padding(dimensionResource(id = R.dimen.spacing_m))
+                modifier = if (sliderPosition.toInt() == 0)
+                    Modifier
+                        .padding(start = 112.dp, end = 112.dp, top = dimensionResource(id = R.dimen.spacing_m))
+                        .size(250.dp, 150.dp)
+                else if (sliderPosition.toInt() == 10)
+                    Modifier
+                        .padding(start = 93.dp, end = 93.dp, top = dimensionResource(id = R.dimen.spacing_m))
+                        .size(300.dp, 250.dp)
+                else
+                    Modifier
+                        .padding(
+                            start = dimensionResource(id = R.dimen.spacing_m),
+                            end = dimensionResource(id = R.dimen.spacing_m),
+                            top = dimensionResource(id = R.dimen.spacing_m)
+                        )
+                        .size(400.dp, 250.dp)
             ) {
-                OdsImageList(
+                OdsImageItem(
                     image = rememberAsyncImagePainter(
                         model = recipe.imageUrl,
                         placeholder = painterResource(id = R.drawable.placeholder),

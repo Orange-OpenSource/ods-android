@@ -39,7 +39,7 @@ fun ComponentDemoScreen(componentId: Long) {
             Component.Checkboxes -> ComponentCheckboxes()
             Component.Dialogs -> ComponentDialog()
             Component.FloatingActionButtons -> ComponentFloatingActionButton()
-            Component.ImageLists -> ComponentImageItem()
+            Component.ImageItem -> ComponentImageItem()
             Component.Lists -> ComponentLists()
             Component.ModalDrawers -> ComponentModalDrawers()
             Component.RadioButtons -> ComponentRadioButtons()
