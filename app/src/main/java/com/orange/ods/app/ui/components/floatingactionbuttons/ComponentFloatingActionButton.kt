@@ -28,9 +28,12 @@ import androidx.compose.ui.unit.dp
 import com.orange.ods.app.R
 import com.orange.ods.app.ui.components.utilities.ComponentCustomizationBottomSheetScaffold
 import com.orange.ods.app.ui.components.utilities.clickOnElement
+import com.orange.ods.app.ui.utilities.composable.BetweenQuotesStringParameter
 import com.orange.ods.app.ui.utilities.composable.CodeImplementationColumn
+import com.orange.ods.app.ui.utilities.composable.CodeParameter
 import com.orange.ods.app.ui.utilities.composable.ComposableCode
-import com.orange.ods.app.ui.utilities.composable.SimpleParameter
+import com.orange.ods.app.ui.utilities.composable.PredefinedParameter
+import com.orange.ods.app.ui.utilities.composable.StringRepresentationParameter
 import com.orange.ods.app.ui.utilities.composable.Subtitle
 import com.orange.ods.compose.component.OdsComponent
 import com.orange.ods.compose.component.button.OdsExtendedFloatingActionButton
@@ -112,12 +115,12 @@ fun ComponentFloatingActionButton() {
                 CodeImplementationColumn(
                     modifier = Modifier.padding(horizontal = dimensionResource(id = R.dimen.screen_horizontal_margin))
                 ) {
-                    ComposableCode(name = usedComponentName, parameters = mutableListOf<SimpleParameter>(
-                        SimpleParameter.Icon
+                    ComposableCode(name = usedComponentName, exhaustiveParameters = false, parameters = mutableListOf<CodeParameter>(
+                        PredefinedParameter.Icon
                     ).apply {
-                        if (this@with.size.value == FabCustomizationState.Size.Mini) add(SimpleParameter.StringRepresentationParameter("mini", true))
-                        if (hasText) add(SimpleParameter.BetweenQuotesParameter("text", "Add"))
-                        if (isFullScreenWidth) add(SimpleParameter.FillMaxWidth)
+                        if (this@with.size.value == FabCustomizationState.Size.Mini) add(StringRepresentationParameter("mini", true))
+                        if (hasText) add(BetweenQuotesStringParameter("text", "Add"))
+                        if (isFullScreenWidth) add(PredefinedParameter.FillMaxWidth)
                     })
                 }
             }

@@ -25,12 +25,14 @@ import com.orange.ods.app.ui.LocalMainTopAppBarManager
 import com.orange.ods.app.ui.TopAppBarConfiguration
 import com.orange.ods.app.ui.components.utilities.ComponentCountRow
 import com.orange.ods.app.ui.components.utilities.ComponentCustomizationBottomSheetScaffold
+import com.orange.ods.app.ui.utilities.composable.BetweenQuotesStringParameter
 import com.orange.ods.app.ui.utilities.composable.CodeImplementationColumn
+import com.orange.ods.app.ui.utilities.composable.CodeParameter
 import com.orange.ods.app.ui.utilities.composable.ComposableCode
 import com.orange.ods.app.ui.utilities.composable.ComposableParameter
 import com.orange.ods.app.ui.utilities.composable.IconPainterValue
-import com.orange.ods.app.ui.utilities.composable.ParameterCode
-import com.orange.ods.app.ui.utilities.composable.SimpleParameter
+import com.orange.ods.app.ui.utilities.composable.PredefinedParameter
+import com.orange.ods.app.ui.utilities.composable.StringParameter
 import com.orange.ods.compose.component.OdsComponent
 import com.orange.ods.compose.component.list.OdsListItem
 import com.orange.ods.compose.component.list.OdsSwitchTrailing
@@ -81,8 +83,9 @@ fun ComponentTopAppBar() {
                 CodeImplementationColumn(modifier = Modifier.padding(horizontal = dimensionResource(id = R.dimen.screen_horizontal_margin))) {
                     ComposableCode(
                         name = OdsComponent.OdsTopAppBar.name,
-                        parameters = mutableListOf<ParameterCode>(
-                            SimpleParameter.Title(stringResource(id = R.string.component_app_bars_top_regular))
+                        exhaustiveParameters = false,
+                        parameters = mutableListOf<CodeParameter>(
+                            PredefinedParameter.Title(stringResource(id = R.string.component_app_bars_top_regular))
                         ).apply {
                             if (isNavigationIconEnabled) add(ComposableParameter(
                                 name = "navigationIcon",
@@ -90,8 +93,8 @@ fun ComponentTopAppBar() {
                                     ComposableCode(
                                         name = "Icon",
                                         parameters = listOf(
-                                            SimpleParameter.ValueOnlyParameter("imageVector", "<image vector>"),
-                                            SimpleParameter.ContentDescription(stringResource(id = R.string.top_app_bar_back_icon_desc))
+                                            StringParameter("imageVector", "<image vector>"),
+                                            PredefinedParameter.ContentDescription(stringResource(id = R.string.top_app_bar_back_icon_desc))
                                         )
                                     )
                                 }
@@ -104,9 +107,9 @@ fun ComponentTopAppBar() {
                                         ComposableCode(
                                             name = "OdsTopAppBarActionButton",
                                             parameters = listOf(
-                                                SimpleParameter.OnClick,
-                                                SimpleParameter.ValueOnlyParameter("painter", IconPainterValue),
-                                                SimpleParameter.ContentDescription("icon description")
+                                                PredefinedParameter.OnClick,
+                                                StringParameter("painter", IconPainterValue),
+                                                PredefinedParameter.ContentDescription("icon description")
                                             )
                                         )
                                     }
@@ -114,20 +117,18 @@ fun ComponentTopAppBar() {
                                         ComposableCode(
                                             name = "OdsTopAppBarOverflowMenuBox",
                                             parameters = listOf(
-                                                SimpleParameter.BetweenQuotesParameter("overflowIconContentDescription", "Open overflow menu"),
+                                                BetweenQuotesStringParameter("overflowIconContentDescription", "Open overflow menu"),
                                             )
                                         ) {
                                             for (i in 1..2) {
                                                 ComposableCode(
                                                     name = "OdsDropdownMenuItem",
                                                     parameters = listOf(
-                                                        SimpleParameter.BetweenQuotesParameter("text", "Menu $i"),
-                                                        SimpleParameter.OnClick
+                                                        BetweenQuotesStringParameter("text", "Menu $i"),
+                                                        PredefinedParameter.OnClick
                                                     )
                                                 )
-
                                             }
-
                                         }
                                     }
                                 }

@@ -31,7 +31,8 @@ import com.orange.ods.app.domain.recipes.LocalRecipes
 import com.orange.ods.app.ui.components.utilities.clickOnElement
 import com.orange.ods.app.ui.utilities.composable.CodeImplementationColumn
 import com.orange.ods.app.ui.utilities.composable.ComposableCode
-import com.orange.ods.app.ui.utilities.composable.SimpleParameter
+import com.orange.ods.app.ui.utilities.composable.PredefinedParameter
+import com.orange.ods.app.ui.utilities.composable.StringParameter
 import com.orange.ods.compose.component.OdsComponent
 import com.orange.ods.compose.component.card.OdsVerticalHeaderFirstCard
 
@@ -78,21 +79,21 @@ fun CardVerticalHeaderFirst(customizationState: CardCustomizationState) {
             Spacer(modifier = Modifier.padding(top = dimensionResource(R.dimen.spacing_s)))
 
             CodeImplementationColumn {
-                ComposableCode(name = OdsComponent.OdsVerticalHeaderFirstCard.name, parameters = mutableListOf(
-                    SimpleParameter.Title(recipe.title),
-                    SimpleParameter.Image
+                ComposableCode(name = OdsComponent.OdsVerticalHeaderFirstCard.name, exhaustiveParameters = false, parameters = mutableListOf(
+                    PredefinedParameter.Title(recipe.title),
+                    PredefinedParameter.Image
                 ).apply {
-                    if (hasThumbnail) add(SimpleParameter.ValueOnlyParameter("thumbnail", "<thumbnail painter>"))
-                    if (hasSubtitle) add(SimpleParameter.Subtitle(recipe.subtitle))
-                    if (hasText) add(SimpleParameter.ValueOnlyParameter("text", "<card text>"))
-                    if (isClickable) add(SimpleParameter.OnCardClick)
+                    if (hasThumbnail) add(StringParameter("thumbnail", "<thumbnail painter>"))
+                    if (hasSubtitle) add(PredefinedParameter.Subtitle(recipe.subtitle))
+                    if (hasText) add(StringParameter("text", "<card text>"))
+                    if (isClickable) add(PredefinedParameter.OnCardClick)
                     if (hasButton1) {
-                        add(SimpleParameter.Button1Text(button1Text))
-                        add(SimpleParameter.OnButton1Click)
+                        add(PredefinedParameter.Button1Text(button1Text))
+                        add(PredefinedParameter.OnButton1Click)
                     }
                     if (hasButton2) {
-                        add(SimpleParameter.Button2Text(button2Text))
-                        add(SimpleParameter.OnButton2Click)
+                        add(PredefinedParameter.Button2Text(button2Text))
+                        add(PredefinedParameter.OnButton2Click)
                     }
                 })
             }

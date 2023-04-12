@@ -38,9 +38,12 @@ import com.orange.ods.app.R
 import com.orange.ods.app.domain.recipes.LocalRecipes
 import com.orange.ods.app.ui.components.utilities.ComponentCustomizationBottomSheetScaffold
 import com.orange.ods.app.ui.components.utilities.clickOnElement
+import com.orange.ods.app.ui.utilities.composable.BetweenQuotesStringParameter
 import com.orange.ods.app.ui.utilities.composable.CodeImplementationColumn
 import com.orange.ods.app.ui.utilities.composable.ComposableCode
-import com.orange.ods.app.ui.utilities.composable.SimpleParameter
+import com.orange.ods.app.ui.utilities.composable.LambdaParameter
+import com.orange.ods.app.ui.utilities.composable.PredefinedParameter
+import com.orange.ods.app.ui.utilities.composable.StringRepresentationParameter
 import com.orange.ods.compose.component.OdsComponent
 import com.orange.ods.compose.component.divider.OdsDivider
 import com.orange.ods.compose.component.list.OdsIconTrailing
@@ -114,19 +117,20 @@ fun MenuDropdown() {
                 ) {
                     ComposableCode(
                         name = OdsComponent.OdsDropdownMenu.name,
+                        exhaustiveParameters = false,
                         parameters = mutableListOf(
-                            SimpleParameter.StringRepresentationParameter("expanded", menuExpanded),
-                            SimpleParameter.LambdaParameter("onDismissRequest")
+                            StringRepresentationParameter("expanded", menuExpanded),
+                            LambdaParameter("onDismissRequest")
                         )
                     ) {
                         recipes.take(2).forEachIndexed { index, recipe ->
                             ComposableCode(
                                 name = "OdsDropdownMenuItem",
                                 parameters = mutableListOf(
-                                    SimpleParameter.BetweenQuotesParameter("text", recipe.title),
-                                    SimpleParameter.OnClick
+                                    BetweenQuotesStringParameter("text", recipe.title),
+                                    PredefinedParameter.OnClick
                                 ).apply {
-                                    if (hasIcons && recipe.iconResId != null) add(SimpleParameter.Icon)
+                                    if (hasIcons && recipe.iconResId != null) add(PredefinedParameter.Icon)
                                 }
                             )
                             if (hasDividerExample && index == 0) {

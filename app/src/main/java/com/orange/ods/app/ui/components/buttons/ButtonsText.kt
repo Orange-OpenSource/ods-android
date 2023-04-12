@@ -23,8 +23,10 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import com.orange.ods.app.R
 import com.orange.ods.app.ui.utilities.composable.CodeImplementationColumn
+import com.orange.ods.app.ui.utilities.composable.CodeParameter
 import com.orange.ods.app.ui.utilities.composable.ComposableCode
-import com.orange.ods.app.ui.utilities.composable.SimpleParameter
+import com.orange.ods.app.ui.utilities.composable.PredefinedParameter
+import com.orange.ods.app.ui.utilities.composable.StringParameter
 import com.orange.ods.app.ui.utilities.composable.Title
 import com.orange.ods.compose.component.OdsComponent
 import com.orange.ods.compose.component.button.OdsTextButton
@@ -40,7 +42,6 @@ fun ButtonsText(customizationState: ButtonCustomizationState) {
                 .verticalScroll(rememberScrollState())
                 .padding(vertical = dimensionResource(id = R.dimen.screen_vertical_margin))
         ) {
-
             Title(
                 textRes = if (textButtonStyle.value == OdsTextButtonStyle.Default) R.string.component_button_style_default else R.string.component_button_style_primary,
                 horizontalPadding = true
@@ -63,12 +64,12 @@ fun ButtonsText(customizationState: ButtonCustomizationState) {
             CodeImplementationColumn(
                 modifier = Modifier.padding(horizontal = dimensionResource(id = R.dimen.screen_horizontal_margin))
             ) {
-                ComposableCode(name = OdsComponent.OdsTextButton.name, parameters = mutableListOf<SimpleParameter>(
-                    SimpleParameter.ValueOnlyParameter("style", textButtonStyle.value.fullName)
+                ComposableCode(name = OdsComponent.OdsTextButton.name, exhaustiveParameters = false, parameters = mutableListOf<CodeParameter>(
+                    StringParameter("style", textButtonStyle.value.fullName)
                 ).apply {
-                    if (hasFullScreenWidth) add(SimpleParameter.FillMaxWidth)
-                    if (hasLeadingIcon) add(SimpleParameter.Icon)
-                    if (!isEnabled) add(SimpleParameter.Enabled(false))
+                    if (hasFullScreenWidth) add(PredefinedParameter.FillMaxWidth)
+                    if (hasLeadingIcon) add(PredefinedParameter.Icon)
+                    if (!isEnabled) add(PredefinedParameter.Enabled(false))
                 })
             }
         }

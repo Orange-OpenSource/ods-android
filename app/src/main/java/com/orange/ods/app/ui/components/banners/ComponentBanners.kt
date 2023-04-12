@@ -29,9 +29,11 @@ import com.orange.ods.app.domain.recipes.LocalRecipes
 import com.orange.ods.app.ui.components.utilities.ComponentCountRow
 import com.orange.ods.app.ui.components.utilities.ComponentCustomizationBottomSheetScaffold
 import com.orange.ods.app.ui.components.utilities.clickOnElement
+import com.orange.ods.app.ui.utilities.composable.BetweenQuotesStringParameter
 import com.orange.ods.app.ui.utilities.composable.CodeImplementationColumn
+import com.orange.ods.app.ui.utilities.composable.CodeParameter
 import com.orange.ods.app.ui.utilities.composable.ComposableCode
-import com.orange.ods.app.ui.utilities.composable.SimpleParameter
+import com.orange.ods.app.ui.utilities.composable.PredefinedParameter
 import com.orange.ods.compose.component.OdsComponent
 import com.orange.ods.compose.component.banner.OdsBanner
 import com.orange.ods.compose.component.list.OdsListItem
@@ -96,14 +98,12 @@ fun ComponentBanners() {
                 CodeImplementationColumn(
                     modifier = Modifier.padding(horizontal = dimensionResource(id = R.dimen.screen_horizontal_margin))
                 ) {
-                    ComposableCode(name = OdsComponent.OdsBanner.name, parameters = mutableListOf<SimpleParameter>(
-                        SimpleParameter.BetweenQuotesParameter("message", if (hasTwoTextLines) recipe.description else recipe.title),
-                        SimpleParameter.Button1Text(stringResource(id = R.string.component_banner_dismiss)),
+                    ComposableCode(name = OdsComponent.OdsBanner.name, exhaustiveParameters = false, parameters = mutableListOf<CodeParameter>(
+                        BetweenQuotesStringParameter("message", if (hasTwoTextLines) recipe.description else recipe.title),
+                        PredefinedParameter.Button1Text(stringResource(id = R.string.component_banner_dismiss)),
                     ).apply {
-                        if (hasImage) add(SimpleParameter.Image)
-                        if (hasButton2) add(
-                            SimpleParameter.Button2Text(stringResource(id = R.string.component_banner_detail))
-                        )
+                        if (hasImage) add(PredefinedParameter.Image)
+                        if (hasButton2) add(PredefinedParameter.Button2Text(stringResource(id = R.string.component_banner_detail)))
                     })
                 }
             }

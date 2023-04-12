@@ -24,12 +24,16 @@ import androidx.compose.ui.text.input.KeyboardCapitalization
 import com.orange.ods.app.R
 import com.orange.ods.app.ui.components.textfields.TextFieldCustomizationState.Companion.TextFieldMaxChars
 import com.orange.ods.app.ui.components.utilities.clickOnElement
+import com.orange.ods.app.ui.utilities.composable.BetweenQuotesStringParameter
 import com.orange.ods.app.ui.utilities.composable.CodeImplementationColumn
+import com.orange.ods.app.ui.utilities.composable.CodeParameter
 import com.orange.ods.app.ui.utilities.composable.ComposableCode
-import com.orange.ods.app.ui.utilities.composable.ObjectInstanceCode
+import com.orange.ods.app.ui.utilities.composable.LambdaParameter
+import com.orange.ods.app.ui.utilities.composable.ObjectInstance
 import com.orange.ods.app.ui.utilities.composable.ObjectParameter
-import com.orange.ods.app.ui.utilities.composable.ParameterCode
-import com.orange.ods.app.ui.utilities.composable.SimpleParameter
+import com.orange.ods.app.ui.utilities.composable.PredefinedParameter
+import com.orange.ods.app.ui.utilities.composable.StringParameter
+import com.orange.ods.app.ui.utilities.composable.StringRepresentationParameter
 import com.orange.ods.compose.component.OdsComponent
 import com.orange.ods.compose.component.textfield.OdsIconTrailing
 import com.orange.ods.compose.component.textfield.OdsTextField
@@ -129,37 +133,37 @@ fun TextFieldCodeImplementationColumn(
     with(customizationState) {
         val capitalizationValue = if (softKeyboardCapitalization.value) KeyboardCapitalization.Characters.toString() else KeyboardCapitalization.None.toString()
         CodeImplementationColumn {
-            ComposableCode(name = componentName, parameters = mutableListOf(
-                SimpleParameter.BetweenQuotesParameter("value", displayedText),
-                SimpleParameter.LambdaParameter("onValueChange"),
-                SimpleParameter.Label(label),
-                SimpleParameter.Placeholder(placeholder),
+            ComposableCode(name = componentName, exhaustiveParameters = false, parameters = mutableListOf(
+                BetweenQuotesStringParameter("value", displayedText),
+                LambdaParameter("onValueChange"),
+                PredefinedParameter.Label(label),
+                PredefinedParameter.Placeholder(placeholder),
                 ObjectParameter(
-                    "keyboardOptions", ObjectInstanceCode(
-                        KeyboardOptions::class.java.simpleName, listOf<ParameterCode>(
-                            SimpleParameter.ValueOnlyParameter("capitalization", capitalizationValue),
-                            SimpleParameter.ValueOnlyParameter("keyboardType", softKeyboardType.value.keyboardType.toString()),
-                            SimpleParameter.ValueOnlyParameter("imeAction", softKeyboardAction.value.imeAction.toString())
+                    "keyboardOptions", ObjectInstance(
+                        KeyboardOptions::class.java.simpleName, listOf<CodeParameter>(
+                            StringParameter("capitalization", capitalizationValue),
+                            StringParameter("keyboardType", softKeyboardType.value.keyboardType.toString()),
+                            StringParameter("imeAction", softKeyboardAction.value.imeAction.toString())
                         )
                     )
                 )
             ).apply {
-                if (hasLeadingIcon) add(SimpleParameter.Icon)
-                if (!hasVisualisationIcon) add(SimpleParameter.StringRepresentationParameter("visualisationIcon", false))
-                if (!isEnabled) add(SimpleParameter.Enabled(false))
+                if (hasLeadingIcon) add(PredefinedParameter.Icon)
+                if (!hasVisualisationIcon) add(StringRepresentationParameter("visualisationIcon", false))
+                if (!isEnabled) add(PredefinedParameter.Enabled(false))
                 if (isError) {
-                    add(SimpleParameter.StringRepresentationParameter("isError", true))
-                    errorMessage?.let { add(SimpleParameter.BetweenQuotesParameter("errorMessage", it)) }
+                    add(StringRepresentationParameter("isError", true))
+                    errorMessage?.let { add(BetweenQuotesStringParameter("errorMessage", it)) }
                 }
-                if (isSingleLine) add(SimpleParameter.StringRepresentationParameter("singleLine", true))
-                if (hasTrailing) add(SimpleParameter.ValueOnlyParameter("trailing", "<trailing composable>"))
+                if (isSingleLine) add(StringRepresentationParameter("singleLine", true))
+                if (hasTrailing) add(StringParameter("trailing", "<trailing composable>"))
                 if (hasCharacterCounter) {
                     add(
                         ObjectParameter(
-                            "characterCounter", ObjectInstanceCode(
-                                OdsComponent.OdsTextFieldCharacterCounter.name, listOf<ParameterCode>(
-                                    SimpleParameter.StringRepresentationParameter("valueLength", displayedText.length),
-                                    SimpleParameter.Enabled(isEnabled)
+                            "characterCounter", ObjectInstance(
+                                OdsComponent.OdsTextFieldCharacterCounter.name, listOf<CodeParameter>(
+                                    StringRepresentationParameter("valueLength", displayedText.length),
+                                    PredefinedParameter.Enabled(isEnabled)
                                 )
                             )
                         )

@@ -32,9 +32,12 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import com.orange.ods.app.R
 import com.orange.ods.app.ui.components.utilities.ComponentCustomizationBottomSheetScaffold
+import com.orange.ods.app.ui.utilities.composable.BetweenQuotesStringParameter
 import com.orange.ods.app.ui.utilities.composable.CodeImplementationColumn
+import com.orange.ods.app.ui.utilities.composable.CodeParameter
 import com.orange.ods.app.ui.utilities.composable.ComposableCode
-import com.orange.ods.app.ui.utilities.composable.SimpleParameter
+import com.orange.ods.app.ui.utilities.composable.PredefinedParameter
+import com.orange.ods.app.ui.utilities.composable.StringRepresentationParameter
 import com.orange.ods.app.ui.utilities.composable.Subtitle
 import com.orange.ods.compose.component.OdsComponent
 import com.orange.ods.compose.component.chip.OdsChoiceChip
@@ -111,16 +114,17 @@ fun ProgressLinear() {
                 CodeImplementationColumn {
                     ComposableCode(
                         name = OdsComponent.OdsLinearProgressIndicator.name,
-                        parameters = mutableListOf<SimpleParameter>().apply {
+                        exhaustiveParameters = false,
+                        parameters = mutableListOf<CodeParameter>().apply {
                             if (type.value == ProgressCustomizationState.Type.Determinate) add(
-                                SimpleParameter.StringRepresentationParameter(
+                                StringRepresentationParameter(
                                     "progress",
                                     determinateProgressValue
                                 )
                             )
-                            if (hasLabel) add(SimpleParameter.BetweenQuotesParameter("label", text))
-                            if (hasIcon) add(SimpleParameter.Icon)
-                            if (hasCurrentValue) add(SimpleParameter.StringRepresentationParameter("showCurrentValue", hasCurrentValue))
+                            if (hasLabel) add(BetweenQuotesStringParameter("label", text))
+                            if (hasIcon) add(PredefinedParameter.Icon)
+                            if (hasCurrentValue) add(StringRepresentationParameter("showCurrentValue", hasCurrentValue))
                         }
                     )
                 }
