@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased](https://github.com/Orange-OpenSource/ods-android/compare/0.12.0...develop)
 
+### Added
+
+- \[App\] Generalize code implementation section for all components ([#501](https://github.com/Orange-OpenSource/ods-android/issues/501))
+
 ### Fixed
 
 - \[App\] Fix a bug where avatar have a default image ([#504](https://github.com/Orange-OpenSource/ods-android/issues/504))
