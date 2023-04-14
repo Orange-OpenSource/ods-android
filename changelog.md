@@ -10,6 +10,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Fixed
 
 - \[App\] Fix a bug where avatar have a default image ([#504](https://github.com/Orange-OpenSource/ods-android/issues/504))
+- \[App\] Fix highest emphasis buttons background color ([#513](https://github.com/Orange-OpenSource/ods-android/issues/513))
 
 ## [0.12.0](https://github.com/Orange-OpenSource/ods-android/compare/0.11.1...0.12.0) - 2023-04-06
 
