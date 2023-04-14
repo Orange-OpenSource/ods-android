@@ -13,6 +13,7 @@ package com.orange.ods.compose.component.imageitem
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
@@ -28,7 +29,6 @@ import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.PreviewParameter
-import androidx.compose.ui.unit.dp
 import com.orange.ods.R
 import com.orange.ods.compose.component.OdsComponentApi
 import com.orange.ods.compose.component.button.OdsIconToggleButton
@@ -56,9 +56,9 @@ fun OdsImageItem(
     checkedIcon: Boolean,
     onCheckedChange: (Boolean) -> Unit,
     modifier: Modifier = Modifier,
+    iconContentDescription: String? = null,
     imageContentDescription: String? = null,
     icon: Painter? = null,
-    iconContentDescription: String,
     title: String? = null,
 ) {
     Box(
@@ -70,7 +70,7 @@ fun OdsImageItem(
             contentDescription = imageContentDescription,
             contentScale = ContentScale.Crop,
             modifier = Modifier
-                .fillMaxWidth()
+                .fillMaxSize()
         )
         title?.let {
             Surface(
@@ -82,14 +82,15 @@ fun OdsImageItem(
                 Row(
                     verticalAlignment = Alignment.CenterVertically,
                     modifier = Modifier
-                        .height(48.dp)
+                        .height(dimensionResource(id = R.dimen.list_single_line_item_height))
                 ) {
                     Text(
                         text = it,
                         color = Color.White,
                         style = OdsTheme.typography.subtitle1,
-                        modifier = Modifier.weight(1f)
-                            .padding(start = dimensionResource(id = R.dimen.spacing_m)),
+                        modifier = Modifier
+                            .weight(1f)
+                            .padding(start = dimensionResource(id = R.dimen.spacing_m), end = dimensionResource(id = R.dimen.spacing_m)),
                         maxLines = 1,
                         overflow = TextOverflow.Ellipsis
                     )
@@ -125,9 +126,9 @@ private fun PreviewOdsImageList(@PreviewParameter(OdsImageListPreviewParameterPr
 
 private data class OdsImageListPreviewParameter(
     val image: Int,
+    val checked: Boolean,
     val title: String?,
-    val icon: Int?,
-    val checked: Boolean
+    val icon: Int?
 )
 
 private class OdsImageListPreviewParameterProvider :
@@ -140,8 +141,8 @@ private val previewParameterValues: List<OdsImageListPreviewParameter>
         val icon = R.drawable.ic_check
 
         return listOf(
-            OdsImageListPreviewParameter(image, title = null, icon, checked = false),
-            OdsImageListPreviewParameter(image, title, icon = null, checked = false),
-            OdsImageListPreviewParameter(image, title, icon, checked = true)
+            OdsImageListPreviewParameter(image, title = null, icon = icon, checked = false),
+            OdsImageListPreviewParameter(image, title = title, icon = null, checked = false),
+            OdsImageListPreviewParameter(image, title = title, icon = icon, checked = true)
         )
     }

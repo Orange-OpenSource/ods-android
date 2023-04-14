@@ -10,7 +10,11 @@
 
 package com.orange.ods.app.ui.components.imageitem
 
+import androidx.compose.animation.AnimatedVisibility
+import androidx.compose.animation.fadeIn
+import androidx.compose.animation.fadeOut
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.material.ExperimentalMaterialApi
@@ -21,6 +25,7 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.painterResource
@@ -49,6 +54,7 @@ fun ComponentImageItem() {
     val leftIconContentDescription = stringResource(id = R.string.component_image_item_small)
     val rightIcon = painterResource(id = R.drawable.ic_display_standard)
     val rightIconContentDescription = stringResource(id = R.string.component_image_item_large)
+    val imageItemHeight = 250.dp
 
     with(imageItemCustomizationState) {
         if (!hasText) {
@@ -80,39 +86,37 @@ fun ComponentImageItem() {
                 }
             }) {
             Column(
-                modifier = if (sliderPosition.toInt() == 0)
-                    Modifier
-                        .padding(start = 112.dp, end = 112.dp, top = dimensionResource(id = R.dimen.spacing_m))
-                        .size(250.dp, 150.dp)
-                else if (sliderPosition.toInt() == 10)
-                    Modifier
-                        .padding(start = 93.dp, end = 93.dp, top = dimensionResource(id = R.dimen.spacing_m))
-                        .size(300.dp, 250.dp)
-                else
-                    Modifier
-                        .padding(
-                            start = dimensionResource(id = R.dimen.spacing_m),
-                            end = dimensionResource(id = R.dimen.spacing_m),
-                            top = dimensionResource(id = R.dimen.spacing_m)
-                        )
-                        .size(400.dp, 250.dp)
+                modifier = Modifier.fillMaxSize(),
+                horizontalAlignment = Alignment.CenterHorizontally
             ) {
-                OdsImageItem(
-                    image = rememberAsyncImagePainter(
-                        model = recipe.imageUrl,
-                        placeholder = painterResource(id = R.drawable.placeholder),
-                        error = painterResource(id = R.drawable.placeholder)
-                    ),
-                    icon = if (hasSideIcons && !iconCheckedState.value) painterResource(id = R.drawable.ic_heart_outlined)
-                    else if (hasSideIcons && iconCheckedState.value) painterResource(id = R.drawable.ic_heart) else null,
-                    title = if (hasText) recipe.title else null,
-                    checkedIcon = iconCheckedState.value,
-                    iconContentDescription = stringResource(id = R.string.component_button_icon_toggle_favorite_icon_desc),
-                    onCheckedChange = { checked -> iconCheckedState.value = checked }
-                )
+                AnimatedVisibility(
+                    visible = true, enter = fadeIn(),
+                    exit = fadeOut()
+                ) {
+                    OdsImageItem(
+                        image = rememberAsyncImagePainter(
+                            model = recipe.imageUrl,
+                            placeholder = painterResource(id = R.drawable.placeholder),
+                            error = painterResource(id = R.drawable.placeholder)
+                        ),
+                        icon = if (hasSideIcons && !iconCheckedState.value) painterResource(id = R.drawable.ic_heart_outlined)
+                        else if (hasSideIcons && iconCheckedState.value) painterResource(id = R.drawable.ic_heart) else null,
+                        title = if (hasText) recipe.title else null,
+                        modifier = if (sliderPosition.toInt() == 0) Modifier
+                            .size(174.dp, 175.dp)
+                            .padding(dimensionResource(id = R.dimen.spacing_m))
+                        else if (sliderPosition.toInt() == 20) Modifier
+                            .size(400.dp, imageItemHeight)
+                            .padding(dimensionResource(id = R.dimen.spacing_m))
+                        else Modifier
+                            .size(imageItemHeight, dimensionResource(id = R.dimen.card_big_image_height))
+                            .padding(dimensionResource(id = R.dimen.spacing_m)),
+                        checkedIcon = iconCheckedState.value,
+                        iconContentDescription = stringResource(id = R.string.component_button_icon_toggle_favorite_icon_desc),
+                        onCheckedChange = { checked -> iconCheckedState.value = checked }
+                    )
+                }
             }
-
-
         }
     }
 }

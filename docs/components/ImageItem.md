@@ -27,6 +27,23 @@ Please follow [accessibility criteria for development](https://a11y-guidelines.o
 
 ## Implementation
 
+> **Jetpack Compose implementation**
+
+You can use the `OdsImageItem` composable like this:
+
+```kotlin
+OdsImageItem(
+    image = painterResource(id = R.drawable.placeholder),
+    checkedIcon = false,
+    onCheckedChange = { },
+    iconContentDescription = "",// Optional
+    modifier = modifier,
+    imageContentDescription = "Picture content description", //Optional
+    icon = painterResource(id = R.drawable.ic_heart), // Optional
+    title = "Component Image Item" // Optional 
+)
+```
+
 ## Component specific tokens
 
 _Soon available_

@@ -56,8 +56,8 @@ fun OdsIconToggleButton(
     onCheckedChange: (Boolean) -> Unit,
     uncheckedPainter: Painter,
     checkedPainter: Painter,
-    iconContentDescription: String,
     modifier: Modifier = Modifier,
+    iconContentDescription: String?,
     enabled: Boolean = true,
     displaySurface: OdsDisplaySurface = OdsDisplaySurface.Default
 ) {
