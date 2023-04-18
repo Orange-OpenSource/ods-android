@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?><!--
+  ~ /*
+  ~ * Copyright 2021 Orange
+  ~ *
+  ~ * Use of this source code is governed by an MIT-style
+  ~ * license that can be found in the LICENSE file or at
+  ~ * https://opensource.org/licenses/MIT.
+  ~ */
+  -->
+
+<resources>
+    <declare-styleable name="OdsBanner">
+        <attr name="message" format="string" />
+        <attr name="button1Text" format="string" />
+        <attr name="image" format="reference|color" />
+        <attr name="imageContentDescription" format="string" />
+        <attr name="button2Text" format="string" />
+    </declare-styleable>
+</resources>
