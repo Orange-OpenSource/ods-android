@@ -20,8 +20,6 @@ import androidx.compose.ui.res.stringResource
 import androidx.navigation.NavBackStackEntry
 import androidx.navigation.NavGraphBuilder
 import androidx.navigation.compose.composable
-import com.orange.ods.compose.component.bottomnavigation.OdsBottomNavigation
-import com.orange.ods.compose.component.bottomnavigation.OdsBottomNavigationItem
 import com.orange.ods.app.R
 import com.orange.ods.app.ui.about.AboutScreen
 import com.orange.ods.app.ui.about.UrlAboutItem
@@ -31,6 +29,8 @@ import com.orange.ods.app.ui.components.ComponentsScreen
 import com.orange.ods.app.ui.guidelines.GuidelinesScreen
 import com.orange.ods.app.ui.modules.ModulesScreen
 import com.orange.ods.app.ui.utilities.launchUrl
+import com.orange.ods.compose.component.bottomnavigation.OdsBottomNavigation
+import com.orange.ods.compose.component.bottomnavigation.OdsBottomNavigationItem
 
 @Composable
 fun MainBottomNavigation(items: Array<BottomNavigationSections>, currentRoute: String, navigateToRoute: (String) -> Unit) {
@@ -48,19 +48,29 @@ fun MainBottomNavigation(items: Array<BottomNavigationSections>, currentRoute: S
 
 fun NavGraphBuilder.addBottomNavigationGraph(navigateToElement: (String, Long?, NavBackStackEntry) -> Unit) {
     composable(BottomNavigationSections.Guidelines.route) { from ->
+        val topAppBarConfiguration = MainTopAppBarState.DefaultConfiguration.newBuilder()
+            .prependAction(TopAppBarConfiguration.Action.Search)
+            .build()
+        LocalMainTopAppBarManager.current.updateTopAppBar(topAppBarConfiguration)
         LocalMainTabsManager.current.clearTopAppBarTabs()
         GuidelinesScreen(onGuidelineClick = { route -> navigateToElement(route, null, from) })
     }
     composable(BottomNavigationSections.Components.route) { from ->
+        val topAppBarConfiguration = MainTopAppBarState.DefaultConfiguration.newBuilder()
+            .prependAction(TopAppBarConfiguration.Action.Search)
+            .build()
+        LocalMainTopAppBarManager.current.updateTopAppBar(topAppBarConfiguration)
         LocalMainTabsManager.current.clearTopAppBarTabs()
         ComponentsScreen(onComponentClick = { id -> navigateToElement(MainDestinations.ComponentDetailRoute, id, from) })
     }
     composable(BottomNavigationSections.Modules.route) {
+        LocalMainTopAppBarManager.current.updateTopAppBar(MainTopAppBarState.DefaultConfiguration)
         LocalMainTabsManager.current.clearTopAppBarTabs()
         ModulesScreen()
     }
     composable(BottomNavigationSections.About.route) { from ->
         val context = LocalContext.current
+        LocalMainTopAppBarManager.current.updateTopAppBar(MainTopAppBarState.DefaultConfiguration)
         LocalMainTabsManager.current.clearTopAppBarTabs()
         AboutScreen(onAboutItemClick = { id ->
             val aboutItem = aboutItems.firstOrNull { it.id == id }

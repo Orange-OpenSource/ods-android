@@ -24,6 +24,7 @@
     <string name="top_app_bar_action_change_theme_desc">Change theme</string>
     <string name="top_app_bar_action_change_mode_to_dark_desc">Change to dark mode</string>
     <string name="top_app_bar_action_change_mode_to_light_desc">Change to light mode</string>
+    <string name="top_app_bar_action_change_ui_framework_desc">Change UI framework</string>
 
     <!-- Guidelines -->
     <string name="guideline_color">Colour</string>

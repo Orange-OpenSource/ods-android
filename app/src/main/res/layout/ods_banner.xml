@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<!--
+  ~ /*
+  ~ * Copyright 2021 Orange
+  ~ *
+  ~ * Use of this source code is governed by an MIT-style
+  ~ * license that can be found in the LICENSE file or at
+  ~ * https://opensource.org/licenses/MIT.
+  ~ */
+  -->
+
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <variable
+            name="message"
+            type="String" />
+
+        <variable
+            name="button1Text"
+            type="String" />
+
+        <variable
+            name="button2Text"
+            type="String" />
+
+        <variable
+            name="imageContentDescription"
+            type="String" />
+    </data>
+
+    <com.orange.ods.xml.component.banner.OdsBanner
+        android:id="@+id/banner"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:message="@{message}"
+        app:button1Text="@{button1Text}"
+        app:button2Text="@{button2Text}"
+        app:imageContentDescription="@{imageContentDescription}">
+
+    </com.orange.ods.xml.component.banner.OdsBanner>
+
+</layout>

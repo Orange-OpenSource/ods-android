@@ -10,6 +10,8 @@
 
 package com.orange.ods.app.ui
 
+import android.os.Parcelable
+import androidx.annotation.DrawableRes
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.MutableState
 import androidx.compose.runtime.mutableStateOf
@@ -18,6 +20,7 @@ import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.staticCompositionLocalOf
 import androidx.compose.ui.text.input.TextFieldValue
 import com.orange.ods.app.R
+import kotlinx.parcelize.Parcelize
 
 val LocalMainTopAppBarManager = staticCompositionLocalOf<MainTopAppBarManager> { error("CompositionLocal LocalMainTopAppBarManager not present") }
 
@@ -31,30 +34,26 @@ interface MainTopAppBarManager {
 @Composable
 fun rememberMainTopAppBarState(
     titleRes: MutableState<Int> = rememberSaveable { mutableStateOf(R.string.navigation_item_guidelines) },
-    actionCount: MutableState<Int> = rememberSaveable { mutableStateOf(MainTopAppBarState.DefaultConfiguration.actionCount) },
+    actions: MutableState<List<TopAppBarConfiguration.Action>> = rememberSaveable { mutableStateOf(MainTopAppBarState.DefaultConfiguration.actions) },
     navigationIconEnabled: MutableState<Boolean> = rememberSaveable { mutableStateOf(MainTopAppBarState.DefaultConfiguration.isNavigationIconEnabled) },
-    overflowMenuEnabled: MutableState<Boolean> = rememberSaveable { mutableStateOf(MainTopAppBarState.DefaultConfiguration.isOverflowMenuEnabled) },
     searchedText: MutableState<TextFieldValue> = remember { mutableStateOf(TextFieldValue("")) },
 ) =
-    remember(titleRes, actionCount, searchedText, navigationIconEnabled, overflowMenuEnabled) {
-        MainTopAppBarState(titleRes, actionCount, searchedText, navigationIconEnabled, overflowMenuEnabled)
+    remember(titleRes, actions, searchedText, navigationIconEnabled) {
+        MainTopAppBarState(titleRes, actions, searchedText, navigationIconEnabled)
     }
 
 
 class MainTopAppBarState(
     val titleRes: MutableState<Int>,
-    val actionCount: MutableState<Int>,
+    val actions: MutableState<List<TopAppBarConfiguration.Action>>,
     var searchedText: MutableState<TextFieldValue>,
-    private val navigationIconEnabled: MutableState<Boolean>,
-    private val overflowMenuEnabled: MutableState<Boolean>
-
+    private val navigationIconEnabled: MutableState<Boolean>
 ) : MainTopAppBarManager {
 
     companion object {
         val DefaultConfiguration = TopAppBarConfiguration(
             isNavigationIconEnabled = true,
-            actionCount = 2,
-            isOverflowMenuEnabled = false
+            actions = listOf(TopAppBarConfiguration.Action.Theme, TopAppBarConfiguration.Action.Mode)
         )
     }
 
@@ -65,13 +64,9 @@ class MainTopAppBarState(
     val isNavigationIconEnabled: Boolean
         get() = navigationIconEnabled.value
 
-    val isOverflowMenuEnabled: Boolean
-        get() = overflowMenuEnabled.value
-
     override fun updateTopAppBar(topAppBarConfiguration: TopAppBarConfiguration) {
         navigationIconEnabled.value = topAppBarConfiguration.isNavigationIconEnabled
-        actionCount.value = topAppBarConfiguration.actionCount
-        overflowMenuEnabled.value = topAppBarConfiguration.isOverflowMenuEnabled
+        actions.value = topAppBarConfiguration.actions
     }
 
     override fun updateTopAppBarTitle(titleRes: Int) {
@@ -82,6 +77,58 @@ class MainTopAppBarState(
 
 data class TopAppBarConfiguration constructor(
     val isNavigationIconEnabled: Boolean,
-    val actionCount: Int,
-    val isOverflowMenuEnabled: Boolean
-)
+    val actions: List<Action>
+) {
+
+    sealed class Action : Parcelable {
+
+        @Parcelize
+        object Search : Action()
+
+        @Parcelize
+        object Theme : Action()
+
+        @Parcelize
+        object Mode : Action()
+
+        @Parcelize
+        object UiFramework : Action()
+
+        @Parcelize
+        object OverflowMenu : Action()
+
+        @Parcelize
+        class Custom(val name: String, @DrawableRes val iconResId: Int) : Action()
+    }
+
+    class Builder {
+
+        private var isNavigationIconEnabled = true
+
+        private var actions = mutableListOf<Action>()
+
+        fun navigationIconEnabled(enabled: Boolean) = apply { isNavigationIconEnabled = enabled }
+
+        fun actions(builderAction: MutableList<Action>.() -> Unit) = apply { actions.builderAction() }
+
+        fun prependAction(action: Action) = apply {
+            actions.remove(action)
+            actions { add(0, action) }
+        }
+
+        fun appendAction(action: Action) = apply {
+            actions.remove(action)
+            actions { add(action) }
+        }
+
+        fun build() = TopAppBarConfiguration(isNavigationIconEnabled, actions)
+    }
+
+    fun newBuilder() = Builder().apply {
+        navigationIconEnabled(isNavigationIconEnabled)
+        actions {
+            clear()
+            addAll(actions)
+        }
+    }
+}

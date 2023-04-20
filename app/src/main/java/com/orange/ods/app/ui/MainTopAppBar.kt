@@ -71,7 +71,7 @@ fun MainTopAppBar(
                     focusRequester.requestFocus()
                 }
             } else {
-                TopAppBarActions(state, titleRes, onSearchActionClick, onChangeThemeActionClick)
+                TopAppBarActions(state, onSearchActionClick, onChangeThemeActionClick)
             }
         },
         elevated = false // elevation is managed in [MainScreen] cause of tabs
@@ -79,39 +79,15 @@ fun MainTopAppBar(
 }
 
 @Composable
-private fun TopAppBarActions(state: MainTopAppBarState, titleRes: Int, onSearchActionClick: () -> Unit, onChangeThemeActionClick: () -> Unit) {
-    val context = LocalContext.current
-    if (titleRes == R.string.navigation_item_components || titleRes == R.string.navigation_item_guidelines) {
-        OdsTopAppBarActionButton(
-            onClick = onSearchActionClick,
-            painter = painterResource(id = R.drawable.ic_search),
-            contentDescription = stringResource(id = R.string.search_content_description)
-        )
-    }
-    repeat(state.actionCount.value) { index ->
-        when (index) {
-            0 -> TopAppBarChangeThemeActionButton(onClick = onChangeThemeActionClick)
-            1 -> TopAppBarChangeModeActionButton()
-            else -> {
-
-                OdsTopAppBarActionButton(
-                    onClick = { clickOnElement(context, context.getString(R.string.component_app_bars_top_action_ice_cream)) },
-                    painter = painterResource(id = R.drawable.ic_ice_cream),
-                    contentDescription = stringResource(id = R.string.component_app_bars_top_action_ice_cream)
-                )
-            }
-        }
-    }
-    if (state.isOverflowMenuEnabled) {
-        OdsTopAppBarOverflowMenuBox(
-            overflowIconContentDescription = stringResource(id = R.string.component_app_bars_top_element_overflow_menu)
-        ) {
-            LocalRecipes.current.forEach { recipe ->
-                OdsDropdownMenuItem(
-                    text = recipe.title,
-                    onClick = { clickOnElement(context, recipe.title) }
-                )
-            }
+private fun TopAppBarActions(state: MainTopAppBarState, onSearchActionClick: () -> Unit, onChangeThemeActionClick: () -> Unit) {
+    state.actions.value.forEach { action ->
+        when (action) {
+            TopAppBarConfiguration.Action.Search -> TopAppBarSearchActionButton(onClick = onSearchActionClick)
+            TopAppBarConfiguration.Action.Theme -> TopAppBarChangeThemeActionButton(onClick = onChangeThemeActionClick)
+            TopAppBarConfiguration.Action.Mode -> TopAppBarChangeModeActionButton()
+            TopAppBarConfiguration.Action.UiFramework -> TopAppBarChangeUiFrameworkActionButton()
+            TopAppBarConfiguration.Action.OverflowMenu -> TopAppBarOverflowMenuBox()
+            is TopAppBarConfiguration.Action.Custom -> TopAppBarCustomActionButton(action = action)
         }
     }
 }
@@ -141,3 +117,54 @@ private fun TopAppBarChangeModeActionButton() {
     )
 }
 
+@Composable
+private fun TopAppBarSearchActionButton(onClick: () -> Unit) {
+    OdsTopAppBarActionButton(
+        onClick = onClick,
+        painter = painterResource(id = R.drawable.ic_search),
+        contentDescription = stringResource(id = R.string.search_content_description)
+    )
+}
+
+@Composable
+private fun TopAppBarChangeUiFrameworkActionButton() {
+    val uiFrameworkManager = LocalUiFrameworkManager.current
+    OdsTopAppBarActionButton(
+        onClick = {
+            uiFrameworkManager.uiFramework = when (uiFrameworkManager.uiFramework) {
+                UiFramework.Compose -> UiFramework.Xml
+                UiFramework.Xml -> UiFramework.Compose
+            }
+        },
+        painter = when (uiFrameworkManager.uiFramework) {
+            UiFramework.Compose -> painterResource(id = R.drawable.ic_xml)
+            UiFramework.Xml -> painterResource(id = R.drawable.ic_compose)
+        },
+        contentDescription = stringResource(id = R.string.top_app_bar_action_change_ui_framework_desc)
+    )
+}
+
+@Composable
+private fun TopAppBarOverflowMenuBox() {
+    val context = LocalContext.current
+    OdsTopAppBarOverflowMenuBox(
+        overflowIconContentDescription = stringResource(id = R.string.component_app_bars_top_element_overflow_menu)
+    ) {
+        LocalRecipes.current.forEach { recipe ->
+            OdsDropdownMenuItem(
+                text = recipe.title,
+                onClick = { clickOnElement(context, recipe.title) }
+            )
+        }
+    }
+}
+
+@Composable
+private fun TopAppBarCustomActionButton(action: TopAppBarConfiguration.Action.Custom) {
+    val context = LocalContext.current
+    OdsTopAppBarActionButton(
+        onClick = { clickOnElement(context, action.name) },
+        painter = painterResource(id = action.iconResId),
+        contentDescription = action.name
+    )
+}

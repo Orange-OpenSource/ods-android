@@ -23,14 +23,17 @@ import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.stringResource
 import com.orange.ods.app.R
 import com.orange.ods.app.ui.LocalMainTopAppBarManager
+import com.orange.ods.app.ui.MainTopAppBarState
 import com.orange.ods.app.ui.TopAppBarConfiguration
 import com.orange.ods.app.ui.components.utilities.ComponentCountRow
 import com.orange.ods.app.ui.components.utilities.ComponentCustomizationBottomSheetScaffold
+import com.orange.ods.app.ui.utilities.NavigationItem
 import com.orange.ods.app.ui.utilities.composable.CodeImplementationColumn
 import com.orange.ods.app.ui.utilities.composable.FunctionCallCode
 import com.orange.ods.compose.OdsComposable
 import com.orange.ods.compose.component.list.OdsListItem
 import com.orange.ods.compose.component.list.OdsSwitchTrailing
+import kotlin.math.max
 
 @OptIn(ExperimentalMaterialApi::class)
 @Composable
@@ -38,13 +41,19 @@ fun ComponentTopAppBar() {
     val customizationState = rememberTopAppBarCustomizationState()
 
     with(customizationState) {
-        LocalMainTopAppBarManager.current.updateTopAppBar(
-            TopAppBarConfiguration(
-                isNavigationIconEnabled = isNavigationIconEnabled,
-                actionCount = actionCount.value,
-                isOverflowMenuEnabled = isOverflowMenuEnabled
-            )
-        )
+        val customActionCount = max(0, actionCount.value - MainTopAppBarState.DefaultConfiguration.actions.size)
+        val customActions = NavigationItem.values()
+            .take(customActionCount)
+            .map { TopAppBarConfiguration.Action.Custom(stringResource(id = it.textResId), it.iconResId) }
+        val topAppBarConfiguration = TopAppBarConfiguration.Builder()
+            .navigationIconEnabled(isNavigationIconEnabled)
+            .actions {
+                addAll(MainTopAppBarState.DefaultConfiguration.actions.take(actionCount.value))
+                addAll(customActions)
+                if (isOverflowMenuEnabled) add(TopAppBarConfiguration.Action.OverflowMenu)
+            }
+            .build()
+        LocalMainTopAppBarManager.current.updateTopAppBar(topAppBarConfiguration)
 
         ComponentCustomizationBottomSheetScaffold(
             bottomSheetScaffoldState = rememberBottomSheetScaffoldState(),

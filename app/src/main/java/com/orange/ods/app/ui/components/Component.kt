@@ -14,7 +14,9 @@ import androidx.annotation.DrawableRes
 import androidx.annotation.StringRes
 import androidx.compose.ui.Alignment
 import com.orange.ods.app.R
+import com.orange.ods.app.ui.UiFramework
 import com.orange.ods.compose.OdsComposable
+import com.orange.ods.compose.component.OdsComponent
 import com.orange.ods.compose.component.button.OdsButtonStyle
 
 sealed class Component(
@@ -24,7 +26,8 @@ sealed class Component(
     @StringRes val descriptionRes: Int,
     val variants: List<Variant> = emptyList(),
     val composableName: String? = null,
-    val imageAlignment: Alignment = Alignment.Center
+    val imageAlignment: Alignment = Alignment.Center,
+    val uiFrameworks: List<UiFramework> = listOf(UiFramework.Compose)
 ) {
     companion object {
         const val ImageBackgroundColor = 0xff1b1b1b
@@ -46,7 +49,8 @@ sealed class Component(
         R.drawable.il_banners,
         null,
         R.string.component_banners_description,
-        composableName = OdsComposable.OdsBanner.name
+        composableName = OdsComponent.OdsBanner.name,
+        uiFrameworks = listOf(UiFramework.Compose, UiFramework.Xml)
     )
 
     object BottomNavigation :
@@ -220,7 +224,8 @@ val components = Component::class.sealedSubclasses.mapNotNull { it.objectInstanc
 
 sealed class Variant(
     @StringRes val titleRes: Int,
-    val composableName: String
+    val composableName: String,
+    val uiFrameworks: List<UiFramework> = listOf(UiFramework.Compose)
 ) {
     val id: Long = Variant::class.sealedSubclasses.indexOf(this::class).toLong()
 
@@ -258,3 +263,5 @@ sealed class Variant(
     object TabsFixed : Variant(R.string.component_tabs_fixed, OdsComposable.OdsTabRow.name)
     object TabsScrollable : Variant(R.string.component_tabs_scrollable, OdsComposable.OdsScrollableTabRow.name)
 }
+
+val variants = Variant::class.sealedSubclasses.mapNotNull { it.objectInstance }
