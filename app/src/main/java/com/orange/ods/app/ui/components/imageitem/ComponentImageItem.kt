@@ -58,7 +58,7 @@ fun ComponentImageItem() {
 
     with(imageItemCustomizationState) {
         if (!hasText) {
-            sideIcons.value = false
+            iconDisplayed.value = false
         }
         ComponentCustomizationBottomSheetScaffold(
             bottomSheetScaffoldState = rememberBottomSheetScaffoldState(),
@@ -69,7 +69,7 @@ fun ComponentImageItem() {
                 )
                 OdsListItem(
                     text = stringResource(id = R.string.component_element_icon),
-                    trailing = OdsSwitchTrailing(checked = sideIcons, enabled = hasText)
+                    trailing = OdsSwitchTrailing(checked = iconDisplayed, enabled = hasText)
                 )
                 Column(modifier = Modifier.padding(start = 16.dp, end = 16.dp)) {
                     Subtitle(textRes = R.string.component_image_item_sizes)
@@ -101,7 +101,7 @@ fun ComponentImageItem() {
                         ),
                         uncheckedIcon = painterResource(id = R.drawable.ic_heart_outlined),
                         checkedIcon = painterResource(id = R.drawable.ic_heart),
-                        iconSelected = hasSideIcons,
+                        iconSelected = hasIcon,
                         title = if (hasText) recipe.title else null,
                         modifier = if (sliderPosition.toInt() == 0) Modifier
                             .size(174.dp, 175.dp)

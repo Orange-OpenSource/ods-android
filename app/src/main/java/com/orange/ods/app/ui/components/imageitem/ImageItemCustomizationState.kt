@@ -18,19 +18,19 @@ import androidx.compose.runtime.saveable.rememberSaveable
 
 @Composable
 fun rememberImageItemCustomizationState(
-    sideIcons: MutableState<Boolean> = rememberSaveable { mutableStateOf(false) },
+    iconDisplayed: MutableState<Boolean> = rememberSaveable { mutableStateOf(false) },
     textDisplayed: MutableState<Boolean> = rememberSaveable { mutableStateOf(true) }
 ) =
-    remember(sideIcons, textDisplayed) {
-        ImageItemCustomizationState(sideIcons, textDisplayed)
+    remember(iconDisplayed, textDisplayed) {
+        ImageItemCustomizationState(iconDisplayed, textDisplayed)
     }
 
 class ImageItemCustomizationState(
-    val sideIcons: MutableState<Boolean>,
+    val iconDisplayed: MutableState<Boolean>,
     val textDisplayed: MutableState<Boolean>
 ) {
-    val hasSideIcons
-        get() = sideIcons.value
+    val hasIcon
+        get() = iconDisplayed.value
 
     val hasText
         get() = textDisplayed.value

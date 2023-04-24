@@ -37,7 +37,7 @@ OdsImageItem(
     iconChecked = false,
     iconSelected = true,
     onIconCheckedChange = { },
-    iconContentDescription = "",// Optional
+    iconContentDescription = "", // Optional
     checkedIcon = painterResource(id = R.drawable.ic_heart),
     uncheckedIcon = painterResource(id = R.drawable.ic_heart_outlined),
     modifier = modifier,
