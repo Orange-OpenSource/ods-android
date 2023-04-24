@@ -61,10 +61,7 @@ fun OdsImageItem(
     icon: Painter? = null,
     title: String? = null,
 ) {
-    Box(
-        modifier = modifier
-            .fillMaxWidth()
-    ) {
+    Box{
         Image(
             painter = image,
             contentDescription = imageContentDescription,
@@ -74,7 +71,7 @@ fun OdsImageItem(
         )
         title?.let {
             Surface(
-                color = Color.Black.copy(alpha = 0.5f),
+                color = Color.Black.copy(alpha = 0.38f),
                 modifier = Modifier
                     .align(Alignment.BottomStart)
                     .fillMaxWidth()
