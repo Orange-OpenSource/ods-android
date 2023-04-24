@@ -10,6 +10,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Added
 
 - \[App\] Add component image item ([#473](https://github.com/Orange-OpenSource/ods-android/issues/473))
+- \[Lib\] Add `OdsImageItem` component ([#473](https://github.com/Orange-OpenSource/ods-android/issues/473))
 
 ## [0.13.0](https://github.com/Orange-OpenSource/ods-android/compare/0.12.0...0.13.0) - 2023-06-01
 
