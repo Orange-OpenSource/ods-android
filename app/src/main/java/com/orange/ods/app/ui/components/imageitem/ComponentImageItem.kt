@@ -109,7 +109,7 @@ fun ComponentImageItem() {
                             .run {
                                 when (sliderPosition.toInt()) {
                                     0 -> size(175.dp, 175.dp)
-                                    2 -> fillMaxWidth().height(250.dp)
+                                    2 -> fillMaxWidth().height(imageItemHeight)
                                     else -> size(imageItemHeight, dimensionResource(id = R.dimen.card_big_image_height))
                                 }
                             }

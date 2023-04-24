@@ -18,6 +18,7 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
@@ -29,6 +30,8 @@ import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.PreviewParameter
+import androidx.compose.ui.unit.Dp
+import androidx.compose.ui.unit.dp
 import com.orange.ods.R
 import com.orange.ods.compose.component.OdsComponentApi
 import com.orange.ods.compose.component.button.OdsIconToggleButton
@@ -72,16 +75,15 @@ fun OdsImageItem(
             painter = image,
             contentDescription = imageContentDescription,
             contentScale = ContentScale.Crop,
-            modifier = Modifier
+            modifier = modifier
                 .fillMaxSize()
         )
         title?.let {
             Row(
                 verticalAlignment = Alignment.CenterVertically,
-                modifier = modifier
+                modifier = Modifier
                     .background(color = Color.Black.copy(alpha = 0.38f))
                     .align(Alignment.BottomStart)
-                    .fillMaxWidth()
                     .height(dimensionResource(id = R.dimen.list_single_line_item_height))
             ) {
                 Text(
@@ -109,6 +111,7 @@ fun OdsImageItem(
     }
 }
 
+
 @UiModePreviews.Default
 @Composable
 private fun PreviewOdsImageList(@PreviewParameter(OdsImageListPreviewParameterProvider::class) parameter: OdsImageListPreviewParameter) =
@@ -120,6 +123,7 @@ private fun PreviewOdsImageList(@PreviewParameter(OdsImageListPreviewParameterPr
             checkedIcon = painterResource(id = parameter.checkedIcon),
             title = parameter.title,
             iconChecked = parameter.checked,
+            modifier = Modifier.size(parameter.size),
             iconContentDescription = "",
             onIconCheckedChange = { parameter.checked }
         )
@@ -130,7 +134,8 @@ private data class OdsImageListPreviewParameter(
     val checked: Boolean,
     val title: String?,
     val checkedIcon: Int,
-    val unCheckedIcon: Int
+    val unCheckedIcon: Int,
+    val size: Dp
 )
 
 private class OdsImageListPreviewParameterProvider :
@@ -144,8 +149,8 @@ private val previewParameterValues: List<OdsImageListPreviewParameter>
         val unCheckedIcon = R.drawable.ic_check
 
         return listOf(
-            OdsImageListPreviewParameter(image, title = null, checkedIcon = checkedIcon, unCheckedIcon = unCheckedIcon, checked = false),
-            OdsImageListPreviewParameter(image, title = title, checkedIcon = checkedIcon, unCheckedIcon = unCheckedIcon, checked = false),
-            OdsImageListPreviewParameter(image, title = title, checkedIcon = checkedIcon, unCheckedIcon = unCheckedIcon, checked = true)
+            OdsImageListPreviewParameter(image, title = title, checkedIcon = checkedIcon, unCheckedIcon = unCheckedIcon, checked = false, size = 150.dp),
+            OdsImageListPreviewParameter(image, title = title, checkedIcon = checkedIcon, unCheckedIcon = unCheckedIcon, checked = false, size = 300.dp),
+            OdsImageListPreviewParameter(image, title = title, checkedIcon = checkedIcon, unCheckedIcon = unCheckedIcon, checked = true, size = 400.dp)
         )
     }
