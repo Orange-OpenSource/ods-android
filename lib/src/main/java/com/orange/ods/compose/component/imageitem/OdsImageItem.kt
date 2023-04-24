@@ -75,7 +75,7 @@ fun OdsImageItem(
             painter = image,
             contentDescription = imageContentDescription,
             contentScale = ContentScale.Crop,
-            modifier = modifier
+            modifier = Modifier
                 .fillMaxSize()
         )
         title?.let {

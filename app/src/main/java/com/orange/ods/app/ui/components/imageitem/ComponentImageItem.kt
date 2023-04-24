@@ -79,7 +79,10 @@ fun ComponentImageItem() {
                         value = sliderPosition,
                         steps = 1,
                         valueRange = 0f..2f,
-                        onValueChange = { sliderPosition = it },
+                        onValueChange = {
+                            sliderPosition = it
+                            size.value = ImageItemCustomizationState.Size.fromSliderValue(it)
+                        },
                         leftIcon = leftIcon,
                         leftIconContentDescription = leftIconContentDescription,
                         rightIcon = rightIcon,
@@ -107,10 +110,10 @@ fun ComponentImageItem() {
                         title = if (hasText) recipe.title else null,
                         modifier = Modifier
                             .run {
-                                when (sliderPosition.toInt()) {
-                                    0 -> size(175.dp, 175.dp)
-                                    2 -> fillMaxWidth().height(imageItemHeight)
-                                    else -> size(imageItemHeight, dimensionResource(id = R.dimen.card_big_image_height))
+                                when (size.value) {
+                                    ImageItemCustomizationState.Size.Small -> size(175.dp, 175.dp)
+                                    ImageItemCustomizationState.Size.Large -> fillMaxWidth().height(imageItemHeight)
+                                    ImageItemCustomizationState.Size.Medium -> size(imageItemHeight, dimensionResource(id = R.dimen.card_big_image_height))
                                 }
                             }
                             .padding(dimensionResource(id = R.dimen.spacing_m)),
