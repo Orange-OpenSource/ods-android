@@ -40,14 +40,14 @@ import com.orange.ods.compose.theme.OdsTheme
 
 /**
  *
- * @param image image display in the ImageList.
- * @param checkedIcon specified if icon is currently checkedIcon
- * @param onCheckedChange callback to be invoked when this icon is selected
- * @param modifier to be applied to this ImageList
- * @param imageContentDescription Optional image content description.
- * @param icon Optional icon display in front of the test.
- * @param iconContentDescription Optional icon content description..
- * @param title text display in the image
+ * @param image Image display in the [OdsImageItem].
+ * @param checkedIcon Specified if icon is currently checked
+ * @param onCheckedChange Callback to be invoked when this icon is selected
+ * @param modifier Modifier to be applied to this [OdsImageItem]
+ * @param imageContentDescription Optional image content description
+ * @param icon Optional icon displayed in front of the [OdsImageItem]
+ * @param iconContentDescription Optional icon content description
+ * @param title Text displayed in the image
  */
 @Composable
 @OdsComponentApi
