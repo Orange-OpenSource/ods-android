@@ -71,7 +71,7 @@ fun ComponentImageItem() {
                     text = stringResource(id = R.string.component_element_icon),
                     trailing = OdsSwitchTrailing(checked = iconDisplayed, enabled = hasText)
                 )
-                Column(modifier = Modifier.padding(start = 16.dp, end = 16.dp)) {
+                Column(modifier = Modifier.padding(start = dimensionResource(id = R.dimen.spacing_m), end = dimensionResource(id = R.dimen.spacing_m))) {
                     Subtitle(textRes = R.string.component_image_item_sizes)
                     OdsSlider(
                         value = sliderPosition,
