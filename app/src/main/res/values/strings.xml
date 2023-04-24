@@ -203,8 +203,8 @@
     <string name="component_floating_action_button_full_screen_width">Full screen width</string>
 
     <!-- Component Image Lists -->
-    <string name="component_image_item">Image item</string>
-    <string name="component_image_item_description">An Image Item contains primary information which is usually an image. It can also contains secondary information such as a title or an action.</string>
+    <string name="component_image_item">Image Item</string>
+    <string name="component_image_item_description">An Image Item contains primary information which is usually an image. It can also contain secondary information such as a title or an action.</string>
     <string name="component_image_item_sizes">Image item sizes</string>
     <string name="component_image_item_small">Small image</string>
     <string name="component_image_item_large">Large image</string>
