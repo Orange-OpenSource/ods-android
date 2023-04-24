@@ -11,13 +11,13 @@
 package com.orange.ods.compose.component.imageitem
 
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
-import androidx.compose.material.Surface
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
@@ -42,10 +42,12 @@ import com.orange.ods.compose.theme.OdsTheme
  *
  * @param image Image display in the [OdsImageItem].
  * @param iconChecked Specified if icon is currently checked
+ * @param iconSelected Specified whether the icon is selected or nor
  * @param onIconCheckedChange Callback to be invoked when this icon is selected
+ * @param checkedIcon Optional icon displayed in front of the [OdsImageItem]
+ * @param uncheckedIcon Optional icon displayed in front of the [OdsImageItem]
  * @param modifier Modifier to be applied to this [OdsImageItem]
  * @param imageContentDescription Optional image content description
- * @param icon Optional icon displayed in front of the [OdsImageItem]
  * @param iconContentDescription Optional icon content description
  * @param title Text displayed in the image
  */
@@ -54,14 +56,16 @@ import com.orange.ods.compose.theme.OdsTheme
 fun OdsImageItem(
     image: Painter,
     iconChecked: Boolean,
+    iconSelected: Boolean,
     onIconCheckedChange: (Boolean) -> Unit,
+    checkedIcon: Painter,
+    uncheckedIcon: Painter,
     modifier: Modifier = Modifier,
     iconContentDescription: String? = null,
     imageContentDescription: String? = null,
-    icon: Painter? = null,
     title: String? = null,
 ) {
-    Box{
+    Box {
         Image(
             painter = image,
             contentDescription = imageContentDescription,
@@ -70,37 +74,33 @@ fun OdsImageItem(
                 .fillMaxSize()
         )
         title?.let {
-            Surface(
-                color = Color.Black.copy(alpha = 0.38f),
-                modifier = Modifier
+            Row(
+                verticalAlignment = Alignment.CenterVertically,
+                modifier = modifier
+                    .background(color = Color.Black.copy(alpha = 0.5f))
                     .align(Alignment.BottomStart)
                     .fillMaxWidth()
+                    .height(dimensionResource(id = R.dimen.list_single_line_item_height))
             ) {
-                Row(
-                    verticalAlignment = Alignment.CenterVertically,
+                Text(
+                    text = it,
+                    color = Color.White,
+                    style = OdsTheme.typography.subtitle1,
                     modifier = Modifier
-                        .height(dimensionResource(id = R.dimen.list_single_line_item_height))
-                ) {
-                    Text(
-                        text = it,
-                        color = Color.White,
-                        style = OdsTheme.typography.subtitle1,
-                        modifier = Modifier
-                            .weight(1f)
-                            .padding(start = dimensionResource(id = R.dimen.spacing_m), end = dimensionResource(id = R.dimen.spacing_m)),
-                        maxLines = 1,
-                        overflow = TextOverflow.Ellipsis
+                        .weight(1f)
+                        .padding(start = dimensionResource(id = R.dimen.spacing_m), end = dimensionResource(id = R.dimen.spacing_m)),
+                    maxLines = 1,
+                    overflow = TextOverflow.Ellipsis
+                )
+                if (iconSelected) {
+                    OdsIconToggleButton(
+                        checked = iconChecked,
+                        onCheckedChange = onIconCheckedChange,
+                        uncheckedPainter = uncheckedIcon,
+                        checkedPainter = checkedIcon,
+                        iconContentDescription = iconContentDescription,
+                        displaySurface = OdsDisplaySurface.Dark
                     )
-                    icon?.let {
-                        OdsIconToggleButton(
-                            checked = iconChecked,
-                            onCheckedChange = onIconCheckedChange,
-                            uncheckedPainter = it,
-                            checkedPainter = it,
-                            iconContentDescription = iconContentDescription,
-                            displaySurface = OdsDisplaySurface.Dark
-                        )
-                    }
                 }
             }
         }
@@ -113,7 +113,9 @@ private fun PreviewOdsImageList(@PreviewParameter(OdsImageListPreviewParameterPr
     Preview {
         OdsImageItem(
             image = painterResource(id = parameter.image),
-            icon = parameter.icon?.let { painterResource(id = it) },
+            iconSelected = true,
+            uncheckedIcon = painterResource(id = parameter.unCheckedIcon),
+            checkedIcon = painterResource(id = parameter.checkedIcon),
             title = parameter.title,
             iconChecked = parameter.checked,
             iconContentDescription = "",
@@ -125,7 +127,8 @@ private data class OdsImageListPreviewParameter(
     val image: Int,
     val checked: Boolean,
     val title: String?,
-    val icon: Int?
+    val checkedIcon: Int,
+    val unCheckedIcon: Int
 )
 
 private class OdsImageListPreviewParameterProvider :
@@ -135,11 +138,12 @@ private val previewParameterValues: List<OdsImageListPreviewParameter>
     get() {
         val title = "Subtitle 1"
         val image = R.drawable.placeholder
-        val icon = R.drawable.ic_check
+        val checkedIcon = R.drawable.ic_check
+        val unCheckedIcon = R.drawable.ic_check
 
         return listOf(
-            OdsImageListPreviewParameter(image, title = null, icon = icon, checked = false),
-            OdsImageListPreviewParameter(image, title = title, icon = null, checked = false),
-            OdsImageListPreviewParameter(image, title = title, icon = icon, checked = true)
+            OdsImageListPreviewParameter(image, title = null, checkedIcon = checkedIcon, unCheckedIcon = unCheckedIcon, checked = false),
+            OdsImageListPreviewParameter(image, title = title, checkedIcon = checkedIcon, unCheckedIcon = unCheckedIcon, checked = false),
+            OdsImageListPreviewParameter(image, title = title, checkedIcon = checkedIcon, unCheckedIcon = unCheckedIcon, checked = true)
         )
     }

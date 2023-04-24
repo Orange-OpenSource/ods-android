@@ -35,11 +35,13 @@ You can use the `OdsImageItem` composable like this:
 OdsImageItem(
     image = painterResource(id = R.drawable.placeholder),
     iconChecked = false,
+    iconSelected = true,
     onIconCheckedChange = { },
     iconContentDescription = "",// Optional
+    checkedIcon = painterResource(id = R.drawable.ic_heart),
+    uncheckedIcon = painterResource(id = R.drawable.ic_heart_outlined),
     modifier = modifier,
     imageContentDescription = "Picture content description", //Optional
-    icon = painterResource(id = R.drawable.ic_heart), // Optional
     title = "Component Image Item" // Optional 
 )
 ```

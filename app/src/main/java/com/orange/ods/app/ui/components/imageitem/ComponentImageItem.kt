@@ -99,8 +99,9 @@ fun ComponentImageItem() {
                             placeholder = painterResource(id = R.drawable.placeholder),
                             error = painterResource(id = R.drawable.placeholder)
                         ),
-                        icon = if (hasSideIcons && !iconCheckedState.value) painterResource(id = R.drawable.ic_heart_outlined)
-                        else if (hasSideIcons && iconCheckedState.value) painterResource(id = R.drawable.ic_heart) else null,
+                        uncheckedIcon = painterResource(id = R.drawable.ic_heart_outlined),
+                        checkedIcon = painterResource(id = R.drawable.ic_heart),
+                        iconSelected = hasSideIcons,
                         title = if (hasText) recipe.title else null,
                         modifier = if (sliderPosition.toInt() == 0) Modifier
                             .size(174.dp, 175.dp)
