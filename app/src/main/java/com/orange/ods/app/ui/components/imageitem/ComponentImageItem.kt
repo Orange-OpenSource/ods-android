@@ -111,9 +111,9 @@ fun ComponentImageItem() {
                         else Modifier
                             .size(imageItemHeight, dimensionResource(id = R.dimen.card_big_image_height))
                             .padding(dimensionResource(id = R.dimen.spacing_m)),
-                        checkedIcon = iconCheckedState.value,
+                        iconChecked = iconCheckedState.value,
                         iconContentDescription = stringResource(id = R.string.component_button_icon_toggle_favorite_icon_desc),
-                        onCheckedChange = { checked -> iconCheckedState.value = checked }
+                        onIconCheckedChange = { checked -> iconCheckedState.value = checked }
                     )
                 }
             }

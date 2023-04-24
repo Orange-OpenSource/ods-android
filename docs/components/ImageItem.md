@@ -34,8 +34,8 @@ You can use the `OdsImageItem` composable like this:
 ```kotlin
 OdsImageItem(
     image = painterResource(id = R.drawable.placeholder),
-    checkedIcon = false,
-    onCheckedChange = { },
+    iconChecked = false,
+    onIconCheckedChange = { },
     iconContentDescription = "",// Optional
     modifier = modifier,
     imageContentDescription = "Picture content description", //Optional

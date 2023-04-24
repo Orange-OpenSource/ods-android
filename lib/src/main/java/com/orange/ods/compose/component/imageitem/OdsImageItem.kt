@@ -41,8 +41,8 @@ import com.orange.ods.compose.theme.OdsTheme
 /**
  *
  * @param image Image display in the [OdsImageItem].
- * @param checkedIcon Specified if icon is currently checked
- * @param onCheckedChange Callback to be invoked when this icon is selected
+ * @param iconChecked Specified if icon is currently checked
+ * @param onIconCheckedChange Callback to be invoked when this icon is selected
  * @param modifier Modifier to be applied to this [OdsImageItem]
  * @param imageContentDescription Optional image content description
  * @param icon Optional icon displayed in front of the [OdsImageItem]
@@ -53,8 +53,8 @@ import com.orange.ods.compose.theme.OdsTheme
 @OdsComponentApi
 fun OdsImageItem(
     image: Painter,
-    checkedIcon: Boolean,
-    onCheckedChange: (Boolean) -> Unit,
+    iconChecked: Boolean,
+    onIconCheckedChange: (Boolean) -> Unit,
     modifier: Modifier = Modifier,
     iconContentDescription: String? = null,
     imageContentDescription: String? = null,
@@ -96,8 +96,8 @@ fun OdsImageItem(
                     )
                     icon?.let {
                         OdsIconToggleButton(
-                            checked = checkedIcon,
-                            onCheckedChange = onCheckedChange,
+                            checked = iconChecked,
+                            onCheckedChange = onIconCheckedChange,
                             uncheckedPainter = it,
                             checkedPainter = it,
                             iconContentDescription = iconContentDescription,
@@ -118,9 +118,9 @@ private fun PreviewOdsImageList(@PreviewParameter(OdsImageListPreviewParameterPr
             image = painterResource(id = parameter.image),
             icon = parameter.icon?.let { painterResource(id = it) },
             title = parameter.title,
-            checkedIcon = parameter.checked,
+            iconChecked = parameter.checked,
             iconContentDescription = "",
-            onCheckedChange = { parameter.checked }
+            onIconCheckedChange = { parameter.checked }
         )
     }
 
