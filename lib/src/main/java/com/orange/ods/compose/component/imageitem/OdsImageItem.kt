@@ -65,7 +65,9 @@ fun OdsImageItem(
     imageContentDescription: String? = null,
     title: String? = null,
 ) {
-    Box {
+    Box(
+        modifier = modifier.fillMaxWidth()
+    ) {
         Image(
             painter = image,
             contentDescription = imageContentDescription,
@@ -77,7 +79,7 @@ fun OdsImageItem(
             Row(
                 verticalAlignment = Alignment.CenterVertically,
                 modifier = modifier
-                    .background(color = Color.Black.copy(alpha = 0.5f))
+                    .background(color = Color.Black.copy(alpha = 0.38f))
                     .align(Alignment.BottomStart)
                     .fillMaxWidth()
                     .height(dimensionResource(id = R.dimen.list_single_line_item_height))

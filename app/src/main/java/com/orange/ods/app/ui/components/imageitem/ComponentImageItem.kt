@@ -15,6 +15,8 @@ import androidx.compose.animation.fadeIn
 import androidx.compose.animation.fadeOut
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.material.ExperimentalMaterialApi
@@ -76,7 +78,7 @@ fun ComponentImageItem() {
                     OdsSlider(
                         value = sliderPosition,
                         steps = 1,
-                        valueRange = 0f..20f,
+                        valueRange = 0f..2f,
                         onValueChange = { sliderPosition = it },
                         leftIcon = leftIcon,
                         leftIconContentDescription = leftIconContentDescription,
@@ -103,14 +105,14 @@ fun ComponentImageItem() {
                         checkedIcon = painterResource(id = R.drawable.ic_heart),
                         iconSelected = hasIcon,
                         title = if (hasText) recipe.title else null,
-                        modifier = if (sliderPosition.toInt() == 0) Modifier
-                            .size(174.dp, 175.dp)
-                            .padding(dimensionResource(id = R.dimen.spacing_m))
-                        else if (sliderPosition.toInt() == 20) Modifier
-                            .size(400.dp, imageItemHeight)
-                            .padding(dimensionResource(id = R.dimen.spacing_m))
-                        else Modifier
-                            .size(imageItemHeight, dimensionResource(id = R.dimen.card_big_image_height))
+                        modifier = Modifier
+                            .run {
+                                when (sliderPosition.toInt()) {
+                                    0 -> size(175.dp, 175.dp)
+                                    2 -> fillMaxWidth().height(250.dp)
+                                    else -> size(imageItemHeight, dimensionResource(id = R.dimen.card_big_image_height))
+                                }
+                            }
                             .padding(dimensionResource(id = R.dimen.spacing_m)),
                         iconChecked = iconCheckedState.value,
                         iconContentDescription = stringResource(id = R.string.component_button_icon_toggle_favorite_icon_desc),
