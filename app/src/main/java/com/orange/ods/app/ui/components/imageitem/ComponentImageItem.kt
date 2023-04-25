@@ -10,15 +10,11 @@
 
 package com.orange.ods.app.ui.components.imageitem
 
-import androidx.compose.animation.AnimatedVisibility
-import androidx.compose.animation.fadeIn
-import androidx.compose.animation.fadeOut
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.size
 import androidx.compose.material.ExperimentalMaterialApi
 import androidx.compose.material.rememberBottomSheetScaffoldState
 import androidx.compose.runtime.Composable
@@ -94,34 +90,30 @@ fun ComponentImageItem() {
                 modifier = Modifier.fillMaxSize(),
                 horizontalAlignment = Alignment.CenterHorizontally
             ) {
-                AnimatedVisibility(
-                    visible = true, enter = fadeIn(),
-                    exit = fadeOut()
-                ) {
-                    OdsImageItem(
-                        image = rememberAsyncImagePainter(
-                            model = recipe.imageUrl,
-                            placeholder = painterResource(id = R.drawable.placeholder),
-                            error = painterResource(id = R.drawable.placeholder)
-                        ),
-                        uncheckedIcon = painterResource(id = R.drawable.ic_heart_outlined),
-                        checkedIcon = painterResource(id = R.drawable.ic_heart),
-                        iconSelected = hasIcon,
-                        title = if (hasText) recipe.title else null,
-                        modifier = Modifier
-                            .run {
-                                when (size.value) {
-                                    ImageItemCustomizationState.Size.Small -> size(175.dp, 175.dp)
-                                    ImageItemCustomizationState.Size.Large -> fillMaxWidth().height(imageItemHeight)
-                                    ImageItemCustomizationState.Size.Medium -> size(imageItemHeight, dimensionResource(id = R.dimen.card_big_image_height))
-                                }
+
+                OdsImageItem(
+                    image = rememberAsyncImagePainter(
+                        model = recipe.imageUrl,
+                        placeholder = painterResource(id = R.drawable.placeholder),
+                        error = painterResource(id = R.drawable.placeholder)
+                    ),
+                    uncheckedIcon = painterResource(id = R.drawable.ic_heart_outlined),
+                    checkedIcon = painterResource(id = R.drawable.ic_heart),
+                    iconSelected = hasIcon,
+                    title = if (hasText) recipe.title else null,
+                    modifier = Modifier
+                        .run {
+                            when (size.value) {
+                                ImageItemCustomizationState.Size.Small -> fillMaxWidth(0.4f).height(175.dp)
+                                ImageItemCustomizationState.Size.Large -> fillMaxWidth().height(imageItemHeight)
+                                ImageItemCustomizationState.Size.Medium -> fillMaxWidth(0.5f).height(dimensionResource(id = R.dimen.card_big_image_height))
                             }
-                            .padding(dimensionResource(id = R.dimen.spacing_m)),
-                        iconChecked = iconCheckedState.value,
-                        iconContentDescription = stringResource(id = R.string.component_button_icon_toggle_favorite_icon_desc),
-                        onIconCheckedChange = { checked -> iconCheckedState.value = checked }
-                    )
-                }
+                        }
+                        .padding(dimensionResource(id = R.dimen.spacing_m)),
+                    iconChecked = iconCheckedState.value,
+                    iconContentDescription = stringResource(id = R.string.component_button_icon_toggle_favorite_icon_desc),
+                    onIconCheckedChange = { checked -> iconCheckedState.value = checked }
+                )
             }
         }
     }
