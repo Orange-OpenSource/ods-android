@@ -75,10 +75,9 @@ fun CardSmall(customizationState: CardCustomizationState) {
             Spacer(modifier = Modifier.padding(top = dimensionResource(R.dimen.spacing_s)))
 
             CodeImplementationColumn {
-                ComposableCode(name = OdsComponent.OdsSmallCard.name, exhaustiveParameters = false, parameters = mutableListOf(
-                    PredefinedParameter.Title(recipe.title),
-                    PredefinedParameter.Image
-                ).apply {
+                ComposableCode(name = OdsComponent.OdsSmallCard.name, exhaustiveParameters = false, parameters = buildList {
+                    add(PredefinedParameter.Title(recipe.title))
+                    add(PredefinedParameter.Image)
                     if (hasSubtitle) add(PredefinedParameter.Subtitle(recipe.subtitle))
                     if (isClickable) add(PredefinedParameter.OnCardClick)
                 })
