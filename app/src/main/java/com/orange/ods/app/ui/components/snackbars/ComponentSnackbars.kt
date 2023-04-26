@@ -28,12 +28,12 @@ import com.orange.ods.app.R
 import com.orange.ods.app.ui.components.utilities.ComponentCustomizationBottomSheetScaffold
 import com.orange.ods.app.ui.components.utilities.ComponentLaunchContentColumn
 import com.orange.ods.app.ui.components.utilities.clickOnElement
-import com.orange.ods.app.ui.utilities.composable.BetweenQuotesStringParameter
 import com.orange.ods.app.ui.utilities.composable.CodeImplementationColumn
 import com.orange.ods.app.ui.utilities.composable.CodeParameter
 import com.orange.ods.app.ui.utilities.composable.ComposableCode
 import com.orange.ods.app.ui.utilities.composable.IndentCodeColumn
 import com.orange.ods.app.ui.utilities.composable.LambdaParameter
+import com.orange.ods.app.ui.utilities.composable.SimpleParameter
 import com.orange.ods.app.ui.utilities.composable.StringParameter
 import com.orange.ods.app.ui.utilities.composable.StringRepresentationParameter
 import com.orange.ods.app.ui.utilities.composable.TechnicalText
@@ -101,12 +101,12 @@ fun ComponentSnackbars() {
                 )
                 ComposableCode(
                     name = "OdsSnackbarHost",
-                    parameters = listOf(StringParameter("hostState", "<SnackbarHostState>"))
+                    parameters = listOf(SimpleParameter("hostState", "<SnackbarHostState>"))
                 ) {
                     ComposableCode(
                         name = OdsComponent.OdsSnackbar.name,
                         parameters = mutableListOf<CodeParameter>(
-                            StringParameter("snackbarData", "data")
+                            SimpleParameter("snackbarData", "data")
                         ).apply {
                             if (actionOnNewLineChecked.value) add(StringRepresentationParameter("actionOnNewLine", true))
                             add(LambdaParameter("onActionClick"))
@@ -121,9 +121,9 @@ fun ComponentSnackbars() {
                 TechnicalText(text = "coroutineScope.launch {")
                 IndentCodeColumn {
                     ComposableCode(name = "scaffoldState.snackbarHostState.showSnackbar", parameters = mutableListOf<CodeParameter>(
-                        BetweenQuotesStringParameter("message", snackbarMessage)
+                        StringParameter("message", snackbarMessage)
                     ).apply {
-                        if (actionButtonChecked.value) add(BetweenQuotesStringParameter("actionLabel", snackbarActionLabel))
+                        if (actionButtonChecked.value) add(StringParameter("actionLabel", snackbarActionLabel))
                     })
                 }
                 TechnicalText(text = "}")

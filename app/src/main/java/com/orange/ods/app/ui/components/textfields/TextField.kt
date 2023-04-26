@@ -24,7 +24,6 @@ import androidx.compose.ui.text.input.KeyboardCapitalization
 import com.orange.ods.app.R
 import com.orange.ods.app.ui.components.textfields.TextFieldCustomizationState.Companion.TextFieldMaxChars
 import com.orange.ods.app.ui.components.utilities.clickOnElement
-import com.orange.ods.app.ui.utilities.composable.BetweenQuotesStringParameter
 import com.orange.ods.app.ui.utilities.composable.ClassInstance
 import com.orange.ods.app.ui.utilities.composable.ClassInstanceParameter
 import com.orange.ods.app.ui.utilities.composable.CodeImplementationColumn
@@ -32,6 +31,7 @@ import com.orange.ods.app.ui.utilities.composable.CodeParameter
 import com.orange.ods.app.ui.utilities.composable.ComposableCode
 import com.orange.ods.app.ui.utilities.composable.LambdaParameter
 import com.orange.ods.app.ui.utilities.composable.PredefinedParameter
+import com.orange.ods.app.ui.utilities.composable.SimpleParameter
 import com.orange.ods.app.ui.utilities.composable.StringParameter
 import com.orange.ods.app.ui.utilities.composable.StringRepresentationParameter
 import com.orange.ods.compose.component.OdsComponent
@@ -134,16 +134,16 @@ fun TextFieldCodeImplementationColumn(
         val capitalizationValue = if (softKeyboardCapitalization.value) KeyboardCapitalization.Characters.toString() else KeyboardCapitalization.None.toString()
         CodeImplementationColumn {
             ComposableCode(name = componentName, exhaustiveParameters = false, parameters = mutableListOf(
-                BetweenQuotesStringParameter("value", displayedText),
+                StringParameter("value", displayedText),
                 LambdaParameter("onValueChange"),
                 PredefinedParameter.Label(label),
                 PredefinedParameter.Placeholder(placeholder),
                 ClassInstanceParameter(
                     "keyboardOptions", ClassInstance(
                         KeyboardOptions::class.java.simpleName, listOf<CodeParameter>(
-                            StringParameter("capitalization", capitalizationValue),
-                            StringParameter("keyboardType", softKeyboardType.value.keyboardType.toString()),
-                            StringParameter("imeAction", softKeyboardAction.value.imeAction.toString())
+                            SimpleParameter("capitalization", capitalizationValue),
+                            SimpleParameter("keyboardType", softKeyboardType.value.keyboardType.toString()),
+                            SimpleParameter("imeAction", softKeyboardAction.value.imeAction.toString())
                         )
                     )
                 )
@@ -153,10 +153,10 @@ fun TextFieldCodeImplementationColumn(
                 if (!isEnabled) add(PredefinedParameter.Enabled(false))
                 if (isError) {
                     add(StringRepresentationParameter("isError", true))
-                    errorMessage?.let { add(BetweenQuotesStringParameter("errorMessage", it)) }
+                    errorMessage?.let { add(StringParameter("errorMessage", it)) }
                 }
                 if (isSingleLine) add(StringRepresentationParameter("singleLine", true))
-                if (hasTrailing) add(StringParameter("trailing", "<trailing composable>"))
+                if (hasTrailing) add(SimpleParameter("trailing", "<trailing composable>"))
                 if (hasCharacterCounter) {
                     add(
                         ClassInstanceParameter(

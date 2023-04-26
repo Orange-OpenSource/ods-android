@@ -35,10 +35,10 @@ import com.orange.ods.app.ui.components.utilities.ComponentCountRow
 import com.orange.ods.app.ui.components.utilities.ComponentCustomizationBottomSheetScaffold
 import com.orange.ods.app.ui.components.utilities.clickOnElement
 import com.orange.ods.app.ui.utilities.NavigationItem
-import com.orange.ods.app.ui.utilities.composable.BetweenQuotesStringParameter
 import com.orange.ods.app.ui.utilities.composable.CodeImplementationColumn
 import com.orange.ods.app.ui.utilities.composable.ComposableCode
 import com.orange.ods.app.ui.utilities.composable.PredefinedParameter
+import com.orange.ods.app.ui.utilities.composable.StringParameter
 import com.orange.ods.compose.component.OdsComponent
 import com.orange.ods.compose.component.bottomnavigation.OdsBottomNavigation
 import com.orange.ods.compose.component.bottomnavigation.OdsBottomNavigationItem
@@ -104,7 +104,7 @@ fun ComponentBottomNavigation() {
                             name = "OdsBottomNavigationItem",
                             parameters = listOf(
                                 PredefinedParameter.Icon,
-                                BetweenQuotesStringParameter("label", stringResource(id = item.textResId)),
+                                StringParameter("label", stringResource(id = item.textResId)),
                                 PredefinedParameter.Selected(selectedNavigationItem.value.textResId == item.textResId),
                                 PredefinedParameter.OnClick,
                             )

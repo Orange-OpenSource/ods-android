@@ -33,7 +33,7 @@ import com.orange.ods.app.ui.utilities.composable.CodeParameter
 import com.orange.ods.app.ui.utilities.composable.ComposableCode
 import com.orange.ods.app.ui.utilities.composable.IconPainterValue
 import com.orange.ods.app.ui.utilities.composable.PredefinedParameter
-import com.orange.ods.app.ui.utilities.composable.StringParameter
+import com.orange.ods.app.ui.utilities.composable.SimpleParameter
 import com.orange.ods.compose.component.OdsComponent
 import com.orange.ods.compose.component.button.OdsIconToggleButton
 
@@ -80,7 +80,7 @@ fun ButtonsIconToggle(customizationState: ButtonIconCustomizationState) {
             ) {
                 ComposableCode(name = OdsComponent.OdsIconToggleButton.name, exhaustiveParameters = false, parameters = mutableListOf<CodeParameter>(
                     PredefinedParameter.Painter,
-                    StringParameter("painterChecked", IconPainterValue),
+                    SimpleParameter("painterChecked", IconPainterValue),
                     PredefinedParameter.Checked(buttonCheckedState.value)
                 ).apply {
                     if (!isEnabled) {

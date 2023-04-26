@@ -28,11 +28,11 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import com.orange.ods.app.R
 import com.orange.ods.app.ui.components.utilities.ComponentCustomizationBottomSheetScaffold
-import com.orange.ods.app.ui.utilities.composable.BetweenQuotesStringParameter
 import com.orange.ods.app.ui.utilities.composable.CodeImplementationColumn
 import com.orange.ods.app.ui.utilities.composable.ComposableCode
 import com.orange.ods.app.ui.utilities.composable.IconPainterValue
 import com.orange.ods.app.ui.utilities.composable.LambdaParameter
+import com.orange.ods.app.ui.utilities.composable.SimpleParameter
 import com.orange.ods.app.ui.utilities.composable.StringParameter
 import com.orange.ods.app.ui.utilities.composable.StringRepresentationParameter
 import com.orange.ods.app.ui.utilities.composable.TechnicalText
@@ -115,15 +115,15 @@ fun ComponentSliders() {
                 CodeImplementationColumn {
                     ComposableCode(name = componentName, exhaustiveParameters = false, parameters = mutableListOf(
                         StringRepresentationParameter("value", sliderPosition),
-                        StringParameter("valueRange", "0f..100f"),
+                        SimpleParameter("valueRange", "0f..100f"),
                         LambdaParameter("onValueChange")
                     ).apply {
                         if (isStepped) add(StringRepresentationParameter("steps", steps))
                         if (hasSideIcons) {
-                            add(StringParameter("leftIcon", IconPainterValue))
-                            leftIconContentDescription?.let { add(BetweenQuotesStringParameter("leftIconContentDescription", it)) }
-                            add(StringParameter("rightIcon", IconPainterValue))
-                            rightIconContentDescription?.let { add(BetweenQuotesStringParameter("rightIconContentDescription", it)) }
+                            add(SimpleParameter("leftIcon", IconPainterValue))
+                            leftIconContentDescription?.let { add(StringParameter("leftIconContentDescription", it)) }
+                            add(SimpleParameter("rightIcon", IconPainterValue))
+                            rightIconContentDescription?.let { add(StringParameter("rightIconContentDescription", it)) }
                         }
                     })
                 }

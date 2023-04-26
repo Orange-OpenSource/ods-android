@@ -26,7 +26,7 @@ import com.orange.ods.app.ui.utilities.composable.CodeImplementationColumn
 import com.orange.ods.app.ui.utilities.composable.CodeParameter
 import com.orange.ods.app.ui.utilities.composable.ComposableCode
 import com.orange.ods.app.ui.utilities.composable.PredefinedParameter
-import com.orange.ods.app.ui.utilities.composable.StringParameter
+import com.orange.ods.app.ui.utilities.composable.SimpleParameter
 import com.orange.ods.app.ui.utilities.composable.Title
 import com.orange.ods.compose.component.OdsComponent
 import com.orange.ods.compose.component.button.OdsButton
@@ -70,7 +70,7 @@ fun ButtonsContained(customizationState: ButtonCustomizationState) {
                 modifier = Modifier.padding(horizontal = dimensionResource(id = R.dimen.screen_horizontal_margin))
             ) {
                 ComposableCode(name = OdsComponent.OdsButton.name, exhaustiveParameters = false, parameters = mutableListOf<CodeParameter>(
-                    StringParameter("style", buttonStyle.value.fullName)
+                    SimpleParameter("style", buttonStyle.value.fullName)
                 ).apply {
                     if (hasFullScreenWidth) add(PredefinedParameter.FillMaxWidth)
                     if (hasLeadingIcon) add(PredefinedParameter.Icon)

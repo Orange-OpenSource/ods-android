@@ -34,7 +34,6 @@ import com.orange.ods.app.R
 import com.orange.ods.app.domain.recipes.LocalRecipes
 import com.orange.ods.app.ui.components.utilities.ComponentCustomizationBottomSheetScaffold
 import com.orange.ods.app.ui.components.utilities.clickOnElement
-import com.orange.ods.app.ui.utilities.composable.BetweenQuotesStringParameter
 import com.orange.ods.app.ui.utilities.composable.ClassInstance
 import com.orange.ods.app.ui.utilities.composable.CodeImplementationColumn
 import com.orange.ods.app.ui.utilities.composable.CodeParameter
@@ -43,6 +42,7 @@ import com.orange.ods.app.ui.utilities.composable.LambdaParameter
 import com.orange.ods.app.ui.utilities.composable.ListParameter
 import com.orange.ods.app.ui.utilities.composable.MutableStateParameter
 import com.orange.ods.app.ui.utilities.composable.PredefinedParameter
+import com.orange.ods.app.ui.utilities.composable.StringParameter
 import com.orange.ods.compose.component.OdsComponent
 import com.orange.ods.compose.component.list.OdsListItem
 import com.orange.ods.compose.component.list.OdsSwitchTrailing
@@ -124,7 +124,7 @@ fun MenuExposedDropdown() {
                     itemsValues.add(
                         ClassInstance(
                             "OdsExposedDropdownMenuItem",
-                            mutableListOf<CodeParameter>(BetweenQuotesStringParameter("label", item.label)).apply {
+                            mutableListOf<CodeParameter>(StringParameter("label", item.label)).apply {
                                 if (hasIcons) add(PredefinedParameter.Icon)
                             }
                         )
@@ -132,7 +132,7 @@ fun MenuExposedDropdown() {
                 }
                 CodeImplementationColumn {
                     ComposableCode(name = OdsComponent.OdsExposedDropdownMenu.name, exhaustiveParameters = false, parameters = mutableListOf(
-                        BetweenQuotesStringParameter("label", label),
+                        StringParameter("label", label),
                         ListParameter("items", itemsValues),
                         MutableStateParameter("selectedItem", "<selected item>"),
                         LambdaParameter("onItemSelectionChange")

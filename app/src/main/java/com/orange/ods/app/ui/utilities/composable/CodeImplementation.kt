@@ -30,17 +30,17 @@ abstract class CodeParameter(val name: String) {
     abstract val code: @Composable () -> Unit
 }
 
-open class StringParameter(name: String, val value: String) : CodeParameter(name) {
+open class SimpleParameter(name: String, val value: String) : CodeParameter(name) {
     override val code
         get() = @Composable {
             TechnicalText(text = "$name = $value,")
         }
 }
 
-open class StringRepresentationParameter<T>(name: String, value: T) : StringParameter(name, value.toString())
-open class BetweenQuotesStringParameter(name: String, textValue: String) : StringParameter(name, "\"$textValue\"")
-open class LambdaParameter(name: String) : StringParameter(name, "{ }")
-class MutableStateParameter(name: String, stateValue: String) : StringParameter(name, "remember { mutableStateOf($stateValue) }")
+open class StringRepresentationParameter<T>(name: String, value: T) : SimpleParameter(name, value.toString())
+open class StringParameter(name: String, textValue: String) : SimpleParameter(name, "\"$textValue\"")
+open class LambdaParameter(name: String) : SimpleParameter(name, "{ }")
+class MutableStateParameter(name: String, stateValue: String) : SimpleParameter(name, "remember { mutableStateOf($stateValue) }")
 
 class ComposableParameter(name: String, val value: @Composable () -> Unit) : CodeParameter(name) {
     override val code
@@ -78,24 +78,24 @@ class ListParameter(name: String, val value: List<ClassInstance>) : CodeParamete
 data class ClassInstance(val className: String, val parameters: List<CodeParameter> = emptyList())
 
 sealed class PredefinedParameter {
-    object Icon : StringParameter("icon", IconPainterValue)
-    object Painter : StringParameter("painter", IconPainterValue)
-    object Image : StringParameter("image", ImagePainterValue)
-    object CardText : StringParameter("cardText", CardTextValue)
-    object FillMaxWidth : StringParameter("modifier", "Modifier.fillMaxWidth()")
+    object Icon : SimpleParameter("icon", IconPainterValue)
+    object Painter : SimpleParameter("painter", IconPainterValue)
+    object Image : SimpleParameter("image", ImagePainterValue)
+    object CardText : SimpleParameter("cardText", CardTextValue)
+    object FillMaxWidth : SimpleParameter("modifier", "Modifier.fillMaxWidth()")
 
     class Enabled(val enabled: Boolean) : StringRepresentationParameter<Boolean>("enabled", enabled)
     class Checked(val checked: Boolean) : StringRepresentationParameter<Boolean>("checked", checked)
     class Selected(val selected: Boolean) : StringRepresentationParameter<Boolean>("selected", selected)
 
-    class Text(val text: String) : BetweenQuotesStringParameter("text", text)
-    class Title(val text: String) : BetweenQuotesStringParameter("title", text)
-    class Subtitle(val text: String) : BetweenQuotesStringParameter("subtitle", text)
-    class Label(val text: String) : BetweenQuotesStringParameter("label", text)
-    class Placeholder(val text: String) : BetweenQuotesStringParameter("placeholder", text)
-    class Button1Text(val text: String) : BetweenQuotesStringParameter("button1Text", text)
-    class Button2Text(val text: String) : BetweenQuotesStringParameter("button2Text", text)
-    class ContentDescription(val text: String) : BetweenQuotesStringParameter("contentDescription", text)
+    class Text(val text: String) : StringParameter("text", text)
+    class Title(val text: String) : StringParameter("title", text)
+    class Subtitle(val text: String) : StringParameter("subtitle", text)
+    class Label(val text: String) : StringParameter("label", text)
+    class Placeholder(val text: String) : StringParameter("placeholder", text)
+    class Button1Text(val text: String) : StringParameter("button1Text", text)
+    class Button2Text(val text: String) : StringParameter("button2Text", text)
+    class ContentDescription(val text: String) : StringParameter("contentDescription", text)
 
     object OnClick : LambdaParameter("onClick")
     object OnCheckedChange : LambdaParameter("onCheckedChange")

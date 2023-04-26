@@ -32,7 +32,7 @@ import com.orange.ods.app.ui.components.utilities.clickOnElement
 import com.orange.ods.app.ui.utilities.composable.CodeImplementationColumn
 import com.orange.ods.app.ui.utilities.composable.ComposableCode
 import com.orange.ods.app.ui.utilities.composable.PredefinedParameter
-import com.orange.ods.app.ui.utilities.composable.StringParameter
+import com.orange.ods.app.ui.utilities.composable.SimpleParameter
 import com.orange.ods.compose.component.OdsComponent
 import com.orange.ods.compose.component.card.OdsVerticalHeaderFirstCard
 
@@ -83,7 +83,7 @@ fun CardVerticalHeaderFirst(customizationState: CardCustomizationState) {
                     PredefinedParameter.Title(recipe.title),
                     PredefinedParameter.Image
                 ).apply {
-                    if (hasThumbnail) add(StringParameter("thumbnail", "<thumbnail painter>"))
+                    if (hasThumbnail) add(SimpleParameter("thumbnail", "<thumbnail painter>"))
                     if (hasSubtitle) add(PredefinedParameter.Subtitle(recipe.subtitle))
                     if (hasText) add(PredefinedParameter.CardText)
                     if (isClickable) add(PredefinedParameter.OnCardClick)

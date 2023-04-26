@@ -32,11 +32,11 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import com.orange.ods.app.R
 import com.orange.ods.app.ui.components.utilities.ComponentCustomizationBottomSheetScaffold
-import com.orange.ods.app.ui.utilities.composable.BetweenQuotesStringParameter
 import com.orange.ods.app.ui.utilities.composable.CodeImplementationColumn
 import com.orange.ods.app.ui.utilities.composable.CodeParameter
 import com.orange.ods.app.ui.utilities.composable.ComposableCode
 import com.orange.ods.app.ui.utilities.composable.PredefinedParameter
+import com.orange.ods.app.ui.utilities.composable.StringParameter
 import com.orange.ods.app.ui.utilities.composable.StringRepresentationParameter
 import com.orange.ods.app.ui.utilities.composable.Subtitle
 import com.orange.ods.compose.component.OdsComponent
@@ -122,7 +122,7 @@ fun ProgressLinear() {
                                     determinateProgressValue
                                 )
                             )
-                            if (hasLabel) add(BetweenQuotesStringParameter("label", text))
+                            if (hasLabel) add(StringParameter("label", text))
                             if (hasIcon) add(PredefinedParameter.Icon)
                             if (hasCurrentValue) add(StringRepresentationParameter("showCurrentValue", hasCurrentValue))
                         }

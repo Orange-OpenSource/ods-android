@@ -38,11 +38,11 @@ import com.orange.ods.app.R
 import com.orange.ods.app.domain.recipes.LocalRecipes
 import com.orange.ods.app.ui.components.utilities.ComponentCustomizationBottomSheetScaffold
 import com.orange.ods.app.ui.components.utilities.clickOnElement
-import com.orange.ods.app.ui.utilities.composable.BetweenQuotesStringParameter
 import com.orange.ods.app.ui.utilities.composable.CodeImplementationColumn
 import com.orange.ods.app.ui.utilities.composable.ComposableCode
 import com.orange.ods.app.ui.utilities.composable.LambdaParameter
 import com.orange.ods.app.ui.utilities.composable.PredefinedParameter
+import com.orange.ods.app.ui.utilities.composable.StringParameter
 import com.orange.ods.app.ui.utilities.composable.StringRepresentationParameter
 import com.orange.ods.compose.component.OdsComponent
 import com.orange.ods.compose.component.divider.OdsDivider
@@ -127,7 +127,7 @@ fun MenuDropdown() {
                             ComposableCode(
                                 name = "OdsDropdownMenuItem",
                                 parameters = mutableListOf(
-                                    BetweenQuotesStringParameter("text", recipe.title),
+                                    StringParameter("text", recipe.title),
                                     PredefinedParameter.OnClick
                                 ).apply {
                                     if (hasIcons && recipe.iconResId != null) add(PredefinedParameter.Icon)

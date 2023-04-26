@@ -30,7 +30,7 @@ import com.orange.ods.app.ui.components.utilities.clickOnElement
 import com.orange.ods.app.ui.utilities.composable.CodeImplementationColumn
 import com.orange.ods.app.ui.utilities.composable.ComposableCode
 import com.orange.ods.app.ui.utilities.composable.PredefinedParameter
-import com.orange.ods.app.ui.utilities.composable.StringParameter
+import com.orange.ods.app.ui.utilities.composable.SimpleParameter
 import com.orange.ods.app.ui.utilities.composable.StringRepresentationParameter
 import com.orange.ods.compose.component.OdsComponent
 import com.orange.ods.compose.component.card.OdsHorizontalCard
@@ -76,7 +76,7 @@ fun CardHorizontal(customizationState: CardCustomizationState) {
 
             CodeImplementationColumn {
                 ComposableCode(name = OdsComponent.OdsHorizontalCard.name, exhaustiveParameters = false, parameters = mutableListOf(
-                    StringParameter("imagePosition", imagePosition.value.name),
+                    SimpleParameter("imagePosition", imagePosition.value.name),
                     PredefinedParameter.Title(recipe.title),
                     PredefinedParameter.Image
                 ).apply {

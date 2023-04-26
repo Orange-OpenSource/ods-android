@@ -29,12 +29,12 @@ import androidx.compose.ui.res.painterResource
 import com.orange.ods.app.R
 import com.orange.ods.app.domain.recipes.LocalRecipes
 import com.orange.ods.app.ui.components.buttons.InvertedBackgroundColumn
-import com.orange.ods.app.ui.utilities.composable.BetweenQuotesStringParameter
 import com.orange.ods.app.ui.utilities.composable.ClassInstance
 import com.orange.ods.app.ui.utilities.composable.CodeImplementationColumn
 import com.orange.ods.app.ui.utilities.composable.ComposableCode
 import com.orange.ods.app.ui.utilities.composable.ListParameter
 import com.orange.ods.app.ui.utilities.composable.PredefinedParameter
+import com.orange.ods.app.ui.utilities.composable.StringParameter
 import com.orange.ods.app.ui.utilities.composable.StringRepresentationParameter
 import com.orange.ods.compose.component.OdsComponent
 import com.orange.ods.compose.component.button.OdsIconToggleButtonsRow
@@ -86,7 +86,7 @@ fun ButtonsIconToggleGroup(customizationState: ButtonIconCustomizationState) {
                                     ClassInstance(
                                         OdsIconToggleButtonsRowItem::class.java.simpleName, parameters = listOf(
                                             PredefinedParameter.Painter,
-                                            BetweenQuotesStringParameter("iconDescription", "icon description"),
+                                            StringParameter("iconDescription", "icon description"),
                                         )
                                     )
                                 )
