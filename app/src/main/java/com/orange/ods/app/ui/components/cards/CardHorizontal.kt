@@ -91,7 +91,7 @@ fun CardHorizontal(customizationState: CardCustomizationState) {
                         add(PredefinedParameter.Button2Text(button2Text))
                         add(PredefinedParameter.OnButton2Click)
                     }
-                    if (!hasDivider) add(StringRepresentationParameter("dividerEnabled", hasDivider))
+                    if (!hasDivider && (hasButton1 || hasButton2)) add(StringRepresentationParameter("dividerEnabled", hasDivider))
                 })
             }
         }
