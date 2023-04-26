@@ -111,7 +111,7 @@ fun ProgressLinear() {
                     }
                 }
 
-                CodeImplementationColumn {
+                CodeImplementationColumn(modifier = Modifier.padding(horizontal = dimensionResource(id = R.dimen.screen_horizontal_margin))) {
                     ComposableCode(
                         name = OdsComponent.OdsLinearProgressIndicator.name,
                         exhaustiveParameters = false,
