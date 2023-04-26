@@ -31,7 +31,7 @@ import com.orange.ods.app.R
 import com.orange.ods.app.domain.recipes.LocalRecipes
 import com.orange.ods.app.ui.components.utilities.clickOnElement
 import com.orange.ods.app.ui.utilities.composable.CodeImplementationColumn
-import com.orange.ods.app.ui.utilities.composable.ComposableCode
+import com.orange.ods.app.ui.utilities.composable.FunctionCallCode
 import com.orange.ods.app.ui.utilities.composable.PredefinedParameter
 import com.orange.ods.compose.component.OdsComponent
 import com.orange.ods.compose.component.card.OdsSmallCard
@@ -75,7 +75,7 @@ fun CardSmall(customizationState: CardCustomizationState) {
             Spacer(modifier = Modifier.padding(top = dimensionResource(R.dimen.spacing_s)))
 
             CodeImplementationColumn {
-                ComposableCode(name = OdsComponent.OdsSmallCard.name, exhaustiveParameters = false, parameters = buildList {
+                FunctionCallCode(name = OdsComponent.OdsSmallCard.name, exhaustiveParameters = false, parameters = buildList {
                     add(PredefinedParameter.Title(recipe.title))
                     add(PredefinedParameter.Image)
                     if (hasSubtitle) add(PredefinedParameter.Subtitle(recipe.subtitle))

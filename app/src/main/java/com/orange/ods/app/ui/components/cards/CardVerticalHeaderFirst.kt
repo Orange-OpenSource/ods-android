@@ -30,7 +30,7 @@ import com.orange.ods.app.R
 import com.orange.ods.app.domain.recipes.LocalRecipes
 import com.orange.ods.app.ui.components.utilities.clickOnElement
 import com.orange.ods.app.ui.utilities.composable.CodeImplementationColumn
-import com.orange.ods.app.ui.utilities.composable.ComposableCode
+import com.orange.ods.app.ui.utilities.composable.FunctionCallCode
 import com.orange.ods.app.ui.utilities.composable.PredefinedParameter
 import com.orange.ods.app.ui.utilities.composable.SimpleParameter
 import com.orange.ods.compose.component.OdsComponent
@@ -79,7 +79,7 @@ fun CardVerticalHeaderFirst(customizationState: CardCustomizationState) {
             Spacer(modifier = Modifier.padding(top = dimensionResource(R.dimen.spacing_s)))
 
             CodeImplementationColumn {
-                ComposableCode(name = OdsComponent.OdsVerticalHeaderFirstCard.name, exhaustiveParameters = false, parameters = mutableListOf(
+                FunctionCallCode(name = OdsComponent.OdsVerticalHeaderFirstCard.name, exhaustiveParameters = false, parameters = mutableListOf(
                     PredefinedParameter.Title(recipe.title),
                     PredefinedParameter.Image
                 ).apply {

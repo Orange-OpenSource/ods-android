@@ -39,7 +39,7 @@ import com.orange.ods.app.domain.recipes.LocalRecipes
 import com.orange.ods.app.ui.components.utilities.ComponentCustomizationBottomSheetScaffold
 import com.orange.ods.app.ui.components.utilities.clickOnElement
 import com.orange.ods.app.ui.utilities.composable.CodeImplementationColumn
-import com.orange.ods.app.ui.utilities.composable.ComposableCode
+import com.orange.ods.app.ui.utilities.composable.FunctionCallCode
 import com.orange.ods.app.ui.utilities.composable.LambdaParameter
 import com.orange.ods.app.ui.utilities.composable.PredefinedParameter
 import com.orange.ods.app.ui.utilities.composable.StringParameter
@@ -115,7 +115,7 @@ fun MenuDropdown() {
                 CodeImplementationColumn(
                     modifier = Modifier.padding(horizontal = dimensionResource(id = R.dimen.screen_horizontal_margin))
                 ) {
-                    ComposableCode(
+                    FunctionCallCode(
                         name = OdsComponent.OdsDropdownMenu.name,
                         exhaustiveParameters = false,
                         parameters = mutableListOf(
@@ -124,7 +124,7 @@ fun MenuDropdown() {
                         )
                     ) {
                         recipes.take(2).forEachIndexed { index, recipe ->
-                            ComposableCode(
+                            FunctionCallCode(
                                 name = "OdsDropdownMenuItem",
                                 parameters = mutableListOf(
                                     StringParameter("text", recipe.title),
@@ -134,7 +134,7 @@ fun MenuDropdown() {
                                 }
                             )
                             if (hasDividerExample && index == 0) {
-                                ComposableCode(name = "OdsDivider")
+                                FunctionCallCode(name = "OdsDivider")
                             }
                         }
                     }

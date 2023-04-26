@@ -37,7 +37,7 @@ import com.orange.ods.app.ui.components.utilities.clickOnElement
 import com.orange.ods.app.ui.utilities.composable.ClassInstance
 import com.orange.ods.app.ui.utilities.composable.CodeImplementationColumn
 import com.orange.ods.app.ui.utilities.composable.CodeParameter
-import com.orange.ods.app.ui.utilities.composable.ComposableCode
+import com.orange.ods.app.ui.utilities.composable.FunctionCallCode
 import com.orange.ods.app.ui.utilities.composable.LambdaParameter
 import com.orange.ods.app.ui.utilities.composable.ListParameter
 import com.orange.ods.app.ui.utilities.composable.MutableStateParameter
@@ -131,7 +131,7 @@ fun MenuExposedDropdown() {
                     )
                 }
                 CodeImplementationColumn {
-                    ComposableCode(name = OdsComponent.OdsExposedDropdownMenu.name, exhaustiveParameters = false, parameters = mutableListOf(
+                    FunctionCallCode(name = OdsComponent.OdsExposedDropdownMenu.name, exhaustiveParameters = false, parameters = mutableListOf(
                         StringParameter("label", label),
                         ListParameter("items", itemsValues),
                         MutableStateParameter("selectedItem", "<selected item>"),

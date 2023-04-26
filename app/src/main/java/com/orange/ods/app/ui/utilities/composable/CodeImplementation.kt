@@ -58,7 +58,7 @@ class ClassInstanceParameter(name: String, val value: ClassInstance) : CodeParam
     override val code
         get() = @Composable {
             TechnicalText(text = "$name = ${value.className}(")
-            ComposableParametersCode(parameters = value.parameters, exhaustiveParameters = true)
+            FunctionParametersCode(parameters = value.parameters, exhaustiveParameters = true)
             TechnicalText(text = "),")
         }
 }
@@ -69,7 +69,7 @@ class ListParameter(name: String, val value: List<ClassInstance>) : CodeParamete
             TechnicalText(text = "$name = listOf(")
             IndentCodeColumn {
                 value.forEach { item ->
-                    ComposableCode(name = item.className, parameters = item.parameters, trailingComma = true, exhaustiveParameters = true)
+                    FunctionCallCode(name = item.className, parameters = item.parameters, trailingComma = true, exhaustiveParameters = true)
                 }
             }
             TechnicalText(text = "),")
@@ -145,7 +145,7 @@ fun IndentCodeColumn(content: @Composable () -> Unit) {
 }
 
 @Composable
-fun ComposableCode(
+fun FunctionCallCode(
     name: String,
     parameters: List<CodeParameter> = emptyList(),
     exhaustiveParameters: Boolean = true,
@@ -153,11 +153,11 @@ fun ComposableCode(
     content: @Composable (() -> Unit)? = null
 ) {
     when {
-        parameters.isEmpty() && content != null -> ComposableWithContentOnlyCode(name) { content() }
+        parameters.isEmpty() && content != null -> FunctionCallWithContentOnlyCode(name) { content() }
         parameters.isEmpty() && content == null -> TechnicalText(text = "$name()".withTrailingComma(trailingComma))
         else -> {
             TechnicalText(text = "$name(")
-            ComposableParametersCode(parameters = parameters, exhaustiveParameters = exhaustiveParameters)
+            FunctionParametersCode(parameters = parameters, exhaustiveParameters = exhaustiveParameters)
 
             if (content != null) {
                 TechnicalText(text = ") {")
@@ -179,7 +179,7 @@ fun ComposableCode(
 private fun String.withTrailingComma(comma: Boolean) = if (comma) plus(",") else this
 
 @Composable
-private fun ComposableParametersCode(parameters: List<CodeParameter>, exhaustiveParameters: Boolean) {
+private fun FunctionParametersCode(parameters: List<CodeParameter>, exhaustiveParameters: Boolean) {
     IndentCodeColumn {
         parameters.forEach { it.code() }
         if (!exhaustiveParameters) TechnicalText(text = "//...")
@@ -187,7 +187,7 @@ private fun ComposableParametersCode(parameters: List<CodeParameter>, exhaustive
 }
 
 @Composable
-private fun ComposableWithContentOnlyCode(name: String, content: @Composable () -> Unit) {
+private fun FunctionCallWithContentOnlyCode(name: String, content: @Composable () -> Unit) {
     TechnicalText(text = "$name {")
     IndentCodeColumn {
         content()

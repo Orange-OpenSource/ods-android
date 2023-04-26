@@ -28,7 +28,7 @@ import com.orange.ods.app.ui.utilities.composable.ClassInstance
 import com.orange.ods.app.ui.utilities.composable.ClassInstanceParameter
 import com.orange.ods.app.ui.utilities.composable.CodeImplementationColumn
 import com.orange.ods.app.ui.utilities.composable.CodeParameter
-import com.orange.ods.app.ui.utilities.composable.ComposableCode
+import com.orange.ods.app.ui.utilities.composable.FunctionCallCode
 import com.orange.ods.app.ui.utilities.composable.LambdaParameter
 import com.orange.ods.app.ui.utilities.composable.PredefinedParameter
 import com.orange.ods.app.ui.utilities.composable.SimpleParameter
@@ -133,7 +133,7 @@ fun TextFieldCodeImplementationColumn(
     with(customizationState) {
         val capitalizationValue = if (softKeyboardCapitalization.value) KeyboardCapitalization.Characters.toString() else KeyboardCapitalization.None.toString()
         CodeImplementationColumn {
-            ComposableCode(name = componentName, exhaustiveParameters = false, parameters = mutableListOf(
+            FunctionCallCode(name = componentName, exhaustiveParameters = false, parameters = mutableListOf(
                 StringParameter("value", displayedText),
                 LambdaParameter("onValueChange"),
                 PredefinedParameter.Label(label),

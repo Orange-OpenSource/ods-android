@@ -30,7 +30,7 @@ import com.orange.ods.app.ui.components.buttons.InvertedBackgroundColumn
 import com.orange.ods.app.ui.components.utilities.clickOnElement
 import com.orange.ods.app.ui.utilities.composable.CodeImplementationColumn
 import com.orange.ods.app.ui.utilities.composable.CodeParameter
-import com.orange.ods.app.ui.utilities.composable.ComposableCode
+import com.orange.ods.app.ui.utilities.composable.FunctionCallCode
 import com.orange.ods.app.ui.utilities.composable.PredefinedParameter
 import com.orange.ods.compose.component.OdsComponent
 import com.orange.ods.compose.component.button.OdsIconButton
@@ -72,7 +72,7 @@ fun ButtonsIcon(customizationState: ButtonIconCustomizationState) {
             CodeImplementationColumn(
                 modifier = Modifier.padding(horizontal = dimensionResource(id = R.dimen.screen_horizontal_margin))
             ) {
-                ComposableCode(
+                FunctionCallCode(
                     name = OdsComponent.OdsIconButton.name,
                     exhaustiveParameters = false,
                     parameters = mutableListOf<CodeParameter>(PredefinedParameter.Painter).apply {

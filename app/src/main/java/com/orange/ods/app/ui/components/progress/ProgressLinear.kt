@@ -34,7 +34,7 @@ import com.orange.ods.app.R
 import com.orange.ods.app.ui.components.utilities.ComponentCustomizationBottomSheetScaffold
 import com.orange.ods.app.ui.utilities.composable.CodeImplementationColumn
 import com.orange.ods.app.ui.utilities.composable.CodeParameter
-import com.orange.ods.app.ui.utilities.composable.ComposableCode
+import com.orange.ods.app.ui.utilities.composable.FunctionCallCode
 import com.orange.ods.app.ui.utilities.composable.PredefinedParameter
 import com.orange.ods.app.ui.utilities.composable.StringParameter
 import com.orange.ods.app.ui.utilities.composable.StringRepresentationParameter
@@ -112,7 +112,7 @@ fun ProgressLinear() {
                 }
 
                 CodeImplementationColumn(modifier = Modifier.padding(horizontal = dimensionResource(id = R.dimen.screen_horizontal_margin))) {
-                    ComposableCode(
+                    FunctionCallCode(
                         name = OdsComponent.OdsLinearProgressIndicator.name,
                         exhaustiveParameters = false,
                         parameters = mutableListOf<CodeParameter>().apply {

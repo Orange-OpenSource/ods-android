@@ -27,7 +27,7 @@ import com.orange.ods.app.R
 import com.orange.ods.app.domain.recipes.LocalRecipes
 import com.orange.ods.app.ui.components.utilities.ComponentCustomizationBottomSheetScaffold
 import com.orange.ods.app.ui.utilities.composable.CodeImplementationColumn
-import com.orange.ods.app.ui.utilities.composable.ComposableCode
+import com.orange.ods.app.ui.utilities.composable.FunctionCallCode
 import com.orange.ods.app.ui.utilities.composable.PredefinedParameter
 import com.orange.ods.compose.component.OdsComponent
 import com.orange.ods.compose.component.list.OdsListItem
@@ -68,7 +68,7 @@ fun ComponentRadioButtons() {
             }
 
             CodeImplementationColumn(modifier = Modifier.padding(horizontal = dimensionResource(id = R.dimen.screen_horizontal_margin))) {
-                ComposableCode(name = OdsComponent.OdsRadioButton.name, exhaustiveParameters = false, parameters = mutableListOf(
+                FunctionCallCode(name = OdsComponent.OdsRadioButton.name, exhaustiveParameters = false, parameters = mutableListOf(
                     PredefinedParameter.Selected(false),
                     PredefinedParameter.OnClick
                 ).apply {

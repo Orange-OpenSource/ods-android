@@ -28,7 +28,7 @@ import com.orange.ods.app.R
 import com.orange.ods.app.domain.recipes.LocalRecipes
 import com.orange.ods.app.ui.components.utilities.clickOnElement
 import com.orange.ods.app.ui.utilities.composable.CodeImplementationColumn
-import com.orange.ods.app.ui.utilities.composable.ComposableCode
+import com.orange.ods.app.ui.utilities.composable.FunctionCallCode
 import com.orange.ods.app.ui.utilities.composable.PredefinedParameter
 import com.orange.ods.app.ui.utilities.composable.SimpleParameter
 import com.orange.ods.app.ui.utilities.composable.StringRepresentationParameter
@@ -75,7 +75,7 @@ fun CardHorizontal(customizationState: CardCustomizationState) {
             Spacer(modifier = Modifier.padding(top = dimensionResource(R.dimen.spacing_s)))
 
             CodeImplementationColumn {
-                ComposableCode(name = OdsComponent.OdsHorizontalCard.name, exhaustiveParameters = false, parameters = mutableListOf(
+                FunctionCallCode(name = OdsComponent.OdsHorizontalCard.name, exhaustiveParameters = false, parameters = mutableListOf(
                     SimpleParameter("imagePosition", imagePosition.value.name),
                     PredefinedParameter.Title(recipe.title),
                     PredefinedParameter.Image

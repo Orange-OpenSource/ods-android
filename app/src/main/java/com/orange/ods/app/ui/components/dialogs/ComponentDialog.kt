@@ -28,7 +28,7 @@ import com.orange.ods.app.ui.components.utilities.ComponentCustomizationBottomSh
 import com.orange.ods.app.ui.components.utilities.ComponentLaunchContentColumn
 import com.orange.ods.app.ui.components.utilities.clickOnElement
 import com.orange.ods.app.ui.utilities.composable.CodeImplementationColumn
-import com.orange.ods.app.ui.utilities.composable.ComposableCode
+import com.orange.ods.app.ui.utilities.composable.FunctionCallCode
 import com.orange.ods.app.ui.utilities.composable.LambdaParameter
 import com.orange.ods.app.ui.utilities.composable.SimpleParameter
 import com.orange.ods.app.ui.utilities.composable.StringParameter
@@ -73,7 +73,7 @@ fun ComponentDialog() {
             CodeImplementationColumn(
                 modifier = Modifier.padding(horizontal = dimensionResource(id = R.dimen.screen_horizontal_margin))
             ) {
-                ComposableCode(name = OdsComponent.OdsAlertDialog.name, exhaustiveParameters = false, parameters = mutableListOf(
+                FunctionCallCode(name = OdsComponent.OdsAlertDialog.name, exhaustiveParameters = false, parameters = mutableListOf(
                     SimpleParameter("text", "<dialog text>"),
                     StringParameter("confirmButtonText", confirmButtonText),
                     LambdaParameter("onConfirmButtonClick")

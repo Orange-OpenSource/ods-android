@@ -31,7 +31,7 @@ import com.orange.ods.app.ui.components.utilities.clickOnElement
 import com.orange.ods.app.ui.utilities.composable.CodeBackgroundColumn
 import com.orange.ods.app.ui.utilities.composable.CodeImplementationColumn
 import com.orange.ods.app.ui.utilities.composable.CodeParameter
-import com.orange.ods.app.ui.utilities.composable.ComposableCode
+import com.orange.ods.app.ui.utilities.composable.FunctionCallCode
 import com.orange.ods.app.ui.utilities.composable.IndentCodeColumn
 import com.orange.ods.app.ui.utilities.composable.LambdaParameter
 import com.orange.ods.app.ui.utilities.composable.SimpleParameter
@@ -104,11 +104,11 @@ fun ComponentSnackbars() {
                     text = stringResource(id = R.string.component_snackbar_code_first_step)
                 )
                 CodeBackgroundColumn {
-                    ComposableCode(
+                    FunctionCallCode(
                         name = "OdsSnackbarHost",
                         parameters = listOf(SimpleParameter("hostState", "<SnackbarHostState>"))
                     ) {
-                        ComposableCode(
+                        FunctionCallCode(
                             name = OdsComponent.OdsSnackbar.name,
                             parameters = mutableListOf<CodeParameter>(
                                 SimpleParameter("snackbarData", "data")
@@ -127,7 +127,7 @@ fun ComponentSnackbars() {
                 CodeBackgroundColumn {
                     TechnicalText(text = "coroutineScope.launch {")
                     IndentCodeColumn {
-                        ComposableCode(name = "scaffoldState.snackbarHostState.showSnackbar", parameters = mutableListOf<CodeParameter>(
+                        FunctionCallCode(name = "scaffoldState.snackbarHostState.showSnackbar", parameters = mutableListOf<CodeParameter>(
                             StringParameter("message", snackbarMessage)
                         ).apply {
                             if (actionButtonChecked.value) add(StringParameter("actionLabel", snackbarActionLabel))

@@ -34,7 +34,7 @@ import com.orange.ods.app.R
 import com.orange.ods.app.ui.components.utilities.ComponentCustomizationBottomSheetScaffold
 import com.orange.ods.app.ui.utilities.composable.CodeImplementationColumn
 import com.orange.ods.app.ui.utilities.composable.CodeParameter
-import com.orange.ods.app.ui.utilities.composable.ComposableCode
+import com.orange.ods.app.ui.utilities.composable.FunctionCallCode
 import com.orange.ods.app.ui.utilities.composable.PredefinedParameter
 import com.orange.ods.app.ui.utilities.composable.StringRepresentationParameter
 import com.orange.ods.app.ui.utilities.composable.Subtitle
@@ -96,7 +96,7 @@ fun ProgressCircular() {
                 }
 
                 CodeImplementationColumn {
-                    ComposableCode(
+                    FunctionCallCode(
                         name = OdsComponent.OdsCircularProgressIndicator.name,
                         exhaustiveParameters = false,
                         parameters = mutableListOf<CodeParameter>().apply {

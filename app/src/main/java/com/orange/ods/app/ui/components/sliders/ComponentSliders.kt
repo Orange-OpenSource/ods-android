@@ -29,8 +29,8 @@ import androidx.compose.ui.res.stringResource
 import com.orange.ods.app.R
 import com.orange.ods.app.ui.components.utilities.ComponentCustomizationBottomSheetScaffold
 import com.orange.ods.app.ui.utilities.composable.CodeImplementationColumn
-import com.orange.ods.app.ui.utilities.composable.ComposableCode
 import com.orange.ods.app.ui.utilities.composable.FloatParameter
+import com.orange.ods.app.ui.utilities.composable.FunctionCallCode
 import com.orange.ods.app.ui.utilities.composable.IconPainterValue
 import com.orange.ods.app.ui.utilities.composable.LambdaParameter
 import com.orange.ods.app.ui.utilities.composable.SimpleParameter
@@ -114,7 +114,7 @@ fun ComponentSliders() {
                 }
 
                 CodeImplementationColumn {
-                    ComposableCode(name = componentName, exhaustiveParameters = false, parameters = mutableListOf(
+                    FunctionCallCode(name = componentName, exhaustiveParameters = false, parameters = mutableListOf(
                         FloatParameter("value", sliderPosition),
                         SimpleParameter("valueRange", "0f..100f"),
                         LambdaParameter("onValueChange")

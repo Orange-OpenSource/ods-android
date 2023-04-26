@@ -34,7 +34,7 @@ import com.orange.ods.app.ui.components.utilities.ComponentLaunchContentColumn
 import com.orange.ods.app.ui.utilities.composable.ClassInstance
 import com.orange.ods.app.ui.utilities.composable.ClassInstanceParameter
 import com.orange.ods.app.ui.utilities.composable.CodeImplementationColumn
-import com.orange.ods.app.ui.utilities.composable.ComposableCode
+import com.orange.ods.app.ui.utilities.composable.FunctionCallCode
 import com.orange.ods.app.ui.utilities.composable.LambdaParameter
 import com.orange.ods.app.ui.utilities.composable.ListParameter
 import com.orange.ods.app.ui.utilities.composable.PredefinedParameter
@@ -179,7 +179,7 @@ fun ComponentModalDrawers() {
                         )
 
                         CodeImplementationColumn(modifier = Modifier.padding(horizontal = dimensionResource(id = R.dimen.screen_horizontal_margin))) {
-                            ComposableCode(
+                            FunctionCallCode(
                                 name = OdsComponent.OdsModalDrawer.name,
                                 exhaustiveParameters = false,
                                 parameters = listOf(

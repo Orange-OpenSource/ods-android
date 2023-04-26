@@ -31,7 +31,7 @@ import com.orange.ods.app.domain.recipes.LocalRecipes
 import com.orange.ods.app.ui.components.buttons.InvertedBackgroundColumn
 import com.orange.ods.app.ui.utilities.composable.ClassInstance
 import com.orange.ods.app.ui.utilities.composable.CodeImplementationColumn
-import com.orange.ods.app.ui.utilities.composable.ComposableCode
+import com.orange.ods.app.ui.utilities.composable.FunctionCallCode
 import com.orange.ods.app.ui.utilities.composable.ListParameter
 import com.orange.ods.app.ui.utilities.composable.PredefinedParameter
 import com.orange.ods.app.ui.utilities.composable.StringParameter
@@ -78,7 +78,7 @@ fun ButtonsIconToggleGroup(customizationState: ButtonIconCustomizationState) {
             CodeImplementationColumn(
                 modifier = Modifier.padding(horizontal = dimensionResource(id = R.dimen.screen_horizontal_margin))
             ) {
-                ComposableCode(
+                FunctionCallCode(
                     name = OdsComponent.OdsIconToggleButtonsRow.name, exhaustiveParameters = false, parameters = listOf(
                         ListParameter("iconsToggleButtons", List(toggleCount.value) {
                             ClassInstance(

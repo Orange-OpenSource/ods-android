@@ -29,7 +29,7 @@ import com.orange.ods.app.domain.recipes.LocalRecipes
 import com.orange.ods.app.ui.components.utilities.clickOnElement
 import com.orange.ods.app.ui.utilities.composable.CodeImplementationColumn
 import com.orange.ods.app.ui.utilities.composable.CodeParameter
-import com.orange.ods.app.ui.utilities.composable.ComposableCode
+import com.orange.ods.app.ui.utilities.composable.FunctionCallCode
 import com.orange.ods.app.ui.utilities.composable.PredefinedParameter
 import com.orange.ods.compose.component.OdsComponent
 import com.orange.ods.compose.component.card.OdsVerticalImageFirstCard
@@ -72,7 +72,7 @@ fun CardVerticalImageFirst(customizationState: CardCustomizationState) {
             Spacer(modifier = Modifier.padding(top = dimensionResource(R.dimen.spacing_s)))
 
             CodeImplementationColumn {
-                ComposableCode(name = OdsComponent.OdsVerticalImageFirstCard.name, exhaustiveParameters = false, parameters = mutableListOf<CodeParameter>(
+                FunctionCallCode(name = OdsComponent.OdsVerticalImageFirstCard.name, exhaustiveParameters = false, parameters = mutableListOf<CodeParameter>(
                     PredefinedParameter.Title(recipe.title),
                     PredefinedParameter.Image
                 ).apply {
