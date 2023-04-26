@@ -35,13 +35,13 @@ import com.orange.ods.app.domain.recipes.LocalRecipes
 import com.orange.ods.app.ui.components.utilities.ComponentCustomizationBottomSheetScaffold
 import com.orange.ods.app.ui.components.utilities.clickOnElement
 import com.orange.ods.app.ui.utilities.composable.BetweenQuotesStringParameter
+import com.orange.ods.app.ui.utilities.composable.ClassInstance
 import com.orange.ods.app.ui.utilities.composable.CodeImplementationColumn
 import com.orange.ods.app.ui.utilities.composable.CodeParameter
 import com.orange.ods.app.ui.utilities.composable.ComposableCode
 import com.orange.ods.app.ui.utilities.composable.LambdaParameter
 import com.orange.ods.app.ui.utilities.composable.ListParameter
 import com.orange.ods.app.ui.utilities.composable.MutableStateParameter
-import com.orange.ods.app.ui.utilities.composable.ObjectInstance
 import com.orange.ods.app.ui.utilities.composable.PredefinedParameter
 import com.orange.ods.compose.component.OdsComponent
 import com.orange.ods.compose.component.list.OdsListItem
@@ -119,10 +119,10 @@ fun MenuExposedDropdown() {
                     enabled = isEnabled
                 )
 
-                val itemsValues = mutableListOf<ObjectInstance>()
+                val itemsValues = mutableListOf<ClassInstance>()
                 items.forEach { item ->
                     itemsValues.add(
-                        ObjectInstance(
+                        ClassInstance(
                             "OdsExposedDropdownMenuItem",
                             mutableListOf<CodeParameter>(BetweenQuotesStringParameter("label", item.label)).apply {
                                 if (hasIcons) add(PredefinedParameter.Icon)

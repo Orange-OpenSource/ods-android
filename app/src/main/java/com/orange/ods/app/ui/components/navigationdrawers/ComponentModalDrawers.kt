@@ -31,12 +31,12 @@ import com.orange.ods.app.domain.recipes.LocalCategories
 import com.orange.ods.app.domain.recipes.LocalRecipes
 import com.orange.ods.app.ui.components.utilities.ComponentCustomizationBottomSheetScaffold
 import com.orange.ods.app.ui.components.utilities.ComponentLaunchContentColumn
+import com.orange.ods.app.ui.utilities.composable.ClassInstance
+import com.orange.ods.app.ui.utilities.composable.ClassInstanceParameter
 import com.orange.ods.app.ui.utilities.composable.CodeImplementationColumn
 import com.orange.ods.app.ui.utilities.composable.ComposableCode
 import com.orange.ods.app.ui.utilities.composable.LambdaParameter
 import com.orange.ods.app.ui.utilities.composable.ListParameter
-import com.orange.ods.app.ui.utilities.composable.ObjectInstance
-import com.orange.ods.app.ui.utilities.composable.ObjectParameter
 import com.orange.ods.app.ui.utilities.composable.PredefinedParameter
 import com.orange.ods.app.ui.utilities.composable.StringParameter
 import com.orange.ods.app.ui.utilities.composable.Subtitle
@@ -184,8 +184,8 @@ fun ComponentModalDrawers() {
                                 name = OdsComponent.OdsModalDrawer.name,
                                 exhaustiveParameters = false,
                                 parameters = listOf(
-                                    ObjectParameter(
-                                        "drawerHeader", ObjectInstance(OdsModalDrawerHeader::class.java.simpleName, mutableListOf(
+                                    ClassInstanceParameter(
+                                        "drawerHeader", ClassInstance(OdsModalDrawerHeader::class.java.simpleName, mutableListOf(
                                             PredefinedParameter.Title(title),
                                             PredefinedParameter.Image,
                                             StringParameter("imageDisplayType", imageDisplayType.toString())
@@ -193,25 +193,25 @@ fun ComponentModalDrawers() {
                                             subtitle?.let { add(PredefinedParameter.Subtitle(it)) }
                                         })
                                     ),
-                                    ListParameter("drawerContentList", mutableListOf<ObjectInstance>().apply {
+                                    ListParameter("drawerContentList", mutableListOf<ClassInstance>().apply {
                                         if (isContentExampleChecked) {
                                             if (hasLabel) {
                                                 add(
-                                                    ObjectInstance(
+                                                    ClassInstance(
                                                         OdsModalDrawerSectionLabel::class.java.simpleName,
                                                         listOf(PredefinedParameter.Label("Section"))
                                                     )
                                                 )
                                             }
                                             add(
-                                                ObjectInstance(
+                                                ClassInstance(
                                                     OdsModalDrawerListItem::class.java.simpleName, listOf(
                                                         PredefinedParameter.Icon,
                                                         StringParameter("text", "<item label>")
                                                     )
                                                 )
                                             )
-                                            if (hasDivider) add(ObjectInstance(OdsModalDrawerDivider::class.java.simpleName))
+                                            if (hasDivider) add(ClassInstance(OdsModalDrawerDivider::class.java.simpleName))
                                         }
                                     }),
                                     StringParameter("selectedItem", "<OdsModalDrawerItem>"),

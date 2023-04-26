@@ -53,7 +53,7 @@ class ComposableParameter(name: String, val value: @Composable () -> Unit) : Cod
         }
 }
 
-class ObjectParameter(name: String, val value: ObjectInstance) : CodeParameter(name) {
+class ClassInstanceParameter(name: String, val value: ClassInstance) : CodeParameter(name) {
     override val code
         get() = @Composable {
             TechnicalText(text = "$name = ${value.className}(")
@@ -62,7 +62,7 @@ class ObjectParameter(name: String, val value: ObjectInstance) : CodeParameter(n
         }
 }
 
-class ListParameter(name: String, val value: List<ObjectInstance>) : CodeParameter(name) {
+class ListParameter(name: String, val value: List<ClassInstance>) : CodeParameter(name) {
     override val code
         get() = @Composable {
             TechnicalText(text = "$name = listOf(")
@@ -75,7 +75,7 @@ class ListParameter(name: String, val value: List<ObjectInstance>) : CodeParamet
         }
 }
 
-data class ObjectInstance(val className: String, val parameters: List<CodeParameter> = emptyList())
+data class ClassInstance(val className: String, val parameters: List<CodeParameter> = emptyList())
 
 sealed class PredefinedParameter {
     object Icon : StringParameter("icon", IconPainterValue)

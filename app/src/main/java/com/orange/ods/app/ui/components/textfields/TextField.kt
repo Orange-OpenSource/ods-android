@@ -25,12 +25,12 @@ import com.orange.ods.app.R
 import com.orange.ods.app.ui.components.textfields.TextFieldCustomizationState.Companion.TextFieldMaxChars
 import com.orange.ods.app.ui.components.utilities.clickOnElement
 import com.orange.ods.app.ui.utilities.composable.BetweenQuotesStringParameter
+import com.orange.ods.app.ui.utilities.composable.ClassInstance
+import com.orange.ods.app.ui.utilities.composable.ClassInstanceParameter
 import com.orange.ods.app.ui.utilities.composable.CodeImplementationColumn
 import com.orange.ods.app.ui.utilities.composable.CodeParameter
 import com.orange.ods.app.ui.utilities.composable.ComposableCode
 import com.orange.ods.app.ui.utilities.composable.LambdaParameter
-import com.orange.ods.app.ui.utilities.composable.ObjectInstance
-import com.orange.ods.app.ui.utilities.composable.ObjectParameter
 import com.orange.ods.app.ui.utilities.composable.PredefinedParameter
 import com.orange.ods.app.ui.utilities.composable.StringParameter
 import com.orange.ods.app.ui.utilities.composable.StringRepresentationParameter
@@ -138,8 +138,8 @@ fun TextFieldCodeImplementationColumn(
                 LambdaParameter("onValueChange"),
                 PredefinedParameter.Label(label),
                 PredefinedParameter.Placeholder(placeholder),
-                ObjectParameter(
-                    "keyboardOptions", ObjectInstance(
+                ClassInstanceParameter(
+                    "keyboardOptions", ClassInstance(
                         KeyboardOptions::class.java.simpleName, listOf<CodeParameter>(
                             StringParameter("capitalization", capitalizationValue),
                             StringParameter("keyboardType", softKeyboardType.value.keyboardType.toString()),
@@ -159,8 +159,8 @@ fun TextFieldCodeImplementationColumn(
                 if (hasTrailing) add(StringParameter("trailing", "<trailing composable>"))
                 if (hasCharacterCounter) {
                     add(
-                        ObjectParameter(
-                            "characterCounter", ObjectInstance(
+                        ClassInstanceParameter(
+                            "characterCounter", ClassInstance(
                                 OdsComponent.OdsTextFieldCharacterCounter.name, listOf<CodeParameter>(
                                     StringRepresentationParameter("valueLength", displayedText.length),
                                     PredefinedParameter.Enabled(isEnabled)

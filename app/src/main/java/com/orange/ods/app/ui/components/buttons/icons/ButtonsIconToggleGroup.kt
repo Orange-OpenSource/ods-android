@@ -30,10 +30,10 @@ import com.orange.ods.app.R
 import com.orange.ods.app.domain.recipes.LocalRecipes
 import com.orange.ods.app.ui.components.buttons.InvertedBackgroundColumn
 import com.orange.ods.app.ui.utilities.composable.BetweenQuotesStringParameter
+import com.orange.ods.app.ui.utilities.composable.ClassInstance
 import com.orange.ods.app.ui.utilities.composable.CodeImplementationColumn
 import com.orange.ods.app.ui.utilities.composable.ComposableCode
 import com.orange.ods.app.ui.utilities.composable.ListParameter
-import com.orange.ods.app.ui.utilities.composable.ObjectInstance
 import com.orange.ods.app.ui.utilities.composable.PredefinedParameter
 import com.orange.ods.app.ui.utilities.composable.StringRepresentationParameter
 import com.orange.ods.compose.component.OdsComponent
@@ -80,14 +80,16 @@ fun ButtonsIconToggleGroup(customizationState: ButtonIconCustomizationState) {
             ) {
                 ComposableCode(
                     name = OdsComponent.OdsIconToggleButtonsRow.name, exhaustiveParameters = false, parameters = listOf(
-                        ListParameter("iconsToggleButtons", mutableListOf<ObjectInstance>().apply {
+                        ListParameter("iconsToggleButtons", mutableListOf<ClassInstance>().apply {
                             repeat(iconToggleButtons.size) {
-                                add(ObjectInstance(
-                                    OdsIconToggleButtonsRowItem::class.java.simpleName, parameters = listOf(
-                                        PredefinedParameter.Painter,
-                                        BetweenQuotesStringParameter("iconDescription", "icon description"),
+                                add(
+                                    ClassInstance(
+                                        OdsIconToggleButtonsRowItem::class.java.simpleName, parameters = listOf(
+                                            PredefinedParameter.Painter,
+                                            BetweenQuotesStringParameter("iconDescription", "icon description"),
+                                        )
                                     )
-                                ))
+                                )
                             }
                         }),
                         StringRepresentationParameter("selectedButtonIndex", selectedIndex)
