@@ -142,8 +142,8 @@ fun TextFieldCodeImplementationColumn(
                     "keyboardOptions", ClassInstance(
                         KeyboardOptions::class.java.simpleName, listOf<CodeParameter>(
                             SimpleParameter("capitalization", capitalizationValue),
-                            SimpleParameter("keyboardType", softKeyboardType.value.keyboardType.toString()),
-                            SimpleParameter("imeAction", softKeyboardAction.value.imeAction.toString())
+                            StringRepresentationParameter("keyboardType", softKeyboardType.value.keyboardType),
+                            StringRepresentationParameter("imeAction", softKeyboardAction.value.imeAction)
                         )
                     )
                 )

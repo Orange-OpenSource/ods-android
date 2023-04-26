@@ -39,6 +39,7 @@ import com.orange.ods.app.ui.utilities.composable.LambdaParameter
 import com.orange.ods.app.ui.utilities.composable.ListParameter
 import com.orange.ods.app.ui.utilities.composable.PredefinedParameter
 import com.orange.ods.app.ui.utilities.composable.SimpleParameter
+import com.orange.ods.app.ui.utilities.composable.StringRepresentationParameter
 import com.orange.ods.app.ui.utilities.composable.Subtitle
 import com.orange.ods.compose.component.OdsComponent
 import com.orange.ods.compose.component.chip.OdsChoiceChip
@@ -186,7 +187,7 @@ fun ComponentModalDrawers() {
                                         "drawerHeader", ClassInstance(OdsModalDrawerHeader::class.java.simpleName, mutableListOf(
                                             PredefinedParameter.Title(title),
                                             PredefinedParameter.Image,
-                                            SimpleParameter("imageDisplayType", imageDisplayType.toString())
+                                            StringRepresentationParameter("imageDisplayType", imageDisplayType)
                                         ).apply {
                                             subtitle?.let { add(PredefinedParameter.Subtitle(it)) }
                                         })
