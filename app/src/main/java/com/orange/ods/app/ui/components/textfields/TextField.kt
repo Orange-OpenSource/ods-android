@@ -72,7 +72,7 @@ fun TextField(customizationState: TextFieldCustomizationState) {
                     onValueChange = onValueChange,
                     label = label,
                     placeholder = placeholder,
-                    trailing = if (customizationState.hasTrailingIcon) {
+                    trailing = if (hasTrailingIcon) {
                         OdsIconTrailing(
                             painter = painterResource(id = R.drawable.ic_eye),
                             onClick = { clickOnElement(context = context, trailingIconName) })
