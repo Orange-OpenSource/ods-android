@@ -80,17 +80,13 @@ fun ButtonsIconToggleGroup(customizationState: ButtonIconCustomizationState) {
             ) {
                 ComposableCode(
                     name = OdsComponent.OdsIconToggleButtonsRow.name, exhaustiveParameters = false, parameters = listOf(
-                        ListParameter("iconsToggleButtons", mutableListOf<ClassInstance>().apply {
-                            repeat(iconToggleButtons.size) {
-                                add(
-                                    ClassInstance(
-                                        OdsIconToggleButtonsRowItem::class.java.simpleName, parameters = listOf(
-                                            PredefinedParameter.Painter,
-                                            StringParameter("iconDescription", "icon description"),
-                                        )
-                                    )
+                        ListParameter("iconsToggleButtons", List(toggleCount.value) {
+                            ClassInstance(
+                                OdsIconToggleButtonsRowItem::class.java.simpleName, parameters = listOf(
+                                    PredefinedParameter.Painter,
+                                    StringParameter("iconDescription", "icon description"),
                                 )
-                            }
+                            )
                         }),
                         StringRepresentationParameter("selectedButtonIndex", selectedIndex)
                     )
