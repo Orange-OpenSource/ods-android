@@ -107,6 +107,7 @@ sealed class PredefinedParameter {
 @Composable
 fun CodeImplementationColumn(
     modifier: Modifier = Modifier,
+    contentBackground: Boolean = true,
     content: @Composable () -> Unit
 ) {
     Column(
@@ -116,14 +117,22 @@ fun CodeImplementationColumn(
     ) {
         Subtitle(textRes = R.string.code_implementation)
         Spacer(modifier = Modifier.height(dimensionResource(id = R.dimen.spacing_s)))
-        Column(
-            modifier = Modifier
-                .background(OdsTheme.colors.onSurface.copy(alpha = 0.12f))
-                .padding(horizontal = dimensionResource(id = R.dimen.spacing_s), vertical = dimensionResource(id = R.dimen.spacing_s))
-                .semantics(mergeDescendants = true) {},
-        ) {
+        if (contentBackground) {
+            CodeBackgroundColumn(content)
+        } else {
             content()
         }
+    }
+}
+
+@Composable
+fun CodeBackgroundColumn(content: @Composable () -> Unit) {
+    Column(
+        modifier = Modifier
+            .background(OdsTheme.colors.onSurface.copy(alpha = 0.12f))
+            .padding(horizontal = dimensionResource(id = R.dimen.spacing_s), vertical = dimensionResource(id = R.dimen.spacing_s))
+            .semantics(mergeDescendants = true) {}) {
+        content()
     }
 }
 

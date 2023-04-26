@@ -28,6 +28,7 @@ import com.orange.ods.app.R
 import com.orange.ods.app.ui.components.utilities.ComponentCustomizationBottomSheetScaffold
 import com.orange.ods.app.ui.components.utilities.ComponentLaunchContentColumn
 import com.orange.ods.app.ui.components.utilities.clickOnElement
+import com.orange.ods.app.ui.utilities.composable.CodeBackgroundColumn
 import com.orange.ods.app.ui.utilities.composable.CodeImplementationColumn
 import com.orange.ods.app.ui.utilities.composable.CodeParameter
 import com.orange.ods.app.ui.utilities.composable.ComposableCode
@@ -94,39 +95,46 @@ fun ComponentSnackbars() {
                 }
             }
 
-            CodeImplementationColumn(modifier = Modifier.padding(horizontal = dimensionResource(id = R.dimen.screen_horizontal_margin))) {
+            CodeImplementationColumn(
+                modifier = Modifier.padding(horizontal = dimensionResource(id = R.dimen.screen_horizontal_margin)),
+                contentBackground = false
+            ) {
                 OdsTextBody2(
                     modifier = Modifier.padding(bottom = dimensionResource(id = R.dimen.spacing_xs)),
                     text = stringResource(id = R.string.component_snackbar_code_first_step)
                 )
-                ComposableCode(
-                    name = "OdsSnackbarHost",
-                    parameters = listOf(SimpleParameter("hostState", "<SnackbarHostState>"))
-                ) {
+                CodeBackgroundColumn {
                     ComposableCode(
-                        name = OdsComponent.OdsSnackbar.name,
-                        parameters = mutableListOf<CodeParameter>(
-                            SimpleParameter("snackbarData", "data")
-                        ).apply {
-                            if (actionOnNewLineChecked.value) add(StringRepresentationParameter("actionOnNewLine", true))
-                            add(LambdaParameter("onActionClick"))
-                        }
-                    )
+                        name = "OdsSnackbarHost",
+                        parameters = listOf(SimpleParameter("hostState", "<SnackbarHostState>"))
+                    ) {
+                        ComposableCode(
+                            name = OdsComponent.OdsSnackbar.name,
+                            parameters = mutableListOf<CodeParameter>(
+                                SimpleParameter("snackbarData", "data")
+                            ).apply {
+                                if (actionOnNewLineChecked.value) add(StringRepresentationParameter("actionOnNewLine", true))
+                                add(LambdaParameter("onActionClick"))
+                            }
+                        )
+                    }
                 }
 
                 OdsTextBody2(
                     modifier = Modifier.padding(top = dimensionResource(id = R.dimen.spacing_s), bottom = dimensionResource(id = R.dimen.spacing_xs)),
                     text = stringResource(id = R.string.component_snackbar_code_second_step)
                 )
-                TechnicalText(text = "coroutineScope.launch {")
-                IndentCodeColumn {
-                    ComposableCode(name = "scaffoldState.snackbarHostState.showSnackbar", parameters = mutableListOf<CodeParameter>(
-                        StringParameter("message", snackbarMessage)
-                    ).apply {
-                        if (actionButtonChecked.value) add(StringParameter("actionLabel", snackbarActionLabel))
-                    })
+                CodeBackgroundColumn {
+                    TechnicalText(text = "coroutineScope.launch {")
+                    IndentCodeColumn {
+                        ComposableCode(name = "scaffoldState.snackbarHostState.showSnackbar", parameters = mutableListOf<CodeParameter>(
+                            StringParameter("message", snackbarMessage)
+                        ).apply {
+                            if (actionButtonChecked.value) add(StringParameter("actionLabel", snackbarActionLabel))
+                        })
+                    }
+                    TechnicalText(text = "}")
                 }
-                TechnicalText(text = "}")
             }
 
         }
