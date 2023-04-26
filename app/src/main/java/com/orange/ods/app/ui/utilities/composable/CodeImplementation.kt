@@ -40,6 +40,7 @@ open class SimpleParameter(name: String, val value: String) : CodeParameter(name
 open class StringRepresentationParameter<T>(name: String, value: T) : SimpleParameter(name, value.toString())
 open class StringParameter(name: String, textValue: String) : SimpleParameter(name, "\"$textValue\"")
 open class LambdaParameter(name: String) : SimpleParameter(name, "{ }")
+class FloatParameter(name: String, value: Float) : SimpleParameter(name, value.toString().plus("f"))
 class MutableStateParameter(name: String, stateValue: String) : SimpleParameter(name, "remember { mutableStateOf($stateValue) }")
 
 class ComposableParameter(name: String, val value: @Composable () -> Unit) : CodeParameter(name) {
