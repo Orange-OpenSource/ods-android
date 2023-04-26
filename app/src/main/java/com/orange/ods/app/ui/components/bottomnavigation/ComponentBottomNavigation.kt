@@ -101,7 +101,7 @@ fun ComponentBottomNavigation() {
                 ComposableCode(name = OdsComponent.OdsBottomNavigation.name) {
                     navigationItems.take(2).forEach { item ->
                         ComposableCode(
-                            name = "OdsBottomNavigationItem",
+                            name = OdsComponent.OdsBottomNavigationItem.name,
                             parameters = listOf(
                                 PredefinedParameter.Icon,
                                 StringParameter("label", stringResource(id = item.textResId)),

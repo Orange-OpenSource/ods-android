@@ -104,7 +104,7 @@ fun ComponentTopAppBar() {
                                 value = {
                                     repeat(actionCount.value) {
                                         ComposableCode(
-                                            name = "OdsTopAppBarActionButton",
+                                            name = OdsComponent.OdsTopAppBarActionButton.name,
                                             parameters = listOf(
                                                 PredefinedParameter.OnClick,
                                                 PredefinedParameter.Painter,
