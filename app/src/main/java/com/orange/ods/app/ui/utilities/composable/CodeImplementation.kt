@@ -47,7 +47,7 @@ class ComposableParameter(name: String, val value: @Composable () -> Unit) : Cod
         get() = @Composable {
             TechnicalText(text = "$name = {")
             IndentCodeColumn {
-                value.invoke()
+                value()
             }
             TechnicalText(text = "},")
         }
