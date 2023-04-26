@@ -91,14 +91,12 @@ fun ComponentModalDrawers() {
         OdsModalDrawer(
             drawerHeader = OdsModalDrawerHeader(
                 title = title,
-                image = if (hasBackground) {
+                image = if (hasBackground || hasAvatar) {
                     rememberAsyncImagePainter(
                         model = rememberSaveable { recipes.random() }.imageUrl,
                         placeholder = painterResource(id = R.drawable.placeholder),
                         error = painterResource(id = R.drawable.placeholder)
                     )
-                } else if (hasAvatar) {
-                    painterResource(id = R.drawable.placeholder)
                 } else null,
                 subtitle = subtitle,
                 imageDisplayType = imageDisplayType
