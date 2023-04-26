@@ -68,7 +68,7 @@ class ListParameter(name: String, val value: List<ClassInstance>) : CodeParamete
             TechnicalText(text = "$name = listOf(")
             IndentCodeColumn {
                 value.forEach { item ->
-                    ComposableCode(name = item.className, parameters = item.parameters, exhaustiveParameters = true)
+                    ComposableCode(name = item.className, parameters = item.parameters, trailingComma = true, exhaustiveParameters = true)
                 }
             }
             TechnicalText(text = "),")
@@ -148,11 +148,12 @@ fun ComposableCode(
     name: String,
     parameters: List<CodeParameter> = emptyList(),
     exhaustiveParameters: Boolean = true,
+    trailingComma: Boolean = false,
     content: @Composable (() -> Unit)? = null
 ) {
     when {
         parameters.isEmpty() && content != null -> ComposableWithContentOnlyCode(name) { content() }
-        parameters.isEmpty() && content == null -> TechnicalText(text = "$name()")
+        parameters.isEmpty() && content == null -> TechnicalText(text = "$name()".withTrailingComma(trailingComma))
         else -> {
             TechnicalText(text = "$name(")
             ComposableParametersCode(parameters = parameters, exhaustiveParameters = exhaustiveParameters)
@@ -163,13 +164,18 @@ fun ComposableCode(
                     content()
                     TechnicalText(text = "//...")
                 }
-                TechnicalText(text = "}")
+                TechnicalText(text = "}".withTrailingComma(trailingComma))
             } else {
-                TechnicalText(text = ")")
+                TechnicalText(text = ")".withTrailingComma(trailingComma))
             }
         }
     }
 }
+
+/**
+ * Add a trailing comma to the String if [comma] is true
+ */
+private fun String.withTrailingComma(comma: Boolean) = if (comma) plus(",") else this
 
 @Composable
 private fun ComposableParametersCode(parameters: List<CodeParameter>, exhaustiveParameters: Boolean) {
