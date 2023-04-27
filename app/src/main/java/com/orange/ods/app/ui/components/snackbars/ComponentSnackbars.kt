@@ -105,7 +105,7 @@ fun ComponentSnackbars() {
                 )
                 CodeBackgroundColumn {
                     FunctionCallCode(
-                        name = "OdsSnackbarHost",
+                        name = OdsComponent.OdsSnackbarHost.name,
                         parameters = listOf(SimpleParameter("hostState", "<SnackbarHostState>"))
                     ) {
                         FunctionCallCode(

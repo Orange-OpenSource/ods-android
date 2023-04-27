@@ -125,7 +125,7 @@ fun MenuDropdown() {
                     ) {
                         recipes.take(2).forEachIndexed { index, recipe ->
                             FunctionCallCode(
-                                name = "OdsDropdownMenuItem",
+                                name = OdsComponent.OdsDropdownMenuItem.name,
                                 parameters = mutableListOf(
                                     StringParameter("text", recipe.title),
                                     PredefinedParameter.OnClick
@@ -134,7 +134,7 @@ fun MenuDropdown() {
                                 }
                             )
                             if (hasDividerExample && index == 0) {
-                                FunctionCallCode(name = "OdsDivider")
+                                FunctionCallCode(name = OdsComponent.OdsDivider.name)
                             }
                         }
                     }

@@ -114,14 +114,14 @@ fun ComponentTopAppBar() {
                                     }
                                     if (isOverflowMenuEnabled) {
                                         FunctionCallCode(
-                                            name = "OdsTopAppBarOverflowMenuBox",
+                                            name = OdsComponent.OdsTopAppBarOverflowMenuBox.name,
                                             parameters = listOf(
                                                 StringParameter("overflowIconContentDescription", "Open overflow menu"),
                                             )
                                         ) {
                                             for (i in 1..2) {
                                                 FunctionCallCode(
-                                                    name = "OdsDropdownMenuItem",
+                                                    name = OdsComponent.OdsDropdownMenuItem.name,
                                                     parameters = listOf(
                                                         PredefinedParameter.Text("Menu $i"),
                                                         PredefinedParameter.OnClick

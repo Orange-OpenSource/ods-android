@@ -125,6 +125,7 @@ fun OdsTopAppBarActionButton(
  * @param content The content of the overflow dropdown menu
  */
 @Composable
+@OdsComponentApi
 fun OdsTopAppBarOverflowMenuBox(
     overflowIconContentDescription: String,
     content: @Composable ColumnScope.() -> Unit

@@ -75,6 +75,7 @@ fun OdsDropdownMenu(
  * will not be clickable and [onClick] will not be invoked
  */
 @Composable
+@OdsComponentApi
 fun ColumnScope.OdsDropdownMenuItem(
     text: String,
     onClick: () -> Unit,
