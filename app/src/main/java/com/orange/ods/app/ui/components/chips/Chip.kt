@@ -11,6 +11,7 @@
 package com.orange.ods.app.ui.components.chips
 
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
@@ -33,7 +34,16 @@ import com.orange.ods.app.ui.components.chips.ChipCustomizationState.ChipType
 import com.orange.ods.app.ui.components.chips.ChipCustomizationState.LeadingElement
 import com.orange.ods.app.ui.components.utilities.ComponentCustomizationBottomSheetScaffold
 import com.orange.ods.app.ui.components.utilities.clickOnElement
+import com.orange.ods.app.ui.utilities.composable.CodeImplementationColumn
+import com.orange.ods.app.ui.utilities.composable.FunctionCallCode
+import com.orange.ods.app.ui.utilities.composable.ImagePainterValue
+import com.orange.ods.app.ui.utilities.composable.LambdaParameter
+import com.orange.ods.app.ui.utilities.composable.MutableStateParameter
+import com.orange.ods.app.ui.utilities.composable.PredefinedParameter
+import com.orange.ods.app.ui.utilities.composable.SimpleParameter
+import com.orange.ods.app.ui.utilities.composable.StringRepresentationParameter
 import com.orange.ods.app.ui.utilities.composable.Subtitle
+import com.orange.ods.compose.component.OdsComponent
 import com.orange.ods.compose.component.chip.OdsChip
 import com.orange.ods.compose.component.chip.OdsChoiceChip
 import com.orange.ods.compose.component.chip.OdsChoiceChipsFlowRow
@@ -113,6 +123,26 @@ private fun Chip(chipCustomizationState: ChipCustomizationState) {
                     )
                 }
             }
+
+            Spacer(modifier = Modifier.padding(top = dimensionResource(R.dimen.spacing_s)))
+
+            CodeImplementationColumn {
+                FunctionCallCode(
+                    name = OdsComponent.OdsChoiceChipsFlowRow.name,
+                    parameters = buildList {
+                        add(MutableStateParameter("selectedChip", choiceChipIndexSelected.value.toString()))
+                        if (!outlinedChips) add(StringRepresentationParameter("outlinedChips", outlinedChips))
+                    }
+                ) {
+                    recipes.forEachIndexed { index, recipe ->
+                        FunctionCallCode(name = OdsComponent.OdsChoiceChip.name, parameters = buildList {
+                            add(PredefinedParameter.Text(recipe.title))
+                            add(StringRepresentationParameter("value", index))
+                            if (!isEnabled) add(PredefinedParameter.Enabled(false))
+                        })
+                    }
+                }
+            }
         } else {
             val recipe = recipes.firstOrNull()
             OdsChip(
@@ -132,6 +162,20 @@ private fun Chip(chipCustomizationState: ChipCustomizationState) {
                     { clickOnElement(context, cancelCrossLabel) }
                 } else null
             )
+
+            Spacer(modifier = Modifier.padding(top = dimensionResource(R.dimen.spacing_s)))
+
+            CodeImplementationColumn {
+                FunctionCallCode(name = OdsComponent.OdsChip.name, exhaustiveParameters = false, parameters = buildList {
+                    add(PredefinedParameter.Text(recipe?.title.orEmpty()))
+                    if (!outlinedChips) add(StringRepresentationParameter("outlined", outlinedChips))
+                    if (isActionChip || hasLeadingIcon) add(PredefinedParameter.Icon)
+                    if (hasLeadingAvatar) add(SimpleParameter("leadingAvatar", ImagePainterValue))
+                    if (!isEnabled) add(PredefinedParameter.Enabled(false))
+                    add(PredefinedParameter.OnClick)
+                    if (isInputChip) add(LambdaParameter("onCancel"))
+                })
+            }
         }
     }
 }

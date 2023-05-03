@@ -29,8 +29,9 @@ import com.orange.ods.app.R
 import com.orange.ods.app.ui.components.buttons.InvertedBackgroundColumn
 import com.orange.ods.app.ui.components.utilities.clickOnElement
 import com.orange.ods.app.ui.utilities.composable.CodeImplementationColumn
-import com.orange.ods.app.ui.utilities.composable.CommonButtonTechnicalTextColumn
-import com.orange.ods.app.ui.utilities.composable.TechnicalText
+import com.orange.ods.app.ui.utilities.composable.CodeParameter
+import com.orange.ods.app.ui.utilities.composable.FunctionCallCode
+import com.orange.ods.app.ui.utilities.composable.PredefinedParameter
 import com.orange.ods.compose.component.OdsComponent
 import com.orange.ods.compose.component.button.OdsIconButton
 
@@ -68,13 +69,18 @@ fun ButtonsIcon(customizationState: ButtonIconCustomizationState) {
                 )
             }
 
-            CodeImplementationColumn {
-                CommonButtonTechnicalTextColumn(componentName = OdsComponent.OdsIconButton.name) {
-                    TechnicalText(text = "painter = painterResource(id = R.drawable.ic_search),")
-                    if (!isEnabled) {
-                        TechnicalText(text = "enabled = false,")
+            CodeImplementationColumn(
+                modifier = Modifier.padding(horizontal = dimensionResource(id = R.dimen.screen_horizontal_margin))
+            ) {
+                FunctionCallCode(
+                    name = OdsComponent.OdsIconButton.name,
+                    exhaustiveParameters = false,
+                    parameters = mutableListOf<CodeParameter>(PredefinedParameter.Painter).apply {
+                        if (!isEnabled) {
+                            add(PredefinedParameter.Enabled(false))
+                        }
                     }
-                }
+                )
             }
         }
     }

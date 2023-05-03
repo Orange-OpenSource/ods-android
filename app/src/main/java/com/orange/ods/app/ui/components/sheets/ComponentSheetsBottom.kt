@@ -12,6 +12,8 @@ package com.orange.ods.app.ui.components.sheets
 
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.ExperimentalMaterialApi
 import androidx.compose.material.rememberBottomSheetScaffoldState
 import androidx.compose.runtime.Composable
@@ -20,6 +22,12 @@ import androidx.compose.ui.draw.alpha
 import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
+import com.orange.ods.app.R
+import com.orange.ods.app.domain.recipes.LocalRecipes
+import com.orange.ods.app.ui.components.utilities.ComponentCustomizationBottomSheetScaffold
+import com.orange.ods.app.ui.utilities.composable.CodeImplementationColumn
+import com.orange.ods.app.ui.utilities.composable.FunctionCallCode
+import com.orange.ods.app.ui.utilities.composable.LambdaParameter
 import com.orange.ods.compose.component.OdsComponent
 import com.orange.ods.compose.component.chip.OdsChoiceChip
 import com.orange.ods.compose.component.chip.OdsChoiceChipsFlowRow
@@ -29,12 +37,6 @@ import com.orange.ods.compose.component.list.OdsListItemIconType
 import com.orange.ods.compose.component.list.iconType
 import com.orange.ods.compose.text.OdsTextBody1
 import com.orange.ods.compose.text.OdsTextSubtitle1
-import com.orange.ods.app.R
-import com.orange.ods.app.domain.recipes.LocalRecipes
-import com.orange.ods.app.ui.components.utilities.ComponentCustomizationBottomSheetScaffold
-import com.orange.ods.app.ui.utilities.composable.CodeImplementationColumn
-import com.orange.ods.app.ui.utilities.composable.CommonTechnicalTextColumn
-import com.orange.ods.app.ui.utilities.composable.TechnicalText
 
 
 @OptIn(ExperimentalMaterialApi::class)
@@ -63,7 +65,7 @@ fun ComponentSheetsBottom() {
                 }
             }
         ) {
-            Column {
+            Column(modifier = Modifier.verticalScroll(rememberScrollState())) {
                 Column(
                     modifier = Modifier
                         .padding(top = dimensionResource(id = R.dimen.screen_vertical_margin))
@@ -86,13 +88,11 @@ fun ComponentSheetsBottom() {
                 }
 
                 CodeImplementationColumn {
-                    CommonTechnicalTextColumn(
-                        componentName = OdsComponent.OdsBottomSheetScaffold.name
-                    ) {
-                        TechnicalText(text = "sheetContent = {")
-                        TechnicalText(text = "  // add your content here")
-                        TechnicalText(text = "}")
-                    }
+                    FunctionCallCode(
+                        name = OdsComponent.OdsBottomSheetScaffold.name,
+                        exhaustiveParameters = false,
+                        parameters = listOf(LambdaParameter("sheetContent"))
+                    )
                 }
             }
         }

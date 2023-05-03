@@ -30,14 +30,24 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
-import com.orange.ods.compose.component.list.OdsListItem
-import com.orange.ods.compose.component.list.OdsSwitchTrailing
-import com.orange.ods.compose.component.menu.OdsExposedDropdownMenu
-import com.orange.ods.compose.component.menu.OdsExposedDropdownMenuItem
 import com.orange.ods.app.R
 import com.orange.ods.app.domain.recipes.LocalRecipes
 import com.orange.ods.app.ui.components.utilities.ComponentCustomizationBottomSheetScaffold
 import com.orange.ods.app.ui.components.utilities.clickOnElement
+import com.orange.ods.app.ui.utilities.composable.ClassInstance
+import com.orange.ods.app.ui.utilities.composable.CodeImplementationColumn
+import com.orange.ods.app.ui.utilities.composable.CodeParameter
+import com.orange.ods.app.ui.utilities.composable.FunctionCallCode
+import com.orange.ods.app.ui.utilities.composable.LambdaParameter
+import com.orange.ods.app.ui.utilities.composable.ListParameter
+import com.orange.ods.app.ui.utilities.composable.MutableStateParameter
+import com.orange.ods.app.ui.utilities.composable.PredefinedParameter
+import com.orange.ods.app.ui.utilities.composable.StringParameter
+import com.orange.ods.compose.component.OdsComponent
+import com.orange.ods.compose.component.list.OdsListItem
+import com.orange.ods.compose.component.list.OdsSwitchTrailing
+import com.orange.ods.compose.component.menu.OdsExposedDropdownMenu
+import com.orange.ods.compose.component.menu.OdsExposedDropdownMenuItem
 
 @OptIn(ExperimentalMaterialApi::class)
 @Composable
@@ -95,11 +105,12 @@ fun MenuExposedDropdown() {
                     .padding(top = dimensionResource(id = R.dimen.screen_vertical_margin), bottom = dimensionResource(id = R.dimen.spacing_s))
                     .padding(horizontal = dimensionResource(id = R.dimen.screen_horizontal_margin)),
             ) {
+                val label = stringResource(id = R.string.data_recipe)
                 OdsExposedDropdownMenu(
                     modifier = Modifier
                         .fillMaxWidth()
                         .padding(top = dimensionResource(id = R.dimen.spacing_s)),
-                    label = stringResource(id = R.string.data_recipe),
+                    label = label,
                     items = items,
                     selectedItem = selectedItem,
                     onItemSelectionChange = { item ->
@@ -107,6 +118,28 @@ fun MenuExposedDropdown() {
                     },
                     enabled = isEnabled
                 )
+
+                val itemsValues = mutableListOf<ClassInstance>()
+                items.forEach { item ->
+                    itemsValues.add(
+                        ClassInstance(
+                            "OdsExposedDropdownMenuItem",
+                            mutableListOf<CodeParameter>(StringParameter("label", item.label)).apply {
+                                if (hasIcons) add(PredefinedParameter.Icon)
+                            }
+                        )
+                    )
+                }
+                CodeImplementationColumn {
+                    FunctionCallCode(name = OdsComponent.OdsExposedDropdownMenu.name, exhaustiveParameters = false, parameters = mutableListOf(
+                        StringParameter("label", label),
+                        ListParameter("items", itemsValues),
+                        MutableStateParameter("selectedItem", "<selected item>"),
+                        LambdaParameter("onItemSelectionChange")
+                    ).apply {
+                        if (!isEnabled) add(PredefinedParameter.Enabled(false))
+                    })
+                }
             }
         }
     }

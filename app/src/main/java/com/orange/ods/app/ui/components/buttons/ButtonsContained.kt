@@ -22,8 +22,11 @@ import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import com.orange.ods.app.R
-import com.orange.ods.app.ui.utilities.composable.ButtonTechnicalTextColumn
 import com.orange.ods.app.ui.utilities.composable.CodeImplementationColumn
+import com.orange.ods.app.ui.utilities.composable.CodeParameter
+import com.orange.ods.app.ui.utilities.composable.FunctionCallCode
+import com.orange.ods.app.ui.utilities.composable.PredefinedParameter
+import com.orange.ods.app.ui.utilities.composable.SimpleParameter
 import com.orange.ods.app.ui.utilities.composable.Title
 import com.orange.ods.compose.component.OdsComponent
 import com.orange.ods.compose.component.button.OdsButton
@@ -63,18 +66,21 @@ fun ButtonsContained(customizationState: ButtonCustomizationState) {
                 )
             }
 
-            CodeImplementationColumn {
-                ButtonTechnicalTextColumn(
-                    componentName = OdsComponent.OdsButton.name,
-                    style = buttonStyle.value.fullName,
-                    enabled = isEnabled,
-                    fullScreenWidth = hasFullScreenWidth,
-                    icon = hasLeadingIcon
-                )
+            CodeImplementationColumn(
+                modifier = Modifier.padding(horizontal = dimensionResource(id = R.dimen.screen_horizontal_margin))
+            ) {
+                FunctionCallCode(name = OdsComponent.OdsButton.name, exhaustiveParameters = false, parameters = mutableListOf<CodeParameter>(
+                    SimpleParameter("style", buttonStyle.value.fullName)
+                ).apply {
+                    if (hasFullScreenWidth) add(PredefinedParameter.FillMaxWidth)
+                    if (hasLeadingIcon) add(PredefinedParameter.Icon)
+                    if (!isEnabled) add(PredefinedParameter.Enabled(false))
+                })
             }
         }
     }
 }
+
 
 @Composable
 private fun ContainedButton(

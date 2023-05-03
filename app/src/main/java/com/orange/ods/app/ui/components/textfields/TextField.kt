@@ -13,19 +13,32 @@ package com.orange.ods.app.ui.components.textfields
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.text.input.KeyboardCapitalization
+import com.orange.ods.app.R
+import com.orange.ods.app.ui.components.textfields.TextFieldCustomizationState.Companion.TextFieldMaxChars
+import com.orange.ods.app.ui.components.utilities.clickOnElement
+import com.orange.ods.app.ui.utilities.composable.ClassInstance
+import com.orange.ods.app.ui.utilities.composable.ClassInstanceParameter
+import com.orange.ods.app.ui.utilities.composable.CodeImplementationColumn
+import com.orange.ods.app.ui.utilities.composable.CodeParameter
+import com.orange.ods.app.ui.utilities.composable.FunctionCallCode
+import com.orange.ods.app.ui.utilities.composable.LambdaParameter
+import com.orange.ods.app.ui.utilities.composable.PredefinedParameter
+import com.orange.ods.app.ui.utilities.composable.SimpleParameter
+import com.orange.ods.app.ui.utilities.composable.StringParameter
+import com.orange.ods.app.ui.utilities.composable.StringRepresentationParameter
+import com.orange.ods.compose.component.OdsComponent
 import com.orange.ods.compose.component.textfield.OdsIconTrailing
 import com.orange.ods.compose.component.textfield.OdsTextField
 import com.orange.ods.compose.component.textfield.OdsTextFieldCharacterCounter
 import com.orange.ods.compose.component.textfield.OdsTextTrailing
-import com.orange.ods.app.R
-import com.orange.ods.app.ui.components.textfields.TextFieldCustomizationState.Companion.TextFieldMaxChars
-import com.orange.ods.app.ui.components.utilities.clickOnElement
 
 @Composable
 fun TextField(customizationState: TextFieldCustomizationState) {
@@ -35,57 +48,65 @@ fun TextField(customizationState: TextFieldCustomizationState) {
     val modifier = Modifier
         .fillMaxWidth()
         .padding(top = dimensionResource(id = R.dimen.spacing_s))
-    val leadingIcon = if (customizationState.hasLeadingIcon) painterResource(id = R.drawable.ic_heart) else null
-    val enabled = customizationState.isEnabled
-    val isError = customizationState.isError
-    val errorMessage = if (customizationState.isError) stringResource(id = R.string.component_text_field_error_message) else null
-    val value = customizationState.displayedText
-    val onValueChange: (String) -> Unit = { customizationState.updateText(it) }
-    val label = stringResource(id = R.string.component_element_label)
-    val placeholder = stringResource(id = R.string.component_text_field_placeholder)
-    val singleLine = customizationState.isSingleLine
-    val keyboardOptions = customizationState.keyboardOptions
-    val characterCounter: (@Composable () -> Unit)? = if (customizationState.hasCharacterCounter) {
-        { TextFieldCharacterCounter(valueLength = customizationState.displayedText.length, enabled = customizationState.isEnabled) }
-    } else null
 
-    Column {
-        if (customizationState.hasTrailingText || customizationState.hasTrailingIcon) {
-            OdsTextField(
-                modifier = modifier,
-                leadingIcon = leadingIcon,
-                enabled = enabled,
-                isError = isError,
-                errorMessage = errorMessage,
-                value = value,
-                onValueChange = onValueChange,
+    with(customizationState) {
+        val leadingIcon = if (hasLeadingIcon) painterResource(id = R.drawable.ic_heart) else null
+        val errorMessage = if (isError) stringResource(id = R.string.component_text_field_error_message) else null
+        val onValueChange: (String) -> Unit = { updateText(it) }
+        val label = stringResource(id = R.string.component_element_label)
+        val placeholder = stringResource(id = R.string.component_text_field_placeholder)
+        val characterCounter: (@Composable () -> Unit)? = if (hasCharacterCounter) {
+            { TextFieldCharacterCounter(valueLength = displayedText.length, enabled = isEnabled) }
+        } else null
+        val hasTrailing = hasTrailingText || hasTrailingIcon
+
+        Column {
+            if (hasTrailing) {
+                OdsTextField(
+                    modifier = modifier,
+                    leadingIcon = leadingIcon,
+                    enabled = isEnabled,
+                    isError = isError,
+                    errorMessage = errorMessage,
+                    value = displayedText,
+                    onValueChange = onValueChange,
+                    label = label,
+                    placeholder = placeholder,
+                    trailing = if (hasTrailingIcon) {
+                        OdsIconTrailing(
+                            painter = painterResource(id = R.drawable.ic_eye),
+                            onClick = { clickOnElement(context = context, trailingIconName) })
+                    } else {
+                        OdsTextTrailing(text = "units")
+                    },
+                    singleLine = isSingleLine,
+                    keyboardOptions = keyboardOptions,
+                    characterCounter = characterCounter
+                )
+            } else {
+                OdsTextField(
+                    modifier = modifier,
+                    leadingIcon = leadingIcon,
+                    enabled = isEnabled,
+                    isError = isError,
+                    errorMessage = errorMessage,
+                    value = displayedText,
+                    onValueChange = onValueChange,
+                    label = label,
+                    placeholder = placeholder,
+                    singleLine = isSingleLine,
+                    keyboardOptions = keyboardOptions,
+                    characterCounter = characterCounter
+                )
+            }
+
+            TextFieldCodeImplementationColumn(
+                componentName = OdsComponent.OdsTextField.name,
+                customizationState = customizationState,
                 label = label,
                 placeholder = placeholder,
-                trailing = if (customizationState.hasTrailingIcon) {
-                    OdsIconTrailing(
-                        painter = painterResource(id = R.drawable.ic_eye),
-                        onClick = { clickOnElement(context = context, trailingIconName) })
-                } else {
-                    OdsTextTrailing(text = "units")
-                },
-                singleLine = singleLine,
-                keyboardOptions = keyboardOptions,
-                characterCounter = characterCounter
-            )
-        } else {
-            OdsTextField(
-                modifier = modifier,
-                leadingIcon = leadingIcon,
-                enabled = enabled,
-                isError = isError,
                 errorMessage = errorMessage,
-                value = value,
-                onValueChange = onValueChange,
-                label = label,
-                placeholder = placeholder,
-                singleLine = singleLine,
-                keyboardOptions = keyboardOptions,
-                characterCounter = characterCounter
+                hasTrailing = hasTrailing
             )
         }
     }
@@ -100,3 +121,55 @@ fun TextFieldCharacterCounter(valueLength: Int, enabled: Boolean) {
     )
 }
 
+@Composable
+fun TextFieldCodeImplementationColumn(
+    componentName: String,
+    customizationState: TextFieldCustomizationState,
+    label: String,
+    placeholder: String,
+    errorMessage: String?,
+    hasTrailing: Boolean
+) {
+    with(customizationState) {
+        val capitalizationValue = if (softKeyboardCapitalization.value) KeyboardCapitalization.Characters.toString() else KeyboardCapitalization.None.toString()
+        CodeImplementationColumn {
+            FunctionCallCode(name = componentName, exhaustiveParameters = false, parameters = mutableListOf(
+                StringParameter("value", displayedText),
+                LambdaParameter("onValueChange"),
+                PredefinedParameter.Label(label),
+                PredefinedParameter.Placeholder(placeholder),
+                ClassInstanceParameter(
+                    "keyboardOptions", ClassInstance(
+                        KeyboardOptions::class.java.simpleName, listOf<CodeParameter>(
+                            SimpleParameter("capitalization", capitalizationValue),
+                            StringRepresentationParameter("keyboardType", softKeyboardType.value.keyboardType),
+                            StringRepresentationParameter("imeAction", softKeyboardAction.value.imeAction)
+                        )
+                    )
+                )
+            ).apply {
+                if (hasLeadingIcon) add(PredefinedParameter.Icon)
+                if (!hasVisualisationIcon) add(StringRepresentationParameter("visualisationIcon", false))
+                if (!isEnabled) add(PredefinedParameter.Enabled(false))
+                if (isError) {
+                    add(StringRepresentationParameter("isError", true))
+                    errorMessage?.let { add(StringParameter("errorMessage", it)) }
+                }
+                if (isSingleLine) add(StringRepresentationParameter("singleLine", true))
+                if (hasTrailing) add(SimpleParameter("trailing", "<trailing composable>"))
+                if (hasCharacterCounter) {
+                    add(
+                        ClassInstanceParameter(
+                            "characterCounter", ClassInstance(
+                                OdsComponent.OdsTextFieldCharacterCounter.name, listOf<CodeParameter>(
+                                    StringRepresentationParameter("valueLength", displayedText.length),
+                                    PredefinedParameter.Enabled(isEnabled)
+                                )
+                            )
+                        )
+                    )
+                }
+            })
+        }
+    }
+}

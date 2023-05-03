@@ -107,6 +107,7 @@ fun OdsSnackbar(
  * @param snackbar the instance of the [OdsSnackbar] to be shown at the appropriate time with
  * appearance based on the [SnackbarData] provided as a param
  */
+@OdsComponentApi
 @Composable
 fun OdsSnackbarHost(
     hostState: SnackbarHostState,

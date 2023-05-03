@@ -22,12 +22,17 @@ import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.stringResource
-import com.orange.ods.compose.component.list.OdsCheckboxTrailing
-import com.orange.ods.compose.component.list.OdsListItem
-import com.orange.ods.compose.component.list.OdsSwitchTrailing
 import com.orange.ods.app.R
 import com.orange.ods.app.domain.recipes.LocalRecipes
 import com.orange.ods.app.ui.components.utilities.ComponentCustomizationBottomSheetScaffold
+import com.orange.ods.app.ui.utilities.composable.CodeImplementationColumn
+import com.orange.ods.app.ui.utilities.composable.CodeParameter
+import com.orange.ods.app.ui.utilities.composable.FunctionCallCode
+import com.orange.ods.app.ui.utilities.composable.PredefinedParameter
+import com.orange.ods.compose.component.OdsComponent
+import com.orange.ods.compose.component.list.OdsCheckboxTrailing
+import com.orange.ods.compose.component.list.OdsListItem
+import com.orange.ods.compose.component.list.OdsSwitchTrailing
 
 @OptIn(ExperimentalMaterialApi::class)
 @Composable
@@ -47,16 +52,27 @@ fun ComponentCheckboxes() {
         Column(
             modifier = Modifier
                 .verticalScroll(rememberScrollState())
-                .padding(bottom = dimensionResource(id = R.dimen.spacing_m))
+                .padding(vertical = dimensionResource(id = R.dimen.spacing_s))
         ) {
-            recipe.ingredients.forEachIndexed { index, ingredient ->
+            recipe.ingredients.take(3).forEachIndexed { index, ingredient ->
                 OdsListItem(
                     text = ingredient.food.name,
                     trailing = OdsCheckboxTrailing(
-                        checked = rememberSaveable { androidx.compose.runtime.mutableStateOf(index == 0) },
+                        checked = rememberSaveable { mutableStateOf(index == 0) },
                         enabled = enabled.value
                     )
                 )
+            }
+
+            CodeImplementationColumn(
+                modifier = Modifier.padding(horizontal = dimensionResource(id = R.dimen.screen_horizontal_margin))
+            ) {
+                FunctionCallCode(name = OdsComponent.OdsCheckbox.name, exhaustiveParameters = false, parameters = mutableListOf<CodeParameter>(
+                    PredefinedParameter.Checked(false),
+                    PredefinedParameter.OnCheckedChange
+                ).apply {
+                    if (!enabled.value) add(PredefinedParameter.Enabled(false))
+                })
             }
         }
     }

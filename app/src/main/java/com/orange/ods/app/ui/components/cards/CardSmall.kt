@@ -12,9 +12,13 @@ package com.orange.ods.app.ui.components.cards
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.ui.Modifier
@@ -23,10 +27,14 @@ import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import coil.compose.rememberAsyncImagePainter
-import com.orange.ods.compose.component.card.OdsSmallCard
 import com.orange.ods.app.R
 import com.orange.ods.app.domain.recipes.LocalRecipes
 import com.orange.ods.app.ui.components.utilities.clickOnElement
+import com.orange.ods.app.ui.utilities.composable.CodeImplementationColumn
+import com.orange.ods.app.ui.utilities.composable.FunctionCallCode
+import com.orange.ods.app.ui.utilities.composable.PredefinedParameter
+import com.orange.ods.compose.component.OdsComponent
+import com.orange.ods.compose.component.card.OdsSmallCard
 
 @Composable
 fun CardSmall(customizationState: CardCustomizationState) {
@@ -35,28 +43,45 @@ fun CardSmall(customizationState: CardCustomizationState) {
     val recipe = rememberSaveable { recipes.random() }
 
     with(customizationState) {
-        Row(
+        Column(
             modifier = Modifier
                 .fillMaxSize()
-                .padding(dimensionResource(id = R.dimen.spacing_m)),
-            horizontalArrangement = Arrangement.spacedBy(dimensionResource(id = R.dimen.spacing_m)),
+                .padding(dimensionResource(id = R.dimen.spacing_m))
+                .verticalScroll(state = rememberScrollState()),
         ) {
-            val cardText = stringResource(id = R.string.component_card_element_card)
+            Row(
+                modifier = Modifier
+                    .fillMaxSize(),
+                horizontalArrangement = Arrangement.spacedBy(dimensionResource(id = R.dimen.spacing_m)),
+            ) {
+                val cardText = stringResource(id = R.string.component_card_element_card)
 
-            OdsSmallCard(
-                modifier = Modifier.weight(0.5f),
-                image = rememberAsyncImagePainter(
-                    model = recipe.imageUrl,
-                    placeholder = painterResource(id = R.drawable.placeholder),
-                    error = painterResource(id = R.drawable.placeholder)
-                ),
-                title = recipe.title,
-                subtitle = if (subtitleChecked.value) recipe.subtitle else null,
-                onCardClick = if (isClickable) {
-                    { clickOnElement(context, cardText) }
-                } else null
-            )
-            Box(modifier = Modifier.weight(0.5f))
+                OdsSmallCard(
+                    modifier = Modifier.weight(0.5f),
+                    image = rememberAsyncImagePainter(
+                        model = recipe.imageUrl,
+                        placeholder = painterResource(id = R.drawable.placeholder),
+                        error = painterResource(id = R.drawable.placeholder)
+                    ),
+                    title = recipe.title,
+                    subtitle = if (subtitleChecked.value) recipe.subtitle else null,
+                    onCardClick = if (isClickable) {
+                        { clickOnElement(context, cardText) }
+                    } else null
+                )
+                Box(modifier = Modifier.weight(0.5f))
+            }
+
+            Spacer(modifier = Modifier.padding(top = dimensionResource(R.dimen.spacing_s)))
+
+            CodeImplementationColumn {
+                FunctionCallCode(name = OdsComponent.OdsSmallCard.name, exhaustiveParameters = false, parameters = buildList {
+                    add(PredefinedParameter.Title(recipe.title))
+                    add(PredefinedParameter.Image)
+                    if (hasSubtitle) add(PredefinedParameter.Subtitle(recipe.subtitle))
+                    if (isClickable) add(PredefinedParameter.OnCardClick)
+                })
+            }
         }
     }
 }

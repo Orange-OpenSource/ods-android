@@ -11,6 +11,7 @@
 package com.orange.ods.app.ui.components.cards
 
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.rememberScrollState
@@ -25,10 +26,15 @@ import androidx.compose.ui.res.stringResource
 import coil.compose.rememberAsyncImagePainter
 import coil.request.ImageRequest
 import coil.size.Size
-import com.orange.ods.compose.component.card.OdsVerticalHeaderFirstCard
 import com.orange.ods.app.R
 import com.orange.ods.app.domain.recipes.LocalRecipes
 import com.orange.ods.app.ui.components.utilities.clickOnElement
+import com.orange.ods.app.ui.utilities.composable.CodeImplementationColumn
+import com.orange.ods.app.ui.utilities.composable.FunctionCallCode
+import com.orange.ods.app.ui.utilities.composable.PredefinedParameter
+import com.orange.ods.app.ui.utilities.composable.SimpleParameter
+import com.orange.ods.compose.component.OdsComponent
+import com.orange.ods.compose.component.card.OdsVerticalHeaderFirstCard
 
 @Composable
 fun CardVerticalHeaderFirst(customizationState: CardCustomizationState) {
@@ -69,6 +75,28 @@ fun CardVerticalHeaderFirst(customizationState: CardCustomizationState) {
                 button2Text = if (hasButton2) button2Text else null,
                 onButton2Click = { clickOnElement(context, button2Text) }
             )
+
+            Spacer(modifier = Modifier.padding(top = dimensionResource(R.dimen.spacing_s)))
+
+            CodeImplementationColumn {
+                FunctionCallCode(name = OdsComponent.OdsVerticalHeaderFirstCard.name, exhaustiveParameters = false, parameters = mutableListOf(
+                    PredefinedParameter.Title(recipe.title),
+                    PredefinedParameter.Image
+                ).apply {
+                    if (hasThumbnail) add(SimpleParameter("thumbnail", "<thumbnail painter>"))
+                    if (hasSubtitle) add(PredefinedParameter.Subtitle(recipe.subtitle))
+                    if (hasText) add(PredefinedParameter.CardText)
+                    if (isClickable) add(PredefinedParameter.OnCardClick)
+                    if (hasButton1) {
+                        add(PredefinedParameter.Button1Text(button1Text))
+                        add(PredefinedParameter.OnButton1Click)
+                    }
+                    if (hasButton2) {
+                        add(PredefinedParameter.Button2Text(button2Text))
+                        add(PredefinedParameter.OnButton2Click)
+                    }
+                })
+            }
         }
     }
 }

@@ -11,6 +11,7 @@
 package com.orange.ods.app.ui.components.cards
 
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.rememberScrollState
@@ -23,10 +24,15 @@ import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import coil.compose.rememberAsyncImagePainter
-import com.orange.ods.compose.component.card.OdsVerticalImageFirstCard
 import com.orange.ods.app.R
 import com.orange.ods.app.domain.recipes.LocalRecipes
 import com.orange.ods.app.ui.components.utilities.clickOnElement
+import com.orange.ods.app.ui.utilities.composable.CodeImplementationColumn
+import com.orange.ods.app.ui.utilities.composable.CodeParameter
+import com.orange.ods.app.ui.utilities.composable.FunctionCallCode
+import com.orange.ods.app.ui.utilities.composable.PredefinedParameter
+import com.orange.ods.compose.component.OdsComponent
+import com.orange.ods.compose.component.card.OdsVerticalImageFirstCard
 
 @Composable
 fun CardVerticalImageFirst(customizationState: CardCustomizationState) {
@@ -62,6 +68,27 @@ fun CardVerticalImageFirst(customizationState: CardCustomizationState) {
                 button2Text = if (hasButton2) button2Text else null,
                 onButton2Click = { clickOnElement(context, button2Text) }
             )
+
+            Spacer(modifier = Modifier.padding(top = dimensionResource(R.dimen.spacing_s)))
+
+            CodeImplementationColumn {
+                FunctionCallCode(name = OdsComponent.OdsVerticalImageFirstCard.name, exhaustiveParameters = false, parameters = mutableListOf<CodeParameter>(
+                    PredefinedParameter.Title(recipe.title),
+                    PredefinedParameter.Image
+                ).apply {
+                    if (hasSubtitle) add(PredefinedParameter.Subtitle(recipe.subtitle))
+                    if (hasText) add(PredefinedParameter.CardText)
+                    if (isClickable) add(PredefinedParameter.OnCardClick)
+                    if (hasButton1) {
+                        add(PredefinedParameter.Button1Text(button1Text))
+                        add(PredefinedParameter.OnButton1Click)
+                    }
+                    if (hasButton2) {
+                        add(PredefinedParameter.Button2Text(button2Text))
+                        add(PredefinedParameter.OnButton2Click)
+                    }
+                })
+            }
         }
     }
 }

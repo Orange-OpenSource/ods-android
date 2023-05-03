@@ -14,6 +14,8 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.ExperimentalMaterialApi
 import androidx.compose.material.Icon
 import androidx.compose.material.rememberBottomSheetScaffoldState
@@ -26,8 +28,6 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
-import com.orange.ods.compose.component.bottomnavigation.OdsBottomNavigation
-import com.orange.ods.compose.component.bottomnavigation.OdsBottomNavigationItem
 import com.orange.ods.app.R
 import com.orange.ods.app.ui.components.bottomnavigation.ComponentBottomNavigation.MaxNavigationItemCount
 import com.orange.ods.app.ui.components.bottomnavigation.ComponentBottomNavigation.MinNavigationItemCount
@@ -35,6 +35,13 @@ import com.orange.ods.app.ui.components.utilities.ComponentCountRow
 import com.orange.ods.app.ui.components.utilities.ComponentCustomizationBottomSheetScaffold
 import com.orange.ods.app.ui.components.utilities.clickOnElement
 import com.orange.ods.app.ui.utilities.NavigationItem
+import com.orange.ods.app.ui.utilities.composable.CodeImplementationColumn
+import com.orange.ods.app.ui.utilities.composable.FunctionCallCode
+import com.orange.ods.app.ui.utilities.composable.PredefinedParameter
+import com.orange.ods.app.ui.utilities.composable.StringParameter
+import com.orange.ods.compose.component.OdsComponent
+import com.orange.ods.compose.component.bottomnavigation.OdsBottomNavigation
+import com.orange.ods.compose.component.bottomnavigation.OdsBottomNavigationItem
 
 private object ComponentBottomNavigation {
     const val MinNavigationItemCount = 3
@@ -63,28 +70,47 @@ fun ComponentBottomNavigation() {
             )
         }) {
         Column(
-            modifier = Modifier.fillMaxSize(),
+            modifier = Modifier
+                .fillMaxSize()
+                .verticalScroll(rememberScrollState()),
             verticalArrangement = Arrangement.Center
         ) {
             OdsBottomNavigation {
-                navigationItems.take(selectedNavigationItemCount.value)
-                    .forEach { navigationItem ->
-                        val label = stringResource(id = navigationItem.textResId)
-                        OdsBottomNavigationItem(
-                            icon = {
-                                Icon(
-                                    painter = painterResource(id = navigationItem.iconResId),
-                                    contentDescription = null
-                                )
-                            },
-                            label = label,
-                            selected = selectedNavigationItem.value.textResId == navigationItem.textResId,
-                            onClick = {
-                                selectedNavigationItem.value = navigationItem
-                                clickOnElement(context, label)
-                            }
+                navigationItems.take(selectedNavigationItemCount.value).forEach { navigationItem ->
+                    val label = stringResource(id = navigationItem.textResId)
+                    OdsBottomNavigationItem(
+                        icon = {
+                            Icon(
+                                painter = painterResource(id = navigationItem.iconResId),
+                                contentDescription = null
+                            )
+                        },
+                        label = label,
+                        selected = selectedNavigationItem.value.textResId == navigationItem.textResId,
+                        onClick = {
+                            selectedNavigationItem.value = navigationItem
+                            clickOnElement(context, label)
+                        }
+                    )
+                }
+            }
+
+            CodeImplementationColumn(
+                modifier = Modifier.padding(horizontal = dimensionResource(id = R.dimen.screen_horizontal_margin))
+            ) {
+                FunctionCallCode(name = OdsComponent.OdsBottomNavigation.name) {
+                    navigationItems.take(2).forEach { item ->
+                        FunctionCallCode(
+                            name = OdsComponent.OdsBottomNavigationItem.name,
+                            parameters = listOf(
+                                PredefinedParameter.Icon,
+                                StringParameter("label", stringResource(id = item.textResId)),
+                                PredefinedParameter.Selected(selectedNavigationItem.value.textResId == item.textResId),
+                                PredefinedParameter.OnClick,
+                            )
                         )
                     }
+                }
             }
         }
     }
