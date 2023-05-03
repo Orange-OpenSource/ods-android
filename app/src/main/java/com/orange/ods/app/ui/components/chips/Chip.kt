@@ -34,10 +34,8 @@ import com.orange.ods.app.ui.components.chips.ChipCustomizationState.ChipType
 import com.orange.ods.app.ui.components.chips.ChipCustomizationState.LeadingElement
 import com.orange.ods.app.ui.components.utilities.ComponentCustomizationBottomSheetScaffold
 import com.orange.ods.app.ui.components.utilities.clickOnElement
-import com.orange.ods.app.ui.utilities.composable.ClassInstanceParameter
 import com.orange.ods.app.ui.utilities.composable.CodeImplementationColumn
 import com.orange.ods.app.ui.utilities.composable.FunctionCallCode
-import com.orange.ods.app.ui.utilities.composable.IconPainterValue
 import com.orange.ods.app.ui.utilities.composable.ImagePainterValue
 import com.orange.ods.app.ui.utilities.composable.LambdaParameter
 import com.orange.ods.app.ui.utilities.composable.MutableStateParameter
@@ -129,10 +127,13 @@ private fun Chip(chipCustomizationState: ChipCustomizationState) {
             Spacer(modifier = Modifier.padding(top = dimensionResource(R.dimen.spacing_s)))
 
             CodeImplementationColumn {
-                FunctionCallCode(name = OdsComponent.OdsChoiceChipsFlowRow.name, parameters = listOf(
-                    MutableStateParameter("selectedChip", choiceChipIndexSelected.value.toString()),
-                    StringRepresentationParameter("outlinedChips", outlinedChips)
-                )) {
+                FunctionCallCode(
+                    name = OdsComponent.OdsChoiceChipsFlowRow.name,
+                    parameters = buildList {
+                        add(MutableStateParameter("selectedChip", choiceChipIndexSelected.value.toString()))
+                        if (!outlinedChips) add(StringRepresentationParameter("outlinedChips", outlinedChips))
+                    }
+                ) {
                     recipes.forEachIndexed { index, recipe ->
                         FunctionCallCode(name = OdsComponent.OdsChoiceChip.name, parameters = buildList {
                             add(PredefinedParameter.Text(recipe.title))
@@ -167,7 +168,7 @@ private fun Chip(chipCustomizationState: ChipCustomizationState) {
             CodeImplementationColumn {
                 FunctionCallCode(name = OdsComponent.OdsChip.name, exhaustiveParameters = false, parameters = buildList {
                     add(PredefinedParameter.Text(recipe?.title.orEmpty()))
-                    add(StringRepresentationParameter("outlined", outlinedChips))
+                    if (!outlinedChips) add(StringRepresentationParameter("outlined", outlinedChips))
                     if (isActionChip || hasLeadingIcon) add(PredefinedParameter.Icon)
                     if (hasLeadingAvatar) add(SimpleParameter("leadingAvatar", ImagePainterValue))
                     if (!isEnabled) add(PredefinedParameter.Enabled(false))
