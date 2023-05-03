@@ -12,8 +12,11 @@ package com.orange.ods.compose.component.imageitem
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.aspectRatio
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
@@ -41,14 +44,16 @@ import com.orange.ods.compose.component.utilities.UiModePreviews
 import com.orange.ods.compose.theme.OdsDisplaySurface
 import com.orange.ods.compose.theme.OdsTheme
 
+
 /**
  *
  * @param image Image display in the [OdsImageItem].
  * @param iconChecked Specified if icon is currently checked
  * @param iconSelected Specified whether the icon is selected or nor
  * @param onIconCheckedChange Callback to be invoked when this icon is selected
- * @param checkedIcon Optional icon displayed in front of the [OdsImageItem]
- * @param uncheckedIcon Optional icon displayed in front of the [OdsImageItem]
+ * @param checkedIcon Icon displayed in front of the [OdsImageItem] when icon is checked
+ * @param uncheckedIcon Icon displayed in front of the [OdsImageItem] when icon is unchecked
+ * @param displayTitle Specified how the title and icon are displayed relative to image
  * @param modifier Modifier to be applied to this [OdsImageItem]
  * @param imageContentDescription Optional image content description
  * @param iconContentDescription Optional icon content description
@@ -63,54 +68,135 @@ fun OdsImageItem(
     onIconCheckedChange: (Boolean) -> Unit,
     checkedIcon: Painter,
     uncheckedIcon: Painter,
+    displayTitle: OdsImageItemDisplayTitle,
     modifier: Modifier = Modifier,
     iconContentDescription: String? = null,
     imageContentDescription: String? = null,
     title: String? = null,
 ) {
-    Box(
-        modifier = modifier.fillMaxWidth()
-    ) {
-        Image(
-            painter = image,
-            contentDescription = imageContentDescription,
-            contentScale = ContentScale.Crop,
-            modifier = Modifier
-                .fillMaxSize()
-        )
-        title?.let {
-            Row(
-                verticalAlignment = Alignment.CenterVertically,
-                modifier = Modifier
-                    .background(color = Color.Black.copy(alpha = 0.38f))
-                    .align(Alignment.BottomStart)
-                    .height(dimensionResource(id = R.dimen.list_single_line_item_height))
+    when (displayTitle) {
+        OdsImageItemDisplayTitle.Overlay ->
+            Box(
+                modifier = modifier.aspectRatio(1.0f)
             ) {
-                Text(
-                    text = it,
-                    color = Color.White,
-                    style = OdsTheme.typography.subtitle1,
+                Image(
+                    painter = image,
+                    contentDescription = imageContentDescription,
+                    contentScale = ContentScale.Crop,
                     modifier = Modifier
-                        .weight(1f)
-                        .padding(start = dimensionResource(id = R.dimen.spacing_m), end = dimensionResource(id = R.dimen.spacing_m)),
-                    maxLines = 1,
-                    overflow = TextOverflow.Ellipsis
+                        .fillMaxSize()
                 )
-                if (iconSelected) {
-                    OdsIconToggleButton(
-                        checked = iconChecked,
-                        onCheckedChange = onIconCheckedChange,
-                        uncheckedPainter = uncheckedIcon,
-                        checkedPainter = checkedIcon,
-                        iconContentDescription = iconContentDescription,
-                        displaySurface = OdsDisplaySurface.Dark
-                    )
+                title?.let {
+                    Row(
+                        verticalAlignment = Alignment.CenterVertically,
+                        modifier = Modifier
+                            .background(color = Color.Black.copy(alpha = 0.38f))
+                            .align(Alignment.BottomStart)
+                            .height(dimensionResource(id = R.dimen.list_single_line_item_height))
+                    ) {
+                        OdsImageItemText(
+                            text = it,
+                            iconChecked = iconChecked,
+                            color = Color.White,
+                            onIconCheckedChange = onIconCheckedChange,
+                            uncheckedIcon = uncheckedIcon,
+                            checkedIcon = checkedIcon,
+                            iconContentDescription = iconContentDescription,
+                            iconSelected = iconSelected,
+                            displaySurface = OdsDisplaySurface.Dark,
+                            modifier = Modifier
+                                .weight(1f)
+                                .padding(start = dimensionResource(id = R.dimen.spacing_m), end = dimensionResource(id = R.dimen.spacing_m)),
+                        )
+                    }
                 }
             }
-        }
+
+        OdsImageItemDisplayTitle.Below ->
+            Column(
+                modifier = modifier.fillMaxWidth(),
+                verticalArrangement = Arrangement.Center
+            ) {
+                Image(
+                    painter = image,
+                    contentDescription = imageContentDescription,
+                    contentScale = ContentScale.Crop,
+                    modifier = Modifier.aspectRatio(1.0f)
+                )
+                Row(
+                    verticalAlignment = Alignment.CenterVertically,
+                    modifier = Modifier
+                        .height(dimensionResource(id = R.dimen.list_single_line_item_height))
+                ) {
+                    title?.let {
+                        OdsImageItemText(
+                            text = it,
+                            iconChecked = iconChecked,
+                            color = OdsTheme.colors.onSurface,
+                            onIconCheckedChange = onIconCheckedChange,
+                            uncheckedIcon = uncheckedIcon,
+                            checkedIcon = checkedIcon,
+                            iconContentDescription = iconContentDescription,
+                            iconSelected = iconSelected,
+                            displaySurface = OdsDisplaySurface.Default,
+                            modifier = Modifier
+                                .weight(1f)
+                                .padding(end = dimensionResource(id = R.dimen.spacing_m)),
+                        )
+                    }
+                }
+            }
+
+        OdsImageItemDisplayTitle.None ->
+            Box(
+                modifier = modifier.aspectRatio(1.0f)
+            ) {
+                Image(
+                    painter = image,
+                    contentDescription = imageContentDescription,
+                    contentScale = ContentScale.Crop,
+                    modifier = Modifier
+                        .fillMaxSize()
+                )
+            }
     }
 }
 
+enum class OdsImageItemDisplayTitle {
+    Below, Overlay, None
+}
+
+@Composable
+private fun OdsImageItemText(
+    text: String,
+    iconChecked: Boolean,
+    color: Color,
+    onIconCheckedChange: (Boolean) -> Unit,
+    uncheckedIcon: Painter,
+    checkedIcon: Painter,
+    iconSelected: Boolean, modifier: Modifier,
+    displaySurface: OdsDisplaySurface,
+    iconContentDescription: String?
+) {
+    Text(
+        text = text,
+        color = color,
+        modifier = modifier,
+        style = OdsTheme.typography.subtitle1,
+        maxLines = 1,
+        overflow = TextOverflow.Ellipsis
+    )
+    if (iconSelected) {
+        OdsIconToggleButton(
+            checked = iconChecked,
+            onCheckedChange = onIconCheckedChange,
+            uncheckedPainter = uncheckedIcon,
+            checkedPainter = checkedIcon,
+            iconContentDescription = iconContentDescription,
+            displaySurface = displaySurface
+        )
+    }
+}
 
 @UiModePreviews.Default
 @Composable
@@ -125,17 +211,19 @@ private fun PreviewOdsImageList(@PreviewParameter(OdsImageListPreviewParameterPr
             iconChecked = parameter.checked,
             modifier = Modifier.size(parameter.size),
             iconContentDescription = "",
-            onIconCheckedChange = { parameter.checked }
+            onIconCheckedChange = { parameter.checked },
+            displayTitle = parameter.type
         )
     }
 
 private data class OdsImageListPreviewParameter(
     val image: Int,
     val checked: Boolean,
-    val title: String?,
+    val title: String,
     val checkedIcon: Int,
     val unCheckedIcon: Int,
-    val size: Dp
+    val size: Dp,
+    val type: OdsImageItemDisplayTitle
 )
 
 private class OdsImageListPreviewParameterProvider :
@@ -149,8 +237,32 @@ private val previewParameterValues: List<OdsImageListPreviewParameter>
         val unCheckedIcon = R.drawable.ic_check
 
         return listOf(
-            OdsImageListPreviewParameter(image, title = title, checkedIcon = checkedIcon, unCheckedIcon = unCheckedIcon, checked = false, size = 150.dp),
-            OdsImageListPreviewParameter(image, title = title, checkedIcon = checkedIcon, unCheckedIcon = unCheckedIcon, checked = false, size = 300.dp),
-            OdsImageListPreviewParameter(image, title = title, checkedIcon = checkedIcon, unCheckedIcon = unCheckedIcon, checked = true, size = 400.dp)
+            OdsImageListPreviewParameter(
+                image,
+                title = title,
+                checkedIcon = checkedIcon,
+                unCheckedIcon = unCheckedIcon,
+                checked = false,
+                size = 300.dp,
+                type = OdsImageItemDisplayTitle.Below
+            ),
+            OdsImageListPreviewParameter(
+                image,
+                title = title,
+                checkedIcon = checkedIcon,
+                unCheckedIcon = unCheckedIcon,
+                checked = false,
+                size = 300.dp,
+                type = OdsImageItemDisplayTitle.Overlay
+            ),
+            OdsImageListPreviewParameter(
+                image,
+                title = title,
+                checkedIcon = checkedIcon,
+                unCheckedIcon = unCheckedIcon,
+                checked = true,
+                size = 300.dp,
+                type = OdsImageItemDisplayTitle.None
+            )
         )
     }

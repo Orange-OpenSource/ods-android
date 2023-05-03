@@ -15,34 +15,31 @@ import androidx.compose.runtime.MutableState
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.saveable.rememberSaveable
-import com.orange.ods.app.ui.components.floatingactionbuttons.FabCustomizationState
 
 @Composable
 fun rememberImageItemCustomizationState(
-    size: MutableState<ImageItemCustomizationState.Size> = rememberSaveable { mutableStateOf(ImageItemCustomizationState.Size.Small)},
+    type: MutableState<ImageItemCustomizationState.Type> = rememberSaveable { mutableStateOf(ImageItemCustomizationState.Type.Overlay) },
     iconDisplayed: MutableState<Boolean> = rememberSaveable { mutableStateOf(false) },
     textDisplayed: MutableState<Boolean> = rememberSaveable { mutableStateOf(true) }
 ) =
-    remember(iconDisplayed, textDisplayed, size) {
-        ImageItemCustomizationState(size, iconDisplayed, textDisplayed)
+    remember(type, iconDisplayed, textDisplayed) {
+        ImageItemCustomizationState(type, iconDisplayed, textDisplayed)
     }
 
 class ImageItemCustomizationState(
-    val size: MutableState<Size>,
+    val type: MutableState<Type>,
     val iconDisplayed: MutableState<Boolean>,
     val textDisplayed: MutableState<Boolean>
 ) {
-    enum class Size {
-        Small, Medium, Large;
-       companion object {
-           fun fromSliderValue(sliderValue: Float) =
-               when (sliderValue) {
-                   0f -> Small
-                   1f -> Medium
-                   else -> Large
-               }
-       }
+    enum class Type {
+        Overlay, Below, None
     }
+
+    val isOverlay
+        get() = type.value == Type.Overlay
+
+    val isBelow
+        get() = type.value == Type.Below
 
     val hasIcon
         get() = iconDisplayed.value

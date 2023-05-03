@@ -40,6 +40,7 @@ OdsImageItem(
     iconContentDescription = "", // Optional
     checkedIcon = painterResource(id = R.drawable.ic_heart),
     uncheckedIcon = painterResource(id = R.drawable.ic_heart_outlined),
+    displayType = OdsImageItemDisplayTitle.Overlay,
     modifier = modifier,
     imageContentDescription = "Picture content description", //Optional
     title = "Component Image Item" // Optional 
