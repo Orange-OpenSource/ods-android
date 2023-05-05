@@ -29,9 +29,7 @@ import com.orange.ods.app.domain.recipes.LocalRecipes
 import com.orange.ods.app.ui.components.utilities.clickOnElement
 import com.orange.ods.app.ui.utilities.DrawableManager
 import com.orange.ods.app.ui.utilities.composable.CodeImplementationColumn
-import com.orange.ods.app.ui.utilities.composable.CodeParameter
 import com.orange.ods.app.ui.utilities.composable.FunctionCallCode
-import com.orange.ods.app.ui.utilities.composable.PredefinedParameter
 import com.orange.ods.compose.component.OdsComponent
 import com.orange.ods.compose.component.card.OdsVerticalImageFirstCard
 
@@ -73,22 +71,25 @@ fun CardVerticalImageFirst(customizationState: CardCustomizationState) {
             Spacer(modifier = Modifier.padding(top = dimensionResource(R.dimen.spacing_s)))
 
             CodeImplementationColumn {
-                FunctionCallCode(name = OdsComponent.OdsVerticalImageFirstCard.name, exhaustiveParameters = false, parameters = mutableListOf<CodeParameter>(
-                    PredefinedParameter.Title(recipe.title),
-                    PredefinedParameter.Image
-                ).apply {
-                    if (hasSubtitle) add(PredefinedParameter.Subtitle(recipe.subtitle))
-                    if (hasText) add(PredefinedParameter.CardText)
-                    if (isClickable) add(PredefinedParameter.OnCardClick)
-                    if (hasButton1) {
-                        add(PredefinedParameter.Button1Text(button1Text))
-                        add(PredefinedParameter.OnButton1Click)
+                FunctionCallCode(
+                    name = OdsComponent.OdsVerticalImageFirstCard.name,
+                    exhaustiveParameters = false,
+                    parameters = {
+                        title(recipe.title)
+                        image()
+                        if (hasSubtitle) subtitle(recipe.subtitle)
+                        if (hasText) cardText()
+                        if (isClickable) onCardClick()
+                        if (hasButton1) {
+                            button1Text(button1Text)
+                            onButton1Click()
+                        }
+                        if (hasButton2) {
+                            button2Text(button2Text)
+                            onButton2Click()
+                        }
                     }
-                    if (hasButton2) {
-                        add(PredefinedParameter.Button2Text(button2Text))
-                        add(PredefinedParameter.OnButton2Click)
-                    }
-                })
+                )
             }
         }
     }

@@ -29,11 +29,7 @@ import com.orange.ods.app.R
 import com.orange.ods.app.ui.components.utilities.ComponentCustomizationBottomSheetScaffold
 import com.orange.ods.app.ui.components.utilities.clickOnElement
 import com.orange.ods.app.ui.utilities.composable.CodeImplementationColumn
-import com.orange.ods.app.ui.utilities.composable.CodeParameter
 import com.orange.ods.app.ui.utilities.composable.FunctionCallCode
-import com.orange.ods.app.ui.utilities.composable.PredefinedParameter
-import com.orange.ods.app.ui.utilities.composable.StringParameter
-import com.orange.ods.app.ui.utilities.composable.StringRepresentationParameter
 import com.orange.ods.app.ui.utilities.composable.Subtitle
 import com.orange.ods.compose.component.OdsComponent
 import com.orange.ods.compose.component.button.OdsExtendedFloatingActionButton
@@ -115,13 +111,16 @@ fun ComponentFloatingActionButton() {
                 CodeImplementationColumn(
                     modifier = Modifier.padding(horizontal = dimensionResource(id = R.dimen.screen_horizontal_margin))
                 ) {
-                    FunctionCallCode(name = usedComponentName, exhaustiveParameters = false, parameters = mutableListOf<CodeParameter>(
-                        PredefinedParameter.Icon
-                    ).apply {
-                        if (this@with.size.value == FabCustomizationState.Size.Mini) add(StringRepresentationParameter("mini", true))
-                        if (hasText) add(StringParameter("text", "Add"))
-                        if (isFullScreenWidth) add(PredefinedParameter.FillMaxWidth)
-                    })
+                    FunctionCallCode(
+                        name = usedComponentName,
+                        exhaustiveParameters = false,
+                        parameters = {
+                            icon()
+                            if (this@with.size.value == FabCustomizationState.Size.Mini) stringRepresentation("mini", true)
+                            if (hasText) string("text", "Add")
+                            if (isFullScreenWidth) fillMaxWidth()
+                        }
+                    )
                 }
             }
         }

@@ -31,10 +31,7 @@ import com.orange.ods.app.ui.components.utilities.ComponentCustomizationBottomSh
 import com.orange.ods.app.ui.components.utilities.clickOnElement
 import com.orange.ods.app.ui.utilities.DrawableManager
 import com.orange.ods.app.ui.utilities.composable.CodeImplementationColumn
-import com.orange.ods.app.ui.utilities.composable.CodeParameter
 import com.orange.ods.app.ui.utilities.composable.FunctionCallCode
-import com.orange.ods.app.ui.utilities.composable.PredefinedParameter
-import com.orange.ods.app.ui.utilities.composable.StringParameter
 import com.orange.ods.compose.component.OdsComponent
 import com.orange.ods.compose.component.banner.OdsBanner
 import com.orange.ods.compose.component.list.OdsListItem
@@ -99,13 +96,16 @@ fun ComponentBanners() {
                 CodeImplementationColumn(
                     modifier = Modifier.padding(horizontal = dimensionResource(id = R.dimen.screen_horizontal_margin))
                 ) {
-                    FunctionCallCode(name = OdsComponent.OdsBanner.name, exhaustiveParameters = false, parameters = mutableListOf<CodeParameter>(
-                        StringParameter("message", if (hasTwoTextLines) recipe.description else recipe.title),
-                        PredefinedParameter.Button1Text(stringResource(id = R.string.component_banner_dismiss)),
-                    ).apply {
-                        if (hasImage) add(PredefinedParameter.Image)
-                        if (hasButton2) add(PredefinedParameter.Button2Text(stringResource(id = R.string.component_banner_detail)))
-                    })
+                    FunctionCallCode(
+                        name = OdsComponent.OdsBanner.name,
+                        exhaustiveParameters = false,
+                        parameters = {
+                            string("message", if (hasTwoTextLines) recipe.description else recipe.title)
+                            button1Text(context.getString(R.string.component_banner_dismiss))
+                            if (hasImage) image()
+                            if (hasButton2) button2Text(context.getString(R.string.component_banner_detail))
+                        }
+                    )
                 }
             }
         }

@@ -34,15 +34,8 @@ import com.orange.ods.app.R
 import com.orange.ods.app.domain.recipes.LocalRecipes
 import com.orange.ods.app.ui.components.utilities.ComponentCustomizationBottomSheetScaffold
 import com.orange.ods.app.ui.components.utilities.clickOnElement
-import com.orange.ods.app.ui.utilities.composable.ClassInstance
 import com.orange.ods.app.ui.utilities.composable.CodeImplementationColumn
-import com.orange.ods.app.ui.utilities.composable.CodeParameter
 import com.orange.ods.app.ui.utilities.composable.FunctionCallCode
-import com.orange.ods.app.ui.utilities.composable.LambdaParameter
-import com.orange.ods.app.ui.utilities.composable.ListParameter
-import com.orange.ods.app.ui.utilities.composable.MutableStateParameter
-import com.orange.ods.app.ui.utilities.composable.PredefinedParameter
-import com.orange.ods.app.ui.utilities.composable.StringParameter
 import com.orange.ods.compose.component.OdsComponent
 import com.orange.ods.compose.component.list.OdsListItem
 import com.orange.ods.compose.component.list.OdsSwitchTrailing
@@ -119,26 +112,25 @@ fun MenuExposedDropdown() {
                     enabled = isEnabled
                 )
 
-                val itemsValues = mutableListOf<ClassInstance>()
-                items.forEach { item ->
-                    itemsValues.add(
-                        ClassInstance(
-                            "OdsExposedDropdownMenuItem",
-                            mutableListOf<CodeParameter>(StringParameter("label", item.label)).apply {
-                                if (hasIcons) add(PredefinedParameter.Icon)
-                            }
-                        )
-                    )
-                }
                 CodeImplementationColumn {
-                    FunctionCallCode(name = OdsComponent.OdsExposedDropdownMenu.name, exhaustiveParameters = false, parameters = mutableListOf(
-                        StringParameter("label", label),
-                        ListParameter("items", itemsValues),
-                        MutableStateParameter("selectedItem", "<selected item>"),
-                        LambdaParameter("onItemSelectionChange")
-                    ).apply {
-                        if (!isEnabled) add(PredefinedParameter.Enabled(false))
-                    })
+                    FunctionCallCode(
+                        name = OdsComponent.OdsExposedDropdownMenu.name,
+                        exhaustiveParameters = false,
+                        parameters = {
+                            string("label", label)
+                            list("items") {
+                                items.forEach { item ->
+                                    classInstance(OdsExposedDropdownMenuItem::class.java) {
+                                        string("label", item.label)
+                                        if (hasIcons) icon()
+                                    }
+                                }
+                            }
+                            mutableState("selectedItem", "<selected item>")
+                            lambda("onItemSelectionChange")
+                            if (!isEnabled) enabled(false)
+                        }
+                    )
                 }
             }
         }

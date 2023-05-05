@@ -32,8 +32,6 @@ import com.orange.ods.app.ui.components.utilities.clickOnElement
 import com.orange.ods.app.ui.utilities.DrawableManager
 import com.orange.ods.app.ui.utilities.composable.CodeImplementationColumn
 import com.orange.ods.app.ui.utilities.composable.FunctionCallCode
-import com.orange.ods.app.ui.utilities.composable.PredefinedParameter
-import com.orange.ods.app.ui.utilities.composable.SimpleParameter
 import com.orange.ods.compose.component.OdsComponent
 import com.orange.ods.compose.component.card.OdsVerticalHeaderFirstCard
 
@@ -80,23 +78,26 @@ fun CardVerticalHeaderFirst(customizationState: CardCustomizationState) {
             Spacer(modifier = Modifier.padding(top = dimensionResource(R.dimen.spacing_s)))
 
             CodeImplementationColumn {
-                FunctionCallCode(name = OdsComponent.OdsVerticalHeaderFirstCard.name, exhaustiveParameters = false, parameters = mutableListOf(
-                    PredefinedParameter.Title(recipe.title),
-                    PredefinedParameter.Image
-                ).apply {
-                    if (hasThumbnail) add(SimpleParameter("thumbnail", "<thumbnail painter>"))
-                    if (hasSubtitle) add(PredefinedParameter.Subtitle(recipe.subtitle))
-                    if (hasText) add(PredefinedParameter.CardText)
-                    if (isClickable) add(PredefinedParameter.OnCardClick)
-                    if (hasButton1) {
-                        add(PredefinedParameter.Button1Text(button1Text))
-                        add(PredefinedParameter.OnButton1Click)
+                FunctionCallCode(
+                    name = OdsComponent.OdsVerticalHeaderFirstCard.name,
+                    exhaustiveParameters = false,
+                    parameters = {
+                        title(recipe.title)
+                        image()
+                        if (hasThumbnail) simple("thumbnail", "<thumbnail painter>")
+                        if (hasSubtitle) subtitle(recipe.subtitle)
+                        if (hasText) cardText()
+                        if (isClickable) onCardClick()
+                        if (hasButton1) {
+                            button1Text(button1Text)
+                            onButton1Click()
+                        }
+                        if (hasButton2) {
+                            button2Text(button2Text)
+                            onButton2Click()
+                        }
                     }
-                    if (hasButton2) {
-                        add(PredefinedParameter.Button2Text(button2Text))
-                        add(PredefinedParameter.OnButton2Click)
-                    }
-                })
+                )
             }
         }
     }

@@ -33,11 +33,7 @@ import androidx.compose.ui.res.stringResource
 import com.orange.ods.app.R
 import com.orange.ods.app.ui.components.utilities.ComponentCustomizationBottomSheetScaffold
 import com.orange.ods.app.ui.utilities.composable.CodeImplementationColumn
-import com.orange.ods.app.ui.utilities.composable.CodeParameter
 import com.orange.ods.app.ui.utilities.composable.FunctionCallCode
-import com.orange.ods.app.ui.utilities.composable.PredefinedParameter
-import com.orange.ods.app.ui.utilities.composable.StringParameter
-import com.orange.ods.app.ui.utilities.composable.StringRepresentationParameter
 import com.orange.ods.app.ui.utilities.composable.Subtitle
 import com.orange.ods.compose.component.OdsComponent
 import com.orange.ods.compose.component.chip.OdsChoiceChip
@@ -115,16 +111,11 @@ fun ProgressLinear() {
                     FunctionCallCode(
                         name = OdsComponent.OdsLinearProgressIndicator.name,
                         exhaustiveParameters = false,
-                        parameters = mutableListOf<CodeParameter>().apply {
-                            if (type.value == ProgressCustomizationState.Type.Determinate) add(
-                                StringRepresentationParameter(
-                                    "progress",
-                                    determinateProgressValue
-                                )
-                            )
-                            if (hasLabel) add(StringParameter("label", text))
-                            if (hasIcon) add(PredefinedParameter.Icon)
-                            if (hasCurrentValue) add(StringRepresentationParameter("showCurrentValue", hasCurrentValue))
+                        parameters = {
+                            if (type.value == ProgressCustomizationState.Type.Determinate) stringRepresentation("progress", determinateProgressValue)
+                            if (hasLabel) string("label", text)
+                            if (hasIcon) icon()
+                            if (hasCurrentValue) stringRepresentation("showCurrentValue", hasCurrentValue)
                         }
                     )
                 }

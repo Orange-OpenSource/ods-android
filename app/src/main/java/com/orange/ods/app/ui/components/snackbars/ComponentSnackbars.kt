@@ -30,13 +30,8 @@ import com.orange.ods.app.ui.components.utilities.ComponentLaunchContentColumn
 import com.orange.ods.app.ui.components.utilities.clickOnElement
 import com.orange.ods.app.ui.utilities.composable.CodeBackgroundColumn
 import com.orange.ods.app.ui.utilities.composable.CodeImplementationColumn
-import com.orange.ods.app.ui.utilities.composable.CodeParameter
 import com.orange.ods.app.ui.utilities.composable.FunctionCallCode
 import com.orange.ods.app.ui.utilities.composable.IndentCodeColumn
-import com.orange.ods.app.ui.utilities.composable.LambdaParameter
-import com.orange.ods.app.ui.utilities.composable.SimpleParameter
-import com.orange.ods.app.ui.utilities.composable.StringParameter
-import com.orange.ods.app.ui.utilities.composable.StringRepresentationParameter
 import com.orange.ods.app.ui.utilities.composable.TechnicalText
 import com.orange.ods.compose.component.OdsComponent
 import com.orange.ods.compose.component.list.OdsListItem
@@ -106,15 +101,14 @@ fun ComponentSnackbars() {
                 CodeBackgroundColumn {
                     FunctionCallCode(
                         name = OdsComponent.OdsSnackbarHost.name,
-                        parameters = listOf(SimpleParameter("hostState", "<SnackbarHostState>"))
+                        parameters = { simple("hostState", "<SnackbarHostState>") }
                     ) {
                         FunctionCallCode(
                             name = OdsComponent.OdsSnackbar.name,
-                            parameters = mutableListOf<CodeParameter>(
-                                SimpleParameter("snackbarData", "data")
-                            ).apply {
-                                if (actionOnNewLineChecked.value) add(StringRepresentationParameter("actionOnNewLine", true))
-                                add(LambdaParameter("onActionClick"))
+                            parameters = {
+                                simple("snackbarData", "data")
+                                if (actionOnNewLineChecked.value) stringRepresentation("actionOnNewLine", true)
+                                lambda("onActionClick")
                             }
                         )
                     }
@@ -127,11 +121,12 @@ fun ComponentSnackbars() {
                 CodeBackgroundColumn {
                     TechnicalText(text = "coroutineScope.launch {")
                     IndentCodeColumn {
-                        FunctionCallCode(name = "scaffoldState.snackbarHostState.showSnackbar", parameters = mutableListOf<CodeParameter>(
-                            StringParameter("message", snackbarMessage)
-                        ).apply {
-                            if (actionButtonChecked.value) add(StringParameter("actionLabel", snackbarActionLabel))
-                        })
+                        FunctionCallCode(
+                            name = "scaffoldState.snackbarHostState.showSnackbar",
+                            parameters = {
+                                string("message", snackbarMessage)
+                                if (actionButtonChecked.value) string("actionLabel", snackbarActionLabel)
+                            })
                     }
                     TechnicalText(text = "}")
                 }
