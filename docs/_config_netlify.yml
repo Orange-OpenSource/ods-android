@@ -4,7 +4,7 @@ plugins:
 relative_links:
   enabled: true
   collections: true
-remote_theme: Orange-OpenSource/ods-jekyll-theme
+theme: ods-jekyll-theme
 defaults:
   - scope:
       path: ""

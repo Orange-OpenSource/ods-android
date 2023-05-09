@@ -1,3 +1,9 @@
+PATH
+  remote: ../vendor/ods-jekyll-theme
+  specs:
+    ods-jekyll-theme (0.0.0)
+      jekyll (~> 4.3)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -35,11 +41,6 @@ GEM
       jekyll (>= 3.7, < 5.0)
     jekyll-relative-links (0.7.0)
       jekyll (>= 3.3, < 5.0)
-    jekyll-remote-theme (0.4.3)
-      addressable (~> 2.0)
-      jekyll (>= 3.5, < 5.0)
-      jekyll-sass-converter (>= 1.0, <= 3.0.0, != 2.0.0)
-      rubyzip (>= 1.3.0, < 3.0)
     jekyll-sass-converter (2.2.0)
       sassc (> 2.0.1, < 3.0)
     jekyll-seo-tag (2.8.0)
@@ -67,7 +68,6 @@ GEM
       ffi (~> 1.0)
     rexml (3.2.5)
     rouge (4.1.0)
-    rubyzip (2.3.2)
     safe_yaml (1.0.5)
     sassc (2.4.0)
       ffi (~> 1.9)
@@ -91,9 +91,9 @@ DEPENDENCIES
   jekyll (~> 4.3.2)
   jekyll-feed (~> 0.12)
   jekyll-relative-links
-  jekyll-remote-theme
   jekyll-sass-converter (~> 2.0)
   minima (~> 2.5)
+  ods-jekyll-theme!
   tzinfo (>= 1, < 3)
   tzinfo-data
   wdm (~> 0.1.1)

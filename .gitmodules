@@ -1,0 +1,3 @@
+[submodule "vendor/ods-jekyll-theme"]
+	path = vendor/ods-jekyll-theme
+	url = git@github.com:Orange-OpenSource/ods-jekyll-theme.git 
