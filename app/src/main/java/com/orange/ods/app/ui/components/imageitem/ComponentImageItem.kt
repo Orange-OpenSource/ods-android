@@ -28,7 +28,16 @@ import coil.compose.rememberAsyncImagePainter
 import com.orange.ods.app.R
 import com.orange.ods.app.domain.recipes.LocalRecipes
 import com.orange.ods.app.ui.components.utilities.ComponentCustomizationBottomSheetScaffold
+import com.orange.ods.app.ui.utilities.composable.CodeImplementationColumn
+import com.orange.ods.app.ui.utilities.composable.CodeParameter
+import com.orange.ods.app.ui.utilities.composable.FunctionCallCode
+import com.orange.ods.app.ui.utilities.composable.IconPainterValue
+import com.orange.ods.app.ui.utilities.composable.LambdaParameter
+import com.orange.ods.app.ui.utilities.composable.PredefinedParameter
+import com.orange.ods.app.ui.utilities.composable.SimpleParameter
+import com.orange.ods.app.ui.utilities.composable.StringRepresentationParameter
 import com.orange.ods.app.ui.utilities.composable.Subtitle
+import com.orange.ods.compose.component.OdsComponent
 import com.orange.ods.compose.component.chip.OdsChoiceChip
 import com.orange.ods.compose.component.chip.OdsChoiceChipsFlowRow
 import com.orange.ods.compose.component.imageitem.OdsImageItem
@@ -45,8 +54,11 @@ fun ComponentImageItem() {
     val recipe = rememberSaveable { recipes.random() }
 
     with(imageItemCustomizationState) {
-        if (!hasText) {
+        if (type.value == ImageItemCustomizationState.Type.None) {
+            textDisplayed.value = false
             iconDisplayed.value = false
+        } else {
+            textDisplayed.value = true
         }
         ComponentCustomizationBottomSheetScaffold(
             bottomSheetScaffoldState = rememberBottomSheetScaffoldState(),
@@ -92,6 +104,28 @@ fun ComponentImageItem() {
                     onIconCheckedChange = { checked -> iconCheckedState.value = checked },
                     displayTitle = if (isOverlay) OdsImageItemDisplayTitle.Overlay else if (isBelow) OdsImageItemDisplayTitle.Below else OdsImageItemDisplayTitle.None,
                 )
+                CodeImplementationColumn(
+                    modifier = Modifier.padding(end = dimensionResource(id = R.dimen.spacing_m))
+                ) {
+                    FunctionCallCode(name = OdsComponent.OdsImageItem.name, exhaustiveParameters = false, parameters = mutableListOf<CodeParameter>(
+                    ).apply {
+                        if (isOverlay) add(
+                            StringRepresentationParameter(
+                                "displayTitle",
+                                OdsImageItemDisplayTitle.Overlay
+                            )
+                        ) else if (isBelow) add(StringRepresentationParameter("displayTitle", OdsImageItemDisplayTitle.Below)) else add(
+                            StringRepresentationParameter("displayTitle", OdsImageItemDisplayTitle.None)
+                        )
+                        if (hasText) add(PredefinedParameter.Title(recipe.title))
+                        if (hasIcon) add(SimpleParameter("checkedIcon", IconPainterValue))
+                        if (hasIcon) add(SimpleParameter("uncheckedIcon", IconPainterValue))
+                        add(PredefinedParameter.Image)
+                        add(PredefinedParameter.Checked(iconCheckedState.value))
+                        add(PredefinedParameter.Selected(hasIcon))
+                        add(LambdaParameter("onIconCheckedChange"))
+                    })
+                }
             }
         }
     }
