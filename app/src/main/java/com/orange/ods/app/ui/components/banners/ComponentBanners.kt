@@ -29,6 +29,7 @@ import com.orange.ods.app.domain.recipes.LocalRecipes
 import com.orange.ods.app.ui.components.utilities.ComponentCountRow
 import com.orange.ods.app.ui.components.utilities.ComponentCustomizationBottomSheetScaffold
 import com.orange.ods.app.ui.components.utilities.clickOnElement
+import com.orange.ods.app.ui.utilities.DrawableManager
 import com.orange.ods.app.ui.utilities.composable.CodeImplementationColumn
 import com.orange.ods.app.ui.utilities.composable.CodeParameter
 import com.orange.ods.app.ui.utilities.composable.FunctionCallCode
@@ -88,8 +89,8 @@ fun ComponentBanners() {
                     button2Text = if (hasButton2) stringResource(id = R.string.component_banner_detail) else null,
                     image = if (hasImage) rememberAsyncImagePainter(
                         model = recipe.imageUrl,
-                        placeholder = painterResource(id = R.drawable.placeholder),
-                        error = painterResource(id = R.drawable.placeholder)
+                        placeholder = painterResource(id = DrawableManager.getPlaceholderResId()),
+                        error = painterResource(id = DrawableManager.getPlaceholderResId(error = true))
                     ) else null,
                     onButton1Click = { clickOnElement(context, button1Text) },
                     onButton2Click = { clickOnElement(context, button2Text) }

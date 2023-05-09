@@ -29,6 +29,7 @@ import coil.size.Size
 import com.orange.ods.app.R
 import com.orange.ods.app.domain.recipes.LocalRecipes
 import com.orange.ods.app.ui.components.utilities.clickOnElement
+import com.orange.ods.app.ui.utilities.DrawableManager
 import com.orange.ods.app.ui.utilities.composable.CodeImplementationColumn
 import com.orange.ods.app.ui.utilities.composable.FunctionCallCode
 import com.orange.ods.app.ui.utilities.composable.PredefinedParameter
@@ -57,8 +58,8 @@ fun CardVerticalHeaderFirst(customizationState: CardCustomizationState) {
                     .data(recipe.imageUrl)
                     .size(Size.ORIGINAL)
                     .build(),
-                placeholder = painterResource(id = R.drawable.placeholder),
-                error = painterResource(id = R.drawable.placeholder)
+                placeholder = painterResource(id = DrawableManager.getPlaceholderResId()),
+                error = painterResource(id = DrawableManager.getPlaceholderResId(error = true))
             )
 
             OdsVerticalHeaderFirstCard(

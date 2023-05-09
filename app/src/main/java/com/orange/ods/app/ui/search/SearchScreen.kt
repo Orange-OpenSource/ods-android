@@ -157,7 +157,7 @@ fun SearchScreen(
                         painter = when {
                             item.image != null -> painterResource(id = DrawableManager.getDrawableResIdForCurrentTheme(resId = item.image))
                             item.color != null -> ColorPainter(item.color)
-                            else -> painterResource(id = R.drawable.placeholder)
+                            else -> painterResource(id = DrawableManager.getPlaceholderResId())
                         }
                     )
                 }

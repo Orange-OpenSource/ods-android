@@ -30,6 +30,7 @@ import coil.compose.rememberAsyncImagePainter
 import com.orange.ods.app.R
 import com.orange.ods.app.domain.recipes.LocalRecipes
 import com.orange.ods.app.ui.components.utilities.clickOnElement
+import com.orange.ods.app.ui.utilities.DrawableManager
 import com.orange.ods.app.ui.utilities.composable.CodeImplementationColumn
 import com.orange.ods.app.ui.utilities.composable.FunctionCallCode
 import com.orange.ods.app.ui.utilities.composable.PredefinedParameter
@@ -60,8 +61,8 @@ fun CardSmall(customizationState: CardCustomizationState) {
                     modifier = Modifier.weight(0.5f),
                     image = rememberAsyncImagePainter(
                         model = recipe.imageUrl,
-                        placeholder = painterResource(id = R.drawable.placeholder),
-                        error = painterResource(id = R.drawable.placeholder)
+                        placeholder = painterResource(id = DrawableManager.getPlaceholderResId()),
+                        error = painterResource(id = DrawableManager.getPlaceholderResId(error = true))
                     ),
                     title = recipe.title,
                     subtitle = if (subtitleChecked.value) recipe.subtitle else null,
