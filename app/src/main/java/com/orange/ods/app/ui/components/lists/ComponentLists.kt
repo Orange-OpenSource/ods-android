@@ -30,6 +30,14 @@ import coil.compose.rememberAsyncImagePainter
 import coil.request.ImageRequest
 import coil.size.Scale
 import coil.size.Size
+import com.orange.ods.app.R
+import com.orange.ods.app.domain.recipes.LocalRecipes
+import com.orange.ods.app.domain.recipes.Recipe
+import com.orange.ods.app.ui.components.utilities.ComponentCountRow
+import com.orange.ods.app.ui.components.utilities.ComponentCustomizationBottomSheetScaffold
+import com.orange.ods.app.ui.components.utilities.clickOnElement
+import com.orange.ods.app.ui.utilities.DrawableManager
+import com.orange.ods.app.ui.utilities.composable.Subtitle
 import com.orange.ods.compose.component.chip.OdsChoiceChip
 import com.orange.ods.compose.component.chip.OdsChoiceChipsFlowRow
 import com.orange.ods.compose.component.list.OdsCaptionTrailing
@@ -43,13 +51,6 @@ import com.orange.ods.compose.component.list.OdsListItemTrailing
 import com.orange.ods.compose.component.list.OdsSwitchTrailing
 import com.orange.ods.compose.component.list.divider
 import com.orange.ods.compose.component.list.iconType
-import com.orange.ods.app.R
-import com.orange.ods.app.domain.recipes.LocalRecipes
-import com.orange.ods.app.domain.recipes.Recipe
-import com.orange.ods.app.ui.components.utilities.ComponentCountRow
-import com.orange.ods.app.ui.components.utilities.ComponentCustomizationBottomSheetScaffold
-import com.orange.ods.app.ui.components.utilities.clickOnElement
-import com.orange.ods.app.ui.utilities.composable.Subtitle
 import com.orange.ods.utilities.extension.orElse
 
 @OptIn(ExperimentalMaterialApi::class)
@@ -192,8 +193,8 @@ private fun ListItemCustomizationState.getIconPainter(recipe: Recipe): Painter? 
                     .scale(Scale.FILL)
                     .size(Size(wideImageSizeWidthPx.toInt(), wideImageSizeHeightPx.toInt()))
                     .build(),
-                placeholder = painterResource(id = R.drawable.placeholder_small),
-                error = painterResource(id = R.drawable.placeholder_small)
+                placeholder = painterResource(id = DrawableManager.getPlaceholderSmallResId()),
+                error = painterResource(id = DrawableManager.getPlaceholderSmallResId(error = true))
             )
         }
     }

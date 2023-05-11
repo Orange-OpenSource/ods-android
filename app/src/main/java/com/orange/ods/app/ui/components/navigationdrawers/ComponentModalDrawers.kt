@@ -31,6 +31,7 @@ import com.orange.ods.app.domain.recipes.LocalCategories
 import com.orange.ods.app.domain.recipes.LocalRecipes
 import com.orange.ods.app.ui.components.utilities.ComponentCustomizationBottomSheetScaffold
 import com.orange.ods.app.ui.components.utilities.ComponentLaunchContentColumn
+import com.orange.ods.app.ui.utilities.DrawableManager
 import com.orange.ods.app.ui.utilities.composable.ClassInstance
 import com.orange.ods.app.ui.utilities.composable.ClassInstanceParameter
 import com.orange.ods.app.ui.utilities.composable.CodeImplementationColumn
@@ -95,8 +96,8 @@ fun ComponentModalDrawers() {
                 image = if (hasBackground || hasAvatar) {
                     rememberAsyncImagePainter(
                         model = rememberSaveable { recipes.random() }.imageUrl,
-                        placeholder = painterResource(id = R.drawable.placeholder),
-                        error = painterResource(id = R.drawable.placeholder)
+                        placeholder = painterResource(id = DrawableManager.getPlaceholderResId()),
+                        error = painterResource(id = DrawableManager.getPlaceholderResId(error = true))
                     )
                 } else null,
                 subtitle = subtitle,

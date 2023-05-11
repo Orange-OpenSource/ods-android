@@ -27,6 +27,7 @@ import coil.compose.rememberAsyncImagePainter
 import com.orange.ods.app.R
 import com.orange.ods.app.domain.recipes.LocalRecipes
 import com.orange.ods.app.ui.components.utilities.clickOnElement
+import com.orange.ods.app.ui.utilities.DrawableManager
 import com.orange.ods.app.ui.utilities.composable.CodeImplementationColumn
 import com.orange.ods.app.ui.utilities.composable.CodeParameter
 import com.orange.ods.app.ui.utilities.composable.FunctionCallCode
@@ -55,8 +56,8 @@ fun CardVerticalImageFirst(customizationState: CardCustomizationState) {
                 title = recipe.title,
                 image = rememberAsyncImagePainter(
                     model = recipe.imageUrl,
-                    placeholder = painterResource(id = R.drawable.placeholder),
-                    error = painterResource(id = R.drawable.placeholder)
+                    placeholder = painterResource(id = DrawableManager.getPlaceholderResId()),
+                    error = painterResource(id = DrawableManager.getPlaceholderResId(error = true))
                 ),
                 subtitle = if (hasSubtitle) recipe.subtitle else null,
                 text = if (hasText) recipe.description else null,

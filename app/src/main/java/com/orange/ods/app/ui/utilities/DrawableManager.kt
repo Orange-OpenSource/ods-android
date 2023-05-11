@@ -11,6 +11,7 @@
 package com.orange.ods.app.ui.utilities
 
 import androidx.annotation.DrawableRes
+import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.runtime.Composable
 import com.orange.ods.app.R
 import com.orange.ods.app.ui.LocalMainThemeManager
@@ -64,5 +65,27 @@ object DrawableManager {
         val currentThemeResId = if (isOrangeTheme) orangeResIdByGenericResId[resId] else genericResIdByOrangeResId[resId]
 
         return currentThemeResId.orElse { resId }
+    }
+
+    @Composable
+    fun getPlaceholderResId(error: Boolean = false): Int {
+        val darkTheme = isSystemInDarkTheme()
+        return when {
+            !darkTheme && !error -> R.drawable.placeholder
+            !darkTheme && error -> R.drawable.placeholder_error
+            darkTheme && !error -> R.drawable.placeholder_dark
+            else -> R.drawable.placeholder_error_dark
+        }
+    }
+
+    @Composable
+    fun getPlaceholderSmallResId(error: Boolean = false): Int {
+        val darkTheme = isSystemInDarkTheme()
+        return when {
+            !darkTheme && !error -> R.drawable.placeholder_small
+            !darkTheme && error -> R.drawable.placeholder_error_small
+            darkTheme && !error -> R.drawable.placeholder_small_dark
+            else -> R.drawable.placeholder_error_small_dark
+        }
     }
 }

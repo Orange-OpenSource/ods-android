@@ -34,7 +34,10 @@ app/src/main/res/drawable/il_lists.xml
 app/src/main/res/drawable/il_progress.xml
 app/src/main/res/drawable/il_radio_buttons.xml
 app/src/main/res/drawable/il_sliders.xml
+app/src/main/res/drawable/placeholder_error_small.png
+app/src/main/res/drawable/placeholder_error_small_dark.png
 app/src/main/res/drawable/placeholder_small.png
+app/src/main/res/drawable/placeholder_small_dark.png
 
 app/src/main/res/drawable-hdpi/il_about.png
 app/src/main/res/drawable-hdpi/il_app_bars_top.png
@@ -55,26 +58,9 @@ app/src/main/res/drawable-hdpi/il_text_fields.png
 app/src/main/res/drawable-hdpi/il_text_fields_small.png
 app/src/main/res/drawable-hdpi/il_typography.png
 app/src/main/res/drawable-hdpi/placeholder.png
-
-app/src/main/res/drawable-ldpi/il_about.png
-app/src/main/res/drawable-ldpi/il_app_bars_top.png
-app/src/main/res/drawable-ldpi/il_app_bars_top_small.png
-app/src/main/res/drawable-ldpi/il_buttons.png
-app/src/main/res/drawable-ldpi/il_buttons_small.png
-app/src/main/res/drawable-ldpi/il_chips.png
-app/src/main/res/drawable-ldpi/il_chips_small.png
-app/src/main/res/drawable-ldpi/il_color.png
-app/src/main/res/drawable-ldpi/il_snackbars.png
-app/src/main/res/drawable-ldpi/il_snackbars_small.png
-app/src/main/res/drawable-ldpi/il_spacing.png
-app/src/main/res/drawable-ldpi/il_switches.png
-app/src/main/res/drawable-ldpi/il_switches_small.png
-app/src/main/res/drawable-ldpi/il_tabs.png
-app/src/main/res/drawable-ldpi/il_tabs_small.png
-app/src/main/res/drawable-ldpi/il_text_fields.png
-app/src/main/res/drawable-ldpi/il_text_fields_small.png
-app/src/main/res/drawable-ldpi/il_typography.png
-app/src/main/res/drawable-ldpi/placeholder.png
+app/src/main/res/drawable-hdpi/placeholder_dark.png
+app/src/main/res/drawable-hdpi/placeholder_error.png
+app/src/main/res/drawable-hdpi/placeholder_error_dark.png
 
 app/src/main/res/drawable-mdpi/il_about.png
 app/src/main/res/drawable-mdpi/il_app_bars_top.png
@@ -95,6 +81,9 @@ app/src/main/res/drawable-mdpi/il_text_fields.png
 app/src/main/res/drawable-mdpi/il_text_fields_small.png
 app/src/main/res/drawable-mdpi/il_typography.png
 app/src/main/res/drawable-mdpi/placeholder.png
+app/src/main/res/drawable-mdpi/placeholder_dark.png
+app/src/main/res/drawable-mdpi/placeholder_error.png
+app/src/main/res/drawable-mdpi/placeholder_error_dark.png
 
 app/src/main/res/drawable-xhdpi/il_about.png
 app/src/main/res/drawable-xhdpi/il_app_bars_top.png
@@ -115,6 +104,9 @@ app/src/main/res/drawable-xhdpi/il_text_fields.png
 app/src/main/res/drawable-xhdpi/il_text_fields_small.png
 app/src/main/res/drawable-xhdpi/il_typography.png
 app/src/main/res/drawable-xhdpi/placeholder.png
+app/src/main/res/drawable-xhdpi/placeholder_dark.png
+app/src/main/res/drawable-xhdpi/placeholder_error.png
+app/src/main/res/drawable-xhdpi/placeholder_error_dark.png
 
 app/src/main/res/drawable-xxhdpi/il_about.png
 app/src/main/res/drawable-xxhdpi/il_app_bars_top.png
@@ -135,6 +127,9 @@ app/src/main/res/drawable-xxhdpi/il_text_fields.png
 app/src/main/res/drawable-xxhdpi/il_text_fields_small.png
 app/src/main/res/drawable-xxhdpi/il_typography.png
 app/src/main/res/drawable-xxhdpi/placeholder.png
+app/src/main/res/drawable-xxhdpi/placeholder_dark.png
+app/src/main/res/drawable-xxhdpi/placeholder_error.png
+app/src/main/res/drawable-xxhdpi/placeholder_error_dark.png
 
 app/src/main/res/drawable-xxxhdpi/il_about.png
 app/src/main/res/drawable-xxxhdpi/il_app_bars_top.png
@@ -155,6 +150,10 @@ app/src/main/res/drawable-xxxhdpi/il_text_fields.png
 app/src/main/res/drawable-xxxhdpi/il_text_fields_small.png
 app/src/main/res/drawable-xxxhdpi/il_typography.png
 app/src/main/res/drawable-xxxhdpi/placeholder.png
+app/src/main/res/drawable-xxxhdpi/placeholder_dark.png
+app/src/main/res/drawable-xxxhdpi/placeholder_error.png
+app/src/main/res/drawable-xxxhdpi/placeholder_error_dark.png
+
 
 app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml
 app/src/main/res/mipmap-anydpi-v26/ic_launcher_round.xml

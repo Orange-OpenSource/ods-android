@@ -34,6 +34,7 @@ import com.orange.ods.app.ui.components.chips.ChipCustomizationState.ChipType
 import com.orange.ods.app.ui.components.chips.ChipCustomizationState.LeadingElement
 import com.orange.ods.app.ui.components.utilities.ComponentCustomizationBottomSheetScaffold
 import com.orange.ods.app.ui.components.utilities.clickOnElement
+import com.orange.ods.app.ui.utilities.DrawableManager
 import com.orange.ods.app.ui.utilities.composable.CodeImplementationColumn
 import com.orange.ods.app.ui.utilities.composable.FunctionCallCode
 import com.orange.ods.app.ui.utilities.composable.ImagePainterValue
@@ -153,8 +154,8 @@ private fun Chip(chipCustomizationState: ChipCustomizationState) {
                 leadingAvatar = if (hasLeadingAvatar) {
                     rememberAsyncImagePainter(
                         model = recipe?.imageUrl,
-                        placeholder = painterResource(id = R.drawable.placeholder_small),
-                        error = painterResource(id = R.drawable.placeholder_small)
+                        placeholder = painterResource(id = DrawableManager.getPlaceholderSmallResId()),
+                        error = painterResource(id = DrawableManager.getPlaceholderSmallResId(error = true))
                     )
                 } else null,
                 enabled = isEnabled,
