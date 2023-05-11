@@ -62,26 +62,6 @@ app/src/main/res/drawable-hdpi/placeholder_dark.png
 app/src/main/res/drawable-hdpi/placeholder_error.png
 app/src/main/res/drawable-hdpi/placeholder_error_dark.png
 
-app/src/main/res/drawable-ldpi/il_about.png
-app/src/main/res/drawable-ldpi/il_app_bars_top.png
-app/src/main/res/drawable-ldpi/il_app_bars_top_small.png
-app/src/main/res/drawable-ldpi/il_buttons.png
-app/src/main/res/drawable-ldpi/il_buttons_small.png
-app/src/main/res/drawable-ldpi/il_chips.png
-app/src/main/res/drawable-ldpi/il_chips_small.png
-app/src/main/res/drawable-ldpi/il_color.png
-app/src/main/res/drawable-ldpi/il_snackbars.png
-app/src/main/res/drawable-ldpi/il_snackbars_small.png
-app/src/main/res/drawable-ldpi/il_spacing.png
-app/src/main/res/drawable-ldpi/il_switches.png
-app/src/main/res/drawable-ldpi/il_switches_small.png
-app/src/main/res/drawable-ldpi/il_tabs.png
-app/src/main/res/drawable-ldpi/il_tabs_small.png
-app/src/main/res/drawable-ldpi/il_text_fields.png
-app/src/main/res/drawable-ldpi/il_text_fields_small.png
-app/src/main/res/drawable-ldpi/il_typography.png
-app/src/main/res/drawable-ldpi/placeholder.png
-
 app/src/main/res/drawable-mdpi/il_about.png
 app/src/main/res/drawable-mdpi/il_app_bars_top.png
 app/src/main/res/drawable-mdpi/il_app_bars_top_small.png
