@@ -8,7 +8,7 @@ Following these guidelines helps to communicate that you respect the time of the
 
 ## Using the Issue Tracker
 
-The [issue tracker](https://github.com/Orange-OpenSource/ods-android/issues) is the preferred channel for [bug reports](#bug-reports), [feature requests](#feature requests) and [submitting pull requests](#pull-requests), but please respect the following restrictions:
+The [issue tracker](https://github.com/Orange-OpenSource/ods-android/issues) is the preferred channel for [bug reports](#bug-reports), [feature requests](#feature-requests) and [submitting pull requests](#pull-requests), but please respect the following restrictions:
 
 - Please **do not** use the issue tracker for personal support requests. [GitHub Discussions](https://github.com/Orange-OpenSource/ods-android/discussions/categories/q-a) or our internal Orange communication tools are better places to get help.
 
