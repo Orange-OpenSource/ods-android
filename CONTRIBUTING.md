@@ -69,8 +69,6 @@ Good pull requests—patches, improvements, new features—are a fantastic help.
 
 Please adhere to the [coding guidelines](#code-guidelines) used throughout the project (indentation, accurate comments, etc.) and any other requirements (such as test coverage).
 
-**Do not edit the `gh-pages` branch.** That branch is generated from the source files and is managed automatically by our continuous integration.
-
 Adhering to the following process is the best way to get your work included in the project:
 
 1. [Fork](https://help.github.com/articles/fork-a-repo/) the project, clone your fork, and configure the remotes:
