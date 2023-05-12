@@ -11,11 +11,7 @@
 package com.orange.ods.app.ui
 
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.MutableState
-import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
-import androidx.compose.runtime.setValue
 import androidx.lifecycle.Lifecycle
 import androidx.navigation.NavBackStackEntry
 import androidx.navigation.NavDestination
@@ -52,10 +48,10 @@ fun rememberMainState(
     navController: NavHostController = rememberNavController(),
     topAppBarState: MainTopAppBarState = rememberMainTopAppBarState(),
     tabsState: MainTabsState = rememberMainTabsState(),
-    uiFramework: MutableState<UiFramework> = remember { mutableStateOf(UiFramework.Compose) }
+    uiFrameworkState: UiFrameworkState = rememberUiFrameworkState()
 ) =
-    remember(themeState, navController, topAppBarState, tabsState, uiFramework) {
-        MainState(themeState, navController, topAppBarState, tabsState, uiFramework)
+    remember(themeState, navController, topAppBarState, tabsState, uiFrameworkState) {
+        MainState(themeState, navController, topAppBarState, tabsState, uiFrameworkState)
     }
 
 class MainState(
@@ -63,10 +59,8 @@ class MainState(
     val navController: NavHostController,
     val topAppBarState: MainTopAppBarState,
     val tabsState: MainTabsState,
-    uiFramework: MutableState<UiFramework>
-) : UiFrameworkManager {
-
-    override var uiFramework by uiFramework
+    val uiFrameworkState: UiFrameworkState
+) {
 
     // ----------------------------------------------------------
     // BottomBar state source of truth

@@ -12,6 +12,11 @@ package com.orange.ods.app.ui
 
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.MutableState
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.runtime.staticCompositionLocalOf
 import androidx.databinding.ViewDataBinding
 import com.orange.ods.app.ui.components.utilities.ViewDataBinding
@@ -26,6 +31,17 @@ interface UiFrameworkManager {
 
     var uiFramework: UiFramework
 }
+
+class UiFrameworkState(uiFramework: MutableState<UiFramework>) : UiFrameworkManager {
+
+    override var uiFramework: UiFramework by uiFramework
+}
+
+@Composable
+fun rememberUiFrameworkState(
+    uiFramework: MutableState<UiFramework> = remember { mutableStateOf(UiFramework.Compose) }
+) =
+    remember(uiFramework) { UiFrameworkState(uiFramework) }
 
 @Composable
 inline fun <reified T : ViewDataBinding> UiFramework(compose: @Composable () -> Unit, noinline xml: T.() -> Unit) {
