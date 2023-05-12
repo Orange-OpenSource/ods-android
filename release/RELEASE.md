@@ -39,11 +39,11 @@ This file lists all the steps to follow when releasing a new version of ODS Andr
 
 ## Release
 
-- Create a new pull request named `Release X.Y.Z` on GitHub to merge `develop` into `master`.
+- Create a new pull request named `Release X.Y.Z` on GitHub to merge `develop` into `main`.
 
 - Review and merge this pull request on GitHub.
 
-- Switch to the latest master commit and launch the `tagRelease` Gradle task:
+- Switch to the latest main commit and launch the `tagRelease` Gradle task:
 
     ```shell
     ./gradlew tagRelease
