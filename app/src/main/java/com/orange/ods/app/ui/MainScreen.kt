@@ -266,3 +266,9 @@ private fun NavGraphBuilder.mainNavGraph(navigateToElement: (String, Long?, NavB
         )
     }
 }
+
+@Composable
+fun ResetTopAppBar() {
+    LocalMainTopAppBarManager.current.updateTopAppBar(MainTopAppBarState.DefaultConfiguration)
+    LocalMainTabsManager.current.clearTopAppBarTabs()
+}

@@ -64,14 +64,12 @@ fun NavGraphBuilder.addBottomNavigationGraph(navigateToElement: (String, Long?, 
         ComponentsScreen(onComponentClick = { id -> navigateToElement(MainDestinations.ComponentDetailRoute, id, from) })
     }
     composable(BottomNavigationSections.Modules.route) {
-        LocalMainTopAppBarManager.current.updateTopAppBar(MainTopAppBarState.DefaultConfiguration)
-        LocalMainTabsManager.current.clearTopAppBarTabs()
+        ResetTopAppBar()
         ModulesScreen()
     }
     composable(BottomNavigationSections.About.route) { from ->
         val context = LocalContext.current
-        LocalMainTopAppBarManager.current.updateTopAppBar(MainTopAppBarState.DefaultConfiguration)
-        LocalMainTabsManager.current.clearTopAppBarTabs()
+        ResetTopAppBar()
         AboutScreen(onAboutItemClick = { id ->
             val aboutItem = aboutItems.firstOrNull { it.id == id }
             if (aboutItem is UrlAboutItem) {
