@@ -92,9 +92,6 @@ data class TopAppBarConfiguration constructor(
         object Mode : Action()
 
         @Parcelize
-        object UiFramework : Action()
-
-        @Parcelize
         object OverflowMenu : Action()
 
         @Parcelize

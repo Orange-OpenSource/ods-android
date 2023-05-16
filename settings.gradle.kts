@@ -9,7 +9,7 @@
  */
 
 include(":app")
-include(":component-processor")
+include(":composable-processor")
 include(":lib")
 include(":lib-xml")
 include(":theme-orange")

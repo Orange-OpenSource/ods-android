@@ -19,8 +19,6 @@ import com.orange.ods.app.ui.LocalMainTopAppBarManager
 import com.orange.ods.app.ui.MainDestinations
 import com.orange.ods.app.ui.MainTopAppBarState
 import com.orange.ods.app.ui.ResetTopAppBar
-import com.orange.ods.app.ui.TopAppBarConfiguration
-import com.orange.ods.app.ui.UiFramework
 
 fun NavGraphBuilder.addComponentsGraph(navigateToElement: (String, Long?, NavBackStackEntry) -> Unit) {
     composable(
@@ -45,15 +43,7 @@ fun NavGraphBuilder.addComponentsGraph(navigateToElement: (String, Long?, NavBac
     ) { from ->
         val arguments = requireNotNull(from.arguments)
         val variantId = arguments.getLong(MainDestinations.ComponentVariantIdKey)
-        val topAppBarConfiguration = MainTopAppBarState.DefaultConfiguration.newBuilder()
-            .apply {
-                val variant = variants.firstOrNull { it.id == variantId }
-                if (variant?.uiFrameworks?.contains(UiFramework.Xml) == true) {
-                    prependAction(TopAppBarConfiguration.Action.UiFramework)
-                }
-            }
-            .build()
-        LocalMainTopAppBarManager.current.updateTopAppBar(topAppBarConfiguration)
+        LocalMainTopAppBarManager.current.updateTopAppBar(MainTopAppBarState.DefaultConfiguration)
         ComponentVariantScreen(variantId = variantId)
     }
 
@@ -63,15 +53,7 @@ fun NavGraphBuilder.addComponentsGraph(navigateToElement: (String, Long?, NavBac
     ) { from ->
         val arguments = requireNotNull(from.arguments)
         val componentId = arguments.getLong(MainDestinations.ComponentIdKey)
-        val topAppBarConfiguration = MainTopAppBarState.DefaultConfiguration.newBuilder()
-            .apply {
-                val component = components.firstOrNull { it.id == componentId }
-                if (component?.uiFrameworks?.contains(UiFramework.Xml) == true) {
-                    prependAction(TopAppBarConfiguration.Action.UiFramework)
-                }
-            }
-            .build()
-        LocalMainTopAppBarManager.current.updateTopAppBar(topAppBarConfiguration)
+        LocalMainTopAppBarManager.current.updateTopAppBar(MainTopAppBarState.DefaultConfiguration)
         ComponentDemoScreen(componentId = componentId)
     }
 }

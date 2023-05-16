@@ -24,7 +24,6 @@
     <string name="top_app_bar_action_change_theme_desc">Change theme</string>
     <string name="top_app_bar_action_change_mode_to_dark_desc">Change to dark mode</string>
     <string name="top_app_bar_action_change_mode_to_light_desc">Change to light mode</string>
-    <string name="top_app_bar_action_change_ui_framework_desc">Change UI framework</string>
 
     <!-- Guidelines -->
     <string name="guideline_color">Colour</string>
@@ -90,6 +89,9 @@
     <string name="component_element_empty">Empty</string>
     <string name="component_element_example">Example</string>
     <string name="component_element_content">Content</string>
+    <string name="component_ui_framework">UI framework</string>
+    <string name="component_ui_framework_compose">Compose</string>
+    <string name="component_ui_framework_xml">XML</string>
 
     <!-- Components App bars: top -->
     <string name="component_app_bars_top">App bars: top</string>

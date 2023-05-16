@@ -99,7 +99,7 @@ fun MainScreen(themeConfigurations: Set<OdsThemeConfigurationContract>, mainView
         LocalOdsGuideline provides mainState.themeState.currentThemeConfiguration.guideline,
         LocalRecipes provides mainViewModel.recipes,
         LocalCategories provides mainViewModel.categories,
-        LocalUiFrameworkManager provides mainState.uiFrameworkState
+        LocalUiFramework provides mainState.uiFramework
     ) {
         var changeThemeDialogVisible by remember { mutableStateOf(false) }
 

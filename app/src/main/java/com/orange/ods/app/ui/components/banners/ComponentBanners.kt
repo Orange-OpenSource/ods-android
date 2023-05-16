@@ -33,11 +33,12 @@ import com.orange.ods.app.domain.recipes.LocalRecipes
 import com.orange.ods.app.ui.UiFramework
 import com.orange.ods.app.ui.components.utilities.ComponentCountRow
 import com.orange.ods.app.ui.components.utilities.ComponentCustomizationBottomSheetScaffold
+import com.orange.ods.app.ui.components.utilities.ComponentCustomizationUiFramework
 import com.orange.ods.app.ui.components.utilities.clickOnElement
 import com.orange.ods.app.ui.utilities.DrawableManager
 import com.orange.ods.app.ui.utilities.composable.CodeImplementationColumn
 import com.orange.ods.app.ui.utilities.composable.FunctionCallCode
-import com.orange.ods.compose.component.OdsComponent
+import com.orange.ods.compose.OdsComposable
 import com.orange.ods.compose.component.banner.OdsBanner
 import com.orange.ods.compose.component.list.OdsListItem
 import com.orange.ods.compose.component.list.OdsSwitchTrailing
@@ -45,7 +46,6 @@ import com.orange.ods.compose.component.list.OdsSwitchTrailing
 @OptIn(ExperimentalMaterialApi::class)
 @Composable
 fun ComponentBanners() {
-
     val bannerCustomizationState = rememberBannerCustomizationState()
     val recipes = LocalRecipes.current
     val recipe = rememberSaveable { recipes.filter { it.description.isNotBlank() }.random() }
@@ -54,6 +54,7 @@ fun ComponentBanners() {
         ComponentCustomizationBottomSheetScaffold(
             bottomSheetScaffoldState = rememberBottomSheetScaffoldState(),
             bottomSheetContent = {
+                ComponentCustomizationUiFramework()
                 ComponentCountRow(
                     title = stringResource(id = R.string.component_banner_text_lines_count),
                     count = textLinesCount,
@@ -111,7 +112,7 @@ fun ComponentBanners() {
                             modifier = Modifier.padding(horizontal = dimensionResource(id = R.dimen.screen_horizontal_margin))
                         ) {
                             FunctionCallCode(
-                                name = OdsComponent.OdsBanner.name,
+                                name = OdsComposable.OdsBanner.name,
                                 exhaustiveParameters = false,
                                 parameters = {
                                     string("message", if (hasTwoTextLines) recipe.description else recipe.title)

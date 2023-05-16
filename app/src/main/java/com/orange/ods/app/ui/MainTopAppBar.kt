@@ -85,7 +85,6 @@ private fun TopAppBarActions(state: MainTopAppBarState, onSearchActionClick: () 
             TopAppBarConfiguration.Action.Search -> TopAppBarSearchActionButton(onClick = onSearchActionClick)
             TopAppBarConfiguration.Action.Theme -> TopAppBarChangeThemeActionButton(onClick = onChangeThemeActionClick)
             TopAppBarConfiguration.Action.Mode -> TopAppBarChangeModeActionButton()
-            TopAppBarConfiguration.Action.UiFramework -> TopAppBarChangeUiFrameworkActionButton()
             TopAppBarConfiguration.Action.OverflowMenu -> TopAppBarOverflowMenuBox()
             is TopAppBarConfiguration.Action.Custom -> TopAppBarCustomActionButton(action = action)
         }
@@ -123,24 +122,6 @@ private fun TopAppBarSearchActionButton(onClick: () -> Unit) {
         onClick = onClick,
         painter = painterResource(id = R.drawable.ic_search),
         contentDescription = stringResource(id = R.string.search_content_description)
-    )
-}
-
-@Composable
-private fun TopAppBarChangeUiFrameworkActionButton() {
-    val uiFrameworkManager = LocalUiFrameworkManager.current
-    OdsTopAppBarActionButton(
-        onClick = {
-            uiFrameworkManager.uiFramework = when (uiFrameworkManager.uiFramework) {
-                UiFramework.Compose -> UiFramework.Xml
-                UiFramework.Xml -> UiFramework.Compose
-            }
-        },
-        painter = when (uiFrameworkManager.uiFramework) {
-            UiFramework.Compose -> painterResource(id = R.drawable.ic_xml)
-            UiFramework.Xml -> painterResource(id = R.drawable.ic_compose)
-        },
-        contentDescription = stringResource(id = R.string.top_app_bar_action_change_ui_framework_desc)
     )
 }
 
