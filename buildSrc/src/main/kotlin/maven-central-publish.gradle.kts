@@ -44,7 +44,7 @@ afterEvaluate {
                     licenses {
                         license {
                             name.set("MIT License")
-                            url.set("https://github.com/Orange-OpenSource/ods-android/blob/master/LICENSE")
+                            url.set("https://github.com/Orange-OpenSource/ods-android/blob/main/LICENSE")
                         }
                     }
                     scm {
