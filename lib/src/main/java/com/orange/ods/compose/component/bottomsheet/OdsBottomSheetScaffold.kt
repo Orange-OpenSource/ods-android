@@ -23,7 +23,7 @@ import androidx.compose.material.rememberBottomSheetScaffoldState
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.Dp
-import com.orange.ods.compose.component.OdsComponentApi
+import com.orange.ods.compose.component.OdsComposable
 import com.orange.ods.compose.theme.OdsTheme
 
 
@@ -45,7 +45,7 @@ import com.orange.ods.compose.theme.OdsTheme
  */
 @Composable
 @ExperimentalMaterialApi
-@OdsComponentApi
+@OdsComposable
 fun OdsBottomSheetScaffold(
     sheetContent: @Composable ColumnScope.() -> Unit,
     modifier: Modifier = Modifier,

@@ -30,7 +30,7 @@ import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.PreviewParameter
 import androidx.compose.ui.unit.dp
 import com.orange.ods.R
-import com.orange.ods.compose.component.OdsComponentApi
+import com.orange.ods.compose.component.OdsComposable
 import com.orange.ods.compose.component.button.OdsTextButton
 import com.orange.ods.compose.component.button.OdsTextButtonStyle
 import com.orange.ods.compose.component.divider.OdsDivider
@@ -53,7 +53,7 @@ import com.orange.ods.compose.theme.OdsTheme
  * @param onButton2Click Optional handler for the button2 click.
  */
 @Composable
-@OdsComponentApi
+@OdsComposable
 fun OdsBanner(
     message: String,
     button1Text: String,

@@ -35,7 +35,7 @@ import com.orange.ods.app.ui.components.utilities.ComponentCustomizationBottomSh
 import com.orange.ods.app.ui.utilities.composable.CodeImplementationColumn
 import com.orange.ods.app.ui.utilities.composable.FunctionCallCode
 import com.orange.ods.app.ui.utilities.composable.Subtitle
-import com.orange.ods.compose.component.OdsComponent
+import com.orange.ods.compose.OdsComposable
 import com.orange.ods.compose.component.chip.OdsChoiceChip
 import com.orange.ods.compose.component.chip.OdsChoiceChipsFlowRow
 import com.orange.ods.compose.component.list.OdsListItem
@@ -94,7 +94,7 @@ fun ProgressCircular() {
 
                 CodeImplementationColumn {
                     FunctionCallCode(
-                        name = OdsComponent.OdsCircularProgressIndicator.name,
+                        name = OdsComposable.OdsCircularProgressIndicator.name,
                         exhaustiveParameters = false,
                         parameters = {
                             if (type.value == ProgressCustomizationState.Type.Determinate) stringRepresentation("progress", determinateProgressValue)

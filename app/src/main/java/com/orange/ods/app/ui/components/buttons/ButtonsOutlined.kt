@@ -24,7 +24,7 @@ import androidx.compose.ui.res.stringResource
 import com.orange.ods.app.R
 import com.orange.ods.app.ui.utilities.composable.CodeImplementationColumn
 import com.orange.ods.app.ui.utilities.composable.FunctionCallCode
-import com.orange.ods.compose.component.OdsComponent
+import com.orange.ods.compose.OdsComposable
 import com.orange.ods.compose.component.button.OdsOutlinedButton
 import com.orange.ods.compose.theme.OdsDisplaySurface
 
@@ -53,7 +53,7 @@ fun ButtonsOutlined(customizationState: ButtonCustomizationState) {
                 modifier = Modifier.padding(horizontal = dimensionResource(id = R.dimen.screen_horizontal_margin))
             ) {
                 FunctionCallCode(
-                    name = OdsComponent.OdsOutlinedButton.name,
+                    name = OdsComposable.OdsOutlinedButton.name,
                     exhaustiveParameters = false,
                     parameters = {
                         if (hasFullScreenWidth) fillMaxWidth()

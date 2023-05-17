@@ -27,7 +27,7 @@ import com.orange.ods.app.domain.recipes.LocalRecipes
 import com.orange.ods.app.ui.components.utilities.ComponentCustomizationBottomSheetScaffold
 import com.orange.ods.app.ui.utilities.composable.CodeImplementationColumn
 import com.orange.ods.app.ui.utilities.composable.FunctionCallCode
-import com.orange.ods.compose.component.OdsComponent
+import com.orange.ods.compose.OdsComposable
 import com.orange.ods.compose.component.chip.OdsChoiceChip
 import com.orange.ods.compose.component.chip.OdsChoiceChipsFlowRow
 import com.orange.ods.compose.component.list.OdsListItem
@@ -88,7 +88,7 @@ fun ComponentSheetsBottom() {
 
                 CodeImplementationColumn {
                     FunctionCallCode(
-                        name = OdsComponent.OdsBottomSheetScaffold.name,
+                        name = OdsComposable.OdsBottomSheetScaffold.name,
                         exhaustiveParameters = false,
                         parameters = { lambda("sheetContent") }
                     )

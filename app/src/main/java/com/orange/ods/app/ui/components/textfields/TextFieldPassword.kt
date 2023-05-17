@@ -18,7 +18,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.stringResource
 import com.orange.ods.app.R
-import com.orange.ods.compose.component.OdsComponent
+import com.orange.ods.compose.OdsComposable
 import com.orange.ods.compose.component.textfield.password.OdsPasswordTextField
 
 @Composable
@@ -50,7 +50,7 @@ fun TextFieldPassword(customizationState: TextFieldCustomizationState) {
             )
 
             TextFieldCodeImplementationColumn(
-                componentName = OdsComponent.OdsPasswordTextField.name,
+                componentName = OdsComposable.OdsPasswordTextField.name,
                 customizationState = customizationState,
                 label = label,
                 placeholder = placeholder,

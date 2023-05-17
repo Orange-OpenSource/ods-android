@@ -27,7 +27,7 @@ import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.painterResource
 import com.orange.ods.R
-import com.orange.ods.compose.component.OdsComponentApi
+import com.orange.ods.compose.component.OdsComposable
 import com.orange.ods.compose.component.button.OdsTextButton
 import com.orange.ods.compose.component.button.OdsTextButtonStyle
 import com.orange.ods.compose.component.utilities.Preview
@@ -58,7 +58,7 @@ import com.orange.ods.compose.text.OdsTextSubtitle2
  *
  */
 @Composable
-@OdsComponentApi
+@OdsComposable
 fun OdsVerticalImageFirstCard(
     title: String,
     image: Painter,

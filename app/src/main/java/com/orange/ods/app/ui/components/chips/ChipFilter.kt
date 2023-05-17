@@ -35,7 +35,7 @@ import com.orange.ods.app.ui.utilities.composable.CodeImplementationColumn
 import com.orange.ods.app.ui.utilities.composable.FunctionCallCode
 import com.orange.ods.app.ui.utilities.composable.ImagePainterValue
 import com.orange.ods.app.ui.utilities.composable.Subtitle
-import com.orange.ods.compose.component.OdsComponent
+import com.orange.ods.compose.OdsComposable
 import com.orange.ods.compose.component.chip.OdsChoiceChip
 import com.orange.ods.compose.component.chip.OdsChoiceChipsFlowRow
 import com.orange.ods.compose.component.chip.OdsFilterChip
@@ -105,7 +105,7 @@ fun ChipFilter() {
                     ) {
                         recipe.ingredients.forEachIndexed { index, ingredient ->
                             FunctionCallCode(
-                                name = OdsComponent.OdsFilterChip.name,
+                                name = OdsComposable.OdsFilterChip.name,
                                 exhaustiveParameters = false,
                                 parameters = {
                                     text(ingredient.food.name)

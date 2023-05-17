@@ -30,7 +30,7 @@ import com.orange.ods.app.ui.components.utilities.clickOnElement
 import com.orange.ods.app.ui.utilities.DrawableManager
 import com.orange.ods.app.ui.utilities.composable.CodeImplementationColumn
 import com.orange.ods.app.ui.utilities.composable.FunctionCallCode
-import com.orange.ods.compose.component.OdsComponent
+import com.orange.ods.compose.OdsComposable
 import com.orange.ods.compose.component.card.OdsVerticalImageFirstCard
 
 @Composable
@@ -72,7 +72,7 @@ fun CardVerticalImageFirst(customizationState: CardCustomizationState) {
 
             CodeImplementationColumn {
                 FunctionCallCode(
-                    name = OdsComponent.OdsVerticalImageFirstCard.name,
+                    name = OdsComposable.OdsVerticalImageFirstCard.name,
                     exhaustiveParameters = false,
                     parameters = {
                         title(recipe.title)

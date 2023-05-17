@@ -23,7 +23,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.tooling.preview.PreviewParameter
 import com.orange.ods.R
-import com.orange.ods.compose.component.OdsComponentApi
+import com.orange.ods.compose.component.OdsComposable
 import com.orange.ods.compose.component.button.OdsTextButton
 import com.orange.ods.compose.component.button.OdsTextButtonStyle
 import com.orange.ods.compose.component.utilities.BasicPreviewParameterProvider
@@ -44,7 +44,7 @@ import com.orange.ods.compose.theme.OdsDisplaySurface
  * @param onActionClick executed on action button click.
  */
 @Composable
-@OdsComponentApi
+@OdsComposable
 fun OdsSnackbar(
     message: String,
     modifier: Modifier = Modifier,
@@ -107,7 +107,7 @@ fun OdsSnackbar(
  * @param snackbar the instance of the [OdsSnackbar] to be shown at the appropriate time with
  * appearance based on the [SnackbarData] provided as a param
  */
-@OdsComponentApi
+@OdsComposable
 @Composable
 fun OdsSnackbarHost(
     hostState: SnackbarHostState,

@@ -33,7 +33,7 @@ import androidx.constraintlayout.compose.Dimension
 import androidx.constraintlayout.compose.Visibility
 import androidx.constraintlayout.compose.atLeast
 import com.orange.ods.R
-import com.orange.ods.compose.component.OdsComponentApi
+import com.orange.ods.compose.component.OdsComposable
 import com.orange.ods.compose.component.button.OdsTextButton
 import com.orange.ods.compose.component.button.OdsTextButtonStyle
 import com.orange.ods.compose.component.divider.OdsDivider
@@ -69,7 +69,7 @@ import com.orange.ods.compose.theme.OdsTheme
  * @param onButton2Click Optional handler for the second button click.
  */
 @Composable
-@OdsComponentApi
+@OdsComposable
 fun OdsHorizontalCard(
     title: String,
     image: Painter,

@@ -28,7 +28,7 @@ import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.input.VisualTransformation
 import androidx.compose.ui.tooling.preview.PreviewParameter
-import com.orange.ods.compose.component.OdsComponentApi
+import com.orange.ods.compose.component.OdsComposable
 import com.orange.ods.compose.component.utilities.Preview
 import com.orange.ods.compose.component.utilities.UiModePreviews
 import com.orange.ods.compose.theme.OdsTheme
@@ -84,7 +84,7 @@ import com.orange.ods.theme.OdsComponentsConfiguration
  * @param characterCounter displayed below the text field. Please use the appropriate [OdsTextFieldCharacterCounter] composable.
  */
 @Composable
-@OdsComponentApi
+@OdsComposable
 fun OdsTextField(
     value: String,
     onValueChange: (String) -> Unit,
@@ -179,7 +179,7 @@ fun OdsTextField(
  * @param characterCounter displayed below the text field. Please use the appropriate [OdsTextFieldCharacterCounter] composable.
  */
 @Composable
-@OdsComponentApi
+@OdsComposable
 fun OdsTextField(
     value: String,
     onValueChange: (String) -> Unit,

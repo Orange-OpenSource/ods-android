@@ -29,7 +29,7 @@ import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 import com.orange.ods.R
-import com.orange.ods.compose.component.OdsComponentApi
+import com.orange.ods.compose.component.OdsComposable
 import com.orange.ods.compose.component.button.OdsTextButton
 import com.orange.ods.compose.component.button.OdsTextButtonStyle
 import com.orange.ods.compose.component.utilities.OdsImageCircleShape
@@ -63,7 +63,7 @@ import com.orange.ods.utilities.extension.orElse
  *
  */
 @Composable
-@OdsComponentApi
+@OdsComposable
 fun OdsVerticalHeaderFirstCard(
     title: String,
     image: Painter,

@@ -34,7 +34,7 @@ import androidx.compose.ui.semantics.stateDescription
 import androidx.compose.ui.tooling.preview.PreviewParameter
 import androidx.compose.ui.unit.dp
 import com.orange.ods.R
-import com.orange.ods.compose.component.OdsComponentApi
+import com.orange.ods.compose.component.OdsComposable
 import com.orange.ods.compose.component.chip.OdsChipDefaults.SurfaceOverlayOpacity
 import com.orange.ods.compose.component.utilities.BasicPreviewParameterProvider
 import com.orange.ods.compose.component.utilities.OdsImageCircleShape
@@ -67,7 +67,7 @@ import com.orange.ods.utilities.extension.noRippleClickable
  */
 @OptIn(ExperimentalMaterialApi::class)
 @Composable
-@OdsComponentApi
+@OdsComposable
 fun OdsChip(
     text: String,
     onClick: () -> Unit,

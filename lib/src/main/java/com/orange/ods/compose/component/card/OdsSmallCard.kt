@@ -27,7 +27,7 @@ import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.style.TextOverflow
 import com.orange.ods.R
-import com.orange.ods.compose.component.OdsComponentApi
+import com.orange.ods.compose.component.OdsComposable
 import com.orange.ods.compose.component.utilities.Preview
 import com.orange.ods.compose.component.utilities.UiModePreviews
 import com.orange.ods.compose.theme.OdsTheme
@@ -49,7 +49,7 @@ import com.orange.ods.compose.theme.OdsTheme
  *
  */
 @Composable
-@OdsComponentApi
+@OdsComposable
 fun OdsSmallCard(
     title: String,
     image: Painter,

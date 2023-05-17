@@ -26,7 +26,7 @@ import com.orange.ods.app.ui.components.textfields.TextFieldCustomizationState.C
 import com.orange.ods.app.ui.components.utilities.clickOnElement
 import com.orange.ods.app.ui.utilities.composable.CodeImplementationColumn
 import com.orange.ods.app.ui.utilities.composable.FunctionCallCode
-import com.orange.ods.compose.component.OdsComponent
+import com.orange.ods.compose.OdsComposable
 import com.orange.ods.compose.component.textfield.OdsIconTrailing
 import com.orange.ods.compose.component.textfield.OdsTextField
 import com.orange.ods.compose.component.textfield.OdsTextFieldCharacterCounter
@@ -93,7 +93,7 @@ fun TextField(customizationState: TextFieldCustomizationState) {
             }
 
             TextFieldCodeImplementationColumn(
-                componentName = OdsComponent.OdsTextField.name,
+                componentName = OdsComposable.OdsTextField.name,
                 customizationState = customizationState,
                 label = label,
                 placeholder = placeholder,
@@ -148,7 +148,7 @@ fun TextFieldCodeImplementationColumn(
                     if (isSingleLine) stringRepresentation("singleLine", true)
                     if (hasTrailing) simple("trailing", "<trailing composable>")
                     if (hasCharacterCounter) {
-                        function("characterCounter", OdsComponent.OdsTextFieldCharacterCounter.name) {
+                        function("characterCounter", OdsComposable.OdsTextFieldCharacterCounter.name) {
                             stringRepresentation("valueLength", displayedText.length)
                             enabled(isEnabled)
                         }

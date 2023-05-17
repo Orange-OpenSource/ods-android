@@ -26,7 +26,7 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.PreviewParameter
 import androidx.compose.ui.unit.dp
 import com.orange.ods.R
-import com.orange.ods.compose.component.OdsComponentApi
+import com.orange.ods.compose.component.OdsComposable
 import com.orange.ods.compose.component.utilities.BasicPreviewParameterProvider
 import com.orange.ods.compose.component.utilities.Preview
 import com.orange.ods.compose.component.utilities.UiModePreviews
@@ -51,7 +51,7 @@ private val MiniFabSize = 40.dp
  * @param iconContentDescription [icon] content description.
  */
 @Composable
-@OdsComponentApi
+@OdsComposable
 fun OdsFloatingActionButton(
     onClick: () -> Unit,
     modifier: Modifier = Modifier,
@@ -86,7 +86,7 @@ fun OdsFloatingActionButton(
  * @param iconContentDescription [icon] content description, can be null cause there is a text.
  */
 @Composable
-@OdsComponentApi
+@OdsComposable
 fun OdsExtendedFloatingActionButton(
     onClick: () -> Unit,
     text: String,

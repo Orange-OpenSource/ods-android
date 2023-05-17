@@ -31,7 +31,7 @@ import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.PreviewParameter
 import com.orange.ods.R
-import com.orange.ods.compose.component.OdsComponentApi
+import com.orange.ods.compose.component.OdsComposable
 import com.orange.ods.compose.component.utilities.BasicPreviewParameterProvider
 import com.orange.ods.compose.component.utilities.Preview
 import com.orange.ods.compose.component.utilities.UiModePreviews
@@ -55,7 +55,7 @@ import com.orange.ods.utilities.extension.orElse
  */
 @OptIn(ExperimentalComposeUiApi::class)
 @Composable
-@OdsComponentApi
+@OdsComposable
 fun OdsLinearProgressIndicator(
     modifier: Modifier = Modifier,
     showCurrentValue: Boolean = false,
