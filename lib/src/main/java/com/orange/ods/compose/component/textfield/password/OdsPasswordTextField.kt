@@ -28,7 +28,7 @@ import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.tooling.preview.PreviewParameter
 import com.orange.ods.R
-import com.orange.ods.compose.component.OdsComponentApi
+import com.orange.ods.compose.component.OdsComposable
 import com.orange.ods.compose.component.textfield.OdsTextField
 import com.orange.ods.compose.component.textfield.OdsTextFieldBottomRow
 import com.orange.ods.compose.component.textfield.OdsTextFieldCharacterCounter
@@ -70,7 +70,7 @@ import com.orange.ods.compose.component.utilities.UiModePreviews
  * @param characterCounter displayed below the text field. Please use the appropriate [OdsTextFieldCharacterCounter] composable.
  */
 @Composable
-@OdsComponentApi
+@OdsComposable
 fun OdsPasswordTextField(
     value: String,
     onValueChange: (String) -> Unit,

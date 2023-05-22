@@ -33,7 +33,7 @@ import com.orange.ods.app.ui.utilities.composable.FunctionCallCode
 import com.orange.ods.app.ui.utilities.composable.IconPainterValue
 import com.orange.ods.app.ui.utilities.composable.TechnicalText
 import com.orange.ods.app.ui.utilities.composable.Title
-import com.orange.ods.compose.component.OdsComponent
+import com.orange.ods.compose.OdsComposable
 import com.orange.ods.compose.component.control.OdsSlider
 import com.orange.ods.compose.component.control.OdsSliderLockups
 import com.orange.ods.compose.component.list.OdsListItem
@@ -66,7 +66,7 @@ fun ComponentSliders() {
                     .verticalScroll(rememberScrollState())
                     .padding(horizontal = dimensionResource(id = R.dimen.spacing_m))
             ) {
-                val technicalText = if (shouldDisplayValue) OdsComponent.OdsSliderLockups.name else OdsComponent.OdsSlider.name
+                val technicalText = if (shouldDisplayValue) OdsComposable.OdsSliderLockups.name else OdsComposable.OdsSlider.name
                 val steps = if (isStepped) 9 else 0
                 val leftIcon = if (hasSideIcons) painterResource(id = R.drawable.ic_volume_status_1) else null
                 val leftIconContentDescription = if (hasSideIcons) stringResource(id = R.string.component_slider_low_volume) else null
@@ -83,7 +83,7 @@ fun ComponentSliders() {
 
                 val componentName: String
                 if (shouldDisplayValue) {
-                    componentName = OdsComponent.OdsSliderLockups.name
+                    componentName = OdsComposable.OdsSliderLockups.name
                     OdsSliderLockups(
                         value = sliderPosition,
                         steps = steps,
@@ -95,7 +95,7 @@ fun ComponentSliders() {
                         rightIconContentDescription = rightIconContentDescription
                     )
                 } else {
-                    componentName = OdsComponent.OdsSlider.name
+                    componentName = OdsComposable.OdsSlider.name
                     OdsSlider(
                         value = sliderPosition,
                         steps = steps,

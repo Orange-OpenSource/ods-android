@@ -28,7 +28,7 @@ import com.orange.ods.app.ui.components.utilities.ComponentCountRow
 import com.orange.ods.app.ui.components.utilities.ComponentCustomizationBottomSheetScaffold
 import com.orange.ods.app.ui.utilities.composable.CodeImplementationColumn
 import com.orange.ods.app.ui.utilities.composable.FunctionCallCode
-import com.orange.ods.compose.component.OdsComponent
+import com.orange.ods.compose.OdsComposable
 import com.orange.ods.compose.component.list.OdsListItem
 import com.orange.ods.compose.component.list.OdsSwitchTrailing
 
@@ -78,7 +78,7 @@ fun ComponentTopAppBar() {
             Column(modifier = Modifier.verticalScroll(rememberScrollState())) {
                 CodeImplementationColumn(modifier = Modifier.padding(horizontal = dimensionResource(id = R.dimen.screen_horizontal_margin))) {
                     FunctionCallCode(
-                        name = OdsComponent.OdsTopAppBar.name,
+                        name = OdsComposable.OdsTopAppBar.name,
                         exhaustiveParameters = false,
                         parameters = {
                             title(context.getString(R.string.component_app_bars_top_regular))
@@ -98,7 +98,7 @@ fun ComponentTopAppBar() {
                             composable(name = "actions") {
                                 repeat(actionCount.value) {
                                     FunctionCallCode(
-                                        name = OdsComponent.OdsTopAppBarActionButton.name,
+                                        name = OdsComposable.OdsTopAppBarActionButton.name,
                                         parameters = {
                                             onClick()
                                             painter()
@@ -108,12 +108,12 @@ fun ComponentTopAppBar() {
                                 }
                                 if (isOverflowMenuEnabled) {
                                     FunctionCallCode(
-                                        name = OdsComponent.OdsTopAppBarOverflowMenuBox.name,
+                                        name = OdsComposable.OdsTopAppBarOverflowMenuBox.name,
                                         parameters = { string("overflowIconContentDescription", "Open overflow menu") }
                                     ) {
                                         for (i in 1..2) {
                                             FunctionCallCode(
-                                                name = OdsComponent.OdsDropdownMenuItem.name,
+                                                name = OdsComposable.OdsDropdownMenuItem.name,
                                                 parameters = {
                                                     text("Menu $i")
                                                     onClick()

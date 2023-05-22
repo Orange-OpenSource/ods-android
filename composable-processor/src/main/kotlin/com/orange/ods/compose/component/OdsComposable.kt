@@ -13,8 +13,8 @@ package com.orange.ods.compose.component
 /**
  * Specifies that a composable method is an ODS component.
  *
- * The [OdsComponent] enum will be generated which values are the names of all methods annotated with this annotation.
+ * The [OdsComposable] enum will be generated which values are the names of all methods annotated with this annotation.
  */
 @Target(AnnotationTarget.FUNCTION)
 @Retention(AnnotationRetention.SOURCE)
-annotation class OdsComponentApi
+annotation class OdsComposable

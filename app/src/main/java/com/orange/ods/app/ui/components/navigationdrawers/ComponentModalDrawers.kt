@@ -35,7 +35,7 @@ import com.orange.ods.app.ui.utilities.DrawableManager
 import com.orange.ods.app.ui.utilities.composable.CodeImplementationColumn
 import com.orange.ods.app.ui.utilities.composable.FunctionCallCode
 import com.orange.ods.app.ui.utilities.composable.Subtitle
-import com.orange.ods.compose.component.OdsComponent
+import com.orange.ods.compose.OdsComposable
 import com.orange.ods.compose.component.chip.OdsChoiceChip
 import com.orange.ods.compose.component.chip.OdsChoiceChipsFlowRow
 import com.orange.ods.compose.component.list.OdsListItem
@@ -174,7 +174,7 @@ fun ComponentModalDrawers() {
 
                         CodeImplementationColumn(modifier = Modifier.padding(horizontal = dimensionResource(id = R.dimen.screen_horizontal_margin))) {
                             FunctionCallCode(
-                                name = OdsComponent.OdsModalDrawer.name,
+                                name = OdsComposable.OdsModalDrawer.name,
                                 exhaustiveParameters = false,
                                 parameters = {
                                     classInstance("drawerHeader", OdsModalDrawerHeader::class.java) {

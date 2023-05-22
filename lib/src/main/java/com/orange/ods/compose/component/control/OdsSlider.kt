@@ -37,7 +37,7 @@ import androidx.compose.ui.tooling.preview.PreviewParameter
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import com.orange.ods.R
-import com.orange.ods.compose.component.OdsComponentApi
+import com.orange.ods.compose.component.OdsComposable
 import com.orange.ods.compose.component.utilities.BasicPreviewParameterProvider
 import com.orange.ods.compose.component.utilities.Preview
 import com.orange.ods.compose.component.utilities.UiModePreviews
@@ -78,7 +78,7 @@ private const val ActiveTickColorAlpha = 0.4f
  * @param rightIconContentDescription Right icon content description
  */
 @Composable
-@OdsComponentApi
+@OdsComposable
 fun OdsSlider(
     value: Float,
     onValueChange: (Float) -> Unit,
@@ -161,7 +161,7 @@ fun OdsSlider(
  * @param rightIconContentDescription Right icon content description
  */
 @Composable
-@OdsComponentApi
+@OdsComposable
 fun OdsSliderLockups(
     value: Float,
     onValueChange: (Float) -> Unit,

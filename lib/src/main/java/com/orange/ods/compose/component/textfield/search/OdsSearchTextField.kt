@@ -28,7 +28,7 @@ import androidx.compose.ui.text.input.TextFieldValue
 import androidx.compose.ui.tooling.preview.PreviewParameter
 import androidx.compose.ui.unit.sp
 import com.orange.ods.R
-import com.orange.ods.compose.component.OdsComponentApi
+import com.orange.ods.compose.component.OdsComposable
 import com.orange.ods.compose.component.button.OdsIconButton
 import com.orange.ods.compose.component.utilities.BasicPreviewParameterProvider
 import com.orange.ods.compose.component.utilities.Preview
@@ -48,7 +48,7 @@ import com.orange.ods.compose.theme.OdsTheme
  *
  */
 @Composable
-@OdsComponentApi
+@OdsComposable
 fun OdsSearchTextField(
     value: TextFieldValue,
     onValueChange: (TextFieldValue) -> Unit,

@@ -25,7 +25,7 @@ import androidx.compose.ui.semantics.stateDescription
 import androidx.compose.ui.tooling.preview.PreviewParameter
 import com.google.accompanist.flowlayout.FlowRow
 import com.orange.ods.R
-import com.orange.ods.compose.component.OdsComponentApi
+import com.orange.ods.compose.component.OdsComposable
 import com.orange.ods.compose.component.utilities.BasicPreviewParameterProvider
 import com.orange.ods.compose.component.utilities.Preview
 import com.orange.ods.compose.component.utilities.UiModePreviews
@@ -39,7 +39,7 @@ import com.orange.ods.compose.component.utilities.UiModePreviews
  * @param content The content of the choice chips [FlowRow].
  */
 @Composable
-@OdsComponentApi
+@OdsComposable
 fun <T> OdsChoiceChipsFlowRow(
     selectedChip: MutableState<T>,
     modifier: Modifier = Modifier,
@@ -64,7 +64,7 @@ fun <T> OdsChoiceChipsFlowRow(
  * @param enabled If set to false, the chip is no more clickable and appears as disabled
  */
 @Composable
-@OdsComponentApi
+@OdsComposable
 fun <T> OdsChoiceChipsFlowRowScope<T>.OdsChoiceChip(text: String, value: T, modifier: Modifier = Modifier, enabled: Boolean = true) {
     val selected = selectedChip.value == value
     val chipStateDescription = odsChipStateDescription(selected = selected)

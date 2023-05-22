@@ -37,7 +37,7 @@ import com.orange.ods.app.ui.components.utilities.clickOnElement
 import com.orange.ods.app.ui.utilities.NavigationItem
 import com.orange.ods.app.ui.utilities.composable.CodeImplementationColumn
 import com.orange.ods.app.ui.utilities.composable.FunctionCallCode
-import com.orange.ods.compose.component.OdsComponent
+import com.orange.ods.compose.OdsComposable
 import com.orange.ods.compose.component.bottomnavigation.OdsBottomNavigation
 import com.orange.ods.compose.component.bottomnavigation.OdsBottomNavigationItem
 
@@ -96,10 +96,10 @@ fun ComponentBottomNavigation() {
             CodeImplementationColumn(
                 modifier = Modifier.padding(horizontal = dimensionResource(id = R.dimen.screen_horizontal_margin))
             ) {
-                FunctionCallCode(name = OdsComponent.OdsBottomNavigation.name) {
+                FunctionCallCode(name = OdsComposable.OdsBottomNavigation.name) {
                     navigationItems.take(2).forEach { item ->
                         FunctionCallCode(
-                            name = OdsComponent.OdsBottomNavigationItem.name,
+                            name = OdsComposable.OdsBottomNavigationItem.name,
                             parameters = {
                                 icon()
                                 string("label", context.getString(item.textResId))

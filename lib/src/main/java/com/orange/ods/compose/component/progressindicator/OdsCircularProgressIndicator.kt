@@ -19,7 +19,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.tooling.preview.PreviewParameter
 import com.orange.ods.R
-import com.orange.ods.compose.component.OdsComponentApi
+import com.orange.ods.compose.component.OdsComposable
 import com.orange.ods.compose.component.utilities.BasicPreviewParameterProvider
 import com.orange.ods.compose.component.utilities.Preview
 import com.orange.ods.compose.component.utilities.UiModePreviews
@@ -39,7 +39,7 @@ import com.orange.ods.utilities.extension.orElse
  * the progress indicator is indeterminate.
  */
 @Composable
-@OdsComponentApi
+@OdsComposable
 fun OdsCircularProgressIndicator(
     modifier: Modifier = Modifier,
     label: String? = null,

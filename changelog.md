@@ -15,6 +15,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Changed
 
 - \[App\] Use Orange placeholder images ([#522](https://github.com/Orange-OpenSource/ods-android/issues/522))
+- \[Lib\] Rename `OdsComponentApi` annotation and `OdsComponent` enum to `OdsComposable` ([#522](https://github.com/Orange-OpenSource/ods-android/issues/522))
 
 ### Fixed
 

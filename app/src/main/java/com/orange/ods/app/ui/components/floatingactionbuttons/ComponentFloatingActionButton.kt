@@ -31,7 +31,7 @@ import com.orange.ods.app.ui.components.utilities.clickOnElement
 import com.orange.ods.app.ui.utilities.composable.CodeImplementationColumn
 import com.orange.ods.app.ui.utilities.composable.FunctionCallCode
 import com.orange.ods.app.ui.utilities.composable.Subtitle
-import com.orange.ods.compose.component.OdsComponent
+import com.orange.ods.compose.OdsComposable
 import com.orange.ods.compose.component.button.OdsExtendedFloatingActionButton
 import com.orange.ods.compose.component.button.OdsFloatingActionButton
 import com.orange.ods.compose.component.chip.OdsChoiceChip
@@ -107,7 +107,7 @@ fun ComponentFloatingActionButton() {
                 )
             }) {
             Column(modifier = Modifier.verticalScroll(rememberScrollState())) {
-                val usedComponentName = if (hasText) OdsComponent.OdsExtendedFloatingActionButton.name else OdsComponent.OdsFloatingActionButton.name
+                val usedComponentName = if (hasText) OdsComposable.OdsExtendedFloatingActionButton.name else OdsComposable.OdsFloatingActionButton.name
                 CodeImplementationColumn(
                     modifier = Modifier.padding(horizontal = dimensionResource(id = R.dimen.screen_horizontal_margin))
                 ) {

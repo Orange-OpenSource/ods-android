@@ -14,7 +14,7 @@ import androidx.annotation.DrawableRes
 import androidx.annotation.StringRes
 import androidx.compose.ui.Alignment
 import com.orange.ods.app.R
-import com.orange.ods.compose.component.OdsComponent
+import com.orange.ods.compose.OdsComposable
 import com.orange.ods.compose.component.button.OdsButtonStyle
 
 sealed class Component(
@@ -31,7 +31,7 @@ sealed class Component(
     }
 
     val id: Long = Component::class.sealedSubclasses.indexOf(this::class).toLong()
-    
+
     object AppBarsTop : Component(
         R.string.component_app_bars_top,
         R.drawable.il_app_bars_top,
@@ -46,7 +46,7 @@ sealed class Component(
         R.drawable.il_banners,
         null,
         R.string.component_banners_description,
-        composableName = OdsComponent.OdsBanner.name
+        composableName = OdsComposable.OdsBanner.name
     )
 
     object BottomNavigation :
@@ -55,7 +55,7 @@ sealed class Component(
             R.drawable.il_bottom_navigation,
             null,
             R.string.component_bottom_navigation_description,
-            composableName = OdsComponent.OdsBottomNavigation.name,
+            composableName = OdsComposable.OdsBottomNavigation.name,
             imageAlignment = Alignment.TopCenter
         )
 
@@ -98,7 +98,7 @@ sealed class Component(
         R.drawable.il_checkboxes,
         null,
         R.string.component_checkboxes_description,
-        composableName = OdsComponent.OdsCheckbox.name
+        composableName = OdsComposable.OdsCheckbox.name
     )
 
     object Chips : Component(
@@ -114,7 +114,7 @@ sealed class Component(
         R.drawable.il_dialogs,
         null,
         R.string.component_dialogs_description,
-        composableName = OdsComponent.OdsAlertDialog.name
+        composableName = OdsComposable.OdsAlertDialog.name
     )
 
     object FloatingActionButtons : Component(
@@ -122,7 +122,7 @@ sealed class Component(
         R.drawable.il_fab,
         null,
         R.string.component_floating_action_buttons_description,
-        composableName = OdsComponent.OdsFloatingActionButton.name
+        composableName = OdsComposable.OdsFloatingActionButton.name
     )
 
     object Lists : Component(
@@ -130,7 +130,7 @@ sealed class Component(
         R.drawable.il_lists,
         null,
         R.string.component_lists_description,
-        composableName = OdsComponent.OdsListItem.name,
+        composableName = OdsComposable.OdsListItem.name,
         imageAlignment = Alignment.BottomCenter
     )
 
@@ -162,7 +162,7 @@ sealed class Component(
         R.drawable.il_radio_buttons,
         null,
         R.string.component_radio_buttons_description,
-        composableName = OdsComponent.OdsRadioButton.name
+        composableName = OdsComposable.OdsRadioButton.name
     )
 
     object SheetsBottom : Component(
@@ -170,7 +170,7 @@ sealed class Component(
         R.drawable.il_bottom_sheet,
         null,
         R.string.component_sheet_bottom_description,
-        composableName = OdsComponent.OdsBottomSheetScaffold.name
+        composableName = OdsComposable.OdsBottomSheetScaffold.name
     )
 
     object Sliders : Component(
@@ -178,7 +178,7 @@ sealed class Component(
         R.drawable.il_sliders,
         null,
         R.string.component_sliders_description,
-        composableName = OdsComponent.OdsSlider.name,
+        composableName = OdsComposable.OdsSlider.name,
         imageAlignment = Alignment.CenterEnd
     )
 
@@ -187,7 +187,7 @@ sealed class Component(
         R.drawable.il_snackbars,
         R.drawable.il_snackbars_small,
         R.string.component_snackbars_description,
-        composableName = OdsComponent.OdsSnackbar.name
+        composableName = OdsComposable.OdsSnackbar.name
     )
 
     object Switches : Component(
@@ -195,7 +195,7 @@ sealed class Component(
         R.drawable.il_switches,
         R.drawable.il_switches_small,
         R.string.component_switches_description,
-        composableName = OdsComponent.OdsSwitch.name
+        composableName = OdsComposable.OdsSwitch.name
     )
 
     object TextFields : Component(
@@ -224,37 +224,37 @@ sealed class Variant(
 ) {
     val id: Long = Variant::class.sealedSubclasses.indexOf(this::class).toLong()
 
-    object AppBarsTopRegular : Variant(R.string.component_app_bars_top_regular, OdsComponent.OdsTopAppBar.name)
+    object AppBarsTopRegular : Variant(R.string.component_app_bars_top_regular, OdsComposable.OdsTopAppBar.name)
 
-    object ButtonsPrimary : Variant(R.string.component_buttons_highest_emphasis, "${OdsComponent.OdsButton.name} with ${OdsButtonStyle.Primary.name}")
-    object ButtonsDefault : Variant(R.string.component_buttons_high_emphasis, "${OdsComponent.OdsButton.name} with ${OdsButtonStyle.Default.name}")
-    object ButtonsOutlined : Variant(R.string.component_buttons_medium_emphasis, OdsComponent.OdsOutlinedButton.name)
-    object ButtonsText : Variant(R.string.component_buttons_low_emphasis, OdsComponent.OdsTextButton.name)
-    object ButtonsFunctional : Variant(R.string.component_buttons_functional, "${OdsComponent.OdsButton.name} with a functional style")
+    object ButtonsPrimary : Variant(R.string.component_buttons_highest_emphasis, "${OdsComposable.OdsButton.name} with ${OdsButtonStyle.Primary.name}")
+    object ButtonsDefault : Variant(R.string.component_buttons_high_emphasis, "${OdsComposable.OdsButton.name} with ${OdsButtonStyle.Default.name}")
+    object ButtonsOutlined : Variant(R.string.component_buttons_medium_emphasis, OdsComposable.OdsOutlinedButton.name)
+    object ButtonsText : Variant(R.string.component_buttons_low_emphasis, OdsComposable.OdsTextButton.name)
+    object ButtonsFunctional : Variant(R.string.component_buttons_functional, "${OdsComposable.OdsButton.name} with a functional style")
 
-    object ButtonsIcon : Variant(R.string.component_buttons_icon, OdsComponent.OdsIconButton.name)
-    object ButtonsIconToggle : Variant(R.string.component_buttons_icon_toggle, OdsComponent.OdsIconToggleButton.name)
-    object ButtonsIconToggleGroup : Variant(R.string.component_buttons_icon_toggle_group, OdsComponent.OdsIconToggleButtonsRow.name)
+    object ButtonsIcon : Variant(R.string.component_buttons_icon, OdsComposable.OdsIconButton.name)
+    object ButtonsIconToggle : Variant(R.string.component_buttons_icon_toggle, OdsComposable.OdsIconToggleButton.name)
+    object ButtonsIconToggleGroup : Variant(R.string.component_buttons_icon_toggle_group, OdsComposable.OdsIconToggleButtonsRow.name)
 
-    object CardVerticalImageFirst : Variant(R.string.component_card_vertical_image_first, OdsComponent.OdsVerticalImageFirstCard.name)
-    object CardVerticalHeaderFirst : Variant(R.string.component_card_vertical_header_first, OdsComponent.OdsVerticalHeaderFirstCard.name)
-    object CardSmall : Variant(R.string.component_card_small, OdsComponent.OdsSmallCard.name)
-    object CardHorizontal : Variant(R.string.component_card_horizontal, OdsComponent.OdsHorizontalCard.name)
+    object CardVerticalImageFirst : Variant(R.string.component_card_vertical_image_first, OdsComposable.OdsVerticalImageFirstCard.name)
+    object CardVerticalHeaderFirst : Variant(R.string.component_card_vertical_header_first, OdsComposable.OdsVerticalHeaderFirstCard.name)
+    object CardSmall : Variant(R.string.component_card_small, OdsComposable.OdsSmallCard.name)
+    object CardHorizontal : Variant(R.string.component_card_horizontal, OdsComposable.OdsHorizontalCard.name)
 
-    object ChipAction : Variant(R.string.component_chip_action, OdsComponent.OdsChip.name)
-    object ChipChoice : Variant(R.string.component_chip_choice, OdsComponent.OdsChip.name)
-    object ChipInput : Variant(R.string.component_chip_input, OdsComponent.OdsChip.name)
-    object ChipFilter : Variant(R.string.component_chip_filter, OdsComponent.OdsFilterChip.name)
+    object ChipAction : Variant(R.string.component_chip_action, OdsComposable.OdsChip.name)
+    object ChipChoice : Variant(R.string.component_chip_choice, OdsComposable.OdsChip.name)
+    object ChipInput : Variant(R.string.component_chip_input, OdsComposable.OdsChip.name)
+    object ChipFilter : Variant(R.string.component_chip_filter, OdsComposable.OdsFilterChip.name)
 
-    object DropdownMenu : Variant(R.string.component_menu_dropdown, OdsComponent.OdsDropdownMenu.name)
-    object ExposedDropdownMenu : Variant(R.string.component_menu_exposed_dropdown, OdsComponent.OdsExposedDropdownMenu.name)
+    object DropdownMenu : Variant(R.string.component_menu_dropdown, OdsComposable.OdsDropdownMenu.name)
+    object ExposedDropdownMenu : Variant(R.string.component_menu_exposed_dropdown, OdsComposable.OdsExposedDropdownMenu.name)
 
-    object ProgressLinear : Variant(R.string.component_progress_linear, OdsComponent.OdsLinearProgressIndicator.name)
-    object ProgressCircular : Variant(R.string.component_progress_circular, OdsComponent.OdsCircularProgressIndicator.name)
+    object ProgressLinear : Variant(R.string.component_progress_linear, OdsComposable.OdsLinearProgressIndicator.name)
+    object ProgressCircular : Variant(R.string.component_progress_circular, OdsComposable.OdsCircularProgressIndicator.name)
 
-    object TextField : Variant(R.string.component_text_field_text, OdsComponent.OdsTextField.name)
-    object TextFieldPassword : Variant(R.string.component_text_field_password, OdsComponent.OdsPasswordTextField.name)
+    object TextField : Variant(R.string.component_text_field_text, OdsComposable.OdsTextField.name)
+    object TextFieldPassword : Variant(R.string.component_text_field_password, OdsComposable.OdsPasswordTextField.name)
 
-    object TabsFixed : Variant(R.string.component_tabs_fixed, OdsComponent.OdsTabRow.name)
-    object TabsScrollable : Variant(R.string.component_tabs_scrollable, OdsComponent.OdsScrollableTabRow.name)
+    object TabsFixed : Variant(R.string.component_tabs_fixed, OdsComposable.OdsTabRow.name)
+    object TabsScrollable : Variant(R.string.component_tabs_scrollable, OdsComposable.OdsScrollableTabRow.name)
 }

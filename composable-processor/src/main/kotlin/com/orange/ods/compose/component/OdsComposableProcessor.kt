@@ -20,17 +20,17 @@ import com.squareup.kotlinpoet.FileSpec
 import com.squareup.kotlinpoet.TypeSpec
 import com.squareup.kotlinpoet.ksp.writeTo
 
-class OdsComponentProcessor(private val environment: SymbolProcessorEnvironment) : SymbolProcessor {
+class OdsComposableProcessor(private val environment: SymbolProcessorEnvironment) : SymbolProcessor {
 
     companion object {
 
-        private const val OdsComponentClassName = "OdsComponent"
+        private const val OdsComposableClassName = "OdsComposable"
 
-        private const val OdsComponentPackageName = "com.orange.ods.compose.component"
+        private const val OdsComposablePackageName = "com.orange.ods.compose"
     }
 
     override fun process(resolver: Resolver): List<KSAnnotated> {
-        val annotationName = OdsComponentApi::class.qualifiedName
+        val annotationName = OdsComposable::class.qualifiedName
         if (annotationName != null) {
             val functionNames = resolver.getSymbolsWithAnnotation(annotationName)
                 .toList()
@@ -39,11 +39,11 @@ class OdsComponentProcessor(private val environment: SymbolProcessorEnvironment)
                 .sorted()
 
             if (functionNames.isNotEmpty()) {
-                val odsComponentType = TypeSpec.enumBuilder(OdsComponentClassName)
+                val odsComposableType = TypeSpec.enumBuilder(OdsComposableClassName)
                     .apply { functionNames.forEach { addEnumConstant(it) } }
                     .build()
-                val file = FileSpec.builder(OdsComponentPackageName, OdsComponentClassName)
-                    .addType(odsComponentType)
+                val file = FileSpec.builder(OdsComposablePackageName, OdsComposableClassName)
+                    .addType(odsComposableType)
                     .build()
                 file.writeTo(environment.codeGenerator, Dependencies.ALL_FILES)
             }

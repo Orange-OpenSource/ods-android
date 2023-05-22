@@ -33,7 +33,7 @@ import com.orange.ods.app.ui.utilities.composable.CodeImplementationColumn
 import com.orange.ods.app.ui.utilities.composable.FunctionCallCode
 import com.orange.ods.app.ui.utilities.composable.IndentCodeColumn
 import com.orange.ods.app.ui.utilities.composable.TechnicalText
-import com.orange.ods.compose.component.OdsComponent
+import com.orange.ods.compose.OdsComposable
 import com.orange.ods.compose.component.list.OdsListItem
 import com.orange.ods.compose.component.list.OdsSwitchTrailing
 import com.orange.ods.compose.component.snackbar.OdsSnackbar
@@ -100,11 +100,11 @@ fun ComponentSnackbars() {
                 )
                 CodeBackgroundColumn {
                     FunctionCallCode(
-                        name = OdsComponent.OdsSnackbarHost.name,
+                        name = OdsComposable.OdsSnackbarHost.name,
                         parameters = { simple("hostState", "<SnackbarHostState>") }
                     ) {
                         FunctionCallCode(
-                            name = OdsComponent.OdsSnackbar.name,
+                            name = OdsComposable.OdsSnackbar.name,
                             parameters = {
                                 simple("snackbarData", "data")
                                 if (actionOnNewLineChecked.value) stringRepresentation("actionOnNewLine", true)

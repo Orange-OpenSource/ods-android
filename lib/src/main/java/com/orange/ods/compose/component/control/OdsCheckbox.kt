@@ -20,7 +20,7 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
-import com.orange.ods.compose.component.OdsComponentApi
+import com.orange.ods.compose.component.OdsComposable
 import com.orange.ods.compose.component.utilities.Preview
 import com.orange.ods.compose.component.utilities.UiModePreviews
 import com.orange.ods.compose.theme.OdsPrimaryRippleTheme
@@ -42,7 +42,7 @@ import com.orange.ods.utilities.extension.enable
  * @param enabled whether the component is enabled or grayed out
  */
 @Composable
-@OdsComponentApi
+@OdsComposable
 fun OdsCheckbox(
     checked: Boolean,
     onCheckedChange: ((Boolean) -> Unit)?,

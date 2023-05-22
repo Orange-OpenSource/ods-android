@@ -35,7 +35,7 @@ import com.orange.ods.app.ui.components.utilities.ComponentCustomizationBottomSh
 import com.orange.ods.app.ui.utilities.composable.CodeImplementationColumn
 import com.orange.ods.app.ui.utilities.composable.FunctionCallCode
 import com.orange.ods.app.ui.utilities.composable.Subtitle
-import com.orange.ods.compose.component.OdsComponent
+import com.orange.ods.compose.OdsComposable
 import com.orange.ods.compose.component.chip.OdsChoiceChip
 import com.orange.ods.compose.component.chip.OdsChoiceChipsFlowRow
 import com.orange.ods.compose.component.list.OdsListItem
@@ -109,7 +109,7 @@ fun ProgressLinear() {
 
                 CodeImplementationColumn(modifier = Modifier.padding(horizontal = dimensionResource(id = R.dimen.screen_horizontal_margin))) {
                     FunctionCallCode(
-                        name = OdsComponent.OdsLinearProgressIndicator.name,
+                        name = OdsComposable.OdsLinearProgressIndicator.name,
                         exhaustiveParameters = false,
                         parameters = {
                             if (type.value == ProgressCustomizationState.Type.Determinate) stringRepresentation("progress", determinateProgressValue)

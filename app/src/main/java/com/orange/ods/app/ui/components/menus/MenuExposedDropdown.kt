@@ -36,7 +36,7 @@ import com.orange.ods.app.ui.components.utilities.ComponentCustomizationBottomSh
 import com.orange.ods.app.ui.components.utilities.clickOnElement
 import com.orange.ods.app.ui.utilities.composable.CodeImplementationColumn
 import com.orange.ods.app.ui.utilities.composable.FunctionCallCode
-import com.orange.ods.compose.component.OdsComponent
+import com.orange.ods.compose.OdsComposable
 import com.orange.ods.compose.component.list.OdsListItem
 import com.orange.ods.compose.component.list.OdsSwitchTrailing
 import com.orange.ods.compose.component.menu.OdsExposedDropdownMenu
@@ -114,7 +114,7 @@ fun MenuExposedDropdown() {
 
                 CodeImplementationColumn {
                     FunctionCallCode(
-                        name = OdsComponent.OdsExposedDropdownMenu.name,
+                        name = OdsComposable.OdsExposedDropdownMenu.name,
                         exhaustiveParameters = false,
                         parameters = {
                             string("label", label)

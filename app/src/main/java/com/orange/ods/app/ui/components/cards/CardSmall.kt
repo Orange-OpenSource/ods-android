@@ -33,7 +33,7 @@ import com.orange.ods.app.ui.components.utilities.clickOnElement
 import com.orange.ods.app.ui.utilities.DrawableManager
 import com.orange.ods.app.ui.utilities.composable.CodeImplementationColumn
 import com.orange.ods.app.ui.utilities.composable.FunctionCallCode
-import com.orange.ods.compose.component.OdsComponent
+import com.orange.ods.compose.OdsComposable
 import com.orange.ods.compose.component.card.OdsSmallCard
 
 @Composable
@@ -76,7 +76,7 @@ fun CardSmall(customizationState: CardCustomizationState) {
 
             CodeImplementationColumn {
                 FunctionCallCode(
-                    name = OdsComponent.OdsSmallCard.name,
+                    name = OdsComposable.OdsSmallCard.name,
                     exhaustiveParameters = false,
                     parameters = {
                         title(recipe.title)

@@ -31,7 +31,7 @@ import com.orange.ods.app.ui.components.buttons.InvertedBackgroundColumn
 import com.orange.ods.app.ui.utilities.composable.CodeImplementationColumn
 import com.orange.ods.app.ui.utilities.composable.FunctionCallCode
 import com.orange.ods.app.ui.utilities.composable.IconPainterValue
-import com.orange.ods.compose.component.OdsComponent
+import com.orange.ods.compose.OdsComposable
 import com.orange.ods.compose.component.button.OdsIconToggleButton
 
 @Composable
@@ -76,7 +76,7 @@ fun ButtonsIconToggle(customizationState: ButtonIconCustomizationState) {
                 modifier = Modifier.padding(horizontal = dimensionResource(id = R.dimen.screen_horizontal_margin))
             ) {
                 FunctionCallCode(
-                    name = OdsComponent.OdsIconToggleButton.name,
+                    name = OdsComposable.OdsIconToggleButton.name,
                     exhaustiveParameters = false,
                     parameters = {
                         painter()

@@ -25,7 +25,7 @@ import com.orange.ods.app.R
 import com.orange.ods.app.ui.utilities.composable.CodeImplementationColumn
 import com.orange.ods.app.ui.utilities.composable.FunctionCallCode
 import com.orange.ods.app.ui.utilities.composable.Title
-import com.orange.ods.compose.component.OdsComponent
+import com.orange.ods.compose.OdsComposable
 import com.orange.ods.compose.component.button.OdsButton
 import com.orange.ods.compose.component.button.OdsButtonStyle
 import com.orange.ods.compose.theme.OdsDisplaySurface
@@ -67,7 +67,7 @@ fun ButtonsContained(customizationState: ButtonCustomizationState) {
                 modifier = Modifier.padding(horizontal = dimensionResource(id = R.dimen.screen_horizontal_margin))
             ) {
                 FunctionCallCode(
-                    name = OdsComponent.OdsButton.name,
+                    name = OdsComposable.OdsButton.name,
                     exhaustiveParameters = false,
                     parameters = {
                         simple("style", buttonStyle.value.fullName)

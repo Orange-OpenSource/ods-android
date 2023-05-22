@@ -27,7 +27,7 @@ import com.orange.ods.app.domain.recipes.LocalRecipes
 import com.orange.ods.app.ui.components.utilities.ComponentCustomizationBottomSheetScaffold
 import com.orange.ods.app.ui.utilities.composable.CodeImplementationColumn
 import com.orange.ods.app.ui.utilities.composable.FunctionCallCode
-import com.orange.ods.compose.component.OdsComponent
+import com.orange.ods.compose.OdsComposable
 import com.orange.ods.compose.component.list.OdsListItem
 import com.orange.ods.compose.component.list.OdsSwitchTrailing
 
@@ -67,7 +67,7 @@ fun ComponentSwitches() {
                 modifier = Modifier.padding(horizontal = dimensionResource(id = R.dimen.screen_horizontal_margin))
             ) {
                 FunctionCallCode(
-                    name = OdsComponent.OdsSwitch.name,
+                    name = OdsComposable.OdsSwitch.name,
                     exhaustiveParameters = false,
                     parameters = {
                         checked(false)

@@ -39,7 +39,7 @@ import com.orange.ods.app.ui.utilities.composable.CodeImplementationColumn
 import com.orange.ods.app.ui.utilities.composable.FunctionCallCode
 import com.orange.ods.app.ui.utilities.composable.ImagePainterValue
 import com.orange.ods.app.ui.utilities.composable.Subtitle
-import com.orange.ods.compose.component.OdsComponent
+import com.orange.ods.compose.OdsComposable
 import com.orange.ods.compose.component.chip.OdsChip
 import com.orange.ods.compose.component.chip.OdsChoiceChip
 import com.orange.ods.compose.component.chip.OdsChoiceChipsFlowRow
@@ -124,7 +124,7 @@ private fun Chip(chipCustomizationState: ChipCustomizationState) {
 
             CodeImplementationColumn {
                 FunctionCallCode(
-                    name = OdsComponent.OdsChoiceChipsFlowRow.name,
+                    name = OdsComposable.OdsChoiceChipsFlowRow.name,
                     parameters = {
                         mutableState("selectedChip", choiceChipIndexSelected.value.toString())
                         if (!outlinedChips) stringRepresentation("outlinedChips", outlinedChips)
@@ -132,7 +132,7 @@ private fun Chip(chipCustomizationState: ChipCustomizationState) {
                 ) {
                     recipes.forEachIndexed { index, recipe ->
                         FunctionCallCode(
-                            name = OdsComponent.OdsChoiceChip.name,
+                            name = OdsComposable.OdsChoiceChip.name,
                             parameters = {
                                 text(recipe.title)
                                 stringRepresentation("value", index)
@@ -165,7 +165,7 @@ private fun Chip(chipCustomizationState: ChipCustomizationState) {
 
             CodeImplementationColumn {
                 FunctionCallCode(
-                    name = OdsComponent.OdsChip.name,
+                    name = OdsComposable.OdsChip.name,
                     exhaustiveParameters = false,
                     parameters = {
                         text(recipe?.title.orEmpty())
