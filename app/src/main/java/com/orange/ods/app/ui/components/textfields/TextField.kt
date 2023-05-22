@@ -24,16 +24,8 @@ import androidx.compose.ui.text.input.KeyboardCapitalization
 import com.orange.ods.app.R
 import com.orange.ods.app.ui.components.textfields.TextFieldCustomizationState.Companion.TextFieldMaxChars
 import com.orange.ods.app.ui.components.utilities.clickOnElement
-import com.orange.ods.app.ui.utilities.composable.ClassInstance
-import com.orange.ods.app.ui.utilities.composable.ClassInstanceParameter
 import com.orange.ods.app.ui.utilities.composable.CodeImplementationColumn
-import com.orange.ods.app.ui.utilities.composable.CodeParameter
 import com.orange.ods.app.ui.utilities.composable.FunctionCallCode
-import com.orange.ods.app.ui.utilities.composable.LambdaParameter
-import com.orange.ods.app.ui.utilities.composable.PredefinedParameter
-import com.orange.ods.app.ui.utilities.composable.SimpleParameter
-import com.orange.ods.app.ui.utilities.composable.StringParameter
-import com.orange.ods.app.ui.utilities.composable.StringRepresentationParameter
 import com.orange.ods.compose.component.OdsComponent
 import com.orange.ods.compose.component.textfield.OdsIconTrailing
 import com.orange.ods.compose.component.textfield.OdsTextField
@@ -133,43 +125,35 @@ fun TextFieldCodeImplementationColumn(
     with(customizationState) {
         val capitalizationValue = if (softKeyboardCapitalization.value) KeyboardCapitalization.Characters.toString() else KeyboardCapitalization.None.toString()
         CodeImplementationColumn {
-            FunctionCallCode(name = componentName, exhaustiveParameters = false, parameters = mutableListOf(
-                StringParameter("value", displayedText),
-                LambdaParameter("onValueChange"),
-                PredefinedParameter.Label(label),
-                PredefinedParameter.Placeholder(placeholder),
-                ClassInstanceParameter(
-                    "keyboardOptions", ClassInstance(
-                        KeyboardOptions::class.java.simpleName, listOf<CodeParameter>(
-                            SimpleParameter("capitalization", capitalizationValue),
-                            StringRepresentationParameter("keyboardType", softKeyboardType.value.keyboardType),
-                            StringRepresentationParameter("imeAction", softKeyboardAction.value.imeAction)
-                        )
-                    )
-                )
-            ).apply {
-                if (hasLeadingIcon) add(PredefinedParameter.Icon)
-                if (!hasVisualisationIcon) add(StringRepresentationParameter("visualisationIcon", false))
-                if (!isEnabled) add(PredefinedParameter.Enabled(false))
-                if (isError) {
-                    add(StringRepresentationParameter("isError", true))
-                    errorMessage?.let { add(StringParameter("errorMessage", it)) }
-                }
-                if (isSingleLine) add(StringRepresentationParameter("singleLine", true))
-                if (hasTrailing) add(SimpleParameter("trailing", "<trailing composable>"))
-                if (hasCharacterCounter) {
-                    add(
-                        ClassInstanceParameter(
-                            "characterCounter", ClassInstance(
-                                OdsComponent.OdsTextFieldCharacterCounter.name, listOf<CodeParameter>(
-                                    StringRepresentationParameter("valueLength", displayedText.length),
-                                    PredefinedParameter.Enabled(isEnabled)
-                                )
-                            )
-                        )
-                    )
-                }
-            })
+            FunctionCallCode(
+                name = componentName,
+                exhaustiveParameters = false,
+                parameters = {
+                    string("value", displayedText)
+                    lambda("onValueChange")
+                    label(label)
+                    placeholder(placeholder)
+                    classInstance("keyboardOptions", KeyboardOptions::class.java) {
+                        simple("capitalization", capitalizationValue)
+                        stringRepresentation("keyboardType", softKeyboardType.value.keyboardType)
+                        stringRepresentation("imeAction", softKeyboardAction.value.imeAction)
+                    }
+                    if (hasLeadingIcon) icon()
+                    if (!hasVisualisationIcon) stringRepresentation("visualisationIcon", false)
+                    if (!isEnabled) enabled(false)
+                    if (isError) {
+                        stringRepresentation("isError", true)
+                        errorMessage?.let { string("errorMessage", it) }
+                    }
+                    if (isSingleLine) stringRepresentation("singleLine", true)
+                    if (hasTrailing) simple("trailing", "<trailing composable>")
+                    if (hasCharacterCounter) {
+                        function("characterCounter", OdsComponent.OdsTextFieldCharacterCounter.name) {
+                            stringRepresentation("valueLength", displayedText.length)
+                            enabled(isEnabled)
+                        }
+                    }
+                })
         }
     }
 }

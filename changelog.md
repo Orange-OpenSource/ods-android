@@ -10,6 +10,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Added
 
 - \[App\] Generalize code implementation section for all components ([#501](https://github.com/Orange-OpenSource/ods-android/issues/501))
+- \[App\] Add a DSL for parameters in code implementation ([#520](https://github.com/Orange-OpenSource/ods-android/issues/520))
 
 ### Changed
 

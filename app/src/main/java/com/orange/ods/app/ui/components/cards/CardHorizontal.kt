@@ -30,9 +30,6 @@ import com.orange.ods.app.ui.components.utilities.clickOnElement
 import com.orange.ods.app.ui.utilities.DrawableManager
 import com.orange.ods.app.ui.utilities.composable.CodeImplementationColumn
 import com.orange.ods.app.ui.utilities.composable.FunctionCallCode
-import com.orange.ods.app.ui.utilities.composable.PredefinedParameter
-import com.orange.ods.app.ui.utilities.composable.SimpleParameter
-import com.orange.ods.app.ui.utilities.composable.StringRepresentationParameter
 import com.orange.ods.compose.component.OdsComponent
 import com.orange.ods.compose.component.card.OdsHorizontalCard
 
@@ -76,24 +73,27 @@ fun CardHorizontal(customizationState: CardCustomizationState) {
             Spacer(modifier = Modifier.padding(top = dimensionResource(R.dimen.spacing_s)))
 
             CodeImplementationColumn {
-                FunctionCallCode(name = OdsComponent.OdsHorizontalCard.name, exhaustiveParameters = false, parameters = mutableListOf(
-                    SimpleParameter("imagePosition", imagePosition.value.name),
-                    PredefinedParameter.Title(recipe.title),
-                    PredefinedParameter.Image
-                ).apply {
-                    if (hasSubtitle) add(PredefinedParameter.Subtitle(recipe.subtitle))
-                    if (hasText) add(PredefinedParameter.CardText)
-                    if (isClickable) add(PredefinedParameter.OnCardClick)
-                    if (hasButton1) {
-                        add(PredefinedParameter.Button1Text(button1Text))
-                        add(PredefinedParameter.OnButton1Click)
+                FunctionCallCode(
+                    name = OdsComponent.OdsHorizontalCard.name,
+                    exhaustiveParameters = false,
+                    parameters = {
+                        simple("imagePosition", imagePosition.value.name)
+                        title(recipe.title)
+                        image()
+                        if (hasSubtitle) subtitle(recipe.subtitle)
+                        if (hasText) cardText()
+                        if (isClickable) onCardClick()
+                        if (hasButton1) {
+                            button1Text(button1Text)
+                            onButton1Click()
+                        }
+                        if (hasButton2) {
+                            button2Text(button2Text)
+                            onButton2Click()
+                        }
+                        if (!hasDivider && (hasButton1 || hasButton2)) stringRepresentation("dividerEnabled", hasDivider)
                     }
-                    if (hasButton2) {
-                        add(PredefinedParameter.Button2Text(button2Text))
-                        add(PredefinedParameter.OnButton2Click)
-                    }
-                    if (!hasDivider && (hasButton1 || hasButton2)) add(StringRepresentationParameter("dividerEnabled", hasDivider))
-                })
+                )
             }
         }
     }

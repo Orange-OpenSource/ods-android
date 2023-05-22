@@ -34,9 +34,6 @@ import com.orange.ods.app.ui.utilities.DrawableManager
 import com.orange.ods.app.ui.utilities.composable.CodeImplementationColumn
 import com.orange.ods.app.ui.utilities.composable.FunctionCallCode
 import com.orange.ods.app.ui.utilities.composable.ImagePainterValue
-import com.orange.ods.app.ui.utilities.composable.PredefinedParameter
-import com.orange.ods.app.ui.utilities.composable.SimpleParameter
-import com.orange.ods.app.ui.utilities.composable.StringRepresentationParameter
 import com.orange.ods.app.ui.utilities.composable.Subtitle
 import com.orange.ods.compose.component.OdsComponent
 import com.orange.ods.compose.component.chip.OdsChoiceChip
@@ -104,19 +101,19 @@ fun ChipFilter() {
                 CodeImplementationColumn {
                     FunctionCallCode(
                         name = "FlowRow",
-                        parameters = listOf(SimpleParameter("mainAxisSpacing", "dimensionResource(id = R.dimen.spacing_s))"))
+                        parameters = { simple("mainAxisSpacing", "dimensionResource(id = R.dimen.spacing_s))") }
                     ) {
                         recipe.ingredients.forEachIndexed { index, ingredient ->
                             FunctionCallCode(
                                 name = OdsComponent.OdsFilterChip.name,
                                 exhaustiveParameters = false,
-                                parameters = buildList {
-                                    add(PredefinedParameter.Text(ingredient.food.name))
-                                    if (hasLeadingAvatar) add(SimpleParameter("leadingAvatar", ImagePainterValue))
-                                    add(PredefinedParameter.OnClick)
-                                    if (!outlinedChips) add(StringRepresentationParameter("outlined", outlinedChips))
-                                    if (selectedChipIndexes.contains(index)) add(PredefinedParameter.Selected(true))
-                                    if (!isEnabled) add(PredefinedParameter.Enabled(false))
+                                parameters = {
+                                    text(ingredient.food.name)
+                                    if (hasLeadingAvatar) simple("leadingAvatar", ImagePainterValue)
+                                    onClick()
+                                    if (!outlinedChips) stringRepresentation("outlined", outlinedChips)
+                                    if (selectedChipIndexes.contains(index)) selected(true)
+                                    if (!isEnabled) enabled(false)
                                 })
                         }
                     }
