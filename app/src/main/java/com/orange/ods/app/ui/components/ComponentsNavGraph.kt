@@ -18,15 +18,13 @@ import androidx.navigation.navArgument
 import com.orange.ods.app.ui.LocalMainTopAppBarManager
 import com.orange.ods.app.ui.MainDestinations
 import com.orange.ods.app.ui.MainTopAppBarState
-import com.orange.ods.app.ui.ResetTopAppBar
 
 fun NavGraphBuilder.addComponentsGraph(navigateToElement: (String, Long?, NavBackStackEntry) -> Unit) {
     composable(
         "${MainDestinations.ComponentDetailRoute}/{${MainDestinations.ComponentIdKey}}",
         arguments = listOf(navArgument(MainDestinations.ComponentIdKey) { type = NavType.LongType })
     ) { from ->
-        // Restore default values for tabs and top app bar
-        ResetTopAppBar()
+        LocalMainTopAppBarManager.current.reset()
 
         val arguments = requireNotNull(from.arguments)
         val componentId = arguments.getLong(MainDestinations.ComponentIdKey)

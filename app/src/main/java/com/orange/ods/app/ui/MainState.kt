@@ -49,18 +49,16 @@ fun rememberMainState(
     themeState: MainThemeState,
     navController: NavHostController = rememberNavController(),
     topAppBarState: MainTopAppBarState = rememberMainTopAppBarState(),
-    tabsState: MainTabsState = rememberMainTabsState(),
     uiFramework: MutableState<UiFramework> = mutableStateOf(UiFramework.Compose)
 ) =
-    remember(themeState, navController, topAppBarState, tabsState, uiFramework) {
-        MainState(themeState, navController, topAppBarState, tabsState, uiFramework)
+    remember(themeState, navController, topAppBarState, uiFramework) {
+        MainState(themeState, navController, topAppBarState, uiFramework)
     }
 
 class MainState(
     val themeState: MainThemeState,
     val navController: NavHostController,
     val topAppBarState: MainTopAppBarState,
-    val tabsState: MainTabsState,
     val uiFramework: MutableState<UiFramework>
 ) {
 

@@ -25,10 +25,13 @@ import kotlinx.parcelize.Parcelize
 val LocalMainTopAppBarManager = staticCompositionLocalOf<MainTopAppBarManager> { error("CompositionLocal LocalMainTopAppBarManager not present") }
 
 interface MainTopAppBarManager {
-
     fun updateTopAppBar(topAppBarConfiguration: TopAppBarConfiguration)
-
     fun updateTopAppBarTitle(titleRes: Int)
+    fun updateTopAppBarTabs(tabsConfiguration: TabsConfiguration)
+    fun clearTopAppBarTabs()
+
+    /** Restore default values for tabs and top app bar */
+    fun reset()
 }
 
 @Composable
@@ -37,9 +40,10 @@ fun rememberMainTopAppBarState(
     actions: MutableState<List<TopAppBarConfiguration.Action>> = rememberSaveable { mutableStateOf(MainTopAppBarState.DefaultConfiguration.actions) },
     navigationIconEnabled: MutableState<Boolean> = rememberSaveable { mutableStateOf(MainTopAppBarState.DefaultConfiguration.isNavigationIconEnabled) },
     searchedText: MutableState<TextFieldValue> = remember { mutableStateOf(TextFieldValue("")) },
+    tabsState: MainTabsState = rememberMainTabsState(),
 ) =
-    remember(titleRes, actions, searchedText, navigationIconEnabled) {
-        MainTopAppBarState(titleRes, actions, searchedText, navigationIconEnabled)
+    remember(titleRes, actions, searchedText, navigationIconEnabled, tabsState) {
+        MainTopAppBarState(titleRes, actions, searchedText, navigationIconEnabled, tabsState)
     }
 
 
@@ -47,7 +51,8 @@ class MainTopAppBarState(
     val titleRes: MutableState<Int>,
     val actions: MutableState<List<TopAppBarConfiguration.Action>>,
     var searchedText: MutableState<TextFieldValue>,
-    private val navigationIconEnabled: MutableState<Boolean>
+    private val navigationIconEnabled: MutableState<Boolean>,
+    val tabsState: MainTabsState,
 ) : MainTopAppBarManager {
 
     companion object {
@@ -73,6 +78,18 @@ class MainTopAppBarState(
         this.titleRes.value = titleRes
     }
 
+    override fun updateTopAppBarTabs(tabsConfiguration: TabsConfiguration) {
+        tabsState.updateTopAppBarTabs(tabsConfiguration)
+    }
+
+    override fun clearTopAppBarTabs() {
+        tabsState.clearTopAppBarTabs()
+    }
+
+    override fun reset() {
+        updateTopAppBar(DefaultConfiguration)
+        clearTopAppBarTabs()
+    }
 }
 
 data class TopAppBarConfiguration constructor(

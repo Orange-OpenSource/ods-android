@@ -94,7 +94,6 @@ fun MainScreen(themeConfigurations: Set<OdsThemeConfigurationContract>, mainView
     CompositionLocalProvider(
         LocalConfiguration provides configuration,
         LocalMainTopAppBarManager provides mainState.topAppBarState,
-        LocalMainTabsManager provides mainState.tabsState,
         LocalMainThemeManager provides mainState.themeState,
         LocalOdsGuideline provides mainState.themeState.currentThemeConfiguration.guideline,
         LocalRecipes provides mainViewModel.recipes,
@@ -124,7 +123,7 @@ fun MainScreen(themeConfigurations: Set<OdsThemeConfigurationContract>, mainView
                                 }
                             )
                             // Display tabs in the top bar if needed
-                            MainTabs(mainTabsState = mainState.tabsState)
+                            MainTabs(mainTabsState = mainState.topAppBarState.tabsState)
                         }
                     }
                 },
@@ -258,17 +257,13 @@ private fun NavGraphBuilder.mainNavGraph(navigateToElement: (String, Long?, NavB
     composable(
         route = MainDestinations.SearchRoute
     ) { from ->
-        LocalMainTabsManager.current.clearTopAppBarTabs()
-        LocalMainTopAppBarManager.current.updateTopAppBarTitle(R.string.navigation_item_search)
+        with(LocalMainTopAppBarManager.current) {
+            clearTopAppBarTabs()
+            updateTopAppBarTitle(R.string.navigation_item_search)
+        }
         SearchScreen(
             searchedText,
             onResultItemClick = { route, id -> navigateToElement(route, id, from) }
         )
     }
-}
-
-@Composable
-fun ResetTopAppBar() {
-    LocalMainTopAppBarManager.current.updateTopAppBar(MainTopAppBarState.DefaultConfiguration)
-    LocalMainTabsManager.current.clearTopAppBarTabs()
 }
