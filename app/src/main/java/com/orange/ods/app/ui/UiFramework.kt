@@ -13,6 +13,10 @@ package com.orange.ods.app.ui
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.MutableState
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.saveable.rememberSaveable
+import androidx.compose.runtime.setValue
 import androidx.compose.runtime.staticCompositionLocalOf
 import androidx.databinding.ViewDataBinding
 import com.orange.ods.app.ui.components.utilities.ViewDataBinding
@@ -27,8 +31,13 @@ enum class UiFramework {
 inline fun <reified T : ViewDataBinding> UiFramework(compose: @Composable () -> Unit, noinline xml: T.() -> Unit) {
     val uiFramework = LocalUiFramework.current
     // Reset current UI framework to Compose when displaying the content
-    LaunchedEffect(Unit) {
-        uiFramework.value = UiFramework.Compose
+    // shouldResetUiFramework is used to avoid calling LaunchedEffect on configuration changes (for instance on device rotation)
+    var shouldResetUiFramework by rememberSaveable { mutableStateOf(true) }
+    if (shouldResetUiFramework) {
+        LaunchedEffect(Unit) {
+            shouldResetUiFramework = false
+            uiFramework.value = UiFramework.Compose
+        }
     }
     when (uiFramework.value) {
         UiFramework.Compose -> compose()
