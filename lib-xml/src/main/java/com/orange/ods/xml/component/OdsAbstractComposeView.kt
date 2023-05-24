@@ -13,7 +13,6 @@ package com.orange.ods.xml.component
 import android.content.Context
 import android.util.AttributeSet
 import androidx.compose.foundation.isSystemInDarkTheme
-import androidx.compose.material.Surface
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.platform.AbstractComposeView
 import com.orange.ods.compose.theme.OdsTheme
@@ -33,9 +32,7 @@ abstract class OdsAbstractComposeView @JvmOverloads constructor(context: Context
             themeConfiguration = OdsTheme.xml.themeConfiguration,
             darkThemeEnabled = darkThemeEnabled
         ) {
-            Surface {
-                OdsContent()
-            }
+            OdsContent()
         }
     }
 
