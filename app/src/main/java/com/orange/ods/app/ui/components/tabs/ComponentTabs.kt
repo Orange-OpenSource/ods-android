@@ -24,18 +24,18 @@ import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.stringResource
 import com.google.accompanist.pager.ExperimentalPagerApi
 import com.google.accompanist.pager.HorizontalPager
+import com.orange.ods.app.R
+import com.orange.ods.app.ui.LocalMainTopAppBarManager
+import com.orange.ods.app.ui.TabsConfiguration
+import com.orange.ods.app.ui.components.Variant
+import com.orange.ods.app.ui.components.utilities.ComponentCountRow
+import com.orange.ods.app.ui.components.utilities.ComponentCustomizationBottomSheetScaffold
+import com.orange.ods.app.ui.utilities.composable.Subtitle
 import com.orange.ods.compose.component.chip.OdsChoiceChip
 import com.orange.ods.compose.component.chip.OdsChoiceChipsFlowRow
 import com.orange.ods.compose.component.list.OdsListItem
 import com.orange.ods.compose.component.list.OdsSwitchTrailing
 import com.orange.ods.compose.text.OdsTextBody1
-import com.orange.ods.app.R
-import com.orange.ods.app.ui.LocalMainTabsManager
-import com.orange.ods.app.ui.MainTabsConfiguration
-import com.orange.ods.app.ui.components.Variant
-import com.orange.ods.app.ui.components.utilities.ComponentCountRow
-import com.orange.ods.app.ui.components.utilities.ComponentCustomizationBottomSheetScaffold
-import com.orange.ods.app.ui.utilities.composable.Subtitle
 
 private const val MinFixedTabCount = 2
 private const val MaxFixedTabCount = 3
@@ -59,8 +59,8 @@ fun ComponentTabs(variant: Variant) {
     }
 
     val tabsCustomizationState = rememberMainTabsCustomizationState(tabsCount = rememberSaveable { mutableStateOf(tabCountMin) })
-    LocalMainTabsManager.current.updateTopAppBarTabs(
-        MainTabsConfiguration(
+    LocalMainTopAppBarManager.current.updateTopAppBarTabs(
+        TabsConfiguration(
             scrollableTabs = scrollableTabs,
             tabs = tabsCustomizationState.tabs,
             pagerState = tabsCustomizationState.pagerState,

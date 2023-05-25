@@ -24,7 +24,7 @@ sealed class Component(
     @StringRes val descriptionRes: Int,
     val variants: List<Variant> = emptyList(),
     val composableName: String? = null,
-    val imageAlignment: Alignment = Alignment.Center
+    val imageAlignment: Alignment = Alignment.Center,
 ) {
     companion object {
         const val ImageBackgroundColor = 0xff1b1b1b
@@ -46,7 +46,7 @@ sealed class Component(
         R.drawable.il_banners,
         null,
         R.string.component_banners_description,
-        composableName = OdsComposable.OdsBanner.name
+        composableName = OdsComposable.OdsBanner.name,
     )
 
     object BottomNavigation :
@@ -220,7 +220,7 @@ val components = Component::class.sealedSubclasses.mapNotNull { it.objectInstanc
 
 sealed class Variant(
     @StringRes val titleRes: Int,
-    val composableName: String
+    val composableName: String,
 ) {
     val id: Long = Variant::class.sealedSubclasses.indexOf(this::class).toLong()
 
@@ -258,3 +258,5 @@ sealed class Variant(
     object TabsFixed : Variant(R.string.component_tabs_fixed, OdsComposable.OdsTabRow.name)
     object TabsScrollable : Variant(R.string.component_tabs_scrollable, OdsComposable.OdsScrollableTabRow.name)
 }
+
+val variants = Variant::class.sealedSubclasses.mapNotNull { it.objectInstance }

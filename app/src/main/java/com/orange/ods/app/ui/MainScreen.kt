@@ -61,6 +61,8 @@ import com.orange.ods.compose.text.OdsTextH6
 import com.orange.ods.compose.theme.OdsTheme
 import com.orange.ods.theme.OdsThemeConfigurationContract
 import com.orange.ods.utilities.extension.orElse
+import com.orange.ods.xml.theme.OdsXml
+import com.orange.ods.xml.utilities.extension.xml
 
 @Composable
 fun MainScreen(themeConfigurations: Set<OdsThemeConfigurationContract>, mainViewModel: MainViewModel = viewModel()) {
@@ -84,14 +86,19 @@ fun MainScreen(themeConfigurations: Set<OdsThemeConfigurationContract>, mainView
         isDarkModeEnabled = mainState.themeState.darkModeEnabled
     }
 
+    with(OdsTheme.xml) {
+        themeConfiguration = mainState.themeState.currentThemeConfiguration
+        uiMode = if (mainState.themeState.darkModeEnabled) OdsXml.UiMode.Dark else OdsXml.UiMode.Light
+    }
+
     CompositionLocalProvider(
         LocalConfiguration provides configuration,
         LocalMainTopAppBarManager provides mainState.topAppBarState,
-        LocalMainTabsManager provides mainState.tabsState,
         LocalMainThemeManager provides mainState.themeState,
         LocalOdsGuideline provides mainState.themeState.currentThemeConfiguration.guideline,
         LocalRecipes provides mainViewModel.recipes,
-        LocalCategories provides mainViewModel.categories
+        LocalCategories provides mainViewModel.categories,
+        LocalUiFramework provides mainState.uiFramework
     ) {
         var changeThemeDialogVisible by remember { mutableStateOf(false) }
 
@@ -116,7 +123,7 @@ fun MainScreen(themeConfigurations: Set<OdsThemeConfigurationContract>, mainView
                                 }
                             )
                             // Display tabs in the top bar if needed
-                            MainTabs(mainTabsState = mainState.tabsState)
+                            MainTabs(mainTabsState = mainState.topAppBarState.tabsState)
                         }
                     }
                 },
@@ -250,8 +257,10 @@ private fun NavGraphBuilder.mainNavGraph(navigateToElement: (String, Long?, NavB
     composable(
         route = MainDestinations.SearchRoute
     ) { from ->
-        LocalMainTabsManager.current.clearTopAppBarTabs()
-        LocalMainTopAppBarManager.current.updateTopAppBarTitle(R.string.navigation_item_search)
+        with(LocalMainTopAppBarManager.current) {
+            clearTopAppBarTabs()
+            updateTopAppBarTitle(R.string.navigation_item_search)
+        }
         SearchScreen(
             searchedText,
             onResultItemClick = { route, id -> navigateToElement(route, id, from) }

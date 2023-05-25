@@ -10,6 +10,7 @@
 
 package com.orange.ods.app.ui.components.banners
 
+import androidx.appcompat.content.res.AppCompatResources
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.rememberScrollState
@@ -24,10 +25,15 @@ import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import coil.compose.rememberAsyncImagePainter
+import coil.imageLoader
+import coil.request.ImageRequest
 import com.orange.ods.app.R
+import com.orange.ods.app.databinding.OdsBannerBinding
 import com.orange.ods.app.domain.recipes.LocalRecipes
+import com.orange.ods.app.ui.UiFramework
 import com.orange.ods.app.ui.components.utilities.ComponentCountRow
 import com.orange.ods.app.ui.components.utilities.ComponentCustomizationBottomSheetScaffold
+import com.orange.ods.app.ui.components.utilities.ComponentCustomizationUiFramework
 import com.orange.ods.app.ui.components.utilities.clickOnElement
 import com.orange.ods.app.ui.utilities.DrawableManager
 import com.orange.ods.app.ui.utilities.composable.CodeImplementationColumn
@@ -40,7 +46,6 @@ import com.orange.ods.compose.component.list.OdsSwitchTrailing
 @OptIn(ExperimentalMaterialApi::class)
 @Composable
 fun ComponentBanners() {
-
     val bannerCustomizationState = rememberBannerCustomizationState()
     val recipes = LocalRecipes.current
     val recipe = rememberSaveable { recipes.filter { it.description.isNotBlank() }.random() }
@@ -49,6 +54,7 @@ fun ComponentBanners() {
         ComponentCustomizationBottomSheetScaffold(
             bottomSheetScaffoldState = rememberBottomSheetScaffoldState(),
             bottomSheetContent = {
+                ComponentCustomizationUiFramework()
                 ComponentCountRow(
                     title = stringResource(id = R.string.component_banner_text_lines_count),
                     count = textLinesCount,
@@ -74,41 +80,69 @@ fun ComponentBanners() {
             }
         ) {
             val context = LocalContext.current
-            val button1Text = stringResource(id = R.string.component_element_button1)
-            val button2Text = stringResource(id = R.string.component_element_button2)
             Column(
                 modifier = Modifier
                     .verticalScroll(rememberScrollState())
             ) {
-                OdsBanner(
-                    message = if (hasTwoTextLines) recipe.description else recipe.title,
-                    button1Text = stringResource(id = R.string.component_banner_dismiss),
-                    button2Text = if (hasButton2) stringResource(id = R.string.component_banner_detail) else null,
-                    image = if (hasImage) rememberAsyncImagePainter(
-                        model = recipe.imageUrl,
-                        placeholder = painterResource(id = DrawableManager.getPlaceholderResId()),
-                        error = painterResource(id = DrawableManager.getPlaceholderResId(error = true))
-                    ) else null,
-                    onButton1Click = { clickOnElement(context, button1Text) },
-                    onButton2Click = { clickOnElement(context, button2Text) }
-                )
+                val message = if (hasTwoTextLines) recipe.description else recipe.title
+                val button1Text = stringResource(id = R.string.component_banner_dismiss)
+                val onButton1ClickText = stringResource(id = R.string.component_element_button1)
+                val onButton1Click = { clickOnElement(context, onButton1ClickText) }
+                val button2Text = if (hasButton2) stringResource(id = R.string.component_banner_detail) else null
+                val onButton2ClickText = stringResource(id = R.string.component_element_button2)
+                val onButton2Click = { clickOnElement(context, onButton2ClickText) }
+                val placeholderResId = DrawableManager.getPlaceholderResId()
+                val errorPlaceholderResId = DrawableManager.getPlaceholderResId(error = true)
+                UiFramework<OdsBannerBinding>(
+                    compose = {
+                        OdsBanner(
+                            message = message,
+                            button1Text = button1Text,
+                            button2Text = button2Text,
+                            image = if (hasImage) rememberAsyncImagePainter(
+                                model = recipe.imageUrl,
+                                placeholder = painterResource(id = placeholderResId),
+                                error = painterResource(id = errorPlaceholderResId)
+                            ) else null,
+                            onButton1Click = onButton1Click,
+                            onButton2Click = onButton2Click,
+                        )
 
-                CodeImplementationColumn(
-                    modifier = Modifier.padding(horizontal = dimensionResource(id = R.dimen.screen_horizontal_margin))
-                ) {
-                    FunctionCallCode(
-                        name = OdsComposable.OdsBanner.name,
-                        exhaustiveParameters = false,
-                        parameters = {
-                            string("message", if (hasTwoTextLines) recipe.description else recipe.title)
-                            button1Text(context.getString(R.string.component_banner_dismiss))
-                            if (hasImage) image()
-                            if (hasButton2) button2Text(context.getString(R.string.component_banner_detail))
+                        CodeImplementationColumn(
+                            modifier = Modifier.padding(horizontal = dimensionResource(id = R.dimen.screen_horizontal_margin))
+                        ) {
+                            FunctionCallCode(
+                                name = OdsComposable.OdsBanner.name,
+                                exhaustiveParameters = false,
+                                parameters = {
+                                    string("message", if (hasTwoTextLines) recipe.description else recipe.title)
+                                    button1Text(context.getString(R.string.component_banner_dismiss))
+                                    if (hasImage) image()
+                                    if (hasButton2) button2Text(context.getString(R.string.component_banner_detail))
+                                }
+                            )
                         }
-                    )
-                }
+                    },
+                    xml = {
+                        this.message = message
+                        this.button1Text = button1Text
+                        this.button2Text = button2Text
+                        banner.onButton1Click = onButton1Click
+                        banner.onButton2Click = onButton1Click
+                        if (hasImage) {
+                            banner.image = AppCompatResources.getDrawable(context, placeholderResId)
+                            val request = ImageRequest.Builder(context)
+                                .data(recipe.imageUrl)
+                                .error(errorPlaceholderResId)
+                                .target { banner.image = it }
+                                .build()
+                            context.imageLoader.enqueue(request)
+                        } else {
+                            banner.image = null
+                        }
+                    }
+                )
             }
         }
     }
 }
-

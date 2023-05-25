@@ -11,6 +11,7 @@
 package com.orange.ods.compose.component.banner
 
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -68,6 +69,7 @@ fun OdsBanner(
     Column(
         modifier = modifier
             .fillMaxWidth()
+            .background(color = OdsTheme.colors.surface)
     ) {
         Row(
             verticalAlignment = Alignment.CenterVertically,
