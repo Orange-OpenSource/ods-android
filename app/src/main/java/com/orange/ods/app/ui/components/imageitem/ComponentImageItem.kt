@@ -57,10 +57,7 @@ fun ComponentImageItem() {
 
     with(imageItemCustomizationState) {
         if (type.value == ImageItemCustomizationState.Type.None) {
-            textDisplayed.value = false
             iconDisplayed.value = false
-        } else {
-            textDisplayed.value = true
         }
         ComponentCustomizationBottomSheetScaffold(
             bottomSheetScaffoldState = rememberBottomSheetScaffoldState(),

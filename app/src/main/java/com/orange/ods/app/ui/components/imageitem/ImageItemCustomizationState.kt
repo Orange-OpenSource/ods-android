@@ -19,17 +19,15 @@ import androidx.compose.runtime.saveable.rememberSaveable
 @Composable
 fun rememberImageItemCustomizationState(
     type: MutableState<ImageItemCustomizationState.Type> = rememberSaveable { mutableStateOf(ImageItemCustomizationState.Type.Overlay) },
-    iconDisplayed: MutableState<Boolean> = rememberSaveable { mutableStateOf(false) },
-    textDisplayed: MutableState<Boolean> = rememberSaveable { mutableStateOf(true) }
+    iconDisplayed: MutableState<Boolean> = rememberSaveable { mutableStateOf(false) }
 ) =
-    remember(type, iconDisplayed, textDisplayed) {
-        ImageItemCustomizationState(type, iconDisplayed, textDisplayed)
+    remember(type, iconDisplayed) {
+        ImageItemCustomizationState(type, iconDisplayed)
     }
 
 class ImageItemCustomizationState(
     val type: MutableState<Type>,
-    val iconDisplayed: MutableState<Boolean>,
-    val textDisplayed: MutableState<Boolean>
+    val iconDisplayed: MutableState<Boolean>
 ) {
     enum class Type {
         Overlay, Below, None
@@ -45,6 +43,5 @@ class ImageItemCustomizationState(
         get() = iconDisplayed.value
 
     val hasText
-        get() = textDisplayed.value
-
+        get() = type.value != OdsImageItemTitleType.None
 }
