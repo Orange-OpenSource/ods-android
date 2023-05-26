@@ -198,18 +198,17 @@ private fun OdsImageItemText(
     }
 }
 
-@UiModePreviews.Default
+@UiModePreviews.ImageItem
 @Composable
 private fun PreviewOdsImageList(@PreviewParameter(OdsImageListPreviewParameterProvider::class) parameter: OdsImageListPreviewParameter) =
     Preview {
         OdsImageItem(
             image = painterResource(id = parameter.image),
             iconSelected = true,
-            uncheckedIcon = painterResource(id = parameter.unCheckedIcon),
+            uncheckedIcon = painterResource(id = parameter.uncheckedIcon),
             checkedIcon = painterResource(id = parameter.checkedIcon),
             title = parameter.title,
             iconChecked = parameter.checked,
-            modifier = Modifier.size(parameter.size),
             iconContentDescription = "",
             onIconCheckedChange = { parameter.checked },
             displayTitle = parameter.type
@@ -221,8 +220,7 @@ private data class OdsImageListPreviewParameter(
     val checked: Boolean,
     val title: String,
     val checkedIcon: Int,
-    val unCheckedIcon: Int,
-    val size: Dp,
+    val uncheckedIcon: Int,
     val type: OdsImageItemDisplayTitle
 )
 
@@ -234,34 +232,31 @@ private val previewParameterValues: List<OdsImageListPreviewParameter>
         val title = "Subtitle 1"
         val image = R.drawable.placeholder
         val checkedIcon = R.drawable.ic_check
-        val unCheckedIcon = R.drawable.ic_check
+        val uncheckedIcon = R.drawable.ic_check
 
         return listOf(
             OdsImageListPreviewParameter(
                 image,
                 title = title,
                 checkedIcon = checkedIcon,
-                unCheckedIcon = unCheckedIcon,
+                uncheckedIcon = uncheckedIcon,
                 checked = false,
-                size = 300.dp,
                 type = OdsImageItemDisplayTitle.Below
             ),
             OdsImageListPreviewParameter(
                 image,
                 title = title,
                 checkedIcon = checkedIcon,
-                unCheckedIcon = unCheckedIcon,
+                uncheckedIcon = uncheckedIcon,
                 checked = false,
-                size = 300.dp,
                 type = OdsImageItemDisplayTitle.Overlay
             ),
             OdsImageListPreviewParameter(
                 image,
                 title = title,
                 checkedIcon = checkedIcon,
-                unCheckedIcon = unCheckedIcon,
+                uncheckedIcon = uncheckedIcon,
                 checked = true,
-                size = 300.dp,
                 type = OdsImageItemDisplayTitle.None
             )
         )
