@@ -18,8 +18,10 @@ import androidx.compose.foundation.layout.width
 import androidx.compose.material.ExperimentalMaterialApi
 import androidx.compose.material.rememberBottomSheetScaffoldState
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.saveable.rememberSaveable
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.dimensionResource
@@ -46,13 +48,16 @@ import com.orange.ods.compose.component.list.OdsSwitchTrailing
 @Composable
 fun ComponentImageItem() {
     val imageItemCustomizationState = rememberImageItemCustomizationState()
-    val iconCheckedState = rememberSaveable { mutableStateOf(false) }
+    var iconChecked by rememberSaveable { mutableStateOf(false) }
     val recipes = LocalRecipes.current
     val recipe = rememberSaveable { recipes.random() }
 
     with(imageItemCustomizationState) {
         if (type.value == OdsImageItemTitleType.None) {
             iconDisplayed.value = false
+        }
+        if (!hasIcon) {
+            iconChecked = false
         }
         ComponentCustomizationBottomSheetScaffold(
             bottomSheetScaffoldState = rememberBottomSheetScaffoldState(),
@@ -99,9 +104,9 @@ fun ComponentImageItem() {
                     modifier = Modifier
                         .width(imageSize)
                         .height(height),
-                    iconChecked = iconCheckedState.value,
+                    iconChecked = iconChecked,
                     iconContentDescription = stringResource(id = R.string.component_button_icon_toggle_favorite_icon_desc),
-                    onIconCheckedChange = { checked -> iconCheckedState.value = checked },
+                    onIconCheckedChange = { checked -> iconChecked = checked },
                     displayTitle = if (isOverlay) OdsImageItemTitleType.Overlay else if (isBelow) OdsImageItemTitleType.Below else OdsImageItemTitleType.None,
                 )
                 CodeImplementationColumn(
@@ -113,11 +118,11 @@ fun ComponentImageItem() {
                         parameters = {
                             stringRepresentation("displayTitle", type.value)
                             if (hasText) title(recipe.title)
+                            image()
+                            checked(iconChecked)
+                            lambda("onIconCheckedChange")
                             if (hasIcon) simple("checkedIcon", IconPainterValue)
                             if (hasIcon) simple("uncheckedIcon", IconPainterValue)
-                            image()
-                            checked(iconCheckedState.value)
-                            lambda("onIconCheckedChange")
                         })
                 }
             }
