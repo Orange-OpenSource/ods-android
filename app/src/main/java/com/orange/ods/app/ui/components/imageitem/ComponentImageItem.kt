@@ -31,15 +31,10 @@ import com.orange.ods.app.R
 import com.orange.ods.app.domain.recipes.LocalRecipes
 import com.orange.ods.app.ui.components.utilities.ComponentCustomizationBottomSheetScaffold
 import com.orange.ods.app.ui.utilities.composable.CodeImplementationColumn
-import com.orange.ods.app.ui.utilities.composable.CodeParameter
 import com.orange.ods.app.ui.utilities.composable.FunctionCallCode
 import com.orange.ods.app.ui.utilities.composable.IconPainterValue
-import com.orange.ods.app.ui.utilities.composable.LambdaParameter
-import com.orange.ods.app.ui.utilities.composable.PredefinedParameter
-import com.orange.ods.app.ui.utilities.composable.SimpleParameter
-import com.orange.ods.app.ui.utilities.composable.StringRepresentationParameter
 import com.orange.ods.app.ui.utilities.composable.Subtitle
-import com.orange.ods.compose.component.OdsComponent
+import com.orange.ods.compose.OdsComposable
 import com.orange.ods.compose.component.chip.OdsChoiceChip
 import com.orange.ods.compose.component.chip.OdsChoiceChipsFlowRow
 import com.orange.ods.compose.component.imageitem.OdsImageItem
@@ -112,16 +107,18 @@ fun ComponentImageItem() {
                 CodeImplementationColumn(
                     modifier = Modifier.padding(end = dimensionResource(id = R.dimen.spacing_m))
                 ) {
-                    FunctionCallCode(name = OdsComponent.OdsImageItem.name, exhaustiveParameters = false, parameters = mutableListOf<CodeParameter>(
-                    ).apply {
-                        add(StringRepresentationParameter("displayTitle", type.value))
-                        if (hasText) add(PredefinedParameter.Title(recipe.title))
-                        if (hasIcon) add(SimpleParameter("checkedIcon", IconPainterValue))
-                        if (hasIcon) add(SimpleParameter("uncheckedIcon", IconPainterValue))
-                        add(PredefinedParameter.Image)
-                        add(PredefinedParameter.Checked(iconCheckedState.value))
-                        add(LambdaParameter("onIconCheckedChange"))
-                    })
+                    FunctionCallCode(
+                        name = OdsComposable.OdsImageItem.name,
+                        exhaustiveParameters = false,
+                        parameters = {
+                            stringRepresentation("displayTitle", type.value)
+                            if (hasText) title(recipe.title)
+                            if (hasIcon) simple("checkedIcon", IconPainterValue)
+                            if (hasIcon) simple("uncheckedIcon", IconPainterValue)
+                            image()
+                            checked(iconCheckedState.value)
+                            lambda("onIconCheckedChange")
+                        })
                 }
             }
         }

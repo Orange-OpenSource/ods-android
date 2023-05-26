@@ -32,7 +32,7 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.PreviewParameter
 import com.orange.ods.R
-import com.orange.ods.compose.component.OdsComponentApi
+import com.orange.ods.compose.component.OdsComposable
 import com.orange.ods.compose.component.button.OdsIconToggleButton
 import com.orange.ods.compose.component.utilities.BasicPreviewParameterProvider
 import com.orange.ods.compose.component.utilities.Preview
@@ -55,7 +55,7 @@ import com.orange.ods.compose.theme.OdsTheme
  * @param title Text displayed in the image
  */
 @Composable
-@OdsComponentApi
+@OdsComposable
 fun OdsImageItem(
     image: Painter,
     iconChecked: Boolean,

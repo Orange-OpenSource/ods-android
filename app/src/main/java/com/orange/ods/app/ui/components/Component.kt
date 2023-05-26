@@ -130,7 +130,7 @@ sealed class Component(
         R.drawable.il_image_item,
         null,
         R.string.component_image_item_description,
-        composableName = OdsComponent.OdsImageItem.name
+        composableName = OdsComposable.OdsImageItem.name
     )
 
     object Lists : Component(
