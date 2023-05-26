@@ -56,7 +56,7 @@ fun ComponentImageItem() {
     val recipe = rememberSaveable { recipes.random() }
 
     with(imageItemCustomizationState) {
-        if (type.value == ImageItemCustomizationState.Type.None) {
+        if (type.value == OdsImageItemTitleType.None) {
             iconDisplayed.value = false
         }
         ComponentCustomizationBottomSheetScaffold(
@@ -68,9 +68,9 @@ fun ComponentImageItem() {
                     outlinedChips = true
                 ) {
                     Subtitle(textRes = R.string.component_element_type)
-                    OdsChoiceChip(textRes = R.string.component_image_item_overlay_text, value = ImageItemCustomizationState.Type.Overlay)
-                    OdsChoiceChip(textRes = R.string.component_image_item_below_text, value = ImageItemCustomizationState.Type.Below)
-                    OdsChoiceChip(textRes = R.string.component_element_none, value = ImageItemCustomizationState.Type.None)
+                    OdsChoiceChip(textRes = R.string.component_image_item_overlay_text, value = OdsImageItemTitleType.Overlay)
+                    OdsChoiceChip(textRes = R.string.component_image_item_below_text, value = OdsImageItemTitleType.Below)
+                    OdsChoiceChip(textRes = R.string.component_element_none, value = OdsImageItemTitleType.None)
                 }
                 OdsListItem(
                     text = stringResource(id = R.string.component_element_icon),
@@ -88,9 +88,9 @@ fun ComponentImageItem() {
             ) {
                 val imageSize = 200.dp
                 val height = when (type.value) {
-                    ImageItemCustomizationState.Type.Below -> imageSize + dimensionResource(id = R.dimen.image_item_title_height)
-                    ImageItemCustomizationState.Type.Overlay,
-                    ImageItemCustomizationState.Type.None -> imageSize
+                    OdsImageItemTitleType.Below -> imageSize + dimensionResource(id = R.dimen.image_item_title_height)
+                    OdsImageItemTitleType.Overlay,
+                    OdsImageItemTitleType.None -> imageSize
                 }
                 OdsImageItem(
                     image = rememberAsyncImagePainter(
@@ -114,14 +114,7 @@ fun ComponentImageItem() {
                 ) {
                     FunctionCallCode(name = OdsComponent.OdsImageItem.name, exhaustiveParameters = false, parameters = mutableListOf<CodeParameter>(
                     ).apply {
-                        if (isOverlay) add(
-                            StringRepresentationParameter(
-                                "displayTitle",
-                                OdsImageItemTitleType.Overlay
-                            )
-                        ) else if (isBelow) add(StringRepresentationParameter("displayTitle", OdsImageItemTitleType.Below)) else add(
-                            StringRepresentationParameter("displayTitle", OdsImageItemTitleType.None)
-                        )
+                        add(StringRepresentationParameter("displayTitle", type.value))
                         if (hasText) add(PredefinedParameter.Title(recipe.title))
                         if (hasIcon) add(SimpleParameter("checkedIcon", IconPainterValue))
                         if (hasIcon) add(SimpleParameter("uncheckedIcon", IconPainterValue))

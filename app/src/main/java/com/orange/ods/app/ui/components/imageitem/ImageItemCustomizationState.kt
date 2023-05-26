@@ -15,10 +15,11 @@ import androidx.compose.runtime.MutableState
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.saveable.rememberSaveable
+import com.orange.ods.compose.component.imageitem.OdsImageItemTitleType
 
 @Composable
 fun rememberImageItemCustomizationState(
-    type: MutableState<ImageItemCustomizationState.Type> = rememberSaveable { mutableStateOf(ImageItemCustomizationState.Type.Overlay) },
+    type: MutableState<OdsImageItemTitleType> = rememberSaveable { mutableStateOf(OdsImageItemTitleType.Overlay) },
     iconDisplayed: MutableState<Boolean> = rememberSaveable { mutableStateOf(false) }
 ) =
     remember(type, iconDisplayed) {
@@ -26,18 +27,15 @@ fun rememberImageItemCustomizationState(
     }
 
 class ImageItemCustomizationState(
-    val type: MutableState<Type>,
+    val type: MutableState<OdsImageItemTitleType>,
     val iconDisplayed: MutableState<Boolean>
 ) {
-    enum class Type {
-        Overlay, Below, None
-    }
 
     val isOverlay
-        get() = type.value == Type.Overlay
+        get() = type.value == OdsImageItemTitleType.Overlay
 
     val isBelow
-        get() = type.value == Type.Below
+        get() = type.value == OdsImageItemTitleType.Below
 
     val hasIcon
         get() = iconDisplayed.value
