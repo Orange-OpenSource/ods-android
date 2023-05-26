@@ -84,8 +84,8 @@ fun ComponentImageItem() {
                 modifier = Modifier
                     .fillMaxSize()
                     .padding(
-                        top = dimensionResource(id = com.orange.ods.R.dimen.spacing_m),
-                        start = dimensionResource(id = com.orange.ods.R.dimen.spacing_m)
+                        top = dimensionResource(id = R.dimen.screen_horizontal_margin),
+                        start = dimensionResource(id = R.dimen.screen_horizontal_margin)
                     ),
                 horizontalAlignment = Alignment.Start,
             ) {

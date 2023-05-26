@@ -45,7 +45,7 @@ import com.orange.ods.compose.theme.OdsTheme
  *
  * @param image Image display in the [OdsImageItem].
  * @param iconChecked Specified if icon is currently checked
- * @param iconSelected Specified whether the icon is selected or nor
+ * @param iconSelected Specified whether the icon is selected or not
  * @param onIconCheckedChange Callback to be invoked when this icon is selected
  * @param checkedIcon Icon displayed in front of the [OdsImageItem] when icon is checked
  * @param uncheckedIcon Icon displayed in front of the [OdsImageItem] when icon is unchecked
@@ -121,7 +121,7 @@ fun OdsImageItem(
                     Row(
                         verticalAlignment = Alignment.CenterVertically,
                         modifier = Modifier
-                            .height(dimensionResource(id = R.dimen.list_single_line_item_height))
+                            .height(dimensionResource(id = R.dimen.image_item_title_height))
                     ) {
                         title?.let {
                             OdsImageItemText(
