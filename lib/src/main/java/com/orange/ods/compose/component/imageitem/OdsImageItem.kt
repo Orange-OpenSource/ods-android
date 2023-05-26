@@ -16,12 +16,10 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.aspectRatio
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.size
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
@@ -33,8 +31,6 @@ import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.PreviewParameter
-import androidx.compose.ui.unit.Dp
-import androidx.compose.ui.unit.dp
 import com.orange.ods.R
 import com.orange.ods.compose.component.OdsComponentApi
 import com.orange.ods.compose.component.button.OdsIconToggleButton
@@ -74,11 +70,9 @@ fun OdsImageItem(
     imageContentDescription: String? = null,
     title: String? = null,
 ) {
-    when (displayTitle) {
-        OdsImageItemDisplayTitle.Overlay ->
-            Box(
-                modifier = modifier.aspectRatio(1.0f)
-            ) {
+    Box(modifier = modifier) {
+        when (displayTitle) {
+            OdsImageItemDisplayTitle.Overlay -> {
                 Image(
                     painter = image,
                     contentDescription = imageContentDescription,
@@ -112,45 +106,43 @@ fun OdsImageItem(
                 }
             }
 
-        OdsImageItemDisplayTitle.Below ->
-            Column(
-                modifier = modifier.fillMaxWidth(),
-                verticalArrangement = Arrangement.Center
-            ) {
-                Image(
-                    painter = image,
-                    contentDescription = imageContentDescription,
-                    contentScale = ContentScale.Crop,
-                    modifier = Modifier.aspectRatio(1.0f)
-                )
-                Row(
-                    verticalAlignment = Alignment.CenterVertically,
-                    modifier = Modifier
-                        .height(dimensionResource(id = R.dimen.list_single_line_item_height))
+            OdsImageItemDisplayTitle.Below ->
+                Column(
+                    verticalArrangement = Arrangement.Center
                 ) {
-                    title?.let {
-                        OdsImageItemText(
-                            text = it,
-                            iconChecked = iconChecked,
-                            color = OdsTheme.colors.onSurface,
-                            onIconCheckedChange = onIconCheckedChange,
-                            uncheckedIcon = uncheckedIcon,
-                            checkedIcon = checkedIcon,
-                            iconContentDescription = iconContentDescription,
-                            iconSelected = iconSelected,
-                            displaySurface = OdsDisplaySurface.Default,
-                            modifier = Modifier
-                                .weight(1f)
-                                .padding(end = dimensionResource(id = R.dimen.spacing_m)),
-                        )
+                    Image(
+                        modifier = Modifier
+                            .weight(1.0f)
+                            .fillMaxWidth(),
+                        painter = image,
+                        contentDescription = imageContentDescription,
+                        contentScale = ContentScale.Crop,
+                    )
+                    Row(
+                        verticalAlignment = Alignment.CenterVertically,
+                        modifier = Modifier
+                            .height(dimensionResource(id = R.dimen.list_single_line_item_height))
+                    ) {
+                        title?.let {
+                            OdsImageItemText(
+                                text = it,
+                                iconChecked = iconChecked,
+                                color = OdsTheme.colors.onSurface,
+                                onIconCheckedChange = onIconCheckedChange,
+                                uncheckedIcon = uncheckedIcon,
+                                checkedIcon = checkedIcon,
+                                iconContentDescription = iconContentDescription,
+                                iconSelected = iconSelected,
+                                displaySurface = OdsDisplaySurface.Default,
+                                modifier = Modifier
+                                    .weight(1f)
+                                    .padding(end = dimensionResource(id = R.dimen.spacing_m)),
+                            )
+                        }
                     }
                 }
-            }
 
-        OdsImageItemDisplayTitle.None ->
-            Box(
-                modifier = modifier.aspectRatio(1.0f)
-            ) {
+            OdsImageItemDisplayTitle.None ->
                 Image(
                     painter = image,
                     contentDescription = imageContentDescription,

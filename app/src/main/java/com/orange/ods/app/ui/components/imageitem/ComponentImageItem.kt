@@ -12,6 +12,7 @@ package com.orange.ods.app.ui.components.imageitem
 
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
 import androidx.compose.material.ExperimentalMaterialApi
@@ -24,6 +25,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.unit.dp
 import coil.compose.rememberAsyncImagePainter
 import com.orange.ods.app.R
 import com.orange.ods.app.domain.recipes.LocalRecipes
@@ -87,6 +89,12 @@ fun ComponentImageItem() {
                     ),
                 horizontalAlignment = Alignment.Start,
             ) {
+                val imageSize = 200.dp
+                val height = when (type.value) {
+                    ImageItemCustomizationState.Type.Below -> imageSize + dimensionResource(id = R.dimen.image_item_title_height)
+                    ImageItemCustomizationState.Type.Overlay,
+                    ImageItemCustomizationState.Type.None -> imageSize
+                }
                 OdsImageItem(
                     image = rememberAsyncImagePainter(
                         model = recipe.imageUrl,
@@ -98,7 +106,8 @@ fun ComponentImageItem() {
                     iconSelected = hasIcon,
                     title = if (hasText) recipe.title else null,
                     modifier = Modifier
-                        .width(dimensionResource(id = com.orange.ods.R.dimen.card_big_image_height)),
+                        .width(imageSize)
+                        .height(height),
                     iconChecked = iconCheckedState.value,
                     iconContentDescription = stringResource(id = R.string.component_button_icon_toggle_favorite_icon_desc),
                     onIconCheckedChange = { checked -> iconCheckedState.value = checked },
