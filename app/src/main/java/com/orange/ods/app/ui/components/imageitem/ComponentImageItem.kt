@@ -101,9 +101,8 @@ fun ComponentImageItem() {
                         placeholder = painterResource(id = R.drawable.placeholder),
                         error = painterResource(id = R.drawable.placeholder)
                     ),
-                    uncheckedIcon = painterResource(id = R.drawable.ic_heart_outlined),
-                    checkedIcon = painterResource(id = R.drawable.ic_heart),
-                    iconSelected = hasIcon,
+                    uncheckedIcon = if (hasIcon) painterResource(id = R.drawable.ic_heart_outlined) else null,
+                    checkedIcon = if (hasIcon) painterResource(id = R.drawable.ic_heart) else null,
                     title = if (hasText) recipe.title else null,
                     modifier = Modifier
                         .width(imageSize)
@@ -131,7 +130,6 @@ fun ComponentImageItem() {
                         if (hasIcon) add(SimpleParameter("uncheckedIcon", IconPainterValue))
                         add(PredefinedParameter.Image)
                         add(PredefinedParameter.Checked(iconCheckedState.value))
-                        add(PredefinedParameter.Selected(hasIcon))
                         add(LambdaParameter("onIconCheckedChange"))
                     })
                 }

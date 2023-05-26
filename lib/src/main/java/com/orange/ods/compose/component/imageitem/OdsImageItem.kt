@@ -45,12 +45,11 @@ import com.orange.ods.compose.theme.OdsTheme
  *
  * @param image Image display in the [OdsImageItem].
  * @param iconChecked Specified if icon is currently checked
- * @param iconSelected Specified whether the icon is selected or not
  * @param onIconCheckedChange Callback to be invoked when this icon is selected
- * @param checkedIcon Icon displayed in front of the [OdsImageItem] when icon is checked
- * @param uncheckedIcon Icon displayed in front of the [OdsImageItem] when icon is unchecked
  * @param displayTitle Specified how the title and icon are displayed relative to image
  * @param modifier Modifier to be applied to this [OdsImageItem]
+ * @param checkedIcon Icon displayed in front of the [OdsImageItem] when icon is checked
+ * @param uncheckedIcon Icon displayed in front of the [OdsImageItem] when icon is unchecked
  * @param imageContentDescription Optional image content description
  * @param iconContentDescription Optional icon content description
  * @param title Text displayed in the image
@@ -60,12 +59,11 @@ import com.orange.ods.compose.theme.OdsTheme
 fun OdsImageItem(
     image: Painter,
     iconChecked: Boolean,
-    iconSelected: Boolean,
     onIconCheckedChange: (Boolean) -> Unit,
-    checkedIcon: Painter,
-    uncheckedIcon: Painter,
     displayTitle: OdsImageItemDisplayTitle,
     modifier: Modifier = Modifier,
+    checkedIcon: Painter? = null,
+    uncheckedIcon: Painter? = null,
     iconContentDescription: String? = null,
     imageContentDescription: String? = null,
     title: String? = null,
@@ -96,7 +94,6 @@ fun OdsImageItem(
                             uncheckedIcon = uncheckedIcon,
                             checkedIcon = checkedIcon,
                             iconContentDescription = iconContentDescription,
-                            iconSelected = iconSelected,
                             displaySurface = OdsDisplaySurface.Dark,
                             modifier = Modifier
                                 .weight(1f)
@@ -132,7 +129,6 @@ fun OdsImageItem(
                                 uncheckedIcon = uncheckedIcon,
                                 checkedIcon = checkedIcon,
                                 iconContentDescription = iconContentDescription,
-                                iconSelected = iconSelected,
                                 displaySurface = OdsDisplaySurface.Default,
                                 modifier = Modifier
                                     .weight(1f)
@@ -150,7 +146,7 @@ fun OdsImageItem(
                     modifier = Modifier
                         .fillMaxSize()
                 )
-            }
+        }
     }
 }
 
@@ -164,9 +160,9 @@ private fun OdsImageItemText(
     iconChecked: Boolean,
     color: Color,
     onIconCheckedChange: (Boolean) -> Unit,
-    uncheckedIcon: Painter,
-    checkedIcon: Painter,
-    iconSelected: Boolean, modifier: Modifier,
+    uncheckedIcon: Painter?,
+    checkedIcon: Painter?,
+    modifier: Modifier,
     displaySurface: OdsDisplaySurface,
     iconContentDescription: String?
 ) {
@@ -178,7 +174,7 @@ private fun OdsImageItemText(
         maxLines = 1,
         overflow = TextOverflow.Ellipsis
     )
-    if (iconSelected) {
+    if (uncheckedIcon != null && checkedIcon != null) {
         OdsIconToggleButton(
             checked = iconChecked,
             onCheckedChange = onIconCheckedChange,
@@ -196,7 +192,6 @@ private fun PreviewOdsImageList(@PreviewParameter(OdsImageListPreviewParameterPr
     Preview {
         OdsImageItem(
             image = painterResource(id = parameter.image),
-            iconSelected = true,
             uncheckedIcon = painterResource(id = parameter.uncheckedIcon),
             checkedIcon = painterResource(id = parameter.checkedIcon),
             title = parameter.title,
