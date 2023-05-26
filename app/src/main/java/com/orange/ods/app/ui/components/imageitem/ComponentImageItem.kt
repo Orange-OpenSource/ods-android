@@ -43,7 +43,7 @@ import com.orange.ods.compose.component.OdsComponent
 import com.orange.ods.compose.component.chip.OdsChoiceChip
 import com.orange.ods.compose.component.chip.OdsChoiceChipsFlowRow
 import com.orange.ods.compose.component.imageitem.OdsImageItem
-import com.orange.ods.compose.component.imageitem.OdsImageItemDisplayTitle
+import com.orange.ods.compose.component.imageitem.OdsImageItemTitleType
 import com.orange.ods.compose.component.list.OdsListItem
 import com.orange.ods.compose.component.list.OdsSwitchTrailing
 
@@ -110,7 +110,7 @@ fun ComponentImageItem() {
                     iconChecked = iconCheckedState.value,
                     iconContentDescription = stringResource(id = R.string.component_button_icon_toggle_favorite_icon_desc),
                     onIconCheckedChange = { checked -> iconCheckedState.value = checked },
-                    displayTitle = if (isOverlay) OdsImageItemDisplayTitle.Overlay else if (isBelow) OdsImageItemDisplayTitle.Below else OdsImageItemDisplayTitle.None,
+                    displayTitle = if (isOverlay) OdsImageItemTitleType.Overlay else if (isBelow) OdsImageItemTitleType.Below else OdsImageItemTitleType.None,
                 )
                 CodeImplementationColumn(
                     modifier = Modifier.padding(end = dimensionResource(id = R.dimen.spacing_m))
@@ -120,10 +120,10 @@ fun ComponentImageItem() {
                         if (isOverlay) add(
                             StringRepresentationParameter(
                                 "displayTitle",
-                                OdsImageItemDisplayTitle.Overlay
+                                OdsImageItemTitleType.Overlay
                             )
-                        ) else if (isBelow) add(StringRepresentationParameter("displayTitle", OdsImageItemDisplayTitle.Below)) else add(
-                            StringRepresentationParameter("displayTitle", OdsImageItemDisplayTitle.None)
+                        ) else if (isBelow) add(StringRepresentationParameter("displayTitle", OdsImageItemTitleType.Below)) else add(
+                            StringRepresentationParameter("displayTitle", OdsImageItemTitleType.None)
                         )
                         if (hasText) add(PredefinedParameter.Title(recipe.title))
                         if (hasIcon) add(SimpleParameter("checkedIcon", IconPainterValue))

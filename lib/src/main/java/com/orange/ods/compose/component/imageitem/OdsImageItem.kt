@@ -60,7 +60,7 @@ fun OdsImageItem(
     image: Painter,
     iconChecked: Boolean,
     onIconCheckedChange: (Boolean) -> Unit,
-    displayTitle: OdsImageItemDisplayTitle,
+    displayTitle: OdsImageItemTitleType,
     modifier: Modifier = Modifier,
     checkedIcon: Painter? = null,
     uncheckedIcon: Painter? = null,
@@ -70,7 +70,7 @@ fun OdsImageItem(
 ) {
     Box(modifier = modifier) {
         when (displayTitle) {
-            OdsImageItemDisplayTitle.Overlay -> {
+            OdsImageItemTitleType.Overlay -> {
                 Image(
                     painter = image,
                     contentDescription = imageContentDescription,
@@ -103,7 +103,7 @@ fun OdsImageItem(
                 }
             }
 
-            OdsImageItemDisplayTitle.Below ->
+            OdsImageItemTitleType.Below ->
                 Column(
                     verticalArrangement = Arrangement.Center
                 ) {
@@ -138,7 +138,7 @@ fun OdsImageItem(
                     }
                 }
 
-            OdsImageItemDisplayTitle.None ->
+            OdsImageItemTitleType.None ->
                 Image(
                     painter = image,
                     contentDescription = imageContentDescription,
@@ -150,7 +150,7 @@ fun OdsImageItem(
     }
 }
 
-enum class OdsImageItemDisplayTitle {
+enum class OdsImageItemTitleType {
     Below, Overlay, None
 }
 
@@ -208,7 +208,7 @@ private data class OdsImageListPreviewParameter(
     val title: String,
     val checkedIcon: Int,
     val uncheckedIcon: Int,
-    val type: OdsImageItemDisplayTitle
+    val type: OdsImageItemTitleType
 )
 
 private class OdsImageListPreviewParameterProvider :
@@ -228,7 +228,7 @@ private val previewParameterValues: List<OdsImageListPreviewParameter>
                 checkedIcon = checkedIcon,
                 uncheckedIcon = uncheckedIcon,
                 checked = false,
-                type = OdsImageItemDisplayTitle.Below
+                type = OdsImageItemTitleType.Below
             ),
             OdsImageListPreviewParameter(
                 image,
@@ -236,7 +236,7 @@ private val previewParameterValues: List<OdsImageListPreviewParameter>
                 checkedIcon = checkedIcon,
                 uncheckedIcon = uncheckedIcon,
                 checked = false,
-                type = OdsImageItemDisplayTitle.Overlay
+                type = OdsImageItemTitleType.Overlay
             ),
             OdsImageListPreviewParameter(
                 image,
@@ -244,7 +244,7 @@ private val previewParameterValues: List<OdsImageListPreviewParameter>
                 checkedIcon = checkedIcon,
                 uncheckedIcon = uncheckedIcon,
                 checked = true,
-                type = OdsImageItemDisplayTitle.None
+                type = OdsImageItemTitleType.None
             )
         )
     }
