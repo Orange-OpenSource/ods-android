@@ -12,6 +12,7 @@ package com.orange.ods.gradle
 
 object Dependencies {
 
+    const val accompanistDrawablePainter = "com.google.accompanist:accompanist-drawablepainter:${Versions.accompanist}"
     const val accompanistFlowLayout = "com.google.accompanist:accompanist-flowlayout:${Versions.accompanist}"
     const val accompanistPager = "com.google.accompanist:accompanist-pager:${Versions.accompanist}"
     const val accompanistPagerIndicators = "com.google.accompanist:accompanist-pager-indicators:${Versions.accompanist}"

@@ -11,6 +11,7 @@
 package com.orange.ods.compose.component.banner
 
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -30,7 +31,7 @@ import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.PreviewParameter
 import androidx.compose.ui.unit.dp
 import com.orange.ods.R
-import com.orange.ods.compose.component.OdsComponentApi
+import com.orange.ods.compose.component.OdsComposable
 import com.orange.ods.compose.component.button.OdsTextButton
 import com.orange.ods.compose.component.button.OdsTextButtonStyle
 import com.orange.ods.compose.component.divider.OdsDivider
@@ -53,7 +54,7 @@ import com.orange.ods.compose.theme.OdsTheme
  * @param onButton2Click Optional handler for the button2 click.
  */
 @Composable
-@OdsComponentApi
+@OdsComposable
 fun OdsBanner(
     message: String,
     button1Text: String,
@@ -68,6 +69,7 @@ fun OdsBanner(
     Column(
         modifier = modifier
             .fillMaxWidth()
+            .background(color = OdsTheme.colors.surface)
     ) {
         Row(
             verticalAlignment = Alignment.CenterVertically,

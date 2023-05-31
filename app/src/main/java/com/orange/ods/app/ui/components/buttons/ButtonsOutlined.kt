@@ -23,10 +23,8 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import com.orange.ods.app.R
 import com.orange.ods.app.ui.utilities.composable.CodeImplementationColumn
-import com.orange.ods.app.ui.utilities.composable.CodeParameter
 import com.orange.ods.app.ui.utilities.composable.FunctionCallCode
-import com.orange.ods.app.ui.utilities.composable.PredefinedParameter
-import com.orange.ods.compose.component.OdsComponent
+import com.orange.ods.compose.OdsComposable
 import com.orange.ods.compose.component.button.OdsOutlinedButton
 import com.orange.ods.compose.theme.OdsDisplaySurface
 
@@ -54,11 +52,14 @@ fun ButtonsOutlined(customizationState: ButtonCustomizationState) {
             CodeImplementationColumn(
                 modifier = Modifier.padding(horizontal = dimensionResource(id = R.dimen.screen_horizontal_margin))
             ) {
-                FunctionCallCode(name = OdsComponent.OdsOutlinedButton.name, exhaustiveParameters = false, parameters = mutableListOf<CodeParameter>().apply {
-                    if (hasFullScreenWidth) add(PredefinedParameter.FillMaxWidth)
-                    if (hasLeadingIcon) add(PredefinedParameter.Icon)
-                    if (!isEnabled) add(PredefinedParameter.Enabled(false))
-                })
+                FunctionCallCode(
+                    name = OdsComposable.OdsOutlinedButton.name,
+                    exhaustiveParameters = false,
+                    parameters = {
+                        if (hasFullScreenWidth) fillMaxWidth()
+                        if (hasLeadingIcon) icon()
+                        if (!isEnabled) enabled(false)
+                    })
             }
         }
     }

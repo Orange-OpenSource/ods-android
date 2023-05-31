@@ -37,7 +37,7 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.PreviewParameter
 import androidx.compose.ui.unit.dp
 import com.orange.ods.R
-import com.orange.ods.compose.component.OdsComponentApi
+import com.orange.ods.compose.component.OdsComposable
 import com.orange.ods.compose.component.utilities.BasicPreviewParameterProvider
 import com.orange.ods.compose.component.utilities.DisabledInteractionSource
 import com.orange.ods.compose.component.utilities.OdsImageCircleShape
@@ -64,7 +64,7 @@ import com.orange.ods.compose.theme.OdsTheme
  */
 @OptIn(ExperimentalMaterialApi::class)
 @Composable
-@OdsComponentApi
+@OdsComposable
 fun OdsFilterChip(
     text: String,
     onClick: () -> Unit,

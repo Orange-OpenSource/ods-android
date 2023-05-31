@@ -18,23 +18,22 @@ import androidx.compose.material.ExperimentalMaterialApi
 import androidx.compose.material.rememberBottomSheetScaffoldState
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.stringResource
 import com.orange.ods.app.R
 import com.orange.ods.app.ui.LocalMainTopAppBarManager
+import com.orange.ods.app.ui.MainTopAppBarState
 import com.orange.ods.app.ui.TopAppBarConfiguration
 import com.orange.ods.app.ui.components.utilities.ComponentCountRow
 import com.orange.ods.app.ui.components.utilities.ComponentCustomizationBottomSheetScaffold
+import com.orange.ods.app.ui.utilities.NavigationItem
 import com.orange.ods.app.ui.utilities.composable.CodeImplementationColumn
-import com.orange.ods.app.ui.utilities.composable.CodeParameter
-import com.orange.ods.app.ui.utilities.composable.ComposableParameter
 import com.orange.ods.app.ui.utilities.composable.FunctionCallCode
-import com.orange.ods.app.ui.utilities.composable.PredefinedParameter
-import com.orange.ods.app.ui.utilities.composable.SimpleParameter
-import com.orange.ods.app.ui.utilities.composable.StringParameter
-import com.orange.ods.compose.component.OdsComponent
+import com.orange.ods.compose.OdsComposable
 import com.orange.ods.compose.component.list.OdsListItem
 import com.orange.ods.compose.component.list.OdsSwitchTrailing
+import kotlin.math.max
 
 @OptIn(ExperimentalMaterialApi::class)
 @Composable
@@ -42,13 +41,19 @@ fun ComponentTopAppBar() {
     val customizationState = rememberTopAppBarCustomizationState()
 
     with(customizationState) {
-        LocalMainTopAppBarManager.current.updateTopAppBar(
-            TopAppBarConfiguration(
-                isNavigationIconEnabled = isNavigationIconEnabled,
-                actionCount = actionCount.value,
-                isOverflowMenuEnabled = isOverflowMenuEnabled
-            )
-        )
+        val customActionCount = max(0, actionCount.value - MainTopAppBarState.DefaultConfiguration.actions.size)
+        val customActions = NavigationItem.values()
+            .take(customActionCount)
+            .map { TopAppBarConfiguration.Action.Custom(stringResource(id = it.textResId), it.iconResId) }
+        val topAppBarConfiguration = TopAppBarConfiguration.Builder()
+            .navigationIconEnabled(isNavigationIconEnabled)
+            .actions {
+                addAll(MainTopAppBarState.DefaultConfiguration.actions.take(actionCount.value))
+                addAll(customActions)
+                if (isOverflowMenuEnabled) add(TopAppBarConfiguration.Action.OverflowMenu)
+            }
+            .build()
+        LocalMainTopAppBarManager.current.updateTopAppBar(topAppBarConfiguration)
 
         ComponentCustomizationBottomSheetScaffold(
             bottomSheetScaffoldState = rememberBottomSheetScaffoldState(),
@@ -78,60 +83,55 @@ fun ComponentTopAppBar() {
 
             }) {
 
+            val context = LocalContext.current
             Column(modifier = Modifier.verticalScroll(rememberScrollState())) {
                 CodeImplementationColumn(modifier = Modifier.padding(horizontal = dimensionResource(id = R.dimen.screen_horizontal_margin))) {
                     FunctionCallCode(
-                        name = OdsComponent.OdsTopAppBar.name,
+                        name = OdsComposable.OdsTopAppBar.name,
                         exhaustiveParameters = false,
-                        parameters = mutableListOf<CodeParameter>(
-                            PredefinedParameter.Title(stringResource(id = R.string.component_app_bars_top_regular))
-                        ).apply {
-                            if (isNavigationIconEnabled) add(ComposableParameter(
-                                name = "navigationIcon",
-                                value = {
+                        parameters = {
+                            title(context.getString(R.string.component_app_bars_top_regular))
+
+                            if (isNavigationIconEnabled) {
+                                composable(name = "navigationIcon") {
                                     FunctionCallCode(
                                         name = "Icon",
-                                        parameters = listOf(
-                                            SimpleParameter("imageVector", "<image vector>"),
-                                            PredefinedParameter.ContentDescription(stringResource(id = R.string.top_app_bar_back_icon_desc))
-                                        )
+                                        parameters = {
+                                            simple("imageVector", "<image vector>")
+                                            contentDescription(context.getString(R.string.top_app_bar_back_icon_desc))
+                                        }
                                     )
                                 }
-                            ))
+                            }
 
-                            add(ComposableParameter(
-                                name = "actions",
-                                value = {
-                                    repeat(actionCount.value) {
-                                        FunctionCallCode(
-                                            name = OdsComponent.OdsTopAppBarActionButton.name,
-                                            parameters = listOf(
-                                                PredefinedParameter.OnClick,
-                                                PredefinedParameter.Painter,
-                                                PredefinedParameter.ContentDescription("icon description")
+                            composable(name = "actions") {
+                                repeat(actionCount.value) {
+                                    FunctionCallCode(
+                                        name = OdsComposable.OdsTopAppBarActionButton.name,
+                                        parameters = {
+                                            onClick()
+                                            painter()
+                                            contentDescription("icon description")
+                                        }
+                                    )
+                                }
+                                if (isOverflowMenuEnabled) {
+                                    FunctionCallCode(
+                                        name = OdsComposable.OdsTopAppBarOverflowMenuBox.name,
+                                        parameters = { string("overflowIconContentDescription", "Open overflow menu") }
+                                    ) {
+                                        for (i in 1..2) {
+                                            FunctionCallCode(
+                                                name = OdsComposable.OdsDropdownMenuItem.name,
+                                                parameters = {
+                                                    text("Menu $i")
+                                                    onClick()
+                                                }
                                             )
-                                        )
-                                    }
-                                    if (isOverflowMenuEnabled) {
-                                        FunctionCallCode(
-                                            name = OdsComponent.OdsTopAppBarOverflowMenuBox.name,
-                                            parameters = listOf(
-                                                StringParameter("overflowIconContentDescription", "Open overflow menu"),
-                                            )
-                                        ) {
-                                            for (i in 1..2) {
-                                                FunctionCallCode(
-                                                    name = OdsComponent.OdsDropdownMenuItem.name,
-                                                    parameters = listOf(
-                                                        PredefinedParameter.Text("Menu $i"),
-                                                        PredefinedParameter.OnClick
-                                                    )
-                                                )
-                                            }
                                         }
                                     }
                                 }
-                            ))
+                            }
                         }
                     )
                 }

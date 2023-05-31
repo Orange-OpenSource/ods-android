@@ -10,10 +10,14 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Added
 
 - \[App\] Generalize code implementation section for all components ([#501](https://github.com/Orange-OpenSource/ods-android/issues/501))
+- \[App\] Add a DSL for parameters in code implementation ([#520](https://github.com/Orange-OpenSource/ods-android/issues/520))
+- \[App\] Display XML version of components in app when available ([#476](https://github.com/Orange-OpenSource/ods-android/issues/476))
+- \[LibXml\] Add `lib-xml` module with `OdsBanner` view ([#476](https://github.com/Orange-OpenSource/ods-android/issues/476))
 
 ### Changed
 
 - \[App\] Use Orange placeholder images ([#522](https://github.com/Orange-OpenSource/ods-android/issues/522))
+- \[Lib\] Rename `OdsComponentApi` annotation and `OdsComponent` enum to `OdsComposable` ([#522](https://github.com/Orange-OpenSource/ods-android/issues/522))
 
 ### Fixed
 

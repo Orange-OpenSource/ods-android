@@ -38,13 +38,8 @@ import com.orange.ods.app.ui.utilities.DrawableManager
 import com.orange.ods.app.ui.utilities.composable.CodeImplementationColumn
 import com.orange.ods.app.ui.utilities.composable.FunctionCallCode
 import com.orange.ods.app.ui.utilities.composable.ImagePainterValue
-import com.orange.ods.app.ui.utilities.composable.LambdaParameter
-import com.orange.ods.app.ui.utilities.composable.MutableStateParameter
-import com.orange.ods.app.ui.utilities.composable.PredefinedParameter
-import com.orange.ods.app.ui.utilities.composable.SimpleParameter
-import com.orange.ods.app.ui.utilities.composable.StringRepresentationParameter
 import com.orange.ods.app.ui.utilities.composable.Subtitle
-import com.orange.ods.compose.component.OdsComponent
+import com.orange.ods.compose.OdsComposable
 import com.orange.ods.compose.component.chip.OdsChip
 import com.orange.ods.compose.component.chip.OdsChoiceChip
 import com.orange.ods.compose.component.chip.OdsChoiceChipsFlowRow
@@ -129,18 +124,20 @@ private fun Chip(chipCustomizationState: ChipCustomizationState) {
 
             CodeImplementationColumn {
                 FunctionCallCode(
-                    name = OdsComponent.OdsChoiceChipsFlowRow.name,
-                    parameters = buildList {
-                        add(MutableStateParameter("selectedChip", choiceChipIndexSelected.value.toString()))
-                        if (!outlinedChips) add(StringRepresentationParameter("outlinedChips", outlinedChips))
+                    name = OdsComposable.OdsChoiceChipsFlowRow.name,
+                    parameters = {
+                        mutableState("selectedChip", choiceChipIndexSelected.value.toString())
+                        if (!outlinedChips) stringRepresentation("outlinedChips", outlinedChips)
                     }
                 ) {
                     recipes.forEachIndexed { index, recipe ->
-                        FunctionCallCode(name = OdsComponent.OdsChoiceChip.name, parameters = buildList {
-                            add(PredefinedParameter.Text(recipe.title))
-                            add(StringRepresentationParameter("value", index))
-                            if (!isEnabled) add(PredefinedParameter.Enabled(false))
-                        })
+                        FunctionCallCode(
+                            name = OdsComposable.OdsChoiceChip.name,
+                            parameters = {
+                                text(recipe.title)
+                                stringRepresentation("value", index)
+                                if (!isEnabled) enabled(false)
+                            })
                     }
                 }
             }
@@ -167,15 +164,18 @@ private fun Chip(chipCustomizationState: ChipCustomizationState) {
             Spacer(modifier = Modifier.padding(top = dimensionResource(R.dimen.spacing_s)))
 
             CodeImplementationColumn {
-                FunctionCallCode(name = OdsComponent.OdsChip.name, exhaustiveParameters = false, parameters = buildList {
-                    add(PredefinedParameter.Text(recipe?.title.orEmpty()))
-                    if (!outlinedChips) add(StringRepresentationParameter("outlined", outlinedChips))
-                    if (isActionChip || hasLeadingIcon) add(PredefinedParameter.Icon)
-                    if (hasLeadingAvatar) add(SimpleParameter("leadingAvatar", ImagePainterValue))
-                    if (!isEnabled) add(PredefinedParameter.Enabled(false))
-                    add(PredefinedParameter.OnClick)
-                    if (isInputChip) add(LambdaParameter("onCancel"))
-                })
+                FunctionCallCode(
+                    name = OdsComposable.OdsChip.name,
+                    exhaustiveParameters = false,
+                    parameters = {
+                        text(recipe?.title.orEmpty())
+                        if (!outlinedChips) stringRepresentation("outlined", outlinedChips)
+                        if (isActionChip || hasLeadingIcon) icon()
+                        if (hasLeadingAvatar) simple("leadingAvatar", ImagePainterValue)
+                        if (!isEnabled) enabled(false)
+                        onClick()
+                        if (isInputChip) lambda("onCancel")
+                    })
             }
         }
     }

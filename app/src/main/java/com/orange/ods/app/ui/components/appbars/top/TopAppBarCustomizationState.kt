@@ -16,12 +16,19 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.saveable.rememberSaveable
 import com.orange.ods.app.ui.MainTopAppBarState
+import com.orange.ods.app.ui.TopAppBarConfiguration
 
 @Composable
 fun rememberTopAppBarCustomizationState(
     navigationIconEnabled: MutableState<Boolean> = rememberSaveable { mutableStateOf(MainTopAppBarState.DefaultConfiguration.isNavigationIconEnabled) },
-    actionCount: MutableState<Int> = rememberSaveable { mutableStateOf(MainTopAppBarState.DefaultConfiguration.actionCount) },
-    overflowMenuEnabled: MutableState<Boolean> = rememberSaveable { mutableStateOf(MainTopAppBarState.DefaultConfiguration.isOverflowMenuEnabled) },
+    actionCount: MutableState<Int> = rememberSaveable { mutableStateOf(MainTopAppBarState.DefaultConfiguration.actions.count()) },
+    overflowMenuEnabled: MutableState<Boolean> = rememberSaveable {
+        mutableStateOf(
+            MainTopAppBarState.DefaultConfiguration.actions.contains(
+                TopAppBarConfiguration.Action.OverflowMenu
+            )
+        )
+    },
 ) =
     remember(navigationIconEnabled, actionCount, overflowMenuEnabled) {
         TopAppBarCustomizationState(navigationIconEnabled, actionCount, overflowMenuEnabled)

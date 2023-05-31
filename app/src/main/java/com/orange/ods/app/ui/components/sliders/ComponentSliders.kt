@@ -29,16 +29,11 @@ import androidx.compose.ui.res.stringResource
 import com.orange.ods.app.R
 import com.orange.ods.app.ui.components.utilities.ComponentCustomizationBottomSheetScaffold
 import com.orange.ods.app.ui.utilities.composable.CodeImplementationColumn
-import com.orange.ods.app.ui.utilities.composable.FloatParameter
 import com.orange.ods.app.ui.utilities.composable.FunctionCallCode
 import com.orange.ods.app.ui.utilities.composable.IconPainterValue
-import com.orange.ods.app.ui.utilities.composable.LambdaParameter
-import com.orange.ods.app.ui.utilities.composable.SimpleParameter
-import com.orange.ods.app.ui.utilities.composable.StringParameter
-import com.orange.ods.app.ui.utilities.composable.StringRepresentationParameter
 import com.orange.ods.app.ui.utilities.composable.TechnicalText
 import com.orange.ods.app.ui.utilities.composable.Title
-import com.orange.ods.compose.component.OdsComponent
+import com.orange.ods.compose.OdsComposable
 import com.orange.ods.compose.component.control.OdsSlider
 import com.orange.ods.compose.component.control.OdsSliderLockups
 import com.orange.ods.compose.component.list.OdsListItem
@@ -71,7 +66,7 @@ fun ComponentSliders() {
                     .verticalScroll(rememberScrollState())
                     .padding(horizontal = dimensionResource(id = R.dimen.spacing_m))
             ) {
-                val technicalText = if (shouldDisplayValue) OdsComponent.OdsSliderLockups.name else OdsComponent.OdsSlider.name
+                val technicalText = if (shouldDisplayValue) OdsComposable.OdsSliderLockups.name else OdsComposable.OdsSlider.name
                 val steps = if (isStepped) 9 else 0
                 val leftIcon = if (hasSideIcons) painterResource(id = R.drawable.ic_volume_status_1) else null
                 val leftIconContentDescription = if (hasSideIcons) stringResource(id = R.string.component_slider_low_volume) else null
@@ -88,7 +83,7 @@ fun ComponentSliders() {
 
                 val componentName: String
                 if (shouldDisplayValue) {
-                    componentName = OdsComponent.OdsSliderLockups.name
+                    componentName = OdsComposable.OdsSliderLockups.name
                     OdsSliderLockups(
                         value = sliderPosition,
                         steps = steps,
@@ -100,7 +95,7 @@ fun ComponentSliders() {
                         rightIconContentDescription = rightIconContentDescription
                     )
                 } else {
-                    componentName = OdsComponent.OdsSlider.name
+                    componentName = OdsComposable.OdsSlider.name
                     OdsSlider(
                         value = sliderPosition,
                         steps = steps,
@@ -114,19 +109,21 @@ fun ComponentSliders() {
                 }
 
                 CodeImplementationColumn {
-                    FunctionCallCode(name = componentName, exhaustiveParameters = false, parameters = mutableListOf(
-                        FloatParameter("value", sliderPosition),
-                        SimpleParameter("valueRange", "0f..100f"),
-                        LambdaParameter("onValueChange")
-                    ).apply {
-                        if (isStepped) add(StringRepresentationParameter("steps", steps))
-                        if (hasSideIcons) {
-                            add(SimpleParameter("leftIcon", IconPainterValue))
-                            leftIconContentDescription?.let { add(StringParameter("leftIconContentDescription", it)) }
-                            add(SimpleParameter("rightIcon", IconPainterValue))
-                            rightIconContentDescription?.let { add(StringParameter("rightIconContentDescription", it)) }
-                        }
-                    })
+                    FunctionCallCode(
+                        name = componentName,
+                        exhaustiveParameters = false,
+                        parameters = {
+                            float("value", sliderPosition)
+                            simple("valueRange", "0f..100f")
+                            lambda("onValueChange")
+                            if (isStepped) stringRepresentation("steps", steps)
+                            if (hasSideIcons) {
+                                simple("leftIcon", IconPainterValue)
+                                leftIconContentDescription?.let { string("leftIconContentDescription", it) }
+                                simple("rightIcon", IconPainterValue)
+                                rightIconContentDescription?.let { string("rightIconContentDescription", it) }
+                            }
+                        })
                 }
             }
         }

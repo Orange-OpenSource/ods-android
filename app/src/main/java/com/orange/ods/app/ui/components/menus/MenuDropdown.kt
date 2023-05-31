@@ -40,11 +40,7 @@ import com.orange.ods.app.ui.components.utilities.ComponentCustomizationBottomSh
 import com.orange.ods.app.ui.components.utilities.clickOnElement
 import com.orange.ods.app.ui.utilities.composable.CodeImplementationColumn
 import com.orange.ods.app.ui.utilities.composable.FunctionCallCode
-import com.orange.ods.app.ui.utilities.composable.LambdaParameter
-import com.orange.ods.app.ui.utilities.composable.PredefinedParameter
-import com.orange.ods.app.ui.utilities.composable.StringParameter
-import com.orange.ods.app.ui.utilities.composable.StringRepresentationParameter
-import com.orange.ods.compose.component.OdsComponent
+import com.orange.ods.compose.OdsComposable
 import com.orange.ods.compose.component.divider.OdsDivider
 import com.orange.ods.compose.component.list.OdsIconTrailing
 import com.orange.ods.compose.component.list.OdsListItem
@@ -116,25 +112,24 @@ fun MenuDropdown() {
                     modifier = Modifier.padding(horizontal = dimensionResource(id = R.dimen.screen_horizontal_margin))
                 ) {
                     FunctionCallCode(
-                        name = OdsComponent.OdsDropdownMenu.name,
+                        name = OdsComposable.OdsDropdownMenu.name,
                         exhaustiveParameters = false,
-                        parameters = mutableListOf(
-                            StringRepresentationParameter("expanded", menuExpanded),
-                            LambdaParameter("onDismissRequest")
-                        )
+                        parameters = {
+                            stringRepresentation("expanded", menuExpanded)
+                            lambda("onDismissRequest")
+                        }
                     ) {
                         recipes.take(2).forEachIndexed { index, recipe ->
                             FunctionCallCode(
-                                name = OdsComponent.OdsDropdownMenuItem.name,
-                                parameters = mutableListOf(
-                                    StringParameter("text", recipe.title),
-                                    PredefinedParameter.OnClick
-                                ).apply {
-                                    if (hasIcons && recipe.iconResId != null) add(PredefinedParameter.Icon)
+                                name = OdsComposable.OdsDropdownMenuItem.name,
+                                parameters = {
+                                    string("text", recipe.title)
+                                    onClick()
+                                    if (hasIcons && recipe.iconResId != null) icon()
                                 }
                             )
                             if (hasDividerExample && index == 0) {
-                                FunctionCallCode(name = OdsComponent.OdsDivider.name)
+                                FunctionCallCode(name = OdsComposable.OdsDivider.name)
                             }
                         }
                     }

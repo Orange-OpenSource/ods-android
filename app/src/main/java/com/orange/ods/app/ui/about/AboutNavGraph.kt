@@ -14,7 +14,7 @@ import androidx.navigation.NavGraphBuilder
 import androidx.navigation.NavType
 import androidx.navigation.compose.composable
 import androidx.navigation.navArgument
-import com.orange.ods.app.ui.LocalMainTabsManager
+import com.orange.ods.app.ui.LocalMainTopAppBarManager
 import com.orange.ods.app.ui.MainDestinations
 
 fun NavGraphBuilder.addAboutGraph() {
@@ -22,7 +22,7 @@ fun NavGraphBuilder.addAboutGraph() {
         "${MainDestinations.AboutItemDetailRoute}/{${MainDestinations.AboutItemIdKey}}",
         arguments = listOf(navArgument(MainDestinations.AboutItemIdKey) { type = NavType.LongType })
     ) { backStackEntry ->
-        LocalMainTabsManager.current.clearTopAppBarTabs()
+        LocalMainTopAppBarManager.current.reset()
         val arguments = requireNotNull(backStackEntry.arguments)
         val aboutItemId = arguments.getLong(MainDestinations.AboutItemIdKey)
         AboutFileScreen(aboutItemId)

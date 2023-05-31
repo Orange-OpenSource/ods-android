@@ -29,14 +29,9 @@ import androidx.compose.ui.res.painterResource
 import com.orange.ods.app.R
 import com.orange.ods.app.domain.recipes.LocalRecipes
 import com.orange.ods.app.ui.components.buttons.InvertedBackgroundColumn
-import com.orange.ods.app.ui.utilities.composable.ClassInstance
 import com.orange.ods.app.ui.utilities.composable.CodeImplementationColumn
 import com.orange.ods.app.ui.utilities.composable.FunctionCallCode
-import com.orange.ods.app.ui.utilities.composable.ListParameter
-import com.orange.ods.app.ui.utilities.composable.PredefinedParameter
-import com.orange.ods.app.ui.utilities.composable.StringParameter
-import com.orange.ods.app.ui.utilities.composable.StringRepresentationParameter
-import com.orange.ods.compose.component.OdsComponent
+import com.orange.ods.compose.OdsComposable
 import com.orange.ods.compose.component.button.OdsIconToggleButtonsRow
 import com.orange.ods.compose.component.button.OdsIconToggleButtonsRowItem
 import com.orange.ods.compose.theme.OdsDisplaySurface
@@ -79,17 +74,19 @@ fun ButtonsIconToggleGroup(customizationState: ButtonIconCustomizationState) {
                 modifier = Modifier.padding(horizontal = dimensionResource(id = R.dimen.screen_horizontal_margin))
             ) {
                 FunctionCallCode(
-                    name = OdsComponent.OdsIconToggleButtonsRow.name, exhaustiveParameters = false, parameters = listOf(
-                        ListParameter("iconsToggleButtons", List(toggleCount.value) {
-                            ClassInstance(
-                                OdsIconToggleButtonsRowItem::class.java.simpleName, parameters = listOf(
-                                    PredefinedParameter.Painter,
-                                    StringParameter("iconDescription", "icon description"),
-                                )
-                            )
-                        }),
-                        StringRepresentationParameter("selectedButtonIndex", selectedIndex)
-                    )
+                    name = OdsComposable.OdsIconToggleButtonsRow.name,
+                    exhaustiveParameters = false,
+                    parameters = {
+                        list("iconsToggleButtons") {
+                            repeat(toggleCount.value) {
+                                classInstance(OdsIconToggleButtonsRowItem::class.java) {
+                                    painter()
+                                    string("iconDescription", "icon description")
+                                }
+                            }
+                        }
+                        stringRepresentation("selectedButtonIndex", selectedIndex)
+                    }
                 )
             }
         }

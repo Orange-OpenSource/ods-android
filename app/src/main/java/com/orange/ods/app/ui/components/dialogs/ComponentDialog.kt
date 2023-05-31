@@ -29,10 +29,7 @@ import com.orange.ods.app.ui.components.utilities.ComponentLaunchContentColumn
 import com.orange.ods.app.ui.components.utilities.clickOnElement
 import com.orange.ods.app.ui.utilities.composable.CodeImplementationColumn
 import com.orange.ods.app.ui.utilities.composable.FunctionCallCode
-import com.orange.ods.app.ui.utilities.composable.LambdaParameter
-import com.orange.ods.app.ui.utilities.composable.SimpleParameter
-import com.orange.ods.app.ui.utilities.composable.StringParameter
-import com.orange.ods.compose.component.OdsComponent
+import com.orange.ods.compose.OdsComposable
 import com.orange.ods.compose.component.dialog.OdsAlertDialog
 import com.orange.ods.compose.component.list.OdsListItem
 import com.orange.ods.compose.component.list.OdsSwitchTrailing
@@ -73,17 +70,20 @@ fun ComponentDialog() {
             CodeImplementationColumn(
                 modifier = Modifier.padding(horizontal = dimensionResource(id = R.dimen.screen_horizontal_margin))
             ) {
-                FunctionCallCode(name = OdsComponent.OdsAlertDialog.name, exhaustiveParameters = false, parameters = mutableListOf(
-                    SimpleParameter("text", "<dialog text>"),
-                    StringParameter("confirmButtonText", confirmButtonText),
-                    LambdaParameter("onConfirmButtonClick")
-                ).apply {
-                    if (customizationState.isTitleChecked) add(StringParameter("titleText", recipe.title))
-                    if (customizationState.isDismissButtonChecked) {
-                        add(StringParameter("dismissButtonText", dismissButtonText))
-                        add(LambdaParameter("onDismissButtonClick"))
+                FunctionCallCode(
+                    name = OdsComposable.OdsAlertDialog.name,
+                    exhaustiveParameters = false,
+                    parameters = {
+                        simple("text", "<dialog text>")
+                        string("confirmButtonText", confirmButtonText)
+                        lambda("onConfirmButtonClick")
+                        if (customizationState.isTitleChecked) string("titleText", recipe.title)
+                        if (customizationState.isDismissButtonChecked) {
+                            string("dismissButtonText", dismissButtonText)
+                            lambda("onDismissButtonClick")
+                        }
                     }
-                })
+                )
             }
 
             if (customizationState.shouldOpenDialog) {

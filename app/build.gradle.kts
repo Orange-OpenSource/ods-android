@@ -92,6 +92,8 @@ android {
 
     buildFeatures {
         compose = true
+        viewBinding = true
+        dataBinding = true
     }
 
     composeOptions {
@@ -107,6 +109,7 @@ android {
 
 dependencies {
     implementation(project(":lib"))
+    implementation(project(":lib-xml"))
     implementation(project(":theme-innovation-cup"))
 
     implementation(Dependencies.coreKtx)

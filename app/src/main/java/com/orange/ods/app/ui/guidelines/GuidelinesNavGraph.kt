@@ -12,7 +12,7 @@ package com.orange.ods.app.ui.guidelines
 
 import androidx.navigation.NavGraphBuilder
 import androidx.navigation.compose.composable
-import com.orange.ods.app.ui.LocalMainTabsManager
+import com.orange.ods.app.ui.LocalMainTopAppBarManager
 import com.orange.ods.app.ui.MainDestinations
 import com.orange.ods.app.ui.guidelines.color.GuidelineColorScreen
 import com.orange.ods.app.ui.guidelines.spacing.GuidelineSpacingScreen
@@ -20,15 +20,15 @@ import com.orange.ods.app.ui.guidelines.typography.GuidelineTypographyScreen
 
 fun NavGraphBuilder.addGuidelinesGraph() {
     composable(MainDestinations.GuidelineColor) {
-        LocalMainTabsManager.current.clearTopAppBarTabs()
+        LocalMainTopAppBarManager.current.reset()
         GuidelineColorScreen()
     }
     composable(MainDestinations.GuidelineTypography) {
-        LocalMainTabsManager.current.clearTopAppBarTabs()
+        LocalMainTopAppBarManager.current.reset()
         GuidelineTypographyScreen()
     }
     composable(MainDestinations.GuidelineSpacing) {
-        LocalMainTabsManager.current.clearTopAppBarTabs()
+        LocalMainTopAppBarManager.current.reset()
         GuidelineSpacingScreen()
     }
 }

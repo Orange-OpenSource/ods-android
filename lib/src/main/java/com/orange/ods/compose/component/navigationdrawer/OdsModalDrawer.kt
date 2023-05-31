@@ -46,7 +46,7 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.PreviewParameter
 import androidx.compose.ui.unit.dp
 import com.orange.ods.R
-import com.orange.ods.compose.component.OdsComponentApi
+import com.orange.ods.compose.component.OdsComposable
 import com.orange.ods.compose.component.divider.OdsDivider
 import com.orange.ods.compose.component.list.OdsListItem
 import com.orange.ods.compose.component.list.OdsListItemIcon
@@ -73,7 +73,7 @@ private const val SelectedItemOpacity = 20f / 255f
  * @param content content of the rest of the UI
  */
 @Composable
-@OdsComponentApi
+@OdsComposable
 fun OdsModalDrawer(
     drawerHeader: OdsModalDrawerHeader,
     drawerContentList: List<OdsModalDrawerItem>,

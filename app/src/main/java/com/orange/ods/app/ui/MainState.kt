@@ -11,7 +11,10 @@
 package com.orange.ods.app.ui
 
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.MutableState
+import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
+import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.lifecycle.Lifecycle
 import androidx.navigation.NavBackStackEntry
 import androidx.navigation.NavDestination
@@ -47,17 +50,17 @@ fun rememberMainState(
     themeState: MainThemeState,
     navController: NavHostController = rememberNavController(),
     topAppBarState: MainTopAppBarState = rememberMainTopAppBarState(),
-    tabsState: MainTabsState = rememberMainTabsState()
+    uiFramework: MutableState<UiFramework> = rememberSaveable { mutableStateOf(UiFramework.Compose) }
 ) =
-    remember(themeState, navController, topAppBarState, tabsState) {
-        MainState(themeState, navController, topAppBarState, tabsState)
+    remember(themeState, navController, topAppBarState, uiFramework) {
+        MainState(themeState, navController, topAppBarState, uiFramework)
     }
 
 class MainState(
     val themeState: MainThemeState,
     val navController: NavHostController,
     val topAppBarState: MainTopAppBarState,
-    val tabsState: MainTabsState
+    val uiFramework: MutableState<UiFramework>
 ) {
 
     // ----------------------------------------------------------

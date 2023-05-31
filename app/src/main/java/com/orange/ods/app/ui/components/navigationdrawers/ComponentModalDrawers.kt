@@ -32,17 +32,10 @@ import com.orange.ods.app.domain.recipes.LocalRecipes
 import com.orange.ods.app.ui.components.utilities.ComponentCustomizationBottomSheetScaffold
 import com.orange.ods.app.ui.components.utilities.ComponentLaunchContentColumn
 import com.orange.ods.app.ui.utilities.DrawableManager
-import com.orange.ods.app.ui.utilities.composable.ClassInstance
-import com.orange.ods.app.ui.utilities.composable.ClassInstanceParameter
 import com.orange.ods.app.ui.utilities.composable.CodeImplementationColumn
 import com.orange.ods.app.ui.utilities.composable.FunctionCallCode
-import com.orange.ods.app.ui.utilities.composable.LambdaParameter
-import com.orange.ods.app.ui.utilities.composable.ListParameter
-import com.orange.ods.app.ui.utilities.composable.PredefinedParameter
-import com.orange.ods.app.ui.utilities.composable.SimpleParameter
-import com.orange.ods.app.ui.utilities.composable.StringRepresentationParameter
 import com.orange.ods.app.ui.utilities.composable.Subtitle
-import com.orange.ods.compose.component.OdsComponent
+import com.orange.ods.compose.OdsComposable
 import com.orange.ods.compose.component.chip.OdsChoiceChip
 import com.orange.ods.compose.component.chip.OdsChoiceChipsFlowRow
 import com.orange.ods.compose.component.list.OdsListItem
@@ -181,43 +174,33 @@ fun ComponentModalDrawers() {
 
                         CodeImplementationColumn(modifier = Modifier.padding(horizontal = dimensionResource(id = R.dimen.screen_horizontal_margin))) {
                             FunctionCallCode(
-                                name = OdsComponent.OdsModalDrawer.name,
+                                name = OdsComposable.OdsModalDrawer.name,
                                 exhaustiveParameters = false,
-                                parameters = listOf(
-                                    ClassInstanceParameter(
-                                        "drawerHeader", ClassInstance(OdsModalDrawerHeader::class.java.simpleName, mutableListOf(
-                                            PredefinedParameter.Title(title),
-                                            PredefinedParameter.Image,
-                                            StringRepresentationParameter("imageDisplayType", imageDisplayType)
-                                        ).apply {
-                                            subtitle?.let { add(PredefinedParameter.Subtitle(it)) }
-                                        })
-                                    ),
-                                    ListParameter("drawerContentList", mutableListOf<ClassInstance>().apply {
+                                parameters = {
+                                    classInstance("drawerHeader", OdsModalDrawerHeader::class.java) {
+                                        title(title)
+                                        image()
+                                        stringRepresentation("imageDisplayType", imageDisplayType)
+                                        subtitle?.let { subtitle(it) }
+                                    }
+                                    list("drawerContentList") {
                                         if (isContentExampleChecked) {
                                             if (hasLabel) {
-                                                add(
-                                                    ClassInstance(
-                                                        OdsModalDrawerSectionLabel::class.java.simpleName,
-                                                        listOf(PredefinedParameter.Label("Section"))
-                                                    )
-                                                )
+                                                classInstance(OdsModalDrawerSectionLabel::class.java) {
+                                                    label("Section")
+                                                }
                                             }
-                                            add(
-                                                ClassInstance(
-                                                    OdsModalDrawerListItem::class.java.simpleName, listOf(
-                                                        PredefinedParameter.Icon,
-                                                        SimpleParameter("text", "<item label>")
-                                                    )
-                                                )
-                                            )
-                                            if (hasDivider) add(ClassInstance(OdsModalDrawerDivider::class.java.simpleName))
+                                            classInstance(OdsModalDrawerListItem::class.java) {
+                                                icon()
+                                                simple("text", "<item label>")
+                                            }
+                                            if (hasDivider) classInstance(OdsModalDrawerDivider::class.java)
                                         }
-                                    }),
-                                    SimpleParameter("selectedItem", "<OdsModalDrawerItem>"),
-                                    LambdaParameter("onItemClick"),
-                                    LambdaParameter("content")
-                                )
+                                    }
+                                    simple("selectedItem", "<OdsModalDrawerItem>")
+                                    lambda("onItemClick")
+                                    lambda("content")
+                                }
                             )
                         }
                     }

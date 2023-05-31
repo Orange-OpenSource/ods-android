@@ -75,7 +75,7 @@ dependencies {
 
     implementation(Dependencies.kotlinStdlibJdk8)
     implementation(Dependencies.kotlinReflect)
-    compileOnly(project(":component-processor"))
+    compileOnly(project(":composable-processor"))
 
     implementation(Dependencies.accompanistFlowLayout)
     implementation(Dependencies.appCompat)
@@ -92,5 +92,5 @@ dependencies {
     testImplementation(Dependencies.jUnit)
     androidTestImplementation(Dependencies.testExtJUnit)
 
-    ksp(project(":component-processor"))
+    ksp(project(":composable-processor"))
 }

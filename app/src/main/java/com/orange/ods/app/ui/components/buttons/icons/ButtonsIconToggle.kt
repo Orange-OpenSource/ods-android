@@ -29,12 +29,9 @@ import androidx.compose.ui.res.stringResource
 import com.orange.ods.app.R
 import com.orange.ods.app.ui.components.buttons.InvertedBackgroundColumn
 import com.orange.ods.app.ui.utilities.composable.CodeImplementationColumn
-import com.orange.ods.app.ui.utilities.composable.CodeParameter
 import com.orange.ods.app.ui.utilities.composable.FunctionCallCode
 import com.orange.ods.app.ui.utilities.composable.IconPainterValue
-import com.orange.ods.app.ui.utilities.composable.PredefinedParameter
-import com.orange.ods.app.ui.utilities.composable.SimpleParameter
-import com.orange.ods.compose.component.OdsComponent
+import com.orange.ods.compose.OdsComposable
 import com.orange.ods.compose.component.button.OdsIconToggleButton
 
 @Composable
@@ -78,15 +75,16 @@ fun ButtonsIconToggle(customizationState: ButtonIconCustomizationState) {
             CodeImplementationColumn(
                 modifier = Modifier.padding(horizontal = dimensionResource(id = R.dimen.screen_horizontal_margin))
             ) {
-                FunctionCallCode(name = OdsComponent.OdsIconToggleButton.name, exhaustiveParameters = false, parameters = mutableListOf<CodeParameter>(
-                    PredefinedParameter.Painter,
-                    SimpleParameter("painterChecked", IconPainterValue),
-                    PredefinedParameter.Checked(buttonCheckedState.value)
-                ).apply {
-                    if (!isEnabled) {
-                        add(PredefinedParameter.Enabled(false))
+                FunctionCallCode(
+                    name = OdsComposable.OdsIconToggleButton.name,
+                    exhaustiveParameters = false,
+                    parameters = {
+                        painter()
+                        simple("painterChecked", IconPainterValue)
+                        checked(buttonCheckedState.value)
+                        if (!isEnabled) enabled(false)
                     }
-                })
+                )
             }
         }
     }
