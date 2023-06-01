@@ -50,7 +50,7 @@ import androidx.compose.ui.tooling.preview.PreviewParameter
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import com.orange.ods.R
-import com.orange.ods.compose.component.OdsComponentApi
+import com.orange.ods.compose.component.OdsComposable
 import com.orange.ods.compose.component.control.OdsCheckbox
 import com.orange.ods.compose.component.control.OdsRadioButton
 import com.orange.ods.compose.component.control.OdsSwitch
@@ -86,7 +86,7 @@ import kotlin.reflect.KClass
  * @param overlineText The text displayed above the primary text
  */
 @Composable
-@OdsComponentApi
+@OdsComposable
 fun OdsListItem(
     modifier: Modifier = Modifier,
     text: String,
@@ -128,7 +128,7 @@ fun OdsListItem(
  * the following elements: Checkbox, Switch, RadioButton, Icon or Caption text
  */
 @Composable
-@OdsComponentApi
+@OdsComposable
 fun OdsListItem(
     modifier: Modifier = Modifier,
     text: String,
@@ -302,7 +302,7 @@ private fun computeRequiredHeight(
  * @param tint Icon color. Has not effect if icon type is different from `OdsListItemIconType.Icon`
  */
 @Composable
-@OdsComponentApi
+@OdsComposable
 fun OdsListItemIconScope.OdsListItemIcon(painter: Painter, contentDescription: String? = null, tint: Color = OdsTheme.colors.onSurface) {
     when (iconType) {
         OdsListItemIconType.Icon -> {

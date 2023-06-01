@@ -31,10 +31,11 @@ import com.orange.ods.app.domain.recipes.LocalCategories
 import com.orange.ods.app.domain.recipes.LocalRecipes
 import com.orange.ods.app.ui.components.utilities.ComponentCustomizationBottomSheetScaffold
 import com.orange.ods.app.ui.components.utilities.ComponentLaunchContentColumn
+import com.orange.ods.app.ui.utilities.DrawableManager
 import com.orange.ods.app.ui.utilities.composable.CodeImplementationColumn
-import com.orange.ods.app.ui.utilities.composable.CommonTechnicalTextColumn
+import com.orange.ods.app.ui.utilities.composable.FunctionCallCode
 import com.orange.ods.app.ui.utilities.composable.Subtitle
-import com.orange.ods.compose.component.OdsComponent
+import com.orange.ods.compose.OdsComposable
 import com.orange.ods.compose.component.chip.OdsChoiceChip
 import com.orange.ods.compose.component.chip.OdsChoiceChipsFlowRow
 import com.orange.ods.compose.component.list.OdsListItem
@@ -57,46 +58,51 @@ fun ComponentModalDrawers() {
     val recipes = LocalRecipes.current
     val categories = LocalCategories.current
 
-    val modalDrawerItems: MutableList<OdsModalDrawerItem> = categories.subList(1, categories.size).map {
-        OdsModalDrawerListItem(if (customizationState.isListIconChecked) it.iconResId else null, it.name)
-    }.toMutableList()
+    with(customizationState) {
+        val modalDrawerItems: MutableList<OdsModalDrawerItem> = categories.subList(1, categories.size).map {
+            OdsModalDrawerListItem(if (isListIconChecked) it.iconResId else null, it.name)
+        }.toMutableList()
 
-    val sectionListCategory = categories.first()
-    val sectionListRecipes = recipes.filter { it.category.id == sectionListCategory.id }
+        val sectionListCategory = categories.first()
+        val sectionListRecipes = recipes.filter { it.category.id == sectionListCategory.id }
 
-    if (customizationState.hasLabel || customizationState.hasDivider) {
-        if (customizationState.hasDivider) modalDrawerItems.add(OdsModalDrawerDivider)
-        if (customizationState.hasLabel) modalDrawerItems.add(OdsModalDrawerSectionLabel(sectionListCategory.name))
-        sectionListRecipes.forEach { recipe ->
-            val item = OdsModalDrawerListItem(if (customizationState.isListIconChecked) recipe.iconResId else null, recipe.title)
-            modalDrawerItems.add(item)
+        if (hasLabel || hasDivider) {
+            if (hasDivider) modalDrawerItems.add(OdsModalDrawerDivider)
+            if (hasLabel) modalDrawerItems.add(OdsModalDrawerSectionLabel(sectionListCategory.name))
+            sectionListRecipes.forEach { recipe ->
+                val item = OdsModalDrawerListItem(if (isListIconChecked) recipe.iconResId else null, recipe.title)
+                modalDrawerItems.add(item)
+            }
         }
-    }
 
-    val selectedItemState = remember { mutableStateOf(modalDrawerItems.firstOrNull { it is OdsModalDrawerListItem }) }
-    OdsModalDrawer(
-        drawerHeader = OdsModalDrawerHeader(
-            title = stringResource(id = R.string.component_modal_drawer_side),
-            image = if (customizationState.hasBackground) {
-                rememberAsyncImagePainter(
-                    model = rememberSaveable { recipes.random() }.imageUrl,
-                    placeholder = painterResource(id = R.drawable.placeholder),
-                    error = painterResource(id = R.drawable.placeholder)
-                )
-            } else if (customizationState.hasAvatar) {
-                painterResource(id = R.drawable.placeholder)
-            } else null,
-            subtitle = if (customizationState.isSubTitleChecked) stringResource(id = R.string.component_element_example) else null,
-            imageDisplayType = if (customizationState.hasAvatar) OdsModalDrawerHeaderImageDisplayType.Avatar else if (customizationState.hasBackground) OdsModalDrawerHeaderImageDisplayType.Background else OdsModalDrawerHeaderImageDisplayType.None
-        ),
-        drawerContentList = if (customizationState.isContentExampleChecked) modalDrawerItems else emptyList(),
-        drawerState = drawerState,
-        selectedItem = selectedItemState.value,
-        onItemClick = { item ->
-            selectedItemState.value = item
-        },
-        content = {
-            with(customizationState) {
+        val title = stringResource(id = R.string.component_modal_drawer_side)
+        val subtitle = if (isSubTitleChecked) stringResource(id = R.string.component_element_example) else null
+        val imageDisplayType = when {
+            hasAvatar -> OdsModalDrawerHeaderImageDisplayType.Avatar
+            hasBackground -> OdsModalDrawerHeaderImageDisplayType.Background
+            else -> OdsModalDrawerHeaderImageDisplayType.None
+        }
+        val selectedItemState = remember { mutableStateOf(modalDrawerItems.firstOrNull { it is OdsModalDrawerListItem }) }
+        OdsModalDrawer(
+            drawerHeader = OdsModalDrawerHeader(
+                title = title,
+                image = if (hasBackground || hasAvatar) {
+                    rememberAsyncImagePainter(
+                        model = rememberSaveable { recipes.random() }.imageUrl,
+                        placeholder = painterResource(id = DrawableManager.getPlaceholderResId()),
+                        error = painterResource(id = DrawableManager.getPlaceholderResId(error = true))
+                    )
+                } else null,
+                subtitle = subtitle,
+                imageDisplayType = imageDisplayType
+            ),
+            drawerContentList = if (isContentExampleChecked) modalDrawerItems else emptyList(),
+            drawerState = drawerState,
+            selectedItem = selectedItemState.value,
+            onItemClick = { item ->
+                selectedItemState.value = item
+            },
+            content = {
                 if (!isContentExampleChecked) {
                     listIconChecked.value = false
                     subtitleChecked.value = false
@@ -165,15 +171,41 @@ fun ComponentModalDrawers() {
                             buttonLabelRes = R.string.component_modal_drawer_open,
                             onButtonClick = { scope.launch { drawerState.open() } }
                         )
-                        CodeImplementationColumn {
-                            CommonTechnicalTextColumn(
-                                componentName = OdsComponent.OdsModalDrawer.name
-                            ) {
-                            }
+
+                        CodeImplementationColumn(modifier = Modifier.padding(horizontal = dimensionResource(id = R.dimen.screen_horizontal_margin))) {
+                            FunctionCallCode(
+                                name = OdsComposable.OdsModalDrawer.name,
+                                exhaustiveParameters = false,
+                                parameters = {
+                                    classInstance("drawerHeader", OdsModalDrawerHeader::class.java) {
+                                        title(title)
+                                        image()
+                                        stringRepresentation("imageDisplayType", imageDisplayType)
+                                        subtitle?.let { subtitle(it) }
+                                    }
+                                    list("drawerContentList") {
+                                        if (isContentExampleChecked) {
+                                            if (hasLabel) {
+                                                classInstance(OdsModalDrawerSectionLabel::class.java) {
+                                                    label("Section")
+                                                }
+                                            }
+                                            classInstance(OdsModalDrawerListItem::class.java) {
+                                                icon()
+                                                simple("text", "<item label>")
+                                            }
+                                            if (hasDivider) classInstance(OdsModalDrawerDivider::class.java)
+                                        }
+                                    }
+                                    simple("selectedItem", "<OdsModalDrawerItem>")
+                                    lambda("onItemClick")
+                                    lambda("content")
+                                }
+                            )
                         }
                     }
                 }
             }
-        }
-    )
+        )
+    }
 }

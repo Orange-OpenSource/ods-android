@@ -34,7 +34,7 @@ android {
         minSdk = Versions.minSdk
         targetSdk = Versions.targetSdk
         val versionCodeProperty = project.findTypedProperty<String>("versionCode")
-        versionCode = versionCodeProperty?.toInt() ?: 3
+        versionCode = versionCodeProperty?.toInt() ?: 4
         versionName = version.toString()
         val versionNameSuffixProperty = project.findTypedProperty<String>("versionNameSuffix")
         versionNameSuffix = versionNameSuffixProperty
@@ -92,6 +92,8 @@ android {
 
     buildFeatures {
         compose = true
+        viewBinding = true
+        dataBinding = true
     }
 
     composeOptions {
@@ -107,6 +109,7 @@ android {
 
 dependencies {
     implementation(project(":lib"))
+    implementation(project(":lib-xml"))
     implementation(project(":theme-innovation-cup"))
 
     implementation(Dependencies.coreKtx)

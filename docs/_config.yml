@@ -4,7 +4,7 @@ plugins:
 relative_links:
   enabled: true
   collections: true
-remote_theme: Orange-OpenSource/ods-jekyll-theme
+theme: ods-jekyll-theme
 baseurl: "/ods-android"
 defaults:
   - scope:
@@ -27,3 +27,7 @@ defaults:
       path: "0.12.0"
     values:
       version: "0.12.0"
+  - scope:
+      path: "0.13.0"
+    values:
+      version: "0.13.0"

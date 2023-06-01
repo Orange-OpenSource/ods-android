@@ -17,30 +17,46 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.stringResource
-import com.orange.ods.compose.component.textfield.password.OdsPasswordTextField
 import com.orange.ods.app.R
+import com.orange.ods.compose.OdsComposable
+import com.orange.ods.compose.component.textfield.password.OdsPasswordTextField
 
 @Composable
 fun TextFieldPassword(customizationState: TextFieldCustomizationState) {
-    Column {
-        OdsPasswordTextField(
-            modifier = Modifier
-                .fillMaxWidth()
-                .padding(top = dimensionResource(id = R.dimen.spacing_s)),
-            enabled = customizationState.isEnabled,
-            isError = customizationState.isError,
-            errorMessage = if (customizationState.isError) stringResource(id = R.string.component_text_field_error_message) else null,
-            value = customizationState.displayedText,
-            onValueChange = { customizationState.updateText(it) },
-            label = stringResource(id = R.string.component_element_label),
-            placeholder = stringResource(id = R.string.component_text_field_placeholder),
-            visualisationIcon = customizationState.hasVisualisationIcon,
-            keyboardOptions = customizationState.keyboardOptions,
-            characterCounter = if (customizationState.hasCharacterCounter) {
-                {
-                    TextFieldCharacterCounter(valueLength = customizationState.displayedText.length, enabled = customizationState.isEnabled)
-                }
-            } else null
-        )
+    val label = stringResource(id = R.string.component_element_label)
+    val placeholder = stringResource(id = R.string.component_text_field_placeholder)
+    val errorMessage = stringResource(id = R.string.component_text_field_error_message)
+
+    with(customizationState) {
+        Column {
+            OdsPasswordTextField(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(top = dimensionResource(id = R.dimen.spacing_s)),
+                enabled = isEnabled,
+                isError = isError,
+                errorMessage = if (isError) errorMessage else null,
+                value = displayedText,
+                onValueChange = { updateText(it) },
+                label = label,
+                placeholder = placeholder,
+                visualisationIcon = hasVisualisationIcon,
+                keyboardOptions = keyboardOptions,
+                characterCounter = if (hasCharacterCounter) {
+                    {
+                        TextFieldCharacterCounter(valueLength = displayedText.length, enabled = isEnabled)
+                    }
+                } else null
+            )
+
+            TextFieldCodeImplementationColumn(
+                componentName = OdsComposable.OdsPasswordTextField.name,
+                customizationState = customizationState,
+                label = label,
+                placeholder = placeholder,
+                errorMessage = errorMessage,
+                hasTrailing = false
+            )
+        }
     }
 }

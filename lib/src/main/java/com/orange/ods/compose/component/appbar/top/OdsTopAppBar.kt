@@ -32,7 +32,7 @@ import androidx.compose.ui.graphics.painter.Painter
 import androidx.compose.ui.graphics.vector.rememberVectorPainter
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
-import com.orange.ods.compose.component.OdsComponentApi
+import com.orange.ods.compose.component.OdsComposable
 import com.orange.ods.compose.component.button.OdsIconButton
 import com.orange.ods.compose.component.menu.OdsDropdownMenu
 import com.orange.ods.compose.component.menu.OdsDropdownMenuItem
@@ -59,7 +59,7 @@ import com.orange.ods.compose.theme.OdsTheme
  * @param elevated True to set an elevation to the top app bar (shadow displayed), false otherwise.
  */
 @Composable
-@OdsComponentApi
+@OdsComposable
 fun OdsTopAppBar(
     modifier: Modifier = Modifier,
     title: String? = null,
@@ -100,7 +100,7 @@ fun OdsTopAppBar(
  * semantics purposes, true by default.
  */
 @Composable
-@OdsComponentApi
+@OdsComposable
 fun OdsTopAppBarActionButton(
     onClick: () -> Unit,
     painter: Painter,
@@ -125,6 +125,7 @@ fun OdsTopAppBarActionButton(
  * @param content The content of the overflow dropdown menu
  */
 @Composable
+@OdsComposable
 fun OdsTopAppBarOverflowMenuBox(
     overflowIconContentDescription: String,
     content: @Composable ColumnScope.() -> Unit

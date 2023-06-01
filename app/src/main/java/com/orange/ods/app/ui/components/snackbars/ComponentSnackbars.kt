@@ -10,22 +10,35 @@
 
 package com.orange.ods.app.ui.components.snackbars
 
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.ExperimentalMaterialApi
 import androidx.compose.material.rememberBottomSheetScaffoldState
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.runtime.saveable.rememberSaveable
+import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.stringResource
-import com.orange.ods.compose.component.list.OdsListItem
-import com.orange.ods.compose.component.list.OdsSwitchTrailing
-import com.orange.ods.compose.component.snackbar.OdsSnackbar
-import com.orange.ods.compose.component.snackbar.OdsSnackbarHost
 import com.orange.ods.app.R
 import com.orange.ods.app.ui.components.utilities.ComponentCustomizationBottomSheetScaffold
 import com.orange.ods.app.ui.components.utilities.ComponentLaunchContentColumn
 import com.orange.ods.app.ui.components.utilities.clickOnElement
+import com.orange.ods.app.ui.utilities.composable.CodeBackgroundColumn
+import com.orange.ods.app.ui.utilities.composable.CodeImplementationColumn
+import com.orange.ods.app.ui.utilities.composable.FunctionCallCode
+import com.orange.ods.app.ui.utilities.composable.IndentCodeColumn
+import com.orange.ods.app.ui.utilities.composable.TechnicalText
+import com.orange.ods.compose.OdsComposable
+import com.orange.ods.compose.component.list.OdsListItem
+import com.orange.ods.compose.component.list.OdsSwitchTrailing
+import com.orange.ods.compose.component.snackbar.OdsSnackbar
+import com.orange.ods.compose.component.snackbar.OdsSnackbarHost
+import com.orange.ods.compose.text.OdsTextBody2
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.launch
 
@@ -65,13 +78,60 @@ fun ComponentSnackbars() {
                 trailing = OdsSwitchTrailing(checked = actionOnNewLineChecked, enabled = actionButtonChecked.value)
             )
         }) {
-        ComponentLaunchContentColumn(textRes = R.string.component_snackbar_customize, buttonLabelRes = R.string.component_snackbar_show) {
-            coroutineScope.launch {
-                bottomSheetScaffoldState.snackbarHostState.showSnackbar(
-                    message = snackbarMessage,
-                    actionLabel = if (actionButtonChecked.value) snackbarActionLabel else null,
-                )
+        Column(
+            modifier = Modifier.verticalScroll(rememberScrollState())
+        ) {
+            ComponentLaunchContentColumn(textRes = R.string.component_snackbar_customize, buttonLabelRes = R.string.component_snackbar_show) {
+                coroutineScope.launch {
+                    bottomSheetScaffoldState.snackbarHostState.showSnackbar(
+                        message = snackbarMessage,
+                        actionLabel = if (actionButtonChecked.value) snackbarActionLabel else null
+                    )
+                }
             }
+
+            CodeImplementationColumn(
+                modifier = Modifier.padding(horizontal = dimensionResource(id = R.dimen.screen_horizontal_margin)),
+                contentBackground = false
+            ) {
+                OdsTextBody2(
+                    modifier = Modifier.padding(bottom = dimensionResource(id = R.dimen.spacing_xs)),
+                    text = stringResource(id = R.string.component_snackbar_code_first_step)
+                )
+                CodeBackgroundColumn {
+                    FunctionCallCode(
+                        name = OdsComposable.OdsSnackbarHost.name,
+                        parameters = { simple("hostState", "<SnackbarHostState>") }
+                    ) {
+                        FunctionCallCode(
+                            name = OdsComposable.OdsSnackbar.name,
+                            parameters = {
+                                simple("snackbarData", "data")
+                                if (actionOnNewLineChecked.value) stringRepresentation("actionOnNewLine", true)
+                                lambda("onActionClick")
+                            }
+                        )
+                    }
+                }
+
+                OdsTextBody2(
+                    modifier = Modifier.padding(top = dimensionResource(id = R.dimen.spacing_s), bottom = dimensionResource(id = R.dimen.spacing_xs)),
+                    text = stringResource(id = R.string.component_snackbar_code_second_step)
+                )
+                CodeBackgroundColumn {
+                    TechnicalText(text = "coroutineScope.launch {")
+                    IndentCodeColumn {
+                        FunctionCallCode(
+                            name = "scaffoldState.snackbarHostState.showSnackbar",
+                            parameters = {
+                                string("message", snackbarMessage)
+                                if (actionButtonChecked.value) string("actionLabel", snackbarActionLabel)
+                            })
+                    }
+                    TechnicalText(text = "}")
+                }
+            }
+
         }
     }
 }

@@ -11,6 +11,7 @@
 package com.orange.ods.app.ui.components.chips
 
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
@@ -33,7 +34,12 @@ import com.orange.ods.app.ui.components.chips.ChipCustomizationState.ChipType
 import com.orange.ods.app.ui.components.chips.ChipCustomizationState.LeadingElement
 import com.orange.ods.app.ui.components.utilities.ComponentCustomizationBottomSheetScaffold
 import com.orange.ods.app.ui.components.utilities.clickOnElement
+import com.orange.ods.app.ui.utilities.DrawableManager
+import com.orange.ods.app.ui.utilities.composable.CodeImplementationColumn
+import com.orange.ods.app.ui.utilities.composable.FunctionCallCode
+import com.orange.ods.app.ui.utilities.composable.ImagePainterValue
 import com.orange.ods.app.ui.utilities.composable.Subtitle
+import com.orange.ods.compose.OdsComposable
 import com.orange.ods.compose.component.chip.OdsChip
 import com.orange.ods.compose.component.chip.OdsChoiceChip
 import com.orange.ods.compose.component.chip.OdsChoiceChipsFlowRow
@@ -113,6 +119,28 @@ private fun Chip(chipCustomizationState: ChipCustomizationState) {
                     )
                 }
             }
+
+            Spacer(modifier = Modifier.padding(top = dimensionResource(R.dimen.spacing_s)))
+
+            CodeImplementationColumn {
+                FunctionCallCode(
+                    name = OdsComposable.OdsChoiceChipsFlowRow.name,
+                    parameters = {
+                        mutableState("selectedChip", choiceChipIndexSelected.value.toString())
+                        if (!outlinedChips) stringRepresentation("outlinedChips", outlinedChips)
+                    }
+                ) {
+                    recipes.forEachIndexed { index, recipe ->
+                        FunctionCallCode(
+                            name = OdsComposable.OdsChoiceChip.name,
+                            parameters = {
+                                text(recipe.title)
+                                stringRepresentation("value", index)
+                                if (!isEnabled) enabled(false)
+                            })
+                    }
+                }
+            }
         } else {
             val recipe = recipes.firstOrNull()
             OdsChip(
@@ -123,8 +151,8 @@ private fun Chip(chipCustomizationState: ChipCustomizationState) {
                 leadingAvatar = if (hasLeadingAvatar) {
                     rememberAsyncImagePainter(
                         model = recipe?.imageUrl,
-                        placeholder = painterResource(id = R.drawable.placeholder_small),
-                        error = painterResource(id = R.drawable.placeholder_small)
+                        placeholder = painterResource(id = DrawableManager.getPlaceholderSmallResId()),
+                        error = painterResource(id = DrawableManager.getPlaceholderSmallResId(error = true))
                     )
                 } else null,
                 enabled = isEnabled,
@@ -132,6 +160,23 @@ private fun Chip(chipCustomizationState: ChipCustomizationState) {
                     { clickOnElement(context, cancelCrossLabel) }
                 } else null
             )
+
+            Spacer(modifier = Modifier.padding(top = dimensionResource(R.dimen.spacing_s)))
+
+            CodeImplementationColumn {
+                FunctionCallCode(
+                    name = OdsComposable.OdsChip.name,
+                    exhaustiveParameters = false,
+                    parameters = {
+                        text(recipe?.title.orEmpty())
+                        if (!outlinedChips) stringRepresentation("outlined", outlinedChips)
+                        if (isActionChip || hasLeadingIcon) icon()
+                        if (hasLeadingAvatar) simple("leadingAvatar", ImagePainterValue)
+                        if (!isEnabled) enabled(false)
+                        onClick()
+                        if (isInputChip) lambda("onCancel")
+                    })
+            }
         }
     }
 }

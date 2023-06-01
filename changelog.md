@@ -5,6 +5,25 @@ All notable changes done in ODS library will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.13.0](https://github.com/Orange-OpenSource/ods-android/compare/0.12.0...0.13.0) - 2023-06-01
+
+### Added
+
+- \[App\] Generalize code implementation section for all components ([#501](https://github.com/Orange-OpenSource/ods-android/issues/501))
+- \[App\] Add a DSL for parameters in code implementation ([#520](https://github.com/Orange-OpenSource/ods-android/issues/520))
+- \[App\] Display XML version of components in app when available ([#476](https://github.com/Orange-OpenSource/ods-android/issues/476))
+- \[LibXml\] Add `lib-xml` module with `OdsBanner` view ([#476](https://github.com/Orange-OpenSource/ods-android/issues/476))
+
+### Changed
+
+- \[App\] Use Orange placeholder images ([#522](https://github.com/Orange-OpenSource/ods-android/issues/522))
+- \[Lib\] Rename `OdsComponentApi` annotation and `OdsComponent` enum to `OdsComposable` ([#522](https://github.com/Orange-OpenSource/ods-android/issues/522))
+
+### Fixed
+
+- \[App\] Fix a bug where avatar have a default image ([#504](https://github.com/Orange-OpenSource/ods-android/issues/504))
+- \[App\] Fix highest emphasis buttons background color ([#513](https://github.com/Orange-OpenSource/ods-android/issues/513))
+
 ## [0.12.0](https://github.com/Orange-OpenSource/ods-android/compare/0.11.1...0.12.0) - 2023-04-06
 
 ### Added

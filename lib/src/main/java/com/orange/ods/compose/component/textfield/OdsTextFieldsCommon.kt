@@ -29,7 +29,7 @@ import androidx.compose.ui.graphics.vector.rememberVectorPainter
 import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.painterResource
 import com.orange.ods.R
-import com.orange.ods.compose.component.OdsComponentApi
+import com.orange.ods.compose.component.OdsComposable
 import com.orange.ods.compose.component.utilities.BasicPreviewParameterProvider
 import com.orange.ods.compose.component.utilities.DisabledInteractionSource
 import com.orange.ods.compose.text.OdsTextCaption
@@ -45,7 +45,7 @@ import kotlin.reflect.KClass
  * @param enabled set to false to display the text with a disabled color
  */
 @Composable
-@OdsComponentApi
+@OdsComposable
 fun OdsTextFieldCharacterCounter(valueLength: Int, maxChars: Int, enabled: Boolean = true) {
     OdsTextCaption(
         modifier = Modifier

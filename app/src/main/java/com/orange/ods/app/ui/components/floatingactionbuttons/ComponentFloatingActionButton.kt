@@ -10,8 +10,11 @@
 
 package com.orange.ods.app.ui.components.floatingactionbuttons
 
+import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.ExperimentalMaterialApi
 import androidx.compose.material.FabPosition
 import androidx.compose.material.rememberBottomSheetScaffoldState
@@ -22,19 +25,19 @@ import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
-import com.orange.ods.compose.component.OdsComponent
+import com.orange.ods.app.R
+import com.orange.ods.app.ui.components.utilities.ComponentCustomizationBottomSheetScaffold
+import com.orange.ods.app.ui.components.utilities.clickOnElement
+import com.orange.ods.app.ui.utilities.composable.CodeImplementationColumn
+import com.orange.ods.app.ui.utilities.composable.FunctionCallCode
+import com.orange.ods.app.ui.utilities.composable.Subtitle
+import com.orange.ods.compose.OdsComposable
 import com.orange.ods.compose.component.button.OdsExtendedFloatingActionButton
 import com.orange.ods.compose.component.button.OdsFloatingActionButton
 import com.orange.ods.compose.component.chip.OdsChoiceChip
 import com.orange.ods.compose.component.chip.OdsChoiceChipsFlowRow
 import com.orange.ods.compose.component.list.OdsListItem
 import com.orange.ods.compose.component.list.OdsSwitchTrailing
-import com.orange.ods.app.R
-import com.orange.ods.app.ui.components.utilities.ComponentCustomizationBottomSheetScaffold
-import com.orange.ods.app.ui.components.utilities.clickOnElement
-import com.orange.ods.app.ui.utilities.composable.CodeImplementationColumn
-import com.orange.ods.app.ui.utilities.composable.FloatingActionButtonTechnicalTextColumn
-import com.orange.ods.app.ui.utilities.composable.Subtitle
 
 @OptIn(ExperimentalMaterialApi::class)
 @Composable
@@ -84,7 +87,7 @@ fun ComponentFloatingActionButton() {
                 }
             },
             floatingActionButtonPosition = if (isFullScreenWidth) FabPosition.Center else FabPosition.End,
-            bottomSheetContent = { 
+            bottomSheetContent = {
                 Subtitle(textRes = R.string.component_size, horizontalPadding = true)
                 OdsChoiceChipsFlowRow(
                     selectedChip = size,
@@ -103,14 +106,22 @@ fun ComponentFloatingActionButton() {
                     trailing = OdsSwitchTrailing(checked = fullScreenWidth, enabled = isFullScreenWidthEnabled)
                 )
             }) {
-
-            CodeImplementationColumn {
-                FloatingActionButtonTechnicalTextColumn(
-                    componentName = if (hasText) OdsComponent.OdsExtendedFloatingActionButton.name else OdsComponent.OdsFloatingActionButton.name,
-                    text = hasText,
-                    fullScreenWidth = isFullScreenWidth,
-                    mini = size.value == FabCustomizationState.Size.Mini
-                )
+            Column(modifier = Modifier.verticalScroll(rememberScrollState())) {
+                val usedComponentName = if (hasText) OdsComposable.OdsExtendedFloatingActionButton.name else OdsComposable.OdsFloatingActionButton.name
+                CodeImplementationColumn(
+                    modifier = Modifier.padding(horizontal = dimensionResource(id = R.dimen.screen_horizontal_margin))
+                ) {
+                    FunctionCallCode(
+                        name = usedComponentName,
+                        exhaustiveParameters = false,
+                        parameters = {
+                            icon()
+                            if (this@with.size.value == FabCustomizationState.Size.Mini) stringRepresentation("mini", true)
+                            if (hasText) string("text", "Add")
+                            if (isFullScreenWidth) fillMaxWidth()
+                        }
+                    )
+                }
             }
         }
     }

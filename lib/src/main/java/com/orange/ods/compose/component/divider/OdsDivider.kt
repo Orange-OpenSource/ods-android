@@ -15,7 +15,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
-import com.orange.ods.compose.component.OdsComponentApi
+import com.orange.ods.compose.component.OdsComposable
 import com.orange.ods.compose.component.utilities.Preview
 import com.orange.ods.compose.component.utilities.UiModePreviews
 import com.orange.ods.compose.theme.OdsTheme
@@ -29,7 +29,7 @@ private const val OdsDividerAlpha = 0.12f
  * @param startIndent start offset of this line, no offset by default
  */
 @Composable
-@OdsComponentApi
+@OdsComposable
 fun OdsDivider(
     modifier: Modifier = Modifier,
     startIndent: Dp = 0.dp

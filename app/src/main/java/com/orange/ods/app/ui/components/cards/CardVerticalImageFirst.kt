@@ -11,6 +11,7 @@
 package com.orange.ods.app.ui.components.cards
 
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.rememberScrollState
@@ -23,10 +24,14 @@ import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import coil.compose.rememberAsyncImagePainter
-import com.orange.ods.compose.component.card.OdsVerticalImageFirstCard
 import com.orange.ods.app.R
 import com.orange.ods.app.domain.recipes.LocalRecipes
 import com.orange.ods.app.ui.components.utilities.clickOnElement
+import com.orange.ods.app.ui.utilities.DrawableManager
+import com.orange.ods.app.ui.utilities.composable.CodeImplementationColumn
+import com.orange.ods.app.ui.utilities.composable.FunctionCallCode
+import com.orange.ods.compose.OdsComposable
+import com.orange.ods.compose.component.card.OdsVerticalImageFirstCard
 
 @Composable
 fun CardVerticalImageFirst(customizationState: CardCustomizationState) {
@@ -49,8 +54,8 @@ fun CardVerticalImageFirst(customizationState: CardCustomizationState) {
                 title = recipe.title,
                 image = rememberAsyncImagePainter(
                     model = recipe.imageUrl,
-                    placeholder = painterResource(id = R.drawable.placeholder),
-                    error = painterResource(id = R.drawable.placeholder)
+                    placeholder = painterResource(id = DrawableManager.getPlaceholderResId()),
+                    error = painterResource(id = DrawableManager.getPlaceholderResId(error = true))
                 ),
                 subtitle = if (hasSubtitle) recipe.subtitle else null,
                 text = if (hasText) recipe.description else null,
@@ -62,6 +67,30 @@ fun CardVerticalImageFirst(customizationState: CardCustomizationState) {
                 button2Text = if (hasButton2) button2Text else null,
                 onButton2Click = { clickOnElement(context, button2Text) }
             )
+
+            Spacer(modifier = Modifier.padding(top = dimensionResource(R.dimen.spacing_s)))
+
+            CodeImplementationColumn {
+                FunctionCallCode(
+                    name = OdsComposable.OdsVerticalImageFirstCard.name,
+                    exhaustiveParameters = false,
+                    parameters = {
+                        title(recipe.title)
+                        image()
+                        if (hasSubtitle) subtitle(recipe.subtitle)
+                        if (hasText) cardText()
+                        if (isClickable) onCardClick()
+                        if (hasButton1) {
+                            button1Text(button1Text)
+                            onButton1Click()
+                        }
+                        if (hasButton2) {
+                            button2Text(button2Text)
+                            onButton2Click()
+                        }
+                    }
+                )
+            }
         }
     }
 }

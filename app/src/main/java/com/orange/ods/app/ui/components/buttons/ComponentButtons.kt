@@ -20,6 +20,8 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.material.ExperimentalMaterialApi
 import androidx.compose.material.rememberBottomSheetScaffoldState
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -42,14 +44,21 @@ import com.orange.ods.compose.theme.OdsTheme
 @OptIn(ExperimentalMaterialApi::class)
 @Composable
 fun ComponentButtons(variant: Variant) {
-    val customizationState = rememberButtonCustomizationState()
+    val customizationState = rememberButtonCustomizationState(buttonStyle = rememberSaveable {
+        mutableStateOf(
+            when (variant) {
+                Variant.ButtonsPrimary -> OdsButtonStyle.Primary
+                Variant.ButtonsFunctional -> OdsButtonStyle.FunctionalPositive
+                else -> OdsButtonStyle.Default
+            }
+        )
+    })
 
     with(customizationState) {
         ComponentCustomizationBottomSheetScaffold(
             bottomSheetScaffoldState = rememberBottomSheetScaffoldState(),
             bottomSheetContent = {
                 if (variant == Variant.ButtonsFunctional) {
-                    this.buttonStyle.value = OdsButtonStyle.FunctionalPositive
                     Subtitle(textRes = R.string.component_button_style_functional, horizontalPadding = true)
                     OdsChoiceChipsFlowRow(
                         selectedChip = buttonStyle,

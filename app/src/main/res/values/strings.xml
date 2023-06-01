@@ -89,6 +89,9 @@
     <string name="component_element_empty">Empty</string>
     <string name="component_element_example">Example</string>
     <string name="component_element_content">Content</string>
+    <string name="component_ui_framework">UI framework</string>
+    <string name="component_ui_framework_compose">Compose</string>
+    <string name="component_ui_framework_xml">XML</string>
 
     <!-- Components App bars: top -->
     <string name="component_app_bars_top">App bars: top</string>
@@ -294,6 +297,8 @@
     <string name="component_snackbar_show">Show snackbar</string>
     <string name="component_snackbar_message">This is the message of the Snackbar.</string>
     <string name="component_snackbar_action_label">Action</string>
+    <string name="component_snackbar_code_first_step">1 - Use OdsSnackbarHost in a Scaffold:</string>
+    <string name="component_snackbar_code_second_step">2 - Display the snackbar:</string>
 
     <!-- Component Text fields -->
     <string name="component_text_fields">Text fields</string>

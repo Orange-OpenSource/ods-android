@@ -8,7 +8,10 @@
  * /
  */
 
-include(":lib", ":app", ":component-processor")
+include(":app")
+include(":composable-processor")
+include(":lib")
+include(":lib-xml")
 include(":theme-orange")
 include(":theme-innovation-cup")
 include(":theme-contract")

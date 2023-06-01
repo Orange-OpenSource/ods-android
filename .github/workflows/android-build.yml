@@ -3,7 +3,7 @@ name: android-build
 on:
   push:
     branches:
-      - master
+      - main
       - develop
     tags:
       - '[0-9]+.[0-9]+.[0-9]+'
@@ -165,8 +165,10 @@ jobs:
           distribution: 'zulu'
           java-version: '11'
 
-      - name: Build unsigned APK and bundle for Google Play Store
-        run: ./gradlew assembleRelease bundleRelease
+      - name: Publish release to Google Play Store
+        run: |
+          ./gradlew assembleRelease bundleRelease
+          curl -F 'file=@app/build/outputs/bundle/release/app-release.aab' https://oma-portal.orange.fr/oma/api/v1/external/applications/${{ secrets.OMA_APP_ID }}/artifacts -H "apiKey:${{ secrets.OMA_APP_TOKEN }}"
 
       - name: Store Google Play Store artifacts
         uses: actions/upload-artifact@v3

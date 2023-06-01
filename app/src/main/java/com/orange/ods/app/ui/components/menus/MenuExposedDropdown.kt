@@ -30,14 +30,17 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
-import com.orange.ods.compose.component.list.OdsListItem
-import com.orange.ods.compose.component.list.OdsSwitchTrailing
-import com.orange.ods.compose.component.menu.OdsExposedDropdownMenu
-import com.orange.ods.compose.component.menu.OdsExposedDropdownMenuItem
 import com.orange.ods.app.R
 import com.orange.ods.app.domain.recipes.LocalRecipes
 import com.orange.ods.app.ui.components.utilities.ComponentCustomizationBottomSheetScaffold
 import com.orange.ods.app.ui.components.utilities.clickOnElement
+import com.orange.ods.app.ui.utilities.composable.CodeImplementationColumn
+import com.orange.ods.app.ui.utilities.composable.FunctionCallCode
+import com.orange.ods.compose.OdsComposable
+import com.orange.ods.compose.component.list.OdsListItem
+import com.orange.ods.compose.component.list.OdsSwitchTrailing
+import com.orange.ods.compose.component.menu.OdsExposedDropdownMenu
+import com.orange.ods.compose.component.menu.OdsExposedDropdownMenuItem
 
 @OptIn(ExperimentalMaterialApi::class)
 @Composable
@@ -95,11 +98,12 @@ fun MenuExposedDropdown() {
                     .padding(top = dimensionResource(id = R.dimen.screen_vertical_margin), bottom = dimensionResource(id = R.dimen.spacing_s))
                     .padding(horizontal = dimensionResource(id = R.dimen.screen_horizontal_margin)),
             ) {
+                val label = stringResource(id = R.string.data_recipe)
                 OdsExposedDropdownMenu(
                     modifier = Modifier
                         .fillMaxWidth()
                         .padding(top = dimensionResource(id = R.dimen.spacing_s)),
-                    label = stringResource(id = R.string.data_recipe),
+                    label = label,
                     items = items,
                     selectedItem = selectedItem,
                     onItemSelectionChange = { item ->
@@ -107,6 +111,27 @@ fun MenuExposedDropdown() {
                     },
                     enabled = isEnabled
                 )
+
+                CodeImplementationColumn {
+                    FunctionCallCode(
+                        name = OdsComposable.OdsExposedDropdownMenu.name,
+                        exhaustiveParameters = false,
+                        parameters = {
+                            string("label", label)
+                            list("items") {
+                                items.forEach { item ->
+                                    classInstance(OdsExposedDropdownMenuItem::class.java) {
+                                        string("label", item.label)
+                                        if (hasIcons) icon()
+                                    }
+                                }
+                            }
+                            mutableState("selectedItem", "<selected item>")
+                            lambda("onItemSelectionChange")
+                            if (!isEnabled) enabled(false)
+                        }
+                    )
+                }
             }
         }
     }

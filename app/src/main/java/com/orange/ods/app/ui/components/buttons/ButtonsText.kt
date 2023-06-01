@@ -22,10 +22,10 @@ import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import com.orange.ods.app.R
-import com.orange.ods.app.ui.utilities.composable.ButtonTechnicalTextColumn
 import com.orange.ods.app.ui.utilities.composable.CodeImplementationColumn
+import com.orange.ods.app.ui.utilities.composable.FunctionCallCode
 import com.orange.ods.app.ui.utilities.composable.Title
-import com.orange.ods.compose.component.OdsComponent
+import com.orange.ods.compose.OdsComposable
 import com.orange.ods.compose.component.button.OdsTextButton
 import com.orange.ods.compose.component.button.OdsTextButtonStyle
 import com.orange.ods.compose.theme.OdsDisplaySurface
@@ -33,7 +33,6 @@ import com.orange.ods.utilities.extension.fullName
 
 @Composable
 fun ButtonsText(customizationState: ButtonCustomizationState) {
-
     with(customizationState) {
         Column(
             modifier = Modifier
@@ -59,13 +58,18 @@ fun ButtonsText(customizationState: ButtonCustomizationState) {
                 )
             }
 
-            CodeImplementationColumn {
-                ButtonTechnicalTextColumn(
-                    componentName = OdsComponent.OdsTextButton.name,
-                    style = textButtonStyle.value.fullName,
-                    enabled = isEnabled,
-                    fullScreenWidth = hasFullScreenWidth,
-                    icon = hasLeadingIcon
+            CodeImplementationColumn(
+                modifier = Modifier.padding(horizontal = dimensionResource(id = R.dimen.screen_horizontal_margin))
+            ) {
+                FunctionCallCode(
+                    name = OdsComposable.OdsTextButton.name,
+                    exhaustiveParameters = false,
+                    parameters = {
+                        simple("style", textButtonStyle.value.fullName)
+                        if (hasFullScreenWidth) fillMaxWidth()
+                        if (hasLeadingIcon) icon()
+                        if (!isEnabled) enabled(false)
+                    }
                 )
             }
         }

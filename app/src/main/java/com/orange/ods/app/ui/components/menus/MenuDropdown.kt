@@ -34,6 +34,13 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.DpOffset
 import androidx.compose.ui.unit.dp
+import com.orange.ods.app.R
+import com.orange.ods.app.domain.recipes.LocalRecipes
+import com.orange.ods.app.ui.components.utilities.ComponentCustomizationBottomSheetScaffold
+import com.orange.ods.app.ui.components.utilities.clickOnElement
+import com.orange.ods.app.ui.utilities.composable.CodeImplementationColumn
+import com.orange.ods.app.ui.utilities.composable.FunctionCallCode
+import com.orange.ods.compose.OdsComposable
 import com.orange.ods.compose.component.divider.OdsDivider
 import com.orange.ods.compose.component.list.OdsIconTrailing
 import com.orange.ods.compose.component.list.OdsListItem
@@ -41,10 +48,6 @@ import com.orange.ods.compose.component.list.OdsSwitchTrailing
 import com.orange.ods.compose.component.menu.OdsDropdownMenu
 import com.orange.ods.compose.component.menu.OdsDropdownMenuItem
 import com.orange.ods.compose.text.OdsTextBody1
-import com.orange.ods.app.R
-import com.orange.ods.app.domain.recipes.LocalRecipes
-import com.orange.ods.app.ui.components.utilities.ComponentCustomizationBottomSheetScaffold
-import com.orange.ods.app.ui.components.utilities.clickOnElement
 
 @OptIn(ExperimentalMaterialApi::class)
 @Composable
@@ -100,6 +103,33 @@ fun MenuDropdown() {
                             )
                             if (hasDividerExample && index == 2) {
                                 OdsDivider()
+                            }
+                        }
+                    }
+                }
+
+                CodeImplementationColumn(
+                    modifier = Modifier.padding(horizontal = dimensionResource(id = R.dimen.screen_horizontal_margin))
+                ) {
+                    FunctionCallCode(
+                        name = OdsComposable.OdsDropdownMenu.name,
+                        exhaustiveParameters = false,
+                        parameters = {
+                            stringRepresentation("expanded", menuExpanded)
+                            lambda("onDismissRequest")
+                        }
+                    ) {
+                        recipes.take(2).forEachIndexed { index, recipe ->
+                            FunctionCallCode(
+                                name = OdsComposable.OdsDropdownMenuItem.name,
+                                parameters = {
+                                    string("text", recipe.title)
+                                    onClick()
+                                    if (hasIcons && recipe.iconResId != null) icon()
+                                }
+                            )
+                            if (hasDividerExample && index == 0) {
+                                FunctionCallCode(name = OdsComposable.OdsDivider.name)
                             }
                         }
                     }

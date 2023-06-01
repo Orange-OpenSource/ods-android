@@ -29,9 +29,9 @@ import androidx.compose.ui.res.stringResource
 import com.orange.ods.app.R
 import com.orange.ods.app.ui.components.buttons.InvertedBackgroundColumn
 import com.orange.ods.app.ui.utilities.composable.CodeImplementationColumn
-import com.orange.ods.app.ui.utilities.composable.CommonButtonTechnicalTextColumn
-import com.orange.ods.app.ui.utilities.composable.TechnicalText
-import com.orange.ods.compose.component.OdsComponent
+import com.orange.ods.app.ui.utilities.composable.FunctionCallCode
+import com.orange.ods.app.ui.utilities.composable.IconPainterValue
+import com.orange.ods.compose.OdsComposable
 import com.orange.ods.compose.component.button.OdsIconToggleButton
 
 @Composable
@@ -72,15 +72,19 @@ fun ButtonsIconToggle(customizationState: ButtonIconCustomizationState) {
                 )
             }
 
-            CodeImplementationColumn {
-                CommonButtonTechnicalTextColumn(componentName = OdsComponent.OdsIconToggleButton.name) {
-                    TechnicalText(text = "painter = painterResource(id = R.drawable.ic_heart_outlined),")
-                    TechnicalText(text = "painterChecked = painterResource(id = R.drawable.ic_heart),")
-                    TechnicalText(text = "checked = ${buttonCheckedState.value},")
-                    if (!isEnabled) {
-                        TechnicalText(text = "enabled = false,")
+            CodeImplementationColumn(
+                modifier = Modifier.padding(horizontal = dimensionResource(id = R.dimen.screen_horizontal_margin))
+            ) {
+                FunctionCallCode(
+                    name = OdsComposable.OdsIconToggleButton.name,
+                    exhaustiveParameters = false,
+                    parameters = {
+                        painter()
+                        simple("painterChecked", IconPainterValue)
+                        checked(buttonCheckedState.value)
+                        if (!isEnabled) enabled(false)
                     }
-                }
+                )
             }
         }
     }

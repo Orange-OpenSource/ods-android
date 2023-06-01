@@ -23,7 +23,7 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.painter.Painter
 import androidx.compose.ui.res.painterResource
-import com.orange.ods.compose.component.OdsComponentApi
+import com.orange.ods.compose.component.OdsComposable
 import com.orange.ods.compose.component.utilities.Preview
 import com.orange.ods.compose.component.utilities.UiModePreviews
 import com.orange.ods.compose.theme.OdsDarkRippleTheme
@@ -50,7 +50,7 @@ import com.orange.ods.utilities.extension.enable
  * surface. By default the appearance applied is based on the system night mode value.
  */
 @Composable
-@OdsComponentApi
+@OdsComposable
 fun OdsIconToggleButton(
     checked: Boolean,
     onCheckedChange: (Boolean) -> Unit,

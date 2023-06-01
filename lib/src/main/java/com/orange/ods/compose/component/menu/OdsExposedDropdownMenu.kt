@@ -23,7 +23,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.painter.Painter
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.PreviewParameter
-import com.orange.ods.compose.component.OdsComponentApi
+import com.orange.ods.compose.component.OdsComposable
 import com.orange.ods.compose.component.textfield.OdsExposedDropdownMenuTrailing
 import com.orange.ods.compose.component.textfield.OdsTextField
 import com.orange.ods.compose.component.utilities.BasicPreviewParameterProvider
@@ -41,7 +41,7 @@ import com.orange.ods.compose.component.utilities.UiModePreviews
  * @param enabled controls the enabled state of the [OdsExposedDropdownMenu]. When `false`, the dropdown menu text field will
  * be neither clickable nor focusable, visually it will appear in the disabled UI state
  */
-@OdsComponentApi
+@OdsComposable
 @OptIn(ExperimentalMaterialApi::class)
 @Composable
 fun OdsExposedDropdownMenu(
