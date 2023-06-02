@@ -18,6 +18,7 @@ import com.orange.ods.app.ui.components.bottomnavigation.ComponentBottomNavigati
 import com.orange.ods.app.ui.components.checkboxes.ComponentCheckboxes
 import com.orange.ods.app.ui.components.dialogs.ComponentDialog
 import com.orange.ods.app.ui.components.floatingactionbuttons.ComponentFloatingActionButton
+import com.orange.ods.app.ui.components.imageitem.ComponentImageItem
 import com.orange.ods.app.ui.components.lists.ComponentLists
 import com.orange.ods.app.ui.components.navigationdrawers.ComponentModalDrawers
 import com.orange.ods.app.ui.components.radiobuttons.ComponentRadioButtons
@@ -38,6 +39,7 @@ fun ComponentDemoScreen(componentId: Long) {
             Component.Checkboxes -> ComponentCheckboxes()
             Component.Dialogs -> ComponentDialog()
             Component.FloatingActionButtons -> ComponentFloatingActionButton()
+            Component.ImageItem -> ComponentImageItem()
             Component.Lists -> ComponentLists()
             Component.ModalDrawers -> ComponentModalDrawers()
             Component.RadioButtons -> ComponentRadioButtons()
@@ -48,5 +50,4 @@ fun ComponentDemoScreen(componentId: Long) {
             else -> {}
         }
     }
-
 }

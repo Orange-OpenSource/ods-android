@@ -89,6 +89,7 @@
     <string name="component_element_empty">Empty</string>
     <string name="component_element_example">Example</string>
     <string name="component_element_content">Content</string>
+    <string name="component_element_type">Type</string>
     <string name="component_ui_framework">UI framework</string>
     <string name="component_ui_framework_compose">Compose</string>
     <string name="component_ui_framework_xml">XML</string>
@@ -202,6 +203,15 @@
     <string name="component_floating_action_button_size_mini">Mini</string>
     <string name="component_floating_action_button_full_screen_width">Full screen width</string>
 
+    <!-- Component Image Lists -->
+    <string name="component_image_item">Image Item</string>
+    <string name="component_image_item_description">An Image Item contains primary information which is usually an image. It can also contain secondary information such as a title or an action.</string>
+    <string name="component_image_item_sizes">Image item sizes</string>
+    <string name="component_image_item_small">Small image</string>
+    <string name="component_image_item_large">Large image</string>
+    <string name="component_image_item_overlay_text">Overlay</string>
+    <string name="component_image_item_below_text">Below</string>
+
     <!-- Component Menus -->
     <string name="component_menus">Menus</string>
     <string name="component_menus_description">Menus appear from a button, action, or other control. It contains at least 2 items that can affect the app, the view or elements within the view.</string>
@@ -254,7 +264,6 @@
     <string name="component_progress">Progress Indicators</string>
     <string name="component_progress_description">Progress bar and activity indicator are used when a process is taking place to illustrate progress and to reassure users that something is happening, and if possible, how long it will take.</string>
     <string name="component_progress_linear">Linear</string>
-    <string name="component_progress_type">Type</string>
     <string name="component_progress_determinate">Determinate</string>
     <string name="component_progress_indeterminate">Indeterminate</string>
     <string name="component_progress_linear_value">Current value</string>

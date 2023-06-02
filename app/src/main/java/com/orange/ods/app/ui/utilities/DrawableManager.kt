@@ -41,6 +41,7 @@ object DrawableManager {
         R.drawable.il_chips_small_generic to R.drawable.il_chips_small,
         R.drawable.il_dialogs_generic to R.drawable.il_dialogs,
         R.drawable.il_fab_generic to R.drawable.il_fab,
+        R.drawable.il_image_item_generic to R.drawable.il_image_item,
         R.drawable.il_lists_generic to R.drawable.il_lists,
         R.drawable.il_menus_generic to R.drawable.il_menus,
         R.drawable.il_navigation_drawers_generic to R.drawable.il_navigation_drawers,
