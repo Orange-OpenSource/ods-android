@@ -12,14 +12,23 @@ package com.orange.ods.app.ui.utilities.composable
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.Spacer
-import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.MutableState
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.dimensionResource
+import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.semantics.semantics
 import com.orange.ods.app.R
+import com.orange.ods.app.ui.LocalUiFramework
+import com.orange.ods.app.ui.UiFramework
+import com.orange.ods.compose.component.menu.OdsExposedDropdownMenu
+import com.orange.ods.compose.component.menu.OdsExposedDropdownMenuItem
+import com.orange.ods.compose.component.menu.OdsExposedDropdownMenuItemSaver
 import com.orange.ods.compose.theme.OdsTheme
 import com.orange.ods.utilities.extension.orElse
 
@@ -118,14 +127,36 @@ fun CodeImplementationColumn(
             vertical = dimensionResource(id = R.dimen.spacing_s)
         )
     ) {
-        Subtitle(textRes = R.string.code_implementation)
-        Spacer(modifier = Modifier.height(dimensionResource(id = R.dimen.spacing_s)))
+        UiFrameworkChoice()
         if (contentBackground) {
             CodeBackgroundColumn(content)
         } else {
             content()
         }
     }
+}
+
+@Composable
+private fun UiFrameworkChoice() {
+    val context = LocalContext.current
+    val currentUiFramework = LocalUiFramework.current
+    var selectedIndex = 0
+    val uiFrameworks = UiFramework.values().mapIndexed { index, uiFramework ->
+        if (uiFramework == currentUiFramework.value) selectedIndex = index
+        OdsExposedDropdownMenuItem(label = stringResource(id = uiFramework.labelResId), icon = painterResource(id = uiFramework.iconResId))
+    }
+
+    val selectedUiFramework: MutableState<OdsExposedDropdownMenuItem> =
+        rememberSaveable(stateSaver = OdsExposedDropdownMenuItemSaver()) { mutableStateOf(uiFrameworks[selectedIndex]) }
+
+    OdsExposedDropdownMenu(
+        label = stringResource(id = R.string.code_implementation),
+        items = uiFrameworks,
+        selectedItem = selectedUiFramework,
+        onItemSelectionChange = { selectedItem ->
+            currentUiFramework.value = UiFramework.values().first { context.getString(it.labelResId) == selectedItem.label }
+        },
+    )
 }
 
 @Composable

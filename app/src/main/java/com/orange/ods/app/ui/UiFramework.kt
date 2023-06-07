@@ -10,6 +10,9 @@
 
 package com.orange.ods.app.ui
 
+import android.content.Context
+import androidx.compose.foundation.layout.Column
+import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.MutableState
@@ -18,13 +21,17 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.compose.runtime.staticCompositionLocalOf
+import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.res.stringResource
 import androidx.databinding.ViewDataBinding
+import com.orange.ods.app.R
 import com.orange.ods.app.ui.components.utilities.ViewDataBinding
 
 val LocalUiFramework = staticCompositionLocalOf<MutableState<UiFramework>> { error("CompositionLocal LocalUiFramework not present") }
 
-enum class UiFramework {
-    Compose, Xml
+enum class UiFramework(val iconResId: Int, val labelResId: Int) {
+    Compose(R.drawable.ic_compose, R.string.code_implementation_compose),
+    Xml(R.drawable.ic_xml, R.string.code_implementation_xml)
 }
 
 @Composable

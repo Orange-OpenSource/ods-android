@@ -33,7 +33,6 @@ import com.orange.ods.app.domain.recipes.LocalRecipes
 import com.orange.ods.app.ui.UiFramework
 import com.orange.ods.app.ui.components.utilities.ComponentCountRow
 import com.orange.ods.app.ui.components.utilities.ComponentCustomizationBottomSheetScaffold
-import com.orange.ods.app.ui.components.utilities.ComponentCustomizationUiFramework
 import com.orange.ods.app.ui.components.utilities.clickOnElement
 import com.orange.ods.app.ui.utilities.DrawableManager
 import com.orange.ods.app.ui.utilities.composable.CodeImplementationColumn
@@ -54,7 +53,6 @@ fun ComponentBanners() {
         ComponentCustomizationBottomSheetScaffold(
             bottomSheetScaffoldState = rememberBottomSheetScaffoldState(),
             bottomSheetContent = {
-                ComponentCustomizationUiFramework()
                 ComponentCountRow(
                     title = stringResource(id = R.string.component_banner_text_lines_count),
                     count = textLinesCount,
