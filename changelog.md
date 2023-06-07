@@ -13,6 +13,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - \[Lib\] Add `OdsImageItem` component ([#473](https://github.com/Orange-OpenSource/ods-android/issues/473))
 - \[Lib\] Add `@Parcelize` annotation on `OdsExposedDropdownMenuItem` to allow to save and restore it ([#545](https://github.com/Orange-OpenSource/ods-android/issues/545))
 
+### Changed
+
+- \[App\] Use an exposed dropdown menu to switch between XML and Compose implementation ([#546](https://github.com/Orange-OpenSource/ods-android/issues/546))
+
 ## [0.13.0](https://github.com/Orange-OpenSource/ods-android/compare/0.12.0...0.13.0) - 2023-06-01
 
 ### Added
