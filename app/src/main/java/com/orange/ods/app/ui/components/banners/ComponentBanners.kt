@@ -107,7 +107,8 @@ fun ComponentBanners() {
                         )
 
                         CodeImplementationColumn(
-                            modifier = Modifier.padding(horizontal = dimensionResource(id = R.dimen.screen_horizontal_margin))
+                            modifier = Modifier.padding(horizontal = dimensionResource(id = R.dimen.screen_horizontal_margin)),
+                            xmlAvailable = true
                         ) {
                             FunctionCallCode(
                                 name = OdsComposable.OdsBanner.name,

@@ -16,7 +16,6 @@ import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
-import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
@@ -29,7 +28,6 @@ import androidx.databinding.ViewDataBinding
 import com.orange.ods.app.R
 import com.orange.ods.app.ui.utilities.composable.CodeImplementationColumn
 import com.orange.ods.app.ui.utilities.composable.TechnicalText
-import com.orange.ods.compose.text.OdsTextBody1
 
 @Composable
 inline fun <reified T : ViewDataBinding> ViewDataBinding(noinline bind: T.() -> Unit) {
@@ -51,13 +49,15 @@ inline fun <reified T : ViewDataBinding> ViewDataBinding(noinline bind: T.() -> 
             })
 
         CodeImplementationColumn(
-            modifier = Modifier.padding(horizontal = dimensionResource(id = R.dimen.screen_horizontal_margin))
+            modifier = Modifier.padding(horizontal = dimensionResource(id = R.dimen.screen_horizontal_margin)),
+            xmlAvailable = true,
         ) {
             TechnicalText(
                 modifier = Modifier
                     .fillMaxWidth()
                     .padding(dimensionResource(id = R.dimen.spacing_xs)),
-                text = stringResource(id = R.string.soon_available))
+                text = stringResource(id = R.string.soon_available)
+            )
         }
     }
 }

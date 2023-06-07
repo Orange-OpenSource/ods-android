@@ -119,6 +119,7 @@ private sealed class PredefinedParameter {
 @Composable
 fun CodeImplementationColumn(
     modifier: Modifier = Modifier,
+    xmlAvailable: Boolean = false, // Temporary parameter: Indicates whether the XML version of the component is available
     contentBackground: Boolean = true,
     content: @Composable () -> Unit
 ) {
@@ -127,7 +128,7 @@ fun CodeImplementationColumn(
             vertical = dimensionResource(id = R.dimen.spacing_s)
         )
     ) {
-        UiFrameworkChoice()
+        UiFrameworkChoice(xmlAvailable)
         if (contentBackground) {
             CodeBackgroundColumn(content)
         } else {
@@ -137,17 +138,16 @@ fun CodeImplementationColumn(
 }
 
 @Composable
-private fun UiFrameworkChoice() {
+private fun UiFrameworkChoice(xmlAvailable: Boolean) {
     val context = LocalContext.current
     val currentUiFramework = LocalUiFramework.current
-    var selectedIndex = 0
+    var selectedFramework = 0
     val uiFrameworks = UiFramework.values().mapIndexed { index, uiFramework ->
-        if (uiFramework == currentUiFramework.value) selectedIndex = index
+        if (uiFramework == currentUiFramework.value) selectedFramework = index
         OdsExposedDropdownMenuItem(label = stringResource(id = uiFramework.labelResId), icon = painterResource(id = uiFramework.iconResId))
     }
-
     val selectedUiFramework: MutableState<OdsExposedDropdownMenuItem> =
-        rememberSaveable(stateSaver = OdsExposedDropdownMenuItemSaver()) { mutableStateOf(uiFrameworks[selectedIndex]) }
+        rememberSaveable(stateSaver = OdsExposedDropdownMenuItemSaver()) { mutableStateOf(if (xmlAvailable) uiFrameworks[selectedFramework] else uiFrameworks.first()) }
 
     OdsExposedDropdownMenu(
         label = stringResource(id = R.string.code_implementation),
@@ -156,6 +156,7 @@ private fun UiFrameworkChoice() {
         onItemSelectionChange = { selectedItem ->
             currentUiFramework.value = UiFramework.values().first { context.getString(it.labelResId) == selectedItem.label }
         },
+        enabled = xmlAvailable
     )
 }
 
