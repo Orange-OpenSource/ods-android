@@ -17,14 +17,8 @@ import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.ExperimentalMaterialApi
 import androidx.compose.material.rememberBottomSheetScaffoldState
-import androidx.compose.runtime.Composable
-import androidx.compose.runtime.MutableState
-import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
-import androidx.compose.runtime.saveable.mapSaver
+import androidx.compose.runtime.*
 import androidx.compose.runtime.saveable.rememberSaveable
-import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.dimensionResource
@@ -41,6 +35,7 @@ import com.orange.ods.compose.component.list.OdsListItem
 import com.orange.ods.compose.component.list.OdsSwitchTrailing
 import com.orange.ods.compose.component.menu.OdsExposedDropdownMenu
 import com.orange.ods.compose.component.menu.OdsExposedDropdownMenuItem
+import com.orange.ods.compose.component.menu.OdsExposedDropdownMenuItemSaver
 
 @OptIn(ExperimentalMaterialApi::class)
 @Composable
@@ -58,20 +53,10 @@ fun MenuExposedDropdown() {
     }
 
     var items by remember { mutableStateOf(dropdownItems) }
-    val itemSaver = run {
-        val itemKey = "item"
-        mapSaver(
-            save = {
-                mapOf(itemKey to it.label)
-            },
-            restore = {
-                OdsExposedDropdownMenuItem(it[itemKey] as String)
-            }
-        )
-    }
 
     with(customizationState) {
-        val selectedItem: MutableState<OdsExposedDropdownMenuItem> = rememberSaveable(stateSaver = itemSaver) { mutableStateOf(dropdownItems.first()) }
+        val selectedItem: MutableState<OdsExposedDropdownMenuItem> =
+            rememberSaveable(stateSaver = OdsExposedDropdownMenuItemSaver()) { mutableStateOf(dropdownItems.first()) }
         if (hasIcons) {
             items = dropdownItems
             selectedItem.value = dropdownItems.first { selectedItem.value.label == it.label }

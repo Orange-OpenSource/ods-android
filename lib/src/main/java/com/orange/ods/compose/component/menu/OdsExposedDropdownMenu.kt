@@ -13,12 +13,9 @@ package com.orange.ods.compose.component.menu
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.material.ExperimentalMaterialApi
 import androidx.compose.material.ExposedDropdownMenuBox
-import androidx.compose.runtime.Composable
-import androidx.compose.runtime.MutableState
-import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
-import androidx.compose.runtime.setValue
+import androidx.compose.runtime.*
+import androidx.compose.runtime.saveable.Saver
+import androidx.compose.runtime.saveable.SaverScope
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.painter.Painter
 import androidx.compose.ui.res.painterResource
@@ -89,6 +86,14 @@ fun OdsExposedDropdownMenu(
 }
 
 data class OdsExposedDropdownMenuItem(val label: String, val icon: Painter? = null)
+
+/**
+ * This Saver implementation converts OdsExposedDropdownMenuItem object which we don't know how to save to String which we can save.
+ */
+class OdsExposedDropdownMenuItemSaver : Saver<OdsExposedDropdownMenuItem, String> {
+    override fun restore(value: String) = OdsExposedDropdownMenuItem(label = value)
+    override fun SaverScope.save(value: OdsExposedDropdownMenuItem) = value.label
+}
 
 /**
  * Note: Please use Android Studio preview interactive mode to see the OdsExposedDropdownMenu preview cause expanded is a target state.
