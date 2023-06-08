@@ -119,6 +119,7 @@ dependencies {
     implementation(Dependencies.composeUi)
     implementation(Dependencies.lifecycleViewModelKtx)
     implementation(Dependencies.composeMaterial)
+    implementation(Dependencies.composeMaterial3)
     implementation(Dependencies.composeUiToolingPreview)
     implementation(Dependencies.lifecycleRuntimeKtx)
     implementation(Dependencies.activityCompose)
