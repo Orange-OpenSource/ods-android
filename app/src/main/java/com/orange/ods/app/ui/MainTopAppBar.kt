@@ -36,7 +36,6 @@ import com.orange.ods.compose.component.textfield.search.OdsSearchTextField
 
 @Composable
 fun MainTopAppBar(
-    titleRes: Int,
     shouldShowUpNavigationIcon: Boolean,
     state: MainTopAppBarState,
     upPress: () -> Unit,
@@ -44,7 +43,7 @@ fun MainTopAppBar(
     onSearchActionClick: () -> Unit
 ) {
     OdsTopAppBar(
-        title = stringResource(id = titleRes),
+        title = stringResource(id = state.titleRes.value),
         navigationIcon = if (shouldShowUpNavigationIcon && state.isNavigationIconEnabled) {
             {
                 Icon(
