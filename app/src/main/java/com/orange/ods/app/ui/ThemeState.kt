@@ -19,10 +19,10 @@ import androidx.compose.runtime.staticCompositionLocalOf
 import com.orange.ods.theme.OdsThemeConfigurationContract
 import com.orange.ods.theme.guideline.OdsGuideline
 
-val LocalMainThemeManager = staticCompositionLocalOf<MainThemeManager> { error("CompositionLocal LocalMainThemeManager not present") }
+val LocalThemeManager = staticCompositionLocalOf<ThemeManager> { error("CompositionLocal LocalMainThemeManager not present") }
 val LocalOdsGuideline = staticCompositionLocalOf<OdsGuideline> { error("CompositionLocal LocalOdsGuideline not present") }
 
-interface MainThemeManager {
+interface ThemeManager {
 
     val themeConfigurations: List<OdsThemeConfigurationContract>
 
@@ -33,20 +33,20 @@ interface MainThemeManager {
 }
 
 @Composable
-fun rememberMainThemeState(
+fun rememberThemeState(
     themeConfigurations: List<OdsThemeConfigurationContract>,
     currentThemeConfiguration: MutableState<OdsThemeConfigurationContract>,
     darkModeEnabled: MutableState<Boolean>,
 ) =
     remember(themeConfigurations, currentThemeConfiguration, darkModeEnabled) {
-        MainThemeState(themeConfigurations, currentThemeConfiguration, darkModeEnabled)
+        ThemeState(themeConfigurations, currentThemeConfiguration, darkModeEnabled)
     }
 
-class MainThemeState(
+class ThemeState(
     override val themeConfigurations: List<OdsThemeConfigurationContract>,
     currentThemeConfiguration: MutableState<OdsThemeConfigurationContract>,
     darkModeEnabled: MutableState<Boolean>
-) : MainThemeManager {
+) : ThemeManager {
 
     // ----------------------------------------------------------
     // Theme state source of truth

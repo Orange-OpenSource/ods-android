@@ -47,7 +47,7 @@ object MainDestinations {
 
 @Composable
 fun rememberMainState(
-    themeState: MainThemeState,
+    themeState: ThemeState,
     navController: NavHostController = rememberNavController(),
     topAppBarState: MainTopAppBarState = rememberMainTopAppBarState(),
     uiFramework: MutableState<UiFramework> = rememberSaveable { mutableStateOf(UiFramework.Compose) }
@@ -57,7 +57,7 @@ fun rememberMainState(
     }
 
 class MainState(
-    val themeState: MainThemeState,
+    val themeState: ThemeState,
     val navController: NavHostController,
     val topAppBarState: MainTopAppBarState,
     val uiFramework: MutableState<UiFramework>
