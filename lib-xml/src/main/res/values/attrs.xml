@@ -9,11 +9,21 @@
   -->
 
 <resources>
+    <attr name="text" format="string" />
+    <attr name="enabled" format="boolean" />
     <declare-styleable name="OdsBanner">
         <attr name="message" format="string" />
         <attr name="button1Text" format="string" />
         <attr name="image" format="reference|color" />
         <attr name="imageContentDescription" format="string" />
         <attr name="button2Text" format="string" />
+    </declare-styleable>
+    <declare-styleable name="OdsButton">
+        <attr name="text" />
+        <attr name="enabled" />
+    </declare-styleable>
+    <declare-styleable name="OdsOutlinedButton">
+        <attr name="text" />
+        <attr name="enabled" />
     </declare-styleable>
 </resources>

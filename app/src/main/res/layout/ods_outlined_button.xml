@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?><!--
+  ~ /*
+  ~ * Copyright 2021 Orange
+  ~ *
+  ~ * Use of this source code is governed by an MIT-style
+  ~ * license that can be found in the LICENSE file or at
+  ~ * https://opensource.org/licenses/MIT.
+  ~ */
+  -->
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <variable
+            name="text"
+            type="String" />
+
+    </data>
+
+    <com.orange.ods.xml.component.button.OdsOutlinedButton
+        android:id="@+id/outlinedbutton"
+        app:text="@{text}"
+        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:padding="@dimen/spacing_m">
+
+    </com.orange.ods.xml.component.button.OdsOutlinedButton>
+
+</layout>
