@@ -10,9 +10,7 @@
 
 package com.orange.ods.app.ui
 
-import android.content.Context
-import androidx.compose.foundation.layout.Column
-import androidx.compose.material.Text
+import androidx.compose.foundation.layout.Box
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.MutableState
@@ -21,8 +19,7 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.compose.runtime.staticCompositionLocalOf
-import androidx.compose.ui.platform.LocalContext
-import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.Modifier
 import androidx.databinding.ViewDataBinding
 import com.orange.ods.app.R
 import com.orange.ods.app.ui.components.utilities.ViewDataBinding
@@ -35,7 +32,7 @@ enum class UiFramework(val iconResId: Int, val labelResId: Int) {
 }
 
 @Composable
-inline fun <reified T : ViewDataBinding> UiFramework(compose: @Composable () -> Unit, noinline xml: T.() -> Unit) {
+inline fun <reified T : ViewDataBinding> UiFramework(compose: @Composable () -> Unit, noinline xml: T.() -> Unit, modifier: Modifier = Modifier) {
     val uiFramework = LocalUiFramework.current
     // Reset current UI framework to Compose when displaying the content
     // shouldResetUiFramework is used to avoid calling LaunchedEffect on configuration changes (for instance on device rotation)
@@ -46,8 +43,10 @@ inline fun <reified T : ViewDataBinding> UiFramework(compose: @Composable () -> 
             uiFramework.value = UiFramework.Compose
         }
     }
-    when (uiFramework.value) {
-        UiFramework.Compose -> compose()
-        UiFramework.Xml -> ViewDataBinding(bind = xml)
+    Box(modifier) {
+        when (uiFramework.value) {
+            UiFramework.Compose -> compose()
+            UiFramework.Xml -> ViewDataBinding(bind = xml)
+        }
     }
 }

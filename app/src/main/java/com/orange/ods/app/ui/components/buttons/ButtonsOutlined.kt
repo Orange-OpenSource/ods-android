@@ -42,66 +42,66 @@ fun ButtonsOutlined(customizationState: ButtonCustomizationState) {
                 .verticalScroll(rememberScrollState())
                 .padding(vertical = dimensionResource(id = R.dimen.screen_vertical_margin))
         ) {
-            val context = LocalContext.current
-            val text = stringResource(if (isEnabled) R.string.component_state_enabled else R.string.component_state_disabled)
-            val icon = R.drawable.ic_coffee
-            UiFramework<OdsOutlinedButtonBinding>(
-                compose = {
-                    OutlinedButton(leadingIcon = hasLeadingIcon, enabled = isEnabled, fullScreenWidth = hasFullScreenWidth)
+            val modifier = Modifier
+                .padding(horizontal = dimensionResource(R.dimen.screen_horizontal_margin))
+                .padding(top = dimensionResource(R.dimen.spacing_m))
+                .let { if (hasFullScreenWidth) it.fillMaxWidth() else it }
 
-                    Spacer(modifier = Modifier.padding(top = dimensionResource(R.dimen.spacing_s)))
+            OutlinedButton(modifier, hasLeadingIcon, isEnabled, hasFullScreenWidth)
 
-                    InvertedBackgroundColumn {
-                        OutlinedButton(
-                            leadingIcon = hasLeadingIcon,
-                            enabled = isEnabled,
-                            fullScreenWidth = hasFullScreenWidth,
-                            displaySurface = displaySurface
-                        )
-                    }
+            Spacer(modifier = Modifier.padding(top = dimensionResource(R.dimen.spacing_s)))
 
-                    CodeImplementationColumn(
-                        modifier = Modifier.padding(horizontal = dimensionResource(id = R.dimen.screen_horizontal_margin))
-                    ) {
-                        FunctionCallCode(
-                            name = OdsComposable.OdsOutlinedButton.name,
-                            exhaustiveParameters = false,
-                            parameters = {
-                                if (hasFullScreenWidth) fillMaxWidth()
-                                if (hasLeadingIcon) icon()
-                                if (!isEnabled) enabled(false)
-                            })
-                    }
-                }, xml = {
-                    this.text = text
-                    outlinedbutton.icon = if (hasLeadingIcon) AppCompatResources.getDrawable(context, icon) else null
-                    outlinedbutton.isEnabled = isEnabled
-                    val width = if (hasFullScreenWidth) LayoutParams.MATCH_PARENT else LayoutParams.WRAP_CONTENT
-                    outlinedbutton.layoutParams = ViewGroup.LayoutParams(width, LayoutParams.WRAP_CONTENT)
-                }
+            InvertedBackgroundColumn {
+                OutlinedButton(modifier, hasLeadingIcon, isEnabled, hasFullScreenWidth, displaySurface = displaySurface)
+            }
 
-            )
+            CodeImplementationColumn(
+                modifier = Modifier.padding(horizontal = dimensionResource(id = R.dimen.screen_horizontal_margin)),
+                xmlAvailable = true
+            ) {
+                FunctionCallCode(
+                    name = OdsComposable.OdsOutlinedButton.name,
+                    exhaustiveParameters = false,
+                    parameters = {
+                        if (hasFullScreenWidth) fillMaxWidth()
+                        if (hasLeadingIcon) icon()
+                        if (!isEnabled) enabled(false)
+                    })
+            }
         }
     }
 }
 
 @Composable
 private fun OutlinedButton(
+    modifier: Modifier,
     leadingIcon: Boolean,
     enabled: Boolean,
     fullScreenWidth: Boolean,
-    displaySurface: OdsDisplaySurface = OdsDisplaySurface.Default
+    displaySurface: OdsDisplaySurface = OdsDisplaySurface.Default,
 ) {
-    val modifier = Modifier
-        .padding(horizontal = dimensionResource(R.dimen.screen_horizontal_margin))
-        .padding(top = dimensionResource(R.dimen.spacing_m))
+    val context = LocalContext.current
+    val text = stringResource(if (enabled) R.string.component_state_enabled else R.string.component_state_disabled)
+    val iconId = R.drawable.ic_coffee
 
-    OdsOutlinedButton(
-        modifier = if (fullScreenWidth) modifier.fillMaxWidth() else modifier,
-        text = stringResource(if (enabled) R.string.component_state_enabled else R.string.component_state_disabled),
-        onClick = {},
-        icon = if (leadingIcon) painterResource(id = R.drawable.ic_coffee) else null,
-        enabled = enabled,
-        displaySurface = displaySurface
+    UiFramework<OdsOutlinedButtonBinding>(
+        modifier = modifier,
+        compose = {
+            OdsOutlinedButton(
+                modifier = if (fullScreenWidth) Modifier.fillMaxWidth() else Modifier,
+                text = text,
+                onClick = {},
+                icon = if (leadingIcon) painterResource(id = iconId) else null,
+                enabled = enabled,
+                displaySurface = displaySurface
+            )
+        }, xml = {
+            this.text = text
+            outlinedbutton.displaySurface = displaySurface
+            outlinedbutton.icon = if (leadingIcon) AppCompatResources.getDrawable(context, iconId) else null
+            outlinedbutton.isEnabled = enabled
+            val width = if (fullScreenWidth) LayoutParams.MATCH_PARENT else LayoutParams.WRAP_CONTENT
+            outlinedbutton.layoutParams = ViewGroup.LayoutParams(width, LayoutParams.WRAP_CONTENT)
+        }
     )
 }

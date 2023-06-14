@@ -46,78 +46,92 @@ fun ButtonsContained(customizationState: ButtonCustomizationState) {
                 .verticalScroll(rememberScrollState())
                 .padding(vertical = dimensionResource(id = R.dimen.screen_vertical_margin))
         ) {
-            val context = LocalContext.current
-            val text = stringResource(if (isEnabled) R.string.component_state_enabled else R.string.component_state_disabled)
-            val icon = R.drawable.ic_coffee
-            UiFramework<OdsButtonBinding>(
-                compose = {
-                    with(buttonStyle.value) {
-                        if (buttonStyle.value in listOf(OdsButtonStyle.FunctionalNegative, OdsButtonStyle.FunctionalPositive)) {
-                            Title(
-                                textRes = if (this == OdsButtonStyle.FunctionalNegative) R.string.component_button_style_functional_negative else R.string.component_button_style_functional_positive,
-                                horizontalPadding = true
-                            )
-                        }
-                    }
-                    ContainedButton(style = buttonStyle.value, leadingIcon = hasLeadingIcon, enabled = isEnabled, fullScreenWidth = hasFullScreenWidth)
+            val modifier = Modifier
+                .padding(horizontal = dimensionResource(R.dimen.screen_horizontal_margin))
+                .padding(top = dimensionResource(R.dimen.spacing_m))
+                .let { if (hasFullScreenWidth) it.fillMaxWidth() else it }
 
-                    Spacer(modifier = Modifier.padding(top = dimensionResource(R.dimen.spacing_s)))
-
-                    InvertedBackgroundColumn {
-                        ContainedButton(
-                            style = buttonStyle.value,
-                            leadingIcon = hasLeadingIcon,
-                            enabled = isEnabled,
-                            fullScreenWidth = hasFullScreenWidth,
-                            displaySurface = displaySurface
-                        )
-                    }
-
-                    CodeImplementationColumn(
-                        modifier = Modifier.padding(horizontal = dimensionResource(id = R.dimen.screen_horizontal_margin))
-                    ) {
-                        FunctionCallCode(
-                            name = OdsComposable.OdsButton.name,
-                            exhaustiveParameters = false,
-                            parameters = {
-                                simple("style", buttonStyle.value.fullName)
-                                if (hasFullScreenWidth) fillMaxWidth()
-                                if (hasLeadingIcon) icon()
-                                if (!isEnabled) enabled(false)
-                            }
-                        )
-                    }
-                }, xml = {
-                    this.text = text
-                    button.style = buttonStyle.value
-                    button.icon = if (hasLeadingIcon) AppCompatResources.getDrawable(context, icon) else null
-                    button.isEnabled = isEnabled
-                    val width = if (hasFullScreenWidth) ActionBar.LayoutParams.MATCH_PARENT else ActionBar.LayoutParams.WRAP_CONTENT
-                    button.layoutParams = ViewGroup.LayoutParams(width, ActionBar.LayoutParams.WRAP_CONTENT)
+            with(buttonStyle.value) {
+                if (buttonStyle.value in listOf(OdsButtonStyle.FunctionalNegative, OdsButtonStyle.FunctionalPositive)) {
+                    Title(
+                        textRes = if (this == OdsButtonStyle.FunctionalNegative) R.string.component_button_style_functional_negative else R.string.component_button_style_functional_positive,
+                        horizontalPadding = true
+                    )
                 }
+            }
+            ContainedButton(
+                style = buttonStyle.value,
+                modifier = modifier,
+                leadingIcon = hasLeadingIcon,
+                enabled = isEnabled,
+                fullScreenWidth = hasFullScreenWidth
             )
+
+            Spacer(modifier = Modifier.padding(top = dimensionResource(R.dimen.spacing_s)))
+
+            InvertedBackgroundColumn {
+                ContainedButton(
+                    style = buttonStyle.value,
+                    modifier = modifier,
+                    leadingIcon = hasLeadingIcon,
+                    enabled = isEnabled,
+                    fullScreenWidth = hasFullScreenWidth,
+                    displaySurface = displaySurface
+                )
+            }
+
+            CodeImplementationColumn(
+                modifier = Modifier.padding(horizontal = dimensionResource(id = R.dimen.screen_horizontal_margin)),
+                xmlAvailable = true
+            ) {
+                FunctionCallCode(
+                    name = OdsComposable.OdsButton.name,
+                    exhaustiveParameters = false,
+                    parameters = {
+                        simple("style", buttonStyle.value.fullName)
+                        if (hasFullScreenWidth) fillMaxWidth()
+                        if (hasLeadingIcon) icon()
+                        if (!isEnabled) enabled(false)
+                    }
+                )
+            }
         }
     }
 }
 
-
 @Composable
 private fun ContainedButton(
     style: OdsButtonStyle,
+    modifier: Modifier,
     leadingIcon: Boolean,
     enabled: Boolean,
     fullScreenWidth: Boolean,
     displaySurface: OdsDisplaySurface = OdsDisplaySurface.Default
 ) {
-    val modifier = Modifier.padding(horizontal = dimensionResource(R.dimen.screen_horizontal_margin), vertical = dimensionResource(R.dimen.spacing_m))
+    val context = LocalContext.current
+    val text = stringResource(if (enabled) R.string.component_state_enabled else R.string.component_state_disabled)
+    val iconId = R.drawable.ic_coffee
 
-    OdsButton(
-        modifier = if (fullScreenWidth) modifier.fillMaxWidth() else modifier,
-        icon = if (leadingIcon) painterResource(id = R.drawable.ic_coffee) else null,
-        text = stringResource(if (enabled) R.string.component_state_enabled else R.string.component_state_disabled),
-        onClick = {},
-        enabled = enabled,
-        style = style,
-        displaySurface = displaySurface
+    UiFramework<OdsButtonBinding>(
+        modifier = modifier,
+        compose = {
+            OdsButton(
+                modifier = if (fullScreenWidth) Modifier.fillMaxWidth() else Modifier,
+                icon = if (leadingIcon) painterResource(id = iconId) else null,
+                text = text,
+                onClick = {},
+                enabled = enabled,
+                style = style,
+                displaySurface = displaySurface
+            )
+        }, xml = {
+            this.text = text
+            button.style = style
+            button.icon = if (leadingIcon) AppCompatResources.getDrawable(context, iconId) else null
+            button.isEnabled = enabled
+            val width = if (fullScreenWidth) ActionBar.LayoutParams.MATCH_PARENT else ActionBar.LayoutParams.WRAP_CONTENT
+            button.layoutParams = ViewGroup.LayoutParams(width, ActionBar.LayoutParams.WRAP_CONTENT)
+            button.displaySurface = displaySurface
+        }
     )
 }
