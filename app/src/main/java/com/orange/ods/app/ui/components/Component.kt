@@ -25,8 +25,10 @@ import com.orange.ods.app.ui.components.checkboxes.ComponentCheckboxes
 import com.orange.ods.app.ui.components.chips.Chip
 import com.orange.ods.app.ui.components.dialogs.ComponentDialog
 import com.orange.ods.app.ui.components.floatingactionbuttons.ComponentFloatingActionButton
+import com.orange.ods.app.ui.components.imageitem.ComponentImageItem
 import com.orange.ods.app.ui.components.lists.ComponentLists
 import com.orange.ods.app.ui.components.menus.ComponentMenu
+import com.orange.ods.app.ui.components.navigationdrawers.ComponentModalDrawers
 import com.orange.ods.app.ui.components.progress.ComponentProgress
 import com.orange.ods.app.ui.components.radiobuttons.ComponentRadioButtons
 import com.orange.ods.app.ui.components.sheets.ComponentSheetsBottom
@@ -157,7 +159,8 @@ sealed class Component(
         R.drawable.il_image_item,
         null,
         R.string.component_image_item_description,
-        composableName = OdsComposable.OdsImageItem.name
+        composableName = OdsComposable.OdsImageItem.name,
+        screenContent = { ComponentImageItem() }
     )
 
     object Lists : Component(
@@ -183,6 +186,7 @@ sealed class Component(
         R.drawable.il_navigation_drawers,
         null,
         R.string.component_modal_drawers_description,
+        screenContent = { ComponentModalDrawers() }
     )
 
     object Progress : Component(
