@@ -12,12 +12,8 @@ package com.orange.ods.app.ui
 
 import android.os.Parcelable
 import androidx.annotation.DrawableRes
-import androidx.compose.runtime.Composable
-import androidx.compose.runtime.MutableState
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
+import androidx.compose.runtime.*
 import androidx.compose.runtime.saveable.rememberSaveable
-import androidx.compose.runtime.staticCompositionLocalOf
 import androidx.compose.ui.text.input.TextFieldValue
 import com.orange.ods.app.R
 import kotlinx.parcelize.Parcelize
@@ -27,6 +23,8 @@ val LocalMainTopAppBarManager = staticCompositionLocalOf<MainTopAppBarManager> {
 interface MainTopAppBarManager {
     fun updateTopAppBar(topAppBarConfiguration: TopAppBarConfiguration)
     fun updateTopAppBarTitle(titleRes: Int)
+    fun setExtended(extended: Boolean)
+
     fun updateTopAppBarTabs(tabsConfiguration: TabsConfiguration)
     fun clearTopAppBarTabs()
 
@@ -40,10 +38,11 @@ fun rememberMainTopAppBarState(
     actions: MutableState<List<TopAppBarConfiguration.Action>> = rememberSaveable { mutableStateOf(MainTopAppBarState.DefaultConfiguration.actions) },
     navigationIconEnabled: MutableState<Boolean> = rememberSaveable { mutableStateOf(MainTopAppBarState.DefaultConfiguration.isNavigationIconEnabled) },
     searchedText: MutableState<TextFieldValue> = remember { mutableStateOf(TextFieldValue("")) },
+    extended: MutableState<Boolean> = rememberSaveable { mutableStateOf(false) },
     tabsState: MainTabsState = rememberMainTabsState(),
 ) =
-    remember(titleRes, actions, searchedText, navigationIconEnabled, tabsState) {
-        MainTopAppBarState(titleRes, actions, searchedText, navigationIconEnabled, tabsState)
+    remember(titleRes, actions, searchedText, navigationIconEnabled, extended, tabsState) {
+        MainTopAppBarState(titleRes, actions, searchedText, navigationIconEnabled, extended, tabsState)
     }
 
 
@@ -52,11 +51,13 @@ class MainTopAppBarState(
     val actions: MutableState<List<TopAppBarConfiguration.Action>>,
     var searchedText: MutableState<TextFieldValue>,
     private val navigationIconEnabled: MutableState<Boolean>,
+    private var extended: MutableState<Boolean>,
     val tabsState: MainTabsState,
 ) : MainTopAppBarManager {
 
     companion object {
         val DefaultConfiguration = TopAppBarConfiguration(
+            isExtended = false,
             isNavigationIconEnabled = true,
             actions = listOf(TopAppBarConfiguration.Action.Theme, TopAppBarConfiguration.Action.Mode)
         )
@@ -66,10 +67,18 @@ class MainTopAppBarState(
     // TopAppBar state source of truth
     // ----------------------------------------------------------
 
+    val isExtended: Boolean
+        get() = extended.value
+
     val isNavigationIconEnabled: Boolean
         get() = navigationIconEnabled.value
 
+    override fun setExtended(extended: Boolean) {
+        this.extended.value = extended
+    }
+
     override fun updateTopAppBar(topAppBarConfiguration: TopAppBarConfiguration) {
+        extended.value = topAppBarConfiguration.isExtended
         navigationIconEnabled.value = topAppBarConfiguration.isNavigationIconEnabled
         actions.value = topAppBarConfiguration.actions
     }
@@ -93,6 +102,7 @@ class MainTopAppBarState(
 }
 
 data class TopAppBarConfiguration constructor(
+    val isExtended: Boolean,
     val isNavigationIconEnabled: Boolean,
     val actions: List<Action>
 ) {
@@ -117,9 +127,11 @@ data class TopAppBarConfiguration constructor(
 
     class Builder {
 
+        private var isExtended = false
         private var isNavigationIconEnabled = true
-
         private var actions = mutableListOf<Action>()
+
+        fun extended(value: Boolean) = apply { isExtended = value }
 
         fun navigationIconEnabled(enabled: Boolean) = apply { isNavigationIconEnabled = enabled }
 
@@ -135,7 +147,7 @@ data class TopAppBarConfiguration constructor(
             actions { add(action) }
         }
 
-        fun build() = TopAppBarConfiguration(isNavigationIconEnabled, actions)
+        fun build() = TopAppBarConfiguration(isExtended, isNavigationIconEnabled, actions)
     }
 
     fun newBuilder() = Builder().apply {
