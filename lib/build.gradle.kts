@@ -73,7 +73,9 @@ android {
 dependencies {
     api(project(":theme-contract"))
     api(project(":theme-orange"))
-
+    api(Dependencies.composeMaterial)
+    api(Dependencies.composeMaterial3)
+    
     implementation(Dependencies.kotlinStdlibJdk8)
     implementation(Dependencies.kotlinReflect)
     compileOnly(project(":composable-processor"))
@@ -81,7 +83,6 @@ dependencies {
     implementation(Dependencies.accompanistFlowLayout)
     implementation(Dependencies.appCompat)
     implementation(Dependencies.composeUi)
-    implementation(Dependencies.composeMaterial)
     implementation(Dependencies.composeUiTooling)
     implementation(Dependencies.composeUiToolingPreview)
     implementation(Dependencies.coreKtx)
