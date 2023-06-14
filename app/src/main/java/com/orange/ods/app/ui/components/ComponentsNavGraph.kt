@@ -10,6 +10,7 @@
 
 package com.orange.ods.app.ui.components
 
+import androidx.compose.runtime.remember
 import androidx.navigation.NavBackStackEntry
 import androidx.navigation.NavGraphBuilder
 import androidx.navigation.NavType
@@ -39,19 +40,36 @@ fun NavGraphBuilder.addComponentsGraph(navigateToElement: (String, Long?, NavBac
         "${MainDestinations.ComponentVariantRoute}/{${MainDestinations.ComponentVariantIdKey}}",
         arguments = listOf(navArgument(MainDestinations.ComponentVariantIdKey) { type = NavType.LongType })
     ) { from ->
+        LocalMainTopAppBarManager.current.reset()
+
         val arguments = requireNotNull(from.arguments)
         val variantId = arguments.getLong(MainDestinations.ComponentVariantIdKey)
-        LocalMainTopAppBarManager.current.updateTopAppBar(MainTopAppBarState.DefaultConfiguration)
-        ComponentVariantScreen(variantId = variantId)
+        val variant = remember { components.flatMap { it.variants }.firstOrNull { it.id == variantId } }
+
+        variant?.let {
+            with(LocalMainTopAppBarManager.current) {
+                updateTopAppBarTitle(variant.titleRes)
+                setExtended(variant.extendedTopAppBar)
+            }
+
+            variant.screenContent()
+        }
     }
 
     composable(
         "${MainDestinations.ComponentDemoRoute}/{${MainDestinations.ComponentIdKey}}",
         arguments = listOf(navArgument(MainDestinations.ComponentIdKey) { type = NavType.LongType })
     ) { from ->
+        LocalMainTopAppBarManager.current.updateTopAppBar(MainTopAppBarState.DefaultConfiguration)
+
         val arguments = requireNotNull(from.arguments)
         val componentId = arguments.getLong(MainDestinations.ComponentIdKey)
-        LocalMainTopAppBarManager.current.updateTopAppBar(MainTopAppBarState.DefaultConfiguration)
-        ComponentDemoScreen(componentId = componentId)
+        val component = remember { components.firstOrNull { it.id == componentId } }
+
+        component?.let {
+            LocalMainTopAppBarManager.current.updateTopAppBarTitle(component.titleRes)
+            component.screenContent?.let { it() }
+        }
+
     }
 }

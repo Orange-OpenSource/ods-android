@@ -14,7 +14,6 @@ import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.animation.fadeIn
 import androidx.compose.animation.fadeOut
 import androidx.compose.foundation.isSystemInDarkTheme
-import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material.AppBarDefaults
@@ -124,10 +123,10 @@ fun MainScreen(themeConfigurations: Set<OdsThemeConfigurationContract>, mainView
                     }
                 }
             ) { innerPadding ->
-                Box(modifier = Modifier.padding(innerPadding)) {
-                    NavHost(mainState.navController, startDestination = MainDestinations.HomeRoute) {
-                        mainNavGraph(navigateToElement = mainState::navigateToElement, searchedText = mainState.topAppBarState.searchedText)
-                    }
+                NavHost(
+                    navController = mainState.navController, startDestination = MainDestinations.HomeRoute, modifier = Modifier.padding(innerPadding)
+                ) {
+                    mainNavGraph(navigateToElement = mainState::navigateToElement, searchedText = mainState.topAppBarState.searchedText)
                 }
             }
         }
