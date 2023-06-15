@@ -10,7 +10,9 @@
 
 package com.orange.ods.app.ui.components.buttons.icons
 
+import androidx.appcompat.content.res.AppCompatResources
 import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
@@ -23,16 +25,20 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import com.orange.ods.app.R
+import com.orange.ods.app.databinding.OdsIconToogleButtonBinding
+import com.orange.ods.app.ui.UiFramework
 import com.orange.ods.app.ui.components.buttons.InvertedBackgroundColumn
 import com.orange.ods.app.ui.utilities.composable.CodeImplementationColumn
 import com.orange.ods.app.ui.utilities.composable.FunctionCallCode
 import com.orange.ods.app.ui.utilities.composable.IconPainterValue
 import com.orange.ods.compose.OdsComposable
 import com.orange.ods.compose.component.button.OdsIconToggleButton
+import com.orange.ods.compose.theme.OdsDisplaySurface
 
 @Composable
 fun ButtonsIconToggle(customizationState: ButtonIconCustomizationState) {
@@ -44,15 +50,16 @@ fun ButtonsIconToggle(customizationState: ButtonIconCustomizationState) {
                 .verticalScroll(rememberScrollState())
                 .padding(vertical = dimensionResource(id = R.dimen.screen_vertical_margin))
         ) {
+            val modifier = Modifier
+                .padding(horizontal = dimensionResource(R.dimen.screen_horizontal_margin))
+                .padding(top = dimensionResource(R.dimen.spacing_m))
             Row(
                 modifier = Modifier.fillMaxWidth(),
                 horizontalArrangement = Arrangement.Center
             ) {
-                OdsIconToggleButton(
+                IconToogleButton(
                     checked = buttonCheckedState.value,
-                    uncheckedPainter = painterResource(id = R.drawable.ic_heart_outlined),
-                    checkedPainter = painterResource(id = R.drawable.ic_heart),
-                    iconContentDescription = stringResource(id = R.string.component_button_icon_toggle_favorite_icon_desc),
+                    modifier = modifier,
                     onCheckedChange = { checked -> buttonCheckedState.value = checked },
                     enabled = isEnabled
                 )
@@ -61,19 +68,18 @@ fun ButtonsIconToggle(customizationState: ButtonIconCustomizationState) {
             Spacer(modifier = Modifier.padding(top = dimensionResource(R.dimen.spacing_s)))
 
             InvertedBackgroundColumn(horizontalAlignment = Alignment.CenterHorizontally) {
-                OdsIconToggleButton(
+                IconToogleButton(
                     checked = buttonCheckedState.value,
-                    uncheckedPainter = painterResource(id = R.drawable.ic_heart_outlined),
-                    checkedPainter = painterResource(id = R.drawable.ic_heart),
-                    iconContentDescription = stringResource(id = R.string.component_button_icon_toggle_favorite_icon_desc),
                     onCheckedChange = { checked -> buttonCheckedState.value = checked },
+                    modifier = modifier,
                     enabled = isEnabled,
                     displaySurface = displaySurface
                 )
             }
 
             CodeImplementationColumn(
-                modifier = Modifier.padding(horizontal = dimensionResource(id = R.dimen.screen_horizontal_margin))
+                modifier = Modifier.padding(horizontal = dimensionResource(id = R.dimen.screen_horizontal_margin)),
+                xmlAvailable = true
             ) {
                 FunctionCallCode(
                     name = OdsComposable.OdsIconToggleButton.name,
@@ -87,5 +93,39 @@ fun ButtonsIconToggle(customizationState: ButtonIconCustomizationState) {
                 )
             }
         }
+    }
+}
+
+@Composable
+private fun IconToogleButton(
+    checked: Boolean,
+    onCheckedChange: (Boolean) -> Unit,
+    modifier: Modifier,
+    enabled: Boolean,
+    displaySurface: OdsDisplaySurface = OdsDisplaySurface.Default
+) {
+    val context = LocalContext.current
+    val uncheckedPainterId = R.drawable.ic_heart_outlined
+    val checkedPainterId = R.drawable.ic_heart
+
+    Box(modifier = modifier) {
+        UiFramework<OdsIconToogleButtonBinding>(
+            compose = {
+                OdsIconToggleButton(
+                    checked = checked,
+                    uncheckedPainter = painterResource(id = uncheckedPainterId),
+                    checkedPainter = painterResource(id = checkedPainterId),
+                    iconContentDescription = stringResource(id = R.string.component_button_icon_toggle_favorite_icon_desc),
+                    onCheckedChange = onCheckedChange,
+                    enabled = enabled,
+                    displaySurface = displaySurface
+                )
+            }, xml = {
+                icontooglebutton.checkedPainter = AppCompatResources.getDrawable(context, checkedPainterId)
+                icontooglebutton.uncheckedPainter = AppCompatResources.getDrawable(context, uncheckedPainterId)
+                icontooglebutton.isEnabled = enabled
+                icontooglebutton.displaySurface = displaySurface
+            }
+        )
     }
 }

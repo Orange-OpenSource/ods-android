@@ -17,7 +17,7 @@
         <enum name="dark" value="1" />
         <enum name="light" value="2" />
     </attr>
-
+    <attr name="iconContentDescription" format="string" />
     <declare-styleable name="OdsBanner">
         <attr name="message" format="string" />
         <attr name="button1Text" format="string" />
@@ -38,7 +38,15 @@
         </attr>
         <attr name="displaySurface" />
     </declare-styleable>
-
+    <declare-styleable name="OdsIconButton">
+        <attr name="text" />
+        <attr name="iconContentDescription" />
+        <attr name="enabled" />
+    </declare-styleable>
+    <declare-styleable name="OdsIconToogleButton">
+        <attr name="iconContentDescription" />
+        <attr name="enabled" />
+    </declare-styleable>
     <declare-styleable name="OdsOutlinedButton">
         <attr name="icon" />
         <attr name="text" />

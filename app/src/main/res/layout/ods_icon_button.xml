@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?><!--
+  ~ /*
+  ~ * Copyright 2021 Orange
+  ~ *
+  ~ * Use of this source code is governed by an MIT-style
+  ~ * license that can be found in the LICENSE file or at
+  ~ * https://opensource.org/licenses/MIT.
+  ~ */
+  -->
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <data>
+
+
+    </data>
+
+    <com.orange.ods.xml.component.button.OdsIconButton
+        android:id="@+id/iconbutton"
+        android:layout_height="match_parent"
+        android:layout_width="match_parent">
+
+    </com.orange.ods.xml.component.button.OdsIconButton>
+
+</layout>

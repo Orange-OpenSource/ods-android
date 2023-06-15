@@ -22,6 +22,6 @@
         android:id="@+id/textbutton"
         app:text="@{text}"
         android:layout_height="match_parent"
-        android:layout_width="match_parent"></com.orange.ods.xml.component.button.OdsTextButton>
+        android:layout_width="match_parent" />
 
 </layout>
