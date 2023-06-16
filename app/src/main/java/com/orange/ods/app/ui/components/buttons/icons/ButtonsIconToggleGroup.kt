@@ -11,6 +11,7 @@
 package com.orange.ods.app.ui.components.buttons.icons
 
 import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
@@ -27,7 +28,9 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.painterResource
 import com.orange.ods.app.R
+import com.orange.ods.app.databinding.OdsIconToggleButtonsGroupBinding
 import com.orange.ods.app.domain.recipes.LocalRecipes
+import com.orange.ods.app.ui.UiFramework
 import com.orange.ods.app.ui.components.buttons.InvertedBackgroundColumn
 import com.orange.ods.app.ui.utilities.composable.CodeImplementationColumn
 import com.orange.ods.app.ui.utilities.composable.FunctionCallCode
@@ -51,9 +54,13 @@ fun ButtonsIconToggleGroup(customizationState: ButtonIconCustomizationState) {
                 .verticalScroll(rememberScrollState())
                 .padding(vertical = dimensionResource(id = R.dimen.screen_vertical_margin))
         ) {
+            val modifier = Modifier
+                .padding(horizontal = dimensionResource(R.dimen.screen_horizontal_margin))
+
             ToggleButtonsRow(
                 iconToggleButtons = iconToggleButtons,
                 selectedIndex = selectedIndex,
+                modifier = modifier,
                 onSelectedIndexChange = { index -> selectedIndex = index },
                 toggleCount = toggleCount.value
             )
@@ -65,13 +72,15 @@ fun ButtonsIconToggleGroup(customizationState: ButtonIconCustomizationState) {
                     iconToggleButtons = iconToggleButtons,
                     selectedIndex = selectedIndex,
                     onSelectedIndexChange = { index -> selectedIndex = index },
+                    modifier = modifier,
                     toggleCount = toggleCount.value,
                     displaySurface = displaySurface
                 )
             }
 
             CodeImplementationColumn(
-                modifier = Modifier.padding(horizontal = dimensionResource(id = R.dimen.screen_horizontal_margin))
+                modifier = Modifier.padding(horizontal = dimensionResource(id = R.dimen.screen_horizontal_margin)),
+                xmlAvailable = true
             ) {
                 FunctionCallCode(
                     name = OdsComposable.OdsIconToggleButtonsRow.name,
@@ -99,6 +108,7 @@ private fun ToggleButtonsRow(
     selectedIndex: Int,
     onSelectedIndexChange: (Int) -> Unit,
     toggleCount: Int,
+    modifier: Modifier,
     displaySurface: OdsDisplaySurface = OdsDisplaySurface.Default
 ) {
     Row(
@@ -108,11 +118,22 @@ private fun ToggleButtonsRow(
             .padding(horizontal = dimensionResource(R.dimen.screen_horizontal_margin)),
         horizontalArrangement = Arrangement.Center
     ) {
-        OdsIconToggleButtonsRow(
-            iconToggleButtons = iconToggleButtons.take(toggleCount),
-            selectedIndex = selectedIndex,
-            onSelectedIndexChange = onSelectedIndexChange,
-            displaySurface = displaySurface
-        )
+        Box(modifier = modifier) {
+            UiFramework<OdsIconToggleButtonsGroupBinding>(
+                compose = {
+                    OdsIconToggleButtonsRow(
+                        iconToggleButtons = iconToggleButtons.take(toggleCount),
+                        selectedIndex = selectedIndex,
+                        onSelectedIndexChange = onSelectedIndexChange,
+                        displaySurface = displaySurface
+                    )
+                }, xml = {
+                    icontogglebuttonsrow.iconToggleButtons = iconToggleButtons.take(toggleCount)
+                    icontogglebuttonsrow.selectedIndex = selectedIndex
+                    icontogglebuttonsrow.onSelectedIndexChange = onSelectedIndexChange
+                    icontogglebuttonsrow.displaySurface = displaySurface
+                }
+            )
+        }
     }
 }

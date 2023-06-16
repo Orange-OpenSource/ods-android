@@ -23,14 +23,13 @@ import com.orange.ods.compose.theme.OdsDisplaySurface
 import com.orange.ods.xml.component.OdsAbstractComposeView
 
 
-class OdsIconToogleButton @JvmOverloads constructor(context: Context, attrs: AttributeSet? = null) : OdsAbstractComposeView(context, attrs) {
-
-    var onClick by mutableStateOf({})
+class OdsIconToggleButton @JvmOverloads constructor(context: Context, attrs: AttributeSet? = null) : OdsAbstractComposeView(context, attrs) {
+    
     var checkedPainter by mutableStateOf<Drawable?>(null)
     var uncheckedPainter by mutableStateOf<Drawable?>(null)
     var iconContentDescription by mutableStateOf<String>("")
     var checked by mutableStateOf<Boolean>(false)
-    private var onCheckedChange by mutableStateOf<(Boolean) -> Unit>({})
+    var onCheckedChange by mutableStateOf<(Boolean) -> Unit>({})
     var displaySurface by mutableStateOf<OdsDisplaySurface>(OdsDisplaySurface.Default)
 
     @Composable

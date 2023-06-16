@@ -57,7 +57,7 @@ fun ButtonsIconToggle(customizationState: ButtonIconCustomizationState) {
                 modifier = Modifier.fillMaxWidth(),
                 horizontalArrangement = Arrangement.Center
             ) {
-                IconToogleButton(
+                IconToggleButton(
                     checked = buttonCheckedState.value,
                     modifier = modifier,
                     onCheckedChange = { checked -> buttonCheckedState.value = checked },
@@ -68,7 +68,7 @@ fun ButtonsIconToggle(customizationState: ButtonIconCustomizationState) {
             Spacer(modifier = Modifier.padding(top = dimensionResource(R.dimen.spacing_s)))
 
             InvertedBackgroundColumn(horizontalAlignment = Alignment.CenterHorizontally) {
-                IconToogleButton(
+                IconToggleButton(
                     checked = buttonCheckedState.value,
                     onCheckedChange = { checked -> buttonCheckedState.value = checked },
                     modifier = modifier,
@@ -97,7 +97,7 @@ fun ButtonsIconToggle(customizationState: ButtonIconCustomizationState) {
 }
 
 @Composable
-private fun IconToogleButton(
+private fun IconToggleButton(
     checked: Boolean,
     onCheckedChange: (Boolean) -> Unit,
     modifier: Modifier,
@@ -121,10 +121,12 @@ private fun IconToogleButton(
                     displaySurface = displaySurface
                 )
             }, xml = {
-                icontooglebutton.checkedPainter = AppCompatResources.getDrawable(context, checkedPainterId)
-                icontooglebutton.uncheckedPainter = AppCompatResources.getDrawable(context, uncheckedPainterId)
-                icontooglebutton.isEnabled = enabled
-                icontooglebutton.displaySurface = displaySurface
+                icontogglebutton.checked = checked
+                icontogglebutton.checkedPainter = AppCompatResources.getDrawable(context, checkedPainterId)
+                icontogglebutton.uncheckedPainter = AppCompatResources.getDrawable(context, uncheckedPainterId)
+                icontogglebutton.isEnabled = enabled
+                icontogglebutton.displaySurface = displaySurface
+                icontogglebutton.onCheckedChange = onCheckedChange
             }
         )
     }

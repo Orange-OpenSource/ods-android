@@ -11,9 +11,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - \[App\] Add component image item ([#473](https://github.com/Orange-OpenSource/ods-android/issues/473))
 - \[App\] Display XML version in `ButtonsContained` and `ButtonsOutlined` ([#528](https://github.com/Orange-OpenSource/ods-android/issues/528))
+- \[App\] Display XML version in `ButtonsText`, `ButtonsIcon`, `ButtonsIconToggle` and `ButtonsIconToggleGroup` ([#529](https://github.com/Orange-OpenSource/ods-android/issues/529))
 - \[Lib\] Add `OdsImageItem` component ([#473](https://github.com/Orange-OpenSource/ods-android/issues/473))
 - \[Lib\] Add `@Parcelize` annotation on `OdsExposedDropdownMenuItem` to allow to save and restore it ([#545](https://github.com/Orange-OpenSource/ods-android/issues/545))
 - \[LibXml\] Add `OdsButton` and `OdsOutlinedButton` views ([#528](https://github.com/Orange-OpenSource/ods-android/issues/528))
+- \[LibXml\] Add `OdsTextButton`, `OdsIconButton`, `OdsIconToggleButton` and `OdsIconToggleButtonsRow` views ([#529](https://github.com/Orange-OpenSource/ods-android/issues/529))
 
 ### Changed
 

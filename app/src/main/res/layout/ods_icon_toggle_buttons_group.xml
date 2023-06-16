@@ -13,11 +13,11 @@
 
     </data>
 
-    <com.orange.ods.xml.component.button.OdsIconToggleButton
-        android:id="@+id/icontogglebutton"
+    <com.orange.ods.xml.component.button.OdsIconToggleButtonsRow
+        android:id="@+id/icontogglebuttonsrow"
         android:layout_height="match_parent"
         android:layout_width="match_parent">
 
-    </com.orange.ods.xml.component.button.OdsIconToggleButton>
+    </com.orange.ods.xml.component.button.OdsIconToggleButtonsRow>
 
 </layout>
