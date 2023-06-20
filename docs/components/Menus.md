@@ -81,12 +81,11 @@ To display an exposed dropdown menu, you can use the `OdsExposedDropdownMenu` co
 
 ```kotlin
 val items = listOf(
-    OdsExposedDropdownMenuItem("Email", painterResource(id = android.R.drawable.ic_dialog_email)),
-    OdsExposedDropdownMenuItem("Map", painterResource(id = android.R.drawable.ic_dialog_map)),
-    OdsExposedDropdownMenuItem("Dialer", painterResource(id = android.R.drawable.ic_dialog_dialer)),
+    OdsExposedDropdownMenuItem("Email", android.R.drawable.ic_dialog_email),
+    OdsExposedDropdownMenuItem("Map", android.R.drawable.ic_dialog_map),
+    OdsExposedDropdownMenuItem("Dialer", android.R.drawable.ic_dialog_dialer),
 )
-val selectedItem =
-    rememberSaveable(stateSaver = OdsExposedDropdownMenuItemSaver()) { mutableStateOf(items.first()) }
+val selectedItem = rememberSaveable() { mutableStateOf(items.first()) }
 
 OdsExposedDropdownMenu(
     label = "Dropdown menu label",
@@ -98,8 +97,6 @@ OdsExposedDropdownMenu(
     enabled = true
 )
 ```
-
-Note that ODS library provides an `OdsExposedDropdownMenuItemSaver` that allows you to store and restore an `OdsExposedDropdownMenuItem`.
 
 > **XML implementation**
 

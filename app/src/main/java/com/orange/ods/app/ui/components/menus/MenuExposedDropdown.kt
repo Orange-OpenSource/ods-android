@@ -22,7 +22,6 @@ import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.dimensionResource
-import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import com.orange.ods.app.R
 import com.orange.ods.app.domain.recipes.LocalRecipes
@@ -35,7 +34,6 @@ import com.orange.ods.compose.component.list.OdsListItem
 import com.orange.ods.compose.component.list.OdsSwitchTrailing
 import com.orange.ods.compose.component.menu.OdsExposedDropdownMenu
 import com.orange.ods.compose.component.menu.OdsExposedDropdownMenuItem
-import com.orange.ods.compose.component.menu.OdsExposedDropdownMenuItemSaver
 
 @OptIn(ExperimentalMaterialApi::class)
 @Composable
@@ -46,7 +44,7 @@ fun MenuExposedDropdown() {
     val recipes = LocalRecipes.current.take(4)
 
     val dropdownItems = recipes.map { recipe ->
-        OdsExposedDropdownMenuItem(label = recipe.title, icon = recipe.iconResId?.let { painterResource(id = it) })
+        OdsExposedDropdownMenuItem(label = recipe.title, iconResId = recipe.iconResId)
     }
     val textOnlyDropdownItems = recipes.map { recipe ->
         OdsExposedDropdownMenuItem(label = recipe.title)
@@ -55,8 +53,7 @@ fun MenuExposedDropdown() {
     var items by remember { mutableStateOf(dropdownItems) }
 
     with(customizationState) {
-        val selectedItem: MutableState<OdsExposedDropdownMenuItem> =
-            rememberSaveable(stateSaver = OdsExposedDropdownMenuItemSaver()) { mutableStateOf(dropdownItems.first()) }
+        val selectedItem: MutableState<OdsExposedDropdownMenuItem> = rememberSaveable { mutableStateOf(dropdownItems.first()) }
         if (hasIcons) {
             items = dropdownItems
             selectedItem.value = dropdownItems.first { selectedItem.value.label == it.label }
@@ -107,7 +104,7 @@ fun MenuExposedDropdown() {
                                 items.forEach { item ->
                                     classInstance(OdsExposedDropdownMenuItem::class.java) {
                                         string("label", item.label)
-                                        if (hasIcons) icon()
+                                        if (hasIcons) simple("iconResId", "<drawable id>")
                                     }
                                 }
                             }

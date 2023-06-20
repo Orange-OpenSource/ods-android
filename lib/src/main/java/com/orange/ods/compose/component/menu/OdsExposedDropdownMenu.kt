@@ -10,14 +10,13 @@
 
 package com.orange.ods.compose.component.menu
 
+import android.os.Parcelable
+import androidx.annotation.DrawableRes
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.material.ExperimentalMaterialApi
 import androidx.compose.material.ExposedDropdownMenuBox
 import androidx.compose.runtime.*
-import androidx.compose.runtime.saveable.Saver
-import androidx.compose.runtime.saveable.SaverScope
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.painter.Painter
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.PreviewParameter
 import com.orange.ods.compose.component.OdsComposable
@@ -26,6 +25,7 @@ import com.orange.ods.compose.component.textfield.OdsTextField
 import com.orange.ods.compose.component.utilities.BasicPreviewParameterProvider
 import com.orange.ods.compose.component.utilities.Preview
 import com.orange.ods.compose.component.utilities.UiModePreviews
+import kotlinx.parcelize.Parcelize
 
 /**
  * <a href="https://system.design.orange.com/0c1af118d/p/07a69b-menus/b/862cbb" class="external" target="_blank">ODS menus</a>.
@@ -64,7 +64,7 @@ fun OdsExposedDropdownMenu(
             onValueChange = {},
             readOnly = true,
             label = label,
-            leadingIcon = selectedItem.value.icon,
+            leadingIcon = selectedItem.value.iconResId?.let { painterResource(id = it) },
             trailing = OdsExposedDropdownMenuTrailing(expanded = if (enabled) expanded else false, enabled = enabled),
             enabled = enabled
         )
@@ -74,7 +74,7 @@ fun OdsExposedDropdownMenu(
             onDismissRequest = { expanded = false },
             content = {
                 items.forEach { item ->
-                    OdsDropdownMenuItem(text = item.label, icon = item.icon, onClick = {
+                    OdsDropdownMenuItem(text = item.label, icon = item.iconResId?.let { painterResource(id = it) }, onClick = {
                         selectedItem.value = item
                         expanded = false
                         onItemSelectionChange(item)
@@ -85,15 +85,8 @@ fun OdsExposedDropdownMenu(
     }
 }
 
-data class OdsExposedDropdownMenuItem(val label: String, val icon: Painter? = null)
-
-/**
- * This Saver implementation converts OdsExposedDropdownMenuItem object which we don't know how to save to String which we can save.
- */
-class OdsExposedDropdownMenuItemSaver : Saver<OdsExposedDropdownMenuItem, String> {
-    override fun restore(value: String) = OdsExposedDropdownMenuItem(label = value)
-    override fun SaverScope.save(value: OdsExposedDropdownMenuItem) = value.label
-}
+@Parcelize
+data class OdsExposedDropdownMenuItem(val label: String, @DrawableRes val iconResId: Int? = null) : Parcelable
 
 /**
  * Note: Please use Android Studio preview interactive mode to see the OdsExposedDropdownMenu preview cause expanded is a target state.
@@ -102,10 +95,10 @@ class OdsExposedDropdownMenuItemSaver : Saver<OdsExposedDropdownMenuItem, String
 @Composable
 private fun PreviewOdsDropdownMenu(@PreviewParameter(OdsDropdownMenuPreviewParameterProvider::class) enabled: Boolean) = Preview {
     val items = listOf(
-        OdsExposedDropdownMenuItem("Email", painterResource(id = android.R.drawable.ic_dialog_email)),
-        OdsExposedDropdownMenuItem("Map", painterResource(id = android.R.drawable.ic_dialog_map)),
-        OdsExposedDropdownMenuItem("Dialer", painterResource(id = android.R.drawable.ic_dialog_dialer)),
-        OdsExposedDropdownMenuItem("Info", painterResource(id = android.R.drawable.ic_dialog_info))
+        OdsExposedDropdownMenuItem("Email", android.R.drawable.ic_dialog_email),
+        OdsExposedDropdownMenuItem("Map", android.R.drawable.ic_dialog_map),
+        OdsExposedDropdownMenuItem("Dialer", android.R.drawable.ic_dialog_dialer),
+        OdsExposedDropdownMenuItem("Info", android.R.drawable.ic_dialog_info)
     )
     val selectedItem = remember { mutableStateOf(items.first()) }
     OdsExposedDropdownMenu(
