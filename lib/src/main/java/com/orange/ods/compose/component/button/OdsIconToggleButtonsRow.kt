@@ -38,7 +38,7 @@ import com.orange.ods.compose.component.utilities.DisabledInteractionSource
 import com.orange.ods.compose.component.utilities.Preview
 import com.orange.ods.compose.component.utilities.UiModePreviews
 import com.orange.ods.compose.theme.OdsDisplaySurface
-import com.orange.ods.compose.theme.OdsTheme
+import com.orange.ods.utilities.extension.enable
 
 /**
  * <a href="https://system.design.orange.com/0c1af118d/p/06a393-buttons/b/79b091" target="_blank">ODS Buttons</a>.
@@ -106,43 +106,41 @@ private fun IconToggleButtonsRowItem(
     displaySurface: OdsDisplaySurface,
     onClick: (Int) -> Unit
 ) {
-    val iconTint by animateColorAsState(buttonToggleIconColor(displaySurface, selected))
-    val backgroundAlpha by animateFloatAsState(if (selected) 0.12f else 0f)
+    val iconTint = buttonToggleIconColor(displaySurface, selected, iconToggleButton.enabled)
+    val backgroundAlpha = if (selected && iconToggleButton.enabled) 0.12f else 0f
 
     Icon(
         modifier = Modifier
-            .background(color = buttonToggleBackgroundColor(displaySurface).copy(alpha = backgroundAlpha))
+            .background(
+                color = buttonToggleBackgroundColor(displaySurface)
+                    .copy(alpha = if (iconToggleButton.enabled) animateFloatAsState(backgroundAlpha).value else backgroundAlpha)
+            )
             .padding(12.dp)
-            .clickable(interactionSource = remember { DisabledInteractionSource() }, indication = null) { onClick(index) },
+            .run {
+                if (iconToggleButton.enabled) {
+                    clickable(interactionSource = remember { DisabledInteractionSource() }, indication = null) { onClick(index) }
+                } else {
+                    this
+                }
+            },
         painter = iconToggleButton.icon,
         contentDescription = iconToggleButton.iconDescription,
-        tint = iconTint
+        tint = if (iconToggleButton.enabled) animateColorAsState(iconTint).value else iconTint
     )
 }
 
 @Composable
-private fun buttonToggleIconColor(displaySurface: OdsDisplaySurface, checked: Boolean) =
-    when (displaySurface) {
-        OdsDisplaySurface.Default -> if (checked) OdsTheme.colors.primary else OdsTheme.colors.onSurface
-        OdsDisplaySurface.Dark -> if (checked) OdsTheme.darkThemeColors.primary else OdsTheme.darkThemeColors.onSurface
-        OdsDisplaySurface.Light -> if (checked) OdsTheme.lightThemeColors.primary else OdsTheme.lightThemeColors.onSurface
+private fun buttonToggleIconColor(displaySurface: OdsDisplaySurface, selected: Boolean, enabled: Boolean) =
+    with(displaySurface.themeColors) {
+        if (selected && enabled) primary else onSurface.enable(enabled = enabled)
     }
 
 @Composable
 private fun buttonToggleBackgroundColor(displaySurface: OdsDisplaySurface) =
-    when (displaySurface) {
-        OdsDisplaySurface.Default -> OdsTheme.colors.primary
-        OdsDisplaySurface.Dark -> OdsTheme.darkThemeColors.primary
-        OdsDisplaySurface.Light -> OdsTheme.lightThemeColors.primary
-    }
+    displaySurface.themeColors.primary
 
 @Composable
-private fun buttonToggleBorderColor(displaySurface: OdsDisplaySurface) =
-    when (displaySurface) {
-        OdsDisplaySurface.Default -> OdsTheme.colors.onSurface
-        OdsDisplaySurface.Dark -> OdsTheme.darkThemeColors.onSurface
-        OdsDisplaySurface.Light -> OdsTheme.lightThemeColors.onSurface
-    }.copy(alpha = 0.12f)
+private fun buttonToggleBorderColor(displaySurface: OdsDisplaySurface) = displaySurface.themeColors.onSurface.copy(alpha = 0.12f)
 
 
 @UiModePreviews.Default
@@ -151,7 +149,7 @@ private fun PreviewOdsIconToggleButtonsGroupRow() = Preview {
     val iconToggleButtons = listOf(
         OdsIconToggleButtonsRowItem(painterResource(id = android.R.drawable.ic_dialog_dialer), "Today"),
         OdsIconToggleButtonsRowItem(painterResource(id = android.R.drawable.ic_dialog_email), "Day"),
-        OdsIconToggleButtonsRowItem(painterResource(id = android.R.drawable.ic_dialog_alert), "Month")
+        OdsIconToggleButtonsRowItem(painterResource(id = android.R.drawable.ic_dialog_alert), "Month", false)
     )
     var selectedIndex by remember { mutableStateOf(0) }
 

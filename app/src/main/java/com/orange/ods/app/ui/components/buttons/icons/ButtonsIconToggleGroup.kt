@@ -42,7 +42,7 @@ import com.orange.ods.compose.theme.OdsDisplaySurface
 fun ButtonsIconToggleGroup(customizationState: ButtonIconCustomizationState) {
     val iconToggleButtons =
         LocalRecipes.current.distinctBy { it.iconResId }.filter { it.iconResId != null }.take(ButtonIconCustomizationState.MaxToggleCount).map { recipe ->
-            OdsIconToggleButtonsRowItem(painterResource(id = recipe.iconResId!!), recipe.title)
+            OdsIconToggleButtonsRowItem(painterResource(id = recipe.iconResId!!), recipe.title, customizationState.enabled.value)
         }
 
     var selectedIndex by rememberSaveable { mutableStateOf(0) }
