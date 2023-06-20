@@ -16,14 +16,43 @@
             name="text"
             type="String" />
 
+        <variable
+            name="enabled"
+            type="Boolean" />
+
+        <variable
+            name="icon"
+            type="android.graphics.drawable.Drawable" />
+
+        <variable
+            name="displaySurface"
+            type="com.orange.ods.compose.theme.OdsDisplaySurface" />
     </data>
 
-    <com.orange.ods.xml.component.button.OdsOutlinedButton
-        android:id="@+id/outlinedbutton"
-        app:text="@{text}"
-        android:layout_height="match_parent"
-        android:layout_width="match_parent">
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
 
-    </com.orange.ods.xml.component.button.OdsOutlinedButton>
+        <com.orange.ods.xml.component.button.OdsOutlinedButton
+            android:id="@+id/ods_outlined_button"
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            app:leadingIcon="@{icon}"
+            app:text="@{text}"
+            app:enabled="@{enabled}"
+            app:displaySurface="@{displaySurface}" />
+
+        <!-- Invisible OdsOutlinedButton used for tests -->
+        <com.orange.ods.xml.component.button.OdsOutlinedButton
+            android:id="@+id/ods_outlined_button_test"
+            android:visibility="invisible"
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            app:leadingIcon="@drawable/ic_add"
+            app:text="Button"
+            app:enabled="true"
+            app:displaySurface="standard" />
+
+    </RelativeLayout>
 
 </layout>

@@ -38,6 +38,14 @@ import com.orange.ods.utilities.extension.enable
 enum class OdsButtonStyle {
     Default, Primary, FunctionalPositive, FunctionalNegative;
 
+    companion object {
+        /**
+         * @return [OdsButtonStyle] associated to the provided [xmlId]
+         * BE CAREFUL: If the enum values change you have to update associated XML attributes in the lib-xml
+         */
+        fun fromXmlAttrValue(xmlId: Int): OdsButtonStyle = OdsButtonStyle.values()[xmlId]
+    }
+
     @Composable
     internal fun getColors(displaySurface: OdsDisplaySurface): ButtonColors {
         return when (this) {

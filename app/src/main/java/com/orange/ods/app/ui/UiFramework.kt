@@ -32,7 +32,7 @@ enum class UiFramework(val iconResId: Int, val labelResId: Int) {
 }
 
 @Composable
-inline fun <reified T : ViewDataBinding> UiFramework(compose: @Composable () -> Unit, noinline xml: T.() -> Unit, modifier: Modifier = Modifier) {
+inline fun <reified T : ViewDataBinding> UiFramework(compose: @Composable () -> Unit, noinline xml: T.() -> Unit) {
     val uiFramework = LocalUiFramework.current
     // Reset current UI framework to Compose when displaying the content
     // shouldResetUiFramework is used to avoid calling LaunchedEffect on configuration changes (for instance on device rotation)
@@ -43,10 +43,8 @@ inline fun <reified T : ViewDataBinding> UiFramework(compose: @Composable () -> 
             uiFramework.value = UiFramework.Compose
         }
     }
-    Box(modifier) {
-        when (uiFramework.value) {
-            UiFramework.Compose -> compose()
-            UiFramework.Xml -> ViewDataBinding(bind = xml)
-        }
+    when (uiFramework.value) {
+        UiFramework.Compose -> compose()
+        UiFramework.Xml -> ViewDataBinding(bind = xml)
     }
 }

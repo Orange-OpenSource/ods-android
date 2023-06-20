@@ -12,11 +12,9 @@ package com.orange.ods.app.ui.components.buttons
 
 import android.app.ActionBar.LayoutParams
 import android.view.ViewGroup
+import android.widget.RelativeLayout
 import androidx.appcompat.content.res.AppCompatResources
-import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.Spacer
-import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.runtime.Composable
@@ -42,17 +40,13 @@ fun ButtonsOutlined(customizationState: ButtonCustomizationState) {
                 .verticalScroll(rememberScrollState())
                 .padding(vertical = dimensionResource(id = R.dimen.screen_vertical_margin))
         ) {
-            val modifier = Modifier
-                .padding(horizontal = dimensionResource(R.dimen.screen_horizontal_margin))
-                .padding(top = dimensionResource(R.dimen.spacing_m))
-                .let { if (hasFullScreenWidth) it.fillMaxWidth() else it }
 
-            OutlinedButton(modifier, hasLeadingIcon, isEnabled, hasFullScreenWidth)
+            OutlinedButton(hasLeadingIcon, isEnabled, hasFullScreenWidth)
 
             Spacer(modifier = Modifier.padding(top = dimensionResource(R.dimen.spacing_s)))
 
             InvertedBackgroundColumn {
-                OutlinedButton(modifier, hasLeadingIcon, isEnabled, hasFullScreenWidth, displaySurface = displaySurface)
+                OutlinedButton(hasLeadingIcon, isEnabled, hasFullScreenWidth, displaySurface = displaySurface)
             }
 
             CodeImplementationColumn(
@@ -74,7 +68,6 @@ fun ButtonsOutlined(customizationState: ButtonCustomizationState) {
 
 @Composable
 private fun OutlinedButton(
-    modifier: Modifier,
     leadingIcon: Boolean,
     enabled: Boolean,
     fullScreenWidth: Boolean,
@@ -84,24 +77,26 @@ private fun OutlinedButton(
     val text = stringResource(if (enabled) R.string.component_state_enabled else R.string.component_state_disabled)
     val iconId = R.drawable.ic_coffee
 
-    UiFramework<OdsOutlinedButtonBinding>(
-        modifier = modifier,
-        compose = {
-            OdsOutlinedButton(
-                modifier = if (fullScreenWidth) Modifier.fillMaxWidth() else Modifier,
-                text = text,
-                onClick = {},
-                icon = if (leadingIcon) painterResource(id = iconId) else null,
-                enabled = enabled,
-                displaySurface = displaySurface
-            )
-        }, xml = {
-            this.text = text
-            outlinedbutton.displaySurface = displaySurface
-            outlinedbutton.icon = if (leadingIcon) AppCompatResources.getDrawable(context, iconId) else null
-            outlinedbutton.isEnabled = enabled
-            val width = if (fullScreenWidth) LayoutParams.MATCH_PARENT else LayoutParams.WRAP_CONTENT
-            outlinedbutton.layoutParams = ViewGroup.LayoutParams(width, LayoutParams.WRAP_CONTENT)
-        }
-    )
+    Box(modifier = Modifier.padding(horizontal = dimensionResource(R.dimen.screen_horizontal_margin), vertical = dimensionResource(R.dimen.spacing_m))) {
+        UiFramework<OdsOutlinedButtonBinding>(
+            compose = {
+                OdsOutlinedButton(
+                    modifier = if (fullScreenWidth) Modifier.fillMaxWidth() else Modifier,
+                    text = text,
+                    onClick = {},
+                    icon = if (leadingIcon) painterResource(id = iconId) else null,
+                    enabled = enabled,
+                    displaySurface = displaySurface
+                )
+            }, xml = {
+                this.text = text
+                this.icon = if (leadingIcon) AppCompatResources.getDrawable(context, iconId) else null
+                this.enabled = enabled
+                this.displaySurface = displaySurface
+
+                val width = if (fullScreenWidth) RelativeLayout.LayoutParams.MATCH_PARENT else RelativeLayout.LayoutParams.WRAP_CONTENT
+                odsOutlinedButton.layoutParams = RelativeLayout.LayoutParams(width, RelativeLayout.LayoutParams.WRAP_CONTENT)
+            }
+        )
+    }
 }

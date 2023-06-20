@@ -29,5 +29,13 @@ enum class OdsDisplaySurface {
     /**
      * The element is displayed on a light background even if the device system is set in dark theme.
      */
-    Light
+    Light;
+
+    companion object {
+        /**
+         * @return [OdsDisplaySurface] associated to the provided [xmlId]
+         * BE CAREFUL: If the enum values change you have to update associated XML attributes in the lib-xml
+         */
+        fun fromXmlAttrValue(xmlId: Int): OdsDisplaySurface = OdsDisplaySurface.values()[xmlId]
+    }
 }

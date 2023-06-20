@@ -36,6 +36,7 @@
         android:id="@+id/banner"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        app:image="@drawable/ic_add"
         app:message="@{message}"
         app:button1Text="@{button1Text}"
         app:button2Text="@{button2Text}"
