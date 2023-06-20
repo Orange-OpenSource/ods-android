@@ -12,6 +12,7 @@ package com.orange.ods.app.ui.utilities.composable
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.mutableStateOf
@@ -120,16 +121,29 @@ fun CodeImplementationColumn(
     contentBackground: Boolean = true,
     content: @Composable () -> Unit
 ) {
+    val currentUiFramework = LocalUiFramework.current
+
     Column(
         modifier = modifier.padding(
             vertical = dimensionResource(id = R.dimen.spacing_s)
         )
     ) {
         UiFrameworkChoice(xmlAvailable)
-        if (contentBackground) {
-            CodeBackgroundColumn(content)
+        if (currentUiFramework.value == UiFramework.Compose) {
+            if (contentBackground) {
+                CodeBackgroundColumn(content)
+            } else {
+                content()
+            }
         } else {
-            content()
+            CodeBackgroundColumn {
+                TechnicalText(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .padding(dimensionResource(id = R.dimen.spacing_xs)),
+                    text = stringResource(id = R.string.soon_available)
+                )
+            }
         }
     }
 }
