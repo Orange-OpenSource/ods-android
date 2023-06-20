@@ -37,7 +37,6 @@ inline fun <reified T : ViewDataBinding> ViewDataBinding(noinline bind: T.() -> 
     val binding = remember { inflateMethod.invoke(null, *parameters.toTypedArray()) as T }
     Column {
         AndroidView(
-            modifier = Modifier.background(Color.Red),
             factory = {
                 binding.bind()
                 binding.executePendingBindings()
