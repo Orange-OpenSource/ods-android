@@ -14,7 +14,6 @@ import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.padding
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.MutableState
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.ui.Modifier
@@ -144,8 +143,7 @@ private fun UiFrameworkChoice(xmlAvailable: Boolean) {
         if (uiFramework == currentUiFramework.value) selectedUiFrameworkIndex = index
         OdsExposedDropdownMenuItem(label = stringResource(id = uiFramework.labelResId), iconResId = uiFramework.iconResId)
     }
-    val selectedUiFramework: MutableState<OdsExposedDropdownMenuItem> =
-        rememberSaveable() { mutableStateOf(if (xmlAvailable) uiFrameworkItems[selectedUiFrameworkIndex] else uiFrameworkItems.first()) }
+    val selectedUiFramework = rememberSaveable { mutableStateOf(if (xmlAvailable) uiFrameworkItems[selectedUiFrameworkIndex] else uiFrameworkItems.first()) }
 
     OdsExposedDropdownMenu(
         label = stringResource(id = R.string.code_implementation),
