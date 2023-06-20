@@ -28,7 +28,6 @@ import com.orange.ods.app.ui.LocalUiFramework
 import com.orange.ods.app.ui.UiFramework
 import com.orange.ods.compose.component.menu.OdsExposedDropdownMenu
 import com.orange.ods.compose.component.menu.OdsExposedDropdownMenuItem
-import com.orange.ods.compose.component.menu.OdsExposedDropdownMenuItemSaver
 import com.orange.ods.compose.theme.OdsTheme
 import com.orange.ods.utilities.extension.orElse
 
@@ -144,10 +143,10 @@ private fun UiFrameworkChoice(xmlAvailable: Boolean) {
     var selectedFramework = 0
     val uiFrameworks = UiFramework.values().mapIndexed { index, uiFramework ->
         if (uiFramework == currentUiFramework.value) selectedFramework = index
-        OdsExposedDropdownMenuItem(label = stringResource(id = uiFramework.labelResId), icon = painterResource(id = uiFramework.iconResId))
+        OdsExposedDropdownMenuItem(label = stringResource(id = uiFramework.labelResId), iconResId = uiFramework.iconResId)
     }
     val selectedUiFramework: MutableState<OdsExposedDropdownMenuItem> =
-        rememberSaveable(stateSaver = OdsExposedDropdownMenuItemSaver()) { mutableStateOf(if (xmlAvailable) uiFrameworks[selectedFramework] else uiFrameworks.first()) }
+        rememberSaveable() { mutableStateOf(if (xmlAvailable) uiFrameworks[selectedFramework] else uiFrameworks.first()) }
 
     OdsExposedDropdownMenu(
         label = stringResource(id = R.string.code_implementation),
