@@ -113,18 +113,18 @@ fun ComponentBanners() {
                         this.message = message
                         this.button1Text = button1Text
                         this.button2Text = button2Text
-                        banner.onButton1Click = onButton1Click
-                        banner.onButton2Click = onButton1Click
+                        odsBanner.onButton1Click = onButton1Click
+                        odsBanner.onButton2Click = onButton1Click
                         if (hasImage) {
-                            banner.image = AppCompatResources.getDrawable(context, placeholderResId)
+                            odsBanner.image = AppCompatResources.getDrawable(context, placeholderResId)
                             val request = ImageRequest.Builder(context)
                                 .data(recipe.imageUrl)
                                 .error(errorPlaceholderResId)
-                                .target { banner.image = it }
+                                .target { odsBanner.image = it }
                                 .build()
                             context.imageLoader.enqueue(request)
                         } else {
-                            banner.image = null
+                            odsBanner.image = null
                         }
                     }
                 )

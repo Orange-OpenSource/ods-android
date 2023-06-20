@@ -32,16 +32,30 @@
             type="String" />
     </data>
 
-    <com.orange.ods.xml.component.banner.OdsBanner
-        android:id="@+id/banner"
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:image="@drawable/ic_add"
-        app:message="@{message}"
-        app:button1Text="@{button1Text}"
-        app:button2Text="@{button2Text}"
-        app:imageContentDescription="@{imageContentDescription}">
+        android:layout_height="wrap_content">
 
-    </com.orange.ods.xml.component.banner.OdsBanner>
+        <com.orange.ods.xml.component.banner.OdsBanner
+            android:id="@+id/ods_banner"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:message="@{message}"
+            app:button1Text="@{button1Text}"
+            app:button2Text="@{button2Text}"
+            app:imageContentDescription="@{imageContentDescription}" />
+
+        <!-- Invisible OdsBanner used for tests -->
+        <com.orange.ods.xml.component.banner.OdsBanner
+            android:id="@+id/ods_banner_test"
+            android:visibility="invisible"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:message="Message displayed in the banner"
+            app:button1Text="Button 1"
+            app:button2Text="Button 2"
+            app:imageContentDescription="Content description of the image" />
+
+    </RelativeLayout>
 
 </layout>
