@@ -7,18 +7,53 @@
   ~ * https://opensource.org/licenses/MIT.
   ~ */
   -->
-<layout xmlns:android="http://schemas.android.com/apk/res/android">
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <data>
 
+        <variable
+            name="icon"
+            type="android.graphics.drawable.Drawable" />
+
+        <variable
+            name="iconContentDescription"
+            type="String" />
+
+        <variable
+            name="enabled"
+            type="Boolean" />
+
+        <variable
+            name="displaySurface"
+            type="com.orange.ods.compose.theme.OdsDisplaySurface" />
 
     </data>
 
-    <com.orange.ods.xml.component.button.OdsIconButton
-        android:id="@+id/iconbutton"
-        android:layout_height="match_parent"
-        android:layout_width="match_parent">
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
 
-    </com.orange.ods.xml.component.button.OdsIconButton>
+        <com.orange.ods.xml.component.button.OdsIconButton
+            android:id="@+id/ods_icon_button"
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            app:leadingIcon="@{icon}"
+            app:enabled="@{enabled}"
+            app:iconContentDescription="@{iconContentDescription}"
+            app:displaySurface="@{displaySurface}" />
+
+        <!-- Invisible OdsIconButton used for tests -->
+        <com.orange.ods.xml.component.button.OdsIconButton
+            android:id="@+id/ods_icon_button_test"
+            android:visibility="gone"
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            app:leadingIcon="@drawable/ic_add"
+            app:iconContentDescription="Button"
+            app:enabled="true"
+            app:displaySurface="standard" />
+
+    </RelativeLayout>
 
 </layout>

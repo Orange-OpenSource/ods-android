@@ -17,6 +17,12 @@
         <enum name="dark" value="1" />
         <enum name="light" value="2" />
     </attr>
+    <attr name="style" format="enum">
+        <enum name="standard" value="0" />
+        <enum name="primary" value="1" />
+        <enum name="functional_positive" value="2" />
+        <enum name="functional_negative" value="3" />
+    </attr>
     <attr name="iconContentDescription" format="string" />
     <declare-styleable name="OdsBanner">
         <attr name="message" format="string" />
@@ -25,27 +31,30 @@
         <attr name="imageContentDescription" format="string" />
         <attr name="button2Text" format="string" />
     </declare-styleable>
-
     <declare-styleable name="OdsButton">
         <attr name="icon" />
         <attr name="text" />
         <attr name="enabled" />
-        <attr name="style" format="enum">
-            <enum name="standard" value="0" />
-            <enum name="primary" value="1" />
-            <enum name="functional_positive" value="2" />
-            <enum name="functional_negative" value="3" />
-        </attr>
+        <attr name="style" />
         <attr name="displaySurface" />
     </declare-styleable>
     <declare-styleable name="OdsIconButton">
-        <attr name="text" />
+        <attr name="leadingIcon" />
         <attr name="iconContentDescription" />
         <attr name="enabled" />
+        <attr name="displaySurface" />
     </declare-styleable>
-    <declare-styleable name="OdsIconToogleButton">
+    <declare-styleable name="OdsIconToggleButton">
+        <attr name="selectedPainter" format="boolean" />
+        <attr name="checkedPainter" format="reference|color" />
+        <attr name="uncheckedPainter" format="reference|color" />
         <attr name="iconContentDescription" />
         <attr name="enabled" />
+        <attr name="displaySurface" />
+    </declare-styleable>
+    <declare-styleable name="OdsIconToggleButtonsRow">
+        <attr name="selectedIndex" format="integer" />
+        <attr name="displaySurface" />
     </declare-styleable>
     <declare-styleable name="OdsOutlinedButton">
         <attr name="icon" />
@@ -53,9 +62,11 @@
         <attr name="enabled" />
         <attr name="displaySurface" />
     </declare-styleable>
-
     <declare-styleable name="OdsTextButton">
         <attr name="text" />
+        <attr name="leadingIcon" />
         <attr name="enabled" />
+        <attr name="style" />
+        <attr name="displaySurface" />
     </declare-styleable>
 </resources>

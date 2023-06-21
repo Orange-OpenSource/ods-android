@@ -7,17 +7,65 @@
   ~ * https://opensource.org/licenses/MIT.
   ~ */
   -->
-<layout xmlns:android="http://schemas.android.com/apk/res/android">
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <data>
 
+        <variable
+            name="checked"
+            type="Boolean" />
+
+        <variable
+            name="checkedPainter"
+            type="android.graphics.drawable.Drawable" />
+
+        <variable
+            name="uncheckedPainter"
+            type="android.graphics.drawable.Drawable" />
+
+        <variable
+            name="iconDescription"
+            type="String" />
+
+        <variable
+            name="enabled"
+            type="Boolean" />
+
+        <variable
+            name="displaySurface"
+            type="com.orange.ods.compose.theme.OdsDisplaySurface" />
+
     </data>
 
-    <com.orange.ods.xml.component.button.OdsIconToggleButton
-        android:id="@+id/icontogglebutton"
-        android:layout_height="match_parent"
-        android:layout_width="match_parent">
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
 
-    </com.orange.ods.xml.component.button.OdsIconToggleButton>
+        <com.orange.ods.xml.component.button.OdsIconToggleButton
+            android:id="@+id/ods_icon_toggle_button"
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            app:enabled="@{enabled}"
+            app:selectedPainter="@{checked}"
+            app:uncheckedPainter="@{uncheckedPainter}"
+            app:checkedPainter="@{checkedPainter}"
+            app:iconContentDescription="@{iconDescription}"
+            app:displaySurface="@{displaySurface}" />
+
+        <!-- Invisible OdsIconToggleButton used for tests -->
+        <com.orange.ods.xml.component.button.OdsIconToggleButton
+            android:id="@+id/ods_icon_toggle_button_test"
+            android:visibility="gone"
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            app:enabled="true"
+            app:selectedPainter="true"
+            app:uncheckedPainter="@drawable/ic_add"
+            app:checkedPainter="@drawable/ic_add"
+            app:iconContentDescription="Button"
+            app:displaySurface="standard" />
+
+    </RelativeLayout>
 
 </layout>

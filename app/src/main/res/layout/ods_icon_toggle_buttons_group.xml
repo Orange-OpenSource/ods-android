@@ -7,17 +7,41 @@
   ~ * https://opensource.org/licenses/MIT.
   ~ */
   -->
-<layout xmlns:android="http://schemas.android.com/apk/res/android">
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <data>
 
+        <variable
+            name="selectedIndex"
+            type="Integer" />
+
+        <variable
+            name="displaySurface"
+            type="com.orange.ods.compose.theme.OdsDisplaySurface" />
+
     </data>
 
-    <com.orange.ods.xml.component.button.OdsIconToggleButtonsRow
-        android:id="@+id/icontogglebuttonsrow"
-        android:layout_height="match_parent"
-        android:layout_width="match_parent">
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
 
-    </com.orange.ods.xml.component.button.OdsIconToggleButtonsRow>
+        <com.orange.ods.xml.component.button.OdsIconToggleButtonsRow
+            android:id="@+id/ods_icon_toggle_buttons_row"
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            app:selectedIndex="@{selectedIndex}"
+            app:displaySurface="@{displaySurface}" />
+
+        <!-- Invisible OdsIconToggleButtonsRow used for tests -->
+        <com.orange.ods.xml.component.button.OdsIconToggleButtonsRow
+            android:id="@+id/ods_icon_toggle_buttons_row_test"
+            android:visibility="gone"
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            app:selectedIndex="0"
+            app:displaySurface="standard" />
+
+    </RelativeLayout>
 
 </layout>

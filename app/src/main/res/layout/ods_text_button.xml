@@ -16,12 +16,50 @@
             name="text"
             type="String" />
 
+        <variable
+            name="enabled"
+            type="Boolean" />
+
+        <variable
+            name="icon"
+            type="android.graphics.drawable.Drawable" />
+
+        <variable
+            name="style"
+            type="com.orange.ods.compose.component.button.OdsTextButtonStyle" />
+
+        <variable
+            name="displaySurface"
+            type="com.orange.ods.compose.theme.OdsDisplaySurface" />
+
     </data>
 
-    <com.orange.ods.xml.component.button.OdsTextButton
-        android:id="@+id/textbutton"
-        app:text="@{text}"
-        android:layout_height="match_parent"
-        android:layout_width="match_parent" />
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <com.orange.ods.xml.component.button.OdsTextButton
+            android:id="@+id/ods_textbutton"
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            app:leadingIcon="@{icon}"
+            app:text="@{text}"
+            app:enabled="@{enabled}"
+            app:style="@{style}"
+            app:displaySurface="@{displaySurface}" />
+
+        <!-- Invisible OdsTextButton used for tests -->
+        <com.orange.ods.xml.component.button.OdsButton
+            android:id="@+id/ods_textbutton_test"
+            android:visibility="gone"
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            app:leadingIcon="@drawable/ic_add"
+            app:text="Button"
+            app:enabled="true"
+            app:style="primary"
+            app:displaySurface="standard" />
+
+    </RelativeLayout>
 
 </layout>

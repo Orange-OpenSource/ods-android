@@ -46,16 +46,11 @@ fun ButtonsIcon(customizationState: ButtonIconCustomizationState) {
                 .verticalScroll(rememberScrollState())
                 .padding(vertical = dimensionResource(id = R.dimen.screen_vertical_margin))
         ) {
-            val modifier = Modifier
-                .padding(horizontal = dimensionResource(R.dimen.screen_horizontal_margin))
-                .padding(top = dimensionResource(R.dimen.spacing_m))
-
             Row(
                 modifier = Modifier.fillMaxWidth(),
                 horizontalArrangement = Arrangement.Center
             ) {
                 IconButton(
-                    modifier = modifier,
                     enabled = isEnabled
                 )
             }
@@ -64,7 +59,6 @@ fun ButtonsIcon(customizationState: ButtonIconCustomizationState) {
 
             InvertedBackgroundColumn(horizontalAlignment = Alignment.CenterHorizontally) {
                 IconButton(
-                    modifier = modifier,
                     enabled = isEnabled,
                     displaySurface = displaySurface
                 )
@@ -89,27 +83,28 @@ fun ButtonsIcon(customizationState: ButtonIconCustomizationState) {
 
 @Composable
 private fun IconButton(
-    modifier: Modifier,
     enabled: Boolean,
     displaySurface: OdsDisplaySurface = OdsDisplaySurface.Default
 ) {
     val context = LocalContext.current
     val iconId = R.drawable.ic_search
+    val contentDescription = stringResource(id = R.string.component_button_icon_search_desc)
 
-    Box(modifier = modifier) {
+    Box(modifier = Modifier.padding(horizontal = dimensionResource(R.dimen.screen_horizontal_margin), vertical = dimensionResource(R.dimen.spacing_m))) {
         UiFramework<OdsIconButtonBinding>(
             compose = {
                 OdsIconButton(
                     onClick = { clickOnElement(context, context.getString(R.string.component_button_icon)) },
                     painter = painterResource(id = R.drawable.ic_search),
-                    contentDescription = stringResource(id = R.string.component_button_icon_search_desc),
+                    contentDescription = contentDescription,
                     enabled = enabled,
                     displaySurface = displaySurface
                 )
             }, xml = {
-                iconbutton.icon = AppCompatResources.getDrawable(context, iconId)
-                iconbutton.isEnabled = enabled
-                iconbutton.displaySurface = displaySurface
+                icon = AppCompatResources.getDrawable(context, iconId)
+                this.enabled = enabled
+                this.displaySurface = displaySurface
+                iconContentDescription = contentDescription
             }
         )
     }

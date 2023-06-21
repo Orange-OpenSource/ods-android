@@ -10,8 +10,7 @@
 
 package com.orange.ods.app.ui.components.buttons
 
-import android.app.ActionBar
-import android.view.ViewGroup
+import android.widget.RelativeLayout
 import androidx.appcompat.content.res.AppCompatResources
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -46,10 +45,6 @@ fun ButtonsText(customizationState: ButtonCustomizationState) {
                 .verticalScroll(rememberScrollState())
                 .padding(vertical = dimensionResource(id = R.dimen.screen_vertical_margin))
         ) {
-            val modifier = Modifier
-                .padding(horizontal = dimensionResource(R.dimen.screen_horizontal_margin))
-                .padding(top = dimensionResource(R.dimen.spacing_m))
-                .let { if (hasFullScreenWidth) it.fillMaxWidth() else it }
             Title(
                 textRes = if (textButtonStyle.value == OdsTextButtonStyle.Default) R.string.component_button_style_default else R.string.component_button_style_primary,
                 horizontalPadding = true
@@ -57,7 +52,6 @@ fun ButtonsText(customizationState: ButtonCustomizationState) {
 
             TextButton(
                 style = textButtonStyle.value,
-                modifier = modifier,
                 leadingIcon = hasLeadingIcon,
                 enabled = isEnabled,
                 fullScreenWidth = hasFullScreenWidth
@@ -68,7 +62,6 @@ fun ButtonsText(customizationState: ButtonCustomizationState) {
             InvertedBackgroundColumn {
                 TextButton(
                     style = textButtonStyle.value,
-                    modifier = modifier,
                     leadingIcon = hasLeadingIcon,
                     enabled = isEnabled,
                     fullScreenWidth = hasFullScreenWidth,
@@ -98,7 +91,6 @@ fun ButtonsText(customizationState: ButtonCustomizationState) {
 @Composable
 private fun TextButton(
     style: OdsTextButtonStyle,
-    modifier: Modifier,
     leadingIcon: Boolean,
     enabled: Boolean,
     fullScreenWidth: Boolean,
@@ -108,7 +100,7 @@ private fun TextButton(
     val text = stringResource(if (enabled) R.string.component_state_enabled else R.string.component_state_disabled)
     val iconId = R.drawable.ic_coffee
 
-    Box(modifier = modifier) {
+    Box(modifier = Modifier.padding(horizontal = dimensionResource(R.dimen.screen_horizontal_margin), vertical = dimensionResource(R.dimen.spacing_m))) {
         UiFramework<OdsTextButtonBinding>(
             compose = {
                 OdsTextButton(
@@ -122,12 +114,12 @@ private fun TextButton(
                 )
             }, xml = {
                 this.text = text
-                textbutton.style = style
-                textbutton.icon = if (leadingIcon) AppCompatResources.getDrawable(context, iconId) else null
-                textbutton.isEnabled = enabled
-                val width = if (fullScreenWidth) ActionBar.LayoutParams.MATCH_PARENT else ActionBar.LayoutParams.WRAP_CONTENT
-                textbutton.layoutParams = ViewGroup.LayoutParams(width, ActionBar.LayoutParams.WRAP_CONTENT)
-                textbutton.displaySurface = displaySurface
+                this.icon = if (leadingIcon) AppCompatResources.getDrawable(context, iconId) else null
+                this.enabled = enabled
+                this.style = style
+                this.displaySurface = displaySurface
+                val width = if (fullScreenWidth) RelativeLayout.LayoutParams.MATCH_PARENT else RelativeLayout.LayoutParams.WRAP_CONTENT
+                odsTextbutton.layoutParams = RelativeLayout.LayoutParams(width, RelativeLayout.LayoutParams.WRAP_CONTENT)
             }
         )
     }

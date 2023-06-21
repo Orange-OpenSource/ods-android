@@ -50,16 +50,12 @@ fun ButtonsIconToggle(customizationState: ButtonIconCustomizationState) {
                 .verticalScroll(rememberScrollState())
                 .padding(vertical = dimensionResource(id = R.dimen.screen_vertical_margin))
         ) {
-            val modifier = Modifier
-                .padding(horizontal = dimensionResource(R.dimen.screen_horizontal_margin))
-                .padding(top = dimensionResource(R.dimen.spacing_m))
             Row(
                 modifier = Modifier.fillMaxWidth(),
                 horizontalArrangement = Arrangement.Center
             ) {
                 IconToggleButton(
                     checked = buttonCheckedState.value,
-                    modifier = modifier,
                     onCheckedChange = { checked -> buttonCheckedState.value = checked },
                     enabled = isEnabled
                 )
@@ -71,7 +67,6 @@ fun ButtonsIconToggle(customizationState: ButtonIconCustomizationState) {
                 IconToggleButton(
                     checked = buttonCheckedState.value,
                     onCheckedChange = { checked -> buttonCheckedState.value = checked },
-                    modifier = modifier,
                     enabled = isEnabled,
                     displaySurface = displaySurface
                 )
@@ -100,33 +95,34 @@ fun ButtonsIconToggle(customizationState: ButtonIconCustomizationState) {
 private fun IconToggleButton(
     checked: Boolean,
     onCheckedChange: (Boolean) -> Unit,
-    modifier: Modifier,
     enabled: Boolean,
     displaySurface: OdsDisplaySurface = OdsDisplaySurface.Default
 ) {
     val context = LocalContext.current
     val uncheckedPainterId = R.drawable.ic_heart_outlined
     val checkedPainterId = R.drawable.ic_heart
+    val iconContentDescription = stringResource(id = R.string.component_button_icon_toggle_favorite_icon_desc)
 
-    Box(modifier = modifier) {
+    Box(modifier = Modifier.padding(horizontal = dimensionResource(R.dimen.screen_horizontal_margin), vertical = dimensionResource(R.dimen.spacing_m))) {
         UiFramework<OdsIconToogleButtonBinding>(
             compose = {
                 OdsIconToggleButton(
                     checked = checked,
                     uncheckedPainter = painterResource(id = uncheckedPainterId),
                     checkedPainter = painterResource(id = checkedPainterId),
-                    iconContentDescription = stringResource(id = R.string.component_button_icon_toggle_favorite_icon_desc),
+                    iconContentDescription = iconContentDescription,
                     onCheckedChange = onCheckedChange,
                     enabled = enabled,
                     displaySurface = displaySurface
                 )
             }, xml = {
-                icontogglebutton.checked = checked
-                icontogglebutton.checkedPainter = AppCompatResources.getDrawable(context, checkedPainterId)
-                icontogglebutton.uncheckedPainter = AppCompatResources.getDrawable(context, uncheckedPainterId)
-                icontogglebutton.isEnabled = enabled
-                icontogglebutton.displaySurface = displaySurface
-                icontogglebutton.onCheckedChange = onCheckedChange
+                this.checked = checked
+                checkedPainter = AppCompatResources.getDrawable(context, checkedPainterId)
+                uncheckedPainter = AppCompatResources.getDrawable(context, uncheckedPainterId)
+                iconDescription = iconContentDescription
+                this.enabled = enabled
+                this.displaySurface = displaySurface
+                odsIconToggleButton.onCheckedChange = onCheckedChange
             }
         )
     }
