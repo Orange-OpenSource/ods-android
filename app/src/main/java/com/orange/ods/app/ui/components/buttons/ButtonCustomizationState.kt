@@ -38,7 +38,6 @@ class ButtonCustomizationState(
     val fullScreenWidth: MutableState<Boolean>,
     val enabled: MutableState<Boolean>
 ) {
-
     val hasLeadingIcon
         get() = leadingIcon.value
 

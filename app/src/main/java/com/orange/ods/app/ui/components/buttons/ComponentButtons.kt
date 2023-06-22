@@ -58,45 +58,62 @@ fun ComponentButtons(variant: Variant) {
         ComponentCustomizationBottomSheetScaffold(
             bottomSheetScaffoldState = rememberBottomSheetScaffoldState(),
             bottomSheetContent = {
-                if (variant == Variant.ButtonsFunctional) {
-                    Subtitle(textRes = R.string.component_button_style_functional, horizontalPadding = true)
-                    OdsChoiceChipsFlowRow(
-                        selectedChip = buttonStyle,
-                        modifier = Modifier.padding(horizontal = dimensionResource(id = com.orange.ods.R.dimen.screen_horizontal_margin)),
-                        outlinedChips = true
-                    ) {
-                        OdsChoiceChip(textRes = R.string.component_button_style_functional_positive, value = OdsButtonStyle.FunctionalPositive)
-                        OdsChoiceChip(textRes = R.string.component_button_style_functional_negative, value = OdsButtonStyle.FunctionalNegative)
+                if (variant == Variant.ButtonsTextToggleGroup) {
+                    /*ComponentCountRow(
+                        modifier = Modifier.padding(start = dimensionResource(id = R.dimen.screen_horizontal_margin)),
+                        title = stringResource(id = R.string.component_button_icon_toggle_count),
+                        count = toggleCount,
+                        minusIconContentDescription = stringResource(id = R.string.component_button_icon_toggle_remove),
+                        plusIconContentDescription = stringResource(id = R.string.component_button_icon_toggle_add),
+                        minCount = ButtonIconCustomizationState.MinToggleCount,
+                        maxCount = ButtonIconCustomizationState.MaxToggleCount
+                    )*/
+                    OdsListItem(
+                        text = stringResource(id = R.string.component_state_enabled),
+                        trailing = OdsSwitchTrailing(checked = enabled)
+                    )
+                } else {
+                    if (variant == Variant.ButtonsFunctional) {
+                        Subtitle(textRes = R.string.component_button_style_functional, horizontalPadding = true)
+                        OdsChoiceChipsFlowRow(
+                            selectedChip = buttonStyle,
+                            modifier = Modifier.padding(horizontal = dimensionResource(id = com.orange.ods.R.dimen.screen_horizontal_margin)),
+                            outlinedChips = true
+                        ) {
+                            OdsChoiceChip(textRes = R.string.component_button_style_functional_positive, value = OdsButtonStyle.FunctionalPositive)
+                            OdsChoiceChip(textRes = R.string.component_button_style_functional_negative, value = OdsButtonStyle.FunctionalNegative)
+                        }
+                    } else if (variant == Variant.ButtonsText) {
+                        Subtitle(textRes = R.string.component_style, horizontalPadding = true)
+                        OdsChoiceChipsFlowRow(
+                            selectedChip = textButtonStyle,
+                            modifier = Modifier.padding(horizontal = dimensionResource(id = com.orange.ods.R.dimen.screen_horizontal_margin)),
+                            outlinedChips = true
+                        ) {
+                            OdsChoiceChip(textRes = R.string.component_button_style_primary, value = OdsTextButtonStyle.Primary)
+                            OdsChoiceChip(textRes = R.string.component_button_style_default, value = OdsTextButtonStyle.Default)
+                        }
                     }
-                } else if (variant == Variant.ButtonsText) {
-                    Subtitle(textRes = R.string.component_style, horizontalPadding = true)
-                    OdsChoiceChipsFlowRow(
-                        selectedChip = textButtonStyle,
-                        modifier = Modifier.padding(horizontal = dimensionResource(id = com.orange.ods.R.dimen.screen_horizontal_margin)),
-                        outlinedChips = true
-                    ) {
-                        OdsChoiceChip(textRes = R.string.component_button_style_primary, value = OdsTextButtonStyle.Primary)
-                        OdsChoiceChip(textRes = R.string.component_button_style_default, value = OdsTextButtonStyle.Default)
-                    }
+                    OdsListItem(
+                        text = stringResource(id = R.string.component_element_icon),
+                        trailing = OdsSwitchTrailing(checked = leadingIcon)
+                    )
+                    OdsListItem(
+                        text = stringResource(id = R.string.component_button_full_screen_width),
+                        trailing = OdsSwitchTrailing(checked = fullScreenWidth)
+                    )
+                    OdsListItem(
+                        text = stringResource(id = R.string.component_state_enabled),
+                        trailing = OdsSwitchTrailing(checked = enabled)
+                    )
                 }
-                OdsListItem(
-                    text = stringResource(id = R.string.component_element_icon),
-                    trailing = OdsSwitchTrailing(checked = leadingIcon)
-                )
-                OdsListItem(
-                    text = stringResource(id = R.string.component_button_full_screen_width),
-                    trailing = OdsSwitchTrailing(checked = fullScreenWidth)
-                )
-                OdsListItem(
-                    text = stringResource(id = R.string.component_state_enabled),
-                    trailing = OdsSwitchTrailing(checked = enabled)
-                )
             }) {
 
             when (variant) {
                 Variant.ButtonsPrimary, Variant.ButtonsDefault, Variant.ButtonsFunctional -> ButtonsContained(customizationState)
                 Variant.ButtonsOutlined -> ButtonsOutlined(customizationState)
                 Variant.ButtonsText -> ButtonsText(customizationState)
+                Variant.ButtonsTextToggleGroup -> ButtonsTextToggleButtonsRow(customizationState)
                 else -> {}
             }
         }
