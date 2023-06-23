@@ -10,7 +10,11 @@
 
 <resources>
     <string name="app_name">Orange Design System</string>
+
     <string name="code_implementation">Code implementation</string>
+    <string name="code_implementation_xml">XML</string>
+    <string name="code_implementation_compose">Jetpack Compose</string>
+    <string name="soon_available">Soon available…</string>
 
     <!-- Navigation -->
     <string name="navigation_item_guidelines">Guidelines</string>
@@ -90,9 +94,6 @@
     <string name="component_element_example">Example</string>
     <string name="component_element_content">Content</string>
     <string name="component_element_type">Type</string>
-    <string name="component_ui_framework">UI framework</string>
-    <string name="component_ui_framework_compose">Compose</string>
-    <string name="component_ui_framework_xml">XML</string>
 
     <!-- Components App bars: top -->
     <string name="component_app_bars_top">App bars: top</string>

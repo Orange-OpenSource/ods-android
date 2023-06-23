@@ -24,6 +24,7 @@ inline fun <reified T : ViewDataBinding> ViewDataBinding(noinline bind: T.() -> 
     val layoutInflater = LayoutInflater.from(LocalContext.current)
     val parameters = listOf(layoutInflater, null, false)
     val binding = remember { inflateMethod.invoke(null, *parameters.toTypedArray()) as T }
+
     AndroidView(
         factory = {
             binding.bind()
@@ -33,5 +34,6 @@ inline fun <reified T : ViewDataBinding> ViewDataBinding(noinline bind: T.() -> 
         update = {
             binding.bind()
             binding.executePendingBindings()
-        })
+        }
+    )
 }

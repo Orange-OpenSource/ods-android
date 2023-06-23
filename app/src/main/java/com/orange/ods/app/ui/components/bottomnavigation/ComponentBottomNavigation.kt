@@ -70,8 +70,8 @@ fun ComponentBottomNavigation() {
         Column(
             modifier = Modifier
                 .fillMaxSize()
-                .verticalScroll(rememberScrollState()),
-            verticalArrangement = Arrangement.Center
+                .padding(top = dimensionResource(id = R.dimen.screen_vertical_margin))
+                .verticalScroll(rememberScrollState())
         ) {
             OdsBottomNavigation {
                 navigationItems.take(selectedNavigationItemCount.value).forEach { navigationItem ->

@@ -12,14 +12,21 @@ package com.orange.ods.app.ui.utilities.composable
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.Spacer
-import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.dimensionResource
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.semantics.semantics
 import com.orange.ods.app.R
+import com.orange.ods.app.ui.LocalUiFramework
+import com.orange.ods.app.ui.UiFramework
+import com.orange.ods.compose.component.menu.OdsExposedDropdownMenu
+import com.orange.ods.compose.component.menu.OdsExposedDropdownMenuItem
 import com.orange.ods.compose.theme.OdsTheme
 import com.orange.ods.utilities.extension.orElse
 
@@ -110,22 +117,57 @@ private sealed class PredefinedParameter {
 @Composable
 fun CodeImplementationColumn(
     modifier: Modifier = Modifier,
+    xmlAvailable: Boolean = false, // Temporary parameter: Indicates whether the XML version of the component is available
     contentBackground: Boolean = true,
     content: @Composable () -> Unit
 ) {
+    val currentUiFramework = LocalUiFramework.current
+
     Column(
         modifier = modifier.padding(
             vertical = dimensionResource(id = R.dimen.spacing_s)
         )
     ) {
-        Subtitle(textRes = R.string.code_implementation)
-        Spacer(modifier = Modifier.height(dimensionResource(id = R.dimen.spacing_s)))
-        if (contentBackground) {
-            CodeBackgroundColumn(content)
+        UiFrameworkChoice(xmlAvailable)
+        if (currentUiFramework.value == UiFramework.Compose) {
+            if (contentBackground) {
+                CodeBackgroundColumn(content)
+            } else {
+                content()
+            }
         } else {
-            content()
+            CodeBackgroundColumn {
+                TechnicalText(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .padding(dimensionResource(id = R.dimen.spacing_xs)),
+                    text = stringResource(id = R.string.soon_available)
+                )
+            }
         }
     }
+}
+
+@Composable
+private fun UiFrameworkChoice(xmlAvailable: Boolean) {
+    val context = LocalContext.current
+    val currentUiFramework = LocalUiFramework.current
+    var selectedUiFrameworkIndex = 0
+    val uiFrameworkItems = UiFramework.values().mapIndexed { index, uiFramework ->
+        if (uiFramework == currentUiFramework.value) selectedUiFrameworkIndex = index
+        OdsExposedDropdownMenuItem(label = stringResource(id = uiFramework.labelResId), iconResId = uiFramework.iconResId)
+    }
+    val selectedUiFramework = rememberSaveable { mutableStateOf(if (xmlAvailable) uiFrameworkItems[selectedUiFrameworkIndex] else uiFrameworkItems.first()) }
+
+    OdsExposedDropdownMenu(
+        label = stringResource(id = R.string.code_implementation),
+        items = uiFrameworkItems,
+        selectedItem = selectedUiFramework,
+        onItemSelectionChange = { selectedItem ->
+            currentUiFramework.value = UiFramework.values().first { context.getString(it.labelResId) == selectedItem.label }
+        },
+        enabled = xmlAvailable
+    )
 }
 
 @Composable
