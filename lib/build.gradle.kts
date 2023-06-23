@@ -17,6 +17,7 @@ plugins {
     id("kotlin-android")
     id("github")
     id("maven-central-publish")
+    id("kotlin-parcelize")
 }
 
 /**

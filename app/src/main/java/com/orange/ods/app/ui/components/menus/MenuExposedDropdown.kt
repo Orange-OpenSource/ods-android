@@ -17,18 +17,11 @@ import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.ExperimentalMaterialApi
 import androidx.compose.material.rememberBottomSheetScaffoldState
-import androidx.compose.runtime.Composable
-import androidx.compose.runtime.MutableState
-import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
-import androidx.compose.runtime.saveable.mapSaver
+import androidx.compose.runtime.*
 import androidx.compose.runtime.saveable.rememberSaveable
-import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.dimensionResource
-import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import com.orange.ods.app.R
 import com.orange.ods.app.domain.recipes.LocalRecipes
@@ -51,27 +44,16 @@ fun MenuExposedDropdown() {
     val recipes = LocalRecipes.current.take(4)
 
     val dropdownItems = recipes.map { recipe ->
-        OdsExposedDropdownMenuItem(label = recipe.title, icon = recipe.iconResId?.let { painterResource(id = it) })
+        OdsExposedDropdownMenuItem(label = recipe.title, iconResId = recipe.iconResId)
     }
     val textOnlyDropdownItems = recipes.map { recipe ->
         OdsExposedDropdownMenuItem(label = recipe.title)
     }
 
     var items by remember { mutableStateOf(dropdownItems) }
-    val itemSaver = run {
-        val itemKey = "item"
-        mapSaver(
-            save = {
-                mapOf(itemKey to it.label)
-            },
-            restore = {
-                OdsExposedDropdownMenuItem(it[itemKey] as String)
-            }
-        )
-    }
 
     with(customizationState) {
-        val selectedItem: MutableState<OdsExposedDropdownMenuItem> = rememberSaveable(stateSaver = itemSaver) { mutableStateOf(dropdownItems.first()) }
+        val selectedItem: MutableState<OdsExposedDropdownMenuItem> = rememberSaveable { mutableStateOf(dropdownItems.first()) }
         if (hasIcons) {
             items = dropdownItems
             selectedItem.value = dropdownItems.first { selectedItem.value.label == it.label }
@@ -122,7 +104,7 @@ fun MenuExposedDropdown() {
                                 items.forEach { item ->
                                     classInstance(OdsExposedDropdownMenuItem::class.java) {
                                         string("label", item.label)
-                                        if (hasIcons) icon()
+                                        if (hasIcons) simple("iconResId", "<drawable id>")
                                     }
                                 }
                             }

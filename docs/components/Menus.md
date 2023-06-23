@@ -11,8 +11,8 @@ description: Menus appear from a button, action, or other control. It contains a
 * [Specifications references](#specifications-references)
 * [Accessibility](#accessibility)
 * [Variants](#variants)
-  * [Dropdown menu](#dropdown-menu)
-  * [Exposed dropdown menu](#exposed-dropdown-menu)
+    * [Dropdown menu](#dropdown-menu)
+    * [Exposed dropdown menu](#exposed-dropdown-menu)
 * [Component specific tokens](#component-specific-tokens)
 
 ---
@@ -43,22 +43,22 @@ The library offers an `OdsDropdownMenu` container composable in which you can ad
 var menuExpanded by remember { mutableStateOf(false) }
 
 OdsDropdownMenu(
-    expanded = menuExpanded, 
-    onDismissRequest = { menuExpanded = false }, 
+    expanded = menuExpanded,
+    onDismissRequest = { menuExpanded = false },
     offset = DpOffset(x = (-100).dp, y = (-10).dp)
 ) {
     OdsDropdownMenuItem(
         text = "Summer salad",
         icon = painterResource(id = R.drawable.ic_salad),
-        onClick = { 
+        onClick = {
             // Do something
-         }
+        }
     )
     OdsDivider() // Allow to add a divider between the 2 items
     OdsDropdownMenuItem(
         text = "Brocoli soup",
         icon = painterResource(id = R.drawable.ic_soup),
-        onClick = { 
+        onClick = {
             // Do something
         }
     )
@@ -81,11 +81,11 @@ To display an exposed dropdown menu, you can use the `OdsExposedDropdownMenu` co
 
 ```kotlin
 val items = listOf(
-    OdsExposedDropdownMenuItem("Email", painterResource(id = android.R.drawable.ic_dialog_email)),
-    OdsExposedDropdownMenuItem("Map", painterResource(id = android.R.drawable.ic_dialog_map)),
-    OdsExposedDropdownMenuItem("Dialer", painterResource(id = android.R.drawable.ic_dialog_dialer)),
+    OdsExposedDropdownMenuItem("Email", android.R.drawable.ic_dialog_email),
+    OdsExposedDropdownMenuItem("Map", android.R.drawable.ic_dialog_map),
+    OdsExposedDropdownMenuItem("Dialer", android.R.drawable.ic_dialog_dialer),
 )
-val selectedItem = remember { mutableStateOf(items.first()) } 
+val selectedItem = rememberSaveable() { mutableStateOf(items.first()) }
 
 OdsExposedDropdownMenu(
     label = "Dropdown menu label",
