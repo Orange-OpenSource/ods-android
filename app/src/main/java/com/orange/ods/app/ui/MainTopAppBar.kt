@@ -36,7 +36,7 @@ import com.orange.ods.app.R
 import com.orange.ods.app.domain.recipes.LocalRecipes
 import com.orange.ods.app.ui.components.utilities.clickOnElement
 import com.orange.ods.app.ui.utilities.extension.isDarkModeEnabled
-import com.orange.ods.compose.component.appbar.top.OdsExtendedTopAppBar
+import com.orange.ods.compose.component.appbar.top.OdsLargeTopAppBar
 import com.orange.ods.compose.component.appbar.top.OdsTopAppBar
 import com.orange.ods.compose.component.appbar.top.OdsTopAppBarActionButton
 import com.orange.ods.compose.component.appbar.top.OdsTopAppBarOverflowMenuBox
@@ -77,8 +77,8 @@ fun MainTopAppBar(
         }
     }
 
-    if (topAppBarState.isExtended) {
-        OdsExtendedTopAppBar(
+    if (topAppBarState.isLarge) {
+        OdsLargeTopAppBar(
             title = title,
             navigationIcon = navigationIcon ?: { },
             onNavigationIconClick = upPress,

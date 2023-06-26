@@ -25,20 +25,25 @@ import com.orange.ods.app.R
 import com.orange.ods.app.ui.LocalMainTopAppBarManager
 import com.orange.ods.app.ui.MainTopAppBarState
 import com.orange.ods.app.ui.TopAppBarConfiguration
+import com.orange.ods.app.ui.components.Variant
 import com.orange.ods.app.ui.components.utilities.ComponentCountRow
 import com.orange.ods.app.ui.components.utilities.ComponentCustomizationBottomSheetScaffold
 import com.orange.ods.app.ui.utilities.NavigationItem
 import com.orange.ods.app.ui.utilities.composable.CodeImplementationColumn
 import com.orange.ods.app.ui.utilities.composable.FunctionCallCode
+import com.orange.ods.app.ui.utilities.composable.Subtitle
 import com.orange.ods.compose.OdsComposable
+import com.orange.ods.compose.component.chip.OdsChoiceChip
+import com.orange.ods.compose.component.chip.OdsChoiceChipsFlowRow
 import com.orange.ods.compose.component.list.OdsListItem
 import com.orange.ods.compose.component.list.OdsSwitchTrailing
 import kotlin.math.max
 
 @OptIn(ExperimentalMaterialApi::class)
 @Composable
-fun ComponentTopAppBar() {
+fun ComponentTopAppBar(variant: Variant) {
     val customizationState = rememberTopAppBarCustomizationState()
+    val isLargeVariant = variant == Variant.AppBarsTopLarge
 
     with(customizationState) {
         val customActionCount = max(0, actionCount.value - MainTopAppBarState.DefaultConfiguration.actions.size)
@@ -46,6 +51,7 @@ fun ComponentTopAppBar() {
             .take(customActionCount)
             .map { TopAppBarConfiguration.Action.Custom(stringResource(id = it.textResId), it.iconResId) }
         val topAppBarConfiguration = TopAppBarConfiguration.Builder()
+            .large(isLargeVariant)
             .navigationIconEnabled(isNavigationIconEnabled)
             .actions {
                 addAll(MainTopAppBarState.DefaultConfiguration.actions.take(actionCount.value))
@@ -53,7 +59,11 @@ fun ComponentTopAppBar() {
                 if (isOverflowMenuEnabled) add(TopAppBarConfiguration.Action.OverflowMenu)
             }
             .build()
-        LocalMainTopAppBarManager.current.updateTopAppBar(topAppBarConfiguration)
+
+        with(LocalMainTopAppBarManager.current) {
+            updateTopAppBar(topAppBarConfiguration)
+            updateTopAppBarTitle(titleLength.value.titleResId)
+        }
 
         ComponentCustomizationBottomSheetScaffold(
             bottomSheetScaffoldState = rememberBottomSheetScaffoldState(),
@@ -80,14 +90,30 @@ fun ComponentTopAppBar() {
                         enabled = isOverflowMenuSwitchEnabled
                     )
                 )
-
+                if (isLargeVariant) {
+                    Subtitle(textRes = R.string.component_element_title, horizontalPadding = true)
+                    OdsChoiceChipsFlowRow(
+                        selectedChip = titleLength,
+                        modifier = Modifier
+                            .padding(horizontal = dimensionResource(id = R.dimen.spacing_m))
+                            .padding(bottom = dimensionResource(id = R.dimen.spacing_s)),
+                        outlinedChips = true
+                    ) {
+                        OdsChoiceChip(textRes = R.string.component_app_bars_top_large_title_one_line, value = TopAppBarCustomizationState.TitleLength.OneLine)
+                        OdsChoiceChip(textRes = R.string.component_app_bars_top_large_title_two_lines, value = TopAppBarCustomizationState.TitleLength.TwoLines)
+                        OdsChoiceChip(
+                            textRes = R.string.component_app_bars_top_large_title_truncated,
+                            value = TopAppBarCustomizationState.TitleLength.Truncated
+                        )
+                    }
+                }
             }) {
 
             val context = LocalContext.current
             Column(modifier = Modifier.verticalScroll(rememberScrollState())) {
                 CodeImplementationColumn(modifier = Modifier.padding(horizontal = dimensionResource(id = R.dimen.screen_horizontal_margin))) {
                     FunctionCallCode(
-                        name = OdsComposable.OdsTopAppBar.name,
+                        name = if (isLargeVariant) OdsComposable.OdsLargeTopAppBar.name else OdsComposable.OdsTopAppBar.name,
                         exhaustiveParameters = false,
                         parameters = {
                             title(context.getString(R.string.component_app_bars_top_regular))
