@@ -23,7 +23,9 @@ val LocalMainTopAppBarManager = staticCompositionLocalOf<MainTopAppBarManager> {
 interface MainTopAppBarManager {
     fun updateTopAppBar(topAppBarConfiguration: TopAppBarConfiguration)
     fun updateTopAppBarTitle(titleRes: Int)
-    fun setExtended(extended: Boolean)
+
+    /** If set to true, a large top app bar will be displayed **/
+    fun setLargeTopAppBar(value: Boolean)
 
     fun updateTopAppBarTabs(tabsConfiguration: TabsConfiguration)
     fun clearTopAppBarTabs()
@@ -51,7 +53,7 @@ class MainTopAppBarState(
     val actions: MutableState<List<TopAppBarConfiguration.Action>>,
     var searchedText: MutableState<TextFieldValue>,
     private val navigationIconEnabled: MutableState<Boolean>,
-    private var extended: MutableState<Boolean>,
+    private var large: MutableState<Boolean>,
     val tabsState: MainTabsState,
 ) : MainTopAppBarManager {
 
@@ -67,18 +69,18 @@ class MainTopAppBarState(
     // TopAppBar state source of truth
     // ----------------------------------------------------------
 
-    val isExtended: Boolean
-        get() = extended.value
+    val isLarge: Boolean
+        get() = large.value
 
     val isNavigationIconEnabled: Boolean
         get() = navigationIconEnabled.value
 
-    override fun setExtended(extended: Boolean) {
-        this.extended.value = extended
+    override fun setLargeTopAppBar(value: Boolean) {
+        this.large.value = value
     }
 
     override fun updateTopAppBar(topAppBarConfiguration: TopAppBarConfiguration) {
-        extended.value = topAppBarConfiguration.isExtended
+        large.value = topAppBarConfiguration.isExtended
         navigationIconEnabled.value = topAppBarConfiguration.isNavigationIconEnabled
         actions.value = topAppBarConfiguration.actions
     }
@@ -127,11 +129,11 @@ data class TopAppBarConfiguration constructor(
 
     class Builder {
 
-        private var isExtended = false
+        private var isLarge = false
         private var isNavigationIconEnabled = true
         private var actions = mutableListOf<Action>()
 
-        fun extended(value: Boolean) = apply { isExtended = value }
+        fun large(value: Boolean) = apply { isLarge = value }
 
         fun navigationIconEnabled(enabled: Boolean) = apply { isNavigationIconEnabled = enabled }
 
@@ -147,7 +149,7 @@ data class TopAppBarConfiguration constructor(
             actions { add(action) }
         }
 
-        fun build() = TopAppBarConfiguration(isExtended, isNavigationIconEnabled, actions)
+        fun build() = TopAppBarConfiguration(isLarge, isNavigationIconEnabled, actions)
     }
 
     fun newBuilder() = Builder().apply {

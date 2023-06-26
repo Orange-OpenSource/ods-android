@@ -11,16 +11,21 @@
 package com.orange.ods.compose.component.appbar.top
 
 import androidx.compose.foundation.layout.RowScope
+import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.*
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.dimensionResource
+import androidx.compose.ui.text.style.TextOverflow
+import androidx.compose.ui.unit.dp
+import com.orange.ods.R
 import com.orange.ods.compose.component.OdsComposable
 import com.orange.ods.compose.theme.OdsTheme
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 @OdsComposable
-fun OdsExtendedTopAppBar(
+fun OdsLargeTopAppBar(
     title: String,
     modifier: Modifier = Modifier,
     navigationIcon: @Composable () -> Unit = {},
@@ -30,7 +35,15 @@ fun OdsExtendedTopAppBar(
 ) {
     val contentColor = OdsTheme.colors.component.topAppBar.barContent
     LargeTopAppBar(
-        title = { Text(text = title) },
+        title = {
+            Text(
+                modifier = Modifier.padding(start = 56.dp, end = dimensionResource(id = R.dimen.spacing_m)),
+                text = title,
+                style = OdsTheme.typography.h6,
+                overflow = TextOverflow.Ellipsis,
+                maxLines = 2
+            )
+        },
         modifier = modifier,
         navigationIcon = {
             IconButton(onClick = onNavigationIconClick) {

@@ -49,7 +49,7 @@ fun NavGraphBuilder.addComponentsGraph(navigateToElement: (String, Long?, NavBac
         variant?.let {
             with(LocalMainTopAppBarManager.current) {
                 updateTopAppBarTitle(variant.titleRes)
-                setExtended(variant.extendedTopAppBar)
+                setLargeTopAppBar(variant.largeTopAppBar)
             }
 
             variant.screenContent()
