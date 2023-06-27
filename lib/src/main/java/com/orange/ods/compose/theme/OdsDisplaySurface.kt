@@ -31,11 +31,5 @@ enum class OdsDisplaySurface {
      */
     Light;
 
-    companion object {
-        /**
-         * @return [OdsDisplaySurface] associated to the provided [xmlId]
-         * BE CAREFUL: If the enum values change you have to update associated XML attributes in the lib-xml
-         */
-        fun fromXmlAttrValue(xmlId: Int): OdsDisplaySurface = OdsDisplaySurface.values()[xmlId]
-    }
+    companion object
 }

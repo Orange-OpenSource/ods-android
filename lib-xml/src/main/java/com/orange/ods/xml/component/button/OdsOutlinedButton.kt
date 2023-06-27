@@ -24,6 +24,7 @@ import com.orange.ods.compose.component.button.OdsOutlinedButton
 import com.orange.ods.compose.theme.OdsDisplaySurface
 import com.orange.ods.xml.R
 import com.orange.ods.xml.component.OdsAbstractComposeView
+import com.orange.ods.xml.utilities.extension.fromXmlAttrValue
 import com.orange.ods.xml.utilities.extension.getResourceIdOrNull
 
 class OdsOutlinedButton @JvmOverloads constructor(context: Context, attrs: AttributeSet? = null) : OdsAbstractComposeView(context, attrs) {
