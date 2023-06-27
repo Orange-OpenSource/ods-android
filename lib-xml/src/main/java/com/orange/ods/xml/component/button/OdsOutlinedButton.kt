@@ -29,7 +29,7 @@ import com.orange.ods.xml.utilities.extension.getResourceIdOrNull
 class OdsOutlinedButton @JvmOverloads constructor(context: Context, attrs: AttributeSet? = null) : OdsAbstractComposeView(context, attrs) {
 
     var text by mutableStateOf("")
-    var leadingIcon by mutableStateOf<Drawable?>(null)
+    var icon by mutableStateOf<Drawable?>(null)
     var displaySurface by mutableStateOf(OdsDisplaySurface.Default)
 
     var onClick by mutableStateOf({})
@@ -37,7 +37,7 @@ class OdsOutlinedButton @JvmOverloads constructor(context: Context, attrs: Attri
     init {
         context.withStyledAttributes(attrs, R.styleable.OdsOutlinedButton) {
             text = getString(R.styleable.OdsOutlinedButton_text).orEmpty()
-            leadingIcon = getResourceIdOrNull(R.styleable.OdsOutlinedButton_leadingIcon)?.let { AppCompatResources.getDrawable(context, it) }
+            icon = getResourceIdOrNull(R.styleable.OdsOutlinedButton_icon)?.let { AppCompatResources.getDrawable(context, it) }
             displaySurface = OdsDisplaySurface.fromXmlAttrValue(getInteger(R.styleable.OdsOutlinedButton_displaySurface, 0))
         }
     }
@@ -47,7 +47,7 @@ class OdsOutlinedButton @JvmOverloads constructor(context: Context, attrs: Attri
         OdsOutlinedButton(
             text = text,
             onClick = onClick,
-            icon = leadingIcon?.let { rememberDrawablePainter(drawable = it) },
+            icon = icon?.let { rememberDrawablePainter(drawable = it) },
             enabled = isEnabled,
             displaySurface = displaySurface
         )

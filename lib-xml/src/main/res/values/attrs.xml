@@ -12,7 +12,6 @@
 
     <attr name="text" format="string" />
     <attr name="enabled" format="boolean" />
-    <attr name="leadingIcon" format="reference|color" />
     <attr name="displaySurface" format="enum">
         <enum name="standard" value="0" />
         <enum name="dark" value="1" />
@@ -28,7 +27,7 @@
     </declare-styleable>
 
     <declare-styleable name="OdsButton">
-        <attr name="leadingIcon" />
+        <attr name="icon" />
         <attr name="text" />
         <attr name="enabled" />
         <attr name="style" format="enum">
@@ -41,7 +40,7 @@
     </declare-styleable>
 
     <declare-styleable name="OdsOutlinedButton">
-        <attr name="leadingIcon" />
+        <attr name="icon" />
         <attr name="text" />
         <attr name="enabled" />
         <attr name="displaySurface" />
