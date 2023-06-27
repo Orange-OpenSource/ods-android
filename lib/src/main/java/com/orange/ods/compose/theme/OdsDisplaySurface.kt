@@ -29,5 +29,7 @@ enum class OdsDisplaySurface {
     /**
      * The element is displayed on a light background even if the device system is set in dark theme.
      */
-    Light
+    Light;
+
+    companion object
 }

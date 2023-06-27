@@ -38,6 +38,8 @@ import com.orange.ods.utilities.extension.enable
 enum class OdsButtonStyle {
     Default, Primary, FunctionalPositive, FunctionalNegative;
 
+    companion object
+
     @Composable
     internal fun getColors(displaySurface: OdsDisplaySurface): ButtonColors {
         return when (this) {
