@@ -34,7 +34,7 @@
 
     </data>
 
-    <RelativeLayout
+    <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
@@ -60,6 +60,6 @@
             app:style="functional_positive"
             app:displaySurface="standard" />
 
-    </RelativeLayout>
+    </FrameLayout>
 
 </layout>

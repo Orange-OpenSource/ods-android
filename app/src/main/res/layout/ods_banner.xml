@@ -32,7 +32,7 @@
             type="String" />
     </data>
 
-    <RelativeLayout
+    <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
@@ -56,6 +56,6 @@
             app:button2Text="Button 2"
             app:imageContentDescription="Content description of the image" />
 
-    </RelativeLayout>
+    </FrameLayout>
 
 </layout>

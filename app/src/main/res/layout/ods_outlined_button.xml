@@ -29,7 +29,7 @@
             type="com.orange.ods.compose.theme.OdsDisplaySurface" />
     </data>
 
-    <RelativeLayout
+    <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
@@ -53,6 +53,6 @@
             app:enabled="true"
             app:displaySurface="standard" />
 
-    </RelativeLayout>
+    </FrameLayout>
 
 </layout>

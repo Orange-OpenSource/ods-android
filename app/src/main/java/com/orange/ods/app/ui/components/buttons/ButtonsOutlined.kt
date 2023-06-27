@@ -10,11 +10,14 @@
 
 package com.orange.ods.app.ui.components.buttons
 
-import android.app.ActionBar.LayoutParams
 import android.view.ViewGroup
-import android.widget.RelativeLayout
+import android.widget.FrameLayout
 import androidx.appcompat.content.res.AppCompatResources
-import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.runtime.Composable
@@ -94,8 +97,9 @@ private fun OutlinedButton(
                 this.enabled = enabled
                 this.displaySurface = displaySurface
 
-                val width = if (fullScreenWidth) RelativeLayout.LayoutParams.MATCH_PARENT else RelativeLayout.LayoutParams.WRAP_CONTENT
-                odsOutlinedButton.layoutParams = RelativeLayout.LayoutParams(width, RelativeLayout.LayoutParams.WRAP_CONTENT)
+                root.layoutParams = ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT)
+                val width = if (fullScreenWidth) FrameLayout.LayoutParams.MATCH_PARENT else FrameLayout.LayoutParams.WRAP_CONTENT
+                odsOutlinedButton.layoutParams = FrameLayout.LayoutParams(width, FrameLayout.LayoutParams.WRAP_CONTENT)
             }
         )
     }
