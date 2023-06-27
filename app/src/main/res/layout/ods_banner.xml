@@ -48,7 +48,7 @@
         <!-- Invisible OdsBanner used for tests -->
         <com.orange.ods.xml.component.banner.OdsBanner
             android:id="@+id/ods_banner_test"
-            android:visibility="invisible"
+            android:visibility="gone"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             app:message="Message displayed in the banner"

@@ -45,7 +45,7 @@
         <!-- Invisible OdsOutlinedButton used for tests -->
         <com.orange.ods.xml.component.button.OdsOutlinedButton
             android:id="@+id/ods_outlined_button_test"
-            android:visibility="invisible"
+            android:visibility="gone"
             android:layout_height="wrap_content"
             android:layout_width="wrap_content"
             app:leadingIcon="@drawable/ic_add"

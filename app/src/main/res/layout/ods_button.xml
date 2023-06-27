@@ -51,7 +51,7 @@
         <!-- Invisible OdsButton used for tests -->
         <com.orange.ods.xml.component.button.OdsButton
             android:id="@+id/ods_button_test"
-            android:visibility="invisible"
+            android:visibility="gone"
             android:layout_height="wrap_content"
             android:layout_width="wrap_content"
             app:leadingIcon="@drawable/ic_add"
