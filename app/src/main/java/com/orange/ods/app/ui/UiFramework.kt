@@ -10,7 +10,6 @@
 
 package com.orange.ods.app.ui
 
-import androidx.compose.foundation.layout.Box
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.MutableState
@@ -19,7 +18,6 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.compose.runtime.staticCompositionLocalOf
-import androidx.compose.ui.Modifier
 import androidx.databinding.ViewDataBinding
 import com.orange.ods.app.R
 import com.orange.ods.app.ui.components.utilities.ViewDataBinding

@@ -44,12 +44,12 @@ fun ButtonsOutlined(customizationState: ButtonCustomizationState) {
                 .padding(vertical = dimensionResource(id = R.dimen.screen_vertical_margin))
         ) {
 
-            OutlinedButton(hasLeadingIcon, isEnabled, hasFullScreenWidth)
+            OutlinedButton(leadingIcon = hasLeadingIcon, enabled = isEnabled, fullScreenWidth = hasFullScreenWidth)
 
             Spacer(modifier = Modifier.padding(top = dimensionResource(R.dimen.spacing_s)))
 
             InvertedBackgroundColumn {
-                OutlinedButton(hasLeadingIcon, isEnabled, hasFullScreenWidth, displaySurface = displaySurface)
+                OutlinedButton(leadingIcon = hasLeadingIcon, enabled = isEnabled, fullScreenWidth = hasFullScreenWidth, displaySurface = displaySurface)
             }
 
             CodeImplementationColumn(
