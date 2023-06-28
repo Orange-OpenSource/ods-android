@@ -29,6 +29,7 @@ import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.stringResource
 import com.orange.ods.app.R
 import com.orange.ods.app.ui.components.Variant
+import com.orange.ods.app.ui.components.utilities.ComponentCountRow
 import com.orange.ods.app.ui.components.utilities.ComponentCustomizationBottomSheetScaffold
 import com.orange.ods.app.ui.utilities.composable.Subtitle
 import com.orange.ods.compose.component.button.OdsButtonStyle
@@ -59,15 +60,15 @@ fun ComponentButtons(variant: Variant) {
             bottomSheetScaffoldState = rememberBottomSheetScaffoldState(),
             bottomSheetContent = {
                 if (variant == Variant.ButtonsTextToggleGroup) {
-                    /*ComponentCountRow(
+                    ComponentCountRow(
                         modifier = Modifier.padding(start = dimensionResource(id = R.dimen.screen_horizontal_margin)),
                         title = stringResource(id = R.string.component_button_icon_toggle_count),
                         count = toggleCount,
                         minusIconContentDescription = stringResource(id = R.string.component_button_icon_toggle_remove),
                         plusIconContentDescription = stringResource(id = R.string.component_button_icon_toggle_add),
-                        minCount = ButtonIconCustomizationState.MinToggleCount,
-                        maxCount = ButtonIconCustomizationState.MaxToggleCount
-                    )*/
+                        minCount = ButtonCustomizationState.MinToggleCount,
+                        maxCount = ButtonCustomizationState.MaxToggleCount
+                    )
                     OdsListItem(
                         text = stringResource(id = R.string.component_state_enabled),
                         trailing = OdsSwitchTrailing(checked = enabled)

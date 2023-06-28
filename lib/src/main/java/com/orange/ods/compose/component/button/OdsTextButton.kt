@@ -20,6 +20,7 @@ import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.painter.Painter
+import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.PreviewParameter
 import com.orange.ods.compose.component.OdsComposable
 import com.orange.ods.compose.component.utilities.EnumPreviewParameterProvider
@@ -39,6 +40,8 @@ enum class OdsTextButtonStyle {
 
     companion object
 }
+
+public const val MAX_VALUE: Int = 2147483647
 
 /**
  * <a href="https://system.design.orange.com/0c1af118d/p/06a393-buttons/b/79b091" target="_blank">ODS Buttons</a>.
@@ -64,6 +67,8 @@ fun OdsTextButton(
     modifier: Modifier = Modifier,
     icon: Painter? = null,
     enabled: Boolean = true,
+    maxLines: Int? = null,
+    overflow: TextOverflow? = null,
     style: OdsTextButtonStyle = OdsTextButtonStyle.Default,
     displaySurface: OdsDisplaySurface = OdsDisplaySurface.Default
 ) {
@@ -85,7 +90,10 @@ fun OdsTextButton(
             )
         ) {
             icon?.let { ButtonIcon(it) }
-            Text(text = text.uppercase(), style = OdsTheme.typography.button)
+            Text(
+                text = text.uppercase(), style = OdsTheme.typography.button, maxLines = maxLines ?: MAX_VALUE,
+                overflow = overflow ?: TextOverflow.Clip
+            )
         }
     }
 }
@@ -104,7 +112,7 @@ private fun OdsColors.buttonTextDisabledColor(displaySurface: OdsDisplaySurface)
 @UiModePreviews.Button
 @Composable
 private fun PreviewOdsTextButton(@PreviewParameter(OdsTextButtonPreviewParameterProvider::class) style: OdsTextButtonStyle) = Preview {
-    OdsTextButton(text = "Text", onClick = {}, style = style)
+    OdsTextButton(text = "Text", maxLines = 1, overflow = TextOverflow.Clip, onClick = {}, style = style)
 }
 
 private class OdsTextButtonPreviewParameterProvider : EnumPreviewParameterProvider(OdsTextButtonStyle::class)

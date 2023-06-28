@@ -98,8 +98,8 @@ sealed class Component(
             Variant.ButtonsDefault,
             Variant.ButtonsOutlined,
             Variant.ButtonsText,
-            Variant.ButtonsTextToggleGroup,
-            Variant.ButtonsFunctional
+            Variant.ButtonsFunctional,
+            Variant.ButtonsTextToggleGroup
         ),
         demoScreen = { variant, _ -> if (variant != null) ComponentButtons(variant = variant) }
     )

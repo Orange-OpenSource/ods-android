@@ -26,21 +26,19 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.dimensionResource
 import com.orange.ods.app.R
-import com.orange.ods.app.domain.recipes.LocalCategories
+import com.orange.ods.app.domain.recipes.LocalRecipes
 import com.orange.ods.app.ui.utilities.composable.CodeImplementationColumn
 import com.orange.ods.app.ui.utilities.composable.FunctionCallCode
 import com.orange.ods.compose.OdsComposable
-import com.orange.ods.compose.component.button.OdsIconToggleButtonsRowItem
 import com.orange.ods.compose.component.button.OdsTextToggleButtonsRow
 import com.orange.ods.compose.component.button.OdsTextToggleButtonsRowItem
 import com.orange.ods.compose.theme.OdsDisplaySurface
 
 @Composable
 fun ButtonsTextToggleButtonsRow(customizationState: ButtonCustomizationState) {
-    val maxToggleCount = 2
     val textToggleButtons =
-        LocalCategories.current.distinctBy { it.name }.filter { it.name != "" }.take(maxToggleCount).map { category ->
-            OdsTextToggleButtonsRowItem(category.name, customizationState.isEnabled)
+        LocalRecipes.current.distinctBy { it.title }.filter { it.title != "" }.take(ButtonCustomizationState.MaxToggleCount).map { recipe ->
+            OdsTextToggleButtonsRowItem(recipe.title, customizationState.isEnabled)
         }
 
     var selectedIndex by rememberSaveable { mutableStateOf(0) }
@@ -52,20 +50,20 @@ fun ButtonsTextToggleButtonsRow(customizationState: ButtonCustomizationState) {
                 .padding(vertical = dimensionResource(id = R.dimen.screen_vertical_margin))
         ) {
             ToggleButtonsRow(
-                iconToggleButtons = textToggleButtons,
+                textToggleButtons = textToggleButtons,
                 selectedIndex = selectedIndex,
                 onSelectedIndexChange = { index -> selectedIndex = index },
-                toggleCount = maxToggleCount
+                toggleCount = toggleCount.value
             )
 
             Spacer(modifier = Modifier.padding(top = dimensionResource(R.dimen.spacing_s)))
 
             InvertedBackgroundColumn {
                 ToggleButtonsRow(
-                    iconToggleButtons = textToggleButtons,
+                    textToggleButtons = textToggleButtons,
                     selectedIndex = selectedIndex,
                     onSelectedIndexChange = { index -> selectedIndex = index },
-                    toggleCount = maxToggleCount,
+                    toggleCount = toggleCount.value,
                     displaySurface = displaySurface
                 )
             }
@@ -74,14 +72,14 @@ fun ButtonsTextToggleButtonsRow(customizationState: ButtonCustomizationState) {
                 modifier = Modifier.padding(horizontal = dimensionResource(id = R.dimen.screen_horizontal_margin))
             ) {
                 FunctionCallCode(
-                    name = OdsComposable.OdsIconToggleButtonsRow.name,
+                    name = OdsComposable.OdsTextToggleButtonsRow.name,
                     exhaustiveParameters = false,
                     parameters = {
-                        list("iconsToggleButtons") {
-                            repeat(maxToggleCount) {
-                                classInstance(OdsIconToggleButtonsRowItem::class.java) {
-                                    painter()
-                                    string("iconDescription", "icon description")
+                        list("textToggleButtons") {
+                            repeat(toggleCount.value) {
+                                classInstance(OdsTextToggleButtonsRowItem::class.java) {
+                                    string("text", "text bottom")
+                                    selected(customizationState.isEnabled)
                                 }
                             }
                         }
@@ -95,7 +93,7 @@ fun ButtonsTextToggleButtonsRow(customizationState: ButtonCustomizationState) {
 
 @Composable
 private fun ToggleButtonsRow(
-    iconToggleButtons: List<OdsTextToggleButtonsRowItem>,
+    textToggleButtons: List<OdsTextToggleButtonsRowItem>,
     selectedIndex: Int,
     onSelectedIndexChange: (Int) -> Unit,
     toggleCount: Int,
@@ -109,7 +107,7 @@ private fun ToggleButtonsRow(
         horizontalArrangement = Arrangement.Center
     ) {
         OdsTextToggleButtonsRow(
-            textToggleButtons = iconToggleButtons.take(toggleCount),
+            textToggleButtons = textToggleButtons.take(toggleCount),
             selectedIndex = selectedIndex,
             onSelectedIndexChange = onSelectedIndexChange,
             displaySurface = displaySurface
