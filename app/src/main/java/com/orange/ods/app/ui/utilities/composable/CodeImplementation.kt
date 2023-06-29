@@ -15,8 +15,11 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.saveable.rememberSaveable
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.dimensionResource
@@ -121,7 +124,16 @@ fun CodeImplementationColumn(
     contentBackground: Boolean = true,
     content: @Composable () -> Unit
 ) {
-    val currentUiFramework = LocalUiFramework.current
+    var currentUiFramework by LocalUiFramework.current
+    // Reset current UI framework to Compose when displaying the content
+    // shouldResetUiFramework is used to avoid calling LaunchedEffect on configuration changes (for instance on device rotation)
+    var shouldResetUiFramework by rememberSaveable { mutableStateOf(true) }
+    if (shouldResetUiFramework) {
+        LaunchedEffect(Unit) {
+            shouldResetUiFramework = false
+            currentUiFramework = UiFramework.Compose
+        }
+    }
 
     Column(
         modifier = modifier.padding(
@@ -129,7 +141,7 @@ fun CodeImplementationColumn(
         )
     ) {
         UiFrameworkChoice(xmlAvailable)
-        if (currentUiFramework.value == UiFramework.Compose) {
+        if (currentUiFramework == UiFramework.Compose) {
             if (contentBackground) {
                 CodeBackgroundColumn(content)
             } else {
@@ -152,12 +164,14 @@ fun CodeImplementationColumn(
 private fun UiFrameworkChoice(xmlAvailable: Boolean) {
     val context = LocalContext.current
     val currentUiFramework = LocalUiFramework.current
-    var selectedUiFrameworkIndex = 0
-    val uiFrameworkItems = UiFramework.values().mapIndexed { index, uiFramework ->
-        if (uiFramework == currentUiFramework.value) selectedUiFrameworkIndex = index
+    val uiFrameworkItems = UiFramework.values().map { uiFramework ->
         OdsExposedDropdownMenuItem(label = stringResource(id = uiFramework.labelResId), iconResId = uiFramework.iconResId)
     }
-    val selectedUiFramework = rememberSaveable { mutableStateOf(if (xmlAvailable) uiFrameworkItems[selectedUiFrameworkIndex] else uiFrameworkItems.first()) }
+    val selectedUiFramework = rememberSaveable(currentUiFramework.value) {
+        val selectedUiFramework = if (xmlAvailable) currentUiFramework.value else UiFramework.Compose
+        val selectedUiFrameworkIndex = UiFramework.values().indexOf(selectedUiFramework)
+        mutableStateOf(uiFrameworkItems[selectedUiFrameworkIndex])
+    }
 
     OdsExposedDropdownMenu(
         label = stringResource(id = R.string.code_implementation),
