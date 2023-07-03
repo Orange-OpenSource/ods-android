@@ -34,6 +34,7 @@ import com.orange.ods.app.ui.components.buttons.InvertedBackgroundColumn
 import com.orange.ods.app.ui.components.utilities.clickOnElement
 import com.orange.ods.app.ui.utilities.composable.CodeImplementationColumn
 import com.orange.ods.app.ui.utilities.composable.FunctionCallCode
+import com.orange.ods.compose.OdsComposable
 import com.orange.ods.compose.component.button.OdsIconButton
 import com.orange.ods.compose.theme.OdsDisplaySurface
 
@@ -69,7 +70,7 @@ fun ButtonsIcon(customizationState: ButtonIconCustomizationState) {
                 xmlAvailable = true
             ) {
                 FunctionCallCode(
-                    name = com.orange.ods.compose.OdsComposable.OdsIconButton.name,
+                    name = OdsComposable.OdsIconButton.name,
                     exhaustiveParameters = false,
                     parameters = {
                         painter()
@@ -89,22 +90,25 @@ private fun IconButton(
     val context = LocalContext.current
     val iconId = R.drawable.ic_search
     val contentDescription = stringResource(id = R.string.component_button_icon_search_desc)
+    val onClick = { clickOnElement(context, context.getString(R.string.component_button_icon)) }
 
     Box(modifier = Modifier.padding(horizontal = dimensionResource(R.dimen.screen_horizontal_margin), vertical = dimensionResource(R.dimen.spacing_m))) {
         UiFramework<OdsIconButtonBinding>(
             compose = {
                 OdsIconButton(
-                    onClick = { clickOnElement(context, context.getString(R.string.component_button_icon)) },
+                    onClick = onClick,
                     painter = painterResource(id = R.drawable.ic_search),
                     contentDescription = contentDescription,
                     enabled = enabled,
                     displaySurface = displaySurface
                 )
-            }, xml = {
+            },
+            xml = {
                 icon = AppCompatResources.getDrawable(context, iconId)
                 this.enabled = enabled
                 this.displaySurface = displaySurface
                 iconContentDescription = contentDescription
+                odsIconButton.onClick = onClick
             }
         )
     }

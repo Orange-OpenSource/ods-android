@@ -29,10 +29,10 @@ import com.orange.ods.xml.utilities.extension.getResourceIdOrNull
 
 class OdsIconToggleButton @JvmOverloads constructor(context: Context, attrs: AttributeSet? = null) : OdsAbstractComposeView(context, attrs) {
 
-    var iconContentDescription by mutableStateOf<String?>("")
-    var checked by mutableStateOf<Boolean>(false)
     var checkedIcon by mutableStateOf<Drawable?>(null)
     var uncheckedIcon by mutableStateOf<Drawable?>(null)
+    var iconContentDescription by mutableStateOf<String?>(null)
+    var checked by mutableStateOf(false)
     var onCheckedChange by mutableStateOf<(Boolean) -> Unit>({})
     var displaySurface by mutableStateOf(OdsDisplaySurface.Default)
 

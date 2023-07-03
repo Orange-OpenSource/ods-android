@@ -26,8 +26,8 @@ import com.orange.ods.xml.utilities.extension.fromXmlAttrValue
 
 class OdsIconToggleButtonsRow @JvmOverloads constructor(context: Context, attrs: AttributeSet? = null) : OdsAbstractComposeView(context, attrs) {
 
-    var iconToggleButtons by mutableStateOf<List<OdsIconToggleButtonsRowItem>?>(null)
-    var selectedIndex by mutableStateOf<Int>(0)
+    var iconToggleButtons by mutableStateOf<List<OdsIconToggleButtonsRowItem>>(emptyList())
+    var selectedIndex by mutableStateOf(0)
     var onSelectedIndexChange by mutableStateOf<(Int) -> Unit>({})
     var displaySurface by mutableStateOf(OdsDisplaySurface.Default)
 
@@ -40,13 +40,11 @@ class OdsIconToggleButtonsRow @JvmOverloads constructor(context: Context, attrs:
 
     @Composable
     override fun OdsContent() {
-        iconToggleButtons?.let {
-            OdsIconToggleButtonsRow(
-                iconToggleButtons = it,
-                selectedIndex = selectedIndex,
-                onSelectedIndexChange = onSelectedIndexChange,
-                displaySurface = displaySurface
-            )
-        }
+        OdsIconToggleButtonsRow(
+            iconToggleButtons = iconToggleButtons,
+            selectedIndex = selectedIndex,
+            onSelectedIndexChange = onSelectedIndexChange,
+            displaySurface = displaySurface
+        )
     }
 }

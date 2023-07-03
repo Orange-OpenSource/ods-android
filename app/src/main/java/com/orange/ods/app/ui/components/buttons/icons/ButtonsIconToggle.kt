@@ -50,13 +50,15 @@ fun ButtonsIconToggle(customizationState: ButtonIconCustomizationState) {
                 .verticalScroll(rememberScrollState())
                 .padding(vertical = dimensionResource(id = R.dimen.screen_vertical_margin))
         ) {
+            val onCheckedChange: (Boolean) -> Unit = { checked -> buttonCheckedState.value = checked }
+
             Row(
                 modifier = Modifier.fillMaxWidth(),
                 horizontalArrangement = Arrangement.Center
             ) {
                 IconToggleButton(
                     checked = buttonCheckedState.value,
-                    onCheckedChange = { checked -> buttonCheckedState.value = checked },
+                    onCheckedChange = onCheckedChange,
                     enabled = isEnabled
                 )
             }
@@ -66,7 +68,7 @@ fun ButtonsIconToggle(customizationState: ButtonIconCustomizationState) {
             InvertedBackgroundColumn(horizontalAlignment = Alignment.CenterHorizontally) {
                 IconToggleButton(
                     checked = buttonCheckedState.value,
-                    onCheckedChange = { checked -> buttonCheckedState.value = checked },
+                    onCheckedChange = onCheckedChange,
                     enabled = isEnabled,
                     displaySurface = displaySurface
                 )

@@ -112,16 +112,17 @@ private fun ToggleButtonsRow(
             .padding(horizontal = dimensionResource(R.dimen.screen_horizontal_margin)),
         horizontalArrangement = Arrangement.Center
     ) {
+        val buttons = iconToggleButtons.take(toggleCount)
         UiFramework<OdsIconToggleButtonsGroupBinding>(
             compose = {
                 OdsIconToggleButtonsRow(
-                    iconToggleButtons = iconToggleButtons.take(toggleCount),
+                    iconToggleButtons = buttons,
                     selectedIndex = selectedIndex,
                     onSelectedIndexChange = onSelectedIndexChange,
                     displaySurface = displaySurface
                 )
             }, xml = {
-                this.odsIconToggleButtonsRow.iconToggleButtons = iconToggleButtons.take(toggleCount)
+                this.odsIconToggleButtonsRow.iconToggleButtons = buttons
                 this.selectedIndex = selectedIndex
                 this.displaySurface = displaySurface
                 this.odsIconToggleButtonsRow.onSelectedIndexChange = onSelectedIndexChange
