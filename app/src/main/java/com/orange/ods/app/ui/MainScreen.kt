@@ -98,17 +98,21 @@ fun MainScreen(themeConfigurations: Set<OdsThemeConfigurationContract>, mainView
         ) {
             val topBarScrollBehavior: TopAppBarScrollBehavior?
             val modifier: Modifier
-            if (mainState.topAppBarState.isLarge) {
+
+            val showTabs by remember {
+                derivedStateOf { mainState.topAppBarState.tabsState.hasTabs }
+            }
+            val displayLargeTopAppBar by remember {
+                derivedStateOf { mainState.topAppBarState.isLarge }
+            }
+
+            if (displayLargeTopAppBar) {
                 topBarScrollBehavior = TopAppBarDefaults.exitUntilCollapsedScrollBehavior(rememberTopAppBarState())
                 val nestedScrollConnection = remember { topBarScrollBehavior.nestedScrollConnection }
                 modifier = Modifier.nestedScroll(nestedScrollConnection)
             } else {
                 topBarScrollBehavior = null
                 modifier = Modifier
-            }
-
-            val showTabs by remember {
-                derivedStateOf { mainState.topAppBarState.tabsState.hasTabs }
             }
 
             Scaffold(
