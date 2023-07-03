@@ -19,6 +19,7 @@ import androidx.compose.material.Icon
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ArrowBack
 import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.material3.TopAppBarScrollBehavior
 import androidx.compose.runtime.*
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.ui.Modifier
@@ -51,16 +52,18 @@ import com.orange.ods.compose.theme.OdsTheme
 @Composable
 fun MainTopAppBar(
     shouldShowUpNavigationIcon: Boolean,
-    topAppBarState: MainTopAppBarState,
+    topAppBarStateProvider: () -> MainTopAppBarState,
     upPress: () -> Unit,
     onSearchActionClick: () -> Unit,
-    mainViewModel: MainViewModel = viewModel()
+    mainViewModel: MainViewModel = viewModel(),
+    scrollBehavior: TopAppBarScrollBehavior?
 ) {
     val themeManager = LocalThemeManager.current
     var changeThemeDialogVisible by remember { mutableStateOf(false) }
+    val showSearchAction = topAppBarStateProvider().titleRes.value == R.string.navigation_item_search
 
-    val title = stringResource(id = topAppBarState.titleRes.value)
-    val navigationIcon: (@Composable () -> Unit)? = if (shouldShowUpNavigationIcon && topAppBarState.isNavigationIconEnabled) {
+    val title = stringResource(id = topAppBarStateProvider().titleRes.value)
+    val navigationIcon: (@Composable () -> Unit)? = if (shouldShowUpNavigationIcon && topAppBarStateProvider().isNavigationIconEnabled) {
         {
             Icon(
                 imageVector = Icons.Filled.ArrowBack,
@@ -70,19 +73,20 @@ fun MainTopAppBar(
     } else null
 
     val actions: @Composable RowScope.() -> Unit = {
-        if (topAppBarState.titleRes.value == R.string.navigation_item_search) {
-            TopAppBarSearchAction(searchedText = topAppBarState.searchedText)
+        if (showSearchAction) {
+            TopAppBarSearchAction(searchedText = topAppBarStateProvider().searchedText)
         } else {
-            TopAppBarActions(topAppBarState, onSearchActionClick) { changeThemeDialogVisible = true }
+            TopAppBarActions(topAppBarStateProvider(), onSearchActionClick) { changeThemeDialogVisible = true }
         }
     }
 
-    if (topAppBarState.isLarge) {
+    if (topAppBarStateProvider().isLarge) {
         OdsLargeTopAppBar(
             title = title,
             navigationIcon = navigationIcon ?: { },
             onNavigationIconClick = upPress,
-            actions = actions
+            actions = actions,
+            scrollBehavior = scrollBehavior
         )
     } else {
         OdsTopAppBar(
