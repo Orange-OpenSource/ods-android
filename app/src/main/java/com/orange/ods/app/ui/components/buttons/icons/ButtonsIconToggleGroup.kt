@@ -27,7 +27,9 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.painterResource
 import com.orange.ods.app.R
+import com.orange.ods.app.databinding.OdsIconToggleButtonsGroupBinding
 import com.orange.ods.app.domain.recipes.LocalRecipes
+import com.orange.ods.app.ui.UiFramework
 import com.orange.ods.app.ui.components.buttons.InvertedBackgroundColumn
 import com.orange.ods.app.ui.utilities.composable.CodeImplementationColumn
 import com.orange.ods.app.ui.utilities.composable.FunctionCallCode
@@ -51,6 +53,7 @@ fun ButtonsIconToggleGroup(customizationState: ButtonIconCustomizationState) {
                 .verticalScroll(rememberScrollState())
                 .padding(vertical = dimensionResource(id = R.dimen.screen_vertical_margin))
         ) {
+
             ToggleButtonsRow(
                 iconToggleButtons = iconToggleButtons,
                 selectedIndex = selectedIndex,
@@ -71,7 +74,8 @@ fun ButtonsIconToggleGroup(customizationState: ButtonIconCustomizationState) {
             }
 
             CodeImplementationColumn(
-                modifier = Modifier.padding(horizontal = dimensionResource(id = R.dimen.screen_horizontal_margin))
+                modifier = Modifier.padding(horizontal = dimensionResource(id = R.dimen.screen_horizontal_margin)),
+                xmlAvailable = true
             ) {
                 FunctionCallCode(
                     name = OdsComposable.OdsIconToggleButtonsRow.name,
@@ -108,11 +112,21 @@ private fun ToggleButtonsRow(
             .padding(horizontal = dimensionResource(R.dimen.screen_horizontal_margin)),
         horizontalArrangement = Arrangement.Center
     ) {
-        OdsIconToggleButtonsRow(
-            iconToggleButtons = iconToggleButtons.take(toggleCount),
-            selectedIndex = selectedIndex,
-            onSelectedIndexChange = onSelectedIndexChange,
-            displaySurface = displaySurface
+        val buttons = iconToggleButtons.take(toggleCount)
+        UiFramework<OdsIconToggleButtonsGroupBinding>(
+            compose = {
+                OdsIconToggleButtonsRow(
+                    iconToggleButtons = buttons,
+                    selectedIndex = selectedIndex,
+                    onSelectedIndexChange = onSelectedIndexChange,
+                    displaySurface = displaySurface
+                )
+            }, xml = {
+                this.odsIconToggleButtonsRow.iconToggleButtons = buttons
+                this.selectedIndex = selectedIndex
+                this.displaySurface = displaySurface
+                this.odsIconToggleButtonsRow.onSelectedIndexChange = onSelectedIndexChange
+            }
         )
     }
 }

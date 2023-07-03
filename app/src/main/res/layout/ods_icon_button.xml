@@ -13,20 +13,16 @@
     <data>
 
         <variable
-            name="text"
+            name="icon"
+            type="android.graphics.drawable.Drawable" />
+
+        <variable
+            name="iconContentDescription"
             type="String" />
 
         <variable
             name="enabled"
             type="Boolean" />
-
-        <variable
-            name="icon"
-            type="android.graphics.drawable.Drawable" />
-
-        <variable
-            name="style"
-            type="com.orange.ods.compose.component.button.OdsButtonStyle" />
 
         <variable
             name="displaySurface"
@@ -38,26 +34,24 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
-        <com.orange.ods.xml.component.button.OdsButton
-            android:id="@+id/ods_button"
+        <com.orange.ods.xml.component.button.OdsIconButton
+            android:id="@+id/ods_icon_button"
             android:layout_height="wrap_content"
             android:layout_width="wrap_content"
             app:icon="@{icon}"
-            app:text="@{text}"
             app:enabled="@{enabled}"
-            app:odsButtonStyle="@{style}"
+            app:iconContentDescription="@{iconContentDescription}"
             app:displaySurface="@{displaySurface}" />
 
-        <!-- Invisible OdsButton used for tests -->
-        <com.orange.ods.xml.component.button.OdsButton
-            android:id="@+id/ods_button_test"
+        <!-- Invisible OdsIconButton used for tests -->
+        <com.orange.ods.xml.component.button.OdsIconButton
+            android:id="@+id/ods_icon_button_test"
             android:visibility="gone"
             android:layout_height="wrap_content"
             android:layout_width="wrap_content"
             app:icon="@drawable/ic_add"
-            app:text="Button"
+            app:iconContentDescription="Button"
             app:enabled="true"
-            app:odsButtonStyle="standard"
             app:displaySurface="standard" />
 
     </FrameLayout>

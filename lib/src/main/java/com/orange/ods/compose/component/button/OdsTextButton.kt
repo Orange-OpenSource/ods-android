@@ -38,7 +38,9 @@ import com.orange.ods.utilities.extension.enable
  * Specifying an [OdsTextButtonStyle] allow to display a button with specific colors.
  */
 enum class OdsTextButtonStyle {
-    Default, Primary
+    Default, Primary;
+
+    companion object
 }
 
 /**

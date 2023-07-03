@@ -19,53 +19,37 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
 import androidx.core.content.withStyledAttributes
-import androidx.databinding.BindingAdapter
 import com.google.accompanist.drawablepainter.rememberDrawablePainter
-import com.orange.ods.compose.component.button.OdsButton
-import com.orange.ods.compose.component.button.OdsButtonStyle
+import com.orange.ods.compose.component.button.OdsIconButton
 import com.orange.ods.compose.theme.OdsDisplaySurface
 import com.orange.ods.xml.R
 import com.orange.ods.xml.component.OdsAbstractComposeView
 import com.orange.ods.xml.utilities.extension.fromXmlAttrValue
 import com.orange.ods.xml.utilities.extension.getResourceIdOrNull
 
-class OdsButton @JvmOverloads constructor(context: Context, attrs: AttributeSet? = null) : OdsAbstractComposeView(context, attrs) {
-
-    var icon by mutableStateOf<Drawable?>(null)
-    var text by mutableStateOf("")
-    var style by mutableStateOf(OdsButtonStyle.Default)
-    var displaySurface by mutableStateOf(OdsDisplaySurface.Default)
+class OdsIconButton @JvmOverloads constructor(context: Context, attrs: AttributeSet? = null) : OdsAbstractComposeView(context, attrs) {
 
     var onClick by mutableStateOf({})
+    var icon by mutableStateOf<Drawable?>(null)
+    var iconContentDescription by mutableStateOf("")
+    var displaySurface by mutableStateOf(OdsDisplaySurface.Default)
 
     init {
-        context.withStyledAttributes(attrs, R.styleable.OdsButton) {
-            text = getString(R.styleable.OdsButton_text).orEmpty()
-            icon = getResourceIdOrNull(R.styleable.OdsButton_icon)?.let { AppCompatResources.getDrawable(context, it) }
-            style = OdsButtonStyle.fromXmlAttrValue(getInteger(R.styleable.OdsButton_odsButtonStyle, 0))
-            displaySurface = OdsDisplaySurface.fromXmlAttrValue(getInteger(R.styleable.OdsButton_displaySurface, 0))
+        context.withStyledAttributes(attrs, R.styleable.OdsIconButton) {
+            iconContentDescription = getString(R.styleable.OdsIconButton_iconContentDescription).orEmpty()
+            icon = getResourceIdOrNull(R.styleable.OdsIconButton_icon)?.let { AppCompatResources.getDrawable(context, it) }
+            displaySurface = OdsDisplaySurface.fromXmlAttrValue(getInteger(R.styleable.OdsIconButton_displaySurface, 0))
         }
     }
 
     @Composable
     override fun OdsContent() {
-        OdsButton(
-            text = text,
+        OdsIconButton(
             onClick = onClick,
-            icon = icon?.let { rememberDrawablePainter(drawable = it) },
+            painter = rememberDrawablePainter(drawable = icon),
+            contentDescription = iconContentDescription,
             enabled = isEnabled,
-            style = style,
             displaySurface = displaySurface
         )
-    }
-
-}
-
-internal object OdsButtonBindingAdapter {
-
-    @JvmStatic
-    @BindingAdapter("odsButtonStyle")
-    fun OdsButton.setOdsButtonStyle(style: OdsButtonStyle) {
-        this.style = style
     }
 }
