@@ -12,9 +12,18 @@ package com.orange.ods.compose.component.appbar.top
 
 import androidx.compose.foundation.layout.RowScope
 import androidx.compose.foundation.layout.padding
-import androidx.compose.material3.*
+import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.material3.IconButton
+import androidx.compose.material3.LargeTopAppBar
+import androidx.compose.material3.Text
+import androidx.compose.material3.TopAppBarDefaults
+import androidx.compose.material3.TopAppBarScrollBehavior
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.derivedStateOf
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.alpha
 import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
@@ -34,14 +43,43 @@ fun OdsLargeTopAppBar(
     scrollBehavior: TopAppBarScrollBehavior? = null
 ) {
     val contentColor = OdsTheme.colors.component.topAppBar.barContent
+    val stateChangeFraction = 0.7
+
+    val titleStartPadding by remember {
+        derivedStateOf {
+            if (scrollBehavior != null && scrollBehavior.state.collapsedFraction >= 0.85) 8.dp else 48.dp
+        }
+    }
+
+    val titleAlpha by remember {
+        derivedStateOf {
+            if (scrollBehavior != null) {
+                when (scrollBehavior.state.collapsedFraction) {
+                    in 0.0..stateChangeFraction -> 1 - (scrollBehavior.state.collapsedFraction * 1.5)
+                    in (stateChangeFraction + 0.15)..1.0 -> 0 + scrollBehavior.state.collapsedFraction
+                    else -> 0
+                }.toFloat()
+            } else {
+                1.0f
+            }
+        }
+    }
+    val titleMaxLines by remember {
+        derivedStateOf {
+            if (scrollBehavior != null && scrollBehavior.state.collapsedFraction >= stateChangeFraction) 1 else 2
+        }
+    }
+
     LargeTopAppBar(
         title = {
             Text(
-                modifier = Modifier.padding(start = 56.dp, end = dimensionResource(id = R.dimen.spacing_m)),
+                modifier = Modifier
+                    .padding(start = titleStartPadding, end = dimensionResource(id = R.dimen.spacing_m))
+                    .alpha(titleAlpha),
                 text = title,
                 style = OdsTheme.typography.h6,
                 overflow = TextOverflow.Ellipsis,
-                maxLines = 2
+                maxLines = titleMaxLines,
             )
         },
         modifier = modifier,

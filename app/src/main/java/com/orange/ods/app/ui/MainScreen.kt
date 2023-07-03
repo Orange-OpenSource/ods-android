@@ -19,9 +19,14 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.material.AppBarDefaults
 import androidx.compose.material.Scaffold
 import androidx.compose.material.Surface
+import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.material3.TopAppBarDefaults
+import androidx.compose.material3.TopAppBarScrollBehavior
+import androidx.compose.material3.rememberTopAppBarState
 import androidx.compose.runtime.*
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.input.nestedscroll.nestedScroll
 import androidx.compose.ui.platform.LocalConfiguration
 import androidx.compose.ui.text.input.TextFieldValue
 import androidx.compose.ui.unit.dp
@@ -50,6 +55,7 @@ import com.orange.ods.utilities.extension.orElse
 import com.orange.ods.xml.theme.OdsXml
 import com.orange.ods.xml.utilities.extension.xml
 
+@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun MainScreen(themeConfigurations: Set<OdsThemeConfigurationContract>, mainViewModel: MainViewModel = viewModel()) {
     val isSystemInDarkTheme = isSystemInDarkTheme()
@@ -90,7 +96,23 @@ fun MainScreen(themeConfigurations: Set<OdsThemeConfigurationContract>, mainView
             themeConfiguration = mainState.themeState.currentThemeConfiguration,
             darkThemeEnabled = configuration.isDarkModeEnabled
         ) {
+            val topBarScrollBehavior: TopAppBarScrollBehavior?
+            val modifier: Modifier
+            if (mainState.topAppBarState.isLarge) {
+                topBarScrollBehavior = TopAppBarDefaults.exitUntilCollapsedScrollBehavior(rememberTopAppBarState())
+                val nestedScrollConnection = remember { topBarScrollBehavior.nestedScrollConnection }
+                modifier = Modifier.nestedScroll(nestedScrollConnection)
+            } else {
+                topBarScrollBehavior = null
+                modifier = Modifier
+            }
+
+            val showTabs by remember {
+                derivedStateOf { mainState.topAppBarState.tabsState.hasTabs }
+            }
+
             Scaffold(
+                modifier = modifier,
                 backgroundColor = OdsTheme.colors.background,
                 topBar = {
                     Surface(elevation = if (isSystemInDarkTheme()) 0.dp else AppBarDefaults.TopAppBarElevation) {
@@ -98,14 +120,16 @@ fun MainScreen(themeConfigurations: Set<OdsThemeConfigurationContract>, mainView
                             SystemBarsColorSideEffect()
                             MainTopAppBar(
                                 shouldShowUpNavigationIcon = !mainState.shouldShowBottomBar,
-                                topAppBarState = mainState.topAppBarState,
+                                topAppBarStateProvider = { mainState.topAppBarState },
                                 upPress = mainState::upPress,
                                 onSearchActionClick = {
                                     mainState.navController.navigate(MainDestinations.SearchRoute)
-                                }
+                                },
+                                scrollBehavior = topBarScrollBehavior
                             )
-                            // Display tabs in the top bar if needed
-                            MainTabs(mainTabsState = mainState.topAppBarState.tabsState)
+                            if (showTabs) {
+                                MainTabs(mainTabsState = mainState.topAppBarState.tabsState)
+                            }
                         }
                     }
                 },
@@ -156,25 +180,23 @@ private fun SystemBarsColorSideEffect() {
 private fun MainTabs(mainTabsState: MainTabsState) {
     with(mainTabsState) {
         pagerState?.let { pagerState ->
-            if (hasTabs) {
-                // Do not use tabs directly because this is a SnapshotStateList
-                // Thus its value can be modified and can lead to crashes if it becomes empty
-                val tabs = tabs.toList()
-                if (scrollableTabs.value) {
-                    ScrollableTabRow(
-                        tabs = tabs,
-                        pagerState = pagerState,
-                        tabIconType = tabIconType.value,
-                        tabTextEnabled = tabTextEnabled.value
-                    )
-                } else {
-                    FixedTabRow(
-                        tabs = tabs,
-                        pagerState = pagerState,
-                        tabIconType = tabIconType.value,
-                        tabTextEnabled = tabTextEnabled.value
-                    )
-                }
+            // Do not use tabs directly because this is a SnapshotStateList
+            // Thus its value can be modified and can lead to crashes if it becomes empty
+            val tabs = tabs.toList()
+            if (scrollableTabs.value) {
+                ScrollableTabRow(
+                    tabs = tabs,
+                    pagerState = pagerState,
+                    tabIconType = tabIconType.value,
+                    tabTextEnabled = tabTextEnabled.value
+                )
+            } else {
+                FixedTabRow(
+                    tabs = tabs,
+                    pagerState = pagerState,
+                    tabIconType = tabIconType.value,
+                    tabTextEnabled = tabTextEnabled.value
+                )
             }
         }
     }

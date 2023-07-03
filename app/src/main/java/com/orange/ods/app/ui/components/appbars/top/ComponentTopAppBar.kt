@@ -37,6 +37,10 @@ import com.orange.ods.compose.component.chip.OdsChoiceChip
 import com.orange.ods.compose.component.chip.OdsChoiceChipsFlowRow
 import com.orange.ods.compose.component.list.OdsListItem
 import com.orange.ods.compose.component.list.OdsSwitchTrailing
+import com.orange.ods.compose.text.OdsTextH1
+import com.orange.ods.compose.text.OdsTextH2
+import com.orange.ods.compose.text.OdsTextH3
+import com.orange.ods.compose.text.OdsTextH4
 import kotlin.math.max
 
 @OptIn(ExperimentalMaterialApi::class)
@@ -62,7 +66,7 @@ fun ComponentTopAppBar(variant: Variant) {
 
         with(LocalMainTopAppBarManager.current) {
             updateTopAppBar(topAppBarConfiguration)
-            updateTopAppBarTitle(titleLength.value.titleResId)
+            if (isLargeVariant) updateTopAppBarTitle(titleLength.value.titleResId)
         }
 
         ComponentCustomizationBottomSheetScaffold(
@@ -111,6 +115,10 @@ fun ComponentTopAppBar(variant: Variant) {
 
             val context = LocalContext.current
             Column(modifier = Modifier.verticalScroll(rememberScrollState())) {
+                OdsTextH1(text = "test pour scroll")
+                OdsTextH2(text = "test pour scroll")
+                OdsTextH3(text = "test pour scroll")
+                OdsTextH4(text = "test pour scroll")
                 CodeImplementationColumn(modifier = Modifier.padding(horizontal = dimensionResource(id = R.dimen.screen_horizontal_margin))) {
                     FunctionCallCode(
                         name = if (isLargeVariant) OdsComposable.OdsLargeTopAppBar.name else OdsComposable.OdsTopAppBar.name,
