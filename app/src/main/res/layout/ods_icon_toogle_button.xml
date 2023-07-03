@@ -17,11 +17,11 @@
             type="Boolean" />
 
         <variable
-            name="checkedPainter"
+            name="checkedIcon"
             type="android.graphics.drawable.Drawable" />
 
         <variable
-            name="uncheckedPainter"
+            name="uncheckedIcon"
             type="android.graphics.drawable.Drawable" />
 
         <variable
@@ -47,9 +47,9 @@
             android:layout_height="wrap_content"
             android:layout_width="wrap_content"
             app:enabled="@{enabled}"
-            app:selectedPainter="@{checked}"
-            app:uncheckedPainter="@{uncheckedPainter}"
-            app:checkedPainter="@{checkedPainter}"
+            app:checked="@{checked}"
+            app:uncheckedIcon="@{uncheckedIcon}"
+            app:checkedIcon="@{checkedIcon}"
             app:iconContentDescription="@{iconDescription}"
             app:displaySurface="@{displaySurface}" />
 
@@ -60,9 +60,9 @@
             android:layout_height="wrap_content"
             android:layout_width="wrap_content"
             app:enabled="true"
-            app:selectedPainter="true"
-            app:uncheckedPainter="@drawable/ic_add"
-            app:checkedPainter="@drawable/ic_add"
+            app:uncheckedIcon="@drawable/ic_add"
+            app:checkedIcon="@drawable/ic_add"
+            app:checked="true"
             app:iconContentDescription="Button"
             app:displaySurface="standard" />
 

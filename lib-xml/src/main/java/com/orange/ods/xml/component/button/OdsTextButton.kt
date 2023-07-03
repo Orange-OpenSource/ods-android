@@ -19,6 +19,7 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
 import androidx.core.content.withStyledAttributes
+import androidx.databinding.BindingAdapter
 import com.google.accompanist.drawablepainter.rememberDrawablePainter
 import com.orange.ods.compose.component.button.OdsTextButton
 import com.orange.ods.compose.component.button.OdsTextButtonStyle
@@ -32,15 +33,15 @@ class OdsTextButton @JvmOverloads constructor(context: Context, attrs: Attribute
 
     var text by mutableStateOf("")
     var onClick by mutableStateOf({})
-    var leadingIcon by mutableStateOf<Drawable?>(null)
+    var icon by mutableStateOf<Drawable?>(null)
     var style by mutableStateOf(OdsTextButtonStyle.Default)
     var displaySurface by mutableStateOf(OdsDisplaySurface.Default)
 
     init {
         context.withStyledAttributes(attrs, R.styleable.OdsTextButton) {
             text = getString(R.styleable.OdsTextButton_text).orEmpty()
-            leadingIcon = getResourceIdOrNull(R.styleable.OdsTextButton_leadingIcon)?.let { AppCompatResources.getDrawable(context, it) }
-            style = OdsTextButtonStyle.fromXmlAttrValue(getInteger(R.styleable.OdsTextButton_style, 0))
+            icon = getResourceIdOrNull(R.styleable.OdsTextButton_icon)?.let { AppCompatResources.getDrawable(context, it) }
+            style = OdsTextButtonStyle.fromXmlAttrValue(getInteger(R.styleable.OdsTextButton_textButtonStyle, 0))
             displaySurface = OdsDisplaySurface.fromXmlAttrValue(getInteger(R.styleable.OdsTextButton_displaySurface, 0))
         }
     }
@@ -50,10 +51,19 @@ class OdsTextButton @JvmOverloads constructor(context: Context, attrs: Attribute
         OdsTextButton(
             text = text,
             onClick = onClick,
-            icon = leadingIcon?.let { rememberDrawablePainter(drawable = it) },
+            icon = icon?.let { rememberDrawablePainter(drawable = it) },
             enabled = isEnabled,
             style = style,
             displaySurface = displaySurface
         )
+    }
+}
+
+internal object OdsTextButtonBindingAdapter {
+
+    @JvmStatic
+    @BindingAdapter("textButtonStyle")
+    fun OdsTextButton.setTextButtonStyle(style: OdsTextButtonStyle) {
+        this.style = style
     }
 }

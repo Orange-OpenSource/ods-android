@@ -45,7 +45,7 @@
             app:icon="@{icon}"
             app:text="@{text}"
             app:enabled="@{enabled}"
-            app:style="@{style}"
+            app:odsButtonStyle="@{style}"
             app:displaySurface="@{displaySurface}" />
 
         <!-- Invisible OdsButton used for tests -->
@@ -57,7 +57,7 @@
             app:icon="@drawable/ic_add"
             app:text="Button"
             app:enabled="true"
-            app:style="functional_positive"
+            app:odsButtonStyle="standard"
             app:displaySurface="standard" />
 
     </FrameLayout>

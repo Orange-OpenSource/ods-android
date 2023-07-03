@@ -42,10 +42,10 @@
             android:id="@+id/ods_textbutton"
             android:layout_height="wrap_content"
             android:layout_width="wrap_content"
-            app:leadingIcon="@{icon}"
+            app:icon="@{icon}"
             app:text="@{text}"
             app:enabled="@{enabled}"
-            app:style="@{style}"
+            app:textButtonStyle="@{style}"
             app:displaySurface="@{displaySurface}" />
 
         <!-- Invisible OdsTextButton used for tests -->
@@ -54,10 +54,10 @@
             android:visibility="gone"
             android:layout_height="wrap_content"
             android:layout_width="wrap_content"
-            app:leadingIcon="@drawable/ic_add"
+            app:icon="@drawable/ic_add"
             app:text="Button"
             app:enabled="true"
-            app:style="primary"
+            app:textButtonStyle="primary"
             app:displaySurface="standard" />
 
     </RelativeLayout>

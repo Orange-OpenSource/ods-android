@@ -99,8 +99,8 @@ private fun IconToggleButton(
     displaySurface: OdsDisplaySurface = OdsDisplaySurface.Default
 ) {
     val context = LocalContext.current
-    val uncheckedPainterId = R.drawable.ic_heart_outlined
-    val checkedPainterId = R.drawable.ic_heart
+    val uncheckedIconResId = R.drawable.ic_heart_outlined
+    val checkedIconResId = R.drawable.ic_heart
     val iconContentDescription = stringResource(id = R.string.component_button_icon_toggle_favorite_icon_desc)
 
     Box(modifier = Modifier.padding(horizontal = dimensionResource(R.dimen.screen_horizontal_margin), vertical = dimensionResource(R.dimen.spacing_m))) {
@@ -108,8 +108,8 @@ private fun IconToggleButton(
             compose = {
                 OdsIconToggleButton(
                     checked = checked,
-                    uncheckedPainter = painterResource(id = uncheckedPainterId),
-                    checkedPainter = painterResource(id = checkedPainterId),
+                    uncheckedPainter = painterResource(id = uncheckedIconResId),
+                    checkedPainter = painterResource(id = checkedIconResId),
                     iconContentDescription = iconContentDescription,
                     onCheckedChange = onCheckedChange,
                     enabled = enabled,
@@ -117,8 +117,8 @@ private fun IconToggleButton(
                 )
             }, xml = {
                 this.checked = checked
-                checkedPainter = AppCompatResources.getDrawable(context, checkedPainterId)
-                uncheckedPainter = AppCompatResources.getDrawable(context, uncheckedPainterId)
+                checkedIcon = AppCompatResources.getDrawable(context, checkedIconResId)
+                uncheckedIcon = AppCompatResources.getDrawable(context, uncheckedIconResId)
                 iconDescription = iconContentDescription
                 this.enabled = enabled
                 this.displaySurface = displaySurface

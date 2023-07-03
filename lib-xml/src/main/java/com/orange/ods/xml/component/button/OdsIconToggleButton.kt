@@ -29,19 +29,19 @@ import com.orange.ods.xml.utilities.extension.getResourceIdOrNull
 
 class OdsIconToggleButton @JvmOverloads constructor(context: Context, attrs: AttributeSet? = null) : OdsAbstractComposeView(context, attrs) {
 
-    var checkedPainter by mutableStateOf<Drawable?>(null)
-    var uncheckedPainter by mutableStateOf<Drawable?>(null)
     var iconContentDescription by mutableStateOf<String?>("")
-    var selectedPainter by mutableStateOf<Boolean>(false)
+    var checked by mutableStateOf<Boolean>(false)
+    var checkedIcon by mutableStateOf<Drawable?>(null)
+    var uncheckedIcon by mutableStateOf<Drawable?>(null)
     var onCheckedChange by mutableStateOf<(Boolean) -> Unit>({})
     var displaySurface by mutableStateOf(OdsDisplaySurface.Default)
 
     init {
         context.withStyledAttributes(attrs, R.styleable.OdsIconToggleButton) {
-            selectedPainter = getBoolean(R.styleable.OdsIconToggleButton_selectedPainter, false)
+            checked = getBoolean(R.styleable.OdsIconToggleButton_checked, false)
             iconContentDescription = getString(R.styleable.OdsIconToggleButton_iconContentDescription).orEmpty()
-            checkedPainter = getResourceIdOrNull(R.styleable.OdsIconToggleButton_checkedPainter)?.let { AppCompatResources.getDrawable(context, it) }
-            uncheckedPainter = getResourceIdOrNull(R.styleable.OdsIconToggleButton_uncheckedPainter)?.let { AppCompatResources.getDrawable(context, it) }
+            checkedIcon = getResourceIdOrNull(R.styleable.OdsIconToggleButton_checkedIcon)?.let { AppCompatResources.getDrawable(context, it) }
+            uncheckedIcon = getResourceIdOrNull(R.styleable.OdsIconToggleButton_uncheckedIcon)?.let { AppCompatResources.getDrawable(context, it) }
             displaySurface = OdsDisplaySurface.fromXmlAttrValue(getInteger(R.styleable.OdsIconToggleButton_displaySurface, 0))
         }
     }
@@ -49,10 +49,10 @@ class OdsIconToggleButton @JvmOverloads constructor(context: Context, attrs: Att
     @Composable
     override fun OdsContent() {
         OdsIconToggleButton(
-            checked = selectedPainter,
+            checked = checked,
             onCheckedChange = onCheckedChange,
-            uncheckedPainter = rememberDrawablePainter(drawable = uncheckedPainter),
-            checkedPainter = rememberDrawablePainter(drawable = checkedPainter),
+            uncheckedPainter = rememberDrawablePainter(drawable = uncheckedIcon),
+            checkedPainter = rememberDrawablePainter(drawable = checkedIcon),
             iconContentDescription = iconContentDescription,
             enabled = isEnabled,
             displaySurface = displaySurface

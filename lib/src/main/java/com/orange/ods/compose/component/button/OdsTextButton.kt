@@ -11,7 +11,6 @@
 package com.orange.ods.compose.component.button
 
 import androidx.compose.foundation.interaction.MutableInteractionSource
-import androidx.compose.material.ButtonColors
 import androidx.compose.material.ButtonDefaults
 import androidx.compose.material.Text
 import androidx.compose.material.TextButton
@@ -41,14 +40,7 @@ import com.orange.ods.utilities.extension.enable
 enum class OdsTextButtonStyle {
     Default, Primary;
 
-    companion object {
-        /**
-         * @return [OdsTextButtonStyle] associated to the provided [xmlId]
-         * BE CAREFUL: If the enum values change you have to update associated XML attributes in the lib-xml
-         */
-        fun fromXmlAttrValue(xmlId: Int): OdsTextButtonStyle = OdsTextButtonStyle.values()[xmlId]
-    }
-
+    companion object
 }
 
 /**

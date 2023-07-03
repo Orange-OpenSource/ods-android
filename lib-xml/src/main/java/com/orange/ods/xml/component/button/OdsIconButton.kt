@@ -30,14 +30,14 @@ import com.orange.ods.xml.utilities.extension.getResourceIdOrNull
 class OdsIconButton @JvmOverloads constructor(context: Context, attrs: AttributeSet? = null) : OdsAbstractComposeView(context, attrs) {
 
     var onClick by mutableStateOf({})
-    var leadingIcon by mutableStateOf<Drawable?>(null)
+    var icon by mutableStateOf<Drawable?>(null)
     var iconContentDescription by mutableStateOf("")
     var displaySurface by mutableStateOf(OdsDisplaySurface.Default)
 
     init {
         context.withStyledAttributes(attrs, R.styleable.OdsIconButton) {
             iconContentDescription = getString(R.styleable.OdsIconButton_iconContentDescription).orEmpty()
-            leadingIcon = getResourceIdOrNull(R.styleable.OdsIconButton_leadingIcon)?.let { AppCompatResources.getDrawable(context, it) }
+            icon = getResourceIdOrNull(R.styleable.OdsIconButton_icon)?.let { AppCompatResources.getDrawable(context, it) }
             displaySurface = OdsDisplaySurface.fromXmlAttrValue(getInteger(R.styleable.OdsIconButton_displaySurface, 0))
         }
     }
@@ -46,7 +46,7 @@ class OdsIconButton @JvmOverloads constructor(context: Context, attrs: Attribute
     override fun OdsContent() {
         OdsIconButton(
             onClick = onClick,
-            painter = rememberDrawablePainter(drawable = leadingIcon),
+            painter = rememberDrawablePainter(drawable = icon),
             contentDescription = iconContentDescription,
             enabled = isEnabled,
             displaySurface = displaySurface
