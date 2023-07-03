@@ -30,7 +30,6 @@ fun NavGraphBuilder.addComponentsGraph(navigateToElement: (String, Long?, NavBac
         "${MainDestinations.ComponentDetailRoute}/{${MainDestinations.ComponentIdKey}}",
         arguments = listOf(navArgument(MainDestinations.ComponentIdKey) { type = NavType.LongType })
     ) { from ->
-        // Lot of recompositions with this line
         LocalMainTopAppBarManager.current.reset()
 
         val arguments = requireNotNull(from.arguments)
@@ -58,7 +57,6 @@ fun NavGraphBuilder.addComponentsGraph(navigateToElement: (String, Long?, NavBac
         "${MainDestinations.ComponentVariantRoute}/{${MainDestinations.ComponentVariantIdKey}}",
         arguments = listOf(navArgument(MainDestinations.ComponentVariantIdKey) { type = NavType.LongType })
     ) { from ->
-        // Lot of recompositions with this line
         LocalMainTopAppBarManager.current.reset()
 
         val arguments = requireNotNull(from.arguments)
@@ -74,7 +72,7 @@ fun NavGraphBuilder.addComponentsGraph(navigateToElement: (String, Long?, NavBac
                 LocalMainTopAppBarManager.current.updateTopAppBarTitle(variant.titleRes)
                 currentVariantId = routeVariantId
             }
-            if (variant.largeTopAppBar) LocalMainTopAppBarManager.current.setLargeTopAppBar(true)
+            LocalMainTopAppBarManager.current.setLargeTopAppBar(variant.largeTopAppBar)
             variant.screenContent()
         }
     }

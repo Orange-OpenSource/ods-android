@@ -44,11 +44,11 @@ fun rememberMainTopAppBarState(
     actions: MutableState<List<TopAppBarConfiguration.Action>> = rememberSaveable { mutableStateOf(MainTopAppBarState.DefaultConfiguration.actions) },
     navigationIconEnabled: MutableState<Boolean> = rememberSaveable { mutableStateOf(MainTopAppBarState.DefaultConfiguration.isNavigationIconEnabled) },
     searchedText: MutableState<TextFieldValue> = remember { mutableStateOf(TextFieldValue("")) },
-    extended: MutableState<Boolean> = rememberSaveable { mutableStateOf(false) },
+    large: MutableState<Boolean> = rememberSaveable { mutableStateOf(false) },
     tabsState: MainTabsState = rememberMainTabsState(),
 ) =
-    remember(titleRes, actions, searchedText, navigationIconEnabled, extended, tabsState) {
-        MainTopAppBarState(titleRes, actions, searchedText, navigationIconEnabled, extended, tabsState)
+    remember(titleRes, actions, searchedText, navigationIconEnabled, large, tabsState) {
+        MainTopAppBarState(titleRes, actions, searchedText, navigationIconEnabled, large, tabsState)
     }
 
 
@@ -63,7 +63,7 @@ class MainTopAppBarState(
 
     companion object {
         val DefaultConfiguration = TopAppBarConfiguration(
-            isExtended = false,
+            isLarge = false,
             isNavigationIconEnabled = true,
             actions = listOf(TopAppBarConfiguration.Action.Theme, TopAppBarConfiguration.Action.Mode)
         )
@@ -84,7 +84,7 @@ class MainTopAppBarState(
     }
 
     override fun updateTopAppBar(topAppBarConfiguration: TopAppBarConfiguration) {
-        large.value = topAppBarConfiguration.isExtended
+        large.value = topAppBarConfiguration.isLarge
         navigationIconEnabled.value = topAppBarConfiguration.isNavigationIconEnabled
         actions.value = topAppBarConfiguration.actions
     }
@@ -108,7 +108,7 @@ class MainTopAppBarState(
 }
 
 data class TopAppBarConfiguration constructor(
-    val isExtended: Boolean,
+    val isLarge: Boolean,
     val isNavigationIconEnabled: Boolean,
     val actions: List<Action>
 ) {
@@ -158,6 +158,7 @@ data class TopAppBarConfiguration constructor(
 
     fun newBuilder() = Builder().apply {
         navigationIconEnabled(isNavigationIconEnabled)
+        large(isLarge)
         actions {
             clear()
             addAll(actions)
