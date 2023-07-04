@@ -30,18 +30,17 @@ fun NavGraphBuilder.addComponentsGraph(navigateToElement: (String, Long?, NavBac
         "${MainDestinations.ComponentDetailRoute}/{${MainDestinations.ComponentIdKey}}",
         arguments = listOf(navArgument(MainDestinations.ComponentIdKey) { type = NavType.LongType })
     ) { from ->
-        LocalMainTopAppBarManager.current.reset()
-
         val arguments = requireNotNull(from.arguments)
         var currentComponentId: Long by remember { mutableStateOf(-1) }
         val routeComponentId = arguments.getLong(MainDestinations.ComponentIdKey)
-        val shouldUpdateTitle by remember {
+        val hasComponentIdChanged by remember {
             derivedStateOf { currentComponentId != routeComponentId }
         }
 
         val component = remember(routeComponentId) { components.firstOrNull { component -> component.id == routeComponentId } }
         component?.let {
-            if (shouldUpdateTitle) {
+            if (hasComponentIdChanged) {
+                LocalMainTopAppBarManager.current.updateTopAppBar(MainTopAppBarState.DefaultConfiguration)
                 LocalMainTopAppBarManager.current.updateTopAppBarTitle(component.titleRes)
                 currentComponentId = routeComponentId
             }
@@ -57,22 +56,20 @@ fun NavGraphBuilder.addComponentsGraph(navigateToElement: (String, Long?, NavBac
         "${MainDestinations.ComponentVariantRoute}/{${MainDestinations.ComponentVariantIdKey}}",
         arguments = listOf(navArgument(MainDestinations.ComponentVariantIdKey) { type = NavType.LongType })
     ) { from ->
-        LocalMainTopAppBarManager.current.reset()
-
         val arguments = requireNotNull(from.arguments)
         var currentVariantId: Long by remember { mutableStateOf(-1) }
         val routeVariantId = arguments.getLong(MainDestinations.ComponentVariantIdKey)
         val variant = remember(routeVariantId) { components.flatMap { it.variants }.firstOrNull { it.id == routeVariantId } }
-        val shouldUpdateTitle by remember {
+        val hasVariantIdChanged by remember {
             derivedStateOf { currentVariantId != routeVariantId }
         }
 
         variant?.let {
-            if (shouldUpdateTitle) {
+            if (hasVariantIdChanged) {
                 LocalMainTopAppBarManager.current.updateTopAppBarTitle(variant.titleRes)
+                LocalMainTopAppBarManager.current.setLargeTopAppBar(variant.largeTopAppBar)
                 currentVariantId = routeVariantId
             }
-            LocalMainTopAppBarManager.current.setLargeTopAppBar(variant.largeTopAppBar)
             variant.screenContent()
         }
     }
