@@ -13,10 +13,16 @@
 
 ## Table of contents
 
+- [Status](#status)
 - [Content](#content)
 - [Bugs and feature requests](#bugs-and-feature-requests)
 - [Contributing](#contributing)
 - [Copyright and license](#copyright-and-license)
+
+## Status
+
+[![Build](https://img.shields.io/github/actions/workflow/status/Orange-OpenSource/ods-android/android-build.yml?logo=github)](https://github.com/Orange-OpenSource/ods-android/actions/workflows/android-build.yml?query=branch%3Amain)
+[![Maven Central](https://img.shields.io/maven-central/v/com.orange.ods.android/ods-lib?logo=apachemaven)](https://search.maven.org/search?q=com.orange.ods.android)
 
 ## Content
 
