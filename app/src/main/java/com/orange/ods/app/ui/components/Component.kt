@@ -19,6 +19,7 @@ import com.orange.ods.app.ui.components.appbars.top.ComponentTopAppBar
 import com.orange.ods.app.ui.components.banners.ComponentBanners
 import com.orange.ods.app.ui.components.bottomnavigation.ComponentBottomNavigation
 import com.orange.ods.app.ui.components.buttons.ComponentButtons
+import com.orange.ods.app.ui.components.buttons.icons.ComponentButtonsIcons
 import com.orange.ods.app.ui.components.cards.ComponentCard
 import com.orange.ods.app.ui.components.checkboxes.ComponentCheckboxes
 import com.orange.ods.app.ui.components.chips.Chip
@@ -304,12 +305,15 @@ sealed class Variant(
         "${OdsComposable.OdsButton.name} with a functional style",
         { ComponentButtons(variant = ButtonsFunctional) })
 
-    object ButtonsIcon : Variant(R.string.component_buttons_icon, OdsComposable.OdsIconButton.name, { ComponentButtons(variant = ButtonsIcon) })
+    object ButtonsIcon : Variant(R.string.component_buttons_icon, OdsComposable.OdsIconButton.name, { ComponentButtonsIcons(variant = ButtonsIcon) })
     object ButtonsIconToggle :
-        Variant(R.string.component_buttons_icon_toggle, OdsComposable.OdsIconToggleButton.name, { ComponentButtons(variant = ButtonsIconToggle) })
+        Variant(R.string.component_buttons_icon_toggle, OdsComposable.OdsIconToggleButton.name, { ComponentButtonsIcons(variant = ButtonsIconToggle) })
 
     object ButtonsIconToggleGroup :
-        Variant(R.string.component_buttons_icon_toggle_group, OdsComposable.OdsIconToggleButtonsRow.name, { ComponentButtons(variant = ButtonsIconToggle) })
+        Variant(
+            R.string.component_buttons_icon_toggle_group,
+            OdsComposable.OdsIconToggleButtonsRow.name,
+            { ComponentButtonsIcons(variant = ButtonsIconToggleGroup) })
 
     object CardVerticalImageFirst :
         Variant(R.string.component_card_vertical_image_first, OdsComposable.OdsVerticalImageFirstCard.name, { ComponentCard(variant = CardVerticalImageFirst) })
