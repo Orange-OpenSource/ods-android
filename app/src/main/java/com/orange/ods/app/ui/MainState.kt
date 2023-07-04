@@ -84,6 +84,10 @@ class MainState(
         get() = navController.currentDestination?.route
 
     fun upPress() {
+        with(topAppBarState) {
+            updateTopAppBar(MainTopAppBarState.DefaultConfiguration)
+            clearTopAppBarTabs()
+        }
         navController.navigateUp()
     }
 

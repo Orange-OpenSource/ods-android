@@ -33,9 +33,6 @@ interface MainTopAppBarManager {
 
     fun updateTopAppBarTabs(tabsConfiguration: TabsConfiguration)
     fun clearTopAppBarTabs()
-
-    /** Restore default values for tabs and top app bar */
-    fun reset()
 }
 
 @Composable
@@ -99,11 +96,6 @@ class MainTopAppBarState(
 
     override fun clearTopAppBarTabs() {
         tabsState.clearTopAppBarTabs()
-    }
-
-    override fun reset() {
-        updateTopAppBar(DefaultConfiguration)
-        clearTopAppBarTabs()
     }
 }
 
