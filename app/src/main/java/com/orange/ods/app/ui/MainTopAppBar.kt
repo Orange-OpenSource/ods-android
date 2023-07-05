@@ -86,7 +86,7 @@ fun MainTopAppBar(
             navigationIcon = navigationIcon ?: { },
             onNavigationIconClick = upPress,
             actions = actions,
-            scrollBehavior = scrollBehavior
+            scrollBehavior = if (topAppBarStateProvider().hasScrollBehavior) scrollBehavior else null
         )
     } else {
         OdsTopAppBar(
