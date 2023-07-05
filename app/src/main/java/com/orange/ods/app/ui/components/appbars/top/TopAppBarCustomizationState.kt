@@ -58,6 +58,9 @@ class TopAppBarCustomizationState(
 
     val minActionCount = 0
 
+    val isCollapsible: Boolean
+        get() = scrollBehavior.value == ScrollBehavior.Collapsible
+
     val isNavigationIconEnabled: Boolean
         get() = navigationIconEnabled.value
 

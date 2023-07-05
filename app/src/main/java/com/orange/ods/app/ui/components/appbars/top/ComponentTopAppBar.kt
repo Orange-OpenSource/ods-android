@@ -86,7 +86,7 @@ fun ComponentTopAppBar(variant: Variant) {
                     .verticalScroll(rememberScrollState()),
                 horizontalAlignment = Alignment.CenterHorizontally
             ) {
-                if (isLargeVariant) {
+                if (isLargeVariant && isCollapsible) {
                     OdsTextBody2(text = stringResource(id = R.string.component_app_bars_top_large_scrolling_upward))
                     BlinkingChevronDown(
                         modifier = Modifier
@@ -150,28 +150,30 @@ fun ComponentTopAppBar(variant: Variant) {
                             }
                         )
                     }
-                    OdsTextBody2(
-                        modifier = Modifier.padding(top = dimensionResource(id = R.dimen.spacing_s), bottom = dimensionResource(id = R.dimen.spacing_xs)),
-                        text = stringResource(id = R.string.component_app_bars_top_large_code_collapsing)
-                    )
-                    OdsTextCaption(
-                        modifier = Modifier.padding(bottom = dimensionResource(id = R.dimen.spacing_xs)),
-                        text = stringResource(id = R.string.component_app_bars_top_large_code_collapsing_step_1)
-                    )
-                    CodeBackgroundColumn {
-                        TechnicalText(text = "val topBarScrollBehavior = TopAppBarDefaults.exitUntilCollapsedScrollBehavior(rememberTopAppBarState())")
-                    }
-                    OdsTextCaption(
-                        modifier = Modifier.padding(top = dimensionResource(id = R.dimen.spacing_s), bottom = dimensionResource(id = R.dimen.spacing_xs)),
-                        text = stringResource(id = R.string.component_app_bars_top_large_code_collapsing_step_2)
-                    )
-                    CodeBackgroundColumn {
-                        TechnicalText(text = "val nestedScrollConnection = remember { topBarScrollBehavior.nestedScrollConnection }")
-                        TechnicalText(text = "Scaffold(modifier = Modifier.nestedScroll(nestedScrollConnection), ...) { ... }")
+                    if (isLargeVariant && isCollapsible) {
+                        OdsTextBody2(
+                            modifier = Modifier.padding(top = dimensionResource(id = R.dimen.spacing_s), bottom = dimensionResource(id = R.dimen.spacing_xs)),
+                            text = stringResource(id = R.string.component_app_bars_top_large_code_collapsing)
+                        )
+                        OdsTextCaption(
+                            modifier = Modifier.padding(bottom = dimensionResource(id = R.dimen.spacing_xs)),
+                            text = stringResource(id = R.string.component_app_bars_top_large_code_collapsing_step_1)
+                        )
+                        CodeBackgroundColumn {
+                            TechnicalText(text = "val topBarScrollBehavior = TopAppBarDefaults.exitUntilCollapsedScrollBehavior(rememberTopAppBarState())")
+                        }
+                        OdsTextCaption(
+                            modifier = Modifier.padding(top = dimensionResource(id = R.dimen.spacing_s), bottom = dimensionResource(id = R.dimen.spacing_xs)),
+                            text = stringResource(id = R.string.component_app_bars_top_large_code_collapsing_step_2)
+                        )
+                        CodeBackgroundColumn {
+                            TechnicalText(text = "val nestedScrollConnection = remember { topBarScrollBehavior.nestedScrollConnection }")
+                            TechnicalText(text = "Scaffold(modifier = Modifier.nestedScroll(nestedScrollConnection), ...) { ... }")
+                        }
                     }
                 }
 
-                if (isLargeVariant) {
+                if (isLargeVariant && isCollapsible) {
                     BlinkingChevronDown(modifier = Modifier.padding(vertical = dimensionResource(id = R.dimen.spacing_s)))
                     OdsTextBody2(text = stringResource(id = R.string.component_app_bars_top_large_scrolling_downward))
                 }
