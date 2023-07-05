@@ -43,11 +43,16 @@ fun OdsLargeTopAppBar(
     scrollBehavior: TopAppBarScrollBehavior? = null
 ) {
     val contentColor = OdsTheme.colors.component.topAppBar.barContent
+    val expandedTitleStartPadding = 48.dp
+    val collapsedTitleStartPadding = 8.dp
+    val expandedTitleAlpha = 1f
+    val expandedTitleMaxLines = 2
+    val collapsedTitleMaxLines = 1
     val stateChangeFraction = 0.7
 
     val titleStartPadding by remember {
         derivedStateOf {
-            if (scrollBehavior != null && scrollBehavior.state.collapsedFraction >= 0.85) 8.dp else 48.dp
+            if (scrollBehavior != null && scrollBehavior.state.collapsedFraction >= 0.85) collapsedTitleStartPadding else expandedTitleStartPadding
         }
     }
 
@@ -60,13 +65,13 @@ fun OdsLargeTopAppBar(
                     else -> 0
                 }.toFloat()
             } else {
-                1.0f
+                expandedTitleAlpha
             }
         }
     }
     val titleMaxLines by remember {
         derivedStateOf {
-            if (scrollBehavior != null && scrollBehavior.state.collapsedFraction >= stateChangeFraction) 1 else 2
+            if (scrollBehavior != null && scrollBehavior.state.collapsedFraction >= stateChangeFraction) collapsedTitleMaxLines else expandedTitleMaxLines
         }
     }
 
@@ -74,12 +79,15 @@ fun OdsLargeTopAppBar(
         title = {
             Text(
                 modifier = Modifier
-                    .padding(start = titleStartPadding, end = dimensionResource(id = R.dimen.spacing_m))
-                    .alpha(titleAlpha),
+                    .padding(
+                        start = if (scrollBehavior != null) titleStartPadding else expandedTitleStartPadding,
+                        end = dimensionResource(id = R.dimen.spacing_m)
+                    )
+                    .alpha(if (scrollBehavior != null) titleAlpha else expandedTitleAlpha),
                 text = title,
                 style = OdsTheme.typography.h6,
                 overflow = TextOverflow.Ellipsis,
-                maxLines = titleMaxLines,
+                maxLines = if (scrollBehavior != null) titleMaxLines else expandedTitleMaxLines,
             )
         },
         modifier = modifier,

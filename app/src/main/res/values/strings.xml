@@ -111,7 +111,14 @@
     <string name="component_app_bars_top_large_title_one_line_value">Large: One line title</string>
     <string name="component_app_bars_top_large_title_two_lines_value">Large: Two lines title allowed in top app bar</string>
     <string name="component_app_bars_top_large_title_truncated_value">Large: Title will be truncated if it is too long to fit in the top app bar</string>
-
+    <string name="component_app_bars_top_large_scrolling_upward">Scrolling upward collapses the top app bar</string>
+    <string name="component_app_bars_top_large_scrolling_downward">Scrolling downward expands the top app bar</string>
+    <string name="component_app_bars_top_large_code_collapsing">For collapsing version:</string>
+    <string name="component_app_bars_top_large_code_collapsing_step_1">1 - Pass the following scroll behavior to the top bar</string>
+    <string name="component_app_bars_top_large_code_collapsing_step_2">2 - Connect this behavior to the Scaffold containing the top bar through a Modifier</string>
+    <string name="component_app_bars_top_large_scroll_behavior">Scroll behavior</string>
+    <string name="component_app_bars_top_large_scroll_behavior_none">None</string>
+    <string name="component_app_bars_top_large_scroll_behavior_collapsible">Collapsible</string>
 
     <!-- Components Bottom navigation -->
     <string name="component_bottom_navigation">Bottom navigation</string>
