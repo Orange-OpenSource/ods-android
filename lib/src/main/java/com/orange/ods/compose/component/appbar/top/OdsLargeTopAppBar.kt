@@ -12,6 +12,9 @@ package com.orange.ods.compose.component.appbar.top
 
 import androidx.compose.foundation.layout.RowScope
 import androidx.compose.foundation.layout.padding
+import androidx.compose.material.Icon
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.ArrowBack
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.LargeTopAppBar
@@ -25,10 +28,16 @@ import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.alpha
 import androidx.compose.ui.res.dimensionResource
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.style.TextOverflow
+import androidx.compose.ui.tooling.preview.PreviewParameter
 import androidx.compose.ui.unit.dp
 import com.orange.ods.R
 import com.orange.ods.compose.component.OdsComposable
+import com.orange.ods.compose.component.menu.OdsDropdownMenuItem
+import com.orange.ods.compose.component.utilities.BasicPreviewParameterProvider
+import com.orange.ods.compose.component.utilities.Preview
+import com.orange.ods.compose.component.utilities.UiModePreviews
 import com.orange.ods.compose.theme.OdsTheme
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -106,3 +115,49 @@ fun OdsLargeTopAppBar(
         scrollBehavior = scrollBehavior
     )
 }
+
+@OptIn(ExperimentalMaterial3Api::class)
+@UiModePreviews.Default
+@Composable
+private fun PreviewOdsLargeTopAppBar(@PreviewParameter(OdsLargeTopAppBarPreviewParameterProvider::class) parameter: OdsLargeTopAppBarPreviewParameter) = Preview {
+    OdsLargeTopAppBar(
+        title = parameter.title,
+        navigationIcon = parameter.navigationIcon,
+        actions = {
+            OdsTopAppBarActionButton(
+                onClick = {},
+                painter = painterResource(id = android.R.drawable.ic_dialog_info),
+                contentDescription = "Info"
+            )
+            OdsTopAppBarOverflowMenuBox(
+                overflowIconContentDescription = "more options"
+            ) {
+                OdsDropdownMenuItem(text = "settings", onClick = { })
+                OdsDropdownMenuItem(text = "account", onClick = { })
+            }
+        }
+    )
+}
+
+internal data class OdsLargeTopAppBarPreviewParameter(
+    val title: String,
+    val navigationIcon: @Composable () -> Unit
+)
+
+private class OdsLargeTopAppBarPreviewParameterProvider :
+    BasicPreviewParameterProvider<OdsLargeTopAppBarPreviewParameter>(*previewParameterValues.toTypedArray())
+
+private val previewParameterValues: List<OdsLargeTopAppBarPreviewParameter>
+    get() {
+        val navigationIcon = @Composable {
+            IconButton(onClick = {}) {
+                Icon(imageVector = Icons.Filled.ArrowBack, contentDescription = null, tint = OdsTheme.colors.component.topAppBar.barContent)
+            }
+        }
+        return listOf(
+            OdsLargeTopAppBarPreviewParameter("One line title", navigationIcon),
+            OdsLargeTopAppBarPreviewParameter("Two lines title is allowed in large top app bar", navigationIcon),
+            OdsLargeTopAppBarPreviewParameter("The title will be truncated if it is too long to fit in the large top app bar like this one", navigationIcon),
+            OdsLargeTopAppBarPreviewParameter("One line title", { })
+        )
+    }
