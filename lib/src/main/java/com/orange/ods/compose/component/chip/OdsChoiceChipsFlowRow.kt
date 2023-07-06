@@ -29,6 +29,7 @@ import com.orange.ods.compose.component.OdsComposable
 import com.orange.ods.compose.component.utilities.BasicPreviewParameterProvider
 import com.orange.ods.compose.component.utilities.Preview
 import com.orange.ods.compose.component.utilities.UiModePreviews
+import com.orange.ods.compose.component.utilities.selectionStateDescription
 
 /**
  * Displays a full width [FlowRow] containing customized choice chips [OdsChoiceChipsFlowRowScope.OdsChoiceChip].
@@ -67,7 +68,7 @@ fun <T> OdsChoiceChipsFlowRow(
 @OdsComposable
 fun <T> OdsChoiceChipsFlowRowScope<T>.OdsChoiceChip(text: String, value: T, modifier: Modifier = Modifier, enabled: Boolean = true) {
     val selected = selectedChip.value == value
-    val chipStateDescription = odsChipStateDescription(selected = selected)
+    val chipStateDescription = selectionStateDescription(selected = selected)
     OdsChip(
         text = text,
         modifier = modifier.semantics {

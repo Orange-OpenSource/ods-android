@@ -32,11 +32,14 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.painter.Painter
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.semantics.semantics
+import androidx.compose.ui.semantics.stateDescription
 import androidx.compose.ui.unit.dp
 import com.orange.ods.compose.component.OdsComposable
 import com.orange.ods.compose.component.utilities.DisabledInteractionSource
 import com.orange.ods.compose.component.utilities.Preview
 import com.orange.ods.compose.component.utilities.UiModePreviews
+import com.orange.ods.compose.component.utilities.selectionStateDescription
 import com.orange.ods.compose.theme.OdsDisplaySurface
 import com.orange.ods.utilities.extension.enable
 
@@ -108,12 +111,13 @@ private fun IconToggleButtonsRowItem(
 ) {
     val iconTint = buttonToggleIconColor(displaySurface, selected, iconToggleButton.enabled)
     val backgroundAlpha = if (selected && iconToggleButton.enabled) 0.12f else 0f
+    val iconToggleButtonStateDescription = selectionStateDescription(selected = selected)
 
     Icon(
         modifier = Modifier
             .background(
                 color = buttonToggleBackgroundColor(displaySurface)
-                    .copy(alpha = if (iconToggleButton.enabled) animateFloatAsState(backgroundAlpha).value else backgroundAlpha)
+                    .copy(alpha = if (iconToggleButton.enabled) animateFloatAsState(backgroundAlpha, label = "").value else backgroundAlpha)
             )
             .padding(12.dp)
             .run {
@@ -122,10 +126,13 @@ private fun IconToggleButtonsRowItem(
                 } else {
                     this
                 }
+            }
+            .semantics {
+                stateDescription = iconToggleButtonStateDescription
             },
         painter = iconToggleButton.icon,
         contentDescription = iconToggleButton.iconDescription,
-        tint = if (iconToggleButton.enabled) animateColorAsState(iconTint).value else iconTint
+        tint = if (iconToggleButton.enabled) animateColorAsState(iconTint, label = "").value else iconTint
     )
 }
 
