@@ -86,6 +86,7 @@ fun ButtonsIconToggleGroup(customizationState: ButtonIconCustomizationState) {
                                 classInstance(OdsIconToggleButtonsRowItem::class.java) {
                                     painter()
                                     string("iconDescription", "icon description")
+                                    if (!isEnabled) enabled(false)
                                 }
                             }
                         }
