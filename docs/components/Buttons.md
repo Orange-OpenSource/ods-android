@@ -248,7 +248,7 @@ OdsIconToggleButtonsRow(
     iconToggleButtons = listOf(
         OdsIconToggleButtonsRowItem(painterResource(id = R.drawable.ic_restaurant), "Restaurant"),
         OdsIconToggleButtonsRowItem(painterResource(id = R.drawable.ic_cooking_pot), "Cooking pot"),
-        OdsIconToggleButtonsRowItem(painterResource(id = R.drawable.ic_coffee), "Coffee")
+        OdsIconToggleButtonsRowItem(painterResource(id = R.drawable.ic_coffee), "Coffee", enabled = false)
     ),
     selectedIndex = 0,
     onSelectedIndexChange = {

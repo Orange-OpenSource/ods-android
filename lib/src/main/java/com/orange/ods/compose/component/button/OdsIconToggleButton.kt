@@ -62,11 +62,7 @@ fun OdsIconToggleButton(
     displaySurface: OdsDisplaySurface = OdsDisplaySurface.Default
 ) {
     CompositionLocalProvider(
-        LocalRippleTheme provides when (displaySurface) {
-            OdsDisplaySurface.Default -> OdsRippleTheme
-            OdsDisplaySurface.Light -> OdsLightRippleTheme
-            OdsDisplaySurface.Dark -> OdsDarkRippleTheme
-        }
+        LocalRippleTheme provides displaySurface.rippleTheme
     ) {
         IconToggleButton(
             checked = checked,

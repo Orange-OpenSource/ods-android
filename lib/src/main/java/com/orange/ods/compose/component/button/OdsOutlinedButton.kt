@@ -59,11 +59,7 @@ fun OdsOutlinedButton(
     displaySurface: OdsDisplaySurface = OdsDisplaySurface.Default
 ) {
     CompositionLocalProvider(
-        LocalRippleTheme provides when (displaySurface) {
-            OdsDisplaySurface.Default -> OdsRippleTheme
-            OdsDisplaySurface.Light -> OdsLightRippleTheme
-            OdsDisplaySurface.Dark -> OdsDarkRippleTheme
-        }
+        LocalRippleTheme provides displaySurface.rippleTheme
     ) {
         OutlinedButton(
             onClick = onClick,
@@ -92,12 +88,7 @@ fun OdsOutlinedButton(
 }
 
 @Composable
-private fun OdsColors.buttonOutlinedColor(displaySurface: OdsDisplaySurface) =
-    when (displaySurface) {
-        OdsDisplaySurface.Default -> OdsTheme.colors.onSurface
-        OdsDisplaySurface.Dark -> OdsTheme.darkThemeColors.onSurface
-        OdsDisplaySurface.Light -> OdsTheme.lightThemeColors.onSurface
-    }
+private fun OdsColors.buttonOutlinedColor(displaySurface: OdsDisplaySurface) = displaySurface.themeColors.onSurface
 
 @Composable
 private fun OdsColors.buttonOutlinedDisabledColor(displaySurface: OdsDisplaySurface) = buttonOutlinedColor(displaySurface).enable(enabled = false)

@@ -14,12 +14,18 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - \[App\] Display XML version in `ButtonsText`, `ButtonsIcon`, `ButtonsIconToggle` and `ButtonsIconToggleGroup` ([#529](https://github.com/Orange-OpenSource/ods-android/issues/529))
 - \[Lib\] Add `OdsImageItem` component ([#473](https://github.com/Orange-OpenSource/ods-android/issues/473))
 - \[Lib\] Add `@Parcelize` annotation on `OdsExposedDropdownMenuItem` to allow to save and restore it ([#545](https://github.com/Orange-OpenSource/ods-android/issues/545))
+- \[Lib\] Add `themeColors` and `rippleTheme` properties to `OdsDisplaySurface` ([#329](https://github.com/Orange-OpenSource/ods-android/issues/329))
 - \[LibXml\] Add `OdsButton` and `OdsOutlinedButton` views ([#528](https://github.com/Orange-OpenSource/ods-android/issues/528))
 - \[LibXml\] Add `OdsTextButton`, `OdsIconButton`, `OdsIconToggleButton` and `OdsIconToggleButtonsRow` views ([#529](https://github.com/Orange-OpenSource/ods-android/issues/529))
 
 ### Changed
 
 - \[App\] Use an exposed dropdown menu to switch between XML and Compose implementation ([#546](https://github.com/Orange-OpenSource/ods-android/issues/546))
+- \[App\] Toggle icon buttons group can now be disabled with the customization bottom sheet ([#329](https://github.com/Orange-OpenSource/ods-android/issues/329))
+
+### Fixed
+
+- \[Lib\] Fix a bug where `enabled` property of `OdsIconToggleButtonsRowItem` has no effect ([#329](https://github.com/Orange-OpenSource/ods-android/issues/329))
 
 ## [0.13.0](https://github.com/Orange-OpenSource/ods-android/compare/0.12.0...0.13.0) - 2023-06-01
 

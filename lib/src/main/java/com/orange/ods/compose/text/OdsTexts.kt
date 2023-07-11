@@ -72,11 +72,6 @@ fun OdsTextOverline(text: String, modifier: Modifier = Modifier, displaySurface:
 
 @Composable
 private fun OdsText(text: String, textStyle: TextStyle, modifier: Modifier, displaySurface: OdsDisplaySurface, enabled: Boolean) {
-    val color = when (displaySurface) {
-        OdsDisplaySurface.Default -> if (enabled) OdsTheme.colors.onSurface else OdsTheme.colors.onSurface.enable(enabled = false)
-        OdsDisplaySurface.Dark -> if (enabled) OdsTheme.darkThemeColors.onSurface else OdsTheme.darkThemeColors.onSurface.enable(enabled = false)
-        OdsDisplaySurface.Light -> if (enabled) OdsTheme.lightThemeColors.onSurface else OdsTheme.lightThemeColors.onSurface.enable(enabled = false)
-    }
-
+    val color = displaySurface.themeColors.onSurface.enable(enabled = enabled)
     Text(text = text, style = textStyle, color = color, modifier = modifier)
 }
