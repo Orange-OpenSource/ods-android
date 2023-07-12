@@ -10,6 +10,7 @@
 
 package com.orange.ods.app.ui.components.tabs
 
+import androidx.activity.compose.BackHandler
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
@@ -44,7 +45,7 @@ private const val MaxScrollableTabCount = 6
 
 @OptIn(ExperimentalMaterialApi::class, ExperimentalPagerApi::class)
 @Composable
-fun ComponentTabs(variant: Variant) {
+fun ComponentTabs(variant: Variant, upPress: () -> Unit) {
     val scrollableTabs: Boolean
     val tabCountMin: Int
     val tabCountMax: Int
@@ -68,6 +69,10 @@ fun ComponentTabs(variant: Variant) {
             tabTextEnabled = tabsCustomizationState.tabTextEnabled.value,
         )
     )
+
+    BackHandler {
+        upPress()
+    }
 
     ComponentCustomizationBottomSheetScaffold(
         bottomSheetScaffoldState = tabsCustomizationState.bottomSheetScaffoldState,

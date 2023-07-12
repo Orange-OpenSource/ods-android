@@ -154,7 +154,11 @@ fun MainScreen(themeConfigurations: Set<OdsThemeConfigurationContract>, mainView
                 NavHost(
                     navController = mainState.navController, startDestination = MainDestinations.HomeRoute, modifier = Modifier.padding(innerPadding)
                 ) {
-                    mainNavGraph(navigateToElement = mainState::navigateToElement, searchedText = mainState.topAppBarState.searchedText)
+                    mainNavGraph(
+                        navigateToElement = mainState::navigateToElement,
+                        upPress = mainState::upPress,
+                        searchedText = mainState.topAppBarState.searchedText
+                    )
                 }
             }
         }
@@ -206,7 +210,11 @@ private fun MainTabs(mainTabsState: MainTabsState) {
     }
 }
 
-private fun NavGraphBuilder.mainNavGraph(navigateToElement: (String, Long?, NavBackStackEntry) -> Unit, searchedText: MutableState<TextFieldValue>) {
+private fun NavGraphBuilder.mainNavGraph(
+    navigateToElement: (String, Long?, NavBackStackEntry) -> Unit,
+    upPress: () -> Unit,
+    searchedText: MutableState<TextFieldValue>
+) {
     navigation(
         route = MainDestinations.HomeRoute,
         startDestination = BottomNavigationSections.Guidelines.route
@@ -215,7 +223,7 @@ private fun NavGraphBuilder.mainNavGraph(navigateToElement: (String, Long?, NavB
     }
 
     addGuidelinesGraph()
-    addComponentsGraph(navigateToElement)
+    addComponentsGraph(navigateToElement, upPress)
     addAboutGraph()
 
     composable(
