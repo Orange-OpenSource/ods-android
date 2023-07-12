@@ -47,7 +47,7 @@ fun OdsLargeTopAppBar(
     title: String,
     modifier: Modifier = Modifier,
     navigationIcon: @Composable (() -> Unit)? = null,
-    onNavigationIconClick: () -> Unit = {},
+    onNavigationIconClick: (() -> Unit)? = null,
     actions: @Composable RowScope.() -> Unit = {},
     scrollBehavior: TopAppBarScrollBehavior? = null
 ) {
@@ -100,10 +100,13 @@ fun OdsLargeTopAppBar(
             )
         },
         modifier = modifier,
-        navigationIcon =
-        {
-            navigationIcon?.let {
-                IconButton(onClick = onNavigationIconClick) {
+        navigationIcon = {
+            if (navigationIcon != null) {
+                if (onNavigationIconClick != null) {
+                    IconButton(onClick = onNavigationIconClick) {
+                        navigationIcon()
+                    }
+                } else {
                     navigationIcon()
                 }
             }
