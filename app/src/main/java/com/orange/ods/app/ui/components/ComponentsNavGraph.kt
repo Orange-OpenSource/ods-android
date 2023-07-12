@@ -49,11 +49,12 @@ fun NavGraphBuilder.addComponentsGraph(navigateToElement: (String, Long?, NavBac
         val arguments = requireNotNull(from.arguments)
         val routeVariantId = arguments.getLong(MainDestinations.ComponentVariantIdKey)
         val variant = remember(routeVariantId) { components.flatMap { it.variants }.firstOrNull { it.id == routeVariantId } }
+        val component = components.firstOrNull { it.variants.contains(variant) }
 
-        variant?.let {
+        if (variant != null && component != null) {
             LocalMainTopAppBarManager.current.updateTopAppBarTitle(variant.titleRes)
             LocalMainTopAppBarManager.current.setLargeTopAppBar(variant.largeTopAppBar)
-            variant.demoScreen(upPress = upPress)
+            component.demoScreen(variant = variant, upPress = upPress)
         }
     }
 
@@ -69,7 +70,7 @@ fun NavGraphBuilder.addComponentsGraph(navigateToElement: (String, Long?, NavBac
 
         component?.let {
             LocalMainTopAppBarManager.current.updateTopAppBarTitle(component.titleRes)
-            component.demoScreen?.invoke()
+            component.demoScreen(variant = null, upPress = upPress)
         }
 
     }
