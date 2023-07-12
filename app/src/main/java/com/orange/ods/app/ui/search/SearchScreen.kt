@@ -146,7 +146,7 @@ fun SearchScreen(
                     .clickable {
                         when (item.data) {
                             is Component -> onResultItemClick(MainDestinations.ComponentDetailRoute, item.id)
-                            is Variant -> onResultItemClick(MainDestinations.ComponentVariantRoute, item.id)
+                            is Variant -> onResultItemClick(MainDestinations.ComponentVariantDemoRoute, item.id)
                             is Spacing -> onResultItemClick(MainDestinations.GuidelineSpacing, null)
                             is GuidelineColor -> openDialog.value = true
                         }

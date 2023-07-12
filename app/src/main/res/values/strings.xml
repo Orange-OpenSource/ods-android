@@ -99,12 +99,26 @@
     <string name="component_app_bars_top">App bars: top</string>
     <string name="component_app_bars_top_description">The app bar is a key component and organizes titling, navigation and action buttons.</string>
     <string name="component_app_bars_top_regular">Regular</string>
+    <string name="component_app_bars_top_large">Large</string>
     <string name="component_app_bars_top_element_navigation_icon">Navigation icon</string>
     <string name="component_app_bars_top_element_overflow_menu">Overflow menu</string>
     <string name="component_app_bars_top_actions_count">Actions count</string>
     <string name="component_app_bars_top_remove_action">Remove action</string>
     <string name="component_app_bars_top_add_action">Add action</string>
-    <string name="component_app_bars_top_action_ice_cream">Ice Cream</string>
+    <string name="component_app_bars_top_large_title_one_line">One line</string>
+    <string name="component_app_bars_top_large_title_two_lines">Two lines</string>
+    <string name="component_app_bars_top_large_title_truncated">Truncated</string>
+    <string name="component_app_bars_top_large_title_short_value">Large: One line title</string>
+    <string name="component_app_bars_top_large_title_two_lines_value">Large: Two lines title\nis allowed in top app bar</string>
+    <string name="component_app_bars_top_large_title_long_value">Large: Title will be truncated if it is too long to fit in the top app bar cause the maximum lines number for the title display in a large top app bar is two.</string>
+    <string name="component_app_bars_top_large_scrolling_upward">Scrolling upward collapses the top app bar</string>
+    <string name="component_app_bars_top_large_scrolling_downward">Scrolling downward expands the top app bar</string>
+    <string name="component_app_bars_top_large_code_collapsing">Define and connect scroll behavior:</string>
+    <string name="component_app_bars_top_large_code_collapsing_step_1">Step 1 - Pass the following scroll behavior to the top bar</string>
+    <string name="component_app_bars_top_large_code_collapsing_step_2">Step 2 - Connect this behavior to the Scaffold containing the top bar through a Modifier</string>
+    <string name="component_app_bars_top_large_scroll_behavior">Scroll behavior</string>
+    <string name="component_app_bars_top_large_scroll_behavior_none">None</string>
+    <string name="component_app_bars_top_large_scroll_behavior_collapsible">Collapsible</string>
 
     <!-- Components Bottom navigation -->
     <string name="component_bottom_navigation">Bottom navigation</string>

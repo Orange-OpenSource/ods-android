@@ -51,29 +51,23 @@ fun NavGraphBuilder.addBottomNavigationGraph(navigateToElement: (String, Long?, 
         val topAppBarConfiguration = MainTopAppBarState.DefaultConfiguration.newBuilder()
             .prependAction(TopAppBarConfiguration.Action.Search)
             .build()
-        with(LocalMainTopAppBarManager.current) {
-            updateTopAppBar(topAppBarConfiguration)
-            clearTopAppBarTabs()
-        }
+        LocalMainTopAppBarManager.current.updateTopAppBar(topAppBarConfiguration)
         GuidelinesScreen(onGuidelineClick = { route -> navigateToElement(route, null, from) })
     }
     composable(BottomNavigationSections.Components.route) { from ->
         val topAppBarConfiguration = MainTopAppBarState.DefaultConfiguration.newBuilder()
             .prependAction(TopAppBarConfiguration.Action.Search)
             .build()
-        with(LocalMainTopAppBarManager.current) {
-            updateTopAppBar(topAppBarConfiguration)
-            clearTopAppBarTabs()
-        }
+        LocalMainTopAppBarManager.current.updateTopAppBar(topAppBarConfiguration)
         ComponentsScreen(onComponentClick = { id -> navigateToElement(MainDestinations.ComponentDetailRoute, id, from) })
     }
     composable(BottomNavigationSections.Modules.route) {
-        LocalMainTopAppBarManager.current.reset()
+        LocalMainTopAppBarManager.current.updateTopAppBar(MainTopAppBarState.DefaultConfiguration)
         ModulesScreen()
     }
     composable(BottomNavigationSections.About.route) { from ->
         val context = LocalContext.current
-        LocalMainTopAppBarManager.current.reset()
+        LocalMainTopAppBarManager.current.updateTopAppBar(MainTopAppBarState.DefaultConfiguration)
         AboutScreen(onAboutItemClick = { id ->
             val aboutItem = aboutItems.firstOrNull { it.id == id }
             if (aboutItem is UrlAboutItem) {

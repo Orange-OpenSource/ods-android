@@ -28,7 +28,7 @@ import coil.compose.rememberAsyncImagePainter
 import com.google.accompanist.flowlayout.FlowRow
 import com.orange.ods.app.R
 import com.orange.ods.app.domain.recipes.LocalRecipes
-import com.orange.ods.app.ui.LocalMainThemeManager
+import com.orange.ods.app.ui.LocalThemeManager
 import com.orange.ods.app.ui.components.utilities.ComponentCustomizationBottomSheetScaffold
 import com.orange.ods.app.ui.utilities.DrawableManager
 import com.orange.ods.app.ui.utilities.composable.CodeImplementationColumn
@@ -49,7 +49,7 @@ fun ChipFilter() {
     val chipCustomizationState = rememberChipCustomizationState(chipType = rememberSaveable { mutableStateOf(ChipCustomizationState.ChipType.Filter) })
     val recipes = LocalRecipes.current
     val recipe = rememberSaveable { recipes.filter { it.ingredients.count() >= 3 }.random() }
-    val outlinedChips = LocalMainThemeManager.current.currentThemeConfiguration.componentsConfiguration.chipStyle == ComponentStyle.Outlined
+    val outlinedChips = LocalThemeManager.current.currentThemeConfiguration.componentsConfiguration.chipStyle == ComponentStyle.Outlined
 
     with(chipCustomizationState) {
         ComponentCustomizationBottomSheetScaffold(

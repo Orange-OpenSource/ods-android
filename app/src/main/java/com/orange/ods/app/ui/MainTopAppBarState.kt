@@ -20,6 +20,7 @@ import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.staticCompositionLocalOf
 import androidx.compose.ui.text.input.TextFieldValue
 import com.orange.ods.app.R
+import com.orange.ods.app.ui.components.appbars.top.TopAppBarCustomizationState
 import kotlinx.parcelize.Parcelize
 
 val LocalMainTopAppBarManager = staticCompositionLocalOf<MainTopAppBarManager> { error("CompositionLocal LocalMainTopAppBarManager not present") }
@@ -27,11 +28,12 @@ val LocalMainTopAppBarManager = staticCompositionLocalOf<MainTopAppBarManager> {
 interface MainTopAppBarManager {
     fun updateTopAppBar(topAppBarConfiguration: TopAppBarConfiguration)
     fun updateTopAppBarTitle(titleRes: Int)
+
+    /** If set to true, a large top app bar will be displayed **/
+    fun setLargeTopAppBar(value: Boolean)
+
     fun updateTopAppBarTabs(tabsConfiguration: TabsConfiguration)
     fun clearTopAppBarTabs()
-
-    /** Restore default values for tabs and top app bar */
-    fun reset()
 }
 
 @Composable
@@ -40,10 +42,12 @@ fun rememberMainTopAppBarState(
     actions: MutableState<List<TopAppBarConfiguration.Action>> = rememberSaveable { mutableStateOf(MainTopAppBarState.DefaultConfiguration.actions) },
     navigationIconEnabled: MutableState<Boolean> = rememberSaveable { mutableStateOf(MainTopAppBarState.DefaultConfiguration.isNavigationIconEnabled) },
     searchedText: MutableState<TextFieldValue> = remember { mutableStateOf(TextFieldValue("")) },
+    large: MutableState<Boolean> = rememberSaveable { mutableStateOf(false) },
+    scrollBehavior: MutableState<TopAppBarCustomizationState.ScrollBehavior> = rememberSaveable { mutableStateOf(MainTopAppBarState.DefaultConfiguration.scrollBehavior) },
     tabsState: MainTabsState = rememberMainTabsState(),
 ) =
-    remember(titleRes, actions, searchedText, navigationIconEnabled, tabsState) {
-        MainTopAppBarState(titleRes, actions, searchedText, navigationIconEnabled, tabsState)
+    remember(titleRes, actions, searchedText, navigationIconEnabled, large, scrollBehavior, tabsState) {
+        MainTopAppBarState(titleRes, actions, searchedText, navigationIconEnabled, large, scrollBehavior, tabsState)
     }
 
 
@@ -52,11 +56,15 @@ class MainTopAppBarState(
     val actions: MutableState<List<TopAppBarConfiguration.Action>>,
     var searchedText: MutableState<TextFieldValue>,
     private val navigationIconEnabled: MutableState<Boolean>,
+    private var large: MutableState<Boolean>,
+    private var scrollBehavior: MutableState<TopAppBarCustomizationState.ScrollBehavior>,
     val tabsState: MainTabsState,
 ) : MainTopAppBarManager {
 
     companion object {
         val DefaultConfiguration = TopAppBarConfiguration(
+            isLarge = false,
+            scrollBehavior = TopAppBarCustomizationState.ScrollBehavior.Collapsible,
             isNavigationIconEnabled = true,
             actions = listOf(TopAppBarConfiguration.Action.Theme, TopAppBarConfiguration.Action.Mode)
         )
@@ -66,10 +74,22 @@ class MainTopAppBarState(
     // TopAppBar state source of truth
     // ----------------------------------------------------------
 
+    val isLarge: Boolean
+        get() = large.value
+
+    val hasScrollBehavior: Boolean
+        get() = scrollBehavior.value != TopAppBarCustomizationState.ScrollBehavior.None
+
     val isNavigationIconEnabled: Boolean
         get() = navigationIconEnabled.value
 
+    override fun setLargeTopAppBar(value: Boolean) {
+        this.large.value = value
+    }
+
     override fun updateTopAppBar(topAppBarConfiguration: TopAppBarConfiguration) {
+        large.value = topAppBarConfiguration.isLarge
+        scrollBehavior.value = topAppBarConfiguration.scrollBehavior
         navigationIconEnabled.value = topAppBarConfiguration.isNavigationIconEnabled
         actions.value = topAppBarConfiguration.actions
     }
@@ -85,14 +105,11 @@ class MainTopAppBarState(
     override fun clearTopAppBarTabs() {
         tabsState.clearTopAppBarTabs()
     }
-
-    override fun reset() {
-        updateTopAppBar(DefaultConfiguration)
-        clearTopAppBarTabs()
-    }
 }
 
 data class TopAppBarConfiguration constructor(
+    val isLarge: Boolean,
+    val scrollBehavior: TopAppBarCustomizationState.ScrollBehavior,
     val isNavigationIconEnabled: Boolean,
     val actions: List<Action>
 ) {
@@ -117,9 +134,14 @@ data class TopAppBarConfiguration constructor(
 
     class Builder {
 
+        private var isLarge = false
+        private var scrollBehavior = TopAppBarCustomizationState.ScrollBehavior.Collapsible
         private var isNavigationIconEnabled = true
-
         private var actions = mutableListOf<Action>()
+
+        fun large(value: Boolean) = apply { isLarge = value }
+
+        fun scrollBehavior(value: TopAppBarCustomizationState.ScrollBehavior) = apply { scrollBehavior = value }
 
         fun navigationIconEnabled(enabled: Boolean) = apply { isNavigationIconEnabled = enabled }
 
@@ -135,11 +157,13 @@ data class TopAppBarConfiguration constructor(
             actions { add(action) }
         }
 
-        fun build() = TopAppBarConfiguration(isNavigationIconEnabled, actions)
+        fun build() = TopAppBarConfiguration(isLarge, scrollBehavior, isNavigationIconEnabled, actions)
     }
 
     fun newBuilder() = Builder().apply {
         navigationIconEnabled(isNavigationIconEnabled)
+        large(isLarge)
+        scrollBehavior(scrollBehavior)
         actions {
             clear()
             addAll(actions)

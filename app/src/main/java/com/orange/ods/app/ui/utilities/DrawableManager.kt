@@ -14,7 +14,7 @@ import androidx.annotation.DrawableRes
 import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.runtime.Composable
 import com.orange.ods.app.R
-import com.orange.ods.app.ui.LocalMainThemeManager
+import com.orange.ods.app.ui.LocalThemeManager
 import com.orange.ods.app.ui.utilities.extension.isOrange
 import com.orange.ods.utilities.extension.orElse
 
@@ -62,7 +62,7 @@ object DrawableManager {
 
     @Composable
     fun getDrawableResIdForCurrentTheme(@DrawableRes resId: Int): Int {
-        val isOrangeTheme = LocalMainThemeManager.current.currentThemeConfiguration.isOrange
+        val isOrangeTheme = LocalThemeManager.current.currentThemeConfiguration.isOrange
         val currentThemeResId = if (isOrangeTheme) orangeResIdByGenericResId[resId] else genericResIdByOrangeResId[resId]
 
         return currentThemeResId.orElse { resId }

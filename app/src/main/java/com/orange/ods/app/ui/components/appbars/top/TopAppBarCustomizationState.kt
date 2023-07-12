@@ -15,11 +15,13 @@ import androidx.compose.runtime.MutableState
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.saveable.rememberSaveable
+import com.orange.ods.app.R
 import com.orange.ods.app.ui.MainTopAppBarState
 import com.orange.ods.app.ui.TopAppBarConfiguration
 
 @Composable
 fun rememberTopAppBarCustomizationState(
+    large: MutableState<Boolean>,
     navigationIconEnabled: MutableState<Boolean> = rememberSaveable { mutableStateOf(MainTopAppBarState.DefaultConfiguration.isNavigationIconEnabled) },
     actionCount: MutableState<Int> = rememberSaveable { mutableStateOf(MainTopAppBarState.DefaultConfiguration.actions.count()) },
     overflowMenuEnabled: MutableState<Boolean> = rememberSaveable {
@@ -29,19 +31,40 @@ fun rememberTopAppBarCustomizationState(
             )
         )
     },
+    titleLineCount: MutableState<TopAppBarCustomizationState.Title> = rememberSaveable { mutableStateOf(TopAppBarCustomizationState.Title.Short) },
+    scrollBehavior: MutableState<TopAppBarCustomizationState.ScrollBehavior> = rememberSaveable { mutableStateOf(MainTopAppBarState.DefaultConfiguration.scrollBehavior) }
 ) =
-    remember(navigationIconEnabled, actionCount, overflowMenuEnabled) {
-        TopAppBarCustomizationState(navigationIconEnabled, actionCount, overflowMenuEnabled)
+    remember(large, navigationIconEnabled, actionCount, overflowMenuEnabled, titleLineCount, scrollBehavior) {
+        TopAppBarCustomizationState(large, navigationIconEnabled, actionCount, overflowMenuEnabled, titleLineCount, scrollBehavior)
     }
 
 class TopAppBarCustomizationState(
+    val large: MutableState<Boolean>,
     val navigationIconEnabled: MutableState<Boolean>,
     val actionCount: MutableState<Int>,
-    val overflowMenuEnabled: MutableState<Boolean>
+    val overflowMenuEnabled: MutableState<Boolean>,
+    val title: MutableState<Title>,
+    val scrollBehavior: MutableState<ScrollBehavior>
 ) {
+    enum class Title(val titleResId: Int) {
+        Short(R.string.component_app_bars_top_large_title_short_value),
+        TwoLines(R.string.component_app_bars_top_large_title_two_lines_value),
+        Long(R.string.component_app_bars_top_large_title_long_value)
+    }
+
+    enum class ScrollBehavior {
+        None, Collapsible
+    }
+
     private val maxActionCount = 3
 
     val minActionCount = 0
+
+    val isLarge: Boolean
+        get() = large.value
+    
+    val isLargeCollapsible: Boolean
+        get() = large.value && scrollBehavior.value == ScrollBehavior.Collapsible
 
     val isNavigationIconEnabled: Boolean
         get() = navigationIconEnabled.value

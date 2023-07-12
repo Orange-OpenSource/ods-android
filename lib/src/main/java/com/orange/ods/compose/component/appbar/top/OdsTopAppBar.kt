@@ -153,7 +153,7 @@ private fun PreviewOdsTopAppBar() = Preview {
         title = "Title",
         navigationIcon = {
             IconButton(onClick = {}) {
-                Icon(imageVector = Icons.Filled.ArrowBack, contentDescription = null, tint = OdsTheme.colors.component.topAppBar.barContent)
+                Icon(imageVector = Icons.Filled.ArrowBack, contentDescription = null)
             }
         },
         actions = {
@@ -163,10 +163,10 @@ private fun PreviewOdsTopAppBar() = Preview {
                 contentDescription = "Info"
             )
             OdsTopAppBarOverflowMenuBox(
-                overflowIconContentDescription = "more options"
+                overflowIconContentDescription = "More options"
             ) {
-                OdsDropdownMenuItem(text = "settings", onClick = { })
-                OdsDropdownMenuItem(text = "account", onClick = { })
+                OdsDropdownMenuItem(text = "Settings", onClick = { })
+                OdsDropdownMenuItem(text = "Account", onClick = { })
             }
         }
     )
