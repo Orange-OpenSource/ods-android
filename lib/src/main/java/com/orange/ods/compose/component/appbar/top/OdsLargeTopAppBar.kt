@@ -59,13 +59,13 @@ fun OdsLargeTopAppBar(
     val collapsedTitleMaxLines = 1
     val stateChangeFraction = 0.7
 
-    val titleStartPadding by remember {
+    val titleStartPadding by remember(scrollBehavior) {
         derivedStateOf {
             if (scrollBehavior != null && scrollBehavior.state.collapsedFraction >= 0.85) collapsedTitleStartPadding else expandedTitleStartPadding
         }
     }
 
-    val titleAlpha by remember {
+    val titleAlpha by remember(scrollBehavior) {
         derivedStateOf {
             if (scrollBehavior != null) {
                 when (scrollBehavior.state.collapsedFraction) {
@@ -78,7 +78,7 @@ fun OdsLargeTopAppBar(
             }
         }
     }
-    val titleMaxLines by remember {
+    val titleMaxLines by remember(scrollBehavior) {
         derivedStateOf {
             if (scrollBehavior != null && scrollBehavior.state.collapsedFraction >= stateChangeFraction) collapsedTitleMaxLines else expandedTitleMaxLines
         }
@@ -89,14 +89,14 @@ fun OdsLargeTopAppBar(
             Text(
                 modifier = Modifier
                     .padding(
-                        start = if (scrollBehavior != null) titleStartPadding else expandedTitleStartPadding,
+                        start = titleStartPadding,
                         end = dimensionResource(id = R.dimen.spacing_m)
                     )
-                    .alpha(if (scrollBehavior != null) titleAlpha else expandedTitleAlpha),
+                    .alpha(titleAlpha),
                 text = title,
                 style = OdsTheme.typography.h6,
                 overflow = TextOverflow.Ellipsis,
-                maxLines = if (scrollBehavior != null) titleMaxLines else expandedTitleMaxLines,
+                maxLines = titleMaxLines,
             )
         },
         modifier = modifier,
