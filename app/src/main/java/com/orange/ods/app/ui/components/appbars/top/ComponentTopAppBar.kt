@@ -83,12 +83,11 @@ fun ComponentTopAppBar(variant: Variant) {
             val context = LocalContext.current
             Column(
                 modifier = Modifier
-                    .padding(vertical = dimensionResource(id = R.dimen.screen_vertical_margin))
                     .verticalScroll(rememberScrollState()),
                 horizontalAlignment = Alignment.CenterHorizontally
             ) {
                 if (isLargeCollapsible) {
-                    OdsTextBody2(text = stringResource(id = R.string.component_app_bars_top_large_scrolling_upward))
+                    OdsTextBody2(modifier = Modifier.padding(top = dimensionResource(id = R.dimen.screen_vertical_margin)), text = stringResource(id = R.string.component_app_bars_top_large_scrolling_upward))
                     BlinkingChevronDown(
                         modifier = Modifier
                             .rotate(180f)
@@ -178,7 +177,7 @@ fun ComponentTopAppBar(variant: Variant) {
 
                 if (isLargeCollapsible) {
                     BlinkingChevronDown(modifier = Modifier.padding(vertical = dimensionResource(id = R.dimen.spacing_s)))
-                    OdsTextBody2(text = stringResource(id = R.string.component_app_bars_top_large_scrolling_downward))
+                    OdsTextBody2(modifier = Modifier.padding(bottom = dimensionResource(id = R.dimen.screen_vertical_margin)), text = stringResource(id = R.string.component_app_bars_top_large_scrolling_downward))
                 }
             }
         }
