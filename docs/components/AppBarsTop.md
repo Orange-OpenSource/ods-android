@@ -230,7 +230,13 @@ If you need to have a top app bar with some elevation you can set the `@style/Wi
 
 > **Jetpack Compose implementation**
 
-Add `OdsLargeTopAppBar` composable to your Scaffold topBar:
+First, you have to add this line in your application `build.gradle.kts` file cause this component relies on Compose Material 3 implementation:
+
+```kotlin
+implementation("androidx.compose.material3:material3:<version number>")
+```
+
+Then you can add `OdsLargeTopAppBar` composable to your Scaffold topBar:
 
 ```kotlin
 OdsLargeTopAppBar(

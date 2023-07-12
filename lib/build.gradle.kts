@@ -74,8 +74,9 @@ dependencies {
     api(project(":theme-contract"))
     api(project(":theme-orange"))
     api(Dependencies.composeMaterial)
-    api(Dependencies.composeMaterial3)
     
+    implementation(Dependencies.composeMaterial3)
+
     implementation(Dependencies.kotlinStdlibJdk8)
     implementation(Dependencies.kotlinReflect)
     compileOnly(project(":composable-processor"))

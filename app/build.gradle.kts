@@ -112,6 +112,7 @@ dependencies {
     implementation(project(":lib-xml"))
     implementation(project(":theme-innovation-cup"))
 
+    implementation(Dependencies.composeMaterial3)
     implementation(Dependencies.coreKtx)
     implementation(Dependencies.kotlinReflect)
     implementation(Dependencies.appCompat)
