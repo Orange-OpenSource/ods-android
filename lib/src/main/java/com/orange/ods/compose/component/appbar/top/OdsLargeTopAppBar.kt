@@ -10,13 +10,10 @@
 
 package com.orange.ods.compose.component.appbar.top
 
-import androidx.compose.foundation.layout.RowScope
 import androidx.compose.foundation.layout.padding
-import androidx.compose.material.Icon
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ArrowBack
 import androidx.compose.material3.ExperimentalMaterial3Api
-import androidx.compose.material3.IconButton
 import androidx.compose.material3.LargeTopAppBar
 import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBarDefaults
@@ -34,7 +31,7 @@ import androidx.compose.ui.tooling.preview.PreviewParameter
 import androidx.compose.ui.unit.dp
 import com.orange.ods.R
 import com.orange.ods.compose.component.OdsComposable
-import com.orange.ods.compose.component.menu.OdsDropdownMenuItem
+import com.orange.ods.compose.component.content.OdsComponentContent
 import com.orange.ods.compose.component.utilities.BasicPreviewParameterProvider
 import com.orange.ods.compose.component.utilities.Preview
 import com.orange.ods.compose.component.utilities.UiModePreviews
@@ -46,9 +43,31 @@ import com.orange.ods.compose.theme.OdsTheme
 fun OdsLargeTopAppBar(
     title: String,
     modifier: Modifier = Modifier,
-    navigationIcon: @Composable (() -> Unit)? = null,
-    onNavigationIconClick: (() -> Unit)? = null,
-    actions: @Composable RowScope.() -> Unit = {},
+    navigationIcon: OdsTopAppBarNavigationIcon? = null,
+    actions: List<OdsTopAppBarActionButton> = emptyList(),
+    overflowMenuActions: List<OdsTopAppBarOverflowMenuActionItem> = emptyList(),
+    scrollBehavior: TopAppBarScrollBehavior? = null
+) {
+    OdsLargeTopAppBarInternal(
+        title = title,
+        modifier = modifier,
+        navigationIcon = navigationIcon,
+        actions = actions,
+        overflowMenuActions = overflowMenuActions,
+        scrollBehavior = scrollBehavior
+    )
+}
+
+// TODO: Remove this method once OdsSearchTopAppBar is developed
+@OptIn(ExperimentalMaterial3Api::class)
+@Composable
+@OdsComposable
+fun OdsLargeTopAppBarInternal(
+    title: String,
+    modifier: Modifier = Modifier,
+    navigationIcon: OdsTopAppBarNavigationIcon? = null,
+    actions: List<OdsComponentContent> = emptyList(),
+    overflowMenuActions: List<OdsTopAppBarOverflowMenuActionItem> = emptyList(),
     scrollBehavior: TopAppBarScrollBehavior? = null
 ) {
     val contentColor = OdsTheme.colors.component.topAppBar.barContent
@@ -100,18 +119,11 @@ fun OdsLargeTopAppBar(
             )
         },
         modifier = modifier,
-        navigationIcon = {
-            if (navigationIcon != null) {
-                if (onNavigationIconClick != null) {
-                    IconButton(onClick = onNavigationIconClick) {
-                        navigationIcon()
-                    }
-                } else {
-                    navigationIcon()
-                }
-            }
+        navigationIcon = { navigationIcon?.Content() },
+        actions = {
+            actions.forEach { it.Content() }
+            if (overflowMenuActions.isNotEmpty()) OdsTopAppBarOverflowMenu(items = overflowMenuActions)
         },
-        actions = actions,
         colors = TopAppBarDefaults.largeTopAppBarColors(
             containerColor = OdsTheme.colors.component.topAppBar.barBackground,
             navigationIconContentColor = contentColor,
@@ -127,28 +139,22 @@ fun OdsLargeTopAppBar(
 @Composable
 private fun PreviewOdsLargeTopAppBar(@PreviewParameter(OdsLargeTopAppBarPreviewParameterProvider::class) parameter: OdsLargeTopAppBarPreviewParameter) =
     Preview {
+        val actions = listOf(OdsTopAppBarActionButton(painterResource(id = android.R.drawable.ic_dialog_info), "Info") {})
+        val overflowMenuActions = listOf(
+            OdsTopAppBarOverflowMenuActionItem("Settings") { },
+            OdsTopAppBarOverflowMenuActionItem("Account") { }
+        )
         OdsLargeTopAppBar(
             title = parameter.title,
             navigationIcon = parameter.navigationIcon,
-            actions = {
-                OdsTopAppBarActionButton(
-                    onClick = {},
-                    painter = painterResource(id = android.R.drawable.ic_dialog_info),
-                    contentDescription = "Info"
-                )
-                OdsTopAppBarOverflowMenuBox(
-                    overflowIconContentDescription = "More options"
-                ) {
-                    OdsDropdownMenuItem(text = "Settings", onClick = { })
-                    OdsDropdownMenuItem(text = "Account", onClick = { })
-                }
-            }
+            actions = actions,
+            overflowMenuActions = overflowMenuActions
         )
     }
 
 internal data class OdsLargeTopAppBarPreviewParameter(
     val title: String,
-    val navigationIcon: @Composable () -> Unit
+    val navigationIcon: OdsTopAppBarNavigationIcon?
 )
 
 private class OdsLargeTopAppBarPreviewParameterProvider :
@@ -156,15 +162,11 @@ private class OdsLargeTopAppBarPreviewParameterProvider :
 
 private val previewParameterValues: List<OdsLargeTopAppBarPreviewParameter>
     get() {
-        val navigationIcon = @Composable {
-            IconButton(onClick = {}) {
-                Icon(imageVector = Icons.Filled.ArrowBack, contentDescription = null)
-            }
-        }
+        val navigationIcon = OdsTopAppBarNavigationIcon(Icons.Filled.ArrowBack, "") {}
         return listOf(
             OdsLargeTopAppBarPreviewParameter("One line title", navigationIcon),
             OdsLargeTopAppBarPreviewParameter("Two lines title is allowed in large top app bar", navigationIcon),
             OdsLargeTopAppBarPreviewParameter("The title will be truncated if it is too long to fit in the large top app bar like this one", navigationIcon),
-            OdsLargeTopAppBarPreviewParameter("One line title", { })
+            OdsLargeTopAppBarPreviewParameter("One line title", null)
         )
     }

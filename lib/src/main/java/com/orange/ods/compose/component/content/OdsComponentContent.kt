@@ -26,6 +26,7 @@ abstract class OdsComponentContent {
      * The Jetpack Compose UI for this component content.
      * Subclasses must implement this method to provide content.
      */
+    // TODO: Set this method internal once OdsSearchTopAppBar is developed
     @Composable
-    internal abstract fun Content()
+    abstract fun Content()
 }

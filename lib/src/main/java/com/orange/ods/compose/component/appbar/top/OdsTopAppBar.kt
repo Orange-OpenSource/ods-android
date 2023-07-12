@@ -10,32 +10,18 @@
 
 package com.orange.ods.compose.component.appbar.top
 
-import androidx.compose.foundation.layout.Box
-import androidx.compose.foundation.layout.ColumnScope
 import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.RowScope
 import androidx.compose.material.AppBarDefaults
-import androidx.compose.material.Icon
-import androidx.compose.material.IconButton
 import androidx.compose.material.Text
 import androidx.compose.material.TopAppBar
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ArrowBack
-import androidx.compose.material.icons.filled.MoreVert
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
-import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.painter.Painter
-import androidx.compose.ui.graphics.vector.rememberVectorPainter
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 import com.orange.ods.compose.component.OdsComposable
-import com.orange.ods.compose.component.button.OdsIconButton
-import com.orange.ods.compose.component.menu.OdsDropdownMenu
-import com.orange.ods.compose.component.menu.OdsDropdownMenuItem
+import com.orange.ods.compose.component.content.OdsComponentContent
 import com.orange.ods.compose.component.utilities.Preview
 import com.orange.ods.compose.component.utilities.UiModePreviews
 import com.orange.ods.compose.theme.OdsTheme
@@ -50,124 +36,71 @@ import com.orange.ods.compose.theme.OdsTheme
  * centering the title, use the other TopAppBar overload for a generic TopAppBar with no
  * restriction on content.
  *
- * @param modifier The [Modifier] to be applied to this TopAppBar
  * @param title The title to be displayed in the center of the TopAppBar
- * @param navigationIcon Optional navigation icon displayed at the start of the TopAppBar. This should be an [Icon].
- * @param onNavigationIconClick Optional action executed on the navigation icon click.
- * @param actions The actions displayed at the end of the TopAppBar. This should be [OdsTopAppBarActionButton]s.
+ * @param modifier The [Modifier] to be applied to this TopAppBar
+ * @param navigationIcon Optional navigation icon displayed at the start of the TopAppBar.
+ * @param actions The actions displayed at the end of the TopAppBar.
  * The default layout here is a [Row], so icons inside will be placed horizontally.
+ * @param overflowMenuActions The actions displayed in the overflow menu.
  * @param elevated True to set an elevation to the top app bar (shadow displayed), false otherwise.
  */
 @Composable
 @OdsComposable
 fun OdsTopAppBar(
+    title: String,
     modifier: Modifier = Modifier,
-    title: String? = null,
-    navigationIcon: @Composable (() -> Unit)? = null,
-    onNavigationIconClick: (() -> Unit)? = null,
-    actions: @Composable RowScope.() -> Unit = {},
+    navigationIcon: OdsTopAppBarNavigationIcon? = null,
+    actions: List<OdsTopAppBarActionButton> = emptyList(),
+    overflowMenuActions: List<OdsTopAppBarOverflowMenuActionItem> = emptyList(),
+    elevated: Boolean = true
+) {
+    OdsTopAppBarInternal(
+        title = title,
+        modifier = modifier,
+        navigationIcon = navigationIcon,
+        actions = actions,
+        overflowMenuActions = overflowMenuActions,
+        elevated = elevated
+    )
+}
+
+// TODO: Remove this method once OdsSearchTopAppBar is developed
+@Composable
+@OdsComposable
+fun OdsTopAppBarInternal(
+    title: String,
+    modifier: Modifier = Modifier,
+    navigationIcon: OdsTopAppBarNavigationIcon? = null,
+    actions: List<OdsComponentContent> = emptyList(),
+    overflowMenuActions: List<OdsTopAppBarOverflowMenuActionItem> = emptyList(),
     elevated: Boolean = true
 ) {
     TopAppBar(
-        title = { title?.let { Text(text = title, style = OdsTheme.typography.h6) } },
+        title = { Text(text = title, style = OdsTheme.typography.h6) },
         modifier = modifier,
-        navigationIcon = navigationIcon?.let { navIcon ->
-            {
-                if (onNavigationIconClick != null) {
-                    IconButton(onClick = onNavigationIconClick) {
-                        navIcon()
-                    }
-                } else {
-                    navIcon()
-                }
-            }
+        navigationIcon = navigationIcon?.let { { it.Content() } },
+        actions = {
+            actions.forEach { it.Content() }
+            if (overflowMenuActions.isNotEmpty()) OdsTopAppBarOverflowMenu(items = overflowMenuActions)
         },
-        actions = actions,
         backgroundColor = OdsTheme.colors.component.topAppBar.barBackground,
         contentColor = OdsTheme.colors.component.topAppBar.barContent,
         elevation = if (elevated) AppBarDefaults.TopAppBarElevation else 0.dp
     )
 }
 
-/**
- * Action icon button displayed in an [OdsTopAppBar].
- *
- * @param onClick Will be called when the user clicks on the action icon button.
- * @param painter Painter of the icon.
- * @param contentDescription The content description associated to this OdsTopAppBarActionButton.
- * @param modifier The [Modifier] to be applied to this OdsTopAppBarActionButton.
- * @param enabled whether or not this OdsTopAppBarActionButton will handle input events and appear enabled for
- * semantics purposes, true by default.
- */
-@Composable
-@OdsComposable
-fun OdsTopAppBarActionButton(
-    onClick: () -> Unit,
-    painter: Painter,
-    contentDescription: String,
-    modifier: Modifier = Modifier,
-    enabled: Boolean = true
-) {
-    OdsIconButton(
-        onClick = onClick,
-        graphicsObject = painter,
-        contentDescription = contentDescription,
-        modifier = modifier,
-        enabled = enabled,
-        tint = OdsTheme.colors.component.topAppBar.barContent
-    )
-}
-
-/**
- * Overflow menu displayed in an [OdsTopAppBar]. It displays the overflow icon (3 vertical dots) and the menu appearing on click.
- *
- * @param overflowIconContentDescription The content description of the overflow icon.
- * @param content The content of the overflow dropdown menu
- */
-@Composable
-@OdsComposable
-fun OdsTopAppBarOverflowMenuBox(
-    overflowIconContentDescription: String,
-    content: @Composable ColumnScope.() -> Unit
-) {
-    var showMenu by remember { mutableStateOf(false) }
-
-    Box {
-        OdsTopAppBarActionButton(
-            onClick = { showMenu = !showMenu },
-            painter = rememberVectorPainter(image = Icons.Filled.MoreVert),
-            contentDescription = overflowIconContentDescription
-        )
-        OdsDropdownMenu(
-            expanded = showMenu,
-            onDismissRequest = { showMenu = false },
-            content = content
-        )
-    }
-}
-
 @UiModePreviews.Default
 @Composable
 private fun PreviewOdsTopAppBar() = Preview {
+    val actions = listOf(OdsTopAppBarActionButton(painterResource(id = android.R.drawable.ic_dialog_info), "Info") {})
+    val overflowMenuItems = listOf(
+        OdsTopAppBarOverflowMenuActionItem("Settings") {},
+        OdsTopAppBarOverflowMenuActionItem("Account") {}
+    )
     OdsTopAppBar(
         title = "Title",
-        navigationIcon = {
-            IconButton(onClick = {}) {
-                Icon(imageVector = Icons.Filled.ArrowBack, contentDescription = null)
-            }
-        },
-        actions = {
-            OdsTopAppBarActionButton(
-                onClick = {},
-                painter = painterResource(id = android.R.drawable.ic_dialog_info),
-                contentDescription = "Info"
-            )
-            OdsTopAppBarOverflowMenuBox(
-                overflowIconContentDescription = "More options"
-            ) {
-                OdsDropdownMenuItem(text = "Settings", onClick = { })
-                OdsDropdownMenuItem(text = "Account", onClick = { })
-            }
-        }
+        navigationIcon = OdsTopAppBarNavigationIcon(Icons.Filled.ArrowBack, "") {},
+        actions = actions,
+        overflowMenuActions = overflowMenuItems
     )
 }
