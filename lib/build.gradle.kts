@@ -17,6 +17,7 @@ plugins {
     id("kotlin-android")
     id("github")
     id("maven-central-publish")
+    id("kotlin-parcelize")
 }
 
 /**
@@ -72,6 +73,9 @@ android {
 dependencies {
     api(project(":theme-contract"))
     api(project(":theme-orange"))
+    api(Dependencies.composeMaterial)
+    
+    implementation(Dependencies.composeMaterial3)
 
     implementation(Dependencies.kotlinStdlibJdk8)
     implementation(Dependencies.kotlinReflect)
@@ -80,7 +84,6 @@ dependencies {
     implementation(Dependencies.accompanistFlowLayout)
     implementation(Dependencies.appCompat)
     implementation(Dependencies.composeUi)
-    implementation(Dependencies.composeMaterial)
     implementation(Dependencies.composeUiTooling)
     implementation(Dependencies.composeUiToolingPreview)
     implementation(Dependencies.coreKtx)

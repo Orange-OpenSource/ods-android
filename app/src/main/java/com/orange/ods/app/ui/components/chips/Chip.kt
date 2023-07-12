@@ -28,7 +28,7 @@ import androidx.compose.ui.res.stringResource
 import coil.compose.rememberAsyncImagePainter
 import com.orange.ods.app.R
 import com.orange.ods.app.domain.recipes.LocalRecipes
-import com.orange.ods.app.ui.LocalMainThemeManager
+import com.orange.ods.app.ui.LocalThemeManager
 import com.orange.ods.app.ui.components.Variant
 import com.orange.ods.app.ui.components.chips.ChipCustomizationState.ChipType
 import com.orange.ods.app.ui.components.chips.ChipCustomizationState.LeadingElement
@@ -104,7 +104,7 @@ fun ChipTypeDemo(chipType: ChipType, content: @Composable () -> Unit) {
 @Composable
 private fun Chip(chipCustomizationState: ChipCustomizationState) {
     val context = LocalContext.current
-    val outlinedChips = LocalMainThemeManager.current.currentThemeConfiguration.componentsConfiguration.chipStyle == ComponentStyle.Outlined
+    val outlinedChips = LocalThemeManager.current.currentThemeConfiguration.componentsConfiguration.chipStyle == ComponentStyle.Outlined
     val cancelCrossLabel = stringResource(id = R.string.component_element_cancel_cross)
     val recipes = LocalRecipes.current.take(4)
 

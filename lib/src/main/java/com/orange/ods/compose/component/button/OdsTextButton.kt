@@ -25,11 +25,8 @@ import com.orange.ods.compose.component.OdsComposable
 import com.orange.ods.compose.component.utilities.EnumPreviewParameterProvider
 import com.orange.ods.compose.component.utilities.Preview
 import com.orange.ods.compose.component.utilities.UiModePreviews
-import com.orange.ods.compose.theme.OdsDarkRippleTheme
 import com.orange.ods.compose.theme.OdsDisplaySurface
-import com.orange.ods.compose.theme.OdsLightRippleTheme
 import com.orange.ods.compose.theme.OdsPrimaryRippleTheme
-import com.orange.ods.compose.theme.OdsRippleTheme
 import com.orange.ods.compose.theme.OdsTheme
 import com.orange.ods.theme.colors.OdsColors
 import com.orange.ods.utilities.extension.enable
@@ -38,7 +35,9 @@ import com.orange.ods.utilities.extension.enable
  * Specifying an [OdsTextButtonStyle] allow to display a button with specific colors.
  */
 enum class OdsTextButtonStyle {
-    Default, Primary
+    Default, Primary;
+
+    companion object
 }
 
 /**
@@ -71,11 +70,7 @@ fun OdsTextButton(
     CompositionLocalProvider(
         LocalRippleTheme provides when (style) {
             OdsTextButtonStyle.Primary -> OdsPrimaryRippleTheme
-            OdsTextButtonStyle.Default -> when (displaySurface) {
-                OdsDisplaySurface.Default -> OdsRippleTheme
-                OdsDisplaySurface.Light -> OdsLightRippleTheme
-                OdsDisplaySurface.Dark -> OdsDarkRippleTheme
-            }
+            OdsTextButtonStyle.Default -> displaySurface.rippleTheme
         }
     ) {
         TextButton(
@@ -97,19 +92,9 @@ fun OdsTextButton(
 
 @Composable
 private fun OdsColors.buttonTextColor(displaySurface: OdsDisplaySurface, style: OdsTextButtonStyle) =
-    when (displaySurface) {
-        OdsDisplaySurface.Default -> when (style) {
-            OdsTextButtonStyle.Primary -> OdsTheme.colors.primary
-            OdsTextButtonStyle.Default -> OdsTheme.colors.onSurface
-        }
-        OdsDisplaySurface.Dark -> when (style) {
-            OdsTextButtonStyle.Primary -> OdsTheme.darkThemeColors.primary
-            OdsTextButtonStyle.Default -> OdsTheme.darkThemeColors.onSurface
-        }
-        OdsDisplaySurface.Light -> when (style) {
-            OdsTextButtonStyle.Primary -> OdsTheme.lightThemeColors.primary
-            OdsTextButtonStyle.Default -> OdsTheme.lightThemeColors.onSurface
-        }
+    when (style) {
+        OdsTextButtonStyle.Primary -> displaySurface.themeColors.primary
+        OdsTextButtonStyle.Default -> displaySurface.themeColors.onSurface
     }
 
 @Composable

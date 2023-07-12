@@ -43,12 +43,11 @@ fun ComponentButtonsIcons(variant: Variant) {
                         minCount = ButtonIconCustomizationState.MinToggleCount,
                         maxCount = ButtonIconCustomizationState.MaxToggleCount
                     )
-                } else {
-                    OdsListItem(
-                        text = stringResource(id = R.string.component_state_enabled),
-                        trailing = OdsSwitchTrailing(checked = enabled)
-                    )
                 }
+                OdsListItem(
+                    text = stringResource(id = R.string.component_state_enabled),
+                    trailing = OdsSwitchTrailing(checked = enabled)
+                )
             }) {
 
             when (variant) {

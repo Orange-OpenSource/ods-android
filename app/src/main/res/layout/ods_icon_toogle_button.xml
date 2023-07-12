@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?><!--
+  ~ /*
+  ~ * Copyright 2021 Orange
+  ~ *
+  ~ * Use of this source code is governed by an MIT-style
+  ~ * license that can be found in the LICENSE file or at
+  ~ * https://opensource.org/licenses/MIT.
+  ~ */
+  -->
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <variable
+            name="checked"
+            type="Boolean" />
+
+        <variable
+            name="checkedIcon"
+            type="android.graphics.drawable.Drawable" />
+
+        <variable
+            name="uncheckedIcon"
+            type="android.graphics.drawable.Drawable" />
+
+        <variable
+            name="iconDescription"
+            type="String" />
+
+        <variable
+            name="enabled"
+            type="Boolean" />
+
+        <variable
+            name="displaySurface"
+            type="com.orange.ods.compose.theme.OdsDisplaySurface" />
+
+    </data>
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <com.orange.ods.xml.component.button.OdsIconToggleButton
+            android:id="@+id/ods_icon_toggle_button"
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            app:enabled="@{enabled}"
+            app:checked="@{checked}"
+            app:uncheckedIcon="@{uncheckedIcon}"
+            app:checkedIcon="@{checkedIcon}"
+            app:iconContentDescription="@{iconDescription}"
+            app:displaySurface="@{displaySurface}" />
+
+        <!-- Invisible OdsIconToggleButton used for tests -->
+        <com.orange.ods.xml.component.button.OdsIconToggleButton
+            android:id="@+id/ods_icon_toggle_button_test"
+            android:visibility="gone"
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            app:enabled="true"
+            app:uncheckedIcon="@drawable/ic_add"
+            app:checkedIcon="@drawable/ic_add"
+            app:checked="true"
+            app:iconContentDescription="Button"
+            app:displaySurface="standard" />
+
+    </FrameLayout>
+
+</layout>

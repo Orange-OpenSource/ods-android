@@ -22,6 +22,7 @@ object Versions {
     const val appCompat = "1.5.1"
     const val browser = "1.4.0"
     const val compose = "1.3.1" //TODO: When upgrading, see TODO in OdsOutlinedTextField.kt
+    const val composeMaterial3 = "1.0.1"
     const val coil = "2.2.2"
     const val constraintLayoutCompose = "1.0.1"
     const val core = "1.9.0"

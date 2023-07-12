@@ -23,10 +23,7 @@ import androidx.compose.ui.res.painterResource
 import com.orange.ods.compose.component.OdsComposable
 import com.orange.ods.compose.component.utilities.Preview
 import com.orange.ods.compose.component.utilities.UiModePreviews
-import com.orange.ods.compose.theme.OdsDarkRippleTheme
 import com.orange.ods.compose.theme.OdsDisplaySurface
-import com.orange.ods.compose.theme.OdsLightRippleTheme
-import com.orange.ods.compose.theme.OdsRippleTheme
 import com.orange.ods.compose.theme.OdsTheme
 import com.orange.ods.utilities.extension.enable
 
@@ -58,11 +55,7 @@ fun OdsIconButton(
     displaySurface: OdsDisplaySurface = OdsDisplaySurface.Default
 ) {
     CompositionLocalProvider(
-        LocalRippleTheme provides when (displaySurface) {
-            OdsDisplaySurface.Default -> OdsRippleTheme
-            OdsDisplaySurface.Light -> OdsLightRippleTheme
-            OdsDisplaySurface.Dark -> OdsDarkRippleTheme
-        }
+        LocalRippleTheme provides displaySurface.rippleTheme
     ) {
         OdsIconButton(
             onClick = onClick,

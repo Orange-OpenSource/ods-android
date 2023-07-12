@@ -35,7 +35,7 @@ object MainDestinations {
 
     const val ComponentDetailRoute = "component"
     const val ComponentIdKey = "componentId"
-    const val ComponentVariantRoute = "component/variant"
+    const val ComponentVariantDemoRoute = "component/variant"
     const val ComponentVariantIdKey = "componentVariantId"
     const val ComponentDemoRoute = "component/demo"
 
@@ -47,7 +47,7 @@ object MainDestinations {
 
 @Composable
 fun rememberMainState(
-    themeState: MainThemeState,
+    themeState: ThemeState,
     navController: NavHostController = rememberNavController(),
     topAppBarState: MainTopAppBarState = rememberMainTopAppBarState(),
     uiFramework: MutableState<UiFramework> = rememberSaveable { mutableStateOf(UiFramework.Compose) }
@@ -57,7 +57,7 @@ fun rememberMainState(
     }
 
 class MainState(
-    val themeState: MainThemeState,
+    val themeState: ThemeState,
     val navController: NavHostController,
     val topAppBarState: MainTopAppBarState,
     val uiFramework: MutableState<UiFramework>
@@ -84,6 +84,10 @@ class MainState(
         get() = navController.currentDestination?.route
 
     fun upPress() {
+        with(topAppBarState) {
+            updateTopAppBar(MainTopAppBarState.DefaultConfiguration)
+            clearTopAppBarTabs()
+        }
         navController.navigateUp()
     }
 

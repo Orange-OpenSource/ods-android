@@ -64,7 +64,7 @@ fun ProgressCircular() {
                     modifier = Modifier.padding(horizontal = dimensionResource(id = R.dimen.spacing_m)),
                     outlinedChips = true
                 ) {
-                    Subtitle(textRes = R.string.component_progress_type)
+                    Subtitle(textRes = R.string.component_element_type)
                     OdsChoiceChip(textRes = R.string.component_progress_determinate, value = ProgressCustomizationState.Type.Determinate)
                     OdsChoiceChip(textRes = R.string.component_progress_indeterminate, value = ProgressCustomizationState.Type.Indeterminate)
                 }

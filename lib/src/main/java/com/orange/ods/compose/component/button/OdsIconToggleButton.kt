@@ -56,17 +56,13 @@ fun OdsIconToggleButton(
     onCheckedChange: (Boolean) -> Unit,
     uncheckedPainter: Painter,
     checkedPainter: Painter,
-    iconContentDescription: String,
     modifier: Modifier = Modifier,
+    iconContentDescription: String?,
     enabled: Boolean = true,
     displaySurface: OdsDisplaySurface = OdsDisplaySurface.Default
 ) {
     CompositionLocalProvider(
-        LocalRippleTheme provides when (displaySurface) {
-            OdsDisplaySurface.Default -> OdsRippleTheme
-            OdsDisplaySurface.Light -> OdsLightRippleTheme
-            OdsDisplaySurface.Dark -> OdsDarkRippleTheme
-        }
+        LocalRippleTheme provides displaySurface.rippleTheme
     ) {
         IconToggleButton(
             checked = checked,

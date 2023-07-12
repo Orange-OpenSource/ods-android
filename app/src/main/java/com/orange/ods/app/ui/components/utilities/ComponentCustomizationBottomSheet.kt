@@ -14,40 +14,23 @@ import androidx.activity.compose.BackHandler
 import androidx.compose.animation.core.animateFloatAsState
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
-import androidx.compose.foundation.layout.Box
-import androidx.compose.foundation.layout.BoxScope
-import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
-import androidx.compose.material.BottomSheetScaffoldState
-import androidx.compose.material.BottomSheetState
-import androidx.compose.material.BottomSheetValue
-import androidx.compose.material.ExperimentalMaterialApi
-import androidx.compose.material.FabPosition
-import androidx.compose.material.Icon
-import androidx.compose.material.SnackbarHost
-import androidx.compose.material.SnackbarHostState
+import androidx.compose.material.*
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.rotate
-import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.semantics.stateDescription
 import androidx.compose.ui.unit.dp
 import com.orange.ods.app.R
-import com.orange.ods.app.ui.LocalUiFramework
-import com.orange.ods.app.ui.UiFramework
 import com.orange.ods.app.ui.utilities.composable.OnResumeEffect
-import com.orange.ods.app.ui.utilities.composable.Subtitle
 import com.orange.ods.compose.component.bottomsheet.OdsBottomSheetScaffold
-import com.orange.ods.compose.component.chip.OdsChoiceChip
-import com.orange.ods.compose.component.chip.OdsChoiceChipsFlowRow
 import com.orange.ods.compose.component.list.OdsListItem
 import com.orange.ods.compose.theme.OdsTheme
 import kotlinx.coroutines.CancellationException
@@ -124,25 +107,6 @@ fun ComponentCustomizationBottomSheetScaffold(
 
     OnResumeEffect {
         tryExpandBottomSheet(coroutineScope, bottomSheetScaffoldState.bottomSheetState)
-    }
-}
-
-@Composable
-fun ComponentCustomizationUiFramework() {
-    Subtitle(textRes = R.string.component_ui_framework, horizontalPadding = true)
-    val uiFramework = LocalUiFramework.current
-    OdsChoiceChipsFlowRow(
-        selectedChip = uiFramework,
-        modifier = Modifier.padding(horizontal = dimensionResource(id = R.dimen.screen_horizontal_margin)),
-        outlinedChips = true
-    ) {
-        UiFramework.values().forEach { uiFramework ->
-            val textRes = when (uiFramework) {
-                UiFramework.Compose -> R.string.component_ui_framework_compose
-                UiFramework.Xml -> R.string.component_ui_framework_xml
-            }
-            OdsChoiceChip(textRes = textRes, value = uiFramework)
-        }
     }
 }
 

@@ -61,6 +61,7 @@ internal annotation class UiModePreviews {
         private const val DarkName = "Dark"
         private const val ButtonWidthDp = 200
         private const val ChipWidthDp = 180
+        private const val ImageItemSizeDp = 300
         private const val TabWidthDp = 100
     }
 
@@ -75,6 +76,10 @@ internal annotation class UiModePreviews {
     @Preview(name = LightName, widthDp = ChipWidthDp)
     @Preview(name = DarkName, uiMode = Configuration.UI_MODE_NIGHT_YES, showBackground = true, widthDp = ChipWidthDp)
     annotation class Chip
+
+    @Preview(name = LightName, widthDp = ImageItemSizeDp, heightDp = ImageItemSizeDp)
+    @Preview(name = DarkName, uiMode = Configuration.UI_MODE_NIGHT_YES, showBackground = true, widthDp = ImageItemSizeDp, heightDp = ImageItemSizeDp)
+    annotation class ImageItem
 
     @Preview(name = LightName, widthDp = TabWidthDp)
     @Preview(name = DarkName, uiMode = Configuration.UI_MODE_NIGHT_YES, showBackground = true, widthDp = TabWidthDp)
