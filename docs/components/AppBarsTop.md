@@ -265,7 +265,7 @@ If you want a collapsible large top app bar, you can follow these steps:
 val scrollBehavior = TopAppBarDefaults.exitUntilCollapsedScrollBehavior(rememberTopAppBarState())
 ```
 
-2 - Provide this `scrollBehavior` to the OdsLargeTopAppBar and as a modifier of your Scaffold in order to listen to the scroll event
+2 - Provide this `scrollBehavior` to the `OdsLargeTopAppBar` and as a modifier of your Scaffold in order to listen to the scroll event
 
 ```kotlin
 Scaffold(
