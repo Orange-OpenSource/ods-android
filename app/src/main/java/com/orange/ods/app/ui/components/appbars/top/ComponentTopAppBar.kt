@@ -78,7 +78,7 @@ fun ComponentTopAppBar(variant: Variant) {
 
         ComponentCustomizationBottomSheetScaffold(
             bottomSheetScaffoldState = rememberBottomSheetScaffoldState(),
-            bottomSheetContent = { CustomizationBottomSheetContent(customizationState = customizationState, isLargeVariant = isLarge) }
+            bottomSheetContent = { CustomizationBottomSheetContent(customizationState = customizationState, isLarge = isLarge) }
         ) {
             val context = LocalContext.current
             Column(
@@ -87,7 +87,10 @@ fun ComponentTopAppBar(variant: Variant) {
                 horizontalAlignment = Alignment.CenterHorizontally
             ) {
                 if (isLargeCollapsible) {
-                    OdsTextBody2(modifier = Modifier.padding(top = dimensionResource(id = R.dimen.screen_vertical_margin)), text = stringResource(id = R.string.component_app_bars_top_large_scrolling_upward))
+                    OdsTextBody2(
+                        modifier = Modifier.padding(top = dimensionResource(id = R.dimen.screen_vertical_margin)),
+                        text = stringResource(id = R.string.component_app_bars_top_large_scrolling_upward)
+                    )
                     BlinkingChevronDown(
                         modifier = Modifier
                             .rotate(180f)
@@ -177,7 +180,10 @@ fun ComponentTopAppBar(variant: Variant) {
 
                 if (isLargeCollapsible) {
                     BlinkingChevronDown(modifier = Modifier.padding(vertical = dimensionResource(id = R.dimen.spacing_s)))
-                    OdsTextBody2(modifier = Modifier.padding(bottom = dimensionResource(id = R.dimen.screen_vertical_margin)), text = stringResource(id = R.string.component_app_bars_top_large_scrolling_downward))
+                    OdsTextBody2(
+                        modifier = Modifier.padding(bottom = dimensionResource(id = R.dimen.screen_vertical_margin)),
+                        text = stringResource(id = R.string.component_app_bars_top_large_scrolling_downward)
+                    )
                 }
             }
         }
@@ -185,19 +191,21 @@ fun ComponentTopAppBar(variant: Variant) {
 }
 
 @Composable
-private fun CustomizationBottomSheetContent(customizationState: TopAppBarCustomizationState, isLargeVariant: Boolean) {
+private fun CustomizationBottomSheetContent(customizationState: TopAppBarCustomizationState, isLarge: Boolean) {
     with(customizationState) {
-        Subtitle(textRes = R.string.component_app_bars_top_large_scroll_behavior, horizontalPadding = true)
-        OdsChoiceChipsFlowRow(
-            selectedChip = scrollBehavior,
-            modifier = Modifier.padding(horizontal = dimensionResource(id = R.dimen.spacing_m)),
-            outlinedChips = true
-        ) {
-            OdsChoiceChip(textRes = R.string.component_app_bars_top_large_scroll_behavior_none, value = TopAppBarCustomizationState.ScrollBehavior.None)
-            OdsChoiceChip(
-                textRes = R.string.component_app_bars_top_large_scroll_behavior_collapsible,
-                value = TopAppBarCustomizationState.ScrollBehavior.Collapsible
-            )
+        if (isLarge) {
+            Subtitle(textRes = R.string.component_app_bars_top_large_scroll_behavior, horizontalPadding = true)
+            OdsChoiceChipsFlowRow(
+                selectedChip = scrollBehavior,
+                modifier = Modifier.padding(horizontal = dimensionResource(id = R.dimen.spacing_m)),
+                outlinedChips = true
+            ) {
+                OdsChoiceChip(textRes = R.string.component_app_bars_top_large_scroll_behavior_none, value = TopAppBarCustomizationState.ScrollBehavior.None)
+                OdsChoiceChip(
+                    textRes = R.string.component_app_bars_top_large_scroll_behavior_collapsible,
+                    value = TopAppBarCustomizationState.ScrollBehavior.Collapsible
+                )
+            }
         }
         OdsListItem(
             text = stringResource(id = R.string.component_app_bars_top_element_navigation_icon),
@@ -221,7 +229,7 @@ private fun CustomizationBottomSheetContent(customizationState: TopAppBarCustomi
                 enabled = isOverflowMenuSwitchEnabled
             )
         )
-        if (isLargeVariant) {
+        if (isLarge) {
             Subtitle(textRes = R.string.component_element_title, horizontalPadding = true)
             OdsChoiceChipsFlowRow(
                 selectedChip = title,
