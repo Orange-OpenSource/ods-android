@@ -35,7 +35,7 @@ object MainDestinations {
 
     const val ComponentDetailRoute = "component"
     const val ComponentIdKey = "componentId"
-    const val ComponentVariantRoute = "component/variant"
+    const val ComponentVariantDemoRoute = "component/variant"
     const val ComponentVariantIdKey = "componentVariantId"
     const val ComponentDemoRoute = "component/demo"
 

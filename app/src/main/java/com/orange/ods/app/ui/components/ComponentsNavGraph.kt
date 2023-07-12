@@ -46,14 +46,14 @@ fun NavGraphBuilder.addComponentsGraph(navigateToElement: (String, Long?, NavBac
             }
             ComponentDetailScreen(
                 component = component,
-                onVariantClick = { variantId -> navigateToElement(MainDestinations.ComponentVariantRoute, variantId, from) },
+                onVariantClick = { variantId -> navigateToElement(MainDestinations.ComponentVariantDemoRoute, variantId, from) },
                 onDemoClick = { navigateToElement(MainDestinations.ComponentDemoRoute, routeComponentId, from) }
             )
         }
     }
 
     composable(
-        "${MainDestinations.ComponentVariantRoute}/{${MainDestinations.ComponentVariantIdKey}}",
+        "${MainDestinations.ComponentVariantDemoRoute}/{${MainDestinations.ComponentVariantIdKey}}",
         arguments = listOf(navArgument(MainDestinations.ComponentVariantIdKey) { type = NavType.LongType })
     ) { from ->
         val arguments = requireNotNull(from.arguments)
@@ -70,7 +70,7 @@ fun NavGraphBuilder.addComponentsGraph(navigateToElement: (String, Long?, NavBac
                 LocalMainTopAppBarManager.current.setLargeTopAppBar(variant.largeTopAppBar)
                 currentVariantId = routeVariantId
             }
-            variant.screenContent(upPress = upPress)
+            variant.demoScreen(upPress = upPress)
         }
     }
 
@@ -86,7 +86,7 @@ fun NavGraphBuilder.addComponentsGraph(navigateToElement: (String, Long?, NavBac
 
         component?.let {
             LocalMainTopAppBarManager.current.updateTopAppBarTitle(component.titleRes)
-            component.screenContent?.let { it() }
+            component.demoScreen?.invoke()
         }
 
     }

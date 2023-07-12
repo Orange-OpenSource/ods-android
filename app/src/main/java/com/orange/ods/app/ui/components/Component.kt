@@ -47,7 +47,7 @@ sealed class Component(
     @StringRes val descriptionRes: Int,
     val variants: List<Variant> = emptyList(),
     val composableName: String? = null,
-    val screenContent: @Composable (() -> Unit)? = null,
+    val demoScreen: @Composable (() -> Unit)? = null,
     val imageAlignment: Alignment = Alignment.Center,
 ) {
     companion object {
@@ -71,7 +71,7 @@ sealed class Component(
         null,
         R.string.component_banners_description,
         composableName = OdsComposable.OdsBanner.name,
-        screenContent = { ComponentBanners() }
+        demoScreen = { ComponentBanners() }
     )
 
     object BottomNavigation :
@@ -81,7 +81,7 @@ sealed class Component(
             null,
             R.string.component_bottom_navigation_description,
             composableName = OdsComposable.OdsBottomNavigation.name,
-            screenContent = { ComponentBottomNavigation() },
+            demoScreen = { ComponentBottomNavigation() },
             imageAlignment = Alignment.TopCenter
         )
 
@@ -125,7 +125,7 @@ sealed class Component(
         null,
         R.string.component_checkboxes_description,
         composableName = OdsComposable.OdsCheckbox.name,
-        screenContent = { ComponentCheckboxes() }
+        demoScreen = { ComponentCheckboxes() }
     )
 
     object Chips : Component(
@@ -142,7 +142,7 @@ sealed class Component(
         null,
         R.string.component_dialogs_description,
         composableName = OdsComposable.OdsAlertDialog.name,
-        screenContent = { ComponentDialog() }
+        demoScreen = { ComponentDialog() }
     )
 
     object FloatingActionButtons : Component(
@@ -151,7 +151,7 @@ sealed class Component(
         null,
         R.string.component_floating_action_buttons_description,
         composableName = OdsComposable.OdsFloatingActionButton.name,
-        screenContent = { ComponentFloatingActionButton() }
+        demoScreen = { ComponentFloatingActionButton() }
     )
 
     object ImageItem : Component(
@@ -160,7 +160,7 @@ sealed class Component(
         null,
         R.string.component_image_item_description,
         composableName = OdsComposable.OdsImageItem.name,
-        screenContent = { ComponentImageItem() }
+        demoScreen = { ComponentImageItem() }
     )
 
     object Lists : Component(
@@ -169,7 +169,7 @@ sealed class Component(
         null,
         R.string.component_lists_description,
         composableName = OdsComposable.OdsListItem.name,
-        screenContent = { ComponentLists() },
+        demoScreen = { ComponentLists() },
         imageAlignment = Alignment.BottomCenter
     )
 
@@ -186,7 +186,7 @@ sealed class Component(
         R.drawable.il_navigation_drawers,
         null,
         R.string.component_modal_drawers_description,
-        screenContent = { ComponentModalDrawers() }
+        demoScreen = { ComponentModalDrawers() }
     )
 
     object Progress : Component(
@@ -203,7 +203,7 @@ sealed class Component(
         null,
         R.string.component_radio_buttons_description,
         composableName = OdsComposable.OdsRadioButton.name,
-        screenContent = { ComponentRadioButtons() }
+        demoScreen = { ComponentRadioButtons() }
     )
 
     object SheetsBottom : Component(
@@ -212,7 +212,7 @@ sealed class Component(
         null,
         R.string.component_sheet_bottom_description,
         composableName = OdsComposable.OdsBottomSheetScaffold.name,
-        screenContent = { ComponentSheetsBottom() }
+        demoScreen = { ComponentSheetsBottom() }
     )
 
     object Sliders : Component(
@@ -221,7 +221,7 @@ sealed class Component(
         null,
         R.string.component_sliders_description,
         composableName = OdsComposable.OdsSlider.name,
-        screenContent = { ComponentSliders() },
+        demoScreen = { ComponentSliders() },
         imageAlignment = Alignment.CenterEnd
     )
 
@@ -231,7 +231,7 @@ sealed class Component(
         R.drawable.il_snackbars_small,
         R.string.component_snackbars_description,
         composableName = OdsComposable.OdsSnackbar.name,
-        screenContent = { ComponentSnackbars() }
+        demoScreen = { ComponentSnackbars() }
     )
 
     object Switches : Component(
@@ -240,7 +240,7 @@ sealed class Component(
         R.drawable.il_switches_small,
         R.string.component_switches_description,
         composableName = OdsComposable.OdsSwitch.name,
-        screenContent = { ComponentSwitches() }
+        demoScreen = { ComponentSwitches() }
     )
 
     object TextFields : Component(
@@ -266,7 +266,7 @@ val components = Component::class.sealedSubclasses.mapNotNull { it.objectInstanc
 sealed class Variant(
     @StringRes val titleRes: Int,
     val composableName: String,
-    val screenContent: @Composable (upPress: () -> Unit) -> Unit,
+    val demoScreen: @Composable (upPress: () -> Unit) -> Unit,
     val largeTopAppBar: Boolean = false
 ) {
     val id: Long = Variant::class.sealedSubclasses.indexOf(this::class).toLong()
