@@ -10,10 +10,7 @@
 
 package com.orange.ods.app.ui.components
 
-import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
-import androidx.compose.runtime.setValue
 import androidx.navigation.NavBackStackEntry
 import androidx.navigation.NavGraphBuilder
 import androidx.navigation.NavType
@@ -30,14 +27,12 @@ fun NavGraphBuilder.addComponentsGraph(navigateToElement: (String, Long?, NavBac
         arguments = listOf(navArgument(MainDestinations.ComponentIdKey) { type = NavType.LongType })
     ) { from ->
         val arguments = requireNotNull(from.arguments)
-        var currentComponentId: Long by remember { mutableStateOf(-1) }
         val routeComponentId = arguments.getLong(MainDestinations.ComponentIdKey)
 
         val component = remember(routeComponentId) { components.firstOrNull { component -> component.id == routeComponentId } }
         component?.let {
             LocalMainTopAppBarManager.current.updateTopAppBar(MainTopAppBarState.DefaultConfiguration)
             LocalMainTopAppBarManager.current.updateTopAppBarTitle(component.titleRes)
-            currentComponentId = routeComponentId
 
             ComponentDetailScreen(
                 component = component,
@@ -52,14 +47,12 @@ fun NavGraphBuilder.addComponentsGraph(navigateToElement: (String, Long?, NavBac
         arguments = listOf(navArgument(MainDestinations.ComponentVariantIdKey) { type = NavType.LongType })
     ) { from ->
         val arguments = requireNotNull(from.arguments)
-        var currentVariantId: Long by remember { mutableStateOf(-1) }
         val routeVariantId = arguments.getLong(MainDestinations.ComponentVariantIdKey)
         val variant = remember(routeVariantId) { components.flatMap { it.variants }.firstOrNull { it.id == routeVariantId } }
 
         variant?.let {
             LocalMainTopAppBarManager.current.updateTopAppBarTitle(variant.titleRes)
             LocalMainTopAppBarManager.current.setLargeTopAppBar(variant.largeTopAppBar)
-            currentVariantId = routeVariantId
             variant.demoScreen(upPress = upPress)
         }
     }
