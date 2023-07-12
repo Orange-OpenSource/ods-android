@@ -24,7 +24,7 @@ import com.orange.ods.app.ui.LocalMainTopAppBarManager
 import com.orange.ods.app.ui.MainDestinations
 import com.orange.ods.app.ui.MainTopAppBarState
 
-fun NavGraphBuilder.addComponentsGraph(navigateToElement: (String, Long?, NavBackStackEntry) -> Unit) {
+fun NavGraphBuilder.addComponentsGraph(navigateToElement: (String, Long?, NavBackStackEntry) -> Unit, upPress: () -> Unit) {
 
     composable(
         "${MainDestinations.ComponentDetailRoute}/{${MainDestinations.ComponentIdKey}}",
@@ -70,7 +70,7 @@ fun NavGraphBuilder.addComponentsGraph(navigateToElement: (String, Long?, NavBac
                 LocalMainTopAppBarManager.current.setLargeTopAppBar(variant.largeTopAppBar)
                 currentVariantId = routeVariantId
             }
-            variant.screenContent()
+            variant.screenContent(upPress = upPress)
         }
     }
 

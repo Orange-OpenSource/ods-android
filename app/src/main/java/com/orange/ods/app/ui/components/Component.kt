@@ -275,7 +275,7 @@ val components = Component::class.sealedSubclasses.mapNotNull { it.objectInstanc
 sealed class Variant(
     @StringRes val titleRes: Int,
     val composableName: String,
-    val screenContent: @Composable () -> Unit,
+    val screenContent: @Composable (upPress: () -> Unit) -> Unit,
     val largeTopAppBar: Boolean = false
 ) {
     val id: Long = Variant::class.sealedSubclasses.indexOf(this::class).toLong()
@@ -345,6 +345,11 @@ sealed class Variant(
     object TextFieldPassword :
         Variant(R.string.component_text_field_password, OdsComposable.OdsPasswordTextField.name, { ComponentTextField(variant = TextFieldPassword) })
 
-    object TabsFixed : Variant(R.string.component_tabs_fixed, OdsComposable.OdsTabRow.name, { ComponentTabs(variant = TabsFixed) })
-    object TabsScrollable : Variant(R.string.component_tabs_scrollable, OdsComposable.OdsScrollableTabRow.name, { ComponentTabs(variant = TabsScrollable) })
+    object TabsFixed :
+        Variant(R.string.component_tabs_fixed, OdsComposable.OdsTabRow.name, { upPress -> ComponentTabs(variant = TabsFixed, upPress = upPress) })
+
+    object TabsScrollable : Variant(
+        R.string.component_tabs_scrollable,
+        OdsComposable.OdsScrollableTabRow.name,
+        { upPress -> ComponentTabs(variant = TabsScrollable, upPress = upPress) })
 }
