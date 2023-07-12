@@ -19,7 +19,7 @@ import androidx.compose.runtime.staticCompositionLocalOf
 import com.orange.ods.theme.OdsThemeConfigurationContract
 import com.orange.ods.theme.guideline.OdsGuideline
 
-val LocalThemeManager = staticCompositionLocalOf<ThemeManager> { error("CompositionLocal LocalMainThemeManager not present") }
+val LocalThemeManager = staticCompositionLocalOf<ThemeManager> { error("CompositionLocal LocalThemeManager not present") }
 val LocalOdsGuideline = staticCompositionLocalOf<OdsGuideline> { error("CompositionLocal LocalOdsGuideline not present") }
 
 interface ThemeManager {
