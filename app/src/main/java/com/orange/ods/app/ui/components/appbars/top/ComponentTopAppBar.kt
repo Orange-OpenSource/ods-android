@@ -245,23 +245,22 @@ private fun CustomizationBottomSheetContent(customizationState: TopAppBarCustomi
 @Composable
 private fun BlinkingChevronDown(modifier: Modifier = Modifier) {
     val infiniteTransition = rememberInfiniteTransition()
+    val animationSpec = infiniteRepeatable<Float>(
+        animation = tween(1000),
+        repeatMode = RepeatMode.Reverse
+    )
 
     val scale by infiniteTransition.animateFloat(
         initialValue = 1f,
         targetValue = 1.2f,
-        animationSpec = infiniteRepeatable(
-            animation = tween(1000),
-            repeatMode = RepeatMode.Reverse
-        )
+        animationSpec = animationSpec
     )
+
 
     val alpha by infiniteTransition.animateFloat(
         initialValue = 0.4f,
         targetValue = 1f,
-        animationSpec = infiniteRepeatable(
-            animation = tween(1000),
-            repeatMode = RepeatMode.Reverse
-        )
+        animationSpec = animationSpec
     )
 
     Icon(
