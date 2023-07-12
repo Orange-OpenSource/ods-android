@@ -30,21 +30,21 @@ fun rememberTopAppBarCustomizationState(
             )
         )
     },
-    titleLineNum: MutableState<TopAppBarCustomizationState.TitleLineNum> = rememberSaveable { mutableStateOf(TopAppBarCustomizationState.TitleLineNum.OneLine) },
+    titleLineCount: MutableState<TopAppBarCustomizationState.TitleLineCount> = rememberSaveable { mutableStateOf(TopAppBarCustomizationState.TitleLineCount.OneLine) },
     scrollBehavior: MutableState<TopAppBarCustomizationState.ScrollBehavior> = rememberSaveable { mutableStateOf(MainTopAppBarState.DefaultConfiguration.scrollBehavior) }
 ) =
-    remember(navigationIconEnabled, actionCount, overflowMenuEnabled, titleLineNum, scrollBehavior) {
-        TopAppBarCustomizationState(navigationIconEnabled, actionCount, overflowMenuEnabled, titleLineNum, scrollBehavior)
+    remember(navigationIconEnabled, actionCount, overflowMenuEnabled, titleLineCount, scrollBehavior) {
+        TopAppBarCustomizationState(navigationIconEnabled, actionCount, overflowMenuEnabled, titleLineCount, scrollBehavior)
     }
 
 class TopAppBarCustomizationState(
     val navigationIconEnabled: MutableState<Boolean>,
     val actionCount: MutableState<Int>,
     val overflowMenuEnabled: MutableState<Boolean>,
-    val titleLineNum: MutableState<TitleLineNum>,
+    val titleLineCount: MutableState<TitleLineCount>,
     val scrollBehavior: MutableState<ScrollBehavior>
 ) {
-    enum class TitleLineNum(val titleResId: Int) {
+    enum class TitleLineCount(val titleResId: Int) {
         OneLine(R.string.component_app_bars_top_large_title_one_line_value),
         TwoLines(R.string.component_app_bars_top_large_title_two_lines_value),
         ThreeLinesAndMore(R.string.component_app_bars_top_large_title_truncated_value)

@@ -72,7 +72,7 @@ fun ComponentTopAppBar(variant: Variant) {
 
         with(LocalMainTopAppBarManager.current) {
             updateTopAppBar(topAppBarConfiguration)
-            if (isLargeVariant) updateTopAppBarTitle(titleLineNum.value.titleResId)
+            if (isLargeVariant) updateTopAppBarTitle(titleLineCount.value.titleResId)
         }
 
         ComponentCustomizationBottomSheetScaffold(
@@ -222,17 +222,17 @@ private fun CustomizationBottomSheetContent(customizationState: TopAppBarCustomi
         if (isLargeVariant) {
             Subtitle(textRes = R.string.component_element_title, horizontalPadding = true)
             OdsChoiceChipsFlowRow(
-                selectedChip = titleLineNum,
+                selectedChip = titleLineCount,
                 modifier = Modifier
                     .padding(horizontal = dimensionResource(id = R.dimen.spacing_m))
                     .padding(bottom = dimensionResource(id = R.dimen.spacing_s)),
                 outlinedChips = true
             ) {
-                OdsChoiceChip(textRes = R.string.component_app_bars_top_large_title_one_line, value = TopAppBarCustomizationState.TitleLineNum.OneLine)
-                OdsChoiceChip(textRes = R.string.component_app_bars_top_large_title_two_lines, value = TopAppBarCustomizationState.TitleLineNum.TwoLines)
+                OdsChoiceChip(textRes = R.string.component_app_bars_top_large_title_one_line, value = TopAppBarCustomizationState.TitleLineCount.OneLine)
+                OdsChoiceChip(textRes = R.string.component_app_bars_top_large_title_two_lines, value = TopAppBarCustomizationState.TitleLineCount.TwoLines)
                 OdsChoiceChip(
                     textRes = R.string.component_app_bars_top_large_title_truncated,
-                    value = TopAppBarCustomizationState.TitleLineNum.ThreeLinesAndMore
+                    value = TopAppBarCustomizationState.TitleLineCount.ThreeLinesAndMore
                 )
             }
         }
