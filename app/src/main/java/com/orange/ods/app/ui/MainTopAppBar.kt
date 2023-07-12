@@ -155,14 +155,14 @@ private fun TopAppBarChangeThemeActionButton(onClick: () -> Unit) {
 @Composable
 private fun TopAppBarChangeModeActionButton() {
     val configuration = LocalConfiguration.current
-    val mainThemeManager = LocalThemeManager.current
+    val themeManager = LocalThemeManager.current
 
     val painterRes = if (configuration.isDarkModeEnabled) R.drawable.ic_ui_light_mode else R.drawable.ic_ui_dark_mode
     val iconDesc =
         if (configuration.isDarkModeEnabled) R.string.top_app_bar_action_change_mode_to_light_desc else R.string.top_app_bar_action_change_mode_to_dark_desc
 
     OdsTopAppBarActionButton(
-        onClick = { mainThemeManager.darkModeEnabled = !configuration.isDarkModeEnabled },
+        onClick = { themeManager.darkModeEnabled = !configuration.isDarkModeEnabled },
         painter = painterResource(id = painterRes),
         contentDescription = stringResource(id = iconDesc)
     )
