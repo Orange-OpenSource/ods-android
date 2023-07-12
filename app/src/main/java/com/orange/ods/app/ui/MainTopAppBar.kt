@@ -52,7 +52,7 @@ import com.orange.ods.compose.theme.OdsTheme
 @Composable
 fun MainTopAppBar(
     shouldShowUpNavigationIcon: Boolean,
-    topAppBarStateProvider: () -> MainTopAppBarState,
+    topAppBarState: MainTopAppBarState,
     upPress: () -> Unit,
     onSearchActionClick: () -> Unit,
     mainViewModel: MainViewModel = viewModel(),
@@ -60,10 +60,10 @@ fun MainTopAppBar(
 ) {
     val themeManager = LocalThemeManager.current
     var changeThemeDialogVisible by remember { mutableStateOf(false) }
-    val showSearchAction = topAppBarStateProvider().titleRes.value == R.string.navigation_item_search
+    val showSearchAction = topAppBarState.titleRes.value == R.string.navigation_item_search
 
-    val title = stringResource(id = topAppBarStateProvider().titleRes.value)
-    val navigationIcon: (@Composable () -> Unit)? = if (shouldShowUpNavigationIcon && topAppBarStateProvider().isNavigationIconEnabled) {
+    val title = stringResource(id = topAppBarState.titleRes.value)
+    val navigationIcon: (@Composable () -> Unit)? = if (shouldShowUpNavigationIcon && topAppBarState.isNavigationIconEnabled) {
         {
             Icon(
                 imageVector = Icons.Filled.ArrowBack,
@@ -74,19 +74,19 @@ fun MainTopAppBar(
 
     val actions: @Composable RowScope.() -> Unit = {
         if (showSearchAction) {
-            TopAppBarSearchAction(searchedText = topAppBarStateProvider().searchedText)
+            TopAppBarSearchAction(searchedText = topAppBarState.searchedText)
         } else {
-            TopAppBarActions(topAppBarStateProvider(), onSearchActionClick) { changeThemeDialogVisible = true }
+            TopAppBarActions(topAppBarState, onSearchActionClick) { changeThemeDialogVisible = true }
         }
     }
 
-    if (topAppBarStateProvider().isLarge) {
+    if (topAppBarState.isLarge) {
         OdsLargeTopAppBar(
             title = title,
             navigationIcon = navigationIcon,
             onNavigationIconClick = upPress,
             actions = actions,
-            scrollBehavior = if (topAppBarStateProvider().hasScrollBehavior) scrollBehavior else null
+            scrollBehavior = if (topAppBarState.hasScrollBehavior) scrollBehavior else null
         )
     } else {
         OdsTopAppBar(
