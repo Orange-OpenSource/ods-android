@@ -21,6 +21,7 @@ import com.orange.ods.app.ui.TopAppBarConfiguration
 
 @Composable
 fun rememberTopAppBarCustomizationState(
+    large: MutableState<Boolean>,
     navigationIconEnabled: MutableState<Boolean> = rememberSaveable { mutableStateOf(MainTopAppBarState.DefaultConfiguration.isNavigationIconEnabled) },
     actionCount: MutableState<Int> = rememberSaveable { mutableStateOf(MainTopAppBarState.DefaultConfiguration.actions.count()) },
     overflowMenuEnabled: MutableState<Boolean> = rememberSaveable {
@@ -33,11 +34,12 @@ fun rememberTopAppBarCustomizationState(
     titleLineCount: MutableState<TopAppBarCustomizationState.Title> = rememberSaveable { mutableStateOf(TopAppBarCustomizationState.Title.Short) },
     scrollBehavior: MutableState<TopAppBarCustomizationState.ScrollBehavior> = rememberSaveable { mutableStateOf(MainTopAppBarState.DefaultConfiguration.scrollBehavior) }
 ) =
-    remember(navigationIconEnabled, actionCount, overflowMenuEnabled, titleLineCount, scrollBehavior) {
-        TopAppBarCustomizationState(navigationIconEnabled, actionCount, overflowMenuEnabled, titleLineCount, scrollBehavior)
+    remember(large, navigationIconEnabled, actionCount, overflowMenuEnabled, titleLineCount, scrollBehavior) {
+        TopAppBarCustomizationState(large, navigationIconEnabled, actionCount, overflowMenuEnabled, titleLineCount, scrollBehavior)
     }
 
 class TopAppBarCustomizationState(
+    val large: MutableState<Boolean>,
     val navigationIconEnabled: MutableState<Boolean>,
     val actionCount: MutableState<Int>,
     val overflowMenuEnabled: MutableState<Boolean>,
@@ -58,8 +60,11 @@ class TopAppBarCustomizationState(
 
     val minActionCount = 0
 
-    val isCollapsible: Boolean
-        get() = scrollBehavior.value == ScrollBehavior.Collapsible
+    val isLarge: Boolean
+        get() = large.value
+    
+    val isLargeCollapsible: Boolean
+        get() = large.value && scrollBehavior.value == ScrollBehavior.Collapsible
 
     val isNavigationIconEnabled: Boolean
         get() = navigationIconEnabled.value

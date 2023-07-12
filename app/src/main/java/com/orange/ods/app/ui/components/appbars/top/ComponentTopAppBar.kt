@@ -19,6 +19,8 @@ import androidx.compose.material.Icon
 import androidx.compose.material.rememberBottomSheetScaffoldState
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.alpha
@@ -51,8 +53,7 @@ import kotlin.math.max
 @OptIn(ExperimentalMaterialApi::class)
 @Composable
 fun ComponentTopAppBar(variant: Variant) {
-    val customizationState = rememberTopAppBarCustomizationState()
-    val isLargeVariant = variant == Variant.AppBarsTopLarge
+    val customizationState = rememberTopAppBarCustomizationState(large = remember { mutableStateOf(variant == Variant.AppBarsTopLarge) })
 
     with(customizationState) {
         val customActionCount = max(0, actionCount.value - MainTopAppBarState.DefaultConfiguration.actions.size)
@@ -60,7 +61,7 @@ fun ComponentTopAppBar(variant: Variant) {
             .take(customActionCount)
             .map { TopAppBarConfiguration.Action.Custom(stringResource(id = it.textResId), it.iconResId) }
         val topAppBarConfiguration = TopAppBarConfiguration.Builder()
-            .large(isLargeVariant)
+            .large(isLarge)
             .scrollBehavior(scrollBehavior.value)
             .navigationIconEnabled(isNavigationIconEnabled)
             .actions {
@@ -72,12 +73,12 @@ fun ComponentTopAppBar(variant: Variant) {
 
         with(LocalMainTopAppBarManager.current) {
             updateTopAppBar(topAppBarConfiguration)
-            if (isLargeVariant) updateTopAppBarTitle(title.value.titleResId)
+            if (isLarge) updateTopAppBarTitle(title.value.titleResId)
         }
 
         ComponentCustomizationBottomSheetScaffold(
             bottomSheetScaffoldState = rememberBottomSheetScaffoldState(),
-            bottomSheetContent = { CustomizationBottomSheetContent(customizationState = customizationState, isLargeVariant = isLargeVariant) }
+            bottomSheetContent = { CustomizationBottomSheetContent(customizationState = customizationState, isLargeVariant = isLarge) }
         ) {
             val context = LocalContext.current
             Column(
@@ -86,7 +87,7 @@ fun ComponentTopAppBar(variant: Variant) {
                     .verticalScroll(rememberScrollState()),
                 horizontalAlignment = Alignment.CenterHorizontally
             ) {
-                if (isLargeVariant && isCollapsible) {
+                if (isLargeCollapsible) {
                     OdsTextBody2(text = stringResource(id = R.string.component_app_bars_top_large_scrolling_upward))
                     BlinkingChevronDown(
                         modifier = Modifier
@@ -100,7 +101,7 @@ fun ComponentTopAppBar(variant: Variant) {
                 ) {
                     CodeBackgroundColumn {
                         FunctionCallCode(
-                            name = if (isLargeVariant) OdsComposable.OdsLargeTopAppBar.name else OdsComposable.OdsTopAppBar.name,
+                            name = if (isLarge) OdsComposable.OdsLargeTopAppBar.name else OdsComposable.OdsTopAppBar.name,
                             exhaustiveParameters = false,
                             parameters = {
                                 title(context.getString(R.string.component_app_bars_top_regular))
@@ -146,11 +147,13 @@ fun ComponentTopAppBar(variant: Variant) {
                                     }
                                 }
 
-                                simple("scrollBehavior", "<scrollBehavior>")
+                                if (isLargeCollapsible) {
+                                    simple("scrollBehavior", "<scrollBehavior>")
+                                }
                             }
                         )
                     }
-                    if (isLargeVariant && isCollapsible) {
+                    if (isLargeCollapsible) {
                         OdsTextBody2(
                             modifier = Modifier.padding(top = dimensionResource(id = R.dimen.spacing_s), bottom = dimensionResource(id = R.dimen.spacing_xs)),
                             text = stringResource(id = R.string.component_app_bars_top_large_code_collapsing)
@@ -173,7 +176,7 @@ fun ComponentTopAppBar(variant: Variant) {
                     }
                 }
 
-                if (isLargeVariant && isCollapsible) {
+                if (isLargeCollapsible) {
                     BlinkingChevronDown(modifier = Modifier.padding(vertical = dimensionResource(id = R.dimen.spacing_s)))
                     OdsTextBody2(text = stringResource(id = R.string.component_app_bars_top_large_scrolling_downward))
                 }
