@@ -155,7 +155,7 @@ private val previewParameterValues: List<OdsLargeTopAppBarPreviewParameter>
     get() {
         val navigationIcon = @Composable {
             IconButton(onClick = {}) {
-                Icon(imageVector = Icons.Filled.ArrowBack, contentDescription = null, tint = OdsTheme.colors.component.topAppBar.barContent)
+                Icon(imageVector = Icons.Filled.ArrowBack, contentDescription = null)
             }
         }
         return listOf(

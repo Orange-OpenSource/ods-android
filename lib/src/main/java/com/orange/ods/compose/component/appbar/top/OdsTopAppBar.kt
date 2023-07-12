@@ -153,7 +153,7 @@ private fun PreviewOdsTopAppBar() = Preview {
         title = "Title",
         navigationIcon = {
             IconButton(onClick = {}) {
-                Icon(imageVector = Icons.Filled.ArrowBack, contentDescription = null, tint = OdsTheme.colors.component.topAppBar.barContent)
+                Icon(imageVector = Icons.Filled.ArrowBack, contentDescription = null)
             }
         },
         actions = {
