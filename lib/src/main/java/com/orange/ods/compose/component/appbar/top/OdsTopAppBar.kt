@@ -10,7 +10,6 @@
 
 package com.orange.ods.compose.component.appbar.top
 
-import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.ColumnScope
 import androidx.compose.foundation.layout.Row
@@ -86,7 +85,7 @@ fun OdsTopAppBar(
         actions = actions,
         backgroundColor = OdsTheme.colors.component.topAppBar.barBackground,
         contentColor = OdsTheme.colors.component.topAppBar.barContent,
-        elevation = if (elevated && !isSystemInDarkTheme()) AppBarDefaults.TopAppBarElevation else 0.dp
+        elevation = if (elevated) AppBarDefaults.TopAppBarElevation else 0.dp
     )
 }
 
