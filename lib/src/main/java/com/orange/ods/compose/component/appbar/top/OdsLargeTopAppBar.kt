@@ -134,10 +134,10 @@ private fun PreviewOdsLargeTopAppBar(@PreviewParameter(OdsLargeTopAppBarPreviewP
                     contentDescription = "Info"
                 )
                 OdsTopAppBarOverflowMenuBox(
-                    overflowIconContentDescription = "more options"
+                    overflowIconContentDescription = "More options"
                 ) {
-                    OdsDropdownMenuItem(text = "settings", onClick = { })
-                    OdsDropdownMenuItem(text = "account", onClick = { })
+                    OdsDropdownMenuItem(text = "Settings", onClick = { })
+                    OdsDropdownMenuItem(text = "Account", onClick = { })
                 }
             }
         )
