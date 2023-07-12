@@ -108,9 +108,9 @@
     <string name="component_app_bars_top_large_title_one_line">One line</string>
     <string name="component_app_bars_top_large_title_two_lines">Two lines</string>
     <string name="component_app_bars_top_large_title_truncated">Truncated</string>
-    <string name="component_app_bars_top_large_title_one_line_value">Large: One line title</string>
+    <string name="component_app_bars_top_large_title_short_value">Large: One line title</string>
     <string name="component_app_bars_top_large_title_two_lines_value">Large: Two lines title\nis allowed in top app bar</string>
-    <string name="component_app_bars_top_large_title_truncated_value">Large: Title will be truncated if it is too long to fit in the top app bar cause the maximum lines number for the title display in a large top app bar is two.</string>
+    <string name="component_app_bars_top_large_title_long_value">Large: Title will be truncated if it is too long to fit in the top app bar cause the maximum lines number for the title display in a large top app bar is two.</string>
     <string name="component_app_bars_top_large_scrolling_upward">Scrolling upward collapses the top app bar</string>
     <string name="component_app_bars_top_large_scrolling_downward">Scrolling downward expands the top app bar</string>
     <string name="component_app_bars_top_large_code_collapsing">Define and connect scroll behavior:</string>
