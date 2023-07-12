@@ -83,7 +83,7 @@ fun MainTopAppBar(
     if (topAppBarStateProvider().isLarge) {
         OdsLargeTopAppBar(
             title = title,
-            navigationIcon = navigationIcon ?: { },
+            navigationIcon = navigationIcon,
             onNavigationIconClick = upPress,
             actions = actions,
             scrollBehavior = if (topAppBarStateProvider().hasScrollBehavior) scrollBehavior else null
