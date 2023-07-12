@@ -124,7 +124,7 @@ fun MainScreen(themeConfigurations: Set<OdsThemeConfigurationContract>, mainView
                             SystemBarsColorSideEffect()
                             MainTopAppBar(
                                 shouldShowUpNavigationIcon = !mainState.shouldShowBottomBar,
-                                topAppBarStateProvider = { mainState.topAppBarState },
+                                topAppBarState = mainState.topAppBarState,
                                 upPress = mainState::upPress,
                                 onSearchActionClick = {
                                     mainState.navController.navigate(MainDestinations.SearchRoute)
