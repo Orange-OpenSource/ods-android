@@ -43,7 +43,7 @@ fun rememberMainTopAppBarState(
     navigationIconEnabled: MutableState<Boolean> = rememberSaveable { mutableStateOf(MainTopAppBarState.DefaultConfiguration.isNavigationIconEnabled) },
     searchedText: MutableState<TextFieldValue> = remember { mutableStateOf(TextFieldValue("")) },
     large: MutableState<Boolean> = rememberSaveable { mutableStateOf(false) },
-    scrollBehavior: MutableState<TopAppBarCustomizationState.ScrollBehavior> = rememberSaveable { mutableStateOf(TopAppBarCustomizationState.ScrollBehavior.Collapsible) },
+    scrollBehavior: MutableState<TopAppBarCustomizationState.ScrollBehavior> = rememberSaveable { mutableStateOf(MainTopAppBarState.DefaultConfiguration.scrollBehavior) },
     tabsState: MainTabsState = rememberMainTabsState(),
 ) =
     remember(titleRes, actions, searchedText, navigationIconEnabled, large, scrollBehavior, tabsState) {
