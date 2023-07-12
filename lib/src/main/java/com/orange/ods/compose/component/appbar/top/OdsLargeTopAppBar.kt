@@ -69,7 +69,7 @@ fun OdsLargeTopAppBar(
         derivedStateOf {
             if (scrollBehavior != null) {
                 when (scrollBehavior.state.collapsedFraction) {
-                    in 0.0..stateChangeFraction -> 1 - (scrollBehavior.state.collapsedFraction * 1.5)
+                    in 0.0..stateChangeFraction -> 1 - (scrollBehavior.state.collapsedFraction * (1f / stateChangeFraction))
                     in (stateChangeFraction + 0.15)..1.0 -> 0 + scrollBehavior.state.collapsedFraction
                     else -> 0
                 }.toFloat()
