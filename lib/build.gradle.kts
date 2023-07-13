@@ -68,6 +68,13 @@ android {
     sourceSets.configureEach {
         java.srcDir("$buildDir/generated/ksp/$name/kotlin/")
     }
+
+    publishing {
+        singleVariant("release") {
+            withSourcesJar()
+            withJavadocJar()
+        }
+    }
 }
 
 dependencies {

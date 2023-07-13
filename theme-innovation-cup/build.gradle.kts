@@ -45,6 +45,13 @@ android {
         jvmTarget = "11"
         allWarningsAsErrors = true
     }
+
+    publishing {
+        singleVariant("release") {
+            withSourcesJar()
+            withJavadocJar()
+        }
+    }
 }
 
 dependencies {
