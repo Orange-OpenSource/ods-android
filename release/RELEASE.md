@@ -117,7 +117,7 @@ This file lists all the steps to follow when releasing a new version of ODS Andr
 
 - Progress through the various submission steps.
 
-- When step is `Store submissions`, select `Closed beta with Google Groups`, set `Email addresses` to `odsapp@googlegroups.com` and click `Go to store submission`.
+- When step is `Store submissions`, select `Closed beta with Google Groups`, set `Email addresses` to `odsapp@googlegroups.com` and click `Go for store submission`.
 
     ![OMA Portal store submission](images/google_play_store_release_02.png)<br /><br />
 
