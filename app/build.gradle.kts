@@ -112,38 +112,32 @@ dependencies {
     implementation(project(":lib-xml"))
     implementation(project(":theme-innovation-cup"))
 
-    implementation(Dependencies.composeMaterial3)
-    implementation(Dependencies.coreKtx)
-    implementation(Dependencies.kotlinReflect)
-    implementation(Dependencies.appCompat)
-    implementation(Dependencies.material)
-    implementation(Dependencies.composeUi)
-    implementation(Dependencies.lifecycleViewModelKtx)
-    implementation(Dependencies.composeUiToolingPreview)
-    implementation(Dependencies.lifecycleRuntimeKtx)
-    implementation(Dependencies.activityCompose)
-    implementation(Dependencies.navigationCompose)
-    implementation(Dependencies.accompanistSystemUiController)
+    implementation(Dependencies.accompanistFlowLayout)
     implementation(Dependencies.accompanistPager)
     implementation(Dependencies.accompanistPagerIndicators)
-    implementation(Dependencies.accompanistFlowLayout)
-    implementation(platform(Dependencies.firebaseBom))
-    implementation(Dependencies.firebaseCrashlytics)
-    implementation(Dependencies.webkit)
+    implementation(Dependencies.accompanistSystemUiController)
+    implementation(Dependencies.activityCompose)
+    implementation(Dependencies.appCompat)
     implementation(Dependencies.browser)
-    implementation(Dependencies.hiltAndroid)
-    kapt(Dependencies.hiltCompiler)
-    implementation(Dependencies.dataStorePreferences)
     implementation(Dependencies.coil)
     implementation(Dependencies.coilCompose)
+    implementation(Dependencies.composeMaterial3)
+    implementation(Dependencies.composeUi)
+    implementation(Dependencies.composeUiTooling)
+    implementation(Dependencies.composeUiToolingPreview)
+    implementation(Dependencies.coreKtx)
+    implementation(Dependencies.dataStorePreferences)
+    implementation(platform(Dependencies.firebaseBom))
+    implementation(Dependencies.firebaseCrashlytics)
+    implementation(Dependencies.hiltAndroid)
+    kapt(Dependencies.hiltCompiler)
+    implementation(Dependencies.kotlinReflect)
+    implementation(Dependencies.lifecycleRuntimeKtx)
+    implementation(Dependencies.lifecycleViewModelKtx)
+    implementation(Dependencies.material)
+    implementation(Dependencies.navigationCompose)
     implementation(Dependencies.timber)
-
-    debugImplementation(Dependencies.composeUiTooling)
-}
-
-// Allow references to generated code
-kapt {
-    correctErrorTypes = true
+    implementation(Dependencies.webkit)
 }
 
 tasks.register<Copy>("copyChangelog") {

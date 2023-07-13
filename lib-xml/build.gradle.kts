@@ -12,39 +12,11 @@ import com.orange.ods.gradle.Dependencies
 import com.orange.ods.gradle.Versions
 
 plugins {
-    id("com.android.library")
-    id("kotlin-android")
+    id("library")
     id("kotlin-kapt")
-    id("maven-central-publish")
 }
 
 android {
-    compileSdk = Versions.compileSdk
-
-    defaultConfig {
-        minSdk = Versions.minSdk
-        testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
-        consumerProguardFile("consumer-rules.pro")
-    }
-
-    buildTypes {
-        release {
-            isMinifyEnabled = false
-            proguardFiles(getDefaultProguardFile("proguard-android-optimize.txt"), file("proguard-rules.pro"))
-        }
-    }
-
-    compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_11
-        targetCompatibility = JavaVersion.VERSION_11
-    }
-
-    kotlinOptions {
-        jvmTarget = "11"
-        allWarningsAsErrors = true
-        freeCompilerArgs = freeCompilerArgs + "-opt-in=kotlin.RequiresOptIn"
-    }
-
     buildFeatures {
         compose = true
         viewBinding = true
@@ -54,22 +26,15 @@ android {
     composeOptions {
         kotlinCompilerExtensionVersion = Versions.compose
     }
-
-    publishing {
-        singleVariant("release") {
-            withSourcesJar()
-            withJavadocJar()
-        }
-    }
 }
 
 dependencies {
     implementation(project(":lib"))
 
     implementation(Dependencies.accompanistDrawablePainter)
+    implementation(Dependencies.appCompat)
     implementation(Dependencies.composeMaterial)
     implementation(Dependencies.composeUi)
-    implementation(Dependencies.kotlinStdlibJdk8)
 
     testImplementation(Dependencies.jUnit)
     androidTestImplementation(Dependencies.testExtJUnit)
