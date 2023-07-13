@@ -17,9 +17,13 @@ plugins {
     id("kotlin-parcelize")
 }
 
+android {
+    namespace = "com.orange.ods.theme.orange"
+}
+
 dependencies {
     implementation(project(":theme-contract"))
-    
+
     implementation(Dependencies.composeMaterial)
     implementation(Dependencies.hiltAndroid)
     kapt(Dependencies.hiltCompiler)

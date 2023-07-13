@@ -17,6 +17,10 @@ plugins {
     id("kotlin-parcelize")
 }
 
+android {
+    namespace = "com.orange.ods.theme.innovationcup"
+}
+
 dependencies {
     implementation(project(":theme-contract"))
 

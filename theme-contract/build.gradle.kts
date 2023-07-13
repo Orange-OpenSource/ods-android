@@ -15,6 +15,8 @@ plugins {
 }
 
 android {
+    namespace = "com.orange.ods.theme"
+    
     buildFeatures {
         compose = true
     }

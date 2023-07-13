@@ -17,6 +17,8 @@ plugins {
 }
 
 android {
+    namespace = "com.orange.ods.xml"
+    
     buildFeatures {
         compose = true
         viewBinding = true

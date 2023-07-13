@@ -27,6 +27,8 @@ plugins {
 }
 
 android {
+    namespace = "com.orange.ods.app"
+    
     compileSdk = Versions.compileSdk
 
     defaultConfig {

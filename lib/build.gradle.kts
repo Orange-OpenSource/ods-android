@@ -26,6 +26,8 @@ plugins {
 val previewThemeConfigurationClass = "com.orange.ods.theme.orange.OrangeThemeConfiguration"
 
 android {
+    namespace = "com.orange.ods"
+
     defaultConfig {
         buildConfigField("com.orange.ods.theme.OdsThemeConfigurationContract", "PREVIEW_THEME_CONFIGURATION", "new $previewThemeConfigurationClass()")
     }
