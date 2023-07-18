@@ -48,22 +48,16 @@ fun MainBottomNavigation(items: Array<BottomNavigationSections>, currentRoute: S
 
 fun NavGraphBuilder.addBottomNavigationGraph(navigateToElement: (String, Long?, NavBackStackEntry) -> Unit) {
     composable(BottomNavigationSections.Guidelines.route) { from ->
-        val topAppBarConfiguration = MainTopAppBarState.DefaultConfiguration.newBuilder()
-            .prependAction(TopAppBarConfiguration.Action.Search)
-            .build()
-        LocalMainTopAppBarManager.current.updateTopAppBar(topAppBarConfiguration)
+        LocalMainTopAppBarManager.current.updateTopAppBar(MainTopAppBarState.DefaultWithSearchActionConfiguration)
         GuidelinesScreen(onGuidelineClick = { route -> navigateToElement(route, null, from) })
     }
     composable(BottomNavigationSections.Components.route) { from ->
-        val topAppBarConfiguration = MainTopAppBarState.DefaultConfiguration.newBuilder()
-            .prependAction(TopAppBarConfiguration.Action.Search)
-            .build()
-        LocalMainTopAppBarManager.current.updateTopAppBar(topAppBarConfiguration)
+        LocalMainTopAppBarManager.current.updateTopAppBar(MainTopAppBarState.DefaultWithSearchActionConfiguration)
         ComponentsScreen(onComponentClick = { id -> navigateToElement(MainDestinations.ComponentDetailRoute, id, from) })
     }
-    composable(BottomNavigationSections.Modules.route) {
-        LocalMainTopAppBarManager.current.updateTopAppBar(MainTopAppBarState.DefaultConfiguration)
-        ModulesScreen()
+    composable(BottomNavigationSections.Modules.route) { from ->
+        LocalMainTopAppBarManager.current.updateTopAppBar(MainTopAppBarState.DefaultWithSearchActionConfiguration)
+        ModulesScreen(onModuleClick = { id -> navigateToElement(MainDestinations.ModuleDetailRoute, id, from) })
     }
     composable(BottomNavigationSections.About.route) { from ->
         val context = LocalContext.current

@@ -10,33 +10,56 @@
 
 package com.orange.ods.app.ui.modules
 
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.ColumnScope
 import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.wrapContentSize
-import androidx.compose.material.Text
+import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.runtime.Composable
-import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.res.dimensionResource
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
-import androidx.compose.ui.text.style.TextAlign
 import com.orange.ods.app.R
 import com.orange.ods.app.ui.LocalMainTopAppBarManager
-import com.orange.ods.compose.theme.OdsTheme
+import com.orange.ods.app.ui.utilities.DrawableManager
+import com.orange.ods.compose.component.card.OdsVerticalImageFirstCard
 
 @Composable
-fun ModulesScreen() {
+fun ModulesScreen(onModuleClick: (Long) -> Unit) {
+    val context = LocalContext.current
     LocalMainTopAppBarManager.current.updateTopAppBarTitle(R.string.navigation_item_modules)
+    val scrollState = rememberScrollState()
+
     Column(
         modifier = Modifier
             .fillMaxSize()
-            .wrapContentSize(Alignment.Center)
+            .verticalScroll(scrollState)
+            .padding(dimensionResource(id = R.dimen.spacing_m)),
+        verticalArrangement = Arrangement.spacedBy(dimensionResource(id = R.dimen.spacing_m))
     ) {
-        Text(
-            text = stringResource(id = R.string.modules_coming_soon),
-            modifier = Modifier.align(Alignment.CenterHorizontally),
-            textAlign = TextAlign.Center,
-            color = OdsTheme.colors.onSurface,
-            style = OdsTheme.typography.body1
-        )
+        modules.sortedBy { context.getString(it.titleRes) }.forEach { module ->
+            ModuleCard(module = module, onModuleClick = onModuleClick)
+        }
     }
+}
+
+@Composable
+private fun ColumnScope.ModuleCard(module: Module, onModuleClick: (Long) -> Unit) {
+    val imageResId = DrawableManager.getDrawableResIdForCurrentTheme(resId = module.imageRes)
+    OdsVerticalImageFirstCard(
+        title = stringResource(id = module.titleRes),
+        image = painterResource(id = imageResId),
+        imageBackgroundColor = Color(Module.ImageBackgroundColor),
+        imageContentScale = ContentScale.Fit,
+        imageAlignment = module.imageAlignment,
+        onCardClick = {
+            onModuleClick(module.id)
+        },
+    )
 }

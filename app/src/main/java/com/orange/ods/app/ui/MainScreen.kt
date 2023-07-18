@@ -46,6 +46,7 @@ import com.orange.ods.app.ui.components.addComponentsGraph
 import com.orange.ods.app.ui.components.tabs.FixedTabRow
 import com.orange.ods.app.ui.components.tabs.ScrollableTabRow
 import com.orange.ods.app.ui.guidelines.addGuidelinesGraph
+import com.orange.ods.app.ui.modules.addModulesGraph
 import com.orange.ods.app.ui.search.SearchScreen
 import com.orange.ods.app.ui.utilities.extension.isDarkModeEnabled
 import com.orange.ods.app.ui.utilities.extension.isOrange
@@ -223,6 +224,7 @@ private fun NavGraphBuilder.mainNavGraph(
 
     addGuidelinesGraph()
     addComponentsGraph(navigateToElement, upPress)
+    addModulesGraph(navigateToElement, upPress)
     addAboutGraph()
 
     composable(

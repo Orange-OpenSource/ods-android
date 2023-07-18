@@ -372,7 +372,13 @@
     <string name="component_tab_icon_top">Top</string>
 
     <!-- Modules -->
-    <string name="modules_coming_soon">Coming soon…</string>
+    <string name="module_customize">Customize the module</string>
+    <string name="module_view_demo">View demo</string>
+
+    <!-- Modules About -->
+    <string name="module_about">About</string>
+    <string name="module_about_description">An « About » screen should be displayed in all Orange applications to show the application name, software version as well as all legal data protection, privacy, terms of service and accessibility statement.</string>
+    <string name="module_about_customization">Some items such as: illustration (customizable), app name, privacy policy, terms of service and accessibility statement are mandatory.\nTo this standard screen you can add optional components:</string>
 
     <!-- About -->
     <string name="about_app_name">Orange Design System</string>

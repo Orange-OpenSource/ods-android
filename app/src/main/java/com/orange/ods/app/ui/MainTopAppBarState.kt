@@ -68,6 +68,10 @@ class MainTopAppBarState(
             isNavigationIconEnabled = true,
             actions = listOf(TopAppBarConfiguration.Action.Theme, TopAppBarConfiguration.Action.Mode)
         )
+
+        val DefaultWithSearchActionConfiguration = DefaultConfiguration.newBuilder()
+            .prependAction(TopAppBarConfiguration.Action.Search)
+            .build()
     }
 
     // ----------------------------------------------------------
