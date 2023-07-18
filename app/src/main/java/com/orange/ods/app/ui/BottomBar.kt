@@ -25,6 +25,7 @@ import com.orange.ods.app.ui.about.AboutScreen
 import com.orange.ods.app.ui.about.UrlAboutItem
 import com.orange.ods.app.ui.about.aboutItems
 import com.orange.ods.app.ui.about.id
+import com.orange.ods.app.ui.modules.ModulesNavigation
 import com.orange.ods.app.ui.components.ComponentsNavigation
 import com.orange.ods.app.ui.components.ComponentsScreen
 import com.orange.ods.app.ui.guidelines.GuidelinesScreen
@@ -53,8 +54,8 @@ fun NavGraphBuilder.addBottomBarGraph(navigateToElement: (String, Long?, NavBack
     composable(BottomBarItem.Components.route) { from ->
         ComponentsScreen(onComponentClick = { id -> navigateToElement(ComponentsNavigation.ComponentDetailRoute, id, from) })
     }
-    composable(BottomBarItem.Modules.route) {
-        ModulesScreen()
+    composable(BottomBarItem.Modules.route) { from ->
+        ModulesScreen(onModuleClick = { id -> navigateToElement(ModulesNavigation.ModuleDetailRoute, id, from) })
     }
     composable(BottomBarItem.About.route) { from ->
         val context = LocalContext.current

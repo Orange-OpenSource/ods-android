@@ -16,6 +16,7 @@ import androidx.navigation.compose.composable
 import com.orange.ods.app.ui.about.addAboutGraph
 import com.orange.ods.app.ui.components.addComponentsGraph
 import com.orange.ods.app.ui.guidelines.addGuidelinesGraph
+import com.orange.ods.app.ui.modules.addModulesGraph
 import com.orange.ods.app.ui.search.SearchScreen
 
 /**
@@ -36,6 +37,7 @@ fun NavGraphBuilder.appNavGraph(
 
     addGuidelinesGraph()
     addComponentsGraph(navigateToElement, upPress)
+    addModulesGraph(navigateToElement, upPress)
     addAboutGraph()
 
     composable(
