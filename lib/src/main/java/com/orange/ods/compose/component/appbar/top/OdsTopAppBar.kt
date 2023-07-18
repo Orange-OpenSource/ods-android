@@ -110,7 +110,7 @@ fun OdsTopAppBarActionButton(
 ) {
     OdsIconButton(
         onClick = onClick,
-        painter = painter,
+        graphicsObject = painter,
         contentDescription = contentDescription,
         modifier = modifier,
         enabled = enabled,
