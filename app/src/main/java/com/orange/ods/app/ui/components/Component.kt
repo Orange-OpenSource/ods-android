@@ -133,6 +133,15 @@ sealed class Component(
         composableName = OdsComposable.OdsImageItem.name
     )
 
+    object ListItem : Component(
+        R.string.component_list_item,
+        R.drawable.il_list_item,
+        null,
+        R.string.component_lists_description,
+        composableName = OdsComposable.OdsListItem.name,
+        imageAlignment = Alignment.BottomCenter
+    )
+
     object Lists : Component(
         R.string.component_lists,
         R.drawable.il_lists,
