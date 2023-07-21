@@ -35,7 +35,7 @@ fun ModuleDetailColumn(
     Column(
         modifier = Modifier
             .verticalScroll(rememberScrollState())
-            .padding(bottom = dimensionResource(id = com.orange.ods.R.dimen.screen_vertical_margin))
+            .padding(bottom = dimensionResource(id = R.dimen.screen_vertical_margin))
     ) {
         DetailScreenHeader(
             imageRes = DrawableManager.getDrawableResIdForCurrentTheme(resId = module.imageRes),
@@ -43,7 +43,7 @@ fun ModuleDetailColumn(
             descriptionRes = module.descriptionRes
         )
 
-        Column(modifier = Modifier.padding(dimensionResource(id = com.orange.ods.R.dimen.screen_horizontal_margin))) {
+        Column(modifier = Modifier.padding(dimensionResource(id = R.dimen.screen_horizontal_margin))) {
             Subtitle(textRes = com.orange.ods.app.R.string.module_customize)
             content()
 

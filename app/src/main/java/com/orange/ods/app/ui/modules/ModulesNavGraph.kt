@@ -20,13 +20,6 @@ import com.orange.ods.module.about.OdsAboutViewModel
 import com.orange.ods.module.about.navigation.aboutScreen
 import com.orange.ods.module.about.navigation.navigateToOdsAboutDemo
 
-object ModulesNavigation {
-    const val ModuleDetailRoute = "component"
-    const val ModuleDemoRoute = "module/demo"
-
-    const val ModuleIdKey = "moduleId"
-}
-
 /**
  * Modules demo destinations.
  */
