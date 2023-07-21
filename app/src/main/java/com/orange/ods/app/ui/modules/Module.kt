@@ -15,6 +15,7 @@ import androidx.annotation.StringRes
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import com.orange.ods.app.R
+import com.orange.ods.app.ui.modules.about.AboutCustomizationContent
 
 val modules = Module::class.sealedSubclasses.mapNotNull { it.objectInstance }
 
@@ -22,7 +23,8 @@ sealed class Module(
     @StringRes val titleRes: Int,
     @DrawableRes val imageRes: Int,
     @StringRes val descriptionRes: Int,
-    val configurationScreen: @Composable (upPress: () -> Unit) -> Unit,
+    val customizationContent: @Composable (onDemoClick: () -> Unit) -> Unit,
+    val demoScreen: @Composable (upPress: () -> Unit) -> Unit,
     val imageAlignment: Alignment = Alignment.Center,
 ) {
     companion object {
@@ -35,6 +37,7 @@ sealed class Module(
         R.string.module_about,
         R.drawable.il_about,
         R.string.module_about_description,
-        { _ -> },
+        customizationContent = { onDemoClick -> AboutCustomizationContent(onDemoClick = onDemoClick) },
+        demoScreen = { _ -> },
     )
 }
