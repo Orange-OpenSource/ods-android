@@ -8,6 +8,8 @@
  * /
  */
 
+rootProject.name = "Orange Design System Android"
+
 include(":app")
 include(":composable-processor")
 include(":lib")
@@ -15,5 +17,4 @@ include(":lib-xml")
 include(":theme-orange")
 include(":theme-innovation-cup")
 include(":theme-contract")
-
-rootProject.name = "Orange Design System Android"
+include(":module-about")
