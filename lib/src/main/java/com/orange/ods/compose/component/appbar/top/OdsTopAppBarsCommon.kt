@@ -24,24 +24,29 @@ import androidx.compose.ui.graphics.painter.Painter
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.res.stringResource
 import com.orange.ods.R
-import com.orange.ods.compose.component.OdsComposable
+import com.orange.ods.compose.component.content.OdsComponentContent
 import com.orange.ods.compose.component.content.OdsComponentIcon
 import com.orange.ods.compose.component.menu.OdsDropdownMenu
 import com.orange.ods.compose.component.menu.OdsDropdownMenuItem
 import com.orange.ods.compose.theme.OdsTheme
 
 @Composable
-internal fun OdsTopAppBarOverflowMenu(items: List<OdsTopAppBarOverflowMenuActionItem>) {
-    Box {
-        var showMenu by remember { mutableStateOf(false) }
-        val contentDescription = stringResource(id = R.string.top_app_bar_overflow_menu_content_description)
-        val dropdownMenuAction = OdsTopAppBarActionButton(Icons.Filled.MoreVert, contentDescription, true) { showMenu = !showMenu }
-        dropdownMenuAction.Content()
-        OdsDropdownMenu(
-            items = items,
-            expanded = showMenu,
-            onDismissRequest = { showMenu = false }
-        )
+internal fun OdsTopAppBarActions(actions: List<OdsComponentContent>, overflowMenuActions: List<OdsTopAppBarOverflowMenuActionItem>) {
+    val maxTotalActionCount = 3
+    val maxActionCount = if (overflowMenuActions.isNotEmpty()) maxTotalActionCount - 1 else maxTotalActionCount
+    actions.take(maxActionCount).forEach { it.Content() }
+    if (overflowMenuActions.isNotEmpty()) {
+        Box {
+            var showMenu by remember { mutableStateOf(false) }
+            val contentDescription = stringResource(id = R.string.top_app_bar_overflow_menu_content_description)
+            val dropdownMenuAction = OdsTopAppBarActionButton(Icons.Filled.MoreVert, contentDescription, true) { showMenu = !showMenu }
+            dropdownMenuAction.Content()
+            OdsDropdownMenu(
+                items = overflowMenuActions,
+                expanded = showMenu,
+                onDismissRequest = { showMenu = false }
+            )
+        }
     }
 }
 

@@ -79,10 +79,7 @@ fun OdsTopAppBarInternal(
         title = { Text(text = title, style = OdsTheme.typography.h6) },
         modifier = modifier,
         navigationIcon = navigationIcon?.let { { it.Content() } },
-        actions = {
-            actions.forEach { it.Content() }
-            if (overflowMenuActions.isNotEmpty()) OdsTopAppBarOverflowMenu(items = overflowMenuActions)
-        },
+        actions = { OdsTopAppBarActions(actions = actions, overflowMenuActions = overflowMenuActions) },
         backgroundColor = OdsTheme.colors.component.topAppBar.barBackground,
         contentColor = OdsTheme.colors.component.topAppBar.barContent,
         elevation = if (elevated) AppBarDefaults.TopAppBarElevation else 0.dp

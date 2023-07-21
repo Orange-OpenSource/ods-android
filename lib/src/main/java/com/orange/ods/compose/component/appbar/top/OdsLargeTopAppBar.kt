@@ -120,10 +120,7 @@ fun OdsLargeTopAppBarInternal(
         },
         modifier = modifier,
         navigationIcon = { navigationIcon?.Content() },
-        actions = {
-            actions.forEach { it.Content() }
-            if (overflowMenuActions.isNotEmpty()) OdsTopAppBarOverflowMenu(items = overflowMenuActions)
-        },
+        actions = { OdsTopAppBarActions(actions = actions, overflowMenuActions = overflowMenuActions) },
         colors = TopAppBarDefaults.largeTopAppBarColors(
             containerColor = OdsTheme.colors.component.topAppBar.barBackground,
             navigationIconContentColor = contentColor,
