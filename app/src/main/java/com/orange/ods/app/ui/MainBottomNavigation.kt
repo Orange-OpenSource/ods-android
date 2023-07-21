@@ -13,7 +13,6 @@ package com.orange.ods.app.ui
 import androidx.annotation.DrawableRes
 import androidx.annotation.StringRes
 import androidx.compose.runtime.Composable
-import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.navigation.NavBackStackEntry
@@ -21,13 +20,9 @@ import androidx.navigation.NavGraphBuilder
 import androidx.navigation.compose.composable
 import com.orange.ods.app.R
 import com.orange.ods.app.ui.about.AboutScreen
-import com.orange.ods.app.ui.about.UrlAboutItem
-import com.orange.ods.app.ui.about.aboutItems
-import com.orange.ods.app.ui.about.id
 import com.orange.ods.app.ui.components.ComponentsScreen
 import com.orange.ods.app.ui.guidelines.GuidelinesScreen
 import com.orange.ods.app.ui.modules.ModulesScreen
-import com.orange.ods.app.ui.utilities.launchUrl
 import com.orange.ods.compose.component.bottomnavigation.OdsBottomNavigation
 import com.orange.ods.compose.component.bottomnavigation.OdsBottomNavigationItem
 import com.orange.ods.compose.component.bottomnavigation.OdsBottomNavigationItemIcon
@@ -59,17 +54,17 @@ fun NavGraphBuilder.addBottomNavigationGraph(navigateToElement: (String, Long?, 
         LocalMainTopAppBarManager.current.updateTopAppBar(MainTopAppBarState.DefaultWithSearchActionConfiguration)
         ModulesScreen(onModuleClick = { id -> navigateToElement(MainDestinations.ModuleDetailRoute, id, from) })
     }
-    composable(BottomNavigationSections.About.route) { from ->
-        val context = LocalContext.current
+    composable(BottomNavigationSections.About.route) { _ ->
+        //val context = LocalContext.current
         LocalMainTopAppBarManager.current.updateTopAppBar(MainTopAppBarState.DefaultConfiguration)
-        AboutScreen(onAboutItemClick = { id ->
+        AboutScreen()/*onAboutItemClick = { id ->
             val aboutItem = aboutItems.firstOrNull { it.id == id }
             if (aboutItem is UrlAboutItem) {
                 context.launchUrl(aboutItem.url)
             } else {
                 navigateToElement(MainDestinations.AboutItemDetailRoute, id, from)
             }
-        })
+        })*/
     }
 }
 

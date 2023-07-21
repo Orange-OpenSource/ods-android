@@ -11,38 +11,32 @@
 package com.orange.ods.app.ui.about
 
 import android.content.Context
-import androidx.compose.foundation.Image
-import androidx.compose.foundation.clickable
-import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.Spacer
-import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.height
-import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.rememberScrollState
-import androidx.compose.foundation.verticalScroll
 import androidx.compose.runtime.Composable
-import androidx.compose.ui.Modifier
-import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
-import androidx.compose.ui.res.dimensionResource
-import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import com.orange.ods.app.R
-import com.orange.ods.app.ui.LocalMainTopAppBarManager
-import com.orange.ods.app.ui.utilities.DrawableManager
 import com.orange.ods.app.ui.utilities.compat.PackageManagerCompat
 import com.orange.ods.app.ui.utilities.extension.versionCode
-import com.orange.ods.compose.component.list.OdsListItem
-import com.orange.ods.compose.text.OdsTextCaption
-import com.orange.ods.compose.text.OdsTextH4
 import com.orange.ods.extension.ifNotNull
 import com.orange.ods.extension.orElse
+import com.orange.ods.module.about.AboutModule
+import com.orange.ods.module.about.AboutModuleConfiguration
 
 @Composable
-fun AboutScreen(onAboutItemClick: (Long) -> Unit) {
-    LocalMainTopAppBarManager.current.updateTopAppBarTitle(R.string.navigation_item_about)
+fun AboutScreen() {//onAboutItemClick: (Long) -> Unit) {
+//    LocalMainTopAppBarManager.current.updateTopAppBarTitle(R.string.navigation_item_about)
 
-    Column(
+    val context = LocalContext.current
+
+    AboutModule(
+        configuration = AboutModuleConfiguration(
+            appName = stringResource(id = R.string.about_app_name),
+            appVersion = getVersion(context),
+            appDescription = stringResource(id = R.string.about_description)
+        )
+    )
+
+    /*     Column(
         modifier = Modifier
             .verticalScroll(rememberScrollState())
             .padding(bottom = dimensionResource(id = com.orange.ods.R.dimen.screen_vertical_margin))
@@ -72,12 +66,12 @@ fun AboutScreen(onAboutItemClick: (Long) -> Unit) {
 
         Spacer(modifier = Modifier.height(dimensionResource(id = com.orange.ods.R.dimen.spacing_m)))
 
-        for (aboutItem in aboutItems) {
-            OdsListItem(text = stringResource(id = aboutItem.titleRes), modifier = Modifier.clickable {
-                onAboutItemClick(aboutItem.id)
-            })
-        }
-    }
+         for (aboutItem in aboutItems) {
+             OdsListItem(text = stringResource(id = aboutItem.titleRes), modifier = Modifier.clickable {
+                 onAboutItemClick(aboutItem.id)
+             })
+         }
+     }*/
 }
 
 private fun getVersion(context: Context): String {
