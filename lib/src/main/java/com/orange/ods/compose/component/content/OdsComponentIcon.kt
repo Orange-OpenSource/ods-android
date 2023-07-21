@@ -23,10 +23,10 @@ import com.orange.ods.utilities.extension.orElse
  * An icon in a component.
  */
 abstract class OdsComponentIcon protected constructor(
-    protected val graphicsObject: Any,
-    protected val contentDescription: String,
-    protected val enabled: Boolean = true,
-    protected open var onClick: (() -> Unit)? = null
+    private val graphicsObject: Any,
+    private val contentDescription: String,
+    private val enabled: Boolean = true,
+    private val onClick: (() -> Unit)? = null
 ) : OdsComponentContent() {
 
     protected open val tint: Color?
