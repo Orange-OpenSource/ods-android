@@ -13,7 +13,6 @@ package com.orange.ods.app.ui
 import androidx.annotation.DrawableRes
 import androidx.annotation.StringRes
 import androidx.compose.runtime.Composable
-import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.navigation.NavBackStackEntry
@@ -30,7 +29,6 @@ import com.orange.ods.app.ui.components.ComponentsNavigation
 import com.orange.ods.app.ui.components.ComponentsScreen
 import com.orange.ods.app.ui.guidelines.GuidelinesScreen
 import com.orange.ods.app.ui.modules.ModulesScreen
-import com.orange.ods.app.ui.utilities.launchUrl
 import com.orange.ods.compose.component.bottomnavigation.OdsBottomNavigation
 
 @Composable
@@ -57,16 +55,16 @@ fun NavGraphBuilder.addBottomBarGraph(navigateToElement: (String, Long?, NavBack
     composable(BottomBarItem.Modules.route) { from ->
         ModulesScreen(onModuleClick = { id -> navigateToElement(ModulesNavigation.ModuleDetailRoute, id, from) })
     }
-    composable(BottomBarItem.About.route) { from ->
-        val context = LocalContext.current
-        AboutScreen(onAboutItemClick = { id ->
+    composable(BottomBarItem.About.route) { _ ->
+        AboutScreen()
+/*onAboutItemClick = { id ->
             val aboutItem = aboutItems.firstOrNull { it.id == id }
             if (aboutItem is UrlAboutItem) {
                 context.launchUrl(aboutItem.url)
             } else {
                 navigateToElement(AboutNavigation.AboutItemDetailRoute, id, from)
             }
-        })
+        })*/
     }
 }
 
