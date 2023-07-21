@@ -41,6 +41,8 @@ import com.orange.ods.app.ui.components.utilities.ComponentCustomizationBottomSh
 import com.orange.ods.app.ui.utilities.NavigationItem
 import com.orange.ods.app.ui.utilities.composable.*
 import com.orange.ods.compose.OdsComposable
+import com.orange.ods.compose.component.appbar.top.OdsTopAppBarActionButton
+import com.orange.ods.compose.component.appbar.top.OdsTopAppBarNavigationIcon
 import com.orange.ods.compose.component.chip.OdsChoiceChip
 import com.orange.ods.compose.component.chip.OdsChoiceChipsFlowRow
 import com.orange.ods.compose.component.list.OdsListItem
@@ -107,41 +109,29 @@ fun ComponentTopAppBar(variant: Variant) {
                                 title(context.getString(R.string.component_app_bars_top_regular))
 
                                 if (isNavigationIconEnabled) {
-                                    composable(name = "navigationIcon") {
-                                        FunctionCallCode(
-                                            name = "Icon",
-                                            parameters = {
-                                                simple("imageVector", "<image vector>")
-                                                contentDescription(context.getString(R.string.top_app_bar_back_icon_desc))
-                                            }
-                                        )
+                                    classInstance("navigationIcon", OdsTopAppBarNavigationIcon::class.java) {
+                                        simple("imageVector", "<image vector>")
+                                        contentDescription(context.getString(R.string.top_app_bar_back_icon_desc))
                                     }
                                 }
 
-                                composable(name = "actions") {
+                                list("actions") {
                                     repeat(actionCount.value) {
-                                        FunctionCallCode(
-                                            name = OdsComposable.OdsTopAppBarActionButton.name,
-                                            parameters = {
-                                                onClick()
-                                                painter()
-                                                contentDescription("icon description")
-                                            }
-                                        )
+                                        classInstance(OdsTopAppBarActionButton::class.java) {
+                                            onClick()
+                                            painter()
+                                            contentDescription("icon description")
+                                        }
                                     }
-                                    if (isOverflowMenuEnabled) {
-                                        FunctionCallCode(
-                                            name = OdsComposable.OdsTopAppBarOverflowMenuBox.name,
-                                            parameters = { string("overflowIconContentDescription", "Open overflow menu") }
-                                        ) {
-                                            for (i in 1..2) {
-                                                FunctionCallCode(
-                                                    name = OdsComposable.OdsDropdownMenuItem.name,
-                                                    parameters = {
-                                                        text("Menu $i")
-                                                        onClick()
-                                                    }
-                                                )
+                                }
+
+                                if (isOverflowMenuEnabled) {
+                                    list("overflowMenuActions") {
+                                        for (i in 1..2) {
+                                            // The classInstance method displays the original type of type aliases, that's why function is used instead
+                                            function("OdsTopAppBarOverflowMenuActionItem") {
+                                                text("Menu $i")
+                                                onClick()
                                             }
                                         }
                                     }

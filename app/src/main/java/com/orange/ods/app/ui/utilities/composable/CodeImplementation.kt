@@ -74,21 +74,21 @@ private open class FunctionParameter(name: String, val value: Function) : CodePa
 
 private class ClassInstanceParameter(name: String, value: ClassInstance) : FunctionParameter(name, with(value) { Function(clazz.simpleName, parameters) })
 
-private class ListParameter(name: String, val value: List<ClassInstance>) : CodeParameter(name) {
+private class ListParameter(name: String, val value: List<Function>) : CodeParameter(name) {
     override val code
         get() = @Composable {
             TechnicalText(text = "$name = listOf(")
             IndentCodeColumn {
                 value.forEach { item ->
-                    FunctionCallCode(name = item.clazz.simpleName, parameters = item.parameters, trailingComma = true, exhaustiveParameters = true)
+                    FunctionCallCode(name = item.name, parameters = item.parameters, trailingComma = true, exhaustiveParameters = true)
                 }
             }
             TechnicalText(text = "),")
         }
 }
 
-data class ClassInstance(val clazz: Class<*>, val parameters: ParametersBuilder.() -> Unit = {})
-data class Function(val name: String, val parameters: ParametersBuilder.() -> Unit = {})
+class ClassInstance(val clazz: Class<*>, parameters: ParametersBuilder.() -> Unit = {}) : Function(clazz.simpleName, parameters)
+open class Function(val name: String, val parameters: ParametersBuilder.() -> Unit = {})
 
 private sealed class PredefinedParameter {
     object Icon : SimpleParameter("icon", IconPainterValue)
@@ -260,11 +260,13 @@ annotation class CodeImplementationDslMarker
 @CodeImplementationDslMarker
 class ListParameterValueBuilder {
 
-    private val classInstances = mutableListOf<ClassInstance>()
+    private val functions = mutableListOf<Function>()
 
-    fun classInstance(clazz: Class<*>, parameters: ParametersBuilder.() -> Unit = {}) = apply { classInstances.add(ClassInstance(clazz, parameters)) }
+    fun classInstance(clazz: Class<*>, parameters: ParametersBuilder.() -> Unit = {}) = apply { functions.add(ClassInstance(clazz, parameters)) }
 
-    fun build() = classInstances.toList()
+    fun function(functionName: String, parameters: ParametersBuilder.() -> Unit = {}) = apply { functions.add(Function(functionName, parameters)) }
+
+    fun build() = functions.toList()
 }
 
 @CodeImplementationDslMarker

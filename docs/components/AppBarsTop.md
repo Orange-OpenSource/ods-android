@@ -71,25 +71,27 @@ Add `OdsTopAppBar` composable to your Scaffold topBar:
 
 ```kotlin
 OdsTopAppBar(
-    title = {
-        Text(text = "Title")
-    },
-    navigationIcon = {
-        Icon(
-            painter = painterResource(id = R.drawable.ic_back),
-            contentDescription = "content description"
-        )
-    },
-    onNavigationIconClick = {
-        // Do something
-    },
-    actions = {
+    title = "Title",
+    navigationIcon = OdsTopAppBarNavigationIcon(
+        painter = painterResource(id = R.drawable.ic_back),
+        contentDescription = "content description",
+        onClick = { /* Do something */ }
+    ),
+    actions = listOf(
         OdsTopAppBarActionButton(
-            onClick = { },
             painter = painterResource(id = R.drawable.ic_share),
-            contentDescription = "content description"
-        ) // Each action should be an `OdsTopAppBarActionButton`. They are displayed in a `Row`, so icons inside will be placed horizontally.
-    }
+            contentDescription = "content description",
+            onClick = { }
+        ),
+        // ...
+    ),
+    overflowMenuActions = listOf(
+        OdsTopAppBarOverflowMenuActionItem(
+            text = "Text",
+            onClick = { }
+        ),
+        // ...
+    )
 )
 ```
 
@@ -159,7 +161,7 @@ In menu/navigation icons:
 
 ```xml
 
-<vector android:tint="?attr/colorControlNormal"></vector>
+<vector android:tint="?attr/colorControlNormal" />
 ```
 
 In code:
@@ -240,25 +242,27 @@ Then you can add `OdsLargeTopAppBar` composable to your Scaffold topBar:
 
 ```kotlin
 OdsLargeTopAppBar(
-    title = {
-        Text(text = "Title")
-    },
-    navigationIcon = {
-        Icon(
-            painter = painterResource(id = R.drawable.ic_back),
-            contentDescription = "content description"
-        )
-    },
-    onNavigationIconClick = {
-        // Do something
-    },
-    actions = {
+    title = "Title",
+    navigationIcon = OdsTopAppBarNavigationIcon(
+        painter = painterResource(id = R.drawable.ic_back),
+        contentDescription = "content description",
+        onClick = { /* Do something */ }
+    ),
+    actions = listOf(
         OdsTopAppBarActionButton(
-            onClick = { },
             painter = painterResource(id = R.drawable.ic_share),
-            contentDescription = "content description"
-        ) // Each action should be an `OdsTopAppBarActionButton`. They are displayed in a `Row`, so icons inside will be placed horizontally.
-    },
+            contentDescription = "content description",
+            onClick = { }
+        ),
+        // ...
+    ),
+    overflowMenuActions = listOf(
+        OdsTopAppBarOverflowMenuActionItem(
+            text = "Text",
+            onClick = { }
+        ),
+        // ...
+    )
     scrollBehavior = null // See below to attach a scroll behavior and make the top app bar collapsible
 )
 ```

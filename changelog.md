@@ -7,6 +7,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased](https://github.com/Orange-OpenSource/ods-android/compare/0.14.0...develop)
 
+### Changed
+
+- \[Lib\] Replace composable parameter of `OdsDropdownMenu` with a list of `OdsDropdownMenuItem` ([#572](https://github.com/Orange-OpenSource/ods-android/issues/572))
+- \[Lib\] Update `OdsTopAppBar` and `OdsLargeTopAppBar` APIs ([#572](https://github.com/Orange-OpenSource/ods-android/issues/572))
+
 ### Fixed
 
 - [\App\] Screen displayed on filter chip variant click was not the good one ([#580](https://github.com/Orange-OpenSource/ods-android/issues/580))

@@ -69,16 +69,14 @@ fun OdsExposedDropdownMenu(
             enabled = enabled
         )
         OdsDropdownMenu(
-            modifier = Modifier.exposedDropdownSize(),
             expanded = if (enabled) expanded else false,
             onDismissRequest = { expanded = false },
-            content = {
-                items.forEach { item ->
-                    OdsDropdownMenuItem(text = item.label, icon = item.iconResId?.let { painterResource(id = it) }, onClick = {
-                        selectedItem.value = item
-                        expanded = false
-                        onItemSelectionChange(item)
-                    })
+            modifier = Modifier.exposedDropdownSize(),
+            items = items.map { item ->
+                OdsDropdownMenuItem(text = item.label, icon = item.iconResId?.let { painterResource(id = it) }) {
+                    selectedItem.value = item
+                    expanded = false
+                    onItemSelectionChange(item)
                 }
             }
         )

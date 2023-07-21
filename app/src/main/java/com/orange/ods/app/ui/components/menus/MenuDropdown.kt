@@ -37,7 +37,6 @@ import com.orange.ods.app.ui.components.utilities.clickOnElement
 import com.orange.ods.app.ui.utilities.composable.CodeImplementationColumn
 import com.orange.ods.app.ui.utilities.composable.FunctionCallCode
 import com.orange.ods.compose.OdsComposable
-import com.orange.ods.compose.component.divider.OdsDivider
 import com.orange.ods.compose.component.list.OdsIconTrailing
 import com.orange.ods.compose.component.list.OdsListItem
 import com.orange.ods.compose.component.list.OdsSwitchTrailing
@@ -79,6 +78,8 @@ fun MenuDropdown() {
                     text = stringResource(id = R.string.component_menu_dropdown_description)
                 )
 
+                val dividerIndex = 1
+
                 Box(modifier = Modifier.padding(top = dimensionResource(id = R.dimen.spacing_s))) {
                     OdsListItem(
                         modifier = Modifier.padding(top = dimensionResource(id = R.dimen.spacing_s)),
@@ -90,18 +91,22 @@ fun MenuDropdown() {
                             contentDescription = stringResource(id = R.string.component_menu_show_ingredients),
                         )
                     )
-                    OdsDropdownMenu(expanded = menuExpanded, onDismissRequest = { menuExpanded = false }, offset = DpOffset(x = (-100).dp, y = (-10).dp)) {
-                        recipes.take(MenuDropdownCustomizationState.MenuItemCount).forEachIndexed { index, recipe ->
+
+                    val items = recipes.take(MenuDropdownCustomizationState.MenuItemCount)
+                        .mapIndexed { index, recipe ->
                             OdsDropdownMenuItem(
                                 text = recipe.title,
                                 icon = if (hasIcons && recipe.iconResId != null) painterResource(id = recipe.iconResId) else null,
+                                divider = hasDividerExample && index == dividerIndex,
                                 onClick = { clickOnElement(context, recipe.title) }
                             )
-                            if (hasDividerExample && index == 2) {
-                                OdsDivider()
-                            }
                         }
-                    }
+                    OdsDropdownMenu(
+                        items = items,
+                        expanded = menuExpanded,
+                        onDismissRequest = { menuExpanded = false },
+                        offset = DpOffset(x = (-100).dp, y = (-10).dp)
+                    )
                 }
 
                 CodeImplementationColumn(
@@ -113,22 +118,18 @@ fun MenuDropdown() {
                         parameters = {
                             stringRepresentation("expanded", menuExpanded)
                             lambda("onDismissRequest")
-                        }
-                    ) {
-                        recipes.take(2).forEachIndexed { index, recipe ->
-                            FunctionCallCode(
-                                name = OdsComposable.OdsDropdownMenuItem.name,
-                                parameters = {
-                                    string("text", recipe.title)
-                                    onClick()
-                                    if (hasIcons && recipe.iconResId != null) icon()
+                            list("items") {
+                                recipes.take(2).forEachIndexed { index, recipe ->
+                                    classInstance(OdsDropdownMenuItem::class.java) {
+                                        string("text", recipe.title)
+                                        if (hasIcons && recipe.iconResId != null) icon()
+                                        if (hasDividerExample && index == dividerIndex) stringRepresentation("divider", true)
+                                        onClick()
+                                    }
                                 }
-                            )
-                            if (hasDividerExample && index == 0) {
-                                FunctionCallCode(name = OdsComposable.OdsDivider.name)
                             }
                         }
-                    }
+                    )
                 }
             }
         }

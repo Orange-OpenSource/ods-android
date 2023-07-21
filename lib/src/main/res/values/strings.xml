@@ -15,7 +15,9 @@
     <string name="text_field_password_show">Show password</string>
     <string name="text_field_password_hide">Hide password</string>
 
+    <string name="top_app_bar_overflow_menu_content_description">More options</string>
+
     <string name="progress_linear_indicator_value">%s%%</string>
-    
+
     <string name="search_clear">Clear search</string>
 </resources>

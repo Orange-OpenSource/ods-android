@@ -70,7 +70,7 @@ fun OdsSearchTextField(
         trailingIcon = {
             OdsIconButton(
                 onClick = { onValueChange(TextFieldValue("")) },
-                painter = rememberVectorPainter(image = Icons.Default.Close),
+                graphicsObject = rememberVectorPainter(image = Icons.Default.Close),
                 contentDescription = stringResource(id = R.string.search_clear),
                 tint = OdsTheme.colors.component.topAppBar.barContent
             )
