@@ -45,24 +45,25 @@ var menuExpanded by remember { mutableStateOf(false) }
 OdsDropdownMenu(
     expanded = menuExpanded,
     onDismissRequest = { menuExpanded = false },
-    offset = DpOffset(x = (-100).dp, y = (-10).dp)
-) {
-    OdsDropdownMenuItem(
-        text = "Summer salad",
-        icon = painterResource(id = R.drawable.ic_salad),
-        onClick = {
-            // Do something
-        }
+    offset = DpOffset(x = (-100).dp, y = (-10).dp),
+    items = listOf(
+        OdsDropdownMenuItem(
+            text = "Summer salad",
+            icon = painterResource(id = R.drawable.ic_salad),
+            divider = true, // Allow to add a divider between the 2 items
+            onClick = {
+                // Do something
+            }
+        ),
+        OdsDropdownMenuItem(
+            text = "Brocoli soup",
+            icon = painterResource(id = R.drawable.ic_soup),
+            onClick = {
+                // Do something
+            }
+        )
     )
-    OdsDivider() // Allow to add a divider between the 2 items
-    OdsDropdownMenuItem(
-        text = "Brocoli soup",
-        icon = painterResource(id = R.drawable.ic_soup),
-        onClick = {
-            // Do something
-        }
-    )
-}
+)
 ```
 
 > **XML implementation**
