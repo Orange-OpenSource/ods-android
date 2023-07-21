@@ -20,7 +20,7 @@ import androidx.navigation.NavBackStackEntry
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
-
+import com.orange.ods.module.about.navigation.OdsAboutDestinations
 
 class MainState(
     val themeState: ThemeState,
@@ -40,7 +40,7 @@ class MainState(
     // Not all routes need to show the bottom bar.
     val shouldShowBottomBar: Boolean
         @Composable get() = navController
-            .currentBackStackEntryAsState().value?.destination?.route in bottomBarRoutes
+            .currentBackStackEntryAsState().value?.destination?.route in (bottomBarRoutes + OdsAboutDestinations.HomeRoute)
 
     // ----------------------------------------------------------
     // Navigation state source of truth

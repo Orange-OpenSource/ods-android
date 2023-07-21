@@ -31,6 +31,7 @@ dependencies {
     implementation(Dependencies.appCompat)
     implementation(Dependencies.browser)
     implementation(Dependencies.composeMaterial)
+    implementation(Dependencies.coreKtx)
     implementation(Dependencies.hiltAndroid)
     implementation(Dependencies.navigationCompose)
 }

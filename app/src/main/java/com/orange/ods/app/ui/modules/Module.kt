@@ -12,6 +12,7 @@ package com.orange.ods.app.ui.modules
 
 import androidx.annotation.DrawableRes
 import androidx.annotation.StringRes
+import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import com.orange.ods.app.R
 
@@ -22,6 +23,7 @@ sealed class Module(
     @DrawableRes val imageRes: Int,
     @StringRes val descriptionRes: Int,
     val route: String,
+    val demoScreen: @Composable (upPress: () -> Unit) -> Unit,
     val imageAlignment: Alignment = Alignment.Center,
 ) {
     val id: Long = Module::class.sealedSubclasses.indexOf(this::class).toLong()
@@ -31,5 +33,6 @@ sealed class Module(
         R.drawable.il_about,
         R.string.module_about_description,
         route = ModuleDemoDestinations.AboutModuleCustomizationRoute,
+        demoScreen = { _ -> },
     )
 }

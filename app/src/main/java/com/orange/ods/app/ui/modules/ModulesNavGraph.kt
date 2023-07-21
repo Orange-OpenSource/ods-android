@@ -17,15 +17,8 @@ import androidx.navigation.compose.composable
 import com.orange.ods.app.ui.modules.ModuleDemoDestinations.AboutModuleCustomizationRoute
 import com.orange.ods.app.ui.modules.about.AboutCustomizationScreen
 import com.orange.ods.module.about.OdsAboutViewModel
-import com.orange.ods.module.about.navigation.aboutScreen
+import com.orange.ods.module.about.navigation.aboutDemoGraph
 import com.orange.ods.module.about.navigation.navigateToOdsAboutDemo
-
-object ModulesNavigation {
-    const val ModuleDetailRoute = "component"
-    const val ModuleDemoRoute = "module/demo"
-
-    const val ModuleIdKey = "moduleId"
-}
 
 /**
  * Modules demo destinations.
@@ -35,17 +28,14 @@ object ModuleDemoDestinations {
 }
 
 fun NavGraphBuilder.addModulesGraph(navController: NavController) {
-
     composable(
         route = AboutModuleCustomizationRoute
     ) { navBackStackEntry ->
-/*        LocalMainTopAppBarManager.current.updateTopAppBar(MainTopAppBarState.DefaultConfiguration)
-        LocalMainTopAppBarManager.current.updateTopAppBarTitle(Module.About.titleRes)*/
 
         val viewModel: OdsAboutViewModel = viewModel(navBackStackEntry)
         AboutCustomizationScreen(navigateToAboutModule = navController::navigateToOdsAboutDemo, configureAboutModule = viewModel::configureAboutModule)
     }
 
-    aboutScreen(navController = navController)
+    aboutDemoGraph(navController = navController)
 
 }
