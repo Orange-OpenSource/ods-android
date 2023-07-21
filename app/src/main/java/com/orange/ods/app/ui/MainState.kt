@@ -28,6 +28,9 @@ class MainState(
     val uiFramework: MutableState<UiFramework>
 ) {
 
+    val shouldShowTopAppBar: Boolean
+        @Composable get() = navController.currentBackStackEntryAsState().value?.destination?.route != BottomNavigationSections.About.route
+
     // ----------------------------------------------------------
     // BottomBar state source of truth
     // ----------------------------------------------------------
