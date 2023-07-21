@@ -23,6 +23,7 @@ import com.orange.ods.app.ui.components.buttons.icons.ComponentButtonsIcons
 import com.orange.ods.app.ui.components.cards.ComponentCard
 import com.orange.ods.app.ui.components.checkboxes.ComponentCheckboxes
 import com.orange.ods.app.ui.components.chips.Chip
+import com.orange.ods.app.ui.components.chips.ChipFilter
 import com.orange.ods.app.ui.components.dialogs.ComponentDialog
 import com.orange.ods.app.ui.components.floatingactionbuttons.ComponentFloatingActionButton
 import com.orange.ods.app.ui.components.imageitem.ComponentImageItem
@@ -139,7 +140,12 @@ sealed class Component(
         R.drawable.il_chips_small,
         R.string.component_chips_description,
         listOf(Variant.ChipAction, Variant.ChipChoice, Variant.ChipInput, Variant.ChipFilter),
-        demoScreen = { variant, _ -> if (variant != null) Chip(variant = variant) }
+        demoScreen = { variant, _ ->
+            when {
+                variant == Variant.ChipFilter -> ChipFilter()
+                variant != null -> Chip(variant = variant)
+            }
+        }
     )
 
     object Dialogs : Component(
