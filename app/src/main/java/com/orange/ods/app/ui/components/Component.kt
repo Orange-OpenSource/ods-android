@@ -180,7 +180,7 @@ sealed class Component(
         R.string.component_list_item,
         R.drawable.il_list_item,
         null,
-        R.string.component_lists_description,
+        R.string.component_list_item_description,
         composableName = OdsComposable.OdsListItem.name,
         demoScreen = { _, _ -> ComponentListItem() },
         imageAlignment = Alignment.BottomCenter
