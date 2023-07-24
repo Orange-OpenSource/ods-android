@@ -289,6 +289,7 @@
     <string name="component_lists">Lists</string>
     <string name="component_lists_description">A list is a continuous vertical group of data entries like text, icons or images.</string>
     <string name="component_list_item">List item</string>
+    <string name="component_list_item_description">A list item is the individual element of data entries like text, icons or images that is used to create a list.</string>
     <string name="component_list_item_size">List item size</string>
     <string name="component_list_item_add_line">Add line</string>
     <string name="component_list_item_remove_line">Remove line</string>

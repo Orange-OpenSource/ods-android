@@ -26,6 +26,7 @@ import com.orange.ods.app.ui.components.chips.Chip
 import com.orange.ods.app.ui.components.dialogs.ComponentDialog
 import com.orange.ods.app.ui.components.floatingactionbuttons.ComponentFloatingActionButton
 import com.orange.ods.app.ui.components.imageitem.ComponentImageItem
+import com.orange.ods.app.ui.components.listitem.ComponentListItem
 import com.orange.ods.app.ui.components.lists.ComponentLists
 import com.orange.ods.app.ui.components.menus.ComponentMenu
 import com.orange.ods.app.ui.components.navigationdrawers.ComponentModalDrawers
@@ -173,8 +174,9 @@ sealed class Component(
         R.string.component_list_item,
         R.drawable.il_list_item,
         null,
-        R.string.component_lists_description,
+        R.string.component_list_item_description,
         composableName = OdsComposable.OdsListItem.name,
+        demoScreen = { _, _ -> ComponentListItem() },
         imageAlignment = Alignment.BottomCenter
     )
 
