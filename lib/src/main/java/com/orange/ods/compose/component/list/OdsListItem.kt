@@ -230,7 +230,6 @@ private fun OdsListItemInternal(
         singleLineSecondaryText = singleLineSecondaryText
     )
     val secondaryTextLinesNumber = if (singleLineSecondaryText || (overlineText != null && secondaryText != null)) 1 else 2
-
     ListItem(
         modifier = modifier
             .fillMaxWidth()

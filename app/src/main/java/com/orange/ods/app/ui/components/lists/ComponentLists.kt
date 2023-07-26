@@ -11,7 +11,9 @@
 package com.orange.ods.app.ui.components.lists
 
 import androidx.compose.foundation.clickable
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
@@ -19,6 +21,7 @@ import androidx.compose.material.ExperimentalMaterialApi
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.painter.Painter
 import androidx.compose.ui.platform.LocalContext
@@ -40,6 +43,7 @@ import com.orange.ods.app.ui.utilities.DrawableManager
 import com.orange.ods.app.ui.utilities.composable.Subtitle
 import com.orange.ods.compose.component.chip.OdsChoiceChip
 import com.orange.ods.compose.component.chip.OdsChoiceChipsFlowRow
+import com.orange.ods.compose.component.divider.OdsDivider
 import com.orange.ods.compose.component.list.OdsCaptionTrailing
 import com.orange.ods.compose.component.list.OdsCheckboxTrailing
 import com.orange.ods.compose.component.list.OdsIconTrailing
@@ -51,6 +55,8 @@ import com.orange.ods.compose.component.list.OdsListItemTrailing
 import com.orange.ods.compose.component.list.OdsSwitchTrailing
 import com.orange.ods.compose.component.list.divider
 import com.orange.ods.compose.component.list.iconType
+import com.orange.ods.compose.text.OdsTextBody2
+import com.orange.ods.compose.text.OdsTextCaption
 import com.orange.ods.utilities.extension.orElse
 
 @OptIn(ExperimentalMaterialApi::class)
@@ -66,6 +72,9 @@ fun ComponentLists() {
 
 @Composable
 private fun ComponentListsBottomSheetContent(listItemCustomizationState: ListItemCustomizationState) {
+    if (!listItemCustomizationState.headerEnabled.value) {
+        listItemCustomizationState.subHeaderEnabled.value = false
+    }
     ComponentCountRow(
         modifier = Modifier.padding(start = dimensionResource(id = R.dimen.screen_horizontal_margin)),
         title = stringResource(id = R.string.component_list_item_size),
@@ -99,7 +108,14 @@ private fun ComponentListsBottomSheetContent(listItemCustomizationState: ListIte
             OdsChoiceChip(textRes = trailing.textResId, value = trailing)
         }
     }
-
+    OdsListItem(
+        text = stringResource(id = R.string.component_list_header),
+        trailing = OdsSwitchTrailing(checked = listItemCustomizationState.headerEnabled)
+    )
+    OdsListItem(
+        text = stringResource(id = R.string.component_list_sub_header),
+        trailing = OdsSwitchTrailing(checked = listItemCustomizationState.subHeaderEnabled)
+    )
     OdsListItem(
         text = stringResource(id = R.string.component_element_divider),
         trailing = OdsSwitchTrailing(checked = listItemCustomizationState.dividerEnabled)
@@ -121,7 +137,36 @@ private fun ComponentListsContent(listItemCustomizationState: ListItemCustomizat
                 }
                 .let { if (dividerEnabled.value) it.divider() else it }
             val singleLineSecondaryText = lineCount.value == 2
-
+            if (headerEnabled.value) Row(
+                modifier = Modifier
+                    .padding(
+                        bottom = dimensionResource(id = com.orange.ods.R.dimen.spacing_xs),
+                        top = dimensionResource(id = com.orange.ods.R.dimen.spacing_m),
+                        start = dimensionResource(id = com.orange.ods.R.dimen.spacing_m),
+                    ),
+                horizontalArrangement = Arrangement.spacedBy(dimensionResource(id = com.orange.ods.R.dimen.spacing_s)),
+                Alignment.CenterVertically
+            ) {
+                OdsTextBody2(
+                    text = "Main courses"
+                )
+                if (dividerEnabled.value) OdsDivider()
+            }
+            if (subHeaderEnabled.value) Row(
+                modifier = Modifier
+                    .padding(
+                        bottom = dimensionResource(id = com.orange.ods.R.dimen.spacing_s),
+                        top = dimensionResource(id = com.orange.ods.R.dimen.spacing_xs),
+                        start = dimensionResource(id = com.orange.ods.R.dimen.spacing_xl),
+                    ),
+                horizontalArrangement = Arrangement.spacedBy(dimensionResource(id = com.orange.ods.R.dimen.spacing_s)),
+                Alignment.CenterVertically
+            ) {
+                OdsTextCaption(
+                    text = "Alcohol-free"
+                )
+                if (dividerEnabled.value) OdsDivider()
+            }
             recipes.forEach { recipe ->
                 val text = recipe.title
                 val secondaryText = listItemCustomizationState.getSecondaryText(recipe)

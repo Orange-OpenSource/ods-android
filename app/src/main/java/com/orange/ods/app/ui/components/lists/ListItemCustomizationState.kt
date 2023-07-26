@@ -32,9 +32,11 @@ fun rememberListItemCustomizationState(
     lineCount: MutableState<Int> = rememberSaveable { mutableStateOf(ComponentListItem.DefaultLineCount) },
     selectedLeading: MutableState<ListItemCustomizationState.Leading> = rememberSaveable { mutableStateOf(ListItemCustomizationState.Leading.None) },
     selectedTrailing: MutableState<ListItemCustomizationState.Trailing> = rememberSaveable { mutableStateOf(ListItemCustomizationState.Trailing.None) },
+    headerEnabled: MutableState<Boolean> = rememberSaveable { mutableStateOf(true) },
+    subHeaderEnabled: MutableState<Boolean> = rememberSaveable { mutableStateOf(false) },
     dividerEnabled: MutableState<Boolean> = rememberSaveable { mutableStateOf(false) }
 ) = remember(lineCount) {
-    ListItemCustomizationState(bottomSheetScaffoldState, lineCount, selectedLeading, selectedTrailing, dividerEnabled)
+    ListItemCustomizationState(bottomSheetScaffoldState, lineCount, selectedLeading, selectedTrailing, headerEnabled, subHeaderEnabled, dividerEnabled)
 }
 
 @OptIn(ExperimentalMaterialApi::class)
@@ -43,6 +45,8 @@ class ListItemCustomizationState(
     val lineCount: MutableState<Int>,
     val selectedLeading: MutableState<Leading>,
     val selectedTrailing: MutableState<Trailing>,
+    val headerEnabled: MutableState<Boolean>,
+    val subHeaderEnabled: MutableState<Boolean>,
     val dividerEnabled: MutableState<Boolean>
 ) {
 
