@@ -118,22 +118,6 @@ private fun TextToggleButtonsRowItem(
     )
 }
 
-@Composable
-private fun buttonToggleBackgroundColor(displaySurface: OdsDisplaySurface) =
-    when (displaySurface) {
-        OdsDisplaySurface.Default -> OdsTheme.colors.primary
-        OdsDisplaySurface.Dark -> OdsTheme.darkThemeColors.primary
-        OdsDisplaySurface.Light -> OdsTheme.lightThemeColors.primary
-    }
-
-@Composable
-private fun buttonToggleBorderColor(displaySurface: OdsDisplaySurface) =
-    when (displaySurface) {
-        OdsDisplaySurface.Default -> OdsTheme.colors.onSurface
-        OdsDisplaySurface.Dark -> OdsTheme.darkThemeColors.onSurface
-        OdsDisplaySurface.Light -> OdsTheme.lightThemeColors.onSurface
-    }.copy(alpha = 0.12f)
-
 @UiModePreviews.Default
 @Composable
 private fun PreviewOdsTextToggleButtonsGroupRow() = Preview {

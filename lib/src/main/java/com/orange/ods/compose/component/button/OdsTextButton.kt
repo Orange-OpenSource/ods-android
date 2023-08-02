@@ -59,14 +59,14 @@ enum class OdsTextButtonStyle {
  */
 @Composable
 @OdsComposable
-fun OdsTextButton(
+internal fun OdsTextButton(
     text: String,
     onClick: () -> Unit,
     modifier: Modifier = Modifier,
     icon: Painter? = null,
     enabled: Boolean = true,
-    maxLines: Int? = null,
-    overflow: TextOverflow? = null,
+    maxLines: Int = Int.MAX_VALUE,
+    overflow: TextOverflow = TextOverflow.Clip,
     style: OdsTextButtonStyle = OdsTextButtonStyle.Default,
     displaySurface: OdsDisplaySurface = OdsDisplaySurface.Default
 ) {
@@ -89,8 +89,8 @@ fun OdsTextButton(
         ) {
             icon?.let { ButtonIcon(it) }
             Text(
-                text = text.uppercase(), style = OdsTheme.typography.button, maxLines = maxLines ?: Int.MAX_VALUE,
-                overflow = overflow ?: TextOverflow.Clip
+                text = text.uppercase(), style = OdsTheme.typography.button, maxLines = maxLines,
+                overflow = overflow
             )
         }
     }

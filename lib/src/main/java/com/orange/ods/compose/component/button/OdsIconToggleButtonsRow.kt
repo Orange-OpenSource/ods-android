@@ -142,14 +142,6 @@ private fun buttonToggleIconColor(displaySurface: OdsDisplaySurface, selected: B
         if (selected && enabled) primary else onSurface.enable(enabled = enabled)
     }
 
-@Composable
-private fun buttonToggleBackgroundColor(displaySurface: OdsDisplaySurface) =
-    displaySurface.themeColors.primary
-
-@Composable
-private fun buttonToggleBorderColor(displaySurface: OdsDisplaySurface) = displaySurface.themeColors.onSurface.copy(alpha = 0.12f)
-
-
 @UiModePreviews.Default
 @Composable
 private fun PreviewOdsIconToggleButtonsGroupRow() = Preview {
