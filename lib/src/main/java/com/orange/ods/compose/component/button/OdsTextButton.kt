@@ -59,7 +59,7 @@ enum class OdsTextButtonStyle {
  */
 @Composable
 @OdsComposable
-internal fun OdsTextButton(
+fun OdsTextButton(
     text: String,
     onClick: () -> Unit,
     modifier: Modifier = Modifier,

@@ -153,7 +153,7 @@
     <string name="component_button_style_functional">Functional</string>
     <string name="component_button_style_functional_positive">Positive</string>
     <string name="component_button_style_functional_negative">Negative</string>
-    <string name="component_button_text_toggle_group">Toggle text buttons group</string>
+    <string name="component_button_text_toggle_group">Toggle text button group</string>
 
     <!-- Components Buttons: Icons -->
     <string name="component_buttons_icons">Buttons: Icons</string>
