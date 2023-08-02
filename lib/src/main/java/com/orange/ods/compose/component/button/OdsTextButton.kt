@@ -41,8 +41,6 @@ enum class OdsTextButtonStyle {
     companion object
 }
 
-public const val MAX_VALUE: Int = 2147483647
-
 /**
  * <a href="https://system.design.orange.com/0c1af118d/p/06a393-buttons/b/79b091" target="_blank">ODS Buttons</a>.
  *
@@ -91,7 +89,7 @@ fun OdsTextButton(
         ) {
             icon?.let { ButtonIcon(it) }
             Text(
-                text = text.uppercase(), style = OdsTheme.typography.button, maxLines = maxLines ?: MAX_VALUE,
+                text = text.uppercase(), style = OdsTheme.typography.button, maxLines = maxLines ?: Int.MAX_VALUE,
                 overflow = overflow ?: TextOverflow.Clip
             )
         }
