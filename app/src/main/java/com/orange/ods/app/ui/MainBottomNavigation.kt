@@ -12,7 +12,6 @@ package com.orange.ods.app.ui
 
 import androidx.annotation.DrawableRes
 import androidx.annotation.StringRes
-import androidx.compose.material.Icon
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
@@ -31,19 +30,20 @@ import com.orange.ods.app.ui.modules.ModulesScreen
 import com.orange.ods.app.ui.utilities.launchUrl
 import com.orange.ods.compose.component.bottomnavigation.OdsBottomNavigation
 import com.orange.ods.compose.component.bottomnavigation.OdsBottomNavigationItem
+import com.orange.ods.compose.component.bottomnavigation.OdsBottomNavigationItemIcon
 
 @Composable
 fun MainBottomNavigation(items: Array<BottomNavigationSections>, currentRoute: String, navigateToRoute: (String) -> Unit) {
-    OdsBottomNavigation {
-        items.forEach { item ->
+    OdsBottomNavigation(
+        items = items.map { item ->
             OdsBottomNavigationItem(
-                icon = { Icon(painter = painterResource(id = item.iconRes), contentDescription = null) },
+                icon = OdsBottomNavigationItemIcon(painter = painterResource(id = item.iconRes), contentDescription = ""),
                 label = stringResource(id = item.titleRes),
                 selected = currentRoute == item.route,
                 onClick = { navigateToRoute(item.route) }
             )
         }
-    }
+    )
 }
 
 fun NavGraphBuilder.addBottomNavigationGraph(navigateToElement: (String, Long?, NavBackStackEntry) -> Unit) {
