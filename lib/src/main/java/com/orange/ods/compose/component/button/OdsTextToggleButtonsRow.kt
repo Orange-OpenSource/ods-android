@@ -13,9 +13,9 @@ package com.orange.ods.compose.component.button
 import androidx.compose.animation.core.animateFloatAsState
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
-import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.IntrinsicSize
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.RowScope
 import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.width
@@ -33,7 +33,6 @@ import com.orange.ods.compose.component.OdsComposable
 import com.orange.ods.compose.component.utilities.Preview
 import com.orange.ods.compose.component.utilities.UiModePreviews
 import com.orange.ods.compose.theme.OdsDisplaySurface
-import com.orange.ods.compose.theme.OdsTheme
 
 /**
  * <a href="https://system.design.orange.com/0c1af118d/p/06a393-buttons/b/79b091" target="_blank">ODS Buttons</a>.
@@ -67,20 +66,13 @@ fun OdsTextToggleButtonsRow(
             )
     ) {
         textToggleButtons.forEachIndexed { index, textToggleButton ->
-            val backgroundAlpha by animateFloatAsState(if (selectedIndex == index) 0.12f else 0f)
-            Column(
-                modifier = Modifier
-                    .weight(1f)
-                    .background(color = buttonToggleBackgroundColor(displaySurface).copy(alpha = backgroundAlpha))
-            ) {
-                TextToggleButtonsRowItem(
-                    index = index,
-                    textToggleButton = textToggleButton,
-                    selected = selectedIndex == index,
-                    displaySurface = displaySurface
-                ) { clickedButtonIndex ->
-                    onSelectedIndexChange(clickedButtonIndex)
-                }
+            TextToggleButtonsRowItem(
+                index = index,
+                textToggleButton = textToggleButton,
+                selected = selectedIndex == index,
+                displaySurface = displaySurface
+            ) { clickedButtonIndex ->
+                onSelectedIndexChange(clickedButtonIndex)
             }
             if (index < textToggleButtons.size) {
                 Divider(
@@ -100,16 +92,21 @@ data class OdsTextToggleButtonsRowItem(
 )
 
 @Composable
-private fun TextToggleButtonsRowItem(
+private fun RowScope.TextToggleButtonsRowItem(
     index: Int,
     textToggleButton: OdsTextToggleButtonsRowItem,
     selected: Boolean,
     displaySurface: OdsDisplaySurface,
     onClick: (Int) -> Unit
 ) {
+    val backgroundAlpha by animateFloatAsState(if (selected) 0.12f else 0f)
+
     OdsTextButton(
         text = textToggleButton.text,
         enabled = textToggleButton.enabled,
+        modifier = Modifier
+            .background(color = buttonToggleBackgroundColor(displaySurface).copy(alpha = backgroundAlpha))
+            .weight(1f),
         maxLines = 1,
         overflow = TextOverflow.Ellipsis,
         displaySurface = displaySurface,
