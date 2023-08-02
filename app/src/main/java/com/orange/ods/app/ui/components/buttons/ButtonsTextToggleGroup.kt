@@ -76,14 +76,14 @@ fun ButtonsTextToggleButtonsRow(customizationState: ButtonCustomizationState) {
                     exhaustiveParameters = false,
                     parameters = {
                         list("textToggleButtons") {
-                            repeat(toggleCount.value) {
+                            textToggleButtons.take(toggleCount.value).forEach { item ->
                                 classInstance(OdsTextToggleButtonsRowItem::class.java) {
-                                    string("text", "text bottom")
-                                    selected(customizationState.isEnabled)
+                                    text(item.text)
+                                    enabled(customizationState.isEnabled)
                                 }
                             }
                         }
-                        stringRepresentation("selectedButtonIndex", selectedIndex)
+                        stringRepresentation("selectedIndex", selectedIndex)
                     }
                 )
             }

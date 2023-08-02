@@ -89,7 +89,7 @@ fun ButtonsIconToggleGroup(customizationState: ButtonIconCustomizationState) {
                                 }
                             }
                         }
-                        stringRepresentation("selectedButtonIndex", selectedIndex)
+                        stringRepresentation("selectedIndex", selectedIndex)
                     }
                 )
             }
