@@ -28,7 +28,7 @@ plugins {
 
 android {
     namespace = "com.orange.ods.app"
-    
+
     compileSdk = Versions.compileSdk
 
     defaultConfig {
@@ -99,7 +99,7 @@ android {
     }
 
     composeOptions {
-        kotlinCompilerExtensionVersion = Versions.compose
+        kotlinCompilerExtensionVersion = Versions.composeCompiler
     }
 
     packagingOptions {
@@ -115,14 +115,13 @@ dependencies {
     implementation(project(":theme-innovation-cup"))
 
     implementation(Dependencies.accompanistFlowLayout)
-    implementation(Dependencies.accompanistPager)
-    implementation(Dependencies.accompanistPagerIndicators)
     implementation(Dependencies.accompanistSystemUiController)
     implementation(Dependencies.activityCompose)
     implementation(Dependencies.appCompat)
     implementation(Dependencies.browser)
     implementation(Dependencies.coil)
     implementation(Dependencies.coilCompose)
+    implementation(platform(Dependencies.composeBom))
     implementation(Dependencies.composeMaterial3)
     implementation(Dependencies.composeUi)
     implementation(Dependencies.composeUiTooling)

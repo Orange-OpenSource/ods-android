@@ -9,6 +9,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Changed
 
+- [\All\] Use Compose BOM and update Kotlin version to 1.9.0 ([#578](https://github.com/Orange-OpenSource/ods-android/issues/578))
 - \[Lib\] Replace composable parameter of `OdsDropdownMenu` with a list of `OdsDropdownMenuItem` ([#572](https://github.com/Orange-OpenSource/ods-android/issues/572))
 - \[Lib\] Update `OdsTopAppBar` and `OdsLargeTopAppBar` APIs ([#572](https://github.com/Orange-OpenSource/ods-android/issues/572))
 - \[Lib\] Update `OdsBottomNavigation` API ([#588](https://github.com/Orange-OpenSource/ods-android/issues/588))
@@ -16,6 +17,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Fixed
 
 - [\App\] Screen displayed on filter chip variant click was not the good one ([#580](https://github.com/Orange-OpenSource/ods-android/issues/580))
+- [\App\] Fix a bug where `OdsListItem` text color did not update when switching between light and dark modes in text field demo ([#578](https://github.com/Orange-OpenSource/ods-android/issues/578))
 
 ## [0.14.0](https://github.com/Orange-OpenSource/ods-android/compare/0.13.0...0.14.0) - 2023-07-12
 

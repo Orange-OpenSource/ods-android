@@ -11,10 +11,12 @@
 package com.orange.ods.app.ui.components.tabs
 
 import androidx.activity.compose.BackHandler
+import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.wrapContentSize
+import androidx.compose.foundation.pager.HorizontalPager
 import androidx.compose.material.ExperimentalMaterialApi
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.mutableStateOf
@@ -23,8 +25,6 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.stringResource
-import com.google.accompanist.pager.ExperimentalPagerApi
-import com.google.accompanist.pager.HorizontalPager
 import com.orange.ods.app.R
 import com.orange.ods.app.ui.LocalMainTopAppBarManager
 import com.orange.ods.app.ui.TabsConfiguration
@@ -43,7 +43,7 @@ private const val MaxFixedTabCount = 3
 private const val MinScrollableTabCount = 4
 private const val MaxScrollableTabCount = 6
 
-@OptIn(ExperimentalMaterialApi::class, ExperimentalPagerApi::class)
+@OptIn(ExperimentalMaterialApi::class, ExperimentalFoundationApi::class)
 @Composable
 fun ComponentTabs(variant: Variant, upPress: () -> Unit) {
     val scrollableTabs: Boolean
@@ -116,7 +116,7 @@ fun ComponentTabs(variant: Variant, upPress: () -> Unit) {
             )
         }) {
 
-        HorizontalPager(state = tabsCustomizationState.pagerState, count = tabsCustomizationState.tabs.size) { page ->
+        HorizontalPager(state = tabsCustomizationState.pagerState, pageCount = tabsCustomizationState.tabs.size) { page ->
             val textResId = tabsCustomizationState.tabs[page].textResId
             TabsPagerContentScreen(stringResource(id = textResId))
         }

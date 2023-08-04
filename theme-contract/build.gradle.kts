@@ -8,6 +8,7 @@
  * /
  */
 
+import com.orange.ods.gradle.Dependencies
 import com.orange.ods.gradle.Versions
 
 plugins {
@@ -16,18 +17,19 @@ plugins {
 
 android {
     namespace = "com.orange.ods.theme"
-    
+
     buildFeatures {
         compose = true
     }
 
     composeOptions {
-        kotlinCompilerExtensionVersion = Versions.compose
+        kotlinCompilerExtensionVersion = Versions.composeCompiler
     }
 }
 
 dependencies {
-    implementation(com.orange.ods.gradle.Dependencies.material)
-    implementation(com.orange.ods.gradle.Dependencies.composeMaterial)
-    implementation(com.orange.ods.gradle.Dependencies.kotlinReflect)
+    implementation(platform(Dependencies.composeBom))
+    implementation(Dependencies.composeMaterial)
+    implementation(Dependencies.kotlinReflect)
+    implementation(Dependencies.material)
 }
