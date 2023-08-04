@@ -13,8 +13,6 @@ package com.orange.ods.app.ui.components.listitem
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.rememberScrollState
-import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.ExperimentalMaterialApi
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.mutableStateOf
@@ -34,6 +32,8 @@ import com.orange.ods.app.R
 import com.orange.ods.app.domain.recipes.LocalRecipes
 import com.orange.ods.app.domain.recipes.Recipe
 import com.orange.ods.app.ui.components.lists.ListItemCustomizationState
+import com.orange.ods.app.ui.components.lists.ListItemCustomizationState.Companion.MaxLineCount
+import com.orange.ods.app.ui.components.lists.ListItemCustomizationState.Companion.MinLineCount
 import com.orange.ods.app.ui.components.lists.rememberListItemCustomizationState
 import com.orange.ods.app.ui.components.utilities.ComponentCountRow
 import com.orange.ods.app.ui.components.utilities.ComponentCustomizationBottomSheetScaffold
@@ -63,21 +63,21 @@ fun ComponentListItem() {
     val listItemCustomizationState = rememberListItemCustomizationState()
     ComponentCustomizationBottomSheetScaffold(
         bottomSheetScaffoldState = listItemCustomizationState.bottomSheetScaffoldState,
-        bottomSheetContent = { ComponentListsBottomSheetContent(listItemCustomizationState) },
-        content = { ComponentListsContent(listItemCustomizationState) }
+        bottomSheetContent = { ComponentListItemBottomSheetContent(listItemCustomizationState) },
+        content = { ComponentListItemContent(listItemCustomizationState) }
     )
 }
 
 @Composable
-private fun ComponentListsBottomSheetContent(listItemCustomizationState: ListItemCustomizationState) {
+private fun ComponentListItemBottomSheetContent(listItemCustomizationState: ListItemCustomizationState) {
     ComponentCountRow(
         modifier = Modifier.padding(start = dimensionResource(id = R.dimen.screen_horizontal_margin)),
         title = stringResource(id = R.string.component_list_item_size),
         count = listItemCustomizationState.lineCount,
         minusIconContentDescription = stringResource(id = R.string.component_list_item_remove_line),
         plusIconContentDescription = stringResource(id = R.string.component_list_item_add_line),
-        minCount = com.orange.ods.app.ui.components.lists.ComponentListItem.MinLineCount,
-        maxCount = com.orange.ods.app.ui.components.lists.ComponentListItem.MaxLineCount
+        minCount = MinLineCount,
+        maxCount = MaxLineCount
     )
 
     Subtitle(textRes = R.string.component_list_leading, horizontalPadding = true)
@@ -107,10 +107,10 @@ private fun ComponentListsBottomSheetContent(listItemCustomizationState: ListIte
 }
 
 @Composable
-private fun ComponentListsContent(listItemCustomizationState: ListItemCustomizationState) {
-    val recipes = LocalRecipes.current.filter { it.description.isNotBlank() }
+private fun ComponentListItemContent(listItemCustomizationState: ListItemCustomizationState) {
+    val recipes = LocalRecipes.current.filter { it.description.isNotBlank() }.first()
     with(listItemCustomizationState) {
-        Column(modifier = Modifier.verticalScroll(rememberScrollState())) {
+        Column {
             if (!trailings.contains(selectedTrailing.value)) {
                 resetTrailing()
             }
@@ -121,10 +121,10 @@ private fun ComponentListsContent(listItemCustomizationState: ListItemCustomizat
                 }
             val singleLineSecondaryText = lineCount.value == 2
 
-            val text = recipes.first().title
-            val secondaryText = listItemCustomizationState.getSecondaryText(recipes.first())
+            val text = recipes.title
+            val secondaryText = listItemCustomizationState.getSecondaryText(recipes)
             val icon: @Composable (OdsListItemIconScope.() -> Unit)? =
-                listItemCustomizationState.getIconPainter(recipes.first())?.let { { OdsListItemIcon(painter = it) } }
+                listItemCustomizationState.getIconPainter(recipes)?.let { { OdsListItemIcon(painter = it) } }
             trailing?.let { listItemTrailing ->
                 OdsListItem(
                     modifier = modifier,
@@ -149,7 +149,10 @@ private fun ComponentListsContent(listItemCustomizationState: ListItemCustomizat
                     name = OdsComposable.OdsListItem.name,
                     parameters = {
                         string("text", text)
-                        if (singleLineSecondaryText) secondaryText?.let { string("secondaryText", it) }
+                        if (secondaryText != null) {
+                            string("secondaryText", secondaryText)
+                            if (!singleLineSecondaryText) stringRepresentation("singleLineSecondaryText", false)
+                        }
                         icon()
                     }
                 )
