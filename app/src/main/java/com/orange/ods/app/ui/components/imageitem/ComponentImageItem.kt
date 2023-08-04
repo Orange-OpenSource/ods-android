@@ -64,7 +64,7 @@ fun ComponentImageItem() {
             bottomSheetContent = {
                 OdsChoiceChipsFlowRow(
                     selectedChip = type,
-                    modifier = Modifier.padding(horizontal = dimensionResource(id = R.dimen.spacing_m)),
+                    modifier = Modifier.padding(horizontal = dimensionResource(id = com.orange.ods.R.dimen.spacing_m)),
                     outlinedChips = true
                 ) {
                     Subtitle(textRes = R.string.component_element_type)
@@ -81,14 +81,14 @@ fun ComponentImageItem() {
                 modifier = Modifier
                     .fillMaxSize()
                     .padding(
-                        top = dimensionResource(id = R.dimen.screen_horizontal_margin),
-                        start = dimensionResource(id = R.dimen.screen_horizontal_margin)
+                        top = dimensionResource(id = com.orange.ods.R.dimen.screen_horizontal_margin),
+                        start = dimensionResource(id = com.orange.ods.R.dimen.screen_horizontal_margin)
                     ),
                 horizontalAlignment = Alignment.Start,
             ) {
                 val imageSize = 200.dp
                 val height = when (type.value) {
-                    OdsImageItemTitleType.Below -> imageSize + dimensionResource(id = R.dimen.image_item_title_height)
+                    OdsImageItemTitleType.Below -> imageSize + dimensionResource(id = com.orange.ods.R.dimen.image_item_title_height)
                     OdsImageItemTitleType.Overlay,
                     OdsImageItemTitleType.None -> imageSize
                 }
@@ -110,7 +110,7 @@ fun ComponentImageItem() {
                     displayTitle = if (isOverlay) OdsImageItemTitleType.Overlay else if (isBelow) OdsImageItemTitleType.Below else OdsImageItemTitleType.None,
                 )
                 CodeImplementationColumn(
-                    modifier = Modifier.padding(end = dimensionResource(id = R.dimen.spacing_m))
+                    modifier = Modifier.padding(end = dimensionResource(id = com.orange.ods.R.dimen.spacing_m))
                 ) {
                     FunctionCallCode(
                         name = OdsComposable.OdsImageItem.name,

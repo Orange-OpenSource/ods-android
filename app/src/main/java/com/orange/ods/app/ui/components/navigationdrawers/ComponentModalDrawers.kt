@@ -118,7 +118,7 @@ fun ComponentModalDrawers() {
                         OdsChoiceChipsFlowRow(
                             selectedChip = header,
                             outlinedChips = true,
-                            modifier = Modifier.padding(horizontal = dimensionResource(id = R.dimen.screen_horizontal_margin)),
+                            modifier = Modifier.padding(horizontal = dimensionResource(id = com.orange.ods.R.dimen.screen_horizontal_margin)),
                         ) {
                             Subtitle(textRes = R.string.component_modal_drawer_header_image)
                             OdsChoiceChip(textRes = R.string.component_element_avatar, value = ComponentNavigationDrawersContentState.HeaderImage.Avatar)
@@ -145,7 +145,7 @@ fun ComponentModalDrawers() {
                         OdsChoiceChipsFlowRow(
                             selectedChip = content,
                             outlinedChips = true,
-                            modifier = Modifier.padding(horizontal = dimensionResource(id = R.dimen.screen_horizontal_margin)),
+                            modifier = Modifier.padding(horizontal = dimensionResource(id = com.orange.ods.R.dimen.screen_horizontal_margin)),
                         ) {
                             Subtitle(textRes = R.string.component_modal_drawer_list_example)
                             OdsChoiceChip(
@@ -172,7 +172,7 @@ fun ComponentModalDrawers() {
                             onButtonClick = { scope.launch { drawerState.open() } }
                         )
 
-                        CodeImplementationColumn(modifier = Modifier.padding(horizontal = dimensionResource(id = R.dimen.screen_horizontal_margin))) {
+                        CodeImplementationColumn(modifier = Modifier.padding(horizontal = dimensionResource(id = com.orange.ods.R.dimen.screen_horizontal_margin))) {
                             FunctionCallCode(
                                 name = OdsComposable.OdsModalDrawer.name,
                                 exhaustiveParameters = false,

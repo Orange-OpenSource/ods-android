@@ -67,7 +67,7 @@ fun ComponentLists() {
 @Composable
 private fun ComponentListsBottomSheetContent(listItemCustomizationState: ListItemCustomizationState) {
     ComponentCountRow(
-        modifier = Modifier.padding(start = dimensionResource(id = R.dimen.screen_horizontal_margin)),
+        modifier = Modifier.padding(start = dimensionResource(id = com.orange.ods.R.dimen.screen_horizontal_margin)),
         title = stringResource(id = R.string.component_list_item_size),
         count = listItemCustomizationState.lineCount,
         minusIconContentDescription = stringResource(id = R.string.component_list_item_remove_line),
@@ -79,7 +79,7 @@ private fun ComponentListsBottomSheetContent(listItemCustomizationState: ListIte
     Subtitle(textRes = R.string.component_list_leading, horizontalPadding = true)
     OdsChoiceChipsFlowRow(
         selectedChip = listItemCustomizationState.selectedLeading,
-        modifier = Modifier.padding(horizontal = dimensionResource(id = R.dimen.screen_horizontal_margin)),
+        modifier = Modifier.padding(horizontal = dimensionResource(id = com.orange.ods.R.dimen.screen_horizontal_margin)),
         outlinedChips = true
     ) {
         OdsChoiceChip(textRes = R.string.component_list_leading_none, value = ListItemCustomizationState.Leading.None)
@@ -92,7 +92,7 @@ private fun ComponentListsBottomSheetContent(listItemCustomizationState: ListIte
     Subtitle(textRes = R.string.component_list_trailing, horizontalPadding = true)
     OdsChoiceChipsFlowRow(
         selectedChip = listItemCustomizationState.selectedTrailing,
-        modifier = Modifier.padding(horizontal = dimensionResource(id = R.dimen.screen_horizontal_margin)),
+        modifier = Modifier.padding(horizontal = dimensionResource(id = com.orange.ods.R.dimen.screen_horizontal_margin)),
         outlinedChips = true
     ) {
         listItemCustomizationState.trailings.forEach { trailing ->
@@ -185,8 +185,8 @@ private fun ListItemCustomizationState.getIconPainter(recipe: Recipe): Painter? 
         ListItemCustomizationState.Leading.CircularImage,
         ListItemCustomizationState.Leading.SquareImage,
         ListItemCustomizationState.Leading.WideImage -> {
-            val wideImageSizeWidthPx = with(LocalDensity.current) { dimensionResource(id = R.dimen.list_wide_image_width).toPx() }
-            val wideImageSizeHeightPx = with(LocalDensity.current) { dimensionResource(id = R.dimen.list_wide_image_height).toPx() }
+            val wideImageSizeWidthPx = with(LocalDensity.current) { dimensionResource(id = com.orange.ods.R.dimen.list_wide_image_width).toPx() }
+            val wideImageSizeHeightPx = with(LocalDensity.current) { dimensionResource(id = com.orange.ods.R.dimen.list_wide_image_height).toPx() }
             rememberAsyncImagePainter(
                 model = ImageRequest.Builder(LocalContext.current)
                     .data(recipe.imageUrl)

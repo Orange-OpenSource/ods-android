@@ -57,7 +57,7 @@ fun ComponentBottomNavigation() {
         bottomSheetScaffoldState = rememberBottomSheetScaffoldState(),
         bottomSheetContent = {
             ComponentCountRow(
-                modifier = Modifier.padding(start = dimensionResource(id = R.dimen.screen_horizontal_margin)),
+                modifier = Modifier.padding(start = dimensionResource(id = com.orange.ods.R.dimen.screen_horizontal_margin)),
                 title = stringResource(id = R.string.component_bottom_navigation_navigation_item_count),
                 count = selectedNavigationItemCount,
                 minusIconContentDescription = stringResource(id = R.string.component_bottom_navigation_remove_item),
@@ -70,7 +70,7 @@ fun ComponentBottomNavigation() {
             modifier = Modifier
                 .fillMaxSize()
                 .verticalScroll(rememberScrollState())
-                .padding(top = dimensionResource(id = R.dimen.screen_vertical_margin))
+                .padding(top = dimensionResource(id = com.orange.ods.R.dimen.screen_vertical_margin))
         ) {
             OdsBottomNavigation(
                 items = navigationItems.take(selectedNavigationItemCount.value).map { navigationItem ->
@@ -91,7 +91,7 @@ fun ComponentBottomNavigation() {
             )
 
             CodeImplementationColumn(
-                modifier = Modifier.padding(horizontal = dimensionResource(id = R.dimen.screen_horizontal_margin))
+                modifier = Modifier.padding(horizontal = dimensionResource(id = com.orange.ods.R.dimen.screen_horizontal_margin))
             ) {
                 FunctionCallCode(
                     name = OdsComposable.OdsBottomNavigation.name,

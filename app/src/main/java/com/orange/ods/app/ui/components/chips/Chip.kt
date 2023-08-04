@@ -61,7 +61,7 @@ fun Chip(variant: Variant) {
                     Subtitle(textRes = R.string.component_element_leading, horizontalPadding = true)
                     OdsChoiceChipsFlowRow(
                         selectedChip = leadingElement,
-                        modifier = Modifier.padding(horizontal = dimensionResource(id = R.dimen.screen_horizontal_margin)),
+                        modifier = Modifier.padding(horizontal = dimensionResource(id = com.orange.ods.R.dimen.screen_horizontal_margin)),
                         outlinedChips = true
                     ) {
                         OdsChoiceChip(textRes = R.string.component_element_none, value = LeadingElement.None)
@@ -91,10 +91,13 @@ fun ChipTypeDemo(chipType: ChipType, content: @Composable () -> Unit) {
     Column(
         modifier = Modifier
             .verticalScroll(rememberScrollState())
-            .padding(horizontal = dimensionResource(id = R.dimen.screen_horizontal_margin), vertical = dimensionResource(id = R.dimen.screen_vertical_margin))
+            .padding(
+                horizontal = dimensionResource(id = com.orange.ods.R.dimen.screen_horizontal_margin),
+                vertical = dimensionResource(id = com.orange.ods.R.dimen.screen_vertical_margin)
+            )
     ) {
         OdsTextBody2(
-            modifier = Modifier.padding(bottom = dimensionResource(id = R.dimen.spacing_s)),
+            modifier = Modifier.padding(bottom = dimensionResource(id = com.orange.ods.R.dimen.spacing_s)),
             text = stringResource(id = chipType.descriptionRes)
         )
         content()
@@ -120,7 +123,7 @@ private fun Chip(chipCustomizationState: ChipCustomizationState) {
                 }
             }
 
-            Spacer(modifier = Modifier.padding(top = dimensionResource(R.dimen.spacing_s)))
+            Spacer(modifier = Modifier.padding(top = dimensionResource(com.orange.ods.R.dimen.spacing_s)))
 
             CodeImplementationColumn {
                 FunctionCallCode(
@@ -161,7 +164,7 @@ private fun Chip(chipCustomizationState: ChipCustomizationState) {
                 } else null
             )
 
-            Spacer(modifier = Modifier.padding(top = dimensionResource(R.dimen.spacing_s)))
+            Spacer(modifier = Modifier.padding(top = dimensionResource(com.orange.ods.R.dimen.spacing_s)))
 
             CodeImplementationColumn {
                 FunctionCallCode(

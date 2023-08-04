@@ -63,7 +63,7 @@ fun ProgressLinear() {
             bottomSheetContent = {
                 OdsChoiceChipsFlowRow(
                     selectedChip = type,
-                    modifier = Modifier.padding(horizontal = dimensionResource(id = R.dimen.spacing_m)),
+                    modifier = Modifier.padding(horizontal = dimensionResource(id = com.orange.ods.R.dimen.spacing_m)),
                     outlinedChips = true
                 ) {
                     Subtitle(textRes = R.string.component_element_type)
@@ -98,7 +98,7 @@ fun ProgressLinear() {
                     showCurrentValue = hasCurrentValue,
                     icon = if (hasIcon) painterResource(id = R.drawable.ic_arrow_down) else null,
                     modifier = Modifier
-                        .padding(top = dimensionResource(id = R.dimen.spacing_m))
+                        .padding(top = dimensionResource(id = com.orange.ods.R.dimen.spacing_m))
                         .fillMaxWidth()
                 )
                 if (type.value == ProgressCustomizationState.Type.Determinate) {
@@ -107,7 +107,7 @@ fun ProgressLinear() {
                     }
                 }
 
-                CodeImplementationColumn(modifier = Modifier.padding(horizontal = dimensionResource(id = R.dimen.screen_horizontal_margin))) {
+                CodeImplementationColumn(modifier = Modifier.padding(horizontal = dimensionResource(id = com.orange.ods.R.dimen.screen_horizontal_margin))) {
                     FunctionCallCode(
                         name = OdsComposable.OdsLinearProgressIndicator.name,
                         exhaustiveParameters = false,

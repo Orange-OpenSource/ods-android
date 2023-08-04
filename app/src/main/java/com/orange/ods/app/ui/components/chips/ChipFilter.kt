@@ -59,7 +59,7 @@ fun ChipFilter() {
                 Subtitle(textRes = R.string.component_element_leading, horizontalPadding = true)
                 OdsChoiceChipsFlowRow(
                     selectedChip = leadingElement,
-                    modifier = Modifier.padding(horizontal = dimensionResource(id = R.dimen.screen_horizontal_margin)),
+                    modifier = Modifier.padding(horizontal = dimensionResource(id = com.orange.ods.R.dimen.screen_horizontal_margin)),
                     outlinedChips = true
                 ) {
                     OdsChoiceChip(textRes = R.string.component_element_none, value = ChipCustomizationState.LeadingElement.None)
@@ -75,7 +75,7 @@ fun ChipFilter() {
             }) {
             var selectedChipIndexes by rememberSaveable { mutableStateOf(emptySet<Int>()) }
             ChipTypeDemo(chipType = chipType.value) {
-                FlowRow(modifier = Modifier.fillMaxWidth(), mainAxisSpacing = dimensionResource(id = R.dimen.spacing_s)) {
+                FlowRow(modifier = Modifier.fillMaxWidth(), mainAxisSpacing = dimensionResource(id = com.orange.ods.R.dimen.spacing_s)) {
                     recipe.ingredients.forEachIndexed { index, ingredient ->
                         OdsFilterChip(
                             text = ingredient.food.name,
@@ -96,12 +96,12 @@ fun ChipFilter() {
                     }
                 }
 
-                Spacer(modifier = Modifier.padding(top = dimensionResource(R.dimen.spacing_s)))
+                Spacer(modifier = Modifier.padding(top = dimensionResource(com.orange.ods.R.dimen.spacing_s)))
 
                 CodeImplementationColumn {
                     FunctionCallCode(
                         name = "FlowRow",
-                        parameters = { simple("mainAxisSpacing", "dimensionResource(id = R.dimen.spacing_s))") }
+                        parameters = { simple("mainAxisSpacing", "dimensionResource(id = com.orange.ods.R.dimen.spacing_s))") }
                     ) {
                         recipe.ingredients.forEachIndexed { index, ingredient ->
                             FunctionCallCode(

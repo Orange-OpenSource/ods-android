@@ -21,13 +21,12 @@ import androidx.compose.ui.platform.LocalConfiguration
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.viewinterop.AndroidView
-import com.orange.ods.compose.theme.OdsTheme
-import com.orange.ods.app.R
 import com.orange.ods.app.ui.LocalMainTopAppBarManager
 import com.orange.ods.app.ui.utilities.Markdown
 import com.orange.ods.app.ui.utilities.extension.injectLightDarkModeCss
 import com.orange.ods.app.ui.utilities.extension.isDarkModeEnabled
 import com.orange.ods.app.ui.utilities.launchUrl
+import com.orange.ods.compose.theme.OdsTheme
 import java.io.BufferedReader
 import java.nio.charset.StandardCharsets
 
@@ -42,8 +41,8 @@ fun AboutFileScreen(aboutItemId: Long) {
         val context = LocalContext.current
         val configuration = LocalConfiguration.current
         val colors = OdsTheme.colors
-        val horizontalPadding = dimensionResource(id = R.dimen.screen_horizontal_margin).value
-        val verticalPadding = dimensionResource(id = R.dimen.screen_vertical_margin).value
+        val horizontalPadding = dimensionResource(id = com.orange.ods.R.dimen.screen_horizontal_margin).value
+        val verticalPadding = dimensionResource(id = com.orange.ods.R.dimen.screen_vertical_margin).value
         AndroidView(
             factory = {
                 WebView(context).apply {

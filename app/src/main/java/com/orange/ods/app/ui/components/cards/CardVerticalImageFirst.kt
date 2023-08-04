@@ -43,7 +43,7 @@ fun CardVerticalImageFirst(customizationState: CardCustomizationState) {
         Column(
             modifier = Modifier
                 .fillMaxSize()
-                .padding(dimensionResource(id = R.dimen.spacing_m))
+                .padding(dimensionResource(id = com.orange.ods.R.dimen.spacing_m))
                 .verticalScroll(state = rememberScrollState()),
         ) {
             val button1Text = stringResource(id = R.string.component_element_button1)
@@ -68,7 +68,7 @@ fun CardVerticalImageFirst(customizationState: CardCustomizationState) {
                 onButton2Click = { clickOnElement(context, button2Text) }
             )
 
-            Spacer(modifier = Modifier.padding(top = dimensionResource(R.dimen.spacing_s)))
+            Spacer(modifier = Modifier.padding(top = dimensionResource(com.orange.ods.R.dimen.spacing_s)))
 
             CodeImplementationColumn {
                 FunctionCallCode(

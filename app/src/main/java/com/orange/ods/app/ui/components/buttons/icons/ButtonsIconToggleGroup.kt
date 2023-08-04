@@ -26,7 +26,6 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.painterResource
-import com.orange.ods.app.R
 import com.orange.ods.app.databinding.OdsIconToggleButtonsGroupBinding
 import com.orange.ods.app.domain.recipes.LocalRecipes
 import com.orange.ods.app.ui.UiFramework
@@ -51,7 +50,7 @@ fun ButtonsIconToggleGroup(customizationState: ButtonIconCustomizationState) {
         Column(
             modifier = Modifier
                 .verticalScroll(rememberScrollState())
-                .padding(vertical = dimensionResource(id = R.dimen.screen_vertical_margin))
+                .padding(vertical = dimensionResource(id = com.orange.ods.R.dimen.screen_vertical_margin))
         ) {
 
             ToggleButtonsRow(
@@ -61,7 +60,7 @@ fun ButtonsIconToggleGroup(customizationState: ButtonIconCustomizationState) {
                 toggleCount = toggleCount.value
             )
 
-            Spacer(modifier = Modifier.padding(top = dimensionResource(R.dimen.spacing_s)))
+            Spacer(modifier = Modifier.padding(top = dimensionResource(com.orange.ods.R.dimen.spacing_s)))
 
             InvertedBackgroundColumn {
                 ToggleButtonsRow(
@@ -74,7 +73,7 @@ fun ButtonsIconToggleGroup(customizationState: ButtonIconCustomizationState) {
             }
 
             CodeImplementationColumn(
-                modifier = Modifier.padding(horizontal = dimensionResource(id = R.dimen.screen_horizontal_margin)),
+                modifier = Modifier.padding(horizontal = dimensionResource(id = com.orange.ods.R.dimen.screen_horizontal_margin)),
                 xmlAvailable = true
             ) {
                 FunctionCallCode(
@@ -109,8 +108,8 @@ private fun ToggleButtonsRow(
     Row(
         modifier = Modifier
             .fillMaxWidth()
-            .padding(top = dimensionResource(R.dimen.spacing_m))
-            .padding(horizontal = dimensionResource(R.dimen.screen_horizontal_margin)),
+            .padding(top = dimensionResource(com.orange.ods.R.dimen.spacing_m))
+            .padding(horizontal = dimensionResource(com.orange.ods.R.dimen.screen_horizontal_margin)),
         horizontalArrangement = Arrangement.Center
     ) {
         val buttons = iconToggleButtons.take(toggleCount)

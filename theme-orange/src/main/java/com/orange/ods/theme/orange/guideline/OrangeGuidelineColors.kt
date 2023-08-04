@@ -33,13 +33,13 @@ import com.orange.ods.theme.orange.Yellow200
 import com.orange.ods.theme.orange.Yellow300
 
 val OrangeGuidelineColors = listOf(
-    GuidelineColor(OdsColors::primary, GuidelineColorType.Core, "Orange 100", "Orange 200", R.attr.colorPrimary),
-    GuidelineColor(OdsColors::background, GuidelineColorType.Core, "White 100", "Black 900", R.attr.backgroundColor),
-    GuidelineColor(OdsColors::surface, GuidelineColorType.Core, "White 100", "Secondary Background", R.attr.colorSurface),
+    GuidelineColor(OdsColors::primary, GuidelineColorType.Core, "Orange 100", "Orange 200", com.google.android.material.R.attr.colorPrimary),
+    GuidelineColor(OdsColors::background, GuidelineColorType.Core, "White 100", "Black 900", com.google.android.material.R.attr.backgroundColor),
+    GuidelineColor(OdsColors::surface, GuidelineColorType.Core, "White 100", "Secondary Background", com.google.android.material.R.attr.colorSurface),
     GuidelineColor(::ObsGrey700, GuidelineColorType.Core, "OBS Grey 700", xmlResource = R.color.core_obsgrey_700),
 
     GuidelineColor(OdsFunctionalColors::positive, GuidelineColorType.Functional, "Positive 200", "Positive 100", R.attr.functionalPositive),
-    GuidelineColor(OdsColors::error, GuidelineColorType.Functional, "Negative 200", "Negative 100", R.attr.colorError),
+    GuidelineColor(OdsColors::error, GuidelineColorType.Functional, "Negative 200", "Negative 100", com.google.android.material.R.attr.colorError),
     GuidelineColor(OdsFunctionalColors::info, GuidelineColorType.Functional, "Info 200", "Info 100", R.attr.functionalInfo),
     GuidelineColor(OdsFunctionalColors::alert, GuidelineColorType.Functional, "Alert 200", "Alert 100", R.attr.functionalAlert),
 

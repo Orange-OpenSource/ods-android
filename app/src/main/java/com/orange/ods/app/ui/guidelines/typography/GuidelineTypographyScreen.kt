@@ -46,8 +46,8 @@ fun GuidelineTypographyScreen() {
     val guidelineTypography = LocalOdsGuideline.current.guidelineTypography
 
     LazyColumn(
-        contentPadding = PaddingValues(bottom = dimensionResource(id = R.dimen.screen_vertical_margin)),
-        verticalArrangement = Arrangement.spacedBy(dimensionResource(id = R.dimen.spacing_m))
+        contentPadding = PaddingValues(bottom = dimensionResource(id = com.orange.ods.R.dimen.screen_vertical_margin)),
+        verticalArrangement = Arrangement.spacedBy(dimensionResource(id = com.orange.ods.R.dimen.spacing_m))
     ) {
         item {
             DetailScreenHeader(
@@ -59,8 +59,8 @@ fun GuidelineTypographyScreen() {
             item {
                 OdsTextBody1(
                     modifier = Modifier.padding(
-                        horizontal = dimensionResource(id = R.dimen.screen_horizontal_margin),
-                        vertical = dimensionResource(id = R.dimen.screen_vertical_margin)
+                        horizontal = dimensionResource(id = com.orange.ods.R.dimen.screen_horizontal_margin),
+                        vertical = dimensionResource(id = com.orange.ods.R.dimen.screen_vertical_margin)
                     ),
                     text = stringResource(id = R.string.guideline_typography_no_typography_defined)
                 )
@@ -71,8 +71,8 @@ fun GuidelineTypographyScreen() {
                 if (index < guidelineTypography.lastIndex) {
                     OdsDivider(
                         modifier = Modifier
-                            .padding(top = dimensionResource(id = R.dimen.spacing_m))
-                            .padding(horizontal = dimensionResource(id = R.dimen.screen_horizontal_margin))
+                            .padding(top = dimensionResource(id = com.orange.ods.R.dimen.spacing_m))
+                            .padding(horizontal = dimensionResource(id = com.orange.ods.R.dimen.screen_horizontal_margin))
                     )
                 }
             }
@@ -85,7 +85,7 @@ private fun TextStyleRow(guidelineTextStyle: GuidelineTextStyle) {
     val context = LocalContext.current
     val textColor = OdsTheme.colors.onBackground
     Column(modifier = Modifier
-        .padding(horizontal = dimensionResource(id = R.dimen.screen_horizontal_margin))
+        .padding(horizontal = dimensionResource(id = com.orange.ods.R.dimen.screen_horizontal_margin))
         .semantics(mergeDescendants = true) {}) {
         Text(
             text = guidelineTextStyle.name,

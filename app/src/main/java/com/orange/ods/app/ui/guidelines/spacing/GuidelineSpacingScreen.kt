@@ -46,7 +46,7 @@ private val ratioFormatter = DecimalFormat("0.#", DecimalFormatSymbols(Locale.EN
 fun GuidelineSpacingScreen() {
     LocalMainTopAppBarManager.current.updateTopAppBarTitle(R.string.guideline_spacing)
 
-    LazyColumn(contentPadding = PaddingValues(bottom = dimensionResource(id = R.dimen.spacing_m))) {
+    LazyColumn(contentPadding = PaddingValues(bottom = dimensionResource(id = com.orange.ods.R.dimen.spacing_m))) {
         item {
             DetailScreenHeader(
                 imageRes = DrawableManager.getDrawableResIdForCurrentTheme(resId = R.drawable.il_spacing),
@@ -57,13 +57,14 @@ fun GuidelineSpacingScreen() {
         item {
             OdsTextSubtitle1(
                 modifier = Modifier
-                    .padding(horizontal = dimensionResource(id = R.dimen.screen_horizontal_margin))
-                    .padding(vertical = dimensionResource(id = R.dimen.spacing_m)),
+                    .padding(horizontal = dimensionResource(id = com.orange.ods.R.dimen.screen_horizontal_margin))
+                    .padding(vertical = dimensionResource(id = com.orange.ods.R.dimen.spacing_m)),
                 text = stringResource(id = R.string.guideline_spacing_subtitle)
             )
         }
         items(Spacing.values()) { spacing ->
-            val dividerStartIndent = dimensionResource(id = R.dimen.guideline_spacing_image_width) + dimensionResource(id = R.dimen.spacing_m).times(2)
+            val dividerStartIndent =
+                dimensionResource(id = R.dimen.guideline_spacing_image_width) + dimensionResource(id = com.orange.ods.R.dimen.spacing_m).times(2)
             val dp = spacing.getDp()
             val ratio = spacing.getRatio()
             OdsListItem(

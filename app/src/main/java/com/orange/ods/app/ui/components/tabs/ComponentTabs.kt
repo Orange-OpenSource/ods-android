@@ -80,7 +80,7 @@ fun ComponentTabs(variant: Variant, upPress: () -> Unit) {
             Subtitle(textRes = R.string.component_element_icon, horizontalPadding = true)
             OdsChoiceChipsFlowRow(
                 selectedChip = tabsCustomizationState.tabIconType,
-                modifier = Modifier.padding(horizontal = dimensionResource(id = R.dimen.screen_horizontal_margin)),
+                modifier = Modifier.padding(horizontal = dimensionResource(id = com.orange.ods.R.dimen.screen_horizontal_margin)),
                 outlinedChips = true
             ) {
                 OdsChoiceChip(
@@ -106,7 +106,7 @@ fun ComponentTabs(variant: Variant, upPress: () -> Unit) {
             )
 
             ComponentCountRow(
-                modifier = Modifier.padding(start = dimensionResource(id = R.dimen.screen_horizontal_margin)),
+                modifier = Modifier.padding(start = dimensionResource(id = com.orange.ods.R.dimen.screen_horizontal_margin)),
                 title = stringResource(id = R.string.component_tabs_count),
                 count = tabsCustomizationState.tabsCount,
                 minusIconContentDescription = stringResource(id = R.string.component_tabs_remove_tab),

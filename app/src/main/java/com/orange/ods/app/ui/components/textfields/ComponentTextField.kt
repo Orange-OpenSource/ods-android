@@ -63,8 +63,8 @@ fun ComponentTextField(variant: Variant) {
             modifier = Modifier
                 .verticalScroll(rememberScrollState())
                 .padding(
-                    horizontal = dimensionResource(id = R.dimen.screen_horizontal_margin),
-                    vertical = dimensionResource(id = R.dimen.screen_vertical_margin)
+                    horizontal = dimensionResource(id = com.orange.ods.R.dimen.screen_horizontal_margin),
+                    vertical = dimensionResource(id = com.orange.ods.R.dimen.screen_vertical_margin)
                 )
         ) {
             when (variant) {
@@ -132,7 +132,7 @@ private fun ComponentCustomizationContent(textFieldCustomizationState: TextField
     Subtitle(textRes = R.string.component_text_field_input_type, horizontalPadding = true)
     OdsChoiceChipsFlowRow(
         selectedChip = textFieldCustomizationState.inputType,
-        modifier = Modifier.padding(horizontal = dimensionResource(id = R.dimen.spacing_m)),
+        modifier = Modifier.padding(horizontal = dimensionResource(id = com.orange.ods.R.dimen.spacing_m)),
         outlinedChips = true
     ) {
         OdsChoiceChip(textRes = R.string.component_text_field_input_type_single_line, value = TextFieldCustomizationState.InputType.SingleLine)
@@ -151,7 +151,7 @@ private fun ComponentCustomizationContent(textFieldCustomizationState: TextField
     Subtitle(textRes = R.string.component_element_trailing, horizontalPadding = true)
     OdsChoiceChipsFlowRow(
         selectedChip = textFieldCustomizationState.trailingElement,
-        modifier = Modifier.padding(horizontal = dimensionResource(id = R.dimen.spacing_m)),
+        modifier = Modifier.padding(horizontal = dimensionResource(id = com.orange.ods.R.dimen.spacing_m)),
         outlinedChips = true
     ) {
         OdsChoiceChip(textRes = R.string.component_element_none, value = TextFieldCustomizationState.TrailingElement.None)
@@ -171,7 +171,7 @@ private fun KeyboardCustomizationContent(textFieldCustomizationState: TextFieldC
     OdsChoiceChipsFlowRow(
         selectedChip = textFieldCustomizationState.softKeyboardType,
         modifier = Modifier
-            .padding(horizontal = dimensionResource(id = R.dimen.spacing_m)),
+            .padding(horizontal = dimensionResource(id = com.orange.ods.R.dimen.spacing_m)),
         outlinedChips = true
     ) {
         TextFieldCustomizationState.SoftKeyboardType.values().forEach { softKeyboardType ->
@@ -187,7 +187,7 @@ private fun KeyboardCustomizationContent(textFieldCustomizationState: TextFieldC
     Subtitle(textRes = R.string.component_text_field_keyboard_action, horizontalPadding = true)
     OdsChoiceChipsFlowRow(
         selectedChip = textFieldCustomizationState.softKeyboardAction,
-        modifier = Modifier.padding(horizontal = dimensionResource(id = R.dimen.spacing_m)),
+        modifier = Modifier.padding(horizontal = dimensionResource(id = com.orange.ods.R.dimen.spacing_m)),
         outlinedChips = true
     ) {
         TextFieldCustomizationState.SoftKeyboardAction.values().forEach { softKeyboardAction ->
@@ -202,7 +202,7 @@ private fun DisplayTypeCustomization(displayType: MutableState<TextFieldCustomiz
     Subtitle(textRes = R.string.component_state, horizontalPadding = true)
     OdsChoiceChipsFlowRow(
         selectedChip = displayType,
-        modifier = Modifier.padding(horizontal = dimensionResource(id = R.dimen.spacing_m)),
+        modifier = Modifier.padding(horizontal = dimensionResource(id = com.orange.ods.R.dimen.spacing_m)),
         outlinedChips = true
     ) {
         val context = LocalContext.current

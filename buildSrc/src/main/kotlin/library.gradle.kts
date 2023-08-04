@@ -10,7 +10,6 @@
 
 import com.orange.ods.gradle.MavenCentralPublishPluginExtension
 import com.orange.ods.gradle.Versions
-import gradle.kotlin.dsl.accessors._ecf15b363eddec123ebdbce713433fa8.android
 
 plugins {
     id("com.android.library")

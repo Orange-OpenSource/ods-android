@@ -70,19 +70,22 @@ fun MenuDropdown() {
             Column(
                 modifier = Modifier
                     .verticalScroll(rememberScrollState())
-                    .padding(top = dimensionResource(id = R.dimen.screen_vertical_margin), bottom = dimensionResource(id = R.dimen.spacing_s))
+                    .padding(
+                        top = dimensionResource(id = com.orange.ods.R.dimen.screen_vertical_margin),
+                        bottom = dimensionResource(id = com.orange.ods.R.dimen.spacing_s)
+                    )
             ) {
                 OdsTextBody1(
                     modifier = Modifier
-                        .padding(horizontal = dimensionResource(id = R.dimen.screen_horizontal_margin)),
+                        .padding(horizontal = dimensionResource(id = com.orange.ods.R.dimen.screen_horizontal_margin)),
                     text = stringResource(id = R.string.component_menu_dropdown_description)
                 )
 
                 val dividerIndex = 1
 
-                Box(modifier = Modifier.padding(top = dimensionResource(id = R.dimen.spacing_s))) {
+                Box(modifier = Modifier.padding(top = dimensionResource(id = com.orange.ods.R.dimen.spacing_s))) {
                     OdsListItem(
-                        modifier = Modifier.padding(top = dimensionResource(id = R.dimen.spacing_s)),
+                        modifier = Modifier.padding(top = dimensionResource(id = com.orange.ods.R.dimen.spacing_s)),
                         text = recipe.title,
                         secondaryText = recipe.subtitle,
                         trailing = OdsIconTrailing(
@@ -110,7 +113,7 @@ fun MenuDropdown() {
                 }
 
                 CodeImplementationColumn(
-                    modifier = Modifier.padding(horizontal = dimensionResource(id = R.dimen.screen_horizontal_margin))
+                    modifier = Modifier.padding(horizontal = dimensionResource(id = com.orange.ods.R.dimen.screen_horizontal_margin))
                 ) {
                     FunctionCallCode(
                         name = OdsComposable.OdsDropdownMenu.name,

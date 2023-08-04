@@ -245,7 +245,7 @@ Use `OdsChoiceChipsFlowRow` composable:
 ```kotlin
 OdsChoiceChipsFlowRow(
     selectedChip = iconTypeState,
-    modifier = Modifier.padding(horizontal = dimensionResource(id = R.dimen.spacing_m))
+    modifier = Modifier.padding(horizontal = dimensionResource(id = com.orange.ods.R.dimen.spacing_m))
 ) {
     SelectableChip(textRes = R.string.component_icon_leading, value = IconType.Leading)
     SelectableChip(textRes = R.string.component_icon_top, value = IconType.Top)

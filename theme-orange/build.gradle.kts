@@ -28,4 +28,5 @@ dependencies {
     implementation(Dependencies.composeMaterial)
     implementation(Dependencies.hiltAndroid)
     kapt(Dependencies.hiltCompiler)
+    implementation(Dependencies.material)
 }

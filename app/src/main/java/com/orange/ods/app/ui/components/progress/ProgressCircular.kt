@@ -61,7 +61,7 @@ fun ProgressCircular() {
             bottomSheetContent = {
                 OdsChoiceChipsFlowRow(
                     selectedChip = type,
-                    modifier = Modifier.padding(horizontal = dimensionResource(id = R.dimen.spacing_m)),
+                    modifier = Modifier.padding(horizontal = dimensionResource(id = com.orange.ods.R.dimen.spacing_m)),
                     outlinedChips = true
                 ) {
                     Subtitle(textRes = R.string.component_element_type)
@@ -83,7 +83,7 @@ fun ProgressCircular() {
                     progress = if (type.value == ProgressCustomizationState.Type.Determinate) determinateProgressAnimation else null,
                     label = if (hasLabel) text else null,
                     modifier = Modifier
-                        .padding(top = dimensionResource(id = R.dimen.spacing_m))
+                        .padding(top = dimensionResource(id = com.orange.ods.R.dimen.spacing_m))
                         .align(alignment = Alignment.CenterHorizontally)
                 )
                 if (type.value == ProgressCustomizationState.Type.Determinate) {
