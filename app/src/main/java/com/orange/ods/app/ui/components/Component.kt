@@ -178,12 +178,11 @@ sealed class Component(
 
     object ListItem : Component(
         R.string.component_list_item,
-        R.drawable.il_list_item,
+        R.drawable.il_list_item_generic,
         null,
         R.string.component_list_item_description,
         composableName = OdsComposable.OdsListItem.name,
-        demoScreen = { _, _ -> ComponentListItem() },
-        imageAlignment = Alignment.BottomCenter
+        demoScreen = { _, _ -> ComponentListItem() }
     )
 
     object Lists : Component(
