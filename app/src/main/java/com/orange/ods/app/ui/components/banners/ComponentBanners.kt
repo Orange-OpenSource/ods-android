@@ -61,7 +61,7 @@ fun ComponentBanners() {
                     count = textLinesCount,
                     minusIconContentDescription = stringResource(id = R.string.component_remove_action_button),
                     plusIconContentDescription = stringResource(id = R.string.component_add_action_button),
-                    modifier = Modifier.padding(start = dimensionResource(id = R.dimen.screen_horizontal_margin)),
+                    modifier = Modifier.padding(start = dimensionResource(id = com.orange.ods.R.dimen.screen_horizontal_margin)),
                     minCount = BannerCustomizationState.MinTextCount,
                     maxCount = BannerCustomizationState.MaxTextCount
                 )
@@ -70,7 +70,7 @@ fun ComponentBanners() {
                     count = buttonsCount,
                     minusIconContentDescription = stringResource(id = R.string.component_banner_remove_action_button),
                     plusIconContentDescription = stringResource(id = R.string.component_banner_add_action_button),
-                    modifier = Modifier.padding(start = dimensionResource(id = R.dimen.screen_horizontal_margin)),
+                    modifier = Modifier.padding(start = dimensionResource(id = com.orange.ods.R.dimen.screen_horizontal_margin)),
                     minCount = BannerCustomizationState.MinActionButtonCount,
                     maxCount = BannerCustomizationState.MaxActionButtonCount
                 )
@@ -130,7 +130,7 @@ fun ComponentBanners() {
                 )
 
                 CodeImplementationColumn(
-                    modifier = Modifier.padding(horizontal = dimensionResource(id = R.dimen.screen_horizontal_margin)),
+                    modifier = Modifier.padding(horizontal = dimensionResource(id = com.orange.ods.R.dimen.screen_horizontal_margin)),
                     xmlAvailable = true
                 ) {
                     FunctionCallCode(

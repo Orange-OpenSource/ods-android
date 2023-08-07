@@ -39,7 +39,7 @@ fun TextField(customizationState: TextFieldCustomizationState) {
 
     val modifier = Modifier
         .fillMaxWidth()
-        .padding(top = dimensionResource(id = R.dimen.spacing_s))
+        .padding(top = dimensionResource(id = com.orange.ods.R.dimen.spacing_s))
 
     with(customizationState) {
         val leadingIcon = if (hasLeadingIcon) painterResource(id = R.drawable.ic_heart) else null
@@ -66,7 +66,7 @@ fun TextField(customizationState: TextFieldCustomizationState) {
                     placeholder = placeholder,
                     trailing = if (hasTrailingIcon) {
                         OdsIconTrailing(
-                            painter = painterResource(id = R.drawable.ic_eye),
+                            painter = painterResource(id = com.orange.ods.R.drawable.ic_eye),
                             onClick = { clickOnElement(context = context, trailingIconName) })
                     } else {
                         OdsTextTrailing(text = "units")

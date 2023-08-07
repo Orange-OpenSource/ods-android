@@ -68,7 +68,7 @@ fun ComponentDialog() {
             }
 
             CodeImplementationColumn(
-                modifier = Modifier.padding(horizontal = dimensionResource(id = R.dimen.screen_horizontal_margin))
+                modifier = Modifier.padding(horizontal = dimensionResource(id = com.orange.ods.R.dimen.screen_horizontal_margin))
             ) {
                 FunctionCallCode(
                     name = OdsComposable.OdsAlertDialog.name,

@@ -54,8 +54,8 @@ fun ComponentFloatingActionButton() {
             .let {
                 if (isFullScreenWidth) it
                     .padding(
-                        start = dimensionResource(id = R.dimen.spacing_m),
-                        end = dimensionResource(id = R.dimen.spacing_m),
+                        start = dimensionResource(id = com.orange.ods.R.dimen.spacing_m),
+                        end = dimensionResource(id = com.orange.ods.R.dimen.spacing_m),
                         bottom = 64.dp
                     )
                     .fillMaxWidth()
@@ -91,7 +91,7 @@ fun ComponentFloatingActionButton() {
                 Subtitle(textRes = R.string.component_size, horizontalPadding = true)
                 OdsChoiceChipsFlowRow(
                     selectedChip = size,
-                    modifier = Modifier.padding(horizontal = dimensionResource(id = R.dimen.spacing_m)),
+                    modifier = Modifier.padding(horizontal = dimensionResource(id = com.orange.ods.R.dimen.spacing_m)),
                     outlinedChips = true
                 ) {
                     OdsChoiceChip(textRes = R.string.component_floating_action_button_size_default, value = FabCustomizationState.Size.Default)
@@ -109,7 +109,7 @@ fun ComponentFloatingActionButton() {
             Column(modifier = Modifier.verticalScroll(rememberScrollState())) {
                 val usedComponentName = if (hasText) OdsComposable.OdsExtendedFloatingActionButton.name else OdsComposable.OdsFloatingActionButton.name
                 CodeImplementationColumn(
-                    modifier = Modifier.padding(horizontal = dimensionResource(id = R.dimen.screen_horizontal_margin))
+                    modifier = Modifier.padding(horizontal = dimensionResource(id = com.orange.ods.R.dimen.screen_horizontal_margin))
                 ) {
                     FunctionCallCode(
                         name = usedComponentName,

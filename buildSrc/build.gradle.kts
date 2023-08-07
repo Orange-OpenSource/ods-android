@@ -19,14 +19,16 @@ repositories {
 }
 
 java {
-    // Use Java 8 instead of Java 11
-    // See https://github.com/gradle/gradle/issues/18935
-    sourceCompatibility = JavaVersion.VERSION_1_8
-    targetCompatibility = JavaVersion.VERSION_1_8
+    sourceCompatibility = JavaVersion.VERSION_11
+    targetCompatibility = JavaVersion.VERSION_11
+}
+
+kotlin {
+    jvmToolchain(11)
 }
 
 dependencies {
-    implementation("com.android.tools.build:gradle:7.3.1")
-    implementation("org.jetbrains.kotlin:kotlin-gradle-plugin:1.7.10") // https://issuetracker.google.com/issues/176079157#comment14
+    implementation("com.android.tools.build:gradle:8.1.0")
+    implementation("org.jetbrains.kotlin:kotlin-gradle-plugin:1.9.0") // https://issuetracker.google.com/issues/176079157#comment14
     implementation("com.squareup:javapoet:1.13.0") // https://github.com/google/dagger/issues/3282
 }

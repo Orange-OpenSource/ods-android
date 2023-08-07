@@ -49,7 +49,7 @@ fun ComponentSwitches() {
         Column(
             modifier = Modifier
                 .verticalScroll(rememberScrollState())
-                .padding(vertical = dimensionResource(id = R.dimen.spacing_s))
+                .padding(vertical = dimensionResource(id = com.orange.ods.R.dimen.spacing_s))
         ) {
             val recipes = LocalRecipes.current.take(3)
             recipes.forEach { recipe ->
@@ -64,7 +64,7 @@ fun ComponentSwitches() {
             }
 
             CodeImplementationColumn(
-                modifier = Modifier.padding(horizontal = dimensionResource(id = R.dimen.screen_horizontal_margin))
+                modifier = Modifier.padding(horizontal = dimensionResource(id = com.orange.ods.R.dimen.screen_horizontal_margin))
             ) {
                 FunctionCallCode(
                     name = OdsComposable.OdsSwitch.name,

@@ -26,9 +26,8 @@ import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
-import com.orange.ods.compose.text.OdsTextBody1
-import com.orange.ods.app.R
 import com.orange.ods.app.ui.components.Component
+import com.orange.ods.compose.text.OdsTextBody1
 
 @Composable
 fun DetailScreenHeader(
@@ -48,7 +47,7 @@ fun DetailScreenHeader(
     )
     DetailScreenDescription(
         modifier = Modifier.padding(
-            horizontal = dimensionResource(id = R.dimen.screen_horizontal_margin)
+            horizontal = dimensionResource(id = com.orange.ods.R.dimen.screen_horizontal_margin)
         ),
         descriptionRes = descriptionRes
     )
@@ -62,7 +61,7 @@ private fun DetailScreenDescription(
     OdsTextBody1(
         text = stringResource(descriptionRes),
         modifier = modifier.padding(
-            top = dimensionResource(id = R.dimen.spacing_m)
+            top = dimensionResource(id = com.orange.ods.R.dimen.spacing_m)
         )
     )
 }

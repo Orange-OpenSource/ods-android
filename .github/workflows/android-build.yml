@@ -27,7 +27,7 @@ jobs:
         uses: actions/setup-java@v3
         with:
           distribution: 'zulu'
-          java-version: '11'
+          java-version: '17'
 
       - name: Set up signing configuration
         uses: ./.github/actions/setup-signing
@@ -95,7 +95,7 @@ jobs:
         uses: actions/setup-java@v3
         with:
           distribution: 'zulu'
-          java-version: '11'
+          java-version: '17'
 
       - name: Set up signing configuration
         uses: ./.github/actions/setup-signing
@@ -131,7 +131,7 @@ jobs:
         uses: actions/setup-java@v3
         with:
           distribution: 'zulu'
-          java-version: '11'
+          java-version: '17'
 
       - name: Set up signing configuration
         uses: ./.github/actions/setup-signing
@@ -163,7 +163,7 @@ jobs:
         uses: actions/setup-java@v3
         with:
           distribution: 'zulu'
-          java-version: '11'
+          java-version: '17'
 
       - name: Publish release to Google Play Store
         run: |

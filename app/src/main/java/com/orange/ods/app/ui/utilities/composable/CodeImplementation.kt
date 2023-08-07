@@ -137,7 +137,7 @@ fun CodeImplementationColumn(
 
     Column(
         modifier = modifier.padding(
-            vertical = dimensionResource(id = R.dimen.spacing_s)
+            vertical = dimensionResource(id = com.orange.ods.R.dimen.spacing_s)
         )
     ) {
         UiFrameworkChoice(xmlAvailable)
@@ -152,7 +152,7 @@ fun CodeImplementationColumn(
                 TechnicalText(
                     modifier = Modifier
                         .fillMaxWidth()
-                        .padding(dimensionResource(id = R.dimen.spacing_xs)),
+                        .padding(dimensionResource(id = com.orange.ods.R.dimen.spacing_xs)),
                     text = stringResource(id = R.string.soon_available)
                 )
             }
@@ -189,7 +189,7 @@ fun CodeBackgroundColumn(content: @Composable () -> Unit) {
     Column(
         modifier = Modifier
             .background(OdsTheme.colors.onSurface.copy(alpha = 0.12f))
-            .padding(horizontal = dimensionResource(id = R.dimen.spacing_s), vertical = dimensionResource(id = R.dimen.spacing_s))
+            .padding(horizontal = dimensionResource(id = com.orange.ods.R.dimen.spacing_s), vertical = dimensionResource(id = com.orange.ods.R.dimen.spacing_s))
             .semantics(mergeDescendants = true) {}) {
         content()
     }
@@ -197,7 +197,7 @@ fun CodeBackgroundColumn(content: @Composable () -> Unit) {
 
 @Composable
 fun IndentCodeColumn(content: @Composable () -> Unit) {
-    Column(modifier = Modifier.padding(start = dimensionResource(id = R.dimen.spacing_s))) {
+    Column(modifier = Modifier.padding(start = dimensionResource(id = com.orange.ods.R.dimen.spacing_s))) {
         content()
     }
 }

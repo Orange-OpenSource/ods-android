@@ -216,8 +216,8 @@ private fun ChangeThemeDialog(themeManager: ThemeManager, dismissDialog: () -> U
             OdsTextH6(
                 text = stringResource(R.string.top_app_bar_action_change_theme_desc),
                 modifier = Modifier
-                    .padding(top = dimensionResource(R.dimen.spacing_m), bottom = dimensionResource(id = R.dimen.spacing_s))
-                    .padding(horizontal = dimensionResource(R.dimen.screen_horizontal_margin))
+                    .padding(top = dimensionResource(com.orange.ods.R.dimen.spacing_m), bottom = dimensionResource(id = com.orange.ods.R.dimen.spacing_s))
+                    .padding(horizontal = dimensionResource(com.orange.ods.R.dimen.screen_horizontal_margin))
             )
             themeManager.themeConfigurations.forEach { themeConfiguration ->
                 OdsListItem(

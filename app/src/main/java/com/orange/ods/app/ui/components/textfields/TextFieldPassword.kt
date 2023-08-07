@@ -32,7 +32,7 @@ fun TextFieldPassword(customizationState: TextFieldCustomizationState) {
             OdsPasswordTextField(
                 modifier = Modifier
                     .fillMaxWidth()
-                    .padding(top = dimensionResource(id = R.dimen.spacing_s)),
+                    .padding(top = dimensionResource(id = com.orange.ods.R.dimen.spacing_s)),
                 enabled = isEnabled,
                 isError = isError,
                 errorMessage = if (isError) errorMessage else null,

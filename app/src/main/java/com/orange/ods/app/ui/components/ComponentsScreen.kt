@@ -27,10 +27,10 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
-import com.orange.ods.compose.component.card.OdsSmallCard
 import com.orange.ods.app.R
 import com.orange.ods.app.ui.LocalMainTopAppBarManager
 import com.orange.ods.app.ui.utilities.DrawableManager
+import com.orange.ods.compose.component.card.OdsSmallCard
 import com.orange.ods.utilities.extension.orElse
 
 @Composable
@@ -42,12 +42,12 @@ fun ComponentsScreen(onComponentClick: (Long) -> Unit) {
         modifier = Modifier
             .fillMaxSize()
             .verticalScroll(scrollState)
-            .padding(dimensionResource(id = R.dimen.spacing_m)),
-        verticalArrangement = Arrangement.spacedBy(dimensionResource(id = R.dimen.spacing_m))
+            .padding(dimensionResource(id = com.orange.ods.R.dimen.spacing_m)),
+        verticalArrangement = Arrangement.spacedBy(dimensionResource(id = com.orange.ods.R.dimen.spacing_m))
     ) {
         components.sortedBy { context.getString(it.titleRes) }.chunked(2).forEach { rowCards ->
             Row(
-                horizontalArrangement = Arrangement.spacedBy(dimensionResource(id = R.dimen.spacing_m)),
+                horizontalArrangement = Arrangement.spacedBy(dimensionResource(id = com.orange.ods.R.dimen.spacing_m)),
             ) {
                 ComponentCard(component = rowCards[0], onComponentClick)
                 if (rowCards.size == 2) {

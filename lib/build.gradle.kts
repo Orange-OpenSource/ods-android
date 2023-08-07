@@ -12,7 +12,7 @@ import com.orange.ods.gradle.Dependencies
 import com.orange.ods.gradle.Versions
 
 plugins {
-    id("com.google.devtools.ksp") version "1.7.10-1.0.6"
+    id("com.google.devtools.ksp") version "1.9.0-1.0.13"
     id("library")
     id("github")
     id("kotlin-parcelize")
@@ -33,11 +33,12 @@ android {
     }
 
     buildFeatures {
+        buildConfig = true
         compose = true
     }
 
     composeOptions {
-        kotlinCompilerExtensionVersion = Versions.compose
+        kotlinCompilerExtensionVersion = Versions.composeCompiler
     }
 
     sourceSets.configureEach {
@@ -53,6 +54,7 @@ dependencies {
 
     implementation(Dependencies.accompanistFlowLayout)
     implementation(Dependencies.appCompat)
+    implementation(platform(Dependencies.composeBom))
     api(Dependencies.composeMaterial)
     implementation(Dependencies.composeMaterial3)
     implementation(Dependencies.composeUi)

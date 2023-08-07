@@ -44,7 +44,7 @@ fun ButtonsText(customizationState: ButtonCustomizationState) {
         Column(
             modifier = Modifier
                 .verticalScroll(rememberScrollState())
-                .padding(vertical = dimensionResource(id = R.dimen.screen_vertical_margin))
+                .padding(vertical = dimensionResource(id = com.orange.ods.R.dimen.screen_vertical_margin))
         ) {
             Title(
                 textRes = if (textButtonStyle.value == OdsTextButtonStyle.Default) R.string.component_button_style_default else R.string.component_button_style_primary,
@@ -58,7 +58,7 @@ fun ButtonsText(customizationState: ButtonCustomizationState) {
                 fullScreenWidth = hasFullScreenWidth
             )
 
-            Spacer(modifier = Modifier.padding(top = dimensionResource(R.dimen.spacing_s)))
+            Spacer(modifier = Modifier.padding(top = dimensionResource(com.orange.ods.R.dimen.spacing_s)))
 
             InvertedBackgroundColumn {
                 TextButton(
@@ -71,7 +71,7 @@ fun ButtonsText(customizationState: ButtonCustomizationState) {
             }
 
             CodeImplementationColumn(
-                modifier = Modifier.padding(horizontal = dimensionResource(id = R.dimen.screen_horizontal_margin)),
+                modifier = Modifier.padding(horizontal = dimensionResource(id = com.orange.ods.R.dimen.screen_horizontal_margin)),
                 xmlAvailable = true
             ) {
                 FunctionCallCode(
@@ -101,7 +101,12 @@ private fun TextButton(
     val text = stringResource(if (enabled) R.string.component_state_enabled else R.string.component_state_disabled)
     val iconId = R.drawable.ic_coffee
 
-    Box(modifier = Modifier.padding(horizontal = dimensionResource(R.dimen.screen_horizontal_margin), vertical = dimensionResource(R.dimen.spacing_m))) {
+    Box(
+        modifier = Modifier.padding(
+            horizontal = dimensionResource(com.orange.ods.R.dimen.screen_horizontal_margin),
+            vertical = dimensionResource(com.orange.ods.R.dimen.spacing_m)
+        )
+    ) {
         UiFramework<OdsTextButtonBinding>(
             compose = {
                 OdsTextButton(

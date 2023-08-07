@@ -50,7 +50,7 @@ fun ComponentCard(variant: Variant) {
                     Subtitle(textRes = R.string.component_card_horizontal_image_position, horizontalPadding = true)
                     OdsChoiceChipsFlowRow(
                         selectedChip = imagePosition,
-                        modifier = Modifier.padding(horizontal = dimensionResource(id = R.dimen.screen_horizontal_margin)),
+                        modifier = Modifier.padding(horizontal = dimensionResource(id = com.orange.ods.R.dimen.screen_horizontal_margin)),
                         outlinedChips = true
                     ) {
                         OdsChoiceChip(textRes = R.string.component_card_horizontal_image_position_start, value = OdsHorizontalCardImagePosition.Start)
@@ -71,7 +71,7 @@ fun ComponentCard(variant: Variant) {
                         count = actionButtonCount,
                         minusIconContentDescription = stringResource(id = R.string.component_remove_action_button),
                         plusIconContentDescription = stringResource(id = R.string.component_add_action_button),
-                        modifier = Modifier.padding(start = dimensionResource(id = R.dimen.screen_horizontal_margin)),
+                        modifier = Modifier.padding(start = dimensionResource(id = com.orange.ods.R.dimen.screen_horizontal_margin)),
                         minCount = CardCustomizationState.MinActionButtonCount,
                         maxCount = CardCustomizationState.MaxActionButtonCount
                     )

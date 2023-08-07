@@ -50,7 +50,7 @@ fun ComponentCheckboxes() {
         Column(
             modifier = Modifier
                 .verticalScroll(rememberScrollState())
-                .padding(vertical = dimensionResource(id = R.dimen.spacing_s))
+                .padding(vertical = dimensionResource(id = com.orange.ods.R.dimen.spacing_s))
         ) {
             recipe.ingredients.take(3).forEachIndexed { index, ingredient ->
                 OdsListItem(
@@ -63,7 +63,7 @@ fun ComponentCheckboxes() {
             }
 
             CodeImplementationColumn(
-                modifier = Modifier.padding(horizontal = dimensionResource(id = R.dimen.screen_horizontal_margin))
+                modifier = Modifier.padding(horizontal = dimensionResource(id = com.orange.ods.R.dimen.screen_horizontal_margin))
             ) {
                 FunctionCallCode(
                     name = OdsComposable.OdsCheckbox.name,

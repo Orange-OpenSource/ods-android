@@ -69,8 +69,8 @@ Scaffold(
     }) {
     OdsButton(
         modifier = Modifier
-            .padding(horizontal = dimensionResource(id = R.dimen.screen_horizontal_margin))
-            .padding(top = dimensionResource(id = R.dimen.screen_vertical_margin)),
+            .padding(horizontal = dimensionResource(id = com.orange.ods.R.dimen.screen_horizontal_margin))
+            .padding(top = dimensionResource(id = com.orange.ods.R.dimen.screen_vertical_margin)),
         text = "Show snackbar",
         onClick = {
             coroutineScope.launch {

@@ -64,7 +64,7 @@ fun ComponentSliders() {
             Column(
                 modifier = Modifier
                     .verticalScroll(rememberScrollState())
-                    .padding(horizontal = dimensionResource(id = R.dimen.spacing_m))
+                    .padding(horizontal = dimensionResource(id = com.orange.ods.R.dimen.spacing_m))
             ) {
                 val technicalText = if (shouldDisplayValue) OdsComposable.OdsSliderLockups.name else OdsComposable.OdsSlider.name
                 val steps = if (isStepped) 9 else 0
@@ -79,7 +79,7 @@ fun ComponentSliders() {
                 Title(textRes = getTitleRes(isStepped, hasSideIcons, shouldDisplayValue))
                 TechnicalText(text = technicalText)
 
-                Spacer(modifier = Modifier.padding(top = dimensionResource(R.dimen.spacing_m)))
+                Spacer(modifier = Modifier.padding(top = dimensionResource(com.orange.ods.R.dimen.spacing_m)))
 
                 val componentName: String
                 if (shouldDisplayValue) {

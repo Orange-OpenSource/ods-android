@@ -86,7 +86,7 @@ fun ComponentTopAppBar(variant: Variant) {
             Column(
                 modifier = Modifier
                     .verticalScroll(rememberScrollState())
-                    .padding(vertical = dimensionResource(id = R.dimen.screen_vertical_margin)),
+                    .padding(vertical = dimensionResource(id = com.orange.ods.R.dimen.screen_vertical_margin)),
                 horizontalAlignment = Alignment.CenterHorizontally
             ) {
                 if (isLargeCollapsible) {
@@ -94,11 +94,11 @@ fun ComponentTopAppBar(variant: Variant) {
                     BlinkingChevronDown(
                         modifier = Modifier
                             .rotate(180f)
-                            .padding(vertical = dimensionResource(id = R.dimen.spacing_s))
+                            .padding(vertical = dimensionResource(id = com.orange.ods.R.dimen.spacing_s))
                     )
                 }
                 CodeImplementationColumn(
-                    modifier = Modifier.padding(horizontal = dimensionResource(id = R.dimen.screen_horizontal_margin)),
+                    modifier = Modifier.padding(horizontal = dimensionResource(id = com.orange.ods.R.dimen.screen_horizontal_margin)),
                     contentBackground = false
                 ) {
                     CodeBackgroundColumn {
@@ -145,18 +145,24 @@ fun ComponentTopAppBar(variant: Variant) {
                     }
                     if (isLargeCollapsible) {
                         OdsTextBody2(
-                            modifier = Modifier.padding(top = dimensionResource(id = R.dimen.spacing_s), bottom = dimensionResource(id = R.dimen.spacing_xs)),
+                            modifier = Modifier.padding(
+                                top = dimensionResource(id = com.orange.ods.R.dimen.spacing_s),
+                                bottom = dimensionResource(id = com.orange.ods.R.dimen.spacing_xs)
+                            ),
                             text = stringResource(id = R.string.component_app_bars_top_large_code_collapsing)
                         )
                         OdsTextCaption(
-                            modifier = Modifier.padding(bottom = dimensionResource(id = R.dimen.spacing_xs)),
+                            modifier = Modifier.padding(bottom = dimensionResource(id = com.orange.ods.R.dimen.spacing_xs)),
                             text = stringResource(id = R.string.component_app_bars_top_large_code_collapsing_step_1)
                         )
                         CodeBackgroundColumn {
                             TechnicalText(text = "val topBarScrollBehavior = TopAppBarDefaults.exitUntilCollapsedScrollBehavior(rememberTopAppBarState())")
                         }
                         OdsTextCaption(
-                            modifier = Modifier.padding(top = dimensionResource(id = R.dimen.spacing_s), bottom = dimensionResource(id = R.dimen.spacing_xs)),
+                            modifier = Modifier.padding(
+                                top = dimensionResource(id = com.orange.ods.R.dimen.spacing_s),
+                                bottom = dimensionResource(id = com.orange.ods.R.dimen.spacing_xs)
+                            ),
                             text = stringResource(id = R.string.component_app_bars_top_large_code_collapsing_step_2)
                         )
                         CodeBackgroundColumn {
@@ -167,7 +173,7 @@ fun ComponentTopAppBar(variant: Variant) {
                 }
 
                 if (isLargeCollapsible) {
-                    BlinkingChevronDown(modifier = Modifier.padding(vertical = dimensionResource(id = R.dimen.spacing_s)))
+                    BlinkingChevronDown(modifier = Modifier.padding(vertical = dimensionResource(id = com.orange.ods.R.dimen.spacing_s)))
                     OdsTextBody2(text = stringResource(id = R.string.component_app_bars_top_large_scrolling_downward))
                 }
             }
@@ -182,7 +188,7 @@ private fun CustomizationBottomSheetContent(customizationState: TopAppBarCustomi
             Subtitle(textRes = R.string.component_app_bars_top_large_scroll_behavior, horizontalPadding = true)
             OdsChoiceChipsFlowRow(
                 selectedChip = scrollBehavior,
-                modifier = Modifier.padding(horizontal = dimensionResource(id = R.dimen.spacing_m)),
+                modifier = Modifier.padding(horizontal = dimensionResource(id = com.orange.ods.R.dimen.spacing_m)),
                 outlinedChips = true
             ) {
                 OdsChoiceChip(textRes = R.string.component_app_bars_top_large_scroll_behavior_none, value = TopAppBarCustomizationState.ScrollBehavior.None)
@@ -199,7 +205,7 @@ private fun CustomizationBottomSheetContent(customizationState: TopAppBarCustomi
             )
         )
         ComponentCountRow(
-            modifier = Modifier.padding(start = dimensionResource(id = R.dimen.screen_horizontal_margin)),
+            modifier = Modifier.padding(start = dimensionResource(id = com.orange.ods.R.dimen.screen_horizontal_margin)),
             title = stringResource(id = R.string.component_app_bars_top_actions_count),
             count = actionCount,
             minusIconContentDescription = stringResource(id = R.string.component_app_bars_top_remove_action),
@@ -219,8 +225,8 @@ private fun CustomizationBottomSheetContent(customizationState: TopAppBarCustomi
             OdsChoiceChipsFlowRow(
                 selectedChip = title,
                 modifier = Modifier
-                    .padding(horizontal = dimensionResource(id = R.dimen.spacing_m))
-                    .padding(bottom = dimensionResource(id = R.dimen.spacing_s)),
+                    .padding(horizontal = dimensionResource(id = com.orange.ods.R.dimen.spacing_m))
+                    .padding(bottom = dimensionResource(id = com.orange.ods.R.dimen.spacing_s)),
                 outlinedChips = true
             ) {
                 OdsChoiceChip(textRes = R.string.component_app_bars_top_large_title_one_line, value = TopAppBarCustomizationState.Title.Short)

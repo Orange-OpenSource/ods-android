@@ -18,7 +18,7 @@ plugins {
 
 android {
     namespace = "com.orange.ods.xml"
-    
+
     buildFeatures {
         compose = true
         viewBinding = true
@@ -26,7 +26,7 @@ android {
     }
 
     composeOptions {
-        kotlinCompilerExtensionVersion = Versions.compose
+        kotlinCompilerExtensionVersion = Versions.composeCompiler
     }
 }
 
@@ -35,6 +35,7 @@ dependencies {
 
     implementation(Dependencies.accompanistDrawablePainter)
     implementation(Dependencies.appCompat)
+    implementation(platform(Dependencies.composeBom))
     implementation(Dependencies.composeMaterial)
     implementation(Dependencies.composeUi)
 

@@ -62,7 +62,7 @@ fun ComponentButtons(variant: Variant) {
                     Subtitle(textRes = R.string.component_button_style_functional, horizontalPadding = true)
                     OdsChoiceChipsFlowRow(
                         selectedChip = buttonStyle,
-                        modifier = Modifier.padding(horizontal = dimensionResource(id = R.dimen.screen_horizontal_margin)),
+                        modifier = Modifier.padding(horizontal = dimensionResource(id = com.orange.ods.R.dimen.screen_horizontal_margin)),
                         outlinedChips = true
                     ) {
                         OdsChoiceChip(textRes = R.string.component_button_style_functional_positive, value = OdsButtonStyle.FunctionalPositive)
@@ -72,7 +72,7 @@ fun ComponentButtons(variant: Variant) {
                     Subtitle(textRes = R.string.component_style, horizontalPadding = true)
                     OdsChoiceChipsFlowRow(
                         selectedChip = textButtonStyle,
-                        modifier = Modifier.padding(horizontal = dimensionResource(id = R.dimen.screen_horizontal_margin)),
+                        modifier = Modifier.padding(horizontal = dimensionResource(id = com.orange.ods.R.dimen.screen_horizontal_margin)),
                         outlinedChips = true
                     ) {
                         OdsChoiceChip(textRes = R.string.component_button_style_primary, value = OdsTextButtonStyle.Primary)
@@ -125,13 +125,13 @@ fun InvertedBackgroundColumn(
         modifier = Modifier
             .fillMaxWidth()
             .background(color = backgroundColor)
-            .padding(bottom = dimensionResource(R.dimen.spacing_m)),
+            .padding(bottom = dimensionResource(com.orange.ods.R.dimen.spacing_m)),
         horizontalAlignment = horizontalAlignment
     ) {
         OdsTextBody2(
             modifier = Modifier
-                .padding(horizontal = dimensionResource(id = R.dimen.spacing_m))
-                .padding(top = dimensionResource(id = R.dimen.spacing_s))
+                .padding(horizontal = dimensionResource(id = com.orange.ods.R.dimen.spacing_m))
+                .padding(top = dimensionResource(id = com.orange.ods.R.dimen.spacing_s))
                 .fillMaxWidth()
                 .align(Alignment.Start),
             text = stringResource(id = textRes),
