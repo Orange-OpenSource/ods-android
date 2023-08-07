@@ -392,5 +392,10 @@
     <!-- Search -->
     <string name="search_text_field_hint">Search</string>
     <string name="search_content_description">Search icon</string>
+    <plurals name="search_result_count_content_description">
+        <item quantity="one">There is %1$d result</item>
+        <item quantity="other">There are %1$d results</item>
+    </plurals>
+    <string name="search_no_result_content_description">There are no results</string>
 
 </resources>
