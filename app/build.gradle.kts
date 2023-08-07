@@ -103,7 +103,7 @@ android {
         kotlinCompilerExtensionVersion = Versions.composeCompiler
     }
 
-    packagingOptions {
+    packaging {
         with(resources.excludes) {
             add("/META-INF/{AL2.0,LGPL2.1}")
         }
