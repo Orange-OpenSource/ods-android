@@ -14,7 +14,6 @@ import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.padding
-import androidx.compose.material.ExperimentalMaterialApi
 import androidx.compose.material.Icon
 import androidx.compose.material.IconButton
 import androidx.compose.material.Text
@@ -83,7 +82,6 @@ internal fun OdsTextFieldIcon(painter: Painter, contentDescription: String?, onC
     }
 }
 
-@OptIn(ExperimentalMaterialApi::class)
 internal fun getTrailing(trailing: OdsTextFieldTrailing, value: String, enabled: Boolean = true): @Composable (() -> Unit) {
     return when (trailing) {
         is OdsTextTrailing -> {
