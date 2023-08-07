@@ -30,7 +30,7 @@ internal val Project.appDistributionVariants: List<String>
  * An array containing tasks to execute for Firebase App Distribution deployment
  */
 internal val appDistributionTasks: List<Task>
-    get() = appDistributionVariants.map { tasks["appDistributionUpload${it.capitalize()}"] }
+    get() = appDistributionVariants.map { variant -> tasks["appDistributionUpload${variant.replaceFirstChar { it.uppercaseChar() }}"] }
 
 /**
  * The git tag prefix for Firebase App Distribution uploads
@@ -44,7 +44,7 @@ internal val Project.gitTagPrefix: String
 tasks.register<DefaultTask>("appDistributionUpload") {
     dependsOn(
         // Assemble and generate release notes first
-        *appDistributionVariants.map { tasks["assemble${it.capitalize()}"] }.toTypedArray(),
+        *appDistributionVariants.map { variant -> tasks["assemble${variant.replaceFirstChar { it.uppercaseChar() }}"] }.toTypedArray(),
         tasks["generateAppDistributionReleaseNotes"]
     )
 
