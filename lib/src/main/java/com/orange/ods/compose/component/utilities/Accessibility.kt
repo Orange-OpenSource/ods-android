@@ -14,6 +14,11 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.res.stringResource
 import com.orange.ods.R
 
+/**
+ * Returns the selection state ready for vocalization according to the [selected] provided value.
+ *
+ * @param selected Set it to true if the element is selected, false otherwise.
+ */
 @Composable
 internal fun selectionStateDescription(selected: Boolean) =
     if (selected) stringResource(id = R.string.state_selected) else stringResource(id = R.string.state_not_selected)
