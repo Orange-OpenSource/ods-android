@@ -112,7 +112,7 @@ private fun getTopAppBarSearchTextFieldAction(searchedText: MutableState<TextFie
     return object : OdsComponentContent() {
 
         @Composable
-        override fun Content() {
+        override fun Content(modifier: Modifier) {
             val focusRequester = remember { FocusRequester() }
             OdsSearchTextField(
                 value = searchedText.value,

@@ -153,7 +153,7 @@ class OdsDropdownMenuItem private constructor(
     ) : this(text, icon as Any?, enabled, divider, onClick)
 
     @Composable
-    override fun Content() {
+    override fun Content(modifier: Modifier) {
         DropdownMenuItem(onClick = onClick, enabled = enabled) {
             icon?.let {
                 OdsIcon(

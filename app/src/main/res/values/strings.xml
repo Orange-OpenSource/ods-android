@@ -76,8 +76,8 @@
     <string name="component_element_label">Label</string>
     <string name="component_element_caption">Caption</string>
     <string name="component_element_thumbnail">Thumbnail</string>
-    <string name="component_element_button1">Button 1</string>
-    <string name="component_element_button2">Button 2</string>
+    <string name="component_element_first_button">First button</string>
+    <string name="component_element_second_button">Second button</string>
     <string name="component_element_text">Text</string>
     <string name="component_element_avatar">Avatar</string>
     <string name="component_element_icon">Icon</string>

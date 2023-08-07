@@ -11,6 +11,7 @@
 package com.orange.ods.compose.component.content
 
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.ImageBitmap
 import androidx.compose.ui.graphics.painter.Painter
@@ -56,12 +57,19 @@ abstract class OdsComponentIcon protected constructor(
     ) : this(bitmap as Any, contentDescription, enabled, onClick)
 
     @Composable
-    override fun Content() {
+    override fun Content(modifier: Modifier) {
         val tint = tint.orElse { OdsIconDefaults.tint() }
         onClick?.let { onClick ->
-            OdsIconButton(onClick = onClick, graphicsObject = graphicsObject, contentDescription = contentDescription, tint = tint, enabled = enabled)
+            OdsIconButton(
+                onClick = onClick,
+                graphicsObject = graphicsObject,
+                contentDescription = contentDescription,
+                tint = tint,
+                modifier = modifier,
+                enabled = enabled
+            )
         }.orElse {
-            OdsIcon(graphicsObject = graphicsObject, contentDescription = contentDescription, tint = tint)
+            OdsIcon(graphicsObject = graphicsObject, contentDescription = contentDescription, modifier = modifier, tint = tint)
         }
     }
 }
