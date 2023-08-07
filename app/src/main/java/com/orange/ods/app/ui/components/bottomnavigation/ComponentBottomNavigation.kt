@@ -97,7 +97,7 @@ fun ComponentBottomNavigation() {
                     name = OdsComposable.OdsBottomNavigation.name,
                     parameters = {
                         list("items") {
-                            navigationItems.take(2).forEach { item ->
+                            navigationItems.take(selectedNavigationItemCount.value).forEach { item ->
                                 classInstance(OdsBottomNavigationItem::class.java) {
                                     classInstance("icon", OdsBottomNavigationItemIcon::class.java) {
                                         painter()
