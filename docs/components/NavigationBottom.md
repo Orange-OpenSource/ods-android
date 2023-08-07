@@ -61,29 +61,30 @@ Here is an example:
 ```kotlin
     private data class NavigationItem(@StringRes val titleResId: Int, @DrawableRes val iconResId: Int)
 
-    val navigationItems = listOf(
-        NavigationItem(R.string.component_bottom_navigation_coffee, R.drawable.ic_coffee),
-        NavigationItem(R.string.component_bottom_navigation_cooking_pot, R.drawable.ic_cooking_pot),
-        NavigationItem(R.string.component_bottom_navigation_ice_cream, R.drawable.ic_ice_cream),
-        NavigationItem(R.string.component_bottom_navigation_restaurant, R.drawable.ic_restaurant),
-        NavigationItem(R.string.component_bottom_navigation_favorites, R.drawable.ic_heart)
+    val items = listOf(
+        R.string.component_bottom_navigation_coffee to R.drawable.ic_coffee,
+        R.string.component_bottom_navigation_cooking_pot to R.drawable.ic_cooking_pot,
+        R.string.component_bottom_navigation_ice_cream to R.drawable.ic_ice_cream,
+        R.string.component_bottom_navigation_restaurant to R.drawable.ic_restaurant,
+        R.string.component_bottom_navigation_favorites to R.drawable.ic_heart
     )
 
-    val selectedItem = remember { mutableStateOf(navigationItems[0]) }
+    var selectedItemIndex by remember { mutableStateOf(0) }
 
-    OdsBottomNavigation {
-        for (item in navigationItems) {
+    OdsBottomNavigation(
+        items = items.mapIndexed { index, item ->
             OdsBottomNavigationItem(
-                icon = { Icon(painter = painterResource(id = item.iconResId), contentDescription = null) }, // contentDescription is null cause TalkBack already read the item's title
-                label = stringResource(id = item.titleResId),
-                selected = selectedItem.value.titleResId == item.titleResId,
+                icon = OdsBottomNavigationItemIcon(painter = painterResource(id = item.first), contentDescription = ""), // contentDescription is empty cause TalkBack already read the item's title
+                label = stringResource(id = item.second),
+                selected = selectedItemIndex == index,
                 onClick = {
-                    selectedItem.value = item
+                    selectedItemIndex = index
                     // Do what you want with a piece of code
                 }
             )
         }
-    }
+    )
+    )
 ```
 
 > **XML implementation**

@@ -17,15 +17,14 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.ImageBitmap
 import androidx.compose.ui.graphics.painter.Painter
 import androidx.compose.ui.graphics.vector.ImageVector
-import com.orange.ods.compose.theme.OdsDisplaySurface
 import com.orange.ods.utilities.extension.enable
 
 @Composable
 internal fun OdsIcon(
     graphicsObject: Any,
     contentDescription: String,
-    tint: Color,
     modifier: Modifier = Modifier,
+    tint: Color = OdsIconDefaults.tint(),
     enabled: Boolean = true,
 ) {
     val iconTint = tint.enable(enabled = enabled)
@@ -35,21 +34,4 @@ internal fun OdsIcon(
         is ImageBitmap -> Icon(bitmap = graphicsObject, contentDescription = contentDescription, modifier = modifier, tint = iconTint)
         else -> {}
     }
-}
-
-@Composable
-internal fun OdsIcon(
-    graphicsObject: Any,
-    contentDescription: String,
-    modifier: Modifier = Modifier,
-    displaySurface: OdsDisplaySurface = OdsDisplaySurface.Default,
-    enabled: Boolean = true
-) {
-    OdsIcon(
-        graphicsObject = graphicsObject,
-        contentDescription = contentDescription,
-        tint = displaySurface.themeColors.onSurface,
-        modifier = modifier,
-        enabled = enabled
-    )
 }

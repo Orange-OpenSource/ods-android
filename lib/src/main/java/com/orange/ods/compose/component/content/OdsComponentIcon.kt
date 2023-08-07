@@ -17,6 +17,7 @@ import androidx.compose.ui.graphics.painter.Painter
 import androidx.compose.ui.graphics.vector.ImageVector
 import com.orange.ods.compose.component.button.OdsIconButton
 import com.orange.ods.compose.component.icon.OdsIcon
+import com.orange.ods.compose.component.icon.OdsIconDefaults
 import com.orange.ods.utilities.extension.orElse
 
 /**
@@ -56,18 +57,11 @@ abstract class OdsComponentIcon protected constructor(
 
     @Composable
     override fun Content() {
+        val tint = tint.orElse { OdsIconDefaults.tint() }
         onClick?.let { onClick ->
-            tint?.let { tint ->
-                OdsIconButton(onClick = onClick, graphicsObject = graphicsObject, contentDescription = contentDescription, tint = tint, enabled = enabled)
-            }.orElse {
-                OdsIconButton(onClick = onClick, graphicsObject = graphicsObject, contentDescription = contentDescription, enabled = enabled)
-            }
+            OdsIconButton(onClick = onClick, graphicsObject = graphicsObject, contentDescription = contentDescription, tint = tint, enabled = enabled)
         }.orElse {
-            tint?.let { tint ->
-                OdsIcon(graphicsObject = graphicsObject, contentDescription = contentDescription, tint = tint)
-            }.orElse {
-                OdsIcon(graphicsObject = graphicsObject, contentDescription = contentDescription)
-            }
+            OdsIcon(graphicsObject = graphicsObject, contentDescription = contentDescription, tint = tint)
         }
     }
 }
