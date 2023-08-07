@@ -28,7 +28,6 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.painter.Painter
 import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.painterResource
-import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.semantics.stateDescription
 import androidx.compose.ui.tooling.preview.PreviewParameter
@@ -40,6 +39,7 @@ import com.orange.ods.compose.component.utilities.BasicPreviewParameterProvider
 import com.orange.ods.compose.component.utilities.OdsImageCircleShape
 import com.orange.ods.compose.component.utilities.Preview
 import com.orange.ods.compose.component.utilities.UiModePreviews
+import com.orange.ods.compose.component.utilities.selectionStateDescription
 import com.orange.ods.compose.theme.OdsTheme
 import com.orange.ods.utilities.extension.enable
 import com.orange.ods.utilities.extension.noRippleClickable
@@ -80,7 +80,7 @@ fun OdsChip(
     leadingContentDescription: String? = null,
     onCancel: (() -> Unit)? = null
 ) {
-    val chipStateDescription = odsChipStateDescription(selected)
+    val chipStateDescription = selectionStateDescription(selected)
 
     Chip(
         onClick = onClick,
@@ -135,10 +135,6 @@ fun OdsChip(
         }
     }
 }
-
-@Composable
-internal fun odsChipStateDescription(selected: Boolean) =
-    if (selected) stringResource(id = R.string.state_selected) else stringResource(id = R.string.state_not_selected)
 
 @OptIn(ExperimentalMaterialApi::class)
 @Composable
