@@ -53,7 +53,7 @@ fun NavGraphBuilder.addModulesGraph(navigateToElement: (String, Long?, NavBackSt
 
         module?.let {
             LocalMainTopAppBarManager.current.updateTopAppBarTitle(module.titleRes)
-            module.demoScreen(upPress = upPress)
+            module.demoScreen(upPress)
         }
 
     }

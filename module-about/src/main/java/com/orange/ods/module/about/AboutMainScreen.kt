@@ -34,7 +34,7 @@ internal fun AboutMainScreen() {
     Column(
         modifier = Modifier
             .verticalScroll(rememberScrollState())
-            .padding(bottom = dimensionResource(id = R.dimen.screen_vertical_margin))
+            .padding(bottom = dimensionResource(id = com.orange.ods.R.dimen.screen_vertical_margin))
     ) {
         Image(
             painter = painterResource(id = configuration.appIllustration),
@@ -45,21 +45,21 @@ internal fun AboutMainScreen() {
             contentDescription = null,
         )
 
-        Column(Modifier.padding(horizontal = dimensionResource(id = R.dimen.screen_horizontal_margin))) {
+        Column(Modifier.padding(horizontal = dimensionResource(id = com.orange.ods.R.dimen.screen_horizontal_margin))) {
             OdsTextH4(
                 text = configuration.appName,
-                modifier = Modifier.padding(top = dimensionResource(id = R.dimen.spacing_xl))
+                modifier = Modifier.padding(top = dimensionResource(id = com.orange.ods.R.dimen.spacing_xl))
             )
             configuration.appVersion?.let { appVersion ->
                 OdsTextCaption(
                     text = appVersion,
-                    modifier = Modifier.padding(top = dimensionResource(id = R.dimen.spacing_xs))
+                    modifier = Modifier.padding(top = dimensionResource(id = com.orange.ods.R.dimen.spacing_xs))
                 )
             }
             configuration.appDescription?.let { description ->
                 OdsTextCaption(
                     text = description,
-                    modifier = Modifier.padding(top = dimensionResource(id = R.dimen.spacing_xs))
+                    modifier = Modifier.padding(top = dimensionResource(id = com.orange.ods.R.dimen.spacing_xs))
                 )
             }
         }

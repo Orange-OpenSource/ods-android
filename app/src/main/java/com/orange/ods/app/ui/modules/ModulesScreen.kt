@@ -40,8 +40,8 @@ fun ModulesScreen(onModuleClick: (Long) -> Unit) {
         modifier = Modifier
             .fillMaxSize()
             .verticalScroll(scrollState)
-            .padding(dimensionResource(id = R.dimen.spacing_m)),
-        verticalArrangement = Arrangement.spacedBy(dimensionResource(id = R.dimen.spacing_m))
+            .padding(dimensionResource(id = com.orange.ods.R.dimen.spacing_m)),
+        verticalArrangement = Arrangement.spacedBy(dimensionResource(id = com.orange.ods.R.dimen.spacing_m))
     ) {
         modules.sortedBy { context.getString(it.titleRes) }.forEach { module ->
             ModuleCard(module = module, onModuleClick = onModuleClick)

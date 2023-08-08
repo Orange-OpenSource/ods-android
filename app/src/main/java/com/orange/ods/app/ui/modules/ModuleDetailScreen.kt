@@ -17,7 +17,6 @@ import androidx.compose.foundation.verticalScroll
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.dimensionResource
-import com.orange.ods.app.R
 import com.orange.ods.app.ui.utilities.DrawableManager
 import com.orange.ods.app.ui.utilities.composable.DetailScreenHeader
 import com.orange.ods.app.ui.utilities.composable.Subtitle
@@ -30,7 +29,7 @@ fun ModuleDetailScreen(
     Column(
         modifier = Modifier
             .verticalScroll(rememberScrollState())
-            .padding(bottom = dimensionResource(id = R.dimen.screen_vertical_margin))
+            .padding(bottom = dimensionResource(id = com.orange.ods.R.dimen.screen_vertical_margin))
     ) {
         DetailScreenHeader(
             imageRes = DrawableManager.getDrawableResIdForCurrentTheme(resId = module.imageRes),
@@ -38,9 +37,9 @@ fun ModuleDetailScreen(
             descriptionRes = module.descriptionRes
         )
 
-        Column(modifier = Modifier.padding(dimensionResource(id = R.dimen.screen_horizontal_margin))) {
-            Subtitle(textRes = R.string.module_customize)
-            module.customizationContent(onDemoClick = onDemoClick)
+        Column(modifier = Modifier.padding(dimensionResource(id = com.orange.ods.R.dimen.screen_horizontal_margin))) {
+            Subtitle(textRes = com.orange.ods.app.R.string.module_customize)
+            module.customizationContent(onDemoClick)
         }
     }
 }

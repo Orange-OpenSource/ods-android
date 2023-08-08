@@ -22,7 +22,6 @@ import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import com.google.accompanist.flowlayout.FlowRow
-import com.orange.ods.app.R
 import com.orange.ods.app.ui.LocalThemeManager
 import com.orange.ods.compose.component.button.OdsButton
 import com.orange.ods.compose.component.button.OdsButtonStyle
@@ -39,15 +38,15 @@ fun AboutCustomizationContent(onDemoClick: () -> Unit) {
     var selectedChips by rememberSaveable { mutableStateOf(emptyList<String>()) }
 
     OdsTextBody2(
-        modifier = Modifier.padding(top = dimensionResource(id = R.dimen.spacing_s)),
-        text = stringResource(id = R.string.module_about_customization)
+        modifier = Modifier.padding(top = dimensionResource(id = com.orange.ods.R.dimen.spacing_s)),
+        text = stringResource(id = com.orange.ods.app.R.string.module_about_customization)
     )
 
     FlowRow(
         modifier = Modifier
             .fillMaxWidth()
-            .padding(top = dimensionResource(id = R.dimen.spacing_xs)),
-        mainAxisSpacing = dimensionResource(id = R.dimen.spacing_s),
+            .padding(top = dimensionResource(id = com.orange.ods.R.dimen.spacing_xs)),
+        mainAxisSpacing = dimensionResource(id = com.orange.ods.R.dimen.spacing_s),
         crossAxisSpacing = (-4).dp
     ) {
         aboutOptions.forEach { option ->
@@ -64,10 +63,10 @@ fun AboutCustomizationContent(onDemoClick: () -> Unit) {
 
     OdsButton(
         modifier = Modifier
-            .padding(top = dimensionResource(id = R.dimen.spacing_m))
+            .padding(top = dimensionResource(id = com.orange.ods.R.dimen.spacing_m))
             .fillMaxWidth(),
         style = OdsButtonStyle.Primary,
-        text = stringResource(id = R.string.module_view_demo),
+        text = stringResource(id = com.orange.ods.app.R.string.module_view_demo),
         onClick = onDemoClick
     )
 }
