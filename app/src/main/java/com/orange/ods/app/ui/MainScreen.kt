@@ -119,22 +119,20 @@ fun MainScreen(themeConfigurations: Set<OdsThemeConfigurationContract>, mainView
             Scaffold(
                 modifier = modifier,
                 topBar = {
-                    if (mainState.shouldShowTopAppBar) {
-                        Surface(elevation = if (isSystemInDarkTheme()) 0.dp else AppBarDefaults.TopAppBarElevation) {
-                            Column {
-                                SystemBarsColorSideEffect()
-                                MainTopAppBar(
-                                    shouldShowUpNavigationIcon = !mainState.shouldShowBottomBar,
-                                    topAppBarState = mainState.topAppBarState,
-                                    upPress = mainState::upPress,
-                                    onSearchActionClick = {
-                                        mainState.navController.navigate(MainDestinations.SearchRoute)
-                                    },
-                                    scrollBehavior = topBarScrollBehavior
-                                )
-                                if (showTabs) {
-                                    MainTabs(mainTabsState = mainState.topAppBarState.tabsState)
-                                }
+                    Surface(elevation = if (isSystemInDarkTheme()) 0.dp else AppBarDefaults.TopAppBarElevation) {
+                        Column {
+                            SystemBarsColorSideEffect()
+                            MainTopAppBar(
+                                shouldShowUpNavigationIcon = !mainState.shouldShowBottomBar,
+                                topAppBarState = mainState.topAppBarState,
+                                upPress = mainState::upPress,
+                                onSearchActionClick = {
+                                    mainState.navController.navigate(MainDestinations.SearchRoute)
+                                },
+                                scrollBehavior = topBarScrollBehavior
+                            )
+                            if (showTabs) {
+                                MainTabs(mainTabsState = mainState.topAppBarState.tabsState)
                             }
                         }
                     }
