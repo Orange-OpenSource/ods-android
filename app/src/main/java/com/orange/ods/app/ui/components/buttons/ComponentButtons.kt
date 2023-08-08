@@ -61,7 +61,7 @@ fun ComponentButtons(variant: Variant) {
             bottomSheetContent = {
                 if (variant == Variant.ButtonsTextToggleGroup) {
                     ComponentCountRow(
-                        modifier = Modifier.padding(start = dimensionResource(id = R.dimen.screen_horizontal_margin)),
+                        modifier = Modifier.padding(start = dimensionResource(id = com.orange.ods.R.dimen.screen_horizontal_margin)),
                         title = stringResource(id = R.string.component_button_icon_toggle_count),
                         count = toggleCount,
                         minusIconContentDescription = stringResource(id = R.string.component_button_icon_toggle_remove),

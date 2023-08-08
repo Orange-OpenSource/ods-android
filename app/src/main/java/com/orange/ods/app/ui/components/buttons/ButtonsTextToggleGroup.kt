@@ -47,7 +47,7 @@ fun ButtonsTextToggleButtonsRow(customizationState: ButtonCustomizationState) {
         Column(
             modifier = Modifier
                 .verticalScroll(rememberScrollState())
-                .padding(vertical = dimensionResource(id = R.dimen.screen_vertical_margin))
+                .padding(vertical = dimensionResource(id = com.orange.ods.R.dimen.screen_vertical_margin))
         ) {
             ToggleButtonsRow(
                 textToggleButtons = textToggleButtons,
@@ -56,7 +56,7 @@ fun ButtonsTextToggleButtonsRow(customizationState: ButtonCustomizationState) {
                 toggleCount = toggleCount.value
             )
 
-            Spacer(modifier = Modifier.padding(top = dimensionResource(R.dimen.spacing_s)))
+            Spacer(modifier = Modifier.padding(top = dimensionResource(com.orange.ods.R.dimen.spacing_s)))
 
             InvertedBackgroundColumn {
                 ToggleButtonsRow(
@@ -69,7 +69,7 @@ fun ButtonsTextToggleButtonsRow(customizationState: ButtonCustomizationState) {
             }
 
             CodeImplementationColumn(
-                modifier = Modifier.padding(horizontal = dimensionResource(id = R.dimen.screen_horizontal_margin))
+                modifier = Modifier.padding(horizontal = dimensionResource(id = com.orange.ods.R.dimen.screen_horizontal_margin))
             ) {
                 FunctionCallCode(
                     name = OdsComposable.OdsTextToggleButtonsRow.name,
@@ -102,8 +102,8 @@ private fun ToggleButtonsRow(
     Row(
         modifier = Modifier
             .fillMaxWidth()
-            .padding(top = dimensionResource(R.dimen.spacing_m))
-            .padding(horizontal = dimensionResource(R.dimen.screen_horizontal_margin)),
+            .padding(top = dimensionResource(com.orange.ods.R.dimen.spacing_m))
+            .padding(horizontal = dimensionResource(com.orange.ods.R.dimen.screen_horizontal_margin)),
         horizontalArrangement = Arrangement.Center
     ) {
         OdsTextToggleButtonsRow(
