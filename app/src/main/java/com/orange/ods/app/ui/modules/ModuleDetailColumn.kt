@@ -55,6 +55,7 @@ fun ModuleDetailColumn(
                 text = stringResource(id = com.orange.ods.app.R.string.module_view_demo),
                 onClick = onViewDemoButtonClick
             )
+
         }
     }
 }
