@@ -65,8 +65,31 @@ fun OdsTextButton(
     modifier: Modifier = Modifier,
     icon: Painter? = null,
     enabled: Boolean = true,
-    maxLines: Int = Int.MAX_VALUE,
-    overflow: TextOverflow = TextOverflow.Clip,
+    style: OdsTextButtonStyle = OdsTextButtonStyle.Default,
+    displaySurface: OdsDisplaySurface = OdsDisplaySurface.Default
+) {
+    OdsTextButton(
+        text = text,
+        onClick = onClick,
+        modifier = modifier,
+        icon = icon,
+        enabled = enabled,
+        maxLines = Int.MAX_VALUE,
+        overflow = TextOverflow.Clip,
+        style = style,
+        displaySurface = displaySurface
+    )
+}
+
+@Composable
+internal fun OdsTextButton(
+    text: String,
+    onClick: () -> Unit,
+    maxLines: Int,
+    overflow: TextOverflow,
+    modifier: Modifier = Modifier,
+    icon: Painter? = null,
+    enabled: Boolean = true,
     style: OdsTextButtonStyle = OdsTextButtonStyle.Default,
     displaySurface: OdsDisplaySurface = OdsDisplaySurface.Default
 ) {
