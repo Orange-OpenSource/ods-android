@@ -32,8 +32,6 @@ import com.orange.ods.app.R
 import com.orange.ods.app.domain.recipes.LocalRecipes
 import com.orange.ods.app.domain.recipes.Recipe
 import com.orange.ods.app.ui.components.lists.ListItemCustomizationState
-import com.orange.ods.app.ui.components.lists.ListItemCustomizationState.Companion.MaxLineCount
-import com.orange.ods.app.ui.components.lists.ListItemCustomizationState.Companion.MinLineCount
 import com.orange.ods.app.ui.components.lists.rememberListItemCustomizationState
 import com.orange.ods.app.ui.components.utilities.ComponentCountRow
 import com.orange.ods.app.ui.components.utilities.ComponentCustomizationBottomSheetScaffold
@@ -76,8 +74,8 @@ private fun ComponentListItemBottomSheetContent(listItemCustomizationState: List
         count = listItemCustomizationState.lineCount,
         minusIconContentDescription = stringResource(id = R.string.component_list_item_remove_line),
         plusIconContentDescription = stringResource(id = R.string.component_list_item_add_line),
-        minCount = MinLineCount,
-        maxCount = MaxLineCount
+        minCount = ListItemCustomizationState.MinLineCount,
+        maxCount = ListItemCustomizationState.MaxLineCount
     )
 
     Subtitle(textRes = R.string.component_list_leading, horizontalPadding = true)
@@ -108,7 +106,7 @@ private fun ComponentListItemBottomSheetContent(listItemCustomizationState: List
 
 @Composable
 private fun ComponentListItemContent(listItemCustomizationState: ListItemCustomizationState) {
-    val recipes = LocalRecipes.current.filter { it.description.isNotBlank() }.first()
+    val recipe = LocalRecipes.current.first { it.description.isNotBlank() }
     with(listItemCustomizationState) {
         Column {
             if (!trailings.contains(selectedTrailing.value)) {
@@ -121,10 +119,10 @@ private fun ComponentListItemContent(listItemCustomizationState: ListItemCustomi
                 }
             val singleLineSecondaryText = lineCount.value == 2
 
-            val text = recipes.title
-            val secondaryText = listItemCustomizationState.getSecondaryText(recipes)
+            val text = recipe.title
+            val secondaryText = listItemCustomizationState.getSecondaryText(recipe)
             val icon: @Composable (OdsListItemIconScope.() -> Unit)? =
-                listItemCustomizationState.getIconPainter(recipes)?.let { { OdsListItemIcon(painter = it) } }
+                listItemCustomizationState.getIconPainter(recipe)?.let { { OdsListItemIcon(painter = it) } }
             trailing?.let { listItemTrailing ->
                 OdsListItem(
                     modifier = modifier,

@@ -18,13 +18,12 @@ import androidx.compose.runtime.MutableState
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.saveable.rememberSaveable
-import com.orange.ods.app.ui.components.lists.ListItemCustomizationState.Companion.DefaultLineCount
 
 @OptIn(ExperimentalMaterialApi::class)
 @Composable
 fun rememberListItemCustomizationState(
     bottomSheetScaffoldState: BottomSheetScaffoldState = rememberBottomSheetScaffoldState(),
-    lineCount: MutableState<Int> = rememberSaveable { mutableStateOf(DefaultLineCount) },
+    lineCount: MutableState<Int> = rememberSaveable { mutableStateOf(ListItemCustomizationState.DefaultLineCount) },
     selectedLeading: MutableState<ListItemCustomizationState.Leading> = rememberSaveable { mutableStateOf(ListItemCustomizationState.Leading.None) },
     selectedTrailing: MutableState<ListItemCustomizationState.Trailing> = rememberSaveable { mutableStateOf(ListItemCustomizationState.Trailing.None) },
     dividerEnabled: MutableState<Boolean> = rememberSaveable { mutableStateOf(false) }
