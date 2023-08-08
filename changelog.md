@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased](https://github.com/Orange-OpenSource/ods-android/compare/0.14.0...develop)
 
+### Added
+
+- \[App\] Add list item component ([#555](https://github.com/Orange-OpenSource/ods-android/issues/555))
+
 ### Changed
 
 - \[All\] Use Compose BOM and update Kotlin and Gradle versions ([#578](https://github.com/Orange-OpenSource/ods-android/issues/578))
