@@ -178,7 +178,7 @@ sealed class Component(
 
     object ListItem : Component(
         R.string.component_list_item,
-        R.drawable.il_list_item_generic,
+        R.drawable.il_list_item,
         null,
         R.string.component_list_item_description,
         composableName = OdsComposable.OdsListItem.name,
