@@ -50,7 +50,6 @@ fun NavGraphBuilder.addModulesGraph(navigateToElement: (String, Long?, NavBackSt
         val arguments = requireNotNull(from.arguments)
         val module = remember { arguments.getModule() }
         module?.demoScreen?.let { it(upPress) }
-
     }
 }
 
