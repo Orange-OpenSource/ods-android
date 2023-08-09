@@ -14,6 +14,7 @@ import com.orange.ods.gradle.Versions
 plugins {
     id("com.android.library")
     id("kotlin-android")
+    id("kotlin-parcelize")
 }
 
 android {
@@ -54,5 +55,6 @@ dependencies {
     implementation(Dependencies.appCompat)
     implementation(Dependencies.composeMaterial)
     implementation(Dependencies.coreKtx)
+    implementation(Dependencies.gson)
     implementation(Dependencies.navigationCompose)
 }

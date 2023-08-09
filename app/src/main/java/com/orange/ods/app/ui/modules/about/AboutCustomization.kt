@@ -23,16 +23,18 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import com.google.accompanist.flowlayout.FlowRow
 import com.orange.ods.app.ui.LocalThemeManager
+import com.orange.ods.app.ui.modules.ModuleDemoDestinations
 import com.orange.ods.compose.component.button.OdsButton
 import com.orange.ods.compose.component.button.OdsButtonStyle
 import com.orange.ods.compose.component.chip.OdsFilterChip
 import com.orange.ods.compose.text.OdsTextBody2
+import com.orange.ods.module.about.AboutModuleConfiguration
 import com.orange.ods.theme.OdsComponentsConfiguration
 
 val aboutOptions = listOf("Version", "Description", "Share", "Feedback")
 
 @Composable
-fun AboutCustomizationContent(onDemoClick: () -> Unit) {
+fun AboutCustomization(navigateToModuleDemo: (String) -> Unit) {
     val outlinedChips =
         LocalThemeManager.current.currentThemeConfiguration.componentsConfiguration.chipStyle == OdsComponentsConfiguration.ComponentStyle.Outlined
     var selectedChips by rememberSaveable { mutableStateOf(emptyList<String>()) }
@@ -67,6 +69,9 @@ fun AboutCustomizationContent(onDemoClick: () -> Unit) {
             .fillMaxWidth(),
         style = OdsButtonStyle.Primary,
         text = stringResource(id = com.orange.ods.app.R.string.module_view_demo),
-        onClick = onDemoClick
+        onClick = {
+            val configuration = AboutModuleConfiguration("Test")
+            navigateToModuleDemo("${ModuleDemoDestinations.AboutRoute}/$configuration")
+        }
     )
 }

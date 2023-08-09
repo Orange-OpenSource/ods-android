@@ -24,7 +24,7 @@ import com.orange.ods.app.ui.utilities.composable.Subtitle
 @Composable
 fun ModuleDetailScreen(
     module: Module,
-    onDemoClick: () -> Unit
+    navigateToModuleDemo: (String) -> Unit,
 ) {
     Column(
         modifier = Modifier
@@ -39,7 +39,7 @@ fun ModuleDetailScreen(
 
         Column(modifier = Modifier.padding(dimensionResource(id = com.orange.ods.R.dimen.screen_horizontal_margin))) {
             Subtitle(textRes = com.orange.ods.app.R.string.module_customize)
-            module.customizationContent(onDemoClick)
+            module.customizationContent(navigateToModuleDemo)
         }
     }
 }

@@ -20,8 +20,19 @@ import androidx.navigation.navArgument
 import com.orange.ods.app.ui.LocalMainTopAppBarManager
 import com.orange.ods.app.ui.MainDestinations
 import com.orange.ods.app.ui.MainTopAppBarState
+import com.orange.ods.app.ui.modules.about.AboutModuleConfigurationType
+import com.orange.ods.app.ui.utilities.compat.BundleCompat
+import com.orange.ods.module.about.AboutModuleConfiguration
 
-fun NavGraphBuilder.addModulesGraph(navigateToElement: (String, Long?, NavBackStackEntry) -> Unit, upPress: () -> Unit) {
+/**
+ * Modules demo destinations.
+ */
+object ModuleDemoDestinations {
+    const val AboutRoute = "module/demo/about"
+    const val ConfigurationKey = "configuration"
+}
+
+fun NavGraphBuilder.addModulesGraph(navigateToElement: (String, Long?, NavBackStackEntry) -> Unit) {
 
     composable(
         "${MainDestinations.ModuleDetailRoute}/{${MainDestinations.ModuleIdKey}}",
@@ -37,25 +48,19 @@ fun NavGraphBuilder.addModulesGraph(navigateToElement: (String, Long?, NavBackSt
 
             ModuleDetailScreen(
                 module = module,
-                onDemoClick = { navigateToElement(MainDestinations.ModuleDemoRoute, routeModuleId, from) }
+                navigateToModuleDemo = { route: String -> navigateToElement(route, null, from) }
             )
         }
     }
 
     composable(
-        "${MainDestinations.ModuleDemoRoute}/{${MainDestinations.ModuleIdKey}}",
-        arguments = listOf(navArgument(MainDestinations.ModuleIdKey) { type = NavType.LongType })
+        "${ModuleDemoDestinations.AboutRoute}/{${ModuleDemoDestinations.ConfigurationKey}}",
+        arguments = listOf(navArgument(ModuleDemoDestinations.ConfigurationKey) { type = AboutModuleConfigurationType })
     ) { from ->
-        LocalMainTopAppBarManager.current.updateTopAppBar(MainTopAppBarState.DefaultConfiguration)
-
-        val arguments = requireNotNull(from.arguments)
-        val module = remember { arguments.getModule() }
-
-        module?.let {
-            LocalMainTopAppBarManager.current.updateTopAppBarTitle(module.titleRes)
-            module.demoScreen(upPress)
+        val configuration = BundleCompat.getParcelable<AboutModuleConfiguration>(from.arguments, ModuleDemoDestinations.ConfigurationKey)
+        configuration?.let {
+            Module.About.demoScreen(it)
         }
-
     }
 }
 
