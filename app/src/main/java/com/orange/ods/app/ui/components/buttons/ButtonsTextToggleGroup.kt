@@ -25,7 +25,6 @@ import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.dimensionResource
-import com.orange.ods.app.R
 import com.orange.ods.app.domain.recipes.LocalRecipes
 import com.orange.ods.app.ui.utilities.composable.CodeImplementationColumn
 import com.orange.ods.app.ui.utilities.composable.FunctionCallCode
@@ -37,8 +36,8 @@ import com.orange.ods.compose.theme.OdsDisplaySurface
 @Composable
 fun ButtonsTextToggleButtonsRow(customizationState: ButtonCustomizationState) {
     val textToggleButtons =
-        LocalRecipes.current.distinctBy { it.title }.take(ButtonCustomizationState.MaxToggleCount).map { recipe ->
-            OdsTextToggleButtonsRowItem(recipe.title, customizationState.isEnabled)
+        LocalRecipes.current.first().ingredients.distinctBy { it.food }.take(ButtonCustomizationState.MaxToggleCount).map { ingredient ->
+            OdsTextToggleButtonsRowItem(ingredient.food.name, customizationState.isEnabled)
         }
 
     var selectedIndex by rememberSaveable { mutableStateOf(0) }
@@ -53,7 +52,8 @@ fun ButtonsTextToggleButtonsRow(customizationState: ButtonCustomizationState) {
                 textToggleButtons = textToggleButtons,
                 selectedIndex = selectedIndex,
                 onSelectedIndexChange = { index -> selectedIndex = index },
-                toggleCount = toggleCount.value
+                toggleCount = toggleCount.value,
+                sameItemsWeight = hasSameItemsWeight,
             )
 
             Spacer(modifier = Modifier.padding(top = dimensionResource(com.orange.ods.R.dimen.spacing_s)))
@@ -64,6 +64,7 @@ fun ButtonsTextToggleButtonsRow(customizationState: ButtonCustomizationState) {
                     selectedIndex = selectedIndex,
                     onSelectedIndexChange = { index -> selectedIndex = index },
                     toggleCount = toggleCount.value,
+                    sameItemsWeight = hasSameItemsWeight,
                     displaySurface = displaySurface
                 )
             }
@@ -97,6 +98,7 @@ private fun ToggleButtonsRow(
     selectedIndex: Int,
     onSelectedIndexChange: (Int) -> Unit,
     toggleCount: Int,
+    sameItemsWeight: Boolean,
     displaySurface: OdsDisplaySurface = OdsDisplaySurface.Default
 ) {
     Row(
@@ -110,6 +112,7 @@ private fun ToggleButtonsRow(
             textToggleButtons = textToggleButtons.take(toggleCount),
             selectedIndex = selectedIndex,
             onSelectedIndexChange = onSelectedIndexChange,
+            sameItemsWeight = sameItemsWeight,
             displaySurface = displaySurface
         )
     }

@@ -59,22 +59,8 @@ fun ComponentButtons(variant: Variant) {
         ComponentCustomizationBottomSheetScaffold(
             bottomSheetScaffoldState = rememberBottomSheetScaffoldState(),
             bottomSheetContent = {
-                if (variant == Variant.ButtonsTextToggleGroup) {
-                    ComponentCountRow(
-                        modifier = Modifier.padding(start = dimensionResource(id = com.orange.ods.R.dimen.screen_horizontal_margin)),
-                        title = stringResource(id = R.string.component_button_icon_toggle_count),
-                        count = toggleCount,
-                        minusIconContentDescription = stringResource(id = R.string.component_button_icon_toggle_remove),
-                        plusIconContentDescription = stringResource(id = R.string.component_button_icon_toggle_add),
-                        minCount = ButtonCustomizationState.MinToggleCount,
-                        maxCount = ButtonCustomizationState.MaxToggleCount
-                    )
-                    OdsListItem(
-                        text = stringResource(id = R.string.component_state_enabled),
-                        trailing = OdsSwitchTrailing(checked = enabled)
-                    )
-                } else {
-                    if (variant == Variant.ButtonsFunctional) {
+                when (variant) {
+                    Variant.ButtonsFunctional -> {
                         Subtitle(textRes = R.string.component_button_style_functional, horizontalPadding = true)
                         OdsChoiceChipsFlowRow(
                             selectedChip = buttonStyle,
@@ -84,7 +70,8 @@ fun ComponentButtons(variant: Variant) {
                             OdsChoiceChip(textRes = R.string.component_button_style_functional_positive, value = OdsButtonStyle.FunctionalPositive)
                             OdsChoiceChip(textRes = R.string.component_button_style_functional_negative, value = OdsButtonStyle.FunctionalNegative)
                         }
-                    } else if (variant == Variant.ButtonsText) {
+                    }
+                    Variant.ButtonsText -> {
                         Subtitle(textRes = R.string.component_style, horizontalPadding = true)
                         OdsChoiceChipsFlowRow(
                             selectedChip = textButtonStyle,
@@ -95,6 +82,26 @@ fun ComponentButtons(variant: Variant) {
                             OdsChoiceChip(textRes = R.string.component_button_style_default, value = OdsTextButtonStyle.Default)
                         }
                     }
+                    Variant.ButtonsTextToggleGroup -> {
+                        ComponentCountRow(
+                            modifier = Modifier.padding(start = dimensionResource(id = com.orange.ods.R.dimen.screen_horizontal_margin)),
+                            title = stringResource(id = R.string.component_button_icon_toggle_count),
+                            count = toggleCount,
+                            minusIconContentDescription = stringResource(id = R.string.component_button_icon_toggle_remove),
+                            plusIconContentDescription = stringResource(id = R.string.component_button_icon_toggle_add),
+                            minCount = ButtonCustomizationState.MinToggleCount,
+                            maxCount = ButtonCustomizationState.MaxToggleCount
+                        )
+
+                        OdsListItem(
+                            text = stringResource(id = R.string.component_buttons_text_toogle_group_same_weight),
+                            trailing = OdsSwitchTrailing(checked = sameItemsWeight)
+                        )
+                    }
+                    else -> {}
+                }
+
+                if (variant != Variant.ButtonsTextToggleGroup) {
                     OdsListItem(
                         text = stringResource(id = R.string.component_element_icon),
                         trailing = OdsSwitchTrailing(checked = leadingIcon)
@@ -103,11 +110,12 @@ fun ComponentButtons(variant: Variant) {
                         text = stringResource(id = R.string.component_button_full_screen_width),
                         trailing = OdsSwitchTrailing(checked = fullScreenWidth)
                     )
-                    OdsListItem(
-                        text = stringResource(id = R.string.component_state_enabled),
-                        trailing = OdsSwitchTrailing(checked = enabled)
-                    )
                 }
+
+                OdsListItem(
+                    text = stringResource(id = R.string.component_state_enabled),
+                    trailing = OdsSwitchTrailing(checked = enabled)
+                )
             }) {
 
             when (variant) {

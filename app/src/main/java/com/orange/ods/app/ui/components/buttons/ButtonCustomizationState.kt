@@ -26,10 +26,11 @@ fun rememberButtonCustomizationState(
     textButtonStyle: MutableState<OdsTextButtonStyle> = rememberSaveable { mutableStateOf(OdsTextButtonStyle.Default) },
     leadingIcon: MutableState<Boolean> = rememberSaveable { mutableStateOf(false) },
     fullScreenWidth: MutableState<Boolean> = rememberSaveable { mutableStateOf(false) },
+    sameItemsWeight: MutableState<Boolean> = rememberSaveable { mutableStateOf(false) },
     enabled: MutableState<Boolean> = rememberSaveable { mutableStateOf(true) }
 ) =
-    remember(buttonStyle, textButtonStyle, leadingIcon, fullScreenWidth, enabled, toggleCount) {
-        ButtonCustomizationState(toggleCount, buttonStyle, textButtonStyle, leadingIcon, fullScreenWidth, enabled)
+    remember(buttonStyle, textButtonStyle, leadingIcon, fullScreenWidth, sameItemsWeight, enabled, toggleCount) {
+        ButtonCustomizationState(toggleCount, buttonStyle, textButtonStyle, leadingIcon, fullScreenWidth, sameItemsWeight, enabled)
     }
 
 class ButtonCustomizationState(
@@ -38,6 +39,7 @@ class ButtonCustomizationState(
     val textButtonStyle: MutableState<OdsTextButtonStyle>,
     val leadingIcon: MutableState<Boolean>,
     val fullScreenWidth: MutableState<Boolean>,
+    val sameItemsWeight: MutableState<Boolean>,
     val enabled: MutableState<Boolean>
 ) {
     companion object {
@@ -53,4 +55,7 @@ class ButtonCustomizationState(
 
     val hasFullScreenWidth
         get() = fullScreenWidth.value
+
+    val hasSameItemsWeight
+        get() = sameItemsWeight.value
 }

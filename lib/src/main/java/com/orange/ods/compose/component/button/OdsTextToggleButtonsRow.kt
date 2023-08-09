@@ -43,8 +43,9 @@ import com.orange.ods.compose.theme.OdsDisplaySurface
  * @param textToggleButtons Contains the [OdsTextToggleButtonsRowItem] to display in the toggle group
  * @param selectedIndex The [textToggleButtons] list index of the selected button.
  * @param onSelectedIndexChange Callback to be invoked when the selection change.
- * @param modifier optional [Modifier] for this OdsTextToggleButtonsRow
- * @param displaySurface optional allow to force the group display on a dark or light
+ * @param modifier [Modifier] for this OdsTextToggleButtonsRow
+ * @param sameItemsWeight if true, same weight of importance will be applied to each item, they will occupy the same width.
+ * @param displaySurface allow to force the group display on a dark or light
  * surface. By default the appearance applied is based on the system night mode value.
  */
 @Composable
@@ -54,6 +55,7 @@ fun OdsTextToggleButtonsRow(
     selectedIndex: Int,
     onSelectedIndexChange: (Int) -> Unit,
     modifier: Modifier = Modifier,
+    sameItemsWeight: Boolean = false,
     displaySurface: OdsDisplaySurface = OdsDisplaySurface.Default
 ) {
     Row(
@@ -70,6 +72,7 @@ fun OdsTextToggleButtonsRow(
                 index = index,
                 textToggleButton = textToggleButton,
                 selected = selectedIndex == index,
+                sameItemsWeight = sameItemsWeight,
                 displaySurface = displaySurface
             ) { clickedButtonIndex ->
                 onSelectedIndexChange(clickedButtonIndex)
@@ -96,6 +99,7 @@ private fun RowScope.TextToggleButtonsRowItem(
     index: Int,
     textToggleButton: OdsTextToggleButtonsRowItem,
     selected: Boolean,
+    sameItemsWeight: Boolean,
     displaySurface: OdsDisplaySurface,
     onClick: (Int) -> Unit
 ) {
@@ -105,8 +109,9 @@ private fun RowScope.TextToggleButtonsRowItem(
         text = textToggleButton.text,
         enabled = textToggleButton.enabled,
         modifier = Modifier
-            .background(color = buttonToggleBackgroundColor(displaySurface).copy(alpha = backgroundAlpha))
-            .weight(1f),
+            .background(color = buttonToggleBackgroundColor(displaySurface).copy(alpha = backgroundAlpha)).let {
+                if (sameItemsWeight) it.weight(1f) else it
+            },
         maxLines = 1,
         overflow = TextOverflow.Ellipsis,
         displaySurface = displaySurface,
