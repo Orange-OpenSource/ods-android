@@ -15,7 +15,6 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
 import com.orange.ods.app.R
-import com.orange.ods.app.ui.LocalMainTopAppBarManager
 import com.orange.ods.app.ui.utilities.compat.PackageManagerCompat
 import com.orange.ods.app.ui.utilities.extension.versionCode
 import com.orange.ods.extension.ifNotNull
@@ -25,8 +24,6 @@ import com.orange.ods.module.about.AboutModuleConfiguration
 
 @Composable
 fun AboutScreen() {
-    LocalMainTopAppBarManager.current.updateTopAppBarTitle(R.string.navigation_item_about)
-
     val context = LocalContext.current
 
     AboutModule(
