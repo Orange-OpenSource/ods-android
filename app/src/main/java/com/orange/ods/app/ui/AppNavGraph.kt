@@ -37,7 +37,7 @@ fun NavGraphBuilder.appNavGraph(
 
     addGuidelinesGraph()
     addComponentsGraph(navigateToElement, upPress)
-    addModulesGraph(navigateToElement, upPress)
+    addModulesGraph(navigateToElement)
     addAboutGraph()
 
     composable(

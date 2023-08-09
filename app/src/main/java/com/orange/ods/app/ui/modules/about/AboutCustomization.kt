@@ -24,16 +24,18 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.stringResource
 import com.orange.ods.app.R
+import com.orange.ods.app.ui.modules.ModuleDemoDestinations
 import com.orange.ods.compose.component.button.OdsButton
 import com.orange.ods.compose.component.button.OdsButtonStyle
 import com.orange.ods.compose.component.chip.OdsFilterChip
 import com.orange.ods.compose.text.OdsTextBody2
+import com.orange.ods.module.about.AboutModuleConfiguration
 
 val aboutOptions = listOf("Version", "Description", "Share", "Feedback")
 
 @OptIn(ExperimentalLayoutApi::class)
 @Composable
-fun AboutCustomizationContent(onDemoClick: () -> Unit) {
+fun AboutCustomization(navigateToModuleDemo: (String) -> Unit) {
     var selectedChips by rememberSaveable { mutableStateOf(emptyList<String>()) }
 
     OdsTextBody2(
@@ -63,7 +65,11 @@ fun AboutCustomizationContent(onDemoClick: () -> Unit) {
             .padding(top = dimensionResource(id = com.orange.ods.R.dimen.spacing_m))
             .fillMaxWidth(),
         style = OdsButtonStyle.Primary,
+
         text = stringResource(id = R.string.module_view_demo),
-        onClick = onDemoClick
+        onClick = {
+            val configuration = AboutModuleConfiguration("Test")
+            navigateToModuleDemo("${ModuleDemoDestinations.AboutRoute}/$configuration")
+        }
     )
 }

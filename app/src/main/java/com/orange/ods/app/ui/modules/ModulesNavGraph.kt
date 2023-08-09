@@ -17,6 +17,9 @@ import androidx.navigation.NavGraphBuilder
 import androidx.navigation.NavType
 import androidx.navigation.compose.composable
 import androidx.navigation.navArgument
+import com.orange.ods.app.ui.modules.about.AboutModuleConfigurationType
+import com.orange.ods.app.ui.utilities.compat.BundleCompat
+import com.orange.ods.module.about.AboutModuleConfiguration
 
 object ModulesNavigation {
     const val ModuleDetailRoute = "component"
@@ -25,7 +28,15 @@ object ModulesNavigation {
     const val ModuleIdKey = "moduleId"
 }
 
-fun NavGraphBuilder.addModulesGraph(navigateToElement: (String, Long?, NavBackStackEntry) -> Unit, upPress: () -> Unit) {
+/**
+ * Modules demo destinations.
+ */
+object ModuleDemoDestinations {
+    const val AboutRoute = "module/demo/about"
+    const val ConfigurationKey = "configuration"
+}
+
+fun NavGraphBuilder.addModulesGraph(navigateToElement: (String, Long?, NavBackStackEntry) -> Unit) {
 
     composable(
         "${ModulesNavigation.ModuleDetailRoute}/{${ModulesNavigation.ModuleIdKey}}",
@@ -38,18 +49,19 @@ fun NavGraphBuilder.addModulesGraph(navigateToElement: (String, Long?, NavBackSt
         module?.let {
             ModuleDetailScreen(
                 module = module,
-                onDemoClick = { navigateToElement(ModulesNavigation.ModuleDemoRoute, routeModuleId, from) }
+                navigateToModuleDemo = { route: String -> navigateToElement(route, null, from) }
             )
         }
     }
 
     composable(
-        "${ModulesNavigation.ModuleDemoRoute}/{${ModulesNavigation.ModuleIdKey}}",
-        arguments = listOf(navArgument(ModulesNavigation.ModuleIdKey) { type = NavType.LongType })
+        "${ModuleDemoDestinations.AboutRoute}/{${ModuleDemoDestinations.ConfigurationKey}}",
+        arguments = listOf(navArgument(ModuleDemoDestinations.ConfigurationKey) { type = AboutModuleConfigurationType })
     ) { from ->
-        val arguments = requireNotNull(from.arguments)
-        val module = remember { arguments.getModule() }
-        module?.demoScreen?.let { it(upPress) }
+        val configuration = BundleCompat.getParcelable<AboutModuleConfiguration>(from.arguments, ModuleDemoDestinations.ConfigurationKey)
+        configuration?.let {
+            Module.About.demoScreen(it)
+        }
     }
 }
 
