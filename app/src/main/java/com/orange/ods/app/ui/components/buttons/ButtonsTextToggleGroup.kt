@@ -85,6 +85,7 @@ fun ButtonsTextToggleButtonsRow(customizationState: ButtonCustomizationState) {
                             }
                         }
                         stringRepresentation("selectedIndex", selectedIndex)
+                        stringRepresentation("sameItemsWeight", hasSameItemsWeight)
                     }
                 )
             }
