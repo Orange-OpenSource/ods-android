@@ -28,12 +28,9 @@ object ModuleDemoDestinations {
 }
 
 fun NavGraphBuilder.addModulesGraph(navController: NavController) {
-
     composable(
         route = AboutModuleCustomizationRoute
     ) { navBackStackEntry ->
-/*        LocalMainTopAppBarManager.current.updateTopAppBar(MainTopAppBarState.DefaultConfiguration)
-        LocalMainTopAppBarManager.current.updateTopAppBarTitle(Module.About.titleRes)*/
 
         val viewModel: OdsAboutViewModel = viewModel(navBackStackEntry)
         AboutCustomizationScreen(navigateToAboutModule = navController::navigateToOdsAboutDemo, configureAboutModule = viewModel::configureAboutModule)
