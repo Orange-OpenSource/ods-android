@@ -41,8 +41,8 @@ import com.orange.ods.compose.component.utilities.Preview
 import com.orange.ods.compose.component.utilities.UiModePreviews
 import com.orange.ods.compose.component.utilities.selectionStateDescription
 import com.orange.ods.compose.theme.OdsTheme
-import com.orange.ods.utilities.extension.enable
-import com.orange.ods.utilities.extension.noRippleClickable
+import com.orange.ods.compose.utilities.extension.enable
+import com.orange.ods.compose.utilities.extension.noRippleClickable
 
 
 /**

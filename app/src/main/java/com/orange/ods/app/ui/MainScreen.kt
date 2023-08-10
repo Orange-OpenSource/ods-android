@@ -50,8 +50,8 @@ import com.orange.ods.app.ui.search.SearchScreen
 import com.orange.ods.app.ui.utilities.extension.isDarkModeEnabled
 import com.orange.ods.app.ui.utilities.extension.isOrange
 import com.orange.ods.compose.theme.OdsTheme
+import com.orange.ods.compose.utilities.extension.orElse
 import com.orange.ods.theme.OdsThemeConfigurationContract
-import com.orange.ods.utilities.extension.orElse
 import com.orange.ods.xml.theme.OdsXml
 import com.orange.ods.xml.utilities.extension.xml
 

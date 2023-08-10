@@ -24,7 +24,7 @@ import com.orange.ods.compose.component.utilities.BasicPreviewParameterProvider
 import com.orange.ods.compose.component.utilities.Preview
 import com.orange.ods.compose.component.utilities.UiModePreviews
 import com.orange.ods.compose.text.OdsTextCaption
-import com.orange.ods.utilities.extension.orElse
+import com.orange.ods.compose.utilities.extension.orElse
 
 
 /**

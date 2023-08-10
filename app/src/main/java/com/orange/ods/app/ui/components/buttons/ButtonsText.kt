@@ -36,7 +36,7 @@ import com.orange.ods.compose.OdsComposable
 import com.orange.ods.compose.component.button.OdsTextButton
 import com.orange.ods.compose.component.button.OdsTextButtonStyle
 import com.orange.ods.compose.theme.OdsDisplaySurface
-import com.orange.ods.utilities.extension.fullName
+import com.orange.ods.compose.utilities.extension.fullName
 
 @Composable
 fun ButtonsText(customizationState: ButtonCustomizationState) {

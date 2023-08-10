@@ -19,7 +19,7 @@ import androidx.compose.ui.graphics.vector.ImageVector
 import com.orange.ods.compose.component.button.OdsIconButton
 import com.orange.ods.compose.component.icon.OdsIcon
 import com.orange.ods.compose.component.icon.OdsIconDefaults
-import com.orange.ods.utilities.extension.orElse
+import com.orange.ods.compose.utilities.extension.orElse
 
 /**
  * An icon in a component.

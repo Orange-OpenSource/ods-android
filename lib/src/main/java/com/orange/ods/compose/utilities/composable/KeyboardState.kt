@@ -8,7 +8,7 @@
  * /
  */
 
-package com.orange.ods.utilities.composable
+package com.orange.ods.compose.utilities.composable
 
 import android.graphics.Rect
 import android.view.ViewTreeObserver

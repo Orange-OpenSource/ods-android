@@ -30,7 +30,7 @@ import com.orange.ods.compose.theme.OdsDisplaySurface
 import com.orange.ods.compose.theme.OdsPrimaryRippleTheme
 import com.orange.ods.compose.theme.OdsTheme
 import com.orange.ods.theme.colors.OdsColors
-import com.orange.ods.utilities.extension.enable
+import com.orange.ods.compose.utilities.extension.enable
 
 /**
  * Specifying an [OdsTextButtonStyle] allow to display a button with specific colors.
