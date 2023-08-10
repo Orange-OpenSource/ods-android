@@ -103,7 +103,7 @@ private fun RowScope.TextToggleButtonsRowItem(
     displaySurface: OdsDisplaySurface,
     onClick: (Int) -> Unit
 ) {
-    val backgroundAlpha by animateFloatAsState(if (selected) 0.12f else 0f)
+    val backgroundAlpha by animateFloatAsState(if (selected) 0.12f else 0f, label = "")
 
     OdsTextButton(
         text = textToggleButton.text,
