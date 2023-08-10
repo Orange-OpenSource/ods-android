@@ -10,6 +10,7 @@
 
 package com.orange.ods.app.ui.modules.about
 
+import androidx.annotation.StringRes
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.runtime.Composable
@@ -22,6 +23,7 @@ import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import com.google.accompanist.flowlayout.FlowRow
+import com.orange.ods.app.R
 import com.orange.ods.app.ui.LocalThemeManager
 import com.orange.ods.app.ui.modules.ModuleDemoDestinations
 import com.orange.ods.compose.component.button.OdsButton
@@ -31,13 +33,18 @@ import com.orange.ods.compose.text.OdsTextBody2
 import com.orange.ods.module.about.AboutModuleConfiguration
 import com.orange.ods.theme.OdsComponentsConfiguration
 
-val aboutOptions = listOf("Version", "Description", "Share", "Feedback")
+enum class AboutOptions(@StringRes val labelResId: Int) {
+    Version(R.string.module_about_customization_version),
+    Description(R.string.module_about_customization_description),
+    Share(R.string.module_about_customization_share),
+    Feedback(R.string.module_about_customization_feedback)
+}
 
 @Composable
 fun AboutCustomization(navigateToModuleDemo: (String) -> Unit) {
     val outlinedChips =
         LocalThemeManager.current.currentThemeConfiguration.componentsConfiguration.chipStyle == OdsComponentsConfiguration.ComponentStyle.Outlined
-    var selectedChips by rememberSaveable { mutableStateOf(emptyList<String>()) }
+    var selectedOptions by rememberSaveable { mutableStateOf(emptyList<AboutOptions>()) }
 
     OdsTextBody2(
         modifier = Modifier.padding(top = dimensionResource(id = com.orange.ods.R.dimen.spacing_s)),
@@ -51,26 +58,33 @@ fun AboutCustomization(navigateToModuleDemo: (String) -> Unit) {
         mainAxisSpacing = dimensionResource(id = com.orange.ods.R.dimen.spacing_s),
         crossAxisSpacing = (-4).dp
     ) {
-        aboutOptions.forEach { option ->
+        AboutOptions.values().forEach { option ->
             OdsFilterChip(
-                text = option,
+                text = stringResource(id = option.labelResId),
                 onClick = {
-                    selectedChips = with(selectedChips) { if (contains(option)) minus(option) else plus(option) }
+                    selectedOptions = with(selectedOptions) { if (contains(option)) minus(option) else plus(option) }
                 },
                 outlined = outlinedChips,
-                selected = selectedChips.contains(option),
+                selected = selectedOptions.contains(option),
             )
         }
     }
+
+    val configuration = AboutModuleConfiguration(
+        appName = stringResource(id = R.string.module_about_demo_app_name),
+        appVersion = if (selectedOptions.contains(AboutOptions.Version)) stringResource(id = R.string.module_about_demo_version) else null,
+        appDescription = if (selectedOptions.contains(AboutOptions.Description)) stringResource(id = R.string.module_about_demo_description) else null,
+        share = selectedOptions.contains(AboutOptions.Share),
+        feedback = selectedOptions.contains(AboutOptions.Feedback)
+    )
 
     OdsButton(
         modifier = Modifier
             .padding(top = dimensionResource(id = com.orange.ods.R.dimen.spacing_m))
             .fillMaxWidth(),
         style = OdsButtonStyle.Primary,
-        text = stringResource(id = com.orange.ods.app.R.string.module_view_demo),
+        text = stringResource(id = R.string.module_view_demo),
         onClick = {
-            val configuration = AboutModuleConfiguration("Test")
             navigateToModuleDemo("${ModuleDemoDestinations.AboutRoute}/$configuration")
         }
     )

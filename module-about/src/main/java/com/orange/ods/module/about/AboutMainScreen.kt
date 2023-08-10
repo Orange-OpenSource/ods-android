@@ -12,6 +12,7 @@ package com.orange.ods.module.about
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
@@ -22,8 +23,12 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
-import com.orange.ods.compose.text.OdsTextCaption
+import com.orange.ods.compose.component.button.OdsTextButton
+import com.orange.ods.compose.component.button.OdsTextButtonStyle
+import com.orange.ods.compose.text.OdsTextBody1
+import com.orange.ods.compose.text.OdsTextBody2
 import com.orange.ods.compose.text.OdsTextH4
 
 private const val ImageHeight = 249
@@ -48,18 +53,35 @@ internal fun AboutMainScreen() {
         Column(Modifier.padding(horizontal = dimensionResource(id = com.orange.ods.R.dimen.screen_horizontal_margin))) {
             OdsTextH4(
                 text = configuration.appName,
-                modifier = Modifier.padding(top = dimensionResource(id = com.orange.ods.R.dimen.spacing_xl))
+                modifier = Modifier.padding(top = dimensionResource(id = com.orange.ods.R.dimen.spacing_m))
             )
+            Row(modifier = Modifier.padding(top = dimensionResource(id = com.orange.ods.R.dimen.spacing_s))) {
+                if (configuration.share) {
+                    OdsTextButton(
+                        modifier = Modifier.padding(end = dimensionResource(id = com.orange.ods.R.dimen.spacing_s)),
+                        text = stringResource(id = R.string.app_share),
+                        icon = painterResource(id = R.drawable.ic_share),
+                        onClick = { /*TODO*/ },
+                        style = OdsTextButtonStyle.Primary
+                    )
+                }
+                if (configuration.feedback) {
+                    OdsTextButton(
+                        text = stringResource(id = R.string.app_feedback), icon = painterResource(id = R.drawable.ic_comment),
+                        onClick = { /*TODO*/ }, style = OdsTextButtonStyle.Primary
+                    )
+                }
+            }
             configuration.appVersion?.let { appVersion ->
-                OdsTextCaption(
+                OdsTextBody2(
                     text = appVersion,
-                    modifier = Modifier.padding(top = dimensionResource(id = com.orange.ods.R.dimen.spacing_xs))
+                    modifier = Modifier.padding(top = dimensionResource(id = com.orange.ods.R.dimen.spacing_m))
                 )
             }
             configuration.appDescription?.let { description ->
-                OdsTextCaption(
+                OdsTextBody1(
                     text = description,
-                    modifier = Modifier.padding(top = dimensionResource(id = com.orange.ods.R.dimen.spacing_xs))
+                    modifier = Modifier.padding(top = dimensionResource(id = com.orange.ods.R.dimen.spacing_s))
                 )
             }
         }
