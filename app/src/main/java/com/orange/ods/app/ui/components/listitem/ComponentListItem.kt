@@ -31,8 +31,6 @@ import coil.size.Size
 import com.orange.ods.app.R
 import com.orange.ods.app.domain.recipes.LocalRecipes
 import com.orange.ods.app.domain.recipes.Recipe
-import com.orange.ods.app.ui.components.lists.ListItemCustomizationState
-import com.orange.ods.app.ui.components.lists.rememberListItemCustomizationState
 import com.orange.ods.app.ui.components.utilities.ComponentCountRow
 import com.orange.ods.app.ui.components.utilities.ComponentCustomizationBottomSheetScaffold
 import com.orange.ods.app.ui.components.utilities.clickOnElement

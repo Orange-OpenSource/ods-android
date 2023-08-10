@@ -28,7 +28,6 @@ import com.orange.ods.app.ui.components.dialogs.ComponentDialog
 import com.orange.ods.app.ui.components.floatingactionbuttons.ComponentFloatingActionButton
 import com.orange.ods.app.ui.components.imageitem.ComponentImageItem
 import com.orange.ods.app.ui.components.listitem.ComponentListItem
-import com.orange.ods.app.ui.components.lists.ComponentLists
 import com.orange.ods.app.ui.components.menus.ComponentMenu
 import com.orange.ods.app.ui.components.navigationdrawers.ComponentModalDrawers
 import com.orange.ods.app.ui.components.progress.ComponentProgress
@@ -183,16 +182,6 @@ sealed class Component(
         R.string.component_list_item_description,
         composableName = OdsComposable.OdsListItem.name,
         demoScreen = { _, _ -> ComponentListItem() }
-    )
-
-    object Lists : Component(
-        R.string.component_lists,
-        R.drawable.il_lists,
-        null,
-        R.string.component_lists_description,
-        composableName = OdsComposable.OdsListItem.name,
-        demoScreen = { _, _ -> ComponentLists() },
-        imageAlignment = Alignment.BottomCenter
     )
 
     object Menus : Component(

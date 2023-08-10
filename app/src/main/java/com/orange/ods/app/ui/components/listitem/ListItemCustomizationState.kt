@@ -8,7 +8,7 @@
  * /
  */
 
-package com.orange.ods.app.ui.components.lists
+package com.orange.ods.app.ui.components.listitem
 
 import androidx.compose.material.BottomSheetScaffoldState
 import androidx.compose.material.ExperimentalMaterialApi

@@ -227,6 +227,26 @@
     <string name="component_image_item_overlay_text">Overlay</string>
     <string name="component_image_item_below_text">Below</string>
 
+    <!-- Component List item -->
+    <string name="component_list_item">List item</string>
+    <string name="component_list_item_description">A list item is the individual element of data entries like text, icons or images that is used to create a list.</string>
+    <string name="component_list_item_size">List item size</string>
+    <string name="component_list_item_add_line">Add line</string>
+    <string name="component_list_item_remove_line">Remove line</string>
+    <string name="component_list_leading">Leading - Before the list text</string>
+    <string name="component_list_leading_none">None</string>
+    <string name="component_list_leading_icon">Icon</string>
+    <string name="component_list_leading_circular_image">Circle</string>
+    <string name="component_list_leading_square_image">Square</string>
+    <string name="component_list_leading_wide_image">Wide</string>
+    <string name="component_list_trailing">Trailing - After the list text</string>
+    <string name="component_list_trailing_none">None</string>
+    <string name="component_list_trailing_checkbox">Checkbox</string>
+    <string name="component_list_trailing_switch">Switch</string>
+    <string name="component_list_trailing_icon">Icon</string>
+    <string name="component_list_trailing_caption">Caption</string>
+    <string name="component_list_information">Information</string>
+
     <!-- Component Menus -->
     <string name="component_menus">Menus</string>
     <string name="component_menus_description">Menus appear from a button, action, or other control. It contains at least 2 items that can affect the app, the view or elements within the view.</string>
@@ -284,28 +304,6 @@
     <string name="component_progress_linear_value">Current value</string>
     <string name="component_progress_circular">Circular</string>
     <string name="component_progress_label">Downloading …</string>
-
-    <!-- Component Lists -->
-    <string name="component_lists">Lists</string>
-    <string name="component_lists_description">A list is a continuous vertical group of data entries like text, icons or images.</string>
-    <string name="component_list_item">List item</string>
-    <string name="component_list_item_description">A list item is the individual element of data entries like text, icons or images that is used to create a list.</string>
-    <string name="component_list_item_size">List item size</string>
-    <string name="component_list_item_add_line">Add line</string>
-    <string name="component_list_item_remove_line">Remove line</string>
-    <string name="component_list_leading">Leading - Before the list text</string>
-    <string name="component_list_leading_none">None</string>
-    <string name="component_list_leading_icon">Icon</string>
-    <string name="component_list_leading_circular_image">Circle</string>
-    <string name="component_list_leading_square_image">Square</string>
-    <string name="component_list_leading_wide_image">Wide</string>
-    <string name="component_list_trailing">Trailing - After the list text</string>
-    <string name="component_list_trailing_none">None</string>
-    <string name="component_list_trailing_checkbox">Checkbox</string>
-    <string name="component_list_trailing_switch">Switch</string>
-    <string name="component_list_trailing_icon">Icon</string>
-    <string name="component_list_trailing_caption">Caption</string>
-    <string name="component_list_information">Information</string>
 
     <!-- Components Sheets -->
     <string name="component_sheets_bottom">Sheets: bottom</string>
