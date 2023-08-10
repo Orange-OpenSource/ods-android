@@ -118,7 +118,7 @@ private fun ComponentListItemContent(listItemCustomizationState: ListItemCustomi
             val singleLineSecondaryText = lineCount.value == 2
 
             val text = recipe.title
-            val secondaryText = listItemCustomizationState.getSecondaryText(recipe)
+            val secondaryText = if (lineCount.value > 1) recipe.description else null
             val icon: @Composable (OdsListItemIconScope.() -> Unit)? =
                 listItemCustomizationState.getIconPainter(recipe)?.let { { OdsListItemIcon(painter = it) } }
             trailing?.let { listItemTrailing ->
@@ -140,6 +140,7 @@ private fun ComponentListItemContent(listItemCustomizationState: ListItemCustomi
                     icon = icon
                 )
             }
+
             CodeImplementationColumn(modifier = Modifier.padding(horizontal = dimensionResource(id = com.orange.ods.R.dimen.screen_horizontal_margin))) {
                 FunctionCallCode(
                     name = OdsComposable.OdsListItem.name,
@@ -149,7 +150,26 @@ private fun ComponentListItemContent(listItemCustomizationState: ListItemCustomi
                             string("secondaryText", secondaryText)
                             if (!singleLineSecondaryText) stringRepresentation("singleLineSecondaryText", false)
                         }
-                        icon()
+                        if (selectedLeading.value != ListItemCustomizationState.Leading.None) {
+                            simple("modifier", "Modifier.iconType($iconType)")
+                            simple("icon", "{ OdsListItemIcon(<painter>) }")
+                        }
+                        if (selectedTrailing.value != ListItemCustomizationState.Trailing.None) {
+                            val clazz: Class<*>? = when (selectedTrailing.value) {
+                                ListItemCustomizationState.Trailing.Checkbox -> OdsCheckboxTrailing::class.java
+                                ListItemCustomizationState.Trailing.Switch -> OdsSwitchTrailing::class.java
+                                ListItemCustomizationState.Trailing.Icon -> OdsIconTrailing::class.java
+                                ListItemCustomizationState.Trailing.Caption -> OdsCaptionTrailing::class.java
+                                else -> null
+                            }
+
+                            val trailingParamName = "trailing"
+                            clazz?.let {
+                                classInstance(trailingParamName, it) {}
+                            }.orElse {
+                                simple(trailingParamName, "<OdsListItemTrailing>")
+                            }
+                        }
                     }
                 )
             }
@@ -165,14 +185,6 @@ private val ListItemCustomizationState.Trailing.textResId: Int
         ListItemCustomizationState.Trailing.Icon -> R.string.component_list_trailing_icon
         ListItemCustomizationState.Trailing.Caption -> R.string.component_list_trailing_caption
     }
-
-private fun ListItemCustomizationState.getSecondaryText(recipe: Recipe): String? {
-    return when (lineCount.value) {
-        2 -> recipe.subtitle
-        3 -> recipe.description
-        else -> null
-    }
-}
 
 private val ListItemCustomizationState.iconType: OdsListItemIconType?
     get() = when (selectedLeading.value) {
