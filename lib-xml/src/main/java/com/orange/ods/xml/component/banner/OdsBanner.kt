@@ -53,9 +53,9 @@ class OdsBanner @JvmOverloads constructor(context: Context, attrs: AttributeSet?
         OdsBanner(
             message = message,
             firstButton = OdsBannerButton(firstButtonText, onFirstButtonClick),
-            image = ifNotNull(image, imageContentDescription) { image, contentDescription ->
+            image = image?.let { image ->
                 val painter = rememberDrawablePainter(drawable = image)
-                OdsBannerImage(painter, contentDescription)
+                OdsBannerImage(painter, imageContentDescription.orEmpty())
             },
             secondButton = ifNotNull(secondButtonText, onSecondButtonClick) { text, onClick ->
                 OdsBannerButton(text, onClick)
