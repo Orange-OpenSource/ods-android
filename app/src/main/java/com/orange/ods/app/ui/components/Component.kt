@@ -27,7 +27,7 @@ import com.orange.ods.app.ui.components.chips.ChipFilter
 import com.orange.ods.app.ui.components.dialogs.ComponentDialog
 import com.orange.ods.app.ui.components.floatingactionbuttons.ComponentFloatingActionButton
 import com.orange.ods.app.ui.components.imageitem.ComponentImageItem
-import com.orange.ods.app.ui.components.lists.ComponentLists
+import com.orange.ods.app.ui.components.listitem.ComponentListItem
 import com.orange.ods.app.ui.components.menus.ComponentMenu
 import com.orange.ods.app.ui.components.navigationdrawers.ComponentModalDrawers
 import com.orange.ods.app.ui.components.progress.ComponentProgress
@@ -175,14 +175,13 @@ sealed class Component(
         demoScreen = { _, _ -> ComponentImageItem() }
     )
 
-    object Lists : Component(
-        R.string.component_lists,
-        R.drawable.il_lists,
+    object ListItem : Component(
+        R.string.component_list_item,
+        R.drawable.il_list_item,
         null,
-        R.string.component_lists_description,
+        R.string.component_list_item_description,
         composableName = OdsComposable.OdsListItem.name,
-        demoScreen = { _, _ -> ComponentLists() },
-        imageAlignment = Alignment.BottomCenter
+        demoScreen = { _, _ -> ComponentListItem() }
     )
 
     object Menus : Component(
