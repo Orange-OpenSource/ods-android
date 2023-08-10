@@ -29,6 +29,7 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
+import com.orange.ods.compose.annotation.ExperimentalOdsApi
 import com.orange.ods.compose.component.OdsComposable
 import com.orange.ods.compose.component.utilities.Preview
 import com.orange.ods.compose.component.utilities.UiModePreviews
@@ -50,6 +51,7 @@ import com.orange.ods.compose.theme.OdsDisplaySurface
  */
 @Composable
 @OdsComposable
+@ExperimentalOdsApi
 fun OdsTextToggleButtonsRow(
     textToggleButtons: List<OdsTextToggleButtonsRowItem>,
     selectedIndex: Int,
@@ -120,6 +122,7 @@ private fun RowScope.TextToggleButtonsRowItem(
     )
 }
 
+@OptIn(ExperimentalOdsApi::class)
 @UiModePreviews.Default
 @Composable
 private fun PreviewOdsTextToggleButtonsGroupRow() = Preview {
