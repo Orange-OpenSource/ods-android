@@ -26,9 +26,8 @@ fun rememberListItemCustomizationState(
     lineCount: MutableState<Int> = rememberSaveable { mutableStateOf(ListItemCustomizationState.DefaultLineCount) },
     selectedLeading: MutableState<ListItemCustomizationState.Leading> = rememberSaveable { mutableStateOf(ListItemCustomizationState.Leading.None) },
     selectedTrailing: MutableState<ListItemCustomizationState.Trailing> = rememberSaveable { mutableStateOf(ListItemCustomizationState.Trailing.None) },
-    dividerEnabled: MutableState<Boolean> = rememberSaveable { mutableStateOf(false) }
 ) = remember(lineCount) {
-    ListItemCustomizationState(bottomSheetScaffoldState, lineCount, selectedLeading, selectedTrailing, dividerEnabled)
+    ListItemCustomizationState(bottomSheetScaffoldState, lineCount, selectedLeading, selectedTrailing)
 }
 
 @OptIn(ExperimentalMaterialApi::class)
@@ -37,7 +36,6 @@ class ListItemCustomizationState(
     val lineCount: MutableState<Int>,
     val selectedLeading: MutableState<Leading>,
     val selectedTrailing: MutableState<Trailing>,
-    val dividerEnabled: MutableState<Boolean>
 ) {
     companion object {
         const val DefaultLineCount = 2
