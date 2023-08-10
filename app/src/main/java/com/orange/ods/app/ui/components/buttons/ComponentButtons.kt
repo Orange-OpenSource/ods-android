@@ -94,7 +94,7 @@ fun ComponentButtons(variant: Variant) {
                         )
 
                         OdsListItem(
-                            text = stringResource(id = R.string.component_buttons_text_toogle_group_same_weight),
+                            text = stringResource(id = R.string.component_buttons_text_toggle_group_same_weight),
                             trailing = OdsSwitchTrailing(checked = sameItemsWeight)
                         )
                     }
