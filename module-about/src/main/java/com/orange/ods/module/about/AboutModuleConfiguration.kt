@@ -47,6 +47,12 @@ data class AboutModuleConfiguration(
      */
     val appDescription: String? = null,
 
+    //TODO Use another type when specified correctly. This boolean is only used for element visibility.
+    val share: Boolean = false,
+
+    //TODO Use another type when specified correctly. This boolean is only used for element visibility.
+    val feedback: Boolean = false,
+
     /**
      * The optional actions displayed at the end of the About module TopAppBar.
      */
@@ -57,7 +63,7 @@ data class AboutModuleConfiguration(
      */
     val topAppBarOverflowMenuActions: @RawValue List<OdsTopAppBarOverflowMenuActionItem> = emptyList(),
 
-
+    
     ) : Parcelable {
 
     override fun toString(): String {
