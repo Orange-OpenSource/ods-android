@@ -9,8 +9,11 @@
   -->
 
 <resources>
+    <string name="state_disabled">Disabled</string>
     <string name="state_selected">Selected</string>
     <string name="state_not_selected">Not selected</string>
+
+    <string name="dropdown_menu_action">Double click to change selection</string>
 
     <string name="text_field_password_show">Show password</string>
     <string name="text_field_password_hide">Hide password</string>
