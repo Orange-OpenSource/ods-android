@@ -10,6 +10,7 @@
 
 package com.orange.ods.app.ui.modules.about
 
+import androidx.annotation.StringRes
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.ExperimentalLayoutApi
 import androidx.compose.foundation.layout.FlowRow
@@ -31,12 +32,17 @@ import com.orange.ods.compose.component.chip.OdsFilterChip
 import com.orange.ods.compose.text.OdsTextBody2
 import com.orange.ods.module.about.AboutModuleConfiguration
 
-val aboutOptions = listOf("Version", "Description", "Share", "Feedback")
+enum class AboutOptions(@StringRes val labelResId: Int) {
+    Version(R.string.module_about_customization_version),
+    Description(R.string.module_about_customization_description),
+    Share(R.string.module_about_customization_share),
+    Feedback(R.string.module_about_customization_feedback)
+}
 
 @OptIn(ExperimentalLayoutApi::class)
 @Composable
 fun AboutCustomization(navigateToModuleDemo: (String) -> Unit) {
-    var selectedChips by rememberSaveable { mutableStateOf(emptyList<String>()) }
+    var selectedOptions by rememberSaveable { mutableStateOf(emptyList<AboutOptions>()) }
 
     OdsTextBody2(
         modifier = Modifier.padding(top = dimensionResource(id = com.orange.ods.R.dimen.spacing_s)),
@@ -49,26 +55,32 @@ fun AboutCustomization(navigateToModuleDemo: (String) -> Unit) {
             .padding(top = dimensionResource(id = com.orange.ods.R.dimen.spacing_xs)),
         horizontalArrangement = Arrangement.spacedBy(dimensionResource(id = com.orange.ods.R.dimen.spacing_s))
     ) {
-        aboutOptions.forEach { option ->
+        AboutOptions.values().forEach { option ->
             OdsFilterChip(
-                text = option,
+                text = stringResource(id = option.labelResId),
                 onClick = {
-                    selectedChips = with(selectedChips) { if (contains(option)) minus(option) else plus(option) }
+                    selectedOptions = with(selectedOptions) { if (contains(option)) minus(option) else plus(option) }
                 },
-                selected = selectedChips.contains(option),
+                selected = selectedOptions.contains(option),
             )
         }
     }
+
+    val configuration = AboutModuleConfiguration(
+        appName = stringResource(id = R.string.module_about_demo_app_name),
+        appVersion = if (selectedOptions.contains(AboutOptions.Version)) stringResource(id = R.string.module_about_demo_version) else null,
+        appDescription = if (selectedOptions.contains(AboutOptions.Description)) stringResource(id = R.string.module_about_demo_description) else null,
+        share = selectedOptions.contains(AboutOptions.Share),
+        feedback = selectedOptions.contains(AboutOptions.Feedback)
+    )
 
     OdsButton(
         modifier = Modifier
             .padding(top = dimensionResource(id = com.orange.ods.R.dimen.spacing_m))
             .fillMaxWidth(),
         style = OdsButtonStyle.Primary,
-
         text = stringResource(id = R.string.module_view_demo),
         onClick = {
-            val configuration = AboutModuleConfiguration("Test")
             navigateToModuleDemo("${ModuleDemoDestinations.AboutRoute}/$configuration")
         }
     )

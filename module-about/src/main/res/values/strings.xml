@@ -10,4 +10,7 @@
 
 <resources>
     <string name="about_top_bar_title">About</string>
+
+    <string name="app_share">Share</string>
+    <string name="app_feedback">Feedback</string>
 </resources>
