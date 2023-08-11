@@ -37,7 +37,7 @@ import com.orange.ods.compose.theme.OdsDisplaySurface
 @Composable
 fun ButtonsTextToggleButtonsRow(customizationState: ButtonCustomizationState) {
     val textToggleButtons =
-        LocalRecipes.current.first().ingredients.distinctBy { it.food }.take(ButtonCustomizationState.MaxToggleCount).map { ingredient ->
+        LocalRecipes.current.first().ingredients.take(ButtonCustomizationState.MaxToggleCount).map { ingredient ->
             OdsTextToggleButtonsRowItem(ingredient.food.name, customizationState.isEnabled)
         }
 
