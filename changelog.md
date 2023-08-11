@@ -20,6 +20,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - \[Lib\] Update `OdsTopAppBar` and `OdsLargeTopAppBar` APIs ([#572](https://github.com/Orange-OpenSource/ods-android/issues/572))
 - \[Lib\] Update `OdsBottomNavigation` API ([#588](https://github.com/Orange-OpenSource/ods-android/issues/588))
 - \[Lib\] Update `OdsBanner` API ([#592](https://github.com/Orange-OpenSource/ods-android/issues/592))
+- \[Lib\] Update `OdsButton`, `OdsOutlinedButton`and `OdsTextButton` APIs ([#596](https://github.com/Orange-OpenSource/ods-android/issues/596))
 
 ### Fixed
 
