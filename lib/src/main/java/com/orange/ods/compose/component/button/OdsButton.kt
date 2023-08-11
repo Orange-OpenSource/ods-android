@@ -12,7 +12,6 @@ package com.orange.ods.compose.component.button
 
 import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.isSystemInDarkTheme
-import androidx.compose.foundation.layout.size
 import androidx.compose.material.Button
 import androidx.compose.material.ButtonColors
 import androidx.compose.material.ButtonDefaults
@@ -90,7 +89,7 @@ fun OdsButton(
             shape = OdsTheme.shapes.small,
             colors = style.getColors(displaySurface = displaySurface)
         ) {
-            icon?.Content(modifier = modifier.size(ButtonDefaults.IconSize))
+            icon?.Content()
             Text(text = text.uppercase(), style = OdsTheme.typography.button)
         }
     }
