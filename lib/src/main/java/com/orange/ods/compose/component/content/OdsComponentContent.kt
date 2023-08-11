@@ -11,6 +11,7 @@
 package com.orange.ods.compose.component.content
 
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.Modifier
 
 /**
  * The content of a component.
@@ -24,9 +25,19 @@ abstract class OdsComponentContent {
 
     /**
      * The Jetpack Compose UI for this component content.
+     *
+     * Calls `Content(Modifier)` with the default `Modifier`.
+     */
+    @Composable
+    fun Content() = Content(modifier = Modifier)
+
+    /**
+     * The Jetpack Compose UI for this component content.
      * Subclasses must implement this method to provide content.
+     *
+     * @param modifier the Modifier for this content.
      */
     // TODO: Set this method internal once OdsSearchTopAppBar is developed
     @Composable
-    abstract fun Content()
+    abstract fun Content(modifier: Modifier)
 }

@@ -12,7 +12,6 @@ package com.orange.ods.app.ui.components.banners
 
 import androidx.appcompat.content.res.AppCompatResources
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
@@ -31,7 +30,6 @@ import coil.request.ImageRequest
 import com.orange.ods.app.R
 import com.orange.ods.app.databinding.OdsBannerBinding
 import com.orange.ods.app.domain.recipes.LocalRecipes
-import com.orange.ods.app.ui.LocalUiFramework
 import com.orange.ods.app.ui.UiFramework
 import com.orange.ods.app.ui.components.utilities.ComponentCountRow
 import com.orange.ods.app.ui.components.utilities.ComponentCustomizationBottomSheetScaffold
@@ -39,11 +37,13 @@ import com.orange.ods.app.ui.components.utilities.clickOnElement
 import com.orange.ods.app.ui.utilities.DrawableManager
 import com.orange.ods.app.ui.utilities.composable.CodeImplementationColumn
 import com.orange.ods.app.ui.utilities.composable.FunctionCallCode
-import com.orange.ods.app.ui.utilities.composable.TechnicalText
 import com.orange.ods.compose.OdsComposable
 import com.orange.ods.compose.component.banner.OdsBanner
+import com.orange.ods.compose.component.banner.OdsBannerButton
+import com.orange.ods.compose.component.banner.OdsBannerImage
 import com.orange.ods.compose.component.list.OdsListItem
 import com.orange.ods.compose.component.list.OdsSwitchTrailing
+import com.orange.ods.utilities.extension.ifNotNull
 
 @OptIn(ExperimentalMaterialApi::class)
 @Composable
@@ -86,35 +86,40 @@ fun ComponentBanners() {
                     .verticalScroll(rememberScrollState())
             ) {
                 val message = if (hasTwoTextLines) recipe.description else recipe.title
-                val button1Text = stringResource(id = R.string.component_banner_dismiss)
-                val onButton1ClickText = stringResource(id = R.string.component_element_button1)
-                val onButton1Click = { clickOnElement(context, onButton1ClickText) }
-                val button2Text = if (hasButton2) stringResource(id = R.string.component_banner_detail) else null
-                val onButton2ClickText = stringResource(id = R.string.component_element_button2)
-                val onButton2Click = { clickOnElement(context, onButton2ClickText) }
+                val firstButtonText = stringResource(id = R.string.component_banner_dismiss)
+                val onFirstButtonClickText = stringResource(id = R.string.component_element_first_button)
+                val onFirstButtonClick = { clickOnElement(context, onFirstButtonClickText) }
+                val secondButtonText = if (hasSecondButton) stringResource(id = R.string.component_banner_detail) else null
+                val onSecondButtonClickText = stringResource(id = R.string.component_element_second_button)
+                val onSecondButtonClick = if (hasSecondButton) {
+                    { clickOnElement(context, onSecondButtonClickText) }
+                } else null
                 val placeholderResId = DrawableManager.getPlaceholderResId()
                 val errorPlaceholderResId = DrawableManager.getPlaceholderResId(error = true)
                 UiFramework<OdsBannerBinding>(
                     compose = {
                         OdsBanner(
                             message = message,
-                            button1Text = button1Text,
-                            button2Text = button2Text,
-                            image = if (hasImage) rememberAsyncImagePainter(
-                                model = recipe.imageUrl,
-                                placeholder = painterResource(id = placeholderResId),
-                                error = painterResource(id = errorPlaceholderResId)
-                            ) else null,
-                            onButton1Click = onButton1Click,
-                            onButton2Click = onButton2Click,
+                            firstButton = OdsBannerButton(firstButtonText, onFirstButtonClick),
+                            image = if (hasImage) {
+                                val painter = rememberAsyncImagePainter(
+                                    model = recipe.imageUrl,
+                                    placeholder = painterResource(id = placeholderResId),
+                                    error = painterResource(id = errorPlaceholderResId)
+                                )
+                                OdsBannerImage(painter, "")
+                            } else {
+                                null
+                            },
+                            secondButton = ifNotNull(secondButtonText, onSecondButtonClick) { text, onClick -> OdsBannerButton(text, onClick) }
                         )
                     },
                     xml = {
                         this.message = message
-                        this.button1Text = button1Text
-                        this.button2Text = button2Text
-                        odsBanner.onButton1Click = onButton1Click
-                        odsBanner.onButton2Click = onButton1Click
+                        this.firstButtonText = firstButtonText
+                        this.secondButtonText = secondButtonText
+                        odsBanner.onFirstButtonClick = onFirstButtonClick
+                        odsBanner.onSecondButtonClick = onFirstButtonClick
                         if (hasImage) {
                             odsBanner.image = AppCompatResources.getDrawable(context, placeholderResId)
                             val request = ImageRequest.Builder(context)
@@ -138,13 +143,25 @@ fun ComponentBanners() {
                         exhaustiveParameters = false,
                         parameters = {
                             string("message", if (hasTwoTextLines) recipe.description else recipe.title)
-                            button1Text(context.getString(R.string.component_banner_dismiss))
-                            if (hasImage) image()
-                            if (hasButton2) button2Text(context.getString(R.string.component_banner_detail))
+                            classInstance("firstButton", OdsBannerButton::class.java) {
+                                text(context.getString(R.string.component_banner_dismiss))
+                                onClick()
+                            }
+                            if (hasImage) {
+                                classInstance("image", OdsBannerImage::class.java) {
+                                    painter()
+                                    contentDescription("")
+                                }
+                            }
+                            if (hasSecondButton) {
+                                classInstance("secondButton", OdsBannerButton::class.java) {
+                                    text(context.getString(R.string.component_banner_detail))
+                                    onClick()
+                                }
+                            }
                         }
                     )
                 }
-
             }
         }
     }

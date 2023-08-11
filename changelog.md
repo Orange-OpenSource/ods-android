@@ -17,6 +17,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - \[Lib\] Replace composable parameter of `OdsDropdownMenu` with a list of `OdsDropdownMenuItem` ([#572](https://github.com/Orange-OpenSource/ods-android/issues/572))
 - \[Lib\] Update `OdsTopAppBar` and `OdsLargeTopAppBar` APIs ([#572](https://github.com/Orange-OpenSource/ods-android/issues/572))
 - \[Lib\] Update `OdsBottomNavigation` API ([#588](https://github.com/Orange-OpenSource/ods-android/issues/588))
+- \[Lib\] Update `OdsBanner` API ([#592](https://github.com/Orange-OpenSource/ods-android/issues/592))
 
 ### Fixed
 

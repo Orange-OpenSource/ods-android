@@ -38,7 +38,7 @@ fun CardHorizontal(customizationState: CardCustomizationState) {
     val context = LocalContext.current
     val recipes = LocalRecipes.current
     val recipe = rememberSaveable { recipes.filter { it.description.isNotBlank() }.random() }
-
+    
     with(customizationState) {
         Column(
             modifier = Modifier
@@ -46,8 +46,8 @@ fun CardHorizontal(customizationState: CardCustomizationState) {
                 .padding(dimensionResource(id = com.orange.ods.R.dimen.spacing_m))
                 .verticalScroll(state = rememberScrollState()),
         ) {
-            val button1Text = stringResource(id = R.string.component_element_button1)
-            val button2Text = stringResource(id = R.string.component_element_button2)
+            val button1Text = stringResource(id = R.string.component_element_first_button)
+            val button2Text = stringResource(id = R.string.component_element_second_button)
             val cardText = stringResource(id = R.string.component_card_element_card)
 
             OdsHorizontalCard(

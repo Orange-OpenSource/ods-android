@@ -10,7 +10,6 @@
 
 package com.orange.ods.compose.component.banner
 
-import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -23,7 +22,9 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.graphics.ImageBitmap
 import androidx.compose.ui.graphics.painter.Painter
+import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.painterResource
@@ -34,6 +35,8 @@ import com.orange.ods.R
 import com.orange.ods.compose.component.OdsComposable
 import com.orange.ods.compose.component.button.OdsTextButton
 import com.orange.ods.compose.component.button.OdsTextButtonStyle
+import com.orange.ods.compose.component.content.OdsComponentContent
+import com.orange.ods.compose.component.content.OdsComponentImage
 import com.orange.ods.compose.component.divider.OdsDivider
 import com.orange.ods.compose.component.utilities.BasicPreviewParameterProvider
 import com.orange.ods.compose.component.utilities.Preview
@@ -45,27 +48,21 @@ import com.orange.ods.compose.theme.OdsTheme
  *
  *
  * @param message text displayed in the banner.
- * @param button1Text principal button in the banner, it displays an [OdsTextButton] with the given [button1Text] as an action of the banner.
- * @param onButton1Click executed on button1 click.
+ * @param firstButton principal button in the banner.
  * @param modifier modifiers for the Banner layout.
  * @param image image display in the banner.
- * @param imageContentDescription Optional image content description.
- * @param button2Text Optional text of the second button in the banner. If not present, button will not be shown. If present, [onButton2Click] need to be  handle.
- * @param onButton2Click Optional handler for the button2 click.
+ * @param secondButton Optional second button in the banner.
  */
 @Composable
 @OdsComposable
 fun OdsBanner(
     message: String,
-    button1Text: String,
-    onButton1Click: () -> Unit,
+    firstButton: OdsBannerButton,
     modifier: Modifier = Modifier,
-    image: Painter? = null,
-    imageContentDescription: String? = null,
-    button2Text: String? = null,
-    onButton2Click: (() -> Unit)? = null
+    image: OdsBannerImage? = null,
+    secondButton: OdsBannerButton? = null
 ) {
-    val isSingleLineBanner = image == null && button2Text == null
+    val isSingleLineBanner = image == null && secondButton == null
     Column(
         modifier = modifier
             .fillMaxWidth()
@@ -81,17 +78,12 @@ fun OdsBanner(
                 )
                 .padding(horizontal = dimensionResource(id = R.dimen.spacing_m))
         ) {
-            image?.let {
-                Image(
-                    painter = image,
-                    contentDescription = imageContentDescription,
-                    contentScale = ContentScale.Crop, // crop the image if it's not a square
-                    modifier = Modifier
-                        .padding(end = dimensionResource(id = R.dimen.spacing_m))
-                        .size(40.dp)
-                        .clip(CircleShape),
-                )
-            }
+            image?.Content(
+                modifier = Modifier
+                    .padding(end = dimensionResource(id = R.dimen.spacing_m))
+                    .size(40.dp)
+                    .clip(CircleShape)
+            )
             Row(verticalAlignment = Alignment.CenterVertically) {
                 Text(
                     modifier = Modifier.weight(1f),
@@ -102,13 +94,7 @@ fun OdsBanner(
                     overflow = TextOverflow.Ellipsis
                 )
                 if (isSingleLineBanner) {
-                    OdsTextButton(
-                        modifier = Modifier
-                            .padding(start = dimensionResource(id = R.dimen.spacing_s)),
-                        style = OdsTextButtonStyle.Primary,
-                        text = button1Text,
-                        onClick = onButton1Click
-                    )
+                    firstButton.Content(modifier = Modifier.padding(start = dimensionResource(id = R.dimen.spacing_s)))
                 }
             }
         }
@@ -118,24 +104,57 @@ fun OdsBanner(
                     .padding(bottom = dimensionResource(id = R.dimen.spacing_s))
                     .align(Alignment.End)
             ) {
-                OdsTextButton(
-                    modifier = Modifier.padding(end = dimensionResource(id = R.dimen.spacing_s)),
-                    style = OdsTextButtonStyle.Primary,
-                    text = button1Text,
-                    onClick = onButton1Click
-                )
-                button2Text?.let {
-                    OdsTextButton(
-                        modifier = Modifier.padding(end = dimensionResource(id = R.dimen.spacing_s)),
-                        style = OdsTextButtonStyle.Primary,
-                        text = button2Text,
-                        onClick = { onButton2Click?.invoke() }
-                    )
-                }
+                firstButton.Content(modifier = Modifier.padding(end = dimensionResource(id = R.dimen.spacing_s)))
+                secondButton?.Content(modifier = Modifier.padding(end = dimensionResource(id = R.dimen.spacing_s)))
             }
         }
         OdsDivider()
     }
+}
+
+/**
+ * A button in an [OdsBanner].
+ *
+ * @constructor Creates an instance of [OdsBannerButton].
+ * @param text Text of the button.
+ * @param onClick Will be called when the user clicks the button.
+ */
+class OdsBannerButton(private val text: String, private val onClick: () -> Unit) : OdsComponentContent() {
+
+    @Composable
+    override fun Content(modifier: Modifier) {
+        OdsTextButton(text = text, onClick = onClick, modifier = modifier, style = OdsTextButtonStyle.Primary)
+    }
+}
+
+/**
+ * An image in an [OdsBanner].
+ */
+class OdsBannerImage : OdsComponentImage {
+
+    /**
+     * Creates an instance of [OdsBannerImage].
+     *
+     * @param painter The painter to draw.
+     * @param contentDescription The content description associated to this [OdsBannerImage].
+     */
+    constructor(painter: Painter, contentDescription: String) : super(painter as Any, contentDescription, ContentScale.Crop)
+
+    /**
+     * Creates an instance of [OdsBannerImage].
+     *
+     * @param imageVector The image vector to draw.
+     * @param contentDescription The content description associated to this [OdsBannerImage].
+     */
+    constructor(imageVector: ImageVector, contentDescription: String) : super(imageVector as Any, contentDescription, ContentScale.Crop)
+
+    /**
+     * Creates an instance of [OdsBannerImage].
+     *
+     * @param bitmap The image bitmap to draw.
+     * @param contentDescription The content description associated to this [OdsBannerImage].
+     */
+    constructor(bitmap: ImageBitmap, contentDescription: String) : super(bitmap as Any, contentDescription, ContentScale.Crop)
 }
 
 @UiModePreviews.Default
@@ -145,18 +164,17 @@ private fun PreviewOdsBanner(@PreviewParameter(OdsBannerPreviewParameterProvider
         with(parameter) {
             OdsBanner(
                 message = message,
-                button1Text = button1Text,
-                onButton1Click = {},
-                button2Text = button2Text,
-                image = imageRes?.let { painterResource(id = it) },
+                firstButton = OdsBannerButton(firstButtonText) {},
+                image = imageRes?.let { OdsBannerImage(painterResource(id = it), "") },
+                secondButton = secondButtonText?.let { OdsBannerButton(it) {} },
             )
         }
     }
 
 private data class OdsBannerPreviewParameter(
     val message: String,
-    val button1Text: String,
-    val button2Text: String? = null,
+    val firstButtonText: String,
+    val secondButtonText: String? = null,
     val imageRes: Int? = null
 )
 
@@ -168,14 +186,14 @@ private val previewParameterValues: List<OdsBannerPreviewParameter>
         val imageRes = R.drawable.placeholder
         val shortMessage = "Two lines text string with two actions."
         val longMessage = "Two lines text string with two actions. One to two lines is preferable on mobile and tablet."
-        val button1Text = "ACTION"
-        val button2Text = "ACTION"
+        val firstButtonText = "ACTION"
+        val secondButtonText = "ACTION"
 
         return listOf(
-            OdsBannerPreviewParameter(longMessage, button1Text, button2Text, imageRes),
-            OdsBannerPreviewParameter(shortMessage, button1Text),
-            OdsBannerPreviewParameter(longMessage, button1Text, button2Text),
-            OdsBannerPreviewParameter(longMessage, button1Text),
-            OdsBannerPreviewParameter(shortMessage, button1Text, imageRes = imageRes)
+            OdsBannerPreviewParameter(longMessage, firstButtonText, secondButtonText, imageRes),
+            OdsBannerPreviewParameter(shortMessage, firstButtonText),
+            OdsBannerPreviewParameter(longMessage, firstButtonText, secondButtonText),
+            OdsBannerPreviewParameter(longMessage, firstButtonText),
+            OdsBannerPreviewParameter(shortMessage, firstButtonText, imageRes = imageRes)
         )
     }
