@@ -50,8 +50,8 @@ class OdsButtonIcon : OdsComponentIcon {
     constructor(bitmap: ImageBitmap) : super(bitmap as Any, "")
 
     @Composable
-    override fun Content() {
-        super.Content(modifier = Modifier.size(ButtonDefaults.IconSize))
+    override fun Content(modifier: Modifier) {
+        super.Content(modifier = modifier)
         Spacer(Modifier.size(ButtonDefaults.IconSpacing))
     }
 }

@@ -11,6 +11,7 @@
 package com.orange.ods.compose.component.button
 
 import androidx.compose.foundation.interaction.MutableInteractionSource
+import androidx.compose.foundation.layout.size
 import androidx.compose.material.ButtonDefaults
 import androidx.compose.material.Text
 import androidx.compose.material.TextButton
@@ -109,7 +110,7 @@ internal fun OdsTextButton(
                 disabledContentColor = OdsTheme.colors.buttonTextDisabledColor(displaySurface)
             )
         ) {
-            icon?.Content()
+            icon?.Content(modifier = modifier.size(ButtonDefaults.IconSize))
             Text(
                 text = text.uppercase(), style = OdsTheme.typography.button, maxLines = maxLines,
                 overflow = overflow

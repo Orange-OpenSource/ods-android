@@ -12,6 +12,7 @@ package com.orange.ods.compose.component.button
 
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.interaction.MutableInteractionSource
+import androidx.compose.foundation.layout.size
 import androidx.compose.material.ButtonDefaults
 import androidx.compose.material.OutlinedButton
 import androidx.compose.material.Text
@@ -26,8 +27,8 @@ import com.orange.ods.compose.component.utilities.Preview
 import com.orange.ods.compose.component.utilities.UiModePreviews
 import com.orange.ods.compose.theme.OdsDisplaySurface
 import com.orange.ods.compose.theme.OdsTheme
-import com.orange.ods.theme.colors.OdsColors
 import com.orange.ods.compose.utilities.extension.enable
+import com.orange.ods.theme.colors.OdsColors
 
 /**
  * <a href="https://system.design.orange.com/0c1af118d/p/06a393-buttons/b/79b091" target="_blank">ODS Buttons</a>.
@@ -77,7 +78,7 @@ fun OdsOutlinedButton(
                 disabledContentColor = OdsTheme.colors.buttonOutlinedDisabledColor(displaySurface)
             )
         ) {
-            icon?.Content()
+            icon?.Content(modifier = modifier.size(ButtonDefaults.IconSize))
             Text(text = text.uppercase(), style = OdsTheme.typography.button)
         }
     }

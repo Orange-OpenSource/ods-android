@@ -29,7 +29,7 @@ abstract class OdsComponentContent {
      * Calls `Content(Modifier)` with the default `Modifier`.
      */
     @Composable
-    open fun Content() = Content(modifier = Modifier)
+    fun Content() = Content(modifier = Modifier)
 
     /**
      * The Jetpack Compose UI for this component content.
