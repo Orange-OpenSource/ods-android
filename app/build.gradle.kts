@@ -18,12 +18,12 @@ plugins {
     id("com.android.application")
     id("com.google.gms.google-services")
     id("kotlin-android")
-    id("kotlin-kapt")
     id("kotlin-parcelize")
     id("com.google.firebase.appdistribution")
     id("com.google.firebase.crashlytics")
     id("firebase")
     id("dagger.hilt.android.plugin")
+    id("kotlin-kapt") // This must be the last statement in the plugins {} to avoid "options not recognized" warning
 }
 
 android {
