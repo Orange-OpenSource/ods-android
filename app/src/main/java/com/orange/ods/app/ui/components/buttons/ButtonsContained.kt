@@ -34,6 +34,7 @@ import com.orange.ods.app.ui.utilities.composable.FunctionCallCode
 import com.orange.ods.app.ui.utilities.composable.Title
 import com.orange.ods.compose.OdsComposable
 import com.orange.ods.compose.component.button.OdsButton
+import com.orange.ods.compose.component.button.OdsButtonIcon
 import com.orange.ods.compose.component.button.OdsButtonStyle
 import com.orange.ods.compose.theme.OdsDisplaySurface
 import com.orange.ods.extension.fullName
@@ -116,7 +117,7 @@ private fun ContainedButton(
             compose = {
                 OdsButton(
                     modifier = if (fullScreenWidth) Modifier.fillMaxWidth() else Modifier,
-                    icon = if (leadingIcon) painterResource(id = iconId) else null,
+                    icon = if (leadingIcon) OdsButtonIcon(painterResource(id = iconId)) else null,
                     text = text,
                     onClick = {},
                     enabled = enabled,

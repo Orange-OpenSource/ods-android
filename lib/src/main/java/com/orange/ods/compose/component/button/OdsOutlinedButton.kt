@@ -21,14 +21,10 @@ import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.graphics.painter.Painter
 import com.orange.ods.compose.component.OdsComposable
 import com.orange.ods.compose.component.utilities.Preview
 import com.orange.ods.compose.component.utilities.UiModePreviews
-import com.orange.ods.compose.theme.OdsDarkRippleTheme
 import com.orange.ods.compose.theme.OdsDisplaySurface
-import com.orange.ods.compose.theme.OdsLightRippleTheme
-import com.orange.ods.compose.theme.OdsRippleTheme
 import com.orange.ods.compose.theme.OdsTheme
 import com.orange.ods.theme.colors.OdsColors
 import com.orange.ods.compose.utilities.extension.enable
@@ -42,7 +38,7 @@ import com.orange.ods.compose.utilities.extension.enable
  * @param text Text displayed in the button
  * @param onClick Will be called when the user clicks the button
  * @param modifier Modifier to be applied to the button
- * @param icon Painter of the icon. If `null`, no icon will be displayed.
+ * @param icon Icon displayed in the button before the text. If `null`, no icon will be displayed.
  * @param enabled Controls the enabled state of the button. When `false`, this button will not
  * be clickable
  * @param displaySurface optional allow to force the button display on a dark or light
@@ -54,7 +50,7 @@ fun OdsOutlinedButton(
     text: String,
     onClick: () -> Unit,
     modifier: Modifier = Modifier,
-    icon: Painter? = null,
+    icon: OdsButtonIcon? = null,
     enabled: Boolean = true,
     displaySurface: OdsDisplaySurface = OdsDisplaySurface.Default
 ) {
@@ -81,7 +77,7 @@ fun OdsOutlinedButton(
                 disabledContentColor = OdsTheme.colors.buttonOutlinedDisabledColor(displaySurface)
             )
         ) {
-            icon?.let { ButtonIcon(it) }
+            icon?.Content()
             Text(text = text.uppercase(), style = OdsTheme.typography.button)
         }
     }

@@ -32,6 +32,7 @@ import com.orange.ods.app.ui.UiFramework
 import com.orange.ods.app.ui.utilities.composable.CodeImplementationColumn
 import com.orange.ods.app.ui.utilities.composable.FunctionCallCode
 import com.orange.ods.compose.OdsComposable
+import com.orange.ods.compose.component.button.OdsButtonIcon
 import com.orange.ods.compose.component.button.OdsOutlinedButton
 import com.orange.ods.compose.theme.OdsDisplaySurface
 
@@ -92,7 +93,7 @@ private fun OutlinedButton(
                     modifier = if (fullScreenWidth) Modifier.fillMaxWidth() else Modifier,
                     text = text,
                     onClick = {},
-                    icon = if (leadingIcon) painterResource(id = iconId) else null,
+                    icon = if (leadingIcon) OdsButtonIcon(painterResource(id = iconId)) else null,
                     enabled = enabled,
                     displaySurface = displaySurface
                 )
