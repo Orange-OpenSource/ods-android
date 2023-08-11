@@ -19,7 +19,6 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.painter.Painter
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.PreviewParameter
 import com.orange.ods.compose.component.OdsComposable
@@ -29,8 +28,8 @@ import com.orange.ods.compose.component.utilities.UiModePreviews
 import com.orange.ods.compose.theme.OdsDisplaySurface
 import com.orange.ods.compose.theme.OdsPrimaryRippleTheme
 import com.orange.ods.compose.theme.OdsTheme
-import com.orange.ods.theme.colors.OdsColors
 import com.orange.ods.compose.utilities.extension.enable
+import com.orange.ods.theme.colors.OdsColors
 
 /**
  * Specifying an [OdsTextButtonStyle] allow to display a button with specific colors.
@@ -50,7 +49,7 @@ enum class OdsTextButtonStyle {
  * @param text Text displayed in the button
  * @param onClick Will be called when the user clicks the button
  * @param modifier Modifier to be applied to the button
- * @param icon Painter of the icon. If `null`, no icon will be displayed.
+ * @param icon Icon displayed before the text. If `null`, no icon will be displayed.
  * @param enabled Controls the enabled state of the button. When `false`, this button will not
  * be clickable.
  * @param style Controls the style of the button. By default the `onSurface` color is used.
@@ -63,7 +62,7 @@ fun OdsTextButton(
     text: String,
     onClick: () -> Unit,
     modifier: Modifier = Modifier,
-    icon: Painter? = null,
+    icon: OdsButtonIcon? = null,
     enabled: Boolean = true,
     style: OdsTextButtonStyle = OdsTextButtonStyle.Default,
     displaySurface: OdsDisplaySurface = OdsDisplaySurface.Default
@@ -88,7 +87,7 @@ internal fun OdsTextButton(
     maxLines: Int,
     overflow: TextOverflow,
     modifier: Modifier = Modifier,
-    icon: Painter? = null,
+    icon: OdsButtonIcon? = null,
     enabled: Boolean = true,
     style: OdsTextButtonStyle = OdsTextButtonStyle.Default,
     displaySurface: OdsDisplaySurface = OdsDisplaySurface.Default
@@ -110,7 +109,7 @@ internal fun OdsTextButton(
                 disabledContentColor = OdsTheme.colors.buttonTextDisabledColor(displaySurface)
             )
         ) {
-            icon?.let { ButtonIcon(it) }
+            icon?.Content()
             Text(
                 text = text.uppercase(), style = OdsTheme.typography.button, maxLines = maxLines,
                 overflow = overflow
