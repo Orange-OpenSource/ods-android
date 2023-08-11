@@ -98,7 +98,8 @@ sealed class Component(
             Variant.ButtonsDefault,
             Variant.ButtonsOutlined,
             Variant.ButtonsText,
-            Variant.ButtonsFunctional
+            Variant.ButtonsFunctional,
+            Variant.ButtonsTextToggleGroup
         ),
         demoScreen = { variant, _ -> if (variant != null) ComponentButtons(variant = variant) }
     )
@@ -293,6 +294,7 @@ sealed class Variant(
     object ButtonsDefault : Variant(R.string.component_buttons_high_emphasis, "${OdsComposable.OdsButton.name} with ${OdsButtonStyle.Default.name}")
     object ButtonsOutlined : Variant(R.string.component_buttons_medium_emphasis, OdsComposable.OdsOutlinedButton.name)
     object ButtonsText : Variant(R.string.component_buttons_low_emphasis, OdsComposable.OdsTextButton.name)
+    object ButtonsTextToggleGroup : Variant(R.string.component_button_text_toggle_group, OdsComposable.OdsTextToggleButtonsRow.name)
     object ButtonsFunctional : Variant(R.string.component_buttons_functional, "${OdsComposable.OdsButton.name} with a functional style")
 
     object ButtonsIcon : Variant(R.string.component_buttons_icon, OdsComposable.OdsIconButton.name)

@@ -20,6 +20,7 @@ import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.painter.Painter
+import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.PreviewParameter
 import com.orange.ods.compose.component.OdsComposable
 import com.orange.ods.compose.component.utilities.EnumPreviewParameterProvider
@@ -29,7 +30,7 @@ import com.orange.ods.compose.theme.OdsDisplaySurface
 import com.orange.ods.compose.theme.OdsPrimaryRippleTheme
 import com.orange.ods.compose.theme.OdsTheme
 import com.orange.ods.theme.colors.OdsColors
-import com.orange.ods.utilities.extension.enable
+import com.orange.ods.compose.utilities.extension.enable
 
 /**
  * Specifying an [OdsTextButtonStyle] allow to display a button with specific colors.
@@ -67,6 +68,31 @@ fun OdsTextButton(
     style: OdsTextButtonStyle = OdsTextButtonStyle.Default,
     displaySurface: OdsDisplaySurface = OdsDisplaySurface.Default
 ) {
+    OdsTextButton(
+        text = text,
+        onClick = onClick,
+        modifier = modifier,
+        icon = icon,
+        enabled = enabled,
+        maxLines = Int.MAX_VALUE,
+        overflow = TextOverflow.Clip,
+        style = style,
+        displaySurface = displaySurface
+    )
+}
+
+@Composable
+internal fun OdsTextButton(
+    text: String,
+    onClick: () -> Unit,
+    maxLines: Int,
+    overflow: TextOverflow,
+    modifier: Modifier = Modifier,
+    icon: Painter? = null,
+    enabled: Boolean = true,
+    style: OdsTextButtonStyle = OdsTextButtonStyle.Default,
+    displaySurface: OdsDisplaySurface = OdsDisplaySurface.Default
+) {
     CompositionLocalProvider(
         LocalRippleTheme provides when (style) {
             OdsTextButtonStyle.Primary -> OdsPrimaryRippleTheme
@@ -85,7 +111,10 @@ fun OdsTextButton(
             )
         ) {
             icon?.let { ButtonIcon(it) }
-            Text(text = text.uppercase(), style = OdsTheme.typography.button)
+            Text(
+                text = text.uppercase(), style = OdsTheme.typography.button, maxLines = maxLines,
+                overflow = overflow
+            )
         }
     }
 }
@@ -104,7 +133,7 @@ private fun OdsColors.buttonTextDisabledColor(displaySurface: OdsDisplaySurface)
 @UiModePreviews.Button
 @Composable
 private fun PreviewOdsTextButton(@PreviewParameter(OdsTextButtonPreviewParameterProvider::class) style: OdsTextButtonStyle) = Preview {
-    OdsTextButton(text = "Text", onClick = {}, style = style)
+    OdsTextButton(text = "Text", maxLines = 1, overflow = TextOverflow.Clip, onClick = {}, style = style)
 }
 
 private class OdsTextButtonPreviewParameterProvider : EnumPreviewParameterProvider(OdsTextButtonStyle::class)

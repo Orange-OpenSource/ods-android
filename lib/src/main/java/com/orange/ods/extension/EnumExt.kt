@@ -8,7 +8,7 @@
  * /
  */
 
-package com.orange.ods.utilities.extension
+package com.orange.ods.extension
 
 val Enum<*>.fullName: String
     get() = "${javaClass.simpleName}.$name"

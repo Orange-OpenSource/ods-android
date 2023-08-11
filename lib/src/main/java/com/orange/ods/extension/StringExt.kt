@@ -8,7 +8,7 @@
  * /
  */
 
-package com.orange.ods.utilities.extension
+package com.orange.ods.extension
 
 import kotlin.contracts.ExperimentalContracts
 import kotlin.contracts.contract

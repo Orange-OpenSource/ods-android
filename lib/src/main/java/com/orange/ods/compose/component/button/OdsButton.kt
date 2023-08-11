@@ -30,7 +30,7 @@ import com.orange.ods.compose.component.utilities.Preview
 import com.orange.ods.compose.component.utilities.UiModePreviews
 import com.orange.ods.compose.theme.OdsDisplaySurface
 import com.orange.ods.compose.theme.OdsTheme
-import com.orange.ods.utilities.extension.enable
+import com.orange.ods.compose.utilities.extension.enable
 
 /**
  * Specifying an [OdsButtonStyle] allow to display a button with specific colors.

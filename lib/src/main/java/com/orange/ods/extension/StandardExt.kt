@@ -8,7 +8,7 @@
  * /
  */
 
-package com.orange.ods.utilities.extension
+package com.orange.ods.extension
 
 /**
  * Calls the specified function [block] and returns its result if `this` is `null`.

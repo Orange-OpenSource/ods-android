@@ -47,9 +47,9 @@ import com.orange.ods.compose.component.list.OdsListItem
 import com.orange.ods.compose.component.list.OdsListItemIcon
 import com.orange.ods.compose.component.list.OdsListItemIconType
 import com.orange.ods.compose.component.list.iconType
+import com.orange.ods.extension.orElse
 import com.orange.ods.theme.guideline.GuidelineColor
 import com.orange.ods.theme.guideline.toHexString
-import com.orange.ods.utilities.extension.orElse
 
 @Composable
 fun SearchScreen(

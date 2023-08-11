@@ -10,6 +10,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Added
 
 - \[App\] Add list item component ([#555](https://github.com/Orange-OpenSource/ods-android/issues/555))
+- \[App\] Add toggle text buttons group component ([#530](https://github.com/Orange-OpenSource/ods-android/issues/530))
+- \[Lib\] Add `OdsTextToggleButtonsRow` component ([#530](https://github.com/Orange-OpenSource/ods-android/issues/530))
 
 ### Changed
 
@@ -48,9 +50,6 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Fixed
 
 - \[Lib\] Fix a bug where `enabled` property of `OdsIconToggleButtonsRowItem` has no effect ([#329](https://github.com/Orange-OpenSource/ods-android/issues/329))
-
-### Fixed
-
 - \[Lib\] Vocalize icon toggle button state change in `OdsIconToggleButtonsRow` component ([#567](https://github.com/Orange-OpenSource/ods-android/issues/567))
 
 ## [0.13.0](https://github.com/Orange-OpenSource/ods-android/compare/0.12.0...0.13.0) - 2023-06-01

@@ -41,8 +41,8 @@ import com.orange.ods.compose.component.list.OdsListItem
 import com.orange.ods.compose.component.list.OdsSwitchTrailing
 import com.orange.ods.compose.component.tab.OdsTab
 import com.orange.ods.compose.component.tab.OdsTabRow
-import com.orange.ods.utilities.composable.Keyboard
-import com.orange.ods.utilities.composable.keyboardAsState
+import com.orange.ods.compose.utilities.composable.Keyboard
+import com.orange.ods.compose.utilities.composable.keyboardAsState
 import kotlinx.coroutines.launch
 
 @OptIn(ExperimentalMaterialApi::class)

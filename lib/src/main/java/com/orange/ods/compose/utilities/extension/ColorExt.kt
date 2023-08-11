@@ -8,7 +8,7 @@
  * /
  */
 
-package com.orange.ods.utilities.extension
+package com.orange.ods.compose.utilities.extension
 
 import androidx.compose.material.ContentAlpha
 import androidx.compose.runtime.Composable

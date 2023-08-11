@@ -37,7 +37,7 @@ import com.orange.ods.compose.component.utilities.Preview
 import com.orange.ods.compose.component.utilities.UiModePreviews
 import com.orange.ods.compose.text.OdsTextCaption
 import com.orange.ods.compose.theme.OdsTheme
-import com.orange.ods.utilities.extension.orElse
+import com.orange.ods.extension.orElse
 
 /**
  * Progress indicators express an unspecified wait time or display the length of a process.

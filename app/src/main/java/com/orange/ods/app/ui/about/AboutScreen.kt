@@ -35,8 +35,8 @@ import com.orange.ods.app.ui.utilities.extension.versionCode
 import com.orange.ods.compose.component.list.OdsListItem
 import com.orange.ods.compose.text.OdsTextCaption
 import com.orange.ods.compose.text.OdsTextH4
-import com.orange.ods.utilities.extension.ifNotNull
-import com.orange.ods.utilities.extension.orElse
+import com.orange.ods.extension.ifNotNull
+import com.orange.ods.extension.orElse
 
 @Composable
 fun AboutScreen(onAboutItemClick: (Long) -> Unit) {

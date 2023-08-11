@@ -21,7 +21,7 @@ import com.orange.ods.compose.component.utilities.Preview
 import com.orange.ods.compose.component.utilities.UiModePreviews
 import com.orange.ods.compose.text.OdsTextBody2
 import com.orange.ods.compose.text.OdsTextSubtitle1
-import com.orange.ods.utilities.extension.ifNotNull
+import com.orange.ods.extension.ifNotNull
 
 /**
  * <a href="https://system.design.orange.com/0c1af118d/p/02ae02-dialogs/b/81772e" class="external" target="_blank">ODS alert dialog</a>.

@@ -8,13 +8,14 @@
  * /
  */
 
-package com.orange.ods.utilities.extension
+package com.orange.ods.compose.utilities.extension
 
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.composed
+import com.orange.ods.extension.orElse
 
 /**
  * Allow to activate click on an element without any ripple effect

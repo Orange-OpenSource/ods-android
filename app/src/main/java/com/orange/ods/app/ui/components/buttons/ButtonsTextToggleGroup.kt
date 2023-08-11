@@ -8,7 +8,7 @@
  * /
  */
 
-package com.orange.ods.app.ui.components.buttons.icons
+package com.orange.ods.app.ui.components.buttons
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -25,23 +25,20 @@ import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.dimensionResource
-import androidx.compose.ui.res.painterResource
-import com.orange.ods.app.databinding.OdsIconToggleButtonsGroupBinding
 import com.orange.ods.app.domain.recipes.LocalRecipes
-import com.orange.ods.app.ui.UiFramework
-import com.orange.ods.app.ui.components.buttons.InvertedBackgroundColumn
 import com.orange.ods.app.ui.utilities.composable.CodeImplementationColumn
 import com.orange.ods.app.ui.utilities.composable.FunctionCallCode
 import com.orange.ods.compose.OdsComposable
-import com.orange.ods.compose.component.button.OdsIconToggleButtonsRow
-import com.orange.ods.compose.component.button.OdsIconToggleButtonsRowItem
+import com.orange.ods.compose.annotation.ExperimentalOdsApi
+import com.orange.ods.compose.component.button.OdsTextToggleButtonsRow
+import com.orange.ods.compose.component.button.OdsTextToggleButtonsRowItem
 import com.orange.ods.compose.theme.OdsDisplaySurface
 
 @Composable
-fun ButtonsIconToggleGroup(customizationState: ButtonIconCustomizationState) {
-    val iconToggleButtons =
-        LocalRecipes.current.distinctBy { it.iconResId }.filter { it.iconResId != null }.take(ButtonIconCustomizationState.MaxToggleCount).map { recipe ->
-            OdsIconToggleButtonsRowItem(painterResource(id = recipe.iconResId!!), recipe.title, customizationState.enabled.value)
+fun ButtonsTextToggleButtonsRow(customizationState: ButtonCustomizationState) {
+    val textToggleButtons =
+        LocalRecipes.current.first().ingredients.take(ButtonCustomizationState.MaxToggleCount).map { ingredient ->
+            OdsTextToggleButtonsRowItem(ingredient.food.name, customizationState.isEnabled)
         }
 
     var selectedIndex by rememberSaveable { mutableStateOf(0) }
@@ -52,44 +49,44 @@ fun ButtonsIconToggleGroup(customizationState: ButtonIconCustomizationState) {
                 .verticalScroll(rememberScrollState())
                 .padding(vertical = dimensionResource(id = com.orange.ods.R.dimen.screen_vertical_margin))
         ) {
-
             ToggleButtonsRow(
-                iconToggleButtons = iconToggleButtons,
+                textToggleButtons = textToggleButtons,
                 selectedIndex = selectedIndex,
                 onSelectedIndexChange = { index -> selectedIndex = index },
-                toggleCount = toggleCount.value
+                toggleCount = toggleCount.value,
+                sameItemsWeight = hasSameItemsWeight,
             )
 
             Spacer(modifier = Modifier.padding(top = dimensionResource(com.orange.ods.R.dimen.spacing_s)))
 
             InvertedBackgroundColumn {
                 ToggleButtonsRow(
-                    iconToggleButtons = iconToggleButtons,
+                    textToggleButtons = textToggleButtons,
                     selectedIndex = selectedIndex,
                     onSelectedIndexChange = { index -> selectedIndex = index },
                     toggleCount = toggleCount.value,
+                    sameItemsWeight = hasSameItemsWeight,
                     displaySurface = displaySurface
                 )
             }
 
             CodeImplementationColumn(
-                modifier = Modifier.padding(horizontal = dimensionResource(id = com.orange.ods.R.dimen.screen_horizontal_margin)),
-                xmlAvailable = true
+                modifier = Modifier.padding(horizontal = dimensionResource(id = com.orange.ods.R.dimen.screen_horizontal_margin))
             ) {
                 FunctionCallCode(
-                    name = OdsComposable.OdsIconToggleButtonsRow.name,
+                    name = OdsComposable.OdsTextToggleButtonsRow.name,
                     exhaustiveParameters = false,
                     parameters = {
-                        list("iconsToggleButtons") {
-                            repeat(toggleCount.value) {
-                                classInstance(OdsIconToggleButtonsRowItem::class.java) {
-                                    painter()
-                                    string("iconDescription", "icon description")
-                                    if (!isEnabled) enabled(false)
+                        list("textToggleButtons") {
+                            textToggleButtons.take(toggleCount.value).forEach { item ->
+                                classInstance(OdsTextToggleButtonsRowItem::class.java) {
+                                    text(item.text)
+                                    enabled(customizationState.isEnabled)
                                 }
                             }
                         }
                         stringRepresentation("selectedIndex", selectedIndex)
+                        stringRepresentation("sameItemsWeight", hasSameItemsWeight)
                     }
                 )
             }
@@ -97,12 +94,14 @@ fun ButtonsIconToggleGroup(customizationState: ButtonIconCustomizationState) {
     }
 }
 
+@OptIn(ExperimentalOdsApi::class)
 @Composable
 private fun ToggleButtonsRow(
-    iconToggleButtons: List<OdsIconToggleButtonsRowItem>,
+    textToggleButtons: List<OdsTextToggleButtonsRowItem>,
     selectedIndex: Int,
     onSelectedIndexChange: (Int) -> Unit,
     toggleCount: Int,
+    sameItemsWeight: Boolean,
     displaySurface: OdsDisplaySurface = OdsDisplaySurface.Default
 ) {
     Row(
@@ -112,21 +111,12 @@ private fun ToggleButtonsRow(
             .padding(horizontal = dimensionResource(com.orange.ods.R.dimen.screen_horizontal_margin)),
         horizontalArrangement = Arrangement.Center
     ) {
-        val buttons = iconToggleButtons.take(toggleCount)
-        UiFramework<OdsIconToggleButtonsGroupBinding>(
-            compose = {
-                OdsIconToggleButtonsRow(
-                    iconToggleButtons = buttons,
-                    selectedIndex = selectedIndex,
-                    onSelectedIndexChange = onSelectedIndexChange,
-                    displaySurface = displaySurface
-                )
-            }, xml = {
-                this.odsIconToggleButtonsRow.iconToggleButtons = buttons
-                this.selectedIndex = selectedIndex
-                this.displaySurface = displaySurface
-                this.odsIconToggleButtonsRow.onSelectedIndexChange = onSelectedIndexChange
-            }
+        OdsTextToggleButtonsRow(
+            textToggleButtons = textToggleButtons.take(toggleCount),
+            selectedIndex = selectedIndex,
+            onSelectedIndexChange = onSelectedIndexChange,
+            sameItemsWeight = sameItemsWeight,
+            displaySurface = displaySurface
         )
     }
 }

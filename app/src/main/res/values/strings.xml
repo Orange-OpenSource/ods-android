@@ -146,6 +146,7 @@
     <string name="component_buttons_medium_emphasis">Medium emphasis buttons</string>
     <string name="component_buttons_low_emphasis">Low emphasis buttons</string>
     <string name="component_buttons_functional">Functional buttons</string>
+    <string name="component_buttons_text_toggle_group_same_weight">Same items weight</string>
 
     <string name="component_button_full_screen_width">Full screen width</string>
     <string name="component_button_style_primary">Primary</string>
@@ -153,6 +154,7 @@
     <string name="component_button_style_functional">Functional</string>
     <string name="component_button_style_functional_positive">Positive</string>
     <string name="component_button_style_functional_negative">Negative</string>
+    <string name="component_button_text_toggle_group">Toggle text button group</string>
 
     <!-- Components Buttons: Icons -->
     <string name="component_buttons_icons">Buttons: Icons</string>

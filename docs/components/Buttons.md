@@ -14,9 +14,10 @@ description: Buttons allow users to take actions, and make choices, with a singl
     * [Text button](#text-button)
     * [Outlined button](#outlined-button)
     * [Contained button](#contained-button)
+    * [Text toggle buttons group](#text-toggle-buttons-group)
     * [Icon button](#icon-button)
     * [Icon toggle button](#icon-toggle-button)
-    * [Icon toggle buttons row](#icon-toggle-buttons-row)
+    * [Icon toggle buttons group](#icon-toggle-buttons-group)
 * [Component specific tokens](#component-specific-tokens)
 
 ---
@@ -66,6 +67,7 @@ style `@style/Widget.Orange.Button.Text` on your `Button` layout
 In the layout:
 
 ```xml
+
 <Button android:layout_width="wrap_content" android:layout_height="wrap_content"
     android:text="Text button" style="@style/Widget.Orange.Button.Text" />
 ```
@@ -74,6 +76,7 @@ To create a **Text Button having an icon** using Orange theme you will need to a
 style `@style/Widget.Orange.Button.Text.Icon` on your `Button` layout
 
 ```xml
+
 <Button android:layout_width="wrap_content" android:layout_height="wrap_content"
     android:text="Text button with icon" app:icon="@drawable/ic_add_24dp"
     style="@style/Widget.Orange.Button.Text.Icon" />
@@ -107,6 +110,7 @@ style `@style/Widget.Orange.Button.Outlined` on your `Button` layout.
 In the layout:
 
 ```xml
+
 <Button android:layout_width="wrap_content" android:layout_height="wrap_content"
     android:text="Outlined button" style="@style/Widget.Orange.Button.Outlined" />
 ```
@@ -115,6 +119,7 @@ To create an **Outlined Button having an icon** using Orange theme you will need
 style `@style/Widget.Orange.Button.Outlined.Icon` on your `Button` layout.
 
 ```xml
+
 <Button android:layout_width="wrap_content" android:layout_height="wrap_content"
     android:text="Outlined button with icon" app:icon="@drawable/ic_add_24dp"
     style="@style/Widget.Orange.Button.Outlined.Icon" />
@@ -171,6 +176,7 @@ style `@style/Widget.Orange.Button.Contained` on your `Button` layout
 In the layout:
 
 ```xml
+
 <Button android:layout_width="wrap_content" android:layout_height="wrap_content"
     android:text="Contained button" style="@style/Widget.Orange.Button.Contained" />
 ```
@@ -178,6 +184,7 @@ In the layout:
 or
 
 ```xml
+
 <Button android:layout_width="wrap_content" android:layout_height="wrap_content"
     android:text="Contained button" />
 ```
@@ -186,9 +193,35 @@ To create a **Contained Button having an icon** using Orange theme you will need
 style `@style/Widget.Orange.Button.Contained.Icon` on your `Button` layout
 
 ```xml
+
 <Button android:layout_width="wrap_content" android:layout_height="wrap_content"
     android:text="Contained button with icon" app:icon="@drawable/ic_add_24dp"
     style="@style/Widget.Orange.Button.Contained.Icon" />
+```
+
+### Text toggle buttons group
+
+A group of text toggle buttons. Only one option in a group of toggle buttons can be selected and active at a time.
+Selecting one option deselects any other.
+
+![Button text toggle group light](images/button_text_toggle_group_light.png) ![Button text toggle group dark](images/button_text_toggle_group_dark.png)
+
+> **Jetpack Compose implementation**
+
+Use the `OdsTextToggleButtonsRow` composable:
+
+```kotlin
+OdsTextToggleButtonsRow(
+    textToggleButtons = listOf(
+        OdsTextToggleButtonsRowItem("XML", true),
+        OdsTextToggleButtonsRowItem("COMPOSE", true),
+    ),
+    selectedIndex = 0,
+    onSelectedIndexChange = {
+        // Do something like changing selectedIndex to refresh composable with new selection
+    },
+    sameItemsWeight = false
+)
 ```
 
 ### Icon button
@@ -248,7 +281,11 @@ OdsIconToggleButtonsRow(
     iconToggleButtons = listOf(
         OdsIconToggleButtonsRowItem(painterResource(id = R.drawable.ic_restaurant), "Restaurant"),
         OdsIconToggleButtonsRowItem(painterResource(id = R.drawable.ic_cooking_pot), "Cooking pot"),
-        OdsIconToggleButtonsRowItem(painterResource(id = R.drawable.ic_coffee), "Coffee", enabled = false)
+        OdsIconToggleButtonsRowItem(
+            painterResource(id = R.drawable.ic_coffee),
+            "Coffee",
+            enabled = false
+        )
     ),
     selectedIndex = 0,
     onSelectedIndexChange = {
@@ -270,6 +307,7 @@ API and source code:
 In the layout:
 
 ```xml
+
 <com.google.android.material.button.MaterialButtonToggleGroup android:layout_width="wrap_content"
     android:layout_height="wrap_content">
     <Button android:layout_width="wrap_content" android:layout_height="wrap_content"
@@ -285,6 +323,7 @@ To create an **icon-only toggle button** using Orange theme you will need to app
 style `@style/Widget.Orange.Button.Outlined.IconOnly` on your `Button` layout.
 
 ```xml
+
 <com.google.android.material.button.MaterialButtonToggleGroup android:layout_width="wrap_content"
     android:layout_height="wrap_content">
     <Button android:layout_width="wrap_content" android:layout_height="wrap_content"

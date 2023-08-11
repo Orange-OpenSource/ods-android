@@ -31,7 +31,7 @@ import com.orange.ods.app.ui.UiFramework
 import com.orange.ods.compose.component.menu.OdsExposedDropdownMenu
 import com.orange.ods.compose.component.menu.OdsExposedDropdownMenuItem
 import com.orange.ods.compose.theme.OdsTheme
-import com.orange.ods.utilities.extension.orElse
+import com.orange.ods.extension.orElse
 
 const val IconPainterValue = "<icon painter>"
 const val ImagePainterValue = "<image painter>"

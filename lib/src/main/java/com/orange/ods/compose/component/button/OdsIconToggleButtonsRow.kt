@@ -41,7 +41,7 @@ import com.orange.ods.compose.component.utilities.Preview
 import com.orange.ods.compose.component.utilities.UiModePreviews
 import com.orange.ods.compose.component.utilities.selectionStateDescription
 import com.orange.ods.compose.theme.OdsDisplaySurface
-import com.orange.ods.utilities.extension.enable
+import com.orange.ods.compose.utilities.extension.enable
 
 /**
  * <a href="https://system.design.orange.com/0c1af118d/p/06a393-buttons/b/79b091" target="_blank">ODS Buttons</a>.
@@ -141,14 +141,6 @@ private fun buttonToggleIconColor(displaySurface: OdsDisplaySurface, selected: B
     with(displaySurface.themeColors) {
         if (selected && enabled) primary else onSurface.enable(enabled = enabled)
     }
-
-@Composable
-private fun buttonToggleBackgroundColor(displaySurface: OdsDisplaySurface) =
-    displaySurface.themeColors.primary
-
-@Composable
-private fun buttonToggleBorderColor(displaySurface: OdsDisplaySurface) = displaySurface.themeColors.onSurface.copy(alpha = 0.12f)
-
 
 @UiModePreviews.Default
 @Composable

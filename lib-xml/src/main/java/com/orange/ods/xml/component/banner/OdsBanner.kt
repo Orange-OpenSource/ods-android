@@ -23,7 +23,7 @@ import com.google.accompanist.drawablepainter.rememberDrawablePainter
 import com.orange.ods.compose.component.banner.OdsBanner
 import com.orange.ods.compose.component.banner.OdsBannerButton
 import com.orange.ods.compose.component.banner.OdsBannerImage
-import com.orange.ods.utilities.extension.ifNotNull
+import com.orange.ods.extension.ifNotNull
 import com.orange.ods.xml.R
 import com.orange.ods.xml.component.OdsAbstractComposeView
 import com.orange.ods.xml.utilities.extension.getResourceIdOrNull

@@ -36,7 +36,7 @@ import com.orange.ods.compose.OdsComposable
 import com.orange.ods.compose.component.button.OdsButton
 import com.orange.ods.compose.component.button.OdsButtonStyle
 import com.orange.ods.compose.theme.OdsDisplaySurface
-import com.orange.ods.utilities.extension.fullName
+import com.orange.ods.extension.fullName
 
 @Composable
 fun ButtonsContained(customizationState: ButtonCustomizationState) {

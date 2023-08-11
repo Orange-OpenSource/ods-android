@@ -16,7 +16,7 @@ import androidx.compose.runtime.Composable
 import com.orange.ods.app.R
 import com.orange.ods.app.ui.LocalThemeManager
 import com.orange.ods.app.ui.utilities.extension.isOrange
-import com.orange.ods.utilities.extension.orElse
+import com.orange.ods.extension.orElse
 
 object DrawableManager {
 
