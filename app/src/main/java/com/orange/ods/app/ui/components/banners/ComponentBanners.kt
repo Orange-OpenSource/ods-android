@@ -43,7 +43,7 @@ import com.orange.ods.compose.component.banner.OdsBannerButton
 import com.orange.ods.compose.component.banner.OdsBannerImage
 import com.orange.ods.compose.component.list.OdsListItem
 import com.orange.ods.compose.component.list.OdsSwitchTrailing
-import com.orange.ods.compose.utilities.extension.ifNotNull
+import com.orange.ods.extension.ifNotNull
 
 @OptIn(ExperimentalMaterialApi::class)
 @Composable

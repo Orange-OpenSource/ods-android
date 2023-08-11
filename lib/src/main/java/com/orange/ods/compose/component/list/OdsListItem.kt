@@ -63,8 +63,8 @@ import com.orange.ods.compose.text.OdsTextCaption
 import com.orange.ods.compose.text.OdsTextSubtitle1
 import com.orange.ods.compose.theme.OdsTheme
 import com.orange.ods.compose.utilities.extension.getElementOfType
-import com.orange.ods.compose.utilities.extension.isNotNullOrBlank
-import com.orange.ods.compose.utilities.extension.orElse
+import com.orange.ods.extension.isNotNullOrBlank
+import com.orange.ods.extension.orElse
 import kotlin.reflect.KClass
 
 /**

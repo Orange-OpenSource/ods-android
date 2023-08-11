@@ -51,7 +51,7 @@ import com.orange.ods.compose.component.list.OdsListItemIconType
 import com.orange.ods.compose.component.list.OdsListItemTrailing
 import com.orange.ods.compose.component.list.OdsSwitchTrailing
 import com.orange.ods.compose.component.list.iconType
-import com.orange.ods.compose.utilities.extension.orElse
+import com.orange.ods.extension.orElse
 
 @OptIn(ExperimentalMaterialApi::class)
 @Composable
