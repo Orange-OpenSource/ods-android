@@ -36,6 +36,7 @@ import com.orange.ods.app.ui.utilities.composable.CodeImplementationColumn
 import com.orange.ods.app.ui.utilities.composable.FunctionCallCode
 import com.orange.ods.compose.OdsComposable
 import com.orange.ods.compose.component.button.OdsIconButton
+import com.orange.ods.compose.component.button.OdsIconButtonIcon
 import com.orange.ods.compose.theme.OdsDisplaySurface
 
 @Composable
@@ -73,7 +74,10 @@ fun ButtonsIcon(customizationState: ButtonIconCustomizationState) {
                     name = OdsComposable.OdsIconButton.name,
                     exhaustiveParameters = false,
                     parameters = {
-                        painter()
+                        classInstance("icon", OdsIconButtonIcon::class.java) {
+                            painter()
+                            contentDescription("")
+                        }
                         if (!isEnabled) enabled(false)
                     }
                 )
@@ -102,8 +106,7 @@ private fun IconButton(
             compose = {
                 OdsIconButton(
                     onClick = onClick,
-                    painter = painterResource(id = R.drawable.ic_search),
-                    contentDescription = contentDescription,
+                    icon = OdsIconButtonIcon(painterResource(id = R.drawable.ic_search), contentDescription),
                     enabled = enabled,
                     displaySurface = displaySurface
                 )
