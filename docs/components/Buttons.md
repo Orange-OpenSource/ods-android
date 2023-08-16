@@ -237,9 +237,13 @@ Use the `OdsIconButton` composable:
 
 ```kotlin
 OdsIconButton(
-    onClick = { },
-    painter = painterResource(id = R.drawable.ic_ui_light_mode),
-    contentDescription = stringResource(id = R.string.theme_changer_icon_content_description_light)
+    icon = OdsIconButtonIcon(
+        painterResource(id = R.drawable.ic_ui_light_mode),
+        stringResource(id = R.string.theme_changer_icon_content_description_light)
+    ),
+    onClick = {
+        // Do something
+    },
 )
 ```
 
@@ -258,9 +262,11 @@ Use the `OdsIconToggleButton` composable:
 OdsIconToggleButton(
     checked = false,
     onCheckedChange = { },
-    uncheckedPainter = painterResource(R.drawable.ic_heart_outlined),
-    checkedPainter = painterResource(R.drawable.ic_heart),
-    painterDescription = "Add to favourites"
+    uncheckedIcon = OdsIconButtonIcon(
+        painterResource(R.drawable.ic_heart_outlined),
+        "Add to favorites"
+    ),
+    checkedIcon = OdsIconButtonIcon(painterResource(R.drawable.ic_heart), "Remove from favorites")
 )
 ```
 
@@ -278,10 +284,10 @@ Use the `OdsIconToggleButtonsRow` composable:
 
 ```kotlin
 OdsIconToggleButtonsRow(
-    iconToggleButtons = listOf(
-        OdsIconToggleButtonsRowItem(painterResource(id = R.drawable.ic_restaurant), "Restaurant"),
-        OdsIconToggleButtonsRowItem(painterResource(id = R.drawable.ic_cooking_pot), "Cooking pot"),
-        OdsIconToggleButtonsRowItem(
+    icons = listOf(
+        OdsIconToggleButtonsRowIcon(painterResource(id = R.drawable.ic_restaurant), "Restaurant"),
+        OdsIconToggleButtonsRowIcon(painterResource(id = R.drawable.ic_cooking_pot), "Cooking pot"),
+        OdsIconToggleButtonsRowIcon(
             painterResource(id = R.drawable.ic_coffee),
             "Coffee",
             enabled = false
