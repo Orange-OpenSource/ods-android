@@ -35,8 +35,8 @@ import com.orange.ods.app.ui.UiFramework
 import com.orange.ods.app.ui.components.buttons.InvertedBackgroundColumn
 import com.orange.ods.app.ui.utilities.composable.CodeImplementationColumn
 import com.orange.ods.app.ui.utilities.composable.FunctionCallCode
-import com.orange.ods.app.ui.utilities.composable.IconPainterValue
 import com.orange.ods.compose.OdsComposable
+import com.orange.ods.compose.component.button.OdsIconButtonIcon
 import com.orange.ods.compose.component.button.OdsIconToggleButton
 import com.orange.ods.compose.theme.OdsDisplaySurface
 
@@ -82,8 +82,14 @@ fun ButtonsIconToggle(customizationState: ButtonIconCustomizationState) {
                     name = OdsComposable.OdsIconToggleButton.name,
                     exhaustiveParameters = false,
                     parameters = {
-                        painter()
-                        simple("painterChecked", IconPainterValue)
+                        classInstance("uncheckedIcon", OdsIconButtonIcon::class.java) {
+                            painter()
+                            contentDescription("")
+                        }
+                        classInstance("checkedIcon", OdsIconButtonIcon::class.java) {
+                            painter()
+                            contentDescription("")
+                        }
                         checked(buttonCheckedState.value)
                         if (!isEnabled) enabled(false)
                     }
@@ -103,7 +109,8 @@ private fun IconToggleButton(
     val context = LocalContext.current
     val uncheckedIconResId = R.drawable.ic_heart_outlined
     val checkedIconResId = R.drawable.ic_heart
-    val iconContentDescription = stringResource(id = R.string.component_button_icon_toggle_favorite_icon_desc)
+    val uncheckedIconContentDescription = stringResource(id = R.string.component_button_icon_toggle_favorite_add_icon_desc)
+    val checkedIconContentDescription = stringResource(id = R.string.component_button_icon_toggle_favorite_remove_icon_desc)
 
     Box(
         modifier = Modifier.padding(
@@ -115,18 +122,18 @@ private fun IconToggleButton(
             compose = {
                 OdsIconToggleButton(
                     checked = checked,
-                    uncheckedPainter = painterResource(id = uncheckedIconResId),
-                    checkedPainter = painterResource(id = checkedIconResId),
-                    iconContentDescription = iconContentDescription,
+                    uncheckedIcon = OdsIconButtonIcon(painterResource(id = uncheckedIconResId), uncheckedIconContentDescription),
+                    checkedIcon = OdsIconButtonIcon(painterResource(id = checkedIconResId), checkedIconContentDescription),
                     onCheckedChange = onCheckedChange,
                     enabled = enabled,
                     displaySurface = displaySurface
                 )
             }, xml = {
                 this.checked = checked
-                checkedIcon = AppCompatResources.getDrawable(context, checkedIconResId)
                 uncheckedIcon = AppCompatResources.getDrawable(context, uncheckedIconResId)
-                iconDescription = iconContentDescription
+                checkedIcon = AppCompatResources.getDrawable(context, checkedIconResId)
+                uncheckedIconDescription = uncheckedIconContentDescription
+                checkedIconDescription = checkedIconContentDescription
                 this.enabled = enabled
                 this.displaySurface = displaySurface
                 odsIconToggleButton.onCheckedChange = onCheckedChange

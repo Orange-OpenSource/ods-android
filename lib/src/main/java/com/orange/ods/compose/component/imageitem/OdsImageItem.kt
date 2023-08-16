@@ -33,6 +33,7 @@ import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.PreviewParameter
 import com.orange.ods.R
 import com.orange.ods.compose.component.OdsComposable
+import com.orange.ods.compose.component.button.OdsIconButtonIcon
 import com.orange.ods.compose.component.button.OdsIconToggleButton
 import com.orange.ods.compose.component.utilities.BasicPreviewParameterProvider
 import com.orange.ods.compose.component.utilities.Preview
@@ -178,9 +179,8 @@ private fun OdsImageItemText(
         OdsIconToggleButton(
             checked = iconChecked,
             onCheckedChange = onIconCheckedChange,
-            uncheckedPainter = uncheckedIcon,
-            checkedPainter = checkedIcon,
-            iconContentDescription = iconContentDescription,
+            uncheckedIcon = OdsIconButtonIcon(uncheckedIcon, iconContentDescription.orEmpty()),
+            checkedIcon = OdsIconButtonIcon(checkedIcon, iconContentDescription.orEmpty()), //TODO Use 2 different content description for each state
             displaySurface = displaySurface
         )
     }

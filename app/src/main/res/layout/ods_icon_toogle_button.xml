@@ -25,7 +25,11 @@
             type="android.graphics.drawable.Drawable" />
 
         <variable
-            name="iconDescription"
+            name="checkedIconDescription"
+            type="String" />
+
+        <variable
+            name="uncheckedIconDescription"
             type="String" />
 
         <variable
@@ -50,7 +54,8 @@
             app:checked="@{checked}"
             app:uncheckedIcon="@{uncheckedIcon}"
             app:checkedIcon="@{checkedIcon}"
-            app:iconContentDescription="@{iconDescription}"
+            app:uncheckedIconContentDescription="@{uncheckedIconDescription}"
+            app:checkedIconContentDescription="@{checkedIconDescription}"
             app:displaySurface="@{displaySurface}" />
 
         <!-- Invisible OdsIconToggleButton used for tests -->
@@ -63,7 +68,8 @@
             app:uncheckedIcon="@drawable/ic_add"
             app:checkedIcon="@drawable/ic_add"
             app:checked="true"
-            app:iconContentDescription="Button"
+            app:uncheckedIconContentDescription="@{uncheckedIconDescription}"
+            app:checkedIconContentDescription="@{checkedIconDescription}"
             app:displaySurface="standard" />
 
     </FrameLayout>
