@@ -11,12 +11,12 @@ description: Chips are compact elements that represent an input, attribute, or a
 * [Specifications references](#specifications-references)
 * [Accessibility](#accessibility)
 * [Variants](#variants)
-  * [Input chip](#input-chip)
-  * [Choice chip](#choice-chip)
-  * [Filter chip](#filter-chip)
-  * [Action chip](#action-chip)
+    * [Input chip](#input-chip)
+    * [Choice chip](#choice-chip)
+    * [Filter chip](#filter-chip)
+    * [Action chip](#action-chip)
 * [Modules](#modules)
-  * [Choice chips flow row](#choice-chips-flow-row)
+    * [Choice chips flow row](#choice-chips-flow-row)
 * [Component specific tokens](#component-specific-tokens)
 
 ---
@@ -43,13 +43,15 @@ Input chips (referred to as **entry** chips in Android) represent a complex piec
 compact form, such as an entity (person, place, or thing) or text. They enable user input and verify
 that input by converting text into chips.
 
-  ![Light input chip](images/chips_input_light.png) ![Dark input chip](images/chips_input_dark.png)
+![Light input chip](images/chips_input_light.png) ![Dark input chip](images/chips_input_dark.png)
 
-  ![Light outlined input chip](images/chips_input_outlined_light.png) ![Dark outlined input chip](images/chips_input_outlined_dark.png)
+![Light outlined input chip](images/chips_input_outlined_light.png) ![Dark outlined input chip](images/chips_input_outlined_dark.png)
 
 > **Jetpack Compose implementation**
 
-Use the `OdsChip` composable:
+Use the `OdsChip` composable.
+Note that the chip style is outlined or filled according to your OdsTheme component configuration,
+outlined by default.
 
 ```kotlin
 OdsChip(
@@ -57,10 +59,9 @@ OdsChip(
     onClick = {
         // Something executed on chip click
     },
-    outlined = false, // Set it to `true` to display an outlined chip
     leadingAvatar = painterResource(id = R.drawable.avatar),
     enabled = true, // Set it to `false` to disabled the chip
-    onCancel = { 
+    onCancel = {
         // Something executed on cancel cross click
     }
 )
@@ -76,12 +77,9 @@ In the layout:
 ```xml
 
 <com.google.android.material.chip.ChipGroup>
-    <com.google.android.material.chip.Chip 
-        android:id="@+id/chip_1"
-        style="@style/Widget.MaterialComponents.Chip.Entry"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content" 
-        android:text="@string/text_input_1" />
+    <com.google.android.material.chip.Chip android:id="@+id/chip_1"
+        style="@style/Widget.MaterialComponents.Chip.Entry" android:layout_width="wrap_content"
+        android:layout_height="wrap_content" android:text="@string/text_input_1" />
 
 </com.google.android.material.chip.ChipGroup>
 ```
@@ -93,15 +91,18 @@ Choice chips allow selection of a single chip from a set of options.
 Choice chips clearly delineate and display options in a compact area. They are a good alternative to
 toggle buttons, radio buttons, and single select menus.
 
-**Note: To display a set of choice chips please see [Choice chips flow row](#choice-chips-flow-row)**
+**Note: To display a set of choice chips please see [Choice chips flow row](#choice-chips-flow-row)
+**
 
-  ![Light choice chips](images/chips_choice_light.png) ![Dark choice chips](images/chips_choice_dark.png)
+![Light choice chips](images/chips_choice_light.png) ![Dark choice chips](images/chips_choice_dark.png)
 
-  ![Light outlined choice chips](images/chips_choice_outlined_light.png) ![Dark outlined choice chips](images/chips_choice_outlined_dark.png)
+![Light outlined choice chips](images/chips_choice_outlined_light.png) ![Dark outlined choice chips](images/chips_choice_outlined_dark.png)
 
 > **Jetpack Compose implementation**
 
-Use the `OdsChip` composable:
+Use the `OdsChip` composable.
+Note that the chip style is outlined or filled according to your OdsTheme component configuration,
+outlined by default.
 
 ```kotlin
 OdsChip(
@@ -124,14 +125,11 @@ In the layout:
 ```xml
 
 <com.google.android.material.chip.ChipGroup...>
-    <com.google.android.material.chip.Chip
-        android:id="@+id/chip_1"
-        style="@style/Widget.MaterialComponents.Chip.Choice"
-        android:layout_width="wrap_content" 
-        android:layout_height="wrap_content"
-        android:text="@string/text_choice_1" />
+    <com.google.android.material.chip.Chip android:id="@+id/chip_1"
+        style="@style/Widget.MaterialComponents.Chip.Choice" android:layout_width="wrap_content"
+        android:layout_height="wrap_content" android:text="@string/text_choice_1" />
 
-    </com.google.android.material.chip.ChipGroup>
+</com.google.android.material.chip.ChipGroup>
 ```
 
 ### Filter chip
@@ -141,9 +139,9 @@ Filter chips use tags or descriptive words to filter content.
 Filter chips clearly delineate and display options in a compact area. They are a good alternative to
 toggle buttons or checkboxes.
 
-  ![Light filter chips](images/chips_filter_light.png) ![Dark filter chips](images/chips_filter_dark.png)
+![Light filter chips](images/chips_filter_light.png) ![Dark filter chips](images/chips_filter_dark.png)
 
-  ![Light filter chips with avatar](images/chips_filter_avatar_light.png) ![Dark filter chips with avatar](images/chips_filter_avatar_dark.png)
+![Light filter chips with avatar](images/chips_filter_avatar_light.png) ![Dark filter chips with avatar](images/chips_filter_avatar_dark.png)
 
 > **Jetpack Compose implementation**
 
@@ -170,13 +168,11 @@ layout and set `style` property to `@style/Widget.MaterialComponents.Chip.Filter
 In the layout:
 
 ```xml
+
 <com.google.android.material.chip.ChipGroup...>
-    <com.google.android.material.chip.Chip
-        android:id="@+id/chip_1"
-        style="@style/Widget.MaterialComponents.Chip.Filter"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/text_choice_1" />
+    <com.google.android.material.chip.Chip android:id="@+id/chip_1"
+        style="@style/Widget.MaterialComponents.Chip.Filter" android:layout_width="wrap_content"
+        android:layout_height="wrap_content" android:text="@string/text_choice_1" />
 
 </com.google.android.material.chip.ChipGroup>
 ```
@@ -188,13 +184,15 @@ contextually in a UI.
 
 An alternative to action chips are buttons, which should appear persistently and consistently.
 
-  ![Light action chip](images/chips_action_light.png) ![Dark action chip](images/chips_action_dark.png)
+![Light action chip](images/chips_action_light.png) ![Dark action chip](images/chips_action_dark.png)
 
-  ![Light outlined action chip](images/chips_action_outlined_light.png) ![Dark outlined action chip](images/chips_action_outlined_dark.png)
+![Light outlined action chip](images/chips_action_outlined_light.png) ![Dark outlined action chip](images/chips_action_outlined_dark.png)
 
 > **Jetpack Compose implementation**
 
-Use the `OdsChip` composable:
+Use the `OdsChip` composable.
+Note that the chip style is outlined or filled according to your OdsTheme component configuration,
+outlined by default.
 
 ```kotlin
 OdsChip(
@@ -218,12 +216,9 @@ In the layout:
 ```xml
 
 <com.google.android.material.chip.ChipGroup...>
-    <com.google.android.material.chip.Chip
-        android:id="@+id/chip_1"
-        style="@style/Widget.MaterialComponents.Chip.Action"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/text_choice_1" />
+    <com.google.android.material.chip.Chip android:id="@+id/chip_1"
+        style="@style/Widget.MaterialComponents.Chip.Action" android:layout_width="wrap_content"
+        android:layout_height="wrap_content" android:text="@string/text_choice_1" />
 
 </com.google.android.material.chip.ChipGroup>
 ```
@@ -236,11 +231,13 @@ The ODS library provides some modules directly related to chips.
 
 This is a full width `FlowRow` containing selectable chips. It works like radio buttons, only one chip of the set can be selected.
 
-  ![Light choice chips flow row](images/chips_choice_flow_row_light.png)
+![Light choice chips flow row](images/chips_choice_flow_row_light.png)
 
-  ![Dark choice chips flow row](images/chips_choice_flow_row_dark.png)
+![Dark choice chips flow row](images/chips_choice_flow_row_dark.png)
 
-Use `OdsChoiceChipsFlowRow` composable:
+Use `OdsChoiceChipsFlowRow` composable.
+Note that the chip style is outlined or filled according to your OdsTheme component configuration,
+outlined by default.
 
 ```kotlin
 OdsChoiceChipsFlowRow(

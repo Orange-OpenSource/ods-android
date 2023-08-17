@@ -76,7 +76,6 @@ fun <T> OdsChoiceChipsFlowRowScope<T>.OdsChoiceChip(text: String, value: T, modi
         },
         selected = selected,
         onClick = { selectedChip.value = value },
-        outlined = outlinedChips,
         enabled = enabled
     )
 }

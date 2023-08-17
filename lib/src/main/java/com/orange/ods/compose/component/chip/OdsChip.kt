@@ -43,6 +43,7 @@ import com.orange.ods.compose.component.utilities.selectionStateDescription
 import com.orange.ods.compose.theme.OdsTheme
 import com.orange.ods.compose.utilities.extension.enable
 import com.orange.ods.compose.utilities.extension.noRippleClickable
+import com.orange.ods.theme.OdsComponentsConfiguration
 
 
 /**
@@ -50,13 +51,13 @@ import com.orange.ods.compose.utilities.extension.noRippleClickable
  *
  * Chips are small components containing a number of elements that represent a calendar event or contact.
  * The [OdsChip] is used to display input chips, choice chips and action chips. To display filter chips please use [OdsFilterChip].
+ * Note that [OdsChip] is displayed outlined or filled according to your [OdsTheme] component configuration, outlined by default.
  *
  * Use Accompanist's [Flow Layouts](https://google.github.io/accompanist/flowlayout/) to wrap chips to a new line.
  *
  * @param text Text to display in the chip.
  * @param onClick called when the chip is clicked.
  * @param modifier Modifier to be applied to the chip
- * @param outlined If true, a border will be drawn around the chip otherwise a filled chip will be displayed.
  * @param enabled When disabled, chip will not respond to user input. It will also appear visually
  * disabled and disabled to accessibility services.
  * @param selected When selected the chip is highlighted (useful for choice chips).
@@ -65,14 +66,41 @@ import com.orange.ods.compose.utilities.extension.noRippleClickable
  * @param leadingContentDescription Content description associated to the leading element.
  * @param onCancel called when the cancel cross of the chip is clicked. Pass `null` here for no cancel cross.
  */
-@OptIn(ExperimentalMaterialApi::class)
 @Composable
 @OdsComposable
 fun OdsChip(
     text: String,
     onClick: () -> Unit,
     modifier: Modifier = Modifier,
-    outlined: Boolean = true,
+    enabled: Boolean = true,
+    selected: Boolean = false,
+    leadingIcon: Painter? = null,
+    leadingAvatar: Painter? = null,
+    leadingContentDescription: String? = null,
+    onCancel: (() -> Unit)? = null
+) {
+    OdsChip(
+        text = text,
+        onClick = onClick,
+        outlined = OdsTheme.componentsConfiguration.chipStyle == OdsComponentsConfiguration.ComponentStyle.Outlined,
+        modifier = modifier,
+        enabled = enabled,
+        selected = selected,
+        leadingIcon = leadingIcon,
+        leadingAvatar = leadingAvatar,
+        leadingContentDescription = leadingContentDescription,
+        onCancel = onCancel
+    )
+}
+
+@OptIn(ExperimentalMaterialApi::class)
+@Composable
+@OdsComposable
+private fun OdsChip(
+    text: String,
+    onClick: () -> Unit,
+    outlined: Boolean,
+    modifier: Modifier = Modifier,
     enabled: Boolean = true,
     selected: Boolean = false,
     leadingIcon: Painter? = null,
@@ -81,7 +109,6 @@ fun OdsChip(
     onCancel: (() -> Unit)? = null
 ) {
     val chipStateDescription = selectionStateDescription(selected)
-
     Chip(
         onClick = onClick,
         modifier = modifier.semantics {
@@ -162,10 +189,10 @@ private fun PreviewOdsChip(@PreviewParameter(OdsChipPreviewParameterProvider::cl
     var selected by remember { mutableStateOf(false) }
     OdsChip(
         text = "Text",
+        outlined = outlined,
         selected = selected,
         onClick = { selected = !selected },
-        leadingAvatar = painterResource(id = R.drawable.placeholder_small),
-        outlined = outlined
+        leadingAvatar = painterResource(id = R.drawable.placeholder_small)
     )
 }
 

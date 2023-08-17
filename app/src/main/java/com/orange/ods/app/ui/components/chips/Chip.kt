@@ -149,7 +149,6 @@ private fun Chip(chipCustomizationState: ChipCustomizationState) {
             OdsChip(
                 text = recipe?.title.orEmpty(),
                 onClick = { clickOnElement(context, recipe?.title.orEmpty()) },
-                outlined = outlinedChips,
                 leadingIcon = if (isActionChip || hasLeadingIcon) recipe?.iconResId?.let { painterResource(id = it) } else null,
                 leadingAvatar = if (hasLeadingAvatar) {
                     rememberAsyncImagePainter(
