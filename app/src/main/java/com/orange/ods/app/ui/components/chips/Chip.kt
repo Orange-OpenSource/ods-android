@@ -28,7 +28,6 @@ import androidx.compose.ui.res.stringResource
 import coil.compose.rememberAsyncImagePainter
 import com.orange.ods.app.R
 import com.orange.ods.app.domain.recipes.LocalRecipes
-import com.orange.ods.app.ui.LocalThemeManager
 import com.orange.ods.app.ui.components.Variant
 import com.orange.ods.app.ui.components.chips.ChipCustomizationState.ChipType
 import com.orange.ods.app.ui.components.chips.ChipCustomizationState.LeadingElement
@@ -47,7 +46,6 @@ import com.orange.ods.compose.component.chip.OdsChoiceChipsFlowRow
 import com.orange.ods.compose.component.list.OdsListItem
 import com.orange.ods.compose.component.list.OdsSwitchTrailing
 import com.orange.ods.compose.text.OdsTextBody2
-import com.orange.ods.theme.OdsComponentsConfiguration.ComponentStyle
 
 @OptIn(ExperimentalMaterialApi::class)
 @Composable
@@ -63,7 +61,6 @@ fun Chip(variant: Variant) {
                     OdsChoiceChipsFlowRow(
                         selectedChip = leadingElement,
                         modifier = Modifier.padding(horizontal = dimensionResource(id = com.orange.ods.R.dimen.screen_horizontal_margin)),
-                        outlinedChips = true
                     ) {
                         OdsChoiceChip(textRes = R.string.component_element_none, value = LeadingElement.None)
                         OdsChoiceChip(textRes = R.string.component_element_avatar, value = LeadingElement.Avatar)
@@ -108,13 +105,12 @@ fun ChipTypeDemo(chipType: ChipType, content: @Composable () -> Unit) {
 @Composable
 private fun Chip(chipCustomizationState: ChipCustomizationState) {
     val context = LocalContext.current
-    val outlinedChips = LocalThemeManager.current.currentThemeConfiguration.componentsConfiguration.chipStyle == ComponentStyle.Outlined
     val cancelCrossLabel = stringResource(id = R.string.component_element_cancel_cross)
     val recipes = LocalRecipes.current.take(4)
 
     with(chipCustomizationState) {
         if (isChoiceChip) {
-            OdsChoiceChipsFlowRow(selectedChip = choiceChipIndexSelected, outlinedChips = outlinedChips) {
+            OdsChoiceChipsFlowRow(selectedChip = choiceChipIndexSelected) {
                 recipes.forEachIndexed { index, recipe ->
                     OdsChoiceChip(
                         text = recipe.title,
@@ -131,7 +127,6 @@ private fun Chip(chipCustomizationState: ChipCustomizationState) {
                     name = OdsComposable.OdsChoiceChipsFlowRow.name,
                     parameters = {
                         mutableState("selectedChip", choiceChipIndexSelected.value.toString())
-                        if (!outlinedChips) stringRepresentation("outlinedChips", outlinedChips)
                     }
                 ) {
                     recipes.forEachIndexed { index, recipe ->

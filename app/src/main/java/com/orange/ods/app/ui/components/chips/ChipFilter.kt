@@ -60,7 +60,6 @@ fun ChipFilter() {
                 OdsChoiceChipsFlowRow(
                     selectedChip = leadingElement,
                     modifier = Modifier.padding(horizontal = dimensionResource(id = com.orange.ods.R.dimen.screen_horizontal_margin)),
-                    outlinedChips = true
                 ) {
                     OdsChoiceChip(textRes = R.string.component_element_none, value = ChipCustomizationState.LeadingElement.None)
                     OdsChoiceChip(textRes = R.string.component_element_avatar, value = ChipCustomizationState.LeadingElement.Avatar)

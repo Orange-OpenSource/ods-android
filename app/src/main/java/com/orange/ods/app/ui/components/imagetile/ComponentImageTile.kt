@@ -72,7 +72,6 @@ fun ComponentImageTile() {
                 OdsChoiceChipsFlowRow(
                     selectedChip = type,
                     modifier = Modifier.padding(horizontal = dimensionResource(id = com.orange.ods.R.dimen.spacing_m)),
-                    outlinedChips = true
                 ) {
                     Subtitle(textRes = R.string.component_image_tile_legend_area_display_type)
                     OdsChoiceChip(textRes = R.string.component_image_tile_legend_area_display_type_overlay, value = OdsImageTileLegendAreaDisplayType.Overlay)

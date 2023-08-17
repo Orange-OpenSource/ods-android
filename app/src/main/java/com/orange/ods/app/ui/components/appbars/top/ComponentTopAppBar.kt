@@ -189,7 +189,6 @@ private fun CustomizationBottomSheetContent(customizationState: TopAppBarCustomi
             OdsChoiceChipsFlowRow(
                 selectedChip = scrollBehavior,
                 modifier = Modifier.padding(horizontal = dimensionResource(id = com.orange.ods.R.dimen.spacing_m)),
-                outlinedChips = true
             ) {
                 OdsChoiceChip(textRes = R.string.component_app_bars_top_large_scroll_behavior_none, value = TopAppBarCustomizationState.ScrollBehavior.None)
                 OdsChoiceChip(
@@ -227,7 +226,6 @@ private fun CustomizationBottomSheetContent(customizationState: TopAppBarCustomi
                 modifier = Modifier
                     .padding(horizontal = dimensionResource(id = com.orange.ods.R.dimen.spacing_m))
                     .padding(bottom = dimensionResource(id = com.orange.ods.R.dimen.spacing_s)),
-                outlinedChips = true
             ) {
                 OdsChoiceChip(textRes = R.string.component_app_bars_top_large_title_one_line, value = TopAppBarCustomizationState.Title.Short)
                 OdsChoiceChip(textRes = R.string.component_app_bars_top_large_title_two_lines, value = TopAppBarCustomizationState.Title.TwoLines)

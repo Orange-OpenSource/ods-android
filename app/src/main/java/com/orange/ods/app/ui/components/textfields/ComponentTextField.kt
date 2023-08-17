@@ -133,7 +133,6 @@ private fun ComponentCustomizationContent(textFieldCustomizationState: TextField
     OdsChoiceChipsFlowRow(
         selectedChip = textFieldCustomizationState.inputType,
         modifier = Modifier.padding(horizontal = dimensionResource(id = com.orange.ods.R.dimen.spacing_m)),
-        outlinedChips = true
     ) {
         OdsChoiceChip(textRes = R.string.component_text_field_input_type_single_line, value = TextFieldCustomizationState.InputType.SingleLine)
         OdsChoiceChip(textRes = R.string.component_text_field_input_type_multiline, value = TextFieldCustomizationState.InputType.Multiline)
@@ -152,7 +151,6 @@ private fun ComponentCustomizationContent(textFieldCustomizationState: TextField
     OdsChoiceChipsFlowRow(
         selectedChip = textFieldCustomizationState.trailingElement,
         modifier = Modifier.padding(horizontal = dimensionResource(id = com.orange.ods.R.dimen.spacing_m)),
-        outlinedChips = true
     ) {
         OdsChoiceChip(textRes = R.string.component_element_none, value = TextFieldCustomizationState.TrailingElement.None)
         OdsChoiceChip(textRes = R.string.component_element_icon, value = TextFieldCustomizationState.TrailingElement.Icon)
@@ -172,7 +170,6 @@ private fun KeyboardCustomizationContent(textFieldCustomizationState: TextFieldC
         selectedChip = textFieldCustomizationState.softKeyboardType,
         modifier = Modifier
             .padding(horizontal = dimensionResource(id = com.orange.ods.R.dimen.spacing_m)),
-        outlinedChips = true
     ) {
         TextFieldCustomizationState.SoftKeyboardType.values().forEach { softKeyboardType ->
             OdsChoiceChip(text = stringResource(id = softKeyboardType.labelRes), value = softKeyboardType)
@@ -188,13 +185,11 @@ private fun KeyboardCustomizationContent(textFieldCustomizationState: TextFieldC
     OdsChoiceChipsFlowRow(
         selectedChip = textFieldCustomizationState.softKeyboardAction,
         modifier = Modifier.padding(horizontal = dimensionResource(id = com.orange.ods.R.dimen.spacing_m)),
-        outlinedChips = true
     ) {
         TextFieldCustomizationState.SoftKeyboardAction.values().forEach { softKeyboardAction ->
             OdsChoiceChip(text = stringResource(id = softKeyboardAction.labelRes), value = softKeyboardAction)
         }
     }
-
 }
 
 @Composable
@@ -203,7 +198,6 @@ private fun DisplayTypeCustomization(displayType: MutableState<TextFieldCustomiz
     OdsChoiceChipsFlowRow(
         selectedChip = displayType,
         modifier = Modifier.padding(horizontal = dimensionResource(id = com.orange.ods.R.dimen.spacing_m)),
-        outlinedChips = true
     ) {
         val context = LocalContext.current
         OdsChoiceChip(textRes = R.string.component_state_default, value = TextFieldCustomizationState.DisplayType.Default)

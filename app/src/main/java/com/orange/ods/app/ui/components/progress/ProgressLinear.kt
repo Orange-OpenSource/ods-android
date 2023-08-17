@@ -65,7 +65,6 @@ fun ProgressLinear() {
                 OdsChoiceChipsFlowRow(
                     selectedChip = type,
                     modifier = Modifier.padding(horizontal = dimensionResource(id = com.orange.ods.R.dimen.spacing_m)),
-                    outlinedChips = true
                 ) {
                     Subtitle(textRes = R.string.component_element_type)
                     OdsChoiceChip(textRes = R.string.component_progress_determinate, value = ProgressCustomizationState.Type.Determinate)

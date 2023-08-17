@@ -65,7 +65,6 @@ fun ComponentButtons(variant: Variant) {
                         OdsChoiceChipsFlowRow(
                             selectedChip = buttonStyle,
                             modifier = Modifier.padding(horizontal = dimensionResource(id = com.orange.ods.R.dimen.screen_horizontal_margin)),
-                            outlinedChips = true
                         ) {
                             OdsChoiceChip(textRes = R.string.component_button_style_functional_positive, value = OdsButtonStyle.FunctionalPositive)
                             OdsChoiceChip(textRes = R.string.component_button_style_functional_negative, value = OdsButtonStyle.FunctionalNegative)
@@ -76,7 +75,6 @@ fun ComponentButtons(variant: Variant) {
                         OdsChoiceChipsFlowRow(
                             selectedChip = textButtonStyle,
                             modifier = Modifier.padding(horizontal = dimensionResource(id = com.orange.ods.R.dimen.screen_horizontal_margin)),
-                            outlinedChips = true
                         ) {
                             OdsChoiceChip(textRes = R.string.component_button_style_primary, value = OdsTextButtonStyle.Primary)
                             OdsChoiceChip(textRes = R.string.component_button_style_default, value = OdsTextButtonStyle.Default)

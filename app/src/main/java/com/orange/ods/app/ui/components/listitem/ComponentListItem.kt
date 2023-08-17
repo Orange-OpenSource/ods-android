@@ -80,7 +80,6 @@ private fun ComponentListItemBottomSheetContent(listItemCustomizationState: List
     OdsChoiceChipsFlowRow(
         selectedChip = listItemCustomizationState.selectedLeading,
         modifier = Modifier.padding(horizontal = dimensionResource(id = com.orange.ods.R.dimen.screen_horizontal_margin)),
-        outlinedChips = true
     ) {
         OdsChoiceChip(textRes = R.string.component_list_leading_none, value = ListItemCustomizationState.Leading.None)
         OdsChoiceChip(textRes = R.string.component_list_leading_icon, value = ListItemCustomizationState.Leading.Icon)
@@ -93,7 +92,6 @@ private fun ComponentListItemBottomSheetContent(listItemCustomizationState: List
     OdsChoiceChipsFlowRow(
         selectedChip = listItemCustomizationState.selectedTrailing,
         modifier = Modifier.padding(horizontal = dimensionResource(id = com.orange.ods.R.dimen.screen_horizontal_margin)),
-        outlinedChips = true
     ) {
         listItemCustomizationState.trailings.forEach { trailing ->
             OdsChoiceChip(textRes = trailing.textResId, value = trailing)

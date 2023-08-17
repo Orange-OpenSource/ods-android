@@ -95,7 +95,6 @@ fun ComponentFloatingActionButton() {
                 OdsChoiceChipsFlowRow(
                     selectedChip = size,
                     modifier = Modifier.padding(horizontal = dimensionResource(id = com.orange.ods.R.dimen.spacing_m)),
-                    outlinedChips = true
                 ) {
                     OdsChoiceChip(textRes = R.string.component_floating_action_button_size_default, value = FabCustomizationState.Size.Default)
                     OdsChoiceChip(textRes = R.string.component_floating_action_button_size_mini, value = FabCustomizationState.Size.Mini)

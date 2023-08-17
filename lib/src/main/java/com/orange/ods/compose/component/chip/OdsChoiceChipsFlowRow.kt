@@ -22,21 +22,20 @@ import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.semantics.stateDescription
-import androidx.compose.ui.tooling.preview.PreviewParameter
 import com.google.accompanist.flowlayout.FlowRow
 import com.orange.ods.R
 import com.orange.ods.compose.component.OdsComposable
-import com.orange.ods.compose.component.utilities.BasicPreviewParameterProvider
 import com.orange.ods.compose.component.utilities.Preview
 import com.orange.ods.compose.component.utilities.UiModePreviews
 import com.orange.ods.compose.component.utilities.selectionStateDescription
+import com.orange.ods.compose.theme.OdsTheme
 
 /**
  * Displays a full width [FlowRow] containing customized choice chips [OdsChoiceChipsFlowRowScope.OdsChoiceChip].
+ * Note that [OdsChoiceChip] are displayed outlined or filled according to your [OdsTheme] component configuration, outlined by default.
  *
  * @param selectedChip The selected chips value state.
  * @param modifier Modifier to be applied to the flow row.
- * @param outlinedChips If true, a border will be drawn around [FlowRow] chips. Otherwise chips will be filled.
  * @param content The content of the choice chips [FlowRow].
  */
 @Composable
@@ -44,7 +43,6 @@ import com.orange.ods.compose.component.utilities.selectionStateDescription
 fun <T> OdsChoiceChipsFlowRow(
     selectedChip: MutableState<T>,
     modifier: Modifier = Modifier,
-    outlinedChips: Boolean = true,
     content: @Composable OdsChoiceChipsFlowRowScope<T>.() -> Unit
 ) {
     FlowRow(
@@ -52,7 +50,7 @@ fun <T> OdsChoiceChipsFlowRow(
             .fillMaxWidth()
             .selectableGroup(),
         mainAxisSpacing = dimensionResource(id = R.dimen.spacing_s),
-        content = { OdsChoiceChipsFlowRowScope(selectedChip, outlinedChips).content() }
+        content = { OdsChoiceChipsFlowRowScope(selectedChip).content() }
     )
 }
 
@@ -96,11 +94,11 @@ fun <T> OdsChoiceChipsFlowRowScope<T>.OdsChoiceChip(@StringRes textRes: Int, val
 /**
  * Scope for the children of [OdsChoiceChipsFlowRow].
  */
-data class OdsChoiceChipsFlowRowScope<T>(val selectedChip: MutableState<T>, val outlinedChips: Boolean)
+data class OdsChoiceChipsFlowRowScope<T>(val selectedChip: MutableState<T>)
 
 @UiModePreviews.Default
 @Composable
-private fun PreviewOdsChoiceChipsFlowRow(@PreviewParameter(OdsChoiceChipsFlowRowPreviewParameterProvider::class) outlinedChips: Boolean) = Preview {
+private fun PreviewOdsChoiceChipsFlowRow() = Preview {
     data class ChoiceChip(val text: String, val enabled: Boolean, val value: Int)
 
     val choiceChips = listOf(
@@ -113,7 +111,6 @@ private fun PreviewOdsChoiceChipsFlowRow(@PreviewParameter(OdsChoiceChipsFlowRow
     val selectedChip = remember { mutableStateOf(choiceChips.first().value) }
     OdsChoiceChipsFlowRow(
         selectedChip = selectedChip,
-        outlinedChips = outlinedChips
     ) {
         choiceChips.forEach { choiceChip ->
             with(choiceChip) {
@@ -122,5 +119,3 @@ private fun PreviewOdsChoiceChipsFlowRow(@PreviewParameter(OdsChoiceChipsFlowRow
         }
     }
 }
-
-private class OdsChoiceChipsFlowRowPreviewParameterProvider : BasicPreviewParameterProvider<Boolean>(false, true)

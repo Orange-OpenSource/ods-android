@@ -81,7 +81,6 @@ fun ComponentTabs(variant: Variant, upPress: () -> Unit) {
             OdsChoiceChipsFlowRow(
                 selectedChip = tabsCustomizationState.tabIconType,
                 modifier = Modifier.padding(horizontal = dimensionResource(id = com.orange.ods.R.dimen.screen_horizontal_margin)),
-                outlinedChips = true
             ) {
                 OdsChoiceChip(
                     textRes = R.string.component_tab_icon_leading,

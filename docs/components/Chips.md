@@ -241,7 +241,7 @@ This is a full width `FlowRow` containing selectable chips. It works like radio 
 ![Dark choice chips flow row](images/chips_choice_flow_row_dark.png)
 
 Use `OdsChoiceChipsFlowRow` composable.
-Note that the chip style is outlined or filled according to your OdsTheme component configuration,
+Note that the chips style is outlined or filled according to your OdsTheme component configuration,
 outlined by default.
 
 ```kotlin
@@ -249,9 +249,9 @@ OdsChoiceChipsFlowRow(
     selectedChip = iconTypeState,
     modifier = Modifier.padding(horizontal = dimensionResource(id = com.orange.ods.R.dimen.spacing_m))
 ) {
-    SelectableChip(textRes = R.string.component_icon_leading, value = IconType.Leading)
-    SelectableChip(textRes = R.string.component_icon_top, value = IconType.Top)
-    SelectableChip(textRes = R.string.component_element_none, value = IconType.None)
+    OdsChoiceChip(textRes = R.string.component_icon_leading, value = IconType.Leading)
+    OdsChoiceChip(textRes = R.string.component_icon_top, value = IconType.Top)
+    OdsChoiceChip(textRes = R.string.component_element_none, value = IconType.None)
 }
 ```
 

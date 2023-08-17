@@ -78,7 +78,6 @@ fun ComponentSheetsBottom() {
 
                     OdsChoiceChipsFlowRow(
                         selectedChip = content,
-                        outlinedChips = true,
                         modifier = Modifier.padding(top = dimensionResource(id = com.orange.ods.R.dimen.spacing_xs))
                     ) {
                         OdsChoiceChip(textRes = R.string.component_element_empty, value = SheetsBottomCustomizationState.Content.Empty)

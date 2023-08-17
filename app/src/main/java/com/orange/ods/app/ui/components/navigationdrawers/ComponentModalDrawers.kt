@@ -117,7 +117,6 @@ fun ComponentModalDrawers() {
                         )
                         OdsChoiceChipsFlowRow(
                             selectedChip = header,
-                            outlinedChips = true,
                             modifier = Modifier.padding(horizontal = dimensionResource(id = com.orange.ods.R.dimen.screen_horizontal_margin)),
                         ) {
                             Subtitle(textRes = R.string.component_modal_drawer_header_image)
@@ -144,7 +143,6 @@ fun ComponentModalDrawers() {
                         )
                         OdsChoiceChipsFlowRow(
                             selectedChip = content,
-                            outlinedChips = true,
                             modifier = Modifier.padding(horizontal = dimensionResource(id = com.orange.ods.R.dimen.screen_horizontal_margin)),
                         ) {
                             Subtitle(textRes = R.string.component_modal_drawer_list_example)
