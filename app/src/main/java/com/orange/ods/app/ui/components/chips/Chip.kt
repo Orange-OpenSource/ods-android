@@ -37,10 +37,11 @@ import com.orange.ods.app.ui.components.utilities.clickOnElement
 import com.orange.ods.app.ui.utilities.DrawableManager
 import com.orange.ods.app.ui.utilities.composable.CodeImplementationColumn
 import com.orange.ods.app.ui.utilities.composable.FunctionCallCode
-import com.orange.ods.app.ui.utilities.composable.ImagePainterValue
 import com.orange.ods.app.ui.utilities.composable.Subtitle
 import com.orange.ods.compose.OdsComposable
 import com.orange.ods.compose.component.chip.OdsChip
+import com.orange.ods.compose.component.chip.OdsChipLeadingAvatar
+import com.orange.ods.compose.component.chip.OdsChipLeadingIcon
 import com.orange.ods.compose.component.chip.OdsChoiceChip
 import com.orange.ods.compose.component.chip.OdsChoiceChipsFlowRow
 import com.orange.ods.compose.component.list.OdsListItem
@@ -149,12 +150,14 @@ private fun Chip(chipCustomizationState: ChipCustomizationState) {
             OdsChip(
                 text = recipe?.title.orEmpty(),
                 onClick = { clickOnElement(context, recipe?.title.orEmpty()) },
-                leadingIcon = if (isActionChip || hasLeadingIcon) recipe?.iconResId?.let { painterResource(id = it) } else null,
+                leadingIcon = if (isActionChip || hasLeadingIcon) recipe?.iconResId?.let { OdsChipLeadingIcon(painterResource(id = it), "") } else null,
                 leadingAvatar = if (hasLeadingAvatar) {
-                    rememberAsyncImagePainter(
-                        model = recipe?.imageUrl,
-                        placeholder = painterResource(id = DrawableManager.getPlaceholderSmallResId()),
-                        error = painterResource(id = DrawableManager.getPlaceholderSmallResId(error = true))
+                    OdsChipLeadingAvatar(
+                        rememberAsyncImagePainter(
+                            model = recipe?.imageUrl,
+                            placeholder = painterResource(id = DrawableManager.getPlaceholderSmallResId()),
+                            error = painterResource(id = DrawableManager.getPlaceholderSmallResId(error = true))
+                        ), ""
                     )
                 } else null,
                 enabled = isEnabled,
@@ -171,9 +174,18 @@ private fun Chip(chipCustomizationState: ChipCustomizationState) {
                     exhaustiveParameters = false,
                     parameters = {
                         text(recipe?.title.orEmpty())
-                        if (!outlinedChips) stringRepresentation("outlined", outlinedChips)
-                        if (isActionChip || hasLeadingIcon) icon()
-                        if (hasLeadingAvatar) simple("leadingAvatar", ImagePainterValue)
+                        if (isActionChip || hasLeadingIcon) {
+                            classInstance("leadingIcon", OdsChipLeadingIcon::class.java) {
+                                painter()
+                                contentDescription("")
+                            }
+                        }
+                        if (hasLeadingAvatar) {
+                            classInstance("leadingAvatar", OdsChipLeadingAvatar::class.java) {
+                                image()
+                                contentDescription("")
+                            }
+                        }
                         if (!isEnabled) enabled(false)
                         onClick()
                         if (isInputChip) lambda("onCancel")

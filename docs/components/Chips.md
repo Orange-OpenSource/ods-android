@@ -59,7 +59,11 @@ OdsChip(
     onClick = {
         // Something executed on chip click
     },
-    leadingAvatar = painterResource(id = R.drawable.avatar),
+    leadingIcon = null,
+    leadingAvatar = OdsChipLeadingAvatar(
+        painterResource(id = R.drawable.avatar),
+        "Avatar"
+    ), // set it to `null` for no avatar or provide a `leadingIcon`
     enabled = true, // Set it to `false` to disabled the chip
     onCancel = {
         // Something executed on cancel cross click
@@ -110,7 +114,6 @@ OdsChip(
     onClick = {
         // Something executed on chip click
     },
-    outlined = false, // Set it to `true` to display an outlined chip
     enabled = true, // Set it to `false` to disabled the chip
 )
 ```
@@ -200,8 +203,10 @@ OdsChip(
     onClick = {
         // Something executed on chip click
     },
-    leadingIcon = painterResource(id = R.drawable.ic_heart), // set it to `null` for no icon
-    outlined = false, // Set it to `true` to display an outlined chip
+    leadingIcon = OdsChipLeadingIcon(
+        painterResource(id = R.drawable.ic_heart),
+        "Heart"
+    ), // set it to `null` for no icon
     enabled = true, // Set it to `false` to disabled the chip
 )
 ```

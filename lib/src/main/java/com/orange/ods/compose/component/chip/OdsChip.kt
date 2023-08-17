@@ -13,6 +13,7 @@ package com.orange.ods.compose.component.chip
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material.Chip
 import androidx.compose.material.ChipColors
 import androidx.compose.material.ChipDefaults.LeadingIconOpacity
@@ -25,7 +26,8 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.painter.Painter
+import androidx.compose.ui.draw.alpha
+import androidx.compose.ui.draw.clip
 import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.semantics.semantics
@@ -36,12 +38,10 @@ import com.orange.ods.R
 import com.orange.ods.compose.component.OdsComposable
 import com.orange.ods.compose.component.chip.OdsChipDefaults.SurfaceOverlayOpacity
 import com.orange.ods.compose.component.utilities.BasicPreviewParameterProvider
-import com.orange.ods.compose.component.utilities.OdsImageCircleShape
 import com.orange.ods.compose.component.utilities.Preview
 import com.orange.ods.compose.component.utilities.UiModePreviews
 import com.orange.ods.compose.component.utilities.selectionStateDescription
 import com.orange.ods.compose.theme.OdsTheme
-import com.orange.ods.compose.utilities.extension.enable
 import com.orange.ods.compose.utilities.extension.noRippleClickable
 import com.orange.ods.theme.OdsComponentsConfiguration
 
@@ -56,15 +56,14 @@ import com.orange.ods.theme.OdsComponentsConfiguration
  * Use Accompanist's [Flow Layouts](https://google.github.io/accompanist/flowlayout/) to wrap chips to a new line.
  *
  * @param text Text to display in the chip.
- * @param onClick called when the chip is clicked.
+ * @param onClick Called when the chip is clicked.
  * @param modifier Modifier to be applied to the chip
  * @param enabled When disabled, chip will not respond to user input. It will also appear visually
  * disabled and disabled to accessibility services.
  * @param selected When selected the chip is highlighted (useful for choice chips).
- * @param leadingIcon Optional icon at the start of the chip, preceding the content text.
- * @param leadingAvatar Optional avatar at the start of the chip, preceding the content text.
- * @param leadingContentDescription Content description associated to the leading element.
- * @param onCancel called when the cancel cross of the chip is clicked. Pass `null` here for no cancel cross.
+ * @param leadingIcon Icon at the start of the chip, preceding the content text.
+ * @param leadingAvatar Avatar at the start of the chip displayed in a circle shape, preceding the content text.
+ * @param onCancel Called when the cancel cross of the chip is clicked. Pass `null` here for no cancel cross.
  */
 @Composable
 @OdsComposable
@@ -74,9 +73,8 @@ fun OdsChip(
     modifier: Modifier = Modifier,
     enabled: Boolean = true,
     selected: Boolean = false,
-    leadingIcon: Painter? = null,
-    leadingAvatar: Painter? = null,
-    leadingContentDescription: String? = null,
+    leadingIcon: OdsChipLeadingIcon? = null,
+    leadingAvatar: OdsChipLeadingAvatar? = null,
     onCancel: (() -> Unit)? = null
 ) {
     OdsChip(
@@ -88,7 +86,6 @@ fun OdsChip(
         selected = selected,
         leadingIcon = leadingIcon,
         leadingAvatar = leadingAvatar,
-        leadingContentDescription = leadingContentDescription,
         onCancel = onCancel
     )
 }
@@ -103,9 +100,8 @@ private fun OdsChip(
     modifier: Modifier = Modifier,
     enabled: Boolean = true,
     selected: Boolean = false,
-    leadingIcon: Painter? = null,
-    leadingAvatar: Painter? = null,
-    leadingContentDescription: String? = null,
+    leadingIcon: OdsChipLeadingIcon? = null,
+    leadingAvatar: OdsChipLeadingAvatar? = null,
     onCancel: (() -> Unit)? = null
 ) {
     val chipStateDescription = selectionStateDescription(selected)
@@ -121,22 +117,15 @@ private fun OdsChip(
         colors = odsChipColors(outlined, selected),
         leadingIcon = when {
             leadingIcon != null -> {
-                {
-                    Icon(
-                        modifier = Modifier.size(dimensionResource(id = R.dimen.chip_icon_size)),
-                        painter = leadingIcon,
-                        contentDescription = leadingContentDescription,
-                        tint = if (enabled) OdsTheme.colors.onSurface else OdsTheme.colors.onSurface.enable(enabled = false)
-                    )
-                }
+                { leadingIcon.Content(modifier = Modifier.size(dimensionResource(id = R.dimen.chip_icon_size))) }
             }
             leadingAvatar != null -> {
                 {
-                    OdsImageCircleShape(
-                        painter = leadingAvatar,
-                        contentDescription = leadingContentDescription,
-                        circleSize = dimensionResource(id = R.dimen.icon_size),
-                        alpha = if (enabled) 1f else LeadingIconOpacity
+                    leadingAvatar.Content(
+                        modifier = modifier
+                            .size(dimensionResource(id = R.dimen.icon_size))
+                            .clip(CircleShape)
+                            .alpha(if (enabled) 1f else LeadingIconOpacity),
                     )
                 }
             }
@@ -192,7 +181,7 @@ private fun PreviewOdsChip(@PreviewParameter(OdsChipPreviewParameterProvider::cl
         outlined = outlined,
         selected = selected,
         onClick = { selected = !selected },
-        leadingAvatar = painterResource(id = R.drawable.placeholder_small)
+        leadingAvatar = OdsChipLeadingAvatar(painterResource(id = R.drawable.placeholder_small), "")
     )
 }
 
