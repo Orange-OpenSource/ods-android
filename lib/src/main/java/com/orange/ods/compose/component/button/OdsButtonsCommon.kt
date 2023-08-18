@@ -10,7 +10,6 @@
 
 package com.orange.ods.compose.component.button
 
-import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.size
 import androidx.compose.material.ButtonDefaults
@@ -22,7 +21,6 @@ import androidx.compose.ui.graphics.painter.Painter
 import androidx.compose.ui.graphics.vector.ImageVector
 import com.orange.ods.compose.component.content.OdsComponentIcon
 import com.orange.ods.compose.theme.OdsDisplaySurface
-import com.orange.ods.compose.theme.OdsTheme
 
 
 /**
@@ -98,20 +96,7 @@ class OdsIconButtonIcon : OdsComponentIcon {
         this.displaySurface = displaySurface
         Content()
     }
-
-    @Composable
-    override fun Content(modifier: Modifier) {
-        super.Content(modifier.background(color = iconButtonBackgroundColor(displaySurface = displaySurface)))
-    }
 }
 
 @Composable
 internal fun iconButtonTintColor(displaySurface: OdsDisplaySurface) = displaySurface.themeColors.onSurface
-
-@Composable
-private fun iconButtonBackgroundColor(displaySurface: OdsDisplaySurface) =
-    when (displaySurface) {
-        OdsDisplaySurface.Default -> Color.Unspecified
-        OdsDisplaySurface.Dark -> OdsTheme.darkThemeColors.surface
-        OdsDisplaySurface.Light -> OdsTheme.lightThemeColors.surface
-    }
