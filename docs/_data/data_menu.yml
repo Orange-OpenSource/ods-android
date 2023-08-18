@@ -31,6 +31,8 @@ toc2:
         url: /components/Dialogs_docs
       - page: Floating action buttons
         url: /components/FloatingActionButtons_docs
+      - page: Image tile
+        url: /components/ImageTile_docs
       - page: Lists
         url: /components/Lists_docs
       - page: Menus

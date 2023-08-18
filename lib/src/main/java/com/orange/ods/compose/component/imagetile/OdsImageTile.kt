@@ -51,7 +51,8 @@ import com.orange.ods.extension.orElse
  * actions. They are usually used in grids.
  *
  * @param image Image display in the [OdsImageTile].
- * @param captionDisplayType Specify how the title and the icon are displayed relatively to the image
+ * @param captionDisplayType Specify how the title and the icon are displayed relatively to the image. If set to [OdsImageTileCaptionDisplayType.None],
+ * no caption will be displayed.
  * @param modifier Modifier to be applied to this [OdsImageTile]
  * @param onClick Callback to be invoked on tile click.
  * @param title Title linked to the image. It is displayed according the [captionDisplayType] value.

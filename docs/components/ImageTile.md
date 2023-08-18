@@ -1,6 +1,6 @@
 ---
 layout: detail
-title: Image item
+title: Image Tile
 description:
 ---
 
@@ -17,7 +17,7 @@ description:
 
 ## Specifications references
 
-- [Design System Manager - Image Item](https://system.design.orange.com/0c1af118d/p/49434d-image-item)
+- [Design System Manager - Image Tile](https://system.design.orange.com/0c1af118d/p/49434d-image-item)
 - [Material Design - Image lists](https://m2.material.io/components/image-lists)
 - Technical documentation soon available
 
@@ -29,21 +29,28 @@ Please follow [accessibility criteria for development](https://a11y-guidelines.o
 
 > **Jetpack Compose implementation**
 
-You can use the `OdsImageItem` composable like this:
+You can use the `OdsImageTile` composable like this:
 
 ```kotlin
-OdsImageItem(
-    image = painterResource(id = R.drawable.placeholder),
+OdsImageTile(
+    image = OdsImageTileImage(
+        painterResource(id = R.drawable.placeholder),
+        "Picture content description"
+    ),
+    modifier = modifier,
+    captionDisplayType = OdsImageTileCaptionDisplayType.Overlay,
     iconChecked = false,
     iconSelected = true,
     onIconCheckedChange = { },
-    iconContentDescription = "", // Optional
-    checkedIcon = painterResource(id = R.drawable.ic_heart),
-    uncheckedIcon = painterResource(id = R.drawable.ic_heart_outlined),
-    displayType = OdsImageItemDisplayTitle.Overlay,
-    modifier = modifier,
-    imageContentDescription = "Picture content description", //Optional
-    title = "Component Image Item" // Optional 
+    checkedIcon = OdsIconButtonIcon(
+        painterResource(id = R.drawable.ic_heart),
+        "Remove from favourites"
+    ),
+    uncheckedIcon = OdsIconButtonIcon(
+        painterResource(id = R.drawable.ic_heart_outlined),
+        "Add to favourites"
+    ),
+    title = "Component Image Tile" // Optional 
 )
 ```
 
