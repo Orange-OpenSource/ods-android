@@ -41,6 +41,7 @@ import com.orange.ods.compose.component.chip.OdsChoiceChipsFlowRow
 import com.orange.ods.compose.component.list.OdsListItem
 import com.orange.ods.compose.component.list.OdsSwitchTrailing
 import com.orange.ods.compose.component.progressindicator.OdsLinearProgressIndicator
+import com.orange.ods.compose.component.progressindicator.OdsLinearProgressIndicatorIcon
 
 private const val DeterminateProgressTargetValue = 0.9f
 private const val DeterminateProgressAnimDuration = 5000
@@ -96,7 +97,7 @@ fun ProgressLinear() {
                     progress = if (type.value == ProgressCustomizationState.Type.Determinate) determinateProgressAnimation else null,
                     label = if (hasLabel) text else null,
                     showCurrentValue = hasCurrentValue,
-                    icon = if (hasIcon) painterResource(id = R.drawable.ic_arrow_down) else null,
+                    icon = if (hasIcon) OdsLinearProgressIndicatorIcon(painterResource(id = R.drawable.ic_arrow_down), "") else null,
                     modifier = Modifier
                         .padding(top = dimensionResource(id = com.orange.ods.R.dimen.spacing_m))
                         .fillMaxWidth()
@@ -114,7 +115,12 @@ fun ProgressLinear() {
                         parameters = {
                             if (type.value == ProgressCustomizationState.Type.Determinate) stringRepresentation("progress", determinateProgressValue)
                             if (hasLabel) string("label", text)
-                            if (hasIcon) icon()
+                            if (hasIcon) {
+                                classInstance("icon", OdsLinearProgressIndicatorIcon::class.java) {
+                                    painter()
+                                    contentDescription("")
+                                }
+                            }
                             if (hasCurrentValue) stringRepresentation("showCurrentValue", hasCurrentValue)
                         }
                     )

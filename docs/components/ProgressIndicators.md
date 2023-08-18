@@ -65,7 +65,10 @@ For a **determinate** linear progress indicator, provide the progress value:
 OdsLinearProgressIndicator(
     progress = 0.9f,
     label = "Downloading ...", // Optional
-    icon = painterResource(id = R.drawable.ic_arrow_down), // Optional
+    icon = OdsLinearProgressIndicator(
+        painterResource(id = R.drawable.ic_arrow_down),
+        ""
+    ), // Optional
     showCurrentValue = true // Display the value in percent below the progress bar if set to true
 )
 ```
@@ -75,7 +78,10 @@ For an **indeterminate** linear progress indicator, no need to provide a progres
 ```kotlin
 OdsLinearProgressIndicator(
     label = "Downloading ...", // Optional
-    icon = painterResource(id = R.drawable.ic_arrow_down) // Optional
+    icon = OdsLinearProgressIndicator(
+        painterResource(id = R.drawable.ic_arrow_down),
+        ""
+    ) // Optional
 )
 ```
 
@@ -133,7 +139,7 @@ You can use the `OdsCircularProgressIndicator` composable like this:
 
 ```kotlin
 OdsCircularProgressIndicator(
-    progress = 0.9f, 
+    progress = 0.9f,
     label = "Downloading ..." // Optional
 )
 ```
