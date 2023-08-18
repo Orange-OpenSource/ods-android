@@ -83,17 +83,17 @@ fun OdsFloatingActionButton(
  *
  * @see androidx.compose.material.ExtendedFloatingActionButton for further information.
  *
+ * @param icon The FAB icon.
  * @param onClick callback invoked when this FAB is clicked
  * @param text The text displayed in the [OdsExtendedFloatingActionButton]
- * @param icon The FAB icon.
  * @param modifier [Modifier] to be applied to this FAB.
  */
 @Composable
 @OdsComposable
 fun OdsExtendedFloatingActionButton(
+    icon: OdsFloatingActionButtonIcon,
     onClick: () -> Unit,
     text: String,
-    icon: OdsFloatingActionButtonIcon,
     modifier: Modifier = Modifier,
 ) {
     ExtendedFloatingActionButton(
