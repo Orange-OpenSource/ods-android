@@ -10,12 +10,23 @@
 
 package com.orange.ods.compose.component.chip
 
+import android.content.Context
+import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.shape.CircleShape
+import androidx.compose.material.ChipDefaults
+import androidx.compose.material.ExperimentalMaterialApi
+import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.alpha
+import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.ImageBitmap
 import androidx.compose.ui.graphics.painter.Painter
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.unit.dp
+import com.orange.ods.R
 import com.orange.ods.compose.component.content.OdsComponentIcon
 import com.orange.ods.compose.component.content.OdsComponentImage
+import com.orange.ods.extension.getDpFromPx
 
 /**
  * A leading icon in an [OdsChip].
@@ -76,4 +87,11 @@ class OdsChipLeadingAvatar : OdsComponentImage {
      */
     constructor(bitmap: ImageBitmap, contentDescription: String) : super(bitmap as Any, contentDescription, ContentScale.Crop)
 
+}
+
+@OptIn(ExperimentalMaterialApi::class)
+fun Modifier.odsChipAvatar(context: Context, enabled: Boolean): Modifier {
+    return this.size(context.getDpFromPx(context.resources.getDimensionPixelSize(R.dimen.icon_size)).dp)
+        .clip(CircleShape)
+        .alpha(if (enabled) 1f else ChipDefaults.LeadingIconOpacity)
 }

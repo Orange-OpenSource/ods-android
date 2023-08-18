@@ -13,10 +13,8 @@ package com.orange.ods.compose.component.chip
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.size
-import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material.Chip
 import androidx.compose.material.ChipColors
-import androidx.compose.material.ChipDefaults.LeadingIconOpacity
 import androidx.compose.material.ExperimentalMaterialApi
 import androidx.compose.material.Icon
 import androidx.compose.material.Text
@@ -26,8 +24,7 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.draw.alpha
-import androidx.compose.ui.draw.clip
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.semantics.semantics
@@ -104,7 +101,9 @@ private fun OdsChip(
     leadingAvatar: OdsChipLeadingAvatar? = null,
     onCancel: (() -> Unit)? = null
 ) {
+    val context = LocalContext.current
     val chipStateDescription = selectionStateDescription(selected)
+    
     Chip(
         onClick = onClick,
         modifier = modifier.semantics {
@@ -122,10 +121,7 @@ private fun OdsChip(
             leadingAvatar != null -> {
                 {
                     leadingAvatar.Content(
-                        modifier = modifier
-                            .size(dimensionResource(id = R.dimen.icon_size))
-                            .clip(CircleShape)
-                            .alpha(if (enabled) 1f else LeadingIconOpacity),
+                        modifier = modifier.odsChipAvatar(context, enabled),
                     )
                 }
             }

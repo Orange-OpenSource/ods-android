@@ -148,7 +148,9 @@ toggle buttons or checkboxes.
 
 > **Jetpack Compose implementation**
 
-Use the `OdsFilterChip` composable:
+Use the `OdsFilterChip` composable.
+Note that the chip style is outlined or filled according to your OdsTheme component configuration,
+outlined by default.
 
 ```kotlin
 OdsFilterChip(
@@ -156,9 +158,11 @@ OdsFilterChip(
     onClick = {
         // Something executed on chip click
     },
-    leadingAvatar = painterResource(id = R.drawable.avatar), // set it to `null` for no avatar
+    leadingAvatar = OdsChipLeadingAvatar(
+        painterResource(id = R.drawable.avatar),
+        ""
+    ), // set it to `null` for no avatar
     selected = false, // `true` to display the chip selected
-    outlined = false, // Set it to `true` to display an outlined chip
     enabled = true, // Set it to `false` to disabled the chip
 )
 ```
