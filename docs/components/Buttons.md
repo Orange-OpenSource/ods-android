@@ -54,7 +54,7 @@ OdsTextButton(
     text = "Text button",
     onClick = {},
     enabled = true,
-    icon = painterResource(R.drawable.ic_coffee), // Optional, line can be removed if you don't need any icon
+    icon = OdsButtonIcon(painterResource(R.drawable.ic_coffee)), // Optional, line can be removed if you don't need any icon
     style = OdsTextButtonStyle.Primary
 )
 ```
@@ -98,7 +98,7 @@ OdsOutlinedButton(
     text = "Outlined button",
     onClick = {},
     enabled = true,
-    icon = painterResource(R.drawable.ic_coffee) // Optional, line can be removed if you don't need any icon
+    icon = OdsButtonIcon(painterResource(R.drawable.ic_coffee)) // Optional, line can be removed if you don't need any icon
 )
 ```
 
@@ -149,7 +149,7 @@ OdsButton(
     text = "Contained button",
     onClick = {},
     enabled = true,
-    icon = painterResource(R.drawable.ic_coffee) // Optional, line can be removed if you don't need any icon
+    icon = OdsButtonIcon(painterResource(R.drawable.ic_coffee)) // Optional, line can be removed if you don't need any icon
 )
 ```
 
@@ -161,7 +161,7 @@ OdsButton(
     text = "Positive button",
     onClick = {},
     enabled = true,
-    icon = painterResource(R.drawable.ic_coffee), // Optional, line can be removed if you don't need any icon
+    icon = OdsButtonIcon(painterResource(R.drawable.ic_coffee)), // Optional, line can be removed if you don't need any icon
     style = OdsButtonStyle.FunctionalPositive
 )
 ```
