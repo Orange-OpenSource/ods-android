@@ -11,13 +11,13 @@ description: A floating action button (FAB) represents the primary action of a s
 * [Specifications references](#specifications-references)
 * [Accessibility](#accessibility)
 * [Variants](#variants)
-  * [Regular FAB](#regular-fab)
-  * [Mini FAB](#mini-fab)
-  * [Extended FAB](#extended-fab)
+    * [Regular FAB](#regular-fab)
+    * [Mini FAB](#mini-fab)
+    * [Extended FAB](#extended-fab)
 * [More implementation information](#more-implementation-information)
-  * [Visibility](#visibility)
-  * [Extending and Shrinking](#extending-and-shrinking)
-  * [Sizing FABs](#sizing-fabs)
+    * [Visibility](#visibility)
+    * [Extending and Shrinking](#extending-and-shrinking)
+    * [Sizing FABs](#sizing-fabs)
 * [Component specific tokens](#component-specific-tokens)
 
 ---
@@ -44,7 +44,7 @@ so additional content labels are usually unnecessary.
 
 Regular FABs are FABs that are not expanded and are a regular size.
 
-  ![FAB light](images/fab_light.png)  ![FAB dark](images/fab_dark.png)
+![FAB light](images/fab_light.png)  ![FAB dark](images/fab_dark.png)
 
 > **Jetpack Compose implementation**
 
@@ -52,12 +52,14 @@ To display a regular Floating Action Button in your composable screen, use `OdsF
 
 ```kotlin
 OdsFloatingActionButton(
-    onClick = { 
+    onClick = {
         // Do something
     },
     mini = false, // Set to `true` for Mini FAB variant
-    icon = painterResource(id = R.drawable.ic_plus),
-    iconContentDescription = stringResource(id = R.string.add),
+    icon = OdsFloatingActionButtonIcon(
+        painterResource(id = R.drawable.ic_plus),
+        stringResource(id = R.string.add)
+    ),
     modifier = modifier
 )
 ```
@@ -66,27 +68,24 @@ OdsFloatingActionButton(
 
 API and source code:
 
-*   `FloatingActionButton`: [Class description](https://developer.android.com/reference/com/google/android/material/floatingactionbutton/FloatingActionButton), [Class source](https://github.com/material-components/material-components-android/tree/master/lib/java/com/google/android/material/floatingactionbutton/FloatingActionButton.java)
+* `FloatingActionButton`: [Class description](https://developer.android.com/reference/com/google/android/material/floatingactionbutton/FloatingActionButton), [Class source](https://github.com/material-components/material-components-android/tree/master/lib/java/com/google/android/material/floatingactionbutton/FloatingActionButton.java)
 
 To have a regular FAB in your layout you must add `com.google.android.material.floatingactionbutton.FloatingActionButton` in your layout.
 
 In the layout:
 
 ```xml
-<androidx.coordinatorlayout.widget.CoordinatorLayout
-    android:layout_width="match_parent"
+
+<androidx.coordinatorlayout.widget.CoordinatorLayout android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-  <!-- Main content -->
+    <!-- Main content -->
 
-  <com.google.android.material.floatingactionbutton.FloatingActionButton
-      android:id="@+id/floating_action_button"
-      android:layout_width="wrap_content"
-      android:layout_height="wrap_content"
-      android:layout_gravity="bottom|end"
-      android:layout_margin="16dp"
-      android:contentDescription="@string/fab_content_desc"
-      app:srcCompat="@drawable/ic_plus_24"/>
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/floating_action_button" android:layout_width="wrap_content"
+        android:layout_height="wrap_content" android:layout_gravity="bottom|end"
+        android:layout_margin="16dp" android:contentDescription="@string/fab_content_desc"
+        app:srcCompat="@drawable/ic_plus_24" />
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>
 ```
@@ -105,7 +104,7 @@ A mini FAB should be used on smaller screens.
 
 Mini FABs can also be used to create visual continuity with other screen elements.
 
-  ![FAB mini light](images/fab_mini_light.png)  ![FAB mini dark](images/fab_mini_dark.png)
+![FAB mini light](images/fab_mini_light.png)  ![FAB mini dark](images/fab_mini_dark.png)
 
 > **Jetpack Compose implementation**
 
@@ -113,12 +112,14 @@ To display a mini FAB in your composable screen use `OdsFloatingActionButton`
 
 ```kotlin
 OdsFloatingActionButton(
-    onClick = { 
+    onClick = {
         // Do something
     },
     mini = true,
-    icon = painterResource(id = R.drawable.ic_plus),
-    iconContentDescription = stringResource(id = R.string.add),
+    icon = OdsFloatingActionButtonIcon(
+        painterResource(id = R.drawable.ic_plus),
+        stringResource(id = R.string.add)
+    ),
     modifier = modifier
 )
 ```
@@ -127,18 +128,18 @@ OdsFloatingActionButton(
 
 API and source code:
 
-*   `FloatingActionButton`: [Class description](https://developer.android.com/reference/com/google/android/material/floatingactionbutton/FloatingActionButton), [Class source](https://github.com/material-components/material-components-android/tree/master/lib/java/com/google/android/material/floatingactionbutton/FloatingActionButton.java)
+* `FloatingActionButton`: [Class description](https://developer.android.com/reference/com/google/android/material/floatingactionbutton/FloatingActionButton), [Class source](https://github.com/material-components/material-components-android/tree/master/lib/java/com/google/android/material/floatingactionbutton/FloatingActionButton.java)
 
 To have a mini FAB in your layout you must add `com.google.android.material.floatingactionbutton.FloatingActionButton` in your layout and set property `fabSize` to `mini`.
 
 In the layout:
 
 ```xml
+
 <androidx.coordinatorlayout.widget.CoordinatorLayout>
 
-  <!-- Main content -->
-  <com.google.android.material.floatingactionbutton.FloatingActionButton
-      app:fabSize="mini"/>
+    <!-- Main content -->
+    <com.google.android.material.floatingactionbutton.FloatingActionButton app:fabSize="mini" />
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>
 ```
@@ -155,9 +156,9 @@ fab.setOnClickListener {
 
 The extended FAB is wider, and it includes a text label.
 
-  ![FAB extended light](images/fab_extended_light.png)  ![FAB extended dark](images/fab_extended_dark.png)
+![FAB extended light](images/fab_extended_light.png)  ![FAB extended dark](images/fab_extended_dark.png)
 
-  ![FAB extended full width light](images/fab_extended_full_width_light.png)  ![FAB extended full width dark](images/fab_extended_full_width_dark.png)
+![FAB extended full width light](images/fab_extended_full_width_light.png)  ![FAB extended full width dark](images/fab_extended_full_width_dark.png)
 
 > **Jetpack Compose implementation**
 
@@ -169,7 +170,7 @@ OdsExtendedFloatingActionButton(
         // Do something       
     },
     text = stringResource(id = R.string.add),
-    icon = painterResource(id = R.drawable.ic_plus),
+    icon = OdsFloatingActionButtonIcon(painterResource(id = R.drawable.ic_plus), ""),
     modifier = modifier
 )
 ```
@@ -178,7 +179,7 @@ OdsExtendedFloatingActionButton(
 
 API and source code:
 
-*   `ExtendedFloatingActionButton`: [Class description](https://developer.android.com/reference/com/google/android/material/floatingactionbutton/ExtendedFloatingActionButton), [Class source](https://github.com/material-components/material-components-android/tree/master/lib/java/com/google/android/material/floatingactionbutton/ExtendedFloatingActionButton.java)
+* `ExtendedFloatingActionButton`: [Class description](https://developer.android.com/reference/com/google/android/material/floatingactionbutton/ExtendedFloatingActionButton), [Class source](https://github.com/material-components/material-components-android/tree/master/lib/java/com/google/android/material/floatingactionbutton/ExtendedFloatingActionButton.java)
 
 To have an extended FAB in your layout you must add `com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton` in your layout.
 Icon should be set with property `icon`.
@@ -186,19 +187,17 @@ Icon should be set with property `icon`.
 In the layout:
 
 ```xml
+
 <androidx.coordinatorlayout.widget.CoordinatorLayout>
 
-  <!-- Main content -->
+    <!-- Main content -->
 
-  <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
-    android:id="@+id/extended_fab"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:layout_margin="16dp"
-    android:layout_gravity="bottom|end"
-    android:contentDescription="@string/extended_fab_content_desc"
-    android:text="@string/extended_fab_label"
-    app:icon="@drawable/ic_plus_24px"/>
+    <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
+        android:id="@+id/extended_fab" android:layout_width="wrap_content"
+        android:layout_height="wrap_content" android:layout_margin="16dp"
+        android:layout_gravity="bottom|end"
+        android:contentDescription="@string/extended_fab_content_desc"
+        android:text="@string/extended_fab_label" app:icon="@drawable/ic_plus_24px" />
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>
 ```
@@ -248,12 +247,12 @@ modes or a custom size.
 
 There are three `app:fabSize` modes:
 
-*   `normal` - the normal sized button, 56dp.
-*   `mini` - the mini sized button, 40dp.
-*   `auto` (default) - the button size will change based on the window size. For
-    small sized windows (largest screen dimension < 470dp) this will select a
-    mini sized button, and for larger sized windows it will select a normal
-    sized button.
+* `normal` - the normal sized button, 56dp.
+* `mini` - the mini sized button, 40dp.
+* `auto` (default) - the button size will change based on the window size. For
+  small sized windows (largest screen dimension < 470dp) this will select a
+  mini sized button, and for larger sized windows it will select a normal
+  sized button.
 
 Or, you can set a custom size via the `app:fabCustomSize` attribute. If set,
 `app:fabSize` will be ignored, unless the custom size is cleared via the

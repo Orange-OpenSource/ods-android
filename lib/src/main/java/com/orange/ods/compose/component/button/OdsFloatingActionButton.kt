@@ -11,28 +11,34 @@
 package com.orange.ods.compose.component.button
 
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
+import androidx.compose.material.ButtonDefaults
 import androidx.compose.material.ExtendedFloatingActionButton
 import androidx.compose.material.FloatingActionButton
 import androidx.compose.material.Icon
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.ImageBitmap
 import androidx.compose.ui.graphics.painter.Painter
+import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.PreviewParameter
 import androidx.compose.ui.unit.dp
 import com.orange.ods.R
 import com.orange.ods.compose.component.OdsComposable
+import com.orange.ods.compose.component.content.OdsComponentIcon
 import com.orange.ods.compose.component.utilities.BasicPreviewParameterProvider
 import com.orange.ods.compose.component.utilities.Preview
 import com.orange.ods.compose.component.utilities.UiModePreviews
 import com.orange.ods.compose.theme.OdsTheme
 
 private val MiniFabSize = 40.dp
+private val FabIconSize = 24.dp
 
 /**
  * <a href="https://system.design.orange.com/0c1af118d/p/577022-buttons-fab/b/101b2a" target="_blank">ODS Floating Action Buttons</a>.
@@ -47,8 +53,7 @@ private val MiniFabSize = 40.dp
  * @param onClick callback invoked when this FAB is clicked
  * @param modifier [Modifier] to be applied to this FAB.
  * @param mini If `true`, the size of the FAB will be 40dp, otherwise the default size will be used.
- * @param icon [Painter] of the FAB icon.
- * @param iconContentDescription [icon] content description.
+ * @param icon The FAB icon.
  */
 @Composable
 @OdsComposable
@@ -56,8 +61,7 @@ fun OdsFloatingActionButton(
     onClick: () -> Unit,
     modifier: Modifier = Modifier,
     mini: Boolean = false,
-    icon: Painter,
-    iconContentDescription: String
+    icon: OdsFloatingActionButtonIcon
 ) {
     FloatingActionButton(
         onClick = onClick,
@@ -65,7 +69,7 @@ fun OdsFloatingActionButton(
         backgroundColor = OdsTheme.colors.component.floatingActionButton.background,
         contentColor = OdsTheme.colors.component.floatingActionButton.content
     ) {
-        Icon(painter = icon, contentDescription = iconContentDescription)
+        icon.Content(modifier = Modifier.size(FabIconSize))
     }
 }
 
@@ -81,18 +85,16 @@ fun OdsFloatingActionButton(
  *
  * @param onClick callback invoked when this FAB is clicked
  * @param text The text displayed in the [OdsExtendedFloatingActionButton]
- * @param icon [Painter] of the FAB icon.
+ * @param icon The FAB icon.
  * @param modifier [Modifier] to be applied to this FAB.
- * @param iconContentDescription [icon] content description, can be null cause there is a text.
  */
 @Composable
 @OdsComposable
 fun OdsExtendedFloatingActionButton(
     onClick: () -> Unit,
     text: String,
-    icon: Painter,
+    icon: OdsFloatingActionButtonIcon,
     modifier: Modifier = Modifier,
-    iconContentDescription: String? = null
 ) {
     ExtendedFloatingActionButton(
         onClick = onClick,
@@ -100,10 +102,45 @@ fun OdsExtendedFloatingActionButton(
         modifier = modifier,
         backgroundColor = OdsTheme.colors.component.floatingActionButton.background,
         contentColor = OdsTheme.colors.component.floatingActionButton.content,
-        icon = { Icon(painter = icon, contentDescription = iconContentDescription) }
+        icon = { icon.Content(modifier = Modifier.size(FabIconSize)) }
     )
 }
 
+/**
+ * A button icon in an [OdsFloatingActionButton].
+ */
+class OdsFloatingActionButtonIcon : OdsComponentIcon {
+
+    /**
+     * Creates an instance of [OdsFloatingActionButtonIcon].
+     *
+     * @param painter Painter of the icon.
+     * @param contentDescription The content description associated to this [OdsFloatingActionButtonIcon].
+     */
+    constructor(painter: Painter, contentDescription: String) : super(painter as Any, contentDescription)
+
+    /**
+     * Creates an instance of [OdsFloatingActionButtonIcon].
+     *
+     * @param imageVector Image vector of the icon.
+     * @param contentDescription The content description associated to this [OdsFloatingActionButtonIcon].
+     */
+    constructor(imageVector: ImageVector, contentDescription: String) : super(imageVector as Any, contentDescription)
+
+    /**
+     * Creates an instance of [OdsFloatingActionButtonIcon].
+     *
+     * @param bitmap Image bitmap of the icon.
+     * @param contentDescription The content description associated to this [OdsFloatingActionButtonIcon].
+     */
+    constructor(bitmap: ImageBitmap, contentDescription: String) : super(bitmap as Any, contentDescription)
+
+    @Composable
+    override fun Content(modifier: Modifier) {
+        super.Content(modifier = modifier.size(ButtonDefaults.IconSize))
+        Spacer(Modifier.size(ButtonDefaults.IconSpacing))
+    }
+}
 
 @UiModePreviews.Default
 @Composable
@@ -113,8 +150,7 @@ private fun PreviewOdsFloatingActionButton(@PreviewParameter(OdsFloatingActionBu
             OdsFloatingActionButton(
                 onClick = {},
                 mini = isMini,
-                icon = painterResource(id = android.R.drawable.ic_input_add),
-                iconContentDescription = "Add"
+                icon = OdsFloatingActionButtonIcon(painterResource(id = android.R.drawable.ic_input_add), "Add")
             )
         }
     }
@@ -128,7 +164,7 @@ private fun PreviewOdsExtendedFloatingActionButton() = Preview {
         OdsExtendedFloatingActionButton(
             modifier = Modifier.fillMaxWidth(),
             onClick = {},
-            icon = painterResource(id = android.R.drawable.ic_input_add),
+            icon = OdsFloatingActionButtonIcon(painterResource(id = android.R.drawable.ic_input_add), ""),
             text = "Add"
         )
     }
