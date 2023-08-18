@@ -8,7 +8,7 @@
  * /
  */
 
-package com.orange.ods.app.ui.components.imageitem
+package com.orange.ods.app.ui.components.imagetile
 
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
@@ -24,6 +24,7 @@ import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
@@ -32,28 +33,31 @@ import coil.compose.rememberAsyncImagePainter
 import com.orange.ods.app.R
 import com.orange.ods.app.domain.recipes.LocalRecipes
 import com.orange.ods.app.ui.components.utilities.ComponentCustomizationBottomSheetScaffold
+import com.orange.ods.app.ui.components.utilities.clickOnElement
 import com.orange.ods.app.ui.utilities.composable.CodeImplementationColumn
 import com.orange.ods.app.ui.utilities.composable.FunctionCallCode
-import com.orange.ods.app.ui.utilities.composable.IconPainterValue
 import com.orange.ods.app.ui.utilities.composable.Subtitle
 import com.orange.ods.compose.OdsComposable
+import com.orange.ods.compose.component.button.OdsIconButtonIcon
 import com.orange.ods.compose.component.chip.OdsChoiceChip
 import com.orange.ods.compose.component.chip.OdsChoiceChipsFlowRow
-import com.orange.ods.compose.component.imageitem.OdsImageItem
-import com.orange.ods.compose.component.imageitem.OdsImageItemTitleType
+import com.orange.ods.compose.component.imagetile.OdsImageTile
+import com.orange.ods.compose.component.imagetile.OdsImageTileCaptionDisplayType
+import com.orange.ods.compose.component.imagetile.OdsImageTileImage
 import com.orange.ods.compose.component.list.OdsListItem
 import com.orange.ods.compose.component.list.OdsSwitchTrailing
 
 @OptIn(ExperimentalMaterialApi::class)
 @Composable
-fun ComponentImageItem() {
-    val imageItemCustomizationState = rememberImageItemCustomizationState()
+fun ComponentImageTile() {
+    val context = LocalContext.current
+    val imageTileCustomizationState = rememberImageTileCustomizationState()
     var iconChecked by rememberSaveable { mutableStateOf(false) }
     val recipes = LocalRecipes.current
     val recipe = rememberSaveable { recipes.random() }
 
-    with(imageItemCustomizationState) {
-        if (type.value == OdsImageItemTitleType.None) {
+    with(imageTileCustomizationState) {
+        if (type.value == OdsImageTileCaptionDisplayType.None) {
             iconDisplayed.value = false
         }
         if (!hasIcon) {
@@ -67,10 +71,10 @@ fun ComponentImageItem() {
                     modifier = Modifier.padding(horizontal = dimensionResource(id = com.orange.ods.R.dimen.spacing_m)),
                     outlinedChips = true
                 ) {
-                    Subtitle(textRes = R.string.component_element_type)
-                    OdsChoiceChip(textRes = R.string.component_image_item_overlay_text, value = OdsImageItemTitleType.Overlay)
-                    OdsChoiceChip(textRes = R.string.component_image_item_below_text, value = OdsImageItemTitleType.Below)
-                    OdsChoiceChip(textRes = R.string.component_element_none, value = OdsImageItemTitleType.None)
+                    Subtitle(textRes = R.string.component_image_tile_caption_display_type)
+                    OdsChoiceChip(textRes = R.string.component_image_tile_caption_display_overlay, value = OdsImageTileCaptionDisplayType.Overlay)
+                    OdsChoiceChip(textRes = R.string.component_image_tile_caption_display_below, value = OdsImageTileCaptionDisplayType.Below)
+                    OdsChoiceChip(textRes = R.string.component_element_none, value = OdsImageTileCaptionDisplayType.None)
                 }
                 OdsListItem(
                     text = stringResource(id = R.string.component_element_icon),
@@ -88,41 +92,68 @@ fun ComponentImageItem() {
             ) {
                 val imageSize = 200.dp
                 val height = when (type.value) {
-                    OdsImageItemTitleType.Below -> imageSize + dimensionResource(id = com.orange.ods.R.dimen.image_item_title_height)
-                    OdsImageItemTitleType.Overlay,
-                    OdsImageItemTitleType.None -> imageSize
+                    OdsImageTileCaptionDisplayType.Below -> imageSize + dimensionResource(id = com.orange.ods.R.dimen.image_item_title_height)
+                    OdsImageTileCaptionDisplayType.Overlay,
+                    OdsImageTileCaptionDisplayType.None -> imageSize
                 }
-                OdsImageItem(
-                    image = rememberAsyncImagePainter(
-                        model = recipe.imageUrl,
-                        placeholder = painterResource(id = R.drawable.placeholder),
-                        error = painterResource(id = R.drawable.placeholder)
-                    ),
-                    uncheckedIcon = if (hasIcon) painterResource(id = R.drawable.ic_heart_outlined) else null,
-                    checkedIcon = if (hasIcon) painterResource(id = R.drawable.ic_heart) else null,
-                    title = if (hasText) recipe.title else null,
+                OdsImageTile(
                     modifier = Modifier
                         .width(imageSize)
                         .height(height),
+                    onClick = { clickOnElement(context, context.getString(R.string.component_image_tile)) },
+                    image = OdsImageTileImage(
+                        rememberAsyncImagePainter(
+                            model = recipe.imageUrl,
+                            placeholder = painterResource(id = R.drawable.placeholder),
+                            error = painterResource(id = R.drawable.placeholder)
+                        ), ""
+                    ),
+                    uncheckedIcon = if (hasIcon) {
+                        OdsIconButtonIcon(
+                            painterResource(id = R.drawable.ic_heart_outlined),
+                            stringResource(id = R.string.component_button_icon_toggle_favorite_add_icon_desc)
+                        )
+                    } else null,
+                    checkedIcon = if (hasIcon) {
+                        OdsIconButtonIcon(
+                            painterResource(id = R.drawable.ic_heart),
+                            stringResource(id = R.string.component_button_icon_toggle_favorite_remove_icon_desc)
+                        )
+                    } else null,
+                    title = if (hasText) recipe.title else null,
                     iconChecked = iconChecked,
-                    iconContentDescription = stringResource(id = R.string.component_button_icon_toggle_favorite_add_icon_desc),
                     onIconCheckedChange = { checked -> iconChecked = checked },
-                    displayTitle = if (isOverlay) OdsImageItemTitleType.Overlay else if (isBelow) OdsImageItemTitleType.Below else OdsImageItemTitleType.None,
+                    captionDisplayType = when {
+                        isOverlay -> OdsImageTileCaptionDisplayType.Overlay
+                        isBelow -> OdsImageTileCaptionDisplayType.Below
+                        else -> OdsImageTileCaptionDisplayType.None
+                    },
                 )
                 CodeImplementationColumn(
                     modifier = Modifier.padding(end = dimensionResource(id = com.orange.ods.R.dimen.spacing_m))
                 ) {
                     FunctionCallCode(
-                        name = OdsComposable.OdsImageItem.name,
+                        name = OdsComposable.OdsImageTile.name,
                         exhaustiveParameters = false,
                         parameters = {
-                            stringRepresentation("displayTitle", type.value)
+                            stringRepresentation("captionDisplayType", type.value)
                             if (hasText) title(recipe.title)
-                            image()
+                            classInstance("image", OdsImageTileImage::class.java) {
+                                painter()
+                                contentDescription("")
+                            }
                             checked(iconChecked)
                             lambda("onIconCheckedChange")
-                            if (hasIcon) simple("checkedIcon", IconPainterValue)
-                            if (hasIcon) simple("uncheckedIcon", IconPainterValue)
+                            if (hasIcon) {
+                                classInstance("uncheckedIcon", OdsIconButtonIcon::class.java) {
+                                    painter()
+                                    contentDescription("")
+                                }
+                                classInstance("checkedIcon", OdsIconButtonIcon::class.java) {
+                                    painter()
+                                    contentDescription("")
+                                }
+                            }
                         })
                 }
             }

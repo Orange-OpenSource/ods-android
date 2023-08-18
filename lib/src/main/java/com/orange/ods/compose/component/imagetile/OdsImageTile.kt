@@ -8,10 +8,10 @@
  * /
  */
 
-package com.orange.ods.compose.component.imageitem
+package com.orange.ods.compose.component.imagetile
 
-import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -25,7 +25,9 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.ImageBitmap
 import androidx.compose.ui.graphics.painter.Painter
+import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.painterResource
@@ -35,50 +37,48 @@ import com.orange.ods.R
 import com.orange.ods.compose.component.OdsComposable
 import com.orange.ods.compose.component.button.OdsIconButtonIcon
 import com.orange.ods.compose.component.button.OdsIconToggleButton
+import com.orange.ods.compose.component.content.OdsComponentImage
 import com.orange.ods.compose.component.utilities.BasicPreviewParameterProvider
 import com.orange.ods.compose.component.utilities.Preview
 import com.orange.ods.compose.component.utilities.UiModePreviews
 import com.orange.ods.compose.theme.OdsDisplaySurface
 import com.orange.ods.compose.theme.OdsTheme
+import com.orange.ods.extension.orElse
 
 
 /**
+ * A image tile contains primary information which is an image. It can also contain secondary information such as text or action. Tiles have no more than two
+ * actions. They are usually used in grids.
  *
- * @param image Image display in the [OdsImageItem].
- * @param iconChecked Specified if icon is currently checked
+ * @param image Image display in the [OdsImageTile].
+ * @param captionDisplayType Specify how the title and the icon are displayed relatively to the image
+ * @param modifier Modifier to be applied to this [OdsImageTile]
+ * @param onClick Callback to be invoked on tile click.
+ * @param title Title linked to the image. It is displayed according the [captionDisplayType] value.
+ * @param iconChecked Specify if icon is currently checked
  * @param onIconCheckedChange Callback to be invoked when this icon is selected
- * @param displayTitle Specified how the title and icon are displayed relative to image
- * @param modifier Modifier to be applied to this [OdsImageItem]
- * @param checkedIcon Icon displayed in front of the [OdsImageItem] when icon is checked
- * @param uncheckedIcon Icon displayed in front of the [OdsImageItem] when icon is unchecked
- * @param imageContentDescription Optional image content description
- * @param iconContentDescription Optional icon content description
- * @param title Text displayed in the image
+ * @param checkedIcon Icon displayed in front of the [OdsImageTile] when icon is checked
+ * @param uncheckedIcon Icon displayed in front of the [OdsImageTile] when icon is unchecked
  */
 @Composable
 @OdsComposable
-fun OdsImageItem(
-    image: Painter,
-    iconChecked: Boolean,
-    onIconCheckedChange: (Boolean) -> Unit,
-    displayTitle: OdsImageItemTitleType,
+fun OdsImageTile(
+    image: OdsImageTileImage,
+    captionDisplayType: OdsImageTileCaptionDisplayType,
     modifier: Modifier = Modifier,
-    checkedIcon: Painter? = null,
-    uncheckedIcon: Painter? = null,
-    iconContentDescription: String? = null,
-    imageContentDescription: String? = null,
+    onClick: (() -> Unit)? = null,
     title: String? = null,
+    iconChecked: Boolean = false,
+    onIconCheckedChange: (Boolean) -> Unit = {},
+    checkedIcon: OdsIconButtonIcon? = null,
+    uncheckedIcon: OdsIconButtonIcon? = null,
 ) {
-    Box(modifier = modifier) {
-        when (displayTitle) {
-            OdsImageItemTitleType.Overlay -> {
-                Image(
-                    painter = image,
-                    contentDescription = imageContentDescription,
-                    contentScale = ContentScale.Crop,
-                    modifier = Modifier
-                        .fillMaxSize()
-                )
+    Box(modifier = modifier.let { m ->
+        onClick?.let { m.clickable { onClick() } }.orElse { m }
+    }) {
+        when (captionDisplayType) {
+            OdsImageTileCaptionDisplayType.Overlay -> {
+                image.Content(modifier = Modifier.fillMaxSize())
                 title?.let {
                     Row(
                         verticalAlignment = Alignment.CenterVertically,
@@ -87,14 +87,13 @@ fun OdsImageItem(
                             .align(Alignment.BottomStart)
                             .height(dimensionResource(id = R.dimen.list_single_line_item_height))
                     ) {
-                        OdsImageItemText(
+                        OdsImageTileCaption(
                             text = it,
                             iconChecked = iconChecked,
                             color = Color.White,
                             onIconCheckedChange = onIconCheckedChange,
                             uncheckedIcon = uncheckedIcon,
                             checkedIcon = checkedIcon,
-                            iconContentDescription = iconContentDescription,
                             displaySurface = OdsDisplaySurface.Dark,
                             modifier = Modifier
                                 .weight(1f)
@@ -104,17 +103,12 @@ fun OdsImageItem(
                 }
             }
 
-            OdsImageItemTitleType.Below ->
-                Column(
-                    verticalArrangement = Arrangement.Center
-                ) {
-                    Image(
+            OdsImageTileCaptionDisplayType.Below ->
+                Column(verticalArrangement = Arrangement.Center) {
+                    image.Content(
                         modifier = Modifier
                             .weight(1.0f)
-                            .fillMaxWidth(),
-                        painter = image,
-                        contentDescription = imageContentDescription,
-                        contentScale = ContentScale.Crop,
+                            .fillMaxWidth()
                     )
                     Row(
                         verticalAlignment = Alignment.CenterVertically,
@@ -122,14 +116,13 @@ fun OdsImageItem(
                             .height(dimensionResource(id = R.dimen.image_item_title_height))
                     ) {
                         title?.let {
-                            OdsImageItemText(
+                            OdsImageTileCaption(
                                 text = it,
                                 iconChecked = iconChecked,
                                 color = OdsTheme.colors.onSurface,
                                 onIconCheckedChange = onIconCheckedChange,
                                 uncheckedIcon = uncheckedIcon,
                                 checkedIcon = checkedIcon,
-                                iconContentDescription = iconContentDescription,
                                 displaySurface = OdsDisplaySurface.Default,
                                 modifier = Modifier
                                     .weight(1f)
@@ -139,33 +132,71 @@ fun OdsImageItem(
                     }
                 }
 
-            OdsImageItemTitleType.None ->
-                Image(
-                    painter = image,
-                    contentDescription = imageContentDescription,
-                    contentScale = ContentScale.Crop,
-                    modifier = Modifier
-                        .fillMaxSize()
-                )
+            OdsImageTileCaptionDisplayType.None ->
+                image.Content(modifier = Modifier.fillMaxSize())
         }
     }
 }
 
-enum class OdsImageItemTitleType {
+/**
+ * An image in an [OdsImageTile].
+ */
+class OdsImageTileImage : OdsComponentImage {
+
+    /**
+     * Creates an instance of [OdsImageTileImage].
+     *
+     * @param painter The painter to draw.
+     * @param contentDescription The content description associated to this [OdsImageTileImage].
+     * @param contentScale The rule to apply to scale the image in this [OdsImageTileImage], [ContentScale.Crop] by default.
+     */
+    constructor(painter: Painter, contentDescription: String, contentScale: ContentScale = ContentScale.Crop) : super(
+        painter as Any,
+        contentDescription,
+        contentScale
+    )
+
+    /**
+     * Creates an instance of [OdsImageTileImage].
+     *
+     * @param imageVector The image vector to draw.
+     * @param contentDescription The content description associated to this [OdsImageTileImage].
+     * @param contentScale The rule to apply to scale the image in this [OdsImageTileImage], [ContentScale.Crop] by default.
+     */
+    constructor(imageVector: ImageVector, contentDescription: String, contentScale: ContentScale = ContentScale.Crop) : super(
+        imageVector as Any,
+        contentDescription,
+        contentScale
+    )
+
+    /**
+     * Creates an instance of [OdsImageTileImage].
+     *
+     * @param bitmap The image bitmap to draw.
+     * @param contentDescription The content description associated to this [OdsImageTileImage].
+     * @param contentScale The rule to apply to scale the image in this [OdsImageTileImage], [ContentScale.Crop] by default.
+     */
+    constructor(bitmap: ImageBitmap, contentDescription: String, contentScale: ContentScale = ContentScale.Crop) : super(
+        bitmap as Any,
+        contentDescription,
+        contentScale
+    )
+}
+
+enum class OdsImageTileCaptionDisplayType {
     Below, Overlay, None
 }
 
 @Composable
-private fun OdsImageItemText(
+private fun OdsImageTileCaption(
     text: String,
     iconChecked: Boolean,
     color: Color,
     onIconCheckedChange: (Boolean) -> Unit,
-    uncheckedIcon: Painter?,
-    checkedIcon: Painter?,
+    uncheckedIcon: OdsIconButtonIcon?,
+    checkedIcon: OdsIconButtonIcon?,
     modifier: Modifier,
     displaySurface: OdsDisplaySurface,
-    iconContentDescription: String?
 ) {
     Text(
         text = text,
@@ -179,26 +210,25 @@ private fun OdsImageItemText(
         OdsIconToggleButton(
             checked = iconChecked,
             onCheckedChange = onIconCheckedChange,
-            uncheckedIcon = OdsIconButtonIcon(uncheckedIcon, iconContentDescription.orEmpty()),
-            checkedIcon = OdsIconButtonIcon(checkedIcon, iconContentDescription.orEmpty()), //TODO Use 2 different content description for each state
+            uncheckedIcon = uncheckedIcon,
+            checkedIcon = checkedIcon,
             displaySurface = displaySurface
         )
     }
 }
 
-@UiModePreviews.ImageItem
+@UiModePreviews.ImageTile
 @Composable
 private fun PreviewOdsImageList(@PreviewParameter(OdsImageListPreviewParameterProvider::class) parameter: OdsImageListPreviewParameter) =
     Preview {
-        OdsImageItem(
-            image = painterResource(id = parameter.image),
-            uncheckedIcon = painterResource(id = parameter.uncheckedIcon),
-            checkedIcon = painterResource(id = parameter.checkedIcon),
+        OdsImageTile(
+            image = OdsImageTileImage(painterResource(id = parameter.image), ""),
+            uncheckedIcon = OdsIconButtonIcon(painterResource(id = parameter.uncheckedIcon), "click to select"),
+            checkedIcon = OdsIconButtonIcon(painterResource(id = parameter.checkedIcon), "click to unselect"),
             title = parameter.title,
             iconChecked = parameter.checked,
-            iconContentDescription = "",
             onIconCheckedChange = { parameter.checked },
-            displayTitle = parameter.type
+            captionDisplayType = parameter.type
         )
     }
 
@@ -208,7 +238,7 @@ private data class OdsImageListPreviewParameter(
     val title: String,
     val checkedIcon: Int,
     val uncheckedIcon: Int,
-    val type: OdsImageItemTitleType
+    val type: OdsImageTileCaptionDisplayType
 )
 
 private class OdsImageListPreviewParameterProvider :
@@ -228,7 +258,7 @@ private val previewParameterValues: List<OdsImageListPreviewParameter>
                 checkedIcon = checkedIcon,
                 uncheckedIcon = uncheckedIcon,
                 checked = false,
-                type = OdsImageItemTitleType.Below
+                type = OdsImageTileCaptionDisplayType.Below
             ),
             OdsImageListPreviewParameter(
                 image,
@@ -236,7 +266,7 @@ private val previewParameterValues: List<OdsImageListPreviewParameter>
                 checkedIcon = checkedIcon,
                 uncheckedIcon = uncheckedIcon,
                 checked = false,
-                type = OdsImageItemTitleType.Overlay
+                type = OdsImageTileCaptionDisplayType.Overlay
             ),
             OdsImageListPreviewParameter(
                 image,
@@ -244,7 +274,7 @@ private val previewParameterValues: List<OdsImageListPreviewParameter>
                 checkedIcon = checkedIcon,
                 uncheckedIcon = uncheckedIcon,
                 checked = true,
-                type = OdsImageItemTitleType.None
+                type = OdsImageTileCaptionDisplayType.None
             )
         )
     }
