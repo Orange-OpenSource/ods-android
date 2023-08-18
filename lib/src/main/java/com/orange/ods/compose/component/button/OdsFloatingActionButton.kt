@@ -50,18 +50,18 @@ private val FabIconSize = 24.dp
  *
  * @see androidx.compose.material.FloatingActionButton for further information.
  *
+ * @param icon The FAB icon.
  * @param onClick callback invoked when this FAB is clicked
  * @param modifier [Modifier] to be applied to this FAB.
  * @param mini If `true`, the size of the FAB will be 40dp, otherwise the default size will be used.
- * @param icon The FAB icon.
  */
 @Composable
 @OdsComposable
 fun OdsFloatingActionButton(
+    icon: OdsFloatingActionButtonIcon,
     onClick: () -> Unit,
     modifier: Modifier = Modifier,
     mini: Boolean = false,
-    icon: OdsFloatingActionButtonIcon
 ) {
     FloatingActionButton(
         onClick = onClick,
