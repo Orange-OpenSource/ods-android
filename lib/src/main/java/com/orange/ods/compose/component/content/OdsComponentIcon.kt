@@ -28,7 +28,7 @@ import com.orange.ods.extension.orElse
 abstract class OdsComponentIcon protected constructor(
     private val graphicsObject: Any,
     private val contentDescription: String,
-    protected var enabled: Boolean = true, //TODO check if it is the good idea !
+    protected var enabled: Boolean = true,
     private val onClick: (() -> Unit)? = null,
     protected var displaySurface: OdsDisplaySurface = OdsDisplaySurface.Default
 ) : OdsComponentContent() {
