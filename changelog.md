@@ -28,6 +28,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - \[App\] Fix a bug where `OdsListItem` text color did not update when switching between light and dark modes in text field demo ([#578](https://github.com/Orange-OpenSource/ods-android/issues/578))
 - \[App\] The number of search results is now vocalized ([#506](https://github.com/Orange-OpenSource/ods-android/issues/506))
 - \[Lib\] Vocalize exposed dropdown menu content as a group ([#560](https://github.com/Orange-OpenSource/ods-android/issues/560))
+- \[Lib\] Fix `OdsTextField` content color in dark mode ([#621](https://github.com/Orange-OpenSource/ods-android/issues/621))
 
 ## [0.14.0](https://github.com/Orange-OpenSource/ods-android/compare/0.13.0...0.14.0) - 2023-07-12
 
