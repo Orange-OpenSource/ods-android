@@ -133,7 +133,7 @@ class OdsIconToggleButtonsRowIcon : OdsComponentIcon {
     override val tint: Color
         @Composable
         get() {
-            return buttonToggleIconColor(displaySurface, selected, enabled)
+            return getIconColor(displaySurface, selected, enabled)
         }
 
     @Composable
@@ -166,14 +166,13 @@ class OdsIconToggleButtonsRowIcon : OdsComponentIcon {
                 }
         )
     }
+
+    @Composable
+    private fun getIconColor(displaySurface: OdsDisplaySurface, selected: Boolean, enabled: Boolean) =
+        with(displaySurface.themeColors) {
+            if (selected && enabled) primary else onSurface.enable(enabled = enabled)
+        }
 }
-
-@Composable
-private fun buttonToggleIconColor(displaySurface: OdsDisplaySurface, selected: Boolean, enabled: Boolean) =
-    with(displaySurface.themeColors) {
-        if (selected && enabled) primary else onSurface.enable(enabled = enabled)
-    }
-
 
 @UiModePreviews.Default
 @Composable
