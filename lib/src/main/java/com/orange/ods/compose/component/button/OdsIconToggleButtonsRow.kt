@@ -76,9 +76,9 @@ fun OdsIconToggleButtonsRow(
             )
     ) {
         icons.forEachIndexed { index, icon ->
-            icon.Content(index = index, displaySurface = displaySurface, selected = selectedIndex == index) { clickedButtonIndex ->
+            icon.Content(index = index, displaySurface = displaySurface, selected = selectedIndex == index, onClick = { clickedButtonIndex ->
                 onSelectedIndexChange(clickedButtonIndex)
-            }
+            })
             if (index < icons.size) {
                 Divider(
                     modifier = Modifier
@@ -137,11 +137,11 @@ class OdsIconToggleButtonsRowIcon : OdsComponentIcon {
         }
 
     @Composable
-    internal fun Content(index: Int, displaySurface: OdsDisplaySurface = OdsDisplaySurface.Default, selected: Boolean = false, onClick: (Int) -> Unit) {
+    internal fun Content(index: Int, onClick: (Int) -> Unit, displaySurface: OdsDisplaySurface = OdsDisplaySurface.Default, selected: Boolean = false) {
         this.index = index
+        this.onClick = onClick
         this.displaySurface = displaySurface
         this.selected = selected
-        this.onClick = onClick
         Content()
     }
 
