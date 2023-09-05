@@ -39,7 +39,7 @@ import com.orange.ods.compose.theme.OdsDisplaySurface
 
 @Composable
 fun ButtonsIconToggleGroup(customizationState: ButtonIconCustomizationState) {
-    val iconToggleButtons =
+    val icons =
         LocalRecipes.current.distinctBy { it.iconResId }.filter { it.iconResId != null }.take(ButtonIconCustomizationState.MaxToggleCount).map { recipe ->
             OdsIconToggleButtonsRowIcon(painterResource(id = recipe.iconResId!!), recipe.title, customizationState.enabled.value)
         }
@@ -54,7 +54,7 @@ fun ButtonsIconToggleGroup(customizationState: ButtonIconCustomizationState) {
         ) {
 
             ToggleButtonsRow(
-                icons = iconToggleButtons,
+                icons = icons,
                 selectedIndex = selectedIndex,
                 onSelectedIndexChange = { index -> selectedIndex = index },
                 toggleCount = toggleCount.value
@@ -64,7 +64,7 @@ fun ButtonsIconToggleGroup(customizationState: ButtonIconCustomizationState) {
 
             InvertedBackgroundColumn {
                 ToggleButtonsRow(
-                    icons = iconToggleButtons,
+                    icons = icons,
                     selectedIndex = selectedIndex,
                     onSelectedIndexChange = { index -> selectedIndex = index },
                     toggleCount = toggleCount.value,
@@ -112,17 +112,17 @@ private fun ToggleButtonsRow(
             .padding(horizontal = dimensionResource(com.orange.ods.R.dimen.screen_horizontal_margin)),
         horizontalArrangement = Arrangement.Center
     ) {
-        val buttons = icons.take(toggleCount)
+        val displayedIcons = icons.take(toggleCount)
         UiFramework<OdsIconToggleButtonsGroupBinding>(
             compose = {
                 OdsIconToggleButtonsRow(
-                    icons = buttons,
+                    icons = displayedIcons,
                     selectedIndex = selectedIndex,
                     onSelectedIndexChange = onSelectedIndexChange,
                     displaySurface = displaySurface
                 )
             }, xml = {
-                this.odsIconToggleButtonsRow.iconToggleButtons = buttons
+                this.odsIconToggleButtonsRow.icons = displayedIcons
                 this.selectedIndex = selectedIndex
                 this.displaySurface = displaySurface
                 this.odsIconToggleButtonsRow.onSelectedIndexChange = onSelectedIndexChange
