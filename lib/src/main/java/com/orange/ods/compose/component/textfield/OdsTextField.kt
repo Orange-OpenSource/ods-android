@@ -13,10 +13,12 @@ package com.orange.ods.compose.component.textfield
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.text.KeyboardActions
 import androidx.compose.foundation.text.KeyboardOptions
+import androidx.compose.material.LocalContentColor
 import androidx.compose.material.Text
 import androidx.compose.material.TextField
 import androidx.compose.material.Typography
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
@@ -203,50 +205,54 @@ fun OdsTextField(
 ) {
     val filledTextField = OdsTheme.componentsConfiguration.textFieldStyle == OdsComponentsConfiguration.ComponentStyle.Filled
 
-    if (filledTextField) {
-        OdsFilledTextField(
-            value = value,
-            onValueChange = onValueChange,
-            modifier = modifier,
-            enabled = enabled,
-            readOnly = readOnly,
-            label = label,
-            placeholder = placeholder,
-            leadingIcon = leadingIcon,
-            leadingIconContentDescription = leadingIconContentDescription,
-            onLeadingIconClick = onLeadingIconClick,
-            trailing = trailing,
-            isError = isError,
-            errorMessage = errorMessage,
-            visualTransformation = visualTransformation,
-            keyboardOptions = keyboardOptions,
-            keyboardActions = keyboardActions,
-            singleLine = singleLine,
-            maxLines = maxLines,
-            characterCounter = characterCounter
-        )
-    } else {
-        OdsOutlinedTextField(
-            value = value,
-            onValueChange = onValueChange,
-            modifier = modifier,
-            enabled = enabled,
-            readOnly = readOnly,
-            label = label,
-            placeholder = placeholder,
-            leadingIcon = leadingIcon,
-            leadingIconContentDescription = leadingIconContentDescription,
-            onLeadingIconClick = onLeadingIconClick,
-            trailing = trailing,
-            isError = isError,
-            errorMessage = errorMessage,
-            visualTransformation = visualTransformation,
-            keyboardOptions = keyboardOptions,
-            keyboardActions = keyboardActions,
-            singleLine = singleLine,
-            maxLines = maxLines,
-            characterCounter = characterCounter
-        )
+    CompositionLocalProvider(
+        LocalContentColor provides OdsTheme.colors.onSurface // Apply good color to text field content in dark mode
+    ) {
+        if (filledTextField) {
+            OdsFilledTextField(
+                value = value,
+                onValueChange = onValueChange,
+                modifier = modifier,
+                enabled = enabled,
+                readOnly = readOnly,
+                label = label,
+                placeholder = placeholder,
+                leadingIcon = leadingIcon,
+                leadingIconContentDescription = leadingIconContentDescription,
+                onLeadingIconClick = onLeadingIconClick,
+                trailing = trailing,
+                isError = isError,
+                errorMessage = errorMessage,
+                visualTransformation = visualTransformation,
+                keyboardOptions = keyboardOptions,
+                keyboardActions = keyboardActions,
+                singleLine = singleLine,
+                maxLines = maxLines,
+                characterCounter = characterCounter
+            )
+        } else {
+            OdsOutlinedTextField(
+                value = value,
+                onValueChange = onValueChange,
+                modifier = modifier,
+                enabled = enabled,
+                readOnly = readOnly,
+                label = label,
+                placeholder = placeholder,
+                leadingIcon = leadingIcon,
+                leadingIconContentDescription = leadingIconContentDescription,
+                onLeadingIconClick = onLeadingIconClick,
+                trailing = trailing,
+                isError = isError,
+                errorMessage = errorMessage,
+                visualTransformation = visualTransformation,
+                keyboardOptions = keyboardOptions,
+                keyboardActions = keyboardActions,
+                singleLine = singleLine,
+                maxLines = maxLines,
+                characterCounter = characterCounter
+            )
+        }
     }
 }
 
