@@ -177,7 +177,7 @@ class OdsIconToggleButtonsRowIcon : OdsComponentIcon {
 @UiModePreviews.Default
 @Composable
 private fun PreviewOdsIconToggleButtonsGroupRow() = Preview {
-    val iconToggleButtons = listOf(
+    val icons = listOf(
         OdsIconToggleButtonsRowIcon(painterResource(id = android.R.drawable.ic_dialog_dialer), "Today"),
         OdsIconToggleButtonsRowIcon(painterResource(id = android.R.drawable.ic_dialog_email), "Day"),
         OdsIconToggleButtonsRowIcon(painterResource(id = android.R.drawable.ic_dialog_alert), "Month", false)
@@ -185,7 +185,7 @@ private fun PreviewOdsIconToggleButtonsGroupRow() = Preview {
     var selectedIndex by remember { mutableStateOf(0) }
 
     OdsIconToggleButtonsRow(
-        icons = iconToggleButtons,
+        icons = icons,
         selectedIndex = selectedIndex,
         onSelectedIndexChange = { index -> selectedIndex = index }
     )
