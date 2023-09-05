@@ -100,27 +100,27 @@ class OdsIconToggleButtonsRowIcon : OdsComponentIcon {
      * Creates an instance of [OdsIconToggleButtonsRowIcon].
      *
      * @param painter Painter of the icon.
-     * @param contentDescription The content description associated to this [OdsIconButtonIcon].
+     * @param contentDescription The content description associated to this [OdsIconToggleButtonsRowIcon].
      * @param enabled Whether or not this [OdsIconToggleButtonsRowIcon] will handle input events and appear enabled for
      * semantics purposes, true by default.
      */
     constructor(painter: Painter, contentDescription: String, enabled: Boolean = true) : super(painter as Any, contentDescription, enabled)
 
     /**
-     * Creates an instance of [OdsIconButtonIcon].
+     * Creates an instance of [OdsIconToggleButtonsRowIcon].
      *
      * @param imageVector Image vector of the icon.
-     * @param contentDescription The content description associated to this [OdsIconButtonIcon].
+     * @param contentDescription The content description associated to this [OdsIconToggleButtonsRowIcon].
      * @param enabled Whether or not this [OdsIconToggleButtonsRowIcon] will handle input events and appear enabled for
      * semantics purposes, true by default.
      */
     constructor(imageVector: ImageVector, contentDescription: String, enabled: Boolean = true) : super(imageVector as Any, contentDescription, enabled)
 
     /**
-     * Creates an instance of [OdsIconButtonIcon].
+     * Creates an instance of [OdsIconToggleButtonsRowIcon].
      *
      * @param bitmap Image bitmap of the icon.
-     * @param contentDescription The content description associated to this [OdsIconButtonIcon].
+     * @param contentDescription The content description associated to this [OdsIconToggleButtonsRowIcon].
      * @param enabled Whether or not this [OdsIconToggleButtonsRowIcon] will handle input events and appear enabled for
      * semantics purposes, true by default.
      */
