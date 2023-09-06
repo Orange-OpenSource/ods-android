@@ -29,12 +29,10 @@ import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.semantics.stateDescription
-import androidx.compose.ui.tooling.preview.PreviewParameter
 import androidx.compose.ui.unit.dp
 import com.orange.ods.R
 import com.orange.ods.compose.component.OdsComposable
 import com.orange.ods.compose.component.chip.OdsChipDefaults.SurfaceOverlayOpacity
-import com.orange.ods.compose.component.utilities.BasicPreviewParameterProvider
 import com.orange.ods.compose.component.utilities.Preview
 import com.orange.ods.compose.component.utilities.UiModePreviews
 import com.orange.ods.compose.component.utilities.selectionStateDescription
@@ -103,7 +101,7 @@ private fun OdsChip(
 ) {
     val context = LocalContext.current
     val chipStateDescription = selectionStateDescription(selected)
-    
+
     Chip(
         onClick = onClick,
         modifier = modifier.semantics {
@@ -170,15 +168,12 @@ private fun odsChipBorderColor(selected: Boolean, enabled: Boolean) = when {
 
 @UiModePreviews.Chip
 @Composable
-private fun PreviewOdsChip(@PreviewParameter(OdsChipPreviewParameterProvider::class) outlined: Boolean) = Preview {
+private fun PreviewOdsChip() = Preview {
     var selected by remember { mutableStateOf(false) }
     OdsChip(
         text = "Text",
-        outlined = outlined,
         selected = selected,
         onClick = { selected = !selected },
         leadingAvatar = OdsChipLeadingAvatar(painterResource(id = R.drawable.placeholder_small), "")
     )
 }
-
-private class OdsChipPreviewParameterProvider : BasicPreviewParameterProvider<Boolean>(false, true)
