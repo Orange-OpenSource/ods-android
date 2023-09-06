@@ -58,7 +58,7 @@ class OdsChipLeadingIcon : OdsComponentIcon {
 }
 
 /**
- * A leading icon in an [OdsChip].
+ * A leading avatar in an [OdsChip].
  */
 class OdsChipLeadingAvatar : OdsComponentImage {
 
@@ -90,7 +90,8 @@ class OdsChipLeadingAvatar : OdsComponentImage {
 
 @OptIn(ExperimentalMaterialApi::class)
 fun Modifier.odsChipAvatar(enabled: Boolean): Modifier = composed {
-    this.size(dimensionResource(R.dimen.icon_size))
+    this
+        .size(dimensionResource(R.dimen.icon_size))
         .clip(CircleShape)
         .alpha(if (enabled) 1f else ChipDefaults.LeadingIconOpacity)
 }
