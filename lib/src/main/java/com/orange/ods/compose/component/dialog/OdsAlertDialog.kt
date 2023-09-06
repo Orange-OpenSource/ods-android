@@ -90,7 +90,7 @@ private fun PreviewOdsAlertDialog() = Preview {
     OdsAlertDialog(
         text = "Text",
         confirmButton = OdsAlertDialogButton("Confirm") {},
-        dismissButton = OdsAlertDialogButton("Dismiss ") {},
+        dismissButton = OdsAlertDialogButton("Dismiss") {},
         title = "Title"
     )
 }
