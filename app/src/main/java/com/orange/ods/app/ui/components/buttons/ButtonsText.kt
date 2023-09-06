@@ -81,7 +81,11 @@ fun ButtonsText(customizationState: ButtonCustomizationState) {
                     parameters = {
                         simple("style", textButtonStyle.value.fullName)
                         if (hasFullScreenWidth) fillMaxWidth()
-                        if (hasLeadingIcon) icon()
+                        if (hasLeadingIcon) {
+                            classInstance("icon", OdsButtonIcon::class.java) {
+                                painter()
+                            }
+                        }
                         if (!isEnabled) enabled(false)
                     }
                 )

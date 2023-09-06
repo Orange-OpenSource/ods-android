@@ -86,7 +86,11 @@ fun ButtonsContained(customizationState: ButtonCustomizationState) {
                     parameters = {
                         simple("style", buttonStyle.value.fullName)
                         if (hasFullScreenWidth) fillMaxWidth()
-                        if (hasLeadingIcon) icon()
+                        if (hasLeadingIcon) {
+                            classInstance("icon", OdsButtonIcon::class.java) {
+                                painter()
+                            }
+                        }
                         if (!isEnabled) enabled(false)
                     }
                 )
