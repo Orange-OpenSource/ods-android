@@ -24,7 +24,6 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.semantics.semantics
@@ -99,7 +98,6 @@ private fun OdsChip(
     leadingAvatar: OdsChipLeadingAvatar? = null,
     onCancel: (() -> Unit)? = null
 ) {
-    val context = LocalContext.current
     val chipStateDescription = selectionStateDescription(selected)
 
     Chip(
@@ -114,7 +112,7 @@ private fun OdsChip(
         colors = odsChipColors(outlined, selected),
         leadingIcon = when {
             leadingIcon != null -> {
-                { leadingIcon.Content(modifier = Modifier.size(dimensionResource(id = R.dimen.chip_icon_size))) }
+                { leadingIcon.Content() }
             }
             leadingAvatar != null -> {
                 {

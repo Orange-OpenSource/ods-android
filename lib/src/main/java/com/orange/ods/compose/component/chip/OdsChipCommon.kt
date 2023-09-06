@@ -14,6 +14,7 @@ import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material.ChipDefaults
 import androidx.compose.material.ExperimentalMaterialApi
+import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.composed
 import androidx.compose.ui.draw.alpha
@@ -55,6 +56,11 @@ class OdsChipLeadingIcon : OdsComponentIcon {
      * @param contentDescription The content description associated to this [OdsChipLeadingIcon].
      */
     constructor(bitmap: ImageBitmap, contentDescription: String) : super(bitmap as Any, contentDescription)
+
+    @Composable
+    override fun Content(modifier: Modifier) {
+        super.Content(modifier.size(dimensionResource(id = R.dimen.chip_icon_size)))
+    }
 }
 
 /**
