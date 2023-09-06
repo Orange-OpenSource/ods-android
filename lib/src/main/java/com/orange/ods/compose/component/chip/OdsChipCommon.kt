@@ -92,6 +92,11 @@ class OdsChipLeadingAvatar : OdsComponentImage {
      */
     constructor(bitmap: ImageBitmap, contentDescription: String) : super(bitmap as Any, contentDescription, ContentScale.Crop)
 
+    @Composable
+    fun Content(enabled: Boolean) {
+        this.Content(modifier = Modifier.odsChipAvatar(enabled))
+    }
+    
 }
 
 @OptIn(ExperimentalMaterialApi::class)

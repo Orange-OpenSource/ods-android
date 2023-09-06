@@ -115,11 +115,7 @@ private fun OdsChip(
                 { leadingIcon.Content() }
             }
             leadingAvatar != null -> {
-                {
-                    leadingAvatar.Content(
-                        modifier = modifier.odsChipAvatar(enabled),
-                    )
-                }
+                { leadingAvatar.Content(enabled) }
             }
             else -> null
         }

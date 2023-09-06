@@ -109,9 +109,7 @@ private fun OdsFilterChip(
             leadingAvatar != null -> {
                 {
                     Box(contentAlignment = Alignment.Center) {
-                        leadingAvatar.Content(
-                            modifier = modifier.odsChipAvatar(enabled),
-                        )
+                        leadingAvatar.Content(enabled)
                         if (selected) {
                             OdsImageCircleShape(
                                 painter = ColorPainter(color = Color.Black),
