@@ -165,7 +165,8 @@
     <string name="component_button_icon_search_desc">Search</string>
     <string name="component_button_icon_toggle">Toggle icon button</string>
     <string name="component_button_icon_toggle_group">Toggle icon button group</string>
-    <string name="component_button_icon_toggle_favorite_icon_desc">Add to favorites</string>
+    <string name="component_button_icon_toggle_favorite_add_icon_desc">Add to favorites</string>
+    <string name="component_button_icon_toggle_favorite_remove_icon_desc">Remove from favorites</string>
     <string name="component_button_icon_toggle_count">Toggle count</string>
     <string name="component_button_icon_toggle_remove">Remove toggle</string>
     <string name="component_button_icon_toggle_add">Add toggle</string>

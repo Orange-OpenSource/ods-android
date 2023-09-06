@@ -18,7 +18,7 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
 import androidx.core.content.withStyledAttributes
 import com.orange.ods.compose.component.button.OdsIconToggleButtonsRow
-import com.orange.ods.compose.component.button.OdsIconToggleButtonsRowItem
+import com.orange.ods.compose.component.button.OdsIconToggleButtonsRowIcon
 import com.orange.ods.compose.theme.OdsDisplaySurface
 import com.orange.ods.xml.R
 import com.orange.ods.xml.component.OdsAbstractComposeView
@@ -26,7 +26,7 @@ import com.orange.ods.xml.utilities.extension.fromXmlAttrValue
 
 class OdsIconToggleButtonsRow @JvmOverloads constructor(context: Context, attrs: AttributeSet? = null) : OdsAbstractComposeView(context, attrs) {
 
-    var iconToggleButtons by mutableStateOf<List<OdsIconToggleButtonsRowItem>>(emptyList())
+    var icons by mutableStateOf<List<OdsIconToggleButtonsRowIcon>>(emptyList())
     var selectedIndex by mutableStateOf(0)
     var onSelectedIndexChange by mutableStateOf<(Int) -> Unit>({})
     var displaySurface by mutableStateOf(OdsDisplaySurface.Default)
@@ -41,7 +41,7 @@ class OdsIconToggleButtonsRow @JvmOverloads constructor(context: Context, attrs:
     @Composable
     override fun OdsContent() {
         OdsIconToggleButtonsRow(
-            iconToggleButtons = iconToggleButtons,
+            icons = icons,
             selectedIndex = selectedIndex,
             onSelectedIndexChange = onSelectedIndexChange,
             displaySurface = displaySurface

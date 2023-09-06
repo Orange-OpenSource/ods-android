@@ -47,7 +47,8 @@
         <attr name="checked" format="boolean" />
         <attr name="checkedIcon" format="reference" />
         <attr name="uncheckedIcon" format="reference" />
-        <attr name="iconContentDescription" />
+        <attr name="checkedIconContentDescription" />
+        <attr name="uncheckedIconContentDescription" />
         <attr name="enabled" />
         <attr name="displaySurface" />
     </declare-styleable>

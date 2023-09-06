@@ -105,7 +105,7 @@ fun ComponentImageItem() {
                         .width(imageSize)
                         .height(height),
                     iconChecked = iconChecked,
-                    iconContentDescription = stringResource(id = R.string.component_button_icon_toggle_favorite_icon_desc),
+                    iconContentDescription = stringResource(id = R.string.component_button_icon_toggle_favorite_add_icon_desc),
                     onIconCheckedChange = { checked -> iconChecked = checked },
                     displayTitle = if (isOverlay) OdsImageItemTitleType.Overlay else if (isBelow) OdsImageItemTitleType.Below else OdsImageItemTitleType.None,
                 )
