@@ -89,7 +89,7 @@ class OdsChipLeadingAvatar : OdsComponentImage {
 }
 
 @OptIn(ExperimentalMaterialApi::class)
-fun Modifier.odsChipAvatar(enabled: Boolean): Modifier = composed {
+internal fun Modifier.odsChipAvatar(enabled: Boolean): Modifier = composed {
     this
         .size(dimensionResource(R.dimen.icon_size))
         .clip(CircleShape)
