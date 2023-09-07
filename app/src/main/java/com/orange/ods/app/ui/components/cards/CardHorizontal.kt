@@ -31,6 +31,8 @@ import com.orange.ods.app.ui.utilities.DrawableManager
 import com.orange.ods.app.ui.utilities.composable.CodeImplementationColumn
 import com.orange.ods.app.ui.utilities.composable.FunctionCallCode
 import com.orange.ods.compose.OdsComposable
+import com.orange.ods.compose.component.card.OdsCardButton
+import com.orange.ods.compose.component.card.OdsCardImage
 import com.orange.ods.compose.component.card.OdsHorizontalCard
 
 @Composable
@@ -38,7 +40,7 @@ fun CardHorizontal(customizationState: CardCustomizationState) {
     val context = LocalContext.current
     val recipes = LocalRecipes.current
     val recipe = rememberSaveable { recipes.filter { it.description.isNotBlank() }.random() }
-    
+
     with(customizationState) {
         Column(
             modifier = Modifier
@@ -46,28 +48,29 @@ fun CardHorizontal(customizationState: CardCustomizationState) {
                 .padding(dimensionResource(id = com.orange.ods.R.dimen.spacing_m))
                 .verticalScroll(state = rememberScrollState()),
         ) {
-            val button1Text = stringResource(id = R.string.component_element_first_button)
-            val button2Text = stringResource(id = R.string.component_element_second_button)
+            val firstButtonText = stringResource(id = R.string.component_element_first_button)
+            val secondButtonText = stringResource(id = R.string.component_element_second_button)
             val cardText = stringResource(id = R.string.component_card_element_card)
 
             OdsHorizontalCard(
                 title = recipe.title,
-                image = rememberAsyncImagePainter(
-                    model = recipe.imageUrl,
-                    placeholder = painterResource(id = DrawableManager.getPlaceholderResId()),
-                    error = painterResource(id = DrawableManager.getPlaceholderResId(error = true))
+                image = OdsCardImage(
+                    rememberAsyncImagePainter(
+                        model = recipe.imageUrl,
+                        placeholder = painterResource(id = DrawableManager.getPlaceholderResId()),
+                        error = painterResource(id = DrawableManager.getPlaceholderResId(error = true))
+                    ),
+                    ""
                 ),
                 subtitle = if (hasSubtitle) recipe.subtitle else null,
                 text = if (hasText) recipe.description else null,
-                onCardClick = if (isClickable) {
+                onClick = if (isClickable) {
                     { clickOnElement(context, cardText) }
                 } else null,
-                button1Text = if (hasButton1) button1Text else null,
-                onButton1Click = { clickOnElement(context, button1Text) },
-                button2Text = if (hasButton2) button2Text else null,
-                onButton2Click = { clickOnElement(context, button2Text) },
+                firstButton = if (hasFirstButton) OdsCardButton(firstButtonText) { clickOnElement(context, firstButtonText) } else null,
+                secondButton = if (hasSecondButton) OdsCardButton(secondButtonText) { clickOnElement(context, secondButtonText) } else null,
                 imagePosition = imagePosition.value,
-                dividerEnabled = hasDivider
+                divider = hasDivider
             )
 
             Spacer(modifier = Modifier.padding(top = dimensionResource(com.orange.ods.R.dimen.spacing_s)))
@@ -77,21 +80,28 @@ fun CardHorizontal(customizationState: CardCustomizationState) {
                     name = OdsComposable.OdsHorizontalCard.name,
                     exhaustiveParameters = false,
                     parameters = {
-                        simple("imagePosition", imagePosition.value.name)
                         title(recipe.title)
-                        image()
+                        classInstance("image", OdsCardImage::class.java) {
+                            painter()
+                            contentDescription("")
+                        }
                         if (hasSubtitle) subtitle(recipe.subtitle)
                         if (hasText) cardText()
-                        if (isClickable) onCardClick()
-                        if (hasButton1) {
-                            button1Text(button1Text)
-                            onButton1Click()
+                        if (isClickable) onClick()
+                        if (hasFirstButton) {
+                            classInstance("firstButton", OdsCardButton::class.java) {
+                                text(firstButtonText)
+                                onClick()
+                            }
                         }
-                        if (hasButton2) {
-                            button2Text(button2Text)
-                            onButton2Click()
+                        if (hasSecondButton) {
+                            classInstance("secondButton", OdsCardButton::class.java) {
+                                text(secondButtonText)
+                                onClick()
+                            }
                         }
-                        if (!hasDivider && (hasButton1 || hasButton2)) stringRepresentation("dividerEnabled", hasDivider)
+                        simple("imagePosition", imagePosition.value.name)
+                        if (!hasDivider && (hasFirstButton || hasSecondButton)) stringRepresentation("divider", hasDivider)
                     }
                 )
             }

@@ -25,7 +25,7 @@ import com.orange.ods.extension.orElse
 /**
  * An icon in a component.
  */
-abstract class OdsComponentIcon protected constructor(
+abstract class OdsComponentIcon private constructor(
     private val graphicsObject: Any,
     private val contentDescription: String,
     protected var enabled: Boolean = true,

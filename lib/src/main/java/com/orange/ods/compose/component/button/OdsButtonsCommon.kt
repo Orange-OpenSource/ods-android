@@ -34,21 +34,21 @@ class OdsButtonIcon : OdsComponentIcon {
      *
      * @param painter Painter of the icon.
      */
-    constructor(painter: Painter) : super(painter as Any, "")
+    constructor(painter: Painter) : super(painter, "")
 
     /**
      * Creates an instance of [OdsButtonIcon].
      *
      * @param imageVector Image vector of the icon.
      */
-    constructor(imageVector: ImageVector) : super(imageVector as Any, "")
+    constructor(imageVector: ImageVector) : super(imageVector, "")
 
     /**
      * Creates an instance of [OdsButtonIcon].
      *
      * @param bitmap Image bitmap of the icon.
      */
-    constructor(bitmap: ImageBitmap) : super(bitmap as Any, "")
+    constructor(bitmap: ImageBitmap) : super(bitmap, "")
 
     @Composable
     override fun Content(modifier: Modifier) {
@@ -68,7 +68,7 @@ class OdsIconButtonIcon : OdsComponentIcon {
      * @param painter Painter of the icon.
      * @param contentDescription The content description associated to this [OdsIconButtonIcon].
      */
-    constructor(painter: Painter, contentDescription: String) : super(painter as Any, contentDescription)
+    constructor(painter: Painter, contentDescription: String) : super(painter, contentDescription)
 
     /**
      * Creates an instance of [OdsIconButtonIcon].
@@ -76,7 +76,7 @@ class OdsIconButtonIcon : OdsComponentIcon {
      * @param imageVector Image vector of the icon.
      * @param contentDescription The content description associated to this [OdsIconButtonIcon].
      */
-    constructor(imageVector: ImageVector, contentDescription: String) : super(imageVector as Any, contentDescription)
+    constructor(imageVector: ImageVector, contentDescription: String) : super(imageVector, contentDescription)
 
     /**
      * Creates an instance of [OdsIconButtonIcon].
@@ -84,7 +84,7 @@ class OdsIconButtonIcon : OdsComponentIcon {
      * @param bitmap Image bitmap of the icon.
      * @param contentDescription The content description associated to this [OdsIconButtonIcon].
      */
-    constructor(bitmap: ImageBitmap, contentDescription: String) : super(bitmap as Any, contentDescription)
+    constructor(bitmap: ImageBitmap, contentDescription: String) : super(bitmap, contentDescription)
 
     override val tint: Color
         @Composable

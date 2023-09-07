@@ -34,6 +34,7 @@ import com.orange.ods.app.ui.utilities.DrawableManager
 import com.orange.ods.app.ui.utilities.composable.CodeImplementationColumn
 import com.orange.ods.app.ui.utilities.composable.FunctionCallCode
 import com.orange.ods.compose.OdsComposable
+import com.orange.ods.compose.component.card.OdsCardImage
 import com.orange.ods.compose.component.card.OdsSmallCard
 
 @Composable
@@ -58,14 +59,17 @@ fun CardSmall(customizationState: CardCustomizationState) {
 
                 OdsSmallCard(
                     modifier = Modifier.weight(0.5f),
-                    image = rememberAsyncImagePainter(
-                        model = recipe.imageUrl,
-                        placeholder = painterResource(id = DrawableManager.getPlaceholderResId()),
-                        error = painterResource(id = DrawableManager.getPlaceholderResId(error = true))
+                    image = OdsCardImage(
+                        rememberAsyncImagePainter(
+                            model = recipe.imageUrl,
+                            placeholder = painterResource(id = DrawableManager.getPlaceholderResId()),
+                            error = painterResource(id = DrawableManager.getPlaceholderResId(error = true)),
+                        ),
+                        ""
                     ),
                     title = recipe.title,
                     subtitle = if (subtitleChecked.value) recipe.subtitle else null,
-                    onCardClick = if (isClickable) {
+                    onClick = if (isClickable) {
                         { clickOnElement(context, cardText) }
                     } else null
                 )
@@ -80,9 +84,12 @@ fun CardSmall(customizationState: CardCustomizationState) {
                     exhaustiveParameters = false,
                     parameters = {
                         title(recipe.title)
-                        image()
+                        classInstance("image", OdsCardImage::class.java) {
+                            painter()
+                            contentDescription("")
+                        }
                         if (hasSubtitle) subtitle(recipe.subtitle)
-                        if (isClickable) onCardClick()
+                        if (isClickable) onClick()
                     })
             }
         }

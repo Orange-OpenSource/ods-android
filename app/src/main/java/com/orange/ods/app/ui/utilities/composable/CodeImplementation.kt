@@ -94,7 +94,7 @@ private sealed class PredefinedParameter {
     object Icon : SimpleParameter("icon", IconPainterValue)
     object Painter : SimpleParameter("painter", IconPainterValue)
     object Image : SimpleParameter("image", ImagePainterValue)
-    object CardText : SimpleParameter("cardText", CardTextValue)
+    object CardText : SimpleParameter("text", CardTextValue)
     object FillMaxWidth : SimpleParameter("modifier", "Modifier.fillMaxWidth()")
 
     class Enabled(enabled: Boolean) : StringRepresentationParameter<Boolean>("enabled", enabled)
@@ -106,15 +106,10 @@ private sealed class PredefinedParameter {
     class Subtitle(text: String) : StringParameter("subtitle", text)
     class Label(text: String) : StringParameter("label", text)
     class Placeholder(text: String) : StringParameter("placeholder", text)
-    class Button1Text(text: String) : StringParameter("button1Text", text)
-    class Button2Text(text: String) : StringParameter("button2Text", text)
     class ContentDescription(text: String) : StringParameter("contentDescription", text)
 
     object OnClick : LambdaParameter("onClick")
     object OnCheckedChange : LambdaParameter("onCheckedChange")
-    object OnCardClick : LambdaParameter("onCardClick")
-    object OnButton1Click : LambdaParameter("onButton1Click")
-    object OnButton2Click : LambdaParameter("onButton2Click")
 }
 
 @Composable
@@ -305,15 +300,10 @@ class ParametersBuilder {
     fun subtitle(text: String) = add(PredefinedParameter.Subtitle(text))
     fun label(text: String) = add(PredefinedParameter.Label(text))
     fun placeholder(text: String) = add(PredefinedParameter.Placeholder(text))
-    fun button1Text(text: String) = add(PredefinedParameter.Button1Text(text))
-    fun button2Text(text: String) = add(PredefinedParameter.Button2Text(text))
     fun contentDescription(text: String) = add(PredefinedParameter.ContentDescription(text))
 
     fun onClick() = add(PredefinedParameter.OnClick)
     fun onCheckedChange() = add(PredefinedParameter.OnCheckedChange)
-    fun onCardClick() = add(PredefinedParameter.OnCardClick)
-    fun onButton1Click() = add(PredefinedParameter.OnButton1Click)
-    fun onButton2Click() = add(PredefinedParameter.OnButton2Click)
 
     @Composable
     fun Build() = parameters.forEach { it.code() }

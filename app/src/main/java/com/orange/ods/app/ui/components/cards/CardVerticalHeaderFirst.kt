@@ -33,6 +33,9 @@ import com.orange.ods.app.ui.utilities.DrawableManager
 import com.orange.ods.app.ui.utilities.composable.CodeImplementationColumn
 import com.orange.ods.app.ui.utilities.composable.FunctionCallCode
 import com.orange.ods.compose.OdsComposable
+import com.orange.ods.compose.component.card.OdsCardButton
+import com.orange.ods.compose.component.card.OdsCardImage
+import com.orange.ods.compose.component.card.OdsCardThumbnail
 import com.orange.ods.compose.component.card.OdsVerticalHeaderFirstCard
 
 @Composable
@@ -48,8 +51,8 @@ fun CardVerticalHeaderFirst(customizationState: CardCustomizationState) {
                 .padding(dimensionResource(id = com.orange.ods.R.dimen.spacing_m))
                 .verticalScroll(state = rememberScrollState()),
         ) {
-            val button1Text = stringResource(id = R.string.component_element_first_button)
-            val button2Text = stringResource(id = R.string.component_element_second_button)
+            val firstButtonText = stringResource(id = R.string.component_element_first_button)
+            val secondButtonText = stringResource(id = R.string.component_element_second_button)
             val cardText = stringResource(id = R.string.component_card_element_card)
             val imagePainter = rememberAsyncImagePainter(
                 model = ImageRequest.Builder(context)
@@ -62,17 +65,15 @@ fun CardVerticalHeaderFirst(customizationState: CardCustomizationState) {
 
             OdsVerticalHeaderFirstCard(
                 title = recipe.title,
-                image = imagePainter,
-                thumbnail = if (hasThumbnail) imagePainter else null,
+                image = OdsCardImage(imagePainter, ""),
+                thumbnail = if (hasThumbnail) OdsCardThumbnail(imagePainter, "") else null,
                 subtitle = if (hasSubtitle) recipe.subtitle else null,
                 text = if (hasText) recipe.description else null,
-                onCardClick = if (isClickable) {
+                onClick = if (isClickable) {
                     { clickOnElement(context, cardText) }
                 } else null,
-                button1Text = if (hasButton1) button1Text else null,
-                onButton1Click = { clickOnElement(context, button1Text) },
-                button2Text = if (hasButton2) button2Text else null,
-                onButton2Click = { clickOnElement(context, button2Text) }
+                firstButton = if (hasFirstButton) OdsCardButton(firstButtonText) { clickOnElement(context, firstButtonText) } else null,
+                secondButton = if (hasSecondButton) OdsCardButton(secondButtonText) { clickOnElement(context, secondButtonText) } else null,
             )
 
             Spacer(modifier = Modifier.padding(top = dimensionResource(com.orange.ods.R.dimen.spacing_s)))
@@ -83,18 +84,30 @@ fun CardVerticalHeaderFirst(customizationState: CardCustomizationState) {
                     exhaustiveParameters = false,
                     parameters = {
                         title(recipe.title)
-                        image()
-                        if (hasThumbnail) simple("thumbnail", "<thumbnail painter>")
+                        classInstance("image", OdsCardImage::class.java) {
+                            painter()
+                            contentDescription("")
+                        }
+                        if (hasThumbnail) {
+                            classInstance("thumbnail", OdsCardThumbnail::class.java) {
+                                painter()
+                                contentDescription("")
+                            }
+                        }
                         if (hasSubtitle) subtitle(recipe.subtitle)
                         if (hasText) cardText()
-                        if (isClickable) onCardClick()
-                        if (hasButton1) {
-                            button1Text(button1Text)
-                            onButton1Click()
+                        if (isClickable) onClick()
+                        if (hasFirstButton) {
+                            classInstance("firstButton", OdsCardButton::class.java) {
+                                text(firstButtonText)
+                                onClick()
+                            }
                         }
-                        if (hasButton2) {
-                            button2Text(button2Text)
-                            onButton2Click()
+                        if (hasSecondButton) {
+                            classInstance("secondButton", OdsCardButton::class.java) {
+                                text(secondButtonText)
+                                onClick()
+                            }
                         }
                     }
                 )
