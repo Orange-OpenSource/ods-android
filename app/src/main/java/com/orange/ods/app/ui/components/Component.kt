@@ -167,9 +167,9 @@ sealed class Component(
         demoScreen = { _, _ -> ComponentFloatingActionButton() }
     )
 
-    object ImageItem : Component(
+    object ImageTile : Component(
         R.string.component_image_tile,
-        R.drawable.il_image_item,
+        R.drawable.il_image_tile,
         null,
         R.string.component_image_tile_description,
         composableName = OdsComposable.OdsImageTile.name,

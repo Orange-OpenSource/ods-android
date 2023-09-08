@@ -93,7 +93,7 @@ fun ComponentImageTile() {
             ) {
                 val imageSize = 200.dp
                 val height = when (type.value) {
-                    OdsImageTileLegendAreaDisplayType.Below -> imageSize + dimensionResource(id = com.orange.ods.R.dimen.image_item_title_height)
+                    OdsImageTileLegendAreaDisplayType.Below -> imageSize + dimensionResource(id = com.orange.ods.R.dimen.image_tile_legend_area_height)
                     OdsImageTileLegendAreaDisplayType.Overlay,
                     OdsImageTileLegendAreaDisplayType.None -> imageSize
                 }

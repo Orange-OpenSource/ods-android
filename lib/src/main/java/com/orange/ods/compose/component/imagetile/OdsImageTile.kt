@@ -105,7 +105,7 @@ fun OdsImageTile(
                     Row(
                         verticalAlignment = Alignment.CenterVertically,
                         modifier = Modifier
-                            .height(dimensionResource(id = R.dimen.image_item_title_height))
+                            .height(dimensionResource(id = R.dimen.image_tile_legend_area_height))
                     ) {
                         title?.let {
                             OdsImageTileLegendArea(
