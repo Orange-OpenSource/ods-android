@@ -74,9 +74,9 @@ fun ComponentImageTile() {
                     modifier = Modifier.padding(horizontal = dimensionResource(id = com.orange.ods.R.dimen.spacing_m)),
                     outlinedChips = true
                 ) {
-                    Subtitle(textRes = R.string.component_image_tile_caption_display_type)
-                    OdsChoiceChip(textRes = R.string.component_image_tile_caption_display_overlay, value = OdsImageTileLegendAreaDisplayType.Overlay)
-                    OdsChoiceChip(textRes = R.string.component_image_tile_caption_display_below, value = OdsImageTileLegendAreaDisplayType.Below)
+                    Subtitle(textRes = R.string.component_image_tile_legend_area_display_type)
+                    OdsChoiceChip(textRes = R.string.component_image_tile_legend_area_display_type_overlay, value = OdsImageTileLegendAreaDisplayType.Overlay)
+                    OdsChoiceChip(textRes = R.string.component_image_tile_legend_area_display_type_below, value = OdsImageTileLegendAreaDisplayType.Below)
                     OdsChoiceChip(textRes = R.string.component_element_none, value = OdsImageTileLegendAreaDisplayType.None)
                 }
                 OdsListItem(

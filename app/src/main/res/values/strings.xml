@@ -227,9 +227,9 @@
     <string name="component_image_tile_sizes">Image tile sizes</string>
     <string name="component_image_tile_small">Small image</string>
     <string name="component_image_tile_large">Large image</string>
-    <string name="component_image_tile_caption_display_type">Caption display type</string>
-    <string name="component_image_tile_caption_display_overlay">Overlay</string>
-    <string name="component_image_tile_caption_display_below">Below</string>
+    <string name="component_image_tile_legend_area_display_type">Legend area display type</string>
+    <string name="component_image_tile_legend_area_display_type_overlay">Overlay</string>
+    <string name="component_image_tile_legend_area_display_type_below">Below</string>
 
     <!-- Component List item -->
     <string name="component_list_item">List item</string>
