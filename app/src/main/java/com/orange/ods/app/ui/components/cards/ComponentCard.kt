@@ -49,12 +49,14 @@ fun ComponentCard(variant: Variant) {
                 } else if (variant == Variant.CardHorizontal) {
                     Subtitle(textRes = R.string.component_card_horizontal_image_position, horizontalPadding = true)
                     OdsChoiceChipsFlowRow(
-                        selectedChip = imagePosition,
-                        modifier = Modifier.padding(horizontal = dimensionResource(id = com.orange.ods.R.dimen.screen_horizontal_margin)),
-                    ) {
-                        OdsChoiceChip(textRes = R.string.component_card_horizontal_image_position_start, value = OdsHorizontalCardImagePosition.Start)
-                        OdsChoiceChip(textRes = R.string.component_card_horizontal_image_position_end, value = OdsHorizontalCardImagePosition.End)
-                    }
+                        value = imagePosition.value,
+                        onValueChange = { value -> imagePosition.value = value },
+                        modifier = Modifier.padding(horizontal = dimensionResource(id = com.orange.ods.R.dimen.spacing_m)),
+                        chips = listOf(
+                            OdsChoiceChip(text = stringResource(id =  R.string.component_card_horizontal_image_position_start), value = OdsHorizontalCardImagePosition.Start),
+                            OdsChoiceChip(text = stringResource(id = R.string.component_card_horizontal_image_position_end), value = OdsHorizontalCardImagePosition.End)
+                        )
+                    )
                 }
                 OdsListItem(
                     text = stringResource(id = R.string.component_element_subtitle),

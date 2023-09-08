@@ -69,15 +69,23 @@ fun ComponentImageTile() {
         ComponentCustomizationBottomSheetScaffold(
             bottomSheetScaffoldState = rememberBottomSheetScaffoldState(),
             bottomSheetContent = {
+                Subtitle(textRes = R.string.component_image_tile_legend_area_display_type, horizontalPadding = true)
                 OdsChoiceChipsFlowRow(
-                    selectedChip = type,
+                    value = type.value,
+                    onValueChange = { value -> type.value = value },
                     modifier = Modifier.padding(horizontal = dimensionResource(id = com.orange.ods.R.dimen.spacing_m)),
-                ) {
-                    Subtitle(textRes = R.string.component_image_tile_legend_area_display_type)
-                    OdsChoiceChip(textRes = R.string.component_image_tile_legend_area_display_type_overlay, value = OdsImageTileLegendAreaDisplayType.Overlay)
-                    OdsChoiceChip(textRes = R.string.component_image_tile_legend_area_display_type_below, value = OdsImageTileLegendAreaDisplayType.Below)
-                    OdsChoiceChip(textRes = R.string.component_element_none, value = OdsImageTileLegendAreaDisplayType.None)
-                }
+                    chips = listOf(
+                        OdsChoiceChip(
+                            text = stringResource(R.string.component_image_tile_legend_area_display_type_overlay),
+                            value = OdsImageTileLegendAreaDisplayType.Overlay
+                        ),
+                        OdsChoiceChip(
+                            text = stringResource(R.string.component_image_tile_legend_area_display_type_below),
+                            value = OdsImageTileLegendAreaDisplayType.Below
+                        ),
+                        OdsChoiceChip(text = stringResource(R.string.component_element_none), value = OdsImageTileLegendAreaDisplayType.None),
+                    )
+                )
                 OdsListItem(
                     text = stringResource(id = R.string.component_element_icon),
                     trailing = OdsSwitchTrailing(checked = iconDisplayed, enabled = hasText)

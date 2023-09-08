@@ -187,15 +187,20 @@ private fun CustomizationBottomSheetContent(customizationState: TopAppBarCustomi
         if (isLarge) {
             Subtitle(textRes = R.string.component_app_bars_top_large_scroll_behavior, horizontalPadding = true)
             OdsChoiceChipsFlowRow(
-                selectedChip = scrollBehavior,
+                value = scrollBehavior.value,
+                onValueChange = { value -> scrollBehavior.value = value },
                 modifier = Modifier.padding(horizontal = dimensionResource(id = com.orange.ods.R.dimen.spacing_m)),
-            ) {
-                OdsChoiceChip(textRes = R.string.component_app_bars_top_large_scroll_behavior_none, value = TopAppBarCustomizationState.ScrollBehavior.None)
-                OdsChoiceChip(
-                    textRes = R.string.component_app_bars_top_large_scroll_behavior_collapsible,
-                    value = TopAppBarCustomizationState.ScrollBehavior.Collapsible
+                chips = listOf(
+                    OdsChoiceChip(
+                        text = stringResource(id = R.string.component_app_bars_top_large_scroll_behavior_none),
+                        value = TopAppBarCustomizationState.ScrollBehavior.None
+                    ),
+                    OdsChoiceChip(
+                        text = stringResource(R.string.component_app_bars_top_large_scroll_behavior_collapsible),
+                        value = TopAppBarCustomizationState.ScrollBehavior.Collapsible
+                    )
                 )
-            }
+            )
         }
         OdsListItem(
             text = stringResource(id = R.string.component_app_bars_top_element_navigation_icon),
@@ -222,18 +227,24 @@ private fun CustomizationBottomSheetContent(customizationState: TopAppBarCustomi
         if (isLarge) {
             Subtitle(textRes = R.string.component_element_title, horizontalPadding = true)
             OdsChoiceChipsFlowRow(
-                selectedChip = title,
-                modifier = Modifier
-                    .padding(horizontal = dimensionResource(id = com.orange.ods.R.dimen.spacing_m))
-                    .padding(bottom = dimensionResource(id = com.orange.ods.R.dimen.spacing_s)),
-            ) {
-                OdsChoiceChip(textRes = R.string.component_app_bars_top_large_title_one_line, value = TopAppBarCustomizationState.Title.Short)
-                OdsChoiceChip(textRes = R.string.component_app_bars_top_large_title_two_lines, value = TopAppBarCustomizationState.Title.TwoLines)
-                OdsChoiceChip(
-                    textRes = R.string.component_app_bars_top_large_title_truncated,
-                    value = TopAppBarCustomizationState.Title.Long
+                value = title.value,
+                onValueChange = { value -> title.value = value },
+                modifier = Modifier.padding(horizontal = dimensionResource(id = com.orange.ods.R.dimen.spacing_m)),
+                chips = listOf(
+                    OdsChoiceChip(
+                        text = stringResource(id = R.string.component_app_bars_top_large_title_one_line),
+                        value = TopAppBarCustomizationState.Title.Short
+                    ),
+                    OdsChoiceChip(
+                        text = stringResource(id = R.string.component_app_bars_top_large_title_two_lines),
+                        value = TopAppBarCustomizationState.Title.TwoLines
+                    ),
+                    OdsChoiceChip(
+                        text = stringResource(id = R.string.component_app_bars_top_large_title_truncated),
+                        value = TopAppBarCustomizationState.Title.Long
+                    )
                 )
-            }
+            )
         }
     }
 }

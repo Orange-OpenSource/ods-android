@@ -63,22 +63,26 @@ fun ComponentButtons(variant: Variant) {
                     Variant.ButtonsFunctional -> {
                         Subtitle(textRes = R.string.component_button_style_functional, horizontalPadding = true)
                         OdsChoiceChipsFlowRow(
-                            selectedChip = buttonStyle,
-                            modifier = Modifier.padding(horizontal = dimensionResource(id = com.orange.ods.R.dimen.screen_horizontal_margin)),
-                        ) {
-                            OdsChoiceChip(textRes = R.string.component_button_style_functional_positive, value = OdsButtonStyle.FunctionalPositive)
-                            OdsChoiceChip(textRes = R.string.component_button_style_functional_negative, value = OdsButtonStyle.FunctionalNegative)
-                        }
+                            value = buttonStyle.value,
+                            onValueChange = { value -> buttonStyle.value = value },
+                            modifier = Modifier.padding(horizontal = dimensionResource(id = com.orange.ods.R.dimen.spacing_m)),
+                            chips = listOf(
+                                OdsChoiceChip(text = stringResource(id = R.string.component_button_style_functional_positive), value = OdsButtonStyle.FunctionalPositive),
+                                OdsChoiceChip(text = stringResource(id = R.string.component_button_style_functional_negative), value = OdsButtonStyle.FunctionalNegative)
+                            )
+                        )
                     }
                     Variant.ButtonsText -> {
                         Subtitle(textRes = R.string.component_style, horizontalPadding = true)
                         OdsChoiceChipsFlowRow(
-                            selectedChip = textButtonStyle,
-                            modifier = Modifier.padding(horizontal = dimensionResource(id = com.orange.ods.R.dimen.screen_horizontal_margin)),
-                        ) {
-                            OdsChoiceChip(textRes = R.string.component_button_style_primary, value = OdsTextButtonStyle.Primary)
-                            OdsChoiceChip(textRes = R.string.component_button_style_default, value = OdsTextButtonStyle.Default)
-                        }
+                            value = textButtonStyle.value,
+                            onValueChange = { value -> textButtonStyle.value = value },
+                            modifier = Modifier.padding(horizontal = dimensionResource(id = com.orange.ods.R.dimen.spacing_m)),
+                            chips = listOf(
+                                OdsChoiceChip(text = stringResource(id =  R.string.component_button_style_primary), value = OdsTextButtonStyle.Primary),
+                                OdsChoiceChip(text = stringResource(id = R.string.component_button_style_default), value = OdsTextButtonStyle.Default)
+                            )
+                        )
                     }
                     Variant.ButtonsTextToggleGroup -> {
                         ComponentCountRow(

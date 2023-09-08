@@ -55,12 +55,14 @@ fun ChipFilter() {
 
                 Subtitle(textRes = R.string.component_element_leading, horizontalPadding = true)
                 OdsChoiceChipsFlowRow(
-                    selectedChip = leadingElement,
-                    modifier = Modifier.padding(horizontal = dimensionResource(id = com.orange.ods.R.dimen.screen_horizontal_margin)),
-                ) {
-                    OdsChoiceChip(textRes = R.string.component_element_none, value = ChipCustomizationState.LeadingElement.None)
-                    OdsChoiceChip(textRes = R.string.component_element_avatar, value = ChipCustomizationState.LeadingElement.Avatar)
-                }
+                    value = leadingElement.value,
+                    onValueChange = { value -> leadingElement.value = value },
+                    modifier = Modifier.padding(horizontal = dimensionResource(id = com.orange.ods.R.dimen.spacing_m)),
+                    chips = listOf(
+                        OdsChoiceChip(text = stringResource(id = R.string.component_element_none), value = ChipCustomizationState.LeadingElement.None),
+                        OdsChoiceChip(text = stringResource(id = R.string.component_element_avatar), value = ChipCustomizationState.LeadingElement.Avatar),
+                    )
+                )
 
                 OdsListItem(
                     text = stringResource(id = R.string.component_state_enabled),

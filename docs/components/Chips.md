@@ -250,13 +250,14 @@ outlined by default.
 
 ```kotlin
 OdsChoiceChipsFlowRow(
-    selectedChip = iconTypeState,
-    modifier = Modifier.padding(horizontal = dimensionResource(id = com.orange.ods.R.dimen.spacing_m))
-) {
-    OdsChoiceChip(textRes = R.string.component_icon_leading, value = IconType.Leading)
-    OdsChoiceChip(textRes = R.string.component_icon_top, value = IconType.Top)
-    OdsChoiceChip(textRes = R.string.component_element_none, value = IconType.None)
-}
+    value = chipValue,
+    onValueChange = { value -> chipValue = value },
+    modifier = Modifier.padding(horizontal = dimensionResource(id = com.orange.ods.R.dimen.spacing_m)),
+    chips = listOf(
+        OdsChoiceChip(text = "Choice chip 1", value = 1),
+        OdsChoiceChip(text = "Choice chip 2", value = 2)
+    )
+)
 ```
 
 ## Component specific tokens

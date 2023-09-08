@@ -52,21 +52,24 @@ fun ProgressCircular() {
     var determinateProgressValue by remember { mutableStateOf(0f) }
     val determinateProgressAnimation by animateFloatAsState(
         targetValue = determinateProgressValue,
-        animationSpec = tween(durationMillis = DeterminateProgressAnimDuration, easing = FastOutSlowInEasing)
+        animationSpec = tween(durationMillis = DeterminateProgressAnimDuration, easing = FastOutSlowInEasing),
+        label = ""
     )
 
     with(customizationState) {
         ComponentCustomizationBottomSheetScaffold(
             bottomSheetScaffoldState = rememberBottomSheetScaffoldState(),
             bottomSheetContent = {
+                Subtitle(textRes = R.string.component_element_type, horizontalPadding = true)
                 OdsChoiceChipsFlowRow(
-                    selectedChip = type,
+                    value = type.value,
+                    onValueChange = { value -> type.value = value },
                     modifier = Modifier.padding(horizontal = dimensionResource(id = com.orange.ods.R.dimen.spacing_m)),
-                ) {
-                    Subtitle(textRes = R.string.component_element_type)
-                    OdsChoiceChip(textRes = R.string.component_progress_determinate, value = ProgressCustomizationState.Type.Determinate)
-                    OdsChoiceChip(textRes = R.string.component_progress_indeterminate, value = ProgressCustomizationState.Type.Indeterminate)
-                }
+                    chips = listOf(
+                        OdsChoiceChip(text = stringResource(id = R.string.component_progress_determinate), value = ProgressCustomizationState.Type.Determinate),
+                        OdsChoiceChip(text = stringResource(id = R.string.component_progress_indeterminate), value = ProgressCustomizationState.Type.Indeterminate)
+                    )
+                )
                 OdsListItem(
                     text = stringResource(id = R.string.component_element_label),
                     trailing = OdsSwitchTrailing(checked = label)

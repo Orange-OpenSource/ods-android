@@ -131,32 +131,45 @@ private fun ComponentCustomizationContent(textFieldCustomizationState: TextField
 
     Subtitle(textRes = R.string.component_text_field_input_type, horizontalPadding = true)
     OdsChoiceChipsFlowRow(
-        selectedChip = textFieldCustomizationState.inputType,
+        value = textFieldCustomizationState.inputType.value,
+        onValueChange = { value -> textFieldCustomizationState.inputType.value = value },
         modifier = Modifier.padding(horizontal = dimensionResource(id = com.orange.ods.R.dimen.spacing_m)),
-    ) {
-        OdsChoiceChip(textRes = R.string.component_text_field_input_type_single_line, value = TextFieldCustomizationState.InputType.SingleLine)
-        OdsChoiceChip(textRes = R.string.component_text_field_input_type_multiline, value = TextFieldCustomizationState.InputType.Multiline)
-        // Note: TextArea chip is disabled cause there is no parameter allowing text area in Jetpack Compose sdk for now
-        // https://issuetracker.google.com/issues/122476634
-        OdsChoiceChip(
-            textRes = R.string.component_text_field_input_type_text_area,
-            value = TextFieldCustomizationState.InputType.TextArea,
-            enabled = false
+        chips = listOf(
+            OdsChoiceChip(
+                text = stringResource(id = R.string.component_text_field_input_type_single_line), value = TextFieldCustomizationState.InputType.SingleLine
+            ),
+            OdsChoiceChip(
+                text = stringResource(id = R.string.component_text_field_input_type_multiline), value = TextFieldCustomizationState.InputType.Multiline
+            ),
+            // Note: TextArea chip is disabled cause there is no parameter allowing text area in Jetpack Compose sdk for now
+            // https://issuetracker.google.com/issues/122476634
+            OdsChoiceChip(
+                text = stringResource(id = R.string.component_text_field_input_type_text_area),
+                value = TextFieldCustomizationState.InputType.TextArea,
+                enabled = false
+            ),
         )
-    }
+    )
 
     DisplayTypeCustomization(textFieldCustomizationState.displayType)
 
     Subtitle(textRes = R.string.component_element_trailing, horizontalPadding = true)
     OdsChoiceChipsFlowRow(
-        selectedChip = textFieldCustomizationState.trailingElement,
+        value = textFieldCustomizationState.trailingElement.value,
+        onValueChange = { value -> textFieldCustomizationState.trailingElement.value = value },
         modifier = Modifier.padding(horizontal = dimensionResource(id = com.orange.ods.R.dimen.spacing_m)),
-    ) {
-        OdsChoiceChip(textRes = R.string.component_element_none, value = TextFieldCustomizationState.TrailingElement.None)
-        OdsChoiceChip(textRes = R.string.component_element_icon, value = TextFieldCustomizationState.TrailingElement.Icon)
-        OdsChoiceChip(textRes = R.string.component_element_text, value = TextFieldCustomizationState.TrailingElement.Text)
-    }
-
+        chips = listOf(
+            OdsChoiceChip(
+                text = stringResource(id = R.string.component_element_none), value = TextFieldCustomizationState.TrailingElement.None
+            ),
+            OdsChoiceChip(
+                text = stringResource(id = R.string.component_element_icon), value = TextFieldCustomizationState.TrailingElement.Icon
+            ),
+            OdsChoiceChip(
+                text = stringResource(id = R.string.component_element_text), value = TextFieldCustomizationState.TrailingElement.Text
+            ),
+        )
+    )
     OdsListItem(
         text = stringResource(id = R.string.component_text_field_character_counter),
         trailing = OdsSwitchTrailing(checked = textFieldCustomizationState.characterCounter)
@@ -167,14 +180,13 @@ private fun ComponentCustomizationContent(textFieldCustomizationState: TextField
 private fun KeyboardCustomizationContent(textFieldCustomizationState: TextFieldCustomizationState) {
     Subtitle(textRes = R.string.component_text_field_keyboard_type, horizontalPadding = true)
     OdsChoiceChipsFlowRow(
-        selectedChip = textFieldCustomizationState.softKeyboardType,
-        modifier = Modifier
-            .padding(horizontal = dimensionResource(id = com.orange.ods.R.dimen.spacing_m)),
-    ) {
-        TextFieldCustomizationState.SoftKeyboardType.values().forEach { softKeyboardType ->
+        value = textFieldCustomizationState.softKeyboardType.value,
+        onValueChange = { value -> textFieldCustomizationState.softKeyboardType.value = value },
+        modifier = Modifier.padding(horizontal = dimensionResource(id = com.orange.ods.R.dimen.spacing_m)),
+        chips = TextFieldCustomizationState.SoftKeyboardType.values().map { softKeyboardType ->
             OdsChoiceChip(text = stringResource(id = softKeyboardType.labelRes), value = softKeyboardType)
         }
-    }
+    )
 
     OdsListItem(
         text = stringResource(id = R.string.component_text_field_keyboard_capitalization),
@@ -183,31 +195,41 @@ private fun KeyboardCustomizationContent(textFieldCustomizationState: TextFieldC
 
     Subtitle(textRes = R.string.component_text_field_keyboard_action, horizontalPadding = true)
     OdsChoiceChipsFlowRow(
-        selectedChip = textFieldCustomizationState.softKeyboardAction,
+        value = textFieldCustomizationState.softKeyboardAction.value,
+        onValueChange = { value -> textFieldCustomizationState.softKeyboardAction.value = value },
         modifier = Modifier.padding(horizontal = dimensionResource(id = com.orange.ods.R.dimen.spacing_m)),
-    ) {
-        TextFieldCustomizationState.SoftKeyboardAction.values().forEach { softKeyboardAction ->
+        chips = TextFieldCustomizationState.SoftKeyboardAction.values().map { softKeyboardAction ->
             OdsChoiceChip(text = stringResource(id = softKeyboardAction.labelRes), value = softKeyboardAction)
         }
-    }
+    )
 }
 
 @Composable
 private fun DisplayTypeCustomization(displayType: MutableState<TextFieldCustomizationState.DisplayType>) {
+    val context = LocalContext.current
     Subtitle(textRes = R.string.component_state, horizontalPadding = true)
     OdsChoiceChipsFlowRow(
-        selectedChip = displayType,
+        value = displayType.value,
+        onValueChange = { value -> displayType.value = value },
         modifier = Modifier.padding(horizontal = dimensionResource(id = com.orange.ods.R.dimen.spacing_m)),
-    ) {
-        val context = LocalContext.current
-        OdsChoiceChip(textRes = R.string.component_state_default, value = TextFieldCustomizationState.DisplayType.Default)
-        OdsChoiceChip(textRes = R.string.component_state_error, value = TextFieldCustomizationState.DisplayType.Error, modifier = Modifier.semantics {
-            if (displayType.value == TextFieldCustomizationState.DisplayType.Error) {
-                error(context.getString(R.string.component_text_field_error_message))
-            }
-        })
-        OdsChoiceChip(textRes = R.string.component_state_disabled, value = TextFieldCustomizationState.DisplayType.Disabled)
-    }
+        chips = listOf(
+            OdsChoiceChip(
+                text = stringResource(id = R.string.component_state_default), value = TextFieldCustomizationState.DisplayType.Default
+            ),
+            OdsChoiceChip(
+                text = stringResource(id = R.string.component_state_error),
+                value = TextFieldCustomizationState.DisplayType.Error,
+                modifier = Modifier.semantics {
+                    if (displayType.value == TextFieldCustomizationState.DisplayType.Error) {
+                        error(context.getString(R.string.component_text_field_error_message))
+                    }
+                }
+            ),
+            OdsChoiceChip(
+                text = stringResource(id = R.string.component_state_disabled), value = TextFieldCustomizationState.DisplayType.Disabled
+            ),
+        )
+    )
 }
 
 private enum class CustomizationTab(@StringRes val titleRes: Int) {

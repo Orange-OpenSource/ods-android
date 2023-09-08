@@ -59,13 +59,15 @@ fun Chip(variant: Variant) {
                 if (isInputChip) {
                     Subtitle(textRes = R.string.component_element_leading, horizontalPadding = true)
                     OdsChoiceChipsFlowRow(
-                        selectedChip = leadingElement,
-                        modifier = Modifier.padding(horizontal = dimensionResource(id = com.orange.ods.R.dimen.screen_horizontal_margin)),
-                    ) {
-                        OdsChoiceChip(textRes = R.string.component_element_none, value = LeadingElement.None)
-                        OdsChoiceChip(textRes = R.string.component_element_avatar, value = LeadingElement.Avatar)
-                        OdsChoiceChip(textRes = R.string.component_element_icon, value = LeadingElement.Icon)
-                    }
+                        value = leadingElement.value,
+                        onValueChange = { value -> leadingElement.value = value },
+                        modifier = Modifier.padding(horizontal = dimensionResource(id = com.orange.ods.R.dimen.spacing_m)),
+                        chips = listOf(
+                            OdsChoiceChip(text = stringResource(id = R.string.component_element_none), value = LeadingElement.None),
+                            OdsChoiceChip(text = stringResource(id = R.string.component_element_avatar), value = LeadingElement.Avatar),
+                            OdsChoiceChip(text = stringResource(id = R.string.component_element_icon), value = LeadingElement.Icon)
+                        )
+                    )
                 } else {
                     resetLeadingElement()
                 }
@@ -110,15 +112,18 @@ private fun Chip(chipCustomizationState: ChipCustomizationState) {
 
     with(chipCustomizationState) {
         if (isChoiceChip) {
-            OdsChoiceChipsFlowRow(selectedChip = choiceChipIndexSelected) {
-                recipes.forEachIndexed { index, recipe ->
+            OdsChoiceChipsFlowRow(
+                value = choiceChipIndexSelected.value,
+                onValueChange = { value -> choiceChipIndexSelected.value = value },
+                modifier = Modifier.padding(horizontal = dimensionResource(id = com.orange.ods.R.dimen.spacing_m)),
+                chips = recipes.mapIndexed { index, recipe ->
                     OdsChoiceChip(
                         text = recipe.title,
                         value = index,
                         enabled = isEnabled
                     )
                 }
-            }
+            )
 
             Spacer(modifier = Modifier.padding(top = dimensionResource(com.orange.ods.R.dimen.spacing_s)))
 
@@ -126,19 +131,19 @@ private fun Chip(chipCustomizationState: ChipCustomizationState) {
                 FunctionCallCode(
                     name = OdsComposable.OdsChoiceChipsFlowRow.name,
                     parameters = {
-                        mutableState("selectedChip", choiceChipIndexSelected.value.toString())
+                        stringRepresentation("value", choiceChipIndexSelected.value.toString())
+                        lambda("onValueChange")
+                        list("chips") {
+                            recipes.forEachIndexed { index, recipe ->
+                                classInstance(OdsChoiceChip::class.java) {
+                                    text(recipe.title)
+                                    stringRepresentation("value", index)
+                                    if (!isEnabled) enabled(false)
+                                }
+                            }
+                        }
                     }
-                ) {
-                    recipes.forEachIndexed { index, recipe ->
-                        FunctionCallCode(
-                            name = OdsComposable.OdsChoiceChip.name,
-                            parameters = {
-                                text(recipe.title)
-                                stringRepresentation("value", index)
-                                if (!isEnabled) enabled(false)
-                            })
-                    }
-                }
+                )
             }
         } else {
             val recipe = recipes.firstOrNull()
