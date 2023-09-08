@@ -17,6 +17,7 @@ import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.layout.width
 import androidx.compose.material.ButtonDefaults
 import androidx.compose.material.LinearProgressIndicator
 import androidx.compose.material.Text
@@ -78,6 +79,8 @@ fun OdsLinearProgressIndicator(
             horizontalArrangement = Arrangement.spacedBy(dimensionResource(id = R.dimen.spacing_s))
         ) {
             icon?.Content()
+            Spacer(Modifier.width(ButtonDefaults.IconSpacing))
+            
             if (label != null) {
                 Text(
                     text = label,
@@ -143,7 +146,6 @@ class OdsLinearProgressIndicatorIcon : OdsComponentIcon {
     @Composable
     override fun Content(modifier: Modifier) {
         super.Content(modifier = modifier.size(ButtonDefaults.IconSize))
-        Spacer(Modifier.size(ButtonDefaults.IconSpacing))
     }
 }
 
