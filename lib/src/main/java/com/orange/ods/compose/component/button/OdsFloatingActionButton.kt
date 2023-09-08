@@ -11,11 +11,9 @@
 package com.orange.ods.compose.component.button
 
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
-import androidx.compose.material.ButtonDefaults
 import androidx.compose.material.ExtendedFloatingActionButton
 import androidx.compose.material.FloatingActionButton
 import androidx.compose.material.Icon
@@ -69,7 +67,7 @@ fun OdsFloatingActionButton(
         backgroundColor = OdsTheme.colors.component.floatingActionButton.background,
         contentColor = OdsTheme.colors.component.floatingActionButton.content
     ) {
-        icon.Content(modifier = Modifier.size(FabIconSize))
+        icon.Content()
     }
 }
 
@@ -102,7 +100,7 @@ fun OdsExtendedFloatingActionButton(
         modifier = modifier,
         backgroundColor = OdsTheme.colors.component.floatingActionButton.background,
         contentColor = OdsTheme.colors.component.floatingActionButton.content,
-        icon = { icon.Content(modifier = Modifier.size(FabIconSize)) }
+        icon = { icon.Content() }
     )
 }
 
@@ -137,8 +135,7 @@ class OdsFloatingActionButtonIcon : OdsComponentIcon {
 
     @Composable
     override fun Content(modifier: Modifier) {
-        super.Content(modifier = modifier.size(ButtonDefaults.IconSize))
-        Spacer(Modifier.size(ButtonDefaults.IconSpacing))
+        super.Content(modifier = modifier.size(FabIconSize))
     }
 }
 
