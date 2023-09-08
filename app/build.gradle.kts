@@ -74,6 +74,9 @@ android {
                 signingConfig = this@android.signingConfigs.getByName(signingConfigName)
             }
         }
+        debug {
+            applicationIdSuffix = ".debug"
+        }
     }
 
     firebaseAppDistribution {
