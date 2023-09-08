@@ -110,11 +110,7 @@ fun ComponentImageTile() {
                         ), ""
                     ),
                     title = if (hasText) recipe.title else null,
-                    legendAreaDisplayType = when {
-                        isOverlay -> OdsImageTileLegendAreaDisplayType.Overlay
-                        isBelow -> OdsImageTileLegendAreaDisplayType.Below
-                        else -> OdsImageTileLegendAreaDisplayType.None
-                    },
+                    legendAreaDisplayType = type.value,
                     icon = if (hasIcon) {
                         OdsImageTileIconToggleButton(
                             uncheckedIcon = OdsIconButtonIcon(

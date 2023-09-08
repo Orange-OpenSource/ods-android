@@ -30,13 +30,6 @@ class ImageTileCustomizationState(
     val type: MutableState<OdsImageTileLegendAreaDisplayType>,
     val iconDisplayed: MutableState<Boolean>
 ) {
-
-    val isOverlay
-        get() = type.value == OdsImageTileLegendAreaDisplayType.Overlay
-
-    val isBelow
-        get() = type.value == OdsImageTileLegendAreaDisplayType.Below
-
     val hasIcon
         get() = iconDisplayed.value
 
