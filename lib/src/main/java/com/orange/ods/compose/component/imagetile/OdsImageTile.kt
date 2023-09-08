@@ -223,7 +223,7 @@ private fun OdsImageTileCaption(
 
 @UiModePreviews.ImageTile
 @Composable
-private fun PreviewOdsImageList(@PreviewParameter(OdsImageListPreviewParameterProvider::class) parameter: OdsImageListPreviewParameter) =
+private fun PreviewOdsImageTile(@PreviewParameter(OdsImageTilePreviewParameterProvider::class) parameter: OdsImageTilePreviewParameter) =
     Preview {
         OdsImageTile(
             image = OdsImageTileImage(painterResource(id = parameter.image), ""),
@@ -238,7 +238,7 @@ private fun PreviewOdsImageList(@PreviewParameter(OdsImageListPreviewParameterPr
         )
     }
 
-private data class OdsImageListPreviewParameter(
+private data class OdsImageTilePreviewParameter(
     val image: Int,
     val checked: Boolean,
     val title: String,
@@ -247,10 +247,10 @@ private data class OdsImageListPreviewParameter(
     val type: OdsImageTileCaptionDisplayType
 )
 
-private class OdsImageListPreviewParameterProvider :
-    BasicPreviewParameterProvider<OdsImageListPreviewParameter>(*previewParameterValues.toTypedArray())
+private class OdsImageTilePreviewParameterProvider :
+    BasicPreviewParameterProvider<OdsImageTilePreviewParameter>(*previewParameterValues.toTypedArray())
 
-private val previewParameterValues: List<OdsImageListPreviewParameter>
+private val previewParameterValues: List<OdsImageTilePreviewParameter>
     get() {
         val title = "Subtitle 1"
         val image = R.drawable.placeholder
@@ -258,7 +258,7 @@ private val previewParameterValues: List<OdsImageListPreviewParameter>
         val uncheckedIcon = R.drawable.ic_check
 
         return listOf(
-            OdsImageListPreviewParameter(
+            OdsImageTilePreviewParameter(
                 image,
                 title = title,
                 checkedIcon = checkedIcon,
@@ -266,7 +266,7 @@ private val previewParameterValues: List<OdsImageListPreviewParameter>
                 checked = false,
                 type = OdsImageTileCaptionDisplayType.Below
             ),
-            OdsImageListPreviewParameter(
+            OdsImageTilePreviewParameter(
                 image,
                 title = title,
                 checkedIcon = checkedIcon,
@@ -274,7 +274,7 @@ private val previewParameterValues: List<OdsImageListPreviewParameter>
                 checked = false,
                 type = OdsImageTileCaptionDisplayType.Overlay
             ),
-            OdsImageListPreviewParameter(
+            OdsImageTilePreviewParameter(
                 image,
                 title = title,
                 checkedIcon = checkedIcon,
