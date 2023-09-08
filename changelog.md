@@ -24,6 +24,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - \[Lib\] Update `OdsIconButton`, `OdsIconToggleButton`and `OdsIconToggleButtonsRow` APIs ([#599](https://github.com/Orange-OpenSource/ods-android/issues/599))
 - \[Lib\] Update `OdsAlertDialog` API ([#605](https://github.com/Orange-OpenSource/ods-android/issues/605))
 - \[Lib\] Update `OdsFloatingActionButton` and `OdsExtendedFloatingActionButton` APIs ([#611](https://github.com/Orange-OpenSource/ods-android/issues/611))
+- \[Lib\] Update `OdsLinearProgressIndicator` and `OdsCircularProgressIndicator` APIs ([#607](https://github.com/Orange-OpenSource/ods-android/issues/607))
 
 ### Fixed
 
