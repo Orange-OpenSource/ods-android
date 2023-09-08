@@ -51,10 +51,10 @@ import com.orange.ods.extension.orElse
  * actions. They are usually used in grids.
  *
  * @param image Image display in the [OdsImageTile].
- * @param captionDisplayType Specify how the title and the icon are displayed relatively to the image. If set to [OdsImageTileCaptionDisplayType.None],
- * no caption will be displayed.
+ * @param legendAreaDisplayType Specify how the title and the icon are displayed relatively to the image. If set to [OdsImageTileLegendAreaDisplayType.None],
+ * no legend area will be displayed.
  * @param modifier Modifier to be applied to this [OdsImageTile]
- * @param title Title linked to the image. It is displayed according the [captionDisplayType] value.
+ * @param title Title linked to the image. It is displayed according the [legendAreaDisplayType] value.
  * @param icon The [OdsImageTileIconToggleButton] displayed next to the title
  * @param onClick Callback to be invoked on tile click.
  */
@@ -62,7 +62,7 @@ import com.orange.ods.extension.orElse
 @OdsComposable
 fun OdsImageTile(
     image: OdsImageTileImage,
-    captionDisplayType: OdsImageTileCaptionDisplayType,
+    legendAreaDisplayType: OdsImageTileLegendAreaDisplayType,
     modifier: Modifier = Modifier,
     title: String? = null,
     icon: OdsImageTileIconToggleButton? = null,
@@ -71,8 +71,8 @@ fun OdsImageTile(
     Box(modifier = modifier.run {
         onClick?.let { clickable { onClick() } }.orElse { this }
     }) {
-        when (captionDisplayType) {
-            OdsImageTileCaptionDisplayType.Overlay -> {
+        when (legendAreaDisplayType) {
+            OdsImageTileLegendAreaDisplayType.Overlay -> {
                 image.Content(modifier = Modifier.fillMaxSize())
                 title?.let {
                     Row(
@@ -82,7 +82,7 @@ fun OdsImageTile(
                             .align(Alignment.BottomStart)
                             .height(dimensionResource(id = R.dimen.list_single_line_item_height))
                     ) {
-                        OdsImageTileCaption(
+                        OdsImageTileLegendArea(
                             text = it,
                             color = Color.White,
                             displaySurface = OdsDisplaySurface.Dark,
@@ -95,7 +95,7 @@ fun OdsImageTile(
                 }
             }
 
-            OdsImageTileCaptionDisplayType.Below ->
+            OdsImageTileLegendAreaDisplayType.Below ->
                 Column(verticalArrangement = Arrangement.Center) {
                     image.Content(
                         modifier = Modifier
@@ -108,7 +108,7 @@ fun OdsImageTile(
                             .height(dimensionResource(id = R.dimen.image_item_title_height))
                     ) {
                         title?.let {
-                            OdsImageTileCaption(
+                            OdsImageTileLegendArea(
                                 text = it,
                                 color = OdsTheme.colors.onSurface,
                                 displaySurface = OdsDisplaySurface.Default,
@@ -121,7 +121,7 @@ fun OdsImageTile(
                     }
                 }
 
-            OdsImageTileCaptionDisplayType.None ->
+            OdsImageTileLegendAreaDisplayType.None ->
                 image.Content(modifier = Modifier.fillMaxSize())
         }
     }
@@ -198,12 +198,12 @@ class OdsImageTileIconToggleButton(
     }
 }
 
-enum class OdsImageTileCaptionDisplayType {
+enum class OdsImageTileLegendAreaDisplayType {
     Below, Overlay, None
 }
 
 @Composable
-private fun OdsImageTileCaption(
+private fun OdsImageTileLegendArea(
     text: String,
     color: Color,
     displaySurface: OdsDisplaySurface,
@@ -228,7 +228,7 @@ private fun PreviewOdsImageTile(@PreviewParameter(OdsImageTilePreviewParameterPr
         OdsImageTile(
             image = OdsImageTileImage(painterResource(id = parameter.image), ""),
             title = parameter.title,
-            captionDisplayType = parameter.type,
+            legendAreaDisplayType = parameter.type,
             icon = OdsImageTileIconToggleButton(
                 uncheckedIcon = OdsIconButtonIcon(painterResource(id = parameter.uncheckedIcon), "click to select"),
                 checkedIcon = OdsIconButtonIcon(painterResource(id = parameter.checkedIcon), "click to unselect"),
@@ -244,7 +244,7 @@ private data class OdsImageTilePreviewParameter(
     val title: String,
     val checkedIcon: Int,
     val uncheckedIcon: Int,
-    val type: OdsImageTileCaptionDisplayType
+    val type: OdsImageTileLegendAreaDisplayType
 )
 
 private class OdsImageTilePreviewParameterProvider :
@@ -264,7 +264,7 @@ private val previewParameterValues: List<OdsImageTilePreviewParameter>
                 checkedIcon = checkedIcon,
                 uncheckedIcon = uncheckedIcon,
                 checked = false,
-                type = OdsImageTileCaptionDisplayType.Below
+                type = OdsImageTileLegendAreaDisplayType.Below
             ),
             OdsImageTilePreviewParameter(
                 image,
@@ -272,7 +272,7 @@ private val previewParameterValues: List<OdsImageTilePreviewParameter>
                 checkedIcon = checkedIcon,
                 uncheckedIcon = uncheckedIcon,
                 checked = false,
-                type = OdsImageTileCaptionDisplayType.Overlay
+                type = OdsImageTileLegendAreaDisplayType.Overlay
             ),
             OdsImageTilePreviewParameter(
                 image,
@@ -280,7 +280,7 @@ private val previewParameterValues: List<OdsImageTilePreviewParameter>
                 checkedIcon = checkedIcon,
                 uncheckedIcon = uncheckedIcon,
                 checked = true,
-                type = OdsImageTileCaptionDisplayType.None
+                type = OdsImageTileLegendAreaDisplayType.None
             )
         )
     }

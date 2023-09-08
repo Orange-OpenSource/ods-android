@@ -42,9 +42,9 @@ import com.orange.ods.compose.component.button.OdsIconButtonIcon
 import com.orange.ods.compose.component.chip.OdsChoiceChip
 import com.orange.ods.compose.component.chip.OdsChoiceChipsFlowRow
 import com.orange.ods.compose.component.imagetile.OdsImageTile
-import com.orange.ods.compose.component.imagetile.OdsImageTileCaptionDisplayType
 import com.orange.ods.compose.component.imagetile.OdsImageTileIconToggleButton
 import com.orange.ods.compose.component.imagetile.OdsImageTileImage
+import com.orange.ods.compose.component.imagetile.OdsImageTileLegendAreaDisplayType
 import com.orange.ods.compose.component.list.OdsListItem
 import com.orange.ods.compose.component.list.OdsSwitchTrailing
 
@@ -58,7 +58,7 @@ fun ComponentImageTile() {
     val recipe = rememberSaveable { recipes.random() }
 
     with(imageTileCustomizationState) {
-        if (type.value == OdsImageTileCaptionDisplayType.None) {
+        if (type.value == OdsImageTileLegendAreaDisplayType.None) {
             iconDisplayed.value = false
         }
         if (!hasIcon) {
@@ -73,9 +73,9 @@ fun ComponentImageTile() {
                     outlinedChips = true
                 ) {
                     Subtitle(textRes = R.string.component_image_tile_caption_display_type)
-                    OdsChoiceChip(textRes = R.string.component_image_tile_caption_display_overlay, value = OdsImageTileCaptionDisplayType.Overlay)
-                    OdsChoiceChip(textRes = R.string.component_image_tile_caption_display_below, value = OdsImageTileCaptionDisplayType.Below)
-                    OdsChoiceChip(textRes = R.string.component_element_none, value = OdsImageTileCaptionDisplayType.None)
+                    OdsChoiceChip(textRes = R.string.component_image_tile_caption_display_overlay, value = OdsImageTileLegendAreaDisplayType.Overlay)
+                    OdsChoiceChip(textRes = R.string.component_image_tile_caption_display_below, value = OdsImageTileLegendAreaDisplayType.Below)
+                    OdsChoiceChip(textRes = R.string.component_element_none, value = OdsImageTileLegendAreaDisplayType.None)
                 }
                 OdsListItem(
                     text = stringResource(id = R.string.component_element_icon),
@@ -93,9 +93,9 @@ fun ComponentImageTile() {
             ) {
                 val imageSize = 200.dp
                 val height = when (type.value) {
-                    OdsImageTileCaptionDisplayType.Below -> imageSize + dimensionResource(id = com.orange.ods.R.dimen.image_item_title_height)
-                    OdsImageTileCaptionDisplayType.Overlay,
-                    OdsImageTileCaptionDisplayType.None -> imageSize
+                    OdsImageTileLegendAreaDisplayType.Below -> imageSize + dimensionResource(id = com.orange.ods.R.dimen.image_item_title_height)
+                    OdsImageTileLegendAreaDisplayType.Overlay,
+                    OdsImageTileLegendAreaDisplayType.None -> imageSize
                 }
                 OdsImageTile(
                     modifier = Modifier
@@ -110,10 +110,10 @@ fun ComponentImageTile() {
                         ), ""
                     ),
                     title = if (hasText) recipe.title else null,
-                    captionDisplayType = when {
-                        isOverlay -> OdsImageTileCaptionDisplayType.Overlay
-                        isBelow -> OdsImageTileCaptionDisplayType.Below
-                        else -> OdsImageTileCaptionDisplayType.None
+                    legendAreaDisplayType = when {
+                        isOverlay -> OdsImageTileLegendAreaDisplayType.Overlay
+                        isBelow -> OdsImageTileLegendAreaDisplayType.Below
+                        else -> OdsImageTileLegendAreaDisplayType.None
                     },
                     icon = if (hasIcon) {
                         OdsImageTileIconToggleButton(
@@ -139,7 +139,7 @@ fun ComponentImageTile() {
                         name = OdsComposable.OdsImageTile.name,
                         exhaustiveParameters = false,
                         parameters = {
-                            stringRepresentation("captionDisplayType", type.value)
+                            stringRepresentation("legendAreaDisplayType", type.value)
                             if (hasText) title(recipe.title)
                             classInstance("image", OdsImageTileImage::class.java) {
                                 painter()
