@@ -39,18 +39,20 @@ OdsImageTile(
     ),
     modifier = modifier,
     captionDisplayType = OdsImageTileCaptionDisplayType.Overlay,
-    iconChecked = false,
-    iconSelected = true,
-    onIconCheckedChange = { },
-    checkedIcon = OdsIconButtonIcon(
-        painterResource(id = R.drawable.ic_heart),
-        "Remove from favourites"
-    ),
-    uncheckedIcon = OdsIconButtonIcon(
-        painterResource(id = R.drawable.ic_heart_outlined),
-        "Add to favourites"
-    ),
-    title = "Component Image Tile" // Optional 
+    title = "Component Image Tile", // Optional 
+    icon = OdsImageTileIconToggleButton(
+        uncheckedIcon = OdsIconButtonIcon(
+            painterResource(id = R.drawable.ic_heart_outlined),
+            "Add to favourites"
+        ),
+        checkedIcon = OdsIconButtonIcon(
+            painterResource(id = R.drawable.ic_heart),
+            "Remove from favourites"
+        ),
+        checked = false,
+        onCheckedChange = { },
+    ), // Optional
+    onClick = { } // Optional
 )
 ```
 

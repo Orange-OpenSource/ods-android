@@ -54,12 +54,9 @@ import com.orange.ods.extension.orElse
  * @param captionDisplayType Specify how the title and the icon are displayed relatively to the image. If set to [OdsImageTileCaptionDisplayType.None],
  * no caption will be displayed.
  * @param modifier Modifier to be applied to this [OdsImageTile]
- * @param onClick Callback to be invoked on tile click.
  * @param title Title linked to the image. It is displayed according the [captionDisplayType] value.
- * @param iconChecked Specify if icon is currently checked
- * @param onIconCheckedChange Callback to be invoked when this icon is selected
- * @param checkedIcon Icon displayed in front of the [OdsImageTile] when icon is checked
- * @param uncheckedIcon Icon displayed in front of the [OdsImageTile] when icon is unchecked
+ * @param icon The [OdsImageTileIconToggleButton] displayed next to the title
+ * @param onClick Callback to be invoked on tile click.
  */
 @Composable
 @OdsComposable
@@ -67,12 +64,9 @@ fun OdsImageTile(
     image: OdsImageTileImage,
     captionDisplayType: OdsImageTileCaptionDisplayType,
     modifier: Modifier = Modifier,
-    onClick: (() -> Unit)? = null,
     title: String? = null,
-    iconChecked: Boolean = false,
-    onIconCheckedChange: (Boolean) -> Unit = {},
-    checkedIcon: OdsIconButtonIcon? = null,
-    uncheckedIcon: OdsIconButtonIcon? = null,
+    icon: OdsImageTileIconToggleButton? = null,
+    onClick: (() -> Unit)? = null,
 ) {
     Box(modifier = modifier.let { m ->
         onClick?.let { m.clickable { onClick() } }.orElse { m }
@@ -90,15 +84,12 @@ fun OdsImageTile(
                     ) {
                         OdsImageTileCaption(
                             text = it,
-                            iconChecked = iconChecked,
                             color = Color.White,
-                            onIconCheckedChange = onIconCheckedChange,
-                            uncheckedIcon = uncheckedIcon,
-                            checkedIcon = checkedIcon,
                             displaySurface = OdsDisplaySurface.Dark,
                             modifier = Modifier
                                 .weight(1f)
                                 .padding(start = dimensionResource(id = R.dimen.spacing_m), end = dimensionResource(id = R.dimen.spacing_m)),
+                            icon = icon
                         )
                     }
                 }
@@ -119,15 +110,12 @@ fun OdsImageTile(
                         title?.let {
                             OdsImageTileCaption(
                                 text = it,
-                                iconChecked = iconChecked,
                                 color = OdsTheme.colors.onSurface,
-                                onIconCheckedChange = onIconCheckedChange,
-                                uncheckedIcon = uncheckedIcon,
-                                checkedIcon = checkedIcon,
                                 displaySurface = OdsDisplaySurface.Default,
                                 modifier = Modifier
                                     .weight(1f)
                                     .padding(end = dimensionResource(id = R.dimen.spacing_m)),
+                                icon = icon
                             )
                         }
                     }
@@ -184,6 +172,32 @@ class OdsImageTileImage : OdsComponentImage {
     )
 }
 
+/**
+ * An icon toggle button in an [OdsImageTile].
+ *
+ * @param checked Specify if icon is currently checked
+ * @param onCheckedChange Callback to be invoked when this icon is selected
+ * @param checkedIcon Icon displayed in front of the [OdsImageTile] when icon is checked
+ * @param uncheckedIcon Icon displayed in front of the [OdsImageTile] when icon is unchecked
+ */
+class OdsImageTileIconToggleButton(
+    val checked: Boolean,
+    val onCheckedChange: (Boolean) -> Unit,
+    val checkedIcon: OdsIconButtonIcon,
+    val uncheckedIcon: OdsIconButtonIcon,
+) {
+    @Composable
+    fun Content(displaySurface: OdsDisplaySurface) {
+        OdsIconToggleButton(
+            checked = checked,
+            onCheckedChange = onCheckedChange,
+            uncheckedIcon = uncheckedIcon,
+            checkedIcon = checkedIcon,
+            displaySurface = displaySurface
+        )
+    }
+}
+
 enum class OdsImageTileCaptionDisplayType {
     Below, Overlay, None
 }
@@ -191,13 +205,10 @@ enum class OdsImageTileCaptionDisplayType {
 @Composable
 private fun OdsImageTileCaption(
     text: String,
-    iconChecked: Boolean,
     color: Color,
-    onIconCheckedChange: (Boolean) -> Unit,
-    uncheckedIcon: OdsIconButtonIcon?,
-    checkedIcon: OdsIconButtonIcon?,
-    modifier: Modifier,
     displaySurface: OdsDisplaySurface,
+    icon: OdsImageTileIconToggleButton?,
+    modifier: Modifier
 ) {
     Text(
         text = text,
@@ -207,15 +218,7 @@ private fun OdsImageTileCaption(
         maxLines = 1,
         overflow = TextOverflow.Ellipsis
     )
-    if (uncheckedIcon != null && checkedIcon != null) {
-        OdsIconToggleButton(
-            checked = iconChecked,
-            onCheckedChange = onIconCheckedChange,
-            uncheckedIcon = uncheckedIcon,
-            checkedIcon = checkedIcon,
-            displaySurface = displaySurface
-        )
-    }
+    icon?.Content(displaySurface)
 }
 
 @UiModePreviews.ImageTile
@@ -224,12 +227,14 @@ private fun PreviewOdsImageList(@PreviewParameter(OdsImageListPreviewParameterPr
     Preview {
         OdsImageTile(
             image = OdsImageTileImage(painterResource(id = parameter.image), ""),
-            uncheckedIcon = OdsIconButtonIcon(painterResource(id = parameter.uncheckedIcon), "click to select"),
-            checkedIcon = OdsIconButtonIcon(painterResource(id = parameter.checkedIcon), "click to unselect"),
             title = parameter.title,
-            iconChecked = parameter.checked,
-            onIconCheckedChange = { parameter.checked },
-            captionDisplayType = parameter.type
+            captionDisplayType = parameter.type,
+            icon = OdsImageTileIconToggleButton(
+                uncheckedIcon = OdsIconButtonIcon(painterResource(id = parameter.uncheckedIcon), "click to select"),
+                checkedIcon = OdsIconButtonIcon(painterResource(id = parameter.checkedIcon), "click to unselect"),
+                checked = parameter.checked,
+                onCheckedChange = { parameter.checked },
+            )
         )
     }
 

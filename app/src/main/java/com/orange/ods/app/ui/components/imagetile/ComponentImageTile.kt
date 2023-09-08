@@ -43,6 +43,7 @@ import com.orange.ods.compose.component.chip.OdsChoiceChip
 import com.orange.ods.compose.component.chip.OdsChoiceChipsFlowRow
 import com.orange.ods.compose.component.imagetile.OdsImageTile
 import com.orange.ods.compose.component.imagetile.OdsImageTileCaptionDisplayType
+import com.orange.ods.compose.component.imagetile.OdsImageTileIconToggleButton
 import com.orange.ods.compose.component.imagetile.OdsImageTileImage
 import com.orange.ods.compose.component.list.OdsListItem
 import com.orange.ods.compose.component.list.OdsSwitchTrailing
@@ -108,26 +109,28 @@ fun ComponentImageTile() {
                             error = painterResource(id = R.drawable.placeholder)
                         ), ""
                     ),
-                    uncheckedIcon = if (hasIcon) {
-                        OdsIconButtonIcon(
-                            painterResource(id = R.drawable.ic_heart_outlined),
-                            stringResource(id = R.string.component_button_icon_toggle_favorite_add_icon_desc)
-                        )
-                    } else null,
-                    checkedIcon = if (hasIcon) {
-                        OdsIconButtonIcon(
-                            painterResource(id = R.drawable.ic_heart),
-                            stringResource(id = R.string.component_button_icon_toggle_favorite_remove_icon_desc)
-                        )
-                    } else null,
                     title = if (hasText) recipe.title else null,
-                    iconChecked = iconChecked,
-                    onIconCheckedChange = { checked -> iconChecked = checked },
                     captionDisplayType = when {
                         isOverlay -> OdsImageTileCaptionDisplayType.Overlay
                         isBelow -> OdsImageTileCaptionDisplayType.Below
                         else -> OdsImageTileCaptionDisplayType.None
                     },
+                    icon = if (hasIcon) {
+                        OdsImageTileIconToggleButton(
+                            uncheckedIcon = OdsIconButtonIcon(
+                                painterResource(id = R.drawable.ic_heart_outlined),
+                                stringResource(id = R.string.component_button_icon_toggle_favorite_add_icon_desc)
+                            ),
+                            checkedIcon = OdsIconButtonIcon(
+                                painterResource(id = R.drawable.ic_heart),
+                                stringResource(id = R.string.component_button_icon_toggle_favorite_remove_icon_desc)
+                            ),
+                            checked = iconChecked,
+                            onCheckedChange = { checked -> iconChecked = checked },
+                        )
+                    } else {
+                        null
+                    }
                 )
                 CodeImplementationColumn(
                     modifier = Modifier.padding(end = dimensionResource(id = com.orange.ods.R.dimen.spacing_m))
