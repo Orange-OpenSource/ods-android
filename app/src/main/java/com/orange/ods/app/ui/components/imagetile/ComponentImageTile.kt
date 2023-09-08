@@ -15,6 +15,8 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.ExperimentalMaterialApi
 import androidx.compose.material.rememberBottomSheetScaffoldState
 import androidx.compose.runtime.Composable
@@ -85,6 +87,7 @@ fun ComponentImageTile() {
             Column(
                 modifier = Modifier
                     .fillMaxSize()
+                    .verticalScroll(rememberScrollState())
                     .padding(
                         top = dimensionResource(id = com.orange.ods.R.dimen.screen_horizontal_margin),
                         start = dimensionResource(id = com.orange.ods.R.dimen.screen_horizontal_margin)
@@ -141,16 +144,18 @@ fun ComponentImageTile() {
                                 painter()
                                 contentDescription("")
                             }
-                            checked(iconChecked)
-                            lambda("onIconCheckedChange")
                             if (hasIcon) {
-                                classInstance("uncheckedIcon", OdsIconButtonIcon::class.java) {
-                                    painter()
-                                    contentDescription("")
-                                }
-                                classInstance("checkedIcon", OdsIconButtonIcon::class.java) {
-                                    painter()
-                                    contentDescription("")
+                                classInstance("icon", OdsImageTileIconToggleButton::class.java) {
+                                    checked(iconChecked)
+                                    lambda("onCheckedChange")
+                                    classInstance("uncheckedIcon", OdsIconButtonIcon::class.java) {
+                                        painter()
+                                        contentDescription("")
+                                    }
+                                    classInstance("checkedIcon", OdsIconButtonIcon::class.java) {
+                                        painter()
+                                        contentDescription("")
+                                    }
                                 }
                             }
                         })
