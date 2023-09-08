@@ -77,7 +77,7 @@ fun OdsLinearProgressIndicator(
                 .padding(bottom = dimensionResource(id = R.dimen.spacing_xs)),
             horizontalArrangement = Arrangement.spacedBy(dimensionResource(id = R.dimen.spacing_s))
         ) {
-            icon?.let { icon.Content() }
+            icon?.Content()
             if (label != null) {
                 Text(
                     text = label,
