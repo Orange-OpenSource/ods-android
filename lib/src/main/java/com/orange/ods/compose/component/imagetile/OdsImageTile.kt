@@ -68,8 +68,8 @@ fun OdsImageTile(
     icon: OdsImageTileIconToggleButton? = null,
     onClick: (() -> Unit)? = null,
 ) {
-    Box(modifier = modifier.let { m ->
-        onClick?.let { m.clickable { onClick() } }.orElse { m }
+    Box(modifier = modifier.run {
+        onClick?.let { clickable { onClick() } }.orElse { this }
     }) {
         when (captionDisplayType) {
             OdsImageTileCaptionDisplayType.Overlay -> {
