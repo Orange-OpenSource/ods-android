@@ -133,7 +133,7 @@ fun TextFieldCodeImplementationColumn(
                     lambda("onValueChange")
                     label(label)
                     placeholder(placeholder)
-                    classInstance("keyboardOptions", KeyboardOptions::class.java) {
+                    classInstance<KeyboardOptions>("keyboardOptions") {
                         simple("capitalization", capitalizationValue)
                         stringRepresentation("keyboardType", softKeyboardType.value.keyboardType)
                         stringRepresentation("imeAction", softKeyboardAction.value.imeAction)

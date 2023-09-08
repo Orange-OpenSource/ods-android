@@ -123,7 +123,7 @@ fun MenuDropdown() {
                             lambda("onDismissRequest")
                             list("items") {
                                 recipes.take(2).forEachIndexed { index, recipe ->
-                                    classInstance(OdsDropdownMenuItem::class.java) {
+                                    classInstance<OdsDropdownMenuItem> {
                                         string("text", recipe.title)
                                         if (hasIcons && recipe.iconResId != null) icon()
                                         if (hasDividerExample && index == dividerIndex) stringRepresentation("divider", true)

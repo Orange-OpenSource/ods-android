@@ -105,7 +105,7 @@ fun MenuExposedDropdown() {
                             string("label", label)
                             list("items") {
                                 items.forEach { item ->
-                                    classInstance(OdsExposedDropdownMenuItem::class.java) {
+                                    classInstance<OdsExposedDropdownMenuItem> {
                                         string("label", item.label)
                                         if (hasIcons) simple("iconResId", "<drawable id>")
                                     }

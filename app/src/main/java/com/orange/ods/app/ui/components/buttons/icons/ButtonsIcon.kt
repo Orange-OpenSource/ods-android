@@ -74,7 +74,7 @@ fun ButtonsIcon(customizationState: ButtonIconCustomizationState) {
                     name = OdsComposable.OdsIconButton.name,
                     exhaustiveParameters = false,
                     parameters = {
-                        classInstance("icon", OdsIconButtonIcon::class.java) {
+                        classInstance<OdsIconButtonIcon>("icon") {
                             painter()
                             contentDescription("")
                         }

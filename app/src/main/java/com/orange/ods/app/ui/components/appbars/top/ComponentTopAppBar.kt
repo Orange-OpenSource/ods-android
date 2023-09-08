@@ -109,15 +109,15 @@ fun ComponentTopAppBar(variant: Variant) {
                                 title(context.getString(R.string.component_app_bars_top_regular))
 
                                 if (isNavigationIconEnabled) {
-                                    classInstance("navigationIcon", OdsTopAppBarNavigationIcon::class.java) {
-                                        simple("imageVector", "<image vector>")
+                                    classInstance<OdsTopAppBarNavigationIcon>("navigationIcon") {
+                                        imageVector()
                                         contentDescription(context.getString(R.string.top_app_bar_back_icon_desc))
                                     }
                                 }
 
                                 list("actions") {
                                     repeat(actionCount.value) {
-                                        classInstance(OdsTopAppBarActionButton::class.java) {
+                                        classInstance<OdsTopAppBarActionButton> {
                                             onClick()
                                             painter()
                                             contentDescription("icon description")

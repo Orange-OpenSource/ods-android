@@ -76,13 +76,13 @@ fun ComponentDialog() {
                     exhaustiveParameters = false,
                     parameters = {
                         simple("text", "<dialog text>")
-                        classInstance("confirmButton", OdsAlertDialogButton::class.java) {
+                        classInstance<OdsAlertDialogButton>("confirmButton") {
                             text(confirmButtonText)
                             onClick()
                         }
                         if (customizationState.isTitleChecked) string("title", recipe.title)
                         if (customizationState.isDismissButtonChecked) {
-                            classInstance("dismissButton", OdsAlertDialogButton::class.java) {
+                            classInstance<OdsAlertDialogButton>("dismissButton") {
                                 text(dismissButtonText)
                                 onClick()
                             }

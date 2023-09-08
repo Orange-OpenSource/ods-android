@@ -79,6 +79,7 @@ fun CardHorizontal(customizationState: CardCustomizationState) {
                     name = OdsComposable.OdsHorizontalCard.name,
                     exhaustiveParameters = false,
                     parameters = {
+                        enum("imagePosition", imagePosition.value)
                         title(recipe.title)
                         classInstance("image", OdsCardImage::class.java) {
                             painter()

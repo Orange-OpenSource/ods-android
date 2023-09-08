@@ -82,11 +82,11 @@ fun ButtonsIconToggle(customizationState: ButtonIconCustomizationState) {
                     name = OdsComposable.OdsIconToggleButton.name,
                     exhaustiveParameters = false,
                     parameters = {
-                        classInstance("uncheckedIcon", OdsIconButtonIcon::class.java) {
+                        classInstance<OdsIconButtonIcon>("uncheckedIcon") {
                             painter()
                             contentDescription("")
                         }
-                        classInstance("checkedIcon", OdsIconButtonIcon::class.java) {
+                        classInstance<OdsIconButtonIcon>("checkedIcon") {
                             painter()
                             contentDescription("")
                         }

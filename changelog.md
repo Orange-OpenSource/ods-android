@@ -17,6 +17,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - \[App\] Add list item component ([#555](https://github.com/Orange-OpenSource/ods-android/issues/555))
 - \[App\] Add toggle text buttons group component ([#530](https://github.com/Orange-OpenSource/ods-android/issues/530))
+- \[App\] Add new convenience methods for code implementation ([#624](https://github.com/Orange-OpenSource/ods-android/issues/624))
 - \[Lib\] Add `OdsTextToggleButtonsRow` component ([#530](https://github.com/Orange-OpenSource/ods-android/issues/530))
 
 ### Changed
