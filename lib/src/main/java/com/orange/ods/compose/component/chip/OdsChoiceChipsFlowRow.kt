@@ -20,6 +20,7 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.dimensionResource
+import androidx.compose.ui.semantics.SemanticsPropertyReceiver
 import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.semantics.stateDescription
 import com.google.accompanist.flowlayout.FlowRow
@@ -75,13 +76,13 @@ fun <T> OdsChoiceChipsFlowRow(
  * @param text Text displayed in the chip
  * @param value The chip value
  * @param enabled If set to false, the chip is no more clickable and appears as disabled. True by default.
- * @param modifier The Modifier applied on choice chip display
+ * @param semantics The semantics applied on this choice chip
  */
 class OdsChoiceChip<T>(
     val text: String,
     val value: T,
     val enabled: Boolean = true,
-    val modifier: Modifier = Modifier
+    val semantics: SemanticsPropertyReceiver.() -> Unit = {}
 ) {
 
     @Composable
@@ -89,8 +90,9 @@ class OdsChoiceChip<T>(
         val chipStateDescription = selectionStateDescription(selected = selected)
         OdsChip(
             text = text,
-            modifier = modifier.semantics {
+            modifier = Modifier.semantics {
                 stateDescription = chipStateDescription
+                semantics()
             },
             selected = selected,
             onClick = { onSelectedStateChange(!selected) },

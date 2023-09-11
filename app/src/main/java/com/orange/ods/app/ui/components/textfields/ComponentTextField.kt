@@ -30,7 +30,6 @@ import androidx.compose.ui.platform.LocalFocusManager
 import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.semantics.error
-import androidx.compose.ui.semantics.semantics
 import com.orange.ods.app.R
 import com.orange.ods.app.ui.components.Variant
 import com.orange.ods.app.ui.components.utilities.ComponentCustomizationBottomSheetScaffold
@@ -219,7 +218,7 @@ private fun DisplayTypeCustomization(displayType: MutableState<TextFieldCustomiz
             OdsChoiceChip(
                 text = stringResource(id = R.string.component_state_error),
                 value = TextFieldCustomizationState.DisplayType.Error,
-                modifier = Modifier.semantics {
+                semantics = {
                     if (displayType.value == TextFieldCustomizationState.DisplayType.Error) {
                         error(context.getString(R.string.component_text_field_error_message))
                     }
