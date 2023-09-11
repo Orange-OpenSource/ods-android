@@ -10,118 +10,112 @@
 
 package com.orange.ods.compose.component.chip
 
-import androidx.annotation.StringRes
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.selection.selectableGroup
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.MutableState
+import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.dimensionResource
-import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.semantics.SemanticsPropertyReceiver
 import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.semantics.stateDescription
-import androidx.compose.ui.tooling.preview.PreviewParameter
 import com.google.accompanist.flowlayout.FlowRow
 import com.orange.ods.R
 import com.orange.ods.compose.component.OdsComposable
-import com.orange.ods.compose.component.utilities.BasicPreviewParameterProvider
 import com.orange.ods.compose.component.utilities.Preview
 import com.orange.ods.compose.component.utilities.UiModePreviews
 import com.orange.ods.compose.component.utilities.selectionStateDescription
+import com.orange.ods.compose.theme.OdsTheme
 
 /**
- * Displays a full width [FlowRow] containing customized choice chips [OdsChoiceChipsFlowRowScope.OdsChoiceChip].
+ * Displays a full width [FlowRow] containing customized [OdsChoiceChip]s.
+ * Only one chip can be selected at a time. When the OdsChoiceChipsFlowRow value changes, [onValueChange] method is invoked.
  *
- * @param selectedChip The selected chips value state.
+ * Note that [OdsChoiceChip] are displayed outlined or filled according to your [OdsTheme] component configuration, outlined by default.
+ *
+ * @param value The initial value of this OdsChoiceChipsFlowRow.
+ * @param onValueChange The callback that is triggered when the value change.
  * @param modifier Modifier to be applied to the flow row.
- * @param outlinedChips If true, a border will be drawn around [FlowRow] chips. Otherwise chips will be filled.
- * @param content The content of the choice chips [FlowRow].
+ * @param chips The list of [OdsChoiceChip]s displayed inside this OdsChoiceChipsFlowRow.
  */
 @Composable
 @OdsComposable
 fun <T> OdsChoiceChipsFlowRow(
-    selectedChip: MutableState<T>,
+    value: T,
+    onValueChange: (value: T) -> Unit,
     modifier: Modifier = Modifier,
-    outlinedChips: Boolean = true,
-    content: @Composable OdsChoiceChipsFlowRowScope<T>.() -> Unit
+    chips: List<OdsChoiceChip<T>>
 ) {
+    var selectedChipValue by remember { mutableStateOf(value) }
+
     FlowRow(
         modifier = modifier
             .fillMaxWidth()
             .selectableGroup(),
         mainAxisSpacing = dimensionResource(id = R.dimen.spacing_s),
-        content = { OdsChoiceChipsFlowRowScope(selectedChip, outlinedChips).content() }
+        content = {
+            chips.forEachIndexed { index, odsChoiceChip ->
+                odsChoiceChip.Content(selected = selectedChipValue == odsChoiceChip.value) { selected ->
+                    if (selected) {
+                        selectedChipValue = chips[index].value
+                        onValueChange(chips[index].value)
+                    }
+                }
+            }
+        }
     )
 }
 
 /**
- * A selectable chip to display in an [OdsChoiceChipsFlowRow]
+ * OdsChoiceChip used in a [OdsChoiceChipsFlowRow]
  *
  * @param text Text displayed in the chip
  * @param value The chip value
- * @param modifier The modifier applied to the OdsChoiceChip
- * @param enabled If set to false, the chip is no more clickable and appears as disabled
+ * @param enabled If set to false, the chip is no more clickable and appears as disabled. True by default.
+ * @param semantics The semantics applied on this choice chip
  */
-@Composable
-@OdsComposable
-fun <T> OdsChoiceChipsFlowRowScope<T>.OdsChoiceChip(text: String, value: T, modifier: Modifier = Modifier, enabled: Boolean = true) {
-    val selected = selectedChip.value == value
-    val chipStateDescription = selectionStateDescription(selected = selected)
-    OdsChip(
-        text = text,
-        modifier = modifier.semantics {
-            stateDescription = chipStateDescription
-        },
-        selected = selected,
-        onClick = { selectedChip.value = value },
-        outlined = outlinedChips,
-        enabled = enabled
-    )
-}
+class OdsChoiceChip<T>(
+    val text: String,
+    val value: T,
+    val enabled: Boolean = true,
+    val semantics: SemanticsPropertyReceiver.() -> Unit = {}
+) {
 
-/**
- * A selectable chip to display in an [OdsChoiceChipsFlowRow]
- *
- * @param textRes Text resource identifier to display in the chip
- * @param value The chip value
- * @param modifier The modifier applied to the OdsChoiceChip
- * @param enabled If set to false, the chip is no more clickable and appears as disabled
- */
-@Composable
-fun <T> OdsChoiceChipsFlowRowScope<T>.OdsChoiceChip(@StringRes textRes: Int, value: T, modifier: Modifier = Modifier, enabled: Boolean = true) {
-    OdsChoiceChip(text = stringResource(id = textRes), value = value, modifier = modifier, enabled = enabled)
+    @Composable
+    fun Content(selected: Boolean, onSelectedStateChange: (selected: Boolean) -> Unit) {
+        val chipStateDescription = selectionStateDescription(selected = selected)
+        OdsChip(
+            text = text,
+            modifier = Modifier.semantics {
+                stateDescription = chipStateDescription
+                semantics()
+            },
+            selected = selected,
+            onClick = { onSelectedStateChange(!selected) },
+            enabled = enabled
+        )
+    }
 }
-
-/**
- * Scope for the children of [OdsChoiceChipsFlowRow].
- */
-data class OdsChoiceChipsFlowRowScope<T>(val selectedChip: MutableState<T>, val outlinedChips: Boolean)
 
 @UiModePreviews.Default
 @Composable
-private fun PreviewOdsChoiceChipsFlowRow(@PreviewParameter(OdsChoiceChipsFlowRowPreviewParameterProvider::class) outlinedChips: Boolean) = Preview {
-    data class ChoiceChip(val text: String, val enabled: Boolean, val value: Int)
-
+private fun PreviewOdsChoiceChipsFlowRow() = Preview {
     val choiceChips = listOf(
-        ChoiceChip("First", true, 1),
-        ChoiceChip("Second", true, 2),
-        ChoiceChip("Third", false, 3),
-        ChoiceChip("Fourth", true, 4)
+        OdsChoiceChip(text = "First", value = 1),
+        OdsChoiceChip("Second", value = 2),
+        OdsChoiceChip("Third", value = 3, enabled = false),
+        OdsChoiceChip("Fourth", value = 4)
     )
 
     val selectedChip = remember { mutableStateOf(choiceChips.first().value) }
     OdsChoiceChipsFlowRow(
-        selectedChip = selectedChip,
-        outlinedChips = outlinedChips
-    ) {
-        choiceChips.forEach { choiceChip ->
-            with(choiceChip) {
-                OdsChoiceChip(text = text, value = value, enabled = enabled)
-            }
-        }
-    }
+        value = selectedChip.value,
+        onValueChange = { value -> selectedChip.value = value },
+        modifier = Modifier.padding(horizontal = dimensionResource(id = com.orange.ods.R.dimen.spacing_m)),
+        chips = choiceChips
+    )
 }
-
-private class OdsChoiceChipsFlowRowPreviewParameterProvider : BasicPreviewParameterProvider<Boolean>(false, true)

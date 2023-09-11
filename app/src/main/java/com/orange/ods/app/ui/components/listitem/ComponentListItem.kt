@@ -78,28 +78,27 @@ private fun ComponentListItemBottomSheetContent(listItemCustomizationState: List
 
     Subtitle(textRes = R.string.component_list_leading, horizontalPadding = true)
     OdsChoiceChipsFlowRow(
-        selectedChip = listItemCustomizationState.selectedLeading,
-        modifier = Modifier.padding(horizontal = dimensionResource(id = com.orange.ods.R.dimen.screen_horizontal_margin)),
-        outlinedChips = true
-    ) {
-        OdsChoiceChip(textRes = R.string.component_list_leading_none, value = ListItemCustomizationState.Leading.None)
-        OdsChoiceChip(textRes = R.string.component_list_leading_icon, value = ListItemCustomizationState.Leading.Icon)
-        OdsChoiceChip(textRes = R.string.component_list_leading_circular_image, value = ListItemCustomizationState.Leading.CircularImage)
-        OdsChoiceChip(textRes = R.string.component_list_leading_square_image, value = ListItemCustomizationState.Leading.SquareImage)
-        OdsChoiceChip(textRes = R.string.component_list_leading_wide_image, value = ListItemCustomizationState.Leading.WideImage)
-    }
+        value = listItemCustomizationState.selectedLeading.value,
+        onValueChange = { value -> listItemCustomizationState.selectedLeading.value = value },
+        modifier = Modifier.padding(horizontal = dimensionResource(id = com.orange.ods.R.dimen.spacing_m)),
+        chips = listOf(
+            OdsChoiceChip(text = stringResource(id = R.string.component_list_leading_none), value = ListItemCustomizationState.Leading.None),
+            OdsChoiceChip(text = stringResource(id = R.string.component_list_leading_icon), value = ListItemCustomizationState.Leading.Icon),
+            OdsChoiceChip(text = stringResource(id = R.string.component_list_leading_circular_image), value = ListItemCustomizationState.Leading.CircularImage),
+            OdsChoiceChip(text = stringResource(id = R.string.component_list_leading_square_image), value = ListItemCustomizationState.Leading.SquareImage),
+            OdsChoiceChip(text = stringResource(id = R.string.component_list_leading_wide_image), value = ListItemCustomizationState.Leading.WideImage),
+        )
+    )
 
     Subtitle(textRes = R.string.component_list_trailing, horizontalPadding = true)
     OdsChoiceChipsFlowRow(
-        selectedChip = listItemCustomizationState.selectedTrailing,
-        modifier = Modifier.padding(horizontal = dimensionResource(id = com.orange.ods.R.dimen.screen_horizontal_margin)),
-        outlinedChips = true
-    ) {
-        listItemCustomizationState.trailings.forEach { trailing ->
-            OdsChoiceChip(textRes = trailing.textResId, value = trailing)
+        value = listItemCustomizationState.selectedTrailing.value,
+        onValueChange = { value -> listItemCustomizationState.selectedTrailing.value = value },
+        modifier = Modifier.padding(horizontal = dimensionResource(id = com.orange.ods.R.dimen.spacing_m)),
+        chips = listItemCustomizationState.trailings.map { trailing ->
+            OdsChoiceChip(text = stringResource(id = trailing.textResId), value = trailing)
         }
-    }
-
+    )
 }
 
 @Composable

@@ -28,7 +28,6 @@ import androidx.compose.ui.res.stringResource
 import coil.compose.rememberAsyncImagePainter
 import com.orange.ods.app.R
 import com.orange.ods.app.domain.recipes.LocalRecipes
-import com.orange.ods.app.ui.LocalThemeManager
 import com.orange.ods.app.ui.components.Variant
 import com.orange.ods.app.ui.components.chips.ChipCustomizationState.ChipType
 import com.orange.ods.app.ui.components.chips.ChipCustomizationState.LeadingElement
@@ -37,16 +36,16 @@ import com.orange.ods.app.ui.components.utilities.clickOnElement
 import com.orange.ods.app.ui.utilities.DrawableManager
 import com.orange.ods.app.ui.utilities.composable.CodeImplementationColumn
 import com.orange.ods.app.ui.utilities.composable.FunctionCallCode
-import com.orange.ods.app.ui.utilities.composable.ImagePainterValue
 import com.orange.ods.app.ui.utilities.composable.Subtitle
 import com.orange.ods.compose.OdsComposable
 import com.orange.ods.compose.component.chip.OdsChip
+import com.orange.ods.compose.component.chip.OdsChipLeadingAvatar
+import com.orange.ods.compose.component.chip.OdsChipLeadingIcon
 import com.orange.ods.compose.component.chip.OdsChoiceChip
 import com.orange.ods.compose.component.chip.OdsChoiceChipsFlowRow
 import com.orange.ods.compose.component.list.OdsListItem
 import com.orange.ods.compose.component.list.OdsSwitchTrailing
 import com.orange.ods.compose.text.OdsTextBody2
-import com.orange.ods.theme.OdsComponentsConfiguration.ComponentStyle
 
 @OptIn(ExperimentalMaterialApi::class)
 @Composable
@@ -60,14 +59,15 @@ fun Chip(variant: Variant) {
                 if (isInputChip) {
                     Subtitle(textRes = R.string.component_element_leading, horizontalPadding = true)
                     OdsChoiceChipsFlowRow(
-                        selectedChip = leadingElement,
-                        modifier = Modifier.padding(horizontal = dimensionResource(id = com.orange.ods.R.dimen.screen_horizontal_margin)),
-                        outlinedChips = true
-                    ) {
-                        OdsChoiceChip(textRes = R.string.component_element_none, value = LeadingElement.None)
-                        OdsChoiceChip(textRes = R.string.component_element_avatar, value = LeadingElement.Avatar)
-                        OdsChoiceChip(textRes = R.string.component_element_icon, value = LeadingElement.Icon)
-                    }
+                        value = leadingElement.value,
+                        onValueChange = { value -> leadingElement.value = value },
+                        modifier = Modifier.padding(horizontal = dimensionResource(id = com.orange.ods.R.dimen.spacing_m)),
+                        chips = listOf(
+                            OdsChoiceChip(text = stringResource(id = R.string.component_element_none), value = LeadingElement.None),
+                            OdsChoiceChip(text = stringResource(id = R.string.component_element_avatar), value = LeadingElement.Avatar),
+                            OdsChoiceChip(text = stringResource(id = R.string.component_element_icon), value = LeadingElement.Icon)
+                        )
+                    )
                 } else {
                     resetLeadingElement()
                 }
@@ -107,21 +107,23 @@ fun ChipTypeDemo(chipType: ChipType, content: @Composable () -> Unit) {
 @Composable
 private fun Chip(chipCustomizationState: ChipCustomizationState) {
     val context = LocalContext.current
-    val outlinedChips = LocalThemeManager.current.currentThemeConfiguration.componentsConfiguration.chipStyle == ComponentStyle.Outlined
     val cancelCrossLabel = stringResource(id = R.string.component_element_cancel_cross)
     val recipes = LocalRecipes.current.take(4)
 
     with(chipCustomizationState) {
         if (isChoiceChip) {
-            OdsChoiceChipsFlowRow(selectedChip = choiceChipIndexSelected, outlinedChips = outlinedChips) {
-                recipes.forEachIndexed { index, recipe ->
+            OdsChoiceChipsFlowRow(
+                value = choiceChipIndexSelected.value,
+                onValueChange = { value -> choiceChipIndexSelected.value = value },
+                modifier = Modifier.padding(horizontal = dimensionResource(id = com.orange.ods.R.dimen.spacing_m)),
+                chips = recipes.mapIndexed { index, recipe ->
                     OdsChoiceChip(
                         text = recipe.title,
                         value = index,
                         enabled = isEnabled
                     )
                 }
-            }
+            )
 
             Spacer(modifier = Modifier.padding(top = dimensionResource(com.orange.ods.R.dimen.spacing_s)))
 
@@ -129,33 +131,33 @@ private fun Chip(chipCustomizationState: ChipCustomizationState) {
                 FunctionCallCode(
                     name = OdsComposable.OdsChoiceChipsFlowRow.name,
                     parameters = {
-                        mutableState("selectedChip", choiceChipIndexSelected.value.toString())
-                        if (!outlinedChips) stringRepresentation("outlinedChips", outlinedChips)
+                        stringRepresentation("value", choiceChipIndexSelected.value.toString())
+                        lambda("onValueChange")
+                        list("chips") {
+                            recipes.forEachIndexed { index, recipe ->
+                                classInstance(OdsChoiceChip::class.java) {
+                                    text(recipe.title)
+                                    stringRepresentation("value", index)
+                                    if (!isEnabled) enabled(false)
+                                }
+                            }
+                        }
                     }
-                ) {
-                    recipes.forEachIndexed { index, recipe ->
-                        FunctionCallCode(
-                            name = OdsComposable.OdsChoiceChip.name,
-                            parameters = {
-                                text(recipe.title)
-                                stringRepresentation("value", index)
-                                if (!isEnabled) enabled(false)
-                            })
-                    }
-                }
+                )
             }
         } else {
             val recipe = recipes.firstOrNull()
             OdsChip(
                 text = recipe?.title.orEmpty(),
                 onClick = { clickOnElement(context, recipe?.title.orEmpty()) },
-                outlined = outlinedChips,
-                leadingIcon = if (isActionChip || hasLeadingIcon) recipe?.iconResId?.let { painterResource(id = it) } else null,
+                leadingIcon = if (isActionChip || hasLeadingIcon) recipe?.iconResId?.let { OdsChipLeadingIcon(painterResource(id = it), "") } else null,
                 leadingAvatar = if (hasLeadingAvatar) {
-                    rememberAsyncImagePainter(
-                        model = recipe?.imageUrl,
-                        placeholder = painterResource(id = DrawableManager.getPlaceholderSmallResId()),
-                        error = painterResource(id = DrawableManager.getPlaceholderSmallResId(error = true))
+                    OdsChipLeadingAvatar(
+                        rememberAsyncImagePainter(
+                            model = recipe?.imageUrl,
+                            placeholder = painterResource(id = DrawableManager.getPlaceholderSmallResId()),
+                            error = painterResource(id = DrawableManager.getPlaceholderSmallResId(error = true))
+                        ), ""
                     )
                 } else null,
                 enabled = isEnabled,
@@ -172,9 +174,18 @@ private fun Chip(chipCustomizationState: ChipCustomizationState) {
                     exhaustiveParameters = false,
                     parameters = {
                         text(recipe?.title.orEmpty())
-                        if (!outlinedChips) stringRepresentation("outlined", outlinedChips)
-                        if (isActionChip || hasLeadingIcon) icon()
-                        if (hasLeadingAvatar) simple("leadingAvatar", ImagePainterValue)
+                        if (isActionChip || hasLeadingIcon) {
+                            classInstance("leadingIcon", OdsChipLeadingIcon::class.java) {
+                                painter()
+                                contentDescription("")
+                            }
+                        }
+                        if (hasLeadingAvatar) {
+                            classInstance("leadingAvatar", OdsChipLeadingAvatar::class.java) {
+                                image()
+                                contentDescription("")
+                            }
+                        }
                         if (!isEnabled) enabled(false)
                         onClick()
                         if (isInputChip) lambda("onCancel")

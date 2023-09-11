@@ -93,13 +93,17 @@ fun ComponentFloatingActionButton() {
             bottomSheetContent = {
                 Subtitle(textRes = R.string.component_size, horizontalPadding = true)
                 OdsChoiceChipsFlowRow(
-                    selectedChip = size,
+                    value = size.value,
+                    onValueChange = { value -> size.value = value },
                     modifier = Modifier.padding(horizontal = dimensionResource(id = com.orange.ods.R.dimen.spacing_m)),
-                    outlinedChips = true
-                ) {
-                    OdsChoiceChip(textRes = R.string.component_floating_action_button_size_default, value = FabCustomizationState.Size.Default)
-                    OdsChoiceChip(textRes = R.string.component_floating_action_button_size_mini, value = FabCustomizationState.Size.Mini)
-                }
+                    chips = listOf(
+                        OdsChoiceChip(
+                            text = stringResource(id = R.string.component_floating_action_button_size_default),
+                            value = FabCustomizationState.Size.Default
+                        ),
+                        OdsChoiceChip(text = stringResource(id = R.string.component_floating_action_button_size_mini), value = FabCustomizationState.Size.Mini)
+                    )
+                )
                 OdsListItem(
                     text = stringResource(id = R.string.component_element_text),
                     trailing = OdsSwitchTrailing(checked = text, enabled = isTextEnabled)

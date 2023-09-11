@@ -79,27 +79,25 @@ fun ComponentTabs(variant: Variant, upPress: () -> Unit) {
         bottomSheetContent = {
             Subtitle(textRes = R.string.component_element_icon, horizontalPadding = true)
             OdsChoiceChipsFlowRow(
-                selectedChip = tabsCustomizationState.tabIconType,
-                modifier = Modifier.padding(horizontal = dimensionResource(id = com.orange.ods.R.dimen.screen_horizontal_margin)),
-                outlinedChips = true
-            ) {
-                OdsChoiceChip(
-                    textRes = R.string.component_tab_icon_leading,
-                    value = MainTabsCustomizationState.TabIconType.Leading,
-                    enabled = tabsCustomizationState.isTabIconCustomizationEnabled
+                value = tabsCustomizationState.tabIconType.value,
+                onValueChange = { value -> tabsCustomizationState.tabIconType.value = value },
+                modifier = Modifier.padding(horizontal = dimensionResource(id = com.orange.ods.R.dimen.spacing_m)),
+                chips = listOf(
+                    OdsChoiceChip(
+                        text = stringResource(id = R.string.component_tab_icon_leading), value = MainTabsCustomizationState.TabIconType.Leading,
+                        enabled = tabsCustomizationState.isTabIconCustomizationEnabled
+                    ),
+                    OdsChoiceChip(
+                        text = stringResource(id = R.string.component_tab_icon_top), value = MainTabsCustomizationState.TabIconType.Top,
+                        enabled = tabsCustomizationState.isTabIconCustomizationEnabled
+                    ),
+                    OdsChoiceChip(
+                        text = stringResource(id = R.string.component_element_none), value = MainTabsCustomizationState.TabIconType.None,
+                        enabled = tabsCustomizationState.isTabIconCustomizationEnabled
+                    )
                 )
-                OdsChoiceChip(
-                    textRes = R.string.component_tab_icon_top,
-                    value = MainTabsCustomizationState.TabIconType.Top,
-                    enabled = tabsCustomizationState.isTabIconCustomizationEnabled
-                )
-                OdsChoiceChip(
-                    textRes = R.string.component_element_none,
-                    value = MainTabsCustomizationState.TabIconType.None,
-                    enabled = tabsCustomizationState.isTabIconCustomizationEnabled
-                )
-            }
-
+            )
+            
             OdsListItem(
                 text = stringResource(id = R.string.component_element_text),
                 trailing = OdsSwitchTrailing(checked = tabsCustomizationState.tabTextEnabled, enabled = tabsCustomizationState.isTabTextCustomizationEnabled)
