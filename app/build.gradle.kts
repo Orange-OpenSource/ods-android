@@ -32,7 +32,7 @@ android {
     compileSdk = Versions.compileSdk
 
     defaultConfig {
-        applicationId = "com.orange.ods.app"
+        applicationId = project.findTypedProperty<String>("applicationId") ?: "com.orange.ods.app"
         minSdk = Versions.minSdk
         targetSdk = Versions.targetSdk
         val versionCodeProperty = project.findTypedProperty<String>("versionCode")
@@ -73,9 +73,6 @@ android {
             if (storeFile != null) {
                 signingConfig = this@android.signingConfigs.getByName(signingConfigName)
             }
-        }
-        debug {
-            applicationIdSuffix = ".debug"
         }
     }
 
