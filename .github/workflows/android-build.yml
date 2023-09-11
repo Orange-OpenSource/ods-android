@@ -52,7 +52,7 @@ jobs:
         uses: actions/upload-artifact@v3
         with:
           name: app
-          path: app/build/outputs/apk/*/*.apk
+          path: app/build/outputs/apk/*/*/*.apk
 
       - name: Store lib artifacts
         uses: actions/upload-artifact@v3
@@ -168,12 +168,12 @@ jobs:
       - name: Publish release to Google Play Store
         run: |
           ./gradlew assembleRelease bundleRelease
-          curl -F 'file=@app/build/outputs/bundle/release/app-release.aab' https://oma-portal.orange.fr/oma/api/v1/external/applications/${{ secrets.OMA_APP_ID }}/artifacts -H "apiKey:${{ secrets.OMA_APP_TOKEN }}"
+          curl -F 'file=@app/build/outputs/bundle/prodRelease/app-prod-release.aab' https://oma-portal.orange.fr/oma/api/v1/external/applications/${{ secrets.OMA_APP_ID }}/artifacts -H "apiKey:${{ secrets.OMA_APP_TOKEN }}"
 
       - name: Store Google Play Store artifacts
         uses: actions/upload-artifact@v3
         with:
           name: google-play-store
           path: |
-            app/build/outputs/apk/*/*.apk
+            app/build/outputs/apk/*/*/*.apk
             app/build/outputs/bundle/*/*.aab
