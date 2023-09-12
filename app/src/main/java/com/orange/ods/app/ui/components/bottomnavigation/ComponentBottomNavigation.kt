@@ -10,14 +10,12 @@
 
 package com.orange.ods.app.ui.components.bottomnavigation
 
-import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.ExperimentalMaterialApi
-import androidx.compose.material.Icon
 import androidx.compose.material.rememberBottomSheetScaffoldState
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.mutableStateOf
@@ -40,6 +38,7 @@ import com.orange.ods.app.ui.utilities.composable.FunctionCallCode
 import com.orange.ods.compose.OdsComposable
 import com.orange.ods.compose.component.bottomnavigation.OdsBottomNavigation
 import com.orange.ods.compose.component.bottomnavigation.OdsBottomNavigationItem
+import com.orange.ods.compose.component.bottomnavigation.OdsBottomNavigationItemIcon
 
 private object ComponentBottomNavigation {
     const val MinNavigationItemCount = 3
@@ -58,7 +57,7 @@ fun ComponentBottomNavigation() {
         bottomSheetScaffoldState = rememberBottomSheetScaffoldState(),
         bottomSheetContent = {
             ComponentCountRow(
-                modifier = Modifier.padding(start = dimensionResource(id = R.dimen.screen_horizontal_margin)),
+                modifier = Modifier.padding(start = dimensionResource(id = com.orange.ods.R.dimen.screen_horizontal_margin)),
                 title = stringResource(id = R.string.component_bottom_navigation_navigation_item_count),
                 count = selectedNavigationItemCount,
                 minusIconContentDescription = stringResource(id = R.string.component_bottom_navigation_remove_item),
@@ -70,19 +69,17 @@ fun ComponentBottomNavigation() {
         Column(
             modifier = Modifier
                 .fillMaxSize()
-                .padding(top = dimensionResource(id = R.dimen.screen_vertical_margin))
                 .verticalScroll(rememberScrollState())
+                .padding(top = dimensionResource(id = com.orange.ods.R.dimen.screen_vertical_margin))
         ) {
-            OdsBottomNavigation {
-                navigationItems.take(selectedNavigationItemCount.value).forEach { navigationItem ->
+            OdsBottomNavigation(
+                items = navigationItems.take(selectedNavigationItemCount.value).map { navigationItem ->
                     val label = stringResource(id = navigationItem.textResId)
                     OdsBottomNavigationItem(
-                        icon = {
-                            Icon(
-                                painter = painterResource(id = navigationItem.iconResId),
-                                contentDescription = null
-                            )
-                        },
+                        icon = OdsBottomNavigationItemIcon(
+                            painter = painterResource(id = navigationItem.iconResId),
+                            contentDescription = ""
+                        ),
                         label = label,
                         selected = selectedNavigationItem.value.textResId == navigationItem.textResId,
                         onClick = {
@@ -91,24 +88,28 @@ fun ComponentBottomNavigation() {
                         }
                     )
                 }
-            }
+            )
 
             CodeImplementationColumn(
-                modifier = Modifier.padding(horizontal = dimensionResource(id = R.dimen.screen_horizontal_margin))
+                modifier = Modifier.padding(horizontal = dimensionResource(id = com.orange.ods.R.dimen.screen_horizontal_margin))
             ) {
-                FunctionCallCode(name = OdsComposable.OdsBottomNavigation.name) {
-                    navigationItems.take(2).forEach { item ->
-                        FunctionCallCode(
-                            name = OdsComposable.OdsBottomNavigationItem.name,
-                            parameters = {
-                                icon()
-                                string("label", context.getString(item.textResId))
-                                selected(selectedNavigationItem.value.textResId == item.textResId)
-                                onClick()
+                FunctionCallCode(
+                    name = OdsComposable.OdsBottomNavigation.name,
+                    parameters = {
+                        list("items") {
+                            navigationItems.take(selectedNavigationItemCount.value).forEach { item ->
+                                classInstance(OdsBottomNavigationItem::class.java) {
+                                    classInstance("icon", OdsBottomNavigationItemIcon::class.java) {
+                                        painter()
+                                        contentDescription("")
+                                    }
+                                    string("label", context.getString(item.textResId))
+                                    selected(selectedNavigationItem.value.textResId == item.textResId)
+                                    onClick()
+                                }
                             }
-                        )
-                    }
-                }
+                        }
+                    })
             }
         }
     }

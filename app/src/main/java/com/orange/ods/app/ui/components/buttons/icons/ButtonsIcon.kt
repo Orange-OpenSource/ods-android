@@ -36,6 +36,7 @@ import com.orange.ods.app.ui.utilities.composable.CodeImplementationColumn
 import com.orange.ods.app.ui.utilities.composable.FunctionCallCode
 import com.orange.ods.compose.OdsComposable
 import com.orange.ods.compose.component.button.OdsIconButton
+import com.orange.ods.compose.component.button.OdsIconButtonIcon
 import com.orange.ods.compose.theme.OdsDisplaySurface
 
 @Composable
@@ -45,7 +46,7 @@ fun ButtonsIcon(customizationState: ButtonIconCustomizationState) {
         Column(
             modifier = Modifier
                 .verticalScroll(rememberScrollState())
-                .padding(vertical = dimensionResource(id = R.dimen.screen_vertical_margin))
+                .padding(vertical = dimensionResource(id = com.orange.ods.R.dimen.screen_vertical_margin))
         ) {
             Row(
                 modifier = Modifier.fillMaxWidth(),
@@ -56,7 +57,7 @@ fun ButtonsIcon(customizationState: ButtonIconCustomizationState) {
                 )
             }
 
-            Spacer(modifier = Modifier.padding(top = dimensionResource(R.dimen.spacing_s)))
+            Spacer(modifier = Modifier.padding(top = dimensionResource(com.orange.ods.R.dimen.spacing_s)))
 
             InvertedBackgroundColumn(horizontalAlignment = Alignment.CenterHorizontally) {
                 IconButton(
@@ -66,14 +67,17 @@ fun ButtonsIcon(customizationState: ButtonIconCustomizationState) {
             }
 
             CodeImplementationColumn(
-                modifier = Modifier.padding(horizontal = dimensionResource(id = R.dimen.screen_horizontal_margin)),
+                modifier = Modifier.padding(horizontal = dimensionResource(id = com.orange.ods.R.dimen.screen_horizontal_margin)),
                 xmlAvailable = true
             ) {
                 FunctionCallCode(
                     name = OdsComposable.OdsIconButton.name,
                     exhaustiveParameters = false,
                     parameters = {
-                        painter()
+                        classInstance("icon", OdsIconButtonIcon::class.java) {
+                            painter()
+                            contentDescription("")
+                        }
                         if (!isEnabled) enabled(false)
                     }
                 )
@@ -92,13 +96,17 @@ private fun IconButton(
     val contentDescription = stringResource(id = R.string.component_button_icon_search_desc)
     val onClick = { clickOnElement(context, context.getString(R.string.component_button_icon)) }
 
-    Box(modifier = Modifier.padding(horizontal = dimensionResource(R.dimen.screen_horizontal_margin), vertical = dimensionResource(R.dimen.spacing_m))) {
+    Box(
+        modifier = Modifier.padding(
+            horizontal = dimensionResource(com.orange.ods.R.dimen.screen_horizontal_margin),
+            vertical = dimensionResource(com.orange.ods.R.dimen.spacing_m)
+        )
+    ) {
         UiFramework<OdsIconButtonBinding>(
             compose = {
                 OdsIconButton(
                     onClick = onClick,
-                    painter = painterResource(id = R.drawable.ic_search),
-                    contentDescription = contentDescription,
+                    icon = OdsIconButtonIcon(painterResource(id = R.drawable.ic_search), contentDescription),
                     enabled = enabled,
                     displaySurface = displaySurface
                 )

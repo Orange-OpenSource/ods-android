@@ -20,10 +20,10 @@
     <attr name="iconContentDescription" format="string" />
     <declare-styleable name="OdsBanner">
         <attr name="message" format="string" />
-        <attr name="button1Text" format="string" />
+        <attr name="firstButtonText" format="string" />
         <attr name="image" format="reference|color" />
         <attr name="imageContentDescription" format="string" />
-        <attr name="button2Text" format="string" />
+        <attr name="secondButtonText" format="string" />
     </declare-styleable>
     <declare-styleable name="OdsButton">
         <attr name="icon" />
@@ -47,7 +47,8 @@
         <attr name="checked" format="boolean" />
         <attr name="checkedIcon" format="reference" />
         <attr name="uncheckedIcon" format="reference" />
-        <attr name="iconContentDescription" />
+        <attr name="checkedIconContentDescription" />
+        <attr name="uncheckedIconContentDescription" />
         <attr name="enabled" />
         <attr name="displaySurface" />
     </declare-styleable>

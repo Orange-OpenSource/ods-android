@@ -35,8 +35,8 @@ fun GuidelinesScreen(onGuidelineClick: (String) -> Unit) {
         modifier = Modifier
             .fillMaxSize()
             .verticalScroll(scrollState)
-            .padding(dimensionResource(id = R.dimen.spacing_m)),
-        verticalArrangement = Arrangement.spacedBy(dimensionResource(id = R.dimen.spacing_m))
+            .padding(dimensionResource(id = com.orange.ods.R.dimen.spacing_m)),
+        verticalArrangement = Arrangement.spacedBy(dimensionResource(id = com.orange.ods.R.dimen.spacing_m))
     ) {
         Guideline.values().forEach { guideline ->
             OdsVerticalImageFirstCard(

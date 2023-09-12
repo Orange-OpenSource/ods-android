@@ -32,6 +32,7 @@ import com.orange.ods.app.ui.UiFramework
 import com.orange.ods.app.ui.utilities.composable.CodeImplementationColumn
 import com.orange.ods.app.ui.utilities.composable.FunctionCallCode
 import com.orange.ods.compose.OdsComposable
+import com.orange.ods.compose.component.button.OdsButtonIcon
 import com.orange.ods.compose.component.button.OdsOutlinedButton
 import com.orange.ods.compose.theme.OdsDisplaySurface
 
@@ -41,19 +42,19 @@ fun ButtonsOutlined(customizationState: ButtonCustomizationState) {
         Column(
             modifier = Modifier
                 .verticalScroll(rememberScrollState())
-                .padding(vertical = dimensionResource(id = R.dimen.screen_vertical_margin))
+                .padding(vertical = dimensionResource(id = com.orange.ods.R.dimen.screen_vertical_margin))
         ) {
 
             OutlinedButton(leadingIcon = hasLeadingIcon, enabled = isEnabled, fullScreenWidth = hasFullScreenWidth)
 
-            Spacer(modifier = Modifier.padding(top = dimensionResource(R.dimen.spacing_s)))
+            Spacer(modifier = Modifier.padding(top = dimensionResource(com.orange.ods.R.dimen.spacing_s)))
 
             InvertedBackgroundColumn {
                 OutlinedButton(leadingIcon = hasLeadingIcon, enabled = isEnabled, fullScreenWidth = hasFullScreenWidth, displaySurface = displaySurface)
             }
 
             CodeImplementationColumn(
-                modifier = Modifier.padding(horizontal = dimensionResource(id = R.dimen.screen_horizontal_margin)),
+                modifier = Modifier.padding(horizontal = dimensionResource(id = com.orange.ods.R.dimen.screen_horizontal_margin)),
                 xmlAvailable = true
             ) {
                 FunctionCallCode(
@@ -61,7 +62,11 @@ fun ButtonsOutlined(customizationState: ButtonCustomizationState) {
                     exhaustiveParameters = false,
                     parameters = {
                         if (hasFullScreenWidth) fillMaxWidth()
-                        if (hasLeadingIcon) icon()
+                        if (hasLeadingIcon) {
+                            classInstance("icon", OdsButtonIcon::class.java) {
+                                painter()
+                            }
+                        }
                         if (!isEnabled) enabled(false)
                     })
             }
@@ -80,14 +85,19 @@ private fun OutlinedButton(
     val text = stringResource(if (enabled) R.string.component_state_enabled else R.string.component_state_disabled)
     val iconId = R.drawable.ic_coffee
 
-    Box(modifier = Modifier.padding(horizontal = dimensionResource(R.dimen.screen_horizontal_margin), vertical = dimensionResource(R.dimen.spacing_m))) {
+    Box(
+        modifier = Modifier.padding(
+            horizontal = dimensionResource(com.orange.ods.R.dimen.screen_horizontal_margin),
+            vertical = dimensionResource(com.orange.ods.R.dimen.spacing_m)
+        )
+    ) {
         UiFramework<OdsOutlinedButtonBinding>(
             compose = {
                 OdsOutlinedButton(
                     modifier = if (fullScreenWidth) Modifier.fillMaxWidth() else Modifier,
                     text = text,
                     onClick = {},
-                    icon = if (leadingIcon) painterResource(id = iconId) else null,
+                    icon = if (leadingIcon) OdsButtonIcon(painterResource(id = iconId)) else null,
                     enabled = enabled,
                     displaySurface = displaySurface
                 )

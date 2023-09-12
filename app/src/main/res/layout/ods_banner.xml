@@ -20,11 +20,11 @@
             type="String" />
 
         <variable
-            name="button1Text"
+            name="firstButtonText"
             type="String" />
 
         <variable
-            name="button2Text"
+            name="secondButtonText"
             type="String" />
 
         <variable
@@ -41,8 +41,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             app:message="@{message}"
-            app:button1Text="@{button1Text}"
-            app:button2Text="@{button2Text}"
+            app:firstButtonText="@{firstButtonText}"
+            app:secondButtonText="@{secondButtonText}"
             app:imageContentDescription="@{imageContentDescription}" />
 
         <!-- Invisible OdsBanner used for tests -->
@@ -52,8 +52,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             app:message="Message displayed in the banner"
-            app:button1Text="Button 1"
-            app:button2Text="Button 2"
+            app:firstButtonText="First button"
+            app:secondButtonText="Second button"
             app:imageContentDescription="Content description of the image" />
 
     </FrameLayout>

@@ -35,8 +35,8 @@ import com.orange.ods.app.ui.utilities.extension.versionCode
 import com.orange.ods.compose.component.list.OdsListItem
 import com.orange.ods.compose.text.OdsTextCaption
 import com.orange.ods.compose.text.OdsTextH4
-import com.orange.ods.utilities.extension.ifNotNull
-import com.orange.ods.utilities.extension.orElse
+import com.orange.ods.extension.ifNotNull
+import com.orange.ods.extension.orElse
 
 @Composable
 fun AboutScreen(onAboutItemClick: (Long) -> Unit) {
@@ -45,7 +45,7 @@ fun AboutScreen(onAboutItemClick: (Long) -> Unit) {
     Column(
         modifier = Modifier
             .verticalScroll(rememberScrollState())
-            .padding(bottom = dimensionResource(id = R.dimen.screen_vertical_margin))
+            .padding(bottom = dimensionResource(id = com.orange.ods.R.dimen.screen_vertical_margin))
     ) {
         val context = LocalContext.current
         Image(
@@ -55,22 +55,22 @@ fun AboutScreen(onAboutItemClick: (Long) -> Unit) {
             contentScale = ContentScale.Crop,
             contentDescription = null
         )
-        Column(Modifier.padding(horizontal = dimensionResource(id = R.dimen.screen_horizontal_margin))) {
+        Column(Modifier.padding(horizontal = dimensionResource(id = com.orange.ods.R.dimen.screen_horizontal_margin))) {
             OdsTextH4(
                 text = stringResource(id = R.string.about_app_name),
-                modifier = Modifier.padding(top = dimensionResource(id = R.dimen.spacing_xl))
+                modifier = Modifier.padding(top = dimensionResource(id = com.orange.ods.R.dimen.spacing_xl))
             )
             OdsTextCaption(
                 text = getVersion(context),
-                modifier = Modifier.padding(top = dimensionResource(id = R.dimen.spacing_xs))
+                modifier = Modifier.padding(top = dimensionResource(id = com.orange.ods.R.dimen.spacing_xs))
             )
             OdsTextCaption(
                 text = stringResource(id = R.string.about_description),
-                modifier = Modifier.padding(top = dimensionResource(id = R.dimen.spacing_xs))
+                modifier = Modifier.padding(top = dimensionResource(id = com.orange.ods.R.dimen.spacing_xs))
             )
         }
 
-        Spacer(modifier = Modifier.height(dimensionResource(id = R.dimen.spacing_m)))
+        Spacer(modifier = Modifier.height(dimensionResource(id = com.orange.ods.R.dimen.spacing_m)))
 
         for (aboutItem in aboutItems) {
             OdsListItem(text = stringResource(id = aboutItem.titleRes), modifier = Modifier.clickable {

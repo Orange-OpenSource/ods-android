@@ -41,6 +41,7 @@ import com.orange.ods.compose.component.chip.OdsChoiceChipsFlowRow
 import com.orange.ods.compose.component.list.OdsListItem
 import com.orange.ods.compose.component.list.OdsSwitchTrailing
 import com.orange.ods.compose.component.progressindicator.OdsLinearProgressIndicator
+import com.orange.ods.compose.component.progressindicator.OdsLinearProgressIndicatorIcon
 
 private const val DeterminateProgressTargetValue = 0.9f
 private const val DeterminateProgressAnimDuration = 5000
@@ -61,15 +62,16 @@ fun ProgressLinear() {
         ComponentCustomizationBottomSheetScaffold(
             bottomSheetScaffoldState = rememberBottomSheetScaffoldState(),
             bottomSheetContent = {
+                Subtitle(textRes = R.string.component_element_type, horizontalPadding = true)
                 OdsChoiceChipsFlowRow(
-                    selectedChip = type,
-                    modifier = Modifier.padding(horizontal = dimensionResource(id = R.dimen.spacing_m)),
-                    outlinedChips = true
-                ) {
-                    Subtitle(textRes = R.string.component_element_type)
-                    OdsChoiceChip(textRes = R.string.component_progress_determinate, value = ProgressCustomizationState.Type.Determinate)
-                    OdsChoiceChip(textRes = R.string.component_progress_indeterminate, value = ProgressCustomizationState.Type.Indeterminate)
-                }
+                    value = type.value,
+                    onValueChange = { value -> type.value = value },
+                    modifier = Modifier.padding(horizontal = dimensionResource(id = com.orange.ods.R.dimen.spacing_m)),
+                    chips = listOf(
+                        OdsChoiceChip(text = stringResource(id = R.string.component_progress_determinate), value = ProgressCustomizationState.Type.Determinate),
+                        OdsChoiceChip(text = stringResource(id = R.string.component_progress_indeterminate), value = ProgressCustomizationState.Type.Indeterminate)
+                    )
+                )
                 OdsListItem(
                     text = stringResource(id = R.string.component_element_label),
                     trailing = OdsSwitchTrailing(checked = label)
@@ -96,9 +98,9 @@ fun ProgressLinear() {
                     progress = if (type.value == ProgressCustomizationState.Type.Determinate) determinateProgressAnimation else null,
                     label = if (hasLabel) text else null,
                     showCurrentValue = hasCurrentValue,
-                    icon = if (hasIcon) painterResource(id = R.drawable.ic_arrow_down) else null,
+                    icon = if (hasIcon) OdsLinearProgressIndicatorIcon(painterResource(id = R.drawable.ic_arrow_down), "") else null,
                     modifier = Modifier
-                        .padding(top = dimensionResource(id = R.dimen.spacing_m))
+                        .padding(top = dimensionResource(id = com.orange.ods.R.dimen.spacing_m))
                         .fillMaxWidth()
                 )
                 if (type.value == ProgressCustomizationState.Type.Determinate) {
@@ -107,14 +109,19 @@ fun ProgressLinear() {
                     }
                 }
 
-                CodeImplementationColumn(modifier = Modifier.padding(horizontal = dimensionResource(id = R.dimen.screen_horizontal_margin))) {
+                CodeImplementationColumn(modifier = Modifier.padding(horizontal = dimensionResource(id = com.orange.ods.R.dimen.screen_horizontal_margin))) {
                     FunctionCallCode(
                         name = OdsComposable.OdsLinearProgressIndicator.name,
                         exhaustiveParameters = false,
                         parameters = {
                             if (type.value == ProgressCustomizationState.Type.Determinate) stringRepresentation("progress", determinateProgressValue)
                             if (hasLabel) string("label", text)
-                            if (hasIcon) icon()
+                            if (hasIcon) {
+                                classInstance("icon", OdsLinearProgressIndicatorIcon::class.java) {
+                                    painter()
+                                    contentDescription("")
+                                }
+                            }
                             if (hasCurrentValue) stringRepresentation("showCurrentValue", hasCurrentValue)
                         }
                     )

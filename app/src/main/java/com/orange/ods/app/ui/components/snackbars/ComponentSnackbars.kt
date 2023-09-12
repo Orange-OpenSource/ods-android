@@ -91,11 +91,11 @@ fun ComponentSnackbars() {
             }
 
             CodeImplementationColumn(
-                modifier = Modifier.padding(horizontal = dimensionResource(id = R.dimen.screen_horizontal_margin)),
+                modifier = Modifier.padding(horizontal = dimensionResource(id = com.orange.ods.R.dimen.screen_horizontal_margin)),
                 contentBackground = false
             ) {
                 OdsTextBody2(
-                    modifier = Modifier.padding(bottom = dimensionResource(id = R.dimen.spacing_xs)),
+                    modifier = Modifier.padding(bottom = dimensionResource(id = com.orange.ods.R.dimen.spacing_xs)),
                     text = stringResource(id = R.string.component_snackbar_code_first_step)
                 )
                 CodeBackgroundColumn {
@@ -115,7 +115,10 @@ fun ComponentSnackbars() {
                 }
 
                 OdsTextBody2(
-                    modifier = Modifier.padding(top = dimensionResource(id = R.dimen.spacing_s), bottom = dimensionResource(id = R.dimen.spacing_xs)),
+                    modifier = Modifier.padding(
+                        top = dimensionResource(id = com.orange.ods.R.dimen.spacing_s),
+                        bottom = dimensionResource(id = com.orange.ods.R.dimen.spacing_xs)
+                    ),
                     text = stringResource(id = R.string.component_snackbar_code_second_step)
                 )
                 CodeBackgroundColumn {

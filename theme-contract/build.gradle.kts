@@ -8,53 +8,28 @@
  * /
  */
 
+import com.orange.ods.gradle.Dependencies
 import com.orange.ods.gradle.Versions
 
 plugins {
-    id("com.android.library")
-    id("org.jetbrains.kotlin.android")
-    id("maven-central-publish")
+    id("library")
 }
 
 android {
-    compileSdk = Versions.compileSdk
-
-    defaultConfig {
-        minSdk = Versions.minSdk
-
-        testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
-        consumerProguardFiles("consumer-rules.pro")
-    }
-
-    buildTypes {
-        release {
-            isMinifyEnabled = false
-            proguardFiles(getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro")
-        }
-    }
-    compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_11
-        targetCompatibility = JavaVersion.VERSION_11
-    }
-
-    kotlinOptions {
-        jvmTarget = "11"
-        allWarningsAsErrors = true
-    }
+    namespace = "com.orange.ods.theme"
 
     buildFeatures {
         compose = true
     }
 
     composeOptions {
-        kotlinCompilerExtensionVersion = Versions.compose
+        kotlinCompilerExtensionVersion = Versions.composeCompiler
     }
 }
 
 dependencies {
-    implementation(com.orange.ods.gradle.Dependencies.coreKtx)
-    implementation(com.orange.ods.gradle.Dependencies.appCompat)
-    implementation(com.orange.ods.gradle.Dependencies.material)
-    implementation(com.orange.ods.gradle.Dependencies.composeMaterial)
-    implementation(com.orange.ods.gradle.Dependencies.kotlinReflect)
+    implementation(platform(Dependencies.composeBom))
+    implementation(Dependencies.composeMaterial)
+    implementation(Dependencies.kotlinReflect)
+    implementation(Dependencies.material)
 }

@@ -77,14 +77,17 @@ fun MenuExposedDropdown() {
             Column(
                 modifier = Modifier
                     .verticalScroll(rememberScrollState())
-                    .padding(top = dimensionResource(id = R.dimen.screen_vertical_margin), bottom = dimensionResource(id = R.dimen.spacing_s))
-                    .padding(horizontal = dimensionResource(id = R.dimen.screen_horizontal_margin)),
+                    .padding(
+                        top = dimensionResource(id = com.orange.ods.R.dimen.screen_vertical_margin),
+                        bottom = dimensionResource(id = com.orange.ods.R.dimen.spacing_s)
+                    )
+                    .padding(horizontal = dimensionResource(id = com.orange.ods.R.dimen.screen_horizontal_margin)),
             ) {
                 val label = stringResource(id = R.string.data_recipe)
                 OdsExposedDropdownMenu(
                     modifier = Modifier
                         .fillMaxWidth()
-                        .padding(top = dimensionResource(id = R.dimen.spacing_s)),
+                        .padding(top = dimensionResource(id = com.orange.ods.R.dimen.spacing_s)),
                     label = label,
                     items = items,
                     selectedItem = selectedItem,

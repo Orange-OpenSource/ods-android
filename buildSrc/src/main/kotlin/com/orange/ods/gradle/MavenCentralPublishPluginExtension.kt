@@ -13,7 +13,8 @@ package com.orange.ods.gradle
 abstract class MavenCentralPublishPluginExtension {
 
     companion object {
-        const val Name = "mavenCentralPublish"
+        const val NAME = "mavenCentralPublish"
+        const val VARIANT = "prodRelease"
     }
 
     var artifactId: String? = null

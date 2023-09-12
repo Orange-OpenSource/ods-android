@@ -28,20 +28,18 @@ import coil.compose.rememberAsyncImagePainter
 import com.google.accompanist.flowlayout.FlowRow
 import com.orange.ods.app.R
 import com.orange.ods.app.domain.recipes.LocalRecipes
-import com.orange.ods.app.ui.LocalThemeManager
 import com.orange.ods.app.ui.components.utilities.ComponentCustomizationBottomSheetScaffold
 import com.orange.ods.app.ui.utilities.DrawableManager
 import com.orange.ods.app.ui.utilities.composable.CodeImplementationColumn
 import com.orange.ods.app.ui.utilities.composable.FunctionCallCode
-import com.orange.ods.app.ui.utilities.composable.ImagePainterValue
 import com.orange.ods.app.ui.utilities.composable.Subtitle
 import com.orange.ods.compose.OdsComposable
+import com.orange.ods.compose.component.chip.OdsChipLeadingAvatar
 import com.orange.ods.compose.component.chip.OdsChoiceChip
 import com.orange.ods.compose.component.chip.OdsChoiceChipsFlowRow
 import com.orange.ods.compose.component.chip.OdsFilterChip
 import com.orange.ods.compose.component.list.OdsListItem
 import com.orange.ods.compose.component.list.OdsSwitchTrailing
-import com.orange.ods.theme.OdsComponentsConfiguration.ComponentStyle
 
 @OptIn(ExperimentalMaterialApi::class)
 @Composable
@@ -49,7 +47,6 @@ fun ChipFilter() {
     val chipCustomizationState = rememberChipCustomizationState(chipType = rememberSaveable { mutableStateOf(ChipCustomizationState.ChipType.Filter) })
     val recipes = LocalRecipes.current
     val recipe = rememberSaveable { recipes.filter { it.ingredients.count() >= 3 }.random() }
-    val outlinedChips = LocalThemeManager.current.currentThemeConfiguration.componentsConfiguration.chipStyle == ComponentStyle.Outlined
 
     with(chipCustomizationState) {
         ComponentCustomizationBottomSheetScaffold(
@@ -58,13 +55,14 @@ fun ChipFilter() {
 
                 Subtitle(textRes = R.string.component_element_leading, horizontalPadding = true)
                 OdsChoiceChipsFlowRow(
-                    selectedChip = leadingElement,
-                    modifier = Modifier.padding(horizontal = dimensionResource(id = R.dimen.screen_horizontal_margin)),
-                    outlinedChips = true
-                ) {
-                    OdsChoiceChip(textRes = R.string.component_element_none, value = ChipCustomizationState.LeadingElement.None)
-                    OdsChoiceChip(textRes = R.string.component_element_avatar, value = ChipCustomizationState.LeadingElement.Avatar)
-                }
+                    value = leadingElement.value,
+                    onValueChange = { value -> leadingElement.value = value },
+                    modifier = Modifier.padding(horizontal = dimensionResource(id = com.orange.ods.R.dimen.spacing_m)),
+                    chips = listOf(
+                        OdsChoiceChip(text = stringResource(id = R.string.component_element_none), value = ChipCustomizationState.LeadingElement.None),
+                        OdsChoiceChip(text = stringResource(id = R.string.component_element_avatar), value = ChipCustomizationState.LeadingElement.Avatar),
+                    )
+                )
 
                 OdsListItem(
                     text = stringResource(id = R.string.component_state_enabled),
@@ -75,33 +73,34 @@ fun ChipFilter() {
             }) {
             var selectedChipIndexes by rememberSaveable { mutableStateOf(emptySet<Int>()) }
             ChipTypeDemo(chipType = chipType.value) {
-                FlowRow(modifier = Modifier.fillMaxWidth(), mainAxisSpacing = dimensionResource(id = R.dimen.spacing_s)) {
+                FlowRow(modifier = Modifier.fillMaxWidth(), mainAxisSpacing = dimensionResource(id = com.orange.ods.R.dimen.spacing_s)) {
                     recipe.ingredients.forEachIndexed { index, ingredient ->
                         OdsFilterChip(
                             text = ingredient.food.name,
                             leadingAvatar = if (hasLeadingAvatar) {
-                                rememberAsyncImagePainter(
-                                    model = ingredient.food.imageUrl,
-                                    placeholder = painterResource(id = DrawableManager.getPlaceholderSmallResId()),
-                                    error = painterResource(id = DrawableManager.getPlaceholderSmallResId(error = true))
+                                OdsChipLeadingAvatar(
+                                    rememberAsyncImagePainter(
+                                        model = ingredient.food.imageUrl,
+                                        placeholder = painterResource(id = DrawableManager.getPlaceholderSmallResId()),
+                                        error = painterResource(id = DrawableManager.getPlaceholderSmallResId(error = true))
+                                    ), ""
                                 )
                             } else null,
                             onClick = {
                                 selectedChipIndexes = with(selectedChipIndexes) { if (contains(index)) minus(index) else plus(index) }
                             },
-                            outlined = outlinedChips,
                             selected = selectedChipIndexes.contains(index),
                             enabled = isEnabled,
                         )
                     }
                 }
 
-                Spacer(modifier = Modifier.padding(top = dimensionResource(R.dimen.spacing_s)))
+                Spacer(modifier = Modifier.padding(top = dimensionResource(com.orange.ods.R.dimen.spacing_s)))
 
                 CodeImplementationColumn {
                     FunctionCallCode(
                         name = "FlowRow",
-                        parameters = { simple("mainAxisSpacing", "dimensionResource(id = R.dimen.spacing_s))") }
+                        parameters = { simple("mainAxisSpacing", "8.dp") }
                     ) {
                         recipe.ingredients.forEachIndexed { index, ingredient ->
                             FunctionCallCode(
@@ -109,9 +108,13 @@ fun ChipFilter() {
                                 exhaustiveParameters = false,
                                 parameters = {
                                     text(ingredient.food.name)
-                                    if (hasLeadingAvatar) simple("leadingAvatar", ImagePainterValue)
+                                    if (hasLeadingAvatar) {
+                                        classInstance("leadingAvatar", OdsChipLeadingAvatar::class.java) {
+                                            image()
+                                            contentDescription("")
+                                        }
+                                    }
                                     onClick()
-                                    if (!outlinedChips) stringRepresentation("outlined", outlinedChips)
                                     if (selectedChipIndexes.contains(index)) selected(true)
                                     if (!isEnabled) enabled(false)
                                 })

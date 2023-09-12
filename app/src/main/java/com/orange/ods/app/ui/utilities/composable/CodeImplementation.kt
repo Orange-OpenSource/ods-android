@@ -31,7 +31,7 @@ import com.orange.ods.app.ui.UiFramework
 import com.orange.ods.compose.component.menu.OdsExposedDropdownMenu
 import com.orange.ods.compose.component.menu.OdsExposedDropdownMenuItem
 import com.orange.ods.compose.theme.OdsTheme
-import com.orange.ods.utilities.extension.orElse
+import com.orange.ods.extension.orElse
 
 const val IconPainterValue = "<icon painter>"
 const val ImagePainterValue = "<image painter>"
@@ -74,21 +74,21 @@ private open class FunctionParameter(name: String, val value: Function) : CodePa
 
 private class ClassInstanceParameter(name: String, value: ClassInstance) : FunctionParameter(name, with(value) { Function(clazz.simpleName, parameters) })
 
-private class ListParameter(name: String, val value: List<ClassInstance>) : CodeParameter(name) {
+private class ListParameter(name: String, val value: List<Function>) : CodeParameter(name) {
     override val code
         get() = @Composable {
             TechnicalText(text = "$name = listOf(")
             IndentCodeColumn {
                 value.forEach { item ->
-                    FunctionCallCode(name = item.clazz.simpleName, parameters = item.parameters, trailingComma = true, exhaustiveParameters = true)
+                    FunctionCallCode(name = item.name, parameters = item.parameters, trailingComma = true, exhaustiveParameters = true)
                 }
             }
             TechnicalText(text = "),")
         }
 }
 
-data class ClassInstance(val clazz: Class<*>, val parameters: ParametersBuilder.() -> Unit = {})
-data class Function(val name: String, val parameters: ParametersBuilder.() -> Unit = {})
+class ClassInstance(val clazz: Class<*>, parameters: ParametersBuilder.() -> Unit = {}) : Function(clazz.simpleName, parameters)
+open class Function(val name: String, val parameters: ParametersBuilder.() -> Unit = {})
 
 private sealed class PredefinedParameter {
     object Icon : SimpleParameter("icon", IconPainterValue)
@@ -137,7 +137,7 @@ fun CodeImplementationColumn(
 
     Column(
         modifier = modifier.padding(
-            vertical = dimensionResource(id = R.dimen.spacing_s)
+            vertical = dimensionResource(id = com.orange.ods.R.dimen.spacing_s)
         )
     ) {
         UiFrameworkChoice(xmlAvailable)
@@ -152,7 +152,7 @@ fun CodeImplementationColumn(
                 TechnicalText(
                     modifier = Modifier
                         .fillMaxWidth()
-                        .padding(dimensionResource(id = R.dimen.spacing_xs)),
+                        .padding(dimensionResource(id = com.orange.ods.R.dimen.spacing_xs)),
                     text = stringResource(id = R.string.soon_available)
                 )
             }
@@ -189,7 +189,7 @@ fun CodeBackgroundColumn(content: @Composable () -> Unit) {
     Column(
         modifier = Modifier
             .background(OdsTheme.colors.onSurface.copy(alpha = 0.12f))
-            .padding(horizontal = dimensionResource(id = R.dimen.spacing_s), vertical = dimensionResource(id = R.dimen.spacing_s))
+            .padding(horizontal = dimensionResource(id = com.orange.ods.R.dimen.spacing_s), vertical = dimensionResource(id = com.orange.ods.R.dimen.spacing_s))
             .semantics(mergeDescendants = true) {}) {
         content()
     }
@@ -197,7 +197,7 @@ fun CodeBackgroundColumn(content: @Composable () -> Unit) {
 
 @Composable
 fun IndentCodeColumn(content: @Composable () -> Unit) {
-    Column(modifier = Modifier.padding(start = dimensionResource(id = R.dimen.spacing_s))) {
+    Column(modifier = Modifier.padding(start = dimensionResource(id = com.orange.ods.R.dimen.spacing_s))) {
         content()
     }
 }
@@ -260,11 +260,13 @@ annotation class CodeImplementationDslMarker
 @CodeImplementationDslMarker
 class ListParameterValueBuilder {
 
-    private val classInstances = mutableListOf<ClassInstance>()
+    private val functions = mutableListOf<Function>()
 
-    fun classInstance(clazz: Class<*>, parameters: ParametersBuilder.() -> Unit = {}) = apply { classInstances.add(ClassInstance(clazz, parameters)) }
+    fun classInstance(clazz: Class<*>, parameters: ParametersBuilder.() -> Unit = {}) = apply { functions.add(ClassInstance(clazz, parameters)) }
 
-    fun build() = classInstances.toList()
+    fun function(functionName: String, parameters: ParametersBuilder.() -> Unit = {}) = apply { functions.add(Function(functionName, parameters)) }
+
+    fun build() = functions.toList()
 }
 
 @CodeImplementationDslMarker

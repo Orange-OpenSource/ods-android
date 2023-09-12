@@ -10,14 +10,14 @@
 
 package com.orange.ods.app.ui
 
+import androidx.compose.foundation.ExperimentalFoundationApi
+import androidx.compose.foundation.pager.PagerState
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.MutableState
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.snapshots.SnapshotStateList
-import com.google.accompanist.pager.ExperimentalPagerApi
-import com.google.accompanist.pager.PagerState
 import com.orange.ods.app.ui.components.tabs.MainTabsCustomizationState
 import com.orange.ods.app.ui.utilities.NavigationItem
 import com.orange.ods.app.ui.utilities.rememberSaveableMutableStateListOf
@@ -33,7 +33,7 @@ fun rememberMainTabsState(
         MainTabsState(tabs, tabIconType, tabTextEnabled, scrollableTabs)
     }
 
-@OptIn(ExperimentalPagerApi::class)
+@OptIn(ExperimentalFoundationApi::class)
 class MainTabsState(
     val tabs: SnapshotStateList<NavigationItem>,
     val tabIconType: MutableState<MainTabsCustomizationState.TabIconType>,
@@ -78,7 +78,7 @@ class MainTabsState(
     }
 }
 
-@OptIn(ExperimentalPagerApi::class)
+@OptIn(ExperimentalFoundationApi::class)
 data class TabsConfiguration(
     val scrollableTabs: Boolean,
     val tabs: List<NavigationItem>,

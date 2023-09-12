@@ -40,7 +40,7 @@ fun ComponentDetailScreen(
     Column(
         modifier = Modifier
             .verticalScroll(rememberScrollState())
-            .padding(bottom = dimensionResource(id = R.dimen.screen_vertical_margin))
+            .padding(bottom = dimensionResource(id = com.orange.ods.R.dimen.screen_vertical_margin))
     ) {
         DetailScreenHeader(
             imageRes = DrawableManager.getDrawableResIdForCurrentTheme(resId = component.imageRes),
@@ -48,7 +48,7 @@ fun ComponentDetailScreen(
             descriptionRes = component.descriptionRes
         )
         Column(
-            modifier = Modifier.padding(top = dimensionResource(id = R.dimen.spacing_m))
+            modifier = Modifier.padding(top = dimensionResource(id = com.orange.ods.R.dimen.spacing_m))
         ) {
             if (component.variants.isEmpty()) {
                 ComponentDetailLinkItem(

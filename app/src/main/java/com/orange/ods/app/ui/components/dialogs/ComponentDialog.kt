@@ -31,6 +31,7 @@ import com.orange.ods.app.ui.utilities.composable.CodeImplementationColumn
 import com.orange.ods.app.ui.utilities.composable.FunctionCallCode
 import com.orange.ods.compose.OdsComposable
 import com.orange.ods.compose.component.dialog.OdsAlertDialog
+import com.orange.ods.compose.component.dialog.OdsAlertDialogButton
 import com.orange.ods.compose.component.list.OdsListItem
 import com.orange.ods.compose.component.list.OdsSwitchTrailing
 
@@ -68,19 +69,23 @@ fun ComponentDialog() {
             }
 
             CodeImplementationColumn(
-                modifier = Modifier.padding(horizontal = dimensionResource(id = R.dimen.screen_horizontal_margin))
+                modifier = Modifier.padding(horizontal = dimensionResource(id = com.orange.ods.R.dimen.screen_horizontal_margin))
             ) {
                 FunctionCallCode(
                     name = OdsComposable.OdsAlertDialog.name,
                     exhaustiveParameters = false,
                     parameters = {
                         simple("text", "<dialog text>")
-                        string("confirmButtonText", confirmButtonText)
-                        lambda("onConfirmButtonClick")
-                        if (customizationState.isTitleChecked) string("titleText", recipe.title)
+                        classInstance("confirmButton", OdsAlertDialogButton::class.java) {
+                            text(confirmButtonText)
+                            onClick()
+                        }
+                        if (customizationState.isTitleChecked) string("title", recipe.title)
                         if (customizationState.isDismissButtonChecked) {
-                            string("dismissButtonText", dismissButtonText)
-                            lambda("onDismissButtonClick")
+                            classInstance("dismissButton", OdsAlertDialogButton::class.java) {
+                                text(dismissButtonText)
+                                onClick()
+                            }
                         }
                     }
                 )
@@ -88,18 +93,18 @@ fun ComponentDialog() {
 
             if (customizationState.shouldOpenDialog) {
                 OdsAlertDialog(
-                    titleText = if (customizationState.isTitleChecked) recipe.title else null,
+                    title = if (customizationState.isTitleChecked) recipe.title else null,
                     text = recipe.description,
-                    confirmButtonText = confirmButtonText,
-                    onConfirmButtonClick = {
+                    confirmButton = OdsAlertDialogButton(confirmButtonText) {
                         clickOnElement(context = context, clickedElement = confirmButtonText)
                         closeDialogAction()
                     },
-                    dismissButtonText = if (customizationState.isDismissButtonChecked) dismissButtonText else null,
-                    onDismissButtonClick = {
-                        clickOnElement(context = context, clickedElement = dismissButtonText)
-                        closeDialogAction()
-                    },
+                    dismissButton = if (customizationState.isDismissButtonChecked) {
+                        OdsAlertDialogButton(dismissButtonText) {
+                            clickOnElement(context = context, clickedElement = dismissButtonText)
+                            closeDialogAction()
+                        }
+                    } else null,
                 )
             }
         }

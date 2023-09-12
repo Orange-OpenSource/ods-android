@@ -18,23 +18,22 @@ plugins {
 }
 
 val pluginExtension: MavenCentralPublishPluginExtension?
-    get() = extensions.findByName(MavenCentralPublishPluginExtension.Name) as? MavenCentralPublishPluginExtension?
+    get() = extensions.findByName(MavenCentralPublishPluginExtension.NAME) as? MavenCentralPublishPluginExtension?
 
 apply {
     if (pluginExtension == null) {
-        extensions.create<MavenCentralPublishPluginExtension>(MavenCentralPublishPluginExtension.Name)
+        extensions.create<MavenCentralPublishPluginExtension>(MavenCentralPublishPluginExtension.NAME)
     }
 }
 
 afterEvaluate {
     publishing {
         publications {
-            create<MavenPublication>("release") {
+            create<MavenPublication>(MavenCentralPublishPluginExtension.VARIANT) {
                 from(components["release"])
                 groupId = "com.orange.ods.android"
                 artifactId = pluginExtension?.artifactId ?: "ods-${project.name}"
                 this.version = version
-                artifact(tasks["sourcesJar"])
 
                 pom {
                     name.set(artifactId)
@@ -87,11 +86,6 @@ afterEvaluate {
             "GNUPG_SIGNING_PASSWORD"
         )
         useInMemoryPgpKeys(signingKeyId, signingSecretKey, signingPassword)
-        sign(publishing.publications["release"])
+        sign(publishing.publications[MavenCentralPublishPluginExtension.VARIANT])
     }
-}
-
-tasks.register<Jar>("sourcesJar") {
-    archiveClassifier.set("sources")
-    from(android.sourceSets.getByName("main").java.srcDirs)
 }

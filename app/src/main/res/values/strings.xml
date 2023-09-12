@@ -76,8 +76,8 @@
     <string name="component_element_label">Label</string>
     <string name="component_element_caption">Caption</string>
     <string name="component_element_thumbnail">Thumbnail</string>
-    <string name="component_element_button1">Button 1</string>
-    <string name="component_element_button2">Button 2</string>
+    <string name="component_element_first_button">First button</string>
+    <string name="component_element_second_button">Second button</string>
     <string name="component_element_text">Text</string>
     <string name="component_element_avatar">Avatar</string>
     <string name="component_element_icon">Icon</string>
@@ -146,6 +146,7 @@
     <string name="component_buttons_medium_emphasis">Medium emphasis buttons</string>
     <string name="component_buttons_low_emphasis">Low emphasis buttons</string>
     <string name="component_buttons_functional">Functional buttons</string>
+    <string name="component_buttons_text_toggle_group_same_weight">Same items weight</string>
 
     <string name="component_button_full_screen_width">Full screen width</string>
     <string name="component_button_style_primary">Primary</string>
@@ -153,6 +154,7 @@
     <string name="component_button_style_functional">Functional</string>
     <string name="component_button_style_functional_positive">Positive</string>
     <string name="component_button_style_functional_negative">Negative</string>
+    <string name="component_button_text_toggle_group">Toggle text button group</string>
 
     <!-- Components Buttons: Icons -->
     <string name="component_buttons_icons">Buttons: Icons</string>
@@ -163,7 +165,8 @@
     <string name="component_button_icon_search_desc">Search</string>
     <string name="component_button_icon_toggle">Toggle icon button</string>
     <string name="component_button_icon_toggle_group">Toggle icon button group</string>
-    <string name="component_button_icon_toggle_favorite_icon_desc">Add to favorites</string>
+    <string name="component_button_icon_toggle_favorite_add_icon_desc">Add to favorites</string>
+    <string name="component_button_icon_toggle_favorite_remove_icon_desc">Remove from favorites</string>
     <string name="component_button_icon_toggle_count">Toggle count</string>
     <string name="component_button_icon_toggle_remove">Remove toggle</string>
     <string name="component_button_icon_toggle_add">Add toggle</string>
@@ -218,14 +221,35 @@
     <string name="component_floating_action_button_size_mini">Mini</string>
     <string name="component_floating_action_button_full_screen_width">Full screen width</string>
 
-    <!-- Component Image Lists -->
-    <string name="component_image_item">Image Item</string>
-    <string name="component_image_item_description">An Image Item contains primary information which is usually an image. It can also contain secondary information such as a title or an action.</string>
-    <string name="component_image_item_sizes">Image item sizes</string>
-    <string name="component_image_item_small">Small image</string>
-    <string name="component_image_item_large">Large image</string>
-    <string name="component_image_item_overlay_text">Overlay</string>
-    <string name="component_image_item_below_text">Below</string>
+    <!-- Component Image Tile -->
+    <string name="component_image_tile">Image tile</string>
+    <string name="component_image_tile_description">An image tile contains primary information which is usually an image. It can also contain secondary information such as a title or an action.</string>
+    <string name="component_image_tile_sizes">Image tile sizes</string>
+    <string name="component_image_tile_small">Small image</string>
+    <string name="component_image_tile_large">Large image</string>
+    <string name="component_image_tile_legend_area_display_type">Legend area display type</string>
+    <string name="component_image_tile_legend_area_display_type_overlay">Overlay</string>
+    <string name="component_image_tile_legend_area_display_type_below">Below</string>
+
+    <!-- Component List item -->
+    <string name="component_list_item">List item</string>
+    <string name="component_list_item_description">A list item is the individual element of data entries like text, icons or images that is used to create a list.</string>
+    <string name="component_list_item_size">List item size</string>
+    <string name="component_list_item_add_line">Add line</string>
+    <string name="component_list_item_remove_line">Remove line</string>
+    <string name="component_list_leading">Leading - Before the list text</string>
+    <string name="component_list_leading_none">None</string>
+    <string name="component_list_leading_icon">Icon</string>
+    <string name="component_list_leading_circular_image">Circle</string>
+    <string name="component_list_leading_square_image">Square</string>
+    <string name="component_list_leading_wide_image">Wide</string>
+    <string name="component_list_trailing">Trailing - After the list text</string>
+    <string name="component_list_trailing_none">None</string>
+    <string name="component_list_trailing_checkbox">Checkbox</string>
+    <string name="component_list_trailing_switch">Switch</string>
+    <string name="component_list_trailing_icon">Icon</string>
+    <string name="component_list_trailing_caption">Caption</string>
+    <string name="component_list_information">Information</string>
 
     <!-- Component Menus -->
     <string name="component_menus">Menus</string>
@@ -284,27 +308,6 @@
     <string name="component_progress_linear_value">Current value</string>
     <string name="component_progress_circular">Circular</string>
     <string name="component_progress_label">Downloading …</string>
-
-    <!-- Component Lists -->
-    <string name="component_lists">Lists</string>
-    <string name="component_lists_description">A list is a continuous vertical group of data entries like text, icons or images.</string>
-    <string name="component_list_item">List item</string>
-    <string name="component_list_item_size">List item size</string>
-    <string name="component_list_item_add_line">Add line</string>
-    <string name="component_list_item_remove_line">Remove line</string>
-    <string name="component_list_leading">Leading - Before the list text</string>
-    <string name="component_list_leading_none">None</string>
-    <string name="component_list_leading_icon">Icon</string>
-    <string name="component_list_leading_circular_image">Circle</string>
-    <string name="component_list_leading_square_image">Square</string>
-    <string name="component_list_leading_wide_image">Wide</string>
-    <string name="component_list_trailing">Trailing - After the list text</string>
-    <string name="component_list_trailing_none">None</string>
-    <string name="component_list_trailing_checkbox">Checkbox</string>
-    <string name="component_list_trailing_switch">Switch</string>
-    <string name="component_list_trailing_icon">Icon</string>
-    <string name="component_list_trailing_caption">Caption</string>
-    <string name="component_list_information">Information</string>
 
     <!-- Components Sheets -->
     <string name="component_sheets_bottom">Sheets: bottom</string>
@@ -392,5 +395,10 @@
     <!-- Search -->
     <string name="search_text_field_hint">Search</string>
     <string name="search_content_description">Search icon</string>
+    <plurals name="search_result_count_content_description">
+        <item quantity="one">There is %1$d result</item>
+        <item quantity="other">There are %1$d results</item>
+    </plurals>
+    <string name="search_no_result_content_description">There are no results</string>
 
 </resources>

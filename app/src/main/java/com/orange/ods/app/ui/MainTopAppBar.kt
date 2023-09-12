@@ -12,10 +12,8 @@ package com.orange.ods.app.ui
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.RowScope
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
-import androidx.compose.material.Icon
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ArrowBack
 import androidx.compose.material3.ExperimentalMaterial3Api
@@ -37,13 +35,14 @@ import com.orange.ods.app.R
 import com.orange.ods.app.domain.recipes.LocalRecipes
 import com.orange.ods.app.ui.components.utilities.clickOnElement
 import com.orange.ods.app.ui.utilities.extension.isDarkModeEnabled
-import com.orange.ods.compose.component.appbar.top.OdsLargeTopAppBar
-import com.orange.ods.compose.component.appbar.top.OdsTopAppBar
+import com.orange.ods.compose.component.appbar.top.OdsLargeTopAppBarInternal
 import com.orange.ods.compose.component.appbar.top.OdsTopAppBarActionButton
-import com.orange.ods.compose.component.appbar.top.OdsTopAppBarOverflowMenuBox
+import com.orange.ods.compose.component.appbar.top.OdsTopAppBarInternal
+import com.orange.ods.compose.component.appbar.top.OdsTopAppBarNavigationIcon
+import com.orange.ods.compose.component.appbar.top.OdsTopAppBarOverflowMenuActionItem
+import com.orange.ods.compose.component.content.OdsComponentContent
 import com.orange.ods.compose.component.list.OdsListItem
 import com.orange.ods.compose.component.list.OdsRadioButtonTrailing
-import com.orange.ods.compose.component.menu.OdsDropdownMenuItem
 import com.orange.ods.compose.component.textfield.search.OdsSearchTextField
 import com.orange.ods.compose.text.OdsTextH6
 import com.orange.ods.compose.theme.OdsTheme
@@ -63,37 +62,34 @@ fun MainTopAppBar(
     val showSearchAction = topAppBarState.titleRes.value == R.string.navigation_item_search
 
     val title = stringResource(id = topAppBarState.titleRes.value)
-    val navigationIcon: (@Composable () -> Unit)? = if (shouldShowUpNavigationIcon && topAppBarState.isNavigationIconEnabled) {
-        {
-            Icon(
-                imageVector = Icons.Filled.ArrowBack,
-                contentDescription = stringResource(id = R.string.top_app_bar_back_icon_desc)
-            )
-        }
-    } else null
-
-    val actions: @Composable RowScope.() -> Unit = {
-        if (showSearchAction) {
-            TopAppBarSearchAction(searchedText = topAppBarState.searchedText)
-        } else {
-            TopAppBarActions(topAppBarState, onSearchActionClick) { changeThemeDialogVisible = true }
-        }
+    val navigationIcon = if (shouldShowUpNavigationIcon && topAppBarState.isNavigationIconEnabled) {
+        OdsTopAppBarNavigationIcon(Icons.Filled.ArrowBack, stringResource(id = R.string.top_app_bar_back_icon_desc), upPress)
+    } else {
+        null
     }
 
+    val actions = if (showSearchAction) {
+        listOf(getTopAppBarSearchTextFieldAction(searchedText = topAppBarState.searchedText))
+    } else {
+        getTopAppBarActions(topAppBarState, onSearchActionClick) { changeThemeDialogVisible = true }
+    }
+
+    val overflowMenuActions = getTopAppBarOverflowMenuActions(topAppBarState)
+
     if (topAppBarState.isLarge) {
-        OdsLargeTopAppBar(
+        OdsLargeTopAppBarInternal(
             title = title,
             navigationIcon = navigationIcon,
-            onNavigationIconClick = upPress,
             actions = actions,
+            overflowMenuActions = overflowMenuActions,
             scrollBehavior = if (topAppBarState.hasScrollBehavior) scrollBehavior else null
         )
     } else {
-        OdsTopAppBar(
+        OdsTopAppBarInternal(
             title = title,
             navigationIcon = navigationIcon,
-            onNavigationIconClick = upPress,
             actions = actions,
+            overflowMenuActions = overflowMenuActions,
             elevated = false // elevation is managed in [MainScreen] cause of tabs
         )
     }
@@ -111,41 +107,50 @@ fun MainTopAppBar(
     }
 }
 
-
 @Composable
-private fun TopAppBarSearchAction(searchedText: MutableState<TextFieldValue>) {
-    val focusRequester = remember { FocusRequester() }
-    OdsSearchTextField(
-        value = searchedText.value,
-        onValueChange = { value ->
-            searchedText.value = value
-        },
-        placeholder = stringResource(id = R.string.search_text_field_hint),
-        modifier = Modifier
-            .fillMaxWidth()
-            .focusRequester(focusRequester)
-    )
-    LaunchedEffect(Unit) {
-        focusRequester.requestFocus()
-    }
-}
+private fun getTopAppBarSearchTextFieldAction(searchedText: MutableState<TextFieldValue>): OdsComponentContent {
+    return object : OdsComponentContent() {
 
-@Composable
-private fun TopAppBarActions(state: MainTopAppBarState, onSearchActionClick: () -> Unit, onChangeThemeActionClick: () -> Unit) {
-    state.actions.value.forEach { action ->
-        when (action) {
-            TopAppBarConfiguration.Action.Search -> TopAppBarSearchActionButton(onClick = onSearchActionClick)
-            TopAppBarConfiguration.Action.Theme -> TopAppBarChangeThemeActionButton(onClick = onChangeThemeActionClick)
-            TopAppBarConfiguration.Action.Mode -> TopAppBarChangeModeActionButton()
-            TopAppBarConfiguration.Action.OverflowMenu -> TopAppBarOverflowMenuBox()
-            is TopAppBarConfiguration.Action.Custom -> TopAppBarCustomActionButton(action = action)
+        @Composable
+        override fun Content(modifier: Modifier) {
+            val focusRequester = remember { FocusRequester() }
+            OdsSearchTextField(
+                value = searchedText.value,
+                onValueChange = { value ->
+                    searchedText.value = value
+                },
+                placeholder = stringResource(id = R.string.search_text_field_hint),
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .focusRequester(focusRequester)
+            )
+            LaunchedEffect(Unit) {
+                focusRequester.requestFocus()
+            }
         }
     }
 }
 
 @Composable
-private fun TopAppBarChangeThemeActionButton(onClick: () -> Unit) {
-    OdsTopAppBarActionButton(
+private fun getTopAppBarActions(
+    state: MainTopAppBarState,
+    onSearchActionClick: () -> Unit,
+    onChangeThemeActionClick: () -> Unit
+): List<OdsTopAppBarActionButton> {
+    return state.actions.value.mapNotNull { action ->
+        when (action) {
+            TopAppBarConfiguration.Action.Search -> getTopAppBarSearchAction(onClick = onSearchActionClick)
+            TopAppBarConfiguration.Action.Theme -> getTopAppBarChangeThemeAction(onClick = onChangeThemeActionClick)
+            TopAppBarConfiguration.Action.Mode -> getTopAppBarChangeModeAction()
+            TopAppBarConfiguration.Action.OverflowMenu -> null
+            is TopAppBarConfiguration.Action.Custom -> getTopAppBarCustomAction(action = action)
+        }
+    }
+}
+
+@Composable
+private fun getTopAppBarChangeThemeAction(onClick: () -> Unit): OdsTopAppBarActionButton {
+    return OdsTopAppBarActionButton(
         onClick = onClick,
         painter = painterResource(id = R.drawable.ic_palette),
         contentDescription = stringResource(id = R.string.top_app_bar_action_change_mode_to_dark_desc)
@@ -153,7 +158,7 @@ private fun TopAppBarChangeThemeActionButton(onClick: () -> Unit) {
 }
 
 @Composable
-private fun TopAppBarChangeModeActionButton() {
+private fun getTopAppBarChangeModeAction(): OdsTopAppBarActionButton {
     val configuration = LocalConfiguration.current
     val themeManager = LocalThemeManager.current
 
@@ -161,7 +166,7 @@ private fun TopAppBarChangeModeActionButton() {
     val iconDesc =
         if (configuration.isDarkModeEnabled) R.string.top_app_bar_action_change_mode_to_light_desc else R.string.top_app_bar_action_change_mode_to_dark_desc
 
-    OdsTopAppBarActionButton(
+    return OdsTopAppBarActionButton(
         onClick = { themeManager.darkModeEnabled = !configuration.isDarkModeEnabled },
         painter = painterResource(id = painterRes),
         contentDescription = stringResource(id = iconDesc)
@@ -169,8 +174,8 @@ private fun TopAppBarChangeModeActionButton() {
 }
 
 @Composable
-private fun TopAppBarSearchActionButton(onClick: () -> Unit) {
-    OdsTopAppBarActionButton(
+private fun getTopAppBarSearchAction(onClick: () -> Unit): OdsTopAppBarActionButton {
+    return OdsTopAppBarActionButton(
         onClick = onClick,
         painter = painterResource(id = R.drawable.ic_search),
         contentDescription = stringResource(id = R.string.search_content_description)
@@ -178,24 +183,24 @@ private fun TopAppBarSearchActionButton(onClick: () -> Unit) {
 }
 
 @Composable
-private fun TopAppBarOverflowMenuBox() {
-    val context = LocalContext.current
-    OdsTopAppBarOverflowMenuBox(
-        overflowIconContentDescription = stringResource(id = R.string.component_app_bars_top_element_overflow_menu)
-    ) {
-        LocalRecipes.current.forEach { recipe ->
-            OdsDropdownMenuItem(
+private fun getTopAppBarOverflowMenuActions(state: MainTopAppBarState): List<OdsTopAppBarOverflowMenuActionItem> {
+    return if (state.actions.value.contains(TopAppBarConfiguration.Action.OverflowMenu)) {
+        val context = LocalContext.current
+        LocalRecipes.current.map { recipe ->
+            OdsTopAppBarOverflowMenuActionItem(
                 text = recipe.title,
                 onClick = { clickOnElement(context, recipe.title) }
             )
         }
+    } else {
+        emptyList()
     }
 }
 
 @Composable
-private fun TopAppBarCustomActionButton(action: TopAppBarConfiguration.Action.Custom) {
+private fun getTopAppBarCustomAction(action: TopAppBarConfiguration.Action.Custom): OdsTopAppBarActionButton {
     val context = LocalContext.current
-    OdsTopAppBarActionButton(
+    return OdsTopAppBarActionButton(
         onClick = { clickOnElement(context, action.name) },
         painter = painterResource(id = action.iconResId),
         contentDescription = action.name
@@ -211,8 +216,8 @@ private fun ChangeThemeDialog(themeManager: ThemeManager, dismissDialog: () -> U
             OdsTextH6(
                 text = stringResource(R.string.top_app_bar_action_change_theme_desc),
                 modifier = Modifier
-                    .padding(top = dimensionResource(R.dimen.spacing_m), bottom = dimensionResource(id = R.dimen.spacing_s))
-                    .padding(horizontal = dimensionResource(R.dimen.screen_horizontal_margin))
+                    .padding(top = dimensionResource(com.orange.ods.R.dimen.spacing_m), bottom = dimensionResource(id = com.orange.ods.R.dimen.spacing_s))
+                    .padding(horizontal = dimensionResource(com.orange.ods.R.dimen.screen_horizontal_margin))
             )
             themeManager.themeConfigurations.forEach { themeConfiguration ->
                 OdsListItem(

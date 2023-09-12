@@ -29,6 +29,7 @@ import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.stringResource
 import com.orange.ods.app.R
 import com.orange.ods.app.ui.components.Variant
+import com.orange.ods.app.ui.components.utilities.ComponentCountRow
 import com.orange.ods.app.ui.components.utilities.ComponentCustomizationBottomSheetScaffold
 import com.orange.ods.app.ui.utilities.composable.Subtitle
 import com.orange.ods.compose.component.button.OdsButtonStyle
@@ -58,35 +59,61 @@ fun ComponentButtons(variant: Variant) {
         ComponentCustomizationBottomSheetScaffold(
             bottomSheetScaffoldState = rememberBottomSheetScaffoldState(),
             bottomSheetContent = {
-                if (variant == Variant.ButtonsFunctional) {
-                    Subtitle(textRes = R.string.component_button_style_functional, horizontalPadding = true)
-                    OdsChoiceChipsFlowRow(
-                        selectedChip = buttonStyle,
-                        modifier = Modifier.padding(horizontal = dimensionResource(id = R.dimen.screen_horizontal_margin)),
-                        outlinedChips = true
-                    ) {
-                        OdsChoiceChip(textRes = R.string.component_button_style_functional_positive, value = OdsButtonStyle.FunctionalPositive)
-                        OdsChoiceChip(textRes = R.string.component_button_style_functional_negative, value = OdsButtonStyle.FunctionalNegative)
+                when (variant) {
+                    Variant.ButtonsFunctional -> {
+                        Subtitle(textRes = R.string.component_button_style_functional, horizontalPadding = true)
+                        OdsChoiceChipsFlowRow(
+                            value = buttonStyle.value,
+                            onValueChange = { value -> buttonStyle.value = value },
+                            modifier = Modifier.padding(horizontal = dimensionResource(id = com.orange.ods.R.dimen.spacing_m)),
+                            chips = listOf(
+                                OdsChoiceChip(text = stringResource(id = R.string.component_button_style_functional_positive), value = OdsButtonStyle.FunctionalPositive),
+                                OdsChoiceChip(text = stringResource(id = R.string.component_button_style_functional_negative), value = OdsButtonStyle.FunctionalNegative)
+                            )
+                        )
                     }
-                } else if (variant == Variant.ButtonsText) {
-                    Subtitle(textRes = R.string.component_style, horizontalPadding = true)
-                    OdsChoiceChipsFlowRow(
-                        selectedChip = textButtonStyle,
-                        modifier = Modifier.padding(horizontal = dimensionResource(id = R.dimen.screen_horizontal_margin)),
-                        outlinedChips = true
-                    ) {
-                        OdsChoiceChip(textRes = R.string.component_button_style_primary, value = OdsTextButtonStyle.Primary)
-                        OdsChoiceChip(textRes = R.string.component_button_style_default, value = OdsTextButtonStyle.Default)
+                    Variant.ButtonsText -> {
+                        Subtitle(textRes = R.string.component_style, horizontalPadding = true)
+                        OdsChoiceChipsFlowRow(
+                            value = textButtonStyle.value,
+                            onValueChange = { value -> textButtonStyle.value = value },
+                            modifier = Modifier.padding(horizontal = dimensionResource(id = com.orange.ods.R.dimen.spacing_m)),
+                            chips = listOf(
+                                OdsChoiceChip(text = stringResource(id =  R.string.component_button_style_primary), value = OdsTextButtonStyle.Primary),
+                                OdsChoiceChip(text = stringResource(id = R.string.component_button_style_default), value = OdsTextButtonStyle.Default)
+                            )
+                        )
                     }
+                    Variant.ButtonsTextToggleGroup -> {
+                        ComponentCountRow(
+                            modifier = Modifier.padding(start = dimensionResource(id = com.orange.ods.R.dimen.screen_horizontal_margin)),
+                            title = stringResource(id = R.string.component_button_icon_toggle_count),
+                            count = toggleCount,
+                            minusIconContentDescription = stringResource(id = R.string.component_button_icon_toggle_remove),
+                            plusIconContentDescription = stringResource(id = R.string.component_button_icon_toggle_add),
+                            minCount = ButtonCustomizationState.MinToggleCount,
+                            maxCount = ButtonCustomizationState.MaxToggleCount
+                        )
+
+                        OdsListItem(
+                            text = stringResource(id = R.string.component_buttons_text_toggle_group_same_weight),
+                            trailing = OdsSwitchTrailing(checked = sameItemsWeight)
+                        )
+                    }
+                    else -> {}
                 }
-                OdsListItem(
-                    text = stringResource(id = R.string.component_element_icon),
-                    trailing = OdsSwitchTrailing(checked = leadingIcon)
-                )
-                OdsListItem(
-                    text = stringResource(id = R.string.component_button_full_screen_width),
-                    trailing = OdsSwitchTrailing(checked = fullScreenWidth)
-                )
+
+                if (variant != Variant.ButtonsTextToggleGroup) {
+                    OdsListItem(
+                        text = stringResource(id = R.string.component_element_icon),
+                        trailing = OdsSwitchTrailing(checked = leadingIcon)
+                    )
+                    OdsListItem(
+                        text = stringResource(id = R.string.component_button_full_screen_width),
+                        trailing = OdsSwitchTrailing(checked = fullScreenWidth)
+                    )
+                }
+
                 OdsListItem(
                     text = stringResource(id = R.string.component_state_enabled),
                     trailing = OdsSwitchTrailing(checked = enabled)
@@ -97,6 +124,7 @@ fun ComponentButtons(variant: Variant) {
                 Variant.ButtonsPrimary, Variant.ButtonsDefault, Variant.ButtonsFunctional -> ButtonsContained(customizationState)
                 Variant.ButtonsOutlined -> ButtonsOutlined(customizationState)
                 Variant.ButtonsText -> ButtonsText(customizationState)
+                Variant.ButtonsTextToggleGroup -> ButtonsTextToggleButtonsRow(customizationState)
                 else -> {}
             }
         }
@@ -125,13 +153,13 @@ fun InvertedBackgroundColumn(
         modifier = Modifier
             .fillMaxWidth()
             .background(color = backgroundColor)
-            .padding(bottom = dimensionResource(R.dimen.spacing_m)),
+            .padding(bottom = dimensionResource(com.orange.ods.R.dimen.spacing_m)),
         horizontalAlignment = horizontalAlignment
     ) {
         OdsTextBody2(
             modifier = Modifier
-                .padding(horizontal = dimensionResource(id = R.dimen.spacing_m))
-                .padding(top = dimensionResource(id = R.dimen.spacing_s))
+                .padding(horizontal = dimensionResource(id = com.orange.ods.R.dimen.spacing_m))
+                .padding(top = dimensionResource(id = com.orange.ods.R.dimen.spacing_s))
                 .fillMaxWidth()
                 .align(Alignment.Start),
             text = stringResource(id = textRes),

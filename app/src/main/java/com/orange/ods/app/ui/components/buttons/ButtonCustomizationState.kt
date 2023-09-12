@@ -21,23 +21,31 @@ import com.orange.ods.compose.component.button.OdsTextButtonStyle
 
 @Composable
 fun rememberButtonCustomizationState(
+    toggleCount: MutableState<Int> = rememberSaveable { mutableStateOf(ButtonCustomizationState.MinToggleCount) },
     buttonStyle: MutableState<OdsButtonStyle> = rememberSaveable { mutableStateOf(OdsButtonStyle.Default) },
     textButtonStyle: MutableState<OdsTextButtonStyle> = rememberSaveable { mutableStateOf(OdsTextButtonStyle.Default) },
     leadingIcon: MutableState<Boolean> = rememberSaveable { mutableStateOf(false) },
     fullScreenWidth: MutableState<Boolean> = rememberSaveable { mutableStateOf(false) },
+    sameItemsWeight: MutableState<Boolean> = rememberSaveable { mutableStateOf(false) },
     enabled: MutableState<Boolean> = rememberSaveable { mutableStateOf(true) }
 ) =
-    remember(buttonStyle, textButtonStyle, leadingIcon, fullScreenWidth, enabled) {
-        ButtonCustomizationState(buttonStyle, textButtonStyle, leadingIcon, fullScreenWidth, enabled)
+    remember(buttonStyle, textButtonStyle, leadingIcon, fullScreenWidth, sameItemsWeight, enabled, toggleCount) {
+        ButtonCustomizationState(toggleCount, buttonStyle, textButtonStyle, leadingIcon, fullScreenWidth, sameItemsWeight, enabled)
     }
 
 class ButtonCustomizationState(
+    val toggleCount: MutableState<Int>,
     val buttonStyle: MutableState<OdsButtonStyle>,
     val textButtonStyle: MutableState<OdsTextButtonStyle>,
     val leadingIcon: MutableState<Boolean>,
     val fullScreenWidth: MutableState<Boolean>,
+    val sameItemsWeight: MutableState<Boolean>,
     val enabled: MutableState<Boolean>
 ) {
+    companion object {
+        const val MinToggleCount = 2
+        const val MaxToggleCount = 3
+    }
 
     val hasLeadingIcon
         get() = leadingIcon.value
@@ -47,4 +55,7 @@ class ButtonCustomizationState(
 
     val hasFullScreenWidth
         get() = fullScreenWidth.value
+
+    val hasSameItemsWeight
+        get() = sameItemsWeight.value
 }

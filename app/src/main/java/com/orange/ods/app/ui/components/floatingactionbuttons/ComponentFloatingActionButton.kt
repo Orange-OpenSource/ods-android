@@ -34,6 +34,7 @@ import com.orange.ods.app.ui.utilities.composable.Subtitle
 import com.orange.ods.compose.OdsComposable
 import com.orange.ods.compose.component.button.OdsExtendedFloatingActionButton
 import com.orange.ods.compose.component.button.OdsFloatingActionButton
+import com.orange.ods.compose.component.button.OdsFloatingActionButtonIcon
 import com.orange.ods.compose.component.chip.OdsChoiceChip
 import com.orange.ods.compose.component.chip.OdsChoiceChipsFlowRow
 import com.orange.ods.compose.component.list.OdsListItem
@@ -54,8 +55,8 @@ fun ComponentFloatingActionButton() {
             .let {
                 if (isFullScreenWidth) it
                     .padding(
-                        start = dimensionResource(id = R.dimen.spacing_m),
-                        end = dimensionResource(id = R.dimen.spacing_m),
+                        start = dimensionResource(id = com.orange.ods.R.dimen.spacing_m),
+                        end = dimensionResource(id = com.orange.ods.R.dimen.spacing_m),
                         bottom = 64.dp
                     )
                     .fillMaxWidth()
@@ -71,7 +72,7 @@ fun ComponentFloatingActionButton() {
                             clickOnElement(context, context.getString(R.string.component_floating_action_button))
                         },
                         text = stringResource(id = R.string.component_floating_action_button_add),
-                        icon = painterResource(id = R.drawable.ic_plus),
+                        icon = OdsFloatingActionButtonIcon(painterResource(id = R.drawable.ic_plus), ""),
                         modifier = modifier
                     )
                 } else {
@@ -80,8 +81,10 @@ fun ComponentFloatingActionButton() {
                             clickOnElement(context, context.getString(R.string.component_floating_action_button))
                         },
                         mini = size.value == FabCustomizationState.Size.Mini,
-                        icon = painterResource(id = R.drawable.ic_plus),
-                        iconContentDescription = stringResource(id = R.string.component_floating_action_button_add),
+                        icon = OdsFloatingActionButtonIcon(
+                            painterResource(id = R.drawable.ic_plus),
+                            stringResource(id = R.string.component_floating_action_button_add)
+                        ),
                         modifier = modifier
                     )
                 }
@@ -90,13 +93,17 @@ fun ComponentFloatingActionButton() {
             bottomSheetContent = {
                 Subtitle(textRes = R.string.component_size, horizontalPadding = true)
                 OdsChoiceChipsFlowRow(
-                    selectedChip = size,
-                    modifier = Modifier.padding(horizontal = dimensionResource(id = R.dimen.spacing_m)),
-                    outlinedChips = true
-                ) {
-                    OdsChoiceChip(textRes = R.string.component_floating_action_button_size_default, value = FabCustomizationState.Size.Default)
-                    OdsChoiceChip(textRes = R.string.component_floating_action_button_size_mini, value = FabCustomizationState.Size.Mini)
-                }
+                    value = size.value,
+                    onValueChange = { value -> size.value = value },
+                    modifier = Modifier.padding(horizontal = dimensionResource(id = com.orange.ods.R.dimen.spacing_m)),
+                    chips = listOf(
+                        OdsChoiceChip(
+                            text = stringResource(id = R.string.component_floating_action_button_size_default),
+                            value = FabCustomizationState.Size.Default
+                        ),
+                        OdsChoiceChip(text = stringResource(id = R.string.component_floating_action_button_size_mini), value = FabCustomizationState.Size.Mini)
+                    )
+                )
                 OdsListItem(
                     text = stringResource(id = R.string.component_element_text),
                     trailing = OdsSwitchTrailing(checked = text, enabled = isTextEnabled)
@@ -109,13 +116,16 @@ fun ComponentFloatingActionButton() {
             Column(modifier = Modifier.verticalScroll(rememberScrollState())) {
                 val usedComponentName = if (hasText) OdsComposable.OdsExtendedFloatingActionButton.name else OdsComposable.OdsFloatingActionButton.name
                 CodeImplementationColumn(
-                    modifier = Modifier.padding(horizontal = dimensionResource(id = R.dimen.screen_horizontal_margin))
+                    modifier = Modifier.padding(horizontal = dimensionResource(id = com.orange.ods.R.dimen.screen_horizontal_margin))
                 ) {
                     FunctionCallCode(
                         name = usedComponentName,
                         exhaustiveParameters = false,
                         parameters = {
-                            icon()
+                            classInstance("icon", OdsFloatingActionButtonIcon::class.java) {
+                                painter()
+                                contentDescription("")
+                            }
                             if (this@with.size.value == FabCustomizationState.Size.Mini) stringRepresentation("mini", true)
                             if (hasText) string("text", "Add")
                             if (isFullScreenWidth) fillMaxWidth()

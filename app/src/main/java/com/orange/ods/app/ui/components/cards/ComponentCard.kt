@@ -17,16 +17,16 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.stringResource
-import com.orange.ods.compose.component.card.OdsHorizontalCardImagePosition
-import com.orange.ods.compose.component.chip.OdsChoiceChip
-import com.orange.ods.compose.component.chip.OdsChoiceChipsFlowRow
-import com.orange.ods.compose.component.list.OdsListItem
-import com.orange.ods.compose.component.list.OdsSwitchTrailing
 import com.orange.ods.app.R
 import com.orange.ods.app.ui.components.Variant
 import com.orange.ods.app.ui.components.utilities.ComponentCountRow
 import com.orange.ods.app.ui.components.utilities.ComponentCustomizationBottomSheetScaffold
 import com.orange.ods.app.ui.utilities.composable.Subtitle
+import com.orange.ods.compose.component.card.OdsHorizontalCardImagePosition
+import com.orange.ods.compose.component.chip.OdsChoiceChip
+import com.orange.ods.compose.component.chip.OdsChoiceChipsFlowRow
+import com.orange.ods.compose.component.list.OdsListItem
+import com.orange.ods.compose.component.list.OdsSwitchTrailing
 
 @OptIn(ExperimentalMaterialApi::class)
 @Composable
@@ -49,13 +49,14 @@ fun ComponentCard(variant: Variant) {
                 } else if (variant == Variant.CardHorizontal) {
                     Subtitle(textRes = R.string.component_card_horizontal_image_position, horizontalPadding = true)
                     OdsChoiceChipsFlowRow(
-                        selectedChip = imagePosition,
-                        modifier = Modifier.padding(horizontal = dimensionResource(id = R.dimen.screen_horizontal_margin)),
-                        outlinedChips = true
-                    ) {
-                        OdsChoiceChip(textRes = R.string.component_card_horizontal_image_position_start, value = OdsHorizontalCardImagePosition.Start)
-                        OdsChoiceChip(textRes = R.string.component_card_horizontal_image_position_end, value = OdsHorizontalCardImagePosition.End)
-                    }
+                        value = imagePosition.value,
+                        onValueChange = { value -> imagePosition.value = value },
+                        modifier = Modifier.padding(horizontal = dimensionResource(id = com.orange.ods.R.dimen.spacing_m)),
+                        chips = listOf(
+                            OdsChoiceChip(text = stringResource(id =  R.string.component_card_horizontal_image_position_start), value = OdsHorizontalCardImagePosition.Start),
+                            OdsChoiceChip(text = stringResource(id = R.string.component_card_horizontal_image_position_end), value = OdsHorizontalCardImagePosition.End)
+                        )
+                    )
                 }
                 OdsListItem(
                     text = stringResource(id = R.string.component_element_subtitle),
@@ -71,7 +72,7 @@ fun ComponentCard(variant: Variant) {
                         count = actionButtonCount,
                         minusIconContentDescription = stringResource(id = R.string.component_remove_action_button),
                         plusIconContentDescription = stringResource(id = R.string.component_add_action_button),
-                        modifier = Modifier.padding(start = dimensionResource(id = R.dimen.screen_horizontal_margin)),
+                        modifier = Modifier.padding(start = dimensionResource(id = com.orange.ods.R.dimen.screen_horizontal_margin)),
                         minCount = CardCustomizationState.MinActionButtonCount,
                         maxCount = CardCustomizationState.MaxActionButtonCount
                     )

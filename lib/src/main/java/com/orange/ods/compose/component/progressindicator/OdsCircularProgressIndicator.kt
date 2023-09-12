@@ -24,7 +24,7 @@ import com.orange.ods.compose.component.utilities.BasicPreviewParameterProvider
 import com.orange.ods.compose.component.utilities.Preview
 import com.orange.ods.compose.component.utilities.UiModePreviews
 import com.orange.ods.compose.text.OdsTextCaption
-import com.orange.ods.utilities.extension.orElse
+import com.orange.ods.extension.orElse
 
 
 /**
@@ -33,17 +33,17 @@ import com.orange.ods.utilities.extension.orElse
  * @see androidx.compose.material.CircularProgressIndicator
  *
  * @param modifier The modifier applied to this progress indicator
- * @param label The label displayed below the circular progress
  * @param progress The progress of this progress indicator, where 0.0 represents no progress and 1.0
  * represents full progress. Values outside of this range are coerced into the range. If set to `null`,
  * the progress indicator is indeterminate.
+ * @param label The label displayed below the circular progress
  */
 @Composable
 @OdsComposable
 fun OdsCircularProgressIndicator(
     modifier: Modifier = Modifier,
-    label: String? = null,
-    progress: Float? = null
+    progress: Float? = null,
+    label: String? = null
 ) {
     Column(horizontalAlignment = Alignment.CenterHorizontally, modifier = modifier)
     {

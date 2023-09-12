@@ -37,7 +37,6 @@ import com.orange.ods.app.ui.components.utilities.clickOnElement
 import com.orange.ods.app.ui.utilities.composable.CodeImplementationColumn
 import com.orange.ods.app.ui.utilities.composable.FunctionCallCode
 import com.orange.ods.compose.OdsComposable
-import com.orange.ods.compose.component.divider.OdsDivider
 import com.orange.ods.compose.component.list.OdsIconTrailing
 import com.orange.ods.compose.component.list.OdsListItem
 import com.orange.ods.compose.component.list.OdsSwitchTrailing
@@ -71,17 +70,22 @@ fun MenuDropdown() {
             Column(
                 modifier = Modifier
                     .verticalScroll(rememberScrollState())
-                    .padding(top = dimensionResource(id = R.dimen.screen_vertical_margin), bottom = dimensionResource(id = R.dimen.spacing_s))
+                    .padding(
+                        top = dimensionResource(id = com.orange.ods.R.dimen.screen_vertical_margin),
+                        bottom = dimensionResource(id = com.orange.ods.R.dimen.spacing_s)
+                    )
             ) {
                 OdsTextBody1(
                     modifier = Modifier
-                        .padding(horizontal = dimensionResource(id = R.dimen.screen_horizontal_margin)),
+                        .padding(horizontal = dimensionResource(id = com.orange.ods.R.dimen.screen_horizontal_margin)),
                     text = stringResource(id = R.string.component_menu_dropdown_description)
                 )
 
-                Box(modifier = Modifier.padding(top = dimensionResource(id = R.dimen.spacing_s))) {
+                val dividerIndex = 1
+
+                Box(modifier = Modifier.padding(top = dimensionResource(id = com.orange.ods.R.dimen.spacing_s))) {
                     OdsListItem(
-                        modifier = Modifier.padding(top = dimensionResource(id = R.dimen.spacing_s)),
+                        modifier = Modifier.padding(top = dimensionResource(id = com.orange.ods.R.dimen.spacing_s)),
                         text = recipe.title,
                         secondaryText = recipe.subtitle,
                         trailing = OdsIconTrailing(
@@ -90,22 +94,26 @@ fun MenuDropdown() {
                             contentDescription = stringResource(id = R.string.component_menu_show_ingredients),
                         )
                     )
-                    OdsDropdownMenu(expanded = menuExpanded, onDismissRequest = { menuExpanded = false }, offset = DpOffset(x = (-100).dp, y = (-10).dp)) {
-                        recipes.take(MenuDropdownCustomizationState.MenuItemCount).forEachIndexed { index, recipe ->
+
+                    val items = recipes.take(MenuDropdownCustomizationState.MenuItemCount)
+                        .mapIndexed { index, recipe ->
                             OdsDropdownMenuItem(
                                 text = recipe.title,
                                 icon = if (hasIcons && recipe.iconResId != null) painterResource(id = recipe.iconResId) else null,
+                                divider = hasDividerExample && index == dividerIndex,
                                 onClick = { clickOnElement(context, recipe.title) }
                             )
-                            if (hasDividerExample && index == 2) {
-                                OdsDivider()
-                            }
                         }
-                    }
+                    OdsDropdownMenu(
+                        items = items,
+                        expanded = menuExpanded,
+                        onDismissRequest = { menuExpanded = false },
+                        offset = DpOffset(x = (-100).dp, y = (-10).dp)
+                    )
                 }
 
                 CodeImplementationColumn(
-                    modifier = Modifier.padding(horizontal = dimensionResource(id = R.dimen.screen_horizontal_margin))
+                    modifier = Modifier.padding(horizontal = dimensionResource(id = com.orange.ods.R.dimen.screen_horizontal_margin))
                 ) {
                     FunctionCallCode(
                         name = OdsComposable.OdsDropdownMenu.name,
@@ -113,22 +121,18 @@ fun MenuDropdown() {
                         parameters = {
                             stringRepresentation("expanded", menuExpanded)
                             lambda("onDismissRequest")
-                        }
-                    ) {
-                        recipes.take(2).forEachIndexed { index, recipe ->
-                            FunctionCallCode(
-                                name = OdsComposable.OdsDropdownMenuItem.name,
-                                parameters = {
-                                    string("text", recipe.title)
-                                    onClick()
-                                    if (hasIcons && recipe.iconResId != null) icon()
+                            list("items") {
+                                recipes.take(2).forEachIndexed { index, recipe ->
+                                    classInstance(OdsDropdownMenuItem::class.java) {
+                                        string("text", recipe.title)
+                                        if (hasIcons && recipe.iconResId != null) icon()
+                                        if (hasDividerExample && index == dividerIndex) stringRepresentation("divider", true)
+                                        onClick()
+                                    }
                                 }
-                            )
-                            if (hasDividerExample && index == 0) {
-                                FunctionCallCode(name = OdsComposable.OdsDivider.name)
                             }
                         }
-                    }
+                    )
                 }
             }
         }

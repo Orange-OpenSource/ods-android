@@ -52,22 +52,24 @@ fun ProgressCircular() {
     var determinateProgressValue by remember { mutableStateOf(0f) }
     val determinateProgressAnimation by animateFloatAsState(
         targetValue = determinateProgressValue,
-        animationSpec = tween(durationMillis = DeterminateProgressAnimDuration, easing = FastOutSlowInEasing)
+        animationSpec = tween(durationMillis = DeterminateProgressAnimDuration, easing = FastOutSlowInEasing),
+        label = ""
     )
 
     with(customizationState) {
         ComponentCustomizationBottomSheetScaffold(
             bottomSheetScaffoldState = rememberBottomSheetScaffoldState(),
             bottomSheetContent = {
+                Subtitle(textRes = R.string.component_element_type, horizontalPadding = true)
                 OdsChoiceChipsFlowRow(
-                    selectedChip = type,
-                    modifier = Modifier.padding(horizontal = dimensionResource(id = R.dimen.spacing_m)),
-                    outlinedChips = true
-                ) {
-                    Subtitle(textRes = R.string.component_element_type)
-                    OdsChoiceChip(textRes = R.string.component_progress_determinate, value = ProgressCustomizationState.Type.Determinate)
-                    OdsChoiceChip(textRes = R.string.component_progress_indeterminate, value = ProgressCustomizationState.Type.Indeterminate)
-                }
+                    value = type.value,
+                    onValueChange = { value -> type.value = value },
+                    modifier = Modifier.padding(horizontal = dimensionResource(id = com.orange.ods.R.dimen.spacing_m)),
+                    chips = listOf(
+                        OdsChoiceChip(text = stringResource(id = R.string.component_progress_determinate), value = ProgressCustomizationState.Type.Determinate),
+                        OdsChoiceChip(text = stringResource(id = R.string.component_progress_indeterminate), value = ProgressCustomizationState.Type.Indeterminate)
+                    )
+                )
                 OdsListItem(
                     text = stringResource(id = R.string.component_element_label),
                     trailing = OdsSwitchTrailing(checked = label)
@@ -83,7 +85,7 @@ fun ProgressCircular() {
                     progress = if (type.value == ProgressCustomizationState.Type.Determinate) determinateProgressAnimation else null,
                     label = if (hasLabel) text else null,
                     modifier = Modifier
-                        .padding(top = dimensionResource(id = R.dimen.spacing_m))
+                        .padding(top = dimensionResource(id = com.orange.ods.R.dimen.spacing_m))
                         .align(alignment = Alignment.CenterHorizontally)
                 )
                 if (type.value == ProgressCustomizationState.Type.Determinate) {

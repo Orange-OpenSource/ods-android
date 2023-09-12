@@ -13,7 +13,7 @@ package com.orange.ods.compose.component.textfield
 import androidx.compose.material.TextFieldDefaults
 import androidx.compose.runtime.Composable
 import com.orange.ods.compose.theme.OdsTheme
-import com.orange.ods.utilities.extension.enable
+import com.orange.ods.compose.utilities.extension.enable
 
 internal object OdsTextFieldDefaults {
 

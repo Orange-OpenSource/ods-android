@@ -30,50 +30,68 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.painter.ColorPainter
-import androidx.compose.ui.graphics.painter.Painter
 import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
-import androidx.compose.ui.tooling.preview.PreviewParameter
 import androidx.compose.ui.unit.dp
 import com.orange.ods.R
 import com.orange.ods.compose.component.OdsComposable
-import com.orange.ods.compose.component.utilities.BasicPreviewParameterProvider
 import com.orange.ods.compose.component.utilities.DisabledInteractionSource
 import com.orange.ods.compose.component.utilities.OdsImageCircleShape
 import com.orange.ods.compose.component.utilities.Preview
 import com.orange.ods.compose.component.utilities.UiModePreviews
 import com.orange.ods.compose.theme.OdsTheme
+import com.orange.ods.theme.OdsComponentsConfiguration
 
 /**
  * <a href="https://system.design.orange.com/0c1af118d/p/81aa91-chips/b/13c40e" target="_blank">ODS Chips</a>.
  *
  * Chips are small components containing a number of elements that represent a calendar event or contact.
+ * Note that [OdsFilterChip] is displayed outlined or filled according to your [OdsTheme] component configuration, outlined by default.
  *
  * Use Accompanist's [Flow Layouts](https://google.github.io/accompanist/flowlayout/) to wrap chips to a new line.
  *
  * @param text Text to display in the chip.
  * @param onClick called when the chip is clicked.
  * @param modifier Modifier to be applied to the chip
- * @param outlined If true, a border will be drawn around the chip otherwise the chip will be filled.
  * @param enabled When disabled, chip will not respond to user input. It will also appear visually
  * disabled and disabled to accessibility services.
  * @param selected Highlight the chip and display a selected icon if set to true.
  * @param leadingAvatar Optional avatar at the start of the chip, preceding the content text.
  * @param leadingContentDescription Content description associated to the leading element.
  */
-@OptIn(ExperimentalMaterialApi::class)
 @Composable
 @OdsComposable
 fun OdsFilterChip(
     text: String,
     onClick: () -> Unit,
     modifier: Modifier = Modifier,
+    enabled: Boolean = true,
+    selected: Boolean = false,
+    leadingAvatar: OdsChipLeadingAvatar? = null
+) {
+    OdsFilterChip(
+        text = text,
+        onClick = onClick,
+        modifier = modifier,
+        outlined = OdsTheme.componentsConfiguration.chipStyle == OdsComponentsConfiguration.ComponentStyle.Outlined,
+        enabled = enabled,
+        selected = selected,
+        leadingAvatar = leadingAvatar
+    )
+}
+
+@OptIn(ExperimentalMaterialApi::class)
+@Composable
+@OdsComposable
+private fun OdsFilterChip(
+    text: String,
+    onClick: () -> Unit,
+    modifier: Modifier = Modifier,
     outlined: Boolean = true,
     enabled: Boolean = true,
     selected: Boolean = false,
-    leadingAvatar: Painter? = null,
-    leadingContentDescription: String? = null
+    leadingAvatar: OdsChipLeadingAvatar? = null,
 ) {
     val emptyAction = {}
 
@@ -91,12 +109,7 @@ fun OdsFilterChip(
             leadingAvatar != null -> {
                 {
                     Box(contentAlignment = Alignment.Center) {
-                        OdsImageCircleShape(
-                            painter = leadingAvatar,
-                            contentDescription = leadingContentDescription,
-                            circleSize = dimensionResource(id = R.dimen.icon_size),
-                            alpha = if (enabled) 1f else LeadingIconOpacity
-                        )
+                        leadingAvatar.Content(enabled)
                         if (selected) {
                             OdsImageCircleShape(
                                 painter = ColorPainter(color = Color.Black),
@@ -138,15 +151,12 @@ private fun OdsChipSelectedIcon(tint: Color = LocalContentColor.current.copy(alp
 
 @UiModePreviews.Chip
 @Composable
-private fun PreviewOdsFilterChip(@PreviewParameter(OdsFilterChipPreviewParameterProvider::class) outlined: Boolean) = Preview {
+private fun PreviewOdsFilterChip() = Preview {
     var selected by remember { mutableStateOf(false) }
     OdsFilterChip(
         text = "Text",
         selected = selected,
         onClick = { selected = !selected },
-        leadingAvatar = painterResource(id = R.drawable.ic_check),
-        outlined = outlined
+        leadingAvatar = OdsChipLeadingAvatar(painterResource(id = R.drawable.ic_check), "selected"),
     )
 }
-
-private class OdsFilterChipPreviewParameterProvider : BasicPreviewParameterProvider<Boolean>(false, true)

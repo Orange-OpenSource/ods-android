@@ -54,7 +54,7 @@ fun NavGraphBuilder.addComponentsGraph(navigateToElement: (String, Long?, NavBac
         if (variant != null && component != null) {
             LocalMainTopAppBarManager.current.updateTopAppBarTitle(variant.titleRes)
             LocalMainTopAppBarManager.current.setLargeTopAppBar(variant.largeTopAppBar)
-            component.demoScreen(variant = variant, upPress = upPress)
+            component.demoScreen(variant, upPress)
         }
     }
 
@@ -70,7 +70,7 @@ fun NavGraphBuilder.addComponentsGraph(navigateToElement: (String, Long?, NavBac
 
         component?.let {
             LocalMainTopAppBarManager.current.updateTopAppBarTitle(component.titleRes)
-            component.demoScreen(variant = null, upPress = upPress)
+            component.demoScreen(null, upPress)
         }
 
     }

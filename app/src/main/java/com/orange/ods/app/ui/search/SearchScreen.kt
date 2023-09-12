@@ -12,19 +12,27 @@ package com.orange.ods.app.ui.search
 
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
+import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.MutableState
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.alpha
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.painter.ColorPainter
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.semantics.LiveRegionMode
+import androidx.compose.ui.semantics.contentDescription
+import androidx.compose.ui.semantics.liveRegion
+import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.text.input.TextFieldValue
+import androidx.compose.ui.unit.dp
 import com.orange.ods.app.R
 import com.orange.ods.app.ui.LocalOdsGuideline
 import com.orange.ods.app.ui.MainDestinations
@@ -39,9 +47,9 @@ import com.orange.ods.compose.component.list.OdsListItem
 import com.orange.ods.compose.component.list.OdsListItemIcon
 import com.orange.ods.compose.component.list.OdsListItemIconType
 import com.orange.ods.compose.component.list.iconType
+import com.orange.ods.extension.orElse
 import com.orange.ods.theme.guideline.GuidelineColor
 import com.orange.ods.theme.guideline.toHexString
-import com.orange.ods.utilities.extension.orElse
 
 @Composable
 fun SearchScreen(
@@ -132,6 +140,25 @@ fun SearchScreen(
         modifier = Modifier
             .fillMaxWidth()
     ) {
+        item {
+            // The aim of this item is to vocalize the number of search results
+            // This should be done on LazyColumn with liveRegion and contentDescription, but doing so vocalizes the entire content of the column
+            // Thus we add the text below in order to vocalize the number of search results only
+            // The text is not empty with a 1dp height otherwise it is not vocalized, and alpha is set to 0 to make it invisible when navigating with TalkBack
+            Text(" ", modifier = Modifier
+                .height(1.dp)
+                .alpha(0f)
+                .semantics {
+                    liveRegion = LiveRegionMode.Polite
+                    contentDescription = with(context.resources) {
+                        if (searchResults.isNotEmpty()) {
+                            getQuantityString(R.plurals.search_result_count_content_description, searchResults.count(), searchResults.count())
+                        } else {
+                            getString(R.string.search_no_result_content_description)
+                        }
+                    }
+                })
+        }
         items(searchResults) { item ->
             val openDialog = remember { mutableStateOf(false) }
             val guidelineColor = filteredGuidelineColors.firstOrNull { guidelineColor ->

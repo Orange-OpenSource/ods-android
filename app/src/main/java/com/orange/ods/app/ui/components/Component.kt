@@ -23,10 +23,11 @@ import com.orange.ods.app.ui.components.buttons.icons.ComponentButtonsIcons
 import com.orange.ods.app.ui.components.cards.ComponentCard
 import com.orange.ods.app.ui.components.checkboxes.ComponentCheckboxes
 import com.orange.ods.app.ui.components.chips.Chip
+import com.orange.ods.app.ui.components.chips.ChipFilter
 import com.orange.ods.app.ui.components.dialogs.ComponentDialog
 import com.orange.ods.app.ui.components.floatingactionbuttons.ComponentFloatingActionButton
-import com.orange.ods.app.ui.components.imageitem.ComponentImageItem
-import com.orange.ods.app.ui.components.lists.ComponentLists
+import com.orange.ods.app.ui.components.imagetile.ComponentImageTile
+import com.orange.ods.app.ui.components.listitem.ComponentListItem
 import com.orange.ods.app.ui.components.menus.ComponentMenu
 import com.orange.ods.app.ui.components.navigationdrawers.ComponentModalDrawers
 import com.orange.ods.app.ui.components.progress.ComponentProgress
@@ -97,7 +98,8 @@ sealed class Component(
             Variant.ButtonsDefault,
             Variant.ButtonsOutlined,
             Variant.ButtonsText,
-            Variant.ButtonsFunctional
+            Variant.ButtonsFunctional,
+            Variant.ButtonsTextToggleGroup
         ),
         demoScreen = { variant, _ -> if (variant != null) ComponentButtons(variant = variant) }
     )
@@ -139,7 +141,12 @@ sealed class Component(
         R.drawable.il_chips_small,
         R.string.component_chips_description,
         listOf(Variant.ChipAction, Variant.ChipChoice, Variant.ChipInput, Variant.ChipFilter),
-        demoScreen = { variant, _ -> if (variant != null) Chip(variant = variant) }
+        demoScreen = { variant, _ ->
+            when {
+                variant == Variant.ChipFilter -> ChipFilter()
+                variant != null -> Chip(variant = variant)
+            }
+        }
     )
 
     object Dialogs : Component(
@@ -160,23 +167,22 @@ sealed class Component(
         demoScreen = { _, _ -> ComponentFloatingActionButton() }
     )
 
-    object ImageItem : Component(
-        R.string.component_image_item,
-        R.drawable.il_image_item,
+    object ImageTile : Component(
+        R.string.component_image_tile,
+        R.drawable.il_image_tile,
         null,
-        R.string.component_image_item_description,
-        composableName = OdsComposable.OdsImageItem.name,
-        demoScreen = { _, _ -> ComponentImageItem() }
+        R.string.component_image_tile_description,
+        composableName = OdsComposable.OdsImageTile.name,
+        demoScreen = { _, _ -> ComponentImageTile() }
     )
 
-    object Lists : Component(
-        R.string.component_lists,
-        R.drawable.il_lists,
+    object ListItem : Component(
+        R.string.component_list_item,
+        R.drawable.il_list_item,
         null,
-        R.string.component_lists_description,
+        R.string.component_list_item_description,
         composableName = OdsComposable.OdsListItem.name,
-        demoScreen = { _, _ -> ComponentLists() },
-        imageAlignment = Alignment.BottomCenter
+        demoScreen = { _, _ -> ComponentListItem() }
     )
 
     object Menus : Component(
@@ -288,6 +294,7 @@ sealed class Variant(
     object ButtonsDefault : Variant(R.string.component_buttons_high_emphasis, "${OdsComposable.OdsButton.name} with ${OdsButtonStyle.Default.name}")
     object ButtonsOutlined : Variant(R.string.component_buttons_medium_emphasis, OdsComposable.OdsOutlinedButton.name)
     object ButtonsText : Variant(R.string.component_buttons_low_emphasis, OdsComposable.OdsTextButton.name)
+    object ButtonsTextToggleGroup : Variant(R.string.component_button_text_toggle_group, OdsComposable.OdsTextToggleButtonsRow.name)
     object ButtonsFunctional : Variant(R.string.component_buttons_functional, "${OdsComposable.OdsButton.name} with a functional style")
 
     object ButtonsIcon : Variant(R.string.component_buttons_icon, OdsComposable.OdsIconButton.name)

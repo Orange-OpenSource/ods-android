@@ -37,8 +37,8 @@
     <!-- Chip -->
     <dimen name="chip_icon_size">20dp</dimen>
 
-    <!-- Image item -->
-    <dimen name="image_item_title_height">48dp</dimen>
+    <!-- Image tile -->
+    <dimen name="image_tile_legend_area_height">48dp</dimen>
 
     <!-- Lists -->
     <dimen name="list_single_line_item_height">48dp</dimen>

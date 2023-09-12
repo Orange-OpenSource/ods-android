@@ -5,6 +5,37 @@ All notable changes done in ODS library will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.15.0](https://github.com/Orange-OpenSource/ods-android/compare/0.14.0...0.15.0) - 2023-09-12
+
+### Added
+
+- \[App\] Add list item component ([#555](https://github.com/Orange-OpenSource/ods-android/issues/555))
+- \[App\] Add toggle text buttons group component ([#530](https://github.com/Orange-OpenSource/ods-android/issues/530))
+- \[Lib\] Add `OdsTextToggleButtonsRow` component ([#530](https://github.com/Orange-OpenSource/ods-android/issues/530))
+
+### Changed
+
+- \[All\] Use Compose BOM and update Kotlin and Gradle versions ([#578](https://github.com/Orange-OpenSource/ods-android/issues/578))
+- \[Lib\] Replace composable parameter of `OdsDropdownMenu` with a list of `OdsDropdownMenuItem` ([#572](https://github.com/Orange-OpenSource/ods-android/issues/572))
+- \[Lib\] Update `OdsTopAppBar` and `OdsLargeTopAppBar` APIs ([#572](https://github.com/Orange-OpenSource/ods-android/issues/572))
+- \[Lib\] Update `OdsBottomNavigation` API ([#588](https://github.com/Orange-OpenSource/ods-android/issues/588))
+- \[Lib\] Update `OdsBanner` API ([#592](https://github.com/Orange-OpenSource/ods-android/issues/592))
+- \[Lib\] Update `OdsButton`, `OdsOutlinedButton`and `OdsTextButton` APIs ([#596](https://github.com/Orange-OpenSource/ods-android/issues/596))
+- \[Lib\] Update `OdsIconButton`, `OdsIconToggleButton`and `OdsIconToggleButtonsRow` APIs ([#599](https://github.com/Orange-OpenSource/ods-android/issues/599))
+- \[Lib\] Update `OdsAlertDialog` API ([#605](https://github.com/Orange-OpenSource/ods-android/issues/605))
+- \[Lib\] Update `OdsFloatingActionButton` and `OdsExtendedFloatingActionButton` APIs ([#611](https://github.com/Orange-OpenSource/ods-android/issues/611))
+- \[Lib\] Update `OdsLinearProgressIndicator` and `OdsCircularProgressIndicator` APIs ([#607](https://github.com/Orange-OpenSource/ods-android/issues/607))
+- \[Lib\] Update `OdsImageItem` API and rename it into `OdsImageTile` ([#609](https://github.com/Orange-OpenSource/ods-android/issues/609))
+- \[Lib\] Update `OdsChip`, `OdsChoiceChipsFlowRow`and `OdsFilterChip` APIs ([#603](https://github.com/Orange-OpenSource/ods-android/issues/603))
+
+### Fixed
+
+- \[App\] Screen displayed on filter chip variant click was not the good one ([#580](https://github.com/Orange-OpenSource/ods-android/issues/580))
+- \[App\] Fix a bug where `OdsListItem` text color did not update when switching between light and dark modes in text field demo ([#578](https://github.com/Orange-OpenSource/ods-android/issues/578))
+- \[App\] The number of search results is now vocalized ([#506](https://github.com/Orange-OpenSource/ods-android/issues/506))
+- \[Lib\] Vocalize exposed dropdown menu content as a group ([#560](https://github.com/Orange-OpenSource/ods-android/issues/560))
+- \[Lib\] Fix `OdsTextField` content color in dark mode ([#621](https://github.com/Orange-OpenSource/ods-android/issues/621))
+
 ## [0.14.0](https://github.com/Orange-OpenSource/ods-android/compare/0.13.0...0.14.0) - 2023-07-12
 
 ### Added
@@ -27,6 +58,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Fixed
 
 - \[Lib\] Fix a bug where `enabled` property of `OdsIconToggleButtonsRowItem` has no effect ([#329](https://github.com/Orange-OpenSource/ods-android/issues/329))
+- \[Lib\] Vocalize icon toggle button state change in `OdsIconToggleButtonsRow` component ([#567](https://github.com/Orange-OpenSource/ods-android/issues/567))
 
 ## [0.13.0](https://github.com/Orange-OpenSource/ods-android/compare/0.12.0...0.13.0) - 2023-06-01
 

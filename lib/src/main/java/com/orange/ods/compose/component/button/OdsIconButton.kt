@@ -10,7 +10,6 @@
 
 package com.orange.ods.compose.component.button
 
-import androidx.compose.foundation.background
 import androidx.compose.material.Icon
 import androidx.compose.material.IconButton
 import androidx.compose.material.ripple.LocalRippleTheme
@@ -18,14 +17,12 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.graphics.painter.Painter
 import androidx.compose.ui.res.painterResource
 import com.orange.ods.compose.component.OdsComposable
+import com.orange.ods.compose.component.icon.OdsIcon
 import com.orange.ods.compose.component.utilities.Preview
 import com.orange.ods.compose.component.utilities.UiModePreviews
 import com.orange.ods.compose.theme.OdsDisplaySurface
-import com.orange.ods.compose.theme.OdsTheme
-import com.orange.ods.utilities.extension.enable
 
 /**
  * OdsIconButton is a clickable icon, used to represent actions. An OdsIconButton has an overall minimum
@@ -35,21 +32,19 @@ import com.orange.ods.utilities.extension.enable
  *
  * This component is typically used inside an App Bar for the navigation icon / actions.
  *
- * @param onClick the lambda to be invoked when this icon is pressed
- * @param painter the painter to be drawn inside the IconButton
- * @param contentDescription the content description associated to this OdsIconButton.
- * @param modifier optional [Modifier] for this IconButton
- * @param enabled whether or not this OdsIconButton will handle input events and appear enabled for
+ * @param icon The icon to be drawn inside the OdsIconButton
+ * @param onClick The lambda to be invoked when this icon is pressed
+ * @param modifier The [Modifier] for this OdsIconButton
+ * @param enabled Whether or not this [OdsIconButton] will handle input events and appear enabled for
  * semantics purposes, true by default
- * @param displaySurface optional allow to force the button display on a dark or light
- * surface. By default the appearance applied is based on the system night mode value.
+ * @param displaySurface Force the button display on a dark or light surface. By default the appearance applied
+ * is based on the system night mode value.
  */
 @Composable
 @OdsComposable
 fun OdsIconButton(
+    icon: OdsIconButtonIcon,
     onClick: () -> Unit,
-    painter: Painter,
-    contentDescription: String,
     modifier: Modifier = Modifier,
     enabled: Boolean = true,
     displaySurface: OdsDisplaySurface = OdsDisplaySurface.Default
@@ -57,46 +52,31 @@ fun OdsIconButton(
     CompositionLocalProvider(
         LocalRippleTheme provides displaySurface.rippleTheme
     ) {
-        OdsIconButton(
-            onClick = onClick,
-            painter = painter,
-            contentDescription = contentDescription,
-            modifier = modifier.background(color = iconButtonBackgroundColor(displaySurface = displaySurface)),
-            enabled = enabled,
-            tint = iconButtonTintColor(displaySurface = displaySurface)
-        )
+        IconButton(onClick = onClick, modifier = modifier, enabled = enabled) {
+            icon.Content(enabled = enabled, displaySurface = displaySurface)
+        }
     }
 }
 
 @Composable
 internal fun OdsIconButton(
     onClick: () -> Unit,
-    painter: Painter,
+    graphicsObject: Any,
     contentDescription: String,
     tint: Color,
     modifier: Modifier = Modifier,
     enabled: Boolean = true,
 ) {
     IconButton(onClick = onClick, modifier = modifier, enabled = enabled) {
-        Icon(painter = painter, contentDescription = contentDescription, tint = tint.enable(enabled = enabled))
+        OdsIcon(graphicsObject = graphicsObject, contentDescription = contentDescription, tint = tint, enabled = enabled)
     }
 }
-
-
-@Composable
-private fun iconButtonBackgroundColor(displaySurface: OdsDisplaySurface) =
-    when (displaySurface) {
-        OdsDisplaySurface.Default -> Color.Unspecified
-        OdsDisplaySurface.Dark -> OdsTheme.darkThemeColors.surface
-        OdsDisplaySurface.Light -> OdsTheme.lightThemeColors.surface
-    }
 
 @UiModePreviews.Default
 @Composable
 private fun PreviewOdsIconButton() = Preview {
     OdsIconButton(
         onClick = {},
-        painter = painterResource(id = android.R.drawable.ic_dialog_info),
-        contentDescription = ""
+        icon = OdsIconButtonIcon(painterResource(id = android.R.drawable.ic_dialog_info), ""),
     )
 }

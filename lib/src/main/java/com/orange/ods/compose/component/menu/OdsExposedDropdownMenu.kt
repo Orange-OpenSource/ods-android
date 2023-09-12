@@ -18,6 +18,10 @@ import androidx.compose.material.ExposedDropdownMenuBox
 import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.semantics.clearAndSetSemantics
+import androidx.compose.ui.semantics.contentDescription
+import androidx.compose.ui.semantics.stateDescription
 import androidx.compose.ui.tooling.preview.PreviewParameter
 import com.orange.ods.compose.component.OdsComposable
 import com.orange.ods.compose.component.textfield.OdsExposedDropdownMenuTrailing
@@ -25,6 +29,7 @@ import com.orange.ods.compose.component.textfield.OdsTextField
 import com.orange.ods.compose.component.utilities.BasicPreviewParameterProvider
 import com.orange.ods.compose.component.utilities.Preview
 import com.orange.ods.compose.component.utilities.UiModePreviews
+import com.orange.ods.compose.component.utilities.enabledStateDescription
 import kotlinx.parcelize.Parcelize
 
 /**
@@ -50,9 +55,14 @@ fun OdsExposedDropdownMenu(
     enabled: Boolean = true
 ) {
     var expanded by remember { mutableStateOf(false) }
+    val menuBoxStateDescription = enabledStateDescription(enabled = enabled)
+    val menuBoxAction = if (enabled) stringResource(id = com.orange.ods.R.string.dropdown_menu_action) else ""
 
     ExposedDropdownMenuBox(
-        modifier = modifier,
+        modifier = modifier.clearAndSetSemantics {
+            contentDescription = "$label, ${selectedItem.value.label}, $menuBoxAction"
+            stateDescription = menuBoxStateDescription
+        },
         expanded = expanded,
         onExpandedChange = {
             expanded = !expanded
@@ -69,16 +79,14 @@ fun OdsExposedDropdownMenu(
             enabled = enabled
         )
         OdsDropdownMenu(
-            modifier = Modifier.exposedDropdownSize(),
             expanded = if (enabled) expanded else false,
             onDismissRequest = { expanded = false },
-            content = {
-                items.forEach { item ->
-                    OdsDropdownMenuItem(text = item.label, icon = item.iconResId?.let { painterResource(id = it) }, onClick = {
-                        selectedItem.value = item
-                        expanded = false
-                        onItemSelectionChange(item)
-                    })
+            modifier = Modifier.exposedDropdownSize(),
+            items = items.map { item ->
+                OdsDropdownMenuItem(text = item.label, icon = item.iconResId?.let { painterResource(id = it) }) {
+                    selectedItem.value = item
+                    expanded = false
+                    onItemSelectionChange(item)
                 }
             }
         )

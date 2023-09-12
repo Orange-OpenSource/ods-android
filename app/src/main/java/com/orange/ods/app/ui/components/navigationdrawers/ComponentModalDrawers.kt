@@ -115,19 +115,26 @@ fun ComponentModalDrawers() {
                             text = stringResource(id = R.string.component_modal_drawer_content_example),
                             trailing = OdsSwitchTrailing(checked = contentExampleChecked)
                         )
+                        Subtitle(textRes = R.string.component_modal_drawer_header_image, horizontalPadding = true)
                         OdsChoiceChipsFlowRow(
-                            selectedChip = header,
-                            outlinedChips = true,
-                            modifier = Modifier.padding(horizontal = dimensionResource(id = R.dimen.screen_horizontal_margin)),
-                        ) {
-                            Subtitle(textRes = R.string.component_modal_drawer_header_image)
-                            OdsChoiceChip(textRes = R.string.component_element_avatar, value = ComponentNavigationDrawersContentState.HeaderImage.Avatar)
-                            OdsChoiceChip(
-                                textRes = R.string.component_modal_drawer_background,
-                                value = ComponentNavigationDrawersContentState.HeaderImage.Background
+                            value = header.value,
+                            onValueChange = { value -> header.value = value },
+                            modifier = Modifier.padding(horizontal = dimensionResource(id = com.orange.ods.R.dimen.spacing_m)),
+                            chips = listOf(
+                                OdsChoiceChip(
+                                    text = stringResource(id = R.string.component_element_avatar),
+                                    value = ComponentNavigationDrawersContentState.HeaderImage.Avatar
+                                ),
+                                OdsChoiceChip(
+                                    text = stringResource(id = R.string.component_modal_drawer_background),
+                                    value = ComponentNavigationDrawersContentState.HeaderImage.Background
+                                ),
+                                OdsChoiceChip(
+                                    text = stringResource(id = R.string.component_element_none),
+                                    value = ComponentNavigationDrawersContentState.HeaderImage.None
+                                )
                             )
-                            OdsChoiceChip(textRes = R.string.component_element_none, value = ComponentNavigationDrawersContentState.HeaderImage.None)
-                        }
+                        )
                         OdsListItem(
                             text = stringResource(id = R.string.component_modal_drawer_subtitle),
                             trailing = OdsSwitchTrailing(
@@ -142,28 +149,26 @@ fun ComponentModalDrawers() {
                                 enabled = isContentExampleChecked
                             ),
                         )
+                        Subtitle(textRes = R.string.component_modal_drawer_list_example, horizontalPadding = true)
                         OdsChoiceChipsFlowRow(
-                            selectedChip = content,
-                            outlinedChips = true,
-                            modifier = Modifier.padding(horizontal = dimensionResource(id = R.dimen.screen_horizontal_margin)),
-                        ) {
-                            Subtitle(textRes = R.string.component_modal_drawer_list_example)
-                            OdsChoiceChip(
-                                textRes = R.string.component_element_divider,
-                                value = ComponentNavigationDrawersContentState.SectionListExample.Divider,
-                                enabled = isContentExampleChecked
+                            value = content.value,
+                            onValueChange = { value -> content.value = value },
+                            modifier = Modifier.padding(horizontal = dimensionResource(id = com.orange.ods.R.dimen.spacing_m)),
+                            chips = listOf(
+                                OdsChoiceChip(
+                                    text = stringResource(id = R.string.component_element_divider),
+                                    value = ComponentNavigationDrawersContentState.SectionListExample.Divider
+                                ),
+                                OdsChoiceChip(
+                                    text = stringResource(id = R.string.component_element_label),
+                                    value = ComponentNavigationDrawersContentState.SectionListExample.Label
+                                ),
+                                OdsChoiceChip(
+                                    text = stringResource(id = R.string.component_element_none),
+                                    value = ComponentNavigationDrawersContentState.SectionListExample.None
+                                )
                             )
-                            OdsChoiceChip(
-                                textRes = R.string.component_element_label,
-                                value = ComponentNavigationDrawersContentState.SectionListExample.Label,
-                                enabled = isContentExampleChecked
-                            )
-                            OdsChoiceChip(
-                                textRes = R.string.component_element_none,
-                                value = ComponentNavigationDrawersContentState.SectionListExample.None,
-                                enabled = isContentExampleChecked
-                            )
-                        }
+                        )
                     }) {
                     Column {
                         ComponentLaunchContentColumn(
@@ -172,7 +177,7 @@ fun ComponentModalDrawers() {
                             onButtonClick = { scope.launch { drawerState.open() } }
                         )
 
-                        CodeImplementationColumn(modifier = Modifier.padding(horizontal = dimensionResource(id = R.dimen.screen_horizontal_margin))) {
+                        CodeImplementationColumn(modifier = Modifier.padding(horizontal = dimensionResource(id = com.orange.ods.R.dimen.screen_horizontal_margin))) {
                             FunctionCallCode(
                                 name = OdsComposable.OdsModalDrawer.name,
                                 exhaustiveParameters = false,

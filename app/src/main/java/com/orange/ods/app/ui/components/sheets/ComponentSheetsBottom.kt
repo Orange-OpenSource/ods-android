@@ -67,23 +67,23 @@ fun ComponentSheetsBottom() {
             Column(modifier = Modifier.verticalScroll(rememberScrollState())) {
                 Column(
                     modifier = Modifier
-                        .padding(top = dimensionResource(id = R.dimen.screen_vertical_margin))
-                        .padding(horizontal = dimensionResource(id = R.dimen.screen_horizontal_margin))
+                        .padding(top = dimensionResource(id = com.orange.ods.R.dimen.screen_vertical_margin))
+                        .padding(horizontal = dimensionResource(id = com.orange.ods.R.dimen.screen_horizontal_margin))
                 ) {
                     OdsTextBody1(text = stringResource(id = R.string.component_sheet_bottom_customize))
                     OdsTextSubtitle1(
                         text = stringResource(id = R.string.component_element_content),
-                        modifier = Modifier.padding(top = dimensionResource(id = R.dimen.spacing_s))
+                        modifier = Modifier.padding(top = dimensionResource(id = com.orange.ods.R.dimen.spacing_s))
                     )
-
                     OdsChoiceChipsFlowRow(
-                        selectedChip = content,
-                        outlinedChips = true,
-                        modifier = Modifier.padding(top = dimensionResource(id = R.dimen.spacing_xs))
-                    ) {
-                        OdsChoiceChip(textRes = R.string.component_element_empty, value = SheetsBottomCustomizationState.Content.Empty)
-                        OdsChoiceChip(textRes = R.string.component_element_example, value = SheetsBottomCustomizationState.Content.Example)
-                    }
+                        value = content.value,
+                        onValueChange = { value -> content.value = value },
+                        modifier = Modifier.padding(horizontal = dimensionResource(id = com.orange.ods.R.dimen.spacing_m)),
+                        chips = listOf(
+                            OdsChoiceChip(text = stringResource(id = R.string.component_element_empty), value = SheetsBottomCustomizationState.Content.Empty),
+                            OdsChoiceChip(text = stringResource(id = R.string.component_element_example), value = SheetsBottomCustomizationState.Content.Example)
+                        )
+                    )
                 }
 
                 CodeImplementationColumn {

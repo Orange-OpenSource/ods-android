@@ -37,8 +37,8 @@ fun Title(@StringRes textRes: Int, modifier: Modifier = Modifier, horizontalPadd
         text = stringResource(textRes),
         modifier = modifier
             .fillMaxWidth()
-            .padding(top = if (topPadding) dimensionResource(R.dimen.spacing_xl) else 0.dp)
-            .padding(horizontal = if (horizontalPadding) dimensionResource(R.dimen.screen_horizontal_margin) else 0.dp)
+            .padding(top = if (topPadding) dimensionResource(com.orange.ods.R.dimen.spacing_xl) else 0.dp)
+            .padding(horizontal = if (horizontalPadding) dimensionResource(com.orange.ods.R.dimen.screen_horizontal_margin) else 0.dp)
     )
 }
 
@@ -54,8 +54,8 @@ fun Subtitle(@StringRes textRes: Int, displaySurface: OdsDisplaySurface = OdsDis
         modifier = Modifier
             .fillMaxWidth()
             .background(backgroundColor)
-            .padding(top = dimensionResource(id = R.dimen.spacing_m))
-            .padding(horizontal = if (horizontalPadding) dimensionResource(R.dimen.screen_horizontal_margin) else 0.dp),
+            .padding(top = dimensionResource(id = com.orange.ods.R.dimen.spacing_m))
+            .padding(horizontal = if (horizontalPadding) dimensionResource(com.orange.ods.R.dimen.screen_horizontal_margin) else 0.dp),
         displaySurface = displaySurface
     )
 }

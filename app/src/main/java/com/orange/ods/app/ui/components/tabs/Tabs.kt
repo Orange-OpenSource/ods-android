@@ -10,18 +10,18 @@
 
 package com.orange.ods.app.ui.components.tabs
 
+import androidx.compose.foundation.ExperimentalFoundationApi
+import androidx.compose.foundation.pager.PagerState
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
-import com.google.accompanist.pager.ExperimentalPagerApi
-import com.google.accompanist.pager.PagerState
+import com.orange.ods.app.ui.utilities.NavigationItem
 import com.orange.ods.compose.component.tab.OdsLeadingIconTab
 import com.orange.ods.compose.component.tab.OdsTab
-import com.orange.ods.app.ui.utilities.NavigationItem
 import kotlinx.coroutines.launch
 
-@OptIn(ExperimentalPagerApi::class)
+@OptIn(ExperimentalFoundationApi::class)
 @Composable
 fun Tabs(tabs: List<NavigationItem>, pagerState: PagerState, tabIconType: MainTabsCustomizationState.TabIconType, tabTextEnabled: Boolean) {
     val scope = rememberCoroutineScope()
