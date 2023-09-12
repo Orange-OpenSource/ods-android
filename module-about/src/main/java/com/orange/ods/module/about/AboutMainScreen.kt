@@ -70,7 +70,8 @@ internal fun AboutMainScreen() {
                     OdsTextButton(
                         text = stringResource(id = R.string.about_app_feedback),
                         icon = OdsButtonIcon(painterResource(id = R.drawable.ic_comment)),
-                        onClick = { /*TODO*/ }, style = OdsTextButtonStyle.Primary
+                        onClick = { /*TODO*/ },
+                        style = OdsTextButtonStyle.Primary
                     )
                 }
             }
