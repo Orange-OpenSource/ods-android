@@ -44,7 +44,7 @@ android {
     }
 
     publishing {
-        singleVariant(MavenCentralPublishPluginExtension.RELEASE_COMPONENT_NAME) {
+        singleVariant(MavenCentralPublishPluginExtension.VARIANT) {
             withSourcesJar()
             withJavadocJar()
         }

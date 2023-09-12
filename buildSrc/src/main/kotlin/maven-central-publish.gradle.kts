@@ -29,8 +29,8 @@ apply {
 afterEvaluate {
     publishing {
         publications {
-            create<MavenPublication>(MavenCentralPublishPluginExtension.RELEASE_COMPONENT_NAME) {
-                from(components[MavenCentralPublishPluginExtension.RELEASE_COMPONENT_NAME])
+            create<MavenPublication>(MavenCentralPublishPluginExtension.VARIANT) {
+                from(components["release"])
                 groupId = "com.orange.ods.android"
                 artifactId = pluginExtension?.artifactId ?: "ods-${project.name}"
                 this.version = version
@@ -86,6 +86,6 @@ afterEvaluate {
             "GNUPG_SIGNING_PASSWORD"
         )
         useInMemoryPgpKeys(signingKeyId, signingSecretKey, signingPassword)
-        sign(publishing.publications[MavenCentralPublishPluginExtension.RELEASE_COMPONENT_NAME])
+        sign(publishing.publications[MavenCentralPublishPluginExtension.VARIANT])
     }
 }

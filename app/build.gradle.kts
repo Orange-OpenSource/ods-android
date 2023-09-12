@@ -32,7 +32,6 @@ android {
     compileSdk = Versions.compileSdk
 
     defaultConfig {
-        applicationId = "com.orange.ods.app"
         minSdk = Versions.minSdk
         targetSdk = Versions.targetSdk
         val versionCodeProperty = project.findTypedProperty<String>("versionCode")
@@ -73,6 +72,20 @@ android {
             if (storeFile != null) {
                 signingConfig = this@android.signingConfigs.getByName(signingConfigName)
             }
+        }
+    }
+
+    val versionFlavorDimension = "version"
+    flavorDimensions.add(versionFlavorDimension)
+    productFlavors {
+        create("qualif") {
+            dimension = versionFlavorDimension
+            applicationId = "com.orange.ods.test.app"
+        }
+
+        create("prod") {
+            dimension = versionFlavorDimension
+            applicationId = "com.orange.ods.app"
         }
     }
 

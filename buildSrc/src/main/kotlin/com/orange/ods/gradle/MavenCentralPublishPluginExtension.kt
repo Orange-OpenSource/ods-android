@@ -14,7 +14,7 @@ abstract class MavenCentralPublishPluginExtension {
 
     companion object {
         const val NAME = "mavenCentralPublish"
-        const val RELEASE_COMPONENT_NAME = "release"
+        const val VARIANT = "prodRelease"
     }
 
     var artifactId: String? = null
