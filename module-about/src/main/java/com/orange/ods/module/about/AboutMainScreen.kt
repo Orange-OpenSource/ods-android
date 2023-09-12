@@ -68,8 +68,10 @@ internal fun AboutMainScreen() {
                 }
                 if (configuration.feedback) {
                     OdsTextButton(
-                        text = stringResource(id = R.string.app_feedback), icon = OdsButtonIcon(painter = painterResource(id = R.drawable.ic_comment)),
-                        onClick = { /*TODO*/ }, style = OdsTextButtonStyle.Primary
+                        text = stringResource(id = R.string.app_feedback),
+                        icon = OdsButtonIcon(painterResource(id = R.drawable.ic_comment)),
+                        onClick = { /*TODO*/ },
+                        style = OdsTextButtonStyle.Primary
                     )
                 }
             }
