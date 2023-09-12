@@ -24,14 +24,12 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import com.google.accompanist.flowlayout.FlowRow
 import com.orange.ods.app.R
-import com.orange.ods.app.ui.LocalThemeManager
 import com.orange.ods.app.ui.modules.ModuleDemoDestinations
 import com.orange.ods.compose.component.button.OdsButton
 import com.orange.ods.compose.component.button.OdsButtonStyle
 import com.orange.ods.compose.component.chip.OdsFilterChip
 import com.orange.ods.compose.text.OdsTextBody2
 import com.orange.ods.module.about.AboutModuleConfiguration
-import com.orange.ods.theme.OdsComponentsConfiguration
 
 enum class AboutOptions(@StringRes val labelResId: Int) {
     Version(R.string.module_about_customization_version),
@@ -42,8 +40,6 @@ enum class AboutOptions(@StringRes val labelResId: Int) {
 
 @Composable
 fun AboutCustomization(navigateToModuleDemo: (String) -> Unit) {
-    val outlinedChips =
-        LocalThemeManager.current.currentThemeConfiguration.componentsConfiguration.chipStyle == OdsComponentsConfiguration.ComponentStyle.Outlined
     var selectedOptions by rememberSaveable { mutableStateOf(emptyList<AboutOptions>()) }
 
     OdsTextBody2(
@@ -64,7 +60,6 @@ fun AboutCustomization(navigateToModuleDemo: (String) -> Unit) {
                 onClick = {
                     selectedOptions = with(selectedOptions) { if (contains(option)) minus(option) else plus(option) }
                 },
-                outlined = outlinedChips,
                 selected = selectedOptions.contains(option),
             )
         }

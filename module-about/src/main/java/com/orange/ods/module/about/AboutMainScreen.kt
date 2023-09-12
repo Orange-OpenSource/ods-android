@@ -25,6 +25,7 @@ import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
+import com.orange.ods.compose.component.button.OdsButtonIcon
 import com.orange.ods.compose.component.button.OdsTextButton
 import com.orange.ods.compose.component.button.OdsTextButtonStyle
 import com.orange.ods.compose.text.OdsTextBody1
@@ -60,15 +61,17 @@ internal fun AboutMainScreen() {
                     OdsTextButton(
                         modifier = Modifier.padding(end = dimensionResource(id = com.orange.ods.R.dimen.spacing_s)),
                         text = stringResource(id = R.string.app_share),
-                        icon = painterResource(id = R.drawable.ic_share),
+                        icon = OdsButtonIcon(painterResource(id = R.drawable.ic_share)),
                         onClick = { /*TODO*/ },
                         style = OdsTextButtonStyle.Primary
                     )
                 }
                 if (configuration.feedback) {
                     OdsTextButton(
-                        text = stringResource(id = R.string.app_feedback), icon = painterResource(id = R.drawable.ic_comment),
-                        onClick = { /*TODO*/ }, style = OdsTextButtonStyle.Primary
+                        text = stringResource(id = R.string.app_feedback),
+                        icon = OdsButtonIcon(painterResource(id = R.drawable.ic_comment)),
+                        onClick = { /*TODO*/ },
+                        style = OdsTextButtonStyle.Primary
                     )
                 }
             }
