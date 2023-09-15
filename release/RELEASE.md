@@ -121,6 +121,8 @@ This file lists all the steps to follow when releasing a new version of ODS Andr
 
   ![OMA Portal store submission](images/google_play_store_release_02.png)<br /><br />
 
+- To publish the release you have to click a last time on "Got to publication". You should receive a confirmation email from OMA with a "Published" status.
+
 ### Announce the new release on GitHub & FoODS
 
 - Go to [GitHub ods-android - Discussions > Announcements](https://github.com/Orange-OpenSource/ods-android/discussions/categories/announcements)
