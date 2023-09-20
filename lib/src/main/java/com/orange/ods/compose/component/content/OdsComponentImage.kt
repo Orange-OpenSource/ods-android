@@ -22,7 +22,7 @@ import androidx.compose.ui.layout.ContentScale
 /**
  * An image in a component.
  */
-abstract class OdsComponentImage(
+abstract class OdsComponentImage internal constructor(
     private val graphicsObject: Any,
     private val contentDescription: String,
     private val alignment: Alignment = Alignment.Center,
