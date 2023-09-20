@@ -142,7 +142,7 @@ class OdsImageTileImage : OdsComponentImage {
     constructor(painter: Painter, contentDescription: String, contentScale: ContentScale = ContentScale.Crop) : super(
         painter as Any,
         contentDescription,
-        contentScale
+        contentScale = contentScale
     )
 
     /**
@@ -155,7 +155,7 @@ class OdsImageTileImage : OdsComponentImage {
     constructor(imageVector: ImageVector, contentDescription: String, contentScale: ContentScale = ContentScale.Crop) : super(
         imageVector as Any,
         contentDescription,
-        contentScale
+        contentScale = contentScale
     )
 
     /**
@@ -168,7 +168,7 @@ class OdsImageTileImage : OdsComponentImage {
     constructor(bitmap: ImageBitmap, contentDescription: String, contentScale: ContentScale = ContentScale.Crop) : super(
         bitmap as Any,
         contentDescription,
-        contentScale
+        contentScale = contentScale
     )
 }
 
