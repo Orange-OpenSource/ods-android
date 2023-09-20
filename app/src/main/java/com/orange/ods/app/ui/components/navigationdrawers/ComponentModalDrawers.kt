@@ -185,7 +185,7 @@ fun ComponentModalDrawers() {
                                     classInstance<OdsModalDrawerHeader>("drawerHeader") {
                                         title(title)
                                         image()
-                                        stringRepresentation("imageDisplayType", imageDisplayType)
+                                        enum("imageDisplayType", imageDisplayType)
                                         subtitle?.let { subtitle(it) }
                                     }
                                     list("drawerContentList") {

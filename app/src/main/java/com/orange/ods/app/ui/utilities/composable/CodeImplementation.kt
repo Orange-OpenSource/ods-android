@@ -285,7 +285,7 @@ class ParametersBuilder {
     fun lambda(name: String) = add(LambdaParameter(name))
     fun float(name: String, value: Float) = add(FloatParameter(name, value))
     fun mutableState(name: String, stateValue: String) = add(MutableStateParameter(name, stateValue))
-    fun <T : Enum<T>> enum(name: String, value: T) = add(EnumParameter<T>(name, value))
+    fun <T : Enum<T>> enum(name: String, value: T) = add(EnumParameter(name, value))
     fun composable(name: String, value: @Composable () -> Unit) = add(ComposableParameter(name, value))
     inline fun <reified T> classInstance(name: String, noinline parameters: ParametersBuilder.() -> Unit) =
         classInstance(name, T::class.java, parameters)
