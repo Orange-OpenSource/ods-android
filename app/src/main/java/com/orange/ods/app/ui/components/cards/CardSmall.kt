@@ -14,7 +14,6 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.rememberScrollState
@@ -47,8 +46,8 @@ fun CardSmall(customizationState: CardCustomizationState) {
         Column(
             modifier = Modifier
                 .fillMaxSize()
+                .verticalScroll(state = rememberScrollState())
                 .padding(dimensionResource(id = com.orange.ods.R.dimen.spacing_m))
-                .verticalScroll(state = rememberScrollState()),
         ) {
             Row(
                 modifier = Modifier
@@ -76,9 +75,9 @@ fun CardSmall(customizationState: CardCustomizationState) {
                 Box(modifier = Modifier.weight(0.5f))
             }
 
-            Spacer(modifier = Modifier.padding(top = dimensionResource(com.orange.ods.R.dimen.spacing_s)))
-
-            CodeImplementationColumn {
+            CodeImplementationColumn(
+                modifier = Modifier.padding(top = dimensionResource(com.orange.ods.R.dimen.spacing_s))
+            ) {
                 FunctionCallCode(
                     name = OdsComposable.OdsSmallCard.name,
                     exhaustiveParameters = false,

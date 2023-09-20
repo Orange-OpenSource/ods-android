@@ -11,7 +11,6 @@
 package com.orange.ods.app.ui.components.cards
 
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.rememberScrollState
@@ -48,8 +47,8 @@ fun CardVerticalHeaderFirst(customizationState: CardCustomizationState) {
         Column(
             modifier = Modifier
                 .fillMaxSize()
+                .verticalScroll(state = rememberScrollState())
                 .padding(dimensionResource(id = com.orange.ods.R.dimen.spacing_m))
-                .verticalScroll(state = rememberScrollState()),
         ) {
             val firstButtonText = stringResource(id = R.string.component_element_first_button)
             val secondButtonText = stringResource(id = R.string.component_element_second_button)
@@ -76,9 +75,9 @@ fun CardVerticalHeaderFirst(customizationState: CardCustomizationState) {
                 secondButton = if (hasSecondButton) OdsCardButton(secondButtonText) { clickOnElement(context, secondButtonText) } else null,
             )
 
-            Spacer(modifier = Modifier.padding(top = dimensionResource(com.orange.ods.R.dimen.spacing_s)))
-
-            CodeImplementationColumn {
+            CodeImplementationColumn(
+                modifier = Modifier.padding(top = dimensionResource(com.orange.ods.R.dimen.spacing_s))
+            ) {
                 FunctionCallCode(
                     name = OdsComposable.OdsVerticalHeaderFirstCard.name,
                     exhaustiveParameters = false,
