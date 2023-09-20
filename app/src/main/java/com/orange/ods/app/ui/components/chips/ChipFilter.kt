@@ -109,7 +109,7 @@ fun ChipFilter() {
                                 parameters = {
                                     text(ingredient.food.name)
                                     if (hasLeadingAvatar) {
-                                        classInstance("leadingAvatar", OdsChipLeadingAvatar::class.java) {
+                                        classInstance<OdsChipLeadingAvatar>("leadingAvatar") {
                                             image()
                                             contentDescription("")
                                         }

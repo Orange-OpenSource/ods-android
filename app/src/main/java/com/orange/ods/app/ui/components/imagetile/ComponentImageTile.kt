@@ -145,21 +145,21 @@ fun ComponentImageTile() {
                         name = OdsComposable.OdsImageTile.name,
                         exhaustiveParameters = false,
                         parameters = {
-                            stringRepresentation("legendAreaDisplayType", type.value)
+                            enum("legendAreaDisplayType", type.value)
                             if (hasText) title(recipe.title)
-                            classInstance("image", OdsImageTileImage::class.java) {
+                            classInstance<OdsImageTileImage>("image") {
                                 painter()
                                 contentDescription("")
                             }
                             if (hasIcon) {
-                                classInstance("icon", OdsImageTileIconToggleButton::class.java) {
+                                classInstance<OdsImageTileIconToggleButton>("icon") {
                                     checked(iconChecked)
                                     lambda("onCheckedChange")
-                                    classInstance("uncheckedIcon", OdsIconButtonIcon::class.java) {
+                                    classInstance<OdsIconButtonIcon>("uncheckedIcon") {
                                         painter()
                                         contentDescription("")
                                     }
-                                    classInstance("checkedIcon", OdsIconButtonIcon::class.java) {
+                                    classInstance<OdsIconButtonIcon>("checkedIcon") {
                                         painter()
                                         contentDescription("")
                                     }

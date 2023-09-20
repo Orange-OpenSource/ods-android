@@ -135,7 +135,7 @@ private fun Chip(chipCustomizationState: ChipCustomizationState) {
                         lambda("onValueChange")
                         list("chips") {
                             recipes.forEachIndexed { index, recipe ->
-                                classInstance(OdsChoiceChip::class.java) {
+                                classInstance<OdsChoiceChip<*>> {
                                     text(recipe.title)
                                     stringRepresentation("value", index)
                                     if (!isEnabled) enabled(false)
@@ -175,13 +175,13 @@ private fun Chip(chipCustomizationState: ChipCustomizationState) {
                     parameters = {
                         text(recipe?.title.orEmpty())
                         if (isActionChip || hasLeadingIcon) {
-                            classInstance("leadingIcon", OdsChipLeadingIcon::class.java) {
+                            classInstance<OdsChipLeadingIcon>("leadingIcon") {
                                 painter()
                                 contentDescription("")
                             }
                         }
                         if (hasLeadingAvatar) {
-                            classInstance("leadingAvatar", OdsChipLeadingAvatar::class.java) {
+                            classInstance<OdsChipLeadingAvatar>("leadingAvatar") {
                                 image()
                                 contentDescription("")
                             }
