@@ -22,7 +22,6 @@ import androidx.compose.ui.graphics.painter.Painter
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.semantics.semantics
-import androidx.compose.ui.unit.dp
 import com.orange.ods.compose.component.button.OdsTextButton
 import com.orange.ods.compose.component.button.OdsTextButtonStyle
 import com.orange.ods.compose.component.content.OdsComponentCircleImage
@@ -133,18 +132,13 @@ class OdsCardImage private constructor(
  */
 class OdsCardThumbnail : OdsComponentCircleImage {
 
-    private companion object {
-
-        private val CircleSize = 40.dp
-    }
-
     /**
      * Creates an instance of [OdsCardThumbnail].
      *
      * @param painter The painter to draw.
      * @param contentDescription The content description associated to this [OdsCardThumbnail].
      */
-    constructor(painter: Painter, contentDescription: String) : super(painter, contentDescription, CircleSize)
+    constructor(painter: Painter, contentDescription: String) : super(painter, contentDescription)
 
     /**
      * Creates an instance of [OdsCardThumbnail].
@@ -152,7 +146,7 @@ class OdsCardThumbnail : OdsComponentCircleImage {
      * @param imageVector The image vector to draw.
      * @param contentDescription The content description associated to this [OdsCardThumbnail].
      */
-    constructor(imageVector: ImageVector, contentDescription: String) : super(imageVector, contentDescription, CircleSize)
+    constructor(imageVector: ImageVector, contentDescription: String) : super(imageVector, contentDescription)
 
     /**
      * Creates an instance of [OdsCardThumbnail].
@@ -160,5 +154,5 @@ class OdsCardThumbnail : OdsComponentCircleImage {
      * @param bitmap The image bitmap to draw.
      * @param contentDescription The content description associated to this [OdsCardThumbnail].
      */
-    constructor(bitmap: ImageBitmap, contentDescription: String) : super(bitmap, contentDescription, CircleSize)
+    constructor(bitmap: ImageBitmap, contentDescription: String) : super(bitmap, contentDescription)
 }

@@ -26,7 +26,6 @@ import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.PreviewParameter
-import androidx.compose.ui.unit.dp
 import com.orange.ods.R
 import com.orange.ods.compose.component.OdsComposable
 import com.orange.ods.compose.component.button.OdsTextButton
@@ -123,18 +122,13 @@ class OdsBannerButton(private val text: String, private val onClick: () -> Unit)
  */
 class OdsBannerImage : OdsComponentCircleImage {
 
-    private companion object {
-
-        private val CircleSize = 40.dp
-    }
-
     /**
      * Creates an instance of [OdsBannerImage].
      *
      * @param painter The painter to draw.
      * @param contentDescription The content description associated to this [OdsBannerImage].
      */
-    constructor(painter: Painter, contentDescription: String) : super(painter, contentDescription, CircleSize)
+    constructor(painter: Painter, contentDescription: String) : super(painter, contentDescription)
 
     /**
      * Creates an instance of [OdsBannerImage].
@@ -142,7 +136,7 @@ class OdsBannerImage : OdsComponentCircleImage {
      * @param imageVector The image vector to draw.
      * @param contentDescription The content description associated to this [OdsBannerImage].
      */
-    constructor(imageVector: ImageVector, contentDescription: String) : super(imageVector, contentDescription, CircleSize)
+    constructor(imageVector: ImageVector, contentDescription: String) : super(imageVector, contentDescription)
 
     /**
      * Creates an instance of [OdsBannerImage].
@@ -150,7 +144,7 @@ class OdsBannerImage : OdsComponentCircleImage {
      * @param bitmap The image bitmap to draw.
      * @param contentDescription The content description associated to this [OdsBannerImage].
      */
-    constructor(bitmap: ImageBitmap, contentDescription: String) : super(bitmap, contentDescription, CircleSize)
+    constructor(bitmap: ImageBitmap, contentDescription: String) : super(bitmap, contentDescription)
 }
 
 @UiModePreviews.Default

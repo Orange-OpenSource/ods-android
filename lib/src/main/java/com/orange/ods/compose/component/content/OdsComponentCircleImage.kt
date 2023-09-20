@@ -19,12 +19,11 @@ import androidx.compose.ui.graphics.ImageBitmap
 import androidx.compose.ui.graphics.painter.Painter
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.layout.ContentScale
-import androidx.compose.ui.unit.Dp
+import androidx.compose.ui.unit.dp
 
 abstract class OdsComponentCircleImage private constructor(
     graphicsObject: Any,
-    contentDescription: String,
-    private val circleSize: Dp
+    contentDescription: String
 ) : OdsComponentImage(graphicsObject, contentDescription, contentScale = ContentScale.Crop) {
 
     /**
@@ -33,7 +32,7 @@ abstract class OdsComponentCircleImage private constructor(
      * @param painter The painter to draw.
      * @param contentDescription The content description associated to this [OdsComponentCircleImage].
      */
-    constructor(painter: Painter, contentDescription: String, circleSize: Dp) : this(painter as Any, contentDescription, circleSize)
+    constructor(painter: Painter, contentDescription: String) : this(painter as Any, contentDescription)
 
     /**
      * Creates an instance of [OdsComponentCircleImage].
@@ -41,7 +40,7 @@ abstract class OdsComponentCircleImage private constructor(
      * @param imageVector The image vector to draw.
      * @param contentDescription The content description associated to this [OdsComponentCircleImage].
      */
-    constructor(imageVector: ImageVector, contentDescription: String, circleSize: Dp) : this(imageVector as Any, contentDescription, circleSize)
+    constructor(imageVector: ImageVector, contentDescription: String) : this(imageVector as Any, contentDescription)
 
     /**
      * Creates an instance of [OdsComponentCircleImage].
@@ -49,13 +48,13 @@ abstract class OdsComponentCircleImage private constructor(
      * @param bitmap The image bitmap to draw.
      * @param contentDescription The content description associated to this [OdsComponentCircleImage].
      */
-    constructor(bitmap: ImageBitmap, contentDescription: String, circleSize: Dp) : this(bitmap as Any, contentDescription, circleSize)
+    constructor(bitmap: ImageBitmap, contentDescription: String) : this(bitmap as Any, contentDescription)
 
     @Composable
     override fun Content(modifier: Modifier) {
         super.Content(
             modifier = modifier
-                .size(circleSize)
+                .size(40.dp)
                 .clip(CircleShape)
         )
     }
