@@ -63,7 +63,7 @@ fun OdsDropdownMenu(
         modifier = modifier.background(OdsTheme.colors.surface),
         offset = offset,
         properties = properties,
-        content = { items.forEach { it.Content() } }
+        content = { items.forEach { it.Content(onDismissRequest) } }
     )
 }
 
@@ -152,9 +152,23 @@ class OdsDropdownMenuItem private constructor(
         onClick: () -> Unit
     ) : this(text, icon as Any?, enabled, divider, onClick)
 
+    private var onDismissRequest: () -> Unit = {}
+
+    @Composable
+    internal fun Content(onDismissRequest: () -> Unit) {
+        this.onDismissRequest = onDismissRequest
+        Content()
+    }
+
     @Composable
     override fun Content(modifier: Modifier) {
-        DropdownMenuItem(onClick = onClick, enabled = enabled) {
+        DropdownMenuItem(
+            onClick = {
+                onClick()
+                onDismissRequest()
+            },
+            enabled = enabled
+        ) {
             icon?.let {
                 OdsIcon(
                     graphicsObject = icon,
