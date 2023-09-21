@@ -46,7 +46,6 @@ fun ModuleDetailColumn(
         Column(modifier = Modifier.padding(dimensionResource(id = R.dimen.screen_horizontal_margin))) {
             Subtitle(textRes = com.orange.ods.app.R.string.module_customize)
             content()
-
             OdsButton(
                 modifier = Modifier
                     .padding(top = dimensionResource(id = R.dimen.spacing_m))

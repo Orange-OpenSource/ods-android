@@ -16,7 +16,6 @@ import com.orange.ods.compose.component.appbar.top.OdsTopAppBar
 import com.orange.ods.compose.component.menu.OdsDropdownMenu
 import com.orange.ods.module.about.R
 
-
 val LocalOdsAboutModuleConfiguration =
     staticCompositionLocalOf<OdsAboutModuleConfiguration> { error("CompositionLocal LocalOdsAboutModuleConfiguration not present") }
 
