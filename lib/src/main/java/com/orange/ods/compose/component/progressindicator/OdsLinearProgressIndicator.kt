@@ -125,7 +125,7 @@ class OdsLinearProgressIndicatorIcon : OdsComponentIcon {
      * @param painter Painter of the icon.
      * @param contentDescription The content description associated to this [OdsLinearProgressIndicatorIcon].
      */
-    constructor(painter: Painter, contentDescription: String) : super(painter as Any, contentDescription)
+    constructor(painter: Painter, contentDescription: String) : super(painter, contentDescription)
 
     /**
      * Creates an instance of [OdsLinearProgressIndicatorIcon].
@@ -133,7 +133,7 @@ class OdsLinearProgressIndicatorIcon : OdsComponentIcon {
      * @param imageVector Image vector of the icon.
      * @param contentDescription The content description associated to this [OdsLinearProgressIndicatorIcon].
      */
-    constructor(imageVector: ImageVector, contentDescription: String) : super(imageVector as Any, contentDescription)
+    constructor(imageVector: ImageVector, contentDescription: String) : super(imageVector, contentDescription)
 
     /**
      * Creates an instance of [OdsLinearProgressIndicatorIcon].
@@ -141,7 +141,7 @@ class OdsLinearProgressIndicatorIcon : OdsComponentIcon {
      * @param bitmap Image bitmap of the icon.
      * @param contentDescription The content description associated to this [OdsLinearProgressIndicatorIcon].
      */
-    constructor(bitmap: ImageBitmap, contentDescription: String) : super(bitmap as Any, contentDescription)
+    constructor(bitmap: ImageBitmap, contentDescription: String) : super(bitmap, contentDescription)
 
     @Composable
     override fun Content(modifier: Modifier) {

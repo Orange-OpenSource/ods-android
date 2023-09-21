@@ -140,9 +140,9 @@ class OdsImageTileImage : OdsComponentImage {
      * @param contentScale The rule to apply to scale the image in this [OdsImageTileImage], [ContentScale.Crop] by default.
      */
     constructor(painter: Painter, contentDescription: String, contentScale: ContentScale = ContentScale.Crop) : super(
-        painter as Any,
+        painter,
         contentDescription,
-        contentScale
+        contentScale = contentScale
     )
 
     /**
@@ -153,9 +153,9 @@ class OdsImageTileImage : OdsComponentImage {
      * @param contentScale The rule to apply to scale the image in this [OdsImageTileImage], [ContentScale.Crop] by default.
      */
     constructor(imageVector: ImageVector, contentDescription: String, contentScale: ContentScale = ContentScale.Crop) : super(
-        imageVector as Any,
+        imageVector,
         contentDescription,
-        contentScale
+        contentScale = contentScale
     )
 
     /**
@@ -166,9 +166,9 @@ class OdsImageTileImage : OdsComponentImage {
      * @param contentScale The rule to apply to scale the image in this [OdsImageTileImage], [ContentScale.Crop] by default.
      */
     constructor(bitmap: ImageBitmap, contentDescription: String, contentScale: ContentScale = ContentScale.Crop) : super(
-        bitmap as Any,
+        bitmap,
         contentDescription,
-        contentScale
+        contentScale = contentScale
     )
 }
 

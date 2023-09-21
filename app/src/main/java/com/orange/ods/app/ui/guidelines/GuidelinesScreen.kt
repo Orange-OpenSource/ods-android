@@ -21,10 +21,11 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
-import com.orange.ods.compose.component.card.OdsVerticalImageFirstCard
 import com.orange.ods.app.R
 import com.orange.ods.app.ui.LocalMainTopAppBarManager
 import com.orange.ods.app.ui.utilities.DrawableManager
+import com.orange.ods.compose.component.card.OdsCardImage
+import com.orange.ods.compose.component.card.OdsVerticalImageFirstCard
 
 @Composable
 fun GuidelinesScreen(onGuidelineClick: (String) -> Unit) {
@@ -41,11 +42,14 @@ fun GuidelinesScreen(onGuidelineClick: (String) -> Unit) {
         Guideline.values().forEach { guideline ->
             OdsVerticalImageFirstCard(
                 title = stringResource(id = guideline.titleRes),
-                image = painterResource(id = DrawableManager.getDrawableResIdForCurrentTheme(resId = guideline.imageRes)),
-                imageContentScale = guideline.imageContentScale,
-                imageBackgroundColor = guideline.imageBackgroundColor,
-                imageAlignment = guideline.imageAlignment,
-                onCardClick = { onGuidelineClick(guideline.route) }
+                image = OdsCardImage(
+                    painterResource(id = DrawableManager.getDrawableResIdForCurrentTheme(resId = guideline.imageRes)),
+                    "",
+                    guideline.imageAlignment,
+                    guideline.imageContentScale,
+                    guideline.imageBackgroundColor
+                ),
+                onClick = { onGuidelineClick(guideline.route) }
             )
         }
     }

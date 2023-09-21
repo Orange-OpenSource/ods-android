@@ -104,7 +104,7 @@ class OdsIconToggleButtonsRowIcon : OdsComponentIcon {
      * @param enabled Whether or not this [OdsIconToggleButtonsRowIcon] will handle input events and appear enabled for
      * semantics purposes, true by default.
      */
-    constructor(painter: Painter, contentDescription: String, enabled: Boolean = true) : super(painter as Any, contentDescription, enabled)
+    constructor(painter: Painter, contentDescription: String, enabled: Boolean = true) : super(painter, contentDescription, enabled)
 
     /**
      * Creates an instance of [OdsIconToggleButtonsRowIcon].
@@ -114,7 +114,7 @@ class OdsIconToggleButtonsRowIcon : OdsComponentIcon {
      * @param enabled Whether or not this [OdsIconToggleButtonsRowIcon] will handle input events and appear enabled for
      * semantics purposes, true by default.
      */
-    constructor(imageVector: ImageVector, contentDescription: String, enabled: Boolean = true) : super(imageVector as Any, contentDescription, enabled)
+    constructor(imageVector: ImageVector, contentDescription: String, enabled: Boolean = true) : super(imageVector, contentDescription, enabled)
 
     /**
      * Creates an instance of [OdsIconToggleButtonsRowIcon].
@@ -124,7 +124,7 @@ class OdsIconToggleButtonsRowIcon : OdsComponentIcon {
      * @param enabled Whether or not this [OdsIconToggleButtonsRowIcon] will handle input events and appear enabled for
      * semantics purposes, true by default.
      */
-    constructor(bitmap: ImageBitmap, contentDescription: String, enabled: Boolean = true) : super(bitmap as Any, contentDescription, enabled)
+    constructor(bitmap: ImageBitmap, contentDescription: String, enabled: Boolean = true) : super(bitmap, contentDescription, enabled)
 
     private var index: Int = 0
     private var onClick: (Int) -> Unit = {}

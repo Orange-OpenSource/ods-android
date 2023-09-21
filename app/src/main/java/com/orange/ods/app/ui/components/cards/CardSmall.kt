@@ -14,7 +14,6 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.rememberScrollState
@@ -34,6 +33,7 @@ import com.orange.ods.app.ui.utilities.DrawableManager
 import com.orange.ods.app.ui.utilities.composable.CodeImplementationColumn
 import com.orange.ods.app.ui.utilities.composable.FunctionCallCode
 import com.orange.ods.compose.OdsComposable
+import com.orange.ods.compose.component.card.OdsCardImage
 import com.orange.ods.compose.component.card.OdsSmallCard
 
 @Composable
@@ -46,8 +46,8 @@ fun CardSmall(customizationState: CardCustomizationState) {
         Column(
             modifier = Modifier
                 .fillMaxSize()
+                .verticalScroll(state = rememberScrollState())
                 .padding(dimensionResource(id = com.orange.ods.R.dimen.spacing_m))
-                .verticalScroll(state = rememberScrollState()),
         ) {
             Row(
                 modifier = Modifier
@@ -58,31 +58,37 @@ fun CardSmall(customizationState: CardCustomizationState) {
 
                 OdsSmallCard(
                     modifier = Modifier.weight(0.5f),
-                    image = rememberAsyncImagePainter(
-                        model = recipe.imageUrl,
-                        placeholder = painterResource(id = DrawableManager.getPlaceholderResId()),
-                        error = painterResource(id = DrawableManager.getPlaceholderResId(error = true))
+                    image = OdsCardImage(
+                        rememberAsyncImagePainter(
+                            model = recipe.imageUrl,
+                            placeholder = painterResource(id = DrawableManager.getPlaceholderResId()),
+                            error = painterResource(id = DrawableManager.getPlaceholderResId(error = true)),
+                        ),
+                        ""
                     ),
                     title = recipe.title,
                     subtitle = if (subtitleChecked.value) recipe.subtitle else null,
-                    onCardClick = if (isClickable) {
+                    onClick = if (isClickable) {
                         { clickOnElement(context, cardText) }
                     } else null
                 )
                 Box(modifier = Modifier.weight(0.5f))
             }
 
-            Spacer(modifier = Modifier.padding(top = dimensionResource(com.orange.ods.R.dimen.spacing_s)))
-
-            CodeImplementationColumn {
+            CodeImplementationColumn(
+                modifier = Modifier.padding(top = dimensionResource(com.orange.ods.R.dimen.spacing_s))
+            ) {
                 FunctionCallCode(
                     name = OdsComposable.OdsSmallCard.name,
                     exhaustiveParameters = false,
                     parameters = {
                         title(recipe.title)
-                        image()
+                        classInstance("image", OdsCardImage::class.java) {
+                            painter()
+                            contentDescription("")
+                        }
                         if (hasSubtitle) subtitle(recipe.subtitle)
-                        if (isClickable) onCardClick()
+                        if (isClickable) onClick()
                     })
             }
         }

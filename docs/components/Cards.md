@@ -53,18 +53,18 @@ In your composable screen you can use `OdsVerticalImageFirstCard` composable:
 ```kotlin
 OdsVerticalImageFirstCard(
     title = "Title",
-    image = painterResource(R.drawable.picture),
-    imageContentDescription = "Picture content description", //Optional
-    imageBackgroundColor = Color(0xff1b1b1b), //Optional
-    imageContentScale = ContentScale.Crop,
-    imageAlignment = Alignment.Center,
+    image = OdsCardImage(
+        painterResource(R.drawable.picture),
+        "Picture content description",
+        Alignment.Center,
+        ContentScale.Crop,
+        Color(0xff1b1b1b) //Optional
+    ),
     subtitle = "Subtitle", //Optional
     text = "Text", //Optional
-    button1Text = "Button1", //Optional
-    button2Text = "Button2", //Optional
-    onCardClick = {  }, //Optional
-    onButton1Click = {  }, //Optional
-    onButton2Click = {  } //Optional
+    firstButton = OdsCardButton("First button") {}, //Optional
+    secondButton = OdsCardButton("Second button") {}, //Optional
+    onClick = {} //Optional
 )
 ```
 
@@ -80,24 +80,27 @@ This is a full width card containing elements arranged vertically with a header 
 
 > **Jetpack Compose implementation**
 
-In your composable screen you can use `OdsVerticalHeaderFirstCard`composable:
+In your composable screen you can use `OdsVerticalHeaderFirstCard` composable:
 
 ```kotlin
 OdsVerticalHeaderFirstCard(
     title = "Title",
-    image = painterResource(R.drawable.picture),
-    thumbnail = painterResource(R.drawable.thumbnail), //Optional
+    image = OdsCardImage(
+        painterResource(R.drawable.picture),
+        "Picture content description",
+        Alignment.Center,
+        ContentScale.Crop,
+        Color(0xff1b1b1b) //Optional
+    ),
+    thumbnail = OdsCardThumbnail(
+        painterResource(R.drawable.thumbnail),
+        "Thumbnail content description"
+    ), //Optional
     subtitle = "Subtitle", //Optional
-    imageContentDescription = "Picture content description", //Optional
-    imageBackgroundColor = Color(0xff1b1b1b), //Optional
-    imageContentScale = ContentScale.Crop,
-    imageAlignment = Alignment.Center,
     text = "Text", //Optional
-    button1Text = "Button1", //Optional
-    button2Text = "Button2", //Optional
-    onCardClick = {  }, //Optional
-    onButton1Click = {  }, //Optional
-    onButton2Click = {  } //Optional
+    firstButton = OdsCardButton("First button") {}, //Optional
+    secondButton = OdsCardButton("Second button") {}, //Optional
+    onClick = {} //Optional
 )
 ```
 
@@ -121,15 +124,21 @@ Row(
 ) {
     OdsSmallCard(
         title = "Title",
-        image = painterResource(R.drawable.picture),
+        image = OdsCardImage(
+            painterResource(R.drawable.picture),
+            "Picture content description"
+        ),
         modifier = Modifier.weight(0.5f),
-        onCardClick = {}
+        onClick = {}
     )
     OdsSmallCard(
         title = "Title",
-        image = painterResource(R.drawable.picture),
+        image = OdsCardImage(
+            painterResource(R.drawable.picture),
+            "Picture content description"
+        ),
         modifier = Modifier.weight(0.5f),
-        onCardClick = {}
+        onClick = {}
     )
 }
 ```
@@ -151,20 +160,20 @@ In your screen you can use `OdsHorizontalCard` composable:
 ```kotlin
 OdsHorizontalCard(
     title = "Title",
-    image = painterResource(R.drawable.picture),
-    imageContentDescription = "Picture content description", //Optional
-    imageBackgroundColor = Color(0xff1b1b1b), //Optional
-    imageContentScale = ContentScale.Crop,
-    imageAlignment = Alignment.Center,
+    image = OdsCardImage(
+        painterResource(R.drawable.picture),
+        "Picture content description",
+        Alignment.Center,
+        ContentScale.Crop,
+        Color(0xff1b1b1b) //Optional
+    ),
     subtitle = "Subtitle", //Optional
     text = "Text", //Optional
-    button1Text = "Button1", //Optional
-    button2Text = "Button2", //Optional
+    firstButton = OdsCardButton("First button") {}, //Optional
+    secondButton = OdsCardButton("Second button") {}, //Optional
     imagePosition = OdsHorizontalCardImagePosition.Start,  //Optional. Start by default.
-    dividerEnabled = false, // Optional. True by default.
-    onCardClick = {  }, //Optional
-    onButton1Click = {  }, //Optional
-    onButton2Click = {  } //Optional
+    divider = false, // Optional. True by default.
+    onClick = {} //Optional
 )
 ```
 

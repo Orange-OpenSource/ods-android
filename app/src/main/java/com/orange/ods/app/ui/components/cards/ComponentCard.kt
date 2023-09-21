@@ -69,19 +69,19 @@ fun ComponentCard(variant: Variant) {
                     )
                     ComponentCountRow(
                         title = stringResource(id = R.string.component_card_action_button_count),
-                        count = actionButtonCount,
+                        count = buttonCount,
                         minusIconContentDescription = stringResource(id = R.string.component_remove_action_button),
                         plusIconContentDescription = stringResource(id = R.string.component_add_action_button),
                         modifier = Modifier.padding(start = dimensionResource(id = com.orange.ods.R.dimen.screen_horizontal_margin)),
-                        minCount = CardCustomizationState.MinActionButtonCount,
-                        maxCount = CardCustomizationState.MaxActionButtonCount
+                        minCount = CardCustomizationState.MinButtonCount,
+                        maxCount = CardCustomizationState.MaxButtonCount
                     )
                 }
                 if (variant == Variant.CardHorizontal) {
-                    if (!hasButton1) dividerChecked.value = false
+                    if (!hasFirstButton) dividerChecked.value = false
                     OdsListItem(
                         text = stringResource(id = R.string.component_element_divider),
-                        trailing = OdsSwitchTrailing(checked = dividerChecked, enabled = hasButton1)
+                        trailing = OdsSwitchTrailing(checked = dividerChecked, enabled = hasFirstButton)
                     )
                 }
             }) {
