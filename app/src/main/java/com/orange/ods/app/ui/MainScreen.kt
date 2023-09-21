@@ -100,7 +100,7 @@ fun MainScreen(themeConfigurations: Set<OdsThemeConfigurationContract>, mainView
         LocalOdsGuideline provides mainState.themeState.currentThemeConfiguration.guideline,
         LocalRecipes provides mainViewModel.recipes,
         LocalCategories provides mainViewModel.categories,
-        LocalUiFramework provides mainState.uiFramework
+        LocalUiFramework provides mainState.uiFramework,
     ) {
         AppBarActionsHandler(navigate = mainState.navController::navigate, onChangeThemeActionClick = { changeThemeDialogVisible = true })
         OdsTheme(
