@@ -40,6 +40,7 @@ import com.google.accompanist.systemuicontroller.rememberSystemUiController
 import com.orange.ods.app.R
 import com.orange.ods.app.domain.recipes.LocalCategories
 import com.orange.ods.app.domain.recipes.LocalRecipes
+import com.orange.ods.app.ui.about.aboutConfiguration
 import com.orange.ods.app.ui.components.tabs.tabs
 import com.orange.ods.app.ui.utilities.extension.isDarkModeEnabled
 import com.orange.ods.app.ui.utilities.extension.isOrange
@@ -49,6 +50,7 @@ import com.orange.ods.compose.component.tab.OdsTabRow
 import com.orange.ods.compose.text.OdsTextH6
 import com.orange.ods.compose.theme.OdsTheme
 import com.orange.ods.extension.orElse
+import com.orange.ods.module.about.LocalOdsAboutModuleConfiguration
 import com.orange.ods.theme.OdsThemeConfigurationContract
 import com.orange.ods.xml.theme.OdsXml
 import com.orange.ods.xml.utilities.extension.xml
@@ -93,7 +95,8 @@ fun MainScreen(themeConfigurations: Set<OdsThemeConfigurationContract>, mainView
         LocalOdsGuideline provides mainState.themeState.currentThemeConfiguration.guideline,
         LocalRecipes provides mainViewModel.recipes,
         LocalCategories provides mainViewModel.categories,
-        LocalUiFramework provides mainState.uiFramework
+        LocalUiFramework provides mainState.uiFramework,
+        LocalOdsAboutModuleConfiguration provides aboutConfiguration()
     ) {
         AppBarActionsHandler(navigate = mainState.navController::navigate, onChangeThemeActionClick = { changeThemeDialogVisible = true })
         OdsTheme(
@@ -147,6 +150,7 @@ fun MainScreen(themeConfigurations: Set<OdsThemeConfigurationContract>, mainView
                     navController = mainState.navController, startDestination = BottomBarItem.Guidelines.route, modifier = Modifier.padding(innerPadding)
                 ) {
                     appNavGraph(
+                        navController = mainState.navController,
                         navigateToElement = mainState::navigateToElement,
                         upPress = mainState::upPress
                     )
