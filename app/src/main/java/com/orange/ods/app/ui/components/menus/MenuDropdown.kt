@@ -101,6 +101,7 @@ fun MenuDropdown() {
                                 text = recipe.title,
                                 icon = if (hasIcons && recipe.iconResId != null) painterResource(id = recipe.iconResId) else null,
                                 divider = hasDividerExample && index == dividerIndex,
+                                enabled = index != MenuDropdownCustomizationState.MenuItemCount - 2,
                                 onClick = { clickOnElement(context, recipe.title) }
                             )
                         }
