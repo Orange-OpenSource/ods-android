@@ -125,9 +125,9 @@ This file lists all the steps to follow when releasing a new version of ODS Andr
 
 ### Announce the new release on GitHub & FoODS
 
-- Go to [GitHub ods-android - Discussions > Announcements](https://github.com/Orange-OpenSource/ods-android/discussions/categories/announcements)
+- Go to [GitHub Announcements](https://github.com/Orange-OpenSource/ods-android/discussions/categories/announcements)
 
-- Click to `New discussion`
+- Click `New discussion`
 
 - Set title to `ODS Android library X.Y.Z`
 
@@ -158,6 +158,4 @@ Be careful, this version includes several APIs change in the library in order to
 📱 You can subscribe to the [Orange Design System Google group](https://groups.google.com/g/odsapp) in order to be able to install the [Demo app](https://play.google.com/apps/testing/com.orange.ods.app).
 ```
 
-- Go to [Teams - FoODS: ODS Mobile Android](https://teams.microsoft.com/l/channel/19%3a62efff7aca9f4865a841076b4a6c428f%40thread.tacv2/4-ODS%2520Mobile%2520Android?groupId=a9581e9e-6775-46f5-9e4a-3ce57096e6be&tenantId=90c7a20a-f34b-40bf-bc48-b9253b6f5d20)
-
-- Post a message with a link to the previously created GitHub announcement
+- Go to `Teams - FoODS` and post a message with a link to the previously created GitHub announcement
