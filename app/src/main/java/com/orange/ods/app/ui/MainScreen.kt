@@ -33,6 +33,7 @@ import androidx.compose.ui.text.input.TextFieldValue
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavBackStackEntry
+import androidx.navigation.NavController
 import androidx.navigation.NavGraphBuilder
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
@@ -41,7 +42,7 @@ import com.google.accompanist.systemuicontroller.rememberSystemUiController
 import com.orange.ods.app.R
 import com.orange.ods.app.domain.recipes.LocalCategories
 import com.orange.ods.app.domain.recipes.LocalRecipes
-import com.orange.ods.app.ui.about.addAboutGraph
+import com.orange.ods.app.ui.about.aboutConfiguration
 import com.orange.ods.app.ui.components.addComponentsGraph
 import com.orange.ods.app.ui.components.tabs.FixedTabRow
 import com.orange.ods.app.ui.components.tabs.ScrollableTabRow
@@ -52,6 +53,7 @@ import com.orange.ods.app.ui.utilities.extension.isDarkModeEnabled
 import com.orange.ods.app.ui.utilities.extension.isOrange
 import com.orange.ods.compose.theme.OdsTheme
 import com.orange.ods.extension.orElse
+import com.orange.ods.module.about.LocalOdsAboutModuleConfiguration
 import com.orange.ods.theme.OdsThemeConfigurationContract
 import com.orange.ods.xml.theme.OdsXml
 import com.orange.ods.xml.utilities.extension.xml
@@ -91,7 +93,8 @@ fun MainScreen(themeConfigurations: Set<OdsThemeConfigurationContract>, mainView
         LocalOdsGuideline provides mainState.themeState.currentThemeConfiguration.guideline,
         LocalRecipes provides mainViewModel.recipes,
         LocalCategories provides mainViewModel.categories,
-        LocalUiFramework provides mainState.uiFramework
+        LocalUiFramework provides mainState.uiFramework,
+        LocalOdsAboutModuleConfiguration provides aboutConfiguration()
     ) {
         OdsTheme(
             themeConfiguration = mainState.themeState.currentThemeConfiguration,
@@ -155,6 +158,7 @@ fun MainScreen(themeConfigurations: Set<OdsThemeConfigurationContract>, mainView
                     navController = mainState.navController, startDestination = MainDestinations.HomeRoute, modifier = Modifier.padding(innerPadding)
                 ) {
                     mainNavGraph(
+                        navController = mainState.navController,
                         navigateToElement = mainState::navigateToElement,
                         upPress = mainState::upPress,
                         searchedText = mainState.topAppBarState.searchedText
@@ -211,6 +215,7 @@ private fun MainTabs(mainTabsState: MainTabsState) {
 }
 
 private fun NavGraphBuilder.mainNavGraph(
+    navController: NavController,
     navigateToElement: (String, Long?, NavBackStackEntry) -> Unit,
     upPress: () -> Unit,
     searchedText: MutableState<TextFieldValue>
@@ -224,8 +229,7 @@ private fun NavGraphBuilder.mainNavGraph(
 
     addGuidelinesGraph()
     addComponentsGraph(navigateToElement, upPress)
-    addModulesGraph(navigateToElement)
-    addAboutGraph()
+    addModulesGraph(navController)
 
     composable(
         route = MainDestinations.SearchRoute

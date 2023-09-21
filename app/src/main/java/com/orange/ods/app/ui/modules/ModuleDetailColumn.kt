@@ -22,9 +22,9 @@ import com.orange.ods.app.ui.utilities.composable.DetailScreenHeader
 import com.orange.ods.app.ui.utilities.composable.Subtitle
 
 @Composable
-fun ModuleDetailScreen(
+fun ModuleDetailColumn(
     module: Module,
-    navigateToModuleDemo: (String) -> Unit,
+    content: @Composable () -> Unit
 ) {
     Column(
         modifier = Modifier
@@ -39,7 +39,7 @@ fun ModuleDetailScreen(
 
         Column(modifier = Modifier.padding(dimensionResource(id = com.orange.ods.R.dimen.screen_horizontal_margin))) {
             Subtitle(textRes = com.orange.ods.app.R.string.module_customize)
-            module.customizationContent(navigateToModuleDemo)
+            content()
         }
     }
 }

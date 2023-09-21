@@ -31,7 +31,7 @@ import com.orange.ods.app.ui.utilities.DrawableManager
 import com.orange.ods.compose.component.card.OdsVerticalImageFirstCard
 
 @Composable
-fun ModulesScreen(onModuleClick: (Long) -> Unit) {
+fun ModulesScreen(onModuleClick: (String) -> Unit) {
     val context = LocalContext.current
     LocalMainTopAppBarManager.current.updateTopAppBarTitle(R.string.navigation_item_modules)
     val scrollState = rememberScrollState()
@@ -50,7 +50,7 @@ fun ModulesScreen(onModuleClick: (Long) -> Unit) {
 }
 
 @Composable
-private fun ColumnScope.ModuleCard(module: Module, onModuleClick: (Long) -> Unit) {
+private fun ColumnScope.ModuleCard(module: Module, onModuleClick: (String) -> Unit) {
     val imageResId = DrawableManager.getDrawableResIdForCurrentTheme(resId = module.imageRes)
     OdsVerticalImageFirstCard(
         title = stringResource(id = module.titleRes),
@@ -59,7 +59,7 @@ private fun ColumnScope.ModuleCard(module: Module, onModuleClick: (Long) -> Unit
         imageContentScale = ContentScale.Fit,
         imageAlignment = module.imageAlignment,
         onCardClick = {
-            onModuleClick(module.id)
+            onModuleClick(module.route)
         },
     )
 }

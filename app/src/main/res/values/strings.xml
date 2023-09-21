@@ -386,6 +386,9 @@
     <string name="module_about_demo_app_name">Application Name</string>
     <string name="module_about_demo_version">Version</string>
     <string name="module_about_demo_description">Add here a short description of the application.</string>
+    <string name="module_about_demo_feedback_button_element">feedback button</string>
+    <string name="module_about_demo_share_title">Share title</string>
+    <string name="module_about_demo_share_text">Add you share text here.</string>
 
     <!-- About -->
     <string name="about_app_name">Orange Design System</string>
