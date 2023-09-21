@@ -88,6 +88,5 @@ fun AboutCustomizationScreen(navigateToAboutModule: () -> Unit, configureAboutMo
                 null
             }
         ))
-
     }
 }

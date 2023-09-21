@@ -23,3 +23,4 @@ fun aboutConfiguration() = OdsAboutModuleConfiguration(
     appVersion = VersionHelper.getFromPackageInfo(context = LocalContext.current),
     appDescription = stringResource(id = R.string.about_description)
 )
+
