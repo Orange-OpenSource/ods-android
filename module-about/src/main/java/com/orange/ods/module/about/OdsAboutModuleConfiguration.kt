@@ -13,24 +13,29 @@ package com.orange.ods.module.about
 import android.net.Uri
 import android.os.Parcelable
 import androidx.annotation.DrawableRes
+import androidx.compose.runtime.staticCompositionLocalOf
 import com.google.gson.Gson
 import com.orange.ods.compose.component.appbar.top.OdsTopAppBarActionButton
 import com.orange.ods.compose.component.appbar.top.OdsTopAppBarOverflowMenuActionItem
 import kotlinx.parcelize.Parcelize
 import kotlinx.parcelize.RawValue
 
+
+val LocalOdsAboutModuleConfiguration =
+    staticCompositionLocalOf<OdsAboutModuleConfiguration> { error("CompositionLocal LocalOdsAboutModuleConfiguration not present") }
+
 /**
  * About module configuration.
  */
 @Parcelize
-data class AboutModuleConfiguration(
+data class OdsAboutModuleConfiguration(
     /**
      * The name of the application displayed on the main screen of the About module.
      */
     val appName: String,
 
     /**
-     * The optional illustration resource id. It should be a SVG or PNG resource file, placed in res/drawable directory. It allows to customize
+     * The illustration resource id. It should be a SVG or PNG resource file, placed in res/drawable directory. It allows to customize
      * the displayed image on the main screen of the About module.
      * If not provided, the default Orange illustration will be displayed.
      */
@@ -38,20 +43,26 @@ data class AboutModuleConfiguration(
     val appIllustration: Int = R.drawable.il_about,
 
     /**
-     * The optional application version displayed on the main screen of the About module.
+     * The application version displayed on the main screen of the About module.
+     * If null, no version will be displayed.
      */
     val appVersion: String? = null,
 
     /**
-     * The optional application description displayed on the main screen of the About module.
+     * The application description displayed on the main screen of the About module.
+     * If null, no description will be displayed.
      */
     val appDescription: String? = null,
 
-    //TODO Use another type when specified correctly. This boolean is only used for element visibility.
-    val share: Boolean = false,
+    /**
+     * The data to be used to share the app on share button click. If null, no share button will be displayed.
+     */
+    val shareData: OdsAboutShareData? = null,
 
-    //TODO Use another type when specified correctly. This boolean is only used for element visibility.
-    val feedback: Boolean = false,
+    /**
+     * The action to be launched on feedback button click. If null, no feedback button will be displayed.
+     */
+    val onFeedbackClick: (() -> Unit)? = null,
 
     /**
      * The optional actions displayed at the end of the About module TopAppBar.
@@ -63,10 +74,18 @@ data class AboutModuleConfiguration(
      */
     val topAppBarOverflowMenuActions: @RawValue List<OdsTopAppBarOverflowMenuActionItem> = emptyList(),
 
-    
     ) : Parcelable {
 
     override fun toString(): String {
         return Uri.encode(Gson().toJson(this))
     }
 }
+
+/**
+ * Defines the data to be shared by clicking on the about share button.
+ *
+ * @property title The title display on the sharing bottom sheet
+ * @property text The text to share
+ */
+@Parcelize
+data class OdsAboutShareData(val title: String, val text: String) : Parcelable

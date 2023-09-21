@@ -55,5 +55,6 @@ dependencies {
     implementation(Dependencies.composeMaterial)
     implementation(Dependencies.coreKtx)
     implementation(Dependencies.gson)
+    implementation(Dependencies.hiltAndroid)
     implementation(Dependencies.navigationCompose)
 }

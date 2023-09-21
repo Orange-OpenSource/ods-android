@@ -10,16 +10,15 @@
 
 package com.orange.ods.app.ui.modules
 
-import android.os.Bundle
-import androidx.compose.runtime.remember
-import androidx.navigation.NavBackStackEntry
+import androidx.lifecycle.viewmodel.compose.viewModel
+import androidx.navigation.NavController
 import androidx.navigation.NavGraphBuilder
-import androidx.navigation.NavType
 import androidx.navigation.compose.composable
-import androidx.navigation.navArgument
-import com.orange.ods.app.ui.modules.about.AboutModuleConfigurationType
-import com.orange.ods.app.ui.utilities.compat.BundleCompat
-import com.orange.ods.module.about.AboutModuleConfiguration
+import com.orange.ods.app.ui.modules.ModuleDemoDestinations.AboutModuleCustomizationRoute
+import com.orange.ods.app.ui.modules.about.AboutCustomizationScreen
+import com.orange.ods.module.about.OdsAboutViewModel
+import com.orange.ods.module.about.navigation.aboutScreen
+import com.orange.ods.module.about.navigation.navigateToOdsAboutDemo
 
 object ModulesNavigation {
     const val ModuleDetailRoute = "component"
@@ -32,37 +31,21 @@ object ModulesNavigation {
  * Modules demo destinations.
  */
 object ModuleDemoDestinations {
-    const val AboutRoute = "module/demo/about"
-    const val ConfigurationKey = "configuration"
+    const val AboutModuleCustomizationRoute = "module/about/customization"
 }
 
-fun NavGraphBuilder.addModulesGraph(navigateToElement: (String, Long?, NavBackStackEntry) -> Unit) {
+fun NavGraphBuilder.addModulesGraph(navController: NavController) {
 
     composable(
-        "${ModulesNavigation.ModuleDetailRoute}/{${ModulesNavigation.ModuleIdKey}}",
-        arguments = listOf(navArgument(ModulesNavigation.ModuleIdKey) { type = NavType.LongType })
-    ) { from ->
-        val arguments = requireNotNull(from.arguments)
-        val routeModuleId = arguments.getLong(ModulesNavigation.ModuleIdKey)
+        route = AboutModuleCustomizationRoute
+    ) { navBackStackEntry ->
+/*        LocalMainTopAppBarManager.current.updateTopAppBar(MainTopAppBarState.DefaultConfiguration)
+        LocalMainTopAppBarManager.current.updateTopAppBarTitle(Module.About.titleRes)*/
 
-        val module = remember(routeModuleId) { arguments.getModule() }
-        module?.let {
-            ModuleDetailScreen(
-                module = module,
-                navigateToModuleDemo = { route: String -> navigateToElement(route, null, from) }
-            )
-        }
+        val viewModel: OdsAboutViewModel = viewModel(navBackStackEntry)
+        AboutCustomizationScreen(navigateToAboutModule = { navController.navigateToOdsAboutDemo() }, viewModel::configureAboutModule)
     }
 
-    composable(
-        "${ModuleDemoDestinations.AboutRoute}/{${ModuleDemoDestinations.ConfigurationKey}}",
-        arguments = listOf(navArgument(ModuleDemoDestinations.ConfigurationKey) { type = AboutModuleConfigurationType })
-    ) { from ->
-        val configuration = BundleCompat.getParcelable<AboutModuleConfiguration>(from.arguments, ModuleDemoDestinations.ConfigurationKey)
-        configuration?.let {
-            Module.About.demoScreen(it)
-        }
-    }
+    aboutScreen(navController = navController)
+
 }
-
-private fun Bundle.getModule() = modules.firstOrNull { it.id == this.getLong(ModulesNavigation.ModuleIdKey) }

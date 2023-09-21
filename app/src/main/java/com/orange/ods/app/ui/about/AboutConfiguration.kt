@@ -19,21 +19,14 @@ import com.orange.ods.app.ui.utilities.compat.PackageManagerCompat
 import com.orange.ods.app.ui.utilities.extension.versionCode
 import com.orange.ods.extension.ifNotNull
 import com.orange.ods.extension.orElse
-import com.orange.ods.module.about.AboutModule
-import com.orange.ods.module.about.AboutModuleConfiguration
+import com.orange.ods.module.about.OdsAboutModuleConfiguration
 
 @Composable
-fun AboutScreen() {
-    val context = LocalContext.current
-
-    AboutModule(
-        configuration = AboutModuleConfiguration(
-            appName = stringResource(id = R.string.about_app_name),
-            appVersion = getVersion(context),
-            appDescription = stringResource(id = R.string.about_description)
-        )
-    )
-}
+fun aboutConfiguration() = OdsAboutModuleConfiguration(
+    appName = stringResource(id = R.string.about_app_name),
+    appVersion = getVersion(LocalContext.current),
+    appDescription = stringResource(id = R.string.about_description)
+)
 
 private fun getVersion(context: Context): String {
     val packageInfo = ifNotNull(context.packageManager, context.packageName) { packageManager, packageName ->
