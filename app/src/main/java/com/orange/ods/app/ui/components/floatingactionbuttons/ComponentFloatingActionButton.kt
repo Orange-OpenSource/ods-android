@@ -122,7 +122,7 @@ fun ComponentFloatingActionButton() {
                         name = usedComponentName,
                         exhaustiveParameters = false,
                         parameters = {
-                            classInstance("icon", OdsFloatingActionButtonIcon::class.java) {
+                            classInstance<OdsFloatingActionButtonIcon>("icon") {
                                 painter()
                                 contentDescription("")
                             }

@@ -31,10 +31,13 @@ import com.orange.ods.app.ui.UiFramework
 import com.orange.ods.compose.component.menu.OdsExposedDropdownMenu
 import com.orange.ods.compose.component.menu.OdsExposedDropdownMenuItem
 import com.orange.ods.compose.theme.OdsTheme
+import com.orange.ods.extension.fullName
 import com.orange.ods.extension.orElse
 
 const val IconPainterValue = "<icon painter>"
 const val ImagePainterValue = "<image painter>"
+const val PainterValue = "<painter>"
+const val VectorValue = "<vector>"
 const val CardTextValue = "<card text>"
 
 private abstract class CodeParameter(val name: String) {
@@ -53,6 +56,7 @@ private open class StringParameter(name: String, textValue: String) : SimplePara
 private open class LambdaParameter(name: String) : SimpleParameter(name, "{ }")
 private class FloatParameter(name: String, value: Float) : SimpleParameter(name, value.toString().plus("f"))
 private class MutableStateParameter(name: String, stateValue: String) : SimpleParameter(name, "remember { mutableStateOf($stateValue) }")
+private class EnumParameter<T>(name: String, value: T) : SimpleParameter(name, value.fullName) where T : Enum<T>
 
 private class ComposableParameter(name: String, val value: @Composable () -> Unit) : CodeParameter(name) {
     override val code
@@ -92,8 +96,9 @@ open class Function(val name: String, val parameters: ParametersBuilder.() -> Un
 
 private sealed class PredefinedParameter {
     object Icon : SimpleParameter("icon", IconPainterValue)
-    object Painter : SimpleParameter("painter", IconPainterValue)
     object Image : SimpleParameter("image", ImagePainterValue)
+    object Painter : SimpleParameter("painter", PainterValue)
+    object ImageVector : SimpleParameter("imageVector", VectorValue)
     object CardText : SimpleParameter("text", CardTextValue)
     object FillMaxWidth : SimpleParameter("modifier", "Modifier.fillMaxWidth()")
 
@@ -257,6 +262,9 @@ class ListParameterValueBuilder {
 
     private val functions = mutableListOf<Function>()
 
+    inline fun <reified T> classInstance(noinline parameters: ParametersBuilder.() -> Unit = {}) =
+        classInstance(T::class.java, parameters)
+
     fun classInstance(clazz: Class<*>, parameters: ParametersBuilder.() -> Unit = {}) = apply { functions.add(ClassInstance(clazz, parameters)) }
 
     fun function(functionName: String, parameters: ParametersBuilder.() -> Unit = {}) = apply { functions.add(Function(functionName, parameters)) }
@@ -277,7 +285,11 @@ class ParametersBuilder {
     fun lambda(name: String) = add(LambdaParameter(name))
     fun float(name: String, value: Float) = add(FloatParameter(name, value))
     fun mutableState(name: String, stateValue: String) = add(MutableStateParameter(name, stateValue))
+    fun <T : Enum<T>> enum(name: String, value: T) = add(EnumParameter(name, value))
     fun composable(name: String, value: @Composable () -> Unit) = add(ComposableParameter(name, value))
+    inline fun <reified T> classInstance(name: String, noinline parameters: ParametersBuilder.() -> Unit) =
+        classInstance(name, T::class.java, parameters)
+
     fun classInstance(name: String, clazz: Class<*>, parameters: ParametersBuilder.() -> Unit) =
         add(ClassInstanceParameter(name, ClassInstance(clazz, parameters)))
 
@@ -288,6 +300,7 @@ class ParametersBuilder {
     fun icon() = add(PredefinedParameter.Icon)
     fun painter() = add(PredefinedParameter.Painter)
     fun image() = add(PredefinedParameter.Image)
+    fun imageVector() = add(PredefinedParameter.ImageVector)
     fun cardText() = add(PredefinedParameter.CardText)
     fun fillMaxWidth() = add(PredefinedParameter.FillMaxWidth)
 

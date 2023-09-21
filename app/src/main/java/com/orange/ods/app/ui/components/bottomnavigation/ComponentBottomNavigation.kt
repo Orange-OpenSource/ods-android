@@ -98,8 +98,8 @@ fun ComponentBottomNavigation() {
                     parameters = {
                         list("items") {
                             navigationItems.take(selectedNavigationItemCount.value).forEach { item ->
-                                classInstance(OdsBottomNavigationItem::class.java) {
-                                    classInstance("icon", OdsBottomNavigationItemIcon::class.java) {
+                                classInstance<OdsBottomNavigationItem> {
+                                    classInstance<OdsBottomNavigationItemIcon>("icon") {
                                         painter()
                                         contentDescription("")
                                     }
