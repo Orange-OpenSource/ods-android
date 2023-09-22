@@ -52,7 +52,6 @@ fun NavGraphBuilder.addBottomBarGraph(navController: NavController) {
     composable(BottomBarItem.Modules.route) { from ->
         ModulesScreen(onModuleClick = { route -> navController.navigateToElement(route, null, from) })
     }
-
 }
 
 enum class BottomBarItem(
