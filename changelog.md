@@ -16,6 +16,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - \[Lib\] Fix a bug where `OdsDropdownMenu` was not dismissed on user click ([#617](https://github.com/Orange-OpenSource/ods-android/issues/617))
 - \[Lib\] Fix disabled color of text and icon in `OdsDropdownMenu` ([#617](https://github.com/Orange-OpenSource/ods-android/issues/617))
 - \[Lib\] Fix background color of components in dark mode ([#634](https://github.com/Orange-OpenSource/ods-android/issues/634))
+- \[Lib\] Fix a bug where the modifier was not taken into account in `OdsOutlinedTextField` ([#635](https://github.com/Orange-OpenSource/ods-android/issues/635))
 
 ## [0.15.0](https://github.com/Orange-OpenSource/ods-android/compare/0.14.0...0.15.0) - 2023-09-12
 

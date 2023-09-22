@@ -52,15 +52,15 @@ internal fun OdsOutlinedTextField(
     maxLines: Int = Int.MAX_VALUE,
     characterCounter: (@Composable () -> Unit)? = null
 ) {
-    Column {
+    Column(modifier = modifier) {
         OutlinedTextField(
+            modifier = Modifier.fillMaxWidth(),
             value = if (singleLine) value.filter { it != '\n' } else value,
             onValueChange = { newValue ->
                 if (!singleLine || !newValue.contains('\n')) {
                     onValueChange(newValue)
                 }
             },
-            modifier = modifier,
             enabled = enabled,
             readOnly = readOnly,
             textStyle = OdsTheme.typography.subtitle1,
