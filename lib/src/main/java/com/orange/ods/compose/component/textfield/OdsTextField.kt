@@ -13,7 +13,6 @@ package com.orange.ods.compose.component.textfield
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.text.KeyboardActions
 import androidx.compose.foundation.text.KeyboardOptions
-import androidx.compose.material.Surface
 import androidx.compose.material.Text
 import androidx.compose.material.TextField
 import androidx.compose.material.Typography
@@ -204,52 +203,50 @@ fun OdsTextField(
 ) {
     val filledTextField = OdsTheme.componentsConfiguration.textFieldStyle == OdsComponentsConfiguration.ComponentStyle.Filled
 
-    Surface { // Nest text field in a Surface in order to have correct content text color in dark mode
-        if (filledTextField) {
-            OdsFilledTextField(
-                value = value,
-                onValueChange = onValueChange,
-                modifier = modifier,
-                enabled = enabled,
-                readOnly = readOnly,
-                label = label,
-                placeholder = placeholder,
-                leadingIcon = leadingIcon,
-                leadingIconContentDescription = leadingIconContentDescription,
-                onLeadingIconClick = onLeadingIconClick,
-                trailing = trailing,
-                isError = isError,
-                errorMessage = errorMessage,
-                visualTransformation = visualTransformation,
-                keyboardOptions = keyboardOptions,
-                keyboardActions = keyboardActions,
-                singleLine = singleLine,
-                maxLines = maxLines,
-                characterCounter = characterCounter
-            )
-        } else {
-            OdsOutlinedTextField(
-                value = value,
-                onValueChange = onValueChange,
-                modifier = modifier,
-                enabled = enabled,
-                readOnly = readOnly,
-                label = label,
-                placeholder = placeholder,
-                leadingIcon = leadingIcon,
-                leadingIconContentDescription = leadingIconContentDescription,
-                onLeadingIconClick = onLeadingIconClick,
-                trailing = trailing,
-                isError = isError,
-                errorMessage = errorMessage,
-                visualTransformation = visualTransformation,
-                keyboardOptions = keyboardOptions,
-                keyboardActions = keyboardActions,
-                singleLine = singleLine,
-                maxLines = maxLines,
-                characterCounter = characterCounter
-            )
-        }
+    if (filledTextField) {
+        OdsFilledTextField(
+            value = value,
+            onValueChange = onValueChange,
+            modifier = modifier,
+            enabled = enabled,
+            readOnly = readOnly,
+            label = label,
+            placeholder = placeholder,
+            leadingIcon = leadingIcon,
+            leadingIconContentDescription = leadingIconContentDescription,
+            onLeadingIconClick = onLeadingIconClick,
+            trailing = trailing,
+            isError = isError,
+            errorMessage = errorMessage,
+            visualTransformation = visualTransformation,
+            keyboardOptions = keyboardOptions,
+            keyboardActions = keyboardActions,
+            singleLine = singleLine,
+            maxLines = maxLines,
+            characterCounter = characterCounter
+        )
+    } else {
+        OdsOutlinedTextField(
+            value = value,
+            onValueChange = onValueChange,
+            modifier = modifier,
+            enabled = enabled,
+            readOnly = readOnly,
+            label = label,
+            placeholder = placeholder,
+            leadingIcon = leadingIcon,
+            leadingIconContentDescription = leadingIconContentDescription,
+            onLeadingIconClick = onLeadingIconClick,
+            trailing = trailing,
+            isError = isError,
+            errorMessage = errorMessage,
+            visualTransformation = visualTransformation,
+            keyboardOptions = keyboardOptions,
+            keyboardActions = keyboardActions,
+            singleLine = singleLine,
+            maxLines = maxLines,
+            characterCounter = characterCounter
+        )
     }
 }
 
