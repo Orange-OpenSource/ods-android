@@ -8,7 +8,7 @@
  * /
  */
 
-package com.orange.ods.app.ui.utilities
+package com.orange.ods.module.about.utilities
 
 object Markdown {
 

@@ -52,17 +52,7 @@ fun NavGraphBuilder.addBottomBarGraph(navigateToElement: (String, Long?, NavBack
     composable(BottomBarItem.Modules.route) { from ->
         ModulesScreen(onModuleClick = { route -> navigateToElement(route, null, from) })
     }
-    composable(BottomBarItem.About.route) { _ ->
-        //AboutScreen()
-        /*onAboutItemClick = { id ->
-                    val aboutItem = aboutItems.firstOrNull { it.id == id }
-                    if (aboutItem is UrlAboutItem) {
-                        context.launchUrl(aboutItem.url)
-                    } else {
-                        navigateToElement(AboutNavigation.AboutItemDetailRoute, id, from)
-                    }
-                })*/
-    }
+
 }
 
 enum class BottomBarItem(
