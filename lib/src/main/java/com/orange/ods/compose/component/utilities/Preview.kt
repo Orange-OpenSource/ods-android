@@ -11,7 +11,6 @@
 package com.orange.ods.compose.component.utilities
 
 import android.content.res.Configuration
-import androidx.compose.material.Surface
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.tooling.preview.PreviewParameterProvider
@@ -26,7 +25,7 @@ import kotlin.reflect.KClass
  */
 @Composable
 internal fun Preview(content: @Composable () -> Unit) = OdsTheme(BuildConfig.PREVIEW_THEME_CONFIGURATION) {
-    Surface(color = OdsTheme.colors.surface, content = content)
+    content()
 }
 
 /**
