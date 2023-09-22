@@ -33,6 +33,7 @@ import com.orange.ods.compose.component.icon.OdsIcon
 import com.orange.ods.compose.component.utilities.Preview
 import com.orange.ods.compose.component.utilities.UiModePreviews
 import com.orange.ods.compose.theme.OdsTheme
+import com.orange.ods.compose.utilities.extension.enable
 
 /**
  * <a href="https://system.design.orange.com/0c1af118d/p/07a69b-menus/b/862cbb" class="external" target="_blank">ODS menus</a>.
@@ -63,7 +64,7 @@ fun OdsDropdownMenu(
         modifier = modifier.background(OdsTheme.colors.surface),
         offset = offset,
         properties = properties,
-        content = { items.forEach { it.Content() } }
+        content = { items.forEach { it.Content(onDismissRequest) } }
     )
 }
 
@@ -152,18 +153,33 @@ class OdsDropdownMenuItem private constructor(
         onClick: () -> Unit
     ) : this(text, icon as Any?, enabled, divider, onClick)
 
+    private var onDismissRequest: () -> Unit = {}
+
+    @Composable
+    internal fun Content(onDismissRequest: () -> Unit) {
+        this.onDismissRequest = onDismissRequest
+        Content()
+    }
+
     @Composable
     override fun Content(modifier: Modifier) {
-        DropdownMenuItem(onClick = onClick, enabled = enabled) {
+        DropdownMenuItem(
+            onClick = {
+                onClick()
+                onDismissRequest()
+            },
+            enabled = enabled
+        ) {
             icon?.let {
                 OdsIcon(
                     graphicsObject = icon,
                     contentDescription = "",
                     tint = OdsTheme.colors.onSurface,
+                    enabled = enabled,
                     modifier = Modifier.padding(end = dimensionResource(id = R.dimen.spacing_m)),
                 )
             }
-            Text(text = text, style = OdsTheme.typography.body1, color = OdsTheme.colors.onSurface)
+            Text(text = text, style = OdsTheme.typography.body1, color = OdsTheme.colors.onSurface.enable(enabled = enabled))
         }
         if (divider) OdsDivider()
     }
