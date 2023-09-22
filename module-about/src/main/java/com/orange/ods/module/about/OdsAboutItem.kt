@@ -8,12 +8,11 @@
  * /
  */
 
-package com.orange.ods.app.ui.about
+package com.orange.ods.module.about
 
 import androidx.annotation.RawRes
 import androidx.annotation.StringRes
 import androidx.compose.runtime.Immutable
-import com.orange.ods.app.R
 
 @Immutable
 sealed class AboutItem(
@@ -39,10 +38,4 @@ class UrlAboutItem(
 val AboutItem.id: Long
     get() = aboutItems.indexOf(this).toLong()
 
-val aboutItems = listOf(
-    UrlAboutItem(R.string.about_menu_design_guidelines, "https://system.design.orange.com/0c1af118d/p/019ecc-android/"),
-    FileAboutItem(R.string.about_menu_legal_notice, R.raw.about_legal_notice, FileAboutItem.FileFormat.Html),
-    FileAboutItem(R.string.about_menu_privacy_policy, R.raw.about_privacy_policy, FileAboutItem.FileFormat.Html),
-    FileAboutItem(R.string.about_menu_changelog, R.raw.changelog, FileAboutItem.FileFormat.Markdown),
-    UrlAboutItem(R.string.about_menu_report_issue, "https://github.com/Orange-OpenSource/ods-android/issues/new/choose"),
-)
+val aboutItems = listOf<AboutItem>()

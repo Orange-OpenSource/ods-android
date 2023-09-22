@@ -8,12 +8,13 @@
  * /
  */
 
-package com.orange.ods.app.ui.utilities.extension
+package com.orange.ods.module.about.utilities.extension
 
 import android.webkit.WebView
 import androidx.annotation.RawRes
 import androidx.compose.ui.graphics.Color
-import com.orange.ods.app.R
+import com.orange.ods.extension.contentAsString
+import com.orange.ods.module.about.R
 import com.orange.ods.theme.colors.OdsColors
 import com.orange.ods.theme.guideline.toHexString
 

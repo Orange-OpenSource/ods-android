@@ -49,7 +49,7 @@ import com.orange.ods.app.R
 import com.orange.ods.app.ui.LocalMainTopAppBarManager
 import com.orange.ods.app.ui.LocalOdsGuideline
 import com.orange.ods.app.ui.utilities.composable.Title
-import com.orange.ods.app.ui.utilities.getStringName
+import com.orange.ods.app.ui.utilities.extension.getStringName
 import com.orange.ods.compose.component.button.OdsButton
 import com.orange.ods.compose.text.OdsTextBody1
 import com.orange.ods.compose.text.OdsTextCaption

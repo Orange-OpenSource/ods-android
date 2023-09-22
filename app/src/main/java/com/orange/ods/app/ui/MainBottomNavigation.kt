@@ -56,20 +56,6 @@ fun NavGraphBuilder.addBottomNavigationGraph(navigateToElement: (String, Long?, 
         LocalMainTopAppBarManager.current.updateTopAppBar(MainTopAppBarState.DefaultWithSearchActionConfiguration)
         ModulesScreen(onModuleClick = { route -> navigateToElement(route, null, from) })
     }
-
-    /*
-    composable(BottomNavigationSections.About.route) { _ ->
-        //val context = LocalContext.current
-        LocalMainTopAppBarManager.current.updateTopAppBar(MainTopAppBarState.DefaultConfiguration)
-        AboutScreen()/*onAboutItemClick = { id ->
-            val aboutItem = aboutItems.firstOrNull { it.id == id }
-            if (aboutItem is UrlAboutItem) {
-                context.launchUrl(aboutItem.url)
-            } else {
-                navigateToElement(MainDestinations.AboutItemDetailRoute, id, from)
-            }
-        })*/
-    }*/
 }
 
 enum class BottomNavigationSections(

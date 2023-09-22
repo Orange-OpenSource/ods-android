@@ -33,7 +33,7 @@ import com.orange.ods.app.ui.LocalMainTopAppBarManager
 import com.orange.ods.app.ui.LocalOdsGuideline
 import com.orange.ods.app.ui.utilities.DrawableManager
 import com.orange.ods.app.ui.utilities.composable.DetailScreenHeader
-import com.orange.ods.app.ui.utilities.getStringName
+import com.orange.ods.app.ui.utilities.extension.getStringName
 import com.orange.ods.compose.component.divider.OdsDivider
 import com.orange.ods.compose.text.OdsTextBody1
 import com.orange.ods.compose.theme.OdsTheme
