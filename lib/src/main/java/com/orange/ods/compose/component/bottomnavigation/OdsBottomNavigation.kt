@@ -93,10 +93,10 @@ class OdsBottomNavigationItem(
     val enabled: Boolean = true,
     val label: String? = null,
     val alwaysShowLabel: Boolean = true
-) : OdsComponentScopeContent<RowScope>() {
+) : OdsComponentScopeContent<RowScope, Nothing>() {
 
     @Composable
-    override fun RowScope.Content() {
+    override fun RowScope.Content(modifier: Modifier) {
         BottomNavigationItem(
             selected = selected,
             onClick = onClick,
@@ -122,7 +122,7 @@ class OdsBottomNavigationItem(
 /**
  * An icon in an [OdsBottomNavigationItem].
  */
-class OdsBottomNavigationItemIcon : OdsComponentIcon {
+class OdsBottomNavigationItemIcon : OdsComponentIcon<Nothing> {
 
     /**
      * Creates an instance of [OdsBottomNavigationItemIcon].

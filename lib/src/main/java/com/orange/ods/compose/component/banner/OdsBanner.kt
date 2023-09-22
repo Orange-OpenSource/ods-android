@@ -109,7 +109,7 @@ fun OdsBanner(
  * @param text Text of the button.
  * @param onClick Will be called when the user clicks the button.
  */
-class OdsBannerButton(private val text: String, private val onClick: () -> Unit) : OdsComponentContent() {
+class OdsBannerButton(private val text: String, private val onClick: () -> Unit) : OdsComponentContent<Nothing>() {
 
     @Composable
     override fun Content(modifier: Modifier) {

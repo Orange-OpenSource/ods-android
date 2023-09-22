@@ -130,7 +130,7 @@ fun OdsImageTile(
 /**
  * An image in an [OdsImageTile].
  */
-class OdsImageTileImage : OdsComponentImage {
+class OdsImageTileImage : OdsComponentImage<Nothing> {
 
     /**
      * Creates an instance of [OdsImageTileImage].

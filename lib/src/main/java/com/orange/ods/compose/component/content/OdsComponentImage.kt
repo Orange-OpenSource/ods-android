@@ -22,12 +22,12 @@ import androidx.compose.ui.layout.ContentScale
 /**
  * An image in a component.
  */
-abstract class OdsComponentImage internal constructor(
+abstract class OdsComponentImage<T> internal constructor(
     private val graphicsObject: Any,
     private val contentDescription: String,
     private val alignment: Alignment = Alignment.Center,
     private val contentScale: ContentScale = ContentScale.Fit
-) : OdsComponentContent() {
+) : OdsComponentContent<T>() where T: OdsComponentContent.ExtraParameters {
 
     protected constructor(
         painter: Painter,

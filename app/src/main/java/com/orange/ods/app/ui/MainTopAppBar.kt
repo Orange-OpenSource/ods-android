@@ -108,8 +108,8 @@ fun MainTopAppBar(
 }
 
 @Composable
-private fun getTopAppBarSearchTextFieldAction(searchedText: MutableState<TextFieldValue>): OdsComponentContent {
-    return object : OdsComponentContent() {
+private fun getTopAppBarSearchTextFieldAction(searchedText: MutableState<TextFieldValue>): OdsComponentContent<Nothing> {
+    return object : OdsComponentContent<Nothing>() {
 
         @Composable
         override fun Content(modifier: Modifier) {

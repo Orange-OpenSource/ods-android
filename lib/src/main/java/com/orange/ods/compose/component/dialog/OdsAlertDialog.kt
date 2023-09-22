@@ -76,7 +76,7 @@ fun OdsAlertDialog(
  * @param text Text of the button.
  * @param onClick Will be called when the user clicks the button.
  */
-class OdsAlertDialogButton(private val text: String, private val onClick: () -> Unit) : OdsComponentContent() {
+class OdsAlertDialogButton(private val text: String, private val onClick: () -> Unit) : OdsComponentContent<Nothing>() {
 
     @Composable
     override fun Content(modifier: Modifier) {
