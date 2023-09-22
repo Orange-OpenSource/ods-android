@@ -28,6 +28,7 @@ import androidx.compose.ui.res.stringResource
 import com.orange.ods.app.R
 import com.orange.ods.app.ui.LocalMainTopAppBarManager
 import com.orange.ods.app.ui.utilities.DrawableManager
+import com.orange.ods.compose.component.card.OdsCardImage
 import com.orange.ods.compose.component.card.OdsVerticalImageFirstCard
 
 @Composable
@@ -54,12 +55,13 @@ private fun ColumnScope.ModuleCard(module: Module, onModuleClick: (String) -> Un
     val imageResId = DrawableManager.getDrawableResIdForCurrentTheme(resId = module.imageRes)
     OdsVerticalImageFirstCard(
         title = stringResource(id = module.titleRes),
-        image = painterResource(id = imageResId),
-        imageBackgroundColor = Color(Module.ImageBackgroundColor),
-        imageContentScale = ContentScale.Fit,
-        imageAlignment = module.imageAlignment,
-        onCardClick = {
-            onModuleClick(module.route)
-        },
+        image = OdsCardImage(
+            painterResource(id = imageResId),
+            "",
+            module.imageAlignment,
+            ContentScale.Fit,
+            Color(Module.ImageBackgroundColor)
+        ),
+        onClick = { onModuleClick(module.route) }
     )
 }
