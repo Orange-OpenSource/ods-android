@@ -8,10 +8,10 @@
  * /
  */
 
-package com.orange.ods.app.ui.utilities.extension
+package com.orange.ods.extension
 
 import java.io.InputStream
-import java.util.*
+import java.util.Scanner
 
 fun InputStream.contentAsString(): String? {
     val scanner = Scanner(this).useDelimiter("\\A")

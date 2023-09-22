@@ -52,6 +52,7 @@ android {
 dependencies {
     implementation(project(":lib"))
     implementation(Dependencies.appCompat)
+    implementation(Dependencies.browser)
     implementation(Dependencies.composeMaterial)
     implementation(Dependencies.coreKtx)
     implementation(Dependencies.gson)

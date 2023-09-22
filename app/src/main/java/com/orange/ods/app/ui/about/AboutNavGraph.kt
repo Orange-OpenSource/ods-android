@@ -14,10 +14,11 @@ import androidx.navigation.NavGraphBuilder
 import androidx.navigation.NavType
 import androidx.navigation.compose.composable
 import androidx.navigation.navArgument
+import com.orange.ods.module.about.OdsAboutFileScreen
 
 object AboutNavigation {
     const val AboutItemDetailRoute = "aboutItem"
-    
+
     const val AboutItemIdKey = "aboutItemId"
 }
 
@@ -28,6 +29,6 @@ fun NavGraphBuilder.addAboutGraph() {
     ) { backStackEntry ->
         val arguments = requireNotNull(backStackEntry.arguments)
         val aboutItemId = arguments.getLong(AboutNavigation.AboutItemIdKey)
-        AboutFileScreen(aboutItemId)
+        OdsAboutFileScreen(aboutItemId, false)
     }
 }
