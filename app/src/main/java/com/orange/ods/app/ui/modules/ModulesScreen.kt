@@ -54,13 +54,11 @@ private fun ColumnScope.ModuleCard(module: Module, onModuleClick: (String) -> Un
         title = stringResource(id = module.titleRes),
         image = OdsCardImage(
             painterResource(id = imageResId),
-            contentDescription = "",
-            alignment = module.imageAlignment,
-            contentScale = ContentScale.Fit,
-            backgroundColor = Color(Module.ImageBackgroundColor),
+            "",
+            module.imageAlignment,
+            ContentScale.Fit,
+            Color(Module.ImageBackgroundColor)
         ),
-        onClick = {
-            onModuleClick(module.route)
-        }
+        onClick = { onModuleClick(module.route) }
     )
 }
