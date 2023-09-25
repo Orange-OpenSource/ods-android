@@ -19,7 +19,6 @@ import com.orange.ods.module.about.configuration.OdsAbout
 import com.orange.ods.module.about.configuration.OdsAboutModuleConfiguration
 import com.orange.ods.module.about.utilities.VersionHelper
 
-
 @Composable
 fun aboutConfiguration() = OdsAboutModuleConfiguration(
     appName = stringResource(id = R.string.about_app_name),
