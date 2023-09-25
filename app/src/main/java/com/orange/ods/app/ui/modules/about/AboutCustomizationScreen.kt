@@ -34,6 +34,7 @@ import com.orange.ods.compose.text.OdsTextBody2
 import com.orange.ods.module.about.configuration.OdsAboutModuleConfiguration
 import com.orange.ods.module.about.configuration.OdsAboutShareData
 
+
 enum class AboutOptions(@StringRes val labelResId: Int) {
     Version(R.string.module_about_customization_version),
     Description(R.string.module_about_customization_description),

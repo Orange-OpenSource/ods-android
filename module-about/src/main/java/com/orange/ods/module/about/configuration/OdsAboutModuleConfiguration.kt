@@ -67,9 +67,9 @@ data class OdsAboutModuleConfiguration(
     /**
      * The optional actions displayed in the overflow menu of the About module TopAppBar. If the list is empty, the overflow menu icon will not be displayed.
      */
-    val topAppBarOverflowMenuActions: List<OdsDropdownMenu.Item> = emptyList(),
+    val topAppBarOverflowMenuActions: List<OdsDropdownMenu.Item> = emptyList()
 
-    )
+)
 
 /**
  * Defines the data to be shared by clicking on the about share button.
