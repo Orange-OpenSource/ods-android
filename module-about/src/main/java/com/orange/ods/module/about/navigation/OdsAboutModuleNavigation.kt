@@ -15,9 +15,9 @@ import androidx.navigation.NavController
 import androidx.navigation.NavGraphBuilder
 import androidx.navigation.NavOptions
 import androidx.navigation.compose.composable
-import com.orange.ods.module.about.LocalOdsAboutModuleConfiguration
 import com.orange.ods.module.about.OdsAboutMainScreen
 import com.orange.ods.module.about.OdsAboutViewModel
+import com.orange.ods.module.about.configuration.LocalOdsAboutModuleConfiguration
 
 const val OdsAboutRoute = "ods/module/about/"
 const val OdsAboutDemoRoute = "ods/module/about/demo"

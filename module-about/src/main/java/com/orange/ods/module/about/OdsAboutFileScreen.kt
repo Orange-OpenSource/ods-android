@@ -21,6 +21,9 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.viewinterop.AndroidView
 import com.orange.ods.compose.theme.OdsTheme
+import com.orange.ods.module.about.configuration.FileAboutItem
+import com.orange.ods.module.about.configuration.aboutItems
+import com.orange.ods.module.about.configuration.id
 import com.orange.ods.module.about.utilities.Markdown
 import com.orange.ods.module.about.utilities.extension.injectLightDarkModeCss
 import com.orange.ods.module.about.utilities.extension.launchUrl

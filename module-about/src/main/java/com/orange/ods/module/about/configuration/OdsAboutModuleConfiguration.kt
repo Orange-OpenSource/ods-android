@@ -8,7 +8,7 @@
  * /
  */
 
-package com.orange.ods.module.about
+package com.orange.ods.module.about.configuration
 
 import android.net.Uri
 import androidx.annotation.DrawableRes
@@ -16,6 +16,7 @@ import androidx.compose.runtime.staticCompositionLocalOf
 import com.google.gson.Gson
 import com.orange.ods.compose.component.appbar.top.OdsTopAppBarActionButton
 import com.orange.ods.compose.component.appbar.top.OdsTopAppBarOverflowMenuActionItem
+import com.orange.ods.module.about.R
 
 
 val LocalOdsAboutModuleConfiguration =

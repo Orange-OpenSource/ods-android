@@ -8,7 +8,7 @@
  * /
  */
 
-package com.orange.ods.module.about
+package com.orange.ods.module.about.configuration
 
 import androidx.annotation.RawRes
 import androidx.annotation.StringRes
