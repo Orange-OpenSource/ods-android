@@ -11,14 +11,11 @@
 package com.orange.ods.module.about
 
 import android.net.Uri
-import android.os.Parcelable
 import androidx.annotation.DrawableRes
 import androidx.compose.runtime.staticCompositionLocalOf
 import com.google.gson.Gson
 import com.orange.ods.compose.component.appbar.top.OdsTopAppBarActionButton
 import com.orange.ods.compose.component.appbar.top.OdsTopAppBarOverflowMenuActionItem
-import kotlinx.parcelize.Parcelize
-import kotlinx.parcelize.RawValue
 
 
 val LocalOdsAboutModuleConfiguration =
@@ -27,7 +24,6 @@ val LocalOdsAboutModuleConfiguration =
 /**
  * About module configuration.
  */
-@Parcelize
 data class OdsAboutModuleConfiguration(
     /**
      * The name of the application displayed on the main screen of the About module.
@@ -67,14 +63,14 @@ data class OdsAboutModuleConfiguration(
     /**
      * The optional actions displayed at the end of the About module TopAppBar.
      */
-    val topAppBarActions: @RawValue List<OdsTopAppBarActionButton> = emptyList(),
+    val topAppBarActions: List<OdsTopAppBarActionButton> = emptyList(),
 
     /**
      * The optional actions displayed in the overflow menu of the About module TopAppBar. If the list is empty, the overflow menu icon will not be displayed.
      */
-    val topAppBarOverflowMenuActions: @RawValue List<OdsTopAppBarOverflowMenuActionItem> = emptyList(),
+    val topAppBarOverflowMenuActions: List<OdsTopAppBarOverflowMenuActionItem> = emptyList(),
 
-    ) : Parcelable {
+    ) {
 
     override fun toString(): String {
         return Uri.encode(Gson().toJson(this))
@@ -87,5 +83,4 @@ data class OdsAboutModuleConfiguration(
  * @property title The title display on the sharing bottom sheet
  * @property text The text to share
  */
-@Parcelize
-data class OdsAboutShareData(val title: String, val text: String) : Parcelable
+data class OdsAboutShareData(val title: String, val text: String)
