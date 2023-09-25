@@ -19,7 +19,7 @@ import com.orange.ods.app.ui.utilities.compat.PackageManagerCompat
 import com.orange.ods.app.ui.utilities.extension.versionCode
 import com.orange.ods.extension.ifNotNull
 import com.orange.ods.extension.orElse
-import com.orange.ods.module.about.OdsAboutModuleConfiguration
+import com.orange.ods.module.about.configuration.OdsAboutModuleConfiguration
 
 @Composable
 fun aboutConfiguration() = OdsAboutModuleConfiguration(

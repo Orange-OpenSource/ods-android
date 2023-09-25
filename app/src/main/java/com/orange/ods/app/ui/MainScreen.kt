@@ -51,7 +51,7 @@ import com.orange.ods.compose.component.tab.OdsTabRow
 import com.orange.ods.compose.text.OdsTextH6
 import com.orange.ods.compose.theme.OdsTheme
 import com.orange.ods.extension.orElse
-import com.orange.ods.module.about.LocalOdsAboutModuleConfiguration
+import com.orange.ods.module.about.configuration.LocalOdsAboutModuleConfiguration
 import com.orange.ods.theme.OdsThemeConfigurationContract
 import com.orange.ods.xml.theme.OdsXml
 import com.orange.ods.xml.utilities.extension.xml

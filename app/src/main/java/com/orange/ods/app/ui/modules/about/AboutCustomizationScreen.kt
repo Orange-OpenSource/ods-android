@@ -33,8 +33,8 @@ import com.orange.ods.compose.component.button.OdsButton
 import com.orange.ods.compose.component.button.OdsButtonStyle
 import com.orange.ods.compose.component.chip.OdsFilterChip
 import com.orange.ods.compose.text.OdsTextBody2
-import com.orange.ods.module.about.OdsAboutModuleConfiguration
-import com.orange.ods.module.about.OdsAboutShareData
+import com.orange.ods.module.about.configuration.OdsAboutModuleConfiguration
+import com.orange.ods.module.about.configuration.OdsAboutShareData
 
 enum class AboutOptions(@StringRes val labelResId: Int) {
     Version(R.string.module_about_customization_version),
