@@ -16,13 +16,12 @@ import com.orange.ods.theme.guideline.GuidelineColor
 import com.orange.ods.theme.guideline.GuidelineColorType
 
 val InnovationCupGuidelineColors = listOf(
-    GuidelineColor(OdsColors::primary, GuidelineColorType.Core, "Orange 100", "Orange 200"),
-    GuidelineColor(OdsColors::primaryVariant, GuidelineColorType.Core, "Orange 100", "Orange 200"),
-    GuidelineColor(OdsColors::background, GuidelineColorType.Core, "White 100", "Black 900"),
-    GuidelineColor(OdsColors::surface, GuidelineColorType.Core, "White 100", "Secondary Background"),
-
-    GuidelineColor(OdsFunctionalColors::positive, GuidelineColorType.Functional, "Green"),
-    GuidelineColor(OdsColors::error, GuidelineColorType.Functional, "Red"),
-    GuidelineColor(OdsFunctionalColors::info, GuidelineColorType.Functional, "Info"),
-    GuidelineColor(OdsFunctionalColors::alert, GuidelineColorType.Functional, "Yellow")
+    GuidelineColor(OdsColors::primary.name, GuidelineColorType.Core, "Orange 100", "Orange 200") { it.primary },
+    GuidelineColor(OdsColors::primaryVariant.name, GuidelineColorType.Core, "Orange 100", "Orange 200") { it.primaryVariant },
+    GuidelineColor(OdsColors::background.name, GuidelineColorType.Core, "White 100", "Black 900") { it.background },
+    GuidelineColor(OdsColors::surface.name, GuidelineColorType.Core, "White 100", "Secondary Background") { it.surface },
+    GuidelineColor(OdsFunctionalColors::positive.name, GuidelineColorType.Functional, "Green") { it.functional.positive },
+    GuidelineColor(OdsColors::error.name, GuidelineColorType.Functional, "Red") { it.error },
+    GuidelineColor(OdsFunctionalColors::info.name, GuidelineColorType.Functional, "Info") { it.functional.info },
+    GuidelineColor(OdsFunctionalColors::alert.name, GuidelineColorType.Functional, "Yellow") { it.functional.alert }
 )

@@ -33,7 +33,6 @@ import com.orange.ods.compose.component.utilities.BasicPreviewParameterProvider
 import com.orange.ods.compose.component.utilities.DisabledInteractionSource
 import com.orange.ods.compose.text.OdsTextCaption
 import com.orange.ods.compose.theme.OdsTheme
-import kotlin.reflect.KClass
 
 /**
  * A character counter to display below the text field
@@ -135,9 +134,9 @@ private fun OdsTextFieldErrorText(message: String) {
 @Composable
 internal fun getTrailingPreview(parameter: OdsTextFieldPreviewParameter, value: String): @Composable (() -> Unit)? {
     val trailing = when (parameter.previewTrailingType) {
-        OdsTextTrailing::class -> OdsTextTrailing(text = "units")
-        OdsIconTrailing::class -> OdsIconTrailing(painter = painterResource(id = android.R.drawable.ic_input_add))
-        OdsExposedDropdownMenuTrailing::class -> OdsExposedDropdownMenuTrailing(expanded = false, enabled = true)
+        OdsTextTrailing::class.java -> OdsTextTrailing(text = "units")
+        OdsIconTrailing::class.java -> OdsIconTrailing(painter = painterResource(id = android.R.drawable.ic_input_add))
+        OdsExposedDropdownMenuTrailing::class.java -> OdsExposedDropdownMenuTrailing(expanded = false, enabled = true)
         else -> null
     }
 
@@ -148,7 +147,7 @@ internal data class OdsTextFieldPreviewParameter(
     val hasCounter: Boolean,
     val hasErrorMessage: Boolean,
     val isVeryLongErrorMessage: Boolean,
-    val previewTrailingType: KClass<out OdsTextFieldTrailing>?
+    val previewTrailingType: Class<out OdsTextFieldTrailing>?
 )
 
 internal class OdsTextFieldPreviewParameterProvider : BasicPreviewParameterProvider<OdsTextFieldPreviewParameter>(*previewParameterValues.toTypedArray())
@@ -156,7 +155,7 @@ internal class OdsTextFieldPreviewParameterProvider : BasicPreviewParameterProvi
 private val previewParameterValues: List<OdsTextFieldPreviewParameter>
     get() {
         val booleanValues = listOf(true, false)
-        val trailings = listOf(null, OdsTextTrailing::class, OdsIconTrailing::class, OdsExposedDropdownMenuTrailing::class)
+        val trailings = listOf(null, OdsTextTrailing::class.java, OdsIconTrailing::class.java, OdsExposedDropdownMenuTrailing::class.java)
 
         return booleanValues.flatMap { hasCounter ->
             booleanValues.flatMap { hasErrorMessage ->

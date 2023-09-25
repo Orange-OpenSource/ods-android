@@ -29,7 +29,6 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
-import androidx.compose.material.Colors
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.MutableState
 import androidx.compose.runtime.mutableStateOf
@@ -57,15 +56,10 @@ import com.orange.ods.compose.text.OdsTextCaption
 import com.orange.ods.compose.text.OdsTextH5
 import com.orange.ods.compose.text.OdsTextH6
 import com.orange.ods.compose.theme.OdsTheme
-import com.orange.ods.theme.colors.OdsColors
-import com.orange.ods.theme.colors.OdsFunctionalColors
 import com.orange.ods.theme.guideline.GuidelineColor
 import com.orange.ods.theme.guideline.GuidelineColorType
 import com.orange.ods.theme.guideline.toHexString
 import com.orange.ods.theme.guideline.toRgbString
-import kotlin.reflect.KProperty
-import kotlin.reflect.full.extensionReceiverParameter
-import kotlin.reflect.full.memberProperties
 
 @Composable
 fun GuidelineColorScreen() {
@@ -147,7 +141,7 @@ private fun RowScope.SmallColorItem(color: GuidelineColor) {
     val openDialog = remember { mutableStateOf(false) }
     val context = LocalContext.current
     val clipboardManager = LocalClipboardManager.current
-    val colorValue = color.getValue()
+    val colorValue = color.getValue(OdsTheme.colors)
     Column(
         modifier = Modifier
             .weight(0.33f)
@@ -179,7 +173,7 @@ private fun RowScope.BigColorItem(color: GuidelineColor) {
     val openDialog = remember { mutableStateOf(false) }
     val context = LocalContext.current
     val clipboardManager = LocalClipboardManager.current
-    val colorValue = color.getValue()
+    val colorValue = color.getValue(OdsTheme.colors)
     Column(
         modifier = Modifier
             .weight(0.5f)
@@ -203,7 +197,7 @@ private fun RowScope.BigColorItem(color: GuidelineColor) {
             text = color.getName(),
             modifier = Modifier.padding(top = dimensionResource(id = com.orange.ods.R.dimen.spacing_xs))
         )
-        OdsTextBody1(text = color.callable.name)
+        OdsTextBody1(text = color.callableName)
         OdsTextCaption(
             modifier = Modifier.padding(top = dimensionResource(id = com.orange.ods.R.dimen.spacing_xs)),
             text = colorValue.toHexString()
@@ -221,7 +215,7 @@ private fun RowScope.BigColorItem(color: GuidelineColor) {
 fun DialogColor(color: GuidelineColor, openDialog: MutableState<Boolean>) {
     val context = LocalContext.current
     val clipboardManager = LocalClipboardManager.current
-    val colorValue = color.getValue()
+    val colorValue = color.getValue(OdsTheme.colors)
     Dialog(
         onDismissRequest = { openDialog.value = false },
     ) {
@@ -244,7 +238,7 @@ fun DialogColor(color: GuidelineColor, openDialog: MutableState<Boolean>) {
                 OdsTextH5(text = color.getName())
                 OdsTextBody1(
                     modifier = Modifier.padding(top = dimensionResource(id = com.orange.ods.R.dimen.spacing_xs)),
-                    text = color.callable.name
+                    text = color.callableName
                 )
                 OdsTextBody1(
                     modifier = Modifier.padding(top = dimensionResource(id = com.orange.ods.R.dimen.spacing_s)),
@@ -278,17 +272,4 @@ private fun copyColorToClipboard(context: Context, color: Color, clipboardManage
     Toast
         .makeText(context, text, Toast.LENGTH_SHORT)
         .show()
-}
-
-@Composable
-fun GuidelineColor.getValue(): Color {
-    val isColorsProperty = OdsColors::class.memberProperties.filterIsInstance<KProperty<Color>>().contains(callable)
-    val isFunctionalColorsProperty = OdsFunctionalColors::class.memberProperties.filterIsInstance<KProperty<Color>>().contains(callable)
-    val isColorsExtensionProperty = callable.extensionReceiverParameter?.type?.classifier == Colors::class
-
-    return when {
-        isColorsProperty || isColorsExtensionProperty -> callable.call(OdsTheme.colors)
-        isFunctionalColorsProperty -> callable.call(OdsTheme.colors.functional)
-        else -> callable.call()
-    }
 }

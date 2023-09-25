@@ -40,13 +40,13 @@ import com.orange.ods.app.ui.components.Component
 import com.orange.ods.app.ui.components.Variant
 import com.orange.ods.app.ui.components.components
 import com.orange.ods.app.ui.guidelines.color.DialogColor
-import com.orange.ods.app.ui.guidelines.color.getValue
 import com.orange.ods.app.ui.guidelines.spacing.Spacing
 import com.orange.ods.app.ui.utilities.DrawableManager
 import com.orange.ods.compose.component.list.OdsListItem
 import com.orange.ods.compose.component.list.OdsListItemIcon
 import com.orange.ods.compose.component.list.OdsListItemIconType
 import com.orange.ods.compose.component.list.iconType
+import com.orange.ods.compose.theme.OdsTheme
 import com.orange.ods.extension.orElse
 import com.orange.ods.theme.guideline.GuidelineColor
 import com.orange.ods.theme.guideline.toHexString
@@ -107,12 +107,13 @@ fun SearchScreen(
             )
         }
         .plus(filteredGuidelineColors.map { guidelineColor ->
+            val color = guidelineColor.getValue(OdsTheme.colors)
             SearchResult(
                 guidelineColor.getName(),
                 0,
                 image = null,
-                color = guidelineColor.getValue(),
-                subtitle = guidelineColor.getValue().toHexString(),
+                color = color,
+                subtitle = color.toHexString(),
                 data = guidelineColor
             )
         })
@@ -162,7 +163,7 @@ fun SearchScreen(
         items(searchResults) { item ->
             val openDialog = remember { mutableStateOf(false) }
             val guidelineColor = filteredGuidelineColors.firstOrNull { guidelineColor ->
-                guidelineColor.getName() == item.title && guidelineColor.getValue() == item.color
+                guidelineColor.getName() == item.title && guidelineColor.getValue(OdsTheme.colors) == item.color
             }
             OdsListItem(
                 text = item.title,
