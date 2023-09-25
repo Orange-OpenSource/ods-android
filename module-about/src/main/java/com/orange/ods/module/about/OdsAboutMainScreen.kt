@@ -33,6 +33,7 @@ import com.orange.ods.compose.component.button.OdsTextButtonStyle
 import com.orange.ods.compose.text.OdsTextBody1
 import com.orange.ods.compose.text.OdsTextBody2
 import com.orange.ods.compose.text.OdsTextH4
+import com.orange.ods.module.about.configuration.OdsAboutModuleConfiguration
 
 private const val ImageHeight = 249
 
