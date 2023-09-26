@@ -19,7 +19,7 @@ import androidx.navigation.NavType
 import androidx.navigation.compose.composable
 import androidx.navigation.navArgument
 import androidx.navigation.navigation
-import com.orange.ods.module.about.OdsAboutMainScreen
+import com.orange.ods.module.about.OdsAboutHomeScreen
 import com.orange.ods.module.about.OdsAboutViewModel
 
 
@@ -37,7 +37,7 @@ fun NavGraphBuilder.aboutDemoGraph(navController: NavController) {
             val configuration = remember { callerViewModel?.configuration }
             val aboutViewModel = navBackStackEntry.sharedViewModel<OdsAboutViewModel>(navController = navController)
             configuration?.let { aboutViewModel.configureAboutModule(configuration) }
-            OdsAboutMainScreen(
+            OdsAboutHomeScreen(
                 configuration = configuration,
                 onAboutMenuItemClick = onAboutMenuItemClick(navController, configuration?.menuItemById.orEmpty(), demo = true)
             )
