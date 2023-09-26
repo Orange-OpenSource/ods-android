@@ -36,7 +36,6 @@ class MainState(
     val bottomBarItems = BottomBarItem.values()
     private val bottomBarRoutes: List<String> = bottomBarItems.map { it.route }
 
-
     // Reading this attribute will cause recompositions when the bottom bar needs shown, or not.
     // Not all routes need to show the bottom bar.
     val shouldShowBottomBar: Boolean

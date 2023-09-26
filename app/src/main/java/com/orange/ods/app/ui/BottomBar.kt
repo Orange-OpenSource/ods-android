@@ -33,7 +33,7 @@ fun BottomBar(items: Array<BottomBarItem>, currentRoute: String, navigateToRoute
             OdsBottomNavigation.Item(
                 icon = OdsBottomNavigation.Item.Icon(painter = painterResource(id = item.iconRes), contentDescription = ""),
                 label = stringResource(id = item.titleRes),
-                selected = currentRoute == item.route,
+                selected = currentRoute == item.route || currentRoute in item.additionalRoutes,
                 onClick = {
                     navigateToRoute(item.route)
                 }
@@ -59,7 +59,8 @@ fun NavGraphBuilder.addBottomBarGraph(navController: NavController) {
 enum class BottomBarItem(
     @StringRes val titleRes: Int,
     @DrawableRes val iconRes: Int,
-    val route: String
+    val route: String,
+    val additionalRoutes: List<String> = emptyList()
 ) {
     Guidelines(R.string.navigation_item_guidelines, R.drawable.ic_guideline_dna, "main/guidelines"),
     Components(R.string.navigation_item_components, R.drawable.ic_component_atom, "main/components"),
