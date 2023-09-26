@@ -76,7 +76,7 @@ data class OdsAboutModuleConfiguration(
      *  - Term of services (position index 101)
      *  - Accessibility (position index 102)
      */
-    val customMenuItems: MutableList<OdsAboutMenuItem> = mutableListOf()
+    val customMenuItems: List<OdsAboutMenuItem> = emptyList()
 ) {
 
     internal val menuItemById: Map<Int, OdsAboutMenuItem>
