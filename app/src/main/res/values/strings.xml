@@ -397,8 +397,6 @@
     <string name="about_app_name">Orange Design System</string>
     <string name="about_description">In this app you\'ll find implemented code examples of the guidelines, components and modules, for the themes of the Orange Design System.</string>
     <string name="about_menu_design_guidelines">Design guidelines</string>
-    <string name="about_menu_legal_notice">Legal notice</string>
-    <string name="about_menu_privacy_policy">Privacy policy</string>
     <string name="about_menu_changelog">Changelog</string>
     <string name="about_menu_report_issue">Report an issue</string>
 

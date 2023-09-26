@@ -24,7 +24,8 @@ import com.orange.ods.app.ui.components.ComponentsScreen
 import com.orange.ods.app.ui.guidelines.GuidelinesScreen
 import com.orange.ods.app.ui.modules.ModulesScreen
 import com.orange.ods.compose.component.bottomnavigation.OdsBottomNavigation
-import com.orange.ods.module.about.navigation.OdsAboutRoute
+import com.orange.ods.module.about.navigation.OdsAboutDestinations
+import com.orange.ods.module.about.navigation.aboutGraph
 
 @Composable
 fun BottomBar(items: Array<BottomBarItem>, currentRoute: String, navigateToRoute: (String) -> Unit) {
@@ -52,6 +53,8 @@ fun NavGraphBuilder.addBottomBarGraph(navController: NavController) {
     composable(BottomBarItem.Modules.route) { from ->
         ModulesScreen(onModuleClick = { route -> navController.navigateToElement(route, null, from) })
     }
+
+    aboutGraph(navController)
 }
 
 enum class BottomBarItem(
@@ -62,5 +65,5 @@ enum class BottomBarItem(
     Guidelines(R.string.navigation_item_guidelines, R.drawable.ic_guideline_dna, "main/guidelines"),
     Components(R.string.navigation_item_components, R.drawable.ic_component_atom, "main/components"),
     Modules(R.string.navigation_item_modules, R.drawable.ic_module_molecule, "main/modules"),
-    About(R.string.navigation_item_about, R.drawable.ic_info, OdsAboutRoute);
+    About(R.string.navigation_item_about, R.drawable.ic_info, OdsAboutDestinations.AboutRoute);
 }

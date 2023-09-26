@@ -17,7 +17,7 @@ import androidx.navigation.compose.composable
 import com.orange.ods.app.ui.modules.ModuleDemoDestinations.AboutModuleCustomizationRoute
 import com.orange.ods.app.ui.modules.about.AboutCustomizationScreen
 import com.orange.ods.module.about.OdsAboutViewModel
-import com.orange.ods.module.about.navigation.aboutScreen
+import com.orange.ods.module.about.navigation.aboutDemoGraph
 import com.orange.ods.module.about.navigation.navigateToOdsAboutDemo
 
 /**
@@ -36,6 +36,6 @@ fun NavGraphBuilder.addModulesGraph(navController: NavController) {
         AboutCustomizationScreen(navigateToAboutModule = navController::navigateToOdsAboutDemo, configureAboutModule = viewModel::configureAboutModule)
     }
 
-    aboutScreen(navController = navController)
+    aboutDemoGraph(navController = navController)
 
 }

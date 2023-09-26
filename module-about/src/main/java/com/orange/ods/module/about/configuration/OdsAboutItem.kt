@@ -10,7 +10,6 @@
 
 package com.orange.ods.module.about.configuration
 
-import androidx.annotation.RawRes
 import androidx.annotation.StringRes
 import androidx.compose.runtime.Immutable
 
@@ -18,22 +17,6 @@ import androidx.compose.runtime.Immutable
 sealed class AboutItem(
     @StringRes val titleRes: Int
 )
-
-class FileAboutItem(
-    @StringRes titleRes: Int,
-    @RawRes val fileRes: Int,
-    val fileFormat: FileFormat
-) : AboutItem(titleRes) {
-
-    enum class FileFormat {
-        Html, Markdown
-    }
-}
-
-class UrlAboutItem(
-    @StringRes titleRes: Int,
-    val url: String
-) : AboutItem(titleRes)
 
 val AboutItem.id: Long
     get() = aboutItems.indexOf(this).toLong()

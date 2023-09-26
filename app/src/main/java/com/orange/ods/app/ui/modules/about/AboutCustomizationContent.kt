@@ -25,7 +25,6 @@ import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.stringResource
 import com.orange.ods.R
 import com.orange.ods.compose.component.button.OdsButton
-import com.orange.ods.compose.component.button.OdsButtonStyle
 import com.orange.ods.compose.component.chip.OdsFilterChip
 import com.orange.ods.compose.text.OdsTextBody2
 
@@ -62,7 +61,7 @@ fun AboutCustomizationContent(onDemoClick: () -> Unit) {
         modifier = Modifier
             .padding(top = dimensionResource(id = R.dimen.spacing_m))
             .fillMaxWidth(),
-        style = OdsButtonStyle.Primary,
+        style = OdsButton.Style.Primary,
         text = stringResource(id = com.orange.ods.app.R.string.module_view_demo),
         onClick = onDemoClick
     )

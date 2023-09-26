@@ -67,9 +67,23 @@ data class OdsAboutModuleConfiguration(
     /**
      * The optional actions displayed in the overflow menu of the About module TopAppBar. If the list is empty, the overflow menu icon will not be displayed.
      */
-    val topAppBarOverflowMenuActions: List<OdsDropdownMenu.Item> = emptyList()
+    val topAppBarOverflowMenuActions: List<OdsDropdownMenu.Item> = emptyList(),
 
-)
+    /**
+     * The custom menu items to be displayed on the about main screen.
+     * Note that mandatory items will be added to the provided list:
+     *  - Privacy policy (position index 100)
+     *  - Term of services (position index 101)
+     *  - Accessibility (position index 102)
+     */
+    val customMenuItems: MutableList<OdsAboutMenuItem> = mutableListOf()
+) {
+
+    internal val menuItemById: Map<Int, OdsAboutMenuItem>
+        get() = (customMenuItems + mandatoryMenuItems).sortedBy { it.positionIndex }
+            .mapIndexed { index, odsAboutMenuItem -> index to odsAboutMenuItem }.toMap()
+
+}
 
 /**
  * Defines the data to be shared by clicking on the about share button.
