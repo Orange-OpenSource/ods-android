@@ -40,7 +40,7 @@ import com.orange.ods.module.about.configuration.OdsAboutShareData
 private const val ImageHeight = 249
 
 @Composable
-internal fun OdsAboutMainScreen(configuration: OdsAboutModuleConfiguration?, onAboutMenuItemClick: (id: Int) -> Unit) {
+internal fun OdsAboutHomeScreen(configuration: OdsAboutModuleConfiguration?, onAboutMenuItemClick: (id: Int) -> Unit) {
     val context = LocalContext.current
 
     if (configuration != null) {
