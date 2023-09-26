@@ -52,7 +52,6 @@ internal fun OdsAboutFileScreen(fileMenuItem: OdsAbout.FileMenuItem, darkModeEna
                         request?.url?.let { url ->
                             context.launchUrl(url.toString())
                         }
-
                         return true
                     }
                 }

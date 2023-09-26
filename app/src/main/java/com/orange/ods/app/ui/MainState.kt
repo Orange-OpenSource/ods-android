@@ -44,7 +44,6 @@ class MainState(
         get() = navController.currentBackStackEntryAsState().value?.destination?.route in bottomBarRoutes
                 && navController.previousBackStackEntry?.destination?.route != ModuleDemoDestinations.AboutModuleCustomizationRoute
 
-
     // ----------------------------------------------------------
     // Navigation state source of truth
     // ----------------------------------------------------------

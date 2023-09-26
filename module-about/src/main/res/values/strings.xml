@@ -18,4 +18,6 @@
     <string name="ods_about_menu_terms_of_service">Terms of service</string>
     <string name="ods_about_menu_privacy_policy">Privacy policy</string>
     <string name="ods_about_menu_accessibility_statement">Accessibility statement</string>
+    <string name="ods_about_file_missing_title">File is missing</string>
+    <string name="ods_about_file_missing_text">Add \"%1$s\" file in the %2$s directory.</string>
 </resources>
