@@ -131,6 +131,6 @@ fun PreviewOdsAboutMainScreen() {
     )
 
     Preview {
-        OdsAboutMainScreen(configuration = configuration, onAboutMenuItemClick = {})
+        OdsAboutHomeScreen(configuration = configuration, onAboutMenuItemClick = {})
     }
 }
