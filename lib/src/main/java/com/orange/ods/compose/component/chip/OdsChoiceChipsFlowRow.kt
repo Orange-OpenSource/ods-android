@@ -10,6 +10,9 @@
 
 package com.orange.ods.compose.component.chip
 
+import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.ExperimentalLayoutApi
+import androidx.compose.foundation.layout.FlowRow
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.selection.selectableGroup
@@ -23,7 +26,6 @@ import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.semantics.SemanticsPropertyReceiver
 import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.semantics.stateDescription
-import com.google.accompanist.flowlayout.FlowRow
 import com.orange.ods.R
 import com.orange.ods.compose.component.OdsComposable
 import com.orange.ods.compose.component.utilities.Preview
@@ -42,6 +44,7 @@ import com.orange.ods.compose.theme.OdsTheme
  * @param modifier Modifier to be applied to the flow row.
  * @param chips The list of [OdsChoiceChip]s displayed inside this OdsChoiceChipsFlowRow.
  */
+@OptIn(ExperimentalLayoutApi::class)
 @Composable
 @OdsComposable
 fun <T> OdsChoiceChipsFlowRow(
@@ -56,7 +59,7 @@ fun <T> OdsChoiceChipsFlowRow(
         modifier = modifier
             .fillMaxWidth()
             .selectableGroup(),
-        mainAxisSpacing = dimensionResource(id = R.dimen.spacing_s),
+        horizontalArrangement = Arrangement.spacedBy(dimensionResource(id = R.dimen.spacing_s)),
         content = {
             chips.forEachIndexed { index, odsChoiceChip ->
                 odsChoiceChip.Content(selected = selectedChipValue == odsChoiceChip.value) { selected ->

@@ -52,7 +52,6 @@ dependencies {
     api(project(":theme-contract"))
     api(project(":theme-orange"))
 
-    implementation(Dependencies.accompanistFlowLayout)
     implementation(Dependencies.appCompat)
     implementation(platform(Dependencies.composeBom))
     api(Dependencies.composeMaterial)

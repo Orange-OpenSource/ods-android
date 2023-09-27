@@ -128,7 +128,6 @@ dependencies {
     implementation(project(":lib-xml"))
     implementation(project(":theme-innovation-cup"))
 
-    implementation(Dependencies.accompanistFlowLayout)
     implementation(Dependencies.accompanistSystemUiController)
     implementation(Dependencies.activityCompose)
     implementation(Dependencies.appCompat)
