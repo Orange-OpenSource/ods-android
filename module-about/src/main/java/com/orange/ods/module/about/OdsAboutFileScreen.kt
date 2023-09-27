@@ -19,8 +19,9 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.dimensionResource
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.viewinterop.AndroidView
-import com.orange.ods.compose.text.OdsTextBody1
+import com.orange.ods.compose.module.emptyview.OdsEmptyView
 import com.orange.ods.compose.theme.OdsTheme
 import com.orange.ods.module.about.configuration.FileAboutItem
 import com.orange.ods.module.about.utilities.Markdown
@@ -87,8 +88,10 @@ fun OdsAboutFileScreen(fileAboutItem: FileAboutItem?, darkModeEnabled: Boolean) 
                 })
         } else {
             // File doesn't exist -> display an error message
-            //TODO
-            OdsTextBody1(text = "Fichier manquant")
+            OdsEmptyView(
+                title = stringResource(id = R.string.ods_about_file_missing_title),
+                text = stringResource(id = R.string.ods_about_file_missing_text, fileAboutItem.fileName, FileResourceDir)
+            )
         }
     }
 }
