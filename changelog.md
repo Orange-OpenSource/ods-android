@@ -10,6 +10,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Changed
 
 - \[Lib\] Update `OdsHorizontalCard`, `OdsSmallCard`, `OdsVerticalHeaderFirstCard` and `OdsVerticalImageFirstCard` APIs ([#597](https://github.com/Orange-OpenSource/ods-android/issues/597))
+- \[Lib\] Remove several dependencies to reduce consumer app size ([#623](https://github.com/Orange-OpenSource/ods-android/issues/623))
 
 ### Fixed
 
