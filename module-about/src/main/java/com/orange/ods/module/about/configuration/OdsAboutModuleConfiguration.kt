@@ -11,6 +11,8 @@
 package com.orange.ods.module.about.configuration
 
 import androidx.annotation.DrawableRes
+import androidx.compose.runtime.Composable
+import androidx.compose.runtime.remember
 import androidx.compose.runtime.staticCompositionLocalOf
 import com.orange.ods.compose.component.appbar.top.OdsTopAppBar
 import com.orange.ods.compose.component.menu.OdsDropdownMenu
@@ -80,9 +82,14 @@ data class OdsAboutModuleConfiguration(
 ) {
 
     internal val menuItemById: Map<Int, OdsAboutMenuItem>
-        get() = (customMenuItems + mandatoryMenuItems).sortedBy { it.positionIndex }
-            .mapIndexed { index, odsAboutMenuItem -> index to odsAboutMenuItem }.toMap()
-
+        @Composable
+        get() {
+            val mandatoryMenuItems = mandatoryMenuItems()
+            return remember {
+                (customMenuItems + mandatoryMenuItems).sortedBy { it.positionIndex }
+                    .mapIndexed { index, odsAboutMenuItem -> index to odsAboutMenuItem }.toMap()
+            }
+        }
 }
 
 /**

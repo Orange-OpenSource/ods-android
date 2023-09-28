@@ -10,9 +10,12 @@
 
 package com.orange.ods.module.about.configuration
 
-import androidx.annotation.DrawableRes
-import androidx.annotation.StringRes
+import androidx.compose.runtime.Composable
 import androidx.compose.runtime.Immutable
+import androidx.compose.runtime.Stable
+import androidx.compose.ui.graphics.painter.Painter
+import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.res.stringResource
 import com.orange.ods.module.about.R
 
 /*
@@ -27,9 +30,23 @@ val aboutItems = listOf(
 "file:///android_res/raw/$fileName"
 */
 
-internal val mandatoryMenuItems: List<OdsAboutMenuItem> = listOf(
-    FileAboutItem(R.drawable.ic_dataprotection, R.string.ods_about_menu_privacy_policy, 100, "about_privacy_policy", FileAboutItem.FileFormat.Html),
-    FileAboutItem(R.drawable.ic_tasklist, R.string.ods_about_menu_terms_of_service, 101, "about_terms_of_service", FileAboutItem.FileFormat.Html),
+@Composable
+@Stable
+internal fun mandatoryMenuItems(): List<OdsAboutMenuItem> = listOf(
+    FileAboutItem(
+        painterResource(id = R.drawable.ic_dataprotection),
+        stringResource(id = R.string.ods_about_menu_privacy_policy),
+        100,
+        "about_privacy_policy",
+        FileAboutItem.FileFormat.Html
+    ),
+    FileAboutItem(
+        painterResource(id = R.drawable.ic_tasklist),
+        stringResource(id = R.string.ods_about_menu_terms_of_service),
+        101,
+        "about_terms_of_service",
+        FileAboutItem.FileFormat.Html
+    ),
     // OdsAboutMenuItem(R.drawable.ic_accessibility, R.string.ods_about_menu_accessibility_statement, 102),
 )
 
@@ -42,16 +59,16 @@ internal val mandatoryMenuItems: List<OdsAboutMenuItem> = listOf(
  * @property subtitleRes
  */
 @Immutable
-sealed class OdsAboutMenuItem(@DrawableRes val iconRes: Int, @StringRes val titleRes: Int, val positionIndex: Int, @StringRes val subtitleRes: Int? = null)
+sealed class OdsAboutMenuItem(val icon: Painter, val title: String, val positionIndex: Int, val subtitle: String? = null)
 
 class FileAboutItem(
-    @DrawableRes iconRes: Int,
-    @StringRes titleRes: Int,
+    icon: Painter,
+    title: String,
     positionIndex: Int,
     val fileName: String,
     val fileFormat: FileFormat,
-    @StringRes subtitleRes: Int? = null
-) : OdsAboutMenuItem(iconRes, titleRes, positionIndex, subtitleRes) {
+    subtitle: String? = null
+) : OdsAboutMenuItem(icon, title, positionIndex, subtitle) {
 
     enum class FileFormat {
         Html, Markdown
@@ -59,9 +76,9 @@ class FileAboutItem(
 }
 
 class UrlAboutItem(
-    @DrawableRes iconRes: Int,
-    @StringRes titleRes: Int,
+    icon: Painter,
+    title: String,
     positionIndex: Int,
     val url: String,
-    @StringRes subtitleRes: Int? = null
-) : OdsAboutMenuItem(iconRes, titleRes, positionIndex, subtitleRes)
+    subtitle: String? = null
+) : OdsAboutMenuItem(icon, title, positionIndex, subtitle)
