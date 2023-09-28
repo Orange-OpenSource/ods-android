@@ -53,8 +53,6 @@ sealed class Component(
 ) {
 
     companion object {
-        const val ImageBackgroundColor = 0xff1b1b1b
-
         fun fromId(componentId: Long?) = components.firstOrNull { component -> component.id == componentId }
     }
 
