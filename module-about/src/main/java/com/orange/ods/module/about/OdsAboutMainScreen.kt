@@ -63,7 +63,7 @@ internal fun OdsAboutMainScreen(configuration: OdsAboutModuleConfiguration) {
                 configuration.shareData?.let { shareData ->
                     OdsTextButton(
                         modifier = Modifier.padding(end = dimensionResource(id = com.orange.ods.R.dimen.spacing_s)),
-                        text = stringResource(id = R.string.app_share),
+                        text = stringResource(id = R.string.about_app_share),
                         icon = OdsButtonIcon(painterResource(id = R.drawable.ic_share)),
                         onClick = {
                             val sendIntent = Intent(Intent.ACTION_SEND).apply {
@@ -78,7 +78,7 @@ internal fun OdsAboutMainScreen(configuration: OdsAboutModuleConfiguration) {
                 }
                 configuration.onFeedbackButtonClick?.let { feedbackAction ->
                     OdsTextButton(
-                        text = stringResource(id = R.string.app_feedback),
+                        text = stringResource(id = R.string.about_app_feedback),
                         icon = OdsButtonIcon(painterResource(id = R.drawable.ic_comment)),
                         onClick = feedbackAction,
                         style = OdsTextButtonStyle.Primary
