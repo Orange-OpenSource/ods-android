@@ -18,7 +18,7 @@ import com.orange.ods.module.about.R
 import com.orange.ods.theme.colors.OdsColors
 import com.orange.ods.theme.guideline.toHexString
 
-fun WebView.injectLightDarkModeCss(isDarkModeEnabled: Boolean, colors: OdsColors) {
+internal fun WebView.injectLightDarkModeCss(isDarkModeEnabled: Boolean, colors: OdsColors) {
     injectCss(R.raw.base_style, colors)
     val css = if (isDarkModeEnabled) R.raw.dark_style else R.raw.light_style
     injectCss(css, colors)
