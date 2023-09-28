@@ -38,66 +38,64 @@ import com.orange.ods.module.about.configuration.OdsAboutModuleConfiguration
 private const val ImageHeight = 249
 
 @Composable
-internal fun OdsAboutMainScreen(configuration: OdsAboutModuleConfiguration?) {
+internal fun OdsAboutMainScreen(configuration: OdsAboutModuleConfiguration) {
     val context = LocalContext.current
-    if (configuration != null) {
-        Column(
+    Column(
+        modifier = Modifier
+            .verticalScroll(rememberScrollState())
+            .padding(bottom = dimensionResource(id = com.orange.ods.R.dimen.screen_vertical_margin))
+    ) {
+        Image(
+            painter = painterResource(id = configuration.appIllustration),
             modifier = Modifier
-                .verticalScroll(rememberScrollState())
-                .padding(bottom = dimensionResource(id = com.orange.ods.R.dimen.screen_vertical_margin))
-        ) {
-            Image(
-                painter = painterResource(id = configuration.appIllustration),
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .height(ImageHeight.dp),
-                contentScale = ContentScale.Crop,
-                contentDescription = null,
-            )
+                .fillMaxWidth()
+                .height(ImageHeight.dp),
+            contentScale = ContentScale.Crop,
+            contentDescription = null,
+        )
 
-            Column(Modifier.padding(horizontal = dimensionResource(id = com.orange.ods.R.dimen.screen_horizontal_margin))) {
-                OdsTextH4(
-                    text = configuration.appName,
+        Column(Modifier.padding(horizontal = dimensionResource(id = com.orange.ods.R.dimen.screen_horizontal_margin))) {
+            OdsTextH4(
+                text = configuration.appName,
+                modifier = Modifier.padding(top = dimensionResource(id = com.orange.ods.R.dimen.spacing_m))
+            )
+            Row(modifier = Modifier.padding(top = dimensionResource(id = com.orange.ods.R.dimen.spacing_s))) {
+                configuration.shareData?.let { shareData ->
+                    OdsTextButton(
+                        modifier = Modifier.padding(end = dimensionResource(id = com.orange.ods.R.dimen.spacing_s)),
+                        text = stringResource(id = R.string.app_share),
+                        icon = OdsButtonIcon(painterResource(id = R.drawable.ic_share)),
+                        onClick = {
+                            val sendIntent = Intent(Intent.ACTION_SEND).apply {
+                                type = "text/plain"
+                                putExtra(Intent.EXTRA_TITLE, shareData.title)
+                                putExtra(Intent.EXTRA_TEXT, shareData.text)
+                            }
+                            context.startActivity(Intent.createChooser(sendIntent, null))
+                        },
+                        style = OdsTextButtonStyle.Primary
+                    )
+                }
+                configuration.onFeedbackClick?.let { feedbackAction ->
+                    OdsTextButton(
+                        text = stringResource(id = R.string.app_feedback),
+                        icon = OdsButtonIcon(painterResource(id = R.drawable.ic_comment)),
+                        onClick = feedbackAction,
+                        style = OdsTextButtonStyle.Primary
+                    )
+                }
+            }
+            configuration.appVersion?.let { appVersion ->
+                OdsTextBody2(
+                    text = appVersion,
                     modifier = Modifier.padding(top = dimensionResource(id = com.orange.ods.R.dimen.spacing_m))
                 )
-                Row(modifier = Modifier.padding(top = dimensionResource(id = com.orange.ods.R.dimen.spacing_s))) {
-                    configuration.shareData?.let { shareData ->
-                        OdsTextButton(
-                            modifier = Modifier.padding(end = dimensionResource(id = com.orange.ods.R.dimen.spacing_s)),
-                            text = stringResource(id = R.string.app_share),
-                            icon = OdsButtonIcon(painterResource(id = R.drawable.ic_share)),
-                            onClick = {
-                                val sendIntent = Intent(Intent.ACTION_SEND).apply {
-                                    type = "text/plain"
-                                    putExtra(Intent.EXTRA_TITLE, shareData.title)
-                                    putExtra(Intent.EXTRA_TEXT, shareData.text)
-                                }
-                                context.startActivity(Intent.createChooser(sendIntent, null))
-                            },
-                            style = OdsTextButtonStyle.Primary
-                        )
-                    }
-                    configuration.onFeedbackClick?.let { feedbackAction ->
-                        OdsTextButton(
-                            text = stringResource(id = R.string.app_feedback),
-                            icon = OdsButtonIcon(painterResource(id = R.drawable.ic_comment)),
-                            onClick = feedbackAction,
-                            style = OdsTextButtonStyle.Primary
-                        )
-                    }
-                }
-                configuration.appVersion?.let { appVersion ->
-                    OdsTextBody2(
-                        text = appVersion,
-                        modifier = Modifier.padding(top = dimensionResource(id = com.orange.ods.R.dimen.spacing_m))
-                    )
-                }
-                configuration.appDescription?.let { description ->
-                    OdsTextBody1(
-                        text = description,
-                        modifier = Modifier.padding(top = dimensionResource(id = com.orange.ods.R.dimen.spacing_s))
-                    )
-                }
+            }
+            configuration.appDescription?.let { description ->
+                OdsTextBody1(
+                    text = description,
+                    modifier = Modifier.padding(top = dimensionResource(id = com.orange.ods.R.dimen.spacing_s))
+                )
             }
         }
     }

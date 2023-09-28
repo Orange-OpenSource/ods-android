@@ -37,6 +37,6 @@ fun NavGraphBuilder.aboutScreen(navController: NavController) {
 
     composable(route = OdsAboutDemoRoute) {
         val configuration = navController.previousBackStackEntry?.let { (viewModel(it) as OdsAboutViewModel).configuration }
-        OdsAboutMainScreen(configuration)
+        configuration?.let { OdsAboutMainScreen(it) }
     }
 }
