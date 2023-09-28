@@ -39,13 +39,6 @@ object MainDestinations {
     const val ComponentVariantIdKey = "componentVariantId"
     const val ComponentDemoRoute = "component/demo"
 
-    const val ModuleDetailRoute = "module"
-    const val ModuleIdKey = "moduleId"
-    const val ModuleDemoRoute = "module/demo"
-
-    const val AboutItemDetailRoute = "aboutItem"
-    const val AboutItemIdKey = "aboutItemId"
-
     const val SearchRoute = "search"
 }
 
