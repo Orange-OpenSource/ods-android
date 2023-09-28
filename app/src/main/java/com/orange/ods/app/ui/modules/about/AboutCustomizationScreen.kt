@@ -29,8 +29,6 @@ import com.orange.ods.R
 import com.orange.ods.app.ui.components.utilities.clickOnElement
 import com.orange.ods.app.ui.modules.Module
 import com.orange.ods.app.ui.modules.ModuleDetailColumn
-import com.orange.ods.compose.component.button.OdsButton
-import com.orange.ods.compose.component.button.OdsButtonStyle
 import com.orange.ods.compose.component.chip.OdsFilterChip
 import com.orange.ods.compose.text.OdsTextBody2
 import com.orange.ods.module.about.configuration.OdsAboutModuleConfiguration
@@ -48,7 +46,7 @@ enum class AboutOptions(@StringRes val labelResId: Int) {
 @Composable
 fun AboutCustomizationScreen(navigateToAboutModule: () -> Unit, configureAboutModule: (OdsAboutModuleConfiguration) -> Unit) {
     val context = LocalContext.current
-    ModuleDetailColumn(Module.About) {
+    ModuleDetailColumn(module = Module.About, onViewDemoButtonClick = { navigateToAboutModule() }) {
         var selectedOptions by rememberSaveable { mutableStateOf(emptyList<AboutOptions>()) }
 
         OdsTextBody2(
@@ -73,7 +71,6 @@ fun AboutCustomizationScreen(navigateToAboutModule: () -> Unit, configureAboutMo
             }
         }
 
-
         configureAboutModule(OdsAboutModuleConfiguration(
             appName = stringResource(id = com.orange.ods.app.R.string.module_about_demo_app_name),
             appVersion = if (selectedOptions.contains(AboutOptions.Version)) stringResource(id = com.orange.ods.app.R.string.module_about_demo_version) else null,
@@ -93,16 +90,5 @@ fun AboutCustomizationScreen(navigateToAboutModule: () -> Unit, configureAboutMo
             }
         ))
 
-        OdsButton(
-            modifier = Modifier
-                .padding(top = dimensionResource(id = R.dimen.spacing_m))
-                .fillMaxWidth(),
-            style = OdsButtonStyle.Primary,
-            text = stringResource(id = com.orange.ods.app.R.string.module_view_demo),
-            onClick = {
-                navigateToAboutModule()
-                //navigateToModuleDemo("${ModuleDemoDestinations.AboutCustomizationRoute}/$configuration")
-            }
-        )
     }
 }
