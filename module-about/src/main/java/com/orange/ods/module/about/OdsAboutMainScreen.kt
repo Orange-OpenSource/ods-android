@@ -76,7 +76,7 @@ internal fun OdsAboutMainScreen(configuration: OdsAboutModuleConfiguration) {
                         style = OdsTextButtonStyle.Primary
                     )
                 }
-                configuration.onFeedbackClick?.let { feedbackAction ->
+                configuration.onFeedbackButtonClick?.let { feedbackAction ->
                     OdsTextButton(
                         text = stringResource(id = R.string.app_feedback),
                         icon = OdsButtonIcon(painterResource(id = R.drawable.ic_comment)),

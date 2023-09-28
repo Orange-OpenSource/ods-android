@@ -83,7 +83,7 @@ fun AboutCustomizationScreen(navigateToAboutModule: () -> Unit, configureAboutMo
             } else {
                 null
             },
-            onFeedbackClick = if (selectedOptions.contains(AboutOptions.Feedback)) {
+            onFeedbackButtonClick = if (selectedOptions.contains(AboutOptions.Feedback)) {
                 { clickOnElement(context, context.getString(com.orange.ods.app.R.string.module_about_demo_feedback_button_element)) }
             } else {
                 null
