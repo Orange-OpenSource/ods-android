@@ -33,7 +33,7 @@ import java.nio.charset.StandardCharsets
 private const val FilePath = "file:///android_res/raw/"
 
 @Composable
-fun OdsAboutFileScreen(aboutItemId: Long, darkModeEnabled: Boolean) {
+internal fun OdsAboutFileScreen(aboutItemId: Long, darkModeEnabled: Boolean) {
     val aboutItem = remember { aboutItems.firstOrNull { item -> item.id == aboutItemId } as? FileAboutItem }
 
     aboutItem?.let { item ->
