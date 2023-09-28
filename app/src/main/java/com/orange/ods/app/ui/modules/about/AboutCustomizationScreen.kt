@@ -11,6 +11,9 @@
 package com.orange.ods.app.ui.modules.about
 
 import androidx.annotation.StringRes
+import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.ExperimentalLayoutApi
+import androidx.compose.foundation.layout.FlowRow
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.runtime.Composable
@@ -22,8 +25,6 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.stringResource
-import androidx.compose.ui.unit.dp
-import com.google.accompanist.flowlayout.FlowRow
 import com.orange.ods.R
 import com.orange.ods.app.ui.components.utilities.clickOnElement
 import com.orange.ods.app.ui.modules.Module
@@ -43,6 +44,7 @@ enum class AboutOptions(@StringRes val labelResId: Int) {
     Feedback(com.orange.ods.app.R.string.module_about_customization_feedback)
 }
 
+@OptIn(ExperimentalLayoutApi::class)
 @Composable
 fun AboutCustomizationScreen(navigateToAboutModule: () -> Unit, configureAboutModule: (OdsAboutModuleConfiguration) -> Unit) {
     val context = LocalContext.current
@@ -58,8 +60,7 @@ fun AboutCustomizationScreen(navigateToAboutModule: () -> Unit, configureAboutMo
             modifier = Modifier
                 .fillMaxWidth()
                 .padding(top = dimensionResource(id = R.dimen.spacing_xs)),
-            mainAxisSpacing = dimensionResource(id = R.dimen.spacing_s),
-            crossAxisSpacing = (-4).dp
+            horizontalArrangement = Arrangement.spacedBy(dimensionResource(id = R.dimen.spacing_s))
         ) {
             AboutOptions.values().forEach { option ->
                 OdsFilterChip(
