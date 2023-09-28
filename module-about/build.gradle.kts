@@ -13,9 +13,6 @@ import com.orange.ods.gradle.Versions
 
 plugins {
     id("library")
-    id("com.android.library")
-    id("kotlin-android")
-    id("kotlin-parcelize")
 }
 
 android {
