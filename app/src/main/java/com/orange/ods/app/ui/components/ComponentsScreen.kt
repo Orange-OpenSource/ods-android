@@ -73,7 +73,7 @@ private fun RowScope.ComponentCard(component: Component, onComponentClick: (Long
             "",
             component.imageAlignment,
             ContentScale.Fit,
-            Color(Component.ImageBackgroundColor)
+            Color(DrawableManager.ImageBackgroundColor)
         ),
         onClick = { onComponentClick(component.id) },
     )

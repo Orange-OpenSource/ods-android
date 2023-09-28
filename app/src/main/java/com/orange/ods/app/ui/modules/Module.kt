@@ -24,10 +24,6 @@ sealed class Module(
     val route: String,
     val imageAlignment: Alignment = Alignment.Center,
 ) {
-    companion object {
-        const val ImageBackgroundColor = 0xff1b1b1b
-    }
-
     val id: Long = Module::class.sealedSubclasses.indexOf(this::class).toLong()
 
     object About : Module(

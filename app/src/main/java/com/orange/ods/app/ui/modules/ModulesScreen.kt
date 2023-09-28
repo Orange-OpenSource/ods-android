@@ -60,7 +60,7 @@ private fun ColumnScope.ModuleCard(module: Module, onModuleClick: (String) -> Un
             "",
             module.imageAlignment,
             ContentScale.Fit,
-            Color(Module.ImageBackgroundColor)
+            Color(DrawableManager.ImageBackgroundColor)
         ),
         onClick = { onModuleClick(module.route) }
     )

@@ -51,11 +51,6 @@ sealed class Component(
     val demoScreen: @Composable (variant: Variant?, upPress: () -> Unit) -> Unit,
     val imageAlignment: Alignment = Alignment.Center,
 ) {
-
-    companion object {
-        const val ImageBackgroundColor = 0xff1b1b1b
-    }
-
     val id: Long = Component::class.sealedSubclasses.indexOf(this::class).toLong()
 
     object AppBarsTop : Component(
