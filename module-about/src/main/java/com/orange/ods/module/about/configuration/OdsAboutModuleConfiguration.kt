@@ -10,10 +10,8 @@
 
 package com.orange.ods.module.about.configuration
 
-import android.net.Uri
 import androidx.annotation.DrawableRes
 import androidx.compose.runtime.staticCompositionLocalOf
-import com.google.gson.Gson
 import com.orange.ods.compose.component.appbar.top.OdsTopAppBarActionButton
 import com.orange.ods.compose.component.appbar.top.OdsTopAppBarOverflowMenuActionItem
 import com.orange.ods.module.about.R
@@ -71,12 +69,7 @@ data class OdsAboutModuleConfiguration(
      */
     val topAppBarOverflowMenuActions: List<OdsTopAppBarOverflowMenuActionItem> = emptyList(),
 
-    ) {
-
-    override fun toString(): String {
-        return Uri.encode(Gson().toJson(this))
-    }
-}
+    )
 
 /**
  * Defines the data to be shared by clicking on the about share button.
