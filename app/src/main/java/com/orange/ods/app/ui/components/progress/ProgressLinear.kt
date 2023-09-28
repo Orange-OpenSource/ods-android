@@ -117,7 +117,7 @@ fun ProgressLinear() {
                             if (type.value == ProgressCustomizationState.Type.Determinate) stringRepresentation("progress", determinateProgressValue)
                             if (hasLabel) string("label", text)
                             if (hasIcon) {
-                                classInstance("icon", OdsLinearProgressIndicatorIcon::class.java) {
+                                classInstance<OdsLinearProgressIndicatorIcon>("icon") {
                                     painter()
                                     contentDescription("")
                                 }

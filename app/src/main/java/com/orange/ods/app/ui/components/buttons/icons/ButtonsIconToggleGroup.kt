@@ -82,7 +82,7 @@ fun ButtonsIconToggleGroup(customizationState: ButtonIconCustomizationState) {
                     parameters = {
                         list("icons") {
                             repeat(toggleCount.value) {
-                                classInstance(OdsIconToggleButtonsRowIcon::class.java) {
+                                classInstance<OdsIconToggleButtonsRowIcon> {
                                     painter()
                                     contentDescription("")
                                     if (!isEnabled) enabled(false)

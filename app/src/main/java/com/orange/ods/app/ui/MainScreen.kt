@@ -117,7 +117,6 @@ fun MainScreen(themeConfigurations: Set<OdsThemeConfigurationContract>, mainView
 
             Scaffold(
                 modifier = modifier,
-                backgroundColor = OdsTheme.colors.background,
                 topBar = {
                     Surface(elevation = if (isSystemInDarkTheme()) 0.dp else AppBarDefaults.TopAppBarElevation) {
                         Column {

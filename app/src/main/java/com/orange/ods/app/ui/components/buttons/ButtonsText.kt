@@ -37,7 +37,6 @@ import com.orange.ods.compose.component.button.OdsButtonIcon
 import com.orange.ods.compose.component.button.OdsTextButton
 import com.orange.ods.compose.component.button.OdsTextButtonStyle
 import com.orange.ods.compose.theme.OdsDisplaySurface
-import com.orange.ods.extension.fullName
 
 @Composable
 fun ButtonsText(customizationState: ButtonCustomizationState) {
@@ -79,10 +78,10 @@ fun ButtonsText(customizationState: ButtonCustomizationState) {
                     name = OdsComposable.OdsTextButton.name,
                     exhaustiveParameters = false,
                     parameters = {
-                        simple("style", textButtonStyle.value.fullName)
+                        enum("style", textButtonStyle.value)
                         if (hasFullScreenWidth) fillMaxWidth()
                         if (hasLeadingIcon) {
-                            classInstance("icon", OdsButtonIcon::class.java) {
+                            classInstance<OdsButtonIcon>("icon") {
                                 painter()
                             }
                         }

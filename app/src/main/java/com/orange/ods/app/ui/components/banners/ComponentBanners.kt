@@ -143,18 +143,18 @@ fun ComponentBanners() {
                         exhaustiveParameters = false,
                         parameters = {
                             string("message", if (hasTwoTextLines) recipe.description else recipe.title)
-                            classInstance("firstButton", OdsBannerButton::class.java) {
+                            classInstance<OdsBannerButton>("firstButton") {
                                 text(context.getString(R.string.component_banner_dismiss))
                                 onClick()
                             }
                             if (hasImage) {
-                                classInstance("image", OdsBannerImage::class.java) {
+                                classInstance<OdsBannerImage>("image") {
                                     painter()
                                     contentDescription("")
                                 }
                             }
                             if (hasSecondButton) {
-                                classInstance("secondButton", OdsBannerButton::class.java) {
+                                classInstance<OdsBannerButton>("secondButton") {
                                     text(context.getString(R.string.component_banner_detail))
                                     onClick()
                                 }

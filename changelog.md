@@ -5,12 +5,27 @@ All notable changes done in ODS library will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.15.1](https://github.com/Orange-OpenSource/ods-android/compare/0.15.0...0.15.1) - 2023-09-28
+
+### Changed
+
+- \[Lib\] Update `OdsHorizontalCard`, `OdsSmallCard`, `OdsVerticalHeaderFirstCard` and `OdsVerticalImageFirstCard` APIs ([#597](https://github.com/Orange-OpenSource/ods-android/issues/597))
+- \[Lib\] Remove several dependencies to reduce consumer app size ([#623](https://github.com/Orange-OpenSource/ods-android/issues/623))
+
+### Fixed
+
+- \[Lib\] Fix a bug where `OdsDropdownMenu` was not dismissed on user click ([#617](https://github.com/Orange-OpenSource/ods-android/issues/617))
+- \[Lib\] Fix disabled color of text and icon in `OdsDropdownMenu` ([#617](https://github.com/Orange-OpenSource/ods-android/issues/617))
+- \[Lib\] Fix background color of components in dark mode ([#634](https://github.com/Orange-OpenSource/ods-android/issues/634))
+- \[Lib\] Fix a bug where the modifier was not taken into account in `OdsOutlinedTextField` ([#635](https://github.com/Orange-OpenSource/ods-android/issues/635))
+
 ## [0.15.0](https://github.com/Orange-OpenSource/ods-android/compare/0.14.0...0.15.0) - 2023-09-12
 
 ### Added
 
 - \[App\] Add list item component ([#555](https://github.com/Orange-OpenSource/ods-android/issues/555))
 - \[App\] Add toggle text buttons group component ([#530](https://github.com/Orange-OpenSource/ods-android/issues/530))
+- \[App\] Add new convenience methods for code implementation ([#624](https://github.com/Orange-OpenSource/ods-android/issues/624))
 - \[Lib\] Add `OdsTextToggleButtonsRow` component ([#530](https://github.com/Orange-OpenSource/ods-android/issues/530))
 
 ### Changed

@@ -135,4 +135,4 @@ private fun PreviewOdsTextButton(@PreviewParameter(OdsTextButtonPreviewParameter
     OdsTextButton(text = "Text", maxLines = 1, overflow = TextOverflow.Clip, onClick = {}, style = style)
 }
 
-private class OdsTextButtonPreviewParameterProvider : EnumPreviewParameterProvider(OdsTextButtonStyle::class)
+private class OdsTextButtonPreviewParameterProvider : EnumPreviewParameterProvider(OdsTextButtonStyle::class.java)

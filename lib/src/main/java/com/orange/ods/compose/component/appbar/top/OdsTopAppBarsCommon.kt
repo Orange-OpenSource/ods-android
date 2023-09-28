@@ -62,7 +62,7 @@ class OdsTopAppBarNavigationIcon : OdsComponentIcon {
      * @param contentDescription The content description associated to this [OdsTopAppBarNavigationIcon].
      * @param onClick Will be called when the user clicks on the action icon button.
      */
-    constructor(painter: Painter, contentDescription: String, onClick: () -> Unit) : super(painter as Any, contentDescription, onClick = onClick)
+    constructor(painter: Painter, contentDescription: String, onClick: () -> Unit) : super(painter, contentDescription, onClick = onClick)
 
     /**
      * Creates an instance of [OdsTopAppBarNavigationIcon].
@@ -71,7 +71,7 @@ class OdsTopAppBarNavigationIcon : OdsComponentIcon {
      * @param contentDescription The content description associated to this [OdsTopAppBarNavigationIcon].
      * @param onClick Will be called when the user clicks on the action icon button.
      */
-    constructor(imageVector: ImageVector, contentDescription: String, onClick: () -> Unit) : super(imageVector as Any, contentDescription, onClick = onClick)
+    constructor(imageVector: ImageVector, contentDescription: String, onClick: () -> Unit) : super(imageVector, contentDescription, onClick = onClick)
 
     /**
      * Creates an instance of [OdsTopAppBarNavigationIcon].
@@ -80,7 +80,7 @@ class OdsTopAppBarNavigationIcon : OdsComponentIcon {
      * @param contentDescription The content description associated to this [OdsTopAppBarNavigationIcon].
      * @param onClick Will be called when the user clicks on the action icon button.
      */
-    constructor(bitmap: ImageBitmap, contentDescription: String, onClick: () -> Unit) : super(bitmap as Any, contentDescription, onClick = onClick)
+    constructor(bitmap: ImageBitmap, contentDescription: String, onClick: () -> Unit) : super(bitmap, contentDescription, onClick = onClick)
 }
 
 /**
@@ -102,7 +102,7 @@ open class OdsTopAppBarActionButton : OdsComponentIcon {
         contentDescription: String,
         enabled: Boolean = true,
         onClick: () -> Unit
-    ) : super(painter as Any, contentDescription, enabled, onClick)
+    ) : super(painter, contentDescription, enabled, onClick)
 
     /**
      * Creates an instance of [OdsTopAppBarActionButton].
@@ -118,7 +118,7 @@ open class OdsTopAppBarActionButton : OdsComponentIcon {
         contentDescription: String,
         enabled: Boolean = true,
         onClick: () -> Unit
-    ) : super(imageVector as Any, contentDescription, enabled, onClick)
+    ) : super(imageVector, contentDescription, enabled, onClick)
 
     /**
      * Creates an instance of [OdsTopAppBarActionButton].
@@ -134,7 +134,7 @@ open class OdsTopAppBarActionButton : OdsComponentIcon {
         contentDescription: String,
         enabled: Boolean = true,
         onClick: () -> Unit
-    ) : super(bitmap as Any, contentDescription, enabled, onClick)
+    ) : super(bitmap, contentDescription, enabled, onClick)
 
     override val tint: Color?
         @Composable

@@ -23,12 +23,12 @@ fun rememberCardCustomizationState(
     thumbnailChecked: MutableState<Boolean> = rememberSaveable { mutableStateOf(true) },
     textChecked: MutableState<Boolean> = rememberSaveable { mutableStateOf(true) },
     subtitleChecked: MutableState<Boolean> = rememberSaveable { mutableStateOf(true) },
-    actionButtonCount: MutableState<Int> = rememberSaveable { mutableStateOf(CardCustomizationState.MinActionButtonCount) },
+    buttonCount: MutableState<Int> = rememberSaveable { mutableStateOf(CardCustomizationState.MinButtonCount) },
     dividerChecked: MutableState<Boolean> = rememberSaveable { mutableStateOf(true) },
     imagePosition: MutableState<OdsHorizontalCardImagePosition> = rememberSaveable { mutableStateOf(OdsHorizontalCardImagePosition.Start) }
 ) =
-    remember(clickable, thumbnailChecked, textChecked, subtitleChecked, actionButtonCount, dividerChecked, imagePosition) {
-        CardCustomizationState(clickable, thumbnailChecked, textChecked, subtitleChecked, actionButtonCount, dividerChecked, imagePosition)
+    remember(clickable, thumbnailChecked, textChecked, subtitleChecked, buttonCount, dividerChecked, imagePosition) {
+        CardCustomizationState(clickable, thumbnailChecked, textChecked, subtitleChecked, buttonCount, dividerChecked, imagePosition)
     }
 
 class CardCustomizationState(
@@ -36,14 +36,14 @@ class CardCustomizationState(
     val thumbnailChecked: MutableState<Boolean>,
     val textChecked: MutableState<Boolean>,
     val subtitleChecked: MutableState<Boolean>,
-    val actionButtonCount: MutableState<Int>,
+    val buttonCount: MutableState<Int>,
     val dividerChecked: MutableState<Boolean>,
     val imagePosition: MutableState<OdsHorizontalCardImagePosition>
 ) {
 
     companion object {
-        const val MinActionButtonCount = 0
-        const val MaxActionButtonCount = 2
+        const val MinButtonCount = 0
+        const val MaxButtonCount = 2
     }
 
     val isClickable
@@ -58,12 +58,12 @@ class CardCustomizationState(
     val hasSubtitle
         get() = subtitleChecked.value
 
-    val hasButton1
-        get() = actionButtonCount.value > 0
+    val hasFirstButton
+        get() = buttonCount.value > 0
 
-    val hasButton2
-        get() = actionButtonCount.value > 1
+    val hasSecondButton
+        get() = buttonCount.value > 1
 
     val hasDivider
-        get() = if (!hasButton1) false else dividerChecked.value
+        get() = if (!hasFirstButton) false else dividerChecked.value
 }

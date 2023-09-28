@@ -53,7 +53,7 @@ open class OdsGuideline(private val typography: Typography) {
                     if (name != null && xmlResource != null) {
                         GuidelineTextStyle(
                             name = name,
-                            textStyle = property.call(),
+                            textStyle = property(),
                             composeStyle = "OdsTheme.typography.${property.name}",
                             xmlResource = xmlResource
                         )

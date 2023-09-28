@@ -16,7 +16,7 @@ import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.TextStyle
-import kotlin.reflect.KCallable
+import com.orange.ods.theme.colors.OdsColors
 
 /**
  * A color displayed in the guideline color part of the ODS application
@@ -28,11 +28,12 @@ import kotlin.reflect.KCallable
  * @property xmlResource Optional resource used to use this color in XML
  */
 data class GuidelineColor(
-    val callable: KCallable<Color>,
+    val callableName: String,
     val type: GuidelineColorType,
     val lightThemeName: String,
     val darkThemeName: String = lightThemeName,
-    @ColorRes @AttrRes val xmlResource: Int? = null
+    @ColorRes @AttrRes val xmlResource: Int? = null,
+    val getValue: (OdsColors) -> Color
 ) {
 
     /**

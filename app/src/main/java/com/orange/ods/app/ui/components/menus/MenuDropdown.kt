@@ -101,6 +101,7 @@ fun MenuDropdown() {
                                 text = recipe.title,
                                 icon = if (hasIcons && recipe.iconResId != null) painterResource(id = recipe.iconResId) else null,
                                 divider = hasDividerExample && index == dividerIndex,
+                                enabled = index != MenuDropdownCustomizationState.MenuItemCount - 2,
                                 onClick = { clickOnElement(context, recipe.title) }
                             )
                         }
@@ -123,7 +124,7 @@ fun MenuDropdown() {
                             lambda("onDismissRequest")
                             list("items") {
                                 recipes.take(2).forEachIndexed { index, recipe ->
-                                    classInstance(OdsDropdownMenuItem::class.java) {
+                                    classInstance<OdsDropdownMenuItem> {
                                         string("text", recipe.title)
                                         if (hasIcons && recipe.iconResId != null) icon()
                                         if (hasDividerExample && index == dividerIndex) stringRepresentation("divider", true)

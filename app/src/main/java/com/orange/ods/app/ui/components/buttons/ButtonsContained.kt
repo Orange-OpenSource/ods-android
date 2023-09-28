@@ -37,7 +37,6 @@ import com.orange.ods.compose.component.button.OdsButton
 import com.orange.ods.compose.component.button.OdsButtonIcon
 import com.orange.ods.compose.component.button.OdsButtonStyle
 import com.orange.ods.compose.theme.OdsDisplaySurface
-import com.orange.ods.extension.fullName
 
 @Composable
 fun ButtonsContained(customizationState: ButtonCustomizationState) {
@@ -84,10 +83,10 @@ fun ButtonsContained(customizationState: ButtonCustomizationState) {
                     name = OdsComposable.OdsButton.name,
                     exhaustiveParameters = false,
                     parameters = {
-                        simple("style", buttonStyle.value.fullName)
+                        enum("style", buttonStyle.value)
                         if (hasFullScreenWidth) fillMaxWidth()
                         if (hasLeadingIcon) {
-                            classInstance("icon", OdsButtonIcon::class.java) {
+                            classInstance<OdsButtonIcon>("icon") {
                                 painter()
                             }
                         }

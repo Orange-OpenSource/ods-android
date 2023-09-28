@@ -15,28 +15,23 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.size
-import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.ImageBitmap
 import androidx.compose.ui.graphics.painter.Painter
 import androidx.compose.ui.graphics.vector.ImageVector
-import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.PreviewParameter
-import androidx.compose.ui.unit.dp
 import com.orange.ods.R
 import com.orange.ods.compose.component.OdsComposable
 import com.orange.ods.compose.component.button.OdsTextButton
 import com.orange.ods.compose.component.button.OdsTextButtonStyle
+import com.orange.ods.compose.component.content.OdsComponentCircleImage
 import com.orange.ods.compose.component.content.OdsComponentContent
-import com.orange.ods.compose.component.content.OdsComponentImage
 import com.orange.ods.compose.component.divider.OdsDivider
 import com.orange.ods.compose.component.utilities.BasicPreviewParameterProvider
 import com.orange.ods.compose.component.utilities.Preview
@@ -78,12 +73,7 @@ fun OdsBanner(
                 )
                 .padding(horizontal = dimensionResource(id = R.dimen.spacing_m))
         ) {
-            image?.Content(
-                modifier = Modifier
-                    .padding(end = dimensionResource(id = R.dimen.spacing_m))
-                    .size(40.dp)
-                    .clip(CircleShape)
-            )
+            image?.Content(modifier = Modifier.padding(end = dimensionResource(id = R.dimen.spacing_m)))
             Row(verticalAlignment = Alignment.CenterVertically) {
                 Text(
                     modifier = Modifier.weight(1f),
@@ -130,7 +120,7 @@ class OdsBannerButton(private val text: String, private val onClick: () -> Unit)
 /**
  * An image in an [OdsBanner].
  */
-class OdsBannerImage : OdsComponentImage {
+class OdsBannerImage : OdsComponentCircleImage {
 
     /**
      * Creates an instance of [OdsBannerImage].
@@ -138,7 +128,7 @@ class OdsBannerImage : OdsComponentImage {
      * @param painter The painter to draw.
      * @param contentDescription The content description associated to this [OdsBannerImage].
      */
-    constructor(painter: Painter, contentDescription: String) : super(painter as Any, contentDescription, ContentScale.Crop)
+    constructor(painter: Painter, contentDescription: String) : super(painter, contentDescription)
 
     /**
      * Creates an instance of [OdsBannerImage].
@@ -146,7 +136,7 @@ class OdsBannerImage : OdsComponentImage {
      * @param imageVector The image vector to draw.
      * @param contentDescription The content description associated to this [OdsBannerImage].
      */
-    constructor(imageVector: ImageVector, contentDescription: String) : super(imageVector as Any, contentDescription, ContentScale.Crop)
+    constructor(imageVector: ImageVector, contentDescription: String) : super(imageVector, contentDescription)
 
     /**
      * Creates an instance of [OdsBannerImage].
@@ -154,7 +144,7 @@ class OdsBannerImage : OdsComponentImage {
      * @param bitmap The image bitmap to draw.
      * @param contentDescription The content description associated to this [OdsBannerImage].
      */
-    constructor(bitmap: ImageBitmap, contentDescription: String) : super(bitmap as Any, contentDescription, ContentScale.Crop)
+    constructor(bitmap: ImageBitmap, contentDescription: String) : super(bitmap, contentDescription)
 }
 
 @UiModePreviews.Default

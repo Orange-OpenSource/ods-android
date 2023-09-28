@@ -39,7 +39,7 @@ class OdsChipLeadingIcon : OdsComponentIcon {
      * @param painter The painter to draw.
      * @param contentDescription The content description associated to this [OdsChipLeadingIcon].
      */
-    constructor(painter: Painter, contentDescription: String) : super(painter as Any, contentDescription)
+    constructor(painter: Painter, contentDescription: String) : super(painter, contentDescription)
 
     /**
      * Creates an instance of [OdsChipLeadingIcon].
@@ -47,7 +47,7 @@ class OdsChipLeadingIcon : OdsComponentIcon {
      * @param imageVector The image vector to draw.
      * @param contentDescription The content description associated to this [OdsChipLeadingIcon].
      */
-    constructor(imageVector: ImageVector, contentDescription: String) : super(imageVector as Any, contentDescription)
+    constructor(imageVector: ImageVector, contentDescription: String) : super(imageVector, contentDescription)
 
     /**
      * Creates an instance of [OdsChipLeadingIcon].
@@ -55,7 +55,7 @@ class OdsChipLeadingIcon : OdsComponentIcon {
      * @param bitmap The image bitmap to draw.
      * @param contentDescription The content description associated to this [OdsChipLeadingIcon].
      */
-    constructor(bitmap: ImageBitmap, contentDescription: String) : super(bitmap as Any, contentDescription)
+    constructor(bitmap: ImageBitmap, contentDescription: String) : super(bitmap, contentDescription)
 
     @Composable
     override fun Content(modifier: Modifier) {
@@ -74,7 +74,7 @@ class OdsChipLeadingAvatar : OdsComponentImage {
      * @param painter The painter to draw.
      * @param contentDescription The content description associated to this [OdsChipLeadingAvatar].
      */
-    constructor(painter: Painter, contentDescription: String) : super(painter as Any, contentDescription, ContentScale.Crop)
+    constructor(painter: Painter, contentDescription: String) : super(painter, contentDescription, contentScale = ContentScale.Crop)
 
     /**
      * Creates an instance of [OdsChipLeadingAvatar].
@@ -82,7 +82,7 @@ class OdsChipLeadingAvatar : OdsComponentImage {
      * @param imageVector The image vector to draw.
      * @param contentDescription The content description associated to this [OdsChipLeadingAvatar].
      */
-    constructor(imageVector: ImageVector, contentDescription: String) : super(imageVector as Any, contentDescription, ContentScale.Crop)
+    constructor(imageVector: ImageVector, contentDescription: String) : super(imageVector, contentDescription, contentScale = ContentScale.Crop)
 
     /**
      * Creates an instance of [OdsChipLeadingAvatar].
@@ -90,7 +90,7 @@ class OdsChipLeadingAvatar : OdsComponentImage {
      * @param bitmap The image bitmap to draw.
      * @param contentDescription The content description associated to this [OdsChipLeadingAvatar].
      */
-    constructor(bitmap: ImageBitmap, contentDescription: String) : super(bitmap as Any, contentDescription, ContentScale.Crop)
+    constructor(bitmap: ImageBitmap, contentDescription: String) : super(bitmap, contentDescription, contentScale = ContentScale.Crop)
 
     @Composable
     fun Content(enabled: Boolean) {

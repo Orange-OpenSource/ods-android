@@ -65,7 +65,6 @@ import com.orange.ods.compose.theme.OdsTheme
 import com.orange.ods.compose.utilities.extension.getElementOfType
 import com.orange.ods.extension.isNotNullOrBlank
 import com.orange.ods.extension.orElse
-import kotlin.reflect.KClass
 
 /**
  * <a href="https://system.design.orange.com/0c1af118d/p/09a804-lists/b/669743" target="_blank">ODS Lists</a>.
@@ -505,14 +504,14 @@ private fun getTrailingPreview(parameter: OdsListItemPreviewParameter): @Composa
     val checkedState = remember { mutableStateOf(false) }
     val selectedRadio = remember { mutableStateOf(0) }
     val trailing = when (parameter.previewTrailingType) {
-        OdsCheckboxTrailing::class -> OdsCheckboxTrailing(checked = checkedState, enabled = true)
-        OdsSwitchTrailing::class -> OdsSwitchTrailing(checked = checkedState)
-        OdsRadioButtonTrailing::class -> OdsRadioButtonTrailing(selectedRadio = selectedRadio, currentRadio = 0)
-        OdsIconTrailing::class -> OdsIconTrailing(
+        OdsCheckboxTrailing::class.java -> OdsCheckboxTrailing(checked = checkedState, enabled = true)
+        OdsSwitchTrailing::class.java -> OdsSwitchTrailing(checked = checkedState)
+        OdsRadioButtonTrailing::class.java -> OdsRadioButtonTrailing(selectedRadio = selectedRadio, currentRadio = 0)
+        OdsIconTrailing::class.java -> OdsIconTrailing(
             painter = painterResource(id = android.R.drawable.ic_dialog_info),
             contentDescription = null
         )
-        OdsCaptionTrailing::class -> OdsCaptionTrailing(text = "caption")
+        OdsCaptionTrailing::class.java -> OdsCaptionTrailing(text = "caption")
         else -> null
     }
 
@@ -560,7 +559,7 @@ internal data class OdsListItemPreviewParameter(
     val secondaryText: String?,
     val singleLineSecondaryText: Boolean,
     val iconType: OdsListItemIconType?,
-    val previewTrailingType: KClass<out OdsListItemTrailing>?
+    val previewTrailingType: Class<out OdsListItemTrailing>?
 )
 
 private class OdsListItemPreviewParameterProvider : BasicPreviewParameterProvider<OdsListItemPreviewParameter>(*previewParameterValues.toTypedArray())
@@ -572,10 +571,10 @@ private val previewParameterValues: List<OdsListItemPreviewParameter>
 
         return listOf(
             OdsListItemPreviewParameter(null, true, null, null),
-            OdsListItemPreviewParameter(longSecondaryText, true, null, OdsCheckboxTrailing::class),
-            OdsListItemPreviewParameter(shortSecondaryText, true, OdsListItemIconType.Icon, OdsIconTrailing::class),
-            OdsListItemPreviewParameter(longSecondaryText, false, OdsListItemIconType.SquareImage, OdsSwitchTrailing::class),
-            OdsListItemPreviewParameter(longSecondaryText, false, OdsListItemIconType.WideImage, OdsCaptionTrailing::class),
-            OdsListItemPreviewParameter(shortSecondaryText, true, OdsListItemIconType.CircularImage, OdsRadioButtonTrailing::class)
+            OdsListItemPreviewParameter(longSecondaryText, true, null, OdsCheckboxTrailing::class.java),
+            OdsListItemPreviewParameter(shortSecondaryText, true, OdsListItemIconType.Icon, OdsIconTrailing::class.java),
+            OdsListItemPreviewParameter(longSecondaryText, false, OdsListItemIconType.SquareImage, OdsSwitchTrailing::class.java),
+            OdsListItemPreviewParameter(longSecondaryText, false, OdsListItemIconType.WideImage, OdsCaptionTrailing::class.java),
+            OdsListItemPreviewParameter(shortSecondaryText, true, OdsListItemIconType.CircularImage, OdsRadioButtonTrailing::class.java)
         )
     }

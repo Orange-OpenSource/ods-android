@@ -63,7 +63,7 @@ fun ButtonsOutlined(customizationState: ButtonCustomizationState) {
                     parameters = {
                         if (hasFullScreenWidth) fillMaxWidth()
                         if (hasLeadingIcon) {
-                            classInstance("icon", OdsButtonIcon::class.java) {
+                            classInstance<OdsButtonIcon>("icon") {
                                 painter()
                             }
                         }
