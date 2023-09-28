@@ -38,7 +38,7 @@ fun NavGraphBuilder.addModulesGraph(navController: NavController) {
         LocalMainTopAppBarManager.current.updateTopAppBarTitle(Module.About.titleRes)
 
         val viewModel: OdsAboutViewModel = viewModel(navBackStackEntry)
-        AboutCustomizationScreen(navigateToAboutModule = { navController.navigateToOdsAboutDemo() }, viewModel::configureAboutModule)
+        AboutCustomizationScreen(navigateToAboutModule = navController::navigateToOdsAboutDemo, configureAboutModule = viewModel::configureAboutModule)
     }
 
     aboutScreen(navController = navController)
