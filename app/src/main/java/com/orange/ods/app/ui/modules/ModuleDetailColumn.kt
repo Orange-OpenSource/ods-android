@@ -11,6 +11,7 @@
 package com.orange.ods.app.ui.modules
 
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.ColumnScope
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
@@ -25,7 +26,7 @@ import com.orange.ods.app.ui.utilities.composable.Subtitle
 @Composable
 fun ModuleDetailColumn(
     module: Module,
-    content: @Composable () -> Unit
+    content: @Composable ColumnScope.() -> Unit
 ) {
     Column(
         modifier = Modifier
