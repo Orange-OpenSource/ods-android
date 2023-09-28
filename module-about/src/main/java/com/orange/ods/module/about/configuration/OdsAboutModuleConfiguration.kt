@@ -57,7 +57,7 @@ data class OdsAboutModuleConfiguration(
     /**
      * The action to be launched on feedback button click. If null, no feedback button will be displayed.
      */
-    val onFeedbackClick: (() -> Unit)? = null,
+    val onFeedbackButtonClick: (() -> Unit)? = null,
 
     /**
      * The optional actions displayed at the end of the About module TopAppBar.
