@@ -14,6 +14,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Changed
 
 - \[App\] Change buttons name ([#647](https://github.com/Orange-OpenSource/ods-android/issues/647))
+- \[Lib\] Update `OdsSlider` and `OdsSliderLockups` APIs ([#648](https://github.com/Orange-OpenSource/ods-android/issues/648))
 
 ## [0.15.1](https://github.com/Orange-OpenSource/ods-android/compare/0.15.0...0.15.1) - 2023-09-28
 

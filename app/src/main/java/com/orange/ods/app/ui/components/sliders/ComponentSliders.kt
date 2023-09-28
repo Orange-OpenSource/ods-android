@@ -30,11 +30,11 @@ import com.orange.ods.app.R
 import com.orange.ods.app.ui.components.utilities.ComponentCustomizationBottomSheetScaffold
 import com.orange.ods.app.ui.utilities.composable.CodeImplementationColumn
 import com.orange.ods.app.ui.utilities.composable.FunctionCallCode
-import com.orange.ods.app.ui.utilities.composable.IconPainterValue
 import com.orange.ods.app.ui.utilities.composable.TechnicalText
 import com.orange.ods.app.ui.utilities.composable.Title
 import com.orange.ods.compose.OdsComposable
 import com.orange.ods.compose.component.control.OdsSlider
+import com.orange.ods.compose.component.control.OdsSliderIcon
 import com.orange.ods.compose.component.control.OdsSliderLockups
 import com.orange.ods.compose.component.list.OdsListItem
 import com.orange.ods.compose.component.list.OdsSwitchTrailing
@@ -68,10 +68,10 @@ fun ComponentSliders() {
             ) {
                 val technicalText = if (shouldDisplayValue) OdsComposable.OdsSliderLockups.name else OdsComposable.OdsSlider.name
                 val steps = if (isStepped) 9 else 0
-                val leftIcon = if (hasSideIcons) painterResource(id = R.drawable.ic_volume_status_1) else null
-                val leftIconContentDescription = if (hasSideIcons) stringResource(id = R.string.component_slider_low_volume) else null
-                val rightIcon = if (hasSideIcons) painterResource(id = R.drawable.ic_volume_status_4) else null
-                val rightIconContentDescription = if (hasSideIcons) stringResource(id = R.string.component_slider_high_volume) else null
+                val leftIconContentDescription = stringResource(id = R.string.component_slider_low_volume)
+                val leftIcon = if (hasSideIcons) OdsSliderIcon(painterResource(id = R.drawable.ic_volume_status_1), leftIconContentDescription) else null
+                val rightIconContentDescription = stringResource(id = R.string.component_slider_high_volume)
+                val rightIcon = if (hasSideIcons) OdsSliderIcon(painterResource(id = R.drawable.ic_volume_status_4), rightIconContentDescription) else null
 
                 var sliderPosition by remember { mutableStateOf(0f) }
                 val valueRange = 0f..100f
@@ -90,9 +90,7 @@ fun ComponentSliders() {
                         valueRange = valueRange,
                         onValueChange = { sliderPosition = it },
                         leftIcon = leftIcon,
-                        leftIconContentDescription = leftIconContentDescription,
-                        rightIcon = rightIcon,
-                        rightIconContentDescription = rightIconContentDescription
+                        rightIcon = rightIcon
                     )
                 } else {
                     componentName = OdsComposable.OdsSlider.name
@@ -102,9 +100,7 @@ fun ComponentSliders() {
                         valueRange = valueRange,
                         onValueChange = { sliderPosition = it },
                         leftIcon = leftIcon,
-                        leftIconContentDescription = leftIconContentDescription,
-                        rightIcon = rightIcon,
-                        rightIconContentDescription = rightIconContentDescription
+                        rightIcon = rightIcon
                     )
                 }
 
@@ -118,10 +114,14 @@ fun ComponentSliders() {
                             lambda("onValueChange")
                             if (isStepped) stringRepresentation("steps", steps)
                             if (hasSideIcons) {
-                                simple("leftIcon", IconPainterValue)
-                                leftIconContentDescription?.let { string("leftIconContentDescription", it) }
-                                simple("rightIcon", IconPainterValue)
-                                rightIconContentDescription?.let { string("rightIconContentDescription", it) }
+                                classInstance<OdsSliderIcon>("leftIcon") {
+                                    painter()
+                                    contentDescription(leftIconContentDescription)
+                                }
+                                classInstance<OdsSliderIcon>("rightIcon") {
+                                    painter()
+                                    contentDescription(rightIconContentDescription)
+                                }
                             }
                         })
                 }
