@@ -27,7 +27,6 @@ import com.orange.ods.app.ui.modules.ModuleDetailColumn
 import com.orange.ods.compose.component.chip.OdsFilterChip
 import com.orange.ods.compose.text.OdsTextBody2
 
-
 enum class AboutCustomizationOptions(@StringRes val labelResId: Int) {
     Version(R.string.module_about_customization_version),
     Description(R.string.module_about_customization_description),
