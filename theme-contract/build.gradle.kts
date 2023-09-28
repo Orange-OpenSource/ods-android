@@ -30,6 +30,5 @@ android {
 dependencies {
     implementation(platform(Dependencies.composeBom))
     implementation(Dependencies.composeMaterial)
-    implementation(Dependencies.kotlinReflect)
     implementation(Dependencies.material)
 }

@@ -52,7 +52,6 @@ dependencies {
     api(project(":theme-contract"))
     api(project(":theme-orange"))
 
-    implementation(Dependencies.accompanistFlowLayout)
     implementation(Dependencies.appCompat)
     implementation(platform(Dependencies.composeBom))
     api(Dependencies.composeMaterial)
@@ -63,7 +62,6 @@ dependencies {
     implementation(Dependencies.constraintLayoutCompose)
     implementation(Dependencies.coreKtx)
     implementation(Dependencies.customViewPoolingContainer) // This dependency is needed otherwise the compose preview does not work properly
-    implementation(Dependencies.kotlinReflect)
     implementation(Dependencies.lifecycleRuntimeKtx)
 
     testImplementation(Dependencies.jUnit)

@@ -161,4 +161,4 @@ private fun PreviewOdsButton(@PreviewParameter(OdsButtonPreviewParameterProvider
     OdsButton(text = "Text", onClick = {}, style = style)
 }
 
-private class OdsButtonPreviewParameterProvider : EnumPreviewParameterProvider(OdsButtonStyle::class)
+private class OdsButtonPreviewParameterProvider : EnumPreviewParameterProvider(OdsButtonStyle::class.java)

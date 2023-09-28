@@ -10,6 +10,9 @@
 
 package com.orange.ods.app.ui.components.chips
 
+import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.ExperimentalLayoutApi
+import androidx.compose.foundation.layout.FlowRow
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
@@ -25,7 +28,6 @@ import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import coil.compose.rememberAsyncImagePainter
-import com.google.accompanist.flowlayout.FlowRow
 import com.orange.ods.app.R
 import com.orange.ods.app.domain.recipes.LocalRecipes
 import com.orange.ods.app.ui.components.utilities.ComponentCustomizationBottomSheetScaffold
@@ -41,7 +43,7 @@ import com.orange.ods.compose.component.chip.OdsFilterChip
 import com.orange.ods.compose.component.list.OdsListItem
 import com.orange.ods.compose.component.list.OdsSwitchTrailing
 
-@OptIn(ExperimentalMaterialApi::class)
+@OptIn(ExperimentalMaterialApi::class, ExperimentalLayoutApi::class)
 @Composable
 fun ChipFilter() {
     val chipCustomizationState = rememberChipCustomizationState(chipType = rememberSaveable { mutableStateOf(ChipCustomizationState.ChipType.Filter) })
@@ -73,7 +75,10 @@ fun ChipFilter() {
             }) {
             var selectedChipIndexes by rememberSaveable { mutableStateOf(emptySet<Int>()) }
             ChipTypeDemo(chipType = chipType.value) {
-                FlowRow(modifier = Modifier.fillMaxWidth(), mainAxisSpacing = dimensionResource(id = com.orange.ods.R.dimen.spacing_s)) {
+                FlowRow(
+                    modifier = Modifier.fillMaxWidth(),
+                    horizontalArrangement = Arrangement.spacedBy(dimensionResource(id = com.orange.ods.R.dimen.spacing_s))
+                ) {
                     recipe.ingredients.forEachIndexed { index, ingredient ->
                         OdsFilterChip(
                             text = ingredient.food.name,

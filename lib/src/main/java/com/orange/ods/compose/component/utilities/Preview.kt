@@ -16,7 +16,6 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.tooling.preview.PreviewParameterProvider
 import com.orange.ods.BuildConfig
 import com.orange.ods.compose.theme.OdsTheme
-import kotlin.reflect.KClass
 
 /**
  * Configures the Compose preview environment in Android Studio.
@@ -44,7 +43,7 @@ internal open class BasicPreviewParameterProvider<T>(vararg values: T) : Preview
  *
  * @param clazz The enum class.
  */
-internal open class EnumPreviewParameterProvider(clazz: KClass<out Enum<*>>) : BasicPreviewParameterProvider<Enum<*>>(*clazz.java.enumConstants)
+internal open class EnumPreviewParameterProvider(clazz: Class<out Enum<*>>) : BasicPreviewParameterProvider<Enum<*>>(*clazz.enumConstants)
 
 /**
  * Multipreview annotation classes used to display both light and dark mode previews.
