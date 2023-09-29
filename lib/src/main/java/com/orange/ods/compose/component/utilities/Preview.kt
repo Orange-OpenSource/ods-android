@@ -23,7 +23,7 @@ import com.orange.ods.compose.theme.OdsTheme
  * @param content The content of the preview.
  */
 @Composable
-internal fun Preview(content: @Composable () -> Unit) = OdsTheme(BuildConfig.PREVIEW_THEME_CONFIGURATION) {
+fun Preview(content: @Composable () -> Unit) = OdsTheme(BuildConfig.PREVIEW_THEME_CONFIGURATION) {
     content()
 }
 
@@ -52,7 +52,7 @@ internal open class EnumPreviewParameterProvider(clazz: Class<out Enum<*>>) : Ba
  * An empty `Target` annotation has been added in order to avoid using the parent `UiModePreviews` annotation which has no effect.
  */
 @Target
-internal annotation class UiModePreviews {
+annotation class UiModePreviews {
 
     companion object {
         private const val LightName = "Light"
