@@ -58,7 +58,7 @@ sealed class Component(
 
     val id: Long = Component::class.sealedSubclasses.indexOf(this::class).toLong()
 
-    object AppBarsTop : Component(
+    data object AppBarsTop : Component(
         R.string.component_app_bars_top,
         R.drawable.il_app_bars_top,
         R.drawable.il_app_bars_top_small,
@@ -68,7 +68,7 @@ sealed class Component(
         imageAlignment = Alignment.TopCenter
     )
 
-    object Banners : Component(
+    data object Banners : Component(
         R.string.component_banners,
         R.drawable.il_banners,
         null,
@@ -77,7 +77,7 @@ sealed class Component(
         demoScreen = { _, _ -> ComponentBanners() }
     )
 
-    object BottomNavigation :
+    data object BottomNavigation :
         Component(
             R.string.component_bottom_navigation,
             R.drawable.il_bottom_navigation,
@@ -88,7 +88,7 @@ sealed class Component(
             imageAlignment = Alignment.TopCenter
         )
 
-    object Buttons : Component(
+    data object Buttons : Component(
         R.string.component_buttons,
         R.drawable.il_buttons,
         R.drawable.il_buttons_small,
@@ -104,7 +104,7 @@ sealed class Component(
         demoScreen = { variant, _ -> if (variant != null) ComponentButtons(variant = variant) }
     )
 
-    object ButtonsIcons : Component(
+    data object ButtonsIcons : Component(
         R.string.component_buttons_icons,
         R.drawable.il_buttons_icons,
         null,
@@ -117,7 +117,7 @@ sealed class Component(
         demoScreen = { variant, _ -> if (variant != null) ComponentButtonsIcons(variant = variant) }
     )
 
-    object Cards : Component(
+    data object Cards : Component(
         R.string.component_cards,
         R.drawable.il_cards,
         null,
@@ -126,7 +126,7 @@ sealed class Component(
         demoScreen = { variant, _ -> if (variant != null) ComponentCard(variant = variant) }
     )
 
-    object Checkboxes : Component(
+    data object Checkboxes : Component(
         R.string.component_checkboxes,
         R.drawable.il_checkboxes,
         null,
@@ -135,7 +135,7 @@ sealed class Component(
         demoScreen = { _, _ -> ComponentCheckboxes() }
     )
 
-    object Chips : Component(
+    data object Chips : Component(
         R.string.component_chips,
         R.drawable.il_chips,
         R.drawable.il_chips_small,
@@ -149,7 +149,7 @@ sealed class Component(
         }
     )
 
-    object Dialogs : Component(
+    data object Dialogs : Component(
         R.string.component_dialogs,
         R.drawable.il_dialogs,
         null,
@@ -158,7 +158,7 @@ sealed class Component(
         demoScreen = { _, _ -> ComponentDialog() }
     )
 
-    object FloatingActionButtons : Component(
+    data object FloatingActionButtons : Component(
         R.string.component_floating_action_buttons,
         R.drawable.il_fab,
         null,
@@ -176,7 +176,7 @@ sealed class Component(
         demoScreen = { _, _ -> ComponentImageItem() }
     )
 
-    object ListItem : Component(
+    data object ListItem : Component(
         R.string.component_list_item,
         R.drawable.il_list_item,
         null,
@@ -185,7 +185,7 @@ sealed class Component(
         demoScreen = { _, _ -> ComponentListItem() }
     )
 
-    object Menus : Component(
+    data object Menus : Component(
         R.string.component_menus,
         R.drawable.il_menus,
         null,
@@ -194,7 +194,7 @@ sealed class Component(
         demoScreen = { variant, _ -> if (variant != null) ComponentMenu(variant = variant) }
     )
 
-    object ModalDrawers : Component(
+    data object ModalDrawers : Component(
         R.string.component_modal_drawers,
         R.drawable.il_navigation_drawers,
         null,
@@ -202,7 +202,7 @@ sealed class Component(
         demoScreen = { _, _ -> ComponentModalDrawers() }
     )
 
-    object Progress : Component(
+    data object Progress : Component(
         R.string.component_progress,
         R.drawable.il_progress,
         null,
@@ -211,7 +211,7 @@ sealed class Component(
         demoScreen = { variant, _ -> if (variant != null) ComponentProgress(variant = variant) }
     )
 
-    object RadioButtons : Component(
+    data object RadioButtons : Component(
         R.string.component_radio_buttons,
         R.drawable.il_radio_buttons,
         null,
@@ -220,7 +220,7 @@ sealed class Component(
         demoScreen = { _, _ -> ComponentRadioButtons() }
     )
 
-    object SheetsBottom : Component(
+    data object SheetsBottom : Component(
         R.string.component_sheets_bottom,
         R.drawable.il_bottom_sheet,
         null,
@@ -229,7 +229,7 @@ sealed class Component(
         demoScreen = { _, _ -> ComponentSheetsBottom() }
     )
 
-    object Sliders : Component(
+    data object Sliders : Component(
         R.string.component_sliders,
         R.drawable.il_sliders,
         null,
@@ -238,7 +238,7 @@ sealed class Component(
         demoScreen = { _, _ -> ComponentSliders() }
     )
 
-    object Snackbars : Component(
+    data object Snackbars : Component(
         R.string.component_snackbars,
         R.drawable.il_snackbars,
         R.drawable.il_snackbars_small,
@@ -247,7 +247,7 @@ sealed class Component(
         demoScreen = { _, _ -> ComponentSnackbars() }
     )
 
-    object Switches : Component(
+    data object Switches : Component(
         R.string.component_switches,
         R.drawable.il_switches,
         R.drawable.il_switches_small,
@@ -256,7 +256,7 @@ sealed class Component(
         demoScreen = { _, _ -> ComponentSwitches() }
     )
 
-    object TextFields : Component(
+    data object TextFields : Component(
         R.string.component_text_fields,
         R.drawable.il_text_fields,
         R.drawable.il_text_fields_small,
@@ -265,7 +265,7 @@ sealed class Component(
         demoScreen = { variant, _ -> if (variant != null) ComponentTextField(variant = variant) }
     )
 
-    object Tabs : Component(
+    data object Tabs : Component(
         R.string.component_tabs,
         R.drawable.il_tabs,
         R.drawable.il_tabs_small,
@@ -290,40 +290,39 @@ sealed class Variant(
 
     val id: Long = Variant::class.sealedSubclasses.indexOf(this::class).toLong()
 
-    object AppBarsTopRegular : Variant(R.string.component_app_bars_top_regular, OdsComposable.OdsTopAppBar.name, customizableTopAppBar = true)
-    object AppBarsTopLarge :
-        Variant(R.string.component_app_bars_top_large, OdsComposable.OdsLargeTopAppBar.name, largeTopAppBar = true, customizableTopAppBar = true)
+    data object AppBarsTopRegular : Variant(R.string.component_app_bars_top_regular, OdsComposable.OdsTopAppBar.name)
+    data object AppBarsTopLarge : Variant(R.string.component_app_bars_top_large, OdsComposable.OdsLargeTopAppBar.name, true)
 
-    object ButtonsPrimary : Variant(R.string.component_buttons_high_emphasis, "${OdsComposable.OdsButton.name} with ${OdsButton.Style.Primary.name}")
-    object ButtonsDefault : Variant(R.string.component_buttons_medium_emphasis, "${OdsComposable.OdsButton.name} with ${OdsButton.Style.Default.name}")
-    object ButtonsOutlined : Variant(R.string.component_buttons_low_emphasis, OdsComposable.OdsOutlinedButton.name)
-    object ButtonsText : Variant(R.string.component_buttons_lowest_emphasis, OdsComposable.OdsTextButton.name)
-    object ButtonsTextToggleGroup : Variant(R.string.component_button_text_toggle_group, OdsComposable.OdsTextToggleButtonsRow.name)
-    object ButtonsFunctional : Variant(R.string.component_buttons_functional, "${OdsComposable.OdsButton.name} with a functional style")
+    data object ButtonsPrimary : Variant(R.string.component_buttons_high_emphasis, "${OdsComposable.OdsButton.name} with ${OdsButton.Style.Primary.name}")
+    data object ButtonsDefault : Variant(R.string.component_buttons_medium_emphasis, "${OdsComposable.OdsButton.name} with ${OdsButton.Style.Default.name}")
+    data object ButtonsOutlined : Variant(R.string.component_buttons_low_emphasis, OdsComposable.OdsOutlinedButton.name)
+    data object ButtonsText : Variant(R.string.component_buttons_lowest_emphasis, OdsComposable.OdsTextButton.name)
+    data object ButtonsTextToggleGroup : Variant(R.string.component_button_text_toggle_group, OdsComposable.OdsTextToggleButtonsRow.name)
+    data object ButtonsFunctional : Variant(R.string.component_buttons_functional, "${OdsComposable.OdsButton.name} with a functional style")
 
-    object ButtonsIcon : Variant(R.string.component_buttons_icon, OdsComposable.OdsIconButton.name)
-    object ButtonsIconToggle : Variant(R.string.component_buttons_icon_toggle, OdsComposable.OdsIconToggleButton.name)
-    object ButtonsIconToggleGroup : Variant(R.string.component_buttons_icon_toggle_group, OdsComposable.OdsIconToggleButtonsRow.name)
+    data object ButtonsIcon : Variant(R.string.component_buttons_icon, OdsComposable.OdsIconButton.name)
+    data object ButtonsIconToggle : Variant(R.string.component_buttons_icon_toggle, OdsComposable.OdsIconToggleButton.name)
+    data object ButtonsIconToggleGroup : Variant(R.string.component_buttons_icon_toggle_group, OdsComposable.OdsIconToggleButtonsRow.name)
 
-    object CardVerticalImageFirst : Variant(R.string.component_card_vertical_image_first, OdsComposable.OdsVerticalImageFirstCard.name)
-    object CardVerticalHeaderFirst : Variant(R.string.component_card_vertical_header_first, OdsComposable.OdsVerticalHeaderFirstCard.name)
-    object CardSmall : Variant(R.string.component_card_small, OdsComposable.OdsSmallCard.name)
-    object CardHorizontal : Variant(R.string.component_card_horizontal, OdsComposable.OdsHorizontalCard.name)
+    data object CardVerticalImageFirst : Variant(R.string.component_card_vertical_image_first, OdsComposable.OdsVerticalImageFirstCard.name)
+    data object CardVerticalHeaderFirst : Variant(R.string.component_card_vertical_header_first, OdsComposable.OdsVerticalHeaderFirstCard.name)
+    data object CardSmall : Variant(R.string.component_card_small, OdsComposable.OdsSmallCard.name)
+    data object CardHorizontal : Variant(R.string.component_card_horizontal, OdsComposable.OdsHorizontalCard.name)
 
-    object ChipAction : Variant(R.string.component_chip_action, OdsComposable.OdsChip.name)
-    object ChipChoice : Variant(R.string.component_chip_choice, OdsComposable.OdsChip.name)
-    object ChipInput : Variant(R.string.component_chip_input, OdsComposable.OdsChip.name)
-    object ChipFilter : Variant(R.string.component_chip_filter, OdsComposable.OdsFilterChip.name)
+    data object ChipAction : Variant(R.string.component_chip_action, OdsComposable.OdsChip.name)
+    data object ChipChoice : Variant(R.string.component_chip_choice, OdsComposable.OdsChip.name)
+    data object ChipInput : Variant(R.string.component_chip_input, OdsComposable.OdsChip.name)
+    data object ChipFilter : Variant(R.string.component_chip_filter, OdsComposable.OdsFilterChip.name)
 
-    object DropdownMenu : Variant(R.string.component_menu_dropdown, OdsComposable.OdsDropdownMenu.name)
-    object ExposedDropdownMenu : Variant(R.string.component_menu_exposed_dropdown, OdsComposable.OdsExposedDropdownMenu.name)
+    data object DropdownMenu : Variant(R.string.component_menu_dropdown, OdsComposable.OdsDropdownMenu.name)
+    data object ExposedDropdownMenu : Variant(R.string.component_menu_exposed_dropdown, OdsComposable.OdsExposedDropdownMenu.name)
 
-    object ProgressLinear : Variant(R.string.component_progress_linear, OdsComposable.OdsLinearProgressIndicator.name)
-    object ProgressCircular : Variant(R.string.component_progress_circular, OdsComposable.OdsCircularProgressIndicator.name)
+    data object ProgressLinear : Variant(R.string.component_progress_linear, OdsComposable.OdsLinearProgressIndicator.name)
+    data object ProgressCircular : Variant(R.string.component_progress_circular, OdsComposable.OdsCircularProgressIndicator.name)
 
-    object TextField : Variant(R.string.component_text_field_text, OdsComposable.OdsTextField.name)
-    object TextFieldPassword : Variant(R.string.component_text_field_password, OdsComposable.OdsPasswordTextField.name)
+    data object TextField : Variant(R.string.component_text_field_text, OdsComposable.OdsTextField.name)
+    data object TextFieldPassword : Variant(R.string.component_text_field_password, OdsComposable.OdsPasswordTextField.name)
 
-    object TabsFixed : Variant(R.string.component_tabs_fixed, OdsComposable.OdsTabRow.name)
-    object TabsScrollable : Variant(R.string.component_tabs_scrollable, OdsComposable.OdsScrollableTabRow.name)
+    data object TabsFixed : Variant(R.string.component_tabs_fixed, OdsComposable.OdsTabRow.name)
+    data object TabsScrollable : Variant(R.string.component_tabs_scrollable, OdsComposable.OdsScrollableTabRow.name)
 }
