@@ -30,10 +30,13 @@ import androidx.compose.ui.unit.dp
 import com.orange.ods.compose.component.button.OdsButtonIcon
 import com.orange.ods.compose.component.button.OdsTextButton
 import com.orange.ods.compose.component.button.OdsTextButtonStyle
+import com.orange.ods.compose.component.utilities.Preview
+import com.orange.ods.compose.component.utilities.UiModePreviews
 import com.orange.ods.compose.text.OdsTextBody1
 import com.orange.ods.compose.text.OdsTextBody2
 import com.orange.ods.compose.text.OdsTextH4
 import com.orange.ods.module.about.configuration.OdsAboutModuleConfiguration
+import com.orange.ods.module.about.configuration.OdsAboutShareData
 
 private const val ImageHeight = 249
 
@@ -98,5 +101,21 @@ internal fun OdsAboutMainScreen(configuration: OdsAboutModuleConfiguration) {
                 )
             }
         }
+    }
+}
+
+@UiModePreviews.Default
+@Composable
+fun PreviewOdsAboutMainScreen() {
+    val configuration = OdsAboutModuleConfiguration(
+        appName = "App name",
+        appVersion = "Version 1.0",
+        appDescription = "Here is the description of the current application.",
+        shareData = OdsAboutShareData("Title", "Text to display for sharing."),
+        onFeedbackButtonClick = {}
+    )
+
+    Preview {
+        OdsAboutMainScreen(configuration)
     }
 }
