@@ -15,7 +15,6 @@ import androidx.annotation.StringRes
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
-import androidx.navigation.NavBackStackEntry
 import androidx.navigation.NavGraphBuilder
 import androidx.navigation.compose.composable
 import com.orange.ods.app.R
@@ -43,18 +42,18 @@ fun MainBottomNavigation(items: Array<BottomNavigationSections>, currentRoute: S
     )
 }
 
-fun NavGraphBuilder.addBottomNavigationGraph(navigateToElement: (String, Long?, NavBackStackEntry) -> Unit) {
+fun NavGraphBuilder.addBottomNavigationGraph(navController: AppNavController) {
     composable(BottomNavigationSections.Guidelines.route) { from ->
         LocalMainTopAppBarManager.current.updateTopAppBar(MainTopAppBarState.DefaultWithSearchActionConfiguration)
-        GuidelinesScreen(onGuidelineClick = { route -> navigateToElement(route, null, from) })
+        GuidelinesScreen(onGuidelineClick = { route -> navController.navigateToElement(route, null, from) })
     }
     composable(BottomNavigationSections.Components.route) { from ->
         LocalMainTopAppBarManager.current.updateTopAppBar(MainTopAppBarState.DefaultWithSearchActionConfiguration)
-        ComponentsScreen(onComponentClick = { id -> navigateToElement(MainDestinations.ComponentDetailRoute, id, from) })
+        ComponentsScreen(onComponentClick = { id -> navController.navigateToElement(MainDestinations.ComponentDetailRoute, id, from) })
     }
     composable(BottomNavigationSections.Modules.route) { from ->
         LocalMainTopAppBarManager.current.updateTopAppBar(MainTopAppBarState.DefaultWithSearchActionConfiguration)
-        ModulesScreen(onModuleClick = { route -> navigateToElement(route, null, from) })
+        ModulesScreen(onModuleClick = { route -> navController.navigateToElement(route, null, from) })
     }
 }
 

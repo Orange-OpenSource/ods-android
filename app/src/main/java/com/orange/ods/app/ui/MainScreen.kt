@@ -32,8 +32,6 @@ import androidx.compose.ui.platform.LocalConfiguration
 import androidx.compose.ui.text.input.TextFieldValue
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
-import androidx.navigation.NavBackStackEntry
-import androidx.navigation.NavController
 import androidx.navigation.NavGraphBuilder
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
@@ -159,7 +157,6 @@ fun MainScreen(themeConfigurations: Set<OdsThemeConfigurationContract>, mainView
                 ) {
                     mainNavGraph(
                         navController = mainState.navController,
-                        navigateToElement = mainState::navigateToElement,
                         upPress = mainState::upPress,
                         searchedText = mainState.topAppBarState.searchedText
                     )
@@ -215,8 +212,7 @@ private fun MainTabs(mainTabsState: MainTabsState) {
 }
 
 private fun NavGraphBuilder.mainNavGraph(
-    navController: NavController,
-    navigateToElement: (String, Long?, NavBackStackEntry) -> Unit,
+    navController: AppNavController,
     upPress: () -> Unit,
     searchedText: MutableState<TextFieldValue>
 ) {
@@ -224,11 +220,11 @@ private fun NavGraphBuilder.mainNavGraph(
         route = MainDestinations.HomeRoute,
         startDestination = BottomNavigationSections.Guidelines.route
     ) {
-        addBottomNavigationGraph(navigateToElement)
+        addBottomNavigationGraph(navController)
     }
 
     addGuidelinesGraph()
-    addComponentsGraph(navigateToElement, upPress)
+    addComponentsGraph(navController, upPress)
     addModulesGraph(navController)
 
     composable(
@@ -237,7 +233,7 @@ private fun NavGraphBuilder.mainNavGraph(
         LocalMainTopAppBarManager.current.updateTopAppBarTitle(R.string.navigation_item_search)
         SearchScreen(
             searchedText,
-            onResultItemClick = { route, id -> navigateToElement(route, id, from) }
+            onResultItemClick = { route, id -> navController.navigateToElement(route, id, from) }
         )
     }
 }
