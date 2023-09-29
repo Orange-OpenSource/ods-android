@@ -26,7 +26,7 @@ sealed class Module(
 ) {
     val id: Long = Module::class.sealedSubclasses.indexOf(this::class).toLong()
 
-    object About : Module(
+    data object About : Module(
         R.string.module_about,
         R.drawable.il_about,
         R.string.module_about_description,
