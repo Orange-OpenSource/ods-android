@@ -10,31 +10,16 @@
 
 package com.orange.ods.app.ui.about
 
-import android.content.Context
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
 import com.orange.ods.app.R
-import com.orange.ods.app.ui.utilities.compat.PackageManagerCompat
-import com.orange.ods.app.ui.utilities.extension.versionCode
-import com.orange.ods.extension.ifNotNull
-import com.orange.ods.extension.orElse
 import com.orange.ods.module.about.configuration.OdsAboutModuleConfiguration
+import com.orange.ods.module.about.utilities.VersionHelper
 
 @Composable
 fun aboutConfiguration() = OdsAboutModuleConfiguration(
     appName = stringResource(id = R.string.about_app_name),
-    appVersion = getVersion(LocalContext.current),
+    appVersion = VersionHelper.getFromPackageInfo(context = LocalContext.current),
     appDescription = stringResource(id = R.string.about_description)
 )
-
-private fun getVersion(context: Context): String {
-    val packageInfo = ifNotNull(context.packageManager, context.packageName) { packageManager, packageName ->
-        PackageManagerCompat.getPackageInfo(packageManager, packageName, 0)
-    }
-    return packageInfo?.let {
-        String.format(context.resources.getString(R.string.about_app_version), packageInfo.versionName, packageInfo.versionCode())
-    }.orElse {
-        context.resources.getString(R.string.about_app_version)
-    }
-}
