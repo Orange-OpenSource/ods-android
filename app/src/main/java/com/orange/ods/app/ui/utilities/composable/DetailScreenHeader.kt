@@ -31,9 +31,10 @@ import com.orange.ods.compose.text.OdsTextBody1
 
 @Composable
 fun DetailScreenHeader(
+    @StringRes descriptionRes: Int,
     @DrawableRes imageRes: Int,
     imageAlignment: Alignment = Alignment.Center,
-    @StringRes descriptionRes: Int
+    imageContentScale: ContentScale = ContentScale.Fit
 ) {
     Image(
         painter = painterResource(id = imageRes),
@@ -41,7 +42,7 @@ fun DetailScreenHeader(
             .fillMaxWidth()
             .height(190.dp)
             .background(Color(DrawableManager.ImageBackgroundColor)),
-        contentScale = ContentScale.Fit,
+        contentScale = imageContentScale,
         contentDescription = null,
         alignment = imageAlignment
     )
