@@ -32,6 +32,7 @@ import androidx.compose.ui.platform.LocalConfiguration
 import androidx.compose.ui.text.input.TextFieldValue
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
+import androidx.navigation.NavController
 import androidx.navigation.NavGraphBuilder
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
@@ -212,7 +213,7 @@ private fun MainTabs(mainTabsState: MainTabsState) {
 }
 
 private fun NavGraphBuilder.mainNavGraph(
-    navController: AppNavController,
+    navController: NavController,
     upPress: () -> Unit,
     searchedText: MutableState<TextFieldValue>
 ) {

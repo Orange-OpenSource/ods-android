@@ -15,6 +15,7 @@ import androidx.annotation.StringRes
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
+import androidx.navigation.NavController
 import androidx.navigation.NavGraphBuilder
 import androidx.navigation.compose.composable
 import com.orange.ods.app.R
@@ -42,7 +43,7 @@ fun MainBottomNavigation(items: Array<BottomNavigationSections>, currentRoute: S
     )
 }
 
-fun NavGraphBuilder.addBottomNavigationGraph(navController: AppNavController) {
+fun NavGraphBuilder.addBottomNavigationGraph(navController: NavController) {
     composable(BottomNavigationSections.Guidelines.route) { from ->
         LocalMainTopAppBarManager.current.updateTopAppBar(MainTopAppBarState.DefaultWithSearchActionConfiguration)
         GuidelinesScreen(onGuidelineClick = { route -> navController.navigateToElement(route, null, from) })

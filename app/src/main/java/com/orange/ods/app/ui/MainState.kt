@@ -15,7 +15,9 @@ import androidx.compose.runtime.MutableState
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.saveable.rememberSaveable
+import androidx.navigation.NavHostController
 import androidx.navigation.compose.currentBackStackEntryAsState
+import androidx.navigation.compose.rememberNavController
 
 /**
  * Destinations used in the [MainScreen].
@@ -39,7 +41,7 @@ object MainDestinations {
 @Composable
 fun rememberMainState(
     themeState: ThemeState,
-    navController: AppNavController = rememberAppNavController(),
+    navController: NavHostController = rememberNavController(),
     topAppBarState: MainTopAppBarState = rememberMainTopAppBarState(),
     uiFramework: MutableState<UiFramework> = rememberSaveable { mutableStateOf(UiFramework.Compose) }
 ) =
@@ -49,7 +51,7 @@ fun rememberMainState(
 
 class MainState(
     val themeState: ThemeState,
-    val navController: AppNavController,
+    val navController: NavHostController,
     val topAppBarState: MainTopAppBarState,
     val uiFramework: MutableState<UiFramework>
 ) {
