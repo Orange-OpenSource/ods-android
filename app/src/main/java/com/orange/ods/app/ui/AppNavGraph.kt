@@ -11,6 +11,7 @@
 package com.orange.ods.app.ui
 
 import androidx.navigation.NavBackStackEntry
+import androidx.navigation.NavController
 import androidx.navigation.NavGraphBuilder
 import androidx.navigation.compose.composable
 import com.orange.ods.app.ui.components.addComponentsGraph
@@ -29,11 +30,11 @@ object MainNavigation {
  * Navigation graph of the application.
  */
 fun NavGraphBuilder.appNavGraph(
-    navController: AppNavController,
+    navController: NavController,
     navigateToElement: (String, Long?, NavBackStackEntry) -> Unit,
     upPress: () -> Unit
 ) {
-    addBottomBarGraph(navigateToElement)
+    addBottomBarGraph(navController)
 
     addGuidelinesGraph()
     addComponentsGraph(navController, upPress)
