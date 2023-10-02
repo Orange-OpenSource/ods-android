@@ -143,7 +143,6 @@ dependencies {
     implementation(Dependencies.dataStorePreferences)
     implementation(platform(Dependencies.firebaseBom))
     implementation(Dependencies.firebaseCrashlytics)
-    implementation(Dependencies.gson)
     implementation(Dependencies.hiltAndroid)
     kapt(Dependencies.hiltCompiler)
     implementation(Dependencies.kotlinReflect)
