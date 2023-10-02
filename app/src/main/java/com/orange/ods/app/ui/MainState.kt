@@ -17,11 +17,14 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.lifecycle.Lifecycle
 import androidx.navigation.NavBackStackEntry
+import androidx.navigation.NavHostController
 import androidx.navigation.compose.currentBackStackEntryAsState
+import androidx.navigation.compose.rememberNavController
+
 
 class MainState(
     val themeState: ThemeState,
-    val navController: AppNavController,
+    val navController: NavHostController,
     val appBarState: AppBarState,
     val uiFramework: MutableState<UiFramework>
 ) {
@@ -69,7 +72,7 @@ class MainState(
 @Composable
 fun rememberMainState(
     themeState: ThemeState,
-    navController: AppNavController = rememberAppNavController(),
+    navController: NavHostController = rememberNavController(),
     appBarState: AppBarState = rememberAppBarState(navController),
     uiFramework: MutableState<UiFramework> = rememberSaveable { mutableStateOf(UiFramework.Compose) }
 ) = remember(themeState, navController, appBarState, uiFramework) {

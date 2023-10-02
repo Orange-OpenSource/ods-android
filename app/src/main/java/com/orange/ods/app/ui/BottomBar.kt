@@ -15,7 +15,7 @@ import androidx.annotation.StringRes
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
-import androidx.navigation.NavBackStackEntry
+import androidx.navigation.NavController
 import androidx.navigation.NavGraphBuilder
 import androidx.navigation.compose.composable
 import com.orange.ods.app.R
@@ -42,15 +42,15 @@ fun BottomBar(items: Array<BottomBarItem>, currentRoute: String, navigateToRoute
     )
 }
 
-fun NavGraphBuilder.addBottomBarGraph(navigateToElement: (String, Long?, NavBackStackEntry) -> Unit) {
+fun NavGraphBuilder.addBottomBarGraph(navController: NavController) {
     composable(BottomBarItem.Guidelines.route) { from ->
-        GuidelinesScreen(onGuidelineClick = { route -> navigateToElement(route, null, from) })
+        GuidelinesScreen(onGuidelineClick = { route -> navController.navigateToElement(route, null, from) })
     }
     composable(BottomBarItem.Components.route) { from ->
-        ComponentsScreen(onComponentClick = { id -> navigateToElement(ComponentsNavigation.ComponentDetailRoute, id, from) })
+        ComponentsScreen(onComponentClick = { id -> navController.navigateToElement(ComponentsNavigation.ComponentDetailRoute, id, from) })
     }
     composable(BottomBarItem.Modules.route) { from ->
-        ModulesScreen(onModuleClick = { route -> navigateToElement(route, null, from) })
+        ModulesScreen(onModuleClick = { route -> navController.navigateToElement(route, null, from) })
     }
 
 }

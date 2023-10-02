@@ -11,11 +11,13 @@
 package com.orange.ods.app.ui.components
 
 import androidx.compose.runtime.remember
+import androidx.navigation.NavController
 import androidx.navigation.NavGraphBuilder
 import androidx.navigation.NavType
 import androidx.navigation.compose.composable
 import androidx.navigation.navArgument
-import com.orange.ods.app.ui.AppNavController
+import com.orange.ods.app.ui.navigateToElement
+
 
 object ComponentsNavigation {
     const val ComponentDetailRoute = "component"
@@ -26,7 +28,7 @@ object ComponentsNavigation {
     const val ComponentVariantIdKey = "componentVariantId"
 }
 
-fun NavGraphBuilder.addComponentsGraph(navController: AppNavController, upPress: () -> Unit) {
+fun NavGraphBuilder.addComponentsGraph(navController: NavController, upPress: () -> Unit) {
 
     composable(
         "${ComponentsNavigation.ComponentDetailRoute}/{${ComponentsNavigation.ComponentIdKey}}",
@@ -70,6 +72,5 @@ fun NavGraphBuilder.addComponentsGraph(navController: AppNavController, upPress:
         component?.let {
             component.demoScreen(null, upPress)
         }
-
     }
 }
