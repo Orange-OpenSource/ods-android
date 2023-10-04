@@ -141,10 +141,10 @@
     <!-- Components Buttons -->
     <string name="component_buttons">Buttons</string>
     <string name="component_buttons_description">A button allows a user to perform an action or to navigate to another page. It contains a text label and a supporting icon can be displayed.</string>
-    <string name="component_buttons_highest_emphasis">Highest emphasis buttons</string>
     <string name="component_buttons_high_emphasis">High emphasis buttons</string>
     <string name="component_buttons_medium_emphasis">Medium emphasis buttons</string>
     <string name="component_buttons_low_emphasis">Low emphasis buttons</string>
+    <string name="component_buttons_lowest_emphasis">Lowest emphasis buttons</string>
     <string name="component_buttons_functional">Functional buttons</string>
     <string name="component_buttons_text_toggle_group_same_weight">Same items weight</string>
 
