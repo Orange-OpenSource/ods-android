@@ -64,7 +64,7 @@ fun OdsDropdownMenu(
         modifier = modifier.background(OdsTheme.colors.surface),
         offset = offset,
         properties = properties,
-        content = { items.forEach { it.Content(onDismissRequest) } }
+        content = { items.forEach { it.Content(OdsDropdownMenuItem.ExtraParameters(onDismissRequest)) } }
     )
 }
 
@@ -85,7 +85,9 @@ class OdsDropdownMenuItem private constructor(
     val enabled: Boolean,
     val divider: Boolean,
     val onClick: () -> Unit
-) : OdsComponentContent() {
+) : OdsComponentContent<OdsDropdownMenuItem.ExtraParameters>() {
+
+    data class ExtraParameters(val onDismissRequest: () -> Unit) : OdsComponentContent.ExtraParameters()
 
     /**
      * Creates an instance of [OdsDropdownMenuItem].
@@ -153,20 +155,12 @@ class OdsDropdownMenuItem private constructor(
         onClick: () -> Unit
     ) : this(text, icon as Any?, enabled, divider, onClick)
 
-    private var onDismissRequest: () -> Unit = {}
-
-    @Composable
-    internal fun Content(onDismissRequest: () -> Unit) {
-        this.onDismissRequest = onDismissRequest
-        Content()
-    }
-
     @Composable
     override fun Content(modifier: Modifier) {
         DropdownMenuItem(
             onClick = {
                 onClick()
-                onDismissRequest()
+                extraParameters.onDismissRequest()
             },
             enabled = enabled
         ) {

@@ -117,7 +117,7 @@ fun OdsLinearProgressIndicator(
  * An icon in an [OdsLinearProgressIndicator].
  * It is a non-clickable button.
  */
-class OdsLinearProgressIndicatorIcon : OdsComponentIcon {
+class OdsLinearProgressIndicatorIcon : OdsComponentIcon<Nothing> {
 
     /**
      * Creates an instance of [OdsLinearProgressIndicatorIcon].

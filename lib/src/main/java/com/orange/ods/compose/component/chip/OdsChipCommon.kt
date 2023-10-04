@@ -31,7 +31,7 @@ import com.orange.ods.compose.component.content.OdsComponentImage
 /**
  * A leading icon in an [OdsChip].
  */
-class OdsChipLeadingIcon : OdsComponentIcon {
+class OdsChipLeadingIcon : OdsComponentIcon<Nothing> {
 
     /**
      * Creates an instance of [OdsChipLeadingIcon].
@@ -66,7 +66,7 @@ class OdsChipLeadingIcon : OdsComponentIcon {
 /**
  * A leading avatar in an [OdsChip].
  */
-class OdsChipLeadingAvatar : OdsComponentImage {
+class OdsChipLeadingAvatar : OdsComponentImage<Nothing> {
 
     /**
      * Creates an instance of [OdsChipLeadingAvatar].

@@ -31,7 +31,7 @@ import com.orange.ods.compose.component.menu.OdsDropdownMenuItem
 import com.orange.ods.compose.theme.OdsTheme
 
 @Composable
-internal fun OdsTopAppBarActions(actions: List<OdsComponentContent>, overflowMenuActions: List<OdsTopAppBarOverflowMenuActionItem>) {
+internal fun OdsTopAppBarActions(actions: List<OdsComponentContent<*>>, overflowMenuActions: List<OdsTopAppBarOverflowMenuActionItem>) {
     val maxTotalActionCount = 3
     val maxActionCount = if (overflowMenuActions.isNotEmpty()) maxTotalActionCount - 1 else maxTotalActionCount
     actions.take(maxActionCount).forEach { it.Content() }
@@ -53,7 +53,7 @@ internal fun OdsTopAppBarActions(actions: List<OdsComponentContent>, overflowMen
 /**
  * A navigation icon in an [OdsTopAppBar].
  */
-class OdsTopAppBarNavigationIcon : OdsComponentIcon {
+class OdsTopAppBarNavigationIcon : OdsComponentIcon<Nothing> {
 
     /**
      * Creates an instance of [OdsTopAppBarNavigationIcon].
@@ -86,7 +86,7 @@ class OdsTopAppBarNavigationIcon : OdsComponentIcon {
 /**
  * An action button displayed in an [OdsTopAppBar].
  */
-open class OdsTopAppBarActionButton : OdsComponentIcon {
+open class OdsTopAppBarActionButton : OdsComponentIcon<Nothing> {
 
     /**
      * Creates an instance of [OdsTopAppBarActionButton].

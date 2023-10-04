@@ -45,7 +45,7 @@ internal fun OdsCard(modifier: Modifier, onClick: (() -> Unit)?, content: @Compo
  * @param text Text of the button.
  * @param onClick Will be called when the user clicks the button.
  */
-class OdsCardButton(private val text: String, private val onClick: () -> Unit) : OdsComponentContent() {
+class OdsCardButton(private val text: String, private val onClick: () -> Unit) : OdsComponentContent<Nothing>() {
 
     @Composable
     override fun Content(modifier: Modifier) {
@@ -62,7 +62,7 @@ class OdsCardImage private constructor(
     alignment: Alignment = Alignment.Center,
     contentScale: ContentScale = ContentScale.Crop,
     private val backgroundColor: Color? = null
-) : OdsComponentImage(graphicsObject, contentDescription, alignment, contentScale) {
+) : OdsComponentImage<Nothing>(graphicsObject, contentDescription, alignment, contentScale) {
 
     /**
      * Creates an instance of [OdsCardImage].
