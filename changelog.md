@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased](https://github.com/Orange-OpenSource/ods-android/compare/0.15.1...develop)
 
+### Added
+
+- \[Lib\] Add `OdsModalDrawer` component documentation ([#652](https://github.com/Orange-OpenSource/ods-android/issues/652))
+
 ### Changed
 
 - \[App\] Change buttons name ([#647](https://github.com/Orange-OpenSource/ods-android/issues/647))

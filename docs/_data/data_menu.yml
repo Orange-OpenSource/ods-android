@@ -37,6 +37,8 @@ toc2:
         url: /components/Lists_docs
       - page: Menus
         url: /components/Menus_docs
+      - page: Modal Drawers
+        url: /components/ModalDrawers_docs
       - page: "Navigation: bottom"
         url: /components/NavigationBottom_docs
       - page: Progress indicators
