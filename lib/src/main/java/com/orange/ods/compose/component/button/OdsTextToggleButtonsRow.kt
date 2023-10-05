@@ -41,13 +41,14 @@ import com.orange.ods.compose.theme.OdsDisplaySurface
  * A group of toggle buttons. Only one option in a group of toggle buttons can be selected and active at a time.
  * Selecting one option deselects any other.
  *
- * @param textToggleButtons Contains the [OdsTextToggleButtonsRowItem] to display in the toggle group
- * @param selectedIndex The [textToggleButtons] list index of the selected button.
- * @param onSelectedIndexChange Callback to be invoked when the selection change.
- * @param modifier [Modifier] for this OdsTextToggleButtonsRow
- * @param sameItemsWeight if true, same weight of importance will be applied to each item, they will occupy the same width.
- * @param displaySurface allow to force the group display on a dark or light
- * surface. By default the appearance applied is based on the system night mode value.
+ * @param textToggleButtons [OdsTextToggleButtonsRowItem] to be displayed into the toggle group
+ * @param selectedIndex [textToggleButtons] list index of the selected button
+ * @param onSelectedIndexChange Callback to be invoked on selection change
+ * @param modifier [Modifier] to be applied to the toggle buttons row
+ * @param sameItemsWeight Controls the place occupied by each item. When `true`, same weight of importance will be applied to each item, they will occupy
+ * the same width.
+ * @param displaySurface [OdsDisplaySurface] to be applied to the button. It allows to force the button display on light or dark surface. By default,
+ * the appearance applied is based on the system night mode value.
  */
 @Composable
 @OdsComposable

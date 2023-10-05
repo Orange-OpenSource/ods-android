@@ -56,18 +56,16 @@ enum class OdsButtonStyle {
  * Contained buttons are high-emphasis, distinguished by their use of elevation and fill. They
  * contain actions that are primary to your app.
  *
- * @param text Text displayed in the button
- * @param onClick Will be called when the user clicks the button
- * @param modifier Modifier to be applied to the button
- * @param icon Icon displayed in the button before the text. If `null`, no icon will be displayed.
- * @param enabled Controls the enabled state of the button. When `false`, this button will not
- * be clickable
- * @param style Controls the style of the button. Use `OdsButtonStyle.Primary` for an highlighted button style. To get a green/red button
- * style on contained buttons, you can use `OdsButtonStyle.FunctionalPositive` or `OdsButtonStyle.FunctionalNegative` values.
- * @param displaySurface optional allow to force the button display on a dark or light
- * surface. By default the appearance applied is based on the system night mode value.
+ * @param text Text to be displayed into the button
+ * @param onClick Callback to be called when the button is clicked
+ * @param modifier [Modifier] to be applied to the button
+ * @param icon Icon to be displayed in the button before the text
+ * @param enabled Controls the enabled state of the button. When `false`, this button will not be clickable.
+ * @param style Style to be applied to the button. Set it to [OdsButtonStyle.Primary] for an highlighted button style or use
+ * [OdsButtonStyle.FunctionalPositive]/[OdsButtonStyle.FunctionalNegative] for a functional green/red button style.
+ * @param displaySurface [OdsDisplaySurface] to be applied to the button. It allows to force the button display on light or dark surface.
+ * By default the appearance applied is based on the system night mode value.
  */
-
 @Composable
 @OdsComposable
 fun OdsButton(

@@ -11,9 +11,9 @@ description: Buttons allow users to take actions, and make choices, with a singl
 * [Specifications references](#specifications-references)
 * [Accessibility](#accessibility)
 * [Variants](#variants)
+    * [Contained button](#contained-button)
     * [Text button](#text-button)
     * [Outlined button](#outlined-button)
-    * [Contained button](#contained-button)
     * [Text toggle buttons group](#text-toggle-buttons-group)
     * [Icon button](#icon-button)
     * [Icon toggle button](#icon-toggle-button)
@@ -26,7 +26,6 @@ description: Buttons allow users to take actions, and make choices, with a singl
 
 - [Design System Manager - Buttons](https://system.design.orange.com/0c1af118d/p/06a393-buttons/b/530521)
 - [Material Design - Buttons](https://material.io/components/buttons/)
-- Technical documentation soon available
 
 ## Accessibility
 
@@ -37,93 +36,6 @@ TalkBack. Text rendered in buttons is automatically provided to accessibility se
 content labels are usually unnecessary.
 
 ## Variants
-
-### Text button
-
-Text buttons are typically used for less-pronounced actions, including those located in dialogs and
-cards. In cards, text buttons help maintain an emphasis on card content.
-
-![TextButton](images/button_text_light.png) ![TextButton dark](images/button_text_dark.png)
-
-> **Jetpack Compose implementation**
-
-Use the `OdsTextButton` composable:
-
-```kotlin
-OdsTextButton(
-    text = "Text button",
-    onClick = {},
-    enabled = true,
-    icon = OdsButtonIcon(painterResource(R.drawable.ic_coffee)), // Optional, line can be removed if you don't need any icon
-    style = OdsTextButtonStyle.Primary
-)
-```
-
-> **XML implementation**
-
-To create a Text Button using Orange theme you will need to apply
-style `@style/Widget.Orange.Button.Text` on your `Button` layout
-
-In the layout:
-
-```xml
-
-<Button android:layout_width="wrap_content" android:layout_height="wrap_content"
-    android:text="Text button" style="@style/Widget.Orange.Button.Text" />
-```
-
-To create a **Text Button having an icon** using Orange theme you will need to apply
-style `@style/Widget.Orange.Button.Text.Icon` on your `Button` layout
-
-```xml
-
-<Button android:layout_width="wrap_content" android:layout_height="wrap_content"
-    android:text="Text button with icon" app:icon="@drawable/ic_add_24dp"
-    style="@style/Widget.Orange.Button.Text.Icon" />
-```
-
-### Outlined button
-
-Outlined buttons are medium-emphasis buttons. They contain actions that are important, but aren’t
-the primary action in an app.
-
-![ButtonOutlined](images/button_outlined_light.png) ![ButtonOutlined dark](images/button_outlined_dark.png)
-
-> **Jetpack Compose implementation**
-
-Use the `OdsOutlinedButton` composable:
-
-```kotlin
-OdsOutlinedButton(
-    text = "Outlined button",
-    onClick = {},
-    enabled = true,
-    icon = OdsButtonIcon(painterResource(R.drawable.ic_coffee)) // Optional, line can be removed if you don't need any icon
-)
-```
-
-> **XML implementation**
-
-To create an Outlined Button using Orange theme you will need to apply
-style `@style/Widget.Orange.Button.Outlined` on your `Button` layout.
-
-In the layout:
-
-```xml
-
-<Button android:layout_width="wrap_content" android:layout_height="wrap_content"
-    android:text="Outlined button" style="@style/Widget.Orange.Button.Outlined" />
-```
-
-To create an **Outlined Button having an icon** using Orange theme you will need to apply
-style `@style/Widget.Orange.Button.Outlined.Icon` on your `Button` layout.
-
-```xml
-
-<Button android:layout_width="wrap_content" android:layout_height="wrap_content"
-    android:text="Outlined button with icon" app:icon="@drawable/ic_add_24dp"
-    style="@style/Widget.Orange.Button.Outlined.Icon" />
-```
 
 ### Contained button
 
@@ -140,7 +52,7 @@ Functional negative:
 
 ![ContainedButton negative light](images/button_contained_negative_light.png) ![ContainedButton negative dark](images/button_contained_negative_dark.png)
 
-> **Jetpack Compose implementation**
+#### Jetpack Compose implementation
 
 Use the `OdsButton` composable:
 
@@ -166,38 +78,90 @@ OdsButton(
 )
 ```
 
-> **XML implementation**
+Parameter | Default value | Description
+-- | -- | --
+`text: String` | | Text to be displayed into the button
+`onClick: () -> Unit` | | Callback to be called when the button is clicked
+`modifier: Modifier` | `Modifier` | `Modifier` to be applied to the button
+`icon: OdsButtonIcon?` | `null` | Icon to be displayed in the button before the text
+`enabled: Boolean` | `true` | Controls the enabled state of the button. When `false`, this button will not be clickable.
+`style: OdsButtonStyle` | `OdsButtonStyle.Default` | Style to be applied to the button. Set it to `OdsButtonStyle.Primary` for an highlighted button style or use `OdsButtonStyle.FunctionalPositive`/ `OdsButtonStyle.FunctionalNegative` for a functional green/red button style.
+`displaySurface: OdsDisplaySurface` | `OdsDisplaySurface.Default` | `OdsDisplaySurface` to be applied to the button. It allows to force the button display on light or dark surface. By default, the appearance applied is based on the system night mode value.
+{:.table}
 
-_**Note** In XML, the contained button is the default style if the style is not set._
+#### XML implementation
 
-To create a Contained Button using Orange theme you will need to apply
-style `@style/Widget.Orange.Button.Contained` on your `Button` layout
+_Soon available_
 
-In the layout:
+### Text button
 
-```xml
+Text buttons are typically used for less-pronounced actions, including those located in dialogs and
+cards. In cards, text buttons help maintain an emphasis on card content.
 
-<Button android:layout_width="wrap_content" android:layout_height="wrap_content"
-    android:text="Contained button" style="@style/Widget.Orange.Button.Contained" />
+![TextButton](images/button_text_light.png) ![TextButton dark](images/button_text_dark.png)
+
+#### Jetpack Compose implementation
+
+Use the `OdsTextButton` composable:
+
+```kotlin
+OdsTextButton(
+    text = "Text button",
+    onClick = {},
+    enabled = true,
+    icon = OdsButtonIcon(painterResource(R.drawable.ic_coffee)), // Optional, line can be removed if you don't need any icon
+    style = OdsTextButtonStyle.Primary
+)
 ```
 
-or
+Parameter | Default value | Description
+-- | -- | --
+`text: String` | | Text to be displayed into the button
+`onClick: () -> Unit` | | Callback to be called when the button is clicked
+`modifier: Modifier` | `Modifier` | `Modifier` to be applied to the button
+`icon: OdsButtonIcon?` | `null` | Icon to be displayed in the button before the text
+`enabled: Boolean` | `true` | Controls the enabled state of the button. When `false`, this button will not be clickable.
+`style: OdsTextButtonStyle` | `OdsTextButtonStyle.Default` | Style to be applied to the button. By default `onSurface` color is used for text color. Use `OdsTextButtonStyle.Primary` for an highlighted text color.
+`displaySurface: OdsDisplaySurface` | `OdsDisplaySurface.Default` | `OdsDisplaySurface` to be applied to the button. It allows to force the button display on light or dark surface. By default, the appearance applied is based on the system night mode value.
+{:.table}
 
-```xml
+#### XML implementation
 
-<Button android:layout_width="wrap_content" android:layout_height="wrap_content"
-    android:text="Contained button" />
+_Soon available_
+
+### Outlined button
+
+Outlined buttons are medium-emphasis buttons. They contain actions that are important, but aren’t
+the primary action in an app.
+
+![ButtonOutlined](images/button_outlined_light.png) ![ButtonOutlined dark](images/button_outlined_dark.png)
+
+#### Jetpack Compose implementation
+
+Use the `OdsOutlinedButton` composable:
+
+```kotlin
+OdsOutlinedButton(
+    text = "Outlined button",
+    onClick = {},
+    enabled = true,
+    icon = OdsButtonIcon(painterResource(R.drawable.ic_coffee)) // Optional, line can be removed if you don't need any icon
+)
 ```
 
-To create a **Contained Button having an icon** using Orange theme you will need to apply
-style `@style/Widget.Orange.Button.Contained.Icon` on your `Button` layout
+Parameter | Default value | Description
+-- | -- | --
+`text: String` | | Text to be displayed into the button
+`onClick: () -> Unit` | | Callback to be called when the button is clicked
+`modifier: Modifier` | `Modifier` | `Modifier` to be applied to the button
+`icon: OdsButtonIcon?` | `null` | Icon to be displayed in the button before the text
+`enabled: Boolean` | `true` | Controls the enabled state of the button. When `false`, this button will not be clickable.
+`displaySurface: OdsDisplaySurface` | `OdsDisplaySurface.Default` | `OdsDisplaySurface` to be applied to the button. It allows to force the button display on light or dark surface. By default, the appearance applied is based on the system night mode value.
+{:.table}
 
-```xml
+#### XML implementation
 
-<Button android:layout_width="wrap_content" android:layout_height="wrap_content"
-    android:text="Contained button with icon" app:icon="@drawable/ic_add_24dp"
-    style="@style/Widget.Orange.Button.Contained.Icon" />
-```
+_Soon available_
 
 ### Text toggle buttons group
 
@@ -206,7 +170,7 @@ Selecting one option deselects any other.
 
 ![Button text toggle group light](images/button_text_toggle_group_light.png) ![Button text toggle group dark](images/button_text_toggle_group_dark.png)
 
-> **Jetpack Compose implementation**
+#### Jetpack Compose implementation
 
 Use the `OdsTextToggleButtonsRow` composable:
 
@@ -224,6 +188,20 @@ OdsTextToggleButtonsRow(
 )
 ```
 
+Parameter | Default value | Description
+-- | -- | --
+`textToggleButtons: List<OdsTextToggleButtonsRowItem>` | | `OdsTextToggleButtonsRowItem` to be displayed into the toggle group
+`selectedIndex: Int` | | The `textToggleButtons` list index of the selected button
+`onSelectedIndexChange: (Int) -> Unit` | | Callback to be invoked on selection change
+`modifier: Modifier` | `Modifier` | `Modifier` to be applied to the toggle buttons row
+`sameItemsWeight: Boolean` | `false` | Controls the place occupied by each item. When `true`, same weight of importance will be applied to each item, they will occupy the same width.
+`displaySurface: OdsDisplaySurface` | `OdsDisplaySurface.Default` | `OdsDisplaySurface` to be applied to the button. It allows to force the button display on light or dark surface. By default, the appearance applied is based on the system night mode value.
+{:.table}
+
+#### XML implementation
+
+_Soon available_
+
 ### Icon button
 
 An icon button is a clickable icon, used to represent actions. This component is typically used
@@ -231,7 +209,7 @@ inside an App Bar for the navigation icon / actions.
 
 ![OdsIconButton](images/button_icon_light.png) ![OdsIconButton dark](images/button_icon_dark.png)
 
-> **Jetpack Compose implementation**
+#### Jetpack Compose implementation
 
 Use the `OdsIconButton` composable:
 
@@ -247,6 +225,19 @@ OdsIconButton(
 )
 ```
 
+Parameter | Default value | Description
+-- | -- | --
+`icon: OdsIconButtonIcon` | | Icon to be drawn into the button
+`onClick: () -> Unit` | | Callback to be invoked when the button is clicked
+`modifier: Modifier` | `Modifier` | `Modifier` to be applied to the button
+`enabled: Boolean` | `true` | Controls the enabled state of the button. When `false`, this button will not be clickable.
+`displaySurface: OdsDisplaySurface` | `OdsDisplaySurface.Default` | `OdsDisplaySurface` to be applied to the button. It allows to force the button display on light or dark surface. By default, the appearance applied is based on the system night mode value.
+{:.table}
+
+#### XML implementation
+
+_Soon available_
+
 ### Icon toggle button
 
 An icon button with two states, for icons that can be toggled 'on' and 'off', such as a bookmark
@@ -254,7 +245,7 @@ icon, or a navigation icon that opens a drawer.
 
 ![Button icon toggle light](images/button_icon_toggle_light.png) ![Button icon toggle dark](images/button_icon_toggle_dark.png)
 
-> **Jetpack Compose implementation**
+#### Jetpack Compose implementation
 
 Use the `OdsIconToggleButton` composable:
 
@@ -270,6 +261,21 @@ OdsIconToggleButton(
 )
 ```
 
+Parameter | Default value | Description
+-- | -- | --
+`checked: Boolean` | | Controls the checked state of the button
+`onCheckedChange: (Boolean) -> Unit` | | Callback to be invoked when the button is checked
+`uncheckedIcon: OdsIconButtonIcon` | | Icon to be displayed when the button is unchecked
+`checkedIcon: OdsIconButtonIcon` | | Icon to be displayed when the button is checked
+`modifier: Modifier` | `Modifier` | `Modifier` to be applied to the button
+`enabled: Boolean` | `true` | Controls the enabled state of the button. When `false`, this button will not be clickable.
+`displaySurface: OdsDisplaySurface` | `OdsDisplaySurface.Default` | `OdsDisplaySurface` to be applied to the button. It allows to force the button display on light or dark surface. By default, the appearance applied is based on the system night mode value.
+{:.table}
+
+#### XML implementation
+
+_Soon available_
+
 ### Icon toggle buttons group
 
 A group of toggle buttons. Only one option in a group of toggle buttons can be selected and active
@@ -278,7 +284,7 @@ Selecting one option deselects any other.
 
 ![Button icon toggle group light](images/button_icon_toggle_group_light.png) ![Button icon toggle group dark](images/button_icon_toggle_group_dark.png)
 
-> **Jetpack Compose implementation**
+#### Jetpack Compose implementation
 
 Use the `OdsIconToggleButtonsRow` composable:
 
@@ -301,45 +307,18 @@ OdsIconToggleButtonsRow(
 )
 ```
 
-> **XML implementation**
+Parameter | Default value | Description
+-- | -- | --
+`icons: List<OdsIconToggleButtonsRowIcon>` | | `OdsIconToggleButtonsRowIcon` list to be displayed into the toggle group
+`selectedIndex: Int` | | `icons` list index of the selected button
+`onSelectedIndexChange: (Int) -> Unit` | | Callback to be invoked on selection change
+`modifier: Modifier` | `Modifier` | `Modifier` to be applied to the toggle buttons group
+`displaySurface: OdsDisplaySurface` | `OdsDisplaySurface.Default` | `OdsDisplaySurface` to be applied to the button. It allows to force the button display on light or dark surface. By default, the appearance applied is based on the system night mode value.
+{:.table}
 
-API and source code:
+#### XML implementation
 
-* `MaterialButtonToggleGroup`: [Class description](https://developer.android.com/reference/com/google/android/material/button/MaterialButtonToggleGroup)
-  , [Class source](https://github.com/material-components/material-components-android/tree/master/lib/java/com/google/android/material/button/MaterialButtonToggleGroup.java)
-* `MaterialButton`: [Class description](https://developer.android.com/reference/com/google/android/material/button/MaterialButton)
-  , [Class source](https://github.com/material-components/material-components-android/tree/master/lib/java/com/google/android/material/button/MaterialButton.java)
-
-In the layout:
-
-```xml
-
-<com.google.android.material.button.MaterialButtonToggleGroup android:layout_width="wrap_content"
-    android:layout_height="wrap_content">
-    <Button android:layout_width="wrap_content" android:layout_height="wrap_content"
-        android:text="Button 1" style="@style/Widget.Orange.Button.Outlined" />
-    <Button android:layout_width="wrap_content" android:layout_height="wrap_content"
-        android:text="Button 2" style="@style/Widget.Orange.Button.Outlined" />
-    <Button android:layout_width="wrap_content" android:layout_height="wrap_content"
-        android:text="Button 3" style="@style/Widget.Orange.Button.Outlined" />
-</com.google.android.material.button.MaterialButtonToggleGroup>
-```
-
-To create an **icon-only toggle button** using Orange theme you will need to apply
-style `@style/Widget.Orange.Button.Outlined.IconOnly` on your `Button` layout.
-
-```xml
-
-<com.google.android.material.button.MaterialButtonToggleGroup android:layout_width="wrap_content"
-    android:layout_height="wrap_content">
-    <Button android:layout_width="wrap_content" android:layout_height="wrap_content"
-        android:text="Button 1" style="@style/Widget.Orange.Button.Outlined.IconOnly" />
-    <Button android:layout_width="wrap_content" android:layout_height="wrap_content"
-        android:text="Button 2" style="@style/Widget.Orange.Button.Outlined.IconOnly" />
-    <Button android:layout_width="wrap_content" android:layout_height="wrap_content"
-        android:text="Button 3" style="@style/Widget.Orange.Button.Outlined.IconOnly" />
-</com.google.android.material.button.MaterialButtonToggleGroup>
-```
+_Soon available_
 
 ## Component specific tokens
 
