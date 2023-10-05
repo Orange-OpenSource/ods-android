@@ -27,7 +27,6 @@ import com.orange.ods.module.about.configuration.OdsAboutShareData
 class AboutCustomizationViewModel : ViewModel() {
 
     val additionalLinksCount = mutableStateOf(0)
-
     var selectedOptions by mutableStateOf(emptyList<AboutCustomizationOptions>())
 
     @Composable
