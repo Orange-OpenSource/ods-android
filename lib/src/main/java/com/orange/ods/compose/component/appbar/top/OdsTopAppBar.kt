@@ -10,7 +10,6 @@
 
 package com.orange.ods.compose.component.appbar.top
 
-import androidx.compose.foundation.layout.Row
 import androidx.compose.material.AppBarDefaults
 import androidx.compose.material.Text
 import androidx.compose.material.TopAppBar
@@ -36,13 +35,12 @@ import com.orange.ods.compose.theme.OdsTheme
  * centering the title, use the other TopAppBar overload for a generic TopAppBar with no
  * restriction on content.
  *
- * @param title The title to be displayed in the center of the TopAppBar
- * @param modifier The [Modifier] to be applied to this TopAppBar
- * @param navigationIcon Optional navigation icon displayed at the start of the TopAppBar.
- * @param actions The actions displayed at the end of the TopAppBar.
- * The default layout here is a [Row], so icons inside will be placed horizontally.
- * @param overflowMenuActions The actions displayed in the overflow menu.
- * @param elevated True to set an elevation to the top app bar (shadow displayed), false otherwise.
+ * @param title Title to be displayed in the center of the top app bar
+ * @param modifier [Modifier] to be applied to the top app bar
+ * @param navigationIcon Icon to be displayed at the start of the top app bar
+ * @param actions Actions to be displayed at the end of the top app bar. The default layout here is a [androidx.compose.foundation.layout.Row], so icons inside will be placed horizontally.
+ * @param overflowMenuActions Actions to be displayed in the overflow menu
+ * @param elevated True to set an elevation to the top app bar (shadow displayed), false otherwise
  */
 @Composable
 @OdsComposable
