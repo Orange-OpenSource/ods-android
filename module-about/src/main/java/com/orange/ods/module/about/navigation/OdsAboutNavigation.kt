@@ -10,6 +10,9 @@
 
 package com.orange.ods.module.about.navigation
 
+import androidx.compose.ui.platform.LocalContext
+import androidx.lifecycle.ViewModelStoreOwner
+import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavController
 import androidx.navigation.NavGraphBuilder
 import androidx.navigation.NavOptions
@@ -19,10 +22,9 @@ import androidx.navigation.navArgument
 import androidx.navigation.navigation
 import com.orange.ods.module.about.OdsAboutHomeScreen
 import com.orange.ods.module.about.OdsAboutViewModel
-import com.orange.ods.module.about.configuration.LocalOdsAboutModuleConfiguration
 
 fun NavController.navigateToOdsAbout(navOptions: NavOptions? = null) {
-    this.navigate(OdsAboutDestinations.AboutRoute, navOptions)
+    navigate(OdsAboutDestinations.HomeRoute, navOptions)
 }
 
 /**
@@ -31,16 +33,15 @@ fun NavController.navigateToOdsAbout(navOptions: NavOptions? = null) {
  */
 fun NavGraphBuilder.aboutGraph(navController: NavController) {
     navigation(startDestination = OdsAboutDestinations.HomeRoute, route = OdsAboutDestinations.AboutRoute) {
-        composable(route = OdsAboutDestinations.HomeRoute) { navBackStackEntry ->
-            val configuration = LocalOdsAboutModuleConfiguration.current
-            val aboutViewModel = navBackStackEntry.sharedViewModel<OdsAboutViewModel>(navController = navController)
-            aboutViewModel.configureAboutModule(configuration)
-            OdsAboutHomeScreen(configuration = configuration, onAboutMenuItemClick = onAboutMenuItemClick(navController, configuration.menuItemById))
+        composable(route = OdsAboutDestinations.HomeRoute) {
+            val viewModelStoreOwner = LocalContext.current as ViewModelStoreOwner
+            val configuration = viewModel<OdsAboutViewModel>(viewModelStoreOwner).configuration
+            OdsAboutHomeScreen(configuration = configuration, onAboutMenuItemClick = onAboutMenuItemClick(navController, configuration?.menuItemById.orEmpty()))
         }
 
         composable(
             "${OdsAboutDestinations.FileItemRoute}/{${AboutItemIdKey}}",
             arguments = listOf(navArgument(AboutItemIdKey) { type = NavType.LongType })
-        ) { backStackEntry -> AboutFileScreen(navController = navController, navBackStackEntry = backStackEntry) }
+        ) { backStackEntry -> AboutFileScreen(navBackStackEntry = backStackEntry) }
     }
 }
