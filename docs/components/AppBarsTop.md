@@ -35,7 +35,7 @@ action performs.
 
 ### Regular top app bar
 
-#### Jetpack Compose
+#### Jetpack Compose implementation
 
 Add `OdsTopAppBar` composable to your Scaffold topBar:
 
@@ -83,7 +83,7 @@ _Not available_
 
 ### Large top app bar
 
-#### Jetpack Compose
+#### Jetpack Compose implementation
 
 First, you have to add this line in your application `build.gradle.kts` file cause this component relies on Compose Material 3 implementation:
 
