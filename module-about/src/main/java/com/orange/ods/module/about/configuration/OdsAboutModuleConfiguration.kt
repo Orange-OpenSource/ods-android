@@ -13,13 +13,9 @@ package com.orange.ods.module.about.configuration
 import androidx.annotation.DrawableRes
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember
-import androidx.compose.runtime.staticCompositionLocalOf
 import com.orange.ods.compose.component.appbar.top.OdsTopAppBar
 import com.orange.ods.compose.component.menu.OdsDropdownMenu
 import com.orange.ods.module.about.R
-
-val LocalOdsAboutModuleConfiguration =
-    staticCompositionLocalOf<OdsAboutModuleConfiguration> { error("CompositionLocal LocalOdsAboutModuleConfiguration not present") }
 
 /**
  * About module configuration.

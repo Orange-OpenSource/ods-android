@@ -30,10 +30,12 @@ import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.input.nestedscroll.nestedScroll
 import androidx.compose.ui.platform.LocalConfiguration
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.window.Dialog
+import androidx.lifecycle.ViewModelStoreOwner
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.compose.NavHost
 import com.google.accompanist.systemuicontroller.rememberSystemUiController
@@ -42,6 +44,7 @@ import com.orange.ods.app.domain.recipes.LocalCategories
 import com.orange.ods.app.domain.recipes.LocalRecipes
 import com.orange.ods.app.ui.about.aboutConfiguration
 import com.orange.ods.app.ui.components.tabs.tabs
+import com.orange.ods.app.ui.modules.about.AboutCustomizationViewModel
 import com.orange.ods.app.ui.utilities.extension.isDarkModeEnabled
 import com.orange.ods.app.ui.utilities.extension.isOrange
 import com.orange.ods.compose.component.listitem.OdsListItem
@@ -50,7 +53,8 @@ import com.orange.ods.compose.component.tab.OdsTabRow
 import com.orange.ods.compose.text.OdsTextH6
 import com.orange.ods.compose.theme.OdsTheme
 import com.orange.ods.extension.orElse
-import com.orange.ods.module.about.configuration.LocalOdsAboutModuleConfiguration
+import com.orange.ods.module.about.navigation.OdsAboutDestinations
+import com.orange.ods.module.about.odsAboutModule
 import com.orange.ods.theme.OdsThemeConfigurationContract
 import com.orange.ods.xml.theme.OdsXml
 import com.orange.ods.xml.utilities.extension.xml
@@ -95,8 +99,7 @@ fun MainScreen(themeConfigurations: Set<OdsThemeConfigurationContract>, mainView
         LocalOdsGuideline provides mainState.themeState.currentThemeConfiguration.guideline,
         LocalRecipes provides mainViewModel.recipes,
         LocalCategories provides mainViewModel.categories,
-        LocalUiFramework provides mainState.uiFramework,
-        LocalOdsAboutModuleConfiguration provides aboutConfiguration()
+        LocalUiFramework provides mainState.uiFramework
     ) {
         AppBarActionsHandler(navigate = mainState.navController::navigate, onChangeThemeActionClick = { changeThemeDialogVisible = true })
         OdsTheme(
@@ -115,6 +118,11 @@ fun MainScreen(themeConfigurations: Set<OdsThemeConfigurationContract>, mainView
                 modifier = Modifier
             }
 
+            val context = LocalContext.current
+            val aboutModule = odsAboutModule(context = context)
+            val aboutConfiguration = aboutConfiguration()
+            val aboutCustomizationViewModel = viewModel<AboutCustomizationViewModel>(context as ViewModelStoreOwner)
+            val customAboutConfiguration = aboutCustomizationViewModel.aboutModuleConfiguration()
             Scaffold(
                 modifier = modifier,
                 topBar = {
@@ -141,7 +149,12 @@ fun MainScreen(themeConfigurations: Set<OdsThemeConfigurationContract>, mainView
                         BottomBar(
                             items = mainState.bottomBarItems,
                             currentRoute = mainState.currentRoute!!,
-                            navigateToRoute = mainState::navigateToBottomBarRoute
+                            navigateToRoute = { route ->
+                                if (route == OdsAboutDestinations.HomeRoute) {
+                                    aboutModule.configuration = aboutConfiguration
+                                }
+                                mainState.navigateToBottomBarRoute(route)
+                            }
                         )
                     }
                 }
@@ -152,7 +165,11 @@ fun MainScreen(themeConfigurations: Set<OdsThemeConfigurationContract>, mainView
                     appNavGraph(
                         navController = mainState.navController,
                         navigateToElement = mainState::navigateToElement,
-                        upPress = mainState::upPress
+                        upPress = mainState::upPress,
+                        navigateToAboutModule = {
+                            aboutModule.configuration = customAboutConfiguration
+                            mainState.navController.navigate(OdsAboutDestinations.HomeRoute)
+                        }
                     )
                 }
 
