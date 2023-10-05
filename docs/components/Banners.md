@@ -41,7 +41,7 @@ Recommendation is available at the Orange Accessibility site
 
 ![Banner dark](images/banner_dark.png)
 
-> **Jetpack Compose implementation**
+### Jetpack Compose
 
 You can use the `OdsBanner` composable like this:
 
@@ -52,7 +52,7 @@ OdsBanner(
     button2Text = "Detail", // Optional
     image = painterResource(id = R.drawable.placeholder), // Optional
     imageContentDescription = "", // Optional
-    onButton1Click = { 
+    onButton1Click = {
         // Do something
     },
     onButton2Click = {
@@ -60,6 +60,19 @@ OdsBanner(
     }, // Optional
 )
 ```
+
+Parameter | Default value | Description
+-- | -- | --
+`message: String` | | Text to be displayed into the banner
+`firstButton: OdsBannerButton` | | Principal button to be displayed in the banner
+`modifier: Modifier` | `Modifier` | `Modifier` to be applied to the banner
+`image: OdsBannerImage?` | `null` | Image to be displayed in the banner in a circle shape
+`secondButton: OdsBannerButton?` | `null` | Secondary button to be displayed in the banner next to the principal one
+{:.table}
+
+### XML
+
+_Soon available_
 
 ## Component specific tokens
 
