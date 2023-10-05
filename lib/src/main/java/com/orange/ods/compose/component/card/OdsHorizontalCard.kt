@@ -41,16 +41,16 @@ import com.orange.ods.compose.theme.OdsTheme
  *
  * Cards contain content and actions about a single subject.
  *
- * @param title The title to be displayed in the card.
- * @param image The card image.
- * @param modifier Modifier to be applied to the layout of the card.
- * @param subtitle Optional subtitle to be displayed in the card.
- * @param text Optional text description to be displayed in the card. It is truncated to fit on 2 lines.
- * @param firstButton Optional first button in the card.
- * @param secondButton Optional second button in the card.
- * @param imagePosition Position of the image, it can be [OdsHorizontalCardImagePosition.Start] or [OdsHorizontalCardImagePosition.End] in the card. [OdsHorizontalCardImagePosition.Start] by default.
- * @param divider If true, a divider is displayed between card content and the action buttons. True by default.
- * @param onClick Optional click on the card itself.
+ * @param title Title to be displayed into the card
+ * @param image [OdsCardImage] to be displayed into the card
+ * @param modifier [Modifier] to be applied to the layout of the card
+ * @param subtitle Subtitle to be displayed into the card
+ * @param text Text to be displayed into the card
+ * @param firstButton First [OdsCardButton] to be displayed into the card
+ * @param secondButton Second [OdsCardButton] to be displayed into the card
+ * @param imagePosition Position of the image within the card, it can be set to `OdsHorizontalCardImagePosition.Start` or `OdsHorizontalCardImagePosition.End`. [OdsHorizontalCardImagePosition.Start] by default.
+ * @param divider Controls the divider display. If `true`, it will be displayed between the card content and the action buttons.
+ * @param onClick Callback to be called on card click
  */
 @Composable
 @OdsComposable

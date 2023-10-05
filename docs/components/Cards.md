@@ -23,7 +23,6 @@ description: Cards contain content and actions about a single subject.
 
 - [Design System Manager - Cards](https://system.design.orange.com/0c1af118d/p/272739-cards/b/991690)
 - [Material Design - Cards](https://material.io/components/cards/)
-- Technical documentation soon available
 
 ## Accessibility
 
@@ -31,22 +30,17 @@ Please follow [accessibility criteria for development](https://a11y-guidelines.o
 
 The contents within a card should follow their own accessibility guidelines, such as images having content descriptions set on them.
 
-If you have a draggable card, you should set an
-[`AccessibilityDelegate`](https://developer.android.com/reference/android/view/View.AccessibilityDelegate)
-on it, so that the behavior can be accessible via screen readers such as TalkBack.  
-See the [draggable card section](https://material.io/components/cards/android#making-a-card-draggable) section for more info.
-
 ## Variants
 
-The library offers several Composables for Jetpack Compose implementation. In XML, the library is only styling `MaterialCardView`.
+The library offers several Composables for Jetpack Compose implementation.
 
 ### Vertical image first card
 
 This is a full width card containing elements arranged vertically with an image as first element.
 
-  ![Vertical image first card light](images/card_vertical_image_first_light.png) ![Vertical image first card dark](images/card_vertical_image_first_dark.png)
+![Vertical image first card light](images/card_vertical_image_first_light.png) ![Vertical image first card dark](images/card_vertical_image_first_dark.png)
 
-> **Jetpack Compose implementation**
+#### Jetpack Compose implementation
 
 In your composable screen you can use `OdsVerticalImageFirstCard` composable:
 
@@ -68,17 +62,29 @@ OdsVerticalImageFirstCard(
 )
 ```
 
-> **XML implementation**
+Parameter | Default value | Description
+-- | -- | --
+`title: String` | | Title to be displayed into the card
+`image: OdsCardImage` | | Image to be displayed into the card
+`modifier: Modifier` | `Modifier` | `Modifier` to be applied to the layout of the card
+`subtitle: String?` | `null` | Subtitle to be displayed into the card
+`text: String?` | `null` | Text to be displayed into the card
+`firstButton: OdsCardButton?` | `null` | First button to be displayed into the card
+`secondButton: OdsCardButton?` | `null` | Second button to be displayed into the card
+`onClick: (() -> Unit)?` | `null` | Callback to be called on card click
+{:.table}
 
-See [Cards implementation in XML](#cards-implementation-in-xml)
+#### XML implementation
+
+_Soon available_
 
 ### Vertical header first card
 
 This is a full width card containing elements arranged vertically with a header (thumbnail, title & subtitle) as first element.
 
-  ![Vertical header first card light](images/card_vertical_header_first_light.png) ![Vertical header first card dark](images/card_vertical_header_first_dark.png)
+![Vertical header first card light](images/card_vertical_header_first_light.png) ![Vertical header first card dark](images/card_vertical_header_first_dark.png)
 
-> **Jetpack Compose implementation**
+#### Jetpack Compose implementation
 
 In your composable screen you can use `OdsVerticalHeaderFirstCard` composable:
 
@@ -104,17 +110,30 @@ OdsVerticalHeaderFirstCard(
 )
 ```
 
-> **XML implementation**
+Parameter | Default value | Description
+-- | -- | --
+`title: String` | | Title to be displayed into the card
+`image: OdsCardImage` | | Image to be displayed into the card
+`modifier: Modifier` | `Modifier` | `Modifier` to be applied to the layout of the card
+`thumbnail: OdsCardThumbnail?` | `null` | Thumbnail to be displayed into the card next to the title: avatar, logo or icon.
+`subtitle: String?` | `null` | Subtitle to be displayed into the card
+`text: String?` | `null` | Text to be displayed into the card
+`firstButton: OdsCardButton?` | `null` | First button to be displayed into the card
+`secondButton: OdsCardButton?` | `null` | Second button to be displayed into the card
+`onClick: (() -> Unit)?` | `null` | Callback to be called on card click
+{:.table}
 
-See [Cards implementation in XML](#cards-implementation-in-xml)
+#### XML implementation
+
+_Soon available_
 
 ### Small card
 
 This is a small card which takes the half screen width.
 
-  ![CardSmall](images/card_small_light.png) ![CardSmall dark](images/card_small_dark.png)
+![CardSmall](images/card_small_light.png) ![CardSmall dark](images/card_small_dark.png)
 
-> **Jetpack Compose implementation**
+#### Jetpack Compose implementation
 
 You can add an `OdsSmallCard`composable in your screen to add a small card:
 
@@ -143,17 +162,26 @@ Row(
 }
 ```
 
-> **XML implementation**
+Parameter | Default value | Description
+-- | -- | --
+`title: String` | | Title to be displayed into the card
+`image: OdsCardImage` | | Image to be displayed into the card
+`modifier: Modifier` | `Modifier` | `Modifier` to be applied to the layout of the card
+`subtitle: String?` | `null` | Subtitle to be displayed into the card
+`onClick: (() -> Unit)?` | `null` | Callback to be called on card click
+{:.table}
 
-See [Cards implementation in XML](#cards-implementation-in-xml)
+#### XML implementation
+
+_Soon available_
 
 ### Horizontal card
 
 This is a full screen width card with an image on the side. The image can be displayed on the left or on the right.
 
-  ![Horizontal card light](images/card_horizontal_light.png) ![Horizontal card dark](images/card_horizontal_dark.png)
+![Horizontal card light](images/card_horizontal_light.png) ![Horizontal card dark](images/card_horizontal_dark.png)
 
-> **Jetpack Compose implementation**
+#### Jetpack Compose implementation
 
 In your screen you can use `OdsHorizontalCard` composable:
 
@@ -177,99 +205,23 @@ OdsHorizontalCard(
 )
 ```
 
+Parameter | Default value | Description
+-- | -- | --
+`title: String` | | Title to be displayed into the card
+`image: OdsCardImage` | | Image to be displayed into the card
+`modifier: Modifier` | `Modifier` | `Modifier` to be applied to the layout of the card
+`subtitle: String?` | `null` | Subtitle to be displayed into the card
+`text: String?` | `null` | Text to be displayed into the card
+`firstButton: OdsCardButton?` | `null` | First button to be displayed into the card
+`secondButton: OdsCardButton?` | `null` | Second button to be displayed into the card
+`imagePosition: OdsHorizontalCardImagePosition` | `OdsHorizontalCardImagePosition.Start` | Position of the image within the card, it can be set to `OdsHorizontalCardImagePosition.Start` or `OdsHorizontalCardImagePosition.End`
+`divider: Boolean` | `true` | Controls the divider display. If `true`, it will be displayed between the card content and the action buttons.
+`onClick: (() -> Unit)?` | `null` | Callback to be called on card click
+{:.table}
 
-> **XML implementation**
+#### XML implementation
 
-See [Cards implementation in XML](#cards-implementation-in-xml)
-
-### Cards implementation in XML
-
-To have a Card in your layout you must add `com.google.android.material.card.MaterialCardView` in your layout.
-
-API and source code:
-
-*   `MaterialCardView`: [Class definition](https://developer.android.com/reference/com/google/android/material/card/MaterialCardView), [Class source](https://github.com/material-components/material-components-android/tree/master/lib/java/com/google/android/material/card/MaterialCardView.java)
-
-In the layout:
-
-```xml
-<com.google.android.material.card.MaterialCardView
-    android:id="@+id/card"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:layout_margin="8dp">
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical">
-
-        <!-- Media -->
-        <ImageView
-            android:layout_width="match_parent"
-            android:layout_height="194dp"
-            app:srcCompat="@drawable/media"
-            android:scaleType="centerCrop"
-            android:contentDescription="@string/content_description_media"
-            />
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:padding="16dp">
-
-            <!-- Title, secondary and supporting text -->
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/title"
-                android:textAppearance="?attr/textAppearanceHeadline6"
-                />
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
-                android:text="@string/secondary_text"
-                android:textAppearance="?attr/textAppearanceBody2"
-                android:textColor="?android:attr/textColorSecondary"
-                />
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
-                android:text="@string/supporting_text"
-                android:textAppearance="?attr/textAppearanceBody2"
-                android:textColor="?android:attr/textColorSecondary"
-                />
-
-        </LinearLayout>
-
-        <!-- Buttons -->
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_margin="8dp"
-            android:orientation="horizontal">
-            <com.google.android.material.button.MaterialButton
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginEnd="8dp"
-                android:text="@string/action_1"
-                style="@style/Widget.Orange.Button.Text"
-                />
-            <com.google.android.material.button.MaterialButton
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/action_2"
-                style="@style/Widget.Orange.Button.Text"
-                />
-        </LinearLayout>
-
-    </LinearLayout>
-
-</com.google.android.material.card.MaterialCardView>
-```
+_Soon available_
 
 ## Component specific tokens
 

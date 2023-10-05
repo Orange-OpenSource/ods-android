@@ -31,12 +31,11 @@ import com.orange.ods.compose.theme.OdsTheme
  *
  * Cards contain content and actions about a single subject.
  *
- * @param title The title to be displayed in the card.
- * @param image The card image.
- * @param modifier Modifier to be applied to the layout of the card.
- * @param subtitle Optional subtitle to be displayed in the card.
- * @param onClick Optional click on the card itself.
- *
+ * @param title Title to be displayed into the card
+ * @param image [OdsCardImage] to be displayed into the card
+ * @param modifier [Modifier] to be applied to the layout of the card
+ * @param subtitle Subtitle to be displayed into the card
+ * @param onClick Callback to be called on card click
  */
 @Composable
 @OdsComposable
