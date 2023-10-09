@@ -38,12 +38,11 @@ import com.orange.ods.compose.utilities.extension.enable
  * [RadioButton]s can be combined together with [Text] in the desired layout (e.g. [Column] or
  * [Row]) to achieve radio group-like behaviour, where the entire layout is selectable.
  *
- * @param selected whether this radio button is selected or not
- * @param onClick callback to be invoked when the RadioButton is clicked. If null, then this
- * RadioButton will not handle input events, and only act as a visual indicator of [selected] state
- * @param modifier Modifier to be applied to the radio button
- * @param enabled Controls the enabled state of the [RadioButton]. When `false`, this button will
- * not be selectable and appears disabled
+ * @param selected Controls the selected state of the radio button
+ * @param onClick Callback invoked on radio button click. If `null`, then the radio button will not handle input events, and only act as
+ * a visual indicator of [selected] state.
+ * @param modifier [Modifier] applied to the radio button
+ * @param enabled Controls the enabled state of the radio button. When `false`, the button will not be selectable and appears disabled.
  */
 @Composable
 @OdsComposable
