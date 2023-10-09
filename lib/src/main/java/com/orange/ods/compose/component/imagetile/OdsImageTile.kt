@@ -47,16 +47,16 @@ import com.orange.ods.extension.orElse
 
 
 /**
- * A image tile contains primary information which is an image. It can also contain secondary information such as text or action. Tiles have no more than two
+ * An image tile contains primary information which is an image. It can also contain secondary information such as text or action. Tiles have no more than two
  * actions. They are usually used in grids.
  *
- * @param image Image display in the [OdsImageTile].
- * @param legendAreaDisplayType Specify how the title and the icon are displayed relatively to the image. If set to [OdsImageTileLegendAreaDisplayType.None],
+ * @param image [OdsImageTileImage] displayed into the tile
+ * @param legendAreaDisplayType Controls how the title and the icon are displayed relatively to the image. If set to [OdsImageTileLegendAreaDisplayType.None],
  * no legend area will be displayed.
- * @param modifier Modifier to be applied to this [OdsImageTile]
- * @param title Title linked to the image. It is displayed according the [legendAreaDisplayType] value.
- * @param icon The [OdsImageTileIconToggleButton] displayed next to the title
- * @param onClick Callback to be invoked on tile click.
+ * @param modifier [Modifier] applied to the image tile
+ * @param title Title displayed into the tile. It is linked to the image and displayed according to the [legendAreaDisplayType] value.
+ * @param icon [OdsImageTileIconToggleButton] displayed next to the title
+ * @param onClick Callback invoked on tile click
  */
 @Composable
 @OdsComposable
