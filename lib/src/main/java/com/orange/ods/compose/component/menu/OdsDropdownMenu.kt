@@ -40,12 +40,11 @@ import com.orange.ods.compose.utilities.extension.enable
  *
  * @see androidx.compose.material.DropdownMenu
  *
- * @param items The items of the dropdown menu
- * @param expanded Whether the menu is currently open and visible to the user
- * @param onDismissRequest Called when the user requests to dismiss the menu, such as by
- * tapping outside the menu's bounds
- * @param modifier The modifier to be applied to the menu
- * @param offset [DpOffset] to be added to the position of the menu
+ * @param items List of [OdsDropdownMenuItem] displayed into the dropdown menu
+ * @param expanded Controls whether the menu is currently open and visible to the user
+ * @param onDismissRequest Callback invoked when the user requests to dismiss the menu, such as by tapping outside the menu's bounds
+ * @param modifier [Modifier] applied to the dropdown menu
+ * @param offset [DpOffset] added to the menu position
  * @param properties [PopupProperties] for further customization of the popup's behavior
  */
 @OdsComposable
