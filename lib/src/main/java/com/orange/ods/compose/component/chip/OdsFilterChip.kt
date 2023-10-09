@@ -51,14 +51,13 @@ import com.orange.ods.theme.OdsComponentsConfiguration
  *
  * Use Accompanist's [Flow Layouts](https://google.github.io/accompanist/flowlayout/) to wrap chips to a new line.
  *
- * @param text Text to display in the chip.
- * @param onClick called when the chip is clicked.
- * @param modifier Modifier to be applied to the chip
- * @param enabled When disabled, chip will not respond to user input. It will also appear visually
- * disabled and disabled to accessibility services.
- * @param selected Highlight the chip and display a selected icon if set to true.
- * @param leadingAvatar Optional avatar at the start of the chip, preceding the content text.
- * @param leadingContentDescription Content description associated to the leading element.
+ * @param text Text to be displayed into the chip
+ * @param onClick Callback called on chip click
+ * @param modifier [Modifier] to be applied to the chip
+ * @param enabled Controls the enabled state of the chip. When `false`, this chip will not respond to user input. It also appears visually
+ * disabled and is disabled to accessibility services.
+ * @param selected Controls the selected state of the chip. When `true`, the chip is highlighted.
+ * @param leadingAvatar [OdsChipLeadingAvatar] to be displayed in a circle shape at the start of the chip, preceding the content text
  */
 @Composable
 @OdsComposable
