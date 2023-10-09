@@ -47,10 +47,8 @@ To display a regular Floating Action Button in your composable screen, use `OdsF
 
 ```kotlin
 OdsFloatingActionButton(
-    onClick = {
-        // Do something
-    },
-    mini = false, // Set to `true` for a Mini FAB variant
+    onClick = { doSomething() },
+    mini = false,
     icon = OdsFloatingActionButtonIcon(
         painterResource(id = R.drawable.ic_plus),
         stringResource(id = R.string.add)
@@ -61,9 +59,9 @@ OdsFloatingActionButton(
 
 Parameter | Default value | Description
 -- | -- | --
-`icon: OdsFloatingActionButtonIcon` | | Icon to be used into the FAB
-`onClick: () -> Unit` | | Callback called on FAB click
-`modifier: Modifier` | `Modifier` | `Modifier` to be applied to the FAB
+`icon: OdsFloatingActionButtonIcon` | | Icon used into the FAB
+`onClick: () -> Unit` | | Callback invoked on FAB click
+`modifier: Modifier` | `Modifier` | `Modifier` applied to the FAB
 `mini: Boolean` | `false` | Controls the size of the FAB. If `true`, the size of the FAB will be 40dp, otherwise the default size will be used.
 {:.table}
 
@@ -81,9 +79,7 @@ To display a mini FAB in your composable screen use `OdsFloatingActionButton`
 
 ```kotlin
 OdsFloatingActionButton(
-    onClick = {
-        // Do something
-    },
+    onClick = { doSomething() },
     mini = true,
     icon = OdsFloatingActionButtonIcon(
         painterResource(id = R.drawable.ic_plus),
@@ -109,9 +105,7 @@ To display an extended FAB, use `OdsExtendedFloatingActionButton`:
 
 ```kotlin
 OdsExtendedFloatingActionButton(
-    onClick = {
-        // Do something       
-    },
+    onClick = { doSomething() },
     text = stringResource(id = R.string.add),
     icon = OdsFloatingActionButtonIcon(painterResource(id = R.drawable.ic_plus), ""),
     modifier = modifier
@@ -120,10 +114,10 @@ OdsExtendedFloatingActionButton(
 
 Parameter | Default value | Description
 -- | -- | --
-`icon: OdsFloatingActionButtonIcon` | | Icon to be used into the FAB
-`onClick: () -> Unit` | | Callback called on FAB click
-`text: String` | | Text to be displayed into the FAB
-`modifier: Modifier` | `Modifier` | `Modifier` to be applied to the FAB
+`icon: OdsFloatingActionButtonIcon` | | Icon used into the FAB
+`onClick: () -> Unit` | | Callback invoked on FAB click
+`text: String` | | Text displayed into the FAB
+`modifier: Modifier` | `Modifier` | `Modifier` applied to the FAB
 {:.table}
 
 ## Component specific tokens

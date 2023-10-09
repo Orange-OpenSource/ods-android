@@ -33,14 +33,14 @@ import com.orange.ods.compose.text.OdsTextSubtitle2
  *
  * Cards contain content and actions about a single subject.
  *
- * @param title Title to be displayed into the card
- * @param image [OdsCardImage] to be displayed into the card
- * @param modifier [Modifier] to be applied to the layout of the card
- * @param subtitle Subtitle to be displayed into the card
- * @param text Text to be displayed into the card
- * @param firstButton First [OdsCardButton] to be displayed into the card
- * @param secondButton Second [OdsCardButton] to be displayed into the card
- * @param onClick Callback to be called on card click
+ * @param title Title displayed into the card
+ * @param image [OdsCardImage] displayed into the card
+ * @param modifier [Modifier] applied to the layout of the card
+ * @param subtitle Subtitle displayed into the card
+ * @param text Text displayed into the card
+ * @param firstButton First [OdsCardButton] displayed into the card
+ * @param secondButton Second [OdsCardButton] displayed into the card
+ * @param onClick Callback invoked on card click
  */
 @Composable
 @OdsComposable

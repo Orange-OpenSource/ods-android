@@ -25,7 +25,6 @@ Only one banner should be shown at a time
 
 - [Design System Manager - Banners](https://system.design.orange.com/0c1af118d/p/19a040-banners/b/497b77)
 - [Material Design - Banners](https://m2.material.io/components/banners)
-- Technical documentation soon available
 
 ## Accessibility
 
@@ -47,27 +46,23 @@ You can use the `OdsBanner` composable like this:
 
 ```kotlin
 OdsBanner(
-    message = "Message displayed in the banner.",
+    message = "Message displayed into the banner.",
     button1Text = "Dismiss",
-    button2Text = "Detail", // Optional
-    image = painterResource(id = R.drawable.placeholder), // Optional
-    imageContentDescription = "", // Optional
-    onButton1Click = {
-        // Do something
-    },
-    onButton2Click = {
-        // Do something
-    }, // Optional
+    button2Text = "Detail",
+    image = painterResource(id = R.drawable.placeholder),
+    imageContentDescription = "",
+    onButton1Click = { doSomething() },
+    onButton2Click = { doSomething() },
 )
 ```
 
 Parameter | Default value | Description
 -- | -- | --
-`message: String` | | Text to be displayed into the banner
-`firstButton: OdsBannerButton` | | Principal button to be displayed in the banner
-`modifier: Modifier` | `Modifier` | `Modifier` to be applied to the banner
-`image: OdsBannerImage?` | `null` | Image to be displayed in the banner in a circle shape
-`secondButton: OdsBannerButton?` | `null` | Secondary button to be displayed in the banner next to the principal one
+`message: String` | | Text displayed into the banner
+`firstButton: OdsBannerButton` | | Principal button displayed in the banner
+`modifier: Modifier` | `Modifier` | `Modifier` applied to the banner
+`image: OdsBannerImage?` | `null` | Image displayed in the banner in a circle shape
+`secondButton: OdsBannerButton?` | `null` | Secondary button displayed into the banner next to the principal one
 {:.table}
 
 ### XML

@@ -57,21 +57,31 @@ outlined by default.
 OdsChip(
     text = "chip text",
     onClick = {
-        // Something executed on chip click
+        doSomething()
     },
     leadingIcon = null,
     leadingAvatar = OdsChipLeadingAvatar(
         painterResource(id = R.drawable.avatar),
         "Avatar"
-    ), // set it to `null` for no avatar or provide a `leadingIcon`
-    enabled = true, // Set it to `false` to disabled the chip
+    ), // Set it to `null` for no avatar or provide a `leadingIcon`
+    enabled = true,
     onCancel = {
-        // Something executed on cancel cross click
+        doSomething()
     }
 )
 ```
 
-See [OdsChip API detail](#odschip-api)
+Parameter | Default value | Description
+-- | -- | --
+`text: String` | | Text to be displayed into the chip
+`onClick: () -> Unit` | | Callback called on chip click
+`modifier: Modifier` | `Modifier` | `Modifier` to be applied to the chip
+`enabled: Boolean` | `true` | Controls the enabled state of the chip. When `false`, this chip will not respond to user input.
+`selected: Boolean` | `false` | Controls the selected state of the chip. When `true`, the chip is highlighted (useful for choice chips).
+`leadingIcon: OdsChipLeadingIcon?` | `null` | Icon to be displayed at the start of the chip, preceding the text
+`leadingAvatar: OdsChipLeadingAvatar?` | `null` | Avatar to be displayed in a circle shape at the start of the chip, preceding the content text
+`onCancel: (() -> Unit)?` | `null` | Callback called on chip cancel cross click. Pass `null` for no cancel cross.
+{:.table}
 
 ### Choice chip
 
@@ -97,13 +107,13 @@ outlined by default.
 OdsChip(
     text = "chip text",
     onClick = {
-        // Something executed on chip click
+        doSomething()
     },
-    enabled = true, // Set it to `false` to disabled the chip
+    enabled = true,
 )
 ```
 
-See [OdsChip API detail](#odschip-api)
+Use the same API as the [Input chip](#input-chip).
 
 ### Filter chip
 
@@ -126,14 +136,14 @@ outlined by default.
 OdsFilterChip(
     text = "chip text",
     onClick = {
-        // Something executed on chip click
+        doSomething()
     },
     leadingAvatar = OdsChipLeadingAvatar(
         painterResource(id = R.drawable.avatar),
         ""
-    ), // set it to `null` for no avatar
-    selected = false, // `true` to display the chip selected
-    enabled = true, // Set it to `false` to disabled the chip
+    ), // Set it to `null` for no avatar
+    selected = false,
+    enabled = true,
 )
 ```
 
@@ -168,31 +178,17 @@ outlined by default.
 OdsChip(
     text = "chip text",
     onClick = {
-        // Something executed on chip click
+        doSomething()
     },
     leadingIcon = OdsChipLeadingIcon(
         painterResource(id = R.drawable.ic_heart),
         "Heart"
     ), // set it to `null` for no icon
-    enabled = true, // Set it to `false` to disabled the chip
+    enabled = true,
 )
 ```
 
-See [OdsChip API detail](#odschip-api)
-
-## OdsChip API
-
-Parameter | Default value | Description
--- | -- | --
-`text: String` | | Text to be displayed into the chip
-`onClick: () -> Unit` | | Callback called on chip click
-`modifier: Modifier` | `Modifier` | `Modifier` to be applied to the chip
-`enabled: Boolean` | `true` | Controls the enabled state of the chip. When `false`, this chip will not respond to user input.
-`selected: Boolean` | `false` | Controls the selected state of the chip. When `true`, the chip is highlighted (useful for choice chips).
-`leadingIcon: OdsChipLeadingIcon?` | `null` | Icon to be displayed at the start of the chip, preceding the text
-`leadingAvatar: OdsChipLeadingAvatar?` | `null` | Avatar to be displayed in a circle shape at the start of the chip, preceding the content text
-`onCancel: (() -> Unit)?` | `null` | Callback called on chip cancel cross click. Pass `null` for no cancel cross.
-{:.table}
+Use the same API as the [Input chip](#input-chip).
 
 ## Related components
 
@@ -221,6 +217,14 @@ OdsChoiceChipsFlowRow(
     )
 )
 ```
+
+Parameter | Default value | Description
+-- | -- | --
+`value: String` | | Initial value of the choice chips flow row
+`onValueChange: (value: T) -> Unit` | | Callback invoked when the value changes. The new value is provided as parameter.
+`modifier: Modifier` | `Modifier` | `Modifier` applied to the chips flow row
+`chips: List<OdsChoiceChip<T>>` | | Chips displayed into the flow row
+{:.table}
 
 ## Component specific tokens
 

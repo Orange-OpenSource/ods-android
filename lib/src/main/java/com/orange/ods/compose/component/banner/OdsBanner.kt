@@ -41,11 +41,11 @@ import com.orange.ods.compose.theme.OdsTheme
 /**
  * <a href="https://system.design.orange.com/0c1af118d/p/19a040-banners/b/497b77" class="external" target="_blank">ODS banners</a>.
  *
- * @param message Text to be displayed into the banner
- * @param firstButton Principal button to be displayed in the banner
- * @param modifier [Modifier] to be applied to the banner layout
- * @param image Image to be displayed in the banner in a circle shape
- * @param secondButton Secondary button to be displayed in the banner next to the principal one
+ * @param message Text displayed into the banner
+ * @param firstButton Principal button displayed in the banner
+ * @param modifier [Modifier] applied to the banner layout
+ * @param image Image displayed in the banner in a circle shape
+ * @param secondButton Secondary button displayed into the banner next to the principal one
  */
 @Composable
 @OdsComposable

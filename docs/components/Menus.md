@@ -50,16 +50,12 @@ OdsDropdownMenu(
             text = "Summer salad",
             icon = painterResource(id = R.drawable.ic_salad),
             divider = true, // Allow to add a divider between the 2 items
-            onClick = {
-                // Do something
-            }
+            onClick = { doSomething() }
         ),
         OdsDropdownMenuItem(
             text = "Brocoli soup",
             icon = painterResource(id = R.drawable.ic_soup),
-            onClick = {
-                // Do something
-            }
+            onClick = { doSomething() }
         )
     )
 )
@@ -98,7 +94,7 @@ OdsExposedDropdownMenu(
     items = items,
     selectedItem = selectedItem,
     onItemSelectionChange = { item ->
-        // Do something like retrieving the selected item
+        doSomething() // Do something like retrieving the selected item
     },
     enabled = true
 )

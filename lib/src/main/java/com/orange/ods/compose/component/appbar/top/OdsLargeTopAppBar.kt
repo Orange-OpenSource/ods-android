@@ -42,12 +42,12 @@ import com.orange.ods.compose.theme.OdsTheme
  *
  * The top app bar displays information and actions relating to the current screen.
  *
- * @param title Title to be displayed in the center of the top app bar
- * @param modifier [Modifier] to be applied to the top app bar
- * @param navigationIcon Icon to be displayed at the start of the top app bar
- * @param actions Actions to be displayed at the end of the top app bar. The default layout here is a [androidx.compose.foundation.layout.Row], so icons inside will be placed horizontally.
- * @param overflowMenuActions Actions to be displayed in the overflow menu
- * @param scrollBehavior [TopAppBarScrollBehavior] to be attached to the top app bar
+ * @param title Title displayed in the center of the top app bar
+ * @param modifier [Modifier] applied to the top app bar
+ * @param navigationIcon Icon displayed at the start of the top app bar
+ * @param actions Actions displayed at the end of the top app bar. The default layout here is a [androidx.compose.foundation.layout.Row], so icons inside will be placed horizontally.
+ * @param overflowMenuActions Actions displayed in the overflow menu
+ * @param scrollBehavior [TopAppBarScrollBehavior] attached to the top app bar
  */
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable

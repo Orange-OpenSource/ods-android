@@ -35,12 +35,12 @@ import com.orange.ods.theme.colors.OdsColors
  * Outlined buttons are medium-emphasis buttons. They contain actions that are important, but aren't
  * the primary action in an app.
  *
- * @param text Text to be displayed into the button
- * @param onClick Callback to be called when the button is clicked
- * @param modifier [Modifier] to be applied to the button
- * @param icon Icon to be displayed in the button before the text
- * @param enabled Controls the enabled state of the button. When `false`, this button will not be clickable
- * @param displaySurface [OdsDisplaySurface] to be applied to the button. It allows to force the button display on light or dark surface. By default, the
+ * @param text Text displayed into the button
+ * @param onClick Callback invoked on button click
+ * @param modifier [Modifier] applied to the button
+ * @param icon Icon displayed in the button before the text
+ * @param enabled Controls the enabled state of the button. When `false`, the button is not clickable.
+ * @param displaySurface [OdsDisplaySurface] applied to the button. It allows to force the button display on light or dark surface. By default, the
  * appearance applied is based on the system night mode value.
  */
 @Composable

@@ -34,20 +34,24 @@ Please follow [accessibility criteria for development](https://a11y-guidelines.o
 
 ![BottomSheet light](images/sheetbottom_light.png) ![BottomSheet dark](images/sheetbottom_dark.png)
 
-> **Jetpack Compose implementation**
+### Jetpack Compose
 
 ```kotlin
 OdsBottomSheetScaffold(
-    sheetContent = {},
+    sheetContent = {
+        // Put here the content of the sheet
+    },
     modifier = Modifier,
     scaffoldState = rememberBottomSheetScaffoldState(),
     topBar = null,
-    snackbarHost = { },
+    snackbarHost = {},
     floatingActionButton = {},
     floatingActionButtonPosition = FabPosition.End,
     sheetGesturesEnabled = true,
     sheetPeekHeight = 56.dp,
-    content = {}
+    content = {
+        // Put here the screen content
+    }
 )
 ```
 

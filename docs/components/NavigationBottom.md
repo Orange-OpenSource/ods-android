@@ -63,7 +63,7 @@ OdsBottomNavigation(
             selected = selectedItemIndex == index,
             onClick = {
                 selectedItemIndex = index
-                // Do what you want with a piece of code
+                doSomething()
             }
         )
     }

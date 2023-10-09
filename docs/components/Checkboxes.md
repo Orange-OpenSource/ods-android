@@ -53,10 +53,10 @@ OdsCheckbox(
 
 Parameter | Default value | Description
 -- | -- | --
-`checked: Boolean` | | Controls the checked state of the checkbox
-`onCheckedChange: ((Boolean) -> Unit)?` | | Callback called on checkbox click. If `null`, then this is passive and relies entirely on a higher-level component to control the checked state.
-`modifier: Modifier` | `Modifier` | `Modifier` to be applied to the checkbox
-`enabled: Boolean` | `true` | Controls the enabled state of the checkbox. When `false`, this checkbox will not be clickable.
+`checked: Boolean` | | Controls checked state of the checkbox
+`onCheckedChange: ((Boolean) -> Unit)?` | | Callback invoked on checkbox click. If `null`, then this is passive and relies entirely on a higher-level component to control the checked state.
+`modifier: Modifier` | `Modifier` | `Modifier` applied to the checkbox
+`enabled: Boolean` | `true` | Controls enabled state of the checkbox. When `false`, this checkbox will not be clickable.
 {:.table}
 
 ## Component specific tokens

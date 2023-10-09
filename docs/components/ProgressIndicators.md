@@ -54,12 +54,12 @@ For a **determinate** linear progress indicator, provide the progress value:
 ```kotlin
 OdsLinearProgressIndicator(
     progress = 0.9f,
-    label = "Downloading ...", // Optional
+    label = "Downloading ...",
     icon = OdsLinearProgressIndicator(
         painterResource(id = R.drawable.ic_arrow_down),
         ""
-    ), // Optional
-    showCurrentValue = true // Display the value in percent below the progress bar if set to true
+    ),
+    showCurrentValue = true
 )
 ```
 
@@ -81,7 +81,7 @@ Parameter | Default value | Description
 `progress: Float?` | `null` | Progress indicator value where 0.0 represents no progress and 1.0 represents full progress. Values outside of this range are coerced into the range. If set to `null`, the progress indicator is indeterminate.
 `label: String?` | `null` | Label displayed above the linear progress
 `icon: OdsLinearProgressIndicatorIcon?` | `null` | Icon displayed above the progress indicator
-`showCurrentValue: Boolean` | `false` | Controls the progress indicator current value visibility
+`showCurrentValue: Boolean` | `false` | Controls the progress indicator current value visibility which is displayed in percent below the progress bar
 {:.table}
 
 ### Activity indicator

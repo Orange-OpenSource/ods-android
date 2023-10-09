@@ -47,7 +47,7 @@ In your composable screen you can use:
 ```kotlin
 OdsRadioButton(
     selected = true,
-    onClick = { },
+    onClick = { doSomething() },
     enabled = true
 )
 ```

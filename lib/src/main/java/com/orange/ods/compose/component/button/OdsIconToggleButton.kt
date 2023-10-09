@@ -33,12 +33,12 @@ import com.orange.ods.compose.theme.OdsDisplaySurface
  * bookmark icon, or a navigation icon that opens a drawer.
  *
  * @param checked Controls the checked state of the button
- * @param onCheckedChange Callback to be invoked when this icon is selected
- * @param uncheckedIcon The icon displayed when unchecked
- * @param checkedIcon The icon displayed when checked
- * @param modifier [Modifier] for this OdsIconToggleButton
+ * @param onCheckedChange Callback invoked when the button is checked
+ * @param uncheckedIcon Icon displayed when the button is unchecked
+ * @param checkedIcon Icon displayed when the button is checked
+ * @param modifier [Modifier] applied to the button
  * @param enabled Controls the enabled state of the button. When `false`, this button will not be clickable.
- * @param displaySurface [OdsDisplaySurface] to be applied to the button. It allows to force the button display on light or dark surface. By default, the appearance applied is based on the system night mode value.
+ * @param displaySurface [OdsDisplaySurface] applied to the button. It allows to force the button display on light or dark surface. By default, the appearance applied is based on the system night mode value.
  */
 @Composable
 @OdsComposable

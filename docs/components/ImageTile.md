@@ -49,9 +49,9 @@ OdsImageTile(
             "Remove from favourites"
         ),
         checked = false,
-        onCheckedChange = { },
+        onCheckedChange = { doSomething() },
     ),
-    onClick = { }
+    onClick = { doSomething() }
 )
 ```
 

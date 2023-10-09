@@ -27,18 +27,18 @@ Please follow [accessibility criteria for development](https://a11y-guidelines.o
 
 ## Implementation
 
-> **Jetpack Compose implementation**
+### Jetpack Compose
 
 You can use the `OdsModalDrawer` composable like this:
 
 ```kotlin
 OdsModalDrawer(
     drawerHeader = {
-        title = "Side navigation drawer" // title is mandatory in an `OdsModalDrawer`
-        imageContentDescription = "" // optional
+        title = "Side navigation drawer"
+        imageContentDescription = ""
         imageDisplayType =
             OdsModalDrawerHeaderImageDisplayType.None // or OdsModalDrawerHeaderImageDisplayType.Avatar or OdsModalDrawerHeaderImageDisplayType.Background
-        subtitle = "Example" // optional
+        subtitle = "Example"
         image =
             painterResource(id = R.drawable.placeholder)
     },
@@ -60,9 +60,9 @@ OdsModalDrawer(
             text = "label3"
         )
     ),
-    drawerState = rememberDrawerState(DrawerValue.Closed),// or rememberDrawerState(DrawerValue.Open)
+    drawerState = rememberDrawerState(DrawerValue.Closed), // or rememberDrawerState(DrawerValue.Open)
 ) {
-    // The content of the rest of the UI
+    // Put here the rest of the UI content
 }
 ```
 

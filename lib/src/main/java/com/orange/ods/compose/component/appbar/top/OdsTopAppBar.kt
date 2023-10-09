@@ -35,12 +35,12 @@ import com.orange.ods.compose.theme.OdsTheme
  * centering the title, use the other TopAppBar overload for a generic TopAppBar with no
  * restriction on content.
  *
- * @param title Title to be displayed in the center of the top app bar
- * @param modifier [Modifier] to be applied to the top app bar
- * @param navigationIcon Icon to be displayed at the start of the top app bar
- * @param actions Actions to be displayed at the end of the top app bar. The default layout here is a [androidx.compose.foundation.layout.Row], so icons inside will be placed horizontally.
- * @param overflowMenuActions Actions to be displayed in the overflow menu
- * @param elevated True to set an elevation to the top app bar (shadow displayed), false otherwise
+ * @param title Title displayed in the center of the top app bar
+ * @param modifier [Modifier] applied to the top app bar
+ * @param navigationIcon Icon displayed at the start of the top app bar
+ * @param actions Actions displayed at the end of the top app bar. The default layout here is a [androidx.compose.foundation.layout.Row], so icons inside will be placed horizontally.
+ * @param overflowMenuActions Actions displayed in the overflow menu
+ * @param elevated Controls the elevation of the top app bar: `true` to set an elevation to the top app bar (a shadow is displayed below), `false` otherwise
  */
 @Composable
 @OdsComposable

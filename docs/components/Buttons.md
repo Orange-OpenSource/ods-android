@@ -59,9 +59,9 @@ Use the `OdsButton` composable:
 ```kotlin
 OdsButton(
     text = "Contained button",
-    onClick = {},
+    onClick = { doSomething() },
     enabled = true,
-    icon = OdsButtonIcon(painterResource(R.drawable.ic_coffee)) // Optional, line can be removed if you don't need any icon
+    icon = OdsButtonIcon(painterResource(R.drawable.ic_coffee)) // Line can be removed if you don't need any icon
 )
 ```
 
@@ -71,22 +71,22 @@ through the `style` parameter:
 ```kotlin
 OdsButton(
     text = "Positive button",
-    onClick = {},
+    onClick = { doSomething() },
     enabled = true,
-    icon = OdsButtonIcon(painterResource(R.drawable.ic_coffee)), // Optional, line can be removed if you don't need any icon
+    icon = OdsButtonIcon(painterResource(R.drawable.ic_coffee)), // Line can be removed if you don't need any icon
     style = OdsButtonStyle.FunctionalPositive
 )
 ```
 
 Parameter | Default value | Description
 -- | -- | --
-`text: String` | | Text to be displayed into the button
-`onClick: () -> Unit` | | Callback to be called when the button is clicked
-`modifier: Modifier` | `Modifier` | `Modifier` to be applied to the button
-`icon: OdsButtonIcon?` | `null` | Icon to be displayed in the button before the text
+`text: String` | | Text displayed into the button
+`onClick: () -> Unit` | | Callback invoked when the button is clicked
+`modifier: Modifier` | `Modifier` | `Modifier` applied to the button
+`icon: OdsButtonIcon?` | `null` | Icon displayed in the button before the text
 `enabled: Boolean` | `true` | Controls the enabled state of the button. When `false`, this button will not be clickable.
-`style: OdsButtonStyle` | `OdsButtonStyle.Default` | Style to be applied to the button. Set it to `OdsButtonStyle.Primary` for an highlighted button style or use `OdsButtonStyle.FunctionalPositive`/ `OdsButtonStyle.FunctionalNegative` for a functional green/red button style.
-`displaySurface: OdsDisplaySurface` | `OdsDisplaySurface.Default` | `OdsDisplaySurface` to be applied to the button. It allows to force the button display on light or dark surface. By default, the appearance applied is based on the system night mode value.
+`style: OdsButtonStyle` | `OdsButtonStyle.Default` | Style applied to the button. Set it to `OdsButtonStyle.Primary` for an highlighted button style or use `OdsButtonStyle.FunctionalPositive`/ `OdsButtonStyle.FunctionalNegative` for a functional green/red button style.
+`displaySurface: OdsDisplaySurface` | `OdsDisplaySurface.Default` | `OdsDisplaySurface` applied to the button. It allows to force the button display on light or dark surface. By default, the appearance applied is based on the system night mode value.
 {:.table}
 
 #### XML implementation
@@ -107,22 +107,22 @@ Use the `OdsTextButton` composable:
 ```kotlin
 OdsTextButton(
     text = "Text button",
-    onClick = {},
+    onClick = { doSomething() },
     enabled = true,
-    icon = OdsButtonIcon(painterResource(R.drawable.ic_coffee)), // Optional, line can be removed if you don't need any icon
+    icon = OdsButtonIcon(painterResource(R.drawable.ic_coffee)), // Line can be removed if you don't need any icon
     style = OdsTextButtonStyle.Primary
 )
 ```
 
 Parameter | Default value | Description
 -- | -- | --
-`text: String` | | Text to be displayed into the button
-`onClick: () -> Unit` | | Callback to be called when the button is clicked
-`modifier: Modifier` | `Modifier` | `Modifier` to be applied to the button
-`icon: OdsButtonIcon?` | `null` | Icon to be displayed in the button before the text
+`text: String` | | Text displayed into the button
+`onClick: () -> Unit` | | Callback invoked on button click
+`modifier: Modifier` | `Modifier` | `Modifier` applied to the button
+`icon: OdsButtonIcon?` | `null` | Icon displayed in the button before the text
 `enabled: Boolean` | `true` | Controls the enabled state of the button. When `false`, this button will not be clickable.
-`style: OdsTextButtonStyle` | `OdsTextButtonStyle.Default` | Style to be applied to the button. By default `onSurface` color is used for text color. Use `OdsTextButtonStyle.Primary` for an highlighted text color.
-`displaySurface: OdsDisplaySurface` | `OdsDisplaySurface.Default` | `OdsDisplaySurface` to be applied to the button. It allows to force the button display on light or dark surface. By default, the appearance applied is based on the system night mode value.
+`style: OdsTextButtonStyle` | `OdsTextButtonStyle.Default` | Style applied to the button. By default `onSurface` color is used for text color. Use `OdsTextButtonStyle.Primary` for an highlighted text color.
+`displaySurface: OdsDisplaySurface` | `OdsDisplaySurface.Default` | `OdsDisplaySurface` applied to the button. It allows to force the button display on light or dark surface. By default, the appearance applied is based on the system night mode value.
 {:.table}
 
 #### XML implementation
@@ -145,18 +145,18 @@ OdsOutlinedButton(
     text = "Outlined button",
     onClick = {},
     enabled = true,
-    icon = OdsButtonIcon(painterResource(R.drawable.ic_coffee)) // Optional, line can be removed if you don't need any icon
+    icon = OdsButtonIcon(painterResource(R.drawable.ic_coffee)) // Line can be removed if you don't need any icon
 )
 ```
 
 Parameter | Default value | Description
 -- | -- | --
-`text: String` | | Text to be displayed into the button
-`onClick: () -> Unit` | | Callback to be called when the button is clicked
-`modifier: Modifier` | `Modifier` | `Modifier` to be applied to the button
-`icon: OdsButtonIcon?` | `null` | Icon to be displayed in the button before the text
-`enabled: Boolean` | `true` | Controls the enabled state of the button. When `false`, this button will not be clickable.
-`displaySurface: OdsDisplaySurface` | `OdsDisplaySurface.Default` | `OdsDisplaySurface` to be applied to the button. It allows to force the button display on light or dark surface. By default, the appearance applied is based on the system night mode value.
+`text: String` | | Text displayed into the button
+`onClick: () -> Unit` | | Callback invoked on button click
+`modifier: Modifier` | `Modifier` | `Modifier` applied to the button
+`icon: OdsButtonIcon?` | `null` | Icon displayed in the button before the text
+`enabled: Boolean` | `true` | Controls the enabled state of the button. When `false`, the button is not clickable.
+`displaySurface: OdsDisplaySurface` | `OdsDisplaySurface.Default` | `OdsDisplaySurface` applied to the button. It allows to force the button display on light or dark surface. By default, the appearance applied is based on the system night mode value.
 {:.table}
 
 #### XML implementation
@@ -182,7 +182,7 @@ OdsTextToggleButtonsRow(
     ),
     selectedIndex = 0,
     onSelectedIndexChange = {
-        // Do something like changing selectedIndex to refresh composable with new selection
+        doSomething() // Do something like changing selectedIndex to refresh composable with new selection
     },
     sameItemsWeight = false
 )
@@ -190,12 +190,12 @@ OdsTextToggleButtonsRow(
 
 Parameter | Default value | Description
 -- | -- | --
-`textToggleButtons: List<OdsTextToggleButtonsRowItem>` | | `OdsTextToggleButtonsRowItem` to be displayed into the toggle group
-`selectedIndex: Int` | | The `textToggleButtons` list index of the selected button
-`onSelectedIndexChange: (Int) -> Unit` | | Callback to be invoked on selection change
-`modifier: Modifier` | `Modifier` | `Modifier` to be applied to the toggle buttons row
+`textToggleButtons: List<OdsTextToggleButtonsRowItem>` | | Items displayed into the toggle group
+`selectedIndex: Int` | | `textToggleButtons` list index of the selected button
+`onSelectedIndexChange: (Int) -> Unit` | | Callback invoked on selection change
+`modifier: Modifier` | `Modifier` | `Modifier` applied to the toggle buttons row
 `sameItemsWeight: Boolean` | `false` | Controls the place occupied by each item. When `true`, same weight of importance will be applied to each item, they will occupy the same width.
-`displaySurface: OdsDisplaySurface` | `OdsDisplaySurface.Default` | `OdsDisplaySurface` to be applied to the button. It allows to force the button display on light or dark surface. By default, the appearance applied is based on the system night mode value.
+`displaySurface: OdsDisplaySurface` | `OdsDisplaySurface.Default` | `OdsDisplaySurface` applied to the button. It allows to force the button display on light or dark surface. By default, the appearance applied is based on the system night mode value.
 {:.table}
 
 #### XML implementation
@@ -219,9 +219,7 @@ OdsIconButton(
         painterResource(id = R.drawable.ic_ui_light_mode),
         stringResource(id = R.string.theme_changer_icon_content_description_light)
     ),
-    onClick = {
-        // Do something
-    },
+    onClick = { doSomething() },
 )
 ```
 
@@ -252,7 +250,7 @@ Use the `OdsIconToggleButton` composable:
 ```kotlin
 OdsIconToggleButton(
     checked = false,
-    onCheckedChange = { },
+    onCheckedChange = { doSomething() },
     uncheckedIcon = OdsIconButtonIcon(
         painterResource(R.drawable.ic_heart_outlined),
         "Add to favorites"
@@ -264,12 +262,12 @@ OdsIconToggleButton(
 Parameter | Default value | Description
 -- | -- | --
 `checked: Boolean` | | Controls the checked state of the button
-`onCheckedChange: (Boolean) -> Unit` | | Callback to be invoked when the button is checked
-`uncheckedIcon: OdsIconButtonIcon` | | Icon to be displayed when the button is unchecked
-`checkedIcon: OdsIconButtonIcon` | | Icon to be displayed when the button is checked
-`modifier: Modifier` | `Modifier` | `Modifier` to be applied to the button
+`onCheckedChange: (Boolean) -> Unit` | | Callback invoked when the button is checked
+`uncheckedIcon: OdsIconButtonIcon` | | Icon displayed when the button is unchecked
+`checkedIcon: OdsIconButtonIcon` | | Icon displayed when the button is checked
+`modifier: Modifier` | `Modifier` | `Modifier` applied to the button
 `enabled: Boolean` | `true` | Controls the enabled state of the button. When `false`, this button will not be clickable.
-`displaySurface: OdsDisplaySurface` | `OdsDisplaySurface.Default` | `OdsDisplaySurface` to be applied to the button. It allows to force the button display on light or dark surface. By default, the appearance applied is based on the system night mode value.
+`displaySurface: OdsDisplaySurface` | `OdsDisplaySurface.Default` | `OdsDisplaySurface` applied to the button. It allows to force the button display on light or dark surface. By default, the appearance applied is based on the system night mode value.
 {:.table}
 
 #### XML implementation
@@ -301,19 +299,19 @@ OdsIconToggleButtonsRow(
     ),
     selectedIndex = 0,
     onSelectedIndexChange = {
-        // Do something like changing selectedIndex to refresh composable with new selection                        
+        doSomething() // Do something like changing selectedIndex to refresh composable with new selection                        
     },
-    displaySurface = displaySurface // Optional
+    displaySurface = displaySurface
 )
 ```
 
 Parameter | Default value | Description
 -- | -- | --
-`icons: List<OdsIconToggleButtonsRowIcon>` | | `OdsIconToggleButtonsRowIcon` list to be displayed into the toggle group
+`icons: List<OdsIconToggleButtonsRowIcon>` | | Icons to be displayed into the toggle group
 `selectedIndex: Int` | | `icons` list index of the selected button
-`onSelectedIndexChange: (Int) -> Unit` | | Callback to be invoked on selection change
-`modifier: Modifier` | `Modifier` | `Modifier` to be applied to the toggle buttons group
-`displaySurface: OdsDisplaySurface` | `OdsDisplaySurface.Default` | `OdsDisplaySurface` to be applied to the button. It allows to force the button display on light or dark surface. By default, the appearance applied is based on the system night mode value.
+`onSelectedIndexChange: (Int) -> Unit` | | Callback invoked on selection change
+`modifier: Modifier` | `Modifier` | `Modifier` applied to the toggle buttons group
+`displaySurface: OdsDisplaySurface` | `OdsDisplaySurface.Default` | `OdsDisplaySurface` applied to the button. It allows to force the button display on light or dark surface. By default, the appearance applied is based on the system night mode value.
 {:.table}
 
 #### XML implementation
