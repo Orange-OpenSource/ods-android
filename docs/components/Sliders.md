@@ -67,6 +67,19 @@ OdsSlider(
 )
 ```
 
+Parameter | Default value | Description
+-- | -- | --
+`value: Float` | | Current value of the slider. If outside of `valueRange` provided, value will be coerced to this range.
+`onValueChange: (Float) -> Unit` | | Callback invoked on slider value change. `value` should be updated here.
+`modifier: Modifier` | `Modifier` | `Modifier` applied to the slider
+`enabled: Boolean` | `true` | Controls the enabled state of the slider. If `false`, the user cannot interact with it.
+`valueRange: ClosedFloatingPointRange<Float>` | `0f..1f` | Range of values that the slider can take. Given `value` will be coerced to this range.
+`steps: Int` | `0` | If greater than `0`, specifies the amounts of discrete values, evenly distributed between across the whole value range. If `0`, slider will behave as a continuous slider and allow to choose any value from the range specified. Must not be negative.
+`onValueChangeFinished: (() -> Unit)?` | `null` | Callback invoked when value change has ended. This callback shouldn't be used to update the slider value (use `onValueChange` for that), but rather to know when the user has completed selecting a new value by ending a drag or a click.
+`leftIcon: OdsSliderIcon?` | `null` | Icon displayed on the left of the slider
+`rightIcon: OdsSliderIcon?` | `null` | Icon displayed on the right of the slider
+{:.table}
+
 ### Continuous lockups slider
 
 ![Continuous lockups slider](images/slider_continuous_lockups_light.png) ![Continuous lockups slider dark](images/slider_continuous_lockups_light.png)
@@ -101,6 +114,19 @@ OdsSliderLockups(
 )
 ```
 
+Parameter | Default value | Description
+-- | -- | --
+`value: Float` | | Current value of the slider. If outside of `valueRange` provided, value will be coerced to this range.
+`onValueChange: (Float) -> Unit` | | Callback invoked on slider value change. `value` should be updated here.
+`modifier: Modifier` | `Modifier` | `Modifier` applied to the slider
+`enabled: Boolean` | `true` | Controls the enabled state of the slider. If `false`, the user cannot interact with it.
+`valueRange: ClosedFloatingPointRange<Float>` | `0f..1f` | Range of values that the slider can take. Given `value` will be coerced to this range.
+`steps: Int` | `0` | If greater than `0`, specifies the amounts of discrete values, evenly distributed between across the whole value range. If `0`, slider will behave as a continuous slider and allow to choose any value from the range specified. Must not be negative.
+`onValueChangeFinished: (() -> Unit)?` | `null` | Callback invoked when value change has ended. This callback shouldn't be used to update the slider value (use `onValueChange` for that), but rather to know when the user has completed selecting a new value by ending a drag or a click.
+`leftIcon: OdsSliderIcon?` | `null` | Icon displayed on the left of the slider
+`rightIcon: OdsSliderIcon?` | `null` | Icon displayed on the right of the slider
+{:.table}
+
 ### Discrete slider
 
 Discrete sliders display a numeric value label upon pressing the thumb, which
@@ -112,7 +138,7 @@ With icons:
 
 ![Discrete slider with icon](images/slider_discrete_with_icon_light.png) ![Discrete slider with icon dark](images/slider_discrete_with_icon_dark.png)
 
-> **Jetpack Compose implementation**
+#### Jetpack Compose implementation
 
 In your composable screen you can use:
 
@@ -139,6 +165,8 @@ OdsSlider(
     rightIconContentDescription = stringResource(id = R.string.component_slider_high_volume)
 )
 ```
+
+Use the same API as the [Continuous slider](#continuous-slider).
 
 ### Discrete lockups slider
 
@@ -175,6 +203,8 @@ OdsSliderLockups(
     rightIconContentDescription = stringResource(id = R.string.component_slider_high_volume)
 )
 ```
+
+Use the same API as the [Continuous lockups slider](#continuous-lockups-slider).
 
 ## Component specific tokens
 
