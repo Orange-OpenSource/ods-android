@@ -50,13 +50,12 @@ import com.orange.ods.extension.orElse
  *
  * @see androidx.compose.material.LinearProgressIndicator
  *
- * @param modifier The modifier applied to this progress indicator
- * @param progress The value of this progress indicator, where 0.0 represents no progress and 1.0
- * represents full progress. Values outside of this range are coerced into the range. If set to `null`,
- * the progress indicator is indeterminate.
- * @param label The label displayed above the linear progress
- * @param icon The icon displayed above the linear progress
- * @param showCurrentValue Indicates whether the current value is displayed
+ * @param modifier [Modifier] applied to the progress indicator
+ * @param progress Progress indicator value where 0.0 represents no progress and 1.0 represents full progress. Values outside of this range are coerced
+ * into the range. If set to `null`, the progress indicator is indeterminate.
+ * @param label Label displayed above the linear progress
+ * @param icon Icon displayed above the progress indicator
+ * @param showCurrentValue Controls the progress indicator current value visibility
  */
 @OptIn(ExperimentalComposeUiApi::class)
 @Composable
@@ -80,7 +79,7 @@ fun OdsLinearProgressIndicator(
         ) {
             icon?.Content()
             Spacer(Modifier.width(ButtonDefaults.IconSpacing))
-            
+
             if (label != null) {
                 Text(
                     text = label,
