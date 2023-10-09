@@ -43,9 +43,8 @@ import com.orange.ods.compose.theme.OdsTheme
  * See [OdsBottomNavigationItem] for configuration specific to each item, and not the overall
  * OdsBottomNavigation component.
  *
- * @param modifier optional [Modifier] for this OdsBottomNavigation
- * @param items destinations inside this OdsBottomNavigation, this contain multiple
- * [OdsBottomNavigationItem]s
+ * @param modifier [Modifier] applied to the bottom navigation
+ * @param items List of [OdsBottomNavigationItem] displayed into the bottom navigation
  */
 @Composable
 @OdsComposable
