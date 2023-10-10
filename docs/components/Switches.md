@@ -7,8 +7,7 @@ description: Switch selection control allows the user to select options.
 Switches toggle the state of a single setting on or off. They are the preferred
 way to adjust settings on mobile.
 
----
-
+<br>
 **Page Summary**
 
 * [Specifications references](#specifications-references)
@@ -47,6 +46,16 @@ OdsSwitch(
     enabled = true
 )
 ```
+
+#### OdsSwitch API
+
+Parameter | Default value | Description
+-- | -- | --
+`checked: Boolean` | | Controls the checked state of the switch
+`onCheckedChange: ((Boolean) -> Unit)?` | | Callback invoked on switch check. If `null`, then this is passive and relies entirely on a higher-level component to control the "checked" state.
+`modifier: Modifier` | `Modifier` | `Modifier` applied to the switch
+`enabled: Boolean` | `true` | Controls the enabled state of the switch. When `false`, the switch will not be checkable and appears disabled.
+{:.table}
 
 ## Component specific tokens
 
