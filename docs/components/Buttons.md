@@ -31,9 +31,9 @@ description: Buttons allow users to take actions, and make choices, with a singl
 
 Please follow [accessibility criteria for development](https://a11y-guidelines.orange.com/en/mobile/android/development/)
 
-Buttons support content labeling for accessibility and are readable by most screen readers, such as
-TalkBack. Text rendered in buttons is automatically provided to accessibility services. Additional
-content labels are usually unnecessary.
+ODS buttons support accessibility criteria and are readable by most screen readers, such as TalkBack.
+
+Content descriptions for icons are unnecessary in the case of buttons containing text. For other buttons types, such as `OdsIconButton`, icons content descriptions are mandatory in the APIs.
 
 ## Variants
 

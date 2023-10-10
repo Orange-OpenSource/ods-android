@@ -32,9 +32,6 @@ Dialogs are purposefully interruptive, so they should be used sparingly.
 
 Please follow [accessibility criteria for development](https://a11y-guidelines.orange.com/en/mobile/android/development/)
 
-The contents within a dialog should follow their own accessibility guidelines,
-such as an icon on a title having a content description.
-
 ## Variants
 
 ### Alert dialog

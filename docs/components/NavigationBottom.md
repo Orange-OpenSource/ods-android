@@ -24,6 +24,8 @@ description: Bottom navigation bars allow movement between primary destinations 
 
 Please follow [accessibility criteria for development](https://a11y-guidelines.orange.com/en/mobile/android/development/)
 
+Note that TalkBack already reads the bottom navigation items labels so the content descriptions of the `OdsBottomNavigationItemIcon`s can be empty.
+
 ## Implementation
 
 ![BottomNavigation light](images/bottom_navigation_light.png)
@@ -58,7 +60,7 @@ OdsBottomNavigation(
             icon = OdsBottomNavigationItemIcon(
                 painter = painterResource(id = item.first),
                 contentDescription = ""
-            ), // contentDescription is empty cause TalkBack already read the item's title
+            ), // contentDescription is empty cause TalkBack already read the item's label
             label = stringResource(id = item.second),
             selected = selectedItemIndex == index,
             onClick = {

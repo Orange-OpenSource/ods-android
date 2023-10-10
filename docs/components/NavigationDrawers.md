@@ -19,7 +19,6 @@ description: The navigation drawer slides in from the left when the nav icon is 
 
 - [Design System Manager - Navigation drawers](https://system.design.orange.com/0c1af118d/p/92bc26-navigation-drawers/b/146f55)
 - [Material Design - Navigation drawer](https://m2.material.io/components/navigation-drawer)
-- Technical documentation soon available
 
 ## Accessibility
 

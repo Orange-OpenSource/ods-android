@@ -24,6 +24,8 @@ description:
 
 Please follow [accessibility criteria for development](https://a11y-guidelines.orange.com/en/mobile/android/development/)
 
+An image in an `OdsImageTile` should always be associated to a content description. This is the reason why the `OdsImageTileImage` forces the developer to fill a content description parameter.
+
 ## Implementation
 
 #### Jetpack Compose

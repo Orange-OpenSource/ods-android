@@ -27,11 +27,11 @@ description: A floating action button (FAB) represents the primary action of a s
 
 Please follow [accessibility criteria for development](https://a11y-guidelines.orange.com/en/mobile/android/development/)
 
-You should set a content description on a FAB via the
-`android:contentDescription` attribute or `setContentDescription` method so that
-screen readers like TalkBack are able to announce their purpose or action. Text
-rendered in Extended FABs is automatically provided to accessibility services,
-so additional content labels are usually unnecessary.
+The `OdsFloatingActionButtonIcon` used in Floating Action Buttons APIs force the developers to set a content description to the FABs so that
+screen readers like TalkBack are able to announce their purpose or action.
+
+Text rendered in an extended FAB is automatically provided to accessibility services, so additional content labels are usually unnecessary.
+In this context you can set an empty `contentDescription`.
 
 ## Variants
 

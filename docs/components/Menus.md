@@ -26,6 +26,8 @@ description: Menus appear from a button, action, or other control. It contains a
 
 Please follow [accessibility criteria for development](https://a11y-guidelines.orange.com/en/mobile/android/development/)
 
+The icons which can be displayed in a dropdown menu are always associated to a text so they don't need a content description.
+
 ## Variants
 
 ### Dropdown menu

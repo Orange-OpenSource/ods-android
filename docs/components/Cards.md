@@ -29,6 +29,7 @@ description: Cards contain content and actions about a single subject.
 Please follow [accessibility criteria for development](https://a11y-guidelines.orange.com/en/mobile/android/development/)
 
 The contents within a card should follow their own accessibility guidelines, such as images having content descriptions set on them.
+The ODS library cards APIs forces the developers to add content descriptions on card images.
 
 ## Variants
 

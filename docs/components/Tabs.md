@@ -29,15 +29,6 @@ Please follow [accessibility criteria for development](https://a11y-guidelines.o
 The Android tab components support screen reader descriptions for tabs and
 badges. While optional, we strongly encourage their use.
 
-**Content description**
-
-Adding a content description to the entire `TabLayout` can be done in XML with
-the `android:contentDescription` attribute or programmatically like so:
-
-```kotlin
-tabLayout.contentDescription = contentDescription
-```
-
 ## Variants
 
 ### Fixed tabs

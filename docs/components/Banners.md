@@ -30,9 +30,7 @@ Only one banner should be shown at a time
 
 Please follow [accessibility criteria for development](https://a11y-guidelines.orange.com/en/mobile/android/development/)
 
-Users should be able to use the left phone buttons to interact with the banner.
-The user should be able to hear the current state of the banner at all times.
-Recommendation is available at the Orange Accessibility site
+`OdsBanner` is built to support accessibility criteria and is readable by most screen readers, such as TalkBack. The use of an `OdsBannerImage` force the developer to associate a content description to the banner image.
 
 ## Implementation
 
