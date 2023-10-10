@@ -10,9 +10,8 @@ It requires a user action to be dismissed.
 Banners should be displayed at the top of the screen, below a top app bar. They’re persistent and nonmodal, allowing the user to either ignore them or interact with them at any time.
 Only one banner should be shown at a time
 
----
-
-**Page Summary**
+<br>
+**On this page**
 
 * [Specifications references](#specifications-references)
 * [Accessibility](#accessibility)
@@ -54,7 +53,9 @@ OdsBanner(
 )
 ```
 
-Parameter | Default value | Description
+#### OdsBanner API
+
+Parameter | Default&nbsp;value | Description
 -- | -- | --
 `message: String` | | Text displayed into the banner
 `firstButton: OdsBannerButton` | | Principal button displayed in the banner

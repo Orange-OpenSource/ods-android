@@ -4,9 +4,8 @@ title: Progress indicators
 description: Progress indicators express an unspecified wait time or display the length of a process.
 ---
 
----
-
-**Page Summary**
+<br>
+**On this page**
 
 * [Specifications references](#specifications-references)
 * [Accessibility](#accessibility)
@@ -75,7 +74,9 @@ OdsLinearProgressIndicator(
 )
 ```
 
-Parameter | Default value | Description
+##### OdsLinearProgressIndicator API
+
+Parameter | Default&nbsp;value | Description
 -- | -- | --
 `modifier: Modifier` | `Modifier` | `Modifier` applied to the progress indicator
 `progress: Float?` | `null` | Progress indicator value where 0.0 represents no progress and 1.0 represents full progress. Values outside of this range are coerced into the range. If set to `null`, the progress indicator is indeterminate.
@@ -121,7 +122,9 @@ OdsCircularProgressIndicator(
 )
 ```
 
-Parameter | Default value | Description
+##### OdsCircularProgressIndicator API
+
+Parameter | Default&nbsp;value | Description
 -- | -- | --
 `modifier: Modifier` | `Modifier` | `Modifier` applied to the progress indicator
 `progress: Float?` | `null` | Progress indicator value where 0.0 represents no progress and 1.0 represents full progress. Values outside of this range are coerced into the range. If set to `null`, the progress indicator is indeterminate.

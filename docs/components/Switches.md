@@ -8,7 +8,7 @@ Switches toggle the state of a single setting on or off. They are the preferred
 way to adjust settings on mobile.
 
 <br>
-**Page Summary**
+**On this page**
 
 * [Specifications references](#specifications-references)
 * [Accessibility](#accessibility)
@@ -49,7 +49,7 @@ OdsSwitch(
 
 #### OdsSwitch API
 
-Parameter | Default value | Description
+Parameter | Default&nbsp;value | Description
 -- | -- | --
 `checked: Boolean` | | Controls the checked state of the switch
 `onCheckedChange: ((Boolean) -> Unit)?` | | Callback invoked on switch check. If `null`, then this is passive and relies entirely on a higher-level component to control the "checked" state.

@@ -4,9 +4,8 @@ title: "App bars: top"
 description: Top app bars display information and actions relating to the current screen.
 ---
 
----
-
-**Page Summary**
+<br>
+**On this page**
 
 * [Specifications references](#specifications-references)
 * [Accessibility](#accessibility)
@@ -66,8 +65,11 @@ OdsTopAppBar(
 ```
 
 Note: By default, the `OdsTopAppBar` is elevated but you can set `elevated` parameter to `false` if you don't want any shadow below it (for example if you want to display tabs below).
+{:.bd-callout .bd-callout-info}
 
-Parameter | Default value | Description
+##### OdsTopAppBar API
+
+Parameter | Default&nbsp;value | Description
 -- | -- | --
 `title: String` | | Title to be displayed in the center of the top app bar
 `modifier: Modifier` | `Modifier` |`Modifier` to be applied to the top app bar
@@ -145,7 +147,9 @@ Scaffold(
 }
 ```
 
-Parameter | Default value | Description
+##### OdsLargeTopAppBar API
+
+Parameter | Default&nbsp;value | Description
 -- | -- | --
 `title: String` | | Title displayed in the center of the top app bar
 `modifier: Modifier` | `Modifier` |`Modifier` applied to the top app bar

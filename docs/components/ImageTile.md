@@ -4,9 +4,8 @@ title: Image Tile
 description:
 ---
 
----
-
-**Page Summary**
+<br>
+**On this page**
 
 * [Specifications references](#specifications-references)
 * [Accessibility](#accessibility)
@@ -57,7 +56,9 @@ OdsImageTile(
 )
 ```
 
-Parameter | Default value | Description
+##### OdsImageTile API
+
+Parameter | Default&nbsp;value | Description
 -- | -- | --
 `image: OdsImageTileImage` | | Image displayed into the tile
 `legendAreaDisplayType: OdsImageTileLegendAreaDisplayType` | | Controls how the title and the icon are displayed relatively to the image. If set to `OdsImageTileLegendAreaDisplayType.None`, no legend area will be displayed.

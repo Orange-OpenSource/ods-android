@@ -11,9 +11,8 @@ or a required action has been taken.
 
 Dialogs are purposefully interruptive, so they should be used sparingly.
 
----
-
-**Page Summary**
+<br>
+**On this page**
 
 * [Specifications references](#specifications-references)
 * [Accessibility](#accessibility)
@@ -55,7 +54,9 @@ OdsAlertDialog(
 )
 ```
 
-Parameter | Default value | Description
+##### OdsAlertDialog API
+
+Parameter | Default&nbsp;value | Description
 -- | -- | --
 `text: String` | | Text displayed into the dialog which presents the details regarding the Dialog's purpose
 `confirmButton: OdsAlertDialogButton` | | Button displayed into the dialog which is meant to confirm a proposed action, thus resolving what triggered the dialog

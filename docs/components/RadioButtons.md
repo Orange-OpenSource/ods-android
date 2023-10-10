@@ -11,9 +11,8 @@ Use radio buttons to:
 * If available options can be collapsed, consider using a dropdown menu
   instead, as it uses less space.
 
----
-
-**Page Summary**
+<br>
+**On this page**
 
 * [Specifications references](#specifications-references)
 * [Accessibility](#accessibility)
@@ -40,7 +39,7 @@ usually unnecessary.
 
 ![RadioButton](images/radio_button_light.png) ![RadioButton dark](images/radio_button_dark.png)
 
-### Jetpack Compose implementation
+### Jetpack Compose
 
 In your composable screen you can use:
 
@@ -52,7 +51,9 @@ OdsRadioButton(
 )
 ```
 
-Parameter | Default value | Description
+#### OdsRadioButton API
+
+Parameter | Default&nbsp;value | Description
 -- | -- | --
 `selected: Boolean` | | Controls the selected state of the radio button
 `onClick: (() -> Unit)?` | | Callback invoked on radio button click. If `null`, then the radio button will not handle input events, and only act as a visual indicator of `selected` state.

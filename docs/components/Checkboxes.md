@@ -10,9 +10,8 @@ Use checkboxes to:
 * Present a list containing sub-selections
 * Turn an item on or off in a desktop environment
 
----
-
-**Page Summary**
+<br>
+**On this page**
 
 * [Specifications references](#specifications-references)
 * [Accessibility](#accessibility)
@@ -34,11 +33,11 @@ Checkboxes support content labeling for accessibility and are readable by most s
 as TalkBack. Text rendered in check boxes is automatically provided to accessibility services.
 Additional content labels are usually unnecessary.
 
-### Implementation
+## Implementation
 
 ![Checkbox](images/checkbox_light.png) ![Checkbox dark](images/checkbox_dark.png)
 
-#### Jetpack Compose
+### Jetpack Compose
 
 In your composable screen you can use:
 
@@ -51,7 +50,9 @@ OdsCheckbox(
 )
 ```
 
-Parameter | Default value | Description
+#### OdsCheckbox API
+
+Parameter | Default&nbsp;value | Description
 -- | -- | --
 `checked: Boolean` | | Controls checked state of the checkbox
 `onCheckedChange: ((Boolean) -> Unit)?` | | Callback invoked on checkbox click. If `null`, then this is passive and relies entirely on a higher-level component to control the checked state.

@@ -4,9 +4,8 @@ title: "Navigation: bottom"
 description: Bottom navigation bars allow movement between primary destinations in an app.
 ---
 
----
-
-**Page Summary**
+<br>
+**On this page**
 
 * [Specifications references](#specifications-references)
 * [Accessibility](#accessibility)
@@ -32,7 +31,7 @@ Note that TalkBack already reads the bottom navigation items labels so the conte
 
 ![BottomNavigation dark](images/bottom_navigation_dark.png)
 
-#### Jetpack Compose
+### Jetpack Compose
 
 In your composable screen, use the `OdsBottomNavigation` composable. It should contain multiple `OdsBottomNavigationItem`s.
 
@@ -72,7 +71,9 @@ OdsBottomNavigation(
 )
 ```
 
-Parameter | Default value | Description
+#### OdsBottomNavigation API
+
+Parameter | Default&nbsp;value | Description
 -- | -- | --
 `modifier: Modifier` | `Modifier` | `Modifier` applied to the bottom navigation
 `items: List<OdsBottomNavigationItem>` | | Items displayed into the bottom navigation

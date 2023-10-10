@@ -4,9 +4,8 @@ title: Lists
 description: Lists are continuous, vertical indexes of text or images.
 ---
 
----
-
-**Page Summary**
+<br>
+**On this page**
 
 * [Specifications references](#specifications-references)
 * [Accessibility](#accessibility)

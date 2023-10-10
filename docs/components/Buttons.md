@@ -4,9 +4,8 @@ title: Buttons
 description: Buttons allow users to take actions, and make choices, with a single tap.
 ---
 
----
-
-**Page Summary**
+<br>
+**On this page**
 
 * [Specifications references](#specifications-references)
 * [Accessibility](#accessibility)
@@ -78,7 +77,9 @@ OdsButton(
 )
 ```
 
-Parameter | Default value | Description
+##### OdsButton API
+
+Parameter | Default&nbsp;value | Description
 -- | -- | --
 `text: String` | | Text displayed into the button
 `onClick: () -> Unit` | | Callback invoked when the button is clicked
@@ -114,7 +115,9 @@ OdsTextButton(
 )
 ```
 
-Parameter | Default value | Description
+##### OdsTextButton API
+
+Parameter | Default&nbsp;value | Description
 -- | -- | --
 `text: String` | | Text displayed into the button
 `onClick: () -> Unit` | | Callback invoked on button click
@@ -149,7 +152,9 @@ OdsOutlinedButton(
 )
 ```
 
-Parameter | Default value | Description
+##### OdsOutlinedButton API
+
+Parameter | Default&nbsp;value | Description
 -- | -- | --
 `text: String` | | Text displayed into the button
 `onClick: () -> Unit` | | Callback invoked on button click
@@ -188,7 +193,9 @@ OdsTextToggleButtonsRow(
 )
 ```
 
-Parameter | Default value | Description
+##### OdsTextToggleButtonsRow API
+
+Parameter | Default&nbsp;value | Description
 -- | -- | --
 `textToggleButtons: List<OdsTextToggleButtonsRowItem>` | | Items displayed into the toggle group
 `selectedIndex: Int` | | `textToggleButtons` list index of the selected button
@@ -223,7 +230,9 @@ OdsIconButton(
 )
 ```
 
-Parameter | Default value | Description
+##### OdsIconButton API
+
+Parameter | Default&nbsp;value | Description
 -- | -- | --
 `icon: OdsIconButtonIcon` | | Icon to be drawn into the button
 `onClick: () -> Unit` | | Callback to be invoked when the button is clicked
@@ -259,7 +268,9 @@ OdsIconToggleButton(
 )
 ```
 
-Parameter | Default value | Description
+##### OdsIconToggleButton API
+
+Parameter | Default&nbsp;value | Description
 -- | -- | --
 `checked: Boolean` | | Controls the checked state of the button
 `onCheckedChange: (Boolean) -> Unit` | | Callback invoked when the button is checked
@@ -305,7 +316,9 @@ OdsIconToggleButtonsRow(
 )
 ```
 
-Parameter | Default value | Description
+##### OdsIconToggleButtonsRow API
+
+Parameter | Default&nbsp;value | Description
 -- | -- | --
 `icons: List<OdsIconToggleButtonsRowIcon>` | | Icons to be displayed into the toggle group
 `selectedIndex: Int` | | `icons` list index of the selected button

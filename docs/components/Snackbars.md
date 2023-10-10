@@ -13,9 +13,8 @@ the screen, but can also be swiped off the screen.
 Snackbars can also offer the ability to perform an action, such as undoing an
 action that was just taken, or retrying an action that had failed.
 
----
-
-**Page Summary**
+<br>
+**On this page**
 
 * [Specifications references](#specifications-references)
 * [Accessibility](#accessibility)

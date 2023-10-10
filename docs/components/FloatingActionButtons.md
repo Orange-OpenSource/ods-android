@@ -4,9 +4,8 @@ title: Floating action buttons
 description: A floating action button (FAB) represents the primary action of a screen.
 ---
 
----
-
-**Page Summary**
+<br>
+**On this page**
 
 * [Specifications references](#specifications-references)
 * [Accessibility](#accessibility)
@@ -57,7 +56,9 @@ OdsFloatingActionButton(
 )
 ```
 
-Parameter | Default value | Description
+##### OdsFloatingActionButton API
+
+Parameter | Default&nbsp;value | Description
 -- | -- | --
 `icon: OdsFloatingActionButtonIcon` | | Icon used into the FAB
 `onClick: () -> Unit` | | Callback invoked on FAB click
@@ -89,7 +90,7 @@ OdsFloatingActionButton(
 )
 ```
 
-Use the same API as the [Regular FAB](#regular-fab).
+Use [OdsFloatingActionButton API](#odsfloatingactionbutton-api).
 
 ### Extended FAB
 
@@ -112,7 +113,9 @@ OdsExtendedFloatingActionButton(
 )
 ```
 
-Parameter | Default value | Description
+##### OdsExtendedFloatingActionButton API
+
+Parameter | Default&nbsp;value | Description
 -- | -- | --
 `icon: OdsFloatingActionButtonIcon` | | Icon used into the FAB
 `onClick: () -> Unit` | | Callback invoked on FAB click

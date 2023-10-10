@@ -4,9 +4,8 @@ title: Text fields
 description: Text fields let users enter and edit text.
 ---
 
----
-
-**Page Summary**
+<br>
+**On this page**
 
 * [Specifications references](#specifications-references)
 * [Accessibility](#accessibility)

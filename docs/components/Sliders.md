@@ -4,9 +4,8 @@ title: Sliders
 description: Sliders allow users to make selections from a range of values.
 ---
 
----
-
-**Page Summary**
+<br>
+**On this page**
 
 * [Specifications references](#specifications-references)
 * [Accessibility](#accessibility)
@@ -67,7 +66,9 @@ OdsSlider(
 )
 ```
 
-Parameter | Default value | Description
+##### OdsSlider API
+
+Parameter | Default&nbsp;value | Description
 -- | -- | --
 `value: Float` | | Current value of the slider. If outside of `valueRange` provided, value will be coerced to this range.
 `onValueChange: (Float) -> Unit` | | Callback invoked on slider value change. `value` should be updated here.
@@ -114,7 +115,7 @@ OdsSliderLockups(
 )
 ```
 
-Parameter | Default value | Description
+Parameter | Default&nbsp;value | Description
 -- | -- | --
 `value: Float` | | Current value of the slider. If outside of `valueRange` provided, value will be coerced to this range.
 `onValueChange: (Float) -> Unit` | | Callback invoked on slider value change. `value` should be updated here.

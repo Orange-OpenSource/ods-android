@@ -4,9 +4,8 @@ title: Menus
 description: Menus appear from a button, action, or other control. It contains at least 2 items that can affect the app, the view or elements within the view.
 ---
 
----
-
-**Page Summary**
+<br>
+**On this page**
 
 * [Specifications references](#specifications-references)
 * [Accessibility](#accessibility)
@@ -63,7 +62,9 @@ OdsDropdownMenu(
 )
 ```
 
-Parameter | Default value | Description
+##### OdsDropdownMenu API
+
+Parameter | Default&nbsp;value | Description
 -- | -- | --
 `items: List<OdsDropdownMenuItem>` | | Items displayed into the dropdown menu
 `expanded: Boolean` | | Controls whether the menu is currently open and visible to the user
@@ -102,7 +103,9 @@ OdsExposedDropdownMenu(
 )
 ```
 
-Parameter | Default value | Description
+##### OdsExposedDropdownMenu API
+
+Parameter | Default&nbsp;value | Description
 -- | -- | --
 `label: String` | | Label of the exposed menu text field
 `items: List<OdsExposedDropdownMenuItem>` | | Items displayed into the dropdown menu

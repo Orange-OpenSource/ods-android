@@ -4,9 +4,8 @@ title: Cards
 description: Cards contain content and actions about a single subject.
 ---
 
----
-
-**Page Summary**
+<br>
+**On this page**
 
 * [Specifications references](#specifications-references)
 * [Accessibility](#accessibility)
@@ -63,7 +62,9 @@ OdsVerticalImageFirstCard(
 )
 ```
 
-Parameter | Default value | Description
+##### OdsVerticalImageFirstCard API
+
+Parameter | Default&nbsp;value | Description
 -- | -- | --
 `title: String` | | Title displayed into the card
 `image: OdsCardImage` | | Image displayed into the card
@@ -111,7 +112,9 @@ OdsVerticalHeaderFirstCard(
 )
 ```
 
-Parameter | Default value | Description
+##### OdsVerticalHeaderFirstCard API
+
+Parameter | Default&nbsp;value | Description
 -- | -- | --
 `title: String` | | Title displayed into the card
 `image: OdsCardImage` | | Image displayed into the card
@@ -163,7 +166,9 @@ Row(
 }
 ```
 
-Parameter | Default value | Description
+##### OdsSmallCard API
+
+Parameter | Default&nbsp;value | Description
 -- | -- | --
 `title: String` | | Title displayed into the card
 `image: OdsCardImage` | | Image displayed into the card
@@ -206,7 +211,9 @@ OdsHorizontalCard(
 )
 ```
 
-Parameter | Default value | Description
+##### OdsHorizontalCard API
+
+Parameter | Default&nbsp;value | Description
 -- | -- | --
 `title: String` | | Title displayed into the card
 `image: OdsCardImage` | | Image displayed into the card

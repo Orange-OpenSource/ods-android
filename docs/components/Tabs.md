@@ -4,9 +4,8 @@ title: Tabs
 description: Tabs organize content across different screens, data sets, and other interactions.
 ---
 
----
-
-**Page Summary**
+<br>
+**On this page**
 
 * [Specifications references](#specifications-references)
 * [Accessibility](#accessibility)

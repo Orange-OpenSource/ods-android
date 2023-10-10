@@ -4,9 +4,8 @@ title: Chips
 description: Chips are compact elements that represent an input, attribute, or action.
 ---
 
----
-
-**Page summary**
+<br>
+**On this page**
 
 * [Specifications references](#specifications-references)
 * [Accessibility](#accessibility)
@@ -71,7 +70,9 @@ OdsChip(
 )
 ```
 
-Parameter | Default value | Description
+##### OdsChip API
+
+Parameter | Default&nbsp;value | Description
 -- | -- | --
 `text: String` | | Text to be displayed into the chip
 `onClick: () -> Unit` | | Callback called on chip click
@@ -113,7 +114,7 @@ OdsChip(
 )
 ```
 
-Use the same API as the [Input chip](#input-chip).
+Use the [OdsChip API](#odschip-api).
 
 ### Filter chip
 
@@ -147,7 +148,9 @@ OdsFilterChip(
 )
 ```
 
-Parameter | Default value | Description
+##### OdsFilterChip API
+
+Parameter | Default&nbsp;value | Description
 -- | -- | --
 `text: String` | | Text to be displayed into the chip
 `onClick: () -> Unit` | | Callback called on chip click
@@ -188,7 +191,7 @@ OdsChip(
 )
 ```
 
-Use the same API as the [Input chip](#input-chip).
+Use the [OdsChip API](#odschip-api).
 
 ## Related components
 
@@ -218,7 +221,9 @@ OdsChoiceChipsFlowRow(
 )
 ```
 
-Parameter | Default value | Description
+#### OdsChoiceChipsFlowRow API
+
+Parameter | Default&nbsp;value | Description
 -- | -- | --
 `value: String` | | Initial value of the choice chips flow row
 `onValueChange: (value: T) -> Unit` | | Callback invoked when the value changes. The new value is provided as parameter.
