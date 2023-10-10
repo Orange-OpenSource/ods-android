@@ -19,6 +19,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.ImageBitmap
 import androidx.compose.ui.graphics.painter.Painter
 import androidx.compose.ui.graphics.vector.ImageVector
+import com.orange.ods.compose.component.content.OdsComponentContent
 import com.orange.ods.compose.component.content.OdsComponentIcon
 import com.orange.ods.compose.theme.OdsDisplaySurface
 
@@ -27,7 +28,7 @@ import com.orange.ods.compose.theme.OdsDisplaySurface
  * A button icon in an [OdsButton].
  * It is non-clickable and no content description is needed cause a button label is always present.
  */
-class OdsButtonIcon : OdsComponentIcon {
+class OdsButtonIcon : OdsComponentIcon<Nothing> {
 
     /**
      * Creates an instance of [OdsButtonIcon].
@@ -60,7 +61,12 @@ class OdsButtonIcon : OdsComponentIcon {
 /**
  * An icon in an [OdsIconButton].
  */
-class OdsIconButtonIcon : OdsComponentIcon {
+class OdsIconButtonIcon : OdsComponentIcon<OdsIconButtonIcon.ExtraParameters> {
+
+    data class ExtraParameters(
+        val enabled: Boolean,
+        val displaySurface: OdsDisplaySurface
+    ) : OdsComponentContent.ExtraParameters()
 
     /**
      * Creates an instance of [OdsIconButtonIcon].
@@ -91,10 +97,10 @@ class OdsIconButtonIcon : OdsComponentIcon {
         get() = iconButtonTintColor(displaySurface = displaySurface)
 
     @Composable
-    internal fun Content(enabled: Boolean, displaySurface: OdsDisplaySurface = OdsDisplaySurface.Default) {
-        this.enabled = enabled
-        this.displaySurface = displaySurface
-        Content()
+    override fun Content(modifier: Modifier) {
+        enabled = extraParameters.enabled
+        displaySurface = extraParameters.displaySurface
+        super.Content(modifier)
     }
 }
 

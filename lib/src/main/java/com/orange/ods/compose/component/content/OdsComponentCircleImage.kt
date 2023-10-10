@@ -24,7 +24,7 @@ import androidx.compose.ui.unit.dp
 abstract class OdsComponentCircleImage private constructor(
     graphicsObject: Any,
     contentDescription: String
-) : OdsComponentImage(graphicsObject, contentDescription, contentScale = ContentScale.Crop) {
+) : OdsComponentImage<Nothing>(graphicsObject, contentDescription, contentScale = ContentScale.Crop) {
 
     /**
      * Creates an instance of [OdsComponentCircleImage].

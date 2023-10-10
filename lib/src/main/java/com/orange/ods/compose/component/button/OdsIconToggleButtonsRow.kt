@@ -36,6 +36,7 @@ import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.semantics.stateDescription
 import androidx.compose.ui.unit.dp
 import com.orange.ods.compose.component.OdsComposable
+import com.orange.ods.compose.component.content.OdsComponentContent
 import com.orange.ods.compose.component.content.OdsComponentIcon
 import com.orange.ods.compose.component.utilities.DisabledInteractionSource
 import com.orange.ods.compose.component.utilities.Preview
@@ -76,9 +77,11 @@ fun OdsIconToggleButtonsRow(
             )
     ) {
         icons.forEachIndexed { index, icon ->
-            icon.Content(index = index, displaySurface = displaySurface, selected = selectedIndex == index, onClick = { clickedButtonIndex ->
-                onSelectedIndexChange(clickedButtonIndex)
-            })
+            icon.Content(
+                OdsIconToggleButtonsRowIcon.ExtraParameters(index, displaySurface, selectedIndex == index) { clickedButtonIndex ->
+                    onSelectedIndexChange(clickedButtonIndex)
+                }
+            )
             if (index < icons.size) {
                 Divider(
                     modifier = Modifier
@@ -94,7 +97,14 @@ fun OdsIconToggleButtonsRow(
 /**
  * An icon of an [OdsIconToggleButtonsRow].
  */
-class OdsIconToggleButtonsRowIcon : OdsComponentIcon {
+class OdsIconToggleButtonsRowIcon : OdsComponentIcon<OdsIconToggleButtonsRowIcon.ExtraParameters> {
+
+    data class ExtraParameters(
+        val index: Int,
+        val displaySurface: OdsDisplaySurface,
+        val selected: Boolean,
+        val onClick: (Int) -> Unit
+    ) : OdsComponentContent.ExtraParameters()
 
     /**
      * Creates an instance of [OdsIconToggleButtonsRowIcon].
@@ -126,45 +136,34 @@ class OdsIconToggleButtonsRowIcon : OdsComponentIcon {
      */
     constructor(bitmap: ImageBitmap, contentDescription: String, enabled: Boolean = true) : super(bitmap, contentDescription, enabled)
 
-    private var index: Int = 0
-    private var onClick: (Int) -> Unit = {}
-    private var selected: Boolean = false
-
     override val tint: Color
         @Composable
         get() {
-            return getIconColor(displaySurface, selected, enabled)
+            return with(extraParameters) { getIconColor(displaySurface, selected, enabled) }
         }
 
     @Composable
-    internal fun Content(index: Int, onClick: (Int) -> Unit, displaySurface: OdsDisplaySurface = OdsDisplaySurface.Default, selected: Boolean = false) {
-        this.index = index
-        this.onClick = onClick
-        this.displaySurface = displaySurface
-        this.selected = selected
-        Content()
-    }
-
-    @Composable
     override fun Content(modifier: Modifier) {
-        val backgroundAlpha = if (selected && enabled) 0.12f else 0f
-        val toggleIconStateDescription = selectionStateDescription(selected = selected)
+        with(extraParameters) {
+            val backgroundAlpha = if (selected && enabled) 0.12f else 0f
+            val toggleIconStateDescription = selectionStateDescription(selected = selected)
 
-        super.Content(
-            modifier
-                .background(color = buttonToggleBackgroundColor(displaySurface).copy(alpha = backgroundAlpha))
-                .padding(12.dp)
-                .run {
-                    if (enabled) {
-                        clickable(interactionSource = remember { DisabledInteractionSource() }, indication = null) { onClick(index) }
-                    } else {
-                        this
+            super.Content(
+                modifier
+                    .background(color = buttonToggleBackgroundColor(displaySurface).copy(alpha = backgroundAlpha))
+                    .padding(12.dp)
+                    .run {
+                        if (enabled) {
+                            clickable(interactionSource = remember { DisabledInteractionSource() }, indication = null) { onClick(index) }
+                        } else {
+                            this
+                        }
                     }
-                }
-                .semantics {
-                    stateDescription = toggleIconStateDescription
-                }
-        )
+                    .semantics {
+                        stateDescription = toggleIconStateDescription
+                    }
+            )
+        }
     }
 
     @Composable

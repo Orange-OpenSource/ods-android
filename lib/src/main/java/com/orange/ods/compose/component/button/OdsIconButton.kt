@@ -53,7 +53,7 @@ fun OdsIconButton(
         LocalRippleTheme provides displaySurface.rippleTheme
     ) {
         IconButton(onClick = onClick, modifier = modifier, enabled = enabled) {
-            icon.Content(enabled = enabled, displaySurface = displaySurface)
+            icon.Content(OdsIconButtonIcon.ExtraParameters(enabled, displaySurface))
         }
     }
 }

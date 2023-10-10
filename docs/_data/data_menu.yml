@@ -39,6 +39,8 @@ toc2:
         url: /components/Menus_docs
       - page: "Navigation: bottom"
         url: /components/NavigationBottom_docs
+      - page: Navigation drawers
+        url: /components/NavigationDrawers_docs
       - page: Progress indicators
         url: /components/ProgressIndicators_docs
       - page: Radio buttons

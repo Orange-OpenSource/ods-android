@@ -63,7 +63,7 @@ fun OdsIconToggleButton(
             enabled = enabled
         ) {
             val icon = if (checked) checkedIcon else uncheckedIcon
-            icon.Content(enabled = enabled, displaySurface = displaySurface)
+            icon.Content(OdsIconButtonIcon.ExtraParameters(enabled, displaySurface))
         }
     }
 }

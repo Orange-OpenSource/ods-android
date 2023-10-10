@@ -18,7 +18,6 @@ import androidx.compose.foundation.layout.defaultMinSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material.Icon
 import androidx.compose.material.Slider
 import androidx.compose.material.SliderDefaults
 import androidx.compose.material.Text
@@ -29,7 +28,10 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.ImageBitmap
 import androidx.compose.ui.graphics.painter.Painter
+import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.style.TextAlign
@@ -38,6 +40,7 @@ import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import com.orange.ods.R
 import com.orange.ods.compose.component.OdsComposable
+import com.orange.ods.compose.component.content.OdsComponentIcon
 import com.orange.ods.compose.component.utilities.BasicPreviewParameterProvider
 import com.orange.ods.compose.component.utilities.Preview
 import com.orange.ods.compose.component.utilities.UiModePreviews
@@ -72,10 +75,8 @@ private const val ActiveTickColorAlpha = 0.4f
  * @param onValueChangeFinished lambda to be invoked when value change has ended. This callback
  * shouldn't be used to update the slider value (use [onValueChange] for that), but rather to
  * know when the user has completed selecting a new value by ending a drag or a click.
- * @param leftIcon Optional icon displayed on the left of the slider
- * @param leftIconContentDescription Left icon content description
- * @param rightIcon Optional icon displayed on the right of the slider
- * @param rightIconContentDescription Right icon content description
+ * @param leftIcon Icon displayed on the left of the slider
+ * @param rightIcon Icon displayed on the right of the slider
  */
 @Composable
 @OdsComposable
@@ -87,23 +88,15 @@ fun OdsSlider(
     valueRange: ClosedFloatingPointRange<Float> = 0f..1f,
     steps: Int = 0,
     onValueChangeFinished: (() -> Unit)? = null,
-    leftIcon: Painter? = null,
-    leftIconContentDescription: String? = null,
-    rightIcon: Painter? = null,
-    rightIconContentDescription: String? = null
+    leftIcon: OdsSliderIcon? = null,
+    rightIcon: OdsSliderIcon? = null
 ) {
     Row(
         modifier = modifier,
         verticalAlignment = Alignment.CenterVertically,
         horizontalArrangement = Arrangement.spacedBy(dimensionResource(id = R.dimen.spacing_m))
     ) {
-        leftIcon?.let { painter ->
-            Icon(
-                painter = painter,
-                contentDescription = leftIconContentDescription,
-                tint = OdsTheme.colors.onSurface
-            )
-        }
+        leftIcon?.Content()
         // For the moment we cannot change the height of the slider track (need to check in jetpack compose future versions)
         Slider(
             value = value,
@@ -116,13 +109,7 @@ fun OdsSlider(
             onValueChangeFinished = onValueChangeFinished,
             colors = SliderDefaults.colors(activeTickColor = OdsTheme.colors.surface.copy(alpha = ActiveTickColorAlpha))
         )
-        rightIcon?.let { painter ->
-            Icon(
-                painter = painter,
-                contentDescription = rightIconContentDescription,
-                tint = OdsTheme.colors.onSurface
-            )
-        }
+        rightIcon?.Content()
     }
 }
 
@@ -155,10 +142,8 @@ fun OdsSlider(
  * @param onValueChangeFinished lambda to be invoked when value change has ended. This callback
  * shouldn't be used to update the slider value (use [onValueChange] for that), but rather to
  * know when the user has completed selecting a new value by ending a drag or a click.
- * @param leftIcon Optional icon displayed on the left of the slider
- * @param leftIconContentDescription Left icon content description
- * @param rightIcon Optional icon displayed on the right of the slider
- * @param rightIconContentDescription Right icon content description
+ * @param leftIcon Icon displayed on the left of the slider
+ * @param rightIcon Icon displayed on the right of the slider
  */
 @Composable
 @OdsComposable
@@ -170,10 +155,8 @@ fun OdsSliderLockups(
     valueRange: ClosedFloatingPointRange<Float> = 0f..1f,
     steps: Int = 0,
     onValueChangeFinished: (() -> Unit)? = null,
-    leftIcon: Painter? = null,
-    leftIconContentDescription: String? = null,
-    rightIcon: Painter? = null,
-    rightIconContentDescription: String? = null
+    leftIcon: OdsSliderIcon? = null,
+    rightIcon: OdsSliderIcon? = null
 ) {
     val labelMinWidth = 32.dp
     val sideIconBottomPadding = 12.dp
@@ -182,16 +165,11 @@ fun OdsSliderLockups(
         modifier = modifier,
         horizontalArrangement = Arrangement.spacedBy(dimensionResource(id = R.dimen.spacing_xs))
     ) {
-        leftIcon?.let { painter ->
-            Icon(
-                modifier = Modifier
-                    .align(alignment = Alignment.Bottom)
-                    .padding(bottom = sideIconBottomPadding),
-                painter = painter,
-                contentDescription = leftIconContentDescription,
-                tint = OdsTheme.colors.onSurface
-            )
-        }
+        leftIcon?.Content(
+            modifier = Modifier
+                .align(alignment = Alignment.Bottom)
+                .padding(bottom = sideIconBottomPadding)
+        )
         BoxWithConstraints(modifier = modifier.weight(1f)) {
             val offset = getSliderOffset(
                 value = value,
@@ -224,17 +202,46 @@ fun OdsSliderLockups(
                 onValueChangeFinished = onValueChangeFinished,
             )
         }
-        rightIcon?.let { painter ->
-            Icon(
-                modifier = Modifier
-                    .align(alignment = Alignment.Bottom)
-                    .padding(bottom = sideIconBottomPadding),
-                painter = painter,
-                contentDescription = rightIconContentDescription,
-                tint = OdsTheme.colors.onSurface
-            )
-        }
+        rightIcon?.Content(
+            modifier = Modifier
+                .align(alignment = Alignment.Bottom)
+                .padding(bottom = sideIconBottomPadding),
+        )
     }
+}
+
+/**
+ * An icon in an [OdsSlider] or an [OdsSliderLockups].
+ */
+class OdsSliderIcon : OdsComponentIcon<Nothing> {
+
+    /**
+     * Creates an instance of [OdsSliderIcon].
+     *
+     * @param painter Painter of the icon.
+     * @param contentDescription The content description associated to this [OdsSliderIcon].
+     */
+    constructor(painter: Painter, contentDescription: String) : super(painter, contentDescription)
+
+    /**
+     * Creates an instance of [OdsSliderIcon].
+     *
+     * @param imageVector Image vector of the icon.
+     * @param contentDescription The content description associated to this [OdsSliderIcon].
+     */
+    constructor(imageVector: ImageVector, contentDescription: String) : super(imageVector, contentDescription)
+
+    /**
+     * Creates an instance of [OdsSliderIcon].
+     *
+     * @param bitmap Image bitmap of the icon.
+     * @param contentDescription The content description associated to this [OdsSliderIcon].
+     */
+    constructor(bitmap: ImageBitmap, contentDescription: String) : super(bitmap, contentDescription)
+
+    override val tint: Color?
+        @Composable
+        get() = OdsTheme.colors.onSurface
 }
 
 @Composable
@@ -286,8 +293,8 @@ private fun PreviewOdsSlider(@PreviewParameter(OdsSliderPreviewParameterProvider
         value = sliderValue.value,
         onValueChange = { sliderValue.value = it },
         steps = 9,
-        leftIcon = if (withIcons) painterResource(id = R.drawable.ic_crosset_out_eye) else null,
-        rightIcon = if (withIcons) painterResource(id = R.drawable.ic_eye) else null,
+        leftIcon = if (withIcons) OdsSliderIcon(painterResource(id = R.drawable.ic_crosset_out_eye), "") else null,
+        rightIcon = if (withIcons) OdsSliderIcon(painterResource(id = R.drawable.ic_eye), "") else null,
     )
 }
 
@@ -299,8 +306,8 @@ private fun PreviewOdsSliderLockups(@PreviewParameter(OdsSliderPreviewParameterP
         value = value,
         valueRange = 0f..100f,
         onValueChange = { value = it },
-        leftIcon = if (withIcons) painterResource(id = R.drawable.ic_crosset_out_eye) else null,
-        rightIcon = if (withIcons) painterResource(id = R.drawable.ic_eye) else null,
+        leftIcon = if (withIcons) OdsSliderIcon(painterResource(id = R.drawable.ic_crosset_out_eye), "") else null,
+        rightIcon = if (withIcons) OdsSliderIcon(painterResource(id = R.drawable.ic_eye), "") else null,
     )
 }
 

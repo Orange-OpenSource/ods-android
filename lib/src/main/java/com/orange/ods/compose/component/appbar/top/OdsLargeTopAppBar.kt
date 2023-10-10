@@ -66,7 +66,7 @@ fun OdsLargeTopAppBarInternal(
     title: String,
     modifier: Modifier = Modifier,
     navigationIcon: OdsTopAppBarNavigationIcon? = null,
-    actions: List<OdsComponentContent> = emptyList(),
+    actions: List<OdsComponentContent<*>> = emptyList(),
     overflowMenuActions: List<OdsTopAppBarOverflowMenuActionItem> = emptyList(),
     scrollBehavior: TopAppBarScrollBehavior? = null
 ) {

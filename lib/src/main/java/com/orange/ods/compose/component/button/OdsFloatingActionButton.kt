@@ -107,7 +107,7 @@ fun OdsExtendedFloatingActionButton(
 /**
  * A button icon in an [OdsFloatingActionButton].
  */
-class OdsFloatingActionButtonIcon : OdsComponentIcon {
+class OdsFloatingActionButtonIcon : OdsComponentIcon<Nothing> {
 
     /**
      * Creates an instance of [OdsFloatingActionButtonIcon].
