@@ -89,8 +89,8 @@ fun ComponentSliders() {
                         steps = steps,
                         valueRange = valueRange,
                         onValueChange = { sliderPosition = it },
-                        leftIcon = leftIcon,
-                        rightIcon = rightIcon
+                        startIcon = leftIcon,
+                        endIcon = rightIcon
                     )
                 } else {
                     componentName = OdsComposable.OdsSlider.name
@@ -99,8 +99,8 @@ fun ComponentSliders() {
                         steps = steps,
                         valueRange = valueRange,
                         onValueChange = { sliderPosition = it },
-                        leftIcon = leftIcon,
-                        rightIcon = rightIcon
+                        startIcon = leftIcon,
+                        endIcon = rightIcon
                     )
                 }
 

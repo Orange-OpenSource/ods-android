@@ -71,8 +71,8 @@ private const val ActiveTickColorAlpha = 0.4f
  * behave as a continuous slider and allow to choose any value from the range specified. Must not be negative.
  * @param onValueChangeFinished Callback invoked when value change has ended. This callback shouldn't be used to update
  * the slider value (use [onValueChange] for that), but rather to know when the user has completed selecting a new value by ending a drag or a click.
- * @param leftIcon [OdsSliderIcon] displayed on the left of the slider.
- * @param rightIcon [OdsSliderIcon] displayed on the right of the slider.
+ * @param startIcon [OdsSliderIcon] displayed at the start of the slider.
+ * @param endIcon [OdsSliderIcon] displayed at the end of the slider.
  */
 @Composable
 @OdsComposable
@@ -84,15 +84,15 @@ fun OdsSlider(
     valueRange: ClosedFloatingPointRange<Float> = 0f..1f,
     steps: Int = 0,
     onValueChangeFinished: (() -> Unit)? = null,
-    leftIcon: OdsSliderIcon? = null,
-    rightIcon: OdsSliderIcon? = null
+    startIcon: OdsSliderIcon? = null,
+    endIcon: OdsSliderIcon? = null
 ) {
     Row(
         modifier = modifier,
         verticalAlignment = Alignment.CenterVertically,
         horizontalArrangement = Arrangement.spacedBy(dimensionResource(id = R.dimen.spacing_m))
     ) {
-        leftIcon?.Content()
+        startIcon?.Content()
         // For the moment we cannot change the height of the slider track (need to check in jetpack compose future versions)
         Slider(
             value = value,
@@ -105,7 +105,7 @@ fun OdsSlider(
             onValueChangeFinished = onValueChangeFinished,
             colors = SliderDefaults.colors(activeTickColor = OdsTheme.colors.surface.copy(alpha = ActiveTickColorAlpha))
         )
-        rightIcon?.Content()
+        endIcon?.Content()
     }
 }
 
@@ -134,8 +134,13 @@ fun OdsSlider(
  * behave as a continuous slider and allow to choose any value from the range specified. Must not be negative.
  * @param onValueChangeFinished Callback invoked when value change has ended. This callback shouldn't be used to update
  * the slider value (use [onValueChange] for that), but rather to know when the user has completed selecting a new value by ending a drag or a click.
+<<<<<<< HEAD
  * @param leftIcon [OdsSliderIcon] displayed on the left of the slider.
  * @param rightIcon [OdsSliderIcon] displayed on the right of the slider.
+=======
+ * @param startIcon [OdsSliderIcon] displayed at the start of the slider
+ * @param endIcon [OdsSliderIcon] displayed at the end of the slider
+>>>>>>> cddd9e50 ([#661] Rename OdsSlider and OdsSliderLockups parameters to replace `left` by `start` and `right` by `end)
  */
 @Composable
 @OdsComposable
@@ -147,8 +152,8 @@ fun OdsSliderLockups(
     valueRange: ClosedFloatingPointRange<Float> = 0f..1f,
     steps: Int = 0,
     onValueChangeFinished: (() -> Unit)? = null,
-    leftIcon: OdsSliderIcon? = null,
-    rightIcon: OdsSliderIcon? = null
+    startIcon: OdsSliderIcon? = null,
+    endIcon: OdsSliderIcon? = null
 ) {
     val labelMinWidth = 32.dp
     val sideIconBottomPadding = 12.dp
@@ -157,7 +162,7 @@ fun OdsSliderLockups(
         modifier = modifier,
         horizontalArrangement = Arrangement.spacedBy(dimensionResource(id = R.dimen.spacing_xs))
     ) {
-        leftIcon?.Content(
+        startIcon?.Content(
             modifier = Modifier
                 .align(alignment = Alignment.Bottom)
                 .padding(bottom = sideIconBottomPadding)
@@ -194,7 +199,7 @@ fun OdsSliderLockups(
                 onValueChangeFinished = onValueChangeFinished,
             )
         }
-        rightIcon?.Content(
+        endIcon?.Content(
             modifier = Modifier
                 .align(alignment = Alignment.Bottom)
                 .padding(bottom = sideIconBottomPadding),
@@ -285,8 +290,8 @@ private fun PreviewOdsSlider(@PreviewParameter(OdsSliderPreviewParameterProvider
         value = sliderValue.value,
         onValueChange = { sliderValue.value = it },
         steps = 9,
-        leftIcon = if (withIcons) OdsSliderIcon(painterResource(id = R.drawable.ic_crosset_out_eye), "") else null,
-        rightIcon = if (withIcons) OdsSliderIcon(painterResource(id = R.drawable.ic_eye), "") else null,
+        startIcon = if (withIcons) OdsSliderIcon(painterResource(id = R.drawable.ic_crosset_out_eye), "") else null,
+        endIcon = if (withIcons) OdsSliderIcon(painterResource(id = R.drawable.ic_eye), "") else null,
     )
 }
 
@@ -298,8 +303,8 @@ private fun PreviewOdsSliderLockups(@PreviewParameter(OdsSliderPreviewParameterP
         value = value,
         valueRange = 0f..100f,
         onValueChange = { value = it },
-        leftIcon = if (withIcons) OdsSliderIcon(painterResource(id = R.drawable.ic_crosset_out_eye), "") else null,
-        rightIcon = if (withIcons) OdsSliderIcon(painterResource(id = R.drawable.ic_eye), "") else null,
+        startIcon = if (withIcons) OdsSliderIcon(painterResource(id = R.drawable.ic_crosset_out_eye), "") else null,
+        endIcon = if (withIcons) OdsSliderIcon(painterResource(id = R.drawable.ic_eye), "") else null,
     )
 }
 
