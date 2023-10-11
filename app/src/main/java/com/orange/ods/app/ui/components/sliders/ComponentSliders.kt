@@ -37,7 +37,7 @@ import com.orange.ods.compose.component.control.OdsSlider
 import com.orange.ods.compose.component.control.OdsSliderIcon
 import com.orange.ods.compose.component.control.OdsSliderLockups
 import com.orange.ods.compose.component.list.OdsListItem
-import com.orange.ods.compose.component.list.OdsSwitchTrailing
+import com.orange.ods.compose.component.list.OdsListItemTrailingSwitch
 
 @OptIn(ExperimentalMaterialApi::class)
 @Composable
@@ -50,15 +50,15 @@ fun ComponentSliders() {
             bottomSheetContent = {
                 OdsListItem(
                     text = stringResource(id = R.string.component_slider_side_icons),
-                    trailing = OdsSwitchTrailing(checked = sideIcons)
+                    trailing = OdsListItemTrailingSwitch(sideIcons.value, { sideIcons.value = it })
                 )
                 OdsListItem(
                     text = stringResource(id = R.string.component_slider_value_displayed),
-                    trailing = OdsSwitchTrailing(checked = valueDisplayed)
+                    trailing = OdsListItemTrailingSwitch(valueDisplayed.value, { valueDisplayed.value = it })
                 )
                 OdsListItem(
                     text = stringResource(id = R.string.component_slider_stepped),
-                    trailing = OdsSwitchTrailing(checked = stepped)
+                    trailing = OdsListItemTrailingSwitch(stepped.value, { stepped.value = it })
                 )
             }) {
             Column(
@@ -135,8 +135,8 @@ private fun getTitleRes(isStepped: Boolean, hasSideIcons: Boolean, shouldDisplay
     isStepped && hasSideIcons && !shouldDisplayValue -> R.string.component_slider_discrete_with_icons
     !isStepped && !hasSideIcons && !shouldDisplayValue -> R.string.component_slider_continuous
     !isStepped && hasSideIcons && !shouldDisplayValue -> R.string.component_slider_continuous_with_icons
-    isStepped && shouldDisplayValue && !hasSideIcons -> R.string.component_slider_discrete_lockups
-    isStepped && shouldDisplayValue && hasSideIcons -> R.string.component_slider_discrete_lockups_with_icons
+    isStepped && !hasSideIcons -> R.string.component_slider_discrete_lockups
+    isStepped && hasSideIcons -> R.string.component_slider_discrete_lockups_with_icons
     !hasSideIcons -> R.string.component_slider_continuous_lockups
     else -> R.string.component_slider_continuous_lockups_with_icons
 }

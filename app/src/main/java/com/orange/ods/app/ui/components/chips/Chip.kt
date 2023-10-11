@@ -44,7 +44,7 @@ import com.orange.ods.compose.component.chip.OdsChipLeadingIcon
 import com.orange.ods.compose.component.chip.OdsChoiceChip
 import com.orange.ods.compose.component.chip.OdsChoiceChipsFlowRow
 import com.orange.ods.compose.component.list.OdsListItem
-import com.orange.ods.compose.component.list.OdsSwitchTrailing
+import com.orange.ods.compose.component.list.OdsListItemTrailingSwitch
 import com.orange.ods.compose.text.OdsTextBody2
 
 @OptIn(ExperimentalMaterialApi::class)
@@ -74,9 +74,7 @@ fun Chip(variant: Variant) {
 
                 OdsListItem(
                     text = stringResource(id = R.string.component_state_enabled),
-                    trailing = OdsSwitchTrailing(
-                        checked = enabled
-                    )
+                    trailing = OdsListItemTrailingSwitch(enabled.value, { enabled.value = it })
                 )
             }) {
             ChipTypeDemo(chipType.value) {

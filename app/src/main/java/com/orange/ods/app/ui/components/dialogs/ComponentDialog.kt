@@ -33,79 +33,81 @@ import com.orange.ods.compose.OdsComposable
 import com.orange.ods.compose.component.dialog.OdsAlertDialog
 import com.orange.ods.compose.component.dialog.OdsAlertDialogButton
 import com.orange.ods.compose.component.list.OdsListItem
-import com.orange.ods.compose.component.list.OdsSwitchTrailing
+import com.orange.ods.compose.component.list.OdsListItemTrailingSwitch
 
 @OptIn(ExperimentalMaterialApi::class)
 @Composable
 fun ComponentDialog() {
     val customizationState = rememberDialogCustomizationState()
 
-    val closeDialogAction = { customizationState.openDialog.value = false }
-    val context = LocalContext.current
-    val recipes = LocalRecipes.current.filter { it.description.isNotBlank() }
+    with(customizationState) {
+        val closeDialogAction = { openDialog.value = false }
+        val context = LocalContext.current
+        val recipes = LocalRecipes.current.filter { it.description.isNotBlank() }
 
-    ComponentCustomizationBottomSheetScaffold(
-        bottomSheetScaffoldState = rememberBottomSheetScaffoldState(),
-        bottomSheetContent = {
-            OdsListItem(
-                text = stringResource(id = R.string.component_element_title),
-                trailing = OdsSwitchTrailing(checked = customizationState.titleChecked)
-            )
-            OdsListItem(
-                text = stringResource(id = R.string.component_dialog_element_dismiss_button),
-                trailing = OdsSwitchTrailing(checked = customizationState.dismissButtonChecked)
-            )
-        }) {
-        val confirmButtonText =
-            stringResource(id = if (customizationState.isDismissButtonChecked) R.string.component_dialog_action_confirm else R.string.component_dialog_action_ok)
-        val dismissButtonText = stringResource(id = R.string.component_dialog_action_dismiss)
-        val recipe = rememberSaveable { recipes.random() }
+        ComponentCustomizationBottomSheetScaffold(
+            bottomSheetScaffoldState = rememberBottomSheetScaffoldState(),
+            bottomSheetContent = {
+                OdsListItem(
+                    text = stringResource(id = R.string.component_element_title),
+                    trailing = OdsListItemTrailingSwitch(titleChecked.value, { titleChecked.value = it })
+                )
+                OdsListItem(
+                    text = stringResource(id = R.string.component_dialog_element_dismiss_button),
+                    trailing = OdsListItemTrailingSwitch(dismissButtonChecked.value, { dismissButtonChecked.value = it })
+                )
+            }) {
+            val confirmButtonText =
+                stringResource(id = if (isDismissButtonChecked) R.string.component_dialog_action_confirm else R.string.component_dialog_action_ok)
+            val dismissButtonText = stringResource(id = R.string.component_dialog_action_dismiss)
+            val recipe = rememberSaveable { recipes.random() }
 
-        Column(
-            modifier = Modifier.verticalScroll(rememberScrollState())
-        ) {
-            ComponentLaunchContentColumn(textRes = R.string.component_dialog_customize, buttonLabelRes = R.string.component_dialog_open) {
-                customizationState.openDialog.value = true
-            }
-
-            CodeImplementationColumn(
-                modifier = Modifier.padding(horizontal = dimensionResource(id = com.orange.ods.R.dimen.screen_horizontal_margin))
+            Column(
+                modifier = Modifier.verticalScroll(rememberScrollState())
             ) {
-                FunctionCallCode(
-                    name = OdsComposable.OdsAlertDialog.name,
-                    exhaustiveParameters = false,
-                    parameters = {
-                        simple("text", "<dialog text>")
-                        classInstance<OdsAlertDialogButton>("confirmButton") {
-                            text(confirmButtonText)
-                            onClick()
-                        }
-                        if (customizationState.isTitleChecked) string("title", recipe.title)
-                        if (customizationState.isDismissButtonChecked) {
-                            classInstance<OdsAlertDialogButton>("dismissButton") {
-                                text(dismissButtonText)
+                ComponentLaunchContentColumn(textRes = R.string.component_dialog_customize, buttonLabelRes = R.string.component_dialog_open) {
+                    openDialog.value = true
+                }
+
+                CodeImplementationColumn(
+                    modifier = Modifier.padding(horizontal = dimensionResource(id = com.orange.ods.R.dimen.screen_horizontal_margin))
+                ) {
+                    FunctionCallCode(
+                        name = OdsComposable.OdsAlertDialog.name,
+                        exhaustiveParameters = false,
+                        parameters = {
+                            simple("text", "<dialog text>")
+                            classInstance<OdsAlertDialogButton>("confirmButton") {
+                                text(confirmButtonText)
                                 onClick()
                             }
+                            if (isTitleChecked) string("title", recipe.title)
+                            if (isDismissButtonChecked) {
+                                classInstance<OdsAlertDialogButton>("dismissButton") {
+                                    text(dismissButtonText)
+                                    onClick()
+                                }
+                            }
                         }
-                    }
-                )
-            }
+                    )
+                }
 
-            if (customizationState.shouldOpenDialog) {
-                OdsAlertDialog(
-                    title = if (customizationState.isTitleChecked) recipe.title else null,
-                    text = recipe.description,
-                    confirmButton = OdsAlertDialogButton(confirmButtonText) {
-                        clickOnElement(context = context, clickedElement = confirmButtonText)
-                        closeDialogAction()
-                    },
-                    dismissButton = if (customizationState.isDismissButtonChecked) {
-                        OdsAlertDialogButton(dismissButtonText) {
-                            clickOnElement(context = context, clickedElement = dismissButtonText)
+                if (shouldOpenDialog) {
+                    OdsAlertDialog(
+                        title = if (isTitleChecked) recipe.title else null,
+                        text = recipe.description,
+                        confirmButton = OdsAlertDialogButton(confirmButtonText) {
+                            clickOnElement(context = context, clickedElement = confirmButtonText)
                             closeDialogAction()
-                        }
-                    } else null,
-                )
+                        },
+                        dismissButton = if (isDismissButtonChecked) {
+                            OdsAlertDialogButton(dismissButtonText) {
+                                clickOnElement(context = context, clickedElement = dismissButtonText)
+                                closeDialogAction()
+                            }
+                        } else null,
+                    )
+                }
             }
         }
     }

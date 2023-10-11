@@ -37,7 +37,7 @@ import com.orange.ods.compose.component.button.OdsTextButtonStyle
 import com.orange.ods.compose.component.chip.OdsChoiceChip
 import com.orange.ods.compose.component.chip.OdsChoiceChipsFlowRow
 import com.orange.ods.compose.component.list.OdsListItem
-import com.orange.ods.compose.component.list.OdsSwitchTrailing
+import com.orange.ods.compose.component.list.OdsListItemTrailingSwitch
 import com.orange.ods.compose.text.OdsTextBody2
 import com.orange.ods.compose.theme.OdsDisplaySurface
 import com.orange.ods.compose.theme.OdsTheme
@@ -67,8 +67,14 @@ fun ComponentButtons(variant: Variant) {
                             onValueChange = { value -> buttonStyle.value = value },
                             modifier = Modifier.padding(horizontal = dimensionResource(id = com.orange.ods.R.dimen.spacing_m)),
                             chips = listOf(
-                                OdsChoiceChip(text = stringResource(id = R.string.component_button_style_functional_positive), value = OdsButtonStyle.FunctionalPositive),
-                                OdsChoiceChip(text = stringResource(id = R.string.component_button_style_functional_negative), value = OdsButtonStyle.FunctionalNegative)
+                                OdsChoiceChip(
+                                    text = stringResource(id = R.string.component_button_style_functional_positive),
+                                    value = OdsButtonStyle.FunctionalPositive
+                                ),
+                                OdsChoiceChip(
+                                    text = stringResource(id = R.string.component_button_style_functional_negative),
+                                    value = OdsButtonStyle.FunctionalNegative
+                                )
                             )
                         )
                     }
@@ -79,7 +85,7 @@ fun ComponentButtons(variant: Variant) {
                             onValueChange = { value -> textButtonStyle.value = value },
                             modifier = Modifier.padding(horizontal = dimensionResource(id = com.orange.ods.R.dimen.spacing_m)),
                             chips = listOf(
-                                OdsChoiceChip(text = stringResource(id =  R.string.component_button_style_primary), value = OdsTextButtonStyle.Primary),
+                                OdsChoiceChip(text = stringResource(id = R.string.component_button_style_primary), value = OdsTextButtonStyle.Primary),
                                 OdsChoiceChip(text = stringResource(id = R.string.component_button_style_default), value = OdsTextButtonStyle.Default)
                             )
                         )
@@ -97,7 +103,7 @@ fun ComponentButtons(variant: Variant) {
 
                         OdsListItem(
                             text = stringResource(id = R.string.component_buttons_text_toggle_group_same_weight),
-                            trailing = OdsSwitchTrailing(checked = sameItemsWeight)
+                            trailing = OdsListItemTrailingSwitch(sameItemsWeight.value, { sameItemsWeight.value = it })
                         )
                     }
                     else -> {}
@@ -106,17 +112,17 @@ fun ComponentButtons(variant: Variant) {
                 if (variant != Variant.ButtonsTextToggleGroup) {
                     OdsListItem(
                         text = stringResource(id = R.string.component_element_icon),
-                        trailing = OdsSwitchTrailing(checked = leadingIcon)
+                        trailing = OdsListItemTrailingSwitch(leadingIcon.value, { leadingIcon.value = it })
                     )
                     OdsListItem(
                         text = stringResource(id = R.string.component_button_full_screen_width),
-                        trailing = OdsSwitchTrailing(checked = fullScreenWidth)
+                        trailing = OdsListItemTrailingSwitch(fullScreenWidth.value, { fullScreenWidth.value = it })
                     )
                 }
 
                 OdsListItem(
                     text = stringResource(id = R.string.component_state_enabled),
-                    trailing = OdsSwitchTrailing(checked = enabled)
+                    trailing = OdsListItemTrailingSwitch(enabled.value, { enabled.value = it })
                 )
             }) {
 

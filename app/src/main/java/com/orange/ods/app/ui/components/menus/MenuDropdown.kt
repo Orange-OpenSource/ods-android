@@ -10,7 +10,6 @@
 
 package com.orange.ods.app.ui.components.menus
 
-import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.padding
@@ -37,9 +36,9 @@ import com.orange.ods.app.ui.components.utilities.clickOnElement
 import com.orange.ods.app.ui.utilities.composable.CodeImplementationColumn
 import com.orange.ods.app.ui.utilities.composable.FunctionCallCode
 import com.orange.ods.compose.OdsComposable
-import com.orange.ods.compose.component.list.OdsIconTrailing
 import com.orange.ods.compose.component.list.OdsListItem
-import com.orange.ods.compose.component.list.OdsSwitchTrailing
+import com.orange.ods.compose.component.list.OdsListItemTrailingIcon
+import com.orange.ods.compose.component.list.OdsListItemTrailingSwitch
 import com.orange.ods.compose.component.menu.OdsDropdownMenu
 import com.orange.ods.compose.component.menu.OdsDropdownMenuItem
 import com.orange.ods.compose.text.OdsTextBody1
@@ -60,11 +59,11 @@ fun MenuDropdown() {
             bottomSheetContent = {
                 OdsListItem(
                     text = stringResource(id = R.string.component_menu_icons),
-                    trailing = OdsSwitchTrailing(checked = icons)
+                    trailing = OdsListItemTrailingSwitch(icons.value, { icons.value = it })
                 )
                 OdsListItem(
                     text = stringResource(id = R.string.component_menu_divider),
-                    trailing = OdsSwitchTrailing(checked = dividerExample)
+                    trailing = OdsListItemTrailingSwitch(dividerExample.value, { dividerExample.value = it })
                 )
             }) {
             Column(
@@ -88,11 +87,10 @@ fun MenuDropdown() {
                         modifier = Modifier.padding(top = dimensionResource(id = com.orange.ods.R.dimen.spacing_s)),
                         text = recipe.title,
                         secondaryText = recipe.subtitle,
-                        trailing = OdsIconTrailing(
-                            modifier = Modifier.clickable { menuExpanded = true },
-                            painter = rememberVectorPainter(image = Icons.Filled.MoreVert),
-                            contentDescription = stringResource(id = R.string.component_menu_show_ingredients),
-                        )
+                        trailing = OdsListItemTrailingIcon(
+                            rememberVectorPainter(image = Icons.Filled.MoreVert),
+                            stringResource(id = R.string.component_menu_show_ingredients)
+                        ) { menuExpanded = true }
                     )
 
                     val items = recipes.take(MenuDropdownCustomizationState.MenuItemCount)

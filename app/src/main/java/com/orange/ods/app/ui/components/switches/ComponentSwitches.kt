@@ -17,8 +17,10 @@ import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.ExperimentalMaterialApi
 import androidx.compose.material.rememberBottomSheetScaffoldState
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.saveable.rememberSaveable
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.stringResource
@@ -29,21 +31,19 @@ import com.orange.ods.app.ui.utilities.composable.CodeImplementationColumn
 import com.orange.ods.app.ui.utilities.composable.FunctionCallCode
 import com.orange.ods.compose.OdsComposable
 import com.orange.ods.compose.component.list.OdsListItem
-import com.orange.ods.compose.component.list.OdsSwitchTrailing
+import com.orange.ods.compose.component.list.OdsListItemTrailingSwitch
 
 @OptIn(ExperimentalMaterialApi::class)
 @Composable
 fun ComponentSwitches() {
-    val enabled = rememberSaveable { mutableStateOf(true) }
+    var enabled by rememberSaveable { mutableStateOf(true) }
 
     ComponentCustomizationBottomSheetScaffold(
         bottomSheetScaffoldState = rememberBottomSheetScaffoldState(),
         bottomSheetContent = {
             OdsListItem(
                 text = stringResource(id = R.string.component_state_enabled),
-                trailing = OdsSwitchTrailing(
-                    checked = enabled,
-                )
+                trailing = OdsListItemTrailingSwitch(enabled, { enabled = it })
             )
         }) {
         Column(
@@ -53,13 +53,10 @@ fun ComponentSwitches() {
         ) {
             val recipes = LocalRecipes.current.take(3)
             recipes.forEach { recipe ->
-                val checked = rememberSaveable { mutableStateOf(false) }
+                var checked by rememberSaveable { mutableStateOf(false) }
                 OdsListItem(
                     text = recipe.title,
-                    trailing = OdsSwitchTrailing(
-                        checked = checked,
-                        enabled = enabled.value
-                    )
+                    trailing = OdsListItemTrailingSwitch(checked, { checked = it }, enabled)
                 )
             }
 
@@ -72,7 +69,7 @@ fun ComponentSwitches() {
                     parameters = {
                         checked(false)
                         onCheckedChange()
-                        if (!enabled.value) enabled(false)
+                        if (!enabled) enabled(false)
                     })
             }
         }

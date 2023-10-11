@@ -42,7 +42,7 @@ import com.orange.ods.compose.component.appbar.top.OdsTopAppBarNavigationIcon
 import com.orange.ods.compose.component.appbar.top.OdsTopAppBarOverflowMenuActionItem
 import com.orange.ods.compose.component.content.OdsComponentContent
 import com.orange.ods.compose.component.list.OdsListItem
-import com.orange.ods.compose.component.list.OdsRadioButtonTrailing
+import com.orange.ods.compose.component.list.OdsListItemTrailingRadioButton
 import com.orange.ods.compose.component.textfield.search.OdsSearchTextField
 import com.orange.ods.compose.text.OdsTextH6
 import com.orange.ods.compose.theme.OdsTheme
@@ -209,7 +209,7 @@ private fun getTopAppBarCustomAction(action: TopAppBarConfiguration.Action.Custo
 
 @Composable
 private fun ChangeThemeDialog(themeManager: ThemeManager, dismissDialog: () -> Unit, onThemeSelected: () -> Unit) {
-    val selectedRadio = rememberSaveable { mutableStateOf(themeManager.currentThemeConfiguration.name) }
+    var selectedThemeName by rememberSaveable { mutableStateOf(themeManager.currentThemeConfiguration.name) }
 
     Dialog(onDismissRequest = dismissDialog) {
         Column(modifier = Modifier.background(OdsTheme.colors.surface)) {
@@ -222,10 +222,10 @@ private fun ChangeThemeDialog(themeManager: ThemeManager, dismissDialog: () -> U
             themeManager.themeConfigurations.forEach { themeConfiguration ->
                 OdsListItem(
                     text = themeConfiguration.name,
-                    trailing = OdsRadioButtonTrailing(
-                        selectedRadio = selectedRadio,
-                        currentRadio = themeConfiguration.name,
-                        onClick = {
+                    trailing = OdsListItemTrailingRadioButton(
+                        selectedThemeName == themeConfiguration.name,
+                        {
+                            selectedThemeName = themeConfiguration.name
                             if (themeConfiguration != themeManager.currentThemeConfiguration) {
                                 themeManager.currentThemeConfiguration = themeConfiguration
                                 onThemeSelected()

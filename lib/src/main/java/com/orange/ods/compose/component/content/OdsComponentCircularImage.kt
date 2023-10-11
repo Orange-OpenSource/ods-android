@@ -21,32 +21,32 @@ import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.unit.dp
 
-abstract class OdsComponentCircleImage private constructor(
+abstract class OdsComponentCircularImage internal constructor(
     graphicsObject: Any,
     contentDescription: String
 ) : OdsComponentImage<Nothing>(graphicsObject, contentDescription, contentScale = ContentScale.Crop) {
 
     /**
-     * Creates an instance of [OdsComponentCircleImage].
+     * Creates an instance of [OdsComponentCircularImage].
      *
      * @param painter The painter to draw.
-     * @param contentDescription The content description associated to this [OdsComponentCircleImage].
+     * @param contentDescription The content description associated to this [OdsComponentCircularImage].
      */
     constructor(painter: Painter, contentDescription: String) : this(painter as Any, contentDescription)
 
     /**
-     * Creates an instance of [OdsComponentCircleImage].
+     * Creates an instance of [OdsComponentCircularImage].
      *
      * @param imageVector The image vector to draw.
-     * @param contentDescription The content description associated to this [OdsComponentCircleImage].
+     * @param contentDescription The content description associated to this [OdsComponentCircularImage].
      */
     constructor(imageVector: ImageVector, contentDescription: String) : this(imageVector as Any, contentDescription)
 
     /**
-     * Creates an instance of [OdsComponentCircleImage].
+     * Creates an instance of [OdsComponentCircularImage].
      *
      * @param bitmap The image bitmap to draw.
-     * @param contentDescription The content description associated to this [OdsComponentCircleImage].
+     * @param contentDescription The content description associated to this [OdsComponentCircularImage].
      */
     constructor(bitmap: ImageBitmap, contentDescription: String) : this(bitmap as Any, contentDescription)
 

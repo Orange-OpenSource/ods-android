@@ -247,6 +247,7 @@
     <string name="component_list_trailing_none">None</string>
     <string name="component_list_trailing_checkbox">Checkbox</string>
     <string name="component_list_trailing_switch">Switch</string>
+    <string name="component_list_trailing_radio_button">Radio button</string>
     <string name="component_list_trailing_icon">Icon</string>
     <string name="component_list_trailing_caption">Caption</string>
     <string name="component_list_information">Information</string>
