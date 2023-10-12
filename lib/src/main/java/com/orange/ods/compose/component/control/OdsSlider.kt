@@ -64,15 +64,15 @@ private const val ActiveTickColorAlpha = 0.4f
  *
  * @param value Current value of the slider. If outside of `valueRange` provided, value will be coerced to this range.
  * @param onValueChange Callback invoked on slider value change. `value` should be updated here.
- * @param modifier [Modifier] applied to the slider
+ * @param modifier [Modifier] applied to the slider.
  * @param enabled Controls the enabled state of the slider. If `false`, the user cannot interact with it.
  * @param valueRange Range of values that the slider can take. Given [value] will be coerced to this range.
  * @param steps If greater than `0`, specifies the amounts of discrete values, evenly distributed between across the whole value range. If `0`, slider will
  * behave as a continuous slider and allow to choose any value from the range specified. Must not be negative.
  * @param onValueChangeFinished Callback invoked when value change has ended. This callback shouldn't be used to update
  * the slider value (use [onValueChange] for that), but rather to know when the user has completed selecting a new value by ending a drag or a click.
- * @param leftIcon [OdsSliderIcon] displayed on the left of the slider
- * @param rightIcon [OdsSliderIcon] displayed on the right of the slider
+ * @param leftIcon [OdsSliderIcon] displayed on the left of the slider.
+ * @param rightIcon [OdsSliderIcon] displayed on the right of the slider.
  */
 @Composable
 @OdsComposable
@@ -127,15 +127,15 @@ fun OdsSlider(
  *
  * @param value Current value of the slider. If outside of `valueRange` provided, value will be coerced to this range.
  * @param onValueChange Callback invoked on slider value change. `value` should be updated here.
- * @param modifier [Modifier] applied to the slider
+ * @param modifier [Modifier] applied to the slider.
  * @param enabled Controls the enabled state of the slider. If `false`, the user cannot interact with it.
  * @param valueRange Range of values that the slider can take. Given [value] will be coerced to this range.
  * @param steps If greater than `0`, specifies the amounts of discrete values, evenly distributed between across the whole value range. If `0`, slider will
  * behave as a continuous slider and allow to choose any value from the range specified. Must not be negative.
  * @param onValueChangeFinished Callback invoked when value change has ended. This callback shouldn't be used to update
  * the slider value (use [onValueChange] for that), but rather to know when the user has completed selecting a new value by ending a drag or a click.
- * @param leftIcon [OdsSliderIcon] displayed on the left of the slider
- * @param rightIcon [OdsSliderIcon] displayed on the right of the slider
+ * @param leftIcon [OdsSliderIcon] displayed on the left of the slider.
+ * @param rightIcon [OdsSliderIcon] displayed on the right of the slider.
  */
 @Composable
 @OdsComposable

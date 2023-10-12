@@ -37,15 +37,15 @@ import com.orange.ods.extension.orElse
  *
  * Cards contain content and actions about a single subject.
  *
- * @param title Title displayed into the card
- * @param image [OdsCardImage] displayed into the card
- * @param modifier [Modifier] applied to the layout of the card
- * @param thumbnail [OdsCardThumbnail] displayed into the card next to the title: avatar, logo or icon
- * @param subtitle Subtitle displayed into the card
- * @param text Text displayed into the card
- * @param firstButton First [OdsCardButton] displayed into the card
- * @param secondButton Second [OdsCardButton] displayed into the card
- * @param onClick Callback invoked on card click
+ * @param title Title displayed into the card.
+ * @param image [OdsCardImage] displayed into the card.
+ * @param modifier [Modifier] applied to the layout of the card.
+ * @param thumbnail [OdsCardThumbnail] displayed into the card next to the title: avatar, logo or icon.
+ * @param subtitle Subtitle displayed into the card.
+ * @param text Text displayed into the card.
+ * @param firstButton First [OdsCardButton] displayed into the card.
+ * @param secondButton Second [OdsCardButton] displayed into the card.
+ * @param onClick Callback invoked on card click.
  */
 @Composable
 @OdsComposable

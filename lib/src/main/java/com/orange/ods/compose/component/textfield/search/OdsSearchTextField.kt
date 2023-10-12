@@ -40,10 +40,10 @@ import com.orange.ods.compose.theme.OdsTheme
  * OdsSearchTextField component allows to display a text field in the top app bar of a search screen.
  * @see androidx.compose.material.TextField
  *
- * @param value the input text to be shown in the text field
+ * @param value the input text to be shown in the text field.
  * @param onValueChange the callback that is triggered when the input service updates the text. An
  * updated text comes as a parameter of the callback
- * @param modifier a [Modifier] for this text field
+ * @param modifier a [Modifier] for this text field.
  * @param placeholder the placeholder to be displayed in the text field when the input text is empty.
  *
  */

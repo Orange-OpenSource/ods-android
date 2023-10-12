@@ -32,16 +32,16 @@ import com.orange.ods.compose.text.OdsTextSubtitle1
  * place them horizontally next to each other and fallback to horizontal placement if not enough
  * space is available.
  *
- * @param text Text displayed into the dialog which presents the details regarding the Dialog's purpose
+ * @param text Text displayed into the dialog which presents the details regarding the Dialog's purpose.
  * @param confirmButton [OdsAlertDialogButton] displayed into the dialog which is meant to confirm a proposed action, thus resolving what triggered
  * the dialog
  * @param modifier [Modifier] applied to the layout of the dialog.
  * @param onDismissRequest Callback invoked when the user tries to dismiss the dialog by clicking outside or pressing the back button. This is not called
  * when the dismiss button is clicked.
- * @param dismissButton Button displayed into the dialog which is meant to dismiss the dialog
+ * @param dismissButton Button displayed into the dialog which is meant to dismiss the dialog.
  * @param title Title displayed into the dialog which should specify the purpose of the dialog. The title is not mandatory, because there may be
  * sufficient information inside the `text`.
- * @param properties Typically platform specific properties to further configure the dialog
+ * @param properties Typically platform specific properties to further configure the dialog.
  */
 @Composable
 @OdsComposable

@@ -46,10 +46,10 @@ enum class OdsTextButtonStyle {
  * Text buttons are typically used for less-pronounced actions, including those located in dialogs
  * and cards. In cards, text buttons help maintain an emphasis on card content.
  *
- * @param text Text displayed into the button
- * @param onClick Callback invoked on button click
- * @param modifier [Modifier] applied to the button
- * @param icon Icon displayed in the button before the text
+ * @param text Text displayed into the button.
+ * @param onClick Callback invoked on button click.
+ * @param modifier [Modifier] applied to the button.
+ * @param icon Icon displayed in the button before the text.
  * @param enabled Controls the enabled state of the button. When `false`, this button will not be clickable.
  * @param style Style applied to the button. By default `onSurface` color is used for text color. Use [OdsTextButtonStyle.Primary] for an highlighted
  * text color.

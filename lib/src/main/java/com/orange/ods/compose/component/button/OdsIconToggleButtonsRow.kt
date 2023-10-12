@@ -51,10 +51,10 @@ import com.orange.ods.compose.utilities.extension.enable
  * A group of toggle buttons. Only one option in a group of toggle buttons can be selected and active at a time.
  * Selecting one option deselects any other.
  *
- * @param icons List of [OdsIconToggleButtonsRowIcon] displayed into the toggle group
- * @param selectedIndex [icons] list index of the selected button
- * @param onSelectedIndexChange Callback invoked on selection change
- * @param modifier [Modifier] applied to the toggle buttons group
+ * @param icons List of [OdsIconToggleButtonsRowIcon] displayed into the toggle group.
+ * @param selectedIndex [icons] list index of the selected button.
+ * @param onSelectedIndexChange Callback invoked on selection change.
+ * @param modifier [Modifier] applied to the toggle buttons group.
  * @param displaySurface [OdsDisplaySurface] applied to the button. It allows to force the button display on light or dark surface. By default, the
  * appearance applied is based on the system night mode value.
  */

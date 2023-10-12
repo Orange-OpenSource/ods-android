@@ -31,10 +31,10 @@ import com.orange.ods.compose.theme.OdsTheme
  *
  * Switches toggle the state of a single item on or off.
  *
- * @param checked Controls the checked state of the switch
+ * @param checked Controls the checked state of the switch.
  * @param onCheckedChange Callback invoked on switch check. If `null`, then this is passive and relies entirely on a higher-level component to control
  * the "checked" state.
- * @param modifier [Modifier] applied to the switch
+ * @param modifier [Modifier] applied to the switch.
  * @param enabled Controls the enabled state of the switch. When `false`, the switch will not be checkable and appears disabled.
  */
 @Composable

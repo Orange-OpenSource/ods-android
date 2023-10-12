@@ -50,13 +50,13 @@ import com.orange.ods.extension.orElse
  * An image tile contains primary information which is an image. It can also contain secondary information such as text or action. Tiles have no more than two
  * actions. They are usually used in grids.
  *
- * @param image [OdsImageTileImage] displayed into the tile
+ * @param image [OdsImageTileImage] displayed into the tile.
  * @param legendAreaDisplayType Controls how the title and the icon are displayed relatively to the image. If set to [OdsImageTileLegendAreaDisplayType.None],
  * no legend area will be displayed.
- * @param modifier [Modifier] applied to the image tile
+ * @param modifier [Modifier] applied to the image tile.
  * @param title Title displayed into the tile. It is linked to the image and displayed according to the [legendAreaDisplayType] value.
- * @param icon [OdsImageTileIconToggleButton] displayed next to the title
- * @param onClick Callback invoked on tile click
+ * @param icon [OdsImageTileIconToggleButton] displayed next to the title.
+ * @param onClick Callback invoked on tile click.
  */
 @Composable
 @OdsComposable
@@ -175,10 +175,10 @@ class OdsImageTileImage : OdsComponentImage<Nothing> {
 /**
  * An icon toggle button in an [OdsImageTile].
  *
- * @param checked Specify if icon is currently checked
- * @param onCheckedChange Callback to be invoked when this icon is selected
- * @param checkedIcon Icon displayed in front of the [OdsImageTile] when icon is checked
- * @param uncheckedIcon Icon displayed in front of the [OdsImageTile] when icon is unchecked
+ * @param checked Specify if icon is currently checked.
+ * @param onCheckedChange Callback to be invoked when this icon is selected.
+ * @param checkedIcon Icon displayed in front of the [OdsImageTile] when icon is checked.
+ * @param uncheckedIcon Icon displayed in front of the [OdsImageTile] when icon is unchecked.
  */
 class OdsImageTileIconToggleButton(
     val checked: Boolean,

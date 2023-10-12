@@ -32,9 +32,9 @@ import com.orange.ods.compose.theme.OdsDisplaySurface
  *
  * This component is typically used inside an App Bar for the navigation icon / actions.
  *
- * @param icon Icon to be drawn into the button
- * @param onClick Callback to be invoked when the button is clicked
- * @param modifier [Modifier] to be applied to the button
+ * @param icon Icon to be drawn into the button.
+ * @param onClick Callback to be invoked when the button is clicked.
+ * @param modifier [Modifier] to be applied to the button.
  * @param enabled Controls the enabled state of the button. When `false`, this button will not be clickable.
  * @param displaySurface [OdsDisplaySurface] to be applied to the button. It allows to force the button display on light or dark surface. By default, the appearance applied is based on the system night mode value.
  */

@@ -33,8 +33,8 @@ import com.orange.ods.compose.theme.OdsTheme
  * An OdsTabRow is a Jetpack Compose [TabRow] to which we applied the Orange design and theme.
  * @see TabRow documentation
  *
- * @param selectedTabIndex the index of the currently selected tab
- * @param modifier optional [Modifier] for this OdsTabRow
+ * @param selectedTabIndex the index of the currently selected tab.
+ * @param modifier optional [Modifier] for this OdsTabRow.
  * @param tabs the tabs inside this TabRow. Typically this will be multiple [Tab]s. Each element
  * inside this lambda will be measured and placed evenly across the TabRow, each taking up equal
  * space. Use [OdsTab] to display Orange styled tabs.

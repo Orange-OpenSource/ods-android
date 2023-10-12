@@ -48,9 +48,9 @@ private val FabIconSize = 24.dp
  *
  * @see androidx.compose.material.FloatingActionButton for further information.
  *
- * @param icon Icon used into the FAB
- * @param onClick Callback invoked on FAB click
- * @param modifier [Modifier] applied to the FAB
+ * @param icon Icon used into the FAB.
+ * @param onClick Callback invoked on FAB click.
+ * @param modifier [Modifier] applied to the FAB.
  * @param mini Controls the size of the FAB. If `true`, the size of the FAB will be 40dp, otherwise the default size will be used.
  */
 @Composable
@@ -81,10 +81,10 @@ fun OdsFloatingActionButton(
  *
  * @see androidx.compose.material.ExtendedFloatingActionButton for further information.
  *
- * @param icon Icon used into the FAB
- * @param onClick Callback invoked on FAB click
- * @param text Text displayed into the FAB
- * @param modifier [Modifier] applied to the FAB
+ * @param icon Icon used into the FAB.
+ * @param onClick Callback invoked on FAB click.
+ * @param text Text displayed into the FAB.
+ * @param modifier [Modifier] applied to the FAB.
  */
 @Composable
 @OdsComposable

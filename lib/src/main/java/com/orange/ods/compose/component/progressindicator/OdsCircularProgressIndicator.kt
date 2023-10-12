@@ -32,10 +32,10 @@ import com.orange.ods.extension.orElse
  *
  * @see androidx.compose.material.CircularProgressIndicator
  *
- * @param modifier [Modifier] applied to the progress indicator
+ * @param modifier [Modifier] applied to the progress indicator.
  * @param progress Progress indicator value where 0.0 represents no progress and 1.0 represents full progress. Values outside of this range are coerced
  * into the range. If set to `null`, the progress indicator is indeterminate.
- * @param label Label displayed below the circular progress
+ * @param label Label displayed below the circular progress.
  */
 @Composable
 @OdsComposable

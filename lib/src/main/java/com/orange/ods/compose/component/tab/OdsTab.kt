@@ -35,13 +35,13 @@ import com.orange.ods.compose.theme.OdsTheme
  *
  * This should typically be used inside of an [OdsTabRow].
  *
- * @param selected whether this tab is selected or not
- * @param onClick the callback to be invoked when this tab is selected
- * @param modifier optional [Modifier] for this tab
+ * @param selected whether this tab is selected or not.
+ * @param onClick the callback to be invoked when this tab is selected.
+ * @param modifier optional [Modifier] for this tab.
  * @param enabled controls the enabled state of this tab. When `false`, this tab will not
  * be clickable and will appear disabled to accessibility services.
  * @param text the text label displayed in this tab. Always displayed in uppercase.
- * @param icon the optional icon displayed in this tab
+ * @param icon the optional icon displayed in this tab.
  *
  * @see OdsLeadingIconTab
  */

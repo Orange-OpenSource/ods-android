@@ -76,13 +76,13 @@ import com.orange.ods.extension.orElse
  *
  * To specify an icon type, use [Modifier.iconType] on [modifier] and call [OdsListItemIconScope.OdsListItemIcon] in the [icon] lambda.
  *
- * @param modifier Modifier to be applied to the list item
- * @param text The primary text of the list item
- * @param trailing The `OdsListItemTrailing` element to display at the end of the list item
- * @param icon The leading supporting visual of the list item
- * @param secondaryText The secondary text of the list item
- * @param singleLineSecondaryText Whether the secondary text is single line
- * @param overlineText The text displayed above the primary text
+ * @param modifier Modifier to be applied to the list item.
+ * @param text The primary text of the list item.
+ * @param trailing The `OdsListItemTrailing` element to display at the end of the list item.
+ * @param icon The leading supporting visual of the list item.
+ * @param secondaryText The secondary text of the list item.
+ * @param singleLineSecondaryText Whether the secondary text is single line.
+ * @param overlineText The text displayed above the primary text.
  */
 @Composable
 @OdsComposable
@@ -117,12 +117,12 @@ fun OdsListItem(
  * To make this [OdsListItem] clickable, use [Modifier.clickable].
  * To specify an icon type, use [Modifier.iconType] on [modifier] and call [OdsListItemIconScope.OdsListItemIcon] in the [icon] lambda.
  *
- * @param modifier Modifier to be applied to the list item
- * @param text The primary text of the list item
- * @param icon The leading supporting visual of the list item
- * @param secondaryText The secondary text of the list item
- * @param singleLineSecondaryText Whether the secondary text is single line
- * @param overlineText The text displayed above the primary text
+ * @param modifier Modifier to be applied to the list item.
+ * @param text The primary text of the list item.
+ * @param icon The leading supporting visual of the list item.
+ * @param secondaryText The secondary text of the list item.
+ * @param singleLineSecondaryText Whether the secondary text is single line.
+ * @param overlineText The text displayed above the primary text.
  * @param trailing The trailing composable. Prefer other [OdsListItem] signature with an [OdsListItemTrailing] parameter as trailing if the trailing is one of
  * the following elements: Checkbox, Switch, RadioButton, Icon or Caption text
  */
@@ -296,9 +296,9 @@ private fun computeRequiredHeight(
  *
  * This method throws an exception if no icon type has been specified on the [OdsListItem] modifier using the [Modifier.iconType] method.
  *
- * @param painter Painter of the icon
- * @param contentDescription Content description of the icon
- * @param tint Icon color. Has not effect if icon type is different from `OdsListItemIconType.Icon`
+ * @param painter Painter of the icon.
+ * @param contentDescription Content description of the icon.
+ * @param tint Icon color. Has not effect if icon type is different from `OdsListItemIconType.Icon`.
  */
 @Composable
 @OdsComposable
@@ -339,7 +339,7 @@ fun OdsListItemIconScope.OdsListItemIcon(painter: Painter, contentDescription: S
 /**
  * An [OdsListItemIconScope] provides a scope for the icon of [OdsListItem].
  *
- * @param iconType The icon type
+ * @param iconType The icon type.
  */
 data class OdsListItemIconScope(val iconType: OdsListItemIconType?)
 
@@ -364,7 +364,7 @@ enum class OdsListItemIconType {
 /**
  * Specifies the icon type to display in an [OdsListItem].
  *
- * @param iconType The icon type
+ * @param iconType The icon type.
  */
 fun Modifier.iconType(iconType: OdsListItemIconType): Modifier {
     return then(object : OdsListItemIconTypeModifier {
@@ -471,7 +471,7 @@ private fun OdsListItemTrailing(trailing: OdsListItemTrailing) {
 /**
  * Displays a divider at the bottom of an [OdsListItem].
  *
- * @param startIndent The start indent of the divider
+ * @param startIndent The start indent of the divider.
  */
 fun Modifier.divider(startIndent: Dp? = null): Modifier {
     return then(object : OdsListItemDividerModifier {
