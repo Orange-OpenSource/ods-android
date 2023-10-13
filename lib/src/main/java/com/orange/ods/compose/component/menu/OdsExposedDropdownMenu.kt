@@ -35,13 +35,13 @@ import kotlinx.parcelize.Parcelize
 /**
  * <a href="https://system.design.orange.com/0c1af118d/p/07a69b-menus/b/862cbb" class="external" target="_blank">ODS menus</a>.
  *
- * @param label The label of the text field
- * @param items The [OdsExposedDropdownMenuItem]s displayed in the dropdown menu
- * @param selectedItem The selected item displayed in the text field
- * @param onItemSelectionChange The action executed when a dropdown menu item is selected. Can be used to get the menu value.
- * @param modifier The modifier to be applied to the menu
- * @param enabled controls the enabled state of the [OdsExposedDropdownMenu]. When `false`, the dropdown menu text field will
- * be neither clickable nor focusable, visually it will appear in the disabled UI state
+ * @param label The label of the text field.
+ * @param items List of [OdsExposedDropdownMenuItem] displayed in the dropdown menu.
+ * @param selectedItem Selected item displayed into the text field.
+ * @param onItemSelectionChange Callback invoked when a dropdown menu item is selected. It can be used to get the menu value.
+ * @param modifier [Modifier] applied to the dropdown menu.
+ * @param enabled Controls the enabled state of the dropdown menu. When `false`, the dropdown menu text field will be neither clickable nor focusable,
+ * visually it will appear in the disabled state.
  */
 @OdsComposable
 @OptIn(ExperimentalMaterialApi::class)

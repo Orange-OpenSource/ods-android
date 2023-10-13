@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased](https://github.com/Orange-OpenSource/ods-android/compare/0.16.0...develop)
 
+### Changed
+
+- \[Lib\] Review and update technical documentation ([#638](https://github.com/Orange-OpenSource/ods-android/issues/638))
+
 ### Fixed
 
 - \[App\] Change illustrations alignment for slider and text field components ([#618](https://github.com/Orange-OpenSource/ods-android/issues/618))

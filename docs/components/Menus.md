@@ -4,16 +4,17 @@ title: Menus
 description: Menus appear from a button, action, or other control. It contains at least 2 items that can affect the app, the view or elements within the view.
 ---
 
----
-
-**Page Summary**
+<br>**On this page**
 
 * [Specifications references](#specifications-references)
 * [Accessibility](#accessibility)
 * [Variants](#variants)
     * [Dropdown menu](#dropdown-menu)
+        * [Jetpack Compose](#jetpack-compose)
+            * [OdsDropdownMenu API](#odsdropdownmenu-api)
     * [Exposed dropdown menu](#exposed-dropdown-menu)
-* [Component specific tokens](#component-specific-tokens)
+        * [Jetpack Compose](#jetpack-compose-1)
+            * [OdsExposedDropdownMenu API](#odsexposeddropdownmenu-api)
 
 ---
 
@@ -21,11 +22,12 @@ description: Menus appear from a button, action, or other control. It contains a
 
 - [Design System Manager - Menus](https://system.design.orange.com/0c1af118d/p/07a69b-menus/b/862cbb)
 - [Material Design - Menus](https://m2.material.io/components/menus)
-- Technical documentation soon available
 
 ## Accessibility
 
 Please follow [accessibility criteria for development](https://a11y-guidelines.orange.com/en/mobile/android/development/)
+
+The icons which can be displayed in a dropdown menu are always associated to a text so they don't need a content description.
 
 ## Variants
 
@@ -35,7 +37,7 @@ A dropdown menu is a compact way of displaying multiple choices. It appears upon
 
 ![Dropdown menu light](images/menu_dropdown_light.png) ![Dropdown menu dark](images/menu_dropdown_dark.png)
 
-> **Jetpack Compose implementation**
+#### Jetpack Compose
 
 The library offers an `OdsDropdownMenu` container composable in which you can add `OdsDropdownMenuItem` or `OdsDivider` as shown in the following example:
 
@@ -51,24 +53,28 @@ OdsDropdownMenu(
             text = "Summer salad",
             icon = painterResource(id = R.drawable.ic_salad),
             divider = true, // Allow to add a divider between the 2 items
-            onClick = {
-                // Do something
-            }
+            onClick = { doSomething() }
         ),
         OdsDropdownMenuItem(
             text = "Brocoli soup",
             icon = painterResource(id = R.drawable.ic_soup),
-            onClick = {
-                // Do something
-            }
+            onClick = { doSomething() }
         )
     )
 )
 ```
 
-> **XML implementation**
+##### OdsDropdownMenu API
 
-*Not available yet*
+Parameter | Default&nbsp;value | Description
+-- | -- | --
+`items: List<OdsDropdownMenuItem>` | | Items displayed into the dropdown menu
+`expanded: Boolean` | | Controls whether the menu is currently open and visible to the user
+`onDismissRequest: () -> Unit` | | Callback invoked when the user requests to dismiss the menu, such as by tapping outside the menu's bounds
+`modifier: Modifier` | `Modifier` | `Modifier` applied to the dropdown menu
+`offset: DpOffset` | `DpOffset(0.dp, 0.dp)` | Offset added to the menu position
+`properties: PopupProperties` | `PopupProperties(focusable = true)` | Properties for further customization of the popup's behavior
+{:.table}
 
 ### Exposed dropdown menu
 
@@ -76,7 +82,7 @@ Exposed dropdown menus display the currently selected menu item above the menu. 
 
 ![Exposed dropdown menu light](images/menu_exposed_dropdown_light.png)  ![Exposed dropdown menu dark](images/menu_exposed_dropdown_dark.png)
 
-> **Jetpack Compose implementation**
+#### Jetpack Compose
 
 To display an exposed dropdown menu, you can use the `OdsExposedDropdownMenu` composable. As shown below, you should provide a list of `OdsExposedDropdownMenuItem` corresponding to the items displayed in the menu (with or without icons).
 
@@ -93,16 +99,20 @@ OdsExposedDropdownMenu(
     items = items,
     selectedItem = selectedItem,
     onItemSelectionChange = { item ->
-        // Do something like retrieving the selected item
+        doSomething() // Do something like retrieving the selected item
     },
     enabled = true
 )
 ```
 
-> **XML implementation**
+##### OdsExposedDropdownMenu API
 
-*Not available yet*
-
-## Component specific tokens
-
-_Soon available_
+Parameter | Default&nbsp;value | Description
+-- | -- | --
+`label: String` | | Label of the exposed menu text field
+`items: List<OdsExposedDropdownMenuItem>` | | Items displayed into the dropdown menu
+`selectedItem: MutableState<OdsExposedDropdownMenuItem>` | | Selected item displayed into the text field
+`onItemSelectionChange: (OdsExposedDropdownMenuItem) -> Unit` | | Callback invoked when a dropdown menu item is selected. It can be used to get the menu value.
+`modifier: Modifier` | `Modifier` | `Modifier` applied to the dropdown menu
+`enabled: Boolean` | `true` | Controls the enabled state of the dropdown menu. When `false`, the dropdown menu text field will be neither clickable nor focusable, visually it will appear in the disabled state.
+{:.table}

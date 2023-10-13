@@ -9,14 +9,12 @@ Use Sheets bottom to:
 * Display content that complements the screen’s primary content
 * Expose all complements options
 
----
-
-**Page Summary**
+<br>**On this page**
 
 * [Specifications references](#specifications-references)
 * [Accessibility](#accessibility)
 * [Implementation](#implementation)
-* [Component specific tokens](#component-specific-tokens)
+    * [Jetpack Compose](#jetpack-compose)
 
 ---
 
@@ -24,7 +22,6 @@ Use Sheets bottom to:
 
 - [Design System Manager - Sheets](https://system.design.orange.com/0c1af118d/p/81f927-sheets-bottom/b/47b99b)
 - [Material Design - Sheets: bottom](https://material.io/components/sheets-bottom)
-- Technical documentation soon available
 
 ## Accessibility
 
@@ -34,23 +31,25 @@ Please follow [accessibility criteria for development](https://a11y-guidelines.o
 
 ![BottomSheet light](images/sheetbottom_light.png) ![BottomSheet dark](images/sheetbottom_dark.png)
 
-> **Jetpack Compose implementation**
+The contents within a bottom sheet should follow their own accessibility guidelines, such as images having content descriptions set on them.
+
+### Jetpack Compose
 
 ```kotlin
 OdsBottomSheetScaffold(
-    sheetContent = {},
+    sheetContent = {
+        // Put here the content of the sheet
+    },
     modifier = Modifier,
     scaffoldState = rememberBottomSheetScaffoldState(),
     topBar = null,
-    snackbarHost = { },
+    snackbarHost = {},
     floatingActionButton = {},
     floatingActionButtonPosition = FabPosition.End,
     sheetGesturesEnabled = true,
     sheetPeekHeight = 56.dp,
-    content = {}
+    content = {
+        // Put here the screen content
+    }
 )
 ```
-
-## Component specific tokens
-
-_Soon available_

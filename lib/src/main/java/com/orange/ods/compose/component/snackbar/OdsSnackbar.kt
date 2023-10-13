@@ -36,8 +36,8 @@ import com.orange.ods.compose.theme.OdsDisplaySurface
  *
  * @see androidx.compose.material.Snackbar
  *
- * @param message text displayed in the snackbar
- * @param modifier modifiers for the Snackbar layout
+ * @param message text displayed in the snackbar.
+ * @param modifier modifiers for the Snackbar layout.
  * @param actionLabel if set, it displays an [OdsTextButton] with the given [actionLabel] as an action of the snackbar.
  * @param actionOnNewLine whether or not action should be put on the separate line. Recommended
  * for action with long action text
@@ -73,8 +73,8 @@ fun OdsSnackbar(
  *
  * @see androidx.compose.material.Snackbar
  *
- * @param snackbarData data about the current snackbar showing via [SnackbarHostState]
- * @param modifier modifiers for the Snackbar layout
+ * @param snackbarData data about the current snackbar showing via [SnackbarHostState].
+ * @param modifier modifiers for the Snackbar layout.
  * @param actionOnNewLine whether or not action should be put on the separate line. Recommended
  * for action with long action text
  * @param onActionClick executed on action button click.
@@ -102,9 +102,9 @@ fun OdsSnackbar(
  *
  * @see androidx.compose.material.SnackbarHost
  *
- * @param hostState state of this component to read and show [OdsSnackbar]s accordingly
- * @param modifier optional modifier for this component
- * @param snackbar the instance of the [OdsSnackbar] to be shown at the appropriate time with
+ * @param hostState state of this component to read and show [OdsSnackbar]s accordingly.
+ * @param modifier optional modifier for this component.
+ * @param snackbar the instance of the [OdsSnackbar] to be shown at the appropriate time with.
  * appearance based on the [SnackbarData] provided as a param
  */
 @OdsComposable

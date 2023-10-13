@@ -4,20 +4,24 @@ title: Chips
 description: Chips are compact elements that represent an input, attribute, or action.
 ---
 
----
-
-**Page summary**
+<br>**On this page**
 
 * [Specifications references](#specifications-references)
 * [Accessibility](#accessibility)
 * [Variants](#variants)
     * [Input chip](#input-chip)
+        * [Jetpack Compose](#jetpack-compose)
+            * [OdsChip API](#odschip-api)
     * [Choice chip](#choice-chip)
+        * [Jetpack Compose](#jetpack-compose-1)
     * [Filter chip](#filter-chip)
+        * [Jetpack Compose](#jetpack-compose-2)
+            * [OdsFilterChip API](#odsfilterchip-api)
     * [Action chip](#action-chip)
-* [Modules](#modules)
+        * [Jetpack Compose](#jetpack-compose-3)
+* [Extras](#extras)
     * [Choice chips flow row](#choice-chips-flow-row)
-* [Component specific tokens](#component-specific-tokens)
+        * [OdsChoiceChipsFlowRow API](#odschoicechipsflowrow-api)
 
 ---
 
@@ -25,7 +29,6 @@ description: Chips are compact elements that represent an input, attribute, or a
 
 - [Design System Manager](https://system.design.orange.com/0c1af118d/p/81aa91-chips/b/13c40e)
 - [Material Design](https://material.io/components/chips)
-- Technical documentation soon available
 
 ## Accessibility
 
@@ -47,7 +50,7 @@ that input by converting text into chips.
 
 ![Light outlined input chip](images/chips_input_outlined_light.png) ![Dark outlined input chip](images/chips_input_outlined_dark.png)
 
-> **Jetpack Compose implementation**
+#### Jetpack Compose
 
 Use the `OdsChip` composable.
 Note that the chip style is outlined or filled according to your OdsTheme component configuration,
@@ -57,36 +60,33 @@ outlined by default.
 OdsChip(
     text = "chip text",
     onClick = {
-        // Something executed on chip click
+        doSomething()
     },
     leadingIcon = null,
     leadingAvatar = OdsChipLeadingAvatar(
         painterResource(id = R.drawable.avatar),
         "Avatar"
-    ), // set it to `null` for no avatar or provide a `leadingIcon`
-    enabled = true, // Set it to `false` to disabled the chip
+    ), // Set it to `null` for no avatar or provide a `leadingIcon`
+    enabled = true,
     onCancel = {
-        // Something executed on cancel cross click
+        doSomething()
     }
 )
 ```
 
-> **XML implementation**
+##### OdsChip API
 
-To create an input chip you must add a `com.google.android.material.chip.Chip` component to your
-layout and set `style` property to `@style/Widget.MaterialComponents.Chip.Entry`
-
-In the layout:
-
-```xml
-
-<com.google.android.material.chip.ChipGroup>
-    <com.google.android.material.chip.Chip android:id="@+id/chip_1"
-        style="@style/Widget.MaterialComponents.Chip.Entry" android:layout_width="wrap_content"
-        android:layout_height="wrap_content" android:text="@string/text_input_1" />
-
-</com.google.android.material.chip.ChipGroup>
-```
+Parameter | Default&nbsp;value | Description
+-- | -- | --
+`text: String` | | Text to be displayed into the chip
+`onClick: () -> Unit` | | Callback called on chip click
+`modifier: Modifier` | `Modifier` | `Modifier` to be applied to the chip
+`enabled: Boolean` | `true` | Controls the enabled state of the chip. When `false`, this chip will not respond to user input.
+`selected: Boolean` | `false` | Controls the selected state of the chip. When `true`, the chip is highlighted (useful for choice chips).
+`leadingIcon: OdsChipLeadingIcon?` | `null` | Icon to be displayed at the start of the chip, preceding the text
+`leadingAvatar: OdsChipLeadingAvatar?` | `null` | Avatar to be displayed in a circle shape at the start of the chip, preceding the content text
+`onCancel: (() -> Unit)?` | `null` | Callback called on chip cancel cross click. Pass `null` for no cancel cross.
+{:.table}
 
 ### Choice chip
 
@@ -102,7 +102,7 @@ toggle buttons, radio buttons, and single select menus.
 
 ![Light outlined choice chips](images/chips_choice_outlined_light.png) ![Dark outlined choice chips](images/chips_choice_outlined_dark.png)
 
-> **Jetpack Compose implementation**
+#### Jetpack Compose
 
 Use the `OdsChip` composable.
 Note that the chip style is outlined or filled according to your OdsTheme component configuration,
@@ -112,28 +112,13 @@ outlined by default.
 OdsChip(
     text = "chip text",
     onClick = {
-        // Something executed on chip click
+        doSomething()
     },
-    enabled = true, // Set it to `false` to disabled the chip
+    enabled = true,
 )
 ```
 
-> **XML implementation**
-
-To create a choice chip you must add a `com.google.android.material.chip.Chip` component to your
-layout and set `style` property to `@style/Widget.MaterialComponents.Chip.Choice`
-
-In the layout:
-
-```xml
-
-<com.google.android.material.chip.ChipGroup...>
-    <com.google.android.material.chip.Chip android:id="@+id/chip_1"
-        style="@style/Widget.MaterialComponents.Chip.Choice" android:layout_width="wrap_content"
-        android:layout_height="wrap_content" android:text="@string/text_choice_1" />
-
-</com.google.android.material.chip.ChipGroup>
-```
+Use the [OdsChip API](#odschip-api).
 
 ### Filter chip
 
@@ -146,7 +131,7 @@ toggle buttons or checkboxes.
 
 ![Light filter chips with avatar](images/chips_filter_avatar_light.png) ![Dark filter chips with avatar](images/chips_filter_avatar_dark.png)
 
-> **Jetpack Compose implementation**
+#### Jetpack Compose
 
 Use the `OdsFilterChip` composable.
 Note that the chip style is outlined or filled according to your OdsTheme component configuration,
@@ -156,33 +141,28 @@ outlined by default.
 OdsFilterChip(
     text = "chip text",
     onClick = {
-        // Something executed on chip click
+        doSomething()
     },
     leadingAvatar = OdsChipLeadingAvatar(
         painterResource(id = R.drawable.avatar),
         ""
-    ), // set it to `null` for no avatar
-    selected = false, // `true` to display the chip selected
-    enabled = true, // Set it to `false` to disabled the chip
+    ), // Set it to `null` for no avatar
+    selected = false,
+    enabled = true,
 )
 ```
 
-> **XML implementation**
+##### OdsFilterChip API
 
-To create a filter chip you must add a `com.google.android.material.chip.Chip` component to your
-layout and set `style` property to `@style/Widget.MaterialComponents.Chip.Filter`
-
-In the layout:
-
-```xml
-
-<com.google.android.material.chip.ChipGroup...>
-    <com.google.android.material.chip.Chip android:id="@+id/chip_1"
-        style="@style/Widget.MaterialComponents.Chip.Filter" android:layout_width="wrap_content"
-        android:layout_height="wrap_content" android:text="@string/text_choice_1" />
-
-</com.google.android.material.chip.ChipGroup>
-```
+Parameter | Default&nbsp;value | Description
+-- | -- | --
+`text: String` | | Text to be displayed into the chip
+`onClick: () -> Unit` | | Callback called on chip click
+`modifier: Modifier` | `Modifier` | `Modifier` to be applied to the chip
+`enabled: Boolean` | `true` | Controls the enabled state of the chip. When `false`, this chip will not respond to user input. It also appears visually disabled and is disabled to accessibility services.
+`selected: Boolean` | `false` | Controls the selected state of the chip. When `true`, the chip is highlighted.
+`leadingAvatar: OdsChipLeadingAvatar?` | `null` | Avatar to be displayed in a circle shape at the start of the chip, preceding the content text
+{:.table}
 
 ### Action chip
 
@@ -195,7 +175,7 @@ An alternative to action chips are buttons, which should appear persistently and
 
 ![Light outlined action chip](images/chips_action_outlined_light.png) ![Dark outlined action chip](images/chips_action_outlined_dark.png)
 
-> **Jetpack Compose implementation**
+#### Jetpack Compose
 
 Use the `OdsChip` composable.
 Note that the chip style is outlined or filled according to your OdsTheme component configuration,
@@ -205,38 +185,23 @@ outlined by default.
 OdsChip(
     text = "chip text",
     onClick = {
-        // Something executed on chip click
+        doSomething()
     },
     leadingIcon = OdsChipLeadingIcon(
         painterResource(id = R.drawable.ic_heart),
         "Heart"
     ), // set it to `null` for no icon
-    enabled = true, // Set it to `false` to disabled the chip
+    enabled = true,
 )
 ```
 
-> **XML implementation**
+Use the [OdsChip API](#odschip-api).
 
-To create an action chip you must add a `com.google.android.material.chip.Chip` component to your
-layout and set `style` property to `@style/Widget.MaterialComponents.Chip.Action`
+## Extras
 
-In the layout:
+The ODS library provides some chips related components to facilitate the implementation of chips groups.
 
-```xml
-
-<com.google.android.material.chip.ChipGroup...>
-    <com.google.android.material.chip.Chip android:id="@+id/chip_1"
-        style="@style/Widget.MaterialComponents.Chip.Action" android:layout_width="wrap_content"
-        android:layout_height="wrap_content" android:text="@string/text_choice_1" />
-
-</com.google.android.material.chip.ChipGroup>
-```
-
-## Modules
-
-The ODS library provides some modules directly related to chips.
-
-## Choice chips flow row
+### Choice chips flow row
 
 This is a full width `FlowRow` containing selectable chips. It works like radio buttons, only one chip of the set can be selected.
 
@@ -260,6 +225,12 @@ OdsChoiceChipsFlowRow(
 )
 ```
 
-## Component specific tokens
+#### OdsChoiceChipsFlowRow API
 
-_Soon available_
+Parameter | Default&nbsp;value | Description
+-- | -- | --
+`value: String` | | Initial value of the choice chips flow row
+`onValueChange: (value: T) -> Unit` | | Callback invoked when the value changes. The new value is provided as parameter.
+`modifier: Modifier` | `Modifier` | `Modifier` applied to the chips flow row
+`chips: List<OdsChoiceChip<T>>` | | Chips displayed into the flow row
+{:.table}

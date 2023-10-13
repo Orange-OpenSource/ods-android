@@ -40,13 +40,12 @@ import com.orange.ods.compose.utilities.extension.enable
  *
  * @see androidx.compose.material.DropdownMenu
  *
- * @param items The items of the dropdown menu
- * @param expanded Whether the menu is currently open and visible to the user
- * @param onDismissRequest Called when the user requests to dismiss the menu, such as by
- * tapping outside the menu's bounds
- * @param modifier The modifier to be applied to the menu
- * @param offset [DpOffset] to be added to the position of the menu
- * @param properties [PopupProperties] for further customization of the popup's behavior
+ * @param items List of [OdsDropdownMenuItem] displayed into the dropdown menu.
+ * @param expanded Controls whether the menu is currently open and visible to the user.
+ * @param onDismissRequest Callback invoked when the user requests to dismiss the menu, such as by tapping outside the menu's bounds.
+ * @param modifier [Modifier] applied to the dropdown menu.
+ * @param offset [DpOffset] added to the menu position.
+ * @param properties [PopupProperties] for further customization of the popup's behavior.
  */
 @OdsComposable
 @Composable
@@ -92,10 +91,10 @@ class OdsDropdownMenuItem private constructor(
     /**
      * Creates an instance of [OdsDropdownMenuItem].
      *
-     * @param text The text of the menu item
-     * @param enabled Controls the enabled state of the menu item - when `false`, the menu item
-     * @param divider Whether or not a divider is displayed at the bottom of the menu item
-     * @param onClick Called when the menu item was clicked
+     * @param text The text of the menu item.
+     * @param enabled Controls the enabled state of the menu item - when `false`, the menu item.
+     * @param divider Whether or not a divider is displayed at the bottom of the menu item.
+     * @param onClick Called when the menu item was clicked.
      */
     constructor(
         text: String,
@@ -107,11 +106,11 @@ class OdsDropdownMenuItem private constructor(
     /**
      * Creates an instance of [OdsDropdownMenuItem].
      *
-     * @param text The text of the menu item
-     * @param icon Optional icon to display in the menu item
-     * @param enabled Controls the enabled state of the menu item - when `false`, the menu item
-     * @param divider Whether or not a divider is displayed at the bottom of the menu item
-     * @param onClick Called when the menu item was clicked
+     * @param text The text of the menu item.
+     * @param icon Optional icon to display in the menu item.
+     * @param enabled Controls the enabled state of the menu item - when `false`, the menu item.
+     * @param divider Whether or not a divider is displayed at the bottom of the menu item.
+     * @param onClick Called when the menu item was clicked.
      */
     constructor(
         text: String,
@@ -124,11 +123,11 @@ class OdsDropdownMenuItem private constructor(
     /**
      * Creates an instance of [OdsDropdownMenuItem].
      *
-     * @param text The text of the menu item
-     * @param icon Optional icon to display in the menu item
-     * @param enabled Controls the enabled state of the menu item - when `false`, the menu item
-     * @param divider Whether or not a divider is displayed at the bottom of the menu item
-     * @param onClick Called when the menu item was clicked
+     * @param text The text of the menu item.
+     * @param icon Optional icon to display in the menu item.
+     * @param enabled Controls the enabled state of the menu item - when `false`, the menu item.
+     * @param divider Whether or not a divider is displayed at the bottom of the menu item.
+     * @param onClick Called when the menu item was clicked.
      */
     constructor(
         text: String,
@@ -141,11 +140,11 @@ class OdsDropdownMenuItem private constructor(
     /**
      * Creates an instance of [OdsDropdownMenuItem].
      *
-     * @param text The text of the menu item
-     * @param icon Optional icon to display in the menu item
-     * @param enabled Controls the enabled state of the menu item - when `false`, the menu item
-     * @param divider Whether or not a divider is displayed at the bottom of the menu item
-     * @param onClick Called when the menu item was clicked
+     * @param text The text of the menu item.
+     * @param icon Optional icon to display in the menu item.
+     * @param enabled Controls the enabled state of the menu item - when `false`, the menu item.
+     * @param divider Whether or not a divider is displayed at the bottom of the menu item.
+     * @param onClick Called when the menu item was clicked.
      */
     constructor(
         text: String,

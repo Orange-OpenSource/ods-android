@@ -43,11 +43,11 @@ import com.orange.ods.theme.OdsComponentsConfiguration
  * @see [OdsOutlinedTextField]
  * @see [OdsFilledTextField]
  *
- * @param value the input text to be shown in the text field
+ * @param value the input text to be shown in the text field.
  * @param onValueChange the callback that is triggered when the input service updates the text. An
  * updated text comes as a parameter of the callback
- * @param trailing The `OdsTextFieldTrailing` element to display at the end of the text field
- * @param modifier a [Modifier] for this text field
+ * @param trailing The `OdsTextFieldTrailing` element to display at the end of the text field.
+ * @param modifier a [Modifier] for this text field.
  * @param enabled controls the enabled state of the [TextField]. When `false`, the text field will
  * be neither editable nor focusable, the input of the text field will not be selectable,
  * visually text field will appear in the disabled UI state
@@ -61,11 +61,11 @@ import com.orange.ods.theme.OdsComponentsConfiguration
  * the input text is empty. The default text style for internal [Text] is [Typography.subtitle1]
  * @param leadingIcon the optional leading icon painter to be displayed at the beginning of the text field
  * container
- * @param leadingIconContentDescription the optional content description for the leading icon
- * @param onLeadingIconClick the optional action executed on leading icon click
+ * @param leadingIconContentDescription the optional content description for the leading icon.
+ * @param onLeadingIconClick the optional action executed on leading icon click.
  * @param isError indicates if the text field's current value is in error state. If set to
  * true, the label, bottom indicator and trailing icon by default will be displayed in error color
- * @param errorMessage displayed when the [OdsTextField] is in error
+ * @param errorMessage displayed when the [OdsTextField] is in error.
  * @param visualTransformation transforms the visual representation of the input [value].
  * For example, you can use [androidx.compose.ui.text.input.PasswordVisualTransformation] to create a password
  * text field. By default no visual transformation is applied
@@ -137,10 +137,10 @@ fun OdsTextField(
  *
  * If you are looking for an outlined version, see [OdsOutlinedTextField].
  *
- * @param value the input text to be shown in the text field
+ * @param value the input text to be shown in the text field.
  * @param onValueChange the callback that is triggered when the input service updates the text. An
  * updated text comes as a parameter of the callback
- * @param modifier a [Modifier] for this text field
+ * @param modifier a [Modifier] for this text field.
  * @param enabled controls the enabled state of the [TextField]. When `false`, the text field will
  * be neither editable nor focusable, the input of the text field will not be selectable,
  * visually text field will appear in the disabled UI state
@@ -154,13 +154,13 @@ fun OdsTextField(
  * the input text is empty. The default text style for internal [Text] is [Typography.subtitle1]
  * @param leadingIcon the optional leading icon painter to be displayed at the beginning of the text field
  * container
- * @param leadingIconContentDescription the optional content description for the leading icon
- * @param onLeadingIconClick the optional action executed on leading icon click
+ * @param leadingIconContentDescription the optional content description for the leading icon.
+ * @param onLeadingIconClick the optional action executed on leading icon click.
  * @param trailing The trailing composable. Prefer other [OdsTextField] signature with an [OdsTextFieldTrailing] parameter as trailing if the trailing is one of
  * the following elements: Text, Icon or Dropdown menu arrow
  * @param isError indicates if the text field's current value is in error state. If set to
  * true, the label, bottom indicator and trailing icon by default will be displayed in error color
- * @param errorMessage displayed when the [OdsTextField] is in error
+ * @param errorMessage displayed when the [OdsTextField] is in error.
  * @param visualTransformation transforms the visual representation of the input [value].
  * For example, you can use [androidx.compose.ui.text.input.PasswordVisualTransformation] to create a password
  * text field. By default no visual transformation is applied

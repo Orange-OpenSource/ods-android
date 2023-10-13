@@ -5,18 +5,18 @@ description: Checkbox selection control allows the user to select options.
 ---
 
 Use checkboxes to:
+
 * Select one or more options from a list
 * Present a list containing sub-selections
 * Turn an item on or off in a desktop environment
 
----
-
-**Page Summary**
+<br>**On this page**
 
 * [Specifications references](#specifications-references)
 * [Accessibility](#accessibility)
 * [Implementation](#implementation)
-* [Component specific tokens](#component-specific-tokens)
+    * [Jetpack Compose](#jetpack-compose)
+        * [OdsCheckbox API](#odscheckbox-api)
 
 ---
 
@@ -24,7 +24,6 @@ Use checkboxes to:
 
 - [Design System Manager - Selection controls](https://system.design.orange.com/0c1af118d/p/14638a-selection-controls/b/352c00)
 - [Material Design - Checkboxes](https://material.io/components/checkboxes/)
-- Technical documentation soon available
 
 ## Accessibility
 
@@ -34,39 +33,30 @@ Checkboxes support content labeling for accessibility and are readable by most s
 as TalkBack. Text rendered in check boxes is automatically provided to accessibility services.
 Additional content labels are usually unnecessary.
 
-### Implementation
+## Implementation
 
 ![Checkbox](images/checkbox_light.png) ![Checkbox dark](images/checkbox_dark.png)
 
-> **Jetpack Compose implementation**
+### Jetpack Compose
 
 In your composable screen you can use:
 
 ```kotlin
+var checked by remember { mutableStateOf(false) }
 OdsCheckbox(
-    checked = true,
-    onCheckedChange = { },
-    enabled = true,
+    checked = checked,
+    onCheckedChange = { checked = it },
+    enabled = true
 )
 ```
 
-> **XML implementation**
+#### OdsCheckbox API
 
-To create a Checkbox you just have to add a `Checkbox` in your layout. Orange theme will be
-automatically applied
+Parameter | Default&nbsp;value | Description
+-- | -- | --
+`checked: Boolean` | | Controls checked state of the checkbox
+`onCheckedChange: ((Boolean) -> Unit)?` | | Callback invoked on checkbox click. If `null`, then this is passive and relies entirely on a higher-level component to control the checked state.
+`modifier: Modifier` | `Modifier` | `Modifier` applied to the checkbox
+`enabled: Boolean` | `true` | Controls enabled state of the checkbox. When `false`, this checkbox will not be clickable.
+{:.table}
 
-In the layout:
-
-```xml
-
-<CheckBox 
-    android:layout_width="match_parent" 
-    android:layout_height="match_parent"
-    android:checked="true"
-    android:text="@string/label"
-/>
-```
-
-## Component specific tokens
-
-_Soon available_

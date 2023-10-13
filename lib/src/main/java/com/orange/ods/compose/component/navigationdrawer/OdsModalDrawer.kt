@@ -66,11 +66,11 @@ private const val SelectedItemOpacity = 20f / 255f
 /**
  * Navigation drawers provide ergonomic access to destinations in an app.
  *
- * @param drawerHeader content inside the header of the drawer
- * @param drawerContentList content inside the body of the drawer
- * @param modifier to be applied to this drawer
- * @param drawerState state of the drawer
- * @param content content of the rest of the UI
+ * @param drawerHeader content inside the header of the drawer.
+ * @param drawerContentList content inside the body of the drawer.
+ * @param modifier to be applied to this drawer.
+ * @param drawerState state of the drawer.
+ * @param content content of the rest of the UI.
  */
 @Composable
 @OdsComposable

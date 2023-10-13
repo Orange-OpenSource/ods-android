@@ -5,19 +5,19 @@ description: Radio button selection control allows the user to select options.
 ---
 
 Use radio buttons to:
-*   Select a single option from a list
-*   Expose all available options
-*   If available options can be collapsed, consider using a dropdown menu
-    instead, as it uses less space.
 
----
+* Select a single option from a list
+* Expose all available options
+* If available options can be collapsed, consider using a dropdown menu
+  instead, as it uses less space.
 
-**Page Summary**
+<br>**On this page**
 
 * [Specifications references](#specifications-references)
 * [Accessibility](#accessibility)
 * [Implementation](#implementation)
-* [Component specific tokens](#component-specific-tokens)
+    * [Jetpack Compose](#jetpack-compose)
+        * [OdsRadioButton API](#odsradiobutton-api)
 
 ---
 
@@ -25,7 +25,6 @@ Use radio buttons to:
 
 - [Design System Manager - Selection controls](https://system.design.orange.com/0c1af118d/p/14638a-selection-controls/b/352c00)
 - [Material Design - Radio buttons](https://material.io/components/radio-buttons/)
-- Technical documentation soon available
 
 ## Accessibility
 
@@ -40,76 +39,24 @@ usually unnecessary.
 
 ![RadioButton](images/radio_button_light.png) ![RadioButton dark](images/radio_button_dark.png)
 
-> **Jetpack Compose implementation**
+### Jetpack Compose
 
 In your composable screen you can use:
 
 ```kotlin
 OdsRadioButton(
     selected = true,
-    onClick = { },
+    onClick = { doSomething() },
     enabled = true
 )
 ```
 
-> **XML implementation**
+#### OdsRadioButton API
 
-To create a Radio Button you just have to add a `RadioButton` in your layout. Orange theme will be
-automatically applied.
-
-In the layout:
-
-```xml
-<RadioButton
-    android:id="@+id/radio_button"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:text="@string/label"/>
-```
-
-Changes in the states of one radio button can affect other buttons in the group.
-Specifically, selecting a `RadioButton` in a `RadioGroup` will de-select all
-other buttons in that group.
-
-Example showing a **radio button group** with five radio buttons.
-
-In the layout:
-
-```xml
-<RadioGroup
-    android:id="@+id/radioGroup"
-    android:checkedButton="@+id/radio_button_1"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content">
-    <RadioButton
-        android:id="@+id/radio_button_1"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/label_1"/>
-    <RadioButton
-        android:id="@+id/radio_button_2"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/label_2"/>
-    <RadioButton
-        android:id="@+id/radio_button_3"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/label_3"/>
-    <RadioButton
-        android:id="@+id/radio_button_4"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/label_4"/>
-    <RadioButton
-        android:id="@+id/radio_button_5"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:enabled="false"
-        android:text="@string/label_5"/>
-</RadioGroup>
-```
-
-## Component specific tokens
-
-_Soon available_
+Parameter | Default&nbsp;value | Description
+-- | -- | --
+`selected: Boolean` | | Controls the selected state of the radio button
+`onClick: (() -> Unit)?` | | Callback invoked on radio button click. If `null`, then the radio button will not handle input events, and only act as a visual indicator of `selected` state.
+`modifier: Modifier` | `Modifier` | `Modifier` applied to the radio button
+`enabled: Boolean` | `true` | Controls the enabled state of the radio button. When `false`, the button will not be selectable and appears disabled.
+{:.table}

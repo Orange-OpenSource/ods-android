@@ -4,17 +4,17 @@ title: Lists
 description: Lists are continuous, vertical indexes of text or images.
 ---
 
----
-
-**Page Summary**
+<br>**On this page**
 
 * [Specifications references](#specifications-references)
 * [Accessibility](#accessibility)
 * [Variants](#variants)
-  * [Single-line list](#single-line-list)
-  * [Two-line list](#two-line-list)
-  * [Three-line list](#three-line-list)
-* [Component specific tokens](#component-specific-tokens)
+    * [Single-line list](#single-line-list)
+        * [Jetpack Compose](#jetpack-compose)
+    * [Two-line list](#two-line-list)
+        * [Jetpack Compose](#jetpack-compose-1)
+    * [Three-line list](#three-line-list)
+        * [Jetpack Compose](#jetpack-compose-2)
 
 ---
 
@@ -22,7 +22,6 @@ description: Lists are continuous, vertical indexes of text or images.
 
 - [Design System Manager - Lists](https://system.design.orange.com/0c1af118d/p/09a804-lists/b/669743)
 - [Material Design - Lists](https://material.io/components/lists/)
-- Technical documentation soon available
 
 ## Accessibility
 
@@ -38,15 +37,15 @@ Here are two examples:
 
 - with a wide image and a checkbox
 
-    ![Lists single-line wide image](images/lists_single_line_wide_image_light.png) ![Lists single-line wide image dark](images/lists_single_line_wide_image_dark.png)
+  ![Lists single-line wide image](images/lists_single_line_wide_image_light.png) ![Lists single-line wide image dark](images/lists_single_line_wide_image_dark.png)
 
 - with a standard icon and a checkbox
 
-    ![Lists single-line](images/lists_single_line_light.png) ![Lists single-line dark](images/lists_single_line_dark.png)
+  ![Lists single-line](images/lists_single_line_light.png) ![Lists single-line dark](images/lists_single_line_dark.png)
 
 Please note that there is no start padding with wide images.
 
-> **Jetpack Compose implementation**
+#### Jetpack Compose
 
 The library offers the `OdsListItem` composable to display lists items.
 
@@ -65,7 +64,6 @@ Note: The first signature (with `OdsListItemTrailing`) automatically manages acc
 
 A divider can also be displayed at the bottom of the list item using the `Modifier.divider` method on the `OdsListItem` modifier.
 
-
 ```kotlin
 OdsListItem(
     modifier = Modifier
@@ -73,14 +71,15 @@ OdsListItem(
         .iconType(OdsListItemIconType.Icon)
         .divider(),
     text = "Primary text",
-    icon = { OdsListItemIcon(painter = painterResource(id = R.drawable.ic_heart), contentDescription = "Heart") },
+    icon = {
+        OdsListItemIcon(
+            painter = painterResource(id = R.drawable.ic_heart),
+            contentDescription = "Heart"
+        )
+    },
     trailing = OdsCheckboxTrailing(checked = itemChecked)
 )
 ```
-
-> **XML implementation**
-
-*Not available yet*
 
 ### Two-line list
 
@@ -90,13 +89,13 @@ Here are two examples:
 
 - with a wide image and a checkbox
 
-    ![Lists two-line wide image](images/lists_two_line_wide_image_light.png) ![Lists two-line wide image dark](images/lists_two_line_wide_image_dark.png)
+  ![Lists two-line wide image](images/lists_two_line_wide_image_light.png) ![Lists two-line wide image dark](images/lists_two_line_wide_image_dark.png)
 
 - with a standard icon and a checkbox
 
-    ![Lists two-line](images/lists_two_line_light.png) ![Lists two-line dark](images/lists_two_line_dark.png)
+  ![Lists two-line](images/lists_two_line_light.png) ![Lists two-line dark](images/lists_two_line_dark.png)
 
-> **Jetpack Compose implementation**
+#### Jetpack Compose
 
 The only difference with the single-line implementation is that the `secondaryText` property of `OdsListItem` is not null.
 
@@ -109,13 +108,12 @@ OdsListItem(
     text = "Primary text",
     secondaryText = "Secondary text",
     icon = { OdsListItemIcon(painter = painterResource(id = R.drawable.placeholder)) },
-    trailing = OdsIconTrailing(painter = painterResource(id = R.drawable.ic_drag_handle), contentDescription = "Drag item")
+    trailing = OdsIconTrailing(
+        painter = painterResource(id = R.drawable.ic_drag_handle),
+        contentDescription = "Drag item"
+    )
 )
 ```
-
-> **XML implementation**
-
-*Not available yet*
 
 ### Three-line list
 
@@ -125,13 +123,13 @@ Here are two examples:
 
 - with a wide image and a checkbox
 
-    ![Lists three-line wide image](images/lists_three_line_wide_image_light.png) ![Lists three-line wide image dark](images/lists_three_line_wide_image_dark.png)
+  ![Lists three-line wide image](images/lists_three_line_wide_image_light.png) ![Lists three-line wide image dark](images/lists_three_line_wide_image_dark.png)
 
 - with a standard icon and a checkbox
 
-    ![Lists three-line](images/lists_three_line_light.png) ![Lists three-line dark](images/lists_three_line_dark.png)
+  ![Lists three-line](images/lists_three_line_light.png) ![Lists three-line dark](images/lists_three_line_dark.png)
 
-> **Jetpack Compose implementation**
+#### Jetpack Compose
 
 The only difference with the two-line implementation is that the `singleLineSecondaryText` property of `OdsListItem` is `false`.
 
@@ -148,11 +146,3 @@ OdsListItem(
     trailing = OdsCaptionTrailing(text = "Caption")
 )
 ```
-
-> **XML implementation**
-
-*Not available yet*
-
-## Component specific tokens
-
-_Soon available_

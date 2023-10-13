@@ -37,10 +37,10 @@ import com.orange.ods.compose.theme.OdsTheme
 /**
  * A character counter to display below the text field
  *
- * @param valueLength the text field current value length
+ * @param valueLength the text field current value length.
  * @param maxChars the maximum of characters to display in the counter. Note: the limitation behavior should be managed by yourself
  * in the `onValueChange` method of the text field.
- * @param enabled set to false to display the text with a disabled color
+ * @param enabled set to false to display the text with a disabled color.
  */
 @Composable
 @OdsComposable

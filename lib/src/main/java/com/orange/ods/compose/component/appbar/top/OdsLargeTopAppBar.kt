@@ -37,6 +37,18 @@ import com.orange.ods.compose.component.utilities.Preview
 import com.orange.ods.compose.component.utilities.UiModePreviews
 import com.orange.ods.compose.theme.OdsTheme
 
+/**
+ * <a href="https://system.design.orange.com/0c1af118d/p/23e0e6-app-bars/b/620966" class="external" target="_blank">Material ODS Top App Bar</a>.
+ *
+ * The top app bar displays information and actions relating to the current screen.
+ *
+ * @param title Title displayed in the center of the top app bar.
+ * @param modifier [Modifier] applied to the top app bar.
+ * @param navigationIcon Icon displayed at the start of the top app bar.
+ * @param actions Actions displayed at the end of the top app bar. The default layout here is a [androidx.compose.foundation.layout.Row], so icons inside will be placed horizontally.
+ * @param overflowMenuActions Actions displayed in the overflow menu.
+ * @param scrollBehavior [TopAppBarScrollBehavior] attached to the top app bar.
+ */
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 @OdsComposable

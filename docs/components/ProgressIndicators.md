@@ -4,16 +4,17 @@ title: Progress indicators
 description: Progress indicators express an unspecified wait time or display the length of a process.
 ---
 
----
-
-**Page Summary**
+<br>**On this page**
 
 * [Specifications references](#specifications-references)
 * [Accessibility](#accessibility)
 * [Variants](#variants)
     * [Progress bar](#progress-bar)
+        * [Jetpack Compose](#jetpack-compose)
+            * [OdsLinearProgressIndicator API](#odslinearprogressindicator-api)
     * [Activity indicator](#activity-indicator)
-* [Component specific tokens](#component-specific-tokens)
+        * [Jetpack Compose](#jetpack-compose-1)
+            * [OdsCircularProgressIndicator API](#odscircularprogressindicator-api)
 
 ---
 
@@ -21,20 +22,10 @@ description: Progress indicators express an unspecified wait time or display the
 
 - [Design System Manager - Progress indicators](https://system.design.orange.com/0c1af118d/p/92aec5-progress-indicators------/b/33faf7)
 - [Material Design - Progress indicators](https://material.io/components/progress-indicators/)
-- Technical documentation soon available
 
 ## Accessibility
 
 Please follow [accessibility criteria for development](https://a11y-guidelines.orange.com/en/mobile/android/development/)
-
-Progress indicators inherit accessibility support from the `LinearProgressIndicator` class in the framework.
-Please consider setting the content descriptor for use with screen readers.
-
-That can be done in XML via the `android:contentDescription` attribute or programmatically like so:
-
-```kotlin
-progressIndicator.contentDescription = contentDescription
-```
 
 ## Variants
 
@@ -55,7 +46,7 @@ Linear progress indicators support both determinate and indeterminate operations
 
   ![Progress bar dark](images/progress_linear_dark.png)
 
-> **Jetpack Compose implementation**
+#### Jetpack Compose
 
 You can use the composable `OdsLinearProgressIndicator` like this:
 
@@ -64,12 +55,12 @@ For a **determinate** linear progress indicator, provide the progress value:
 ```kotlin
 OdsLinearProgressIndicator(
     progress = 0.9f,
-    label = "Downloading ...", // Optional
+    label = "Downloading ...",
     icon = OdsLinearProgressIndicator(
         painterResource(id = R.drawable.ic_arrow_down),
         ""
-    ), // Optional
-    showCurrentValue = true // Display the value in percent below the progress bar if set to true
+    ),
+    showCurrentValue = true
 )
 ```
 
@@ -77,43 +68,24 @@ For an **indeterminate** linear progress indicator, no need to provide a progres
 
 ```kotlin
 OdsLinearProgressIndicator(
-    label = "Downloading ...", // Optional
+    label = "Downloading ...",
     icon = OdsLinearProgressIndicator(
         painterResource(id = R.drawable.ic_arrow_down),
         ""
-    ) // Optional
+    )
 )
 ```
 
-> **XML implementation**
+##### OdsLinearProgressIndicator API
 
-To create a linear progress indicator you will need to
-add `com.google.android.material.progressindicator.LinearProgressIndicator` in your layout
-
-API and source code:
-
-* `LinearProgressIndicator`: [Class description](https://developer.android.com/reference/com/google/android/material/progressindicator/LinearProgressIndicator), [Class source](https://github.com/material-components/material-components-android/tree/master/lib/java/com/google/android/material/progressindicator/LinearProgressIndicator.java)
-
-The following example shows a **determinate** linear progress indicator.
-
-In the layout:
-
-```xml
-
-<com.google.android.material.progressindicator.LinearProgressIndicator
-    android:layout_width="match_parent" android:layout_height="wrap_content" />
-```
-
-The following example shows an **indeterminate** linear progress indicator.
-
-In the layout:
-
-```xml
-
-<com.google.android.material.progressindicator.LinearProgressIndicator
-    android:layout_width="match_parent" android:layout_height="wrap_content"
-    android:indeterminate="true" />
-```
+Parameter | Default&nbsp;value | Description
+-- | -- | --
+`modifier: Modifier` | `Modifier` | `Modifier` applied to the progress indicator
+`progress: Float?` | `null` | Progress indicator value where 0.0 represents no progress and 1.0 represents full progress. Values outside of this range are coerced into the range. If set to `null`, the progress indicator is indeterminate.
+`label: String?` | `null` | Label displayed above the linear progress
+`icon: OdsLinearProgressIndicatorIcon?` | `null` | Icon displayed above the progress indicator
+`showCurrentValue: Boolean` | `false` | Controls the progress indicator current value visibility which is displayed in percent below the progress bar
+{:.table}
 
 ### Activity indicator
 
@@ -131,7 +103,7 @@ processes.
 
 ![Activity indicator light](images/progress_circular_light.png)  ![Activity indicator dark](images/progress_circular_dark.png)
 
-> **Jetpack Compose implementation**
+#### Jetpack Compose
 
 You can use the `OdsCircularProgressIndicator` composable like this:
 
@@ -140,7 +112,7 @@ You can use the `OdsCircularProgressIndicator` composable like this:
 ```kotlin
 OdsCircularProgressIndicator(
     progress = 0.9f,
-    label = "Downloading ..." // Optional
+    label = "Downloading ..."
 )
 ```
 
@@ -148,40 +120,15 @@ OdsCircularProgressIndicator(
 
 ```kotlin
 OdsCircularProgressIndicator(
-    label = "Downloading ..." // Optional
+    label = "Downloading ..."
 )
 ```
 
-> **XML implementation**
+##### OdsCircularProgressIndicator API
 
-To create a circular progress indicator you will need to
-add `com.google.android.material.progressindicator.CircularProgressIndicator` in your layout
-
-API and source code:
-
-* `CircularProgressIndicator`: [Class description](https://developer.android.com/reference/com/google/android/material/progressindicator/CircularProgressIndicator), [Class source](https://github.com/material-components/material-components-android/tree/master/lib/java/com/google/android/material/progressindicator/CircularProgressIndicator.java)
-
-The following example shows a **determinate** circular progress indicator.
-
-In the layout:
-
-```xml
-
-<com.google.android.material.progressindicator.CircularProgressIndicator
-    android:layout_width="wrap_content" android:layout_height="wrap_content" />
-```
-
-The following example shows an **indeterminate** circular progress indicator.
-
-In the layout:
-
-```xml
-
-<com.google.android.material.progressindicator.CircularProgressIndicator
-    android:layout_width="wrap_content" android:layout_height="wrap_content"
-    android:indeterminate="true" />
-```
-
-## Component specific tokens
-
-_Soon available_
+Parameter | Default&nbsp;value | Description
+-- | -- | --
+`modifier: Modifier` | `Modifier` | `Modifier` applied to the progress indicator
+`progress: Float?` | `null` | Progress indicator value where 0.0 represents no progress and 1.0 represents full progress. Values outside of this range are coerced into the range. If set to `null`, the progress indicator is indeterminate.
+`label: String?` | `null` | Label displayed below the circular progress
+{:.table}

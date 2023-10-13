@@ -39,10 +39,10 @@ import com.orange.ods.compose.theme.OdsTheme
  *
  * Note that [OdsChoiceChip] are displayed outlined or filled according to your [OdsTheme] component configuration, outlined by default.
  *
- * @param value The initial value of this OdsChoiceChipsFlowRow.
- * @param onValueChange The callback that is triggered when the value change.
- * @param modifier Modifier to be applied to the flow row.
- * @param chips The list of [OdsChoiceChip]s displayed inside this OdsChoiceChipsFlowRow.
+ * @param value The initial value of the choice chips flow row.
+ * @param onValueChange Callback invoked when the value changes. The new value is provided as parameter.
+ * @param modifier [Modifier] applied to the chips flow row.
+ * @param chips The list of [OdsChoiceChip] displayed into the chips flow row.
  */
 @OptIn(ExperimentalLayoutApi::class)
 @Composable
@@ -76,10 +76,10 @@ fun <T> OdsChoiceChipsFlowRow(
 /**
  * OdsChoiceChip used in a [OdsChoiceChipsFlowRow]
  *
- * @param text Text displayed in the chip
- * @param value The chip value
+ * @param text Text displayed in the chip.
+ * @param value The chip value.
  * @param enabled If set to false, the chip is no more clickable and appears as disabled. True by default.
- * @param semantics The semantics applied on this choice chip
+ * @param semantics The semantics applied on this choice chip.
  */
 class OdsChoiceChip<T>(
     val text: String,
