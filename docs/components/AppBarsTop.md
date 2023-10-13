@@ -154,7 +154,7 @@ Parameter | Default&nbsp;value | Description
 `navigationIcon: OdsTopAppBarNavigationIcon?` | `null` | Icon displayed at the start of the top app bar
 `actions: List<OdsTopAppBarActionButton>` | `emptyList()` | Actions displayed at the end of the top app bar. The default layout here is a `Row`, so icons inside will be placed horizontally.
 `overflowMenuActions: List<OdsTopAppBarOverflowMenuActionItem>` | `emptyList()` | Actions displayed in the overflow menu
-`scrollBehavior: TopAppBarScrollBehavior` | `null` | `TopAppBarScrollBehavior` attached to the top app bar
+`scrollBehavior: TopAppBarScrollBehavior?` | `null` | `TopAppBarScrollBehavior` attached to the top app bar
 {:.table}
 
 ## Component specific tokens
