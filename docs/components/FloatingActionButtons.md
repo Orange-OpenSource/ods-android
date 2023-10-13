@@ -13,7 +13,7 @@ description: A floating action button (FAB) represents the primary action of a s
         * [Jetpack Compose](#jetpack-compose)
             * [OdsFloatingActionButton API](#odsfloatingactionbutton-api)
     * [Mini FAB](#mini-fab)
-        * [Jetpack Compose](#jetpack-compose-1) (use [OdsFloatingActionButton API](#odsfloatingactionbutton-api))
+        * [Jetpack Compose](#jetpack-compose-1)
     * [Extended FAB](#extended-fab)
         * [Jetpack Compose](#jetpack-compose-2)
             * [OdsExtendedFloatingActionButton API](#odsextendedfloatingactionbutton-api)

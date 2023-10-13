@@ -16,9 +16,9 @@ description: Sliders allow users to make selections from a range of values.
         * [Jetpack Compose](#jetpack-compose-1)
             * [OdsSliderLockups API](#odssliderlockups-api)
     * [Discrete slider](#discrete-slider)
-        * [Jetpack Compose](#jetpack-compose-2) (use [OdsSlider API](#odsslider-api))
+        * [Jetpack Compose](#jetpack-compose-2)
     * [Discrete lockups slider](#discrete-lockups-slider)
-        * [Jetpack Compose](#jetpack-compose-3) (use [OdsSliderLockups API](#odssliderlockups-api))
+        * [Jetpack Compose](#jetpack-compose-3)
 
 ---
 
