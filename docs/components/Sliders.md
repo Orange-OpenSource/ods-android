@@ -46,7 +46,7 @@ In your composable screen you can use:
 ```kotlin
 OdsSlider(
     value = 20f,
-    valueRange = 0f..100f,
+    steps = 9,
     onValueChange = { doSomething() }
 )
 ```
@@ -56,12 +56,16 @@ You can add icons to the continuous slider like this:
 ```kotlin
 OdsSlider(
     value = 20f,
-    valueRange = 0f..100f,
+    steps = 9,
     onValueChange = { doSomething() },
-    leftIcon = painterResource(id = R.drawable.ic_volume_status_1),
-    leftIconContentDescription = stringResource(id = R.string.component_slider_low_volume),
-    rightIcon = painterResource(id = R.drawable.ic_volume_status_4),
-    rightIconContentDescription = stringResource(id = R.string.component_slider_high_volume)
+    leftIcon = OdsSliderIcon(
+        painterResource(id = R.drawable.ic_volume_status_1),
+        stringResource(id = R.string.component_slider_low_volume)
+    ),
+    rightIcon = OdsSliderIcon(
+        painterResource(id = R.drawable.ic_volume_status_4),
+        stringResource(id = R.string.component_slider_high_volume)
+    )
 )
 ```
 
@@ -107,10 +111,14 @@ OdsSliderLockups(
     value = 20f,
     valueRange = 0f..100f,
     onValueChange = { doSomething() },
-    leftIcon = painterResource(id = R.drawable.ic_volume_status_1),
-    leftIconContentDescription = stringResource(id = R.string.component_slider_low_volume),
-    rightIcon = painterResource(id = R.drawable.ic_volume_status_4),
-    rightIconContentDescription = stringResource(id = R.string.component_slider_high_volume)
+    leftIcon = OdsSliderIcon(
+        painterResource(id = R.drawable.ic_volume_status_1),
+        stringResource(id = R.string.component_slider_low_volume)
+    ),
+    rightIcon = OdsSliderIcon(
+        painterResource(id = R.drawable.ic_volume_status_4),
+        stringResource(id = R.string.component_slider_high_volume)
+    )
 )
 ```
 
@@ -159,10 +167,14 @@ OdsSlider(
     valueRange = 0f..100f,
     steps = 10,
     onValueChange = { doSomething() },
-    leftIcon = painterResource(id = R.drawable.ic_volume_status_1),
-    leftIconContentDescription = stringResource(id = R.string.component_slider_low_volume),
-    rightIcon = painterResource(id = R.drawable.ic_volume_status_4),
-    rightIconContentDescription = stringResource(id = R.string.component_slider_high_volume)
+    leftIcon = OdsSliderIcon(
+        painterResource(id = R.drawable.ic_volume_status_1),
+        stringResource(id = R.string.component_slider_low_volume)
+    ),
+    rightIcon = OdsSliderIcon(
+        painterResource(id = R.drawable.ic_volume_status_4),
+        stringResource(id = R.string.component_slider_high_volume)
+    )
 )
 ```
 
@@ -197,10 +209,14 @@ OdsSliderLockups(
     valueRange = 0f..100f,
     steps = 10,
     onValueChange = { doSomething() },
-    leftIcon = painterResource(id = R.drawable.ic_volume_status_1),
-    leftIconContentDescription = stringResource(id = R.string.component_slider_low_volume),
-    rightIcon = painterResource(id = R.drawable.ic_volume_status_4),
-    rightIconContentDescription = stringResource(id = R.string.component_slider_high_volume)
+    leftIcon = OdsSliderIcon(
+        painterResource(id = R.drawable.ic_volume_status_1),
+        stringResource(id = R.string.component_slider_low_volume)
+    ),
+    rightIcon = OdsSliderIcon(
+        painterResource(id = R.drawable.ic_volume_status_4),
+        stringResource(id = R.string.component_slider_high_volume)
+    )
 )
 ```
 
