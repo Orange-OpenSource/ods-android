@@ -64,7 +64,6 @@ OdsTopAppBar(
 ```
 
 Note: By default, the `OdsTopAppBar` is elevated but you can set `elevated` parameter to `false` if you don't want any shadow below it (for example if you want to display tabs below).
-{:.bd-callout .bd-callout-info}
 
 ##### OdsTopAppBar API
 
