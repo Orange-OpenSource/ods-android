@@ -10,8 +10,7 @@ Use checkboxes to:
 * Present a list containing sub-selections
 * Turn an item on or off in a desktop environment
 
-<br>
-**On this page**
+<br>**On this page**
 
 * [Specifications references](#specifications-references)
 * [Accessibility](#accessibility)

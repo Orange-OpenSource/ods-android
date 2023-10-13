@@ -4,8 +4,7 @@ title: "App bars: top"
 description: Top app bars display information and actions relating to the current screen.
 ---
 
-<br>
-**On this page**
+<br>**On this page**
 
 * [Specifications references](#specifications-references)
 * [Accessibility](#accessibility)

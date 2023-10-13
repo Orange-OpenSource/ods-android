@@ -9,8 +9,7 @@ Use Sheets bottom to:
 * Display content that complements the screen’s primary content
 * Expose all complements options
 
-<br>
-**On this page**
+<br>**On this page**
 
 * [Specifications references](#specifications-references)
 * [Accessibility](#accessibility)

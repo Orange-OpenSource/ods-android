@@ -4,8 +4,7 @@ title: "Navigation: bottom"
 description: Bottom navigation bars allow movement between primary destinations in an app.
 ---
 
-<br>
-**On this page**
+<br>**On this page**
 
 * [Specifications references](#specifications-references)
 * [Accessibility](#accessibility)

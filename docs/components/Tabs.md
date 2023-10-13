@@ -4,14 +4,13 @@ title: Tabs
 description: Tabs organize content across different screens, data sets, and other interactions.
 ---
 
-<br>
-**On this page**
+<br>**On this page**
 
 * [Specifications references](#specifications-references)
 * [Accessibility](#accessibility)
 * [Variants](#variants)
-    * [Fixed tabs](#fixed-tabs)
-    * [Scrollable tabs](#scrollable-tabs)
+  * [Fixed tabs](#fixed-tabs)
+  * [Scrollable tabs](#scrollable-tabs)
 * [Component specific tokens](#component-specific-tokens)
 
 ---
@@ -56,26 +55,26 @@ This composable allows to display:
 
 ```kotlin
 OdsTabRow(selectedTabIndex = pagerState.currentPage) {
-    OdsTab(
-        icon = painterResource(id = R.drawable.ic_alert), // if set to `null`, no icon will be displayed
-        text = "Alerts", // if set to `null`, no text will be displayed
-        selected = pagerState.currentPage == index,
-        onClick = {
-            scope.launch {
-                pagerState.animateScrollToPage(index)
-            }
-        }
-    )
-    OdsTab(
-        icon = painterResource(id = R.drawable.ic_calendar), // if set to `null`, no icon will be displayed
-        text = "Calendar", // if set to `null`, no text will be displayed
-        selected = pagerState.currentPage == index,
-        onClick = {
-            scope.launch {
-                pagerState.animateScrollToPage(index)
-            }
-        }
-    )
+  OdsTab(
+    icon = painterResource(id = R.drawable.ic_alert), // if set to `null`, no icon will be displayed
+    text = "Alerts", // if set to `null`, no text will be displayed
+    selected = pagerState.currentPage == index,
+    onClick = {
+      scope.launch {
+        pagerState.animateScrollToPage(index)
+      }
+    }
+  )
+  OdsTab(
+    icon = painterResource(id = R.drawable.ic_calendar), // if set to `null`, no icon will be displayed
+    text = "Calendar", // if set to `null`, no text will be displayed
+    selected = pagerState.currentPage == index,
+    onClick = {
+      scope.launch {
+        pagerState.animateScrollToPage(index)
+      }
+    }
+  )
 }
 ```
 
@@ -85,26 +84,26 @@ This composable allows to display a tab with a text label and an icon in front o
 
 ```kotlin
 OdsTabRow(selectedTabIndex = pagerState.currentPage) {
-    OdsLeadingIconTab(
-        icon = painterResource(id = R.drawable.ic_alert), // icon is mandatory in an `OdsLeadingIconTab`
-        text = "Alerts", // text is mandatory in an `OdsLeadingIconTab`
-        selected = pagerState.currentPage == index,
-        onClick = {
-            scope.launch {
-                pagerState.animateScrollToPage(index)
-            }
-        }
-    )
-    OdsLeadingIconTab(
-        icon = painterResource(id = R.drawable.ic_calendar),
-        text = "Calendar",
-        selected = pagerState.currentPage == index,
-        onClick = {
-            scope.launch {
-                pagerState.animateScrollToPage(index)
-            }
-        }
-    )
+  OdsLeadingIconTab(
+    icon = painterResource(id = R.drawable.ic_alert), // icon is mandatory in an `OdsLeadingIconTab`
+    text = "Alerts", // text is mandatory in an `OdsLeadingIconTab`
+    selected = pagerState.currentPage == index,
+    onClick = {
+      scope.launch {
+        pagerState.animateScrollToPage(index)
+      }
+    }
+  )
+  OdsLeadingIconTab(
+    icon = painterResource(id = R.drawable.ic_calendar),
+    text = "Calendar",
+    selected = pagerState.currentPage == index,
+    onClick = {
+      scope.launch {
+        pagerState.animateScrollToPage(index)
+      }
+    }
+  )
 }
 ```
 
@@ -124,26 +123,26 @@ As for fixed tabs, you can use an `OdsTab` composable or an `OdsLeadingIconTab` 
 
 ```kotlin
 OdsScrollableTabRow(selectedTabIndex = pagerState.currentPage) {
-    OdsTab(
-        icon = painterResource(id = R.drawable.ic_alert), // if set to `null`, no icon will be displayed
-        text = "Alerts", // if set to `null`, no text will be displayed
-        selected = pagerState.currentPage == index,
-        onClick = {
-            scope.launch {
-                pagerState.animateScrollToPage(index)
-            }
-        }
-    )
-    OdsTab(
-        icon = painterResource(id = R.drawable.ic_calendar), // if set to `null`, no icon will be displayed
-        text = "Calendar", // if set to `null`, no text will be displayed
-        selected = pagerState.currentPage == index,
-        onClick = {
-            scope.launch {
-                pagerState.animateScrollToPage(index)
-            }
-        }
-    )
+  OdsTab(
+    icon = painterResource(id = R.drawable.ic_alert), // if set to `null`, no icon will be displayed
+    text = "Alerts", // if set to `null`, no text will be displayed
+    selected = pagerState.currentPage == index,
+    onClick = {
+      scope.launch {
+        pagerState.animateScrollToPage(index)
+      }
+    }
+  )
+  OdsTab(
+    icon = painterResource(id = R.drawable.ic_calendar), // if set to `null`, no icon will be displayed
+    text = "Calendar", // if set to `null`, no text will be displayed
+    selected = pagerState.currentPage == index,
+    onClick = {
+      scope.launch {
+        pagerState.animateScrollToPage(index)
+      }
+    }
+  )
 }
 ```
 

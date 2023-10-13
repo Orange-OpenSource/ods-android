@@ -4,8 +4,7 @@ title: Image Tile
 description:
 ---
 
-<br>
-**On this page**
+<br>**On this page**
 
 * [Specifications references](#specifications-references)
 * [Accessibility](#accessibility)

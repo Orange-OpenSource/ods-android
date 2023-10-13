@@ -4,8 +4,7 @@ title: Sliders
 description: Sliders allow users to make selections from a range of values.
 ---
 
-<br>
-**On this page**
+<br>**On this page**
 
 * [Specifications references](#specifications-references)
 * [Accessibility](#accessibility)

@@ -11,8 +11,7 @@ or a required action has been taken.
 
 Dialogs are purposefully interruptive, so they should be used sparingly.
 
-<br>
-**On this page**
+<br>**On this page**
 
 * [Specifications references](#specifications-references)
 * [Accessibility](#accessibility)

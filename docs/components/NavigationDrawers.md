@@ -4,8 +4,7 @@ title: Navigation drawers
 description: The navigation drawer slides in from the left when the nav icon is tapped. The content should be concerned with identity and/or navigation..
 ---
 
-<br>
-**On this page**
+<br>**On this page**
 
 * [Specifications references](#specifications-references)
 * [Accessibility](#accessibility)

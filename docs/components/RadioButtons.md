@@ -11,8 +11,7 @@ Use radio buttons to:
 * If available options can be collapsed, consider using a dropdown menu
   instead, as it uses less space.
 
-<br>
-**On this page**
+<br>**On this page**
 
 * [Specifications references](#specifications-references)
 * [Accessibility](#accessibility)

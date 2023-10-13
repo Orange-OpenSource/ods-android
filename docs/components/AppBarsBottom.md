@@ -4,8 +4,7 @@ title: "App bars: bottom"
 description: A bottom app bar displays navigation and key actions at the bottom of mobile screens.
 ---
 
-<br>
-**On this page**
+<br>**On this page**
 
 * [Specifications references](#specifications-references)
 * [Accessibility](#accessibility)

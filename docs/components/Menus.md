@@ -4,8 +4,7 @@ title: Menus
 description: Menus appear from a button, action, or other control. It contains at least 2 items that can affect the app, the view or elements within the view.
 ---
 
-<br>
-**On this page**
+<br>**On this page**
 
 * [Specifications references](#specifications-references)
 * [Accessibility](#accessibility)

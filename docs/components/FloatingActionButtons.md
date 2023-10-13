@@ -4,8 +4,7 @@ title: Floating action buttons
 description: A floating action button (FAB) represents the primary action of a screen.
 ---
 
-<br>
-**On this page**
+<br>**On this page**
 
 * [Specifications references](#specifications-references)
 * [Accessibility](#accessibility)

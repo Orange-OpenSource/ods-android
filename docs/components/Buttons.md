@@ -4,8 +4,7 @@ title: Buttons
 description: Buttons allow users to take actions, and make choices, with a single tap.
 ---
 
-<br>
-**On this page**
+<br>**On this page**
 
 * [Specifications references](#specifications-references)
 * [Accessibility](#accessibility)

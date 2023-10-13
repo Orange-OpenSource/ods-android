@@ -4,16 +4,15 @@ title: Text fields
 description: Text fields let users enter and edit text.
 ---
 
-<br>
-**On this page**
+<br>**On this page**
 
 * [Specifications references](#specifications-references)
 * [Accessibility](#accessibility)
 * [Variants](#variants)
-    * [Text field](#text-field)
-    * [Password text field](#password-text-field)
+  * [Text field](#text-field)
+  * [Password text field](#password-text-field)
 * [Extras](#extras)
-    * [Character counter](#character-counter)
+  * [Character counter](#character-counter)
 * [Component specific tokens](#component-specific-tokens)
 
 ---
@@ -50,30 +49,30 @@ To add a text field in your composable screen you can use the `OdsTextField` com
 ```kotlin
 var text by rememberSaveable { mutableStateOf("") }
 OdsTextField(
-    leadingIcon = painterResource(id = R.drawable.ic_heart),
-    leadingIconContentDescription = "Like",
-    onLeadingIconClick = { doSomething() },
-    trailing = OdsTextTrailing(text = "units"), // It can be one of the provided `OdsTextFieldTrailing`. See more information below.
-    enabled = true,
-    readOnly = false,
-    isError = false,
-    errorMessage = "Error message",
-    value = text,
-    onValueChange = { text = it },
-    label = "Label",
-    placeholder = "Placeholder",
-    visualTransformation = VisualTransformation.None,
-    keyboardOptions = KeyboardOptions.Default,
-    keyboardActions = KeyboardActions(),
-    singleLine = false,
-    maxLines = Int.MAX_VALUE,
-    characterCounter = {
-        OdsTextFieldCharacterCounter(
-            valueLength = valueLength,
-            maxChars = TextFieldMaxChars,
-            enabled = enabled
-        )
-    }
+  leadingIcon = painterResource(id = R.drawable.ic_heart),
+  leadingIconContentDescription = "Like",
+  onLeadingIconClick = { doSomething() },
+  trailing = OdsTextTrailing(text = "units"), // It can be one of the provided `OdsTextFieldTrailing`. See more information below.
+  enabled = true,
+  readOnly = false,
+  isError = false,
+  errorMessage = "Error message",
+  value = text,
+  onValueChange = { text = it },
+  label = "Label",
+  placeholder = "Placeholder",
+  visualTransformation = VisualTransformation.None,
+  keyboardOptions = KeyboardOptions.Default,
+  keyboardActions = KeyboardActions(),
+  singleLine = false,
+  maxLines = Int.MAX_VALUE,
+  characterCounter = {
+    OdsTextFieldCharacterCounter(
+      valueLength = valueLength,
+      maxChars = TextFieldMaxChars,
+      enabled = enabled
+    )
+  }
 )
 ```
 
@@ -91,10 +90,10 @@ If you want a more complex trailing element, you can use the other `OdsTextField
 
 ```kotlin
 override val components: OdsComponentsConfiguration
-    get() = object : OdsComponentsConfiguration() {
-        override val textFieldStyle: ComponentStyle
-            get() = ComponentStyle.Filled
-    }
+  get() = object : OdsComponentsConfiguration() {
+    override val textFieldStyle: ComponentStyle
+      get() = ComponentStyle.Filled
+  }
 ```
 
 ### Password text field
@@ -114,24 +113,24 @@ To add a password text field in your composable screen you can use the `OdsPassw
 ```kotlin
 var text by rememberSaveable { mutableStateOf("") }
 OdsPasswordTextField(
-    enabled = true,
-    readOnly = false,
-    isError = false,
-    errorMessage = "Error message",
-    value = text,
-    onValueChange = { text = it },
-    label = "Label",
-    placeholder = "Placeholder",
-    visualisationIcon = true,
-    keyboardOptions = KeyboardOptions.Default,
-    keyboardActions = KeyboardActions(),
-    characterCounter = {
-        OdsTextFieldCharacterCounter(
-            valueLength = valueLength,
-            maxChars = TextFieldMaxChars,
-            enabled = enabled
-        )
-    }
+  enabled = true,
+  readOnly = false,
+  isError = false,
+  errorMessage = "Error message",
+  value = text,
+  onValueChange = { text = it },
+  label = "Label",
+  placeholder = "Placeholder",
+  visualisationIcon = true,
+  keyboardOptions = KeyboardOptions.Default,
+  keyboardActions = KeyboardActions(),
+  characterCounter = {
+    OdsTextFieldCharacterCounter(
+      valueLength = valueLength,
+      maxChars = TextFieldMaxChars,
+      enabled = enabled
+    )
+  }
 )
 ```
 
@@ -155,10 +154,10 @@ Please use the provided `OdsTextFieldCharacterCounter` composable for this behav
 
 ```kotlin
 OdsTextFieldCharacterCounter(
-    modifier = Modifier.align(Alignment.End),
-    valueLength = valueLength,
-    maxChars = 20,
-    enabled = true // If `false` the counter is displayed with a disabled color
+  modifier = Modifier.align(Alignment.End),
+  valueLength = valueLength,
+  maxChars = 20,
+  enabled = true // If `false` the counter is displayed with a disabled color
 )
 ```
 
@@ -166,7 +165,7 @@ Be careful, the limitation behavior should be managed by yourself in the `onValu
 
 ```kotlin
 if (text.length <= TextFieldMaxChars) {
-    value = text
+  value = text
 }
 ```
 
