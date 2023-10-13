@@ -48,7 +48,7 @@ import com.orange.ods.compose.theme.OdsTheme
  * @param text Text displayed into the card.
  * @param firstButton First [OdsCardButton] displayed into the card.
  * @param secondButton Second [OdsCardButton] displayed into the card.
- * @param imagePosition Position of the image within the card, it can be set to `OdsHorizontalCardImagePosition.Start` or `OdsHorizontalCardImagePosition.End`. [OdsHorizontalCardImagePosition.Start] by default.
+ * @param imagePosition Position of the image within the card, it can be set to [OdsHorizontalCardImagePosition.Start] or [OdsHorizontalCardImagePosition.End]. [OdsHorizontalCardImagePosition.Start] by default.
  * @param divider Controls the divider display. If `true`, it will be displayed between the card content and the action buttons.
  * @param onClick Callback invoked on card click.
  */
