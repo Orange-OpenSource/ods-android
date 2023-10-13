@@ -36,8 +36,7 @@ OdsModalDrawer(
         imageDisplayType =
             OdsModalDrawerHeaderImageDisplayType.None // or OdsModalDrawerHeaderImageDisplayType.Avatar or OdsModalDrawerHeaderImageDisplayType.Background
         subtitle = "Example"
-        image =
-            painterResource(id = R.drawable.placeholder)
+        image = painterResource(id = R.drawable.placeholder)
     },
     drawerContentList = listOf<OdsModalDrawerItem>(
         OdsModalDrawerListItem( // `OdsModalDrawerListItem` is used to specified an item of the list
