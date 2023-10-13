@@ -134,13 +134,8 @@ fun OdsSlider(
  * behave as a continuous slider and allow to choose any value from the range specified. Must not be negative.
  * @param onValueChangeFinished Callback invoked when value change has ended. This callback shouldn't be used to update
  * the slider value (use [onValueChange] for that), but rather to know when the user has completed selecting a new value by ending a drag or a click.
-<<<<<<< HEAD
- * @param leftIcon [OdsSliderIcon] displayed on the left of the slider.
- * @param rightIcon [OdsSliderIcon] displayed on the right of the slider.
-=======
- * @param startIcon [OdsSliderIcon] displayed at the start of the slider
- * @param endIcon [OdsSliderIcon] displayed at the end of the slider
->>>>>>> cddd9e50 ([#661] Rename OdsSlider and OdsSliderLockups parameters to replace `left` by `start` and `right` by `end)
+ * @param startIcon [OdsSliderIcon] displayed at the start of the slider.
+ * @param endIcon [OdsSliderIcon] displayed at the end of the slider.
  */
 @Composable
 @OdsComposable
