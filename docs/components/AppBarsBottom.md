@@ -34,7 +34,7 @@ like TalkBack are able to announce their purpose or action, if any.
 
 ## Implementation
 
-_Not available yet in ODS library_
+_Soon available_
 
 ## Component specific tokens
 
