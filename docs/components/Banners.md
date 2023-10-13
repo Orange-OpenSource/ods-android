@@ -54,10 +54,10 @@ OdsBanner(
 Parameter | Default&nbsp;value | Description
 -- | -- | --
 `message: String` | | Text displayed into the banner
-`firstButton: OdsBannerButton` | | Principal button displayed in the banner
+`firstButton: OdsBannerButton` | | Primary button displayed in the banner
 `modifier: Modifier` | `Modifier` | `Modifier` applied to the banner
 `image: OdsBannerImage?` | `null` | Image displayed in the banner in a circle shape
-`secondButton: OdsBannerButton?` | `null` | Secondary button displayed into the banner next to the principal one
+`secondButton: OdsBannerButton?` | `null` | Secondary button displayed into the banner next to the primary one
 {:.table}
 
 ### XML
