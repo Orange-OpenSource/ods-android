@@ -12,7 +12,8 @@ way to adjust settings on mobile.
 * [Specifications references](#specifications-references)
 * [Accessibility](#accessibility)
 * [Implementation](#implementation)
-* [Component specific tokens](#component-specific-tokens)
+    * [Jetpack Compose](#jetpack-compose)
+        * [OdsSwitch API](#odsswitch-api)
 
 ---
 
@@ -56,6 +57,3 @@ Parameter | Default&nbsp;value | Description
 `enabled: Boolean` | `true` | Controls the enabled state of the switch. When `false`, the switch will not be checkable and appears disabled.
 {:.table}
 
-## Component specific tokens
-
-_Soon available_

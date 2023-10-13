@@ -10,8 +10,11 @@ description: Menus appear from a button, action, or other control. It contains a
 * [Accessibility](#accessibility)
 * [Variants](#variants)
     * [Dropdown menu](#dropdown-menu)
+        * [Jetpack Compose](#jetpack-compose)
+            * [OdsDropdownMenu API](#odsdropdownmenu-api)
     * [Exposed dropdown menu](#exposed-dropdown-menu)
-* [Component specific tokens](#component-specific-tokens)
+        * [Jetpack Compose](#jetpack-compose-1)
+            * [OdsExposedDropdownMenu API](#odsexposeddropdownmenu-api)
 
 ---
 
@@ -34,7 +37,7 @@ A dropdown menu is a compact way of displaying multiple choices. It appears upon
 
 ![Dropdown menu light](images/menu_dropdown_light.png) ![Dropdown menu dark](images/menu_dropdown_dark.png)
 
-#### Jetpack Compose implementation
+#### Jetpack Compose
 
 The library offers an `OdsDropdownMenu` container composable in which you can add `OdsDropdownMenuItem` or `OdsDivider` as shown in the following example:
 
@@ -79,7 +82,7 @@ Exposed dropdown menus display the currently selected menu item above the menu. 
 
 ![Exposed dropdown menu light](images/menu_exposed_dropdown_light.png)  ![Exposed dropdown menu dark](images/menu_exposed_dropdown_dark.png)
 
-#### Jetpack Compose implementation
+#### Jetpack Compose
 
 To display an exposed dropdown menu, you can use the `OdsExposedDropdownMenu` composable. As shown below, you should provide a list of `OdsExposedDropdownMenuItem` corresponding to the items displayed in the menu (with or without icons).
 
@@ -113,7 +116,3 @@ Parameter | Default&nbsp;value | Description
 `modifier: Modifier` | `Modifier` | `Modifier` applied to the dropdown menu
 `enabled: Boolean` | `true` | Controls the enabled state of the dropdown menu. When `false`, the dropdown menu text field will be neither clickable nor focusable, visually it will appear in the disabled state.
 {:.table}
-
-## Component specific tokens
-
-_Soon available_

@@ -17,7 +17,8 @@ Dialogs are purposefully interruptive, so they should be used sparingly.
 * [Accessibility](#accessibility)
 * [Variants](#variants)
     * [Alert dialog](#alert-dialog)
-* [Component specific tokens](#component-specific-tokens)
+        * [Jetpack Compose](#jetpack-compose)
+            * [OdsAlertDialog API](#odsalertdialog-api)
 
 ---
 
@@ -38,7 +39,7 @@ Alert dialogs interrupt users with urgent information, details, or actions.
 
 ![Alert dialog light](images/dialog_alert_light.png)  ![Alert dialog dark](images/dialog_alert_dark.png)
 
-#### Jetpack Compose implementation
+#### Jetpack Compose
 
 To display an alert dialog in your composable screen, you can use:
 
@@ -65,7 +66,3 @@ Parameter | Default&nbsp;value | Description
 `title: String?` | `null` | Title displayed into the dialog which should specify the purpose of the dialog. The title is not mandatory, because there may be sufficient information inside the `text`.
 `properties: DialogProperties` | `DialogProperties()` | Typically platform specific properties to further configure the dialog
 {:.table}
-
-## Component specific tokens
-
-_Soon available_

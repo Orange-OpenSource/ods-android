@@ -10,13 +10,18 @@ description: Chips are compact elements that represent an input, attribute, or a
 * [Accessibility](#accessibility)
 * [Variants](#variants)
     * [Input chip](#input-chip)
+        * [Jetpack Compose](#jetpack-compose)
+            * [OdsChip API](#odschip-api)
     * [Choice chip](#choice-chip)
+        * [Jetpack Compose](#jetpack-compose-1) (use [OdsChip API](#odschip-api))
     * [Filter chip](#filter-chip)
+        * [Jetpack Compose](#jetpack-compose-2)
+            * [OdsFilterChip API](#odsfilterchip-api)
     * [Action chip](#action-chip)
-* [OdsChip API](#odschip-api)
-* [Related components](#related-components)
+        * [Jetpack Compose](#jetpack-compose-3) (use [OdsChip API](#odschip-api))
+* [Extras](#extras)
     * [Choice chips flow row](#choice-chips-flow-row)
-* [Component specific tokens](#component-specific-tokens)
+        * [OdsChoiceChipsFlowRow API](#odschoicechipsflowrow-api)
 
 ---
 
@@ -45,7 +50,7 @@ that input by converting text into chips.
 
 ![Light outlined input chip](images/chips_input_outlined_light.png) ![Dark outlined input chip](images/chips_input_outlined_dark.png)
 
-#### Jetpack Compose implementation
+#### Jetpack Compose
 
 Use the `OdsChip` composable.
 Note that the chip style is outlined or filled according to your OdsTheme component configuration,
@@ -97,7 +102,7 @@ toggle buttons, radio buttons, and single select menus.
 
 ![Light outlined choice chips](images/chips_choice_outlined_light.png) ![Dark outlined choice chips](images/chips_choice_outlined_dark.png)
 
-#### Jetpack Compose implementation
+#### Jetpack Compose
 
 Use the `OdsChip` composable.
 Note that the chip style is outlined or filled according to your OdsTheme component configuration,
@@ -126,7 +131,7 @@ toggle buttons or checkboxes.
 
 ![Light filter chips with avatar](images/chips_filter_avatar_light.png) ![Dark filter chips with avatar](images/chips_filter_avatar_dark.png)
 
-#### Jetpack Compose implementation
+#### Jetpack Compose
 
 Use the `OdsFilterChip` composable.
 Note that the chip style is outlined or filled according to your OdsTheme component configuration,
@@ -170,7 +175,7 @@ An alternative to action chips are buttons, which should appear persistently and
 
 ![Light outlined action chip](images/chips_action_outlined_light.png) ![Dark outlined action chip](images/chips_action_outlined_dark.png)
 
-#### Jetpack Compose implementation
+#### Jetpack Compose
 
 Use the `OdsChip` composable.
 Note that the chip style is outlined or filled according to your OdsTheme component configuration,
@@ -192,7 +197,7 @@ OdsChip(
 
 Use the [OdsChip API](#odschip-api).
 
-## Related components
+## Extras
 
 The ODS library provides some chips related components to facilitate the implementation of chips groups.
 
@@ -229,7 +234,3 @@ Parameter | Default&nbsp;value | Description
 `modifier: Modifier` | `Modifier` | `Modifier` applied to the chips flow row
 `chips: List<OdsChoiceChip<T>>` | | Chips displayed into the flow row
 {:.table}
-
-## Component specific tokens
-
-_Soon available_

@@ -9,9 +9,10 @@ description: Tabs organize content across different screens, data sets, and othe
 * [Specifications references](#specifications-references)
 * [Accessibility](#accessibility)
 * [Variants](#variants)
-  * [Fixed tabs](#fixed-tabs)
-  * [Scrollable tabs](#scrollable-tabs)
-* [Component specific tokens](#component-specific-tokens)
+    * [Fixed tabs](#fixed-tabs)
+        * [Jetpack Compose](#jetpack-compose)
+    * [Scrollable tabs](#scrollable-tabs)
+        * [Jetpack Compose](#jetpack-compose-1)
 
 ---
 
@@ -36,7 +37,7 @@ width of each tab is determined by dividing the number of tabs by the screen
 width. They don’t scroll to reveal more tabs; the visible tab set represents the
 only tabs available.
 
-#### Jetpack Compose implementation
+#### Jetpack Compose
 
 In Compose, the fixed tabs should be added inside of an `OdsTabRow`.
 The used composable for tab depends on the type of tabs to display: classic `OdsTab` or `OdsLeadingIconTab`.
@@ -55,26 +56,26 @@ This composable allows to display:
 
 ```kotlin
 OdsTabRow(selectedTabIndex = pagerState.currentPage) {
-  OdsTab(
-    icon = painterResource(id = R.drawable.ic_alert), // if set to `null`, no icon will be displayed
-    text = "Alerts", // if set to `null`, no text will be displayed
-    selected = pagerState.currentPage == index,
-    onClick = {
-      scope.launch {
-        pagerState.animateScrollToPage(index)
-      }
-    }
-  )
-  OdsTab(
-    icon = painterResource(id = R.drawable.ic_calendar), // if set to `null`, no icon will be displayed
-    text = "Calendar", // if set to `null`, no text will be displayed
-    selected = pagerState.currentPage == index,
-    onClick = {
-      scope.launch {
-        pagerState.animateScrollToPage(index)
-      }
-    }
-  )
+    OdsTab(
+        icon = painterResource(id = R.drawable.ic_alert), // if set to `null`, no icon will be displayed
+        text = "Alerts", // if set to `null`, no text will be displayed
+        selected = pagerState.currentPage == index,
+        onClick = {
+            scope.launch {
+                pagerState.animateScrollToPage(index)
+            }
+        }
+    )
+    OdsTab(
+        icon = painterResource(id = R.drawable.ic_calendar), // if set to `null`, no icon will be displayed
+        text = "Calendar", // if set to `null`, no text will be displayed
+        selected = pagerState.currentPage == index,
+        onClick = {
+            scope.launch {
+                pagerState.animateScrollToPage(index)
+            }
+        }
+    )
 }
 ```
 
@@ -84,26 +85,26 @@ This composable allows to display a tab with a text label and an icon in front o
 
 ```kotlin
 OdsTabRow(selectedTabIndex = pagerState.currentPage) {
-  OdsLeadingIconTab(
-    icon = painterResource(id = R.drawable.ic_alert), // icon is mandatory in an `OdsLeadingIconTab`
-    text = "Alerts", // text is mandatory in an `OdsLeadingIconTab`
-    selected = pagerState.currentPage == index,
-    onClick = {
-      scope.launch {
-        pagerState.animateScrollToPage(index)
-      }
-    }
-  )
-  OdsLeadingIconTab(
-    icon = painterResource(id = R.drawable.ic_calendar),
-    text = "Calendar",
-    selected = pagerState.currentPage == index,
-    onClick = {
-      scope.launch {
-        pagerState.animateScrollToPage(index)
-      }
-    }
-  )
+    OdsLeadingIconTab(
+        icon = painterResource(id = R.drawable.ic_alert), // icon is mandatory in an `OdsLeadingIconTab`
+        text = "Alerts", // text is mandatory in an `OdsLeadingIconTab`
+        selected = pagerState.currentPage == index,
+        onClick = {
+            scope.launch {
+                pagerState.animateScrollToPage(index)
+            }
+        }
+    )
+    OdsLeadingIconTab(
+        icon = painterResource(id = R.drawable.ic_calendar),
+        text = "Calendar",
+        selected = pagerState.currentPage == index,
+        onClick = {
+            scope.launch {
+                pagerState.animateScrollToPage(index)
+            }
+        }
+    )
 }
 ```
 
@@ -116,36 +117,32 @@ that some tabs will remain off-screen until scrolled.
 
 ![Scrollable tabs dark](images/tabs_scrollable_dark.png)
 
-#### Jetpack Compose implementation
+#### Jetpack Compose
 
 For scrollable tabs, the tabs should be added inside of an `OdsScrollableTabRow`. This is the only difference with fixed tabs implementation.
 As for fixed tabs, you can use an `OdsTab` composable or an `OdsLeadingIconTab` inside.
 
 ```kotlin
 OdsScrollableTabRow(selectedTabIndex = pagerState.currentPage) {
-  OdsTab(
-    icon = painterResource(id = R.drawable.ic_alert), // if set to `null`, no icon will be displayed
-    text = "Alerts", // if set to `null`, no text will be displayed
-    selected = pagerState.currentPage == index,
-    onClick = {
-      scope.launch {
-        pagerState.animateScrollToPage(index)
-      }
-    }
-  )
-  OdsTab(
-    icon = painterResource(id = R.drawable.ic_calendar), // if set to `null`, no icon will be displayed
-    text = "Calendar", // if set to `null`, no text will be displayed
-    selected = pagerState.currentPage == index,
-    onClick = {
-      scope.launch {
-        pagerState.animateScrollToPage(index)
-      }
-    }
-  )
+    OdsTab(
+        icon = painterResource(id = R.drawable.ic_alert), // if set to `null`, no icon will be displayed
+        text = "Alerts", // if set to `null`, no text will be displayed
+        selected = pagerState.currentPage == index,
+        onClick = {
+            scope.launch {
+                pagerState.animateScrollToPage(index)
+            }
+        }
+    )
+    OdsTab(
+        icon = painterResource(id = R.drawable.ic_calendar), // if set to `null`, no icon will be displayed
+        text = "Calendar", // if set to `null`, no text will be displayed
+        selected = pagerState.currentPage == index,
+        onClick = {
+            scope.launch {
+                pagerState.animateScrollToPage(index)
+            }
+        }
+    )
 }
 ```
-
-## Component specific tokens
-
-_Soon available_

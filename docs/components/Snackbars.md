@@ -18,7 +18,7 @@ action that was just taken, or retrying an action that had failed.
 * [Specifications references](#specifications-references)
 * [Accessibility](#accessibility)
 * [Implementation](#implementation)
-* [Component specific tokens](#component-specific-tokens)
+    * [Jetpack Compose](#jetpack-compose)
 
 ---
 
@@ -80,7 +80,3 @@ Scaffold(
     )
 }
 ```
-
-## Component specific tokens
-
-_Soon available_

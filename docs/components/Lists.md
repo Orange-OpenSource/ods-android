@@ -10,9 +10,11 @@ description: Lists are continuous, vertical indexes of text or images.
 * [Accessibility](#accessibility)
 * [Variants](#variants)
     * [Single-line list](#single-line-list)
+        * [Jetpack Compose](#jetpack-compose)
     * [Two-line list](#two-line-list)
+        * [Jetpack Compose](#jetpack-compose-1)
     * [Three-line list](#three-line-list)
-* [Component specific tokens](#component-specific-tokens)
+        * [Jetpack Compose](#jetpack-compose-2)
 
 ---
 
@@ -43,7 +45,7 @@ Here are two examples:
 
 Please note that there is no start padding with wide images.
 
-#### Jetpack Compose implementation
+#### Jetpack Compose
 
 The library offers the `OdsListItem` composable to display lists items.
 
@@ -93,7 +95,7 @@ Here are two examples:
 
   ![Lists two-line](images/lists_two_line_light.png) ![Lists two-line dark](images/lists_two_line_dark.png)
 
-#### Jetpack Compose implementation
+#### Jetpack Compose
 
 The only difference with the single-line implementation is that the `secondaryText` property of `OdsListItem` is not null.
 
@@ -127,7 +129,7 @@ Here are two examples:
 
   ![Lists three-line](images/lists_three_line_light.png) ![Lists three-line dark](images/lists_three_line_dark.png)
 
-#### Jetpack Compose implementation
+#### Jetpack Compose
 
 The only difference with the two-line implementation is that the `singleLineSecondaryText` property of `OdsListItem` is `false`.
 
@@ -144,7 +146,3 @@ OdsListItem(
     trailing = OdsCaptionTrailing(text = "Caption")
 )
 ```
-
-## Component specific tokens
-
-_Soon available_

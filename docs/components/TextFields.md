@@ -9,11 +9,13 @@ description: Text fields let users enter and edit text.
 * [Specifications references](#specifications-references)
 * [Accessibility](#accessibility)
 * [Variants](#variants)
-  * [Text field](#text-field)
-  * [Password text field](#password-text-field)
+    * [Text field](#text-field)
+        * [Jetpack Compose](#jetpack-compose)
+    * [Password text field](#password-text-field)
+        * [Jetpack Compose](#jetpack-compose-1)
 * [Extras](#extras)
-  * [Character counter](#character-counter)
-* [Component specific tokens](#component-specific-tokens)
+    * [Character counter](#character-counter)
+        * [Jetpack Compose](#jetpack-compose-2)
 
 ---
 
@@ -42,37 +44,37 @@ The outlined version is more accessible in term of contrast. This is the reason 
 ![TextField filled light](images/textfield_filled_light.png)  
 ![TextField filled dark](images/textfield_filled_dark.png)
 
-#### Jetpack Compose implementation
+#### Jetpack Compose
 
 To add a text field in your composable screen you can use the `OdsTextField` composable as follow:
 
 ```kotlin
 var text by rememberSaveable { mutableStateOf("") }
 OdsTextField(
-  leadingIcon = painterResource(id = R.drawable.ic_heart),
-  leadingIconContentDescription = "Like",
-  onLeadingIconClick = { doSomething() },
-  trailing = OdsTextTrailing(text = "units"), // It can be one of the provided `OdsTextFieldTrailing`. See more information below.
-  enabled = true,
-  readOnly = false,
-  isError = false,
-  errorMessage = "Error message",
-  value = text,
-  onValueChange = { text = it },
-  label = "Label",
-  placeholder = "Placeholder",
-  visualTransformation = VisualTransformation.None,
-  keyboardOptions = KeyboardOptions.Default,
-  keyboardActions = KeyboardActions(),
-  singleLine = false,
-  maxLines = Int.MAX_VALUE,
-  characterCounter = {
-    OdsTextFieldCharacterCounter(
-      valueLength = valueLength,
-      maxChars = TextFieldMaxChars,
-      enabled = enabled
-    )
-  }
+    leadingIcon = painterResource(id = R.drawable.ic_heart),
+    leadingIconContentDescription = "Like",
+    onLeadingIconClick = { doSomething() },
+    trailing = OdsTextTrailing(text = "units"), // It can be one of the provided `OdsTextFieldTrailing`. See more information below.
+    enabled = true,
+    readOnly = false,
+    isError = false,
+    errorMessage = "Error message",
+    value = text,
+    onValueChange = { text = it },
+    label = "Label",
+    placeholder = "Placeholder",
+    visualTransformation = VisualTransformation.None,
+    keyboardOptions = KeyboardOptions.Default,
+    keyboardActions = KeyboardActions(),
+    singleLine = false,
+    maxLines = Int.MAX_VALUE,
+    characterCounter = {
+        OdsTextFieldCharacterCounter(
+            valueLength = valueLength,
+            maxChars = TextFieldMaxChars,
+            enabled = enabled
+        )
+    }
 )
 ```
 
@@ -90,10 +92,10 @@ If you want a more complex trailing element, you can use the other `OdsTextField
 
 ```kotlin
 override val components: OdsComponentsConfiguration
-  get() = object : OdsComponentsConfiguration() {
-    override val textFieldStyle: ComponentStyle
-      get() = ComponentStyle.Filled
-  }
+    get() = object : OdsComponentsConfiguration() {
+        override val textFieldStyle: ComponentStyle
+            get() = ComponentStyle.Filled
+    }
 ```
 
 ### Password text field
@@ -106,31 +108,31 @@ Password text field is a text field implementation that includes password visual
 ![TextField filled password light](images/textfield_filled_password_light.png)  
 ![TextField filled password dark](images/textfield_filled_password_dark.png)
 
-#### Jetpack Compose implementation
+#### Jetpack Compose
 
 To add a password text field in your composable screen you can use the `OdsPasswordTextField` composable as follow:
 
 ```kotlin
 var text by rememberSaveable { mutableStateOf("") }
 OdsPasswordTextField(
-  enabled = true,
-  readOnly = false,
-  isError = false,
-  errorMessage = "Error message",
-  value = text,
-  onValueChange = { text = it },
-  label = "Label",
-  placeholder = "Placeholder",
-  visualisationIcon = true,
-  keyboardOptions = KeyboardOptions.Default,
-  keyboardActions = KeyboardActions(),
-  characterCounter = {
-    OdsTextFieldCharacterCounter(
-      valueLength = valueLength,
-      maxChars = TextFieldMaxChars,
-      enabled = enabled
-    )
-  }
+    enabled = true,
+    readOnly = false,
+    isError = false,
+    errorMessage = "Error message",
+    value = text,
+    onValueChange = { text = it },
+    label = "Label",
+    placeholder = "Placeholder",
+    visualisationIcon = true,
+    keyboardOptions = KeyboardOptions.Default,
+    keyboardActions = KeyboardActions(),
+    characterCounter = {
+        OdsTextFieldCharacterCounter(
+            valueLength = valueLength,
+            maxChars = TextFieldMaxChars,
+            enabled = enabled
+        )
+    }
 )
 ```
 
@@ -145,7 +147,7 @@ See [text field section](#text-field) if you want to change it in your custom th
 ![TextField character counter light](images/textfield_character_counter_light.png)  
 ![TextField character counter dark](images/textfield_character_counter_dark.png)
 
-#### Jetpack Compose implementation
+#### Jetpack Compose
 
 In each TextField component, you can use the `characterCounter` parameter to add a character counter if there is a restriction on the number of characters in a field.  
 It will be placed properly below the text field, end aligned.
@@ -154,10 +156,10 @@ Please use the provided `OdsTextFieldCharacterCounter` composable for this behav
 
 ```kotlin
 OdsTextFieldCharacterCounter(
-  modifier = Modifier.align(Alignment.End),
-  valueLength = valueLength,
-  maxChars = 20,
-  enabled = true // If `false` the counter is displayed with a disabled color
+    modifier = Modifier.align(Alignment.End),
+    valueLength = valueLength,
+    maxChars = 20,
+    enabled = true // If `false` the counter is displayed with a disabled color
 )
 ```
 
@@ -165,10 +167,6 @@ Be careful, the limitation behavior should be managed by yourself in the `onValu
 
 ```kotlin
 if (text.length <= TextFieldMaxChars) {
-  value = text
+    value = text
 }
 ```
-
-## Component specific tokens
-
-_Soon available_

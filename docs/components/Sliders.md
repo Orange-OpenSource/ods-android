@@ -10,10 +10,15 @@ description: Sliders allow users to make selections from a range of values.
 * [Accessibility](#accessibility)
 * [Variants](#variants)
     * [Continuous slider](#continuous-slider)
+        * [Jetpack Compose](#jetpack-compose)
+            * [OdsSlider API](#odsslider-api)
     * [Continuous lockups slider](#continuous-lockups-slider)
+        * [Jetpack Compose](#jetpack-compose-1)
+            * [OdsSliderLockups API](#odssliderlockups-api)
     * [Discrete slider](#discrete-slider)
+        * [Jetpack Compose](#jetpack-compose-2) (use [OdsSlider API](#odsslider-api))
     * [Discrete lockups slider](#discrete-lockups-slider)
-* [Component specific tokens](#component-specific-tokens)
+        * [Jetpack Compose](#jetpack-compose-3) (use [OdsSliderLockups API](#odssliderlockups-api))
 
 ---
 
@@ -39,7 +44,7 @@ With icons:
 
 ![Continuous slider with icons](images/slider_continuous_with_icon_light.png) ![Continuous slider with icons dark](images/slider_continuous_with_icon_dark.png)
 
-#### Jetpack Compose implementation
+#### Jetpack Compose
 
 In your composable screen you can use:
 
@@ -92,7 +97,7 @@ With icons:
 
 ![Continuous lockups slider with icons](images/slider_continuous_lockups_with_icon_light.png) ![Continuous lockups slider with icons dark](images/slider_continuous_lockups_with_icon_dark.png)
 
-#### Jetpack Compose implementation
+#### Jetpack Compose
 
 In your composable screen you can use:
 
@@ -122,6 +127,8 @@ OdsSliderLockups(
 )
 ```
 
+##### OdsSliderLockups API
+
 Parameter | Default&nbsp;value | Description
 -- | -- | --
 `value: Float` | | Current value of the slider. If outside of `valueRange` provided, value will be coerced to this range.
@@ -146,7 +153,7 @@ With icons:
 
 ![Discrete slider with icon](images/slider_discrete_with_icon_light.png) ![Discrete slider with icon dark](images/slider_discrete_with_icon_dark.png)
 
-#### Jetpack Compose implementation
+#### Jetpack Compose
 
 In your composable screen you can use:
 
@@ -178,7 +185,7 @@ OdsSlider(
 )
 ```
 
-Use the same API as the [Continuous slider](#continuous-slider).
+Use [OdsSlider API](#odsslider-api).
 
 ### Discrete lockups slider
 
@@ -188,7 +195,7 @@ With icons:
 
 ![Discrete lockups slider with icons](images/slider_discrete_lockups_with_icon_light.png) ![Discrete lockups slider with icons dark](images/slider_discrete_lockups_with_icon_dark.png)
 
-#### Jetpack Compose implementation
+#### Jetpack Compose
 
 In your composable screen you can use:
 
@@ -220,8 +227,4 @@ OdsSliderLockups(
 )
 ```
 
-Use the same API as the [Continuous lockups slider](#continuous-lockups-slider).
-
-## Component specific tokens
-
-_Soon available_
+Use [OdsSliderLockups API](#odssliderlockups-api).

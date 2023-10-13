@@ -15,7 +15,8 @@ Only one banner should be shown at a time
 * [Specifications references](#specifications-references)
 * [Accessibility](#accessibility)
 * [Implementation](#implementation)
-* [Component specific tokens](#component-specific-tokens)
+    * [Jetpack Compose](#jetpack-compose)
+        * [OdsBanner API](#odsbanner-api)
 
 ---
 
@@ -59,11 +60,3 @@ Parameter | Default&nbsp;value | Description
 `image: OdsBannerImage?` | `null` | Image displayed in the banner in a circle shape
 `secondButton: OdsBannerButton?` | `null` | Secondary button displayed into the banner next to the primary one
 {:.table}
-
-### XML
-
-_Soon available_
-
-## Component specific tokens
-
-_Soon available_

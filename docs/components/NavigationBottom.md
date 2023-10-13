@@ -9,7 +9,8 @@ description: Bottom navigation bars allow movement between primary destinations 
 * [Specifications references](#specifications-references)
 * [Accessibility](#accessibility)
 * [Implementation](#implementation)
-* [Component specific tokens](#component-specific-tokens)
+    * [Jetpack Compose](#jetpack-compose)
+        * [OdsBottomNavigation API](#odsbottomnavigation-api)
 
 ---
 
@@ -77,7 +78,3 @@ Parameter | Default&nbsp;value | Description
 `modifier: Modifier` | `Modifier` | `Modifier` applied to the bottom navigation
 `items: List<OdsBottomNavigationItem>` | | Items displayed into the bottom navigation
 {:.table}
-
-## Component specific tokens
-
-_Soon available_

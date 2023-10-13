@@ -8,8 +8,6 @@ description: A bottom app bar displays navigation and key actions at the bottom 
 
 * [Specifications references](#specifications-references)
 * [Accessibility](#accessibility)
-* [Implementation](#implementation)
-* [Component specific tokens](#component-specific-tokens)
 
 ---
 
@@ -31,11 +29,3 @@ action performs. While optional, their use is strongly encouraged.
 When using icons for navigation icons, action items and other elements of bottom
 app bars, you should set a content description on them so that screen readers
 like TalkBack are able to announce their purpose or action, if any.
-
-## Implementation
-
-_Soon available_
-
-## Component specific tokens
-
-_Soon available_

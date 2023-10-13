@@ -16,7 +16,8 @@ Use radio buttons to:
 * [Specifications references](#specifications-references)
 * [Accessibility](#accessibility)
 * [Implementation](#implementation)
-* [Component specific tokens](#component-specific-tokens)
+    * [Jetpack Compose](#jetpack-compose)
+        * [OdsRadioButton API](#odsradiobutton-api)
 
 ---
 
@@ -59,7 +60,3 @@ Parameter | Default&nbsp;value | Description
 `modifier: Modifier` | `Modifier` | `Modifier` applied to the radio button
 `enabled: Boolean` | `true` | Controls the enabled state of the radio button. When `false`, the button will not be selectable and appears disabled.
 {:.table}
-
-## Component specific tokens
-
-_Soon available_

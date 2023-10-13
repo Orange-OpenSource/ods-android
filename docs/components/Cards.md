@@ -10,10 +10,17 @@ description: Cards contain content and actions about a single subject.
 * [Accessibility](#accessibility)
 * [Variants](#variants)
     * [Vertical image first card](#vertical-image-first-card)
+        * [Jetpack Compose](#jetpack-compose)
+            * [OdsVerticalImageFirstCard API](#odsverticalimagefirstcard-api)
     * [Vertical header first card](#vertical-header-first-card)
+        * [Jetpack Compose](#jetpack-compose-1)
+            * [OdsVerticalHeaderFirstCard API](#odsverticalheaderfirstcard-api)
     * [Small card](#small-card)
+        * [Jetpack Compose](#jetpack-compose-2)
+            * [OdsSmallCard API](#odssmallcard-api)
     * [Horizontal card](#horizontal-card)
-* [Component specific tokens](#component-specific-tokens)
+        * [Jetpack Compose](#jetpack-compose-3)
+            * [OdsHorizontalCard API](#odshorizontalcard-api)
 
 ---
 
@@ -39,7 +46,7 @@ This is a full width card containing elements arranged vertically with an image 
 
 ![Vertical image first card light](images/card_vertical_image_first_light.png) ![Vertical image first card dark](images/card_vertical_image_first_dark.png)
 
-#### Jetpack Compose implementation
+#### Jetpack Compose
 
 In your composable screen you can use `OdsVerticalImageFirstCard` composable:
 
@@ -75,17 +82,13 @@ Parameter | Default&nbsp;value | Description
 `onClick: (() -> Unit)?` | `null` | Callback invoked on card click
 {:.table}
 
-#### XML implementation
-
-_Soon available_
-
 ### Vertical header first card
 
 This is a full width card containing elements arranged vertically with a header (thumbnail, title & subtitle) as first element.
 
 ![Vertical header first card light](images/card_vertical_header_first_light.png) ![Vertical header first card dark](images/card_vertical_header_first_dark.png)
 
-#### Jetpack Compose implementation
+#### Jetpack Compose
 
 In your composable screen you can use `OdsVerticalHeaderFirstCard` composable:
 
@@ -126,17 +129,13 @@ Parameter | Default&nbsp;value | Description
 `onClick: (() -> Unit)?` | `null` | Callback called on card click
 {:.table}
 
-#### XML implementation
-
-_Soon available_
-
 ### Small card
 
 This is a small card which takes the half screen width.
 
 ![CardSmall](images/card_small_light.png) ![CardSmall dark](images/card_small_dark.png)
 
-#### Jetpack Compose implementation
+#### Jetpack Compose
 
 You can add an `OdsSmallCard` composable in your screen to add a small card:
 
@@ -176,17 +175,13 @@ Parameter | Default&nbsp;value | Description
 `onClick: (() -> Unit)?` | `null` | Callback invoked on card click
 {:.table}
 
-#### XML implementation
-
-_Soon available_
-
 ### Horizontal card
 
 This is a full screen width card with an image on the side. The image can be displayed on the left or on the right.
 
 ![Horizontal card light](images/card_horizontal_light.png) ![Horizontal card dark](images/card_horizontal_dark.png)
 
-#### Jetpack Compose implementation
+#### Jetpack Compose
 
 In your screen you can use `OdsHorizontalCard` composable:
 
@@ -225,11 +220,3 @@ Parameter | Default&nbsp;value | Description
 `divider: Boolean` | `true` | Controls the divider display. If `true`, it will be displayed between the card content and the action buttons.
 `onClick: (() -> Unit)?` | `null` | Callback invoked on card click
 {:.table}
-
-#### XML implementation
-
-_Soon available_
-
-## Component specific tokens
-
-_Soon available_

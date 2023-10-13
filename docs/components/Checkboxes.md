@@ -15,7 +15,8 @@ Use checkboxes to:
 * [Specifications references](#specifications-references)
 * [Accessibility](#accessibility)
 * [Implementation](#implementation)
-* [Component specific tokens](#component-specific-tokens)
+    * [Jetpack Compose](#jetpack-compose)
+        * [OdsCheckbox API](#odscheckbox-api)
 
 ---
 
@@ -59,6 +60,3 @@ Parameter | Default&nbsp;value | Description
 `enabled: Boolean` | `true` | Controls enabled state of the checkbox. When `false`, this checkbox will not be clickable.
 {:.table}
 
-## Component specific tokens
-
-_Soon available_

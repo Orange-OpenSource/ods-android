@@ -10,8 +10,11 @@ description: Top app bars display information and actions relating to the curren
 * [Accessibility](#accessibility)
 * [Variants](#variants)
     * [Regular top app bar](#regular-top-app-bar)
+        * [Jetpack Compose](#jetpack-compose)
+            * [OdsTopAppBar API](#odstopappbar-api)
     * [Large top app bar](#large-top-app-bar)
-* [Component specific tokens](#component-specific-tokens)
+        * [Jetpack Compose](#jetpack-compose-1)
+            * [OdsLargeTopAppBar API](#odslargetopappbar-api)
 
 ---
 
@@ -32,7 +35,7 @@ action performs.
 
 ### Regular top app bar
 
-#### Jetpack Compose implementation
+#### Jetpack Compose
 
 Add `OdsTopAppBar` composable to your Scaffold `topBar`.
 Here is an example of use:
@@ -77,13 +80,9 @@ Parameter | Default&nbsp;value | Description
 `elevated: Boolean` | `true` | Controls the elevation of the top app bar: `true` to set an elevation to the top app bar (a shadow is displayed below), `false` otherwise
 {:.table}
 
-#### XML implementation
-
-_Not available_
-
 ### Large top app bar
 
-#### Jetpack Compose implementation
+#### Jetpack Compose
 
 First, you have to add this line in your application `build.gradle.kts` file cause this component relies on Compose Material 3 implementation:
 
@@ -156,7 +155,3 @@ Parameter | Default&nbsp;value | Description
 `overflowMenuActions: List<OdsTopAppBarOverflowMenuActionItem>` | `emptyList()` | Actions displayed in the overflow menu
 `scrollBehavior: TopAppBarScrollBehavior?` | `null` | `TopAppBarScrollBehavior` attached to the top app bar
 {:.table}
-
-## Component specific tokens
-
-_Soon available_

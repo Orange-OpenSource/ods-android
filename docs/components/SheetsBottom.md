@@ -14,7 +14,7 @@ Use Sheets bottom to:
 * [Specifications references](#specifications-references)
 * [Accessibility](#accessibility)
 * [Implementation](#implementation)
-* [Component specific tokens](#component-specific-tokens)
+    * [Jetpack Compose](#jetpack-compose)
 
 ---
 
@@ -53,7 +53,3 @@ OdsBottomSheetScaffold(
     }
 )
 ```
-
-## Component specific tokens
-
-_Soon available_

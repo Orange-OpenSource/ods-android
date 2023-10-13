@@ -9,7 +9,7 @@ description: The navigation drawer slides in from the left when the nav icon is 
 * [Specifications references](#specifications-references)
 * [Accessibility](#accessibility)
 * [Implementation](#implementation)
-* [Component specific tokens](#component-specific-tokens)
+    * [Jetpack Compose](#jetpack-compose)
 
 ---
 
@@ -61,7 +61,3 @@ OdsModalDrawer(
     // Put here the rest of the UI content
 }
 ```
-
-## Component specific tokens
-
-_Soon available_

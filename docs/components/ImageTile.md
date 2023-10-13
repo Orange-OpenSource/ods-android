@@ -9,7 +9,8 @@ description:
 * [Specifications references](#specifications-references)
 * [Accessibility](#accessibility)
 * [Implementation](#implementation)
-* [Component specific tokens](#component-specific-tokens)
+    * [Jetpack Compose](#jetpack-compose)
+        * [OdsImageTile API](#odsimagetile-api)
 
 ---
 
@@ -66,7 +67,3 @@ Parameter | Default&nbsp;value | Description
 `icon: OdsImageTileIconToggleButton` | `null` | Clickable icon displayed next to the `title`
 `onClick: (() -> Unit)?` | `null` | Callback invoked on tile click
 {:.table}
-
-## Component specific tokens
-
-_Soon available_

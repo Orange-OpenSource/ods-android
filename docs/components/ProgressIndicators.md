@@ -10,8 +10,11 @@ description: Progress indicators express an unspecified wait time or display the
 * [Accessibility](#accessibility)
 * [Variants](#variants)
     * [Progress bar](#progress-bar)
+        * [Jetpack Compose](#jetpack-compose)
+            * [OdsLinearProgressIndicator API](#odslinearprogressindicator-api)
     * [Activity indicator](#activity-indicator)
-* [Component specific tokens](#component-specific-tokens)
+        * [Jetpack Compose](#jetpack-compose-1)
+            * [OdsCircularProgressIndicator API](#odscircularprogressindicator-api)
 
 ---
 
@@ -43,7 +46,7 @@ Linear progress indicators support both determinate and indeterminate operations
 
   ![Progress bar dark](images/progress_linear_dark.png)
 
-#### Jetpack Compose implementation
+#### Jetpack Compose
 
 You can use the composable `OdsLinearProgressIndicator` like this:
 
@@ -100,7 +103,7 @@ processes.
 
 ![Activity indicator light](images/progress_circular_light.png)  ![Activity indicator dark](images/progress_circular_dark.png)
 
-#### Jetpack Compose implementation
+#### Jetpack Compose
 
 You can use the `OdsCircularProgressIndicator` composable like this:
 
@@ -129,7 +132,3 @@ Parameter | Default&nbsp;value | Description
 `progress: Float?` | `null` | Progress indicator value where 0.0 represents no progress and 1.0 represents full progress. Values outside of this range are coerced into the range. If set to `null`, the progress indicator is indeterminate.
 `label: String?` | `null` | Label displayed below the circular progress
 {:.table}
-
-## Component specific tokens
-
-_Soon available_

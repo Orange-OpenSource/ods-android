@@ -10,13 +10,26 @@ description: Buttons allow users to take actions, and make choices, with a singl
 * [Accessibility](#accessibility)
 * [Variants](#variants)
     * [Contained button](#contained-button)
+        * [Jetpack Compose](#jetpack-compose)
+            * [OdsButton API](#odsbutton-api)
     * [Text button](#text-button)
+        * [Jetpack Compose](#jetpack-compose-1)
+            * [OdsTextButton API](#odstextbutton-api)
     * [Outlined button](#outlined-button)
+        * [Jetpack Compose](#jetpack-compose-2)
+            * [OdsOutlinedButton API](#odsoutlinedbutton-api)
     * [Text toggle buttons group](#text-toggle-buttons-group)
+        * [Jetpack Compose](#jetpack-compose-3)
+            * [OdsTextToggleButtonsRow API](#odstexttogglebuttonsrow-api)
     * [Icon button](#icon-button)
+        * [Jetpack Compose](#jetpack-compose-4)
+            * [OdsIconButton API](#odsiconbutton-api)
     * [Icon toggle button](#icon-toggle-button)
+        * [Jetpack Compose](#jetpack-compose-5)
+            * [OdsIconToggleButton API](#odsicontogglebutton-api)
     * [Icon toggle buttons group](#icon-toggle-buttons-group)
-* [Component specific tokens](#component-specific-tokens)
+        * [Jetpack Compose](#jetpack-compose-6)
+            * [OdsIconToggleButtonsRow API](#odsicontogglebuttonsrow-api)
 
 ---
 
@@ -50,7 +63,7 @@ Functional negative:
 
 ![ContainedButton negative light](images/button_contained_negative_light.png) ![ContainedButton negative dark](images/button_contained_negative_dark.png)
 
-#### Jetpack Compose implementation
+#### Jetpack Compose
 
 Use the `OdsButton` composable:
 
@@ -89,10 +102,6 @@ Parameter | Default&nbsp;value | Description
 `displaySurface: OdsDisplaySurface` | `OdsDisplaySurface.Default` | `OdsDisplaySurface` applied to the button. It allows to force the button display on light or dark surface. By default, the appearance applied is based on the system night mode value.
 {:.table}
 
-#### XML implementation
-
-_Soon available_
-
 ### Text button
 
 Text buttons are typically used for less-pronounced actions, including those located in dialogs and
@@ -100,7 +109,7 @@ cards. In cards, text buttons help maintain an emphasis on card content.
 
 ![TextButton](images/button_text_light.png) ![TextButton dark](images/button_text_dark.png)
 
-#### Jetpack Compose implementation
+#### Jetpack Compose
 
 Use the `OdsTextButton` composable:
 
@@ -127,10 +136,6 @@ Parameter | Default&nbsp;value | Description
 `displaySurface: OdsDisplaySurface` | `OdsDisplaySurface.Default` | `OdsDisplaySurface` applied to the button. It allows to force the button display on light or dark surface. By default, the appearance applied is based on the system night mode value.
 {:.table}
 
-#### XML implementation
-
-_Soon available_
-
 ### Outlined button
 
 Outlined buttons are medium-emphasis buttons. They contain actions that are important, but aren’t
@@ -138,7 +143,7 @@ the primary action in an app.
 
 ![ButtonOutlined](images/button_outlined_light.png) ![ButtonOutlined dark](images/button_outlined_dark.png)
 
-#### Jetpack Compose implementation
+#### Jetpack Compose
 
 Use the `OdsOutlinedButton` composable:
 
@@ -163,10 +168,6 @@ Parameter | Default&nbsp;value | Description
 `displaySurface: OdsDisplaySurface` | `OdsDisplaySurface.Default` | `OdsDisplaySurface` applied to the button. It allows to force the button display on light or dark surface. By default, the appearance applied is based on the system night mode value.
 {:.table}
 
-#### XML implementation
-
-_Soon available_
-
 ### Text toggle buttons group
 
 A group of text toggle buttons. Only one option in a group of toggle buttons can be selected and active at a time.
@@ -174,7 +175,7 @@ Selecting one option deselects any other.
 
 ![Button text toggle group light](images/button_text_toggle_group_light.png) ![Button text toggle group dark](images/button_text_toggle_group_dark.png)
 
-#### Jetpack Compose implementation
+#### Jetpack Compose
 
 Use the `OdsTextToggleButtonsRow` composable:
 
@@ -204,10 +205,6 @@ Parameter | Default&nbsp;value | Description
 `displaySurface: OdsDisplaySurface` | `OdsDisplaySurface.Default` | `OdsDisplaySurface` applied to the button. It allows to force the button display on light or dark surface. By default, the appearance applied is based on the system night mode value.
 {:.table}
 
-#### XML implementation
-
-_Soon available_
-
 ### Icon button
 
 An icon button is a clickable icon, used to represent actions. This component is typically used
@@ -215,7 +212,7 @@ inside an App Bar for the navigation icon / actions.
 
 ![OdsIconButton](images/button_icon_light.png) ![OdsIconButton dark](images/button_icon_dark.png)
 
-#### Jetpack Compose implementation
+#### Jetpack Compose
 
 Use the `OdsIconButton` composable:
 
@@ -240,10 +237,6 @@ Parameter | Default&nbsp;value | Description
 `displaySurface: OdsDisplaySurface` | `OdsDisplaySurface.Default` | `OdsDisplaySurface` to be applied to the button. It allows to force the button display on light or dark surface. By default, the appearance applied is based on the system night mode value.
 {:.table}
 
-#### XML implementation
-
-_Soon available_
-
 ### Icon toggle button
 
 An icon button with two states, for icons that can be toggled 'on' and 'off', such as a bookmark
@@ -251,7 +244,7 @@ icon, or a navigation icon that opens a drawer.
 
 ![Button icon toggle light](images/button_icon_toggle_light.png) ![Button icon toggle dark](images/button_icon_toggle_dark.png)
 
-#### Jetpack Compose implementation
+#### Jetpack Compose
 
 Use the `OdsIconToggleButton` composable:
 
@@ -280,10 +273,6 @@ Parameter | Default&nbsp;value | Description
 `displaySurface: OdsDisplaySurface` | `OdsDisplaySurface.Default` | `OdsDisplaySurface` applied to the button. It allows to force the button display on light or dark surface. By default, the appearance applied is based on the system night mode value.
 {:.table}
 
-#### XML implementation
-
-_Soon available_
-
 ### Icon toggle buttons group
 
 A group of toggle buttons. Only one option in a group of toggle buttons can be selected and active
@@ -292,7 +281,7 @@ Selecting one option deselects any other.
 
 ![Button icon toggle group light](images/button_icon_toggle_group_light.png) ![Button icon toggle group dark](images/button_icon_toggle_group_dark.png)
 
-#### Jetpack Compose implementation
+#### Jetpack Compose
 
 Use the `OdsIconToggleButtonsRow` composable:
 
@@ -325,11 +314,3 @@ Parameter | Default&nbsp;value | Description
 `modifier: Modifier` | `Modifier` | `Modifier` applied to the toggle buttons group
 `displaySurface: OdsDisplaySurface` | `OdsDisplaySurface.Default` | `OdsDisplaySurface` applied to the button. It allows to force the button display on light or dark surface. By default, the appearance applied is based on the system night mode value.
 {:.table}
-
-#### XML implementation
-
-_Soon available_
-
-## Component specific tokens
-
-_Soon available_

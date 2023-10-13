@@ -10,15 +10,19 @@ description: A floating action button (FAB) represents the primary action of a s
 * [Accessibility](#accessibility)
 * [Variants](#variants)
     * [Regular FAB](#regular-fab)
+        * [Jetpack Compose](#jetpack-compose)
+            * [OdsFloatingActionButton API](#odsfloatingactionbutton-api)
     * [Mini FAB](#mini-fab)
+        * [Jetpack Compose](#jetpack-compose-1) (use [OdsFloatingActionButton API](#odsfloatingactionbutton-api))
     * [Extended FAB](#extended-fab)
-* [Component specific tokens](#component-specific-tokens)
+        * [Jetpack Compose](#jetpack-compose-2)
+            * [OdsExtendedFloatingActionButton API](#odsextendedfloatingactionbutton-api)
 
 ---
 
 ## Specifications references
 
-- Design System Manager - Floating Action Button (soon available)
+- [Design System Manager - Floating Action Button](https://system.design.orange.com/0c1af118d/p/577022-buttons-fab/b/101b2a)
 - [Material Design - Buttons: floating action button](https://material.io/components/buttons-floating-action-button/)
 
 ## Accessibility
@@ -39,7 +43,7 @@ Regular FABs are FABs that are not expanded and are a regular size.
 
 ![FAB light](images/fab_light.png)  ![FAB dark](images/fab_dark.png)
 
-#### Jetpack Compose implementation
+#### Jetpack Compose
 
 To display a regular Floating Action Button in your composable screen, use `OdsFloatingActionButton`:
 
@@ -73,7 +77,7 @@ Mini FABs can also be used to create visual continuity with other screen element
 
 ![FAB mini light](images/fab_mini_light.png)  ![FAB mini dark](images/fab_mini_dark.png)
 
-#### Jetpack Compose implementation
+#### Jetpack Compose
 
 To display a mini FAB in your composable screen use `OdsFloatingActionButton`
 
@@ -99,7 +103,7 @@ The extended FAB is wider, and it includes a text label.
 
 ![FAB extended full width light](images/fab_extended_full_width_light.png)  ![FAB extended full width dark](images/fab_extended_full_width_dark.png)
 
-#### Jetpack Compose implementation
+#### Jetpack Compose
 
 To display an extended FAB, use `OdsExtendedFloatingActionButton`:
 
@@ -121,7 +125,3 @@ Parameter | Default&nbsp;value | Description
 `text: String` | | Text displayed into the FAB
 `modifier: Modifier` | `Modifier` | `Modifier` applied to the FAB
 {:.table}
-
-## Component specific tokens
-
-_Soon available_
