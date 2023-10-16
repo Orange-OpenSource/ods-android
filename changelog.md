@@ -9,9 +9,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Changed
 
-- \[Lib\] Inverse the two parameters of `OdsBottomNavigation` API ([#661](https://github.com/Orange-OpenSource/ods-android/issues/661))
-- \[Lib\] Change parameters order of `OdsChoiceChipsFlowRow` API ([#661](https://github.com/Orange-OpenSource/ods-android/issues/661))
-- \[Lib\] Rename parameters in `OdsSlider` and `OdsSliderLockups` APIs ([#661](https://github.com/Orange-OpenSource/ods-android/issues/661))
+- \[Lib\] Update `OdsBottomNavigation`, `OdsChoiceChipsFlowRow`, `OdsSlider` and `OdsSliderLockups` APIs ([#661](https://github.com/Orange-OpenSource/ods-android/issues/661))
 - \[Lib\] Review and update technical documentation ([#638](https://github.com/Orange-OpenSource/ods-android/issues/638))
 
 ### Fixed
