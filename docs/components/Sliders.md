@@ -138,7 +138,7 @@ Parameter | Default&nbsp;value | Description
 `valueRange: ClosedFloatingPointRange<Float>` | `0f..1f` | Range of values that the slider can take. Given `value` will be coerced to this range.
 `steps: Int` | `0` | If greater than `0`, specifies the amounts of discrete values, evenly distributed between across the whole value range. If `0`, slider will behave as a continuous slider and allow to choose any value from the range specified. Must not be negative.
 `onValueChangeFinished: (() -> Unit)?` | `null` | Callback invoked when value change has ended. This callback shouldn't be used to update the slider value (use `onValueChange` for that), but rather to know when the user has completed selecting a new value by ending a drag or a click.
-`starttIcon: OdsSliderIcon?` | `null` | Icon displayed at the start of the slider
+`startIcon: OdsSliderIcon?` | `null` | Icon displayed at the start of the slider
 `endIcon: OdsSliderIcon?` | `null` | Icon displayed at the end of the slider
 {:.table}
 
