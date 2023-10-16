@@ -68,10 +68,10 @@ fun ComponentSliders() {
             ) {
                 val technicalText = if (shouldDisplayValue) OdsComposable.OdsSliderLockups.name else OdsComposable.OdsSlider.name
                 val steps = if (isStepped) 9 else 0
-                val leftIconContentDescription = stringResource(id = R.string.component_slider_low_volume)
-                val leftIcon = if (hasSideIcons) OdsSliderIcon(painterResource(id = R.drawable.ic_volume_status_1), leftIconContentDescription) else null
-                val rightIconContentDescription = stringResource(id = R.string.component_slider_high_volume)
-                val rightIcon = if (hasSideIcons) OdsSliderIcon(painterResource(id = R.drawable.ic_volume_status_4), rightIconContentDescription) else null
+                val startIconContentDescription = stringResource(id = R.string.component_slider_low_volume)
+                val startIcon = if (hasSideIcons) OdsSliderIcon(painterResource(id = R.drawable.ic_volume_status_1), startIconContentDescription) else null
+                val endIconContentDescription = stringResource(id = R.string.component_slider_high_volume)
+                val endIcon = if (hasSideIcons) OdsSliderIcon(painterResource(id = R.drawable.ic_volume_status_4), endIconContentDescription) else null
 
                 var sliderPosition by remember { mutableStateOf(0f) }
                 val valueRange = 0f..100f
@@ -89,8 +89,8 @@ fun ComponentSliders() {
                         steps = steps,
                         valueRange = valueRange,
                         onValueChange = { sliderPosition = it },
-                        startIcon = leftIcon,
-                        endIcon = rightIcon
+                        startIcon = startIcon,
+                        endIcon = endIcon
                     )
                 } else {
                     componentName = OdsComposable.OdsSlider.name
@@ -99,8 +99,8 @@ fun ComponentSliders() {
                         steps = steps,
                         valueRange = valueRange,
                         onValueChange = { sliderPosition = it },
-                        startIcon = leftIcon,
-                        endIcon = rightIcon
+                        startIcon = startIcon,
+                        endIcon = endIcon
                     )
                 }
 
@@ -114,13 +114,13 @@ fun ComponentSliders() {
                             lambda("onValueChange")
                             if (isStepped) stringRepresentation("steps", steps)
                             if (hasSideIcons) {
-                                classInstance<OdsSliderIcon>("leftIcon") {
+                                classInstance<OdsSliderIcon>("startIcon") {
                                     painter()
-                                    contentDescription(leftIconContentDescription)
+                                    contentDescription(startIconContentDescription)
                                 }
-                                classInstance<OdsSliderIcon>("rightIcon") {
+                                classInstance<OdsSliderIcon>("endIcon") {
                                     painter()
-                                    contentDescription(rightIconContentDescription)
+                                    contentDescription(endIconContentDescription)
                                 }
                             }
                         })
