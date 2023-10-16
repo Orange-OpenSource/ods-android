@@ -215,13 +215,13 @@ outlined by default.
 
 ```kotlin
 OdsChoiceChipsFlowRow(
-    value = chipValue,
-    onValueChange = { value -> chipValue = value },
-    modifier = Modifier.padding(horizontal = dimensionResource(id = com.orange.ods.R.dimen.spacing_m)),
     chips = listOf(
         OdsChoiceChip(text = "Choice chip 1", value = 1),
         OdsChoiceChip(text = "Choice chip 2", value = 2)
-    )
+    ),
+    value = chipValue,
+    onValueChange = { value -> chipValue = value },
+    modifier = Modifier.padding(horizontal = dimensionResource(id = com.orange.ods.R.dimen.spacing_m))
 )
 ```
 
@@ -229,8 +229,8 @@ OdsChoiceChipsFlowRow(
 
 Parameter | Default&nbsp;value | Description
 -- | -- | --
+`chips: List<OdsChoiceChip<T>>` | | Chips displayed into the flow row
 `value: String` | | Initial value of the choice chips flow row
 `onValueChange: (value: T) -> Unit` | | Callback invoked when the value changes. The new value is provided as parameter.
 `modifier: Modifier` | `Modifier` | `Modifier` applied to the chips flow row
-`chips: List<OdsChoiceChip<T>>` | | Chips displayed into the flow row
 {:.table}

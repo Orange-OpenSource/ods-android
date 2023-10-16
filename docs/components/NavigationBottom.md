@@ -75,6 +75,6 @@ OdsBottomNavigation(
 
 Parameter | Default&nbsp;value | Description
 -- | -- | --
-`modifier: Modifier` | `Modifier` | `Modifier` applied to the bottom navigation
 `items: List<OdsBottomNavigationItem>` | | Items displayed into the bottom navigation
+`modifier: Modifier` | `Modifier` | `Modifier` applied to the bottom navigation
 {:.table}

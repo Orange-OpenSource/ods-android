@@ -39,19 +39,19 @@ import com.orange.ods.compose.theme.OdsTheme
  *
  * Note that [OdsChoiceChip] are displayed outlined or filled according to your [OdsTheme] component configuration, outlined by default.
  *
+ * @param chips The list of [OdsChoiceChip] displayed into the chips flow row.
  * @param value The initial value of the choice chips flow row.
  * @param onValueChange Callback invoked when the value changes. The new value is provided as parameter.
  * @param modifier [Modifier] applied to the chips flow row.
- * @param chips The list of [OdsChoiceChip] displayed into the chips flow row.
  */
 @OptIn(ExperimentalLayoutApi::class)
 @Composable
 @OdsComposable
 fun <T> OdsChoiceChipsFlowRow(
+    chips: List<OdsChoiceChip<T>>,
     value: T,
     onValueChange: (value: T) -> Unit,
-    modifier: Modifier = Modifier,
-    chips: List<OdsChoiceChip<T>>
+    modifier: Modifier = Modifier
 ) {
     var selectedChipValue by remember { mutableStateOf(value) }
 
