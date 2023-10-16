@@ -63,11 +63,11 @@ OdsSlider(
     value = 20f,
     steps = 9,
     onValueChange = { doSomething() },
-    leftIcon = OdsSliderIcon(
+    startIcon = OdsSliderIcon(
         painterResource(id = R.drawable.ic_volume_status_1),
         stringResource(id = R.string.component_slider_low_volume)
     ),
-    rightIcon = OdsSliderIcon(
+    endIcon = OdsSliderIcon(
         painterResource(id = R.drawable.ic_volume_status_4),
         stringResource(id = R.string.component_slider_high_volume)
     )
@@ -85,8 +85,8 @@ Parameter | Default&nbsp;value | Description
 `valueRange: ClosedFloatingPointRange<Float>` | `0f..1f` | Range of values that the slider can take. Given `value` will be coerced to this range.
 `steps: Int` | `0` | If greater than `0`, specifies the amounts of discrete values, evenly distributed between across the whole value range. If `0`, slider will behave as a continuous slider and allow to choose any value from the range specified. Must not be negative.
 `onValueChangeFinished: (() -> Unit)?` | `null` | Callback invoked when value change has ended. This callback shouldn't be used to update the slider value (use `onValueChange` for that), but rather to know when the user has completed selecting a new value by ending a drag or a click.
-`leftIcon: OdsSliderIcon?` | `null` | Icon displayed on the left of the slider
-`rightIcon: OdsSliderIcon?` | `null` | Icon displayed on the right of the slider
+`startIcon: OdsSliderIcon?` | `null` | Icon displayed at the start of the slider
+`endIcon: OdsSliderIcon?` | `null` | Icon displayed at the end of the slider
 {:.table}
 
 ### Continuous lockups slider
@@ -116,11 +116,11 @@ OdsSliderLockups(
     value = 20f,
     valueRange = 0f..100f,
     onValueChange = { doSomething() },
-    leftIcon = OdsSliderIcon(
+    startIcon = OdsSliderIcon(
         painterResource(id = R.drawable.ic_volume_status_1),
         stringResource(id = R.string.component_slider_low_volume)
     ),
-    rightIcon = OdsSliderIcon(
+    endIcon = OdsSliderIcon(
         painterResource(id = R.drawable.ic_volume_status_4),
         stringResource(id = R.string.component_slider_high_volume)
     )
@@ -138,8 +138,8 @@ Parameter | Default&nbsp;value | Description
 `valueRange: ClosedFloatingPointRange<Float>` | `0f..1f` | Range of values that the slider can take. Given `value` will be coerced to this range.
 `steps: Int` | `0` | If greater than `0`, specifies the amounts of discrete values, evenly distributed between across the whole value range. If `0`, slider will behave as a continuous slider and allow to choose any value from the range specified. Must not be negative.
 `onValueChangeFinished: (() -> Unit)?` | `null` | Callback invoked when value change has ended. This callback shouldn't be used to update the slider value (use `onValueChange` for that), but rather to know when the user has completed selecting a new value by ending a drag or a click.
-`leftIcon: OdsSliderIcon?` | `null` | Icon displayed on the left of the slider
-`rightIcon: OdsSliderIcon?` | `null` | Icon displayed on the right of the slider
+`starttIcon: OdsSliderIcon?` | `null` | Icon displayed at the start of the slider
+`endIcon: OdsSliderIcon?` | `null` | Icon displayed at the end of the slider
 {:.table}
 
 ### Discrete slider
@@ -174,11 +174,11 @@ OdsSlider(
     valueRange = 0f..100f,
     steps = 10,
     onValueChange = { doSomething() },
-    leftIcon = OdsSliderIcon(
+    startIcon = OdsSliderIcon(
         painterResource(id = R.drawable.ic_volume_status_1),
         stringResource(id = R.string.component_slider_low_volume)
     ),
-    rightIcon = OdsSliderIcon(
+    endIcon = OdsSliderIcon(
         painterResource(id = R.drawable.ic_volume_status_4),
         stringResource(id = R.string.component_slider_high_volume)
     )
@@ -216,11 +216,11 @@ OdsSliderLockups(
     valueRange = 0f..100f,
     steps = 10,
     onValueChange = { doSomething() },
-    leftIcon = OdsSliderIcon(
+    startIcon = OdsSliderIcon(
         painterResource(id = R.drawable.ic_volume_status_1),
         stringResource(id = R.string.component_slider_low_volume)
     ),
-    rightIcon = OdsSliderIcon(
+    endIcon = OdsSliderIcon(
         painterResource(id = R.drawable.ic_volume_status_4),
         stringResource(id = R.string.component_slider_high_volume)
     )
