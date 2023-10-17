@@ -14,6 +14,7 @@ import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.animation.fadeIn
 import androidx.compose.animation.fadeOut
 import androidx.compose.foundation.ExperimentalFoundationApi
+import androidx.compose.foundation.background
 import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.padding
@@ -29,31 +30,30 @@ import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.input.nestedscroll.nestedScroll
 import androidx.compose.ui.platform.LocalConfiguration
-import androidx.compose.ui.text.input.TextFieldValue
+import androidx.compose.ui.res.dimensionResource
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.window.Dialog
 import androidx.lifecycle.viewmodel.compose.viewModel
-import androidx.navigation.NavBackStackEntry
-import androidx.navigation.NavGraphBuilder
 import androidx.navigation.compose.NavHost
-import androidx.navigation.compose.composable
-import androidx.navigation.navigation
 import com.google.accompanist.systemuicontroller.rememberSystemUiController
 import com.orange.ods.app.R
 import com.orange.ods.app.domain.recipes.LocalCategories
 import com.orange.ods.app.domain.recipes.LocalRecipes
-import com.orange.ods.app.ui.about.addAboutGraph
-import com.orange.ods.app.ui.components.addComponentsGraph
 import com.orange.ods.app.ui.components.tabs.FixedTabRow
 import com.orange.ods.app.ui.components.tabs.ScrollableTabRow
-import com.orange.ods.app.ui.guidelines.addGuidelinesGraph
-import com.orange.ods.app.ui.search.SearchScreen
 import com.orange.ods.app.ui.utilities.extension.isDarkModeEnabled
 import com.orange.ods.app.ui.utilities.extension.isOrange
+import com.orange.ods.compose.component.list.OdsListItem
+import com.orange.ods.compose.component.list.OdsListItemTrailingRadioButton
+import com.orange.ods.compose.text.OdsTextH6
 import com.orange.ods.compose.theme.OdsTheme
 import com.orange.ods.extension.orElse
 import com.orange.ods.theme.OdsThemeConfigurationContract
 import com.orange.ods.xml.theme.OdsXml
 import com.orange.ods.xml.utilities.extension.xml
+import kotlinx.coroutines.flow.launchIn
+import kotlinx.coroutines.flow.onEach
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -73,6 +73,7 @@ fun MainScreen(themeConfigurations: Set<OdsThemeConfigurationContract>, mainView
             themeConfigurations = themeConfigurations.toList()
         )
     )
+
     // Change isSystemInDarkTheme() value to make switching theme working with custom color
     val configuration = LocalConfiguration.current.apply {
         isDarkModeEnabled = mainState.themeState.darkModeEnabled
@@ -83,15 +84,18 @@ fun MainScreen(themeConfigurations: Set<OdsThemeConfigurationContract>, mainView
         uiMode = if (mainState.themeState.darkModeEnabled) OdsXml.UiMode.Dark else OdsXml.UiMode.Light
     }
 
+    var changeThemeDialogVisible by remember { mutableStateOf(false) }
+
     CompositionLocalProvider(
         LocalConfiguration provides configuration,
-        LocalMainTopAppBarManager provides mainState.topAppBarState,
+        LocalAppBarManager provides mainState.appBarState,
         LocalThemeManager provides mainState.themeState,
         LocalOdsGuideline provides mainState.themeState.currentThemeConfiguration.guideline,
         LocalRecipes provides mainViewModel.recipes,
         LocalCategories provides mainViewModel.categories,
         LocalUiFramework provides mainState.uiFramework
     ) {
+        TopAppBarActionsHandler(navigate = mainState.navController::navigate, onChangeThemeActionClick = { changeThemeDialogVisible = true })
         OdsTheme(
             themeConfiguration = mainState.themeState.currentThemeConfiguration,
             darkThemeEnabled = configuration.isDarkModeEnabled
@@ -100,13 +104,10 @@ fun MainScreen(themeConfigurations: Set<OdsThemeConfigurationContract>, mainView
             val modifier: Modifier
 
             val showTabs by remember {
-                derivedStateOf { mainState.topAppBarState.tabsState.hasTabs }
-            }
-            val displayLargeTopAppBar by remember {
-                derivedStateOf { mainState.topAppBarState.isLarge }
+                derivedStateOf { mainState.appBarState.tabsState.hasTabs }
             }
 
-            if (displayLargeTopAppBar) {
+            if (mainState.appBarState.isLarge) {
                 topBarScrollBehavior = TopAppBarDefaults.exitUntilCollapsedScrollBehavior(rememberTopAppBarState())
                 val nestedScrollConnection = remember { topBarScrollBehavior.nestedScrollConnection }
                 modifier = Modifier.nestedScroll(nestedScrollConnection)
@@ -121,17 +122,13 @@ fun MainScreen(themeConfigurations: Set<OdsThemeConfigurationContract>, mainView
                     Surface(elevation = if (isSystemInDarkTheme()) 0.dp else AppBarDefaults.TopAppBarElevation) {
                         Column {
                             SystemBarsColorSideEffect()
-                            MainTopAppBar(
-                                shouldShowUpNavigationIcon = !mainState.shouldShowBottomBar,
-                                topAppBarState = mainState.topAppBarState,
+                            AppBar(
+                                appBarState = mainState.appBarState,
                                 upPress = mainState::upPress,
-                                onSearchActionClick = {
-                                    mainState.navController.navigate(MainDestinations.SearchRoute)
-                                },
                                 scrollBehavior = topBarScrollBehavior
                             )
                             if (showTabs) {
-                                MainTabs(mainTabsState = mainState.topAppBarState.tabsState)
+                                MainTabs(mainTabsState = mainState.appBarState.tabsState)
                             }
                         }
                     }
@@ -153,10 +150,22 @@ fun MainScreen(themeConfigurations: Set<OdsThemeConfigurationContract>, mainView
                 NavHost(
                     navController = mainState.navController, startDestination = MainDestinations.HomeRoute, modifier = Modifier.padding(innerPadding)
                 ) {
-                    mainNavGraph(
+                    appNavGraph(
                         navigateToElement = mainState::navigateToElement,
                         upPress = mainState::upPress,
-                        searchedText = mainState.topAppBarState.searchedText
+                        searchedText = mainState.appBarState.searchedText
+                    )
+                }
+
+                if (changeThemeDialogVisible) {
+                    ChangeThemeDialog(
+                        themeManager = mainState.themeState,
+                        dismissDialog = {
+                            changeThemeDialogVisible = false
+                        },
+                        onThemeSelected = {
+                            mainViewModel.storeUserThemeName(mainState.themeState.currentThemeConfiguration.name)
+                        }
                     )
                 }
             }
@@ -209,29 +218,51 @@ private fun MainTabs(mainTabsState: MainTabsState) {
     }
 }
 
-private fun NavGraphBuilder.mainNavGraph(
-    navigateToElement: (String, Long?, NavBackStackEntry) -> Unit,
-    upPress: () -> Unit,
-    searchedText: MutableState<TextFieldValue>
-) {
-    navigation(
-        route = MainDestinations.HomeRoute,
-        startDestination = BottomNavigationSections.Guidelines.route
-    ) {
-        addBottomNavigationGraph(navigateToElement)
+@Composable
+private fun TopAppBarActionsHandler(navigate: (String) -> Unit, onChangeThemeActionClick: () -> Unit) {
+    val configuration = LocalConfiguration.current
+    val themeManager = LocalThemeManager.current
+
+    // Manage top app bar actions clicked
+    LaunchedEffect(key1 = Unit) {
+        Screen.appBarActionClicked.onEach { action ->
+            when (action) {
+                AppBarAction.Search -> navigate(MainDestinations.SearchRoute)
+                AppBarAction.ChangeTheme -> onChangeThemeActionClick()
+                AppBarAction.ChangeMode -> themeManager.darkModeEnabled = !configuration.isDarkModeEnabled
+            }
+        }.launchIn(this)
     }
+}
 
-    addGuidelinesGraph()
-    addComponentsGraph(navigateToElement, upPress)
-    addAboutGraph()
+@Composable
+private fun ChangeThemeDialog(themeManager: ThemeManager, dismissDialog: () -> Unit, onThemeSelected: () -> Unit) {
+    var selectedThemeName by rememberSaveable { mutableStateOf(themeManager.currentThemeConfiguration.name) }
 
-    composable(
-        route = MainDestinations.SearchRoute
-    ) { from ->
-        LocalMainTopAppBarManager.current.updateTopAppBarTitle(R.string.navigation_item_search)
-        SearchScreen(
-            searchedText,
-            onResultItemClick = { route, id -> navigateToElement(route, id, from) }
-        )
+    Dialog(onDismissRequest = dismissDialog) {
+        Column(modifier = Modifier.background(OdsTheme.colors.surface)) {
+            OdsTextH6(
+                text = stringResource(R.string.top_app_bar_action_change_theme_desc),
+                modifier = Modifier
+                    .padding(top = dimensionResource(com.orange.ods.R.dimen.spacing_m), bottom = dimensionResource(id = com.orange.ods.R.dimen.spacing_s))
+                    .padding(horizontal = dimensionResource(com.orange.ods.R.dimen.screen_horizontal_margin))
+            )
+            themeManager.themeConfigurations.forEach { themeConfiguration ->
+                OdsListItem(
+                    text = themeConfiguration.name,
+                    trailing = OdsListItemTrailingRadioButton(
+                        selectedThemeName == themeConfiguration.name,
+                        {
+                            selectedThemeName = themeConfiguration.name
+                            if (themeConfiguration != themeManager.currentThemeConfiguration) {
+                                themeManager.currentThemeConfiguration = themeConfiguration
+                                onThemeSelected()
+                            }
+                            dismissDialog()
+                        }
+                    )
+                )
+            }
+        }
     }
 }

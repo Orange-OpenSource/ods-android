@@ -34,10 +34,11 @@ import androidx.compose.ui.text.input.TextFieldValue
 import androidx.compose.ui.unit.dp
 import com.orange.ods.app.R
 import com.orange.ods.app.ui.LocalOdsGuideline
-import com.orange.ods.app.ui.MainDestinations
 import com.orange.ods.app.ui.components.Component
+import com.orange.ods.app.ui.components.ComponentsNavigation
 import com.orange.ods.app.ui.components.Variant
 import com.orange.ods.app.ui.components.components
+import com.orange.ods.app.ui.guidelines.GuidelinesNavigation
 import com.orange.ods.app.ui.guidelines.color.DialogColor
 import com.orange.ods.app.ui.guidelines.spacing.Spacing
 import com.orange.ods.app.ui.utilities.DrawableManager
@@ -175,9 +176,9 @@ fun SearchScreen(
                 icon = OdsListItemIcon(OdsListItemIconType.SquareImage, painter, "")
             ) {
                 when (item.data) {
-                    is Component -> onResultItemClick(MainDestinations.ComponentDetailRoute, item.id)
-                    is Variant -> onResultItemClick(MainDestinations.ComponentVariantDemoRoute, item.id)
-                    is Spacing -> onResultItemClick(MainDestinations.GuidelineSpacing, null)
+                    is Component -> onResultItemClick(ComponentsNavigation.ComponentDetailRoute, item.id)
+                    is Variant -> onResultItemClick(ComponentsNavigation.ComponentVariantDemoRoute, item.id)
+                    is Spacing -> onResultItemClick(GuidelinesNavigation.GuidelineSpacing, null)
                     is GuidelineColor -> openDialog.value = true
                 }
             }

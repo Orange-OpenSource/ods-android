@@ -54,6 +54,8 @@ sealed class Component(
 
     companion object {
         const val ImageBackgroundColor = 0xff1b1b1b
+
+        fun fromId(componentId: Long?) = components.firstOrNull { component -> component.id == componentId }
     }
 
     val id: Long = Component::class.sealedSubclasses.indexOf(this::class).toLong()
@@ -280,13 +282,19 @@ val components = Component::class.sealedSubclasses.mapNotNull { it.objectInstanc
 sealed class Variant(
     @StringRes val titleRes: Int,
     val composableName: String,
-    val largeTopAppBar: Boolean = false
+    val largeTopAppBar: Boolean = false,
+    val customizableTopAppBar: Boolean = false
 ) {
+
+    companion object {
+        fun fromId(variantId: Long?) = components.flatMap { it.variants }.firstOrNull { it.id == variantId }
+    }
 
     val id: Long = Variant::class.sealedSubclasses.indexOf(this::class).toLong()
 
-    object AppBarsTopRegular : Variant(R.string.component_app_bars_top_regular, OdsComposable.OdsTopAppBar.name)
-    object AppBarsTopLarge : Variant(R.string.component_app_bars_top_large, OdsComposable.OdsLargeTopAppBar.name, true)
+    object AppBarsTopRegular : Variant(R.string.component_app_bars_top_regular, OdsComposable.OdsTopAppBar.name, customizableTopAppBar = true)
+    object AppBarsTopLarge :
+        Variant(R.string.component_app_bars_top_large, OdsComposable.OdsLargeTopAppBar.name, largeTopAppBar = true, customizableTopAppBar = true)
 
     object ButtonsPrimary : Variant(R.string.component_buttons_high_emphasis, "${OdsComposable.OdsButton.name} with ${OdsButtonStyle.Primary.name}")
     object ButtonsDefault : Variant(R.string.component_buttons_medium_emphasis, "${OdsComposable.OdsButton.name} with ${OdsButtonStyle.Default.name}")

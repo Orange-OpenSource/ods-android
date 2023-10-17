@@ -11,6 +11,8 @@
 <resources>
     <string name="app_name">Orange Design System</string>
 
+    <string name="empty" />
+
     <string name="code_implementation">Code implementation</string>
     <string name="code_implementation_xml">XML</string>
     <string name="code_implementation_compose">Jetpack Compose</string>
@@ -21,7 +23,6 @@
     <string name="navigation_item_components">Components</string>
     <string name="navigation_item_modules">Modules</string>
     <string name="navigation_item_about">About</string>
-    <string name="navigation_item_search" />
 
     <!-- TopAppBar -->
     <string name="top_app_bar_back_icon_desc">Back</string>

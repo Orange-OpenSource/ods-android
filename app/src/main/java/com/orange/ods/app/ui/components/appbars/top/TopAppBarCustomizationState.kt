@@ -16,23 +16,16 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.saveable.rememberSaveable
 import com.orange.ods.app.R
-import com.orange.ods.app.ui.MainTopAppBarState
-import com.orange.ods.app.ui.TopAppBarConfiguration
+import com.orange.ods.app.ui.AppBarState
 
 @Composable
 fun rememberTopAppBarCustomizationState(
     large: MutableState<Boolean>,
-    navigationIconEnabled: MutableState<Boolean> = rememberSaveable { mutableStateOf(MainTopAppBarState.DefaultConfiguration.isNavigationIconEnabled) },
-    actionCount: MutableState<Int> = rememberSaveable { mutableStateOf(MainTopAppBarState.DefaultConfiguration.actions.count()) },
-    overflowMenuEnabled: MutableState<Boolean> = rememberSaveable {
-        mutableStateOf(
-            MainTopAppBarState.DefaultConfiguration.actions.contains(
-                TopAppBarConfiguration.Action.OverflowMenu
-            )
-        )
-    },
+    navigationIconEnabled: MutableState<Boolean> = rememberSaveable { mutableStateOf(AppBarState.CustomDefaultConfiguration.isNavigationIconEnabled) },
+    actionCount: MutableState<Int> = rememberSaveable { mutableStateOf(AppBarState.CustomDefaultConfiguration.actionCount) },
+    overflowMenuEnabled: MutableState<Boolean> = rememberSaveable { mutableStateOf(AppBarState.CustomDefaultConfiguration.isOverflowMenuEnabled) },
     titleLineCount: MutableState<TopAppBarCustomizationState.Title> = rememberSaveable { mutableStateOf(TopAppBarCustomizationState.Title.Short) },
-    scrollBehavior: MutableState<TopAppBarCustomizationState.ScrollBehavior> = rememberSaveable { mutableStateOf(MainTopAppBarState.DefaultConfiguration.scrollBehavior) }
+    scrollBehavior: MutableState<TopAppBarCustomizationState.ScrollBehavior> = rememberSaveable { mutableStateOf(AppBarState.CustomDefaultConfiguration.scrollBehavior) }
 ) =
     remember(large, navigationIconEnabled, actionCount, overflowMenuEnabled, titleLineCount, scrollBehavior) {
         TopAppBarCustomizationState(large, navigationIconEnabled, actionCount, overflowMenuEnabled, titleLineCount, scrollBehavior)
@@ -62,7 +55,7 @@ class TopAppBarCustomizationState(
 
     val isLarge: Boolean
         get() = large.value
-    
+
     val isLargeCollapsible: Boolean
         get() = large.value && scrollBehavior.value == ScrollBehavior.Collapsible
 
