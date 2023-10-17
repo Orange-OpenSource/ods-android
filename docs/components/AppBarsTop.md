@@ -25,7 +25,7 @@ description: Top app bars display information and actions relating to the curren
 
 ## Accessibility
 
-Please follow [accessibility criteria for development](https://a11y-guidelines.orange.com/en/mobile/android/development/)
+Please follow [accessibility criteria for development](https://a11y-guidelines.orange.com/en/mobile/android/development/).
 
 `OdsTopAppBar` provides accessibility support for the navigation icon,
 action items, overflow menu and more for informing the user as to what each

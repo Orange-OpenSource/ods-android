@@ -24,7 +24,7 @@ way to adjust settings on mobile.
 
 ## Accessibility
 
-Please follow [accessibility criteria for development](https://a11y-guidelines.orange.com/en/mobile/android/development/)
+Please follow [accessibility criteria for development](https://a11y-guidelines.orange.com/en/mobile/android/development/).
 
 Switches support content labeling for accessibility and are readable by most
 screen readers, such as TalkBack. Text rendered in switches is automatically

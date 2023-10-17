@@ -26,7 +26,7 @@ description: Text fields let users enter and edit text.
 
 ## Accessibility
 
-Please follow [accessibility criteria for development](https://a11y-guidelines.orange.com/en/mobile/android/development/)
+Please follow [accessibility criteria for development](https://a11y-guidelines.orange.com/en/mobile/android/development/).
 
 Android's text field component APIs support both label text and helper text for informing the user
 as to what information is requested for a text field.

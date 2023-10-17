@@ -27,7 +27,7 @@ description: A floating action button (FAB) represents the primary action of a s
 
 ## Accessibility
 
-Please follow [accessibility criteria for development](https://a11y-guidelines.orange.com/en/mobile/android/development/)
+Please follow [accessibility criteria for development](https://a11y-guidelines.orange.com/en/mobile/android/development/).
 
 The `OdsFloatingActionButtonIcon` used in Floating Action Buttons APIs force the developers to set a content description to the FABs so that
 screen readers like TalkBack are able to announce their purpose or action.

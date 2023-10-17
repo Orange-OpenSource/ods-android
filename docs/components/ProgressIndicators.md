@@ -25,7 +25,7 @@ description: Progress indicators express an unspecified wait time or display the
 
 ## Accessibility
 
-Please follow [accessibility criteria for development](https://a11y-guidelines.orange.com/en/mobile/android/development/)
+Please follow [accessibility criteria for development](https://a11y-guidelines.orange.com/en/mobile/android/development/).
 
 ## Variants
 

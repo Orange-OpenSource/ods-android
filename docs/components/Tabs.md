@@ -23,7 +23,7 @@ description: Tabs organize content across different screens, data sets, and othe
 
 ## Accessibility
 
-Please follow [accessibility criteria for development](https://a11y-guidelines.orange.com/en/mobile/android/development/)
+Please follow [accessibility criteria for development](https://a11y-guidelines.orange.com/en/mobile/android/development/).
 
 The Android tab components support screen reader descriptions for tabs and
 badges. While optional, we strongly encourage their use.

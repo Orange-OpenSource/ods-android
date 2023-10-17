@@ -21,7 +21,7 @@ description: Bottom navigation bars allow movement between primary destinations 
 
 ## Accessibility
 
-Please follow [accessibility criteria for development](https://a11y-guidelines.orange.com/en/mobile/android/development/)
+Please follow [accessibility criteria for development](https://a11y-guidelines.orange.com/en/mobile/android/development/).
 
 Note that TalkBack already reads the bottom navigation items labels so the content descriptions of the `OdsBottomNavigationItemIcon`s can be empty.
 
