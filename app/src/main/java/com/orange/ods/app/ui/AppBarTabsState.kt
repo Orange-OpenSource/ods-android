@@ -23,18 +23,18 @@ import com.orange.ods.app.ui.utilities.NavigationItem
 import com.orange.ods.app.ui.utilities.rememberSaveableMutableStateListOf
 
 @Composable
-fun rememberMainTabsState(
+fun rememberAppBarTabsState(
     tabs: SnapshotStateList<NavigationItem> = rememberSaveableMutableStateListOf(),
-    tabIconType: MutableState<MainTabsCustomizationState.TabIconType> = rememberSaveable { mutableStateOf(MainTabsState.DefaultConfiguration.tabIconType) },
-    tabTextEnabled: MutableState<Boolean> = rememberSaveable { mutableStateOf(MainTabsState.DefaultConfiguration.tabTextEnabled) },
-    scrollableTabs: MutableState<Boolean> = rememberSaveable { mutableStateOf(MainTabsState.DefaultConfiguration.scrollableTabs) }
+    tabIconType: MutableState<MainTabsCustomizationState.TabIconType> = rememberSaveable { mutableStateOf(AppBarTabsState.DefaultConfiguration.tabIconType) },
+    tabTextEnabled: MutableState<Boolean> = rememberSaveable { mutableStateOf(AppBarTabsState.DefaultConfiguration.tabTextEnabled) },
+    scrollableTabs: MutableState<Boolean> = rememberSaveable { mutableStateOf(AppBarTabsState.DefaultConfiguration.scrollableTabs) }
 ) =
     remember(tabs, tabIconType, tabTextEnabled, scrollableTabs) {
-        MainTabsState(tabs, tabIconType, tabTextEnabled, scrollableTabs)
+        AppBarTabsState(tabs, tabIconType, tabTextEnabled, scrollableTabs)
     }
 
 @OptIn(ExperimentalFoundationApi::class)
-class MainTabsState(
+class AppBarTabsState(
     val tabs: SnapshotStateList<NavigationItem>,
     val tabIconType: MutableState<MainTabsCustomizationState.TabIconType>,
     val tabTextEnabled: MutableState<Boolean>,
@@ -61,7 +61,7 @@ class MainTabsState(
     // Tabs state source of truth
     // ----------------------------------------------------------
 
-    fun updateTopAppBarTabs(tabsConfiguration: TabsConfiguration) {
+    fun updateAppBarTabs(tabsConfiguration: TabsConfiguration) {
         with(tabs) {
             clear()
             addAll(tabsConfiguration.tabs)
@@ -72,7 +72,7 @@ class MainTabsState(
         scrollableTabs.value = tabsConfiguration.scrollableTabs
     }
 
-    fun clearTopAppBarTabs() {
+    fun clearAppBarTabs() {
         tabs.clear()
         pagerState = null
     }

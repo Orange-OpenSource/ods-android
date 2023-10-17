@@ -55,7 +55,7 @@ fun ComponentTopAppBar(variant: Variant) {
     val customizationState = rememberTopAppBarCustomizationState(large = remember { mutableStateOf(variant == Variant.AppBarsTopLarge) })
 
     with(customizationState) {
-        val topAppBarConfiguration = AppBarConfiguration(
+        val appBarConfiguration = AppBarConfiguration(
             isLarge = isLarge,
             titleRes = if (isLarge) title.value.titleResId else R.string.component_app_bars_top_regular,
             scrollBehavior = scrollBehavior.value,
@@ -64,7 +64,7 @@ fun ComponentTopAppBar(variant: Variant) {
             isOverflowMenuEnabled = isOverflowMenuEnabled
         )
 
-        LocalAppBarManager.current.setCustomAppBar(topAppBarConfiguration)
+        LocalAppBarManager.current.setCustomAppBar(appBarConfiguration)
 
         ComponentCustomizationBottomSheetScaffold(
             bottomSheetScaffoldState = rememberBottomSheetScaffoldState(),
@@ -234,7 +234,7 @@ private fun CustomizationBottomSheetContent(customizationState: TopAppBarCustomi
 
 @Composable
 private fun BlinkingChevronDown(modifier: Modifier = Modifier) {
-    val infiniteTransition = rememberInfiniteTransition()
+    val infiniteTransition = rememberInfiniteTransition(label = "")
     val animationSpec = infiniteRepeatable<Float>(
         animation = tween(1000),
         repeatMode = RepeatMode.Reverse

@@ -45,7 +45,7 @@ class MainState(
     // BottomBar state source of truth
     // ----------------------------------------------------------
 
-    val bottomBarItems = BottomNavigationSection.values()
+    val bottomBarItems = BottomNavigationBarItem.values()
     private val bottomBarRoutes = bottomBarItems.map { it.route }
 
     // Reading this attribute will cause recompositions when the bottom bar needs shown, or not.
@@ -62,7 +62,7 @@ class MainState(
         get() = navController.currentDestination?.route
 
     fun upPress() {
-        appBarState.clearTopAppBarTabs()
+        appBarState.clearAppBarTabs()
         navController.navigateUp()
     }
 

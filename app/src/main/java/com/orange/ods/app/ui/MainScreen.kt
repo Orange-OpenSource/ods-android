@@ -128,7 +128,7 @@ fun MainScreen(themeConfigurations: Set<OdsThemeConfigurationContract>, mainView
                                 scrollBehavior = topBarScrollBehavior
                             )
                             if (showTabs) {
-                                MainTabs(mainTabsState = mainState.appBarState.tabsState)
+                                MainTabs(appBarTabsState = mainState.appBarState.tabsState)
                             }
                         }
                     }
@@ -139,7 +139,7 @@ fun MainScreen(themeConfigurations: Set<OdsThemeConfigurationContract>, mainView
                         enter = fadeIn(),
                         exit = fadeOut()
                     ) {
-                        MainBottomNavigation(
+                        BottomNavigationBar(
                             items = mainState.bottomBarItems,
                             currentRoute = mainState.currentRoute!!,
                             navigateToRoute = mainState::navigateToBottomBarRoute
@@ -193,8 +193,8 @@ private fun SystemBarsColorSideEffect() {
 
 @OptIn(ExperimentalFoundationApi::class)
 @Composable
-private fun MainTabs(mainTabsState: MainTabsState) {
-    with(mainTabsState) {
+private fun MainTabs(appBarTabsState: AppBarTabsState) {
+    with(appBarTabsState) {
         pagerState?.let { pagerState ->
             // Do not use tabs directly because this is a SnapshotStateList
             // Thus its value can be modified and can lead to crashes if it becomes empty

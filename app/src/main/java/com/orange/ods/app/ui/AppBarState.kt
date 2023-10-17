@@ -39,15 +39,15 @@ val LocalAppBarManager = staticCompositionLocalOf<AppBarManager> { error("Compos
 interface AppBarManager {
     fun setCustomAppBar(appBarConfiguration: AppBarConfiguration)
 
-    fun updateTopAppBarTabs(tabsConfiguration: TabsConfiguration)
-    fun clearTopAppBarTabs()
+    fun updateAppBarTabs(tabsConfiguration: TabsConfiguration)
+    fun clearAppBarTabs()
 }
 
 class AppBarState(
     private val navController: NavController,
     val searchedText: MutableState<TextFieldValue>,
     private val customAppBarConfiguration: MutableState<AppBarConfiguration>,
-    val tabsState: MainTabsState
+    val tabsState: AppBarTabsState
 ) : AppBarManager {
 
     companion object {
@@ -134,12 +134,12 @@ class AppBarState(
         customAppBarConfiguration.value = appBarConfiguration
     }
 
-    override fun updateTopAppBarTabs(tabsConfiguration: TabsConfiguration) {
-        tabsState.updateTopAppBarTabs(tabsConfiguration)
+    override fun updateAppBarTabs(tabsConfiguration: TabsConfiguration) {
+        tabsState.updateAppBarTabs(tabsConfiguration)
     }
 
-    override fun clearTopAppBarTabs() {
-        tabsState.clearTopAppBarTabs()
+    override fun clearAppBarTabs() {
+        tabsState.clearAppBarTabs()
     }
 }
 
@@ -148,7 +148,7 @@ fun rememberAppBarState(
     navController: NavController,
     searchedText: MutableState<TextFieldValue> = remember { mutableStateOf(TextFieldValue("")) },
     customAppBarConfiguration: MutableState<AppBarConfiguration> = remember { mutableStateOf(CustomDefaultConfiguration) },
-    tabsState: MainTabsState = rememberMainTabsState()
+    tabsState: AppBarTabsState = rememberAppBarTabsState()
 ) = remember { AppBarState(navController, searchedText, customAppBarConfiguration, tabsState) }
 
 data class AppBarConfiguration constructor(

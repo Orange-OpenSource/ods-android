@@ -36,7 +36,7 @@ fun NavGraphBuilder.appNavGraph(
 ) {
     navigation(
         route = MainDestinations.HomeRoute,
-        startDestination = BottomNavigationSection.Guidelines.route
+        startDestination = BottomNavigationBarItem.Guidelines.route
     ) {
         addBottomNavigationGraph(navigateToElement)
     }

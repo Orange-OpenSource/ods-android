@@ -49,7 +49,6 @@ fun getScreen(route: String?, args: Bundle?): Screen? = route?.let {
 
 sealed class Screen(
     val route: String,
-    val isAppBarVisible: Boolean = true,
     val isLargeAppBar: Boolean = false,
     val title: UiString? = null,
     val type: ScreenType = ScreenType.Default,
@@ -71,25 +70,25 @@ sealed class Screen(
     // Bottom navigation screens
 
     data object Guidelines : Screen(
-        route = BottomNavigationSection.Guidelines.route,
+        route = BottomNavigationBarItem.Guidelines.route,
         title = UiString.StringResource(R.string.navigation_item_guidelines),
         type = ScreenType.Home
     )
 
     data object Components : Screen(
-        route = BottomNavigationSection.Components.route,
+        route = BottomNavigationBarItem.Components.route,
         title = UiString.StringResource(R.string.navigation_item_components),
         type = ScreenType.Home
     )
 
     data object Modules : Screen(
-        route = BottomNavigationSection.Modules.route,
+        route = BottomNavigationBarItem.Modules.route,
         title = UiString.StringResource(R.string.navigation_item_modules),
         type = ScreenType.Home
     )
 
     data object About : Screen(
-        route = BottomNavigationSection.About.route,
+        route = BottomNavigationBarItem.About.route,
         title = UiString.StringResource(R.string.navigation_item_about),
         type = ScreenType.Home
     )
