@@ -33,8 +33,8 @@ toc2:
         url: /components/FloatingActionButtons_docs
       - page: Image tile
         url: /components/ImageTile_docs
-      - page: Lists
-        url: /components/Lists_docs
+      - page: List items
+        url: /components/ListItems_docs
       - page: Menus
         url: /components/Menus_docs
       - page: "Navigation: bottom"
