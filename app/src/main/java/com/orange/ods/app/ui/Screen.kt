@@ -27,10 +27,11 @@ import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.asSharedFlow
 
-private val elementRouteRegex = Regex("^(.+)/\\{.+\\}$")
-
+/**
+ * Returns the [Screen] corresponding to the given [route].
+ */
 fun getScreen(route: String?, args: Bundle?): Screen? = route?.let {
-    val matchElementRouteResult = elementRouteRegex.find(route)
+    val matchElementRouteResult = Regex("^(.+)/\\{.+\\}$").find(route)
     if (matchElementRouteResult != null) {
         // Specific element route -> get element id
         val (routeRoot) = matchElementRouteResult.destructured
@@ -44,9 +45,12 @@ fun getScreen(route: String?, args: Bundle?): Screen? = route?.let {
         val screens = Screen::class.nestedClasses.mapNotNull { kClass -> kClass.objectInstance as? Screen }
         screens.firstOrNull { screen -> screen.route == route }
     }
-
 }
 
+/**
+ * Defines application common changing elements for each screen.
+ * It allows to manage top app bar display according to the screen.
+ */
 sealed class Screen(
     val route: String,
     val isLargeAppBar: Boolean = false,
@@ -70,25 +74,25 @@ sealed class Screen(
     // Bottom navigation screens
 
     data object Guidelines : Screen(
-        route = BottomNavigationBarItem.Guidelines.route,
+        route = BottomBarItem.Guidelines.route,
         title = UiString.StringResource(R.string.navigation_item_guidelines),
         type = ScreenType.Home
     )
 
     data object Components : Screen(
-        route = BottomNavigationBarItem.Components.route,
+        route = BottomBarItem.Components.route,
         title = UiString.StringResource(R.string.navigation_item_components),
         type = ScreenType.Home
     )
 
     data object Modules : Screen(
-        route = BottomNavigationBarItem.Modules.route,
+        route = BottomBarItem.Modules.route,
         title = UiString.StringResource(R.string.navigation_item_modules),
         type = ScreenType.Home
     )
 
     data object About : Screen(
-        route = BottomNavigationBarItem.About.route,
+        route = BottomBarItem.About.route,
         title = UiString.StringResource(R.string.navigation_item_about),
         type = ScreenType.Home
     )
@@ -125,6 +129,7 @@ sealed class Screen(
     )
 
     // Search screen
+
     data object Search : Screen(
         route = MainDestinations.SearchRoute,
         type = ScreenType.Search

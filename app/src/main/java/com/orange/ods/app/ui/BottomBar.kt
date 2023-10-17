@@ -35,7 +35,7 @@ import com.orange.ods.compose.component.bottomnavigation.OdsBottomNavigationItem
 import com.orange.ods.compose.component.bottomnavigation.OdsBottomNavigationItemIcon
 
 @Composable
-fun BottomNavigationBar(items: Array<BottomNavigationBarItem>, currentRoute: String, navigateToRoute: (String) -> Unit) {
+fun BottomBar(items: Array<BottomBarItem>, currentRoute: String, navigateToRoute: (String) -> Unit) {
     OdsBottomNavigation(
         items = items.map { item ->
             OdsBottomNavigationItem(
@@ -48,17 +48,17 @@ fun BottomNavigationBar(items: Array<BottomNavigationBarItem>, currentRoute: Str
     )
 }
 
-fun NavGraphBuilder.addBottomNavigationGraph(navigateToElement: (String, Long?, NavBackStackEntry) -> Unit) {
-    composable(BottomNavigationBarItem.Guidelines.route) { from ->
+fun NavGraphBuilder.addBottomBarGraph(navigateToElement: (String, Long?, NavBackStackEntry) -> Unit) {
+    composable(BottomBarItem.Guidelines.route) { from ->
         GuidelinesScreen(onGuidelineClick = { route -> navigateToElement(route, null, from) })
     }
-    composable(BottomNavigationBarItem.Components.route) { from ->
+    composable(BottomBarItem.Components.route) { from ->
         ComponentsScreen(onComponentClick = { id -> navigateToElement(ComponentsNavigation.ComponentDetailRoute, id, from) })
     }
-    composable(BottomNavigationBarItem.Modules.route) {
+    composable(BottomBarItem.Modules.route) {
         ModulesScreen()
     }
-    composable(BottomNavigationBarItem.About.route) { from ->
+    composable(BottomBarItem.About.route) { from ->
         val context = LocalContext.current
         AboutScreen(onAboutItemClick = { id ->
             val aboutItem = aboutItems.firstOrNull { it.id == id }
@@ -71,7 +71,7 @@ fun NavGraphBuilder.addBottomNavigationGraph(navigateToElement: (String, Long?, 
     }
 }
 
-enum class BottomNavigationBarItem(
+enum class BottomBarItem(
     @StringRes val titleRes: Int,
     @DrawableRes val iconRes: Int,
     val route: String

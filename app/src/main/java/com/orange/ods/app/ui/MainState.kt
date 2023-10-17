@@ -23,17 +23,6 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
 
-@Composable
-fun rememberMainState(
-    themeState: ThemeState,
-    navController: NavHostController = rememberNavController(),
-    appBarState: AppBarState = rememberAppBarState(navController),
-    uiFramework: MutableState<UiFramework> = rememberSaveable { mutableStateOf(UiFramework.Compose) }
-) =
-    remember(themeState, navController, appBarState, uiFramework) {
-        MainState(themeState, navController, appBarState, uiFramework)
-    }
-
 class MainState(
     val themeState: ThemeState,
     val navController: NavHostController,
@@ -45,7 +34,7 @@ class MainState(
     // BottomBar state source of truth
     // ----------------------------------------------------------
 
-    val bottomBarItems = BottomNavigationBarItem.values()
+    val bottomBarItems = BottomBarItem.values()
     private val bottomBarRoutes = bottomBarItems.map { it.route }
 
     // Reading this attribute will cause recompositions when the bottom bar needs shown, or not.
@@ -90,6 +79,16 @@ class MainState(
             navController.navigate(fullRoute)
         }
     }
+}
+
+@Composable
+fun rememberMainState(
+    themeState: ThemeState,
+    navController: NavHostController = rememberNavController(),
+    appBarState: AppBarState = rememberAppBarState(navController),
+    uiFramework: MutableState<UiFramework> = rememberSaveable { mutableStateOf(UiFramework.Compose) }
+) = remember(themeState, navController, appBarState, uiFramework) {
+    MainState(themeState, navController, appBarState, uiFramework)
 }
 
 /**

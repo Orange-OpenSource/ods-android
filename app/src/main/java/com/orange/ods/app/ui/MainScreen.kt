@@ -139,7 +139,7 @@ fun MainScreen(themeConfigurations: Set<OdsThemeConfigurationContract>, mainView
                         enter = fadeIn(),
                         exit = fadeOut()
                     ) {
-                        BottomNavigationBar(
+                        BottomBar(
                             items = mainState.bottomBarItems,
                             currentRoute = mainState.currentRoute!!,
                             navigateToRoute = mainState::navigateToBottomBarRoute

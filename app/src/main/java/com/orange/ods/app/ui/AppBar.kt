@@ -21,6 +21,9 @@ import com.orange.ods.compose.component.appbar.top.OdsLargeTopAppBarInternal
 import com.orange.ods.compose.component.appbar.top.OdsTopAppBarInternal
 import com.orange.ods.compose.component.appbar.top.OdsTopAppBarNavigationIcon
 
+/**
+ * Displays the unique top app bar of the application which can be regular or large.
+ */
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun AppBar(
@@ -48,7 +51,7 @@ fun AppBar(
             navigationIcon = navigationIcon,
             actions = appBarState.actions,
             overflowMenuActions = appBarState.overflowMenuActions,
-            elevated = false // elevation is managed in [MainScreen] cause of tabs
+            elevated = false // elevation is managed in MainScreen cause of tabs
         )
     }
 }

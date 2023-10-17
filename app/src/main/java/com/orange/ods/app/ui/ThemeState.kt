@@ -23,12 +23,23 @@ val LocalThemeManager = staticCompositionLocalOf<ThemeManager> { error("Composit
 val LocalOdsGuideline = staticCompositionLocalOf<OdsGuideline> { error("CompositionLocal LocalOdsGuideline not present") }
 
 interface ThemeManager {
-
     val themeConfigurations: List<OdsThemeConfigurationContract>
-
     var currentThemeConfiguration: OdsThemeConfigurationContract
-
     var darkModeEnabled: Boolean
+}
+
+/**
+ * Theme state source of truth.
+ */
+class ThemeState(
+    override val themeConfigurations: List<OdsThemeConfigurationContract>,
+    currentThemeConfiguration: MutableState<OdsThemeConfigurationContract>,
+    darkModeEnabled: MutableState<Boolean>
+) : ThemeManager {
+
+    override var currentThemeConfiguration by currentThemeConfiguration
+
+    override var darkModeEnabled by darkModeEnabled
 
 }
 
@@ -37,23 +48,6 @@ fun rememberThemeState(
     themeConfigurations: List<OdsThemeConfigurationContract>,
     currentThemeConfiguration: MutableState<OdsThemeConfigurationContract>,
     darkModeEnabled: MutableState<Boolean>,
-) =
-    remember(themeConfigurations, currentThemeConfiguration, darkModeEnabled) {
-        ThemeState(themeConfigurations, currentThemeConfiguration, darkModeEnabled)
-    }
-
-class ThemeState(
-    override val themeConfigurations: List<OdsThemeConfigurationContract>,
-    currentThemeConfiguration: MutableState<OdsThemeConfigurationContract>,
-    darkModeEnabled: MutableState<Boolean>
-) : ThemeManager {
-
-    // ----------------------------------------------------------
-    // Theme state source of truth
-    // ----------------------------------------------------------
-
-    override var currentThemeConfiguration by currentThemeConfiguration
-
-    override var darkModeEnabled by darkModeEnabled
-
+) = remember(themeConfigurations, currentThemeConfiguration, darkModeEnabled) {
+    ThemeState(themeConfigurations, currentThemeConfiguration, darkModeEnabled)
 }

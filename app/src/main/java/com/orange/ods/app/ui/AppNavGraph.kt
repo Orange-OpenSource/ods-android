@@ -29,6 +29,9 @@ object MainDestinations {
     const val SearchRoute = "search"
 }
 
+/**
+ * Navigation graph of the application.
+ */
 fun NavGraphBuilder.appNavGraph(
     navigateToElement: (String, Long?, NavBackStackEntry) -> Unit,
     upPress: () -> Unit,
@@ -36,9 +39,9 @@ fun NavGraphBuilder.appNavGraph(
 ) {
     navigation(
         route = MainDestinations.HomeRoute,
-        startDestination = BottomNavigationBarItem.Guidelines.route
+        startDestination = BottomBarItem.Guidelines.route
     ) {
-        addBottomNavigationGraph(navigateToElement)
+        addBottomBarGraph(navigateToElement)
     }
 
     addGuidelinesGraph()

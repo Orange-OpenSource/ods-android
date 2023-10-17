@@ -43,6 +43,12 @@ interface AppBarManager {
     fun clearAppBarTabs()
 }
 
+/**
+ * AppBar state source of truth.
+ *
+ * The app bar is managed according to the [Screen] displayed except when its type is [ScreenType.WithCustomizableTopAppBar]. In this case, the app bar is
+ * displayed according to the provided [AppBarConfiguration].
+ */
 class AppBarState(
     private val navController: NavController,
     val searchedText: MutableState<TextFieldValue>,
@@ -129,6 +135,10 @@ class AppBarState(
 
     val hasScrollBehavior: Boolean
         get() = customAppBarConfiguration.value.scrollBehavior != TopAppBarCustomizationState.ScrollBehavior.None
+
+    // ----------------------------------------------------------
+    // AppBarManager implementation
+    // ----------------------------------------------------------
 
     override fun setCustomAppBar(appBarConfiguration: AppBarConfiguration) {
         customAppBarConfiguration.value = appBarConfiguration
