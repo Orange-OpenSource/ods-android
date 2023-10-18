@@ -70,7 +70,7 @@ fun ComponentListItem() {
 private fun ComponentListItemBottomSheetContent(listItemCustomizationState: ListItemCustomizationState) {
     ComponentCountRow(
         modifier = Modifier.padding(start = dimensionResource(id = com.orange.ods.R.dimen.screen_horizontal_margin)),
-        title = stringResource(id = R.string.component_list_item_size),
+        title = stringResource(id = R.string.component_list_item_line_count),
         count = listItemCustomizationState.lineCount,
         minusIconContentDescription = stringResource(id = R.string.component_list_item_remove_line),
         plusIconContentDescription = stringResource(id = R.string.component_list_item_add_line),
