@@ -95,7 +95,7 @@ enum class OdsListItemIconType {
  * needs, you can use the other [OdsListItem] signature which accept any Composable as trailing.
  *
  * @param text The primary text of the list item.
- * @param modifier Modifier to be applied to the list item.
+ * @param modifier [Modifier] applied to the list item.
  * @param icon The leading supporting visual of the list item.
  * @param secondaryText The secondary text of the list item.
  * @param singleLineSecondaryText Whether the secondary text is single line.
@@ -394,11 +394,11 @@ sealed interface OdsListItemTrailing
  * A trailing checkbox in an [OdsListItem].
  *
  * @constructor Creates an instance of [OdsListItemTrailingCheckbox].
- * @param checked whether Checkbox is checked or unchecked.
- * @param onCheckedChange callback to be invoked when checkbox is being clicked,
+ * @param checked Whether Checkbox is checked or unchecked.
+ * @param onCheckedChange Callback to be invoked when checkbox is being clicked,
  * therefore the change of checked state in requested.  If null, then this is passive.
  * and relies entirely on a higher-level component to control the "checked" state.
- * @param enabled whether the component is enabled or grayed out.
+ * @param enabled Whether the component is enabled or grayed out.
  */
 class OdsListItemTrailingCheckbox(
     internal val checked: Boolean,
@@ -416,11 +416,11 @@ class OdsListItemTrailingCheckbox(
  * A trailing switch in an [OdsListItem].
  *
  * @constructor Creates an instance of [OdsListItemTrailingSwitch].
- * @param checked whether or not this component is checked.
- * @param onCheckedChange callback to be invoked when Switch is being clicked,
+ * @param checked Whether or not this component is checked.
+ * @param onCheckedChange Callback to be invoked when Switch is being clicked,
  * therefore the change of checked state is requested.  If null, then this is passive.
  * and relies entirely on a higher-level component to control the "checked" state.
- * @param enabled whether the component is enabled or grayed out.
+ * @param enabled Whether the component is enabled or grayed out.
  */
 class OdsListItemTrailingSwitch(
     internal val checked: Boolean,
@@ -438,8 +438,8 @@ class OdsListItemTrailingSwitch(
  * A trailing radio button in an [OdsListItem].
  *
  * @constructor Creates an instance of [OdsListItemTrailingRadioButton].
- * @param selected whether this radio button is selected or not.
- * @param onClick callback to be invoked when the radio button is clicked. If null, then this
+ * @param selected Whether this radio button is selected or not.
+ * @param onClick Callback to be invoked when the radio button is clicked. If null, then this
  * radio button will not handle input events, and only act as a visual indicator of [selected] state.
  * @param enabled Controls the enabled state of the radio button. When `false`, this button will
  * not be selectable and appears disabled.
