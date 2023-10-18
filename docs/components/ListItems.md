@@ -50,7 +50,7 @@ Please note that there is no start padding with wide images.
 
 The library offers the `OdsListItem` composable to display lists items.
 
-The `OdsListItem` composable allows you to display a leading icon using the `icon` parameter of the `OdsListItem` method, as well as a trailing element (either a checkbox, a switch, a radio button, an icon or a caption text) using the `trailing`parameter.
+The `OdsListItem` composable allows you to display a leading icon using the `icon` parameter of the `OdsListItem` method, as well as a trailing element (either a checkbox, a switch, a radio button, an icon or a caption text) using the `trailing` parameter.
 
 ```kotlin
 OdsListItem(
@@ -70,14 +70,14 @@ OdsListItem(
 
 Parameter | Default&nbsp;value | Description
 -- | -- | --
-`text: String` | | The primary text of the list item.
-`modifier: Modifier` | `Modifier` | Modifier to be applied to the list item.
-`icon: OdsListItemIcon?` | `null` | The leading supporting visual of the list item.
-`secondaryText: String?` | `null` | The secondary text of the list item.
-`singleLineSecondaryText: Boolean` | `true` | Whether the secondary text is single line.
-`overlineText: String?` | `null` | The text displayed above the primary text.
-`trailing: OdsListItemTrailing?` | `null` | The trailing content to display at the end of the list item.
-`divider: Boolean` | `false` | Whether or not a divider is displayed at the bottom of the list item.
+`text: String` | | The primary text of the list item
+`modifier: Modifier` | `Modifier` | Modifier to be applied to the list item
+`icon: OdsListItemIcon?` | `null` | The leading supporting visual of the list item
+`secondaryText: String?` | `null` | The secondary text of the list item
+`singleLineSecondaryText: Boolean` | `true` | Whether the secondary text is single line
+`overlineText: String?` | `null` | The text displayed above the primary text
+`trailing: OdsListItemTrailing?` | `null` | The trailing content to display at the end of the list item
+`divider: Boolean` | `false` | Whether or not a divider is displayed at the bottom of the list item
 {:.table}
 
 ### Two-line list
