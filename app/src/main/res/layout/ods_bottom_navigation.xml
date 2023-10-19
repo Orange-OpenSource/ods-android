@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?><!--
+  ~ /*
+  ~ * Copyright 2021 Orange
+  ~ *
+  ~ * Use of this source code is governed by an MIT-style
+  ~ * license that can be found in the LICENSE file or at
+  ~ * https://opensource.org/licenses/MIT.
+  ~ */
+  -->
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <com.orange.ods.xml.component.bottomnavigation.OdsBottomNavigation
+            android:id="@+id/ods_bottom_navigation"
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content" />
+
+        <!-- Invisible OdsIconToggleButtonsRow used for tests -->
+        <com.orange.ods.xml.component.button.OdsIconToggleButtonsRow
+            android:id="@+id/ods_bottom_navigation_test"
+            android:visibility="gone"
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content" />
+
+    </FrameLayout>
+
+</layout>

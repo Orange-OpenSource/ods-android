@@ -27,6 +27,8 @@ import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import com.orange.ods.app.R
+import com.orange.ods.app.databinding.OdsBottomNavigationBinding
+import com.orange.ods.app.ui.UiFramework
 import com.orange.ods.app.ui.components.bottomnavigation.ComponentBottomNavigation.MaxNavigationItemCount
 import com.orange.ods.app.ui.components.bottomnavigation.ComponentBottomNavigation.MinNavigationItemCount
 import com.orange.ods.app.ui.components.utilities.ComponentCountRow
@@ -53,6 +55,22 @@ fun ComponentBottomNavigation() {
     val selectedNavigationItemCount = rememberSaveable { mutableStateOf(MinNavigationItemCount) }
     val selectedNavigationItem = remember { mutableStateOf(navigationItems[0]) }
 
+    val bottomNavigationItems = navigationItems.take(selectedNavigationItemCount.value).map { item ->
+        val label = stringResource(id = item.textResId)
+        OdsBottomNavigationItem(
+            icon = OdsBottomNavigationItemIcon(
+                painter = painterResource(id = item.iconResId),
+                contentDescription = ""
+            ),
+            label = label,
+            selected = selectedNavigationItem.value.textResId == item.textResId,
+            onClick = {
+                selectedNavigationItem.value = item
+                clickOnElement(context, label)
+            }
+        )
+    }
+
     ComponentCustomizationBottomSheetScaffold(
         bottomSheetScaffoldState = rememberBottomSheetScaffoldState(),
         bottomSheetContent = {
@@ -72,26 +90,15 @@ fun ComponentBottomNavigation() {
                 .verticalScroll(rememberScrollState())
                 .padding(top = dimensionResource(id = com.orange.ods.R.dimen.screen_vertical_margin))
         ) {
-            OdsBottomNavigation(
-                items = navigationItems.take(selectedNavigationItemCount.value).map { navigationItem ->
-                    val label = stringResource(id = navigationItem.textResId)
-                    OdsBottomNavigationItem(
-                        icon = OdsBottomNavigationItemIcon(
-                            painter = painterResource(id = navigationItem.iconResId),
-                            contentDescription = ""
-                        ),
-                        label = label,
-                        selected = selectedNavigationItem.value.textResId == navigationItem.textResId,
-                        onClick = {
-                            selectedNavigationItem.value = navigationItem
-                            clickOnElement(context, label)
-                        }
-                    )
-                }
-            )
+            UiFramework<OdsBottomNavigationBinding>(compose = {
+                OdsBottomNavigation(items = bottomNavigationItems)
+            }, xml = {
+                this.odsBottomNavigation.items = bottomNavigationItems
+            })
 
             CodeImplementationColumn(
-                modifier = Modifier.padding(horizontal = dimensionResource(id = com.orange.ods.R.dimen.screen_horizontal_margin))
+                modifier = Modifier.padding(horizontal = dimensionResource(id = com.orange.ods.R.dimen.screen_horizontal_margin)),
+                xmlAvailable = true
             ) {
                 FunctionCallCode(
                     name = OdsComposable.OdsBottomNavigation.name,
