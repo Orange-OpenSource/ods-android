@@ -82,7 +82,7 @@ Parameter | Default&nbsp;value | Description
 
 ### XML
 
-In your layout, use the `OdsBottomNavigation` component.
+In your layout, use the `OdsBottomNavigation` view.
 
 ```xml
 
