@@ -37,6 +37,9 @@ import com.orange.ods.app.ui.LocalAppBarManager
 import com.orange.ods.app.ui.components.Variant
 import com.orange.ods.app.ui.components.utilities.ComponentCountRow
 import com.orange.ods.app.ui.components.utilities.ComponentCustomizationBottomSheetScaffold
+import com.orange.ods.app.ui.utilities.code.CodeBackgroundColumn
+import com.orange.ods.app.ui.utilities.code.CodeImplementationColumn
+import com.orange.ods.app.ui.utilities.code.FunctionCallCode
 import com.orange.ods.app.ui.utilities.composable.*
 import com.orange.ods.compose.OdsComposable
 import com.orange.ods.compose.component.appbar.top.OdsTopAppBarActionButton
