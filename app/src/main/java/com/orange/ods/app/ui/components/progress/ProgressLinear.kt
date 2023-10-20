@@ -10,9 +10,6 @@
 
 package com.orange.ods.app.ui.components.progress
 
-import androidx.compose.animation.core.FastOutSlowInEasing
-import androidx.compose.animation.core.animateFloatAsState
-import androidx.compose.animation.core.tween
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
@@ -22,10 +19,6 @@ import androidx.compose.material.ExperimentalMaterialApi
 import androidx.compose.material.rememberBottomSheetScaffoldState
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
-import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
-import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.painterResource
@@ -43,19 +36,10 @@ import com.orange.ods.compose.component.list.OdsListItemTrailingSwitch
 import com.orange.ods.compose.component.progressindicator.OdsLinearProgressIndicator
 import com.orange.ods.compose.component.progressindicator.OdsLinearProgressIndicatorIcon
 
-private const val DeterminateProgressTargetValue = 0.9f
-private const val DeterminateProgressAnimDuration = 5000
-
 @OptIn(ExperimentalMaterialApi::class)
 @Composable
 fun ProgressLinear() {
-
     val customizationState = rememberProgressCustomizationState()
-    var determinateProgressValue by remember { mutableStateOf(0f) }
-    val determinateProgressAnimation by animateFloatAsState(
-        targetValue = determinateProgressValue,
-        animationSpec = tween(durationMillis = DeterminateProgressAnimDuration, easing = FastOutSlowInEasing)
-    )
 
     with(customizationState) {
         if (type.value == ProgressCustomizationState.Type.Indeterminate) currentValue.value = false
@@ -65,7 +49,10 @@ fun ProgressLinear() {
                 Subtitle(textRes = R.string.component_element_type, horizontalPadding = true)
                 OdsChoiceChipsFlowRow(
                     value = type.value,
-                    onValueChange = { value -> type.value = value },
+                    onValueChange = { value ->
+                        type.value = value
+                        if (value == ProgressCustomizationState.Type.Indeterminate) resetAnimation()
+                    },
                     modifier = Modifier.padding(horizontal = dimensionResource(id = com.orange.ods.R.dimen.spacing_m)),
                     chips = listOf(
                         OdsChoiceChip(text = stringResource(id = R.string.component_progress_determinate), value = ProgressCustomizationState.Type.Determinate),
@@ -95,7 +82,7 @@ fun ProgressLinear() {
             ) {
                 val text = stringResource(id = R.string.component_progress_label)
                 OdsLinearProgressIndicator(
-                    progress = if (type.value == ProgressCustomizationState.Type.Determinate) determinateProgressAnimation else null,
+                    progress = if (type.value == ProgressCustomizationState.Type.Determinate) determinateProgressAnimation.value else null,
                     label = if (hasLabel) text else null,
                     showCurrentValue = hasCurrentValue,
                     icon = if (hasIcon) OdsLinearProgressIndicatorIcon(painterResource(id = R.drawable.ic_arrow_down), "") else null,
@@ -105,7 +92,7 @@ fun ProgressLinear() {
                 )
                 if (type.value == ProgressCustomizationState.Type.Determinate) {
                     LaunchedEffect(DeterminateProgressTargetValue) {
-                        determinateProgressValue = DeterminateProgressTargetValue
+                        determinateProgressValue.value = DeterminateProgressTargetValue
                     }
                 }
 
