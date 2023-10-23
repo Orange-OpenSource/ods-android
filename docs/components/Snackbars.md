@@ -19,6 +19,7 @@ action that was just taken, or retrying an action that had failed.
 * [Accessibility](#accessibility)
 * [Implementation](#implementation)
     * [Jetpack Compose](#jetpack-compose)
+        * [OdsSnackbarHost API](#odssnackbarhost-api)
 
 ---
 
@@ -61,7 +62,9 @@ Scaffold(
     scaffoldState = scaffoldState,
     snackbarHost = {
         OdsSnackbarHost(hostState = it) { data ->
-            OdsSnackbar(snackbarData = data)
+            OdsSnackbar(data = data, actionOnNewLine = true, onActionClick = {
+                doSomething()
+            })
         }
     }) {
     OdsButton(
@@ -80,3 +83,12 @@ Scaffold(
     )
 }
 ```
+
+#### OdsSnackbarHost API
+
+Parameter | Default&nbsp;value | Description
+-- | -- | --
+`hostState: SnackbarHostState` | | State of this component to read and show `OdsSnackbar` accordingly.
+`modifier: Modifier` | `Modifier` | `Modifier` applied to the snackbar host
+`snackbar: (SnackbarData) -> OdsSnackbar` | `{ OdsSnackbar(it) }` | Instance of the `OdsSnackbar` to be shown at the appropriate time with appearance based on the `SnackbarData` provided as a param
+{:.table}
