@@ -26,6 +26,7 @@ import com.orange.ods.R
 import com.orange.ods.compose.component.OdsComposable
 import com.orange.ods.compose.component.button.OdsTextButton
 import com.orange.ods.compose.component.button.OdsTextButtonStyle
+import com.orange.ods.compose.component.content.OdsComponentContent
 import com.orange.ods.compose.component.utilities.BasicPreviewParameterProvider
 import com.orange.ods.compose.component.utilities.Preview
 import com.orange.ods.compose.component.utilities.UiModePreviews
@@ -36,12 +37,11 @@ import com.orange.ods.compose.theme.OdsDisplaySurface
  *
  * @see androidx.compose.material.Snackbar
  *
- * @param message text displayed in the snackbar.
- * @param modifier modifiers for the Snackbar layout.
- * @param actionLabel if set, it displays an [OdsTextButton] with the given [actionLabel] as an action of the snackbar.
- * @param actionOnNewLine whether or not action should be put on the separate line. Recommended
- * for action with long action text
- * @param onActionClick executed on action button click.
+ * @param message Text displayed into the snackbar.
+ * @param modifier [Modifier] applied to the snackbar layout.
+ * @param actionLabel If set, it displays an [OdsTextButton] with the given [actionLabel] as an action of the snackbar.
+ * @param actionOnNewLine Whether or not action should be put on a separate line. Recommended for action with long action text.
+ * @param onActionClick Callback invoked when the action button is clicked.
  */
 @Composable
 @OdsComposable
@@ -69,66 +69,79 @@ fun OdsSnackbar(
 }
 
 /**
- * <a href="https://system.design.orange.com/0c1af118d/p/887440-toast--snackbars/b/043ece" class="external" target="_blank">ODS snackbar</a>.
- *
- * @see androidx.compose.material.Snackbar
- *
- * @param snackbarData data about the current snackbar showing via [SnackbarHostState].
- * @param modifier modifiers for the Snackbar layout.
- * @param actionOnNewLine whether or not action should be put on the separate line. Recommended
- * for action with long action text
- * @param onActionClick executed on action button click.
- */
-@Composable
-fun OdsSnackbar(
-    snackbarData: SnackbarData,
-    modifier: Modifier = Modifier,
-    actionOnNewLine: Boolean = false,
-    onActionClick: () -> Unit = {}
-) {
-    OdsSnackbar(
-        modifier = modifier,
-        message = snackbarData.message,
-        actionLabel = snackbarData.actionLabel,
-        actionOnNewLine = actionOnNewLine,
-        onActionClick = onActionClick
-    )
-}
-
-/**
  * Host for [OdsSnackbar]s to be used in [Scaffold] to properly show, hide and dismiss items based
- * on material specification and the [hostState].
+ * on Material specification and the [hostState].
  * The [OdsSnackbarHost] use the padding provided by the Orange Design System.
  *
  * @see androidx.compose.material.SnackbarHost
  *
- * @param hostState state of this component to read and show [OdsSnackbar]s accordingly.
- * @param modifier optional modifier for this component.
- * @param snackbar the instance of the [OdsSnackbar] to be shown at the appropriate time with.
- * appearance based on the [SnackbarData] provided as a param
+ * @param hostState State of this component to read and show [OdsSnackbar]s accordingly.
+ * @param modifier [Modifier] applied to the snackbar host.
+ * @param snackbar Instance of the [OdsSnackbar] to be shown at the appropriate time with appearance based on
+ * the [SnackbarData] provided as a param.
  */
 @OdsComposable
 @Composable
 fun OdsSnackbarHost(
     hostState: SnackbarHostState,
     modifier: Modifier = Modifier,
-    snackbar: @Composable (SnackbarData) -> Unit = { OdsSnackbar(snackbarData = it) }
+    snackbar: (SnackbarData) -> OdsSnackbar = { OdsSnackbar(it) }
 ) {
     SnackbarHost(
         modifier = modifier.padding(dimensionResource(id = R.dimen.spacing_s)),
         hostState = hostState,
-        snackbar = snackbar
+        snackbar = { snackbar(it).Content(modifier = Modifier) }
     )
+}
+
+/**
+ * A snackbar in an [OdsSnackbarHost].
+ *
+ * @constructor Creates an instance of [OdsSnackbar].
+ * @param data Data used to create the snackbar.
+ * @param actionOnNewLine Whether or not the action should be put on a separate line. Recommended for action with long action text.
+ * @param onActionClick Callback invoked when the action button is clicked.
+ */
+class OdsSnackbar(private val data: SnackbarData, private val actionOnNewLine: Boolean = false, private val onActionClick: () -> Unit = {}) :
+    OdsComponentContent<Nothing>() {
+
+    @Composable
+    override fun Content(modifier: Modifier) {
+        OdsSnackbar(
+            modifier = modifier,
+            message = data.message,
+            actionLabel = data.actionLabel,
+            actionOnNewLine = actionOnNewLine,
+            onActionClick = onActionClick
+        )
+    }
 }
 
 @UiModePreviews.Default
 @Composable
-private fun PreviewOdsSnackbar(@PreviewParameter(OdsSnackbarPreviewParameterProvider::class) actionOnNewLine: Boolean) = Preview {
-    OdsSnackbar(
-        message = "This is the message of the snackbar.",
-        actionLabel = "Action",
-        actionOnNewLine = actionOnNewLine
-    )
+private fun PreviewOdsSnackbar(@PreviewParameter(OdsSnackbarPreviewParameterProvider::class) parameter: OdsSnackbarPreviewParameter) = Preview {
+    with(parameter) {
+        OdsSnackbar(
+            message = "This is the message of the snackbar.",
+            actionLabel = if (action) "Action" else null,
+            actionOnNewLine = actionOnNewLine
+        )
+    }
 }
 
-private class OdsSnackbarPreviewParameterProvider : BasicPreviewParameterProvider<Boolean>(false, true)
+private data class OdsSnackbarPreviewParameter(
+    val action: Boolean,
+    val actionOnNewLine: Boolean = false
+)
+
+private class OdsSnackbarPreviewParameterProvider :
+    BasicPreviewParameterProvider<OdsSnackbarPreviewParameter>(*previewParameterValues.toTypedArray())
+
+private val previewParameterValues: List<OdsSnackbarPreviewParameter>
+    get() {
+        return listOf(
+            OdsSnackbarPreviewParameter(action = false),
+            OdsSnackbarPreviewParameter(action = true),
+            OdsSnackbarPreviewParameter(action = true, actionOnNewLine = true),
+        )
+    }

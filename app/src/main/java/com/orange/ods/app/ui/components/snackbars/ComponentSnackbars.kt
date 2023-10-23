@@ -65,7 +65,7 @@ fun ComponentSnackbars() {
         bottomSheetScaffoldState = bottomSheetScaffoldState,
         snackbarHost = {
             OdsSnackbarHost(hostState = it) { data ->
-                OdsSnackbar(snackbarData = data, actionOnNewLine = actionOnNewLineChecked, onActionClick = {
+                OdsSnackbar(data = data, actionOnNewLine = actionOnNewLineChecked, onActionClick = {
                     clickOnElement(context = context, clickedElement = snackbarActionButton)
                 })
             }
