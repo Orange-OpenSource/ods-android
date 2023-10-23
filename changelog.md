@@ -9,6 +9,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
+- \[App\] Display `OdsBottomNavigation` XML code implementation ([#671](https://github.com/Orange-OpenSource/ods-android/issues/671))
 - \[LibXml\] Add `OdsBottomNavigation` view ([#526](https://github.com/Orange-OpenSource/ods-android/issues/526))
 
 ### Changed
