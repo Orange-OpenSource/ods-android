@@ -10,7 +10,6 @@
 
 package com.orange.ods.app.ui.components.listitem
 
-import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material.ExperimentalMaterialApi
@@ -53,7 +52,6 @@ import com.orange.ods.compose.component.list.OdsListItemTrailingIcon
 import com.orange.ods.compose.component.list.OdsListItemTrailingRadioButton
 import com.orange.ods.compose.component.list.OdsListItemTrailingSwitch
 import com.orange.ods.extension.ifNotNull
-import com.orange.ods.extension.orElse
 
 @OptIn(ExperimentalMaterialApi::class)
 @Composable
@@ -119,27 +117,19 @@ private fun ComponentListItemContent(listItemCustomizationState: ListItemCustomi
             val icon = ifNotNull(getIconPainter(recipe), selectedIconType.value) { painter, type ->
                 OdsListItemIcon(type, painter, "")
             }
-            trailing?.let { listItemTrailing ->
-                OdsListItem(
-                    text = text,
-                    secondaryText = secondaryText,
-                    singleLineSecondaryText = singleLineSecondaryText,
-                    icon = icon,
-                    trailing = listItemTrailing
-                )
-            }.orElse {
-                val context = LocalContext.current
-                OdsListItem(
-                    modifier = Modifier.clickable { clickOnElement(context = context, context.getString(R.string.component_list_item)) },
-                    text = text,
-                    secondaryText = secondaryText,
-                    singleLineSecondaryText = singleLineSecondaryText,
-                    icon = icon
-                )
+
+            val context = LocalContext.current
+            OdsListItem(
+                text = text,
+                secondaryText = secondaryText,
+                singleLineSecondaryText = singleLineSecondaryText,
+                icon = icon,
+                trailing = trailing
+            ) {
+                clickOnElement(context = context, context.getString(R.string.component_list_item))
             }
 
             CodeImplementationColumn(modifier = Modifier.padding(horizontal = dimensionResource(id = com.orange.ods.R.dimen.screen_horizontal_margin))) {
-                val context = LocalContext.current
                 FunctionCallCode(
                     name = OdsComposable.OdsListItem.name,
                     parameters = {

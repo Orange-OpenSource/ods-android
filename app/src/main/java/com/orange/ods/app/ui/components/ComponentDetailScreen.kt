@@ -10,7 +10,6 @@
 
 package com.orange.ods.app.ui.components
 
-import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.rememberScrollState
@@ -72,5 +71,6 @@ private fun ComponentDetailLinkItem(label: String, composableName: String?, onCl
         icon = OdsListItemIcon(OdsListItemIconType.Icon, painterResource(id = R.drawable.ic_play_outline), ""),
         text = label,
         secondaryText = composableName,
-        modifier = Modifier.clickable { onClick() })
+        onClick = onClick
+    )
 }

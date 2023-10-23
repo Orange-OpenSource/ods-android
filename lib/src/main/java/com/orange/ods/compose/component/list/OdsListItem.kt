@@ -10,6 +10,7 @@
 
 package com.orange.ods.compose.component.list
 
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -102,6 +103,7 @@ enum class OdsListItemIconType {
  * @param overlineText The text displayed above the primary text.
  * @param trailing The trailing content to display at the end of the list item.
  * @param divider Whether or not a divider is displayed at the bottom of the list item.
+ * @param onClick Will be called when the user clicks the list item. This parameter only has an effect if [trailing] is [OdsListItemTrailingIcon] or `null`.
  */
 @Composable
 @OdsComposable
@@ -113,7 +115,8 @@ fun OdsListItem(
     singleLineSecondaryText: Boolean = true,
     overlineText: String? = null,
     trailing: OdsListItemTrailing? = null,
-    divider: Boolean = false
+    divider: Boolean = false,
+    onClick: (() -> Unit)? = null
 ) {
     OdsListItem(
         text = text,
@@ -125,7 +128,8 @@ fun OdsListItem(
         singleLineSecondaryText = singleLineSecondaryText,
         overlineText = overlineText,
         trailing = trailing,
-        divider = divider
+        divider = divider,
+        onClick = onClick
     )
 }
 
@@ -140,9 +144,10 @@ internal fun OdsListItem(
     singleLineSecondaryText: Boolean = true,
     overlineText: String? = null,
     trailing: OdsListItemTrailing? = null,
-    divider: Boolean = false
+    divider: Boolean = false,
+    onClick: (() -> Unit)? = null
 ) {
-    val rootModifier = if (trailing != null) modifier.trailing(trailing) else modifier
+    val rootModifier = modifier.rootModifier(trailing, onClick)
     if (icon?.iconType == OdsListItemIconType.WideImage) {
         Row(modifier = rootModifier, verticalAlignment = Alignment.CenterVertically) {
             icon.Content()
@@ -262,7 +267,7 @@ private fun computeRequiredHeight(
     return dimensionResource(id = heightRes)
 }
 
-private fun Modifier.trailing(trailing: OdsListItemTrailing): Modifier {
+private fun Modifier.rootModifier(trailing: OdsListItemTrailing?, onListItemClick: (() -> Unit)?): Modifier {
     return with(trailing) {
         when {
             this is OdsListItemTrailingCheckbox && onCheckedChange != null -> toggleable(
@@ -283,7 +288,7 @@ private fun Modifier.trailing(trailing: OdsListItemTrailing): Modifier {
                 enabled = enabled,
                 onValueChange = onCheckedChange
             )
-            else -> this@trailing
+            else -> onListItemClick?.let { clickable(onClick = it) }.orElse { this@rootModifier }
         }
     }
 }

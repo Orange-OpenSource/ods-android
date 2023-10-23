@@ -10,7 +10,6 @@
 
 package com.orange.ods.app.ui.search
 
-import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.lazy.LazyColumn
@@ -173,17 +172,15 @@ fun SearchScreen(
                 text = item.title,
                 secondaryText = item.subtitle,
                 singleLineSecondaryText = true,
-                modifier = Modifier
-                    .clickable {
-                        when (item.data) {
-                            is Component -> onResultItemClick(MainDestinations.ComponentDetailRoute, item.id)
-                            is Variant -> onResultItemClick(MainDestinations.ComponentVariantDemoRoute, item.id)
-                            is Spacing -> onResultItemClick(MainDestinations.GuidelineSpacing, null)
-                            is GuidelineColor -> openDialog.value = true
-                        }
-                    },
                 icon = OdsListItemIcon(OdsListItemIconType.SquareImage, painter, "")
-            )
+            ) {
+                when (item.data) {
+                    is Component -> onResultItemClick(MainDestinations.ComponentDetailRoute, item.id)
+                    is Variant -> onResultItemClick(MainDestinations.ComponentVariantDemoRoute, item.id)
+                    is Spacing -> onResultItemClick(MainDestinations.GuidelineSpacing, null)
+                    is GuidelineColor -> openDialog.value = true
+                }
+            }
             if (openDialog.value && guidelineColor != null) {
                 DialogColor(color = guidelineColor, openDialog)
             }
