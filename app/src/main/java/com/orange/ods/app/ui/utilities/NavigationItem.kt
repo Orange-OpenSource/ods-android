@@ -15,7 +15,6 @@ import androidx.annotation.StringRes
 import com.orange.ods.app.R
 
 enum class NavigationItem(@DrawableRes val iconResId: Int, @StringRes val textResId: Int) {
-
     Coffee(R.drawable.ic_coffee, R.string.navigation_item_coffee),
     CookingPot(R.drawable.ic_cooking_pot, R.string.navigation_item_cooking_pot),
     IceCream(R.drawable.ic_ice_cream, R.string.navigation_item_ice_cream),

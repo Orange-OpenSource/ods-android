@@ -23,43 +23,10 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
 
-/**
- * Destinations used in the [MainScreen].
- */
-object MainDestinations {
-    const val HomeRoute = "home"
-
-    const val GuidelineTypography = "guideline/typography"
-    const val GuidelineColor = "guideline/color"
-    const val GuidelineSpacing = "guideline/spacing"
-
-    const val ComponentDetailRoute = "component"
-    const val ComponentIdKey = "componentId"
-    const val ComponentVariantDemoRoute = "component/variant"
-    const val ComponentVariantIdKey = "componentVariantId"
-    const val ComponentDemoRoute = "component/demo"
-
-    const val AboutItemDetailRoute = "aboutItem"
-    const val AboutItemIdKey = "aboutItemId"
-
-    const val SearchRoute = "search"
-}
-
-@Composable
-fun rememberMainState(
-    themeState: ThemeState,
-    navController: NavHostController = rememberNavController(),
-    topAppBarState: MainTopAppBarState = rememberMainTopAppBarState(),
-    uiFramework: MutableState<UiFramework> = rememberSaveable { mutableStateOf(UiFramework.Compose) }
-) =
-    remember(themeState, navController, topAppBarState, uiFramework) {
-        MainState(themeState, navController, topAppBarState, uiFramework)
-    }
-
 class MainState(
     val themeState: ThemeState,
     val navController: NavHostController,
-    val topAppBarState: MainTopAppBarState,
+    val appBarState: AppBarState,
     val uiFramework: MutableState<UiFramework>
 ) {
 
@@ -67,7 +34,7 @@ class MainState(
     // BottomBar state source of truth
     // ----------------------------------------------------------
 
-    val bottomBarItems = BottomNavigationSections.values()
+    val bottomBarItems = BottomBarItem.values()
     private val bottomBarRoutes = bottomBarItems.map { it.route }
 
     // Reading this attribute will cause recompositions when the bottom bar needs shown, or not.
@@ -84,10 +51,7 @@ class MainState(
         get() = navController.currentDestination?.route
 
     fun upPress() {
-        with(topAppBarState) {
-            updateTopAppBar(MainTopAppBarState.DefaultConfiguration)
-            clearTopAppBarTabs()
-        }
+        appBarState.clearAppBarTabs()
         navController.navigateUp()
     }
 
@@ -115,6 +79,16 @@ class MainState(
             navController.navigate(fullRoute)
         }
     }
+}
+
+@Composable
+fun rememberMainState(
+    themeState: ThemeState,
+    navController: NavHostController = rememberNavController(),
+    appBarState: AppBarState = rememberAppBarState(navController),
+    uiFramework: MutableState<UiFramework> = rememberSaveable { mutableStateOf(UiFramework.Compose) }
+) = remember(themeState, navController, appBarState, uiFramework) {
+    MainState(themeState, navController, appBarState, uiFramework)
 }
 
 /**

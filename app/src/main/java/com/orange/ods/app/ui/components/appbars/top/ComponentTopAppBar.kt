@@ -32,13 +32,11 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import com.orange.ods.app.R
-import com.orange.ods.app.ui.LocalMainTopAppBarManager
-import com.orange.ods.app.ui.MainTopAppBarState
-import com.orange.ods.app.ui.TopAppBarConfiguration
+import com.orange.ods.app.ui.AppBarConfiguration
+import com.orange.ods.app.ui.LocalAppBarManager
 import com.orange.ods.app.ui.components.Variant
 import com.orange.ods.app.ui.components.utilities.ComponentCountRow
 import com.orange.ods.app.ui.components.utilities.ComponentCustomizationBottomSheetScaffold
-import com.orange.ods.app.ui.utilities.NavigationItem
 import com.orange.ods.app.ui.utilities.composable.*
 import com.orange.ods.compose.OdsComposable
 import com.orange.ods.compose.component.appbar.top.OdsTopAppBarActionButton
@@ -50,7 +48,6 @@ import com.orange.ods.compose.component.list.OdsListItemTrailingSwitch
 import com.orange.ods.compose.text.OdsTextBody2
 import com.orange.ods.compose.text.OdsTextCaption
 import com.orange.ods.compose.theme.OdsTheme
-import kotlin.math.max
 
 @OptIn(ExperimentalMaterialApi::class)
 @Composable
@@ -58,25 +55,16 @@ fun ComponentTopAppBar(variant: Variant) {
     val customizationState = rememberTopAppBarCustomizationState(large = remember { mutableStateOf(variant == Variant.AppBarsTopLarge) })
 
     with(customizationState) {
-        val customActionCount = max(0, actionCount.value - MainTopAppBarState.DefaultConfiguration.actions.size)
-        val customActions = NavigationItem.values()
-            .take(customActionCount)
-            .map { TopAppBarConfiguration.Action.Custom(stringResource(id = it.textResId), it.iconResId) }
-        val topAppBarConfiguration = TopAppBarConfiguration.Builder()
-            .large(isLarge)
-            .scrollBehavior(scrollBehavior.value)
-            .navigationIconEnabled(isNavigationIconEnabled)
-            .actions {
-                addAll(MainTopAppBarState.DefaultConfiguration.actions.take(actionCount.value))
-                addAll(customActions)
-                if (isOverflowMenuEnabled) add(TopAppBarConfiguration.Action.OverflowMenu)
-            }
-            .build()
+        val appBarConfiguration = AppBarConfiguration(
+            isLarge = isLarge,
+            largeTitleRes = if (isLarge) title.value.titleRes else R.string.component_app_bars_top_regular,
+            scrollBehavior = scrollBehavior.value,
+            isNavigationIconEnabled = isNavigationIconEnabled,
+            actionCount = actionCount.value,
+            isOverflowMenuEnabled = isOverflowMenuEnabled
+        )
 
-        with(LocalMainTopAppBarManager.current) {
-            updateTopAppBar(topAppBarConfiguration)
-            if (isLarge) updateTopAppBarTitle(title.value.titleResId)
-        }
+        LocalAppBarManager.current.setCustomAppBar(appBarConfiguration)
 
         ComponentCustomizationBottomSheetScaffold(
             bottomSheetScaffoldState = rememberBottomSheetScaffoldState(),
@@ -246,7 +234,7 @@ private fun CustomizationBottomSheetContent(customizationState: TopAppBarCustomi
 
 @Composable
 private fun BlinkingChevronDown(modifier: Modifier = Modifier) {
-    val infiniteTransition = rememberInfiniteTransition()
+    val infiniteTransition = rememberInfiniteTransition(label = "")
     val animationSpec = infiniteRepeatable<Float>(
         animation = tween(1000),
         repeatMode = RepeatMode.Reverse
@@ -255,14 +243,16 @@ private fun BlinkingChevronDown(modifier: Modifier = Modifier) {
     val scale by infiniteTransition.animateFloat(
         initialValue = 1f,
         targetValue = 1.2f,
-        animationSpec = animationSpec
+        animationSpec = animationSpec,
+        label = ""
     )
 
 
     val alpha by infiniteTransition.animateFloat(
         initialValue = 0.4f,
         targetValue = 1f,
-        animationSpec = animationSpec
+        animationSpec = animationSpec,
+        label = ""
     )
 
     Icon(

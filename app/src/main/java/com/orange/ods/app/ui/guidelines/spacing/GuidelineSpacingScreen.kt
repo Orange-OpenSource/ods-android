@@ -27,7 +27,6 @@ import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import com.orange.ods.app.R
-import com.orange.ods.app.ui.LocalMainTopAppBarManager
 import com.orange.ods.app.ui.LocalThemeManager
 import com.orange.ods.app.ui.guidelines.Guideline
 import com.orange.ods.app.ui.utilities.DrawableManager
@@ -46,8 +45,6 @@ private val ratioFormatter = DecimalFormat("0.#", DecimalFormatSymbols(Locale.EN
 
 @Composable
 fun GuidelineSpacingScreen() {
-    LocalMainTopAppBarManager.current.updateTopAppBarTitle(R.string.guideline_spacing)
-
     LazyColumn(contentPadding = PaddingValues(bottom = dimensionResource(id = com.orange.ods.R.dimen.spacing_m))) {
         item {
             DetailScreenHeader(

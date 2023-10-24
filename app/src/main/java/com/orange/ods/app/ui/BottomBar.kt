@@ -20,10 +20,12 @@ import androidx.navigation.NavBackStackEntry
 import androidx.navigation.NavGraphBuilder
 import androidx.navigation.compose.composable
 import com.orange.ods.app.R
+import com.orange.ods.app.ui.about.AboutNavigation
 import com.orange.ods.app.ui.about.AboutScreen
 import com.orange.ods.app.ui.about.UrlAboutItem
 import com.orange.ods.app.ui.about.aboutItems
 import com.orange.ods.app.ui.about.id
+import com.orange.ods.app.ui.components.ComponentsNavigation
 import com.orange.ods.app.ui.components.ComponentsScreen
 import com.orange.ods.app.ui.guidelines.GuidelinesScreen
 import com.orange.ods.app.ui.modules.ModulesScreen
@@ -33,7 +35,7 @@ import com.orange.ods.compose.component.bottomnavigation.OdsBottomNavigationItem
 import com.orange.ods.compose.component.bottomnavigation.OdsBottomNavigationItemIcon
 
 @Composable
-fun MainBottomNavigation(items: Array<BottomNavigationSections>, currentRoute: String, navigateToRoute: (String) -> Unit) {
+fun BottomBar(items: Array<BottomBarItem>, currentRoute: String, navigateToRoute: (String) -> Unit) {
     OdsBottomNavigation(
         items = items.map { item ->
             OdsBottomNavigationItem(
@@ -46,40 +48,30 @@ fun MainBottomNavigation(items: Array<BottomNavigationSections>, currentRoute: S
     )
 }
 
-fun NavGraphBuilder.addBottomNavigationGraph(navigateToElement: (String, Long?, NavBackStackEntry) -> Unit) {
-    composable(BottomNavigationSections.Guidelines.route) { from ->
-        val topAppBarConfiguration = MainTopAppBarState.DefaultConfiguration.newBuilder()
-            .prependAction(TopAppBarConfiguration.Action.Search)
-            .build()
-        LocalMainTopAppBarManager.current.updateTopAppBar(topAppBarConfiguration)
+fun NavGraphBuilder.addBottomBarGraph(navigateToElement: (String, Long?, NavBackStackEntry) -> Unit) {
+    composable(BottomBarItem.Guidelines.route) { from ->
         GuidelinesScreen(onGuidelineClick = { route -> navigateToElement(route, null, from) })
     }
-    composable(BottomNavigationSections.Components.route) { from ->
-        val topAppBarConfiguration = MainTopAppBarState.DefaultConfiguration.newBuilder()
-            .prependAction(TopAppBarConfiguration.Action.Search)
-            .build()
-        LocalMainTopAppBarManager.current.updateTopAppBar(topAppBarConfiguration)
-        ComponentsScreen(onComponentClick = { id -> navigateToElement(MainDestinations.ComponentDetailRoute, id, from) })
+    composable(BottomBarItem.Components.route) { from ->
+        ComponentsScreen(onComponentClick = { id -> navigateToElement(ComponentsNavigation.ComponentDetailRoute, id, from) })
     }
-    composable(BottomNavigationSections.Modules.route) {
-        LocalMainTopAppBarManager.current.updateTopAppBar(MainTopAppBarState.DefaultConfiguration)
+    composable(BottomBarItem.Modules.route) {
         ModulesScreen()
     }
-    composable(BottomNavigationSections.About.route) { from ->
+    composable(BottomBarItem.About.route) { from ->
         val context = LocalContext.current
-        LocalMainTopAppBarManager.current.updateTopAppBar(MainTopAppBarState.DefaultConfiguration)
         AboutScreen(onAboutItemClick = { id ->
             val aboutItem = aboutItems.firstOrNull { it.id == id }
             if (aboutItem is UrlAboutItem) {
                 context.launchUrl(aboutItem.url)
             } else {
-                navigateToElement(MainDestinations.AboutItemDetailRoute, id, from)
+                navigateToElement(AboutNavigation.AboutItemDetailRoute, id, from)
             }
         })
     }
 }
 
-enum class BottomNavigationSections(
+enum class BottomBarItem(
     @StringRes val titleRes: Int,
     @DrawableRes val iconRes: Int,
     val route: String

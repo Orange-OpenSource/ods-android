@@ -17,7 +17,6 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import com.orange.ods.app.R
-import com.orange.ods.app.ui.MainDestinations
 
 @Immutable
 enum class Guideline(
@@ -25,9 +24,9 @@ enum class Guideline(
     @DrawableRes val imageRes: Int,
     val route: String
 ) {
-    Color(R.string.guideline_color, R.drawable.il_color, MainDestinations.GuidelineColor),
-    Typography(R.string.guideline_typography, R.drawable.il_typography, MainDestinations.GuidelineTypography),
-    Spacing(R.string.guideline_spacing, R.drawable.il_spacing, MainDestinations.GuidelineSpacing);
+    Color(R.string.guideline_color, R.drawable.il_color, GuidelinesNavigation.GuidelineColor),
+    Typography(R.string.guideline_typography, R.drawable.il_typography, GuidelinesNavigation.GuidelineTypography),
+    Spacing(R.string.guideline_spacing, R.drawable.il_spacing, GuidelinesNavigation.GuidelineSpacing);
 
     val imageBackgroundColor = Color(0xff1b1b1b)
 

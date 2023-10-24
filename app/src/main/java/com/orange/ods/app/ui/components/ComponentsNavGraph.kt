@@ -16,60 +16,58 @@ import androidx.navigation.NavGraphBuilder
 import androidx.navigation.NavType
 import androidx.navigation.compose.composable
 import androidx.navigation.navArgument
-import com.orange.ods.app.ui.LocalMainTopAppBarManager
-import com.orange.ods.app.ui.MainDestinations
-import com.orange.ods.app.ui.MainTopAppBarState
+
+object ComponentsNavigation {
+    const val ComponentDetailRoute = "component"
+    const val ComponentVariantDemoRoute = "component/variant"
+    const val ComponentDemoRoute = "component/demo"
+
+    const val ComponentIdKey = "componentId"
+    const val ComponentVariantIdKey = "componentVariantId"
+}
 
 fun NavGraphBuilder.addComponentsGraph(navigateToElement: (String, Long?, NavBackStackEntry) -> Unit, upPress: () -> Unit) {
 
     composable(
-        "${MainDestinations.ComponentDetailRoute}/{${MainDestinations.ComponentIdKey}}",
-        arguments = listOf(navArgument(MainDestinations.ComponentIdKey) { type = NavType.LongType })
+        "${ComponentsNavigation.ComponentDetailRoute}/{${ComponentsNavigation.ComponentIdKey}}",
+        arguments = listOf(navArgument(ComponentsNavigation.ComponentIdKey) { type = NavType.LongType })
     ) { from ->
         val arguments = requireNotNull(from.arguments)
-        val routeComponentId = arguments.getLong(MainDestinations.ComponentIdKey)
+        val routeComponentId = arguments.getLong(ComponentsNavigation.ComponentIdKey)
 
-        val component = remember(routeComponentId) { components.firstOrNull { component -> component.id == routeComponentId } }
+        val component = remember(routeComponentId) { Component.fromId(routeComponentId) }
         component?.let {
-            LocalMainTopAppBarManager.current.updateTopAppBar(MainTopAppBarState.DefaultConfiguration)
-            LocalMainTopAppBarManager.current.updateTopAppBarTitle(component.titleRes)
-
             ComponentDetailScreen(
                 component = component,
-                onVariantClick = { variantId -> navigateToElement(MainDestinations.ComponentVariantDemoRoute, variantId, from) },
-                onDemoClick = { navigateToElement(MainDestinations.ComponentDemoRoute, routeComponentId, from) }
+                onVariantClick = { variantId -> navigateToElement(ComponentsNavigation.ComponentVariantDemoRoute, variantId, from) },
+                onDemoClick = { navigateToElement(ComponentsNavigation.ComponentDemoRoute, routeComponentId, from) }
             )
         }
     }
 
     composable(
-        "${MainDestinations.ComponentVariantDemoRoute}/{${MainDestinations.ComponentVariantIdKey}}",
-        arguments = listOf(navArgument(MainDestinations.ComponentVariantIdKey) { type = NavType.LongType })
+        "${ComponentsNavigation.ComponentVariantDemoRoute}/{${ComponentsNavigation.ComponentVariantIdKey}}",
+        arguments = listOf(navArgument(ComponentsNavigation.ComponentVariantIdKey) { type = NavType.LongType })
     ) { from ->
         val arguments = requireNotNull(from.arguments)
-        val routeVariantId = arguments.getLong(MainDestinations.ComponentVariantIdKey)
-        val variant = remember(routeVariantId) { components.flatMap { it.variants }.firstOrNull { it.id == routeVariantId } }
+        val routeVariantId = arguments.getLong(ComponentsNavigation.ComponentVariantIdKey)
+        val variant = remember(routeVariantId) { Variant.fromId(routeVariantId) }
         val component = components.firstOrNull { it.variants.contains(variant) }
 
         if (variant != null && component != null) {
-            LocalMainTopAppBarManager.current.updateTopAppBarTitle(variant.titleRes)
-            LocalMainTopAppBarManager.current.setLargeTopAppBar(variant.largeTopAppBar)
             component.demoScreen(variant, upPress)
         }
     }
 
     composable(
-        "${MainDestinations.ComponentDemoRoute}/{${MainDestinations.ComponentIdKey}}",
-        arguments = listOf(navArgument(MainDestinations.ComponentIdKey) { type = NavType.LongType })
+        "${ComponentsNavigation.ComponentDemoRoute}/{${ComponentsNavigation.ComponentIdKey}}",
+        arguments = listOf(navArgument(ComponentsNavigation.ComponentIdKey) { type = NavType.LongType })
     ) { from ->
-        LocalMainTopAppBarManager.current.updateTopAppBar(MainTopAppBarState.DefaultConfiguration)
-
         val arguments = requireNotNull(from.arguments)
-        val componentId = arguments.getLong(MainDestinations.ComponentIdKey)
+        val componentId = arguments.getLong(ComponentsNavigation.ComponentIdKey)
         val component = remember { components.firstOrNull { it.id == componentId } }
 
         component?.let {
-            LocalMainTopAppBarManager.current.updateTopAppBarTitle(component.titleRes)
             component.demoScreen(null, upPress)
         }
 

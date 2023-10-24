@@ -26,7 +26,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.stringResource
 import com.orange.ods.app.R
-import com.orange.ods.app.ui.LocalMainTopAppBarManager
+import com.orange.ods.app.ui.LocalAppBarManager
 import com.orange.ods.app.ui.TabsConfiguration
 import com.orange.ods.app.ui.components.Variant
 import com.orange.ods.app.ui.components.utilities.ComponentCountRow
@@ -60,8 +60,9 @@ fun ComponentTabs(variant: Variant, upPress: () -> Unit) {
     }
 
     val tabsCustomizationState = rememberMainTabsCustomizationState(tabsCount = rememberSaveable { mutableStateOf(tabCountMin) })
+    
     with(tabsCustomizationState) {
-        LocalMainTopAppBarManager.current.updateTopAppBarTabs(
+        LocalAppBarManager.current.updateAppBarTabs(
             TabsConfiguration(scrollableTabs, tabs, pagerState, tabIconType.value, tabTextEnabled.value)
         )
 
