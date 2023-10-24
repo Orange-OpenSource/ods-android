@@ -29,9 +29,9 @@ import kotlinx.coroutines.flow.asSharedFlow
 /**
  * Returns the [Screen] corresponding to the given [route].
  */
-fun getScreen(route: String?, args: Bundle?): Screen? = route?.let {
+fun getScreen(route: String, args: Bundle?): Screen? {
     val matchElementRouteResult = Regex("^(.+)/\\{.+\\}$").find(route)
-    if (matchElementRouteResult != null) {
+    return if (matchElementRouteResult != null) {
         // Specific element route -> get element id
         val (routeRoot) = matchElementRouteResult.destructured
         when (routeRoot) {

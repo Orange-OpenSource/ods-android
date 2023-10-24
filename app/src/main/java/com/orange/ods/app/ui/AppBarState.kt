@@ -83,7 +83,7 @@ class AppBarState(
         @Composable get() = currentBackStackEntry?.arguments
 
     private val currentScreen: Screen?
-        @Composable get() = getScreen(currentScreenRoute, currentScreenRouteArgs)
+        @Composable get() = currentScreenRoute?.let { getScreen(it, currentScreenRouteArgs) }
 
     private val isCustom: Boolean
         @Composable get() = currentScreen?.type == ScreenType.WithCustomizableTopAppBar
