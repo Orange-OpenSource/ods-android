@@ -91,7 +91,7 @@ class AppBarState(
 
     private val showNavigationIcon: Boolean
         @Composable get() = (isCustom && customAppBarConfiguration.value.isNavigationIconEnabled)
-                || (currentScreen?.hasCustomAppBar == false && currentScreen?.isHome == false)
+                || (!isCustom && currentScreen?.isHome == false)
 
     val isLarge: Boolean
         @Composable get() = currentScreen?.isLargeAppBar == true
