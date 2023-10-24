@@ -112,7 +112,9 @@ private fun RowScope.TextToggleButtonsRowItem(
         text = textToggleButton.text,
         enabled = textToggleButton.enabled,
         modifier = Modifier
-            .background(color = buttonToggleBackgroundColor(displaySurface).copy(alpha = backgroundAlpha)).let {
+            .background(color = buttonToggleBackgroundColor(displaySurface).copy(alpha = backgroundAlpha))
+            .fillMaxHeight()
+            .let {
                 if (sameItemsWeight) it.weight(1f) else it
             },
         maxLines = 1,

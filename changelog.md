@@ -18,6 +18,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - \[App\] Change illustrations alignment for slider and text field components ([#618](https://github.com/Orange-OpenSource/ods-android/issues/618))
 - \[Lib\] Fix a bug where chip was not properly selected in `OdsChoiceChipsFlowRow` ([#650](https://github.com/Orange-OpenSource/ods-android/issues/650))
 - \[Lib\] Change text color of `OdsTextToggleButtonsRow` selected button for accessibility reason ([#559](https://github.com/Orange-OpenSource/ods-android/issues/559))
+- \[Lib\] Fix vertical padding of buttons in `OdsTextToggleButtonsRow` ([#559](https://github.com/Orange-OpenSource/ods-android/issues/559))
 
 ## [0.16.0](https://github.com/Orange-OpenSource/ods-android/compare/0.15.1...0.16.0) - 2023-10-10
 
