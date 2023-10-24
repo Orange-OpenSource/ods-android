@@ -36,7 +36,7 @@ enum class AppBarAction {
     Search, ChangeTheme, ChangeMode;
 
     @Composable
-    fun getOdsTopAppBarActionButton(onActionClick: (AppBarAction) -> Unit) = when (this) {
+    fun getOdsTopAppBarAction(onActionClick: (AppBarAction) -> Unit) = when (this) {
             ChangeTheme -> getChangeThemeAction(onActionClick)
             ChangeMode -> getChangeModeAction(onActionClick)
             Search -> getSearchAction(onActionClick)
@@ -56,7 +56,7 @@ data class AppBarOverflowMenuAction(
 
 @Composable
 fun getAlwaysVisibleActions(onActionClick: (AppBarAction) -> Unit): List<OdsTopAppBarActionButton> =
-    alwaysVisibleActions.map { it.getOdsTopAppBarActionButton(onActionClick = onActionClick) }
+    alwaysVisibleActions.map { it.getOdsTopAppBarAction(onActionClick = onActionClick) }
 
 @Composable
 fun getHomeActions(onActionClick: (AppBarAction) -> Unit): List<OdsTopAppBarActionButton> =
