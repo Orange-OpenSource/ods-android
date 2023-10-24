@@ -95,7 +95,7 @@ fun MainScreen(themeConfigurations: Set<OdsThemeConfigurationContract>, mainView
         LocalCategories provides mainViewModel.categories,
         LocalUiFramework provides mainState.uiFramework
     ) {
-        TopAppBarActionsHandler(navigate = mainState.navController::navigate, onChangeThemeActionClick = { changeThemeDialogVisible = true })
+        AppBarActionsHandler(navigate = mainState.navController::navigate, onChangeThemeActionClick = { changeThemeDialogVisible = true })
         OdsTheme(
             themeConfiguration = mainState.themeState.currentThemeConfiguration,
             darkThemeEnabled = configuration.isDarkModeEnabled
@@ -124,7 +124,7 @@ fun MainScreen(themeConfigurations: Set<OdsThemeConfigurationContract>, mainView
                                 scrollBehavior = topBarScrollBehavior
                             )
                             if (mainState.appBarState.tabsState.hasTabs) {
-                                MainTabs(appBarTabsState = mainState.appBarState.tabsState)
+                                AppBarTabs(appBarTabsState = mainState.appBarState.tabsState)
                             }
                         }
                     }
@@ -188,7 +188,7 @@ private fun SystemBarsColorSideEffect() {
 
 @OptIn(ExperimentalFoundationApi::class)
 @Composable
-private fun MainTabs(appBarTabsState: AppBarTabsState) {
+private fun AppBarTabs(appBarTabsState: AppBarTabsState) {
     with(appBarTabsState) {
         pagerState?.let { pagerState ->
             // Do not use tabs directly because this is a SnapshotStateList
@@ -214,7 +214,7 @@ private fun MainTabs(appBarTabsState: AppBarTabsState) {
 }
 
 @Composable
-private fun TopAppBarActionsHandler(navigate: (String) -> Unit, onChangeThemeActionClick: () -> Unit) {
+private fun AppBarActionsHandler(navigate: (String) -> Unit, onChangeThemeActionClick: () -> Unit) {
     val configuration = LocalConfiguration.current
     val themeManager = LocalThemeManager.current
 
