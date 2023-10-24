@@ -104,9 +104,9 @@ class AppBarState(
 
     val actions: List<OdsComponentContent<Nothing>>
         @Composable get() {
-            val context = LocalContext.current
             val screenAppBarActions = currentScreen?.getAppBarActions { searchText.value = it }.orEmpty()
             return if (isCustom) {
+                val context = LocalContext.current
                 val customActionCount = max(0, customAppBarConfiguration.value.actionCount - AppBarAction.alwaysVisibleActions.size)
                 val customActions = NavigationItem.values()
                     .take(customActionCount)
