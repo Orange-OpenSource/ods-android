@@ -11,6 +11,7 @@ description: Bottom navigation bars allow movement between primary destinations 
 * [Implementation](#implementation)
     * [Jetpack Compose](#jetpack-compose)
         * [OdsBottomNavigation API](#odsbottomnavigation-api)
+    * [XML](#xml)
 
 ---
 
@@ -78,3 +79,39 @@ Parameter | Default&nbsp;value | Description
 `items: List<OdsBottomNavigationItem>` | | Items displayed into the bottom navigation
 `modifier: Modifier` | `Modifier` | `Modifier` applied to the bottom navigation
 {:.table}
+
+### XML
+
+In your layout, use the `OdsBottomNavigation` view.
+
+```xml
+
+<com.orange.ods.xml.component.bottomnavigation.OdsBottomNavigation
+    android:id="@+id/ods_bottom_navigation" android:layout_height="wrap_content"
+    android:layout_width="wrap_content" />
+```
+
+Then using view binding, add the bottom navigation items by code:
+
+```kotlin
+binding.odsBottomNavigation.items = listOf(
+    OdsBottomNavigationItem(
+        icon = OdsBottomNavigationItemIcon(
+            painter = painterResource(id = R.drawable.ic_dna),
+            contentDescription = ""
+        ),
+        label = "Guidelines",
+        selected = true,
+        onClick = { doSomething() }
+    ),
+    OdsBottomNavigationItem(
+        icon = OdsBottomNavigationItemIcon(
+            painter = painterResource(id = R.drawable.ic_atom),
+            contentDescription = ""
+        ),
+        label = "Components",
+        selected = false,
+        onClick = { doSomething() }
+    )
+)
+```

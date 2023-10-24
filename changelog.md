@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased](https://github.com/Orange-OpenSource/ods-android/compare/0.16.0...develop)
 
+### Added
+
+- \[LibXml\] Add `OdsBottomNavigation` view ([#526](https://github.com/Orange-OpenSource/ods-android/issues/526))
+
 ### Changed
 
 - \[Lib\] Update `OdsBottomNavigation`, `OdsChoiceChipsFlowRow`, `OdsSlider` and `OdsSliderLockups` APIs ([#661](https://github.com/Orange-OpenSource/ods-android/issues/661))
