@@ -13,7 +13,6 @@ package com.orange.ods.app.ui
 import androidx.navigation.NavBackStackEntry
 import androidx.navigation.NavGraphBuilder
 import androidx.navigation.compose.composable
-import androidx.navigation.navigation
 import com.orange.ods.app.ui.about.addAboutGraph
 import com.orange.ods.app.ui.components.addComponentsGraph
 import com.orange.ods.app.ui.guidelines.addGuidelinesGraph
@@ -23,7 +22,6 @@ import com.orange.ods.app.ui.search.SearchScreen
  * Destinations used in the [MainScreen].
  */
 object MainDestinations {
-    const val HomeRoute = "home"
     const val SearchRoute = "search"
 }
 
@@ -34,12 +32,7 @@ fun NavGraphBuilder.appNavGraph(
     navigateToElement: (String, Long?, NavBackStackEntry) -> Unit,
     upPress: () -> Unit
 ) {
-    navigation(
-        route = MainDestinations.HomeRoute,
-        startDestination = BottomBarItem.Guidelines.route
-    ) {
-        addBottomBarGraph(navigateToElement)
-    }
+    addBottomBarGraph(navigateToElement)
 
     addGuidelinesGraph()
     addComponentsGraph(navigateToElement, upPress)

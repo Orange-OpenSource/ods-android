@@ -148,7 +148,7 @@ fun MainScreen(themeConfigurations: Set<OdsThemeConfigurationContract>, mainView
                 }
             ) { innerPadding ->
                 NavHost(
-                    navController = mainState.navController, startDestination = MainDestinations.HomeRoute, modifier = Modifier.padding(innerPadding)
+                    navController = mainState.navController, startDestination = BottomBarItem.Guidelines.route, modifier = Modifier.padding(innerPadding)
                 ) {
                     appNavGraph(
                         navigateToElement = mainState::navigateToElement,
