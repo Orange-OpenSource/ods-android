@@ -67,7 +67,7 @@ sealed class Screen(
     fun getAppBarActions(onSearchedTextChange: (TextFieldValue) -> Unit): List<OdsComponentContent<Nothing>> = when (type) {
         ScreenType.Home -> getHomeActions { action -> _appBarActionClicked.tryEmit(action) }
         ScreenType.Search -> listOf(getSearchFieldAction(onSearchedTextChange))
-        ScreenType.WithCustomizableTopAppBar, ScreenType.Default -> getAlwaysVisibleActions { action -> _appBarActionClicked.tryEmit(action) }
+        ScreenType.WithCustomizableTopAppBar, ScreenType.Default -> getDefaultActions { action -> _appBarActionClicked.tryEmit(action) }
     }
 
     // Bottom navigation screens

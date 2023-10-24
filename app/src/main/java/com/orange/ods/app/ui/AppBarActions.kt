@@ -22,7 +22,7 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.input.TextFieldValue
 import com.orange.ods.app.R
-import com.orange.ods.app.ui.AppBarAction.Companion.alwaysVisibleActions
+import com.orange.ods.app.ui.AppBarAction.Companion.defaultActions
 import com.orange.ods.app.ui.utilities.UiString
 import com.orange.ods.app.ui.utilities.extension.isDarkModeEnabled
 import com.orange.ods.compose.component.appbar.top.OdsTopAppBarActionButton
@@ -34,7 +34,7 @@ enum class AppBarAction {
     Search, ChangeTheme, ChangeMode;
 
     companion object {
-        val alwaysVisibleActions = listOf(ChangeTheme, ChangeMode)
+        val defaultActions = listOf(ChangeTheme, ChangeMode)
     }
 
     @Composable
@@ -57,12 +57,12 @@ data class AppBarOverflowMenuAction(
 }
 
 @Composable
-fun getAlwaysVisibleActions(onActionClick: (AppBarAction) -> Unit): List<OdsTopAppBarActionButton> =
-    alwaysVisibleActions.map { it.getOdsTopAppBarAction(onActionClick = onActionClick) }
+fun getDefaultActions(onActionClick: (AppBarAction) -> Unit): List<OdsTopAppBarActionButton> =
+    defaultActions.map { it.getOdsTopAppBarAction(onActionClick = onActionClick) }
 
 @Composable
 fun getHomeActions(onActionClick: (AppBarAction) -> Unit): List<OdsTopAppBarActionButton> =
-    listOf(getSearchAction(onActionClick)) + getAlwaysVisibleActions(onActionClick = onActionClick)
+    listOf(getSearchAction(onActionClick)) + getDefaultActions(onActionClick = onActionClick)
 
 @Composable
 fun getSearchFieldAction(onTextChange: (TextFieldValue) -> Unit): OdsComponentContent<Nothing> {
