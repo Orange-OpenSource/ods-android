@@ -226,7 +226,7 @@ private fun TopAppBarActionsHandler(navigate: (String) -> Unit, onChangeThemeAct
     LaunchedEffect(key1 = Unit) {
         Screen.appBarActionClicked.onEach { action ->
             when (action) {
-                AppBarAction.Search -> navigate(MainDestinations.SearchRoute)
+                AppBarAction.Search -> navigate(MainNavigation.SearchRoute)
                 AppBarAction.ChangeTheme -> onChangeThemeActionClick()
                 AppBarAction.ChangeMode -> themeManager.darkModeEnabled = !configuration.isDarkModeEnabled
             }

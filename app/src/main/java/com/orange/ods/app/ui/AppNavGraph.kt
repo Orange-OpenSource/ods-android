@@ -21,7 +21,7 @@ import com.orange.ods.app.ui.search.SearchScreen
 /**
  * Destinations used in the [MainScreen].
  */
-object MainDestinations {
+object MainNavigation {
     const val SearchRoute = "search"
 }
 
@@ -39,7 +39,7 @@ fun NavGraphBuilder.appNavGraph(
     addAboutGraph()
 
     composable(
-        route = MainDestinations.SearchRoute
+        route = MainNavigation.SearchRoute
     ) { from ->
         SearchScreen(onResultItemClick = { route, id -> navigateToElement(route, id, from) })
     }

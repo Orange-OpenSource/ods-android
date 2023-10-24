@@ -130,7 +130,7 @@ sealed class Screen(
     // Search screen
 
     data object Search : Screen(
-        route = MainDestinations.SearchRoute,
+        route = MainNavigation.SearchRoute,
         type = ScreenType.Search
     )
 
