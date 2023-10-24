@@ -40,6 +40,8 @@ import kotlin.math.max
 val LocalAppBarManager = staticCompositionLocalOf<AppBarManager> { error("CompositionLocal AppBarManager not present") }
 
 interface AppBarManager {
+    val searchedText: TextFieldValue
+
     fun setCustomAppBar(appBarConfiguration: AppBarConfiguration)
 
     fun updateAppBarTabs(tabsConfiguration: TabsConfiguration)
@@ -54,7 +56,7 @@ interface AppBarManager {
  */
 class AppBarState(
     private val navController: NavController,
-    val searchedText: MutableState<TextFieldValue>,
+    private val searchText: MutableState<TextFieldValue>,
     private val customAppBarConfiguration: MutableState<AppBarConfiguration>,
     val tabsState: AppBarTabsState
 ) : AppBarManager {
@@ -102,7 +104,7 @@ class AppBarState(
     val actions: List<OdsComponentContent<Nothing>>
         @Composable get() {
             val context = LocalContext.current
-            val screenAppBarAction = currentScreen?.getAppBarActions(searchedText).orEmpty()
+            val screenAppBarAction = currentScreen?.getAppBarActions { searchText.value = it }.orEmpty()
             return if (isCustom) {
                 val customActionCount = max(0, customAppBarConfiguration.value.actionCount - alwaysVisibleActions.size)
                 val customActions = NavigationItem.values()
@@ -150,6 +152,9 @@ class AppBarState(
     // AppBarManager implementation
     // ----------------------------------------------------------
 
+    override val searchedText: TextFieldValue
+        get() = searchText.value
+
     override fun setCustomAppBar(appBarConfiguration: AppBarConfiguration) {
         customAppBarConfiguration.value = appBarConfiguration
     }
@@ -161,6 +166,7 @@ class AppBarState(
     override fun clearAppBarTabs() {
         tabsState.clearAppBarTabs()
     }
+
 }
 
 @Composable

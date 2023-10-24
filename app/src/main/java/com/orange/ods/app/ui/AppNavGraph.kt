@@ -10,8 +10,6 @@
 
 package com.orange.ods.app.ui
 
-import androidx.compose.runtime.MutableState
-import androidx.compose.ui.text.input.TextFieldValue
 import androidx.navigation.NavBackStackEntry
 import androidx.navigation.NavGraphBuilder
 import androidx.navigation.compose.composable
@@ -34,8 +32,7 @@ object MainDestinations {
  */
 fun NavGraphBuilder.appNavGraph(
     navigateToElement: (String, Long?, NavBackStackEntry) -> Unit,
-    upPress: () -> Unit,
-    searchedText: MutableState<TextFieldValue>
+    upPress: () -> Unit
 ) {
     navigation(
         route = MainDestinations.HomeRoute,
@@ -51,9 +48,6 @@ fun NavGraphBuilder.appNavGraph(
     composable(
         route = MainDestinations.SearchRoute
     ) { from ->
-        SearchScreen(
-            searchedText,
-            onResultItemClick = { route, id -> navigateToElement(route, id, from) }
-        )
+        SearchScreen(onResultItemClick = { route, id -> navigateToElement(route, id, from) })
     }
 }

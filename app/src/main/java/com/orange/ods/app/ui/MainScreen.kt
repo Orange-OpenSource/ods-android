@@ -152,8 +152,7 @@ fun MainScreen(themeConfigurations: Set<OdsThemeConfigurationContract>, mainView
                 ) {
                     appNavGraph(
                         navigateToElement = mainState::navigateToElement,
-                        upPress = mainState::upPress,
-                        searchedText = mainState.appBarState.searchedText
+                        upPress = mainState::upPress
                     )
                 }
 

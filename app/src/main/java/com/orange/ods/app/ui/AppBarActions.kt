@@ -13,7 +13,6 @@ package com.orange.ods.app.ui
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
-import androidx.compose.runtime.MutableState
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.focus.FocusRequester
@@ -37,10 +36,10 @@ enum class AppBarAction {
 
     @Composable
     fun getOdsTopAppBarAction(onActionClick: (AppBarAction) -> Unit) = when (this) {
-            ChangeTheme -> getChangeThemeAction(onActionClick)
-            ChangeMode -> getChangeModeAction(onActionClick)
-            Search -> getSearchAction(onActionClick)
-        }
+        ChangeTheme -> getChangeThemeAction(onActionClick)
+        ChangeMode -> getChangeModeAction(onActionClick)
+        Search -> getSearchAction(onActionClick)
+    }
 }
 
 data class AppBarOverflowMenuAction(
@@ -63,17 +62,15 @@ fun getHomeActions(onActionClick: (AppBarAction) -> Unit): List<OdsTopAppBarActi
     listOf(getSearchAction(onActionClick)) + getAlwaysVisibleActions(onActionClick = onActionClick)
 
 @Composable
-fun getSearchFieldAction(searchedText: MutableState<TextFieldValue>): OdsComponentContent<Nothing> {
+fun getSearchFieldAction(onTextChange: (TextFieldValue) -> Unit): OdsComponentContent<Nothing> {
     return object : OdsComponentContent<Nothing>() {
 
         @Composable
         override fun Content(modifier: Modifier) {
             val focusRequester = remember { FocusRequester() }
             OdsSearchTextField(
-                value = searchedText.value,
-                onValueChange = { value ->
-                    searchedText.value = value
-                },
+                value = LocalAppBarManager.current.searchedText,
+                onValueChange = onTextChange,
                 placeholder = stringResource(id = R.string.search_text_field_hint),
                 modifier = Modifier
                     .fillMaxWidth()

@@ -12,7 +12,6 @@ package com.orange.ods.app.ui
 
 import android.os.Bundle
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.MutableState
 import androidx.compose.ui.text.input.TextFieldValue
 import com.orange.ods.app.R
 import com.orange.ods.app.ui.components.ComponentsNavigation
@@ -65,9 +64,9 @@ sealed class Screen(
     }
 
     @Composable
-    fun getAppBarActions(searchedText: MutableState<TextFieldValue>): List<OdsComponentContent<Nothing>> = when (type) {
+    fun getAppBarActions(onSearchedTextChange: (TextFieldValue) -> Unit): List<OdsComponentContent<Nothing>> = when (type) {
         ScreenType.Home -> getHomeActions { action -> _appBarActionClicked.tryEmit(action) }
-        ScreenType.Search -> listOf(getSearchFieldAction(searchedText))
+        ScreenType.Search -> listOf(getSearchFieldAction(onSearchedTextChange))
         ScreenType.WithCustomizableTopAppBar, ScreenType.Default -> getAlwaysVisibleActions { action -> _appBarActionClicked.tryEmit(action) }
     }
 
