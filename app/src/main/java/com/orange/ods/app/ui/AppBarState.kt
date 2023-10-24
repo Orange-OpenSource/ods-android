@@ -66,7 +66,7 @@ class AppBarState(
     companion object {
         val CustomDefaultConfiguration = AppBarConfiguration(
             isLarge = false,
-            titleRes = R.string.empty,
+            largeTitleRes = R.string.empty,
             scrollBehavior = TopAppBarCustomizationState.ScrollBehavior.Collapsible,
             isNavigationIconEnabled = true,
             actionCount = defaultActions.size,
@@ -98,7 +98,7 @@ class AppBarState(
 
     val title: String
         @Composable get() = if (isCustom) {
-            stringResource(id = customAppBarConfiguration.value.titleRes)
+            stringResource(id = customAppBarConfiguration.value.largeTitleRes)
         } else {
             currentScreen?.title?.asString().orEmpty()
         }
@@ -179,7 +179,7 @@ fun rememberAppBarState(
 
 data class AppBarConfiguration constructor(
     val isLarge: Boolean,
-    val titleRes: Int,
+    val largeTitleRes: Int,
     val scrollBehavior: TopAppBarCustomizationState.ScrollBehavior,
     val isNavigationIconEnabled: Boolean,
     val actionCount: Int,

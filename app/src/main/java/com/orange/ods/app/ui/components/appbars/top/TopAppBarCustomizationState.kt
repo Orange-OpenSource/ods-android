@@ -39,7 +39,7 @@ class TopAppBarCustomizationState(
     val title: MutableState<Title>,
     val scrollBehavior: MutableState<ScrollBehavior>
 ) {
-    enum class Title(val titleResId: Int) {
+    enum class Title(val titleRes: Int) {
         Short(R.string.component_app_bars_top_large_title_short_value),
         TwoLines(R.string.component_app_bars_top_large_title_two_lines_value),
         Long(R.string.component_app_bars_top_large_title_long_value)
