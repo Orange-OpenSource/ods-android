@@ -11,6 +11,8 @@
 package com.orange.ods.app.ui
 
 import android.os.Bundle
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.ArrowBack
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.MutableState
 import androidx.compose.runtime.mutableStateOf
@@ -30,6 +32,7 @@ import com.orange.ods.app.ui.components.appbars.top.TopAppBarCustomizationState
 import com.orange.ods.app.ui.components.utilities.clickOnElement
 import com.orange.ods.app.ui.utilities.NavigationItem
 import com.orange.ods.compose.component.appbar.top.OdsTopAppBarActionButton
+import com.orange.ods.compose.component.appbar.top.OdsTopAppBarNavigationIcon
 import com.orange.ods.compose.component.appbar.top.OdsTopAppBarOverflowMenuActionItem
 import com.orange.ods.compose.component.content.OdsComponentContent
 import kotlin.math.max
@@ -82,12 +85,12 @@ class AppBarState(
     private val isCustom: Boolean
         @Composable get() = currentScreen?.type == ScreenType.WithCustomizableTopAppBar
 
-    val isLarge: Boolean
-        @Composable get() = currentScreen?.isLargeAppBar == true
-
-    val showNavigationIcon: Boolean
+    private val showNavigationIcon: Boolean
         @Composable get() = (isCustom && customAppBarConfiguration.value.isNavigationIconEnabled)
                 || currentScreen?.type !in listOf(ScreenType.Home, ScreenType.WithCustomizableTopAppBar)
+
+    val isLarge: Boolean
+        @Composable get() = currentScreen?.isLargeAppBar == true
 
     val title: String
         @Composable get() = if (isCustom) {
@@ -135,6 +138,13 @@ class AppBarState(
 
     val hasScrollBehavior: Boolean
         get() = customAppBarConfiguration.value.scrollBehavior != TopAppBarCustomizationState.ScrollBehavior.None
+
+    @Composable
+    fun getNavigationIcon(upPress: () -> Unit) = if (showNavigationIcon) {
+        OdsTopAppBarNavigationIcon(Icons.Filled.ArrowBack, stringResource(id = R.string.top_app_bar_back_icon_desc), upPress)
+    } else {
+        null
+    }
 
     // ----------------------------------------------------------
     // AppBarManager implementation
