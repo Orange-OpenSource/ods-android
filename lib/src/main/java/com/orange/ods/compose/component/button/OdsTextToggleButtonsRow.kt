@@ -112,13 +112,15 @@ private fun RowScope.TextToggleButtonsRowItem(
         text = textToggleButton.text,
         enabled = textToggleButton.enabled,
         modifier = Modifier
-            .background(color = buttonToggleBackgroundColor(displaySurface).copy(alpha = backgroundAlpha)).let {
+            .background(color = buttonToggleBackgroundColor(displaySurface).copy(alpha = backgroundAlpha))
+            .fillMaxHeight()
+            .let {
                 if (sameItemsWeight) it.weight(1f) else it
             },
         maxLines = 1,
         overflow = TextOverflow.Ellipsis,
         displaySurface = displaySurface,
-        style = if (selected) OdsTextButtonStyle.Primary else OdsTextButtonStyle.Default,
+        style = OdsTextButtonStyle.Default,
         onClick = { onClick(index) }
     )
 }
