@@ -33,45 +33,9 @@ import com.orange.ods.compose.component.utilities.UiModePreviews
 import com.orange.ods.compose.theme.OdsDisplaySurface
 
 /**
- * <a href="https://system.design.orange.com/0c1af118d/p/887440-toast--snackbars/b/043ece" class="external" target="_blank">ODS snackbar</a>.
- *
- * @see androidx.compose.material.Snackbar
- *
- * @param message Text displayed into the snackbar.
- * @param modifier [Modifier] applied to the snackbar layout.
- * @param actionLabel If set, it displays an [OdsTextButton] with the given [actionLabel] as an action of the snackbar.
- * @param actionOnNewLine Whether or not action should be put on a separate line. Recommended for action with long action text.
- * @param onActionClick Callback invoked when the action button is clicked.
- */
-@Composable
-@OdsComposable
-fun OdsSnackbar(
-    message: String,
-    modifier: Modifier = Modifier,
-    actionLabel: String? = null,
-    actionOnNewLine: Boolean = false,
-    onActionClick: () -> Unit = {}
-) {
-    Snackbar(
-        modifier = modifier,
-        action = actionLabel?.let {
-            {
-                OdsTextButton(
-                    style = OdsTextButtonStyle.Primary,
-                    displaySurface = if (isSystemInDarkTheme()) OdsDisplaySurface.Light else OdsDisplaySurface.Dark,
-                    text = it,
-                    onClick = onActionClick
-                )
-            }
-        },
-        actionOnNewLine = actionOnNewLine
-    ) { Text(text = message) }
-}
-
-/**
  * Host for [OdsSnackbar]s to be used in [Scaffold] to properly show, hide and dismiss items based
  * on Material specification and the [hostState].
- * The [OdsSnackbarHost] use the padding provided by the Orange Design System.
+ * The [OdsSnackbarHost] uses the padding provided by the Orange Design System.
  *
  * @see androidx.compose.material.SnackbarHost
  *
@@ -115,6 +79,40 @@ class OdsSnackbar(private val data: SnackbarData, private val actionOnNewLine: B
             onActionClick = onActionClick
         )
     }
+}
+
+/**
+ * Please directly use [OdsSnackbarHost] to display a snackbar.
+ *
+ * @param message Text displayed into the snackbar.
+ * @param modifier [Modifier] applied to the snackbar layout.
+ * @param actionLabel If set, it displays an [OdsTextButton] with the given [actionLabel] as an action of the snackbar.
+ * @param actionOnNewLine Whether or not action should be put on a separate line. Recommended for action with long action text.
+ * @param onActionClick Callback invoked when the action button is clicked.
+ */
+@Composable
+@OdsComposable
+private fun OdsSnackbar(
+    message: String,
+    modifier: Modifier = Modifier,
+    actionLabel: String? = null,
+    actionOnNewLine: Boolean = false,
+    onActionClick: () -> Unit = {}
+) {
+    Snackbar(
+        modifier = modifier,
+        action = actionLabel?.let {
+            {
+                OdsTextButton(
+                    style = OdsTextButtonStyle.Primary,
+                    displaySurface = if (isSystemInDarkTheme()) OdsDisplaySurface.Light else OdsDisplaySurface.Dark,
+                    text = it,
+                    onClick = onActionClick
+                )
+            }
+        },
+        actionOnNewLine = actionOnNewLine
+    ) { Text(text = message) }
 }
 
 @UiModePreviews.Default
