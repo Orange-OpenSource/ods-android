@@ -14,6 +14,7 @@ import android.os.Bundle
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.text.input.TextFieldValue
 import com.orange.ods.app.R
+import com.orange.ods.app.ui.Screen
 import com.orange.ods.app.ui.components.ComponentsNavigation
 import com.orange.ods.app.ui.components.ComponentsNavigation.ComponentDemoRoute
 import com.orange.ods.app.ui.components.ComponentsNavigation.ComponentDetailRoute
@@ -35,8 +36,8 @@ fun getScreen(route: String, args: Bundle?): Screen? {
         // Specific element route -> get element id
         val (routeRoot) = matchElementRouteResult.destructured
         when (routeRoot) {
-            ComponentDetailRoute, ComponentDemoRoute -> Screen.Component(args?.getLong(ComponentsNavigation.ComponentIdKey))
-            ComponentVariantDemoRoute -> Screen.ComponentVariant(args?.getLong(ComponentsNavigation.ComponentVariantIdKey))
+            ComponentDetailRoute, ComponentDemoRoute -> args?.getLong(ComponentsNavigation.ComponentIdKey)?.let { Screen.Component(it) }
+            ComponentVariantDemoRoute -> args?.getLong(ComponentsNavigation.ComponentVariantIdKey)?.let { Screen.ComponentVariant(it) }
             else -> null
         }
     } else {
@@ -115,12 +116,12 @@ sealed class Screen(
 
     // Components screens
 
-    data class Component(val componentId: Long?) : Screen(
+    data class Component(val componentId: Long) : Screen(
         route = ComponentDetailRoute,
         title = com.orange.ods.app.ui.components.Component.fromId(componentId)?.titleRes?.let { UiString.StringResource(it) }
     )
 
-    data class ComponentVariant(val variantId: Long?) : Screen(
+    data class ComponentVariant(val variantId: Long) : Screen(
         route = ComponentVariantDemoRoute,
         title = Variant.fromId(variantId)?.titleRes?.let { UiString.StringResource(it) },
         isLargeAppBar = Variant.fromId(variantId)?.largeTopAppBar == true
