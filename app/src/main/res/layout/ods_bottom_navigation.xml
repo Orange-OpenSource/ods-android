@@ -18,8 +18,8 @@
             android:layout_height="wrap_content"
             android:layout_width="wrap_content" />
 
-        <!-- Invisible OdsIconToggleButtonsRow used for tests -->
-        <com.orange.ods.xml.component.button.OdsIconToggleButtonsRow
+        <!-- Invisible OdsBottomNavigation used for tests -->
+        <com.orange.ods.xml.component.bottomnavigation.OdsBottomNavigation
             android:id="@+id/ods_bottom_navigation_test"
             android:visibility="gone"
             android:layout_height="wrap_content"
