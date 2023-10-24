@@ -176,7 +176,9 @@ fun rememberAppBarState(
     searchedText: MutableState<TextFieldValue> = remember { mutableStateOf(TextFieldValue("")) },
     customAppBarConfiguration: MutableState<AppBarConfiguration> = remember { mutableStateOf(CustomDefaultConfiguration) },
     tabsState: AppBarTabsState = rememberAppBarTabsState()
-) = remember { AppBarState(navController, searchedText, customAppBarConfiguration, tabsState) }
+) = remember(navController, searchedText, customAppBarConfiguration, tabsState) {
+    AppBarState(navController, searchedText, customAppBarConfiguration, tabsState)
+}
 
 data class AppBarConfiguration constructor(
     val isLarge: Boolean,
