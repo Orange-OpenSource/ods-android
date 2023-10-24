@@ -27,6 +27,7 @@ import androidx.navigation.NavController
 import androidx.navigation.compose.currentBackStackEntryAsState
 import com.orange.ods.app.R
 import com.orange.ods.app.domain.recipes.LocalRecipes
+import com.orange.ods.app.ui.AppBarAction.Companion.alwaysVisibleActions
 import com.orange.ods.app.ui.AppBarState.Companion.CustomDefaultConfiguration
 import com.orange.ods.app.ui.components.appbars.top.TopAppBarCustomizationState
 import com.orange.ods.app.ui.components.utilities.clickOnElement
@@ -106,7 +107,7 @@ class AppBarState(
             val context = LocalContext.current
             val screenAppBarAction = currentScreen?.getAppBarActions { searchText.value = it }.orEmpty()
             return if (isCustom) {
-                val customActionCount = max(0, customAppBarConfiguration.value.actionCount - alwaysVisibleActions.size)
+                val customActionCount = max(0, customAppBarConfiguration.value.actionCount - AppBarAction.alwaysVisibleActions.size)
                 val customActions = NavigationItem.values()
                     .take(customActionCount)
                     .map {

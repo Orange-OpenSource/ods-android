@@ -22,6 +22,7 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.input.TextFieldValue
 import com.orange.ods.app.R
+import com.orange.ods.app.ui.AppBarAction.Companion.alwaysVisibleActions
 import com.orange.ods.app.ui.utilities.UiString
 import com.orange.ods.app.ui.utilities.extension.isDarkModeEnabled
 import com.orange.ods.compose.component.appbar.top.OdsTopAppBarActionButton
@@ -29,10 +30,12 @@ import com.orange.ods.compose.component.appbar.top.OdsTopAppBarOverflowMenuActio
 import com.orange.ods.compose.component.content.OdsComponentContent
 import com.orange.ods.compose.component.textfield.search.OdsSearchTextField
 
-val alwaysVisibleActions = listOf(AppBarAction.ChangeTheme, AppBarAction.ChangeMode)
-
 enum class AppBarAction {
     Search, ChangeTheme, ChangeMode;
+
+    companion object {
+        val alwaysVisibleActions = listOf(ChangeTheme, ChangeMode)
+    }
 
     @Composable
     fun getOdsTopAppBarAction(onActionClick: (AppBarAction) -> Unit) = when (this) {
