@@ -36,6 +36,7 @@ import com.orange.ods.compose.component.appbar.top.OdsTopAppBarActionButton
 import com.orange.ods.compose.component.appbar.top.OdsTopAppBarNavigationIcon
 import com.orange.ods.compose.component.appbar.top.OdsTopAppBarOverflowMenuActionItem
 import com.orange.ods.compose.component.content.OdsComponentContent
+import com.orange.ods.extension.orElse
 import kotlin.math.max
 
 val LocalAppBarManager = staticCompositionLocalOf<AppBarManager> { error("CompositionLocal AppBarManager not present") }
@@ -86,11 +87,11 @@ class AppBarState(
         @Composable get() = currentScreenRoute?.let { getScreen(it, currentScreenRouteArgs) }
 
     private val isCustom: Boolean
-        @Composable get() = currentScreen?.type == ScreenType.WithCustomizableTopAppBar
+        @Composable get() = currentScreen?.hasCustomAppBar.orElse { false }
 
     private val showNavigationIcon: Boolean
         @Composable get() = (isCustom && customAppBarConfiguration.value.isNavigationIconEnabled)
-                || currentScreen?.type !in listOf(ScreenType.Home, ScreenType.WithCustomizableTopAppBar)
+                || (currentScreen?.hasCustomAppBar == false && currentScreen?.isHome == false)
 
     val isLarge: Boolean
         @Composable get() = currentScreen?.isLargeAppBar == true

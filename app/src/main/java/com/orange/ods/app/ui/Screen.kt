@@ -54,7 +54,6 @@ sealed class Screen(
     val route: String,
     val isLargeAppBar: Boolean = false,
     val title: UiString? = null,
-    val type: ScreenType = ScreenType.Default,
 ) {
 
     companion object {
@@ -62,37 +61,39 @@ sealed class Screen(
         val appBarActionClicked: Flow<AppBarAction> = _appBarActionClicked.asSharedFlow()
     }
 
+    val isHome: Boolean
+        get() = this in listOf(Guidelines, Components, Modules, About)
+
+    val hasCustomAppBar: Boolean
+        get() = this is ComponentVariant && Variant.fromId(this.variantId)?.customizableTopAppBar == true
+
     @Composable
-    fun getAppBarActions(onSearchedTextChange: (TextFieldValue) -> Unit): List<OdsComponentContent<Nothing>> = when (type) {
-        ScreenType.Home -> getHomeActions { action -> _appBarActionClicked.tryEmit(action) }
-        ScreenType.Search -> listOf(getSearchFieldAction(onSearchedTextChange))
-        ScreenType.WithCustomizableTopAppBar, ScreenType.Default -> getDefaultActions { action -> _appBarActionClicked.tryEmit(action) }
+    fun getAppBarActions(onSearchedTextChange: (TextFieldValue) -> Unit): List<OdsComponentContent<Nothing>> = when {
+        isHome -> getHomeActions { action -> _appBarActionClicked.tryEmit(action) }
+        this is Search -> listOf(getSearchFieldAction(onSearchedTextChange))
+        else -> getDefaultActions { action -> _appBarActionClicked.tryEmit(action) }
     }
 
     // Bottom navigation screens
 
     data object Guidelines : Screen(
         route = BottomBarItem.Guidelines.route,
-        title = UiString.StringResource(R.string.navigation_item_guidelines),
-        type = ScreenType.Home
+        title = UiString.StringResource(R.string.navigation_item_guidelines)
     )
 
     data object Components : Screen(
         route = BottomBarItem.Components.route,
-        title = UiString.StringResource(R.string.navigation_item_components),
-        type = ScreenType.Home
+        title = UiString.StringResource(R.string.navigation_item_components)
     )
 
     data object Modules : Screen(
         route = BottomBarItem.Modules.route,
-        title = UiString.StringResource(R.string.navigation_item_modules),
-        type = ScreenType.Home
+        title = UiString.StringResource(R.string.navigation_item_modules)
     )
 
     data object About : Screen(
         route = BottomBarItem.About.route,
-        title = UiString.StringResource(R.string.navigation_item_about),
-        type = ScreenType.Home
+        title = UiString.StringResource(R.string.navigation_item_about)
     )
 
     // Guideline screens
@@ -122,19 +123,13 @@ sealed class Screen(
     data class ComponentVariant(val variantId: Long?) : Screen(
         route = ComponentVariantDemoRoute,
         title = Variant.fromId(variantId)?.titleRes?.let { UiString.StringResource(it) },
-        isLargeAppBar = Variant.fromId(variantId)?.largeTopAppBar == true,
-        type = if (Variant.fromId(variantId)?.customizableTopAppBar == true) ScreenType.WithCustomizableTopAppBar else ScreenType.Default
+        isLargeAppBar = Variant.fromId(variantId)?.largeTopAppBar == true
     )
 
     // Search screen
 
     data object Search : Screen(
-        route = MainNavigation.SearchRoute,
-        type = ScreenType.Search
+        route = MainNavigation.SearchRoute
     )
 
-}
-
-enum class ScreenType {
-    Home, Search, WithCustomizableTopAppBar, Default
 }
