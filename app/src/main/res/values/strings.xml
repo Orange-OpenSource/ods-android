@@ -234,7 +234,7 @@
     <!-- Component List item -->
     <string name="component_list_item">List item</string>
     <string name="component_list_item_description">A list item is the individual element of data entries like text, icons or images that is used to create a list.</string>
-    <string name="component_list_item_size">List item size</string>
+    <string name="component_list_item_line_count">Line count</string>
     <string name="component_list_item_add_line">Add line</string>
     <string name="component_list_item_remove_line">Remove line</string>
     <string name="component_list_leading">Leading - Before the list text</string>
@@ -247,6 +247,7 @@
     <string name="component_list_trailing_none">None</string>
     <string name="component_list_trailing_checkbox">Checkbox</string>
     <string name="component_list_trailing_switch">Switch</string>
+    <string name="component_list_trailing_radio_button">Radio button</string>
     <string name="component_list_trailing_icon">Icon</string>
     <string name="component_list_trailing_caption">Caption</string>
     <string name="component_list_information">Information</string>

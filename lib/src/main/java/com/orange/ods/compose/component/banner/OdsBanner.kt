@@ -30,7 +30,7 @@ import com.orange.ods.R
 import com.orange.ods.compose.component.OdsComposable
 import com.orange.ods.compose.component.button.OdsTextButton
 import com.orange.ods.compose.component.button.OdsTextButtonStyle
-import com.orange.ods.compose.component.content.OdsComponentCircleImage
+import com.orange.ods.compose.component.content.OdsComponentCircularImage
 import com.orange.ods.compose.component.content.OdsComponentContent
 import com.orange.ods.compose.component.divider.OdsDivider
 import com.orange.ods.compose.component.utilities.BasicPreviewParameterProvider
@@ -119,7 +119,7 @@ class OdsBannerButton(private val text: String, private val onClick: () -> Unit)
 /**
  * An image in an [OdsBanner].
  */
-class OdsBannerImage : OdsComponentCircleImage {
+class OdsBannerImage : OdsComponentCircularImage {
 
     /**
      * Creates an instance of [OdsBannerImage].

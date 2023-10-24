@@ -39,7 +39,7 @@ import com.orange.ods.compose.OdsComposable
 import com.orange.ods.compose.component.chip.OdsChoiceChip
 import com.orange.ods.compose.component.chip.OdsChoiceChipsFlowRow
 import com.orange.ods.compose.component.list.OdsListItem
-import com.orange.ods.compose.component.list.OdsSwitchTrailing
+import com.orange.ods.compose.component.list.OdsListItemTrailingSwitch
 import com.orange.ods.compose.component.progressindicator.OdsCircularProgressIndicator
 
 private const val DeterminateProgressTargetValue = 0.9f
@@ -67,12 +67,15 @@ fun ProgressCircular() {
                     modifier = Modifier.padding(horizontal = dimensionResource(id = com.orange.ods.R.dimen.spacing_m)),
                     chips = listOf(
                         OdsChoiceChip(text = stringResource(id = R.string.component_progress_determinate), value = ProgressCustomizationState.Type.Determinate),
-                        OdsChoiceChip(text = stringResource(id = R.string.component_progress_indeterminate), value = ProgressCustomizationState.Type.Indeterminate)
+                        OdsChoiceChip(
+                            text = stringResource(id = R.string.component_progress_indeterminate),
+                            value = ProgressCustomizationState.Type.Indeterminate
+                        )
                     )
                 )
                 OdsListItem(
                     text = stringResource(id = R.string.component_element_label),
-                    trailing = OdsSwitchTrailing(checked = label)
+                    trailing = OdsListItemTrailingSwitch(label.value, { label.value = it })
                 )
             }) {
             Column(

@@ -32,7 +32,7 @@ description: Chips are compact elements that represent an input, attribute, or a
 
 ## Accessibility
 
-Please follow [accessibility criteria for development](https://a11y-guidelines.orange.com/en/mobile/android/development/)
+Please follow [accessibility criteria for development](https://a11y-guidelines.orange.com/en/mobile/android/development/).
 
 Chips support content labeling for accessibility and are readable by most screen readers, such as
 TalkBack. Text rendered in chips is automatically provided to accessibility services. Additional

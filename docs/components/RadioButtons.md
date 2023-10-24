@@ -28,7 +28,7 @@ Use radio buttons to:
 
 ## Accessibility
 
-Please follow [accessibility criteria for development](https://a11y-guidelines.orange.com/en/mobile/android/development/)
+Please follow [accessibility criteria for development](https://a11y-guidelines.orange.com/en/mobile/android/development/).
 
 Radio buttons support content labeling for accessibility and are readable by
 most screen readers, such as TalkBack. Text rendered in radio buttons is

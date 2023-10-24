@@ -11,10 +11,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - \[Lib\] Update `OdsBottomNavigation`, `OdsChoiceChipsFlowRow`, `OdsSlider` and `OdsSliderLockups` APIs ([#661](https://github.com/Orange-OpenSource/ods-android/issues/661))
 - \[Lib\] Review and update technical documentation ([#638](https://github.com/Orange-OpenSource/ods-android/issues/638))
+- \[Lib\] Update `OdsListItem` API ([#650](https://github.com/Orange-OpenSource/ods-android/issues/650))
 
 ### Fixed
 
 - \[App\] Change illustrations alignment for slider and text field components ([#618](https://github.com/Orange-OpenSource/ods-android/issues/618))
+- \[Lib\] Fix a bug where chip was not properly selected in `OdsChoiceChipsFlowRow` ([#650](https://github.com/Orange-OpenSource/ods-android/issues/650))
 
 ## [0.16.0](https://github.com/Orange-OpenSource/ods-android/compare/0.15.1...0.16.0) - 2023-10-10
 

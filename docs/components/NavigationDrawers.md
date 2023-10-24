@@ -20,7 +20,7 @@ description: The navigation drawer slides in from the left when the nav icon is 
 
 ## Accessibility
 
-Please follow [accessibility criteria for development](https://a11y-guidelines.orange.com/en/mobile/android/development/)
+Please follow [accessibility criteria for development](https://a11y-guidelines.orange.com/en/mobile/android/development/).
 
 ## Implementation
 

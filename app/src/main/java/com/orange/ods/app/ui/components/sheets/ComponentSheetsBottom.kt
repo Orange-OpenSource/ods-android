@@ -33,7 +33,6 @@ import com.orange.ods.compose.component.chip.OdsChoiceChipsFlowRow
 import com.orange.ods.compose.component.list.OdsListItem
 import com.orange.ods.compose.component.list.OdsListItemIcon
 import com.orange.ods.compose.component.list.OdsListItemIconType
-import com.orange.ods.compose.component.list.iconType
 import com.orange.ods.compose.text.OdsTextBody1
 import com.orange.ods.compose.text.OdsTextSubtitle1
 
@@ -53,11 +52,9 @@ fun ComponentSheetsBottom() {
                 val recipes = LocalRecipes.current
                 recipes.take(3).forEach { recipe ->
                     OdsListItem(
-                        Modifier
-                            .iconType(OdsListItemIconType.Icon)
-                            .alpha(if (isEmpty) 0.0f else 1.0f),
+                        modifier = Modifier.alpha(if (isEmpty) 0.0f else 1.0f),
                         icon = recipe.iconResId?.let { iconRes ->
-                            { OdsListItemIcon(painterResource(id = iconRes)) }
+                            OdsListItemIcon(OdsListItemIconType.Icon, painterResource(id = iconRes), "")
                         },
                         text = recipe.title
                     )
@@ -81,7 +78,10 @@ fun ComponentSheetsBottom() {
                         modifier = Modifier.padding(horizontal = dimensionResource(id = com.orange.ods.R.dimen.spacing_m)),
                         chips = listOf(
                             OdsChoiceChip(text = stringResource(id = R.string.component_element_empty), value = SheetsBottomCustomizationState.Content.Empty),
-                            OdsChoiceChip(text = stringResource(id = R.string.component_element_example), value = SheetsBottomCustomizationState.Content.Example)
+                            OdsChoiceChip(
+                                text = stringResource(id = R.string.component_element_example),
+                                value = SheetsBottomCustomizationState.Content.Example
+                            )
                         )
                     )
                 }

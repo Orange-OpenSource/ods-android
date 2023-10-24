@@ -27,7 +27,7 @@ Only one banner should be shown at a time
 
 ## Accessibility
 
-Please follow [accessibility criteria for development](https://a11y-guidelines.orange.com/en/mobile/android/development/)
+Please follow [accessibility criteria for development](https://a11y-guidelines.orange.com/en/mobile/android/development/).
 
 `OdsBanner` is built to support accessibility criteria and is readable by most screen readers, such as TalkBack. The use of an `OdsBannerImage` force the developer to associate a content description to the banner image.
 

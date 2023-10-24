@@ -18,7 +18,7 @@ description: A bottom app bar displays navigation and key actions at the bottom 
 
 ## Accessibility
 
-Please follow [accessibility criteria for development](https://a11y-guidelines.orange.com/en/mobile/android/development/)
+Please follow [accessibility criteria for development](https://a11y-guidelines.orange.com/en/mobile/android/development/).
 
 Android's bottom app bar component APIs provide support for the navigation icon,
 action items, overflow menu and more for informing the user as to what each

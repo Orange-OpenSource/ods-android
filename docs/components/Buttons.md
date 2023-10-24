@@ -40,7 +40,7 @@ description: Buttons allow users to take actions, and make choices, with a singl
 
 ## Accessibility
 
-Please follow [accessibility criteria for development](https://a11y-guidelines.orange.com/en/mobile/android/development/)
+Please follow [accessibility criteria for development](https://a11y-guidelines.orange.com/en/mobile/android/development/).
 
 ODS buttons support accessibility criteria and are readable by most screen readers, such as TalkBack.
 

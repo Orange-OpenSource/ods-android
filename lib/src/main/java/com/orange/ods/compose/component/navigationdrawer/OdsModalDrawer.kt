@@ -50,8 +50,6 @@ import com.orange.ods.compose.component.OdsComposable
 import com.orange.ods.compose.component.divider.OdsDivider
 import com.orange.ods.compose.component.list.OdsListItem
 import com.orange.ods.compose.component.list.OdsListItemIcon
-import com.orange.ods.compose.component.list.OdsListItemIconType
-import com.orange.ods.compose.component.list.iconType
 import com.orange.ods.compose.component.utilities.BasicPreviewParameterProvider
 import com.orange.ods.compose.component.utilities.OdsImageCircleShape
 import com.orange.ods.compose.component.utilities.Preview
@@ -122,27 +120,20 @@ private fun ModalDrawerItem(item: OdsModalDrawerItem, selected: Boolean, onClick
         is OdsModalDrawerListItem -> {
             CompositionLocalProvider(LocalRippleTheme provides OdsModalDrawerListItemRippleTheme) {
                 OdsListItem(
-                    text = {
-                        Text(
-                            text = item.text,
-                            color = if (selected) OdsTheme.colors.primaryVariant else OdsTheme.colors.onSurface,
-                            style = if (selected) OdsTheme.typography.subtitle2 else OdsTheme.typography.subtitle2.copy(fontWeight = FontWeight.Bold)
-                        )
-                    },
-                    hasText = true,
+                    text = item.text,
+                    textColor = if (selected) OdsTheme.colors.primaryVariant else OdsTheme.colors.onSurface,
+                    textStyle = if (selected) OdsTheme.typography.subtitle2 else OdsTheme.typography.subtitle2.copy(fontWeight = FontWeight.Bold),
                     modifier = Modifier
-                        .iconType(OdsListItemIconType.Icon)
                         .selectable(selected = selected, onClick = { onClick(item) })
                         .let {
                             if (selected) it.background(OdsTheme.colors.primaryVariant.copy(alpha = SelectedItemOpacity)) else it
                         },
                     icon = item.icon?.let {
-                        {
-                            OdsListItemIcon(
-                                painter = painterResource(id = it),
-                                tint = if (selected) OdsTheme.colors.primaryVariant else OdsTheme.colors.onSurface
-                            )
-                        }
+                        OdsListItemIcon(
+                            painterResource(id = it),
+                            "",
+                            if (selected) OdsTheme.colors.primaryVariant else OdsTheme.colors.onSurface
+                        )
                     }
                 )
             }

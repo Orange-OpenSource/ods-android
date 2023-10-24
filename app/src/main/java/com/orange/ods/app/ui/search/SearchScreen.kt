@@ -10,7 +10,6 @@
 
 package com.orange.ods.app.ui.search
 
-import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.lazy.LazyColumn
@@ -45,7 +44,6 @@ import com.orange.ods.app.ui.utilities.DrawableManager
 import com.orange.ods.compose.component.list.OdsListItem
 import com.orange.ods.compose.component.list.OdsListItemIcon
 import com.orange.ods.compose.component.list.OdsListItemIconType
-import com.orange.ods.compose.component.list.iconType
 import com.orange.ods.compose.theme.OdsTheme
 import com.orange.ods.extension.orElse
 import com.orange.ods.theme.guideline.GuidelineColor
@@ -165,31 +163,24 @@ fun SearchScreen(
             val guidelineColor = filteredGuidelineColors.firstOrNull { guidelineColor ->
                 guidelineColor.getName() == item.title && guidelineColor.getValue(OdsTheme.colors) == item.color
             }
+            val painter = when {
+                item.image != null -> painterResource(id = DrawableManager.getDrawableResIdForCurrentTheme(resId = item.image))
+                item.color != null -> ColorPainter(item.color)
+                else -> painterResource(id = DrawableManager.getPlaceholderResId())
+            }
             OdsListItem(
                 text = item.title,
                 secondaryText = item.subtitle,
                 singleLineSecondaryText = true,
-                modifier = Modifier
-                    .iconType(OdsListItemIconType.SquareImage)
-                    .clickable {
-                        when (item.data) {
-                            is Component -> onResultItemClick(MainDestinations.ComponentDetailRoute, item.id)
-                            is Variant -> onResultItemClick(MainDestinations.ComponentVariantDemoRoute, item.id)
-                            is Spacing -> onResultItemClick(MainDestinations.GuidelineSpacing, null)
-                            is GuidelineColor -> openDialog.value = true
-                        }
-                    },
-                icon = {
-                    print(item)
-                    OdsListItemIcon(
-                        painter = when {
-                            item.image != null -> painterResource(id = DrawableManager.getDrawableResIdForCurrentTheme(resId = item.image))
-                            item.color != null -> ColorPainter(item.color)
-                            else -> painterResource(id = DrawableManager.getPlaceholderResId())
-                        }
-                    )
+                icon = OdsListItemIcon(OdsListItemIconType.SquareImage, painter, "")
+            ) {
+                when (item.data) {
+                    is Component -> onResultItemClick(MainDestinations.ComponentDetailRoute, item.id)
+                    is Variant -> onResultItemClick(MainDestinations.ComponentVariantDemoRoute, item.id)
+                    is Spacing -> onResultItemClick(MainDestinations.GuidelineSpacing, null)
+                    is GuidelineColor -> openDialog.value = true
                 }
-            )
+            }
             if (openDialog.value && guidelineColor != null) {
                 DialogColor(color = guidelineColor, openDialog)
             }

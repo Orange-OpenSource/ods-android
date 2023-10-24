@@ -79,11 +79,11 @@ fun OdsDropdownMenu(
  * @property onClick Called when the menu item was clicked
  */
 class OdsDropdownMenuItem private constructor(
-    val text: String,
-    val icon: Any?,
-    val enabled: Boolean,
-    val divider: Boolean,
-    val onClick: () -> Unit
+    private val text: String,
+    private val icon: Any?,
+    private val enabled: Boolean,
+    private val divider: Boolean,
+    private val onClick: () -> Unit
 ) : OdsComponentContent<OdsDropdownMenuItem.ExtraParameters>() {
 
     data class ExtraParameters(val onDismissRequest: () -> Unit) : OdsComponentContent.ExtraParameters()

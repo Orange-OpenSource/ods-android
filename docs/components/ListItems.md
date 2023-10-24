@@ -1,6 +1,6 @@
 ---
 layout: detail
-title: Lists
+title: List items
 description: Lists are continuous, vertical indexes of text or images.
 ---
 
@@ -11,6 +11,7 @@ description: Lists are continuous, vertical indexes of text or images.
 * [Variants](#variants)
     * [Single-line list](#single-line-list)
         * [Jetpack Compose](#jetpack-compose)
+            * [OdsListItem API](#odslistitem-api)
     * [Two-line list](#two-line-list)
         * [Jetpack Compose](#jetpack-compose-1)
     * [Three-line list](#three-line-list)
@@ -25,7 +26,7 @@ description: Lists are continuous, vertical indexes of text or images.
 
 ## Accessibility
 
-Please follow [accessibility criteria for development](https://a11y-guidelines.orange.com/en/mobile/android/development/)
+Please follow [accessibility criteria for development](https://a11y-guidelines.orange.com/en/mobile/android/development/).
 
 ## Variants
 
@@ -49,37 +50,36 @@ Please note that there is no start padding with wide images.
 
 The library offers the `OdsListItem` composable to display lists items.
 
-**Leading icon:**
-
-To specify an icon type, use the `Modifier.iconType` method on the `OdsListItem` modifier and call `OdsListItemScope.OdsListItemIcon` in the `icon` lambda.
-
-**Trailing element:**
-
-The `OdsListItem` composable allows you to display an `OdsListItemTrailing` (Checkbox, Switch, RadioButton, Icon or a Caption text) as trailing element. If this does not meet your
-needs and only in this case, you can use the `OdsListItem` method signature which accept any Composable as trailing.
-
-Note: The first signature (with `OdsListItemTrailing`) automatically manages accessibility, if you use the second one, don't forget to manage it on your side.
-
-**Dividers:**
-
-A divider can also be displayed at the bottom of the list item using the `Modifier.divider` method on the `OdsListItem` modifier.
+The `OdsListItem` composable allows you to display a leading icon using the `icon` parameter of the `OdsListItem` method, as well as a trailing element (either a checkbox, a switch, a radio button, an icon or a caption text) using the `trailing` parameter.
 
 ```kotlin
 OdsListItem(
-    modifier = Modifier
-        .clickable { doSomething() }
-        .iconType(OdsListItemIconType.Icon)
-        .divider(),
+    modifier = Modifier.clickable { doSomething() },
     text = "Primary text",
-    icon = {
-        OdsListItemIcon(
-            painter = painterResource(id = R.drawable.ic_heart),
-            contentDescription = "Heart"
-        )
-    },
-    trailing = OdsCheckboxTrailing(checked = itemChecked)
+    icon = OdsListItemIcon(
+        OdsListItemIconType.Icon,
+        painterResource(id = R.drawable.ic_heart),
+        "Heart"
+    ),
+    trailing = OdsListItemTrailingCheckbox(checked, { checked != checked }),
+    divider = true
 )
 ```
+
+##### OdsListItem API
+
+Parameter | Default&nbsp;value | Description
+-- | -- | --
+`text: String` | | The primary text of the list item
+`modifier: Modifier` | `Modifier` | Modifier to be applied to the list item
+`icon: OdsListItemIcon?` | `null` | The leading supporting visual of the list item
+`secondaryText: String?` | `null` | The secondary text of the list item
+`singleLineSecondaryText: Boolean` | `true` | Whether the secondary text is single line
+`overlineText: String?` | `null` | The text displayed above the primary text
+`trailing: OdsListItemTrailing?` | `null` | The trailing content to display at the end of the list item
+`divider: Boolean` | `false` | Whether or not a divider is displayed at the bottom of the list item
+`onClick: (() -> Unit)?` | `null` | Will be called when the user clicks the list item. This parameter only has an effect if trailing is `OdsListItemTrailingIcon` or `null`.
+{:.table}
 
 ### Two-line list
 
@@ -101,19 +101,22 @@ The only difference with the single-line implementation is that the `secondaryTe
 
 ```kotlin
 OdsListItem(
-    modifier = Modifier
-        .clickable { doSomething() }
-        .iconType(OdsListItemIconType.CircularImage)
-        .divider(),
+    modifier = Modifier.clickable { doSomething() },
     text = "Primary text",
     secondaryText = "Secondary text",
-    icon = { OdsListItemIcon(painter = painterResource(id = R.drawable.placeholder)) },
-    trailing = OdsIconTrailing(
-        painter = painterResource(id = R.drawable.ic_drag_handle),
-        contentDescription = "Drag item"
-    )
+    icon = OdsListItemIcon(
+        OdsListItemIconType.CircularImage,
+        painterResource(id = R.drawable.placeholder, "")
+    ),
+    trailing = OdsListItemTrailingIcon(
+        painterResource(id = R.drawable.ic_drag_handle),
+        "Drag item"
+    ),
+    divider = true
 )
 ```
+
+Use [OdsListItem API](#odslistitem-api).
 
 ### Three-line list
 
@@ -135,14 +138,18 @@ The only difference with the two-line implementation is that the `singleLineSeco
 
 ```kotlin
 OdsListItem(
-    modifier = Modifier
-        .clickable { doSomething() }
-        .iconType(OdsListItemIconType.SquareImage)
-        .divider(),
+    modifier = Modifier.clickable { doSomething() },
     text = "Primary text",
     secondaryText = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor.",
     singleLineSecondaryText = false,
-    icon = { OdsListItemIcon(painter = painterResource(id = R.drawable.placeholder)) },
-    trailing = OdsCaptionTrailing(text = "Caption")
+    icon = OdsListItemIcon(
+        OdsListItemIconType.SquareImage,
+        painter = painterResource(id = R.drawable.placeholder),
+        ""
+    ),
+    trailing = OdsListItemTrailingCaption("Caption"),
+    divider = true
 )
 ```
+
+Use [OdsListItem API](#odslistitem-api).
