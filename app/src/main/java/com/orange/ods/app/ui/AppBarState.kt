@@ -133,7 +133,7 @@ class AppBarState(
                 emptyList()
             }
         } else {
-            currentScreen?.overflowMenuActions?.map { it.asOdsTopAppBarOverflowMenuActionItem() }.orEmpty()
+            currentScreen?.overflowMenuActions?.map { it.getOdsTopAppBarOverflowMenuAction() }.orEmpty()
         }
 
     val hasScrollBehavior: Boolean

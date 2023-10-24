@@ -48,7 +48,7 @@ data class AppBarOverflowMenuAction(
     val onClick: () -> Unit
 ) {
     @Composable
-    fun asOdsTopAppBarOverflowMenuActionItem() = OdsTopAppBarOverflowMenuActionItem(
+    fun getOdsTopAppBarOverflowMenuAction() = OdsTopAppBarOverflowMenuActionItem(
         text = title.asString(),
         onClick = onClick
     )
