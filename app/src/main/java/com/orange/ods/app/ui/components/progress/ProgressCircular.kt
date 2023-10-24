@@ -84,7 +84,7 @@ fun ProgressCircular() {
                     }
                 }
 
-                CodeImplementationColumn {
+                CodeImplementationColumn(modifier = Modifier.padding(horizontal = dimensionResource(id = com.orange.ods.R.dimen.screen_horizontal_margin))) {
                     FunctionCallCode(
                         name = OdsComposable.OdsCircularProgressIndicator.name,
                         exhaustiveParameters = false,
