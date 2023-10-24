@@ -123,20 +123,16 @@ class AppBarState(
         }
 
     val overflowMenuActions: List<OdsTopAppBarOverflowMenuActionItem>
-        @Composable get() = if (isCustom) {
-            if (customAppBarConfiguration.value.isOverflowMenuEnabled) {
-                val context = LocalContext.current
-                LocalRecipes.current.map { recipe ->
-                    OdsTopAppBarOverflowMenuActionItem(
-                        text = recipe.title,
-                        onClick = { clickOnElement(context, recipe.title) }
-                    )
-                }
-            } else {
-                emptyList()
+        @Composable get() = if (isCustom && customAppBarConfiguration.value.isOverflowMenuEnabled) {
+            val context = LocalContext.current
+            LocalRecipes.current.map { recipe ->
+                OdsTopAppBarOverflowMenuActionItem(
+                    text = recipe.title,
+                    onClick = { clickOnElement(context, recipe.title) }
+                )
             }
         } else {
-            currentScreen?.overflowMenuActions?.map { it.getOdsTopAppBarOverflowMenuAction() }.orEmpty()
+            emptyList()
         }
 
     val hasScrollBehavior: Boolean

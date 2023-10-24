@@ -55,7 +55,6 @@ sealed class Screen(
     val isLargeAppBar: Boolean = false,
     val title: UiString? = null,
     val type: ScreenType = ScreenType.Default,
-    val overflowMenuActions: List<AppBarOverflowMenuAction> = emptyList()
 ) {
 
     companion object {
