@@ -41,7 +41,7 @@ fun getScreen(route: String?, args: Bundle?): Screen? = route?.let {
         }
     } else {
         // Simple route
-        val screens = Screen::class.nestedClasses.mapNotNull { kClass -> kClass.objectInstance as? Screen }
+        val screens = Screen::class.sealedSubclasses.mapNotNull { it.objectInstance }
         screens.firstOrNull { screen -> screen.route == route }
     }
 }
