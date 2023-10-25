@@ -9,10 +9,18 @@ description: Tabs organize content across different screens, data sets, and othe
 * [Specifications references](#specifications-references)
 * [Accessibility](#accessibility)
 * [Variants](#variants)
-    * [Fixed tabs](#fixed-tabs)
+    * [Fixed tabs row](#fixed-tabs-row)
         * [Jetpack Compose](#jetpack-compose)
-    * [Scrollable tabs](#scrollable-tabs)
+            * [OdsTabRow API](#odstabrow-api)
+    * [Scrollable tabs row](#scrollable-tabs-row)
         * [Jetpack Compose](#jetpack-compose-1)
+            * [OdsScrollableTabRow API](#odsscrollabletabrow-api)
+* [Extras](#extras)
+    * [Jetpack Compose](#jetpack-compose-2)
+        * [Tab](#tab)
+            * [OdsTab API](#odstab-api)
+        * [Leading icon tab](#leading-icon-tab)
+            * [OdsLeadingIconTab API](#odsleadingicontab-api)
 
 ---
 
@@ -30,7 +38,7 @@ badges. While optional, we strongly encourage their use.
 
 ## Variants
 
-### Fixed tabs
+### Fixed tabs row
 
 Fixed tabs display all tabs on one screen, with each tab at a fixed width. The
 width of each tab is determined by dividing the number of tabs by the screen
@@ -40,75 +48,44 @@ only tabs available.
 #### Jetpack Compose
 
 In Compose, the fixed tabs should be added inside of an `OdsTabRow`.
-The used composable for tab depends on the type of tabs to display: classic `OdsTab` or `OdsLeadingIconTab`.
+The used composables for tabs depends on the type of tabs to display: classic `OdsTab` or `OdsLeadingIconTab` (see [Extras](#extras) section).
 
 ![Fixed tabs light](images/tabs_fixed_light.png)
 
 ![Fixed tabs dark](images/tabs_fixed_dark.png)
 
-**`OdsTab` composable:**
-
-This composable allows to display:
-
-- an icon only tab
-- a text label only tab
-- a tab with an icon on top of text label
-
 ```kotlin
-OdsTabRow(selectedTabIndex = pagerState.currentPage) {
-    OdsTab(
-        icon = painterResource(id = R.drawable.ic_alert), // if set to `null`, no icon will be displayed
-        text = "Alerts", // if set to `null`, no text will be displayed
-        selected = pagerState.currentPage == index,
-        onClick = {
-            scope.launch {
-                pagerState.animateScrollToPage(index)
-            }
-        }
-    )
-    OdsTab(
-        icon = painterResource(id = R.drawable.ic_calendar), // if set to `null`, no icon will be displayed
-        text = "Calendar", // if set to `null`, no text will be displayed
-        selected = pagerState.currentPage == index,
-        onClick = {
-            scope.launch {
-                pagerState.animateScrollToPage(index)
-            }
-        }
-    )
-}
+OdsTabRow(
+    selectedTabIndex = 0,
+    tabs = listOf(
+        OdsTabRowTab(
+            painter = painterResource(id = R.drawable.ic_heart),
+            text = "Favourites",
+            selected = true,
+            onClick = { doSomething() }
+        ),
+        OdsTabRowTab(
+            painter = painterResource(id = R.drawable.ic_call),
+            text = "Calls",
+            selected = false,
+            onClick = { doSomething() }
+        )
+    ),
+    leadingIconTabs = false
+)
 ```
 
-**`OdsLeadingIconTab` composable:**
+##### OdsTabRow API
 
-This composable allows to display a tab with a text label and an icon in front of the label.
+Parameter | Default&nbsp;value | Description
+-- | -- | --
+`selectedTabIndex: Int` | | Index of the currently selected tab
+`tabs: List<OdsTabRowTab>` | | List of the `OdsTabRowTab` displayed inside this tabs row
+`modifier: Modifier` | `Modifier` | `Modifier` applied to the tabs row
+`leadingIconTabs: Boolean` | `false` | Controls the composable used to render the tabs: `OdsLeadingIconTab` or `OdsTab`
+{:.table}
 
-```kotlin
-OdsTabRow(selectedTabIndex = pagerState.currentPage) {
-    OdsLeadingIconTab(
-        icon = painterResource(id = R.drawable.ic_alert), // icon is mandatory in an `OdsLeadingIconTab`
-        text = "Alerts", // text is mandatory in an `OdsLeadingIconTab`
-        selected = pagerState.currentPage == index,
-        onClick = {
-            scope.launch {
-                pagerState.animateScrollToPage(index)
-            }
-        }
-    )
-    OdsLeadingIconTab(
-        icon = painterResource(id = R.drawable.ic_calendar),
-        text = "Calendar",
-        selected = pagerState.currentPage == index,
-        onClick = {
-            scope.launch {
-                pagerState.animateScrollToPage(index)
-            }
-        }
-    )
-}
-```
-
-### Scrollable tabs
+### Scrollable tabs row
 
 Scrollable tabs are displayed without fixed widths. They are scrollable, such
 that some tabs will remain off-screen until scrolled.
@@ -123,26 +100,92 @@ For scrollable tabs, the tabs should be added inside of an `OdsScrollableTabRow`
 As for fixed tabs, you can use an `OdsTab` composable or an `OdsLeadingIconTab` inside.
 
 ```kotlin
-OdsScrollableTabRow(selectedTabIndex = pagerState.currentPage) {
-    OdsTab(
-        icon = painterResource(id = R.drawable.ic_alert), // if set to `null`, no icon will be displayed
-        text = "Alerts", // if set to `null`, no text will be displayed
-        selected = pagerState.currentPage == index,
-        onClick = {
-            scope.launch {
-                pagerState.animateScrollToPage(index)
-            }
-        }
-    )
-    OdsTab(
-        icon = painterResource(id = R.drawable.ic_calendar), // if set to `null`, no icon will be displayed
-        text = "Calendar", // if set to `null`, no text will be displayed
-        selected = pagerState.currentPage == index,
-        onClick = {
-            scope.launch {
-                pagerState.animateScrollToPage(index)
-            }
-        }
-    )
-}
+OdsScrollableTabRow(
+    selectedTabIndex = 0,
+    tabs = listOf(
+        OdsTabRowTab(
+            painter = painterResource(id = R.drawable.ic_heart),
+            text = "Favourites",
+            selected = true,
+            onClick = { doSomething() }
+        ),
+        OdsTabRowTab(
+            painter = painterResource(id = R.drawable.ic_call),
+            text = "Calls",
+            selected = false,
+            onClick = { doSomething() }
+        )
+    ),
+    leadingIconTabs = false
+)
 ```
+
+##### OdsScrollableTabRow API
+
+Parameter | Default&nbsp;value | Description
+-- | -- | --
+`selectedTabIndex: Int` | | Index of the currently selected tab
+`tabs: List<OdsTabRowTab>` | | List of the `OdsTabRowTab` displayed inside this tabs row
+`modifier: Modifier` | `Modifier` | `Modifier` applied to the scrollable tabs row
+`leadingIconTabs: Boolean` | `false` | Controls the composable used to render the tabs: `OdsLeadingIconTab` or `OdsTab`
+{:.table}
+
+## Extras
+
+### Jetpack Compose
+
+The used composables for tabs row depends on the type of tabs to display: classic `OdsTab` or `OdsLeadingIconTab`.
+
+#### Tab
+
+This composable allows to display:
+
+- an icon only tab
+- a text label only tab
+- a tab with an icon on top of text label
+
+```kotlin
+  OdsTab(
+    icon = OdsTabIcon(painterResource(id = R.drawable.ic_alert)),
+    text = "Alerts",
+    selected = false,
+    onClick = { doSomething() }
+)
+```
+
+##### OdsTab API
+
+Parameter | Default&nbsp;value | Description
+-- | -- | --
+`selected: Boolean` | | Controls whether the tab is selected or not
+`onClick: () -> Unit` | | Callback invoked on tab click, when the tab is selected
+`modifier: Modifier` | `Modifier` | `Modifier` applied to the tab
+`enabled: Boolean` | `true` | Controls the enabled state of the tab. When `false`, the tab will not be clickable and will appear disabled to accessibility services.
+`text: String?` | `null` | Text label displayed in the tab. Always displayed in uppercase
+`icon: OdsTabIcon?` | `null` | Icon displayed in the tab
+{:.table}
+
+#### Leading icon tab
+
+This composable allows to display a tab with a text label and an icon in front of the label.
+
+```kotlin
+  OdsLeadingIconTab(
+    icon = OdsLeadingIconTabIcon(painterResource(id = R.drawable.ic_alert)),
+    text = "Alerts",
+    selected = false,
+    onClick = { doSomething() }
+)
+```
+
+##### OdsLeadingIconTab API
+
+Parameter | Default&nbsp;value | Description
+-- | -- | --
+`selected: Boolean` | | Controls whether the tab is selected or not
+`icon: OdsLeadingIconTabIcon` | | Icon displayed in the tab
+`text: String` | | Text label displayed in the tab. Always displayed in uppercase
+`onClick: () -> Unit` | | Callback invoked on tab click, when the tab is selected
+`modifier: Modifier` | `Modifier` | `Modifier` applied to the tab
+`enabled: Boolean` | `true` | Controls the enabled state of the tab. When `false`, the tab will not be clickable and will appear disabled to accessibility services.
+{:.table}

@@ -34,8 +34,8 @@ import com.orange.ods.compose.theme.OdsTheme
  * @see ScrollableTabRow documentation
  *
  * @param selectedTabIndex Index of the currently selected tab.
- * @param tabs [OdsTabRowTab] displayed inside this tabs row.
- * @param modifier [Modifier] applied to this OdsTabRow.
+ * @param tabs List of the [OdsTabRowTab] displayed inside this tabs row.
+ * @param modifier [Modifier] applied to the scrollable tabs row.
  * @param leadingIconTabs Controls the composable used to render the tabs: [OdsLeadingIconTab] or [OdsTab].
  */
 // TODO kdoc + rename
@@ -69,6 +69,7 @@ fun OdsScrollableTabRow(
 @Composable
 private fun PreviewOdsScrollableTabRow(@PreviewParameter(OdsTabRowPreviewParameterProvider::class) parameter: OdsTabPreviewParameter) = Preview {
     data class Tab(@DrawableRes val iconResId: Int, val text: String)
+
     val tabs = listOf(
         Tab(android.R.drawable.ic_dialog_email, "First"),
         Tab(android.R.drawable.ic_dialog_map, "Second"),

@@ -34,8 +34,8 @@ import com.orange.ods.compose.theme.OdsTheme
  * @see TabRow documentation
  *
  * @param selectedTabIndex Index of the currently selected tab.
- * @param tabs [OdsTabRowTab] displayed inside this tabs row.
- * @param modifier [Modifier] applied to this OdsTabRow.
+ * @param tabs List of the [OdsTabRowTab] displayed inside the tabs row.
+ * @param modifier [Modifier] applied to the tab row.
  * @param leadingIconTabs Controls the composable used to render the tabs: [OdsLeadingIconTab] or [OdsTab].
  */
 @Composable
@@ -70,12 +70,12 @@ private fun PreviewOdsTabRow(@PreviewParameter(OdsTabRowPreviewParameterProvider
     data class Tab(@DrawableRes val iconResId: Int, val text: String)
 
     val tabs = listOf(
-         Tab(android.R.drawable.ic_dialog_email, "First tab"),
-         Tab(android.R.drawable.ic_dialog_map, "Second tab"),
-         Tab(android.R.drawable.ic_dialog_dialer, "Third tab")
-     )
+        Tab(android.R.drawable.ic_dialog_email, "First tab"),
+        Tab(android.R.drawable.ic_dialog_map, "Second tab"),
+        Tab(android.R.drawable.ic_dialog_dialer, "Third tab")
+    )
 
-     var selectedTabIndex by remember { mutableStateOf(0) }
+    var selectedTabIndex by remember { mutableStateOf(0) }
     with(parameter) {
         OdsTabRow(
             selectedTabIndex = selectedTabIndex,
