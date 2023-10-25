@@ -11,7 +11,6 @@
 package com.orange.ods.compose.component.tab
 
 import androidx.annotation.DrawableRes
-import androidx.compose.material.Tab
 import androidx.compose.material.TabRow
 import androidx.compose.material.TabRowDefaults
 import androidx.compose.material.TabRowDefaults.tabIndicatorOffset
@@ -30,21 +29,21 @@ import com.orange.ods.compose.theme.OdsTheme
 /**
  * <a href="https://system.design.orange.com/0c1af118d/p/513d27-tabs/b/50cb71" class="external" target="_blank">ODS tabs</a>.
  *
- * An OdsTabRow is a Jetpack Compose [TabRow] to which we applied the Orange design and theme.
+ * An [OdsTabRow] is a Jetpack Compose [TabRow] to which we applied the Orange design and theme.
  * @see TabRow documentation
  *
- * @param selectedTabIndex the index of the currently selected tab.
- * @param modifier optional [Modifier] for this OdsTabRow.
- * @param tabs the tabs inside this TabRow. Typically this will be multiple [Tab]s. Each element
- * inside this lambda will be measured and placed evenly across the TabRow, each taking up equal
- * space. Use [OdsTab] to display Orange styled tabs.
+ * @param selectedTabIndex Index of the currently selected tab.
+ * @param tabs [OdsTabRowTab] displayed inside this tabs row.
+ * @param modifier [Modifier] applied to this OdsTabRow.
+ * @param leadingIconTabs Controls the composable used to render the tabs: [OdsLeadingIconTab] or [OdsTab].
  */
 @Composable
 @OdsComposable
 fun OdsTabRow(
     selectedTabIndex: Int,
+    tabs: List<OdsTabRowTab>,
     modifier: Modifier = Modifier,
-    tabs: @Composable () -> Unit
+    leadingIconTabs: Boolean = false,
 ) {
     TabRow(
         modifier = modifier,
@@ -60,7 +59,7 @@ fun OdsTabRow(
             }
         },
         divider = {},
-        tabs = tabs
+        tabs = { tabs.forEach { tab -> tab.Content(leadingIconTabs = leadingIconTabs) } }
     )
 }
 
@@ -70,20 +69,21 @@ private fun PreviewOdsTabRow() = Preview {
     data class Tab(@DrawableRes val iconResId: Int, val text: String)
 
     val tabs = listOf(
-        Tab(android.R.drawable.ic_dialog_email, "First tab"),
-        Tab(android.R.drawable.ic_dialog_map, "Second tab"),
-        Tab(android.R.drawable.ic_dialog_dialer, "Third tab")
-    )
+         Tab(android.R.drawable.ic_dialog_email, "First tab"),
+         Tab(android.R.drawable.ic_dialog_map, "Second tab"),
+         Tab(android.R.drawable.ic_dialog_dialer, "Third tab")
+     )
 
-    var selectedTabIndex by remember { mutableStateOf(0) }
-    OdsTabRow(selectedTabIndex = selectedTabIndex) {
-        tabs.forEachIndexed { index, tab ->
-            OdsTab(
-                selected = selectedTabIndex == index,
-                onClick = { selectedTabIndex = index },
-                text = tab.text,
-                icon = painterResource(id = tab.iconResId)
-            )
-        }
-    }
+     var selectedTabIndex by remember { mutableStateOf(0) }
+     OdsTabRow(
+         selectedTabIndex = selectedTabIndex,
+         tabs = tabs.mapIndexed { index, tab ->
+             OdsTabRowTab(
+                 painter = painterResource(id = tab.iconResId),
+                 text = tab.text,
+                 selected = selectedTabIndex == index,
+                 onClick = { selectedTabIndex = index },
+             )
+         }
+     )
 }

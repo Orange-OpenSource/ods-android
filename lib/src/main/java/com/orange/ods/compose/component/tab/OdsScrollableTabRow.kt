@@ -12,7 +12,6 @@ package com.orange.ods.compose.component.tab
 
 import androidx.annotation.DrawableRes
 import androidx.compose.material.ScrollableTabRow
-import androidx.compose.material.Tab
 import androidx.compose.material.TabRowDefaults
 import androidx.compose.material.TabRowDefaults.tabIndicatorOffset
 import androidx.compose.runtime.Composable
@@ -30,21 +29,22 @@ import com.orange.ods.compose.theme.OdsTheme
 /**
  * <a href="https://system.design.orange.com/0c1af118d/p/513d27-tabs/b/50cb71" class="external" target="_blank">ODS tabs</a>.
  *
- * An OdsScrollableTabRow is a Jetpack Compose [ScrollableTabRow] with the Orange design and theme.
+ * An [OdsScrollableTabRow] is a Jetpack Compose [ScrollableTabRow] with the Orange design and theme.
  * @see ScrollableTabRow documentation
  *
- * @param selectedTabIndex the index of the currently selected tab.
- * @param modifier optional [Modifier] for this TabRow.
- * @param tabs the tabs inside this TabRow. Typically this will be multiple [Tab]s. Each element
- * inside this lambda will be measured and placed evenly across the TabRow, each taking up equal
- * space. Use [OdsTab] to display Orange styled tabs.
+ * @param selectedTabIndex Index of the currently selected tab.
+ * @param tabs [OdsTabRowTab] displayed inside this tabs row.
+ * @param modifier [Modifier] applied to this OdsTabRow.
+ * @param leadingIconTabs Controls the composable used to render the tabs: [OdsLeadingIconTab] or [OdsTab].
  */
+// TODO kdoc + rename
 @Composable
 @OdsComposable
 fun OdsScrollableTabRow(
     selectedTabIndex: Int,
+    tabs: List<OdsTabRowTab>,
     modifier: Modifier = Modifier,
-    tabs: @Composable () -> Unit
+    leadingIconTabs: Boolean = false,
 ) {
     ScrollableTabRow(
         modifier = modifier,
@@ -60,7 +60,7 @@ fun OdsScrollableTabRow(
             }
         },
         divider = {},
-        tabs = tabs
+        tabs = { tabs.forEach { tab -> tab.Content(leadingIconTabs = leadingIconTabs) } }
     )
 }
 
@@ -68,7 +68,6 @@ fun OdsScrollableTabRow(
 @Composable
 private fun PreviewOdsScrollableTabRow() = Preview {
     data class Tab(@DrawableRes val iconResId: Int, val text: String)
-
     val tabs = listOf(
         Tab(android.R.drawable.ic_dialog_email, "First"),
         Tab(android.R.drawable.ic_dialog_map, "Second"),
@@ -77,14 +76,15 @@ private fun PreviewOdsScrollableTabRow() = Preview {
     )
 
     var selectedTabIndex by remember { mutableStateOf(0) }
-    OdsScrollableTabRow(selectedTabIndex = selectedTabIndex) {
-        tabs.forEachIndexed { index, tab ->
-            OdsTab(
+    OdsScrollableTabRow(
+        selectedTabIndex = selectedTabIndex,
+        tabs = tabs.mapIndexed { index, tab ->
+            OdsTabRowTab(
+                painter = painterResource(id = tab.iconResId),
+                text = tab.text,
                 selected = selectedTabIndex == index,
                 onClick = { selectedTabIndex = index },
-                text = tab.text,
-                icon = painterResource(id = tab.iconResId)
             )
         }
-    }
+    )
 }

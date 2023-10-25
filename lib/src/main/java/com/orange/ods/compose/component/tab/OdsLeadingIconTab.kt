@@ -10,7 +10,6 @@
 
 package com.orange.ods.compose.component.tab
 
-import androidx.compose.material.Icon
 import androidx.compose.material.LeadingIconTab
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
@@ -19,10 +18,13 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.ImageBitmap
 import androidx.compose.ui.graphics.painter.Painter
+import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.style.TextOverflow
 import com.orange.ods.compose.component.OdsComposable
+import com.orange.ods.compose.component.content.OdsComponentIcon
 import com.orange.ods.compose.component.utilities.Preview
 import com.orange.ods.compose.component.utilities.UiModePreviews
 import com.orange.ods.compose.theme.OdsTheme
@@ -35,12 +37,12 @@ import com.orange.ods.compose.theme.OdsTheme
  *
  * This should typically be used inside of an [OdsTabRow].
  *
- * @param selected whether this tab is selected or not.
- * @param onClick the callback to be invoked when this tab is selected.
- * @param text the text label displayed in this tab.
- * @param icon the icon displayed in this tab.
- * @param modifier optional [Modifier] for this tab.
- * @param enabled controls the enabled state of this tab. When `false`, this tab will not
+ * @param selected Controls whether this tab is selected or not.
+ * @param icon [OdsLeadingIconTabIcon] displayed in this tab.
+ * @param text Label displayed in this tab.
+ * @param onClick Callback invoked on tab click, when this tab is selected.
+ * @param modifier [Modifier] applied to this tab.
+ * @param enabled Controls the enabled state of this tab. When `false`, this tab will not
  * be clickable and will appear disabled to accessibility services.
  *
  * @see OdsTab
@@ -49,15 +51,15 @@ import com.orange.ods.compose.theme.OdsTheme
 @OdsComposable
 fun OdsLeadingIconTab(
     selected: Boolean,
-    onClick: () -> Unit,
+    icon: OdsLeadingIconTabIcon,
     text: String,
-    icon: Painter,
+    onClick: () -> Unit,
     modifier: Modifier = Modifier,
     enabled: Boolean = true
 ) {
     LeadingIconTab(
         modifier = modifier,
-        icon = { Icon(painter = icon, contentDescription = null) },
+        icon = { icon.Content() },
         text = { Text(text = text.uppercase(), maxLines = 1, overflow = TextOverflow.Ellipsis, style = OdsTheme.typography.button) },
         selected = selected,
         selectedContentColor = OdsTheme.colors.component.tab.selectedContent,
@@ -65,6 +67,35 @@ fun OdsLeadingIconTab(
         onClick = onClick,
         enabled = enabled
     )
+}
+
+/**
+ * An icon in an [OdsLeadingIconTab].
+ * It is non-clickable and no content description is needed cause a leading icon tab always has a text inside.
+ */
+class OdsLeadingIconTabIcon : OdsComponentIcon<Nothing> {
+
+    /**
+     * Creates an instance of [OdsLeadingIconTab].
+     *
+     * @param painter Painter of the icon.
+     */
+    constructor(painter: Painter) : super(painter, "")
+
+    /**
+     * Creates an instance of [OdsLeadingIconTab].
+     *
+     * @param imageVector Image vector of the icon.
+     */
+    constructor(imageVector: ImageVector) : super(imageVector, "")
+
+    /**
+     * Creates an instance of [OdsLeadingIconTab].
+     *
+     * @param bitmap Image bitmap of the icon.
+     */
+    constructor(bitmap: ImageBitmap) : super(bitmap, "")
+
 }
 
 @UiModePreviews.Tab
@@ -75,6 +106,6 @@ private fun PreviewOdsLeadingIconTab() = Preview {
         selected = selected,
         onClick = { selected = !selected },
         text = "Text",
-        icon = painterResource(id = android.R.drawable.ic_dialog_email)
+        icon = OdsLeadingIconTabIcon(painterResource(id = android.R.drawable.ic_dialog_email))
     )
 }
