@@ -14,6 +14,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.graphics.ImageBitmap
 import androidx.compose.ui.graphics.painter.Painter
 import androidx.compose.ui.graphics.vector.ImageVector
+import com.orange.ods.compose.component.utilities.BasicPreviewParameterProvider
 
 
 /**
@@ -76,3 +77,22 @@ class OdsTabRowTab(private val graphicsObject: Any?, private val text: String?, 
     }
 
 }
+
+internal data class OdsTabPreviewParameter(
+    val hasText: Boolean,
+    val hasIcon: Boolean,
+    val hasLeadingIconTabs: Boolean = false
+)
+
+internal class OdsTabRowPreviewParameterProvider :
+    BasicPreviewParameterProvider<OdsTabPreviewParameter>(*tabRowPreviewParameterValues.toTypedArray())
+
+internal val tabRowPreviewParameterValues: List<OdsTabPreviewParameter>
+    get() {
+        return listOf(
+            OdsTabPreviewParameter(true, true),
+            OdsTabPreviewParameter(true, false),
+            OdsTabPreviewParameter(false, true),
+            OdsTabPreviewParameter(true, true, true)
+        )
+    }

@@ -21,6 +21,7 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.tooling.preview.PreviewParameter
 import com.orange.ods.compose.component.OdsComposable
 import com.orange.ods.compose.component.utilities.Preview
 import com.orange.ods.compose.component.utilities.UiModePreviews
@@ -65,7 +66,7 @@ fun OdsTabRow(
 
 @UiModePreviews.Default
 @Composable
-private fun PreviewOdsTabRow() = Preview {
+private fun PreviewOdsTabRow(@PreviewParameter(OdsTabRowPreviewParameterProvider::class) parameter: OdsTabPreviewParameter) = Preview {
     data class Tab(@DrawableRes val iconResId: Int, val text: String)
 
     val tabs = listOf(
@@ -75,15 +76,18 @@ private fun PreviewOdsTabRow() = Preview {
      )
 
      var selectedTabIndex by remember { mutableStateOf(0) }
-     OdsTabRow(
-         selectedTabIndex = selectedTabIndex,
-         tabs = tabs.mapIndexed { index, tab ->
-             OdsTabRowTab(
-                 painter = painterResource(id = tab.iconResId),
-                 text = tab.text,
-                 selected = selectedTabIndex == index,
-                 onClick = { selectedTabIndex = index },
-             )
-         }
-     )
+    with(parameter) {
+        OdsTabRow(
+            selectedTabIndex = selectedTabIndex,
+            tabs = tabs.mapIndexed { index, tab ->
+                OdsTabRowTab(
+                    painter = if (hasIcon) painterResource(id = tab.iconResId) else null,
+                    text = if (hasText) tab.text else null,
+                    selected = selectedTabIndex == index,
+                    onClick = { selectedTabIndex = index },
+                )
+            },
+            leadingIconTabs = hasLeadingIconTabs
+        )
+    }
 }

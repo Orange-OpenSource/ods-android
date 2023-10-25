@@ -23,8 +23,10 @@ import androidx.compose.ui.graphics.painter.Painter
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.style.TextOverflow
+import androidx.compose.ui.tooling.preview.PreviewParameter
 import com.orange.ods.compose.component.OdsComposable
 import com.orange.ods.compose.component.content.OdsComponentIcon
+import com.orange.ods.compose.component.utilities.BasicPreviewParameterProvider
 import com.orange.ods.compose.component.utilities.Preview
 import com.orange.ods.compose.component.utilities.UiModePreviews
 import com.orange.ods.compose.theme.OdsTheme
@@ -104,12 +106,27 @@ class OdsTabIcon : OdsComponentIcon<Nothing> {
 
 @UiModePreviews.Tab
 @Composable
-private fun PreviewOdsTab() = Preview {
+private fun PreviewOdsTab(@PreviewParameter(OdsTabPreviewParameterProvider::class) parameter: OdsTabPreviewParameter) = Preview {
     var selected by remember { mutableStateOf(false) }
-    OdsTab(
-        selected = selected,
-        onClick = { selected = !selected },
-        text = "Text",
-        icon = OdsTabIcon(painterResource(id = android.R.drawable.ic_dialog_email))
-    )
+    with(parameter) {
+        OdsTab(
+            selected = selected,
+            onClick = { selected = !selected },
+            text = if (hasText) "Text" else null,
+            icon = if (hasIcon) OdsTabIcon(painterResource(id = android.R.drawable.ic_dialog_email)) else null
+        )
+    }
 }
+
+private class OdsTabPreviewParameterProvider :
+    BasicPreviewParameterProvider<OdsTabPreviewParameter>(*tabPreviewParameterValues.toTypedArray())
+
+private val tabPreviewParameterValues: List<OdsTabPreviewParameter>
+    get() {
+        return listOf(
+            OdsTabPreviewParameter(true, true),
+            OdsTabPreviewParameter(true, false),
+            OdsTabPreviewParameter(false, true),
+            OdsTabPreviewParameter(true, true, true)
+        )
+    }
