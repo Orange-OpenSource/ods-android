@@ -47,7 +47,7 @@ internal fun OdsFilledTextField(
     keyboardActions: KeyboardActions = KeyboardActions(),
     singleLine: Boolean = false,
     maxLines: Int = Int.MAX_VALUE,
-    characterCounter: (@Composable () -> Unit)? = null
+    characterCounter: OdsTextFieldCharacterCounter? = null
 ) {
     Column(modifier = modifier) {
         TextField(
@@ -95,11 +95,7 @@ private fun PreviewOdsTextField(@PreviewParameter(OdsTextFieldPreviewParameterPr
         trailing = getTrailingPreview(parameter = parameter, value = value),
         isError = parameter.hasErrorMessage,
         errorMessage = getPreviewErrorMessage(parameter.hasErrorMessage, parameter.isVeryLongErrorMessage),
-        characterCounter = if (parameter.hasCounter) {
-            {
-                OdsTextFieldCharacterCounter(value.length, 30)
-            }
-        } else null
+        characterCounter = if (parameter.hasCounter) OdsTextFieldCharacterCounter(value.length, 30) else null
     )
 }
 

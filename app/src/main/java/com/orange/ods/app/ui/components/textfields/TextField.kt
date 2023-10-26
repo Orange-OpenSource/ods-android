@@ -48,9 +48,7 @@ fun TextField(customizationState: TextFieldCustomizationState) {
         val onValueChange: (String) -> Unit = { updateText(it) }
         val label = stringResource(id = R.string.component_element_label)
         val placeholder = stringResource(id = R.string.component_text_field_placeholder)
-        val characterCounter: (@Composable () -> Unit)? = if (hasCharacterCounter) {
-            { TextFieldCharacterCounter(valueLength = displayedText.length, enabled = isEnabled) }
-        } else null
+        val characterCounter = if (hasCharacterCounter) OdsTextFieldCharacterCounter(displayedText.length, TextFieldMaxChars, isEnabled) else null
         val hasTrailing = hasTrailingText || hasTrailingIcon
 
         Column {
@@ -106,15 +104,6 @@ fun TextField(customizationState: TextFieldCustomizationState) {
 }
 
 @Composable
-fun TextFieldCharacterCounter(valueLength: Int, enabled: Boolean) {
-    OdsTextFieldCharacterCounter(
-        valueLength = valueLength,
-        maxChars = TextFieldMaxChars,
-        enabled = enabled
-    )
-}
-
-@Composable
 fun TextFieldCodeImplementationColumn(
     componentName: String,
     customizationState: TextFieldCustomizationState,
@@ -149,7 +138,7 @@ fun TextFieldCodeImplementationColumn(
                     if (isSingleLine) stringRepresentation("singleLine", true)
                     if (hasTrailing) simple("trailing", "<trailing composable>")
                     if (hasCharacterCounter) {
-                        function("characterCounter", OdsComposable.OdsTextFieldCharacterCounter.name) {
+                        classInstance<OdsTextFieldCharacterCounter>("characterCounter") {
                             stringRepresentation("valueLength", displayedText.length)
                             enabled(isEnabled)
                         }

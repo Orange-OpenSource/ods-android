@@ -47,7 +47,7 @@ internal fun OdsOutlinedTextField(
     keyboardActions: KeyboardActions = KeyboardActions(),
     singleLine: Boolean = false,
     maxLines: Int = Int.MAX_VALUE,
-    characterCounter: (@Composable () -> Unit)? = null
+    characterCounter: OdsTextFieldCharacterCounter? = null
 ) {
     Column(modifier = modifier) {
         OutlinedTextField(

@@ -14,7 +14,6 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.text.KeyboardActions
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material.Text
-import androidx.compose.material.TextField
 import androidx.compose.material.Typography
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
@@ -96,7 +95,7 @@ fun OdsTextField(
     keyboardActions: KeyboardActions = KeyboardActions(),
     singleLine: Boolean = false,
     maxLines: Int = Int.MAX_VALUE,
-    characterCounter: (@Composable () -> Unit)? = null
+    characterCounter: OdsTextFieldCharacterCounter? = null
 ) {
     OdsTextField(
         value = value,
@@ -185,7 +184,7 @@ fun OdsTextField(
     keyboardActions: KeyboardActions = KeyboardActions(),
     singleLine: Boolean = false,
     maxLines: Int = Int.MAX_VALUE,
-    characterCounter: @Composable (() -> Unit)? = null
+    characterCounter: OdsTextFieldCharacterCounter? = null
 ) {
     val filledTextField = OdsTheme.componentsConfiguration.textFieldStyle == OdsComponentsConfiguration.ComponentStyle.Filled
 
@@ -245,11 +244,7 @@ private fun PreviewOdsTextField(@PreviewParameter(OdsTextFieldPreviewParameterPr
         trailing = getTrailingPreview(parameter = parameter, value = value),
         isError = parameter.hasErrorMessage,
         errorMessage = getPreviewErrorMessage(parameter.hasErrorMessage, parameter.isVeryLongErrorMessage),
-        characterCounter = if (parameter.hasCounter) {
-            {
-                OdsTextFieldCharacterCounter(value.length, 30)
-            }
-        } else null
+        characterCounter = if (parameter.hasCounter) OdsTextFieldCharacterCounter(value.length, 30) else null
     )
 }
 

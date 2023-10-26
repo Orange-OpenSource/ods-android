@@ -30,7 +30,6 @@ import androidx.compose.ui.graphics.vector.rememberVectorPainter
 import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.painterResource
 import com.orange.ods.R
-import com.orange.ods.compose.component.OdsComposable
 import com.orange.ods.compose.component.content.OdsComponentContent
 import com.orange.ods.compose.component.content.OdsComponentIcon
 import com.orange.ods.compose.component.utilities.BasicPreviewParameterProvider
@@ -39,22 +38,26 @@ import com.orange.ods.compose.text.OdsTextCaption
 import com.orange.ods.compose.theme.OdsTheme
 
 /**
- * A character counter to display below the text field
+ * A character counter to display below a text field.
  *
- * @param valueLength the text field current value length.
- * @param maxChars the maximum of characters to display in the counter. Note: the limitation behavior should be managed by yourself
+ * @property valueLength Text field current value length.
+ * @property maxChars Maximum number of characters to display in the counter. Note: the limitation behavior should be managed by yourself
  * in the `onValueChange` method of the text field.
- * @param enabled set to false to display the text with a disabled color.
+ * @property enabled Controls the enable state of the counter. If set to `false` the text will be displayed in disabled color.
  */
-@Composable
-@OdsComposable
-fun OdsTextFieldCharacterCounter(valueLength: Int, maxChars: Int, enabled: Boolean = true) {
-    OdsTextCaption(
-        modifier = Modifier
-            .padding(top = dimensionResource(id = R.dimen.spacing_xs), end = dimensionResource(id = R.dimen.spacing_m)),
-        text = "$valueLength/$maxChars",
-        enabled = enabled
-    )
+class OdsTextFieldCharacterCounter(private val valueLength: Int, private val maxChars: Int, private val enabled: Boolean = true) :
+    OdsComponentContent<Nothing>() {
+
+    @Composable
+    override fun Content(modifier: Modifier) {
+        OdsTextCaption(
+            modifier = Modifier
+                .padding(top = dimensionResource(id = R.dimen.spacing_xs), end = dimensionResource(id = R.dimen.spacing_m)),
+            text = "$valueLength/$maxChars",
+            enabled = enabled
+        )
+    }
+
 }
 
 /**
@@ -101,14 +104,14 @@ class OdsIconTrailing(val painter: Painter, val contentDescription: String? = nu
 internal class OdsExposedDropdownMenuTrailing(val expanded: Boolean, val enabled: Boolean) : OdsTextFieldTrailing()
 
 @Composable
-internal fun OdsTextFieldBottomRow(isError: Boolean, errorMessage: String?, characterCounter: (@Composable () -> Unit)?) {
+internal fun OdsTextFieldBottomRow(isError: Boolean, errorMessage: String?, characterCounter: OdsTextFieldCharacterCounter?) {
     Row {
         Box(modifier = Modifier.weight(1f)) {
             if (isError && errorMessage != null) {
                 OdsTextFieldErrorText(message = errorMessage)
             }
         }
-        characterCounter?.invoke()
+        characterCounter?.Content()
     }
 }
 
