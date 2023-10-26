@@ -23,12 +23,16 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.rotate
+import androidx.compose.ui.graphics.ImageBitmap
 import androidx.compose.ui.graphics.painter.Painter
+import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.graphics.vector.rememberVectorPainter
 import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.painterResource
 import com.orange.ods.R
 import com.orange.ods.compose.component.OdsComposable
+import com.orange.ods.compose.component.content.OdsComponentContent
+import com.orange.ods.compose.component.content.OdsComponentIcon
 import com.orange.ods.compose.component.utilities.BasicPreviewParameterProvider
 import com.orange.ods.compose.component.utilities.DisabledInteractionSource
 import com.orange.ods.compose.text.OdsTextCaption
@@ -51,6 +55,44 @@ fun OdsTextFieldCharacterCounter(valueLength: Int, maxChars: Int, enabled: Boole
         text = "$valueLength/$maxChars",
         enabled = enabled
     )
+}
+
+/**
+ * An icon in an [OdsTextField].
+ */
+class OdsTextFieldIcon : OdsComponentIcon<OdsTextFieldIcon.ExtraParameters> {
+
+    data class ExtraParameters(
+        val enabled: Boolean
+    ) : OdsComponentContent.ExtraParameters()
+
+    /**
+     * Creates an instance of [OdsTextFieldIcon].
+     *
+     * @param painter Painter of the icon.
+     * @param contentDescription The content description associated to this [OdsTextFieldIcon].
+     * @param onClick Callback invoked on icon click.
+     */
+    constructor(painter: Painter, contentDescription: String, onClick: (() -> Unit)? = null) : super(painter, contentDescription, onClick = onClick)
+
+    /**
+     * Creates an instance of [OdsTextFieldIcon].
+     *
+     * @param imageVector Image vector of the icon.
+     * @param contentDescription The content description associated to this [OdsTextFieldIcon].
+     * @param onClick Callback invoked on icon click.
+     */
+    constructor(imageVector: ImageVector, contentDescription: String, onClick: (() -> Unit)? = null) : super(imageVector, contentDescription, onClick = onClick)
+
+    /**
+     * Creates an instance of [OdsTextFieldIcon].
+     *
+     * @param bitmap Image bitmap of the icon.
+     * @param contentDescription The content description associated to this [OdsTextFieldIcon].
+     * @param onClick Callback invoked on icon click.
+     */
+    constructor(bitmap: ImageBitmap, contentDescription: String, onClick: (() -> Unit)? = null) : super(bitmap, contentDescription, onClick = onClick)
+
 }
 
 sealed class OdsTextFieldTrailing

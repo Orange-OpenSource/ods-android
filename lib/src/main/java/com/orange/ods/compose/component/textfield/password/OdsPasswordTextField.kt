@@ -120,10 +120,8 @@ private fun OdsPasswordVisualisationIcon(odsPasswordTextFieldState: OdsPasswordT
         OdsTextFieldIcon(
             painter = if (isPasswordVisible) painterResource(id = R.drawable.ic_crosset_out_eye) else painterResource(id = R.drawable.ic_eye),
             contentDescription = if (isPasswordVisible) stringResource(id = R.string.text_field_password_hide) else stringResource(id = R.string.text_field_password_show),
-            onClick = if (enabled.value) {
-                { passwordVisible.value = !isPasswordVisible }
-            } else null,
-        )
+            onClick = { passwordVisible.value = !isPasswordVisible },
+        ).Content(OdsTextFieldIcon.ExtraParameters(enabled = enabled.value))
     }
 }
 

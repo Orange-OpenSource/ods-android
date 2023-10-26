@@ -22,7 +22,6 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.painter.Painter
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.input.VisualTransformation
 import androidx.compose.ui.tooling.preview.PreviewParameter
@@ -39,9 +38,7 @@ internal fun OdsFilledTextField(
     readOnly: Boolean = false,
     label: String? = null,
     placeholder: String? = null,
-    leadingIcon: Painter? = null,
-    leadingIconContentDescription: String? = null,
-    onLeadingIconClick: (() -> Unit)? = null,
+    leadingIcon: OdsTextFieldIcon? = null,
     trailing: @Composable (() -> Unit)? = null,
     isError: Boolean = false,
     errorMessage: String? = null,
@@ -68,11 +65,7 @@ internal fun OdsFilledTextField(
             placeholder = placeholder?.let { { Text(text = placeholder, style = OdsTheme.typography.subtitle1) } },
             leadingIcon = leadingIcon?.let {
                 {
-                    OdsTextFieldIcon(
-                        painter = leadingIcon,
-                        contentDescription = leadingIconContentDescription,
-                        onClick = if (enabled) onLeadingIconClick else null,
-                    )
+                    it.Content(OdsTextFieldIcon.ExtraParameters(enabled))
                 }
             },
             trailingIcon = trailing,
@@ -98,7 +91,7 @@ private fun PreviewOdsTextField(@PreviewParameter(OdsTextFieldPreviewParameterPr
         value = value,
         onValueChange = { value = it },
         placeholder = "Placeholder",
-        leadingIcon = painterResource(id = android.R.drawable.ic_dialog_info),
+        leadingIcon = OdsTextFieldIcon(painterResource(id = android.R.drawable.ic_dialog_info), ""),
         trailing = getTrailingPreview(parameter = parameter, value = value),
         isError = parameter.hasErrorMessage,
         errorMessage = getPreviewErrorMessage(parameter.hasErrorMessage, parameter.isVeryLongErrorMessage),

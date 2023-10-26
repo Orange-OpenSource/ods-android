@@ -30,6 +30,7 @@ import com.orange.ods.compose.OdsComposable
 import com.orange.ods.compose.component.textfield.OdsIconTrailing
 import com.orange.ods.compose.component.textfield.OdsTextField
 import com.orange.ods.compose.component.textfield.OdsTextFieldCharacterCounter
+import com.orange.ods.compose.component.textfield.OdsTextFieldIcon
 import com.orange.ods.compose.component.textfield.OdsTextTrailing
 
 @Composable
@@ -42,7 +43,7 @@ fun TextField(customizationState: TextFieldCustomizationState) {
         .padding(top = dimensionResource(id = com.orange.ods.R.dimen.spacing_s))
 
     with(customizationState) {
-        val leadingIcon = if (hasLeadingIcon) painterResource(id = R.drawable.ic_heart) else null
+        val leadingIcon = if (hasLeadingIcon) OdsTextFieldIcon(painterResource(id = R.drawable.ic_heart), "") else null
         val errorMessage = if (isError) stringResource(id = R.string.component_text_field_error_message) else null
         val onValueChange: (String) -> Unit = { updateText(it) }
         val label = stringResource(id = R.string.component_element_label)
