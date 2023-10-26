@@ -57,7 +57,6 @@ class OdsTextFieldCharacterCounter(private val valueLength: Int, private val max
             enabled = enabled
         )
     }
-
 }
 
 /**
