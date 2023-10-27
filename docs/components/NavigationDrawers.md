@@ -10,6 +10,10 @@ description: The navigation drawer slides in from the left when the nav icon is 
 * [Accessibility](#accessibility)
 * [Implementation](#implementation)
     * [Jetpack Compose](#jetpack-compose)
+        * [OdsModalDrawer API](#odsmodaldrawer-api)
+        * [API Descriptors](#api-descriptors)
+            * [OdsModalDrawerHeader](#odsmodaldrawerheader)
+            * [OdsModalDrawerItem](#odsmodaldraweritem)
 
 ---
 
@@ -26,19 +30,21 @@ Please follow [accessibility criteria for development](https://a11y-guidelines.o
 
 ### Jetpack Compose
 
+The `OdsModalDrawer` is built using the following provided elements:
+
+- `header` which contains a title, an optional subtitle and and optional image displayed as header background or as an avatar (circular shaped image) displayed above the title.
+- `drawerItems` which constitute the list of elements displayed vertically below the header. This list can contain section headers, list items or simple dividers.
+
 You can use the `OdsModalDrawer` composable like this:
 
 ```kotlin
 OdsModalDrawer(
-    drawerHeader = {
-        title = "Side navigation drawer"
-        imageContentDescription = ""
-        imageDisplayType =
-            OdsModalDrawerHeaderImageDisplayType.None // or OdsModalDrawerHeaderImageDisplayType.Avatar or OdsModalDrawerHeaderImageDisplayType.Background
-        subtitle = "Example"
-        image = painterResource(id = R.drawable.placeholder)
-    },
-    drawerContentList = listOf<OdsModalDrawerItem>(
+    header = OdsModalDrawerHeader(
+        title = "Side navigation drawer",
+        image = OdsModalDrawerHeaderAvatar(painterResource(id = R.drawable.placeholder)),
+        subtitle = "Example",
+    ),
+    drawerItems = listOf<OdsModalDrawerItem>(
         OdsModalDrawerListItem( // `OdsModalDrawerListItem` is used to specified an item of the list
             icon = R.drawable.ic_heart,
             text = "label1"
@@ -61,3 +67,48 @@ OdsModalDrawer(
     // Put here the rest of the UI content
 }
 ```
+
+#### OdsModalDrawer API
+
+Parameter | Default&nbsp;value | Description
+-- | -- | --
+<b>`header: `</b>[OdsModalDrawerHeader](#odsmodaldrawerheader) | | Content descriptor of the drawer header
+<b>`drawerItems: List<`</b>[OdsModalDrawerItem](#odsmodaldraweritem)<b>`>`</b> | | List of `OdsModalDrawerItem` displayed in a column inside the modal drawer
+`modifier: Modifier` | `Modifier` | `Modifier` applied to the modal drawer
+`state: DrawerState` | `rememberDrawerState(DrawerValue.Closed)` | State of the modal drawer
+`selectedItem: OdsModalDrawerListItem?` | `null` | Selected `OdsModalDrawerListItem` that appears in selected state
+`onItemClick: (OdsModalDrawerListItem) -> Unit` | `{}` | Callback invoked on an `OdsModalDrawerListItem` click. Provides the clicked `OdsModalDrawerListItem`.
+`content: @Composable () -> Unit` | | Content of the rest of the UI
+{:.table}
+
+#### API descriptors
+
+##### OdsModalDrawerHeader
+
+Parameter | Default&nbsp;value | Description
+-- | -- | --
+<b>`title: String`</b> | | Title displayed in the header
+`image: OdsComponentImage<Nothing>?` | `null` | Image displayed in the header. It should be an avatar image of `OdsModalDrawerHeaderAvatar` type or a background image of `OdsModalDrawerHeaderBackground` type. <b>Note that other component images will not be taken into account.</b>
+`subtitle: String?` | `null` | Subtitle displayed below the `title` in the header
+{:.table}
+
+##### OdsModalDrawerItem
+
+Here are the available types of `OdsModalDrawerItem`:
+
+**OdsModalDrawerSectionLabel** displays a divider and a section label below
+
+Parameter | Default&nbsp;value | Description
+-- | -- | --
+<b>`label: String`</b> | | Label of the section header
+{:.table}
+
+**OdsModalDrawerListItem** displays a clickable item in the modal drawer
+
+Parameter | Default&nbsp;value | Description
+-- | -- | --
+<b>`text: String`</b> | | Text displayed in the modal drawer list item
+`leadingIcon: Painter?` | `null` | Leading icon displayed in the modal drawer list item
+{:.table}
+
+**OdsModalDrawerDivider** displays a simple divider (no parameter needed)

@@ -65,11 +65,11 @@ private const val SelectedItemOpacity = 20f / 255f
 /**
  * Navigation drawers provide ergonomic access to destinations in an app.
  *
- * @param header Content of the drawer header.
+ * @param header Content descriptor of the drawer header.
  * @param drawerItems List of [OdsModalDrawerItem] displayed in a column inside the modal drawer.
  * @param modifier [Modifier] applied to this drawer.
- * @param state State of the drawer.
- * @param selectedItem Selected [OdsModalDrawerListItem]. It appears in selected state.
+ * @param state State of the modal drawer.
+ * @param selectedItem Selected [OdsModalDrawerListItem] that appears in selected state.
  * @param onItemClick Callback invoked on an [OdsModalDrawerListItem] click. Provides the clicked [OdsModalDrawerListItem].
  * @param content Content of the rest of the UI.
  */
@@ -177,7 +177,7 @@ data class OdsModalDrawerListItem(
  * The [OdsModalDrawer] header.
  *
  * @property title Title displayed in the header.
- * @property image The image displayed in the header. It should be an avatar image of type [OdsModalDrawerHeaderAvatar] or a background image
+ * @property image Image displayed in the header. It should be an avatar image of type [OdsModalDrawerHeaderAvatar] or a background image
  * of type [OdsModalDrawerHeaderBackground]. Note that other component images will not be taken into account.
  * @property subtitle Subtitle displayed below the [title] in the header.
  */
