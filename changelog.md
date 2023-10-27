@@ -16,6 +16,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - \[Lib\] Rename `OdsImageTile` to `OdsImageItem` ([#683](https://github.com/Orange-OpenSource/ods-android/issues/683))
 - \[Lib\] Update `OdsTab`, `OdsLeadingIconTab`, `OdsTabRow` and `OdsScrollableTabRow` APIs ([#675](https://github.com/Orange-OpenSource/ods-android/issues/675))
 - \[Lib\] Update `OdsTextField`, `OdsPasswordTextField` and `OdsSearchTextField` APIs ([#676](https://github.com/Orange-OpenSource/ods-android/issues/676))
+- \[Lib\] Update `OdsModalDrawer` API ([#677](https://github.com/Orange-OpenSource/ods-android/issues/677))
 
 ### Fixed
 
