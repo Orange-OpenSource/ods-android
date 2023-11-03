@@ -173,7 +173,7 @@
     <string name="component_button_icon_toggle_remove">Remove toggle</string>
     <string name="component_button_icon_toggle_add">Add toggle</string>
 
-    <!-- Components Cards -->
+    <!-- Component Cards -->
     <string name="component_cards">Cards</string>
     <string name="component_card_vertical_image_first">Vertical image first card</string>
     <string name="component_card_vertical_header_first">Vertical header first card</string>
@@ -264,8 +264,8 @@
     <string name="component_menu_divider">Divider example</string>
     <string name="component_menu_show_ingredients">Show ingredients</string>
 
-    <!-- Component Navigation Drawers -->
-    <string name="component_modal_drawers">Navigation Drawers</string>
+    <!-- Component Navigation drawers -->
+    <string name="component_modal_drawers">Navigation drawers</string>
     <string name="component_modal_drawers_description">The navigation drawer slides in from the left when the nav icon is tapped. The content should be concerned with identity and/or navigation.</string>
     <string name="component_modal_drawer_side">Side navigation drawer</string>
     <string name="component_modal_drawer_content">>>> Swipe to open drawer >>></string>
@@ -277,8 +277,8 @@
     <string name="component_modal_drawer_content_example">Content example</string>
     <string name="component_modal_drawer_list_example">Section list example</string>
 
-    <!-- Component Radio Buttons -->
-    <string name="component_radio_buttons">Radio Buttons</string>
+    <!-- Component Radio buttons -->
+    <string name="component_radio_buttons">Radio buttons</string>
     <string name="component_radio_buttons_description">Radio buttons enable users to choose one item from a set of mutually exclusive, related choices.</string>
 
     <!-- Component Switches -->
@@ -302,8 +302,8 @@
     <string name="component_slider_value_displayed">Display value</string>
     <string name="component_slider_stepped">Stepped</string>
 
-    <!-- Component Progress Indicators -->
-    <string name="component_progress">Progress Indicators</string>
+    <!-- Component Progress indicators -->
+    <string name="component_progress">Progress indicators</string>
     <string name="component_progress_description">Progress bar and activity indicator are used when a process is taking place to illustrate progress and to reassure users that something is happening, and if possible, how long it will take.</string>
     <string name="component_progress_linear">Linear</string>
     <string name="component_progress_determinate">Determinate</string>
@@ -312,7 +312,7 @@
     <string name="component_progress_circular">Circular</string>
     <string name="component_progress_label">Downloading …</string>
 
-    <!-- Components Sheets -->
+    <!-- Component Sheets -->
     <string name="component_sheets_bottom">Sheets: bottom</string>
     <string name="component_sheet_bottom_description">Bottom sheets are surfaces anchored to the bottom of the screen that present users supplemental content.</string>
     <string name="component_sheet_bottom_customize">Customize the bottom sheet</string>
