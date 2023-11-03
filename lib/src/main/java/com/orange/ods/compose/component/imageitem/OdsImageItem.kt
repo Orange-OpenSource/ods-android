@@ -8,7 +8,7 @@
  * /
  */
 
-package com.orange.ods.compose.component.imagetile
+package com.orange.ods.compose.component.imageitem
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
@@ -47,32 +47,32 @@ import com.orange.ods.extension.orElse
 
 
 /**
- * An image tile contains primary information which is an image. It can also contain secondary information such as text or action. Tiles have no more than two
+ * An image item contains primary information which is an image. It can also contain secondary information such as text or action. Image items have no more than two
  * actions. They are usually used in grids.
  *
- * @param image [OdsImageTileImage] displayed into the tile.
- * @param legendAreaDisplayType Controls how the title and the icon are displayed relatively to the image. If set to [OdsImageTileLegendAreaDisplayType.None],
+ * @param image [OdsImageItemImage] displayed into the item.
+ * @param legendAreaDisplayType Controls how the title and the icon are displayed relatively to the image. If set to [OdsImageItemLegendAreaDisplayType.None],
  * no legend area will be displayed.
- * @param modifier [Modifier] applied to the image tile.
- * @param title Title displayed into the tile. It is linked to the image and displayed according to the [legendAreaDisplayType] value.
- * @param icon [OdsImageTileIconToggleButton] displayed next to the title.
- * @param onClick Callback invoked on tile click.
+ * @param modifier [Modifier] applied to the image item.
+ * @param title Title displayed into the image item. It is linked to the image and displayed according to the [legendAreaDisplayType] value.
+ * @param icon [OdsImageItemIconToggleButton] displayed next to the title.
+ * @param onClick Callback invoked on image item click.
  */
 @Composable
 @OdsComposable
-fun OdsImageTile(
-    image: OdsImageTileImage,
-    legendAreaDisplayType: OdsImageTileLegendAreaDisplayType,
+fun OdsImageItem(
+    image: OdsImageItemImage,
+    legendAreaDisplayType: OdsImageItemLegendAreaDisplayType,
     modifier: Modifier = Modifier,
     title: String? = null,
-    icon: OdsImageTileIconToggleButton? = null,
+    icon: OdsImageItemIconToggleButton? = null,
     onClick: (() -> Unit)? = null,
 ) {
     Box(modifier = modifier.run {
         onClick?.let { clickable { onClick() } }.orElse { this }
     }) {
         when (legendAreaDisplayType) {
-            OdsImageTileLegendAreaDisplayType.Overlay -> {
+            OdsImageItemLegendAreaDisplayType.Overlay -> {
                 image.Content(modifier = Modifier.fillMaxSize())
                 title?.let {
                     Row(
@@ -82,7 +82,7 @@ fun OdsImageTile(
                             .align(Alignment.BottomStart)
                             .height(dimensionResource(id = R.dimen.list_single_line_item_height))
                     ) {
-                        OdsImageTileLegendArea(
+                        OdsImageItemLegendArea(
                             text = it,
                             color = Color.White,
                             displaySurface = OdsDisplaySurface.Dark,
@@ -95,7 +95,7 @@ fun OdsImageTile(
                 }
             }
 
-            OdsImageTileLegendAreaDisplayType.Below ->
+            OdsImageItemLegendAreaDisplayType.Below ->
                 Column(verticalArrangement = Arrangement.Center) {
                     image.Content(
                         modifier = Modifier
@@ -105,10 +105,10 @@ fun OdsImageTile(
                     Row(
                         verticalAlignment = Alignment.CenterVertically,
                         modifier = Modifier
-                            .height(dimensionResource(id = R.dimen.image_tile_legend_area_height))
+                            .height(dimensionResource(id = R.dimen.image_item_legend_area_height))
                     ) {
                         title?.let {
-                            OdsImageTileLegendArea(
+                            OdsImageItemLegendArea(
                                 text = it,
                                 color = OdsTheme.colors.onSurface,
                                 displaySurface = OdsDisplaySurface.Default,
@@ -121,23 +121,23 @@ fun OdsImageTile(
                     }
                 }
 
-            OdsImageTileLegendAreaDisplayType.None ->
+            OdsImageItemLegendAreaDisplayType.None ->
                 image.Content(modifier = Modifier.fillMaxSize())
         }
     }
 }
 
 /**
- * An image in an [OdsImageTile].
+ * An image in an [OdsImageItem].
  */
-class OdsImageTileImage : OdsComponentImage<Nothing> {
+class OdsImageItemImage : OdsComponentImage<Nothing> {
 
     /**
-     * Creates an instance of [OdsImageTileImage].
+     * Creates an instance of [OdsImageItemImage].
      *
      * @param painter The painter to draw.
-     * @param contentDescription The content description associated to this [OdsImageTileImage].
-     * @param contentScale The rule to apply to scale the image in this [OdsImageTileImage], [ContentScale.Crop] by default.
+     * @param contentDescription The content description associated to this [OdsImageItemImage].
+     * @param contentScale The rule to apply to scale the image in this [OdsImageItemImage], [ContentScale.Crop] by default.
      */
     constructor(painter: Painter, contentDescription: String, contentScale: ContentScale = ContentScale.Crop) : super(
         painter,
@@ -146,11 +146,11 @@ class OdsImageTileImage : OdsComponentImage<Nothing> {
     )
 
     /**
-     * Creates an instance of [OdsImageTileImage].
+     * Creates an instance of [OdsImageItemImage].
      *
      * @param imageVector The image vector to draw.
-     * @param contentDescription The content description associated to this [OdsImageTileImage].
-     * @param contentScale The rule to apply to scale the image in this [OdsImageTileImage], [ContentScale.Crop] by default.
+     * @param contentDescription The content description associated to this [OdsImageItemImage].
+     * @param contentScale The rule to apply to scale the image in this [OdsImageItemImage], [ContentScale.Crop] by default.
      */
     constructor(imageVector: ImageVector, contentDescription: String, contentScale: ContentScale = ContentScale.Crop) : super(
         imageVector,
@@ -159,11 +159,11 @@ class OdsImageTileImage : OdsComponentImage<Nothing> {
     )
 
     /**
-     * Creates an instance of [OdsImageTileImage].
+     * Creates an instance of [OdsImageItemImage].
      *
      * @param bitmap The image bitmap to draw.
-     * @param contentDescription The content description associated to this [OdsImageTileImage].
-     * @param contentScale The rule to apply to scale the image in this [OdsImageTileImage], [ContentScale.Crop] by default.
+     * @param contentDescription The content description associated to this [OdsImageItemImage].
+     * @param contentScale The rule to apply to scale the image in this [OdsImageItemImage], [ContentScale.Crop] by default.
      */
     constructor(bitmap: ImageBitmap, contentDescription: String, contentScale: ContentScale = ContentScale.Crop) : super(
         bitmap,
@@ -173,14 +173,14 @@ class OdsImageTileImage : OdsComponentImage<Nothing> {
 }
 
 /**
- * An icon toggle button in an [OdsImageTile].
+ * An icon toggle button in an [OdsImageItem].
  *
  * @param checked Specify if icon is currently checked.
  * @param onCheckedChange Callback to be invoked when this icon is selected.
- * @param checkedIcon Icon displayed in front of the [OdsImageTile] when icon is checked.
- * @param uncheckedIcon Icon displayed in front of the [OdsImageTile] when icon is unchecked.
+ * @param checkedIcon Icon displayed in front of the [OdsImageItem] when icon is checked.
+ * @param uncheckedIcon Icon displayed in front of the [OdsImageItem] when icon is unchecked.
  */
-class OdsImageTileIconToggleButton(
+class OdsImageItemIconToggleButton(
     val checked: Boolean,
     val onCheckedChange: (Boolean) -> Unit,
     val checkedIcon: OdsIconButtonIcon,
@@ -198,16 +198,16 @@ class OdsImageTileIconToggleButton(
     }
 }
 
-enum class OdsImageTileLegendAreaDisplayType {
+enum class OdsImageItemLegendAreaDisplayType {
     Below, Overlay, None
 }
 
 @Composable
-private fun OdsImageTileLegendArea(
+private fun OdsImageItemLegendArea(
     text: String,
     color: Color,
     displaySurface: OdsDisplaySurface,
-    icon: OdsImageTileIconToggleButton?,
+    icon: OdsImageItemIconToggleButton?,
     modifier: Modifier
 ) {
     Text(
@@ -221,15 +221,15 @@ private fun OdsImageTileLegendArea(
     icon?.Content(displaySurface)
 }
 
-@UiModePreviews.ImageTile
+@UiModePreviews.ImageItem
 @Composable
-private fun PreviewOdsImageTile(@PreviewParameter(OdsImageTilePreviewParameterProvider::class) parameter: OdsImageTilePreviewParameter) =
+private fun PreviewOdsImageItem(@PreviewParameter(OdsImageItemPreviewParameterProvider::class) parameter: OdsImageItemPreviewParameter) =
     Preview {
-        OdsImageTile(
-            image = OdsImageTileImage(painterResource(id = parameter.image), ""),
+        OdsImageItem(
+            image = OdsImageItemImage(painterResource(id = parameter.image), ""),
             title = parameter.title,
             legendAreaDisplayType = parameter.type,
-            icon = OdsImageTileIconToggleButton(
+            icon = OdsImageItemIconToggleButton(
                 uncheckedIcon = OdsIconButtonIcon(painterResource(id = parameter.uncheckedIcon), "click to select"),
                 checkedIcon = OdsIconButtonIcon(painterResource(id = parameter.checkedIcon), "click to unselect"),
                 checked = parameter.checked,
@@ -238,19 +238,19 @@ private fun PreviewOdsImageTile(@PreviewParameter(OdsImageTilePreviewParameterPr
         )
     }
 
-private data class OdsImageTilePreviewParameter(
+private data class OdsImageItemPreviewParameter(
     val image: Int,
     val checked: Boolean,
     val title: String,
     val checkedIcon: Int,
     val uncheckedIcon: Int,
-    val type: OdsImageTileLegendAreaDisplayType
+    val type: OdsImageItemLegendAreaDisplayType
 )
 
-private class OdsImageTilePreviewParameterProvider :
-    BasicPreviewParameterProvider<OdsImageTilePreviewParameter>(*previewParameterValues.toTypedArray())
+private class OdsImageItemPreviewParameterProvider :
+    BasicPreviewParameterProvider<OdsImageItemPreviewParameter>(*previewParameterValues.toTypedArray())
 
-private val previewParameterValues: List<OdsImageTilePreviewParameter>
+private val previewParameterValues: List<OdsImageItemPreviewParameter>
     get() {
         val title = "Subtitle 1"
         val image = R.drawable.placeholder
@@ -258,29 +258,29 @@ private val previewParameterValues: List<OdsImageTilePreviewParameter>
         val uncheckedIcon = R.drawable.ic_check
 
         return listOf(
-            OdsImageTilePreviewParameter(
+            OdsImageItemPreviewParameter(
                 image,
                 title = title,
                 checkedIcon = checkedIcon,
                 uncheckedIcon = uncheckedIcon,
                 checked = false,
-                type = OdsImageTileLegendAreaDisplayType.Below
+                type = OdsImageItemLegendAreaDisplayType.Below
             ),
-            OdsImageTilePreviewParameter(
+            OdsImageItemPreviewParameter(
                 image,
                 title = title,
                 checkedIcon = checkedIcon,
                 uncheckedIcon = uncheckedIcon,
                 checked = false,
-                type = OdsImageTileLegendAreaDisplayType.Overlay
+                type = OdsImageItemLegendAreaDisplayType.Overlay
             ),
-            OdsImageTilePreviewParameter(
+            OdsImageItemPreviewParameter(
                 image,
                 title = title,
                 checkedIcon = checkedIcon,
                 uncheckedIcon = uncheckedIcon,
                 checked = true,
-                type = OdsImageTileLegendAreaDisplayType.None
+                type = OdsImageItemLegendAreaDisplayType.None
             )
         )
     }

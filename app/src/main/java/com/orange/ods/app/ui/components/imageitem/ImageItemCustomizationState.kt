@@ -8,31 +8,31 @@
  * /
  */
 
-package com.orange.ods.app.ui.components.imagetile
+package com.orange.ods.app.ui.components.imageitem
 
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.MutableState
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.saveable.rememberSaveable
-import com.orange.ods.compose.component.imagetile.OdsImageTileLegendAreaDisplayType
+import com.orange.ods.compose.component.imageitem.OdsImageItemLegendAreaDisplayType
 
 @Composable
-fun rememberImageTileCustomizationState(
-    type: MutableState<OdsImageTileLegendAreaDisplayType> = rememberSaveable { mutableStateOf(OdsImageTileLegendAreaDisplayType.Overlay) },
+fun rememberImageItemCustomizationState(
+    type: MutableState<OdsImageItemLegendAreaDisplayType> = rememberSaveable { mutableStateOf(OdsImageItemLegendAreaDisplayType.Overlay) },
     iconDisplayed: MutableState<Boolean> = rememberSaveable { mutableStateOf(false) }
 ) =
     remember(type, iconDisplayed) {
-        ImageTileCustomizationState(type, iconDisplayed)
+        ImageItemCustomizationState(type, iconDisplayed)
     }
 
-class ImageTileCustomizationState(
-    val type: MutableState<OdsImageTileLegendAreaDisplayType>,
+class ImageItemCustomizationState(
+    val type: MutableState<OdsImageItemLegendAreaDisplayType>,
     val iconDisplayed: MutableState<Boolean>
 ) {
     val hasIcon
         get() = iconDisplayed.value
 
     val hasText
-        get() = type.value != OdsImageTileLegendAreaDisplayType.None
+        get() = type.value != OdsImageItemLegendAreaDisplayType.None
 }
