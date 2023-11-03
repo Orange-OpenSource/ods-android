@@ -81,6 +81,10 @@ class OdsTopAppBarNavigationIcon : OdsComponentIcon<Nothing> {
      * @param onClick Will be called when the user clicks on the action icon button.
      */
     constructor(bitmap: ImageBitmap, contentDescription: String, onClick: () -> Unit) : super(bitmap, contentDescription, onClick = onClick)
+
+    override val tint: Color?
+        @Composable
+        get() = OdsTheme.colors.component.topAppBar.barContent
 }
 
 /**
