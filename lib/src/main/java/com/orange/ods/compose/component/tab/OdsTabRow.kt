@@ -23,6 +23,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.PreviewParameter
 import com.orange.ods.compose.component.OdsComposable
+import com.orange.ods.compose.component.content.OdsComponentContent
 import com.orange.ods.compose.component.utilities.Preview
 import com.orange.ods.compose.component.utilities.UiModePreviews
 import com.orange.ods.compose.theme.OdsTheme
@@ -34,17 +35,16 @@ import com.orange.ods.compose.theme.OdsTheme
  * @see TabRow documentation
  *
  * @param selectedTabIndex Index of the currently selected tab.
- * @param tabs List of the [OdsTabRowTab] displayed inside the tabs row.
+ * @param tabs List of [OdsTabRowTab] displayed inside the tabs row. It can be a list of [OdsTab] for tabs with icon above text or a list of [OdsLeadingIconTab]
+ * for tabs with icon before text.
  * @param modifier [Modifier] applied to the tab row.
- * @param leadingIconTabs Controls the composable used to render the tabs: [OdsLeadingIconTab] or [OdsTab].
  */
 @Composable
 @OdsComposable
-fun OdsTabRow(
+fun <T : OdsTabRowTab> OdsTabRow(
     selectedTabIndex: Int,
-    tabs: List<OdsTabRowTab>,
+    tabs: List<T>,
     modifier: Modifier = Modifier,
-    leadingIconTabs: Boolean = false,
 ) {
     TabRow(
         modifier = modifier,
@@ -60,7 +60,7 @@ fun OdsTabRow(
             }
         },
         divider = {},
-        tabs = { tabs.forEach { tab -> tab.Content(leadingIconTabs = leadingIconTabs) } }
+        tabs = { tabs.forEach { tab -> (tab as? OdsComponentContent<*>)?.Content() } }
     )
 }
 
@@ -80,14 +80,24 @@ private fun PreviewOdsTabRow(@PreviewParameter(OdsTabRowPreviewParameterProvider
         OdsTabRow(
             selectedTabIndex = selectedTabIndex,
             tabs = tabs.mapIndexed { index, tab ->
-                OdsTabRowTab(
-                    painter = if (hasIcon) painterResource(id = tab.iconResId) else null,
-                    text = if (hasText) tab.text else null,
-                    selected = selectedTabIndex == index,
-                    onClick = { selectedTabIndex = index },
-                )
-            },
-            leadingIconTabs = hasLeadingIconTabs
+                if (hasLeadingIconTabs) {
+                    OdsLeadingIconTab(
+                        painter = painterResource(id = tab.iconResId),
+                        text = tab.text,
+                        selected = selectedTabIndex == index,
+                        enabled = enabled,
+                        onClick = { selectedTabIndex = index }
+                    )
+                } else {
+                    OdsTab(
+                        painter = if (hasIcon) painterResource(id = tab.iconResId) else null,
+                        text = if (hasText) tab.text else null,
+                        selected = selectedTabIndex == index,
+                        enabled = enabled,
+                        onClick = { selectedTabIndex = index }
+                    )
+                }
+            }
         )
     }
 }
