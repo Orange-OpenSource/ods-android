@@ -38,7 +38,6 @@ import com.orange.ods.compose.theme.OdsTheme
  * @param modifier [Modifier] applied to the scrollable tabs row.
  * @param leadingIconTabs Controls the composable used to render the tabs: [OdsLeadingIconTab] or [OdsTab].
  */
-// TODO kdoc + rename
 @Composable
 @OdsComposable
 fun OdsScrollableTabRow(
