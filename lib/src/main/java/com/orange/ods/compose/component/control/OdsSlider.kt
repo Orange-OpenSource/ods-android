@@ -62,21 +62,17 @@ private const val ActiveTickColorAlpha = 0.4f
  * You can allow the user to choose only between predefined set of values by specifying the amount
  * of steps between min and max values.
  *
- * @param value current value of the Slider. If outside of [valueRange] provided, value will be
- * coerced to this range.
- * @param onValueChange lambda in which value should be updated
- * @param modifier modifiers for the OdsSlider layout
- * @param enabled whether or not component is enabled and can be interacted with or not
- * @param valueRange range of values that Slider value can take. Passed [value] will be coerced to
- * this range
- * @param steps if greater than 0, specifies the amounts of discrete values, evenly distributed
- * between across the whole value range. If 0, slider will behave as a continuous slider and allow
- * to choose any value from the range specified. Must not be negative.
- * @param onValueChangeFinished lambda to be invoked when value change has ended. This callback
- * shouldn't be used to update the slider value (use [onValueChange] for that), but rather to
- * know when the user has completed selecting a new value by ending a drag or a click.
- * @param leftIcon Icon displayed on the left of the slider
- * @param rightIcon Icon displayed on the right of the slider
+ * @param value Current value of the slider. If outside of `valueRange` provided, value will be coerced to this range.
+ * @param onValueChange Callback invoked on slider value change. `value` should be updated here.
+ * @param modifier [Modifier] applied to the slider.
+ * @param enabled Controls the enabled state of the slider. If `false`, the user cannot interact with it.
+ * @param valueRange Range of values that the slider can take. Given [value] will be coerced to this range.
+ * @param steps If greater than `0`, specifies the amounts of discrete values, evenly distributed between across the whole value range. If `0`, slider will
+ * behave as a continuous slider and allow to choose any value from the range specified. Must not be negative.
+ * @param onValueChangeFinished Callback invoked when value change has ended. This callback shouldn't be used to update
+ * the slider value (use [onValueChange] for that), but rather to know when the user has completed selecting a new value by ending a drag or a click.
+ * @param startIcon [OdsSliderIcon] displayed at the start of the slider.
+ * @param endIcon [OdsSliderIcon] displayed at the end of the slider.
  */
 @Composable
 @OdsComposable
@@ -88,15 +84,15 @@ fun OdsSlider(
     valueRange: ClosedFloatingPointRange<Float> = 0f..1f,
     steps: Int = 0,
     onValueChangeFinished: (() -> Unit)? = null,
-    leftIcon: OdsSliderIcon? = null,
-    rightIcon: OdsSliderIcon? = null
+    startIcon: OdsSliderIcon? = null,
+    endIcon: OdsSliderIcon? = null
 ) {
     Row(
         modifier = modifier,
         verticalAlignment = Alignment.CenterVertically,
         horizontalArrangement = Arrangement.spacedBy(dimensionResource(id = R.dimen.spacing_m))
     ) {
-        leftIcon?.Content()
+        startIcon?.Content()
         // For the moment we cannot change the height of the slider track (need to check in jetpack compose future versions)
         Slider(
             value = value,
@@ -109,7 +105,7 @@ fun OdsSlider(
             onValueChangeFinished = onValueChangeFinished,
             colors = SliderDefaults.colors(activeTickColor = OdsTheme.colors.surface.copy(alpha = ActiveTickColorAlpha))
         )
-        rightIcon?.Content()
+        endIcon?.Content()
     }
 }
 
@@ -129,21 +125,17 @@ fun OdsSlider(
  * You can allow the user to choose only between predefined set of values by specifying the amount
  * of steps between min and max values.
  *
- * @param value current value of the Slider. If outside of [valueRange] provided, value will be
- * coerced to this range.
- * @param onValueChange lambda in which value should be updated
- * @param modifier modifiers for the OdsSlider layout
- * @param enabled whether or not component is enabled and can be interacted with or not
- * @param valueRange range of values that Slider value can take. Passed [value] will be coerced to
- * this range
- * @param steps if greater than 0, specifies the amounts of discrete values, evenly distributed
- * between across the whole value range. If 0, slider will behave as a continuous slider and allow
- * to choose any value from the range specified. Must not be negative.
- * @param onValueChangeFinished lambda to be invoked when value change has ended. This callback
- * shouldn't be used to update the slider value (use [onValueChange] for that), but rather to
- * know when the user has completed selecting a new value by ending a drag or a click.
- * @param leftIcon Icon displayed on the left of the slider
- * @param rightIcon Icon displayed on the right of the slider
+ * @param value Current value of the slider. If outside of `valueRange` provided, value will be coerced to this range.
+ * @param onValueChange Callback invoked on slider value change. `value` should be updated here.
+ * @param modifier [Modifier] applied to the slider.
+ * @param enabled Controls the enabled state of the slider. If `false`, the user cannot interact with it.
+ * @param valueRange Range of values that the slider can take. Given [value] will be coerced to this range.
+ * @param steps If greater than `0`, specifies the amounts of discrete values, evenly distributed between across the whole value range. If `0`, slider will
+ * behave as a continuous slider and allow to choose any value from the range specified. Must not be negative.
+ * @param onValueChangeFinished Callback invoked when value change has ended. This callback shouldn't be used to update
+ * the slider value (use [onValueChange] for that), but rather to know when the user has completed selecting a new value by ending a drag or a click.
+ * @param startIcon [OdsSliderIcon] displayed at the start of the slider.
+ * @param endIcon [OdsSliderIcon] displayed at the end of the slider.
  */
 @Composable
 @OdsComposable
@@ -155,8 +147,8 @@ fun OdsSliderLockups(
     valueRange: ClosedFloatingPointRange<Float> = 0f..1f,
     steps: Int = 0,
     onValueChangeFinished: (() -> Unit)? = null,
-    leftIcon: OdsSliderIcon? = null,
-    rightIcon: OdsSliderIcon? = null
+    startIcon: OdsSliderIcon? = null,
+    endIcon: OdsSliderIcon? = null
 ) {
     val labelMinWidth = 32.dp
     val sideIconBottomPadding = 12.dp
@@ -165,7 +157,7 @@ fun OdsSliderLockups(
         modifier = modifier,
         horizontalArrangement = Arrangement.spacedBy(dimensionResource(id = R.dimen.spacing_xs))
     ) {
-        leftIcon?.Content(
+        startIcon?.Content(
             modifier = Modifier
                 .align(alignment = Alignment.Bottom)
                 .padding(bottom = sideIconBottomPadding)
@@ -202,7 +194,7 @@ fun OdsSliderLockups(
                 onValueChangeFinished = onValueChangeFinished,
             )
         }
-        rightIcon?.Content(
+        endIcon?.Content(
             modifier = Modifier
                 .align(alignment = Alignment.Bottom)
                 .padding(bottom = sideIconBottomPadding),
@@ -293,8 +285,8 @@ private fun PreviewOdsSlider(@PreviewParameter(OdsSliderPreviewParameterProvider
         value = sliderValue.value,
         onValueChange = { sliderValue.value = it },
         steps = 9,
-        leftIcon = if (withIcons) OdsSliderIcon(painterResource(id = R.drawable.ic_crosset_out_eye), "") else null,
-        rightIcon = if (withIcons) OdsSliderIcon(painterResource(id = R.drawable.ic_eye), "") else null,
+        startIcon = if (withIcons) OdsSliderIcon(painterResource(id = R.drawable.ic_crosset_out_eye), "") else null,
+        endIcon = if (withIcons) OdsSliderIcon(painterResource(id = R.drawable.ic_eye), "") else null,
     )
 }
 
@@ -306,8 +298,8 @@ private fun PreviewOdsSliderLockups(@PreviewParameter(OdsSliderPreviewParameterP
         value = value,
         valueRange = 0f..100f,
         onValueChange = { value = it },
-        leftIcon = if (withIcons) OdsSliderIcon(painterResource(id = R.drawable.ic_crosset_out_eye), "") else null,
-        rightIcon = if (withIcons) OdsSliderIcon(painterResource(id = R.drawable.ic_eye), "") else null,
+        startIcon = if (withIcons) OdsSliderIcon(painterResource(id = R.drawable.ic_crosset_out_eye), "") else null,
+        endIcon = if (withIcons) OdsSliderIcon(painterResource(id = R.drawable.ic_eye), "") else null,
     )
 }
 

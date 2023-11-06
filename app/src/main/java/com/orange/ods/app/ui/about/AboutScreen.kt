@@ -12,7 +12,6 @@ package com.orange.ods.app.ui.about
 
 import android.content.Context
 import androidx.compose.foundation.Image
-import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -28,7 +27,6 @@ import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import com.orange.ods.app.R
-import com.orange.ods.app.ui.LocalMainTopAppBarManager
 import com.orange.ods.app.ui.utilities.DrawableManager
 import com.orange.ods.app.ui.utilities.compat.PackageManagerCompat
 import com.orange.ods.app.ui.utilities.extension.versionCode
@@ -40,8 +38,6 @@ import com.orange.ods.extension.orElse
 
 @Composable
 fun AboutScreen(onAboutItemClick: (Long) -> Unit) {
-    LocalMainTopAppBarManager.current.updateTopAppBarTitle(R.string.navigation_item_about)
-
     Column(
         modifier = Modifier
             .verticalScroll(rememberScrollState())
@@ -73,9 +69,9 @@ fun AboutScreen(onAboutItemClick: (Long) -> Unit) {
         Spacer(modifier = Modifier.height(dimensionResource(id = com.orange.ods.R.dimen.spacing_m)))
 
         for (aboutItem in aboutItems) {
-            OdsListItem(text = stringResource(id = aboutItem.titleRes), modifier = Modifier.clickable {
+            OdsListItem(text = stringResource(id = aboutItem.titleRes)) {
                 onAboutItemClick(aboutItem.id)
-            })
+            }
         }
     }
 }

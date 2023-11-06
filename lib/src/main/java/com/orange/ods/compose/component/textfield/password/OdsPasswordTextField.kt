@@ -43,10 +43,10 @@ import com.orange.ods.compose.component.utilities.UiModePreviews
  *
  * @see [OdsTextField]
  *
- * @param value the input text to be shown in the text field
+ * @param value the input text to be shown in the text field.
  * @param onValueChange the callback that is triggered when the input service updates the text. An
  * updated text comes as a parameter of the callback
- * @param modifier a [Modifier] for this text field
+ * @param modifier a [Modifier] for this text field.
  * @param enabled controls the enabled state of the [TextField]. When `false`, the text field will
  * be neither editable nor focusable, the input of the text field will not be selectable,
  * visually text field will appear in the disabled UI state
@@ -61,7 +61,7 @@ import com.orange.ods.compose.component.utilities.UiModePreviews
  * @param visualisationIcon If `true`, an eye icon will be display to allow showing/hiding password.
  * @param isError indicates if the text field's current value is in error state. If set to
  * true, the label, bottom indicator and trailing icon by default will be displayed in error color
- * @param errorMessage displayed when the [OdsTextField] is in error
+ * @param errorMessage displayed when the [OdsTextField] is in error.
  * @param keyboardOptions software keyboard options that contains configuration such as
  * [KeyboardType] and [ImeAction].
  * @param keyboardActions when the input service emits an IME action, the corresponding callback

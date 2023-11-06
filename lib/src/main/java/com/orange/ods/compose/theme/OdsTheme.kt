@@ -73,8 +73,8 @@ object OdsTheme {
  * ODS theme is the theme to apply to your screens in an Orange Jetpack Compose application.
  *
  * @param themeConfiguration The configuration of the OdsTheme: colors, typography...
- * @param darkThemeEnabled Indicates whether the dark theme is enabled or not
- * @param content The content of the theme
+ * @param darkThemeEnabled Indicates whether the dark theme is enabled or not.
+ * @param content The content of the theme.
  */
 @Composable
 fun OdsTheme(

@@ -17,10 +17,8 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.selection.selectableGroup
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
-import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.semantics.SemanticsPropertyReceiver
@@ -39,22 +37,20 @@ import com.orange.ods.compose.theme.OdsTheme
  *
  * Note that [OdsChoiceChip] are displayed outlined or filled according to your [OdsTheme] component configuration, outlined by default.
  *
- * @param value The initial value of this OdsChoiceChipsFlowRow.
- * @param onValueChange The callback that is triggered when the value change.
- * @param modifier Modifier to be applied to the flow row.
- * @param chips The list of [OdsChoiceChip]s displayed inside this OdsChoiceChipsFlowRow.
+ * @param chips The list of [OdsChoiceChip] displayed into the chips flow row.
+ * @param value The initial value of the choice chips flow row.
+ * @param onValueChange Callback invoked when the value changes. The new value is provided as parameter.
+ * @param modifier [Modifier] applied to the chips flow row.
  */
 @OptIn(ExperimentalLayoutApi::class)
 @Composable
 @OdsComposable
 fun <T> OdsChoiceChipsFlowRow(
+    chips: List<OdsChoiceChip<T>>,
     value: T,
     onValueChange: (value: T) -> Unit,
-    modifier: Modifier = Modifier,
-    chips: List<OdsChoiceChip<T>>
+    modifier: Modifier = Modifier
 ) {
-    var selectedChipValue by remember { mutableStateOf(value) }
-
     FlowRow(
         modifier = modifier
             .fillMaxWidth()
@@ -62,9 +58,8 @@ fun <T> OdsChoiceChipsFlowRow(
         horizontalArrangement = Arrangement.spacedBy(dimensionResource(id = R.dimen.spacing_s)),
         content = {
             chips.forEachIndexed { index, odsChoiceChip ->
-                odsChoiceChip.Content(selected = selectedChipValue == odsChoiceChip.value) { selected ->
+                odsChoiceChip.Content(selected = value == odsChoiceChip.value) { selected ->
                     if (selected) {
-                        selectedChipValue = chips[index].value
                         onValueChange(chips[index].value)
                     }
                 }
@@ -76,10 +71,10 @@ fun <T> OdsChoiceChipsFlowRow(
 /**
  * OdsChoiceChip used in a [OdsChoiceChipsFlowRow]
  *
- * @param text Text displayed in the chip
- * @param value The chip value
+ * @param text Text displayed in the chip.
+ * @param value The chip value.
  * @param enabled If set to false, the chip is no more clickable and appears as disabled. True by default.
- * @param semantics The semantics applied on this choice chip
+ * @param semantics The semantics applied on this choice chip.
  */
 class OdsChoiceChip<T>(
     val text: String,

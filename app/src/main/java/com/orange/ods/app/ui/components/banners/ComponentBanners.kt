@@ -42,7 +42,7 @@ import com.orange.ods.compose.component.banner.OdsBanner
 import com.orange.ods.compose.component.banner.OdsBannerButton
 import com.orange.ods.compose.component.banner.OdsBannerImage
 import com.orange.ods.compose.component.list.OdsListItem
-import com.orange.ods.compose.component.list.OdsSwitchTrailing
+import com.orange.ods.compose.component.list.OdsListItemTrailingSwitch
 import com.orange.ods.extension.ifNotNull
 
 @OptIn(ExperimentalMaterialApi::class)
@@ -76,7 +76,7 @@ fun ComponentBanners() {
                 )
                 OdsListItem(
                     text = stringResource(id = R.string.component_banner_image),
-                    trailing = OdsSwitchTrailing(checked = imageChecked)
+                    trailing = OdsListItemTrailingSwitch(checked = imageChecked.value, { imageChecked.value = it })
                 )
             }
         ) {

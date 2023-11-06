@@ -10,28 +10,36 @@
 
 package com.orange.ods.app.ui.components.progress
 
+import androidx.compose.animation.core.FastOutSlowInEasing
+import androidx.compose.animation.core.animateFloatAsState
+import androidx.compose.animation.core.tween
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.MutableState
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.saveable.rememberSaveable
 
+const val DeterminateProgressTargetValue = 0.9f
+private const val DeterminateProgressAnimDuration = 5000
+
 @Composable
 fun rememberProgressCustomizationState(
     type: MutableState<ProgressCustomizationState.Type> = rememberSaveable { mutableStateOf(ProgressCustomizationState.Type.Determinate) },
     icon: MutableState<Boolean> = rememberSaveable { mutableStateOf(false) },
     currentValue: MutableState<Boolean> = rememberSaveable { mutableStateOf(false) },
-    label: MutableState<Boolean> = rememberSaveable { mutableStateOf(false) }
+    label: MutableState<Boolean> = rememberSaveable { mutableStateOf(false) },
+    determinateProgressValue: MutableState<Float> = remember { mutableStateOf(0f) }
 ) =
     remember(icon, currentValue, label, type) {
-        ProgressCustomizationState(type, icon, currentValue, label)
+        ProgressCustomizationState(type, icon, currentValue, label, determinateProgressValue)
     }
 
 class ProgressCustomizationState(
     val type: MutableState<Type>,
     val icon: MutableState<Boolean>,
     val currentValue: MutableState<Boolean>,
-    val label: MutableState<Boolean>
+    val label: MutableState<Boolean>,
+    val determinateProgressValue: MutableState<Float>
 ) {
     enum class Type {
         Determinate, Indeterminate
@@ -48,4 +56,19 @@ class ProgressCustomizationState(
 
     val isCurrentValueSwitchEnabled
         get() = type.value != Type.Indeterminate
+
+    val determinateProgressAnimation
+        @Composable
+        get() = animateFloatAsState(
+            targetValue = determinateProgressValue.value,
+            animationSpec = tween(
+                durationMillis = if (determinateProgressValue.value == 0f) 0 else DeterminateProgressAnimDuration,
+                easing = FastOutSlowInEasing
+            ),
+            label = ""
+        )
+
+    fun resetAnimation() {
+        determinateProgressValue.value = 0f
+    }
 }

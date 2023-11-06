@@ -48,7 +48,7 @@ import com.orange.ods.compose.component.imagetile.OdsImageTileIconToggleButton
 import com.orange.ods.compose.component.imagetile.OdsImageTileImage
 import com.orange.ods.compose.component.imagetile.OdsImageTileLegendAreaDisplayType
 import com.orange.ods.compose.component.list.OdsListItem
-import com.orange.ods.compose.component.list.OdsSwitchTrailing
+import com.orange.ods.compose.component.list.OdsListItemTrailingSwitch
 
 @OptIn(ExperimentalMaterialApi::class)
 @Composable
@@ -88,7 +88,7 @@ fun ComponentImageTile() {
                 )
                 OdsListItem(
                     text = stringResource(id = R.string.component_element_icon),
-                    trailing = OdsSwitchTrailing(checked = iconDisplayed, enabled = hasText)
+                    trailing = OdsListItemTrailingSwitch(iconDisplayed.value, { iconDisplayed.value = it }, hasText)
                 )
             }) {
             Column(

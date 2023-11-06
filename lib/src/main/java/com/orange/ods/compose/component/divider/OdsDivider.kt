@@ -25,8 +25,8 @@ private const val OdsDividerAlpha = 0.12f
 /**
  * An [OdsDivider] is a thin line of 1dp thickness that groups content in lists and layouts.
  *
- * @param modifier Modifier to be applied to the divider
- * @param startIndent start offset of this line, no offset by default
+ * @param modifier Modifier to be applied to the divider.
+ * @param startIndent start offset of this line, no offset by default.
  */
 @Composable
 @OdsComposable

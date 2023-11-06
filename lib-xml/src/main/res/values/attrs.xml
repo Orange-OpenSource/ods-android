@@ -18,6 +18,7 @@
         <enum name="light" value="2" />
     </attr>
     <attr name="iconContentDescription" format="string" />
+
     <declare-styleable name="OdsBanner">
         <attr name="message" format="string" />
         <attr name="firstButtonText" format="string" />
@@ -25,6 +26,7 @@
         <attr name="imageContentDescription" format="string" />
         <attr name="secondButtonText" format="string" />
     </declare-styleable>
+
     <declare-styleable name="OdsButton">
         <attr name="icon" />
         <attr name="text" />
@@ -37,12 +39,14 @@
         </attr>
         <attr name="displaySurface" />
     </declare-styleable>
+
     <declare-styleable name="OdsIconButton">
         <attr name="icon" />
         <attr name="iconContentDescription" />
         <attr name="enabled" />
         <attr name="displaySurface" />
     </declare-styleable>
+
     <declare-styleable name="OdsIconToggleButton">
         <attr name="checked" format="boolean" />
         <attr name="checkedIcon" format="reference" />
@@ -52,16 +56,19 @@
         <attr name="enabled" />
         <attr name="displaySurface" />
     </declare-styleable>
+
     <declare-styleable name="OdsIconToggleButtonsRow">
         <attr name="selectedIndex" format="integer" />
         <attr name="displaySurface" />
     </declare-styleable>
+
     <declare-styleable name="OdsOutlinedButton">
         <attr name="icon" />
         <attr name="text" />
         <attr name="enabled" />
         <attr name="displaySurface" />
     </declare-styleable>
+
     <declare-styleable name="OdsTextButton">
         <attr name="text" />
         <attr name="icon" />
@@ -72,4 +79,5 @@
         </attr>
         <attr name="displaySurface" />
     </declare-styleable>
+
 </resources>

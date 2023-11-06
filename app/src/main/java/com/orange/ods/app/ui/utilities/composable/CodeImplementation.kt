@@ -53,19 +53,25 @@ private open class SimpleParameter(name: String, val value: String) : CodeParame
 
 private open class StringRepresentationParameter<T>(name: String, value: T) : SimpleParameter(name, value.toString())
 private open class StringParameter(name: String, textValue: String) : SimpleParameter(name, "\"$textValue\"")
-private open class LambdaParameter(name: String) : SimpleParameter(name, "{ }")
+private open class LambdaParameter(name: String, val value: String) : CodeParameter(name) {
+    override val code: @Composable () -> Unit
+        get() = {
+            if (value.isNotBlank()) {
+                TechnicalText(text = "$name = {")
+                IndentCodeColumn {
+                    TechnicalText(value)
+                }
+                TechnicalText(text = "},")
+            } else {
+                TechnicalText(text = "$name = {},")
+            }
+        }
+
+}
+
 private class FloatParameter(name: String, value: Float) : SimpleParameter(name, value.toString().plus("f"))
 private class MutableStateParameter(name: String, stateValue: String) : SimpleParameter(name, "remember { mutableStateOf($stateValue) }")
 private class EnumParameter<T>(name: String, value: T) : SimpleParameter(name, value.fullName) where T : Enum<T>
-
-private class ComposableParameter(name: String, val value: @Composable () -> Unit) : CodeParameter(name) {
-    override val code
-        get() = @Composable {
-            TechnicalText(text = "$name = {")
-            IndentCodeColumn(value)
-            TechnicalText(text = "},")
-        }
-}
 
 private open class FunctionParameter(name: String, val value: Function) : CodeParameter(name) {
     override val code
@@ -113,8 +119,8 @@ private sealed class PredefinedParameter {
     class Placeholder(text: String) : StringParameter("placeholder", text)
     class ContentDescription(text: String) : StringParameter("contentDescription", text)
 
-    object OnClick : LambdaParameter("onClick")
-    object OnCheckedChange : LambdaParameter("onCheckedChange")
+    object OnClick : LambdaParameter("onClick", "")
+    object OnCheckedChange : LambdaParameter("onCheckedChange", "")
 }
 
 @Composable
@@ -282,11 +288,10 @@ class ParametersBuilder {
     fun simple(name: String, value: String) = add(SimpleParameter(name, value))
     fun <T> stringRepresentation(name: String, value: T) = add(StringRepresentationParameter(name, value))
     fun string(name: String, textValue: String) = add(StringParameter(name, textValue))
-    fun lambda(name: String) = add(LambdaParameter(name))
+    fun lambda(name: String, value: String = "") = add(LambdaParameter(name, value))
     fun float(name: String, value: Float) = add(FloatParameter(name, value))
     fun mutableState(name: String, stateValue: String) = add(MutableStateParameter(name, stateValue))
     fun <T : Enum<T>> enum(name: String, value: T) = add(EnumParameter(name, value))
-    fun composable(name: String, value: @Composable () -> Unit) = add(ComposableParameter(name, value))
     inline fun <reified T> classInstance(name: String, noinline parameters: ParametersBuilder.() -> Unit) =
         classInstance(name, T::class.java, parameters)
 

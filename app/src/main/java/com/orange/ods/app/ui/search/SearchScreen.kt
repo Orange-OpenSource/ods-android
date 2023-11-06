@@ -10,14 +10,12 @@
 
 package com.orange.ods.app.ui.search
 
-import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.MutableState
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
@@ -31,56 +29,53 @@ import androidx.compose.ui.semantics.LiveRegionMode
 import androidx.compose.ui.semantics.contentDescription
 import androidx.compose.ui.semantics.liveRegion
 import androidx.compose.ui.semantics.semantics
-import androidx.compose.ui.text.input.TextFieldValue
 import androidx.compose.ui.unit.dp
 import com.orange.ods.app.R
+import com.orange.ods.app.ui.LocalAppBarManager
 import com.orange.ods.app.ui.LocalOdsGuideline
-import com.orange.ods.app.ui.MainDestinations
 import com.orange.ods.app.ui.components.Component
+import com.orange.ods.app.ui.components.ComponentsNavigation
 import com.orange.ods.app.ui.components.Variant
 import com.orange.ods.app.ui.components.components
+import com.orange.ods.app.ui.guidelines.GuidelinesNavigation
 import com.orange.ods.app.ui.guidelines.color.DialogColor
 import com.orange.ods.app.ui.guidelines.spacing.Spacing
 import com.orange.ods.app.ui.utilities.DrawableManager
 import com.orange.ods.compose.component.list.OdsListItem
 import com.orange.ods.compose.component.list.OdsListItemIcon
 import com.orange.ods.compose.component.list.OdsListItemIconType
-import com.orange.ods.compose.component.list.iconType
 import com.orange.ods.compose.theme.OdsTheme
 import com.orange.ods.extension.orElse
 import com.orange.ods.theme.guideline.GuidelineColor
 import com.orange.ods.theme.guideline.toHexString
 
 @Composable
-fun SearchScreen(
-    searchedText: MutableState<TextFieldValue>,
-    onResultItemClick: (String, Long?) -> Unit
-) {
-
+fun SearchScreen(onResultItemClick: (String, Long?) -> Unit) {
     val context = LocalContext.current
+    val searchedText = LocalAppBarManager.current.searchedText
 
     val filteredComponents = components.filter { component ->
-        searchedText.value.text.isEmpty() || stringResource(id = component.titleRes).lowercase()
-            .contains(searchedText.value.text.lowercase())
+        searchedText.text.isEmpty() || stringResource(id = component.titleRes).lowercase()
+            .contains(searchedText.text.lowercase())
     }.asSequence()
 
     val filteredSpacings = Spacing.values().filter { spacing ->
-        searchedText.value.text.isEmpty() || spacing.tokenName.lowercase()
-            .contains(searchedText.value.text.lowercase())
+        searchedText.text.isEmpty() || spacing.tokenName.lowercase()
+            .contains(searchedText.text.lowercase())
     }
 
     val filteredGuidelineColors = LocalOdsGuideline.current.guidelineColors.filter { guidelineColor ->
-        searchedText.value.text.isEmpty() || guidelineColor.getName().lowercase().contains(searchedText.value.text.lowercase()) ||
-                guidelineColor.lightThemeName.lowercase().contains(searchedText.value.text.lowercase()) ||
-                guidelineColor.darkThemeName.lowercase().contains(searchedText.value.text.lowercase())
+        searchedText.text.isEmpty() || guidelineColor.getName().lowercase().contains(searchedText.text.lowercase()) ||
+                guidelineColor.lightThemeName.lowercase().contains(searchedText.text.lowercase()) ||
+                guidelineColor.darkThemeName.lowercase().contains(searchedText.text.lowercase())
     }
 
     val filteredVariants = components.filter { it.variants.isNotEmpty() }
         .flatMap { component ->
             val componentImageRes = component.smallImageRes.orElse { component.imageRes }
             component.variants.filter { variant ->
-                searchedText.value.text.isEmpty() || context.getString(variant.titleRes).lowercase()
-                    .contains(searchedText.value.text.lowercase())
+                searchedText.text.isEmpty() || context.getString(variant.titleRes).lowercase()
+                    .contains(searchedText.text.lowercase())
             }.map { variant ->
                 componentImageRes to variant
             }
@@ -165,31 +160,24 @@ fun SearchScreen(
             val guidelineColor = filteredGuidelineColors.firstOrNull { guidelineColor ->
                 guidelineColor.getName() == item.title && guidelineColor.getValue(OdsTheme.colors) == item.color
             }
+            val painter = when {
+                item.image != null -> painterResource(id = DrawableManager.getDrawableResIdForCurrentTheme(resId = item.image))
+                item.color != null -> ColorPainter(item.color)
+                else -> painterResource(id = DrawableManager.getPlaceholderResId())
+            }
             OdsListItem(
                 text = item.title,
                 secondaryText = item.subtitle,
                 singleLineSecondaryText = true,
-                modifier = Modifier
-                    .iconType(OdsListItemIconType.SquareImage)
-                    .clickable {
-                        when (item.data) {
-                            is Component -> onResultItemClick(MainDestinations.ComponentDetailRoute, item.id)
-                            is Variant -> onResultItemClick(MainDestinations.ComponentVariantDemoRoute, item.id)
-                            is Spacing -> onResultItemClick(MainDestinations.GuidelineSpacing, null)
-                            is GuidelineColor -> openDialog.value = true
-                        }
-                    },
-                icon = {
-                    print(item)
-                    OdsListItemIcon(
-                        painter = when {
-                            item.image != null -> painterResource(id = DrawableManager.getDrawableResIdForCurrentTheme(resId = item.image))
-                            item.color != null -> ColorPainter(item.color)
-                            else -> painterResource(id = DrawableManager.getPlaceholderResId())
-                        }
-                    )
+                icon = OdsListItemIcon(OdsListItemIconType.SquareImage, painter, "")
+            ) {
+                when (item.data) {
+                    is Component -> onResultItemClick(ComponentsNavigation.ComponentDetailRoute, item.id)
+                    is Variant -> onResultItemClick(ComponentsNavigation.ComponentVariantDemoRoute, item.id)
+                    is Spacing -> onResultItemClick(GuidelinesNavigation.GuidelineSpacing, null)
+                    is GuidelineColor -> openDialog.value = true
                 }
-            )
+            }
             if (openDialog.value && guidelineColor != null) {
                 DialogColor(color = guidelineColor, openDialog)
             }

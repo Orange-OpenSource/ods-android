@@ -43,15 +43,14 @@ import com.orange.ods.compose.theme.OdsTheme
  * See [OdsBottomNavigationItem] for configuration specific to each item, and not the overall
  * OdsBottomNavigation component.
  *
- * @param modifier optional [Modifier] for this OdsBottomNavigation
- * @param items destinations inside this OdsBottomNavigation, this contain multiple
- * [OdsBottomNavigationItem]s
+ * @param items List of [OdsBottomNavigationItem] displayed into the bottom navigation.
+ * @param modifier [Modifier] applied to the bottom navigation.
  */
 @Composable
 @OdsComposable
 fun OdsBottomNavigation(
-    modifier: Modifier = Modifier,
-    items: List<OdsBottomNavigationItem>
+    items: List<OdsBottomNavigationItem>,
+    modifier: Modifier = Modifier
 ) {
     BottomNavigation(
         modifier = modifier,
@@ -77,12 +76,12 @@ fun OdsBottomNavigation(
  * An OdsBottomNavigationItem always shows text labels (if it exists) when selected. Showing text
  * labels if not selected is controlled by [alwaysShowLabel].
  *
- * @param selected whether this item is selected
- * @param onClick the callback to be invoked when this item is selected
- * @param icon icon for this item
+ * @param selected whether this item is selected.
+ * @param onClick the callback to be invoked when this item is selected.
+ * @param icon icon for this item.
  * @param enabled controls the enabled state of this item. When `false`, this item will not
  * be clickable and will appear disabled to accessibility services.
- * @param label optional text label for this item
+ * @param label optional text label for this item.
  * @param alwaysShowLabel whether to always show the label for this item. If false, the label will
  * only be shown when this item is selected.
  */

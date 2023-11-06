@@ -24,7 +24,7 @@ import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.semantics.semantics
 import com.orange.ods.compose.component.button.OdsTextButton
 import com.orange.ods.compose.component.button.OdsTextButtonStyle
-import com.orange.ods.compose.component.content.OdsComponentCircleImage
+import com.orange.ods.compose.component.content.OdsComponentCircularImage
 import com.orange.ods.compose.component.content.OdsComponentContent
 import com.orange.ods.compose.component.content.OdsComponentImage
 
@@ -130,7 +130,7 @@ class OdsCardImage private constructor(
 /**
  * A thumbnail in a card.
  */
-class OdsCardThumbnail : OdsComponentCircleImage {
+class OdsCardThumbnail : OdsComponentCircularImage {
 
     /**
      * Creates an instance of [OdsCardThumbnail].

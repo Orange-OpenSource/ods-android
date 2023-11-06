@@ -5,6 +5,28 @@ All notable changes done in ODS library will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.17.0](https://github.com/Orange-OpenSource/ods-android/compare/0.16.0...0.17.0) - 2023-11-06
+
+### Added
+
+- \[LibXml\] Add `OdsBottomNavigation` view ([#526](https://github.com/Orange-OpenSource/ods-android/issues/526))
+
+### Changed
+
+- \[App\] Change top app bar management ([#651](https://github.com/Orange-OpenSource/ods-android/issues/651))
+- \[Lib\] Update `OdsBottomNavigation`, `OdsChoiceChipsFlowRow`, `OdsSlider` and `OdsSliderLockups` APIs ([#661](https://github.com/Orange-OpenSource/ods-android/issues/661))
+- \[Lib\] Review and update technical documentation ([#638](https://github.com/Orange-OpenSource/ods-android/issues/638))
+- \[Lib\] Update `OdsListItem` API ([#650](https://github.com/Orange-OpenSource/ods-android/issues/650))
+- \[Lib\] Update `OdsSnackbarHost` API ([#674](https://github.com/Orange-OpenSource/ods-android/issues/674))
+
+### Fixed
+
+- \[App\] Start over progress components animations each time the determinate chip is selected ([#616](https://github.com/Orange-OpenSource/ods-android/issues/616))
+- \[App\] Change illustrations alignment for slider and text field components ([#618](https://github.com/Orange-OpenSource/ods-android/issues/618))
+- \[Lib\] Fix a bug where chip was not properly selected in `OdsChoiceChipsFlowRow` ([#650](https://github.com/Orange-OpenSource/ods-android/issues/650))
+- \[Lib\] Change text color of `OdsTextToggleButtonsRow` selected button for accessibility reason ([#559](https://github.com/Orange-OpenSource/ods-android/issues/559))
+- \[Lib\] Fix vertical padding of buttons in `OdsTextToggleButtonsRow` ([#559](https://github.com/Orange-OpenSource/ods-android/issues/559))
+
 ## [0.16.0](https://github.com/Orange-OpenSource/ods-android/compare/0.15.1...0.16.0) - 2023-10-10
 
 ### Added

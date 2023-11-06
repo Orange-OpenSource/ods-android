@@ -17,9 +17,11 @@ import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.ExperimentalMaterialApi
 import androidx.compose.material.rememberBottomSheetScaffoldState
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.runtime.saveable.rememberSaveable
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.dimensionResource
@@ -35,7 +37,7 @@ import com.orange.ods.app.ui.utilities.composable.IndentCodeColumn
 import com.orange.ods.app.ui.utilities.composable.TechnicalText
 import com.orange.ods.compose.OdsComposable
 import com.orange.ods.compose.component.list.OdsListItem
-import com.orange.ods.compose.component.list.OdsSwitchTrailing
+import com.orange.ods.compose.component.list.OdsListItemTrailingSwitch
 import com.orange.ods.compose.component.snackbar.OdsSnackbar
 import com.orange.ods.compose.component.snackbar.OdsSnackbarHost
 import com.orange.ods.compose.text.OdsTextBody2
@@ -49,10 +51,10 @@ fun ComponentSnackbars() {
     val bottomSheetScaffoldState = rememberBottomSheetScaffoldState()
     val coroutineScope: CoroutineScope = rememberCoroutineScope()
 
-    val actionButtonChecked = rememberSaveable { mutableStateOf(false) }
-    val actionOnNewLineChecked = rememberSaveable { mutableStateOf(false) }
-    if (!actionButtonChecked.value) {
-        actionOnNewLineChecked.value = false
+    var actionButtonChecked by rememberSaveable { mutableStateOf(false) }
+    var actionOnNewLineChecked by rememberSaveable { mutableStateOf(false) }
+    if (!actionButtonChecked) {
+        actionOnNewLineChecked = false
     }
 
     val snackbarMessage = stringResource(id = R.string.component_snackbar_message)
@@ -63,7 +65,7 @@ fun ComponentSnackbars() {
         bottomSheetScaffoldState = bottomSheetScaffoldState,
         snackbarHost = {
             OdsSnackbarHost(hostState = it) { data ->
-                OdsSnackbar(snackbarData = data, actionOnNewLine = actionOnNewLineChecked.value, onActionClick = {
+                OdsSnackbar(data = data, actionOnNewLine = actionOnNewLineChecked, onActionClick = {
                     clickOnElement(context = context, clickedElement = snackbarActionButton)
                 })
             }
@@ -71,11 +73,11 @@ fun ComponentSnackbars() {
         bottomSheetContent = {
             OdsListItem(
                 text = stringResource(id = R.string.component_snackbar_action_button),
-                trailing = OdsSwitchTrailing(checked = actionButtonChecked)
+                trailing = OdsListItemTrailingSwitch(actionButtonChecked, { actionButtonChecked = it })
             )
             OdsListItem(
                 text = stringResource(id = R.string.component_snackbar_action_on_new_line),
-                trailing = OdsSwitchTrailing(checked = actionOnNewLineChecked, enabled = actionButtonChecked.value)
+                trailing = OdsListItemTrailingSwitch(actionOnNewLineChecked, { actionOnNewLineChecked = it }, actionButtonChecked)
             )
         }) {
         Column(
@@ -85,7 +87,7 @@ fun ComponentSnackbars() {
                 coroutineScope.launch {
                     bottomSheetScaffoldState.snackbarHostState.showSnackbar(
                         message = snackbarMessage,
-                        actionLabel = if (actionButtonChecked.value) snackbarActionLabel else null
+                        actionLabel = if (actionButtonChecked) snackbarActionLabel else null
                     )
                 }
             }
@@ -95,7 +97,10 @@ fun ComponentSnackbars() {
                 contentBackground = false
             ) {
                 OdsTextBody2(
-                    modifier = Modifier.padding(bottom = dimensionResource(id = com.orange.ods.R.dimen.spacing_xs)),
+                    modifier = Modifier.padding(
+                        top = dimensionResource(id = com.orange.ods.R.dimen.spacing_s),
+                        bottom = dimensionResource(id = com.orange.ods.R.dimen.spacing_xs)
+                    ),
                     text = stringResource(id = R.string.component_snackbar_code_first_step)
                 )
                 CodeBackgroundColumn {
@@ -107,7 +112,7 @@ fun ComponentSnackbars() {
                             name = OdsComposable.OdsSnackbar.name,
                             parameters = {
                                 simple("snackbarData", "data")
-                                if (actionOnNewLineChecked.value) stringRepresentation("actionOnNewLine", true)
+                                if (actionOnNewLineChecked) stringRepresentation("actionOnNewLine", true)
                                 lambda("onActionClick")
                             }
                         )
@@ -128,7 +133,7 @@ fun ComponentSnackbars() {
                             name = "scaffoldState.snackbarHostState.showSnackbar",
                             parameters = {
                                 string("message", snackbarMessage)
-                                if (actionButtonChecked.value) string("actionLabel", snackbarActionLabel)
+                                if (actionButtonChecked) string("actionLabel", snackbarActionLabel)
                             })
                     }
                     TechnicalText(text = "}")

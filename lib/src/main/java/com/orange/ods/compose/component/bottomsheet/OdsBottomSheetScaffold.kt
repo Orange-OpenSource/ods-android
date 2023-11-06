@@ -32,16 +32,16 @@ import com.orange.ods.compose.theme.OdsTheme
  *
  * Bottom Sheets are surfaces anchored to the bottom of the screen that present users supplement content.
  *
- * @param sheetContent The content of the bottom sheet
- * @param modifier optional [Modifier] for this OdsBottomSheetScaffold
- * @param scaffoldState The state of the scaffold
- * @param topBar An optional top app bar
- * @param snackbarHost The composable hosting the snackbars shown inside the scaffold
- * @param floatingActionButton An optional floating action button
- * @param floatingActionButtonPosition The position of the floating action button
- * @param sheetGesturesEnabled Whether the bottom sheet can be interacted with by gestures
- * @param sheetPeekHeight The height of the bottom sheet when it is collapsed
- * @param content destinations inside this OdsBottomSheetScaffold
+ * @param sheetContent The content of the bottom sheet.
+ * @param modifier optional [Modifier] for this OdsBottomSheetScaffold.
+ * @param scaffoldState The state of the scaffold.
+ * @param topBar An optional top app bar.
+ * @param snackbarHost The composable hosting the snackbars shown inside the scaffold.
+ * @param floatingActionButton An optional floating action button.
+ * @param floatingActionButtonPosition The position of the floating action button.
+ * @param sheetGesturesEnabled Whether the bottom sheet can be interacted with by gestures.
+ * @param sheetPeekHeight The height of the bottom sheet when it is collapsed.
+ * @param content destinations inside this OdsBottomSheetScaffold.
  */
 @Composable
 @ExperimentalMaterialApi

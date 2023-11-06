@@ -46,7 +46,6 @@ import androidx.compose.ui.text.AnnotatedString
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.window.Dialog
 import com.orange.ods.app.R
-import com.orange.ods.app.ui.LocalMainTopAppBarManager
 import com.orange.ods.app.ui.LocalOdsGuideline
 import com.orange.ods.app.ui.utilities.composable.Title
 import com.orange.ods.app.ui.utilities.getStringName
@@ -63,8 +62,6 @@ import com.orange.ods.theme.guideline.toRgbString
 
 @Composable
 fun GuidelineColorScreen() {
-    LocalMainTopAppBarManager.current.updateTopAppBarTitle(R.string.guideline_color)
-
     val guidelineColors = LocalOdsGuideline.current.guidelineColors
 
     val coreColors = guidelineColors.filter { it.type == GuidelineColorType.Core }

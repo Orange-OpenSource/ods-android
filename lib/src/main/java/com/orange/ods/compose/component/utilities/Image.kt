@@ -26,11 +26,11 @@ import com.orange.ods.R
 /**
  * Displays an image in a disc
  *
- * @param painter to draw
- * @param modifier Modifier applied to the image
- * @param contentDescription Content description of the image
- * @param circleSize The size of the final image, 40x40 by default
- * @param alpha Optional opacity to be applied to the Painter when it is rendered onscreen the default renders the Painter completely opaque
+ * @param painter to draw.
+ * @param modifier Modifier applied to the image.
+ * @param contentDescription Content description of the image.
+ * @param circleSize The size of the final image, 40x40 by default.
+ * @param alpha Optional opacity to be applied to the Painter when it is rendered onscreen the default renders the Painter completely opaque.
  */
 @Composable
 fun OdsImageCircleShape(
