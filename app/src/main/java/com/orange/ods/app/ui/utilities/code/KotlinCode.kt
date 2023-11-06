@@ -157,9 +157,9 @@ private fun FunctionCallWithTrailingClosureOnly(name: String, trailingClosure: @
 }
 
 @DslMarker
-annotation class CodeImplementationDslMarker
+annotation class KotlinCodeDslMarker
 
-@CodeImplementationDslMarker
+@KotlinCodeDslMarker
 class ListParameterValueBuilder {
 
     private val functions = mutableListOf<Function>()
@@ -174,7 +174,7 @@ class ListParameterValueBuilder {
     fun build() = functions.toList()
 }
 
-@CodeImplementationDslMarker
+@KotlinCodeDslMarker
 class ParametersBuilder {
 
     private val parameters = mutableListOf<CodeParameter>()
