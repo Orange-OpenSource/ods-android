@@ -21,7 +21,7 @@ import com.orange.ods.compose.component.tab.OdsTabRow
 fun FixedTabRow(tabs: List<NavigationItem>, pagerState: PagerState, tabIconType: MainTabsCustomizationState.TabIconType, tabTextEnabled: Boolean) {
     OdsTabRow(
         selectedTabIndex = pagerState.currentPage,
-        tabs = tabs(tabs, pagerState, tabIconType, tabTextEnabled),
+        tabs = tabs(tabs = tabs, pagerState = pagerState, tabIconType = tabIconType, tabTextEnabled = tabTextEnabled),
         leadingIconTabs = tabIconType == MainTabsCustomizationState.TabIconType.Leading && tabTextEnabled
     )
 }
