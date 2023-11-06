@@ -35,16 +35,16 @@ import com.orange.ods.compose.theme.OdsTheme
  *
  * @param selectedTabIndex Index of the currently selected tab.
  * @param tabs List of [OdsTabRowTab] displayed inside the tabs row.
- * @param tabIconPosition Controls the position of the icon in the tabs. By default, the icon is displayed above the text.
  * @param modifier [Modifier] applied to the tab row.
+ * @param tabIconPosition Controls the position of the icon in the tabs. By default, the icon is displayed above the text.
  */
 @Composable
 @OdsComposable
 fun OdsTabRow(
     selectedTabIndex: Int,
     tabs: List<OdsTabRowTab>,
-    tabIconPosition: OdsTabRowTabIcon.Position = OdsTabRowTabIcon.Position.Top,
     modifier: Modifier = Modifier,
+    tabIconPosition: OdsTabRowTabIcon.Position = OdsTabRowTabIcon.Position.Top
 ) {
     TabRow(
         modifier = modifier,
