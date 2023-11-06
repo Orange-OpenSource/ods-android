@@ -26,18 +26,15 @@ fun tabs(tabs: List<NavigationItem>, pagerState: PagerState, tabIconType: MainTa
     val scope = rememberCoroutineScope()
 
     return tabs.mapIndexed { index, tab ->
-        val selected = pagerState.currentPage == index
-        val onClick: () -> Unit = {
+        OdsTabRowTab(
+            if (tabIconType != MainTabsCustomizationState.TabIconType.None) painterResource(id = tab.iconResId) else null,
+            if (tabTextEnabled) stringResource(id = tab.textResId) else null,
+            pagerState.currentPage == index
+        ) {
             scope.launch {
                 pagerState.animateScrollToPage(index)
             }
         }
-        OdsTabRowTab(
-            if (tabIconType != MainTabsCustomizationState.TabIconType.None) painterResource(id = tab.iconResId) else null,
-            if (tabTextEnabled) stringResource(id = tab.textResId) else null,
-            selected = selected,
-            onClick = onClick
-        )
     }
 }
 
