@@ -41,7 +41,6 @@ import com.orange.ods.app.ui.utilities.code.CodeImplementationColumn
 import com.orange.ods.app.ui.utilities.code.FunctionCallCode
 import com.orange.ods.app.ui.utilities.code.IndentCodeColumn
 import com.orange.ods.app.ui.utilities.code.ParametersBuilder
-import com.orange.ods.app.ui.utilities.code.PredefinedXmlAttribute
 import com.orange.ods.app.ui.utilities.code.XmlViewTag
 import com.orange.ods.app.ui.utilities.composable.TechnicalText
 import com.orange.ods.compose.OdsComposable
@@ -110,11 +109,13 @@ fun ComponentBottomNavigation() {
                 xmlAvailable = true,
                 xmlContent = {
                     CodeBackgroundColumn {
-                        XmlViewTag(clazz = OdsBottomNavigation::class.java, xmlAttributes = listOf(
-                                PredefinedXmlAttribute.Id("ods_bottom_navigation"),
-                                PredefinedXmlAttribute.LayoutWidth(),
-                                PredefinedXmlAttribute.LayoutHeight()
-                            )
+                        XmlViewTag(
+                            clazz = OdsBottomNavigation::class.java,
+                            xmlAttributes = {
+                                id("ods_bottom_navigation")
+                                layoutWidth(true)
+                                layoutHeight()
+                            }
                         )
                     }
                     OdsTextBody2(
