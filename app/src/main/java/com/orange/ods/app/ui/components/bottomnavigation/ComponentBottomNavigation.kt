@@ -10,6 +10,7 @@
 
 package com.orange.ods.app.ui.components.bottomnavigation
 
+import android.content.Context
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
@@ -35,12 +36,19 @@ import com.orange.ods.app.ui.components.utilities.ComponentCountRow
 import com.orange.ods.app.ui.components.utilities.ComponentCustomizationBottomSheetScaffold
 import com.orange.ods.app.ui.components.utilities.clickOnElement
 import com.orange.ods.app.ui.utilities.NavigationItem
-import com.orange.ods.app.ui.utilities.composable.CodeImplementationColumn
-import com.orange.ods.app.ui.utilities.composable.FunctionCallCode
+import com.orange.ods.app.ui.utilities.code.CodeBackgroundColumn
+import com.orange.ods.app.ui.utilities.code.CodeImplementationColumn
+import com.orange.ods.app.ui.utilities.code.FunctionCallCode
+import com.orange.ods.app.ui.utilities.code.IndentCodeColumn
+import com.orange.ods.app.ui.utilities.code.ParametersBuilder
+import com.orange.ods.app.ui.utilities.code.XmlViewTag
+import com.orange.ods.app.ui.utilities.composable.TechnicalText
 import com.orange.ods.compose.OdsComposable
 import com.orange.ods.compose.component.bottomnavigation.OdsBottomNavigation
 import com.orange.ods.compose.component.bottomnavigation.OdsBottomNavigationItem
 import com.orange.ods.compose.component.bottomnavigation.OdsBottomNavigationItemIcon
+import com.orange.ods.compose.text.OdsTextBody2
+import com.orange.ods.xml.component.bottomnavigation.OdsBottomNavigation
 
 private object ComponentBottomNavigation {
     const val MinNavigationItemCount = 3
@@ -98,26 +106,66 @@ fun ComponentBottomNavigation() {
 
             CodeImplementationColumn(
                 modifier = Modifier.padding(horizontal = dimensionResource(id = com.orange.ods.R.dimen.screen_horizontal_margin)),
-                xmlAvailable = true
-            ) {
-                FunctionCallCode(
-                    name = OdsComposable.OdsBottomNavigation.name,
-                    parameters = {
-                        list("items") {
+                xmlAvailable = true,
+                xmlContent = {
+                    CodeBackgroundColumn {
+                        XmlViewTag(
+                            clazz = OdsBottomNavigation::class.java,
+                            xmlAttributes = {
+                                id("ods_bottom_navigation")
+                                layoutWidth(true)
+                                layoutHeight()
+                            }
+                        )
+                    }
+                    OdsTextBody2(
+                        modifier = Modifier.padding(
+                            top = dimensionResource(id = com.orange.ods.R.dimen.spacing_s),
+                            bottom = dimensionResource(id = com.orange.ods.R.dimen.spacing_xs)
+                        ),
+                        text = stringResource(id = R.string.component_bottom_navigation_code_add_items)
+                    )
+                    CodeBackgroundColumn {
+                        TechnicalText(text = "binding.odsBottomNavigation.items = listOf(")
+                        IndentCodeColumn {
                             navigationItems.take(selectedNavigationItemCount.value).forEach { item ->
-                                classInstance<OdsBottomNavigationItem> {
-                                    classInstance<OdsBottomNavigationItemIcon>("icon") {
-                                        painter()
-                                        contentDescription("")
+                                FunctionCallCode(name = OdsBottomNavigationItem::class.simpleName.orEmpty(), trailingComma = true, parameters = {
+                                    navigationItemParameters(context, item, selectedNavigationItem.value)
+                                })
+                            }
+                        }
+                        TechnicalText(text = ")")
+                    }
+                },
+                composeContent = {
+                    FunctionCallCode(
+                        name = OdsComposable.OdsBottomNavigation.name,
+                        parameters = {
+                            list("items") {
+                                navigationItems.take(selectedNavigationItemCount.value).forEach { item ->
+                                    classInstance<OdsBottomNavigationItem> {
+                                        navigationItemParameters(context, item, selectedNavigationItem.value)
                                     }
-                                    string("label", context.getString(item.textResId))
-                                    selected(selectedNavigationItem.value.textResId == item.textResId)
-                                    onClick()
                                 }
                             }
                         }
-                    })
-            }
+                    )
+                }
+            )
         }
     }
+}
+
+private fun ParametersBuilder.navigationItemParameters(
+    context: Context,
+    item: NavigationItem,
+    selectedNavigationItem: NavigationItem
+) {
+    classInstance<OdsBottomNavigationItemIcon>("icon") {
+        painter()
+        contentDescription("")
+    }
+    string("label", context.getString(item.textResId))
+    selected(selectedNavigationItem.textResId == item.textResId)
+    onClick()
 }

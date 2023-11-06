@@ -127,6 +127,7 @@
     <string name="component_bottom_navigation_navigation_item_count">Navigation item count</string>
     <string name="component_bottom_navigation_remove_item">Remove item</string>
     <string name="component_bottom_navigation_add_item">Add item</string>
+    <string name="component_bottom_navigation_code_add_items">Add the bottom navigation items by code using view binding:</string>
 
     <!-- Components Banners -->
     <string name="component_banners">Banners</string>
