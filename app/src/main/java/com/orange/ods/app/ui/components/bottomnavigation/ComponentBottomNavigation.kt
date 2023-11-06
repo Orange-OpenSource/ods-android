@@ -38,17 +38,18 @@ import com.orange.ods.app.ui.components.utilities.clickOnElement
 import com.orange.ods.app.ui.utilities.NavigationItem
 import com.orange.ods.app.ui.utilities.code.CodeBackgroundColumn
 import com.orange.ods.app.ui.utilities.code.CodeImplementationColumn
-import com.orange.ods.app.ui.utilities.code.ComponentViewTag
 import com.orange.ods.app.ui.utilities.code.FunctionCallCode
 import com.orange.ods.app.ui.utilities.code.IndentCodeColumn
 import com.orange.ods.app.ui.utilities.code.ParametersBuilder
 import com.orange.ods.app.ui.utilities.code.PredefinedXmlAttribute
+import com.orange.ods.app.ui.utilities.code.XmlViewTag
 import com.orange.ods.app.ui.utilities.composable.TechnicalText
 import com.orange.ods.compose.OdsComposable
 import com.orange.ods.compose.component.bottomnavigation.OdsBottomNavigation
 import com.orange.ods.compose.component.bottomnavigation.OdsBottomNavigationItem
 import com.orange.ods.compose.component.bottomnavigation.OdsBottomNavigationItemIcon
 import com.orange.ods.compose.text.OdsTextBody2
+import com.orange.ods.xml.component.bottomnavigation.OdsBottomNavigation
 
 private object ComponentBottomNavigation {
     const val MinNavigationItemCount = 3
@@ -109,8 +110,7 @@ fun ComponentBottomNavigation() {
                 xmlAvailable = true,
                 xmlContent = {
                     CodeBackgroundColumn {
-                        ComponentViewTag(
-                            componentPackage = "bottomnavigation", view = OdsComposable.OdsBottomNavigation.name, xmlAttributes = listOf(
+                        XmlViewTag(clazz = OdsBottomNavigation::class.java, xmlAttributes = listOf(
                                 PredefinedXmlAttribute.Id("ods_bottom_navigation"),
                                 PredefinedXmlAttribute.LayoutWidth(),
                                 PredefinedXmlAttribute.LayoutHeight()

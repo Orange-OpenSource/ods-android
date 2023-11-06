@@ -10,14 +10,15 @@
 
 package com.orange.ods.app.ui.utilities.code
 
+import android.view.View
 import androidx.compose.runtime.Composable
 import com.orange.ods.app.ui.utilities.composable.TechnicalText
 
 open class XmlAttribute(val key: String, val value: String)
 
 @Composable
-fun ComponentViewTag(componentPackage: String, view: String, xmlAttributes: List<XmlAttribute>) {
-    TechnicalText(text = "<com.orange.ods.xml.component.$componentPackage.$view")
+fun XmlViewTag(clazz: Class<out View>, xmlAttributes: List<XmlAttribute>) {
+    TechnicalText(text = "<${clazz.name}>")
     IndentCodeColumn {
         xmlAttributes.forEach {
             TechnicalText(text = "${it.key}=\"${it.value}\"")
