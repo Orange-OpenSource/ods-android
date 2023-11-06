@@ -47,8 +47,9 @@ only tabs available.
 
 #### Jetpack Compose
 
-In Compose, the fixed tabs should be added inside of an `OdsTabRow`.
-The used composables for tabs depends on the type of tabs to display: classic `OdsTab` or `OdsLeadingIconTab` (see [Extras](#extras) section).
+To display fixed tabs, use `OdsTabRow` composable and provide a list of `OdsTabRowTab` representing the tabs to display.  
+According to the `leadingIconTabs` value, the composable will display classic `OdsTab` (icon above text) or `OdsLeadingIconTab` (icon before text).  
+For more information, see [Extras](#extras) section.
 
 ![Fixed tabs light](images/tabs_fixed_light.png)
 
@@ -96,8 +97,9 @@ that some tabs will remain off-screen until scrolled.
 
 #### Jetpack Compose
 
-For scrollable tabs, the tabs should be added inside of an `OdsScrollableTabRow`. This is the only difference with fixed tabs implementation.
-As for fixed tabs, you can use an `OdsTab` composable or an `OdsLeadingIconTab` inside.
+To display scrollable tabs, use `OdsScrollableTabRow` composable. This is the only difference with fixed tabs implementation.  
+As for fixed tabs, the composable will display classic `OdsTab` (icon above text) or `OdsLeadingIconTab` (icon before text) depending on the `leadingIconTabs` value.  
+For more information, see [Extras](#extras) section.
 
 ```kotlin
 OdsScrollableTabRow(
