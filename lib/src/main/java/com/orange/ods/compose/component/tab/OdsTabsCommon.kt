@@ -25,169 +25,84 @@ import com.orange.ods.compose.component.utilities.BasicPreviewParameterProvider
 import com.orange.ods.compose.theme.OdsTheme
 import com.orange.ods.compose.utilities.extension.enable
 
-
-sealed interface OdsTabRowTab
-
-class OdsTab(
-    private val graphicsObject: Any?,
+class OdsTabRowTab(
+    private val icon: OdsTabRowTabIcon?,
     private val text: String?,
-    private val selected: Boolean,
-    private val enabled: Boolean,
+    private val enabled: Boolean = true,
     private val onClick: () -> Unit
-) : OdsComponentContent<Nothing>(), OdsTabRowTab {
+) : OdsComponentContent<OdsTabRowTab.ExtraParameters>() {
 
-    /**
-     * Creates an instance of [OdsTab].
-     *
-     * @param painter Painter of the tab icon.
-     * @param text Text displayed in the tab.
-     * @param selected Controls whether this tab is selected or not.
-     * @param enabled Controls whether this tab is enabled or not.
-     * @param onClick Callback invoked on tab click.
-     */
-    constructor(painter: Painter?, text: String?, selected: Boolean, enabled: Boolean = true, onClick: () -> Unit) : this(
-        painter as Any?,
-        text,
-        selected,
-        enabled,
-        onClick
-    )
-
-    /**
-     * Creates an instance of [OdsTab].
-     *
-     * @param imageVector Image vector of the tab icon.
-     * @param text Text displayed in the tab.
-     * @param selected Controls whether this tab is selected or not.
-     * @param enabled Controls whether this tab is enabled or not.
-     * @param onClick Callback invoked on tab click.
-     */
-    constructor(imageVector: ImageVector, text: String?, selected: Boolean, enabled: Boolean = true, onClick: () -> Unit) : this(
-        imageVector as Any,
-        text,
-        selected,
-        enabled,
-        onClick
-    )
-
-    /**
-     * Creates an instance of [OdsTab].
-     *
-     * @param bitmap Image bitmap of the icon.
-     * @param text Text displayed in the tab.
-     * @param selected Controls whether this tab is selected or not.
-     * @param enabled Controls whether this tab is enabled or not.
-     * @param onClick Callback invoked on tab click.
-     * */
-    constructor(bitmap: ImageBitmap, text: String?, selected: Boolean, enabled: Boolean = true, onClick: () -> Unit) : this(
-        bitmap as Any?,
-        text,
-        selected,
-        enabled,
-        onClick
-    )
+    data class ExtraParameters(
+        val selected: Boolean,
+        val iconPosition: OdsTabRowTabIcon.Position
+    ) : OdsComponentContent.ExtraParameters()
 
     @Composable
     override fun Content(modifier: Modifier) {
-        val icon = when (graphicsObject) {
-            is Painter -> OdsTabIcon(painter = graphicsObject)
-            is ImageVector -> OdsTabIcon(imageVector = graphicsObject)
-            is ImageBitmap -> OdsTabIcon(bitmap = graphicsObject)
-            else -> null
-        }
-        Tab(
-            selected = selected,
-            onClick = onClick,
-            modifier = modifier,
-            enabled = enabled,
-            icon = icon?.let { { it.Content() } },
-            text = text?.let { { Text(text.uppercase(), maxLines = 1, overflow = TextOverflow.Ellipsis, style = OdsTheme.typography.button) } },
-            selectedContentColor = OdsTheme.colors.component.tab.selectedContent.enable(enabled = enabled),
-            unselectedContentColor = OdsTheme.colors.component.tab.unselectedContent.enable(enabled = enabled),
-        )
-    }
-}
+        val selectedContentColor = OdsTheme.colors.component.tab.selectedContent.enable(enabled = enabled)
+        val unselectedContentColor = OdsTheme.colors.component.tab.unselectedContent.enable(enabled = enabled)
 
-class OdsLeadingIconTab(
-    private val graphicsObject: Any,
-    private val text: String,
-    private val selected: Boolean,
-    private val enabled: Boolean,
-    private val onClick: () -> Unit
-) : OdsComponentContent<Nothing>(), OdsTabRowTab {
-
-    /**
-     * Creates an instance of [OdsLeadingIconTab].
-     *
-     * @param painter Painter of the tab icon.
-     * @param text Text displayed in the tab.
-     * @param selected Controls whether this tab is selected or not.
-     * @param enabled Controls whether this tab is enabled or not.
-     * @param onClick Callback invoked on tab click.
-     */
-    constructor(painter: Painter, text: String, selected: Boolean, enabled: Boolean = true, onClick: () -> Unit) : this(
-        painter as Any,
-        text,
-        selected,
-        enabled,
-        onClick
-    )
-
-    /**
-     * Creates an instance of [OdsLeadingIconTab].
-     *
-     * @param imageVector Image vector of the tab icon.
-     * @param text Text displayed in the tab.
-     * @param selected Controls whether this tab is selected or not.
-     * @param enabled Controls whether this tab is enabled or not.
-     * @param onClick Callback invoked on tab click.
-     */
-    constructor(imageVector: ImageVector, text: String, selected: Boolean, enabled: Boolean = true, onClick: () -> Unit) : this(
-        imageVector as Any,
-        text,
-        selected,
-        enabled,
-        onClick
-    )
-
-    /**
-     * Creates an instance of [OdsLeadingIconTab].
-     *
-     * @param bitmap Image bitmap of the icon.
-     * @param text Text displayed in the tab.
-     * @param selected Controls whether this tab is selected or not.
-     * @param enabled Controls whether this tab is enabled or not.
-     * @param onClick Callback invoked on tab click.
-     * */
-    constructor(bitmap: ImageBitmap, text: String, selected: Boolean, enabled: Boolean = true, onClick: () -> Unit) : this(
-        bitmap as Any,
-        text,
-        selected,
-        enabled,
-        onClick
-    )
-
-    @Composable
-    override fun Content(modifier: Modifier) {
-        val icon = when (graphicsObject) {
-            is Painter -> OdsLeadingIconTabIcon(painter = graphicsObject)
-            is ImageVector -> OdsLeadingIconTabIcon(imageVector = graphicsObject)
-            is ImageBitmap -> OdsLeadingIconTabIcon(bitmap = graphicsObject)
-            else -> null
-        }
-        icon?.let {
+        if (extraParameters.iconPosition == OdsTabRowTabIcon.Position.Leading && text != null && icon != null) {
             LeadingIconTab(
                 modifier = modifier,
                 icon = { icon.Content() },
                 text = { Text(text = text.uppercase(), maxLines = 1, overflow = TextOverflow.Ellipsis, style = OdsTheme.typography.button) },
-                selected = selected,
-                selectedContentColor = OdsTheme.colors.component.tab.selectedContent.enable(enabled = enabled),
-                unselectedContentColor = OdsTheme.colors.component.tab.unselectedContent.enable(enabled = enabled),
+                selected = extraParameters.selected,
+                selectedContentColor = selectedContentColor,
+                unselectedContentColor = unselectedContentColor,
                 onClick = onClick,
                 enabled = enabled
             )
+        } else {
+            Tab(
+                selected = extraParameters.selected,
+                onClick = onClick,
+                modifier = modifier,
+                enabled = enabled,
+                icon = icon?.let { { it.Content() } },
+                text = text?.let { { Text(text.uppercase(), maxLines = 1, overflow = TextOverflow.Ellipsis, style = OdsTheme.typography.button) } },
+                selectedContentColor = selectedContentColor,
+                unselectedContentColor = unselectedContentColor,
+            )
         }
     }
+}
+
+/**
+ * An icon in an [OdsTab].
+ * It is non-clickable and the content description is optional cause a tab can have a label.
+ * Note that for accessibility, if the tab has no text, it is highly recommended to set a content description.
+ */
+class OdsTabRowTabIcon : OdsComponentIcon<Nothing> {
+
+    enum class Position {
+        Top, Leading
+    }
+
+    /**
+     * Creates an instance of [OdsTabRowTabIcon].
+     *
+     * @param painter Painter of the icon.
+     * @param contentDescription The content description associated to this [OdsTabRowTabIcon].
+     */
+    constructor(painter: Painter, contentDescription: String = "") : super(painter, contentDescription)
+
+    /**
+     * Creates an instance of [OdsTabRowTabIcon].
+     *
+     * @param imageVector Image vector of the icon.
+     * @param contentDescription The content description associated to this [OdsTabRowTabIcon].
+     */
+    constructor(imageVector: ImageVector, contentDescription: String = "") : super(imageVector, contentDescription)
+
+    /**
+     * Creates an instance of [OdsTabRowTabIcon].
+     *
+     * @param bitmap Image bitmap of the icon.
+     * @param contentDescription The content description associated to this [OdsTabRowTabIcon].
+     */
+    constructor(bitmap: ImageBitmap, contentDescription: String = "") : super(bitmap, contentDescription)
+
 }
 
 internal data class OdsTabPreviewParameter(
@@ -210,65 +125,3 @@ internal val tabRowPreviewParameterValues: List<OdsTabPreviewParameter>
             OdsTabPreviewParameter(true, true, false)
         )
     }
-
-/**
- * An icon in an [OdsTab].
- * It is non-clickable and the content description is optional cause a tab can have a label.
- * Note that for accessibility, if the tab has no text, it is highly recommended to set a content description.
- */
-private class OdsTabIcon : OdsComponentIcon<Nothing> {
-
-    /**
-     * Creates an instance of [OdsTabIcon].
-     *
-     * @param painter Painter of the icon.
-     * @param contentDescription The content description associated to this [OdsTabIcon].
-     */
-    constructor(painter: Painter, contentDescription: String = "") : super(painter, contentDescription)
-
-    /**
-     * Creates an instance of [OdsTabIcon].
-     *
-     * @param imageVector Image vector of the icon.
-     * @param contentDescription The content description associated to this [OdsTabIcon].
-     */
-    constructor(imageVector: ImageVector, contentDescription: String = "") : super(imageVector, contentDescription)
-
-    /**
-     * Creates an instance of [OdsTabIcon].
-     *
-     * @param bitmap Image bitmap of the icon.
-     * @param contentDescription The content description associated to this [OdsTabIcon].
-     */
-    constructor(bitmap: ImageBitmap, contentDescription: String = "") : super(bitmap, contentDescription)
-
-}
-
-/**
- * An icon in an [OdsLeadingIconTab].
- * It is non-clickable and no content description is needed cause a leading icon tab always has a text inside.
- */
-private class OdsLeadingIconTabIcon : OdsComponentIcon<Nothing> {
-
-    /**
-     * Creates an instance of [OdsLeadingIconTabIcon].
-     *
-     * @param painter Painter of the icon.
-     */
-    constructor(painter: Painter) : super(painter, "")
-
-    /**
-     * Creates an instance of [OdsLeadingIconTabIcon].
-     *
-     * @param imageVector Image vector of the icon.
-     */
-    constructor(imageVector: ImageVector) : super(imageVector, "")
-
-    /**
-     * Creates an instance of [OdsLeadingIconTabIcon].
-     *
-     * @param bitmap Image bitmap of the icon.
-     */
-    constructor(bitmap: ImageBitmap) : super(bitmap, "")
-
-}

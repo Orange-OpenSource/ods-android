@@ -17,9 +17,8 @@ import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import com.orange.ods.app.ui.utilities.NavigationItem
-import com.orange.ods.compose.component.tab.OdsLeadingIconTab
-import com.orange.ods.compose.component.tab.OdsTab
 import com.orange.ods.compose.component.tab.OdsTabRowTab
+import com.orange.ods.compose.component.tab.OdsTabRowTabIcon
 import kotlinx.coroutines.launch
 
 @OptIn(ExperimentalFoundationApi::class)
@@ -29,30 +28,17 @@ fun tabs(
     pagerState: PagerState,
     tabIconType: MainTabsCustomizationState.TabIconType,
     tabTextEnabled: Boolean,
-    leadingIcon: Boolean = false
 ): List<OdsTabRowTab> {
     val scope = rememberCoroutineScope()
 
-    return if (leadingIcon) {
-        tabs.mapIndexed { index, tab ->
-            OdsLeadingIconTab(painterResource(id = tab.iconResId), stringResource(id = tab.textResId), pagerState.currentPage == index) {
-                scope.launch {
-                    pagerState.animateScrollToPage(index)
-                }
-            }
-        }
-    } else {
-        tabs.mapIndexed { index, tab ->
-            OdsTab(
-                if (tabIconType != MainTabsCustomizationState.TabIconType.None) painterResource(id = tab.iconResId) else null,
-                if (tabTextEnabled) stringResource(id = tab.textResId) else null,
-                pagerState.currentPage == index
-            ) {
-                scope.launch {
-                    pagerState.animateScrollToPage(index)
-                }
+    return tabs.mapIndexed { index, tab ->
+        OdsTabRowTab(
+            icon = if (tabIconType != MainTabsCustomizationState.TabIconType.None) OdsTabRowTabIcon(painter = painterResource(id = tab.iconResId)) else null,
+            text = if (tabTextEnabled) stringResource(id = tab.textResId) else null,
+        ) {
+            scope.launch {
+                pagerState.animateScrollToPage(index)
             }
         }
     }
 }
-

@@ -48,6 +48,7 @@ import com.orange.ods.compose.component.list.OdsListItem
 import com.orange.ods.compose.component.list.OdsListItemTrailingRadioButton
 import com.orange.ods.compose.component.tab.OdsScrollableTabRow
 import com.orange.ods.compose.component.tab.OdsTabRow
+import com.orange.ods.compose.component.tab.OdsTabRowTabIcon
 import com.orange.ods.compose.text.OdsTextH6
 import com.orange.ods.compose.theme.OdsTheme
 import com.orange.ods.extension.orElse
@@ -196,7 +197,8 @@ private fun AppBarTabs(appBarTabsState: AppBarTabsState) {
             // Do not use tabs directly because this is a SnapshotStateList
             // Thus its value can be modified and can lead to crashes if it becomes empty
             val tabs = tabs.toList()
-            val leadingIconTabs = tabIconType.value == MainTabsCustomizationState.TabIconType.Leading && tabTextEnabled.value
+            val tabIconPosition =
+                if (tabIconType.value == MainTabsCustomizationState.TabIconType.Leading && tabTextEnabled.value) OdsTabRowTabIcon.Position.Leading else OdsTabRowTabIcon.Position.Top
 
             if (scrollableTabs.value) {
                 OdsScrollableTabRow(
@@ -205,9 +207,9 @@ private fun AppBarTabs(appBarTabsState: AppBarTabsState) {
                         tabs = tabs,
                         pagerState = pagerState,
                         tabIconType = tabIconType.value,
-                        tabTextEnabled = tabTextEnabled.value,
-                        leadingIcon = leadingIconTabs
+                        tabTextEnabled = tabTextEnabled.value
                     ),
+                    tabIconPosition = tabIconPosition
                 )
             } else {
                 OdsTabRow(
@@ -216,9 +218,9 @@ private fun AppBarTabs(appBarTabsState: AppBarTabsState) {
                         tabs = tabs,
                         pagerState = pagerState,
                         tabIconType = tabIconType.value,
-                        tabTextEnabled = tabTextEnabled.value,
-                        leadingIcon = leadingIconTabs
-                    )
+                        tabTextEnabled = tabTextEnabled.value
+                    ),
+                    tabIconPosition = tabIconPosition
                 )
             }
         }

@@ -23,7 +23,6 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.PreviewParameter
 import com.orange.ods.compose.component.OdsComposable
-import com.orange.ods.compose.component.content.OdsComponentContent
 import com.orange.ods.compose.component.utilities.Preview
 import com.orange.ods.compose.component.utilities.UiModePreviews
 import com.orange.ods.compose.theme.OdsTheme
@@ -35,15 +34,16 @@ import com.orange.ods.compose.theme.OdsTheme
  * @see ScrollableTabRow documentation
  *
  * @param selectedTabIndex Index of the currently selected tab.
- * @param tabs List of [OdsTabRowTab] displayed inside the tabs row. It can be a list of [OdsTab] for tabs with icon above text or a list of [OdsLeadingIconTab]
- * for tabs with icon before text.
+ * @param tabs List of [OdsTabRowTab] displayed inside the tabs row.
+ * @param tabIconPosition Controls the position of the icon in the tabs. By default, the icon is displayed above the text.
  * @param modifier [Modifier] applied to the scrollable tabs row.
  */
 @Composable
 @OdsComposable
-fun <T : OdsTabRowTab> OdsScrollableTabRow(
+fun OdsScrollableTabRow(
     selectedTabIndex: Int,
-    tabs: List<T>,
+    tabs: List<OdsTabRowTab>,
+    tabIconPosition: OdsTabRowTabIcon.Position = OdsTabRowTabIcon.Position.Top,
     modifier: Modifier = Modifier,
 ) {
     ScrollableTabRow(
@@ -60,7 +60,7 @@ fun <T : OdsTabRowTab> OdsScrollableTabRow(
             }
         },
         divider = {},
-        tabs = { tabs.forEach { tab -> (tab as? OdsComponentContent<*>)?.Content() } }
+        tabs = { tabs.forEachIndexed { index, tab -> tab.Content(OdsTabRowTab.ExtraParameters(selected = index == selectedTabIndex, iconPosition = tabIconPosition)) } }
     )
 }
 
@@ -81,23 +81,12 @@ private fun PreviewOdsScrollableTabRow(@PreviewParameter(OdsTabRowPreviewParamet
         OdsScrollableTabRow(
             selectedTabIndex = selectedTabIndex,
             tabs = tabs.mapIndexed { index, tab ->
-                if (hasLeadingIconTabs) {
-                    OdsLeadingIconTab(
-                        painter = painterResource(id = tab.iconResId),
-                        text = tab.text,
-                        selected = selectedTabIndex == index,
-                        enabled = true,
-                        onClick = { selectedTabIndex = index }
-                    )
-                } else {
-                    OdsTab(
-                        painter = if (hasIcon) painterResource(id = tab.iconResId) else null,
-                        text = if (hasText) tab.text else null,
-                        selected = selectedTabIndex == index,
-                        enabled = true,
-                        onClick = { selectedTabIndex = index }
-                    )
-                }
+                OdsTabRowTab(
+                    icon = if (hasIcon) OdsTabRowTabIcon(painterResource(id = tab.iconResId), "") else null,
+                    text = if (hasText) tab.text else null,
+                    enabled = enabled,
+                    onClick = { selectedTabIndex = index }
+                )
             }
         )
     }
