@@ -47,3 +47,7 @@ defaults:
       path: "0.16.0"
     values:
       version: "0.16.0"
+  - scope:
+      path: "0.17.0"
+    values:
+      version: "0.17.0"
