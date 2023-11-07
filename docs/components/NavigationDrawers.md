@@ -32,7 +32,7 @@ Please follow [accessibility criteria for development](https://a11y-guidelines.o
 
 The `OdsModalDrawer` is built using the following provided elements:
 
-- `header` which contains a title, an optional subtitle and and optional image displayed as header background or as an avatar (circular shaped image) displayed above the title.
+- `header` which contains a title, an optional subtitle and an optional image displayed as header background or as an avatar (circular shaped image) above the title.
 - `items` which constitute the list of elements displayed vertically below the header. This list can contain section headers, list items or simple dividers.
 
 You can use the `OdsModalDrawer` composable like this:
