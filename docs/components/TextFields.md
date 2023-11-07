@@ -169,8 +169,8 @@ OdsPasswordTextField(
     keyboardOptions = KeyboardOptions.Default,
     keyboardActions = KeyboardActions(),
     characterCounter = OdsTextFieldCharacterCounter(
-        valueLength = valueLength,
-        maxChars = TextFieldMaxChars,
+        characterCount = characterCount,
+        maxCharacterCount = TextFieldMaxCharacterCount,
         enabled = enabled
     )
 )
@@ -216,8 +216,8 @@ Use the `OdsTextFieldCharacterCounter` class for this behavior as shown below:
 ```kotlin
 OdsTextFieldCharacterCounter(
     modifier = Modifier.align(Alignment.End),
-    valueLength = valueLength,
-    maxChars = 20,
+    characterCount = characterCount,
+    maxCharacterCount = 20,
     enabled = true
 )
 ```
@@ -225,7 +225,7 @@ OdsTextFieldCharacterCounter(
 Be careful, the limitation behavior should be managed by yourself in the `onValueChange` method of the text field:
 
 ```kotlin
-if (text.length <= TextFieldMaxChars) {
+if (text.length <= TextFieldMaxCharacterCount) {
     value = text
 }
 ```
@@ -234,8 +234,8 @@ if (text.length <= TextFieldMaxChars) {
 
 Parameter | Default&nbsp;value | Description
 -- | -- | --
-<b>`valueLength: Int`</b> | | Text field current value length.
-<b>`maxChars: Int`</b> | | Maximum number of characters to display in the counter. Note: the limitation behavior should be managed by yourself in the `onValueChange` method of the text field.
+<b>`characterCount: Int`</b> | | Text field current characters count.
+<b>`maxCharacterCount: Int`</b> | | Maximum number of characters to display in the counter. Note: the limitation behavior should be managed by yourself in the `onValueChange` method of the text field.
 `enabled: Boolean` | `true` | Controls the enable state of the counter. If set to `false` the text will be displayed in disabled color.
 {:.table}
 

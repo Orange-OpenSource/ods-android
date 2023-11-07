@@ -30,22 +30,23 @@ import androidx.compose.ui.graphics.vector.rememberVectorPainter
 import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.painterResource
 import com.orange.ods.R
+import com.orange.ods.compose.component.button.OdsIconButton
+import com.orange.ods.compose.component.button.OdsIconButtonIcon
 import com.orange.ods.compose.component.content.OdsComponentContent
 import com.orange.ods.compose.component.content.OdsComponentIcon
 import com.orange.ods.compose.component.utilities.BasicPreviewParameterProvider
-import com.orange.ods.compose.component.utilities.DisabledInteractionSource
 import com.orange.ods.compose.text.OdsTextCaption
 import com.orange.ods.compose.theme.OdsTheme
 
 /**
  * A character counter to display below a text field.
  *
- * @property valueLength Text field current value length.
- * @property maxChars Maximum number of characters to display in the counter. Note: the limitation behavior should be managed by yourself
+ * @property characterCount Text field current characters count.
+ * @property maxCharacterCount Maximum number of characters to display in the counter. Note: the limitation behavior should be managed by yourself
  * in the `onValueChange` method of the text field.
  * @property enabled Controls the enable state of the counter. If set to `false` the text will be displayed in disabled color.
  */
-class OdsTextFieldCharacterCounter(private val valueLength: Int, private val maxChars: Int, private val enabled: Boolean = true) :
+class OdsTextFieldCharacterCounter(private val characterCount: Int, private val maxCharacterCount: Int, private val enabled: Boolean = true) :
     OdsComponentContent<Nothing>() {
 
     @Composable
@@ -53,7 +54,7 @@ class OdsTextFieldCharacterCounter(private val valueLength: Int, private val max
         OdsTextCaption(
             modifier = Modifier
                 .padding(top = dimensionResource(id = R.dimen.spacing_xs), end = dimensionResource(id = R.dimen.spacing_m)),
-            text = "$valueLength/$maxChars",
+            text = "$characterCount/$maxCharacterCount",
             enabled = enabled
         )
     }
