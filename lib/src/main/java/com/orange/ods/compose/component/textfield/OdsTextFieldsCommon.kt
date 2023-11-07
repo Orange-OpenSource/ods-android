@@ -92,6 +92,11 @@ class OdsTextFieldIcon : OdsComponentIcon<OdsTextFieldIcon.ExtraParameters> {
      */
     constructor(bitmap: ImageBitmap, contentDescription: String, onClick: (() -> Unit)? = null) : super(bitmap, contentDescription, onClick = onClick)
 
+    @Composable
+    override fun Content(modifier: Modifier) {
+        enabled = extraParameters.enabled
+        super.Content(modifier)
+    }
 }
 
 sealed class OdsTextFieldTrailing : OdsComponentContent<OdsTextFieldTrailing.ExtraParameters>() {
