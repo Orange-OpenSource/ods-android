@@ -107,8 +107,6 @@ sealed class OdsTextFieldTrailing : OdsComponentContent<OdsTextFieldTrailing.Ext
 }
 
 class OdsTextTrailing(val text: String) : OdsTextFieldTrailing() {
-
-
     @Composable
     override fun Content(modifier: Modifier) {
         Text(
@@ -186,15 +184,11 @@ private fun OdsTextFieldErrorText(message: String) {
 }
 
 @Composable
-internal fun getTrailingPreview(parameter: OdsTextFieldPreviewParameter, value: String): @Composable (() -> Unit)? {
-    val trailing = when (parameter.previewTrailingType) {
-        OdsTextTrailing::class.java -> OdsTextTrailing(text = "units")
-        OdsIconTrailing::class.java -> OdsIconTrailing(painter = painterResource(id = android.R.drawable.ic_input_add))
-        OdsExposedDropdownMenuTrailing::class.java -> OdsExposedDropdownMenuTrailing(expanded = false)
-        else -> null
-    }
-
-    return trailing?.let { { it.Content(OdsTextFieldTrailing.ExtraParameters(true, value.isEmpty())) } }
+internal fun trailingPreview(parameter: OdsTextFieldPreviewParameter): OdsTextFieldTrailing? = when (parameter.previewTrailingType) {
+    OdsTextTrailing::class.java -> OdsTextTrailing(text = "units")
+    OdsIconTrailing::class.java -> OdsIconTrailing(painter = painterResource(id = android.R.drawable.ic_input_add))
+    OdsExposedDropdownMenuTrailing::class.java -> OdsExposedDropdownMenuTrailing(expanded = false)
+    else -> null
 }
 
 internal data class OdsTextFieldPreviewParameter(

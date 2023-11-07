@@ -28,10 +28,10 @@ import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.tooling.preview.PreviewParameter
 import com.orange.ods.R
 import com.orange.ods.compose.component.OdsComposable
+import com.orange.ods.compose.component.textfield.OdsIconTrailing
 import com.orange.ods.compose.component.textfield.OdsTextField
 import com.orange.ods.compose.component.textfield.OdsTextFieldBottomRow
 import com.orange.ods.compose.component.textfield.OdsTextFieldCharacterCounter
-import com.orange.ods.compose.component.textfield.OdsTextFieldIcon
 import com.orange.ods.compose.component.utilities.BasicPreviewParameterProvider
 import com.orange.ods.compose.component.utilities.Preview
 import com.orange.ods.compose.component.utilities.UiModePreviews
@@ -82,7 +82,7 @@ fun OdsPasswordTextField(
     keyboardActions: KeyboardActions = KeyboardActions(),
     characterCounter: OdsTextFieldCharacterCounter? = null
 ) {
-    val odsPasswordTextFieldState = rememberOdsPasswordTextFieldState().apply {
+    val passwordTextFieldState = rememberOdsPasswordTextFieldState().apply {
         this.enabled.value = enabled
         this.visualisationIcon.value = visualisationIcon
     }
@@ -97,10 +97,10 @@ fun OdsPasswordTextField(
             label = label,
             placeholder = placeholder,
             trailing = if (visualisationIcon) {
-                { OdsPasswordVisualisationIcon(odsPasswordTextFieldState) }
+                passwordVisualisationIcon(passwordTextFieldState)
             } else null,
             isError = isError,
-            visualTransformation = odsPasswordTextFieldState.visualTransformation,
+            visualTransformation = passwordTextFieldState.visualTransformation,
             keyboardOptions = keyboardOptions,
             keyboardActions = keyboardActions,
             singleLine = true
@@ -111,15 +111,13 @@ fun OdsPasswordTextField(
 }
 
 @Composable
-private fun OdsPasswordVisualisationIcon(odsPasswordTextFieldState: OdsPasswordTextFieldState) {
-    with(odsPasswordTextFieldState) {
-        OdsTextFieldIcon(
+private fun passwordVisualisationIcon(odsPasswordTextFieldState: OdsPasswordTextFieldState) = with(odsPasswordTextFieldState) {
+        OdsIconTrailing(
             painter = if (isPasswordVisible) painterResource(id = R.drawable.ic_crosset_out_eye) else painterResource(id = R.drawable.ic_eye),
             contentDescription = if (isPasswordVisible) stringResource(id = R.string.text_field_password_hide) else stringResource(id = R.string.text_field_password_show),
             onClick = { passwordVisible.value = !isPasswordVisible },
-        ).Content(OdsTextFieldIcon.ExtraParameters(enabled = enabled.value))
+        )
     }
-}
 
 private class OdsPasswordTextFieldPreviewParameterProvider : BasicPreviewParameterProvider<Boolean>(false, true)
 

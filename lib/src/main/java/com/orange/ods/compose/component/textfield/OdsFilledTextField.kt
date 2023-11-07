@@ -39,7 +39,7 @@ internal fun OdsFilledTextField(
     label: String? = null,
     placeholder: String? = null,
     leadingIcon: OdsTextFieldIcon? = null,
-    trailing: @Composable (() -> Unit)? = null,
+    trailing: OdsTextFieldTrailing? = null,
     isError: Boolean = false,
     errorMessage: String? = null,
     visualTransformation: VisualTransformation = VisualTransformation.None,
@@ -68,7 +68,7 @@ internal fun OdsFilledTextField(
                     it.Content(OdsTextFieldIcon.ExtraParameters(enabled))
                 }
             },
-            trailingIcon = trailing,
+            trailingIcon = trailing?.let { { it.Content(extraParameters = OdsTextFieldTrailing.ExtraParameters(enabled, value.isEmpty())) } },
             isError = isError,
             visualTransformation = visualTransformation,
             keyboardOptions = keyboardOptions,
@@ -92,7 +92,7 @@ private fun PreviewOdsTextField(@PreviewParameter(OdsTextFieldPreviewParameterPr
         onValueChange = { value = it },
         placeholder = "Placeholder",
         leadingIcon = OdsTextFieldIcon(painterResource(id = android.R.drawable.ic_dialog_info), ""),
-        trailing = getTrailingPreview(parameter = parameter, value = value),
+        trailing = trailingPreview(parameter = parameter),
         isError = parameter.hasErrorMessage,
         errorMessage = getPreviewErrorMessage(parameter.hasErrorMessage, parameter.isVeryLongErrorMessage),
         characterCounter = if (parameter.hasCounter) OdsTextFieldCharacterCounter(value.length, 30) else null

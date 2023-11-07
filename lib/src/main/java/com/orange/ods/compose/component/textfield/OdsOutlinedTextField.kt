@@ -39,7 +39,7 @@ internal fun OdsOutlinedTextField(
     label: String? = null,
     placeholder: String? = null,
     leadingIcon: OdsTextFieldIcon? = null,
-    trailing: @Composable (() -> Unit)? = null,
+    trailing: OdsTextFieldTrailing? = null,
     isError: Boolean = false,
     errorMessage: String? = null,
     visualTransformation: VisualTransformation = VisualTransformation.None,
@@ -68,7 +68,7 @@ internal fun OdsOutlinedTextField(
                     it.Content(OdsTextFieldIcon.ExtraParameters(enabled))
                 }
             },
-            trailingIcon = trailing,
+            trailingIcon = trailing?.let { { it.Content(extraParameters = OdsTextFieldTrailing.ExtraParameters(enabled, value.isEmpty())) } },
             isError = isError,
             visualTransformation = visualTransformation,
             keyboardOptions = keyboardOptions,
@@ -92,7 +92,7 @@ private fun PreviewOdsOutlinedTextField(@PreviewParameter(OdsTextFieldPreviewPar
         onValueChange = { value = it },
         placeholder = "Placeholder",
         leadingIcon = OdsTextFieldIcon(painterResource(id = android.R.drawable.ic_dialog_info), ""),
-        trailing = getTrailingPreview(parameter = parameter, value = value),
+        trailing = trailingPreview(parameter = parameter),
         isError = parameter.hasErrorMessage,
         errorMessage = if (parameter.hasErrorMessage) "Error message" else null
     )
