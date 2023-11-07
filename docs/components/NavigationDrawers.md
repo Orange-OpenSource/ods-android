@@ -87,7 +87,7 @@ Parameter | Default&nbsp;value | Description
 Parameter | Default&nbsp;value | Description
 -- | -- | --
 <b>`title: String`</b> | | Title displayed in the header
-`image: OdsComponentImage<Nothing>?` | `null` | Image displayed in the header. It should be an avatar image of `OdsModalDrawerHeaderAvatar` type or a background image of `OdsModalDrawerHeaderBackground` type. <b>Note that other component images will not be taken into account.</b>
+`image: OdsModalDrawerHeaderImage?` | `null` | Image displayed in the header. It should be an avatar image of `OdsModalDrawerHeaderAvatar` type or a background image of `OdsModalDrawerHeaderBackground` type.
 `subtitle: String?` | `null` | Subtitle displayed below the `title` in the header
 {:.table}
 

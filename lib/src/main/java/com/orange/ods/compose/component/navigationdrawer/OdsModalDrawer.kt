@@ -176,12 +176,12 @@ data class OdsModalDrawerListItem(
  *
  * @property title Title displayed in the header.
  * @property image Image displayed in the header. It should be an avatar image of type [OdsModalDrawerHeaderAvatar] or a background image
- * of type [OdsModalDrawerHeaderBackground]. Note that other component images will not be taken into account.
+ * of type [OdsModalDrawerHeaderBackground].
  * @property subtitle Subtitle displayed below the [title] in the header.
  */
 class OdsModalDrawerHeader(
     private var title: String,
-    private val image: OdsComponentImage<Nothing>? = null,
+    private val image: OdsModalDrawerHeaderImage? = null,
     private var subtitle: String? = null
 ) : OdsComponentContent<Nothing>() {
 
@@ -229,9 +229,14 @@ class OdsModalDrawerHeader(
 }
 
 /**
+ * An image that can be added in the [OdsModalDrawerHeader].
+ */
+sealed interface OdsModalDrawerHeaderImage
+
+/**
  * An avatar in [OdsModalDrawerHeader].
  */
-class OdsModalDrawerHeaderAvatar : OdsComponentCircularImage {
+class OdsModalDrawerHeaderAvatar : OdsModalDrawerHeaderImage, OdsComponentCircularImage {
 
     /**
      * Creates an instance of [OdsModalDrawerHeaderAvatar].
@@ -261,7 +266,7 @@ class OdsModalDrawerHeaderAvatar : OdsComponentCircularImage {
 /**
  * A background image in the [OdsModalDrawerHeader].
  */
-class OdsModalDrawerHeaderBackground : OdsComponentImage<Nothing> {
+class OdsModalDrawerHeaderBackground : OdsModalDrawerHeaderImage, OdsComponentImage<Nothing> {
 
     /**
      * Creates an instance of [OdsModalDrawerHeaderBackground].
