@@ -76,7 +76,7 @@ fun OdsExposedDropdownMenu(
             readOnly = true,
             label = label,
             leadingIcon = selectedItem.value.iconResId?.let { OdsTextFieldIcon(painterResource(id = it), "") },
-            trailing = OdsExposedDropdownMenuTrailing(expanded = if (enabled) expanded else false, enabled = enabled),
+            trailing = OdsExposedDropdownMenuTrailing(expanded = if (enabled) expanded else false),
             enabled = enabled
         )
         OdsDropdownMenu(

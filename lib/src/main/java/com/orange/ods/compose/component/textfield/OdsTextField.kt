@@ -106,7 +106,7 @@ fun OdsTextField(
         label = label,
         placeholder = placeholder,
         leadingIcon = leadingIcon,
-        trailing = getTrailing(trailing = trailing, value = value, enabled = enabled),
+        trailing = { trailing.Content(OdsTextFieldTrailing.ExtraParameters(enabled, value.isEmpty())) },
         isError = isError,
         errorMessage = errorMessage,
         visualTransformation = visualTransformation,

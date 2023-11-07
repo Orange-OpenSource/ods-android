@@ -94,10 +94,56 @@ class OdsTextFieldIcon : OdsComponentIcon<OdsTextFieldIcon.ExtraParameters> {
 
 }
 
-sealed class OdsTextFieldTrailing
-class OdsTextTrailing(val text: String) : OdsTextFieldTrailing()
-class OdsIconTrailing(val painter: Painter, val contentDescription: String? = null, val onClick: () -> Unit = {}) : OdsTextFieldTrailing()
-internal class OdsExposedDropdownMenuTrailing(val expanded: Boolean, val enabled: Boolean) : OdsTextFieldTrailing()
+sealed class OdsTextFieldTrailing : OdsComponentContent<OdsTextFieldTrailing.ExtraParameters>() {
+    data class ExtraParameters(
+        val enabled: Boolean,
+        val isTextFieldEmpty: Boolean
+    ) : OdsComponentContent.ExtraParameters()
+}
+
+class OdsTextTrailing(val text: String) : OdsTextFieldTrailing() {
+
+
+    @Composable
+    override fun Content(modifier: Modifier) {
+        Text(
+            modifier = Modifier.padding(end = dimensionResource(id = R.dimen.spacing_s)),
+            text = text,
+            style = OdsTheme.typography.subtitle1,
+            color = OdsTextFieldDefaults.trailingTextColor(extraParameters.isTextFieldEmpty, extraParameters.enabled)
+        )
+    }
+}
+
+class OdsIconTrailing(val painter: Painter, val contentDescription: String? = null, val onClick: () -> Unit = {}) : OdsTextFieldTrailing() {
+    @Composable
+    override fun Content(modifier: Modifier) {
+        OdsTextFieldIcon(
+            painter = painter,
+            contentDescription = contentDescription,
+            onClick = if (extraParameters.enabled) onClick else null,
+        )
+    }
+}
+
+internal class OdsExposedDropdownMenuTrailing(val expanded: Boolean) : OdsTextFieldTrailing() {
+    @Composable
+    override fun Content(modifier: Modifier) {
+        val degrees = if (expanded && extraParameters.enabled) 180f else 0f
+        Box(modifier = Modifier.rotate(degrees)) {
+            OdsTextFieldIcon(
+                painter = rememberVectorPainter(image = Icons.Filled.ArrowDropDown),
+                contentDescription = null,
+                onClick = if (extraParameters.enabled) {
+                    {}
+                } else {
+                    null
+                }
+            )
+        }
+    }
+
+}
 
 @Composable
 internal fun OdsTextFieldBottomRow(isError: Boolean, errorMessage: String?, characterCounter: OdsTextFieldCharacterCounter?) {
@@ -121,43 +167,6 @@ internal fun OdsTextFieldIcon(painter: Painter, contentDescription: String?, onC
         onClick = onClick ?: {})
 }
 
-internal fun getTrailing(trailing: OdsTextFieldTrailing, value: String, enabled: Boolean = true): @Composable (() -> Unit) {
-    return when (trailing) {
-        is OdsTextTrailing -> {
-            {
-                Text(
-                    modifier = Modifier.padding(end = dimensionResource(id = R.dimen.spacing_s)),
-                    text = trailing.text,
-                    style = OdsTheme.typography.subtitle1,
-                    color = OdsTextFieldDefaults.trailingTextColor(value.isEmpty(), enabled)
-                )
-            }
-        }
-        is OdsIconTrailing -> {
-            {
-                OdsTextFieldIcon(
-                    painter = trailing.painter,
-                    contentDescription = trailing.contentDescription,
-                    onClick = if (enabled) trailing.onClick else null,
-                )
-            }
-        }
-        is OdsExposedDropdownMenuTrailing -> {
-            {
-                val degrees = if (trailing.expanded && enabled) 180f else 0f
-                Box(modifier = Modifier.rotate(degrees)) {
-                    OdsTextFieldIcon(
-                        painter = rememberVectorPainter(image = Icons.Filled.ArrowDropDown),
-                        contentDescription = null,
-                        onClick = null
-                    )
-
-                }
-            }
-        }
-    }
-}
-
 @Composable
 private fun OdsTextFieldErrorText(message: String) {
     Text(
@@ -176,11 +185,11 @@ internal fun getTrailingPreview(parameter: OdsTextFieldPreviewParameter, value: 
     val trailing = when (parameter.previewTrailingType) {
         OdsTextTrailing::class.java -> OdsTextTrailing(text = "units")
         OdsIconTrailing::class.java -> OdsIconTrailing(painter = painterResource(id = android.R.drawable.ic_input_add))
-        OdsExposedDropdownMenuTrailing::class.java -> OdsExposedDropdownMenuTrailing(expanded = false, enabled = true)
+        OdsExposedDropdownMenuTrailing::class.java -> OdsExposedDropdownMenuTrailing(expanded = false)
         else -> null
     }
 
-    return trailing?.let { getTrailing(trailing = it, value = value) }
+    return trailing?.let { { it.Content(OdsTextFieldTrailing.ExtraParameters(true, value.isEmpty())) } }
 }
 
 internal data class OdsTextFieldPreviewParameter(
