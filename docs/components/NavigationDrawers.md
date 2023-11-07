@@ -11,7 +11,7 @@ description: The navigation drawer slides in from the left when the nav icon is 
 * [Implementation](#implementation)
     * [Jetpack Compose](#jetpack-compose)
         * [OdsModalDrawer API](#odsmodaldrawer-api)
-        * [API Descriptors](#api-descriptors)
+        * [API parameter types](#api-parameter-types)
             * [OdsModalDrawerHeader](#odsmodaldrawerheader)
             * [OdsModalDrawerItem](#odsmodaldraweritem)
 
@@ -80,7 +80,7 @@ Parameter | Default&nbsp;value | Description
 <b>`content: @Composable () -> Unit`</b> | | Content of the rest of the UI
 {:.table}
 
-#### API descriptors
+#### API parameter types
 
 ##### OdsModalDrawerHeader
 
