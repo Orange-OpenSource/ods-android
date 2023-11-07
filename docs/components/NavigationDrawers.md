@@ -77,7 +77,7 @@ Parameter | Default&nbsp;value | Description
 `modifier: Modifier` | `Modifier` | `Modifier` applied to the modal drawer
 `state: DrawerState` | `rememberDrawerState(DrawerValue.Closed)` | State of the modal drawer
 `selectedItem: OdsModalDrawerListItem?` | `null` | Selected `OdsModalDrawerListItem` that appears in selected state
-`content: @Composable () -> Unit` | | Content of the rest of the UI
+<b>`content: @Composable () -> Unit`</b> | | Content of the rest of the UI
 {:.table}
 
 #### API descriptors
