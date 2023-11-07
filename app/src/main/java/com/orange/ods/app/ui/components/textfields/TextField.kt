@@ -135,7 +135,6 @@ fun TextFieldCodeImplementationColumn(
                     if (hasLeadingIcon) classInstance<OdsTextFieldIcon>("leadingIcon") {
                         painter()
                         contentDescription("")
-                        onClick()
                     }
                     if (!hasVisualisationIcon) stringRepresentation("visualisationIcon", false)
                     if (!isEnabled) enabled(false)
