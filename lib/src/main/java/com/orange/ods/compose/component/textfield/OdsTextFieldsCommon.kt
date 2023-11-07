@@ -99,14 +99,14 @@ class OdsTextFieldIcon : OdsComponentIcon<OdsTextFieldIcon.ExtraParameters> {
     }
 }
 
-sealed class OdsTextFieldTrailing : OdsComponentContent<OdsTextFieldTrailing.ExtraParameters>() {
+sealed interface OdsTextFieldTrailing {
     data class ExtraParameters(
         val enabled: Boolean,
         val isTextFieldEmpty: Boolean
     ) : OdsComponentContent.ExtraParameters()
 }
 
-class OdsTextTrailing(val text: String) : OdsTextFieldTrailing() {
+class OdsTextTrailing(val text: String) : OdsTextFieldTrailing, OdsComponentContent<OdsTextFieldTrailing.ExtraParameters>() {
     @Composable
     override fun Content(modifier: Modifier) {
         Text(
@@ -118,7 +118,8 @@ class OdsTextTrailing(val text: String) : OdsTextFieldTrailing() {
     }
 }
 
-class OdsIconTrailing(val painter: Painter, val contentDescription: String? = null, val onClick: () -> Unit = {}) : OdsTextFieldTrailing() {
+class OdsIconTrailing(val painter: Painter, val contentDescription: String? = null, val onClick: () -> Unit = {}) : OdsTextFieldTrailing,
+    OdsComponentContent<OdsTextFieldTrailing.ExtraParameters>() {
     @Composable
     override fun Content(modifier: Modifier) {
         OdsTextFieldIcon(
@@ -129,7 +130,7 @@ class OdsIconTrailing(val painter: Painter, val contentDescription: String? = nu
     }
 }
 
-internal class OdsExposedDropdownMenuTrailing(val expanded: Boolean) : OdsTextFieldTrailing() {
+internal class OdsExposedDropdownMenuTrailing(val expanded: Boolean) : OdsTextFieldTrailing, OdsComponentContent<OdsTextFieldTrailing.ExtraParameters>() {
     @Composable
     override fun Content(modifier: Modifier) {
         val degrees = if (expanded && extraParameters.enabled) 180f else 0f

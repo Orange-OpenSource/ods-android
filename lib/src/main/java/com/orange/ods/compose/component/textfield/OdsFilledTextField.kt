@@ -25,6 +25,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.input.VisualTransformation
 import androidx.compose.ui.tooling.preview.PreviewParameter
+import com.orange.ods.compose.component.content.OdsComponentContent
 import com.orange.ods.compose.component.utilities.Preview
 import com.orange.ods.compose.component.utilities.UiModePreviews
 import com.orange.ods.compose.theme.OdsTheme
@@ -68,7 +69,9 @@ internal fun OdsFilledTextField(
                     it.Content(OdsTextFieldIcon.ExtraParameters(enabled))
                 }
             },
-            trailingIcon = trailing?.let { { it.Content(extraParameters = OdsTextFieldTrailing.ExtraParameters(enabled, value.isEmpty())) } },
+            trailingIcon = @Suppress("UNCHECKED_CAST") (trailing as? OdsComponentContent<OdsTextFieldTrailing.ExtraParameters>)?.let {
+                { it.Content(extraParameters = OdsTextFieldTrailing.ExtraParameters(enabled, value.isEmpty())) }
+            },
             isError = isError,
             visualTransformation = visualTransformation,
             keyboardOptions = keyboardOptions,
