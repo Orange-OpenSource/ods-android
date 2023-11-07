@@ -53,7 +53,8 @@ fun TextFieldPassword(customizationState: TextFieldCustomizationState) {
                 label = label,
                 placeholder = placeholder,
                 errorMessage = errorMessage,
-                hasTrailing = false
+                hasTrailing = false,
+                hasTrailingIcon = false
             )
         }
     }

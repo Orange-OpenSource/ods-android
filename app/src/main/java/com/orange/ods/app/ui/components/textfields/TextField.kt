@@ -33,6 +33,8 @@ import com.orange.ods.compose.component.textfield.OdsTextFieldCharacterCounter
 import com.orange.ods.compose.component.textfield.OdsTextFieldIcon
 import com.orange.ods.compose.component.textfield.OdsTextTrailing
 
+private const val TrailingText = "units"
+
 @Composable
 fun TextField(customizationState: TextFieldCustomizationState) {
     val context = LocalContext.current
@@ -68,7 +70,7 @@ fun TextField(customizationState: TextFieldCustomizationState) {
                             painter = painterResource(id = com.orange.ods.R.drawable.ic_eye),
                             onClick = { clickOnElement(context = context, trailingIconName) })
                     } else {
-                        OdsTextTrailing(text = "units")
+                        OdsTextTrailing(text = TrailingText)
                     },
                     singleLine = isSingleLine,
                     keyboardOptions = keyboardOptions,
@@ -97,7 +99,8 @@ fun TextField(customizationState: TextFieldCustomizationState) {
                 label = label,
                 placeholder = placeholder,
                 errorMessage = errorMessage,
-                hasTrailing = hasTrailing
+                hasTrailing = hasTrailing,
+                hasTrailingIcon = hasTrailingIcon
             )
         }
     }
@@ -110,7 +113,8 @@ fun TextFieldCodeImplementationColumn(
     label: String,
     placeholder: String,
     errorMessage: String?,
-    hasTrailing: Boolean
+    hasTrailing: Boolean,
+    hasTrailingIcon: Boolean
 ) {
     with(customizationState) {
         val capitalizationValue = if (softKeyboardCapitalization.value) KeyboardCapitalization.Characters.toString() else KeyboardCapitalization.None.toString()
@@ -128,7 +132,11 @@ fun TextFieldCodeImplementationColumn(
                         stringRepresentation("keyboardType", softKeyboardType.value.keyboardType)
                         stringRepresentation("imeAction", softKeyboardAction.value.imeAction)
                     }
-                    if (hasLeadingIcon) icon()
+                    if (hasLeadingIcon) classInstance<OdsTextFieldIcon>("leadingIcon") {
+                        painter()
+                        contentDescription("")
+                        onClick()
+                    }
                     if (!hasVisualisationIcon) stringRepresentation("visualisationIcon", false)
                     if (!isEnabled) enabled(false)
                     if (isError) {
@@ -136,10 +144,22 @@ fun TextFieldCodeImplementationColumn(
                         errorMessage?.let { string("errorMessage", it) }
                     }
                     if (isSingleLine) stringRepresentation("singleLine", true)
-                    if (hasTrailing) simple("trailing", "<trailing composable>")
+                    if (hasTrailing) {
+                        val trailingParameterName = "trailing"
+                        if (hasTrailingIcon) {
+                            classInstance<OdsIconTrailing>(trailingParameterName) {
+                                painter()
+                                onClick()
+                            }
+                        } else {
+                            classInstance<OdsTextTrailing>(trailingParameterName) {
+                                text(TrailingText)
+                            }
+                        }
+                    }
                     if (hasCharacterCounter) {
                         classInstance<OdsTextFieldCharacterCounter>("characterCounter") {
-                            stringRepresentation("valueLength", displayedText.length)
+                            stringRepresentation("characterCount", displayedText.length)
                             enabled(isEnabled)
                         }
                     }
