@@ -10,17 +10,13 @@
 
 package com.orange.ods.compose.component.textfield
 
-import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.padding
-import androidx.compose.material.Icon
-import androidx.compose.material.IconButton
 import androidx.compose.material.Text
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ArrowDropDown
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.rotate
 import androidx.compose.ui.graphics.ImageBitmap
@@ -117,13 +113,12 @@ internal fun OdsTextFieldBottomRow(isError: Boolean, errorMessage: String?, char
 
 @Composable
 internal fun OdsTextFieldIcon(painter: Painter, contentDescription: String?, onClick: (() -> Unit)?) {
-    val interactionSource = if (onClick != null) remember { MutableInteractionSource() } else remember { DisabledInteractionSource() }
-    IconButton(onClick = onClick ?: {}, interactionSource = interactionSource) {
-        Icon(
-            painter = painter,
-            contentDescription = contentDescription,
-        )
-    }
+    OdsIconButton(
+        icon = OdsIconButtonIcon(
+            painter = painter, contentDescription = contentDescription.orEmpty()
+        ),
+        enabled = onClick != null,
+        onClick = onClick ?: {})
 }
 
 internal fun getTrailing(trailing: OdsTextFieldTrailing, value: String, enabled: Boolean = true): @Composable (() -> Unit) {
