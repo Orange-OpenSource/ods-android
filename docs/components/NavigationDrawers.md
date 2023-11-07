@@ -54,9 +54,9 @@ OdsModalDrawer(
             text = "label2"
         ) { doSomething() },
         OdsModalDrawerDivider, // `OdsModalDrawerDivider` is used to add a divider in a specific level of the list
-        OdsModalDrawerSectionLabel(
+        OdsModalDrawerSectionHeader(
             label = "Label"
-        ), // `OdsModalDrawerSectionLabel` is used to add a divider and the text above the divider
+        ), // `OdsModalDrawerSectionHeader` is used to add a divider and the text above the divider
         OdsModalDrawerListItem(
             icon = R.drawable.ic_heart,
             text = "label3"
@@ -95,7 +95,7 @@ Parameter | Default&nbsp;value | Description
 
 Here are the available types of `OdsModalDrawerItem`:
 
-**OdsModalDrawerSectionLabel** displays a divider and a section label below
+**OdsModalDrawerSectionHeader** displays a divider and a section header label below
 
 Parameter | Default&nbsp;value | Description
 -- | -- | --

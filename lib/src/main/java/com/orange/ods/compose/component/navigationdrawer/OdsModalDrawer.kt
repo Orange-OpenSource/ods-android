@@ -103,7 +103,7 @@ fun OdsModalDrawer(
 
 /**
  * Represents an item in an [OdsModalDrawer] content.
- * It can be a clickable list item ([OdsModalDrawerListItem]), a section label ([OdsModalDrawerSectionLabel]) or
+ * It can be a clickable list item ([OdsModalDrawerListItem]), a section header ([OdsModalDrawerSectionHeader]) or
  * a divider ([OdsModalDrawerDivider]).
  * These items will be displayed vertically in the [OdsModalDrawer] after the header part.
  */
@@ -112,11 +112,11 @@ sealed interface OdsModalDrawerItem {
 }
 
 /**
- * A section label in the [OdsModalDrawer] content.
+ * A section header in the [OdsModalDrawer] content.
  *
  * @property label Label of the section header.
  */
-data class OdsModalDrawerSectionLabel(private val label: String) : OdsModalDrawerItem, OdsComponentContent<OdsModalDrawerItem.ExtraParameters>() {
+data class OdsModalDrawerSectionHeader(private val label: String) : OdsModalDrawerItem, OdsComponentContent<OdsModalDrawerItem.ExtraParameters>() {
     @Composable
     override fun Content(modifier: Modifier) {
         Column {
@@ -343,7 +343,7 @@ private fun PreviewOdsModalDrawer(@PreviewParameter(OdsModalDrawerPreviewParamet
                 OdsModalDrawerListItem("List item 1", listItemIcon) {},
                 OdsModalDrawerDivider,
                 OdsModalDrawerListItem("List item 2", listItemIcon) {},
-                OdsModalDrawerSectionLabel("Section label"),
+                OdsModalDrawerSectionHeader("Section header"),
                 OdsModalDrawerListItem("List item 3", listItemIcon) {}
             )
         } else {

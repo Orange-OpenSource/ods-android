@@ -51,7 +51,7 @@ import com.orange.ods.compose.component.navigationdrawer.OdsModalDrawerHeaderAva
 import com.orange.ods.compose.component.navigationdrawer.OdsModalDrawerHeaderBackground
 import com.orange.ods.compose.component.navigationdrawer.OdsModalDrawerItem
 import com.orange.ods.compose.component.navigationdrawer.OdsModalDrawerListItem
-import com.orange.ods.compose.component.navigationdrawer.OdsModalDrawerSectionLabel
+import com.orange.ods.compose.component.navigationdrawer.OdsModalDrawerSectionHeader
 import kotlinx.coroutines.launch
 
 @OptIn(ExperimentalMaterialApi::class)
@@ -78,7 +78,7 @@ fun ComponentModalDrawers() {
 
         if (hasLabel || hasDivider) {
             if (hasDivider) modalDrawerItems.add(OdsModalDrawerDivider)
-            if (hasLabel) modalDrawerItems.add(OdsModalDrawerSectionLabel(sectionListCategory.name))
+            if (hasLabel) modalDrawerItems.add(OdsModalDrawerSectionHeader(sectionListCategory.name))
             sectionListRecipes.forEach { recipe ->
                 val item =
                     OdsModalDrawerListItem(
@@ -198,7 +198,7 @@ fun ComponentModalDrawers() {
                                     list("items") {
                                         if (isContentExampleChecked) {
                                             if (hasLabel) {
-                                                classInstance<OdsModalDrawerSectionLabel> {
+                                                classInstance<OdsModalDrawerSectionHeader> {
                                                     label("Section")
                                                 }
                                             }
