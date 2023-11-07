@@ -187,7 +187,7 @@ fun ComponentModalDrawers() {
                                 name = OdsComposable.OdsModalDrawer.name,
                                 exhaustiveParameters = false,
                                 parameters = {
-                                    classInstance<OdsModalDrawerHeader>("drawerHeader") {
+                                    classInstance<OdsModalDrawerHeader>("header") {
                                         title(title)
                                         when {
                                             hasBackground -> classInstance<OdsModalDrawerHeaderBackground>("image") { painter() }
@@ -195,7 +195,7 @@ fun ComponentModalDrawers() {
                                         }
                                         subtitle?.let { subtitle(it) }
                                     }
-                                    list("drawerItems") {
+                                    list("items") {
                                         if (isContentExampleChecked) {
                                             if (hasLabel) {
                                                 classInstance<OdsModalDrawerSectionLabel> {
@@ -210,7 +210,6 @@ fun ComponentModalDrawers() {
                                         }
                                     }
                                     simple("selectedItem", "<OdsModalDrawerListItem>")
-                                    lambda("onItemClick")
                                     lambda("content")
                                 }
                             )
