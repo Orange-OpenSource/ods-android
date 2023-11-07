@@ -340,11 +340,11 @@ private fun PreviewOdsModalDrawer(@PreviewParameter(OdsModalDrawerPreviewParamet
         val listItemIcon = painterResource(id = R.drawable.ic_check)
         val items = if (parameter.hasItems) {
             listOf(
-                OdsModalDrawerListItem("label1", listItemIcon) {},
+                OdsModalDrawerListItem("List item 1", listItemIcon) {},
                 OdsModalDrawerDivider,
-                OdsModalDrawerListItem("label2", listItemIcon) {},
-                OdsModalDrawerSectionLabel("Label"),
-                OdsModalDrawerListItem("label3", listItemIcon) {}
+                OdsModalDrawerListItem("List item 2", listItemIcon) {},
+                OdsModalDrawerSectionLabel("Section label"),
+                OdsModalDrawerListItem("List item 3", listItemIcon) {}
             )
         } else {
             emptyList()
@@ -390,7 +390,7 @@ private val previewParameterValues: List<OdsModalDrawerPreviewParameter>
             OdsModalDrawerPreviewParameter(title, null, image, imageAsBackground = true),
             OdsModalDrawerPreviewParameter(title, subtitle, image),
             OdsModalDrawerPreviewParameter(title, null, image),
-            OdsModalDrawerPreviewParameter(title, null, image, imageAsBackground = false, hasItems = false),
+            OdsModalDrawerPreviewParameter(title, null, image, hasItems = false),
             OdsModalDrawerPreviewParameter(title, subtitle, null)
         )
     }
