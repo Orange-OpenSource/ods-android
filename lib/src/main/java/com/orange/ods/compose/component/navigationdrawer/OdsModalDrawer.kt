@@ -66,22 +66,20 @@ private const val SelectedItemOpacity = 20f / 255f
  * Navigation drawers provide ergonomic access to destinations in an app.
  *
  * @param header Content descriptor of the drawer header.
- * @param drawerItems List of [OdsModalDrawerItem] displayed in a column inside the modal drawer.
+ * @param items List of [OdsModalDrawerItem] displayed in a column inside the modal drawer.
  * @param modifier [Modifier] applied to this drawer.
  * @param state State of the modal drawer.
  * @param selectedItem Selected [OdsModalDrawerListItem] that appears in selected state.
- * @param onItemClick Callback invoked on an [OdsModalDrawerListItem] click. Provides the clicked [OdsModalDrawerListItem].
  * @param content Content of the rest of the UI.
  */
 @Composable
 @OdsComposable
 fun OdsModalDrawer(
     header: OdsModalDrawerHeader,
-    drawerItems: List<OdsModalDrawerItem>,
+    items: List<OdsModalDrawerItem>,
     modifier: Modifier = Modifier,
     state: DrawerState = rememberDrawerState(DrawerValue.Closed),
     selectedItem: OdsModalDrawerListItem? = null,
-    onItemClick: (OdsModalDrawerListItem) -> Unit = {},
     content: @Composable () -> Unit
 ) {
     ModalDrawer(
@@ -89,8 +87,8 @@ fun OdsModalDrawer(
             header.Content()
             OdsDivider()
             LazyColumn {
-                items(drawerItems) { item ->
-                    item.Content(OdsModalDrawerItem.ExtraParameters(item == selectedItem, onItemClick))
+                items(items = items.filterIsInstance<OdsComponentContent<OdsModalDrawerItem.ExtraParameters>>()) { item ->
+                    item.Content(OdsModalDrawerItem.ExtraParameters(item == selectedItem))
                 }
             }
         },
@@ -109,8 +107,8 @@ fun OdsModalDrawer(
  * a divider ([OdsModalDrawerDivider]).
  * These items will be displayed vertically in the [OdsModalDrawer] after the header part.
  */
-sealed class OdsModalDrawerItem : OdsComponentContent<OdsModalDrawerItem.ExtraParameters>() {
-    data class ExtraParameters(val selected: Boolean, val onClick: (OdsModalDrawerListItem) -> Unit) : OdsComponentContent.ExtraParameters()
+sealed interface OdsModalDrawerItem {
+    data class ExtraParameters(val selected: Boolean) : OdsComponentContent.ExtraParameters()
 }
 
 /**
@@ -118,7 +116,7 @@ sealed class OdsModalDrawerItem : OdsComponentContent<OdsModalDrawerItem.ExtraPa
  *
  * @property label Label of the section header.
  */
-data class OdsModalDrawerSectionLabel(private val label: String) : OdsModalDrawerItem() {
+data class OdsModalDrawerSectionLabel(private val label: String) : OdsModalDrawerItem, OdsComponentContent<OdsModalDrawerItem.ExtraParameters>() {
     @Composable
     override fun Content(modifier: Modifier) {
         Column {
@@ -134,7 +132,7 @@ data class OdsModalDrawerSectionLabel(private val label: String) : OdsModalDrawe
 /**
  * A divider in the [OdsModalDrawer] content.
  */
-data object OdsModalDrawerDivider : OdsModalDrawerItem() {
+data object OdsModalDrawerDivider : OdsModalDrawerItem, OdsComponentContent<OdsModalDrawerItem.ExtraParameters>() {
     @Composable
     override fun Content(modifier: Modifier) = OdsDivider()
 }
@@ -142,15 +140,15 @@ data object OdsModalDrawerDivider : OdsModalDrawerItem() {
 /**
  * A list item in the [OdsModalDrawer] content.
  *
- * When clicked, the [onItemClick] callback of the [OdsModalDrawer] is invoked.
- *
  * @property text Text displayed in the modal drawer list item.
  * @property leadingIcon Leading icon displayed in the modal drawer list item.
+ * @property onClick Callback invoked on an `OdsModalDrawerListItem` click. Provides the clicked `OdsModalDrawerListItem`.
  */
 data class OdsModalDrawerListItem(
     private val text: String,
     private val leadingIcon: Painter? = null,
-) : OdsModalDrawerItem() {
+    private val onClick: (OdsModalDrawerListItem) -> Unit
+) : OdsModalDrawerItem, OdsComponentContent<OdsModalDrawerItem.ExtraParameters>() {
 
     @Composable
     override fun Content(modifier: Modifier) {
@@ -161,7 +159,7 @@ data class OdsModalDrawerListItem(
                 textColor = if (selected) OdsTheme.colors.primaryVariant else OdsTheme.colors.onSurface,
                 textStyle = if (selected) OdsTheme.typography.subtitle2 else OdsTheme.typography.subtitle2.copy(fontWeight = FontWeight.Bold),
                 modifier = Modifier
-                    .selectable(selected = selected, onClick = { extraParameters.onClick(this@OdsModalDrawerListItem) })
+                    .selectable(selected = selected, onClick = { onClick(this@OdsModalDrawerListItem) })
                     .let {
                         if (selected) it.background(OdsTheme.colors.primaryVariant.copy(alpha = SelectedItemOpacity)) else it
                     },
@@ -337,11 +335,11 @@ private fun PreviewOdsModalDrawer(@PreviewParameter(OdsModalDrawerPreviewParamet
         val listItemIcon = painterResource(id = R.drawable.ic_check)
         val items = if (parameter.hasItems) {
             listOf(
-                OdsModalDrawerListItem("label1", listItemIcon),
+                OdsModalDrawerListItem("label1", listItemIcon) {},
                 OdsModalDrawerDivider,
-                OdsModalDrawerListItem("label2", listItemIcon),
+                OdsModalDrawerListItem("label2", listItemIcon) {},
                 OdsModalDrawerSectionLabel("Label"),
-                OdsModalDrawerListItem("label3", listItemIcon)
+                OdsModalDrawerListItem("label3", listItemIcon) {}
             )
         } else {
             emptyList()
@@ -361,7 +359,7 @@ private fun PreviewOdsModalDrawer(@PreviewParameter(OdsModalDrawerPreviewParamet
                     }
                 }
             ),
-            drawerItems = items
+            items = items
         )
     }
 

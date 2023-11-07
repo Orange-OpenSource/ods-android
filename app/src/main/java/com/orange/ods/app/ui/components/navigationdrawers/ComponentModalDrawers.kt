@@ -17,6 +17,7 @@ import androidx.compose.material.ExperimentalMaterialApi
 import androidx.compose.material.rememberBottomSheetScaffoldState
 import androidx.compose.material.rememberDrawerState
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
@@ -63,8 +64,13 @@ fun ComponentModalDrawers() {
     val categories = LocalCategories.current
 
     with(customizationState) {
+        var selectedItem: OdsModalDrawerListItem? by remember { mutableStateOf(null) }
+
         val modalDrawerItems: MutableList<OdsModalDrawerItem> = categories.subList(1, categories.size).map { category ->
-            OdsModalDrawerListItem(category.name, if (isListIconChecked && category.iconResId != null) painterResource(id = category.iconResId) else null)
+            OdsModalDrawerListItem(
+                category.name,
+                if (isListIconChecked && category.iconResId != null) painterResource(id = category.iconResId) else null
+            ) { item -> selectedItem = item }
         }.toMutableList()
 
         val sectionListCategory = categories.first()
@@ -75,7 +81,10 @@ fun ComponentModalDrawers() {
             if (hasLabel) modalDrawerItems.add(OdsModalDrawerSectionLabel(sectionListCategory.name))
             sectionListRecipes.forEach { recipe ->
                 val item =
-                    OdsModalDrawerListItem(recipe.title, if (isListIconChecked && recipe.iconResId != null) painterResource(id = recipe.iconResId) else null)
+                    OdsModalDrawerListItem(
+                        recipe.title,
+                        if (isListIconChecked && recipe.iconResId != null) painterResource(id = recipe.iconResId) else null
+                    ) { item -> selectedItem = item }
                 modalDrawerItems.add(item)
             }
         }
@@ -87,8 +96,10 @@ fun ComponentModalDrawers() {
             placeholder = painterResource(id = DrawableManager.getPlaceholderResId()),
             error = painterResource(id = DrawableManager.getPlaceholderResId(error = true))
         )
-        var selectedItemState by remember { mutableStateOf(modalDrawerItems.firstOrNull { it is OdsModalDrawerListItem } as? OdsModalDrawerListItem) }
 
+        LaunchedEffect(key1 = Unit) {
+            selectedItem = modalDrawerItems.firstOrNull { it is OdsModalDrawerListItem } as? OdsModalDrawerListItem
+        }
         OdsModalDrawer(
             header = OdsModalDrawerHeader(
                 title = title,
@@ -99,12 +110,9 @@ fun ComponentModalDrawers() {
                 },
                 subtitle = subtitle,
             ),
-            drawerItems = if (isContentExampleChecked) modalDrawerItems else emptyList(),
+            items = if (isContentExampleChecked) modalDrawerItems else emptyList(),
             state = drawerState,
-            selectedItem = selectedItemState,
-            onItemClick = { item ->
-                selectedItemState = item
-            },
+            selectedItem = selectedItem,
             content = {
                 if (!isContentExampleChecked) {
                     listIconChecked.value = false

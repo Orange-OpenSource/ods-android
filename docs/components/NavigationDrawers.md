@@ -33,7 +33,7 @@ Please follow [accessibility criteria for development](https://a11y-guidelines.o
 The `OdsModalDrawer` is built using the following provided elements:
 
 - `header` which contains a title, an optional subtitle and and optional image displayed as header background or as an avatar (circular shaped image) displayed above the title.
-- `drawerItems` which constitute the list of elements displayed vertically below the header. This list can contain section headers, list items or simple dividers.
+- `items` which constitute the list of elements displayed vertically below the header. This list can contain section headers, list items or simple dividers.
 
 You can use the `OdsModalDrawer` composable like this:
 
@@ -44,15 +44,15 @@ OdsModalDrawer(
         image = OdsModalDrawerHeaderAvatar(painterResource(id = R.drawable.placeholder)),
         subtitle = "Example",
     ),
-    drawerItems = listOf<OdsModalDrawerItem>(
+    items = listOf<OdsModalDrawerItem>(
         OdsModalDrawerListItem( // `OdsModalDrawerListItem` is used to specified an item of the list
             icon = R.drawable.ic_heart,
             text = "label1"
-        ),
+        ) { doSomething() },
         OdsModalDrawerListItem(
             icon = R.drawable.ic_heart,
             text = "label2"
-        ),
+        ) { doSomething() },
         OdsModalDrawerDivider, // `OdsModalDrawerDivider` is used to add a divider in a specific level of the list
         OdsModalDrawerSectionLabel(
             label = "Label"
@@ -60,7 +60,7 @@ OdsModalDrawer(
         OdsModalDrawerListItem(
             icon = R.drawable.ic_heart,
             text = "label3"
-        )
+        ) { doSomething() }
     ),
     drawerState = rememberDrawerState(DrawerValue.Closed), // or rememberDrawerState(DrawerValue.Open)
 ) {
@@ -73,11 +73,10 @@ OdsModalDrawer(
 Parameter | Default&nbsp;value | Description
 -- | -- | --
 <b>`header: `</b>[OdsModalDrawerHeader](#odsmodaldrawerheader) | | Content descriptor of the drawer header
-<b>`drawerItems: List<`</b>[OdsModalDrawerItem](#odsmodaldraweritem)<b>`>`</b> | | List of `OdsModalDrawerItem` displayed in a column inside the modal drawer
+<b>`items: List<`</b>[OdsModalDrawerItem](#odsmodaldraweritem)<b>`>`</b> | | List of `OdsModalDrawerItem` displayed in a column inside the modal drawer
 `modifier: Modifier` | `Modifier` | `Modifier` applied to the modal drawer
 `state: DrawerState` | `rememberDrawerState(DrawerValue.Closed)` | State of the modal drawer
 `selectedItem: OdsModalDrawerListItem?` | `null` | Selected `OdsModalDrawerListItem` that appears in selected state
-`onItemClick: (OdsModalDrawerListItem) -> Unit` | `{}` | Callback invoked on an `OdsModalDrawerListItem` click. Provides the clicked `OdsModalDrawerListItem`.
 `content: @Composable () -> Unit` | | Content of the rest of the UI
 {:.table}
 
@@ -109,6 +108,7 @@ Parameter | Default&nbsp;value | Description
 -- | -- | --
 <b>`text: String`</b> | | Text displayed in the modal drawer list item
 `leadingIcon: Painter?` | `null` | Leading icon displayed in the modal drawer list item
+`onClick: (OdsModalDrawerListItem) -> Unit` | | Callback invoked on an `OdsModalDrawerListItem` click. Provides the clicked `OdsModalDrawerListItem`.
 {:.table}
 
 **OdsModalDrawerDivider** displays a simple divider (no parameter needed)
