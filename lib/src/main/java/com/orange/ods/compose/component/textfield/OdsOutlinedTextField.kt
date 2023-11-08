@@ -22,10 +22,10 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.painter.Painter
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.input.VisualTransformation
 import androidx.compose.ui.tooling.preview.PreviewParameter
+import com.orange.ods.compose.component.content.OdsComponentContent
 import com.orange.ods.compose.component.utilities.Preview
 import com.orange.ods.compose.component.utilities.UiModePreviews
 import com.orange.ods.compose.theme.OdsTheme
@@ -39,10 +39,8 @@ internal fun OdsOutlinedTextField(
     readOnly: Boolean = false,
     label: String? = null,
     placeholder: String? = null,
-    leadingIcon: Painter? = null,
-    leadingIconContentDescription: String? = null,
-    onLeadingIconClick: (() -> Unit)? = null,
-    trailing: @Composable (() -> Unit)? = null,
+    leadingIcon: OdsTextFieldLeadingIcon? = null,
+    trailing: OdsTextFieldTrailing? = null,
     isError: Boolean = false,
     errorMessage: String? = null,
     visualTransformation: VisualTransformation = VisualTransformation.None,
@@ -50,7 +48,7 @@ internal fun OdsOutlinedTextField(
     keyboardActions: KeyboardActions = KeyboardActions(),
     singleLine: Boolean = false,
     maxLines: Int = Int.MAX_VALUE,
-    characterCounter: (@Composable () -> Unit)? = null
+    characterCounter: OdsTextFieldCharacterCounter? = null
 ) {
     Column(modifier = modifier) {
         OutlinedTextField(
@@ -68,14 +66,12 @@ internal fun OdsOutlinedTextField(
             placeholder = placeholder?.let { { Text(text = placeholder, style = OdsTheme.typography.subtitle1) } },
             leadingIcon = leadingIcon?.let {
                 {
-                    OdsTextFieldIcon(
-                        painter = leadingIcon,
-                        contentDescription = leadingIconContentDescription,
-                        onClick = if (enabled) onLeadingIconClick else null,
-                    )
+                    it.Content(OdsTextFieldLeadingIcon.ExtraParameters(enabled))
                 }
             },
-            trailingIcon = trailing,
+            trailingIcon = @Suppress("UNCHECKED_CAST") (trailing as? OdsComponentContent<OdsTextFieldTrailing.ExtraParameters>)?.let {
+                { it.Content(extraParameters = OdsTextFieldTrailing.ExtraParameters(enabled, value.isEmpty())) }
+            },
             isError = isError,
             visualTransformation = visualTransformation,
             keyboardOptions = keyboardOptions,
@@ -98,8 +94,8 @@ private fun PreviewOdsOutlinedTextField(@PreviewParameter(OdsTextFieldPreviewPar
         value = value,
         onValueChange = { value = it },
         placeholder = "Placeholder",
-        leadingIcon = painterResource(id = android.R.drawable.ic_dialog_info),
-        trailing = getTrailingPreview(parameter = parameter, value = value),
+        leadingIcon = OdsTextFieldLeadingIcon(painterResource(id = android.R.drawable.ic_dialog_info), ""),
+        trailing = trailingPreview(parameter = parameter),
         isError = parameter.hasErrorMessage,
         errorMessage = if (parameter.hasErrorMessage) "Error message" else null
     )
