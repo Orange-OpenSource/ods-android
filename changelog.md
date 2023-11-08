@@ -11,6 +11,14 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - \[App\] Display `OdsBottomNavigation` XML code implementation ([#671](https://github.com/Orange-OpenSource/ods-android/issues/671))
 
+### Changed
+
+- \[Lib\] Rename `OdsImageTile` to `OdsImageItem` ([#683](https://github.com/Orange-OpenSource/ods-android/issues/683))
+
+### Fixed
+
+- \[Lib\] Fix back button color in `OdsLargeTopAppBar` ([#685](https://github.com/Orange-OpenSource/ods-android/issues/685))
+
 ## [0.17.0](https://github.com/Orange-OpenSource/ods-android/compare/0.16.0...0.17.0) - 2023-11-06
 
 ### Added
@@ -24,7 +32,6 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - \[Lib\] Review and update technical documentation ([#638](https://github.com/Orange-OpenSource/ods-android/issues/638))
 - \[Lib\] Update `OdsListItem` API ([#650](https://github.com/Orange-OpenSource/ods-android/issues/650))
 - \[Lib\] Update `OdsSnackbarHost` API ([#674](https://github.com/Orange-OpenSource/ods-android/issues/674))
-- \[Lib\] Rename `OdsImageTile` to `OdsImageItem` ([#683](https://github.com/Orange-OpenSource/ods-android/issues/683))
 
 ### Fixed
 
@@ -33,7 +40,6 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - \[Lib\] Fix a bug where chip was not properly selected in `OdsChoiceChipsFlowRow` ([#650](https://github.com/Orange-OpenSource/ods-android/issues/650))
 - \[Lib\] Change text color of `OdsTextToggleButtonsRow` selected button for accessibility reason ([#559](https://github.com/Orange-OpenSource/ods-android/issues/559))
 - \[Lib\] Fix vertical padding of buttons in `OdsTextToggleButtonsRow` ([#559](https://github.com/Orange-OpenSource/ods-android/issues/559))
-- \[Lib\] Fix back button color in `OdsLargeTopAppBar` ([#685](https://github.com/Orange-OpenSource/ods-android/issues/685))
 
 ## [0.16.0](https://github.com/Orange-OpenSource/ods-android/compare/0.15.1...0.16.0) - 2023-10-10
 
