@@ -26,7 +26,7 @@ import com.orange.ods.app.ui.components.chips.Chip
 import com.orange.ods.app.ui.components.chips.ChipFilter
 import com.orange.ods.app.ui.components.dialogs.ComponentDialog
 import com.orange.ods.app.ui.components.floatingactionbuttons.ComponentFloatingActionButton
-import com.orange.ods.app.ui.components.imagetile.ComponentImageTile
+import com.orange.ods.app.ui.components.imageitem.ComponentImageItem
 import com.orange.ods.app.ui.components.listitem.ComponentListItem
 import com.orange.ods.app.ui.components.menus.ComponentMenu
 import com.orange.ods.app.ui.components.navigationdrawers.ComponentModalDrawers
@@ -169,13 +169,13 @@ sealed class Component(
         demoScreen = { _, _ -> ComponentFloatingActionButton() }
     )
 
-    object ImageTile : Component(
-        R.string.component_image_tile,
-        R.drawable.il_image_tile,
+    object ImageItem : Component(
+        R.string.component_image_item,
+        R.drawable.il_image_item,
         null,
-        R.string.component_image_tile_description,
-        composableName = OdsComposable.OdsImageTile.name,
-        demoScreen = { _, _ -> ComponentImageTile() }
+        R.string.component_image_item_description,
+        composableName = OdsComposable.OdsImageItem.name,
+        demoScreen = { _, _ -> ComponentImageItem() }
     )
 
     object ListItem : Component(
