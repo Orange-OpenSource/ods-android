@@ -68,5 +68,5 @@ Parameter | Default&nbsp;value | Description
 `floatingActionButtonPosition: FabPosition` | `FabPosition.End`| Position of the floating action button
 `sheetGesturesEnabled: Boolean` | `true` | Whether the bottom sheet can be interacted with by gestures
 `sheetPeekHeight: Dp` | `BottomSheetScaffoldDefaults.SheetPeekHeight` | Height of the bottom sheet when it is collapsed
-`content: @Composable (PaddingValues) -> Unit` | | Content of the screen
+<b>`content: @Composable (PaddingValues) -> Unit`</b> | | Content of the screen
 {:.table}
