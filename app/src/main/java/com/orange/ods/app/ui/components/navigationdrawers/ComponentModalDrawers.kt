@@ -104,7 +104,7 @@ fun ComponentModalDrawers() {
             header = OdsModalDrawerHeader(
                 title = title,
                 image = when {
-                    hasAvatar -> OdsModalDrawerHeaderAvatar(imagePainter)
+                    hasAvatar -> OdsModalDrawerHeaderAvatar(imagePainter, "")
                     hasBackground -> OdsModalDrawerHeaderBackground(imagePainter)
                     else -> null
                 },
@@ -191,7 +191,10 @@ fun ComponentModalDrawers() {
                                         title(title)
                                         when {
                                             hasBackground -> classInstance<OdsModalDrawerHeaderBackground>("image") { painter() }
-                                            hasAvatar -> classInstance<OdsModalDrawerHeaderAvatar>("image") { painter() }
+                                            hasAvatar -> classInstance<OdsModalDrawerHeaderAvatar>("image") {
+                                                painter()
+                                                contentDescription("")
+                                            }
                                         }
                                         subtitle?.let { subtitle(it) }
                                     }

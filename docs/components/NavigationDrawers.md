@@ -41,7 +41,7 @@ You can use the `OdsModalDrawer` composable like this:
 OdsModalDrawer(
     header = OdsModalDrawerHeader(
         title = "Side navigation drawer",
-        image = OdsModalDrawerHeaderAvatar(painterResource(id = R.drawable.placeholder)),
+        image = OdsModalDrawerHeaderAvatar(painterResource(id = R.drawable.placeholder), ""),
         subtitle = "Example",
     ),
     items = listOf<OdsModalDrawerItem>(

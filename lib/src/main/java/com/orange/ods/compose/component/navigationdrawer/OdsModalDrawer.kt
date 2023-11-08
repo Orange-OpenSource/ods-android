@@ -244,7 +244,7 @@ class OdsModalDrawerHeaderAvatar : OdsModalDrawerHeaderImage, OdsComponentCircul
      * @param painter The painter to draw.
      * @param contentDescription The content description associated to this [OdsModalDrawerHeaderAvatar].
      */
-    constructor(painter: Painter, contentDescription: String? = null) : super(painter, contentDescription ?: "")
+    constructor(painter: Painter, contentDescription: String) : super(painter, contentDescription)
 
     /**
      * Creates an instance of [OdsModalDrawerHeaderAvatar].
@@ -252,7 +252,7 @@ class OdsModalDrawerHeaderAvatar : OdsModalDrawerHeaderImage, OdsComponentCircul
      * @param imageVector The image vector to draw.
      * @param contentDescription The content description associated to this [OdsModalDrawerHeaderAvatar].
      */
-    constructor(imageVector: ImageVector, contentDescription: String? = null) : super(imageVector, contentDescription ?: "")
+    constructor(imageVector: ImageVector, contentDescription: String) : super(imageVector, contentDescription)
 
     /**
      * Creates an instance of [OdsModalDrawerHeaderAvatar].
@@ -260,7 +260,7 @@ class OdsModalDrawerHeaderAvatar : OdsModalDrawerHeaderImage, OdsComponentCircul
      * @param bitmap The image bitmap to draw.
      * @param contentDescription The content description associated to this [OdsModalDrawerHeaderAvatar].
      */
-    constructor(bitmap: ImageBitmap, contentDescription: String? = null) : super(bitmap, contentDescription ?: "")
+    constructor(bitmap: ImageBitmap, contentDescription: String) : super(bitmap, contentDescription)
 }
 
 /**
@@ -272,40 +272,25 @@ class OdsModalDrawerHeaderBackground : OdsModalDrawerHeaderImage, OdsComponentIm
      * Creates an instance of [OdsModalDrawerHeaderBackground].
      *
      * @param painter The painter to draw.
-     * @param contentDescription The content description associated to this [OdsModalDrawerHeaderBackground]. Not mandatory here.
      * @param contentScale The rule to apply to scale the image in this [OdsModalDrawerHeaderBackground], [ContentScale.Crop] by default.
      */
-    constructor(painter: Painter, contentDescription: String? = null, contentScale: ContentScale = ContentScale.Crop) : super(
-        painter,
-        contentDescription ?: "",
-        contentScale = contentScale
-    )
+    constructor(painter: Painter, contentScale: ContentScale = ContentScale.Crop) : super(painter, "", contentScale = contentScale)
 
     /**
      * Creates an instance of [OdsModalDrawerHeaderBackground].
      *
      * @param imageVector The image vector to draw.
-     * @param contentDescription The content description associated to this [OdsModalDrawerHeaderBackground]. Not mandatory here.
      * @param contentScale The rule to apply to scale the image in this [OdsModalDrawerHeaderBackground], [ContentScale.Crop] by default.
      */
-    constructor(imageVector: ImageVector, contentDescription: String? = null, contentScale: ContentScale = ContentScale.Crop) : super(
-        imageVector,
-        contentDescription ?: "",
-        contentScale = contentScale
-    )
+    constructor(imageVector: ImageVector, contentScale: ContentScale = ContentScale.Crop) : super(imageVector, "", contentScale = contentScale)
 
     /**
      * Creates an instance of [OdsModalDrawerHeaderBackground].
      *
      * @param bitmap The image bitmap to draw.
-     * @param contentDescription The content description associated to this [OdsModalDrawerHeaderBackground]. Not mandatory here.
      * @param contentScale The rule to apply to scale the image in this [OdsModalDrawerHeaderBackground], [ContentScale.Crop] by default.
      */
-    constructor(bitmap: ImageBitmap, contentDescription: String? = null, contentScale: ContentScale = ContentScale.Crop) : super(
-        bitmap,
-        contentDescription ?: "",
-        contentScale = contentScale
-    )
+    constructor(bitmap: ImageBitmap, contentScale: ContentScale = ContentScale.Crop) : super(bitmap, "", contentScale = contentScale)
 }
 
 private object OdsModalDrawerListItemRippleTheme : RippleTheme {
@@ -358,7 +343,7 @@ private fun PreviewOdsModalDrawer(@PreviewParameter(OdsModalDrawerPreviewParamet
                 subtitle = parameter.subtitle,
                 image = parameter.image?.let {
                     if (parameter.imageAsBackground) {
-                        OdsModalDrawerHeaderBackground(painterResource(id = it), "")
+                        OdsModalDrawerHeaderBackground(painterResource(id = it))
                     } else {
                         OdsModalDrawerHeaderAvatar(painterResource(id = it), "")
                     }
