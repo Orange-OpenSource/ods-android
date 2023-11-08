@@ -39,7 +39,7 @@ internal fun OdsOutlinedTextField(
     readOnly: Boolean = false,
     label: String? = null,
     placeholder: String? = null,
-    leadingIcon: OdsTextFieldIcon? = null,
+    leadingIcon: OdsTextFieldLeadingIcon? = null,
     trailing: OdsTextFieldTrailing? = null,
     isError: Boolean = false,
     errorMessage: String? = null,
@@ -66,7 +66,7 @@ internal fun OdsOutlinedTextField(
             placeholder = placeholder?.let { { Text(text = placeholder, style = OdsTheme.typography.subtitle1) } },
             leadingIcon = leadingIcon?.let {
                 {
-                    it.Content(OdsTextFieldIcon.ExtraParameters(enabled))
+                    it.Content(OdsTextFieldLeadingIcon.ExtraParameters(enabled))
                 }
             },
             trailingIcon = @Suppress("UNCHECKED_CAST") (trailing as? OdsComponentContent<OdsTextFieldTrailing.ExtraParameters>)?.let {
@@ -94,7 +94,7 @@ private fun PreviewOdsOutlinedTextField(@PreviewParameter(OdsTextFieldPreviewPar
         value = value,
         onValueChange = { value = it },
         placeholder = "Placeholder",
-        leadingIcon = OdsTextFieldIcon(painterResource(id = android.R.drawable.ic_dialog_info), ""),
+        leadingIcon = OdsTextFieldLeadingIcon(painterResource(id = android.R.drawable.ic_dialog_info), ""),
         trailing = trailingPreview(parameter = parameter),
         isError = parameter.hasErrorMessage,
         errorMessage = if (parameter.hasErrorMessage) "Error message" else null

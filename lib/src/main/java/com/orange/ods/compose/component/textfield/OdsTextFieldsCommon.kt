@@ -57,37 +57,37 @@ class OdsTextFieldCharacterCounter(private val characterCount: Int, private val 
 }
 
 /**
- * An icon in an [OdsTextField].
+ * A leading icon in an [OdsTextField].
  */
-class OdsTextFieldIcon : OdsComponentIcon<OdsTextFieldIcon.ExtraParameters> {
+class OdsTextFieldLeadingIcon : OdsComponentIcon<OdsTextFieldLeadingIcon.ExtraParameters> {
 
     data class ExtraParameters(
         val enabled: Boolean
     ) : OdsComponentContent.ExtraParameters()
 
     /**
-     * Creates an instance of [OdsTextFieldIcon].
+     * Creates an instance of [OdsTextFieldLeadingIcon].
      *
      * @param painter Painter of the icon.
-     * @param contentDescription The content description associated to this [OdsTextFieldIcon].
+     * @param contentDescription The content description associated to this [OdsTextFieldLeadingIcon].
      * @param onClick Callback invoked on icon click.
      */
     constructor(painter: Painter, contentDescription: String, onClick: (() -> Unit)? = null) : super(painter, contentDescription, onClick = onClick)
 
     /**
-     * Creates an instance of [OdsTextFieldIcon].
+     * Creates an instance of [OdsTextFieldLeadingIcon].
      *
      * @param imageVector Image vector of the icon.
-     * @param contentDescription The content description associated to this [OdsTextFieldIcon].
+     * @param contentDescription The content description associated to this [OdsTextFieldLeadingIcon].
      * @param onClick Callback invoked on icon click.
      */
     constructor(imageVector: ImageVector, contentDescription: String, onClick: (() -> Unit)? = null) : super(imageVector, contentDescription, onClick = onClick)
 
     /**
-     * Creates an instance of [OdsTextFieldIcon].
+     * Creates an instance of [OdsTextFieldLeadingIcon].
      *
      * @param bitmap Image bitmap of the icon.
-     * @param contentDescription The content description associated to this [OdsTextFieldIcon].
+     * @param contentDescription The content description associated to this [OdsTextFieldLeadingIcon].
      * @param onClick Callback invoked on icon click.
      */
     constructor(bitmap: ImageBitmap, contentDescription: String, onClick: (() -> Unit)? = null) : super(bitmap, contentDescription, onClick = onClick)
@@ -106,7 +106,7 @@ sealed interface OdsTextFieldTrailing {
     ) : OdsComponentContent.ExtraParameters()
 }
 
-class OdsTextTrailing(val text: String) : OdsTextFieldTrailing, OdsComponentContent<OdsTextFieldTrailing.ExtraParameters>() {
+class OdsTextFieldTrailingText(val text: String) : OdsTextFieldTrailing, OdsComponentContent<OdsTextFieldTrailing.ExtraParameters>() {
     @Composable
     override fun Content(modifier: Modifier) {
         Text(
@@ -118,15 +118,39 @@ class OdsTextTrailing(val text: String) : OdsTextFieldTrailing, OdsComponentCont
     }
 }
 
-class OdsIconTrailing(val painter: Painter, val contentDescription: String? = null, val onClick: () -> Unit = {}) : OdsTextFieldTrailing,
-    OdsComponentContent<OdsTextFieldTrailing.ExtraParameters>() {
+class OdsTextFieldTrailingIcon : OdsTextFieldTrailing, OdsComponentIcon<OdsTextFieldTrailing.ExtraParameters> {
+
+    /**
+     * Creates an instance of [OdsTextFieldTrailingIcon].
+     *
+     * @param painter Painter of the icon.
+     * @param contentDescription The content description associated to this [OdsTextFieldTrailingIcon].
+     * @param onClick Callback invoked on icon click.
+     */
+    constructor(painter: Painter, contentDescription: String, onClick: (() -> Unit)? = null) : super(painter, contentDescription, onClick = onClick)
+
+    /**
+     * Creates an instance of [OdsTextFieldTrailingIcon].
+     *
+     * @param imageVector Image vector of the icon.
+     * @param contentDescription The content description associated to this [OdsTextFieldTrailingIcon].
+     * @param onClick Callback invoked on icon click.
+     */
+    constructor(imageVector: ImageVector, contentDescription: String, onClick: (() -> Unit)? = null) : super(imageVector, contentDescription, onClick = onClick)
+
+    /**
+     * Creates an instance of [OdsTextFieldTrailingIcon].
+     *
+     * @param bitmap Image bitmap of the icon.
+     * @param contentDescription The content description associated to this [OdsTextFieldTrailingIcon].
+     * @param onClick Callback invoked on icon click.
+     */
+    constructor(bitmap: ImageBitmap, contentDescription: String, onClick: (() -> Unit)? = null) : super(bitmap, contentDescription, onClick = onClick)
+
     @Composable
     override fun Content(modifier: Modifier) {
-        OdsTextFieldIcon(
-            painter = painter,
-            contentDescription = contentDescription,
-            onClick = if (extraParameters.enabled) onClick else null,
-        )
+        enabled = extraParameters.enabled
+        super.Content(modifier)
     }
 }
 
@@ -186,8 +210,8 @@ private fun OdsTextFieldErrorText(message: String) {
 
 @Composable
 internal fun trailingPreview(parameter: OdsTextFieldPreviewParameter): OdsTextFieldTrailing? = when (parameter.previewTrailingType) {
-    OdsTextTrailing::class.java -> OdsTextTrailing(text = "units")
-    OdsIconTrailing::class.java -> OdsIconTrailing(painter = painterResource(id = android.R.drawable.ic_input_add))
+    OdsTextFieldTrailingText::class.java -> OdsTextFieldTrailingText(text = "units")
+    OdsTextFieldTrailingIcon::class.java -> OdsTextFieldTrailingIcon(painter = painterResource(id = android.R.drawable.ic_input_add), "")
     OdsExposedDropdownMenuTrailing::class.java -> OdsExposedDropdownMenuTrailing(expanded = false)
     else -> null
 }
@@ -204,7 +228,7 @@ internal class OdsTextFieldPreviewParameterProvider : BasicPreviewParameterProvi
 private val previewParameterValues: List<OdsTextFieldPreviewParameter>
     get() {
         val booleanValues = listOf(true, false)
-        val trailings = listOf(null, OdsTextTrailing::class.java, OdsIconTrailing::class.java, OdsExposedDropdownMenuTrailing::class.java)
+        val trailings = listOf(null, OdsTextFieldTrailingText::class.java, OdsTextFieldTrailingIcon::class.java, OdsExposedDropdownMenuTrailing::class.java)
 
         return booleanValues.flatMap { hasCounter ->
             booleanValues.flatMap { hasErrorMessage ->

@@ -56,7 +56,7 @@ import com.orange.ods.theme.OdsComponentsConfiguration
  * is [Typography.caption] when the text field is in focus and [Typography.subtitle1] when the text field is not in focus.
  * @param placeholder Placeholder to be displayed when the text field is in focus and
  * the input text is empty. The default text style for internal [Text] is [Typography.subtitle1].
- * @param leadingIcon [OdsTextFieldIcon] displayed at the beginning of the text field container.
+ * @param leadingIcon [OdsTextFieldLeadingIcon] displayed at the beginning of the text field container.
  * @param isError Indicates if the text field's current value is in error state. If set to
  * `true`, the text field outline and the error message will be displayed in error color.
  * @param errorMessage Message displayed below the text field when it is in error.
@@ -87,7 +87,7 @@ fun OdsTextField(
     readOnly: Boolean = false,
     label: String? = null,
     placeholder: String? = null,
-    leadingIcon: OdsTextFieldIcon? = null,
+    leadingIcon: OdsTextFieldLeadingIcon? = null,
     isError: Boolean = false,
     errorMessage: String? = null,
     visualTransformation: VisualTransformation = VisualTransformation.None,
@@ -151,7 +151,7 @@ private fun PreviewOdsTextField(@PreviewParameter(OdsTextFieldPreviewParameterPr
         value = value,
         onValueChange = { value = it },
         placeholder = "Placeholder",
-        leadingIcon = OdsTextFieldIcon(painterResource(id = android.R.drawable.ic_dialog_info), ""),
+        leadingIcon = OdsTextFieldLeadingIcon(painterResource(id = android.R.drawable.ic_dialog_info), ""),
         trailing = trailingPreview(parameter = parameter),
         isError = parameter.hasErrorMessage,
         errorMessage = getPreviewErrorMessage(parameter.hasErrorMessage, parameter.isVeryLongErrorMessage),

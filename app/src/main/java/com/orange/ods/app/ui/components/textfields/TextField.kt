@@ -27,11 +27,11 @@ import com.orange.ods.app.ui.components.utilities.clickOnElement
 import com.orange.ods.app.ui.utilities.code.CodeImplementationColumn
 import com.orange.ods.app.ui.utilities.code.FunctionCallCode
 import com.orange.ods.compose.OdsComposable
-import com.orange.ods.compose.component.textfield.OdsIconTrailing
 import com.orange.ods.compose.component.textfield.OdsTextField
 import com.orange.ods.compose.component.textfield.OdsTextFieldCharacterCounter
-import com.orange.ods.compose.component.textfield.OdsTextFieldIcon
-import com.orange.ods.compose.component.textfield.OdsTextTrailing
+import com.orange.ods.compose.component.textfield.OdsTextFieldLeadingIcon
+import com.orange.ods.compose.component.textfield.OdsTextFieldTrailingIcon
+import com.orange.ods.compose.component.textfield.OdsTextFieldTrailingText
 
 private const val TrailingText = "units"
 
@@ -45,7 +45,7 @@ fun TextField(customizationState: TextFieldCustomizationState) {
         .padding(top = dimensionResource(id = com.orange.ods.R.dimen.spacing_s))
 
     with(customizationState) {
-        val leadingIcon = if (hasLeadingIcon) OdsTextFieldIcon(painterResource(id = R.drawable.ic_heart), "") else null
+        val leadingIcon = if (hasLeadingIcon) OdsTextFieldLeadingIcon(painterResource(id = R.drawable.ic_heart), "") else null
         val errorMessage = if (isError) stringResource(id = R.string.component_text_field_error_message) else null
         val onValueChange: (String) -> Unit = { updateText(it) }
         val label = stringResource(id = R.string.component_element_label)
@@ -66,11 +66,12 @@ fun TextField(customizationState: TextFieldCustomizationState) {
                     label = label,
                     placeholder = placeholder,
                     trailing = if (hasTrailingIcon) {
-                        OdsIconTrailing(
+                        OdsTextFieldTrailingIcon(
                             painter = painterResource(id = com.orange.ods.R.drawable.ic_eye),
+                            contentDescription = "",
                             onClick = { clickOnElement(context = context, trailingIconName) })
                     } else {
-                        OdsTextTrailing(text = TrailingText)
+                        OdsTextFieldTrailingText(text = TrailingText)
                     },
                     singleLine = isSingleLine,
                     keyboardOptions = keyboardOptions,
@@ -132,7 +133,7 @@ fun TextFieldCodeImplementationColumn(
                         stringRepresentation("keyboardType", softKeyboardType.value.keyboardType)
                         stringRepresentation("imeAction", softKeyboardAction.value.imeAction)
                     }
-                    if (hasLeadingIcon) classInstance<OdsTextFieldIcon>("leadingIcon") {
+                    if (hasLeadingIcon) classInstance<OdsTextFieldLeadingIcon>("leadingIcon") {
                         painter()
                         contentDescription("")
                     }
@@ -146,12 +147,12 @@ fun TextFieldCodeImplementationColumn(
                     if (hasTrailing) {
                         val trailingParameterName = "trailing"
                         if (hasTrailingIcon) {
-                            classInstance<OdsIconTrailing>(trailingParameterName) {
+                            classInstance<OdsTextFieldTrailingIcon>(trailingParameterName) {
                                 painter()
                                 onClick()
                             }
                         } else {
-                            classInstance<OdsTextTrailing>(trailingParameterName) {
+                            classInstance<OdsTextFieldTrailingText>(trailingParameterName) {
                                 text(TrailingText)
                             }
                         }

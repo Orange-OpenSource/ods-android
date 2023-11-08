@@ -55,11 +55,11 @@ To add a text field in your composable screen you can use the `OdsTextField` com
 ```kotlin
 var text by rememberSaveable { mutableStateOf("") }
 OdsTextField(
-    leadingIcon = OdsTextFieldIcon(
+    leadingIcon = OdsTextFieldLeadingIcon(
         painterResource(id = R.drawable.ic_heart),
         "Like"
     ) { doSomething() },
-    trailing = OdsTextTrailing(text = "units"), // It can be one of the provided `OdsTextFieldTrailing`. See more information below.
+    trailing = OdsTextFieldTrailingText(text = "units"), // It can be one of the provided `OdsTextFieldTrailing`. See more information below.
     enabled = true,
     readOnly = false,
     isError = false,
@@ -83,8 +83,8 @@ OdsTextField(
 
 The library provides several `OdsTextFieldTrailing` that you can use as trailing element for text field:
 
-- `OdsIconTrailing`: Displays an icon as trailing element
-- `OdsTextTrailing`: Displays a text as trailing element
+- `OdsTextFieldTrailingIcon`: Displays an icon as trailing element
+- `OdsTextFieldTrailingText`: Displays a text as trailing element
 
 **Note:** You will find more information about the character counter in [Extras](#extras)
 
@@ -100,7 +100,7 @@ Parameter | Default&nbsp;value | Description
 `readOnly: Boolean` | `false` | Controls the editable state of the text field. When `true`, the text field can not be modified, however, a user can focus it and copy text from it. Read-only text fields are usually used to display pre-filled forms that user can not edit.
 `label: String?` | `null` | Label to be displayed inside or outside the text field. The default text style used is `Typography.caption` when the text field is in focus and `Typography.subtitle1` when the text field is not in focus.
 `placeholder: String?` | `null` | Placeholder to be displayed when the text field is in focus and the input text is empty. The default text style for internal `Text` is `Typography.subtitle1`.
-`leadingIcon: OdsTextFieldIcon?` | `null` | Icon displayed at the beginning of the text field container
+`leadingIcon: OdsTextFieldLeadingIcon?` | `null` | Icon displayed at the beginning of the text field container
 `isError: Boolean` | `false` | Indicates if the text field's current value is in error state. If set to `true`, the text field outline and the error message will be displayed in error color.
 `errorMessage: String?` | `null` | Message displayed below the text field when it is in error
 `visualTransformation: VisualTransformation` | `VisualTransformation.None` | Transforms the visual representation of the input value. For example, you can use `PasswordVisualTransformation` to create a password text field. By default no visual transformation is applied.

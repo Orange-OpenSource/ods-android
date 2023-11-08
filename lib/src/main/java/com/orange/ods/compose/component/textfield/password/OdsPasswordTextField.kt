@@ -28,10 +28,10 @@ import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.tooling.preview.PreviewParameter
 import com.orange.ods.R
 import com.orange.ods.compose.component.OdsComposable
-import com.orange.ods.compose.component.textfield.OdsIconTrailing
 import com.orange.ods.compose.component.textfield.OdsTextField
 import com.orange.ods.compose.component.textfield.OdsTextFieldBottomRow
 import com.orange.ods.compose.component.textfield.OdsTextFieldCharacterCounter
+import com.orange.ods.compose.component.textfield.OdsTextFieldTrailingIcon
 import com.orange.ods.compose.component.utilities.BasicPreviewParameterProvider
 import com.orange.ods.compose.component.utilities.Preview
 import com.orange.ods.compose.component.utilities.UiModePreviews
@@ -112,12 +112,12 @@ fun OdsPasswordTextField(
 
 @Composable
 private fun passwordVisualisationIcon(odsPasswordTextFieldState: OdsPasswordTextFieldState) = with(odsPasswordTextFieldState) {
-        OdsIconTrailing(
-            painter = if (isPasswordVisible) painterResource(id = R.drawable.ic_crosset_out_eye) else painterResource(id = R.drawable.ic_eye),
-            contentDescription = if (isPasswordVisible) stringResource(id = R.string.text_field_password_hide) else stringResource(id = R.string.text_field_password_show),
-            onClick = { passwordVisible.value = !isPasswordVisible },
-        )
-    }
+    OdsTextFieldTrailingIcon(
+        painter = if (isPasswordVisible) painterResource(id = R.drawable.ic_crosset_out_eye) else painterResource(id = R.drawable.ic_eye),
+        contentDescription = if (isPasswordVisible) stringResource(id = R.string.text_field_password_hide) else stringResource(id = R.string.text_field_password_show),
+        onClick = { passwordVisible.value = !isPasswordVisible },
+    )
+}
 
 private class OdsPasswordTextFieldPreviewParameterProvider : BasicPreviewParameterProvider<Boolean>(false, true)
 
