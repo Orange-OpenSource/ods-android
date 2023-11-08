@@ -40,12 +40,15 @@ import com.google.accompanist.systemuicontroller.rememberSystemUiController
 import com.orange.ods.app.R
 import com.orange.ods.app.domain.recipes.LocalCategories
 import com.orange.ods.app.domain.recipes.LocalRecipes
-import com.orange.ods.app.ui.components.tabs.FixedTabRow
-import com.orange.ods.app.ui.components.tabs.ScrollableTabRow
+import com.orange.ods.app.ui.components.tabs.MainTabsCustomizationState
+import com.orange.ods.app.ui.components.tabs.tabs
 import com.orange.ods.app.ui.utilities.extension.isDarkModeEnabled
 import com.orange.ods.app.ui.utilities.extension.isOrange
 import com.orange.ods.compose.component.list.OdsListItem
 import com.orange.ods.compose.component.list.OdsListItemTrailingRadioButton
+import com.orange.ods.compose.component.tab.OdsScrollableTabRow
+import com.orange.ods.compose.component.tab.OdsTabRow
+import com.orange.ods.compose.component.tab.OdsTabRowTabIcon
 import com.orange.ods.compose.text.OdsTextH6
 import com.orange.ods.compose.theme.OdsTheme
 import com.orange.ods.extension.orElse
@@ -194,19 +197,30 @@ private fun AppBarTabs(appBarTabsState: AppBarTabsState) {
             // Do not use tabs directly because this is a SnapshotStateList
             // Thus its value can be modified and can lead to crashes if it becomes empty
             val tabs = tabs.toList()
+            val tabIconPosition =
+                if (tabIconType.value == MainTabsCustomizationState.TabIconType.Leading && tabTextEnabled.value) OdsTabRowTabIcon.Position.Leading else OdsTabRowTabIcon.Position.Top
+
             if (scrollableTabs.value) {
-                ScrollableTabRow(
-                    tabs = tabs,
-                    pagerState = pagerState,
-                    tabIconType = tabIconType.value,
-                    tabTextEnabled = tabTextEnabled.value
+                OdsScrollableTabRow(
+                    selectedTabIndex = pagerState.currentPage,
+                    tabs = tabs(
+                        tabs = tabs,
+                        pagerState = pagerState,
+                        tabIconType = tabIconType.value,
+                        tabTextEnabled = tabTextEnabled.value
+                    ),
+                    tabIconPosition = tabIconPosition
                 )
             } else {
-                FixedTabRow(
-                    tabs = tabs,
-                    pagerState = pagerState,
-                    tabIconType = tabIconType.value,
-                    tabTextEnabled = tabTextEnabled.value
+                OdsTabRow(
+                    selectedTabIndex = pagerState.currentPage,
+                    tabs = tabs(
+                        tabs = tabs,
+                        pagerState = pagerState,
+                        tabIconType = tabIconType.value,
+                        tabTextEnabled = tabTextEnabled.value
+                    ),
+                    tabIconPosition = tabIconPosition
                 )
             }
         }

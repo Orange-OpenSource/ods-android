@@ -17,37 +17,28 @@ import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import com.orange.ods.app.ui.utilities.NavigationItem
-import com.orange.ods.compose.component.tab.OdsLeadingIconTab
-import com.orange.ods.compose.component.tab.OdsTab
+import com.orange.ods.compose.component.tab.OdsTabRowTab
+import com.orange.ods.compose.component.tab.OdsTabRowTabIcon
 import kotlinx.coroutines.launch
 
 @OptIn(ExperimentalFoundationApi::class)
 @Composable
-fun Tabs(tabs: List<NavigationItem>, pagerState: PagerState, tabIconType: MainTabsCustomizationState.TabIconType, tabTextEnabled: Boolean) {
+fun tabs(
+    tabs: List<NavigationItem>,
+    pagerState: PagerState,
+    tabIconType: MainTabsCustomizationState.TabIconType,
+    tabTextEnabled: Boolean,
+): List<OdsTabRowTab> {
     val scope = rememberCoroutineScope()
 
-    tabs.forEachIndexed { index, tab ->
-        val selected = pagerState.currentPage == index
-        val onClick: () -> Unit = {
+    return tabs.mapIndexed { index, tab ->
+        OdsTabRowTab(
+            icon = if (tabIconType != MainTabsCustomizationState.TabIconType.None) OdsTabRowTabIcon(painter = painterResource(id = tab.iconResId)) else null,
+            text = if (tabTextEnabled) stringResource(id = tab.textResId) else null,
+        ) {
             scope.launch {
                 pagerState.animateScrollToPage(index)
             }
-        }
-
-        if (tabIconType == MainTabsCustomizationState.TabIconType.Leading && tabTextEnabled) {
-            OdsLeadingIconTab(
-                icon = painterResource(id = tab.iconResId),
-                text = stringResource(id = tab.textResId),
-                selected = selected,
-                onClick = onClick
-            )
-        } else {
-            OdsTab(
-                icon = if (tabIconType == MainTabsCustomizationState.TabIconType.None) null else painterResource(id = tab.iconResId),
-                text = if (tabTextEnabled) stringResource(id = tab.textResId) else null,
-                selected = selected,
-                onClick = onClick
-            )
         }
     }
 }

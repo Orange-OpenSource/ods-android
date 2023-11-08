@@ -11,7 +11,6 @@
 package com.orange.ods.compose.component.tab
 
 import androidx.annotation.DrawableRes
-import androidx.compose.material.Tab
 import androidx.compose.material.TabRow
 import androidx.compose.material.TabRowDefaults
 import androidx.compose.material.TabRowDefaults.tabIndicatorOffset
@@ -22,6 +21,7 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.tooling.preview.PreviewParameter
 import com.orange.ods.compose.component.OdsComposable
 import com.orange.ods.compose.component.utilities.Preview
 import com.orange.ods.compose.component.utilities.UiModePreviews
@@ -30,21 +30,21 @@ import com.orange.ods.compose.theme.OdsTheme
 /**
  * <a href="https://system.design.orange.com/0c1af118d/p/513d27-tabs/b/50cb71" class="external" target="_blank">ODS tabs</a>.
  *
- * An OdsTabRow is a Jetpack Compose [TabRow] to which we applied the Orange design and theme.
+ * An [OdsTabRow] is a Jetpack Compose [TabRow] to which we applied the Orange design and theme.
  * @see TabRow documentation
  *
- * @param selectedTabIndex the index of the currently selected tab.
- * @param modifier optional [Modifier] for this OdsTabRow.
- * @param tabs the tabs inside this TabRow. Typically this will be multiple [Tab]s. Each element
- * inside this lambda will be measured and placed evenly across the TabRow, each taking up equal
- * space. Use [OdsTab] to display Orange styled tabs.
+ * @param selectedTabIndex Index of the currently selected tab.
+ * @param tabs List of [OdsTabRowTab] displayed inside the tabs row.
+ * @param modifier [Modifier] applied to the tab row.
+ * @param tabIconPosition Controls the position of the icon in the tabs. By default, the icon is displayed above the text.
  */
 @Composable
 @OdsComposable
 fun OdsTabRow(
     selectedTabIndex: Int,
+    tabs: List<OdsTabRowTab>,
     modifier: Modifier = Modifier,
-    tabs: @Composable () -> Unit
+    tabIconPosition: OdsTabRowTabIcon.Position = OdsTabRowTabIcon.Position.Top
 ) {
     TabRow(
         modifier = modifier,
@@ -60,13 +60,13 @@ fun OdsTabRow(
             }
         },
         divider = {},
-        tabs = tabs
+        tabs = { tabs.forEachIndexed { index, tab -> tab.Content(OdsTabRowTab.ExtraParameters(selected = index == selectedTabIndex, iconPosition = tabIconPosition)) } }
     )
 }
 
 @UiModePreviews.Default
 @Composable
-private fun PreviewOdsTabRow() = Preview {
+private fun PreviewOdsTabRow(@PreviewParameter(OdsTabRowPreviewParameterProvider::class) parameter: OdsTabPreviewParameter) = Preview {
     data class Tab(@DrawableRes val iconResId: Int, val text: String)
 
     val tabs = listOf(
@@ -76,14 +76,18 @@ private fun PreviewOdsTabRow() = Preview {
     )
 
     var selectedTabIndex by remember { mutableStateOf(0) }
-    OdsTabRow(selectedTabIndex = selectedTabIndex) {
-        tabs.forEachIndexed { index, tab ->
-            OdsTab(
-                selected = selectedTabIndex == index,
-                onClick = { selectedTabIndex = index },
-                text = tab.text,
-                icon = painterResource(id = tab.iconResId)
-            )
-        }
+    with(parameter) {
+        OdsTabRow(
+            selectedTabIndex = selectedTabIndex,
+            tabIconPosition = if (hasLeadingIconTabs) OdsTabRowTabIcon.Position.Leading else OdsTabRowTabIcon.Position.Top,
+            tabs = tabs.mapIndexed { index, tab ->
+                OdsTabRowTab(
+                    icon = if (hasIcon) OdsTabRowTabIcon(painterResource(id = tab.iconResId), "") else null,
+                    text = if (hasText) tab.text else null,
+                    enabled = enabled,
+                    onClick = { selectedTabIndex = index }
+                )
+            }
+        )
     }
 }
