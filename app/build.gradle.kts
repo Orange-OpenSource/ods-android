@@ -140,7 +140,7 @@ dependencies {
     implementation(platform(Dependencies.composeBom))
     implementation(Dependencies.composeMaterial3)
     implementation(Dependencies.composeUi)
-    implementation(Dependencies.composeUiTooling)
+    debugImplementation(Dependencies.composeUiTooling)
     implementation(Dependencies.composeUiToolingPreview)
     implementation(Dependencies.coreKtx)
     implementation(Dependencies.dataStorePreferences)
