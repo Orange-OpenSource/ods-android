@@ -39,8 +39,6 @@ import com.orange.ods.app.ui.utilities.code.CodeImplementationColumn
 import com.orange.ods.app.ui.utilities.code.FunctionCallCode
 import com.orange.ods.compose.OdsComposable
 import com.orange.ods.compose.component.banner.OdsBanner
-import com.orange.ods.compose.component.banner.OdsBannerButton
-import com.orange.ods.compose.component.banner.OdsBannerImage
 import com.orange.ods.compose.component.list.OdsListItem
 import com.orange.ods.compose.component.list.OdsListItemTrailingSwitch
 import com.orange.ods.extension.ifNotNull
@@ -100,18 +98,18 @@ fun ComponentBanners() {
                     compose = {
                         OdsBanner(
                             message = message,
-                            firstButton = OdsBannerButton(firstButtonText, onFirstButtonClick),
+                            firstButton = OdsBanner.Button(firstButtonText, onFirstButtonClick),
                             image = if (hasImage) {
                                 val painter = rememberAsyncImagePainter(
                                     model = recipe.imageUrl,
                                     placeholder = painterResource(id = placeholderResId),
                                     error = painterResource(id = errorPlaceholderResId)
                                 )
-                                OdsBannerImage(painter, "")
+                                OdsBanner.Image(painter, "")
                             } else {
                                 null
                             },
-                            secondButton = ifNotNull(secondButtonText, onSecondButtonClick) { text, onClick -> OdsBannerButton(text, onClick) }
+                            secondButton = ifNotNull(secondButtonText, onSecondButtonClick) { text, onClick -> OdsBanner.Button(text, onClick) }
                         )
                     },
                     xml = {
@@ -143,18 +141,18 @@ fun ComponentBanners() {
                         exhaustiveParameters = false,
                         parameters = {
                             string("message", if (hasTwoTextLines) recipe.description else recipe.title)
-                            classInstance<OdsBannerButton>("firstButton") {
+                            classInstance<OdsBanner.Button>("firstButton") {
                                 text(context.getString(R.string.component_banner_dismiss))
                                 onClick()
                             }
                             if (hasImage) {
-                                classInstance<OdsBannerImage>("image") {
+                                classInstance<OdsBanner.Image>("image") {
                                     painter()
                                     contentDescription("")
                                 }
                             }
                             if (hasSecondButton) {
-                                classInstance<OdsBannerButton>("secondButton") {
+                                classInstance<OdsBanner.Button>("secondButton") {
                                     text(context.getString(R.string.component_banner_detail))
                                     onClick()
                                 }

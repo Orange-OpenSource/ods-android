@@ -29,7 +29,7 @@ Only one banner should be shown at a time
 
 Please follow [accessibility criteria for development](https://a11y-guidelines.orange.com/en/mobile/android/development/).
 
-`OdsBanner` is built to support accessibility criteria and is readable by most screen readers, such as TalkBack. The use of an `OdsBannerImage` force the developer to associate a content description to the banner image.
+`OdsBanner` is built to support accessibility criteria and is readable by most screen readers, such as TalkBack. The use of an `OdsBanner.Image` force the developer to associate a content description to the banner image.
 
 ## Implementation
 
@@ -44,9 +44,9 @@ You can use the `OdsBanner` composable like this:
 ```kotlin
 OdsBanner(
     message = "Message displayed into the banner.",
-    firstButton = OdsBannerButton("Dismiss") { doSomething() },
-    secondButton = OdsBannerButton("Detail") { doSomething() },
-    image = OdsBannerImage(painterResource(id = R.drawable.placeholder), "")
+    firstButton = OdsBanner.Button("Dismiss") { doSomething() },
+    secondButton = OdsBanner.Button("Detail") { doSomething() },
+    image = OdsBanner.Image(painterResource(id = R.drawable.placeholder), "")
 )
 ```
 
@@ -55,8 +55,8 @@ OdsBanner(
 Parameter | Default&nbsp;value | Description
 -- | -- | --
 `message: String` | | Text displayed into the banner
-`firstButton: OdsBannerButton` | | Primary button displayed in the banner
+`firstButton: OdsBanner.Button` | | Primary button displayed in the banner
 `modifier: Modifier` | `Modifier` | `Modifier` applied to the banner
-`image: OdsBannerImage?` | `null` | Image displayed in the banner in a circle shape
-`secondButton: OdsBannerButton?` | `null` | Secondary button displayed into the banner next to the primary one
+`image: OdsBanner.Image?` | `null` | Image displayed in the banner in a circle shape
+`secondButton: OdsBanner.Button?` | `null` | Secondary button displayed into the banner next to the primary one
 {:.table}

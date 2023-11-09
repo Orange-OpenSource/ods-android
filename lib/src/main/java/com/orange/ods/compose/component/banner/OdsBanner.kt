@@ -51,10 +51,10 @@ import com.orange.ods.compose.theme.OdsTheme
 @OdsComposable
 fun OdsBanner(
     message: String,
-    firstButton: OdsBannerButton,
+    firstButton: OdsBanner.Button,
     modifier: Modifier = Modifier,
-    image: OdsBannerImage? = null,
-    secondButton: OdsBannerButton? = null
+    image: OdsBanner.Image? = null,
+    secondButton: OdsBanner.Button? = null
 ) {
     val isSingleLineBanner = image == null && secondButton == null
     Column(
@@ -102,48 +102,54 @@ fun OdsBanner(
 }
 
 /**
- * A button in an [OdsBanner].
- *
- * @constructor Creates an instance of [OdsBannerButton].
- * @param text Text of the button.
- * @param onClick Will be called when the user clicks the button.
+ * Contains classes to build an OdsBanner composable.
  */
-class OdsBannerButton(private val text: String, private val onClick: () -> Unit) : OdsComponentContent<Nothing>() {
+class OdsBanner {
 
-    @Composable
-    override fun Content(modifier: Modifier) {
-        OdsTextButton(text = text, onClick = onClick, modifier = modifier, style = OdsTextButtonStyle.Primary)
+    /**
+     * A button in an OdsBanner.
+     *
+     * @constructor Creates an instance of [OdsBanner.Button].
+     * @param text Text of the button.
+     * @param onClick Will be called when the user clicks the button.
+     */
+    class Button(private val text: String, private val onClick: () -> Unit) : OdsComponentContent<Nothing>() {
+
+        @Composable
+        override fun Content(modifier: Modifier) {
+            OdsTextButton(text = text, onClick = onClick, modifier = modifier, style = OdsTextButtonStyle.Primary)
+        }
     }
-}
-
-/**
- * An image in an [OdsBanner].
- */
-class OdsBannerImage : OdsComponentCircularImage {
 
     /**
-     * Creates an instance of [OdsBannerImage].
-     *
-     * @param painter The painter to draw.
-     * @param contentDescription The content description associated to this [OdsBannerImage].
+     * An image in an OdsBanner.
      */
-    constructor(painter: Painter, contentDescription: String) : super(painter, contentDescription)
+    class Image : OdsComponentCircularImage {
 
-    /**
-     * Creates an instance of [OdsBannerImage].
-     *
-     * @param imageVector The image vector to draw.
-     * @param contentDescription The content description associated to this [OdsBannerImage].
-     */
-    constructor(imageVector: ImageVector, contentDescription: String) : super(imageVector, contentDescription)
+        /**
+         * Creates an instance of [OdsBanner.Image].
+         *
+         * @param painter The painter to draw.
+         * @param contentDescription The content description associated to this [OdsBanner.Image].
+         */
+        constructor(painter: Painter, contentDescription: String) : super(painter, contentDescription)
 
-    /**
-     * Creates an instance of [OdsBannerImage].
-     *
-     * @param bitmap The image bitmap to draw.
-     * @param contentDescription The content description associated to this [OdsBannerImage].
-     */
-    constructor(bitmap: ImageBitmap, contentDescription: String) : super(bitmap, contentDescription)
+        /**
+         * Creates an instance of [OdsBanner.Image].
+         *
+         * @param imageVector The image vector to draw.
+         * @param contentDescription The content description associated to this [OdsBanner.Image].
+         */
+        constructor(imageVector: ImageVector, contentDescription: String) : super(imageVector, contentDescription)
+
+        /**
+         * Creates an instance of [OdsBanner.Image].
+         *
+         * @param bitmap The image bitmap to draw.
+         * @param contentDescription The content description associated to this [OdsBanner.Image].
+         */
+        constructor(bitmap: ImageBitmap, contentDescription: String) : super(bitmap, contentDescription)
+    }
 }
 
 @UiModePreviews.Default
@@ -153,9 +159,9 @@ private fun PreviewOdsBanner(@PreviewParameter(OdsBannerPreviewParameterProvider
         with(parameter) {
             OdsBanner(
                 message = message,
-                firstButton = OdsBannerButton(firstButtonText) {},
-                image = imageRes?.let { OdsBannerImage(painterResource(id = it), "") },
-                secondButton = secondButtonText?.let { OdsBannerButton(it) {} },
+                firstButton = OdsBanner.Button(firstButtonText) {},
+                image = imageRes?.let { OdsBanner.Image(painterResource(id = it), "") },
+                secondButton = secondButtonText?.let { OdsBanner.Button(it) {} },
             )
         }
     }
