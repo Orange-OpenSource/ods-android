@@ -54,8 +54,8 @@ import com.orange.ods.theme.OdsComponentsConfiguration
  * @param modifier [Modifier] applied to the chip.
  * @param enabled Controls the enabled state of the chip. When `false`, this chip will not respond to user input.
  * @param selected Controls the selected state of the chip. When `true`, the chip is highlighted (useful for choice chips).
- * @param leadingIcon [OdsChipLeadingIcon] displayed at the start of the chip, preceding the text.
- * @param leadingAvatar [OdsChipLeadingAvatar] displayed in a circle shape at the start of the chip, preceding the content text.
+ * @param leadingIcon [OdsChip.LeadingIcon] displayed at the start of the chip, preceding the text.
+ * @param leadingAvatar [OdsChip.LeadingAvatar] displayed in a circle shape at the start of the chip, preceding the content text.
  * @param onCancel Callback called on chip cancel cross click. Pass `null` for no cancel cross.
  */
 @Composable
@@ -66,8 +66,8 @@ fun OdsChip(
     modifier: Modifier = Modifier,
     enabled: Boolean = true,
     selected: Boolean = false,
-    leadingIcon: OdsChipLeadingIcon? = null,
-    leadingAvatar: OdsChipLeadingAvatar? = null,
+    leadingIcon: OdsChip.LeadingIcon? = null,
+    leadingAvatar: OdsChip.LeadingAvatar? = null,
     onCancel: (() -> Unit)? = null
 ) {
     OdsChip(
@@ -93,8 +93,8 @@ private fun OdsChip(
     modifier: Modifier = Modifier,
     enabled: Boolean = true,
     selected: Boolean = false,
-    leadingIcon: OdsChipLeadingIcon? = null,
-    leadingAvatar: OdsChipLeadingAvatar? = null,
+    leadingIcon: OdsChip.LeadingIcon? = null,
+    leadingAvatar: OdsChip.LeadingAvatar? = null,
     onCancel: (() -> Unit)? = null
 ) {
     val chipStateDescription = selectionStateDescription(selected)
@@ -167,6 +167,6 @@ private fun PreviewOdsChip() = Preview {
         text = "Text",
         selected = selected,
         onClick = { selected = !selected },
-        leadingAvatar = OdsChipLeadingAvatar(painterResource(id = R.drawable.placeholder_small), "")
+        leadingAvatar = OdsChip.LeadingAvatar(painterResource(id = R.drawable.placeholder_small), "")
     )
 }

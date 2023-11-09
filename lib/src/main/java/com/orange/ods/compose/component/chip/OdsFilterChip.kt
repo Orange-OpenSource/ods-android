@@ -63,7 +63,7 @@ import com.orange.ods.theme.OdsComponentsConfiguration
  * @param enabled Controls the enabled state of the chip. When `false`, this chip will not respond to user input. It also appears visually
  * disabled and is disabled to accessibility services.
  * @param selected Controls the selected state of the chip. When `true`, the chip is highlighted.
- * @param leadingAvatar [OdsChipLeadingAvatar] to be displayed in a circle shape at the start of the chip, preceding the content text.
+ * @param leadingAvatar [OdsChip.LeadingAvatar] to be displayed in a circle shape at the start of the chip, preceding the content text.
  */
 @Composable
 @OdsComposable
@@ -73,7 +73,7 @@ fun OdsFilterChip(
     modifier: Modifier = Modifier,
     enabled: Boolean = true,
     selected: Boolean = false,
-    leadingAvatar: OdsChipLeadingAvatar? = null
+    leadingAvatar: OdsChip.LeadingAvatar? = null
 ) {
     OdsFilterChip(
         text = text,
@@ -96,7 +96,7 @@ private fun OdsFilterChip(
     outlined: Boolean = true,
     enabled: Boolean = true,
     selected: Boolean = false,
-    leadingAvatar: OdsChipLeadingAvatar? = null,
+    leadingAvatar: OdsChip.LeadingAvatar? = null,
 ) {
     val emptyAction = {}
 
@@ -181,6 +181,6 @@ private fun PreviewOdsFilterChip() = Preview {
         text = "Text",
         selected = selected,
         onClick = { selected = !selected },
-        leadingAvatar = OdsChipLeadingAvatar(painterResource(id = R.drawable.ic_check), "selected"),
+        leadingAvatar = OdsChip.LeadingAvatar(painterResource(id = R.drawable.ic_check), "selected"),
     )
 }

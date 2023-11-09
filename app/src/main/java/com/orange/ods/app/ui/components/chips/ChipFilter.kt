@@ -36,7 +36,7 @@ import com.orange.ods.app.ui.utilities.code.CodeImplementationColumn
 import com.orange.ods.app.ui.utilities.code.FunctionCallCode
 import com.orange.ods.app.ui.utilities.composable.Subtitle
 import com.orange.ods.compose.OdsComposable
-import com.orange.ods.compose.component.chip.OdsChipLeadingAvatar
+import com.orange.ods.compose.component.chip.OdsChip
 import com.orange.ods.compose.component.chip.OdsChoiceChip
 import com.orange.ods.compose.component.chip.OdsChoiceChipsFlowRow
 import com.orange.ods.compose.component.chip.OdsFilterChip
@@ -81,7 +81,7 @@ fun ChipFilter() {
                         OdsFilterChip(
                             text = ingredient.food.name,
                             leadingAvatar = if (hasLeadingAvatar) {
-                                OdsChipLeadingAvatar(
+                                OdsChip.LeadingAvatar(
                                     rememberAsyncImagePainter(
                                         model = ingredient.food.imageUrl,
                                         placeholder = painterResource(id = DrawableManager.getPlaceholderSmallResId()),
@@ -112,7 +112,7 @@ fun ChipFilter() {
                                 parameters = {
                                     text(ingredient.food.name)
                                     if (hasLeadingAvatar) {
-                                        classInstance<OdsChipLeadingAvatar>("leadingAvatar") {
+                                        classInstance<OdsChip.LeadingAvatar>("leadingAvatar") {
                                             image()
                                             contentDescription("")
                                         }
