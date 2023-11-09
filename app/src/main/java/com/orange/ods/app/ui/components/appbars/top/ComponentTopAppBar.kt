@@ -44,6 +44,7 @@ import com.orange.ods.app.ui.utilities.composable.*
 import com.orange.ods.compose.OdsComposable
 import com.orange.ods.compose.component.appbar.top.OdsTopAppBarActionButtonBuilder
 import com.orange.ods.compose.component.appbar.top.OdsTopAppBarNavigationIconBuilder
+import com.orange.ods.compose.component.appbar.top.OdsTopAppBarOverflowMenuActionItemBuilder
 import com.orange.ods.compose.component.chip.OdsChoiceChipBuilder
 import com.orange.ods.compose.component.chip.OdsChoiceChipsFlowRow
 import com.orange.ods.compose.component.list.OdsListItem
@@ -120,7 +121,7 @@ fun ComponentTopAppBar(variant: Variant) {
                                     list("overflowMenuActions") {
                                         for (i in 1..2) {
                                             // The classInstance method displays the original type of type aliases, that's why function is used instead
-                                            function("OdsTopAppBarOverflowMenuActionItem") {
+                                            function(OdsTopAppBarOverflowMenuActionItemBuilder::class.java.simpleName) {
                                                 text("Menu $i")
                                                 onClick()
                                             }
