@@ -40,17 +40,17 @@ import com.orange.ods.app.ui.utilities.code.CodeImplementationColumn
 import com.orange.ods.app.ui.utilities.code.FunctionCallCode
 import com.orange.ods.app.ui.utilities.composable.Subtitle
 import com.orange.ods.compose.OdsComposable
-import com.orange.ods.compose.component.chip.OdsChoiceChip
+import com.orange.ods.compose.component.chip.OdsChoiceChipBuilder
 import com.orange.ods.compose.component.chip.OdsChoiceChipsFlowRow
 import com.orange.ods.compose.component.list.OdsListItem
-import com.orange.ods.compose.component.list.OdsListItemIcon
+import com.orange.ods.compose.component.list.OdsListItemIconBuilder
 import com.orange.ods.compose.component.list.OdsListItemIconType
-import com.orange.ods.compose.component.list.OdsListItemTrailing
-import com.orange.ods.compose.component.list.OdsListItemTrailingCaption
-import com.orange.ods.compose.component.list.OdsListItemTrailingCheckbox
-import com.orange.ods.compose.component.list.OdsListItemTrailingIcon
-import com.orange.ods.compose.component.list.OdsListItemTrailingRadioButton
-import com.orange.ods.compose.component.list.OdsListItemTrailingSwitch
+import com.orange.ods.compose.component.list.OdsListItemTrailingBuilder
+import com.orange.ods.compose.component.list.OdsListItemTrailingCaptionBuilder
+import com.orange.ods.compose.component.list.OdsListItemTrailingCheckboxBuilder
+import com.orange.ods.compose.component.list.OdsListItemTrailingIconBuilder
+import com.orange.ods.compose.component.list.OdsListItemTrailingRadioButtonBuilder
+import com.orange.ods.compose.component.list.OdsListItemTrailingSwitchBuilder
 import com.orange.ods.extension.ifNotNull
 
 @OptIn(ExperimentalMaterialApi::class)
@@ -82,11 +82,11 @@ private fun ComponentListItemBottomSheetContent(listItemCustomizationState: List
         onValueChange = { value -> listItemCustomizationState.selectedIconType.value = value },
         modifier = Modifier.padding(horizontal = dimensionResource(id = com.orange.ods.R.dimen.spacing_m)),
         chips = listOf(
-            OdsChoiceChip(text = stringResource(id = R.string.component_list_leading_none), value = null),
-            OdsChoiceChip(text = stringResource(id = R.string.component_list_leading_icon), value = OdsListItemIconType.Icon),
-            OdsChoiceChip(text = stringResource(id = R.string.component_list_leading_circular_image), value = OdsListItemIconType.CircularImage),
-            OdsChoiceChip(text = stringResource(id = R.string.component_list_leading_square_image), value = OdsListItemIconType.SquareImage),
-            OdsChoiceChip(text = stringResource(id = R.string.component_list_leading_wide_image), value = OdsListItemIconType.WideImage),
+            OdsChoiceChipBuilder(text = stringResource(id = R.string.component_list_leading_none), value = null),
+            OdsChoiceChipBuilder(text = stringResource(id = R.string.component_list_leading_icon), value = OdsListItemIconType.Icon),
+            OdsChoiceChipBuilder(text = stringResource(id = R.string.component_list_leading_circular_image), value = OdsListItemIconType.CircularImage),
+            OdsChoiceChipBuilder(text = stringResource(id = R.string.component_list_leading_square_image), value = OdsListItemIconType.SquareImage),
+            OdsChoiceChipBuilder(text = stringResource(id = R.string.component_list_leading_wide_image), value = OdsListItemIconType.WideImage),
         )
     )
 
@@ -96,7 +96,7 @@ private fun ComponentListItemBottomSheetContent(listItemCustomizationState: List
         onValueChange = { value -> listItemCustomizationState.selectedTrailing.value = value },
         modifier = Modifier.padding(horizontal = dimensionResource(id = com.orange.ods.R.dimen.spacing_m)),
         chips = listItemCustomizationState.trailings.map { trailing ->
-            OdsChoiceChip(text = stringResource(id = trailing.textResId), value = trailing)
+            OdsChoiceChipBuilder(text = stringResource(id = trailing.textResId), value = trailing)
         }
     )
 }
@@ -115,7 +115,7 @@ private fun ComponentListItemContent(listItemCustomizationState: ListItemCustomi
             val text = recipe.title
             val secondaryText = if (lineCount.value > 1) recipe.description else null
             val icon = ifNotNull(getIconPainter(recipe), selectedIconType.value) { painter, type ->
-                OdsListItemIcon(type, painter, "")
+                OdsListItemIconBuilder(type, painter, "")
             }
 
             val context = LocalContext.current
@@ -139,7 +139,7 @@ private fun ComponentListItemContent(listItemCustomizationState: ListItemCustomi
                             if (!singleLineSecondaryText) stringRepresentation("singleLineSecondaryText", false)
                         }
                         selectedIconType.value?.let { iconType ->
-                            classInstance<OdsListItemIcon>("icon") {
+                            classInstance<OdsListItemIconBuilder>("icon") {
                                 enum("type", iconType)
                                 painter()
                                 contentDescription("")
@@ -148,21 +148,21 @@ private fun ComponentListItemContent(listItemCustomizationState: ListItemCustomi
                         selectedTrailing.value?.let { trailingClass ->
                             classInstance("trailing", trailingClass) {
                                 when (trailingClass) {
-                                    OdsListItemTrailingCheckbox::class.java,
-                                    OdsListItemTrailingSwitch::class.java -> {
+                                    OdsListItemTrailingCheckboxBuilder::class.java,
+                                    OdsListItemTrailingSwitchBuilder::class.java -> {
                                         simple("checked", "checked")
                                         lambda("onCheckedChange", "checked = it")
                                     }
-                                    OdsListItemTrailingRadioButton::class.java -> {
+                                    OdsListItemTrailingRadioButtonBuilder::class.java -> {
                                         simple("selected", "selected")
                                         lambda("onClick", "selected = it")
                                     }
-                                    OdsListItemTrailingIcon::class.java -> {
+                                    OdsListItemTrailingIconBuilder::class.java -> {
                                         painter()
                                         contentDescription("")
                                         onClick()
                                     }
-                                    OdsListItemTrailingCaption::class.java -> {
+                                    OdsListItemTrailingCaptionBuilder::class.java -> {
                                         text(context.getString(R.string.component_element_caption))
                                     }
                                 }
@@ -175,13 +175,13 @@ private fun ComponentListItemContent(listItemCustomizationState: ListItemCustomi
     }
 }
 
-private val Class<out OdsListItemTrailing>?.textResId: Int
+private val Class<out OdsListItemTrailingBuilder>?.textResId: Int
     get() = when (this) {
-        OdsListItemTrailingCheckbox::class.java -> R.string.component_list_trailing_checkbox
-        OdsListItemTrailingSwitch::class.java -> R.string.component_list_trailing_switch
-        OdsListItemTrailingRadioButton::class.java -> R.string.component_list_trailing_radio_button
-        OdsListItemTrailingIcon::class.java -> R.string.component_list_trailing_icon
-        OdsListItemTrailingCaption::class.java -> R.string.component_list_trailing_caption
+        OdsListItemTrailingCheckboxBuilder::class.java -> R.string.component_list_trailing_checkbox
+        OdsListItemTrailingSwitchBuilder::class.java -> R.string.component_list_trailing_switch
+        OdsListItemTrailingRadioButtonBuilder::class.java -> R.string.component_list_trailing_radio_button
+        OdsListItemTrailingIconBuilder::class.java -> R.string.component_list_trailing_icon
+        OdsListItemTrailingCaptionBuilder::class.java -> R.string.component_list_trailing_caption
         else -> R.string.component_list_trailing_none
     }
 
@@ -208,30 +208,30 @@ private fun ListItemCustomizationState.getIconPainter(recipe: Recipe): Painter? 
     }
 }
 
-private val ListItemCustomizationState.trailing: OdsListItemTrailing?
+private val ListItemCustomizationState.trailing: OdsListItemTrailingBuilder?
     @Composable
     get() = when (selectedTrailing.value) {
-        OdsListItemTrailingCheckbox::class.java -> {
+        OdsListItemTrailingCheckboxBuilder::class.java -> {
             var checked by remember { mutableStateOf(true) }
-            OdsListItemTrailingCheckbox(checked, { checked = it })
+            OdsListItemTrailingCheckboxBuilder(checked, { checked = it })
         }
-        OdsListItemTrailingSwitch::class.java -> {
+        OdsListItemTrailingSwitchBuilder::class.java -> {
             var checked by remember { mutableStateOf(true) }
-            OdsListItemTrailingSwitch(checked, { checked = it })
+            OdsListItemTrailingSwitchBuilder(checked, { checked = it })
         }
-        OdsListItemTrailingRadioButton::class.java -> {
+        OdsListItemTrailingRadioButtonBuilder::class.java -> {
             var selected by remember { mutableStateOf(true) }
-            OdsListItemTrailingRadioButton(selected, { selected = !selected })
+            OdsListItemTrailingRadioButtonBuilder(selected, { selected = !selected })
         }
-        OdsListItemTrailingIcon::class.java -> {
+        OdsListItemTrailingIconBuilder::class.java -> {
             val context = LocalContext.current
             val iconText = stringResource(id = R.string.component_element_icon)
-            OdsListItemTrailingIcon(painterResource(id = R.drawable.ic_info), stringResource(id = R.string.component_list_information)) {
+            OdsListItemTrailingIconBuilder(painterResource(id = R.drawable.ic_info), stringResource(id = R.string.component_list_information)) {
                 clickOnElement(context, iconText)
             }
         }
-        OdsListItemTrailingCaption::class.java -> {
-            OdsListItemTrailingCaption(stringResource(id = R.string.component_element_caption))
+        OdsListItemTrailingCaptionBuilder::class.java -> {
+            OdsListItemTrailingCaptionBuilder(stringResource(id = R.string.component_element_caption))
         }
         else -> null
     }

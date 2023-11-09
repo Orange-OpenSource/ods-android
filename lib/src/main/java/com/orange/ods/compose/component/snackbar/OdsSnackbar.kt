@@ -26,7 +26,7 @@ import com.orange.ods.R
 import com.orange.ods.compose.component.OdsComposable
 import com.orange.ods.compose.component.button.OdsTextButton
 import com.orange.ods.compose.component.button.OdsTextButtonStyle
-import com.orange.ods.compose.component.content.OdsComponentContent
+import com.orange.ods.compose.component.content.OdsComponentBuilder
 import com.orange.ods.compose.component.utilities.BasicPreviewParameterProvider
 import com.orange.ods.compose.component.utilities.Preview
 import com.orange.ods.compose.component.utilities.UiModePreviews
@@ -67,7 +67,7 @@ fun OdsSnackbarHost(
  * @param onActionClick Callback invoked when the action button is clicked.
  */
 class OdsSnackbar(private val data: SnackbarData, private val actionOnNewLine: Boolean = false, private val onActionClick: () -> Unit = {}) :
-    OdsComponentContent<Nothing>() {
+    OdsComponentBuilder<Nothing>() {
 
     @Composable
     override fun Content(modifier: Modifier) {

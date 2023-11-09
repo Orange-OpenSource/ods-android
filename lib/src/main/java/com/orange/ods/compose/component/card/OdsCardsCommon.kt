@@ -24,9 +24,9 @@ import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.semantics.semantics
 import com.orange.ods.compose.component.button.OdsTextButton
 import com.orange.ods.compose.component.button.OdsTextButtonStyle
-import com.orange.ods.compose.component.content.OdsComponentCircularImage
-import com.orange.ods.compose.component.content.OdsComponentContent
-import com.orange.ods.compose.component.content.OdsComponentImage
+import com.orange.ods.compose.component.content.OdsCircularImageBuilder
+import com.orange.ods.compose.component.content.OdsComponentBuilder
+import com.orange.ods.compose.component.content.OdsImageBuilder
 
 @OptIn(ExperimentalMaterialApi::class)
 @Composable
@@ -41,11 +41,11 @@ internal fun OdsCard(modifier: Modifier, onClick: (() -> Unit)?, content: @Compo
 /**
  * A button in an [OdsHorizontalCard], an [OdsVerticalHeaderFirstCard] or an [OdsVerticalImageFirstCard].
  *
- * @constructor Creates an instance of [OdsCardButton].
+ * @constructor Creates an instance of [OdsCardButtonBuilder].
  * @param text Text of the button.
  * @param onClick Will be called when the user clicks the button.
  */
-class OdsCardButton(private val text: String, private val onClick: () -> Unit) : OdsComponentContent<Nothing>() {
+class OdsCardButtonBuilder(private val text: String, private val onClick: () -> Unit) : OdsComponentBuilder<Nothing>() {
 
     @Composable
     override fun Content(modifier: Modifier) {
@@ -56,19 +56,19 @@ class OdsCardButton(private val text: String, private val onClick: () -> Unit) :
 /**
  * An image in an [OdsSmallCard], [OdsHorizontalCard], [OdsVerticalHeaderFirstCard] or [OdsVerticalImageFirstCard].
  */
-class OdsCardImage private constructor(
+class OdsCardImageBuilder private constructor(
     graphicsObject: Any,
     contentDescription: String,
     alignment: Alignment = Alignment.Center,
     contentScale: ContentScale = ContentScale.Crop,
     private val backgroundColor: Color? = null
-) : OdsComponentImage<Nothing>(graphicsObject, contentDescription, alignment, contentScale) {
+) : OdsImageBuilder<Nothing>(graphicsObject, contentDescription, alignment, contentScale) {
 
     /**
-     * Creates an instance of [OdsCardImage].
+     * Creates an instance of [OdsCardImageBuilder].
      *
      * @param painter The painter to draw.
-     * @param contentDescription The content description associated to this [OdsCardImage].
+     * @param contentDescription The content description associated to this [OdsCardImageBuilder].
      * @param alignment Alignment parameter used to place the [Painter] in the given
      * bounds defined by the width and height.
      * @param contentScale Scale parameter used to determine the aspect ratio scaling to be used
@@ -84,10 +84,10 @@ class OdsCardImage private constructor(
     ) : this(painter as Any, contentDescription, alignment, contentScale, backgroundColor)
 
     /**
-     * Creates an instance of [OdsCardImage].
+     * Creates an instance of [OdsCardImageBuilder].
      *
      * @param imageVector The image vector to draw.
-     * @param contentDescription The content description associated to this [OdsCardImage].
+     * @param contentDescription The content description associated to this [OdsCardImageBuilder].
      * @param alignment Alignment parameter used to place the [ImageVector] in the given
      * bounds defined by the width and height.
      * @param contentScale Scale parameter used to determine the aspect ratio scaling to be used
@@ -103,10 +103,10 @@ class OdsCardImage private constructor(
     ) : this(imageVector as Any, contentDescription, alignment, contentScale, backgroundColor)
 
     /**
-     * Creates an instance of [OdsCardImage].
+     * Creates an instance of [OdsCardImageBuilder].
      *
      * @param bitmap The image bitmap to draw.
-     * @param contentDescription The content description associated to this [OdsCardImage].
+     * @param contentDescription The content description associated to this [OdsCardImageBuilder].
      * @param alignment Alignment parameter used to place the [ImageBitmap] in the given
      * bounds defined by the width and height.
      * @param contentScale Scale parameter used to determine the aspect ratio scaling to be used
@@ -130,29 +130,29 @@ class OdsCardImage private constructor(
 /**
  * A thumbnail in a card.
  */
-class OdsCardThumbnail : OdsComponentCircularImage {
+class OdsCardThumbnailBuilder : OdsCircularImageBuilder {
 
     /**
-     * Creates an instance of [OdsCardThumbnail].
+     * Creates an instance of [OdsCardThumbnailBuilder].
      *
      * @param painter The painter to draw.
-     * @param contentDescription The content description associated to this [OdsCardThumbnail].
+     * @param contentDescription The content description associated to this [OdsCardThumbnailBuilder].
      */
     constructor(painter: Painter, contentDescription: String) : super(painter, contentDescription)
 
     /**
-     * Creates an instance of [OdsCardThumbnail].
+     * Creates an instance of [OdsCardThumbnailBuilder].
      *
      * @param imageVector The image vector to draw.
-     * @param contentDescription The content description associated to this [OdsCardThumbnail].
+     * @param contentDescription The content description associated to this [OdsCardThumbnailBuilder].
      */
     constructor(imageVector: ImageVector, contentDescription: String) : super(imageVector, contentDescription)
 
     /**
-     * Creates an instance of [OdsCardThumbnail].
+     * Creates an instance of [OdsCardThumbnailBuilder].
      *
      * @param bitmap The image bitmap to draw.
-     * @param contentDescription The content description associated to this [OdsCardThumbnail].
+     * @param contentDescription The content description associated to this [OdsCardThumbnailBuilder].
      */
     constructor(bitmap: ImageBitmap, contentDescription: String) : super(bitmap, contentDescription)
 }

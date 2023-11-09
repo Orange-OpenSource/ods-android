@@ -34,24 +34,24 @@ import com.orange.ods.compose.text.OdsTextSubtitle2
  * Cards contain content and actions about a single subject.
  *
  * @param title Title displayed into the card.
- * @param image [OdsCardImage] displayed into the card.
+ * @param image [OdsCardImageBuilder] displayed into the card.
  * @param modifier [Modifier] applied to the layout of the card.
  * @param subtitle Subtitle displayed into the card.
  * @param text Text displayed into the card.
- * @param firstButton First [OdsCardButton] displayed into the card.
- * @param secondButton Second [OdsCardButton] displayed into the card.
+ * @param firstButton First [OdsCardButtonBuilder] displayed into the card.
+ * @param secondButton Second [OdsCardButtonBuilder] displayed into the card.
  * @param onClick Callback invoked on card click.
  */
 @Composable
 @OdsComposable
 fun OdsVerticalImageFirstCard(
     title: String,
-    image: OdsCardImage,
+    image: OdsCardImageBuilder,
     modifier: Modifier = Modifier,
     subtitle: String? = null,
     text: String? = null,
-    firstButton: OdsCardButton? = null,
-    secondButton: OdsCardButton? = null,
+    firstButton: OdsCardButtonBuilder? = null,
+    secondButton: OdsCardButtonBuilder? = null,
     onClick: (() -> Unit)? = null
 ) {
     OdsCard(
@@ -99,8 +99,8 @@ private fun PreviewOdsVerticalImageFirstCard() = Preview {
         title = "Title",
         subtitle = "Subtitle",
         text = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed non risus. Suspendisse lectus tortor, dignissim sit amet, adipiscing nec, ultricies sed, dolor.",
-        firstButton = OdsCardButton("First button") {},
-        secondButton = OdsCardButton("Second button") {},
-        image = OdsCardImage(painterResource(id = R.drawable.placeholder), "")
+        firstButton = OdsCardButtonBuilder("First button") {},
+        secondButton = OdsCardButtonBuilder("Second button") {},
+        image = OdsCardImageBuilder(painterResource(id = R.drawable.placeholder), "")
     )
 }

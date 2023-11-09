@@ -20,7 +20,7 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
 import androidx.core.content.withStyledAttributes
 import com.google.accompanist.drawablepainter.rememberDrawablePainter
-import com.orange.ods.compose.component.button.OdsIconButtonIcon
+import com.orange.ods.compose.component.button.OdsIconButtonIconBuilder
 import com.orange.ods.compose.component.button.OdsIconToggleButton
 import com.orange.ods.compose.theme.OdsDisplaySurface
 import com.orange.ods.xml.R
@@ -54,8 +54,8 @@ class OdsIconToggleButton @JvmOverloads constructor(context: Context, attrs: Att
         OdsIconToggleButton(
             checked = checked,
             onCheckedChange = onCheckedChange,
-            uncheckedIcon = OdsIconButtonIcon(rememberDrawablePainter(drawable = uncheckedIcon), uncheckedIconContentDescription.orEmpty()),
-            checkedIcon = OdsIconButtonIcon(rememberDrawablePainter(drawable = checkedIcon), checkedIconContentDescription.orEmpty()),
+            uncheckedIcon = OdsIconButtonIconBuilder(rememberDrawablePainter(drawable = uncheckedIcon), uncheckedIconContentDescription.orEmpty()),
+            checkedIcon = OdsIconButtonIconBuilder(rememberDrawablePainter(drawable = checkedIcon), checkedIconContentDescription.orEmpty()),
             enabled = isEnabled,
             displaySurface = displaySurface
         )

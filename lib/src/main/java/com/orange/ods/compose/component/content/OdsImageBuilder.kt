@@ -20,14 +20,14 @@ import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.layout.ContentScale
 
 /**
- * An image in a component.
+ * Used to layout an image in a component.
  */
-abstract class OdsComponentImage<T> internal constructor(
+abstract class OdsImageBuilder<T> internal constructor(
     private val graphicsObject: Any,
     private val contentDescription: String,
     private val alignment: Alignment = Alignment.Center,
     private val contentScale: ContentScale = ContentScale.Fit
-) : OdsComponentContent<T>() where T: OdsComponentContent.ExtraParameters {
+) : OdsComponentBuilder<T>() where T : OdsComponentBuilder.ExtraParameters {
 
     protected constructor(
         painter: Painter,

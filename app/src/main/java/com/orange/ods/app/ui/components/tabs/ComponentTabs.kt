@@ -32,10 +32,10 @@ import com.orange.ods.app.ui.components.Variant
 import com.orange.ods.app.ui.components.utilities.ComponentCountRow
 import com.orange.ods.app.ui.components.utilities.ComponentCustomizationBottomSheetScaffold
 import com.orange.ods.app.ui.utilities.composable.Subtitle
-import com.orange.ods.compose.component.chip.OdsChoiceChip
+import com.orange.ods.compose.component.chip.OdsChoiceChipBuilder
 import com.orange.ods.compose.component.chip.OdsChoiceChipsFlowRow
 import com.orange.ods.compose.component.list.OdsListItem
-import com.orange.ods.compose.component.list.OdsListItemTrailingSwitch
+import com.orange.ods.compose.component.list.OdsListItemTrailingSwitchBuilder
 import com.orange.ods.compose.text.OdsTextBody1
 
 private const val MinFixedTabCount = 2
@@ -60,7 +60,7 @@ fun ComponentTabs(variant: Variant, upPress: () -> Unit) {
     }
 
     val tabsCustomizationState = rememberMainTabsCustomizationState(tabsCount = rememberSaveable { mutableStateOf(tabCountMin) })
-    
+
     with(tabsCustomizationState) {
         LocalAppBarManager.current.updateAppBarTabs(
             TabsConfiguration(scrollableTabs, tabs, pagerState, tabIconType.value, tabTextEnabled.value)
@@ -79,15 +79,15 @@ fun ComponentTabs(variant: Variant, upPress: () -> Unit) {
                     onValueChange = { value -> tabIconType.value = value },
                     modifier = Modifier.padding(horizontal = dimensionResource(id = com.orange.ods.R.dimen.spacing_m)),
                     chips = listOf(
-                        OdsChoiceChip(
+                        OdsChoiceChipBuilder(
                             text = stringResource(id = R.string.component_tab_icon_leading), value = MainTabsCustomizationState.TabIconType.Leading,
                             enabled = isTabIconCustomizationEnabled
                         ),
-                        OdsChoiceChip(
+                        OdsChoiceChipBuilder(
                             text = stringResource(id = R.string.component_tab_icon_top), value = MainTabsCustomizationState.TabIconType.Top,
                             enabled = isTabIconCustomizationEnabled
                         ),
-                        OdsChoiceChip(
+                        OdsChoiceChipBuilder(
                             text = stringResource(id = R.string.component_element_none), value = MainTabsCustomizationState.TabIconType.None,
                             enabled = isTabIconCustomizationEnabled
                         )
@@ -96,7 +96,7 @@ fun ComponentTabs(variant: Variant, upPress: () -> Unit) {
 
                 OdsListItem(
                     text = stringResource(id = R.string.component_element_text),
-                    trailing = OdsListItemTrailingSwitch(tabTextEnabled.value, { tabTextEnabled.value = it }, isTabTextCustomizationEnabled)
+                    trailing = OdsListItemTrailingSwitchBuilder(tabTextEnabled.value, { tabTextEnabled.value = it }, isTabTextCustomizationEnabled)
                 )
 
                 ComponentCountRow(

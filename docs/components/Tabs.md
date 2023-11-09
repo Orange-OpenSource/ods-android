@@ -52,13 +52,13 @@ You can change tab icon position with `tabIconPosition` parameter.
 OdsTabRow(
     selectedTabIndex = 0,
     tabs = listOf(
-        OdsTabRowTab(
-            painter = OdsTabRowTabIcon(painterResource(id = R.drawable.ic_heart)),
+        OdsTabRowTabBuilder(
+            icon = OdsTabRowTabIconBuilder(painterResource(id = R.drawable.ic_heart)),
             text = "Favourites",
             onClick = { doSomething() }
         ),
-        OdsTabRowTab(
-            painter = OdsTabRowTabIcon(painterResource(id = R.drawable.ic_call)),
+        OdsTabRowTabBuilder(
+            icon = OdsTabRowTabIconBuilder(painterResource(id = R.drawable.ic_call)),
             text = "Calls",
             onClick = { doSomething() }
         )
@@ -71,9 +71,9 @@ OdsTabRow(
 Parameter | Default&nbsp;value | Description
 -- | -- | --
 `selectedTabIndex: Int` | | Index of the currently selected tab
-`tabs: List<OdsTabRowTab>` | | List of the `OdsTabRowTab` displayed inside this tabs row
+`tabs: List<OdsTabRowTabBuilder>` | | List of the `OdsTabRowTabBuilder` displayed inside this tabs row
 `modifier: Modifier` | `Modifier` | `Modifier` applied to the tabs row
-`tabIconPosition: OdsTabRowTabIcon.Position` | `OdsTabRowTabIcon.Position.Top` | Controls the position of the icon in the tabs. By default, the icon is displayed above the text.
+`tabIconPosition: OdsTabRowTabIconPosition` | `OdsTabRowTabIconPosition.Top` | Controls the position of the icon in the tabs. By default, the icon is displayed above the text.
 {:.table}
 
 ### Scrollable tabs row
@@ -94,13 +94,13 @@ As for fixed tabs, you can change tab icon position with `tabIconPosition` param
 OdsScrollableTabRow(
     selectedTabIndex = 0,
     tabs = listOf(
-        OdsTabRowTab(
-            painter = OdsTabRowTabIcon(painterResource(id = R.drawable.ic_heart)),
+        OdsTabRowTabBuilder(
+            icon = OdsTabRowTabIconBuilder(painterResource(id = R.drawable.ic_heart)),
             text = "Favourites",
             onClick = { doSomething() }
         ),
-        OdsTabRowTab(
-            painter = OdsTabRowTabIcon(painterResource(id = R.drawable.ic_call)),
+        OdsTabRowTabBuilder(
+            icon = OdsTabRowTabIconBuilder(painterResource(id = R.drawable.ic_call)),
             text = "Calls",
             onClick = { doSomething() }
         )
@@ -113,7 +113,7 @@ OdsScrollableTabRow(
 Parameter | Default&nbsp;value | Description
 -- | -- | --
 `selectedTabIndex: Int` | | Index of the currently selected tab
-`tabs: List<OdsTabRowTab>` | | List of the `OdsTabRowTab` displayed inside this tabs row
+`tabs: List<OdsTabRowTabBuilder>` | | List of the `OdsTabRowTabBuilder` displayed inside this tabs row
 `modifier: Modifier` | `Modifier` | `Modifier` applied to the tabs row
-`tabIconPosition: OdsTabRowTabIcon.Position` | `OdsTabRowTabIcon.Position.Top` | Controls the position of the icon in the tabs. By default, the icon is displayed above the text.
+`tabIconPosition: OdsTabRowTabIconPosition` | `OdsTabRowTabIconPosition.Top` | Controls the position of the icon in the tabs. By default, the icon is displayed above the text.
 {:.table}

@@ -36,12 +36,12 @@ import com.orange.ods.app.ui.utilities.code.CodeImplementationColumn
 import com.orange.ods.app.ui.utilities.code.FunctionCallCode
 import com.orange.ods.app.ui.utilities.composable.Subtitle
 import com.orange.ods.compose.OdsComposable
-import com.orange.ods.compose.component.chip.OdsChipLeadingAvatar
-import com.orange.ods.compose.component.chip.OdsChoiceChip
+import com.orange.ods.compose.component.chip.OdsChipLeadingAvatarBuilder
+import com.orange.ods.compose.component.chip.OdsChoiceChipBuilder
 import com.orange.ods.compose.component.chip.OdsChoiceChipsFlowRow
 import com.orange.ods.compose.component.chip.OdsFilterChip
 import com.orange.ods.compose.component.list.OdsListItem
-import com.orange.ods.compose.component.list.OdsListItemTrailingSwitch
+import com.orange.ods.compose.component.list.OdsListItemTrailingSwitchBuilder
 
 @OptIn(ExperimentalMaterialApi::class, ExperimentalLayoutApi::class)
 @Composable
@@ -61,14 +61,17 @@ fun ChipFilter() {
                     onValueChange = { value -> leadingElement.value = value },
                     modifier = Modifier.padding(horizontal = dimensionResource(id = com.orange.ods.R.dimen.spacing_m)),
                     chips = listOf(
-                        OdsChoiceChip(text = stringResource(id = R.string.component_element_none), value = ChipCustomizationState.LeadingElement.None),
-                        OdsChoiceChip(text = stringResource(id = R.string.component_element_avatar), value = ChipCustomizationState.LeadingElement.Avatar),
+                        OdsChoiceChipBuilder(text = stringResource(id = R.string.component_element_none), value = ChipCustomizationState.LeadingElement.None),
+                        OdsChoiceChipBuilder(
+                            text = stringResource(id = R.string.component_element_avatar),
+                            value = ChipCustomizationState.LeadingElement.Avatar
+                        ),
                     )
                 )
 
                 OdsListItem(
                     text = stringResource(id = R.string.component_state_enabled),
-                    trailing = OdsListItemTrailingSwitch(enabled.value, { enabled.value = it })
+                    trailing = OdsListItemTrailingSwitchBuilder(enabled.value, { enabled.value = it })
                 )
             }) {
             var selectedChipIndexes by rememberSaveable { mutableStateOf(emptySet<Int>()) }
@@ -81,7 +84,7 @@ fun ChipFilter() {
                         OdsFilterChip(
                             text = ingredient.food.name,
                             leadingAvatar = if (hasLeadingAvatar) {
-                                OdsChipLeadingAvatar(
+                                OdsChipLeadingAvatarBuilder(
                                     rememberAsyncImagePainter(
                                         model = ingredient.food.imageUrl,
                                         placeholder = painterResource(id = DrawableManager.getPlaceholderSmallResId()),
@@ -112,7 +115,7 @@ fun ChipFilter() {
                                 parameters = {
                                     text(ingredient.food.name)
                                     if (hasLeadingAvatar) {
-                                        classInstance<OdsChipLeadingAvatar>("leadingAvatar") {
+                                        classInstance<OdsChipLeadingAvatarBuilder>("leadingAvatar") {
                                             image()
                                             contentDescription("")
                                         }

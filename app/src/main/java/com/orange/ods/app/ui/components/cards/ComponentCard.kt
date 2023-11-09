@@ -23,10 +23,10 @@ import com.orange.ods.app.ui.components.utilities.ComponentCountRow
 import com.orange.ods.app.ui.components.utilities.ComponentCustomizationBottomSheetScaffold
 import com.orange.ods.app.ui.utilities.composable.Subtitle
 import com.orange.ods.compose.component.card.OdsHorizontalCardImagePosition
-import com.orange.ods.compose.component.chip.OdsChoiceChip
+import com.orange.ods.compose.component.chip.OdsChoiceChipBuilder
 import com.orange.ods.compose.component.chip.OdsChoiceChipsFlowRow
 import com.orange.ods.compose.component.list.OdsListItem
-import com.orange.ods.compose.component.list.OdsListItemTrailingSwitch
+import com.orange.ods.compose.component.list.OdsListItemTrailingSwitchBuilder
 
 @OptIn(ExperimentalMaterialApi::class)
 @Composable
@@ -39,12 +39,12 @@ fun ComponentCard(variant: Variant) {
             bottomSheetContent = {
                 OdsListItem(
                     text = stringResource(id = R.string.component_card_clickable),
-                    trailing = OdsListItemTrailingSwitch(clickable.value, { clickable.value = it })
+                    trailing = OdsListItemTrailingSwitchBuilder(clickable.value, { clickable.value = it })
                 )
                 if (variant == Variant.CardVerticalHeaderFirst) {
                     OdsListItem(
                         text = stringResource(id = R.string.component_element_thumbnail),
-                        trailing = OdsListItemTrailingSwitch(thumbnailChecked.value, { thumbnailChecked.value = it })
+                        trailing = OdsListItemTrailingSwitchBuilder(thumbnailChecked.value, { thumbnailChecked.value = it })
                     )
                 } else if (variant == Variant.CardHorizontal) {
                     Subtitle(textRes = R.string.component_card_horizontal_image_position, horizontalPadding = true)
@@ -53,11 +53,11 @@ fun ComponentCard(variant: Variant) {
                         onValueChange = { value -> imagePosition.value = value },
                         modifier = Modifier.padding(horizontal = dimensionResource(id = com.orange.ods.R.dimen.spacing_m)),
                         chips = listOf(
-                            OdsChoiceChip(
+                            OdsChoiceChipBuilder(
                                 text = stringResource(id = R.string.component_card_horizontal_image_position_start),
                                 value = OdsHorizontalCardImagePosition.Start
                             ),
-                            OdsChoiceChip(
+                            OdsChoiceChipBuilder(
                                 text = stringResource(id = R.string.component_card_horizontal_image_position_end),
                                 value = OdsHorizontalCardImagePosition.End
                             )
@@ -66,12 +66,12 @@ fun ComponentCard(variant: Variant) {
                 }
                 OdsListItem(
                     text = stringResource(id = R.string.component_element_subtitle),
-                    trailing = OdsListItemTrailingSwitch(subtitleChecked.value, { subtitleChecked.value = it })
+                    trailing = OdsListItemTrailingSwitchBuilder(subtitleChecked.value, { subtitleChecked.value = it })
                 )
                 if (variant in listOf(Variant.CardVerticalHeaderFirst, Variant.CardVerticalImageFirst, Variant.CardHorizontal)) {
                     OdsListItem(
                         text = stringResource(id = R.string.component_element_text),
-                        trailing = OdsListItemTrailingSwitch(textChecked.value, { textChecked.value = it })
+                        trailing = OdsListItemTrailingSwitchBuilder(textChecked.value, { textChecked.value = it })
                     )
                     ComponentCountRow(
                         title = stringResource(id = R.string.component_card_action_button_count),
@@ -87,7 +87,7 @@ fun ComponentCard(variant: Variant) {
                     if (!hasFirstButton) dividerChecked.value = false
                     OdsListItem(
                         text = stringResource(id = R.string.component_element_divider),
-                        trailing = OdsListItemTrailingSwitch(dividerChecked.value, { dividerChecked.value = it }, hasFirstButton)
+                        trailing = OdsListItemTrailingSwitchBuilder(dividerChecked.value, { dividerChecked.value = it }, hasFirstButton)
                     )
                 }
             }) {

@@ -41,7 +41,7 @@ import com.orange.ods.compose.theme.OdsDisplaySurface
 @Composable
 @OdsComposable
 fun OdsIconButton(
-    icon: OdsIconButtonIcon,
+    icon: OdsIconButtonIconBuilder,
     onClick: () -> Unit,
     modifier: Modifier = Modifier,
     enabled: Boolean = true,
@@ -51,7 +51,7 @@ fun OdsIconButton(
         LocalRippleTheme provides displaySurface.rippleTheme
     ) {
         IconButton(onClick = onClick, modifier = modifier, enabled = enabled) {
-            icon.Content(OdsIconButtonIcon.ExtraParameters(enabled, displaySurface))
+            icon.Content(OdsIconButtonIconBuilder.ExtraParameters(enabled, displaySurface))
         }
     }
 }
@@ -75,6 +75,6 @@ internal fun OdsIconButton(
 private fun PreviewOdsIconButton() = Preview {
     OdsIconButton(
         onClick = {},
-        icon = OdsIconButtonIcon(painterResource(id = android.R.drawable.ic_dialog_info), ""),
+        icon = OdsIconButtonIconBuilder(painterResource(id = android.R.drawable.ic_dialog_info), ""),
     )
 }

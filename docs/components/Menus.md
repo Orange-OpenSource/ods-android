@@ -39,7 +39,7 @@ A dropdown menu is a compact way of displaying multiple choices. It appears upon
 
 #### Jetpack Compose
 
-The library offers an `OdsDropdownMenu` container composable in which you can add `OdsDropdownMenuItem` or `OdsDivider` as shown in the following example:
+The library offers an `OdsDropdownMenu` container composable in which you can add `OdsDropdownMenuItemBuilder`s as shown in the following example:
 
 ```kotlin
 var menuExpanded by remember { mutableStateOf(false) }
@@ -49,13 +49,13 @@ OdsDropdownMenu(
     onDismissRequest = { menuExpanded = false },
     offset = DpOffset(x = (-100).dp, y = (-10).dp),
     items = listOf(
-        OdsDropdownMenuItem(
+        OdsDropdownMenuItemBuilder(
             text = "Summer salad",
             icon = painterResource(id = R.drawable.ic_salad),
             divider = true, // Allow to add a divider between the 2 items
             onClick = { doSomething() }
         ),
-        OdsDropdownMenuItem(
+        OdsDropdownMenuItemBuilder(
             text = "Brocoli soup",
             icon = painterResource(id = R.drawable.ic_soup),
             onClick = { doSomething() }
@@ -68,7 +68,7 @@ OdsDropdownMenu(
 
 Parameter | Default&nbsp;value | Description
 -- | -- | --
-`items: List<OdsDropdownMenuItem>` | | Items displayed into the dropdown menu
+`items: List<OdsDropdownMenuItemBuilder>` | | Items displayed into the dropdown menu
 `expanded: Boolean` | | Controls whether the menu is currently open and visible to the user
 `onDismissRequest: () -> Unit` | | Callback invoked when the user requests to dismiss the menu, such as by tapping outside the menu's bounds
 `modifier: Modifier` | `Modifier` | `Modifier` applied to the dropdown menu

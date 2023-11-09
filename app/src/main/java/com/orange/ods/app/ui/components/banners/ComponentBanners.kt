@@ -39,10 +39,10 @@ import com.orange.ods.app.ui.utilities.code.CodeImplementationColumn
 import com.orange.ods.app.ui.utilities.code.FunctionCallCode
 import com.orange.ods.compose.OdsComposable
 import com.orange.ods.compose.component.banner.OdsBanner
-import com.orange.ods.compose.component.banner.OdsBannerButton
-import com.orange.ods.compose.component.banner.OdsBannerImage
+import com.orange.ods.compose.component.banner.OdsBannerButtonBuilder
+import com.orange.ods.compose.component.banner.OdsBannerImageBuilder
 import com.orange.ods.compose.component.list.OdsListItem
-import com.orange.ods.compose.component.list.OdsListItemTrailingSwitch
+import com.orange.ods.compose.component.list.OdsListItemTrailingSwitchBuilder
 import com.orange.ods.extension.ifNotNull
 
 @OptIn(ExperimentalMaterialApi::class)
@@ -76,7 +76,7 @@ fun ComponentBanners() {
                 )
                 OdsListItem(
                     text = stringResource(id = R.string.component_banner_image),
-                    trailing = OdsListItemTrailingSwitch(checked = imageChecked.value, { imageChecked.value = it })
+                    trailing = OdsListItemTrailingSwitchBuilder(checked = imageChecked.value, { imageChecked.value = it })
                 )
             }
         ) {
@@ -100,18 +100,18 @@ fun ComponentBanners() {
                     compose = {
                         OdsBanner(
                             message = message,
-                            firstButton = OdsBannerButton(firstButtonText, onFirstButtonClick),
+                            firstButton = OdsBannerButtonBuilder(firstButtonText, onFirstButtonClick),
                             image = if (hasImage) {
                                 val painter = rememberAsyncImagePainter(
                                     model = recipe.imageUrl,
                                     placeholder = painterResource(id = placeholderResId),
                                     error = painterResource(id = errorPlaceholderResId)
                                 )
-                                OdsBannerImage(painter, "")
+                                OdsBannerImageBuilder(painter, "")
                             } else {
                                 null
                             },
-                            secondButton = ifNotNull(secondButtonText, onSecondButtonClick) { text, onClick -> OdsBannerButton(text, onClick) }
+                            secondButton = ifNotNull(secondButtonText, onSecondButtonClick) { text, onClick -> OdsBannerButtonBuilder(text, onClick) }
                         )
                     },
                     xml = {
@@ -143,18 +143,18 @@ fun ComponentBanners() {
                         exhaustiveParameters = false,
                         parameters = {
                             string("message", if (hasTwoTextLines) recipe.description else recipe.title)
-                            classInstance<OdsBannerButton>("firstButton") {
+                            classInstance<OdsBannerButtonBuilder>("firstButton") {
                                 text(context.getString(R.string.component_banner_dismiss))
                                 onClick()
                             }
                             if (hasImage) {
-                                classInstance<OdsBannerImage>("image") {
+                                classInstance<OdsBannerImageBuilder>("image") {
                                     painter()
                                     contentDescription("")
                                 }
                             }
                             if (hasSecondButton) {
-                                classInstance<OdsBannerButton>("secondButton") {
+                                classInstance<OdsBannerButtonBuilder>("secondButton") {
                                     text(context.getString(R.string.component_banner_detail))
                                     onClick()
                                 }

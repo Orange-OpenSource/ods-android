@@ -24,7 +24,7 @@ description: Bottom navigation bars allow movement between primary destinations 
 
 Please follow [accessibility criteria for development](https://a11y-guidelines.orange.com/en/mobile/android/development/).
 
-Note that TalkBack already reads the bottom navigation items labels so the content descriptions of the `OdsBottomNavigationItemIcon`s can be empty.
+Note that TalkBack already reads the bottom navigation items labels so the content descriptions of the `OdsBottomNavigationItemIconBuilder`s can be empty.
 
 ## Implementation
 
@@ -34,12 +34,12 @@ Note that TalkBack already reads the bottom navigation items labels so the conte
 
 ### Jetpack Compose
 
-In your composable screen, use the `OdsBottomNavigation` composable. It should contain multiple `OdsBottomNavigationItem`s.
+In your composable screen, use the `OdsBottomNavigation` composable. It should contain multiple `OdsBottomNavigationItemBuilder`s.
 
 Here is an example of use:
 
 ```kotlin
-    private data class NavigationItem(
+private data class NavigationItem(
     @StringRes val titleResId: Int,
     @DrawableRes val iconResId: Int
 )
@@ -56,8 +56,8 @@ var selectedItemIndex by remember { mutableStateOf(0) }
 
 OdsBottomNavigation(
     items = items.mapIndexed { index, item ->
-        OdsBottomNavigationItem(
-            icon = OdsBottomNavigationItemIcon(
+        OdsBottomNavigationItemBuilder(
+            icon = OdsBottomNavigationItemIconBuilder(
                 painter = painterResource(id = item.first),
                 contentDescription = ""
             ), // contentDescription is empty cause TalkBack already read the item's label
@@ -76,7 +76,7 @@ OdsBottomNavigation(
 
 Parameter | Default&nbsp;value | Description
 -- | -- | --
-`items: List<OdsBottomNavigationItem>` | | Items displayed into the bottom navigation
+`items: List<OdsBottomNavigationItemBuilder>` | | Items displayed into the bottom navigation
 `modifier: Modifier` | `Modifier` | `Modifier` applied to the bottom navigation
 {:.table}
 
@@ -95,8 +95,8 @@ Then using view binding, add the bottom navigation items by code:
 
 ```kotlin
 binding.odsBottomNavigation.items = listOf(
-    OdsBottomNavigationItem(
-        icon = OdsBottomNavigationItemIcon(
+    OdsBottomNavigationItemBuilder(
+        icon = OdsBottomNavigationItemIconBuilder(
             painter = painterResource(id = R.drawable.ic_dna),
             contentDescription = ""
         ),
@@ -104,8 +104,8 @@ binding.odsBottomNavigation.items = listOf(
         selected = true,
         onClick = { doSomething() }
     ),
-    OdsBottomNavigationItem(
-        icon = OdsBottomNavigationItemIcon(
+    OdsBottomNavigationItemBuilder(
+        icon = OdsBottomNavigationItemIconBuilder(
             painter = painterResource(id = R.drawable.ic_atom),
             contentDescription = ""
         ),

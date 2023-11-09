@@ -22,7 +22,7 @@ import androidx.core.content.withStyledAttributes
 import androidx.databinding.BindingAdapter
 import com.google.accompanist.drawablepainter.rememberDrawablePainter
 import com.orange.ods.compose.component.button.OdsButton
-import com.orange.ods.compose.component.button.OdsButtonIcon
+import com.orange.ods.compose.component.button.OdsButtonIconBuilder
 import com.orange.ods.compose.component.button.OdsButtonStyle
 import com.orange.ods.compose.theme.OdsDisplaySurface
 import com.orange.ods.xml.R
@@ -54,7 +54,7 @@ class OdsButton @JvmOverloads constructor(context: Context, attrs: AttributeSet?
             text = text,
             onClick = onClick,
             icon = icon?.let { icon ->
-                OdsButtonIcon(rememberDrawablePainter(drawable = icon))
+                OdsButtonIconBuilder(rememberDrawablePainter(drawable = icon))
             },
             enabled = isEnabled,
             style = style,

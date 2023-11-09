@@ -37,10 +37,10 @@ import com.orange.ods.app.ui.utilities.code.CodeImplementationColumn
 import com.orange.ods.app.ui.utilities.code.FunctionCallCode
 import com.orange.ods.compose.OdsComposable
 import com.orange.ods.compose.component.list.OdsListItem
-import com.orange.ods.compose.component.list.OdsListItemTrailingIcon
-import com.orange.ods.compose.component.list.OdsListItemTrailingSwitch
+import com.orange.ods.compose.component.list.OdsListItemTrailingIconBuilder
+import com.orange.ods.compose.component.list.OdsListItemTrailingSwitchBuilder
 import com.orange.ods.compose.component.menu.OdsDropdownMenu
-import com.orange.ods.compose.component.menu.OdsDropdownMenuItem
+import com.orange.ods.compose.component.menu.OdsDropdownMenuItemBuilder
 import com.orange.ods.compose.text.OdsTextBody1
 
 @OptIn(ExperimentalMaterialApi::class)
@@ -59,11 +59,11 @@ fun MenuDropdown() {
             bottomSheetContent = {
                 OdsListItem(
                     text = stringResource(id = R.string.component_menu_icons),
-                    trailing = OdsListItemTrailingSwitch(icons.value, { icons.value = it })
+                    trailing = OdsListItemTrailingSwitchBuilder(icons.value, { icons.value = it })
                 )
                 OdsListItem(
                     text = stringResource(id = R.string.component_menu_divider),
-                    trailing = OdsListItemTrailingSwitch(dividerExample.value, { dividerExample.value = it })
+                    trailing = OdsListItemTrailingSwitchBuilder(dividerExample.value, { dividerExample.value = it })
                 )
             }) {
             Column(
@@ -87,7 +87,7 @@ fun MenuDropdown() {
                         modifier = Modifier.padding(top = dimensionResource(id = com.orange.ods.R.dimen.spacing_s)),
                         text = recipe.title,
                         secondaryText = recipe.subtitle,
-                        trailing = OdsListItemTrailingIcon(
+                        trailing = OdsListItemTrailingIconBuilder(
                             rememberVectorPainter(image = Icons.Filled.MoreVert),
                             stringResource(id = R.string.component_menu_show_ingredients)
                         ) { menuExpanded = true }
@@ -95,7 +95,7 @@ fun MenuDropdown() {
 
                     val items = recipes.take(MenuDropdownCustomizationState.MenuItemCount)
                         .mapIndexed { index, recipe ->
-                            OdsDropdownMenuItem(
+                            OdsDropdownMenuItemBuilder(
                                 text = recipe.title,
                                 icon = if (hasIcons && recipe.iconResId != null) painterResource(id = recipe.iconResId) else null,
                                 divider = hasDividerExample && index == dividerIndex,
@@ -122,7 +122,7 @@ fun MenuDropdown() {
                             lambda("onDismissRequest")
                             list("items") {
                                 recipes.take(2).forEachIndexed { index, recipe ->
-                                    classInstance<OdsDropdownMenuItem> {
+                                    classInstance<OdsDropdownMenuItemBuilder> {
                                         string("text", recipe.title)
                                         if (hasIcons && recipe.iconResId != null) icon()
                                         if (hasDividerExample && index == dividerIndex) stringRepresentation("divider", true)

@@ -14,7 +14,6 @@ import android.os.Bundle
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.text.input.TextFieldValue
 import com.orange.ods.app.R
-import com.orange.ods.app.ui.Screen
 import com.orange.ods.app.ui.components.ComponentsNavigation
 import com.orange.ods.app.ui.components.ComponentsNavigation.ComponentDemoRoute
 import com.orange.ods.app.ui.components.ComponentsNavigation.ComponentDetailRoute
@@ -22,7 +21,7 @@ import com.orange.ods.app.ui.components.ComponentsNavigation.ComponentVariantDem
 import com.orange.ods.app.ui.components.Variant
 import com.orange.ods.app.ui.guidelines.GuidelinesNavigation
 import com.orange.ods.app.ui.utilities.UiString
-import com.orange.ods.compose.component.content.OdsComponentContent
+import com.orange.ods.compose.component.content.OdsComponentBuilder
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.asSharedFlow
@@ -69,7 +68,7 @@ sealed class Screen(
         get() = this is ComponentVariant && Variant.fromId(this.variantId)?.customizableTopAppBar == true
 
     @Composable
-    fun getAppBarActions(onSearchedTextChange: (TextFieldValue) -> Unit): List<OdsComponentContent<Nothing>> = when {
+    fun getAppBarActions(onSearchedTextChange: (TextFieldValue) -> Unit): List<OdsComponentBuilder<Nothing>> = when {
         isHome -> getHomeActions { action -> _appBarActionClicked.tryEmit(action) }
         this is Search -> listOf(getSearchFieldAction(onSearchedTextChange))
         else -> getDefaultActions { action -> _appBarActionClicked.tryEmit(action) }

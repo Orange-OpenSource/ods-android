@@ -40,15 +40,15 @@ import com.orange.ods.app.ui.utilities.code.CodeImplementationColumn
 import com.orange.ods.app.ui.utilities.code.FunctionCallCode
 import com.orange.ods.app.ui.utilities.composable.Subtitle
 import com.orange.ods.compose.OdsComposable
-import com.orange.ods.compose.component.button.OdsIconButtonIcon
-import com.orange.ods.compose.component.chip.OdsChoiceChip
+import com.orange.ods.compose.component.button.OdsIconButtonIconBuilder
+import com.orange.ods.compose.component.chip.OdsChoiceChipBuilder
 import com.orange.ods.compose.component.chip.OdsChoiceChipsFlowRow
 import com.orange.ods.compose.component.imageitem.OdsImageItem
-import com.orange.ods.compose.component.imageitem.OdsImageItemIconToggleButton
-import com.orange.ods.compose.component.imageitem.OdsImageItemImage
+import com.orange.ods.compose.component.imageitem.OdsImageItemIconToggleButtonBuilder
+import com.orange.ods.compose.component.imageitem.OdsImageItemImageBuilder
 import com.orange.ods.compose.component.imageitem.OdsImageItemLegendAreaDisplayType
 import com.orange.ods.compose.component.list.OdsListItem
-import com.orange.ods.compose.component.list.OdsListItemTrailingSwitch
+import com.orange.ods.compose.component.list.OdsListItemTrailingSwitchBuilder
 
 @OptIn(ExperimentalMaterialApi::class)
 @Composable
@@ -75,20 +75,20 @@ fun ComponentImageItem() {
                     onValueChange = { value -> type.value = value },
                     modifier = Modifier.padding(horizontal = dimensionResource(id = com.orange.ods.R.dimen.spacing_m)),
                     chips = listOf(
-                        OdsChoiceChip(
+                        OdsChoiceChipBuilder(
                             text = stringResource(R.string.component_image_item_legend_area_display_type_overlay),
                             value = OdsImageItemLegendAreaDisplayType.Overlay
                         ),
-                        OdsChoiceChip(
+                        OdsChoiceChipBuilder(
                             text = stringResource(R.string.component_image_item_legend_area_display_type_below),
                             value = OdsImageItemLegendAreaDisplayType.Below
                         ),
-                        OdsChoiceChip(text = stringResource(R.string.component_element_none), value = OdsImageItemLegendAreaDisplayType.None),
+                        OdsChoiceChipBuilder(text = stringResource(R.string.component_element_none), value = OdsImageItemLegendAreaDisplayType.None),
                     )
                 )
                 OdsListItem(
                     text = stringResource(id = R.string.component_element_icon),
-                    trailing = OdsListItemTrailingSwitch(iconDisplayed.value, { iconDisplayed.value = it }, hasText)
+                    trailing = OdsListItemTrailingSwitchBuilder(iconDisplayed.value, { iconDisplayed.value = it }, hasText)
                 )
             }) {
             Column(
@@ -112,7 +112,7 @@ fun ComponentImageItem() {
                         .width(imageSize)
                         .height(height),
                     onClick = { clickOnElement(context, context.getString(R.string.component_image_item)) },
-                    image = OdsImageItemImage(
+                    image = OdsImageItemImageBuilder(
                         rememberAsyncImagePainter(
                             model = recipe.imageUrl,
                             placeholder = painterResource(id = R.drawable.placeholder),
@@ -122,12 +122,12 @@ fun ComponentImageItem() {
                     title = if (hasText) recipe.title else null,
                     legendAreaDisplayType = type.value,
                     icon = if (hasIcon) {
-                        OdsImageItemIconToggleButton(
-                            uncheckedIcon = OdsIconButtonIcon(
+                        OdsImageItemIconToggleButtonBuilder(
+                            uncheckedIcon = OdsIconButtonIconBuilder(
                                 painterResource(id = R.drawable.ic_heart_outlined),
                                 stringResource(id = R.string.component_button_icon_toggle_favorite_add_icon_desc)
                             ),
-                            checkedIcon = OdsIconButtonIcon(
+                            checkedIcon = OdsIconButtonIconBuilder(
                                 painterResource(id = R.drawable.ic_heart),
                                 stringResource(id = R.string.component_button_icon_toggle_favorite_remove_icon_desc)
                             ),
@@ -147,19 +147,19 @@ fun ComponentImageItem() {
                         parameters = {
                             enum("legendAreaDisplayType", type.value)
                             if (hasText) title(recipe.title)
-                            classInstance<OdsImageItemImage>("image") {
+                            classInstance<OdsImageItemImageBuilder>("image") {
                                 painter()
                                 contentDescription("")
                             }
                             if (hasIcon) {
-                                classInstance<OdsImageItemIconToggleButton>("icon") {
+                                classInstance<OdsImageItemIconToggleButtonBuilder>("icon") {
                                     checked(iconChecked)
                                     lambda("onCheckedChange")
-                                    classInstance<OdsIconButtonIcon>("uncheckedIcon") {
+                                    classInstance<OdsIconButtonIconBuilder>("uncheckedIcon") {
                                         painter()
                                         contentDescription("")
                                     }
-                                    classInstance<OdsIconButtonIcon>("checkedIcon") {
+                                    classInstance<OdsIconButtonIconBuilder>("checkedIcon") {
                                         painter()
                                         contentDescription("")
                                     }

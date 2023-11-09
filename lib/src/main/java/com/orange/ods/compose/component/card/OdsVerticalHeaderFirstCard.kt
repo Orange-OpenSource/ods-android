@@ -38,26 +38,26 @@ import com.orange.ods.extension.orElse
  * Cards contain content and actions about a single subject.
  *
  * @param title Title displayed into the card.
- * @param image [OdsCardImage] displayed into the card.
+ * @param image [OdsCardImageBuilder] displayed into the card.
  * @param modifier [Modifier] applied to the layout of the card.
- * @param thumbnail [OdsCardThumbnail] displayed into the card next to the title: avatar, logo or icon.
+ * @param thumbnail [OdsCardThumbnailBuilder] displayed into the card next to the title: avatar, logo or icon.
  * @param subtitle Subtitle displayed into the card.
  * @param text Text displayed into the card.
- * @param firstButton First [OdsCardButton] displayed into the card.
- * @param secondButton Second [OdsCardButton] displayed into the card.
+ * @param firstButton First [OdsCardButtonBuilder] displayed into the card.
+ * @param secondButton Second [OdsCardButtonBuilder] displayed into the card.
  * @param onClick Callback invoked on card click.
  */
 @Composable
 @OdsComposable
 fun OdsVerticalHeaderFirstCard(
     title: String,
-    image: OdsCardImage,
+    image: OdsCardImageBuilder,
     modifier: Modifier = Modifier,
-    thumbnail: OdsCardThumbnail? = null,
+    thumbnail: OdsCardThumbnailBuilder? = null,
     subtitle: String? = null,
     text: String? = null,
-    firstButton: OdsCardButton? = null,
-    secondButton: OdsCardButton? = null,
+    firstButton: OdsCardButtonBuilder? = null,
+    secondButton: OdsCardButtonBuilder? = null,
     onClick: (() -> Unit)? = null
 ) {
     OdsCard(
@@ -117,11 +117,11 @@ fun OdsVerticalHeaderFirstCard(
 private fun PreviewOdsVerticalHeaderFirstCard() = Preview {
     OdsVerticalHeaderFirstCard(
         title = "Title",
-        image = OdsCardImage(painterResource(id = R.drawable.placeholder), ""),
-        thumbnail = OdsCardThumbnail(painterResource(id = R.drawable.placeholder_small), ""),
+        image = OdsCardImageBuilder(painterResource(id = R.drawable.placeholder), ""),
+        thumbnail = OdsCardThumbnailBuilder(painterResource(id = R.drawable.placeholder_small), ""),
         subtitle = "Subtitle",
         text = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed non risus. Suspendisse lectus tortor, dignissim sit amet, adipiscing nec, ultricies sed, dolor.",
-        firstButton = OdsCardButton("First button") {},
-        secondButton = OdsCardButton("Second button") {}
+        firstButton = OdsCardButtonBuilder("First button") {},
+        secondButton = OdsCardButtonBuilder("Second button") {}
     )
 }

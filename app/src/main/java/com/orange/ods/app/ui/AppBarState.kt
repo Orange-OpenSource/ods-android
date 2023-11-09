@@ -32,10 +32,10 @@ import com.orange.ods.app.ui.AppBarState.Companion.CustomDefaultConfiguration
 import com.orange.ods.app.ui.components.appbars.top.TopAppBarCustomizationState
 import com.orange.ods.app.ui.components.utilities.clickOnElement
 import com.orange.ods.app.ui.utilities.NavigationItem
-import com.orange.ods.compose.component.appbar.top.OdsTopAppBarActionButton
-import com.orange.ods.compose.component.appbar.top.OdsTopAppBarNavigationIcon
-import com.orange.ods.compose.component.appbar.top.OdsTopAppBarOverflowMenuActionItem
-import com.orange.ods.compose.component.content.OdsComponentContent
+import com.orange.ods.compose.component.appbar.top.OdsTopAppBarActionButtonBuilder
+import com.orange.ods.compose.component.appbar.top.OdsTopAppBarNavigationIconBuilder
+import com.orange.ods.compose.component.appbar.top.OdsTopAppBarOverflowMenuActionItemBuilder
+import com.orange.ods.compose.component.content.OdsComponentBuilder
 import com.orange.ods.extension.orElse
 import kotlin.math.max
 
@@ -103,7 +103,7 @@ class AppBarState(
             currentScreen?.title?.asString().orEmpty()
         }
 
-    val actions: List<OdsComponentContent<Nothing>>
+    val actions: List<OdsComponentBuilder<Nothing>>
         @Composable get() {
             val screenAppBarActions = currentScreen?.getAppBarActions { searchText.value = it }.orEmpty()
             return if (isCustom) {
@@ -113,7 +113,7 @@ class AppBarState(
                     .take(customActionCount)
                     .map {
                         val contentDescription = stringResource(id = it.textResId)
-                        OdsTopAppBarActionButton(painter = painterResource(id = it.iconResId), contentDescription = contentDescription) {
+                        OdsTopAppBarActionButtonBuilder(painter = painterResource(id = it.iconResId), contentDescription = contentDescription) {
                             clickOnElement(context, contentDescription)
                         }
                     }
@@ -123,11 +123,11 @@ class AppBarState(
             }
         }
 
-    val overflowMenuActions: List<OdsTopAppBarOverflowMenuActionItem>
+    val overflowMenuActions: List<OdsTopAppBarOverflowMenuActionItemBuilder>
         @Composable get() = if (isCustom && customAppBarConfiguration.value.isOverflowMenuEnabled) {
             val context = LocalContext.current
             LocalRecipes.current.map { recipe ->
-                OdsTopAppBarOverflowMenuActionItem(
+                OdsTopAppBarOverflowMenuActionItemBuilder(
                     text = recipe.title,
                     onClick = { clickOnElement(context, recipe.title) }
                 )
@@ -141,7 +141,7 @@ class AppBarState(
 
     @Composable
     fun getNavigationIcon(upPress: () -> Unit) = if (showNavigationIcon) {
-        OdsTopAppBarNavigationIcon(Icons.Filled.ArrowBack, stringResource(id = R.string.top_app_bar_back_icon_desc), upPress)
+        OdsTopAppBarNavigationIconBuilder(Icons.Filled.ArrowBack, stringResource(id = R.string.top_app_bar_back_icon_desc), upPress)
     } else {
         null
     }

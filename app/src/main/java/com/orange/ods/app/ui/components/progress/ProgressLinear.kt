@@ -29,12 +29,12 @@ import com.orange.ods.app.ui.utilities.code.CodeImplementationColumn
 import com.orange.ods.app.ui.utilities.code.FunctionCallCode
 import com.orange.ods.app.ui.utilities.composable.Subtitle
 import com.orange.ods.compose.OdsComposable
-import com.orange.ods.compose.component.chip.OdsChoiceChip
+import com.orange.ods.compose.component.chip.OdsChoiceChipBuilder
 import com.orange.ods.compose.component.chip.OdsChoiceChipsFlowRow
 import com.orange.ods.compose.component.list.OdsListItem
-import com.orange.ods.compose.component.list.OdsListItemTrailingSwitch
+import com.orange.ods.compose.component.list.OdsListItemTrailingSwitchBuilder
 import com.orange.ods.compose.component.progressindicator.OdsLinearProgressIndicator
-import com.orange.ods.compose.component.progressindicator.OdsLinearProgressIndicatorIcon
+import com.orange.ods.compose.component.progressindicator.OdsLinearProgressIndicatorIconBuilder
 
 @OptIn(ExperimentalMaterialApi::class)
 @Composable
@@ -55,8 +55,11 @@ fun ProgressLinear() {
                     },
                     modifier = Modifier.padding(horizontal = dimensionResource(id = com.orange.ods.R.dimen.spacing_m)),
                     chips = listOf(
-                        OdsChoiceChip(text = stringResource(id = R.string.component_progress_determinate), value = ProgressCustomizationState.Type.Determinate),
-                        OdsChoiceChip(
+                        OdsChoiceChipBuilder(
+                            text = stringResource(id = R.string.component_progress_determinate),
+                            value = ProgressCustomizationState.Type.Determinate
+                        ),
+                        OdsChoiceChipBuilder(
                             text = stringResource(id = R.string.component_progress_indeterminate),
                             value = ProgressCustomizationState.Type.Indeterminate
                         )
@@ -64,15 +67,15 @@ fun ProgressLinear() {
                 )
                 OdsListItem(
                     text = stringResource(id = R.string.component_element_label),
-                    trailing = OdsListItemTrailingSwitch(label.value, { label.value = it })
+                    trailing = OdsListItemTrailingSwitchBuilder(label.value, { label.value = it })
                 )
                 OdsListItem(
                     text = stringResource(id = R.string.component_element_icon),
-                    trailing = OdsListItemTrailingSwitch(icon.value, { icon.value = it })
+                    trailing = OdsListItemTrailingSwitchBuilder(icon.value, { icon.value = it })
                 )
                 OdsListItem(
                     text = stringResource(id = R.string.component_progress_linear_value),
-                    trailing = OdsListItemTrailingSwitch(currentValue.value, { currentValue.value = it }, isCurrentValueSwitchEnabled),
+                    trailing = OdsListItemTrailingSwitchBuilder(currentValue.value, { currentValue.value = it }, isCurrentValueSwitchEnabled),
                 )
             }) {
             Column(
@@ -85,7 +88,7 @@ fun ProgressLinear() {
                     progress = if (type.value == ProgressCustomizationState.Type.Determinate) determinateProgressAnimation.value else null,
                     label = if (hasLabel) text else null,
                     showCurrentValue = hasCurrentValue,
-                    icon = if (hasIcon) OdsLinearProgressIndicatorIcon(painterResource(id = R.drawable.ic_arrow_down), "") else null,
+                    icon = if (hasIcon) OdsLinearProgressIndicatorIconBuilder(painterResource(id = R.drawable.ic_arrow_down), "") else null,
                     modifier = Modifier
                         .padding(top = dimensionResource(id = com.orange.ods.R.dimen.spacing_m))
                         .fillMaxWidth()
@@ -104,7 +107,7 @@ fun ProgressLinear() {
                             if (type.value == ProgressCustomizationState.Type.Determinate) stringRepresentation("progress", determinateProgressValue)
                             if (hasLabel) string("label", text)
                             if (hasIcon) {
-                                classInstance<OdsLinearProgressIndicatorIcon>("icon") {
+                                classInstance<OdsLinearProgressIndicatorIconBuilder>("icon") {
                                     painter()
                                     contentDescription("")
                                 }

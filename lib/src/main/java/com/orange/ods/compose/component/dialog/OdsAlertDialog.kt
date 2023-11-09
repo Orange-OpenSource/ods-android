@@ -17,7 +17,7 @@ import androidx.compose.ui.window.DialogProperties
 import com.orange.ods.compose.component.OdsComposable
 import com.orange.ods.compose.component.button.OdsTextButton
 import com.orange.ods.compose.component.button.OdsTextButtonStyle
-import com.orange.ods.compose.component.content.OdsComponentContent
+import com.orange.ods.compose.component.content.OdsComponentBuilder
 import com.orange.ods.compose.component.utilities.Preview
 import com.orange.ods.compose.component.utilities.UiModePreviews
 import com.orange.ods.compose.text.OdsTextBody2
@@ -33,7 +33,7 @@ import com.orange.ods.compose.text.OdsTextSubtitle1
  * space is available.
  *
  * @param text Text displayed into the dialog which presents the details regarding the Dialog's purpose.
- * @param confirmButton [OdsAlertDialogButton] displayed into the dialog which is meant to confirm a proposed action, thus resolving what triggered
+ * @param confirmButton [OdsAlertDialogButtonBuilder] displayed into the dialog which is meant to confirm a proposed action, thus resolving what triggered
  * the dialog
  * @param modifier [Modifier] applied to the layout of the dialog.
  * @param onDismissRequest Callback invoked when the user tries to dismiss the dialog by clicking outside or pressing the back button. This is not called
@@ -47,10 +47,10 @@ import com.orange.ods.compose.text.OdsTextSubtitle1
 @OdsComposable
 fun OdsAlertDialog(
     text: String,
-    confirmButton: OdsAlertDialogButton,
+    confirmButton: OdsAlertDialogButtonBuilder,
     modifier: Modifier = Modifier,
     onDismissRequest: () -> Unit = {},
-    dismissButton: OdsAlertDialogButton? = null,
+    dismissButton: OdsAlertDialogButtonBuilder? = null,
     title: String? = null,
     properties: DialogProperties = DialogProperties()
 ) {
@@ -72,11 +72,11 @@ fun OdsAlertDialog(
 /**
  * A button in an [OdsAlertDialog].
  *
- * @constructor Creates an instance of [OdsAlertDialogButton].
+ * @constructor Creates an instance of [OdsAlertDialogButtonBuilder].
  * @param text Text of the button.
  * @param onClick Will be called when the user clicks the button.
  */
-class OdsAlertDialogButton(private val text: String, private val onClick: () -> Unit) : OdsComponentContent<Nothing>() {
+class OdsAlertDialogButtonBuilder(private val text: String, private val onClick: () -> Unit) : OdsComponentBuilder<Nothing>() {
 
     @Composable
     override fun Content(modifier: Modifier) {
@@ -89,8 +89,8 @@ class OdsAlertDialogButton(private val text: String, private val onClick: () -> 
 private fun PreviewOdsAlertDialog() = Preview {
     OdsAlertDialog(
         text = "Text",
-        confirmButton = OdsAlertDialogButton("Confirm") {},
-        dismissButton = OdsAlertDialogButton("Dismiss") {},
+        confirmButton = OdsAlertDialogButtonBuilder("Confirm") {},
+        dismissButton = OdsAlertDialogButtonBuilder("Dismiss") {},
         title = "Title"
     )
 }

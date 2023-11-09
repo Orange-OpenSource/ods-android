@@ -47,12 +47,12 @@ import androidx.compose.ui.tooling.preview.PreviewParameter
 import androidx.compose.ui.unit.dp
 import com.orange.ods.R
 import com.orange.ods.compose.component.OdsComposable
-import com.orange.ods.compose.component.content.OdsComponentCircularImage
-import com.orange.ods.compose.component.content.OdsComponentContent
-import com.orange.ods.compose.component.content.OdsComponentImage
+import com.orange.ods.compose.component.content.OdsCircularImageBuilder
 import com.orange.ods.compose.component.divider.OdsDivider
 import com.orange.ods.compose.component.list.OdsListItem
-import com.orange.ods.compose.component.list.OdsListItemIcon
+import com.orange.ods.compose.component.list.OdsListItemIconBuilder
+import com.orange.ods.compose.component.content.OdsComponentBuilder
+import com.orange.ods.compose.component.content.OdsImageBuilder
 import com.orange.ods.compose.component.utilities.BasicPreviewParameterProvider
 import com.orange.ods.compose.component.utilities.Preview
 import com.orange.ods.compose.component.utilities.UiModePreviews
@@ -87,7 +87,7 @@ fun OdsModalDrawer(
             header.Content()
             OdsDivider()
             LazyColumn {
-                items(items = items.filterIsInstance<OdsComponentContent<OdsModalDrawerItem.ExtraParameters>>()) { item ->
+                items(items = items.filterIsInstance<OdsComponentBuilder<OdsModalDrawerItem.ExtraParameters>>()) { item ->
                     item.Content(OdsModalDrawerItem.ExtraParameters(item == selectedItem))
                 }
             }
@@ -108,7 +108,7 @@ fun OdsModalDrawer(
  * These items will be displayed vertically in the [OdsModalDrawer] after the header part.
  */
 sealed interface OdsModalDrawerItem {
-    data class ExtraParameters(val selected: Boolean) : OdsComponentContent.ExtraParameters()
+    data class ExtraParameters(val selected: Boolean) : OdsComponentBuilder.ExtraParameters()
 }
 
 /**
@@ -116,7 +116,7 @@ sealed interface OdsModalDrawerItem {
  *
  * @property label Label of the section header.
  */
-data class OdsModalDrawerSectionHeader(private val label: String) : OdsModalDrawerItem, OdsComponentContent<OdsModalDrawerItem.ExtraParameters>() {
+data class OdsModalDrawerSectionHeader(private val label: String) : OdsModalDrawerItem, OdsComponentBuilder<OdsModalDrawerItem.ExtraParameters>() {
     @Composable
     override fun Content(modifier: Modifier) {
         Column {
@@ -132,7 +132,7 @@ data class OdsModalDrawerSectionHeader(private val label: String) : OdsModalDraw
 /**
  * A divider in the [OdsModalDrawer] content.
  */
-data object OdsModalDrawerDivider : OdsModalDrawerItem, OdsComponentContent<OdsModalDrawerItem.ExtraParameters>() {
+data object OdsModalDrawerDivider : OdsModalDrawerItem, OdsComponentBuilder<OdsModalDrawerItem.ExtraParameters>() {
     @Composable
     override fun Content(modifier: Modifier) = OdsDivider()
 }
@@ -148,7 +148,7 @@ data class OdsModalDrawerListItem(
     private val text: String,
     private val leadingIcon: Painter? = null,
     private val onClick: (OdsModalDrawerListItem) -> Unit
-) : OdsModalDrawerItem, OdsComponentContent<OdsModalDrawerItem.ExtraParameters>() {
+) : OdsModalDrawerItem, OdsComponentBuilder<OdsModalDrawerItem.ExtraParameters>() {
 
     @Composable
     override fun Content(modifier: Modifier) {
@@ -164,7 +164,7 @@ data class OdsModalDrawerListItem(
                         if (selected) it.background(OdsTheme.colors.primaryVariant.copy(alpha = SelectedItemOpacity)) else it
                     },
                 icon = leadingIcon?.let {
-                    OdsListItemIcon(it, "", if (selected) OdsTheme.colors.primaryVariant else OdsTheme.colors.onSurface)
+                    OdsListItemIconBuilder(it, "", if (selected) OdsTheme.colors.primaryVariant else OdsTheme.colors.onSurface)
                 }
             )
         }
@@ -183,7 +183,7 @@ class OdsModalDrawerHeader(
     private var title: String,
     private val image: OdsModalDrawerHeaderImage? = null,
     private var subtitle: String? = null
-) : OdsComponentContent<Nothing>() {
+) : OdsComponentBuilder<Nothing>() {
 
     @Composable
     override fun Content(modifier: Modifier) {
@@ -236,7 +236,7 @@ sealed interface OdsModalDrawerHeaderImage
 /**
  * An avatar in [OdsModalDrawerHeader].
  */
-class OdsModalDrawerHeaderAvatar : OdsModalDrawerHeaderImage, OdsComponentCircularImage {
+class OdsModalDrawerHeaderAvatar : OdsModalDrawerHeaderImage, OdsCircularImageBuilder {
 
     /**
      * Creates an instance of [OdsModalDrawerHeaderAvatar].
@@ -266,7 +266,7 @@ class OdsModalDrawerHeaderAvatar : OdsModalDrawerHeaderImage, OdsComponentCircul
 /**
  * A background image in the [OdsModalDrawerHeader].
  */
-class OdsModalDrawerHeaderBackground : OdsModalDrawerHeaderImage, OdsComponentImage<Nothing> {
+class OdsModalDrawerHeaderBackground : OdsModalDrawerHeaderImage, OdsImageBuilder<Nothing> {
 
     /**
      * Creates an instance of [OdsModalDrawerHeaderBackground].

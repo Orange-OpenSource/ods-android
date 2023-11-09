@@ -35,9 +35,9 @@ import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.PreviewParameter
 import com.orange.ods.R
 import com.orange.ods.compose.component.OdsComposable
-import com.orange.ods.compose.component.button.OdsIconButtonIcon
+import com.orange.ods.compose.component.button.OdsIconButtonIconBuilder
 import com.orange.ods.compose.component.button.OdsIconToggleButton
-import com.orange.ods.compose.component.content.OdsComponentImage
+import com.orange.ods.compose.component.content.OdsImageBuilder
 import com.orange.ods.compose.component.utilities.BasicPreviewParameterProvider
 import com.orange.ods.compose.component.utilities.Preview
 import com.orange.ods.compose.component.utilities.UiModePreviews
@@ -50,22 +50,22 @@ import com.orange.ods.extension.orElse
  * An image item contains primary information which is an image. It can also contain secondary information such as text or action. Image items have no more than two
  * actions. They are usually used in grids.
  *
- * @param image [OdsImageItemImage] displayed into the item.
+ * @param image [OdsImageItemImageBuilder] displayed into the item.
  * @param legendAreaDisplayType Controls how the title and the icon are displayed relatively to the image. If set to [OdsImageItemLegendAreaDisplayType.None],
  * no legend area will be displayed.
  * @param modifier [Modifier] applied to the image item.
  * @param title Title displayed into the image item. It is linked to the image and displayed according to the [legendAreaDisplayType] value.
- * @param icon [OdsImageItemIconToggleButton] displayed next to the title.
+ * @param icon [OdsImageItemIconToggleButtonBuilder] displayed next to the title.
  * @param onClick Callback invoked on image item click.
  */
 @Composable
 @OdsComposable
 fun OdsImageItem(
-    image: OdsImageItemImage,
+    image: OdsImageItemImageBuilder,
     legendAreaDisplayType: OdsImageItemLegendAreaDisplayType,
     modifier: Modifier = Modifier,
     title: String? = null,
-    icon: OdsImageItemIconToggleButton? = null,
+    icon: OdsImageItemIconToggleButtonBuilder? = null,
     onClick: (() -> Unit)? = null,
 ) {
     Box(modifier = modifier.run {
@@ -130,14 +130,14 @@ fun OdsImageItem(
 /**
  * An image in an [OdsImageItem].
  */
-class OdsImageItemImage : OdsComponentImage<Nothing> {
+class OdsImageItemImageBuilder : OdsImageBuilder<Nothing> {
 
     /**
-     * Creates an instance of [OdsImageItemImage].
+     * Creates an instance of [OdsImageItemImageBuilder].
      *
      * @param painter The painter to draw.
-     * @param contentDescription The content description associated to this [OdsImageItemImage].
-     * @param contentScale The rule to apply to scale the image in this [OdsImageItemImage], [ContentScale.Crop] by default.
+     * @param contentDescription The content description associated to this [OdsImageItemImageBuilder].
+     * @param contentScale The rule to apply to scale the image in this [OdsImageItemImageBuilder], [ContentScale.Crop] by default.
      */
     constructor(painter: Painter, contentDescription: String, contentScale: ContentScale = ContentScale.Crop) : super(
         painter,
@@ -146,11 +146,11 @@ class OdsImageItemImage : OdsComponentImage<Nothing> {
     )
 
     /**
-     * Creates an instance of [OdsImageItemImage].
+     * Creates an instance of [OdsImageItemImageBuilder].
      *
      * @param imageVector The image vector to draw.
-     * @param contentDescription The content description associated to this [OdsImageItemImage].
-     * @param contentScale The rule to apply to scale the image in this [OdsImageItemImage], [ContentScale.Crop] by default.
+     * @param contentDescription The content description associated to this [OdsImageItemImageBuilder].
+     * @param contentScale The rule to apply to scale the image in this [OdsImageItemImageBuilder], [ContentScale.Crop] by default.
      */
     constructor(imageVector: ImageVector, contentDescription: String, contentScale: ContentScale = ContentScale.Crop) : super(
         imageVector,
@@ -159,11 +159,11 @@ class OdsImageItemImage : OdsComponentImage<Nothing> {
     )
 
     /**
-     * Creates an instance of [OdsImageItemImage].
+     * Creates an instance of [OdsImageItemImageBuilder].
      *
      * @param bitmap The image bitmap to draw.
-     * @param contentDescription The content description associated to this [OdsImageItemImage].
-     * @param contentScale The rule to apply to scale the image in this [OdsImageItemImage], [ContentScale.Crop] by default.
+     * @param contentDescription The content description associated to this [OdsImageItemImageBuilder].
+     * @param contentScale The rule to apply to scale the image in this [OdsImageItemImageBuilder], [ContentScale.Crop] by default.
      */
     constructor(bitmap: ImageBitmap, contentDescription: String, contentScale: ContentScale = ContentScale.Crop) : super(
         bitmap,
@@ -180,11 +180,11 @@ class OdsImageItemImage : OdsComponentImage<Nothing> {
  * @param checkedIcon Icon displayed in front of the [OdsImageItem] when icon is checked.
  * @param uncheckedIcon Icon displayed in front of the [OdsImageItem] when icon is unchecked.
  */
-class OdsImageItemIconToggleButton(
+class OdsImageItemIconToggleButtonBuilder(
     val checked: Boolean,
     val onCheckedChange: (Boolean) -> Unit,
-    val checkedIcon: OdsIconButtonIcon,
-    val uncheckedIcon: OdsIconButtonIcon,
+    val checkedIcon: OdsIconButtonIconBuilder,
+    val uncheckedIcon: OdsIconButtonIconBuilder,
 ) {
     @Composable
     fun Content(displaySurface: OdsDisplaySurface) {
@@ -207,7 +207,7 @@ private fun OdsImageItemLegendArea(
     text: String,
     color: Color,
     displaySurface: OdsDisplaySurface,
-    icon: OdsImageItemIconToggleButton?,
+    icon: OdsImageItemIconToggleButtonBuilder?,
     modifier: Modifier
 ) {
     Text(
@@ -226,12 +226,12 @@ private fun OdsImageItemLegendArea(
 private fun PreviewOdsImageItem(@PreviewParameter(OdsImageItemPreviewParameterProvider::class) parameter: OdsImageItemPreviewParameter) =
     Preview {
         OdsImageItem(
-            image = OdsImageItemImage(painterResource(id = parameter.image), ""),
+            image = OdsImageItemImageBuilder(painterResource(id = parameter.image), ""),
             title = parameter.title,
             legendAreaDisplayType = parameter.type,
-            icon = OdsImageItemIconToggleButton(
-                uncheckedIcon = OdsIconButtonIcon(painterResource(id = parameter.uncheckedIcon), "click to select"),
-                checkedIcon = OdsIconButtonIcon(painterResource(id = parameter.checkedIcon), "click to unselect"),
+            icon = OdsImageItemIconToggleButtonBuilder(
+                uncheckedIcon = OdsIconButtonIconBuilder(painterResource(id = parameter.uncheckedIcon), "click to select"),
+                checkedIcon = OdsIconButtonIconBuilder(painterResource(id = parameter.checkedIcon), "click to unselect"),
                 checked = parameter.checked,
                 onCheckedChange = { parameter.checked },
             )

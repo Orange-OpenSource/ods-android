@@ -42,12 +42,12 @@ import com.orange.ods.compose.theme.OdsTheme
  * Cards contain content and actions about a single subject.
  *
  * @param title Title displayed into the card.
- * @param image [OdsCardImage] displayed into the card.
+ * @param image [OdsCardImageBuilder] displayed into the card.
  * @param modifier [Modifier] applied to the layout of the card.
  * @param subtitle Subtitle displayed into the card.
  * @param text Text displayed into the card.
- * @param firstButton First [OdsCardButton] displayed into the card.
- * @param secondButton Second [OdsCardButton] displayed into the card.
+ * @param firstButton First [OdsCardButtonBuilder] displayed into the card.
+ * @param secondButton Second [OdsCardButtonBuilder] displayed into the card.
  * @param imagePosition Position of the image within the card, it can be set to [OdsHorizontalCardImagePosition.Start] or [OdsHorizontalCardImagePosition.End]. [OdsHorizontalCardImagePosition.Start] by default.
  * @param divider Controls the divider display. If `true`, it will be displayed between the card content and the action buttons.
  * @param onClick Callback invoked on card click.
@@ -56,12 +56,12 @@ import com.orange.ods.compose.theme.OdsTheme
 @OdsComposable
 fun OdsHorizontalCard(
     title: String,
-    image: OdsCardImage,
+    image: OdsCardImageBuilder,
     modifier: Modifier = Modifier,
     subtitle: String? = null,
     text: String? = null,
-    firstButton: OdsCardButton? = null,
-    secondButton: OdsCardButton? = null,
+    firstButton: OdsCardButtonBuilder? = null,
+    secondButton: OdsCardButtonBuilder? = null,
     imagePosition: OdsHorizontalCardImagePosition = OdsHorizontalCardImagePosition.Start,
     divider: Boolean = true,
     onClick: (() -> Unit)? = null,
@@ -192,9 +192,9 @@ private fun PreviewOdsHorizontalCard(@PreviewParameter(OdsHorizontalCardPreviewP
             title = "Title",
             subtitle = parameter.subtitle,
             text = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed non risus. Suspendisse lectus tortor, dignissim sit amet, adipiscing nec, ultricies sed, dolor.",
-            firstButton = parameter.firstButtonText?.let { OdsCardButton(it) {} },
-            secondButton = parameter.secondButtonText?.let { OdsCardButton(it) {} },
-            image = OdsCardImage(painterResource(id = R.drawable.placeholder), ""),
+            firstButton = parameter.firstButtonText?.let { OdsCardButtonBuilder(it) {} },
+            secondButton = parameter.secondButtonText?.let { OdsCardButtonBuilder(it) {} },
+            image = OdsCardImageBuilder(painterResource(id = R.drawable.placeholder), ""),
             imagePosition = parameter.imagePosition,
             divider = parameter.dividerEnabled
         )

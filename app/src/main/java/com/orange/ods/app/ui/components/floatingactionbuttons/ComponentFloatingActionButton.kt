@@ -34,11 +34,11 @@ import com.orange.ods.app.ui.utilities.composable.Subtitle
 import com.orange.ods.compose.OdsComposable
 import com.orange.ods.compose.component.button.OdsExtendedFloatingActionButton
 import com.orange.ods.compose.component.button.OdsFloatingActionButton
-import com.orange.ods.compose.component.button.OdsFloatingActionButtonIcon
-import com.orange.ods.compose.component.chip.OdsChoiceChip
+import com.orange.ods.compose.component.button.OdsFloatingActionButtonIconBuilder
+import com.orange.ods.compose.component.chip.OdsChoiceChipBuilder
 import com.orange.ods.compose.component.chip.OdsChoiceChipsFlowRow
 import com.orange.ods.compose.component.list.OdsListItem
-import com.orange.ods.compose.component.list.OdsListItemTrailingSwitch
+import com.orange.ods.compose.component.list.OdsListItemTrailingSwitchBuilder
 
 @OptIn(ExperimentalMaterialApi::class)
 @Composable
@@ -72,7 +72,7 @@ fun ComponentFloatingActionButton() {
                             clickOnElement(context, context.getString(R.string.component_floating_action_button))
                         },
                         text = stringResource(id = R.string.component_floating_action_button_add),
-                        icon = OdsFloatingActionButtonIcon(painterResource(id = R.drawable.ic_plus), ""),
+                        icon = OdsFloatingActionButtonIconBuilder(painterResource(id = R.drawable.ic_plus), ""),
                         modifier = modifier
                     )
                 } else {
@@ -81,7 +81,7 @@ fun ComponentFloatingActionButton() {
                             clickOnElement(context, context.getString(R.string.component_floating_action_button))
                         },
                         mini = size.value == FabCustomizationState.Size.Mini,
-                        icon = OdsFloatingActionButtonIcon(
+                        icon = OdsFloatingActionButtonIconBuilder(
                             painterResource(id = R.drawable.ic_plus),
                             stringResource(id = R.string.component_floating_action_button_add)
                         ),
@@ -97,20 +97,23 @@ fun ComponentFloatingActionButton() {
                     onValueChange = { value -> size.value = value },
                     modifier = Modifier.padding(horizontal = dimensionResource(id = com.orange.ods.R.dimen.spacing_m)),
                     chips = listOf(
-                        OdsChoiceChip(
+                        OdsChoiceChipBuilder(
                             text = stringResource(id = R.string.component_floating_action_button_size_default),
                             value = FabCustomizationState.Size.Default
                         ),
-                        OdsChoiceChip(text = stringResource(id = R.string.component_floating_action_button_size_mini), value = FabCustomizationState.Size.Mini)
+                        OdsChoiceChipBuilder(
+                            text = stringResource(id = R.string.component_floating_action_button_size_mini),
+                            value = FabCustomizationState.Size.Mini
+                        )
                     )
                 )
                 OdsListItem(
                     text = stringResource(id = R.string.component_element_text),
-                    trailing = OdsListItemTrailingSwitch(text.value, { text.value = it }, isTextEnabled)
+                    trailing = OdsListItemTrailingSwitchBuilder(text.value, { text.value = it }, isTextEnabled)
                 )
                 OdsListItem(
                     text = stringResource(id = R.string.component_floating_action_button_full_screen_width),
-                    trailing = OdsListItemTrailingSwitch(fullScreenWidth.value, { fullScreenWidth.value = it }, isFullScreenWidthEnabled)
+                    trailing = OdsListItemTrailingSwitchBuilder(fullScreenWidth.value, { fullScreenWidth.value = it }, isFullScreenWidthEnabled)
                 )
             }) {
             Column(modifier = Modifier.verticalScroll(rememberScrollState())) {
@@ -122,7 +125,7 @@ fun ComponentFloatingActionButton() {
                         name = usedComponentName,
                         exhaustiveParameters = false,
                         parameters = {
-                            classInstance<OdsFloatingActionButtonIcon>("icon") {
+                            classInstance<OdsFloatingActionButtonIconBuilder>("icon") {
                                 painter()
                                 contentDescription("")
                             }

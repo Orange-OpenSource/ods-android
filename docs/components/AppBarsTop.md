@@ -43,13 +43,13 @@ Here is an example of use:
 ```kotlin
 OdsTopAppBar(
     title = "Title",
-    navigationIcon = OdsTopAppBarNavigationIcon(
+    navigationIcon = OdsTopAppBarNavigationIconBuilder(
         painter = painterResource(id = R.drawable.ic_back),
         contentDescription = "content description",
         onClick = { doSomething() }
     ),
     actions = listOf(
-        OdsTopAppBarActionButton(
+        OdsTopAppBarActionButtonBuilder(
             painter = painterResource(id = R.drawable.ic_share),
             contentDescription = "content description",
             onClick = { doSomething() }
@@ -57,7 +57,7 @@ OdsTopAppBar(
         // ...
     ),
     overflowMenuActions = listOf(
-        OdsTopAppBarOverflowMenuActionItem(
+        OdsTopAppBarOverflowMenuActionItemBuilder(
             text = "Text",
             onClick = { doSomething() }
         ),
@@ -74,9 +74,9 @@ Parameter | Default&nbsp;value | Description
 -- | -- | --
 `title: String` | | Title to be displayed in the center of the top app bar
 `modifier: Modifier` | `Modifier` |`Modifier` to be applied to the top app bar
-`navigationIcon: OdsTopAppBarNavigationIcon?` | `null` | Icon to be displayed at the start of the top app bar
-`actions: List<OdsTopAppBarActionButton>` | `emptyList()` | Actions to be displayed at the end of the top app bar. The default layout here is a `Row`, so icons inside will be placed horizontally.
-`overflowMenuActions: List<OdsTopAppBarOverflowMenuActionItem>` | `emptyList()` | Actions to be displayed in the overflow menu
+`navigationIcon: OdsTopAppBarNavigationIconBuilder?` | `null` | Icon to be displayed at the start of the top app bar
+`actions: List<OdsTopAppBarActionButtonBuilder>` | `emptyList()` | Actions to be displayed at the end of the top app bar. The default layout here is a `Row`, so icons inside will be placed horizontally.
+`overflowMenuActions: List<OdsTopAppBarOverflowMenuActionItemBuilder>` | `emptyList()` | Actions to be displayed in the overflow menu
 `elevated: Boolean` | `true` | Controls the elevation of the top app bar: `true` to set an elevation to the top app bar (a shadow is displayed below), `false` otherwise
 {:.table}
 
@@ -95,13 +95,13 @@ Then you can add `OdsLargeTopAppBar` composable to your Scaffold `topBar`:
 ```kotlin
 OdsLargeTopAppBar(
     title = "Title",
-    navigationIcon = OdsTopAppBarNavigationIcon(
+    navigationIcon = OdsTopAppBarNavigationIconBuilder(
         painter = painterResource(id = R.drawable.ic_back),
         contentDescription = "content description",
         onClick = { doSomething() }
     ),
     actions = listOf(
-        OdsTopAppBarActionButton(
+        OdsTopAppBarActionButtonBuilder(
             painter = painterResource(id = R.drawable.ic_share),
             contentDescription = "content description",
             onClick = { doSomething() }
@@ -109,7 +109,7 @@ OdsLargeTopAppBar(
         // ...
     ),
     overflowMenuActions = listOf(
-        OdsTopAppBarOverflowMenuActionItem(
+        OdsTopAppBarOverflowMenuActionItemBuilder(
             text = "Text",
             onClick = { doSomething() }
         ),
@@ -150,8 +150,8 @@ Parameter | Default&nbsp;value | Description
 -- | -- | --
 `title: String` | | Title displayed in the center of the top app bar
 `modifier: Modifier` | `Modifier` |`Modifier` applied to the top app bar
-`navigationIcon: OdsTopAppBarNavigationIcon?` | `null` | Icon displayed at the start of the top app bar
-`actions: List<OdsTopAppBarActionButton>` | `emptyList()` | Actions displayed at the end of the top app bar. The default layout here is a `Row`, so icons inside will be placed horizontally.
-`overflowMenuActions: List<OdsTopAppBarOverflowMenuActionItem>` | `emptyList()` | Actions displayed in the overflow menu
+`navigationIcon: OdsTopAppBarNavigationIconBuilder?` | `null` | Icon displayed at the start of the top app bar
+`actions: List<OdsTopAppBarActionButtonBuilder>` | `emptyList()` | Actions displayed at the end of the top app bar. The default layout here is a `Row`, so icons inside will be placed horizontally.
+`overflowMenuActions: List<OdsTopAppBarOverflowMenuActionItemBuilder>` | `emptyList()` | Actions displayed in the overflow menu
 `scrollBehavior: TopAppBarScrollBehavior?` | `null` | `TopAppBarScrollBehavior` attached to the top app bar
 {:.table}

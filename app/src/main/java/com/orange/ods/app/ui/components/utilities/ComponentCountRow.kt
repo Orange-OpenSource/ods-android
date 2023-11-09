@@ -23,7 +23,7 @@ import androidx.compose.ui.semantics.liveRegion
 import androidx.compose.ui.semantics.semantics
 import com.orange.ods.app.R
 import com.orange.ods.compose.component.button.OdsIconButton
-import com.orange.ods.compose.component.button.OdsIconButtonIcon
+import com.orange.ods.compose.component.button.OdsIconButtonIconBuilder
 import com.orange.ods.compose.text.OdsTextSubtitle1
 
 @Composable
@@ -44,7 +44,7 @@ fun ComponentCountRow(
         OdsTextSubtitle1(modifier = Modifier.weight(1f), text = title)
         OdsIconButton(
             onClick = { count.value-- },
-            icon = OdsIconButtonIcon(painterResource(id = R.drawable.ic_remove), minusIconContentDescription),
+            icon = OdsIconButtonIconBuilder(painterResource(id = R.drawable.ic_remove), minusIconContentDescription),
             enabled = count.value > minCount
         )
 
@@ -54,7 +54,7 @@ fun ComponentCountRow(
         })
         OdsIconButton(
             onClick = { count.value++ },
-            icon = OdsIconButtonIcon(painterResource(id = R.drawable.ic_add), plusIconContentDescription),
+            icon = OdsIconButtonIconBuilder(painterResource(id = R.drawable.ic_add), plusIconContentDescription),
             enabled = count.value < maxCount
         )
     }

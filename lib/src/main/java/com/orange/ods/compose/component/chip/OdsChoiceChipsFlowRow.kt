@@ -32,12 +32,12 @@ import com.orange.ods.compose.component.utilities.selectionStateDescription
 import com.orange.ods.compose.theme.OdsTheme
 
 /**
- * Displays a full width [FlowRow] containing customized [OdsChoiceChip]s.
+ * Displays a full width [FlowRow] containing customized [OdsChoiceChipBuilder]s.
  * Only one chip can be selected at a time. When the OdsChoiceChipsFlowRow value changes, [onValueChange] method is invoked.
  *
- * Note that [OdsChoiceChip] are displayed outlined or filled according to your [OdsTheme] component configuration, outlined by default.
+ * Note that [OdsChoiceChipBuilder] are displayed outlined or filled according to your [OdsTheme] component configuration, outlined by default.
  *
- * @param chips The list of [OdsChoiceChip] displayed into the chips flow row.
+ * @param chips The list of [OdsChoiceChipBuilder] displayed into the chips flow row.
  * @param value The initial value of the choice chips flow row.
  * @param onValueChange Callback invoked when the value changes. The new value is provided as parameter.
  * @param modifier [Modifier] applied to the chips flow row.
@@ -46,7 +46,7 @@ import com.orange.ods.compose.theme.OdsTheme
 @Composable
 @OdsComposable
 fun <T> OdsChoiceChipsFlowRow(
-    chips: List<OdsChoiceChip<T>>,
+    chips: List<OdsChoiceChipBuilder<T>>,
     value: T,
     onValueChange: (value: T) -> Unit,
     modifier: Modifier = Modifier
@@ -76,7 +76,7 @@ fun <T> OdsChoiceChipsFlowRow(
  * @param enabled If set to false, the chip is no more clickable and appears as disabled. True by default.
  * @param semantics The semantics applied on this choice chip.
  */
-class OdsChoiceChip<T>(
+class OdsChoiceChipBuilder<T>(
     val text: String,
     val value: T,
     val enabled: Boolean = true,
@@ -103,10 +103,10 @@ class OdsChoiceChip<T>(
 @Composable
 private fun PreviewOdsChoiceChipsFlowRow() = Preview {
     val choiceChips = listOf(
-        OdsChoiceChip(text = "First", value = 1),
-        OdsChoiceChip("Second", value = 2),
-        OdsChoiceChip("Third", value = 3, enabled = false),
-        OdsChoiceChip("Fourth", value = 4)
+        OdsChoiceChipBuilder(text = "First", value = 1),
+        OdsChoiceChipBuilder("Second", value = 2),
+        OdsChoiceChipBuilder("Third", value = 3, enabled = false),
+        OdsChoiceChipBuilder("Fourth", value = 4)
     )
 
     val selectedChip = remember { mutableStateOf(choiceChips.first().value) }

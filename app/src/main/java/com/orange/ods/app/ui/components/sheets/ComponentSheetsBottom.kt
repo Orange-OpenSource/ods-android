@@ -28,10 +28,10 @@ import com.orange.ods.app.ui.components.utilities.ComponentCustomizationBottomSh
 import com.orange.ods.app.ui.utilities.code.CodeImplementationColumn
 import com.orange.ods.app.ui.utilities.code.FunctionCallCode
 import com.orange.ods.compose.OdsComposable
-import com.orange.ods.compose.component.chip.OdsChoiceChip
+import com.orange.ods.compose.component.chip.OdsChoiceChipBuilder
 import com.orange.ods.compose.component.chip.OdsChoiceChipsFlowRow
 import com.orange.ods.compose.component.list.OdsListItem
-import com.orange.ods.compose.component.list.OdsListItemIcon
+import com.orange.ods.compose.component.list.OdsListItemIconBuilder
 import com.orange.ods.compose.component.list.OdsListItemIconType
 import com.orange.ods.compose.text.OdsTextBody1
 import com.orange.ods.compose.text.OdsTextSubtitle1
@@ -54,7 +54,7 @@ fun ComponentSheetsBottom() {
                     OdsListItem(
                         modifier = Modifier.alpha(if (isEmpty) 0.0f else 1.0f),
                         icon = recipe.iconResId?.let { iconRes ->
-                            OdsListItemIcon(OdsListItemIconType.Icon, painterResource(id = iconRes), "")
+                            OdsListItemIconBuilder(OdsListItemIconType.Icon, painterResource(id = iconRes), "")
                         },
                         text = recipe.title
                     )
@@ -77,8 +77,11 @@ fun ComponentSheetsBottom() {
                         onValueChange = { value -> content.value = value },
                         modifier = Modifier.padding(horizontal = dimensionResource(id = com.orange.ods.R.dimen.spacing_m)),
                         chips = listOf(
-                            OdsChoiceChip(text = stringResource(id = R.string.component_element_empty), value = SheetsBottomCustomizationState.Content.Empty),
-                            OdsChoiceChip(
+                            OdsChoiceChipBuilder(
+                                text = stringResource(id = R.string.component_element_empty),
+                                value = SheetsBottomCustomizationState.Content.Empty
+                            ),
+                            OdsChoiceChipBuilder(
                                 text = stringResource(id = R.string.component_element_example),
                                 value = SheetsBottomCustomizationState.Content.Example
                             )

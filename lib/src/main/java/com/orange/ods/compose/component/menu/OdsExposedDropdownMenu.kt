@@ -24,9 +24,9 @@ import androidx.compose.ui.semantics.contentDescription
 import androidx.compose.ui.semantics.stateDescription
 import androidx.compose.ui.tooling.preview.PreviewParameter
 import com.orange.ods.compose.component.OdsComposable
-import com.orange.ods.compose.component.textfield.OdsExposedDropdownMenuTrailing
+import com.orange.ods.compose.component.textfield.OdsExposedDropdownMenuTrailingBuilder
 import com.orange.ods.compose.component.textfield.OdsTextField
-import com.orange.ods.compose.component.textfield.OdsTextFieldLeadingIcon
+import com.orange.ods.compose.component.textfield.OdsTextFieldLeadingIconBuilder
 import com.orange.ods.compose.component.utilities.BasicPreviewParameterProvider
 import com.orange.ods.compose.component.utilities.Preview
 import com.orange.ods.compose.component.utilities.UiModePreviews
@@ -75,8 +75,8 @@ fun OdsExposedDropdownMenu(
             onValueChange = {},
             readOnly = true,
             label = label,
-            leadingIcon = selectedItem.value.iconResId?.let { OdsTextFieldLeadingIcon(painterResource(id = it), "") },
-            trailing = OdsExposedDropdownMenuTrailing(expanded = if (enabled) expanded else false),
+            leadingIcon = selectedItem.value.iconResId?.let { OdsTextFieldLeadingIconBuilder(painterResource(id = it), "") },
+            trailing = OdsExposedDropdownMenuTrailingBuilder(expanded = if (enabled) expanded else false),
             enabled = enabled
         )
         OdsDropdownMenu(
@@ -84,7 +84,7 @@ fun OdsExposedDropdownMenu(
             onDismissRequest = { expanded = false },
             modifier = Modifier.exposedDropdownSize(),
             items = items.map { item ->
-                OdsDropdownMenuItem(text = item.label, icon = item.iconResId?.let { painterResource(id = it) }) {
+                OdsDropdownMenuItemBuilder(text = item.label, icon = item.iconResId?.let { painterResource(id = it) }) {
                     selectedItem.value = item
                     expanded = false
                     onItemSelectionChange(item)

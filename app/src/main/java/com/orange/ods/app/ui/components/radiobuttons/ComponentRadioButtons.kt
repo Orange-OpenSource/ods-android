@@ -32,8 +32,8 @@ import com.orange.ods.app.ui.utilities.code.CodeImplementationColumn
 import com.orange.ods.app.ui.utilities.code.FunctionCallCode
 import com.orange.ods.compose.OdsComposable
 import com.orange.ods.compose.component.list.OdsListItem
-import com.orange.ods.compose.component.list.OdsListItemTrailingRadioButton
-import com.orange.ods.compose.component.list.OdsListItemTrailingSwitch
+import com.orange.ods.compose.component.list.OdsListItemTrailingRadioButtonBuilder
+import com.orange.ods.compose.component.list.OdsListItemTrailingSwitchBuilder
 
 @OptIn(ExperimentalMaterialApi::class)
 @Composable
@@ -45,7 +45,7 @@ fun ComponentRadioButtons() {
         bottomSheetContent = {
             OdsListItem(
                 text = stringResource(id = R.string.component_state_enabled),
-                trailing = OdsListItemTrailingSwitch(enabled, { enabled = it })
+                trailing = OdsListItemTrailingSwitchBuilder(enabled, { enabled = it })
             )
         }) {
         Column(
@@ -59,7 +59,7 @@ fun ComponentRadioButtons() {
                 recipes.forEach { recipe ->
                     OdsListItem(
                         text = recipe.title,
-                        trailing = OdsListItemTrailingRadioButton(selectedRecipe == recipe, { selectedRecipe = recipe }, enabled)
+                        trailing = OdsListItemTrailingRadioButtonBuilder(selectedRecipe == recipe, { selectedRecipe = recipe }, enabled)
                     )
                 }
             }

@@ -29,7 +29,7 @@ description: A floating action button (FAB) represents the primary action of a s
 
 Please follow [accessibility criteria for development](https://a11y-guidelines.orange.com/en/mobile/android/development/).
 
-The `OdsFloatingActionButtonIcon` used in Floating Action Buttons APIs force the developers to set a content description to the FABs so that
+The `OdsFloatingActionButtonIconBuilder` used in Floating Action Buttons APIs force the developers to set a content description to the FABs so that
 screen readers like TalkBack are able to announce their purpose or action.
 
 Text rendered in an extended FAB is automatically provided to accessibility services, so additional content labels are usually unnecessary.
@@ -63,7 +63,7 @@ OdsFloatingActionButton(
 
 Parameter | Default&nbsp;value | Description
 -- | -- | --
-`icon: OdsFloatingActionButtonIcon` | | Icon used into the FAB
+`icon: OdsFloatingActionButtonIconBuilder` | | Icon used into the FAB
 `onClick: () -> Unit` | | Callback invoked on FAB click
 `modifier: Modifier` | `Modifier` | `Modifier` applied to the FAB
 `mini: Boolean` | `false` | Controls the size of the FAB. If `true`, the size of the FAB will be 40dp, otherwise the default size will be used.
@@ -85,7 +85,7 @@ To display a mini FAB in your composable screen use `OdsFloatingActionButton`
 OdsFloatingActionButton(
     onClick = { doSomething() },
     mini = true,
-    icon = OdsFloatingActionButtonIcon(
+    icon = OdsFloatingActionButtonIconBuilder(
         painterResource(id = R.drawable.ic_plus),
         stringResource(id = R.string.add)
     ),
@@ -111,7 +111,7 @@ To display an extended FAB, use `OdsExtendedFloatingActionButton`:
 OdsExtendedFloatingActionButton(
     onClick = { doSomething() },
     text = stringResource(id = R.string.add),
-    icon = OdsFloatingActionButtonIcon(painterResource(id = R.drawable.ic_plus), ""),
+    icon = OdsFloatingActionButtonIconBuilder(painterResource(id = R.drawable.ic_plus), ""),
     modifier = modifier
 )
 ```
@@ -120,7 +120,7 @@ OdsExtendedFloatingActionButton(
 
 Parameter | Default&nbsp;value | Description
 -- | -- | --
-`icon: OdsFloatingActionButtonIcon` | | Icon used into the FAB
+`icon: OdsFloatingActionButtonIconBuilder` | | Icon used into the FAB
 `onClick: () -> Unit` | | Callback invoked on FAB click
 `text: String` | | Text displayed into the FAB
 `modifier: Modifier` | `Modifier` | `Modifier` applied to the FAB

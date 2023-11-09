@@ -40,7 +40,7 @@ import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import com.orange.ods.R
 import com.orange.ods.compose.component.OdsComposable
-import com.orange.ods.compose.component.content.OdsComponentIcon
+import com.orange.ods.compose.component.content.OdsIconBuilder
 import com.orange.ods.compose.component.utilities.BasicPreviewParameterProvider
 import com.orange.ods.compose.component.utilities.Preview
 import com.orange.ods.compose.component.utilities.UiModePreviews
@@ -71,8 +71,8 @@ private const val ActiveTickColorAlpha = 0.4f
  * behave as a continuous slider and allow to choose any value from the range specified. Must not be negative.
  * @param onValueChangeFinished Callback invoked when value change has ended. This callback shouldn't be used to update
  * the slider value (use [onValueChange] for that), but rather to know when the user has completed selecting a new value by ending a drag or a click.
- * @param startIcon [OdsSliderIcon] displayed at the start of the slider.
- * @param endIcon [OdsSliderIcon] displayed at the end of the slider.
+ * @param startIcon [OdsSliderIconBuilder] displayed at the start of the slider.
+ * @param endIcon [OdsSliderIconBuilder] displayed at the end of the slider.
  */
 @Composable
 @OdsComposable
@@ -84,8 +84,8 @@ fun OdsSlider(
     valueRange: ClosedFloatingPointRange<Float> = 0f..1f,
     steps: Int = 0,
     onValueChangeFinished: (() -> Unit)? = null,
-    startIcon: OdsSliderIcon? = null,
-    endIcon: OdsSliderIcon? = null
+    startIcon: OdsSliderIconBuilder? = null,
+    endIcon: OdsSliderIconBuilder? = null
 ) {
     Row(
         modifier = modifier,
@@ -134,8 +134,8 @@ fun OdsSlider(
  * behave as a continuous slider and allow to choose any value from the range specified. Must not be negative.
  * @param onValueChangeFinished Callback invoked when value change has ended. This callback shouldn't be used to update
  * the slider value (use [onValueChange] for that), but rather to know when the user has completed selecting a new value by ending a drag or a click.
- * @param startIcon [OdsSliderIcon] displayed at the start of the slider.
- * @param endIcon [OdsSliderIcon] displayed at the end of the slider.
+ * @param startIcon [OdsSliderIconBuilder] displayed at the start of the slider.
+ * @param endIcon [OdsSliderIconBuilder] displayed at the end of the slider.
  */
 @Composable
 @OdsComposable
@@ -147,8 +147,8 @@ fun OdsSliderLockups(
     valueRange: ClosedFloatingPointRange<Float> = 0f..1f,
     steps: Int = 0,
     onValueChangeFinished: (() -> Unit)? = null,
-    startIcon: OdsSliderIcon? = null,
-    endIcon: OdsSliderIcon? = null
+    startIcon: OdsSliderIconBuilder? = null,
+    endIcon: OdsSliderIconBuilder? = null
 ) {
     val labelMinWidth = 32.dp
     val sideIconBottomPadding = 12.dp
@@ -205,29 +205,29 @@ fun OdsSliderLockups(
 /**
  * An icon in an [OdsSlider] or an [OdsSliderLockups].
  */
-class OdsSliderIcon : OdsComponentIcon<Nothing> {
+class OdsSliderIconBuilder : OdsIconBuilder<Nothing> {
 
     /**
-     * Creates an instance of [OdsSliderIcon].
+     * Creates an instance of [OdsSliderIconBuilder].
      *
      * @param painter Painter of the icon.
-     * @param contentDescription The content description associated to this [OdsSliderIcon].
+     * @param contentDescription The content description associated to this [OdsSliderIconBuilder].
      */
     constructor(painter: Painter, contentDescription: String) : super(painter, contentDescription)
 
     /**
-     * Creates an instance of [OdsSliderIcon].
+     * Creates an instance of [OdsSliderIconBuilder].
      *
      * @param imageVector Image vector of the icon.
-     * @param contentDescription The content description associated to this [OdsSliderIcon].
+     * @param contentDescription The content description associated to this [OdsSliderIconBuilder].
      */
     constructor(imageVector: ImageVector, contentDescription: String) : super(imageVector, contentDescription)
 
     /**
-     * Creates an instance of [OdsSliderIcon].
+     * Creates an instance of [OdsSliderIconBuilder].
      *
      * @param bitmap Image bitmap of the icon.
-     * @param contentDescription The content description associated to this [OdsSliderIcon].
+     * @param contentDescription The content description associated to this [OdsSliderIconBuilder].
      */
     constructor(bitmap: ImageBitmap, contentDescription: String) : super(bitmap, contentDescription)
 
@@ -285,8 +285,8 @@ private fun PreviewOdsSlider(@PreviewParameter(OdsSliderPreviewParameterProvider
         value = sliderValue.value,
         onValueChange = { sliderValue.value = it },
         steps = 9,
-        startIcon = if (withIcons) OdsSliderIcon(painterResource(id = R.drawable.ic_crosset_out_eye), "") else null,
-        endIcon = if (withIcons) OdsSliderIcon(painterResource(id = R.drawable.ic_eye), "") else null,
+        startIcon = if (withIcons) OdsSliderIconBuilder(painterResource(id = R.drawable.ic_crosset_out_eye), "") else null,
+        endIcon = if (withIcons) OdsSliderIconBuilder(painterResource(id = R.drawable.ic_eye), "") else null,
     )
 }
 
@@ -298,8 +298,8 @@ private fun PreviewOdsSliderLockups(@PreviewParameter(OdsSliderPreviewParameterP
         value = value,
         valueRange = 0f..100f,
         onValueChange = { value = it },
-        startIcon = if (withIcons) OdsSliderIcon(painterResource(id = R.drawable.ic_crosset_out_eye), "") else null,
-        endIcon = if (withIcons) OdsSliderIcon(painterResource(id = R.drawable.ic_eye), "") else null,
+        startIcon = if (withIcons) OdsSliderIconBuilder(painterResource(id = R.drawable.ic_crosset_out_eye), "") else null,
+        endIcon = if (withIcons) OdsSliderIconBuilder(painterResource(id = R.drawable.ic_eye), "") else null,
     )
 }
 

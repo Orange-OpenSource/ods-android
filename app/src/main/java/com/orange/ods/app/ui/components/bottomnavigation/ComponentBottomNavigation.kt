@@ -45,8 +45,8 @@ import com.orange.ods.app.ui.utilities.code.XmlViewTag
 import com.orange.ods.app.ui.utilities.composable.TechnicalText
 import com.orange.ods.compose.OdsComposable
 import com.orange.ods.compose.component.bottomnavigation.OdsBottomNavigation
-import com.orange.ods.compose.component.bottomnavigation.OdsBottomNavigationItem
-import com.orange.ods.compose.component.bottomnavigation.OdsBottomNavigationItemIcon
+import com.orange.ods.compose.component.bottomnavigation.OdsBottomNavigationItemBuilder
+import com.orange.ods.compose.component.bottomnavigation.OdsBottomNavigationItemIconBuilder
 import com.orange.ods.compose.text.OdsTextBody2
 import com.orange.ods.xml.component.bottomnavigation.OdsBottomNavigation
 
@@ -65,8 +65,8 @@ fun ComponentBottomNavigation() {
 
     val bottomNavigationItems = navigationItems.take(selectedNavigationItemCount.value).map { item ->
         val label = stringResource(id = item.textResId)
-        OdsBottomNavigationItem(
-            icon = OdsBottomNavigationItemIcon(
+        OdsBottomNavigationItemBuilder(
+            icon = OdsBottomNavigationItemIconBuilder(
                 painter = painterResource(id = item.iconResId),
                 contentDescription = ""
             ),
@@ -129,7 +129,7 @@ fun ComponentBottomNavigation() {
                         TechnicalText(text = "binding.odsBottomNavigation.items = listOf(")
                         IndentCodeColumn {
                             navigationItems.take(selectedNavigationItemCount.value).forEach { item ->
-                                FunctionCallCode(name = OdsBottomNavigationItem::class.simpleName.orEmpty(), trailingComma = true, parameters = {
+                                FunctionCallCode(name = OdsBottomNavigationItemBuilder::class.simpleName.orEmpty(), trailingComma = true, parameters = {
                                     navigationItemParameters(context, item, selectedNavigationItem.value)
                                 })
                             }
@@ -143,7 +143,7 @@ fun ComponentBottomNavigation() {
                         parameters = {
                             list("items") {
                                 navigationItems.take(selectedNavigationItemCount.value).forEach { item ->
-                                    classInstance<OdsBottomNavigationItem> {
+                                    classInstance<OdsBottomNavigationItemBuilder> {
                                         navigationItemParameters(context, item, selectedNavigationItem.value)
                                     }
                                 }
@@ -161,7 +161,7 @@ private fun ParametersBuilder.navigationItemParameters(
     item: NavigationItem,
     selectedNavigationItem: NavigationItem
 ) {
-    classInstance<OdsBottomNavigationItemIcon>("icon") {
+    classInstance<OdsBottomNavigationItemIconBuilder>("icon") {
         painter()
         contentDescription("")
     }

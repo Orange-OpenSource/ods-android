@@ -37,7 +37,7 @@ import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.PreviewParameter
 import com.orange.ods.R
 import com.orange.ods.compose.component.OdsComposable
-import com.orange.ods.compose.component.content.OdsComponentIcon
+import com.orange.ods.compose.component.content.OdsIconBuilder
 import com.orange.ods.compose.component.utilities.BasicPreviewParameterProvider
 import com.orange.ods.compose.component.utilities.Preview
 import com.orange.ods.compose.component.utilities.UiModePreviews
@@ -64,7 +64,7 @@ fun OdsLinearProgressIndicator(
     modifier: Modifier = Modifier,
     progress: Float? = null,
     label: String? = null,
-    icon: OdsLinearProgressIndicatorIcon? = null,
+    icon: OdsLinearProgressIndicatorIconBuilder? = null,
     showCurrentValue: Boolean = false
 ) {
     Column(
@@ -116,29 +116,29 @@ fun OdsLinearProgressIndicator(
  * An icon in an [OdsLinearProgressIndicator].
  * It is a non-clickable button.
  */
-class OdsLinearProgressIndicatorIcon : OdsComponentIcon<Nothing> {
+class OdsLinearProgressIndicatorIconBuilder : OdsIconBuilder<Nothing> {
 
     /**
-     * Creates an instance of [OdsLinearProgressIndicatorIcon].
+     * Creates an instance of [OdsLinearProgressIndicatorIconBuilder].
      *
      * @param painter Painter of the icon.
-     * @param contentDescription The content description associated to this [OdsLinearProgressIndicatorIcon].
+     * @param contentDescription The content description associated to this [OdsLinearProgressIndicatorIconBuilder].
      */
     constructor(painter: Painter, contentDescription: String) : super(painter, contentDescription)
 
     /**
-     * Creates an instance of [OdsLinearProgressIndicatorIcon].
+     * Creates an instance of [OdsLinearProgressIndicatorIconBuilder].
      *
      * @param imageVector Image vector of the icon.
-     * @param contentDescription The content description associated to this [OdsLinearProgressIndicatorIcon].
+     * @param contentDescription The content description associated to this [OdsLinearProgressIndicatorIconBuilder].
      */
     constructor(imageVector: ImageVector, contentDescription: String) : super(imageVector, contentDescription)
 
     /**
-     * Creates an instance of [OdsLinearProgressIndicatorIcon].
+     * Creates an instance of [OdsLinearProgressIndicatorIconBuilder].
      *
      * @param bitmap Image bitmap of the icon.
-     * @param contentDescription The content description associated to this [OdsLinearProgressIndicatorIcon].
+     * @param contentDescription The content description associated to this [OdsLinearProgressIndicatorIconBuilder].
      */
     constructor(bitmap: ImageBitmap, contentDescription: String) : super(bitmap, contentDescription)
 
@@ -155,7 +155,7 @@ private fun PreviewOdsLinearProgressIndicator(@PreviewParameter(OdsLinearProgres
         with(parameter) {
             OdsLinearProgressIndicator(
                 progress = progress,
-                icon = iconRes?.let { OdsLinearProgressIndicatorIcon(painterResource(id = it), "") },
+                icon = iconRes?.let { OdsLinearProgressIndicatorIconBuilder(painterResource(id = it), "") },
                 label = label,
                 showCurrentValue = showCurrentValue
             )

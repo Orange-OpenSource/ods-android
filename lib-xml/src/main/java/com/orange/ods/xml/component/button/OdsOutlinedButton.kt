@@ -20,7 +20,7 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
 import androidx.core.content.withStyledAttributes
 import com.google.accompanist.drawablepainter.rememberDrawablePainter
-import com.orange.ods.compose.component.button.OdsButtonIcon
+import com.orange.ods.compose.component.button.OdsButtonIconBuilder
 import com.orange.ods.compose.component.button.OdsOutlinedButton
 import com.orange.ods.compose.theme.OdsDisplaySurface
 import com.orange.ods.xml.R
@@ -49,7 +49,7 @@ class OdsOutlinedButton @JvmOverloads constructor(context: Context, attrs: Attri
         OdsOutlinedButton(
             text = text,
             onClick = onClick,
-            icon = icon?.let { OdsButtonIcon(rememberDrawablePainter(drawable = it)) },
+            icon = icon?.let { OdsButtonIconBuilder(rememberDrawablePainter(drawable = it)) },
             enabled = isEnabled,
             displaySurface = displaySurface
         )

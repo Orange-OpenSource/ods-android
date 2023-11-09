@@ -21,32 +21,32 @@ import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.unit.dp
 
-abstract class OdsComponentCircularImage internal constructor(
+abstract class OdsCircularImageBuilder internal constructor(
     graphicsObject: Any,
     contentDescription: String
-) : OdsComponentImage<Nothing>(graphicsObject, contentDescription, contentScale = ContentScale.Crop) {
+) : OdsImageBuilder<Nothing>(graphicsObject, contentDescription, contentScale = ContentScale.Crop) {
 
     /**
-     * Creates an instance of [OdsComponentCircularImage].
+     * Creates an instance of [OdsCircularImageBuilder].
      *
      * @param painter The painter to draw.
-     * @param contentDescription The content description associated to this [OdsComponentCircularImage].
+     * @param contentDescription The content description associated to this [OdsCircularImageBuilder].
      */
     constructor(painter: Painter, contentDescription: String) : this(painter as Any, contentDescription)
 
     /**
-     * Creates an instance of [OdsComponentCircularImage].
+     * Creates an instance of [OdsCircularImageBuilder].
      *
      * @param imageVector The image vector to draw.
-     * @param contentDescription The content description associated to this [OdsComponentCircularImage].
+     * @param contentDescription The content description associated to this [OdsCircularImageBuilder].
      */
     constructor(imageVector: ImageVector, contentDescription: String) : this(imageVector as Any, contentDescription)
 
     /**
-     * Creates an instance of [OdsComponentCircularImage].
+     * Creates an instance of [OdsCircularImageBuilder].
      *
      * @param bitmap The image bitmap to draw.
-     * @param contentDescription The content description associated to this [OdsComponentCircularImage].
+     * @param contentDescription The content description associated to this [OdsCircularImageBuilder].
      */
     constructor(bitmap: ImageBitmap, contentDescription: String) : this(bitmap as Any, contentDescription)
 

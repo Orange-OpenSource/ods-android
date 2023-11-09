@@ -27,7 +27,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.window.PopupProperties
 import com.orange.ods.R
 import com.orange.ods.compose.component.OdsComposable
-import com.orange.ods.compose.component.content.OdsComponentContent
+import com.orange.ods.compose.component.content.OdsComponentBuilder
 import com.orange.ods.compose.component.divider.OdsDivider
 import com.orange.ods.compose.component.icon.OdsIcon
 import com.orange.ods.compose.component.utilities.Preview
@@ -40,7 +40,7 @@ import com.orange.ods.compose.utilities.extension.enable
  *
  * @see androidx.compose.material.DropdownMenu
  *
- * @param items List of [OdsDropdownMenuItem] displayed into the dropdown menu.
+ * @param items List of [OdsDropdownMenuItemBuilder] displayed into the dropdown menu.
  * @param expanded Controls whether the menu is currently open and visible to the user.
  * @param onDismissRequest Callback invoked when the user requests to dismiss the menu, such as by tapping outside the menu's bounds.
  * @param modifier [Modifier] applied to the dropdown menu.
@@ -50,7 +50,7 @@ import com.orange.ods.compose.utilities.extension.enable
 @OdsComposable
 @Composable
 fun OdsDropdownMenu(
-    items: List<OdsDropdownMenuItem>,
+    items: List<OdsDropdownMenuItemBuilder>,
     expanded: Boolean,
     onDismissRequest: () -> Unit,
     modifier: Modifier = Modifier,
@@ -63,7 +63,7 @@ fun OdsDropdownMenu(
         modifier = modifier.background(OdsTheme.colors.surface),
         offset = offset,
         properties = properties,
-        content = { items.forEach { it.Content(OdsDropdownMenuItem.ExtraParameters(onDismissRequest)) } }
+        content = { items.forEach { it.Content(OdsDropdownMenuItemBuilder.ExtraParameters(onDismissRequest)) } }
     )
 }
 
@@ -78,18 +78,18 @@ fun OdsDropdownMenu(
  * @property divider Whether or not a divider is displayed at the bottom of the menu item
  * @property onClick Called when the menu item was clicked
  */
-class OdsDropdownMenuItem private constructor(
+class OdsDropdownMenuItemBuilder private constructor(
     private val text: String,
     private val icon: Any?,
     private val enabled: Boolean,
     private val divider: Boolean,
     private val onClick: () -> Unit
-) : OdsComponentContent<OdsDropdownMenuItem.ExtraParameters>() {
+) : OdsComponentBuilder<OdsDropdownMenuItemBuilder.ExtraParameters>() {
 
-    data class ExtraParameters(val onDismissRequest: () -> Unit) : OdsComponentContent.ExtraParameters()
+    data class ExtraParameters(val onDismissRequest: () -> Unit) : OdsComponentBuilder.ExtraParameters()
 
     /**
-     * Creates an instance of [OdsDropdownMenuItem].
+     * Creates an instance of [OdsDropdownMenuItemBuilder].
      *
      * @param text The text of the menu item.
      * @param enabled Controls the enabled state of the menu item - when `false`, the menu item.
@@ -104,7 +104,7 @@ class OdsDropdownMenuItem private constructor(
     ) : this(text, null as Any?, enabled, divider, onClick)
 
     /**
-     * Creates an instance of [OdsDropdownMenuItem].
+     * Creates an instance of [OdsDropdownMenuItemBuilder].
      *
      * @param text The text of the menu item.
      * @param icon Optional icon to display in the menu item.
@@ -121,7 +121,7 @@ class OdsDropdownMenuItem private constructor(
     ) : this(text, icon as Any?, enabled, divider, onClick)
 
     /**
-     * Creates an instance of [OdsDropdownMenuItem].
+     * Creates an instance of [OdsDropdownMenuItemBuilder].
      *
      * @param text The text of the menu item.
      * @param icon Optional icon to display in the menu item.
@@ -138,7 +138,7 @@ class OdsDropdownMenuItem private constructor(
     ) : this(text, icon as Any?, enabled, divider, onClick)
 
     /**
-     * Creates an instance of [OdsDropdownMenuItem].
+     * Creates an instance of [OdsDropdownMenuItemBuilder].
      *
      * @param text The text of the menu item.
      * @param icon Optional icon to display in the menu item.
@@ -185,10 +185,10 @@ class OdsDropdownMenuItem private constructor(
 @Composable
 private fun PreviewOdsDropdownMenu() = Preview {
     val items = listOf(
-        OdsDropdownMenuItem("First menu item", painterResource(id = android.R.drawable.ic_dialog_email)) {},
-        OdsDropdownMenuItem("Second menu item", painterResource(id = android.R.drawable.ic_dialog_map), divider = true) {},
-        OdsDropdownMenuItem("Third menu item", painterResource(id = android.R.drawable.ic_dialog_dialer)) {},
-        OdsDropdownMenuItem("Fourth menu item", painterResource(id = android.R.drawable.ic_dialog_info)) {}
+        OdsDropdownMenuItemBuilder("First menu item", painterResource(id = android.R.drawable.ic_dialog_email)) {},
+        OdsDropdownMenuItemBuilder("Second menu item", painterResource(id = android.R.drawable.ic_dialog_map), divider = true) {},
+        OdsDropdownMenuItemBuilder("Third menu item", painterResource(id = android.R.drawable.ic_dialog_dialer)) {},
+        OdsDropdownMenuItemBuilder("Fourth menu item", painterResource(id = android.R.drawable.ic_dialog_info)) {}
     )
     OdsDropdownMenu(items = items, expanded = true, onDismissRequest = {})
 }

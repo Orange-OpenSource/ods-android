@@ -21,8 +21,8 @@ import androidx.compose.runtime.setValue
 import androidx.core.content.withStyledAttributes
 import com.google.accompanist.drawablepainter.rememberDrawablePainter
 import com.orange.ods.compose.component.banner.OdsBanner
-import com.orange.ods.compose.component.banner.OdsBannerButton
-import com.orange.ods.compose.component.banner.OdsBannerImage
+import com.orange.ods.compose.component.banner.OdsBannerButtonBuilder
+import com.orange.ods.compose.component.banner.OdsBannerImageBuilder
 import com.orange.ods.extension.ifNotNull
 import com.orange.ods.xml.R
 import com.orange.ods.xml.component.OdsAbstractComposeView
@@ -52,13 +52,13 @@ class OdsBanner @JvmOverloads constructor(context: Context, attrs: AttributeSet?
     override fun OdsContent() {
         OdsBanner(
             message = message,
-            firstButton = OdsBannerButton(firstButtonText, onFirstButtonClick),
+            firstButton = OdsBannerButtonBuilder(firstButtonText, onFirstButtonClick),
             image = image?.let { image ->
                 val painter = rememberDrawablePainter(drawable = image)
-                OdsBannerImage(painter, imageContentDescription.orEmpty())
+                OdsBannerImageBuilder(painter, imageContentDescription.orEmpty())
             },
             secondButton = ifNotNull(secondButtonText, onSecondButtonClick) { text, onClick ->
-                OdsBannerButton(text, onClick)
+                OdsBannerButtonBuilder(text, onClick)
             }
         )
     }

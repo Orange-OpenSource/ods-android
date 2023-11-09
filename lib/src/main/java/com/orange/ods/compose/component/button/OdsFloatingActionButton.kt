@@ -29,7 +29,7 @@ import androidx.compose.ui.tooling.preview.PreviewParameter
 import androidx.compose.ui.unit.dp
 import com.orange.ods.R
 import com.orange.ods.compose.component.OdsComposable
-import com.orange.ods.compose.component.content.OdsComponentIcon
+import com.orange.ods.compose.component.content.OdsIconBuilder
 import com.orange.ods.compose.component.utilities.BasicPreviewParameterProvider
 import com.orange.ods.compose.component.utilities.Preview
 import com.orange.ods.compose.component.utilities.UiModePreviews
@@ -56,7 +56,7 @@ private val FabIconSize = 24.dp
 @Composable
 @OdsComposable
 fun OdsFloatingActionButton(
-    icon: OdsFloatingActionButtonIcon,
+    icon: OdsFloatingActionButtonIconBuilder,
     onClick: () -> Unit,
     modifier: Modifier = Modifier,
     mini: Boolean = false,
@@ -89,7 +89,7 @@ fun OdsFloatingActionButton(
 @Composable
 @OdsComposable
 fun OdsExtendedFloatingActionButton(
-    icon: OdsFloatingActionButtonIcon,
+    icon: OdsFloatingActionButtonIconBuilder,
     onClick: () -> Unit,
     text: String,
     modifier: Modifier = Modifier,
@@ -107,29 +107,29 @@ fun OdsExtendedFloatingActionButton(
 /**
  * A button icon in an [OdsFloatingActionButton].
  */
-class OdsFloatingActionButtonIcon : OdsComponentIcon<Nothing> {
+class OdsFloatingActionButtonIconBuilder : OdsIconBuilder<Nothing> {
 
     /**
-     * Creates an instance of [OdsFloatingActionButtonIcon].
+     * Creates an instance of [OdsFloatingActionButtonIconBuilder].
      *
      * @param painter Painter of the icon.
-     * @param contentDescription The content description associated to this [OdsFloatingActionButtonIcon].
+     * @param contentDescription The content description associated to this [OdsFloatingActionButtonIconBuilder].
      */
     constructor(painter: Painter, contentDescription: String) : super(painter, contentDescription)
 
     /**
-     * Creates an instance of [OdsFloatingActionButtonIcon].
+     * Creates an instance of [OdsFloatingActionButtonIconBuilder].
      *
      * @param imageVector Image vector of the icon.
-     * @param contentDescription The content description associated to this [OdsFloatingActionButtonIcon].
+     * @param contentDescription The content description associated to this [OdsFloatingActionButtonIconBuilder].
      */
     constructor(imageVector: ImageVector, contentDescription: String) : super(imageVector, contentDescription)
 
     /**
-     * Creates an instance of [OdsFloatingActionButtonIcon].
+     * Creates an instance of [OdsFloatingActionButtonIconBuilder].
      *
      * @param bitmap Image bitmap of the icon.
-     * @param contentDescription The content description associated to this [OdsFloatingActionButtonIcon].
+     * @param contentDescription The content description associated to this [OdsFloatingActionButtonIconBuilder].
      */
     constructor(bitmap: ImageBitmap, contentDescription: String) : super(bitmap, contentDescription)
 
@@ -147,7 +147,7 @@ private fun PreviewOdsFloatingActionButton(@PreviewParameter(OdsFloatingActionBu
             OdsFloatingActionButton(
                 onClick = {},
                 mini = isMini,
-                icon = OdsFloatingActionButtonIcon(painterResource(id = android.R.drawable.ic_input_add), "Add")
+                icon = OdsFloatingActionButtonIconBuilder(painterResource(id = android.R.drawable.ic_input_add), "Add")
             )
         }
     }
@@ -161,7 +161,7 @@ private fun PreviewOdsExtendedFloatingActionButton() = Preview {
         OdsExtendedFloatingActionButton(
             modifier = Modifier.fillMaxWidth(),
             onClick = {},
-            icon = OdsFloatingActionButtonIcon(painterResource(id = android.R.drawable.ic_input_add), ""),
+            icon = OdsFloatingActionButtonIconBuilder(painterResource(id = android.R.drawable.ic_input_add), ""),
             text = "Add"
         )
     }

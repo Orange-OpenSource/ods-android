@@ -29,10 +29,10 @@ import com.orange.ods.app.ui.utilities.code.CodeImplementationColumn
 import com.orange.ods.app.ui.utilities.code.FunctionCallCode
 import com.orange.ods.app.ui.utilities.composable.Subtitle
 import com.orange.ods.compose.OdsComposable
-import com.orange.ods.compose.component.chip.OdsChoiceChip
+import com.orange.ods.compose.component.chip.OdsChoiceChipBuilder
 import com.orange.ods.compose.component.chip.OdsChoiceChipsFlowRow
 import com.orange.ods.compose.component.list.OdsListItem
-import com.orange.ods.compose.component.list.OdsListItemTrailingSwitch
+import com.orange.ods.compose.component.list.OdsListItemTrailingSwitchBuilder
 import com.orange.ods.compose.component.progressindicator.OdsCircularProgressIndicator
 
 @OptIn(ExperimentalMaterialApi::class)
@@ -47,14 +47,17 @@ fun ProgressCircular() {
                 Subtitle(textRes = R.string.component_element_type, horizontalPadding = true)
                 OdsChoiceChipsFlowRow(
                     value = type.value,
-                    onValueChange = {
-                        value -> type.value = value
+                    onValueChange = { value ->
+                        type.value = value
                         if (value == ProgressCustomizationState.Type.Indeterminate) resetAnimation()
                     },
                     modifier = Modifier.padding(horizontal = dimensionResource(id = com.orange.ods.R.dimen.spacing_m)),
                     chips = listOf(
-                        OdsChoiceChip(text = stringResource(id = R.string.component_progress_determinate), value = ProgressCustomizationState.Type.Determinate),
-                        OdsChoiceChip(
+                        OdsChoiceChipBuilder(
+                            text = stringResource(id = R.string.component_progress_determinate),
+                            value = ProgressCustomizationState.Type.Determinate
+                        ),
+                        OdsChoiceChipBuilder(
                             text = stringResource(id = R.string.component_progress_indeterminate),
                             value = ProgressCustomizationState.Type.Indeterminate
                         )
@@ -62,7 +65,7 @@ fun ProgressCircular() {
                 )
                 OdsListItem(
                     text = stringResource(id = R.string.component_element_label),
-                    trailing = OdsListItemTrailingSwitch(label.value, { label.value = it })
+                    trailing = OdsListItemTrailingSwitchBuilder(label.value, { label.value = it })
                 )
             }) {
             Column(

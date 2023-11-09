@@ -25,9 +25,9 @@ import com.orange.ods.app.R
 import com.orange.ods.app.ui.AppBarAction.Companion.defaultActions
 import com.orange.ods.app.ui.utilities.UiString
 import com.orange.ods.app.ui.utilities.extension.isDarkModeEnabled
-import com.orange.ods.compose.component.appbar.top.OdsTopAppBarActionButton
-import com.orange.ods.compose.component.appbar.top.OdsTopAppBarOverflowMenuActionItem
-import com.orange.ods.compose.component.content.OdsComponentContent
+import com.orange.ods.compose.component.appbar.top.OdsTopAppBarActionButtonBuilder
+import com.orange.ods.compose.component.appbar.top.OdsTopAppBarOverflowMenuActionItemBuilder
+import com.orange.ods.compose.component.content.OdsComponentBuilder
 import com.orange.ods.compose.component.textfield.search.OdsSearchTextField
 
 enum class AppBarAction {
@@ -50,23 +50,23 @@ data class AppBarOverflowMenuAction(
     val onClick: () -> Unit
 ) {
     @Composable
-    fun getOdsTopAppBarOverflowMenuAction() = OdsTopAppBarOverflowMenuActionItem(
+    fun getOdsTopAppBarOverflowMenuAction() = OdsTopAppBarOverflowMenuActionItemBuilder(
         text = title.asString(),
         onClick = onClick
     )
 }
 
 @Composable
-fun getDefaultActions(onActionClick: (AppBarAction) -> Unit): List<OdsTopAppBarActionButton> =
+fun getDefaultActions(onActionClick: (AppBarAction) -> Unit): List<OdsTopAppBarActionButtonBuilder> =
     defaultActions.map { it.getOdsTopAppBarAction(onActionClick = onActionClick) }
 
 @Composable
-fun getHomeActions(onActionClick: (AppBarAction) -> Unit): List<OdsTopAppBarActionButton> =
+fun getHomeActions(onActionClick: (AppBarAction) -> Unit): List<OdsTopAppBarActionButtonBuilder> =
     listOf(getSearchAction(onActionClick)) + getDefaultActions(onActionClick = onActionClick)
 
 @Composable
-fun getSearchFieldAction(onTextChange: (TextFieldValue) -> Unit): OdsComponentContent<Nothing> {
-    return object : OdsComponentContent<Nothing>() {
+fun getSearchFieldAction(onTextChange: (TextFieldValue) -> Unit): OdsComponentBuilder<Nothing> {
+    return object : OdsComponentBuilder<Nothing>() {
 
         @Composable
         override fun Content(modifier: Modifier) {
@@ -87,28 +87,28 @@ fun getSearchFieldAction(onTextChange: (TextFieldValue) -> Unit): OdsComponentCo
 }
 
 @Composable
-private fun getSearchAction(onClick: (AppBarAction) -> Unit) = OdsTopAppBarActionButton(
+private fun getSearchAction(onClick: (AppBarAction) -> Unit) = OdsTopAppBarActionButtonBuilder(
     onClick = { onClick(AppBarAction.Search) },
     painter = painterResource(id = R.drawable.ic_search),
     contentDescription = stringResource(id = R.string.search_content_description)
 )
 
 @Composable
-private fun getChangeThemeAction(onClick: (AppBarAction) -> Unit) = OdsTopAppBarActionButton(
+private fun getChangeThemeAction(onClick: (AppBarAction) -> Unit) = OdsTopAppBarActionButtonBuilder(
     onClick = { onClick(AppBarAction.ChangeTheme) },
     painter = painterResource(id = R.drawable.ic_palette),
     contentDescription = stringResource(id = R.string.top_app_bar_action_change_mode_to_dark_desc)
 )
 
 @Composable
-private fun getChangeModeAction(onClick: (AppBarAction) -> Unit): OdsTopAppBarActionButton {
+private fun getChangeModeAction(onClick: (AppBarAction) -> Unit): OdsTopAppBarActionButtonBuilder {
     val configuration = LocalConfiguration.current
 
     val painterRes = if (configuration.isDarkModeEnabled) R.drawable.ic_ui_light_mode else R.drawable.ic_ui_dark_mode
     val iconDesc =
         if (configuration.isDarkModeEnabled) R.string.top_app_bar_action_change_mode_to_light_desc else R.string.top_app_bar_action_change_mode_to_dark_desc
 
-    return OdsTopAppBarActionButton(
+    return OdsTopAppBarActionButtonBuilder(
         onClick = { onClick(AppBarAction.ChangeMode) },
         painter = painterResource(id = painterRes),
         contentDescription = stringResource(id = iconDesc)

@@ -34,12 +34,12 @@ import com.orange.ods.app.R
 import com.orange.ods.app.ui.components.Variant
 import com.orange.ods.app.ui.components.utilities.ComponentCustomizationBottomSheetScaffold
 import com.orange.ods.app.ui.utilities.composable.Subtitle
-import com.orange.ods.compose.component.chip.OdsChoiceChip
+import com.orange.ods.compose.component.chip.OdsChoiceChipBuilder
 import com.orange.ods.compose.component.chip.OdsChoiceChipsFlowRow
 import com.orange.ods.compose.component.list.OdsListItem
-import com.orange.ods.compose.component.list.OdsListItemTrailingSwitch
+import com.orange.ods.compose.component.list.OdsListItemTrailingSwitchBuilder
 import com.orange.ods.compose.component.tab.OdsTabRow
-import com.orange.ods.compose.component.tab.OdsTabRowTab
+import com.orange.ods.compose.component.tab.OdsTabRowTabBuilder
 import com.orange.ods.compose.utilities.composable.Keyboard
 import com.orange.ods.compose.utilities.composable.keyboardAsState
 import kotlinx.coroutines.launch
@@ -91,7 +91,7 @@ private fun TextFieldTextCustomization(textFieldCustomizationState: TextFieldCus
     OdsTabRow(
         selectedTabIndex = pagerState.currentPage,
         tabs = tabs.mapIndexed { index, customizationTab ->
-            OdsTabRowTab(
+            OdsTabRowTabBuilder(
                 icon = null,
                 text = stringResource(id = customizationTab.titleRes)
             ) {
@@ -115,11 +115,11 @@ private fun TextFieldPasswordCustomization(textFieldCustomizationState: TextFiel
         DisplayTypeCustomization(displayType)
         OdsListItem(
             text = stringResource(id = R.string.component_text_field_visualisation_icon),
-            trailing = OdsListItemTrailingSwitch(visualisationIcon.value, { visualisationIcon.value = it })
+            trailing = OdsListItemTrailingSwitchBuilder(visualisationIcon.value, { visualisationIcon.value = it })
         )
         OdsListItem(
             text = stringResource(id = R.string.component_text_field_character_counter),
-            trailing = OdsListItemTrailingSwitch(characterCounter.value, { characterCounter.value = it })
+            trailing = OdsListItemTrailingSwitchBuilder(characterCounter.value, { characterCounter.value = it })
         )
     }
 }
@@ -129,7 +129,7 @@ private fun ComponentCustomizationContent(textFieldCustomizationState: TextField
     with(textFieldCustomizationState) {
         OdsListItem(
             text = stringResource(id = R.string.component_element_leading_icon),
-            trailing = OdsListItemTrailingSwitch(leadingIcon.value, { leadingIcon.value = it })
+            trailing = OdsListItemTrailingSwitchBuilder(leadingIcon.value, { leadingIcon.value = it })
         )
 
         Subtitle(textRes = R.string.component_text_field_input_type, horizontalPadding = true)
@@ -138,17 +138,17 @@ private fun ComponentCustomizationContent(textFieldCustomizationState: TextField
             onValueChange = { value -> inputType.value = value },
             modifier = Modifier.padding(horizontal = dimensionResource(id = com.orange.ods.R.dimen.spacing_m)),
             chips = listOf(
-                OdsChoiceChip(
+                OdsChoiceChipBuilder(
                     text = stringResource(id = R.string.component_text_field_input_type_single_line),
                     value = TextFieldCustomizationState.InputType.SingleLine
                 ),
-                OdsChoiceChip(
+                OdsChoiceChipBuilder(
                     text = stringResource(id = R.string.component_text_field_input_type_multiline),
                     value = TextFieldCustomizationState.InputType.Multiline
                 ),
                 // Note: TextArea chip is disabled cause there is no parameter allowing text area in Jetpack Compose sdk for now
                 // https://issuetracker.google.com/issues/122476634
-                OdsChoiceChip(
+                OdsChoiceChipBuilder(
                     text = stringResource(id = R.string.component_text_field_input_type_text_area),
                     value = TextFieldCustomizationState.InputType.TextArea,
                     enabled = false
@@ -164,14 +164,14 @@ private fun ComponentCustomizationContent(textFieldCustomizationState: TextField
             onValueChange = { value -> trailingElement.value = value },
             modifier = Modifier.padding(horizontal = dimensionResource(id = com.orange.ods.R.dimen.spacing_m)),
             chips = listOf(
-                OdsChoiceChip(text = stringResource(id = R.string.component_element_none), value = TextFieldCustomizationState.TrailingElement.None),
-                OdsChoiceChip(text = stringResource(id = R.string.component_element_icon), value = TextFieldCustomizationState.TrailingElement.Icon),
-                OdsChoiceChip(text = stringResource(id = R.string.component_element_text), value = TextFieldCustomizationState.TrailingElement.Text),
+                OdsChoiceChipBuilder(text = stringResource(id = R.string.component_element_none), value = TextFieldCustomizationState.TrailingElement.None),
+                OdsChoiceChipBuilder(text = stringResource(id = R.string.component_element_icon), value = TextFieldCustomizationState.TrailingElement.Icon),
+                OdsChoiceChipBuilder(text = stringResource(id = R.string.component_element_text), value = TextFieldCustomizationState.TrailingElement.Text),
             )
         )
         OdsListItem(
             text = stringResource(id = R.string.component_text_field_character_counter),
-            trailing = OdsListItemTrailingSwitch(characterCounter.value, { characterCounter.value = it })
+            trailing = OdsListItemTrailingSwitchBuilder(characterCounter.value, { characterCounter.value = it })
         )
     }
 }
@@ -185,13 +185,13 @@ private fun KeyboardCustomizationContent(textFieldCustomizationState: TextFieldC
             onValueChange = { value -> softKeyboardType.value = value },
             modifier = Modifier.padding(horizontal = dimensionResource(id = com.orange.ods.R.dimen.spacing_m)),
             chips = TextFieldCustomizationState.SoftKeyboardType.values().map { softKeyboardType ->
-                OdsChoiceChip(text = stringResource(id = softKeyboardType.labelRes), value = softKeyboardType)
+                OdsChoiceChipBuilder(text = stringResource(id = softKeyboardType.labelRes), value = softKeyboardType)
             }
         )
 
         OdsListItem(
             text = stringResource(id = R.string.component_text_field_keyboard_capitalization),
-            trailing = OdsListItemTrailingSwitch(softKeyboardCapitalization.value, { softKeyboardCapitalization.value = it })
+            trailing = OdsListItemTrailingSwitchBuilder(softKeyboardCapitalization.value, { softKeyboardCapitalization.value = it })
         )
 
         Subtitle(textRes = R.string.component_text_field_keyboard_action, horizontalPadding = true)
@@ -200,7 +200,7 @@ private fun KeyboardCustomizationContent(textFieldCustomizationState: TextFieldC
             onValueChange = { value -> softKeyboardAction.value = value },
             modifier = Modifier.padding(horizontal = dimensionResource(id = com.orange.ods.R.dimen.spacing_m)),
             chips = TextFieldCustomizationState.SoftKeyboardAction.values().map { softKeyboardAction ->
-                OdsChoiceChip(text = stringResource(id = softKeyboardAction.labelRes), value = softKeyboardAction)
+                OdsChoiceChipBuilder(text = stringResource(id = softKeyboardAction.labelRes), value = softKeyboardAction)
             }
         )
     }
@@ -215,10 +215,10 @@ private fun DisplayTypeCustomization(displayType: MutableState<TextFieldCustomiz
         onValueChange = { value -> displayType.value = value },
         modifier = Modifier.padding(horizontal = dimensionResource(id = com.orange.ods.R.dimen.spacing_m)),
         chips = listOf(
-            OdsChoiceChip(
+            OdsChoiceChipBuilder(
                 text = stringResource(id = R.string.component_state_default), value = TextFieldCustomizationState.DisplayType.Default
             ),
-            OdsChoiceChip(
+            OdsChoiceChipBuilder(
                 text = stringResource(id = R.string.component_state_error),
                 value = TextFieldCustomizationState.DisplayType.Error,
                 semantics = {
@@ -227,7 +227,7 @@ private fun DisplayTypeCustomization(displayType: MutableState<TextFieldCustomiz
                     }
                 }
             ),
-            OdsChoiceChip(
+            OdsChoiceChipBuilder(
                 text = stringResource(id = R.string.component_state_disabled), value = TextFieldCustomizationState.DisplayType.Disabled
             ),
         )

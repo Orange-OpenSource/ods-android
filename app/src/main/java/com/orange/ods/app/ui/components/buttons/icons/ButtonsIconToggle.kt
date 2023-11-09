@@ -36,7 +36,7 @@ import com.orange.ods.app.ui.components.buttons.InvertedBackgroundColumn
 import com.orange.ods.app.ui.utilities.code.CodeImplementationColumn
 import com.orange.ods.app.ui.utilities.code.FunctionCallCode
 import com.orange.ods.compose.OdsComposable
-import com.orange.ods.compose.component.button.OdsIconButtonIcon
+import com.orange.ods.compose.component.button.OdsIconButtonIconBuilder
 import com.orange.ods.compose.component.button.OdsIconToggleButton
 import com.orange.ods.compose.theme.OdsDisplaySurface
 
@@ -82,11 +82,11 @@ fun ButtonsIconToggle(customizationState: ButtonIconCustomizationState) {
                     name = OdsComposable.OdsIconToggleButton.name,
                     exhaustiveParameters = false,
                     parameters = {
-                        classInstance<OdsIconButtonIcon>("uncheckedIcon") {
+                        classInstance<OdsIconButtonIconBuilder>("uncheckedIcon") {
                             painter()
                             contentDescription("")
                         }
-                        classInstance<OdsIconButtonIcon>("checkedIcon") {
+                        classInstance<OdsIconButtonIconBuilder>("checkedIcon") {
                             painter()
                             contentDescription("")
                         }
@@ -122,8 +122,8 @@ private fun IconToggleButton(
             compose = {
                 OdsIconToggleButton(
                     checked = checked,
-                    uncheckedIcon = OdsIconButtonIcon(painterResource(id = uncheckedIconResId), uncheckedIconContentDescription),
-                    checkedIcon = OdsIconButtonIcon(painterResource(id = checkedIconResId), checkedIconContentDescription),
+                    uncheckedIcon = OdsIconButtonIconBuilder(painterResource(id = uncheckedIconResId), uncheckedIconContentDescription),
+                    checkedIcon = OdsIconButtonIconBuilder(painterResource(id = checkedIconResId), checkedIconContentDescription),
                     onCheckedChange = onCheckedChange,
                     enabled = enabled,
                     displaySurface = displaySurface

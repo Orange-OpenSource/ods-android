@@ -34,7 +34,7 @@ import com.orange.ods.compose.theme.OdsTheme
  * @see TabRow documentation
  *
  * @param selectedTabIndex Index of the currently selected tab.
- * @param tabs List of [OdsTabRowTab] displayed inside the tabs row.
+ * @param tabs List of [OdsTabRowTabBuilder] displayed inside the tabs row.
  * @param modifier [Modifier] applied to the tab row.
  * @param tabIconPosition Controls the position of the icon in the tabs. By default, the icon is displayed above the text.
  */
@@ -42,9 +42,9 @@ import com.orange.ods.compose.theme.OdsTheme
 @OdsComposable
 fun OdsTabRow(
     selectedTabIndex: Int,
-    tabs: List<OdsTabRowTab>,
+    tabs: List<OdsTabRowTabBuilder>,
     modifier: Modifier = Modifier,
-    tabIconPosition: OdsTabRowTabIcon.Position = OdsTabRowTabIcon.Position.Top
+    tabIconPosition: OdsTabRowTabIconPosition = OdsTabRowTabIconPosition.Top
 ) {
     TabRow(
         modifier = modifier,
@@ -60,7 +60,7 @@ fun OdsTabRow(
             }
         },
         divider = {},
-        tabs = { tabs.forEachIndexed { index, tab -> tab.Content(OdsTabRowTab.ExtraParameters(selected = index == selectedTabIndex, iconPosition = tabIconPosition)) } }
+        tabs = { tabs.forEachIndexed { index, tab -> tab.Content(OdsTabRowTabBuilder.ExtraParameters(selected = index == selectedTabIndex, iconPosition = tabIconPosition)) } }
     )
 }
 
@@ -79,10 +79,10 @@ private fun PreviewOdsTabRow(@PreviewParameter(OdsTabRowPreviewParameterProvider
     with(parameter) {
         OdsTabRow(
             selectedTabIndex = selectedTabIndex,
-            tabIconPosition = if (hasLeadingIconTabs) OdsTabRowTabIcon.Position.Leading else OdsTabRowTabIcon.Position.Top,
+            tabIconPosition = if (hasLeadingIconTabs) OdsTabRowTabIconPosition.Leading else OdsTabRowTabIconPosition.Top,
             tabs = tabs.mapIndexed { index, tab ->
-                OdsTabRowTab(
-                    icon = if (hasIcon) OdsTabRowTabIcon(painterResource(id = tab.iconResId), "") else null,
+                OdsTabRowTabBuilder(
+                    icon = if (hasIcon) OdsTabRowTabIconBuilder(painterResource(id = tab.iconResId), "") else null,
                     text = if (hasText) tab.text else null,
                     enabled = enabled,
                     onClick = { selectedTabIndex = index }

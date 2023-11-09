@@ -17,13 +17,13 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
 import com.orange.ods.compose.component.bottomnavigation.OdsBottomNavigation
-import com.orange.ods.compose.component.bottomnavigation.OdsBottomNavigationItem
+import com.orange.ods.compose.component.bottomnavigation.OdsBottomNavigationItemBuilder
 import com.orange.ods.xml.component.OdsAbstractComposeView
 
 
 class OdsBottomNavigation @JvmOverloads constructor(context: Context, attrs: AttributeSet? = null) : OdsAbstractComposeView(context, attrs) {
 
-    var items by mutableStateOf<List<OdsBottomNavigationItem>>(emptyList())
+    var items by mutableStateOf<List<OdsBottomNavigationItemBuilder>>(emptyList())
 
     @Composable
     override fun OdsContent() {

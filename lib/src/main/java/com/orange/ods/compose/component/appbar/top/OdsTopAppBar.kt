@@ -20,7 +20,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 import com.orange.ods.compose.component.OdsComposable
-import com.orange.ods.compose.component.content.OdsComponentContent
+import com.orange.ods.compose.component.content.OdsComponentBuilder
 import com.orange.ods.compose.component.utilities.Preview
 import com.orange.ods.compose.component.utilities.UiModePreviews
 import com.orange.ods.compose.theme.OdsTheme
@@ -47,9 +47,9 @@ import com.orange.ods.compose.theme.OdsTheme
 fun OdsTopAppBar(
     title: String,
     modifier: Modifier = Modifier,
-    navigationIcon: OdsTopAppBarNavigationIcon? = null,
-    actions: List<OdsTopAppBarActionButton> = emptyList(),
-    overflowMenuActions: List<OdsTopAppBarOverflowMenuActionItem> = emptyList(),
+    navigationIcon: OdsTopAppBarNavigationIconBuilder? = null,
+    actions: List<OdsTopAppBarActionButtonBuilder> = emptyList(),
+    overflowMenuActions: List<OdsTopAppBarOverflowMenuActionItemBuilder> = emptyList(),
     elevated: Boolean = true
 ) {
     OdsTopAppBarInternal(
@@ -68,9 +68,9 @@ fun OdsTopAppBar(
 fun OdsTopAppBarInternal(
     title: String,
     modifier: Modifier = Modifier,
-    navigationIcon: OdsTopAppBarNavigationIcon? = null,
-    actions: List<OdsComponentContent<*>> = emptyList(),
-    overflowMenuActions: List<OdsTopAppBarOverflowMenuActionItem> = emptyList(),
+    navigationIcon: OdsTopAppBarNavigationIconBuilder? = null,
+    actions: List<OdsComponentBuilder<*>> = emptyList(),
+    overflowMenuActions: List<OdsTopAppBarOverflowMenuActionItemBuilder> = emptyList(),
     elevated: Boolean = true
 ) {
     TopAppBar(
@@ -87,14 +87,14 @@ fun OdsTopAppBarInternal(
 @UiModePreviews.Default
 @Composable
 private fun PreviewOdsTopAppBar() = Preview {
-    val actions = listOf(OdsTopAppBarActionButton(painterResource(id = android.R.drawable.ic_dialog_info), "Info") {})
+    val actions = listOf(OdsTopAppBarActionButtonBuilder(painterResource(id = android.R.drawable.ic_dialog_info), "Info") {})
     val overflowMenuItems = listOf(
-        OdsTopAppBarOverflowMenuActionItem("Settings") {},
-        OdsTopAppBarOverflowMenuActionItem("Account") {}
+        OdsTopAppBarOverflowMenuActionItemBuilder("Settings") {},
+        OdsTopAppBarOverflowMenuActionItemBuilder("Account") {}
     )
     OdsTopAppBar(
         title = "Title",
-        navigationIcon = OdsTopAppBarNavigationIcon(Icons.Filled.ArrowBack, "") {},
+        navigationIcon = OdsTopAppBarNavigationIconBuilder(Icons.Filled.ArrowBack, "") {},
         actions = actions,
         overflowMenuActions = overflowMenuItems
     )

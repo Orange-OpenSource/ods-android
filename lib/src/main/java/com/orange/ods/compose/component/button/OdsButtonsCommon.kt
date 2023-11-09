@@ -19,8 +19,8 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.ImageBitmap
 import androidx.compose.ui.graphics.painter.Painter
 import androidx.compose.ui.graphics.vector.ImageVector
-import com.orange.ods.compose.component.content.OdsComponentContent
-import com.orange.ods.compose.component.content.OdsComponentIcon
+import com.orange.ods.compose.component.content.OdsComponentBuilder
+import com.orange.ods.compose.component.content.OdsIconBuilder
 import com.orange.ods.compose.theme.OdsDisplaySurface
 
 
@@ -28,24 +28,24 @@ import com.orange.ods.compose.theme.OdsDisplaySurface
  * A button icon in an [OdsButton].
  * It is non-clickable and no content description is needed cause a button label is always present.
  */
-class OdsButtonIcon : OdsComponentIcon<Nothing> {
+class OdsButtonIconBuilder : OdsIconBuilder<Nothing> {
 
     /**
-     * Creates an instance of [OdsButtonIcon].
+     * Creates an instance of [OdsButtonIconBuilder].
      *
      * @param painter Painter of the icon.
      */
     constructor(painter: Painter) : super(painter, "")
 
     /**
-     * Creates an instance of [OdsButtonIcon].
+     * Creates an instance of [OdsButtonIconBuilder].
      *
      * @param imageVector Image vector of the icon.
      */
     constructor(imageVector: ImageVector) : super(imageVector, "")
 
     /**
-     * Creates an instance of [OdsButtonIcon].
+     * Creates an instance of [OdsButtonIconBuilder].
      *
      * @param bitmap Image bitmap of the icon.
      */
@@ -61,34 +61,34 @@ class OdsButtonIcon : OdsComponentIcon<Nothing> {
 /**
  * An icon in an [OdsIconButton].
  */
-class OdsIconButtonIcon : OdsComponentIcon<OdsIconButtonIcon.ExtraParameters> {
+class OdsIconButtonIconBuilder : OdsIconBuilder<OdsIconButtonIconBuilder.ExtraParameters> {
 
     data class ExtraParameters(
         val enabled: Boolean,
         val displaySurface: OdsDisplaySurface
-    ) : OdsComponentContent.ExtraParameters()
+    ) : OdsComponentBuilder.ExtraParameters()
 
     /**
-     * Creates an instance of [OdsIconButtonIcon].
+     * Creates an instance of [OdsIconButtonIconBuilder].
      *
      * @param painter Painter of the icon.
-     * @param contentDescription The content description associated to this [OdsIconButtonIcon].
+     * @param contentDescription The content description associated to this [OdsIconButtonIconBuilder].
      */
     constructor(painter: Painter, contentDescription: String) : super(painter, contentDescription)
 
     /**
-     * Creates an instance of [OdsIconButtonIcon].
+     * Creates an instance of [OdsIconButtonIconBuilder].
      *
      * @param imageVector Image vector of the icon.
-     * @param contentDescription The content description associated to this [OdsIconButtonIcon].
+     * @param contentDescription The content description associated to this [OdsIconButtonIconBuilder].
      */
     constructor(imageVector: ImageVector, contentDescription: String) : super(imageVector, contentDescription)
 
     /**
-     * Creates an instance of [OdsIconButtonIcon].
+     * Creates an instance of [OdsIconButtonIconBuilder].
      *
      * @param bitmap Image bitmap of the icon.
-     * @param contentDescription The content description associated to this [OdsIconButtonIcon].
+     * @param contentDescription The content description associated to this [OdsIconButtonIconBuilder].
      */
     constructor(bitmap: ImageBitmap, contentDescription: String) : super(bitmap, contentDescription)
 

@@ -32,9 +32,9 @@ import com.orange.ods.app.ui.utilities.DrawableManager
 import com.orange.ods.app.ui.utilities.code.CodeImplementationColumn
 import com.orange.ods.app.ui.utilities.code.FunctionCallCode
 import com.orange.ods.compose.OdsComposable
-import com.orange.ods.compose.component.card.OdsCardButton
-import com.orange.ods.compose.component.card.OdsCardImage
-import com.orange.ods.compose.component.card.OdsCardThumbnail
+import com.orange.ods.compose.component.card.OdsCardButtonBuilder
+import com.orange.ods.compose.component.card.OdsCardImageBuilder
+import com.orange.ods.compose.component.card.OdsCardThumbnailBuilder
 import com.orange.ods.compose.component.card.OdsVerticalHeaderFirstCard
 
 @Composable
@@ -64,15 +64,15 @@ fun CardVerticalHeaderFirst(customizationState: CardCustomizationState) {
 
             OdsVerticalHeaderFirstCard(
                 title = recipe.title,
-                image = OdsCardImage(imagePainter, ""),
-                thumbnail = if (hasThumbnail) OdsCardThumbnail(imagePainter, "") else null,
+                image = OdsCardImageBuilder(imagePainter, ""),
+                thumbnail = if (hasThumbnail) OdsCardThumbnailBuilder(imagePainter, "") else null,
                 subtitle = if (hasSubtitle) recipe.subtitle else null,
                 text = if (hasText) recipe.description else null,
                 onClick = if (isClickable) {
                     { clickOnElement(context, cardText) }
                 } else null,
-                firstButton = if (hasFirstButton) OdsCardButton(firstButtonText) { clickOnElement(context, firstButtonText) } else null,
-                secondButton = if (hasSecondButton) OdsCardButton(secondButtonText) { clickOnElement(context, secondButtonText) } else null,
+                firstButton = if (hasFirstButton) OdsCardButtonBuilder(firstButtonText) { clickOnElement(context, firstButtonText) } else null,
+                secondButton = if (hasSecondButton) OdsCardButtonBuilder(secondButtonText) { clickOnElement(context, secondButtonText) } else null,
             )
 
             CodeImplementationColumn(
@@ -83,12 +83,12 @@ fun CardVerticalHeaderFirst(customizationState: CardCustomizationState) {
                     exhaustiveParameters = false,
                     parameters = {
                         title(recipe.title)
-                        classInstance("image", OdsCardImage::class.java) {
+                        classInstance("image", OdsCardImageBuilder::class.java) {
                             painter()
                             contentDescription("")
                         }
                         if (hasThumbnail) {
-                            classInstance("thumbnail", OdsCardThumbnail::class.java) {
+                            classInstance("thumbnail", OdsCardThumbnailBuilder::class.java) {
                                 painter()
                                 contentDescription("")
                             }
@@ -97,13 +97,13 @@ fun CardVerticalHeaderFirst(customizationState: CardCustomizationState) {
                         if (hasText) cardText()
                         if (isClickable) onClick()
                         if (hasFirstButton) {
-                            classInstance("firstButton", OdsCardButton::class.java) {
+                            classInstance("firstButton", OdsCardButtonBuilder::class.java) {
                                 text(firstButtonText)
                                 onClick()
                             }
                         }
                         if (hasSecondButton) {
-                            classInstance("secondButton", OdsCardButton::class.java) {
+                            classInstance("secondButton", OdsCardButtonBuilder::class.java) {
                                 text(secondButtonText)
                                 onClick()
                             }

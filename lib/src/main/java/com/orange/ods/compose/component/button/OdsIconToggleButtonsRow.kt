@@ -36,8 +36,8 @@ import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.semantics.stateDescription
 import androidx.compose.ui.unit.dp
 import com.orange.ods.compose.component.OdsComposable
-import com.orange.ods.compose.component.content.OdsComponentContent
-import com.orange.ods.compose.component.content.OdsComponentIcon
+import com.orange.ods.compose.component.content.OdsComponentBuilder
+import com.orange.ods.compose.component.content.OdsIconBuilder
 import com.orange.ods.compose.component.utilities.DisabledInteractionSource
 import com.orange.ods.compose.component.utilities.Preview
 import com.orange.ods.compose.component.utilities.UiModePreviews
@@ -51,7 +51,7 @@ import com.orange.ods.compose.utilities.extension.enable
  * A group of toggle buttons. Only one option in a group of toggle buttons can be selected and active at a time.
  * Selecting one option deselects any other.
  *
- * @param icons List of [OdsIconToggleButtonsRowIcon] displayed into the toggle group.
+ * @param icons List of [OdsIconToggleButtonsRowIconBuilder] displayed into the toggle group.
  * @param selectedIndex [icons] list index of the selected button.
  * @param onSelectedIndexChange Callback invoked on selection change.
  * @param modifier [Modifier] applied to the toggle buttons group.
@@ -61,7 +61,7 @@ import com.orange.ods.compose.utilities.extension.enable
 @Composable
 @OdsComposable
 fun OdsIconToggleButtonsRow(
-    icons: List<OdsIconToggleButtonsRowIcon>,
+    icons: List<OdsIconToggleButtonsRowIconBuilder>,
     selectedIndex: Int,
     onSelectedIndexChange: (Int) -> Unit,
     modifier: Modifier = Modifier,
@@ -78,7 +78,7 @@ fun OdsIconToggleButtonsRow(
     ) {
         icons.forEachIndexed { index, icon ->
             icon.Content(
-                OdsIconToggleButtonsRowIcon.ExtraParameters(index, displaySurface, selectedIndex == index) { clickedButtonIndex ->
+                OdsIconToggleButtonsRowIconBuilder.ExtraParameters(index, displaySurface, selectedIndex == index) { clickedButtonIndex ->
                     onSelectedIndexChange(clickedButtonIndex)
                 }
             )
@@ -97,41 +97,41 @@ fun OdsIconToggleButtonsRow(
 /**
  * An icon of an [OdsIconToggleButtonsRow].
  */
-class OdsIconToggleButtonsRowIcon : OdsComponentIcon<OdsIconToggleButtonsRowIcon.ExtraParameters> {
+class OdsIconToggleButtonsRowIconBuilder : OdsIconBuilder<OdsIconToggleButtonsRowIconBuilder.ExtraParameters> {
 
     data class ExtraParameters(
         val index: Int,
         val displaySurface: OdsDisplaySurface,
         val selected: Boolean,
         val onClick: (Int) -> Unit
-    ) : OdsComponentContent.ExtraParameters()
+    ) : OdsComponentBuilder.ExtraParameters()
 
     /**
-     * Creates an instance of [OdsIconToggleButtonsRowIcon].
+     * Creates an instance of [OdsIconToggleButtonsRowIconBuilder].
      *
      * @param painter Painter of the icon.
-     * @param contentDescription The content description associated to this [OdsIconToggleButtonsRowIcon].
-     * @param enabled Whether or not this [OdsIconToggleButtonsRowIcon] will handle input events and appear enabled for
+     * @param contentDescription The content description associated to this [OdsIconToggleButtonsRowIconBuilder].
+     * @param enabled Whether or not this [OdsIconToggleButtonsRowIconBuilder] will handle input events and appear enabled for
      * semantics purposes, true by default.
      */
     constructor(painter: Painter, contentDescription: String, enabled: Boolean = true) : super(painter, contentDescription, enabled)
 
     /**
-     * Creates an instance of [OdsIconToggleButtonsRowIcon].
+     * Creates an instance of [OdsIconToggleButtonsRowIconBuilder].
      *
      * @param imageVector Image vector of the icon.
-     * @param contentDescription The content description associated to this [OdsIconToggleButtonsRowIcon].
-     * @param enabled Whether or not this [OdsIconToggleButtonsRowIcon] will handle input events and appear enabled for
+     * @param contentDescription The content description associated to this [OdsIconToggleButtonsRowIconBuilder].
+     * @param enabled Whether or not this [OdsIconToggleButtonsRowIconBuilder] will handle input events and appear enabled for
      * semantics purposes, true by default.
      */
     constructor(imageVector: ImageVector, contentDescription: String, enabled: Boolean = true) : super(imageVector, contentDescription, enabled)
 
     /**
-     * Creates an instance of [OdsIconToggleButtonsRowIcon].
+     * Creates an instance of [OdsIconToggleButtonsRowIconBuilder].
      *
      * @param bitmap Image bitmap of the icon.
-     * @param contentDescription The content description associated to this [OdsIconToggleButtonsRowIcon].
-     * @param enabled Whether or not this [OdsIconToggleButtonsRowIcon] will handle input events and appear enabled for
+     * @param contentDescription The content description associated to this [OdsIconToggleButtonsRowIconBuilder].
+     * @param enabled Whether or not this [OdsIconToggleButtonsRowIconBuilder] will handle input events and appear enabled for
      * semantics purposes, true by default.
      */
     constructor(bitmap: ImageBitmap, contentDescription: String, enabled: Boolean = true) : super(bitmap, contentDescription, enabled)
@@ -177,9 +177,9 @@ class OdsIconToggleButtonsRowIcon : OdsComponentIcon<OdsIconToggleButtonsRowIcon
 @Composable
 private fun PreviewOdsIconToggleButtonsGroupRow() = Preview {
     val icons = listOf(
-        OdsIconToggleButtonsRowIcon(painterResource(id = android.R.drawable.ic_dialog_dialer), "Today"),
-        OdsIconToggleButtonsRowIcon(painterResource(id = android.R.drawable.ic_dialog_email), "Day"),
-        OdsIconToggleButtonsRowIcon(painterResource(id = android.R.drawable.ic_dialog_alert), "Month", false)
+        OdsIconToggleButtonsRowIconBuilder(painterResource(id = android.R.drawable.ic_dialog_dialer), "Today"),
+        OdsIconToggleButtonsRowIconBuilder(painterResource(id = android.R.drawable.ic_dialog_email), "Day"),
+        OdsIconToggleButtonsRowIconBuilder(painterResource(id = android.R.drawable.ic_dialog_alert), "Month", false)
     )
     var selectedIndex by remember { mutableStateOf(0) }
 

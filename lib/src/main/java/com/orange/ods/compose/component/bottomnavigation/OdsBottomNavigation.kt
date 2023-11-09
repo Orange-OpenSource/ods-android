@@ -26,8 +26,8 @@ import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.style.TextOverflow
 import com.orange.ods.compose.component.OdsComposable
-import com.orange.ods.compose.component.content.OdsComponentIcon
-import com.orange.ods.compose.component.content.OdsComponentScopeContent
+import com.orange.ods.compose.component.content.OdsComponentScopeBuilder
+import com.orange.ods.compose.component.content.OdsIconBuilder
 import com.orange.ods.compose.component.utilities.Preview
 import com.orange.ods.compose.component.utilities.UiModePreviews
 import com.orange.ods.compose.theme.OdsTheme
@@ -37,19 +37,19 @@ import com.orange.ods.compose.theme.OdsTheme
  *
  * Bottom navigation bars allow movement between primary destinations in an app.
  *
- * OdsBottomNavigation should contain multiple [OdsBottomNavigationItem]s, each representing a singular
+ * OdsBottomNavigation should contain multiple [OdsBottomNavigationItemBuilder]s, each representing a singular
  * destination.
  *
- * See [OdsBottomNavigationItem] for configuration specific to each item, and not the overall
+ * See [OdsBottomNavigationItemBuilder] for configuration specific to each item, and not the overall
  * OdsBottomNavigation component.
  *
- * @param items List of [OdsBottomNavigationItem] displayed into the bottom navigation.
+ * @param items List of [OdsBottomNavigationItemBuilder] displayed into the bottom navigation.
  * @param modifier [Modifier] applied to the bottom navigation.
  */
 @Composable
 @OdsComposable
 fun OdsBottomNavigation(
-    items: List<OdsBottomNavigationItem>,
+    items: List<OdsBottomNavigationItemBuilder>,
     modifier: Modifier = Modifier
 ) {
     BottomNavigation(
@@ -85,14 +85,14 @@ fun OdsBottomNavigation(
  * @param alwaysShowLabel whether to always show the label for this item. If false, the label will
  * only be shown when this item is selected.
  */
-class OdsBottomNavigationItem(
+class OdsBottomNavigationItemBuilder(
     val selected: Boolean,
     val onClick: () -> Unit,
-    val icon: OdsBottomNavigationItemIcon,
+    val icon: OdsBottomNavigationItemIconBuilder,
     val enabled: Boolean = true,
     val label: String? = null,
     val alwaysShowLabel: Boolean = true
-) : OdsComponentScopeContent<RowScope, Nothing>() {
+) : OdsComponentScopeBuilder<RowScope, Nothing>() {
 
     @Composable
     override fun RowScope.Content(modifier: Modifier) {
@@ -119,31 +119,31 @@ class OdsBottomNavigationItem(
 }
 
 /**
- * An icon in an [OdsBottomNavigationItem].
+ * An icon in an [OdsBottomNavigationItemBuilder].
  */
-class OdsBottomNavigationItemIcon : OdsComponentIcon<Nothing> {
+class OdsBottomNavigationItemIconBuilder : OdsIconBuilder<Nothing> {
 
     /**
-     * Creates an instance of [OdsBottomNavigationItemIcon].
+     * Creates an instance of [OdsBottomNavigationItemIconBuilder].
      *
      * @param painter Painter of the icon.
-     * @param contentDescription The content description associated to this [OdsBottomNavigationItemIcon].
+     * @param contentDescription The content description associated to this [OdsBottomNavigationItemIconBuilder].
      */
     constructor(painter: Painter, contentDescription: String) : super(painter, contentDescription)
 
     /**
-     * Creates an instance of [OdsBottomNavigationItemIcon].
+     * Creates an instance of [OdsBottomNavigationItemIconBuilder].
      *
      * @param imageVector Image vector of the icon.
-     * @param contentDescription The content description associated to this [OdsBottomNavigationItemIcon].
+     * @param contentDescription The content description associated to this [OdsBottomNavigationItemIconBuilder].
      */
     constructor(imageVector: ImageVector, contentDescription: String) : super(imageVector, contentDescription)
 
     /**
-     * Creates an instance of [OdsBottomNavigationItemIcon].
+     * Creates an instance of [OdsBottomNavigationItemIconBuilder].
      *
      * @param bitmap Image bitmap of the icon.
-     * @param contentDescription The content description associated to this [OdsBottomNavigationItemIcon].
+     * @param contentDescription The content description associated to this [OdsBottomNavigationItemIconBuilder].
      */
     constructor(bitmap: ImageBitmap, contentDescription: String) : super(bitmap, contentDescription)
 }
@@ -161,8 +161,8 @@ private fun PreviewOdsBottomNavigation() = Preview {
     var selectedItemIndex by remember { mutableStateOf(0) }
     OdsBottomNavigation(
         items = items.mapIndexed { index, item ->
-            OdsBottomNavigationItem(
-                icon = OdsBottomNavigationItemIcon(painter = painterResource(id = item.first), contentDescription = ""),
+            OdsBottomNavigationItemBuilder(
+                icon = OdsBottomNavigationItemIconBuilder(painter = painterResource(id = item.first), contentDescription = ""),
                 label = item.second,
                 selected = selectedItemIndex == index,
                 onClick = { selectedItemIndex = index }

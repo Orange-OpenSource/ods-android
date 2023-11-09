@@ -33,9 +33,9 @@ import com.orange.ods.app.ui.utilities.DrawableManager
 import com.orange.ods.app.ui.utilities.composable.DetailScreenHeader
 import com.orange.ods.app.ui.utilities.extension.isOrange
 import com.orange.ods.compose.component.list.OdsListItem
-import com.orange.ods.compose.component.list.OdsListItemIcon
+import com.orange.ods.compose.component.list.OdsListItemIconBuilder
 import com.orange.ods.compose.component.list.OdsListItemIconType
-import com.orange.ods.compose.component.list.OdsListItemTrailingCaption
+import com.orange.ods.compose.component.list.OdsListItemTrailingCaptionBuilder
 import com.orange.ods.compose.text.OdsTextSubtitle1
 import java.text.DecimalFormat
 import java.text.DecimalFormatSymbols
@@ -68,8 +68,8 @@ fun GuidelineSpacingScreen() {
                 text = spacing.tokenName,
                 secondaryText = stringResource(id = R.string.guideline_spacing_dp, dp.value.toInt()) + "\n",
                 singleLineSecondaryText = false,
-                icon = OdsListItemIcon(OdsListItemIconType.SquareImage, rememberGuidelineSpacingPainter(spacing = spacing), ""),
-                trailing = OdsListItemTrailingCaption(
+                icon = OdsListItemIconBuilder(OdsListItemIconType.SquareImage, rememberGuidelineSpacingPainter(spacing = spacing), ""),
+                trailing = OdsListItemTrailingCaptionBuilder(
                     stringResource(
                         id = R.string.guideline_spacing_ratio,
                         if (ratio == 0.0f) "-" else ratioFormatter.format(ratio)

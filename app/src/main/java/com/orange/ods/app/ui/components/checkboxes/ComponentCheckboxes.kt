@@ -31,8 +31,8 @@ import com.orange.ods.app.ui.utilities.code.CodeImplementationColumn
 import com.orange.ods.app.ui.utilities.code.FunctionCallCode
 import com.orange.ods.compose.OdsComposable
 import com.orange.ods.compose.component.list.OdsListItem
-import com.orange.ods.compose.component.list.OdsListItemTrailingCheckbox
-import com.orange.ods.compose.component.list.OdsListItemTrailingSwitch
+import com.orange.ods.compose.component.list.OdsListItemTrailingCheckboxBuilder
+import com.orange.ods.compose.component.list.OdsListItemTrailingSwitchBuilder
 
 @OptIn(ExperimentalMaterialApi::class)
 @Composable
@@ -46,7 +46,7 @@ fun ComponentCheckboxes() {
         bottomSheetContent = {
             OdsListItem(
                 text = stringResource(id = R.string.component_state_enabled),
-                trailing = OdsListItemTrailingSwitch(enabled, { enabled = it })
+                trailing = OdsListItemTrailingSwitchBuilder(enabled, { enabled = it })
             )
         }) {
         Column(
@@ -58,7 +58,7 @@ fun ComponentCheckboxes() {
                 var checked by rememberSaveable { mutableStateOf(index == 0) }
                 OdsListItem(
                     text = ingredient.food.name,
-                    trailing = OdsListItemTrailingCheckbox(checked, { checked = it }, enabled)
+                    trailing = OdsListItemTrailingCheckboxBuilder(checked, { checked = it }, enabled)
                 )
             }
 
