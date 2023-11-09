@@ -38,121 +38,125 @@ internal fun OdsCard(modifier: Modifier, onClick: (() -> Unit)?, content: @Compo
     }
 }
 
-/**
- * A button in an [OdsHorizontalCard], an [OdsVerticalHeaderFirstCard] or an [OdsVerticalImageFirstCard].
- *
- * @constructor Creates an instance of [OdsCardButton].
- * @param text Text of the button.
- * @param onClick Will be called when the user clicks the button.
- */
-class OdsCardButton(private val text: String, private val onClick: () -> Unit) : OdsComponentContent<Nothing>() {
+class OdsCard {
 
-    @Composable
-    override fun Content(modifier: Modifier) {
-        OdsTextButton(text = text, onClick = onClick, modifier = modifier, style = OdsTextButtonStyle.Primary)
+    /**
+     * A button in an [OdsHorizontalCard], an [OdsVerticalHeaderFirstCard] or an [OdsVerticalImageFirstCard].
+     *
+     * @constructor Creates an instance of [OdsCard.Button].
+     * @param text Text of the button.
+     * @param onClick Will be called when the user clicks the button.
+     */
+    class Button(private val text: String, private val onClick: () -> Unit) : OdsComponentContent<Nothing>() {
+
+        @Composable
+        override fun Content(modifier: Modifier) {
+            OdsTextButton(text = text, onClick = onClick, modifier = modifier, style = OdsTextButtonStyle.Primary)
+        }
     }
-}
-
-/**
- * An image in an [OdsSmallCard], [OdsHorizontalCard], [OdsVerticalHeaderFirstCard] or [OdsVerticalImageFirstCard].
- */
-class OdsCardImage private constructor(
-    graphicsObject: Any,
-    contentDescription: String,
-    alignment: Alignment = Alignment.Center,
-    contentScale: ContentScale = ContentScale.Crop,
-    private val backgroundColor: Color? = null
-) : OdsComponentImage<Nothing>(graphicsObject, contentDescription, alignment, contentScale) {
 
     /**
-     * Creates an instance of [OdsCardImage].
-     *
-     * @param painter The painter to draw.
-     * @param contentDescription The content description associated to this [OdsCardImage].
-     * @param alignment Alignment parameter used to place the [Painter] in the given
-     * bounds defined by the width and height.
-     * @param contentScale Scale parameter used to determine the aspect ratio scaling to be used
-     * if the bounds are a different size from the intrinsic size of the [Painter]
-     * @param backgroundColor Optional background color of the card image.
+     * An image in an [OdsSmallCard], [OdsHorizontalCard], [OdsVerticalHeaderFirstCard] or [OdsVerticalImageFirstCard].
      */
-    constructor(
-        painter: Painter,
+    class Image private constructor(
+        graphicsObject: Any,
         contentDescription: String,
         alignment: Alignment = Alignment.Center,
         contentScale: ContentScale = ContentScale.Crop,
-        backgroundColor: Color? = null
-    ) : this(painter as Any, contentDescription, alignment, contentScale, backgroundColor)
+        private val backgroundColor: Color? = null
+    ) : OdsComponentImage<Nothing>(graphicsObject, contentDescription, alignment, contentScale) {
 
-    /**
-     * Creates an instance of [OdsCardImage].
-     *
-     * @param imageVector The image vector to draw.
-     * @param contentDescription The content description associated to this [OdsCardImage].
-     * @param alignment Alignment parameter used to place the [ImageVector] in the given
-     * bounds defined by the width and height.
-     * @param contentScale Scale parameter used to determine the aspect ratio scaling to be used
-     * if the bounds are a different size from the intrinsic size of the [ImageVector]
-     * @param backgroundColor Optional background color of the card image.
-     */
-    constructor(
-        imageVector: ImageVector,
-        contentDescription: String,
-        alignment: Alignment = Alignment.Center,
-        contentScale: ContentScale = ContentScale.Crop,
-        backgroundColor: Color? = null
-    ) : this(imageVector as Any, contentDescription, alignment, contentScale, backgroundColor)
+        /**
+         * Creates an instance of [OdsCard.Image].
+         *
+         * @param painter The painter to draw.
+         * @param contentDescription The content description associated to this [OdsCard.Image].
+         * @param alignment Alignment parameter used to place the [Painter] in the given
+         * bounds defined by the width and height.
+         * @param contentScale Scale parameter used to determine the aspect ratio scaling to be used
+         * if the bounds are a different size from the intrinsic size of the [Painter]
+         * @param backgroundColor Optional background color of the card image.
+         */
+        constructor(
+            painter: Painter,
+            contentDescription: String,
+            alignment: Alignment = Alignment.Center,
+            contentScale: ContentScale = ContentScale.Crop,
+            backgroundColor: Color? = null
+        ) : this(painter as Any, contentDescription, alignment, contentScale, backgroundColor)
 
-    /**
-     * Creates an instance of [OdsCardImage].
-     *
-     * @param bitmap The image bitmap to draw.
-     * @param contentDescription The content description associated to this [OdsCardImage].
-     * @param alignment Alignment parameter used to place the [ImageBitmap] in the given
-     * bounds defined by the width and height.
-     * @param contentScale Scale parameter used to determine the aspect ratio scaling to be used
-     * if the bounds are a different size from the intrinsic size of the [ImageBitmap]
-     * @param backgroundColor Optional background color of the card image.
-     */
-    constructor(
-        bitmap: ImageBitmap,
-        contentDescription: String,
-        alignment: Alignment = Alignment.Center,
-        contentScale: ContentScale = ContentScale.Crop,
-        backgroundColor: Color? = null
-    ) : this(bitmap as Any, contentDescription, alignment, contentScale, backgroundColor)
+        /**
+         * Creates an instance of [OdsCard.Image].
+         *
+         * @param imageVector The image vector to draw.
+         * @param contentDescription The content description associated to this [OdsCard.Image].
+         * @param alignment Alignment parameter used to place the [ImageVector] in the given
+         * bounds defined by the width and height.
+         * @param contentScale Scale parameter used to determine the aspect ratio scaling to be used
+         * if the bounds are a different size from the intrinsic size of the [ImageVector]
+         * @param backgroundColor Optional background color of the card image.
+         */
+        constructor(
+            imageVector: ImageVector,
+            contentDescription: String,
+            alignment: Alignment = Alignment.Center,
+            contentScale: ContentScale = ContentScale.Crop,
+            backgroundColor: Color? = null
+        ) : this(imageVector as Any, contentDescription, alignment, contentScale, backgroundColor)
 
-    @Composable
-    override fun Content(modifier: Modifier) {
-        super.Content(modifier = with(modifier) { if (backgroundColor != null) background(backgroundColor) else this })
+        /**
+         * Creates an instance of [OdsCard.Image].
+         *
+         * @param bitmap The image bitmap to draw.
+         * @param contentDescription The content description associated to this [OdsCard.Image].
+         * @param alignment Alignment parameter used to place the [ImageBitmap] in the given
+         * bounds defined by the width and height.
+         * @param contentScale Scale parameter used to determine the aspect ratio scaling to be used
+         * if the bounds are a different size from the intrinsic size of the [ImageBitmap]
+         * @param backgroundColor Optional background color of the card image.
+         */
+        constructor(
+            bitmap: ImageBitmap,
+            contentDescription: String,
+            alignment: Alignment = Alignment.Center,
+            contentScale: ContentScale = ContentScale.Crop,
+            backgroundColor: Color? = null
+        ) : this(bitmap as Any, contentDescription, alignment, contentScale, backgroundColor)
+
+        @Composable
+        override fun Content(modifier: Modifier) {
+            super.Content(modifier = with(modifier) { if (backgroundColor != null) background(backgroundColor) else this })
+        }
     }
-}
-
-/**
- * A thumbnail in a card.
- */
-class OdsCardThumbnail : OdsComponentCircularImage {
 
     /**
-     * Creates an instance of [OdsCardThumbnail].
-     *
-     * @param painter The painter to draw.
-     * @param contentDescription The content description associated to this [OdsCardThumbnail].
+     * A thumbnail in a card.
      */
-    constructor(painter: Painter, contentDescription: String) : super(painter, contentDescription)
+    class Thumbnail : OdsComponentCircularImage {
 
-    /**
-     * Creates an instance of [OdsCardThumbnail].
-     *
-     * @param imageVector The image vector to draw.
-     * @param contentDescription The content description associated to this [OdsCardThumbnail].
-     */
-    constructor(imageVector: ImageVector, contentDescription: String) : super(imageVector, contentDescription)
+        /**
+         * Creates an instance of [OdsCard.Thumbnail].
+         *
+         * @param painter The painter to draw.
+         * @param contentDescription The content description associated to this [OdsCard.Thumbnail].
+         */
+        constructor(painter: Painter, contentDescription: String) : super(painter, contentDescription)
 
-    /**
-     * Creates an instance of [OdsCardThumbnail].
-     *
-     * @param bitmap The image bitmap to draw.
-     * @param contentDescription The content description associated to this [OdsCardThumbnail].
-     */
-    constructor(bitmap: ImageBitmap, contentDescription: String) : super(bitmap, contentDescription)
+        /**
+         * Creates an instance of [OdsCard.Thumbnail].
+         *
+         * @param imageVector The image vector to draw.
+         * @param contentDescription The content description associated to this [OdsCard.Thumbnail].
+         */
+        constructor(imageVector: ImageVector, contentDescription: String) : super(imageVector, contentDescription)
+
+        /**
+         * Creates an instance of [OdsCard.Thumbnail].
+         *
+         * @param bitmap The image bitmap to draw.
+         * @param contentDescription The content description associated to this [OdsCard.Thumbnail].
+         */
+        constructor(bitmap: ImageBitmap, contentDescription: String) : super(bitmap, contentDescription)
+    }
+
 }

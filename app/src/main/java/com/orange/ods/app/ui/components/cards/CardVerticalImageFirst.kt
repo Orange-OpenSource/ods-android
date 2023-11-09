@@ -30,8 +30,7 @@ import com.orange.ods.app.ui.utilities.DrawableManager
 import com.orange.ods.app.ui.utilities.code.CodeImplementationColumn
 import com.orange.ods.app.ui.utilities.code.FunctionCallCode
 import com.orange.ods.compose.OdsComposable
-import com.orange.ods.compose.component.card.OdsCardButton
-import com.orange.ods.compose.component.card.OdsCardImage
+import com.orange.ods.compose.component.card.OdsCard
 import com.orange.ods.compose.component.card.OdsVerticalImageFirstCard
 
 @Composable
@@ -53,7 +52,7 @@ fun CardVerticalImageFirst(customizationState: CardCustomizationState) {
 
             OdsVerticalImageFirstCard(
                 title = recipe.title,
-                image = OdsCardImage(
+                image = OdsCard.Image(
                     rememberAsyncImagePainter(
                         model = recipe.imageUrl,
                         placeholder = painterResource(id = DrawableManager.getPlaceholderResId()),
@@ -66,8 +65,8 @@ fun CardVerticalImageFirst(customizationState: CardCustomizationState) {
                 onClick = if (isClickable) {
                     { clickOnElement(context, cardText) }
                 } else null,
-                firstButton = if (hasFirstButton) OdsCardButton(firstButtonText) { clickOnElement(context, firstButtonText) } else null,
-                secondButton = if (hasSecondButton) OdsCardButton(secondButtonText) { clickOnElement(context, secondButtonText) } else null,
+                firstButton = if (hasFirstButton) OdsCard.Button(firstButtonText) { clickOnElement(context, firstButtonText) } else null,
+                secondButton = if (hasSecondButton) OdsCard.Button(secondButtonText) { clickOnElement(context, secondButtonText) } else null,
             )
 
             CodeImplementationColumn(
@@ -78,7 +77,7 @@ fun CardVerticalImageFirst(customizationState: CardCustomizationState) {
                     exhaustiveParameters = false,
                     parameters = {
                         title(recipe.title)
-                        classInstance("image", OdsCardImage::class.java) {
+                        classInstance("image", OdsCard.Image::class.java) {
                             painter()
                             contentDescription("")
                         }
@@ -86,13 +85,13 @@ fun CardVerticalImageFirst(customizationState: CardCustomizationState) {
                         if (hasText) cardText()
                         if (isClickable) onClick()
                         if (hasFirstButton) {
-                            classInstance("firstButton", OdsCardButton::class.java) {
+                            classInstance("firstButton", OdsCard.Button::class.java) {
                                 text(firstButtonText)
                                 onClick()
                             }
                         }
                         if (hasSecondButton) {
-                            classInstance("secondButton", OdsCardButton::class.java) {
+                            classInstance("secondButton", OdsCard.Button::class.java) {
                                 text(secondButtonText)
                                 onClick()
                             }
