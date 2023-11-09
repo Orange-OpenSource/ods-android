@@ -1,3 +1,6 @@
 [submodule "vendor/ods-jekyll-theme"]
 	path = vendor/ods-jekyll-theme
 	url = ../ods-jekyll-theme.git 
+[submodule "vendor/accessibility-statement-lib-android"]
+	path = vendor/accessibility-statement-lib-android
+        url = ../accessibility-statement-lib-android.git

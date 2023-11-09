@@ -126,6 +126,7 @@ android {
 }
 
 dependencies {
+    implementation(project(":accessibility-statement-lib-android"))
     implementation(project(":lib"))
     implementation(project(":lib-xml"))
     implementation(project(":theme-innovation-cup"))
