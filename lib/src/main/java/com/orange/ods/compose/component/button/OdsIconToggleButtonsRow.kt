@@ -51,7 +51,7 @@ import com.orange.ods.compose.utilities.extension.enable
  * A group of toggle buttons. Only one option in a group of toggle buttons can be selected and active at a time.
  * Selecting one option deselects any other.
  *
- * @param icons List of [OdsIconToggleButtonsRowIcon] displayed into the toggle group.
+ * @param icons List of [OdsIconToggleButtonsRow.Icon] displayed into the toggle group.
  * @param selectedIndex [icons] list index of the selected button.
  * @param onSelectedIndexChange Callback invoked on selection change.
  * @param modifier [Modifier] applied to the toggle buttons group.
@@ -61,7 +61,7 @@ import com.orange.ods.compose.utilities.extension.enable
 @Composable
 @OdsComposable
 fun OdsIconToggleButtonsRow(
-    icons: List<OdsIconToggleButtonsRowIcon>,
+    icons: List<OdsIconToggleButtonsRow.Icon>,
     selectedIndex: Int,
     onSelectedIndexChange: (Int) -> Unit,
     modifier: Modifier = Modifier,
@@ -78,7 +78,7 @@ fun OdsIconToggleButtonsRow(
     ) {
         icons.forEachIndexed { index, icon ->
             icon.Content(
-                OdsIconToggleButtonsRowIcon.ExtraParameters(index, displaySurface, selectedIndex == index) { clickedButtonIndex ->
+                OdsIconToggleButtonsRow.Icon.ExtraParameters(index, displaySurface, selectedIndex == index) { clickedButtonIndex ->
                     onSelectedIndexChange(clickedButtonIndex)
                 }
             )
@@ -95,91 +95,98 @@ fun OdsIconToggleButtonsRow(
 }
 
 /**
- * An icon of an [OdsIconToggleButtonsRow].
+ * Contains classes to build an [com.orange.ods.compose.component.button.OdsIconToggleButtonsRow].
  */
-class OdsIconToggleButtonsRowIcon : OdsComponentIcon<OdsIconToggleButtonsRowIcon.ExtraParameters> {
-
-    data class ExtraParameters(
-        val index: Int,
-        val displaySurface: OdsDisplaySurface,
-        val selected: Boolean,
-        val onClick: (Int) -> Unit
-    ) : OdsComponentContent.ExtraParameters()
+class OdsIconToggleButtonsRow {
 
     /**
-     * Creates an instance of [OdsIconToggleButtonsRowIcon].
-     *
-     * @param painter Painter of the icon.
-     * @param contentDescription The content description associated to this [OdsIconToggleButtonsRowIcon].
-     * @param enabled Whether or not this [OdsIconToggleButtonsRowIcon] will handle input events and appear enabled for
-     * semantics purposes, true by default.
+     * An icon of an [OdsIconToggleButtonsRow].
      */
-    constructor(painter: Painter, contentDescription: String, enabled: Boolean = true) : super(painter, contentDescription, enabled)
+    class Icon : OdsComponentIcon<Icon.ExtraParameters> {
 
-    /**
-     * Creates an instance of [OdsIconToggleButtonsRowIcon].
-     *
-     * @param imageVector Image vector of the icon.
-     * @param contentDescription The content description associated to this [OdsIconToggleButtonsRowIcon].
-     * @param enabled Whether or not this [OdsIconToggleButtonsRowIcon] will handle input events and appear enabled for
-     * semantics purposes, true by default.
-     */
-    constructor(imageVector: ImageVector, contentDescription: String, enabled: Boolean = true) : super(imageVector, contentDescription, enabled)
+        data class ExtraParameters(
+            val index: Int,
+            val displaySurface: OdsDisplaySurface,
+            val selected: Boolean,
+            val onClick: (Int) -> Unit
+        ) : OdsComponentContent.ExtraParameters()
 
-    /**
-     * Creates an instance of [OdsIconToggleButtonsRowIcon].
-     *
-     * @param bitmap Image bitmap of the icon.
-     * @param contentDescription The content description associated to this [OdsIconToggleButtonsRowIcon].
-     * @param enabled Whether or not this [OdsIconToggleButtonsRowIcon] will handle input events and appear enabled for
-     * semantics purposes, true by default.
-     */
-    constructor(bitmap: ImageBitmap, contentDescription: String, enabled: Boolean = true) : super(bitmap, contentDescription, enabled)
+        /**
+         * Creates an instance of [OdsIconToggleButtonsRow.Icon].
+         *
+         * @param painter Painter of the icon.
+         * @param contentDescription The content description associated to this [OdsIconToggleButtonsRow.Icon].
+         * @param enabled Whether or not this [OdsIconToggleButtonsRow.Icon] will handle input events and appear enabled for
+         * semantics purposes, true by default.
+         */
+        constructor(painter: Painter, contentDescription: String, enabled: Boolean = true) : super(painter, contentDescription, enabled)
 
-    override val tint: Color
+        /**
+         * Creates an instance of [OdsIconToggleButtonsRow.Icon].
+         *
+         * @param imageVector Image vector of the icon.
+         * @param contentDescription The content description associated to this [OdsIconToggleButtonsRow.Icon].
+         * @param enabled Whether or not this [OdsIconToggleButtonsRow.Icon] will handle input events and appear enabled for
+         * semantics purposes, true by default.
+         */
+        constructor(imageVector: ImageVector, contentDescription: String, enabled: Boolean = true) : super(imageVector, contentDescription, enabled)
+
+        /**
+         * Creates an instance of [OdsIconToggleButtonsRow.Icon].
+         *
+         * @param bitmap Image bitmap of the icon.
+         * @param contentDescription The content description associated to this [OdsIconToggleButtonsRow.Icon].
+         * @param enabled Whether or not this [OdsIconToggleButtonsRow.Icon] will handle input events and appear enabled for
+         * semantics purposes, true by default.
+         */
+        constructor(bitmap: ImageBitmap, contentDescription: String, enabled: Boolean = true) : super(bitmap, contentDescription, enabled)
+
+        override val tint: Color
+            @Composable
+            get() {
+                return with(extraParameters) { getIconColor(displaySurface, selected, enabled) }
+            }
+
         @Composable
-        get() {
-            return with(extraParameters) { getIconColor(displaySurface, selected, enabled) }
-        }
+        override fun Content(modifier: Modifier) {
+            with(extraParameters) {
+                val backgroundAlpha = if (selected && enabled) 0.12f else 0f
+                val toggleIconStateDescription = selectionStateDescription(selected = selected)
 
-    @Composable
-    override fun Content(modifier: Modifier) {
-        with(extraParameters) {
-            val backgroundAlpha = if (selected && enabled) 0.12f else 0f
-            val toggleIconStateDescription = selectionStateDescription(selected = selected)
-
-            super.Content(
-                modifier
-                    .background(color = buttonToggleBackgroundColor(displaySurface).copy(alpha = backgroundAlpha))
-                    .padding(12.dp)
-                    .run {
-                        if (enabled) {
-                            clickable(interactionSource = remember { DisabledInteractionSource() }, indication = null) { onClick(index) }
-                        } else {
-                            this
+                super.Content(
+                    modifier
+                        .background(color = buttonToggleBackgroundColor(displaySurface).copy(alpha = backgroundAlpha))
+                        .padding(12.dp)
+                        .run {
+                            if (enabled) {
+                                clickable(interactionSource = remember { DisabledInteractionSource() }, indication = null) { onClick(index) }
+                            } else {
+                                this
+                            }
                         }
-                    }
-                    .semantics {
-                        stateDescription = toggleIconStateDescription
-                    }
-            )
+                        .semantics {
+                            stateDescription = toggleIconStateDescription
+                        }
+                )
+            }
         }
+
+        @Composable
+        private fun getIconColor(displaySurface: OdsDisplaySurface, selected: Boolean, enabled: Boolean) =
+            with(displaySurface.themeColors) {
+                if (selected && enabled) primary else onSurface.enable(enabled = enabled)
+            }
     }
 
-    @Composable
-    private fun getIconColor(displaySurface: OdsDisplaySurface, selected: Boolean, enabled: Boolean) =
-        with(displaySurface.themeColors) {
-            if (selected && enabled) primary else onSurface.enable(enabled = enabled)
-        }
 }
 
 @UiModePreviews.Default
 @Composable
 private fun PreviewOdsIconToggleButtonsGroupRow() = Preview {
     val icons = listOf(
-        OdsIconToggleButtonsRowIcon(painterResource(id = android.R.drawable.ic_dialog_dialer), "Today"),
-        OdsIconToggleButtonsRowIcon(painterResource(id = android.R.drawable.ic_dialog_email), "Day"),
-        OdsIconToggleButtonsRowIcon(painterResource(id = android.R.drawable.ic_dialog_alert), "Month", false)
+        OdsIconToggleButtonsRow.Icon(painterResource(id = android.R.drawable.ic_dialog_dialer), "Today"),
+        OdsIconToggleButtonsRow.Icon(painterResource(id = android.R.drawable.ic_dialog_email), "Day"),
+        OdsIconToggleButtonsRow.Icon(painterResource(id = android.R.drawable.ic_dialog_alert), "Month", false)
     )
     var selectedIndex by remember { mutableStateOf(0) }
 

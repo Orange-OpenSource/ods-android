@@ -40,7 +40,7 @@ import com.orange.ods.app.ui.utilities.code.CodeImplementationColumn
 import com.orange.ods.app.ui.utilities.code.FunctionCallCode
 import com.orange.ods.app.ui.utilities.composable.Subtitle
 import com.orange.ods.compose.OdsComposable
-import com.orange.ods.compose.component.button.OdsIconButtonIcon
+import com.orange.ods.compose.component.button.OdsIconButton
 import com.orange.ods.compose.component.chip.OdsChoiceChip
 import com.orange.ods.compose.component.chip.OdsChoiceChipsFlowRow
 import com.orange.ods.compose.component.imageitem.OdsImageItem
@@ -123,11 +123,11 @@ fun ComponentImageItem() {
                     legendAreaDisplayType = type.value,
                     icon = if (hasIcon) {
                         OdsImageItemIconToggleButton(
-                            uncheckedIcon = OdsIconButtonIcon(
+                            uncheckedIcon = OdsIconButton.Icon(
                                 painterResource(id = R.drawable.ic_heart_outlined),
                                 stringResource(id = R.string.component_button_icon_toggle_favorite_add_icon_desc)
                             ),
-                            checkedIcon = OdsIconButtonIcon(
+                            checkedIcon = OdsIconButton.Icon(
                                 painterResource(id = R.drawable.ic_heart),
                                 stringResource(id = R.string.component_button_icon_toggle_favorite_remove_icon_desc)
                             ),
@@ -155,11 +155,11 @@ fun ComponentImageItem() {
                                 classInstance<OdsImageItemIconToggleButton>("icon") {
                                     checked(iconChecked)
                                     lambda("onCheckedChange")
-                                    classInstance<OdsIconButtonIcon>("uncheckedIcon") {
+                                    classInstance<OdsIconButton.Icon>("uncheckedIcon") {
                                         painter()
                                         contentDescription("")
                                     }
-                                    classInstance<OdsIconButtonIcon>("checkedIcon") {
+                                    classInstance<OdsIconButton.Icon>("checkedIcon") {
                                         painter()
                                         contentDescription("")
                                     }

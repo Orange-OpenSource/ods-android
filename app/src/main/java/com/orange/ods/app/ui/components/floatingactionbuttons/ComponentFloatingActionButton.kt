@@ -34,7 +34,6 @@ import com.orange.ods.app.ui.utilities.composable.Subtitle
 import com.orange.ods.compose.OdsComposable
 import com.orange.ods.compose.component.button.OdsExtendedFloatingActionButton
 import com.orange.ods.compose.component.button.OdsFloatingActionButton
-import com.orange.ods.compose.component.button.OdsFloatingActionButtonIcon
 import com.orange.ods.compose.component.chip.OdsChoiceChip
 import com.orange.ods.compose.component.chip.OdsChoiceChipsFlowRow
 import com.orange.ods.compose.component.list.OdsListItem
@@ -72,7 +71,7 @@ fun ComponentFloatingActionButton() {
                             clickOnElement(context, context.getString(R.string.component_floating_action_button))
                         },
                         text = stringResource(id = R.string.component_floating_action_button_add),
-                        icon = OdsFloatingActionButtonIcon(painterResource(id = R.drawable.ic_plus), ""),
+                        icon = OdsFloatingActionButton.Icon(painterResource(id = R.drawable.ic_plus), ""),
                         modifier = modifier
                     )
                 } else {
@@ -81,7 +80,7 @@ fun ComponentFloatingActionButton() {
                             clickOnElement(context, context.getString(R.string.component_floating_action_button))
                         },
                         mini = size.value == FabCustomizationState.Size.Mini,
-                        icon = OdsFloatingActionButtonIcon(
+                        icon = OdsFloatingActionButton.Icon(
                             painterResource(id = R.drawable.ic_plus),
                             stringResource(id = R.string.component_floating_action_button_add)
                         ),
@@ -122,7 +121,7 @@ fun ComponentFloatingActionButton() {
                         name = usedComponentName,
                         exhaustiveParameters = false,
                         parameters = {
-                            classInstance<OdsFloatingActionButtonIcon>("icon") {
+                            classInstance<OdsFloatingActionButton.Icon>("icon") {
                                 painter()
                                 contentDescription("")
                             }

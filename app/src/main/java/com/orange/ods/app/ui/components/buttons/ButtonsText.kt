@@ -33,7 +33,7 @@ import com.orange.ods.app.ui.utilities.code.CodeImplementationColumn
 import com.orange.ods.app.ui.utilities.code.FunctionCallCode
 import com.orange.ods.app.ui.utilities.composable.Title
 import com.orange.ods.compose.OdsComposable
-import com.orange.ods.compose.component.button.OdsButtonIcon
+import com.orange.ods.compose.component.button.OdsButton
 import com.orange.ods.compose.component.button.OdsTextButton
 import com.orange.ods.compose.component.button.OdsTextButtonStyle
 import com.orange.ods.compose.theme.OdsDisplaySurface
@@ -81,7 +81,7 @@ fun ButtonsText(customizationState: ButtonCustomizationState) {
                         enum("style", textButtonStyle.value)
                         if (hasFullScreenWidth) fillMaxWidth()
                         if (hasLeadingIcon) {
-                            classInstance<OdsButtonIcon>("icon") {
+                            classInstance<OdsButton.Icon>("icon") {
                                 painter()
                             }
                         }
@@ -115,7 +115,7 @@ private fun TextButton(
             compose = {
                 OdsTextButton(
                     modifier = if (fullScreenWidth) Modifier.fillMaxWidth() else Modifier,
-                    icon = if (leadingIcon) OdsButtonIcon(painterResource(id = iconId)) else null,
+                    icon = if (leadingIcon) OdsButton.Icon(painterResource(id = iconId)) else null,
                     text = text,
                     onClick = {},
                     enabled = enabled,

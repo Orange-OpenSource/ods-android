@@ -35,7 +35,7 @@ import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.PreviewParameter
 import com.orange.ods.R
 import com.orange.ods.compose.component.OdsComposable
-import com.orange.ods.compose.component.button.OdsIconButtonIcon
+import com.orange.ods.compose.component.button.OdsIconButton
 import com.orange.ods.compose.component.button.OdsIconToggleButton
 import com.orange.ods.compose.component.content.OdsComponentImage
 import com.orange.ods.compose.component.utilities.BasicPreviewParameterProvider
@@ -183,8 +183,8 @@ class OdsImageItemImage : OdsComponentImage<Nothing> {
 class OdsImageItemIconToggleButton(
     val checked: Boolean,
     val onCheckedChange: (Boolean) -> Unit,
-    val checkedIcon: OdsIconButtonIcon,
-    val uncheckedIcon: OdsIconButtonIcon,
+    val checkedIcon: OdsIconButton.Icon,
+    val uncheckedIcon: OdsIconButton.Icon,
 ) {
     @Composable
     fun Content(displaySurface: OdsDisplaySurface) {
@@ -230,8 +230,8 @@ private fun PreviewOdsImageItem(@PreviewParameter(OdsImageItemPreviewParameterPr
             title = parameter.title,
             legendAreaDisplayType = parameter.type,
             icon = OdsImageItemIconToggleButton(
-                uncheckedIcon = OdsIconButtonIcon(painterResource(id = parameter.uncheckedIcon), "click to select"),
-                checkedIcon = OdsIconButtonIcon(painterResource(id = parameter.checkedIcon), "click to unselect"),
+                uncheckedIcon = OdsIconButton.Icon(painterResource(id = parameter.uncheckedIcon), "click to select"),
+                checkedIcon = OdsIconButton.Icon(painterResource(id = parameter.checkedIcon), "click to unselect"),
                 checked = parameter.checked,
                 onCheckedChange = { parameter.checked },
             )

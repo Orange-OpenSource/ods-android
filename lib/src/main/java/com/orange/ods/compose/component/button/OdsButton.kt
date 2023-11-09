@@ -72,7 +72,7 @@ fun OdsButton(
     text: String,
     onClick: () -> Unit,
     modifier: Modifier = Modifier,
-    icon: OdsButtonIcon? = null,
+    icon: OdsButton.Icon? = null,
     enabled: Boolean = true,
     style: OdsButtonStyle = OdsButtonStyle.Default,
     displaySurface: OdsDisplaySurface = OdsDisplaySurface.Default

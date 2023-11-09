@@ -62,7 +62,7 @@ fun OdsTextButton(
     text: String,
     onClick: () -> Unit,
     modifier: Modifier = Modifier,
-    icon: OdsButtonIcon? = null,
+    icon: OdsButton.Icon? = null,
     enabled: Boolean = true,
     style: OdsTextButtonStyle = OdsTextButtonStyle.Default,
     displaySurface: OdsDisplaySurface = OdsDisplaySurface.Default
@@ -87,7 +87,7 @@ internal fun OdsTextButton(
     maxLines: Int,
     overflow: TextOverflow,
     modifier: Modifier = Modifier,
-    icon: OdsButtonIcon? = null,
+    icon: OdsButton.Icon? = null,
     enabled: Boolean = true,
     style: OdsTextButtonStyle = OdsTextButtonStyle.Default,
     displaySurface: OdsDisplaySurface = OdsDisplaySurface.Default

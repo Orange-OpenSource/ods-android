@@ -35,14 +35,13 @@ import com.orange.ods.app.ui.utilities.code.CodeImplementationColumn
 import com.orange.ods.app.ui.utilities.code.FunctionCallCode
 import com.orange.ods.compose.OdsComposable
 import com.orange.ods.compose.component.button.OdsIconToggleButtonsRow
-import com.orange.ods.compose.component.button.OdsIconToggleButtonsRowIcon
 import com.orange.ods.compose.theme.OdsDisplaySurface
 
 @Composable
 fun ButtonsIconToggleGroup(customizationState: ButtonIconCustomizationState) {
     val icons =
         LocalRecipes.current.distinctBy { it.iconResId }.filter { it.iconResId != null }.take(ButtonIconCustomizationState.MaxToggleCount).map { recipe ->
-            OdsIconToggleButtonsRowIcon(painterResource(id = recipe.iconResId!!), recipe.title, customizationState.enabled.value)
+            OdsIconToggleButtonsRow.Icon(painterResource(id = recipe.iconResId!!), recipe.title, customizationState.enabled.value)
         }
 
     var selectedIndex by rememberSaveable { mutableStateOf(0) }
@@ -83,7 +82,7 @@ fun ButtonsIconToggleGroup(customizationState: ButtonIconCustomizationState) {
                     parameters = {
                         list("icons") {
                             repeat(toggleCount.value) {
-                                classInstance<OdsIconToggleButtonsRowIcon> {
+                                classInstance<OdsIconToggleButtonsRow.Icon> {
                                     painter()
                                     contentDescription("")
                                     if (!isEnabled) enabled(false)
@@ -100,7 +99,7 @@ fun ButtonsIconToggleGroup(customizationState: ButtonIconCustomizationState) {
 
 @Composable
 private fun ToggleButtonsRow(
-    icons: List<OdsIconToggleButtonsRowIcon>,
+    icons: List<OdsIconToggleButtonsRow.Icon>,
     selectedIndex: Int,
     onSelectedIndexChange: (Int) -> Unit,
     toggleCount: Int,

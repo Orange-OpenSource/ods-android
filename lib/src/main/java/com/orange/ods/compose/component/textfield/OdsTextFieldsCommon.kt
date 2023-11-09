@@ -27,7 +27,6 @@ import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.painterResource
 import com.orange.ods.R
 import com.orange.ods.compose.component.button.OdsIconButton
-import com.orange.ods.compose.component.button.OdsIconButtonIcon
 import com.orange.ods.compose.component.content.OdsComponentContent
 import com.orange.ods.compose.component.content.OdsComponentIcon
 import com.orange.ods.compose.component.utilities.BasicPreviewParameterProvider
@@ -188,7 +187,7 @@ internal fun OdsTextFieldBottomRow(isError: Boolean, errorMessage: String?, char
 @Composable
 internal fun OdsTextFieldIcon(painter: Painter, contentDescription: String?, onClick: (() -> Unit)?) {
     OdsIconButton(
-        icon = OdsIconButtonIcon(
+        icon = OdsIconButton.Icon(
             painter = painter, contentDescription = contentDescription.orEmpty()
         ),
         enabled = onClick != null,

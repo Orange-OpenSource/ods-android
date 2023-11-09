@@ -54,7 +54,7 @@ import com.orange.ods.compose.theme.OdsDisplaySurface
 @OdsComposable
 @ExperimentalOdsApi
 fun OdsTextToggleButtonsRow(
-    textToggleButtons: List<OdsTextToggleButtonsRowItem>,
+    textToggleButtons: List<OdsTextToggleButtonsRow.Item>,
     selectedIndex: Int,
     onSelectedIndexChange: (Int) -> Unit,
     modifier: Modifier = Modifier,
@@ -92,15 +92,25 @@ fun OdsTextToggleButtonsRow(
     }
 }
 
-data class OdsTextToggleButtonsRowItem(
-    val text: String,
-    val enabled: Boolean = true
-)
+/**
+ * Contains classes to build an [com.orange.ods.compose.component.button.OdsTextToggleButtonsRow].
+ */
+class OdsTextToggleButtonsRow {
+
+    /**
+     * An item in an [OdsTextToggleButtonsRow].
+     */
+    data class Item(
+        val text: String,
+        val enabled: Boolean = true
+    )
+
+}
 
 @Composable
 private fun RowScope.TextToggleButtonsRowItem(
     index: Int,
-    textToggleButton: OdsTextToggleButtonsRowItem,
+    textToggleButton: OdsTextToggleButtonsRow.Item,
     selected: Boolean,
     sameItemsWeight: Boolean,
     displaySurface: OdsDisplaySurface,
@@ -130,8 +140,8 @@ private fun RowScope.TextToggleButtonsRowItem(
 @Composable
 private fun PreviewOdsTextToggleButtonsGroupRow() = Preview {
     val textToggleButtons = listOf(
-        OdsTextToggleButtonsRowItem("XML", true),
-        OdsTextToggleButtonsRowItem("COMPOSE", true),
+        OdsTextToggleButtonsRow.Item("XML", true),
+        OdsTextToggleButtonsRow.Item("COMPOSE", true),
     )
     var selectedIndex by remember { mutableStateOf(0) }
 
