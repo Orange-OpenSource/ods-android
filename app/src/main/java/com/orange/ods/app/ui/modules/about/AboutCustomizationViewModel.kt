@@ -26,6 +26,7 @@ import com.orange.ods.app.ui.CustomAppBarConfiguration
 import com.orange.ods.app.ui.LocalAppBarManager
 import com.orange.ods.app.ui.about.RateTheAppUrl
 import com.orange.ods.app.ui.components.utilities.clickOnElement
+import com.orange.ods.module.about.ui.configuration.OdsAboutAccessibilityStatementMenuItemConfiguration
 import com.orange.ods.module.about.ui.configuration.OdsAboutConfiguration
 import com.orange.ods.module.about.ui.configuration.OdsAboutFileMenuItem
 import com.orange.ods.module.about.ui.configuration.OdsAboutMenuItem
@@ -45,6 +46,7 @@ class AboutCustomizationViewModel : ViewModel() {
             appName = stringResource(id = R.string.module_about_demo_app_name),
             privacyPolicyMenuItemFile = OdsAboutFileMenuItem.File(R.raw.about_privacy_policy, OdsAboutFileMenuItem.File.Format.Html),
             termsOfServiceMenuItemFile = OdsAboutFileMenuItem.File(R.raw.about_terms_of_service, OdsAboutFileMenuItem.File.Format.Html),
+            accessibilityStatementMenuItemConfiguration = OdsAboutAccessibilityStatementMenuItemConfiguration("accessibility-statement/orange-design-system.xml"),
             appVersion = if (selectedAppSections.contains(AboutCustomizationAppSection.Version)) stringResource(id = R.string.module_about_demo_version) else null,
             appDescription = if (selectedAppSections.contains(AboutCustomizationAppSection.Description)) stringResource(id = R.string.module_about_demo_description) else null,
             shareData = if (selectedAppSections.contains(AboutCustomizationAppSection.Share)) {

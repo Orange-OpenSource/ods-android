@@ -42,6 +42,12 @@ data class OdsAboutConfiguration(
     val termsOfServiceMenuItemFile: OdsAboutFileMenuItem.File,
 
     /**
+     * The app accessibility statement menu item configuration.
+     * Note that this menu item is mandatory and you MUST provide an XML accessibility statement file in the app assets to display the accessibility statement for your app.
+     */
+    val accessibilityStatementMenuItemConfiguration: OdsAboutAccessibilityStatementMenuItemConfiguration,
+
+    /**
      * The illustration resource id. It should be a SVG or PNG resource file, placed in res/drawable directory. It allows to customize
      * the displayed image on the main screen of the About module.
      * If not provided, the default Orange illustration will be displayed.
@@ -117,7 +123,8 @@ data class OdsAboutConfiguration(
         get() {
             val mandatoryMenuItems = mandatoryMenuItems(
                 privacyPolicyFile = privacyPolicyMenuItemFile,
-                termsOfServiceFile = termsOfServiceMenuItemFile
+                termsOfServiceFile = termsOfServiceMenuItemFile,
+                accessibilityStatementConfiguration = accessibilityStatementMenuItemConfiguration
             )
             val optionalMenuItems = optionalMenuItems(
                 appNewsFileRes = appNewsMenuItemFileRes,
@@ -138,3 +145,12 @@ data class OdsAboutConfiguration(
  * @property text The text to share
  */
 data class OdsAboutShareData(val title: String, val text: String)
+
+/**
+ * The accessibility statement menu item configuration.
+ *
+ * @property xmlFilePath The XML accessibility statement file path. This file must be located in the app assets.
+ * @property detailsUrl The URL of the accessibility statement details. If `null`, the accessibility statement details
+ * will be loaded using the HTML content of the `accessibility-statement` folder located in the app assets.
+ */
+data class OdsAboutAccessibilityStatementMenuItemConfiguration(val xmlFilePath: String, val detailsUrl: String? = null)

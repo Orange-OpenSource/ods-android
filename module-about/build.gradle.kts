@@ -24,6 +24,8 @@ android {
 
     buildFeatures {
         compose = true
+        viewBinding = true
+        dataBinding = true
     }
     composeOptions {
         kotlinCompilerExtensionVersion = Versions.composeCompiler
@@ -31,10 +33,12 @@ android {
 }
 
 dependencies {
+    implementation(project(":accessibility-statement-lib-android"))
     implementation(project(":lib"))
     implementation(Dependencies.appCompat)
     implementation(Dependencies.browser)
     implementation(Dependencies.composeMaterial)
+    implementation(Dependencies.composeUiViewBinding)
     implementation(Dependencies.hiltAndroid)
     kapt(Dependencies.hiltCompiler)
     implementation(Dependencies.navigationCompose)

@@ -28,9 +28,10 @@ import com.orange.ods.module.about.R
 private enum class PredefinedItem(@DrawableRes val iconRes: Int, @StringRes val textRes: Int, val position: Int) {
     PrivacyPolicy(R.drawable.ic_dataprotection, R.string.odsAbout_menu_privacyPolicy, 100),
     TermsOfService(R.drawable.ic_tasklist, R.string.odsAbout_menu_termsOfService, 101),
-    AppNews(R.drawable.ic_calendareventinfo, R.string.odsAbout_menu_appNews, 102),
-    LegalInformation(R.drawable.ic_legal, R.string.odsAbout_menu_legalInformation, 103),
-    RateTheApp(R.drawable.ic_review, R.string.odsAbout_menu_rateTheApp, 104);
+    AccessibilityStatement(R.drawable.ic_accessibility, R.string.odsAbout_menu_accessibilityStatement, 102),
+    AppNews(R.drawable.ic_calendareventinfo, R.string.odsAbout_menu_appNews, 103),
+    LegalInformation(R.drawable.ic_legal, R.string.odsAbout_menu_legalInformation, 104),
+    RateTheApp(R.drawable.ic_review, R.string.odsAbout_menu_rateTheApp, 105);
 
     @Composable
     fun getFileMenuItem(file: OdsAboutFileMenuItem.File) = OdsAboutFileMenuItem(
@@ -54,11 +55,21 @@ private enum class PredefinedItem(@DrawableRes val iconRes: Int, @StringRes val 
 @Stable
 internal fun mandatoryMenuItems(
     privacyPolicyFile: OdsAboutFileMenuItem.File,
-    termsOfServiceFile: OdsAboutFileMenuItem.File
+    termsOfServiceFile: OdsAboutFileMenuItem.File,
+    accessibilityStatementConfiguration: OdsAboutAccessibilityStatementMenuItemConfiguration
 ): List<OdsAboutMenuItem> =
     listOf(
         PredefinedItem.PrivacyPolicy.getFileMenuItem(file = privacyPolicyFile),
-        PredefinedItem.TermsOfService.getFileMenuItem(file = termsOfServiceFile)
+        PredefinedItem.TermsOfService.getFileMenuItem(file = termsOfServiceFile),
+        with(PredefinedItem.AccessibilityStatement) {
+            OdsAboutAccessibilityStatementMenuItem(
+                painterResource(id = iconRes),
+                stringResource(id = textRes),
+                position,
+                accessibilityStatementConfiguration.xmlFilePath,
+                accessibilityStatementConfiguration.detailsUrl
+            )
+        }
     )
 
 @Composable
@@ -246,5 +257,14 @@ internal class OdsAboutAppNewsMenuItem(
     title: String,
     position: Int,
     @RawRes val jsonFileRes: Int,
+    subtitle: String? = null
+) : OdsAboutMenuItem(painter, title, position, subtitle)
+
+internal class OdsAboutAccessibilityStatementMenuItem(
+    painter: Painter,
+    title: String,
+    position: Int,
+    val xmlFilePath: String,
+    val detailsUrl: String?,
     subtitle: String? = null
 ) : OdsAboutMenuItem(painter, title, position, subtitle)
