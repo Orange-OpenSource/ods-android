@@ -31,7 +31,6 @@ import com.orange.ods.app.ui.utilities.code.CodeImplementationColumn
 import com.orange.ods.app.ui.utilities.code.FunctionCallCode
 import com.orange.ods.compose.OdsComposable
 import com.orange.ods.compose.component.dialog.OdsAlertDialog
-import com.orange.ods.compose.component.dialog.OdsAlertDialogButton
 import com.orange.ods.compose.component.list.OdsListItem
 import com.orange.ods.compose.component.list.OdsListItemTrailingSwitch
 
@@ -77,13 +76,13 @@ fun ComponentDialog() {
                         exhaustiveParameters = false,
                         parameters = {
                             simple("text", "<dialog text>")
-                            classInstance<OdsAlertDialogButton>("confirmButton") {
+                            classInstance<OdsAlertDialog.Button>("confirmButton") {
                                 text(confirmButtonText)
                                 onClick()
                             }
                             if (isTitleChecked) string("title", recipe.title)
                             if (isDismissButtonChecked) {
-                                classInstance<OdsAlertDialogButton>("dismissButton") {
+                                classInstance<OdsAlertDialog.Button>("dismissButton") {
                                     text(dismissButtonText)
                                     onClick()
                                 }
@@ -96,12 +95,12 @@ fun ComponentDialog() {
                     OdsAlertDialog(
                         title = if (isTitleChecked) recipe.title else null,
                         text = recipe.description,
-                        confirmButton = OdsAlertDialogButton(confirmButtonText) {
+                        confirmButton = OdsAlertDialog.Button(confirmButtonText) {
                             clickOnElement(context = context, clickedElement = confirmButtonText)
                             closeDialogAction()
                         },
                         dismissButton = if (isDismissButtonChecked) {
-                            OdsAlertDialogButton(dismissButtonText) {
+                            OdsAlertDialog.Button(dismissButtonText) {
                                 clickOnElement(context = context, clickedElement = dismissButtonText)
                                 closeDialogAction()
                             }
