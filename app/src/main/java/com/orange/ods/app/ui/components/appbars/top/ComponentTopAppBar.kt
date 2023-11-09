@@ -42,8 +42,7 @@ import com.orange.ods.app.ui.utilities.code.CodeImplementationColumn
 import com.orange.ods.app.ui.utilities.code.FunctionCallCode
 import com.orange.ods.app.ui.utilities.composable.*
 import com.orange.ods.compose.OdsComposable
-import com.orange.ods.compose.component.appbar.top.OdsTopAppBarActionButton
-import com.orange.ods.compose.component.appbar.top.OdsTopAppBarNavigationIcon
+import com.orange.ods.compose.component.appbar.top.OdsTopAppBar
 import com.orange.ods.compose.component.chip.OdsChoiceChip
 import com.orange.ods.compose.component.chip.OdsChoiceChipsFlowRow
 import com.orange.ods.compose.component.list.OdsListItem
@@ -100,7 +99,7 @@ fun ComponentTopAppBar(variant: Variant) {
                                 title(context.getString(R.string.component_app_bars_top_regular))
 
                                 if (isNavigationIconEnabled) {
-                                    classInstance<OdsTopAppBarNavigationIcon>("navigationIcon") {
+                                    classInstance<OdsTopAppBar.NavigationIcon>("navigationIcon") {
                                         imageVector()
                                         contentDescription(context.getString(R.string.top_app_bar_back_icon_desc))
                                     }
@@ -108,7 +107,7 @@ fun ComponentTopAppBar(variant: Variant) {
 
                                 list("actions") {
                                     repeat(actionCount.value) {
-                                        classInstance<OdsTopAppBarActionButton> {
+                                        classInstance<OdsTopAppBar.ActionButton> {
                                             onClick()
                                             painter()
                                             contentDescription("icon description")

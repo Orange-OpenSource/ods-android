@@ -47,8 +47,8 @@ import com.orange.ods.compose.theme.OdsTheme
 fun OdsTopAppBar(
     title: String,
     modifier: Modifier = Modifier,
-    navigationIcon: OdsTopAppBarNavigationIcon? = null,
-    actions: List<OdsTopAppBarActionButton> = emptyList(),
+    navigationIcon: OdsTopAppBar.NavigationIcon? = null,
+    actions: List<OdsTopAppBar.ActionButton> = emptyList(),
     overflowMenuActions: List<OdsTopAppBarOverflowMenuActionItem> = emptyList(),
     elevated: Boolean = true
 ) {
@@ -68,7 +68,7 @@ fun OdsTopAppBar(
 fun OdsTopAppBarInternal(
     title: String,
     modifier: Modifier = Modifier,
-    navigationIcon: OdsTopAppBarNavigationIcon? = null,
+    navigationIcon: OdsTopAppBar.NavigationIcon? = null,
     actions: List<OdsComponentContent<*>> = emptyList(),
     overflowMenuActions: List<OdsTopAppBarOverflowMenuActionItem> = emptyList(),
     elevated: Boolean = true
@@ -87,14 +87,14 @@ fun OdsTopAppBarInternal(
 @UiModePreviews.Default
 @Composable
 private fun PreviewOdsTopAppBar() = Preview {
-    val actions = listOf(OdsTopAppBarActionButton(painterResource(id = android.R.drawable.ic_dialog_info), "Info") {})
+    val actions = listOf(OdsTopAppBar.ActionButton(painterResource(id = android.R.drawable.ic_dialog_info), "Info") {})
     val overflowMenuItems = listOf(
         OdsTopAppBarOverflowMenuActionItem("Settings") {},
         OdsTopAppBarOverflowMenuActionItem("Account") {}
     )
     OdsTopAppBar(
         title = "Title",
-        navigationIcon = OdsTopAppBarNavigationIcon(Icons.Filled.ArrowBack, "") {},
+        navigationIcon = OdsTopAppBar.NavigationIcon(Icons.Filled.ArrowBack, "") {},
         actions = actions,
         overflowMenuActions = overflowMenuItems
     )

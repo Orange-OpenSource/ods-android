@@ -55,8 +55,8 @@ import com.orange.ods.compose.theme.OdsTheme
 fun OdsLargeTopAppBar(
     title: String,
     modifier: Modifier = Modifier,
-    navigationIcon: OdsTopAppBarNavigationIcon? = null,
-    actions: List<OdsTopAppBarActionButton> = emptyList(),
+    navigationIcon: OdsTopAppBar.NavigationIcon? = null,
+    actions: List<OdsTopAppBar.ActionButton> = emptyList(),
     overflowMenuActions: List<OdsTopAppBarOverflowMenuActionItem> = emptyList(),
     scrollBehavior: TopAppBarScrollBehavior? = null
 ) {
@@ -77,7 +77,7 @@ fun OdsLargeTopAppBar(
 fun OdsLargeTopAppBarInternal(
     title: String,
     modifier: Modifier = Modifier,
-    navigationIcon: OdsTopAppBarNavigationIcon? = null,
+    navigationIcon: OdsTopAppBar.NavigationIcon? = null,
     actions: List<OdsComponentContent<*>> = emptyList(),
     overflowMenuActions: List<OdsTopAppBarOverflowMenuActionItem> = emptyList(),
     scrollBehavior: TopAppBarScrollBehavior? = null
@@ -148,7 +148,7 @@ fun OdsLargeTopAppBarInternal(
 @Composable
 private fun PreviewOdsLargeTopAppBar(@PreviewParameter(OdsLargeTopAppBarPreviewParameterProvider::class) parameter: OdsLargeTopAppBarPreviewParameter) =
     Preview {
-        val actions = listOf(OdsTopAppBarActionButton(painterResource(id = android.R.drawable.ic_dialog_info), "Info") {})
+        val actions = listOf(OdsTopAppBar.ActionButton(painterResource(id = android.R.drawable.ic_dialog_info), "Info") {})
         val overflowMenuActions = listOf(
             OdsTopAppBarOverflowMenuActionItem("Settings") { },
             OdsTopAppBarOverflowMenuActionItem("Account") { }
@@ -163,7 +163,7 @@ private fun PreviewOdsLargeTopAppBar(@PreviewParameter(OdsLargeTopAppBarPreviewP
 
 internal data class OdsLargeTopAppBarPreviewParameter(
     val title: String,
-    val navigationIcon: OdsTopAppBarNavigationIcon?
+    val navigationIcon: OdsTopAppBar.NavigationIcon?
 )
 
 private class OdsLargeTopAppBarPreviewParameterProvider :
@@ -171,7 +171,7 @@ private class OdsLargeTopAppBarPreviewParameterProvider :
 
 private val previewParameterValues: List<OdsLargeTopAppBarPreviewParameter>
     get() {
-        val navigationIcon = OdsTopAppBarNavigationIcon(Icons.Filled.ArrowBack, "") {}
+        val navigationIcon = OdsTopAppBar.NavigationIcon(Icons.Filled.ArrowBack, "") {}
         return listOf(
             OdsLargeTopAppBarPreviewParameter("One line title", navigationIcon),
             OdsLargeTopAppBarPreviewParameter("Two lines title is allowed in large top app bar", navigationIcon),

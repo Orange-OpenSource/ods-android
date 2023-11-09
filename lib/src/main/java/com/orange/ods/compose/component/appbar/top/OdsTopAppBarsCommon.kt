@@ -39,7 +39,7 @@ internal fun OdsTopAppBarActions(actions: List<OdsComponentContent<*>>, overflow
         Box {
             var showMenu by remember { mutableStateOf(false) }
             val contentDescription = stringResource(id = R.string.top_app_bar_overflow_menu_content_description)
-            val dropdownMenuAction = OdsTopAppBarActionButton(Icons.Filled.MoreVert, contentDescription, true) { showMenu = !showMenu }
+            val dropdownMenuAction = OdsTopAppBar.ActionButton(Icons.Filled.MoreVert, contentDescription, true) { showMenu = !showMenu }
             dropdownMenuAction.Content()
             OdsDropdownMenu(
                 items = overflowMenuActions,
@@ -51,98 +51,107 @@ internal fun OdsTopAppBarActions(actions: List<OdsComponentContent<*>>, overflow
 }
 
 /**
- * A navigation icon in an [OdsTopAppBar].
+ * Contains classes to build a [com.orange.ods.compose.component.appbar.top.OdsTopAppBar] or a [com.orange.ods.compose.component.appbar.top.OdsLargeTopAppBar].
  */
-class OdsTopAppBarNavigationIcon : OdsComponentIcon<Nothing> {
+class OdsTopAppBar {
 
     /**
-     * Creates an instance of [OdsTopAppBarNavigationIcon].
-     *
-     * @param painter Painter of the icon.
-     * @param contentDescription The content description associated to this [OdsTopAppBarNavigationIcon].
-     * @param onClick Will be called when the user clicks on the action icon button.
+     * A navigation icon in an OdsTopAppBar.
      */
-    constructor(painter: Painter, contentDescription: String, onClick: () -> Unit) : super(painter, contentDescription, onClick = onClick)
+    class NavigationIcon : OdsComponentIcon<Nothing> {
+
+        /**
+         * Creates an instance of [OdsTopAppBar.NavigationIcon].
+         *
+         * @param painter Painter of the icon.
+         * @param contentDescription The content description associated to this [OdsTopAppBar.NavigationIcon].
+         * @param onClick Will be called when the user clicks on the action icon button.
+         */
+        constructor(painter: Painter, contentDescription: String, onClick: () -> Unit) : super(painter, contentDescription, onClick = onClick)
+
+        /**
+         * Creates an instance of [OdsTopAppBar.NavigationIcon].
+         *
+         * @param imageVector Image vector of the icon.
+         * @param contentDescription The content description associated to this [OdsTopAppBar.NavigationIcon].
+         * @param onClick Will be called when the user clicks on the action icon button.
+         */
+        constructor(imageVector: ImageVector, contentDescription: String, onClick: () -> Unit) : super(imageVector, contentDescription, onClick = onClick)
+
+        /**
+         * Creates an instance of [OdsTopAppBar.NavigationIcon].
+         *
+         * @param bitmap Image bitmap of the icon.
+         * @param contentDescription The content description associated to this [OdsTopAppBar.NavigationIcon].
+         * @param onClick Will be called when the user clicks on the action icon button.
+         */
+        constructor(bitmap: ImageBitmap, contentDescription: String, onClick: () -> Unit) : super(bitmap, contentDescription, onClick = onClick)
+
+        override val tint: Color?
+            @Composable
+            get() = OdsTheme.colors.component.topAppBar.barContent
+    }
 
     /**
-     * Creates an instance of [OdsTopAppBarNavigationIcon].
-     *
-     * @param imageVector Image vector of the icon.
-     * @param contentDescription The content description associated to this [OdsTopAppBarNavigationIcon].
-     * @param onClick Will be called when the user clicks on the action icon button.
+     * An action button displayed in an [OdsTopAppBar].
      */
-    constructor(imageVector: ImageVector, contentDescription: String, onClick: () -> Unit) : super(imageVector, contentDescription, onClick = onClick)
+    class ActionButton : OdsComponentIcon<Nothing> {
 
-    /**
-     * Creates an instance of [OdsTopAppBarNavigationIcon].
-     *
-     * @param bitmap Image bitmap of the icon.
-     * @param contentDescription The content description associated to this [OdsTopAppBarNavigationIcon].
-     * @param onClick Will be called when the user clicks on the action icon button.
-     */
-    constructor(bitmap: ImageBitmap, contentDescription: String, onClick: () -> Unit) : super(bitmap, contentDescription, onClick = onClick)
+        /**
+         * Creates an instance of [OdsTopAppBar.ActionButton].
+         *
+         * @param painter Painter of the icon.
+         * @param contentDescription The content description associated to this [OdsTopAppBar.ActionButton].
+         * @param enabled whether or not this [OdsTopAppBar.ActionButton] will handle input events and appear enabled for
+         * semantics purposes, true by default.
+         * @param onClick Will be called when the user clicks on the action icon button.
+         */
+        constructor(
+            painter: Painter,
+            contentDescription: String,
+            enabled: Boolean = true,
+            onClick: () -> Unit
+        ) : super(painter, contentDescription, enabled, onClick)
 
-    override val tint: Color?
-        @Composable
-        get() = OdsTheme.colors.component.topAppBar.barContent
+        /**
+         * Creates an instance of [OdsTopAppBar.ActionButton].
+         *
+         * @param imageVector Image vector of the icon.
+         * @param contentDescription The content description associated to this [OdsTopAppBar.ActionButton].
+         * @param enabled whether or not this [OdsTopAppBar.ActionButton] will handle input events and appear enabled for
+         * semantics purposes, true by default.
+         * @param onClick Will be called when the user clicks on the action icon button.
+         */
+        constructor(
+            imageVector: ImageVector,
+            contentDescription: String,
+            enabled: Boolean = true,
+            onClick: () -> Unit
+        ) : super(imageVector, contentDescription, enabled, onClick)
+
+        /**
+         * Creates an instance of [OdsTopAppBar.ActionButton].
+         *
+         * @param bitmap Image bitmap of the icon.
+         * @param contentDescription The content description associated to this [OdsTopAppBar.ActionButton].
+         * @param enabled whether or not this [OdsTopAppBar.ActionButton] will handle input events and appear enabled for
+         * semantics purposes, true by default.
+         * @param onClick Will be called when the user clicks on the action icon button.
+         */
+        constructor(
+            bitmap: ImageBitmap,
+            contentDescription: String,
+            enabled: Boolean = true,
+            onClick: () -> Unit
+        ) : super(bitmap, contentDescription, enabled, onClick)
+
+        override val tint: Color
+            @Composable
+            get() = OdsTheme.colors.component.topAppBar.barContent
+    }
+
 }
 
-/**
- * An action button displayed in an [OdsTopAppBar].
- */
-open class OdsTopAppBarActionButton : OdsComponentIcon<Nothing> {
 
-    /**
-     * Creates an instance of [OdsTopAppBarActionButton].
-     *
-     * @param painter Painter of the icon.
-     * @param contentDescription The content description associated to this [OdsTopAppBarActionButton].
-     * @param enabled whether or not this [OdsTopAppBarActionButton] will handle input events and appear enabled for
-     * semantics purposes, true by default.
-     * @param onClick Will be called when the user clicks on the action icon button.
-     */
-    constructor(
-        painter: Painter,
-        contentDescription: String,
-        enabled: Boolean = true,
-        onClick: () -> Unit
-    ) : super(painter, contentDescription, enabled, onClick)
-
-    /**
-     * Creates an instance of [OdsTopAppBarActionButton].
-     *
-     * @param imageVector Image vector of the icon.
-     * @param contentDescription The content description associated to this [OdsTopAppBarActionButton].
-     * @param enabled whether or not this [OdsTopAppBarActionButton] will handle input events and appear enabled for
-     * semantics purposes, true by default.
-     * @param onClick Will be called when the user clicks on the action icon button.
-     */
-    constructor(
-        imageVector: ImageVector,
-        contentDescription: String,
-        enabled: Boolean = true,
-        onClick: () -> Unit
-    ) : super(imageVector, contentDescription, enabled, onClick)
-
-    /**
-     * Creates an instance of [OdsTopAppBarActionButton].
-     *
-     * @param bitmap Image bitmap of the icon.
-     * @param contentDescription The content description associated to this [OdsTopAppBarActionButton].
-     * @param enabled whether or not this [OdsTopAppBarActionButton] will handle input events and appear enabled for
-     * semantics purposes, true by default.
-     * @param onClick Will be called when the user clicks on the action icon button.
-     */
-    constructor(
-        bitmap: ImageBitmap,
-        contentDescription: String,
-        enabled: Boolean = true,
-        onClick: () -> Unit
-    ) : super(bitmap, contentDescription, enabled, onClick)
-
-    override val tint: Color?
-        @Composable
-        get() = OdsTheme.colors.component.topAppBar.barContent
-}
-
+//TODO Remove typealias use, find a solution to have the following type parameter: `OdsTopAppBar.OverflowMenuActionItem`
 typealias OdsTopAppBarOverflowMenuActionItem = OdsDropdownMenuItem

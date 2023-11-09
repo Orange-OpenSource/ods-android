@@ -102,7 +102,7 @@ fun OdsBanner(
 }
 
 /**
- * Contains classes to build an OdsBanner composable.
+ * Contains classes to build an [com.orange.ods.compose.component.banner.OdsBanner].
  */
 class OdsBanner {
 

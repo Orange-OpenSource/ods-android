@@ -32,8 +32,7 @@ import com.orange.ods.app.ui.AppBarState.Companion.CustomDefaultConfiguration
 import com.orange.ods.app.ui.components.appbars.top.TopAppBarCustomizationState
 import com.orange.ods.app.ui.components.utilities.clickOnElement
 import com.orange.ods.app.ui.utilities.NavigationItem
-import com.orange.ods.compose.component.appbar.top.OdsTopAppBarActionButton
-import com.orange.ods.compose.component.appbar.top.OdsTopAppBarNavigationIcon
+import com.orange.ods.compose.component.appbar.top.OdsTopAppBar
 import com.orange.ods.compose.component.appbar.top.OdsTopAppBarOverflowMenuActionItem
 import com.orange.ods.compose.component.content.OdsComponentContent
 import com.orange.ods.extension.orElse
@@ -113,7 +112,7 @@ class AppBarState(
                     .take(customActionCount)
                     .map {
                         val contentDescription = stringResource(id = it.textResId)
-                        OdsTopAppBarActionButton(painter = painterResource(id = it.iconResId), contentDescription = contentDescription) {
+                        OdsTopAppBar.ActionButton(painter = painterResource(id = it.iconResId), contentDescription = contentDescription) {
                             clickOnElement(context, contentDescription)
                         }
                     }
@@ -141,7 +140,7 @@ class AppBarState(
 
     @Composable
     fun getNavigationIcon(upPress: () -> Unit) = if (showNavigationIcon) {
-        OdsTopAppBarNavigationIcon(Icons.Filled.ArrowBack, stringResource(id = R.string.top_app_bar_back_icon_desc), upPress)
+        OdsTopAppBar.NavigationIcon(Icons.Filled.ArrowBack, stringResource(id = R.string.top_app_bar_back_icon_desc), upPress)
     } else {
         null
     }
