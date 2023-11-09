@@ -34,7 +34,6 @@ import com.orange.ods.app.ui.utilities.composable.TechnicalText
 import com.orange.ods.app.ui.utilities.composable.Title
 import com.orange.ods.compose.OdsComposable
 import com.orange.ods.compose.component.control.OdsSlider
-import com.orange.ods.compose.component.control.OdsSliderIcon
 import com.orange.ods.compose.component.control.OdsSliderLockups
 import com.orange.ods.compose.component.list.OdsListItem
 import com.orange.ods.compose.component.list.OdsListItemTrailingSwitch
@@ -69,9 +68,9 @@ fun ComponentSliders() {
                 val technicalText = if (shouldDisplayValue) OdsComposable.OdsSliderLockups.name else OdsComposable.OdsSlider.name
                 val steps = if (isStepped) 9 else 0
                 val startIconContentDescription = stringResource(id = R.string.component_slider_low_volume)
-                val startIcon = if (hasSideIcons) OdsSliderIcon(painterResource(id = R.drawable.ic_volume_status_1), startIconContentDescription) else null
+                val startIcon = if (hasSideIcons) OdsSlider.Icon(painterResource(id = R.drawable.ic_volume_status_1), startIconContentDescription) else null
                 val endIconContentDescription = stringResource(id = R.string.component_slider_high_volume)
-                val endIcon = if (hasSideIcons) OdsSliderIcon(painterResource(id = R.drawable.ic_volume_status_4), endIconContentDescription) else null
+                val endIcon = if (hasSideIcons) OdsSlider.Icon(painterResource(id = R.drawable.ic_volume_status_4), endIconContentDescription) else null
 
                 var sliderPosition by remember { mutableStateOf(0f) }
                 val valueRange = 0f..100f
@@ -114,11 +113,11 @@ fun ComponentSliders() {
                             lambda("onValueChange")
                             if (isStepped) stringRepresentation("steps", steps)
                             if (hasSideIcons) {
-                                classInstance<OdsSliderIcon>("startIcon") {
+                                classInstance<OdsSlider.Icon>("startIcon") {
                                     painter()
                                     contentDescription(startIconContentDescription)
                                 }
-                                classInstance<OdsSliderIcon>("endIcon") {
+                                classInstance<OdsSlider.Icon>("endIcon") {
                                     painter()
                                     contentDescription(endIconContentDescription)
                                 }
