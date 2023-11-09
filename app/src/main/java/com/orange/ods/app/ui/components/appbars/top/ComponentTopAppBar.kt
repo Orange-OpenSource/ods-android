@@ -46,7 +46,6 @@ import com.orange.ods.compose.component.appbar.top.OdsTopAppBar
 import com.orange.ods.compose.component.chip.OdsChoiceChip
 import com.orange.ods.compose.component.chip.OdsChoiceChipsFlowRow
 import com.orange.ods.compose.component.list.OdsListItem
-import com.orange.ods.compose.component.list.OdsListItemTrailingSwitch
 import com.orange.ods.compose.text.OdsTextBody2
 import com.orange.ods.compose.text.OdsTextCaption
 import com.orange.ods.compose.theme.OdsTheme
@@ -194,7 +193,7 @@ private fun CustomizationBottomSheetContent(customizationState: TopAppBarCustomi
         }
         OdsListItem(
             text = stringResource(id = R.string.component_app_bars_top_element_navigation_icon),
-            trailing = OdsListItemTrailingSwitch(navigationIconEnabled.value, { navigationIconEnabled.value = it })
+            trailing = OdsListItem.TrailingSwitch(navigationIconEnabled.value, { navigationIconEnabled.value = it })
         )
         ComponentCountRow(
             modifier = Modifier.padding(start = dimensionResource(id = com.orange.ods.R.dimen.screen_horizontal_margin)),
@@ -207,7 +206,7 @@ private fun CustomizationBottomSheetContent(customizationState: TopAppBarCustomi
         )
         OdsListItem(
             text = stringResource(id = R.string.component_app_bars_top_element_overflow_menu),
-            trailing = OdsListItemTrailingSwitch(overflowMenuEnabled.value, { overflowMenuEnabled.value = it }, isOverflowMenuSwitchEnabled)
+            trailing = OdsListItem.TrailingSwitch(overflowMenuEnabled.value, { overflowMenuEnabled.value = it }, isOverflowMenuSwitchEnabled)
         )
         if (isLarge) {
             Subtitle(textRes = R.string.component_element_title, horizontalPadding = true)

@@ -32,7 +32,6 @@ import com.orange.ods.compose.OdsComposable
 import com.orange.ods.compose.component.chip.OdsChoiceChip
 import com.orange.ods.compose.component.chip.OdsChoiceChipsFlowRow
 import com.orange.ods.compose.component.list.OdsListItem
-import com.orange.ods.compose.component.list.OdsListItemTrailingSwitch
 import com.orange.ods.compose.component.progressindicator.OdsCircularProgressIndicator
 
 @OptIn(ExperimentalMaterialApi::class)
@@ -62,7 +61,7 @@ fun ProgressCircular() {
                 )
                 OdsListItem(
                     text = stringResource(id = R.string.component_element_label),
-                    trailing = OdsListItemTrailingSwitch(label.value, { label.value = it })
+                    trailing = OdsListItem.TrailingSwitch(label.value, { label.value = it })
                 )
             }) {
             Column(

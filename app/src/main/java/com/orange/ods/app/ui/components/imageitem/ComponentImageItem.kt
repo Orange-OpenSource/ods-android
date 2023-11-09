@@ -45,7 +45,6 @@ import com.orange.ods.compose.component.chip.OdsChoiceChip
 import com.orange.ods.compose.component.chip.OdsChoiceChipsFlowRow
 import com.orange.ods.compose.component.imageitem.OdsImageItem
 import com.orange.ods.compose.component.list.OdsListItem
-import com.orange.ods.compose.component.list.OdsListItemTrailingSwitch
 
 @OptIn(ExperimentalMaterialApi::class)
 @Composable
@@ -85,7 +84,7 @@ fun ComponentImageItem() {
                 )
                 OdsListItem(
                     text = stringResource(id = R.string.component_element_icon),
-                    trailing = OdsListItemTrailingSwitch(iconDisplayed.value, { iconDisplayed.value = it }, hasText)
+                    trailing = OdsListItem.TrailingSwitch(iconDisplayed.value, { iconDisplayed.value = it }, hasText)
                 )
             }) {
             Column(

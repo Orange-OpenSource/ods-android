@@ -32,7 +32,6 @@ import com.orange.ods.compose.OdsComposable
 import com.orange.ods.compose.component.chip.OdsChoiceChip
 import com.orange.ods.compose.component.chip.OdsChoiceChipsFlowRow
 import com.orange.ods.compose.component.list.OdsListItem
-import com.orange.ods.compose.component.list.OdsListItemTrailingSwitch
 import com.orange.ods.compose.component.progressindicator.OdsLinearProgressIndicator
 import com.orange.ods.compose.component.progressindicator.OdsLinearProgressIndicatorIcon
 
@@ -64,15 +63,15 @@ fun ProgressLinear() {
                 )
                 OdsListItem(
                     text = stringResource(id = R.string.component_element_label),
-                    trailing = OdsListItemTrailingSwitch(label.value, { label.value = it })
+                    trailing = OdsListItem.TrailingSwitch(label.value, { label.value = it })
                 )
                 OdsListItem(
                     text = stringResource(id = R.string.component_element_icon),
-                    trailing = OdsListItemTrailingSwitch(icon.value, { icon.value = it })
+                    trailing = OdsListItem.TrailingSwitch(icon.value, { icon.value = it })
                 )
                 OdsListItem(
                     text = stringResource(id = R.string.component_progress_linear_value),
-                    trailing = OdsListItemTrailingSwitch(currentValue.value, { currentValue.value = it }, isCurrentValueSwitchEnabled),
+                    trailing = OdsListItem.TrailingSwitch(currentValue.value, { currentValue.value = it }, isCurrentValueSwitchEnabled),
                 )
             }) {
             Column(

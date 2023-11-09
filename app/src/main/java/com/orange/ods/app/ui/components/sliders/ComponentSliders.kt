@@ -36,7 +36,6 @@ import com.orange.ods.compose.OdsComposable
 import com.orange.ods.compose.component.control.OdsSlider
 import com.orange.ods.compose.component.control.OdsSliderLockups
 import com.orange.ods.compose.component.list.OdsListItem
-import com.orange.ods.compose.component.list.OdsListItemTrailingSwitch
 
 @OptIn(ExperimentalMaterialApi::class)
 @Composable
@@ -49,15 +48,15 @@ fun ComponentSliders() {
             bottomSheetContent = {
                 OdsListItem(
                     text = stringResource(id = R.string.component_slider_side_icons),
-                    trailing = OdsListItemTrailingSwitch(sideIcons.value, { sideIcons.value = it })
+                    trailing = OdsListItem.TrailingSwitch(sideIcons.value, { sideIcons.value = it })
                 )
                 OdsListItem(
                     text = stringResource(id = R.string.component_slider_value_displayed),
-                    trailing = OdsListItemTrailingSwitch(valueDisplayed.value, { valueDisplayed.value = it })
+                    trailing = OdsListItem.TrailingSwitch(valueDisplayed.value, { valueDisplayed.value = it })
                 )
                 OdsListItem(
                     text = stringResource(id = R.string.component_slider_stepped),
-                    trailing = OdsListItemTrailingSwitch(stepped.value, { stepped.value = it })
+                    trailing = OdsListItem.TrailingSwitch(stepped.value, { stepped.value = it })
                 )
             }) {
             Column(

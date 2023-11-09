@@ -32,7 +32,6 @@ import com.orange.ods.app.ui.utilities.code.FunctionCallCode
 import com.orange.ods.compose.OdsComposable
 import com.orange.ods.compose.component.dialog.OdsAlertDialog
 import com.orange.ods.compose.component.list.OdsListItem
-import com.orange.ods.compose.component.list.OdsListItemTrailingSwitch
 
 @OptIn(ExperimentalMaterialApi::class)
 @Composable
@@ -49,11 +48,11 @@ fun ComponentDialog() {
             bottomSheetContent = {
                 OdsListItem(
                     text = stringResource(id = R.string.component_element_title),
-                    trailing = OdsListItemTrailingSwitch(titleChecked.value, { titleChecked.value = it })
+                    trailing = OdsListItem.TrailingSwitch(titleChecked.value, { titleChecked.value = it })
                 )
                 OdsListItem(
                     text = stringResource(id = R.string.component_dialog_element_dismiss_button),
-                    trailing = OdsListItemTrailingSwitch(dismissButtonChecked.value, { dismissButtonChecked.value = it })
+                    trailing = OdsListItem.TrailingSwitch(dismissButtonChecked.value, { dismissButtonChecked.value = it })
                 )
             }) {
             val confirmButtonText =

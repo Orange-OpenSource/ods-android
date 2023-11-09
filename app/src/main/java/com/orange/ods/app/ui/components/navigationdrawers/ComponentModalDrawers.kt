@@ -43,7 +43,6 @@ import com.orange.ods.compose.OdsComposable
 import com.orange.ods.compose.component.chip.OdsChoiceChip
 import com.orange.ods.compose.component.chip.OdsChoiceChipsFlowRow
 import com.orange.ods.compose.component.list.OdsListItem
-import com.orange.ods.compose.component.list.OdsListItemTrailingSwitch
 import com.orange.ods.compose.component.navigationdrawer.OdsModalDrawer
 import com.orange.ods.compose.component.navigationdrawer.OdsModalDrawerDivider
 import com.orange.ods.compose.component.navigationdrawer.OdsModalDrawerHeader
@@ -124,7 +123,7 @@ fun ComponentModalDrawers() {
                     bottomSheetContent = {
                         OdsListItem(
                             text = stringResource(id = R.string.component_modal_drawer_content_example),
-                            trailing = OdsListItemTrailingSwitch(contentExampleChecked.value, { contentExampleChecked.value = it })
+                            trailing = OdsListItem.TrailingSwitch(contentExampleChecked.value, { contentExampleChecked.value = it })
                         )
                         Subtitle(textRes = R.string.component_modal_drawer_header_image, horizontalPadding = true)
                         OdsChoiceChipsFlowRow(
@@ -148,11 +147,11 @@ fun ComponentModalDrawers() {
                         )
                         OdsListItem(
                             text = stringResource(id = R.string.component_modal_drawer_subtitle),
-                            trailing = OdsListItemTrailingSwitch(subtitleChecked.value, { subtitleChecked.value = it }, isContentExampleChecked)
+                            trailing = OdsListItem.TrailingSwitch(subtitleChecked.value, { subtitleChecked.value = it }, isContentExampleChecked)
                         )
                         OdsListItem(
                             text = stringResource(id = R.string.component_modal_drawer_list_icon),
-                            trailing = OdsListItemTrailingSwitch(listIconChecked.value, { listIconChecked.value = it }, isContentExampleChecked)
+                            trailing = OdsListItem.TrailingSwitch(listIconChecked.value, { listIconChecked.value = it }, isContentExampleChecked)
                         )
                         Subtitle(textRes = R.string.component_modal_drawer_list_example, horizontalPadding = true)
                         OdsChoiceChipsFlowRow(

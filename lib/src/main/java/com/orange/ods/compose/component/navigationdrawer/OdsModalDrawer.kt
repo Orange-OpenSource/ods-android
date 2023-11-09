@@ -52,7 +52,6 @@ import com.orange.ods.compose.component.content.OdsComponentContent
 import com.orange.ods.compose.component.content.OdsComponentImage
 import com.orange.ods.compose.component.divider.OdsDivider
 import com.orange.ods.compose.component.list.OdsListItem
-import com.orange.ods.compose.component.list.OdsListItemIcon
 import com.orange.ods.compose.component.utilities.BasicPreviewParameterProvider
 import com.orange.ods.compose.component.utilities.Preview
 import com.orange.ods.compose.component.utilities.UiModePreviews
@@ -164,7 +163,7 @@ data class OdsModalDrawerListItem(
                         if (selected) it.background(OdsTheme.colors.primaryVariant.copy(alpha = SelectedItemOpacity)) else it
                     },
                 icon = leadingIcon?.let {
-                    OdsListItemIcon(it, "", if (selected) OdsTheme.colors.primaryVariant else OdsTheme.colors.onSurface)
+                    OdsListItem.Icon(it, "", if (selected) OdsTheme.colors.primaryVariant else OdsTheme.colors.onSurface)
                 }
             )
         }

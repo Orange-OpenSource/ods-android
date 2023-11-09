@@ -41,7 +41,7 @@ import com.orange.ods.compose.component.chip.OdsChoiceChip
 import com.orange.ods.compose.component.chip.OdsChoiceChipsFlowRow
 import com.orange.ods.compose.component.chip.OdsFilterChip
 import com.orange.ods.compose.component.list.OdsListItem
-import com.orange.ods.compose.component.list.OdsListItemTrailingSwitch
+import com.orange.ods.compose.component.list.OdsListItem.TrailingSwitch
 
 @OptIn(ExperimentalMaterialApi::class, ExperimentalLayoutApi::class)
 @Composable
@@ -68,7 +68,7 @@ fun ChipFilter() {
 
                 OdsListItem(
                     text = stringResource(id = R.string.component_state_enabled),
-                    trailing = OdsListItemTrailingSwitch(enabled.value, { enabled.value = it })
+                    trailing = OdsListItem.TrailingSwitch(enabled.value, { enabled.value = it })
                 )
             }) {
             var selectedChipIndexes by rememberSaveable { mutableStateOf(emptySet<Int>()) }

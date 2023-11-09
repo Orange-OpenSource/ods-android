@@ -45,7 +45,6 @@ import com.orange.ods.app.ui.components.tabs.tabs
 import com.orange.ods.app.ui.utilities.extension.isDarkModeEnabled
 import com.orange.ods.app.ui.utilities.extension.isOrange
 import com.orange.ods.compose.component.list.OdsListItem
-import com.orange.ods.compose.component.list.OdsListItemTrailingRadioButton
 import com.orange.ods.compose.component.tab.OdsScrollableTabRow
 import com.orange.ods.compose.component.tab.OdsTabRow
 import com.orange.ods.compose.component.tab.OdsTabRowTabIcon
@@ -259,7 +258,7 @@ private fun ChangeThemeDialog(themeManager: ThemeManager, dismissDialog: () -> U
             themeManager.themeConfigurations.forEach { themeConfiguration ->
                 OdsListItem(
                     text = themeConfiguration.name,
-                    trailing = OdsListItemTrailingRadioButton(
+                    trailing = OdsListItem.TrailingRadioButton(
                         selectedThemeName == themeConfiguration.name,
                         {
                             selectedThemeName = themeConfiguration.name

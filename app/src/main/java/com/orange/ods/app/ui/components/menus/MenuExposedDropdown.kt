@@ -31,7 +31,6 @@ import com.orange.ods.app.ui.utilities.code.CodeImplementationColumn
 import com.orange.ods.app.ui.utilities.code.FunctionCallCode
 import com.orange.ods.compose.OdsComposable
 import com.orange.ods.compose.component.list.OdsListItem
-import com.orange.ods.compose.component.list.OdsListItemTrailingSwitch
 import com.orange.ods.compose.component.menu.OdsExposedDropdownMenu
 import com.orange.ods.compose.component.menu.OdsExposedDropdownMenuItem
 
@@ -67,11 +66,11 @@ fun MenuExposedDropdown() {
             bottomSheetContent = {
                 OdsListItem(
                     text = stringResource(id = R.string.component_state_enabled),
-                    trailing = OdsListItemTrailingSwitch(enabled.value, { enabled.value = it })
+                    trailing = OdsListItem.TrailingSwitch(enabled.value, { enabled.value = it })
                 )
                 OdsListItem(
                     text = stringResource(id = R.string.component_menu_icons),
-                    trailing = OdsListItemTrailingSwitch(icons.value, { icons.value = it })
+                    trailing = OdsListItem.TrailingSwitch(icons.value, { icons.value = it })
                 )
             }) {
             Column(

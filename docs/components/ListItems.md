@@ -56,12 +56,12 @@ The `OdsListItem` composable allows you to display a leading icon using the `ico
 OdsListItem(
     modifier = Modifier.clickable { doSomething() },
     text = "Primary text",
-    icon = OdsListItemIcon(
-        OdsListItemIconType.Icon,
+    icon = OdsListItem.Icon(
+        OdsListItem.Icon.Type.Icon,
         painterResource(id = R.drawable.ic_heart),
         "Heart"
     ),
-    trailing = OdsListItemTrailingCheckbox(checked, { checked != checked }),
+    trailing = OdsListItem.TrailingCheckbox(checked, { checked != checked }),
     divider = true
 )
 ```
@@ -72,11 +72,11 @@ Parameter | Default&nbsp;value | Description
 -- | -- | --
 `text: String` | | The primary text of the list item
 `modifier: Modifier` | `Modifier` | Modifier to be applied to the list item
-`icon: OdsListItemIcon?` | `null` | The leading supporting visual of the list item
+`icon: OdsListItem.Icon?` | `null` | The leading supporting visual of the list item
 `secondaryText: String?` | `null` | The secondary text of the list item
 `singleLineSecondaryText: Boolean` | `true` | Whether the secondary text is single line
 `overlineText: String?` | `null` | The text displayed above the primary text
-`trailing: OdsListItemTrailing?` | `null` | The trailing content to display at the end of the list item
+`trailing: OdsListItem.Trailing?` | `null` | The trailing content to display at the end of the list item
 `divider: Boolean` | `false` | Whether or not a divider is displayed at the bottom of the list item
 `onClick: (() -> Unit)?` | `null` | Will be called when the user clicks the list item. This parameter only has an effect if trailing is `OdsListItemTrailingIcon` or `null`.
 {:.table}
@@ -104,11 +104,11 @@ OdsListItem(
     modifier = Modifier.clickable { doSomething() },
     text = "Primary text",
     secondaryText = "Secondary text",
-    icon = OdsListItemIcon(
-        OdsListItemIconType.CircularImage,
+    icon = OdsListItem.Icon(
+        OdsListItem.Icon.Type.CircularImage,
         painterResource(id = R.drawable.placeholder, "")
     ),
-    trailing = OdsListItemTrailingIcon(
+    trailing = OdsListItem.TrailingIcon(
         painterResource(id = R.drawable.ic_drag_handle),
         "Drag item"
     ),
@@ -142,12 +142,12 @@ OdsListItem(
     text = "Primary text",
     secondaryText = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor.",
     singleLineSecondaryText = false,
-    icon = OdsListItemIcon(
-        OdsListItemIconType.SquareImage,
+    icon = OdsListItem.Icon(
+        OdsListItem.Icon.Type.SquareImage,
         painter = painterResource(id = R.drawable.placeholder),
         ""
     ),
-    trailing = OdsListItemTrailingCaption("Caption"),
+    trailing = OdsListItem.TrailingCaption("Caption"),
     divider = true
 )
 ```

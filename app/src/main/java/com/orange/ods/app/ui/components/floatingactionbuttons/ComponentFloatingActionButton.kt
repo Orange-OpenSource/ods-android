@@ -37,7 +37,6 @@ import com.orange.ods.compose.component.button.OdsFloatingActionButton
 import com.orange.ods.compose.component.chip.OdsChoiceChip
 import com.orange.ods.compose.component.chip.OdsChoiceChipsFlowRow
 import com.orange.ods.compose.component.list.OdsListItem
-import com.orange.ods.compose.component.list.OdsListItemTrailingSwitch
 
 @OptIn(ExperimentalMaterialApi::class)
 @Composable
@@ -105,11 +104,11 @@ fun ComponentFloatingActionButton() {
                 )
                 OdsListItem(
                     text = stringResource(id = R.string.component_element_text),
-                    trailing = OdsListItemTrailingSwitch(text.value, { text.value = it }, isTextEnabled)
+                    trailing = OdsListItem.TrailingSwitch(text.value, { text.value = it }, isTextEnabled)
                 )
                 OdsListItem(
                     text = stringResource(id = R.string.component_floating_action_button_full_screen_width),
-                    trailing = OdsListItemTrailingSwitch(fullScreenWidth.value, { fullScreenWidth.value = it }, isFullScreenWidthEnabled)
+                    trailing = OdsListItem.TrailingSwitch(fullScreenWidth.value, { fullScreenWidth.value = it }, isFullScreenWidthEnabled)
                 )
             }) {
             Column(modifier = Modifier.verticalScroll(rememberScrollState())) {

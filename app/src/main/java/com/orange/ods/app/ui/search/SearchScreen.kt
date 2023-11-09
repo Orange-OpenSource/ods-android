@@ -42,8 +42,6 @@ import com.orange.ods.app.ui.guidelines.color.DialogColor
 import com.orange.ods.app.ui.guidelines.spacing.Spacing
 import com.orange.ods.app.ui.utilities.DrawableManager
 import com.orange.ods.compose.component.list.OdsListItem
-import com.orange.ods.compose.component.list.OdsListItemIcon
-import com.orange.ods.compose.component.list.OdsListItemIconType
 import com.orange.ods.compose.theme.OdsTheme
 import com.orange.ods.extension.orElse
 import com.orange.ods.theme.guideline.GuidelineColor
@@ -169,7 +167,7 @@ fun SearchScreen(onResultItemClick: (String, Long?) -> Unit) {
                 text = item.title,
                 secondaryText = item.subtitle,
                 singleLineSecondaryText = true,
-                icon = OdsListItemIcon(OdsListItemIconType.SquareImage, painter, "")
+                icon = OdsListItem.Icon(OdsListItem.Icon.Type.SquareImage, painter, "")
             ) {
                 when (item.data) {
                     is Component -> onResultItemClick(ComponentsNavigation.ComponentDetailRoute, item.id)

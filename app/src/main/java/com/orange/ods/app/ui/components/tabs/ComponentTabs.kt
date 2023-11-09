@@ -35,7 +35,6 @@ import com.orange.ods.app.ui.utilities.composable.Subtitle
 import com.orange.ods.compose.component.chip.OdsChoiceChip
 import com.orange.ods.compose.component.chip.OdsChoiceChipsFlowRow
 import com.orange.ods.compose.component.list.OdsListItem
-import com.orange.ods.compose.component.list.OdsListItemTrailingSwitch
 import com.orange.ods.compose.text.OdsTextBody1
 
 private const val MinFixedTabCount = 2
@@ -60,7 +59,7 @@ fun ComponentTabs(variant: Variant, upPress: () -> Unit) {
     }
 
     val tabsCustomizationState = rememberMainTabsCustomizationState(tabsCount = rememberSaveable { mutableStateOf(tabCountMin) })
-    
+
     with(tabsCustomizationState) {
         LocalAppBarManager.current.updateAppBarTabs(
             TabsConfiguration(scrollableTabs, tabs, pagerState, tabIconType.value, tabTextEnabled.value)
@@ -96,7 +95,7 @@ fun ComponentTabs(variant: Variant, upPress: () -> Unit) {
 
                 OdsListItem(
                     text = stringResource(id = R.string.component_element_text),
-                    trailing = OdsListItemTrailingSwitch(tabTextEnabled.value, { tabTextEnabled.value = it }, isTabTextCustomizationEnabled)
+                    trailing = OdsListItem.TrailingSwitch(tabTextEnabled.value, { tabTextEnabled.value = it }, isTabTextCustomizationEnabled)
                 )
 
                 ComponentCountRow(
