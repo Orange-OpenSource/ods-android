@@ -37,7 +37,7 @@ import kotlinx.parcelize.Parcelize
  * <a href="https://system.design.orange.com/0c1af118d/p/07a69b-menus/b/862cbb" class="external" target="_blank">ODS menus</a>.
  *
  * @param label The label of the text field.
- * @param items List of [OdsExposedDropdownMenuItem] displayed in the dropdown menu.
+ * @param items List of [OdsExposedDropdownMenu.Item] displayed in the dropdown menu.
  * @param selectedItem Selected item displayed into the text field.
  * @param onItemSelectionChange Callback invoked when a dropdown menu item is selected. It can be used to get the menu value.
  * @param modifier [Modifier] applied to the dropdown menu.
@@ -49,9 +49,9 @@ import kotlinx.parcelize.Parcelize
 @Composable
 fun OdsExposedDropdownMenu(
     label: String,
-    items: List<OdsExposedDropdownMenuItem>,
-    selectedItem: MutableState<OdsExposedDropdownMenuItem>,
-    onItemSelectionChange: (OdsExposedDropdownMenuItem) -> Unit,
+    items: List<OdsExposedDropdownMenu.Item>,
+    selectedItem: MutableState<OdsExposedDropdownMenu.Item>,
+    onItemSelectionChange: (OdsExposedDropdownMenu.Item) -> Unit,
     modifier: Modifier = Modifier,
     enabled: Boolean = true
 ) {
@@ -84,7 +84,7 @@ fun OdsExposedDropdownMenu(
             onDismissRequest = { expanded = false },
             modifier = Modifier.exposedDropdownSize(),
             items = items.map { item ->
-                OdsDropdownMenuItem(text = item.label, icon = item.iconResId?.let { painterResource(id = it) }) {
+                OdsDropdownMenu.Item(text = item.label, icon = item.iconResId?.let { painterResource(id = it) }) {
                     selectedItem.value = item
                     expanded = false
                     onItemSelectionChange(item)
@@ -94,8 +94,13 @@ fun OdsExposedDropdownMenu(
     }
 }
 
-@Parcelize
-data class OdsExposedDropdownMenuItem(val label: String, @DrawableRes val iconResId: Int? = null) : Parcelable
+/**
+ * Contains classes to build an [com.orange.ods.compose.component.menu.OdsExposedDropdownMenu].
+ */
+class OdsExposedDropdownMenu {
+    @Parcelize
+    data class Item(val label: String, @DrawableRes val iconResId: Int? = null) : Parcelable
+}
 
 /**
  * Note: Please use Android Studio preview interactive mode to see the OdsExposedDropdownMenu preview cause expanded is a target state.
@@ -104,10 +109,10 @@ data class OdsExposedDropdownMenuItem(val label: String, @DrawableRes val iconRe
 @Composable
 private fun PreviewOdsDropdownMenu(@PreviewParameter(OdsDropdownMenuPreviewParameterProvider::class) enabled: Boolean) = Preview {
     val items = listOf(
-        OdsExposedDropdownMenuItem("Email", android.R.drawable.ic_dialog_email),
-        OdsExposedDropdownMenuItem("Map", android.R.drawable.ic_dialog_map),
-        OdsExposedDropdownMenuItem("Dialer", android.R.drawable.ic_dialog_dialer),
-        OdsExposedDropdownMenuItem("Info", android.R.drawable.ic_dialog_info)
+        OdsExposedDropdownMenu.Item("Email", android.R.drawable.ic_dialog_email),
+        OdsExposedDropdownMenu.Item("Map", android.R.drawable.ic_dialog_map),
+        OdsExposedDropdownMenu.Item("Dialer", android.R.drawable.ic_dialog_dialer),
+        OdsExposedDropdownMenu.Item("Info", android.R.drawable.ic_dialog_info)
     )
     val selectedItem = remember { mutableStateOf(items.first()) }
     OdsExposedDropdownMenu(

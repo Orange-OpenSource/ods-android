@@ -38,7 +38,6 @@ import com.orange.ods.app.ui.utilities.code.FunctionCallCode
 import com.orange.ods.compose.OdsComposable
 import com.orange.ods.compose.component.list.OdsListItem
 import com.orange.ods.compose.component.menu.OdsDropdownMenu
-import com.orange.ods.compose.component.menu.OdsDropdownMenuItem
 import com.orange.ods.compose.text.OdsTextBody1
 
 @OptIn(ExperimentalMaterialApi::class)
@@ -93,7 +92,7 @@ fun MenuDropdown() {
 
                     val items = recipes.take(MenuDropdownCustomizationState.MenuItemCount)
                         .mapIndexed { index, recipe ->
-                            OdsDropdownMenuItem(
+                            OdsDropdownMenu.Item(
                                 text = recipe.title,
                                 icon = if (hasIcons && recipe.iconResId != null) painterResource(id = recipe.iconResId) else null,
                                 divider = hasDividerExample && index == dividerIndex,
@@ -120,7 +119,7 @@ fun MenuDropdown() {
                             lambda("onDismissRequest")
                             list("items") {
                                 recipes.take(2).forEachIndexed { index, recipe ->
-                                    classInstance<OdsDropdownMenuItem> {
+                                    classInstance<OdsDropdownMenu.Item> {
                                         string("text", recipe.title)
                                         if (hasIcons && recipe.iconResId != null) icon()
                                         if (hasDividerExample && index == dividerIndex) stringRepresentation("divider", true)

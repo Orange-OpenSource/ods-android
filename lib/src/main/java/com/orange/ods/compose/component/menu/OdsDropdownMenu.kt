@@ -40,7 +40,7 @@ import com.orange.ods.compose.utilities.extension.enable
  *
  * @see androidx.compose.material.DropdownMenu
  *
- * @param items List of [OdsDropdownMenuItem] displayed into the dropdown menu.
+ * @param items List of [OdsDropdownMenu.Item] displayed into the dropdown menu.
  * @param expanded Controls whether the menu is currently open and visible to the user.
  * @param onDismissRequest Callback invoked when the user requests to dismiss the menu, such as by tapping outside the menu's bounds.
  * @param modifier [Modifier] applied to the dropdown menu.
@@ -50,7 +50,7 @@ import com.orange.ods.compose.utilities.extension.enable
 @OdsComposable
 @Composable
 fun OdsDropdownMenu(
-    items: List<OdsDropdownMenuItem>,
+    items: List<OdsDropdownMenu.Item>,
     expanded: Boolean,
     onDismissRequest: () -> Unit,
     modifier: Modifier = Modifier,
@@ -63,118 +63,124 @@ fun OdsDropdownMenu(
         modifier = modifier.background(OdsTheme.colors.surface),
         offset = offset,
         properties = properties,
-        content = { items.forEach { it.Content(OdsDropdownMenuItem.ExtraParameters(onDismissRequest)) } }
+        content = { items.forEach { it.Content(OdsDropdownMenu.Item.ExtraParameters(onDismissRequest)) } }
     )
 }
 
 /**
- * @see androidx.compose.material.DropdownMenuItem
- *
- * An item displayed in a [OdsDropdownMenu].
- *
- * @property text The text of the menu item
- * @property icon Optional icon to display in the menu item
- * @property enabled Controls the enabled state of the menu item - when `false`, the menu item
- * @property divider Whether or not a divider is displayed at the bottom of the menu item
- * @property onClick Called when the menu item was clicked
+ * Contains classes to build an [com.orange.ods.compose.component.menu.OdsDropdownMenu].
  */
-class OdsDropdownMenuItem private constructor(
-    private val text: String,
-    private val icon: Any?,
-    private val enabled: Boolean,
-    private val divider: Boolean,
-    private val onClick: () -> Unit
-) : OdsComponentContent<OdsDropdownMenuItem.ExtraParameters>() {
-
-    data class ExtraParameters(val onDismissRequest: () -> Unit) : OdsComponentContent.ExtraParameters()
+class OdsDropdownMenu {
 
     /**
-     * Creates an instance of [OdsDropdownMenuItem].
+     * @see androidx.compose.material.DropdownMenuItem
      *
-     * @param text The text of the menu item.
-     * @param enabled Controls the enabled state of the menu item - when `false`, the menu item.
-     * @param divider Whether or not a divider is displayed at the bottom of the menu item.
-     * @param onClick Called when the menu item was clicked.
-     */
-    constructor(
-        text: String,
-        enabled: Boolean = true,
-        divider: Boolean = false,
-        onClick: () -> Unit
-    ) : this(text, null as Any?, enabled, divider, onClick)
-
-    /**
-     * Creates an instance of [OdsDropdownMenuItem].
+     * An item displayed in a [OdsDropdownMenu].
      *
-     * @param text The text of the menu item.
-     * @param icon Optional icon to display in the menu item.
-     * @param enabled Controls the enabled state of the menu item - when `false`, the menu item.
-     * @param divider Whether or not a divider is displayed at the bottom of the menu item.
-     * @param onClick Called when the menu item was clicked.
+     * @property text The text of the menu item
+     * @property icon Optional icon to display in the menu item
+     * @property enabled Controls the enabled state of the menu item - when `false`, the menu item
+     * @property divider Whether or not a divider is displayed at the bottom of the menu item
+     * @property onClick Called when the menu item was clicked
      */
-    constructor(
-        text: String,
-        icon: Painter? = null,
-        enabled: Boolean = true,
-        divider: Boolean = false,
-        onClick: () -> Unit
-    ) : this(text, icon as Any?, enabled, divider, onClick)
+    class Item private constructor(
+        private val text: String,
+        private val icon: Any?,
+        private val enabled: Boolean,
+        private val divider: Boolean,
+        private val onClick: () -> Unit
+    ) : OdsComponentContent<Item.ExtraParameters>() {
 
-    /**
-     * Creates an instance of [OdsDropdownMenuItem].
-     *
-     * @param text The text of the menu item.
-     * @param icon Optional icon to display in the menu item.
-     * @param enabled Controls the enabled state of the menu item - when `false`, the menu item.
-     * @param divider Whether or not a divider is displayed at the bottom of the menu item.
-     * @param onClick Called when the menu item was clicked.
-     */
-    constructor(
-        text: String,
-        icon: ImageVector? = null,
-        enabled: Boolean = true,
-        divider: Boolean = false,
-        onClick: () -> Unit
-    ) : this(text, icon as Any?, enabled, divider, onClick)
+        data class ExtraParameters(val onDismissRequest: () -> Unit) : OdsComponentContent.ExtraParameters()
 
-    /**
-     * Creates an instance of [OdsDropdownMenuItem].
-     *
-     * @param text The text of the menu item.
-     * @param icon Optional icon to display in the menu item.
-     * @param enabled Controls the enabled state of the menu item - when `false`, the menu item.
-     * @param divider Whether or not a divider is displayed at the bottom of the menu item.
-     * @param onClick Called when the menu item was clicked.
-     */
-    constructor(
-        text: String,
-        icon: Bitmap? = null,
-        enabled: Boolean = true,
-        divider: Boolean = false,
-        onClick: () -> Unit
-    ) : this(text, icon as Any?, enabled, divider, onClick)
+        /**
+         * Creates an instance of [OdsDropdownMenu.Item].
+         *
+         * @param text The text of the menu item.
+         * @param enabled Controls the enabled state of the menu item - when `false`, the menu item.
+         * @param divider Whether or not a divider is displayed at the bottom of the menu item.
+         * @param onClick Called when the menu item was clicked.
+         */
+        constructor(
+            text: String,
+            enabled: Boolean = true,
+            divider: Boolean = false,
+            onClick: () -> Unit
+        ) : this(text, null as Any?, enabled, divider, onClick)
 
-    @Composable
-    override fun Content(modifier: Modifier) {
-        DropdownMenuItem(
-            onClick = {
-                onClick()
-                extraParameters.onDismissRequest()
-            },
-            enabled = enabled
-        ) {
-            icon?.let {
-                OdsIcon(
-                    graphicsObject = icon,
-                    contentDescription = "",
-                    tint = OdsTheme.colors.onSurface,
-                    enabled = enabled,
-                    modifier = Modifier.padding(end = dimensionResource(id = R.dimen.spacing_m)),
-                )
+        /**
+         * Creates an instance of [OdsDropdownMenu.Item].
+         *
+         * @param text The text of the menu item.
+         * @param icon Optional icon to display in the menu item.
+         * @param enabled Controls the enabled state of the menu item - when `false`, the menu item.
+         * @param divider Whether or not a divider is displayed at the bottom of the menu item.
+         * @param onClick Called when the menu item was clicked.
+         */
+        constructor(
+            text: String,
+            icon: Painter? = null,
+            enabled: Boolean = true,
+            divider: Boolean = false,
+            onClick: () -> Unit
+        ) : this(text, icon as Any?, enabled, divider, onClick)
+
+        /**
+         * Creates an instance of [OdsDropdownMenu.Item].
+         *
+         * @param text The text of the menu item.
+         * @param icon Optional icon to display in the menu item.
+         * @param enabled Controls the enabled state of the menu item - when `false`, the menu item.
+         * @param divider Whether or not a divider is displayed at the bottom of the menu item.
+         * @param onClick Called when the menu item was clicked.
+         */
+        constructor(
+            text: String,
+            icon: ImageVector? = null,
+            enabled: Boolean = true,
+            divider: Boolean = false,
+            onClick: () -> Unit
+        ) : this(text, icon as Any?, enabled, divider, onClick)
+
+        /**
+         * Creates an instance of [OdsDropdownMenu.Item].
+         *
+         * @param text The text of the menu item.
+         * @param icon Optional icon to display in the menu item.
+         * @param enabled Controls the enabled state of the menu item - when `false`, the menu item.
+         * @param divider Whether or not a divider is displayed at the bottom of the menu item.
+         * @param onClick Called when the menu item was clicked.
+         */
+        constructor(
+            text: String,
+            icon: Bitmap? = null,
+            enabled: Boolean = true,
+            divider: Boolean = false,
+            onClick: () -> Unit
+        ) : this(text, icon as Any?, enabled, divider, onClick)
+
+        @Composable
+        override fun Content(modifier: Modifier) {
+            DropdownMenuItem(
+                onClick = {
+                    onClick()
+                    extraParameters.onDismissRequest()
+                },
+                enabled = enabled
+            ) {
+                icon?.let {
+                    OdsIcon(
+                        graphicsObject = icon,
+                        contentDescription = "",
+                        tint = OdsTheme.colors.onSurface,
+                        enabled = enabled,
+                        modifier = Modifier.padding(end = dimensionResource(id = R.dimen.spacing_m)),
+                    )
+                }
+                Text(text = text, style = OdsTheme.typography.body1, color = OdsTheme.colors.onSurface.enable(enabled = enabled))
             }
-            Text(text = text, style = OdsTheme.typography.body1, color = OdsTheme.colors.onSurface.enable(enabled = enabled))
+            if (divider) OdsDivider()
         }
-        if (divider) OdsDivider()
     }
 }
 
@@ -185,10 +191,10 @@ class OdsDropdownMenuItem private constructor(
 @Composable
 private fun PreviewOdsDropdownMenu() = Preview {
     val items = listOf(
-        OdsDropdownMenuItem("First menu item", painterResource(id = android.R.drawable.ic_dialog_email)) {},
-        OdsDropdownMenuItem("Second menu item", painterResource(id = android.R.drawable.ic_dialog_map), divider = true) {},
-        OdsDropdownMenuItem("Third menu item", painterResource(id = android.R.drawable.ic_dialog_dialer)) {},
-        OdsDropdownMenuItem("Fourth menu item", painterResource(id = android.R.drawable.ic_dialog_info)) {}
+        OdsDropdownMenu.Item("First menu item", painterResource(id = android.R.drawable.ic_dialog_email)) {},
+        OdsDropdownMenu.Item("Second menu item", painterResource(id = android.R.drawable.ic_dialog_map), divider = true) {},
+        OdsDropdownMenu.Item("Third menu item", painterResource(id = android.R.drawable.ic_dialog_dialer)) {},
+        OdsDropdownMenu.Item("Fourth menu item", painterResource(id = android.R.drawable.ic_dialog_info)) {}
     )
     OdsDropdownMenu(items = items, expanded = true, onDismissRequest = {})
 }

@@ -27,7 +27,6 @@ import com.orange.ods.R
 import com.orange.ods.compose.component.content.OdsComponentContent
 import com.orange.ods.compose.component.content.OdsComponentIcon
 import com.orange.ods.compose.component.menu.OdsDropdownMenu
-import com.orange.ods.compose.component.menu.OdsDropdownMenuItem
 import com.orange.ods.compose.theme.OdsTheme
 
 @Composable
@@ -154,4 +153,4 @@ class OdsTopAppBar {
 
 
 //TODO Remove typealias use, find a solution to have the following type parameter: `OdsTopAppBar.OverflowMenuActionItem`
-typealias OdsTopAppBarOverflowMenuActionItem = OdsDropdownMenuItem
+typealias OdsTopAppBarOverflowMenuActionItem = OdsDropdownMenu.Item

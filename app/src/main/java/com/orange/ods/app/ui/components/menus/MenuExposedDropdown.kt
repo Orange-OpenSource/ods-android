@@ -32,7 +32,6 @@ import com.orange.ods.app.ui.utilities.code.FunctionCallCode
 import com.orange.ods.compose.OdsComposable
 import com.orange.ods.compose.component.list.OdsListItem
 import com.orange.ods.compose.component.menu.OdsExposedDropdownMenu
-import com.orange.ods.compose.component.menu.OdsExposedDropdownMenuItem
 
 @OptIn(ExperimentalMaterialApi::class)
 @Composable
@@ -43,16 +42,16 @@ fun MenuExposedDropdown() {
     val recipes = LocalRecipes.current.take(4)
 
     val dropdownItems = recipes.map { recipe ->
-        OdsExposedDropdownMenuItem(label = recipe.title, iconResId = recipe.iconResId)
+        OdsExposedDropdownMenu.Item(label = recipe.title, iconResId = recipe.iconResId)
     }
     val textOnlyDropdownItems = recipes.map { recipe ->
-        OdsExposedDropdownMenuItem(label = recipe.title)
+        OdsExposedDropdownMenu.Item(label = recipe.title)
     }
 
     var items by remember { mutableStateOf(dropdownItems) }
 
     with(customizationState) {
-        val selectedItem: MutableState<OdsExposedDropdownMenuItem> = rememberSaveable { mutableStateOf(dropdownItems.first()) }
+        val selectedItem: MutableState<OdsExposedDropdownMenu.Item> = rememberSaveable { mutableStateOf(dropdownItems.first()) }
         if (hasIcons) {
             items = dropdownItems
             selectedItem.value = dropdownItems.first { selectedItem.value.label == it.label }
@@ -104,7 +103,7 @@ fun MenuExposedDropdown() {
                             string("label", label)
                             list("items") {
                                 items.forEach { item ->
-                                    classInstance<OdsExposedDropdownMenuItem> {
+                                    classInstance<OdsExposedDropdownMenu.Item> {
                                         string("label", item.label)
                                         if (hasIcons) simple("iconResId", "<drawable id>")
                                     }
