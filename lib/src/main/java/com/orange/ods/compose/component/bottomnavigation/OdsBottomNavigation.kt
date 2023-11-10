@@ -37,7 +37,7 @@ import com.orange.ods.compose.theme.OdsTheme
  *
  * Bottom navigation bars allow movement between primary destinations in an app.
  *
- * OdsBottomNavigation should contain multiple [OdsBottomNavigationItem]s, each representing a singular
+ * OdsBottomNavigation should contain multiple [OdsBottomNavigation.Item]s, each representing a singular
  * destination.
  *
  * See [OdsBottomNavigation.Item] for configuration specific to each item, and not the overall
