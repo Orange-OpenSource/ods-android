@@ -33,7 +33,6 @@ import com.orange.ods.compose.component.chip.OdsChoiceChip
 import com.orange.ods.compose.component.chip.OdsChoiceChipsFlowRow
 import com.orange.ods.compose.component.list.OdsListItem
 import com.orange.ods.compose.component.progressindicator.OdsLinearProgressIndicator
-import com.orange.ods.compose.component.progressindicator.OdsLinearProgressIndicatorIcon
 
 @OptIn(ExperimentalMaterialApi::class)
 @Composable
@@ -84,7 +83,7 @@ fun ProgressLinear() {
                     progress = if (type.value == ProgressCustomizationState.Type.Determinate) determinateProgressAnimation.value else null,
                     label = if (hasLabel) text else null,
                     showCurrentValue = hasCurrentValue,
-                    icon = if (hasIcon) OdsLinearProgressIndicatorIcon(painterResource(id = R.drawable.ic_arrow_down), "") else null,
+                    icon = if (hasIcon) OdsLinearProgressIndicator.Icon(painterResource(id = R.drawable.ic_arrow_down), "") else null,
                     modifier = Modifier
                         .padding(top = dimensionResource(id = com.orange.ods.R.dimen.spacing_m))
                         .fillMaxWidth()
@@ -103,7 +102,7 @@ fun ProgressLinear() {
                             if (type.value == ProgressCustomizationState.Type.Determinate) stringRepresentation("progress", determinateProgressValue)
                             if (hasLabel) string("label", text)
                             if (hasIcon) {
-                                classInstance<OdsLinearProgressIndicatorIcon>("icon") {
+                                classInstance<OdsLinearProgressIndicator.Icon>("icon") {
                                     painter()
                                     contentDescription("")
                                 }
