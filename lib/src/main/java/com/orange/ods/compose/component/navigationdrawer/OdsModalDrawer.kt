@@ -65,20 +65,20 @@ private const val SelectedItemOpacity = 20f / 255f
  * Navigation drawers provide ergonomic access to destinations in an app.
  *
  * @param header Content descriptor of the drawer header.
- * @param items List of [OdsModalDrawerItem] displayed in a column inside the modal drawer.
+ * @param items List of [OdsModalDrawer.Item] displayed in a column inside the modal drawer.
  * @param modifier [Modifier] applied to this drawer.
  * @param state State of the modal drawer.
- * @param selectedItem Selected [OdsModalDrawerListItem] that appears in selected state.
+ * @param selectedItem Selected [OdsModalDrawer.ListItem] that appears in selected state.
  * @param content Content of the rest of the UI.
  */
 @Composable
 @OdsComposable
 fun OdsModalDrawer(
-    header: OdsModalDrawerHeader,
-    items: List<OdsModalDrawerItem>,
+    header: OdsModalDrawer.Header,
+    items: List<OdsModalDrawer.Item>,
     modifier: Modifier = Modifier,
     state: DrawerState = rememberDrawerState(DrawerValue.Closed),
-    selectedItem: OdsModalDrawerListItem? = null,
+    selectedItem: OdsModalDrawer.ListItem? = null,
     content: @Composable () -> Unit
 ) {
     ModalDrawer(
@@ -86,8 +86,8 @@ fun OdsModalDrawer(
             header.Content()
             OdsDivider()
             LazyColumn {
-                items(items = items.filterIsInstance<OdsComponentContent<OdsModalDrawerItem.ExtraParameters>>()) { item ->
-                    item.Content(OdsModalDrawerItem.ExtraParameters(item == selectedItem))
+                items(items = items.filterIsInstance<OdsComponentContent<OdsModalDrawer.Item.ExtraParameters>>()) { item ->
+                    item.Content(OdsModalDrawer.Item.ExtraParameters(item == selectedItem))
                 }
             }
         },
@@ -101,195 +101,202 @@ fun OdsModalDrawer(
 }
 
 /**
- * Represents an item in an [OdsModalDrawer] content.
- * It can be a clickable list item ([OdsModalDrawerListItem]), a section header ([OdsModalDrawerSectionHeader]) or
- * a divider ([OdsModalDrawerDivider]).
- * These items will be displayed vertically in the [OdsModalDrawer] after the header part.
+ * Contains classes to build an [com.orange.ods.compose.component.navigationdrawer.OdsModalDrawer].
  */
-sealed interface OdsModalDrawerItem {
-    data class ExtraParameters(val selected: Boolean) : OdsComponentContent.ExtraParameters()
-}
+class OdsModalDrawer {
 
-/**
- * A section header in the [OdsModalDrawer] content.
- *
- * @property label Label of the section header.
- */
-data class OdsModalDrawerSectionHeader(private val label: String) : OdsModalDrawerItem, OdsComponentContent<OdsModalDrawerItem.ExtraParameters>() {
-    @Composable
-    override fun Content(modifier: Modifier) {
-        Column {
-            OdsDivider()
-            OdsTextBody2(
-                modifier = Modifier.padding(top = dimensionResource(id = R.dimen.spacing_m), start = dimensionResource(id = R.dimen.spacing_m)),
-                text = label
-            )
+    /**
+     * Represents an item in an [OdsModalDrawer] content.
+     * It can be a clickable list item ([OdsModalDrawer.ListItem]), a section header ([OdsModalDrawer.SectionHeader]) or
+     * a divider ([OdsModalDrawer.Divider]).
+     * These items will be displayed vertically in the [OdsModalDrawer] after the header part.
+     */
+    sealed interface Item {
+        data class ExtraParameters(val selected: Boolean) : OdsComponentContent.ExtraParameters()
+    }
+
+    /**
+     * A section header in the [OdsModalDrawer] content.
+     *
+     * @property label Label of the section header.
+     */
+    data class SectionHeader(private val label: String) : Item, OdsComponentContent<Item.ExtraParameters>() {
+        @Composable
+        override fun Content(modifier: Modifier) {
+            Column {
+                OdsDivider()
+                OdsTextBody2(
+                    modifier = Modifier.padding(top = dimensionResource(id = R.dimen.spacing_m), start = dimensionResource(id = R.dimen.spacing_m)),
+                    text = label
+                )
+            }
         }
     }
-}
 
-/**
- * A divider in the [OdsModalDrawer] content.
- */
-data object OdsModalDrawerDivider : OdsModalDrawerItem, OdsComponentContent<OdsModalDrawerItem.ExtraParameters>() {
-    @Composable
-    override fun Content(modifier: Modifier) = OdsDivider()
-}
-
-/**
- * A list item in the [OdsModalDrawer] content.
- *
- * @property text Text displayed in the modal drawer list item.
- * @property leadingIcon Leading icon displayed in the modal drawer list item.
- * @property onClick Callback invoked on an `OdsModalDrawerListItem` click. Provides the clicked `OdsModalDrawerListItem`.
- */
-data class OdsModalDrawerListItem(
-    private val text: String,
-    private val leadingIcon: Painter? = null,
-    private val onClick: (OdsModalDrawerListItem) -> Unit
-) : OdsModalDrawerItem, OdsComponentContent<OdsModalDrawerItem.ExtraParameters>() {
-
-    @Composable
-    override fun Content(modifier: Modifier) {
-        val selected = extraParameters.selected
-        CompositionLocalProvider(LocalRippleTheme provides OdsModalDrawerListItemRippleTheme) {
-            OdsListItem(
-                text = text,
-                textColor = if (selected) OdsTheme.colors.primaryVariant else OdsTheme.colors.onSurface,
-                textStyle = if (selected) OdsTheme.typography.subtitle2 else OdsTheme.typography.subtitle2.copy(fontWeight = FontWeight.Bold),
-                modifier = Modifier
-                    .selectable(selected = selected, onClick = { onClick(this@OdsModalDrawerListItem) })
-                    .let {
-                        if (selected) it.background(OdsTheme.colors.primaryVariant.copy(alpha = SelectedItemOpacity)) else it
-                    },
-                icon = leadingIcon?.let {
-                    OdsListItem.Icon(it, "", if (selected) OdsTheme.colors.primaryVariant else OdsTheme.colors.onSurface)
-                }
-            )
-        }
+    /**
+     * A divider in the [OdsModalDrawer] content.
+     */
+    data object Divider : Item, OdsComponentContent<Item.ExtraParameters>() {
+        @Composable
+        override fun Content(modifier: Modifier) = OdsDivider()
     }
-}
 
-/**
- * The [OdsModalDrawer] header.
- *
- * @property title Title displayed in the header.
- * @property image Image displayed in the header. It should be an avatar image of type [OdsModalDrawerHeaderAvatar] or a background image
- * of type [OdsModalDrawerHeaderBackground].
- * @property subtitle Subtitle displayed below the [title] in the header.
- */
-class OdsModalDrawerHeader(
-    private var title: String,
-    private val image: OdsModalDrawerHeaderImage? = null,
-    private var subtitle: String? = null
-) : OdsComponentContent<Nothing>() {
+    /**
+     * A list item in the [OdsModalDrawer] content.
+     *
+     * @property text Text displayed in the modal drawer list item.
+     * @property leadingIcon Leading icon displayed in the modal drawer list item.
+     * @property onClick Callback invoked on an `OdsModalDrawer.ListItem` click. Provides the clicked `OdsModalDrawer.ListItem`.
+     */
+    data class ListItem(
+        private val text: String,
+        private val leadingIcon: Painter? = null,
+        private val onClick: (ListItem) -> Unit
+    ) : Item, OdsComponentContent<Item.ExtraParameters>() {
 
-    @Composable
-    override fun Content(modifier: Modifier) {
-
-        when (image) {
-            is OdsModalDrawerHeaderBackground ->
-                Box(modifier = modifier.fillMaxWidth()) {
-                    image.Content(
-                        modifier = Modifier
-                            .fillMaxWidth()
-                            .height(DrawerHeaderMaxHeight)
-                    )
-                    Surface(
-                        color = Color.Black.copy(alpha = 0.8f),
-                        modifier = Modifier
-                            .align(Alignment.BottomStart)
-                            .fillMaxWidth()
-                    ) {
-                        OdsHeaderText(title = title, subtitle = subtitle, color = Color.White)
+        @Composable
+        override fun Content(modifier: Modifier) {
+            val selected = extraParameters.selected
+            CompositionLocalProvider(LocalRippleTheme provides OdsModalDrawerListItemRippleTheme) {
+                OdsListItem(
+                    text = text,
+                    textColor = if (selected) OdsTheme.colors.primaryVariant else OdsTheme.colors.onSurface,
+                    textStyle = if (selected) OdsTheme.typography.subtitle2 else OdsTheme.typography.subtitle2.copy(fontWeight = FontWeight.Bold),
+                    modifier = Modifier
+                        .selectable(selected = selected, onClick = { onClick(this@ListItem) })
+                        .let {
+                            if (selected) it.background(OdsTheme.colors.primaryVariant.copy(alpha = SelectedItemOpacity)) else it
+                        },
+                    icon = leadingIcon?.let {
+                        OdsListItem.Icon(it, "", if (selected) OdsTheme.colors.primaryVariant else OdsTheme.colors.onSurface)
                     }
-                }
-
-            is OdsModalDrawerHeaderAvatar ->
-                Column(
-                    modifier = modifier
-                        .fillMaxWidth()
-                        .height(DrawerHeaderMaxHeight),
-                    verticalArrangement = Arrangement.Bottom
-                ) {
-                    image.Content(
-                        modifier = Modifier.padding(
-                            start = dimensionResource(id = R.dimen.spacing_m),
-                            bottom = dimensionResource(id = R.dimen.spacing_m)
-                        )
-                    )
-                    OdsHeaderText(title = title, subtitle = subtitle, color = OdsTheme.colors.onSurface)
-                }
-
-            else -> OdsHeaderText(title = title, subtitle = subtitle, color = OdsTheme.colors.onSurface)
+                )
+            }
         }
     }
 
-}
-
-/**
- * An image that can be added in the [OdsModalDrawerHeader].
- */
-sealed interface OdsModalDrawerHeaderImage
-
-/**
- * An avatar in [OdsModalDrawerHeader].
- */
-class OdsModalDrawerHeaderAvatar : OdsModalDrawerHeaderImage, OdsComponentCircularImage {
-
     /**
-     * Creates an instance of [OdsModalDrawerHeaderAvatar].
+     * The [OdsModalDrawer] header.
      *
-     * @param painter The painter to draw.
-     * @param contentDescription The content description associated to this [OdsModalDrawerHeaderAvatar].
+     * @property title Title displayed in the header.
+     * @property image Image displayed in the header. It should be an avatar image of type [OdsModalDrawer.Header.Avatar] or a background image
+     * of type [OdsModalDrawer.Header.Background].
+     * @property subtitle Subtitle displayed below the [title] in the header.
      */
-    constructor(painter: Painter, contentDescription: String) : super(painter, contentDescription)
+    class Header(
+        private var title: String,
+        private val image: Image? = null,
+        private var subtitle: String? = null
+    ) : OdsComponentContent<Nothing>() {
 
-    /**
-     * Creates an instance of [OdsModalDrawerHeaderAvatar].
-     *
-     * @param imageVector The image vector to draw.
-     * @param contentDescription The content description associated to this [OdsModalDrawerHeaderAvatar].
-     */
-    constructor(imageVector: ImageVector, contentDescription: String) : super(imageVector, contentDescription)
+        @Composable
+        override fun Content(modifier: Modifier) {
 
-    /**
-     * Creates an instance of [OdsModalDrawerHeaderAvatar].
-     *
-     * @param bitmap The image bitmap to draw.
-     * @param contentDescription The content description associated to this [OdsModalDrawerHeaderAvatar].
-     */
-    constructor(bitmap: ImageBitmap, contentDescription: String) : super(bitmap, contentDescription)
-}
+            when (image) {
+                is Background ->
+                    Box(modifier = modifier.fillMaxWidth()) {
+                        image.Content(
+                            modifier = Modifier
+                                .fillMaxWidth()
+                                .height(DrawerHeaderMaxHeight)
+                        )
+                        Surface(
+                            color = Color.Black.copy(alpha = 0.8f),
+                            modifier = Modifier
+                                .align(Alignment.BottomStart)
+                                .fillMaxWidth()
+                        ) {
+                            OdsHeaderText(title = title, subtitle = subtitle, color = Color.White)
+                        }
+                    }
 
-/**
- * A background image in the [OdsModalDrawerHeader].
- */
-class OdsModalDrawerHeaderBackground : OdsModalDrawerHeaderImage, OdsComponentImage<Nothing> {
+                is Avatar ->
+                    Column(
+                        modifier = modifier
+                            .fillMaxWidth()
+                            .height(DrawerHeaderMaxHeight),
+                        verticalArrangement = Arrangement.Bottom
+                    ) {
+                        image.Content(
+                            modifier = Modifier.padding(
+                                start = dimensionResource(id = R.dimen.spacing_m),
+                                bottom = dimensionResource(id = R.dimen.spacing_m)
+                            )
+                        )
+                        OdsHeaderText(title = title, subtitle = subtitle, color = OdsTheme.colors.onSurface)
+                    }
 
-    /**
-     * Creates an instance of [OdsModalDrawerHeaderBackground].
-     *
-     * @param painter The painter to draw.
-     * @param contentScale The rule to apply to scale the image in this [OdsModalDrawerHeaderBackground], [ContentScale.Crop] by default.
-     */
-    constructor(painter: Painter, contentScale: ContentScale = ContentScale.Crop) : super(painter, "", contentScale = contentScale)
+                else -> OdsHeaderText(title = title, subtitle = subtitle, color = OdsTheme.colors.onSurface)
+            }
+        }
 
-    /**
-     * Creates an instance of [OdsModalDrawerHeaderBackground].
-     *
-     * @param imageVector The image vector to draw.
-     * @param contentScale The rule to apply to scale the image in this [OdsModalDrawerHeaderBackground], [ContentScale.Crop] by default.
-     */
-    constructor(imageVector: ImageVector, contentScale: ContentScale = ContentScale.Crop) : super(imageVector, "", contentScale = contentScale)
 
-    /**
-     * Creates an instance of [OdsModalDrawerHeaderBackground].
-     *
-     * @param bitmap The image bitmap to draw.
-     * @param contentScale The rule to apply to scale the image in this [OdsModalDrawerHeaderBackground], [ContentScale.Crop] by default.
-     */
-    constructor(bitmap: ImageBitmap, contentScale: ContentScale = ContentScale.Crop) : super(bitmap, "", contentScale = contentScale)
+        /**
+         * An image that can be added in the [OdsModalDrawer.Header].
+         */
+        sealed interface Image
+
+        /**
+         * An avatar in [OdsModalDrawer.Header].
+         */
+        class Avatar : Image, OdsComponentCircularImage {
+
+            /**
+             * Creates an instance of [OdsModalDrawer.Header.Avatar].
+             *
+             * @param painter The painter to draw.
+             * @param contentDescription The content description associated to this [OdsModalDrawer.Header.Avatar].
+             */
+            constructor(painter: Painter, contentDescription: String) : super(painter, contentDescription)
+
+            /**
+             * Creates an instance of [OdsModalDrawer.Header.Avatar].
+             *
+             * @param imageVector The image vector to draw.
+             * @param contentDescription The content description associated to this [OdsModalDrawer.Header.Avatar].
+             */
+            constructor(imageVector: ImageVector, contentDescription: String) : super(imageVector, contentDescription)
+
+            /**
+             * Creates an instance of [OdsModalDrawer.Header.Avatar].
+             *
+             * @param bitmap The image bitmap to draw.
+             * @param contentDescription The content description associated to this [OdsModalDrawer.Header.Avatar].
+             */
+            constructor(bitmap: ImageBitmap, contentDescription: String) : super(bitmap, contentDescription)
+        }
+
+        /**
+         * A background image in the [OdsModalDrawer.Header].
+         */
+        class Background : Image, OdsComponentImage<Nothing> {
+
+            /**
+             * Creates an instance of [OdsModalDrawer.Header.Background].
+             *
+             * @param painter The painter to draw.
+             * @param contentScale The rule to apply to scale the image in this [OdsModalDrawer.Header.Background], [ContentScale.Crop] by default.
+             */
+            constructor(painter: Painter, contentScale: ContentScale = ContentScale.Crop) : super(painter, "", contentScale = contentScale)
+
+            /**
+             * Creates an instance of [OdsModalDrawer.Header.Background].
+             *
+             * @param imageVector The image vector to draw.
+             * @param contentScale The rule to apply to scale the image in this [OdsModalDrawer.Header.Background], [ContentScale.Crop] by default.
+             */
+            constructor(imageVector: ImageVector, contentScale: ContentScale = ContentScale.Crop) : super(imageVector, "", contentScale = contentScale)
+
+            /**
+             * Creates an instance of [OdsModalDrawer.Header.Background].
+             *
+             * @param bitmap The image bitmap to draw.
+             * @param contentScale The rule to apply to scale the image in this [OdsModalDrawer.Header.Background], [ContentScale.Crop] by default.
+             */
+            constructor(bitmap: ImageBitmap, contentScale: ContentScale = ContentScale.Crop) : super(bitmap, "", contentScale = contentScale)
+        }
+
+    }
 }
 
 private object OdsModalDrawerListItemRippleTheme : RippleTheme {
@@ -324,11 +331,11 @@ private fun PreviewOdsModalDrawer(@PreviewParameter(OdsModalDrawerPreviewParamet
         val listItemIcon = painterResource(id = R.drawable.ic_check)
         val items = if (parameter.hasItems) {
             listOf(
-                OdsModalDrawerListItem("List item 1", listItemIcon) {},
-                OdsModalDrawerDivider,
-                OdsModalDrawerListItem("List item 2", listItemIcon) {},
-                OdsModalDrawerSectionHeader("Section header"),
-                OdsModalDrawerListItem("List item 3", listItemIcon) {}
+                OdsModalDrawer.ListItem("List item 1", listItemIcon) {},
+                OdsModalDrawer.Divider,
+                OdsModalDrawer.ListItem("List item 2", listItemIcon) {},
+                OdsModalDrawer.SectionHeader("Section header"),
+                OdsModalDrawer.ListItem("List item 3", listItemIcon) {}
             )
         } else {
             emptyList()
@@ -337,14 +344,14 @@ private fun PreviewOdsModalDrawer(@PreviewParameter(OdsModalDrawerPreviewParamet
         OdsModalDrawer(
             state = rememberDrawerState(DrawerValue.Open),
             content = {},
-            header = OdsModalDrawerHeader(
+            header = OdsModalDrawer.Header(
                 title = parameter.title,
                 subtitle = parameter.subtitle,
                 image = parameter.image?.let {
                     if (parameter.imageAsBackground) {
-                        OdsModalDrawerHeaderBackground(painterResource(id = it))
+                        OdsModalDrawer.Header.Background(painterResource(id = it))
                     } else {
-                        OdsModalDrawerHeaderAvatar(painterResource(id = it), "")
+                        OdsModalDrawer.Header.Avatar(painterResource(id = it), "")
                     }
                 }
             ),

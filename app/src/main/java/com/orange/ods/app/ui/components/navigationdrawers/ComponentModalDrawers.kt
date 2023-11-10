@@ -44,13 +44,6 @@ import com.orange.ods.compose.component.chip.OdsChoiceChip
 import com.orange.ods.compose.component.chip.OdsChoiceChipsFlowRow
 import com.orange.ods.compose.component.list.OdsListItem
 import com.orange.ods.compose.component.navigationdrawer.OdsModalDrawer
-import com.orange.ods.compose.component.navigationdrawer.OdsModalDrawerDivider
-import com.orange.ods.compose.component.navigationdrawer.OdsModalDrawerHeader
-import com.orange.ods.compose.component.navigationdrawer.OdsModalDrawerHeaderAvatar
-import com.orange.ods.compose.component.navigationdrawer.OdsModalDrawerHeaderBackground
-import com.orange.ods.compose.component.navigationdrawer.OdsModalDrawerItem
-import com.orange.ods.compose.component.navigationdrawer.OdsModalDrawerListItem
-import com.orange.ods.compose.component.navigationdrawer.OdsModalDrawerSectionHeader
 import kotlinx.coroutines.launch
 
 @OptIn(ExperimentalMaterialApi::class)
@@ -63,10 +56,10 @@ fun ComponentModalDrawers() {
     val categories = LocalCategories.current
 
     with(customizationState) {
-        var selectedItem: OdsModalDrawerListItem? by remember { mutableStateOf(null) }
+        var selectedItem: OdsModalDrawer.ListItem? by remember { mutableStateOf(null) }
 
-        val modalDrawerItems: MutableList<OdsModalDrawerItem> = categories.subList(1, categories.size).map { category ->
-            OdsModalDrawerListItem(
+        val modalDrawerItems: MutableList<OdsModalDrawer.Item> = categories.subList(1, categories.size).map { category ->
+            OdsModalDrawer.ListItem(
                 category.name,
                 if (isListIconChecked && category.iconResId != null) painterResource(id = category.iconResId) else null
             ) { item -> selectedItem = item }
@@ -76,11 +69,11 @@ fun ComponentModalDrawers() {
         val sectionListRecipes = recipes.filter { it.category.id == sectionListCategory.id }
 
         if (hasLabel || hasDivider) {
-            if (hasDivider) modalDrawerItems.add(OdsModalDrawerDivider)
-            if (hasLabel) modalDrawerItems.add(OdsModalDrawerSectionHeader(sectionListCategory.name))
+            if (hasDivider) modalDrawerItems.add(OdsModalDrawer.Divider)
+            if (hasLabel) modalDrawerItems.add(OdsModalDrawer.SectionHeader(sectionListCategory.name))
             sectionListRecipes.forEach { recipe ->
                 val item =
-                    OdsModalDrawerListItem(
+                    OdsModalDrawer.ListItem(
                         recipe.title,
                         if (isListIconChecked && recipe.iconResId != null) painterResource(id = recipe.iconResId) else null
                     ) { item -> selectedItem = item }
@@ -97,14 +90,14 @@ fun ComponentModalDrawers() {
         )
 
         LaunchedEffect(key1 = Unit) {
-            selectedItem = modalDrawerItems.firstOrNull { it is OdsModalDrawerListItem } as? OdsModalDrawerListItem
+            selectedItem = modalDrawerItems.firstOrNull { it is OdsModalDrawer.ListItem } as? OdsModalDrawer.ListItem
         }
         OdsModalDrawer(
-            header = OdsModalDrawerHeader(
+            header = OdsModalDrawer.Header(
                 title = title,
                 image = when {
-                    hasAvatar -> OdsModalDrawerHeaderAvatar(imagePainter, "")
-                    hasBackground -> OdsModalDrawerHeaderBackground(imagePainter)
+                    hasAvatar -> OdsModalDrawer.Header.Avatar(imagePainter, "")
+                    hasBackground -> OdsModalDrawer.Header.Background(imagePainter)
                     else -> null
                 },
                 subtitle = subtitle,
@@ -186,11 +179,11 @@ fun ComponentModalDrawers() {
                                 name = OdsComposable.OdsModalDrawer.name,
                                 exhaustiveParameters = false,
                                 parameters = {
-                                    classInstance<OdsModalDrawerHeader>("header") {
+                                    classInstance<OdsModalDrawer.Header>("header") {
                                         title(title)
                                         when {
-                                            hasBackground -> classInstance<OdsModalDrawerHeaderBackground>("image") { painter() }
-                                            hasAvatar -> classInstance<OdsModalDrawerHeaderAvatar>("image") {
+                                            hasBackground -> classInstance<OdsModalDrawer.Header.Background>("image") { painter() }
+                                            hasAvatar -> classInstance<OdsModalDrawer.Header.Avatar>("image") {
                                                 painter()
                                                 contentDescription("")
                                             }
@@ -200,18 +193,18 @@ fun ComponentModalDrawers() {
                                     list("items") {
                                         if (isContentExampleChecked) {
                                             if (hasLabel) {
-                                                classInstance<OdsModalDrawerSectionHeader> {
+                                                classInstance<OdsModalDrawer.SectionHeader> {
                                                     label("Section")
                                                 }
                                             }
-                                            classInstance<OdsModalDrawerListItem> {
+                                            classInstance<OdsModalDrawer.ListItem> {
                                                 simple("leadingIcon", IconPainterValue)
                                                 simple("text", "<item label>")
                                             }
-                                            if (hasDivider) classInstance<OdsModalDrawerDivider>()
+                                            if (hasDivider) classInstance<OdsModalDrawer.Divider>()
                                         }
                                     }
-                                    simple("selectedItem", "<OdsModalDrawerListItem>")
+                                    simple("selectedItem", "<OdsModalDrawer.ListItem>")
                                     lambda("content")
                                 }
                             )
