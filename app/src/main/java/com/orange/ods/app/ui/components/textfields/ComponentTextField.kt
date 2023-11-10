@@ -38,7 +38,6 @@ import com.orange.ods.compose.component.chip.OdsChoiceChip
 import com.orange.ods.compose.component.chip.OdsChoiceChipsFlowRow
 import com.orange.ods.compose.component.list.OdsListItem
 import com.orange.ods.compose.component.tab.OdsTabRow
-import com.orange.ods.compose.component.tab.OdsTabRowTab
 import com.orange.ods.compose.utilities.composable.Keyboard
 import com.orange.ods.compose.utilities.composable.keyboardAsState
 import kotlinx.coroutines.launch
@@ -90,7 +89,7 @@ private fun TextFieldTextCustomization(textFieldCustomizationState: TextFieldCus
     OdsTabRow(
         selectedTabIndex = pagerState.currentPage,
         tabs = tabs.mapIndexed { index, customizationTab ->
-            OdsTabRowTab(
+            OdsTabRow.Tab(
                 icon = null,
                 text = stringResource(id = customizationTab.titleRes)
             ) {

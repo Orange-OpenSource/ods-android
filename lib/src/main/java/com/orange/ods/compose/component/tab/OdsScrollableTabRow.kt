@@ -34,7 +34,7 @@ import com.orange.ods.compose.theme.OdsTheme
  * @see ScrollableTabRow documentation
  *
  * @param selectedTabIndex Index of the currently selected tab.
- * @param tabs List of [OdsTabRowTab] displayed inside the tabs row.
+ * @param tabs List of [OdsTabRow.Tab] displayed inside the tabs row.
  * @param modifier [Modifier] applied to the scrollable tabs row.
  * @param tabIconPosition Controls the position of the icon in the tabs. By default, the icon is displayed above the text.
  */
@@ -42,9 +42,9 @@ import com.orange.ods.compose.theme.OdsTheme
 @OdsComposable
 fun OdsScrollableTabRow(
     selectedTabIndex: Int,
-    tabs: List<OdsTabRowTab>,
+    tabs: List<OdsTabRow.Tab>,
     modifier: Modifier = Modifier,
-    tabIconPosition: OdsTabRowTabIcon.Position = OdsTabRowTabIcon.Position.Top
+    tabIconPosition: OdsTabRow.Tab.Icon.Position = OdsTabRow.Tab.Icon.Position.Top
 ) {
     ScrollableTabRow(
         modifier = modifier,
@@ -60,7 +60,7 @@ fun OdsScrollableTabRow(
             }
         },
         divider = {},
-        tabs = { tabs.forEachIndexed { index, tab -> tab.Content(OdsTabRowTab.ExtraParameters(selected = index == selectedTabIndex, iconPosition = tabIconPosition)) } }
+        tabs = { tabs.forEachIndexed { index, tab -> tab.Content(OdsTabRow.Tab.ExtraParameters(selected = index == selectedTabIndex, iconPosition = tabIconPosition)) } }
     )
 }
 
@@ -81,8 +81,8 @@ private fun PreviewOdsScrollableTabRow(@PreviewParameter(OdsTabRowPreviewParamet
         OdsScrollableTabRow(
             selectedTabIndex = selectedTabIndex,
             tabs = tabs.mapIndexed { index, tab ->
-                OdsTabRowTab(
-                    icon = if (hasIcon) OdsTabRowTabIcon(painterResource(id = tab.iconResId), "") else null,
+                OdsTabRow.Tab(
+                    icon = if (hasIcon) OdsTabRow.Tab.Icon(painterResource(id = tab.iconResId), "") else null,
                     text = if (hasText) tab.text else null,
                     enabled = enabled,
                     onClick = { selectedTabIndex = index }
