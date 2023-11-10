@@ -48,7 +48,7 @@ import com.orange.ods.compose.theme.OdsTheme
  * @param text Text displayed into the card.
  * @param firstButton First [OdsCard.Button] displayed into the card.
  * @param secondButton Second [OdsCard.Button] displayed into the card.
- * @param imagePosition Position of the image within the card, it can be set to [OdsHorizontalCardImagePosition.Start] or [OdsHorizontalCardImagePosition.End]. [OdsHorizontalCardImagePosition.Start] by default.
+ * @param imagePosition Position of the image within the card, it can be set to [OdsHorizontalCard.Image.Position.Start] or [OdsHorizontalCard.Image.Position.End]. [OdsHorizontalCard.Image.Position.Start] by default.
  * @param divider Controls the divider display. If `true`, it will be displayed between the card content and the action buttons.
  * @param onClick Callback invoked on card click.
  */
@@ -62,7 +62,7 @@ fun OdsHorizontalCard(
     text: String? = null,
     firstButton: OdsCard.Button? = null,
     secondButton: OdsCard.Button? = null,
-    imagePosition: OdsHorizontalCardImagePosition = OdsHorizontalCardImagePosition.Start,
+    imagePosition: OdsHorizontalCard.Image.Position = OdsHorizontalCard.Image.Position.Start,
     divider: Boolean = true,
     onClick: (() -> Unit)? = null,
 ) {
@@ -92,8 +92,8 @@ fun OdsHorizontalCard(
                         top.linkTo(parent.top)
                         bottom.linkTo(dividerRef.top)
                         when (imagePosition) {
-                            OdsHorizontalCardImagePosition.Start -> start.linkTo(parent.start)
-                            OdsHorizontalCardImagePosition.End -> end.linkTo(parent.end)
+                            OdsHorizontalCard.Image.Position.Start -> start.linkTo(parent.start)
+                            OdsHorizontalCard.Image.Position.End -> end.linkTo(parent.end)
                         }
                         width = Dimension.value(imageSize)
                         height = Dimension.fillToConstraints.atLeast(imageSize)
@@ -110,11 +110,11 @@ fun OdsHorizontalCard(
                 text = title,
                 modifier = Modifier.constrainAs(titleRef) {
                     when (imagePosition) {
-                        OdsHorizontalCardImagePosition.Start -> {
+                        OdsHorizontalCard.Image.Position.Start -> {
                             start.linkTo(imageRef.end, margin = mediumSpacing)
                             end.linkTo(parent.end, margin = mediumSpacing)
                         }
-                        OdsHorizontalCardImagePosition.End -> {
+                        OdsHorizontalCard.Image.Position.End -> {
                             start.linkTo(parent.start, margin = mediumSpacing)
                             end.linkTo(imageRef.start, margin = mediumSpacing)
                         }
@@ -180,8 +180,12 @@ fun OdsHorizontalCard(
     }
 }
 
-enum class OdsHorizontalCardImagePosition {
-    Start, End
+class OdsHorizontalCard {
+    class Image {
+        enum class Position {
+            Start, End
+        }
+    }
 }
 
 @UiModePreviews.Default
@@ -202,7 +206,7 @@ private fun PreviewOdsHorizontalCard(@PreviewParameter(OdsHorizontalCardPreviewP
 
 internal data class OdsHorizontalCardPreviewParameter(
     val subtitle: String?,
-    val imagePosition: OdsHorizontalCardImagePosition,
+    val imagePosition: OdsHorizontalCard.Image.Position,
     val dividerEnabled: Boolean,
     val firstButtonText: String?,
     val secondButtonText: String?
@@ -218,9 +222,9 @@ private val previewParameterValues: List<OdsHorizontalCardPreviewParameter>
         val secondButtonText = "Second button"
 
         return listOf(
-            OdsHorizontalCardPreviewParameter(subtitle, OdsHorizontalCardImagePosition.Start, true, firstButtonText, secondButtonText),
-            OdsHorizontalCardPreviewParameter(subtitle, OdsHorizontalCardImagePosition.End, false, firstButtonText, null),
-            OdsHorizontalCardPreviewParameter(subtitle, OdsHorizontalCardImagePosition.Start, true, null, null),
-            OdsHorizontalCardPreviewParameter(null, OdsHorizontalCardImagePosition.Start, false, null, secondButtonText)
+            OdsHorizontalCardPreviewParameter(subtitle, OdsHorizontalCard.Image.Position.Start, true, firstButtonText, secondButtonText),
+            OdsHorizontalCardPreviewParameter(subtitle, OdsHorizontalCard.Image.Position.End, false, firstButtonText, null),
+            OdsHorizontalCardPreviewParameter(subtitle, OdsHorizontalCard.Image.Position.Start, true, null, null),
+            OdsHorizontalCardPreviewParameter(null, OdsHorizontalCard.Image.Position.Start, false, null, secondButtonText)
         )
     }
