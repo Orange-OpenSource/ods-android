@@ -35,7 +35,6 @@ import com.orange.ods.app.ui.utilities.composable.Title
 import com.orange.ods.compose.OdsComposable
 import com.orange.ods.compose.component.button.OdsButton
 import com.orange.ods.compose.component.button.OdsTextButton
-import com.orange.ods.compose.component.button.OdsTextButtonStyle
 import com.orange.ods.compose.theme.OdsDisplaySurface
 
 @Composable
@@ -47,7 +46,7 @@ fun ButtonsText(customizationState: ButtonCustomizationState) {
                 .padding(vertical = dimensionResource(id = com.orange.ods.R.dimen.screen_vertical_margin))
         ) {
             Title(
-                textRes = if (textButtonStyle.value == OdsTextButtonStyle.Default) R.string.component_button_style_default else R.string.component_button_style_primary,
+                textRes = if (textButtonStyle.value == OdsTextButton.Style.Default) R.string.component_button_style_default else R.string.component_button_style_primary,
                 horizontalPadding = true
             )
 
@@ -95,7 +94,7 @@ fun ButtonsText(customizationState: ButtonCustomizationState) {
 
 @Composable
 private fun TextButton(
-    style: OdsTextButtonStyle,
+    style: OdsTextButton.Style,
     leadingIcon: Boolean,
     enabled: Boolean,
     fullScreenWidth: Boolean,

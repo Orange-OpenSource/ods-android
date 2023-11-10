@@ -33,7 +33,7 @@ import com.orange.ods.app.ui.components.utilities.ComponentCountRow
 import com.orange.ods.app.ui.components.utilities.ComponentCustomizationBottomSheetScaffold
 import com.orange.ods.app.ui.utilities.composable.Subtitle
 import com.orange.ods.compose.component.button.OdsButtonStyle
-import com.orange.ods.compose.component.button.OdsTextButtonStyle
+import com.orange.ods.compose.component.button.OdsTextButton
 import com.orange.ods.compose.component.chip.OdsChoiceChip
 import com.orange.ods.compose.component.chip.OdsChoiceChipsFlowRow
 import com.orange.ods.compose.component.list.OdsListItem
@@ -84,8 +84,8 @@ fun ComponentButtons(variant: Variant) {
                             onValueChange = { value -> textButtonStyle.value = value },
                             modifier = Modifier.padding(horizontal = dimensionResource(id = com.orange.ods.R.dimen.spacing_m)),
                             chips = listOf(
-                                OdsChoiceChip(text = stringResource(id = R.string.component_button_style_primary), value = OdsTextButtonStyle.Primary),
-                                OdsChoiceChip(text = stringResource(id = R.string.component_button_style_default), value = OdsTextButtonStyle.Default)
+                                OdsChoiceChip(text = stringResource(id = R.string.component_button_style_primary), value = OdsTextButton.Style.Primary),
+                                OdsChoiceChip(text = stringResource(id = R.string.component_button_style_default), value = OdsTextButton.Style.Default)
                             )
                         )
                     }

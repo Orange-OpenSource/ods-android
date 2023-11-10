@@ -119,7 +119,7 @@ OdsTextButton(
     onClick = { doSomething() },
     enabled = true,
     icon = OdsButton.Icon(painterResource(R.drawable.ic_coffee)), // Line can be removed if you don't need any icon
-    style = OdsTextButtonStyle.Primary
+    style = OdsTextButton.Style.Primary
 )
 ```
 
@@ -132,7 +132,7 @@ Parameter | Default&nbsp;value | Description
 `modifier: Modifier` | `Modifier` | `Modifier` applied to the button
 `icon: OdsButton.Icon?` | `null` | Icon displayed in the button before the text
 `enabled: Boolean` | `true` | Controls the enabled state of the button. When `false`, this button will not be clickable.
-`style: OdsTextButtonStyle` | `OdsTextButtonStyle.Default` | Style applied to the button. By default `onSurface` color is used for text color. Use `OdsTextButtonStyle.Primary` for an highlighted text color.
+`style: OdsTextButton.Style` | `OdsTextButton.Style.Default` | Style applied to the button. By default `onSurface` color is used for text color. Use `OdsTextButton.Style.Primary` for an highlighted text color.
 `displaySurface: OdsDisplaySurface` | `OdsDisplaySurface.Default` | `OdsDisplaySurface` applied to the button. It allows to force the button display on light or dark surface. By default, the appearance applied is based on the system night mode value.
 {:.table}
 

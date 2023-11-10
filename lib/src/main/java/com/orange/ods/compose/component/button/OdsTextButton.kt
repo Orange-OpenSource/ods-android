@@ -32,15 +32,6 @@ import com.orange.ods.compose.utilities.extension.enable
 import com.orange.ods.theme.colors.OdsColors
 
 /**
- * Specifying an [OdsTextButtonStyle] allow to display a button with specific colors.
- */
-enum class OdsTextButtonStyle {
-    Default, Primary;
-
-    companion object
-}
-
-/**
  * <a href="https://system.design.orange.com/0c1af118d/p/06a393-buttons/b/79b091" target="_blank">ODS Buttons</a>.
  *
  * Text buttons are typically used for less-pronounced actions, including those located in dialogs
@@ -51,7 +42,7 @@ enum class OdsTextButtonStyle {
  * @param modifier [Modifier] applied to the button.
  * @param icon Icon displayed in the button before the text.
  * @param enabled Controls the enabled state of the button. When `false`, this button will not be clickable.
- * @param style Style applied to the button. By default `onSurface` color is used for text color. Use [OdsTextButtonStyle.Primary] for an highlighted
+ * @param style Style applied to the button. By default `onSurface` color is used for text color. Use [OdsTextButton.Style.Primary] for an highlighted
  * text color.
  * @param displaySurface [OdsDisplaySurface] applied to the button. It allows to force the button display on light or dark surface. By default,
  * the appearance applied is based on the system night mode value.
@@ -64,7 +55,7 @@ fun OdsTextButton(
     modifier: Modifier = Modifier,
     icon: OdsButton.Icon? = null,
     enabled: Boolean = true,
-    style: OdsTextButtonStyle = OdsTextButtonStyle.Default,
+    style: OdsTextButton.Style = OdsTextButton.Style.Default,
     displaySurface: OdsDisplaySurface = OdsDisplaySurface.Default
 ) {
     OdsTextButton(
@@ -89,13 +80,13 @@ internal fun OdsTextButton(
     modifier: Modifier = Modifier,
     icon: OdsButton.Icon? = null,
     enabled: Boolean = true,
-    style: OdsTextButtonStyle = OdsTextButtonStyle.Default,
+    style: OdsTextButton.Style = OdsTextButton.Style.Default,
     displaySurface: OdsDisplaySurface = OdsDisplaySurface.Default
 ) {
     CompositionLocalProvider(
         LocalRippleTheme provides when (style) {
-            OdsTextButtonStyle.Primary -> OdsPrimaryRippleTheme
-            OdsTextButtonStyle.Default -> displaySurface.rippleTheme
+            OdsTextButton.Style.Primary -> OdsPrimaryRippleTheme
+            OdsTextButton.Style.Default -> displaySurface.rippleTheme
         }
     ) {
         TextButton(
@@ -118,21 +109,32 @@ internal fun OdsTextButton(
     }
 }
 
+class OdsTextButton {
+    /**
+     * Specifying an [OdsTextButton.Style] allow to display a button with specific colors.
+     */
+    enum class Style {
+        Default, Primary;
+
+        companion object
+    }
+}
+
 @Composable
-private fun OdsColors.buttonTextColor(displaySurface: OdsDisplaySurface, style: OdsTextButtonStyle) =
+private fun OdsColors.buttonTextColor(displaySurface: OdsDisplaySurface, style: OdsTextButton.Style) =
     when (style) {
-        OdsTextButtonStyle.Primary -> displaySurface.themeColors.primary
-        OdsTextButtonStyle.Default -> displaySurface.themeColors.onSurface
+        OdsTextButton.Style.Primary -> displaySurface.themeColors.primary
+        OdsTextButton.Style.Default -> displaySurface.themeColors.onSurface
     }
 
 @Composable
 private fun OdsColors.buttonTextDisabledColor(displaySurface: OdsDisplaySurface) =
-    buttonTextColor(displaySurface = displaySurface, style = OdsTextButtonStyle.Default).enable(enabled = false)
+    buttonTextColor(displaySurface = displaySurface, style = OdsTextButton.Style.Default).enable(enabled = false)
 
 @UiModePreviews.Button
 @Composable
-private fun PreviewOdsTextButton(@PreviewParameter(OdsTextButtonPreviewParameterProvider::class) style: OdsTextButtonStyle) = Preview {
+private fun PreviewOdsTextButton(@PreviewParameter(OdsTextButtonPreviewParameterProvider::class) style: OdsTextButton.Style) = Preview {
     OdsTextButton(text = "Text", maxLines = 1, overflow = TextOverflow.Clip, onClick = {}, style = style)
 }
 
-private class OdsTextButtonPreviewParameterProvider : EnumPreviewParameterProvider(OdsTextButtonStyle::class.java)
+private class OdsTextButtonPreviewParameterProvider : EnumPreviewParameterProvider(OdsTextButton.Style::class.java)

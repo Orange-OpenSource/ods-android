@@ -25,7 +25,6 @@ import androidx.compose.ui.tooling.preview.PreviewParameter
 import com.orange.ods.R
 import com.orange.ods.compose.component.OdsComposable
 import com.orange.ods.compose.component.button.OdsTextButton
-import com.orange.ods.compose.component.button.OdsTextButtonStyle
 import com.orange.ods.compose.component.content.OdsComponentContent
 import com.orange.ods.compose.component.utilities.BasicPreviewParameterProvider
 import com.orange.ods.compose.component.utilities.Preview
@@ -104,7 +103,7 @@ private fun OdsSnackbar(
         action = actionLabel?.let {
             {
                 OdsTextButton(
-                    style = OdsTextButtonStyle.Primary,
+                    style = OdsTextButton.Style.Primary,
                     displaySurface = if (isSystemInDarkTheme()) OdsDisplaySurface.Light else OdsDisplaySurface.Dark,
                     text = it,
                     onClick = onActionClick

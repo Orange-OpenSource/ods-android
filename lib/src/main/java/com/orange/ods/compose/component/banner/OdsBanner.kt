@@ -29,7 +29,6 @@ import androidx.compose.ui.tooling.preview.PreviewParameter
 import com.orange.ods.R
 import com.orange.ods.compose.component.OdsComposable
 import com.orange.ods.compose.component.button.OdsTextButton
-import com.orange.ods.compose.component.button.OdsTextButtonStyle
 import com.orange.ods.compose.component.content.OdsComponentCircularImage
 import com.orange.ods.compose.component.content.OdsComponentContent
 import com.orange.ods.compose.component.divider.OdsDivider
@@ -117,7 +116,7 @@ class OdsBanner {
 
         @Composable
         override fun Content(modifier: Modifier) {
-            OdsTextButton(text = text, onClick = onClick, modifier = modifier, style = OdsTextButtonStyle.Primary)
+            OdsTextButton(text = text, onClick = onClick, modifier = modifier, style = OdsTextButton.Style.Primary)
         }
     }
 

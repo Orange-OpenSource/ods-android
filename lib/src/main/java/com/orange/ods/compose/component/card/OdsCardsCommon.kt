@@ -23,7 +23,6 @@ import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.semantics.semantics
 import com.orange.ods.compose.component.button.OdsTextButton
-import com.orange.ods.compose.component.button.OdsTextButtonStyle
 import com.orange.ods.compose.component.content.OdsComponentCircularImage
 import com.orange.ods.compose.component.content.OdsComponentContent
 import com.orange.ods.compose.component.content.OdsComponentImage
@@ -51,7 +50,7 @@ class OdsCard {
 
         @Composable
         override fun Content(modifier: Modifier) {
-            OdsTextButton(text = text, onClick = onClick, modifier = modifier, style = OdsTextButtonStyle.Primary)
+            OdsTextButton(text = text, onClick = onClick, modifier = modifier, style = OdsTextButton.Style.Primary)
         }
     }
 

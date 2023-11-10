@@ -130,7 +130,7 @@ private fun RowScope.TextToggleButtonsRowItem(
         maxLines = 1,
         overflow = TextOverflow.Ellipsis,
         displaySurface = displaySurface,
-        style = OdsTextButtonStyle.Default,
+        style = OdsTextButton.Style.Default,
         onClick = { onClick(index) }
     )
 }

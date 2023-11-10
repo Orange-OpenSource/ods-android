@@ -16,7 +16,6 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.window.DialogProperties
 import com.orange.ods.compose.component.OdsComposable
 import com.orange.ods.compose.component.button.OdsTextButton
-import com.orange.ods.compose.component.button.OdsTextButtonStyle
 import com.orange.ods.compose.component.content.OdsComponentContent
 import com.orange.ods.compose.component.utilities.Preview
 import com.orange.ods.compose.component.utilities.UiModePreviews
@@ -85,7 +84,7 @@ class OdsAlertDialog {
 
         @Composable
         override fun Content(modifier: Modifier) {
-            OdsTextButton(text = text, onClick = onClick, modifier = modifier, style = OdsTextButtonStyle.Primary)
+            OdsTextButton(text = text, onClick = onClick, modifier = modifier, style = OdsTextButton.Style.Primary)
         }
     }
 
