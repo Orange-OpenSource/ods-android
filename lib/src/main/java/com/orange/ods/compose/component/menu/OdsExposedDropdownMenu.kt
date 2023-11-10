@@ -26,7 +26,6 @@ import androidx.compose.ui.tooling.preview.PreviewParameter
 import com.orange.ods.compose.component.OdsComposable
 import com.orange.ods.compose.component.textfield.OdsExposedDropdownMenuTrailing
 import com.orange.ods.compose.component.textfield.OdsTextField
-import com.orange.ods.compose.component.textfield.OdsTextFieldLeadingIcon
 import com.orange.ods.compose.component.utilities.BasicPreviewParameterProvider
 import com.orange.ods.compose.component.utilities.Preview
 import com.orange.ods.compose.component.utilities.UiModePreviews
@@ -75,7 +74,7 @@ fun OdsExposedDropdownMenu(
             onValueChange = {},
             readOnly = true,
             label = label,
-            leadingIcon = selectedItem.value.iconResId?.let { OdsTextFieldLeadingIcon(painterResource(id = it), "") },
+            leadingIcon = selectedItem.value.iconResId?.let { OdsTextField.LeadingIcon(painterResource(id = it), "") },
             trailing = OdsExposedDropdownMenuTrailing(expanded = if (enabled) expanded else false),
             enabled = enabled
         )

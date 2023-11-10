@@ -39,8 +39,8 @@ internal fun OdsFilledTextField(
     readOnly: Boolean = false,
     label: String? = null,
     placeholder: String? = null,
-    leadingIcon: OdsTextFieldLeadingIcon? = null,
-    trailing: OdsTextFieldTrailing? = null,
+    leadingIcon: OdsTextField.LeadingIcon? = null,
+    trailing: OdsTextField.Trailing? = null,
     isError: Boolean = false,
     errorMessage: String? = null,
     visualTransformation: VisualTransformation = VisualTransformation.None,
@@ -48,7 +48,7 @@ internal fun OdsFilledTextField(
     keyboardActions: KeyboardActions = KeyboardActions(),
     singleLine: Boolean = false,
     maxLines: Int = Int.MAX_VALUE,
-    characterCounter: OdsTextFieldCharacterCounter? = null
+    characterCounter: OdsTextField.CharacterCounter? = null
 ) {
     Column(modifier = modifier) {
         TextField(
@@ -66,11 +66,11 @@ internal fun OdsFilledTextField(
             placeholder = placeholder?.let { { Text(text = placeholder, style = OdsTheme.typography.subtitle1) } },
             leadingIcon = leadingIcon?.let {
                 {
-                    it.Content(OdsTextFieldLeadingIcon.ExtraParameters(enabled))
+                    it.Content(OdsTextField.LeadingIcon.ExtraParameters(enabled))
                 }
             },
-            trailingIcon = @Suppress("UNCHECKED_CAST") (trailing as? OdsComponentContent<OdsTextFieldTrailing.ExtraParameters>)?.let {
-                { it.Content(extraParameters = OdsTextFieldTrailing.ExtraParameters(enabled, value.isEmpty())) }
+            trailingIcon = @Suppress("UNCHECKED_CAST") (trailing as? OdsComponentContent<OdsTextField.Trailing.ExtraParameters>)?.let {
+                { it.Content(extraParameters = OdsTextField.Trailing.ExtraParameters(enabled, value.isEmpty())) }
             },
             isError = isError,
             visualTransformation = visualTransformation,
@@ -94,11 +94,11 @@ private fun PreviewOdsTextField(@PreviewParameter(OdsTextFieldPreviewParameterPr
         value = value,
         onValueChange = { value = it },
         placeholder = "Placeholder",
-        leadingIcon = OdsTextFieldLeadingIcon(painterResource(id = android.R.drawable.ic_dialog_info), ""),
+        leadingIcon = OdsTextField.LeadingIcon(painterResource(id = android.R.drawable.ic_dialog_info), ""),
         trailing = trailingPreview(parameter = parameter),
         isError = parameter.hasErrorMessage,
         errorMessage = getPreviewErrorMessage(parameter.hasErrorMessage, parameter.isVeryLongErrorMessage),
-        characterCounter = if (parameter.hasCounter) OdsTextFieldCharacterCounter(value.length, 30) else null
+        characterCounter = if (parameter.hasCounter) OdsTextField.CharacterCounter(value.length, 30) else null
     )
 }
 

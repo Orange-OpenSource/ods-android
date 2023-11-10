@@ -28,10 +28,6 @@ import com.orange.ods.app.ui.utilities.code.CodeImplementationColumn
 import com.orange.ods.app.ui.utilities.code.FunctionCallCode
 import com.orange.ods.compose.OdsComposable
 import com.orange.ods.compose.component.textfield.OdsTextField
-import com.orange.ods.compose.component.textfield.OdsTextFieldCharacterCounter
-import com.orange.ods.compose.component.textfield.OdsTextFieldLeadingIcon
-import com.orange.ods.compose.component.textfield.OdsTextFieldTrailingIcon
-import com.orange.ods.compose.component.textfield.OdsTextFieldTrailingText
 
 private const val TrailingText = "units"
 
@@ -45,12 +41,12 @@ fun TextField(customizationState: TextFieldCustomizationState) {
         .padding(top = dimensionResource(id = com.orange.ods.R.dimen.spacing_s))
 
     with(customizationState) {
-        val leadingIcon = if (hasLeadingIcon) OdsTextFieldLeadingIcon(painterResource(id = R.drawable.ic_heart), "") else null
+        val leadingIcon = if (hasLeadingIcon) OdsTextField.LeadingIcon(painterResource(id = R.drawable.ic_heart), "") else null
         val errorMessage = if (isError) stringResource(id = R.string.component_text_field_error_message) else null
         val onValueChange: (String) -> Unit = { updateText(it) }
         val label = stringResource(id = R.string.component_element_label)
         val placeholder = stringResource(id = R.string.component_text_field_placeholder)
-        val characterCounter = if (hasCharacterCounter) OdsTextFieldCharacterCounter(displayedText.length, TextFieldMaxChars, isEnabled) else null
+        val characterCounter = if (hasCharacterCounter) OdsTextField.CharacterCounter(displayedText.length, TextFieldMaxChars, isEnabled) else null
         val hasTrailing = hasTrailingText || hasTrailingIcon
 
         Column {
@@ -66,12 +62,12 @@ fun TextField(customizationState: TextFieldCustomizationState) {
                     label = label,
                     placeholder = placeholder,
                     trailing = if (hasTrailingIcon) {
-                        OdsTextFieldTrailingIcon(
+                        OdsTextField.TrailingIcon(
                             painter = painterResource(id = com.orange.ods.R.drawable.ic_eye),
                             contentDescription = "",
                             onClick = { clickOnElement(context = context, trailingIconName) })
                     } else {
-                        OdsTextFieldTrailingText(text = TrailingText)
+                        OdsTextField.TrailingText(text = TrailingText)
                     },
                     singleLine = isSingleLine,
                     keyboardOptions = keyboardOptions,
@@ -133,7 +129,7 @@ fun TextFieldCodeImplementationColumn(
                         stringRepresentation("keyboardType", softKeyboardType.value.keyboardType)
                         stringRepresentation("imeAction", softKeyboardAction.value.imeAction)
                     }
-                    if (hasLeadingIcon) classInstance<OdsTextFieldLeadingIcon>("leadingIcon") {
+                    if (hasLeadingIcon) classInstance<OdsTextField.LeadingIcon>("leadingIcon") {
                         painter()
                         contentDescription("")
                     }
@@ -147,18 +143,18 @@ fun TextFieldCodeImplementationColumn(
                     if (hasTrailing) {
                         val trailingParameterName = "trailing"
                         if (hasTrailingIcon) {
-                            classInstance<OdsTextFieldTrailingIcon>(trailingParameterName) {
+                            classInstance<OdsTextField.TrailingIcon>(trailingParameterName) {
                                 painter()
                                 onClick()
                             }
                         } else {
-                            classInstance<OdsTextFieldTrailingText>(trailingParameterName) {
+                            classInstance<OdsTextField.TrailingText>(trailingParameterName) {
                                 text(TrailingText)
                             }
                         }
                     }
                     if (hasCharacterCounter) {
-                        classInstance<OdsTextFieldCharacterCounter>("characterCounter") {
+                        classInstance<OdsTextField.CharacterCounter>("characterCounter") {
                             stringRepresentation("characterCount", displayedText.length)
                             enabled(isEnabled)
                         }
