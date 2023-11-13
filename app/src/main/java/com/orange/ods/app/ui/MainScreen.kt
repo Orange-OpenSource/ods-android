@@ -155,6 +155,18 @@ fun MainScreen(themeConfigurations: Set<OdsThemeConfigurationContract>, mainView
                         upPress = mainState::upPress
                     )
                 }
+
+                if (changeThemeDialogVisible) {
+                    ChangeThemeDialog(
+                        themeManager = mainState.themeState,
+                        dismissDialog = {
+                            changeThemeDialogVisible = false
+                        },
+                        onThemeSelected = {
+                            mainViewModel.storeUserThemeName(mainState.themeState.currentThemeConfiguration.name)
+                        }
+                    )
+                }
             }
         }
     }
