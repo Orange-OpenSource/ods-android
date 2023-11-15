@@ -23,10 +23,8 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.input.TextFieldValue
 import com.orange.ods.app.R
 import com.orange.ods.app.ui.AppBarAction.Companion.defaultActions
-import com.orange.ods.app.ui.utilities.UiString
 import com.orange.ods.app.ui.utilities.extension.isDarkModeEnabled
 import com.orange.ods.compose.component.appbar.top.OdsTopAppBar
-import com.orange.ods.compose.component.appbar.top.OdsTopAppBarOverflowMenuActionItem
 import com.orange.ods.compose.component.content.OdsComponentContent
 import com.orange.ods.compose.component.textfield.search.OdsSearchTextField
 
@@ -43,17 +41,6 @@ enum class AppBarAction {
         ChangeMode -> getChangeModeAction(onActionClick)
         Search -> getSearchAction(onActionClick)
     }
-}
-
-data class AppBarOverflowMenuAction(
-    val title: UiString,
-    val onClick: () -> Unit
-) {
-    @Composable
-    fun getOdsTopAppBarOverflowMenuAction() = OdsTopAppBarOverflowMenuActionItem(
-        text = title.asString(),
-        onClick = onClick
-    )
 }
 
 @Composable

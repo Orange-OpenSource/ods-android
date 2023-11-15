@@ -32,7 +32,7 @@ fun AppBar(
                 title = title,
                 navigationIcon = getNavigationIcon(upPress),
                 actions = actions,
-                overflowMenuActions = overflowMenuActions,
+                overflowMenuActions = overflowMenuItems,
                 scrollBehavior = if (hasScrollBehavior) scrollBehavior else null
             )
         } else {
@@ -40,7 +40,7 @@ fun AppBar(
                 title = title,
                 navigationIcon = getNavigationIcon(upPress),
                 actions = actions,
-                overflowMenuActions = overflowMenuActions,
+                overflowMenuItems = overflowMenuItems,
                 elevated = false // elevation is managed in MainScreen cause of tabs
             )
         }

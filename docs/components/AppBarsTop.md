@@ -56,8 +56,8 @@ OdsTopAppBar(
         ),
         // ...
     ),
-    overflowMenuActions = listOf(
-        OdsTopAppBarOverflowMenuActionItem(
+    overflowMenuItems = listOf(
+        OdsDropdownMenu.Item(
             text = "Text",
             onClick = { doSomething() }
         ),
@@ -76,7 +76,7 @@ Parameter | Default&nbsp;value | Description
 `modifier: Modifier` | `Modifier` |`Modifier` to be applied to the top app bar
 `navigationIcon: OdsTopAppBar.NavigationIcon?` | `null` | Icon to be displayed at the start of the top app bar
 `actions: List<OdsTopAppBar.ActionButton>` | `emptyList()` | Actions to be displayed at the end of the top app bar. The default layout here is a `Row`, so icons inside will be placed horizontally.
-`overflowMenuActions: List<OdsTopAppBarOverflowMenuActionItem>` | `emptyList()` | Actions to be displayed in the overflow menu
+`overflowMenuItems: List<OdsDropdownMenu.Item>` | `emptyList()` | List of items displayed in the overflow menu. The top app bar uses `OdsDropdownMenu` to display its overflow menu.
 `elevated: Boolean` | `true` | Controls the elevation of the top app bar: `true` to set an elevation to the top app bar (a shadow is displayed below), `false` otherwise
 {:.table}
 
@@ -108,8 +108,8 @@ OdsLargeTopAppBar(
         ),
         // ...
     ),
-    overflowMenuActions = listOf(
-        OdsTopAppBarOverflowMenuActionItem(
+    overflowMenuItems = listOf(
+        OdsDropdownMenu.Item(
             text = "Text",
             onClick = { doSomething() }
         ),
@@ -152,6 +152,6 @@ Parameter | Default&nbsp;value | Description
 `modifier: Modifier` | `Modifier` |`Modifier` applied to the top app bar
 `navigationIcon: OdsTopAppBar.NavigationIcon?` | `null` | Icon displayed at the start of the top app bar
 `actions: List<OdsTopAppBar.ActionButton>` | `emptyList()` | Actions displayed at the end of the top app bar. The default layout here is a `Row`, so icons inside will be placed horizontally.
-`overflowMenuActions: List<OdsTopAppBarOverflowMenuActionItem>` | `emptyList()` | Actions displayed in the overflow menu
+`overflowMenuItems: List<OdsDropdownMenu.Item>` | `emptyList()` | List of items displayed in the overflow menu. The top app bar uses `OdsDropdownMenu` to display its overflow menu.
 `scrollBehavior: TopAppBarScrollBehavior?` | `null` | `TopAppBarScrollBehavior` attached to the top app bar
 {:.table}

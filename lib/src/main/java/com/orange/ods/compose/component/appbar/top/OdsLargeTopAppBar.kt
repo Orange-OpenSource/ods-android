@@ -32,6 +32,7 @@ import androidx.compose.ui.unit.dp
 import com.orange.ods.R
 import com.orange.ods.compose.component.OdsComposable
 import com.orange.ods.compose.component.content.OdsComponentContent
+import com.orange.ods.compose.component.menu.OdsDropdownMenu
 import com.orange.ods.compose.component.utilities.BasicPreviewParameterProvider
 import com.orange.ods.compose.component.utilities.Preview
 import com.orange.ods.compose.component.utilities.UiModePreviews
@@ -46,7 +47,7 @@ import com.orange.ods.compose.theme.OdsTheme
  * @param modifier [Modifier] applied to the top app bar.
  * @param navigationIcon Icon displayed at the start of the top app bar.
  * @param actions Actions displayed at the end of the top app bar. The default layout here is a [androidx.compose.foundation.layout.Row], so icons inside will be placed horizontally.
- * @param overflowMenuActions Actions displayed in the overflow menu.
+ * @param overflowMenuItems List of items displayed in the overflow menu. The top app bar uses `OdsDropdownMenu` to display its overflow menu.
  * @param scrollBehavior [TopAppBarScrollBehavior] attached to the top app bar.
  */
 @OptIn(ExperimentalMaterial3Api::class)
@@ -57,7 +58,7 @@ fun OdsLargeTopAppBar(
     modifier: Modifier = Modifier,
     navigationIcon: OdsTopAppBar.NavigationIcon? = null,
     actions: List<OdsTopAppBar.ActionButton> = emptyList(),
-    overflowMenuActions: List<OdsTopAppBarOverflowMenuActionItem> = emptyList(),
+    overflowMenuItems: List<OdsDropdownMenu.Item> = emptyList(),
     scrollBehavior: TopAppBarScrollBehavior? = null
 ) {
     OdsLargeTopAppBarInternal(
@@ -65,7 +66,7 @@ fun OdsLargeTopAppBar(
         modifier = modifier,
         navigationIcon = navigationIcon,
         actions = actions,
-        overflowMenuActions = overflowMenuActions,
+        overflowMenuActions = overflowMenuItems,
         scrollBehavior = scrollBehavior
     )
 }
@@ -79,7 +80,7 @@ fun OdsLargeTopAppBarInternal(
     modifier: Modifier = Modifier,
     navigationIcon: OdsTopAppBar.NavigationIcon? = null,
     actions: List<OdsComponentContent<*>> = emptyList(),
-    overflowMenuActions: List<OdsTopAppBarOverflowMenuActionItem> = emptyList(),
+    overflowMenuActions: List<OdsDropdownMenu.Item> = emptyList(),
     scrollBehavior: TopAppBarScrollBehavior? = null
 ) {
     val contentColor = OdsTheme.colors.component.topAppBar.barContent
@@ -132,7 +133,7 @@ fun OdsLargeTopAppBarInternal(
         },
         modifier = modifier,
         navigationIcon = { navigationIcon?.Content() },
-        actions = { OdsTopAppBarActions(actions = actions, overflowMenuActions = overflowMenuActions) },
+        actions = { OdsTopAppBarActions(actions = actions, overflowMenuItems = overflowMenuActions) },
         colors = TopAppBarDefaults.largeTopAppBarColors(
             containerColor = OdsTheme.colors.component.topAppBar.barBackground,
             navigationIconContentColor = contentColor,
@@ -150,14 +151,14 @@ private fun PreviewOdsLargeTopAppBar(@PreviewParameter(OdsLargeTopAppBarPreviewP
     Preview {
         val actions = listOf(OdsTopAppBar.ActionButton(painterResource(id = android.R.drawable.ic_dialog_info), "Info") {})
         val overflowMenuActions = listOf(
-            OdsTopAppBarOverflowMenuActionItem("Settings") { },
-            OdsTopAppBarOverflowMenuActionItem("Account") { }
+            OdsDropdownMenu.Item("Settings") { },
+            OdsDropdownMenu.Item("Account") { }
         )
         OdsLargeTopAppBar(
             title = parameter.title,
             navigationIcon = parameter.navigationIcon,
             actions = actions,
-            overflowMenuActions = overflowMenuActions
+            overflowMenuItems = overflowMenuActions
         )
     }
 

@@ -30,18 +30,18 @@ import com.orange.ods.compose.component.menu.OdsDropdownMenu
 import com.orange.ods.compose.theme.OdsTheme
 
 @Composable
-internal fun OdsTopAppBarActions(actions: List<OdsComponentContent<*>>, overflowMenuActions: List<OdsTopAppBarOverflowMenuActionItem>) {
+internal fun OdsTopAppBarActions(actions: List<OdsComponentContent<*>>, overflowMenuItems: List<OdsDropdownMenu.Item>) {
     val maxTotalActionCount = 3
-    val maxActionCount = if (overflowMenuActions.isNotEmpty()) maxTotalActionCount - 1 else maxTotalActionCount
+    val maxActionCount = if (overflowMenuItems.isNotEmpty()) maxTotalActionCount - 1 else maxTotalActionCount
     actions.take(maxActionCount).forEach { it.Content() }
-    if (overflowMenuActions.isNotEmpty()) {
+    if (overflowMenuItems.isNotEmpty()) {
         Box {
             var showMenu by remember { mutableStateOf(false) }
             val contentDescription = stringResource(id = R.string.top_app_bar_overflow_menu_content_description)
             val dropdownMenuAction = OdsTopAppBar.ActionButton(Icons.Filled.MoreVert, contentDescription, true) { showMenu = !showMenu }
             dropdownMenuAction.Content()
             OdsDropdownMenu(
-                items = overflowMenuActions,
+                items = overflowMenuItems,
                 expanded = showMenu,
                 onDismissRequest = { showMenu = false }
             )
@@ -150,7 +150,3 @@ class OdsTopAppBar {
     }
 
 }
-
-
-//TODO Remove typealias use, find a solution to have the following type parameter: `OdsTopAppBar.OverflowMenuActionItem`
-typealias OdsTopAppBarOverflowMenuActionItem = OdsDropdownMenu.Item
