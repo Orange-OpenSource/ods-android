@@ -14,13 +14,13 @@ import android.os.Bundle
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.text.input.TextFieldValue
 import com.orange.ods.app.R
-import com.orange.ods.app.ui.Screen
 import com.orange.ods.app.ui.components.ComponentsNavigation
 import com.orange.ods.app.ui.components.ComponentsNavigation.ComponentDemoRoute
 import com.orange.ods.app.ui.components.ComponentsNavigation.ComponentDetailRoute
 import com.orange.ods.app.ui.components.ComponentsNavigation.ComponentVariantDemoRoute
 import com.orange.ods.app.ui.components.Variant
 import com.orange.ods.app.ui.guidelines.GuidelinesNavigation
+import com.orange.ods.app.ui.modules.ModuleDemoDestinations
 import com.orange.ods.app.ui.utilities.UiString
 import com.orange.ods.compose.component.content.OdsComponentContent
 import kotlinx.coroutines.flow.Flow
@@ -125,6 +125,13 @@ sealed class Screen(
         route = ComponentVariantDemoRoute,
         title = Variant.fromId(variantId)?.titleRes?.let { UiString.StringResource(it) },
         isLargeAppBar = Variant.fromId(variantId)?.largeTopAppBar == true
+    )
+
+    // Modules screens
+
+    data object ModuleAbout : Screen(
+        route = ModuleDemoDestinations.AboutModuleCustomizationRoute,
+        title = UiString.StringResource(R.string.module_about),
     )
 
     // Search screen
