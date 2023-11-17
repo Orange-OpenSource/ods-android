@@ -117,10 +117,9 @@ internal fun OdsAboutHomeScreen(configuration: OdsAboutModuleConfiguration?, onA
                         .clickable {
                             onAboutMenuItemClick(menuItemById.filter { it.value == menuItem }.keys.first())
                         },
-
                     leadingIcon = OdsListItem.LeadingIcon(OdsListItem.LeadingIcon.Type.Icon, painter = menuItem.icon, contentDescription = ""),
-                    text = menuItem.title,
-                    secondaryText = menuItem.subtitle
+                    text = menuItem.text,
+                    secondaryText = menuItem.secondaryText
                 )
             }
         }
