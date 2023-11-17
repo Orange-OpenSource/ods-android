@@ -46,6 +46,7 @@ import com.orange.ods.app.ui.utilities.composable.TechnicalText
 import com.orange.ods.compose.OdsComposable
 import com.orange.ods.compose.component.bottomnavigation.OdsBottomNavigation
 import com.orange.ods.compose.text.OdsTextBody2
+import com.orange.ods.extension.simpleNestedName
 
 private object ComponentBottomNavigation {
     const val MinNavigationItemCount = 3
@@ -126,7 +127,7 @@ fun ComponentBottomNavigation() {
                         TechnicalText(text = "binding.odsBottomNavigation.items = listOf(")
                         IndentCodeColumn {
                             navigationItems.take(selectedNavigationItemCount.value).forEach { item ->
-                                FunctionCallCode(name = OdsBottomNavigation.Item::class.simpleName.orEmpty(), trailingComma = true, parameters = {
+                                FunctionCallCode(name = OdsBottomNavigation.Item::class.java.simpleNestedName, trailingComma = true, parameters = {
                                     navigationItemParameters(context, item, selectedNavigationItem.value)
                                 })
                             }

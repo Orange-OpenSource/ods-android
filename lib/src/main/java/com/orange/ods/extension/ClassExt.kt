@@ -10,5 +10,5 @@
 
 package com.orange.ods.extension
 
-val Enum<*>.fullName: String
-    get() = "${javaClass.simpleNestedName}.$name"
+val Class<*>.simpleNestedName: String
+    get() = name.substringAfterLast(".").replace("$", ".")

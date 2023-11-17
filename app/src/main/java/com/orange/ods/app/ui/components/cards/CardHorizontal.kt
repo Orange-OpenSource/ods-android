@@ -79,7 +79,6 @@ fun CardHorizontal(customizationState: CardCustomizationState) {
                     name = OdsComposable.OdsHorizontalCard.name,
                     exhaustiveParameters = false,
                     parameters = {
-                        enum("imagePosition", imagePosition.value)
                         title(recipe.title)
                         classInstance("image", OdsCard.Image::class.java) {
                             painter()
@@ -100,7 +99,7 @@ fun CardHorizontal(customizationState: CardCustomizationState) {
                                 onClick()
                             }
                         }
-                        simple("imagePosition", imagePosition.value.name)
+                        enum("imagePosition", imagePosition.value)
                         if (!hasDivider && (hasFirstButton || hasSecondButton)) stringRepresentation("divider", hasDivider)
                     }
                 )
