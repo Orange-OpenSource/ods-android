@@ -76,7 +76,7 @@ class OdsBottomNavigation {
      * - Five destinations: Active destinations display an icon and text label. Inactive destinations
      * use icons, and use text labels if space permits.
      *
-     * An OdsBottomNavigationItem always shows text labels (if it exists) when selected. Showing text
+     * An [OdsBottomNavigation.Item] always shows text labels (if it exists) when selected. Showing text
      * labels if not selected is controlled by [alwaysShowLabel].
      *
      * @param selected Controls whether this item is selected.
