@@ -87,7 +87,12 @@ data class OdsAboutModuleConfiguration(
      *  - Term of services (position index 101)
      *  - Accessibility (position index 102)
      */
-    val customMenuItems: List<OdsAbout.MenuItem> = emptyList()
+    val customMenuItems: List<OdsAbout.MenuItem> = emptyList(),
+
+    /**
+     * The [OdsAboutModuleListener] implementation.
+     */
+    val aboutModuleListener: OdsAboutModuleListener? = null
 
 ) {
 
@@ -109,3 +114,10 @@ data class OdsAboutModuleConfiguration(
  * @property text The text to share
  */
 data class OdsAboutShareData(val title: String, val text: String)
+
+/**
+ * This interface allows to be notified of about module events.
+ */
+interface OdsAboutModuleListener {
+    fun onScreenChange(title: String)
+}

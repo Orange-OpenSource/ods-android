@@ -11,8 +11,6 @@
 <resources>
     <string name="app_name">Orange Design System</string>
 
-    <string name="empty" />
-
     <string name="code_implementation">Code implementation</string>
     <string name="code_implementation_xml">XML</string>
     <string name="code_implementation_compose">Jetpack Compose</string>
