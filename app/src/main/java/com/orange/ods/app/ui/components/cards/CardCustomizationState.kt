@@ -25,7 +25,7 @@ fun rememberCardCustomizationState(
     subtitleChecked: MutableState<Boolean> = rememberSaveable { mutableStateOf(true) },
     buttonCount: MutableState<Int> = rememberSaveable { mutableStateOf(CardCustomizationState.MinButtonCount) },
     dividerChecked: MutableState<Boolean> = rememberSaveable { mutableStateOf(true) },
-    imagePosition: MutableState<OdsHorizontalCard.Image.Position> = rememberSaveable { mutableStateOf(OdsHorizontalCard.Image.Position.Start) }
+    imagePosition: MutableState<OdsHorizontalCard.ImagePosition> = rememberSaveable { mutableStateOf(OdsHorizontalCard.ImagePosition.Start) }
 ) =
     remember(clickable, thumbnailChecked, textChecked, subtitleChecked, buttonCount, dividerChecked, imagePosition) {
         CardCustomizationState(clickable, thumbnailChecked, textChecked, subtitleChecked, buttonCount, dividerChecked, imagePosition)
@@ -38,7 +38,7 @@ class CardCustomizationState(
     val subtitleChecked: MutableState<Boolean>,
     val buttonCount: MutableState<Int>,
     val dividerChecked: MutableState<Boolean>,
-    val imagePosition: MutableState<OdsHorizontalCard.Image.Position>
+    val imagePosition: MutableState<OdsHorizontalCard.ImagePosition>
 ) {
 
     companion object {
