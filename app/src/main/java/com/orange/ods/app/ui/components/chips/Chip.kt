@@ -145,16 +145,19 @@ private fun Chip(chipCustomizationState: ChipCustomizationState) {
             OdsChip(
                 text = recipe?.title.orEmpty(),
                 onClick = { clickOnElement(context, recipe?.title.orEmpty()) },
-                leadingIcon = if (isActionChip || hasLeadingIcon) recipe?.iconResId?.let { OdsChip.LeadingIcon(painterResource(id = it), "") } else null,
-                leadingAvatar = if (hasLeadingAvatar) {
-                    OdsChip.LeadingAvatar(
-                        rememberAsyncImagePainter(
-                            model = recipe?.imageUrl,
-                            placeholder = painterResource(id = DrawableManager.getPlaceholderSmallResId()),
-                            error = painterResource(id = DrawableManager.getPlaceholderSmallResId(error = true))
-                        ), ""
-                    )
-                } else null,
+                leading = when {
+                    isActionChip || hasLeadingIcon -> recipe?.iconResId?.let { OdsChip.LeadingIcon(painterResource(id = it), "") }
+                    hasLeadingAvatar ->  {
+                        OdsChip.LeadingAvatar(
+                            rememberAsyncImagePainter(
+                                model = recipe?.imageUrl,
+                                placeholder = painterResource(id = DrawableManager.getPlaceholderSmallResId()),
+                                error = painterResource(id = DrawableManager.getPlaceholderSmallResId(error = true))
+                            ), ""
+                        )
+                    }
+                    else -> null
+                },
                 enabled = isEnabled,
                 onCancel = if (isInputChip) {
                     { clickOnElement(context, cancelCrossLabel) }
@@ -164,22 +167,23 @@ private fun Chip(chipCustomizationState: ChipCustomizationState) {
             Spacer(modifier = Modifier.padding(top = dimensionResource(com.orange.ods.R.dimen.spacing_s)))
 
             CodeImplementationColumn {
+                val leadingParameterName = "leading"
                 FunctionCallCode(
                     name = OdsComposable.OdsChip.name,
                     exhaustiveParameters = false,
                     parameters = {
                         text(recipe?.title.orEmpty())
-                        if (isActionChip || hasLeadingIcon) {
-                            classInstance<OdsChip.LeadingIcon>("leadingIcon") {
-                                painter()
-                                contentDescription("")
-                            }
-                        }
-                        if (hasLeadingAvatar) {
-                            classInstance<OdsChip.LeadingAvatar>("leadingAvatar") {
-                                image()
-                                contentDescription("")
-                            }
+                        when {
+                            isActionChip || hasLeadingIcon ->
+                                classInstance<OdsChip.LeadingIcon>(leadingParameterName) {
+                                    painter()
+                                    contentDescription("")
+                                }
+                            hasLeadingAvatar ->
+                                classInstance<OdsChip.LeadingAvatar>(leadingParameterName) {
+                                    image()
+                                    contentDescription("")
+                                }
                         }
                         if (!isEnabled) enabled(false)
                         onClick()

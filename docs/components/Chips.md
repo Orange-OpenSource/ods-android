@@ -62,8 +62,7 @@ OdsChip(
     onClick = {
         doSomething()
     },
-    leadingIcon = null,
-    leadingAvatar = OdsChip.LeadingAvatar(
+    leading = OdsChip.LeadingAvatar(
         painterResource(id = R.drawable.avatar),
         "Avatar"
     ), // Set it to `null` for no avatar or provide a `leadingIcon`
@@ -83,8 +82,7 @@ Parameter | Default&nbsp;value | Description
 `modifier: Modifier` | `Modifier` | `Modifier` to be applied to the chip
 `enabled: Boolean` | `true` | Controls the enabled state of the chip. When `false`, this chip will not respond to user input.
 `selected: Boolean` | `false` | Controls the selected state of the chip. When `true`, the chip is highlighted (useful for choice chips).
-`leadingIcon: OdsChip.LeadingIcon?` | `null` | Icon to be displayed at the start of the chip, preceding the text
-`leadingAvatar: OdsChip.LeadingAvatar?` | `null` | Avatar to be displayed in a circle shape at the start of the chip, preceding the content text
+`leading: OdsChip.Leading?` | `null` | The leading content to be displayed at the start of the chip, preceding the text
 `onCancel: (() -> Unit)?` | `null` | Callback called on chip cancel cross click. Pass `null` for no cancel cross.
 {:.table}
 
@@ -187,7 +185,7 @@ OdsChip(
     onClick = {
         doSomething()
     },
-    leadingIcon = OdsChip.LeadingIcon(
+    leading = OdsChip.LeadingIcon(
         painterResource(id = R.drawable.ic_heart),
         "Heart"
     ), // set it to `null` for no icon
