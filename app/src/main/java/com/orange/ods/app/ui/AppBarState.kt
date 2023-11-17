@@ -52,7 +52,7 @@ interface AppBarManager {
 /**
  * AppBar state source of truth.
  *
- * The app bar is managed according to the [Screen] displayed except when its type is [ScreenType.WithCustomizableTopAppBar]. In this case, the app bar is
+ * The app bar is managed according to the [Screen] displayed except when the screen has a custom app bar. In this case, the app bar is
  * displayed according to the provided [AppBarConfiguration].
  */
 class AppBarState(
