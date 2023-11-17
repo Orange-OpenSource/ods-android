@@ -56,8 +56,8 @@ The `OdsListItem` composable allows you to display a leading icon using the `lea
 OdsListItem(
     modifier = Modifier.clickable { doSomething() },
     text = "Primary text",
-    leadingIcon = OdsListItem.Icon(
-        OdsListItem.Icon.Type.Icon,
+    leadingIcon = OdsListItem.LeadingIcon(
+        OdsListItem.leadingIcon.Type.Icon,
         painterResource(id = R.drawable.ic_heart),
         "Heart"
     ),
@@ -72,7 +72,7 @@ Parameter | Default&nbsp;value | Description
 -- | -- | --
 `text: String` | | The primary text of the list item
 `modifier: Modifier` | `Modifier` | Modifier to be applied to the list item
-`leadingIcon: OdsListItem.Icon?` | `null` | The leading supporting visual of the list item
+`leadingIcon: OdsListItem.LeadingIcon?` | `null` | The leading supporting visual of the list item
 `secondaryText: String?` | `null` | The secondary text of the list item
 `singleLineSecondaryText: Boolean` | `true` | Whether the secondary text is single line
 `overlineText: String?` | `null` | The text displayed above the primary text

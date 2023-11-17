@@ -37,6 +37,9 @@ internal fun OdsCard(modifier: Modifier, onClick: (() -> Unit)?, content: @Compo
     }
 }
 
+/**
+ * Contains classes to build an [com.orange.ods.compose.component.card.OdsHorizontalCard], an [com.orange.ods.compose.component.card.OdsSmallCard], an [com.orange.ods.compose.component.card.OdsVerticalImageFirstCard] or an [com.orange.ods.compose.component.card.OdsVerticalHeaderFirstCard].
+ */
 object OdsCard {
 
     /**

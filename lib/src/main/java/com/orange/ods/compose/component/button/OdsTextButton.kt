@@ -109,6 +109,9 @@ internal fun OdsTextButton(
     }
 }
 
+/**
+ * Contains classes to build an [com.orange.ods.compose.component.button.OdsTextButton].
+ */
 object OdsTextButton {
     /**
      * Specifying an [OdsTextButton.Style] allow to display a button with specific colors.

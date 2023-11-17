@@ -34,7 +34,7 @@ import com.orange.ods.compose.text.OdsTextCaption
 import com.orange.ods.compose.theme.OdsTheme
 
 /**
- * Contains classes to build an [com.orange.ods.compose.component.textfield.OdsTextField] or an an [com.orange.ods.compose.component.textfield.password.OdsPasswordTextField].
+ * Contains classes to build an [com.orange.ods.compose.component.textfield.OdsTextField] or an [com.orange.ods.compose.component.textfield.password.OdsPasswordTextField].
  */
 object OdsTextField {
 
