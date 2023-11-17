@@ -507,7 +507,7 @@ object OdsListItem {
          */
         constructor(bitmap: ImageBitmap, contentDescription: String, onClick: (() -> Unit)?) : super(bitmap, contentDescription, onClick = onClick)
 
-        override val tint: Color
+        override val tint: Color? // Despite warning, keep it optional as in parent class
             @Composable
             get() = OdsTheme.colors.onSurface
 
@@ -532,6 +532,7 @@ object OdsListItem {
     }
 
 }
+
 @Composable
 private fun getDividerStartIndent(iconType: OdsListItem.Icon.Type?): Dp {
     return when (iconType) {
