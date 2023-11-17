@@ -32,7 +32,7 @@ fun AppBar(
                 title = title,
                 navigationIcon = getNavigationIcon(upPress),
                 actions = actions,
-                overflowMenuActions = overflowMenuItems,
+                overflowMenuItems = overflowMenuItems,
                 scrollBehavior = if (hasScrollBehavior) scrollBehavior else null
             )
         } else {

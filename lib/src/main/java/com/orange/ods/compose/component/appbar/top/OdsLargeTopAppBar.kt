@@ -66,7 +66,7 @@ fun OdsLargeTopAppBar(
         modifier = modifier,
         navigationIcon = navigationIcon,
         actions = actions,
-        overflowMenuActions = overflowMenuItems,
+        overflowMenuItems = overflowMenuItems,
         scrollBehavior = scrollBehavior
     )
 }
@@ -80,7 +80,7 @@ fun OdsLargeTopAppBarInternal(
     modifier: Modifier = Modifier,
     navigationIcon: OdsTopAppBar.NavigationIcon? = null,
     actions: List<OdsComponentContent<*>> = emptyList(),
-    overflowMenuActions: List<OdsDropdownMenu.Item> = emptyList(),
+    overflowMenuItems: List<OdsDropdownMenu.Item> = emptyList(),
     scrollBehavior: TopAppBarScrollBehavior? = null
 ) {
     val contentColor = OdsTheme.colors.component.topAppBar.barContent
@@ -133,7 +133,7 @@ fun OdsLargeTopAppBarInternal(
         },
         modifier = modifier,
         navigationIcon = { navigationIcon?.Content() },
-        actions = { OdsTopAppBarActions(actions = actions, overflowMenuItems = overflowMenuActions) },
+        actions = { OdsTopAppBarActions(actions = actions, overflowMenuItems = overflowMenuItems) },
         colors = TopAppBarDefaults.largeTopAppBarColors(
             containerColor = OdsTheme.colors.component.topAppBar.barBackground,
             navigationIconContentColor = contentColor,
@@ -150,7 +150,7 @@ fun OdsLargeTopAppBarInternal(
 private fun PreviewOdsLargeTopAppBar(@PreviewParameter(OdsLargeTopAppBarPreviewParameterProvider::class) parameter: OdsLargeTopAppBarPreviewParameter) =
     Preview {
         val actions = listOf(OdsTopAppBar.ActionButton(painterResource(id = android.R.drawable.ic_dialog_info), "Info") {})
-        val overflowMenuActions = listOf(
+        val overflowMenuItems = listOf(
             OdsDropdownMenu.Item("Settings") { },
             OdsDropdownMenu.Item("Account") { }
         )
@@ -158,7 +158,7 @@ private fun PreviewOdsLargeTopAppBar(@PreviewParameter(OdsLargeTopAppBarPreviewP
             title = parameter.title,
             navigationIcon = parameter.navigationIcon,
             actions = actions,
-            overflowMenuItems = overflowMenuActions
+            overflowMenuItems = overflowMenuItems
         )
     }
 
