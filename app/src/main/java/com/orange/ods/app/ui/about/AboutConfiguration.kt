@@ -15,36 +15,47 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import com.orange.ods.app.R
+import com.orange.ods.app.ui.AppBarConfiguration
+import com.orange.ods.app.ui.LocalAppBarManager
 import com.orange.ods.module.about.configuration.OdsAbout
 import com.orange.ods.module.about.configuration.OdsAboutModuleConfiguration
+import com.orange.ods.module.about.configuration.OdsAboutModuleListener
 import com.orange.ods.module.about.utilities.VersionHelper
 
 @Composable
-fun aboutConfiguration() = OdsAboutModuleConfiguration(
-    appName = stringResource(id = R.string.about_app_name),
-    privacyPolicyMenuItemFileRes = R.raw.about_privacy_policy,
-    termsOfServiceMenuItemFileRes = R.raw.about_terms_of_service,
-    appVersion = VersionHelper.getFromPackageInfo(context = LocalContext.current),
-    appDescription = stringResource(id = R.string.about_description),
-    customMenuItems = listOf(
-        OdsAbout.UrlMenuItem(
-            painterResource(id = R.drawable.ic_tools),
-            stringResource(id = R.string.about_menu_design_guidelines),
-            1,
-            "https://system.design.orange.com/0c1af118d/p/019ecc-android/"
+fun aboutConfiguration(): OdsAboutModuleConfiguration {
+    val appBarManager = LocalAppBarManager.current
+    return OdsAboutModuleConfiguration(
+        appName = stringResource(id = R.string.about_app_name),
+        privacyPolicyMenuItemFileRes = R.raw.about_privacy_policy,
+        termsOfServiceMenuItemFileRes = R.raw.about_terms_of_service,
+        appVersion = VersionHelper.getFromPackageInfo(context = LocalContext.current),
+        appDescription = stringResource(id = R.string.about_description),
+        customMenuItems = listOf(
+            OdsAbout.UrlMenuItem(
+                painterResource(id = R.drawable.ic_tools),
+                stringResource(id = R.string.about_menu_design_guidelines),
+                1,
+                "https://system.design.orange.com/0c1af118d/p/019ecc-android/"
+            ),
+            OdsAbout.FileMenuItem(
+                painterResource(id = com.orange.ods.module.about.R.drawable.ic_tasklist),
+                stringResource(id = R.string.about_menu_changelog),
+                2,
+                R.raw.changelog,
+                OdsAbout.FileMenuItem.FileFormat.Markdown
+            ),
+            OdsAbout.UrlMenuItem(
+                painterResource(id = R.drawable.ic_comments),
+                stringResource(id = R.string.about_menu_report_issue),
+                3,
+                "https://github.com/Orange-OpenSource/ods-android/issues/new/choose"
+            )
         ),
-        OdsAbout.FileMenuItem(
-            painterResource(id = com.orange.ods.module.about.R.drawable.ic_tasklist),
-            stringResource(id = R.string.about_menu_changelog),
-            2,
-            R.raw.changelog,
-            OdsAbout.FileMenuItem.FileFormat.Markdown
-        ),
-        OdsAbout.UrlMenuItem(
-            painterResource(id = R.drawable.ic_comments),
-            stringResource(id = R.string.about_menu_report_issue),
-            3,
-            "https://github.com/Orange-OpenSource/ods-android/issues/new/choose"
-        ),
+        aboutModuleListener = object : OdsAboutModuleListener {
+            override fun onScreenChange(title: String) {
+                appBarManager.setCustomAppBar(AppBarConfiguration(title = title))
+            }
+        }
     )
-)
+}

@@ -35,7 +35,6 @@ import com.orange.ods.app.ui.utilities.NavigationItem
 import com.orange.ods.compose.component.appbar.top.OdsTopAppBar
 import com.orange.ods.compose.component.content.OdsComponentContent
 import com.orange.ods.compose.component.menu.OdsDropdownMenu
-import com.orange.ods.extension.orElse
 import kotlin.math.max
 
 val LocalAppBarManager = staticCompositionLocalOf<AppBarManager> { error("CompositionLocal AppBarManager not present") }
@@ -52,8 +51,8 @@ interface AppBarManager {
 /**
  * AppBar state source of truth.
  *
- * The app bar is managed according to the [Screen] displayed except when the screen has a custom app bar. In this case, the app bar is
- * displayed according to the provided [AppBarConfiguration].
+ * The app bar is managed according to the [Screen] displayed except if it has a custom app bar or if the screen cannot be find in the app [Screen]s (for 
+ * example an about module screen). In this case, the app bar is displayed according to the provided [AppBarConfiguration].
  */
 class AppBarState(
     private val navController: NavController,
@@ -64,12 +63,8 @@ class AppBarState(
 
     companion object {
         val CustomDefaultConfiguration = AppBarConfiguration(
-            isLarge = false,
-            largeTitleRes = R.string.empty,
-            scrollBehavior = TopAppBarCustomizationState.ScrollBehavior.Collapsible,
-            isNavigationIconEnabled = true,
+            title = "",
             actionCount = defaultActions.size,
-            isOverflowMenuEnabled = false
         )
     }
 
@@ -86,18 +81,18 @@ class AppBarState(
         @Composable get() = currentScreenRoute?.let { getScreen(it, currentScreenRouteArgs) }
 
     private val isCustom: Boolean
-        @Composable get() = currentScreen?.hasCustomAppBar.orElse { false }
+        @Composable get() = currentScreen?.hasCustomAppBar != false
 
     private val showNavigationIcon: Boolean
         @Composable get() = (isCustom && customAppBarConfiguration.value.isNavigationIconEnabled)
-                || (!isCustom && currentScreen?.isHome == false)
+                    || (!isCustom && currentScreen?.isHome == false)
 
     val isLarge: Boolean
         @Composable get() = currentScreen?.isLargeAppBar == true
 
     val title: String
         @Composable get() = if (isCustom) {
-            stringResource(id = customAppBarConfiguration.value.largeTitleRes)
+            customAppBarConfiguration.value.title
         } else {
             currentScreen?.title?.asString().orEmpty()
         }
@@ -177,10 +172,10 @@ fun rememberAppBarState(
 }
 
 data class AppBarConfiguration constructor(
-    val isLarge: Boolean,
-    val largeTitleRes: Int,
-    val scrollBehavior: TopAppBarCustomizationState.ScrollBehavior,
-    val isNavigationIconEnabled: Boolean,
-    val actionCount: Int,
-    val isOverflowMenuEnabled: Boolean
+    val title: String,
+    val isNavigationIconEnabled: Boolean = true,
+    val isLarge: Boolean = false,
+    val scrollBehavior: TopAppBarCustomizationState.ScrollBehavior =  TopAppBarCustomizationState.ScrollBehavior.Collapsible,
+    val actionCount: Int = 0,
+    val isOverflowMenuEnabled: Boolean = false
 )
