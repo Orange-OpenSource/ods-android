@@ -18,18 +18,6 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import com.orange.ods.module.about.R
 
-/*
-val aboutItems = listOf(
-    UrlAboutItem(R.string.about_menu_design_guidelines, "https://system.design.orange.com/0c1af118d/p/019ecc-android/"),
-    FileAboutItem(R.string.about_menu_legal_notice, R.raw.about_legal_notice, FileAboutItem.FileFormat.Html),
-    FileAboutItem(R.string.about_menu_privacy_policy, R.raw.about_privacy_policy, FileAboutItem.FileFormat.Html),
-    FileAboutItem(R.string.about_menu_changelog, R.raw.changelog, FileAboutItem.FileFormat.Markdown),
-    UrlAboutItem(R.string.about_menu_report_issue, "https://github.com/Orange-OpenSource/ods-android/issues/new/choose"),
-)
-
-"file:///android_res/raw/$fileName"
-*/
-
 @Composable
 @Stable
 internal fun mandatoryMenuItems(): List<OdsAboutMenuItem> = listOf(
@@ -46,20 +34,19 @@ internal fun mandatoryMenuItems(): List<OdsAboutMenuItem> = listOf(
         101,
         "about_terms_of_service",
         FileAboutItem.FileFormat.Html
-    ),
-    // OdsAboutMenuItem(R.drawable.ic_accessibility, R.string.ods_about_menu_accessibility_statement, 102),
+    )
 )
 
 /**
- * Item to display in the about menu TODO documentation
+ * Item to display in the about menu
  *
- * @property iconRes
- * @property titleRes
- * @property positionIndex
- * @property subtitleRes
+ * @property icon The leading icon of the menu item.
+ * @property text The primary text of the menu item
+ * @property positionIndex Index corresponding to the item position in the menu.
+ * @property secondaryText The secondary text of the menu item displayed below the primary text.
  */
 @Immutable
-sealed class OdsAboutMenuItem(val icon: Painter, val title: String, val positionIndex: Int, val subtitle: String? = null)
+sealed class OdsAboutMenuItem(val icon: Painter, val text: String, val positionIndex: Int, val secondaryText: String? = null)
 
 class FileAboutItem(
     icon: Painter,
