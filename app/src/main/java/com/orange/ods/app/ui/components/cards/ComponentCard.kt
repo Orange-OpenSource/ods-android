@@ -22,7 +22,7 @@ import com.orange.ods.app.ui.components.Variant
 import com.orange.ods.app.ui.components.utilities.ComponentCountRow
 import com.orange.ods.app.ui.components.utilities.ComponentCustomizationBottomSheetScaffold
 import com.orange.ods.app.ui.utilities.composable.Subtitle
-import com.orange.ods.compose.component.card.OdsHorizontalCard
+import com.orange.ods.compose.component.card.OdsCard
 import com.orange.ods.compose.component.chip.OdsChoiceChip
 import com.orange.ods.compose.component.chip.OdsChoiceChipsFlowRow
 import com.orange.ods.compose.component.listitem.OdsListItem
@@ -54,11 +54,11 @@ fun ComponentCard(variant: Variant) {
                         chips = listOf(
                             OdsChoiceChip(
                                 text = stringResource(id = R.string.component_card_horizontal_image_position_start),
-                                value = OdsHorizontalCard.Image.Position.Start
+                                value = OdsCard.Image.Position.Start
                             ),
                             OdsChoiceChip(
                                 text = stringResource(id = R.string.component_card_horizontal_image_position_end),
-                                value = OdsHorizontalCard.Image.Position.End
+                                value = OdsCard.Image.Position.End
                             )
                         )
                     )

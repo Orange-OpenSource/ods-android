@@ -126,6 +126,10 @@ object OdsCard {
         override fun Content(modifier: Modifier) {
             super.Content(modifier = with(modifier) { if (backgroundColor != null) background(backgroundColor) else this })
         }
+
+        enum class Position {
+            Start, End
+        }
     }
 
     /**

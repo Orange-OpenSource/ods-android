@@ -199,7 +199,7 @@ OdsHorizontalCard(
     text = "Text",
     firstButton = OdsCard.Button("First button") { doSomething() },
     secondButton = OdsCard.Button("Second button") { doSomething() },
-    imagePosition = OdsHorizontalCard.Image.Position.Start,
+    imagePosition = OdsCard.Image.Position.Start,
     divider = false,
     onClick = { doSomething() }
 )
@@ -216,7 +216,7 @@ Parameter | Default&nbsp;value | Description
 `text: String?` | `null` | Text displayed into the card
 `firstButton: OdsCard.Button?` | `null` | First button displayed into the card
 `secondButton: OdsCard.Button?` | `null` | Second button displayed into the card
-`imagePosition: OdsHorizontalCard.Image.Position` | `OdsHorizontalCard.Image.Position.Start` | Position of the image within the card, it can be set to `OdsHorizontalCard.Image.Position.Start` or `OdsHorizontalCard.Image.Position.End`
+`imagePosition: OdsCard.Image.Position` | `OdsCard.Image.Position.Start` | Position of the image within the card, it can be set to `OdsCard.Image.Position.Start` or `OdsCard.Image.Position.End`
 `divider: Boolean` | `true` | Controls the divider display. If `true`, it will be displayed between the card content and the action buttons.
 `onClick: (() -> Unit)?` | `null` | Callback invoked on card click
 {:.table}

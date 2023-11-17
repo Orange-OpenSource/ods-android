@@ -15,7 +15,7 @@ import androidx.compose.runtime.MutableState
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.saveable.rememberSaveable
-import com.orange.ods.compose.component.card.OdsHorizontalCard
+import com.orange.ods.compose.component.card.OdsCard
 
 @Composable
 fun rememberCardCustomizationState(
@@ -25,7 +25,7 @@ fun rememberCardCustomizationState(
     subtitleChecked: MutableState<Boolean> = rememberSaveable { mutableStateOf(true) },
     buttonCount: MutableState<Int> = rememberSaveable { mutableStateOf(CardCustomizationState.MinButtonCount) },
     dividerChecked: MutableState<Boolean> = rememberSaveable { mutableStateOf(true) },
-    imagePosition: MutableState<OdsHorizontalCard.Image.Position> = rememberSaveable { mutableStateOf(OdsHorizontalCard.Image.Position.Start) }
+    imagePosition: MutableState<OdsCard.Image.Position> = rememberSaveable { mutableStateOf(OdsCard.Image.Position.Start) }
 ) =
     remember(clickable, thumbnailChecked, textChecked, subtitleChecked, buttonCount, dividerChecked, imagePosition) {
         CardCustomizationState(clickable, thumbnailChecked, textChecked, subtitleChecked, buttonCount, dividerChecked, imagePosition)
@@ -38,7 +38,7 @@ class CardCustomizationState(
     val subtitleChecked: MutableState<Boolean>,
     val buttonCount: MutableState<Int>,
     val dividerChecked: MutableState<Boolean>,
-    val imagePosition: MutableState<OdsHorizontalCard.Image.Position>
+    val imagePosition: MutableState<OdsCard.Image.Position>
 ) {
 
     companion object {
