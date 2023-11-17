@@ -61,7 +61,7 @@ OdsImageItem(
 Parameter | Default&nbsp;value | Description
 -- | -- | --
 `image: OdsImageItem.Image` | | Image displayed into the item
-`legendAreaDisplayType: OdsImageItem.LegendAreaDisplayType` | | Controls how the title and the icon are displayed relatively to the image. If set to `OdsImageItemLegendAreaDisplayType.None`, no legend area will be displayed.
+`legendAreaDisplayType: OdsImageItem.LegendAreaDisplayType` | | Controls how the title and the icon are displayed relatively to the image. If set to `OdsImageItem.LegendAreaDisplayType.None`, no legend area will be displayed.
 `modifier: Modifier` | `Modifier` | `Modifier` applied to the image item
 `title: String?` | `null` | Title displayed into the image item. It is linked to the image and displayed according to the `legendAreaDisplayType` value.
 `icon: OdsImageItem.IconToggleButton` | `null` | Clickable icon displayed next to the `title`
