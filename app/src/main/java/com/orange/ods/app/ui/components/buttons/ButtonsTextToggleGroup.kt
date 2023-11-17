@@ -32,14 +32,13 @@ import com.orange.ods.app.ui.utilities.code.FunctionCallCode
 import com.orange.ods.compose.OdsComposable
 import com.orange.ods.compose.annotation.ExperimentalOdsApi
 import com.orange.ods.compose.component.button.OdsTextToggleButtonsRow
-import com.orange.ods.compose.component.button.OdsTextToggleButtonsRowItem
 import com.orange.ods.compose.theme.OdsDisplaySurface
 
 @Composable
 fun ButtonsTextToggleButtonsRow(customizationState: ButtonCustomizationState) {
     val textToggleButtons =
         LocalRecipes.current.first().ingredients.take(ButtonCustomizationState.MaxToggleCount).map { ingredient ->
-            OdsTextToggleButtonsRowItem(ingredient.food.name, customizationState.isEnabled)
+            OdsTextToggleButtonsRow.Item(ingredient.food.name, customizationState.isEnabled)
         }
 
     var selectedIndex by rememberSaveable { mutableStateOf(0) }
@@ -80,7 +79,7 @@ fun ButtonsTextToggleButtonsRow(customizationState: ButtonCustomizationState) {
                     parameters = {
                         list("textToggleButtons") {
                             textToggleButtons.take(toggleCount.value).forEach { item ->
-                                classInstance<OdsTextToggleButtonsRowItem> {
+                                classInstance<OdsTextToggleButtonsRow.Item> {
                                     text(item.text)
                                     enabled(customizationState.isEnabled)
                                 }
@@ -98,7 +97,7 @@ fun ButtonsTextToggleButtonsRow(customizationState: ButtonCustomizationState) {
 @OptIn(ExperimentalOdsApi::class)
 @Composable
 private fun ToggleButtonsRow(
-    textToggleButtons: List<OdsTextToggleButtonsRowItem>,
+    textToggleButtons: List<OdsTextToggleButtonsRow.Item>,
     selectedIndex: Int,
     onSelectedIndexChange: (Int) -> Unit,
     toggleCount: Int,

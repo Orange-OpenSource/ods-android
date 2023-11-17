@@ -53,7 +53,7 @@ In your composable screen you can use `OdsVerticalImageFirstCard` composable:
 ```kotlin
 OdsVerticalImageFirstCard(
     title = "Title",
-    image = OdsCardImage(
+    image = OdsCard.Image(
         painterResource(R.drawable.picture),
         "Picture content description",
         Alignment.Center,
@@ -62,8 +62,8 @@ OdsVerticalImageFirstCard(
     ),
     subtitle = "Subtitle",
     text = "Text",
-    firstButton = OdsCardButton("First button") { doSomething() },
-    secondButton = OdsCardButton("Second button") { doSomething() },
+    firstButton = OdsCard.Button("First button") { doSomething() },
+    secondButton = OdsCard.Button("Second button") { doSomething() },
     onClick = { doSomething() }
 )
 ```
@@ -73,12 +73,12 @@ OdsVerticalImageFirstCard(
 Parameter | Default&nbsp;value | Description
 -- | -- | --
 `title: String` | | Title displayed into the card
-`image: OdsCardImage` | | Image displayed into the card
+`image: OdsCard.Image` | | Image displayed into the card
 `modifier: Modifier` | `Modifier` | `Modifier` applied to the layout of the card
 `subtitle: String?` | `null` | Subtitle displayed into the card
 `text: String?` | `null` | Text displayed into the card
-`firstButton: OdsCardButton?` | `null` | First button displayed into the card
-`secondButton: OdsCardButton?` | `null` | Second button displayed into the card
+`firstButton: OdsCard.Button?` | `null` | First button displayed into the card
+`secondButton: OdsCard.Button?` | `null` | Second button displayed into the card
 `onClick: (() -> Unit)?` | `null` | Callback invoked on card click
 {:.table}
 
@@ -95,21 +95,21 @@ In your composable screen you can use `OdsVerticalHeaderFirstCard` composable:
 ```kotlin
 OdsVerticalHeaderFirstCard(
     title = "Title",
-    image = OdsCardImage(
+    image = OdsCard.Image(
         painterResource(R.drawable.picture),
         "Picture content description",
         Alignment.Center,
         ContentScale.Crop,
         Color(0xff1b1b1b)
     ),
-    thumbnail = OdsCardThumbnail(
+    thumbnail = OdsCard.Thumbnail(
         painterResource(R.drawable.thumbnail),
         "Thumbnail content description"
     ),
     subtitle = "Subtitle",
     text = "Text",
-    firstButton = OdsCardButton("First button") { doSomething() },
-    secondButton = OdsCardButton("Second button") { doSomething() },
+    firstButton = OdsCard.Button("First button") { doSomething() },
+    secondButton = OdsCard.Button("Second button") { doSomething() },
     onClick = { doSomething() }
 )
 ```
@@ -119,13 +119,13 @@ OdsVerticalHeaderFirstCard(
 Parameter | Default&nbsp;value | Description
 -- | -- | --
 `title: String` | | Title displayed into the card
-`image: OdsCardImage` | | Image displayed into the card
+`image: OdsCard.Image` | | Image displayed into the card
 `modifier: Modifier` | `Modifier` | `Modifier` applied to the layout of the card
-`thumbnail: OdsCardThumbnail?` | `null` | Thumbnail displayed into the card next to the title: avatar, logo or icon.
+`thumbnail: OdsCard.Thumbnail?` | `null` | Thumbnail displayed into the card next to the title: avatar, logo or icon.
 `subtitle: String?` | `null` | Subtitle displayed into the card
 `text: String?` | `null` | Text displayed into the card
-`firstButton: OdsCardButton?` | `null` | First button displayed into the card
-`secondButton: OdsCardButton?` | `null` | Second button displayed into the card
+`firstButton: OdsCard.Button?` | `null` | First button displayed into the card
+`secondButton: OdsCard.Button?` | `null` | Second button displayed into the card
 `onClick: (() -> Unit)?` | `null` | Callback called on card click
 {:.table}
 
@@ -145,7 +145,7 @@ Row(
 ) {
     OdsSmallCard(
         title = "Title",
-        image = OdsCardImage(
+        image = OdsCard.Image(
             painterResource(R.drawable.picture),
             "Picture content description"
         ),
@@ -154,7 +154,7 @@ Row(
     )
     OdsSmallCard(
         title = "Title",
-        image = OdsCardImage(
+        image = OdsCard.Image(
             painterResource(R.drawable.picture),
             "Picture content description"
         ),
@@ -169,7 +169,7 @@ Row(
 Parameter | Default&nbsp;value | Description
 -- | -- | --
 `title: String` | | Title displayed into the card
-`image: OdsCardImage` | | Image displayed into the card
+`image: OdsCard.Image` | | Image displayed into the card
 `modifier: Modifier` | `Modifier` | `Modifier` applied to the layout of the card
 `subtitle: String?` | `null` | Subtitle displayed into the card
 `onClick: (() -> Unit)?` | `null` | Callback invoked on card click
@@ -188,7 +188,7 @@ In your screen you can use `OdsHorizontalCard` composable:
 ```kotlin
 OdsHorizontalCard(
     title = "Title",
-    image = OdsCardImage(
+    image = OdsCard.Image(
         painterResource(R.drawable.picture),
         "Picture content description",
         Alignment.Center,
@@ -197,9 +197,9 @@ OdsHorizontalCard(
     ),
     subtitle = "Subtitle",
     text = "Text",
-    firstButton = OdsCardButton("First button") { doSomething() },
-    secondButton = OdsCardButton("Second button") { doSomething() },
-    imagePosition = OdsHorizontalCardImagePosition.Start,
+    firstButton = OdsCard.Button("First button") { doSomething() },
+    secondButton = OdsCard.Button("Second button") { doSomething() },
+    imagePosition = OdsCard.Image.Position.Start,
     divider = false,
     onClick = { doSomething() }
 )
@@ -210,13 +210,13 @@ OdsHorizontalCard(
 Parameter | Default&nbsp;value | Description
 -- | -- | --
 `title: String` | | Title displayed into the card
-`image: OdsCardImage` | | Image displayed into the card
+`image: OdsCard.Image` | | Image displayed into the card
 `modifier: Modifier` | `Modifier` | `Modifier` applied to the layout of the card
 `subtitle: String?` | `null` | Subtitle displayed into the card
 `text: String?` | `null` | Text displayed into the card
-`firstButton: OdsCardButton?` | `null` | First button displayed into the card
-`secondButton: OdsCardButton?` | `null` | Second button displayed into the card
-`imagePosition: OdsHorizontalCardImagePosition` | `OdsHorizontalCardImagePosition.Start` | Position of the image within the card, it can be set to `OdsHorizontalCardImagePosition.Start` or `OdsHorizontalCardImagePosition.End`
+`firstButton: OdsCard.Button?` | `null` | First button displayed into the card
+`secondButton: OdsCard.Button?` | `null` | Second button displayed into the card
+`imagePosition: OdsCard.Image.Position` | `OdsCard.Image.Position.Start` | Position of the image within the card, it can be set to `OdsCard.Image.Position.Start` or `OdsCard.Image.Position.End`
 `divider: Boolean` | `true` | Controls the divider display. If `true`, it will be displayed between the card content and the action buttons.
 `onClick: (() -> Unit)?` | `null` | Callback invoked on card click
 {:.table}

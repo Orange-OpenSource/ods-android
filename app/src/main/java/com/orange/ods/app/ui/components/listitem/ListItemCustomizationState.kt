@@ -18,31 +18,25 @@ import androidx.compose.runtime.MutableState
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.saveable.rememberSaveable
-import com.orange.ods.compose.component.list.OdsListItemIconType
-import com.orange.ods.compose.component.list.OdsListItemTrailing
-import com.orange.ods.compose.component.list.OdsListItemTrailingCaption
-import com.orange.ods.compose.component.list.OdsListItemTrailingCheckbox
-import com.orange.ods.compose.component.list.OdsListItemTrailingIcon
-import com.orange.ods.compose.component.list.OdsListItemTrailingRadioButton
-import com.orange.ods.compose.component.list.OdsListItemTrailingSwitch
+import com.orange.ods.compose.component.listitem.OdsListItem
 
 @OptIn(ExperimentalMaterialApi::class)
 @Composable
 fun rememberListItemCustomizationState(
     bottomSheetScaffoldState: BottomSheetScaffoldState = rememberBottomSheetScaffoldState(),
     lineCount: MutableState<Int> = rememberSaveable { mutableStateOf(ListItemCustomizationState.DefaultLineCount) },
-    selectedIconType: MutableState<OdsListItemIconType?> = rememberSaveable { mutableStateOf(null) },
-    selectedTrailing: MutableState<Class<out OdsListItemTrailing>?> = rememberSaveable { mutableStateOf(null) },
+    selectedLeadingIconType: MutableState<OdsListItem.LeadingIcon.Type?> = rememberSaveable { mutableStateOf(null) },
+    selectedTrailing: MutableState<Class<out OdsListItem.Trailing>?> = rememberSaveable { mutableStateOf(null) },
 ) = remember(lineCount) {
-    ListItemCustomizationState(bottomSheetScaffoldState, lineCount, selectedIconType, selectedTrailing)
+    ListItemCustomizationState(bottomSheetScaffoldState, lineCount, selectedLeadingIconType, selectedTrailing)
 }
 
 @OptIn(ExperimentalMaterialApi::class)
 class ListItemCustomizationState(
     val bottomSheetScaffoldState: BottomSheetScaffoldState,
     val lineCount: MutableState<Int>,
-    val selectedIconType: MutableState<OdsListItemIconType?>,
-    val selectedTrailing: MutableState<Class<out OdsListItemTrailing>?>,
+    val selectedLeadingIconType: MutableState<OdsListItem.LeadingIcon.Type?>,
+    val selectedTrailing: MutableState<Class<out OdsListItem.Trailing>?>,
 ) {
     companion object {
         const val DefaultLineCount = 2
@@ -50,17 +44,17 @@ class ListItemCustomizationState(
         const val MaxLineCount = 3
     }
 
-    val trailings: List<Class<out OdsListItemTrailing>?>
+    val trailings: List<Class<out OdsListItem.Trailing>?>
         get() = if (lineCount.value < MaxLineCount) {
             listOf(
                 null,
-                OdsListItemTrailingCheckbox::class.java,
-                OdsListItemTrailingSwitch::class.java,
-                OdsListItemTrailingRadioButton::class.java,
-                OdsListItemTrailingIcon::class.java
+                OdsListItem.TrailingCheckbox::class.java,
+                OdsListItem.TrailingSwitch::class.java,
+                OdsListItem.TrailingRadioButton::class.java,
+                OdsListItem.TrailingIcon::class.java
             )
         } else {
-            listOf(null, OdsListItemTrailingCaption::class.java)
+            listOf(null, OdsListItem.TrailingCaption::class.java)
         }
 
     fun resetTrailing() {

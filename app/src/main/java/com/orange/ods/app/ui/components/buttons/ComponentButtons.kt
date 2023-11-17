@@ -32,12 +32,11 @@ import com.orange.ods.app.ui.components.Variant
 import com.orange.ods.app.ui.components.utilities.ComponentCountRow
 import com.orange.ods.app.ui.components.utilities.ComponentCustomizationBottomSheetScaffold
 import com.orange.ods.app.ui.utilities.composable.Subtitle
-import com.orange.ods.compose.component.button.OdsButtonStyle
-import com.orange.ods.compose.component.button.OdsTextButtonStyle
+import com.orange.ods.compose.component.button.OdsButton
+import com.orange.ods.compose.component.button.OdsTextButton
 import com.orange.ods.compose.component.chip.OdsChoiceChip
 import com.orange.ods.compose.component.chip.OdsChoiceChipsFlowRow
-import com.orange.ods.compose.component.list.OdsListItem
-import com.orange.ods.compose.component.list.OdsListItemTrailingSwitch
+import com.orange.ods.compose.component.listitem.OdsListItem
 import com.orange.ods.compose.text.OdsTextBody2
 import com.orange.ods.compose.theme.OdsDisplaySurface
 import com.orange.ods.compose.theme.OdsTheme
@@ -48,9 +47,9 @@ fun ComponentButtons(variant: Variant) {
     val customizationState = rememberButtonCustomizationState(buttonStyle = rememberSaveable {
         mutableStateOf(
             when (variant) {
-                Variant.ButtonsPrimary -> OdsButtonStyle.Primary
-                Variant.ButtonsFunctional -> OdsButtonStyle.FunctionalPositive
-                else -> OdsButtonStyle.Default
+                Variant.ButtonsPrimary -> OdsButton.Style.Primary
+                Variant.ButtonsFunctional -> OdsButton.Style.FunctionalPositive
+                else -> OdsButton.Style.Default
             }
         )
     })
@@ -69,11 +68,11 @@ fun ComponentButtons(variant: Variant) {
                             chips = listOf(
                                 OdsChoiceChip(
                                     text = stringResource(id = R.string.component_button_style_functional_positive),
-                                    value = OdsButtonStyle.FunctionalPositive
+                                    value = OdsButton.Style.FunctionalPositive
                                 ),
                                 OdsChoiceChip(
                                     text = stringResource(id = R.string.component_button_style_functional_negative),
-                                    value = OdsButtonStyle.FunctionalNegative
+                                    value = OdsButton.Style.FunctionalNegative
                                 )
                             )
                         )
@@ -85,8 +84,8 @@ fun ComponentButtons(variant: Variant) {
                             onValueChange = { value -> textButtonStyle.value = value },
                             modifier = Modifier.padding(horizontal = dimensionResource(id = com.orange.ods.R.dimen.spacing_m)),
                             chips = listOf(
-                                OdsChoiceChip(text = stringResource(id = R.string.component_button_style_primary), value = OdsTextButtonStyle.Primary),
-                                OdsChoiceChip(text = stringResource(id = R.string.component_button_style_default), value = OdsTextButtonStyle.Default)
+                                OdsChoiceChip(text = stringResource(id = R.string.component_button_style_primary), value = OdsTextButton.Style.Primary),
+                                OdsChoiceChip(text = stringResource(id = R.string.component_button_style_default), value = OdsTextButton.Style.Default)
                             )
                         )
                     }
@@ -103,7 +102,7 @@ fun ComponentButtons(variant: Variant) {
 
                         OdsListItem(
                             text = stringResource(id = R.string.component_buttons_text_toggle_group_same_weight),
-                            trailing = OdsListItemTrailingSwitch(sameItemsWeight.value, { sameItemsWeight.value = it })
+                            trailing = OdsListItem.TrailingSwitch(sameItemsWeight.value, { sameItemsWeight.value = it })
                         )
                     }
                     else -> {}
@@ -112,17 +111,17 @@ fun ComponentButtons(variant: Variant) {
                 if (variant != Variant.ButtonsTextToggleGroup) {
                     OdsListItem(
                         text = stringResource(id = R.string.component_element_icon),
-                        trailing = OdsListItemTrailingSwitch(leadingIcon.value, { leadingIcon.value = it })
+                        trailing = OdsListItem.TrailingSwitch(leadingIcon.value, { leadingIcon.value = it })
                     )
                     OdsListItem(
                         text = stringResource(id = R.string.component_button_full_screen_width),
-                        trailing = OdsListItemTrailingSwitch(fullScreenWidth.value, { fullScreenWidth.value = it })
+                        trailing = OdsListItem.TrailingSwitch(fullScreenWidth.value, { fullScreenWidth.value = it })
                     )
                 }
 
                 OdsListItem(
                     text = stringResource(id = R.string.component_state_enabled),
-                    trailing = OdsListItemTrailingSwitch(enabled.value, { enabled.value = it })
+                    trailing = OdsListItem.TrailingSwitch(enabled.value, { enabled.value = it })
                 )
             }) {
 

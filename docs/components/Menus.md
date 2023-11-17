@@ -39,7 +39,7 @@ A dropdown menu is a compact way of displaying multiple choices. It appears upon
 
 #### Jetpack Compose
 
-The library offers an `OdsDropdownMenu` container composable in which you can add `OdsDropdownMenuItem` or `OdsDivider` as shown in the following example:
+The library offers an `OdsDropdownMenu` container composable in which you can add `OdsDropdownMenu.Item` or `OdsDivider` as shown in the following example:
 
 ```kotlin
 var menuExpanded by remember { mutableStateOf(false) }
@@ -49,13 +49,13 @@ OdsDropdownMenu(
     onDismissRequest = { menuExpanded = false },
     offset = DpOffset(x = (-100).dp, y = (-10).dp),
     items = listOf(
-        OdsDropdownMenuItem(
+        OdsDropdownMenu.Item(
             text = "Summer salad",
             icon = painterResource(id = R.drawable.ic_salad),
             divider = true, // Allow to add a divider between the 2 items
             onClick = { doSomething() }
         ),
-        OdsDropdownMenuItem(
+        OdsDropdownMenu.Item(
             text = "Brocoli soup",
             icon = painterResource(id = R.drawable.ic_soup),
             onClick = { doSomething() }
@@ -68,7 +68,7 @@ OdsDropdownMenu(
 
 Parameter | Default&nbsp;value | Description
 -- | -- | --
-`items: List<OdsDropdownMenuItem>` | | Items displayed into the dropdown menu
+`items: List<OdsDropdownMenu.Item>` | | Items displayed into the dropdown menu
 `expanded: Boolean` | | Controls whether the menu is currently open and visible to the user
 `onDismissRequest: () -> Unit` | | Callback invoked when the user requests to dismiss the menu, such as by tapping outside the menu's bounds
 `modifier: Modifier` | `Modifier` | `Modifier` applied to the dropdown menu
@@ -84,13 +84,13 @@ Exposed dropdown menus display the currently selected menu item above the menu. 
 
 #### Jetpack Compose
 
-To display an exposed dropdown menu, you can use the `OdsExposedDropdownMenu` composable. As shown below, you should provide a list of `OdsExposedDropdownMenuItem` corresponding to the items displayed in the menu (with or without icons).
+To display an exposed dropdown menu, you can use the `OdsExposedDropdownMenu` composable. As shown below, you should provide a list of `OdsExposedDropdownMenu.Item` corresponding to the items displayed in the menu (with or without icons).
 
 ```kotlin
 val items = listOf(
-    OdsExposedDropdownMenuItem("Email", android.R.drawable.ic_dialog_email),
-    OdsExposedDropdownMenuItem("Map", android.R.drawable.ic_dialog_map),
-    OdsExposedDropdownMenuItem("Dialer", android.R.drawable.ic_dialog_dialer),
+    OdsExposedDropdownMenu.Item("Email", android.R.drawable.ic_dialog_email),
+    OdsExposedDropdownMenu.Item("Map", android.R.drawable.ic_dialog_map),
+    OdsExposedDropdownMenu.Item("Dialer", android.R.drawable.ic_dialog_dialer),
 )
 val selectedItem = rememberSaveable() { mutableStateOf(items.first()) }
 
@@ -110,9 +110,9 @@ OdsExposedDropdownMenu(
 Parameter | Default&nbsp;value | Description
 -- | -- | --
 `label: String` | | Label of the exposed menu text field
-`items: List<OdsExposedDropdownMenuItem>` | | Items displayed into the dropdown menu
-`selectedItem: MutableState<OdsExposedDropdownMenuItem>` | | Selected item displayed into the text field
-`onItemSelectionChange: (OdsExposedDropdownMenuItem) -> Unit` | | Callback invoked when a dropdown menu item is selected. It can be used to get the menu value.
+`items: List<OdsExposedDropdownMenu.Item>` | | Items displayed into the dropdown menu
+`selectedItem: MutableState<OdsExposedDropdownMenu.Item>` | | Selected item displayed into the text field
+`onItemSelectionChange: (OdsExposedDropdownMenu.Item) -> Unit` | | Callback invoked when a dropdown menu item is selected. It can be used to get the menu value.
 `modifier: Modifier` | `Modifier` | `Modifier` applied to the dropdown menu
 `enabled: Boolean` | `true` | Controls the enabled state of the dropdown menu. When `false`, the dropdown menu text field will be neither clickable nor focusable, visually it will appear in the disabled state.
 {:.table}

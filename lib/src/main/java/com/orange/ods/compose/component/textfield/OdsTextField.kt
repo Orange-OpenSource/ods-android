@@ -45,7 +45,7 @@ import com.orange.ods.theme.OdsComponentsConfiguration
  * @param onValueChange Callback that is triggered when the input service updates the text. An
  * updated text comes as a parameter of the callback.
  * @param modifier [Modifier] applied to this text field.
- * @param trailing [OdsTextFieldTrailing] element to display at the end of the text field.
+ * @param trailing [OdsTextField.Trailing] element to display at the end of the text field.
  * @param enabled Controls the enabled state of the [OdsTextField]. When `false`, the text field will
  * be neither editable nor focusable, the input of the text field will not be selectable,
  * visually text field will appear in the disabled UI state.
@@ -56,7 +56,7 @@ import com.orange.ods.theme.OdsComponentsConfiguration
  * is [Typography.caption] when the text field is in focus and [Typography.subtitle1] when the text field is not in focus.
  * @param placeholder Placeholder to be displayed when the text field is in focus and
  * the input text is empty. The default text style for internal [Text] is [Typography.subtitle1].
- * @param leadingIcon [OdsTextFieldLeadingIcon] displayed at the beginning of the text field container.
+ * @param leadingIcon [OdsTextField.LeadingIcon] displayed at the beginning of the text field container.
  * @param isError Indicates if the text field's current value is in error state. If set to
  * `true`, the text field outline and the error message will be displayed in error color.
  * @param errorMessage Message displayed below the text field when it is in error.
@@ -74,7 +74,7 @@ import com.orange.ods.theme.OdsComponentsConfiguration
  * maxLines attribute will be automatically set to 1.
  * @param maxLines Maximum number of visible lines. Should be equal or greater than 1.
  * Note that this parameter will be ignored and instead maxLines will be set to 1 if [singleLine] is set to `true`.
- * @param characterCounter [OdsTextFieldCharacterCounter] displayed below the text field.
+ * @param characterCounter [OdsTextField.CharacterCounter] displayed below the text field.
  */
 @Composable
 @OdsComposable
@@ -82,12 +82,12 @@ fun OdsTextField(
     value: String,
     onValueChange: (String) -> Unit,
     modifier: Modifier = Modifier,
-    trailing: OdsTextFieldTrailing? = null,
+    trailing: OdsTextField.Trailing? = null,
     enabled: Boolean = true,
     readOnly: Boolean = false,
     label: String? = null,
     placeholder: String? = null,
-    leadingIcon: OdsTextFieldLeadingIcon? = null,
+    leadingIcon: OdsTextField.LeadingIcon? = null,
     isError: Boolean = false,
     errorMessage: String? = null,
     visualTransformation: VisualTransformation = VisualTransformation.None,
@@ -95,7 +95,7 @@ fun OdsTextField(
     keyboardActions: KeyboardActions = KeyboardActions(),
     singleLine: Boolean = false,
     maxLines: Int = Int.MAX_VALUE,
-    characterCounter: OdsTextFieldCharacterCounter? = null
+    characterCounter: OdsTextField.CharacterCounter? = null
 ) {
     val filledTextField = OdsTheme.componentsConfiguration.textFieldStyle == OdsComponentsConfiguration.ComponentStyle.Filled
 
@@ -151,11 +151,11 @@ private fun PreviewOdsTextField(@PreviewParameter(OdsTextFieldPreviewParameterPr
         value = value,
         onValueChange = { value = it },
         placeholder = "Placeholder",
-        leadingIcon = OdsTextFieldLeadingIcon(painterResource(id = android.R.drawable.ic_dialog_info), ""),
+        leadingIcon = OdsTextField.LeadingIcon(painterResource(id = android.R.drawable.ic_dialog_info), ""),
         trailing = trailingPreview(parameter = parameter),
         isError = parameter.hasErrorMessage,
         errorMessage = getPreviewErrorMessage(parameter.hasErrorMessage, parameter.isVeryLongErrorMessage),
-        characterCounter = if (parameter.hasCounter) OdsTextFieldCharacterCounter(value.length, 30) else null
+        characterCounter = if (parameter.hasCounter) OdsTextField.CharacterCounter(value.length, 30) else null
     )
 }
 

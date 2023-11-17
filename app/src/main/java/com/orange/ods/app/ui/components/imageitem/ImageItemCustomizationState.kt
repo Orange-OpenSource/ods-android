@@ -15,11 +15,11 @@ import androidx.compose.runtime.MutableState
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.saveable.rememberSaveable
-import com.orange.ods.compose.component.imageitem.OdsImageItemLegendAreaDisplayType
+import com.orange.ods.compose.component.imageitem.OdsImageItem
 
 @Composable
 fun rememberImageItemCustomizationState(
-    type: MutableState<OdsImageItemLegendAreaDisplayType> = rememberSaveable { mutableStateOf(OdsImageItemLegendAreaDisplayType.Overlay) },
+    type: MutableState<OdsImageItem.LegendAreaDisplayType> = rememberSaveable { mutableStateOf(OdsImageItem.LegendAreaDisplayType.Overlay) },
     iconDisplayed: MutableState<Boolean> = rememberSaveable { mutableStateOf(false) }
 ) =
     remember(type, iconDisplayed) {
@@ -27,12 +27,12 @@ fun rememberImageItemCustomizationState(
     }
 
 class ImageItemCustomizationState(
-    val type: MutableState<OdsImageItemLegendAreaDisplayType>,
+    val type: MutableState<OdsImageItem.LegendAreaDisplayType>,
     val iconDisplayed: MutableState<Boolean>
 ) {
     val hasIcon
         get() = iconDisplayed.value
 
     val hasText
-        get() = type.value != OdsImageItemLegendAreaDisplayType.None
+        get() = type.value != OdsImageItem.LegendAreaDisplayType.None
 }

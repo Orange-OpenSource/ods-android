@@ -34,8 +34,6 @@ import com.orange.ods.app.ui.utilities.code.FunctionCallCode
 import com.orange.ods.app.ui.utilities.composable.Title
 import com.orange.ods.compose.OdsComposable
 import com.orange.ods.compose.component.button.OdsButton
-import com.orange.ods.compose.component.button.OdsButtonIcon
-import com.orange.ods.compose.component.button.OdsButtonStyle
 import com.orange.ods.compose.theme.OdsDisplaySurface
 
 @Composable
@@ -49,9 +47,9 @@ fun ButtonsContained(customizationState: ButtonCustomizationState) {
         ) {
 
             with(buttonStyle.value) {
-                if (buttonStyle.value in listOf(OdsButtonStyle.FunctionalNegative, OdsButtonStyle.FunctionalPositive)) {
+                if (buttonStyle.value in listOf(OdsButton.Style.FunctionalNegative, OdsButton.Style.FunctionalPositive)) {
                     Title(
-                        textRes = if (this == OdsButtonStyle.FunctionalNegative) R.string.component_button_style_functional_negative else R.string.component_button_style_functional_positive,
+                        textRes = if (this == OdsButton.Style.FunctionalNegative) R.string.component_button_style_functional_negative else R.string.component_button_style_functional_positive,
                         horizontalPadding = true
                     )
                 }
@@ -86,7 +84,7 @@ fun ButtonsContained(customizationState: ButtonCustomizationState) {
                         enum("style", buttonStyle.value)
                         if (hasFullScreenWidth) fillMaxWidth()
                         if (hasLeadingIcon) {
-                            classInstance<OdsButtonIcon>("icon") {
+                            classInstance<OdsButton.Icon>("icon") {
                                 painter()
                             }
                         }
@@ -100,7 +98,7 @@ fun ButtonsContained(customizationState: ButtonCustomizationState) {
 
 @Composable
 private fun ContainedButton(
-    style: OdsButtonStyle,
+    style: OdsButton.Style,
     leadingIcon: Boolean,
     enabled: Boolean,
     fullScreenWidth: Boolean,
@@ -120,7 +118,7 @@ private fun ContainedButton(
             compose = {
                 OdsButton(
                     modifier = if (fullScreenWidth) Modifier.fillMaxWidth() else Modifier,
-                    icon = if (leadingIcon) OdsButtonIcon(painterResource(id = iconId)) else null,
+                    icon = if (leadingIcon) OdsButton.Icon(painterResource(id = iconId)) else null,
                     text = text,
                     onClick = {},
                     enabled = enabled,

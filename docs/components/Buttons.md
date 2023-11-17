@@ -72,11 +72,11 @@ OdsButton(
     text = "Contained button",
     onClick = { doSomething() },
     enabled = true,
-    icon = OdsButtonIcon(painterResource(R.drawable.ic_coffee)) // Line can be removed if you don't need any icon
+    icon = OdsButton.Icon(painterResource(R.drawable.ic_coffee)) // Line can be removed if you don't need any icon
 )
 ```
 
-To display a primary button or a functional green/red button, you need to pass an `OdsButtonStyle`
+To display a primary button or a functional green/red button, you need to pass an `OdsButton.Style`
 through the `style` parameter:
 
 ```kotlin
@@ -84,8 +84,8 @@ OdsButton(
     text = "Positive button",
     onClick = { doSomething() },
     enabled = true,
-    icon = OdsButtonIcon(painterResource(R.drawable.ic_coffee)), // Line can be removed if you don't need any icon
-    style = OdsButtonStyle.FunctionalPositive
+    icon = OdsButton.Icon(painterResource(R.drawable.ic_coffee)), // Line can be removed if you don't need any icon
+    style = OdsButton.Style.FunctionalPositive
 )
 ```
 
@@ -96,9 +96,9 @@ Parameter | Default&nbsp;value | Description
 `text: String` | | Text displayed into the button
 `onClick: () -> Unit` | | Callback invoked when the button is clicked
 `modifier: Modifier` | `Modifier` | `Modifier` applied to the button
-`icon: OdsButtonIcon?` | `null` | Icon displayed in the button before the text
+`icon: OdsButton.Icon?` | `null` | Icon displayed in the button before the text
 `enabled: Boolean` | `true` | Controls the enabled state of the button. When `false`, this button will not be clickable.
-`style: OdsButtonStyle` | `OdsButtonStyle.Default` | Style applied to the button. Set it to `OdsButtonStyle.Primary` for an highlighted button style or use `OdsButtonStyle.FunctionalPositive`/ `OdsButtonStyle.FunctionalNegative` for a functional green/red button style.
+`style: OdsButton.Style` | `OdsButton.Style.Default` | Style applied to the button. Set it to `OdsButton.Style.Primary` for an highlighted button style or use `OdsButton.Style.FunctionalPositive`/ `OdsButton.Style.FunctionalNegative` for a functional green/red button style.
 `displaySurface: OdsDisplaySurface` | `OdsDisplaySurface.Default` | `OdsDisplaySurface` applied to the button. It allows to force the button display on light or dark surface. By default, the appearance applied is based on the system night mode value.
 {:.table}
 
@@ -118,8 +118,8 @@ OdsTextButton(
     text = "Text button",
     onClick = { doSomething() },
     enabled = true,
-    icon = OdsButtonIcon(painterResource(R.drawable.ic_coffee)), // Line can be removed if you don't need any icon
-    style = OdsTextButtonStyle.Primary
+    icon = OdsButton.Icon(painterResource(R.drawable.ic_coffee)), // Line can be removed if you don't need any icon
+    style = OdsTextButton.Style.Primary
 )
 ```
 
@@ -130,9 +130,9 @@ Parameter | Default&nbsp;value | Description
 `text: String` | | Text displayed into the button
 `onClick: () -> Unit` | | Callback invoked on button click
 `modifier: Modifier` | `Modifier` | `Modifier` applied to the button
-`icon: OdsButtonIcon?` | `null` | Icon displayed in the button before the text
+`icon: OdsButton.Icon?` | `null` | Icon displayed in the button before the text
 `enabled: Boolean` | `true` | Controls the enabled state of the button. When `false`, this button will not be clickable.
-`style: OdsTextButtonStyle` | `OdsTextButtonStyle.Default` | Style applied to the button. By default `onSurface` color is used for text color. Use `OdsTextButtonStyle.Primary` for an highlighted text color.
+`style: OdsTextButton.Style` | `OdsTextButton.Style.Default` | Style applied to the button. By default `onSurface` color is used for text color. Use `OdsTextButton.Style.Primary` for an highlighted text color.
 `displaySurface: OdsDisplaySurface` | `OdsDisplaySurface.Default` | `OdsDisplaySurface` applied to the button. It allows to force the button display on light or dark surface. By default, the appearance applied is based on the system night mode value.
 {:.table}
 
@@ -152,7 +152,7 @@ OdsOutlinedButton(
     text = "Outlined button",
     onClick = {},
     enabled = true,
-    icon = OdsButtonIcon(painterResource(R.drawable.ic_coffee)) // Line can be removed if you don't need any icon
+    icon = OdsButton.Icon(painterResource(R.drawable.ic_coffee)) // Line can be removed if you don't need any icon
 )
 ```
 
@@ -163,7 +163,7 @@ Parameter | Default&nbsp;value | Description
 `text: String` | | Text displayed into the button
 `onClick: () -> Unit` | | Callback invoked on button click
 `modifier: Modifier` | `Modifier` | `Modifier` applied to the button
-`icon: OdsButtonIcon?` | `null` | Icon displayed in the button before the text
+`icon: OdsButton.Icon?` | `null` | Icon displayed in the button before the text
 `enabled: Boolean` | `true` | Controls the enabled state of the button. When `false`, the button is not clickable.
 `displaySurface: OdsDisplaySurface` | `OdsDisplaySurface.Default` | `OdsDisplaySurface` applied to the button. It allows to force the button display on light or dark surface. By default, the appearance applied is based on the system night mode value.
 {:.table}
@@ -197,7 +197,7 @@ OdsTextToggleButtonsRow(
 
 Parameter | Default&nbsp;value | Description
 -- | -- | --
-`textToggleButtons: List<OdsTextToggleButtonsRowItem>` | | Items displayed into the toggle group
+`textToggleButtons: List<OdsTextToggleButtonsRow.Item>` | | Items displayed into the toggle group
 `selectedIndex: Int` | | `textToggleButtons` list index of the selected button
 `onSelectedIndexChange: (Int) -> Unit` | | Callback invoked on selection change
 `modifier: Modifier` | `Modifier` | `Modifier` applied to the toggle buttons row
@@ -218,7 +218,7 @@ Use the `OdsIconButton` composable:
 
 ```kotlin
 OdsIconButton(
-    icon = OdsIconButtonIcon(
+    icon = OdsIconButton.Icon(
         painterResource(id = R.drawable.ic_ui_light_mode),
         stringResource(id = R.string.theme_changer_icon_content_description_light)
     ),
@@ -230,7 +230,7 @@ OdsIconButton(
 
 Parameter | Default&nbsp;value | Description
 -- | -- | --
-`icon: OdsIconButtonIcon` | | Icon to be drawn into the button
+`icon: OdsIconButton.Icon` | | Icon to be drawn into the button
 `onClick: () -> Unit` | | Callback to be invoked when the button is clicked
 `modifier: Modifier` | `Modifier` | `Modifier` to be applied to the button
 `enabled: Boolean` | `true` | Controls the enabled state of the button. When `false`, this button will not be clickable.
@@ -252,11 +252,11 @@ Use the `OdsIconToggleButton` composable:
 OdsIconToggleButton(
     checked = false,
     onCheckedChange = { doSomething() },
-    uncheckedIcon = OdsIconButtonIcon(
+    uncheckedIcon = OdsIconButton.Icon(
         painterResource(R.drawable.ic_heart_outlined),
         "Add to favorites"
     ),
-    checkedIcon = OdsIconButtonIcon(painterResource(R.drawable.ic_heart), "Remove from favorites")
+    checkedIcon = OdsIconButton.Icon(painterResource(R.drawable.ic_heart), "Remove from favorites")
 )
 ```
 
@@ -266,8 +266,8 @@ Parameter | Default&nbsp;value | Description
 -- | -- | --
 `checked: Boolean` | | Controls the checked state of the button
 `onCheckedChange: (Boolean) -> Unit` | | Callback invoked when the button is checked
-`uncheckedIcon: OdsIconButtonIcon` | | Icon displayed when the button is unchecked
-`checkedIcon: OdsIconButtonIcon` | | Icon displayed when the button is checked
+`uncheckedIcon: OdsIconButton.Icon` | | Icon displayed when the button is unchecked
+`checkedIcon: OdsIconButton.Icon` | | Icon displayed when the button is checked
 `modifier: Modifier` | `Modifier` | `Modifier` applied to the button
 `enabled: Boolean` | `true` | Controls the enabled state of the button. When `false`, this button will not be clickable.
 `displaySurface: OdsDisplaySurface` | `OdsDisplaySurface.Default` | `OdsDisplaySurface` applied to the button. It allows to force the button display on light or dark surface. By default, the appearance applied is based on the system night mode value.
@@ -288,9 +288,12 @@ Use the `OdsIconToggleButtonsRow` composable:
 ```kotlin
 OdsIconToggleButtonsRow(
     icons = listOf(
-        OdsIconToggleButtonsRowIcon(painterResource(id = R.drawable.ic_restaurant), "Restaurant"),
-        OdsIconToggleButtonsRowIcon(painterResource(id = R.drawable.ic_cooking_pot), "Cooking pot"),
-        OdsIconToggleButtonsRowIcon(
+        OdsIconToggleButtonsRow.Icon(painterResource(id = R.drawable.ic_restaurant), "Restaurant"),
+        OdsIconToggleButtonsRow.Icon(
+            painterResource(id = R.drawable.ic_cooking_pot),
+            "Cooking pot"
+        ),
+        OdsIconToggleButtonsRow.Icon(
             painterResource(id = R.drawable.ic_coffee),
             "Coffee",
             enabled = false
@@ -308,7 +311,7 @@ OdsIconToggleButtonsRow(
 
 Parameter | Default&nbsp;value | Description
 -- | -- | --
-`icons: List<OdsIconToggleButtonsRowIcon>` | | Icons to be displayed into the toggle group
+`icons: List<OdsIconToggleButtonsRow.Icon>` | | Icons to be displayed into the toggle group
 `selectedIndex: Int` | | `icons` list index of the selected button
 `onSelectedIndexChange: (Int) -> Unit` | | Callback invoked on selection change
 `modifier: Modifier` | `Modifier` | `Modifier` applied to the toggle buttons group

@@ -29,74 +29,80 @@ import com.orange.ods.compose.component.content.OdsComponentIcon
 import com.orange.ods.compose.component.content.OdsComponentImage
 
 /**
- * A leading icon in an [OdsChip].
+ * Contains classes to build an [com.orange.ods.compose.component.chip.OdsChip] or an [com.orange.ods.compose.component.chip.OdsFilterChip].
  */
-class OdsChipLeadingIcon : OdsComponentIcon<Nothing> {
+object OdsChip {
 
     /**
-     * Creates an instance of [OdsChipLeadingIcon].
-     *
-     * @param painter The painter to draw.
-     * @param contentDescription The content description associated to this [OdsChipLeadingIcon].
+     * A leading icon in an [OdsChip].
      */
-    constructor(painter: Painter, contentDescription: String) : super(painter, contentDescription)
+    class LeadingIcon : OdsComponentIcon<Nothing> {
 
-    /**
-     * Creates an instance of [OdsChipLeadingIcon].
-     *
-     * @param imageVector The image vector to draw.
-     * @param contentDescription The content description associated to this [OdsChipLeadingIcon].
-     */
-    constructor(imageVector: ImageVector, contentDescription: String) : super(imageVector, contentDescription)
+        /**
+         * Creates an instance of [OdsChip.LeadingIcon].
+         *
+         * @param painter The painter to draw.
+         * @param contentDescription The content description associated to this [OdsChip.LeadingIcon].
+         */
+        constructor(painter: Painter, contentDescription: String) : super(painter, contentDescription)
 
-    /**
-     * Creates an instance of [OdsChipLeadingIcon].
-     *
-     * @param bitmap The image bitmap to draw.
-     * @param contentDescription The content description associated to this [OdsChipLeadingIcon].
-     */
-    constructor(bitmap: ImageBitmap, contentDescription: String) : super(bitmap, contentDescription)
+        /**
+         * Creates an instance of [OdsChip.LeadingIcon].
+         *
+         * @param imageVector The image vector to draw.
+         * @param contentDescription The content description associated to this [OdsChip.LeadingIcon].
+         */
+        constructor(imageVector: ImageVector, contentDescription: String) : super(imageVector, contentDescription)
 
-    @Composable
-    override fun Content(modifier: Modifier) {
-        super.Content(modifier.size(dimensionResource(id = R.dimen.chip_icon_size)))
+        /**
+         * Creates an instance of [OdsChip.LeadingIcon].
+         *
+         * @param bitmap The image bitmap to draw.
+         * @param contentDescription The content description associated to this [OdsChip.LeadingIcon].
+         */
+        constructor(bitmap: ImageBitmap, contentDescription: String) : super(bitmap, contentDescription)
+
+        @Composable
+        override fun Content(modifier: Modifier) {
+            super.Content(modifier.size(dimensionResource(id = R.dimen.chip_icon_size)))
+        }
     }
-}
-
-/**
- * A leading avatar in an [OdsChip].
- */
-class OdsChipLeadingAvatar : OdsComponentImage<Nothing> {
 
     /**
-     * Creates an instance of [OdsChipLeadingAvatar].
-     *
-     * @param painter The painter to draw.
-     * @param contentDescription The content description associated to this [OdsChipLeadingAvatar].
+     * A leading avatar in an [OdsChip].
      */
-    constructor(painter: Painter, contentDescription: String) : super(painter, contentDescription, contentScale = ContentScale.Crop)
+    class LeadingAvatar : OdsComponentImage<Nothing> {
 
-    /**
-     * Creates an instance of [OdsChipLeadingAvatar].
-     *
-     * @param imageVector The image vector to draw.
-     * @param contentDescription The content description associated to this [OdsChipLeadingAvatar].
-     */
-    constructor(imageVector: ImageVector, contentDescription: String) : super(imageVector, contentDescription, contentScale = ContentScale.Crop)
+        /**
+         * Creates an instance of [OdsChip.LeadingAvatar].
+         *
+         * @param painter The painter to draw.
+         * @param contentDescription The content description associated to this [OdsChip.LeadingAvatar].
+         */
+        constructor(painter: Painter, contentDescription: String) : super(painter, contentDescription, contentScale = ContentScale.Crop)
 
-    /**
-     * Creates an instance of [OdsChipLeadingAvatar].
-     *
-     * @param bitmap The image bitmap to draw.
-     * @param contentDescription The content description associated to this [OdsChipLeadingAvatar].
-     */
-    constructor(bitmap: ImageBitmap, contentDescription: String) : super(bitmap, contentDescription, contentScale = ContentScale.Crop)
+        /**
+         * Creates an instance of [OdsChip.LeadingAvatar].
+         *
+         * @param imageVector The image vector to draw.
+         * @param contentDescription The content description associated to this [OdsChip.LeadingAvatar].
+         */
+        constructor(imageVector: ImageVector, contentDescription: String) : super(imageVector, contentDescription, contentScale = ContentScale.Crop)
 
-    @Composable
-    fun Content(enabled: Boolean) {
-        this.Content(modifier = Modifier.odsChipAvatar(enabled))
+        /**
+         * Creates an instance of [OdsChip.LeadingAvatar].
+         *
+         * @param bitmap The image bitmap to draw.
+         * @param contentDescription The content description associated to this [OdsChip.LeadingAvatar].
+         */
+        constructor(bitmap: ImageBitmap, contentDescription: String) : super(bitmap, contentDescription, contentScale = ContentScale.Crop)
+
+        @Composable
+        fun Content(enabled: Boolean) {
+            this.Content(modifier = Modifier.odsChipAvatar(enabled))
+        }
     }
-    
+
 }
 
 @OptIn(ExperimentalMaterialApi::class)

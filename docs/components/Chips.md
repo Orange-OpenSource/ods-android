@@ -63,7 +63,7 @@ OdsChip(
         doSomething()
     },
     leadingIcon = null,
-    leadingAvatar = OdsChipLeadingAvatar(
+    leadingAvatar = OdsChip.LeadingAvatar(
         painterResource(id = R.drawable.avatar),
         "Avatar"
     ), // Set it to `null` for no avatar or provide a `leadingIcon`
@@ -83,8 +83,8 @@ Parameter | Default&nbsp;value | Description
 `modifier: Modifier` | `Modifier` | `Modifier` to be applied to the chip
 `enabled: Boolean` | `true` | Controls the enabled state of the chip. When `false`, this chip will not respond to user input.
 `selected: Boolean` | `false` | Controls the selected state of the chip. When `true`, the chip is highlighted (useful for choice chips).
-`leadingIcon: OdsChipLeadingIcon?` | `null` | Icon to be displayed at the start of the chip, preceding the text
-`leadingAvatar: OdsChipLeadingAvatar?` | `null` | Avatar to be displayed in a circle shape at the start of the chip, preceding the content text
+`leadingIcon: OdsChip.LeadingIcon?` | `null` | Icon to be displayed at the start of the chip, preceding the text
+`leadingAvatar: OdsChip.LeadingAvatar?` | `null` | Avatar to be displayed in a circle shape at the start of the chip, preceding the content text
 `onCancel: (() -> Unit)?` | `null` | Callback called on chip cancel cross click. Pass `null` for no cancel cross.
 {:.table}
 
@@ -143,7 +143,7 @@ OdsFilterChip(
     onClick = {
         doSomething()
     },
-    leadingAvatar = OdsChipLeadingAvatar(
+    leadingAvatar = OdsChip.LeadingAvatar(
         painterResource(id = R.drawable.avatar),
         ""
     ), // Set it to `null` for no avatar
@@ -161,7 +161,7 @@ Parameter | Default&nbsp;value | Description
 `modifier: Modifier` | `Modifier` | `Modifier` to be applied to the chip
 `enabled: Boolean` | `true` | Controls the enabled state of the chip. When `false`, this chip will not respond to user input. It also appears visually disabled and is disabled to accessibility services.
 `selected: Boolean` | `false` | Controls the selected state of the chip. When `true`, the chip is highlighted.
-`leadingAvatar: OdsChipLeadingAvatar?` | `null` | Avatar to be displayed in a circle shape at the start of the chip, preceding the content text
+`leadingAvatar: OdsChip.LeadingAvatar?` | `null` | Avatar to be displayed in a circle shape at the start of the chip, preceding the content text
 {:.table}
 
 ### Action chip
@@ -187,7 +187,7 @@ OdsChip(
     onClick = {
         doSomething()
     },
-    leadingIcon = OdsChipLeadingIcon(
+    leadingIcon = OdsChip.LeadingIcon(
         painterResource(id = R.drawable.ic_heart),
         "Heart"
     ), // set it to `null` for no icon

@@ -17,8 +17,7 @@ import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import com.orange.ods.app.ui.utilities.NavigationItem
-import com.orange.ods.compose.component.tab.OdsTabRowTab
-import com.orange.ods.compose.component.tab.OdsTabRowTabIcon
+import com.orange.ods.compose.component.tab.OdsTabRow
 import kotlinx.coroutines.launch
 
 @OptIn(ExperimentalFoundationApi::class)
@@ -28,12 +27,12 @@ fun tabs(
     pagerState: PagerState,
     tabIconType: MainTabsCustomizationState.TabIconType,
     tabTextEnabled: Boolean,
-): List<OdsTabRowTab> {
+): List<OdsTabRow.Tab> {
     val scope = rememberCoroutineScope()
 
     return tabs.mapIndexed { index, tab ->
-        OdsTabRowTab(
-            icon = if (tabIconType != MainTabsCustomizationState.TabIconType.None) OdsTabRowTabIcon(painter = painterResource(id = tab.iconResId)) else null,
+        OdsTabRow.Tab(
+            icon = if (tabIconType != MainTabsCustomizationState.TabIconType.None) OdsTabRow.Tab.Icon(painter = painterResource(id = tab.iconResId)) else null,
             text = if (tabTextEnabled) stringResource(id = tab.textResId) else null,
         ) {
             scope.launch {

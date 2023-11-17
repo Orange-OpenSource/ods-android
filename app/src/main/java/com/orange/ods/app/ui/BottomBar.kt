@@ -31,15 +31,13 @@ import com.orange.ods.app.ui.guidelines.GuidelinesScreen
 import com.orange.ods.app.ui.modules.ModulesScreen
 import com.orange.ods.app.ui.utilities.launchUrl
 import com.orange.ods.compose.component.bottomnavigation.OdsBottomNavigation
-import com.orange.ods.compose.component.bottomnavigation.OdsBottomNavigationItem
-import com.orange.ods.compose.component.bottomnavigation.OdsBottomNavigationItemIcon
 
 @Composable
 fun BottomBar(items: Array<BottomBarItem>, currentRoute: String, navigateToRoute: (String) -> Unit) {
     OdsBottomNavigation(
         items = items.map { item ->
-            OdsBottomNavigationItem(
-                icon = OdsBottomNavigationItemIcon(painter = painterResource(id = item.iconRes), contentDescription = ""),
+            OdsBottomNavigation.Item(
+                icon = OdsBottomNavigation.Item.Icon(painter = painterResource(id = item.iconRes), contentDescription = ""),
                 label = stringResource(id = item.titleRes),
                 selected = currentRoute == item.route,
                 onClick = { navigateToRoute(item.route) }

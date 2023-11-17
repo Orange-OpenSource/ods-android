@@ -13,8 +13,6 @@ package com.orange.ods.compose.component.button
 import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.material.Button
-import androidx.compose.material.ButtonColors
-import androidx.compose.material.ButtonDefaults
 import androidx.compose.material.Text
 import androidx.compose.material.ripple.LocalRippleTheme
 import androidx.compose.material.ripple.RippleTheme
@@ -29,26 +27,6 @@ import com.orange.ods.compose.component.utilities.Preview
 import com.orange.ods.compose.component.utilities.UiModePreviews
 import com.orange.ods.compose.theme.OdsDisplaySurface
 import com.orange.ods.compose.theme.OdsTheme
-import com.orange.ods.compose.utilities.extension.enable
-
-/**
- * Specifying an [OdsButtonStyle] allow to display a button with specific colors.
- */
-enum class OdsButtonStyle {
-    Default, Primary, FunctionalPositive, FunctionalNegative;
-
-    companion object
-
-    @Composable
-    internal fun getColors(displaySurface: OdsDisplaySurface): ButtonColors {
-        return when (this) {
-            Default -> odsDefaultButtonColors(displaySurface)
-            Primary -> odsPrimaryButtonColors(displaySurface)
-            FunctionalPositive -> odsPositiveButtonColors(displaySurface)
-            FunctionalNegative -> odsNegativeButtonColors(displaySurface)
-        }
-    }
-}
 
 /**
  * <a href="https://system.design.orange.com/0c1af118d/p/06a393-buttons/b/79b091" target="_blank">ODS Buttons</a>.
@@ -61,8 +39,8 @@ enum class OdsButtonStyle {
  * @param modifier [Modifier] applied to the button.
  * @param icon Icon displayed in the button before the text.
  * @param enabled Controls the enabled state of the button. When `false`, this button will not be clickable.
- * @param style Style applied to the button. Set it to [OdsButtonStyle.Primary] for an highlighted button style or use.
- * [OdsButtonStyle.FunctionalPositive]/[OdsButtonStyle.FunctionalNegative] for a functional green/red button style.
+ * @param style Style applied to the button. Set it to [OdsButton.Style.Primary] for an highlighted button style or use.
+ * [OdsButton.Style.FunctionalPositive]/[OdsButton.Style.FunctionalNegative] for a functional green/red button style.
  * @param displaySurface [OdsDisplaySurface] applied to the button. It allows to force the button display on light or dark surface.
  * By default the appearance applied is based on the system night mode value.
  */
@@ -72,9 +50,9 @@ fun OdsButton(
     text: String,
     onClick: () -> Unit,
     modifier: Modifier = Modifier,
-    icon: OdsButtonIcon? = null,
+    icon: OdsButton.Icon? = null,
     enabled: Boolean = true,
-    style: OdsButtonStyle = OdsButtonStyle.Default,
+    style: OdsButton.Style = OdsButton.Style.Default,
     displaySurface: OdsDisplaySurface = OdsDisplaySurface.Default
 ) {
     CompositionLocalProvider(LocalRippleTheme provides OdsOnPrimaryRippleTheme) {
@@ -92,48 +70,6 @@ fun OdsButton(
         }
     }
 }
-
-@Composable
-private fun odsDefaultButtonColors(displaySurface: OdsDisplaySurface) = ButtonDefaults.buttonColors(
-    backgroundColor = displaySurface.themeColors.onSurface,
-    contentColor = displaySurface.themeColors.surface,
-    disabledBackgroundColor = disabledButtonBackgroundColor(displaySurface),
-    disabledContentColor = disabledButtonContentColor(displaySurface),
-)
-
-@Composable
-private fun odsPrimaryButtonColors(displaySurface: OdsDisplaySurface) = ButtonDefaults.buttonColors(
-    backgroundColor = displaySurface.themeColors.primary,
-    contentColor = displaySurface.themeColors.onPrimary,
-    disabledBackgroundColor = disabledButtonBackgroundColor(displaySurface),
-    disabledContentColor = disabledButtonContentColor(displaySurface),
-)
-
-@Composable
-private fun odsPositiveButtonColors(displaySurface: OdsDisplaySurface) = ButtonDefaults.buttonColors(
-    backgroundColor = OdsTheme.colors.functional.positive,
-    contentColor = OdsTheme.colors.functional.onPositive,
-    disabledBackgroundColor = disabledButtonBackgroundColor(displaySurface),
-    disabledContentColor = disabledButtonContentColor(displaySurface),
-)
-
-@Composable
-private fun odsNegativeButtonColors(displaySurface: OdsDisplaySurface) = ButtonDefaults.buttonColors(
-    backgroundColor = OdsTheme.colors.functional.negative,
-    contentColor = OdsTheme.colors.functional.onNegative,
-    disabledBackgroundColor = disabledButtonBackgroundColor(displaySurface),
-    disabledContentColor = disabledButtonContentColor(displaySurface),
-)
-
-@Composable
-private fun disabledButtonColors(displaySurface: OdsDisplaySurface) = displaySurface.themeColors.onSurface
-
-@Composable
-private fun disabledButtonBackgroundColor(displaySurface: OdsDisplaySurface) = disabledButtonColors(displaySurface = displaySurface).copy(alpha = 0.12f)
-
-@Composable
-private fun disabledButtonContentColor(displaySurface: OdsDisplaySurface) =
-    disabledButtonColors(displaySurface = displaySurface).enable(enabled = false)
 
 /**
  * Ripple theme used on primary color.
@@ -155,8 +91,8 @@ private object OdsOnPrimaryRippleTheme : RippleTheme {
 
 @UiModePreviews.Button
 @Composable
-private fun PreviewOdsButton(@PreviewParameter(OdsButtonPreviewParameterProvider::class) style: OdsButtonStyle) = Preview {
+private fun PreviewOdsButton(@PreviewParameter(OdsButtonPreviewParameterProvider::class) style: OdsButton.Style) = Preview {
     OdsButton(text = "Text", onClick = {}, style = style)
 }
 
-private class OdsButtonPreviewParameterProvider : EnumPreviewParameterProvider(OdsButtonStyle::class.java)
+private class OdsButtonPreviewParameterProvider : EnumPreviewParameterProvider(OdsButton.Style::class.java)

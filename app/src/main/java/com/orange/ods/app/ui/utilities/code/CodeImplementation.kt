@@ -31,7 +31,6 @@ import com.orange.ods.app.ui.LocalUiFramework
 import com.orange.ods.app.ui.UiFramework
 import com.orange.ods.app.ui.utilities.composable.TechnicalText
 import com.orange.ods.compose.component.menu.OdsExposedDropdownMenu
-import com.orange.ods.compose.component.menu.OdsExposedDropdownMenuItem
 import com.orange.ods.compose.theme.OdsTheme
 import com.orange.ods.extension.orElse
 
@@ -86,7 +85,7 @@ private fun UiFrameworkChoice(xmlAvailable: Boolean) {
     val context = LocalContext.current
     val currentUiFramework = LocalUiFramework.current
     val uiFrameworkItems = UiFramework.values().map { uiFramework ->
-        OdsExposedDropdownMenuItem(label = stringResource(id = uiFramework.labelResId), iconResId = uiFramework.iconResId)
+        OdsExposedDropdownMenu.Item(label = stringResource(id = uiFramework.labelResId), iconResId = uiFramework.iconResId)
     }
     val selectedUiFramework = rememberSaveable(currentUiFramework.value) {
         val selectedUiFramework = if (xmlAvailable) currentUiFramework.value else UiFramework.Compose

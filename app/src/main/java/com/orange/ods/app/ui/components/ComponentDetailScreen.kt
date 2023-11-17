@@ -23,9 +23,7 @@ import androidx.compose.ui.res.stringResource
 import com.orange.ods.app.R
 import com.orange.ods.app.ui.utilities.DrawableManager
 import com.orange.ods.app.ui.utilities.composable.DetailScreenHeader
-import com.orange.ods.compose.component.list.OdsListItem
-import com.orange.ods.compose.component.list.OdsListItemIcon
-import com.orange.ods.compose.component.list.OdsListItemIconType
+import com.orange.ods.compose.component.listitem.OdsListItem
 
 @Composable
 fun ComponentDetailScreen(
@@ -68,7 +66,7 @@ fun ComponentDetailScreen(
 @Composable
 private fun ComponentDetailLinkItem(label: String, composableName: String?, onClick: () -> Unit) {
     OdsListItem(
-        icon = OdsListItemIcon(OdsListItemIconType.Icon, painterResource(id = R.drawable.ic_play_outline), ""),
+        leadingIcon = OdsListItem.LeadingIcon(OdsListItem.LeadingIcon.Type.Icon, painterResource(id = R.drawable.ic_play_outline), ""),
         text = label,
         secondaryText = composableName,
         onClick = onClick

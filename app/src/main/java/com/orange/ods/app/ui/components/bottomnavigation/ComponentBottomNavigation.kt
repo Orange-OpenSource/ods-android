@@ -45,10 +45,7 @@ import com.orange.ods.app.ui.utilities.code.XmlViewTag
 import com.orange.ods.app.ui.utilities.composable.TechnicalText
 import com.orange.ods.compose.OdsComposable
 import com.orange.ods.compose.component.bottomnavigation.OdsBottomNavigation
-import com.orange.ods.compose.component.bottomnavigation.OdsBottomNavigationItem
-import com.orange.ods.compose.component.bottomnavigation.OdsBottomNavigationItemIcon
 import com.orange.ods.compose.text.OdsTextBody2
-import com.orange.ods.xml.component.bottomnavigation.OdsBottomNavigation
 
 private object ComponentBottomNavigation {
     const val MinNavigationItemCount = 3
@@ -65,8 +62,8 @@ fun ComponentBottomNavigation() {
 
     val bottomNavigationItems = navigationItems.take(selectedNavigationItemCount.value).map { item ->
         val label = stringResource(id = item.textResId)
-        OdsBottomNavigationItem(
-            icon = OdsBottomNavigationItemIcon(
+        OdsBottomNavigation.Item(
+            icon = OdsBottomNavigation.Item.Icon(
                 painter = painterResource(id = item.iconResId),
                 contentDescription = ""
             ),
@@ -110,7 +107,7 @@ fun ComponentBottomNavigation() {
                 xmlContent = {
                     CodeBackgroundColumn {
                         XmlViewTag(
-                            clazz = OdsBottomNavigation::class.java,
+                            clazz = com.orange.ods.xml.component.bottomnavigation.OdsBottomNavigation::class.java,
                             xmlAttributes = {
                                 id("ods_bottom_navigation")
                                 layoutWidth(true)
@@ -129,7 +126,7 @@ fun ComponentBottomNavigation() {
                         TechnicalText(text = "binding.odsBottomNavigation.items = listOf(")
                         IndentCodeColumn {
                             navigationItems.take(selectedNavigationItemCount.value).forEach { item ->
-                                FunctionCallCode(name = OdsBottomNavigationItem::class.simpleName.orEmpty(), trailingComma = true, parameters = {
+                                FunctionCallCode(name = OdsBottomNavigation.Item::class.simpleName.orEmpty(), trailingComma = true, parameters = {
                                     navigationItemParameters(context, item, selectedNavigationItem.value)
                                 })
                             }
@@ -143,7 +140,7 @@ fun ComponentBottomNavigation() {
                         parameters = {
                             list("items") {
                                 navigationItems.take(selectedNavigationItemCount.value).forEach { item ->
-                                    classInstance<OdsBottomNavigationItem> {
+                                    classInstance<OdsBottomNavigation.Item> {
                                         navigationItemParameters(context, item, selectedNavigationItem.value)
                                     }
                                 }
@@ -161,7 +158,7 @@ private fun ParametersBuilder.navigationItemParameters(
     item: NavigationItem,
     selectedNavigationItem: NavigationItem
 ) {
-    classInstance<OdsBottomNavigationItemIcon>("icon") {
+    classInstance<OdsBottomNavigation.Item.Icon>("icon") {
         painter()
         contentDescription("")
     }

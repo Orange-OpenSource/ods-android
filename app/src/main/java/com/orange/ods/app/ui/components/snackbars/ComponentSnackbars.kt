@@ -36,9 +36,7 @@ import com.orange.ods.app.ui.utilities.code.FunctionCallCode
 import com.orange.ods.app.ui.utilities.code.IndentCodeColumn
 import com.orange.ods.app.ui.utilities.composable.TechnicalText
 import com.orange.ods.compose.OdsComposable
-import com.orange.ods.compose.component.list.OdsListItem
-import com.orange.ods.compose.component.list.OdsListItemTrailingSwitch
-import com.orange.ods.compose.component.snackbar.OdsSnackbar
+import com.orange.ods.compose.component.listitem.OdsListItem
 import com.orange.ods.compose.component.snackbar.OdsSnackbarHost
 import com.orange.ods.compose.text.OdsTextBody2
 import kotlinx.coroutines.CoroutineScope
@@ -65,7 +63,7 @@ fun ComponentSnackbars() {
         bottomSheetScaffoldState = bottomSheetScaffoldState,
         snackbarHost = {
             OdsSnackbarHost(hostState = it) { data ->
-                OdsSnackbar(data = data, actionOnNewLine = actionOnNewLineChecked, onActionClick = {
+                OdsSnackbarHost.Snackbar(data = data, actionOnNewLine = actionOnNewLineChecked, onActionClick = {
                     clickOnElement(context = context, clickedElement = snackbarActionButton)
                 })
             }
@@ -73,11 +71,11 @@ fun ComponentSnackbars() {
         bottomSheetContent = {
             OdsListItem(
                 text = stringResource(id = R.string.component_snackbar_action_button),
-                trailing = OdsListItemTrailingSwitch(actionButtonChecked, { actionButtonChecked = it })
+                trailing = OdsListItem.TrailingSwitch(actionButtonChecked, { actionButtonChecked = it })
             )
             OdsListItem(
                 text = stringResource(id = R.string.component_snackbar_action_on_new_line),
-                trailing = OdsListItemTrailingSwitch(actionOnNewLineChecked, { actionOnNewLineChecked = it }, actionButtonChecked)
+                trailing = OdsListItem.TrailingSwitch(actionOnNewLineChecked, { actionOnNewLineChecked = it }, actionButtonChecked)
             )
         }) {
         Column(
@@ -109,7 +107,7 @@ fun ComponentSnackbars() {
                         parameters = { simple("hostState", "<SnackbarHostState>") }
                     ) {
                         FunctionCallCode(
-                            name = OdsComposable.OdsSnackbar.name,
+                            name = "OdsSnackbarHost.Snackbar",
                             parameters = {
                                 simple("snackbarData", "data")
                                 if (actionOnNewLineChecked) stringRepresentation("actionOnNewLine", true)

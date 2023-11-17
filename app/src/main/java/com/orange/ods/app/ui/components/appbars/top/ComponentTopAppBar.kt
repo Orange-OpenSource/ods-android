@@ -42,12 +42,11 @@ import com.orange.ods.app.ui.utilities.code.CodeImplementationColumn
 import com.orange.ods.app.ui.utilities.code.FunctionCallCode
 import com.orange.ods.app.ui.utilities.composable.*
 import com.orange.ods.compose.OdsComposable
-import com.orange.ods.compose.component.appbar.top.OdsTopAppBarActionButton
-import com.orange.ods.compose.component.appbar.top.OdsTopAppBarNavigationIcon
+import com.orange.ods.compose.component.appbar.top.OdsTopAppBar
 import com.orange.ods.compose.component.chip.OdsChoiceChip
 import com.orange.ods.compose.component.chip.OdsChoiceChipsFlowRow
-import com.orange.ods.compose.component.list.OdsListItem
-import com.orange.ods.compose.component.list.OdsListItemTrailingSwitch
+import com.orange.ods.compose.component.listitem.OdsListItem
+import com.orange.ods.compose.component.menu.OdsDropdownMenu
 import com.orange.ods.compose.text.OdsTextBody2
 import com.orange.ods.compose.text.OdsTextCaption
 import com.orange.ods.compose.theme.OdsTheme
@@ -100,7 +99,7 @@ fun ComponentTopAppBar(variant: Variant) {
                                 title(context.getString(R.string.component_app_bars_top_regular))
 
                                 if (isNavigationIconEnabled) {
-                                    classInstance<OdsTopAppBarNavigationIcon>("navigationIcon") {
+                                    classInstance<OdsTopAppBar.NavigationIcon>("navigationIcon") {
                                         imageVector()
                                         contentDescription(context.getString(R.string.top_app_bar_back_icon_desc))
                                     }
@@ -108,7 +107,7 @@ fun ComponentTopAppBar(variant: Variant) {
 
                                 list("actions") {
                                     repeat(actionCount.value) {
-                                        classInstance<OdsTopAppBarActionButton> {
+                                        classInstance<OdsTopAppBar.ActionButton> {
                                             onClick()
                                             painter()
                                             contentDescription("icon description")
@@ -117,10 +116,9 @@ fun ComponentTopAppBar(variant: Variant) {
                                 }
 
                                 if (isOverflowMenuEnabled) {
-                                    list("overflowMenuActions") {
+                                    list("overflowMenuItems") {
                                         for (i in 1..2) {
-                                            // The classInstance method displays the original type of type aliases, that's why function is used instead
-                                            function("OdsTopAppBarOverflowMenuActionItem") {
+                                            classInstance<OdsDropdownMenu.Item> {
                                                 text("Menu $i")
                                                 onClick()
                                             }
@@ -195,7 +193,7 @@ private fun CustomizationBottomSheetContent(customizationState: TopAppBarCustomi
         }
         OdsListItem(
             text = stringResource(id = R.string.component_app_bars_top_element_navigation_icon),
-            trailing = OdsListItemTrailingSwitch(navigationIconEnabled.value, { navigationIconEnabled.value = it })
+            trailing = OdsListItem.TrailingSwitch(navigationIconEnabled.value, { navigationIconEnabled.value = it })
         )
         ComponentCountRow(
             modifier = Modifier.padding(start = dimensionResource(id = com.orange.ods.R.dimen.screen_horizontal_margin)),
@@ -208,7 +206,7 @@ private fun CustomizationBottomSheetContent(customizationState: TopAppBarCustomi
         )
         OdsListItem(
             text = stringResource(id = R.string.component_app_bars_top_element_overflow_menu),
-            trailing = OdsListItemTrailingSwitch(overflowMenuEnabled.value, { overflowMenuEnabled.value = it }, isOverflowMenuSwitchEnabled)
+            trailing = OdsListItem.TrailingSwitch(overflowMenuEnabled.value, { overflowMenuEnabled.value = it }, isOverflowMenuSwitchEnabled)
         )
         if (isLarge) {
             Subtitle(textRes = R.string.component_element_title, horizontalPadding = true)

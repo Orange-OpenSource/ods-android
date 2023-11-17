@@ -30,10 +30,8 @@ import com.orange.ods.app.ui.components.utilities.clickOnElement
 import com.orange.ods.app.ui.utilities.code.CodeImplementationColumn
 import com.orange.ods.app.ui.utilities.code.FunctionCallCode
 import com.orange.ods.compose.OdsComposable
-import com.orange.ods.compose.component.list.OdsListItem
-import com.orange.ods.compose.component.list.OdsListItemTrailingSwitch
+import com.orange.ods.compose.component.listitem.OdsListItem
 import com.orange.ods.compose.component.menu.OdsExposedDropdownMenu
-import com.orange.ods.compose.component.menu.OdsExposedDropdownMenuItem
 
 @OptIn(ExperimentalMaterialApi::class)
 @Composable
@@ -44,16 +42,16 @@ fun MenuExposedDropdown() {
     val recipes = LocalRecipes.current.take(4)
 
     val dropdownItems = recipes.map { recipe ->
-        OdsExposedDropdownMenuItem(label = recipe.title, iconResId = recipe.iconResId)
+        OdsExposedDropdownMenu.Item(label = recipe.title, iconResId = recipe.iconResId)
     }
     val textOnlyDropdownItems = recipes.map { recipe ->
-        OdsExposedDropdownMenuItem(label = recipe.title)
+        OdsExposedDropdownMenu.Item(label = recipe.title)
     }
 
     var items by remember { mutableStateOf(dropdownItems) }
 
     with(customizationState) {
-        val selectedItem: MutableState<OdsExposedDropdownMenuItem> = rememberSaveable { mutableStateOf(dropdownItems.first()) }
+        val selectedItem: MutableState<OdsExposedDropdownMenu.Item> = rememberSaveable { mutableStateOf(dropdownItems.first()) }
         if (hasIcons) {
             items = dropdownItems
             selectedItem.value = dropdownItems.first { selectedItem.value.label == it.label }
@@ -67,11 +65,11 @@ fun MenuExposedDropdown() {
             bottomSheetContent = {
                 OdsListItem(
                     text = stringResource(id = R.string.component_state_enabled),
-                    trailing = OdsListItemTrailingSwitch(enabled.value, { enabled.value = it })
+                    trailing = OdsListItem.TrailingSwitch(enabled.value, { enabled.value = it })
                 )
                 OdsListItem(
                     text = stringResource(id = R.string.component_menu_icons),
-                    trailing = OdsListItemTrailingSwitch(icons.value, { icons.value = it })
+                    trailing = OdsListItem.TrailingSwitch(icons.value, { icons.value = it })
                 )
             }) {
             Column(
@@ -105,7 +103,7 @@ fun MenuExposedDropdown() {
                             string("label", label)
                             list("items") {
                                 items.forEach { item ->
-                                    classInstance<OdsExposedDropdownMenuItem> {
+                                    classInstance<OdsExposedDropdownMenu.Item> {
                                         string("label", item.label)
                                         if (hasIcons) simple("iconResId", "<drawable id>")
                                     }

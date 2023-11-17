@@ -30,8 +30,6 @@ import com.orange.ods.R
 import com.orange.ods.compose.component.OdsComposable
 import com.orange.ods.compose.component.textfield.OdsTextField
 import com.orange.ods.compose.component.textfield.OdsTextFieldBottomRow
-import com.orange.ods.compose.component.textfield.OdsTextFieldCharacterCounter
-import com.orange.ods.compose.component.textfield.OdsTextFieldTrailingIcon
 import com.orange.ods.compose.component.utilities.BasicPreviewParameterProvider
 import com.orange.ods.compose.component.utilities.Preview
 import com.orange.ods.compose.component.utilities.UiModePreviews
@@ -63,7 +61,7 @@ import com.orange.ods.compose.component.utilities.UiModePreviews
  * @param keyboardActions When the input service emits an IME action, the corresponding callback
  * is called. Note that this IME action may be different from what you specified in
  * [KeyboardOptions.imeAction].
- * @param characterCounter [OdsTextFieldCharacterCounter] displayed below the text field.
+ * @param characterCounter [OdsTextField.CharacterCounter] displayed below the text field.
  */
 @Composable
 @OdsComposable
@@ -80,7 +78,7 @@ fun OdsPasswordTextField(
     errorMessage: String? = null,
     keyboardOptions: KeyboardOptions = KeyboardOptions.Default,
     keyboardActions: KeyboardActions = KeyboardActions(),
-    characterCounter: OdsTextFieldCharacterCounter? = null
+    characterCounter: OdsTextField.CharacterCounter? = null
 ) {
     val passwordTextFieldState = rememberOdsPasswordTextFieldState().apply {
         this.enabled.value = enabled
@@ -112,7 +110,7 @@ fun OdsPasswordTextField(
 
 @Composable
 private fun passwordVisualisationIcon(odsPasswordTextFieldState: OdsPasswordTextFieldState) = with(odsPasswordTextFieldState) {
-    OdsTextFieldTrailingIcon(
+    OdsTextField.TrailingIcon(
         painter = if (isPasswordVisible) painterResource(id = R.drawable.ic_crosset_out_eye) else painterResource(id = R.drawable.ic_eye),
         contentDescription = if (isPasswordVisible) stringResource(id = R.string.text_field_password_hide) else stringResource(id = R.string.text_field_password_show),
         onClick = { passwordVisible.value = !isPasswordVisible },

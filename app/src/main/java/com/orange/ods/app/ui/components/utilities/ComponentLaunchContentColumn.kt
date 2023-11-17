@@ -19,7 +19,6 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.stringResource
 import com.orange.ods.compose.component.button.OdsButton
-import com.orange.ods.compose.component.button.OdsButtonStyle
 import com.orange.ods.compose.text.OdsTextBody1
 
 @Composable
@@ -42,7 +41,7 @@ fun ComponentLaunchContentColumn(@StringRes textRes: Int, @StringRes buttonLabel
                 .padding(horizontal = dimensionResource(com.orange.ods.R.dimen.screen_horizontal_margin))
                 .padding(top = dimensionResource(com.orange.ods.R.dimen.spacing_m)),
             text = stringResource(id = buttonLabelRes),
-            style = OdsButtonStyle.Primary,
+            style = OdsButton.Style.Primary,
             onClick = onButtonClick
         )
     }

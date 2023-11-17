@@ -33,9 +33,8 @@ import com.orange.ods.app.ui.utilities.code.CodeImplementationColumn
 import com.orange.ods.app.ui.utilities.code.FunctionCallCode
 import com.orange.ods.app.ui.utilities.composable.Title
 import com.orange.ods.compose.OdsComposable
-import com.orange.ods.compose.component.button.OdsButtonIcon
+import com.orange.ods.compose.component.button.OdsButton
 import com.orange.ods.compose.component.button.OdsTextButton
-import com.orange.ods.compose.component.button.OdsTextButtonStyle
 import com.orange.ods.compose.theme.OdsDisplaySurface
 
 @Composable
@@ -47,7 +46,7 @@ fun ButtonsText(customizationState: ButtonCustomizationState) {
                 .padding(vertical = dimensionResource(id = com.orange.ods.R.dimen.screen_vertical_margin))
         ) {
             Title(
-                textRes = if (textButtonStyle.value == OdsTextButtonStyle.Default) R.string.component_button_style_default else R.string.component_button_style_primary,
+                textRes = if (textButtonStyle.value == OdsTextButton.Style.Default) R.string.component_button_style_default else R.string.component_button_style_primary,
                 horizontalPadding = true
             )
 
@@ -81,7 +80,7 @@ fun ButtonsText(customizationState: ButtonCustomizationState) {
                         enum("style", textButtonStyle.value)
                         if (hasFullScreenWidth) fillMaxWidth()
                         if (hasLeadingIcon) {
-                            classInstance<OdsButtonIcon>("icon") {
+                            classInstance<OdsButton.Icon>("icon") {
                                 painter()
                             }
                         }
@@ -95,7 +94,7 @@ fun ButtonsText(customizationState: ButtonCustomizationState) {
 
 @Composable
 private fun TextButton(
-    style: OdsTextButtonStyle,
+    style: OdsTextButton.Style,
     leadingIcon: Boolean,
     enabled: Boolean,
     fullScreenWidth: Boolean,
@@ -115,7 +114,7 @@ private fun TextButton(
             compose = {
                 OdsTextButton(
                     modifier = if (fullScreenWidth) Modifier.fillMaxWidth() else Modifier,
-                    icon = if (leadingIcon) OdsButtonIcon(painterResource(id = iconId)) else null,
+                    icon = if (leadingIcon) OdsButton.Icon(painterResource(id = iconId)) else null,
                     text = text,
                     onClick = {},
                     enabled = enabled,

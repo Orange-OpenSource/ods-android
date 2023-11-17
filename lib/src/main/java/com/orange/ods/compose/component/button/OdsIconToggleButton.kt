@@ -45,8 +45,8 @@ import com.orange.ods.compose.theme.OdsDisplaySurface
 fun OdsIconToggleButton(
     checked: Boolean,
     onCheckedChange: (Boolean) -> Unit,
-    uncheckedIcon: OdsIconButtonIcon,
-    checkedIcon: OdsIconButtonIcon,
+    uncheckedIcon: OdsIconButton.Icon,
+    checkedIcon: OdsIconButton.Icon,
     modifier: Modifier = Modifier,
     enabled: Boolean = true,
     displaySurface: OdsDisplaySurface = OdsDisplaySurface.Default
@@ -61,7 +61,7 @@ fun OdsIconToggleButton(
             enabled = enabled
         ) {
             val icon = if (checked) checkedIcon else uncheckedIcon
-            icon.Content(OdsIconButtonIcon.ExtraParameters(enabled, displaySurface))
+            icon.Content(OdsIconButton.Icon.ExtraParameters(enabled, displaySurface))
         }
     }
 }
@@ -73,7 +73,7 @@ private fun PreviewOdsIconToggleButton() = Preview {
     OdsIconToggleButton(
         checked = checked,
         onCheckedChange = { checked = it },
-        uncheckedIcon = OdsIconButtonIcon(painterResource(id = android.R.drawable.ic_media_play), "Play"),
-        checkedIcon = OdsIconButtonIcon(painterResource(id = android.R.drawable.ic_media_pause), "Pause"),
+        uncheckedIcon = OdsIconButton.Icon(painterResource(id = android.R.drawable.ic_media_play), "Play"),
+        checkedIcon = OdsIconButton.Icon(painterResource(id = android.R.drawable.ic_media_pause), "Pause"),
     )
 }

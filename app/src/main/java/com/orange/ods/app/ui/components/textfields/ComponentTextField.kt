@@ -36,10 +36,8 @@ import com.orange.ods.app.ui.components.utilities.ComponentCustomizationBottomSh
 import com.orange.ods.app.ui.utilities.composable.Subtitle
 import com.orange.ods.compose.component.chip.OdsChoiceChip
 import com.orange.ods.compose.component.chip.OdsChoiceChipsFlowRow
-import com.orange.ods.compose.component.list.OdsListItem
-import com.orange.ods.compose.component.list.OdsListItemTrailingSwitch
+import com.orange.ods.compose.component.listitem.OdsListItem
 import com.orange.ods.compose.component.tab.OdsTabRow
-import com.orange.ods.compose.component.tab.OdsTabRowTab
 import com.orange.ods.compose.utilities.composable.Keyboard
 import com.orange.ods.compose.utilities.composable.keyboardAsState
 import kotlinx.coroutines.launch
@@ -91,7 +89,7 @@ private fun TextFieldTextCustomization(textFieldCustomizationState: TextFieldCus
     OdsTabRow(
         selectedTabIndex = pagerState.currentPage,
         tabs = tabs.mapIndexed { index, customizationTab ->
-            OdsTabRowTab(
+            OdsTabRow.Tab(
                 icon = null,
                 text = stringResource(id = customizationTab.titleRes)
             ) {
@@ -115,11 +113,11 @@ private fun TextFieldPasswordCustomization(textFieldCustomizationState: TextFiel
         DisplayTypeCustomization(displayType)
         OdsListItem(
             text = stringResource(id = R.string.component_text_field_visualisation_icon),
-            trailing = OdsListItemTrailingSwitch(visualisationIcon.value, { visualisationIcon.value = it })
+            trailing = OdsListItem.TrailingSwitch(visualisationIcon.value, { visualisationIcon.value = it })
         )
         OdsListItem(
             text = stringResource(id = R.string.component_text_field_character_counter),
-            trailing = OdsListItemTrailingSwitch(characterCounter.value, { characterCounter.value = it })
+            trailing = OdsListItem.TrailingSwitch(characterCounter.value, { characterCounter.value = it })
         )
     }
 }
@@ -129,7 +127,7 @@ private fun ComponentCustomizationContent(textFieldCustomizationState: TextField
     with(textFieldCustomizationState) {
         OdsListItem(
             text = stringResource(id = R.string.component_element_leading_icon),
-            trailing = OdsListItemTrailingSwitch(leadingIcon.value, { leadingIcon.value = it })
+            trailing = OdsListItem.TrailingSwitch(leadingIcon.value, { leadingIcon.value = it })
         )
 
         Subtitle(textRes = R.string.component_text_field_input_type, horizontalPadding = true)
@@ -171,7 +169,7 @@ private fun ComponentCustomizationContent(textFieldCustomizationState: TextField
         )
         OdsListItem(
             text = stringResource(id = R.string.component_text_field_character_counter),
-            trailing = OdsListItemTrailingSwitch(characterCounter.value, { characterCounter.value = it })
+            trailing = OdsListItem.TrailingSwitch(characterCounter.value, { characterCounter.value = it })
         )
     }
 }
@@ -191,7 +189,7 @@ private fun KeyboardCustomizationContent(textFieldCustomizationState: TextFieldC
 
         OdsListItem(
             text = stringResource(id = R.string.component_text_field_keyboard_capitalization),
-            trailing = OdsListItemTrailingSwitch(softKeyboardCapitalization.value, { softKeyboardCapitalization.value = it })
+            trailing = OdsListItem.TrailingSwitch(softKeyboardCapitalization.value, { softKeyboardCapitalization.value = it })
         )
 
         Subtitle(textRes = R.string.component_text_field_keyboard_action, horizontalPadding = true)

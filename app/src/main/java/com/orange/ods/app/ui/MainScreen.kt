@@ -44,11 +44,9 @@ import com.orange.ods.app.ui.components.tabs.MainTabsCustomizationState
 import com.orange.ods.app.ui.components.tabs.tabs
 import com.orange.ods.app.ui.utilities.extension.isDarkModeEnabled
 import com.orange.ods.app.ui.utilities.extension.isOrange
-import com.orange.ods.compose.component.list.OdsListItem
-import com.orange.ods.compose.component.list.OdsListItemTrailingRadioButton
+import com.orange.ods.compose.component.listitem.OdsListItem
 import com.orange.ods.compose.component.tab.OdsScrollableTabRow
 import com.orange.ods.compose.component.tab.OdsTabRow
-import com.orange.ods.compose.component.tab.OdsTabRowTabIcon
 import com.orange.ods.compose.text.OdsTextH6
 import com.orange.ods.compose.theme.OdsTheme
 import com.orange.ods.extension.orElse
@@ -198,7 +196,7 @@ private fun AppBarTabs(appBarTabsState: AppBarTabsState) {
             // Thus its value can be modified and can lead to crashes if it becomes empty
             val tabs = tabs.toList()
             val tabIconPosition =
-                if (tabIconType.value == MainTabsCustomizationState.TabIconType.Leading && tabTextEnabled.value) OdsTabRowTabIcon.Position.Leading else OdsTabRowTabIcon.Position.Top
+                if (tabIconType.value == MainTabsCustomizationState.TabIconType.Leading && tabTextEnabled.value) OdsTabRow.Tab.Icon.Position.Leading else OdsTabRow.Tab.Icon.Position.Top
 
             if (scrollableTabs.value) {
                 OdsScrollableTabRow(
@@ -259,7 +257,7 @@ private fun ChangeThemeDialog(themeManager: ThemeManager, dismissDialog: () -> U
             themeManager.themeConfigurations.forEach { themeConfiguration ->
                 OdsListItem(
                     text = themeConfiguration.name,
-                    trailing = OdsListItemTrailingRadioButton(
+                    trailing = OdsListItem.TrailingRadioButton(
                         selectedThemeName == themeConfiguration.name,
                         {
                             selectedThemeName = themeConfiguration.name
