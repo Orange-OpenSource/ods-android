@@ -520,7 +520,7 @@ object OdsListItem {
     /**
      * A trailing caption in an [OdsListItem].
      *
-     * @constructor Creates an instance of [OdsListItem.Trailing.Caption].
+     * @constructor Creates an instance of [OdsListItem.TrailingCaption].
      * @param text The caption text.
      */
     class TrailingCaption(private val text: String) : OdsComponentContent<Nothing>(), Trailing {
