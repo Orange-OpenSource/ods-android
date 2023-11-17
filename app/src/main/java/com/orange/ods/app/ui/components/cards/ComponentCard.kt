@@ -54,11 +54,11 @@ fun ComponentCard(variant: Variant) {
                         chips = listOf(
                             OdsChoiceChip(
                                 text = stringResource(id = R.string.component_card_horizontal_image_position_start),
-                                value = OdsHorizontalCard.ImagePosition.Start
+                                value = OdsHorizontalCard.Image.Position.Start
                             ),
                             OdsChoiceChip(
                                 text = stringResource(id = R.string.component_card_horizontal_image_position_end),
-                                value = OdsHorizontalCard.ImagePosition.End
+                                value = OdsHorizontalCard.Image.Position.End
                             )
                         )
                     )
