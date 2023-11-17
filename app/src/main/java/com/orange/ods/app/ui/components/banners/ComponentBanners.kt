@@ -39,7 +39,7 @@ import com.orange.ods.app.ui.utilities.code.CodeImplementationColumn
 import com.orange.ods.app.ui.utilities.code.FunctionCallCode
 import com.orange.ods.compose.OdsComposable
 import com.orange.ods.compose.component.banner.OdsBanner
-import com.orange.ods.compose.component.list.OdsListItem
+import com.orange.ods.compose.component.listitem.OdsListItem
 import com.orange.ods.extension.ifNotNull
 
 @OptIn(ExperimentalMaterialApi::class)

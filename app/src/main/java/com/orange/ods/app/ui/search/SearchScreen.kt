@@ -41,7 +41,7 @@ import com.orange.ods.app.ui.guidelines.GuidelinesNavigation
 import com.orange.ods.app.ui.guidelines.color.DialogColor
 import com.orange.ods.app.ui.guidelines.spacing.Spacing
 import com.orange.ods.app.ui.utilities.DrawableManager
-import com.orange.ods.compose.component.list.OdsListItem
+import com.orange.ods.compose.component.listitem.OdsListItem
 import com.orange.ods.compose.theme.OdsTheme
 import com.orange.ods.extension.orElse
 import com.orange.ods.theme.guideline.GuidelineColor

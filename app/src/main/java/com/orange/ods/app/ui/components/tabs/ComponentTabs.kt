@@ -34,7 +34,7 @@ import com.orange.ods.app.ui.components.utilities.ComponentCustomizationBottomSh
 import com.orange.ods.app.ui.utilities.composable.Subtitle
 import com.orange.ods.compose.component.chip.OdsChoiceChip
 import com.orange.ods.compose.component.chip.OdsChoiceChipsFlowRow
-import com.orange.ods.compose.component.list.OdsListItem
+import com.orange.ods.compose.component.listitem.OdsListItem
 import com.orange.ods.compose.text.OdsTextBody1
 
 private const val MinFixedTabCount = 2

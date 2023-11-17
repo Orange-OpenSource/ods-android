@@ -32,7 +32,7 @@ import com.orange.ods.app.ui.guidelines.Guideline
 import com.orange.ods.app.ui.utilities.DrawableManager
 import com.orange.ods.app.ui.utilities.composable.DetailScreenHeader
 import com.orange.ods.app.ui.utilities.extension.isOrange
-import com.orange.ods.compose.component.list.OdsListItem
+import com.orange.ods.compose.component.listitem.OdsListItem
 import com.orange.ods.compose.text.OdsTextSubtitle1
 import java.text.DecimalFormat
 import java.text.DecimalFormatSymbols

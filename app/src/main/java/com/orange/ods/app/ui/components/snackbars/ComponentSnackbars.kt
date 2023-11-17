@@ -36,7 +36,7 @@ import com.orange.ods.app.ui.utilities.code.FunctionCallCode
 import com.orange.ods.app.ui.utilities.code.IndentCodeColumn
 import com.orange.ods.app.ui.utilities.composable.TechnicalText
 import com.orange.ods.compose.OdsComposable
-import com.orange.ods.compose.component.list.OdsListItem
+import com.orange.ods.compose.component.listitem.OdsListItem
 import com.orange.ods.compose.component.snackbar.OdsSnackbar
 import com.orange.ods.compose.component.snackbar.OdsSnackbarHost
 import com.orange.ods.compose.text.OdsTextBody2

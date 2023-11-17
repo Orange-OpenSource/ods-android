@@ -44,7 +44,7 @@ import com.orange.ods.compose.component.button.OdsIconButton
 import com.orange.ods.compose.component.chip.OdsChoiceChip
 import com.orange.ods.compose.component.chip.OdsChoiceChipsFlowRow
 import com.orange.ods.compose.component.imageitem.OdsImageItem
-import com.orange.ods.compose.component.list.OdsListItem
+import com.orange.ods.compose.component.listitem.OdsListItem
 
 @OptIn(ExperimentalMaterialApi::class)
 @Composable

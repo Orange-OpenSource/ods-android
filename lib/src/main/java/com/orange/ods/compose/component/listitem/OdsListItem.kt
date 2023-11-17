@@ -8,7 +8,7 @@
  * /
  */
 
-package com.orange.ods.compose.component.list
+package com.orange.ods.compose.component.listitem
 
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
@@ -275,6 +275,9 @@ private fun Modifier.rootModifier(trailing: OdsListItem.Trailing?, onListItemCli
     }
 }
 
+/**
+ * Contains classes to build an [com.orange.ods.compose.component.listitem.OdsListItem].
+ */
 object OdsListItem {
 
     /**

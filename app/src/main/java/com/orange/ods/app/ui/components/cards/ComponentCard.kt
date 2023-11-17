@@ -25,7 +25,7 @@ import com.orange.ods.app.ui.utilities.composable.Subtitle
 import com.orange.ods.compose.component.card.OdsHorizontalCard
 import com.orange.ods.compose.component.chip.OdsChoiceChip
 import com.orange.ods.compose.component.chip.OdsChoiceChipsFlowRow
-import com.orange.ods.compose.component.list.OdsListItem
+import com.orange.ods.compose.component.listitem.OdsListItem
 
 @OptIn(ExperimentalMaterialApi::class)
 @Composable

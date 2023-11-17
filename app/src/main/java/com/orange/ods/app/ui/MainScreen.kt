@@ -44,7 +44,7 @@ import com.orange.ods.app.ui.components.tabs.MainTabsCustomizationState
 import com.orange.ods.app.ui.components.tabs.tabs
 import com.orange.ods.app.ui.utilities.extension.isDarkModeEnabled
 import com.orange.ods.app.ui.utilities.extension.isOrange
-import com.orange.ods.compose.component.list.OdsListItem
+import com.orange.ods.compose.component.listitem.OdsListItem
 import com.orange.ods.compose.component.tab.OdsScrollableTabRow
 import com.orange.ods.compose.component.tab.OdsTabRow
 import com.orange.ods.compose.text.OdsTextH6

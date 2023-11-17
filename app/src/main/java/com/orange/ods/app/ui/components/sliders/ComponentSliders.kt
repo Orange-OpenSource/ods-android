@@ -35,7 +35,7 @@ import com.orange.ods.app.ui.utilities.composable.Title
 import com.orange.ods.compose.OdsComposable
 import com.orange.ods.compose.component.control.OdsSlider
 import com.orange.ods.compose.component.control.OdsSliderLockups
-import com.orange.ods.compose.component.list.OdsListItem
+import com.orange.ods.compose.component.listitem.OdsListItem
 
 @OptIn(ExperimentalMaterialApi::class)
 @Composable

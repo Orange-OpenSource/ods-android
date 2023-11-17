@@ -30,7 +30,7 @@ import com.orange.ods.app.R
 import com.orange.ods.app.ui.utilities.DrawableManager
 import com.orange.ods.app.ui.utilities.compat.PackageManagerCompat
 import com.orange.ods.app.ui.utilities.extension.versionCode
-import com.orange.ods.compose.component.list.OdsListItem
+import com.orange.ods.compose.component.listitem.OdsListItem
 import com.orange.ods.compose.text.OdsTextCaption
 import com.orange.ods.compose.text.OdsTextH4
 import com.orange.ods.extension.ifNotNull
