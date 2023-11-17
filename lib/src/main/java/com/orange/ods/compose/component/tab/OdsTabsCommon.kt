@@ -73,7 +73,7 @@ object OdsTabRow {
         }
 
         /**
-         * An icon in an [OdsTab].
+         * An icon in an [OdsTabRow.Tab].
          * It is non-clickable and the content description is optional cause a tab can have a label.
          * Note that for accessibility, if the tab has no text, it is highly recommended to set a content description.
          */
