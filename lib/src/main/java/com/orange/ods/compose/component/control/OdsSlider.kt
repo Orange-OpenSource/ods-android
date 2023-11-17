@@ -205,7 +205,7 @@ fun OdsSliderLockups(
 /**
  * Contains classes to build an [com.orange.ods.compose.component.control.OdsSlider] or an [com.orange.ods.compose.component.control.OdsSliderLockups].
  */
-class OdsSlider {
+object OdsSlider {
 
     /**
      * An icon in an [OdsSlider] or an [OdsSliderLockups].

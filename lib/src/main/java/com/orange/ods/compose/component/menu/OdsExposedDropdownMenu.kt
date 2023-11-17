@@ -96,7 +96,7 @@ fun OdsExposedDropdownMenu(
 /**
  * Contains classes to build an [com.orange.ods.compose.component.menu.OdsExposedDropdownMenu].
  */
-class OdsExposedDropdownMenu {
+object OdsExposedDropdownMenu {
     @Parcelize
     data class Item(val label: String, @DrawableRes val iconResId: Int? = null) : Parcelable
 }

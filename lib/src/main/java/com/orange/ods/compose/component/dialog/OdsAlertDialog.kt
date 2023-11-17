@@ -71,7 +71,7 @@ fun OdsAlertDialog(
 /**
  * Contains classes to build an [com.orange.ods.compose.component.dialog.OdsAlertDialog].
  */
-class OdsAlertDialog {
+object OdsAlertDialog {
 
     /**
      * A button in an [OdsAlertDialog].

@@ -180,7 +180,7 @@ fun OdsHorizontalCard(
     }
 }
 
-class OdsHorizontalCard {
+object OdsHorizontalCard {
     class Image {
         enum class Position {
             Start, End

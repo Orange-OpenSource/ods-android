@@ -31,7 +31,7 @@ import com.orange.ods.compose.component.content.OdsComponentImage
 /**
  * Contains classes to build an [com.orange.ods.compose.component.chip.OdsChip] or an [com.orange.ods.compose.component.chip.OdsFilterChip].
  */
-class OdsChip {
+object OdsChip {
 
     /**
      * A leading icon in an [OdsChip].

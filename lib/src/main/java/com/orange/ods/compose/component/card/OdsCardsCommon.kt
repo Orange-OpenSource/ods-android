@@ -37,7 +37,7 @@ internal fun OdsCard(modifier: Modifier, onClick: (() -> Unit)?, content: @Compo
     }
 }
 
-class OdsCard {
+object OdsCard {
 
     /**
      * A button in an [OdsHorizontalCard], an [OdsVerticalHeaderFirstCard] or an [OdsVerticalImageFirstCard].

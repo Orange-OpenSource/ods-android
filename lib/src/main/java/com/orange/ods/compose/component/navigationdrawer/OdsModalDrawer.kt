@@ -103,7 +103,7 @@ fun OdsModalDrawer(
 /**
  * Contains classes to build an [com.orange.ods.compose.component.navigationdrawer.OdsModalDrawer].
  */
-class OdsModalDrawer {
+object OdsModalDrawer {
 
     /**
      * Represents an item in an [OdsModalDrawer] content.

@@ -52,7 +52,7 @@ internal fun OdsTopAppBarActions(actions: List<OdsComponentContent<*>>, overflow
 /**
  * Contains classes to build a [com.orange.ods.compose.component.appbar.top.OdsTopAppBar] or a [com.orange.ods.compose.component.appbar.top.OdsLargeTopAppBar].
  */
-class OdsTopAppBar {
+object OdsTopAppBar {
 
     /**
      * A navigation icon in an OdsTopAppBar.

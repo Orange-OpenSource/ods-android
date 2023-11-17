@@ -109,7 +109,7 @@ internal fun OdsTextButton(
     }
 }
 
-class OdsTextButton {
+object OdsTextButton {
     /**
      * Specifying an [OdsTextButton.Style] allow to display a button with specific colors.
      */

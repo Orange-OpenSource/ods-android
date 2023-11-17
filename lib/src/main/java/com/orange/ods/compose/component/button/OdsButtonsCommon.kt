@@ -26,7 +26,7 @@ import com.orange.ods.compose.theme.OdsDisplaySurface
 /**
  * Contains classes to build an [com.orange.ods.compose.component.button.OdsButton].
  */
-class OdsButton {
+object OdsButton {
 
     /**
      * A button icon in an [OdsButton].
@@ -67,7 +67,7 @@ class OdsButton {
 /**
  * Contains classes to build an [com.orange.ods.compose.component.button.OdsIconButton].
  */
-class OdsIconButton {
+object OdsIconButton {
 
     /**
      * An icon in an [OdsIconButton].

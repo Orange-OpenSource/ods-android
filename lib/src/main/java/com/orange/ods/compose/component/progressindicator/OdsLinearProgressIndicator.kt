@@ -115,7 +115,7 @@ fun OdsLinearProgressIndicator(
 /**
  * Contains classes to build an [com.orange.ods.compose.component.progressindicator.OdsLinearProgressIndicator].
  */
-class OdsLinearProgressIndicator {
+object OdsLinearProgressIndicator {
 
     /**
      * An icon in an [OdsLinearProgressIndicator].

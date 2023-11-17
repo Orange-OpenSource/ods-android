@@ -95,7 +95,7 @@ fun OdsTextToggleButtonsRow(
 /**
  * Contains classes to build an [com.orange.ods.compose.component.button.OdsTextToggleButtonsRow].
  */
-class OdsTextToggleButtonsRow {
+object OdsTextToggleButtonsRow {
 
     /**
      * An item in an [OdsTextToggleButtonsRow].

@@ -28,7 +28,7 @@ import com.orange.ods.compose.utilities.extension.enable
 /**
  * Contains classes to build an [com.orange.ods.compose.component.tab.OdsTabRow] or an [com.orange.ods.compose.component.tab.OdsScrollableTabRow].
  */
-class OdsTabRow {
+object OdsTabRow {
 
     class Tab(
         private val icon: Icon?,

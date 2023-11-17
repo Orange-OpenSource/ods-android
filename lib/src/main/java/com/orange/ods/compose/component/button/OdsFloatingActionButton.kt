@@ -107,7 +107,7 @@ fun OdsExtendedFloatingActionButton(
 /**
  * Contains classes to build a [com.orange.ods.compose.component.button.OdsFloatingActionButton]
  */
-class OdsFloatingActionButton {
+object OdsFloatingActionButton {
 
     /**
      * A button icon in an [OdsFloatingActionButton].

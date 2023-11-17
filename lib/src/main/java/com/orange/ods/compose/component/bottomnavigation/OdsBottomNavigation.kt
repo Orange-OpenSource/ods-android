@@ -64,7 +64,7 @@ fun OdsBottomNavigation(
 /**
  * Contains classes to build a [com.orange.ods.compose.component.bottomnavigation.OdsBottomNavigation].
  */
-class OdsBottomNavigation {
+object OdsBottomNavigation {
 
     /**
      * The recommended configuration for an OdsBottomNavigation item depends on how many items there are

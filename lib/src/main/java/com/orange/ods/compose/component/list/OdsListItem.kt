@@ -275,13 +275,13 @@ private fun Modifier.rootModifier(trailing: OdsListItem.Trailing?, onListItemCli
     }
 }
 
-class OdsListItem {
+object OdsListItem {
 
     /**
      * A leading icon in an [OdsListItem].
      */
     class Icon private constructor(
-        internal val iconType: OdsListItem.Icon.Type,
+        internal val iconType: Type,
         private val graphicsObject: Any,
         private val contentDescription: String,
         tint: Color?

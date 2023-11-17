@@ -97,7 +97,7 @@ fun OdsIconToggleButtonsRow(
 /**
  * Contains classes to build an [com.orange.ods.compose.component.button.OdsIconToggleButtonsRow].
  */
-class OdsIconToggleButtonsRow {
+object OdsIconToggleButtonsRow {
 
     /**
      * An icon of an [OdsIconToggleButtonsRow].

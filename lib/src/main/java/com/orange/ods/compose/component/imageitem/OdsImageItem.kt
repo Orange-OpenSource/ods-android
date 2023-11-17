@@ -130,7 +130,7 @@ fun OdsImageItem(
 /**
  * Contains classes to build an [com.orange.ods.compose.component.imageitem.OdsImageItem].
  */
-class OdsImageItem {
+object OdsImageItem {
 
     enum class LegendAreaDisplayType {
         Below, Overlay, None

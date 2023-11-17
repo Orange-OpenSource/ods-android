@@ -70,7 +70,7 @@ fun OdsDropdownMenu(
 /**
  * Contains classes to build an [com.orange.ods.compose.component.menu.OdsDropdownMenu].
  */
-class OdsDropdownMenu {
+object OdsDropdownMenu {
 
     /**
      * @see androidx.compose.material.DropdownMenuItem

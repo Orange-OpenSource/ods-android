@@ -36,7 +36,7 @@ import com.orange.ods.compose.theme.OdsTheme
 /**
  * Contains classes to build an [com.orange.ods.compose.component.textfield.OdsTextField] or an an [com.orange.ods.compose.component.textfield.password.OdsPasswordTextField].
  */
-class OdsTextField {
+object OdsTextField {
 
     /**
      * A character counter to display below a text field.
