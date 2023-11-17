@@ -32,7 +32,7 @@ import com.orange.ods.app.ui.components.Variant
 import com.orange.ods.app.ui.components.utilities.ComponentCountRow
 import com.orange.ods.app.ui.components.utilities.ComponentCustomizationBottomSheetScaffold
 import com.orange.ods.app.ui.utilities.composable.Subtitle
-import com.orange.ods.compose.component.button.OdsButtonStyle
+import com.orange.ods.compose.component.button.OdsButton
 import com.orange.ods.compose.component.button.OdsTextButton
 import com.orange.ods.compose.component.chip.OdsChoiceChip
 import com.orange.ods.compose.component.chip.OdsChoiceChipsFlowRow
@@ -47,9 +47,9 @@ fun ComponentButtons(variant: Variant) {
     val customizationState = rememberButtonCustomizationState(buttonStyle = rememberSaveable {
         mutableStateOf(
             when (variant) {
-                Variant.ButtonsPrimary -> OdsButtonStyle.Primary
-                Variant.ButtonsFunctional -> OdsButtonStyle.FunctionalPositive
-                else -> OdsButtonStyle.Default
+                Variant.ButtonsPrimary -> OdsButton.Style.Primary
+                Variant.ButtonsFunctional -> OdsButton.Style.FunctionalPositive
+                else -> OdsButton.Style.Default
             }
         )
     })
@@ -68,11 +68,11 @@ fun ComponentButtons(variant: Variant) {
                             chips = listOf(
                                 OdsChoiceChip(
                                     text = stringResource(id = R.string.component_button_style_functional_positive),
-                                    value = OdsButtonStyle.FunctionalPositive
+                                    value = OdsButton.Style.FunctionalPositive
                                 ),
                                 OdsChoiceChip(
                                     text = stringResource(id = R.string.component_button_style_functional_negative),
-                                    value = OdsButtonStyle.FunctionalNegative
+                                    value = OdsButton.Style.FunctionalNegative
                                 )
                             )
                         )

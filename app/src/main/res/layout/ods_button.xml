@@ -26,7 +26,7 @@
 
         <variable
             name="style"
-            type="com.orange.ods.compose.component.button.OdsButtonStyle" />
+            type="com.orange.ods.compose.component.button.OdsButton.Style" />
 
         <variable
             name="displaySurface"

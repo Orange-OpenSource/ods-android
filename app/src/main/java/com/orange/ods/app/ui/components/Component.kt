@@ -39,7 +39,7 @@ import com.orange.ods.app.ui.components.switches.ComponentSwitches
 import com.orange.ods.app.ui.components.tabs.ComponentTabs
 import com.orange.ods.app.ui.components.textfields.ComponentTextField
 import com.orange.ods.compose.OdsComposable
-import com.orange.ods.compose.component.button.OdsButtonStyle
+import com.orange.ods.compose.component.button.OdsButton
 
 sealed class Component(
     @StringRes val titleRes: Int,
@@ -296,8 +296,8 @@ sealed class Variant(
     object AppBarsTopLarge :
         Variant(R.string.component_app_bars_top_large, OdsComposable.OdsLargeTopAppBar.name, largeTopAppBar = true, customizableTopAppBar = true)
 
-    object ButtonsPrimary : Variant(R.string.component_buttons_high_emphasis, "${OdsComposable.OdsButton.name} with ${OdsButtonStyle.Primary.name}")
-    object ButtonsDefault : Variant(R.string.component_buttons_medium_emphasis, "${OdsComposable.OdsButton.name} with ${OdsButtonStyle.Default.name}")
+    object ButtonsPrimary : Variant(R.string.component_buttons_high_emphasis, "${OdsComposable.OdsButton.name} with ${OdsButton.Style.Primary.name}")
+    object ButtonsDefault : Variant(R.string.component_buttons_medium_emphasis, "${OdsComposable.OdsButton.name} with ${OdsButton.Style.Default.name}")
     object ButtonsOutlined : Variant(R.string.component_buttons_low_emphasis, OdsComposable.OdsOutlinedButton.name)
     object ButtonsText : Variant(R.string.component_buttons_lowest_emphasis, OdsComposable.OdsTextButton.name)
     object ButtonsTextToggleGroup : Variant(R.string.component_button_text_toggle_group, OdsComposable.OdsTextToggleButtonsRow.name)

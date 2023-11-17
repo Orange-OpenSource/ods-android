@@ -22,7 +22,6 @@ import androidx.core.content.withStyledAttributes
 import androidx.databinding.BindingAdapter
 import com.google.accompanist.drawablepainter.rememberDrawablePainter
 import com.orange.ods.compose.component.button.OdsButton
-import com.orange.ods.compose.component.button.OdsButtonStyle
 import com.orange.ods.compose.theme.OdsDisplaySurface
 import com.orange.ods.xml.R
 import com.orange.ods.xml.component.OdsAbstractComposeView
@@ -33,7 +32,7 @@ class OdsButton @JvmOverloads constructor(context: Context, attrs: AttributeSet?
 
     var icon by mutableStateOf<Drawable?>(null)
     var text by mutableStateOf("")
-    var style by mutableStateOf(OdsButtonStyle.Default)
+    var style by mutableStateOf(OdsButton.Style.Default)
     var displaySurface by mutableStateOf(OdsDisplaySurface.Default)
 
     var onClick by mutableStateOf({})
@@ -42,7 +41,7 @@ class OdsButton @JvmOverloads constructor(context: Context, attrs: AttributeSet?
         context.withStyledAttributes(attrs, R.styleable.OdsButton) {
             text = getString(R.styleable.OdsButton_text).orEmpty()
             icon = getResourceIdOrNull(R.styleable.OdsButton_icon)?.let { AppCompatResources.getDrawable(context, it) }
-            style = OdsButtonStyle.fromXmlAttrValue(getInteger(R.styleable.OdsButton_odsButtonStyle, 0))
+            style = OdsButton.Style.fromXmlAttrValue(getInteger(R.styleable.OdsButton_odsButtonStyle, 0))
             displaySurface = OdsDisplaySurface.fromXmlAttrValue(getInteger(R.styleable.OdsButton_displaySurface, 0))
         }
     }
@@ -67,7 +66,7 @@ internal object OdsButtonBindingAdapter {
 
     @JvmStatic
     @BindingAdapter("odsButtonStyle")
-    fun com.orange.ods.xml.component.button.OdsButton.setOdsButtonStyle(style: OdsButtonStyle) {
+    fun com.orange.ods.xml.component.button.OdsButton.setOdsButtonStyle(style: OdsButton.Style) {
         this.style = style
     }
 }

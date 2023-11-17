@@ -76,7 +76,7 @@ OdsButton(
 )
 ```
 
-To display a primary button or a functional green/red button, you need to pass an `OdsButtonStyle`
+To display a primary button or a functional green/red button, you need to pass an `OdsButton.Style`
 through the `style` parameter:
 
 ```kotlin
@@ -85,7 +85,7 @@ OdsButton(
     onClick = { doSomething() },
     enabled = true,
     icon = OdsButton.Icon(painterResource(R.drawable.ic_coffee)), // Line can be removed if you don't need any icon
-    style = OdsButtonStyle.FunctionalPositive
+    style = OdsButton.Style.FunctionalPositive
 )
 ```
 
@@ -98,7 +98,7 @@ Parameter | Default&nbsp;value | Description
 `modifier: Modifier` | `Modifier` | `Modifier` applied to the button
 `icon: OdsButton.Icon?` | `null` | Icon displayed in the button before the text
 `enabled: Boolean` | `true` | Controls the enabled state of the button. When `false`, this button will not be clickable.
-`style: OdsButtonStyle` | `OdsButtonStyle.Default` | Style applied to the button. Set it to `OdsButtonStyle.Primary` for an highlighted button style or use `OdsButtonStyle.FunctionalPositive`/ `OdsButtonStyle.FunctionalNegative` for a functional green/red button style.
+`style: OdsButton.Style` | `OdsButton.Style.Default` | Style applied to the button. Set it to `OdsButton.Style.Primary` for an highlighted button style or use `OdsButton.Style.FunctionalPositive`/ `OdsButton.Style.FunctionalNegative` for a functional green/red button style.
 `displaySurface: OdsDisplaySurface` | `OdsDisplaySurface.Default` | `OdsDisplaySurface` applied to the button. It allows to force the button display on light or dark surface. By default, the appearance applied is based on the system night mode value.
 {:.table}
 
