@@ -61,7 +61,7 @@ OdsListItem(
         painterResource(id = R.drawable.ic_heart),
         "Heart"
     ),
-    trailing = OdsListItem.TrailingCheckbox(checked, { checked != checked }),
+    trailing = OdsListItem.TrailingCheckbox(checked) { checked != checked },
     divider = true
 )
 ```
@@ -78,7 +78,7 @@ Parameter | Default&nbsp;value | Description
 `overlineText: String?` | `null` | The text displayed above the primary text
 `trailing: OdsListItem.Trailing?` | `null` | The trailing content to display at the end of the list item
 `divider: Boolean` | `false` | Whether or not a divider is displayed at the bottom of the list item
-`onClick: (() -> Unit)?` | `null` | Will be called when the user clicks the list item. This parameter only has an effect if trailing is `OdsListItemTrailingIcon` or `null`.
+`onClick: (() -> Unit)?` | `null` | Will be called when the user clicks the list item. This parameter only has an effect if trailing is `OdsListItem.TrailingIcon` or `null`.
 {:.table}
 
 ### Two-line list
