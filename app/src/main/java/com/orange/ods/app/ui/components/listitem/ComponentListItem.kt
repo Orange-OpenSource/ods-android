@@ -70,15 +70,15 @@ private fun ComponentListItemBottomSheetContent(listItemCustomizationState: List
 
     Subtitle(textRes = R.string.component_list_leading, horizontalPadding = true)
     OdsChoiceChipsFlowRow(
-        value = listItemCustomizationState.selectedIconType.value,
-        onValueChange = { value -> listItemCustomizationState.selectedIconType.value = value },
+        value = listItemCustomizationState.selectedLeadingIconType.value,
+        onValueChange = { value -> listItemCustomizationState.selectedLeadingIconType.value = value },
         modifier = Modifier.padding(horizontal = dimensionResource(id = com.orange.ods.R.dimen.spacing_m)),
         chips = listOf(
             OdsChoiceChip(text = stringResource(id = R.string.component_list_leading_none), value = null),
-            OdsChoiceChip(text = stringResource(id = R.string.component_list_leading_icon), value = OdsListItem.Icon.Type.Icon),
-            OdsChoiceChip(text = stringResource(id = R.string.component_list_leading_circular_image), value = OdsListItem.Icon.Type.CircularImage),
-            OdsChoiceChip(text = stringResource(id = R.string.component_list_leading_square_image), value = OdsListItem.Icon.Type.SquareImage),
-            OdsChoiceChip(text = stringResource(id = R.string.component_list_leading_wide_image), value = OdsListItem.Icon.Type.WideImage),
+            OdsChoiceChip(text = stringResource(id = R.string.component_list_leading_icon), value = OdsListItem.LeadingIcon.Type.Icon),
+            OdsChoiceChip(text = stringResource(id = R.string.component_list_leading_circular_image), value = OdsListItem.LeadingIcon.Type.CircularImage),
+            OdsChoiceChip(text = stringResource(id = R.string.component_list_leading_square_image), value = OdsListItem.LeadingIcon.Type.SquareImage),
+            OdsChoiceChip(text = stringResource(id = R.string.component_list_leading_wide_image), value = OdsListItem.LeadingIcon.Type.WideImage),
         )
     )
 
@@ -106,8 +106,8 @@ private fun ComponentListItemContent(listItemCustomizationState: ListItemCustomi
 
             val text = recipe.title
             val secondaryText = if (lineCount.value > 1) recipe.description else null
-            val icon = ifNotNull(getIconPainter(recipe), selectedIconType.value) { painter, type ->
-                OdsListItem.Icon(type, painter, "")
+            val leadingIcon = ifNotNull(getIconPainter(recipe), selectedLeadingIconType.value) { painter, type ->
+                OdsListItem.LeadingIcon(type, painter, "")
             }
 
             val context = LocalContext.current
@@ -115,7 +115,7 @@ private fun ComponentListItemContent(listItemCustomizationState: ListItemCustomi
                 text = text,
                 secondaryText = secondaryText,
                 singleLineSecondaryText = singleLineSecondaryText,
-                icon = icon,
+                leadingIcon = leadingIcon,
                 trailing = trailing
             ) {
                 clickOnElement(context = context, context.getString(R.string.component_list_item))
@@ -130,8 +130,8 @@ private fun ComponentListItemContent(listItemCustomizationState: ListItemCustomi
                             string("secondaryText", secondaryText)
                             if (!singleLineSecondaryText) stringRepresentation("singleLineSecondaryText", false)
                         }
-                        selectedIconType.value?.let { iconType ->
-                            classInstance<OdsListItem.Icon>("icon") {
+                        selectedLeadingIconType.value?.let { iconType ->
+                            classInstance<OdsListItem.LeadingIcon>("leadingIcon") {
                                 enum("type", iconType)
                                 painter()
                                 contentDescription("")
@@ -179,11 +179,11 @@ private val Class<out OdsListItem.Trailing>?.textResId: Int
 
 @Composable
 private fun ListItemCustomizationState.getIconPainter(recipe: Recipe): Painter? {
-    return when (selectedIconType.value) {
-        OdsListItem.Icon.Type.Icon -> recipe.iconResId?.let { painterResource(id = it) }
-        OdsListItem.Icon.Type.CircularImage,
-        OdsListItem.Icon.Type.SquareImage,
-        OdsListItem.Icon.Type.WideImage -> {
+    return when (selectedLeadingIconType.value) {
+        OdsListItem.LeadingIcon.Type.Icon -> recipe.iconResId?.let { painterResource(id = it) }
+        OdsListItem.LeadingIcon.Type.CircularImage,
+        OdsListItem.LeadingIcon.Type.SquareImage,
+        OdsListItem.LeadingIcon.Type.WideImage -> {
             val wideImageSizeWidthPx = with(LocalDensity.current) { dimensionResource(id = com.orange.ods.R.dimen.list_wide_image_width).toPx() }
             val wideImageSizeHeightPx = with(LocalDensity.current) { dimensionResource(id = com.orange.ods.R.dimen.list_wide_image_height).toPx() }
             rememberAsyncImagePainter(

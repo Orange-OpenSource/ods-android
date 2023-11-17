@@ -51,8 +51,8 @@ fun ComponentSheetsBottom() {
                 recipes.take(3).forEach { recipe ->
                     OdsListItem(
                         modifier = Modifier.alpha(if (isEmpty) 0.0f else 1.0f),
-                        icon = recipe.iconResId?.let { iconRes ->
-                            OdsListItem.Icon(OdsListItem.Icon.Type.Icon, painterResource(id = iconRes), "")
+                        leadingIcon = recipe.iconResId?.let { iconRes ->
+                            OdsListItem.LeadingIcon(OdsListItem.LeadingIcon.Type.Icon, painterResource(id = iconRes), "")
                         },
                         text = recipe.title
                     )

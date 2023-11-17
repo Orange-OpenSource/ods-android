@@ -79,7 +79,7 @@ import com.orange.ods.extension.orElse
  *
  * @param text The primary text of the list item.
  * @param modifier [Modifier] applied to the list item.
- * @param icon The leading supporting visual of the list item.
+ * @param leadingIcon The leading supporting visual of the list item.
  * @param secondaryText The secondary text of the list item.
  * @param singleLineSecondaryText Whether the secondary text is single line.
  * @param overlineText The text displayed above the primary text.
@@ -92,7 +92,7 @@ import com.orange.ods.extension.orElse
 fun OdsListItem(
     text: String,
     modifier: Modifier = Modifier,
-    icon: OdsListItem.Icon? = null,
+    leadingIcon: OdsListItem.LeadingIcon? = null,
     secondaryText: String? = null,
     singleLineSecondaryText: Boolean = true,
     overlineText: String? = null,
@@ -105,7 +105,7 @@ fun OdsListItem(
         textColor = OdsTheme.colors.onSurface,
         textStyle = OdsTheme.typography.subtitle1,
         modifier = modifier,
-        icon = icon,
+        leadingIcon = leadingIcon,
         secondaryText = secondaryText,
         singleLineSecondaryText = singleLineSecondaryText,
         overlineText = overlineText,
@@ -121,7 +121,7 @@ internal fun OdsListItem(
     textColor: Color,
     textStyle: TextStyle,
     modifier: Modifier = Modifier,
-    icon: OdsListItem.Icon? = null,
+    leadingIcon: OdsListItem.LeadingIcon? = null,
     secondaryText: String? = null,
     singleLineSecondaryText: Boolean = true,
     overlineText: String? = null,
@@ -130,15 +130,15 @@ internal fun OdsListItem(
     onClick: (() -> Unit)? = null
 ) {
     val rootModifier = modifier.rootModifier(trailing, onClick)
-    if (icon?.iconType == OdsListItem.Icon.Type.WideImage) {
+    if (leadingIcon?.iconType == OdsListItem.LeadingIcon.Type.WideImage) {
         Row(modifier = rootModifier, verticalAlignment = Alignment.CenterVertically) {
-            icon.Content()
+            leadingIcon.Content()
             OdsListItemInternal(
                 text = text,
                 textColor = textColor,
                 textStyle = textStyle,
                 modifier = Modifier.weight(1f),
-                icon = null,
+                leadingIcon = null,
                 secondaryText = secondaryText,
                 singleLineSecondaryText = singleLineSecondaryText,
                 overlineText = overlineText,
@@ -151,7 +151,7 @@ internal fun OdsListItem(
             textColor = textColor,
             textStyle = textStyle,
             modifier = rootModifier,
-            icon = icon,
+            leadingIcon = leadingIcon,
             secondaryText = secondaryText,
             singleLineSecondaryText = singleLineSecondaryText,
             overlineText = overlineText,
@@ -160,7 +160,7 @@ internal fun OdsListItem(
     }
 
     if (divider) {
-        OdsDivider(startIndent = getDividerStartIndent(icon?.iconType))
+        OdsDivider(startIndent = getDividerStartIndent(leadingIcon?.iconType))
     }
 }
 
@@ -171,7 +171,7 @@ private fun OdsListItemInternal(
     textColor: Color,
     textStyle: TextStyle,
     modifier: Modifier = Modifier,
-    icon: OdsListItem.Icon? = null,
+    leadingIcon: OdsListItem.LeadingIcon? = null,
     secondaryText: String? = null,
     singleLineSecondaryText: Boolean = true,
     overlineText: String? = null,
@@ -179,8 +179,8 @@ private fun OdsListItemInternal(
 ) {
     val hasText = text.isNotBlank()
     val requiredHeight = computeRequiredHeight(
-        hasIcon = icon != null,
-        iconType = icon?.iconType,
+        hasIcon = leadingIcon != null,
+        leadingIconType = leadingIcon?.iconType,
         hasOverlineText = overlineText.isNotNullOrBlank(),
         hasText = hasText,
         hasSecondaryText = secondaryText.isNotNullOrBlank(),
@@ -192,7 +192,7 @@ private fun OdsListItemInternal(
         modifier = modifier
             .fillMaxWidth()
             .requiredHeight(requiredHeight),
-        icon = icon?.let { { it.Content() } },
+        icon = leadingIcon?.let { { it.Content() } },
         secondaryText = if (secondaryText.isNotNullOrBlank()) {
             {
                 Text(
@@ -224,13 +224,13 @@ private fun OdsListItemInternal(
 @Composable
 private fun computeRequiredHeight(
     hasIcon: Boolean,
-    iconType: OdsListItem.Icon.Type?,
+    leadingIconType: OdsListItem.LeadingIcon.Type?,
     hasOverlineText: Boolean,
     hasText: Boolean,
     hasSecondaryText: Boolean,
     singleLineSecondaryText: Boolean
 ): Dp {
-    val wideImage = iconType == OdsListItem.Icon.Type.WideImage
+    val wideImage = leadingIconType == OdsListItem.LeadingIcon.Type.WideImage
     val heightRes = when {
         // single-line
         !hasOverlineText && (!hasSecondaryText || !hasText) -> when {
@@ -283,7 +283,7 @@ object OdsListItem {
     /**
      * A leading icon in an [OdsListItem].
      */
-    class Icon private constructor(
+    class LeadingIcon private constructor(
         internal val iconType: Type,
         private val graphicsObject: Any,
         private val contentDescription: String,
@@ -291,29 +291,29 @@ object OdsListItem {
     ) : OdsComponentContent<Nothing>() {
 
         /**
-         * Creates an instance of [OdsListItem.Icon].
+         * Creates an instance of [OdsListItem.LeadingIcon].
          *
          * @param type The type of icon.
          * @param painter Painter of the icon.
-         * @param contentDescription The content description associated to this [OdsListItem.Icon].
+         * @param contentDescription The content description associated to this [OdsListItem.LeadingIcon].
          */
         constructor(type: Type, painter: Painter, contentDescription: String) : this(type, painter as Any, contentDescription, null)
 
         /**
-         * Creates an instance of [OdsListItem.Icon].
+         * Creates an instance of [OdsListItem.LeadingIcon].
          *
          * @param type The type of icon.
          * @param imageVector Image vector of the icon.
-         * @param contentDescription The content description associated to this [OdsListItem.Icon].
+         * @param contentDescription The content description associated to this [OdsListItem.LeadingIcon].
          */
         constructor(type: Type, imageVector: ImageVector, contentDescription: String) : this(type, imageVector as Any, contentDescription, null)
 
         /**
-         * Creates an instance of [OdsListItem.Icon].
+         * Creates an instance of [OdsListItem.LeadingIcon].
          *
          * @param type The type of icon.
          * @param bitmap Image bitmap of the icon.
-         * @param contentDescription The content description associated to this [OdsListItem.Icon].
+         * @param contentDescription The content description associated to this [OdsListItem.LeadingIcon].
          */
         constructor(type: Type, bitmap: ImageBitmap, contentDescription: String) : this(type, bitmap as Any, contentDescription, null)
 
@@ -534,12 +534,12 @@ object OdsListItem {
 }
 
 @Composable
-private fun getDividerStartIndent(iconType: OdsListItem.Icon.Type?): Dp {
-    return when (iconType) {
-        OdsListItem.Icon.Type.Icon,
-        OdsListItem.Icon.Type.CircularImage -> dimensionResource(id = R.dimen.avatar_size) + dimensionResource(id = R.dimen.spacing_m).times(2)
-        OdsListItem.Icon.Type.SquareImage -> dimensionResource(id = R.dimen.list_square_image_size) + dimensionResource(id = R.dimen.spacing_m).times(2)
-        OdsListItem.Icon.Type.WideImage -> dimensionResource(id = R.dimen.list_wide_image_width) + dimensionResource(id = R.dimen.spacing_m)
+private fun getDividerStartIndent(leadingIconType: OdsListItem.LeadingIcon.Type?): Dp {
+    return when (leadingIconType) {
+        OdsListItem.LeadingIcon.Type.Icon,
+        OdsListItem.LeadingIcon.Type.CircularImage -> dimensionResource(id = R.dimen.avatar_size) + dimensionResource(id = R.dimen.spacing_m).times(2)
+        OdsListItem.LeadingIcon.Type.SquareImage -> dimensionResource(id = R.dimen.list_square_image_size) + dimensionResource(id = R.dimen.spacing_m).times(2)
+        OdsListItem.LeadingIcon.Type.WideImage -> dimensionResource(id = R.dimen.list_wide_image_width) + dimensionResource(id = R.dimen.spacing_m)
         null -> dimensionResource(id = R.dimen.spacing_m)
     }
 }
@@ -551,14 +551,14 @@ private fun PreviewOdsListItem(@PreviewParameter(OdsListItemPreviewParameterProv
         var trailingState by remember { mutableStateOf(false) }
         OdsListItem(
             text = "Text",
-            icon = iconType?.let { iconType ->
+            leadingIcon = leadingIconType?.let { iconType ->
                 val painter = when (iconType) {
-                    OdsListItem.Icon.Type.Icon -> rememberVectorPainter(image = Icons.Default.AccountBox)
-                    OdsListItem.Icon.Type.CircularImage,
-                    OdsListItem.Icon.Type.SquareImage,
-                    OdsListItem.Icon.Type.WideImage -> painterResource(id = R.drawable.placeholder_small)
+                    OdsListItem.LeadingIcon.Type.Icon -> rememberVectorPainter(image = Icons.Default.AccountBox)
+                    OdsListItem.LeadingIcon.Type.CircularImage,
+                    OdsListItem.LeadingIcon.Type.SquareImage,
+                    OdsListItem.LeadingIcon.Type.WideImage -> painterResource(id = R.drawable.placeholder_small)
                 }
-                OdsListItem.Icon(iconType, painter, "")
+                OdsListItem.LeadingIcon(iconType, painter, "")
             },
             secondaryText = secondaryText,
             singleLineSecondaryText = singleLineSecondaryText,
@@ -577,7 +577,7 @@ private fun PreviewOdsListItem(@PreviewParameter(OdsListItemPreviewParameterProv
 internal data class OdsListItemPreviewParameter(
     val secondaryText: String?,
     val singleLineSecondaryText: Boolean,
-    val iconType: OdsListItem.Icon.Type?,
+    val leadingIconType: OdsListItem.LeadingIcon.Type?,
     val trailingClass: Class<out OdsListItem.Trailing>?
 )
 
@@ -591,9 +591,9 @@ private val previewParameterValues: List<OdsListItemPreviewParameter>
         return listOf(
             OdsListItemPreviewParameter(null, true, null, null),
             OdsListItemPreviewParameter(longSecondaryText, true, null, OdsListItem.TrailingCheckbox::class.java),
-            OdsListItemPreviewParameter(shortSecondaryText, true, OdsListItem.Icon.Type.Icon, OdsListItem.TrailingIcon::class.java),
-            OdsListItemPreviewParameter(longSecondaryText, false, OdsListItem.Icon.Type.SquareImage, OdsListItem.TrailingSwitch::class.java),
-            OdsListItemPreviewParameter(longSecondaryText, false, OdsListItem.Icon.Type.WideImage, OdsListItem.TrailingCaption::class.java),
-            OdsListItemPreviewParameter(shortSecondaryText, true, OdsListItem.Icon.Type.CircularImage, OdsListItem.TrailingRadioButton::class.java)
+            OdsListItemPreviewParameter(shortSecondaryText, true, OdsListItem.LeadingIcon.Type.Icon, OdsListItem.TrailingIcon::class.java),
+            OdsListItemPreviewParameter(longSecondaryText, false, OdsListItem.LeadingIcon.Type.SquareImage, OdsListItem.TrailingSwitch::class.java),
+            OdsListItemPreviewParameter(longSecondaryText, false, OdsListItem.LeadingIcon.Type.WideImage, OdsListItem.TrailingCaption::class.java),
+            OdsListItemPreviewParameter(shortSecondaryText, true, OdsListItem.LeadingIcon.Type.CircularImage, OdsListItem.TrailingRadioButton::class.java)
         )
     }

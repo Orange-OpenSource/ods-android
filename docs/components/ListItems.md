@@ -50,13 +50,13 @@ Please note that there is no start padding with wide images.
 
 The library offers the `OdsListItem` composable to display lists items.
 
-The `OdsListItem` composable allows you to display a leading icon using the `icon` parameter of the `OdsListItem` method, as well as a trailing element (either a checkbox, a switch, a radio button, an icon or a caption text) using the `trailing` parameter.
+The `OdsListItem` composable allows you to display a leading icon using the `leadingIcon` parameter of the `OdsListItem` method, as well as a trailing element (either a checkbox, a switch, a radio button, an icon or a caption text) using the `trailing` parameter.
 
 ```kotlin
 OdsListItem(
     modifier = Modifier.clickable { doSomething() },
     text = "Primary text",
-    icon = OdsListItem.Icon(
+    leadingIcon = OdsListItem.Icon(
         OdsListItem.Icon.Type.Icon,
         painterResource(id = R.drawable.ic_heart),
         "Heart"
@@ -72,7 +72,7 @@ Parameter | Default&nbsp;value | Description
 -- | -- | --
 `text: String` | | The primary text of the list item
 `modifier: Modifier` | `Modifier` | Modifier to be applied to the list item
-`icon: OdsListItem.Icon?` | `null` | The leading supporting visual of the list item
+`leadingIcon: OdsListItem.Icon?` | `null` | The leading supporting visual of the list item
 `secondaryText: String?` | `null` | The secondary text of the list item
 `singleLineSecondaryText: Boolean` | `true` | Whether the secondary text is single line
 `overlineText: String?` | `null` | The text displayed above the primary text
@@ -104,8 +104,8 @@ OdsListItem(
     modifier = Modifier.clickable { doSomething() },
     text = "Primary text",
     secondaryText = "Secondary text",
-    icon = OdsListItem.Icon(
-        OdsListItem.Icon.Type.CircularImage,
+    leadingIcon = OdsListItem.LeadingIcon(
+        OdsListItem.LeadingIcon.Type.CircularImage,
         painterResource(id = R.drawable.placeholder, "")
     ),
     trailing = OdsListItem.TrailingIcon(
@@ -142,8 +142,8 @@ OdsListItem(
     text = "Primary text",
     secondaryText = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor.",
     singleLineSecondaryText = false,
-    icon = OdsListItem.Icon(
-        OdsListItem.Icon.Type.SquareImage,
+    leadingIcon = OdsListItem.LeadingIcon(
+        OdsListItem.LeadingIcon.Type.SquareImage,
         painter = painterResource(id = R.drawable.placeholder),
         ""
     ),

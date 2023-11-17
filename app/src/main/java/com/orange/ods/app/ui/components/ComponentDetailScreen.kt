@@ -66,7 +66,7 @@ fun ComponentDetailScreen(
 @Composable
 private fun ComponentDetailLinkItem(label: String, composableName: String?, onClick: () -> Unit) {
     OdsListItem(
-        icon = OdsListItem.Icon(OdsListItem.Icon.Type.Icon, painterResource(id = R.drawable.ic_play_outline), ""),
+        leadingIcon = OdsListItem.LeadingIcon(OdsListItem.LeadingIcon.Type.Icon, painterResource(id = R.drawable.ic_play_outline), ""),
         text = label,
         secondaryText = composableName,
         onClick = onClick

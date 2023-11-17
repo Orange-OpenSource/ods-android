@@ -25,17 +25,17 @@ import com.orange.ods.compose.component.listitem.OdsListItem
 fun rememberListItemCustomizationState(
     bottomSheetScaffoldState: BottomSheetScaffoldState = rememberBottomSheetScaffoldState(),
     lineCount: MutableState<Int> = rememberSaveable { mutableStateOf(ListItemCustomizationState.DefaultLineCount) },
-    selectedIconType: MutableState<OdsListItem.Icon.Type?> = rememberSaveable { mutableStateOf(null) },
+    selectedLeadingIconType: MutableState<OdsListItem.LeadingIcon.Type?> = rememberSaveable { mutableStateOf(null) },
     selectedTrailing: MutableState<Class<out OdsListItem.Trailing>?> = rememberSaveable { mutableStateOf(null) },
 ) = remember(lineCount) {
-    ListItemCustomizationState(bottomSheetScaffoldState, lineCount, selectedIconType, selectedTrailing)
+    ListItemCustomizationState(bottomSheetScaffoldState, lineCount, selectedLeadingIconType, selectedTrailing)
 }
 
 @OptIn(ExperimentalMaterialApi::class)
 class ListItemCustomizationState(
     val bottomSheetScaffoldState: BottomSheetScaffoldState,
     val lineCount: MutableState<Int>,
-    val selectedIconType: MutableState<OdsListItem.Icon.Type?>,
+    val selectedLeadingIconType: MutableState<OdsListItem.LeadingIcon.Type?>,
     val selectedTrailing: MutableState<Class<out OdsListItem.Trailing>?>,
 ) {
     companion object {

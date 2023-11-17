@@ -167,8 +167,8 @@ object OdsModalDrawer {
                         .let {
                             if (selected) it.background(OdsTheme.colors.primaryVariant.copy(alpha = SelectedItemOpacity)) else it
                         },
-                    icon = leadingIcon?.let {
-                        OdsListItem.Icon(it, "", if (selected) OdsTheme.colors.primaryVariant else OdsTheme.colors.onSurface)
+                    leadingIcon = leadingIcon?.let {
+                        OdsListItem.LeadingIcon(it, "", if (selected) OdsTheme.colors.primaryVariant else OdsTheme.colors.onSurface)
                     }
                 )
             }

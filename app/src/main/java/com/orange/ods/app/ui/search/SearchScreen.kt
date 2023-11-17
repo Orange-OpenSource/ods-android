@@ -167,7 +167,7 @@ fun SearchScreen(onResultItemClick: (String, Long?) -> Unit) {
                 text = item.title,
                 secondaryText = item.subtitle,
                 singleLineSecondaryText = true,
-                icon = OdsListItem.Icon(OdsListItem.Icon.Type.SquareImage, painter, "")
+                leadingIcon = OdsListItem.LeadingIcon(OdsListItem.LeadingIcon.Type.SquareImage, painter, "")
             ) {
                 when (item.data) {
                     is Component -> onResultItemClick(ComponentsNavigation.ComponentDetailRoute, item.id)
