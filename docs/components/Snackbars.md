@@ -51,8 +51,8 @@ With action button:
 
 ### Jetpack Compose
 
-We advise you to use a `Scaffold` to add an `OdsSnackbar` in order to make sure everything is displayed together in the right place according to Material Design.
-Then use `OdsSnackbarHost` which provides the good margins to display the snackbar and `OdsSnackbar` as follow:
+We advise you to use a `Scaffold` to add an `OdsSnackbarHost.Snackbar` in order to make sure everything is displayed together in the right place according to Material Design.
+Then use `OdsSnackbarHost` which provides the good margins to display the snackbar and `OdsSnackbarHost.Snackbar` as follow:
 
 ```kotlin
 val scaffoldState = rememberScaffoldState()
@@ -62,7 +62,7 @@ Scaffold(
     scaffoldState = scaffoldState,
     snackbarHost = {
         OdsSnackbarHost(hostState = it) { data ->
-            OdsSnackbar(data = data, actionOnNewLine = true, onActionClick = {
+            OdsSnackbarHost.Snackbar(data = data, actionOnNewLine = true, onActionClick = {
                 doSomething()
             })
         }
@@ -90,5 +90,5 @@ Parameter | Default&nbsp;value | Description
 -- | -- | --
 `hostState: SnackbarHostState` | | State of this component to read and show `OdsSnackbar` accordingly.
 `modifier: Modifier` | `Modifier` | `Modifier` applied to the snackbar host
-`snackbar: (SnackbarData) -> OdsSnackbar` | `{ OdsSnackbar(it) }` | Instance of the `OdsSnackbar` to be shown at the appropriate time with appearance based on the `SnackbarData` provided as a param
+`snackbar: (SnackbarData) -> OdsSnackbarHost.Snackbar` | `{ OdsSnackbarHost.Snackbar(it) }` | Instance of the `OdsSnackbarHost.Snackbar` to be shown at the appropriate time with appearance based on the `SnackbarData` provided as a param
 {:.table}

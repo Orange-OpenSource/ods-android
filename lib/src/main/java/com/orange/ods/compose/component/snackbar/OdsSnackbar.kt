@@ -48,7 +48,7 @@ import com.orange.ods.compose.theme.OdsDisplaySurface
 fun OdsSnackbarHost(
     hostState: SnackbarHostState,
     modifier: Modifier = Modifier,
-    snackbar: (SnackbarData) -> OdsSnackbar = { OdsSnackbar(it) }
+    snackbar: (SnackbarData) -> OdsSnackbarHost.Snackbar = { OdsSnackbarHost.Snackbar(it) }
 ) {
     SnackbarHost(
         modifier = modifier.padding(dimensionResource(id = R.dimen.spacing_s)),
@@ -58,25 +58,29 @@ fun OdsSnackbarHost(
 }
 
 /**
- * A snackbar in an [OdsSnackbarHost].
- *
- * @constructor Creates an instance of [OdsSnackbar].
- * @param data Data used to create the snackbar.
- * @param actionOnNewLine Whether or not the action should be put on a separate line. Recommended for action with long action text.
- * @param onActionClick Callback invoked when the action button is clicked.
+ * Contains classes to build an [com.orange.ods.compose.component.snackbar.OdsSnackbarHost].
  */
-class OdsSnackbar(private val data: SnackbarData, private val actionOnNewLine: Boolean = false, private val onActionClick: () -> Unit = {}) :
-    OdsComponentContent<Nothing>() {
+object OdsSnackbarHost {
+    /**
+     * A snackbar in an [OdsSnackbarHost].
+     *
+     * @param data Data used to create the snackbar.
+     * @param actionOnNewLine Whether or not the action should be put on a separate line. Recommended for action with long action text.
+     * @param onActionClick Callback invoked when the action button is clicked.
+     */
+    class Snackbar(private val data: SnackbarData, private val actionOnNewLine: Boolean = false, private val onActionClick: () -> Unit = {}) :
+        OdsComponentContent<Nothing>() {
 
-    @Composable
-    override fun Content(modifier: Modifier) {
-        OdsSnackbar(
-            modifier = modifier,
-            message = data.message,
-            actionLabel = data.actionLabel,
-            actionOnNewLine = actionOnNewLine,
-            onActionClick = onActionClick
-        )
+        @Composable
+        override fun Content(modifier: Modifier) {
+            OdsSnackbar(
+                modifier = modifier,
+                message = data.message,
+                actionLabel = data.actionLabel,
+                actionOnNewLine = actionOnNewLine,
+                onActionClick = onActionClick
+            )
+        }
     }
 }
 

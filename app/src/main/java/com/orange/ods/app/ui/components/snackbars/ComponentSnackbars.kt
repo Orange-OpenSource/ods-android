@@ -37,7 +37,6 @@ import com.orange.ods.app.ui.utilities.code.IndentCodeColumn
 import com.orange.ods.app.ui.utilities.composable.TechnicalText
 import com.orange.ods.compose.OdsComposable
 import com.orange.ods.compose.component.listitem.OdsListItem
-import com.orange.ods.compose.component.snackbar.OdsSnackbar
 import com.orange.ods.compose.component.snackbar.OdsSnackbarHost
 import com.orange.ods.compose.text.OdsTextBody2
 import kotlinx.coroutines.CoroutineScope
@@ -64,7 +63,7 @@ fun ComponentSnackbars() {
         bottomSheetScaffoldState = bottomSheetScaffoldState,
         snackbarHost = {
             OdsSnackbarHost(hostState = it) { data ->
-                OdsSnackbar(data = data, actionOnNewLine = actionOnNewLineChecked, onActionClick = {
+                OdsSnackbarHost.Snackbar(data = data, actionOnNewLine = actionOnNewLineChecked, onActionClick = {
                     clickOnElement(context = context, clickedElement = snackbarActionButton)
                 })
             }
@@ -108,7 +107,7 @@ fun ComponentSnackbars() {
                         parameters = { simple("hostState", "<SnackbarHostState>") }
                     ) {
                         FunctionCallCode(
-                            name = OdsComposable.OdsSnackbar.name,
+                            name = "OdsSnackbarHost.Snackbar",
                             parameters = {
                                 simple("snackbarData", "data")
                                 if (actionOnNewLineChecked) stringRepresentation("actionOnNewLine", true)
