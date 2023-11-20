@@ -68,6 +68,9 @@ class AppBarState(
         )
     }
 
+    private val previousRoute: String?
+        @Composable get() = navController.previousBackStackEntry?.destination?.route
+
     private val currentBackStackEntry: NavBackStackEntry?
         @Composable get() = navController.currentBackStackEntryAsState().value
 
@@ -85,7 +88,7 @@ class AppBarState(
 
     private val showNavigationIcon: Boolean
         @Composable get() = (isCustom && customAppBarConfiguration.value.isNavigationIconEnabled)
-                    || (!isCustom && currentScreen?.isHome == false)
+                    || (!isCustom && currentScreen?.isHome(previousRoute) == false)
 
     val isLarge: Boolean
         @Composable get() = currentScreen?.isLargeAppBar == true
@@ -99,7 +102,7 @@ class AppBarState(
 
     val actions: List<OdsComponentContent<Nothing>>
         @Composable get() {
-            val screenAppBarActions = currentScreen?.getAppBarActions { searchText.value = it }.orEmpty()
+            val screenAppBarActions = currentScreen?.getAppBarActions(previousRoute) { searchText.value = it }.orEmpty()
             return if (isCustom) {
                 val context = LocalContext.current
                 val customActionCount = max(0, customAppBarConfiguration.value.actionCount - AppBarAction.defaultActions.size)

@@ -62,15 +62,16 @@ sealed class Screen(
         val appBarActionClicked: Flow<AppBarAction> = _appBarActionClicked.asSharedFlow()
     }
 
-    val isHome: Boolean
-        get() = this in listOf(Guidelines, Components, Modules, About)
+    fun isHome(previousRoute: String?): Boolean {
+        return (this in listOf(Guidelines, Components, Modules, About)) && previousRoute != ModuleDemoDestinations.AboutModuleCustomizationRoute
+    }
 
     val hasCustomAppBar: Boolean
         get() = this is ComponentVariant && Variant.fromId(this.variantId)?.customizableTopAppBar == true
 
     @Composable
-    fun getAppBarActions(onSearchedTextChange: (TextFieldValue) -> Unit): List<OdsComponentContent<Nothing>> = when {
-        isHome -> getHomeActions { action -> _appBarActionClicked.tryEmit(action) }
+    fun getAppBarActions(previousRoute: String?, onSearchedTextChange: (TextFieldValue) -> Unit): List<OdsComponentContent<Nothing>> = when {
+        isHome(previousRoute) -> getHomeActions { action -> _appBarActionClicked.tryEmit(action) }
         this is Search -> listOf(getSearchFieldAction(onSearchedTextChange))
         else -> getDefaultActions { action -> _appBarActionClicked.tryEmit(action) }
     }
