@@ -73,7 +73,6 @@ fun ComponentSheetsBottom() {
                     OdsChoiceChipsFlowRow(
                         value = content.value,
                         onValueChange = { value -> content.value = value },
-                        modifier = Modifier.padding(horizontal = dimensionResource(id = com.orange.ods.R.dimen.spacing_m)),
                         chips = listOf(
                             OdsChoiceChip(text = stringResource(id = R.string.component_element_empty), value = SheetsBottomCustomizationState.Content.Empty),
                             OdsChoiceChip(
@@ -84,7 +83,7 @@ fun ComponentSheetsBottom() {
                     )
                 }
 
-                CodeImplementationColumn {
+                CodeImplementationColumn(modifier = Modifier.padding(horizontal = dimensionResource(id = com.orange.ods.R.dimen.screen_horizontal_margin))) {
                     FunctionCallCode(
                         name = OdsComposable.OdsBottomSheetScaffold.name,
                         exhaustiveParameters = false,

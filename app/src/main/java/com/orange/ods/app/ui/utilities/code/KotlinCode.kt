@@ -14,6 +14,7 @@ import androidx.compose.runtime.Composable
 import com.orange.ods.app.ui.utilities.composable.TechnicalText
 import com.orange.ods.extension.fullName
 import com.orange.ods.extension.orElse
+import com.orange.ods.extension.simpleNestedName
 
 const val IconPainterValue = "<icon painter>"
 const val ImagePainterValue = "<image painter>"
@@ -63,7 +64,7 @@ private open class FunctionParameter(name: String, val value: Function) : CodePa
         }
 }
 
-private class ClassInstanceParameter(name: String, value: ClassInstance) : FunctionParameter(name, with(value) { Function(clazz.simpleName, parameters) })
+private class ClassInstanceParameter(name: String, value: ClassInstance) : FunctionParameter(name, value)
 
 private class ListParameter(name: String, val value: List<Function>) : CodeParameter(name) {
     override val code
@@ -78,7 +79,7 @@ private class ListParameter(name: String, val value: List<Function>) : CodeParam
         }
 }
 
-class ClassInstance(val clazz: Class<*>, parameters: ParametersBuilder.() -> Unit = {}) : Function(clazz.simpleName, parameters)
+class ClassInstance(val clazz: Class<*>, parameters: ParametersBuilder.() -> Unit = {}) : Function(clazz.simpleNestedName, parameters)
 open class Function(val name: String, val parameters: ParametersBuilder.() -> Unit = {})
 
 private sealed class PredefinedParameter {
