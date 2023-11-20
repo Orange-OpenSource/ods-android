@@ -65,7 +65,7 @@ OdsChip(
     leading = OdsChip.LeadingAvatar(
         painterResource(id = R.drawable.avatar),
         "Avatar"
-    ), // Set it to `null` for no avatar or provide a `leadingIcon`
+    ),
     enabled = true,
     onCancel = {
         doSomething()
