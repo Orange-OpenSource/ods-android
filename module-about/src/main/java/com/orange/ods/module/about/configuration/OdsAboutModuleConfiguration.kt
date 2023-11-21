@@ -12,8 +12,8 @@ package com.orange.ods.module.about.configuration
 
 import androidx.annotation.DrawableRes
 import androidx.compose.runtime.staticCompositionLocalOf
-import com.orange.ods.compose.component.appbar.top.OdsTopAppBarActionButton
-import com.orange.ods.compose.component.appbar.top.OdsTopAppBarOverflowMenuActionItem
+import com.orange.ods.compose.component.appbar.top.OdsTopAppBar
+import com.orange.ods.compose.component.menu.OdsDropdownMenu
 import com.orange.ods.module.about.R
 
 
@@ -63,12 +63,12 @@ data class OdsAboutModuleConfiguration(
     /**
      * The optional actions displayed at the end of the About module TopAppBar.
      */
-    val topAppBarActions: List<OdsTopAppBarActionButton> = emptyList(),
+    val topAppBarActions: List<OdsTopAppBar.ActionButton> = emptyList(),
 
     /**
      * The optional actions displayed in the overflow menu of the About module TopAppBar. If the list is empty, the overflow menu icon will not be displayed.
      */
-    val topAppBarOverflowMenuActions: List<OdsTopAppBarOverflowMenuActionItem> = emptyList(),
+    val topAppBarOverflowMenuActions: List<OdsDropdownMenu.Item> = emptyList(),
 
     )
 
