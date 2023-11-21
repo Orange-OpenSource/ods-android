@@ -48,7 +48,7 @@ sealed class Component(
     @StringRes val descriptionRes: Int,
     val variants: List<Variant> = emptyList(),
     val composableName: String? = null,
-    val demoScreen: @Composable (variant: Variant?, upPress: () -> Unit) -> Unit,
+    val demoScreen: @Composable (variant: Variant?) -> Unit,
     val imageAlignment: Alignment = Alignment.Center,
 ) {
 
@@ -64,7 +64,7 @@ sealed class Component(
         R.drawable.il_app_bars_top_small,
         R.string.component_app_bars_top_description,
         variants = listOf(Variant.AppBarsTopRegular, Variant.AppBarsTopLarge),
-        demoScreen = { variant, _ -> if (variant != null) ComponentTopAppBar(variant) },
+        demoScreen = { variant -> if (variant != null) ComponentTopAppBar(variant) },
         imageAlignment = Alignment.TopCenter
     )
 
@@ -74,7 +74,7 @@ sealed class Component(
         null,
         R.string.component_banners_description,
         composableName = OdsComposable.OdsBanner.name,
-        demoScreen = { _, _ -> ComponentBanners() }
+        demoScreen = { _ -> ComponentBanners() }
     )
 
     data object BottomNavigation :
@@ -84,7 +84,7 @@ sealed class Component(
             null,
             R.string.component_bottom_navigation_description,
             composableName = OdsComposable.OdsBottomNavigation.name,
-            demoScreen = { _, _ -> ComponentBottomNavigation() },
+            demoScreen = { _ -> ComponentBottomNavigation() },
             imageAlignment = Alignment.TopCenter
         )
 
@@ -101,7 +101,7 @@ sealed class Component(
             Variant.ButtonsFunctional,
             Variant.ButtonsTextToggleGroup
         ),
-        demoScreen = { variant, _ -> if (variant != null) ComponentButtons(variant = variant) }
+        demoScreen = { variant -> if (variant != null) ComponentButtons(variant = variant) }
     )
 
     data object ButtonsIcons : Component(
@@ -114,7 +114,7 @@ sealed class Component(
             Variant.ButtonsIconToggle,
             Variant.ButtonsIconToggleGroup
         ),
-        demoScreen = { variant, _ -> if (variant != null) ComponentButtonsIcons(variant = variant) }
+        demoScreen = { variant -> if (variant != null) ComponentButtonsIcons(variant = variant) }
     )
 
     data object Cards : Component(
@@ -123,7 +123,7 @@ sealed class Component(
         null,
         R.string.component_card_description,
         listOf(Variant.CardVerticalImageFirst, Variant.CardVerticalHeaderFirst, Variant.CardSmall, Variant.CardHorizontal),
-        demoScreen = { variant, _ -> if (variant != null) ComponentCard(variant = variant) }
+        demoScreen = { variant -> if (variant != null) ComponentCard(variant = variant) }
     )
 
     data object Checkboxes : Component(
@@ -132,7 +132,7 @@ sealed class Component(
         null,
         R.string.component_checkboxes_description,
         composableName = OdsComposable.OdsCheckbox.name,
-        demoScreen = { _, _ -> ComponentCheckboxes() }
+        demoScreen = { _ -> ComponentCheckboxes() }
     )
 
     data object Chips : Component(
@@ -141,7 +141,7 @@ sealed class Component(
         R.drawable.il_chips_small,
         R.string.component_chips_description,
         listOf(Variant.ChipAction, Variant.ChipChoice, Variant.ChipInput, Variant.ChipFilter),
-        demoScreen = { variant, _ ->
+        demoScreen = { variant ->
             when {
                 variant == Variant.ChipFilter -> ChipFilter()
                 variant != null -> Chip(variant = variant)
@@ -155,7 +155,7 @@ sealed class Component(
         null,
         R.string.component_dialogs_description,
         composableName = OdsComposable.OdsAlertDialog.name,
-        demoScreen = { _, _ -> ComponentDialog() }
+        demoScreen = { _ -> ComponentDialog() }
     )
 
     data object FloatingActionButtons : Component(
@@ -164,7 +164,7 @@ sealed class Component(
         null,
         R.string.component_floating_action_buttons_description,
         composableName = OdsComposable.OdsFloatingActionButton.name,
-        demoScreen = { _, _ -> ComponentFloatingActionButton() }
+        demoScreen = { _ -> ComponentFloatingActionButton() }
     )
 
     object ImageItem : Component(
@@ -173,7 +173,7 @@ sealed class Component(
         null,
         R.string.component_image_item_description,
         composableName = OdsComposable.OdsImageItem.name,
-        demoScreen = { _, _ -> ComponentImageItem() }
+        demoScreen = { _ -> ComponentImageItem() }
     )
 
     data object ListItem : Component(
@@ -182,7 +182,7 @@ sealed class Component(
         null,
         R.string.component_list_item_description,
         composableName = OdsComposable.OdsListItem.name,
-        demoScreen = { _, _ -> ComponentListItem() }
+        demoScreen = { _ -> ComponentListItem() }
     )
 
     data object Menus : Component(
@@ -191,7 +191,7 @@ sealed class Component(
         null,
         R.string.component_menus_description,
         listOf(Variant.DropdownMenu, Variant.ExposedDropdownMenu),
-        demoScreen = { variant, _ -> if (variant != null) ComponentMenu(variant = variant) }
+        demoScreen = { variant -> if (variant != null) ComponentMenu(variant = variant) }
     )
 
     data object ModalDrawers : Component(
@@ -199,7 +199,7 @@ sealed class Component(
         R.drawable.il_navigation_drawers,
         null,
         R.string.component_modal_drawers_description,
-        demoScreen = { _, _ -> ComponentModalDrawers() }
+        demoScreen = { _ -> ComponentModalDrawers() }
     )
 
     data object Progress : Component(
@@ -208,7 +208,7 @@ sealed class Component(
         null,
         R.string.component_progress_description,
         listOf(Variant.ProgressLinear, Variant.ProgressCircular),
-        demoScreen = { variant, _ -> if (variant != null) ComponentProgress(variant = variant) }
+        demoScreen = { variant -> if (variant != null) ComponentProgress(variant = variant) }
     )
 
     data object RadioButtons : Component(
@@ -217,7 +217,7 @@ sealed class Component(
         null,
         R.string.component_radio_buttons_description,
         composableName = OdsComposable.OdsRadioButton.name,
-        demoScreen = { _, _ -> ComponentRadioButtons() }
+        demoScreen = { _ -> ComponentRadioButtons() }
     )
 
     data object SheetsBottom : Component(
@@ -226,7 +226,7 @@ sealed class Component(
         null,
         R.string.component_sheet_bottom_description,
         composableName = OdsComposable.OdsBottomSheetScaffold.name,
-        demoScreen = { _, _ -> ComponentSheetsBottom() }
+        demoScreen = { _ -> ComponentSheetsBottom() }
     )
 
     data object Sliders : Component(
@@ -235,7 +235,7 @@ sealed class Component(
         null,
         R.string.component_sliders_description,
         composableName = OdsComposable.OdsSlider.name,
-        demoScreen = { _, _ -> ComponentSliders() }
+        demoScreen = { _ -> ComponentSliders() }
     )
 
     data object Snackbars : Component(
@@ -244,7 +244,7 @@ sealed class Component(
         R.drawable.il_snackbars_small,
         R.string.component_snackbars_description,
         composableName = OdsComposable.OdsSnackbar.name,
-        demoScreen = { _, _ -> ComponentSnackbars() }
+        demoScreen = { _ -> ComponentSnackbars() }
     )
 
     data object Switches : Component(
@@ -253,7 +253,7 @@ sealed class Component(
         R.drawable.il_switches_small,
         R.string.component_switches_description,
         composableName = OdsComposable.OdsSwitch.name,
-        demoScreen = { _, _ -> ComponentSwitches() }
+        demoScreen = { _ -> ComponentSwitches() }
     )
 
     data object TextFields : Component(
@@ -262,7 +262,7 @@ sealed class Component(
         R.drawable.il_text_fields_small,
         R.string.component_text_fields_description,
         listOf(Variant.TextField, Variant.TextFieldPassword),
-        demoScreen = { variant, _ -> if (variant != null) ComponentTextField(variant = variant) }
+        demoScreen = { variant -> if (variant != null) ComponentTextField(variant = variant) }
     )
 
     data object Tabs : Component(
@@ -271,7 +271,7 @@ sealed class Component(
         R.drawable.il_tabs_small,
         R.string.component_tabs_description,
         listOf(Variant.TabsFixed, Variant.TabsScrollable),
-        demoScreen = { variant, upPress -> if (variant != null) ComponentTabs(variant = variant, upPress = upPress) }
+        demoScreen = { variant -> if (variant != null) ComponentTabs(variant = variant) }
     )
 }
 
@@ -281,7 +281,8 @@ sealed class Variant(
     @StringRes val titleRes: Int,
     val composableName: String,
     val largeTopAppBar: Boolean = false,
-    val customizableTopAppBar: Boolean = false
+    val customizableTopAppBar: Boolean = false,
+    val hasTabs: Boolean = false
 ) {
 
     companion object {
@@ -323,7 +324,7 @@ sealed class Variant(
     data object TextField : Variant(R.string.component_text_field_text, OdsComposable.OdsTextField.name)
     data object TextFieldPassword : Variant(R.string.component_text_field_password, OdsComposable.OdsPasswordTextField.name)
 
-    data object TabsFixed : Variant(R.string.component_tabs_fixed, OdsComposable.OdsTabRow.name)
-    data object TabsScrollable : Variant(R.string.component_tabs_scrollable, OdsComposable.OdsScrollableTabRow.name)
+    data object TabsFixed : Variant(R.string.component_tabs_fixed, OdsComposable.OdsTabRow.name, hasTabs = true)
+    data object TabsScrollable : Variant(R.string.component_tabs_scrollable, OdsComposable.OdsScrollableTabRow.name, hasTabs = true)
 
 }

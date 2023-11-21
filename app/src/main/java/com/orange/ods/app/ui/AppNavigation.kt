@@ -10,11 +10,51 @@
 
 package com.orange.ods.app.ui
 
+import androidx.compose.runtime.Composable
+import androidx.compose.runtime.remember
 import androidx.lifecycle.Lifecycle
 import androidx.navigation.NavBackStackEntry
 import androidx.navigation.NavController
 import androidx.navigation.NavDestination
 import androidx.navigation.NavGraph
+import androidx.navigation.NavHostController
+import androidx.navigation.compose.currentBackStackEntryAsState
+import androidx.navigation.compose.rememberNavController
+
+@Composable
+fun rememberAppNavigationState(navController: NavHostController = rememberNavController()) = remember(navController) { AppNavigationState(navController) }
+
+class AppNavigationState(val navController: NavHostController) {
+    val previousRoute: String?
+        @Composable get() = navController.previousBackStackEntry?.destination?.route
+
+    val currentScreenRoute: String?
+        get() = navController.currentDestination?.route
+
+    val currentScreen: Screen?
+        @Composable get() {
+            val routeArgs = navController.currentBackStackEntryAsState().value?.arguments
+            return currentScreenRoute?.let { getScreen(it, routeArgs) }
+        }
+
+    fun navigateToBottomBarRoute(route: String) {
+        if (route != currentScreenRoute) {
+            navController.navigateToBottomBarRoute(route)
+        }
+    }
+
+    fun navigateToElement(route: String, elementId: Long?, from: NavBackStackEntry) {
+        // In order to discard duplicated navigation events, we check the Lifecycle
+        if (from.lifecycleIsResumed()) {
+            val fullRoute = if (elementId != null) "$route/$elementId" else route
+            navController.navigate(fullRoute)
+        }
+    }
+
+    fun upPress() {
+        navController.navigateUp()
+    }
+}
 
 fun NavController.navigateToElement(route: String, elementId: Long?, from: NavBackStackEntry) {
     // In order to discard duplicated navigation events, we check the Lifecycle
