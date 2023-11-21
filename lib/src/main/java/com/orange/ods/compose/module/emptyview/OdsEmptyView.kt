@@ -75,7 +75,7 @@ fun OdsEmptyView(
         text?.let {
             Text(
                 modifier = Modifier
-                    .padding(top = dimensionResource(id = R.dimen.spacing_s), bottom = dimensionResource(id = R.dimen.spacing_m))
+                    .padding(top = dimensionResource(id = R.dimen.spacing_s))
                     .fillMaxWidth(),
                 text = text,
                 textAlign = TextAlign.Center,
@@ -83,7 +83,7 @@ fun OdsEmptyView(
             )
         }
 
-        button?.Content()
+        button?.Content(modifier = Modifier.padding(top = dimensionResource(id = R.dimen.spacing_m)))
     }
 }
 
