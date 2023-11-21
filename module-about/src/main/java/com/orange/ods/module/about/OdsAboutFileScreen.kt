@@ -30,8 +30,8 @@ import com.orange.ods.module.about.utilities.extension.launchUrl
 import java.io.BufferedReader
 import java.nio.charset.StandardCharsets
 
-private const val FilePath = "file:///android_res/raw/"
 private const val FileResourceDir = "raw"
+private const val FilePath = "file:///android_res/$FileResourceDir/"
 
 @Composable
 fun OdsAboutFileScreen(fileAboutItem: FileAboutItem?, darkModeEnabled: Boolean) {
