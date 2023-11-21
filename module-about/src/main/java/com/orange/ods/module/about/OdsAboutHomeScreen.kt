@@ -110,18 +110,16 @@ internal fun OdsAboutHomeScreen(configuration: OdsAboutModuleConfiguration?, onA
 
             items(menuItemById.values.toList()) { menuItem ->
                 OdsListItem(
-                    modifier = Modifier
-                        .clickable {
-                            onAboutMenuItemClick(menuItemById.filter { it.value == menuItem }.keys.first())
-                        },
                     leadingIcon = OdsListItem.LeadingIcon(OdsListItem.LeadingIcon.Type.Icon, painter = menuItem.icon, contentDescription = ""),
                     text = menuItem.text,
-                    secondaryText = menuItem.secondaryText
+                    secondaryText = menuItem.secondaryText,
+                    onClick = {
+                        onAboutMenuItemClick(menuItemById.filter { it.value == menuItem }.keys.first())
+                    }
                 )
             }
 
             item { Spacer(modifier = Modifier.height(dimensionResource(id = com.orange.ods.R.dimen.spacing_s))) }
-
         }
     }
 }
