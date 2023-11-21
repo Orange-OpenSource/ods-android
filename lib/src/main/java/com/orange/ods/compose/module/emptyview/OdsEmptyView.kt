@@ -41,8 +41,8 @@ import com.orange.ods.compose.theme.OdsTheme
 fun OdsEmptyView(
     title: String,
     text: String? = null,
-    image: OdsEmptyViewIllustration = OdsEmptyViewIllustration(R.raw.empty_animation),
-    button: OdsEmptyViewButton? = null
+    image: OdsEmptyView.Illustration = OdsEmptyView.Illustration(R.raw.empty_animation),
+    button: OdsEmptyView.Button? = null
 ) {
     Column(
         modifier = Modifier
@@ -78,69 +78,70 @@ fun OdsEmptyView(
     }
 }
 
-/**
- * A button in an [OdsEmptyView].
- *
- * @constructor Creates an instance of [OdsEmptyViewButton].
- * @param text Text of the button.
- * @param onClick Will be called when the user clicks the button.
- */
-class OdsEmptyViewButton(private val text: String, private val onClick: () -> Unit) : OdsComponentContent<Nothing>() {
+object OdsEmptyView {
+    /**
+     * A button in an [OdsEmptyView].
+     *
+     * @constructor Creates an instance of [OdsEmptyView.Button].
+     * @param text Text of the button.
+     * @param onClick Callback invoked on button click.
+     */
+    class Button(private val text: String, private val onClick: () -> Unit) : OdsComponentContent<Nothing>() {
 
-    @Composable
-    override fun Content(modifier: Modifier) {
-        OdsOutlinedButton(text = text, onClick = onClick, modifier = modifier)
+        @Composable
+        override fun Content(modifier: Modifier) {
+            OdsOutlinedButton(text = text, onClick = onClick, modifier = modifier)
+        }
     }
-}
-
-/**
- * An image in an [OdsEmptyView].
- */
-class OdsEmptyViewIllustration : OdsComponentImage<Nothing> {
 
     /**
-     * Creates an instance of [OdsEmptyViewIllustration].
-     *
-     * @param animationRes The animation resource identifier to play.
+     * An image in an [OdsEmptyView].
      */
-    constructor(@RawRes animationRes: Int) : super(animationRes, "")
+    class Illustration : OdsComponentImage<Nothing> {
 
-    /**
-     * Creates an instance of [OdsEmptyViewIllustration].
-     *
-     * @param painter The painter to draw.
-     * @param contentScale The rule to apply to scale the image in this [OdsEmptyViewIllustration], [ContentScale.Crop] by default.
-     */
-    constructor(painter: Painter, contentScale: ContentScale = ContentScale.Crop) : super(
-        painter,
-        "",
-        contentScale = contentScale
-    )
+        /**
+         * Creates an instance of [OdsEmptyView.Illustration].
+         *
+         * @param animationRes The animation resource identifier to play.
+         */
+        constructor(@RawRes animationRes: Int) : super(animationRes, "")
 
-    /**
-     * Creates an instance of [OdsEmptyViewIllustration].
-     *
-     * @param imageVector The image vector to draw.
-     * @param contentScale The rule to apply to scale the image in this [OdsEmptyViewIllustration], [ContentScale.Crop] by default.
-     */
-    constructor(imageVector: ImageVector, contentScale: ContentScale = ContentScale.Crop) : super(
-        imageVector,
-        "",
-        contentScale = contentScale
-    )
+        /**
+         * Creates an instance of [OdsEmptyView.Illustration].
+         *
+         * @param painter The painter to draw.
+         * @param contentScale The rule to apply to scale the image in this [OdsEmptyView.Illustration], [ContentScale.Crop] by default.
+         */
+        constructor(painter: Painter, contentScale: ContentScale = ContentScale.Crop) : super(
+            painter,
+            "",
+            contentScale = contentScale
+        )
 
-    /**
-     * Creates an instance of [OdsEmptyViewIllustration].
-     *
-     * @param bitmap The image bitmap to draw.
-     * @param contentDescription The content description associated to this [OdsEmptyViewIllustration].
-     * @param contentScale The rule to apply to scale the image in this [OdsEmptyViewIllustration], [ContentScale.Crop] by default.
-     */
-    constructor(bitmap: ImageBitmap, contentScale: ContentScale = ContentScale.Crop) : super(
-        bitmap,
-        "",
-        contentScale = contentScale
-    )
+        /**
+         * Creates an instance of [OdsEmptyView.Illustration].
+         *
+         * @param imageVector The image vector to draw.
+         * @param contentScale The rule to apply to scale the image in this [OdsEmptyView.Illustration], [ContentScale.Crop] by default.
+         */
+        constructor(imageVector: ImageVector, contentScale: ContentScale = ContentScale.Crop) : super(
+            imageVector,
+            "",
+            contentScale = contentScale
+        )
+
+        /**
+         * Creates an instance of [OdsEmptyView.Illustration].
+         *
+         * @param bitmap The image bitmap to draw.
+         * @param contentScale The rule to apply to scale the image in this [OdsEmptyView.Illustration], [ContentScale.Crop] by default.
+         */
+        constructor(bitmap: ImageBitmap, contentScale: ContentScale = ContentScale.Crop) : super(
+            bitmap,
+            "",
+            contentScale = contentScale
+        )
+    }
 }
 
 @UiModePreviews.Default
@@ -155,8 +156,8 @@ private fun PreviewOdsEmptyView(@PreviewParameter(OdsEmptyViewPreviewParameterPr
 private data class OdsEmptyViewPreviewParameter(
     val title: String,
     val text: String? = null,
-    val image: OdsEmptyViewIllustration = OdsEmptyViewIllustration(R.raw.empty_animation),
-    val button: OdsEmptyViewButton? = null
+    val image: OdsEmptyView.Illustration = OdsEmptyView.Illustration(R.raw.empty_animation),
+    val button: OdsEmptyView.Button? = null
 )
 
 private class OdsEmptyViewPreviewParameterProvider :
@@ -166,7 +167,7 @@ private val previewParameterValues: List<OdsEmptyViewPreviewParameter>
     get() {
         val title = "Nothing to see here"
         val text = "To add your favourite stations, press the button."
-        val button = OdsEmptyViewButton("Add station") {}
+        val button = OdsEmptyView.Button("Add station") {}
 
         return listOf(
             OdsEmptyViewPreviewParameter(title = title, text = text, button = button),
