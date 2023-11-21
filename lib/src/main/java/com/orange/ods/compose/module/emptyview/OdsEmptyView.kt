@@ -36,16 +36,25 @@ import com.orange.ods.compose.component.utilities.Preview
 import com.orange.ods.compose.component.utilities.UiModePreviews
 import com.orange.ods.compose.theme.OdsTheme
 
-
+/**
+ * Display a full screen empty view with a centered image followed by a title and an optional text. A button can also be added.
+ *
+ * @param title The title of the screen displayed below the image. For example "File is missing".
+ * @param modifier [Modifier] applied to the composable.
+ * @param text Text displayed below the title.
+ * @param image Image displayed centered in the composable.
+ * @param button The button to add below the text.
+ */
 @Composable
 fun OdsEmptyView(
     title: String,
+    modifier: Modifier = Modifier,
     text: String? = null,
     image: OdsEmptyView.Illustration = OdsEmptyView.Illustration(R.raw.empty_animation),
     button: OdsEmptyView.Button? = null
 ) {
     Column(
-        modifier = Modifier
+        modifier = modifier
             .fillMaxSize()
             .padding(horizontal = dimensionResource(id = R.dimen.spacing_m), vertical = dimensionResource(id = R.dimen.spacing_s)),
         verticalArrangement = Arrangement.Center,
@@ -66,7 +75,7 @@ fun OdsEmptyView(
         text?.let {
             Text(
                 modifier = Modifier
-                    .padding(top = dimensionResource(id = R.dimen.spacing_s), bottom = dimensionResource (id = R.dimen.spacing_m))
+                    .padding(top = dimensionResource(id = R.dimen.spacing_s), bottom = dimensionResource(id = R.dimen.spacing_m))
                     .fillMaxWidth(),
                 text = text,
                 textAlign = TextAlign.Center,
