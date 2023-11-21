@@ -119,11 +119,13 @@ object OdsEmptyView {
          * Creates an instance of [OdsEmptyView.Illustration].
          *
          * @param painter The painter to draw.
+         * @param alignment Alignment parameter used to place the [Painter] in the given bounds defined by the width and height.
          * @param contentScale The rule to apply to scale the image in this [OdsEmptyView.Illustration], [ContentScale.Crop] by default.
          */
-        constructor(painter: Painter, contentScale: ContentScale = ContentScale.Crop) : super(
+        constructor(painter: Painter, alignment: Alignment = Alignment.Center, contentScale: ContentScale = ContentScale.Crop) : super(
             painter,
             "",
+            alignment = alignment,
             contentScale = contentScale
         )
 
@@ -131,11 +133,13 @@ object OdsEmptyView {
          * Creates an instance of [OdsEmptyView.Illustration].
          *
          * @param imageVector The image vector to draw.
+         * @param alignment Alignment parameter used to place the [ImageVector] in the given bounds defined by the width and height.
          * @param contentScale The rule to apply to scale the image in this [OdsEmptyView.Illustration], [ContentScale.Crop] by default.
          */
-        constructor(imageVector: ImageVector, contentScale: ContentScale = ContentScale.Crop) : super(
+        constructor(imageVector: ImageVector, alignment: Alignment = Alignment.Center, contentScale: ContentScale = ContentScale.Crop) : super(
             imageVector,
             "",
+            alignment = alignment,
             contentScale = contentScale
         )
 
@@ -143,11 +147,13 @@ object OdsEmptyView {
          * Creates an instance of [OdsEmptyView.Illustration].
          *
          * @param bitmap The image bitmap to draw.
+         * @param alignment Alignment parameter used to place the [ImageBitmap] in the given bounds defined by the width and height.
          * @param contentScale The rule to apply to scale the image in this [OdsEmptyView.Illustration], [ContentScale.Crop] by default.
          */
-        constructor(bitmap: ImageBitmap, contentScale: ContentScale = ContentScale.Crop) : super(
+        constructor(bitmap: ImageBitmap, alignment: Alignment = Alignment.Center, contentScale: ContentScale = ContentScale.Crop) : super(
             bitmap,
             "",
+            alignment = alignment,
             contentScale = contentScale
         )
     }
