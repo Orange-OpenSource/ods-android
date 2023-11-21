@@ -108,13 +108,13 @@ internal fun OdsAboutHomeScreen(configuration: OdsAboutModuleConfiguration?, onA
                 }
             }
 
-            items(menuItemById.values.toList()) { menuItem ->
+            items(menuItemById.entries.toList()) { (id, menuItem) ->
                 OdsListItem(
                     leadingIcon = OdsListItem.LeadingIcon(OdsListItem.LeadingIcon.Type.Icon, painter = menuItem.icon, contentDescription = ""),
                     text = menuItem.text,
                     secondaryText = menuItem.secondaryText,
                     onClick = {
-                        onAboutMenuItemClick(menuItemById.filter { it.value == menuItem }.keys.first())
+                        onAboutMenuItemClick(id)
                     }
                 )
             }
