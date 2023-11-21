@@ -27,9 +27,8 @@ import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
-import com.orange.ods.compose.component.button.OdsButtonIcon
+import com.orange.ods.compose.component.button.OdsButton
 import com.orange.ods.compose.component.button.OdsTextButton
-import com.orange.ods.compose.component.button.OdsTextButtonStyle
 import com.orange.ods.compose.component.utilities.Preview
 import com.orange.ods.compose.component.utilities.UiModePreviews
 import com.orange.ods.compose.text.OdsTextBody1
@@ -67,7 +66,7 @@ internal fun OdsAboutMainScreen(configuration: OdsAboutModuleConfiguration) {
                     OdsTextButton(
                         modifier = Modifier.padding(end = dimensionResource(id = com.orange.ods.R.dimen.spacing_s)),
                         text = stringResource(id = R.string.about_app_share),
-                        icon = OdsButtonIcon(painterResource(id = R.drawable.ic_share)),
+                        icon = OdsButton.Icon(painterResource(id = R.drawable.ic_share)),
                         onClick = {
                             val sendIntent = Intent(Intent.ACTION_SEND).apply {
                                 type = "text/plain"
@@ -76,15 +75,15 @@ internal fun OdsAboutMainScreen(configuration: OdsAboutModuleConfiguration) {
                             }
                             context.startActivity(Intent.createChooser(sendIntent, null))
                         },
-                        style = OdsTextButtonStyle.Primary
+                        style = OdsTextButton.Style.Primary
                     )
                 }
                 configuration.onFeedbackButtonClick?.let { feedbackAction ->
                     OdsTextButton(
                         text = stringResource(id = R.string.about_app_feedback),
-                        icon = OdsButtonIcon(painterResource(id = R.drawable.ic_comment)),
+                        icon = OdsButton.Icon(painterResource(id = R.drawable.ic_comment)),
                         onClick = feedbackAction,
-                        style = OdsTextButtonStyle.Primary
+                        style = OdsTextButton.Style.Primary
                     )
                 }
             }

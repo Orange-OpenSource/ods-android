@@ -26,7 +26,7 @@ import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import com.orange.ods.app.ui.utilities.DrawableManager
-import com.orange.ods.compose.component.card.OdsCardImage
+import com.orange.ods.compose.component.card.OdsCard
 import com.orange.ods.compose.component.card.OdsVerticalImageFirstCard
 
 @Composable
@@ -52,7 +52,7 @@ private fun ColumnScope.ModuleCard(module: Module, onModuleClick: (String) -> Un
     val imageResId = DrawableManager.getDrawableResIdForCurrentTheme(resId = module.imageRes)
     OdsVerticalImageFirstCard(
         title = stringResource(id = module.titleRes),
-        image = OdsCardImage(
+        image = OdsCard.Image(
             painterResource(id = imageResId),
             "",
             module.imageAlignment,
