@@ -60,7 +60,9 @@ internal fun OdsAboutHomeScreen(configuration: OdsAboutModuleConfiguration?, onA
                     contentDescription = null,
                 )
 
-                Column(modifier = Modifier.padding(horizontal = dimensionResource(id = com.orange.ods.R.dimen.spacing_m))) {
+                Column(modifier = Modifier
+                    .padding(horizontal = dimensionResource(id = com.orange.ods.R.dimen.spacing_m))
+                    .padding(bottom = dimensionResource(id = com.orange.ods.R.dimen.spacing_m))) {
                     OdsTextH4(
                         text = configuration.appName,
                         modifier = Modifier.padding(top = dimensionResource(id = com.orange.ods.R.dimen.spacing_m))
@@ -104,8 +106,6 @@ internal fun OdsAboutHomeScreen(configuration: OdsAboutModuleConfiguration?, onA
                         )
                     }
                 }
-
-                Spacer(modifier = Modifier.height(dimensionResource(id = com.orange.ods.R.dimen.spacing_m)))
             }
 
             items(menuItemById.values.toList()) { menuItem ->
