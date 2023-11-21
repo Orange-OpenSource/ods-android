@@ -55,6 +55,7 @@ sealed class Screen(
     val route: String,
     val isLargeAppBar: Boolean = false,
     val title: UiString? = null,
+    val hasTabs: Boolean = false
 ) {
 
     companion object {
@@ -125,7 +126,8 @@ sealed class Screen(
     data class ComponentVariant(val variantId: Long) : Screen(
         route = ComponentVariantDemoRoute,
         title = Variant.fromId(variantId)?.titleRes?.let { UiString.StringResource(it) },
-        isLargeAppBar = Variant.fromId(variantId)?.largeTopAppBar == true
+        isLargeAppBar = Variant.fromId(variantId)?.largeTopAppBar == true,
+        hasTabs = Variant.fromId(variantId)?.hasTabs == true
     )
 
     // Modules screens

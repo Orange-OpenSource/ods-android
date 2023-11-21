@@ -33,12 +33,11 @@ fun NavGraphBuilder.appNavGraph(
     navController: NavController,
     navigateToElement: (String, Long?, NavBackStackEntry) -> Unit,
     navigateToAboutModule: () -> Unit,
-    upPress: () -> Unit
 ) {
     addBottomBarGraph(navController)
 
     addGuidelinesGraph()
-    addComponentsGraph(navController, upPress)
+    addComponentsGraph(navController)
     addModulesGraph(navigateToAboutModule)
 
     composable(
