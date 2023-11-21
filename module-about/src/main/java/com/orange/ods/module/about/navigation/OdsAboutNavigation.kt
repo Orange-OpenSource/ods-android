@@ -35,8 +35,12 @@ fun NavGraphBuilder.aboutGraph(navController: NavController) {
     navigation(startDestination = OdsAboutDestinations.HomeRoute, route = OdsAboutDestinations.AboutRoute) {
         composable(route = OdsAboutDestinations.HomeRoute) {
             val viewModelStoreOwner = LocalContext.current as ViewModelStoreOwner
-            val configuration = viewModel<OdsAboutViewModel>(viewModelStoreOwner).configuration
-            OdsAboutHomeScreen(configuration = configuration, onAboutMenuItemClick = onAboutMenuItemClick(navController, configuration?.menuItemById.orEmpty()))
+            viewModel<OdsAboutViewModel>(viewModelStoreOwner).configuration?.let { configuration ->
+                OdsAboutHomeScreen(
+                    configuration = configuration,
+                    onAboutMenuItemClick = onAboutMenuItemClick(navController, configuration.menuItemById)
+                )
+            }
         }
 
         composable(
