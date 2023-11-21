@@ -164,14 +164,13 @@ object OdsEmptyView {
 private fun PreviewOdsEmptyView(@PreviewParameter(OdsEmptyViewPreviewParameterProvider::class) parameter: OdsEmptyViewPreviewParameter) =
     Preview {
         with(parameter) {
-            OdsEmptyView(title = title, text = text, image = image, button = button)
+            OdsEmptyView(title = title, text = text, button = button)
         }
     }
 
 private data class OdsEmptyViewPreviewParameter(
     val title: String,
     val text: String? = null,
-    val image: OdsEmptyView.Illustration = OdsEmptyView.Illustration(R.raw.empty_animation),
     val button: OdsEmptyView.Button? = null
 )
 
