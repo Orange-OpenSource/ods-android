@@ -49,10 +49,7 @@ internal fun OdsAboutHomeScreen(configuration: OdsAboutModuleConfiguration?, onA
     if (configuration != null) {
         val menuItemById = configuration.menuItemById
 
-        LazyColumn(
-            modifier = Modifier
-                .padding(bottom = dimensionResource(id = com.orange.ods.R.dimen.screen_vertical_margin))
-        ) {
+        LazyColumn {
             item {
                 Image(
                     painter = painterResource(id = configuration.appIllustration),
@@ -122,6 +119,9 @@ internal fun OdsAboutHomeScreen(configuration: OdsAboutModuleConfiguration?, onA
                     secondaryText = menuItem.secondaryText
                 )
             }
+
+            item { Spacer(modifier = Modifier.height(dimensionResource(id = com.orange.ods.R.dimen.spacing_s))) }
+
         }
     }
 }
