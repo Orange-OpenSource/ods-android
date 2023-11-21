@@ -124,7 +124,7 @@ internal fun OdsAboutHomeScreen(configuration: OdsAboutModuleConfiguration, onAb
 
 @UiModePreviews.Default
 @Composable
-fun PreviewOdsAboutMainScreen() {
+fun PreviewOdsAboutHomeScreen() {
     val configuration = OdsAboutModuleConfiguration(
         appName = "App name",
         appVersion = "Version 1.0",
