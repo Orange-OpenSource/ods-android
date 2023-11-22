@@ -28,16 +28,16 @@ class AboutCustomizationViewModel : ViewModel() {
 
     val additionalLinksCount = mutableStateOf(0)
 
-    var selectedOptions by mutableStateOf(emptyList<AboutOptions>())
+    var selectedOptions by mutableStateOf(emptyList<AboutCustomizationOptions>())
 
     @Composable
     fun aboutModuleConfiguration(): OdsAboutModuleConfiguration {
         val context = LocalContext.current
         return OdsAboutModuleConfiguration(
             appName = stringResource(id = R.string.module_about_demo_app_name),
-            appVersion = if (selectedOptions.contains(AboutOptions.Version)) stringResource(id = R.string.module_about_demo_version) else null,
-            appDescription = if (selectedOptions.contains(AboutOptions.Description)) stringResource(id = R.string.module_about_demo_description) else null,
-            shareData = if (selectedOptions.contains(AboutOptions.Share)) {
+            appVersion = if (selectedOptions.contains(AboutCustomizationOptions.Version)) stringResource(id = R.string.module_about_demo_version) else null,
+            appDescription = if (selectedOptions.contains(AboutCustomizationOptions.Description)) stringResource(id = R.string.module_about_demo_description) else null,
+            shareData = if (selectedOptions.contains(AboutCustomizationOptions.Share)) {
                 OdsAboutShareData(
                     stringResource(id = R.string.module_about_demo_share_title),
                     stringResource(id = R.string.module_about_demo_share_text)
@@ -45,7 +45,7 @@ class AboutCustomizationViewModel : ViewModel() {
             } else {
                 null
             },
-            onFeedbackButtonClick = if (selectedOptions.contains(AboutOptions.Feedback)) {
+            onFeedbackButtonClick = if (selectedOptions.contains(AboutCustomizationOptions.Feedback)) {
                 { clickOnElement(context, context.getString(R.string.module_about_demo_feedback_button_element)) }
             } else {
                 null

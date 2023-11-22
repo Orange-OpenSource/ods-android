@@ -28,7 +28,7 @@ import com.orange.ods.compose.component.chip.OdsFilterChip
 import com.orange.ods.compose.text.OdsTextBody2
 
 
-enum class AboutOptions(@StringRes val labelResId: Int) {
+enum class AboutCustomizationOptions(@StringRes val labelResId: Int) {
     Version(R.string.module_about_customization_version),
     Description(R.string.module_about_customization_description),
     Share(R.string.module_about_customization_share),
@@ -55,7 +55,7 @@ fun AboutCustomizationScreen(navigateToAboutModule: () -> Unit, viewModel: About
                     .padding(top = dimensionResource(id = com.orange.ods.R.dimen.spacing_xs)),
                 horizontalArrangement = Arrangement.spacedBy(dimensionResource(id = com.orange.ods.R.dimen.spacing_s))
             ) {
-                AboutOptions.values().forEach { option ->
+                AboutCustomizationOptions.values().forEach { option ->
                     OdsFilterChip(
                         text = stringResource(id = option.labelResId),
                         onClick = {
