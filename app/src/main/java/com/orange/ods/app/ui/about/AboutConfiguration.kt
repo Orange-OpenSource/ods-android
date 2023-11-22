@@ -22,6 +22,8 @@ import com.orange.ods.module.about.utilities.VersionHelper
 @Composable
 fun aboutConfiguration() = OdsAboutModuleConfiguration(
     appName = stringResource(id = R.string.about_app_name),
+    privacyPolicyMenuItemFileRes = R.raw.about_privacy_policy,
+    termsOfServiceMenuItemFileRes = R.raw.about_terms_of_service,
     appVersion = VersionHelper.getFromPackageInfo(context = LocalContext.current),
     appDescription = stringResource(id = R.string.about_description),
     customMenuItems = listOf(
@@ -35,7 +37,7 @@ fun aboutConfiguration() = OdsAboutModuleConfiguration(
             painterResource(id = com.orange.ods.module.about.R.drawable.ic_tasklist),
             stringResource(id = R.string.about_menu_changelog),
             2,
-            "changelog",
+            R.raw.changelog,
             OdsAbout.FileMenuItem.FileFormat.Markdown
         ),
         OdsAbout.UrlMenuItem(

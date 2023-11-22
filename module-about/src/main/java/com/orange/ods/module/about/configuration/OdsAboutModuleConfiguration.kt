@@ -27,6 +27,18 @@ data class OdsAboutModuleConfiguration(
     val appName: String,
 
     /**
+     * The resource identifier of the privacy policy HTML file provided.
+     * Note that this menu item is always displayed and you MUST provide a file in the raw directory to display the privacy policy of your app.
+     */
+    val privacyPolicyMenuItemFileRes: Int,
+
+    /**
+     * The resource identifier of the terms of service HTML file provided.
+     * Note that this menu item is always displayed and you MUST provide a file in the raw directory to display the terms of service for your app.
+     */
+    val termsOfServiceMenuItemFileRes: Int,
+
+    /**
      * The illustration resource id. It should be a SVG or PNG resource file, placed in res/drawable directory. It allows to customize
      * the displayed image on the main screen of the About module.
      * If not provided, the default Orange illustration will be displayed.
@@ -74,25 +86,14 @@ data class OdsAboutModuleConfiguration(
      *  - Term of services (position index 101)
      *  - Accessibility (position index 102)
      */
-    val customMenuItems: List<OdsAbout.MenuItem> = emptyList(),
+    val customMenuItems: List<OdsAbout.MenuItem> = emptyList()
 
-    /**
-     * The name of the privacy policy HTML file provided in raw directory.
-     * Note that this menu item is always displayed and you MUST provide a file to display privacy policy of your app.
-     */
-    val privacyPolicyMenuItemFileName: String = "about_privacy_policy",
-
-    /**
-     * The name of the terms of service HTML file provided in raw directory.
-     * Note that this menu item is always displayed and you MUST provide a file to display the terms of service for your app.
-     */
-    val termsOfServiceMenuItemFileName: String = "about_terms_of_service"
 ) {
 
     internal val menuItemById: Map<Int, OdsAbout.MenuItem>
         @Composable
         get() {
-            val mandatoryMenuItems = mandatoryMenuItems(privacyPolicyMenuItemFileName, termsOfServiceMenuItemFileName)
+            val mandatoryMenuItems = mandatoryMenuItems(privacyPolicyMenuItemFileRes, termsOfServiceMenuItemFileRes)
             return remember {
                 (customMenuItems + mandatoryMenuItems).sortedBy { it.position }
                     .mapIndexed { index, odsAboutMenuItem -> index to odsAboutMenuItem }.toMap()

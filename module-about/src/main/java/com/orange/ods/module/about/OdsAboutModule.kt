@@ -17,21 +17,13 @@ import androidx.lifecycle.ViewModelStoreOwner
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.orange.ods.module.about.configuration.OdsAboutModuleConfiguration
 
-class OdsAboutModule internal constructor(context: Context, private val viewModel: OdsAboutViewModel) {
+class OdsAboutModule internal constructor(configuration: OdsAboutModuleConfiguration, private val viewModel: OdsAboutViewModel) {
 
-    var configuration = getDefaultConfiguration(context)
+    var configuration = configuration
         set(value) {
             field = value
             viewModel.configureAboutModule(value)
         }
-
-    private fun getDefaultConfiguration(context: Context): OdsAboutModuleConfiguration {
-        val appName = with(context.applicationInfo) {
-            if (labelRes == 0) nonLocalizedLabel.toString() else context.getString(labelRes)
-        }
-
-        return OdsAboutModuleConfiguration(appName)
-    }
 
     init {
         viewModel.configureAboutModule(configuration)
@@ -39,7 +31,7 @@ class OdsAboutModule internal constructor(context: Context, private val viewMode
 }
 
 @Composable
-fun odsAboutModule(context: Context): OdsAboutModule {
+fun odsAboutModule(context: Context, configuration: OdsAboutModuleConfiguration): OdsAboutModule {
     val aboutViewModel = viewModel<OdsAboutViewModel>(context as ViewModelStoreOwner)
-    return remember { OdsAboutModule(context, aboutViewModel) }
+    return remember { OdsAboutModule(configuration, aboutViewModel) }
 }

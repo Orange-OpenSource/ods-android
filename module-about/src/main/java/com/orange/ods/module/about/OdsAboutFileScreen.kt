@@ -16,12 +16,9 @@ import android.webkit.WebResourceRequest
 import android.webkit.WebView
 import android.webkit.WebViewClient
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.remember
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.dimensionResource
-import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.viewinterop.AndroidView
-import com.orange.ods.compose.module.emptyview.OdsEmptyView
 import com.orange.ods.compose.theme.OdsTheme
 import com.orange.ods.module.about.configuration.OdsAbout
 import com.orange.ods.module.about.utilities.Markdown
@@ -34,64 +31,46 @@ private const val FileResourceDir = "raw"
 private const val FilePath = "file:///android_res/$FileResourceDir/"
 
 @Composable
-internal fun OdsAboutFileScreen(fileMenuItem: OdsAbout.FileMenuItem?, darkModeEnabled: Boolean) {
-    fileMenuItem?.let { item ->
-        val context = LocalContext.current
-        val fileId = remember(fileMenuItem.fileName) {
-            context.resources.getIdentifier(
-                fileMenuItem.fileName,
-                FileResourceDir,
-                context.packageName
-            )
-        }
-        if (fileId != 0) {
-            // File exists -> display it
-            val colors = OdsTheme.colors
-            val horizontalPadding = dimensionResource(id = com.orange.ods.R.dimen.screen_horizontal_margin).value
-            val verticalPadding = dimensionResource(id = com.orange.ods.R.dimen.screen_vertical_margin).value
-            AndroidView(
-                factory = {
-                    WebView(context).apply {
-                        @SuppressLint("SetJavaScriptEnabled")
-                        settings.javaScriptEnabled = true
-                        webViewClient = object : WebViewClient() {
-                            override fun onPageFinished(view: WebView?, url: String?) {
-                                super.onPageFinished(view, url)
-                                view?.loadUrl("javascript:(function(){ document.body.style.padding = '${verticalPadding}px ${horizontalPadding}px' })();");
-                                view?.injectLightDarkModeCss(darkModeEnabled, colors)
-                            }
-
-                            override fun shouldOverrideUrlLoading(view: WebView?, request: WebResourceRequest?): Boolean {
-                                request?.url?.let { url ->
-                                    context.launchUrl(url.toString())
-                                }
-
-                                return true
-                            }
+internal fun OdsAboutFileScreen(fileMenuItem: OdsAbout.FileMenuItem, darkModeEnabled: Boolean) {
+    val context = LocalContext.current
+        val colors = OdsTheme.colors
+        val horizontalPadding = dimensionResource(id = com.orange.ods.R.dimen.screen_horizontal_margin).value
+        val verticalPadding = dimensionResource(id = com.orange.ods.R.dimen.screen_vertical_margin).value
+        AndroidView(
+            factory = {
+                WebView(context).apply {
+                    @SuppressLint("SetJavaScriptEnabled")
+                    settings.javaScriptEnabled = true
+                    webViewClient = object : WebViewClient() {
+                        override fun onPageFinished(view: WebView?, url: String?) {
+                            super.onPageFinished(view, url)
+                            view?.loadUrl("javascript:(function(){ document.body.style.padding = '${verticalPadding}px ${horizontalPadding}px' })();");
+                            view?.injectLightDarkModeCss(darkModeEnabled, colors)
                         }
 
-                        val fileContent = resources.openRawResource(fileId)
-                            .bufferedReader()
-                            .use(BufferedReader::readText)
-                        val html = when (item.fileFormat) {
-                            OdsAbout.FileMenuItem.FileFormat.Html -> fileContent
-                            OdsAbout.FileMenuItem.FileFormat.Markdown -> Markdown.toHtml(fileContent)
-                        }
-                        // Use loadDataWithBaseURL instead of loadData otherwise CSS won't work
-                        loadDataWithBaseURL(FilePath, html, "text/html; charset=UTF-8", StandardCharsets.UTF_8.name(), null)
+                        override fun shouldOverrideUrlLoading(view: WebView?, request: WebResourceRequest?): Boolean {
+                            request?.url?.let { url ->
+                                context.launchUrl(url.toString())
+                            }
 
-                        setBackgroundColor(Color.TRANSPARENT)
+                            return true
+                        }
                     }
-                },
-                update = {
-                    it.injectLightDarkModeCss(darkModeEnabled, colors)
-                })
-        } else {
-            // File doesn't exist -> display an error message
-            OdsEmptyView(
-                title = stringResource(id = R.string.ods_about_file_missing_title),
-                text = stringResource(id = R.string.ods_about_file_missing_text, fileMenuItem.fileName, FileResourceDir)
-            )
-        }
-    }
+
+                    val fileContent = resources.openRawResource(fileMenuItem.fileRes)
+                        .bufferedReader()
+                        .use(BufferedReader::readText)
+                    val html = when (fileMenuItem.fileFormat) {
+                        OdsAbout.FileMenuItem.FileFormat.Html -> fileContent
+                        OdsAbout.FileMenuItem.FileFormat.Markdown -> Markdown.toHtml(fileContent)
+                    }
+                    // Use loadDataWithBaseURL instead of loadData otherwise CSS won't work
+                    loadDataWithBaseURL(FilePath, html, "text/html; charset=UTF-8", StandardCharsets.UTF_8.name(), null)
+
+                    setBackgroundColor(Color.TRANSPARENT)
+                }
+            },
+            update = {
+                it.injectLightDarkModeCss(darkModeEnabled, colors)
+            })
 }
