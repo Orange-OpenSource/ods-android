@@ -121,8 +121,8 @@ fun MainScreen(themeConfigurations: Set<OdsThemeConfigurationContract>, mainView
             }
 
             val context = LocalContext.current
-            val aboutModule = odsAboutModule(context = context)
             val aboutConfiguration = aboutConfiguration()
+            val aboutModule = odsAboutModule(context = context, configuration = aboutConfiguration)
             val aboutCustomizationViewModel = viewModel<AboutCustomizationViewModel>(context as ViewModelStoreOwner)
             val customAboutConfiguration = aboutCustomizationViewModel.aboutModuleConfiguration()
             Scaffold(

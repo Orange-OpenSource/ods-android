@@ -10,6 +10,7 @@
 
 package com.orange.ods.module.about.configuration
 
+import androidx.annotation.RawRes
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.Immutable
 import androidx.compose.runtime.Stable
@@ -22,19 +23,19 @@ import com.orange.ods.module.about.R
 
 @Composable
 @Stable
-internal fun mandatoryMenuItems(privacyPolicyFileName: String, termsOfServiceFileName: String): List<OdsAbout.MenuItem> = listOf(
+internal fun mandatoryMenuItems(@RawRes privacyPolicyFileRes: Int, @RawRes termsOfServiceFileRes: Int): List<OdsAbout.MenuItem> = listOf(
     OdsAbout.FileMenuItem(
         painterResource(id = R.drawable.ic_dataprotection),
         stringResource(id = R.string.ods_about_menu_privacy_policy),
         100,
-        privacyPolicyFileName,
+        privacyPolicyFileRes,
         OdsAbout.FileMenuItem.FileFormat.Html
     ),
     OdsAbout.FileMenuItem(
         painterResource(id = R.drawable.ic_tasklist),
         stringResource(id = R.string.ods_about_menu_terms_of_service),
         101,
-        termsOfServiceFileName,
+        termsOfServiceFileRes,
         OdsAbout.FileMenuItem.FileFormat.Html
     )
 )
@@ -62,7 +63,7 @@ object OdsAbout {
         graphicsObject: Any,
         text: String,
         position: Int,
-        val fileName: String,
+        @RawRes val fileRes: Int,
         val fileFormat: FileFormat,
         secondaryText: String? = null
     ) : MenuItem(graphicsObject, text, position, secondaryText) {
@@ -73,7 +74,7 @@ object OdsAbout {
          * @property painter The painter to draw as menu item leading icon.
          * @property text The primary text of the menu item
          * @property position Index corresponding to the item position in the menu.
-         * @property fileName The name of the file to display on item click.
+         * @property fileRes The resource identifier of the file to display on item click.
          * @property fileFormat The format of the file.
          * @property secondaryText The secondary text of the menu item displayed below the primary text.
          */
@@ -81,10 +82,10 @@ object OdsAbout {
             painter: Painter,
             text: String,
             position: Int,
-            fileName: String,
+            fileRes: Int,
             fileFormat: FileFormat,
             secondaryText: String? = null
-        ) : this(graphicsObject = painter, text, position, fileName, fileFormat, secondaryText)
+        ) : this(graphicsObject = painter, text, position, fileRes, fileFormat, secondaryText)
 
         /**
          * Creates an instance of [OdsAbout.FileMenuItem].
@@ -92,15 +93,15 @@ object OdsAbout {
          * @property imageVector The image vector to draw as menu item leading icon.
          * @property text The primary text of the menu item
          * @property position Index corresponding to the item position in the menu.
-         * @property fileName The name of the file to display on item click.
+         * @property fileRes The resource identifier of the file to display on item click.
          * @property fileFormat The format of the file.
          * @property secondaryText The secondary text of the menu item displayed below the primary text.
          */
-        constructor(imageVector: ImageVector, text: String, position: Int, fileName: String, fileFormat: FileFormat, secondaryText: String? = null) : this(
+        constructor(imageVector: ImageVector, text: String, position: Int, fileRes: Int, fileFormat: FileFormat, secondaryText: String? = null) : this(
             graphicsObject = imageVector,
             text,
             position,
-            fileName,
+            fileRes,
             fileFormat,
             secondaryText
         )
@@ -111,15 +112,15 @@ object OdsAbout {
          * @property bitmap The image bitmap to draw as menu item leading icon.
          * @property text The primary text of the menu item
          * @property position Index corresponding to the item position in the menu.
-         * @property fileName The name of the file to display on item click.
+         * @property fileRes The resource identifier of the file to display on item click.
          * @property fileFormat The format of the file.
          * @property secondaryText The secondary text of the menu item displayed below the primary text.
          */
-        constructor(bitmap: ImageBitmap, text: String, position: Int, fileName: String, fileFormat: FileFormat, secondaryText: String? = null) : this(
+        constructor(bitmap: ImageBitmap, text: String, position: Int, fileRes: Int, fileFormat: FileFormat, secondaryText: String? = null) : this(
             graphicsObject = bitmap,
             text,
             position,
-            fileName,
+            fileRes,
             fileFormat,
             secondaryText
         )

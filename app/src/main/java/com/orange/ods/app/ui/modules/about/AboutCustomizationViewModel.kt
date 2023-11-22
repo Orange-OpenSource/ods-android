@@ -35,6 +35,8 @@ class AboutCustomizationViewModel : ViewModel() {
         val context = LocalContext.current
         return OdsAboutModuleConfiguration(
             appName = stringResource(id = R.string.module_about_demo_app_name),
+            privacyPolicyMenuItemFileRes = R.raw.about_privacy_policy,
+            termsOfServiceMenuItemFileRes = R.raw.about_terms_of_service,
             appVersion = if (selectedOptions.contains(AboutCustomizationOptions.Version)) stringResource(id = R.string.module_about_demo_version) else null,
             appDescription = if (selectedOptions.contains(AboutCustomizationOptions.Description)) stringResource(id = R.string.module_about_demo_description) else null,
             shareData = if (selectedOptions.contains(AboutCustomizationOptions.Share)) {
@@ -63,7 +65,7 @@ class AboutCustomizationViewModel : ViewModel() {
                     painterResource(id = com.orange.ods.module.about.R.drawable.ic_tasklist),
                     "Custom item $i",
                     1,
-                    "item$i",
+                    R.raw.about_demo_custom_item,
                     OdsAbout.FileMenuItem.FileFormat.Html
                 )
             )
