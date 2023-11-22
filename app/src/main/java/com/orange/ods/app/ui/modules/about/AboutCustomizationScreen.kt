@@ -42,7 +42,7 @@ private const val MaxLinkItemCount = 10
 @Composable
 fun AboutCustomizationScreen(navigateToAboutModule: () -> Unit, viewModel: AboutCustomizationViewModel) {
     with(viewModel) {
-        ModuleDetailColumn(Module.About, onViewDemoButtonClick = { navigateToAboutModule() }) {
+        ModuleDetailColumn(module = Module.About, onViewDemoButtonClick = { navigateToAboutModule() }) {
 
             OdsTextBody2(
                 modifier = Modifier.padding(top = dimensionResource(id = com.orange.ods.R.dimen.spacing_s)),
