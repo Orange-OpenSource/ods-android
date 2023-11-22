@@ -22,6 +22,9 @@ import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.ImageBitmap
+import androidx.compose.ui.graphics.painter.Painter
+import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.dimensionResource
@@ -109,7 +112,12 @@ internal fun OdsAboutHomeScreen(configuration: OdsAboutModuleConfiguration, onAb
 
         items(menuItemById.entries.toList()) { (id, menuItem) ->
             OdsListItem(
-                leadingIcon = OdsListItem.LeadingIcon(OdsListItem.LeadingIcon.Type.Icon, painter = menuItem.icon, contentDescription = ""),
+                leadingIcon = when (menuItem.graphicsObject) {
+                    is Painter -> OdsListItem.LeadingIcon(OdsListItem.LeadingIcon.Type.Icon, painter = menuItem.graphicsObject, contentDescription = "")
+                    is ImageVector -> OdsListItem.LeadingIcon(OdsListItem.LeadingIcon.Type.Icon, imageVector = menuItem.graphicsObject, contentDescription = "")
+                    is ImageBitmap -> OdsListItem.LeadingIcon(OdsListItem.LeadingIcon.Type.Icon, bitmap = menuItem.graphicsObject, contentDescription = "")
+                    else -> null
+                },
                 text = menuItem.text,
                 secondaryText = menuItem.secondaryText,
                 onClick = {

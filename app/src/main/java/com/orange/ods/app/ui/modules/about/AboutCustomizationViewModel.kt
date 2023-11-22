@@ -20,8 +20,7 @@ import androidx.compose.ui.res.stringResource
 import androidx.lifecycle.ViewModel
 import com.orange.ods.app.R
 import com.orange.ods.app.ui.components.utilities.clickOnElement
-import com.orange.ods.module.about.configuration.FileAboutItem
-import com.orange.ods.module.about.configuration.OdsAboutMenuItem
+import com.orange.ods.module.about.configuration.OdsAbout
 import com.orange.ods.module.about.configuration.OdsAboutModuleConfiguration
 import com.orange.ods.module.about.configuration.OdsAboutShareData
 
@@ -56,16 +55,16 @@ class AboutCustomizationViewModel : ViewModel() {
     }
 
     @Composable
-    private fun customMenuItems(itemCount: Int): List<OdsAboutMenuItem> {
-        val customMenuItems = mutableListOf<OdsAboutMenuItem>()
+    private fun customMenuItems(itemCount: Int): List<OdsAbout.MenuItem> {
+        val customMenuItems = mutableListOf<OdsAbout.MenuItem>()
         for (i in 1..itemCount) {
             customMenuItems.add(
-                FileAboutItem(
+                OdsAbout.FileMenuItem(
                     painterResource(id = com.orange.ods.module.about.R.drawable.ic_tasklist),
                     "Custom item $i",
                     1,
                     "item$i",
-                    FileAboutItem.FileFormat.Html
+                    OdsAbout.FileMenuItem.FileFormat.Html
                 )
             )
         }

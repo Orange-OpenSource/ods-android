@@ -23,7 +23,7 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.viewinterop.AndroidView
 import com.orange.ods.compose.module.emptyview.OdsEmptyView
 import com.orange.ods.compose.theme.OdsTheme
-import com.orange.ods.module.about.configuration.FileAboutItem
+import com.orange.ods.module.about.configuration.OdsAbout
 import com.orange.ods.module.about.utilities.Markdown
 import com.orange.ods.module.about.utilities.extension.injectLightDarkModeCss
 import com.orange.ods.module.about.utilities.extension.launchUrl
@@ -34,12 +34,12 @@ private const val FileResourceDir = "raw"
 private const val FilePath = "file:///android_res/$FileResourceDir/"
 
 @Composable
-fun OdsAboutFileScreen(fileAboutItem: FileAboutItem?, darkModeEnabled: Boolean) {
-    fileAboutItem?.let { item ->
+fun OdsAboutFileScreen(fileMenuItem: OdsAbout.FileMenuItem?, darkModeEnabled: Boolean) {
+    fileMenuItem?.let { item ->
         val context = LocalContext.current
-        val fileId = remember(fileAboutItem.fileName) {
+        val fileId = remember(fileMenuItem.fileName) {
             context.resources.getIdentifier(
-                fileAboutItem.fileName,
+                fileMenuItem.fileName,
                 FileResourceDir,
                 context.packageName
             )
@@ -74,8 +74,8 @@ fun OdsAboutFileScreen(fileAboutItem: FileAboutItem?, darkModeEnabled: Boolean) 
                             .bufferedReader()
                             .use(BufferedReader::readText)
                         val html = when (item.fileFormat) {
-                            FileAboutItem.FileFormat.Html -> fileContent
-                            FileAboutItem.FileFormat.Markdown -> Markdown.toHtml(fileContent)
+                            OdsAbout.FileMenuItem.FileFormat.Html -> fileContent
+                            OdsAbout.FileMenuItem.FileFormat.Markdown -> Markdown.toHtml(fileContent)
                         }
                         // Use loadDataWithBaseURL instead of loadData otherwise CSS won't work
                         loadDataWithBaseURL(FilePath, html, "text/html; charset=UTF-8", StandardCharsets.UTF_8.name(), null)
@@ -90,7 +90,7 @@ fun OdsAboutFileScreen(fileAboutItem: FileAboutItem?, darkModeEnabled: Boolean) 
             // File doesn't exist -> display an error message
             OdsEmptyView(
                 title = stringResource(id = R.string.ods_about_file_missing_title),
-                text = stringResource(id = R.string.ods_about_file_missing_text, fileAboutItem.fileName, FileResourceDir)
+                text = stringResource(id = R.string.ods_about_file_missing_text, fileMenuItem.fileName, FileResourceDir)
             )
         }
     }
