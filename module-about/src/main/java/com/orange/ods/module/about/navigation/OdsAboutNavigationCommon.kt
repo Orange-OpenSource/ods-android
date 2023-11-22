@@ -19,9 +19,7 @@ import androidx.navigation.NavBackStackEntry
 import androidx.navigation.NavController
 import com.orange.ods.module.about.OdsAboutFileScreen
 import com.orange.ods.module.about.OdsAboutViewModel
-import com.orange.ods.module.about.configuration.FileAboutItem
-import com.orange.ods.module.about.configuration.OdsAboutMenuItem
-import com.orange.ods.module.about.configuration.UrlAboutItem
+import com.orange.ods.module.about.configuration.OdsAbout
 import com.orange.ods.module.about.utilities.extension.launchUrl
 
 /**
@@ -40,17 +38,17 @@ internal fun AboutFileScreen(navBackStackEntry: NavBackStackEntry) {
     val viewModelStoreOwner = LocalContext.current as ViewModelStoreOwner
     val aboutViewModel = viewModel<OdsAboutViewModel>(viewModelStoreOwner)
     val aboutMenuItemId = requireNotNull(navBackStackEntry.arguments).getLong(AboutItemIdKey).toInt()
-    val aboutItem = aboutViewModel.configuration?.menuItemById?.get(aboutMenuItemId) as? FileAboutItem
+    val aboutItem = aboutViewModel.configuration?.menuItemById?.get(aboutMenuItemId) as? OdsAbout.FileMenuItem
 
     OdsAboutFileScreen(aboutItem, isSystemInDarkTheme())
 }
 
 @Composable
-internal fun onAboutMenuItemClick(navController: NavController, menuItemById: Map<Int, OdsAboutMenuItem>): (Int) -> Unit {
+internal fun onAboutMenuItemClick(navController: NavController, menuItemById: Map<Int, OdsAbout.MenuItem>): (Int) -> Unit {
     val context = LocalContext.current
     return { id ->
         val aboutMenuItem = menuItemById[id]
-        if (aboutMenuItem is UrlAboutItem) {
+        if (aboutMenuItem is OdsAbout.UrlMenuItem) {
             context.launchUrl(aboutMenuItem.url)
         } else {
             navController.navigate("${OdsAboutDestinations.FileItemRoute}/$id")

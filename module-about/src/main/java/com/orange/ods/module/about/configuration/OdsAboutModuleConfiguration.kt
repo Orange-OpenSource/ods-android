@@ -74,15 +74,15 @@ data class OdsAboutModuleConfiguration(
      *  - Term of services (position index 101)
      *  - Accessibility (position index 102)
      */
-    val customMenuItems: List<OdsAboutMenuItem> = emptyList()
+    val customMenuItems: List<OdsAbout.MenuItem> = emptyList()
 ) {
 
-    internal val menuItemById: Map<Int, OdsAboutMenuItem>
+    internal val menuItemById: Map<Int, OdsAbout.MenuItem>
         @Composable
         get() {
             val mandatoryMenuItems = mandatoryMenuItems()
             return remember {
-                (customMenuItems + mandatoryMenuItems).sortedBy { it.positionIndex }
+                (customMenuItems + mandatoryMenuItems).sortedBy { it.position }
                     .mapIndexed { index, odsAboutMenuItem -> index to odsAboutMenuItem }.toMap()
             }
         }
