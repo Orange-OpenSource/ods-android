@@ -70,7 +70,10 @@ internal fun AboutFileScreen(navBackStackEntry: NavBackStackEntry) {
     val aboutMenuItemId = requireNotNull(navBackStackEntry.arguments).getLong(AboutItemIdKey).toInt()
     val aboutItem = aboutViewModel.configuration?.menuItemById?.get(aboutMenuItemId) as? OdsAbout.FileMenuItem
 
-    aboutItem?.let { OdsAboutFileScreen(it, isSystemInDarkTheme()) }
+    aboutItem?.let {
+        aboutViewModel.configuration?.aboutModuleListener?.onScreenChange(it.text)
+        OdsAboutFileScreen(it, isSystemInDarkTheme())
+    }
 }
 
 @Composable
