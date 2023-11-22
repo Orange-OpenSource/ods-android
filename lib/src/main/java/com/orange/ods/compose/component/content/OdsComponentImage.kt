@@ -10,21 +10,14 @@
 
 package com.orange.ods.compose.component.content
 
-import androidx.annotation.RawRes
 import androidx.compose.foundation.Image
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.ImageBitmap
 import androidx.compose.ui.graphics.painter.Painter
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.layout.ContentScale
-import androidx.compose.ui.semantics.contentDescription
-import androidx.compose.ui.semantics.semantics
-import com.airbnb.lottie.compose.LottieAnimation
-import com.airbnb.lottie.compose.LottieCompositionSpec
-import com.airbnb.lottie.compose.rememberLottieComposition
 
 /**
  * An image in a component.
@@ -34,7 +27,7 @@ abstract class OdsComponentImage<T> internal constructor(
     private val contentDescription: String,
     private val alignment: Alignment = Alignment.Center,
     private val contentScale: ContentScale = ContentScale.Fit
-) : OdsComponentContent<T>() where T: OdsComponentContent.ExtraParameters {
+) : OdsComponentContent<T>() where T : OdsComponentContent.ExtraParameters {
 
     protected constructor(
         painter: Painter,
@@ -56,13 +49,6 @@ abstract class OdsComponentImage<T> internal constructor(
         alignment: Alignment = Alignment.Center,
         contentScale: ContentScale = ContentScale.Fit
     ) : this(bitmap as Any, contentDescription, alignment, contentScale)
-
-    protected constructor(
-        @RawRes animationRes: Int,
-        contentDescription: String,
-        alignment: Alignment = Alignment.Center,
-        contentScale: ContentScale = ContentScale.Fit
-    ) : this(animationRes as Any, contentDescription, alignment, contentScale)
 
     @Composable
     override fun Content(modifier: Modifier) {
@@ -88,15 +74,6 @@ abstract class OdsComponentImage<T> internal constructor(
                 alignment = alignment,
                 contentScale = contentScale
             )
-            is Int -> {
-                val composition by rememberLottieComposition(LottieCompositionSpec.RawRes(graphicsObject))
-                LottieAnimation(
-                    modifier = modifier.semantics { contentDescription = this@OdsComponentImage.contentDescription },
-                    composition = composition,
-                    alignment = alignment,
-                    contentScale = contentScale
-                )
-            }
             else -> {}
         }
     }

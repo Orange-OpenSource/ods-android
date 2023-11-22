@@ -10,7 +10,6 @@
 
 package com.orange.ods.compose.module.emptyview
 
-import androidx.annotation.RawRes
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
@@ -25,6 +24,7 @@ import androidx.compose.ui.graphics.painter.Painter
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.dimensionResource
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.PreviewParameter
 import com.orange.ods.R
@@ -50,7 +50,7 @@ fun OdsEmptyView(
     title: String,
     modifier: Modifier = Modifier,
     text: String? = null,
-    image: OdsEmptyView.Illustration = OdsEmptyView.Illustration(R.raw.empty_animation),
+    image: OdsEmptyView.Illustration = OdsEmptyView.Illustration(painter = painterResource(id = R.drawable.il_binoculars)),
     button: OdsEmptyView.Button? = null
 ) {
     Column(
@@ -61,7 +61,7 @@ fun OdsEmptyView(
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
 
-        image.Content()
+        image.Content(modifier = Modifier.fillMaxWidth())
 
         Text(
             modifier = Modifier
@@ -111,18 +111,11 @@ object OdsEmptyView {
         /**
          * Creates an instance of [OdsEmptyView.Illustration].
          *
-         * @param animationRes The animation resource identifier to play.
-         */
-        constructor(@RawRes animationRes: Int) : super(animationRes, "")
-
-        /**
-         * Creates an instance of [OdsEmptyView.Illustration].
-         *
          * @param painter The painter to draw.
          * @param alignment Alignment parameter used to place the [Painter] in the given bounds defined by the width and height.
-         * @param contentScale The rule to apply to scale the image in this [OdsEmptyView.Illustration], [ContentScale.Crop] by default.
+         * @param contentScale The rule to apply to scale the image in this [OdsEmptyView.Illustration].
          */
-        constructor(painter: Painter, alignment: Alignment = Alignment.Center, contentScale: ContentScale = ContentScale.Crop) : super(
+        constructor(painter: Painter, alignment: Alignment = Alignment.Center, contentScale: ContentScale = ContentScale.Fit) : super(
             painter,
             "",
             alignment = alignment,
@@ -134,9 +127,9 @@ object OdsEmptyView {
          *
          * @param imageVector The image vector to draw.
          * @param alignment Alignment parameter used to place the [ImageVector] in the given bounds defined by the width and height.
-         * @param contentScale The rule to apply to scale the image in this [OdsEmptyView.Illustration], [ContentScale.Crop] by default.
+         * @param contentScale The rule to apply to scale the image in this [OdsEmptyView.Illustration].
          */
-        constructor(imageVector: ImageVector, alignment: Alignment = Alignment.Center, contentScale: ContentScale = ContentScale.Crop) : super(
+        constructor(imageVector: ImageVector, alignment: Alignment = Alignment.Center, contentScale: ContentScale = ContentScale.Fit) : super(
             imageVector,
             "",
             alignment = alignment,
@@ -148,9 +141,9 @@ object OdsEmptyView {
          *
          * @param bitmap The image bitmap to draw.
          * @param alignment Alignment parameter used to place the [ImageBitmap] in the given bounds defined by the width and height.
-         * @param contentScale The rule to apply to scale the image in this [OdsEmptyView.Illustration], [ContentScale.Crop] by default.
+         * @param contentScale The rule to apply to scale the image in this [OdsEmptyView.Illustration].
          */
-        constructor(bitmap: ImageBitmap, alignment: Alignment = Alignment.Center, contentScale: ContentScale = ContentScale.Crop) : super(
+        constructor(bitmap: ImageBitmap, alignment: Alignment = Alignment.Center, contentScale: ContentScale = ContentScale.Fit) : super(
             bitmap,
             "",
             alignment = alignment,

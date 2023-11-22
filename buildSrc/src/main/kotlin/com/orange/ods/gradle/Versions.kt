@@ -38,7 +38,6 @@ object Versions {
     const val kotlinPoet = "1.12.0"
     const val ksp = "$kotlin-1.0.13"
     const val lifecycle = "2.5.1"
-    const val lottie = "6.1.0"
     const val material = "1.7.0"
     const val navigation = "2.5.3"
     const val testExtJUnit = "1.1.4"

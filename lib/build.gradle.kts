@@ -63,7 +63,6 @@ dependencies {
     implementation(Dependencies.coreKtx)
     implementation(Dependencies.customViewPoolingContainer) // This dependency is needed otherwise the compose preview does not work properly
     implementation(Dependencies.lifecycleRuntimeKtx)
-    implementation(Dependencies.lottie)
 
     testImplementation(Dependencies.jUnit)
     androidTestImplementation(Dependencies.testExtJUnit)
