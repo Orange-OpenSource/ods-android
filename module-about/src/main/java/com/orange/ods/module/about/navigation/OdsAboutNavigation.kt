@@ -29,7 +29,6 @@ fun NavController.navigateToOdsAbout(navOptions: NavOptions? = null) {
 
 /**
  * Add this graph to your app in order to integrate the ODS About module.
- * Don't forget to configure the About module by providing LocalOdsAboutModuleConfiguration in CompositionLocal.
  */
 fun NavGraphBuilder.aboutGraph(navController: NavController) {
     navigation(startDestination = OdsAboutDestinations.HomeRoute, route = OdsAboutDestinations.AboutRoute) {
