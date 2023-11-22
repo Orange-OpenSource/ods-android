@@ -34,7 +34,7 @@ private const val FileResourceDir = "raw"
 private const val FilePath = "file:///android_res/$FileResourceDir/"
 
 @Composable
-fun OdsAboutFileScreen(fileMenuItem: OdsAbout.FileMenuItem?, darkModeEnabled: Boolean) {
+internal fun OdsAboutFileScreen(fileMenuItem: OdsAbout.FileMenuItem?, darkModeEnabled: Boolean) {
     fileMenuItem?.let { item ->
         val context = LocalContext.current
         val fileId = remember(fileMenuItem.fileName) {
