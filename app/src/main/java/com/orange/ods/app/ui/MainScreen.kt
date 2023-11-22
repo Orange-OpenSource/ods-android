@@ -54,6 +54,7 @@ import com.orange.ods.compose.text.OdsTextH6
 import com.orange.ods.compose.theme.OdsTheme
 import com.orange.ods.extension.orElse
 import com.orange.ods.module.about.navigation.OdsAboutDestinations
+import com.orange.ods.module.about.navigation.navigateToOdsAbout
 import com.orange.ods.module.about.odsAboutModule
 import com.orange.ods.theme.OdsThemeConfigurationContract
 import com.orange.ods.xml.theme.OdsXml
@@ -168,7 +169,7 @@ fun MainScreen(themeConfigurations: Set<OdsThemeConfigurationContract>, mainView
                         upPress = mainState::upPress,
                         navigateToAboutModule = {
                             aboutModule.configuration = customAboutConfiguration
-                            mainState.navController.navigate(OdsAboutDestinations.HomeRoute)
+                            mainState.navController.navigateToOdsAbout()
                         }
                     )
                 }
