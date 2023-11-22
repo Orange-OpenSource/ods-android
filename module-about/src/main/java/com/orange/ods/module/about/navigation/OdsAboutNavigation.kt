@@ -24,7 +24,7 @@ import com.orange.ods.module.about.OdsAboutHomeScreen
 import com.orange.ods.module.about.OdsAboutViewModel
 
 fun NavController.navigateToOdsAbout(navOptions: NavOptions? = null) {
-    navigate(OdsAboutDestinations.HomeRoute, navOptions)
+    navigate(OdsAboutDestinations.AboutRoute, navOptions)
 }
 
 /**
