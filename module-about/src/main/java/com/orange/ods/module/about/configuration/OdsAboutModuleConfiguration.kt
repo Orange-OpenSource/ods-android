@@ -74,13 +74,25 @@ data class OdsAboutModuleConfiguration(
      *  - Term of services (position index 101)
      *  - Accessibility (position index 102)
      */
-    val customMenuItems: List<OdsAbout.MenuItem> = emptyList()
+    val customMenuItems: List<OdsAbout.MenuItem> = emptyList(),
+
+    /**
+     * The name of the privacy policy HTML file provided in raw directory.
+     * Note that this menu item is always displayed and you MUST provide a file to display privacy policy of your app.
+     */
+    val privacyPolicyMenuItemFileName: String = "about_privacy_policy",
+
+    /**
+     * The name of the terms of service HTML file provided in raw directory.
+     * Note that this menu item is always displayed and you MUST provide a file to display the terms of service for your app.
+     */
+    val termsOfServiceMenuItemFileName: String = "about_terms_of_service"
 ) {
 
     internal val menuItemById: Map<Int, OdsAbout.MenuItem>
         @Composable
         get() {
-            val mandatoryMenuItems = mandatoryMenuItems()
+            val mandatoryMenuItems = mandatoryMenuItems(privacyPolicyMenuItemFileName, termsOfServiceMenuItemFileName)
             return remember {
                 (customMenuItems + mandatoryMenuItems).sortedBy { it.position }
                     .mapIndexed { index, odsAboutMenuItem -> index to odsAboutMenuItem }.toMap()

@@ -22,19 +22,19 @@ import com.orange.ods.module.about.R
 
 @Composable
 @Stable
-internal fun mandatoryMenuItems(): List<OdsAbout.MenuItem> = listOf(
+internal fun mandatoryMenuItems(privacyPolicyFileName: String, termsOfServiceFileName: String): List<OdsAbout.MenuItem> = listOf(
     OdsAbout.FileMenuItem(
         painterResource(id = R.drawable.ic_dataprotection),
         stringResource(id = R.string.ods_about_menu_privacy_policy),
         100,
-        "about_privacy_policy",
+        privacyPolicyFileName,
         OdsAbout.FileMenuItem.FileFormat.Html
     ),
     OdsAbout.FileMenuItem(
         painterResource(id = R.drawable.ic_tasklist),
         stringResource(id = R.string.ods_about_menu_terms_of_service),
         101,
-        "about_terms_of_service",
+        termsOfServiceFileName,
         OdsAbout.FileMenuItem.FileFormat.Html
     )
 )
