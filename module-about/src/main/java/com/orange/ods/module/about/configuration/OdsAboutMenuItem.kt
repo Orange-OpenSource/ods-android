@@ -49,7 +49,7 @@ object OdsAbout {
      * Item to display in the about menu
      *
      * @property graphicsObject The leading icon of the menu item.
-     * @property text The primary text of the menu item
+     * @property text The primary text of the menu item.
      * @property position Index corresponding to the item position in the menu.
      * @property secondaryText The secondary text of the menu item displayed below the primary text.
      */
@@ -59,7 +59,7 @@ object OdsAbout {
     /**
      * A [MenuItem] linked to a file.
      */
-    class FileMenuItem(
+    class FileMenuItem private constructor(
         graphicsObject: Any,
         text: String,
         position: Int,
@@ -72,7 +72,7 @@ object OdsAbout {
          * Creates an instance of [OdsAbout.FileMenuItem].
          *
          * @property painter The painter to draw as menu item leading icon.
-         * @property text The primary text of the menu item
+         * @property text The primary text of the menu item.
          * @property position Index corresponding to the item position in the menu.
          * @property fileRes The resource identifier of the file to display on item click.
          * @property fileFormat The format of the file.
@@ -91,39 +91,39 @@ object OdsAbout {
          * Creates an instance of [OdsAbout.FileMenuItem].
          *
          * @property imageVector The image vector to draw as menu item leading icon.
-         * @property text The primary text of the menu item
+         * @property text The primary text of the menu item.
          * @property position Index corresponding to the item position in the menu.
          * @property fileRes The resource identifier of the file to display on item click.
          * @property fileFormat The format of the file.
          * @property secondaryText The secondary text of the menu item displayed below the primary text.
          */
-        constructor(imageVector: ImageVector, text: String, position: Int, fileRes: Int, fileFormat: FileFormat, secondaryText: String? = null) : this(
-            graphicsObject = imageVector,
-            text,
-            position,
-            fileRes,
-            fileFormat,
-            secondaryText
-        )
+        constructor(
+            imageVector: ImageVector,
+            text: String,
+            position: Int,
+            fileRes: Int,
+            fileFormat: FileFormat,
+            secondaryText: String? = null
+        ) : this(graphicsObject = imageVector, text, position, fileRes, fileFormat, secondaryText)
 
         /**
          * Creates an instance of [OdsAbout.FileMenuItem].
          *
          * @property bitmap The image bitmap to draw as menu item leading icon.
-         * @property text The primary text of the menu item
+         * @property text The primary text of the menu item.
          * @property position Index corresponding to the item position in the menu.
          * @property fileRes The resource identifier of the file to display on item click.
          * @property fileFormat The format of the file.
          * @property secondaryText The secondary text of the menu item displayed below the primary text.
          */
-        constructor(bitmap: ImageBitmap, text: String, position: Int, fileRes: Int, fileFormat: FileFormat, secondaryText: String? = null) : this(
-            graphicsObject = bitmap,
-            text,
-            position,
-            fileRes,
-            fileFormat,
-            secondaryText
-        )
+        constructor(
+            bitmap: ImageBitmap,
+            text: String,
+            position: Int,
+            fileRes: Int,
+            fileFormat: FileFormat,
+            secondaryText: String? = null
+        ) : this(graphicsObject = bitmap, text, position, fileRes, fileFormat, secondaryText)
 
         enum class FileFormat {
             Html, Markdown
@@ -133,63 +133,63 @@ object OdsAbout {
     /**
      * An [MenuItem] linked to an URL.
      */
-    class UrlMenuItem(
+    class UrlMenuItem private constructor(
         graphicsObject: Any,
-        title: String,
+        text: String,
         position: Int,
         val url: String,
-        subtitle: String? = null
-    ) : MenuItem(graphicsObject, title, position, subtitle) {
+        secondaryText: String? = null
+    ) : MenuItem(graphicsObject, text, position, secondaryText) {
 
         /**
          * Creates an instance of [OdsAbout.UrlMenuItem].
          *
          * @property painter The painter to draw as menu item leading icon.
-         * @property text The primary text of the menu item
+         * @property text The primary text of the menu item.
          * @property position Index corresponding to the item position in the menu.
          * @property url The URL to launch on item click.
          * @property secondaryText The secondary text of the menu item displayed below the primary text.
          */
         constructor(
             painter: Painter,
-            title: String,
+            text: String,
             position: Int,
             url: String,
             secondaryText: String? = null
-        ) : this(graphicsObject = painter, title, position, url, secondaryText)
+        ) : this(graphicsObject = painter, text, position, url, secondaryText)
 
         /**
          * Creates an instance of [OdsAbout.UrlMenuItem].
          *
          * @property imageVector The image vector to draw as menu item leading icon.
-         * @property text The primary text of the menu item
+         * @property text The primary text of the menu item.
          * @property position Index corresponding to the item position in the menu.
          * @property url The URL to launch on item click.
          * @property secondaryText The secondary text of the menu item displayed below the primary text.
          */
-        constructor(imageVector: ImageVector, title: String, position: Int, url: String, secondaryText: String? = null) : this(
-            graphicsObject = imageVector,
-            title,
-            position,
-            url,
-            secondaryText
-        )
+        constructor(
+            imageVector: ImageVector,
+            text: String,
+            position: Int,
+            url: String,
+            secondaryText: String? = null
+        ) : this(graphicsObject = imageVector, text, position, url, secondaryText)
 
         /**
          * Creates an instance of [OdsAbout.UrlMenuItem].
          *
          * @property bitmap The image bitmap to draw as menu item leading icon.
-         * @property text The primary text of the menu item
+         * @property text The primary text of the menu item.
          * @property position Index corresponding to the item position in the menu.
          * @property url The URL to launch on item click.
          * @property secondaryText The secondary text of the menu item displayed below the primary text.
          */
-        constructor(bitmap: ImageBitmap, title: String, position: Int, url: String, secondaryText: String? = null) : this(
-            graphicsObject = bitmap,
-            title,
-            position,
-            url,
-            secondaryText
-        )
+        constructor(
+            bitmap: ImageBitmap,
+            text: String,
+            position: Int,
+            url: String,
+            secondaryText: String? = null
+        ) : this(graphicsObject = bitmap, text, position, url, secondaryText)
     }
 }

@@ -54,7 +54,6 @@ import com.orange.ods.compose.component.tab.OdsTabRow
 import com.orange.ods.compose.text.OdsTextH6
 import com.orange.ods.compose.theme.OdsTheme
 import com.orange.ods.extension.orElse
-import com.orange.ods.module.about.navigation.OdsAboutDestinations
 import com.orange.ods.module.about.navigation.navigateToOdsAbout
 import com.orange.ods.module.about.odsAboutModule
 import com.orange.ods.theme.OdsThemeConfigurationContract
@@ -152,7 +151,7 @@ fun MainScreen(themeConfigurations: Set<OdsThemeConfigurationContract>, mainView
                             items = mainState.bottomBarItems,
                             currentRoute = mainState.currentRoute!!,
                             navigateToRoute = { route ->
-                                if (route == OdsAboutDestinations.HomeRoute) {
+                                if (route == BottomBarItem.About.route) {
                                     aboutModule.configuration = aboutConfiguration
                                 }
                                 mainState.navigateToBottomBarRoute(route)
