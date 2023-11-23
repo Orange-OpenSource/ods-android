@@ -30,7 +30,8 @@ import com.orange.ods.module.about.configuration.OdsAboutShareData
 class AboutCustomizationViewModel : ViewModel() {
 
     val additionalLinksCount = mutableStateOf(0)
-    var selectedOptions by mutableStateOf(emptyList<AboutCustomizationOptions>())
+    var selectedAppSections by mutableStateOf(emptyList<AboutCustomizationAppSection>())
+    var selectedOptionalItems by mutableStateOf(emptyList<AboutCustomizationOptionalItem>())
 
     @Composable
     fun aboutModuleConfiguration(): OdsAboutModuleConfiguration {
@@ -40,9 +41,9 @@ class AboutCustomizationViewModel : ViewModel() {
             appName = stringResource(id = R.string.module_about_demo_app_name),
             privacyPolicyMenuItemFileRes = R.raw.about_privacy_policy,
             termsOfServiceMenuItemFileRes = R.raw.about_terms_of_service,
-            appVersion = if (selectedOptions.contains(AboutCustomizationOptions.Version)) stringResource(id = R.string.module_about_demo_version) else null,
-            appDescription = if (selectedOptions.contains(AboutCustomizationOptions.Description)) stringResource(id = R.string.module_about_demo_description) else null,
-            shareData = if (selectedOptions.contains(AboutCustomizationOptions.Share)) {
+            appVersion = if (selectedAppSections.contains(AboutCustomizationAppSection.Version)) stringResource(id = R.string.module_about_demo_version) else null,
+            appDescription = if (selectedAppSections.contains(AboutCustomizationAppSection.Description)) stringResource(id = R.string.module_about_demo_description) else null,
+            shareData = if (selectedAppSections.contains(AboutCustomizationAppSection.Share)) {
                 OdsAboutShareData(
                     stringResource(id = R.string.module_about_demo_share_title),
                     stringResource(id = R.string.module_about_demo_share_text)
@@ -50,7 +51,10 @@ class AboutCustomizationViewModel : ViewModel() {
             } else {
                 null
             },
-            onFeedbackButtonClick = if (selectedOptions.contains(AboutCustomizationOptions.Feedback)) {
+            appNewsMenuItemFileRes = if (selectedOptionalItems.contains(AboutCustomizationOptionalItem.AppNews)) R.raw.about_demo_custom_item else null,
+            legalInformationMenuItemFileRes = if (selectedOptionalItems.contains(AboutCustomizationOptionalItem.LegalInformation)) R.raw.about_demo_custom_item else null,
+            rateTheAppUrl = if (selectedOptionalItems.contains(AboutCustomizationOptionalItem.RateTheApp)) "https://play.google.com/apps/testing/com.orange.ods.app" else null,
+            onFeedbackButtonClick = if (selectedAppSections.contains(AboutCustomizationAppSection.Feedback)) {
                 { clickOnElement(context, context.getString(R.string.module_about_demo_feedback_button_element)) }
             } else {
                 null

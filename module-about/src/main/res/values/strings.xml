@@ -15,7 +15,13 @@
     <string name="ods_about_app_share">Share</string>
     <string name="ods_about_app_feedback">Feedback</string>
 
+    <!-- Mandatory menu items -->
     <string name="ods_about_menu_terms_of_service">Terms of service</string>
     <string name="ods_about_menu_privacy_policy">Privacy policy</string>
     <string name="ods_about_menu_accessibility_statement">Accessibility statement</string>
+
+    <!-- Optional menu items -->
+    <string name="ods_about_menu_app_news">App news</string>
+    <string name="ods_about_menu_legal_information">Legal information</string>
+    <string name="ods_about_menu_rate_the_app">Rate the app</string>
 </resources>

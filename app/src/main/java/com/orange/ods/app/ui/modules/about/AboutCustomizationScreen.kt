@@ -24,20 +24,26 @@ import com.orange.ods.app.R
 import com.orange.ods.app.ui.components.utilities.ComponentCountRow
 import com.orange.ods.app.ui.modules.Module
 import com.orange.ods.app.ui.modules.ModuleDetailColumn
+import com.orange.ods.app.ui.utilities.composable.Subtitle
 import com.orange.ods.compose.component.chip.OdsFilterChip
 import com.orange.ods.compose.text.OdsTextBody2
 
-enum class AboutCustomizationOptions(@StringRes val labelResId: Int) {
-    Version(R.string.module_about_customization_version),
-    Description(R.string.module_about_customization_description),
-    Share(R.string.module_about_customization_share),
-    Feedback(R.string.module_about_customization_feedback)
+enum class AboutCustomizationAppSection(@StringRes val labelResId: Int) {
+    Version(R.string.module_about_customization_app_section_version),
+    Description(R.string.module_about_customization_app_section_description),
+    Share(R.string.module_about_customization_app_section_share),
+    Feedback(R.string.module_about_customization_app_section_feedback)
+}
+
+enum class AboutCustomizationOptionalItem(@StringRes val labelResId: Int) {
+    AppNews(R.string.module_about_customization_optional_item_app_news),
+    LegalInformation(R.string.module_about_customization_optional_item_legal_information),
+    RateTheApp(R.string.module_about_customization_optional_item_rate_app),
 }
 
 private const val MinLinkItemCount = 0
 private const val MaxLinkItemCount = 10
 
-@OptIn(ExperimentalLayoutApi::class)
 @Composable
 fun AboutCustomizationScreen(navigateToAboutModule: () -> Unit, viewModel: AboutCustomizationViewModel) {
     with(viewModel) {
@@ -48,33 +54,52 @@ fun AboutCustomizationScreen(navigateToAboutModule: () -> Unit, viewModel: About
                 text = stringResource(id = R.string.module_about_customization)
             )
 
-            FlowRow(
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .padding(top = dimensionResource(id = com.orange.ods.R.dimen.spacing_xs)),
-                horizontalArrangement = Arrangement.spacedBy(dimensionResource(id = com.orange.ods.R.dimen.spacing_s))
-            ) {
-                AboutCustomizationOptions.values().forEach { option ->
+            Subtitle(textRes = R.string.module_about_customization_app_sections)
+            CustomizationChipsFlowRow {
+                AboutCustomizationAppSection.values().forEach { appSection: AboutCustomizationAppSection ->
                     OdsFilterChip(
-                        text = stringResource(id = option.labelResId),
+                        text = stringResource(id = appSection.labelResId),
                         onClick = {
-                            selectedOptions = with(selectedOptions) { if (contains(option)) minus(option) else plus(option) }
+                            selectedAppSections = with(selectedAppSections) { if (contains(appSection)) minus(appSection) else plus(appSection) }
                         },
-                        selected = selectedOptions.contains(option),
+                        selected = selectedAppSections.contains(appSection),
                     )
                 }
+            }
 
+            Subtitle(textRes = R.string.module_about_customization_optional_items)
+            CustomizationChipsFlowRow {
+                AboutCustomizationOptionalItem.values().forEach { item: AboutCustomizationOptionalItem ->
+                    OdsFilterChip(
+                        text = stringResource(id = item.labelResId),
+                        onClick = {
+                            selectedOptionalItems = with(selectedOptionalItems) { if (contains(item)) minus(item) else plus(item) }
+                        },
+                        selected = selectedOptionalItems.contains(item),
+                    )
+                }
             }
 
             ComponentCountRow(
-                title = stringResource(id = R.string.module_about_customization_additional_links),
+                title = stringResource(id = R.string.module_about_customization_additional_items),
                 count = additionalLinksCount,
-                minusIconContentDescription = stringResource(id = R.string.module_about_customization_additional_link_remove),
-                plusIconContentDescription = stringResource(id = R.string.module_about_customization_additional_link_add),
+                minusIconContentDescription = stringResource(id = R.string.module_about_customization_additional_item_remove),
+                plusIconContentDescription = stringResource(id = R.string.module_about_customization_additional_item_add),
                 minCount = MinLinkItemCount,
                 maxCount = MaxLinkItemCount
             )
-
         }
     }
+}
+
+@OptIn(ExperimentalLayoutApi::class)
+@Composable
+private fun CustomizationChipsFlowRow(content: @Composable () -> Unit) {
+    FlowRow(
+        modifier = Modifier
+            .fillMaxWidth()
+            .padding(top = dimensionResource(id = com.orange.ods.R.dimen.spacing_xs)),
+        horizontalArrangement = Arrangement.spacedBy(dimensionResource(id = com.orange.ods.R.dimen.spacing_s)),
+        content = { content() }
+    )
 }

@@ -81,6 +81,21 @@ data class OdsAboutModuleConfiguration(
     val topAppBarOverflowMenuActions: List<OdsDropdownMenu.Item> = emptyList(),
 
     /**
+     * App News menu item file resource. Provide it to display an App news menu item linked to this file.
+     */
+    @RawRes val appNewsMenuItemFileRes: Int? = null,
+
+    /**
+     * Legal information menu item file resource. Provide it to display a Legal information menu item linked to this file.
+     */
+    @RawRes val legalInformationMenuItemFileRes: Int? = null,
+
+    /**
+     * Rate the app URL. Provide it to display a Rate the app menu item linked to this URL.
+     */
+    val rateTheAppUrl: String? = null,
+
+    /**
      * The custom menu items to be displayed on the about main screen.
      * Note that mandatory items will be added to the provided list:
      *  - Privacy policy (position index 100)
@@ -100,9 +115,17 @@ data class OdsAboutModuleConfiguration(
     internal val menuItemById: Map<Int, OdsAboutMenuItem>
         @Composable
         get() {
-            val mandatoryMenuItems = mandatoryMenuItems(privacyPolicyMenuItemFileRes, termsOfServiceMenuItemFileRes)
+            val mandatoryMenuItems = mandatoryMenuItems(
+                privacyPolicyFileRes = privacyPolicyMenuItemFileRes,
+                termsOfServiceFileRes = termsOfServiceMenuItemFileRes
+            )
+            val optionalMenuItems = optionalMenuItems(
+                appNewsFileRes = appNewsMenuItemFileRes,
+                legalInformationFileRes = legalInformationMenuItemFileRes,
+                rateTheAppUrl = rateTheAppUrl
+            )
             return remember {
-                (customMenuItems + mandatoryMenuItems).sortedBy { it.position }
+                (customMenuItems + mandatoryMenuItems + optionalMenuItems).sortedBy { it.position }
                     .mapIndexed { index, odsAboutMenuItem -> index to odsAboutMenuItem }.toMap()
             }
         }
