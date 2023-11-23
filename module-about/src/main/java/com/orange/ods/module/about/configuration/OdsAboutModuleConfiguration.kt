@@ -11,6 +11,7 @@
 package com.orange.ods.module.about.configuration
 
 import androidx.annotation.DrawableRes
+import androidx.annotation.RawRes
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember
 import com.orange.ods.compose.component.appbar.top.OdsTopAppBar
@@ -30,13 +31,13 @@ data class OdsAboutModuleConfiguration(
      * The resource identifier of the privacy policy HTML file provided.
      * Note that this menu item is always displayed and you MUST provide a file in the raw directory to display the privacy policy of your app.
      */
-    val privacyPolicyMenuItemFileRes: Int,
+    @RawRes val privacyPolicyMenuItemFileRes: Int,
 
     /**
      * The resource identifier of the terms of service HTML file provided.
      * Note that this menu item is always displayed and you MUST provide a file in the raw directory to display the terms of service for your app.
      */
-    val termsOfServiceMenuItemFileRes: Int,
+    @RawRes val termsOfServiceMenuItemFileRes: Int,
 
     /**
      * The illustration resource id. It should be a SVG or PNG resource file, placed in res/drawable directory. It allows to customize

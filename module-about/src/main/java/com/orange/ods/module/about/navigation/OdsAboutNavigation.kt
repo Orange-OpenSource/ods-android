@@ -29,13 +29,12 @@ import com.orange.ods.module.about.OdsAboutViewModel
 import com.orange.ods.module.about.configuration.OdsAbout
 import com.orange.ods.module.about.utilities.extension.launchUrl
 
-/**
- * Destinations used in the About module.
- */
-object OdsAboutDestinations {
+private const val AboutItemIdKey = "aboutItemId"
+
+private object OdsAboutDestinations {
     const val HomeRoute = "ods/module/about/home"
-    internal const val AboutRoute = "ods/module/about/"
-    internal const val FileItemRoute = "ods/module/about/fileItem"
+    const val AboutRoute = "ods/module/about/"
+    const val FileItemRoute = "ods/module/about/fileItem"
 }
 
 fun NavController.navigateToOdsAbout(navOptions: NavOptions? = null) {
@@ -63,8 +62,6 @@ fun NavGraphBuilder.aboutGraph(navController: NavController) {
         ) { backStackEntry -> AboutFileScreen(navBackStackEntry = backStackEntry) }
     }
 }
-
-internal const val AboutItemIdKey = "aboutItemId"
 
 @Composable
 internal fun AboutFileScreen(navBackStackEntry: NavBackStackEntry) {

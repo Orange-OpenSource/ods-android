@@ -33,44 +33,44 @@ private const val FilePath = "file:///android_res/$FileResourceDir/"
 @Composable
 internal fun OdsAboutFileScreen(fileMenuItem: OdsAbout.FileMenuItem, darkModeEnabled: Boolean) {
     val context = LocalContext.current
-        val colors = OdsTheme.colors
-        val horizontalPadding = dimensionResource(id = com.orange.ods.R.dimen.screen_horizontal_margin).value
-        val verticalPadding = dimensionResource(id = com.orange.ods.R.dimen.screen_vertical_margin).value
-        AndroidView(
-            factory = {
-                WebView(context).apply {
-                    @SuppressLint("SetJavaScriptEnabled")
-                    settings.javaScriptEnabled = true
-                    webViewClient = object : WebViewClient() {
-                        override fun onPageFinished(view: WebView?, url: String?) {
-                            super.onPageFinished(view, url)
-                            view?.loadUrl("javascript:(function(){ document.body.style.padding = '${verticalPadding}px ${horizontalPadding}px' })();");
-                            view?.injectLightDarkModeCss(darkModeEnabled, colors)
-                        }
-
-                        override fun shouldOverrideUrlLoading(view: WebView?, request: WebResourceRequest?): Boolean {
-                            request?.url?.let { url ->
-                                context.launchUrl(url.toString())
-                            }
-
-                            return true
-                        }
+    val colors = OdsTheme.colors
+    val horizontalPadding = dimensionResource(id = com.orange.ods.R.dimen.screen_horizontal_margin).value
+    val verticalPadding = dimensionResource(id = com.orange.ods.R.dimen.screen_vertical_margin).value
+    AndroidView(
+        factory = {
+            WebView(context).apply {
+                @SuppressLint("SetJavaScriptEnabled")
+                settings.javaScriptEnabled = true
+                webViewClient = object : WebViewClient() {
+                    override fun onPageFinished(view: WebView?, url: String?) {
+                        super.onPageFinished(view, url)
+                        view?.loadUrl("javascript:(function(){ document.body.style.padding = '${verticalPadding}px ${horizontalPadding}px' })();")
+                        view?.injectLightDarkModeCss(darkModeEnabled, colors)
                     }
 
-                    val fileContent = resources.openRawResource(fileMenuItem.fileRes)
-                        .bufferedReader()
-                        .use(BufferedReader::readText)
-                    val html = when (fileMenuItem.fileFormat) {
-                        OdsAbout.FileMenuItem.FileFormat.Html -> fileContent
-                        OdsAbout.FileMenuItem.FileFormat.Markdown -> Markdown.toHtml(fileContent)
-                    }
-                    // Use loadDataWithBaseURL instead of loadData otherwise CSS won't work
-                    loadDataWithBaseURL(FilePath, html, "text/html; charset=UTF-8", StandardCharsets.UTF_8.name(), null)
+                    override fun shouldOverrideUrlLoading(view: WebView?, request: WebResourceRequest?): Boolean {
+                        request?.url?.let { url ->
+                            context.launchUrl(url.toString())
+                        }
 
-                    setBackgroundColor(Color.TRANSPARENT)
+                        return true
+                    }
                 }
-            },
-            update = {
-                it.injectLightDarkModeCss(darkModeEnabled, colors)
-            })
+
+                val fileContent = resources.openRawResource(fileMenuItem.fileRes)
+                    .bufferedReader()
+                    .use(BufferedReader::readText)
+                val html = when (fileMenuItem.fileFormat) {
+                    OdsAbout.FileMenuItem.FileFormat.Html -> fileContent
+                    OdsAbout.FileMenuItem.FileFormat.Markdown -> Markdown.toHtml(fileContent)
+                }
+                // Use loadDataWithBaseURL instead of loadData otherwise CSS won't work
+                loadDataWithBaseURL(FilePath, html, "text/html; charset=UTF-8", StandardCharsets.UTF_8.name(), null)
+
+                setBackgroundColor(Color.TRANSPARENT)
+            }
+        },
+        update = {
+            it.injectLightDarkModeCss(darkModeEnabled, colors)
+        })
 }

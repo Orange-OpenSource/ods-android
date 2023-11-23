@@ -87,7 +87,11 @@ fun OdsEmptyView(
     }
 }
 
+/**
+ * Contains classes to build an [com.orange.ods.compose.module.emptyview.OdsEmptyView].
+ */
 object OdsEmptyView {
+
     /**
      * A button in an [OdsEmptyView].
      *
