@@ -11,6 +11,7 @@
 package com.orange.ods.compose.component.textfield.password
 
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.text.KeyboardActions
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material.Text
@@ -85,11 +86,11 @@ fun OdsPasswordTextField(
         this.visualisationIcon.value = visualisationIcon
     }
 
-    Column {
+    Column(modifier = modifier) {
         OdsTextField(
             value = value,
             onValueChange = onValueChange,
-            modifier = modifier,
+            modifier = Modifier.fillMaxWidth(),
             enabled = enabled,
             readOnly = readOnly,
             label = label,
