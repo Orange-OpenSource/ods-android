@@ -15,9 +15,7 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
 import androidx.lifecycle.ViewModel
 import com.orange.ods.module.about.configuration.OdsAboutModuleConfiguration
-import dagger.hilt.android.lifecycle.HiltViewModel
 
-@HiltViewModel
 class OdsAboutViewModel : ViewModel() {
     var configuration: OdsAboutModuleConfiguration? by mutableStateOf(null)
         private set

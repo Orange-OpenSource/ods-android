@@ -325,4 +325,5 @@ sealed class Variant(
 
     data object TabsFixed : Variant(R.string.component_tabs_fixed, OdsComposable.OdsTabRow.name)
     data object TabsScrollable : Variant(R.string.component_tabs_scrollable, OdsComposable.OdsScrollableTabRow.name)
+
 }

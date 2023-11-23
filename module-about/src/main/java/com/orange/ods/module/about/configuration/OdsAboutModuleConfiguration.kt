@@ -11,14 +11,12 @@
 package com.orange.ods.module.about.configuration
 
 import androidx.annotation.DrawableRes
-import androidx.compose.runtime.staticCompositionLocalOf
+import androidx.annotation.RawRes
+import androidx.compose.runtime.Composable
+import androidx.compose.runtime.remember
 import com.orange.ods.compose.component.appbar.top.OdsTopAppBar
 import com.orange.ods.compose.component.menu.OdsDropdownMenu
 import com.orange.ods.module.about.R
-
-
-val LocalOdsAboutModuleConfiguration =
-    staticCompositionLocalOf<OdsAboutModuleConfiguration> { error("CompositionLocal LocalOdsAboutModuleConfiguration not present") }
 
 /**
  * About module configuration.
@@ -28,6 +26,18 @@ data class OdsAboutModuleConfiguration(
      * The name of the application displayed on the main screen of the About module.
      */
     val appName: String,
+
+    /**
+     * The resource identifier of the privacy policy HTML file provided.
+     * Note that this menu item is always displayed and you MUST provide a file in the raw directory to display the privacy policy of your app.
+     */
+    @RawRes val privacyPolicyMenuItemFileRes: Int,
+
+    /**
+     * The resource identifier of the terms of service HTML file provided.
+     * Note that this menu item is always displayed and you MUST provide a file in the raw directory to display the terms of service for your app.
+     */
+    @RawRes val termsOfServiceMenuItemFileRes: Int,
 
     /**
      * The illustration resource id. It should be a SVG or PNG resource file, placed in res/drawable directory. It allows to customize
@@ -70,7 +80,27 @@ data class OdsAboutModuleConfiguration(
      */
     val topAppBarOverflowMenuActions: List<OdsDropdownMenu.Item> = emptyList(),
 
-    )
+    /**
+     * The custom menu items to be displayed on the about main screen.
+     * Note that mandatory items will be added to the provided list:
+     *  - Privacy policy (position index 100)
+     *  - Term of services (position index 101)
+     *  - Accessibility (position index 102)
+     */
+    val customMenuItems: List<OdsAbout.MenuItem> = emptyList()
+
+) {
+
+    internal val menuItemById: Map<Int, OdsAbout.MenuItem>
+        @Composable
+        get() {
+            val mandatoryMenuItems = mandatoryMenuItems(privacyPolicyMenuItemFileRes, termsOfServiceMenuItemFileRes)
+            return remember {
+                (customMenuItems + mandatoryMenuItems).sortedBy { it.position }
+                    .mapIndexed { index, odsAboutMenuItem -> index to odsAboutMenuItem }.toMap()
+            }
+        }
+}
 
 /**
  * Defines the data to be shared by clicking on the about share button.

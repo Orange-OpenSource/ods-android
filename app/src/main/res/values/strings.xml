@@ -386,6 +386,9 @@
     <string name="module_about_customization_description">Description</string>
     <string name="module_about_customization_share">Share</string>
     <string name="module_about_customization_feedback">Feedback</string>
+    <string name="module_about_customization_additional_links">Additional link(s)</string>
+    <string name="module_about_customization_additional_link_remove">Remove link</string>
+    <string name="module_about_customization_additional_link_add">Add link</string>
     <string name="module_about_demo_app_name">Application Name</string>
     <string name="module_about_demo_version">Version</string>
     <string name="module_about_demo_description">Add here a short description of the application.</string>
@@ -397,8 +400,6 @@
     <string name="about_app_name">Orange Design System</string>
     <string name="about_description">In this app you\'ll find implemented code examples of the guidelines, components and modules, for the themes of the Orange Design System.</string>
     <string name="about_menu_design_guidelines">Design guidelines</string>
-    <string name="about_menu_legal_notice">Legal notice</string>
-    <string name="about_menu_privacy_policy">Privacy policy</string>
     <string name="about_menu_changelog">Changelog</string>
     <string name="about_menu_report_issue">Report an issue</string>
 
