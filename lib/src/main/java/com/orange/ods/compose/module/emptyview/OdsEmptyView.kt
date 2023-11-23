@@ -50,7 +50,7 @@ fun OdsEmptyView(
     title: String,
     modifier: Modifier = Modifier,
     text: String? = null,
-    image: OdsEmptyView.Illustration = OdsEmptyView.Illustration(painter = painterResource(id = R.drawable.il_binoculars)),
+    image: OdsEmptyView.Image = OdsEmptyView.Image(painter = painterResource(id = R.drawable.il_binoculars)),
     button: OdsEmptyView.Button? = null
 ) {
     Column(
@@ -110,14 +110,14 @@ object OdsEmptyView {
     /**
      * An image in an [OdsEmptyView].
      */
-    class Illustration : OdsComponentImage<Nothing> {
+    class Image : OdsComponentImage<Nothing> {
 
         /**
-         * Creates an instance of [OdsEmptyView.Illustration].
+         * Creates an instance of [OdsEmptyView.Image].
          *
          * @param painter The painter to draw.
          * @param alignment Alignment parameter used to place the [Painter] in the given bounds defined by the width and height.
-         * @param contentScale The rule to apply to scale the image in this [OdsEmptyView.Illustration].
+         * @param contentScale The rule to apply to scale the image in this [OdsEmptyView.Image].
          */
         constructor(painter: Painter, alignment: Alignment = Alignment.Center, contentScale: ContentScale = ContentScale.Fit) : super(
             painter,
@@ -127,11 +127,11 @@ object OdsEmptyView {
         )
 
         /**
-         * Creates an instance of [OdsEmptyView.Illustration].
+         * Creates an instance of [OdsEmptyView.Image].
          *
          * @param imageVector The image vector to draw.
          * @param alignment Alignment parameter used to place the [ImageVector] in the given bounds defined by the width and height.
-         * @param contentScale The rule to apply to scale the image in this [OdsEmptyView.Illustration].
+         * @param contentScale The rule to apply to scale the image in this [OdsEmptyView.Image].
          */
         constructor(imageVector: ImageVector, alignment: Alignment = Alignment.Center, contentScale: ContentScale = ContentScale.Fit) : super(
             imageVector,
@@ -141,11 +141,11 @@ object OdsEmptyView {
         )
 
         /**
-         * Creates an instance of [OdsEmptyView.Illustration].
+         * Creates an instance of [OdsEmptyView.Image].
          *
          * @param bitmap The image bitmap to draw.
          * @param alignment Alignment parameter used to place the [ImageBitmap] in the given bounds defined by the width and height.
-         * @param contentScale The rule to apply to scale the image in this [OdsEmptyView.Illustration].
+         * @param contentScale The rule to apply to scale the image in this [OdsEmptyView.Image].
          */
         constructor(bitmap: ImageBitmap, alignment: Alignment = Alignment.Center, contentScale: ContentScale = ContentScale.Fit) : super(
             bitmap,
