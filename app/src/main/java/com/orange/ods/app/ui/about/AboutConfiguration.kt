@@ -19,20 +19,32 @@ import com.orange.ods.app.ui.CustomAppBarConfiguration
 import com.orange.ods.app.ui.LocalAppBarManager
 import com.orange.ods.module.about.configuration.OdsAboutFileMenuItem
 import com.orange.ods.module.about.configuration.OdsAboutModuleConfiguration
+import com.orange.ods.module.about.configuration.OdsAboutShareData
 import com.orange.ods.module.about.configuration.OdsAboutUrlMenuItem
 import com.orange.ods.module.about.utilities.VersionHelper
+import com.orange.ods.module.about.utilities.extension.launchUrl
 
 const val RateTheAppUrl = "https://play.google.com/apps/testing/com.orange.ods.app"
+private const val ShareUrl = "http://oran.ge/dsapp"
+private const val FeedbackUrl = "https://github.com/login?return_to=https%3A%2F%2Fgithub.com%2FOrange-OpenSource%2Fods-android%2Fissues%2Fnew%2Fchoose"
 
 @Composable
 fun aboutConfiguration(): OdsAboutModuleConfiguration {
     val appBarManager = LocalAppBarManager.current
+    val context = LocalContext.current
     return OdsAboutModuleConfiguration(
         appName = stringResource(id = R.string.about_app_name),
         privacyPolicyMenuItemFile = OdsAboutFileMenuItem.File(R.raw.about_privacy_policy, OdsAboutFileMenuItem.FileFormat.Html),
         termsOfServiceMenuItemFile = OdsAboutFileMenuItem.File(R.raw.about_terms_of_service, OdsAboutFileMenuItem.FileFormat.Html),
         appVersion = VersionHelper.getFromPackageInfo(context = LocalContext.current),
         appDescription = stringResource(id = R.string.about_description),
+        shareData = OdsAboutShareData(
+            stringResource(id = R.string.app_name),
+            String.format(stringResource(id = R.string.about_share_text), ShareUrl)
+        ),
+        onFeedbackButtonClick = {
+            context.launchUrl(FeedbackUrl)
+        },
         appNewsMenuItemFileRes = R.raw.about_app_news,
         rateTheAppUrl = RateTheAppUrl,
         customMenuItems = listOf(
