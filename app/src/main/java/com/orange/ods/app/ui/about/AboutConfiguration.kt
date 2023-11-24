@@ -22,15 +22,19 @@ import com.orange.ods.module.about.configuration.OdsAboutModuleConfiguration
 import com.orange.ods.module.about.configuration.OdsAboutUrlMenuItem
 import com.orange.ods.module.about.utilities.VersionHelper
 
+const val RateTheAppUrl = "https://play.google.com/apps/testing/com.orange.ods.app"
+
 @Composable
 fun aboutConfiguration(): OdsAboutModuleConfiguration {
     val appBarManager = LocalAppBarManager.current
     return OdsAboutModuleConfiguration(
         appName = stringResource(id = R.string.about_app_name),
-        privacyPolicyMenuItemFileRes = R.raw.about_privacy_policy,
-        termsOfServiceMenuItemFileRes = R.raw.about_terms_of_service,
+        privacyPolicyMenuItemFile = OdsAboutFileMenuItem.File(R.raw.about_privacy_policy, OdsAboutFileMenuItem.FileFormat.Html),
+        termsOfServiceMenuItemFile = OdsAboutFileMenuItem.File(R.raw.about_terms_of_service, OdsAboutFileMenuItem.FileFormat.Html),
         appVersion = VersionHelper.getFromPackageInfo(context = LocalContext.current),
         appDescription = stringResource(id = R.string.about_description),
+        appNewsMenuItemFileRes = R.raw.about_app_news,
+        rateTheAppUrl = RateTheAppUrl,
         customMenuItems = listOf(
             OdsAboutUrlMenuItem(
                 painterResource(id = R.drawable.ic_tools),
@@ -42,8 +46,7 @@ fun aboutConfiguration(): OdsAboutModuleConfiguration {
                 painterResource(id = com.orange.ods.module.about.R.drawable.ic_tasklist),
                 stringResource(id = R.string.about_menu_changelog),
                 2,
-                R.raw.changelog,
-                OdsAboutFileMenuItem.FileFormat.Markdown
+                OdsAboutFileMenuItem.File(R.raw.changelog, OdsAboutFileMenuItem.FileFormat.Markdown)
             ),
             OdsAboutUrlMenuItem(
                 painterResource(id = R.drawable.ic_comments),

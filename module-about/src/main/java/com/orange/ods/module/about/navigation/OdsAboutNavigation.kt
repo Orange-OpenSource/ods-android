@@ -26,18 +26,24 @@ import androidx.navigation.navigation
 import com.orange.ods.module.about.OdsAboutFileScreen
 import com.orange.ods.module.about.OdsAboutHomeScreen
 import com.orange.ods.module.about.OdsAboutViewModel
+import com.orange.ods.module.about.appnews.OdsAboutAppNewsScreen
+import com.orange.ods.module.about.configuration.OdsAboutAppNewsMenuItem
 import com.orange.ods.module.about.configuration.OdsAboutFileMenuItem
 import com.orange.ods.module.about.configuration.OdsAboutMenuItem
 import com.orange.ods.module.about.configuration.OdsAboutUrlMenuItem
+import com.orange.ods.module.about.navigation.OdsAboutDestinations.AppNewsRoute
 import com.orange.ods.module.about.utilities.extension.launchUrl
 
-private const val AboutItemIdKey = "aboutItemId"
 
 private object OdsAboutDestinations {
     const val HomeRoute = "ods/module/about/home"
     const val AboutRoute = "ods/module/about/"
     const val FileItemRoute = "ods/module/about/fileItem"
+    const val AppNewsRoute = "ods/module/about/appNews"
 }
+
+private const val AboutItemIdKey = "aboutItemId"
+private const val AppNewsFileResId = "appNewsFileResId"
 
 fun NavController.navigateToOdsAbout(navOptions: NavOptions? = null) {
     navigate(OdsAboutDestinations.AboutRoute, navOptions)
@@ -53,15 +59,23 @@ fun NavGraphBuilder.aboutGraph(navController: NavController) {
             viewModel<OdsAboutViewModel>(viewModelStoreOwner).configuration?.let { configuration ->
                 OdsAboutHomeScreen(
                     configuration = configuration,
-                    onAboutMenuItemClick = onAboutMenuItemClick(navController, configuration.menuItemById)
+                    onAboutMenuItemClick = onAboutMenuItemClick(navController, configuration.menuItemById, configuration.onScreenChange)
                 )
             }
         }
 
         composable(
-            "${OdsAboutDestinations.FileItemRoute}/{${AboutItemIdKey}}",
+            "${OdsAboutDestinations.FileItemRoute}/{$AboutItemIdKey}",
             arguments = listOf(navArgument(AboutItemIdKey) { type = NavType.LongType })
-        ) { backStackEntry -> AboutFileScreen(navBackStackEntry = backStackEntry) }
+        ) { navBackStackEntry -> AboutFileScreen(navBackStackEntry = navBackStackEntry) }
+
+        composable(
+            "$AppNewsRoute/{$AppNewsFileResId}",
+            arguments = listOf(navArgument(AppNewsFileResId) { type = NavType.LongType })
+        ) { navBackStackEntry ->
+            val appNewsFileResId = requireNotNull(navBackStackEntry.arguments).getLong(AppNewsFileResId).toInt()
+            OdsAboutAppNewsScreen(fileRes = appNewsFileResId)
+        }
     }
 }
 
@@ -72,21 +86,23 @@ internal fun AboutFileScreen(navBackStackEntry: NavBackStackEntry) {
     val aboutMenuItemId = requireNotNull(navBackStackEntry.arguments).getLong(AboutItemIdKey).toInt()
     val aboutItem = aboutViewModel.configuration?.menuItemById?.get(aboutMenuItemId) as? OdsAboutFileMenuItem
 
-    aboutItem?.let {
-        aboutViewModel.configuration?.onScreenChange?.invoke(it.text)
-        OdsAboutFileScreen(it, isSystemInDarkTheme())
-    }
+    aboutItem?.let { OdsAboutFileScreen(it, isSystemInDarkTheme()) }
 }
 
 @Composable
-internal fun onAboutMenuItemClick(navController: NavController, menuItemById: Map<Int, OdsAboutMenuItem>): (Int) -> Unit {
+internal fun onAboutMenuItemClick(
+    navController: NavController,
+    menuItemById: Map<Int, OdsAboutMenuItem>,
+    onScreenChange: ((String) -> Unit)?
+): (Int) -> Unit {
     val context = LocalContext.current
     return { id ->
         val aboutMenuItem = menuItemById[id]
-        if (aboutMenuItem is OdsAboutUrlMenuItem) {
-            context.launchUrl(aboutMenuItem.url)
-        } else {
-            navController.navigate("${OdsAboutDestinations.FileItemRoute}/$id")
+        onScreenChange?.invoke(aboutMenuItem?.text.orEmpty())
+        when (aboutMenuItem) {
+            is OdsAboutUrlMenuItem -> context.launchUrl(aboutMenuItem.url)
+            is OdsAboutAppNewsMenuItem -> navController.navigate("$AppNewsRoute/${aboutMenuItem.jsonFileRes}")
+            else -> navController.navigate("${OdsAboutDestinations.FileItemRoute}/$id")
         }
     }
 }

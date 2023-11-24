@@ -1,0 +1,42 @@
+[
+  {
+    "version": "0.17.0",
+    "date": "2023-11-08",
+    "news": "- Several API changes: Bottom navigation, choice chips, sliders, list items and snackbars\n- Include ODS composables parameters description in the documentation"
+  },
+  {
+    "version": "0.16.0",
+    "date": "2023-10-11",
+    "news": "- Several API changes: Cards ans sliders"
+  },
+  {
+    "version": "0.15.0",
+    "date": "2023-09-13",
+    "news": "- Several API changes\n- Two new components available: List item and toggle text buttons group"
+  },
+  {
+    "version": "0.14.0",
+    "date": "2023-07-13",
+    "news": "- Two new components in the library: Image item and large top app bar\n- Add XML support for buttons and icon buttons"
+  },
+  {
+    "version": "0.13.0",
+    "date": "2023-06-07",
+    "news": "- Generalize code implementation section for components in the demo app\n- Add the first XML component: OdsBanner"
+  },
+  {
+    "version": "0.12.0",
+    "date": "2023-04-07",
+    "news": "- One new component added in the library: Navigation drawer\n- Search feature added in the demo app"
+  },
+  {
+    "version": "0.11.0",
+    "date": "2023-03-09",
+    "news": "- Three components added in the library: Banners, horizontal cards and bottom sheets"
+  },
+  {
+    "version": "0.10.0",
+    "date": "2023-02-08",
+    "news": "- Two components added in the library: Floating Action Button (FAB) and menus (dropdown menu and exposed dropdown menu)\n- Food content and illustrations added in the demo app"
+  }
+]
