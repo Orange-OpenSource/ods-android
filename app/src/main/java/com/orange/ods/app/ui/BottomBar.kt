@@ -64,5 +64,5 @@ enum class BottomBarItem(
     Guidelines(R.string.navigation_item_guidelines, R.drawable.ic_guideline_dna, "main/guidelines"),
     Components(R.string.navigation_item_components, R.drawable.ic_component_atom, "main/components"),
     Modules(R.string.navigation_item_modules, R.drawable.ic_module_molecule, "main/modules"),
-    About(R.string.navigation_item_about, R.drawable.ic_info, OdsAboutDestinations.HomeRoute)
+    About(R.string.navigation_item_about, R.drawable.ic_info, "ods/module/about/home")
 }
