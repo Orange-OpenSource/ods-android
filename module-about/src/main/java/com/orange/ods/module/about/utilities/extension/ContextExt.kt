@@ -16,7 +16,7 @@ import android.net.Uri
 import androidx.browser.customtabs.CustomTabsIntent
 
 
-internal fun Context.launchUrl(url: String) {
+fun Context.launchUrl(url: String) {
     try {
         CustomTabsIntent.Builder()
             .setUrlBarHidingEnabled(true)
