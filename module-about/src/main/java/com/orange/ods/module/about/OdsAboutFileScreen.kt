@@ -56,10 +56,10 @@ internal fun OdsAboutFileScreen(fileMenuItem: OdsAboutFileMenuItem, darkModeEnab
                     }
                 }
 
-                val fileContent = resources.openRawResource(fileMenuItem.fileRes)
+                val fileContent = resources.openRawResource(fileMenuItem.file.resource)
                     .bufferedReader()
                     .use(BufferedReader::readText)
-                val html = when (fileMenuItem.fileFormat) {
+                val html = when (fileMenuItem.file.format) {
                     OdsAboutFileMenuItem.FileFormat.Html -> fileContent
                     OdsAboutFileMenuItem.FileFormat.Markdown -> Markdown.toHtml(fileContent)
                 }

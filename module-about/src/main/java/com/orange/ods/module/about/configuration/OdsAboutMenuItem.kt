@@ -23,7 +23,7 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import com.orange.ods.module.about.R
 
-private enum class AboutMenuItem(@DrawableRes private val iconRes: Int, @StringRes private val textRes: Int, private val position: Int) {
+private enum class PredefinedItem(@DrawableRes val iconRes: Int, @StringRes val textRes: Int, val position: Int) {
     PrivacyPolicy(R.drawable.ic_dataprotection, R.string.ods_about_menu_privacy_policy, 100),
     TermsOfService(R.drawable.ic_tasklist, R.string.ods_about_menu_terms_of_service, 101),
     AppNews(R.drawable.ic_calendareventinfo, R.string.ods_about_menu_app_news, 102),
@@ -31,16 +31,15 @@ private enum class AboutMenuItem(@DrawableRes private val iconRes: Int, @StringR
     RateTheApp(R.drawable.ic_review, R.string.ods_about_menu_rate_the_app, 104);
 
     @Composable
-    fun linkedToFile(@RawRes fileRes: Int) = OdsAbout.FileMenuItem(
+    fun getFileMenuItem(file: OdsAboutFileMenuItem.File) = OdsAboutFileMenuItem(
         painterResource(id = iconRes),
         stringResource(id = textRes),
         position,
-        fileRes,
-        OdsAbout.FileMenuItem.FileFormat.Html
+        file
     )
 
     @Composable
-    fun linkedToUrl(url: String) = OdsAbout.UrlMenuItem(
+    fun getUrlMenuItem(url: String) = OdsAboutUrlMenuItem(
         painterResource(id = iconRes),
         stringResource(id = textRes),
         position,
@@ -51,22 +50,39 @@ private enum class AboutMenuItem(@DrawableRes private val iconRes: Int, @StringR
 
 @Composable
 @Stable
-internal fun mandatoryMenuItems(@RawRes privacyPolicyFileRes: Int, @RawRes termsOfServiceFileRes: Int): List<OdsAboutMenuItem> = listOf(
-    AboutMenuItem.PrivacyPolicy.linkedToFile(privacyPolicyFileRes),
-    AboutMenuItem.TermsOfService.linkedToFile(fileRes = termsOfServiceFileRes)
-)
+internal fun mandatoryMenuItems(
+    privacyPolicyFile: OdsAboutFileMenuItem.File,
+    termsOfServiceFile: OdsAboutFileMenuItem.File
+): List<OdsAboutMenuItem> =
+    listOf(
+        PredefinedItem.PrivacyPolicy.getFileMenuItem(file = privacyPolicyFile),
+        PredefinedItem.TermsOfService.getFileMenuItem(file = termsOfServiceFile)
+    )
 
 @Composable
-internal fun optionalMenuItems(@RawRes appNewsFileRes: Int?, @RawRes legalInformationFileRes: Int?, rateTheAppUrl: String?): List<OdsAbout.MenuItem> {
+internal fun optionalMenuItems(
+    @RawRes appNewsFileRes: Int?,
+    legalInformationFile: OdsAboutFileMenuItem.File?,
+    rateTheAppUrl: String?
+): List<OdsAboutMenuItem> {
     return mutableListOf<OdsAboutMenuItem>().apply {
         appNewsFileRes?.let {
-            add(AboutMenuItem.AppNews.linkedToFile(fileRes = appNewsFileRes))
+            with(PredefinedItem.AppNews) {
+                add(
+                    OdsAboutAppNewsMenuItem(
+                        painterResource(id = iconRes),
+                        stringResource(id = textRes),
+                        position,
+                        appNewsFileRes
+                    )
+                )
+            }
         }
-        legalInformationFileRes?.let {
-            add(AboutMenuItem.LegalInformation.linkedToFile(fileRes = legalInformationFileRes))
+        legalInformationFile?.let {
+            add(PredefinedItem.LegalInformation.getFileMenuItem(file = legalInformationFile))
         }
         rateTheAppUrl?.let {
-            add(AboutMenuItem.RateTheApp.linkedToUrl(url = rateTheAppUrl))
+            add(PredefinedItem.RateTheApp.getUrlMenuItem(url = rateTheAppUrl))
         }
     }.toList()
 }
@@ -89,8 +105,7 @@ class OdsAboutFileMenuItem private constructor(
     graphicsObject: Any,
     text: String,
     position: Int,
-    @RawRes val fileRes: Int,
-    val fileFormat: FileFormat,
+    val file: File,
     secondaryText: String? = null
 ) : OdsAboutMenuItem(graphicsObject, text, position, secondaryText) {
 
@@ -100,18 +115,16 @@ class OdsAboutFileMenuItem private constructor(
      * @property painter The painter to draw as menu item leading icon.
      * @property text The primary text of the menu item.
      * @property position Index corresponding to the item position in the menu.
-     * @property fileRes The resource identifier of the file to display on item click.
-     * @property fileFormat The format of the file.
+     * @property file The file to display on item click.
      * @property secondaryText The secondary text of the menu item displayed below the primary text.
      */
     constructor(
         painter: Painter,
         text: String,
         position: Int,
-        fileRes: Int,
-        fileFormat: FileFormat,
+        file: File,
         secondaryText: String? = null
-    ) : this(graphicsObject = painter, text, position, fileRes, fileFormat, secondaryText)
+    ) : this(graphicsObject = painter, text, position, file, secondaryText)
 
     /**
      * Creates an instance of [OdsAboutFileMenuItem].
@@ -119,18 +132,16 @@ class OdsAboutFileMenuItem private constructor(
      * @property imageVector The image vector to draw as menu item leading icon.
      * @property text The primary text of the menu item.
      * @property position Index corresponding to the item position in the menu.
-     * @property fileRes The resource identifier of the file to display on item click.
-     * @property fileFormat The format of the file.
+     * @property file The file to display on item click.
      * @property secondaryText The secondary text of the menu item displayed below the primary text.
      */
     constructor(
         imageVector: ImageVector,
         text: String,
         position: Int,
-        fileRes: Int,
-        fileFormat: FileFormat,
+        file: File,
         secondaryText: String? = null
-    ) : this(graphicsObject = imageVector, text, position, fileRes, fileFormat, secondaryText)
+    ) : this(graphicsObject = imageVector, text, position, file, secondaryText)
 
     /**
      * Creates an instance of [OdsAboutFileMenuItem].
@@ -138,18 +149,24 @@ class OdsAboutFileMenuItem private constructor(
      * @property bitmap The image bitmap to draw as menu item leading icon.
      * @property text The primary text of the menu item.
      * @property position Index corresponding to the item position in the menu.
-     * @property fileRes The resource identifier of the file to display on item click.
-     * @property fileFormat The format of the file.
+     * @property file The file to display on item click.
      * @property secondaryText The secondary text of the menu item displayed below the primary text.
      */
     constructor(
         bitmap: ImageBitmap,
         text: String,
         position: Int,
-        fileRes: Int,
-        fileFormat: FileFormat,
+        file: File,
         secondaryText: String? = null
-    ) : this(graphicsObject = bitmap, text, position, fileRes, fileFormat, secondaryText)
+    ) : this(graphicsObject = bitmap, text, position, file, secondaryText)
+
+    /**
+     * File definition used by the file menu items.
+     *
+     * @property resource The resource identifier of the file
+     * @property format The format of the file.
+     */
+    class File(@RawRes val resource: Int, val format: FileFormat)
 
     enum class FileFormat {
         Html, Markdown
@@ -218,3 +235,14 @@ class OdsAboutUrlMenuItem private constructor(
         secondaryText: String? = null
     ) : this(graphicsObject = bitmap, text, position, url, secondaryText)
 }
+
+/**
+ * The App news menu item. It uses a specific JSON format to display [OdsAboutAppNewsScreen].
+ */
+internal class OdsAboutAppNewsMenuItem(
+    painter: Painter,
+    title: String,
+    position: Int,
+    @RawRes val jsonFileRes: Int,
+    subtitle: String? = null
+) : OdsAboutMenuItem(painter, title, position, subtitle)

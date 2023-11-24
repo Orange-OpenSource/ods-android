@@ -13,6 +13,9 @@ import com.orange.ods.gradle.Versions
 
 plugins {
     id("library")
+    id("kotlin-parcelize")
+    id("dagger.hilt.android.plugin")
+    id("kotlin-kapt") // This must be the last statement in the plugins {} to avoid "options not recognized" warning
 }
 
 android {
@@ -31,5 +34,8 @@ dependencies {
     implementation(Dependencies.appCompat)
     implementation(Dependencies.browser)
     implementation(Dependencies.composeMaterial)
+    implementation(Dependencies.hiltAndroid)
+    kapt(Dependencies.hiltCompiler)
     implementation(Dependencies.navigationCompose)
+    implementation(Dependencies.timber)
 }

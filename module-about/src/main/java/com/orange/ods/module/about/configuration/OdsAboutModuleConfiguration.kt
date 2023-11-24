@@ -28,16 +28,16 @@ data class OdsAboutModuleConfiguration(
     val appName: String,
 
     /**
-     * The resource identifier of the privacy policy HTML file provided.
-     * Note that this menu item is always displayed and you MUST provide a file in the raw directory to display the privacy policy of your app.
+     * The privacy policy menu item file.
+     * Note that this menu item is mandatory and you MUST provide the corresponding file in the raw directory to display the privacy policy of your app.
      */
-    @RawRes val privacyPolicyMenuItemFileRes: Int,
+    val privacyPolicyMenuItemFile: OdsAboutFileMenuItem.File,
 
     /**
-     * The resource identifier of the terms of service HTML file provided.
-     * Note that this menu item is always displayed and you MUST provide a file in the raw directory to display the terms of service for your app.
+     * The terms of service menu item file.
+     * Note that this menu item is mandatory and you MUST provide the corresponding file in the raw directory to display the terms of service for your app.
      */
-    @RawRes val termsOfServiceMenuItemFileRes: Int,
+    val termsOfServiceMenuItemFile: OdsAboutFileMenuItem.File,
 
     /**
      * The illustration resource id. It should be a SVG or PNG resource file, placed in res/drawable directory. It allows to customize
@@ -81,14 +81,15 @@ data class OdsAboutModuleConfiguration(
     val topAppBarOverflowMenuActions: List<OdsDropdownMenu.Item> = emptyList(),
 
     /**
-     * App News menu item file resource. Provide it to display an App news menu item linked to this file.
+     * App news menu item JSON file resource. Provide it to display an App news menu item linked to this file.
+     * Be careful to respect the App news JSON format.
      */
     @RawRes val appNewsMenuItemFileRes: Int? = null,
 
     /**
-     * Legal information menu item file resource. Provide it to display a Legal information menu item linked to this file.
+     * Legal information menu item file. Provide it to display a Legal information menu item linked to this file.
      */
-    @RawRes val legalInformationMenuItemFileRes: Int? = null,
+    val legalInformationMenuItemFile: OdsAboutFileMenuItem.File? = null,
 
     /**
      * Rate the app URL. Provide it to display a Rate the app menu item linked to this URL.
@@ -116,12 +117,12 @@ data class OdsAboutModuleConfiguration(
         @Composable
         get() {
             val mandatoryMenuItems = mandatoryMenuItems(
-                privacyPolicyFileRes = privacyPolicyMenuItemFileRes,
-                termsOfServiceFileRes = termsOfServiceMenuItemFileRes
+                privacyPolicyFile = privacyPolicyMenuItemFile,
+                termsOfServiceFile = termsOfServiceMenuItemFile
             )
             val optionalMenuItems = optionalMenuItems(
                 appNewsFileRes = appNewsMenuItemFileRes,
-                legalInformationFileRes = legalInformationMenuItemFileRes,
+                legalInformationFile = legalInformationMenuItemFile,
                 rateTheAppUrl = rateTheAppUrl
             )
             return remember {

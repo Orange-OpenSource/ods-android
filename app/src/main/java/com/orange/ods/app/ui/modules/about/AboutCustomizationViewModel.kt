@@ -21,6 +21,7 @@ import androidx.lifecycle.ViewModel
 import com.orange.ods.app.R
 import com.orange.ods.app.ui.CustomAppBarConfiguration
 import com.orange.ods.app.ui.LocalAppBarManager
+import com.orange.ods.app.ui.about.RateTheAppUrl
 import com.orange.ods.app.ui.components.utilities.clickOnElement
 import com.orange.ods.module.about.configuration.OdsAboutFileMenuItem
 import com.orange.ods.module.about.configuration.OdsAboutMenuItem
@@ -39,8 +40,8 @@ class AboutCustomizationViewModel : ViewModel() {
         val appBarManager = LocalAppBarManager.current
         return OdsAboutModuleConfiguration(
             appName = stringResource(id = R.string.module_about_demo_app_name),
-            privacyPolicyMenuItemFileRes = R.raw.about_privacy_policy,
-            termsOfServiceMenuItemFileRes = R.raw.about_terms_of_service,
+            privacyPolicyMenuItemFile = OdsAboutFileMenuItem.File(R.raw.about_privacy_policy, OdsAboutFileMenuItem.FileFormat.Html),
+            termsOfServiceMenuItemFile = OdsAboutFileMenuItem.File(R.raw.about_terms_of_service, OdsAboutFileMenuItem.FileFormat.Html),
             appVersion = if (selectedAppSections.contains(AboutCustomizationAppSection.Version)) stringResource(id = R.string.module_about_demo_version) else null,
             appDescription = if (selectedAppSections.contains(AboutCustomizationAppSection.Description)) stringResource(id = R.string.module_about_demo_description) else null,
             shareData = if (selectedAppSections.contains(AboutCustomizationAppSection.Share)) {
@@ -51,9 +52,12 @@ class AboutCustomizationViewModel : ViewModel() {
             } else {
                 null
             },
-            appNewsMenuItemFileRes = if (selectedOptionalItems.contains(AboutCustomizationOptionalItem.AppNews)) R.raw.about_demo_custom_item else null,
-            legalInformationMenuItemFileRes = if (selectedOptionalItems.contains(AboutCustomizationOptionalItem.LegalInformation)) R.raw.about_demo_custom_item else null,
-            rateTheAppUrl = if (selectedOptionalItems.contains(AboutCustomizationOptionalItem.RateTheApp)) "https://play.google.com/apps/testing/com.orange.ods.app" else null,
+            appNewsMenuItemFileRes = if (selectedOptionalItems.contains(AboutCustomizationOptionalItem.AppNews)) R.raw.about_app_news else null,
+            legalInformationMenuItemFile = if (selectedOptionalItems.contains(AboutCustomizationOptionalItem.LegalInformation)) OdsAboutFileMenuItem.File(
+                R.raw.about_demo_legal_information_item,
+                OdsAboutFileMenuItem.FileFormat.Html
+            ) else null,
+            rateTheAppUrl = if (selectedOptionalItems.contains(AboutCustomizationOptionalItem.RateTheApp)) RateTheAppUrl else null,
             onFeedbackButtonClick = if (selectedAppSections.contains(AboutCustomizationAppSection.Feedback)) {
                 { clickOnElement(context, context.getString(R.string.module_about_demo_feedback_button_element)) }
             } else {
@@ -75,8 +79,7 @@ class AboutCustomizationViewModel : ViewModel() {
                     painterResource(id = com.orange.ods.module.about.R.drawable.ic_tasklist),
                     "Custom item $i",
                     1,
-                    R.raw.about_demo_custom_item,
-                    OdsAboutFileMenuItem.FileFormat.Html
+                    OdsAboutFileMenuItem.File(R.raw.about_demo_custom_item, OdsAboutFileMenuItem.FileFormat.Html)
                 )
             )
         }
