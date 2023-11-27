@@ -12,6 +12,7 @@ package com.orange.ods.compose.component.card
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.IntrinsicSize
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -68,8 +69,8 @@ fun OdsVerticalHeaderFirstCard(
             Row(
                 modifier = Modifier
                     .fillMaxWidth()
-                    .height(dimensionResource(id = R.dimen.list_two_line_with_icon_item_height))
-                    .padding(horizontal = dimensionResource(id = R.dimen.spacing_m)),
+                    .height(IntrinsicSize.Min)
+                    .padding(all = dimensionResource(id = R.dimen.spacing_m)),
                 verticalAlignment = Alignment.CenterVertically
             ) {
                 thumbnail?.Content()
