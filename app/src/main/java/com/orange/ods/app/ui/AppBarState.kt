@@ -47,7 +47,7 @@ interface AppBarManager {
 /**
  * AppBar state source of truth.
  *
- * The app bar is managed according to the [Screen] displayed except if it has a custom app bar or if the screen cannot be find in the app [Screen]s (for
+ * The app bar is managed according to the [Screen] displayed except if it has a custom app bar or if the screen cannot be found in the app [Screen]s (for
  * example an about module screen). In this case, the app bar is displayed according to the provided [AppBarConfiguration].
  */
 class AppBarState(
