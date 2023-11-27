@@ -90,9 +90,10 @@ data class OdsAboutModuleConfiguration(
     val customMenuItems: List<OdsAbout.MenuItem> = emptyList(),
 
     /**
-     * The [OdsAboutModuleListener] implementation.
+     * Callback invoked on about module screen change.
+     * It can help you managing top app bar title update if necessary.
      */
-    val aboutModuleListener: OdsAboutModuleListener? = null
+    val onScreenChange: ((title: String) -> Unit)? = null
 
 ) {
 
@@ -114,10 +115,3 @@ data class OdsAboutModuleConfiguration(
  * @property text The text to share
  */
 data class OdsAboutShareData(val title: String, val text: String)
-
-/**
- * This interface allows to be notified of about module events.
- */
-interface OdsAboutModuleListener {
-    fun onScreenChange(title: String)
-}
