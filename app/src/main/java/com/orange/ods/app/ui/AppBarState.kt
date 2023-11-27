@@ -24,7 +24,6 @@ import androidx.compose.ui.text.input.TextFieldValue
 import com.orange.ods.app.R
 import com.orange.ods.app.domain.recipes.LocalRecipes
 import com.orange.ods.app.ui.AppBarAction.Companion.defaultActions
-import com.orange.ods.app.ui.AppBarState.Companion.CustomDefaultConfiguration
 import com.orange.ods.app.ui.components.appbars.top.TopAppBarCustomizationState
 import com.orange.ods.app.ui.components.utilities.clickOnElement
 import com.orange.ods.app.ui.utilities.NavigationItem
@@ -38,7 +37,7 @@ val LocalAppBarManager = staticCompositionLocalOf<AppBarManager> { error("Compos
 interface AppBarManager {
     val searchedText: TextFieldValue
 
-    fun setCustomAppBar(appBarConfiguration: AppBarConfiguration)
+    fun setCustomAppBar(customAppBarConfiguration: CustomAppBarConfiguration)
 
     fun updateAppBarTabs(tabsConfiguration: TabsConfiguration)
     fun clearAppBarTabs()
@@ -48,21 +47,14 @@ interface AppBarManager {
  * AppBar state source of truth.
  *
  * The app bar is managed according to the [Screen] displayed except if it has a custom app bar or if the screen cannot be found in the app [Screen]s (for
- * example an about module screen). In this case, the app bar is displayed according to the provided [AppBarConfiguration].
+ * example an about module screen). In this case, the app bar is displayed according to the provided [CustomAppBarConfiguration].
  */
 class AppBarState(
     private val navigationState: AppNavigationState,
     private val searchText: MutableState<TextFieldValue>,
-    private val customAppBarConfiguration: MutableState<AppBarConfiguration>,
+    private val customAppBarConfiguration: MutableState<CustomAppBarConfiguration>,
     val tabsState: AppBarTabsState
 ) : AppBarManager {
-
-    companion object {
-        val CustomDefaultConfiguration = AppBarConfiguration(
-            title = "",
-            actionCount = defaultActions.size,
-        )
-    }
 
     private val isCustom: Boolean
         @Composable get() = navigationState.currentScreen?.hasCustomAppBar != false
@@ -131,8 +123,8 @@ class AppBarState(
     override val searchedText: TextFieldValue
         get() = searchText.value
 
-    override fun setCustomAppBar(appBarConfiguration: AppBarConfiguration) {
-        customAppBarConfiguration.value = appBarConfiguration
+    override fun setCustomAppBar(customAppBarConfiguration: CustomAppBarConfiguration) {
+        this.customAppBarConfiguration.value = customAppBarConfiguration
     }
 
     override fun updateAppBarTabs(tabsConfiguration: TabsConfiguration) {
@@ -149,17 +141,24 @@ class AppBarState(
 fun rememberAppBarState(
     navigationState: AppNavigationState,
     searchedText: MutableState<TextFieldValue> = remember { mutableStateOf(TextFieldValue("")) },
-    customAppBarConfiguration: MutableState<AppBarConfiguration> = remember { mutableStateOf(CustomDefaultConfiguration) },
+    customAppBarConfiguration: MutableState<CustomAppBarConfiguration> = remember { mutableStateOf(CustomAppBarConfiguration.Default) },
     tabsState: AppBarTabsState = rememberAppBarTabsState()
 ) = remember(navigationState, searchedText, customAppBarConfiguration, tabsState) {
     AppBarState(navigationState, searchedText, customAppBarConfiguration, tabsState)
 }
 
-data class AppBarConfiguration constructor(
+data class CustomAppBarConfiguration constructor(
     val title: String,
     val isNavigationIconEnabled: Boolean = true,
     val isLarge: Boolean = false,
     val scrollBehavior: TopAppBarCustomizationState.ScrollBehavior = TopAppBarCustomizationState.ScrollBehavior.Collapsible,
     val actionCount: Int = 0,
     val isOverflowMenuEnabled: Boolean = false
-)
+) {
+    companion object {
+        val Default = CustomAppBarConfiguration(
+            title = "",
+            actionCount = defaultActions.size,
+        )
+    }
+}

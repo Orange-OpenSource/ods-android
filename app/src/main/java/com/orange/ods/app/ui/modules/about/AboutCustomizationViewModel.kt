@@ -19,7 +19,7 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.lifecycle.ViewModel
 import com.orange.ods.app.R
-import com.orange.ods.app.ui.AppBarConfiguration
+import com.orange.ods.app.ui.CustomAppBarConfiguration
 import com.orange.ods.app.ui.LocalAppBarManager
 import com.orange.ods.app.ui.components.utilities.clickOnElement
 import com.orange.ods.module.about.configuration.OdsAbout
@@ -56,7 +56,7 @@ class AboutCustomizationViewModel : ViewModel() {
             },
             customMenuItems = customMenuItems(additionalLinksCount.value),
             onScreenChange = { title ->
-                appBarManager.setCustomAppBar(AppBarConfiguration(title = title))
+                appBarManager.setCustomAppBar(CustomAppBarConfiguration(title = title))
             }
         )
     }

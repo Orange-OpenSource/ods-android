@@ -15,7 +15,7 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import com.orange.ods.app.R
-import com.orange.ods.app.ui.AppBarConfiguration
+import com.orange.ods.app.ui.CustomAppBarConfiguration
 import com.orange.ods.app.ui.LocalAppBarManager
 import com.orange.ods.module.about.configuration.OdsAbout
 import com.orange.ods.module.about.configuration.OdsAboutModuleConfiguration
@@ -52,7 +52,7 @@ fun aboutConfiguration(): OdsAboutModuleConfiguration {
             )
         ),
         onScreenChange = { title ->
-            appBarManager.setCustomAppBar(AppBarConfiguration(title = title))
+            appBarManager.setCustomAppBar(CustomAppBarConfiguration(title = title))
         }
     )
 }
