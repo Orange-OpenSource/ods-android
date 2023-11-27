@@ -150,7 +150,7 @@ fun MainScreen(themeConfigurations: Set<OdsThemeConfigurationContract>, mainView
                     ) {
                         BottomBar(
                             items = BottomBarItem.values(),
-                            currentRoute = mainState.navigationState.currentRoute!!,
+                            currentRoute = mainState.navigationState.currentRoute.orEmpty(),
                             navigateToRoute = { route ->
                                 if (route == BottomBarItem.About.route) {
                                     aboutModule.configuration = aboutConfiguration
