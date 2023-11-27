@@ -19,7 +19,6 @@ import com.orange.ods.app.ui.AppBarConfiguration
 import com.orange.ods.app.ui.LocalAppBarManager
 import com.orange.ods.module.about.configuration.OdsAbout
 import com.orange.ods.module.about.configuration.OdsAboutModuleConfiguration
-import com.orange.ods.module.about.configuration.OdsAboutModuleListener
 import com.orange.ods.module.about.utilities.VersionHelper
 
 @Composable
@@ -52,10 +51,8 @@ fun aboutConfiguration(): OdsAboutModuleConfiguration {
                 "https://github.com/Orange-OpenSource/ods-android/issues/new/choose"
             )
         ),
-        aboutModuleListener = object : OdsAboutModuleListener {
-            override fun onScreenChange(title: String) {
-                appBarManager.setCustomAppBar(AppBarConfiguration(title = title))
-            }
+        onScreenChange = { title ->
+            appBarManager.setCustomAppBar(AppBarConfiguration(title = title))
         }
     )
 }

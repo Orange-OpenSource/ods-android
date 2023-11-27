@@ -24,7 +24,6 @@ import com.orange.ods.app.ui.LocalAppBarManager
 import com.orange.ods.app.ui.components.utilities.clickOnElement
 import com.orange.ods.module.about.configuration.OdsAbout
 import com.orange.ods.module.about.configuration.OdsAboutModuleConfiguration
-import com.orange.ods.module.about.configuration.OdsAboutModuleListener
 import com.orange.ods.module.about.configuration.OdsAboutShareData
 
 class AboutCustomizationViewModel : ViewModel() {
@@ -56,10 +55,8 @@ class AboutCustomizationViewModel : ViewModel() {
                 null
             },
             customMenuItems = customMenuItems(additionalLinksCount.value),
-            aboutModuleListener = object : OdsAboutModuleListener {
-                override fun onScreenChange(title: String) {
-                    appBarManager.setCustomAppBar(AppBarConfiguration(title = title))
-                }
+            onScreenChange = { title ->
+                appBarManager.setCustomAppBar(AppBarConfiguration(title = title))
             }
         )
     }
