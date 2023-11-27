@@ -17,8 +17,9 @@ import androidx.compose.ui.res.stringResource
 import com.orange.ods.app.R
 import com.orange.ods.app.ui.CustomAppBarConfiguration
 import com.orange.ods.app.ui.LocalAppBarManager
-import com.orange.ods.module.about.configuration.OdsAbout
+import com.orange.ods.module.about.configuration.OdsAboutFileMenuItem
 import com.orange.ods.module.about.configuration.OdsAboutModuleConfiguration
+import com.orange.ods.module.about.configuration.OdsAboutUrlMenuItem
 import com.orange.ods.module.about.utilities.VersionHelper
 
 @Composable
@@ -31,20 +32,20 @@ fun aboutConfiguration(): OdsAboutModuleConfiguration {
         appVersion = VersionHelper.getFromPackageInfo(context = LocalContext.current),
         appDescription = stringResource(id = R.string.about_description),
         customMenuItems = listOf(
-            OdsAbout.UrlMenuItem(
+            OdsAboutUrlMenuItem(
                 painterResource(id = R.drawable.ic_tools),
                 stringResource(id = R.string.about_menu_design_guidelines),
                 1,
                 "https://system.design.orange.com/0c1af118d/p/019ecc-android/"
             ),
-            OdsAbout.FileMenuItem(
+            OdsAboutFileMenuItem(
                 painterResource(id = com.orange.ods.module.about.R.drawable.ic_tasklist),
                 stringResource(id = R.string.about_menu_changelog),
                 2,
                 R.raw.changelog,
-                OdsAbout.FileMenuItem.FileFormat.Markdown
+                OdsAboutFileMenuItem.FileFormat.Markdown
             ),
-            OdsAbout.UrlMenuItem(
+            OdsAboutUrlMenuItem(
                 painterResource(id = R.drawable.ic_comments),
                 stringResource(id = R.string.about_menu_report_issue),
                 3,

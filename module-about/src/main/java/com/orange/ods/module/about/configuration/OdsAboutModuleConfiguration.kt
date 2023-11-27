@@ -87,7 +87,7 @@ data class OdsAboutModuleConfiguration(
      *  - Term of services (position index 101)
      *  - Accessibility (position index 102)
      */
-    val customMenuItems: List<OdsAbout.MenuItem> = emptyList(),
+    val customMenuItems: List<OdsAboutMenuItem> = emptyList(),
 
     /**
      * Callback invoked on about module screen change.
@@ -97,7 +97,7 @@ data class OdsAboutModuleConfiguration(
 
 ) {
 
-    internal val menuItemById: Map<Int, OdsAbout.MenuItem>
+    internal val menuItemById: Map<Int, OdsAboutMenuItem>
         @Composable
         get() {
             val mandatoryMenuItems = mandatoryMenuItems(privacyPolicyMenuItemFileRes, termsOfServiceMenuItemFileRes)

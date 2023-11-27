@@ -20,7 +20,7 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.viewinterop.AndroidView
 import com.orange.ods.compose.theme.OdsTheme
-import com.orange.ods.module.about.configuration.OdsAbout
+import com.orange.ods.module.about.configuration.OdsAboutFileMenuItem
 import com.orange.ods.module.about.utilities.Markdown
 import com.orange.ods.module.about.utilities.extension.injectLightDarkModeCss
 import com.orange.ods.module.about.utilities.extension.launchUrl
@@ -31,7 +31,7 @@ private const val FileResourceDir = "raw"
 private const val FilePath = "file:///android_res/$FileResourceDir/"
 
 @Composable
-internal fun OdsAboutFileScreen(fileMenuItem: OdsAbout.FileMenuItem, darkModeEnabled: Boolean) {
+internal fun OdsAboutFileScreen(fileMenuItem: OdsAboutFileMenuItem, darkModeEnabled: Boolean) {
     val context = LocalContext.current
     val colors = OdsTheme.colors
     val horizontalPadding = dimensionResource(id = com.orange.ods.R.dimen.screen_horizontal_margin).value
@@ -60,8 +60,8 @@ internal fun OdsAboutFileScreen(fileMenuItem: OdsAbout.FileMenuItem, darkModeEna
                     .bufferedReader()
                     .use(BufferedReader::readText)
                 val html = when (fileMenuItem.fileFormat) {
-                    OdsAbout.FileMenuItem.FileFormat.Html -> fileContent
-                    OdsAbout.FileMenuItem.FileFormat.Markdown -> Markdown.toHtml(fileContent)
+                    OdsAboutFileMenuItem.FileFormat.Html -> fileContent
+                    OdsAboutFileMenuItem.FileFormat.Markdown -> Markdown.toHtml(fileContent)
                 }
                 // Use loadDataWithBaseURL instead of loadData otherwise CSS won't work
                 loadDataWithBaseURL(FilePath, html, "text/html; charset=UTF-8", StandardCharsets.UTF_8.name(), null)
