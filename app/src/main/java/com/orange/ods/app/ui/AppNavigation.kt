@@ -26,7 +26,7 @@ fun rememberAppNavigationState(navController: NavHostController = rememberNavCon
 
 class AppNavigationState(val navController: NavHostController) {
     val previousRoute: String?
-        @Composable get() = navController.previousBackStackEntry?.destination?.route
+        get() = navController.previousBackStackEntry?.destination?.route
 
     val currentScreenRoute: String?
         get() = navController.currentDestination?.route
