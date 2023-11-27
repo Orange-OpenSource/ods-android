@@ -28,17 +28,17 @@ class AppNavigationState(val navController: NavHostController) {
     val previousRoute: String?
         get() = navController.previousBackStackEntry?.destination?.route
 
-    val currentScreenRoute: String?
+    val currentRoute: String?
         get() = navController.currentDestination?.route
 
     val currentScreen: Screen?
         @Composable get() {
             val routeArgs = navController.currentBackStackEntryAsState().value?.arguments
-            return currentScreenRoute?.let { getScreen(it, routeArgs) }
+            return currentRoute?.let { getScreen(it, routeArgs) }
         }
 
     fun navigateToBottomBarRoute(route: String) {
-        if (route != currentScreenRoute) {
+        if (route != currentRoute) {
             navController.navigateToBottomBarRoute(route)
         }
     }
