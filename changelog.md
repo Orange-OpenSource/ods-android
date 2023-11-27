@@ -24,6 +24,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Fixed
 
 - \[App\] Fix nested class names in code implementation ([#708](https://github.com/Orange-OpenSource/ods-android/issues/708))
+- \[App\] Fix bad vocalization for top bar change theme button ([#715](https://github.com/Orange-OpenSource/ods-android/issues/715))
 - \[Lib\] Fix back button color in `OdsLargeTopAppBar` ([#685](https://github.com/Orange-OpenSource/ods-android/issues/685))
 - \[Lib\] Fix a bug where the modifier was not taken into account in `OdsPasswordTextField` ([#710](https://github.com/Orange-OpenSource/ods-android/issues/710))
 

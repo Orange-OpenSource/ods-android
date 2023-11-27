@@ -84,7 +84,7 @@ private fun getSearchAction(onClick: (AppBarAction) -> Unit) = OdsTopAppBar.Acti
 private fun getChangeThemeAction(onClick: (AppBarAction) -> Unit) = OdsTopAppBar.ActionButton(
     onClick = { onClick(AppBarAction.ChangeTheme) },
     painter = painterResource(id = R.drawable.ic_palette),
-    contentDescription = stringResource(id = R.string.top_app_bar_action_change_mode_to_dark_desc)
+    contentDescription = stringResource(id = R.string.top_app_bar_action_change_theme_desc)
 )
 
 @Composable
