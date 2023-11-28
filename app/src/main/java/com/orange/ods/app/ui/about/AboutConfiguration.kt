@@ -53,7 +53,7 @@ fun aboutConfiguration(): OdsAboutModuleConfiguration {
             )
         ),
         onScreenChange = { title ->
-            appBarManager.setCustomAppBar(CustomAppBarConfiguration(title = title))
+            appBarManager.setCustomAppBar(CustomAppBarConfiguration(title = title, actionCount = 0))
         }
     )
 }

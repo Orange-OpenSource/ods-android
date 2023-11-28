@@ -57,7 +57,7 @@ class AboutCustomizationViewModel : ViewModel() {
             },
             customMenuItems = customMenuItems(additionalLinksCount.value),
             onScreenChange = { title ->
-                appBarManager.setCustomAppBar(CustomAppBarConfiguration(title = title))
+                appBarManager.setCustomAppBar(CustomAppBarConfiguration(title = title, actionCount = 0))
             }
         )
     }
