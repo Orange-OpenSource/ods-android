@@ -14,6 +14,7 @@ import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.IntrinsicSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
@@ -312,11 +313,8 @@ private object OdsModalDrawerListItemRippleTheme : RippleTheme {
 private fun OdsHeaderText(title: String, subtitle: String?, color: Color) {
     Column(
         modifier = Modifier
-            .padding(start = dimensionResource(id = R.dimen.spacing_m))
-            .height(
-                if (subtitle != null) dimensionResource(id = R.dimen.list_two_line_with_icon_item_height)
-                else dimensionResource(id = R.dimen.list_single_line_item_height)
-            ),
+            .padding(all = dimensionResource(id = R.dimen.spacing_m))
+            .height(IntrinsicSize.Min),
         verticalArrangement = Arrangement.Center
     ) {
         Text(text = title, color = color, style = OdsTheme.typography.h6)
