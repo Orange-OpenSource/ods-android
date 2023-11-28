@@ -29,19 +29,19 @@ import com.orange.ods.xml.utilities.extension.getResourceIdOrNull
 class OdsBanner @JvmOverloads constructor(context: Context, attrs: AttributeSet? = null) : OdsAbstractComposeView(context, attrs) {
 
     var message by mutableStateOf("")
-    var firstButtonText by mutableStateOf("")
-    var onFirstButtonClick by mutableStateOf({})
     var image by mutableStateOf<Drawable?>(null)
     var imageContentDescription by mutableStateOf<String?>(null)
+    var firstButtonText by mutableStateOf<String?>(null)
+    var onFirstButtonClick  by mutableStateOf<(() -> Unit)?>(null)
     var secondButtonText by mutableStateOf<String?>(null)
     var onSecondButtonClick by mutableStateOf<(() -> Unit)?>(null)
 
     init {
         context.withStyledAttributes(attrs, R.styleable.OdsBanner) {
             message = getString(R.styleable.OdsBanner_message).orEmpty()
-            firstButtonText = getString(R.styleable.OdsBanner_firstButtonText).orEmpty()
             image = getResourceIdOrNull(R.styleable.OdsBanner_image)?.let { AppCompatResources.getDrawable(context, it) }
             imageContentDescription = getString(R.styleable.OdsBanner_imageContentDescription)
+            firstButtonText = getString(R.styleable.OdsBanner_firstButtonText)
             secondButtonText = getString(R.styleable.OdsBanner_secondButtonText)
         }
     }
@@ -50,10 +50,12 @@ class OdsBanner @JvmOverloads constructor(context: Context, attrs: AttributeSet?
     override fun OdsContent() {
         OdsBanner(
             message = message,
-            firstButton = OdsBanner.Button(firstButtonText, onFirstButtonClick),
             image = image?.let { image ->
                 val painter = rememberDrawablePainter(drawable = image)
                 OdsBanner.Image(painter, imageContentDescription.orEmpty())
+            },
+            firstButton = ifNotNull(firstButtonText, onFirstButtonClick) { text, onClick ->
+                OdsBanner.Button(text, onClick)
             },
             secondButton = ifNotNull(secondButtonText, onSecondButtonClick) { text, onClick ->
                 OdsBanner.Button(text, onClick)

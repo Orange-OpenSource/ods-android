@@ -59,8 +59,8 @@ fun ComponentBanners() {
                     minusIconContentDescription = stringResource(id = R.string.component_remove_action_button),
                     plusIconContentDescription = stringResource(id = R.string.component_add_action_button),
                     modifier = Modifier.padding(start = dimensionResource(id = com.orange.ods.R.dimen.screen_horizontal_margin)),
-                    minCount = BannerCustomizationState.MinTextCount,
-                    maxCount = BannerCustomizationState.MaxTextCount
+                    minCount = BannerCustomizationState.MinTextLineCount,
+                    maxCount = BannerCustomizationState.MaxTextLineCount
                 )
                 ComponentCountRow(
                     title = stringResource(id = R.string.component_banner_buttons_count),
@@ -83,9 +83,11 @@ fun ComponentBanners() {
                     .verticalScroll(rememberScrollState())
             ) {
                 val message = if (hasTwoTextLines) recipe.description else recipe.title
-                val firstButtonText = stringResource(id = R.string.component_banner_dismiss)
+                val firstButtonText = if (hasFirstButton) stringResource(id = R.string.component_banner_dismiss) else null
                 val onFirstButtonClickText = stringResource(id = R.string.component_element_first_button)
-                val onFirstButtonClick = { clickOnElement(context, onFirstButtonClickText) }
+                val onFirstButtonClick = if (hasFirstButton) {
+                    { clickOnElement(context, onFirstButtonClickText) }
+                } else null
                 val secondButtonText = if (hasSecondButton) stringResource(id = R.string.component_banner_detail) else null
                 val onSecondButtonClickText = stringResource(id = R.string.component_element_second_button)
                 val onSecondButtonClick = if (hasSecondButton) {
@@ -97,7 +99,6 @@ fun ComponentBanners() {
                     compose = {
                         OdsBanner(
                             message = message,
-                            firstButton = OdsBanner.Button(firstButtonText, onFirstButtonClick),
                             image = if (hasImage) {
                                 val painter = rememberAsyncImagePainter(
                                     model = recipe.imageUrl,
@@ -108,6 +109,7 @@ fun ComponentBanners() {
                             } else {
                                 null
                             },
+                            firstButton = ifNotNull(firstButtonText, onFirstButtonClick) { text, onClick -> OdsBanner.Button(text, onClick) },
                             secondButton = ifNotNull(secondButtonText, onSecondButtonClick) { text, onClick -> OdsBanner.Button(text, onClick) }
                         )
                     },
@@ -140,9 +142,11 @@ fun ComponentBanners() {
                         exhaustiveParameters = false,
                         parameters = {
                             string("message", if (hasTwoTextLines) recipe.description else recipe.title)
-                            classInstance<OdsBanner.Button>("firstButton") {
-                                text(context.getString(R.string.component_banner_dismiss))
-                                onClick()
+                            if (hasFirstButton) {
+                                classInstance<OdsBanner.Button>("firstButton") {
+                                    text(context.getString(R.string.component_banner_dismiss))
+                                    onClick()
+                                }
                             }
                             if (hasImage) {
                                 classInstance<OdsBanner.Image>("image") {
