@@ -22,6 +22,7 @@ import androidx.compose.ui.draw.alpha
 import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.semantics.onClick
 import com.orange.ods.app.R
 import com.orange.ods.app.domain.recipes.LocalRecipes
 import com.orange.ods.app.ui.components.utilities.ComponentCustomizationBottomSheetScaffold
@@ -70,14 +71,24 @@ fun ComponentSheetsBottom() {
                         text = stringResource(id = R.string.component_element_content),
                         modifier = Modifier.padding(top = dimensionResource(id = com.orange.ods.R.dimen.spacing_s))
                     )
+                    val contentEmptyDesc = stringResource(id = R.string.component_sheet_bottom_customize_content_empty_desc)
+                    val contentExampleDesc = stringResource(id = R.string.component_sheet_bottom_customize_content_example_desc)
                     OdsChoiceChipsFlowRow(
                         value = content.value,
                         onValueChange = { value -> content.value = value },
                         chips = listOf(
-                            OdsChoiceChip(text = stringResource(id = R.string.component_element_empty), value = SheetsBottomCustomizationState.Content.Empty),
+                            OdsChoiceChip(
+                                text = stringResource(id = R.string.component_element_empty),
+                                value = SheetsBottomCustomizationState.Content.Empty,
+                                semantics = {
+                                    onClick(contentEmptyDesc, null)
+                                }),
                             OdsChoiceChip(
                                 text = stringResource(id = R.string.component_element_example),
-                                value = SheetsBottomCustomizationState.Content.Example
+                                value = SheetsBottomCustomizationState.Content.Example,
+                                semantics = {
+                                    onClick(contentExampleDesc, null)
+                                }
                             )
                         )
                     )
