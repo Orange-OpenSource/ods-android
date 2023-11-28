@@ -59,10 +59,10 @@ fun ComponentTopAppBar(variant: Variant) {
     with(customizationState) {
         val customAppBarConfiguration = CustomAppBarConfiguration(
             title = if (isLarge) stringResource(id = title.value.titleRes) else stringResource(id = R.string.component_app_bars_top_regular),
+            actionCount = actionCount.value,
             isNavigationIconEnabled = isNavigationIconEnabled,
             isLarge = isLarge,
             scrollBehavior = scrollBehavior.value,
-            actionCount = actionCount.value,
             isOverflowMenuEnabled = isOverflowMenuEnabled
         )
 

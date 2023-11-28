@@ -149,10 +149,10 @@ fun rememberAppBarState(
 
 data class CustomAppBarConfiguration constructor(
     val title: String,
+    val actionCount: Int,
     val isNavigationIconEnabled: Boolean = true,
     val isLarge: Boolean = false,
     val scrollBehavior: TopAppBarCustomizationState.ScrollBehavior = TopAppBarCustomizationState.ScrollBehavior.Collapsible,
-    val actionCount: Int = 0,
     val isOverflowMenuEnabled: Boolean = false
 ) {
     companion object {
