@@ -15,6 +15,7 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.IntrinsicSize
+import androidx.compose.foundation.layout.defaultMinSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
@@ -199,7 +200,8 @@ object OdsModalDrawer {
                         image.Content(
                             modifier = Modifier
                                 .fillMaxWidth()
-                                .height(DrawerHeaderMaxHeight)
+                                .height(IntrinsicSize.Min)
+                                .defaultMinSize(minHeight = DrawerHeaderMaxHeight)
                         )
                         Surface(
                             color = Color.Black.copy(alpha = 0.8f),
@@ -215,14 +217,12 @@ object OdsModalDrawer {
                     Column(
                         modifier = modifier
                             .fillMaxWidth()
-                            .height(DrawerHeaderMaxHeight),
+                            .height(IntrinsicSize.Min)
+                            .defaultMinSize(minHeight = DrawerHeaderMaxHeight),
                         verticalArrangement = Arrangement.Bottom
                     ) {
                         image.Content(
-                            modifier = Modifier.padding(
-                                start = dimensionResource(id = R.dimen.spacing_m),
-                                bottom = dimensionResource(id = R.dimen.spacing_m)
-                            )
+                            modifier = Modifier.padding(all = dimensionResource(id = R.dimen.spacing_m))
                         )
                         OdsHeaderText(title = title, subtitle = subtitle, color = OdsTheme.colors.onSurface)
                     }
