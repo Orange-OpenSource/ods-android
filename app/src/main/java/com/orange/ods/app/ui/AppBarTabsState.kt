@@ -28,7 +28,8 @@ import com.orange.ods.app.ui.utilities.rememberSaveableMutableStateListOf
 @OptIn(ExperimentalFoundationApi::class)
 class AppBarTabsState(
     val tabs: SnapshotStateList<NavigationItem>,
-    val tabIconType: MutableState<MainTabsCustomizationState.TabIconType>,
+    val tabsIconPosition: MutableState<MainTabsCustomizationState.TabsIconPosition>,
+    val tabIconEnabled: MutableState<Boolean>,
     val tabTextEnabled: MutableState<Boolean>,
     val scrollableTabs: MutableState<Boolean>
 ) {
@@ -38,7 +39,8 @@ class AppBarTabsState(
             scrollableTabs = false,
             tabs = emptyList(),
             pagerState = null,
-            tabIconType = MainTabsCustomizationState.TabIconType.Top,
+            tabsIconPosition = MainTabsCustomizationState.TabsIconPosition.Top,
+            tabIconEnabled = true,
             tabTextEnabled = true,
         )
     }
@@ -55,7 +57,8 @@ class AppBarTabsState(
             addAll(tabsConfiguration.tabs)
         }
         pagerState = tabsConfiguration.pagerState
-        tabIconType.value = tabsConfiguration.tabIconType
+        tabsIconPosition.value = tabsConfiguration.tabsIconPosition
+        tabIconEnabled.value = tabsConfiguration.tabIconEnabled
         tabTextEnabled.value = tabsConfiguration.tabTextEnabled
         scrollableTabs.value = tabsConfiguration.scrollableTabs
     }
@@ -69,11 +72,12 @@ class AppBarTabsState(
 @Composable
 fun rememberAppBarTabsState(
     tabs: SnapshotStateList<NavigationItem> = rememberSaveableMutableStateListOf(),
-    tabIconType: MutableState<MainTabsCustomizationState.TabIconType> = rememberSaveable { mutableStateOf(AppBarTabsState.DefaultConfiguration.tabIconType) },
+    tabsIconPosition: MutableState<MainTabsCustomizationState.TabsIconPosition> = rememberSaveable { mutableStateOf(AppBarTabsState.DefaultConfiguration.tabsIconPosition) },
+    tabIconEnabled: MutableState<Boolean> = rememberSaveable { mutableStateOf(AppBarTabsState.DefaultConfiguration.tabIconEnabled) },
     tabTextEnabled: MutableState<Boolean> = rememberSaveable { mutableStateOf(AppBarTabsState.DefaultConfiguration.tabTextEnabled) },
     scrollableTabs: MutableState<Boolean> = rememberSaveable { mutableStateOf(AppBarTabsState.DefaultConfiguration.scrollableTabs) }
-) = remember(tabs, tabIconType, tabTextEnabled, scrollableTabs) {
-    AppBarTabsState(tabs, tabIconType, tabTextEnabled, scrollableTabs)
+) = remember(tabs, tabsIconPosition, tabIconEnabled, tabTextEnabled, scrollableTabs) {
+    AppBarTabsState(tabs, tabsIconPosition, tabTextEnabled, tabIconEnabled, scrollableTabs)
 }
 
 @OptIn(ExperimentalFoundationApi::class)
@@ -81,6 +85,7 @@ data class TabsConfiguration(
     val scrollableTabs: Boolean,
     val tabs: List<NavigationItem>,
     val pagerState: PagerState?,
-    val tabIconType: MainTabsCustomizationState.TabIconType,
+    val tabsIconPosition: MainTabsCustomizationState.TabsIconPosition,
+    val tabIconEnabled: Boolean,
     val tabTextEnabled: Boolean
 )

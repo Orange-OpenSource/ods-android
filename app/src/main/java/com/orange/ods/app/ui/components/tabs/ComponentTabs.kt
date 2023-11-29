@@ -62,7 +62,7 @@ fun ComponentTabs(variant: Variant, upPress: () -> Unit) {
 
     with(tabsCustomizationState) {
         LocalAppBarManager.current.updateAppBarTabs(
-            TabsConfiguration(scrollableTabs, tabs, pagerState, tabIconType.value, tabTextEnabled.value)
+            TabsConfiguration(scrollableTabs, tabs, pagerState, tabsIconPosition.value, tabIconEnabled.value, tabTextEnabled.value)
         )
 
         BackHandler {
@@ -72,30 +72,30 @@ fun ComponentTabs(variant: Variant, upPress: () -> Unit) {
         ComponentCustomizationBottomSheetScaffold(
             bottomSheetScaffoldState = bottomSheetScaffoldState,
             bottomSheetContent = {
-                Subtitle(textRes = R.string.component_element_icon, horizontalPadding = true)
+                OdsListItem(
+                    text = stringResource(id = R.string.component_tab_text),
+                    trailing = OdsListItem.TrailingSwitch(tabTextEnabled.value, { tabTextEnabled.value = it }, isTabTextCustomizationEnabled)
+                )
+                OdsListItem(
+                    text = stringResource(id = R.string.component_tab_icon),
+                    trailing = OdsListItem.TrailingSwitch(tabIconEnabled.value, { tabIconEnabled.value = it }, isTabIconCustomizationEnabled)
+                )
+                Subtitle(textRes = R.string.component_tabs_icon_position, horizontalPadding = true)
                 OdsChoiceChipsFlowRow(
-                    value = tabIconType.value,
-                    onValueChange = { value -> tabIconType.value = value },
+                    value = tabsIconPosition.value,
+                    onValueChange = { value -> tabsIconPosition.value = value },
                     modifier = Modifier.padding(horizontal = dimensionResource(id = com.orange.ods.R.dimen.spacing_m)),
                     chips = listOf(
                         OdsChoiceChip(
-                            text = stringResource(id = R.string.component_tab_icon_leading), value = MainTabsCustomizationState.TabIconType.Leading,
-                            enabled = isTabIconCustomizationEnabled
+                            text = stringResource(id = R.string.component_tabs_icon_position_leading),
+                            value = MainTabsCustomizationState.TabsIconPosition.Leading,
+                            enabled = isTabsIconPositionEnabled
                         ),
                         OdsChoiceChip(
-                            text = stringResource(id = R.string.component_tab_icon_top), value = MainTabsCustomizationState.TabIconType.Top,
-                            enabled = isTabIconCustomizationEnabled
-                        ),
-                        OdsChoiceChip(
-                            text = stringResource(id = R.string.component_element_none), value = MainTabsCustomizationState.TabIconType.None,
-                            enabled = isTabIconCustomizationEnabled
+                            text = stringResource(id = R.string.component_tabs_icon_position_top), value = MainTabsCustomizationState.TabsIconPosition.Top,
+                            enabled = isTabsIconPositionEnabled
                         )
                     )
-                )
-
-                OdsListItem(
-                    text = stringResource(id = R.string.component_element_text),
-                    trailing = OdsListItem.TrailingSwitch(tabTextEnabled.value, { tabTextEnabled.value = it }, isTabTextCustomizationEnabled)
                 )
 
                 ComponentCountRow(
