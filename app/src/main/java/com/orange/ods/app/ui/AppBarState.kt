@@ -10,7 +10,6 @@
 
 package com.orange.ods.app.ui
 
-import android.os.Bundle
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ArrowBack
 import androidx.compose.runtime.Composable
@@ -22,20 +21,15 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.input.TextFieldValue
-import androidx.navigation.NavBackStackEntry
-import androidx.navigation.NavController
-import androidx.navigation.compose.currentBackStackEntryAsState
 import com.orange.ods.app.R
 import com.orange.ods.app.domain.recipes.LocalRecipes
 import com.orange.ods.app.ui.AppBarAction.Companion.defaultActions
-import com.orange.ods.app.ui.AppBarState.Companion.CustomDefaultConfiguration
 import com.orange.ods.app.ui.components.appbars.top.TopAppBarCustomizationState
 import com.orange.ods.app.ui.components.utilities.clickOnElement
 import com.orange.ods.app.ui.utilities.NavigationItem
 import com.orange.ods.compose.component.appbar.top.OdsTopAppBar
 import com.orange.ods.compose.component.content.OdsComponentContent
 import com.orange.ods.compose.component.menu.OdsDropdownMenu
-import com.orange.ods.extension.orElse
 import kotlin.math.max
 
 val LocalAppBarManager = staticCompositionLocalOf<AppBarManager> { error("CompositionLocal AppBarManager not present") }
@@ -43,7 +37,7 @@ val LocalAppBarManager = staticCompositionLocalOf<AppBarManager> { error("Compos
 interface AppBarManager {
     val searchedText: TextFieldValue
 
-    fun setCustomAppBar(appBarConfiguration: AppBarConfiguration)
+    fun setCustomAppBar(customAppBarConfiguration: CustomAppBarConfiguration)
 
     fun updateAppBarTabs(tabsConfiguration: TabsConfiguration)
     fun clearAppBarTabs()
@@ -52,59 +46,36 @@ interface AppBarManager {
 /**
  * AppBar state source of truth.
  *
- * The app bar is managed according to the [Screen] displayed except when the screen has a custom app bar. In this case, the app bar is
- * displayed according to the provided [AppBarConfiguration].
+ * The app bar is managed according to the [Screen] displayed except if it has a custom app bar or if the screen cannot be found in the app [Screen]s (for
+ * example an about module screen). In this case, the app bar is displayed according to the provided [CustomAppBarConfiguration].
  */
 class AppBarState(
-    private val navController: NavController,
+    private val navigationState: AppNavigationState,
     private val searchText: MutableState<TextFieldValue>,
-    private val customAppBarConfiguration: MutableState<AppBarConfiguration>,
+    private val customAppBarConfiguration: MutableState<CustomAppBarConfiguration>,
     val tabsState: AppBarTabsState
 ) : AppBarManager {
 
-    companion object {
-        val CustomDefaultConfiguration = AppBarConfiguration(
-            isLarge = false,
-            largeTitleRes = R.string.empty,
-            scrollBehavior = TopAppBarCustomizationState.ScrollBehavior.Collapsible,
-            isNavigationIconEnabled = true,
-            actionCount = defaultActions.size,
-            isOverflowMenuEnabled = false
-        )
-    }
-
-    private val currentBackStackEntry: NavBackStackEntry?
-        @Composable get() = navController.currentBackStackEntryAsState().value
-
-    private val currentScreenRoute: String?
-        @Composable get() = currentBackStackEntry?.destination?.route
-
-    private val currentScreenRouteArgs: Bundle?
-        @Composable get() = currentBackStackEntry?.arguments
-
-    private val currentScreen: Screen?
-        @Composable get() = currentScreenRoute?.let { getScreen(it, currentScreenRouteArgs) }
-
     private val isCustom: Boolean
-        @Composable get() = currentScreen?.hasCustomAppBar.orElse { false }
+        @Composable get() = navigationState.currentScreen?.hasCustomAppBar != false
 
     private val showNavigationIcon: Boolean
         @Composable get() = (isCustom && customAppBarConfiguration.value.isNavigationIconEnabled)
-                || (!isCustom && currentScreen?.isHome == false)
+                || (!isCustom && navigationState.currentScreen?.isHome(navigationState.previousRoute) == false)
 
     val isLarge: Boolean
-        @Composable get() = currentScreen?.isLargeAppBar == true
+        @Composable get() = navigationState.currentScreen?.isLargeAppBar == true
 
     val title: String
         @Composable get() = if (isCustom) {
-            stringResource(id = customAppBarConfiguration.value.largeTitleRes)
+            customAppBarConfiguration.value.title
         } else {
-            currentScreen?.title?.asString().orEmpty()
+            navigationState.currentScreen?.title?.asString().orEmpty()
         }
 
     val actions: List<OdsComponentContent<Nothing>>
         @Composable get() {
-            val screenAppBarActions = currentScreen?.getAppBarActions { searchText.value = it }.orEmpty()
+            val screenAppBarActions = navigationState.currentScreen?.getAppBarActions(navigationState.previousRoute) { searchText.value = it }.orEmpty()
             return if (isCustom) {
                 val context = LocalContext.current
                 val customActionCount = max(0, customAppBarConfiguration.value.actionCount - AppBarAction.defaultActions.size)
@@ -152,8 +123,8 @@ class AppBarState(
     override val searchedText: TextFieldValue
         get() = searchText.value
 
-    override fun setCustomAppBar(appBarConfiguration: AppBarConfiguration) {
-        customAppBarConfiguration.value = appBarConfiguration
+    override fun setCustomAppBar(customAppBarConfiguration: CustomAppBarConfiguration) {
+        this.customAppBarConfiguration.value = customAppBarConfiguration
     }
 
     override fun updateAppBarTabs(tabsConfiguration: TabsConfiguration) {
@@ -168,19 +139,26 @@ class AppBarState(
 
 @Composable
 fun rememberAppBarState(
-    navController: NavController,
+    navigationState: AppNavigationState,
     searchedText: MutableState<TextFieldValue> = remember { mutableStateOf(TextFieldValue("")) },
-    customAppBarConfiguration: MutableState<AppBarConfiguration> = remember { mutableStateOf(CustomDefaultConfiguration) },
+    customAppBarConfiguration: MutableState<CustomAppBarConfiguration> = remember { mutableStateOf(CustomAppBarConfiguration.Default) },
     tabsState: AppBarTabsState = rememberAppBarTabsState()
-) = remember(navController, searchedText, customAppBarConfiguration, tabsState) {
-    AppBarState(navController, searchedText, customAppBarConfiguration, tabsState)
+) = remember(navigationState, searchedText, customAppBarConfiguration, tabsState) {
+    AppBarState(navigationState, searchedText, customAppBarConfiguration, tabsState)
 }
 
-data class AppBarConfiguration constructor(
-    val isLarge: Boolean,
-    val largeTitleRes: Int,
-    val scrollBehavior: TopAppBarCustomizationState.ScrollBehavior,
-    val isNavigationIconEnabled: Boolean,
+data class CustomAppBarConfiguration constructor(
+    val title: String,
     val actionCount: Int,
-    val isOverflowMenuEnabled: Boolean
-)
+    val isNavigationIconEnabled: Boolean = true,
+    val isLarge: Boolean = false,
+    val scrollBehavior: TopAppBarCustomizationState.ScrollBehavior = TopAppBarCustomizationState.ScrollBehavior.Collapsible,
+    val isOverflowMenuEnabled: Boolean = false
+) {
+    companion object {
+        val Default = CustomAppBarConfiguration(
+            title = "",
+            actionCount = defaultActions.size,
+        )
+    }
+}

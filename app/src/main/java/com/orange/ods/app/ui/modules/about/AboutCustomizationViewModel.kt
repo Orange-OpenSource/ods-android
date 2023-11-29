@@ -19,20 +19,23 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.lifecycle.ViewModel
 import com.orange.ods.app.R
+import com.orange.ods.app.ui.CustomAppBarConfiguration
+import com.orange.ods.app.ui.LocalAppBarManager
 import com.orange.ods.app.ui.components.utilities.clickOnElement
-import com.orange.ods.module.about.configuration.OdsAbout
+import com.orange.ods.module.about.configuration.OdsAboutFileMenuItem
+import com.orange.ods.module.about.configuration.OdsAboutMenuItem
 import com.orange.ods.module.about.configuration.OdsAboutModuleConfiguration
 import com.orange.ods.module.about.configuration.OdsAboutShareData
 
 class AboutCustomizationViewModel : ViewModel() {
 
     val additionalLinksCount = mutableStateOf(0)
-
     var selectedOptions by mutableStateOf(emptyList<AboutCustomizationOptions>())
 
     @Composable
     fun aboutModuleConfiguration(): OdsAboutModuleConfiguration {
         val context = LocalContext.current
+        val appBarManager = LocalAppBarManager.current
         return OdsAboutModuleConfiguration(
             appName = stringResource(id = R.string.module_about_demo_app_name),
             privacyPolicyMenuItemFileRes = R.raw.about_privacy_policy,
@@ -52,21 +55,24 @@ class AboutCustomizationViewModel : ViewModel() {
             } else {
                 null
             },
-            customMenuItems = customMenuItems(additionalLinksCount.value)
+            customMenuItems = customMenuItems(additionalLinksCount.value),
+            onScreenChange = { title ->
+                appBarManager.setCustomAppBar(CustomAppBarConfiguration(title = title, actionCount = 0))
+            }
         )
     }
 
     @Composable
-    private fun customMenuItems(itemCount: Int): List<OdsAbout.MenuItem> {
-        val customMenuItems = mutableListOf<OdsAbout.MenuItem>()
+    private fun customMenuItems(itemCount: Int): List<OdsAboutMenuItem> {
+        val customMenuItems = mutableListOf<OdsAboutMenuItem>()
         for (i in 1..itemCount) {
             customMenuItems.add(
-                OdsAbout.FileMenuItem(
+                OdsAboutFileMenuItem(
                     painterResource(id = com.orange.ods.module.about.R.drawable.ic_tasklist),
                     "Custom item $i",
                     1,
                     R.raw.about_demo_custom_item,
-                    OdsAbout.FileMenuItem.FileFormat.Html
+                    OdsAboutFileMenuItem.FileFormat.Html
                 )
             )
         }

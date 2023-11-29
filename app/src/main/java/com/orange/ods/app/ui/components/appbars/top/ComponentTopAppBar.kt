@@ -32,7 +32,7 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import com.orange.ods.app.R
-import com.orange.ods.app.ui.AppBarConfiguration
+import com.orange.ods.app.ui.CustomAppBarConfiguration
 import com.orange.ods.app.ui.LocalAppBarManager
 import com.orange.ods.app.ui.components.Variant
 import com.orange.ods.app.ui.components.utilities.ComponentCountRow
@@ -57,16 +57,16 @@ fun ComponentTopAppBar(variant: Variant) {
     val customizationState = rememberTopAppBarCustomizationState(large = remember { mutableStateOf(variant == Variant.AppBarsTopLarge) })
 
     with(customizationState) {
-        val appBarConfiguration = AppBarConfiguration(
-            isLarge = isLarge,
-            largeTitleRes = if (isLarge) title.value.titleRes else R.string.component_app_bars_top_regular,
-            scrollBehavior = scrollBehavior.value,
-            isNavigationIconEnabled = isNavigationIconEnabled,
+        val customAppBarConfiguration = CustomAppBarConfiguration(
+            title = if (isLarge) stringResource(id = title.value.titleRes) else stringResource(id = R.string.component_app_bars_top_regular),
             actionCount = actionCount.value,
+            isNavigationIconEnabled = isNavigationIconEnabled,
+            isLarge = isLarge,
+            scrollBehavior = scrollBehavior.value,
             isOverflowMenuEnabled = isOverflowMenuEnabled
         )
 
-        LocalAppBarManager.current.setCustomAppBar(appBarConfiguration)
+        LocalAppBarManager.current.setCustomAppBar(customAppBarConfiguration)
 
         ComponentCustomizationBottomSheetScaffold(
             bottomSheetScaffoldState = rememberBottomSheetScaffoldState(),

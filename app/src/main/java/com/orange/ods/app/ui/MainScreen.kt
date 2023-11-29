@@ -100,9 +100,9 @@ fun MainScreen(themeConfigurations: Set<OdsThemeConfigurationContract>, mainView
         LocalOdsGuideline provides mainState.themeState.currentThemeConfiguration.guideline,
         LocalRecipes provides mainViewModel.recipes,
         LocalCategories provides mainViewModel.categories,
-        LocalUiFramework provides mainState.uiFramework
+        LocalUiFramework provides mainState.uiFramework,
     ) {
-        AppBarActionsHandler(navigate = mainState.navController::navigate, onChangeThemeActionClick = { changeThemeDialogVisible = true })
+        AppBarActionsHandler(navigate = mainState.navigationState.navController::navigate, onChangeThemeActionClick = { changeThemeDialogVisible = true })
         OdsTheme(
             themeConfiguration = mainState.themeState.currentThemeConfiguration,
             darkThemeEnabled = configuration.isDarkModeEnabled
@@ -132,11 +132,13 @@ fun MainScreen(themeConfigurations: Set<OdsThemeConfigurationContract>, mainView
                             SystemBarsColorSideEffect()
                             AppBar(
                                 appBarState = mainState.appBarState,
-                                upPress = mainState::upPress,
+                                upPress = mainState.navigationState::upPress,
                                 scrollBehavior = topBarScrollBehavior
                             )
-                            if (mainState.appBarState.tabsState.hasTabs) {
+                            if (mainState.navigationState.currentScreen?.hasTabs == true && mainState.appBarState.tabsState.hasTabs) {
                                 AppBarTabs(appBarTabsState = mainState.appBarState.tabsState)
+                            } else {
+                                mainState.appBarState.clearAppBarTabs()
                             }
                         }
                     }
@@ -148,28 +150,29 @@ fun MainScreen(themeConfigurations: Set<OdsThemeConfigurationContract>, mainView
                         exit = fadeOut()
                     ) {
                         BottomBar(
-                            items = mainState.bottomBarItems,
-                            currentRoute = mainState.currentRoute!!,
+                            items = BottomBarItem.values(),
+                            currentRoute = mainState.navigationState.currentRoute.orEmpty(),
                             navigateToRoute = { route ->
                                 if (route == BottomBarItem.About.route) {
                                     aboutModule.configuration = aboutConfiguration
                                 }
-                                mainState.navigateToBottomBarRoute(route)
+                                mainState.navigationState.navigateToBottomBarRoute(route)
                             }
                         )
                     }
                 }
             ) { innerPadding ->
                 NavHost(
-                    navController = mainState.navController, startDestination = BottomBarItem.Guidelines.route, modifier = Modifier.padding(innerPadding)
+                    navController = mainState.navigationState.navController,
+                    startDestination = BottomBarItem.Guidelines.route,
+                    modifier = Modifier.padding(innerPadding)
                 ) {
                     appNavGraph(
-                        navController = mainState.navController,
-                        navigateToElement = mainState::navigateToElement,
-                        upPress = mainState::upPress,
+                        navController = mainState.navigationState.navController,
+                        navigateToElement = mainState.navigationState::navigateToElement,
                         navigateToAboutModule = {
                             aboutModule.configuration = customAboutConfiguration
-                            mainState.navController.navigateToOdsAbout()
+                            mainState.navigationState.navController.navigateToOdsAbout()
                         }
                     )
                 }

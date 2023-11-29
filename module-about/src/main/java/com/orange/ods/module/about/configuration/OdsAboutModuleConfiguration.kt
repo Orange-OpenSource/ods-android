@@ -87,11 +87,17 @@ data class OdsAboutModuleConfiguration(
      *  - Term of services (position index 101)
      *  - Accessibility (position index 102)
      */
-    val customMenuItems: List<OdsAbout.MenuItem> = emptyList()
+    val customMenuItems: List<OdsAboutMenuItem> = emptyList(),
+
+    /**
+     * Callback invoked on about module screen change.
+     * It can help you managing top app bar title update if necessary.
+     */
+    val onScreenChange: ((title: String) -> Unit)? = null
 
 ) {
 
-    internal val menuItemById: Map<Int, OdsAbout.MenuItem>
+    internal val menuItemById: Map<Int, OdsAboutMenuItem>
         @Composable
         get() {
             val mandatoryMenuItems = mandatoryMenuItems(privacyPolicyMenuItemFileRes, termsOfServiceMenuItemFileRes)

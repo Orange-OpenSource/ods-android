@@ -28,7 +28,7 @@ object ComponentsNavigation {
     const val ComponentVariantIdKey = "componentVariantId"
 }
 
-fun NavGraphBuilder.addComponentsGraph(navController: NavController, upPress: () -> Unit) {
+fun NavGraphBuilder.addComponentsGraph(navController: NavController) {
 
     composable(
         "${ComponentsNavigation.ComponentDetailRoute}/{${ComponentsNavigation.ComponentIdKey}}",
@@ -57,7 +57,7 @@ fun NavGraphBuilder.addComponentsGraph(navController: NavController, upPress: ()
         val component = components.firstOrNull { it.variants.contains(variant) }
 
         if (variant != null && component != null) {
-            component.demoScreen(variant, upPress)
+            component.demoScreen(variant)
         }
     }
 
@@ -70,7 +70,7 @@ fun NavGraphBuilder.addComponentsGraph(navController: NavController, upPress: ()
         val component = remember { components.firstOrNull { it.id == componentId } }
 
         component?.let {
-            component.demoScreen(null, upPress)
+            component.demoScreen(null)
         }
     }
 }

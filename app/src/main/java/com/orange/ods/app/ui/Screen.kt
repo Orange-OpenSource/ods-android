@@ -14,13 +14,13 @@ import android.os.Bundle
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.text.input.TextFieldValue
 import com.orange.ods.app.R
-import com.orange.ods.app.ui.Screen
 import com.orange.ods.app.ui.components.ComponentsNavigation
 import com.orange.ods.app.ui.components.ComponentsNavigation.ComponentDemoRoute
 import com.orange.ods.app.ui.components.ComponentsNavigation.ComponentDetailRoute
 import com.orange.ods.app.ui.components.ComponentsNavigation.ComponentVariantDemoRoute
 import com.orange.ods.app.ui.components.Variant
 import com.orange.ods.app.ui.guidelines.GuidelinesNavigation
+import com.orange.ods.app.ui.modules.ModuleDemoDestinations
 import com.orange.ods.app.ui.utilities.UiString
 import com.orange.ods.compose.component.content.OdsComponentContent
 import kotlinx.coroutines.flow.Flow
@@ -55,6 +55,7 @@ sealed class Screen(
     val route: String,
     val isLargeAppBar: Boolean = false,
     val title: UiString? = null,
+    val hasTabs: Boolean = false
 ) {
 
     companion object {
@@ -62,15 +63,16 @@ sealed class Screen(
         val appBarActionClicked: Flow<AppBarAction> = _appBarActionClicked.asSharedFlow()
     }
 
-    val isHome: Boolean
-        get() = this in listOf(Guidelines, Components, Modules, About)
+    fun isHome(previousRoute: String?): Boolean {
+        return (this in listOf(Guidelines, Components, Modules, About)) && previousRoute != ModuleDemoDestinations.AboutModuleCustomizationRoute
+    }
 
     val hasCustomAppBar: Boolean
         get() = this is ComponentVariant && Variant.fromId(this.variantId)?.customizableTopAppBar == true
 
     @Composable
-    fun getAppBarActions(onSearchedTextChange: (TextFieldValue) -> Unit): List<OdsComponentContent<Nothing>> = when {
-        isHome -> getHomeActions { action -> _appBarActionClicked.tryEmit(action) }
+    fun getAppBarActions(previousRoute: String?, onSearchedTextChange: (TextFieldValue) -> Unit): List<OdsComponentContent<Nothing>> = when {
+        isHome(previousRoute) -> getHomeActions { action -> _appBarActionClicked.tryEmit(action) }
         this is Search -> listOf(getSearchFieldAction(onSearchedTextChange))
         else -> getDefaultActions { action -> _appBarActionClicked.tryEmit(action) }
     }
@@ -124,7 +126,15 @@ sealed class Screen(
     data class ComponentVariant(val variantId: Long) : Screen(
         route = ComponentVariantDemoRoute,
         title = Variant.fromId(variantId)?.titleRes?.let { UiString.StringResource(it) },
-        isLargeAppBar = Variant.fromId(variantId)?.largeTopAppBar == true
+        isLargeAppBar = Variant.fromId(variantId)?.largeTopAppBar == true,
+        hasTabs = Variant.fromId(variantId)?.hasTabs == true
+    )
+
+    // Modules screens
+
+    data object ModuleAbout : Screen(
+        route = ModuleDemoDestinations.AboutModuleCustomizationRoute,
+        title = UiString.StringResource(R.string.module_about),
     )
 
     // Search screen
