@@ -102,7 +102,7 @@ fun OdsLinearProgressIndicator(
                             .semantics {
                                 this.invisibleToUser() // Prevent TalkBack to focus this Text cause the value of the progress is already read on LinearProgressIndicator focus
                             },
-                        text = String.format(stringResource(id = R.string.progress_linear_indicator_value), (progress * 100).toInt())
+                        text = stringResource(id = R.string.progress_linear_indicator_value, (progress * 100).toInt())
                     )
                 }
             }

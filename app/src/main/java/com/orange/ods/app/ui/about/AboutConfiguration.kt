@@ -40,7 +40,7 @@ fun aboutConfiguration(): OdsAboutModuleConfiguration {
         appDescription = stringResource(id = R.string.about_description),
         shareData = OdsAboutShareData(
             stringResource(id = R.string.app_name),
-            String.format(stringResource(id = R.string.about_share_text), ShareUrl)
+            stringResource(id = R.string.about_share_text, ShareUrl)
         ),
         onFeedbackButtonClick = {
             context.launchUrl(FeedbackUrl)
