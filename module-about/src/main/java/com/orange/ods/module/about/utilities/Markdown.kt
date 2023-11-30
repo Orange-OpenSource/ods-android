@@ -10,7 +10,7 @@
 
 package com.orange.ods.module.about.utilities
 
-object Markdown {
+internal object Markdown {
 
     private const val SpecialCharacters = "\\`*_{}[]()#+-.!"
 
