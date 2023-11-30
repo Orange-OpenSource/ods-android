@@ -106,8 +106,8 @@ fun OdsBanner(
                     }
                 )
                 if (isSingleLineBanner) {
-                    firstButton?.Content()
-                    secondButton?.Content()
+                    firstButton?.Content(modifier = Modifier.padding(start = dimensionResource(id = R.dimen.spacing_xs)))
+                    secondButton?.Content(modifier = Modifier.padding(start = dimensionResource(id = R.dimen.spacing_xs)))
                 }
             }
         }
@@ -184,7 +184,7 @@ private fun PreviewOdsBanner(@PreviewParameter(OdsBannerPreviewParameterProvider
         with(parameter) {
             OdsBanner(
                 message = message,
-                firstButton = firstButtonText?.let { OdsBanner.Button(it) {} } ,
+                firstButton = firstButtonText?.let { OdsBanner.Button(it) {} },
                 image = imageRes?.let { OdsBanner.Image(painterResource(id = it), "") },
                 secondButton = secondButtonText?.let { OdsBanner.Button(it) {} },
             )
