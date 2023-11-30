@@ -21,9 +21,9 @@
 
     <declare-styleable name="OdsBanner">
         <attr name="message" format="string" />
-        <attr name="firstButtonText" format="string" />
         <attr name="image" format="reference|color" />
         <attr name="imageContentDescription" format="string" />
+        <attr name="firstButtonText" format="string" />
         <attr name="secondButtonText" format="string" />
     </declare-styleable>
 

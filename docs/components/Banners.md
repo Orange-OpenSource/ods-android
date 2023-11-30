@@ -55,8 +55,8 @@ OdsBanner(
 Parameter | Default&nbsp;value | Description
 -- | -- | --
 `message: String` | | Text displayed into the banner
-`firstButton: OdsBanner.Button` | | Primary button displayed in the banner
 `modifier: Modifier` | `Modifier` | `Modifier` applied to the banner
 `image: OdsBanner.Image?` | `null` | Image displayed in the banner in a circle shape
+`firstButton: OdsBanner.Button?` | `null` | Primary button displayed in the banner
 `secondButton: OdsBanner.Button?` | `null` | Secondary button displayed into the banner next to the primary one
 {:.table}
