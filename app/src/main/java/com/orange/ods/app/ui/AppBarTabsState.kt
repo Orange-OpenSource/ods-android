@@ -77,7 +77,7 @@ fun rememberAppBarTabsState(
     tabTextEnabled: MutableState<Boolean> = rememberSaveable { mutableStateOf(AppBarTabsState.DefaultConfiguration.tabTextEnabled) },
     scrollableTabs: MutableState<Boolean> = rememberSaveable { mutableStateOf(AppBarTabsState.DefaultConfiguration.scrollableTabs) }
 ) = remember(tabs, tabsIconPosition, tabIconEnabled, tabTextEnabled, scrollableTabs) {
-    AppBarTabsState(tabs, tabsIconPosition, tabTextEnabled, tabIconEnabled, scrollableTabs)
+    AppBarTabsState(tabs, tabsIconPosition, tabIconEnabled, tabTextEnabled, scrollableTabs)
 }
 
 @OptIn(ExperimentalFoundationApi::class)
