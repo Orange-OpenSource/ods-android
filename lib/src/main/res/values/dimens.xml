@@ -41,12 +41,6 @@
     <dimen name="image_item_legend_area_height">48dp</dimen>
 
     <!-- Lists -->
-    <dimen name="list_single_line_item_height">48dp</dimen>
-    <dimen name="list_single_line_with_icon_item_height">56dp</dimen>
-    <dimen name="list_single_line_with_wide_image_item_height">72dp</dimen>
-    <dimen name="list_two_line_item_height">64dp</dimen>
-    <dimen name="list_two_line_with_icon_item_height">72dp</dimen>
-    <dimen name="list_three_line_item_height">88dp</dimen>
     <dimen name="list_wide_image_height">56dp</dimen>
     <dimen name="list_wide_image_width">100dp</dimen>
     <dimen name="list_square_image_size">56dp</dimen>

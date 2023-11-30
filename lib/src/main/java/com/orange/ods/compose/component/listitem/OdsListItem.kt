@@ -13,11 +13,11 @@ package com.orange.ods.compose.component.listitem
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.IntrinsicSize
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
-import androidx.compose.foundation.layout.requiredHeight
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.selection.selectable
@@ -178,20 +178,11 @@ private fun OdsListItemInternal(
     trailing: OdsListItem.Trailing? = null
 ) {
     val hasText = text.isNotBlank()
-    val requiredHeight = computeRequiredHeight(
-        hasIcon = leadingIcon != null,
-        leadingIconType = leadingIcon?.iconType,
-        hasOverlineText = overlineText.isNotNullOrBlank(),
-        hasText = hasText,
-        hasSecondaryText = secondaryText.isNotNullOrBlank(),
-        singleLineSecondaryText = singleLineSecondaryText
-    )
     val secondaryTextLinesNumber = if (singleLineSecondaryText || (overlineText != null && secondaryText != null)) 1 else 2
 
     ListItem(
-        modifier = modifier
-            .fillMaxWidth()
-            .requiredHeight(requiredHeight),
+        modifier = modifier.height(IntrinsicSize.Min)
+            .fillMaxWidth(),
         icon = leadingIcon?.let { { it.Content() } },
         secondaryText = if (secondaryText.isNotNullOrBlank()) {
             {
@@ -215,38 +206,6 @@ private fun OdsListItemInternal(
             }
         }
     )
-}
-
-/**
- * Computes the height of a list item depending on its attributes.
- * It allows to be able to center vertically elements in the item.
- */
-@Composable
-private fun computeRequiredHeight(
-    hasIcon: Boolean,
-    leadingIconType: OdsListItem.LeadingIcon.Type?,
-    hasOverlineText: Boolean,
-    hasText: Boolean,
-    hasSecondaryText: Boolean,
-    singleLineSecondaryText: Boolean
-): Dp {
-    val wideImage = leadingIconType == OdsListItem.LeadingIcon.Type.WideImage
-    val heightRes = when {
-        // single-line
-        !hasOverlineText && (!hasSecondaryText || !hasText) -> when {
-            hasIcon && !wideImage -> R.dimen.list_single_line_with_icon_item_height
-            wideImage -> R.dimen.list_single_line_with_wide_image_item_height
-            else -> R.dimen.list_single_line_item_height
-        }
-        // three-lines
-        hasOverlineText && hasSecondaryText -> R.dimen.list_three_line_item_height
-        // two-lines
-        hasOverlineText || singleLineSecondaryText -> if (hasIcon || wideImage) R.dimen.list_two_line_with_icon_item_height else R.dimen.list_two_line_item_height
-        // three-lines
-        else -> R.dimen.list_three_line_item_height
-    }
-
-    return dimensionResource(id = heightRes)
 }
 
 private fun Modifier.rootModifier(trailing: OdsListItem.Trailing?, onListItemClick: (() -> Unit)?): Modifier {

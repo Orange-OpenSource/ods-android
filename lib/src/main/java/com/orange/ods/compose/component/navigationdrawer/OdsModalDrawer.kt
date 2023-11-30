@@ -14,6 +14,8 @@ import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.IntrinsicSize
+import androidx.compose.foundation.layout.defaultMinSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
@@ -58,7 +60,7 @@ import com.orange.ods.compose.component.utilities.UiModePreviews
 import com.orange.ods.compose.text.OdsTextBody2
 import com.orange.ods.compose.theme.OdsTheme
 
-private val DrawerHeaderMaxHeight = 167.dp
+private val DrawerHeaderMinHeight = 167.dp
 private const val SelectedItemOpacity = 20f / 255f
 
 /**
@@ -198,7 +200,8 @@ object OdsModalDrawer {
                         image.Content(
                             modifier = Modifier
                                 .fillMaxWidth()
-                                .height(DrawerHeaderMaxHeight)
+                                .height(IntrinsicSize.Min)
+                                .defaultMinSize(minHeight = DrawerHeaderMinHeight)
                         )
                         Surface(
                             color = Color.Black.copy(alpha = 0.8f),
@@ -214,14 +217,12 @@ object OdsModalDrawer {
                     Column(
                         modifier = modifier
                             .fillMaxWidth()
-                            .height(DrawerHeaderMaxHeight),
+                            .height(IntrinsicSize.Min)
+                            .defaultMinSize(minHeight = DrawerHeaderMinHeight),
                         verticalArrangement = Arrangement.Bottom
                     ) {
                         image.Content(
-                            modifier = Modifier.padding(
-                                start = dimensionResource(id = R.dimen.spacing_m),
-                                bottom = dimensionResource(id = R.dimen.spacing_m)
-                            )
+                            modifier = Modifier.padding(all = dimensionResource(id = R.dimen.spacing_m))
                         )
                         OdsHeaderText(title = title, subtitle = subtitle, color = OdsTheme.colors.onSurface)
                     }
@@ -311,12 +312,7 @@ private object OdsModalDrawerListItemRippleTheme : RippleTheme {
 @Composable
 private fun OdsHeaderText(title: String, subtitle: String?, color: Color) {
     Column(
-        modifier = Modifier
-            .padding(start = dimensionResource(id = R.dimen.spacing_m))
-            .height(
-                if (subtitle != null) dimensionResource(id = R.dimen.list_two_line_with_icon_item_height)
-                else dimensionResource(id = R.dimen.list_single_line_item_height)
-            ),
+        modifier = Modifier.padding(all = dimensionResource(id = R.dimen.spacing_m)),
         verticalArrangement = Arrangement.Center
     ) {
         Text(text = title, color = color, style = OdsTheme.typography.h6)

@@ -15,6 +15,7 @@ import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.IntrinsicSize
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -80,15 +81,15 @@ fun OdsImageItem(
                         modifier = Modifier
                             .background(color = Color.Black.copy(alpha = 0.38f))
                             .align(Alignment.BottomStart)
-                            .height(dimensionResource(id = R.dimen.list_single_line_item_height))
+                            .height(IntrinsicSize.Min)
                     ) {
                         OdsImageItemLegendArea(
                             text = it,
                             color = Color.White,
                             displaySurface = OdsDisplaySurface.Dark,
-                            modifier = Modifier
+                            textModifier = Modifier
                                 .weight(1f)
-                                .padding(start = dimensionResource(id = R.dimen.spacing_m), end = dimensionResource(id = R.dimen.spacing_m)),
+                                .padding(all = dimensionResource(id = R.dimen.spacing_m)),
                             icon = icon
                         )
                     }
@@ -105,15 +106,16 @@ fun OdsImageItem(
                     Row(
                         verticalAlignment = Alignment.CenterVertically,
                         modifier = Modifier
-                            .height(dimensionResource(id = R.dimen.image_item_legend_area_height))
+                            .height(IntrinsicSize.Min)
                     ) {
                         title?.let {
                             OdsImageItemLegendArea(
                                 text = it,
                                 color = OdsTheme.colors.onSurface,
                                 displaySurface = OdsDisplaySurface.Default,
-                                modifier = Modifier
+                                textModifier = Modifier
                                     .weight(1f)
+                                    .padding(vertical = dimensionResource(id = R.dimen.spacing_m))
                                     .padding(end = dimensionResource(id = R.dimen.spacing_m)),
                                 icon = icon
                             )
@@ -215,12 +217,12 @@ private fun OdsImageItemLegendArea(
     color: Color,
     displaySurface: OdsDisplaySurface,
     icon: OdsImageItem.IconToggleButton?,
-    modifier: Modifier
+    textModifier: Modifier
 ) {
     Text(
         text = text,
         color = color,
-        modifier = modifier,
+        modifier = textModifier,
         style = OdsTheme.typography.subtitle1,
         maxLines = 1,
         overflow = TextOverflow.Ellipsis
