@@ -60,7 +60,7 @@ import com.orange.ods.compose.component.utilities.UiModePreviews
 import com.orange.ods.compose.text.OdsTextBody2
 import com.orange.ods.compose.theme.OdsTheme
 
-private val DrawerHeaderMaxHeight = 167.dp
+private val DrawerHeaderMinHeight = 167.dp
 private const val SelectedItemOpacity = 20f / 255f
 
 /**
@@ -201,7 +201,7 @@ object OdsModalDrawer {
                             modifier = Modifier
                                 .fillMaxWidth()
                                 .height(IntrinsicSize.Min)
-                                .defaultMinSize(minHeight = DrawerHeaderMaxHeight)
+                                .defaultMinSize(minHeight = DrawerHeaderMinHeight)
                         )
                         Surface(
                             color = Color.Black.copy(alpha = 0.8f),
@@ -218,7 +218,7 @@ object OdsModalDrawer {
                         modifier = modifier
                             .fillMaxWidth()
                             .height(IntrinsicSize.Min)
-                            .defaultMinSize(minHeight = DrawerHeaderMaxHeight),
+                            .defaultMinSize(minHeight = DrawerHeaderMinHeight),
                         verticalArrangement = Arrangement.Bottom
                     ) {
                         image.Content(
@@ -312,9 +312,7 @@ private object OdsModalDrawerListItemRippleTheme : RippleTheme {
 @Composable
 private fun OdsHeaderText(title: String, subtitle: String?, color: Color) {
     Column(
-        modifier = Modifier
-            .padding(all = dimensionResource(id = R.dimen.spacing_m))
-            .height(IntrinsicSize.Min),
+        modifier = Modifier.padding(all = dimensionResource(id = R.dimen.spacing_m)),
         verticalArrangement = Arrangement.Center
     ) {
         Text(text = title, color = color, style = OdsTheme.typography.h6)
