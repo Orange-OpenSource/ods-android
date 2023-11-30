@@ -35,6 +35,7 @@ import com.orange.ods.app.ui.utilities.composable.Subtitle
 import com.orange.ods.compose.component.chip.OdsChoiceChip
 import com.orange.ods.compose.component.chip.OdsChoiceChipsFlowRow
 import com.orange.ods.compose.component.listitem.OdsListItem
+import com.orange.ods.compose.component.tab.OdsTabRow
 import com.orange.ods.compose.text.OdsTextBody1
 
 private const val MinFixedTabCount = 2
@@ -88,11 +89,11 @@ fun ComponentTabs(variant: Variant, upPress: () -> Unit) {
                     chips = listOf(
                         OdsChoiceChip(
                             text = stringResource(id = R.string.component_tabs_icon_position_leading),
-                            value = MainTabsCustomizationState.TabsIconPosition.Leading,
+                            value = OdsTabRow.Tab.Icon.Position.Leading,
                             enabled = isTabsIconPositionEnabled
                         ),
                         OdsChoiceChip(
-                            text = stringResource(id = R.string.component_tabs_icon_position_top), value = MainTabsCustomizationState.TabsIconPosition.Top,
+                            text = stringResource(id = R.string.component_tabs_icon_position_top), value = OdsTabRow.Tab.Icon.Position.Top,
                             enabled = isTabsIconPositionEnabled
                         )
                     )

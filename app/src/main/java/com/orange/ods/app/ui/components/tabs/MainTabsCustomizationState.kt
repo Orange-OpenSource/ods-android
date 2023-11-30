@@ -22,6 +22,7 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.saveable.rememberSaveable
 import com.orange.ods.app.ui.utilities.NavigationItem
+import com.orange.ods.compose.component.tab.OdsTabRow
 
 @OptIn(ExperimentalMaterialApi::class, ExperimentalFoundationApi::class)
 @Composable
@@ -29,7 +30,7 @@ fun rememberMainTabsCustomizationState(
     bottomSheetScaffoldState: BottomSheetScaffoldState = rememberBottomSheetScaffoldState(),
     tabsCount: MutableState<Int>,
     pagerState: PagerState = rememberPagerState(),
-    selectedTabsIconPosition: MutableState<MainTabsCustomizationState.TabsIconPosition> = rememberSaveable { mutableStateOf(MainTabsCustomizationState.TabsIconPosition.Top) },
+    selectedTabsIconPosition: MutableState<OdsTabRow.Tab.Icon.Position> = rememberSaveable { mutableStateOf(OdsTabRow.Tab.Icon.Position.Top) },
     tabIconEnabled: MutableState<Boolean> = rememberSaveable { mutableStateOf(true) },
     tabTextEnabled: MutableState<Boolean> = rememberSaveable { mutableStateOf(true) }
 ) =
@@ -42,14 +43,10 @@ class MainTabsCustomizationState(
     val bottomSheetScaffoldState: BottomSheetScaffoldState,
     val pagerState: PagerState,
     val tabsCount: MutableState<Int>,
-    val tabsIconPosition: MutableState<TabsIconPosition>,
+    val tabsIconPosition: MutableState<OdsTabRow.Tab.Icon.Position>,
     val tabIconEnabled: MutableState<Boolean>,
     val tabTextEnabled: MutableState<Boolean>
 ) {
-    enum class TabsIconPosition {
-        Leading, Top
-    }
-
     private val availableTabs = NavigationItem.values().toList()
 
     val isTabTextCustomizationEnabled: Boolean
