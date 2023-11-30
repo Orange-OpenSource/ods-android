@@ -69,8 +69,8 @@
     <string name="component_state_disabled">Disabled</string>
     <string name="component_state_error">Error</string>
     <string name="component_state_default">Default</string>
-    <string name="component_state_expanded">Expanded</string>
-    <string name="component_state_collapsed">Collapsed</string>
+    <string name="component_state_bottom_sheet_expanded">Bottom sheet expanded</string>
+    <string name="component_state_bottom_sheet_collapsed">Bottom sheet collapsed</string>
     <string name="component_on_click_toast">Click on %s</string>
     <string name="component_element_title">Title</string>
     <string name="component_element_subtitle">Subtitle</string>
@@ -316,6 +316,8 @@
     <string name="component_sheets_bottom">Sheets: bottom</string>
     <string name="component_sheet_bottom_description">Bottom sheets are surfaces anchored to the bottom of the screen that present users supplemental content.</string>
     <string name="component_sheet_bottom_customize">Customize the bottom sheet</string>
+    <string name="component_sheet_bottom_customize_content_empty_desc">Get an empty bottom sheet</string>
+    <string name="component_sheet_bottom_customize_content_example_desc">Get a bottom sheet with content example</string>
     <string name="component_sheet_bottom_recipes">Recipes</string>
 
     <!-- Component Snackbars -->
