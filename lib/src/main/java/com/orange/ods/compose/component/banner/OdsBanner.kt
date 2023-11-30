@@ -62,10 +62,13 @@ fun OdsBanner(
     firstButton: OdsBanner.Button? = null,
     secondButton: OdsBanner.Button? = null
 ) {
+    val buttonCount = when {
+        firstButton == null && secondButton == null -> 0
+        firstButton != null && secondButton != null -> 2
+        else -> 1
+    }
     var hasVisualOverflowText by remember(message) { mutableStateOf(false) }
-    val isSingleLineBanner = image == null && secondButton == null && !hasVisualOverflowText
-    val hasButtonsUnderText = image != null || secondButton != null || hasVisualOverflowText
-    val hasNoButton = firstButton == null && secondButton == null
+    val isSingleLineBanner = image == null && buttonCount != 2 && !hasVisualOverflowText
 
     Column(
         modifier = modifier
@@ -78,9 +81,9 @@ fun OdsBanner(
                 .fillMaxWidth()
                 .height(IntrinsicSize.Min)
                 .padding(
-                    top = if (hasNoButton || hasButtonsUnderText) dimensionResource(id = R.dimen.spacing_m) else dimensionResource(id = R.dimen.spacing_s),
+                    top = if (buttonCount == 0 || !isSingleLineBanner) dimensionResource(id = R.dimen.spacing_m) else dimensionResource(id = R.dimen.spacing_s),
                     bottom = when {
-                        hasNoButton -> dimensionResource(id = R.dimen.spacing_m)
+                        buttonCount == 0 -> dimensionResource(id = R.dimen.spacing_m)
                         isSingleLineBanner -> dimensionResource(id = R.dimen.spacing_s)
                         else -> 0.dp
                     }
@@ -106,18 +109,20 @@ fun OdsBanner(
                     }
                 )
                 if (isSingleLineBanner) {
-                    firstButton?.Content(modifier = Modifier.padding(start = dimensionResource(id = R.dimen.spacing_s)))
+                    firstButton?.Content()
+                    secondButton?.Content()
                 }
             }
         }
-        if (hasButtonsUnderText) {
+        if (!isSingleLineBanner && buttonCount > 0) {
             Row(
                 modifier = Modifier
                     .padding(bottom = dimensionResource(id = R.dimen.spacing_xs))
+                    .padding(horizontal = dimensionResource(id = R.dimen.spacing_m))
                     .align(Alignment.End)
             ) {
-                firstButton?.Content(modifier = Modifier.padding(end = dimensionResource(id = R.dimen.spacing_s)))
-                secondButton?.Content(modifier = Modifier.padding(end = dimensionResource(id = R.dimen.spacing_s)))
+                firstButton?.Content(modifier = Modifier.padding(end = if (secondButton != null) dimensionResource(id = R.dimen.spacing_s) else 0.dp))
+                secondButton?.Content()
             }
         }
         OdsDivider()
@@ -204,15 +209,17 @@ private val previewParameterValues: List<OdsBannerPreviewParameter>
         val imageRes = R.drawable.placeholder
         val shortMessage = "Two lines text string with two actions."
         val longMessage = "Two lines text string with two actions. One to two lines is preferable on mobile and tablet."
-        val firstButtonText = "ACTION"
-        val secondButtonText = "ACTION"
+        val firstButtonText = "ACTION 1"
+        val secondButtonText = "ACTION 2"
 
         return listOf(
             OdsBannerPreviewParameter(longMessage, firstButtonText, secondButtonText, imageRes),
             OdsBannerPreviewParameter(shortMessage),
             OdsBannerPreviewParameter(shortMessage, firstButtonText),
+            OdsBannerPreviewParameter(shortMessage, secondButtonText = secondButtonText),
             OdsBannerPreviewParameter(longMessage, firstButtonText, secondButtonText),
             OdsBannerPreviewParameter(longMessage, firstButtonText),
-            OdsBannerPreviewParameter(shortMessage, firstButtonText, imageRes = imageRes)
+            OdsBannerPreviewParameter(shortMessage, firstButtonText, imageRes = imageRes),
+            OdsBannerPreviewParameter(shortMessage, secondButtonText = secondButtonText, imageRes = imageRes)
         )
     }
