@@ -40,8 +40,8 @@ class AboutCustomizationViewModel : ViewModel() {
         val appBarManager = LocalAppBarManager.current
         return OdsAboutModuleConfiguration(
             appName = stringResource(id = R.string.module_about_demo_app_name),
-            privacyPolicyMenuItemFile = OdsAboutFileMenuItem.File(R.raw.about_privacy_policy, OdsAboutFileMenuItem.FileFormat.Html),
-            termsOfServiceMenuItemFile = OdsAboutFileMenuItem.File(R.raw.about_terms_of_service, OdsAboutFileMenuItem.FileFormat.Html),
+            privacyPolicyMenuItemFile = OdsAboutFileMenuItem.File(R.raw.about_privacy_policy, OdsAboutFileMenuItem.File.Format.Html),
+            termsOfServiceMenuItemFile = OdsAboutFileMenuItem.File(R.raw.about_terms_of_service, OdsAboutFileMenuItem.File.Format.Html),
             appVersion = if (selectedAppSections.contains(AboutCustomizationAppSection.Version)) stringResource(id = R.string.module_about_demo_version) else null,
             appDescription = if (selectedAppSections.contains(AboutCustomizationAppSection.Description)) stringResource(id = R.string.module_about_demo_description) else null,
             shareData = if (selectedAppSections.contains(AboutCustomizationAppSection.Share)) {
@@ -55,7 +55,7 @@ class AboutCustomizationViewModel : ViewModel() {
             appNewsMenuItemFileRes = if (selectedOptionalItems.contains(AboutCustomizationOptionalItem.AppNews)) R.raw.about_app_news else null,
             legalInformationMenuItemFile = if (selectedOptionalItems.contains(AboutCustomizationOptionalItem.LegalInformation)) OdsAboutFileMenuItem.File(
                 R.raw.about_demo_legal_information_item,
-                OdsAboutFileMenuItem.FileFormat.Html
+                OdsAboutFileMenuItem.File.Format.Html
             ) else null,
             rateTheAppUrl = if (selectedOptionalItems.contains(AboutCustomizationOptionalItem.RateTheApp)) RateTheAppUrl else null,
             onFeedbackButtonClick = if (selectedAppSections.contains(AboutCustomizationAppSection.Feedback)) {
@@ -79,7 +79,7 @@ class AboutCustomizationViewModel : ViewModel() {
                     painterResource(id = com.orange.ods.module.about.R.drawable.ic_tasklist),
                     "Custom item $i",
                     1,
-                    OdsAboutFileMenuItem.File(R.raw.about_demo_custom_item, OdsAboutFileMenuItem.FileFormat.Html)
+                    OdsAboutFileMenuItem.File(R.raw.about_demo_custom_item, OdsAboutFileMenuItem.File.Format.Html)
                 )
             )
         }

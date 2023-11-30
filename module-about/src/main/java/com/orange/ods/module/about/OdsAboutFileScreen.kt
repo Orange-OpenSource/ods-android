@@ -60,8 +60,8 @@ internal fun OdsAboutFileScreen(fileMenuItem: OdsAboutFileMenuItem, darkModeEnab
                     .bufferedReader()
                     .use(BufferedReader::readText)
                 val html = when (fileMenuItem.file.format) {
-                    OdsAboutFileMenuItem.FileFormat.Html -> fileContent
-                    OdsAboutFileMenuItem.FileFormat.Markdown -> Markdown.toHtml(fileContent)
+                    OdsAboutFileMenuItem.File.Format.Html -> fileContent
+                    OdsAboutFileMenuItem.File.Format.Markdown -> Markdown.toHtml(fileContent)
                 }
                 // Use loadDataWithBaseURL instead of loadData otherwise CSS won't work
                 loadDataWithBaseURL(FilePath, html, "text/html; charset=UTF-8", StandardCharsets.UTF_8.name(), null)
