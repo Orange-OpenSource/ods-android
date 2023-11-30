@@ -50,7 +50,7 @@ data class OdsAboutModuleConfiguration(
     /**
      * The application version displayed on the main screen of the About module.
      * If null, no version will be displayed.
-     * Note that you can use the provided [com.orange.ods.module.about.utilities.VersionHelper] to display a version using your package information.
+     * Note that you can use the provided [com.orange.ods.module.about.utilities.OdsAboutVersionHelper] to display a version using your package information.
      */
     val appVersion: String? = null,
 
