@@ -22,7 +22,7 @@ import javax.inject.Singleton
 
 @Module
 @InstallIn(SingletonComponent::class)
-object OdsAboutDataModule {
+internal object OdsAboutDataModule {
 
     @Singleton
     @Provides

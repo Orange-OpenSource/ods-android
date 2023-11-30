@@ -21,7 +21,7 @@ import javax.inject.Singleton
 
 @Module
 @InstallIn(SingletonComponent::class)
-object OdsAboutDomainModule {
+internal object OdsAboutDomainModule {
 
     @Singleton
     @Provides

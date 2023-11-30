@@ -20,7 +20,7 @@ import kotlinx.coroutines.flow.flow
 import timber.log.Timber
 import javax.inject.Inject
 
-class AppNewsRepositoryImpl @Inject constructor(private val context: Context) : AppNewsRepository {
+internal class AppNewsRepositoryImpl @Inject constructor(private val context: Context) : AppNewsRepository {
 
     private val appNewsParser = AppNewsParser()
 

@@ -22,7 +22,7 @@ import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
-class OdsAboutAppNewsViewModel @Inject constructor(private val appNewsService: AppNewsService) : ViewModel() {
+internal class OdsAboutAppNewsViewModel @Inject constructor(private val appNewsService: AppNewsService) : ViewModel() {
 
     private val _appNews = mutableStateListOf<AppNews>()
     val appNews: List<AppNews>
