@@ -11,6 +11,7 @@
 package com.orange.ods.compose.component.banner
 
 import androidx.compose.foundation.background
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -116,9 +117,10 @@ fun OdsBanner(
                 modifier = Modifier
                     .padding(bottom = dimensionResource(id = R.dimen.spacing_xs))
                     .padding(horizontal = dimensionResource(id = R.dimen.spacing_m))
-                    .align(Alignment.End)
+                    .align(Alignment.End),
+                horizontalArrangement = Arrangement.spacedBy(dimensionResource(id = R.dimen.spacing_s))
             ) {
-                firstButton?.Content(modifier = Modifier.padding(end = if (secondButton != null) dimensionResource(id = R.dimen.spacing_s) else 0.dp))
+                firstButton?.Content()
                 secondButton?.Content()
             }
         }
