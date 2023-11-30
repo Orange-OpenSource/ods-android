@@ -194,8 +194,6 @@ private fun AppBarTabs(appBarTabsState: AppBarTabsState) {
             // Do not use tabs directly because this is a SnapshotStateList
             // Thus its value can be modified and can lead to crashes if it becomes empty
             val tabs = tabs.toList()
-            val tabsIconPosition =
-                if (tabsIconPosition.value == OdsTabRow.Tab.Icon.Position.Leading && tabTextEnabled.value) OdsTabRow.Tab.Icon.Position.Leading else OdsTabRow.Tab.Icon.Position.Top
 
             if (scrollableTabs.value) {
                 OdsScrollableTabRow(
@@ -206,7 +204,7 @@ private fun AppBarTabs(appBarTabsState: AppBarTabsState) {
                         tabIconEnabled = tabIconEnabled.value,
                         tabTextEnabled = tabTextEnabled.value
                     ),
-                    tabIconPosition = tabsIconPosition
+                    tabIconPosition = tabsIconPosition.value
                 )
             } else {
                 OdsTabRow(
@@ -217,7 +215,7 @@ private fun AppBarTabs(appBarTabsState: AppBarTabsState) {
                         tabIconEnabled = tabIconEnabled.value,
                         tabTextEnabled = tabTextEnabled.value
                     ),
-                    tabIconPosition = tabsIconPosition
+                    tabIconPosition = tabsIconPosition.value
                 )
             }
         }
