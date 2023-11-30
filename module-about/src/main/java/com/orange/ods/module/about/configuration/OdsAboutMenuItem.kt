@@ -65,7 +65,7 @@ internal fun optionalMenuItems(
     legalInformationFile: OdsAboutFileMenuItem.File?,
     rateTheAppUrl: String?
 ): List<OdsAboutMenuItem> {
-    return mutableListOf<OdsAboutMenuItem>().apply {
+    return buildList {
         appNewsFileRes?.let {
             with(PredefinedItem.AppNews) {
                 add(
@@ -84,7 +84,7 @@ internal fun optionalMenuItems(
         rateTheAppUrl?.let {
             add(PredefinedItem.RateTheApp.getUrlMenuItem(url = rateTheAppUrl))
         }
-    }.toList()
+    }
 }
 
 /**
