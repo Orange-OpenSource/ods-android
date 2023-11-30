@@ -34,8 +34,8 @@ fun aboutConfiguration(): OdsAboutModuleConfiguration {
     val context = LocalContext.current
     return OdsAboutModuleConfiguration(
         appName = stringResource(id = R.string.about_app_name),
-        privacyPolicyMenuItemFile = OdsAboutFileMenuItem.File(R.raw.about_privacy_policy, OdsAboutFileMenuItem.FileFormat.Html),
-        termsOfServiceMenuItemFile = OdsAboutFileMenuItem.File(R.raw.about_terms_of_service, OdsAboutFileMenuItem.FileFormat.Html),
+        privacyPolicyMenuItemFile = OdsAboutFileMenuItem.File(R.raw.about_privacy_policy, OdsAboutFileMenuItem.File.Format.Html),
+        termsOfServiceMenuItemFile = OdsAboutFileMenuItem.File(R.raw.about_terms_of_service, OdsAboutFileMenuItem.File.Format.Html),
         appVersion = VersionHelper.getFromPackageInfo(context = LocalContext.current),
         appDescription = stringResource(id = R.string.about_description),
         shareData = OdsAboutShareData(
@@ -58,7 +58,7 @@ fun aboutConfiguration(): OdsAboutModuleConfiguration {
                 painterResource(id = com.orange.ods.module.about.R.drawable.ic_tasklist),
                 stringResource(id = R.string.about_menu_changelog),
                 2,
-                OdsAboutFileMenuItem.File(R.raw.changelog, OdsAboutFileMenuItem.FileFormat.Markdown)
+                OdsAboutFileMenuItem.File(R.raw.changelog, OdsAboutFileMenuItem.File.Format.Markdown)
             ),
             OdsAboutUrlMenuItem(
                 painterResource(id = R.drawable.ic_comments),

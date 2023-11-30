@@ -134,8 +134,8 @@ internal fun OdsAboutHomeScreen(configuration: OdsAboutModuleConfiguration, onAb
 fun PreviewOdsAboutHomeScreen() {
     val configuration = OdsAboutModuleConfiguration(
         appName = "App name",
-        privacyPolicyMenuItemFile = OdsAboutFileMenuItem.File(0, OdsAboutFileMenuItem.FileFormat.Html),
-        termsOfServiceMenuItemFile = OdsAboutFileMenuItem.File(0, OdsAboutFileMenuItem.FileFormat.Html),
+        privacyPolicyMenuItemFile = OdsAboutFileMenuItem.File(0, OdsAboutFileMenuItem.File.Format.Html),
+        termsOfServiceMenuItemFile = OdsAboutFileMenuItem.File(0, OdsAboutFileMenuItem.File.Format.Html),
         appVersion = "Version 1.0",
         appDescription = "Here is the description of the current application.",
         shareData = OdsAboutShareData("Title", "Text to display for sharing."),

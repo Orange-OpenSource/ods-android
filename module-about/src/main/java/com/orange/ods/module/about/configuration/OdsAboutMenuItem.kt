@@ -166,10 +166,10 @@ class OdsAboutFileMenuItem private constructor(
      * @property resource The resource identifier of the file
      * @property format The format of the file.
      */
-    class File(@RawRes val resource: Int, val format: FileFormat)
-
-    enum class FileFormat {
-        Html, Markdown
+    class File(@RawRes val resource: Int, val format: Format) {
+        enum class Format {
+            Html, Markdown
+        }
     }
 }
 
