@@ -40,7 +40,6 @@ import com.google.accompanist.systemuicontroller.rememberSystemUiController
 import com.orange.ods.app.R
 import com.orange.ods.app.domain.recipes.LocalCategories
 import com.orange.ods.app.domain.recipes.LocalRecipes
-import com.orange.ods.app.ui.components.tabs.MainTabsCustomizationState
 import com.orange.ods.app.ui.components.tabs.tabs
 import com.orange.ods.app.ui.utilities.extension.isDarkModeEnabled
 import com.orange.ods.app.ui.utilities.extension.isOrange
@@ -195,8 +194,6 @@ private fun AppBarTabs(appBarTabsState: AppBarTabsState) {
             // Do not use tabs directly because this is a SnapshotStateList
             // Thus its value can be modified and can lead to crashes if it becomes empty
             val tabs = tabs.toList()
-            val tabIconPosition =
-                if (tabIconType.value == MainTabsCustomizationState.TabIconType.Leading && tabTextEnabled.value) OdsTabRow.Tab.Icon.Position.Leading else OdsTabRow.Tab.Icon.Position.Top
 
             if (scrollableTabs.value) {
                 OdsScrollableTabRow(
@@ -204,10 +201,10 @@ private fun AppBarTabs(appBarTabsState: AppBarTabsState) {
                     tabs = tabs(
                         tabs = tabs,
                         pagerState = pagerState,
-                        tabIconType = tabIconType.value,
+                        tabIconEnabled = tabIconEnabled.value,
                         tabTextEnabled = tabTextEnabled.value
                     ),
-                    tabIconPosition = tabIconPosition
+                    tabIconPosition = tabsIconPosition.value
                 )
             } else {
                 OdsTabRow(
@@ -215,10 +212,10 @@ private fun AppBarTabs(appBarTabsState: AppBarTabsState) {
                     tabs = tabs(
                         tabs = tabs,
                         pagerState = pagerState,
-                        tabIconType = tabIconType.value,
+                        tabIconEnabled = tabIconEnabled.value,
                         tabTextEnabled = tabTextEnabled.value
                     ),
-                    tabIconPosition = tabIconPosition
+                    tabIconPosition = tabsIconPosition.value
                 )
             }
         }

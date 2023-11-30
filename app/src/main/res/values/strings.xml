@@ -373,8 +373,11 @@
     <string name="component_tabs_count">Tabs count</string>
     <string name="component_tabs_remove_tab">Remove tab</string>
     <string name="component_tabs_add_tab">Add tab</string>
-    <string name="component_tab_icon_leading">Leading</string>
-    <string name="component_tab_icon_top">Top</string>
+    <string name="component_tabs_icon_position">Icon position</string>
+    <string name="component_tabs_icon_position_leading">Leading</string>
+    <string name="component_tabs_icon_position_top">Top</string>
+    <string name="component_tab_icon">Icon</string>
+    <string name="component_tab_text">Text</string>
 
     <!-- Modules -->
     <string name="modules_coming_soon">Coming soon…</string>

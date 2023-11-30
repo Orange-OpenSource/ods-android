@@ -25,14 +25,14 @@ import kotlinx.coroutines.launch
 fun tabs(
     tabs: List<NavigationItem>,
     pagerState: PagerState,
-    tabIconType: MainTabsCustomizationState.TabIconType,
+    tabIconEnabled: Boolean,
     tabTextEnabled: Boolean,
 ): List<OdsTabRow.Tab> {
     val scope = rememberCoroutineScope()
 
     return tabs.mapIndexed { index, tab ->
         OdsTabRow.Tab(
-            icon = if (tabIconType != MainTabsCustomizationState.TabIconType.None) OdsTabRow.Tab.Icon(painter = painterResource(id = tab.iconResId)) else null,
+            icon = if (tabIconEnabled) OdsTabRow.Tab.Icon(painter = painterResource(id = tab.iconResId)) else null,
             text = if (tabTextEnabled) stringResource(id = tab.textResId) else null,
         ) {
             scope.launch {

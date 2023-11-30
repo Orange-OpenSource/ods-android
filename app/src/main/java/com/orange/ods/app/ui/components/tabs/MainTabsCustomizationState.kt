@@ -22,6 +22,7 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.saveable.rememberSaveable
 import com.orange.ods.app.ui.utilities.NavigationItem
+import com.orange.ods.compose.component.tab.OdsTabRow
 
 @OptIn(ExperimentalMaterialApi::class, ExperimentalFoundationApi::class)
 @Composable
@@ -29,11 +30,12 @@ fun rememberMainTabsCustomizationState(
     bottomSheetScaffoldState: BottomSheetScaffoldState = rememberBottomSheetScaffoldState(),
     tabsCount: MutableState<Int>,
     pagerState: PagerState = rememberPagerState(),
-    selectedTabIconType: MutableState<MainTabsCustomizationState.TabIconType> = rememberSaveable { mutableStateOf(MainTabsCustomizationState.TabIconType.Top) },
+    selectedTabsIconPosition: MutableState<OdsTabRow.Tab.Icon.Position> = rememberSaveable { mutableStateOf(OdsTabRow.Tab.Icon.Position.Top) },
+    tabIconEnabled: MutableState<Boolean> = rememberSaveable { mutableStateOf(true) },
     tabTextEnabled: MutableState<Boolean> = rememberSaveable { mutableStateOf(true) }
 ) =
-    remember(bottomSheetScaffoldState, pagerState, tabsCount, selectedTabIconType, tabTextEnabled) {
-        MainTabsCustomizationState(bottomSheetScaffoldState, pagerState, tabsCount, selectedTabIconType, tabTextEnabled)
+    remember(bottomSheetScaffoldState, pagerState, tabsCount, selectedTabsIconPosition, tabIconEnabled, tabTextEnabled) {
+        MainTabsCustomizationState(bottomSheetScaffoldState, pagerState, tabsCount, selectedTabsIconPosition, tabIconEnabled, tabTextEnabled)
     }
 
 @OptIn(ExperimentalMaterialApi::class, ExperimentalFoundationApi::class)
@@ -41,20 +43,20 @@ class MainTabsCustomizationState(
     val bottomSheetScaffoldState: BottomSheetScaffoldState,
     val pagerState: PagerState,
     val tabsCount: MutableState<Int>,
-    val tabIconType: MutableState<TabIconType>,
+    val tabsIconPosition: MutableState<OdsTabRow.Tab.Icon.Position>,
+    val tabIconEnabled: MutableState<Boolean>,
     val tabTextEnabled: MutableState<Boolean>
 ) {
-    enum class TabIconType {
-        Leading, Top, None
-    }
-
     private val availableTabs = NavigationItem.values().toList()
 
     val isTabTextCustomizationEnabled: Boolean
-        get() = tabIconType.value != TabIconType.None
+        get() = tabIconEnabled.value
 
     val isTabIconCustomizationEnabled: Boolean
         get() = tabTextEnabled.value
+
+    val isTabsIconPositionEnabled: Boolean
+        get() = isTabIconCustomizationEnabled && isTabTextCustomizationEnabled
 
     val tabs: List<NavigationItem>
         get() = availableTabs.take(tabsCount.value.coerceAtLeast(0))
