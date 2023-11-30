@@ -15,7 +15,7 @@ import org.json.JSONArray
 import org.json.JSONException
 import org.json.JSONObject
 
-class AppNewsParser {
+internal class AppNewsParser {
 
     companion object {
         private const val Version = "version"

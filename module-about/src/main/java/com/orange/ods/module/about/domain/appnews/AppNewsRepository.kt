@@ -13,6 +13,6 @@ package com.orange.ods.module.about.domain.appnews
 import androidx.annotation.RawRes
 import kotlinx.coroutines.flow.Flow
 
-interface AppNewsRepository {
+internal interface AppNewsRepository {
     fun getAppNews(@RawRes fileResId: Int): Flow<List<AppNews>>
 }
