@@ -19,24 +19,22 @@ import androidx.compose.runtime.saveable.rememberSaveable
 @Composable
 fun rememberBannerCustomizationState(
     buttonsCount: MutableState<Int> = rememberSaveable { mutableStateOf(BannerCustomizationState.MinActionButtonCount) },
-    textLineCount: MutableState<Int> = rememberSaveable { mutableStateOf(BannerCustomizationState.MaxTextLineCount) },
+    shortMessage: MutableState<Boolean> = rememberSaveable { mutableStateOf(true) },
     imageChecked: MutableState<Boolean> = rememberSaveable { mutableStateOf(false) }
 ) =
-    remember(buttonsCount, textLineCount, imageChecked) {
-        BannerCustomizationState(buttonsCount, textLineCount, imageChecked)
+    remember(buttonsCount, shortMessage, imageChecked) {
+        BannerCustomizationState(buttonsCount, shortMessage, imageChecked)
     }
 
 class BannerCustomizationState(
     val buttonsCount: MutableState<Int>,
-    val textLinesCount: MutableState<Int>,
+    val shortMessage: MutableState<Boolean>,
     val imageChecked: MutableState<Boolean>,
 ) {
 
     companion object {
         const val MinActionButtonCount = 0
         const val MaxActionButtonCount = 2
-        const val MinTextLineCount = 1
-        const val MaxTextLineCount = 2
     }
 
     val hasImage
@@ -48,6 +46,6 @@ class BannerCustomizationState(
     val hasSecondButton
         get() = buttonsCount.value > 1
 
-    val hasTwoTextLines
-        get() = textLinesCount.value > 1
+    val hasShortMessage
+        get() = shortMessage.value
 }
