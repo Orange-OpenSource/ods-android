@@ -132,6 +132,7 @@ dependencies {
     implementation(Dependencies.accompanistSystemUiController)
     implementation(Dependencies.activityCompose)
     implementation(Dependencies.appCompat)
+    implementation(Dependencies.browser)
     implementation(Dependencies.coil)
     implementation(Dependencies.coilCompose)
     implementation(platform(Dependencies.composeBom))
