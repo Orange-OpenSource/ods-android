@@ -36,10 +36,12 @@ import com.orange.ods.compose.theme.OdsTheme
  *
  * Cards contain content and actions about a single subject.
  *
- * @param title Title displayed into the card.
+ * @param title Title displayed into the card. If the card is clickable, it will be truncated to fit on one line otherwise it will be displayed entirely for
+ * accessibility reasons.
  * @param image [OdsCard.Image] displayed into the card.
  * @param modifier [Modifier] applied to the layout of the card.
- * @param subtitle Subtitle displayed into the card.
+ * @param subtitle Subtitle displayed into the card. If the card is clickable, it will be truncated to fit on one line otherwise it will be displayed
+ * entirely for accessibility reasons.
  * @param onClick Callback invoked on card click.
  */
 @Composable
