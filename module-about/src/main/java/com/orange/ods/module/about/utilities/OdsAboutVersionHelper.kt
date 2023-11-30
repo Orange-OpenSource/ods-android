@@ -19,7 +19,7 @@ import com.orange.ods.extension.ifNotNull
 import com.orange.ods.extension.orElse
 import com.orange.ods.module.about.R
 
-object VersionHelper {
+object OdsAboutVersionHelper {
 
     /**
      * @return a displayable version: `Version <versionName> (<versionCode>)`

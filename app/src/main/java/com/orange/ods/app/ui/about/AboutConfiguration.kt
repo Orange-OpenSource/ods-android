@@ -22,7 +22,7 @@ import com.orange.ods.module.about.configuration.OdsAboutFileMenuItem
 import com.orange.ods.module.about.configuration.OdsAboutModuleConfiguration
 import com.orange.ods.module.about.configuration.OdsAboutShareData
 import com.orange.ods.module.about.configuration.OdsAboutUrlMenuItem
-import com.orange.ods.module.about.utilities.VersionHelper
+import com.orange.ods.module.about.utilities.OdsAboutVersionHelper
 
 const val RateTheAppUrl = "https://play.google.com/apps/testing/com.orange.ods.app"
 private const val ShareUrl = "http://oran.ge/dsapp"
@@ -36,7 +36,7 @@ fun aboutConfiguration(): OdsAboutModuleConfiguration {
         appName = stringResource(id = R.string.about_app_name),
         privacyPolicyMenuItemFile = OdsAboutFileMenuItem.File(R.raw.about_privacy_policy, OdsAboutFileMenuItem.File.Format.Html),
         termsOfServiceMenuItemFile = OdsAboutFileMenuItem.File(R.raw.about_terms_of_service, OdsAboutFileMenuItem.File.Format.Html),
-        appVersion = VersionHelper.getFromPackageInfo(context = LocalContext.current),
+        appVersion = OdsAboutVersionHelper.getFromPackageInfo(context = LocalContext.current),
         appDescription = stringResource(id = R.string.about_description),
         shareData = OdsAboutShareData(
             stringResource(id = R.string.app_name),
