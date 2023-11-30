@@ -204,8 +204,8 @@ private class OdsBannerPreviewParameterProvider :
 private val previewParameterValues: List<OdsBannerPreviewParameter>
     get() {
         val imageRes = R.drawable.placeholder
-        val shortMessage = "Two lines text string with two actions."
-        val longMessage = "Two lines text string with two actions. One to two lines is preferable on mobile and tablet."
+        val shortMessage = "Here is a short banner message."
+        val longMessage = "Here is a long banner message. One to two lines is preferable on mobile and tablet."
         val firstButtonText = "ACTION 1"
         val secondButtonText = "ACTION 2"
 
