@@ -57,3 +57,8 @@ toc2:
         url: /components/Tabs_docs
       - page: Text fields
         url: /components/TextFields_docs
+
+  - title: Modules
+    subfolderitems:
+      - page: "About"
+        url: /modules/About_docs
