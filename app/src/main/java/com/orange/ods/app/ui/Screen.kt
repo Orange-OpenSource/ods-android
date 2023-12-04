@@ -64,7 +64,7 @@ sealed class Screen(
     }
 
     fun isHome(previousRoute: String?): Boolean {
-        return (this in listOf(Guidelines, Components, Modules, About)) && previousRoute != ModuleDemoDestinations.AboutModuleCustomizationRoute
+        return (this in listOf(Guidelines, Components, Modules, About)) && previousRoute != ModuleDemoDestinations.AboutCustomizationRoute
     }
 
     val hasCustomAppBar: Boolean
@@ -133,7 +133,7 @@ sealed class Screen(
     // Modules screens
 
     data object ModuleAbout : Screen(
-        route = ModuleDemoDestinations.AboutModuleCustomizationRoute,
+        route = ModuleDemoDestinations.AboutCustomizationRoute,
         title = UiString.StringResource(R.string.module_about),
     )
 

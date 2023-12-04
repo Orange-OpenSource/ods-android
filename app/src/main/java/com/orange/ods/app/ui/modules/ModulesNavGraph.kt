@@ -15,7 +15,7 @@ import androidx.lifecycle.ViewModelStoreOwner
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavGraphBuilder
 import androidx.navigation.compose.composable
-import com.orange.ods.app.ui.modules.ModuleDemoDestinations.AboutModuleCustomizationRoute
+import com.orange.ods.app.ui.modules.ModuleDemoDestinations.AboutCustomizationRoute
 import com.orange.ods.app.ui.modules.about.AboutCustomizationScreen
 import com.orange.ods.app.ui.modules.about.AboutCustomizationViewModel
 
@@ -23,12 +23,12 @@ import com.orange.ods.app.ui.modules.about.AboutCustomizationViewModel
  * Modules demo destinations.
  */
 object ModuleDemoDestinations {
-    const val AboutModuleCustomizationRoute = "module/about/customization"
+    const val AboutCustomizationRoute = "module/about/customization"
 }
 
 fun NavGraphBuilder.addModulesGraph(navigateToAboutModule: () -> Unit) {
     composable(
-        route = AboutModuleCustomizationRoute
+        route = AboutCustomizationRoute
     ) { _ ->
         val viewModelStoreOwner = LocalContext.current as ViewModelStoreOwner
         val viewModel = viewModel<AboutCustomizationViewModel>(viewModelStoreOwner)

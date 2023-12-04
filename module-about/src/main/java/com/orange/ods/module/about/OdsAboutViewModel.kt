@@ -14,13 +14,13 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
 import androidx.lifecycle.ViewModel
-import com.orange.ods.module.about.configuration.OdsAboutModuleConfiguration
+import com.orange.ods.module.about.configuration.OdsAboutConfiguration
 
 class OdsAboutViewModel : ViewModel() {
-    var configuration: OdsAboutModuleConfiguration? by mutableStateOf(null)
+    var configuration: OdsAboutConfiguration? by mutableStateOf(null)
         private set
 
-    fun configureAboutModule(configuration: OdsAboutModuleConfiguration) {
+    fun configureAbout(configuration: OdsAboutConfiguration) {
         this.configuration = configuration
     }
 }

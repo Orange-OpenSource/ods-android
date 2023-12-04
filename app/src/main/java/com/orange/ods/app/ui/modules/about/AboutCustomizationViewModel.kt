@@ -23,9 +23,9 @@ import com.orange.ods.app.ui.CustomAppBarConfiguration
 import com.orange.ods.app.ui.LocalAppBarManager
 import com.orange.ods.app.ui.about.RateTheAppUrl
 import com.orange.ods.app.ui.components.utilities.clickOnElement
+import com.orange.ods.module.about.configuration.OdsAboutConfiguration
 import com.orange.ods.module.about.configuration.OdsAboutFileMenuItem
 import com.orange.ods.module.about.configuration.OdsAboutMenuItem
-import com.orange.ods.module.about.configuration.OdsAboutModuleConfiguration
 import com.orange.ods.module.about.configuration.OdsAboutShareData
 
 class AboutCustomizationViewModel : ViewModel() {
@@ -35,10 +35,10 @@ class AboutCustomizationViewModel : ViewModel() {
     var selectedOptionalItems by mutableStateOf(emptyList<AboutCustomizationOptionalItem>())
 
     @Composable
-    fun aboutModuleConfiguration(): OdsAboutModuleConfiguration {
+    fun aboutConfiguration(): OdsAboutConfiguration {
         val context = LocalContext.current
         val appBarManager = LocalAppBarManager.current
-        return OdsAboutModuleConfiguration(
+        return OdsAboutConfiguration(
             appName = stringResource(id = R.string.module_about_demo_app_name),
             privacyPolicyMenuItemFile = OdsAboutFileMenuItem.File(R.raw.about_privacy_policy, OdsAboutFileMenuItem.File.Format.Html),
             termsOfServiceMenuItemFile = OdsAboutFileMenuItem.File(R.raw.about_terms_of_service, OdsAboutFileMenuItem.File.Format.Html),

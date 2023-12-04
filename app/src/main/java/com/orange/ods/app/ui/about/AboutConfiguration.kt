@@ -19,7 +19,7 @@ import com.orange.ods.app.ui.CustomAppBarConfiguration
 import com.orange.ods.app.ui.LocalAppBarManager
 import com.orange.ods.app.ui.utilities.extension.launchUrl
 import com.orange.ods.module.about.configuration.OdsAboutFileMenuItem
-import com.orange.ods.module.about.configuration.OdsAboutModuleConfiguration
+import com.orange.ods.module.about.configuration.OdsAboutConfiguration
 import com.orange.ods.module.about.configuration.OdsAboutShareData
 import com.orange.ods.module.about.configuration.OdsAboutUrlMenuItem
 import com.orange.ods.module.about.utilities.OdsAboutVersionHelper
@@ -29,10 +29,10 @@ private const val ShareUrl = "http://oran.ge/dsapp"
 private const val FeedbackUrl = "https://github.com/login?return_to=https%3A%2F%2Fgithub.com%2FOrange-OpenSource%2Fods-android%2Fissues%2Fnew%2Fchoose"
 
 @Composable
-fun aboutConfiguration(): OdsAboutModuleConfiguration {
+fun aboutConfiguration(): OdsAboutConfiguration {
     val appBarManager = LocalAppBarManager.current
     val context = LocalContext.current
-    return OdsAboutModuleConfiguration(
+    return OdsAboutConfiguration(
         appName = stringResource(id = R.string.about_app_name),
         privacyPolicyMenuItemFile = OdsAboutFileMenuItem.File(R.raw.about_privacy_policy, OdsAboutFileMenuItem.File.Format.Html),
         termsOfServiceMenuItemFile = OdsAboutFileMenuItem.File(R.raw.about_terms_of_service, OdsAboutFileMenuItem.File.Format.Html),

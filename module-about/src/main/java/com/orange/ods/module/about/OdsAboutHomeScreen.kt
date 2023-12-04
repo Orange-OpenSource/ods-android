@@ -40,13 +40,13 @@ import com.orange.ods.compose.text.OdsTextBody1
 import com.orange.ods.compose.text.OdsTextBody2
 import com.orange.ods.compose.text.OdsTextH4
 import com.orange.ods.module.about.configuration.OdsAboutFileMenuItem
-import com.orange.ods.module.about.configuration.OdsAboutModuleConfiguration
+import com.orange.ods.module.about.configuration.OdsAboutConfiguration
 import com.orange.ods.module.about.configuration.OdsAboutShareData
 
 private const val ImageHeight = 249
 
 @Composable
-internal fun OdsAboutHomeScreen(configuration: OdsAboutModuleConfiguration, onAboutMenuItemClick: (id: Int) -> Unit) {
+internal fun OdsAboutHomeScreen(configuration: OdsAboutConfiguration, onAboutMenuItemClick: (id: Int) -> Unit) {
     val context = LocalContext.current
     val menuItemById = configuration.menuItemById
 
@@ -132,7 +132,7 @@ internal fun OdsAboutHomeScreen(configuration: OdsAboutModuleConfiguration, onAb
 @UiModePreviews.Default
 @Composable
 fun PreviewOdsAboutHomeScreen() {
-    val configuration = OdsAboutModuleConfiguration(
+    val configuration = OdsAboutConfiguration(
         appName = "App name",
         privacyPolicyMenuItemFile = OdsAboutFileMenuItem.File(0, OdsAboutFileMenuItem.File.Format.Html),
         termsOfServiceMenuItemFile = OdsAboutFileMenuItem.File(0, OdsAboutFileMenuItem.File.Format.Html),

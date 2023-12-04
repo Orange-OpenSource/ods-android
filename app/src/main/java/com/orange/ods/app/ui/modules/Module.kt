@@ -32,7 +32,7 @@ sealed class Module(
         R.string.module_about,
         R.drawable.il_about,
         R.string.module_about_description,
-        route = ModuleDemoDestinations.AboutModuleCustomizationRoute,
+        route = ModuleDemoDestinations.AboutCustomizationRoute,
         demoScreen = { _ -> },
     )
 }

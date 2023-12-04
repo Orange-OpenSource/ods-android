@@ -15,23 +15,23 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember
 import androidx.lifecycle.ViewModelStoreOwner
 import androidx.lifecycle.viewmodel.compose.viewModel
-import com.orange.ods.module.about.configuration.OdsAboutModuleConfiguration
+import com.orange.ods.module.about.configuration.OdsAboutConfiguration
 
-class OdsAboutModule internal constructor(configuration: OdsAboutModuleConfiguration, private val viewModel: OdsAboutViewModel) {
+class OdsAbout internal constructor(configuration: OdsAboutConfiguration, private val viewModel: OdsAboutViewModel) {
 
     var configuration = configuration
         set(value) {
             field = value
-            viewModel.configureAboutModule(value)
+            viewModel.configureAbout(value)
         }
 
     init {
-        viewModel.configureAboutModule(configuration)
+        viewModel.configureAbout(configuration)
     }
 }
 
 @Composable
-fun odsAboutModule(context: Context, configuration: OdsAboutModuleConfiguration): OdsAboutModule {
+fun odsAbout(context: Context, configuration: OdsAboutConfiguration): OdsAbout {
     val aboutViewModel = viewModel<OdsAboutViewModel>(context as ViewModelStoreOwner)
-    return remember { OdsAboutModule(configuration, aboutViewModel) }
+    return remember { OdsAbout(configuration, aboutViewModel) }
 }

@@ -21,7 +21,7 @@ import com.orange.ods.module.about.R
 /**
  * About module configuration.
  */
-data class OdsAboutModuleConfiguration(
+data class OdsAboutConfiguration(
     /**
      * The name of the application displayed on the main screen of the About module.
      */

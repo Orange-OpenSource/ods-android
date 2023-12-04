@@ -54,7 +54,7 @@ import com.orange.ods.compose.text.OdsTextH6
 import com.orange.ods.compose.theme.OdsTheme
 import com.orange.ods.extension.orElse
 import com.orange.ods.module.about.navigation.navigateToOdsAbout
-import com.orange.ods.module.about.odsAboutModule
+import com.orange.ods.module.about.odsAbout
 import com.orange.ods.theme.OdsThemeConfigurationContract
 import com.orange.ods.xml.theme.OdsXml
 import com.orange.ods.xml.utilities.extension.xml
@@ -120,9 +120,9 @@ fun MainScreen(themeConfigurations: Set<OdsThemeConfigurationContract>, mainView
 
             val context = LocalContext.current
             val aboutConfiguration = aboutConfiguration()
-            val aboutModule = odsAboutModule(context = context, configuration = aboutConfiguration)
+            val aboutModule = odsAbout(context = context, configuration = aboutConfiguration)
             val aboutCustomizationViewModel = viewModel<AboutCustomizationViewModel>(context as ViewModelStoreOwner)
-            val customAboutConfiguration = aboutCustomizationViewModel.aboutModuleConfiguration()
+            val customAboutConfiguration = aboutCustomizationViewModel.aboutConfiguration()
             Scaffold(
                 modifier = modifier,
                 topBar = {
