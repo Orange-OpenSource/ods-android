@@ -52,7 +52,7 @@ fun NavController.navigateToOdsAbout(navOptions: NavOptions? = null) {
 /**
  * Add this graph to your app in order to integrate the ODS About module.
  */
-fun NavGraphBuilder.aboutGraph(navController: NavController) {
+fun NavGraphBuilder.odsAboutGraph(navController: NavController) {
     navigation(startDestination = OdsAboutDestinations.HomeRoute, route = OdsAboutDestinations.AboutRoute) {
         composable(route = OdsAboutDestinations.HomeRoute) {
             val viewModelStoreOwner = LocalContext.current as ViewModelStoreOwner
