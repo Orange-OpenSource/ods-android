@@ -45,7 +45,7 @@ data class OdsAboutModuleConfiguration(
      * If not provided, the default Orange illustration will be displayed.
      */
     @DrawableRes
-    val appIllustration: Int = R.drawable.il_about,
+    val appIllustrationRes: Int = R.drawable.il_about,
 
     /**
      * The application version displayed on the main screen of the About module.
@@ -98,10 +98,7 @@ data class OdsAboutModuleConfiguration(
 
     /**
      * The custom menu items to be displayed on the about main screen.
-     * Note that mandatory items will be added to the provided list:
-     *  - Privacy policy (position index 100)
-     *  - Term of services (position index 101)
-     *  - Accessibility (position index 102)
+     * Note that mandatory items will be added to the provided list: Privacy policy (position = 100), Term of services (position = 101), Accessibility (position = 102)
      */
     val customMenuItems: List<OdsAboutMenuItem> = emptyList(),
 

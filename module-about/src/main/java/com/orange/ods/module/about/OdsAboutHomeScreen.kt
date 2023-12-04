@@ -53,7 +53,7 @@ internal fun OdsAboutHomeScreen(configuration: OdsAboutModuleConfiguration, onAb
     LazyColumn(contentPadding = PaddingValues(bottom = dimensionResource(id = com.orange.ods.R.dimen.screen_vertical_margin))) {
         item {
             Image(
-                painter = painterResource(id = configuration.appIllustration),
+                painter = painterResource(id = configuration.appIllustrationRes),
                 modifier = Modifier
                     .fillMaxWidth()
                     .height(ImageHeight.dp),
