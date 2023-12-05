@@ -126,7 +126,7 @@ object OdsBottomNavigation {
                     .weight(1f)
                     .selectable(
                         selected = selected,
-                        onClick = onClick,
+                        onClick = { },
                         enabled = enabled,
                         role = Role.Tab
                     )
