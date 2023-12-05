@@ -22,6 +22,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - \[Lib\] Update `OdsChip` API to use a unique leading parameter ([#705](https://github.com/Orange-OpenSource/ods-android/issues/705))
 - \[Lib\] Update most API types to be clearer for v1 launch ([#701](https://github.com/Orange-OpenSource/ods-android/issues/701))
 - \[Lib\] Update `OdsBanner` to allow banner without button and avoid text truncation in banner for accessibility purpose ([#643](https://github.com/Orange-OpenSource/ods-android/issues/643))
+- \[Lib\] Update `OdsSmallCard` to show full title and subtitle when the card is not clickable for accessibility purpose ([#722](https://github.com/Orange-OpenSource/ods-android/issues/722))
 
 ### Fixed
 

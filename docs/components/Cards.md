@@ -168,10 +168,10 @@ Row(
 
 Parameter | Default&nbsp;value | Description
 -- | -- | --
-`title: String` | | Title displayed into the card
+`title: String` | | Title displayed into the card. If the card is clickable, it will be truncated to fit on one line otherwise it will be displayed entirely for accessibility reasons.
 `image: OdsCard.Image` | | Image displayed into the card
 `modifier: Modifier` | `Modifier` | `Modifier` applied to the layout of the card
-`subtitle: String?` | `null` | Subtitle displayed into the card
+`subtitle: String?` | `null` | Subtitle displayed into the card. If the card is clickable, it will be truncated to fit on one line otherwise it will be displayed entirely for accessibility reasons.
 `onClick: (() -> Unit)?` | `null` | Callback invoked on card click
 {:.table}
 
