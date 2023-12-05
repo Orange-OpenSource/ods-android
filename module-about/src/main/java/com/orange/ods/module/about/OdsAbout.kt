@@ -22,11 +22,11 @@ class OdsAbout internal constructor(configuration: OdsAboutConfiguration, privat
     var configuration = configuration
         set(value) {
             field = value
-            viewModel.configureAbout(value)
+            viewModel.configuration = value
         }
 
     init {
-        viewModel.configureAbout(configuration)
+        viewModel.configuration = configuration
     }
 }
 

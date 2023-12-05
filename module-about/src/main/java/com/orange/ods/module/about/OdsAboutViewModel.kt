@@ -16,11 +16,6 @@ import androidx.compose.runtime.setValue
 import androidx.lifecycle.ViewModel
 import com.orange.ods.module.about.configuration.OdsAboutConfiguration
 
-class OdsAboutViewModel : ViewModel() {
+internal class OdsAboutViewModel : ViewModel() {
     var configuration: OdsAboutConfiguration? by mutableStateOf(null)
-        private set
-
-    fun configureAbout(configuration: OdsAboutConfiguration) {
-        this.configuration = configuration
-    }
 }
