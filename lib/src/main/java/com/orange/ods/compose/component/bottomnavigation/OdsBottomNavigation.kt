@@ -118,7 +118,7 @@ object OdsBottomNavigation {
 
         @Composable
         override fun RowScope.Content(modifier: Modifier) {
-            val itemPadding = dimensionResource(id = R.dimen.spacing_s)
+            val selectedLineMargin = dimensionResource(id = R.dimen.spacing_s)
             val selectedLineHeight = dimensionResource(id = R.dimen.spacing_xs)
             
             ConstraintLayout(
@@ -160,8 +160,8 @@ object OdsBottomNavigation {
                     modifier = Modifier
                         .constrainAs(lineRef) {
                             bottom.linkTo(parent.bottom)
-                            start.linkTo(parent.start, itemPadding)
-                            end.linkTo(parent.end, itemPadding)
+                            start.linkTo(parent.start, selectedLineMargin)
+                            end.linkTo(parent.end, selectedLineMargin)
                             height = Dimension.value(selectedLineHeight)
                             width = Dimension.fillToConstraints
                         },
