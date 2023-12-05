@@ -45,7 +45,7 @@ import com.orange.ods.compose.component.utilities.Preview
 import com.orange.ods.compose.component.utilities.UiModePreviews
 import com.orange.ods.compose.theme.OdsTheme
 
-private const val BottomNavigationItemMaxCount = 5
+private const val MaxBottomNavigationItemCount = 5
 
 /**
  * <a href="https://system.design.orange.com/0c1af118d/p/042eb8-bottom-navigation/b/30078d" target="_blank">ODS Bottom navigation</a>.
@@ -73,7 +73,7 @@ fun OdsBottomNavigation(
         backgroundColor = OdsTheme.colors.component.bottomNavigation.barBackground,
         contentColor = OdsTheme.colors.component.bottomNavigation.barContent,
         content = {
-            items.take(BottomNavigationItemMaxCount).forEach { item ->
+            items.take(MaxBottomNavigationItemCount).forEach { item ->
                 with(item) { this@BottomNavigation.Content() }
             }
         }
