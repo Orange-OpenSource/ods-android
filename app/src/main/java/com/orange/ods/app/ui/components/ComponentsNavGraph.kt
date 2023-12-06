@@ -11,11 +11,13 @@
 package com.orange.ods.app.ui.components
 
 import androidx.compose.runtime.remember
-import androidx.navigation.NavBackStackEntry
+import androidx.navigation.NavController
 import androidx.navigation.NavGraphBuilder
 import androidx.navigation.NavType
 import androidx.navigation.compose.composable
 import androidx.navigation.navArgument
+import com.orange.ods.app.ui.navigateToElement
+
 
 object ComponentsNavigation {
     const val ComponentDetailRoute = "component"
@@ -26,7 +28,7 @@ object ComponentsNavigation {
     const val ComponentVariantIdKey = "componentVariantId"
 }
 
-fun NavGraphBuilder.addComponentsGraph(navigateToElement: (String, Long?, NavBackStackEntry) -> Unit, upPress: () -> Unit) {
+fun NavGraphBuilder.addComponentsGraph(navController: NavController) {
 
     composable(
         "${ComponentsNavigation.ComponentDetailRoute}/{${ComponentsNavigation.ComponentIdKey}}",
@@ -39,8 +41,8 @@ fun NavGraphBuilder.addComponentsGraph(navigateToElement: (String, Long?, NavBac
         component?.let {
             ComponentDetailScreen(
                 component = component,
-                onVariantClick = { variantId -> navigateToElement(ComponentsNavigation.ComponentVariantDemoRoute, variantId, from) },
-                onDemoClick = { navigateToElement(ComponentsNavigation.ComponentDemoRoute, routeComponentId, from) }
+                onVariantClick = { variantId -> navController.navigateToElement(ComponentsNavigation.ComponentVariantDemoRoute, variantId, from) },
+                onDemoClick = { navController.navigateToElement(ComponentsNavigation.ComponentDemoRoute, routeComponentId, from) }
             )
         }
     }
@@ -55,7 +57,7 @@ fun NavGraphBuilder.addComponentsGraph(navigateToElement: (String, Long?, NavBac
         val component = components.firstOrNull { it.variants.contains(variant) }
 
         if (variant != null && component != null) {
-            component.demoScreen(variant, upPress)
+            component.demoScreen(variant)
         }
     }
 
@@ -68,8 +70,7 @@ fun NavGraphBuilder.addComponentsGraph(navigateToElement: (String, Long?, NavBac
         val component = remember { components.firstOrNull { it.id == componentId } }
 
         component?.let {
-            component.demoScreen(null, upPress)
+            component.demoScreen(null)
         }
-
     }
 }

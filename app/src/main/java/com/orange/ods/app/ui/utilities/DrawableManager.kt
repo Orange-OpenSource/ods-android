@@ -19,6 +19,7 @@ import com.orange.ods.app.ui.utilities.extension.isOrange
 import com.orange.ods.extension.orElse
 
 object DrawableManager {
+    const val ImageBackgroundColor = 0xff1b1b1b
 
     private val orangeResIdByGenericResId = mapOf(
         // About

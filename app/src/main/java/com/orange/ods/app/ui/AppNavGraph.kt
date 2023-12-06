@@ -11,11 +11,12 @@
 package com.orange.ods.app.ui
 
 import androidx.navigation.NavBackStackEntry
+import androidx.navigation.NavController
 import androidx.navigation.NavGraphBuilder
 import androidx.navigation.compose.composable
-import com.orange.ods.app.ui.about.addAboutGraph
 import com.orange.ods.app.ui.components.addComponentsGraph
 import com.orange.ods.app.ui.guidelines.addGuidelinesGraph
+import com.orange.ods.app.ui.modules.addModulesGraph
 import com.orange.ods.app.ui.search.SearchScreen
 
 /**
@@ -29,14 +30,15 @@ object MainNavigation {
  * Navigation graph of the application.
  */
 fun NavGraphBuilder.appNavGraph(
+    navController: NavController,
     navigateToElement: (String, Long?, NavBackStackEntry) -> Unit,
-    upPress: () -> Unit
+    navigateToAboutModule: () -> Unit,
 ) {
-    addBottomBarGraph(navigateToElement)
+    addBottomBarGraph(navController)
 
     addGuidelinesGraph()
-    addComponentsGraph(navigateToElement, upPress)
-    addAboutGraph()
+    addComponentsGraph(navController)
+    addModulesGraph(navigateToAboutModule)
 
     composable(
         route = MainNavigation.SearchRoute

@@ -39,9 +39,9 @@ fun ComponentDetailScreen(
             .padding(bottom = dimensionResource(id = com.orange.ods.R.dimen.screen_vertical_margin))
     ) {
         DetailScreenHeader(
+            descriptionRes = component.descriptionRes,
             imageRes = DrawableManager.getDrawableResIdForCurrentTheme(resId = component.imageRes),
             imageAlignment = component.imageAlignment,
-            descriptionRes = component.descriptionRes
         )
         Column(
             modifier = Modifier.padding(top = dimensionResource(id = com.orange.ods.R.dimen.spacing_m))

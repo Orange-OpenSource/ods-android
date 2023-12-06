@@ -30,17 +30,21 @@ import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.input.nestedscroll.nestedScroll
 import androidx.compose.ui.platform.LocalConfiguration
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.window.Dialog
+import androidx.lifecycle.ViewModelStoreOwner
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.compose.NavHost
 import com.google.accompanist.systemuicontroller.rememberSystemUiController
 import com.orange.ods.app.R
 import com.orange.ods.app.domain.recipes.LocalCategories
 import com.orange.ods.app.domain.recipes.LocalRecipes
+import com.orange.ods.app.ui.about.aboutConfiguration
 import com.orange.ods.app.ui.components.tabs.tabs
+import com.orange.ods.app.ui.modules.about.AboutCustomizationViewModel
 import com.orange.ods.app.ui.utilities.extension.isDarkModeEnabled
 import com.orange.ods.app.ui.utilities.extension.isOrange
 import com.orange.ods.compose.component.listitem.OdsListItem
@@ -49,6 +53,8 @@ import com.orange.ods.compose.component.tab.OdsTabRow
 import com.orange.ods.compose.text.OdsTextH6
 import com.orange.ods.compose.theme.OdsTheme
 import com.orange.ods.extension.orElse
+import com.orange.ods.module.about.navigation.navigateToOdsAbout
+import com.orange.ods.module.about.odsAbout
 import com.orange.ods.theme.OdsThemeConfigurationContract
 import com.orange.ods.xml.theme.OdsXml
 import com.orange.ods.xml.utilities.extension.xml
@@ -95,7 +101,7 @@ fun MainScreen(themeConfigurations: Set<OdsThemeConfigurationContract>, mainView
         LocalCategories provides mainViewModel.categories,
         LocalUiFramework provides mainState.uiFramework
     ) {
-        AppBarActionsHandler(navigate = mainState.navController::navigate, onChangeThemeActionClick = { changeThemeDialogVisible = true })
+        AppBarActionsHandler(navigate = mainState.navigationState.navController::navigate, onChangeThemeActionClick = { changeThemeDialogVisible = true })
         OdsTheme(
             themeConfiguration = mainState.themeState.currentThemeConfiguration,
             darkThemeEnabled = configuration.isDarkModeEnabled
@@ -112,6 +118,11 @@ fun MainScreen(themeConfigurations: Set<OdsThemeConfigurationContract>, mainView
                 modifier = Modifier
             }
 
+            val context = LocalContext.current
+            val aboutConfiguration = aboutConfiguration()
+            val aboutModule = odsAbout(context = context, configuration = aboutConfiguration)
+            val aboutCustomizationViewModel = viewModel<AboutCustomizationViewModel>(context as ViewModelStoreOwner)
+            val customAboutConfiguration = aboutCustomizationViewModel.aboutConfiguration()
             Scaffold(
                 modifier = modifier,
                 topBar = {
@@ -120,11 +131,13 @@ fun MainScreen(themeConfigurations: Set<OdsThemeConfigurationContract>, mainView
                             SystemBarsColorSideEffect()
                             AppBar(
                                 appBarState = mainState.appBarState,
-                                upPress = mainState::upPress,
+                                upPress = mainState.navigationState::upPress,
                                 scrollBehavior = topBarScrollBehavior
                             )
-                            if (mainState.appBarState.tabsState.hasTabs) {
+                            if (mainState.navigationState.currentScreen?.hasTabs == true && mainState.appBarState.tabsState.hasTabs) {
                                 AppBarTabs(appBarTabsState = mainState.appBarState.tabsState)
+                            } else {
+                                mainState.appBarState.clearAppBarTabs()
                             }
                         }
                     }
@@ -136,19 +149,30 @@ fun MainScreen(themeConfigurations: Set<OdsThemeConfigurationContract>, mainView
                         exit = fadeOut()
                     ) {
                         BottomBar(
-                            items = mainState.bottomBarItems,
-                            currentRoute = mainState.currentRoute!!,
-                            navigateToRoute = mainState::navigateToBottomBarRoute
+                            items = BottomBarItem.values(),
+                            currentRoute = mainState.navigationState.currentRoute.orEmpty(),
+                            navigateToRoute = { route ->
+                                if (route == BottomBarItem.About.route) {
+                                    aboutModule.configuration = aboutConfiguration
+                                }
+                                mainState.navigationState.navigateToBottomBarRoute(route)
+                            }
                         )
                     }
                 }
             ) { innerPadding ->
                 NavHost(
-                    navController = mainState.navController, startDestination = BottomBarItem.Guidelines.route, modifier = Modifier.padding(innerPadding)
+                    navController = mainState.navigationState.navController,
+                    startDestination = BottomBarItem.Guidelines.route,
+                    modifier = Modifier.padding(innerPadding)
                 ) {
                     appNavGraph(
-                        navigateToElement = mainState::navigateToElement,
-                        upPress = mainState::upPress
+                        navController = mainState.navigationState.navController,
+                        navigateToElement = mainState.navigationState::navigateToElement,
+                        navigateToAboutModule = {
+                            aboutModule.configuration = customAboutConfiguration
+                            mainState.navigationState.navController.navigateToOdsAbout()
+                        }
                     )
                 }
 

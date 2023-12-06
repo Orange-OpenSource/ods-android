@@ -11,8 +11,6 @@
 <resources>
     <string name="app_name">Orange Design System</string>
 
-    <string name="empty" />
-
     <string name="code_implementation">Code implementation</string>
     <string name="code_implementation_xml">XML</string>
     <string name="code_implementation_compose">Jetpack Compose</string>
@@ -382,17 +380,39 @@
     <string name="component_tab_text">Text</string>
 
     <!-- Modules -->
-    <string name="modules_coming_soon">Coming soon…</string>
+    <string name="module_customize">Customize the module</string>
+    <string name="module_view_demo">View demo</string>
+
+    <!-- Modules About -->
+    <string name="module_about">About</string>
+    <string name="module_about_description">An « About » screen should be displayed in all Orange applications to show the application name, software version as well as all legal data protection, privacy, terms of service and accessibility statement.</string>
+    <string name="module_about_customization">Some items such as: illustration (customizable), app name, privacy policy, terms of service and accessibility statement are mandatory.\nTo this standard screen you can add optional components:</string>
+    <string name="module_about_customization_app_sections">Application sections</string>
+    <string name="module_about_customization_app_section_version">Version</string>
+    <string name="module_about_customization_app_section_description">Description</string>
+    <string name="module_about_customization_app_section_share">Share</string>
+    <string name="module_about_customization_app_section_feedback">Feedback</string>
+    <string name="module_about_customization_optional_items">Optional menu items</string>
+    <string name="module_about_customization_optional_item_app_news">App news</string>
+    <string name="module_about_customization_optional_item_legal_information">Legal information</string>
+    <string name="module_about_customization_optional_item_rate_app">Rate the app</string>
+    <string name="module_about_customization_additional_items">Additional item(s)</string>
+    <string name="module_about_customization_additional_item_remove">Remove item</string>
+    <string name="module_about_customization_additional_item_add">Add item</string>
+    <string name="module_about_demo_app_name">Application Name</string>
+    <string name="module_about_demo_version">Version</string>
+    <string name="module_about_demo_description">Add here a short description of the application.</string>
+    <string name="module_about_demo_feedback_button_element">feedback button</string>
+    <string name="module_about_demo_share_title">Share title</string>
+    <string name="module_about_demo_share_text">Add your share text here.</string>
 
     <!-- About -->
     <string name="about_app_name">Orange Design System</string>
-    <string name="about_app_version">Version %1$s (%2$d)</string>
     <string name="about_description">In this app you\'ll find implemented code examples of the guidelines, components and modules, for the themes of the Orange Design System.</string>
     <string name="about_menu_design_guidelines">Design guidelines</string>
-    <string name="about_menu_legal_notice">Legal notice</string>
-    <string name="about_menu_privacy_policy">Privacy policy</string>
     <string name="about_menu_changelog">Changelog</string>
     <string name="about_menu_report_issue">Report an issue</string>
+    <string name="about_share_text">Here, you will find the Orange Design System Mobile App that provides examples of design implementations: %s</string>
 
     <!-- Navigation items -->
     <string name="navigation_item_coffee">Coffee</string>

@@ -8,7 +8,7 @@
  * /
  */
 
-package com.orange.ods.app.ui.utilities
+package com.orange.ods.app.ui.utilities.extension
 
 import android.content.ActivityNotFoundException
 import android.content.Context
@@ -25,6 +25,7 @@ fun Context.launchUrl(url: String) {
             .setUrlBarHidingEnabled(true)
             .build()
             .launchUrl(this, Uri.parse(url))
-    } catch (_: ActivityNotFoundException) {
+    } catch (e: ActivityNotFoundException) {
+        println("${e.message}: ${e.stackTrace}")
     }
 }

@@ -26,22 +26,23 @@ import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
-import com.orange.ods.app.ui.components.Component
+import com.orange.ods.app.ui.utilities.DrawableManager
 import com.orange.ods.compose.text.OdsTextBody1
 
 @Composable
 fun DetailScreenHeader(
+    @StringRes descriptionRes: Int,
     @DrawableRes imageRes: Int,
     imageAlignment: Alignment = Alignment.Center,
-    @StringRes descriptionRes: Int
+    imageContentScale: ContentScale = ContentScale.Fit
 ) {
     Image(
         painter = painterResource(id = imageRes),
         modifier = Modifier
             .fillMaxWidth()
             .height(190.dp)
-            .background(Color(Component.ImageBackgroundColor)),
-        contentScale = ContentScale.Fit,
+            .background(Color(DrawableManager.ImageBackgroundColor)),
+        contentScale = imageContentScale,
         contentDescription = null,
         alignment = imageAlignment
     )
