@@ -167,7 +167,7 @@ sealed class Component(
         demoScreen = { _ -> ComponentFloatingActionButton() }
     )
 
-    object ImageItem : Component(
+    data object ImageItem : Component(
         R.string.component_image_item,
         R.drawable.il_image_item,
         null,

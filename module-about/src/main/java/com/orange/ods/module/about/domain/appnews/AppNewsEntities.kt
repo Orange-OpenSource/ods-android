@@ -14,7 +14,7 @@ import android.os.Parcelable
 import kotlinx.parcelize.Parcelize
 
 @Parcelize
-data class AppNews(
+internal data class AppNews(
     val version: String,
     val date: String,
     val news: String,

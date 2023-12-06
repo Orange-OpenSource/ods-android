@@ -131,7 +131,7 @@ internal fun OdsAboutHomeScreen(configuration: OdsAboutConfiguration, onAboutMen
 
 @UiModePreviews.Default
 @Composable
-fun PreviewOdsAboutHomeScreen() {
+private fun PreviewOdsAboutHomeScreen() {
     val configuration = OdsAboutConfiguration(
         appName = "App name",
         privacyPolicyMenuItemFile = OdsAboutFileMenuItem.File(0, OdsAboutFileMenuItem.File.Format.Html),

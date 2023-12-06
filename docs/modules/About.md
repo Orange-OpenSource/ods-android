@@ -4,8 +4,8 @@ title: About
 description: An about screen should be displayed in all Orange applications to display the application name, software version as well as all legal data protection, privacy, and terms of service compliance information.
 ---
 
-The ODS About module displays the following mandatory menu items: Privacy policy and Terms of service.  
-It also allows you to add optional predefined menu items: App News, Legal information and Rate the App.  
+The ODS About module displays the following mandatory menu items: *Privacy policy* and *Terms of service*.  
+It also allows you to add optional predefined menu items: *App news*, *Legal information* and *Rate the app*.  
 Moreover you can add your own menu items linked to a local file or an URL.
 
 Share and feedback functionalities are optional but can be added and configured.
@@ -98,15 +98,15 @@ Property | Default&nbsp;value | Description
 
 ### App news
 
-To add the App news functionality in your about screen, you need to provide a JSON file which MUST respect the following schema:
+To add the *App news* functionality in your about screen, you need to provide a JSON file which MUST respect the following schema:
 
 ```json
 {
   "$schema": "http://json-schema.org/draft-04/schema#",
-  "title": "Product set",
+  "title": "Release set",
   "type": "array",
   "items": {
-    "title": "Product",
+    "title": "Release",
     "type": "object",
     "properties": {
       "version": {
@@ -131,7 +131,7 @@ To add the App news functionality in your about screen, you need to provide a JS
 }
 ```
 
-Here is an example of a valid app news JSON file:
+Here is an example of a valid *App news* JSON file:
 
 ```json
 [
