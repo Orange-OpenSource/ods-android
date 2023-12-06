@@ -30,12 +30,10 @@ import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.input.nestedscroll.nestedScroll
 import androidx.compose.ui.platform.LocalConfiguration
-import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.window.Dialog
-import androidx.lifecycle.ViewModelStoreOwner
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.compose.NavHost
 import com.google.accompanist.systemuicontroller.rememberSystemUiController
@@ -54,7 +52,6 @@ import com.orange.ods.compose.text.OdsTextH6
 import com.orange.ods.compose.theme.OdsTheme
 import com.orange.ods.extension.orElse
 import com.orange.ods.module.about.navigation.navigateToOdsAbout
-import com.orange.ods.module.about.odsAbout
 import com.orange.ods.theme.OdsThemeConfigurationContract
 import com.orange.ods.xml.theme.OdsXml
 import com.orange.ods.xml.utilities.extension.xml
@@ -118,11 +115,9 @@ fun MainScreen(themeConfigurations: Set<OdsThemeConfigurationContract>, mainView
                 modifier = Modifier
             }
 
-            val context = LocalContext.current
-            val aboutConfiguration = aboutConfiguration()
-            val aboutModule = odsAbout(context = context, configuration = aboutConfiguration)
-            val aboutCustomizationViewModel = viewModel<AboutCustomizationViewModel>(context as ViewModelStoreOwner)
-            val customAboutConfiguration = aboutCustomizationViewModel.aboutConfiguration()
+            val aboutDefaultConfiguration = aboutConfiguration()
+            var aboutConfiguration by remember { mutableStateOf(aboutDefaultConfiguration) }
+            val aboutCustomizationConfiguration = viewModel<AboutCustomizationViewModel>().aboutConfiguration()
             Scaffold(
                 modifier = modifier,
                 topBar = {
@@ -153,7 +148,7 @@ fun MainScreen(themeConfigurations: Set<OdsThemeConfigurationContract>, mainView
                             currentRoute = mainState.navigationState.currentRoute.orEmpty(),
                             navigateToRoute = { route ->
                                 if (route == BottomBarItem.About.route) {
-                                    aboutModule.configuration = aboutConfiguration
+                                    aboutConfiguration = aboutDefaultConfiguration
                                 }
                                 mainState.navigationState.navigateToBottomBarRoute(route)
                             }
@@ -170,8 +165,11 @@ fun MainScreen(themeConfigurations: Set<OdsThemeConfigurationContract>, mainView
                         navController = mainState.navigationState.navController,
                         navigateToElement = mainState.navigationState::navigateToElement,
                         navigateToAboutModule = {
-                            aboutModule.configuration = customAboutConfiguration
+                            aboutConfiguration = aboutCustomizationConfiguration
                             mainState.navigationState.navController.navigateToOdsAbout()
+                        },
+                        aboutConfiguration = {
+                            aboutConfiguration
                         }
                     )
                 }

@@ -13,9 +13,7 @@ package com.orange.ods.module.about.navigation
 import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.platform.LocalContext
-import androidx.lifecycle.ViewModelStoreOwner
 import androidx.lifecycle.viewmodel.compose.viewModel
-import androidx.navigation.NavBackStackEntry
 import androidx.navigation.NavController
 import androidx.navigation.NavGraphBuilder
 import androidx.navigation.NavOptions
@@ -28,6 +26,7 @@ import com.orange.ods.module.about.OdsAboutHomeScreen
 import com.orange.ods.module.about.OdsAboutViewModel
 import com.orange.ods.module.about.appnews.OdsAboutAppNewsScreen
 import com.orange.ods.module.about.configuration.OdsAboutAppNewsMenuItem
+import com.orange.ods.module.about.configuration.OdsAboutConfiguration
 import com.orange.ods.module.about.configuration.OdsAboutFileMenuItem
 import com.orange.ods.module.about.configuration.OdsAboutMenuItem
 import com.orange.ods.module.about.configuration.OdsAboutUrlMenuItem
@@ -52,14 +51,15 @@ fun NavController.navigateToOdsAbout(navOptions: NavOptions? = null) {
 /**
  * Add this graph to your app in order to integrate the ODS About module.
  */
-fun NavGraphBuilder.odsAboutGraph(navController: NavController) {
+fun NavGraphBuilder.odsAboutGraph(navController: NavController, configuration: () -> OdsAboutConfiguration) {
     navigation(startDestination = OdsAboutDestinations.HomeRoute, route = OdsAboutDestinations.AboutRoute) {
-        composable(route = OdsAboutDestinations.HomeRoute) {
-            val viewModelStoreOwner = LocalContext.current as ViewModelStoreOwner
-            viewModel<OdsAboutViewModel>(viewModelStoreOwner).configuration?.let { configuration ->
+        composable(route = OdsAboutDestinations.HomeRoute) { navBackStackEntry ->
+            val aboutViewModel = viewModel<OdsAboutViewModel>(navBackStackEntry)
+            with(configuration()) {
+                aboutViewModel.configuration = this
                 OdsAboutHomeScreen(
-                    configuration = configuration,
-                    onAboutMenuItemClick = onAboutMenuItemClick(navController, configuration.menuItemById, configuration.onScreenChange)
+                    configuration = this,
+                    onAboutMenuItemClick = onAboutMenuItemClick(navController, menuItemById, onScreenChange)
                 )
             }
         }
@@ -67,7 +67,14 @@ fun NavGraphBuilder.odsAboutGraph(navController: NavController) {
         composable(
             "${OdsAboutDestinations.FileItemRoute}/{$AboutItemIdKey}",
             arguments = listOf(navArgument(AboutItemIdKey) { type = NavType.LongType })
-        ) { navBackStackEntry -> AboutFileScreen(navBackStackEntry = navBackStackEntry) }
+        ) { navBackStackEntry ->
+            navController.previousBackStackEntry?.let { previousBackStackEntry ->
+                val aboutViewModel = viewModel<OdsAboutViewModel>(previousBackStackEntry)
+                val aboutMenuItemId = requireNotNull(navBackStackEntry.arguments).getLong(AboutItemIdKey).toInt()
+                val aboutItem = aboutViewModel.configuration?.menuItemById?.get(aboutMenuItemId) as? OdsAboutFileMenuItem
+                aboutItem?.let { OdsAboutFileScreen(it, isSystemInDarkTheme()) }
+            }
+        }
 
         composable(
             "$AppNewsRoute/{$AppNewsFileResId}",
@@ -77,16 +84,6 @@ fun NavGraphBuilder.odsAboutGraph(navController: NavController) {
             OdsAboutAppNewsScreen(fileRes = appNewsFileResId)
         }
     }
-}
-
-@Composable
-internal fun AboutFileScreen(navBackStackEntry: NavBackStackEntry) {
-    val viewModelStoreOwner = LocalContext.current as ViewModelStoreOwner
-    val aboutViewModel = viewModel<OdsAboutViewModel>(viewModelStoreOwner)
-    val aboutMenuItemId = requireNotNull(navBackStackEntry.arguments).getLong(AboutItemIdKey).toInt()
-    val aboutItem = aboutViewModel.configuration?.menuItemById?.get(aboutMenuItemId) as? OdsAboutFileMenuItem
-
-    aboutItem?.let { OdsAboutFileScreen(it, isSystemInDarkTheme()) }
 }
 
 @Composable

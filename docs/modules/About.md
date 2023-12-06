@@ -42,7 +42,7 @@ The ODS About module is built to support accessibility criteria and is readable 
 
 Follow these steps in order to integrate an ODS About into your app:
 
-1) Add ODS About graph to your app navigation graph and provide the app `NavController` instance.
+1) Add ODS About graph to your app navigation graph and provide the app `NavController` instance as well as a lambda that returns a configuration for the module (see [Configuration chapter](#configuration)).
 
 ```kotlin
 NavHost(
@@ -51,21 +51,18 @@ NavHost(
     modifier = Modifier.padding(innerPadding)
 ) {
     //...
-    odsAboutGraph(navController)
+    odsAboutGraph(navController) {
+        OdsAboutConfiguration(
+            appName = "App name",
+            privacyPolicyMenuItemFile = OdsAboutFileMenuItem.File(R.raw.about_privacy_policy, OdsAboutFileMenuItem.File.Format.Html),
+            termsOfServiceMenuItemFile = OdsAboutFileMenuItem.File(R.raw.about_terms_of_service, OdsAboutFileMenuItem.File.Format.Html),
+        )
+    }
     //...
 }
 ```
 
-2) Create your ODS About by providing a configuration for the module (see [Configuration chapter](#configuration)).
-
-```kotlin
-odsAbout(context = context, configuration = aboutConfiguration)
-```
-
-This method instantiates the module with the provided configuration.
-Note that you need to configure the module before navigating towards it.
-
-3) Finally, use the `NavController.navigateToOdsAbout()` extension method when you need to display the previously configured ODS About.
+2) Use the `NavController.navigateToOdsAbout()` extension method when you need to display the previously configured ODS About.
 
 ```kotlin
 navController.navigateToOdsAbout()
