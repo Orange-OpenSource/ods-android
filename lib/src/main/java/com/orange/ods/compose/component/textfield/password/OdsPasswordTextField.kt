@@ -22,6 +22,7 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.painter.Painter
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.input.ImeAction
@@ -58,6 +59,10 @@ import com.orange.ods.compose.component.utilities.UiModePreviews
  * [Typography.subtitle1] when the text field is not in focus
  * @param placeholder the optional placeholder to be displayed when the text field is in focus and
  * the input text is empty. The default text style for internal [Text] is [Typography.subtitle1]
+ * @param leadingIcon the optional leading icon painter to be displayed at the beginning of the text field
+ * container
+ * @param leadingIconContentDescription the optional content description for the leading icon.
+ * @param onLeadingIconClick the optional action executed on leading icon click.
  * @param visualisationIcon If `true`, an eye icon will be display to allow showing/hiding password.
  * @param isError indicates if the text field's current value is in error state. If set to
  * true, the label, bottom indicator and trailing icon by default will be displayed in error color
@@ -79,6 +84,9 @@ fun OdsPasswordTextField(
     readOnly: Boolean = false,
     label: String? = null,
     placeholder: String? = null,
+    leadingIcon: Painter? = null,
+    leadingIconContentDescription: String? = null,
+    onLeadingIconClick: (() -> Unit)? = null,
     visualisationIcon: Boolean = true,
     isError: Boolean = false,
     errorMessage: String? = null,
@@ -100,6 +108,9 @@ fun OdsPasswordTextField(
             readOnly = readOnly,
             label = label,
             placeholder = placeholder,
+            leadingIcon = leadingIcon,
+            leadingIconContentDescription = leadingIconContentDescription,
+            onLeadingIconClick = onLeadingIconClick,
             trailing = if (visualisationIcon) {
                 { OdsPasswordVisualisationIcon(odsPasswordTextFieldState) }
             } else null,
@@ -136,6 +147,7 @@ private fun PreviewOdsPasswordTextField(@PreviewParameter(OdsPasswordTextFieldPr
     OdsPasswordTextField(
         value = value,
         onValueChange = { value = it },
+        leadingIcon = painterResource(id = android.R.drawable.ic_dialog_info),
         placeholder = "Placeholder",
         isError = hasErrorMessage,
         errorMessage = if (hasErrorMessage) "Error message" else null
