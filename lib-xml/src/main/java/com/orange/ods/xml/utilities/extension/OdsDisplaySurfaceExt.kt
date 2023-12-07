@@ -16,4 +16,4 @@ import com.orange.ods.compose.theme.OdsDisplaySurface
  * @return [OdsDisplaySurface] associated to the provided [xmlId]
  * BE CAREFUL: If the enum values change you have to update associated XML attributes in the lib-xml
  */
-fun OdsDisplaySurface.Companion.fromXmlAttrValue(xmlId: Int): OdsDisplaySurface = OdsDisplaySurface.values()[xmlId]
+fun OdsDisplaySurface.Companion.fromXmlAttrValue(xmlId: Int): OdsDisplaySurface = OdsDisplaySurface.entries[xmlId]

@@ -56,7 +56,7 @@ fun AboutCustomizationScreen(navigateToAboutModule: () -> Unit, viewModel: About
 
             Subtitle(textRes = R.string.module_about_customization_app_sections)
             CustomizationChipsFlowRow {
-                AboutCustomizationAppSection.values().forEach { appSection: AboutCustomizationAppSection ->
+                AboutCustomizationAppSection.entries.forEach { appSection: AboutCustomizationAppSection ->
                     OdsFilterChip(
                         text = stringResource(id = appSection.labelResId),
                         onClick = {
@@ -69,7 +69,7 @@ fun AboutCustomizationScreen(navigateToAboutModule: () -> Unit, viewModel: About
 
             Subtitle(textRes = R.string.module_about_customization_optional_items)
             CustomizationChipsFlowRow {
-                AboutCustomizationOptionalItem.values().forEach { item: AboutCustomizationOptionalItem ->
+                AboutCustomizationOptionalItem.entries.forEach { item: AboutCustomizationOptionalItem ->
                     OdsFilterChip(
                         text = stringResource(id = item.labelResId),
                         onClick = {

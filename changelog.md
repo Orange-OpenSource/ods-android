@@ -13,6 +13,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Changed
 
+- \[All\] Upgrade dependencies ([#712](https://github.com/Orange-OpenSource/ods-android/issues/712))
 - \[App\] Change tabs customization to be closer to the API ([#699](https://github.com/Orange-OpenSource/ods-android/issues/699))
 - \[Lib\] Rename `OdsImageTile` to `OdsImageItem` ([#683](https://github.com/Orange-OpenSource/ods-android/issues/683))
 - \[Lib\] Update `OdsTab`, `OdsLeadingIconTab`, `OdsTabRow` and `OdsScrollableTabRow` APIs ([#675](https://github.com/Orange-OpenSource/ods-android/issues/675))

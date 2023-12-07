@@ -29,7 +29,7 @@ import com.orange.ods.compose.component.tab.OdsTabRow
 fun rememberMainTabsCustomizationState(
     bottomSheetScaffoldState: BottomSheetScaffoldState = rememberBottomSheetScaffoldState(),
     tabsCount: MutableState<Int>,
-    pagerState: PagerState = rememberPagerState(),
+    pagerState: PagerState = rememberPagerState { tabsCount.value.coerceAtLeast(0) },
     selectedTabsIconPosition: MutableState<OdsTabRow.Tab.Icon.Position> = rememberSaveable { mutableStateOf(OdsTabRow.Tab.Icon.Position.Top) },
     tabIconEnabled: MutableState<Boolean> = rememberSaveable { mutableStateOf(true) },
     tabTextEnabled: MutableState<Boolean> = rememberSaveable { mutableStateOf(true) }
@@ -47,8 +47,6 @@ class MainTabsCustomizationState(
     val tabIconEnabled: MutableState<Boolean>,
     val tabTextEnabled: MutableState<Boolean>
 ) {
-    private val availableTabs = NavigationItem.values().toList()
-
     val isTabTextCustomizationEnabled: Boolean
         get() = tabIconEnabled.value
 
@@ -59,5 +57,5 @@ class MainTabsCustomizationState(
         get() = isTabIconCustomizationEnabled && isTabTextCustomizationEnabled
 
     val tabs: List<NavigationItem>
-        get() = availableTabs.take(tabsCount.value.coerceAtLeast(0))
+        get() = NavigationItem.entries.take(tabsCount.value.coerceAtLeast(0))
 }
