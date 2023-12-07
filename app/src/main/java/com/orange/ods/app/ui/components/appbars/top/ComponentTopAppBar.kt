@@ -59,7 +59,7 @@ fun ComponentTopAppBar(variant: Variant) {
     with(customizationState) {
         val customAppBarConfiguration = CustomAppBarConfiguration(
             title = if (isLarge) stringResource(id = title.value.titleRes) else stringResource(id = R.string.component_app_bars_top_regular),
-            actionCount = actionCount.value,
+            actionCount = actionCount.intValue,
             isNavigationIconEnabled = isNavigationIconEnabled,
             isLarge = isLarge,
             scrollBehavior = scrollBehavior.value,
@@ -106,7 +106,7 @@ fun ComponentTopAppBar(variant: Variant) {
                                 }
 
                                 list("actions") {
-                                    repeat(actionCount.value) {
+                                    repeat(actionCount.intValue) {
                                         classInstance<OdsTopAppBar.ActionButton> {
                                             onClick()
                                             painter()

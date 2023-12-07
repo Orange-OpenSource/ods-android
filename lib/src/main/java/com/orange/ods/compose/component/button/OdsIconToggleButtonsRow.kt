@@ -23,6 +23,7 @@ import androidx.compose.foundation.selection.selectableGroup
 import androidx.compose.material.Divider
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableIntStateOf
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
@@ -188,7 +189,7 @@ private fun PreviewOdsIconToggleButtonsGroupRow() = Preview {
         OdsIconToggleButtonsRow.Icon(painterResource(id = android.R.drawable.ic_dialog_email), "Day"),
         OdsIconToggleButtonsRow.Icon(painterResource(id = android.R.drawable.ic_dialog_alert), "Month", false)
     )
-    var selectedIndex by remember { mutableStateOf(0) }
+    var selectedIndex by remember { mutableIntStateOf(0) }
 
     OdsIconToggleButtonsRow(
         icons = icons,

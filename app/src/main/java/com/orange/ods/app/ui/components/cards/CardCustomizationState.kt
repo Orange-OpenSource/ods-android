@@ -11,7 +11,9 @@
 package com.orange.ods.app.ui.components.cards
 
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.MutableIntState
 import androidx.compose.runtime.MutableState
+import androidx.compose.runtime.mutableIntStateOf
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.saveable.rememberSaveable
@@ -23,7 +25,7 @@ fun rememberCardCustomizationState(
     thumbnailChecked: MutableState<Boolean> = rememberSaveable { mutableStateOf(true) },
     textChecked: MutableState<Boolean> = rememberSaveable { mutableStateOf(true) },
     subtitleChecked: MutableState<Boolean> = rememberSaveable { mutableStateOf(true) },
-    buttonCount: MutableState<Int> = rememberSaveable { mutableStateOf(CardCustomizationState.MinButtonCount) },
+    buttonCount: MutableIntState = rememberSaveable { mutableIntStateOf(CardCustomizationState.MinButtonCount) },
     dividerChecked: MutableState<Boolean> = rememberSaveable { mutableStateOf(true) },
     imagePosition: MutableState<OdsCard.Image.Position> = rememberSaveable { mutableStateOf(OdsCard.Image.Position.Start) }
 ) =
@@ -36,7 +38,7 @@ class CardCustomizationState(
     val thumbnailChecked: MutableState<Boolean>,
     val textChecked: MutableState<Boolean>,
     val subtitleChecked: MutableState<Boolean>,
-    val buttonCount: MutableState<Int>,
+    val buttonCount: MutableIntState,
     val dividerChecked: MutableState<Boolean>,
     val imagePosition: MutableState<OdsCard.Image.Position>
 ) {
@@ -59,10 +61,10 @@ class CardCustomizationState(
         get() = subtitleChecked.value
 
     val hasFirstButton
-        get() = buttonCount.value > 0
+        get() = buttonCount.intValue > 0
 
     val hasSecondButton
-        get() = buttonCount.value > 1
+        get() = buttonCount.intValue > 1
 
     val hasDivider
         get() = if (!hasFirstButton) false else dividerChecked.value

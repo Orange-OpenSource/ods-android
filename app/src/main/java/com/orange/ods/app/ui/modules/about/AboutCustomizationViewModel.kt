@@ -12,6 +12,7 @@ package com.orange.ods.app.ui.modules.about
 
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableIntStateOf
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.platform.LocalContext
@@ -30,7 +31,7 @@ import com.orange.ods.module.about.configuration.OdsAboutShareData
 
 class AboutCustomizationViewModel : ViewModel() {
 
-    val additionalLinksCount = mutableStateOf(0)
+    val additionalLinksCount = mutableIntStateOf(0)
     var selectedAppSections by mutableStateOf(emptyList<AboutCustomizationAppSection>())
     var selectedOptionalItems by mutableStateOf(emptyList<AboutCustomizationOptionalItem>())
 
@@ -63,7 +64,7 @@ class AboutCustomizationViewModel : ViewModel() {
             } else {
                 null
             },
-            customMenuItems = customMenuItems(additionalLinksCount.value),
+            customMenuItems = customMenuItems(additionalLinksCount.intValue),
             onScreenChange = { title ->
                 appBarManager.setCustomAppBar(CustomAppBarConfiguration(title = title, actionCount = 0))
             }

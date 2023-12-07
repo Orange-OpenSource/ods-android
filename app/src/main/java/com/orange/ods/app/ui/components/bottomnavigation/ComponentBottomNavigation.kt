@@ -19,6 +19,7 @@ import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.ExperimentalMaterialApi
 import androidx.compose.material.rememberBottomSheetScaffoldState
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.mutableIntStateOf
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.saveable.rememberSaveable
@@ -58,10 +59,10 @@ private object ComponentBottomNavigation {
 fun ComponentBottomNavigation() {
     val context = LocalContext.current
     val navigationItems = NavigationItem.entries
-    val selectedNavigationItemCount = rememberSaveable { mutableStateOf(MinNavigationItemCount) }
+    val selectedNavigationItemCount = rememberSaveable { mutableIntStateOf(MinNavigationItemCount) }
     val selectedNavigationItem = remember { mutableStateOf(navigationItems[0]) }
 
-    val bottomNavigationItems = navigationItems.take(selectedNavigationItemCount.value).map { item ->
+    val bottomNavigationItems = navigationItems.take(selectedNavigationItemCount.intValue).map { item ->
         val label = stringResource(id = item.textResId)
         OdsBottomNavigation.Item(
             icon = OdsBottomNavigation.Item.Icon(
@@ -126,7 +127,7 @@ fun ComponentBottomNavigation() {
                     CodeBackgroundColumn {
                         TechnicalText(text = "binding.odsBottomNavigation.items = listOf(")
                         IndentCodeColumn {
-                            navigationItems.take(selectedNavigationItemCount.value).forEach { item ->
+                            navigationItems.take(selectedNavigationItemCount.intValue).forEach { item ->
                                 FunctionCallCode(name = OdsBottomNavigation.Item::class.java.simpleNestedName, trailingComma = true, parameters = {
                                     navigationItemParameters(context, item, selectedNavigationItem.value)
                                 })
@@ -140,7 +141,7 @@ fun ComponentBottomNavigation() {
                         name = OdsComposable.OdsBottomNavigation.name,
                         parameters = {
                             list("items") {
-                                navigationItems.take(selectedNavigationItemCount.value).forEach { item ->
+                                navigationItems.take(selectedNavigationItemCount.intValue).forEach { item ->
                                     classInstance<OdsBottomNavigation.Item> {
                                         navigationItemParameters(context, item, selectedNavigationItem.value)
                                     }

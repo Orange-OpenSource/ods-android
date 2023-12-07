@@ -14,7 +14,9 @@ import androidx.compose.material.BottomSheetScaffoldState
 import androidx.compose.material.ExperimentalMaterialApi
 import androidx.compose.material.rememberBottomSheetScaffoldState
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.MutableIntState
 import androidx.compose.runtime.MutableState
+import androidx.compose.runtime.mutableIntStateOf
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.saveable.rememberSaveable
@@ -24,7 +26,7 @@ import com.orange.ods.compose.component.listitem.OdsListItem
 @Composable
 fun rememberListItemCustomizationState(
     bottomSheetScaffoldState: BottomSheetScaffoldState = rememberBottomSheetScaffoldState(),
-    lineCount: MutableState<Int> = rememberSaveable { mutableStateOf(ListItemCustomizationState.DefaultLineCount) },
+    lineCount: MutableIntState = rememberSaveable { mutableIntStateOf(ListItemCustomizationState.DefaultLineCount) },
     selectedLeadingIconType: MutableState<OdsListItem.LeadingIcon.Type?> = rememberSaveable { mutableStateOf(null) },
     selectedTrailing: MutableState<Class<out OdsListItem.Trailing>?> = rememberSaveable { mutableStateOf(null) },
 ) = remember(lineCount) {
@@ -34,7 +36,7 @@ fun rememberListItemCustomizationState(
 @OptIn(ExperimentalMaterialApi::class)
 class ListItemCustomizationState(
     val bottomSheetScaffoldState: BottomSheetScaffoldState,
-    val lineCount: MutableState<Int>,
+    val lineCount: MutableIntState,
     val selectedLeadingIconType: MutableState<OdsListItem.LeadingIcon.Type?>,
     val selectedTrailing: MutableState<Class<out OdsListItem.Trailing>?>,
 ) {
@@ -45,7 +47,7 @@ class ListItemCustomizationState(
     }
 
     val trailings: List<Class<out OdsListItem.Trailing>?>
-        get() = if (lineCount.value < MaxLineCount) {
+        get() = if (lineCount.intValue < MaxLineCount) {
             listOf(
                 null,
                 OdsListItem.TrailingCheckbox::class.java,

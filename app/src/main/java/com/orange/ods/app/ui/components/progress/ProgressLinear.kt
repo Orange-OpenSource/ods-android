@@ -90,7 +90,7 @@ fun ProgressLinear() {
                 )
                 if (type.value == ProgressCustomizationState.Type.Determinate) {
                     LaunchedEffect(DeterminateProgressTargetValue) {
-                        determinateProgressValue.value = DeterminateProgressTargetValue
+                        determinateProgressValue.floatValue = DeterminateProgressTargetValue
                     }
                 }
 

@@ -17,6 +17,7 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.selection.selectableGroup
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.mutableIntStateOf
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
@@ -109,10 +110,10 @@ private fun PreviewOdsChoiceChipsFlowRow() = Preview {
         OdsChoiceChip("Fourth", value = 4)
     )
 
-    val selectedChip = remember { mutableStateOf(choiceChips.first().value) }
+    val selectedChip = remember { mutableIntStateOf(choiceChips.first().value) }
     OdsChoiceChipsFlowRow(
-        value = selectedChip.value,
-        onValueChange = { value -> selectedChip.value = value },
+        value = selectedChip.intValue,
+        onValueChange = { value -> selectedChip.intValue = value },
         modifier = Modifier.padding(horizontal = dimensionResource(id = com.orange.ods.R.dimen.spacing_m)),
         chips = choiceChips
     )

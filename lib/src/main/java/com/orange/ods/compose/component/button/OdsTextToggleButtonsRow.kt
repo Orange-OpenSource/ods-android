@@ -23,6 +23,7 @@ import androidx.compose.foundation.selection.selectableGroup
 import androidx.compose.material.Divider
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableIntStateOf
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
@@ -143,7 +144,7 @@ private fun PreviewOdsTextToggleButtonsGroupRow() = Preview {
         OdsTextToggleButtonsRow.Item("XML", true),
         OdsTextToggleButtonsRow.Item("COMPOSE", true),
     )
-    var selectedIndex by remember { mutableStateOf(0) }
+    var selectedIndex by remember { mutableIntStateOf(0) }
 
     OdsTextToggleButtonsRow(
         textToggleButtons = textToggleButtons,

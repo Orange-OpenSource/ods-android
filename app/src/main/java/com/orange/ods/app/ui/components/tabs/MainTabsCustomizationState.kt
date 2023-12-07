@@ -17,6 +17,7 @@ import androidx.compose.material.BottomSheetScaffoldState
 import androidx.compose.material.ExperimentalMaterialApi
 import androidx.compose.material.rememberBottomSheetScaffoldState
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.MutableIntState
 import androidx.compose.runtime.MutableState
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
@@ -28,8 +29,8 @@ import com.orange.ods.compose.component.tab.OdsTabRow
 @Composable
 fun rememberMainTabsCustomizationState(
     bottomSheetScaffoldState: BottomSheetScaffoldState = rememberBottomSheetScaffoldState(),
-    tabsCount: MutableState<Int>,
-    pagerState: PagerState = rememberPagerState { tabsCount.value.coerceAtLeast(0) },
+    tabsCount: MutableIntState,
+    pagerState: PagerState = rememberPagerState { tabsCount.intValue.coerceAtLeast(0) },
     selectedTabsIconPosition: MutableState<OdsTabRow.Tab.Icon.Position> = rememberSaveable { mutableStateOf(OdsTabRow.Tab.Icon.Position.Top) },
     tabIconEnabled: MutableState<Boolean> = rememberSaveable { mutableStateOf(true) },
     tabTextEnabled: MutableState<Boolean> = rememberSaveable { mutableStateOf(true) }
@@ -42,7 +43,7 @@ fun rememberMainTabsCustomizationState(
 class MainTabsCustomizationState(
     val bottomSheetScaffoldState: BottomSheetScaffoldState,
     val pagerState: PagerState,
-    val tabsCount: MutableState<Int>,
+    val tabsCount: MutableIntState,
     val tabsIconPosition: MutableState<OdsTabRow.Tab.Icon.Position>,
     val tabIconEnabled: MutableState<Boolean>,
     val tabTextEnabled: MutableState<Boolean>
@@ -57,5 +58,5 @@ class MainTabsCustomizationState(
         get() = isTabIconCustomizationEnabled && isTabTextCustomizationEnabled
 
     val tabs: List<NavigationItem>
-        get() = NavigationItem.entries.take(tabsCount.value.coerceAtLeast(0))
+        get() = NavigationItem.entries.take(tabsCount.intValue.coerceAtLeast(0))
 }
