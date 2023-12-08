@@ -11,8 +11,13 @@
 package com.orange.ods.app.ui
 
 import androidx.compose.animation.AnimatedVisibility
+import androidx.compose.animation.EnterTransition
+import androidx.compose.animation.ExitTransition
+import androidx.compose.animation.core.tween
 import androidx.compose.animation.fadeIn
 import androidx.compose.animation.fadeOut
+import androidx.compose.animation.slideInVertically
+import androidx.compose.animation.slideOutVertically
 import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.background
 import androidx.compose.foundation.isSystemInDarkTheme
@@ -25,8 +30,15 @@ import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.material3.TopAppBarScrollBehavior
 import androidx.compose.material3.rememberTopAppBarState
-import androidx.compose.runtime.*
+import androidx.compose.runtime.Composable
+import androidx.compose.runtime.CompositionLocalProvider
+import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.SideEffect
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
 import androidx.compose.runtime.saveable.rememberSaveable
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.input.nestedscroll.nestedScroll
 import androidx.compose.ui.platform.LocalConfiguration
@@ -140,8 +152,8 @@ fun MainScreen(themeConfigurations: Set<OdsThemeConfigurationContract>, mainView
                 bottomBar = {
                     AnimatedVisibility(
                         visible = mainState.shouldShowBottomBar,
-                        enter = fadeIn(),
-                        exit = fadeOut()
+                        enter = fadeIn(tween(100)),
+                        exit = fadeOut(tween(100))
                     ) {
                         BottomBar(
                             items = BottomBarItem.entries.toTypedArray(),
@@ -159,7 +171,8 @@ fun MainScreen(themeConfigurations: Set<OdsThemeConfigurationContract>, mainView
                 NavHost(
                     navController = mainState.navigationState.navController,
                     startDestination = BottomBarItem.Guidelines.route,
-                    modifier = Modifier.padding(innerPadding)
+                    modifier = Modifier.padding(innerPadding),
+                    exitTransition = { ExitTransition.None }
                 ) {
                     appNavGraph(
                         navController = mainState.navigationState.navController,
