@@ -40,7 +40,7 @@ import com.google.accompanist.systemuicontroller.rememberSystemUiController
 import com.orange.ods.app.R
 import com.orange.ods.app.domain.recipes.LocalCategories
 import com.orange.ods.app.domain.recipes.LocalRecipes
-import com.orange.ods.app.ui.about.aboutConfiguration
+import com.orange.ods.app.ui.about.appAboutConfiguration
 import com.orange.ods.app.ui.components.tabs.tabs
 import com.orange.ods.app.ui.modules.about.AboutCustomizationViewModel
 import com.orange.ods.app.ui.utilities.extension.isDarkModeEnabled
@@ -115,9 +115,9 @@ fun MainScreen(themeConfigurations: Set<OdsThemeConfigurationContract>, mainView
                 modifier = Modifier
             }
 
-            val aboutDefaultConfiguration = aboutConfiguration()
-            var aboutConfiguration by remember { mutableStateOf(aboutDefaultConfiguration) }
-            val aboutCustomizationConfiguration = viewModel<AboutCustomizationViewModel>().aboutConfiguration()
+            val appAboutConfiguration = appAboutConfiguration()
+            var aboutConfiguration by remember { mutableStateOf(appAboutConfiguration) }
+            val aboutDemoConfiguration = viewModel<AboutCustomizationViewModel>().aboutConfiguration()
             Scaffold(
                 modifier = modifier,
                 topBar = {
@@ -148,7 +148,7 @@ fun MainScreen(themeConfigurations: Set<OdsThemeConfigurationContract>, mainView
                             currentRoute = mainState.navigationState.currentRoute.orEmpty(),
                             navigateToRoute = { route ->
                                 if (route == BottomBarItem.About.route) {
-                                    aboutConfiguration = aboutDefaultConfiguration
+                                    aboutConfiguration = appAboutConfiguration
                                 }
                                 mainState.navigationState.navigateToBottomBarRoute(route)
                             }
@@ -164,8 +164,8 @@ fun MainScreen(themeConfigurations: Set<OdsThemeConfigurationContract>, mainView
                     appNavGraph(
                         navController = mainState.navigationState.navController,
                         navigateToElement = mainState.navigationState::navigateToElement,
-                        navigateToAboutModule = {
-                            aboutConfiguration = aboutCustomizationConfiguration
+                        navigateToAboutDemo = {
+                            aboutConfiguration = aboutDemoConfiguration
                             mainState.navigationState.navController.navigateToOdsAbout()
                         },
                         aboutConfiguration = {

@@ -33,14 +33,14 @@ object MainNavigation {
 fun NavGraphBuilder.appNavGraph(
     navController: NavController,
     navigateToElement: (String, Long?, NavBackStackEntry) -> Unit,
-    navigateToAboutModule: () -> Unit,
+    navigateToAboutDemo: () -> Unit,
     aboutConfiguration: () -> OdsAboutConfiguration
 ) {
     addBottomBarGraph(navController, aboutConfiguration)
 
     addGuidelinesGraph()
     addComponentsGraph(navController)
-    addModulesGraph(navigateToAboutModule)
+    addModulesGraph(navigateToAboutDemo)
 
     composable(
         route = MainNavigation.SearchRoute
