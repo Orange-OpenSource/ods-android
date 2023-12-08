@@ -111,6 +111,10 @@ private fun TextFieldTextCustomization(textFieldCustomizationState: TextFieldCus
 @Composable
 private fun TextFieldPasswordCustomization(textFieldCustomizationState: TextFieldCustomizationState) {
     with(textFieldCustomizationState) {
+        OdsListItem(
+            text = stringResource(id = R.string.component_element_leading_icon),
+            trailing = OdsListItemTrailingSwitch(leadingIcon.value, { leadingIcon.value = it })
+        )
         DisplayTypeCustomization(displayType)
         OdsListItem(
             text = stringResource(id = R.string.component_text_field_visualisation_icon),

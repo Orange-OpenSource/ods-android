@@ -16,6 +16,7 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.dimensionResource
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import com.orange.ods.app.R
 import com.orange.ods.compose.OdsComposable
@@ -28,11 +29,13 @@ fun TextFieldPassword(customizationState: TextFieldCustomizationState) {
     val errorMessage = stringResource(id = R.string.component_text_field_error_message)
 
     with(customizationState) {
+        val leadingIcon = if (hasLeadingIcon) painterResource(id = R.drawable.ic_lock) else null
         Column {
             OdsPasswordTextField(
                 modifier = Modifier
                     .fillMaxWidth()
                     .padding(top = dimensionResource(id = com.orange.ods.R.dimen.spacing_s)),
+                leadingIcon = leadingIcon,
                 enabled = isEnabled,
                 isError = isError,
                 errorMessage = if (isError) errorMessage else null,
