@@ -24,6 +24,7 @@ import androidx.compose.material.BottomNavigationItem
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableIntStateOf
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
@@ -217,7 +218,7 @@ private fun PreviewOdsBottomNavigation() = Preview {
         android.R.drawable.ic_dialog_info to "About"
     )
 
-    var selectedItemIndex by remember { mutableStateOf(0) }
+    var selectedItemIndex by remember { mutableIntStateOf(0) }
     OdsBottomNavigation(
         items = items.mapIndexed { index, item ->
             OdsBottomNavigation.Item(

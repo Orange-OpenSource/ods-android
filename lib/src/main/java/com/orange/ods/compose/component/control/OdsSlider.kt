@@ -23,6 +23,7 @@ import androidx.compose.material.SliderDefaults
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableFloatStateOf
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
@@ -286,11 +287,11 @@ private fun calcFraction(a: Float, b: Float, pos: Float) =
 @UiModePreviews.Default
 @Composable
 private fun PreviewOdsSlider(@PreviewParameter(OdsSliderPreviewParameterProvider::class) withIcons: Boolean) = Preview {
-    val sliderValue = remember { mutableStateOf(0.5f) }
+    val sliderValue = remember { mutableFloatStateOf(0.5f) }
 
     OdsSlider(
-        value = sliderValue.value,
-        onValueChange = { sliderValue.value = it },
+        value = sliderValue.floatValue,
+        onValueChange = { sliderValue.floatValue = it },
         steps = 9,
         startIcon = if (withIcons) OdsSlider.Icon(painterResource(id = R.drawable.ic_crosset_out_eye), "") else null,
         endIcon = if (withIcons) OdsSlider.Icon(painterResource(id = R.drawable.ic_eye), "") else null,
@@ -300,7 +301,7 @@ private fun PreviewOdsSlider(@PreviewParameter(OdsSliderPreviewParameterProvider
 @UiModePreviews.Default
 @Composable
 private fun PreviewOdsSliderLockups(@PreviewParameter(OdsSliderPreviewParameterProvider::class) withIcons: Boolean) = Preview {
-    var value by remember { mutableStateOf(50.0f) }
+    var value by remember { mutableFloatStateOf(50.0f) }
     OdsSliderLockups(
         value = value,
         valueRange = 0f..100f,

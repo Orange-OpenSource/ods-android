@@ -11,14 +11,16 @@
 package com.orange.ods.app.ui.components.banners
 
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.MutableIntState
 import androidx.compose.runtime.MutableState
+import androidx.compose.runtime.mutableIntStateOf
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.saveable.rememberSaveable
 
 @Composable
 fun rememberBannerCustomizationState(
-    buttonsCount: MutableState<Int> = rememberSaveable { mutableStateOf(BannerCustomizationState.MinActionButtonCount) },
+    buttonsCount: MutableIntState = rememberSaveable { mutableIntStateOf(BannerCustomizationState.MinActionButtonCount) },
     shortMessage: MutableState<Boolean> = rememberSaveable { mutableStateOf(true) },
     imageChecked: MutableState<Boolean> = rememberSaveable { mutableStateOf(false) }
 ) =
@@ -27,7 +29,7 @@ fun rememberBannerCustomizationState(
     }
 
 class BannerCustomizationState(
-    val buttonsCount: MutableState<Int>,
+    val buttonsCount: MutableIntState,
     val shortMessage: MutableState<Boolean>,
     val imageChecked: MutableState<Boolean>,
 ) {
@@ -41,10 +43,10 @@ class BannerCustomizationState(
         get() = imageChecked.value
 
     val hasFirstButton
-        get() = buttonsCount.value > 0
+        get() = buttonsCount.intValue > 0
 
     val hasSecondButton
-        get() = buttonsCount.value > 1
+        get() = buttonsCount.intValue > 1
 
     val hasShortMessage
         get() = shortMessage.value

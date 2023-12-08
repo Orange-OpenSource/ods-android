@@ -14,7 +14,9 @@ import androidx.compose.animation.core.FastOutSlowInEasing
 import androidx.compose.animation.core.animateFloatAsState
 import androidx.compose.animation.core.tween
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.MutableFloatState
 import androidx.compose.runtime.MutableState
+import androidx.compose.runtime.mutableFloatStateOf
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.saveable.rememberSaveable
@@ -28,7 +30,7 @@ fun rememberProgressCustomizationState(
     icon: MutableState<Boolean> = rememberSaveable { mutableStateOf(false) },
     currentValue: MutableState<Boolean> = rememberSaveable { mutableStateOf(false) },
     label: MutableState<Boolean> = rememberSaveable { mutableStateOf(false) },
-    determinateProgressValue: MutableState<Float> = remember { mutableStateOf(0f) }
+    determinateProgressValue: MutableFloatState = remember { mutableFloatStateOf(0f) }
 ) =
     remember(icon, currentValue, label, type) {
         ProgressCustomizationState(type, icon, currentValue, label, determinateProgressValue)
@@ -39,7 +41,7 @@ class ProgressCustomizationState(
     val icon: MutableState<Boolean>,
     val currentValue: MutableState<Boolean>,
     val label: MutableState<Boolean>,
-    val determinateProgressValue: MutableState<Float>
+    val determinateProgressValue: MutableFloatState
 ) {
     enum class Type {
         Determinate, Indeterminate
@@ -60,15 +62,15 @@ class ProgressCustomizationState(
     val determinateProgressAnimation
         @Composable
         get() = animateFloatAsState(
-            targetValue = determinateProgressValue.value,
+            targetValue = determinateProgressValue.floatValue,
             animationSpec = tween(
-                durationMillis = if (determinateProgressValue.value == 0f) 0 else DeterminateProgressAnimDuration,
+                durationMillis = if (determinateProgressValue.floatValue == 0f) 0 else DeterminateProgressAnimDuration,
                 easing = FastOutSlowInEasing
             ),
             label = ""
         )
 
     fun resetAnimation() {
-        determinateProgressValue.value = 0f
+        determinateProgressValue.floatValue = 0f
     }
 }

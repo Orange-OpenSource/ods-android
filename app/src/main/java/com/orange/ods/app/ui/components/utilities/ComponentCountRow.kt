@@ -13,6 +13,7 @@ package com.orange.ods.app.ui.components.utilities
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Row
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.MutableIntState
 import androidx.compose.runtime.MutableState
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -28,7 +29,7 @@ import com.orange.ods.compose.text.OdsTextSubtitle1
 @Composable
 fun ComponentCountRow(
     title: String,
-    count: MutableState<Int>,
+    count: MutableIntState,
     minusIconContentDescription: String,
     plusIconContentDescription: String,
     modifier: Modifier = Modifier,
@@ -42,19 +43,19 @@ fun ComponentCountRow(
     ) {
         OdsTextSubtitle1(modifier = Modifier.weight(1f), text = title)
         OdsIconButton(
-            onClick = { count.value-- },
+            onClick = { count.intValue-- },
             icon = OdsIconButton.Icon(painterResource(id = R.drawable.ic_remove), minusIconContentDescription),
-            enabled = count.value > minCount
+            enabled = count.intValue > minCount
         )
 
-        OdsTextSubtitle1(text = count.value.toString(), modifier = Modifier.semantics {
-            this.contentDescription = count.value.toString()
+        OdsTextSubtitle1(text = count.intValue.toString(), modifier = Modifier.semantics {
+            this.contentDescription = count.intValue.toString()
             liveRegion = LiveRegionMode.Polite
         })
         OdsIconButton(
-            onClick = { count.value++ },
+            onClick = { count.intValue++ },
             icon = OdsIconButton.Icon(painterResource(id = R.drawable.ic_add), plusIconContentDescription),
-            enabled = count.value < maxCount
+            enabled = count.intValue < maxCount
         )
     }
 }

@@ -11,7 +11,9 @@
 package com.orange.ods.app.ui.components.appbars.top
 
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.MutableIntState
 import androidx.compose.runtime.MutableState
+import androidx.compose.runtime.mutableIntStateOf
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.saveable.rememberSaveable
@@ -22,7 +24,7 @@ import com.orange.ods.app.ui.CustomAppBarConfiguration
 fun rememberTopAppBarCustomizationState(
     large: MutableState<Boolean>,
     navigationIconEnabled: MutableState<Boolean> = rememberSaveable { mutableStateOf(CustomAppBarConfiguration.Default.isNavigationIconEnabled) },
-    actionCount: MutableState<Int> = rememberSaveable { mutableStateOf(CustomAppBarConfiguration.Default.actionCount) },
+    actionCount: MutableIntState = rememberSaveable { mutableIntStateOf(CustomAppBarConfiguration.Default.actionCount) },
     overflowMenuEnabled: MutableState<Boolean> = rememberSaveable { mutableStateOf(CustomAppBarConfiguration.Default.isOverflowMenuEnabled) },
     titleLineCount: MutableState<TopAppBarCustomizationState.Title> = rememberSaveable { mutableStateOf(TopAppBarCustomizationState.Title.Short) },
     scrollBehavior: MutableState<TopAppBarCustomizationState.ScrollBehavior> = rememberSaveable { mutableStateOf(CustomAppBarConfiguration.Default.scrollBehavior) }
@@ -34,7 +36,7 @@ fun rememberTopAppBarCustomizationState(
 class TopAppBarCustomizationState(
     val large: MutableState<Boolean>,
     val navigationIconEnabled: MutableState<Boolean>,
-    val actionCount: MutableState<Int>,
+    val actionCount: MutableIntState,
     val overflowMenuEnabled: MutableState<Boolean>,
     val title: MutableState<Title>,
     val scrollBehavior: MutableState<ScrollBehavior>
@@ -66,7 +68,7 @@ class TopAppBarCustomizationState(
         get() = overflowMenuEnabled.value
 
     val isOverflowMenuSwitchEnabled: Boolean
-        get() = actionCount.value <= maxActionCount - 1
+        get() = actionCount.intValue <= maxActionCount - 1
 
     val maxActionCountSelectable: Int
         get() = if (isOverflowMenuEnabled) maxActionCount - 1 else maxActionCount

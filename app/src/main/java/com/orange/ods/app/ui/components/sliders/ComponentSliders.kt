@@ -19,6 +19,7 @@ import androidx.compose.material.ExperimentalMaterialApi
 import androidx.compose.material.rememberBottomSheetScaffoldState
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableFloatStateOf
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
@@ -71,7 +72,7 @@ fun ComponentSliders() {
                 val endIconContentDescription = stringResource(id = R.string.component_slider_high_volume)
                 val endIcon = if (hasSideIcons) OdsSlider.Icon(painterResource(id = R.drawable.ic_volume_status_4), endIconContentDescription) else null
 
-                var sliderPosition by remember { mutableStateOf(0f) }
+                var sliderPosition by remember { mutableFloatStateOf(0f) }
                 val valueRange = 0f..100f
 
                 Title(textRes = getTitleRes(isStepped, hasSideIcons, shouldDisplayValue))

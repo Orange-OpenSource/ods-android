@@ -20,6 +20,7 @@ import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableIntStateOf
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
@@ -41,7 +42,7 @@ fun ButtonsTextToggleButtonsRow(customizationState: ButtonCustomizationState) {
             OdsTextToggleButtonsRow.Item(ingredient.food.name, customizationState.isEnabled)
         }
 
-    var selectedIndex by rememberSaveable { mutableStateOf(0) }
+    var selectedIndex by rememberSaveable { mutableIntStateOf(0) }
 
     with(customizationState) {
         Column(
@@ -53,7 +54,7 @@ fun ButtonsTextToggleButtonsRow(customizationState: ButtonCustomizationState) {
                 textToggleButtons = textToggleButtons,
                 selectedIndex = selectedIndex,
                 onSelectedIndexChange = { index -> selectedIndex = index },
-                toggleCount = toggleCount.value,
+                toggleCount = toggleCount.intValue,
                 sameItemsWeight = hasSameItemsWeight,
             )
 
@@ -64,7 +65,7 @@ fun ButtonsTextToggleButtonsRow(customizationState: ButtonCustomizationState) {
                     textToggleButtons = textToggleButtons,
                     selectedIndex = selectedIndex,
                     onSelectedIndexChange = { index -> selectedIndex = index },
-                    toggleCount = toggleCount.value,
+                    toggleCount = toggleCount.intValue,
                     sameItemsWeight = hasSameItemsWeight,
                     displaySurface = displaySurface
                 )
@@ -78,7 +79,7 @@ fun ButtonsTextToggleButtonsRow(customizationState: ButtonCustomizationState) {
                     exhaustiveParameters = false,
                     parameters = {
                         list("textToggleButtons") {
-                            textToggleButtons.take(toggleCount.value).forEach { item ->
+                            textToggleButtons.take(toggleCount.intValue).forEach { item ->
                                 classInstance<OdsTextToggleButtonsRow.Item> {
                                     text(item.text)
                                     enabled(customizationState.isEnabled)

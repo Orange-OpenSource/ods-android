@@ -20,6 +20,7 @@ import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableIntStateOf
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
@@ -44,7 +45,7 @@ fun ButtonsIconToggleGroup(customizationState: ButtonIconCustomizationState) {
             OdsIconToggleButtonsRow.Icon(painterResource(id = recipe.iconResId!!), recipe.title, customizationState.enabled.value)
         }
 
-    var selectedIndex by rememberSaveable { mutableStateOf(0) }
+    var selectedIndex by rememberSaveable { mutableIntStateOf(0) }
 
     with(customizationState) {
         Column(
@@ -57,7 +58,7 @@ fun ButtonsIconToggleGroup(customizationState: ButtonIconCustomizationState) {
                 icons = icons,
                 selectedIndex = selectedIndex,
                 onSelectedIndexChange = { index -> selectedIndex = index },
-                toggleCount = toggleCount.value
+                toggleCount = toggleCount.intValue
             )
 
             Spacer(modifier = Modifier.padding(top = dimensionResource(com.orange.ods.R.dimen.spacing_s)))
@@ -67,7 +68,7 @@ fun ButtonsIconToggleGroup(customizationState: ButtonIconCustomizationState) {
                     icons = icons,
                     selectedIndex = selectedIndex,
                     onSelectedIndexChange = { index -> selectedIndex = index },
-                    toggleCount = toggleCount.value,
+                    toggleCount = toggleCount.intValue,
                     displaySurface = displaySurface
                 )
             }
@@ -81,7 +82,7 @@ fun ButtonsIconToggleGroup(customizationState: ButtonIconCustomizationState) {
                     exhaustiveParameters = false,
                     parameters = {
                         list("icons") {
-                            repeat(toggleCount.value) {
+                            repeat(toggleCount.intValue) {
                                 classInstance<OdsIconToggleButtonsRow.Icon> {
                                     painter()
                                     contentDescription("")

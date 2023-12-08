@@ -102,10 +102,10 @@ private fun ComponentListItemContent(listItemCustomizationState: ListItemCustomi
                 resetTrailing()
             }
 
-            val singleLineSecondaryText = lineCount.value == 2
+            val singleLineSecondaryText = lineCount.intValue == 2
 
             val text = recipe.title
-            val secondaryText = if (lineCount.value > 1) recipe.description else null
+            val secondaryText = if (lineCount.intValue > 1) recipe.description else null
             val leadingIcon = ifNotNull(getIconPainter(recipe), selectedLeadingIconType.value) { painter, type ->
                 OdsListItem.LeadingIcon(type, painter, "")
             }

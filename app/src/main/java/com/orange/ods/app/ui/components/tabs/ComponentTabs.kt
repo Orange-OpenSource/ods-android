@@ -18,6 +18,7 @@ import androidx.compose.foundation.layout.wrapContentSize
 import androidx.compose.foundation.pager.HorizontalPager
 import androidx.compose.material.ExperimentalMaterialApi
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.mutableIntStateOf
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.ui.Alignment
@@ -58,7 +59,7 @@ fun ComponentTabs(variant: Variant) {
         tabCountMax = MaxFixedTabCount
     }
 
-    val tabsCustomizationState = rememberMainTabsCustomizationState(tabsCount = rememberSaveable { mutableStateOf(tabCountMin) })
+    val tabsCustomizationState = rememberMainTabsCustomizationState(tabsCount = rememberSaveable { mutableIntStateOf(tabCountMin) })
 
     with(tabsCustomizationState) {
         val appBarManager = LocalAppBarManager.current
