@@ -10,6 +10,7 @@
 
 package com.orange.ods.compose.component.imageitem
 
+import android.annotation.SuppressLint
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
@@ -217,7 +218,7 @@ private fun OdsImageItemLegendArea(
     color: Color,
     displaySurface: OdsDisplaySurface,
     icon: OdsImageItem.IconToggleButton?,
-    textModifier: Modifier
+    @SuppressLint("ModifierParameter") textModifier: Modifier
 ) {
     Text(
         text = text,

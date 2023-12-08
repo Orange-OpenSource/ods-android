@@ -165,8 +165,6 @@
     <string name="component_buttons_icon_toggle_group">Toggle icon buttons group</string>
     <string name="component_button_icon">Icon button</string>
     <string name="component_button_icon_search_desc">Search</string>
-    <string name="component_button_icon_toggle">Toggle icon button</string>
-    <string name="component_button_icon_toggle_group">Toggle icon button group</string>
     <string name="component_button_icon_toggle_favorite_add_icon_desc">Add to favorites</string>
     <string name="component_button_icon_toggle_favorite_remove_icon_desc">Remove from favorites</string>
     <string name="component_button_icon_toggle_count">Toggle count</string>
@@ -208,7 +206,6 @@
     <string name="component_dialogs_description">Dialogs are for prompting the user when the app requires a decision or further details required to complete a task.</string>
     <string name="component_dialog_customize">Customize the dialog before opening it.</string>
     <string name="component_dialog_open">Open dialog</string>
-    <string name="component_dialog_text">A dialog box asks the user for further information that the app needs in order to continue. The user has to tap one of the action buttons at the bottom of the box to continue.</string>
     <string name="component_dialog_element_dismiss_button">Dismiss button</string>
     <string name="component_dialog_action_dismiss">Decline</string>
     <string name="component_dialog_action_confirm">Accept</string>
@@ -226,9 +223,6 @@
     <!-- Component Image item -->
     <string name="component_image_item">Image item</string>
     <string name="component_image_item_description">An image item contains primary information which is usually an image. It can also contain secondary information such as a title or an action.</string>
-    <string name="component_image_item_sizes">Image item sizes</string>
-    <string name="component_image_item_small">Small image</string>
-    <string name="component_image_item_large">Large image</string>
     <string name="component_image_item_legend_area_display_type">Legend area display type</string>
     <string name="component_image_item_legend_area_display_type_overlay">Overlay</string>
     <string name="component_image_item_legend_area_display_type_below">Below</string>

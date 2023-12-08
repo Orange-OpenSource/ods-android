@@ -33,6 +33,7 @@ object DrawableManager {
         R.drawable.il_app_bars_top_small_generic to R.drawable.il_app_bars_top_small,
         R.drawable.il_banners_generic to R.drawable.il_banners,
         R.drawable.il_bottom_navigation_generic to R.drawable.il_bottom_navigation,
+        R.drawable.il_bottom_sheet_generic to R.drawable.il_bottom_sheet,
         R.drawable.il_buttons_generic to R.drawable.il_buttons,
         R.drawable.il_buttons_small_generic to R.drawable.il_buttons_small,
         R.drawable.il_buttons_icons_generic to R.drawable.il_buttons_icons,
