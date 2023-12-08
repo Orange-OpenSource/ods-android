@@ -84,12 +84,12 @@ fun CodeImplementationColumn(
 private fun UiFrameworkChoice(xmlAvailable: Boolean) {
     val context = LocalContext.current
     val currentUiFramework = LocalUiFramework.current
-    val uiFrameworkItems = UiFramework.values().map { uiFramework ->
+    val uiFrameworkItems = UiFramework.entries.map { uiFramework ->
         OdsExposedDropdownMenu.Item(label = stringResource(id = uiFramework.labelResId), iconResId = uiFramework.iconResId)
     }
     val selectedUiFramework = rememberSaveable(currentUiFramework.value) {
         val selectedUiFramework = if (xmlAvailable) currentUiFramework.value else UiFramework.Compose
-        val selectedUiFrameworkIndex = UiFramework.values().indexOf(selectedUiFramework)
+        val selectedUiFrameworkIndex = UiFramework.entries.indexOf(selectedUiFramework)
         mutableStateOf(uiFrameworkItems[selectedUiFrameworkIndex])
     }
 
@@ -98,7 +98,7 @@ private fun UiFrameworkChoice(xmlAvailable: Boolean) {
         items = uiFrameworkItems,
         selectedItem = selectedUiFramework,
         onItemSelectionChange = { selectedItem ->
-            currentUiFramework.value = UiFramework.values().first { context.getString(it.labelResId) == selectedItem.label }
+            currentUiFramework.value = UiFramework.entries.first { context.getString(it.labelResId) == selectedItem.label }
         },
         enabled = xmlAvailable
     )

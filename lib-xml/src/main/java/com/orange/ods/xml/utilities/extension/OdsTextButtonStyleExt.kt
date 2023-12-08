@@ -16,4 +16,4 @@ import com.orange.ods.compose.component.button.OdsTextButton
  * @return [OdsTextButton.Style] associated to the provided [xmlId]
  * BE CAREFUL: If the enum values change you have to update associated XML attributes in the lib-xml
  */
-fun OdsTextButton.Style.Companion.fromXmlAttrValue(xmlId: Int): OdsTextButton.Style = OdsTextButton.Style.values()[xmlId]
+fun OdsTextButton.Style.Companion.fromXmlAttrValue(xmlId: Int): OdsTextButton.Style = OdsTextButton.Style.entries[xmlId]

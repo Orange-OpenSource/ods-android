@@ -58,7 +58,7 @@ fun GuidelineSpacingScreen() {
                 text = stringResource(id = R.string.guideline_spacing_subtitle)
             )
         }
-        items(Spacing.values()) { spacing ->
+        items(Spacing.entries) { spacing ->
             val dp = spacing.getDp()
             val ratio = spacing.getRatio()
             OdsListItem(

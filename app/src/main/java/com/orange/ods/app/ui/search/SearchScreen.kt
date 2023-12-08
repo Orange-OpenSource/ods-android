@@ -57,7 +57,7 @@ fun SearchScreen(onResultItemClick: (String, Long?) -> Unit) {
             .contains(searchedText.text.lowercase())
     }.asSequence()
 
-    val filteredSpacings = Spacing.values().filter { spacing ->
+    val filteredSpacings = Spacing.entries.filter { spacing ->
         searchedText.text.isEmpty() || spacing.tokenName.lowercase()
             .contains(searchedText.text.lowercase())
     }

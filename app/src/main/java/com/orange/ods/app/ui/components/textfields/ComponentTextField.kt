@@ -76,9 +76,9 @@ fun ComponentTextField(variant: Variant) {
 @OptIn(ExperimentalFoundationApi::class)
 @Composable
 private fun TextFieldTextCustomization(textFieldCustomizationState: TextFieldCustomizationState) {
-    val pagerState = rememberPagerState()
+    val tabs = CustomizationTab.entries
+    val pagerState = rememberPagerState { tabs.size }
     val scope = rememberCoroutineScope()
-    val tabs = CustomizationTab.values()
     val keyboardState by keyboardAsState()
 
     // Clear text field focus each time the keyboard customization is opened and the soft keyboard is closed
@@ -100,7 +100,7 @@ private fun TextFieldTextCustomization(textFieldCustomizationState: TextFieldCus
         }
     )
 
-    HorizontalPager(state = pagerState, pageCount = tabs.size) { page ->
+    HorizontalPager(state = pagerState) { page ->
         Column {
             tabs[page].Content(textFieldCustomizationState)
         }
@@ -182,7 +182,7 @@ private fun KeyboardCustomizationContent(textFieldCustomizationState: TextFieldC
             value = softKeyboardType.value,
             onValueChange = { value -> softKeyboardType.value = value },
             modifier = Modifier.padding(horizontal = dimensionResource(id = com.orange.ods.R.dimen.spacing_m)),
-            chips = TextFieldCustomizationState.SoftKeyboardType.values().map { softKeyboardType ->
+            chips = TextFieldCustomizationState.SoftKeyboardType.entries.map { softKeyboardType ->
                 OdsChoiceChip(text = stringResource(id = softKeyboardType.labelRes), value = softKeyboardType)
             }
         )
@@ -197,7 +197,7 @@ private fun KeyboardCustomizationContent(textFieldCustomizationState: TextFieldC
             value = softKeyboardAction.value,
             onValueChange = { value -> softKeyboardAction.value = value },
             modifier = Modifier.padding(horizontal = dimensionResource(id = com.orange.ods.R.dimen.spacing_m)),
-            chips = TextFieldCustomizationState.SoftKeyboardAction.values().map { softKeyboardAction ->
+            chips = TextFieldCustomizationState.SoftKeyboardAction.entries.map { softKeyboardAction ->
                 OdsChoiceChip(text = stringResource(id = softKeyboardAction.labelRes), value = softKeyboardAction)
             }
         )

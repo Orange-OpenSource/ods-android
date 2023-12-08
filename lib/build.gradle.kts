@@ -12,7 +12,7 @@ import com.orange.ods.gradle.Dependencies
 import com.orange.ods.gradle.Versions
 
 plugins {
-    id("com.google.devtools.ksp") version "1.9.0-1.0.13"
+    id("com.google.devtools.ksp") version "1.9.21-1.0.15"
     id("library")
     id("github")
     id("kotlin-parcelize")
@@ -42,7 +42,7 @@ android {
     }
 
     sourceSets.configureEach {
-        java.srcDir("$buildDir/generated/ksp/$name/kotlin/")
+        java.srcDir("${layout.buildDirectory}/generated/ksp/$name/kotlin/")
     }
 }
 

@@ -36,7 +36,7 @@ fun GuidelinesScreen(onGuidelineClick: (String) -> Unit) {
             .padding(dimensionResource(id = com.orange.ods.R.dimen.spacing_m)),
         verticalArrangement = Arrangement.spacedBy(dimensionResource(id = com.orange.ods.R.dimen.spacing_m))
     ) {
-        Guideline.values().forEach { guideline ->
+        Guideline.entries.forEach { guideline ->
             OdsVerticalImageFirstCard(
                 title = stringResource(id = guideline.titleRes),
                 image = OdsCard.Image(

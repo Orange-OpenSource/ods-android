@@ -149,7 +149,7 @@ fun MainScreen(themeConfigurations: Set<OdsThemeConfigurationContract>, mainView
                         exit = fadeOut()
                     ) {
                         BottomBar(
-                            items = BottomBarItem.values(),
+                            items = BottomBarItem.entries.toTypedArray(),
                             currentRoute = mainState.navigationState.currentRoute.orEmpty(),
                             navigateToRoute = { route ->
                                 if (route == BottomBarItem.About.route) {

@@ -57,7 +57,7 @@ private object ComponentBottomNavigation {
 @Composable
 fun ComponentBottomNavigation() {
     val context = LocalContext.current
-    val navigationItems = NavigationItem.values()
+    val navigationItems = NavigationItem.entries
     val selectedNavigationItemCount = rememberSaveable { mutableStateOf(MinNavigationItemCount) }
     val selectedNavigationItem = remember { mutableStateOf(navigationItems[0]) }
 

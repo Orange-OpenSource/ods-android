@@ -79,7 +79,7 @@ class AppBarState(
             return if (isCustom) {
                 val context = LocalContext.current
                 val customActionCount = max(0, customAppBarConfiguration.value.actionCount - AppBarAction.defaultActions.size)
-                val customActions = NavigationItem.values()
+                val customActions = NavigationItem.entries
                     .take(customActionCount)
                     .map {
                         val contentDescription = stringResource(id = it.textResId)

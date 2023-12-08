@@ -106,7 +106,7 @@ fun ComponentTabs(variant: Variant) {
                 )
             }) {
 
-            HorizontalPager(state = pagerState, pageCount = tabs.size) { page ->
+            HorizontalPager(state = pagerState) { page ->
                 val textResId = tabs[page].textResId
                 TabsPagerContentScreen(stringResource(id = textResId))
             }
