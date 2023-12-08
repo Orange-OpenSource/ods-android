@@ -26,12 +26,12 @@ object ModuleDemoDestinations {
     const val AboutCustomizationRoute = "module/about/customization"
 }
 
-fun NavGraphBuilder.addModulesGraph(navigateToAboutModule: () -> Unit) {
+fun NavGraphBuilder.addModulesGraph(navigateToAboutDemo: () -> Unit) {
     composable(
         route = AboutCustomizationRoute
     ) { _ ->
         val viewModelStoreOwner = LocalContext.current as ViewModelStoreOwner
         val viewModel = viewModel<AboutCustomizationViewModel>(viewModelStoreOwner)
-        AboutCustomizationScreen(navigateToAboutModule = navigateToAboutModule, viewModel = viewModel)
+        AboutCustomizationScreen(navigateToAboutDemo = navigateToAboutDemo, viewModel = viewModel)
     }
 }

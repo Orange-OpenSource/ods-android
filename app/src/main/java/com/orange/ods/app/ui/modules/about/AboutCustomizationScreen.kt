@@ -45,9 +45,9 @@ private const val MinLinkItemCount = 0
 private const val MaxLinkItemCount = 10
 
 @Composable
-fun AboutCustomizationScreen(navigateToAboutModule: () -> Unit, viewModel: AboutCustomizationViewModel) {
+fun AboutCustomizationScreen(navigateToAboutDemo: () -> Unit, viewModel: AboutCustomizationViewModel) {
     with(viewModel) {
-        ModuleDetailColumn(module = Module.About, onViewDemoButtonClick = { navigateToAboutModule() }) {
+        ModuleDetailColumn(module = Module.About, onViewDemoButtonClick = navigateToAboutDemo) {
 
             OdsTextBody2(
                 modifier = Modifier.padding(top = dimensionResource(id = com.orange.ods.R.dimen.spacing_s)),

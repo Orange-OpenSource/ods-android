@@ -29,7 +29,7 @@ private const val ShareUrl = "http://oran.ge/dsapp"
 private const val FeedbackUrl = "https://github.com/login?return_to=https%3A%2F%2Fgithub.com%2FOrange-OpenSource%2Fods-android%2Fissues%2Fnew%2Fchoose"
 
 @Composable
-fun aboutConfiguration(): OdsAboutConfiguration {
+fun appAboutConfiguration(): OdsAboutConfiguration {
     val appBarManager = LocalAppBarManager.current
     val context = LocalContext.current
     return OdsAboutConfiguration(
