@@ -45,8 +45,9 @@ import com.orange.ods.compose.theme.OdsTheme
  * @param image Image displayed centered in the composable.
  * @param button The button to add below the text.
  */
+//TODO Expose this composable when illustration and documentation are OK
 @Composable
-fun OdsEmptyView(
+private fun OdsEmptyView(
     title: String,
     modifier: Modifier = Modifier,
     text: String? = null,
@@ -90,7 +91,7 @@ fun OdsEmptyView(
 /**
  * Contains classes to build an [com.orange.ods.compose.module.emptyview.OdsEmptyView].
  */
-object OdsEmptyView {
+private object OdsEmptyView {
 
     /**
      * A button in an [OdsEmptyView].
