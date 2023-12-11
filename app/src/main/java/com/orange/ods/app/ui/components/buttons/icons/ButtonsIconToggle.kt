@@ -33,10 +33,10 @@ import com.orange.ods.app.R
 import com.orange.ods.app.databinding.OdsIconToogleButtonBinding
 import com.orange.ods.app.ui.UiFramework
 import com.orange.ods.app.ui.components.buttons.InvertedBackgroundColumn
-import com.orange.ods.app.ui.utilities.composable.CodeImplementationColumn
-import com.orange.ods.app.ui.utilities.composable.FunctionCallCode
+import com.orange.ods.app.ui.utilities.code.CodeImplementationColumn
+import com.orange.ods.app.ui.utilities.code.FunctionCallCode
 import com.orange.ods.compose.OdsComposable
-import com.orange.ods.compose.component.button.OdsIconButtonIcon
+import com.orange.ods.compose.component.button.OdsIconButton
 import com.orange.ods.compose.component.button.OdsIconToggleButton
 import com.orange.ods.compose.theme.OdsDisplaySurface
 
@@ -82,11 +82,11 @@ fun ButtonsIconToggle(customizationState: ButtonIconCustomizationState) {
                     name = OdsComposable.OdsIconToggleButton.name,
                     exhaustiveParameters = false,
                     parameters = {
-                        classInstance<OdsIconButtonIcon>("uncheckedIcon") {
+                        classInstance<OdsIconButton.Icon>("uncheckedIcon") {
                             painter()
                             contentDescription("")
                         }
-                        classInstance<OdsIconButtonIcon>("checkedIcon") {
+                        classInstance<OdsIconButton.Icon>("checkedIcon") {
                             painter()
                             contentDescription("")
                         }
@@ -122,8 +122,8 @@ private fun IconToggleButton(
             compose = {
                 OdsIconToggleButton(
                     checked = checked,
-                    uncheckedIcon = OdsIconButtonIcon(painterResource(id = uncheckedIconResId), uncheckedIconContentDescription),
-                    checkedIcon = OdsIconButtonIcon(painterResource(id = checkedIconResId), checkedIconContentDescription),
+                    uncheckedIcon = OdsIconButton.Icon(painterResource(id = uncheckedIconResId), uncheckedIconContentDescription),
+                    checkedIcon = OdsIconButton.Icon(painterResource(id = checkedIconResId), checkedIconContentDescription),
                     onCheckedChange = onCheckedChange,
                     enabled = enabled,
                     displaySurface = displaySurface

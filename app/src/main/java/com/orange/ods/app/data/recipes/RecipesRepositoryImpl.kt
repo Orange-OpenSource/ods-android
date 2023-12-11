@@ -14,7 +14,7 @@ import android.content.Context
 import com.orange.ods.app.R
 import com.orange.ods.app.domain.recipes.Recipe
 import com.orange.ods.app.domain.recipes.RecipesRepository
-import com.orange.ods.app.ui.utilities.extension.contentAsString
+import com.orange.ods.extension.contentAsString
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 import timber.log.Timber

@@ -21,7 +21,6 @@ import androidx.compose.runtime.setValue
 import androidx.core.content.withStyledAttributes
 import com.google.accompanist.drawablepainter.rememberDrawablePainter
 import com.orange.ods.compose.component.button.OdsIconButton
-import com.orange.ods.compose.component.button.OdsIconButtonIcon
 import com.orange.ods.compose.theme.OdsDisplaySurface
 import com.orange.ods.xml.R
 import com.orange.ods.xml.component.OdsAbstractComposeView
@@ -47,7 +46,7 @@ class OdsIconButton @JvmOverloads constructor(context: Context, attrs: Attribute
     override fun OdsContent() {
         OdsIconButton(
             onClick = onClick,
-            icon = OdsIconButtonIcon(rememberDrawablePainter(drawable = icon), iconContentDescription),
+            icon = OdsIconButton.Icon(rememberDrawablePainter(drawable = icon), iconContentDescription),
             enabled = isEnabled,
             displaySurface = displaySurface
         )

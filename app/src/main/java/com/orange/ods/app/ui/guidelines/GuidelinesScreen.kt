@@ -22,7 +22,7 @@ import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import com.orange.ods.app.ui.utilities.DrawableManager
-import com.orange.ods.compose.component.card.OdsCardImage
+import com.orange.ods.compose.component.card.OdsCard
 import com.orange.ods.compose.component.card.OdsVerticalImageFirstCard
 
 @Composable
@@ -36,10 +36,10 @@ fun GuidelinesScreen(onGuidelineClick: (String) -> Unit) {
             .padding(dimensionResource(id = com.orange.ods.R.dimen.spacing_m)),
         verticalArrangement = Arrangement.spacedBy(dimensionResource(id = com.orange.ods.R.dimen.spacing_m))
     ) {
-        Guideline.values().forEach { guideline ->
+        Guideline.entries.forEach { guideline ->
             OdsVerticalImageFirstCard(
                 title = stringResource(id = guideline.titleRes),
-                image = OdsCardImage(
+                image = OdsCard.Image(
                     painterResource(id = DrawableManager.getDrawableResIdForCurrentTheme(resId = guideline.imageRes)),
                     "",
                     guideline.imageAlignment,

@@ -11,8 +11,6 @@
 <resources>
     <string name="app_name">Orange Design System</string>
 
-    <string name="empty" />
-
     <string name="code_implementation">Code implementation</string>
     <string name="code_implementation_xml">XML</string>
     <string name="code_implementation_compose">Jetpack Compose</string>
@@ -69,8 +67,8 @@
     <string name="component_state_disabled">Disabled</string>
     <string name="component_state_error">Error</string>
     <string name="component_state_default">Default</string>
-    <string name="component_state_expanded">Expanded</string>
-    <string name="component_state_collapsed">Collapsed</string>
+    <string name="component_state_bottom_sheet_expanded">Bottom sheet expanded</string>
+    <string name="component_state_bottom_sheet_collapsed">Bottom sheet collapsed</string>
     <string name="component_on_click_toast">Click on %s</string>
     <string name="component_element_title">Title</string>
     <string name="component_element_subtitle">Subtitle</string>
@@ -127,11 +125,14 @@
     <string name="component_bottom_navigation_navigation_item_count">Navigation item count</string>
     <string name="component_bottom_navigation_remove_item">Remove item</string>
     <string name="component_bottom_navigation_add_item">Add item</string>
+    <string name="component_bottom_navigation_code_add_items">Add the bottom navigation items by code using view binding:</string>
 
     <!-- Components Banners -->
     <string name="component_banners">Banners</string>
     <string name="component_banners_description">A banner displays an important message which requires an action to be dismissed.</string>
-    <string name="component_banner_text_lines_count">Text lines count</string>
+    <string name="component_banner_message_example">Message example</string>
+    <string name="component_banner_message_example_short">Short</string>
+    <string name="component_banner_message_example_long">Long</string>
     <string name="component_banner_buttons_count">Buttons count</string>
     <string name="component_banner_image">Image</string>
     <string name="component_banner_remove_action_button">Remove Line</string>
@@ -164,15 +165,13 @@
     <string name="component_buttons_icon_toggle_group">Toggle icon buttons group</string>
     <string name="component_button_icon">Icon button</string>
     <string name="component_button_icon_search_desc">Search</string>
-    <string name="component_button_icon_toggle">Toggle icon button</string>
-    <string name="component_button_icon_toggle_group">Toggle icon button group</string>
     <string name="component_button_icon_toggle_favorite_add_icon_desc">Add to favorites</string>
     <string name="component_button_icon_toggle_favorite_remove_icon_desc">Remove from favorites</string>
     <string name="component_button_icon_toggle_count">Toggle count</string>
     <string name="component_button_icon_toggle_remove">Remove toggle</string>
     <string name="component_button_icon_toggle_add">Add toggle</string>
 
-    <!-- Components Cards -->
+    <!-- Component Cards -->
     <string name="component_cards">Cards</string>
     <string name="component_card_vertical_image_first">Vertical image first card</string>
     <string name="component_card_vertical_header_first">Vertical header first card</string>
@@ -207,7 +206,6 @@
     <string name="component_dialogs_description">Dialogs are for prompting the user when the app requires a decision or further details required to complete a task.</string>
     <string name="component_dialog_customize">Customize the dialog before opening it.</string>
     <string name="component_dialog_open">Open dialog</string>
-    <string name="component_dialog_text">A dialog box asks the user for further information that the app needs in order to continue. The user has to tap one of the action buttons at the bottom of the box to continue.</string>
     <string name="component_dialog_element_dismiss_button">Dismiss button</string>
     <string name="component_dialog_action_dismiss">Decline</string>
     <string name="component_dialog_action_confirm">Accept</string>
@@ -222,15 +220,12 @@
     <string name="component_floating_action_button_size_mini">Mini</string>
     <string name="component_floating_action_button_full_screen_width">Full screen width</string>
 
-    <!-- Component Image Tile -->
-    <string name="component_image_tile">Image tile</string>
-    <string name="component_image_tile_description">An image tile contains primary information which is usually an image. It can also contain secondary information such as a title or an action.</string>
-    <string name="component_image_tile_sizes">Image tile sizes</string>
-    <string name="component_image_tile_small">Small image</string>
-    <string name="component_image_tile_large">Large image</string>
-    <string name="component_image_tile_legend_area_display_type">Legend area display type</string>
-    <string name="component_image_tile_legend_area_display_type_overlay">Overlay</string>
-    <string name="component_image_tile_legend_area_display_type_below">Below</string>
+    <!-- Component Image item -->
+    <string name="component_image_item">Image item</string>
+    <string name="component_image_item_description">An image item contains primary information which is usually an image. It can also contain secondary information such as a title or an action.</string>
+    <string name="component_image_item_legend_area_display_type">Legend area display type</string>
+    <string name="component_image_item_legend_area_display_type_overlay">Overlay</string>
+    <string name="component_image_item_legend_area_display_type_below">Below</string>
 
     <!-- Component List item -->
     <string name="component_list_item">List item</string>
@@ -263,8 +258,8 @@
     <string name="component_menu_divider">Divider example</string>
     <string name="component_menu_show_ingredients">Show ingredients</string>
 
-    <!-- Component Navigation Drawers -->
-    <string name="component_modal_drawers">Navigation Drawers</string>
+    <!-- Component Navigation drawers -->
+    <string name="component_modal_drawers">Navigation drawers</string>
     <string name="component_modal_drawers_description">The navigation drawer slides in from the left when the nav icon is tapped. The content should be concerned with identity and/or navigation.</string>
     <string name="component_modal_drawer_side">Side navigation drawer</string>
     <string name="component_modal_drawer_content">>>> Swipe to open drawer >>></string>
@@ -276,8 +271,8 @@
     <string name="component_modal_drawer_content_example">Content example</string>
     <string name="component_modal_drawer_list_example">Section list example</string>
 
-    <!-- Component Radio Buttons -->
-    <string name="component_radio_buttons">Radio Buttons</string>
+    <!-- Component Radio buttons -->
+    <string name="component_radio_buttons">Radio buttons</string>
     <string name="component_radio_buttons_description">Radio buttons enable users to choose one item from a set of mutually exclusive, related choices.</string>
 
     <!-- Component Switches -->
@@ -301,8 +296,8 @@
     <string name="component_slider_value_displayed">Display value</string>
     <string name="component_slider_stepped">Stepped</string>
 
-    <!-- Component Progress Indicators -->
-    <string name="component_progress">Progress Indicators</string>
+    <!-- Component Progress indicators -->
+    <string name="component_progress">Progress indicators</string>
     <string name="component_progress_description">Progress bar and activity indicator are used when a process is taking place to illustrate progress and to reassure users that something is happening, and if possible, how long it will take.</string>
     <string name="component_progress_linear">Linear</string>
     <string name="component_progress_determinate">Determinate</string>
@@ -311,10 +306,12 @@
     <string name="component_progress_circular">Circular</string>
     <string name="component_progress_label">Downloading …</string>
 
-    <!-- Components Sheets -->
+    <!-- Component Sheets -->
     <string name="component_sheets_bottom">Sheets: bottom</string>
     <string name="component_sheet_bottom_description">Bottom sheets are surfaces anchored to the bottom of the screen that present users supplemental content.</string>
     <string name="component_sheet_bottom_customize">Customize the bottom sheet</string>
+    <string name="component_sheet_bottom_customize_content_empty_desc">Get an empty bottom sheet</string>
+    <string name="component_sheet_bottom_customize_content_example_desc">Get a bottom sheet with content example</string>
     <string name="component_sheet_bottom_recipes">Recipes</string>
 
     <!-- Component Snackbars -->
@@ -370,21 +367,46 @@
     <string name="component_tabs_count">Tabs count</string>
     <string name="component_tabs_remove_tab">Remove tab</string>
     <string name="component_tabs_add_tab">Add tab</string>
-    <string name="component_tab_icon_leading">Leading</string>
-    <string name="component_tab_icon_top">Top</string>
+    <string name="component_tabs_icon_position">Icon position</string>
+    <string name="component_tabs_icon_position_leading">Leading</string>
+    <string name="component_tabs_icon_position_top">Top</string>
+    <string name="component_tab_icon">Icon</string>
+    <string name="component_tab_text">Text</string>
 
     <!-- Modules -->
-    <string name="modules_coming_soon">Coming soon…</string>
+    <string name="module_customize">Customize the module</string>
+    <string name="module_view_demo">View demo</string>
+
+    <!-- Modules About -->
+    <string name="module_about">About</string>
+    <string name="module_about_description">An « About » screen should be displayed in all Orange applications to show the application name, software version as well as all legal data protection, privacy, terms of service and accessibility statement.</string>
+    <string name="module_about_customization">Some items such as: illustration (customizable), app name, privacy policy, terms of service and accessibility statement are mandatory.\nTo this standard screen you can add optional components:</string>
+    <string name="module_about_customization_app_sections">Application sections</string>
+    <string name="module_about_customization_app_section_version">Version</string>
+    <string name="module_about_customization_app_section_description">Description</string>
+    <string name="module_about_customization_app_section_share">Share</string>
+    <string name="module_about_customization_app_section_feedback">Feedback</string>
+    <string name="module_about_customization_optional_items">Optional menu items</string>
+    <string name="module_about_customization_optional_item_app_news">App news</string>
+    <string name="module_about_customization_optional_item_legal_information">Legal information</string>
+    <string name="module_about_customization_optional_item_rate_app">Rate the app</string>
+    <string name="module_about_customization_additional_items">Additional item(s)</string>
+    <string name="module_about_customization_additional_item_remove">Remove item</string>
+    <string name="module_about_customization_additional_item_add">Add item</string>
+    <string name="module_about_demo_app_name">Application Name</string>
+    <string name="module_about_demo_version">Version</string>
+    <string name="module_about_demo_description">Add here a short description of the application.</string>
+    <string name="module_about_demo_feedback_button_element">feedback button</string>
+    <string name="module_about_demo_share_title">Share title</string>
+    <string name="module_about_demo_share_text">Add your share text here.</string>
 
     <!-- About -->
     <string name="about_app_name">Orange Design System</string>
-    <string name="about_app_version">Version %1$s (%2$d)</string>
     <string name="about_description">In this app you\'ll find implemented code examples of the guidelines, components and modules, for the themes of the Orange Design System.</string>
     <string name="about_menu_design_guidelines">Design guidelines</string>
-    <string name="about_menu_legal_notice">Legal notice</string>
-    <string name="about_menu_privacy_policy">Privacy policy</string>
     <string name="about_menu_changelog">Changelog</string>
     <string name="about_menu_report_issue">Report an issue</string>
+    <string name="about_share_text">Here, you will find the Orange Design System Mobile App that provides examples of design implementations: %s</string>
 
     <!-- Navigation items -->
     <string name="navigation_item_coffee">Coffee</string>

@@ -36,9 +36,7 @@ import com.orange.ods.app.ui.components.utilities.ComponentCustomizationBottomSh
 import com.orange.ods.app.ui.utilities.composable.Subtitle
 import com.orange.ods.compose.component.chip.OdsChoiceChip
 import com.orange.ods.compose.component.chip.OdsChoiceChipsFlowRow
-import com.orange.ods.compose.component.list.OdsListItem
-import com.orange.ods.compose.component.list.OdsListItemTrailingSwitch
-import com.orange.ods.compose.component.tab.OdsTab
+import com.orange.ods.compose.component.listitem.OdsListItem
 import com.orange.ods.compose.component.tab.OdsTabRow
 import com.orange.ods.compose.utilities.composable.Keyboard
 import com.orange.ods.compose.utilities.composable.keyboardAsState
@@ -78,9 +76,9 @@ fun ComponentTextField(variant: Variant) {
 @OptIn(ExperimentalFoundationApi::class)
 @Composable
 private fun TextFieldTextCustomization(textFieldCustomizationState: TextFieldCustomizationState) {
-    val pagerState = rememberPagerState()
+    val tabs = CustomizationTab.entries
+    val pagerState = rememberPagerState { tabs.size }
     val scope = rememberCoroutineScope()
-    val tabs = CustomizationTab.values()
     val keyboardState by keyboardAsState()
 
     // Clear text field focus each time the keyboard customization is opened and the soft keyboard is closed
@@ -88,20 +86,21 @@ private fun TextFieldTextCustomization(textFieldCustomizationState: TextFieldCus
         LocalFocusManager.current.clearFocus()
     }
 
-    OdsTabRow(selectedTabIndex = pagerState.currentPage) {
-        tabs.forEachIndexed { index, customizationTab ->
-            OdsTab(
-                text = stringResource(id = customizationTab.titleRes),
-                selected = pagerState.currentPage == index,
-                onClick = {
-                    scope.launch {
-                        pagerState.animateScrollToPage(index)
-                    }
+    OdsTabRow(
+        selectedTabIndex = pagerState.currentPage,
+        tabs = tabs.mapIndexed { index, customizationTab ->
+            OdsTabRow.Tab(
+                icon = null,
+                text = stringResource(id = customizationTab.titleRes)
+            ) {
+                scope.launch {
+                    pagerState.animateScrollToPage(index)
                 }
-            )
+            }
         }
-    }
-    HorizontalPager(state = pagerState, pageCount = tabs.size) { page ->
+    )
+
+    HorizontalPager(state = pagerState) { page ->
         Column {
             tabs[page].Content(textFieldCustomizationState)
         }
@@ -114,11 +113,11 @@ private fun TextFieldPasswordCustomization(textFieldCustomizationState: TextFiel
         DisplayTypeCustomization(displayType)
         OdsListItem(
             text = stringResource(id = R.string.component_text_field_visualisation_icon),
-            trailing = OdsListItemTrailingSwitch(visualisationIcon.value, { visualisationIcon.value = it })
+            trailing = OdsListItem.TrailingSwitch(visualisationIcon.value, { visualisationIcon.value = it })
         )
         OdsListItem(
             text = stringResource(id = R.string.component_text_field_character_counter),
-            trailing = OdsListItemTrailingSwitch(characterCounter.value, { characterCounter.value = it })
+            trailing = OdsListItem.TrailingSwitch(characterCounter.value, { characterCounter.value = it })
         )
     }
 }
@@ -128,7 +127,7 @@ private fun ComponentCustomizationContent(textFieldCustomizationState: TextField
     with(textFieldCustomizationState) {
         OdsListItem(
             text = stringResource(id = R.string.component_element_leading_icon),
-            trailing = OdsListItemTrailingSwitch(leadingIcon.value, { leadingIcon.value = it })
+            trailing = OdsListItem.TrailingSwitch(leadingIcon.value, { leadingIcon.value = it })
         )
 
         Subtitle(textRes = R.string.component_text_field_input_type, horizontalPadding = true)
@@ -170,7 +169,7 @@ private fun ComponentCustomizationContent(textFieldCustomizationState: TextField
         )
         OdsListItem(
             text = stringResource(id = R.string.component_text_field_character_counter),
-            trailing = OdsListItemTrailingSwitch(characterCounter.value, { characterCounter.value = it })
+            trailing = OdsListItem.TrailingSwitch(characterCounter.value, { characterCounter.value = it })
         )
     }
 }
@@ -183,14 +182,14 @@ private fun KeyboardCustomizationContent(textFieldCustomizationState: TextFieldC
             value = softKeyboardType.value,
             onValueChange = { value -> softKeyboardType.value = value },
             modifier = Modifier.padding(horizontal = dimensionResource(id = com.orange.ods.R.dimen.spacing_m)),
-            chips = TextFieldCustomizationState.SoftKeyboardType.values().map { softKeyboardType ->
+            chips = TextFieldCustomizationState.SoftKeyboardType.entries.map { softKeyboardType ->
                 OdsChoiceChip(text = stringResource(id = softKeyboardType.labelRes), value = softKeyboardType)
             }
         )
 
         OdsListItem(
             text = stringResource(id = R.string.component_text_field_keyboard_capitalization),
-            trailing = OdsListItemTrailingSwitch(softKeyboardCapitalization.value, { softKeyboardCapitalization.value = it })
+            trailing = OdsListItem.TrailingSwitch(softKeyboardCapitalization.value, { softKeyboardCapitalization.value = it })
         )
 
         Subtitle(textRes = R.string.component_text_field_keyboard_action, horizontalPadding = true)
@@ -198,7 +197,7 @@ private fun KeyboardCustomizationContent(textFieldCustomizationState: TextFieldC
             value = softKeyboardAction.value,
             onValueChange = { value -> softKeyboardAction.value = value },
             modifier = Modifier.padding(horizontal = dimensionResource(id = com.orange.ods.R.dimen.spacing_m)),
-            chips = TextFieldCustomizationState.SoftKeyboardAction.values().map { softKeyboardAction ->
+            chips = TextFieldCustomizationState.SoftKeyboardAction.entries.map { softKeyboardAction ->
                 OdsChoiceChip(text = stringResource(id = softKeyboardAction.labelRes), value = softKeyboardAction)
             }
         )

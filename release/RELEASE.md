@@ -131,7 +131,7 @@ This file lists all the steps to follow when releasing a new version of ODS Andr
 
 - Set title to `ODS Android library X.Y.Z`
 
-- Post a message with screenshots of new elements to announce the release
+- Write a message with screenshots of new elements to announce the release and click `Start discussion`
 
 Here is an example of the v0.15.0 release announcement:
 
@@ -157,5 +157,7 @@ Be careful, this version includes several APIs change in the library in order to
 
 📱 You can subscribe to the [Orange Design System Google group](https://groups.google.com/g/odsapp) in order to be able to install the [Demo app](https://play.google.com/apps/testing/com.orange.ods.app).
 ```
+
+- Click `Pin discussion` to pin the newly created discussion, open the announcement of the previous release and click `Unpin discussion`.
 
 - Go to `Teams - FoODS` and post a message with a link to the previously created GitHub announcement

@@ -49,7 +49,7 @@ fun OdsOutlinedButton(
     text: String,
     onClick: () -> Unit,
     modifier: Modifier = Modifier,
-    icon: OdsButtonIcon? = null,
+    icon: OdsButton.Icon? = null,
     enabled: Boolean = true,
     displaySurface: OdsDisplaySurface = OdsDisplaySurface.Default
 ) {

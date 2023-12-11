@@ -23,7 +23,7 @@ import com.orange.ods.compose.theme.OdsTheme
  * @param content The content of the preview.
  */
 @Composable
-internal fun Preview(content: @Composable () -> Unit) = OdsTheme(BuildConfig.PREVIEW_THEME_CONFIGURATION) {
+fun Preview(content: @Composable () -> Unit) = OdsTheme(BuildConfig.PREVIEW_THEME_CONFIGURATION) {
     content()
 }
 
@@ -52,14 +52,14 @@ internal open class EnumPreviewParameterProvider(clazz: Class<out Enum<*>>) : Ba
  * An empty `Target` annotation has been added in order to avoid using the parent `UiModePreviews` annotation which has no effect.
  */
 @Target
-internal annotation class UiModePreviews {
+annotation class UiModePreviews {
 
     companion object {
         private const val LightName = "Light"
         private const val DarkName = "Dark"
         private const val ButtonWidthDp = 200
         private const val ChipWidthDp = 180
-        private const val ImageTileSizeDp = 300
+        private const val ImageItemSizeDp = 300
         private const val TabWidthDp = 100
     }
 
@@ -75,9 +75,9 @@ internal annotation class UiModePreviews {
     @Preview(name = DarkName, uiMode = Configuration.UI_MODE_NIGHT_YES, showBackground = true, widthDp = ChipWidthDp)
     annotation class Chip
 
-    @Preview(name = LightName, widthDp = ImageTileSizeDp, heightDp = ImageTileSizeDp)
-    @Preview(name = DarkName, uiMode = Configuration.UI_MODE_NIGHT_YES, showBackground = true, widthDp = ImageTileSizeDp, heightDp = ImageTileSizeDp)
-    annotation class ImageTile
+    @Preview(name = LightName, widthDp = ImageItemSizeDp, heightDp = ImageItemSizeDp)
+    @Preview(name = DarkName, uiMode = Configuration.UI_MODE_NIGHT_YES, showBackground = true, widthDp = ImageItemSizeDp, heightDp = ImageItemSizeDp)
+    annotation class ImageItem
 
     @Preview(name = LightName, widthDp = TabWidthDp)
     @Preview(name = DarkName, uiMode = Configuration.UI_MODE_NIGHT_YES, showBackground = true, widthDp = TabWidthDp)

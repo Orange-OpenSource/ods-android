@@ -19,6 +19,7 @@ import com.orange.ods.app.ui.utilities.extension.isOrange
 import com.orange.ods.extension.orElse
 
 object DrawableManager {
+    const val ImageBackgroundColor = 0xff1b1b1b
 
     private val orangeResIdByGenericResId = mapOf(
         // About
@@ -32,6 +33,7 @@ object DrawableManager {
         R.drawable.il_app_bars_top_small_generic to R.drawable.il_app_bars_top_small,
         R.drawable.il_banners_generic to R.drawable.il_banners,
         R.drawable.il_bottom_navigation_generic to R.drawable.il_bottom_navigation,
+        R.drawable.il_bottom_sheet_generic to R.drawable.il_bottom_sheet,
         R.drawable.il_buttons_generic to R.drawable.il_buttons,
         R.drawable.il_buttons_small_generic to R.drawable.il_buttons_small,
         R.drawable.il_buttons_icons_generic to R.drawable.il_buttons_icons,
@@ -41,7 +43,7 @@ object DrawableManager {
         R.drawable.il_chips_small_generic to R.drawable.il_chips_small,
         R.drawable.il_dialogs_generic to R.drawable.il_dialogs,
         R.drawable.il_fab_generic to R.drawable.il_fab,
-        R.drawable.il_image_tile_generic to R.drawable.il_image_tile,
+        R.drawable.il_image_item_generic to R.drawable.il_image_item,
         R.drawable.il_list_item_generic to R.drawable.il_list_item,
         R.drawable.il_lists_generic to R.drawable.il_lists,
         R.drawable.il_menus_generic to R.drawable.il_menus,

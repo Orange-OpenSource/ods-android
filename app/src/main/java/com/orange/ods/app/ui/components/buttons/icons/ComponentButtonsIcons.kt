@@ -21,8 +21,7 @@ import com.orange.ods.app.R
 import com.orange.ods.app.ui.components.Variant
 import com.orange.ods.app.ui.components.utilities.ComponentCountRow
 import com.orange.ods.app.ui.components.utilities.ComponentCustomizationBottomSheetScaffold
-import com.orange.ods.compose.component.list.OdsListItem
-import com.orange.ods.compose.component.list.OdsListItemTrailingSwitch
+import com.orange.ods.compose.component.listitem.OdsListItem
 
 @OptIn(ExperimentalMaterialApi::class)
 @Composable
@@ -46,7 +45,7 @@ fun ComponentButtonsIcons(variant: Variant) {
                 }
                 OdsListItem(
                     text = stringResource(id = R.string.component_state_enabled),
-                    trailing = OdsListItemTrailingSwitch(enabled.value, { enabled.value = it })
+                    trailing = OdsListItem.TrailingSwitch(enabled.value, { enabled.value = it })
                 )
             }) {
 

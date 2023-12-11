@@ -39,6 +39,6 @@ fun OdsDivider(
 
 @UiModePreviews.Default
 @Composable
-fun PreviewOdsDivider() = Preview {
+private fun PreviewOdsDivider() = Preview {
     OdsDivider()
 }

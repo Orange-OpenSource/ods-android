@@ -20,28 +20,29 @@ import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableIntStateOf
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.dimensionResource
+import com.orange.ods.R
 import com.orange.ods.app.domain.recipes.LocalRecipes
-import com.orange.ods.app.ui.utilities.composable.CodeImplementationColumn
-import com.orange.ods.app.ui.utilities.composable.FunctionCallCode
+import com.orange.ods.app.ui.utilities.code.CodeImplementationColumn
+import com.orange.ods.app.ui.utilities.code.FunctionCallCode
 import com.orange.ods.compose.OdsComposable
 import com.orange.ods.compose.annotation.ExperimentalOdsApi
 import com.orange.ods.compose.component.button.OdsTextToggleButtonsRow
-import com.orange.ods.compose.component.button.OdsTextToggleButtonsRowItem
 import com.orange.ods.compose.theme.OdsDisplaySurface
 
 @Composable
 fun ButtonsTextToggleButtonsRow(customizationState: ButtonCustomizationState) {
     val textToggleButtons =
         LocalRecipes.current.first().ingredients.take(ButtonCustomizationState.MaxToggleCount).map { ingredient ->
-            OdsTextToggleButtonsRowItem(ingredient.food.name, customizationState.isEnabled)
+            OdsTextToggleButtonsRow.Item(ingredient.food.name, customizationState.isEnabled)
         }
 
-    var selectedIndex by rememberSaveable { mutableStateOf(0) }
+    var selectedIndex by rememberSaveable { mutableIntStateOf(0) }
 
     with(customizationState) {
         Column(
@@ -53,7 +54,7 @@ fun ButtonsTextToggleButtonsRow(customizationState: ButtonCustomizationState) {
                 textToggleButtons = textToggleButtons,
                 selectedIndex = selectedIndex,
                 onSelectedIndexChange = { index -> selectedIndex = index },
-                toggleCount = toggleCount.value,
+                toggleCount = toggleCount.intValue,
                 sameItemsWeight = hasSameItemsWeight,
             )
 
@@ -64,22 +65,22 @@ fun ButtonsTextToggleButtonsRow(customizationState: ButtonCustomizationState) {
                     textToggleButtons = textToggleButtons,
                     selectedIndex = selectedIndex,
                     onSelectedIndexChange = { index -> selectedIndex = index },
-                    toggleCount = toggleCount.value,
+                    toggleCount = toggleCount.intValue,
                     sameItemsWeight = hasSameItemsWeight,
                     displaySurface = displaySurface
                 )
             }
 
             CodeImplementationColumn(
-                modifier = Modifier.padding(horizontal = dimensionResource(id = com.orange.ods.R.dimen.screen_horizontal_margin))
+                modifier = Modifier.padding(horizontal = dimensionResource(id = R.dimen.screen_horizontal_margin))
             ) {
                 FunctionCallCode(
                     name = OdsComposable.OdsTextToggleButtonsRow.name,
                     exhaustiveParameters = false,
                     parameters = {
                         list("textToggleButtons") {
-                            textToggleButtons.take(toggleCount.value).forEach { item ->
-                                classInstance<OdsTextToggleButtonsRowItem> {
+                            textToggleButtons.take(toggleCount.intValue).forEach { item ->
+                                classInstance<OdsTextToggleButtonsRow.Item> {
                                     text(item.text)
                                     enabled(customizationState.isEnabled)
                                 }
@@ -97,7 +98,7 @@ fun ButtonsTextToggleButtonsRow(customizationState: ButtonCustomizationState) {
 @OptIn(ExperimentalOdsApi::class)
 @Composable
 private fun ToggleButtonsRow(
-    textToggleButtons: List<OdsTextToggleButtonsRowItem>,
+    textToggleButtons: List<OdsTextToggleButtonsRow.Item>,
     selectedIndex: Int,
     onSelectedIndexChange: (Int) -> Unit,
     toggleCount: Int,

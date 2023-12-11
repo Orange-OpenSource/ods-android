@@ -16,14 +16,14 @@
         <com.orange.ods.xml.component.bottomnavigation.OdsBottomNavigation
             android:id="@+id/ods_bottom_navigation"
             android:layout_height="wrap_content"
-            android:layout_width="wrap_content" />
+            android:layout_width="match_parent" />
 
         <!-- Invisible OdsBottomNavigation used for tests -->
         <com.orange.ods.xml.component.bottomnavigation.OdsBottomNavigation
             android:id="@+id/ods_bottom_navigation_test"
             android:visibility="gone"
             android:layout_height="wrap_content"
-            android:layout_width="wrap_content" />
+            android:layout_width="match_parent" />
 
     </FrameLayout>
 

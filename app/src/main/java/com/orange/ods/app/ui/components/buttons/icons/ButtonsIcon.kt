@@ -32,11 +32,10 @@ import com.orange.ods.app.databinding.OdsIconButtonBinding
 import com.orange.ods.app.ui.UiFramework
 import com.orange.ods.app.ui.components.buttons.InvertedBackgroundColumn
 import com.orange.ods.app.ui.components.utilities.clickOnElement
-import com.orange.ods.app.ui.utilities.composable.CodeImplementationColumn
-import com.orange.ods.app.ui.utilities.composable.FunctionCallCode
+import com.orange.ods.app.ui.utilities.code.CodeImplementationColumn
+import com.orange.ods.app.ui.utilities.code.FunctionCallCode
 import com.orange.ods.compose.OdsComposable
 import com.orange.ods.compose.component.button.OdsIconButton
-import com.orange.ods.compose.component.button.OdsIconButtonIcon
 import com.orange.ods.compose.theme.OdsDisplaySurface
 
 @Composable
@@ -74,7 +73,7 @@ fun ButtonsIcon(customizationState: ButtonIconCustomizationState) {
                     name = OdsComposable.OdsIconButton.name,
                     exhaustiveParameters = false,
                     parameters = {
-                        classInstance<OdsIconButtonIcon>("icon") {
+                        classInstance<OdsIconButton.Icon>("icon") {
                             painter()
                             contentDescription("")
                         }
@@ -106,7 +105,7 @@ private fun IconButton(
             compose = {
                 OdsIconButton(
                     onClick = onClick,
-                    icon = OdsIconButtonIcon(painterResource(id = R.drawable.ic_search), contentDescription),
+                    icon = OdsIconButton.Icon(painterResource(id = R.drawable.ic_search), contentDescription),
                     enabled = enabled,
                     displaySurface = displaySurface
                 )

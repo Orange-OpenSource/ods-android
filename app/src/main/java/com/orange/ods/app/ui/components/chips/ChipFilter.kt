@@ -32,16 +32,15 @@ import com.orange.ods.app.R
 import com.orange.ods.app.domain.recipes.LocalRecipes
 import com.orange.ods.app.ui.components.utilities.ComponentCustomizationBottomSheetScaffold
 import com.orange.ods.app.ui.utilities.DrawableManager
-import com.orange.ods.app.ui.utilities.composable.CodeImplementationColumn
-import com.orange.ods.app.ui.utilities.composable.FunctionCallCode
+import com.orange.ods.app.ui.utilities.code.CodeImplementationColumn
+import com.orange.ods.app.ui.utilities.code.FunctionCallCode
 import com.orange.ods.app.ui.utilities.composable.Subtitle
 import com.orange.ods.compose.OdsComposable
-import com.orange.ods.compose.component.chip.OdsChipLeadingAvatar
+import com.orange.ods.compose.component.chip.OdsChip
 import com.orange.ods.compose.component.chip.OdsChoiceChip
 import com.orange.ods.compose.component.chip.OdsChoiceChipsFlowRow
 import com.orange.ods.compose.component.chip.OdsFilterChip
-import com.orange.ods.compose.component.list.OdsListItem
-import com.orange.ods.compose.component.list.OdsListItemTrailingSwitch
+import com.orange.ods.compose.component.listitem.OdsListItem
 
 @OptIn(ExperimentalMaterialApi::class, ExperimentalLayoutApi::class)
 @Composable
@@ -68,7 +67,7 @@ fun ChipFilter() {
 
                 OdsListItem(
                     text = stringResource(id = R.string.component_state_enabled),
-                    trailing = OdsListItemTrailingSwitch(enabled.value, { enabled.value = it })
+                    trailing = OdsListItem.TrailingSwitch(enabled.value, { enabled.value = it })
                 )
             }) {
             var selectedChipIndexes by rememberSaveable { mutableStateOf(emptySet<Int>()) }
@@ -81,7 +80,7 @@ fun ChipFilter() {
                         OdsFilterChip(
                             text = ingredient.food.name,
                             leadingAvatar = if (hasLeadingAvatar) {
-                                OdsChipLeadingAvatar(
+                                OdsChip.LeadingAvatar(
                                     rememberAsyncImagePainter(
                                         model = ingredient.food.imageUrl,
                                         placeholder = painterResource(id = DrawableManager.getPlaceholderSmallResId()),
@@ -112,7 +111,7 @@ fun ChipFilter() {
                                 parameters = {
                                     text(ingredient.food.name)
                                     if (hasLeadingAvatar) {
-                                        classInstance<OdsChipLeadingAvatar>("leadingAvatar") {
+                                        classInstance<OdsChip.LeadingAvatar>("leadingAvatar") {
                                             image()
                                             contentDescription("")
                                         }

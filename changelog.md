@@ -5,6 +5,36 @@ All notable changes done in ODS library will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.18.0](https://github.com/Orange-OpenSource/ods-android/compare/0.17.0...0.18.0) - 2023-12-11
+
+### Added
+
+- \[App\] Display `OdsBottomNavigation` XML code implementation ([#671](https://github.com/Orange-OpenSource/ods-android/issues/671))
+
+### Changed
+
+- \[All\] Upgrade dependencies ([#712](https://github.com/Orange-OpenSource/ods-android/issues/712))
+- \[App\] Change tabs customization to be closer to the API ([#699](https://github.com/Orange-OpenSource/ods-android/issues/699))
+- \[Lib\] Rename `OdsImageTile` to `OdsImageItem` ([#683](https://github.com/Orange-OpenSource/ods-android/issues/683))
+- \[Lib\] Update `OdsTab`, `OdsLeadingIconTab`, `OdsTabRow` and `OdsScrollableTabRow` APIs ([#675](https://github.com/Orange-OpenSource/ods-android/issues/675))
+- \[Lib\] Update `OdsTextField`, `OdsPasswordTextField` and `OdsSearchTextField` APIs ([#676](https://github.com/Orange-OpenSource/ods-android/issues/676))
+- \[Lib\] Update `OdsModalDrawer` API ([#677](https://github.com/Orange-OpenSource/ods-android/issues/677))
+- \[Lib\] Update `OdsBottomSheetScaffold` documentation ([#678](https://github.com/Orange-OpenSource/ods-android/issues/678))
+- \[Lib\] Update `OdsChip` API to use a unique leading parameter ([#705](https://github.com/Orange-OpenSource/ods-android/issues/705))
+- \[Lib\] Update most API types to be clearer for v1 launch ([#701](https://github.com/Orange-OpenSource/ods-android/issues/701))
+- \[Lib\] Update `OdsBanner` to allow banner without button and avoid text truncation in banner for accessibility purpose ([#643](https://github.com/Orange-OpenSource/ods-android/issues/643))
+- \[Lib\] Update `OdsSmallCard` to show full title and subtitle when the card is not clickable for accessibility purpose ([#722](https://github.com/Orange-OpenSource/ods-android/issues/722))
+- \[Lib\] Update `OdsBottomNavigation` to show a selected line below the selected navigation item for accessibility purpose ([#723](https://github.com/Orange-OpenSource/ods-android/issues/723))
+
+### Fixed
+
+- \[App\] Fix nested class names in code implementation ([#708](https://github.com/Orange-OpenSource/ods-android/issues/708))
+- \[App\] Fix bad vocalization for top bar change theme button ([#715](https://github.com/Orange-OpenSource/ods-android/issues/715))
+- \[App\] Add clearer vocalization on bottom sheet demo screen ([#442](https://github.com/Orange-OpenSource/ods-android/issues/442))
+- \[Lib\] Fix back button color in `OdsLargeTopAppBar` ([#685](https://github.com/Orange-OpenSource/ods-android/issues/685))
+- \[Lib\] Fix a bug where the modifier was not taken into account in `OdsPasswordTextField` ([#710](https://github.com/Orange-OpenSource/ods-android/issues/710))
+- \[Lib\] Fix an accessibility issue in `OdsListItem` where items in a list were overlapping when using big font size ([#716](https://github.com/Orange-OpenSource/ods-android/issues/716))
+
 ## [0.17.0](https://github.com/Orange-OpenSource/ods-android/compare/0.16.0...0.17.0) - 2023-11-06
 
 ### Added

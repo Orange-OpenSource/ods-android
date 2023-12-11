@@ -8,7 +8,6 @@ in whole or part of, in any medium, except as required for reasonable and custom
 and reproducing the content of the NOTICE and DOCUMENTATION files.
 Any use or displaying shall constitute an infringement under intellectual property laws of France and international conventions.
 
-app/src/main/res/drawable/ic_address_book.xml
 app/src/main/res/drawable/ic_coffee.xml
 app/src/main/res/drawable/ic_component_atom.xml
 app/src/main/res/drawable/ic_cooking_pot.xml
@@ -18,7 +17,6 @@ app/src/main/res/drawable/ic_ice_cream.xml
 app/src/main/res/drawable/ic_info.xml
 app/src/main/res/drawable/ic_launcher_foreground.xml
 app/src/main/res/drawable/ic_module_molecule.xml
-app/src/main/res/drawable/ic_notification.xml
 app/src/main/res/drawable/ic_palette.xml
 app/src/main/res/drawable/ic_play_outline.xml
 app/src/main/res/drawable/ic_restaurant.xml

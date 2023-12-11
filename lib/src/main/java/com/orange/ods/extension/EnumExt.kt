@@ -11,4 +11,4 @@
 package com.orange.ods.extension
 
 val Enum<*>.fullName: String
-    get() = "${javaClass.simpleName}.$name"
+    get() = "${javaClass.simpleNestedName}.$name"

@@ -36,21 +36,13 @@ import com.orange.ods.app.ui.components.utilities.ComponentCountRow
 import com.orange.ods.app.ui.components.utilities.ComponentCustomizationBottomSheetScaffold
 import com.orange.ods.app.ui.components.utilities.clickOnElement
 import com.orange.ods.app.ui.utilities.DrawableManager
-import com.orange.ods.app.ui.utilities.composable.CodeImplementationColumn
-import com.orange.ods.app.ui.utilities.composable.FunctionCallCode
+import com.orange.ods.app.ui.utilities.code.CodeImplementationColumn
+import com.orange.ods.app.ui.utilities.code.FunctionCallCode
 import com.orange.ods.app.ui.utilities.composable.Subtitle
 import com.orange.ods.compose.OdsComposable
 import com.orange.ods.compose.component.chip.OdsChoiceChip
 import com.orange.ods.compose.component.chip.OdsChoiceChipsFlowRow
-import com.orange.ods.compose.component.list.OdsListItem
-import com.orange.ods.compose.component.list.OdsListItemIcon
-import com.orange.ods.compose.component.list.OdsListItemIconType
-import com.orange.ods.compose.component.list.OdsListItemTrailing
-import com.orange.ods.compose.component.list.OdsListItemTrailingCaption
-import com.orange.ods.compose.component.list.OdsListItemTrailingCheckbox
-import com.orange.ods.compose.component.list.OdsListItemTrailingIcon
-import com.orange.ods.compose.component.list.OdsListItemTrailingRadioButton
-import com.orange.ods.compose.component.list.OdsListItemTrailingSwitch
+import com.orange.ods.compose.component.listitem.OdsListItem
 import com.orange.ods.extension.ifNotNull
 
 @OptIn(ExperimentalMaterialApi::class)
@@ -78,15 +70,15 @@ private fun ComponentListItemBottomSheetContent(listItemCustomizationState: List
 
     Subtitle(textRes = R.string.component_list_leading, horizontalPadding = true)
     OdsChoiceChipsFlowRow(
-        value = listItemCustomizationState.selectedIconType.value,
-        onValueChange = { value -> listItemCustomizationState.selectedIconType.value = value },
+        value = listItemCustomizationState.selectedLeadingIconType.value,
+        onValueChange = { value -> listItemCustomizationState.selectedLeadingIconType.value = value },
         modifier = Modifier.padding(horizontal = dimensionResource(id = com.orange.ods.R.dimen.spacing_m)),
         chips = listOf(
             OdsChoiceChip(text = stringResource(id = R.string.component_list_leading_none), value = null),
-            OdsChoiceChip(text = stringResource(id = R.string.component_list_leading_icon), value = OdsListItemIconType.Icon),
-            OdsChoiceChip(text = stringResource(id = R.string.component_list_leading_circular_image), value = OdsListItemIconType.CircularImage),
-            OdsChoiceChip(text = stringResource(id = R.string.component_list_leading_square_image), value = OdsListItemIconType.SquareImage),
-            OdsChoiceChip(text = stringResource(id = R.string.component_list_leading_wide_image), value = OdsListItemIconType.WideImage),
+            OdsChoiceChip(text = stringResource(id = R.string.component_list_leading_icon), value = OdsListItem.LeadingIcon.Type.Icon),
+            OdsChoiceChip(text = stringResource(id = R.string.component_list_leading_circular_image), value = OdsListItem.LeadingIcon.Type.CircularImage),
+            OdsChoiceChip(text = stringResource(id = R.string.component_list_leading_square_image), value = OdsListItem.LeadingIcon.Type.SquareImage),
+            OdsChoiceChip(text = stringResource(id = R.string.component_list_leading_wide_image), value = OdsListItem.LeadingIcon.Type.WideImage),
         )
     )
 
@@ -110,12 +102,12 @@ private fun ComponentListItemContent(listItemCustomizationState: ListItemCustomi
                 resetTrailing()
             }
 
-            val singleLineSecondaryText = lineCount.value == 2
+            val singleLineSecondaryText = lineCount.intValue == 2
 
             val text = recipe.title
-            val secondaryText = if (lineCount.value > 1) recipe.description else null
-            val icon = ifNotNull(getIconPainter(recipe), selectedIconType.value) { painter, type ->
-                OdsListItemIcon(type, painter, "")
+            val secondaryText = if (lineCount.intValue > 1) recipe.description else null
+            val leadingIcon = ifNotNull(getIconPainter(recipe), selectedLeadingIconType.value) { painter, type ->
+                OdsListItem.LeadingIcon(type, painter, "")
             }
 
             val context = LocalContext.current
@@ -123,7 +115,7 @@ private fun ComponentListItemContent(listItemCustomizationState: ListItemCustomi
                 text = text,
                 secondaryText = secondaryText,
                 singleLineSecondaryText = singleLineSecondaryText,
-                icon = icon,
+                leadingIcon = leadingIcon,
                 trailing = trailing
             ) {
                 clickOnElement(context = context, context.getString(R.string.component_list_item))
@@ -138,8 +130,8 @@ private fun ComponentListItemContent(listItemCustomizationState: ListItemCustomi
                             string("secondaryText", secondaryText)
                             if (!singleLineSecondaryText) stringRepresentation("singleLineSecondaryText", false)
                         }
-                        selectedIconType.value?.let { iconType ->
-                            classInstance<OdsListItemIcon>("icon") {
+                        selectedLeadingIconType.value?.let { iconType ->
+                            classInstance<OdsListItem.LeadingIcon>("leadingIcon") {
                                 enum("type", iconType)
                                 painter()
                                 contentDescription("")
@@ -148,21 +140,21 @@ private fun ComponentListItemContent(listItemCustomizationState: ListItemCustomi
                         selectedTrailing.value?.let { trailingClass ->
                             classInstance("trailing", trailingClass) {
                                 when (trailingClass) {
-                                    OdsListItemTrailingCheckbox::class.java,
-                                    OdsListItemTrailingSwitch::class.java -> {
+                                    OdsListItem.TrailingCheckbox::class.java,
+                                    OdsListItem.TrailingSwitch::class.java -> {
                                         simple("checked", "checked")
                                         lambda("onCheckedChange", "checked = it")
                                     }
-                                    OdsListItemTrailingRadioButton::class.java -> {
+                                    OdsListItem.TrailingRadioButton::class.java -> {
                                         simple("selected", "selected")
                                         lambda("onClick", "selected = it")
                                     }
-                                    OdsListItemTrailingIcon::class.java -> {
+                                    OdsListItem.TrailingIcon::class.java -> {
                                         painter()
                                         contentDescription("")
                                         onClick()
                                     }
-                                    OdsListItemTrailingCaption::class.java -> {
+                                    OdsListItem.TrailingCaption::class.java -> {
                                         text(context.getString(R.string.component_element_caption))
                                     }
                                 }
@@ -175,23 +167,23 @@ private fun ComponentListItemContent(listItemCustomizationState: ListItemCustomi
     }
 }
 
-private val Class<out OdsListItemTrailing>?.textResId: Int
+private val Class<out OdsListItem.Trailing>?.textResId: Int
     get() = when (this) {
-        OdsListItemTrailingCheckbox::class.java -> R.string.component_list_trailing_checkbox
-        OdsListItemTrailingSwitch::class.java -> R.string.component_list_trailing_switch
-        OdsListItemTrailingRadioButton::class.java -> R.string.component_list_trailing_radio_button
-        OdsListItemTrailingIcon::class.java -> R.string.component_list_trailing_icon
-        OdsListItemTrailingCaption::class.java -> R.string.component_list_trailing_caption
+        OdsListItem.TrailingCheckbox::class.java -> R.string.component_list_trailing_checkbox
+        OdsListItem.TrailingSwitch::class.java -> R.string.component_list_trailing_switch
+        OdsListItem.TrailingRadioButton::class.java -> R.string.component_list_trailing_radio_button
+        OdsListItem.TrailingIcon::class.java -> R.string.component_list_trailing_icon
+        OdsListItem.TrailingCaption::class.java -> R.string.component_list_trailing_caption
         else -> R.string.component_list_trailing_none
     }
 
 @Composable
 private fun ListItemCustomizationState.getIconPainter(recipe: Recipe): Painter? {
-    return when (selectedIconType.value) {
-        OdsListItemIconType.Icon -> recipe.iconResId?.let { painterResource(id = it) }
-        OdsListItemIconType.CircularImage,
-        OdsListItemIconType.SquareImage,
-        OdsListItemIconType.WideImage -> {
+    return when (selectedLeadingIconType.value) {
+        OdsListItem.LeadingIcon.Type.Icon -> recipe.iconResId?.let { painterResource(id = it) }
+        OdsListItem.LeadingIcon.Type.CircularImage,
+        OdsListItem.LeadingIcon.Type.SquareImage,
+        OdsListItem.LeadingIcon.Type.WideImage -> {
             val wideImageSizeWidthPx = with(LocalDensity.current) { dimensionResource(id = com.orange.ods.R.dimen.list_wide_image_width).toPx() }
             val wideImageSizeHeightPx = with(LocalDensity.current) { dimensionResource(id = com.orange.ods.R.dimen.list_wide_image_height).toPx() }
             rememberAsyncImagePainter(
@@ -208,30 +200,30 @@ private fun ListItemCustomizationState.getIconPainter(recipe: Recipe): Painter? 
     }
 }
 
-private val ListItemCustomizationState.trailing: OdsListItemTrailing?
+private val ListItemCustomizationState.trailing: OdsListItem.Trailing?
     @Composable
     get() = when (selectedTrailing.value) {
-        OdsListItemTrailingCheckbox::class.java -> {
+        OdsListItem.TrailingCheckbox::class.java -> {
             var checked by remember { mutableStateOf(true) }
-            OdsListItemTrailingCheckbox(checked, { checked = it })
+            OdsListItem.TrailingCheckbox(checked, { checked = it })
         }
-        OdsListItemTrailingSwitch::class.java -> {
+        OdsListItem.TrailingSwitch::class.java -> {
             var checked by remember { mutableStateOf(true) }
-            OdsListItemTrailingSwitch(checked, { checked = it })
+            OdsListItem.TrailingSwitch(checked, { checked = it })
         }
-        OdsListItemTrailingRadioButton::class.java -> {
+        OdsListItem.TrailingRadioButton::class.java -> {
             var selected by remember { mutableStateOf(true) }
-            OdsListItemTrailingRadioButton(selected, { selected = !selected })
+            OdsListItem.TrailingRadioButton(selected, { selected = !selected })
         }
-        OdsListItemTrailingIcon::class.java -> {
+        OdsListItem.TrailingIcon::class.java -> {
             val context = LocalContext.current
             val iconText = stringResource(id = R.string.component_element_icon)
-            OdsListItemTrailingIcon(painterResource(id = R.drawable.ic_info), stringResource(id = R.string.component_list_information)) {
+            OdsListItem.TrailingIcon(painterResource(id = R.drawable.ic_info), stringResource(id = R.string.component_list_information)) {
                 clickOnElement(context, iconText)
             }
         }
-        OdsListItemTrailingCaption::class.java -> {
-            OdsListItemTrailingCaption(stringResource(id = R.string.component_element_caption))
+        OdsListItem.TrailingCaption::class.java -> {
+            OdsListItem.TrailingCaption(stringResource(id = R.string.component_element_caption))
         }
         else -> null
     }

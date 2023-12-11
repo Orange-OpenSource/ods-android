@@ -11,8 +11,13 @@
 package com.orange.ods.app.ui
 
 import androidx.compose.animation.AnimatedVisibility
+import androidx.compose.animation.EnterTransition
+import androidx.compose.animation.ExitTransition
+import androidx.compose.animation.core.tween
 import androidx.compose.animation.fadeIn
 import androidx.compose.animation.fadeOut
+import androidx.compose.animation.slideInVertically
+import androidx.compose.animation.slideOutVertically
 import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.background
 import androidx.compose.foundation.isSystemInDarkTheme
@@ -25,8 +30,15 @@ import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.material3.TopAppBarScrollBehavior
 import androidx.compose.material3.rememberTopAppBarState
-import androidx.compose.runtime.*
+import androidx.compose.runtime.Composable
+import androidx.compose.runtime.CompositionLocalProvider
+import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.SideEffect
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
 import androidx.compose.runtime.saveable.rememberSaveable
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.input.nestedscroll.nestedScroll
 import androidx.compose.ui.platform.LocalConfiguration
@@ -40,15 +52,18 @@ import com.google.accompanist.systemuicontroller.rememberSystemUiController
 import com.orange.ods.app.R
 import com.orange.ods.app.domain.recipes.LocalCategories
 import com.orange.ods.app.domain.recipes.LocalRecipes
-import com.orange.ods.app.ui.components.tabs.FixedTabRow
-import com.orange.ods.app.ui.components.tabs.ScrollableTabRow
+import com.orange.ods.app.ui.about.appAboutConfiguration
+import com.orange.ods.app.ui.components.tabs.tabs
+import com.orange.ods.app.ui.modules.about.AboutCustomizationViewModel
 import com.orange.ods.app.ui.utilities.extension.isDarkModeEnabled
 import com.orange.ods.app.ui.utilities.extension.isOrange
-import com.orange.ods.compose.component.list.OdsListItem
-import com.orange.ods.compose.component.list.OdsListItemTrailingRadioButton
+import com.orange.ods.compose.component.listitem.OdsListItem
+import com.orange.ods.compose.component.tab.OdsScrollableTabRow
+import com.orange.ods.compose.component.tab.OdsTabRow
 import com.orange.ods.compose.text.OdsTextH6
 import com.orange.ods.compose.theme.OdsTheme
 import com.orange.ods.extension.orElse
+import com.orange.ods.module.about.navigation.navigateToOdsAbout
 import com.orange.ods.theme.OdsThemeConfigurationContract
 import com.orange.ods.xml.theme.OdsXml
 import com.orange.ods.xml.utilities.extension.xml
@@ -95,7 +110,7 @@ fun MainScreen(themeConfigurations: Set<OdsThemeConfigurationContract>, mainView
         LocalCategories provides mainViewModel.categories,
         LocalUiFramework provides mainState.uiFramework
     ) {
-        AppBarActionsHandler(navigate = mainState.navController::navigate, onChangeThemeActionClick = { changeThemeDialogVisible = true })
+        AppBarActionsHandler(navigate = mainState.navigationState.navController::navigate, onChangeThemeActionClick = { changeThemeDialogVisible = true })
         OdsTheme(
             themeConfiguration = mainState.themeState.currentThemeConfiguration,
             darkThemeEnabled = configuration.isDarkModeEnabled
@@ -112,6 +127,9 @@ fun MainScreen(themeConfigurations: Set<OdsThemeConfigurationContract>, mainView
                 modifier = Modifier
             }
 
+            val appAboutConfiguration = appAboutConfiguration()
+            var aboutConfiguration by remember { mutableStateOf(appAboutConfiguration) }
+            val aboutDemoConfiguration = viewModel<AboutCustomizationViewModel>().aboutConfiguration()
             Scaffold(
                 modifier = modifier,
                 topBar = {
@@ -120,11 +138,13 @@ fun MainScreen(themeConfigurations: Set<OdsThemeConfigurationContract>, mainView
                             SystemBarsColorSideEffect()
                             AppBar(
                                 appBarState = mainState.appBarState,
-                                upPress = mainState::upPress,
+                                upPress = mainState.navigationState::upPress,
                                 scrollBehavior = topBarScrollBehavior
                             )
-                            if (mainState.appBarState.tabsState.hasTabs) {
+                            if (mainState.navigationState.currentScreen?.hasTabs == true && mainState.appBarState.tabsState.hasTabs) {
                                 AppBarTabs(appBarTabsState = mainState.appBarState.tabsState)
+                            } else {
+                                mainState.appBarState.clearAppBarTabs()
                             }
                         }
                     }
@@ -132,23 +152,38 @@ fun MainScreen(themeConfigurations: Set<OdsThemeConfigurationContract>, mainView
                 bottomBar = {
                     AnimatedVisibility(
                         visible = mainState.shouldShowBottomBar,
-                        enter = fadeIn(),
-                        exit = fadeOut()
+                        enter = fadeIn(tween(100)),
+                        exit = fadeOut(tween(100))
                     ) {
                         BottomBar(
-                            items = mainState.bottomBarItems,
-                            currentRoute = mainState.currentRoute!!,
-                            navigateToRoute = mainState::navigateToBottomBarRoute
+                            items = BottomBarItem.entries.toTypedArray(),
+                            currentRoute = mainState.navigationState.currentRoute.orEmpty(),
+                            navigateToRoute = { route ->
+                                if (route == BottomBarItem.About.route) {
+                                    aboutConfiguration = appAboutConfiguration
+                                }
+                                mainState.navigationState.navigateToBottomBarRoute(route)
+                            }
                         )
                     }
                 }
             ) { innerPadding ->
                 NavHost(
-                    navController = mainState.navController, startDestination = BottomBarItem.Guidelines.route, modifier = Modifier.padding(innerPadding)
+                    navController = mainState.navigationState.navController,
+                    startDestination = BottomBarItem.Guidelines.route,
+                    modifier = Modifier.padding(innerPadding),
+                    exitTransition = { ExitTransition.None }
                 ) {
                     appNavGraph(
-                        navigateToElement = mainState::navigateToElement,
-                        upPress = mainState::upPress
+                        navController = mainState.navigationState.navController,
+                        navigateToElement = mainState.navigationState::navigateToElement,
+                        navigateToAboutDemo = {
+                            aboutConfiguration = aboutDemoConfiguration
+                            mainState.navigationState.navController.navigateToOdsAbout()
+                        },
+                        aboutConfiguration = {
+                            aboutConfiguration
+                        }
                     )
                 }
 
@@ -194,19 +229,28 @@ private fun AppBarTabs(appBarTabsState: AppBarTabsState) {
             // Do not use tabs directly because this is a SnapshotStateList
             // Thus its value can be modified and can lead to crashes if it becomes empty
             val tabs = tabs.toList()
+
             if (scrollableTabs.value) {
-                ScrollableTabRow(
-                    tabs = tabs,
-                    pagerState = pagerState,
-                    tabIconType = tabIconType.value,
-                    tabTextEnabled = tabTextEnabled.value
+                OdsScrollableTabRow(
+                    selectedTabIndex = pagerState.currentPage,
+                    tabs = tabs(
+                        tabs = tabs,
+                        pagerState = pagerState,
+                        tabIconEnabled = tabIconEnabled.value,
+                        tabTextEnabled = tabTextEnabled.value
+                    ),
+                    tabIconPosition = tabsIconPosition.value
                 )
             } else {
-                FixedTabRow(
-                    tabs = tabs,
-                    pagerState = pagerState,
-                    tabIconType = tabIconType.value,
-                    tabTextEnabled = tabTextEnabled.value
+                OdsTabRow(
+                    selectedTabIndex = pagerState.currentPage,
+                    tabs = tabs(
+                        tabs = tabs,
+                        pagerState = pagerState,
+                        tabIconEnabled = tabIconEnabled.value,
+                        tabTextEnabled = tabTextEnabled.value
+                    ),
+                    tabIconPosition = tabsIconPosition.value
                 )
             }
         }
@@ -245,7 +289,7 @@ private fun ChangeThemeDialog(themeManager: ThemeManager, dismissDialog: () -> U
             themeManager.themeConfigurations.forEach { themeConfiguration ->
                 OdsListItem(
                     text = themeConfiguration.name,
-                    trailing = OdsListItemTrailingRadioButton(
+                    trailing = OdsListItem.TrailingRadioButton(
                         selectedThemeName == themeConfiguration.name,
                         {
                             selectedThemeName = themeConfiguration.name

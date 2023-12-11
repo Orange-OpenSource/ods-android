@@ -37,5 +37,5 @@ allprojects {
 
 tasks.register<Delete>("clean") {
     group = "cleanup"
-    delete(rootProject.buildDir)
+    delete(rootProject.layout.buildDirectory)
 }

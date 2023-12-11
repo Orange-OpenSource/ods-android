@@ -18,7 +18,9 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.stringResource
 import com.orange.ods.app.R
+import com.orange.ods.app.ui.components.textfields.TextFieldCustomizationState.Companion.TextFieldMaxChars
 import com.orange.ods.compose.OdsComposable
+import com.orange.ods.compose.component.textfield.OdsTextField
 import com.orange.ods.compose.component.textfield.password.OdsPasswordTextField
 
 @Composable
@@ -42,11 +44,7 @@ fun TextFieldPassword(customizationState: TextFieldCustomizationState) {
                 placeholder = placeholder,
                 visualisationIcon = hasVisualisationIcon,
                 keyboardOptions = keyboardOptions,
-                characterCounter = if (hasCharacterCounter) {
-                    {
-                        TextFieldCharacterCounter(valueLength = displayedText.length, enabled = isEnabled)
-                    }
-                } else null
+                characterCounter = if (hasCharacterCounter) OdsTextField.CharacterCounter(displayedText.length, TextFieldMaxChars, isEnabled) else null
             )
 
             TextFieldCodeImplementationColumn(
@@ -55,7 +53,8 @@ fun TextFieldPassword(customizationState: TextFieldCustomizationState) {
                 label = label,
                 placeholder = placeholder,
                 errorMessage = errorMessage,
-                hasTrailing = false
+                hasTrailing = false,
+                hasTrailingIcon = false
             )
         }
     }

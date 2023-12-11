@@ -21,6 +21,7 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 import com.orange.ods.compose.component.OdsComposable
 import com.orange.ods.compose.component.content.OdsComponentContent
+import com.orange.ods.compose.component.menu.OdsDropdownMenu
 import com.orange.ods.compose.component.utilities.Preview
 import com.orange.ods.compose.component.utilities.UiModePreviews
 import com.orange.ods.compose.theme.OdsTheme
@@ -39,7 +40,7 @@ import com.orange.ods.compose.theme.OdsTheme
  * @param modifier [Modifier] applied to the top app bar.
  * @param navigationIcon Icon displayed at the start of the top app bar.
  * @param actions Actions displayed at the end of the top app bar. The default layout here is a [androidx.compose.foundation.layout.Row], so icons inside will be placed horizontally.
- * @param overflowMenuActions Actions displayed in the overflow menu.
+ * @param overflowMenuItems List of items displayed in the overflow menu. The top app bar uses `OdsDropdownMenu` to display its overflow menu.
  * @param elevated Controls the elevation of the top app bar: `true` to set an elevation to the top app bar (a shadow is displayed below), `false` otherwise.
  */
 @Composable
@@ -47,9 +48,9 @@ import com.orange.ods.compose.theme.OdsTheme
 fun OdsTopAppBar(
     title: String,
     modifier: Modifier = Modifier,
-    navigationIcon: OdsTopAppBarNavigationIcon? = null,
-    actions: List<OdsTopAppBarActionButton> = emptyList(),
-    overflowMenuActions: List<OdsTopAppBarOverflowMenuActionItem> = emptyList(),
+    navigationIcon: OdsTopAppBar.NavigationIcon? = null,
+    actions: List<OdsTopAppBar.ActionButton> = emptyList(),
+    overflowMenuItems: List<OdsDropdownMenu.Item> = emptyList(),
     elevated: Boolean = true
 ) {
     OdsTopAppBarInternal(
@@ -57,7 +58,7 @@ fun OdsTopAppBar(
         modifier = modifier,
         navigationIcon = navigationIcon,
         actions = actions,
-        overflowMenuActions = overflowMenuActions,
+        overflowMenuItems = overflowMenuItems,
         elevated = elevated
     )
 }
@@ -68,16 +69,16 @@ fun OdsTopAppBar(
 fun OdsTopAppBarInternal(
     title: String,
     modifier: Modifier = Modifier,
-    navigationIcon: OdsTopAppBarNavigationIcon? = null,
+    navigationIcon: OdsTopAppBar.NavigationIcon? = null,
     actions: List<OdsComponentContent<*>> = emptyList(),
-    overflowMenuActions: List<OdsTopAppBarOverflowMenuActionItem> = emptyList(),
+    overflowMenuItems: List<OdsDropdownMenu.Item> = emptyList(),
     elevated: Boolean = true
 ) {
     TopAppBar(
         title = { Text(text = title, style = OdsTheme.typography.h6) },
         modifier = modifier,
         navigationIcon = navigationIcon?.let { { it.Content() } },
-        actions = { OdsTopAppBarActions(actions = actions, overflowMenuActions = overflowMenuActions) },
+        actions = { OdsTopAppBarActions(actions = actions, overflowMenuItems = overflowMenuItems) },
         backgroundColor = OdsTheme.colors.component.topAppBar.barBackground,
         contentColor = OdsTheme.colors.component.topAppBar.barContent,
         elevation = if (elevated) AppBarDefaults.TopAppBarElevation else 0.dp
@@ -87,15 +88,15 @@ fun OdsTopAppBarInternal(
 @UiModePreviews.Default
 @Composable
 private fun PreviewOdsTopAppBar() = Preview {
-    val actions = listOf(OdsTopAppBarActionButton(painterResource(id = android.R.drawable.ic_dialog_info), "Info") {})
+    val actions = listOf(OdsTopAppBar.ActionButton(painterResource(id = android.R.drawable.ic_dialog_info), "Info") {})
     val overflowMenuItems = listOf(
-        OdsTopAppBarOverflowMenuActionItem("Settings") {},
-        OdsTopAppBarOverflowMenuActionItem("Account") {}
+        OdsDropdownMenu.Item("Settings") {},
+        OdsDropdownMenu.Item("Account") {}
     )
     OdsTopAppBar(
         title = "Title",
-        navigationIcon = OdsTopAppBarNavigationIcon(Icons.Filled.ArrowBack, "") {},
+        navigationIcon = OdsTopAppBar.NavigationIcon(Icons.Filled.ArrowBack, "") {},
         actions = actions,
-        overflowMenuActions = overflowMenuItems
+        overflowMenuItems = overflowMenuItems
     )
 }

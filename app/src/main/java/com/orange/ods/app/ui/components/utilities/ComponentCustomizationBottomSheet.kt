@@ -52,8 +52,8 @@ fun ComponentCustomizationBottomSheetScaffold(
 ) {
     val coroutineScope = rememberCoroutineScope()
     val bottomSheetHeaderStateDescription = when (bottomSheetScaffoldState.bottomSheetState.currentValue) {
-        BottomSheetValue.Collapsed -> stringResource(R.string.component_state_collapsed)
-        BottomSheetValue.Expanded -> stringResource(R.string.component_state_expanded)
+        BottomSheetValue.Collapsed -> stringResource(R.string.component_state_bottom_sheet_collapsed)
+        BottomSheetValue.Expanded -> stringResource(R.string.component_state_bottom_sheet_expanded)
     }
     BackHandler(bottomSheetScaffoldState.bottomSheetState.isExpanded) {
         coroutineScope.launch {

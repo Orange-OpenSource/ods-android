@@ -17,8 +17,13 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.ImageBitmap
+import androidx.compose.ui.graphics.painter.Painter
+import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.res.painterResource
 import com.orange.ods.compose.component.OdsComposable
+import com.orange.ods.compose.component.content.OdsComponentContent
+import com.orange.ods.compose.component.content.OdsComponentIcon
 import com.orange.ods.compose.component.icon.OdsIcon
 import com.orange.ods.compose.component.utilities.Preview
 import com.orange.ods.compose.component.utilities.UiModePreviews
@@ -41,7 +46,7 @@ import com.orange.ods.compose.theme.OdsDisplaySurface
 @Composable
 @OdsComposable
 fun OdsIconButton(
-    icon: OdsIconButtonIcon,
+    icon: OdsIconButton.Icon,
     onClick: () -> Unit,
     modifier: Modifier = Modifier,
     enabled: Boolean = true,
@@ -51,7 +56,7 @@ fun OdsIconButton(
         LocalRippleTheme provides displaySurface.rippleTheme
     ) {
         IconButton(onClick = onClick, modifier = modifier, enabled = enabled) {
-            icon.Content(OdsIconButtonIcon.ExtraParameters(enabled, displaySurface))
+            icon.Content(OdsIconButton.Icon.ExtraParameters(enabled, displaySurface))
         }
     }
 }
@@ -70,11 +75,64 @@ internal fun OdsIconButton(
     }
 }
 
+/**
+ * Contains classes to build an [com.orange.ods.compose.component.button.OdsIconButton].
+ */
+object OdsIconButton {
+
+    /**
+     * An icon in an [OdsIconButton].
+     */
+    class Icon : OdsComponentIcon<Icon.ExtraParameters> {
+
+        data class ExtraParameters(
+            val enabled: Boolean,
+            val displaySurface: OdsDisplaySurface
+        ) : OdsComponentContent.ExtraParameters()
+
+        /**
+         * Creates an instance of [OdsIconButton.Icon].
+         *
+         * @param painter Painter of the icon.
+         * @param contentDescription The content description associated to this [OdsIconButton.Icon].
+         */
+        constructor(painter: Painter, contentDescription: String) : super(painter, contentDescription)
+
+        /**
+         * Creates an instance of [OdsIconButton.Icon].
+         *
+         * @param imageVector Image vector of the icon.
+         * @param contentDescription The content description associated to this [OdsIconButton.Icon].
+         */
+        constructor(imageVector: ImageVector, contentDescription: String) : super(imageVector, contentDescription)
+
+        /**
+         * Creates an instance of [OdsIconButton.Icon].
+         *
+         * @param bitmap Image bitmap of the icon.
+         * @param contentDescription The content description associated to this [OdsIconButton.Icon].
+         */
+        constructor(bitmap: ImageBitmap, contentDescription: String) : super(bitmap, contentDescription)
+
+        override val tint: Color
+            @Composable
+            get() = displaySurface.themeColors.onSurface
+
+        @Composable
+        override fun Content(modifier: Modifier) {
+            enabled = extraParameters.enabled
+            displaySurface = extraParameters.displaySurface
+            super.Content(modifier)
+        }
+    }
+
+}
+
 @UiModePreviews.Default
 @Composable
 private fun PreviewOdsIconButton() = Preview {
     OdsIconButton(
         onClick = {},
-        icon = OdsIconButtonIcon(painterResource(id = android.R.drawable.ic_dialog_info), ""),
+        icon = OdsIconButton.Icon(painterResource(id = android.R.drawable.ic_dialog_info), ""),
     )
 }

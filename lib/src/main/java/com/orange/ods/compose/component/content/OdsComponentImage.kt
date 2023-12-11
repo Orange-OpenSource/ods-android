@@ -27,7 +27,7 @@ abstract class OdsComponentImage<T> internal constructor(
     private val contentDescription: String,
     private val alignment: Alignment = Alignment.Center,
     private val contentScale: ContentScale = ContentScale.Fit
-) : OdsComponentContent<T>() where T: OdsComponentContent.ExtraParameters {
+) : OdsComponentContent<T>() where T : OdsComponentContent.ExtraParameters {
 
     protected constructor(
         painter: Painter,

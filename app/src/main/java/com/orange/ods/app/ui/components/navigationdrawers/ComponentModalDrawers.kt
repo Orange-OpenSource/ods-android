@@ -17,10 +17,13 @@ import androidx.compose.material.ExperimentalMaterialApi
 import androidx.compose.material.rememberBottomSheetScaffoldState
 import androidx.compose.material.rememberDrawerState
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.runtime.saveable.rememberSaveable
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.painterResource
@@ -32,21 +35,15 @@ import com.orange.ods.app.domain.recipes.LocalRecipes
 import com.orange.ods.app.ui.components.utilities.ComponentCustomizationBottomSheetScaffold
 import com.orange.ods.app.ui.components.utilities.ComponentLaunchContentColumn
 import com.orange.ods.app.ui.utilities.DrawableManager
-import com.orange.ods.app.ui.utilities.composable.CodeImplementationColumn
-import com.orange.ods.app.ui.utilities.composable.FunctionCallCode
+import com.orange.ods.app.ui.utilities.code.CodeImplementationColumn
+import com.orange.ods.app.ui.utilities.code.FunctionCallCode
+import com.orange.ods.app.ui.utilities.code.IconPainterValue
 import com.orange.ods.app.ui.utilities.composable.Subtitle
 import com.orange.ods.compose.OdsComposable
 import com.orange.ods.compose.component.chip.OdsChoiceChip
 import com.orange.ods.compose.component.chip.OdsChoiceChipsFlowRow
-import com.orange.ods.compose.component.list.OdsListItem
-import com.orange.ods.compose.component.list.OdsListItemTrailingSwitch
+import com.orange.ods.compose.component.listitem.OdsListItem
 import com.orange.ods.compose.component.navigationdrawer.OdsModalDrawer
-import com.orange.ods.compose.component.navigationdrawer.OdsModalDrawerDivider
-import com.orange.ods.compose.component.navigationdrawer.OdsModalDrawerHeader
-import com.orange.ods.compose.component.navigationdrawer.OdsModalDrawerHeaderImageDisplayType
-import com.orange.ods.compose.component.navigationdrawer.OdsModalDrawerItem
-import com.orange.ods.compose.component.navigationdrawer.OdsModalDrawerListItem
-import com.orange.ods.compose.component.navigationdrawer.OdsModalDrawerSectionLabel
 import kotlinx.coroutines.launch
 
 @OptIn(ExperimentalMaterialApi::class)
@@ -59,49 +56,55 @@ fun ComponentModalDrawers() {
     val categories = LocalCategories.current
 
     with(customizationState) {
-        val modalDrawerItems: MutableList<OdsModalDrawerItem> = categories.subList(1, categories.size).map {
-            OdsModalDrawerListItem(if (isListIconChecked) it.iconResId else null, it.name)
+        var selectedItem: OdsModalDrawer.ListItem? by remember { mutableStateOf(null) }
+
+        val modalDrawerItems: MutableList<OdsModalDrawer.Item> = categories.subList(1, categories.size).map { category ->
+            OdsModalDrawer.ListItem(
+                category.name,
+                if (isListIconChecked && category.iconResId != null) painterResource(id = category.iconResId) else null
+            ) { item -> selectedItem = item }
         }.toMutableList()
 
         val sectionListCategory = categories.first()
         val sectionListRecipes = recipes.filter { it.category.id == sectionListCategory.id }
 
         if (hasLabel || hasDivider) {
-            if (hasDivider) modalDrawerItems.add(OdsModalDrawerDivider)
-            if (hasLabel) modalDrawerItems.add(OdsModalDrawerSectionLabel(sectionListCategory.name))
+            if (hasDivider) modalDrawerItems.add(OdsModalDrawer.Divider)
+            if (hasLabel) modalDrawerItems.add(OdsModalDrawer.SectionHeader(sectionListCategory.name))
             sectionListRecipes.forEach { recipe ->
-                val item = OdsModalDrawerListItem(if (isListIconChecked) recipe.iconResId else null, recipe.title)
+                val item =
+                    OdsModalDrawer.ListItem(
+                        recipe.title,
+                        if (isListIconChecked && recipe.iconResId != null) painterResource(id = recipe.iconResId) else null
+                    ) { item -> selectedItem = item }
                 modalDrawerItems.add(item)
             }
         }
 
         val title = stringResource(id = R.string.component_modal_drawer_side)
         val subtitle = if (isSubTitleChecked) stringResource(id = R.string.component_element_example) else null
-        val imageDisplayType = when {
-            hasAvatar -> OdsModalDrawerHeaderImageDisplayType.Avatar
-            hasBackground -> OdsModalDrawerHeaderImageDisplayType.Background
-            else -> OdsModalDrawerHeaderImageDisplayType.None
+        val imagePainter = rememberAsyncImagePainter(
+            model = rememberSaveable { recipes.random() }.imageUrl,
+            placeholder = painterResource(id = DrawableManager.getPlaceholderResId()),
+            error = painterResource(id = DrawableManager.getPlaceholderResId(error = true))
+        )
+
+        LaunchedEffect(key1 = Unit) {
+            selectedItem = modalDrawerItems.firstOrNull { it is OdsModalDrawer.ListItem } as? OdsModalDrawer.ListItem
         }
-        val selectedItemState = remember { mutableStateOf(modalDrawerItems.firstOrNull { it is OdsModalDrawerListItem }) }
         OdsModalDrawer(
-            drawerHeader = OdsModalDrawerHeader(
+            header = OdsModalDrawer.Header(
                 title = title,
-                image = if (hasBackground || hasAvatar) {
-                    rememberAsyncImagePainter(
-                        model = rememberSaveable { recipes.random() }.imageUrl,
-                        placeholder = painterResource(id = DrawableManager.getPlaceholderResId()),
-                        error = painterResource(id = DrawableManager.getPlaceholderResId(error = true))
-                    )
-                } else null,
+                image = when {
+                    hasAvatar -> OdsModalDrawer.Header.Avatar(imagePainter, "")
+                    hasBackground -> OdsModalDrawer.Header.Background(imagePainter)
+                    else -> null
+                },
                 subtitle = subtitle,
-                imageDisplayType = imageDisplayType
             ),
-            drawerContentList = if (isContentExampleChecked) modalDrawerItems else emptyList(),
-            drawerState = drawerState,
-            selectedItem = selectedItemState.value,
-            onItemClick = { item ->
-                selectedItemState.value = item
-            },
+            items = if (isContentExampleChecked) modalDrawerItems else emptyList(),
+            state = drawerState,
+            selectedItem = selectedItem,
             content = {
                 if (!isContentExampleChecked) {
                     listIconChecked.value = false
@@ -113,7 +116,7 @@ fun ComponentModalDrawers() {
                     bottomSheetContent = {
                         OdsListItem(
                             text = stringResource(id = R.string.component_modal_drawer_content_example),
-                            trailing = OdsListItemTrailingSwitch(contentExampleChecked.value, { contentExampleChecked.value = it })
+                            trailing = OdsListItem.TrailingSwitch(contentExampleChecked.value, { contentExampleChecked.value = it })
                         )
                         Subtitle(textRes = R.string.component_modal_drawer_header_image, horizontalPadding = true)
                         OdsChoiceChipsFlowRow(
@@ -137,11 +140,11 @@ fun ComponentModalDrawers() {
                         )
                         OdsListItem(
                             text = stringResource(id = R.string.component_modal_drawer_subtitle),
-                            trailing = OdsListItemTrailingSwitch(subtitleChecked.value, { subtitleChecked.value = it }, isContentExampleChecked)
+                            trailing = OdsListItem.TrailingSwitch(subtitleChecked.value, { subtitleChecked.value = it }, isContentExampleChecked)
                         )
                         OdsListItem(
                             text = stringResource(id = R.string.component_modal_drawer_list_icon),
-                            trailing = OdsListItemTrailingSwitch(listIconChecked.value, { listIconChecked.value = it }, isContentExampleChecked)
+                            trailing = OdsListItem.TrailingSwitch(listIconChecked.value, { listIconChecked.value = it }, isContentExampleChecked)
                         )
                         Subtitle(textRes = R.string.component_modal_drawer_list_example, horizontalPadding = true)
                         OdsChoiceChipsFlowRow(
@@ -176,28 +179,32 @@ fun ComponentModalDrawers() {
                                 name = OdsComposable.OdsModalDrawer.name,
                                 exhaustiveParameters = false,
                                 parameters = {
-                                    classInstance<OdsModalDrawerHeader>("drawerHeader") {
+                                    classInstance<OdsModalDrawer.Header>("header") {
                                         title(title)
-                                        image()
-                                        enum("imageDisplayType", imageDisplayType)
+                                        when {
+                                            hasBackground -> classInstance<OdsModalDrawer.Header.Background>("image") { painter() }
+                                            hasAvatar -> classInstance<OdsModalDrawer.Header.Avatar>("image") {
+                                                painter()
+                                                contentDescription("")
+                                            }
+                                        }
                                         subtitle?.let { subtitle(it) }
                                     }
-                                    list("drawerContentList") {
+                                    list("items") {
                                         if (isContentExampleChecked) {
                                             if (hasLabel) {
-                                                classInstance<OdsModalDrawerSectionLabel> {
+                                                classInstance<OdsModalDrawer.SectionHeader> {
                                                     label("Section")
                                                 }
                                             }
-                                            classInstance<OdsModalDrawerListItem> {
-                                                icon()
+                                            classInstance<OdsModalDrawer.ListItem> {
+                                                simple("leadingIcon", IconPainterValue)
                                                 simple("text", "<item label>")
                                             }
-                                            if (hasDivider) classInstance<OdsModalDrawerDivider>()
+                                            if (hasDivider) classInstance<OdsModalDrawer.Divider>()
                                         }
                                     }
-                                    simple("selectedItem", "<OdsModalDrawerItem>")
-                                    lambda("onItemClick")
+                                    simple("selectedItem", "<OdsModalDrawer.ListItem>")
                                     lambda("content")
                                 }
                             )

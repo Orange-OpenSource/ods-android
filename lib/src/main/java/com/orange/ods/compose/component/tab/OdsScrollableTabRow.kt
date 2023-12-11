@@ -12,16 +12,17 @@ package com.orange.ods.compose.component.tab
 
 import androidx.annotation.DrawableRes
 import androidx.compose.material.ScrollableTabRow
-import androidx.compose.material.Tab
 import androidx.compose.material.TabRowDefaults
 import androidx.compose.material.TabRowDefaults.tabIndicatorOffset
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableIntStateOf
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.tooling.preview.PreviewParameter
 import com.orange.ods.compose.component.OdsComposable
 import com.orange.ods.compose.component.utilities.Preview
 import com.orange.ods.compose.component.utilities.UiModePreviews
@@ -30,21 +31,21 @@ import com.orange.ods.compose.theme.OdsTheme
 /**
  * <a href="https://system.design.orange.com/0c1af118d/p/513d27-tabs/b/50cb71" class="external" target="_blank">ODS tabs</a>.
  *
- * An OdsScrollableTabRow is a Jetpack Compose [ScrollableTabRow] with the Orange design and theme.
+ * An [OdsScrollableTabRow] is a Jetpack Compose [ScrollableTabRow] with the Orange design and theme.
  * @see ScrollableTabRow documentation
  *
- * @param selectedTabIndex the index of the currently selected tab.
- * @param modifier optional [Modifier] for this TabRow.
- * @param tabs the tabs inside this TabRow. Typically this will be multiple [Tab]s. Each element
- * inside this lambda will be measured and placed evenly across the TabRow, each taking up equal
- * space. Use [OdsTab] to display Orange styled tabs.
+ * @param selectedTabIndex Index of the currently selected tab.
+ * @param tabs List of [OdsTabRow.Tab] displayed inside the tabs row.
+ * @param modifier [Modifier] applied to the scrollable tabs row.
+ * @param tabIconPosition Controls the position of the icon in the tabs. By default, the icon is displayed above the text.
  */
 @Composable
 @OdsComposable
 fun OdsScrollableTabRow(
     selectedTabIndex: Int,
+    tabs: List<OdsTabRow.Tab>,
     modifier: Modifier = Modifier,
-    tabs: @Composable () -> Unit
+    tabIconPosition: OdsTabRow.Tab.Icon.Position = OdsTabRow.Tab.Icon.Position.Top
 ) {
     ScrollableTabRow(
         modifier = modifier,
@@ -60,13 +61,13 @@ fun OdsScrollableTabRow(
             }
         },
         divider = {},
-        tabs = tabs
+        tabs = { tabs.forEachIndexed { index, tab -> tab.Content(OdsTabRow.Tab.ExtraParameters(selected = index == selectedTabIndex, iconPosition = tabIconPosition)) } }
     )
 }
 
 @UiModePreviews.Default
 @Composable
-private fun PreviewOdsScrollableTabRow() = Preview {
+private fun PreviewOdsScrollableTabRow(@PreviewParameter(OdsTabRowPreviewParameterProvider::class) parameter: OdsTabPreviewParameter) = Preview {
     data class Tab(@DrawableRes val iconResId: Int, val text: String)
 
     val tabs = listOf(
@@ -76,15 +77,18 @@ private fun PreviewOdsScrollableTabRow() = Preview {
         Tab(android.R.drawable.ic_dialog_info, "Fourth")
     )
 
-    var selectedTabIndex by remember { mutableStateOf(0) }
-    OdsScrollableTabRow(selectedTabIndex = selectedTabIndex) {
-        tabs.forEachIndexed { index, tab ->
-            OdsTab(
-                selected = selectedTabIndex == index,
-                onClick = { selectedTabIndex = index },
-                text = tab.text,
-                icon = painterResource(id = tab.iconResId)
-            )
-        }
+    var selectedTabIndex by remember { mutableIntStateOf(0) }
+    with(parameter) {
+        OdsScrollableTabRow(
+            selectedTabIndex = selectedTabIndex,
+            tabs = tabs.mapIndexed { index, tab ->
+                OdsTabRow.Tab(
+                    icon = if (hasIcon) OdsTabRow.Tab.Icon(painterResource(id = tab.iconResId), "") else null,
+                    text = if (hasText) tab.text else null,
+                    enabled = enabled,
+                    onClick = { selectedTabIndex = index }
+                )
+            }
+        )
     }
 }

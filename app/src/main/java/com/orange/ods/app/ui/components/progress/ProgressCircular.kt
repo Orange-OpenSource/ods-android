@@ -25,14 +25,13 @@ import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.stringResource
 import com.orange.ods.app.R
 import com.orange.ods.app.ui.components.utilities.ComponentCustomizationBottomSheetScaffold
-import com.orange.ods.app.ui.utilities.composable.CodeImplementationColumn
-import com.orange.ods.app.ui.utilities.composable.FunctionCallCode
+import com.orange.ods.app.ui.utilities.code.CodeImplementationColumn
+import com.orange.ods.app.ui.utilities.code.FunctionCallCode
 import com.orange.ods.app.ui.utilities.composable.Subtitle
 import com.orange.ods.compose.OdsComposable
 import com.orange.ods.compose.component.chip.OdsChoiceChip
 import com.orange.ods.compose.component.chip.OdsChoiceChipsFlowRow
-import com.orange.ods.compose.component.list.OdsListItem
-import com.orange.ods.compose.component.list.OdsListItemTrailingSwitch
+import com.orange.ods.compose.component.listitem.OdsListItem
 import com.orange.ods.compose.component.progressindicator.OdsCircularProgressIndicator
 
 @OptIn(ExperimentalMaterialApi::class)
@@ -47,8 +46,8 @@ fun ProgressCircular() {
                 Subtitle(textRes = R.string.component_element_type, horizontalPadding = true)
                 OdsChoiceChipsFlowRow(
                     value = type.value,
-                    onValueChange = {
-                        value -> type.value = value
+                    onValueChange = { value ->
+                        type.value = value
                         if (value == ProgressCustomizationState.Type.Indeterminate) resetAnimation()
                     },
                     modifier = Modifier.padding(horizontal = dimensionResource(id = com.orange.ods.R.dimen.spacing_m)),
@@ -62,7 +61,7 @@ fun ProgressCircular() {
                 )
                 OdsListItem(
                     text = stringResource(id = R.string.component_element_label),
-                    trailing = OdsListItemTrailingSwitch(label.value, { label.value = it })
+                    trailing = OdsListItem.TrailingSwitch(label.value, { label.value = it })
                 )
             }) {
             Column(
@@ -80,7 +79,7 @@ fun ProgressCircular() {
                 )
                 if (type.value == ProgressCustomizationState.Type.Determinate) {
                     LaunchedEffect(DeterminateProgressTargetValue) {
-                        determinateProgressValue.value = DeterminateProgressTargetValue
+                        determinateProgressValue.floatValue = DeterminateProgressTargetValue
                     }
                 }
 

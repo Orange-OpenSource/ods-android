@@ -54,8 +54,7 @@ import com.orange.ods.theme.OdsComponentsConfiguration
  * @param modifier [Modifier] applied to the chip.
  * @param enabled Controls the enabled state of the chip. When `false`, this chip will not respond to user input.
  * @param selected Controls the selected state of the chip. When `true`, the chip is highlighted (useful for choice chips).
- * @param leadingIcon [OdsChipLeadingIcon] displayed at the start of the chip, preceding the text.
- * @param leadingAvatar [OdsChipLeadingAvatar] displayed in a circle shape at the start of the chip, preceding the content text.
+ * @param leading The leading content displayed at the start of the chip, preceding the text.
  * @param onCancel Callback called on chip cancel cross click. Pass `null` for no cancel cross.
  */
 @Composable
@@ -66,8 +65,7 @@ fun OdsChip(
     modifier: Modifier = Modifier,
     enabled: Boolean = true,
     selected: Boolean = false,
-    leadingIcon: OdsChipLeadingIcon? = null,
-    leadingAvatar: OdsChipLeadingAvatar? = null,
+    leading: OdsChip.Leading? = null,
     onCancel: (() -> Unit)? = null
 ) {
     OdsChip(
@@ -77,8 +75,7 @@ fun OdsChip(
         modifier = modifier,
         enabled = enabled,
         selected = selected,
-        leadingIcon = leadingIcon,
-        leadingAvatar = leadingAvatar,
+        leading = leading,
         onCancel = onCancel
     )
 }
@@ -93,8 +90,7 @@ private fun OdsChip(
     modifier: Modifier = Modifier,
     enabled: Boolean = true,
     selected: Boolean = false,
-    leadingIcon: OdsChipLeadingIcon? = null,
-    leadingAvatar: OdsChipLeadingAvatar? = null,
+    leading: OdsChip.Leading? = null,
     onCancel: (() -> Unit)? = null
 ) {
     val chipStateDescription = selectionStateDescription(selected)
@@ -109,12 +105,12 @@ private fun OdsChip(
         } else null,
         enabled = enabled,
         colors = odsChipColors(outlined, selected),
-        leadingIcon = when {
-            leadingIcon != null -> {
-                { leadingIcon.Content() }
+        leadingIcon = when(leading) {
+            is OdsChip.LeadingIcon -> {
+                { leading.Content() }
             }
-            leadingAvatar != null -> {
-                { leadingAvatar.Content(enabled) }
+            is OdsChip.LeadingAvatar -> {
+                { leading.Content(enabled) }
             }
             else -> null
         }
@@ -167,6 +163,6 @@ private fun PreviewOdsChip() = Preview {
         text = "Text",
         selected = selected,
         onClick = { selected = !selected },
-        leadingAvatar = OdsChipLeadingAvatar(painterResource(id = R.drawable.placeholder_small), "")
+        leading = OdsChip.LeadingAvatar(painterResource(id = R.drawable.placeholder_small), "")
     )
 }

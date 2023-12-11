@@ -34,17 +34,14 @@ import com.orange.ods.app.ui.components.chips.ChipCustomizationState.LeadingElem
 import com.orange.ods.app.ui.components.utilities.ComponentCustomizationBottomSheetScaffold
 import com.orange.ods.app.ui.components.utilities.clickOnElement
 import com.orange.ods.app.ui.utilities.DrawableManager
-import com.orange.ods.app.ui.utilities.composable.CodeImplementationColumn
-import com.orange.ods.app.ui.utilities.composable.FunctionCallCode
+import com.orange.ods.app.ui.utilities.code.CodeImplementationColumn
+import com.orange.ods.app.ui.utilities.code.FunctionCallCode
 import com.orange.ods.app.ui.utilities.composable.Subtitle
 import com.orange.ods.compose.OdsComposable
 import com.orange.ods.compose.component.chip.OdsChip
-import com.orange.ods.compose.component.chip.OdsChipLeadingAvatar
-import com.orange.ods.compose.component.chip.OdsChipLeadingIcon
 import com.orange.ods.compose.component.chip.OdsChoiceChip
 import com.orange.ods.compose.component.chip.OdsChoiceChipsFlowRow
-import com.orange.ods.compose.component.list.OdsListItem
-import com.orange.ods.compose.component.list.OdsListItemTrailingSwitch
+import com.orange.ods.compose.component.listitem.OdsListItem
 import com.orange.ods.compose.text.OdsTextBody2
 
 @OptIn(ExperimentalMaterialApi::class)
@@ -74,7 +71,7 @@ fun Chip(variant: Variant) {
 
                 OdsListItem(
                     text = stringResource(id = R.string.component_state_enabled),
-                    trailing = OdsListItemTrailingSwitch(enabled.value, { enabled.value = it })
+                    trailing = OdsListItem.TrailingSwitch(enabled.value, { enabled.value = it })
                 )
             }) {
             ChipTypeDemo(chipType.value) {
@@ -148,16 +145,19 @@ private fun Chip(chipCustomizationState: ChipCustomizationState) {
             OdsChip(
                 text = recipe?.title.orEmpty(),
                 onClick = { clickOnElement(context, recipe?.title.orEmpty()) },
-                leadingIcon = if (isActionChip || hasLeadingIcon) recipe?.iconResId?.let { OdsChipLeadingIcon(painterResource(id = it), "") } else null,
-                leadingAvatar = if (hasLeadingAvatar) {
-                    OdsChipLeadingAvatar(
-                        rememberAsyncImagePainter(
-                            model = recipe?.imageUrl,
-                            placeholder = painterResource(id = DrawableManager.getPlaceholderSmallResId()),
-                            error = painterResource(id = DrawableManager.getPlaceholderSmallResId(error = true))
-                        ), ""
-                    )
-                } else null,
+                leading = when {
+                    isActionChip || hasLeadingIcon -> recipe?.iconResId?.let { OdsChip.LeadingIcon(painterResource(id = it), "") }
+                    hasLeadingAvatar ->  {
+                        OdsChip.LeadingAvatar(
+                            rememberAsyncImagePainter(
+                                model = recipe?.imageUrl,
+                                placeholder = painterResource(id = DrawableManager.getPlaceholderSmallResId()),
+                                error = painterResource(id = DrawableManager.getPlaceholderSmallResId(error = true))
+                            ), ""
+                        )
+                    }
+                    else -> null
+                },
                 enabled = isEnabled,
                 onCancel = if (isInputChip) {
                     { clickOnElement(context, cancelCrossLabel) }
@@ -167,22 +167,23 @@ private fun Chip(chipCustomizationState: ChipCustomizationState) {
             Spacer(modifier = Modifier.padding(top = dimensionResource(com.orange.ods.R.dimen.spacing_s)))
 
             CodeImplementationColumn {
+                val leadingParameterName = "leading"
                 FunctionCallCode(
                     name = OdsComposable.OdsChip.name,
                     exhaustiveParameters = false,
                     parameters = {
                         text(recipe?.title.orEmpty())
-                        if (isActionChip || hasLeadingIcon) {
-                            classInstance<OdsChipLeadingIcon>("leadingIcon") {
-                                painter()
-                                contentDescription("")
-                            }
-                        }
-                        if (hasLeadingAvatar) {
-                            classInstance<OdsChipLeadingAvatar>("leadingAvatar") {
-                                image()
-                                contentDescription("")
-                            }
+                        when {
+                            isActionChip || hasLeadingIcon ->
+                                classInstance<OdsChip.LeadingIcon>(leadingParameterName) {
+                                    painter()
+                                    contentDescription("")
+                                }
+                            hasLeadingAvatar ->
+                                classInstance<OdsChip.LeadingAvatar>(leadingParameterName) {
+                                    image()
+                                    contentDescription("")
+                                }
                         }
                         if (!isEnabled) enabled(false)
                         onClick()

@@ -20,31 +20,32 @@ import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableIntStateOf
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.painterResource
+import com.orange.ods.R
 import com.orange.ods.app.databinding.OdsIconToggleButtonsGroupBinding
 import com.orange.ods.app.domain.recipes.LocalRecipes
 import com.orange.ods.app.ui.UiFramework
 import com.orange.ods.app.ui.components.buttons.InvertedBackgroundColumn
-import com.orange.ods.app.ui.utilities.composable.CodeImplementationColumn
-import com.orange.ods.app.ui.utilities.composable.FunctionCallCode
+import com.orange.ods.app.ui.utilities.code.CodeImplementationColumn
+import com.orange.ods.app.ui.utilities.code.FunctionCallCode
 import com.orange.ods.compose.OdsComposable
 import com.orange.ods.compose.component.button.OdsIconToggleButtonsRow
-import com.orange.ods.compose.component.button.OdsIconToggleButtonsRowIcon
 import com.orange.ods.compose.theme.OdsDisplaySurface
 
 @Composable
 fun ButtonsIconToggleGroup(customizationState: ButtonIconCustomizationState) {
     val icons =
         LocalRecipes.current.distinctBy { it.iconResId }.filter { it.iconResId != null }.take(ButtonIconCustomizationState.MaxToggleCount).map { recipe ->
-            OdsIconToggleButtonsRowIcon(painterResource(id = recipe.iconResId!!), recipe.title, customizationState.enabled.value)
+            OdsIconToggleButtonsRow.Icon(painterResource(id = recipe.iconResId!!), recipe.title, customizationState.enabled.value)
         }
 
-    var selectedIndex by rememberSaveable { mutableStateOf(0) }
+    var selectedIndex by rememberSaveable { mutableIntStateOf(0) }
 
     with(customizationState) {
         Column(
@@ -57,7 +58,7 @@ fun ButtonsIconToggleGroup(customizationState: ButtonIconCustomizationState) {
                 icons = icons,
                 selectedIndex = selectedIndex,
                 onSelectedIndexChange = { index -> selectedIndex = index },
-                toggleCount = toggleCount.value
+                toggleCount = toggleCount.intValue
             )
 
             Spacer(modifier = Modifier.padding(top = dimensionResource(com.orange.ods.R.dimen.spacing_s)))
@@ -67,13 +68,13 @@ fun ButtonsIconToggleGroup(customizationState: ButtonIconCustomizationState) {
                     icons = icons,
                     selectedIndex = selectedIndex,
                     onSelectedIndexChange = { index -> selectedIndex = index },
-                    toggleCount = toggleCount.value,
+                    toggleCount = toggleCount.intValue,
                     displaySurface = displaySurface
                 )
             }
 
             CodeImplementationColumn(
-                modifier = Modifier.padding(horizontal = dimensionResource(id = com.orange.ods.R.dimen.screen_horizontal_margin)),
+                modifier = Modifier.padding(horizontal = dimensionResource(id = R.dimen.screen_horizontal_margin)),
                 xmlAvailable = true
             ) {
                 FunctionCallCode(
@@ -81,8 +82,8 @@ fun ButtonsIconToggleGroup(customizationState: ButtonIconCustomizationState) {
                     exhaustiveParameters = false,
                     parameters = {
                         list("icons") {
-                            repeat(toggleCount.value) {
-                                classInstance<OdsIconToggleButtonsRowIcon> {
+                            repeat(toggleCount.intValue) {
+                                classInstance<OdsIconToggleButtonsRow.Icon> {
                                     painter()
                                     contentDescription("")
                                     if (!isEnabled) enabled(false)
@@ -99,7 +100,7 @@ fun ButtonsIconToggleGroup(customizationState: ButtonIconCustomizationState) {
 
 @Composable
 private fun ToggleButtonsRow(
-    icons: List<OdsIconToggleButtonsRowIcon>,
+    icons: List<OdsIconToggleButtonsRow.Icon>,
     selectedIndex: Int,
     onSelectedIndexChange: (Int) -> Unit,
     toggleCount: Int,

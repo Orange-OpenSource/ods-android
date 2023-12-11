@@ -22,17 +22,16 @@ import androidx.compose.ui.draw.alpha
 import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.semantics.onClick
 import com.orange.ods.app.R
 import com.orange.ods.app.domain.recipes.LocalRecipes
 import com.orange.ods.app.ui.components.utilities.ComponentCustomizationBottomSheetScaffold
-import com.orange.ods.app.ui.utilities.composable.CodeImplementationColumn
-import com.orange.ods.app.ui.utilities.composable.FunctionCallCode
+import com.orange.ods.app.ui.utilities.code.CodeImplementationColumn
+import com.orange.ods.app.ui.utilities.code.FunctionCallCode
 import com.orange.ods.compose.OdsComposable
 import com.orange.ods.compose.component.chip.OdsChoiceChip
 import com.orange.ods.compose.component.chip.OdsChoiceChipsFlowRow
-import com.orange.ods.compose.component.list.OdsListItem
-import com.orange.ods.compose.component.list.OdsListItemIcon
-import com.orange.ods.compose.component.list.OdsListItemIconType
+import com.orange.ods.compose.component.listitem.OdsListItem
 import com.orange.ods.compose.text.OdsTextBody1
 import com.orange.ods.compose.text.OdsTextSubtitle1
 
@@ -53,8 +52,8 @@ fun ComponentSheetsBottom() {
                 recipes.take(3).forEach { recipe ->
                     OdsListItem(
                         modifier = Modifier.alpha(if (isEmpty) 0.0f else 1.0f),
-                        icon = recipe.iconResId?.let { iconRes ->
-                            OdsListItemIcon(OdsListItemIconType.Icon, painterResource(id = iconRes), "")
+                        leadingIcon = recipe.iconResId?.let { iconRes ->
+                            OdsListItem.LeadingIcon(OdsListItem.LeadingIcon.Type.Icon, painterResource(id = iconRes), "")
                         },
                         text = recipe.title
                     )
@@ -72,21 +71,30 @@ fun ComponentSheetsBottom() {
                         text = stringResource(id = R.string.component_element_content),
                         modifier = Modifier.padding(top = dimensionResource(id = com.orange.ods.R.dimen.spacing_s))
                     )
+                    val contentEmptyDesc = stringResource(id = R.string.component_sheet_bottom_customize_content_empty_desc)
+                    val contentExampleDesc = stringResource(id = R.string.component_sheet_bottom_customize_content_example_desc)
                     OdsChoiceChipsFlowRow(
                         value = content.value,
                         onValueChange = { value -> content.value = value },
-                        modifier = Modifier.padding(horizontal = dimensionResource(id = com.orange.ods.R.dimen.spacing_m)),
                         chips = listOf(
-                            OdsChoiceChip(text = stringResource(id = R.string.component_element_empty), value = SheetsBottomCustomizationState.Content.Empty),
+                            OdsChoiceChip(
+                                text = stringResource(id = R.string.component_element_empty),
+                                value = SheetsBottomCustomizationState.Content.Empty,
+                                semantics = {
+                                    onClick(contentEmptyDesc, null)
+                                }),
                             OdsChoiceChip(
                                 text = stringResource(id = R.string.component_element_example),
-                                value = SheetsBottomCustomizationState.Content.Example
+                                value = SheetsBottomCustomizationState.Content.Example,
+                                semantics = {
+                                    onClick(contentExampleDesc, null)
+                                }
                             )
                         )
                     )
                 }
 
-                CodeImplementationColumn {
+                CodeImplementationColumn(modifier = Modifier.padding(horizontal = dimensionResource(id = com.orange.ods.R.dimen.screen_horizontal_margin))) {
                     FunctionCallCode(
                         name = OdsComposable.OdsBottomSheetScaffold.name,
                         exhaustiveParameters = false,

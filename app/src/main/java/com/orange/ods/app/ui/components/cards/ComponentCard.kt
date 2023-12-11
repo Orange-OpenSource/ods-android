@@ -22,11 +22,10 @@ import com.orange.ods.app.ui.components.Variant
 import com.orange.ods.app.ui.components.utilities.ComponentCountRow
 import com.orange.ods.app.ui.components.utilities.ComponentCustomizationBottomSheetScaffold
 import com.orange.ods.app.ui.utilities.composable.Subtitle
-import com.orange.ods.compose.component.card.OdsHorizontalCardImagePosition
+import com.orange.ods.compose.component.card.OdsCard
 import com.orange.ods.compose.component.chip.OdsChoiceChip
 import com.orange.ods.compose.component.chip.OdsChoiceChipsFlowRow
-import com.orange.ods.compose.component.list.OdsListItem
-import com.orange.ods.compose.component.list.OdsListItemTrailingSwitch
+import com.orange.ods.compose.component.listitem.OdsListItem
 
 @OptIn(ExperimentalMaterialApi::class)
 @Composable
@@ -39,12 +38,12 @@ fun ComponentCard(variant: Variant) {
             bottomSheetContent = {
                 OdsListItem(
                     text = stringResource(id = R.string.component_card_clickable),
-                    trailing = OdsListItemTrailingSwitch(clickable.value, { clickable.value = it })
+                    trailing = OdsListItem.TrailingSwitch(clickable.value, { clickable.value = it })
                 )
                 if (variant == Variant.CardVerticalHeaderFirst) {
                     OdsListItem(
                         text = stringResource(id = R.string.component_element_thumbnail),
-                        trailing = OdsListItemTrailingSwitch(thumbnailChecked.value, { thumbnailChecked.value = it })
+                        trailing = OdsListItem.TrailingSwitch(thumbnailChecked.value, { thumbnailChecked.value = it })
                     )
                 } else if (variant == Variant.CardHorizontal) {
                     Subtitle(textRes = R.string.component_card_horizontal_image_position, horizontalPadding = true)
@@ -55,23 +54,23 @@ fun ComponentCard(variant: Variant) {
                         chips = listOf(
                             OdsChoiceChip(
                                 text = stringResource(id = R.string.component_card_horizontal_image_position_start),
-                                value = OdsHorizontalCardImagePosition.Start
+                                value = OdsCard.Image.Position.Start
                             ),
                             OdsChoiceChip(
                                 text = stringResource(id = R.string.component_card_horizontal_image_position_end),
-                                value = OdsHorizontalCardImagePosition.End
+                                value = OdsCard.Image.Position.End
                             )
                         )
                     )
                 }
                 OdsListItem(
                     text = stringResource(id = R.string.component_element_subtitle),
-                    trailing = OdsListItemTrailingSwitch(subtitleChecked.value, { subtitleChecked.value = it })
+                    trailing = OdsListItem.TrailingSwitch(subtitleChecked.value, { subtitleChecked.value = it })
                 )
                 if (variant in listOf(Variant.CardVerticalHeaderFirst, Variant.CardVerticalImageFirst, Variant.CardHorizontal)) {
                     OdsListItem(
                         text = stringResource(id = R.string.component_element_text),
-                        trailing = OdsListItemTrailingSwitch(textChecked.value, { textChecked.value = it })
+                        trailing = OdsListItem.TrailingSwitch(textChecked.value, { textChecked.value = it })
                     )
                     ComponentCountRow(
                         title = stringResource(id = R.string.component_card_action_button_count),
@@ -87,7 +86,7 @@ fun ComponentCard(variant: Variant) {
                     if (!hasFirstButton) dividerChecked.value = false
                     OdsListItem(
                         text = stringResource(id = R.string.component_element_divider),
-                        trailing = OdsListItemTrailingSwitch(dividerChecked.value, { dividerChecked.value = it }, hasFirstButton)
+                        trailing = OdsListItem.TrailingSwitch(dividerChecked.value, { dividerChecked.value = it }, hasFirstButton)
                     )
                 }
             }) {

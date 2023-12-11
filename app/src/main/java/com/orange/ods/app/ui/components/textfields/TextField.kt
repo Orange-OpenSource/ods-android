@@ -24,13 +24,12 @@ import androidx.compose.ui.text.input.KeyboardCapitalization
 import com.orange.ods.app.R
 import com.orange.ods.app.ui.components.textfields.TextFieldCustomizationState.Companion.TextFieldMaxChars
 import com.orange.ods.app.ui.components.utilities.clickOnElement
-import com.orange.ods.app.ui.utilities.composable.CodeImplementationColumn
-import com.orange.ods.app.ui.utilities.composable.FunctionCallCode
+import com.orange.ods.app.ui.utilities.code.CodeImplementationColumn
+import com.orange.ods.app.ui.utilities.code.FunctionCallCode
 import com.orange.ods.compose.OdsComposable
-import com.orange.ods.compose.component.textfield.OdsIconTrailing
 import com.orange.ods.compose.component.textfield.OdsTextField
-import com.orange.ods.compose.component.textfield.OdsTextFieldCharacterCounter
-import com.orange.ods.compose.component.textfield.OdsTextTrailing
+
+private const val TrailingText = "units"
 
 @Composable
 fun TextField(customizationState: TextFieldCustomizationState) {
@@ -42,14 +41,12 @@ fun TextField(customizationState: TextFieldCustomizationState) {
         .padding(top = dimensionResource(id = com.orange.ods.R.dimen.spacing_s))
 
     with(customizationState) {
-        val leadingIcon = if (hasLeadingIcon) painterResource(id = R.drawable.ic_heart) else null
+        val leadingIcon = if (hasLeadingIcon) OdsTextField.LeadingIcon(painterResource(id = R.drawable.ic_heart), "") else null
         val errorMessage = if (isError) stringResource(id = R.string.component_text_field_error_message) else null
         val onValueChange: (String) -> Unit = { updateText(it) }
         val label = stringResource(id = R.string.component_element_label)
         val placeholder = stringResource(id = R.string.component_text_field_placeholder)
-        val characterCounter: (@Composable () -> Unit)? = if (hasCharacterCounter) {
-            { TextFieldCharacterCounter(valueLength = displayedText.length, enabled = isEnabled) }
-        } else null
+        val characterCounter = if (hasCharacterCounter) OdsTextField.CharacterCounter(displayedText.length, TextFieldMaxChars, isEnabled) else null
         val hasTrailing = hasTrailingText || hasTrailingIcon
 
         Column {
@@ -65,11 +62,12 @@ fun TextField(customizationState: TextFieldCustomizationState) {
                     label = label,
                     placeholder = placeholder,
                     trailing = if (hasTrailingIcon) {
-                        OdsIconTrailing(
+                        OdsTextField.TrailingIcon(
                             painter = painterResource(id = com.orange.ods.R.drawable.ic_eye),
+                            contentDescription = "",
                             onClick = { clickOnElement(context = context, trailingIconName) })
                     } else {
-                        OdsTextTrailing(text = "units")
+                        OdsTextField.TrailingText(text = TrailingText)
                     },
                     singleLine = isSingleLine,
                     keyboardOptions = keyboardOptions,
@@ -98,19 +96,11 @@ fun TextField(customizationState: TextFieldCustomizationState) {
                 label = label,
                 placeholder = placeholder,
                 errorMessage = errorMessage,
-                hasTrailing = hasTrailing
+                hasTrailing = hasTrailing,
+                hasTrailingIcon = hasTrailingIcon
             )
         }
     }
-}
-
-@Composable
-fun TextFieldCharacterCounter(valueLength: Int, enabled: Boolean) {
-    OdsTextFieldCharacterCounter(
-        valueLength = valueLength,
-        maxChars = TextFieldMaxChars,
-        enabled = enabled
-    )
 }
 
 @Composable
@@ -120,7 +110,8 @@ fun TextFieldCodeImplementationColumn(
     label: String,
     placeholder: String,
     errorMessage: String?,
-    hasTrailing: Boolean
+    hasTrailing: Boolean,
+    hasTrailingIcon: Boolean
 ) {
     with(customizationState) {
         val capitalizationValue = if (softKeyboardCapitalization.value) KeyboardCapitalization.Characters.toString() else KeyboardCapitalization.None.toString()
@@ -138,7 +129,10 @@ fun TextFieldCodeImplementationColumn(
                         stringRepresentation("keyboardType", softKeyboardType.value.keyboardType)
                         stringRepresentation("imeAction", softKeyboardAction.value.imeAction)
                     }
-                    if (hasLeadingIcon) icon()
+                    if (hasLeadingIcon) classInstance<OdsTextField.LeadingIcon>("leadingIcon") {
+                        painter()
+                        contentDescription("")
+                    }
                     if (!hasVisualisationIcon) stringRepresentation("visualisationIcon", false)
                     if (!isEnabled) enabled(false)
                     if (isError) {
@@ -146,10 +140,22 @@ fun TextFieldCodeImplementationColumn(
                         errorMessage?.let { string("errorMessage", it) }
                     }
                     if (isSingleLine) stringRepresentation("singleLine", true)
-                    if (hasTrailing) simple("trailing", "<trailing composable>")
+                    if (hasTrailing) {
+                        val trailingParameterName = "trailing"
+                        if (hasTrailingIcon) {
+                            classInstance<OdsTextField.TrailingIcon>(trailingParameterName) {
+                                painter()
+                                onClick()
+                            }
+                        } else {
+                            classInstance<OdsTextField.TrailingText>(trailingParameterName) {
+                                text(TrailingText)
+                            }
+                        }
+                    }
                     if (hasCharacterCounter) {
-                        function("characterCounter", OdsComposable.OdsTextFieldCharacterCounter.name) {
-                            stringRepresentation("valueLength", displayedText.length)
+                        classInstance<OdsTextField.CharacterCounter>("characterCounter") {
+                            stringRepresentation("characterCount", displayedText.length)
                             enabled(isEnabled)
                         }
                     }

@@ -29,10 +29,10 @@ import androidx.compose.ui.res.stringResource
 import com.orange.ods.app.R
 import com.orange.ods.app.databinding.OdsOutlinedButtonBinding
 import com.orange.ods.app.ui.UiFramework
-import com.orange.ods.app.ui.utilities.composable.CodeImplementationColumn
-import com.orange.ods.app.ui.utilities.composable.FunctionCallCode
+import com.orange.ods.app.ui.utilities.code.CodeImplementationColumn
+import com.orange.ods.app.ui.utilities.code.FunctionCallCode
 import com.orange.ods.compose.OdsComposable
-import com.orange.ods.compose.component.button.OdsButtonIcon
+import com.orange.ods.compose.component.button.OdsButton
 import com.orange.ods.compose.component.button.OdsOutlinedButton
 import com.orange.ods.compose.theme.OdsDisplaySurface
 
@@ -63,7 +63,7 @@ fun ButtonsOutlined(customizationState: ButtonCustomizationState) {
                     parameters = {
                         if (hasFullScreenWidth) fillMaxWidth()
                         if (hasLeadingIcon) {
-                            classInstance<OdsButtonIcon>("icon") {
+                            classInstance<OdsButton.Icon>("icon") {
                                 painter()
                             }
                         }
@@ -97,7 +97,7 @@ private fun OutlinedButton(
                     modifier = if (fullScreenWidth) Modifier.fillMaxWidth() else Modifier,
                     text = text,
                     onClick = {},
-                    icon = if (leadingIcon) OdsButtonIcon(painterResource(id = iconId)) else null,
+                    icon = if (leadingIcon) OdsButton.Icon(painterResource(id = iconId)) else null,
                     enabled = enabled,
                     displaySurface = displaySurface
                 )

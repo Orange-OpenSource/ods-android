@@ -10,7 +10,6 @@
 
 package com.orange.ods.app.ui.components.tabs
 
-import androidx.activity.compose.BackHandler
 import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
@@ -19,6 +18,7 @@ import androidx.compose.foundation.layout.wrapContentSize
 import androidx.compose.foundation.pager.HorizontalPager
 import androidx.compose.material.ExperimentalMaterialApi
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.mutableIntStateOf
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.ui.Alignment
@@ -34,8 +34,8 @@ import com.orange.ods.app.ui.components.utilities.ComponentCustomizationBottomSh
 import com.orange.ods.app.ui.utilities.composable.Subtitle
 import com.orange.ods.compose.component.chip.OdsChoiceChip
 import com.orange.ods.compose.component.chip.OdsChoiceChipsFlowRow
-import com.orange.ods.compose.component.list.OdsListItem
-import com.orange.ods.compose.component.list.OdsListItemTrailingSwitch
+import com.orange.ods.compose.component.listitem.OdsListItem
+import com.orange.ods.compose.component.tab.OdsTabRow
 import com.orange.ods.compose.text.OdsTextBody1
 
 private const val MinFixedTabCount = 2
@@ -45,7 +45,7 @@ private const val MaxScrollableTabCount = 6
 
 @OptIn(ExperimentalMaterialApi::class, ExperimentalFoundationApi::class)
 @Composable
-fun ComponentTabs(variant: Variant, upPress: () -> Unit) {
+fun ComponentTabs(variant: Variant) {
     val scrollableTabs: Boolean
     val tabCountMin: Int
     val tabCountMax: Int
@@ -59,44 +59,41 @@ fun ComponentTabs(variant: Variant, upPress: () -> Unit) {
         tabCountMax = MaxFixedTabCount
     }
 
-    val tabsCustomizationState = rememberMainTabsCustomizationState(tabsCount = rememberSaveable { mutableStateOf(tabCountMin) })
-    
-    with(tabsCustomizationState) {
-        LocalAppBarManager.current.updateAppBarTabs(
-            TabsConfiguration(scrollableTabs, tabs, pagerState, tabIconType.value, tabTextEnabled.value)
-        )
+    val tabsCustomizationState = rememberMainTabsCustomizationState(tabsCount = rememberSaveable { mutableIntStateOf(tabCountMin) })
 
-        BackHandler {
-            upPress()
-        }
+    with(tabsCustomizationState) {
+        val appBarManager = LocalAppBarManager.current
+        appBarManager.updateAppBarTabs(
+            TabsConfiguration(scrollableTabs, tabs, pagerState, tabsIconPosition.value, tabIconEnabled.value, tabTextEnabled.value)
+        )
 
         ComponentCustomizationBottomSheetScaffold(
             bottomSheetScaffoldState = bottomSheetScaffoldState,
             bottomSheetContent = {
-                Subtitle(textRes = R.string.component_element_icon, horizontalPadding = true)
+                OdsListItem(
+                    text = stringResource(id = R.string.component_tab_text),
+                    trailing = OdsListItem.TrailingSwitch(tabTextEnabled.value, { tabTextEnabled.value = it }, isTabTextCustomizationEnabled)
+                )
+                OdsListItem(
+                    text = stringResource(id = R.string.component_tab_icon),
+                    trailing = OdsListItem.TrailingSwitch(tabIconEnabled.value, { tabIconEnabled.value = it }, isTabIconCustomizationEnabled)
+                )
+                Subtitle(textRes = R.string.component_tabs_icon_position, horizontalPadding = true)
                 OdsChoiceChipsFlowRow(
-                    value = tabIconType.value,
-                    onValueChange = { value -> tabIconType.value = value },
+                    value = tabsIconPosition.value,
+                    onValueChange = { value -> tabsIconPosition.value = value },
                     modifier = Modifier.padding(horizontal = dimensionResource(id = com.orange.ods.R.dimen.spacing_m)),
                     chips = listOf(
                         OdsChoiceChip(
-                            text = stringResource(id = R.string.component_tab_icon_leading), value = MainTabsCustomizationState.TabIconType.Leading,
-                            enabled = isTabIconCustomizationEnabled
+                            text = stringResource(id = R.string.component_tabs_icon_position_leading),
+                            value = OdsTabRow.Tab.Icon.Position.Leading,
+                            enabled = isTabsIconPositionEnabled
                         ),
                         OdsChoiceChip(
-                            text = stringResource(id = R.string.component_tab_icon_top), value = MainTabsCustomizationState.TabIconType.Top,
-                            enabled = isTabIconCustomizationEnabled
-                        ),
-                        OdsChoiceChip(
-                            text = stringResource(id = R.string.component_element_none), value = MainTabsCustomizationState.TabIconType.None,
-                            enabled = isTabIconCustomizationEnabled
+                            text = stringResource(id = R.string.component_tabs_icon_position_top), value = OdsTabRow.Tab.Icon.Position.Top,
+                            enabled = isTabsIconPositionEnabled
                         )
                     )
-                )
-
-                OdsListItem(
-                    text = stringResource(id = R.string.component_element_text),
-                    trailing = OdsListItemTrailingSwitch(tabTextEnabled.value, { tabTextEnabled.value = it }, isTabTextCustomizationEnabled)
                 )
 
                 ComponentCountRow(
@@ -110,7 +107,7 @@ fun ComponentTabs(variant: Variant, upPress: () -> Unit) {
                 )
             }) {
 
-            HorizontalPager(state = pagerState, pageCount = tabs.size) { page ->
+            HorizontalPager(state = pagerState) { page ->
                 val textResId = tabs[page].textResId
                 TabsPagerContentScreen(stringResource(id = textResId))
             }

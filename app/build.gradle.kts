@@ -35,7 +35,7 @@ android {
         minSdk = Versions.minSdk
         targetSdk = Versions.targetSdk
         val versionCodeProperty = project.findTypedProperty<String>("versionCode")
-        versionCode = versionCodeProperty?.toInt() ?: 9
+        versionCode = versionCodeProperty?.toInt() ?: 10
         versionName = version.toString()
         val versionNameSuffixProperty = project.findTypedProperty<String>("versionNameSuffix")
         versionNameSuffix = versionNameSuffixProperty
@@ -90,6 +90,7 @@ android {
     }
 
     firebaseAppDistribution {
+        appId = "1:212698857200:android:67d1403d02a72f4d5ecc35"
         releaseNotesFile = Firebase_gradle.AppDistribution.releaseNotesFilePath
         groups = project.findTypedProperty("appDistributionGroup")
     }
@@ -127,6 +128,7 @@ dependencies {
     implementation(project(":lib"))
     implementation(project(":lib-xml"))
     implementation(project(":theme-innovation-cup"))
+    implementation(project(":module-about"))
 
     implementation(Dependencies.accompanistSystemUiController)
     implementation(Dependencies.activityCompose)

@@ -12,6 +12,7 @@ package com.orange.ods.compose.component.card
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.IntrinsicSize
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -38,26 +39,26 @@ import com.orange.ods.extension.orElse
  * Cards contain content and actions about a single subject.
  *
  * @param title Title displayed into the card.
- * @param image [OdsCardImage] displayed into the card.
+ * @param image [OdsCard.Image] displayed into the card.
  * @param modifier [Modifier] applied to the layout of the card.
- * @param thumbnail [OdsCardThumbnail] displayed into the card next to the title: avatar, logo or icon.
+ * @param thumbnail [OdsCard.Thumbnail] displayed into the card next to the title: avatar, logo or icon.
  * @param subtitle Subtitle displayed into the card.
  * @param text Text displayed into the card.
- * @param firstButton First [OdsCardButton] displayed into the card.
- * @param secondButton Second [OdsCardButton] displayed into the card.
+ * @param firstButton First [OdsCard.Button] displayed into the card.
+ * @param secondButton Second [OdsCard.Button] displayed into the card.
  * @param onClick Callback invoked on card click.
  */
 @Composable
 @OdsComposable
 fun OdsVerticalHeaderFirstCard(
     title: String,
-    image: OdsCardImage,
+    image: OdsCard.Image,
     modifier: Modifier = Modifier,
-    thumbnail: OdsCardThumbnail? = null,
+    thumbnail: OdsCard.Thumbnail? = null,
     subtitle: String? = null,
     text: String? = null,
-    firstButton: OdsCardButton? = null,
-    secondButton: OdsCardButton? = null,
+    firstButton: OdsCard.Button? = null,
+    secondButton: OdsCard.Button? = null,
     onClick: (() -> Unit)? = null
 ) {
     OdsCard(
@@ -68,8 +69,8 @@ fun OdsVerticalHeaderFirstCard(
             Row(
                 modifier = Modifier
                     .fillMaxWidth()
-                    .height(dimensionResource(id = R.dimen.list_two_line_with_icon_item_height))
-                    .padding(horizontal = dimensionResource(id = R.dimen.spacing_m)),
+                    .height(IntrinsicSize.Min)
+                    .padding(all = dimensionResource(id = R.dimen.spacing_m)),
                 verticalAlignment = Alignment.CenterVertically
             ) {
                 thumbnail?.Content()
@@ -117,11 +118,11 @@ fun OdsVerticalHeaderFirstCard(
 private fun PreviewOdsVerticalHeaderFirstCard() = Preview {
     OdsVerticalHeaderFirstCard(
         title = "Title",
-        image = OdsCardImage(painterResource(id = R.drawable.placeholder), ""),
-        thumbnail = OdsCardThumbnail(painterResource(id = R.drawable.placeholder_small), ""),
+        image = OdsCard.Image(painterResource(id = R.drawable.placeholder), ""),
+        thumbnail = OdsCard.Thumbnail(painterResource(id = R.drawable.placeholder_small), ""),
         subtitle = "Subtitle",
         text = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed non risus. Suspendisse lectus tortor, dignissim sit amet, adipiscing nec, ultricies sed, dolor.",
-        firstButton = OdsCardButton("First button") {},
-        secondButton = OdsCardButton("Second button") {}
+        firstButton = OdsCard.Button("First button") {},
+        secondButton = OdsCard.Button("Second button") {}
     )
 }

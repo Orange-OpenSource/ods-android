@@ -11,19 +11,21 @@
 package com.orange.ods.app.ui.components.buttons
 
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.MutableIntState
 import androidx.compose.runtime.MutableState
+import androidx.compose.runtime.mutableIntStateOf
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.saveable.rememberSaveable
-import com.orange.ods.compose.component.button.OdsButtonStyle
-import com.orange.ods.compose.component.button.OdsTextButtonStyle
+import com.orange.ods.compose.component.button.OdsButton
+import com.orange.ods.compose.component.button.OdsTextButton
 
 
 @Composable
 fun rememberButtonCustomizationState(
-    toggleCount: MutableState<Int> = rememberSaveable { mutableStateOf(ButtonCustomizationState.MinToggleCount) },
-    buttonStyle: MutableState<OdsButtonStyle> = rememberSaveable { mutableStateOf(OdsButtonStyle.Default) },
-    textButtonStyle: MutableState<OdsTextButtonStyle> = rememberSaveable { mutableStateOf(OdsTextButtonStyle.Default) },
+    toggleCount: MutableIntState = rememberSaveable { mutableIntStateOf(ButtonCustomizationState.MinToggleCount) },
+    buttonStyle: MutableState<OdsButton.Style> = rememberSaveable { mutableStateOf(OdsButton.Style.Default) },
+    textButtonStyle: MutableState<OdsTextButton.Style> = rememberSaveable { mutableStateOf(OdsTextButton.Style.Default) },
     leadingIcon: MutableState<Boolean> = rememberSaveable { mutableStateOf(false) },
     fullScreenWidth: MutableState<Boolean> = rememberSaveable { mutableStateOf(false) },
     sameItemsWeight: MutableState<Boolean> = rememberSaveable { mutableStateOf(false) },
@@ -34,9 +36,9 @@ fun rememberButtonCustomizationState(
     }
 
 class ButtonCustomizationState(
-    val toggleCount: MutableState<Int>,
-    val buttonStyle: MutableState<OdsButtonStyle>,
-    val textButtonStyle: MutableState<OdsTextButtonStyle>,
+    val toggleCount: MutableIntState,
+    val buttonStyle: MutableState<OdsButton.Style>,
+    val textButtonStyle: MutableState<OdsTextButton.Style>,
     val leadingIcon: MutableState<Boolean>,
     val fullScreenWidth: MutableState<Boolean>,
     val sameItemsWeight: MutableState<Boolean>,

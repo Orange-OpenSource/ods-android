@@ -68,7 +68,7 @@ fun OdsCircularProgressIndicator(
 
 @UiModePreviews.Default
 @Composable
-fun PreviewOdsCircularProgressIndicator(@PreviewParameter(OdsCircularProgressIndicatorPreviewParameterProvider::class) progress: Float?) = Preview {
+private fun PreviewOdsCircularProgressIndicator(@PreviewParameter(OdsCircularProgressIndicatorPreviewParameterProvider::class) progress: Float?) = Preview {
     OdsCircularProgressIndicator(progress = progress, label = "Downloading …")
 }
 

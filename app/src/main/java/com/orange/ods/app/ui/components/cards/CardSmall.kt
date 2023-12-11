@@ -30,10 +30,10 @@ import com.orange.ods.app.R
 import com.orange.ods.app.domain.recipes.LocalRecipes
 import com.orange.ods.app.ui.components.utilities.clickOnElement
 import com.orange.ods.app.ui.utilities.DrawableManager
-import com.orange.ods.app.ui.utilities.composable.CodeImplementationColumn
-import com.orange.ods.app.ui.utilities.composable.FunctionCallCode
+import com.orange.ods.app.ui.utilities.code.CodeImplementationColumn
+import com.orange.ods.app.ui.utilities.code.FunctionCallCode
 import com.orange.ods.compose.OdsComposable
-import com.orange.ods.compose.component.card.OdsCardImage
+import com.orange.ods.compose.component.card.OdsCard
 import com.orange.ods.compose.component.card.OdsSmallCard
 
 @Composable
@@ -58,7 +58,7 @@ fun CardSmall(customizationState: CardCustomizationState) {
 
                 OdsSmallCard(
                     modifier = Modifier.weight(0.5f),
-                    image = OdsCardImage(
+                    image = OdsCard.Image(
                         rememberAsyncImagePainter(
                             model = recipe.imageUrl,
                             placeholder = painterResource(id = DrawableManager.getPlaceholderResId()),
@@ -83,7 +83,7 @@ fun CardSmall(customizationState: CardCustomizationState) {
                     exhaustiveParameters = false,
                     parameters = {
                         title(recipe.title)
-                        classInstance("image", OdsCardImage::class.java) {
+                        classInstance("image", OdsCard.Image::class.java) {
                             painter()
                             contentDescription("")
                         }

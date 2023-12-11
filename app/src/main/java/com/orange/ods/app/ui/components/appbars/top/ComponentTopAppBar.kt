@@ -32,19 +32,21 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import com.orange.ods.app.R
-import com.orange.ods.app.ui.AppBarConfiguration
+import com.orange.ods.app.ui.CustomAppBarConfiguration
 import com.orange.ods.app.ui.LocalAppBarManager
 import com.orange.ods.app.ui.components.Variant
 import com.orange.ods.app.ui.components.utilities.ComponentCountRow
 import com.orange.ods.app.ui.components.utilities.ComponentCustomizationBottomSheetScaffold
+import com.orange.ods.app.ui.utilities.code.CodeBackgroundColumn
+import com.orange.ods.app.ui.utilities.code.CodeImplementationColumn
+import com.orange.ods.app.ui.utilities.code.FunctionCallCode
 import com.orange.ods.app.ui.utilities.composable.*
 import com.orange.ods.compose.OdsComposable
-import com.orange.ods.compose.component.appbar.top.OdsTopAppBarActionButton
-import com.orange.ods.compose.component.appbar.top.OdsTopAppBarNavigationIcon
+import com.orange.ods.compose.component.appbar.top.OdsTopAppBar
 import com.orange.ods.compose.component.chip.OdsChoiceChip
 import com.orange.ods.compose.component.chip.OdsChoiceChipsFlowRow
-import com.orange.ods.compose.component.list.OdsListItem
-import com.orange.ods.compose.component.list.OdsListItemTrailingSwitch
+import com.orange.ods.compose.component.listitem.OdsListItem
+import com.orange.ods.compose.component.menu.OdsDropdownMenu
 import com.orange.ods.compose.text.OdsTextBody2
 import com.orange.ods.compose.text.OdsTextCaption
 import com.orange.ods.compose.theme.OdsTheme
@@ -55,16 +57,16 @@ fun ComponentTopAppBar(variant: Variant) {
     val customizationState = rememberTopAppBarCustomizationState(large = remember { mutableStateOf(variant == Variant.AppBarsTopLarge) })
 
     with(customizationState) {
-        val appBarConfiguration = AppBarConfiguration(
-            isLarge = isLarge,
-            largeTitleRes = if (isLarge) title.value.titleRes else R.string.component_app_bars_top_regular,
-            scrollBehavior = scrollBehavior.value,
+        val customAppBarConfiguration = CustomAppBarConfiguration(
+            title = if (isLarge) stringResource(id = title.value.titleRes) else stringResource(id = R.string.component_app_bars_top_regular),
+            actionCount = actionCount.intValue,
             isNavigationIconEnabled = isNavigationIconEnabled,
-            actionCount = actionCount.value,
+            isLarge = isLarge,
+            scrollBehavior = scrollBehavior.value,
             isOverflowMenuEnabled = isOverflowMenuEnabled
         )
 
-        LocalAppBarManager.current.setCustomAppBar(appBarConfiguration)
+        LocalAppBarManager.current.setCustomAppBar(customAppBarConfiguration)
 
         ComponentCustomizationBottomSheetScaffold(
             bottomSheetScaffoldState = rememberBottomSheetScaffoldState(),
@@ -97,15 +99,15 @@ fun ComponentTopAppBar(variant: Variant) {
                                 title(context.getString(R.string.component_app_bars_top_regular))
 
                                 if (isNavigationIconEnabled) {
-                                    classInstance<OdsTopAppBarNavigationIcon>("navigationIcon") {
+                                    classInstance<OdsTopAppBar.NavigationIcon>("navigationIcon") {
                                         imageVector()
                                         contentDescription(context.getString(R.string.top_app_bar_back_icon_desc))
                                     }
                                 }
 
                                 list("actions") {
-                                    repeat(actionCount.value) {
-                                        classInstance<OdsTopAppBarActionButton> {
+                                    repeat(actionCount.intValue) {
+                                        classInstance<OdsTopAppBar.ActionButton> {
                                             onClick()
                                             painter()
                                             contentDescription("icon description")
@@ -114,10 +116,9 @@ fun ComponentTopAppBar(variant: Variant) {
                                 }
 
                                 if (isOverflowMenuEnabled) {
-                                    list("overflowMenuActions") {
+                                    list("overflowMenuItems") {
                                         for (i in 1..2) {
-                                            // The classInstance method displays the original type of type aliases, that's why function is used instead
-                                            function("OdsTopAppBarOverflowMenuActionItem") {
+                                            classInstance<OdsDropdownMenu.Item> {
                                                 text("Menu $i")
                                                 onClick()
                                             }
@@ -192,7 +193,7 @@ private fun CustomizationBottomSheetContent(customizationState: TopAppBarCustomi
         }
         OdsListItem(
             text = stringResource(id = R.string.component_app_bars_top_element_navigation_icon),
-            trailing = OdsListItemTrailingSwitch(navigationIconEnabled.value, { navigationIconEnabled.value = it })
+            trailing = OdsListItem.TrailingSwitch(navigationIconEnabled.value, { navigationIconEnabled.value = it })
         )
         ComponentCountRow(
             modifier = Modifier.padding(start = dimensionResource(id = com.orange.ods.R.dimen.screen_horizontal_margin)),
@@ -205,7 +206,7 @@ private fun CustomizationBottomSheetContent(customizationState: TopAppBarCustomi
         )
         OdsListItem(
             text = stringResource(id = R.string.component_app_bars_top_element_overflow_menu),
-            trailing = OdsListItemTrailingSwitch(overflowMenuEnabled.value, { overflowMenuEnabled.value = it }, isOverflowMenuSwitchEnabled)
+            trailing = OdsListItem.TrailingSwitch(overflowMenuEnabled.value, { overflowMenuEnabled.value = it }, isOverflowMenuSwitchEnabled)
         )
         if (isLarge) {
             Subtitle(textRes = R.string.component_element_title, horizontalPadding = true)
