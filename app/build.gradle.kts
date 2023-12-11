@@ -90,6 +90,7 @@ android {
     }
 
     firebaseAppDistribution {
+        appId = "1:212698857200:android:67d1403d02a72f4d5ecc35"
         releaseNotesFile = Firebase_gradle.AppDistribution.releaseNotesFilePath
         groups = project.findTypedProperty("appDistributionGroup")
     }
