@@ -26,6 +26,9 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.alpha
 import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.semantics.isTraversalGroup
+import androidx.compose.ui.semantics.semantics
+import androidx.compose.ui.semantics.traversalIndex
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.PreviewParameter
 import androidx.compose.ui.unit.dp
@@ -124,14 +127,15 @@ fun OdsLargeTopAppBarInternal(
                         start = titleStartPadding,
                         end = dimensionResource(id = R.dimen.spacing_m)
                     )
-                    .alpha(titleAlpha),
+                    .alpha(titleAlpha)
+                    .semantics { traversalIndex = -1f },
                 text = title,
                 style = OdsTheme.typography.h6,
                 overflow = TextOverflow.Ellipsis,
                 maxLines = titleMaxLines,
             )
         },
-        modifier = modifier,
+        modifier = modifier.semantics { isTraversalGroup = true },
         navigationIcon = { navigationIcon?.Content() },
         actions = { OdsTopAppBarActions(actions = actions, overflowMenuItems = overflowMenuItems) },
         colors = TopAppBarDefaults.largeTopAppBarColors(
