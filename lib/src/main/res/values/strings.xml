@@ -12,6 +12,10 @@
     <string name="state_disabled">Disabled</string>
     <string name="state_selected">Selected</string>
     <string name="state_unselected">Unselected</string>
+    <string name="state_checked">Checked</string>
+    <string name="state_unchecked">Unchecked</string>
+    <string name="state_on">On</string>
+    <string name="state_off">Off</string>
 
     <string name="dropdown_menu_action">Double click to change selection</string>
 
