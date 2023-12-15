@@ -10,6 +10,7 @@
 
 package com.orange.ods.compose.component.appbar.top
 
+import androidx.compose.foundation.focusable
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ArrowBack
@@ -19,11 +20,14 @@ import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.material3.TopAppBarScrollBehavior
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.derivedStateOf
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.alpha
+import androidx.compose.ui.focus.FocusRequester
+import androidx.compose.ui.focus.focusRequester
 import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.semantics.isTraversalGroup
@@ -40,6 +44,7 @@ import com.orange.ods.compose.component.utilities.BasicPreviewParameterProvider
 import com.orange.ods.compose.component.utilities.Preview
 import com.orange.ods.compose.component.utilities.UiModePreviews
 import com.orange.ods.compose.theme.OdsTheme
+import kotlinx.coroutines.delay
 
 /**
  * <a href="https://system.design.orange.com/0c1af118d/p/23e0e6-app-bars/b/620966" class="external" target="_blank">Material ODS Top App Bar</a>.
@@ -119,6 +124,12 @@ fun OdsLargeTopAppBarInternal(
         }
     }
 
+    val focusRequester = remember { FocusRequester() }
+    LaunchedEffect(title) {
+        delay(100L)
+        focusRequester.requestFocus()
+    }
+
     LargeTopAppBar(
         title = {
             Text(
@@ -128,7 +139,9 @@ fun OdsLargeTopAppBarInternal(
                         end = dimensionResource(id = R.dimen.spacing_m)
                     )
                     .alpha(titleAlpha)
-                    .semantics { traversalIndex = -1f },
+                    .semantics { traversalIndex = -1f }
+                    .focusRequester(focusRequester)
+                    .focusable(),
                 text = title,
                 style = OdsTheme.typography.h6,
                 overflow = TextOverflow.Ellipsis,
