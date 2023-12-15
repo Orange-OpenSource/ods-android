@@ -13,11 +13,9 @@ package com.orange.ods.compose.component.progressindicator
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
-import androidx.compose.foundation.layout.width
 import androidx.compose.material.ButtonDefaults
 import androidx.compose.material.LinearProgressIndicator
 import androidx.compose.material.Text
@@ -75,10 +73,8 @@ fun OdsLinearProgressIndicator(
         Row(
             modifier = Modifier
                 .padding(bottom = dimensionResource(id = R.dimen.spacing_xs)),
-            horizontalArrangement = Arrangement.spacedBy(dimensionResource(id = R.dimen.spacing_s))
         ) {
-            icon?.Content()
-            Spacer(Modifier.width(ButtonDefaults.IconSpacing))
+            icon?.Content(modifier = Modifier.padding(end = ButtonDefaults.IconSpacing))
 
             if (label != null) {
                 Text(
@@ -187,5 +183,6 @@ private val previewParameterValues: List<OdsLinearProgressIndicatorPreviewParame
         return listOf(
             OdsLinearProgressIndicatorPreviewParameter(0.75f, iconRes, shortLabel, true),
             OdsLinearProgressIndicatorPreviewParameter(0.75f, iconRes, longLabel, false),
+            OdsLinearProgressIndicatorPreviewParameter(0.40f, null, longLabel, false),
         )
     }
