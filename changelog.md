@@ -7,11 +7,15 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased](https://github.com/Orange-OpenSource/ods-android/compare/0.18.0...develop)
 
+### Changed
+
+- \[Lib\] Update i18n keys ([#752](https://github.com/Orange-OpenSource/ods-android/issues/752))
+
 ### Fixed
 
+- \[App\] Fix `OdsTopAppBar` and `OdsLargeTopAppBar` components customization through the bottom sheet ([#747](https://github.com/Orange-OpenSource/ods-android/issues/747))
 - \[Lib\] Update `OdsListItem` so that if it has a control trailing (checkbox, switch or radio button), the action is handled by the row only ([#743](https://github.com/Orange-OpenSource/ods-android/issues/743))
 - \[Lib\] Remove padding added before `OdsLinearProgressIndicator` text if there is no icon displayed ([#745](https://github.com/Orange-OpenSource/ods-android/issues/745))
-- \[App\] Fix `OdsTopAppBar` and `OdsLargeTopAppBar` components customization through the bottom sheet ([#747](https://github.com/Orange-OpenSource/ods-android/issues/747))
 - \[Lib\] Update `OdsTopAppBar` and `OdsLargeTopAppBar` so that TalkBack reads the title of the app bar first ([#275](https://github.com/Orange-OpenSource/ods-android/issues/275))
 
 ## [0.18.0](https://github.com/Orange-OpenSource/ods-android/compare/0.17.0...0.18.0) - 2023-12-11
