@@ -30,9 +30,9 @@ object OdsAboutVersionHelper {
             PackageManagerCompat.getPackageInfo(packageManager, packageName, 0)
         }
         return packageInfo?.let {
-            String.format(context.resources.getString(R.string.ods_about_app_version), packageInfo.versionName, packageInfo.versionCode())
+            String.format(context.resources.getString(R.string.odsAbout_appVersion), packageInfo.versionName, packageInfo.versionCode())
         }.orElse {
-            context.resources.getString(R.string.ods_about_app_version)
+            context.resources.getString(R.string.odsAbout_appVersion)
         }
     }
 

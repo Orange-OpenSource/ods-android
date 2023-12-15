@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?><!--
+  ~ /*
+  ~ * Copyright 2021 Orange
+  ~ *
+  ~ * Use of this source code is governed by an MIT-style
+  ~ * license that can be found in the LICENSE file or at
+  ~ * https://opensource.org/licenses/MIT.
+  ~ */
+  -->
+
+<resources>
+    <string name="odsAbout_appFeedback">Vos retours</string>
+    <string name="odsAbout_appShare">Partager</string>
+    <string name="odsAbout_appVersion">Version %1$s (%2$d)</string>
+    <string name="odsAbout_menu_accessibilityStatement">Déclaration d\'accessibilité</string>
+    <string name="odsAbout_menu_appNews">Nouveautés</string>
+    <string name="odsAbout_menu_legalInformation">Mentions légales</string>
+    <string name="odsAbout_menu_privacyPolicy">Données personnelles</string>
+    <string name="odsAbout_menu_rateTheApp">Noter l\'app</string>
+    <string name="odsAbout_menu_termsOfService">Conditions générales d\'utilisation</string>
+    <string name="odsAbout_topAppBar_title">A propos</string>
+</resources>

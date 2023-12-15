@@ -24,11 +24,11 @@ import androidx.compose.ui.res.stringResource
 import com.orange.ods.module.about.R
 
 private enum class PredefinedItem(@DrawableRes val iconRes: Int, @StringRes val textRes: Int, val position: Int) {
-    PrivacyPolicy(R.drawable.ic_dataprotection, R.string.ods_about_menu_privacy_policy, 100),
-    TermsOfService(R.drawable.ic_tasklist, R.string.ods_about_menu_terms_of_service, 101),
-    AppNews(R.drawable.ic_calendareventinfo, R.string.ods_about_menu_app_news, 102),
-    LegalInformation(R.drawable.ic_legal, R.string.ods_about_menu_legal_information, 103),
-    RateTheApp(R.drawable.ic_review, R.string.ods_about_menu_rate_the_app, 104);
+    PrivacyPolicy(R.drawable.ic_dataprotection, R.string.odsAbout_menu_privacyPolicy, 100),
+    TermsOfService(R.drawable.ic_tasklist, R.string.odsAbout_menu_termsOfService, 101),
+    AppNews(R.drawable.ic_calendareventinfo, R.string.odsAbout_menu_appNews, 102),
+    LegalInformation(R.drawable.ic_legal, R.string.odsAbout_menu_legalInformation, 103),
+    RateTheApp(R.drawable.ic_review, R.string.odsAbout_menu_rateTheApp, 104);
 
     @Composable
     fun getFileMenuItem(file: OdsAboutFileMenuItem.File) = OdsAboutFileMenuItem(

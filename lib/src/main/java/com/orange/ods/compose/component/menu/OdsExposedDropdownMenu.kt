@@ -56,7 +56,7 @@ fun OdsExposedDropdownMenu(
 ) {
     var expanded by remember { mutableStateOf(false) }
     val menuBoxStateDescription = enabledStateDescription(enabled = enabled)
-    val menuBoxAction = if (enabled) stringResource(id = com.orange.ods.R.string.dropdown_menu_action) else ""
+    val menuBoxAction = if (enabled) stringResource(id = com.orange.ods.R.string.ods_dropdownMenu_open_actionA11y) else ""
 
     ExposedDropdownMenuBox(
         modifier = modifier.clearAndSetSemantics {

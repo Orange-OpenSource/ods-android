@@ -223,7 +223,7 @@ private fun Modifier.rootModifier(context: Context, trailing: OdsListItem.Traili
                 enabled = enabled,
                 onValueChange = onCheckedChange
             ).semantics {
-                stateDescription = if (checked) context.getString(R.string.state_checked) else context.getString(R.string.state_unchecked)
+                stateDescription = if (checked) context.getString(R.string.ods_checked_stateA11y) else context.getString(R.string.ods_unchecked_stateA11y)
             }
             this is OdsListItem.TrailingRadioButton && onClick != null -> selectable(
                 selected = selected,
@@ -231,7 +231,7 @@ private fun Modifier.rootModifier(context: Context, trailing: OdsListItem.Traili
                 enabled = enabled,
                 onClick = onClick
             ).semantics {
-                stateDescription = if (selected) context.getString(R.string.state_selected) else context.getString(R.string.state_unselected)
+                stateDescription = if (selected) context.getString(R.string.ods_selected_stateA11y) else context.getString(R.string.ods_unselected_stateA11y)
             }
             this is OdsListItem.TrailingSwitch && onCheckedChange != null -> toggleable(
                 value = checked,
@@ -239,7 +239,7 @@ private fun Modifier.rootModifier(context: Context, trailing: OdsListItem.Traili
                 enabled = enabled,
                 onValueChange = onCheckedChange
             ).semantics {
-                stateDescription = if (checked) context.getString(R.string.state_on) else context.getString(R.string.state_off)
+                stateDescription = if (checked) context.getString(R.string.ods_on_stateA11y) else context.getString(R.string.ods_off_stateA11y)
             }
             else -> onListItemClick?.let { clickable(onClick = it) }.orElse { this@rootModifier }
         }

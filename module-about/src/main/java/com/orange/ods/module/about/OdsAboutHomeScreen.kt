@@ -39,8 +39,8 @@ import com.orange.ods.compose.component.utilities.UiModePreviews
 import com.orange.ods.compose.text.OdsTextBody1
 import com.orange.ods.compose.text.OdsTextBody2
 import com.orange.ods.compose.text.OdsTextH4
-import com.orange.ods.module.about.configuration.OdsAboutFileMenuItem
 import com.orange.ods.module.about.configuration.OdsAboutConfiguration
+import com.orange.ods.module.about.configuration.OdsAboutFileMenuItem
 import com.orange.ods.module.about.configuration.OdsAboutShareData
 
 private const val ImageHeight = 249
@@ -74,7 +74,7 @@ internal fun OdsAboutHomeScreen(configuration: OdsAboutConfiguration, onAboutMen
                     configuration.shareData?.let { shareData ->
                         OdsTextButton(
                             modifier = Modifier.padding(end = dimensionResource(id = com.orange.ods.R.dimen.spacing_s)),
-                            text = stringResource(id = R.string.ods_about_app_share),
+                            text = stringResource(id = R.string.odsAbout_appShare),
                             icon = OdsButton.Icon(painterResource(id = R.drawable.ic_share)),
                             onClick = {
                                 val sendIntent = Intent(Intent.ACTION_SEND).apply {
@@ -89,7 +89,7 @@ internal fun OdsAboutHomeScreen(configuration: OdsAboutConfiguration, onAboutMen
                     }
                     configuration.onFeedbackButtonClick?.let { feedbackAction ->
                         OdsTextButton(
-                            text = stringResource(id = R.string.ods_about_app_feedback),
+                            text = stringResource(id = R.string.odsAbout_appFeedback),
                             icon = OdsButton.Icon(painterResource(id = R.drawable.ic_comment)),
                             onClick = feedbackAction,
                             style = OdsTextButton.Style.Primary
