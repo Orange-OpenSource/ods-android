@@ -10,6 +10,7 @@
 
 package com.orange.ods.compose.component.listitem
 
+import android.content.Context
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -43,9 +44,12 @@ import androidx.compose.ui.graphics.painter.Painter
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.graphics.vector.rememberVectorPainter
 import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.semantics.Role
+import androidx.compose.ui.semantics.semantics
+import androidx.compose.ui.semantics.stateDescription
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.PreviewParameter
@@ -129,7 +133,8 @@ internal fun OdsListItem(
     divider: Boolean = false,
     onClick: (() -> Unit)? = null
 ) {
-    val rootModifier = modifier.rootModifier(trailing, onClick)
+    val context = LocalContext.current
+    val rootModifier = modifier.rootModifier(context, trailing, onClick)
     if (leadingIcon?.iconType == OdsListItem.LeadingIcon.Type.WideImage) {
         Row(modifier = rootModifier, verticalAlignment = Alignment.CenterVertically) {
             leadingIcon.Content()
@@ -181,7 +186,8 @@ private fun OdsListItemInternal(
     val secondaryTextLinesNumber = if (singleLineSecondaryText || (overlineText != null && secondaryText != null)) 1 else 2
 
     ListItem(
-        modifier = modifier.height(IntrinsicSize.Min)
+        modifier = modifier
+            .height(IntrinsicSize.Min)
             .fillMaxWidth(),
         icon = leadingIcon?.let { { it.Content() } },
         secondaryText = if (secondaryText.isNotNullOrBlank()) {
@@ -208,7 +214,7 @@ private fun OdsListItemInternal(
     )
 }
 
-private fun Modifier.rootModifier(trailing: OdsListItem.Trailing?, onListItemClick: (() -> Unit)?): Modifier {
+private fun Modifier.rootModifier(context: Context, trailing: OdsListItem.Trailing?, onListItemClick: (() -> Unit)?): Modifier {
     return with(trailing) {
         when {
             this is OdsListItem.TrailingCheckbox && onCheckedChange != null -> toggleable(
@@ -216,19 +222,25 @@ private fun Modifier.rootModifier(trailing: OdsListItem.Trailing?, onListItemCli
                 role = Role.Checkbox,
                 enabled = enabled,
                 onValueChange = onCheckedChange
-            )
+            ).semantics {
+                stateDescription = if (checked) context.getString(R.string.state_checked) else context.getString(R.string.state_unchecked)
+            }
             this is OdsListItem.TrailingRadioButton && onClick != null -> selectable(
                 selected = selected,
                 role = Role.RadioButton,
                 enabled = enabled,
                 onClick = onClick
-            )
+            ).semantics {
+                stateDescription = if (selected) context.getString(R.string.state_selected) else context.getString(R.string.state_unselected)
+            }
             this is OdsListItem.TrailingSwitch && onCheckedChange != null -> toggleable(
                 value = checked,
                 role = Role.Switch,
                 enabled = enabled,
                 onValueChange = onCheckedChange
-            )
+            ).semantics {
+                stateDescription = if (checked) context.getString(R.string.state_on) else context.getString(R.string.state_off)
+            }
             else -> onListItemClick?.let { clickable(onClick = it) }.orElse { this@rootModifier }
         }
     }
@@ -382,7 +394,12 @@ object OdsListItem {
 
         @Composable
         override fun Content(modifier: Modifier) {
-            OdsCheckbox(modifier = modifier, checked = checked, onCheckedChange = onCheckedChange, enabled = enabled)
+            OdsCheckbox(
+                modifier = modifier,
+                checked = checked,
+                onCheckedChange = null,
+                enabled = enabled
+            ) // a11y: `onCheckedChange` is done on list item row click
         }
     }
 
@@ -404,7 +421,12 @@ object OdsListItem {
 
         @Composable
         override fun Content(modifier: Modifier) {
-            OdsSwitch(modifier = modifier, checked = checked, onCheckedChange = onCheckedChange, enabled = enabled)
+            OdsSwitch(
+                modifier = modifier,
+                checked = checked,
+                onCheckedChange = null,
+                enabled = enabled
+            ) // a11y: `onCheckedChange` is done on list item row click
         }
     }
 
@@ -426,7 +448,7 @@ object OdsListItem {
 
         @Composable
         override fun Content(modifier: Modifier) {
-            OdsRadioButton(modifier = modifier, selected = selected, onClick = onClick, enabled = enabled)
+            OdsRadioButton(modifier = modifier, selected = selected, onClick = null, enabled = enabled) // a11y: `onClick` is done on list item row click
         }
     }
 

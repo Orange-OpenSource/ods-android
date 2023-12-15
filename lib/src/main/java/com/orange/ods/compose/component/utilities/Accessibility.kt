@@ -21,7 +21,7 @@ import com.orange.ods.R
  */
 @Composable
 internal fun selectionStateDescription(selected: Boolean) =
-    if (selected) stringResource(id = R.string.state_selected) else stringResource(id = R.string.state_not_selected)
+    if (selected) stringResource(id = R.string.state_selected) else stringResource(id = R.string.state_unselected)
 
 /**
  * Returns the enabled/disabled state ready for vocalization according to the [enabled] provided value.
