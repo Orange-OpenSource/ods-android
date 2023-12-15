@@ -52,7 +52,7 @@ object OdsTextField {
         @Composable
         override fun Content(modifier: Modifier) {
             OdsTextCaption(
-                modifier = Modifier
+                modifier = modifier
                     .padding(top = dimensionResource(id = R.dimen.spacing_xs), end = dimensionResource(id = R.dimen.spacing_m)),
                 text = "$characterCount/$maxCharacterCount",
                 enabled = enabled
@@ -118,7 +118,7 @@ object OdsTextField {
         @Composable
         override fun Content(modifier: Modifier) {
             Text(
-                modifier = Modifier.padding(end = dimensionResource(id = R.dimen.spacing_s)),
+                modifier = modifier.padding(end = dimensionResource(id = R.dimen.spacing_s)),
                 text = text,
                 style = OdsTheme.typography.subtitle1,
                 color = OdsTextFieldDefaults.trailingTextColor(extraParameters.isTextFieldEmpty, extraParameters.enabled)
@@ -171,7 +171,7 @@ internal class OdsExposedDropdownMenuTrailing(val expanded: Boolean) : OdsTextFi
     @Composable
     override fun Content(modifier: Modifier) {
         val degrees = if (expanded && extraParameters.enabled) 180f else 0f
-        Box(modifier = Modifier.rotate(degrees)) {
+        Box(modifier = modifier.rotate(degrees)) {
             OdsTextFieldIcon(
                 painter = rememberVectorPainter(image = Icons.Filled.ArrowDropDown),
                 contentDescription = null,
