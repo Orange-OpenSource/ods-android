@@ -291,8 +291,8 @@ sealed class Variant(
 
     val id: Long = Variant::class.sealedSubclasses.indexOf(this::class).toLong()
 
-    data object AppBarsTopRegular : Variant(R.string.component_app_bars_top_regular, OdsComposable.OdsTopAppBar.name)
-    data object AppBarsTopLarge : Variant(R.string.component_app_bars_top_large, OdsComposable.OdsLargeTopAppBar.name, true)
+    data object AppBarsTopRegular : Variant(R.string.component_app_bars_top_regular, OdsComposable.OdsTopAppBar.name, customizableTopAppBar = true)
+    data object AppBarsTopLarge : Variant(R.string.component_app_bars_top_large, OdsComposable.OdsLargeTopAppBar.name, largeTopAppBar = true, customizableTopAppBar = true)
 
     data object ButtonsPrimary : Variant(R.string.component_buttons_high_emphasis, "${OdsComposable.OdsButton.name} with ${OdsButton.Style.Primary.name}")
     data object ButtonsDefault : Variant(R.string.component_buttons_medium_emphasis, "${OdsComposable.OdsButton.name} with ${OdsButton.Style.Default.name}")
