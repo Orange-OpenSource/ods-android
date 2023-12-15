@@ -334,7 +334,7 @@ object OdsListItem {
                 @Composable
                 override fun Content(modifier: Modifier) {
                     Column(modifier = modifier.fillMaxHeight(), verticalArrangement = Arrangement.Center) {
-                        super.Content(modifier = modifier)
+                        super.Content(modifier = Modifier)
                     }
                 }
             }

@@ -62,7 +62,7 @@ fun getSearchFieldAction(onTextChange: (TextFieldValue) -> Unit): OdsComponentCo
                 value = LocalAppBarManager.current.searchedText,
                 onValueChange = onTextChange,
                 placeholder = stringResource(id = R.string.search_text_field_hint),
-                modifier = Modifier
+                modifier = modifier
                     .fillMaxWidth()
                     .focusRequester(focusRequester)
             )

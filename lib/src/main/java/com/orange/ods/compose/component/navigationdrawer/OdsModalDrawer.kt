@@ -125,7 +125,7 @@ object OdsModalDrawer {
     data class SectionHeader(private val label: String) : Item, OdsComponentContent<Item.ExtraParameters>() {
         @Composable
         override fun Content(modifier: Modifier) {
-            Column {
+            Column(modifier = modifier) {
                 OdsDivider()
                 OdsTextBody2(
                     modifier = Modifier.padding(top = dimensionResource(id = R.dimen.spacing_m), start = dimensionResource(id = R.dimen.spacing_m)),
@@ -140,7 +140,7 @@ object OdsModalDrawer {
      */
     data object Divider : Item, OdsComponentContent<Item.ExtraParameters>() {
         @Composable
-        override fun Content(modifier: Modifier) = OdsDivider()
+        override fun Content(modifier: Modifier) = OdsDivider(modifier = modifier)
     }
 
     /**
@@ -164,7 +164,7 @@ object OdsModalDrawer {
                     text = text,
                     textColor = if (selected) OdsTheme.colors.primaryVariant else OdsTheme.colors.onSurface,
                     textStyle = if (selected) OdsTheme.typography.subtitle2 else OdsTheme.typography.subtitle2.copy(fontWeight = FontWeight.Bold),
-                    modifier = Modifier
+                    modifier = modifier
                         .selectable(selected = selected, onClick = { onClick(this@ListItem) })
                         .let {
                             if (selected) it.background(OdsTheme.colors.primaryVariant.copy(alpha = SelectedItemOpacity)) else it
@@ -227,7 +227,7 @@ object OdsModalDrawer {
                         OdsHeaderText(title = title, subtitle = subtitle, color = OdsTheme.colors.onSurface)
                     }
 
-                else -> OdsHeaderText(title = title, subtitle = subtitle, color = OdsTheme.colors.onSurface)
+                else -> OdsHeaderText(modifier = modifier, title = title, subtitle = subtitle, color = OdsTheme.colors.onSurface)
             }
         }
 
@@ -310,9 +310,9 @@ private object OdsModalDrawerListItemRippleTheme : RippleTheme {
 }
 
 @Composable
-private fun OdsHeaderText(title: String, subtitle: String?, color: Color) {
+private fun OdsHeaderText(title: String, subtitle: String?, color: Color, modifier: Modifier = Modifier) {
     Column(
-        modifier = Modifier.padding(all = dimensionResource(id = R.dimen.spacing_m)),
+        modifier = modifier.padding(all = dimensionResource(id = R.dimen.spacing_m)),
         verticalArrangement = Arrangement.Center
     ) {
         Text(text = title, color = color, style = OdsTheme.typography.h6)

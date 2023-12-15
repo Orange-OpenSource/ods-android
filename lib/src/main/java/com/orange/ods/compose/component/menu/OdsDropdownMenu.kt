@@ -162,6 +162,7 @@ object OdsDropdownMenu {
         @Composable
         override fun Content(modifier: Modifier) {
             DropdownMenuItem(
+                modifier = modifier,
                 onClick = {
                     onClick()
                     extraParameters.onDismissRequest()
