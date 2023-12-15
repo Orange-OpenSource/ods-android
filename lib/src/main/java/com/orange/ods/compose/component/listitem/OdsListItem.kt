@@ -218,13 +218,13 @@ private fun Modifier.rootModifier(context: Context, trailing: OdsListItem.Traili
     return with(trailing) {
         when {
             this is OdsListItem.TrailingCheckbox && onCheckedChange != null -> toggleable(
-                    value = checked,
-                    role = Role.Checkbox,
-                    enabled = enabled,
-                    onValueChange = onCheckedChange
-                ).semantics {
-                    stateDescription = if (checked) context.getString(R.string.state_checked) else context.getString(R.string.state_unchecked)
-                }
+                value = checked,
+                role = Role.Checkbox,
+                enabled = enabled,
+                onValueChange = onCheckedChange
+            ).semantics {
+                stateDescription = if (checked) context.getString(R.string.state_checked) else context.getString(R.string.state_unchecked)
+            }
             this is OdsListItem.TrailingRadioButton && onClick != null -> selectable(
                 selected = selected,
                 role = Role.RadioButton,
@@ -394,7 +394,12 @@ object OdsListItem {
 
         @Composable
         override fun Content(modifier: Modifier) {
-            OdsCheckbox(modifier = modifier, checked = checked, onCheckedChange = null, enabled = enabled) // a11y: `onCheckedChange` is done on list item row click
+            OdsCheckbox(
+                modifier = modifier,
+                checked = checked,
+                onCheckedChange = null,
+                enabled = enabled
+            ) // a11y: `onCheckedChange` is done on list item row click
         }
     }
 
@@ -416,7 +421,12 @@ object OdsListItem {
 
         @Composable
         override fun Content(modifier: Modifier) {
-            OdsSwitch(modifier = modifier, checked = checked, onCheckedChange = null, enabled = enabled) // a11y: `onCheckedChange` is done on list item row click
+            OdsSwitch(
+                modifier = modifier,
+                checked = checked,
+                onCheckedChange = null,
+                enabled = enabled
+            ) // a11y: `onCheckedChange` is done on list item row click
         }
     }
 
