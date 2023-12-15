@@ -18,6 +18,9 @@ import androidx.compose.material.icons.filled.ArrowBack
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.semantics.isTraversalGroup
+import androidx.compose.ui.semantics.semantics
+import androidx.compose.ui.semantics.traversalIndex
 import androidx.compose.ui.unit.dp
 import com.orange.ods.compose.component.OdsComposable
 import com.orange.ods.compose.component.content.OdsComponentContent
@@ -75,8 +78,8 @@ fun OdsTopAppBarInternal(
     elevated: Boolean = true
 ) {
     TopAppBar(
-        title = { Text(text = title, style = OdsTheme.typography.h6) },
-        modifier = modifier,
+        title = { Text(text = title, style = OdsTheme.typography.h6, modifier = Modifier.semantics { traversalIndex = -1f }) },
+        modifier = modifier.semantics { isTraversalGroup = true },
         navigationIcon = navigationIcon?.let { { it.Content() } },
         actions = { OdsTopAppBarActions(actions = actions, overflowMenuItems = overflowMenuItems) },
         backgroundColor = OdsTheme.colors.component.topAppBar.barBackground,
