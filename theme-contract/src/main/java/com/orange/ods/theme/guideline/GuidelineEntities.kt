@@ -74,10 +74,12 @@ fun Color.toRgbString(): String {
  * @property textStyle The [TextStyle] of the typography
  * @property composeStyle The typography style to use for a composable
  * @property xmlResource The typography style to use in XML
+ * @property allCaps Controls whether the text is in uppercase or not.
  */
 data class GuidelineTextStyle(
     val name: String,
     val textStyle: TextStyle,
     val composeStyle: String,
-    @AttrRes val xmlResource: Int
+    @AttrRes val xmlResource: Int,
+    val allCaps: Boolean = false
 )

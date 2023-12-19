@@ -87,7 +87,7 @@ private fun TextStyleRow(guidelineTextStyle: GuidelineTextStyle) {
         .padding(horizontal = dimensionResource(id = com.orange.ods.R.dimen.screen_horizontal_margin))
         .semantics(mergeDescendants = true) {}) {
         Text(
-            text = guidelineTextStyle.name,
+            text = guidelineTextStyle.name.let { if (guidelineTextStyle.allCaps) it.uppercase() else it },
             style = guidelineTextStyle.textStyle,
             maxLines = 1,
             overflow = TextOverflow.Ellipsis,
