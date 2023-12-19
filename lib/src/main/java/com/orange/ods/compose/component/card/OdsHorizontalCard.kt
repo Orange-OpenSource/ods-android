@@ -34,8 +34,8 @@ import com.orange.ods.compose.component.divider.OdsDivider
 import com.orange.ods.compose.component.utilities.BasicPreviewParameterProvider
 import com.orange.ods.compose.component.utilities.Preview
 import com.orange.ods.compose.component.utilities.UiModePreviews
-import com.orange.ods.compose.text.OdsTextH6
-import com.orange.ods.compose.text.OdsTextSubtitle2
+import com.orange.ods.compose.text.OdsTextTitleL
+import com.orange.ods.compose.text.OdsTextTitleS
 import com.orange.ods.compose.theme.OdsTheme
 
 /**
@@ -108,7 +108,7 @@ fun OdsHorizontalCard(
                 bottom.linkTo(imageRef.bottom, margin = mediumSpacing)
             }
 
-            OdsTextH6(
+            OdsTextTitleL(
                 text = title,
                 modifier = Modifier.constrainAs(titleRef) {
                     when (imagePosition) {
@@ -125,7 +125,7 @@ fun OdsHorizontalCard(
                 }
             )
 
-            OdsTextSubtitle2(
+            OdsTextTitleS(
                 text = subtitle.orEmpty(),
                 modifier = Modifier.constrainAs(subtitleRef) {
                     start.linkTo(titleRef.start)
@@ -145,7 +145,7 @@ fun OdsHorizontalCard(
                         visibility = if (text != null) Visibility.Visible else Visibility.Gone
                     },
                 text = text.orEmpty(),
-                style = OdsTheme.typography.body1,
+                style = OdsTheme.typography.bodyL,
                 maxLines = if (subtitle == null) 3 else 2,
                 overflow = TextOverflow.Ellipsis
             )

@@ -48,7 +48,7 @@ import com.orange.ods.app.ui.utilities.code.XmlViewTag
 import com.orange.ods.app.ui.utilities.composable.TechnicalText
 import com.orange.ods.compose.OdsComposable
 import com.orange.ods.compose.component.bottomnavigation.OdsBottomNavigation
-import com.orange.ods.compose.text.OdsTextBody2
+import com.orange.ods.compose.text.OdsTextBodyM
 import com.orange.ods.extension.simpleNestedName
 
 private object ComponentBottomNavigation {
@@ -118,7 +118,7 @@ fun ComponentBottomNavigation() {
                             }
                         )
                     }
-                    OdsTextBody2(
+                    OdsTextBodyM(
                         modifier = Modifier.padding(
                             top = dimensionResource(id = com.orange.ods.R.dimen.spacing_s),
                             bottom = dimensionResource(id = com.orange.ods.R.dimen.spacing_xs)

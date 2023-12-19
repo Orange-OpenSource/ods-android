@@ -36,7 +36,7 @@ import com.orange.ods.app.ui.utilities.DrawableManager
 import com.orange.ods.app.ui.utilities.composable.DetailScreenHeader
 import com.orange.ods.app.ui.utilities.extension.getStringName
 import com.orange.ods.compose.component.divider.OdsDivider
-import com.orange.ods.compose.text.OdsTextBody1
+import com.orange.ods.compose.text.OdsTextBodyL
 import com.orange.ods.compose.theme.OdsTheme
 import com.orange.ods.theme.guideline.GuidelineTextStyle
 
@@ -56,7 +56,7 @@ fun GuidelineTypographyScreen() {
         }
         if (guidelineTypography.isEmpty()) {
             item {
-                OdsTextBody1(
+                OdsTextBodyL(
                     modifier = Modifier.padding(
                         horizontal = dimensionResource(id = com.orange.ods.R.dimen.screen_horizontal_margin),
                         vertical = dimensionResource(id = com.orange.ods.R.dimen.screen_vertical_margin)

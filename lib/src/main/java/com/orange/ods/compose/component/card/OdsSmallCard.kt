@@ -69,9 +69,9 @@ fun OdsSmallCard(
                 modifier = Modifier
                     .padding(dimensionResource(id = R.dimen.spacing_m))
             ) {
-                SmallCardText(text = title, style = OdsTheme.typography.h6, isClickableCard = onClick != null)
+                SmallCardText(text = title, style = OdsTheme.typography.titleL, isClickableCard = onClick != null)
                 subtitle?.let {
-                    SmallCardText(text = it, style = OdsTheme.typography.subtitle2, isClickableCard = onClick != null)
+                    SmallCardText(text = it, style = OdsTheme.typography.titleS, isClickableCard = onClick != null)
                 }
             }
         }

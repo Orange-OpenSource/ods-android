@@ -14,9 +14,9 @@ package com.orange.ods.theme
 
 import android.os.Parcelable
 import androidx.compose.material.Shapes
-import androidx.compose.material.Typography
 import com.orange.ods.theme.colors.OdsColors
 import com.orange.ods.theme.guideline.OdsGuideline
+import com.orange.ods.theme.typography.OdsTypography
 
 interface OdsThemeConfigurationContract : Parcelable {
 
@@ -30,10 +30,9 @@ interface OdsThemeConfigurationContract : Parcelable {
 
     /**
      * Customization of the typography if needed
-     * Note: If not overridden the MaterialTheme typography will be used
      */
-    val typography: Typography
-        get() = Typography()
+    val typography: OdsTypography
+        get() = OdsTypography()
 
     /**
      * Customization of the shapes if needed

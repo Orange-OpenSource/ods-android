@@ -40,7 +40,7 @@ import com.orange.ods.app.ui.utilities.composable.TechnicalText
 import com.orange.ods.compose.OdsComposable
 import com.orange.ods.compose.component.listitem.OdsListItem
 import com.orange.ods.compose.component.snackbar.OdsSnackbarHost
-import com.orange.ods.compose.text.OdsTextBody2
+import com.orange.ods.compose.text.OdsTextBodyM
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.launch
 
@@ -96,7 +96,7 @@ fun ComponentSnackbars() {
                 modifier = Modifier.padding(horizontal = dimensionResource(id = com.orange.ods.R.dimen.screen_horizontal_margin)),
                 contentBackground = false
             ) {
-                OdsTextBody2(
+                OdsTextBodyM(
                     modifier = Modifier.padding(
                         top = dimensionResource(id = com.orange.ods.R.dimen.spacing_s),
                         bottom = dimensionResource(id = com.orange.ods.R.dimen.spacing_xs)
@@ -119,7 +119,7 @@ fun ComponentSnackbars() {
                     }
                 }
 
-                OdsTextBody2(
+                OdsTextBodyM(
                     modifier = Modifier.padding(
                         top = dimensionResource(id = com.orange.ods.R.dimen.spacing_s),
                         bottom = dimensionResource(id = com.orange.ods.R.dimen.spacing_xs)

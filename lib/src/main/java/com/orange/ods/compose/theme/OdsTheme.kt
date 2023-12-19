@@ -16,7 +16,6 @@ import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Shapes
 import androidx.compose.material.Surface
-import androidx.compose.material.Typography
 import androidx.compose.material.ripple.LocalRippleTheme
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.CompositionLocalProvider
@@ -26,6 +25,7 @@ import androidx.compose.runtime.staticCompositionLocalOf
 import com.orange.ods.theme.OdsComponentsConfiguration
 import com.orange.ods.theme.OdsThemeConfigurationContract
 import com.orange.ods.theme.colors.OdsColors
+import com.orange.ods.theme.typography.OdsTypography
 
 private val LocalShapes = staticCompositionLocalOf { Shapes() }
 
@@ -33,7 +33,7 @@ private val LocalColors = staticCompositionLocalOf<OdsColors> { error("Compositi
 private val LocalLightThemeColors = compositionLocalOf<OdsColors> { error("CompositionLocal LocalLightThemeColors not present") }
 private val LocalDarkThemeColors = compositionLocalOf<OdsColors> { error("CompositionLocal LocalDarkThemeColors not present") }
 
-private val LocalTypography = staticCompositionLocalOf { Typography() }
+private val LocalTypography = staticCompositionLocalOf { OdsTypography() }
 private val LocalComponentsConfiguration = staticCompositionLocalOf { OdsComponentsConfiguration() }
 
 
@@ -54,7 +54,7 @@ object OdsTheme {
         @ReadOnlyComposable
         get() = LocalDarkThemeColors.current
 
-    val typography: Typography
+    val typography: OdsTypography
         @Composable
         @ReadOnlyComposable
         get() = LocalTypography.current

@@ -58,7 +58,7 @@ fun OdsTopAppBar(
     elevated: Boolean = true
 ) {
     TopAppBar(
-        title = { Text(text = title, style = OdsTheme.typography.h6, modifier = Modifier.semantics { traversalIndex = -1f }) },
+        title = { Text(text = title, style = OdsTheme.typography.titleL, modifier = Modifier.semantics { traversalIndex = -1f }) },
         modifier = modifier.semantics { isTraversalGroup = true },
         navigationIcon = navigationIcon?.let { { it.Content() } },
         actions = { OdsTopAppBarActions(actions = actions, overflowMenuItems = overflowMenuItems) },

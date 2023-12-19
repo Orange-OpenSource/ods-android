@@ -21,56 +21,44 @@ import com.orange.ods.compose.theme.OdsTheme
 import com.orange.ods.compose.utilities.extension.enable
 
 @Composable
-fun OdsTextH1(text: String, modifier: Modifier = Modifier, displaySurface: OdsDisplaySurface = OdsDisplaySurface.Default, enabled: Boolean = true) =
-    OdsText(text, OdsTheme.typography.h1, modifier, displaySurface, enabled)
+fun OdsTextHeadlineL(text: String, modifier: Modifier = Modifier, displaySurface: OdsDisplaySurface = OdsDisplaySurface.Default, enabled: Boolean = true) =
+    OdsText(text, OdsTheme.typography.headlineL, modifier, displaySurface, enabled)
 
 @Composable
-fun OdsTextH2(text: String, modifier: Modifier = Modifier, displaySurface: OdsDisplaySurface = OdsDisplaySurface.Default, enabled: Boolean = true) =
-    OdsText(text, OdsTheme.typography.h2, modifier, displaySurface, enabled)
+fun OdsTextHeadlineS(text: String, modifier: Modifier = Modifier, displaySurface: OdsDisplaySurface = OdsDisplaySurface.Default, enabled: Boolean = true) =
+    OdsText(text, OdsTheme.typography.headlineS, modifier, displaySurface, enabled)
 
 @Composable
-fun OdsTextH3(text: String, modifier: Modifier = Modifier, displaySurface: OdsDisplaySurface = OdsDisplaySurface.Default, enabled: Boolean = true) =
-    OdsText(text, OdsTheme.typography.h3, modifier, displaySurface, enabled)
+fun OdsTextTitleL(text: String, modifier: Modifier = Modifier, displaySurface: OdsDisplaySurface = OdsDisplaySurface.Default, enabled: Boolean = true) =
+    OdsText(text, OdsTheme.typography.titleL, modifier, displaySurface, enabled)
 
 @Composable
-fun OdsTextH4(text: String, modifier: Modifier = Modifier, displaySurface: OdsDisplaySurface = OdsDisplaySurface.Default, enabled: Boolean = true) =
-    OdsText(text, OdsTheme.typography.h4, modifier, displaySurface, enabled)
+fun OdsTextTitleM(text: String, modifier: Modifier = Modifier, displaySurface: OdsDisplaySurface = OdsDisplaySurface.Default, enabled: Boolean = true) =
+    OdsText(text, OdsTheme.typography.titleM, modifier, displaySurface, enabled)
 
 @Composable
-fun OdsTextH5(text: String, modifier: Modifier = Modifier, displaySurface: OdsDisplaySurface = OdsDisplaySurface.Default, enabled: Boolean = true) =
-    OdsText(text, OdsTheme.typography.h5, modifier, displaySurface, enabled)
+fun OdsTextTitleS(text: String, modifier: Modifier = Modifier, displaySurface: OdsDisplaySurface = OdsDisplaySurface.Default, enabled: Boolean = true) =
+    OdsText(text, OdsTheme.typography.titleS, modifier, displaySurface, enabled)
 
 @Composable
-fun OdsTextH6(text: String, modifier: Modifier = Modifier, displaySurface: OdsDisplaySurface = OdsDisplaySurface.Default, enabled: Boolean = true) =
-    OdsText(text, OdsTheme.typography.h6, modifier, displaySurface, enabled)
+fun OdsTextBodyL(text: String, modifier: Modifier = Modifier, displaySurface: OdsDisplaySurface = OdsDisplaySurface.Default, enabled: Boolean = true) =
+    OdsText(text, OdsTheme.typography.bodyL, modifier, displaySurface, enabled)
 
 @Composable
-fun OdsTextSubtitle1(text: String, modifier: Modifier = Modifier, displaySurface: OdsDisplaySurface = OdsDisplaySurface.Default, enabled: Boolean = true) =
-    OdsText(text, OdsTheme.typography.subtitle1, modifier, displaySurface, enabled)
+fun OdsTextBodyM(text: String, modifier: Modifier = Modifier, displaySurface: OdsDisplaySurface = OdsDisplaySurface.Default, enabled: Boolean = true) =
+    OdsText(text, OdsTheme.typography.bodyM, modifier, displaySurface, enabled)
 
 @Composable
-fun OdsTextSubtitle2(text: String, modifier: Modifier = Modifier, displaySurface: OdsDisplaySurface = OdsDisplaySurface.Default, enabled: Boolean = true) =
-    OdsText(text, OdsTheme.typography.subtitle2, modifier, displaySurface, enabled)
+fun OdsTextBodyS(text: String, modifier: Modifier = Modifier, displaySurface: OdsDisplaySurface = OdsDisplaySurface.Default, enabled: Boolean = true) =
+    OdsText(text, OdsTheme.typography.bodyS, modifier, displaySurface, enabled)
 
 @Composable
-fun OdsTextBody1(text: String, modifier: Modifier = Modifier, displaySurface: OdsDisplaySurface = OdsDisplaySurface.Default, enabled: Boolean = true) =
-    OdsText(text, OdsTheme.typography.body1, modifier, displaySurface, enabled)
+fun OdsTextLabelL(text: String, modifier: Modifier = Modifier, displaySurface: OdsDisplaySurface = OdsDisplaySurface.Default, enabled: Boolean = true) =
+    OdsText(text.uppercase(), OdsTheme.typography.labelL, modifier, displaySurface, enabled)
 
 @Composable
-fun OdsTextBody2(text: String, modifier: Modifier = Modifier, displaySurface: OdsDisplaySurface = OdsDisplaySurface.Default, enabled: Boolean = true) =
-    OdsText(text, OdsTheme.typography.body2, modifier, displaySurface, enabled)
-
-@Composable
-fun OdsTextButton(text: String, modifier: Modifier = Modifier, displaySurface: OdsDisplaySurface = OdsDisplaySurface.Default, enabled: Boolean = true) =
-    OdsText(text, OdsTheme.typography.button, modifier, displaySurface, enabled)
-
-@Composable
-fun OdsTextCaption(text: String, modifier: Modifier = Modifier, displaySurface: OdsDisplaySurface = OdsDisplaySurface.Default, enabled: Boolean = true) =
-    OdsText(text, OdsTheme.typography.caption, modifier, displaySurface, enabled)
-
-@Composable
-fun OdsTextOverline(text: String, modifier: Modifier = Modifier, displaySurface: OdsDisplaySurface = OdsDisplaySurface.Default, enabled: Boolean = true) =
-    OdsText(text, OdsTheme.typography.overline, modifier, displaySurface, enabled)
+fun OdsTextLabelS(text: String, modifier: Modifier = Modifier, displaySurface: OdsDisplaySurface = OdsDisplaySurface.Default, enabled: Boolean = true) =
+    OdsText(text, OdsTheme.typography.labelS, modifier, displaySurface, enabled)
 
 @Composable
 private fun OdsText(text: String, textStyle: TextStyle, modifier: Modifier, displaySurface: OdsDisplaySurface, enabled: Boolean) {

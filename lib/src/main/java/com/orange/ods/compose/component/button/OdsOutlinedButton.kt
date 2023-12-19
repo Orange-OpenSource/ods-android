@@ -79,7 +79,7 @@ fun OdsOutlinedButton(
             )
         ) {
             icon?.Content()
-            Text(text = text.uppercase(), style = OdsTheme.typography.button)
+            Text(text = text.uppercase(), style = OdsTheme.typography.labelL)
         }
     }
 }

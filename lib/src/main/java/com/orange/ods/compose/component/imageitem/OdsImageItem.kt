@@ -226,7 +226,7 @@ private fun OdsImageItemLegendArea(
         text = text,
         color = color,
         modifier = textModifier,
-        style = OdsTheme.typography.subtitle1,
+        style = OdsTheme.typography.titleM,
         maxLines = 1,
         overflow = TextOverflow.Ellipsis
     )

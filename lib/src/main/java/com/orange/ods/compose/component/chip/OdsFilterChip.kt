@@ -137,7 +137,7 @@ private fun OdsFilterChip(
     ) {
         Text(
             text = text,
-            style = OdsTheme.typography.body2
+            style = OdsTheme.typography.bodyM
         ) // Don't use an `OdsText` here cause the color of the chip content is already managed by `OdsChipDefaults.filterChipColors()`
     }
 }

@@ -70,7 +70,7 @@ import com.orange.ods.compose.component.divider.OdsDivider
 import com.orange.ods.compose.component.utilities.BasicPreviewParameterProvider
 import com.orange.ods.compose.component.utilities.Preview
 import com.orange.ods.compose.component.utilities.UiModePreviews
-import com.orange.ods.compose.text.OdsTextCaption
+import com.orange.ods.compose.text.OdsTextBodyS
 import com.orange.ods.compose.theme.OdsTheme
 import com.orange.ods.extension.isNotNullOrBlank
 import com.orange.ods.extension.orElse
@@ -109,7 +109,7 @@ fun OdsListItem(
     OdsListItem(
         text = text,
         textColor = OdsTheme.colors.onSurface,
-        textStyle = OdsTheme.typography.subtitle1,
+        textStyle = OdsTheme.typography.titleM,
         modifier = modifier,
         leadingIcon = leadingIcon,
         secondaryText = secondaryText,
@@ -198,7 +198,7 @@ private fun OdsListItemInternal(
             {
                 Text(
                     text = secondaryText,
-                    style = OdsTheme.typography.body2,
+                    style = OdsTheme.typography.bodyM,
                     maxLines = secondaryTextLinesNumber,
                     overflow = TextOverflow.Ellipsis,
                     color = OdsTheme.colors.onSurface
@@ -207,7 +207,7 @@ private fun OdsListItemInternal(
         } else null,
         singleLineSecondaryText = singleLineSecondaryText,
         overlineText = if (overlineText.isNotNullOrBlank()) {
-            { Text(text = overlineText, style = OdsTheme.typography.overline, color = OdsTheme.colors.onSurface.copy(alpha = 0.6f)) }
+            { Text(text = overlineText, style = OdsTheme.typography.labelS, color = OdsTheme.colors.onSurface.copy(alpha = 0.6f)) }
         } else null,
         trailing = (trailing as? OdsComponentContent<*>)?.let { { it.Content() } },
         text = {
@@ -519,7 +519,7 @@ object OdsListItem {
 
         @Composable
         override fun Content(modifier: Modifier) {
-            OdsTextCaption(modifier = modifier, text = text)
+            OdsTextBodyS(modifier = modifier, text = text)
         }
     }
 

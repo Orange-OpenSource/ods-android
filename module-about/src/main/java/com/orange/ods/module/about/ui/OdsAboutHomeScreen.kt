@@ -38,9 +38,9 @@ import com.orange.ods.compose.component.button.OdsTextButton
 import com.orange.ods.compose.component.listitem.OdsListItem
 import com.orange.ods.compose.component.utilities.Preview
 import com.orange.ods.compose.component.utilities.UiModePreviews
-import com.orange.ods.compose.text.OdsTextBody1
-import com.orange.ods.compose.text.OdsTextBody2
-import com.orange.ods.compose.text.OdsTextH4
+import com.orange.ods.compose.text.OdsTextBodyL
+import com.orange.ods.compose.text.OdsTextBodyM
+import com.orange.ods.compose.text.OdsTextHeadlineL
 import com.orange.ods.module.about.R
 import com.orange.ods.module.about.ui.configuration.OdsAboutConfiguration
 import com.orange.ods.module.about.ui.configuration.OdsAboutFileMenuItem
@@ -69,7 +69,7 @@ internal fun OdsAboutHomeScreen(configuration: OdsAboutConfiguration, onAboutMen
                     .padding(horizontal = dimensionResource(id = com.orange.ods.R.dimen.spacing_m))
                     .padding(bottom = dimensionResource(id = com.orange.ods.R.dimen.spacing_m))
             ) {
-                OdsTextH4(
+                OdsTextHeadlineL(
                     text = configuration.appName,
                     modifier = Modifier.padding(top = dimensionResource(id = com.orange.ods.R.dimen.spacing_m))
                 )
@@ -100,13 +100,13 @@ internal fun OdsAboutHomeScreen(configuration: OdsAboutConfiguration, onAboutMen
                     }
                 }
                 configuration.appVersion?.let { appVersion ->
-                    OdsTextBody2(
+                    OdsTextBodyM(
                         text = appVersion,
                         modifier = Modifier.padding(top = dimensionResource(id = com.orange.ods.R.dimen.spacing_m))
                     )
                 }
                 configuration.appDescription?.let { description ->
-                    OdsTextBody1(
+                    OdsTextBodyL(
                         text = description,
                         modifier = Modifier.padding(top = dimensionResource(id = com.orange.ods.R.dimen.spacing_s))
                     )

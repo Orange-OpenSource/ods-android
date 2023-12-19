@@ -53,7 +53,7 @@ object OdsTabRow {
                 LeadingIconTab(
                     modifier = modifier,
                     icon = { icon.Content() },
-                    text = { Text(text = text.uppercase(), maxLines = 1, overflow = TextOverflow.Ellipsis, style = OdsTheme.typography.button) },
+                    text = { Text(text = text.uppercase(), maxLines = 1, overflow = TextOverflow.Ellipsis, style = OdsTheme.typography.labelL) },
                     selected = extraParameters.selected,
                     selectedContentColor = selectedContentColor,
                     unselectedContentColor = unselectedContentColor,
@@ -67,7 +67,7 @@ object OdsTabRow {
                     modifier = modifier,
                     enabled = enabled,
                     icon = icon?.let { { it.Content() } },
-                    text = text?.let { { Text(text.uppercase(), maxLines = 1, overflow = TextOverflow.Ellipsis, style = OdsTheme.typography.button) } },
+                    text = text?.let { { Text(text.uppercase(), maxLines = 1, overflow = TextOverflow.Ellipsis, style = OdsTheme.typography.labelL) } },
                     selectedContentColor = selectedContentColor,
                     unselectedContentColor = unselectedContentColor,
                 )

@@ -39,7 +39,7 @@ import com.orange.ods.compose.component.button.OdsTextButton
 import com.orange.ods.compose.component.chip.OdsChoiceChip
 import com.orange.ods.compose.component.chip.OdsChoiceChipsFlowRow
 import com.orange.ods.compose.component.listitem.OdsListItem
-import com.orange.ods.compose.text.OdsTextBody2
+import com.orange.ods.compose.text.OdsTextBodyM
 import com.orange.ods.compose.theme.OdsDisplaySurface
 import com.orange.ods.compose.theme.OdsTheme
 
@@ -163,7 +163,7 @@ fun InvertedBackgroundColumn(
             .padding(bottom = dimensionResource(com.orange.ods.R.dimen.spacing_m)),
         horizontalAlignment = horizontalAlignment
     ) {
-        OdsTextBody2(
+        OdsTextBodyM(
             modifier = Modifier
                 .padding(horizontal = dimensionResource(id = com.orange.ods.R.dimen.spacing_m))
                 .padding(top = dimensionResource(id = com.orange.ods.R.dimen.spacing_s))

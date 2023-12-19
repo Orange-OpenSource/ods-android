@@ -98,7 +98,7 @@ fun OdsExtendedFloatingActionButton(
 ) {
     ExtendedFloatingActionButton(
         onClick = onClick,
-        text = { Text(text = text.uppercase(), style = OdsTheme.typography.button) },
+        text = { Text(text = text.uppercase(), style = OdsTheme.typography.labelL) },
         modifier = modifier,
         backgroundColor = OdsTheme.colors.component.floatingActionButton.background,
         contentColor = OdsTheme.colors.component.floatingActionButton.content,

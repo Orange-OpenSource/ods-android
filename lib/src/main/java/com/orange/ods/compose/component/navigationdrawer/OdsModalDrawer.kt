@@ -59,7 +59,7 @@ import com.orange.ods.compose.component.listitem.OdsListItem
 import com.orange.ods.compose.component.utilities.BasicPreviewParameterProvider
 import com.orange.ods.compose.component.utilities.Preview
 import com.orange.ods.compose.component.utilities.UiModePreviews
-import com.orange.ods.compose.text.OdsTextBody2
+import com.orange.ods.compose.text.OdsTextBodyM
 import com.orange.ods.compose.theme.OdsTheme
 
 private val DrawerHeaderMinHeight = 167.dp
@@ -129,7 +129,7 @@ object OdsModalDrawer {
         override fun Content(modifier: Modifier) {
             Column(modifier = modifier) {
                 OdsDivider()
-                OdsTextBody2(
+                OdsTextBodyM(
                     modifier = Modifier.padding(top = dimensionResource(id = R.dimen.spacing_m), start = dimensionResource(id = R.dimen.spacing_m)),
                     text = label
                 )
@@ -165,7 +165,7 @@ object OdsModalDrawer {
                 OdsListItem(
                     text = text,
                     textColor = if (selected) OdsTheme.colors.primaryVariant else OdsTheme.colors.onSurface,
-                    textStyle = if (selected) OdsTheme.typography.subtitle2 else OdsTheme.typography.subtitle2.copy(fontWeight = FontWeight.Bold),
+                    textStyle = if (selected) OdsTheme.typography.titleS else OdsTheme.typography.titleS.copy(fontWeight = FontWeight.Bold),
                     modifier = modifier
                         .selectable(selected = selected, onClick = { onClick(this@ListItem) })
                         .let {
@@ -317,8 +317,8 @@ private fun OdsHeaderText(title: String, subtitle: String?, color: Color, modifi
         modifier = modifier.padding(all = dimensionResource(id = R.dimen.spacing_m)),
         verticalArrangement = Arrangement.Center
     ) {
-        Text(text = title, color = color, style = OdsTheme.typography.h6)
-        subtitle?.let { Text(text = it, color = color, style = OdsTheme.typography.body2) }
+        Text(text = title, color = color, style = OdsTheme.typography.titleL)
+        subtitle?.let { Text(text = it, color = color, style = OdsTheme.typography.bodyM) }
     }
 }
 
