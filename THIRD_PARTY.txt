@@ -4,47 +4,48 @@ Third Party Software may impose additional restrictions and it is the user's res
 requirements of the relevant license of the Third Party Software they are using.
 
 //-----//
+Accompanist
+Copyright 2020 The Android Open Source Project
+https://github.com/google/accompanist
+Apache License 2.0 (http://www.apache.org/licenses/LICENSE-2.0)
+
 AndroidX
-- multidex
-- constraintlayout
-- gridlayout
-- appcompat
-- recyclerview
-- test
-- runner
-AndroidX and his submodules are distributed under the terms and conditions of the Apache 2.0 License (http://www.apache.org/licenses/LICENSE-2.0)
+https://github.com/androidx/androidx
+Apache License 2.0 (http://www.apache.org/licenses/LICENSE-2.0)
 
-Material
-Material is distributed under the terms and conditions of the Apache 2.0 License (http://www.apache.org/licenses/LICENSE-2.0)
-
-Jekyll
-Jekyll is distributed under the terms and conditions of the MIT License (http://opensource.org/licenses/MIT)
-You may download the source code on the following website: https://github.com/jekyll/jekyll
-
-Guava
-Guava is distributed under the terms and conditions of the Apache 2.0 License (http://www.apache.org/licenses/LICENSE-2.0)
-You may download the source code on the following website: https://github.com/google/guava
+Coil
+Copyright 2023 Coil Contributors
+https://github.com/coil-kt/coil
+Apache License 2.0 (http://www.apache.org/licenses/LICENSE-2.0)
 
 Dagger
-Guava is distributed under the terms and conditions of the Apache 2.0 License (http://www.apache.org/licenses/LICENSE-2.0)
-You may download the source code on the following website: https://github.com/google/dagger
+Copyright 2012 The Dagger Authors
+https://github.com/google/dagger
+Apache License 2.0 (http://www.apache.org/licenses/LICENSE-2.0)
 
-Truth
-Truth is distributed under the terms and conditions of the Apache 2.0 License (http://www.apache.org/licenses/LICENSE-2.0)
-You may download the source code on the following website: https://github.com/google/truth
+Jekyll
+Copyright (c) 2008-present Tom Preston-Werner and Jekyll contributors
+https://github.com/jekyll/jekyll
+MIT License (http://opensource.org/licenses/MIT)
 
-Mockito-Core
-Mockito is distributed under the terms and conditions of the MIT License (http://opensource.org/licenses/MIT)
-You may download the source code on the following website: https://github.com/mockito/mockito
+JUnit
+https://github.com/junit-team/junit5/
+Eclipse Public License 2.0
 
-Robolectric
-Robolectric is distributed under the terms and conditions of the MIT License (http://opensource.org/licenses/MIT)
-You may download the source code on the following website: https://github.com/robolectric/robolectric
+KotlinPoet
+Copyright 2017 Square, Inc.
+https://github.com/square/kotlinpoet
+Apache License 2.0 (http://www.apache.org/licenses/LICENSE-2.0)
+
+Kotlin Symbol Processing
+https://github.com/google/ksp
+Apache License 2.0 (http://www.apache.org/licenses/LICENSE-2.0)
 
 Roboto fonts
-These fonts are licensed under the Apache License, Version 2.0 (http://www.apache.org/licenses/LICENSE-2.0)
-You may download them on the following website: https://fonts.google.com/specimen/Roboto
+https://fonts.google.com/specimen/Roboto
+Apache License 2.0 (http://www.apache.org/licenses/LICENSE-2.0)
 
-Auto-service
-Auto-service is distributed under the terms and conditions of the Apache 2.0 License (http://www.apache.org/licenses/LICENSE-2.0)
-You may download the source code on the following website: https://github.com/google/auto
+Timber
+Copyright 2013 Jake Wharton
+https://github.com/JakeWharton/timber
+Apache License 2.0 (http://www.apache.org/licenses/LICENSE-2.0)
