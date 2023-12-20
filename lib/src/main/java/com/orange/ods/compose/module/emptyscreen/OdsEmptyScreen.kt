@@ -52,7 +52,7 @@ fun OdsEmptyScreen(
     title: String,
     modifier: Modifier = Modifier,
     text: String? = null,
-    image: OdsEmptyScreen.Image = OdsEmptyScreen.Image(painter = painterResource(id = R.drawable.il_empty_screen)),
+    image: OdsEmptyScreen.Image = OdsEmptyScreen.Image(painter = painterResource(id = R.drawable.il_yoga_man)),
     button: OdsEmptyScreen.Button? = null
 ) {
     Column(
