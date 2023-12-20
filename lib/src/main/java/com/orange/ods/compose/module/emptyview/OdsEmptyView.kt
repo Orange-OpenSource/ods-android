@@ -47,7 +47,6 @@ import com.orange.ods.theme.typography.OdsTextStyle
  * @param image Image displayed centered in the composable.
  * @param button The button to add below the text.
  */
-//TODO Expose this composable when illustration and documentation are OK
 @Composable
 private fun OdsEmptyView(
     title: String,
