@@ -53,7 +53,7 @@ private fun OdsEmptyView(
     title: String,
     modifier: Modifier = Modifier,
     text: String? = null,
-    image: OdsEmptyView.Image = OdsEmptyView.Image(painter = painterResource(id = R.drawable.il_binoculars)),
+    image: OdsEmptyView.Image = OdsEmptyView.Image(painter = painterResource(id = R.drawable.il_empty_screen)),
     button: OdsEmptyView.Button? = null
 ) {
     Column(
