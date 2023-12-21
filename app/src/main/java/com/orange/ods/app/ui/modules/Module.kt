@@ -39,10 +39,10 @@ sealed class Module(
         route = ModulesNavigation.AboutCustomizationRoute
     )
 
-    data object EmptyScreen : Module(
-        R.string.module_emptyScreen_title,
+    data object EmptyState : Module(
+        R.string.module_emptyState_title,
         R.drawable.il_empty_state,
-        R.string.module_emptyScreen_description,
-        route = ModulesNavigation.EmptyScreenSetupRoute
+        R.string.module_emptyState_description,
+        route = ModulesNavigation.EmptyStateSetupRoute
     )
 }

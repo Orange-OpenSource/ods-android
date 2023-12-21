@@ -398,27 +398,27 @@
     <string name="module_about_demo_share_title">Share title</string>
     <string name="module_about_demo_share_text">Add your share text here.</string>
 
-    <!-- Module EmptyScreen -->
-    <string name="module_emptyScreen_title">Empty screen</string>
-    <string name="module_emptyScreen_description">An empty state can occur when no content or data is available to display in the UI. Avoid displaying completely empty screens.</string>
-    <string name="module_emptyScreen_usage_setup">Usage</string>
-    <string name="module_emptyScreen_usageFirstUse_choice">First use</string>
-    <string name="module_emptyScreen_usageFirstUse_title">First time</string>
-    <string name="module_emptyScreen_usageFirstUse_text">To find out how the service works press the button.</string>
-    <string name="module_emptyScreen_usageFirstUse_buttonLabel">Take a tour</string>
-    <string name="module_emptyScreen_usageUserCleared_choice">User cleared</string>
-    <string name="module_emptyScreen_usageUserCleared_title">All is cleared</string>
-    <string name="module_emptyScreen_usageUserCleared_text">To add a recipe press the button.</string>
-    <string name="module_emptyScreen_usageUserCleared_buttonLabel">Add a recipe</string>
-    <string name="module_emptyScreen_usageError_choice">Error</string>
-    <string name="module_emptyScreen_usageError_title">Something goes wrong</string>
-    <string name="module_emptyScreen_usageError_text">There is no connection.</string>
-    <string name="module_emptyScreen_usageError_buttonLabel">Retry</string>
-    <string name="module_emptyScreen_usageNoData_choice">No data</string>
-    <string name="module_emptyScreen_usageNoData_title">No result</string>
-    <string name="module_emptyScreen_usageNoData_text">Try a new search.</string>
-    <string name="module_emptyScreen_usageNoData_buttonLabel">Search</string>
-    <string name="module_emptyScreen_button_setup">Button</string>
+    <!-- Module Empty state -->
+    <string name="module_emptyState_title">Empty state</string>
+    <string name="module_emptyState_description">An empty state can occur when no content or data is available to display in the UI. Avoid displaying completely empty screens.</string>
+    <string name="module_emptyState_usage_setup">Usage</string>
+    <string name="module_emptyState_usageFirstUse_choice">First use</string>
+    <string name="module_emptyState_usageFirstUse_title">First time</string>
+    <string name="module_emptyState_usageFirstUse_text">To find out how the service works press the button.</string>
+    <string name="module_emptyState_usageFirstUse_buttonLabel">Take a tour</string>
+    <string name="module_emptyState_usageUserCleared_choice">User cleared</string>
+    <string name="module_emptyState_usageUserCleared_title">All is cleared</string>
+    <string name="module_emptyState_usageUserCleared_text">To add a recipe press the button.</string>
+    <string name="module_emptyState_usageUserCleared_buttonLabel">Add a recipe</string>
+    <string name="module_emptyState_usageError_choice">Error</string>
+    <string name="module_emptyState_usageError_title">Something goes wrong</string>
+    <string name="module_emptyState_usageError_text">There is no connection.</string>
+    <string name="module_emptyState_usageError_buttonLabel">Retry</string>
+    <string name="module_emptyState_usageNoData_choice">No data</string>
+    <string name="module_emptyState_usageNoData_title">No result</string>
+    <string name="module_emptyState_usageNoData_text">Try a new search.</string>
+    <string name="module_emptyState_usageNoData_buttonLabel">Search</string>
+    <string name="module_emptyState_button_setup">Button</string>
 
     <!-- About -->
     <string name="about_app_name">Orange Design System</string>

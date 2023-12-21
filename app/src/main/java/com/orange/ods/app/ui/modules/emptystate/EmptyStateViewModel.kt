@@ -8,15 +8,15 @@
  * /
  */
 
-package com.orange.ods.app.ui.modules.emptyscreen
+package com.orange.ods.app.ui.modules.emptystate
 
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
 import androidx.lifecycle.ViewModel
 
-class EmptyScreenViewModel: ViewModel() {
+class EmptyStateViewModel: ViewModel() {
     var text by mutableStateOf(false)
     var button by mutableStateOf(false)
-    var usage by mutableStateOf(EmptyScreenUsage.FirstUse)
+    var usage by mutableStateOf(EmptyStateUsage.FirstUse)
 }

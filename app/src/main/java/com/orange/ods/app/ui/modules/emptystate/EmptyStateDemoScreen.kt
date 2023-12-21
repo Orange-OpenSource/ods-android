@@ -8,7 +8,7 @@
  * /
  */
 
-package com.orange.ods.app.ui.modules.emptyscreen
+package com.orange.ods.app.ui.modules.emptystate
 
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.platform.LocalContext
@@ -20,9 +20,9 @@ import com.orange.ods.compose.module.emptyscreen.OdsEmptyScreen
 import com.orange.ods.extension.orElse
 
 @Composable
-fun EmptyScreenDemoScreen(viewModel: EmptyScreenViewModel) {
+fun EmptyStateDemoScreen(viewModel: EmptyStateViewModel) {
     val context = LocalContext.current
-    val elementClicked = stringResource(id = R.string.module_emptyScreen_button_setup)
+    val elementClicked = stringResource(id = R.string.module_emptyState_button_setup)
     OdsEmptyScreen(
         title = stringResource(id = viewModel.usage.titleRes),
         text = if (viewModel.text) stringResource(id = viewModel.usage.textRes) else null,

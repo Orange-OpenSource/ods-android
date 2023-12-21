@@ -143,14 +143,14 @@ sealed class Screen(
         title = UiString.StringResource(R.string.module_about),
     )
 
-    data object ModuleEmptyScreenSetup : Screen(
-        route = ModulesNavigation.EmptyScreenSetupRoute,
-        title = UiString.StringResource(R.string.module_emptyScreen_title)
+    data object ModuleEmptyStateSetup : Screen(
+        route = ModulesNavigation.EmptyStateSetupRoute,
+        title = UiString.StringResource(R.string.module_emptyState_title)
     )
 
-    data object ModuleEmptyScreenDemo : Screen(
-        route = ModulesNavigation.EmptyScreenDemoRoute,
-        title = UiString.StringResource(R.string.module_emptyScreen_title)
+    data object ModuleEmptyStateDemo : Screen(
+        route = ModulesNavigation.EmptyStateDemoRoute,
+        title = UiString.StringResource(R.string.module_emptyState_title)
     )
 
     // Search screen

@@ -19,13 +19,13 @@ import androidx.navigation.NavController
 import androidx.navigation.NavGraphBuilder
 import androidx.navigation.compose.composable
 import com.orange.ods.app.ui.modules.ModulesNavigation.AboutCustomizationRoute
-import com.orange.ods.app.ui.modules.ModulesNavigation.EmptyScreenDemoRoute
-import com.orange.ods.app.ui.modules.ModulesNavigation.EmptyScreenSetupRoute
+import com.orange.ods.app.ui.modules.ModulesNavigation.EmptyStateDemoRoute
+import com.orange.ods.app.ui.modules.ModulesNavigation.EmptyStateSetupRoute
 import com.orange.ods.app.ui.modules.about.AboutCustomizationScreen
 import com.orange.ods.app.ui.modules.about.AboutCustomizationViewModel
-import com.orange.ods.app.ui.modules.emptyscreen.EmptyScreenDemoScreen
-import com.orange.ods.app.ui.modules.emptyscreen.EmptyScreenSetupScreen
-import com.orange.ods.app.ui.modules.emptyscreen.EmptyScreenViewModel
+import com.orange.ods.app.ui.modules.emptystate.EmptyStateDemoScreen
+import com.orange.ods.app.ui.modules.emptystate.EmptyStateSetupScreen
+import com.orange.ods.app.ui.modules.emptystate.EmptyStateViewModel
 import com.orange.ods.app.ui.navigateToElement
 
 /**
@@ -34,8 +34,8 @@ import com.orange.ods.app.ui.navigateToElement
 object ModulesNavigation {
     const val AboutCustomizationRoute = "module/about/customization"
 
-    const val EmptyScreenSetupRoute = "module/emptyScreen/setup"
-    const val EmptyScreenDemoRoute = "module/emptyScreen/demo"
+    const val EmptyStateSetupRoute = "module/emptyState/setup"
+    const val EmptyStateDemoRoute = "module/emptyState/demo"
 }
 
 fun NavGraphBuilder.addModulesGraph(navController: NavController, navigateToAboutDemo: () -> Unit) {
@@ -45,14 +45,14 @@ fun NavGraphBuilder.addModulesGraph(navController: NavController, navigateToAbou
         AboutCustomizationScreen(navigateToAboutDemo = navigateToAboutDemo, viewModel = viewModel)
     }
 
-    composable(route = EmptyScreenSetupRoute) { navBackStackEntry ->
-        EmptyScreenSetupScreen(onViewDemoButtonClick = { navController.navigateToElement(EmptyScreenDemoRoute, null, navBackStackEntry) })
+    composable(route = EmptyStateSetupRoute) { navBackStackEntry ->
+        EmptyStateSetupScreen(onViewDemoButtonClick = { navController.navigateToElement(EmptyStateDemoRoute, null, navBackStackEntry) })
     }
 
-    composable(route = EmptyScreenDemoRoute) { _ ->
+    composable(route = EmptyStateDemoRoute) { _ ->
         navController.previousBackStackEntry?.let { previousBackStackEntry ->
-            val viewModel = viewModel<EmptyScreenViewModel>(previousBackStackEntry)
-            EmptyScreenDemoScreen(viewModel = viewModel)
+            val viewModel = viewModel<EmptyStateViewModel>(previousBackStackEntry)
+            EmptyStateDemoScreen(viewModel = viewModel)
         }
     }
 }

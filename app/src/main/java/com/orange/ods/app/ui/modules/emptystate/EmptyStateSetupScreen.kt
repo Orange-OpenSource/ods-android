@@ -8,7 +8,7 @@
  * /
  */
 
-package com.orange.ods.app.ui.modules.emptyscreen
+package com.orange.ods.app.ui.modules.emptystate
 
 import androidx.annotation.DrawableRes
 import androidx.annotation.StringRes
@@ -26,7 +26,7 @@ import com.orange.ods.compose.component.chip.OdsChoiceChip
 import com.orange.ods.compose.component.chip.OdsChoiceChipsFlowRow
 import com.orange.ods.compose.component.listitem.OdsListItem
 
-enum class EmptyScreenUsage(
+enum class EmptyStateUsage(
     @StringRes val choiceLabelRes: Int,
     @StringRes val titleRes: Int,
     @StringRes val textRes: Int,
@@ -34,55 +34,55 @@ enum class EmptyScreenUsage(
     @DrawableRes val illustrationRes: Int? = null
 ) {
     FirstUse(
-        R.string.module_emptyScreen_usageFirstUse_choice,
-        R.string.module_emptyScreen_usageFirstUse_title,
-        R.string.module_emptyScreen_usageFirstUse_text,
-        R.string.module_emptyScreen_usageFirstUse_buttonLabel,
+        R.string.module_emptyState_usageFirstUse_choice,
+        R.string.module_emptyState_usageFirstUse_title,
+        R.string.module_emptyState_usageFirstUse_text,
+        R.string.module_emptyState_usageFirstUse_buttonLabel,
         R.drawable.il_empty_state_first_use
 
     ),
     UserCleared(
-        R.string.module_emptyScreen_usageUserCleared_choice,
-        R.string.module_emptyScreen_usageUserCleared_title,
-        R.string.module_emptyScreen_usageUserCleared_text,
-        R.string.module_emptyScreen_usageUserCleared_buttonLabel
+        R.string.module_emptyState_usageUserCleared_choice,
+        R.string.module_emptyState_usageUserCleared_title,
+        R.string.module_emptyState_usageUserCleared_text,
+        R.string.module_emptyState_usageUserCleared_buttonLabel
     ),
     Error(
-        R.string.module_emptyScreen_usageError_choice,
-        R.string.module_emptyScreen_usageError_title,
-        R.string.module_emptyScreen_usageError_text,
-        R.string.module_emptyScreen_usageError_buttonLabel,
+        R.string.module_emptyState_usageError_choice,
+        R.string.module_emptyState_usageError_title,
+        R.string.module_emptyState_usageError_text,
+        R.string.module_emptyState_usageError_buttonLabel,
         R.drawable.il_empty_state_error
     ),
     NoData(
-        R.string.module_emptyScreen_usageNoData_choice,
-        R.string.module_emptyScreen_usageNoData_title,
-        R.string.module_emptyScreen_usageNoData_text,
-        R.string.module_emptyScreen_usageNoData_buttonLabel,
+        R.string.module_emptyState_usageNoData_choice,
+        R.string.module_emptyState_usageNoData_title,
+        R.string.module_emptyState_usageNoData_text,
+        R.string.module_emptyState_usageNoData_buttonLabel,
         R.drawable.il_empty_state_no_data
     )
 }
 
 @Composable
-fun EmptyScreenSetupScreen(onViewDemoButtonClick: () -> Unit, viewModel: EmptyScreenViewModel = viewModel()) {
+fun EmptyStateSetupScreen(onViewDemoButtonClick: () -> Unit, viewModel: EmptyStateViewModel = viewModel()) {
     with(viewModel) {
-        ModuleDetailColumn(module = Module.EmptyScreen, onViewDemoButtonClick = onViewDemoButtonClick) {
+        ModuleDetailColumn(module = Module.EmptyState, onViewDemoButtonClick = onViewDemoButtonClick) {
 
-            Subtitle(textRes = R.string.module_emptyScreen_usage_setup, horizontalPadding = true)
+            Subtitle(textRes = R.string.module_emptyState_usage_setup, horizontalPadding = true)
             OdsChoiceChipsFlowRow(
                 value = usage,
                 onValueChange = { value -> usage = value },
                 modifier = Modifier.padding(horizontal = dimensionResource(id = com.orange.ods.R.dimen.spacing_m)),
-                chips = EmptyScreenUsage.entries.map { emptyScreenUsage ->
+                chips = EmptyStateUsage.entries.map { emptyStateUsage ->
                     OdsChoiceChip(
-                        text = stringResource(id = emptyScreenUsage.choiceLabelRes),
-                        value = emptyScreenUsage
+                        text = stringResource(id = emptyStateUsage.choiceLabelRes),
+                        value = emptyStateUsage
                     )
                 }
             )
 
             OdsListItem(
-                text = stringResource(id = R.string.module_emptyScreen_button_setup),
+                text = stringResource(id = R.string.module_emptyState_button_setup),
                 trailing = OdsListItem.TrailingSwitch(button, { button = it })
             )
             OdsListItem(
