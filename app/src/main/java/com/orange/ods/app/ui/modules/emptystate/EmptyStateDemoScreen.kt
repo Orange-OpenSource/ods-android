@@ -16,21 +16,21 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import com.orange.ods.app.R
 import com.orange.ods.app.ui.components.utilities.clickOnElement
-import com.orange.ods.compose.module.emptyscreen.OdsEmptyScreen
+import com.orange.ods.compose.module.emptystate.OdsEmptyStateContent
 import com.orange.ods.extension.orElse
 
 @Composable
 fun EmptyStateDemoScreen(viewModel: EmptyStateViewModel) {
     val context = LocalContext.current
     val elementClicked = stringResource(id = R.string.module_emptyState_button_setup)
-    OdsEmptyScreen(
+    OdsEmptyStateContent(
         title = stringResource(id = viewModel.usage.titleRes),
         text = if (viewModel.text) stringResource(id = viewModel.usage.textRes) else null,
         button = if (viewModel.button) {
-            OdsEmptyScreen.Button(text = stringResource(id = viewModel.usage.buttonLabelRes)) { clickOnElement(context, elementClicked) }
+            OdsEmptyStateContent.Button(text = stringResource(id = viewModel.usage.buttonLabelRes)) { clickOnElement(context, elementClicked) }
         } else {
             null
         },
-        image = OdsEmptyScreen.Image(painter = painterResource(id = viewModel.usage.illustrationRes.orElse { com.orange.ods.R.drawable.il_yoga_man }))
+        image = OdsEmptyStateContent.Image(painter = painterResource(id = viewModel.usage.illustrationRes.orElse { com.orange.ods.R.drawable.il_yoga_man }))
     )
 }
