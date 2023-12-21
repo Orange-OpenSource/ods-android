@@ -20,6 +20,7 @@ import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.stringResource
 import com.orange.ods.R
@@ -42,6 +43,7 @@ fun ModuleDetailColumn(
         DetailScreenHeader(
             imageRes = DrawableManager.getDrawableResIdForCurrentTheme(resId = module.imageRes),
             imageAlignment = module.imageAlignment,
+            imageContentScale = ContentScale.Crop,
             descriptionRes = module.descriptionRes
         )
 
