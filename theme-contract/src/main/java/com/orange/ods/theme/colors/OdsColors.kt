@@ -11,12 +11,15 @@
 package com.orange.ods.theme.colors
 
 import androidx.compose.material.Colors
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.setValue
 
 /**
  * ODS color system.
  *
  * The ODS color system can help you create an ODS color theme that reflects your brand or style.
- * Default components' colors are based on the provided [material] but you can override these colors by providing your colors for each component. As an
+ * Default components' colors are based on the provided [materialColors] but you can override these colors by providing your colors for each component. As an
  * example, if you need to change the switches' colors you can provide your own [OdsSwitchColors] in the ODS color system.
  */
 open class OdsColors(
@@ -47,8 +50,9 @@ open class OdsColors(
     var onSurface = materialColors.onSurface
         private set
     var onError = materialColors.onError
+        private set
 
-    var functional = functionalColors
+    var functional by mutableStateOf(functionalColors)
         private set
 
     val component = OdsComponentColorsInternal(

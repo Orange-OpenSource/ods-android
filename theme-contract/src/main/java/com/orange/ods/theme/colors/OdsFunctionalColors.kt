@@ -10,6 +10,10 @@
 
 package com.orange.ods.theme.colors
 
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.setValue
+import androidx.compose.runtime.structuralEqualityPolicy
 import androidx.compose.ui.graphics.Color
 
 class OdsFunctionalColors(
@@ -20,17 +24,17 @@ class OdsFunctionalColors(
     info: Color,
     alert: Color
 ) {
-    var positive = positive
+    var positive by mutableStateOf(positive, structuralEqualityPolicy())
         private set
-    var onPositive = onPositive
+    var onPositive by mutableStateOf(onPositive, structuralEqualityPolicy())
         private set
-    var negative = negative
+    var negative by mutableStateOf(negative, structuralEqualityPolicy())
         private set
-    var onNegative = onNegative
+    var onNegative by mutableStateOf(onNegative, structuralEqualityPolicy())
         private set
-    var info = info
+    var info by mutableStateOf(info, structuralEqualityPolicy())
         private set
-    var alert = alert
+    var alert by mutableStateOf(alert, structuralEqualityPolicy())
         private set
 
     fun copy(
