@@ -10,6 +10,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Changed
 
 - \[Lib\] Update i18n keys ([#752](https://github.com/Orange-OpenSource/ods-android/issues/752))
+- \[Lib\] Update `OdsChoiceChipsFlowRow` to have less vertical space between elements ([#758](https://github.com/Orange-OpenSource/ods-android/issues/758))
 
 ### Fixed
 
