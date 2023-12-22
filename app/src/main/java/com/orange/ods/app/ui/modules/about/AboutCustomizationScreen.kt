@@ -20,6 +20,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.unit.dp
 import com.orange.ods.app.R
 import com.orange.ods.app.ui.components.utilities.ComponentCountRow
 import com.orange.ods.app.ui.modules.Module
@@ -100,6 +101,7 @@ private fun CustomizationChipsFlowRow(content: @Composable () -> Unit) {
             .fillMaxWidth()
             .padding(top = dimensionResource(id = com.orange.ods.R.dimen.spacing_xs)),
         horizontalArrangement = Arrangement.spacedBy(dimensionResource(id = com.orange.ods.R.dimen.spacing_s)),
+        verticalArrangement = Arrangement.spacedBy((-4).dp),
         content = { content() }
     )
 }

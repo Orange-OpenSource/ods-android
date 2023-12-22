@@ -18,13 +18,13 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.selection.selectableGroup
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.mutableIntStateOf
-import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.semantics.SemanticsPropertyReceiver
 import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.semantics.stateDescription
+import androidx.compose.ui.unit.dp
 import com.orange.ods.R
 import com.orange.ods.compose.component.OdsComposable
 import com.orange.ods.compose.component.utilities.Preview
@@ -57,6 +57,7 @@ fun <T> OdsChoiceChipsFlowRow(
             .fillMaxWidth()
             .selectableGroup(),
         horizontalArrangement = Arrangement.spacedBy(dimensionResource(id = R.dimen.spacing_s)),
+        verticalArrangement = Arrangement.spacedBy((-4).dp),
         content = {
             chips.forEachIndexed { index, odsChoiceChip ->
                 odsChoiceChip.Content(selected = value == odsChoiceChip.value) { selected ->
