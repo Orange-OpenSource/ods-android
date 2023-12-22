@@ -8,7 +8,7 @@
  * /
  */
 
-package com.orange.ods.module.about.configuration
+package com.orange.ods.module.about.ui.configuration
 
 import androidx.annotation.DrawableRes
 import androidx.annotation.RawRes

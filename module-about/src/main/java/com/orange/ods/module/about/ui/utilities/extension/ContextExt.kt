@@ -8,7 +8,7 @@
  * /
  */
 
-package com.orange.ods.module.about.utilities.extension
+package com.orange.ods.module.about.ui.utilities.extension
 
 import android.content.ActivityNotFoundException
 import android.content.Context

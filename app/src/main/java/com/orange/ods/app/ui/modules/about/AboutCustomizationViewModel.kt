@@ -24,10 +24,10 @@ import com.orange.ods.app.ui.CustomAppBarConfiguration
 import com.orange.ods.app.ui.LocalAppBarManager
 import com.orange.ods.app.ui.about.RateTheAppUrl
 import com.orange.ods.app.ui.components.utilities.clickOnElement
-import com.orange.ods.module.about.configuration.OdsAboutConfiguration
-import com.orange.ods.module.about.configuration.OdsAboutFileMenuItem
-import com.orange.ods.module.about.configuration.OdsAboutMenuItem
-import com.orange.ods.module.about.configuration.OdsAboutShareData
+import com.orange.ods.module.about.ui.configuration.OdsAboutConfiguration
+import com.orange.ods.module.about.ui.configuration.OdsAboutFileMenuItem
+import com.orange.ods.module.about.ui.configuration.OdsAboutMenuItem
+import com.orange.ods.module.about.ui.configuration.OdsAboutShareData
 
 class AboutCustomizationViewModel : ViewModel() {
 

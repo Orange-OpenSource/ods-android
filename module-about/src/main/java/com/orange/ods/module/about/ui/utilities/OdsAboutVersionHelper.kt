@@ -8,7 +8,7 @@
  * /
  */
 
-package com.orange.ods.module.about.utilities
+package com.orange.ods.module.about.ui.utilities
 
 import android.content.Context
 import android.content.pm.PackageInfo
