@@ -30,6 +30,7 @@ import com.orange.ods.app.ui.utilities.NavigationItem
 import com.orange.ods.compose.component.appbar.top.OdsTopAppBar
 import com.orange.ods.compose.component.content.OdsComponentContent
 import com.orange.ods.compose.component.menu.OdsDropdownMenu
+import com.orange.ods.extension.orElse
 import kotlin.math.max
 
 val LocalAppBarManager = staticCompositionLocalOf<AppBarManager> { error("CompositionLocal AppBarManager not present") }
@@ -51,7 +52,7 @@ interface AppBarManager {
  */
 class AppBarState(
     private val navigationState: AppNavigationState,
-    private val searchText: MutableState<TextFieldValue>,
+    val searchText: MutableState<TextFieldValue>,
     private val customAppBarConfiguration: MutableState<CustomAppBarConfiguration>,
     val tabsState: AppBarTabsState
 ) : AppBarManager {
@@ -63,8 +64,8 @@ class AppBarState(
         @Composable get() = (isCustom && customAppBarConfiguration.value.isNavigationIconEnabled)
                 || (!isCustom && navigationState.currentScreen?.isHome(navigationState.previousRoute) == false)
 
-    val isLarge: Boolean
-        @Composable get() = navigationState.currentScreen?.isLargeAppBar == true
+    val type: Screen.AppBarType
+        @Composable get() = navigationState.currentScreen?.appBarType.orElse { Screen.AppBarType.Default }
 
     val title: String
         @Composable get() = if (isCustom) {
@@ -75,7 +76,7 @@ class AppBarState(
 
     val actions: List<OdsComponentContent<Nothing>>
         @Composable get() {
-            val screenAppBarActions = navigationState.currentScreen?.getAppBarActions(navigationState.previousRoute) { searchText.value = it }.orEmpty()
+            val screenAppBarActions = navigationState.currentScreen?.getAppBarActions(navigationState.previousRoute).orEmpty()
             return if (isCustom) {
                 val context = LocalContext.current
                 val customActionCount = max(0, customAppBarConfiguration.value.actionCount - AppBarAction.defaultActions.size)

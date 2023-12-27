@@ -12,8 +12,11 @@ package com.orange.ods.app.ui
 
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.TopAppBarScrollBehavior
-import androidx.compose.runtime.*
+import androidx.compose.runtime.Composable
+import androidx.compose.ui.res.stringResource
+import com.orange.ods.app.R
 import com.orange.ods.compose.component.appbar.top.OdsLargeTopAppBarInternal
+import com.orange.ods.compose.component.appbar.top.OdsSearchTopAppBar
 import com.orange.ods.compose.component.appbar.top.OdsTopAppBarInternal
 
 /**
@@ -27,16 +30,22 @@ fun AppBar(
     scrollBehavior: TopAppBarScrollBehavior?
 ) {
     with(appBarState) {
-        if (isLarge) {
-            OdsLargeTopAppBarInternal(
+        when (type) {
+            Screen.AppBarType.Large -> OdsLargeTopAppBarInternal(
                 title = title,
                 navigationIcon = getNavigationIcon(upPress),
                 actions = actions,
                 overflowMenuItems = overflowMenuItems,
                 scrollBehavior = if (hasScrollBehavior) scrollBehavior else null
             )
-        } else {
-            OdsTopAppBarInternal(
+            Screen.AppBarType.Search -> OdsSearchTopAppBar(
+                searchHint = stringResource(id = R.string.search_text_field_hint),
+                onSearchValueChange = { searchText.value = it },
+                searchValue = LocalAppBarManager.current.searchedText,
+                navigationIcon = getNavigationIcon(upPress),
+                elevated = false // elevation is managed in MainScreen
+            )
+            Screen.AppBarType.Default -> OdsTopAppBarInternal(
                 title = title,
                 navigationIcon = getNavigationIcon(upPress),
                 actions = actions,

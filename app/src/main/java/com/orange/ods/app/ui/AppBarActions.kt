@@ -10,23 +10,14 @@
 
 package com.orange.ods.app.ui
 
-import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.LaunchedEffect
-import androidx.compose.runtime.remember
-import androidx.compose.ui.Modifier
-import androidx.compose.ui.focus.FocusRequester
-import androidx.compose.ui.focus.focusRequester
 import androidx.compose.ui.platform.LocalConfiguration
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
-import androidx.compose.ui.text.input.TextFieldValue
 import com.orange.ods.app.R
 import com.orange.ods.app.ui.AppBarAction.Companion.defaultActions
 import com.orange.ods.app.ui.utilities.extension.isDarkModeEnabled
 import com.orange.ods.compose.component.appbar.top.OdsTopAppBar
-import com.orange.ods.compose.component.content.OdsComponentContent
-import com.orange.ods.compose.component.textfield.search.OdsSearchTextField
 
 enum class AppBarAction {
     Search, ChangeTheme, ChangeMode;
@@ -50,28 +41,6 @@ fun getDefaultActions(onActionClick: (AppBarAction) -> Unit): List<OdsTopAppBar.
 @Composable
 fun getHomeActions(onActionClick: (AppBarAction) -> Unit): List<OdsTopAppBar.ActionButton> =
     listOf(getSearchAction(onActionClick)) + getDefaultActions(onActionClick = onActionClick)
-
-@Composable
-fun getSearchFieldAction(onTextChange: (TextFieldValue) -> Unit): OdsComponentContent<Nothing> {
-    return object : OdsComponentContent<Nothing>() {
-
-        @Composable
-        override fun Content(modifier: Modifier) {
-            val focusRequester = remember { FocusRequester() }
-            OdsSearchTextField(
-                value = LocalAppBarManager.current.searchedText,
-                onValueChange = onTextChange,
-                placeholder = stringResource(id = R.string.search_text_field_hint),
-                modifier = modifier
-                    .fillMaxWidth()
-                    .focusRequester(focusRequester)
-            )
-            LaunchedEffect(Unit) {
-                focusRequester.requestFocus()
-            }
-        }
-    }
-}
 
 @Composable
 private fun getSearchAction(onClick: (AppBarAction) -> Unit) = OdsTopAppBar.ActionButton(
