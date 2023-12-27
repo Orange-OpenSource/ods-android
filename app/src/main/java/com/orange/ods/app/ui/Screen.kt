@@ -21,7 +21,7 @@ import com.orange.ods.app.ui.components.Variant
 import com.orange.ods.app.ui.guidelines.GuidelinesNavigation
 import com.orange.ods.app.ui.modules.ModuleDemoDestinations
 import com.orange.ods.app.ui.utilities.UiString
-import com.orange.ods.compose.component.content.OdsComponentContent
+import com.orange.ods.compose.component.appbar.top.OdsTopAppBar
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.asSharedFlow
@@ -74,7 +74,7 @@ sealed class Screen(
         get() = this is ComponentVariant && Variant.fromId(this.variantId)?.customizableTopAppBar == true
 
     @Composable
-    fun getAppBarActions(previousRoute: String?): List<OdsComponentContent<Nothing>> = when {
+    fun getAppBarActions(previousRoute: String?): List<OdsTopAppBar.ActionButton> = when {
         isHome(previousRoute) -> getHomeActions { action -> _appBarActionClicked.tryEmit(action) }
         else -> getDefaultActions { action -> _appBarActionClicked.tryEmit(action) }
     }

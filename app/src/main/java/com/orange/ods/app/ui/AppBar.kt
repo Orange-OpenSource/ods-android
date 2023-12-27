@@ -17,7 +17,7 @@ import androidx.compose.ui.res.stringResource
 import com.orange.ods.app.R
 import com.orange.ods.compose.component.appbar.top.OdsLargeTopAppBarInternal
 import com.orange.ods.compose.component.appbar.top.OdsSearchTopAppBar
-import com.orange.ods.compose.component.appbar.top.OdsTopAppBarInternal
+import com.orange.ods.compose.component.appbar.top.OdsTopAppBar
 
 /**
  * Displays the unique top app bar of the application which can be regular or large.
@@ -45,7 +45,7 @@ fun AppBar(
                 navigationIcon = getNavigationIcon(upPress),
                 elevated = false // elevation is managed in MainScreen
             )
-            Screen.AppBarType.Default -> OdsTopAppBarInternal(
+            Screen.AppBarType.Default -> OdsTopAppBar(
                 title = title,
                 navigationIcon = getNavigationIcon(upPress),
                 actions = actions,
