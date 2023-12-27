@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased](https://github.com/Orange-OpenSource/ods-android/compare/0.18.0...develop)
 
+### Added
+
+- \[Lib\] Add `OdsSearchTopAppBar` component variant ([#577](https://github.com/Orange-OpenSource/ods-android/issues/577))
+
 ### Changed
 
 - \[Lib\] Update i18n keys ([#752](https://github.com/Orange-OpenSource/ods-android/issues/752))
