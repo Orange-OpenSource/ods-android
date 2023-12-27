@@ -10,6 +10,7 @@
 
 package com.orange.ods.app.ui.search
 
+import androidx.annotation.DrawableRes
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.lazy.LazyColumn
@@ -45,6 +46,7 @@ import com.orange.ods.compose.component.listitem.OdsListItem
 import com.orange.ods.compose.theme.OdsTheme
 import com.orange.ods.extension.orElse
 import com.orange.ods.theme.guideline.GuidelineColor
+import com.orange.ods.theme.guideline.GuidelineTextStyle
 import com.orange.ods.theme.guideline.toHexString
 
 @Composable
@@ -56,6 +58,10 @@ fun SearchScreen(onResultItemClick: (String, Long?) -> Unit) {
         searchedText.text.isEmpty() || stringResource(id = component.titleRes).lowercase()
             .contains(searchedText.text.lowercase())
     }.asSequence()
+
+    val filteredGuidelineTypography = LocalOdsGuideline.current.guidelineTypography.filter { typography ->
+        searchedText.text.isEmpty() || typography.name.lowercase().contains(searchedText.text.lowercase())
+    }
 
     val filteredSpacings = Spacing.entries.filter { spacing ->
         searchedText.text.isEmpty() || spacing.tokenName.lowercase()
@@ -82,7 +88,7 @@ fun SearchScreen(onResultItemClick: (String, Long?) -> Unit) {
     data class SearchResult(
         val title: String,
         val id: Long,
-        val image: Int?,
+        @DrawableRes val image: Int?,
         val subtitle: String?,
         val color: Color?,
         val data: Any
@@ -127,6 +133,15 @@ fun SearchScreen(onResultItemClick: (String, Long?) -> Unit) {
                 color = null,
                 subtitle = stringResource(id = R.string.guideline_spacing_dp, spacing.getDp().value.toInt()),
                 data = spacing
+            )
+        }).plus(filteredGuidelineTypography.map { guidelineTypography ->
+            SearchResult(
+                guidelineTypography.name,
+                0,
+                image = R.drawable.il_typography,
+                color = null,
+                subtitle = guidelineTypography.composeStyle,
+                data = guidelineTypography
             )
         }).sortedBy { it.title }.toList()
 
@@ -174,6 +189,7 @@ fun SearchScreen(onResultItemClick: (String, Long?) -> Unit) {
                     is Variant -> onResultItemClick(ComponentsNavigation.ComponentVariantDemoRoute, item.id)
                     is Spacing -> onResultItemClick(GuidelinesNavigation.GuidelineSpacing, null)
                     is GuidelineColor -> openDialog.value = true
+                    is GuidelineTextStyle -> onResultItemClick(GuidelinesNavigation.GuidelineTypography, null)
                 }
             }
             if (openDialog.value && guidelineColor != null) {
