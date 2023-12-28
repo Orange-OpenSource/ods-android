@@ -231,22 +231,15 @@
     <string name="component_list_item">List item</string>
     <string name="component_list_item_description">A list item is the individual element of data entries like text, icons or images that is used to create a list.</string>
     <string name="component_list_item_secondary_text">Secondary text</string>
-    <string name="component_list_item_secondary_text_none">None</string>
-    <string name="component_list_item_secondary_text_subtitle">Subtitle</string>
     <string name="component_list_item_secondary_text_description">Description</string>
     <string name="component_list_leading">Leading - Before the list text</string>
-    <string name="component_list_leading_none">None</string>
-    <string name="component_list_leading_icon">Icon</string>
     <string name="component_list_leading_circular_image">Circle</string>
     <string name="component_list_leading_square_image">Square</string>
     <string name="component_list_leading_wide_image">Wide</string>
     <string name="component_list_trailing">Trailing - After the list text</string>
-    <string name="component_list_trailing_none">None</string>
     <string name="component_list_trailing_checkbox">Checkbox</string>
     <string name="component_list_trailing_switch">Switch</string>
     <string name="component_list_trailing_radio_button">Radio button</string>
-    <string name="component_list_trailing_icon">Icon</string>
-    <string name="component_list_trailing_caption">Caption</string>
     <string name="component_list_information">Information</string>
 
     <!-- Component Menus -->

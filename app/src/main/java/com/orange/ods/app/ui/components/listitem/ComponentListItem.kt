@@ -65,11 +65,11 @@ private fun ComponentListItemBottomSheetContent(listItemCustomizationState: List
         modifier = Modifier.padding(horizontal = dimensionResource(id = com.orange.ods.R.dimen.spacing_m)),
         chips = listOf(
             OdsChoiceChip(
-                text = stringResource(id = R.string.component_list_item_secondary_text_none),
+                text = stringResource(id = R.string.component_element_none),
                 value = ListItemCustomizationState.SecondaryTextType.None
             ),
             OdsChoiceChip(
-                text = stringResource(id = R.string.component_list_item_secondary_text_subtitle),
+                text = stringResource(id = R.string.component_element_subtitle),
                 value = ListItemCustomizationState.SecondaryTextType.Subtitle
             ),
             OdsChoiceChip(
@@ -85,8 +85,8 @@ private fun ComponentListItemBottomSheetContent(listItemCustomizationState: List
         onValueChange = { value -> listItemCustomizationState.selectedLeadingIconType.value = value },
         modifier = Modifier.padding(horizontal = dimensionResource(id = com.orange.ods.R.dimen.spacing_m)),
         chips = listOf(
-            OdsChoiceChip(text = stringResource(id = R.string.component_list_leading_none), value = null),
-            OdsChoiceChip(text = stringResource(id = R.string.component_list_leading_icon), value = OdsListItem.LeadingIcon.Type.Icon),
+            OdsChoiceChip(text = stringResource(id = R.string.component_element_none), value = null),
+            OdsChoiceChip(text = stringResource(id = R.string.component_element_icon), value = OdsListItem.LeadingIcon.Type.Icon),
             OdsChoiceChip(text = stringResource(id = R.string.component_list_leading_circular_image), value = OdsListItem.LeadingIcon.Type.CircularImage),
             OdsChoiceChip(text = stringResource(id = R.string.component_list_leading_square_image), value = OdsListItem.LeadingIcon.Type.SquareImage),
             OdsChoiceChip(text = stringResource(id = R.string.component_list_leading_wide_image), value = OdsListItem.LeadingIcon.Type.WideImage),
@@ -108,7 +108,7 @@ private fun ComponentListItemBottomSheetContent(listItemCustomizationState: List
 private fun ComponentListItemContent(listItemCustomizationState: ListItemCustomizationState) {
     val context = LocalContext.current
     val recipe = LocalRecipes.current.first { it.description.isNotBlank() }
-    
+
     with(listItemCustomizationState) {
         Column {
             if (!trailings.contains(selectedTrailing.value)) {
@@ -202,9 +202,9 @@ private val Class<out OdsListItem.Trailing>?.textResId: Int
         OdsListItem.TrailingCheckbox::class.java -> R.string.component_list_trailing_checkbox
         OdsListItem.TrailingSwitch::class.java -> R.string.component_list_trailing_switch
         OdsListItem.TrailingRadioButton::class.java -> R.string.component_list_trailing_radio_button
-        OdsListItem.TrailingIcon::class.java -> R.string.component_list_trailing_icon
-        OdsListItem.TrailingCaption::class.java -> R.string.component_list_trailing_caption
-        else -> R.string.component_list_trailing_none
+        OdsListItem.TrailingIcon::class.java -> R.string.component_element_icon
+        OdsListItem.TrailingCaption::class.java -> R.string.component_element_caption
+        else -> R.string.component_element_none
     }
 
 @Composable
