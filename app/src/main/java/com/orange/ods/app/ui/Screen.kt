@@ -22,6 +22,7 @@ import com.orange.ods.app.ui.guidelines.GuidelinesNavigation
 import com.orange.ods.app.ui.modules.ModuleDemoDestinations
 import com.orange.ods.app.ui.utilities.UiString
 import com.orange.ods.compose.component.appbar.top.OdsTopAppBar
+import com.orange.ods.extension.orElse
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.asSharedFlow
@@ -128,7 +129,7 @@ sealed class Screen(
     data class ComponentVariant(val variantId: Long) : Screen(
         route = ComponentVariantDemoRoute,
         title = Variant.fromId(variantId)?.titleRes?.let { UiString.StringResource(it) },
-        appBarType = if (Variant.fromId(variantId)?.largeTopAppBar == true) AppBarType.Large else AppBarType.Default,
+        appBarType = Variant.fromId(variantId)?.topAppBarType.orElse { AppBarType.Default },
         hasTabs = Variant.fromId(variantId)?.hasTabs == true
     )
 
