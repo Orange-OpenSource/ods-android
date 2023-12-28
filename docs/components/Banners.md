@@ -52,11 +52,12 @@ OdsBanner(
 
 #### OdsBanner API
 
-Parameter | Default&nbsp;value | Description
--- | -- | --
-`message: String` | | Text displayed into the banner
-`modifier: Modifier` | `Modifier` | `Modifier` applied to the banner
-`image: OdsBanner.Image?` | `null` | Image displayed in the banner in a circle shape
-`firstButton: OdsBanner.Button?` | `null` | Primary button displayed in the banner
-`secondButton: OdsBanner.Button?` | `null` | Secondary button displayed into the banner next to the primary one
 {:.table}
+
+| Parameter                         | Default&nbsp;value | Description                                                        |
+|-----------------------------------|--------------------|--------------------------------------------------------------------|
+| <b>`message: String`</b>          |                    | Text displayed into the banner                                     |
+| `modifier: Modifier`              | `Modifier`         | `Modifier` applied to the banner                                   |
+| `image: OdsBanner.Image?`         | `null`             | Image displayed in the banner in a circle shape                    |
+| `firstButton: OdsBanner.Button?`  | `null`             | Primary button displayed in the banner                             |
+| `secondButton: OdsBanner.Button?` | `null`             | Secondary button displayed into the banner next to the primary one |

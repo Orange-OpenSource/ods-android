@@ -56,13 +56,14 @@ OdsAlertDialog(
 
 ##### OdsAlertDialog API
 
-Parameter | Default&nbsp;value | Description
--- | -- | --
-`text: String` | | Text displayed into the dialog which presents the details regarding the Dialog's purpose
-`confirmButton: OdsAlertDialog.Button` | | Button displayed into the dialog which is meant to confirm a proposed action, thus resolving what triggered the dialog
-`modifier: Modifier` | `Modifier` | `Modifier` applied to the layout of the dialog
-`onDismissRequest: () -> Unit` | `{}` | Callback invoked when the user tries to dismiss the dialog by clicking outside or pressing the back button. This is not called when the dismiss button is clicked.
-`dismissButton: OdsAlertDialog.Button?` | `null` | Button displayed into the dialog which is meant to dismiss the dialog
-`title: String?` | `null` | Title displayed into the dialog which should specify the purpose of the dialog. The title is not mandatory, because there may be sufficient information inside the `text`.
-`properties: DialogProperties` | `DialogProperties()` | Typically platform specific properties to further configure the dialog
 {:.table}
+
+| Parameter                                     | Default&nbsp;value   | Description                                                                                                                                                                |
+|-----------------------------------------------|----------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| <b>`text: String`</b>                         |                      | Text displayed into the dialog which presents the details regarding the Dialog's purpose                                                                                   |
+| <b>`confirmButton: OdsAlertDialog.Button`</b> |                      | Button displayed into the dialog which is meant to confirm a proposed action, thus resolving what triggered the dialog                                                     |
+| `modifier: Modifier`                          | `Modifier`           | `Modifier` applied to the layout of the dialog                                                                                                                             |
+| `onDismissRequest: () -> Unit`                | `{}`                 | Callback invoked when the user tries to dismiss the dialog by clicking outside or pressing the back button. This is not called when the dismiss button is clicked.         |
+| `dismissButton: OdsAlertDialog.Button?`       | `null`               | Button displayed into the dialog which is meant to dismiss the dialog                                                                                                      |
+| `title: String?`                              | `null`               | Title displayed into the dialog which should specify the purpose of the dialog. The title is not mandatory, because there may be sufficient information inside the `text`. |
+| `properties: DialogProperties`                | `DialogProperties()` | Typically platform specific properties to further configure the dialog                                                                                                     |

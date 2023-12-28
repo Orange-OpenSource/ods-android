@@ -68,13 +68,14 @@ OdsTabRow(
 
 ##### OdsTabRow API
 
-Parameter | Default&nbsp;value | Description
--- | -- | --
-`selectedTabIndex: Int` | | Index of the currently selected tab
-`tabs: List<OdsTabRow.Tab>` | | List of the `OdsTabRow.Tab` displayed inside this tabs row
-`modifier: Modifier` | `Modifier` | `Modifier` applied to the tabs row
-`tabIconPosition: OdsTabRow.Tab.Icon.Position` | `OdsTabRow.Tab.Icon.Position.Top` | Controls the position of the icon in the tabs. By default, the icon is displayed above the text.
 {:.table}
+
+| Parameter                                      | Default&nbsp;value                | Description                                                                                      |
+|------------------------------------------------|-----------------------------------|--------------------------------------------------------------------------------------------------|
+| <b>`selectedTabIndex: Int`</b>                 |                                   | Index of the currently selected tab                                                              |
+| <b>`tabs: List<OdsTabRow.Tab>`</b>             |                                   | List of the `OdsTabRow.Tab` displayed inside this tabs row                                       |
+| `modifier: Modifier`                           | `Modifier`                        | `Modifier` applied to the tabs row                                                               |
+| `tabIconPosition: OdsTabRow.Tab.Icon.Position` | `OdsTabRow.Tab.Icon.Position.Top` | Controls the position of the icon in the tabs. By default, the icon is displayed above the text. |
 
 ### Scrollable tabs row
 
@@ -110,10 +111,11 @@ OdsScrollableTabRow(
 
 ##### OdsScrollableTabRow API
 
-Parameter | Default&nbsp;value | Description
--- | -- | --
-`selectedTabIndex: Int` | | Index of the currently selected tab
-`tabs: List<OdsTabRow.Tab>` | | List of the `OdsTabRow.Tab` displayed inside this tabs row
-`modifier: Modifier` | `Modifier` | `Modifier` applied to the tabs row
-`tabIconPosition: OdsTabRow.Tab.Icon.Position` | `OdsTabRow.Tab.Icon.Position.Top` | Controls the position of the icon in the tabs. By default, the icon is displayed above the text.
 {:.table}
+
+| Parameter                                      | Default&nbsp;value                | Description                                                                                      |
+|------------------------------------------------|-----------------------------------|--------------------------------------------------------------------------------------------------|
+| <b>`selectedTabIndex: Int`</b>                 |                                   | Index of the currently selected tab                                                              |
+| <b>`tabs: List<OdsTabRow.Tab>`</b>             |                                   | List of the `OdsTabRow.Tab` displayed inside this tabs row                                       |
+| `modifier: Modifier`                           | `Modifier`                        | `Modifier` applied to the tabs row                                                               |
+| `tabIconPosition: OdsTabRow.Tab.Icon.Position` | `OdsTabRow.Tab.Icon.Position.Top` | Controls the position of the icon in the tabs. By default, the icon is displayed above the text. |

@@ -66,15 +66,16 @@ OdsDropdownMenu(
 
 ##### OdsDropdownMenu API
 
-Parameter | Default&nbsp;value | Description
--- | -- | --
-`items: List<OdsDropdownMenu.Item>` | | Items displayed into the dropdown menu
-`expanded: Boolean` | | Controls whether the menu is currently open and visible to the user
-`onDismissRequest: () -> Unit` | | Callback invoked when the user requests to dismiss the menu, such as by tapping outside the menu's bounds
-`modifier: Modifier` | `Modifier` | `Modifier` applied to the dropdown menu
-`offset: DpOffset` | `DpOffset(0.dp, 0.dp)` | Offset added to the menu position
-`properties: PopupProperties` | `PopupProperties(focusable = true)` | Properties for further customization of the popup's behavior
 {:.table}
+
+| Parameter                                  | Default&nbsp;value                  | Description                                                                                               |
+|--------------------------------------------|-------------------------------------|-----------------------------------------------------------------------------------------------------------|
+| <b>`items: List<OdsDropdownMenu.Item>`</b> |                                     | Items displayed into the dropdown menu                                                                    |
+| <b>`expanded: Boolean`</b>                 |                                     | Controls whether the menu is currently open and visible to the user                                       |
+| <b>`onDismissRequest: () -> Unit`</b>      |                                     | Callback invoked when the user requests to dismiss the menu, such as by tapping outside the menu's bounds |
+| `modifier: Modifier`                       | `Modifier`                          | `Modifier` applied to the dropdown menu                                                                   |
+| `offset: DpOffset`                         | `DpOffset(0.dp, 0.dp)`              | Offset added to the menu position                                                                         |
+| `properties: PopupProperties`              | `PopupProperties(focusable = true)` | Properties for further customization of the popup's behavior                                              |
 
 ### Exposed dropdown menu
 
@@ -107,12 +108,13 @@ OdsExposedDropdownMenu(
 
 ##### OdsExposedDropdownMenu API
 
-Parameter | Default&nbsp;value | Description
--- | -- | --
-`label: String` | | Label of the exposed menu text field
-`items: List<OdsExposedDropdownMenu.Item>` | | Items displayed into the dropdown menu
-`selectedItem: MutableState<OdsExposedDropdownMenu.Item>` | | Selected item displayed into the text field
-`onItemSelectionChange: (OdsExposedDropdownMenu.Item) -> Unit` | | Callback invoked when a dropdown menu item is selected. It can be used to get the menu value.
-`modifier: Modifier` | `Modifier` | `Modifier` applied to the dropdown menu
-`enabled: Boolean` | `true` | Controls the enabled state of the dropdown menu. When `false`, the dropdown menu text field will be neither clickable nor focusable, visually it will appear in the disabled state.
 {:.table}
+
+| Parameter                                                             | Default&nbsp;value | Description                                                                                                                                                                         |
+|-----------------------------------------------------------------------|--------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| <b>`label: String`</b>                                                |                    | Label of the exposed menu text field                                                                                                                                                |
+| <b>`items: List<OdsExposedDropdownMenu.Item>`</b>                     |                    | Items displayed into the dropdown menu                                                                                                                                              |
+| <b>`selectedItem: MutableState<OdsExposedDropdownMenu.Item>`</b>      |                    | Selected item displayed into the text field                                                                                                                                         |
+| <b>`onItemSelectionChange: (OdsExposedDropdownMenu.Item) -> Unit`</b> |                    | Callback invoked when a dropdown menu item is selected. It can be used to get the menu value.                                                                                       |
+| `modifier: Modifier`                                                  | `Modifier`         | `Modifier` applied to the dropdown menu                                                                                                                                             |
+| `enabled: Boolean`                                                    | `true`             | Controls the enabled state of the dropdown menu. When `false`, the dropdown menu text field will be neither clickable nor focusable, visually it will appear in the disabled state. |

@@ -70,17 +70,18 @@ OdsVerticalImageFirstCard(
 
 ##### OdsVerticalImageFirstCard API
 
-Parameter | Default&nbsp;value | Description
--- | -- | --
-`title: String` | | Title displayed into the card
-`image: OdsCard.Image` | | Image displayed into the card
-`modifier: Modifier` | `Modifier` | `Modifier` applied to the layout of the card
-`subtitle: String?` | `null` | Subtitle displayed into the card
-`text: String?` | `null` | Text displayed into the card
-`firstButton: OdsCard.Button?` | `null` | First button displayed into the card
-`secondButton: OdsCard.Button?` | `null` | Second button displayed into the card
-`onClick: (() -> Unit)?` | `null` | Callback invoked on card click
 {:.table}
+
+| Parameter                       | Default&nbsp;value | Description                                  |
+|---------------------------------|--------------------|----------------------------------------------|
+| <b>`title: String`</b>          |                    | Title displayed into the card                |
+| <b>`image: OdsCard.Image`</b>   |                    | Image displayed into the card                |
+| `modifier: Modifier`            | `Modifier`         | `Modifier` applied to the layout of the card |
+| `subtitle: String?`             | `null`             | Subtitle displayed into the card             |
+| `text: String?`                 | `null`             | Text displayed into the card                 |
+| `firstButton: OdsCard.Button?`  | `null`             | First button displayed into the card         |
+| `secondButton: OdsCard.Button?` | `null`             | Second button displayed into the card        |
+| `onClick: (() -> Unit)?`        | `null`             | Callback invoked on card click               |
 
 ### Vertical header first card
 
@@ -116,18 +117,19 @@ OdsVerticalHeaderFirstCard(
 
 ##### OdsVerticalHeaderFirstCard API
 
-Parameter | Default&nbsp;value | Description
--- | -- | --
-`title: String` | | Title displayed into the card
-`image: OdsCard.Image` | | Image displayed into the card
-`modifier: Modifier` | `Modifier` | `Modifier` applied to the layout of the card
-`thumbnail: OdsCard.Thumbnail?` | `null` | Thumbnail displayed into the card next to the title: avatar, logo or icon.
-`subtitle: String?` | `null` | Subtitle displayed into the card
-`text: String?` | `null` | Text displayed into the card
-`firstButton: OdsCard.Button?` | `null` | First button displayed into the card
-`secondButton: OdsCard.Button?` | `null` | Second button displayed into the card
-`onClick: (() -> Unit)?` | `null` | Callback called on card click
 {:.table}
+
+| Parameter                       | Default&nbsp;value | Description                                                                |
+|---------------------------------|--------------------|----------------------------------------------------------------------------|
+| <b>`title: String`</b>          |                    | Title displayed into the card                                              |
+| <b>`image: OdsCard.Image`</b>   |                    | Image displayed into the card                                              |
+| `modifier: Modifier`            | `Modifier`         | `Modifier` applied to the layout of the card                               |
+| `thumbnail: OdsCard.Thumbnail?` | `null`             | Thumbnail displayed into the card next to the title: avatar, logo or icon. |
+| `subtitle: String?`             | `null`             | Subtitle displayed into the card                                           |
+| `text: String?`                 | `null`             | Text displayed into the card                                               |
+| `firstButton: OdsCard.Button?`  | `null`             | First button displayed into the card                                       |
+| `secondButton: OdsCard.Button?` | `null`             | Second button displayed into the card                                      |
+| `onClick: (() -> Unit)?`        | `null`             | Callback called on card click                                              |
 
 ### Small card
 
@@ -166,14 +168,15 @@ Row(
 
 ##### OdsSmallCard API
 
-Parameter | Default&nbsp;value | Description
--- | -- | --
-`title: String` | | Title displayed into the card. If the card is clickable, it will be truncated to fit on one line otherwise it will be displayed entirely for accessibility reasons.
-`image: OdsCard.Image` | | Image displayed into the card
-`modifier: Modifier` | `Modifier` | `Modifier` applied to the layout of the card
-`subtitle: String?` | `null` | Subtitle displayed into the card. If the card is clickable, it will be truncated to fit on one line otherwise it will be displayed entirely for accessibility reasons.
-`onClick: (() -> Unit)?` | `null` | Callback invoked on card click
 {:.table}
+
+| Parameter                     | Default&nbsp;value | Description                                                                                                                                                            |
+|-------------------------------|--------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| <b>`title: String`</b>        |                    | Title displayed into the card. If the card is clickable, it will be truncated to fit on one line otherwise it will be displayed entirely for accessibility reasons.    |
+| <b>`image: OdsCard.Image`</b> |                    | Image displayed into the card                                                                                                                                          |
+| `modifier: Modifier`          | `Modifier`         | `Modifier` applied to the layout of the card                                                                                                                           |
+| `subtitle: String?`           | `null`             | Subtitle displayed into the card. If the card is clickable, it will be truncated to fit on one line otherwise it will be displayed entirely for accessibility reasons. |
+| `onClick: (() -> Unit)?`      | `null`             | Callback invoked on card click                                                                                                                                         |
 
 ### Horizontal card
 
@@ -207,16 +210,17 @@ OdsHorizontalCard(
 
 ##### OdsHorizontalCard API
 
-Parameter | Default&nbsp;value | Description
--- | -- | --
-`title: String` | | Title displayed into the card
-`image: OdsCard.Image` | | Image displayed into the card
-`modifier: Modifier` | `Modifier` | `Modifier` applied to the layout of the card
-`subtitle: String?` | `null` | Subtitle displayed into the card
-`text: String?` | `null` | Text displayed into the card
-`firstButton: OdsCard.Button?` | `null` | First button displayed into the card
-`secondButton: OdsCard.Button?` | `null` | Second button displayed into the card
-`imagePosition: OdsCard.Image.Position` | `OdsCard.Image.Position.Start` | Position of the image within the card, it can be set to `OdsCard.Image.Position.Start` or `OdsCard.Image.Position.End`
-`divider: Boolean` | `true` | Controls the divider display. If `true`, it will be displayed between the card content and the action buttons.
-`onClick: (() -> Unit)?` | `null` | Callback invoked on card click
 {:.table}
+
+| Parameter                               | Default&nbsp;value             | Description                                                                                                            |
+|-----------------------------------------|--------------------------------|------------------------------------------------------------------------------------------------------------------------|
+| <b>`title: String`</b>                  |                                | Title displayed into the card                                                                                          |
+| <b>`image: OdsCard.Image`</b>           |                                | Image displayed into the card                                                                                          |
+| `modifier: Modifier`                    | `Modifier`                     | `Modifier` applied to the layout of the card                                                                           |
+| `subtitle: String?`                     | `null`                         | Subtitle displayed into the card                                                                                       |
+| `text: String?`                         | `null`                         | Text displayed into the card                                                                                           |
+| `firstButton: OdsCard.Button?`          | `null`                         | First button displayed into the card                                                                                   |
+| `secondButton: OdsCard.Button?`         | `null`                         | Second button displayed into the card                                                                                  |
+| `imagePosition: OdsCard.Image.Position` | `OdsCard.Image.Position.Start` | Position of the image within the card, it can be set to `OdsCard.Image.Position.Start` or `OdsCard.Image.Position.End` |
+| `divider: Boolean`                      | `true`                         | Controls the divider display. If `true`, it will be displayed between the card content and the action buttons.         |
+| `onClick: (() -> Unit)?`                | `null`                         | Callback invoked on card click                                                                                         |

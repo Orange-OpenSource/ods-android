@@ -77,7 +77,7 @@ Note: By default, the `OdsTopAppBar` is elevated but you can set `elevated` para
 
 | Parameter                                       | Default&nbsp;value | Description                                                                                                                               |
 |-------------------------------------------------|--------------------|-------------------------------------------------------------------------------------------------------------------------------------------|
-| `title: String`                                 |                    | Title to be displayed in the center of the top app bar                                                                                    |
+| <b>`title: String`</b>                          |                    | Title to be displayed in the center of the top app bar                                                                                    |
 | `modifier: Modifier`                            | `Modifier`         | `Modifier` to be applied to the top app bar                                                                                               |
 | `navigationIcon: OdsTopAppBar.NavigationIcon?`  | `null`             | Icon to be displayed at the start of the top app bar                                                                                      |
 | `actions: List<OdsTopAppBar.ActionButton>`      | `emptyList()`      | Actions to be displayed at the end of the top app bar. The default layout here is a `Row`, so icons inside will be placed horizontally.   |
@@ -154,7 +154,7 @@ Scaffold(
 
 | Parameter                                       | Default&nbsp;value | Description                                                                                                                       |
 |-------------------------------------------------|--------------------|-----------------------------------------------------------------------------------------------------------------------------------|
-| `title: String`                                 |                    | Title displayed in the center of the top app bar                                                                                  |
+| <b>`title: String`</b>                          |                    | Title displayed in the center of the top app bar                                                                                  |
 | `modifier: Modifier`                            | `Modifier`         | `Modifier` applied to the top app bar                                                                                             |
 | `navigationIcon: OdsTopAppBar.NavigationIcon?`  | `null`             | Icon displayed at the start of the top app bar                                                                                    |
 | `actions: List<OdsTopAppBar.ActionButton>`      | `emptyList()`      | Actions displayed at the end of the top app bar. The default layout here is a `Row`, so icons inside will be placed horizontally. |

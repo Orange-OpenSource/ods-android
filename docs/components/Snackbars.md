@@ -86,9 +86,10 @@ Scaffold(
 
 #### OdsSnackbarHost API
 
-Parameter | Default&nbsp;value | Description
--- | -- | --
-`hostState: SnackbarHostState` | | State of this component to read and show `OdsSnackbar` accordingly.
-`modifier: Modifier` | `Modifier` | `Modifier` applied to the snackbar host
-`snackbar: (SnackbarData) -> OdsSnackbarHost.Snackbar` | `{ OdsSnackbarHost.Snackbar(it) }` | Instance of the `OdsSnackbarHost.Snackbar` to be shown at the appropriate time with appearance based on the `SnackbarData` provided as a param
 {:.table}
+
+| Parameter                                              | Default&nbsp;value                 | Description                                                                                                                                    |
+|--------------------------------------------------------|------------------------------------|------------------------------------------------------------------------------------------------------------------------------------------------|
+| <b>`hostState: SnackbarHostState`</b>                  |                                    | State of this component to read and show `OdsSnackbar` accordingly.                                                                            |
+| `modifier: Modifier`                                   | `Modifier`                         | `Modifier` applied to the snackbar host                                                                                                        |
+| `snackbar: (SnackbarData) -> OdsSnackbarHost.Snackbar` | `{ OdsSnackbarHost.Snackbar(it) }` | Instance of the `OdsSnackbarHost.Snackbar` to be shown at the appropriate time with appearance based on the `SnackbarData` provided as a param |

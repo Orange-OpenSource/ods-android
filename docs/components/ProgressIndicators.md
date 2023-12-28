@@ -78,14 +78,15 @@ OdsLinearProgressIndicator(
 
 ##### OdsLinearProgressIndicator API
 
-Parameter | Default&nbsp;value | Description
--- | -- | --
-`modifier: Modifier` | `Modifier` | `Modifier` applied to the progress indicator
-`progress: Float?` | `null` | Progress indicator value where 0.0 represents no progress and 1.0 represents full progress. Values outside of this range are coerced into the range. If set to `null`, the progress indicator is indeterminate.
-`label: String?` | `null` | Label displayed above the linear progress
-`icon: OdsLinearProgressIndicator.Icon?` | `null` | Icon displayed above the progress indicator
-`showCurrentValue: Boolean` | `false` | Controls the progress indicator current value visibility which is displayed in percent below the progress bar
 {:.table}
+
+| Parameter                                | Default&nbsp;value | Description                                                                                                                                                                                                     |
+|------------------------------------------|--------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| `modifier: Modifier`                     | `Modifier`         | `Modifier` applied to the progress indicator                                                                                                                                                                    |
+| `progress: Float?`                       | `null`             | Progress indicator value where 0.0 represents no progress and 1.0 represents full progress. Values outside of this range are coerced into the range. If set to `null`, the progress indicator is indeterminate. |
+| `label: String?`                         | `null`             | Label displayed above the linear progress                                                                                                                                                                       |
+| `icon: OdsLinearProgressIndicator.Icon?` | `null`             | Icon displayed above the progress indicator                                                                                                                                                                     |
+| `showCurrentValue: Boolean`              | `false`            | Controls the progress indicator current value visibility which is displayed in percent below the progress bar                                                                                                   |
 
 ### Activity indicator
 
@@ -126,9 +127,10 @@ OdsCircularProgressIndicator(
 
 ##### OdsCircularProgressIndicator API
 
-Parameter | Default&nbsp;value | Description
--- | -- | --
-`modifier: Modifier` | `Modifier` | `Modifier` applied to the progress indicator
-`progress: Float?` | `null` | Progress indicator value where 0.0 represents no progress and 1.0 represents full progress. Values outside of this range are coerced into the range. If set to `null`, the progress indicator is indeterminate.
-`label: String?` | `null` | Label displayed below the circular progress
 {:.table}
+
+| Parameter            | Default&nbsp;value | Description                                                                                                                                                                                                     |
+|----------------------|--------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| `modifier: Modifier` | `Modifier`         | `Modifier` applied to the progress indicator                                                                                                                                                                    |
+| `progress: Float?`   | `null`             | Progress indicator value where 0.0 represents no progress and 1.0 represents full progress. Values outside of this range are coerced into the range. If set to `null`, the progress indicator is indeterminate. |
+| `label: String?`     | `null`             | Label displayed below the circular progress                                                                                                                                                                     |
