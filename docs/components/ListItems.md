@@ -9,13 +9,13 @@ description: Lists are continuous, vertical indexes of text or images.
 * [Specifications references](#specifications-references)
 * [Accessibility](#accessibility)
 * [Variants](#variants)
-    * [Single-line list](#single-line-list)
+    * [Single-line list item](#single-line-list-item)
         * [Jetpack Compose](#jetpack-compose)
-            * [OdsListItem API](#odslistitem-api)
     * [Two-line list](#two-line-list)
         * [Jetpack Compose](#jetpack-compose-1)
     * [Three-line list](#three-line-list)
         * [Jetpack Compose](#jetpack-compose-2)
+* [OdsListItem API](#odslistitem-api)
 
 ---
 
@@ -30,7 +30,7 @@ Please follow [accessibility criteria for development](https://a11y-guidelines.o
 
 ## Variants
 
-### Single-line list
+### Single-line list item
 
 There are multiple display possibilities for a single-line list, where leading can optionally be an icon, a circular, a square or a wide image.
 
@@ -66,20 +66,7 @@ OdsListItem(
 )
 ```
 
-##### OdsListItem API
-
-Parameter | Default&nbsp;value | Description
--- | -- | --
-`text: String` | | The primary text of the list item
-`modifier: Modifier` | `Modifier` | Modifier to be applied to the list item
-`leadingIcon: OdsListItem.LeadingIcon?` | `null` | The leading supporting visual of the list item
-`secondaryText: String?` | `null` | The secondary text of the list item
-`singleLineSecondaryText: Boolean` | `true` | Whether the secondary text is single line
-`overlineText: String?` | `null` | The text displayed above the primary text
-`trailing: OdsListItem.Trailing?` | `null` | The trailing content to display at the end of the list item
-`divider: Boolean` | `false` | Whether or not a divider is displayed at the bottom of the list item
-`onClick: (() -> Unit)?` | `null` | Will be called when the user clicks the list item. This parameter only has an effect if trailing is `OdsListItem.TrailingIcon` or `null`.
-{:.table}
+Use [OdsListItem API (signature with subtitle)](#signature-with-subtitle-1-or-2-lines-of-text).
 
 ### Two-line list
 
@@ -97,13 +84,13 @@ Here are two examples:
 
 #### Jetpack Compose
 
-The only difference with the single-line implementation is that the `secondaryText` property of `OdsListItem` is not null.
+The only difference with the single-line implementation is that the `subtitle` property of `OdsListItem` is not null.
 
 ```kotlin
 OdsListItem(
     modifier = Modifier.clickable { doSomething() },
     text = "Primary text",
-    secondaryText = "Secondary text",
+    subtitle = "Secondary text",
     leadingIcon = OdsListItem.LeadingIcon(
         OdsListItem.LeadingIcon.Type.CircularImage,
         painterResource(id = R.drawable.placeholder, "")
@@ -116,7 +103,7 @@ OdsListItem(
 )
 ```
 
-Use [OdsListItem API](#odslistitem-api).
+Use [OdsListItem API (signature with subtitle)](#signature-with-subtitle-1-or-2-lines-of-text).
 
 ### Three-line list
 
@@ -134,14 +121,13 @@ Here are two examples:
 
 #### Jetpack Compose
 
-The only difference with the two-line implementation is that the `singleLineSecondaryText` property of `OdsListItem` is `false`.
+The difference with the two-line implementation is that we use the second signature of `OdsListItem` with a `description` parameter.
 
 ```kotlin
 OdsListItem(
     modifier = Modifier.clickable { doSomething() },
     text = "Primary text",
-    secondaryText = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor.",
-    singleLineSecondaryText = false,
+    description = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor.",
     leadingIcon = OdsListItem.LeadingIcon(
         OdsListItem.LeadingIcon.Type.SquareImage,
         painter = painterResource(id = R.drawable.placeholder),
@@ -152,4 +138,36 @@ OdsListItem(
 )
 ```
 
-Use [OdsListItem API](#odslistitem-api).
+Use [OdsListItem API (signature with description)](#signature-with-description-3-lines-of-text).
+
+## OdsListItem API
+
+### Signature with subtitle: 1 or 2 lines of text
+
+{:.table}
+
+| Parameter                               | Default&nbsp;value | Description                                                                                                                               |
+|-----------------------------------------|--------------------|-------------------------------------------------------------------------------------------------------------------------------------------|
+| `text: String`                          |                    | The primary text of the list item                                                                                                         |
+| `modifier: Modifier`                    | `Modifier`         | Modifier to be applied to the list item                                                                                                   |
+| `leadingIcon: OdsListItem.LeadingIcon?` | `null`             | The leading supporting visual of the list item                                                                                            |
+| `subtitle: String?`                     | `null`             | Text displayed on one line below the primary text of the list item                                                                        |
+| `overlineText: String?`                 | `null`             | The text displayed above the primary text                                                                                                 |
+| `trailing: OdsListItem.Trailing?`       | `null`             | The trailing content to display at the end of the list item                                                                               |
+| `divider: Boolean`                      | `false`            | Whether or not a divider is displayed at the bottom of the list item                                                                      |
+| `onClick: (() -> Unit)?`                | `null`             | Will be called when the user clicks the list item. This parameter only has an effect if trailing is `OdsListItem.TrailingIcon` or `null`. |
+
+### Signature with description: 3 lines of text
+
+{:.table}
+
+| Parameter                               | Default&nbsp;value | Description                                                                                                                               |
+|-----------------------------------------|--------------------|-------------------------------------------------------------------------------------------------------------------------------------------|
+| `text: String`                          |                    | The primary text of the list item                                                                                                         |
+| `description: String`                   |                    | Text displayed on two lines max below the primary text of the list item                                                                   |
+| `modifier: Modifier`                    | `Modifier`         | Modifier to be applied to the list item                                                                                                   |
+| `leadingIcon: OdsListItem.LeadingIcon?` | `null`             | The leading supporting visual of the list item                                                                                            |
+| `overlineText: String?`                 | `null`             | The text displayed above the primary text                                                                                                 |
+| `trailing: OdsListItem.Trailing?`       | `null`             | The trailing content to display at the end of the list item                                                                               |
+| `divider: Boolean`                      | `false`            | Whether or not a divider is displayed at the bottom of the list item                                                                      |
+| `onClick: (() -> Unit)?`                | `null`             | Will be called when the user clicks the list item. This parameter only has an effect if trailing is `OdsListItem.TrailingIcon` or `null`. |
