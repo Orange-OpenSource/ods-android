@@ -13,6 +13,7 @@ package com.orange.ods.app.ui.components.listitem
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material.ExperimentalMaterialApi
+import androidx.compose.material.rememberBottomSheetScaffoldState
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
@@ -32,7 +33,6 @@ import coil.size.Size
 import com.orange.ods.app.R
 import com.orange.ods.app.domain.recipes.LocalRecipes
 import com.orange.ods.app.domain.recipes.Recipe
-import com.orange.ods.app.ui.components.utilities.ComponentCountRow
 import com.orange.ods.app.ui.components.utilities.ComponentCustomizationBottomSheetScaffold
 import com.orange.ods.app.ui.components.utilities.clickOnElement
 import com.orange.ods.app.ui.utilities.DrawableManager
@@ -50,7 +50,7 @@ import com.orange.ods.extension.ifNotNull
 fun ComponentListItem() {
     val listItemCustomizationState = rememberListItemCustomizationState()
     ComponentCustomizationBottomSheetScaffold(
-        bottomSheetScaffoldState = listItemCustomizationState.bottomSheetScaffoldState,
+        bottomSheetScaffoldState = rememberBottomSheetScaffoldState(),
         bottomSheetContent = { ComponentListItemBottomSheetContent(listItemCustomizationState) },
         content = { ComponentListItemContent(listItemCustomizationState) }
     )
@@ -58,14 +58,25 @@ fun ComponentListItem() {
 
 @Composable
 private fun ComponentListItemBottomSheetContent(listItemCustomizationState: ListItemCustomizationState) {
-    ComponentCountRow(
-        modifier = Modifier.padding(start = dimensionResource(id = com.orange.ods.R.dimen.screen_horizontal_margin)),
-        title = stringResource(id = R.string.component_list_item_line_count),
-        count = listItemCustomizationState.lineCount,
-        minusIconContentDescription = stringResource(id = R.string.component_list_item_remove_line),
-        plusIconContentDescription = stringResource(id = R.string.component_list_item_add_line),
-        minCount = ListItemCustomizationState.MinLineCount,
-        maxCount = ListItemCustomizationState.MaxLineCount
+    Subtitle(textRes = R.string.component_list_item_secondary_text, horizontalPadding = true)
+    OdsChoiceChipsFlowRow(
+        value = listItemCustomizationState.secondaryTextType.value,
+        onValueChange = { value -> listItemCustomizationState.secondaryTextType.value = value },
+        modifier = Modifier.padding(horizontal = dimensionResource(id = com.orange.ods.R.dimen.spacing_m)),
+        chips = listOf(
+            OdsChoiceChip(
+                text = stringResource(id = R.string.component_list_item_secondary_text_none),
+                value = ListItemCustomizationState.SecondaryTextType.None
+            ),
+            OdsChoiceChip(
+                text = stringResource(id = R.string.component_list_item_secondary_text_subtitle),
+                value = ListItemCustomizationState.SecondaryTextType.Subtitle
+            ),
+            OdsChoiceChip(
+                text = stringResource(id = R.string.component_list_item_secondary_text_description),
+                value = ListItemCustomizationState.SecondaryTextType.Description
+            ),
+        )
     )
 
     Subtitle(textRes = R.string.component_list_leading, horizontalPadding = true)
@@ -95,30 +106,44 @@ private fun ComponentListItemBottomSheetContent(listItemCustomizationState: List
 
 @Composable
 private fun ComponentListItemContent(listItemCustomizationState: ListItemCustomizationState) {
+    val context = LocalContext.current
     val recipe = LocalRecipes.current.first { it.description.isNotBlank() }
+    
     with(listItemCustomizationState) {
         Column {
             if (!trailings.contains(selectedTrailing.value)) {
                 resetTrailing()
             }
 
-            val singleLineSecondaryText = lineCount.intValue == 2
-
             val text = recipe.title
-            val secondaryText = if (lineCount.intValue > 1) recipe.description else null
+            val secondaryText = when (secondaryTextType.value) {
+                ListItemCustomizationState.SecondaryTextType.None -> null
+                ListItemCustomizationState.SecondaryTextType.Subtitle -> recipe.subtitle
+                ListItemCustomizationState.SecondaryTextType.Description -> recipe.description
+            }
             val leadingIcon = ifNotNull(getIconPainter(recipe), selectedLeadingIconType.value) { painter, type ->
                 OdsListItem.LeadingIcon(type, painter, "")
             }
 
-            val context = LocalContext.current
-            OdsListItem(
-                text = text,
-                secondaryText = secondaryText,
-                singleLineSecondaryText = singleLineSecondaryText,
-                leadingIcon = leadingIcon,
-                trailing = trailing
-            ) {
-                clickOnElement(context = context, context.getString(R.string.component_list_item))
+            when (secondaryTextType.value) {
+                ListItemCustomizationState.SecondaryTextType.Description ->
+                    OdsListItem(
+                        text = text,
+                        description = secondaryText!!,
+                        leadingIcon = leadingIcon,
+                        trailing = trailing
+                    ) {
+                        clickOnElement(context = context, context.getString(R.string.component_list_item))
+                    }
+                ListItemCustomizationState.SecondaryTextType.Subtitle, ListItemCustomizationState.SecondaryTextType.None ->
+                    OdsListItem(
+                        text = text,
+                        subtitle = secondaryText,
+                        leadingIcon = leadingIcon,
+                        trailing = trailing
+                    ) {
+                        clickOnElement(context = context, context.getString(R.string.component_list_item))
+                    }
             }
 
             CodeImplementationColumn(modifier = Modifier.padding(horizontal = dimensionResource(id = com.orange.ods.R.dimen.screen_horizontal_margin))) {
@@ -126,10 +151,15 @@ private fun ComponentListItemContent(listItemCustomizationState: ListItemCustomi
                     name = OdsComposable.OdsListItem.name,
                     parameters = {
                         string("text", text)
+
                         if (secondaryText != null) {
-                            string("secondaryText", secondaryText)
-                            if (!singleLineSecondaryText) stringRepresentation("singleLineSecondaryText", false)
+                            if (secondaryTextType.value == ListItemCustomizationState.SecondaryTextType.Subtitle) {
+                                string("subtitle", secondaryText)
+                            } else if (secondaryTextType.value == ListItemCustomizationState.SecondaryTextType.Description) {
+                                string("description", secondaryText)
+                            }
                         }
+
                         selectedLeadingIconType.value?.let { iconType ->
                             classInstance<OdsListItem.LeadingIcon>("leadingIcon") {
                                 enum("type", iconType)

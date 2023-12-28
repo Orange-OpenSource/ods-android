@@ -68,7 +68,7 @@ private fun ComponentDetailLinkItem(label: String, composableName: String?, onCl
     OdsListItem(
         leadingIcon = OdsListItem.LeadingIcon(OdsListItem.LeadingIcon.Type.Icon, painterResource(id = R.drawable.ic_play_outline), ""),
         text = label,
-        secondaryText = composableName,
+        subtitle = composableName,
         onClick = onClick
     )
 }

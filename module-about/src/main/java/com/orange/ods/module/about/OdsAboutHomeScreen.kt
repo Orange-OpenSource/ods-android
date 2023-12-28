@@ -39,8 +39,8 @@ import com.orange.ods.compose.component.utilities.UiModePreviews
 import com.orange.ods.compose.text.OdsTextBody1
 import com.orange.ods.compose.text.OdsTextBody2
 import com.orange.ods.compose.text.OdsTextH4
-import com.orange.ods.module.about.configuration.OdsAboutFileMenuItem
 import com.orange.ods.module.about.configuration.OdsAboutConfiguration
+import com.orange.ods.module.about.configuration.OdsAboutFileMenuItem
 import com.orange.ods.module.about.configuration.OdsAboutShareData
 
 private const val ImageHeight = 249
@@ -120,7 +120,7 @@ internal fun OdsAboutHomeScreen(configuration: OdsAboutConfiguration, onAboutMen
                     else -> null
                 },
                 text = menuItem.text,
-                secondaryText = menuItem.secondaryText,
+                subtitle = menuItem.secondaryText,
                 onClick = {
                     onAboutMenuItemClick(id)
                 }

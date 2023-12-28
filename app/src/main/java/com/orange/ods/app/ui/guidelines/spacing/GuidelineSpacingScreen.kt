@@ -63,8 +63,7 @@ fun GuidelineSpacingScreen() {
             val ratio = spacing.getRatio()
             OdsListItem(
                 text = spacing.tokenName,
-                secondaryText = stringResource(id = R.string.guideline_spacing_dp, dp.value.toInt()) + "\n",
-                singleLineSecondaryText = false,
+                description = stringResource(id = R.string.guideline_spacing_dp, dp.value.toInt()) + "\n",
                 leadingIcon = OdsListItem.LeadingIcon(OdsListItem.LeadingIcon.Type.SquareImage, rememberGuidelineSpacingPainter(spacing = spacing), ""),
                 trailing = OdsListItem.TrailingCaption(
                     stringResource(

@@ -76,16 +76,14 @@ import com.orange.ods.extension.orElse
 /**
  * <a href="https://system.design.orange.com/0c1af118d/p/09a804-lists/b/669743" target="_blank">ODS Lists</a>.
  *
- * Lists are continuous, vertical indexes of text or images.
- *
- * This composable allows you to display a Checkbox, a Switch, a RadioButton, an Icon or a Caption text as trailing element. If this does not meet your
+ * Displays a list item with one or two lines of text: A mandatory primary text and an optional subtitle on one line.
+ * It allows you to display a Checkbox, a Switch, a RadioButton, an Icon or a Caption text as trailing element. If this does not meet your
  * needs, you can use the other [OdsListItem] signature which accept any Composable as trailing.
  *
  * @param text The primary text of the list item.
  * @param modifier [Modifier] applied to the list item.
  * @param leadingIcon The leading supporting visual of the list item.
- * @param secondaryText The secondary text of the list item.
- * @param singleLineSecondaryText Whether the secondary text is single line.
+ * @param subtitle Text displayed on one line below the primary text of the list item.
  * @param overlineText The text displayed above the primary text.
  * @param trailing The trailing content to display at the end of the list item.
  * @param divider Whether or not a divider is displayed at the bottom of the list item.
@@ -97,8 +95,7 @@ fun OdsListItem(
     text: String,
     modifier: Modifier = Modifier,
     leadingIcon: OdsListItem.LeadingIcon? = null,
-    secondaryText: String? = null,
-    singleLineSecondaryText: Boolean = true,
+    subtitle: String? = null,
     overlineText: String? = null,
     trailing: OdsListItem.Trailing? = null,
     divider: Boolean = false,
@@ -110,8 +107,51 @@ fun OdsListItem(
         textStyle = OdsTheme.typography.subtitle1,
         modifier = modifier,
         leadingIcon = leadingIcon,
-        secondaryText = secondaryText,
-        singleLineSecondaryText = singleLineSecondaryText,
+        secondaryText = subtitle,
+        singleLineSecondaryText = true,
+        overlineText = overlineText,
+        trailing = trailing,
+        divider = divider,
+        onClick = onClick
+    )
+}
+
+/**
+ * <a href="https://system.design.orange.com/0c1af118d/p/09a804-lists/b/669743" target="_blank">ODS Lists</a>.
+ *
+ * Displays a list item with two or three lines of text: A mandatory primary text and description which can be on one or two lines.
+ * This composable allows you to display a Checkbox, a Switch, a RadioButton, an Icon or a Caption text as trailing element. If this does not meet your
+ * needs, you can use the other [OdsListItem] signature which accept any Composable as trailing.
+ *
+ * @param text The primary text of the list item.
+ * @param modifier [Modifier] applied to the list item.
+ * @param leadingIcon The leading supporting visual of the list item.
+ * @param description Text displayed on two lines max below the primary text of the list item.
+ * @param overlineText The text displayed above the primary text.
+ * @param trailing The trailing content to display at the end of the list item.
+ * @param divider Whether or not a divider is displayed at the bottom of the list item.
+ * @param onClick Will be called when the user clicks the list item. This parameter only has an effect if [trailing] is [OdsListItem.TrailingIcon] or `null`.
+ */
+@Composable
+@OdsComposable
+fun OdsListItem(
+    text: String,
+    description: String,
+    modifier: Modifier = Modifier,
+    leadingIcon: OdsListItem.LeadingIcon? = null,
+    overlineText: String? = null,
+    trailing: OdsListItem.Trailing? = null,
+    divider: Boolean = false,
+    onClick: (() -> Unit)? = null
+) {
+    OdsListItem(
+        text = text,
+        textColor = OdsTheme.colors.onSurface,
+        textStyle = OdsTheme.typography.subtitle1,
+        modifier = modifier,
+        leadingIcon = leadingIcon,
+        secondaryText = description,
+        singleLineSecondaryText = false,
         overlineText = overlineText,
         trailing = trailing,
         divider = divider,
@@ -530,28 +570,39 @@ private fun getDividerStartIndent(leadingIconType: OdsListItem.LeadingIcon.Type?
 private fun PreviewOdsListItem(@PreviewParameter(OdsListItemPreviewParameterProvider::class) parameter: OdsListItemPreviewParameter) = Preview {
     with(parameter) {
         var trailingState by remember { mutableStateOf(false) }
-        OdsListItem(
-            text = "Text",
-            leadingIcon = leadingIconType?.let { iconType ->
-                val painter = when (iconType) {
-                    OdsListItem.LeadingIcon.Type.Icon -> rememberVectorPainter(image = Icons.Default.AccountBox)
-                    OdsListItem.LeadingIcon.Type.CircularImage,
-                    OdsListItem.LeadingIcon.Type.SquareImage,
-                    OdsListItem.LeadingIcon.Type.WideImage -> painterResource(id = R.drawable.placeholder_small)
-                }
-                OdsListItem.LeadingIcon(iconType, painter, "")
-            },
-            secondaryText = secondaryText,
-            singleLineSecondaryText = singleLineSecondaryText,
-            trailing = when (trailingClass) {
-                OdsListItem.TrailingCheckbox::class.java -> OdsListItem.TrailingCheckbox(trailingState, { trailingState = it })
-                OdsListItem.TrailingSwitch::class.java -> OdsListItem.TrailingSwitch(trailingState, { trailingState = it })
-                OdsListItem.TrailingRadioButton::class.java -> OdsListItem.TrailingRadioButton(trailingState, { trailingState = !trailingState })
-                OdsListItem.TrailingIcon::class.java -> OdsListItem.TrailingIcon(painterResource(id = android.R.drawable.ic_dialog_info), "", null)
-                OdsListItem.TrailingCaption::class.java -> OdsListItem.TrailingCaption(text = "caption")
-                else -> null
+        val leadingIcon = leadingIconType?.let { iconType ->
+            val painter = when (iconType) {
+                OdsListItem.LeadingIcon.Type.Icon -> rememberVectorPainter(image = Icons.Default.AccountBox)
+                OdsListItem.LeadingIcon.Type.CircularImage,
+                OdsListItem.LeadingIcon.Type.SquareImage,
+                OdsListItem.LeadingIcon.Type.WideImage -> painterResource(id = R.drawable.placeholder_small)
             }
-        )
+            OdsListItem.LeadingIcon(iconType, painter, "")
+        }
+        val trailing = when (trailingClass) {
+            OdsListItem.TrailingCheckbox::class.java -> OdsListItem.TrailingCheckbox(trailingState, { trailingState = it })
+            OdsListItem.TrailingSwitch::class.java -> OdsListItem.TrailingSwitch(trailingState, { trailingState = it })
+            OdsListItem.TrailingRadioButton::class.java -> OdsListItem.TrailingRadioButton(trailingState, { trailingState = !trailingState })
+            OdsListItem.TrailingIcon::class.java -> OdsListItem.TrailingIcon(painterResource(id = android.R.drawable.ic_dialog_info), "", null)
+            OdsListItem.TrailingCaption::class.java -> OdsListItem.TrailingCaption(text = "caption")
+            else -> null
+        }
+
+        if (singleLineSecondaryText || secondaryText == null) {
+            OdsListItem(
+                text = "Text",
+                leadingIcon = leadingIcon,
+                subtitle = secondaryText,
+                trailing = trailing
+            )
+        } else {
+            OdsListItem(
+                text = "Text",
+                leadingIcon = leadingIcon,
+                description = secondaryText,
+                trailing = trailing
+            )
+        }
     }
 }
 

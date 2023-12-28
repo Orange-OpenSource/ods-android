@@ -10,44 +10,33 @@
 
 package com.orange.ods.app.ui.components.listitem
 
-import androidx.compose.material.BottomSheetScaffoldState
-import androidx.compose.material.ExperimentalMaterialApi
-import androidx.compose.material.rememberBottomSheetScaffoldState
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.MutableIntState
 import androidx.compose.runtime.MutableState
-import androidx.compose.runtime.mutableIntStateOf
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.saveable.rememberSaveable
 import com.orange.ods.compose.component.listitem.OdsListItem
 
-@OptIn(ExperimentalMaterialApi::class)
 @Composable
 fun rememberListItemCustomizationState(
-    bottomSheetScaffoldState: BottomSheetScaffoldState = rememberBottomSheetScaffoldState(),
-    lineCount: MutableIntState = rememberSaveable { mutableIntStateOf(ListItemCustomizationState.DefaultLineCount) },
+    secondaryTextType: MutableState<ListItemCustomizationState.SecondaryTextType> = rememberSaveable { mutableStateOf(ListItemCustomizationState.SecondaryTextType.None) },
     selectedLeadingIconType: MutableState<OdsListItem.LeadingIcon.Type?> = rememberSaveable { mutableStateOf(null) },
     selectedTrailing: MutableState<Class<out OdsListItem.Trailing>?> = rememberSaveable { mutableStateOf(null) },
-) = remember(lineCount) {
-    ListItemCustomizationState(bottomSheetScaffoldState, lineCount, selectedLeadingIconType, selectedTrailing)
+) = remember(secondaryTextType) {
+    ListItemCustomizationState(secondaryTextType, selectedLeadingIconType, selectedTrailing)
 }
 
-@OptIn(ExperimentalMaterialApi::class)
 class ListItemCustomizationState(
-    val bottomSheetScaffoldState: BottomSheetScaffoldState,
-    val lineCount: MutableIntState,
+    val secondaryTextType: MutableState<SecondaryTextType>,
     val selectedLeadingIconType: MutableState<OdsListItem.LeadingIcon.Type?>,
     val selectedTrailing: MutableState<Class<out OdsListItem.Trailing>?>,
 ) {
-    companion object {
-        const val DefaultLineCount = 2
-        const val MinLineCount = 1
-        const val MaxLineCount = 3
+    enum class SecondaryTextType {
+        None, Subtitle, Description
     }
 
     val trailings: List<Class<out OdsListItem.Trailing>?>
-        get() = if (lineCount.intValue < MaxLineCount) {
+        get() = if (secondaryTextType.value != SecondaryTextType.Description) {
             listOf(
                 null,
                 OdsListItem.TrailingCheckbox::class.java,
