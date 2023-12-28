@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased](https://github.com/Orange-OpenSource/ods-android/compare/0.18.0...develop)
 
+### Changed
+
+- \[Lib\] Change `OdsListItem` API by providing a signature with a subtitle parameter (single or two lines list item) and a subtitle with a description parameter (three lines list item) ([#587](https://github.com/Orange-OpenSource/ods-android/issues/587))
+
 ### Fixed
 
 - \[Lib\] Update `OdsListItem` so that if it has a control trailing (checkbox, switch or radio button), the action is handled by the row only ([#743](https://github.com/Orange-OpenSource/ods-android/issues/743))
