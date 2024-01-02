@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?><!--
+  ~ /*
+  ~ * Copyright 2021 Orange
+  ~ *
+  ~ * Use of this source code is governed by an MIT-style
+  ~ * license that can be found in the LICENSE file or at
+  ~ * https://opensource.org/licenses/MIT.
+  ~ */
+  -->
+
+<resources>
+    <string name="ods_checked_stateA11y">Coché</string>
+    <string name="ods_disabled_stateA11y">Désactivé</string>
+    <string name="ods_dropdownMenu_open_actionA11y">Double tap pour changer la sélection</string>
+    <string name="ods_off_stateA11y">Désactivé</string>
+    <string name="ods_on_stateA11y">Activé</string>
+    <string name="ods_passwordTextField_hide_labelA11y">Cacher le mot de passe</string>
+    <string name="ods_passwordTextField_show_labelA11y">Montrer le mot de passe</string>
+    <string name="ods_progressLinearIndicator_value">%s%%</string>
+    <string name="ods_searchTextField_clear_labelA11y">Effacer la recherche</string>
+    <string name="ods_selected_stateA11y">Sélectionné</string>
+    <string name="ods_topAppBar_overflowMenu_labelA11y">Plus d\'options</string>
+    <string name="ods_unchecked_stateA11y">Décoché</string>
+    <string name="ods_unselected_stateA11y">Non sélectionné</string>
+</resources>

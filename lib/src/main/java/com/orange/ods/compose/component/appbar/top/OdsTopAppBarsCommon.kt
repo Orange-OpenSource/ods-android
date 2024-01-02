@@ -37,7 +37,7 @@ internal fun OdsTopAppBarActions(actions: List<OdsComponentContent<*>>, overflow
     if (overflowMenuItems.isNotEmpty()) {
         Box {
             var showMenu by remember { mutableStateOf(false) }
-            val contentDescription = stringResource(id = R.string.top_app_bar_overflow_menu_content_description)
+            val contentDescription = stringResource(id = R.string.ods_topAppBar_overflowMenu_labelA11y)
             val dropdownMenuAction = OdsTopAppBar.ActionButton(Icons.Filled.MoreVert, contentDescription, true) { showMenu = !showMenu }
             dropdownMenuAction.Content()
             OdsDropdownMenu(
