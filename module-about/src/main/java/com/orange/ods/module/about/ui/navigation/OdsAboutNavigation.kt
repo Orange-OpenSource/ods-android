@@ -8,7 +8,7 @@
  * /
  */
 
-package com.orange.ods.module.about.navigation
+package com.orange.ods.module.about.ui.navigation
 
 import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.runtime.Composable
@@ -21,17 +21,17 @@ import androidx.navigation.NavType
 import androidx.navigation.compose.composable
 import androidx.navigation.navArgument
 import androidx.navigation.navigation
-import com.orange.ods.module.about.OdsAboutFileScreen
-import com.orange.ods.module.about.OdsAboutHomeScreen
-import com.orange.ods.module.about.OdsAboutViewModel
-import com.orange.ods.module.about.appnews.OdsAboutAppNewsScreen
-import com.orange.ods.module.about.configuration.OdsAboutAppNewsMenuItem
-import com.orange.ods.module.about.configuration.OdsAboutConfiguration
-import com.orange.ods.module.about.configuration.OdsAboutFileMenuItem
-import com.orange.ods.module.about.configuration.OdsAboutMenuItem
-import com.orange.ods.module.about.configuration.OdsAboutUrlMenuItem
-import com.orange.ods.module.about.navigation.OdsAboutDestinations.AppNewsRoute
-import com.orange.ods.module.about.utilities.extension.launchUrl
+import com.orange.ods.module.about.ui.OdsAboutFileScreen
+import com.orange.ods.module.about.ui.OdsAboutHomeScreen
+import com.orange.ods.module.about.ui.OdsAboutViewModel
+import com.orange.ods.module.about.ui.appnews.OdsAboutAppNewsScreen
+import com.orange.ods.module.about.ui.configuration.OdsAboutAppNewsMenuItem
+import com.orange.ods.module.about.ui.configuration.OdsAboutConfiguration
+import com.orange.ods.module.about.ui.configuration.OdsAboutFileMenuItem
+import com.orange.ods.module.about.ui.configuration.OdsAboutMenuItem
+import com.orange.ods.module.about.ui.configuration.OdsAboutUrlMenuItem
+import com.orange.ods.module.about.ui.navigation.OdsAboutDestinations.AppNewsRoute
+import com.orange.ods.module.about.ui.utilities.extension.launchUrl
 
 
 private object OdsAboutDestinations {

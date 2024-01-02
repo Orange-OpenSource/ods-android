@@ -8,7 +8,7 @@
  * /
  */
 
-package com.orange.ods.module.about
+package com.orange.ods.module.about.ui
 
 import android.content.Intent
 import androidx.compose.foundation.Image
@@ -39,9 +39,10 @@ import com.orange.ods.compose.component.utilities.UiModePreviews
 import com.orange.ods.compose.text.OdsTextBody1
 import com.orange.ods.compose.text.OdsTextBody2
 import com.orange.ods.compose.text.OdsTextH4
-import com.orange.ods.module.about.configuration.OdsAboutConfiguration
-import com.orange.ods.module.about.configuration.OdsAboutFileMenuItem
-import com.orange.ods.module.about.configuration.OdsAboutShareData
+import com.orange.ods.module.about.R
+import com.orange.ods.module.about.ui.configuration.OdsAboutConfiguration
+import com.orange.ods.module.about.ui.configuration.OdsAboutFileMenuItem
+import com.orange.ods.module.about.ui.configuration.OdsAboutShareData
 
 private const val ImageHeight = 249
 

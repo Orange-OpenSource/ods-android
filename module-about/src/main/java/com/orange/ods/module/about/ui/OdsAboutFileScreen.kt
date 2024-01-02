@@ -8,7 +8,7 @@
  * /
  */
 
-package com.orange.ods.module.about
+package com.orange.ods.module.about.ui
 
 import android.annotation.SuppressLint
 import android.graphics.Color
@@ -20,10 +20,10 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.viewinterop.AndroidView
 import com.orange.ods.compose.theme.OdsTheme
-import com.orange.ods.module.about.configuration.OdsAboutFileMenuItem
-import com.orange.ods.module.about.utilities.Markdown
-import com.orange.ods.module.about.utilities.extension.injectLightDarkModeCss
-import com.orange.ods.module.about.utilities.extension.launchUrl
+import com.orange.ods.module.about.ui.configuration.OdsAboutFileMenuItem
+import com.orange.ods.module.about.ui.utilities.Markdown
+import com.orange.ods.module.about.ui.utilities.extension.injectLightDarkModeCss
+import com.orange.ods.module.about.ui.utilities.extension.launchUrl
 import java.io.BufferedReader
 import java.nio.charset.StandardCharsets
 

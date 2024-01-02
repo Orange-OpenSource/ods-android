@@ -8,7 +8,7 @@
  * /
  */
 
-package com.orange.ods.module.about.utilities.extension
+package com.orange.ods.module.about.ui.utilities.extension
 
 import android.webkit.WebView
 import androidx.annotation.RawRes

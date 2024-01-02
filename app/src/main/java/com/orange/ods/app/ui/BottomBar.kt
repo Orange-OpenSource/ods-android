@@ -24,8 +24,8 @@ import com.orange.ods.app.ui.components.ComponentsScreen
 import com.orange.ods.app.ui.guidelines.GuidelinesScreen
 import com.orange.ods.app.ui.modules.ModulesScreen
 import com.orange.ods.compose.component.bottomnavigation.OdsBottomNavigation
-import com.orange.ods.module.about.configuration.OdsAboutConfiguration
-import com.orange.ods.module.about.navigation.odsAboutGraph
+import com.orange.ods.module.about.ui.configuration.OdsAboutConfiguration
+import com.orange.ods.module.about.ui.navigation.odsAboutGraph
 
 @Composable
 fun BottomBar(items: Array<BottomBarItem>, currentRoute: String, navigateToRoute: (String) -> Unit) {

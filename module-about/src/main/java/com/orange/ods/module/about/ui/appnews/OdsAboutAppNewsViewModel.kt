@@ -8,7 +8,7 @@
  * /
  */
 
-package com.orange.ods.module.about.appnews
+package com.orange.ods.module.about.ui.appnews
 
 import androidx.annotation.RawRes
 import androidx.compose.runtime.mutableStateListOf

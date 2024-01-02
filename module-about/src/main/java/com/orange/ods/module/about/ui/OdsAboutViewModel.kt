@@ -8,13 +8,13 @@
  * /
  */
 
-package com.orange.ods.module.about
+package com.orange.ods.module.about.ui
 
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
 import androidx.lifecycle.ViewModel
-import com.orange.ods.module.about.configuration.OdsAboutConfiguration
+import com.orange.ods.module.about.ui.configuration.OdsAboutConfiguration
 
 internal class OdsAboutViewModel : ViewModel() {
     var configuration: OdsAboutConfiguration? by mutableStateOf(null)

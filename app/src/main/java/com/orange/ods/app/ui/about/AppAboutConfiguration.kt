@@ -18,11 +18,11 @@ import com.orange.ods.app.R
 import com.orange.ods.app.ui.CustomAppBarConfiguration
 import com.orange.ods.app.ui.LocalAppBarManager
 import com.orange.ods.app.ui.utilities.extension.launchUrl
-import com.orange.ods.module.about.configuration.OdsAboutFileMenuItem
-import com.orange.ods.module.about.configuration.OdsAboutConfiguration
-import com.orange.ods.module.about.configuration.OdsAboutShareData
-import com.orange.ods.module.about.configuration.OdsAboutUrlMenuItem
-import com.orange.ods.module.about.utilities.OdsAboutVersionHelper
+import com.orange.ods.module.about.ui.configuration.OdsAboutConfiguration
+import com.orange.ods.module.about.ui.configuration.OdsAboutFileMenuItem
+import com.orange.ods.module.about.ui.configuration.OdsAboutShareData
+import com.orange.ods.module.about.ui.configuration.OdsAboutUrlMenuItem
+import com.orange.ods.module.about.ui.utilities.OdsAboutVersionHelper
 
 const val RateTheAppUrl = "https://play.google.com/apps/testing/com.orange.ods.app"
 private const val ShareUrl = "http://oran.ge/dsapp"
