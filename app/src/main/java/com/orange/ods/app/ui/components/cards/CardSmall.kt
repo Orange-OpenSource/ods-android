@@ -30,10 +30,12 @@ import androidx.compose.ui.res.stringResource
 import coil.compose.rememberAsyncImagePainter
 import com.orange.ods.app.R
 import com.orange.ods.app.domain.recipes.LocalRecipes
+import com.orange.ods.app.ui.LocalThemeManager
 import com.orange.ods.app.ui.components.utilities.clickOnElement
 import com.orange.ods.app.ui.utilities.DrawableManager
 import com.orange.ods.app.ui.utilities.code.CodeImplementationColumn
 import com.orange.ods.app.ui.utilities.code.FunctionCallCode
+import com.orange.ods.app.ui.utilities.extension.buildImageRequest
 import com.orange.ods.compose.OdsComposable
 import com.orange.ods.compose.component.card.OdsCard
 import com.orange.ods.compose.component.card.OdsSmallCard
@@ -41,6 +43,7 @@ import com.orange.ods.compose.component.card.OdsSmallCard
 @Composable
 fun CardSmall(customizationState: CardCustomizationState) {
     val context = LocalContext.current
+    val darkModeEnabled = LocalThemeManager.current.darkModeEnabled
     val recipes = LocalRecipes.current
     val recipe = rememberSaveable { recipes.random() }
 
@@ -62,7 +65,7 @@ fun CardSmall(customizationState: CardCustomizationState) {
                     modifier = Modifier.weight(0.5f),
                     image = OdsCard.Image(
                         rememberAsyncImagePainter(
-                            model = recipe.imageUrl,
+                            model = buildImageRequest(context, recipe.imageUrl, darkModeEnabled),
                             placeholder = painterResource(id = DrawableManager.getPlaceholderResId()),
                             error = painterResource(id = DrawableManager.getPlaceholderResId(error = true)),
                         ),

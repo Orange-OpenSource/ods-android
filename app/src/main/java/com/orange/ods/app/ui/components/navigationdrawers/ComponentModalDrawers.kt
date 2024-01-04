@@ -27,6 +27,7 @@ import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
@@ -34,6 +35,7 @@ import coil.compose.rememberAsyncImagePainter
 import com.orange.ods.app.R
 import com.orange.ods.app.domain.recipes.LocalCategories
 import com.orange.ods.app.domain.recipes.LocalRecipes
+import com.orange.ods.app.ui.LocalThemeManager
 import com.orange.ods.app.ui.components.utilities.ComponentCustomizationBottomSheetScaffold
 import com.orange.ods.app.ui.components.utilities.ComponentLaunchContentColumn
 import com.orange.ods.app.ui.utilities.DrawableManager
@@ -41,6 +43,7 @@ import com.orange.ods.app.ui.utilities.code.CodeImplementationColumn
 import com.orange.ods.app.ui.utilities.code.FunctionCallCode
 import com.orange.ods.app.ui.utilities.code.IconPainterValue
 import com.orange.ods.app.ui.utilities.composable.Subtitle
+import com.orange.ods.app.ui.utilities.extension.buildImageRequest
 import com.orange.ods.compose.OdsComposable
 import com.orange.ods.compose.component.chip.OdsChoiceChip
 import com.orange.ods.compose.component.chip.OdsChoiceChipsFlowRow
@@ -54,8 +57,11 @@ fun ComponentModalDrawers() {
     val customizationState = rememberNavigationDrawersCustomizationState()
     val scope = rememberCoroutineScope()
     val drawerState = rememberDrawerState(DrawerValue.Closed)
+    val context = LocalContext.current
+    val darkModeEnabled = LocalThemeManager.current.darkModeEnabled
     val recipes = LocalRecipes.current
     val categories = LocalCategories.current
+    val recipe = rememberSaveable { recipes.random() }
 
     with(customizationState) {
         var selectedItem: OdsModalDrawer.ListItem? by remember { mutableStateOf(null) }
@@ -86,7 +92,7 @@ fun ComponentModalDrawers() {
         val title = stringResource(id = R.string.component_modal_drawer_side)
         val subtitle = if (isSubTitleChecked) stringResource(id = R.string.component_element_example) else null
         val imagePainter = rememberAsyncImagePainter(
-            model = rememberSaveable { recipes.random() }.imageUrl,
+            model = buildImageRequest(context, recipe.imageUrl, darkModeEnabled),
             placeholder = painterResource(id = DrawableManager.getPlaceholderResId()),
             error = painterResource(id = DrawableManager.getPlaceholderResId(error = true))
         )

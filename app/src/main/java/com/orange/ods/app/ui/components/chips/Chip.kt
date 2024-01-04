@@ -30,6 +30,7 @@ import androidx.compose.ui.res.stringResource
 import coil.compose.rememberAsyncImagePainter
 import com.orange.ods.app.R
 import com.orange.ods.app.domain.recipes.LocalRecipes
+import com.orange.ods.app.ui.LocalThemeManager
 import com.orange.ods.app.ui.components.Variant
 import com.orange.ods.app.ui.components.chips.ChipCustomizationState.ChipType
 import com.orange.ods.app.ui.components.chips.ChipCustomizationState.LeadingElement
@@ -39,6 +40,7 @@ import com.orange.ods.app.ui.utilities.DrawableManager
 import com.orange.ods.app.ui.utilities.code.CodeImplementationColumn
 import com.orange.ods.app.ui.utilities.code.FunctionCallCode
 import com.orange.ods.app.ui.utilities.composable.Subtitle
+import com.orange.ods.app.ui.utilities.extension.buildImageRequest
 import com.orange.ods.compose.OdsComposable
 import com.orange.ods.compose.component.chip.OdsChip
 import com.orange.ods.compose.component.chip.OdsChoiceChip
@@ -150,9 +152,10 @@ private fun Chip(chipCustomizationState: ChipCustomizationState) {
                 leading = when {
                     isActionChip || hasLeadingIcon -> recipe?.iconResId?.let { OdsChip.LeadingIcon(painterResource(id = it), "") }
                     hasLeadingAvatar -> {
+                        val darkModeEnabled = LocalThemeManager.current.darkModeEnabled
                         OdsChip.LeadingAvatar(
                             rememberAsyncImagePainter(
-                                model = recipe?.imageUrl,
+                                model = buildImageRequest(context, recipe?.imageUrl, darkModeEnabled),
                                 placeholder = painterResource(id = DrawableManager.getPlaceholderSmallResId()),
                                 error = painterResource(id = DrawableManager.getPlaceholderSmallResId(error = true))
                             ), ""

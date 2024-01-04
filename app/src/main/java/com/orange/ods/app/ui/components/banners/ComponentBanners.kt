@@ -12,6 +12,7 @@
 
 package com.orange.ods.app.ui.components.banners
 
+import android.graphics.drawable.Drawable
 import androidx.appcompat.content.res.AppCompatResources
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.padding
@@ -32,6 +33,7 @@ import coil.request.ImageRequest
 import com.orange.ods.app.R
 import com.orange.ods.app.databinding.OdsBannerBinding
 import com.orange.ods.app.domain.recipes.LocalRecipes
+import com.orange.ods.app.ui.LocalThemeManager
 import com.orange.ods.app.ui.UiFramework
 import com.orange.ods.app.ui.components.utilities.ComponentCountRow
 import com.orange.ods.app.ui.components.utilities.ComponentCustomizationBottomSheetScaffold
@@ -40,6 +42,7 @@ import com.orange.ods.app.ui.utilities.DrawableManager
 import com.orange.ods.app.ui.utilities.code.CodeImplementationColumn
 import com.orange.ods.app.ui.utilities.code.FunctionCallCode
 import com.orange.ods.app.ui.utilities.composable.Subtitle
+import com.orange.ods.app.ui.utilities.extension.buildImageRequest
 import com.orange.ods.compose.OdsComposable
 import com.orange.ods.compose.component.banner.OdsBanner
 import com.orange.ods.compose.component.chip.OdsChoiceChip
@@ -51,6 +54,8 @@ import com.orange.ods.extension.ifNotNull
 @Composable
 fun ComponentBanners() {
     val bannerCustomizationState = rememberBannerCustomizationState()
+    val context = LocalContext.current
+    val darkModeEnabled = LocalThemeManager.current.darkModeEnabled
     val recipes = LocalRecipes.current
     val recipe = rememberSaveable { recipes.filter { it.description.isNotBlank() }.random() }
 
@@ -86,7 +91,6 @@ fun ComponentBanners() {
                 )
             }
         ) {
-            val context = LocalContext.current
             Column(
                 modifier = Modifier
                     .verticalScroll(rememberScrollState())
@@ -110,7 +114,7 @@ fun ComponentBanners() {
                             message = message,
                             image = if (hasImage) {
                                 val painter = rememberAsyncImagePainter(
-                                    model = recipe.imageUrl,
+                                    model = buildImageRequest(context, recipe.imageUrl, darkModeEnabled),
                                     placeholder = painterResource(id = placeholderResId),
                                     error = painterResource(id = errorPlaceholderResId)
                                 )
@@ -130,10 +134,10 @@ fun ComponentBanners() {
                         odsBanner.onSecondButtonClick = onFirstButtonClick
                         if (hasImage) {
                             odsBanner.image = AppCompatResources.getDrawable(context, placeholderResId)
-                            val request = ImageRequest.Builder(context)
-                                .data(recipe.imageUrl)
+                            val onDrawable: (Drawable?) -> Unit = { odsBanner.image = it }
+                            val request = ImageRequest.Builder(buildImageRequest(context, recipe.imageUrl, darkModeEnabled))
                                 .error(errorPlaceholderResId)
-                                .target { odsBanner.image = it }
+                                .target(onError = onDrawable, onSuccess = onDrawable)
                                 .build()
                             context.imageLoader.enqueue(request)
                         } else {

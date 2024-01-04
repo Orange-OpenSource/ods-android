@@ -34,6 +34,7 @@ import coil.size.Size
 import com.orange.ods.app.R
 import com.orange.ods.app.domain.recipes.LocalRecipes
 import com.orange.ods.app.domain.recipes.Recipe
+import com.orange.ods.app.ui.LocalThemeManager
 import com.orange.ods.app.ui.components.utilities.ComponentCountRow
 import com.orange.ods.app.ui.components.utilities.ComponentCustomizationBottomSheetScaffold
 import com.orange.ods.app.ui.components.utilities.clickOnElement
@@ -41,11 +42,13 @@ import com.orange.ods.app.ui.utilities.DrawableManager
 import com.orange.ods.app.ui.utilities.code.CodeImplementationColumn
 import com.orange.ods.app.ui.utilities.code.FunctionCallCode
 import com.orange.ods.app.ui.utilities.composable.Subtitle
+import com.orange.ods.app.ui.utilities.extension.buildImageRequest
 import com.orange.ods.compose.OdsComposable
 import com.orange.ods.compose.component.chip.OdsChoiceChip
 import com.orange.ods.compose.component.chip.OdsChoiceChipsFlowRow
 import com.orange.ods.compose.component.listitem.OdsListItem
 import com.orange.ods.extension.ifNotNull
+
 
 @OptIn(ExperimentalMaterialApi::class)
 @Composable
@@ -187,9 +190,9 @@ private fun ListItemCustomizationState.getIconPainter(recipe: Recipe): Painter? 
         OdsListItem.LeadingIcon.Type.WideImage -> {
             val wideImageSizeWidthPx = with(LocalDensity.current) { dimensionResource(id = com.orange.ods.R.dimen.list_wide_image_width).toPx() }
             val wideImageSizeHeightPx = with(LocalDensity.current) { dimensionResource(id = com.orange.ods.R.dimen.list_wide_image_height).toPx() }
+            val darkModeEnabled = LocalThemeManager.current.darkModeEnabled
             rememberAsyncImagePainter(
-                model = ImageRequest.Builder(LocalContext.current)
-                    .data(recipe.imageUrl)
+                model = ImageRequest.Builder(buildImageRequest(LocalContext.current, recipe.imageUrl, darkModeEnabled))
                     .scale(Scale.FILL)
                     .size(Size(wideImageSizeWidthPx.toInt(), wideImageSizeHeightPx.toInt()))
                     .build(),

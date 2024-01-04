@@ -36,11 +36,13 @@ import androidx.compose.ui.unit.dp
 import coil.compose.rememberAsyncImagePainter
 import com.orange.ods.app.R
 import com.orange.ods.app.domain.recipes.LocalRecipes
+import com.orange.ods.app.ui.LocalThemeManager
 import com.orange.ods.app.ui.components.utilities.ComponentCustomizationBottomSheetScaffold
 import com.orange.ods.app.ui.components.utilities.clickOnElement
 import com.orange.ods.app.ui.utilities.code.CodeImplementationColumn
 import com.orange.ods.app.ui.utilities.code.FunctionCallCode
 import com.orange.ods.app.ui.utilities.composable.Subtitle
+import com.orange.ods.app.ui.utilities.extension.buildImageRequest
 import com.orange.ods.compose.OdsComposable
 import com.orange.ods.compose.component.button.OdsIconButton
 import com.orange.ods.compose.component.chip.OdsChoiceChip
@@ -52,6 +54,7 @@ import com.orange.ods.compose.component.listitem.OdsListItem
 @Composable
 fun ComponentImageItem() {
     val context = LocalContext.current
+    val darkModeEnabled = LocalThemeManager.current.darkModeEnabled
     val imageItemCustomizationState = rememberImageItemCustomizationState()
     var iconChecked by rememberSaveable { mutableStateOf(false) }
     val recipes = LocalRecipes.current
@@ -112,7 +115,7 @@ fun ComponentImageItem() {
                     onClick = { clickOnElement(context, context.getString(R.string.component_image_item)) },
                     image = OdsImageItem.Image(
                         rememberAsyncImagePainter(
-                            model = recipe.imageUrl,
+                            model = buildImageRequest(context, recipe.imageUrl, darkModeEnabled),
                             placeholder = painterResource(id = R.drawable.placeholder),
                             error = painterResource(id = R.drawable.placeholder)
                         ), ""
