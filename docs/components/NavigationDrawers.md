@@ -109,10 +109,10 @@ Here are the available types of `OdsModalDrawer.Item`:
 
 {:.table}
 
-| Parameter                                    | Default&nbsp;value | Description                                                                                             |
-|----------------------------------------------|--------------------|---------------------------------------------------------------------------------------------------------|
-| <b>`text: String`</b>                        |                    | Text displayed in the modal drawer list item                                                            |
-| `leadingIcon: Painter?`                      | `null`             | Leading icon displayed in the modal drawer list item                                                    |
-| `onClick: (OdsModalDrawer.ListItem) -> Unit` |                    | Callback invoked on an `OdsModalDrawer.ListItem` click. Provides the clicked `OdsModalDrawer.ListItem`. |
+| Parameter                                           | Default&nbsp;value | Description                                                                                             |
+|-----------------------------------------------------|--------------------|---------------------------------------------------------------------------------------------------------|
+| <b>`text: String`</b>                               |                    | Text displayed in the modal drawer list item                                                            |
+| `leadingIcon: Painter?`                             | `null`             | Leading icon displayed in the modal drawer list item                                                    |
+| <b>`onClick: (OdsModalDrawer.ListItem) -> Unit`</b> |                    | Callback invoked on an `OdsModalDrawer.ListItem` click. Provides the clicked `OdsModalDrawer.ListItem`. |
 
 **OdsModalDrawerDivider** displays a simple divider (no parameter needed)
