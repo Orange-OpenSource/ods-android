@@ -63,41 +63,4 @@ open class OdsColors(
         this.componentColors.tab ?: materialColors.DefaultOdsTabColors,
         this.componentColors.topAppBar ?: materialColors.DefaultOdsTopAppBarColors
     )
-
-    /**
-     * Returns a copy of this Colors, optionally overriding some of the values.
-     */
-    fun copy(
-        materialColors: Colors = this.materialColors,
-        functionalColors: OdsFunctionalColors = this.functional,
-        componentColors: OdsComponentColors = this.componentColors
-    ): OdsColors = OdsColors(
-        materialColors,
-        functionalColors,
-        componentColors
-    )
-
-    /**
-     * Updates the internal values of the given OdsColors with values from the other.
-     * This allows efficiently updating a subset of OdsColors, without recomposing every composable that consumes values from LocalColors.
-     */
-    fun updateColorsFrom(other: OdsColors) {
-        primary = other.primary
-        primaryVariant = other.primaryVariant
-        secondary = other.secondary
-        secondaryVariant = other.secondaryVariant
-        background = other.background
-        surface = other.surface
-        error = other.error
-        onPrimary = other.onPrimary
-        onSecondary = other.onSecondary
-        onBackground = other.onBackground
-        onSurface = other.onSurface
-        onError = other.onError
-
-        functional.updateColorsFrom(other.functional)
-
-        component.updateColorsFrom(other.component)
-    }
-
 }
