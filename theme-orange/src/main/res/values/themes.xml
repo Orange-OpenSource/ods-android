@@ -37,6 +37,7 @@
         <item name="orangeBadgeTextColor">@color/core_white_100</item>
         <item name="functionalAlert">@color/functional_alert_200</item>
         <item name="functionalPositive">@color/functional_positive_200</item>
+        <item name="functionalNegative">@color/functional_negative_200</item>
         <item name="functionalInfo">@color/functional_info_200</item>
 
 
