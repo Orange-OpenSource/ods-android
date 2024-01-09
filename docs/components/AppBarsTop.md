@@ -170,8 +170,9 @@ Here is an example of use:
 
 ```kotlin
 OdsSearchTopAppBar(
-    searchHint = "Enter text to search",
-    onSearchValueChange = { searchValue -> doSomethingWith(searchValue) },
+    placeholder = "Enter text to search",
+    value = TextFieldValue(),
+    onValueChange = { value -> doSomethingWith(value) },
     navigationIcon = OdsTopAppBar.NavigationIcon(
         painter = painterResource(id = R.drawable.ic_back),
         contentDescription = "content description",
@@ -184,11 +185,11 @@ OdsSearchTopAppBar(
 
 {:.table}
 
-| Parameter                                       | Default&nbsp;value | Description                                                                                                                               |
-|-------------------------------------------------|--------------------|-------------------------------------------------------------------------------------------------------------------------------------------|
-| `searchHint: String`                            |                    | Hint displayed in the search text field when search value is empty                                                                        |
-| `onSearchValueChange: (TextFieldValue) -> Unit` |                    | Callback invoked when the search value changes. The new value is available in parameter.                                                  |
-| `modifier: Modifier`                            | `Modifier`         | `Modifier` to be applied to the search top app bar                                                                                        |
-| `searchValue: TextFieldValue`                   | `TextFieldValue()` | Value of the search text field                                                                                                            |
-| `navigationIcon: OdsTopAppBar.NavigationIcon?`  | `null`             | Icon to be displayed at the start of the top app bar before the text field                                                                |
-| `elevated: Boolean`                             | `true`             | Controls the elevation of the top app bar: `true` to set an elevation to the top app bar (a shadow is displayed below), `false` otherwise |
+| Parameter                                      | Default&nbsp;value | Description                                                                                                                               |
+|------------------------------------------------|--------------------|-------------------------------------------------------------------------------------------------------------------------------------------|
+| <b>`placeholder: String`</b>                   |                    | Text placeholder displayed in the search text field when search value is empty                                                            |
+| <b>`value: TextFieldValue`</b>                 |                    | Value of the search text field                                                                                                            |
+| `onValueChange: (TextFieldValue) -> Unit`      |                    | Callback invoked when the search value changes. The new value is available in parameter.                                                  |
+| `modifier: Modifier`                           | `Modifier`         | `Modifier` to be applied to the search top app bar                                                                                        |
+| `navigationIcon: OdsTopAppBar.NavigationIcon?` | `null`             | Icon to be displayed at the start of the top app bar before the text field                                                                |
+| `elevated: Boolean`                            | `true`             | Controls the elevation of the top app bar: `true` to set an elevation to the top app bar (a shadow is displayed below), `false` otherwise |

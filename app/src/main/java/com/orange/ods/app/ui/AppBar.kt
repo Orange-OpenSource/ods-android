@@ -39,9 +39,9 @@ fun AppBar(
                 scrollBehavior = if (hasScrollBehavior) scrollBehavior else null
             )
             Screen.AppBarType.Search -> OdsSearchTopAppBar(
-                searchHint = stringResource(id = R.string.search_text_field_hint),
-                onSearchValueChange = { searchText.value = it },
-                searchValue = LocalAppBarManager.current.searchedText,
+                placeholder = stringResource(id = R.string.search_text_field_hint),
+                onValueChange = { searchText.value = it },
+                value = LocalAppBarManager.current.searchedText,
                 navigationIcon = getNavigationIcon(upPress),
                 elevated = false // elevation is managed in MainScreen
             )

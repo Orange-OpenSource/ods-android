@@ -34,20 +34,20 @@ import com.orange.ods.compose.theme.OdsTheme
  *
  * The search variant contains a search text field and an optional navigation icon. Search results are often displayed in the screen below.
  *
- * @param searchHint Hint displayed in the search text field when search value is empty.
- * @param onSearchValueChange Callback invoked when the search value changes. The new value is available in parameter.
+ * @param placeholder Text placeholder displayed in the search text field when search value is empty.
+ * @param value Value of the search text field.
+ * @param onValueChange Callback invoked when the search value changes. The new value is available in parameter.
  * @param modifier [Modifier] applied to the top app bar.
- * @param searchValue Value of the search text field.
  * @param navigationIcon Icon displayed at the start of the search top app bar before the text field.
  * @param elevated Controls the elevation of the top app bar: `true` to set an elevation to the top app bar (a shadow is displayed below), `false` otherwise.
  */
 @Composable
 @OdsComposable
 fun OdsSearchTopAppBar(
-    searchHint: String,
-    onSearchValueChange: (TextFieldValue) -> Unit,
+    placeholder: String,
+    value: TextFieldValue,
+    onValueChange: (TextFieldValue) -> Unit,
     modifier: Modifier = Modifier,
-    searchValue: TextFieldValue = TextFieldValue(),
     navigationIcon: OdsTopAppBar.NavigationIcon? = null,
     elevated: Boolean = true
 ) {
@@ -58,9 +58,9 @@ fun OdsSearchTopAppBar(
         actions = {
             val focusRequester = remember { FocusRequester() }
             OdsSearchTextField(
-                value = searchValue,
-                onValueChange = onSearchValueChange,
-                placeholder = searchHint,
+                value = value,
+                onValueChange = onValueChange,
+                placeholder = placeholder,
                 modifier = modifier
                     .fillMaxWidth()
                     .focusRequester(focusRequester)
@@ -79,8 +79,9 @@ fun OdsSearchTopAppBar(
 @Composable
 private fun PreviewOdsSearchTopAppBar() = Preview {
     OdsSearchTopAppBar(
-        searchHint = "Enter text to search",
-        onSearchValueChange = {},
+        placeholder = "Enter text to search",
+        value = TextFieldValue(),
+        onValueChange = {},
         navigationIcon = OdsTopAppBar.NavigationIcon(Icons.Filled.ArrowBack, "") {},
     )
 }
