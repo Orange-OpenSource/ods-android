@@ -281,7 +281,7 @@ val components = Component::class.sealedSubclasses.mapNotNull { it.objectInstanc
 sealed class Variant(
     @StringRes val titleRes: Int,
     val composableName: String,
-    val topAppBarType: Screen.AppBarType = Screen.AppBarType.Default,
+    val topAppBarType: Screen.TopAppBarType = Screen.TopAppBarType.Default,
     val customizableTopAppBar: Boolean = false,
     val hasTabs: Boolean = false
 ) {
@@ -293,8 +293,8 @@ sealed class Variant(
     val id: Long = Variant::class.sealedSubclasses.indexOf(this::class).toLong()
 
     data object AppBarsTopRegular : Variant(R.string.component_app_bars_top_regular, OdsComposable.OdsTopAppBar.name, customizableTopAppBar = true)
-    data object AppBarsTopLarge : Variant(R.string.component_app_bars_top_large, OdsComposable.OdsLargeTopAppBar.name, topAppBarType = Screen.AppBarType.Large, customizableTopAppBar = true)
-    data object AppBarsTopSearch : Variant(R.string.component_app_bars_top_search, OdsComposable.OdsSearchTopAppBar.name, topAppBarType = Screen.AppBarType.Search, customizableTopAppBar = true)
+    data object AppBarsTopLarge : Variant(R.string.component_app_bars_top_large, OdsComposable.OdsLargeTopAppBar.name, topAppBarType = Screen.TopAppBarType.Large, customizableTopAppBar = true)
+    data object AppBarsTopSearch : Variant(R.string.component_app_bars_top_search, OdsComposable.OdsSearchTopAppBar.name, topAppBarType = Screen.TopAppBarType.Search, customizableTopAppBar = true)
 
     data object ButtonsPrimary : Variant(R.string.component_buttons_high_emphasis, "${OdsComposable.OdsButton.name} with ${OdsButton.Style.Primary.name}")
     data object ButtonsDefault : Variant(R.string.component_buttons_medium_emphasis, "${OdsComposable.OdsButton.name} with ${OdsButton.Style.Default.name}")

@@ -53,7 +53,7 @@ fun getScreen(route: String, args: Bundle?): Screen? {
  */
 sealed class Screen(
     val route: String,
-    val appBarType: AppBarType = AppBarType.Default,
+    val topAppBarType: TopAppBarType = TopAppBarType.Default,
     val title: UiString? = null,
     val hasTabs: Boolean = false
 ) {
@@ -63,7 +63,7 @@ sealed class Screen(
         val appBarActionClicked: Flow<AppBarAction> = _appBarActionClicked.asSharedFlow()
     }
 
-    enum class AppBarType {
+    enum class TopAppBarType {
         Default, Large, Search
     }
 
@@ -129,7 +129,7 @@ sealed class Screen(
     data class ComponentVariant(val variantId: Long) : Screen(
         route = ComponentVariantDemoRoute,
         title = Variant.fromId(variantId)?.titleRes?.let { UiString.StringResource(it) },
-        appBarType = Variant.fromId(variantId)?.topAppBarType.orElse { AppBarType.Default },
+        topAppBarType = Variant.fromId(variantId)?.topAppBarType.orElse { TopAppBarType.Default },
         hasTabs = Variant.fromId(variantId)?.hasTabs == true
     )
 
@@ -144,7 +144,7 @@ sealed class Screen(
 
     data object Search : Screen(
         route = MainNavigation.SearchRoute,
-        appBarType = AppBarType.Search
+        topAppBarType = TopAppBarType.Search
     )
 
 }

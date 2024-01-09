@@ -63,8 +63,8 @@ class AppBarState(
         @Composable get() = (isCustom && customAppBarConfiguration.value.isNavigationIconEnabled)
                 || (!isCustom && navigationState.currentScreen?.isHome(navigationState.previousRoute) == false)
 
-    val type: Screen.AppBarType
-        @Composable get() = navigationState.currentScreen?.appBarType.orElse { Screen.AppBarType.Default }
+    val type: Screen.TopAppBarType
+        @Composable get() = navigationState.currentScreen?.topAppBarType.orElse { Screen.TopAppBarType.Default }
 
     val title: String
         @Composable get() = if (isCustom) {

@@ -115,7 +115,7 @@ fun MainScreen(themeConfigurations: Set<OdsThemeConfigurationContract>, mainView
             val topBarScrollBehavior: TopAppBarScrollBehavior?
             val modifier: Modifier
 
-            if (mainState.appBarState.type == Screen.AppBarType.Large) {
+            if (mainState.appBarState.type == Screen.TopAppBarType.Large) {
                 topBarScrollBehavior = TopAppBarDefaults.exitUntilCollapsedScrollBehavior(rememberTopAppBarState())
                 val nestedScrollConnection = remember { topBarScrollBehavior.nestedScrollConnection }
                 modifier = Modifier.nestedScroll(nestedScrollConnection)

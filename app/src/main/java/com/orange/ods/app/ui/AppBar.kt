@@ -31,21 +31,21 @@ fun AppBar(
 ) {
     with(appBarState) {
         when (type) {
-            Screen.AppBarType.Large -> OdsLargeTopAppBar(
+            Screen.TopAppBarType.Large -> OdsLargeTopAppBar(
                 title = title,
                 navigationIcon = getNavigationIcon(upPress),
                 actions = actions,
                 overflowMenuItems = overflowMenuItems,
                 scrollBehavior = if (hasScrollBehavior) scrollBehavior else null
             )
-            Screen.AppBarType.Search -> OdsSearchTopAppBar(
+            Screen.TopAppBarType.Search -> OdsSearchTopAppBar(
                 placeholder = stringResource(id = R.string.search_text_field_hint),
                 onValueChange = { searchText.value = it },
                 value = LocalAppBarManager.current.searchedText,
                 navigationIcon = getNavigationIcon(upPress),
                 elevated = false // elevation is managed in MainScreen
             )
-            Screen.AppBarType.Default -> OdsTopAppBar(
+            Screen.TopAppBarType.Default -> OdsTopAppBar(
                 title = title,
                 navigationIcon = getNavigationIcon(upPress),
                 actions = actions,
