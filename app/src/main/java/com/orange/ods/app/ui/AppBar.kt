@@ -38,13 +38,16 @@ fun AppBar(
                 overflowMenuItems = overflowMenuItems,
                 scrollBehavior = if (hasScrollBehavior) scrollBehavior else null
             )
-            Screen.TopAppBarType.Search -> OdsSearchTopAppBar(
-                placeholder = stringResource(id = R.string.search_text_field_hint),
-                onValueChange = { searchText.value = it },
-                value = LocalAppBarManager.current.searchedText,
-                navigationIcon = getNavigationIcon(upPress),
-                elevated = false // elevation is managed in MainScreen
-            )
+            Screen.TopAppBarType.Search ->  {
+                val appBarManager = LocalAppBarManager.current
+                OdsSearchTopAppBar(
+                    placeholder = stringResource(id = R.string.search_text_field_hint),
+                    onValueChange = { appBarManager.searchedText = it },
+                    value = appBarManager.searchedText,
+                    navigationIcon = getNavigationIcon(upPress),
+                    elevated = false // elevation is managed in MainScreen
+                )
+            }
             Screen.TopAppBarType.Default -> OdsTopAppBar(
                 title = title,
                 navigationIcon = getNavigationIcon(upPress),

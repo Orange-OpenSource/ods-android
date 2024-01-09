@@ -35,7 +35,7 @@ import kotlin.math.max
 val LocalAppBarManager = staticCompositionLocalOf<AppBarManager> { error("CompositionLocal AppBarManager not present") }
 
 interface AppBarManager {
-    val searchedText: TextFieldValue
+    var searchedText: TextFieldValue
 
     fun setCustomAppBar(customAppBarConfiguration: CustomAppBarConfiguration)
 
@@ -51,7 +51,7 @@ interface AppBarManager {
  */
 class AppBarState(
     private val navigationState: AppNavigationState,
-    val searchText: MutableState<TextFieldValue>,
+    private val searchText: MutableState<TextFieldValue>,
     private val customAppBarConfiguration: MutableState<CustomAppBarConfiguration>,
     val tabsState: AppBarTabsState
 ) : AppBarManager {
@@ -120,8 +120,12 @@ class AppBarState(
     // AppBarManager implementation
     // ----------------------------------------------------------
 
-    override val searchedText: TextFieldValue
+    override var searchedText: TextFieldValue = TextFieldValue()
         get() = searchText.value
+        set(value) {
+            field = value
+            searchText.value = value
+        }
 
     override fun setCustomAppBar(customAppBarConfiguration: CustomAppBarConfiguration) {
         this.customAppBarConfiguration.value = customAppBarConfiguration
