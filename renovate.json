@@ -3,17 +3,10 @@
   "extends": [
     "config:base",
     ":rebaseStalePrs",
-    ":renovatePrefix"
+    ":renovatePrefix",
+    "group:allNonMajor"
   ],
   "baseBranches": ["develop"],
   "schedule": [ "before 5am on the first day of the month" ],
-  "timezone": "Europe/Paris",
-  "packageRules": [
-    {
-      "groupName": "Update non-major dependencies",
-      "groupSlug": "update-dependencies-minor-patch",
-      "matchPackagePatterns": ["*"],
-      "matchUpdateTypes": ["minor", "patch"]
-    }
-  ]
+  "timezone": "Europe/Paris"
 }
