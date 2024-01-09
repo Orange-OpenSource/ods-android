@@ -90,7 +90,7 @@ fun RegularTopAppBarContent() {
 @Composable
 fun RegularTopAppBarBottomSheetContent() {
     with(LocalTopAppBarCustomizationState.current) {
-        TopAppBarNavigationIconSetup()
+        TopAppBarNavigationIconCustomization()
         ComponentCountRow(
             modifier = Modifier.padding(start = dimensionResource(id = R.dimen.screen_horizontal_margin)),
             title = stringResource(id = com.orange.ods.app.R.string.component_app_bars_top_actions_count),

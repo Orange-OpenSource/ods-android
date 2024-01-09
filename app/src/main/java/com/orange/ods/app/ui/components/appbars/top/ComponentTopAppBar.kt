@@ -51,7 +51,7 @@ fun ComponentTopAppBar(variant: Variant) {
                 bottomSheetContent = {
                     when (variant) {
                         Variant.AppBarsTopLarge -> LargeTopAppBarBottomSheetContent()
-                        Variant.AppBarsTopSearch -> TopAppBarNavigationIconSetup()
+                        Variant.AppBarsTopSearch -> TopAppBarNavigationIconCustomization()
                         else -> RegularTopAppBarBottomSheetContent()
                     }
                 }
@@ -67,7 +67,7 @@ fun ComponentTopAppBar(variant: Variant) {
 }
 
 @Composable
-fun TopAppBarNavigationIconSetup() {
+fun TopAppBarNavigationIconCustomization() {
     with(LocalTopAppBarCustomizationState.current) {
         OdsListItem(
             text = stringResource(id = R.string.component_app_bars_top_element_navigation_icon),
