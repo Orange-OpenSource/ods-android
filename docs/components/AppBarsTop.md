@@ -16,7 +16,7 @@ description: Top app bars display information and actions relating to the curren
         * [Jetpack Compose](#jetpack-compose-1)
             * [OdsLargeTopAppBar API](#odslargetopappbar-api)
     * [Search top app bar](#search-top-app-bar)
-        * [Jetpack Compose](#jetpack-compose-1)
+        * [Jetpack Compose](#jetpack-compose-2)
             * [OdsSearchTopAppBar API](#odssearchtopappbar-api)
 
 ---
