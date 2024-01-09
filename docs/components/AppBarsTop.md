@@ -185,11 +185,11 @@ OdsSearchTopAppBar(
 
 {:.table}
 
-| Parameter                                      | Default&nbsp;value | Description                                                                                                                               |
-|------------------------------------------------|--------------------|-------------------------------------------------------------------------------------------------------------------------------------------|
-| <b>`placeholder: String`</b>                   |                    | Text placeholder displayed in the search text field when search value is empty                                                            |
-| <b>`value: TextFieldValue`</b>                 |                    | Value of the search text field                                                                                                            |
-| `onValueChange: (TextFieldValue) -> Unit`      |                    | Callback invoked when the search value changes. The new value is available in parameter.                                                  |
-| `modifier: Modifier`                           | `Modifier`         | `Modifier` to be applied to the search top app bar                                                                                        |
-| `navigationIcon: OdsTopAppBar.NavigationIcon?` | `null`             | Icon to be displayed at the start of the top app bar before the text field                                                                |
-| `elevated: Boolean`                            | `true`             | Controls the elevation of the top app bar: `true` to set an elevation to the top app bar (a shadow is displayed below), `false` otherwise |
+| Parameter                                        | Default&nbsp;value | Description                                                                                                                               |
+|--------------------------------------------------|--------------------|-------------------------------------------------------------------------------------------------------------------------------------------|
+| <b>`placeholder: String`</b>                     |                    | Text placeholder displayed in the search text field when search value is empty                                                            |
+| <b>`value: TextFieldValue`</b>                   |                    | Value of the search text field                                                                                                            |
+| <b>`onValueChange: (TextFieldValue) -> Unit`</b> |                    | Callback invoked when the search value changes. The new value is available in parameter.                                                  |
+| `modifier: Modifier`                             | `Modifier`         | `Modifier` to be applied to the search top app bar                                                                                        |
+| `navigationIcon: OdsTopAppBar.NavigationIcon?`   | `null`             | Icon to be displayed at the start of the top app bar before the text field                                                                |
+| `elevated: Boolean`                              | `true`             | Controls the elevation of the top app bar: `true` to set an elevation to the top app bar (a shadow is displayed below), `false` otherwise |
