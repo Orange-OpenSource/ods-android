@@ -1,11 +1,13 @@
 /*
+ * Software Name: Orange Design System
+ * SPDX-FileCopyrightText: Copyright (c) Orange SA
+ * SPDX-License-Identifier: MIT
  *
- *  Copyright 2021 Orange
+ * This software is distributed under the MIT licence,
+ * the text of which is available at https://opensource.org/license/MIT/
+ * or see the "LICENSE" file for more details.
  *
- *  Use of this source code is governed by an MIT-style
- *  license that can be found in the LICENSE file or at
- *  https://opensource.org/licenses/MIT.
- * /
+ * Software description: Android library of reusable graphical components 
  */
 
 package com.orange.ods.app.ui.utilities.composable
@@ -25,11 +27,11 @@ import androidx.compose.ui.text.font.Font
 import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.orange.ods.app.R
 import com.orange.ods.compose.text.OdsTextH5
 import com.orange.ods.compose.text.OdsTextSubtitle1
 import com.orange.ods.compose.theme.OdsDisplaySurface
 import com.orange.ods.compose.theme.OdsTheme
-import com.orange.ods.app.R
 
 @Composable
 fun Title(@StringRes textRes: Int, modifier: Modifier = Modifier, horizontalPadding: Boolean = false, topPadding: Boolean = false) {

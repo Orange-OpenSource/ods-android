@@ -1,11 +1,13 @@
 /*
+ * Software Name: Orange Design System
+ * SPDX-FileCopyrightText: Copyright (c) Orange SA
+ * SPDX-License-Identifier: MIT
  *
- *  Copyright 2021 Orange
+ * This software is distributed under the MIT licence,
+ * the text of which is available at https://opensource.org/license/MIT/
+ * or see the "LICENSE" file for more details.
  *
- *  Use of this source code is governed by an MIT-style
- *  license that can be found in the LICENSE file or at
- *  https://opensource.org/licenses/MIT.
- * /
+ * Software description: Android library of reusable graphical components 
  */
 
 package com.orange.ods.app.ui.components.utilities
@@ -14,10 +16,24 @@ import androidx.activity.compose.BackHandler
 import androidx.compose.animation.core.animateFloatAsState
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
-import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.BoxScope
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
-import androidx.compose.material.*
+import androidx.compose.material.BottomSheetScaffoldState
+import androidx.compose.material.BottomSheetState
+import androidx.compose.material.BottomSheetValue
+import androidx.compose.material.ExperimentalMaterialApi
+import androidx.compose.material.FabPosition
+import androidx.compose.material.Icon
+import androidx.compose.material.SnackbarHost
+import androidx.compose.material.SnackbarHostState
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.rememberCoroutineScope
