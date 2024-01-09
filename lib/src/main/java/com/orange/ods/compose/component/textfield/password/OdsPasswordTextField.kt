@@ -17,7 +17,6 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.text.KeyboardActions
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material.Text
-import androidx.compose.material.Typography
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
@@ -36,6 +35,7 @@ import com.orange.ods.compose.component.textfield.OdsTextFieldBottomRow
 import com.orange.ods.compose.component.utilities.BasicPreviewParameterProvider
 import com.orange.ods.compose.component.utilities.Preview
 import com.orange.ods.compose.component.utilities.UiModePreviews
+import com.orange.ods.theme.typography.OdsTypography
 
 /**
  * Password text field allows to display and use a text field with common password behaviors like a visualisation icon.
@@ -52,9 +52,9 @@ import com.orange.ods.compose.component.utilities.UiModePreviews
  * field can not be modified, however, a user can focus it and copy text from it. Read-only text
  * fields are usually used to display pre-filled forms that user can not edit.
  * @param label Label to be displayed inside or outside the text field. The default text style used
- * is [Typography.bodyS] when the text field is in focus and [Typography.titleM] when the text field is not in focus.
+ * is [OdsTypography.bodyS] when the text field is in focus and [OdsTypography.titleM] when the text field is not in focus.
  * @param placeholder Placeholder to be displayed when the text field is in focus and
- * the input text is empty. The default text style for internal [Text] is [Typography.titleM].
+ * the input text is empty. The default text style for internal [Text] is [OdsTypography.titleM].
  * @param visualisationIcon Controls the display of the eye icon to allow showing/hiding password.
  * @param isError Indicates if the text field's current value is in error state. If set to
  * `true`, the text field outline and the error message will be displayed in error color.
