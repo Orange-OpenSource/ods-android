@@ -53,13 +53,15 @@ fun LargeTopAppBarContent() {
     val context = LocalContext.current
 
     with(LocalTopAppBarCustomizationState.current) {
+        val isCollapsible = scrollBehavior.value == TopAppBarCustomizationState.ScrollBehavior.Collapsible
+
         Column(
             modifier = Modifier
                 .verticalScroll(rememberScrollState())
                 .padding(vertical = dimensionResource(id = R.dimen.screen_vertical_margin)),
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
-            if (isLargeCollapsible) {
+            if (isCollapsible) {
                 OdsTextBody2(text = stringResource(id = com.orange.ods.app.R.string.component_app_bars_top_large_scrolling_upward))
                 BlinkingChevronDown(
                     modifier = Modifier
@@ -106,13 +108,13 @@ fun LargeTopAppBarContent() {
                                 }
                             }
 
-                            if (isLargeCollapsible) {
+                            if (isCollapsible) {
                                 simple("scrollBehavior", "<scrollBehavior>")
                             }
                         }
                     )
                 }
-                if (isLargeCollapsible) {
+                if (isCollapsible) {
                     OdsTextBody2(
                         modifier = Modifier.padding(
                             top = dimensionResource(id = R.dimen.spacing_s),
@@ -141,7 +143,7 @@ fun LargeTopAppBarContent() {
                 }
             }
 
-            if (isLargeCollapsible) {
+            if (isCollapsible) {
                 BlinkingChevronDown(modifier = Modifier.padding(vertical = dimensionResource(id = R.dimen.spacing_s)))
                 OdsTextBody2(text = stringResource(id = com.orange.ods.app.R.string.component_app_bars_top_large_scrolling_downward))
             }

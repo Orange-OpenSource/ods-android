@@ -19,23 +19,20 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.saveable.rememberSaveable
 import com.orange.ods.app.R
 import com.orange.ods.app.ui.CustomAppBarConfiguration
-import com.orange.ods.app.ui.components.Variant
 
 @Composable
 fun rememberTopAppBarCustomizationState(
-    variant: MutableState<Variant>,
     navigationIconEnabled: MutableState<Boolean> = rememberSaveable { mutableStateOf(CustomAppBarConfiguration.Default.isNavigationIconEnabled) },
     actionCount: MutableIntState = rememberSaveable { mutableIntStateOf(CustomAppBarConfiguration.Default.actionCount) },
     overflowMenuEnabled: MutableState<Boolean> = rememberSaveable { mutableStateOf(CustomAppBarConfiguration.Default.isOverflowMenuEnabled) },
     titleLineCount: MutableState<TopAppBarCustomizationState.Title> = rememberSaveable { mutableStateOf(TopAppBarCustomizationState.Title.Short) },
     scrollBehavior: MutableState<TopAppBarCustomizationState.ScrollBehavior> = rememberSaveable { mutableStateOf(CustomAppBarConfiguration.Default.scrollBehavior) }
 ) =
-    remember(variant, navigationIconEnabled, actionCount, overflowMenuEnabled, titleLineCount, scrollBehavior) {
-        TopAppBarCustomizationState(variant, navigationIconEnabled, actionCount, overflowMenuEnabled, titleLineCount, scrollBehavior)
+    remember(navigationIconEnabled, actionCount, overflowMenuEnabled, titleLineCount, scrollBehavior) {
+        TopAppBarCustomizationState(navigationIconEnabled, actionCount, overflowMenuEnabled, titleLineCount, scrollBehavior)
     }
 
 class TopAppBarCustomizationState(
-    val variant: MutableState<Variant>,
     val navigationIconEnabled: MutableState<Boolean>,
     val actionCount: MutableIntState,
     val overflowMenuEnabled: MutableState<Boolean>,
@@ -55,12 +52,6 @@ class TopAppBarCustomizationState(
     private val maxActionCount = 3
 
     val minActionCount = 0
-
-    val isLarge: Boolean
-        get() = variant.value == Variant.AppBarsTopLarge
-
-    val isLargeCollapsible: Boolean
-        get() = isLarge && scrollBehavior.value == ScrollBehavior.Collapsible
 
     val isNavigationIconEnabled: Boolean
         get() = navigationIconEnabled.value

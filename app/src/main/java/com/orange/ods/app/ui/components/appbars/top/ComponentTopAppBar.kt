@@ -14,8 +14,6 @@ import androidx.compose.material.ExperimentalMaterialApi
 import androidx.compose.material.rememberBottomSheetScaffoldState
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.CompositionLocalProvider
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
 import androidx.compose.runtime.staticCompositionLocalOf
 import androidx.compose.ui.res.stringResource
 import com.orange.ods.app.R
@@ -31,7 +29,8 @@ val LocalTopAppBarCustomizationState =
 @OptIn(ExperimentalMaterialApi::class)
 @Composable
 fun ComponentTopAppBar(variant: Variant) {
-    val customizationState = rememberTopAppBarCustomizationState(variant = remember { mutableStateOf(variant) })
+    val customizationState = rememberTopAppBarCustomizationState()
+    val isLarge = variant == Variant.AppBarsTopLarge
 
     with(customizationState) {
         val customAppBarConfiguration = CustomAppBarConfiguration(
