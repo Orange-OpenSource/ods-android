@@ -37,7 +37,6 @@ open class OdsGuideline(private val typography: OdsTypography) {
                     listOf(::headlineL, ::headlineS, ::titleL, ::titleM, ::titleS, ::bodyL, ::bodyM, ::bodyS, ::labelL, ::labelS)
 
                 return properties.mapNotNull { property ->
-                    var allCaps = false
                     val (name, xmlResource) = when (property) {
                         ::headlineL -> "Headline L" to com.google.android.material.R.attr.textAppearanceHeadlineLarge
                         ::headlineS -> "Headline S" to com.google.android.material.R.attr.textAppearanceHeadlineSmall
@@ -47,10 +46,7 @@ open class OdsGuideline(private val typography: OdsTypography) {
                         ::bodyL -> "Body L" to com.google.android.material.R.attr.textAppearanceBodyLarge
                         ::bodyM -> "Body M" to com.google.android.material.R.attr.textAppearanceBodyMedium
                         ::bodyS -> "Body S" to com.google.android.material.R.attr.textAppearanceBodySmall
-                        ::labelL -> {
-                            allCaps = true
-                            "Label L" to com.google.android.material.R.attr.textAppearanceLabelLarge
-                        }
+                        ::labelL -> "Label L" to com.google.android.material.R.attr.textAppearanceLabelLarge
                         ::labelS -> "Label S" to com.google.android.material.R.attr.textAppearanceLabelSmall
                         else -> null to null
                     }
@@ -60,7 +56,7 @@ open class OdsGuideline(private val typography: OdsTypography) {
                             textStyle = property(),
                             composeStyle = "OdsTheme.typography.${property.name}",
                             xmlResource = xmlResource,
-                            allCaps = allCaps
+                            allCaps = isAllCapsTextStyle(property())
                         )
                     } else {
                         null
