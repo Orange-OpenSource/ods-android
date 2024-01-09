@@ -15,7 +15,7 @@ import androidx.compose.material3.TopAppBarScrollBehavior
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.res.stringResource
 import com.orange.ods.app.R
-import com.orange.ods.compose.component.appbar.top.OdsLargeTopAppBarInternal
+import com.orange.ods.compose.component.appbar.top.OdsLargeTopAppBar
 import com.orange.ods.compose.component.appbar.top.OdsSearchTopAppBar
 import com.orange.ods.compose.component.appbar.top.OdsTopAppBar
 
@@ -31,7 +31,7 @@ fun AppBar(
 ) {
     with(appBarState) {
         when (type) {
-            Screen.AppBarType.Large -> OdsLargeTopAppBarInternal(
+            Screen.AppBarType.Large -> OdsLargeTopAppBar(
                 title = title,
                 navigationIcon = getNavigationIcon(upPress),
                 actions = actions,
