@@ -3,8 +3,7 @@
   "extends": [
     "config:base",
     ":rebaseStalePrs",
-    ":renovatePrefix",
-    "group:allNonMajor"
+    ":renovatePrefix"
   ],
   "baseBranches": ["develop"],
   "schedule": [ "before 5am on the first day of the month" ],
