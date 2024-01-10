@@ -24,13 +24,12 @@ import androidx.compose.ui.graphics.painter.Painter
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.res.stringResource
 import com.orange.ods.R
-import com.orange.ods.compose.component.content.OdsComponentContent
 import com.orange.ods.compose.component.content.OdsComponentIcon
 import com.orange.ods.compose.component.menu.OdsDropdownMenu
 import com.orange.ods.compose.theme.OdsTheme
 
 @Composable
-internal fun OdsTopAppBarActions(actions: List<OdsComponentContent<*>>, overflowMenuItems: List<OdsDropdownMenu.Item>) {
+internal fun OdsTopAppBarActions(actions: List<OdsTopAppBar.ActionButton>, overflowMenuItems: List<OdsDropdownMenu.Item>) {
     val maxTotalActionCount = 3
     val maxActionCount = if (overflowMenuItems.isNotEmpty()) maxTotalActionCount - 1 else maxTotalActionCount
     actions.take(maxActionCount).forEach { it.Content() }

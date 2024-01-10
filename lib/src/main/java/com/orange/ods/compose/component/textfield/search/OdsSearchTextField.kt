@@ -47,8 +47,7 @@ import com.orange.ods.compose.theme.OdsTheme
  * @param modifier [Modifier] applied to this text field.
  */
 @Composable
-@OdsComposable
-fun OdsSearchTextField(
+internal fun OdsSearchTextField(
     value: TextFieldValue,
     onValueChange: (TextFieldValue) -> Unit,
     placeholder: String,

@@ -71,7 +71,6 @@ abstract class OdsComponentContent<T> where T : OdsComponentContent.ExtraParamet
      *
      * @param modifier the Modifier for this content.
      */
-    // TODO: Set this method internal once OdsSearchTopAppBar is developed
     @Composable
-    abstract fun Content(modifier: Modifier)
+    internal abstract fun Content(modifier: Modifier)
 }

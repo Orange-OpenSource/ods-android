@@ -23,14 +23,13 @@ import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.semantics.traversalIndex
 import androidx.compose.ui.unit.dp
 import com.orange.ods.compose.component.OdsComposable
-import com.orange.ods.compose.component.content.OdsComponentContent
 import com.orange.ods.compose.component.menu.OdsDropdownMenu
 import com.orange.ods.compose.component.utilities.Preview
 import com.orange.ods.compose.component.utilities.UiModePreviews
 import com.orange.ods.compose.theme.OdsTheme
 
 /**
- * <a href="https://system.design.orange.com/0c1af118d/p/23e0e6-app-bars/b/620966" class="external" target="_blank">Material ODS Top App Bar</a>.
+ * <a href="https://system.design.orange.com/0c1af118d/p/23e0e6-app-bars/b/620966" class="external" target="_blank">ODS Top App Bar</a>.
  *
  * The top app bar displays information and actions relating to the current screen.
  *
@@ -53,27 +52,6 @@ fun OdsTopAppBar(
     modifier: Modifier = Modifier,
     navigationIcon: OdsTopAppBar.NavigationIcon? = null,
     actions: List<OdsTopAppBar.ActionButton> = emptyList(),
-    overflowMenuItems: List<OdsDropdownMenu.Item> = emptyList(),
-    elevated: Boolean = true
-) {
-    OdsTopAppBarInternal(
-        title = title,
-        modifier = modifier,
-        navigationIcon = navigationIcon,
-        actions = actions,
-        overflowMenuItems = overflowMenuItems,
-        elevated = elevated
-    )
-}
-
-// TODO: Remove this method once OdsSearchTopAppBar is developed
-@Composable
-@OdsComposable
-fun OdsTopAppBarInternal(
-    title: String,
-    modifier: Modifier = Modifier,
-    navigationIcon: OdsTopAppBar.NavigationIcon? = null,
-    actions: List<OdsComponentContent<*>> = emptyList(),
     overflowMenuItems: List<OdsDropdownMenu.Item> = emptyList(),
     elevated: Boolean = true
 ) {

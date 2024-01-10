@@ -38,7 +38,6 @@ import androidx.compose.ui.tooling.preview.PreviewParameter
 import androidx.compose.ui.unit.dp
 import com.orange.ods.R
 import com.orange.ods.compose.component.OdsComposable
-import com.orange.ods.compose.component.content.OdsComponentContent
 import com.orange.ods.compose.component.menu.OdsDropdownMenu
 import com.orange.ods.compose.component.utilities.BasicPreviewParameterProvider
 import com.orange.ods.compose.component.utilities.Preview
@@ -47,7 +46,7 @@ import com.orange.ods.compose.theme.OdsTheme
 import kotlinx.coroutines.delay
 
 /**
- * <a href="https://system.design.orange.com/0c1af118d/p/23e0e6-app-bars/b/620966" class="external" target="_blank">Material ODS Top App Bar</a>.
+ * <a href="https://system.design.orange.com/0c1af118d/p/23e0e6-app-bars/b/620966" class="external" target="_blank">ODS Top App Bar</a>.
  *
  * The top app bar displays information and actions relating to the current screen.
  *
@@ -66,28 +65,6 @@ fun OdsLargeTopAppBar(
     modifier: Modifier = Modifier,
     navigationIcon: OdsTopAppBar.NavigationIcon? = null,
     actions: List<OdsTopAppBar.ActionButton> = emptyList(),
-    overflowMenuItems: List<OdsDropdownMenu.Item> = emptyList(),
-    scrollBehavior: TopAppBarScrollBehavior? = null
-) {
-    OdsLargeTopAppBarInternal(
-        title = title,
-        modifier = modifier,
-        navigationIcon = navigationIcon,
-        actions = actions,
-        overflowMenuItems = overflowMenuItems,
-        scrollBehavior = scrollBehavior
-    )
-}
-
-// TODO: Remove this method once OdsSearchTopAppBar is developed
-@OptIn(ExperimentalMaterial3Api::class)
-@Composable
-@OdsComposable
-fun OdsLargeTopAppBarInternal(
-    title: String,
-    modifier: Modifier = Modifier,
-    navigationIcon: OdsTopAppBar.NavigationIcon? = null,
-    actions: List<OdsComponentContent<*>> = emptyList(),
     overflowMenuItems: List<OdsDropdownMenu.Item> = emptyList(),
     scrollBehavior: TopAppBarScrollBehavior? = null
 ) {

@@ -14,8 +14,10 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ArrowBack
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.MutableState
+import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.runtime.staticCompositionLocalOf
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
@@ -28,14 +30,14 @@ import com.orange.ods.app.ui.components.appbars.top.TopAppBarCustomizationState
 import com.orange.ods.app.ui.components.utilities.clickOnElement
 import com.orange.ods.app.ui.utilities.NavigationItem
 import com.orange.ods.compose.component.appbar.top.OdsTopAppBar
-import com.orange.ods.compose.component.content.OdsComponentContent
 import com.orange.ods.compose.component.menu.OdsDropdownMenu
+import com.orange.ods.extension.orElse
 import kotlin.math.max
 
 val LocalAppBarManager = staticCompositionLocalOf<AppBarManager> { error("CompositionLocal AppBarManager not present") }
 
 interface AppBarManager {
-    val searchedText: TextFieldValue
+    var searchedText: TextFieldValue
 
     fun setCustomAppBar(customAppBarConfiguration: CustomAppBarConfiguration)
 
@@ -51,7 +53,7 @@ interface AppBarManager {
  */
 class AppBarState(
     private val navigationState: AppNavigationState,
-    private val searchText: MutableState<TextFieldValue>,
+    searchedText: MutableState<TextFieldValue>,
     private val customAppBarConfiguration: MutableState<CustomAppBarConfiguration>,
     val tabsState: AppBarTabsState
 ) : AppBarManager {
@@ -63,8 +65,8 @@ class AppBarState(
         @Composable get() = (isCustom && customAppBarConfiguration.value.isNavigationIconEnabled)
                 || (!isCustom && navigationState.currentScreen?.isHome(navigationState.previousRoute) == false)
 
-    val isLarge: Boolean
-        @Composable get() = navigationState.currentScreen?.isLargeAppBar == true
+    val type: Screen.TopAppBarType
+        @Composable get() = navigationState.currentScreen?.topAppBarType.orElse { Screen.TopAppBarType.Default }
 
     val title: String
         @Composable get() = if (isCustom) {
@@ -73,9 +75,9 @@ class AppBarState(
             navigationState.currentScreen?.title?.asString().orEmpty()
         }
 
-    val actions: List<OdsComponentContent<Nothing>>
+    val actions: List<OdsTopAppBar.ActionButton>
         @Composable get() {
-            val screenAppBarActions = navigationState.currentScreen?.getAppBarActions(navigationState.previousRoute) { searchText.value = it }.orEmpty()
+            val screenAppBarActions = navigationState.currentScreen?.getAppBarActions(navigationState.previousRoute).orEmpty()
             return if (isCustom) {
                 val context = LocalContext.current
                 val customActionCount = max(0, customAppBarConfiguration.value.actionCount - AppBarAction.defaultActions.size)
@@ -120,8 +122,7 @@ class AppBarState(
     // AppBarManager implementation
     // ----------------------------------------------------------
 
-    override val searchedText: TextFieldValue
-        get() = searchText.value
+    override var searchedText by searchedText
 
     override fun setCustomAppBar(customAppBarConfiguration: CustomAppBarConfiguration) {
         this.customAppBarConfiguration.value = customAppBarConfiguration
