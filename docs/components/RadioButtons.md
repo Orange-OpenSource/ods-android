@@ -53,10 +53,11 @@ OdsRadioButton(
 
 #### OdsRadioButton API
 
-Parameter | Default&nbsp;value | Description
--- | -- | --
-`selected: Boolean` | | Controls the selected state of the radio button
-`onClick: (() -> Unit)?` | | Callback invoked on radio button click. If `null`, then the radio button will not handle input events, and only act as a visual indicator of `selected` state.
-`modifier: Modifier` | `Modifier` | `Modifier` applied to the radio button
-`enabled: Boolean` | `true` | Controls the enabled state of the radio button. When `false`, the button will not be selectable and appears disabled.
 {:.table}
+
+| Parameter                       | Default&nbsp;value | Description                                                                                                                                                    |
+|---------------------------------|--------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| <b>`selected: Boolean`</b>      |                    | Controls the selected state of the radio button                                                                                                                |
+| <b>`onClick: (() -> Unit)?`</b> |                    | Callback invoked on radio button click. If `null`, then the radio button will not handle input events, and only act as a visual indicator of `selected` state. |
+| `modifier: Modifier`            | `Modifier`         | `Modifier` applied to the radio button                                                                                                                         |
+| `enabled: Boolean`              | `true`             | Controls the enabled state of the radio button. When `false`, the button will not be selectable and appears disabled.                                          |

@@ -61,13 +61,14 @@ OdsFloatingActionButton(
 
 ##### OdsFloatingActionButton API
 
-Parameter | Default&nbsp;value | Description
--- | -- | --
-`icon: OdsFloatingActionButton.Icon` | | Icon used into the FAB
-`onClick: () -> Unit` | | Callback invoked on FAB click
-`modifier: Modifier` | `Modifier` | `Modifier` applied to the FAB
-`mini: Boolean` | `false` | Controls the size of the FAB. If `true`, the size of the FAB will be 40dp, otherwise the default size will be used.
 {:.table}
+
+| Parameter                                   | Default&nbsp;value | Description                                                                                                         |
+|---------------------------------------------|--------------------|---------------------------------------------------------------------------------------------------------------------|
+| <b>`icon: OdsFloatingActionButton.Icon`</b> |                    | Icon used into the FAB                                                                                              |
+| <b>`onClick: () -> Unit`</b>                |                    | Callback invoked on FAB click                                                                                       |
+| `modifier: Modifier`                        | `Modifier`         | `Modifier` applied to the FAB                                                                                       |
+| `mini: Boolean`                             | `false`            | Controls the size of the FAB. If `true`, the size of the FAB will be 40dp, otherwise the default size will be used. |
 
 ### Mini FAB
 
@@ -118,10 +119,11 @@ OdsExtendedFloatingActionButton(
 
 ##### OdsExtendedFloatingActionButton API
 
-Parameter | Default&nbsp;value | Description
--- | -- | --
-`icon: OdsFloatingActionButton.Icon` | | Icon used into the FAB
-`onClick: () -> Unit` | | Callback invoked on FAB click
-`text: String` | | Text displayed into the FAB
-`modifier: Modifier` | `Modifier` | `Modifier` applied to the FAB
 {:.table}
+
+| Parameter                                   | Default&nbsp;value | Description                   |
+|---------------------------------------------|--------------------|-------------------------------|
+| <b>`icon: OdsFloatingActionButton.Icon`</b> |                    | Icon used into the FAB        |
+| <b>`onClick: () -> Unit`</b>                |                    | Callback invoked on FAB click |
+| <b>`text: String`</b>                       |                    | Text displayed into the FAB   |
+| `modifier: Modifier`                        | `Modifier`         | `Modifier` applied to the FAB |

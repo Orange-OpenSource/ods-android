@@ -75,16 +75,17 @@ OdsChip(
 
 ##### OdsChip API
 
-Parameter | Default&nbsp;value | Description
--- | -- | --
-`text: String` | | Text to be displayed into the chip
-`onClick: () -> Unit` | | Callback called on chip click
-`modifier: Modifier` | `Modifier` | `Modifier` to be applied to the chip
-`enabled: Boolean` | `true` | Controls the enabled state of the chip. When `false`, this chip will not respond to user input.
-`selected: Boolean` | `false` | Controls the selected state of the chip. When `true`, the chip is highlighted (useful for choice chips).
-`leading: OdsChip.Leading?` | `null` | The leading content to be displayed at the start of the chip, preceding the text
-`onCancel: (() -> Unit)?` | `null` | Callback called on chip cancel cross click. Pass `null` for no cancel cross.
 {:.table}
+
+| Parameter                    | Default&nbsp;value | Description                                                                                              |
+|------------------------------|--------------------|----------------------------------------------------------------------------------------------------------|
+| <b>`text: String`</b>        |                    | Text to be displayed into the chip                                                                       |
+| <b>`onClick: () -> Unit`</b> |                    | Callback called on chip click                                                                            |
+| `modifier: Modifier`         | `Modifier`         | `Modifier` to be applied to the chip                                                                     |
+| `enabled: Boolean`           | `true`             | Controls the enabled state of the chip. When `false`, this chip will not respond to user input.          |
+| `selected: Boolean`          | `false`            | Controls the selected state of the chip. When `true`, the chip is highlighted (useful for choice chips). |
+| `leading: OdsChip.Leading?`  | `null`             | The leading content to be displayed at the start of the chip, preceding the text                         |
+| `onCancel: (() -> Unit)?`    | `null`             | Callback called on chip cancel cross click. Pass `null` for no cancel cross.                             |
 
 ### Choice chip
 
@@ -152,15 +153,16 @@ OdsFilterChip(
 
 ##### OdsFilterChip API
 
-Parameter | Default&nbsp;value | Description
--- | -- | --
-`text: String` | | Text to be displayed into the chip
-`onClick: () -> Unit` | | Callback called on chip click
-`modifier: Modifier` | `Modifier` | `Modifier` to be applied to the chip
-`enabled: Boolean` | `true` | Controls the enabled state of the chip. When `false`, this chip will not respond to user input. It also appears visually disabled and is disabled to accessibility services.
-`selected: Boolean` | `false` | Controls the selected state of the chip. When `true`, the chip is highlighted.
-`leadingAvatar: OdsChip.LeadingAvatar?` | `null` | Avatar to be displayed in a circle shape at the start of the chip, preceding the content text
 {:.table}
+
+| Parameter                               | Default&nbsp;value | Description                                                                                                                                                                  |
+|-----------------------------------------|--------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| <b>`text: String`</b>                   |                    | Text to be displayed into the chip                                                                                                                                           |
+| <b>`onClick: () -> Unit`</b>            |                    | Callback called on chip click                                                                                                                                                |
+| `modifier: Modifier`                    | `Modifier`         | `Modifier` to be applied to the chip                                                                                                                                         |
+| `enabled: Boolean`                      | `true`             | Controls the enabled state of the chip. When `false`, this chip will not respond to user input. It also appears visually disabled and is disabled to accessibility services. |
+| `selected: Boolean`                     | `false`            | Controls the selected state of the chip. When `true`, the chip is highlighted.                                                                                               |
+| `leadingAvatar: OdsChip.LeadingAvatar?` | `null`             | Avatar to be displayed in a circle shape at the start of the chip, preceding the content text                                                                                |
 
 ### Action chip
 
@@ -225,10 +227,11 @@ OdsChoiceChipsFlowRow(
 
 #### OdsChoiceChipsFlowRow API
 
-Parameter | Default&nbsp;value | Description
--- | -- | --
-`chips: List<OdsChoiceChip<T>>` | | Chips displayed into the flow row
-`value: String` | | Initial value of the choice chips flow row
-`onValueChange: (value: T) -> Unit` | | Callback invoked when the value changes. The new value is provided as parameter.
-`modifier: Modifier` | `Modifier` | `Modifier` applied to the chips flow row
 {:.table}
+
+| Parameter                                  | Default&nbsp;value | Description                                                                      |
+|--------------------------------------------|--------------------|----------------------------------------------------------------------------------|
+| <b>`chips: List<OdsChoiceChip<T>>`</b>     |                    | Chips displayed into the flow row                                                |
+| <b>`value: String`</b>                     |                    | Initial value of the choice chips flow row                                       |
+| <b>`onValueChange: (value: T) -> Unit`</b> |                    | Callback invoked when the value changes. The new value is provided as parameter. |
+| `modifier: Modifier`                       | `Modifier`         | `Modifier` applied to the chips flow row                                         |

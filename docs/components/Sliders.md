@@ -76,18 +76,19 @@ OdsSlider(
 
 ##### OdsSlider API
 
-Parameter | Default&nbsp;value | Description
--- | -- | --
-`value: Float` | | Current value of the slider. If outside of `valueRange` provided, value will be coerced to this range.
-`onValueChange: (Float) -> Unit` | | Callback invoked on slider value change. `value` should be updated here.
-`modifier: Modifier` | `Modifier` | `Modifier` applied to the slider
-`enabled: Boolean` | `true` | Controls the enabled state of the slider. If `false`, the user cannot interact with it.
-`valueRange: ClosedFloatingPointRange<Float>` | `0f..1f` | Range of values that the slider can take. Given `value` will be coerced to this range.
-`steps: Int` | `0` | If greater than `0`, specifies the amounts of discrete values, evenly distributed between across the whole value range. If `0`, slider will behave as a continuous slider and allow to choose any value from the range specified. Must not be negative.
-`onValueChangeFinished: (() -> Unit)?` | `null` | Callback invoked when value change has ended. This callback shouldn't be used to update the slider value (use `onValueChange` for that), but rather to know when the user has completed selecting a new value by ending a drag or a click.
-`startIcon: OdsSlider.Icon?` | `null` | Icon displayed at the start of the slider
-`endIcon: OdsSlider.Icon?` | `null` | Icon displayed at the end of the slider
 {:.table}
+
+| Parameter                                     | Default&nbsp;value | Description                                                                                                                                                                                                                                             |
+|-----------------------------------------------|--------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| <b>`value: Float`</b>                         |                    | Current value of the slider. If outside of `valueRange` provided, value will be coerced to this range.                                                                                                                                                  |
+| <b>`onValueChange: (Float) -> Unit`</b>       |                    | Callback invoked on slider value change. `value` should be updated here.                                                                                                                                                                                |
+| `modifier: Modifier`                          | `Modifier`         | `Modifier` applied to the slider                                                                                                                                                                                                                        |
+| `enabled: Boolean`                            | `true`             | Controls the enabled state of the slider. If `false`, the user cannot interact with it.                                                                                                                                                                 |
+| `valueRange: ClosedFloatingPointRange<Float>` | `0f..1f`           | Range of values that the slider can take. Given `value` will be coerced to this range.                                                                                                                                                                  |
+| `steps: Int`                                  | `0`                | If greater than `0`, specifies the amounts of discrete values, evenly distributed between across the whole value range. If `0`, slider will behave as a continuous slider and allow to choose any value from the range specified. Must not be negative. |
+| `onValueChangeFinished: (() -> Unit)?`        | `null`             | Callback invoked when value change has ended. This callback shouldn't be used to update the slider value (use `onValueChange` for that), but rather to know when the user has completed selecting a new value by ending a drag or a click.              |
+| `startIcon: OdsSlider.Icon?`                  | `null`             | Icon displayed at the start of the slider                                                                                                                                                                                                               |
+| `endIcon: OdsSlider.Icon?`                    | `null`             | Icon displayed at the end of the slider                                                                                                                                                                                                                 |
 
 ### Continuous lockups slider
 
@@ -129,18 +130,19 @@ OdsSliderLockups(
 
 ##### OdsSliderLockups API
 
-Parameter | Default&nbsp;value | Description
--- | -- | --
-`value: Float` | | Current value of the slider. If outside of `valueRange` provided, value will be coerced to this range.
-`onValueChange: (Float) -> Unit` | | Callback invoked on slider value change. `value` should be updated here.
-`modifier: Modifier` | `Modifier` | `Modifier` applied to the slider
-`enabled: Boolean` | `true` | Controls the enabled state of the slider. If `false`, the user cannot interact with it.
-`valueRange: ClosedFloatingPointRange<Float>` | `0f..1f` | Range of values that the slider can take. Given `value` will be coerced to this range.
-`steps: Int` | `0` | If greater than `0`, specifies the amounts of discrete values, evenly distributed between across the whole value range. If `0`, slider will behave as a continuous slider and allow to choose any value from the range specified. Must not be negative.
-`onValueChangeFinished: (() -> Unit)?` | `null` | Callback invoked when value change has ended. This callback shouldn't be used to update the slider value (use `onValueChange` for that), but rather to know when the user has completed selecting a new value by ending a drag or a click.
-`startIcon: OdsSlider.Icon?` | `null` | Icon displayed at the start of the slider
-`endIcon: OdsSlider.Icon?` | `null` | Icon displayed at the end of the slider
 {:.table}
+
+| Parameter                                     | Default&nbsp;value | Description                                                                                                                                                                                                                                             |
+|-----------------------------------------------|--------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| <b>`value: Float`</b>                         |                    | Current value of the slider. If outside of `valueRange` provided, value will be coerced to this range.                                                                                                                                                  |
+| <b>`onValueChange: (Float) -> Unit`</b>       |                    | Callback invoked on slider value change. `value` should be updated here.                                                                                                                                                                                |
+| `modifier: Modifier`                          | `Modifier`         | `Modifier` applied to the slider                                                                                                                                                                                                                        |
+| `enabled: Boolean`                            | `true`             | Controls the enabled state of the slider. If `false`, the user cannot interact with it.                                                                                                                                                                 |
+| `valueRange: ClosedFloatingPointRange<Float>` | `0f..1f`           | Range of values that the slider can take. Given `value` will be coerced to this range.                                                                                                                                                                  |
+| `steps: Int`                                  | `0`                | If greater than `0`, specifies the amounts of discrete values, evenly distributed between across the whole value range. If `0`, slider will behave as a continuous slider and allow to choose any value from the range specified. Must not be negative. |
+| `onValueChangeFinished: (() -> Unit)?`        | `null`             | Callback invoked when value change has ended. This callback shouldn't be used to update the slider value (use `onValueChange` for that), but rather to know when the user has completed selecting a new value by ending a drag or a click.              |
+| `startIcon: OdsSlider.Icon?`                  | `null`             | Icon displayed at the start of the slider                                                                                                                                                                                                               |
+| `endIcon: OdsSlider.Icon?`                    | `null`             | Icon displayed at the end of the slider                                                                                                                                                                                                                 |
 
 ### Discrete slider
 

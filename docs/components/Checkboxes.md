@@ -52,11 +52,11 @@ OdsCheckbox(
 
 #### OdsCheckbox API
 
-Parameter | Default&nbsp;value | Description
--- | -- | --
-`checked: Boolean` | | Controls checked state of the checkbox
-`onCheckedChange: ((Boolean) -> Unit)?` | | Callback invoked on checkbox click. If `null`, then this is passive and relies entirely on a higher-level component to control the checked state.
-`modifier: Modifier` | `Modifier` | `Modifier` applied to the checkbox
-`enabled: Boolean` | `true` | Controls enabled state of the checkbox. When `false`, this checkbox will not be clickable.
 {:.table}
 
+| Parameter                                      | Default&nbsp;value | Description                                                                                                                                       |
+|------------------------------------------------|--------------------|---------------------------------------------------------------------------------------------------------------------------------------------------|
+| <b>`checked: Boolean`</b>                      |                    | Controls checked state of the checkbox                                                                                                            |
+| <b>`onCheckedChange: ((Boolean) -> Unit)?`</b> |                    | Callback invoked on checkbox click. If `null`, then this is passive and relies entirely on a higher-level component to control the checked state. |
+| `modifier: Modifier`                           | `Modifier`         | `Modifier` applied to the checkbox                                                                                                                |
+| `enabled: Boolean`                             | `true`             | Controls enabled state of the checkbox. When `false`, this checkbox will not be clickable.                                                        |

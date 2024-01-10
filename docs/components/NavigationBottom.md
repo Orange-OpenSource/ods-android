@@ -74,11 +74,12 @@ OdsBottomNavigation(
 
 #### OdsBottomNavigation API
 
-Parameter | Default&nbsp;value | Description
--- | -- | --
-`items: List<OdsBottomNavigation.Item>` | | Items displayed into the bottom navigation
-`modifier: Modifier` | `Modifier` | `Modifier` applied to the bottom navigation
 {:.table}
+
+| Parameter                                      | Default&nbsp;value | Description                                 |
+|------------------------------------------------|--------------------|---------------------------------------------|
+| <b>`items: List<OdsBottomNavigation.Item>`</b> |                    | Items displayed into the bottom navigation  |
+| `modifier: Modifier`                           | `Modifier`         | `Modifier` applied to the bottom navigation |
 
 ### XML
 
@@ -86,8 +87,7 @@ In your layout, use the `OdsBottomNavigation` view.
 
 ```xml
 
-<com.orange.ods.xml.component.bottomnavigation.OdsBottomNavigation
-    android:id="@+id/ods_bottom_navigation" android:layout_height="wrap_content"
+<com.orange.ods.xml.component.bottomnavigation.OdsBottomNavigation android:id="@+id/ods_bottom_navigation" android:layout_height="wrap_content"
     android:layout_width="wrap_content" />
 ```
 
