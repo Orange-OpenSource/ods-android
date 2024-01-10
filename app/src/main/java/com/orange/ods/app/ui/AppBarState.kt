@@ -14,8 +14,10 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ArrowBack
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.MutableState
+import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.runtime.staticCompositionLocalOf
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
@@ -51,7 +53,7 @@ interface AppBarManager {
  */
 class AppBarState(
     private val navigationState: AppNavigationState,
-    private val searchText: MutableState<TextFieldValue>,
+    searchedText: MutableState<TextFieldValue>,
     private val customAppBarConfiguration: MutableState<CustomAppBarConfiguration>,
     val tabsState: AppBarTabsState
 ) : AppBarManager {
@@ -120,12 +122,7 @@ class AppBarState(
     // AppBarManager implementation
     // ----------------------------------------------------------
 
-    override var searchedText: TextFieldValue = TextFieldValue()
-        get() = searchText.value
-        set(value) {
-            field = value
-            searchText.value = value
-        }
+    override var searchedText by searchedText
 
     override fun setCustomAppBar(customAppBarConfiguration: CustomAppBarConfiguration) {
         this.customAppBarConfiguration.value = customAppBarConfiguration

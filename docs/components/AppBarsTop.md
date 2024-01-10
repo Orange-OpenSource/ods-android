@@ -177,7 +177,7 @@ OdsSearchTopAppBar(
         painter = painterResource(id = R.drawable.ic_back),
         contentDescription = "content description",
         onClick = { doSomething() }
-    ),
+    )
 )
 ```
 
