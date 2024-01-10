@@ -11,12 +11,15 @@
 package com.orange.ods.theme.colors
 
 import androidx.compose.material.Colors
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.setValue
 
 /**
  * ODS color system.
  *
  * The ODS color system can help you create an ODS color theme that reflects your brand or style.
- * Default components' colors are based on the provided [material] but you can override these colors by providing your colors for each component. As an
+ * Default components' colors are based on the provided [materialColors] but you can override these colors by providing your colors for each component. As an
  * example, if you need to change the switches' colors you can provide your own [OdsSwitchColors] in the ODS color system.
  */
 open class OdsColors(
@@ -47,8 +50,9 @@ open class OdsColors(
     var onSurface = materialColors.onSurface
         private set
     var onError = materialColors.onError
+        private set
 
-    var functional = functionalColors
+    var functional by mutableStateOf(functionalColors)
         private set
 
     val component = OdsComponentColorsInternal(
@@ -59,41 +63,4 @@ open class OdsColors(
         this.componentColors.tab ?: materialColors.DefaultOdsTabColors,
         this.componentColors.topAppBar ?: materialColors.DefaultOdsTopAppBarColors
     )
-
-    /**
-     * Returns a copy of this Colors, optionally overriding some of the values.
-     */
-    fun copy(
-        materialColors: Colors = this.materialColors,
-        functionalColors: OdsFunctionalColors = this.functional,
-        componentColors: OdsComponentColors = this.componentColors
-    ): OdsColors = OdsColors(
-        materialColors,
-        functionalColors,
-        componentColors
-    )
-
-    /**
-     * Updates the internal values of the given OdsColors with values from the other.
-     * This allows efficiently updating a subset of OdsColors, without recomposing every composable that consumes values from LocalColors.
-     */
-    fun updateColorsFrom(other: OdsColors) {
-        primary = other.primary
-        primaryVariant = other.primaryVariant
-        secondary = other.secondary
-        secondaryVariant = other.secondaryVariant
-        background = other.background
-        surface = other.surface
-        error = other.error
-        onPrimary = other.onPrimary
-        onSecondary = other.onSecondary
-        onBackground = other.onBackground
-        onSurface = other.onSurface
-        onError = other.onError
-
-        functional.updateColorsFrom(other.functional)
-
-        component.updateColorsFrom(other.component)
-    }
-
 }

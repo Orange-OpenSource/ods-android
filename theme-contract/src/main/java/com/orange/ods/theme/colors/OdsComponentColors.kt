@@ -59,22 +59,6 @@ class OdsComponentColorsInternal(
 
     var topAppBar = topAppBar
         private set
-
-    /**
-     * Updates the internal values of the given OdsComponentColorsInternal with values from the other.
-     * This allows efficiently updating a subset of OdsComponentColorsInternal, without recomposing every composable that consumes values from LocalColors.
-     */
-    internal fun updateColorsFrom(other: OdsComponentColorsInternal) {
-        systemBarsBackground = other.systemBarsBackground
-
-        bottomNavigation = other.bottomNavigation
-        floatingActionButton = other.floatingActionButton
-        topAppBar = other.topAppBar
-
-        switch = other.switch
-
-        tab = other.tab
-    }
 }
 
 /**

@@ -20,7 +20,6 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.runtime.ReadOnlyComposable
 import androidx.compose.runtime.compositionLocalOf
-import androidx.compose.runtime.remember
 import androidx.compose.runtime.staticCompositionLocalOf
 import com.orange.ods.theme.OdsComponentsConfiguration
 import com.orange.ods.theme.OdsThemeConfigurationContract
@@ -84,12 +83,9 @@ fun OdsTheme(
 ) {
     val colors = if (darkThemeEnabled) themeConfiguration.colors.darkColors else themeConfiguration.colors.lightColors
 
-    // creating a new object for colors to not mutate the initial colors set when updating the values
-    val rememberedColors = remember { colors.copy() }.apply { updateColorsFrom(colors) }
-
     CompositionLocalProvider(
         LocalRippleTheme provides OdsRippleTheme,
-        LocalColors provides rememberedColors,
+        LocalColors provides colors,
         LocalLightThemeColors provides themeConfiguration.colors.lightColors,
         LocalDarkThemeColors provides themeConfiguration.colors.darkColors,
         LocalTypography provides themeConfiguration.typography,
