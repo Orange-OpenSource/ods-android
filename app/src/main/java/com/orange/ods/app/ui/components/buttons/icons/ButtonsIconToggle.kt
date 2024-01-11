@@ -74,10 +74,7 @@ fun ButtonsIconToggle(customizationState: ButtonIconCustomizationState) {
                 )
             }
 
-            CodeImplementationColumn(
-                modifier = Modifier.padding(horizontal = dimensionResource(id = com.orange.ods.R.dimen.screen_horizontal_margin)),
-                xmlAvailable = true
-            ) {
+            CodeImplementationColumn(modifier = Modifier.padding(horizontal = dimensionResource(id = com.orange.ods.R.dimen.screen_horizontal_margin))) {
                 FunctionCallCode(
                     name = OdsComposable.OdsIconToggleButton.name,
                     exhaustiveParameters = false,

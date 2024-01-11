@@ -53,10 +53,7 @@ fun ButtonsOutlined(customizationState: ButtonCustomizationState) {
                 OutlinedButton(leadingIcon = hasLeadingIcon, enabled = isEnabled, fullScreenWidth = hasFullScreenWidth, displaySurface = displaySurface)
             }
 
-            CodeImplementationColumn(
-                modifier = Modifier.padding(horizontal = dimensionResource(id = com.orange.ods.R.dimen.screen_horizontal_margin)),
-                xmlAvailable = true
-            ) {
+            CodeImplementationColumn(modifier = Modifier.padding(horizontal = dimensionResource(id = com.orange.ods.R.dimen.screen_horizontal_margin))) {
                 FunctionCallCode(
                     name = OdsComposable.OdsOutlinedButton.name,
                     exhaustiveParameters = false,

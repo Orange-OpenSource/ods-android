@@ -37,7 +37,6 @@ import com.orange.ods.extension.orElse
 @Composable
 fun CodeImplementationColumn(
     modifier: Modifier = Modifier,
-    xmlAvailable: Boolean = false, // Temporary parameter: Indicates whether the XML version of the component is available
     contentBackground: Boolean = true,
     xmlContent: (@Composable () -> Unit)? = null,
     composeContent: @Composable () -> Unit
@@ -58,7 +57,7 @@ fun CodeImplementationColumn(
             vertical = dimensionResource(id = com.orange.ods.R.dimen.spacing_s)
         )
     ) {
-        UiFrameworkChoice(xmlAvailable)
+        UiFrameworkChoice()
         if (currentUiFramework == UiFramework.Compose) {
             if (contentBackground) {
                 CodeBackgroundColumn(composeContent)
@@ -69,26 +68,28 @@ fun CodeImplementationColumn(
             xmlContent?.let {
                 it()
             }.orElse {
-                TechnicalText(
-                    modifier = Modifier
-                        .fillMaxWidth()
-                        .padding(dimensionResource(id = com.orange.ods.R.dimen.spacing_xs)),
-                    text = stringResource(id = R.string.soon_available)
-                )
+                CodeBackgroundColumn {
+                    TechnicalText(
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .padding(dimensionResource(id = com.orange.ods.R.dimen.spacing_xs)),
+                        text = stringResource(id = R.string.soon_available)
+                    )
+                }
             }
         }
     }
 }
 
 @Composable
-private fun UiFrameworkChoice(xmlAvailable: Boolean) {
+private fun UiFrameworkChoice() {
     val context = LocalContext.current
     val currentUiFramework = LocalUiFramework.current
     val uiFrameworkItems = UiFramework.entries.map { uiFramework ->
         OdsExposedDropdownMenu.Item(label = stringResource(id = uiFramework.labelResId), iconResId = uiFramework.iconResId)
     }
     val selectedUiFramework = rememberSaveable(currentUiFramework.value) {
-        val selectedUiFramework = if (xmlAvailable) currentUiFramework.value else UiFramework.Compose
+        val selectedUiFramework = currentUiFramework.value
         val selectedUiFrameworkIndex = UiFramework.entries.indexOf(selectedUiFramework)
         mutableStateOf(uiFrameworkItems[selectedUiFrameworkIndex])
     }
@@ -99,8 +100,7 @@ private fun UiFrameworkChoice(xmlAvailable: Boolean) {
         selectedItem = selectedUiFramework,
         onItemSelectionChange = { selectedItem ->
             currentUiFramework.value = UiFramework.entries.first { context.getString(it.labelResId) == selectedItem.label }
-        },
-        enabled = xmlAvailable
+        }
     )
 }
 
