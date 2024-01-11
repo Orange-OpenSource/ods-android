@@ -64,7 +64,7 @@ fun GuidelineSpacingScreen() {
             OdsListItem(
                 text = spacing.tokenName,
                 secondaryText = stringResource(id = R.string.guideline_spacing_dp, dp.value.toInt()) + "\n",
-                singleLineSecondaryText = false,
+                secondaryTextLineCount = OdsListItem.SecondaryTextLineCount.Two,
                 leadingIcon = OdsListItem.LeadingIcon(OdsListItem.LeadingIcon.Type.SquareImage, rememberGuidelineSpacingPainter(spacing = spacing), ""),
                 trailing = OdsListItem.TrailingCaption(
                     stringResource(
