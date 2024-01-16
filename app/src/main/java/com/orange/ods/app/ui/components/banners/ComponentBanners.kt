@@ -142,7 +142,6 @@ fun ComponentBanners() {
 
                 CodeImplementationColumn(
                     modifier = Modifier.padding(horizontal = dimensionResource(id = com.orange.ods.R.dimen.screen_horizontal_margin)),
-                    xmlAvailable = true
                 ) {
                     FunctionCallCode(
                         name = OdsComposable.OdsBanner.name,
