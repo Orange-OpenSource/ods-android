@@ -10,6 +10,7 @@
 
 package com.orange.ods.app.ui.search
 
+import androidx.annotation.DrawableRes
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.lazy.LazyColumn
@@ -32,7 +33,7 @@ import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.unit.dp
 import com.orange.ods.app.R
 import com.orange.ods.app.ui.LocalAppBarManager
-import com.orange.ods.app.ui.LocalOdsGuideline
+import com.orange.ods.app.ui.LocalGuideline
 import com.orange.ods.app.ui.components.Component
 import com.orange.ods.app.ui.components.ComponentsNavigation
 import com.orange.ods.app.ui.components.Variant
@@ -45,35 +46,40 @@ import com.orange.ods.compose.component.listitem.OdsListItem
 import com.orange.ods.compose.theme.OdsTheme
 import com.orange.ods.extension.orElse
 import com.orange.ods.theme.guideline.GuidelineColor
+import com.orange.ods.theme.guideline.GuidelineTextStyle
 import com.orange.ods.theme.guideline.toHexString
 
 @Composable
 fun SearchScreen(onResultItemClick: (String, Long?) -> Unit) {
     val context = LocalContext.current
-    val searchedText = LocalAppBarManager.current.searchedText
+    val searchedText = LocalAppBarManager.current.searchedText.text.lowercase()
 
     val filteredComponents = components.filter { component ->
-        searchedText.text.isEmpty() || stringResource(id = component.titleRes).lowercase()
-            .contains(searchedText.text.lowercase())
+        searchedText.isEmpty() || stringResource(id = component.titleRes).lowercase()
+            .contains(searchedText)
     }.asSequence()
 
-    val filteredSpacings = Spacing.entries.filter { spacing ->
-        searchedText.text.isEmpty() || spacing.tokenName.lowercase()
-            .contains(searchedText.text.lowercase())
+    val filteredGuidelineTypography = LocalGuideline.current.guidelineTypography.filter { typography ->
+        searchedText.isEmpty() || typography.name.lowercase().contains(searchedText) || typography.composeStyle.lowercase().contains(searchedText)
     }
 
-    val filteredGuidelineColors = LocalOdsGuideline.current.guidelineColors.filter { guidelineColor ->
-        searchedText.text.isEmpty() || guidelineColor.getName().lowercase().contains(searchedText.text.lowercase()) ||
-                guidelineColor.lightThemeName.lowercase().contains(searchedText.text.lowercase()) ||
-                guidelineColor.darkThemeName.lowercase().contains(searchedText.text.lowercase())
+    val filteredSpacings = Spacing.entries.filter { spacing ->
+        searchedText.isEmpty() || spacing.tokenName.lowercase()
+            .contains(searchedText)
+    }
+
+    val filteredGuidelineColors = LocalGuideline.current.guidelineColors.filter { guidelineColor ->
+        searchedText.isEmpty() || guidelineColor.getName().lowercase().contains(searchedText) ||
+                guidelineColor.lightThemeName.lowercase().contains(searchedText) ||
+                guidelineColor.darkThemeName.lowercase().contains(searchedText)
     }
 
     val filteredVariants = components.filter { it.variants.isNotEmpty() }
         .flatMap { component ->
             val componentImageRes = component.smallImageRes.orElse { component.imageRes }
             component.variants.filter { variant ->
-                searchedText.text.isEmpty() || context.getString(variant.titleRes).lowercase()
-                    .contains(searchedText.text.lowercase())
+                searchedText.isEmpty() || context.getString(variant.titleRes).lowercase()
+                    .contains(searchedText)
             }.map { variant ->
                 componentImageRes to variant
             }
@@ -82,7 +88,7 @@ fun SearchScreen(onResultItemClick: (String, Long?) -> Unit) {
     data class SearchResult(
         val title: String,
         val id: Long,
-        val image: Int?,
+        @DrawableRes val image: Int?,
         val subtitle: String?,
         val color: Color?,
         val data: Any
@@ -128,6 +134,15 @@ fun SearchScreen(onResultItemClick: (String, Long?) -> Unit) {
                 subtitle = stringResource(id = R.string.guideline_spacing_dp, spacing.getDp().value.toInt()),
                 data = spacing
             )
+        }).plus(filteredGuidelineTypography.map { guidelineTypography ->
+            SearchResult(
+                guidelineTypography.name,
+                0,
+                image = R.drawable.il_typography,
+                color = null,
+                subtitle = guidelineTypography.composeStyle,
+                data = guidelineTypography
+            )
         }).sortedBy { it.title }.toList()
 
     LazyColumn(
@@ -167,13 +182,14 @@ fun SearchScreen(onResultItemClick: (String, Long?) -> Unit) {
                 text = item.title,
                 secondaryText = item.subtitle,
                 secondaryTextLineCount = OdsListItem.SecondaryTextLineCount.One,
-                leadingIcon = OdsListItem.LeadingIcon(OdsListItem.LeadingIcon.Type.SquareImage, painter, "")
+                leadingIcon = OdsListItem.LeadingIcon(OdsListItem.LeadingIcon.Type.WideImage, painter, "")
             ) {
                 when (item.data) {
                     is Component -> onResultItemClick(ComponentsNavigation.ComponentDetailRoute, item.id)
                     is Variant -> onResultItemClick(ComponentsNavigation.ComponentVariantDemoRoute, item.id)
                     is Spacing -> onResultItemClick(GuidelinesNavigation.GuidelineSpacing, null)
                     is GuidelineColor -> openDialog.value = true
+                    is GuidelineTextStyle -> onResultItemClick(GuidelinesNavigation.GuidelineTypography, null)
                 }
             }
             if (openDialog.value && guidelineColor != null) {
