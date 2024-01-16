@@ -1,16 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 
 <!--
-Software Name: Orange Design System
-SPDX-FileCopyrightText: Copyright (c) Orange SA
-SPDX-License-Identifier: MIT
-
-This software is distributed under the MIT licence,
-the text of which is available at https://opensource.org/license/MIT/
-or see the "LICENSE" file for more details.
-
-Software description: Android library of reusable graphical components
--->
+  ~ Software Name: Orange Design System
+  ~ SPDX-FileCopyrightText: Copyright (c) Orange SA
+  ~ SPDX-License-Identifier: MIT
+  ~
+  ~ This software is distributed under the MIT licence,
+  ~ the text of which is available at https://opensource.org/license/MIT/
+  ~ or see the "LICENSE" file for more details.
+  ~
+  ~ Software description: Android library of reusable graphical components
+  -->
 
 <selector xmlns:android="http://schemas.android.com/apk/res/android">
     <item android:alpha="1.0" android:color="?attr/colorPrimary" android:state_checked="true" />

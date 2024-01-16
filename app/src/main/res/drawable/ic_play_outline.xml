@@ -1,3 +1,15 @@
+<!--
+  ~ Software Name: Orange Design System
+  ~ SPDX-FileCopyrightText: Copyright (c) Orange SA
+  ~ SPDX-License-Identifier: MIT
+  ~
+  ~ This software is distributed under the MIT licence,
+  ~ the text of which is available at https://opensource.org/license/MIT/
+  ~ or see the "LICENSE" file for more details.
+  ~
+  ~ Software description: Android library of reusable graphical components
+  -->
+
 <vector android:height="24dp" android:viewportHeight="1000"
     android:viewportWidth="1000" android:width="24dp" xmlns:android="http://schemas.android.com/apk/res/android">
     <path android:fillColor="#FF000000" android:fillType="evenOdd" android:pathData="M500,75c234.7,0 425,190.3 425,425S734.7,925 500,925 75,734.7 75,500 265.3,75 500,75ZM500,100c220.9,0 400,179.1 400,400S720.9,900 500,900 100,720.9 100,500 279.1,100 500,100ZM550.5,582.9L418.4,652.3a15,15 0,0 1,-22 -13.3L396.3,364.9a15,15 0,0 1,22 -13.3L550.5,421 675.6,488.7a15,15 0,0 1,0 26.4Z"/>
