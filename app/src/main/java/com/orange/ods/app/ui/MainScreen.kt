@@ -102,7 +102,7 @@ fun MainScreen(themeConfigurations: Set<OdsThemeConfigurationContract>, mainView
         LocalConfiguration provides configuration,
         LocalAppBarManager provides mainState.appBarState,
         LocalThemeManager provides mainState.themeState,
-        LocalOdsGuideline provides mainState.themeState.currentThemeConfiguration.guideline,
+        LocalGuideline provides mainState.themeState.currentThemeConfiguration.guideline,
         LocalRecipes provides mainViewModel.recipes,
         LocalCategories provides mainViewModel.categories,
         LocalUiFramework provides mainState.uiFramework

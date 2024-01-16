@@ -29,7 +29,7 @@ import androidx.compose.ui.text.font.FontStyle
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.text.withStyle
 import com.orange.ods.app.R
-import com.orange.ods.app.ui.LocalOdsGuideline
+import com.orange.ods.app.ui.LocalGuideline
 import com.orange.ods.app.ui.utilities.DrawableManager
 import com.orange.ods.app.ui.utilities.composable.DetailScreenHeader
 import com.orange.ods.app.ui.utilities.extension.getStringName
@@ -40,7 +40,7 @@ import com.orange.ods.theme.guideline.GuidelineTextStyle
 
 @Composable
 fun GuidelineTypographyScreen() {
-    val guidelineTypography = LocalOdsGuideline.current.guidelineTypography
+    val guidelineTypography = LocalGuideline.current.guidelineTypography
 
     LazyColumn(
         contentPadding = PaddingValues(bottom = dimensionResource(id = com.orange.ods.R.dimen.screen_vertical_margin)),

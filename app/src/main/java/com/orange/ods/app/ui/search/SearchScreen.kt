@@ -33,7 +33,7 @@ import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.unit.dp
 import com.orange.ods.app.R
 import com.orange.ods.app.ui.LocalAppBarManager
-import com.orange.ods.app.ui.LocalOdsGuideline
+import com.orange.ods.app.ui.LocalGuideline
 import com.orange.ods.app.ui.components.Component
 import com.orange.ods.app.ui.components.ComponentsNavigation
 import com.orange.ods.app.ui.components.Variant
@@ -59,7 +59,7 @@ fun SearchScreen(onResultItemClick: (String, Long?) -> Unit) {
             .contains(searchedText)
     }.asSequence()
 
-    val filteredGuidelineTypography = LocalOdsGuideline.current.guidelineTypography.filter { typography ->
+    val filteredGuidelineTypography = LocalGuideline.current.guidelineTypography.filter { typography ->
         searchedText.isEmpty() || typography.name.lowercase().contains(searchedText) || typography.composeStyle.lowercase().contains(searchedText)
     }
 
@@ -68,7 +68,7 @@ fun SearchScreen(onResultItemClick: (String, Long?) -> Unit) {
             .contains(searchedText)
     }
 
-    val filteredGuidelineColors = LocalOdsGuideline.current.guidelineColors.filter { guidelineColor ->
+    val filteredGuidelineColors = LocalGuideline.current.guidelineColors.filter { guidelineColor ->
         searchedText.isEmpty() || guidelineColor.getName().lowercase().contains(searchedText) ||
                 guidelineColor.lightThemeName.lowercase().contains(searchedText) ||
                 guidelineColor.darkThemeName.lowercase().contains(searchedText)

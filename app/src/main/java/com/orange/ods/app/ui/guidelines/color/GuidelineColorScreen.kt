@@ -46,7 +46,7 @@ import androidx.compose.ui.text.AnnotatedString
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.window.Dialog
 import com.orange.ods.app.R
-import com.orange.ods.app.ui.LocalOdsGuideline
+import com.orange.ods.app.ui.LocalGuideline
 import com.orange.ods.app.ui.utilities.composable.Title
 import com.orange.ods.app.ui.utilities.extension.getStringName
 import com.orange.ods.compose.component.button.OdsButton
@@ -62,7 +62,7 @@ import com.orange.ods.theme.guideline.toRgbString
 
 @Composable
 fun GuidelineColorScreen() {
-    val guidelineColors = LocalOdsGuideline.current.guidelineColors
+    val guidelineColors = LocalGuideline.current.guidelineColors
 
     val coreColors = guidelineColors.filter { it.type == GuidelineColorType.Core }
     val functionalColors = guidelineColors.filter { it.type == GuidelineColorType.Functional }

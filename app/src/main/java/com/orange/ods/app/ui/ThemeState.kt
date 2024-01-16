@@ -20,7 +20,7 @@ import com.orange.ods.theme.OdsThemeConfigurationContract
 import com.orange.ods.theme.guideline.OdsGuideline
 
 val LocalThemeManager = staticCompositionLocalOf<ThemeManager> { error("CompositionLocal LocalThemeManager not present") }
-val LocalOdsGuideline = staticCompositionLocalOf<OdsGuideline> { error("CompositionLocal LocalOdsGuideline not present") }
+val LocalGuideline = staticCompositionLocalOf<OdsGuideline> { error("CompositionLocal LocalGuideline not present") }
 
 interface ThemeManager {
     val themeConfigurations: List<OdsThemeConfigurationContract>
