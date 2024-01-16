@@ -70,17 +70,17 @@ OdsListItem(
 
 {:.table}
 
-| Parameter                               | Default&nbsp;value | Description                                                                                                                               |
-|-----------------------------------------|--------------------|-------------------------------------------------------------------------------------------------------------------------------------------|
-| <b>`text: String`</b>                   |                    | The primary text of the list item                                                                                                         |
-| `modifier: Modifier`                    | `Modifier`         | Modifier to be applied to the list item                                                                                                   |
-| `leadingIcon: OdsListItem.LeadingIcon?` | `null`             | The leading supporting visual of the list item                                                                                            |
-| `secondaryText: String?`                | `null`             | The secondary text of the list item                                                                                                       |
-| `singleLineSecondaryText: Boolean`      | `true`             | Whether the secondary text is single line                                                                                                 |
-| `overlineText: String?`                 | `null`             | The text displayed above the primary text                                                                                                 |
-| `trailing: OdsListItem.Trailing?`       | `null`             | The trailing content to display at the end of the list item                                                                               |
-| `divider: Boolean`                      | `false`            | Whether or not a divider is displayed at the bottom of the list item                                                                      |
-| `onClick: (() -> Unit)?`                | `null`             | Will be called when the user clicks the list item. This parameter only has an effect if trailing is `OdsListItem.TrailingIcon` or `null`. |
+| Parameter                                                    | Default&nbsp;value                       | Description                                                                                                                               |
+|--------------------------------------------------------------|------------------------------------------|-------------------------------------------------------------------------------------------------------------------------------------------|
+| <b>`text: String`</b>                                        |                                          | The primary text of the list item                                                                                                         |
+| `modifier: Modifier`                                         | `Modifier`                               | Modifier to be applied to the list item                                                                                                   |
+| `leadingIcon: OdsListItem.LeadingIcon?`                      | `null`                                   | The leading supporting visual of the list item                                                                                            |
+| `secondaryText: String?`                                     | `null`                                   | The secondary text of the list item                                                                                                       |
+| `secondaryTextLineCount: OdsListItem.SecondaryTextLineCount` | `OdsListItem.SecondaryTextLineCount.One` | Indicates the lines number for the secondary text. If longer, it will be truncated.                                                       |
+| `overlineText: String?`                                      | `null`                                   | The text displayed above the primary text                                                                                                 |
+| `trailing: OdsListItem.Trailing?`                            | `null`                                   | The trailing content to display at the end of the list item                                                                               |
+| `divider: Boolean`                                           | `false`                                  | Whether or not a divider is displayed at the bottom of the list item                                                                      |
+| `onClick: (() -> Unit)?`                                     | `null`                                   | Will be called when the user clicks the list item. This parameter only has an effect if trailing is `OdsListItem.TrailingIcon` or `null`. |
 
 ### Two-line list
 
@@ -135,14 +135,14 @@ Here are two examples:
 
 #### Jetpack Compose
 
-The only difference with the two-line implementation is that the `singleLineSecondaryText` property of `OdsListItem` is `false`.
+The only difference with the two-line implementation is that the `secondaryTextLineCount` property of `OdsListItem` is set to `OdsListItem.SecondaryTextLineCount.Two`.
 
 ```kotlin
 OdsListItem(
     modifier = Modifier.clickable { doSomething() },
     text = "Primary text",
     secondaryText = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor.",
-    singleLineSecondaryText = false,
+    secondaryTextLineCount = OdsListItem.SecondaryTextLineCount.Two,
     leadingIcon = OdsListItem.LeadingIcon(
         OdsListItem.LeadingIcon.Type.SquareImage,
         painter = painterResource(id = R.drawable.placeholder),

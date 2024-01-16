@@ -166,7 +166,7 @@ fun SearchScreen(onResultItemClick: (String, Long?) -> Unit) {
             OdsListItem(
                 text = item.title,
                 secondaryText = item.subtitle,
-                singleLineSecondaryText = true,
+                secondaryTextLineCount = OdsListItem.SecondaryTextLineCount.One,
                 leadingIcon = OdsListItem.LeadingIcon(OdsListItem.LeadingIcon.Type.SquareImage, painter, "")
             ) {
                 when (item.data) {

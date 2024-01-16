@@ -85,7 +85,7 @@ import com.orange.ods.extension.orElse
  * @param modifier [Modifier] applied to the list item.
  * @param leadingIcon The leading supporting visual of the list item.
  * @param secondaryText The secondary text of the list item.
- * @param singleLineSecondaryText Whether the secondary text is single line.
+ * @param secondaryTextLineCount Indicates the lines number for the secondary text. If longer, it will be truncated.
  * @param overlineText The text displayed above the primary text.
  * @param trailing The trailing content to display at the end of the list item.
  * @param divider Whether or not a divider is displayed at the bottom of the list item.
@@ -98,7 +98,7 @@ fun OdsListItem(
     modifier: Modifier = Modifier,
     leadingIcon: OdsListItem.LeadingIcon? = null,
     secondaryText: String? = null,
-    singleLineSecondaryText: Boolean = true,
+    secondaryTextLineCount: OdsListItem.SecondaryTextLineCount = OdsListItem.SecondaryTextLineCount.One,
     overlineText: String? = null,
     trailing: OdsListItem.Trailing? = null,
     divider: Boolean = false,
@@ -111,7 +111,7 @@ fun OdsListItem(
         modifier = modifier,
         leadingIcon = leadingIcon,
         secondaryText = secondaryText,
-        singleLineSecondaryText = singleLineSecondaryText,
+        secondaryTextLineCount = secondaryTextLineCount,
         overlineText = overlineText,
         trailing = trailing,
         divider = divider,
@@ -127,7 +127,7 @@ internal fun OdsListItem(
     modifier: Modifier = Modifier,
     leadingIcon: OdsListItem.LeadingIcon? = null,
     secondaryText: String? = null,
-    singleLineSecondaryText: Boolean = true,
+    secondaryTextLineCount: OdsListItem.SecondaryTextLineCount = OdsListItem.SecondaryTextLineCount.One,
     overlineText: String? = null,
     trailing: OdsListItem.Trailing? = null,
     divider: Boolean = false,
@@ -135,6 +135,8 @@ internal fun OdsListItem(
 ) {
     val context = LocalContext.current
     val rootModifier = modifier.rootModifier(context, trailing, onClick)
+    val singleLineSecondaryText = secondaryTextLineCount == OdsListItem.SecondaryTextLineCount.One
+
     if (leadingIcon?.iconType == OdsListItem.LeadingIcon.Type.WideImage) {
         Row(modifier = rootModifier, verticalAlignment = Alignment.CenterVertically) {
             leadingIcon.Content()
@@ -250,6 +252,13 @@ private fun Modifier.rootModifier(context: Context, trailing: OdsListItem.Traili
  * Contains classes to build an [com.orange.ods.compose.component.listitem.OdsListItem].
  */
 object OdsListItem {
+
+    /**
+     * Represents the available line count for a secondary text in an [OdsListItem].
+     */
+    enum class SecondaryTextLineCount {
+        One, Two
+    }
 
     /**
      * A leading icon in an [OdsListItem].
@@ -542,7 +551,7 @@ private fun PreviewOdsListItem(@PreviewParameter(OdsListItemPreviewParameterProv
                 OdsListItem.LeadingIcon(iconType, painter, "")
             },
             secondaryText = secondaryText,
-            singleLineSecondaryText = singleLineSecondaryText,
+            secondaryTextLineCount = secondaryTextLineCount,
             trailing = when (trailingClass) {
                 OdsListItem.TrailingCheckbox::class.java -> OdsListItem.TrailingCheckbox(trailingState, { trailingState = it })
                 OdsListItem.TrailingSwitch::class.java -> OdsListItem.TrailingSwitch(trailingState, { trailingState = it })
@@ -557,7 +566,7 @@ private fun PreviewOdsListItem(@PreviewParameter(OdsListItemPreviewParameterProv
 
 internal data class OdsListItemPreviewParameter(
     val secondaryText: String?,
-    val singleLineSecondaryText: Boolean,
+    val secondaryTextLineCount: OdsListItem.SecondaryTextLineCount,
     val leadingIconType: OdsListItem.LeadingIcon.Type?,
     val trailingClass: Class<out OdsListItem.Trailing>?
 )
@@ -570,11 +579,11 @@ private val previewParameterValues: List<OdsListItemPreviewParameter>
         val longSecondaryText = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor."
 
         return listOf(
-            OdsListItemPreviewParameter(null, true, null, null),
-            OdsListItemPreviewParameter(longSecondaryText, true, null, OdsListItem.TrailingCheckbox::class.java),
-            OdsListItemPreviewParameter(shortSecondaryText, true, OdsListItem.LeadingIcon.Type.Icon, OdsListItem.TrailingIcon::class.java),
-            OdsListItemPreviewParameter(longSecondaryText, false, OdsListItem.LeadingIcon.Type.SquareImage, OdsListItem.TrailingSwitch::class.java),
-            OdsListItemPreviewParameter(longSecondaryText, false, OdsListItem.LeadingIcon.Type.WideImage, OdsListItem.TrailingCaption::class.java),
-            OdsListItemPreviewParameter(shortSecondaryText, true, OdsListItem.LeadingIcon.Type.CircularImage, OdsListItem.TrailingRadioButton::class.java)
+            OdsListItemPreviewParameter(null, OdsListItem.SecondaryTextLineCount.One, null, null),
+            OdsListItemPreviewParameter(longSecondaryText,  OdsListItem.SecondaryTextLineCount.One, null, OdsListItem.TrailingCheckbox::class.java),
+            OdsListItemPreviewParameter(shortSecondaryText,  OdsListItem.SecondaryTextLineCount.One, OdsListItem.LeadingIcon.Type.Icon, OdsListItem.TrailingIcon::class.java),
+            OdsListItemPreviewParameter(longSecondaryText,  OdsListItem.SecondaryTextLineCount.Two, OdsListItem.LeadingIcon.Type.SquareImage, OdsListItem.TrailingSwitch::class.java),
+            OdsListItemPreviewParameter(longSecondaryText,  OdsListItem.SecondaryTextLineCount.Two, OdsListItem.LeadingIcon.Type.WideImage, OdsListItem.TrailingCaption::class.java),
+            OdsListItemPreviewParameter(shortSecondaryText,  OdsListItem.SecondaryTextLineCount.One, OdsListItem.LeadingIcon.Type.CircularImage, OdsListItem.TrailingRadioButton::class.java)
         )
     }
