@@ -52,34 +52,34 @@ import com.orange.ods.theme.guideline.toHexString
 @Composable
 fun SearchScreen(onResultItemClick: (String, Long?) -> Unit) {
     val context = LocalContext.current
-    val searchedText = LocalAppBarManager.current.searchedText
+    val searchedText = LocalAppBarManager.current.searchedText.text.lowercase()
 
     val filteredComponents = components.filter { component ->
-        searchedText.text.isEmpty() || stringResource(id = component.titleRes).lowercase()
-            .contains(searchedText.text.lowercase())
+        searchedText.isEmpty() || stringResource(id = component.titleRes).lowercase()
+            .contains(searchedText)
     }.asSequence()
 
     val filteredGuidelineTypography = LocalOdsGuideline.current.guidelineTypography.filter { typography ->
-        searchedText.text.isEmpty() || typography.name.lowercase().contains(searchedText.text.lowercase())
+        searchedText.isEmpty() || typography.name.lowercase().contains(searchedText) || typography.composeStyle.lowercase().contains(searchedText)
     }
 
     val filteredSpacings = Spacing.entries.filter { spacing ->
-        searchedText.text.isEmpty() || spacing.tokenName.lowercase()
-            .contains(searchedText.text.lowercase())
+        searchedText.isEmpty() || spacing.tokenName.lowercase()
+            .contains(searchedText)
     }
 
     val filteredGuidelineColors = LocalOdsGuideline.current.guidelineColors.filter { guidelineColor ->
-        searchedText.text.isEmpty() || guidelineColor.getName().lowercase().contains(searchedText.text.lowercase()) ||
-                guidelineColor.lightThemeName.lowercase().contains(searchedText.text.lowercase()) ||
-                guidelineColor.darkThemeName.lowercase().contains(searchedText.text.lowercase())
+        searchedText.isEmpty() || guidelineColor.getName().lowercase().contains(searchedText) ||
+                guidelineColor.lightThemeName.lowercase().contains(searchedText) ||
+                guidelineColor.darkThemeName.lowercase().contains(searchedText)
     }
 
     val filteredVariants = components.filter { it.variants.isNotEmpty() }
         .flatMap { component ->
             val componentImageRes = component.smallImageRes.orElse { component.imageRes }
             component.variants.filter { variant ->
-                searchedText.text.isEmpty() || context.getString(variant.titleRes).lowercase()
-                    .contains(searchedText.text.lowercase())
+                searchedText.isEmpty() || context.getString(variant.titleRes).lowercase()
+                    .contains(searchedText)
             }.map { variant ->
                 componentImageRes to variant
             }
