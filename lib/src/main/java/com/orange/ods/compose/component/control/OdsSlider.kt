@@ -294,7 +294,7 @@ private fun PreviewOdsSlider(@PreviewParameter(OdsSliderPreviewParameterProvider
         value = sliderValue.floatValue,
         onValueChange = { sliderValue.floatValue = it },
         steps = 9,
-        startIcon = if (withIcons) OdsSlider.Icon(painterResource(id = R.drawable.ic_crosset_out_eye), "") else null,
+        startIcon = if (withIcons) OdsSlider.Icon(painterResource(id = R.drawable.ic_crossed_out_eye), "") else null,
         endIcon = if (withIcons) OdsSlider.Icon(painterResource(id = R.drawable.ic_eye), "") else null,
     )
 }
@@ -307,7 +307,7 @@ private fun PreviewOdsSliderLockups(@PreviewParameter(OdsSliderPreviewParameterP
         value = value,
         valueRange = 0f..100f,
         onValueChange = { value = it },
-        startIcon = if (withIcons) OdsSlider.Icon(painterResource(id = R.drawable.ic_crosset_out_eye), "") else null,
+        startIcon = if (withIcons) OdsSlider.Icon(painterResource(id = R.drawable.ic_crossed_out_eye), "") else null,
         endIcon = if (withIcons) OdsSlider.Icon(painterResource(id = R.drawable.ic_eye), "") else null,
     )
 }

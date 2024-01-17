@@ -114,7 +114,7 @@ fun OdsPasswordTextField(
 @Composable
 private fun passwordVisualisationIcon(odsPasswordTextFieldState: OdsPasswordTextFieldState) = with(odsPasswordTextFieldState) {
     OdsTextField.TrailingIcon(
-        painter = if (isPasswordVisible) painterResource(id = R.drawable.ic_crosset_out_eye) else painterResource(id = R.drawable.ic_eye),
+        painter = if (isPasswordVisible) painterResource(id = R.drawable.ic_crossed_out_eye) else painterResource(id = R.drawable.ic_eye),
         contentDescription = if (isPasswordVisible) stringResource(id = R.string.ods_passwordTextField_hide_labelA11y) else stringResource(id = R.string.ods_passwordTextField_show_labelA11y),
         onClick = { passwordVisible.value = !isPasswordVisible },
     )
