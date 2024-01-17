@@ -1,11 +1,13 @@
 /*
+ * Software Name: Orange Design System
+ * SPDX-FileCopyrightText: Copyright (c) Orange SA
+ * SPDX-License-Identifier: MIT
  *
- *  Copyright 2021 Orange
+ * This software is distributed under the MIT licence,
+ * the text of which is available at https://opensource.org/license/MIT/
+ * or see the "LICENSE" file for more details.
  *
- *  Use of this source code is governed by an MIT-style
- *  license that can be found in the LICENSE file or at
- *  https://opensource.org/licenses/MIT.
- * /
+ * Software description: Android library of reusable graphical components 
  */
 
 package com.orange.ods.app.ui.components.textfields
@@ -118,7 +120,7 @@ class TextFieldCustomizationState(
         get() = if (hasCharacterCounter && text.value.length > TextFieldMaxChars) {
             text.value.substring(0, TextFieldMaxChars) // Limit the length of the text field value to the maximum number of characters
         } else text.value
-    
+
     val isEnabled
         get() = displayType.value != DisplayType.Disabled
 

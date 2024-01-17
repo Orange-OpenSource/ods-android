@@ -1,11 +1,13 @@
 /*
+ * Software Name: Orange Design System
+ * SPDX-FileCopyrightText: Copyright (c) Orange SA
+ * SPDX-License-Identifier: MIT
  *
- *  Copyright 2021 Orange
+ * This software is distributed under the MIT licence,
+ * the text of which is available at https://opensource.org/license/MIT/
+ * or see the "LICENSE" file for more details.
  *
- *  Use of this source code is governed by an MIT-style
- *  license that can be found in the LICENSE file or at
- *  https://opensource.org/licenses/MIT.
- * /
+ * Software description: Android library of reusable graphical components 
  */
 
 package com.orange.ods.app.ui.components.chips
@@ -147,7 +149,7 @@ private fun Chip(chipCustomizationState: ChipCustomizationState) {
                 onClick = { clickOnElement(context, recipe?.title.orEmpty()) },
                 leading = when {
                     isActionChip || hasLeadingIcon -> recipe?.iconResId?.let { OdsChip.LeadingIcon(painterResource(id = it), "") }
-                    hasLeadingAvatar ->  {
+                    hasLeadingAvatar -> {
                         OdsChip.LeadingAvatar(
                             rememberAsyncImagePainter(
                                 model = recipe?.imageUrl,
