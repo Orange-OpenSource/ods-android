@@ -10,6 +10,7 @@ https://github.com/google/accompanist
 Apache License 2.0 (http://www.apache.org/licenses/LICENSE-2.0)
 
 AndroidX
+Copyright 2021 The Android Open Source Project
 https://github.com/androidx/androidx
 Apache License 2.0 (http://www.apache.org/licenses/LICENSE-2.0)
 
@@ -21,6 +22,11 @@ Apache License 2.0 (http://www.apache.org/licenses/LICENSE-2.0)
 Dagger
 Copyright 2012 The Dagger Authors
 https://github.com/google/dagger
+Apache License 2.0 (http://www.apache.org/licenses/LICENSE-2.0)
+
+Firebase
+Copyright 2019 Google LLC
+https://github.com/firebase/firebase-android-sdk
 Apache License 2.0 (http://www.apache.org/licenses/LICENSE-2.0)
 
 Jekyll
