@@ -116,8 +116,8 @@ fun ComponentImageItem() {
                     image = OdsImageItem.Image(
                         rememberAsyncImagePainter(
                             model = buildImageRequest(context, recipe.imageUrl, darkModeEnabled),
-                            placeholder = painterResource(id = R.drawable.placeholder),
-                            error = painterResource(id = R.drawable.placeholder)
+                            placeholder = painterResource(id = com.orange.ods.R.drawable.placeholder),
+                            error = painterResource(id = com.orange.ods.R.drawable.placeholder)
                         ), ""
                     ),
                     title = if (hasText) recipe.title else null,

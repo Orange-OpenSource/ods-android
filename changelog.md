@@ -18,6 +18,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - \[Lib\] Update `OdsChoiceChipsFlowRow` to have less vertical space between elements ([#758](https://github.com/Orange-OpenSource/ods-android/issues/758))
 - \[Lib\] Change `OdsListItem` API by replacing `singleLineSecondaryText` boolean parameter by an enum called `secondaryTextLineCount` ([#777](https://github.com/Orange-OpenSource/ods-android/issues/777))
 - \[Lib\] Update typography tokens and rename ODS text composables ([#615](https://github.com/Orange-OpenSource/ods-android/issues/615))
+- \[Lib\] Move placeholder images from `app` to `lib` ([#531](https://github.com/Orange-OpenSource/ods-android/issues/531))
 
 ### Fixed
 

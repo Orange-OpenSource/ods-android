@@ -51,4 +51,10 @@ android {
             withJavadocJar()
         }
     }
+
+    sourceSets {
+        named("main") {
+            res.srcDirs("src/main/res", "src/main/res-public")
+        }
+    }
 }

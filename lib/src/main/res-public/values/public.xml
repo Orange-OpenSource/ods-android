@@ -11,5 +11,12 @@
   -->
 
 <resources>
-    <public />
+    <public type="drawable" name="placeholder" />
+    <public type="drawable" name="placeholder_dark" />
+    <public type="drawable" name="placeholder_error" />
+    <public type="drawable" name="placeholder_error_dark" />
+    <public type="drawable" name="placeholder_error_small" />
+    <public type="drawable" name="placeholder_error_small_dark" />
+    <public type="drawable" name="placeholder_small" />
+    <public type="drawable" name="placeholder_small_dark" />
 </resources>
