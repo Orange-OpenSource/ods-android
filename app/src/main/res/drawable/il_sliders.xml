@@ -1,36 +1,24 @@
-<!--
-  ~ Software Name: Orange Design System
-  ~ SPDX-FileCopyrightText: Copyright (c) Orange SA
-  ~ SPDX-License-Identifier: MIT
-  ~
-  ~ This software is distributed under the MIT licence,
-  ~ the text of which is available at https://opensource.org/license/MIT/
-  ~ or see the "LICENSE" file for more details.
-  ~
-  ~ Software description: Android library of reusable graphical components
-  -->
-
 <vector xmlns:android="http://schemas.android.com/apk/res/android"
     android:width="400dp"
     android:height="200dp"
     android:viewportWidth="400"
     android:viewportHeight="200">
-  <path
-      android:pathData="M0,0h400v200h-400z"
-      android:strokeWidth="0"
-      android:fillColor="#1b1b1b"/>
-  <path
-      android:pathData="M178,96L348,96A4,4 0,0 1,352 100L352,100A4,4 0,0 1,348 104L178,104A4,4 0,0 1,174 100L174,100A4,4 0,0 1,178 96z"
-      android:strokeAlpha="0.2"
-      android:strokeWidth="0"
-      android:fillColor="#ff7900"
-      android:fillAlpha="0.2"/>
-  <path
-      android:pathData="M52,96L222,96A4,4 0,0 1,226 100L226,100A4,4 0,0 1,222 104L52,104A4,4 0,0 1,48 100L48,100A4,4 0,0 1,52 96z"
-      android:strokeWidth="0"
-      android:fillColor="#ff7900"/>
-  <path
-      android:pathData="M234,100m-22,0a22,22 0,1 1,44 0a22,22 0,1 1,-44 0"
-      android:strokeWidth="0"
-      android:fillColor="#ff7900"/>
+    <path
+        android:pathData="M0,0h400v200h-400z"
+        android:strokeWidth="0"
+        android:fillColor="#1b1b1b" />
+    <path
+        android:pathData="M178,96L348,96A4,4 0,0 1,352 100L352,100A4,4 0,0 1,348 104L178,104A4,4 0,0 1,174 100L174,100A4,4 0,0 1,178 96z"
+        android:strokeAlpha="0.2"
+        android:strokeWidth="0"
+        android:fillColor="#ff7900"
+        android:fillAlpha="0.2" />
+    <path
+        android:pathData="M52,96L222,96A4,4 0,0 1,226 100L226,100A4,4 0,0 1,222 104L52,104A4,4 0,0 1,48 100L48,100A4,4 0,0 1,52 96z"
+        android:strokeWidth="0"
+        android:fillColor="#ff7900" />
+    <path
+        android:pathData="M234,100m-22,0a22,22 0,1 1,44 0a22,22 0,1 1,-44 0"
+        android:strokeWidth="0"
+        android:fillColor="#ff7900" />
 </vector>

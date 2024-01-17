@@ -1,25 +1,36 @@
-<!--
-  ~ Software Name: Orange Design System
-  ~ SPDX-FileCopyrightText: Copyright (c) Orange SA
-  ~ SPDX-License-Identifier: MIT
-  ~
-  ~ This software is distributed under the MIT licence,
-  ~ the text of which is available at https://opensource.org/license/MIT/
-  ~ or see the "LICENSE" file for more details.
-  ~
-  ~ Software description: Android library of reusable graphical components
-  -->
-
-<vector android:height="100.945625dp" android:viewportHeight="854"
-    android:viewportWidth="1692" android:width="200dp" xmlns:android="http://schemas.android.com/apk/res/android">
-    <path android:fillColor="#1b1b1b" android:pathData="M0,0h1692v854h-1692z"/>
-    <path android:fillColor="#383838" android:pathData="M494.1,122.7L1197.9,122.7A12.1,12.1 0,0 1,1210 134.8L1210,719.2A12.1,12.1 0,0 1,1197.9 731.3L494.1,731.3A12.1,12.1 0,0 1,482 719.2L482,134.8A12.1,12.1 0,0 1,494.1 122.7z"/>
-    <path android:fillColor="#898989" android:pathData="M816.7,647.8h143.1v26h-143.1z"/>
-    <path android:fillColor="#fff" android:pathData="M546.2,192.6h174.3v26h-174.3z"/>
-    <path android:fillColor="#fff" android:pathData="M546.2,291.5h496.8v18.2h-496.8z"/>
-    <path android:fillColor="#fff" android:pathData="M546.2,348.7h548.8v18.2h-548.8z"/>
-    <path android:fillColor="#fff" android:pathData="M546.2,405.9h582.6v18.2h-582.6z"/>
-    <path android:fillColor="#fff" android:pathData="M546.2,463.1h590.4v18.2h-590.4z"/>
-    <path android:fillColor="#fff" android:pathData="M546.2,520.3h379.7v18.2h-379.7z"/>
-    <path android:fillColor="#898989" android:pathData="M1024.7,647.8h143.1v26h-143.1z"/>
+<vector android:height="100.945625dp"
+    android:viewportHeight="854"
+    android:viewportWidth="1692"
+    android:width="200dp"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+    <path
+        android:fillColor="#1b1b1b"
+        android:pathData="M0,0h1692v854h-1692z" />
+    <path
+        android:fillColor="#383838"
+        android:pathData="M494.1,122.7L1197.9,122.7A12.1,12.1 0,0 1,1210 134.8L1210,719.2A12.1,12.1 0,0 1,1197.9 731.3L494.1,731.3A12.1,12.1 0,0 1,482 719.2L482,134.8A12.1,12.1 0,0 1,494.1 122.7z" />
+    <path
+        android:fillColor="#898989"
+        android:pathData="M816.7,647.8h143.1v26h-143.1z" />
+    <path
+        android:fillColor="#fff"
+        android:pathData="M546.2,192.6h174.3v26h-174.3z" />
+    <path
+        android:fillColor="#fff"
+        android:pathData="M546.2,291.5h496.8v18.2h-496.8z" />
+    <path
+        android:fillColor="#fff"
+        android:pathData="M546.2,348.7h548.8v18.2h-548.8z" />
+    <path
+        android:fillColor="#fff"
+        android:pathData="M546.2,405.9h582.6v18.2h-582.6z" />
+    <path
+        android:fillColor="#fff"
+        android:pathData="M546.2,463.1h590.4v18.2h-590.4z" />
+    <path
+        android:fillColor="#fff"
+        android:pathData="M546.2,520.3h379.7v18.2h-379.7z" />
+    <path
+        android:fillColor="#898989"
+        android:pathData="M1024.7,647.8h143.1v26h-143.1z" />
 </vector>
