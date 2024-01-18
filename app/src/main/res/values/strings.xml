@@ -409,6 +409,7 @@
     <string name="about_menu_design_guidelines">Design guidelines</string>
     <string name="about_menu_changelog">Changelog</string>
     <string name="about_menu_report_issue">Report an issue</string>
+    <string name="about_menu_third_party_libraries">Third party libraries</string>
     <string name="about_share_text">Here, you will find the Orange Design System Mobile App that provides examples of design implementations: %s</string>
 
     <!-- Navigation items -->
