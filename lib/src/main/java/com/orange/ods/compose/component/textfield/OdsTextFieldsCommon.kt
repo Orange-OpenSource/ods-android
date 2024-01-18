@@ -21,6 +21,7 @@ import androidx.compose.material.icons.filled.ArrowDropDown
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.rotate
+import androidx.compose.ui.focus.focusProperties
 import androidx.compose.ui.graphics.ImageBitmap
 import androidx.compose.ui.graphics.painter.Painter
 import androidx.compose.ui.graphics.vector.ImageVector
@@ -173,19 +174,21 @@ internal class OdsExposedDropdownMenuTrailing(val expanded: Boolean) : OdsTextFi
     @Composable
     override fun Content(modifier: Modifier) {
         val degrees = if (expanded && extraParameters.enabled) 180f else 0f
-        Box(modifier = modifier.rotate(degrees)) {
-            OdsTextFieldIcon(
-                painter = rememberVectorPainter(image = Icons.Filled.ArrowDropDown),
-                contentDescription = null,
-                onClick = if (extraParameters.enabled) {
-                    {}
-                } else {
-                    null
-                }
-            )
+
+        Box(
+            modifier = Modifier
+                .rotate(degrees)
+        ) {
+            OdsIconButton(
+                modifier = Modifier.focusProperties { canFocus = false },
+                icon = OdsIconButton.Icon(
+                    painter = rememberVectorPainter(image = Icons.Filled.ArrowDropDown),
+                    contentDescription = ""
+                ),
+                enabled = extraParameters.enabled,
+                onClick = {})
         }
     }
-
 }
 
 @Composable
@@ -198,16 +201,6 @@ internal fun OdsTextFieldBottomRow(isError: Boolean, errorMessage: String?, char
         }
         characterCounter?.Content()
     }
-}
-
-@Composable
-internal fun OdsTextFieldIcon(painter: Painter, contentDescription: String?, onClick: (() -> Unit)?) {
-    OdsIconButton(
-        icon = OdsIconButton.Icon(
-            painter = painter, contentDescription = contentDescription.orEmpty()
-        ),
-        enabled = onClick != null,
-        onClick = onClick ?: {})
 }
 
 @Composable

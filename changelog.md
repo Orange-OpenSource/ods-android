@@ -26,6 +26,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - \[Lib\] Update `OdsListItem` so that if it has a control trailing (checkbox, switch or radio button), the action is handled by the row only ([#743](https://github.com/Orange-OpenSource/ods-android/issues/743))
 - \[Lib\] Remove padding added before `OdsLinearProgressIndicator` text if there is no icon displayed ([#745](https://github.com/Orange-OpenSource/ods-android/issues/745))
 - \[Lib\] Update `OdsTopAppBar` and `OdsLargeTopAppBar` so that TalkBack reads the title of the app bar first ([#275](https://github.com/Orange-OpenSource/ods-android/issues/275))
+- \[Lib\] Fix an issue in `OdsExposedDropdownMenu` where menu was not accessible with keyboard navigation ([#750](https://github.com/Orange-OpenSource/ods-android/issues/750))
 
 ## [0.18.0](https://github.com/Orange-OpenSource/ods-android/compare/0.17.0...0.18.0) - 2023-12-11
 

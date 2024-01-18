@@ -14,6 +14,7 @@ package com.orange.ods.compose.component.menu
 
 import android.os.Parcelable
 import androidx.annotation.DrawableRes
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.material.ExperimentalMaterialApi
 import androidx.compose.material.ExposedDropdownMenuBox
@@ -24,6 +25,7 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.focus.focusProperties
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.semantics.clearAndSetSemantics
@@ -66,17 +68,21 @@ fun OdsExposedDropdownMenu(
     val menuBoxAction = if (enabled) stringResource(id = com.orange.ods.R.string.ods_dropdownMenu_open_actionA11y) else ""
 
     ExposedDropdownMenuBox(
-        modifier = modifier.clearAndSetSemantics {
-            contentDescription = "$label, ${selectedItem.value.label}, $menuBoxAction"
-            stateDescription = menuBoxStateDescription
-        },
+        modifier = modifier
+            .clearAndSetSemantics {
+                contentDescription = "$label, ${selectedItem.value.label}, $menuBoxAction"
+                stateDescription = menuBoxStateDescription
+            }
+            .focusProperties { canFocus = false },
         expanded = expanded,
         onExpandedChange = {
             expanded = !expanded
         }
     ) {
         OdsTextField(
-            modifier = Modifier.fillMaxWidth(),
+            modifier = Modifier
+                .fillMaxWidth()
+                .clickable { expanded = !expanded },
             value = selectedItem.value.label,
             onValueChange = {},
             readOnly = true,
