@@ -72,7 +72,7 @@ fun appAboutConfiguration(): OdsAboutConfiguration {
                 painterResource(id = com.orange.ods.module.about.R.drawable.ic_tasklist),
                 stringResource(id = R.string.about_menu_third_party_libraries),
                 555,
-                OdsAboutFileMenuItem.File(R.raw.about_third_party_libraries, OdsAboutFileMenuItem.File.Format.Markdown)
+                OdsAboutFileMenuItem.File(R.raw.third_party, OdsAboutFileMenuItem.File.Format.Markdown)
             )
         ),
         onScreenChange = { title ->

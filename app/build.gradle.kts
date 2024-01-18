@@ -161,6 +161,10 @@ tasks.register<Copy>("copyChangelog") {
     from("../changelog.md").into("src/main/res/raw")
 }
 
+tasks.register<Copy>("copyThirdParty") {
+    from("../THIRD_PARTY.md").into("src/main/res/raw").rename { it.lowercase() }
+}
+
 gradle.projectsEvaluated {
-    tasks.named("preBuild").dependsOn(tasks.named("copyChangelog"))
+    tasks.named("preBuild").dependsOn(tasks.named("copyChangelog"), tasks.named("copyThirdParty"))
 }
