@@ -34,8 +34,8 @@ import com.orange.ods.compose.OdsComposable
 import com.orange.ods.compose.component.chip.OdsChoiceChip
 import com.orange.ods.compose.component.chip.OdsChoiceChipsFlowRow
 import com.orange.ods.compose.component.listitem.OdsListItem
-import com.orange.ods.compose.text.OdsTextBody1
-import com.orange.ods.compose.text.OdsTextSubtitle1
+import com.orange.ods.compose.text.OdsTextBodyL
+import com.orange.ods.compose.text.OdsTextTitleM
 
 
 @OptIn(ExperimentalMaterialApi::class)
@@ -68,8 +68,8 @@ fun ComponentSheetsBottom() {
                         .padding(top = dimensionResource(id = com.orange.ods.R.dimen.screen_vertical_margin))
                         .padding(horizontal = dimensionResource(id = com.orange.ods.R.dimen.screen_horizontal_margin))
                 ) {
-                    OdsTextBody1(text = stringResource(id = R.string.component_sheet_bottom_customize))
-                    OdsTextSubtitle1(
+                    OdsTextBodyL(text = stringResource(id = R.string.component_sheet_bottom_customize))
+                    OdsTextTitleM(
                         text = stringResource(id = R.string.component_element_content),
                         modifier = Modifier.padding(top = dimensionResource(id = com.orange.ods.R.dimen.spacing_s))
                     )

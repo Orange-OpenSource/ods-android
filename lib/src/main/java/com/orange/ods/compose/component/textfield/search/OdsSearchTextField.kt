@@ -61,12 +61,12 @@ internal fun OdsSearchTextField(
         placeholder = {
             Text(
                 text = placeholder,
-                style = OdsTheme.typography.body1,
+                style = OdsTheme.typography.bodyL,
                 fontSize = 20.sp
             )
         },
         modifier = modifier,
-        textStyle = OdsTheme.typography.h6,
+        textStyle = OdsTheme.typography.titleL,
         trailingIcon = {
             OdsIconButton(
                 onClick = { onValueChange(TextFieldValue("")) },

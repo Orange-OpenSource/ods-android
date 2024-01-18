@@ -29,7 +29,7 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import com.orange.ods.app.ui.utilities.DrawableManager
-import com.orange.ods.compose.text.OdsTextBody1
+import com.orange.ods.compose.text.OdsTextBodyL
 
 @Composable
 fun DetailScreenHeader(
@@ -61,7 +61,7 @@ private fun DetailScreenDescription(
     modifier: Modifier = Modifier,
     @StringRes descriptionRes: Int
 ) {
-    OdsTextBody1(
+    OdsTextBodyL(
         text = stringResource(descriptionRes),
         modifier = modifier.padding(
             top = dimensionResource(id = com.orange.ods.R.dimen.spacing_m)

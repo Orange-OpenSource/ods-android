@@ -28,14 +28,14 @@ import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.orange.ods.app.R
-import com.orange.ods.compose.text.OdsTextH5
-import com.orange.ods.compose.text.OdsTextSubtitle1
+import com.orange.ods.compose.text.OdsTextHeadlineS
+import com.orange.ods.compose.text.OdsTextTitleM
 import com.orange.ods.compose.theme.OdsDisplaySurface
 import com.orange.ods.compose.theme.OdsTheme
 
 @Composable
 fun Title(@StringRes textRes: Int, modifier: Modifier = Modifier, horizontalPadding: Boolean = false, topPadding: Boolean = false) {
-    OdsTextH5(
+    OdsTextHeadlineS(
         text = stringResource(textRes),
         modifier = modifier
             .fillMaxWidth()
@@ -51,7 +51,7 @@ fun Subtitle(@StringRes textRes: Int, displaySurface: OdsDisplaySurface = OdsDis
         OdsDisplaySurface.Dark -> OdsTheme.darkThemeColors.surface
         OdsDisplaySurface.Light -> OdsTheme.lightThemeColors.surface
     }
-    OdsTextSubtitle1(
+    OdsTextTitleM(
         text = stringResource(textRes),
         modifier = Modifier
             .fillMaxWidth()

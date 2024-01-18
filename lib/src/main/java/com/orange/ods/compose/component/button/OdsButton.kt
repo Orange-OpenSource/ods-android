@@ -68,7 +68,7 @@ fun OdsButton(
             colors = style.getColors(displaySurface = displaySurface)
         ) {
             icon?.Content()
-            Text(text = text.uppercase(), style = OdsTheme.typography.button)
+            Text(text = text.uppercase(), style = OdsTheme.typography.labelL)
         }
     }
 }

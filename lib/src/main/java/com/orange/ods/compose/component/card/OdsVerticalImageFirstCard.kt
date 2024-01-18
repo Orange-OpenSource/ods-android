@@ -26,9 +26,9 @@ import com.orange.ods.R
 import com.orange.ods.compose.component.OdsComposable
 import com.orange.ods.compose.component.utilities.Preview
 import com.orange.ods.compose.component.utilities.UiModePreviews
-import com.orange.ods.compose.text.OdsTextBody1
-import com.orange.ods.compose.text.OdsTextH6
-import com.orange.ods.compose.text.OdsTextSubtitle2
+import com.orange.ods.compose.text.OdsTextBodyL
+import com.orange.ods.compose.text.OdsTextTitleL
+import com.orange.ods.compose.text.OdsTextTitleS
 
 /**
  * <a href="https://system.design.orange.com/0c1af118d/p/272739-cards/b/991690" target="_blank">ODS Card</a>.
@@ -70,12 +70,12 @@ fun OdsVerticalImageFirstCard(
                 modifier = Modifier
                     .padding(dimensionResource(id = R.dimen.spacing_m))
             ) {
-                OdsTextH6(text = title)
+                OdsTextTitleL(text = title)
                 subtitle?.let {
-                    OdsTextSubtitle2(text = it)
+                    OdsTextTitleS(text = it)
                 }
                 text?.let {
-                    OdsTextBody1(
+                    OdsTextBodyL(
                         modifier = Modifier.padding(
                             top = dimensionResource(id = R.dimen.spacing_s)
                         ),

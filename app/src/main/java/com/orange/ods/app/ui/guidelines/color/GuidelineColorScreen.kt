@@ -52,10 +52,10 @@ import com.orange.ods.app.ui.LocalGuideline
 import com.orange.ods.app.ui.utilities.composable.Title
 import com.orange.ods.app.ui.utilities.extension.getStringName
 import com.orange.ods.compose.component.button.OdsButton
-import com.orange.ods.compose.text.OdsTextBody1
-import com.orange.ods.compose.text.OdsTextCaption
-import com.orange.ods.compose.text.OdsTextH5
-import com.orange.ods.compose.text.OdsTextH6
+import com.orange.ods.compose.text.OdsTextBodyL
+import com.orange.ods.compose.text.OdsTextBodyS
+import com.orange.ods.compose.text.OdsTextHeadlineS
+import com.orange.ods.compose.text.OdsTextTitleL
 import com.orange.ods.compose.theme.OdsTheme
 import com.orange.ods.theme.guideline.GuidelineColor
 import com.orange.ods.theme.guideline.GuidelineColorType
@@ -71,7 +71,7 @@ fun GuidelineColorScreen() {
     val supportingColors = guidelineColors.filter { it.type == GuidelineColorType.Supporting }
 
     if (guidelineColors.isEmpty()) {
-        OdsTextBody1(
+        OdsTextBodyL(
             modifier = Modifier.padding(
                 horizontal = dimensionResource(id = com.orange.ods.R.dimen.screen_horizontal_margin),
                 vertical = dimensionResource(id = com.orange.ods.R.dimen.screen_vertical_margin)
@@ -155,11 +155,11 @@ private fun RowScope.SmallColorItem(color: GuidelineColor) {
                 .fillMaxWidth()
                 .aspectRatio(1f)
         )
-        OdsTextH6(
+        OdsTextTitleL(
             text = color.getName(),
             modifier = Modifier.padding(top = dimensionResource(id = com.orange.ods.R.dimen.spacing_xs))
         )
-        OdsTextCaption(text = colorValue.toHexString())
+        OdsTextBodyS(text = colorValue.toHexString())
     }
     if (openDialog.value) {
         DialogColor(color = color, openDialog)
@@ -192,16 +192,16 @@ private fun RowScope.BigColorItem(color: GuidelineColor) {
                 boxColorModifier
             }
         )
-        OdsTextH6(
+        OdsTextTitleL(
             text = color.getName(),
             modifier = Modifier.padding(top = dimensionResource(id = com.orange.ods.R.dimen.spacing_xs))
         )
-        OdsTextBody1(text = color.callableName)
-        OdsTextCaption(
+        OdsTextBodyL(text = color.callableName)
+        OdsTextBodyS(
             modifier = Modifier.padding(top = dimensionResource(id = com.orange.ods.R.dimen.spacing_xs)),
             text = colorValue.toHexString()
         )
-        OdsTextCaption(
+        OdsTextBodyS(
             text = colorValue.toRgbString()
         )
     }
@@ -234,21 +234,21 @@ fun DialogColor(color: GuidelineColor, openDialog: MutableState<Boolean>) {
                         vertical = dimensionResource(id = com.orange.ods.R.dimen.spacing_s)
                     )
             ) {
-                OdsTextH5(text = color.getName())
-                OdsTextBody1(
+                OdsTextHeadlineS(text = color.getName())
+                OdsTextBodyL(
                     modifier = Modifier.padding(top = dimensionResource(id = com.orange.ods.R.dimen.spacing_xs)),
                     text = color.callableName
                 )
-                OdsTextBody1(
+                OdsTextBodyL(
                     modifier = Modifier.padding(top = dimensionResource(id = com.orange.ods.R.dimen.spacing_s)),
                     text = colorValue.toHexString()
                 )
-                OdsTextBody1(
+                OdsTextBodyL(
                     modifier = Modifier.padding(top = dimensionResource(id = com.orange.ods.R.dimen.spacing_s)),
                     text = colorValue.toRgbString()
                 )
                 color.xmlResource?.let { xmlResource ->
-                    OdsTextBody1(
+                    OdsTextBodyL(
                         modifier = Modifier.padding(top = dimensionResource(id = com.orange.ods.R.dimen.spacing_s)),
                         text = stringResource(
                             id = R.string.guideline_colour_xml,

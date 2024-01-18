@@ -98,7 +98,7 @@ fun OdsBanner(
                 Text(
                     modifier = Modifier.weight(1f),
                     text = message,
-                    style = OdsTheme.typography.body2,
+                    style = OdsTheme.typography.bodyM,
                     color = OdsTheme.colors.onSurface,
                     maxLines = if (hasVisualOverflowText) Int.MAX_VALUE else 2,
                     overflow = TextOverflow.Ellipsis,

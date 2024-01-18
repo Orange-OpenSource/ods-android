@@ -104,7 +104,7 @@ internal fun OdsTextButton(
         ) {
             icon?.Content()
             Text(
-                text = text.uppercase(), style = OdsTheme.typography.button, maxLines = maxLines,
+                text = text.uppercase(), style = OdsTheme.typography.labelL, maxLines = maxLines,
                 overflow = overflow
             )
         }

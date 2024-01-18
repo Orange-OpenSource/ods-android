@@ -41,7 +41,7 @@ import com.orange.ods.compose.component.content.OdsComponentIcon
 import com.orange.ods.compose.component.utilities.BasicPreviewParameterProvider
 import com.orange.ods.compose.component.utilities.Preview
 import com.orange.ods.compose.component.utilities.UiModePreviews
-import com.orange.ods.compose.text.OdsTextCaption
+import com.orange.ods.compose.text.OdsTextBodyS
 import com.orange.ods.compose.theme.OdsTheme
 import com.orange.ods.extension.orElse
 
@@ -81,7 +81,7 @@ fun OdsLinearProgressIndicator(
             if (label != null) {
                 Text(
                     text = label,
-                    style = OdsTheme.typography.caption,
+                    style = OdsTheme.typography.bodyS,
                     color = OdsTheme.colors.onSurface,
                     overflow = TextOverflow.Ellipsis,
                     maxLines = 1,
@@ -94,7 +94,7 @@ fun OdsLinearProgressIndicator(
 
             if (showCurrentValue) {
                 Row(horizontalArrangement = Arrangement.End, modifier = Modifier.fillMaxWidth()) {
-                    OdsTextCaption(
+                    OdsTextBodyS(
                         modifier = Modifier
                             .padding(top = dimensionResource(id = R.dimen.spacing_xs))
                             .semantics {

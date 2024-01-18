@@ -29,7 +29,7 @@ TextStyles are accessed via `MaterialTheme.typography`. Retrieve the TextStyles 
 ```kotlin
 Text(
     text = "Subtitle2 styled",
-    style = MaterialTheme.typography.subtitle2
+    style = MaterialTheme.typography.titleS
 )
 ```
 

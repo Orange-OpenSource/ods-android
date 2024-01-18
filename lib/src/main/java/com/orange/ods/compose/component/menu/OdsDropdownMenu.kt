@@ -180,7 +180,7 @@ object OdsDropdownMenu {
                         modifier = Modifier.padding(end = dimensionResource(id = R.dimen.spacing_m)),
                     )
                 }
-                Text(text = text, style = OdsTheme.typography.body1, color = OdsTheme.colors.onSurface.enable(enabled = enabled))
+                Text(text = text, style = OdsTheme.typography.bodyL, color = OdsTheme.colors.onSurface.enable(enabled = enabled))
             }
             if (divider) OdsDivider()
         }

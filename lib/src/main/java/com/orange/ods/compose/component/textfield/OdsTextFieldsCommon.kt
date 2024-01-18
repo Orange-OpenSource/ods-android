@@ -33,7 +33,7 @@ import com.orange.ods.compose.component.button.OdsIconButton
 import com.orange.ods.compose.component.content.OdsComponentContent
 import com.orange.ods.compose.component.content.OdsComponentIcon
 import com.orange.ods.compose.component.utilities.BasicPreviewParameterProvider
-import com.orange.ods.compose.text.OdsTextCaption
+import com.orange.ods.compose.text.OdsTextBodyS
 import com.orange.ods.compose.theme.OdsTheme
 
 /**
@@ -54,7 +54,7 @@ object OdsTextField {
 
         @Composable
         override fun Content(modifier: Modifier) {
-            OdsTextCaption(
+            OdsTextBodyS(
                 modifier = modifier
                     .padding(top = dimensionResource(id = R.dimen.spacing_xs), end = dimensionResource(id = R.dimen.spacing_m)),
                 text = "$characterCount/$maxCharacterCount",
@@ -123,7 +123,7 @@ object OdsTextField {
             Text(
                 modifier = modifier.padding(end = dimensionResource(id = R.dimen.spacing_s)),
                 text = text,
-                style = OdsTheme.typography.subtitle1,
+                style = OdsTheme.typography.titleM,
                 color = OdsTextFieldDefaults.trailingTextColor(extraParameters.isTextFieldEmpty, extraParameters.enabled)
             )
         }
@@ -211,7 +211,7 @@ private fun OdsTextFieldErrorText(message: String) {
             top = dimensionResource(id = R.dimen.spacing_xs)
         ),
         text = message,
-        style = OdsTheme.typography.caption,
+        style = OdsTheme.typography.bodyS,
         color = OdsTheme.colors.error
     )
 }

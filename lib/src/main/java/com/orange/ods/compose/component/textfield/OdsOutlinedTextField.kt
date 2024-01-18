@@ -63,9 +63,9 @@ internal fun OdsOutlinedTextField(
             },
             enabled = enabled,
             readOnly = readOnly,
-            textStyle = OdsTheme.typography.subtitle1,
+            textStyle = OdsTheme.typography.titleM,
             label = label?.let { { Text(label) } },
-            placeholder = placeholder?.let { { Text(text = placeholder, style = OdsTheme.typography.subtitle1) } },
+            placeholder = placeholder?.let { { Text(text = placeholder, style = OdsTheme.typography.titleM) } },
             leadingIcon = leadingIcon?.let {
                 {
                     it.Content(OdsTextField.LeadingIcon.ExtraParameters(enabled))

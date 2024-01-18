@@ -14,12 +14,12 @@ package com.orange.ods.theme.orange
 
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.Shapes
-import androidx.compose.material.Typography
 import androidx.compose.ui.unit.dp
 import com.orange.ods.theme.OdsThemeColors
 import com.orange.ods.theme.OdsThemeConfigurationContract
 import com.orange.ods.theme.guideline.OdsGuideline
 import com.orange.ods.theme.orange.guideline.OrangeGuideline
+import com.orange.ods.theme.typography.OdsTypography
 import kotlinx.parcelize.Parcelize
 
 @Parcelize
@@ -35,7 +35,7 @@ class OrangeThemeConfiguration : OdsThemeConfigurationContract {
     override val colors: OdsThemeColors
         get() = OdsThemeColors(OrangeLightColors, OrangeDarkColors)
 
-    override val typography: Typography
+    override val typography: OdsTypography
         get() = OrangeTypography
 
     override val shapes: Shapes

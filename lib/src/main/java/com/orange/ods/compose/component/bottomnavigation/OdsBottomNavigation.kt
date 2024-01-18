@@ -148,7 +148,7 @@ object OdsBottomNavigation {
                                 text = label,
                                 maxLines = 1,
                                 overflow = TextOverflow.Ellipsis,
-                                style = OdsTheme.typography.caption
+                                style = OdsTheme.typography.bodyS
                             )
                         }
                     },

@@ -44,8 +44,8 @@ import com.orange.ods.compose.component.appbar.top.OdsTopAppBar
 import com.orange.ods.compose.component.chip.OdsChoiceChip
 import com.orange.ods.compose.component.chip.OdsChoiceChipsFlowRow
 import com.orange.ods.compose.component.menu.OdsDropdownMenu
-import com.orange.ods.compose.text.OdsTextBody2
-import com.orange.ods.compose.text.OdsTextCaption
+import com.orange.ods.compose.text.OdsTextBodyM
+import com.orange.ods.compose.text.OdsTextBodyS
 import com.orange.ods.compose.theme.OdsTheme
 
 @Composable
@@ -62,7 +62,7 @@ fun LargeTopAppBarContent() {
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
             if (isCollapsible) {
-                OdsTextBody2(text = stringResource(id = com.orange.ods.app.R.string.component_app_bars_top_large_scrolling_upward))
+                OdsTextBodyM(text = stringResource(id = com.orange.ods.app.R.string.component_app_bars_top_large_scrolling_upward))
                 BlinkingChevronDown(
                     modifier = Modifier
                         .rotate(180f)
@@ -115,21 +115,21 @@ fun LargeTopAppBarContent() {
                     )
                 }
                 if (isCollapsible) {
-                    OdsTextBody2(
+                    OdsTextBodyM(
                         modifier = Modifier.padding(
                             top = dimensionResource(id = R.dimen.spacing_s),
                             bottom = dimensionResource(id = R.dimen.spacing_xs)
                         ),
                         text = stringResource(id = com.orange.ods.app.R.string.component_app_bars_top_large_code_collapsing)
                     )
-                    OdsTextCaption(
+                    OdsTextBodyS(
                         modifier = Modifier.padding(bottom = dimensionResource(id = R.dimen.spacing_xs)),
                         text = stringResource(id = com.orange.ods.app.R.string.component_app_bars_top_large_code_collapsing_step_1)
                     )
                     CodeBackgroundColumn {
                         TechnicalText(text = "val topBarScrollBehavior = TopAppBarDefaults.exitUntilCollapsedScrollBehavior(rememberTopAppBarState())")
                     }
-                    OdsTextCaption(
+                    OdsTextBodyS(
                         modifier = Modifier.padding(
                             top = dimensionResource(id = R.dimen.spacing_s),
                             bottom = dimensionResource(id = R.dimen.spacing_xs)
@@ -145,7 +145,7 @@ fun LargeTopAppBarContent() {
 
             if (isCollapsible) {
                 BlinkingChevronDown(modifier = Modifier.padding(vertical = dimensionResource(id = R.dimen.spacing_s)))
-                OdsTextBody2(text = stringResource(id = com.orange.ods.app.R.string.component_app_bars_top_large_scrolling_downward))
+                OdsTextBodyM(text = stringResource(id = com.orange.ods.app.R.string.component_app_bars_top_large_scrolling_downward))
             }
         }
     }

@@ -122,7 +122,7 @@ fun OdsLargeTopAppBar(
                     .focusRequester(focusRequester)
                     .focusable(),
                 text = title,
-                style = OdsTheme.typography.h6,
+                style = OdsTheme.typography.titleL,
                 overflow = TextOverflow.Ellipsis,
                 maxLines = titleMaxLines,
             )

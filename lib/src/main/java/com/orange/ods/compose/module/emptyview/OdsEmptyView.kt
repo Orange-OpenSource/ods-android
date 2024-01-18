@@ -72,7 +72,7 @@ private fun OdsEmptyView(
                 .fillMaxWidth(),
             text = title,
             textAlign = TextAlign.Center,
-            style = OdsTheme.typography.h6
+            style = OdsTheme.typography.titleL
         )
 
         text?.let {
@@ -82,7 +82,7 @@ private fun OdsEmptyView(
                     .fillMaxWidth(),
                 text = text,
                 textAlign = TextAlign.Center,
-                style = OdsTheme.typography.subtitle2
+                style = OdsTheme.typography.titleS
             )
         }
 

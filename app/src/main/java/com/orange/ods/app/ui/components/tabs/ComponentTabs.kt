@@ -37,7 +37,7 @@ import com.orange.ods.compose.component.chip.OdsChoiceChip
 import com.orange.ods.compose.component.chip.OdsChoiceChipsFlowRow
 import com.orange.ods.compose.component.listitem.OdsListItem
 import com.orange.ods.compose.component.tab.OdsTabRow
-import com.orange.ods.compose.text.OdsTextBody1
+import com.orange.ods.compose.text.OdsTextBodyL
 
 private const val MinFixedTabCount = 2
 private const val MaxFixedTabCount = 3
@@ -123,6 +123,6 @@ private fun TabsPagerContentScreen(text: String) {
             .fillMaxSize()
             .wrapContentSize(Alignment.Center)
     ) {
-        OdsTextBody1(text = text)
+        OdsTextBodyL(text = text)
     }
 }

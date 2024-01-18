@@ -22,7 +22,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import com.orange.ods.compose.component.control.OdsCheckbox
 import com.orange.ods.compose.component.control.OdsRadioButton
-import com.orange.ods.compose.text.OdsTextBody1
+import com.orange.ods.compose.text.OdsTextBodyL
 import com.orange.ods.compose.theme.OdsTheme
 
 @Composable
@@ -37,7 +37,7 @@ fun LabelledCheckbox(
             onCheckedChange = { checked.value = it },
             enabled = enabled,
         )
-        OdsTextBody1(text = label)
+        OdsTextBodyL(text = label)
     }
 }
 
@@ -64,7 +64,7 @@ fun <T> LabelledRadioButton(
         )
         Text(
             text = label,
-            style = OdsTheme.typography.body1,
+            style = OdsTheme.typography.bodyL,
             color = OdsTheme.colors.onSurface.copy(alpha = if (enabled) ContentAlpha.high else ContentAlpha.disabled)
         )
     }
