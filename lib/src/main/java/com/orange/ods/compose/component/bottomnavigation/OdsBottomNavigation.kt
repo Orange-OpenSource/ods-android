@@ -30,6 +30,7 @@ import androidx.compose.runtime.mutableIntStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.focus.focusProperties
 import androidx.compose.ui.graphics.ImageBitmap
 import androidx.compose.ui.graphics.painter.Painter
 import androidx.compose.ui.graphics.vector.ImageVector
@@ -70,7 +71,7 @@ fun OdsBottomNavigation(
     modifier: Modifier = Modifier
 ) {
     BottomNavigation(
-        modifier = modifier,
+        modifier = modifier.focusProperties { canFocus = false },
         // Need to define backgroundColor cause in Compose default backgroundColor is primarySurface
         backgroundColor = OdsTheme.colors.component.bottomNavigation.barBackground,
         contentColor = OdsTheme.colors.component.bottomNavigation.barContent,
