@@ -28,11 +28,7 @@ Copyright 2019 Google LLC
 [https://github.com/firebase/firebase-android-sdk](https://github.com/firebase/firebase-android-sdk)
 Apache License 2.0
 
-### Jekyll
 
-Copyright (c) 2008-present Tom Preston-Werner and Jekyll contributors
-[https://github.com/jekyll/jekyll](https://github.com/jekyll/jekyll)
-MIT License
 
 ### JUnit
 
