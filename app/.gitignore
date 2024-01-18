@@ -2,3 +2,4 @@
 app.keystore
 /release
 /src/main/res/raw/changelog.md
+/src/main/res/raw/third_party.md

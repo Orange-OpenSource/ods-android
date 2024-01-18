@@ -9,6 +9,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
+- \[App\] Display third party libraries in the About section ([#485](https://github.com/Orange-OpenSource/ods-android/issues/485))
 - \[Lib\] Add `OdsSearchTopAppBar` component variant ([#577](https://github.com/Orange-OpenSource/ods-android/issues/577))
 
 ### Changed
