@@ -54,7 +54,7 @@ fun OdsTextBodyS(text: String, modifier: Modifier = Modifier, displaySurface: Od
 
 @Composable
 fun OdsTextLabelL(text: String, modifier: Modifier = Modifier, displaySurface: OdsDisplaySurface = OdsDisplaySurface.Default, enabled: Boolean = true) =
-    OdsText(text.uppercase(), OdsTheme.typography.labelL, modifier, displaySurface, enabled)
+    OdsText(text, OdsTheme.typography.labelL, modifier, displaySurface, enabled)
 
 @Composable
 fun OdsTextLabelS(text: String, modifier: Modifier = Modifier, displaySurface: OdsDisplaySurface = OdsDisplaySurface.Default, enabled: Boolean = true) =
@@ -62,6 +62,10 @@ fun OdsTextLabelS(text: String, modifier: Modifier = Modifier, displaySurface: O
 
 @Composable
 private fun OdsText(text: String, textStyle: TextStyle, modifier: Modifier, displaySurface: OdsDisplaySurface, enabled: Boolean) {
-    val color = displaySurface.themeColors.onSurface.enable(enabled = enabled)
-    Text(text = text, style = textStyle, color = color, modifier = modifier)
+    Text(
+        text = if (OdsTheme.typography.isAllCapsTextStyle(textStyle)) text.uppercase() else text,
+        style = textStyle,
+        color = displaySurface.themeColors.onSurface.enable(enabled = enabled),
+        modifier = modifier
+    )
 }

@@ -77,7 +77,7 @@ class OdsTypography(
         lineHeight = 16.sp,
         letterSpacing = 1.5.sp
     ),
-    val allCapsTextStyles: List<TextStyle> = listOf(labelL)
+    allCapsTextStyles: List<TextStyle> = listOf(labelL)
 ) {
 
     val headlineL: TextStyle
@@ -90,6 +90,7 @@ class OdsTypography(
     val bodyS: TextStyle
     val labelL: TextStyle
     val labelS: TextStyle
+    val allCapsTextStyles: List<TextStyle>
 
     init {
         this.headlineL = headlineL.withDefaultFontFamily(defaultFontFamily)
@@ -102,6 +103,7 @@ class OdsTypography(
         this.bodyS = bodyS.withDefaultFontFamily(defaultFontFamily)
         this.labelL = labelL.withDefaultFontFamily(defaultFontFamily)
         this.labelS = labelS.withDefaultFontFamily(defaultFontFamily)
+        this.allCapsTextStyles = allCapsTextStyles.map { it.withDefaultFontFamily(defaultFontFamily) }
     }
 
     fun isAllCapsTextStyle(textStyle: TextStyle) = allCapsTextStyles.contains(textStyle)
