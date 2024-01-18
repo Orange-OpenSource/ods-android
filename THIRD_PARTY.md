@@ -50,6 +50,12 @@ Apache License 2.0
 [https://github.com/google/ksp](https://github.com/google/ksp)
 Apache License 2.0
 
+### ODS libraries
+
+Copyright (c) Orange SA
+[https://github.com/Orange-OpenSource/ods-android](https://github.com/Orange-OpenSource/ods-android)
+MIT License
+
 ### Roboto fonts
 
 [https://fonts.google.com/specimen/Roboto](https://fonts.google.com/specimen/Roboto)
