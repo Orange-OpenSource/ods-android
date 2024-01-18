@@ -174,11 +174,6 @@ internal class OdsExposedDropdownMenuTrailing(val expanded: Boolean) : OdsTextFi
     @Composable
     override fun Content(modifier: Modifier) {
         val degrees = if (expanded && extraParameters.enabled) 180f else 0f
-        val onClick = if (extraParameters.enabled) {
-            {}
-        } else {
-            null
-        }
 
         Box(
             modifier = Modifier
@@ -190,8 +185,8 @@ internal class OdsExposedDropdownMenuTrailing(val expanded: Boolean) : OdsTextFi
                     painter = rememberVectorPainter(image = Icons.Filled.ArrowDropDown),
                     contentDescription = ""
                 ),
-                enabled = onClick != null,
-                onClick = onClick ?: {})
+                enabled = extraParameters.enabled,
+                onClick = {})
         }
     }
 }
