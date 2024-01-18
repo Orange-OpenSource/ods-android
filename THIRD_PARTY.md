@@ -28,7 +28,11 @@ Copyright 2019 Google LLC
 [https://github.com/firebase/firebase-android-sdk](https://github.com/firebase/firebase-android-sdk)
 Apache License 2.0
 
+### Google services
 
+Copyright (C) 2023 The Android Open Source Project
+[https://github.com/google/play-services-plugins/tree/master/google-services-plugin](https://github.com/google/play-services-plugins/tree/master/google-services-plugin)
+Apache License 2.0
 
 ### JUnit
 
@@ -44,6 +48,12 @@ Apache License 2.0
 ### Kotlin Symbol Processing
 
 [https://github.com/google/ksp](https://github.com/google/ksp)
+Apache License 2.0
+
+### Material Components
+
+Copyright 2017 The Android Open Source Project
+[https://github.com/material-components/material-components-android](https://github.com/material-components/material-components-android)
 Apache License 2.0
 
 ### ODS libraries
