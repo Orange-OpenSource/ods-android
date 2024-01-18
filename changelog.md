@@ -18,12 +18,14 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - \[Lib\] Update `OdsChoiceChipsFlowRow` to have less vertical space between elements ([#758](https://github.com/Orange-OpenSource/ods-android/issues/758))
 - \[Lib\] Change `OdsListItem` API by replacing `singleLineSecondaryText` boolean parameter by an enum called `secondaryTextLineCount` ([#777](https://github.com/Orange-OpenSource/ods-android/issues/777))
 - \[Lib\] Update typography tokens and rename ODS text composables ([#615](https://github.com/Orange-OpenSource/ods-android/issues/615))
+- \[Lib\] Move placeholder images from `app` to `lib` ([#531](https://github.com/Orange-OpenSource/ods-android/issues/531))
 
 ### Fixed
 
 - \[App\] Fix `OdsTopAppBar` and `OdsLargeTopAppBar` components customization through the bottom sheet ([#747](https://github.com/Orange-OpenSource/ods-android/issues/747))
 - \[App\] Fix guideline functional colors display when switching light/dark mode ([#761](https://github.com/Orange-OpenSource/ods-android/issues/761))
 - \[App\] Fix code implementation dropdown menu contrast for accessibility reason by always enabling it ([#749](https://github.com/Orange-OpenSource/ods-android/issues/749))
+- \[App\] Fix a bug where placeholder and error placeholder images did not change when switching between light and dark mode ([#531](https://github.com/Orange-OpenSource/ods-android/issues/531))
 - \[Lib\] Update `OdsListItem` so that if it has a control trailing (checkbox, switch or radio button), the action is handled by the row only ([#743](https://github.com/Orange-OpenSource/ods-android/issues/743))
 - \[Lib\] Remove padding added before `OdsLinearProgressIndicator` text if there is no icon displayed ([#745](https://github.com/Orange-OpenSource/ods-android/issues/745))
 - \[Lib\] Update `OdsTopAppBar` and `OdsLargeTopAppBar` so that TalkBack reads the title of the app bar first ([#275](https://github.com/Orange-OpenSource/ods-android/issues/275))

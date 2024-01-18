@@ -29,10 +29,12 @@ import coil.request.ImageRequest
 import coil.size.Size
 import com.orange.ods.app.R
 import com.orange.ods.app.domain.recipes.LocalRecipes
+import com.orange.ods.app.ui.LocalThemeManager
 import com.orange.ods.app.ui.components.utilities.clickOnElement
 import com.orange.ods.app.ui.utilities.DrawableManager
 import com.orange.ods.app.ui.utilities.code.CodeImplementationColumn
 import com.orange.ods.app.ui.utilities.code.FunctionCallCode
+import com.orange.ods.app.ui.utilities.extension.buildImageRequest
 import com.orange.ods.compose.OdsComposable
 import com.orange.ods.compose.component.card.OdsCard
 import com.orange.ods.compose.component.card.OdsVerticalHeaderFirstCard
@@ -40,6 +42,7 @@ import com.orange.ods.compose.component.card.OdsVerticalHeaderFirstCard
 @Composable
 fun CardVerticalHeaderFirst(customizationState: CardCustomizationState) {
     val context = LocalContext.current
+    val darkModeEnabled = LocalThemeManager.current.darkModeEnabled
     val recipes = LocalRecipes.current
     val recipe = rememberSaveable { recipes.filter { it.description.isNotBlank() }.random() }
 
@@ -54,8 +57,7 @@ fun CardVerticalHeaderFirst(customizationState: CardCustomizationState) {
             val secondButtonText = stringResource(id = R.string.component_element_second_button)
             val cardText = stringResource(id = R.string.component_card_element_card)
             val imagePainter = rememberAsyncImagePainter(
-                model = ImageRequest.Builder(context)
-                    .data(recipe.imageUrl)
+                model = ImageRequest.Builder(buildImageRequest(context, recipe.imageUrl, darkModeEnabled))
                     .size(Size.ORIGINAL)
                     .build(),
                 placeholder = painterResource(id = DrawableManager.getPlaceholderResId()),

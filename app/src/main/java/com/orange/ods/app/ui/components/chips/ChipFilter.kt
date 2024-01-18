@@ -26,17 +26,20 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import coil.compose.rememberAsyncImagePainter
 import com.orange.ods.app.R
 import com.orange.ods.app.domain.recipes.LocalRecipes
+import com.orange.ods.app.ui.LocalThemeManager
 import com.orange.ods.app.ui.components.utilities.ComponentCustomizationBottomSheetScaffold
 import com.orange.ods.app.ui.utilities.DrawableManager
 import com.orange.ods.app.ui.utilities.code.CodeImplementationColumn
 import com.orange.ods.app.ui.utilities.code.FunctionCallCode
 import com.orange.ods.app.ui.utilities.composable.Subtitle
+import com.orange.ods.app.ui.utilities.extension.buildImageRequest
 import com.orange.ods.compose.OdsComposable
 import com.orange.ods.compose.component.chip.OdsChip
 import com.orange.ods.compose.component.chip.OdsChoiceChip
@@ -48,6 +51,8 @@ import com.orange.ods.compose.component.listitem.OdsListItem
 @Composable
 fun ChipFilter() {
     val chipCustomizationState = rememberChipCustomizationState(chipType = rememberSaveable { mutableStateOf(ChipCustomizationState.ChipType.Filter) })
+    val context = LocalContext.current
+    val darkModeEnabled = LocalThemeManager.current.darkModeEnabled
     val recipes = LocalRecipes.current
     val recipe = rememberSaveable { recipes.filter { it.ingredients.count() >= 3 }.random() }
 
@@ -84,7 +89,7 @@ fun ChipFilter() {
                             leadingAvatar = if (hasLeadingAvatar) {
                                 OdsChip.LeadingAvatar(
                                     rememberAsyncImagePainter(
-                                        model = ingredient.food.imageUrl,
+                                        model = buildImageRequest(context, ingredient.food.imageUrl, darkModeEnabled),
                                         placeholder = painterResource(id = DrawableManager.getPlaceholderSmallResId()),
                                         error = painterResource(id = DrawableManager.getPlaceholderSmallResId(error = true))
                                     ), ""

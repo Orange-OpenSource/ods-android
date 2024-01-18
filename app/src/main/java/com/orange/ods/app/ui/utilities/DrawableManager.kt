@@ -77,10 +77,10 @@ object DrawableManager {
     fun getPlaceholderResId(error: Boolean = false): Int {
         val darkTheme = isSystemInDarkTheme()
         return when {
-            !darkTheme && !error -> R.drawable.placeholder
-            !darkTheme && error -> R.drawable.placeholder_error
-            darkTheme && !error -> R.drawable.placeholder_dark
-            else -> R.drawable.placeholder_error_dark
+            !darkTheme && !error -> com.orange.ods.R.drawable.placeholder
+            !darkTheme && error -> com.orange.ods.R.drawable.placeholder_error
+            darkTheme && !error -> com.orange.ods.R.drawable.placeholder_dark
+            else -> com.orange.ods.R.drawable.placeholder_error_dark
         }
     }
 
@@ -88,10 +88,10 @@ object DrawableManager {
     fun getPlaceholderSmallResId(error: Boolean = false): Int {
         val darkTheme = isSystemInDarkTheme()
         return when {
-            !darkTheme && !error -> R.drawable.placeholder_small
-            !darkTheme && error -> R.drawable.placeholder_error_small
-            darkTheme && !error -> R.drawable.placeholder_small_dark
-            else -> R.drawable.placeholder_error_small_dark
+            !darkTheme && !error -> com.orange.ods.R.drawable.placeholder_small
+            !darkTheme && error -> com.orange.ods.R.drawable.placeholder_error_small
+            darkTheme && !error -> com.orange.ods.R.drawable.placeholder_small_dark
+            else -> com.orange.ods.R.drawable.placeholder_error_small_dark
         }
     }
 }
