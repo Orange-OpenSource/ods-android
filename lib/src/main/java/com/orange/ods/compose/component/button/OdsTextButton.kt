@@ -14,24 +14,26 @@ package com.orange.ods.compose.component.button
 
 import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.material.ButtonDefaults
-import androidx.compose.material.Text
 import androidx.compose.material.TextButton
 import androidx.compose.material.ripple.LocalRippleTheme
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.PreviewParameter
 import com.orange.ods.compose.component.OdsComposable
 import com.orange.ods.compose.component.utilities.EnumPreviewParameterProvider
 import com.orange.ods.compose.component.utilities.Preview
 import com.orange.ods.compose.component.utilities.UiModePreviews
+import com.orange.ods.compose.text.OdsText
 import com.orange.ods.compose.theme.OdsDisplaySurface
 import com.orange.ods.compose.theme.OdsPrimaryRippleTheme
 import com.orange.ods.compose.theme.OdsTheme
 import com.orange.ods.compose.utilities.extension.enable
 import com.orange.ods.theme.colors.OdsColors
+import com.orange.ods.theme.typography.OdsTextStyle
 
 /**
  * <a href="https://system.design.orange.com/0c1af118d/p/06a393-buttons/b/79b091" target="_blank">ODS Buttons</a>.
@@ -103,8 +105,13 @@ internal fun OdsTextButton(
             )
         ) {
             icon?.Content()
-            Text(
-                text = text.uppercase(), style = OdsTheme.typography.labelL, maxLines = maxLines,
+            OdsText(
+                text = text,
+                style = OdsTextStyle.LabelL,
+                maxLines = maxLines,
+                // Set color to Unspecified otherwise the colors parameter of TextButton is overridden
+                // by the default value of the displaySurface parameter of OdsText
+                color = Color.Unspecified,
                 overflow = overflow
             )
         }

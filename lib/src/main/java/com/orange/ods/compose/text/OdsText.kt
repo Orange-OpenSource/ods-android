@@ -15,8 +15,10 @@ package com.orange.ods.compose.text
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.TextLayoutResult
 import androidx.compose.ui.text.TextStyle
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.style.TextOverflow
 import com.orange.ods.compose.theme.OdsDisplaySurface
@@ -39,10 +41,40 @@ fun OdsText(
     onTextLayout: ((TextLayoutResult) -> Unit)? = null,
 ) {
     val textStyle = textStyle(style = style)
+    OdsText(
+        text = styledText(text, textStyle),
+        modifier = modifier,
+        color = displaySurface.themeColors.onSurface.enable(enabled = enabled),
+        textAlign = textAlign,
+        overflow = overflow,
+        softWrap = softWrap,
+        maxLines = maxLines,
+        minLines = minLines,
+        onTextLayout = onTextLayout,
+        style = style
+    )
+}
+
+@Composable
+internal fun OdsText(
+    text: String,
+    style: OdsTextStyle,
+    color: Color,
+    modifier: Modifier = Modifier,
+    fontWeight: FontWeight? = null,
+    textAlign: TextAlign? = null,
+    overflow: TextOverflow = TextOverflow.Clip,
+    softWrap: Boolean = true,
+    maxLines: Int = Int.MAX_VALUE,
+    minLines: Int = 1,
+    onTextLayout: ((TextLayoutResult) -> Unit)? = null,
+) {
+    val textStyle = textStyle(style = style)
     Text(
         text = if (OdsTheme.typography.isAllCapsTextStyle(textStyle)) text.uppercase() else text,
         modifier = modifier,
-        color = displaySurface.themeColors.onSurface.enable(enabled = enabled),
+        color = color,
+        fontWeight = fontWeight,
         textAlign = textAlign,
         overflow = overflow,
         softWrap = softWrap,
@@ -54,7 +86,7 @@ fun OdsText(
 }
 
 @Composable
-private fun textStyle(style: OdsTextStyle): TextStyle {
+internal fun textStyle(style: OdsTextStyle): TextStyle {
     return with(OdsTheme.typography) {
         when (style) {
             OdsTextStyle.HeadlineL -> headlineL
@@ -69,4 +101,9 @@ private fun textStyle(style: OdsTextStyle): TextStyle {
             OdsTextStyle.LabelS -> labelS
         }
     }
+}
+
+@Composable
+internal fun styledText(text: String, textStyle: TextStyle): String {
+    return if (OdsTheme.typography.isAllCapsTextStyle(textStyle)) text.uppercase() else text
 }

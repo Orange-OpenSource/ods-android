@@ -137,7 +137,7 @@ fun OdsHorizontalCard(
                 style = OdsTextStyle.TitleS
             )
 
-            Text(
+            OdsText(
                 modifier = Modifier
                     .padding(top = smallSpacing) // For some reason, margins inside a chain are not applied, a workaround is to apply padding before the constraints
                     .constrainAs(textRef) {
@@ -147,7 +147,7 @@ fun OdsHorizontalCard(
                         visibility = if (text != null) Visibility.Visible else Visibility.Gone
                     },
                 text = text.orEmpty(),
-                style = OdsTheme.typography.bodyL,
+                style = OdsTextStyle.BodyL,
                 maxLines = if (subtitle == null) 3 else 2,
                 overflow = TextOverflow.Ellipsis
             )

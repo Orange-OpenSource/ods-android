@@ -15,7 +15,6 @@ package com.orange.ods.compose.component.textfield
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.padding
-import androidx.compose.material.Text
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ArrowDropDown
 import androidx.compose.runtime.Composable
@@ -28,6 +27,9 @@ import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.graphics.vector.rememberVectorPainter
 import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.text.TextStyle
+import androidx.compose.ui.text.input.TextFieldValue
+import androidx.compose.ui.text.toUpperCase
 import com.orange.ods.R
 import com.orange.ods.compose.component.button.OdsIconButton
 import com.orange.ods.compose.component.content.OdsComponentContent
@@ -120,12 +122,13 @@ object OdsTextField {
     }
 
     class TrailingText(val text: String) : Trailing, OdsComponentContent<Trailing.ExtraParameters>() {
+
         @Composable
         override fun Content(modifier: Modifier) {
-            Text(
+            OdsText(
                 modifier = modifier.padding(end = dimensionResource(id = R.dimen.spacing_s)),
                 text = text,
-                style = OdsTheme.typography.titleM,
+                style = OdsTextStyle.TitleM,
                 color = OdsTextFieldDefaults.trailingTextColor(extraParameters.isTextFieldEmpty, extraParameters.enabled)
             )
         }
@@ -206,14 +209,21 @@ internal fun OdsTextFieldBottomRow(isError: Boolean, errorMessage: String?, char
 }
 
 @Composable
+internal fun styledTextFieldValue(value: TextFieldValue, textStyle: TextStyle): TextFieldValue {
+    return with(value) {
+        if (OdsTheme.typography.isAllCapsTextStyle(textStyle)) copy(annotatedString = annotatedString.toUpperCase()) else this
+    }
+}
+
+@Composable
 private fun OdsTextFieldErrorText(message: String) {
-    Text(
+    OdsText(
         modifier = Modifier.padding(
             start = dimensionResource(id = R.dimen.spacing_m),
             top = dimensionResource(id = R.dimen.spacing_xs)
         ),
         text = message,
-        style = OdsTheme.typography.bodyS,
+        style = OdsTextStyle.BodyS,
         color = OdsTheme.colors.error
     )
 }

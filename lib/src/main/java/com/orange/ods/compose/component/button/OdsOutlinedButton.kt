@@ -16,7 +16,6 @@ import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.material.ButtonDefaults
 import androidx.compose.material.OutlinedButton
-import androidx.compose.material.Text
 import androidx.compose.material.ripple.LocalRippleTheme
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.CompositionLocalProvider
@@ -26,10 +25,12 @@ import androidx.compose.ui.graphics.Color
 import com.orange.ods.compose.component.OdsComposable
 import com.orange.ods.compose.component.utilities.Preview
 import com.orange.ods.compose.component.utilities.UiModePreviews
+import com.orange.ods.compose.text.OdsText
 import com.orange.ods.compose.theme.OdsDisplaySurface
 import com.orange.ods.compose.theme.OdsTheme
 import com.orange.ods.compose.utilities.extension.enable
 import com.orange.ods.theme.colors.OdsColors
+import com.orange.ods.theme.typography.OdsTextStyle
 
 /**
  * <a href="https://system.design.orange.com/0c1af118d/p/06a393-buttons/b/79b091" target="_blank">ODS Buttons</a>.
@@ -79,7 +80,7 @@ fun OdsOutlinedButton(
             )
         ) {
             icon?.Content()
-            Text(text = text.uppercase(), style = OdsTheme.typography.labelL)
+            OdsText(text = text, style = OdsTextStyle.LabelL)
         }
     }
 }

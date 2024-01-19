@@ -24,7 +24,6 @@ import androidx.compose.material.FilterChip
 import androidx.compose.material.Icon
 import androidx.compose.material.LocalContentAlpha
 import androidx.compose.material.LocalContentColor
-import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
@@ -48,8 +47,10 @@ import com.orange.ods.compose.component.OdsComposable
 import com.orange.ods.compose.component.utilities.DisabledInteractionSource
 import com.orange.ods.compose.component.utilities.Preview
 import com.orange.ods.compose.component.utilities.UiModePreviews
+import com.orange.ods.compose.text.OdsText
 import com.orange.ods.compose.theme.OdsTheme
 import com.orange.ods.theme.OdsComponentsConfiguration
+import com.orange.ods.theme.typography.OdsTextStyle
 
 /**
  * <a href="https://system.design.orange.com/0c1af118d/p/81aa91-chips/b/13c40e" target="_blank">ODS Chips</a>.
@@ -135,10 +136,13 @@ private fun OdsFilterChip(
             else -> null
         }
     ) {
-        Text(
+        OdsText(
             text = text,
-            style = OdsTheme.typography.bodyM
-        ) // Don't use an `OdsText` here cause the color of the chip content is already managed by `OdsChipDefaults.filterChipColors()`
+            style = OdsTextStyle.BodyM,
+            // Set color to Unspecified otherwise the colors parameter of FilterChip is overridden
+            // by the default value of the displaySurface parameter of OdsText
+            color = Color.Unspecified
+        )
     }
 }
 

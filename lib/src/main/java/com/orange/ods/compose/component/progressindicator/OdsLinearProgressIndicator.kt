@@ -80,9 +80,9 @@ fun OdsLinearProgressIndicator(
             icon?.Content(modifier = Modifier.padding(end = ButtonDefaults.IconSpacing))
 
             if (label != null) {
-                Text(
+                OdsText(
                     text = label,
-                    style = OdsTheme.typography.bodyS,
+                    style = OdsTextStyle.BodyS,
                     color = OdsTheme.colors.onSurface,
                     overflow = TextOverflow.Ellipsis,
                     maxLines = 1,

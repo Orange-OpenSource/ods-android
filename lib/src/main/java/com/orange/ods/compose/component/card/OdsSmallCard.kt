@@ -31,7 +31,9 @@ import com.orange.ods.compose.component.OdsComposable
 import com.orange.ods.compose.component.utilities.BasicPreviewParameterProvider
 import com.orange.ods.compose.component.utilities.Preview
 import com.orange.ods.compose.component.utilities.UiModePreviews
+import com.orange.ods.compose.text.OdsText
 import com.orange.ods.compose.theme.OdsTheme
+import com.orange.ods.theme.typography.OdsTextStyle
 
 /**
  * <a href="https://system.design.orange.com/0c1af118d/p/272739-cards/b/991690" target="_blank">ODS Card</a>.
@@ -69,9 +71,9 @@ fun OdsSmallCard(
                 modifier = Modifier
                     .padding(dimensionResource(id = R.dimen.spacing_m))
             ) {
-                SmallCardText(text = title, style = OdsTheme.typography.titleL, isClickableCard = onClick != null)
+                SmallCardText(text = title, style = OdsTextStyle.TitleL, isClickableCard = onClick != null)
                 subtitle?.let {
-                    SmallCardText(text = it, style = OdsTheme.typography.titleS, isClickableCard = onClick != null)
+                    SmallCardText(text = it, style = OdsTextStyle.TitleS, isClickableCard = onClick != null)
                 }
             }
         }
@@ -79,8 +81,8 @@ fun OdsSmallCard(
 }
 
 @Composable
-private fun SmallCardText(text: String, style: TextStyle, isClickableCard: Boolean) {
-    Text(
+private fun SmallCardText(text: String, style: OdsTextStyle, isClickableCard: Boolean) {
+    OdsText(
         text = text,
         style = style,
         maxLines = if (isClickableCard) 1 else Int.MAX_VALUE,

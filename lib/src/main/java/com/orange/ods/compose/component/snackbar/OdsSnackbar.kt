@@ -19,7 +19,6 @@ import androidx.compose.material.Snackbar
 import androidx.compose.material.SnackbarData
 import androidx.compose.material.SnackbarHost
 import androidx.compose.material.SnackbarHostState
-import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.dimensionResource
@@ -31,7 +30,9 @@ import com.orange.ods.compose.component.content.OdsComponentContent
 import com.orange.ods.compose.component.utilities.BasicPreviewParameterProvider
 import com.orange.ods.compose.component.utilities.Preview
 import com.orange.ods.compose.component.utilities.UiModePreviews
+import com.orange.ods.compose.text.OdsText
 import com.orange.ods.compose.theme.OdsDisplaySurface
+import com.orange.ods.theme.typography.OdsTextStyle
 
 /**
  * Host for [OdsSnackbar]s to be used in [Scaffold] to properly show, hide and dismiss items based
@@ -117,7 +118,13 @@ private fun OdsSnackbar(
             }
         },
         actionOnNewLine = actionOnNewLine
-    ) { Text(text = message) }
+    ) {
+        OdsText(
+            text = message,
+            style = OdsTextStyle.BodyM,
+            displaySurface = if (isSystemInDarkTheme()) OdsDisplaySurface.Light else OdsDisplaySurface.Dark
+        )
+    }
 }
 
 @UiModePreviews.Default

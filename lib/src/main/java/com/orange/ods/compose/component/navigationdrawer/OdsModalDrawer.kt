@@ -29,7 +29,6 @@ import androidx.compose.material.DrawerState
 import androidx.compose.material.DrawerValue
 import androidx.compose.material.ModalDrawer
 import androidx.compose.material.Surface
-import androidx.compose.material.Text
 import androidx.compose.material.contentColorFor
 import androidx.compose.material.rememberDrawerState
 import androidx.compose.material.ripple.LocalRippleTheme
@@ -167,12 +166,13 @@ object OdsModalDrawer {
                 OdsListItem(
                     text = text,
                     textColor = if (selected) OdsTheme.colors.primaryVariant else OdsTheme.colors.onSurface,
-                    textStyle = if (selected) OdsTheme.typography.titleS else OdsTheme.typography.titleS.copy(fontWeight = FontWeight.Bold),
+                    textStyle = OdsTextStyle.TitleS,
                     modifier = modifier
                         .selectable(selected = selected, onClick = { onClick(this@ListItem) })
                         .let {
                             if (selected) it.background(OdsTheme.colors.primaryVariant.copy(alpha = SelectedItemOpacity)) else it
                         },
+                    textFontWeight = if (selected) null else FontWeight.Bold,
                     leadingIcon = leadingIcon?.let {
                         OdsListItem.LeadingIcon(it, "", if (selected) OdsTheme.colors.primaryVariant else OdsTheme.colors.onSurface)
                     }
@@ -319,8 +319,8 @@ private fun OdsHeaderText(title: String, subtitle: String?, color: Color, modifi
         modifier = modifier.padding(all = dimensionResource(id = R.dimen.spacing_m)),
         verticalArrangement = Arrangement.Center
     ) {
-        Text(text = title, color = color, style = OdsTheme.typography.titleL)
-        subtitle?.let { Text(text = it, color = color, style = OdsTheme.typography.bodyM) }
+        OdsText(text = title, color = color, style = OdsTextStyle.TitleL)
+        subtitle?.let { OdsText(text = it, color = color, style = OdsTextStyle.BodyM) }
     }
 }
 

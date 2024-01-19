@@ -46,7 +46,9 @@ import com.orange.ods.compose.component.content.OdsComponentIcon
 import com.orange.ods.compose.component.content.OdsComponentScopeContent
 import com.orange.ods.compose.component.utilities.Preview
 import com.orange.ods.compose.component.utilities.UiModePreviews
+import com.orange.ods.compose.text.OdsText
 import com.orange.ods.compose.theme.OdsTheme
+import com.orange.ods.theme.typography.OdsTextStyle
 
 private const val MaxBottomNavigationItemCount = 5
 
@@ -145,11 +147,11 @@ object OdsBottomNavigation {
                     enabled = enabled,
                     label = label?.let {
                         {
-                            Text(
+                            OdsText(
                                 text = label,
                                 maxLines = 1,
                                 overflow = TextOverflow.Ellipsis,
-                                style = OdsTheme.typography.bodyS
+                                style = OdsTextStyle.BodyS
                             )
                         }
                     },

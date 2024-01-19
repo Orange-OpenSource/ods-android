@@ -25,7 +25,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - \[Lib\] Move placeholder images from `app` to `lib` ([#531](https://github.com/Orange-OpenSource/ods-android/issues/531))
 - \[Lib\] Stack cards buttons when texts are too long to fit on one line ([#620](https://github.com/Orange-OpenSource/ods-android/issues/620))
 - \[Lib\] Stack `OdsBanner` buttons when texts are too long to fit on one line ([#795](https://github.com/Orange-OpenSource/ods-android/issues/795))
-- \[Lib\] Update `OdsText` APIs ([#783](https://github.com/Orange-OpenSource/ods-android/issues/783))
+- \[Lib\] Update `OdsText` APIs and use `OdsText` instead of `Text` whenever possible ([#783](https://github.com/Orange-OpenSource/ods-android/issues/783))
 
 ### Fixed
 

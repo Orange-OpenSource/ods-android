@@ -22,7 +22,6 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.Slider
 import androidx.compose.material.SliderDefaults
-import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableFloatStateOf
@@ -46,7 +45,9 @@ import com.orange.ods.compose.component.content.OdsComponentIcon
 import com.orange.ods.compose.component.utilities.BasicPreviewParameterProvider
 import com.orange.ods.compose.component.utilities.Preview
 import com.orange.ods.compose.component.utilities.UiModePreviews
+import com.orange.ods.compose.text.OdsText
 import com.orange.ods.compose.theme.OdsTheme
+import com.orange.ods.theme.typography.OdsTextStyle
 
 private const val ActiveTickColorAlpha = 0.4f
 
@@ -251,10 +252,11 @@ private fun SliderLabel(
     label: String,
     minWidth: Dp
 ) {
-    Text(
+    OdsText(
         text = label,
         textAlign = TextAlign.Center,
         color = OdsTheme.colors.onPrimary,
+        style = OdsTextStyle.BodyL,
         modifier = modifier
             .background(
                 color = OdsTheme.colors.primary,

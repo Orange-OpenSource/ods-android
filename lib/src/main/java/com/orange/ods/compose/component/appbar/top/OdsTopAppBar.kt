@@ -13,7 +13,6 @@
 package com.orange.ods.compose.component.appbar.top
 
 import androidx.compose.material.AppBarDefaults
-import androidx.compose.material.Text
 import androidx.compose.material.TopAppBar
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ArrowBack
@@ -28,7 +27,9 @@ import com.orange.ods.compose.component.OdsComposable
 import com.orange.ods.compose.component.menu.OdsDropdownMenu
 import com.orange.ods.compose.component.utilities.Preview
 import com.orange.ods.compose.component.utilities.UiModePreviews
+import com.orange.ods.compose.text.OdsText
 import com.orange.ods.compose.theme.OdsTheme
+import com.orange.ods.theme.typography.OdsTextStyle
 
 /**
  * <a href="https://system.design.orange.com/0c1af118d/p/23e0e6-app-bars/b/620966" class="external" target="_blank">ODS Top App Bar</a>.
@@ -58,7 +59,7 @@ fun OdsTopAppBar(
     elevated: Boolean = true
 ) {
     TopAppBar(
-        title = { Text(text = title, style = OdsTheme.typography.titleL, modifier = Modifier.semantics { traversalIndex = -1f }) },
+        title = { OdsText(text = title, style = OdsTextStyle.TitleL, modifier = Modifier.semantics { traversalIndex = -1f }) },
         modifier = modifier.semantics { isTraversalGroup = true },
         navigationIcon = navigationIcon?.let { { it.Content() } },
         actions = { OdsTopAppBarActions(actions = actions, overflowMenuItems = overflowMenuItems) },

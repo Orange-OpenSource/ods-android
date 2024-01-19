@@ -27,11 +27,13 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.input.TextFieldValue
+import androidx.compose.ui.text.toUpperCase
 import androidx.compose.ui.tooling.preview.PreviewParameter
 import androidx.compose.ui.unit.sp
 import com.orange.ods.R
 import com.orange.ods.compose.component.OdsComposable
 import com.orange.ods.compose.component.button.OdsIconButton
+import com.orange.ods.compose.component.textfield.styledTextFieldValue
 import com.orange.ods.compose.component.utilities.BasicPreviewParameterProvider
 import com.orange.ods.compose.component.utilities.Preview
 import com.orange.ods.compose.component.utilities.UiModePreviews
@@ -55,8 +57,9 @@ internal fun OdsSearchTextField(
     placeholder: String,
     modifier: Modifier = Modifier,
 ) {
+    val textStyle = OdsTheme.typography.titleL
     TextField(
-        value = value,
+        value = styledTextFieldValue(value = value, textStyle = textStyle),
         onValueChange = onValueChange,
         placeholder = {
             Text(
@@ -66,7 +69,7 @@ internal fun OdsSearchTextField(
             )
         },
         modifier = modifier,
-        textStyle = OdsTheme.typography.titleL,
+        textStyle = textStyle,
         trailingIcon = {
             OdsIconButton(
                 onClick = { onValueChange(TextFieldValue("")) },
