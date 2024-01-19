@@ -50,8 +50,8 @@ import com.orange.ods.app.R
 import com.orange.ods.app.ui.utilities.composable.OnResumeEffect
 import com.orange.ods.compose.component.bottomsheet.OdsBottomSheetScaffold
 import com.orange.ods.compose.text.OdsText
-import com.orange.ods.compose.text.OdsTextStyle
 import com.orange.ods.compose.theme.OdsTheme
+import com.orange.ods.theme.typography.OdsTextStyle
 import kotlinx.coroutines.CancellationException
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.launch

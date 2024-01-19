@@ -22,7 +22,7 @@ import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.stringResource
 import com.orange.ods.compose.component.button.OdsButton
 import com.orange.ods.compose.text.OdsText
-import com.orange.ods.compose.text.OdsTextStyle
+import com.orange.ods.theme.typography.OdsTextStyle
 
 @Composable
 fun ComponentLaunchContentColumn(@StringRes textRes: Int, @StringRes buttonLabelRes: Int, onButtonClick: () -> Unit) {

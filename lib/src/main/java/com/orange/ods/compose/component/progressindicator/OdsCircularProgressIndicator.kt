@@ -26,8 +26,8 @@ import com.orange.ods.compose.component.utilities.BasicPreviewParameterProvider
 import com.orange.ods.compose.component.utilities.Preview
 import com.orange.ods.compose.component.utilities.UiModePreviews
 import com.orange.ods.compose.text.OdsText
-import com.orange.ods.compose.text.OdsTextStyle
 import com.orange.ods.extension.orElse
+import com.orange.ods.theme.typography.OdsTextStyle
 
 
 /**

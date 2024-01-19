@@ -39,11 +39,11 @@ import com.orange.ods.compose.component.listitem.OdsListItem
 import com.orange.ods.compose.component.utilities.Preview
 import com.orange.ods.compose.component.utilities.UiModePreviews
 import com.orange.ods.compose.text.OdsText
-import com.orange.ods.compose.text.OdsTextStyle
 import com.orange.ods.module.about.R
 import com.orange.ods.module.about.ui.configuration.OdsAboutConfiguration
 import com.orange.ods.module.about.ui.configuration.OdsAboutFileMenuItem
 import com.orange.ods.module.about.ui.configuration.OdsAboutShareData
+import com.orange.ods.theme.typography.OdsTextStyle
 
 private const val ImageHeight = 249
 

@@ -53,12 +53,12 @@ import com.orange.ods.app.ui.utilities.composable.Title
 import com.orange.ods.app.ui.utilities.extension.getStringName
 import com.orange.ods.compose.component.button.OdsButton
 import com.orange.ods.compose.text.OdsText
-import com.orange.ods.compose.text.OdsTextStyle
 import com.orange.ods.compose.theme.OdsTheme
 import com.orange.ods.theme.guideline.GuidelineColor
 import com.orange.ods.theme.guideline.GuidelineColorType
 import com.orange.ods.theme.guideline.toHexString
 import com.orange.ods.theme.guideline.toRgbString
+import com.orange.ods.theme.typography.OdsTextStyle
 
 @Composable
 fun GuidelineColorScreen() {

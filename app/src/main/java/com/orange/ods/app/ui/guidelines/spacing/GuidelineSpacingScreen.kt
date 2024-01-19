@@ -36,7 +36,7 @@ import com.orange.ods.app.ui.utilities.composable.DetailScreenHeader
 import com.orange.ods.app.ui.utilities.extension.isOrange
 import com.orange.ods.compose.component.listitem.OdsListItem
 import com.orange.ods.compose.text.OdsText
-import com.orange.ods.compose.text.OdsTextStyle
+import com.orange.ods.theme.typography.OdsTextStyle
 import java.text.DecimalFormat
 import java.text.DecimalFormatSymbols
 import java.util.Locale

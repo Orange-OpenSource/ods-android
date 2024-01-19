@@ -45,7 +45,7 @@ import com.orange.ods.compose.OdsComposable
 import com.orange.ods.compose.component.listitem.OdsListItem
 import com.orange.ods.compose.component.menu.OdsDropdownMenu
 import com.orange.ods.compose.text.OdsText
-import com.orange.ods.compose.text.OdsTextStyle
+import com.orange.ods.theme.typography.OdsTextStyle
 
 @OptIn(ExperimentalMaterialApi::class)
 @Composable

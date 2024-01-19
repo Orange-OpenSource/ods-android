@@ -26,7 +26,7 @@ import androidx.compose.ui.semantics.semantics
 import com.orange.ods.app.R
 import com.orange.ods.compose.component.button.OdsIconButton
 import com.orange.ods.compose.text.OdsText
-import com.orange.ods.compose.text.OdsTextStyle
+import com.orange.ods.theme.typography.OdsTextStyle
 
 @Composable
 fun ComponentCountRow(

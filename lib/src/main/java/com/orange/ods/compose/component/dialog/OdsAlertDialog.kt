@@ -22,7 +22,7 @@ import com.orange.ods.compose.component.content.OdsComponentContent
 import com.orange.ods.compose.component.utilities.Preview
 import com.orange.ods.compose.component.utilities.UiModePreviews
 import com.orange.ods.compose.text.OdsText
-import com.orange.ods.compose.text.OdsTextStyle
+import com.orange.ods.theme.typography.OdsTextStyle
 
 /**
  * <a href="https://system.design.orange.com/0c1af118d/p/02ae02-dialogs/b/81772e" class="external" target="_blank">ODS alert dialog</a>.

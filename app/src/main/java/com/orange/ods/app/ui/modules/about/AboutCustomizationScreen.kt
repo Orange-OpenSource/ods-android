@@ -30,7 +30,7 @@ import com.orange.ods.app.ui.modules.ModuleDetailColumn
 import com.orange.ods.app.ui.utilities.composable.Subtitle
 import com.orange.ods.compose.component.chip.OdsFilterChip
 import com.orange.ods.compose.text.OdsText
-import com.orange.ods.compose.text.OdsTextStyle
+import com.orange.ods.theme.typography.OdsTextStyle
 
 enum class AboutCustomizationAppSection(@StringRes val labelResId: Int) {
     Version(R.string.module_about_customization_app_section_version),

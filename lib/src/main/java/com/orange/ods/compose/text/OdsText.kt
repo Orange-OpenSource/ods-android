@@ -22,6 +22,7 @@ import androidx.compose.ui.text.style.TextOverflow
 import com.orange.ods.compose.theme.OdsDisplaySurface
 import com.orange.ods.compose.theme.OdsTheme
 import com.orange.ods.compose.utilities.extension.enable
+import com.orange.ods.theme.typography.OdsTextStyle
 
 @Composable
 fun OdsText(
@@ -37,8 +38,9 @@ fun OdsText(
     minLines: Int = 1,
     onTextLayout: ((TextLayoutResult) -> Unit)? = null,
 ) {
+    val textStyle = textStyle(style = style)
     Text(
-        text = if (OdsTheme.typography.isAllCapsTextStyle(style.value)) text.uppercase() else text,
+        text = if (OdsTheme.typography.isAllCapsTextStyle(textStyle)) text.uppercase() else text,
         modifier = modifier,
         color = displaySurface.themeColors.onSurface.enable(enabled = enabled),
         textAlign = textAlign,
@@ -47,38 +49,24 @@ fun OdsText(
         maxLines = maxLines,
         minLines = minLines,
         onTextLayout = onTextLayout,
-        style = style.value
+        style = textStyle
     )
 }
 
-enum class OdsTextStyle {
-
-    HeadlineL,
-    HeadlineS,
-    TitleL,
-    TitleM,
-    TitleS,
-    BodyL,
-    BodyM,
-    BodyS,
-    LabelL,
-    LabelS;
-
-    internal val value: TextStyle
-        @Composable
-        get() {
-            return when (this) {
-                HeadlineL -> OdsTheme.typography.headlineL
-                HeadlineS -> OdsTheme.typography.headlineS
-                TitleL -> OdsTheme.typography.titleL
-                TitleM -> OdsTheme.typography.titleM
-                TitleS -> OdsTheme.typography.titleS
-                BodyL -> OdsTheme.typography.bodyL
-                BodyM -> OdsTheme.typography.bodyM
-                BodyS -> OdsTheme.typography.bodyS
-                LabelL -> OdsTheme.typography.labelL
-                LabelS -> OdsTheme.typography.labelS
-            }
+@Composable
+private fun textStyle(style: OdsTextStyle): TextStyle {
+    return with(OdsTheme.typography) {
+        when (style) {
+            OdsTextStyle.HeadlineL -> headlineL
+            OdsTextStyle.HeadlineS -> headlineS
+            OdsTextStyle.TitleL -> titleL
+            OdsTextStyle.TitleM -> titleM
+            OdsTextStyle.TitleS -> titleS
+            OdsTextStyle.BodyL -> bodyL
+            OdsTextStyle.BodyM -> bodyM
+            OdsTextStyle.BodyS -> bodyS
+            OdsTextStyle.LabelL -> labelL
+            OdsTextStyle.LabelS -> labelS
         }
+    }
 }
-

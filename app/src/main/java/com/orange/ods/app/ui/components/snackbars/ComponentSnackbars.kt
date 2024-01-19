@@ -41,7 +41,7 @@ import com.orange.ods.compose.OdsComposable
 import com.orange.ods.compose.component.listitem.OdsListItem
 import com.orange.ods.compose.component.snackbar.OdsSnackbarHost
 import com.orange.ods.compose.text.OdsText
-import com.orange.ods.compose.text.OdsTextStyle
+import com.orange.ods.theme.typography.OdsTextStyle
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.launch
 
