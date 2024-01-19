@@ -15,7 +15,6 @@ package com.orange.ods.compose.theme
 import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Shapes
-import androidx.compose.material.Surface
 import androidx.compose.material.ripple.LocalRippleTheme
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.CompositionLocalProvider
@@ -97,7 +96,7 @@ fun OdsTheme(
         MaterialTheme(
             colors = colors.materialColors
         ) {
-            Surface(color = colors.background, content = content)
+            content()
         }
     }
 }
