@@ -70,7 +70,8 @@ import com.orange.ods.compose.component.divider.OdsDivider
 import com.orange.ods.compose.component.utilities.BasicPreviewParameterProvider
 import com.orange.ods.compose.component.utilities.Preview
 import com.orange.ods.compose.component.utilities.UiModePreviews
-import com.orange.ods.compose.text.OdsTextBodyS
+import com.orange.ods.compose.text.OdsText
+import com.orange.ods.compose.text.OdsTextStyle
 import com.orange.ods.compose.theme.OdsTheme
 import com.orange.ods.extension.isNotNullOrBlank
 import com.orange.ods.extension.orElse
@@ -519,7 +520,7 @@ object OdsListItem {
 
         @Composable
         override fun Content(modifier: Modifier) {
-            OdsTextBodyS(modifier = modifier, text = text)
+            OdsText(modifier = modifier, text = text, style = OdsTextStyle.BodyS)
         }
     }
 
@@ -582,10 +583,30 @@ private val previewParameterValues: List<OdsListItemPreviewParameter>
 
         return listOf(
             OdsListItemPreviewParameter(null, OdsListItem.SecondaryTextLineCount.One, null, null),
-            OdsListItemPreviewParameter(longSecondaryText,  OdsListItem.SecondaryTextLineCount.One, null, OdsListItem.TrailingCheckbox::class.java),
-            OdsListItemPreviewParameter(shortSecondaryText,  OdsListItem.SecondaryTextLineCount.One, OdsListItem.LeadingIcon.Type.Icon, OdsListItem.TrailingIcon::class.java),
-            OdsListItemPreviewParameter(longSecondaryText,  OdsListItem.SecondaryTextLineCount.Two, OdsListItem.LeadingIcon.Type.SquareImage, OdsListItem.TrailingSwitch::class.java),
-            OdsListItemPreviewParameter(longSecondaryText,  OdsListItem.SecondaryTextLineCount.Two, OdsListItem.LeadingIcon.Type.WideImage, OdsListItem.TrailingCaption::class.java),
-            OdsListItemPreviewParameter(shortSecondaryText,  OdsListItem.SecondaryTextLineCount.One, OdsListItem.LeadingIcon.Type.CircularImage, OdsListItem.TrailingRadioButton::class.java)
+            OdsListItemPreviewParameter(longSecondaryText, OdsListItem.SecondaryTextLineCount.One, null, OdsListItem.TrailingCheckbox::class.java),
+            OdsListItemPreviewParameter(
+                shortSecondaryText,
+                OdsListItem.SecondaryTextLineCount.One,
+                OdsListItem.LeadingIcon.Type.Icon,
+                OdsListItem.TrailingIcon::class.java
+            ),
+            OdsListItemPreviewParameter(
+                longSecondaryText,
+                OdsListItem.SecondaryTextLineCount.Two,
+                OdsListItem.LeadingIcon.Type.SquareImage,
+                OdsListItem.TrailingSwitch::class.java
+            ),
+            OdsListItemPreviewParameter(
+                longSecondaryText,
+                OdsListItem.SecondaryTextLineCount.Two,
+                OdsListItem.LeadingIcon.Type.WideImage,
+                OdsListItem.TrailingCaption::class.java
+            ),
+            OdsListItemPreviewParameter(
+                shortSecondaryText,
+                OdsListItem.SecondaryTextLineCount.One,
+                OdsListItem.LeadingIcon.Type.CircularImage,
+                OdsListItem.TrailingRadioButton::class.java
+            )
         )
     }

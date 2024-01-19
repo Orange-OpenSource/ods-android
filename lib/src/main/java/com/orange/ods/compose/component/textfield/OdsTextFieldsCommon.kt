@@ -33,7 +33,8 @@ import com.orange.ods.compose.component.button.OdsIconButton
 import com.orange.ods.compose.component.content.OdsComponentContent
 import com.orange.ods.compose.component.content.OdsComponentIcon
 import com.orange.ods.compose.component.utilities.BasicPreviewParameterProvider
-import com.orange.ods.compose.text.OdsTextBodyS
+import com.orange.ods.compose.text.OdsText
+import com.orange.ods.compose.text.OdsTextStyle
 import com.orange.ods.compose.theme.OdsTheme
 
 /**
@@ -54,11 +55,12 @@ object OdsTextField {
 
         @Composable
         override fun Content(modifier: Modifier) {
-            OdsTextBodyS(
+            OdsText(
                 modifier = modifier
                     .padding(top = dimensionResource(id = R.dimen.spacing_xs), end = dimensionResource(id = R.dimen.spacing_m)),
                 text = "$characterCount/$maxCharacterCount",
-                enabled = enabled
+                enabled = enabled,
+                style = OdsTextStyle.BodyS
             )
         }
     }

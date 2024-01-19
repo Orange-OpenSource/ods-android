@@ -28,19 +28,20 @@ import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.orange.ods.app.R
-import com.orange.ods.compose.text.OdsTextHeadlineS
-import com.orange.ods.compose.text.OdsTextTitleM
+import com.orange.ods.compose.text.OdsText
+import com.orange.ods.compose.text.OdsTextStyle
 import com.orange.ods.compose.theme.OdsDisplaySurface
 import com.orange.ods.compose.theme.OdsTheme
 
 @Composable
 fun Title(@StringRes textRes: Int, modifier: Modifier = Modifier, horizontalPadding: Boolean = false, topPadding: Boolean = false) {
-    OdsTextHeadlineS(
+    OdsText(
         text = stringResource(textRes),
         modifier = modifier
             .fillMaxWidth()
             .padding(top = if (topPadding) dimensionResource(com.orange.ods.R.dimen.spacing_xl) else 0.dp)
-            .padding(horizontal = if (horizontalPadding) dimensionResource(com.orange.ods.R.dimen.screen_horizontal_margin) else 0.dp)
+            .padding(horizontal = if (horizontalPadding) dimensionResource(com.orange.ods.R.dimen.screen_horizontal_margin) else 0.dp),
+        style = OdsTextStyle.HeadlineS
     )
 }
 
@@ -51,14 +52,15 @@ fun Subtitle(@StringRes textRes: Int, displaySurface: OdsDisplaySurface = OdsDis
         OdsDisplaySurface.Dark -> OdsTheme.darkThemeColors.surface
         OdsDisplaySurface.Light -> OdsTheme.lightThemeColors.surface
     }
-    OdsTextTitleM(
+    OdsText(
         text = stringResource(textRes),
         modifier = Modifier
             .fillMaxWidth()
             .background(backgroundColor)
             .padding(top = dimensionResource(id = com.orange.ods.R.dimen.spacing_m))
             .padding(horizontal = if (horizontalPadding) dimensionResource(com.orange.ods.R.dimen.screen_horizontal_margin) else 0.dp),
-        displaySurface = displaySurface
+        displaySurface = displaySurface,
+        style = OdsTextStyle.TitleM
     )
 }
 

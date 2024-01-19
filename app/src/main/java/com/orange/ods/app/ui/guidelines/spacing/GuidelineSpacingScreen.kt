@@ -35,7 +35,8 @@ import com.orange.ods.app.ui.utilities.DrawableManager
 import com.orange.ods.app.ui.utilities.composable.DetailScreenHeader
 import com.orange.ods.app.ui.utilities.extension.isOrange
 import com.orange.ods.compose.component.listitem.OdsListItem
-import com.orange.ods.compose.text.OdsTextTitleM
+import com.orange.ods.compose.text.OdsText
+import com.orange.ods.compose.text.OdsTextStyle
 import java.text.DecimalFormat
 import java.text.DecimalFormatSymbols
 import java.util.Locale
@@ -53,11 +54,12 @@ fun GuidelineSpacingScreen() {
             )
         }
         item {
-            OdsTextTitleM(
+            OdsText(
                 modifier = Modifier
                     .padding(horizontal = dimensionResource(id = com.orange.ods.R.dimen.screen_horizontal_margin))
                     .padding(vertical = dimensionResource(id = com.orange.ods.R.dimen.spacing_m)),
-                text = stringResource(id = R.string.guideline_spacing_subtitle)
+                text = stringResource(id = R.string.guideline_spacing_subtitle),
+                style = OdsTextStyle.TitleM
             )
         }
         items(Spacing.entries) { spacing ->

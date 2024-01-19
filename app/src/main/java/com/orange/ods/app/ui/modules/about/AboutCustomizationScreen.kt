@@ -29,7 +29,8 @@ import com.orange.ods.app.ui.modules.Module
 import com.orange.ods.app.ui.modules.ModuleDetailColumn
 import com.orange.ods.app.ui.utilities.composable.Subtitle
 import com.orange.ods.compose.component.chip.OdsFilterChip
-import com.orange.ods.compose.text.OdsTextBodyM
+import com.orange.ods.compose.text.OdsText
+import com.orange.ods.compose.text.OdsTextStyle
 
 enum class AboutCustomizationAppSection(@StringRes val labelResId: Int) {
     Version(R.string.module_about_customization_app_section_version),
@@ -51,10 +52,10 @@ private const val MaxLinkItemCount = 10
 fun AboutCustomizationScreen(navigateToAboutDemo: () -> Unit, viewModel: AboutCustomizationViewModel) {
     with(viewModel) {
         ModuleDetailColumn(module = Module.About, onViewDemoButtonClick = navigateToAboutDemo) {
-
-            OdsTextBodyM(
+            OdsText(
                 modifier = Modifier.padding(top = dimensionResource(id = com.orange.ods.R.dimen.spacing_s)),
-                text = stringResource(id = R.string.module_about_customization)
+                text = stringResource(id = R.string.module_about_customization),
+                style = OdsTextStyle.BodyM
             )
 
             Subtitle(textRes = R.string.module_about_customization_app_sections)

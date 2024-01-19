@@ -46,7 +46,8 @@ import com.orange.ods.compose.component.chip.OdsChip
 import com.orange.ods.compose.component.chip.OdsChoiceChip
 import com.orange.ods.compose.component.chip.OdsChoiceChipsFlowRow
 import com.orange.ods.compose.component.listitem.OdsListItem
-import com.orange.ods.compose.text.OdsTextBodyM
+import com.orange.ods.compose.text.OdsText
+import com.orange.ods.compose.text.OdsTextStyle
 
 @OptIn(ExperimentalMaterialApi::class)
 @Composable
@@ -95,9 +96,10 @@ fun ChipTypeDemo(chipType: ChipType, content: @Composable () -> Unit) {
                 vertical = dimensionResource(id = com.orange.ods.R.dimen.screen_vertical_margin)
             )
     ) {
-        OdsTextBodyM(
+        OdsText(
             modifier = Modifier.padding(bottom = dimensionResource(id = com.orange.ods.R.dimen.spacing_s)),
-            text = stringResource(id = chipType.descriptionRes)
+            text = stringResource(id = chipType.descriptionRes),
+            style = OdsTextStyle.BodyM
         )
         content()
     }

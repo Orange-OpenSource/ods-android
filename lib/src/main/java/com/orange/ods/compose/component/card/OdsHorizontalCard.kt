@@ -34,8 +34,8 @@ import com.orange.ods.compose.component.divider.OdsDivider
 import com.orange.ods.compose.component.utilities.BasicPreviewParameterProvider
 import com.orange.ods.compose.component.utilities.Preview
 import com.orange.ods.compose.component.utilities.UiModePreviews
-import com.orange.ods.compose.text.OdsTextTitleL
-import com.orange.ods.compose.text.OdsTextTitleS
+import com.orange.ods.compose.text.OdsText
+import com.orange.ods.compose.text.OdsTextStyle
 import com.orange.ods.compose.theme.OdsTheme
 
 /**
@@ -108,7 +108,7 @@ fun OdsHorizontalCard(
                 bottom.linkTo(imageRef.bottom, margin = mediumSpacing)
             }
 
-            OdsTextTitleL(
+            OdsText(
                 text = title,
                 modifier = Modifier.constrainAs(titleRef) {
                     when (imagePosition) {
@@ -122,17 +122,19 @@ fun OdsHorizontalCard(
                         }
                     }
                     width = Dimension.fillToConstraints
-                }
+                },
+                style = OdsTextStyle.TitleL
             )
 
-            OdsTextTitleS(
+            OdsText(
                 text = subtitle.orEmpty(),
                 modifier = Modifier.constrainAs(subtitleRef) {
                     start.linkTo(titleRef.start)
                     end.linkTo(titleRef.end)
                     width = Dimension.fillToConstraints
                     visibility = if (subtitle != null) Visibility.Visible else Visibility.Gone
-                }
+                },
+                style = OdsTextStyle.TitleS
             )
 
             Text(

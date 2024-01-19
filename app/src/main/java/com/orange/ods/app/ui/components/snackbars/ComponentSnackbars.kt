@@ -40,7 +40,8 @@ import com.orange.ods.app.ui.utilities.composable.TechnicalText
 import com.orange.ods.compose.OdsComposable
 import com.orange.ods.compose.component.listitem.OdsListItem
 import com.orange.ods.compose.component.snackbar.OdsSnackbarHost
-import com.orange.ods.compose.text.OdsTextBodyM
+import com.orange.ods.compose.text.OdsText
+import com.orange.ods.compose.text.OdsTextStyle
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.launch
 
@@ -96,12 +97,13 @@ fun ComponentSnackbars() {
                 modifier = Modifier.padding(horizontal = dimensionResource(id = com.orange.ods.R.dimen.screen_horizontal_margin)),
                 contentBackground = false
             ) {
-                OdsTextBodyM(
+                OdsText(
                     modifier = Modifier.padding(
                         top = dimensionResource(id = com.orange.ods.R.dimen.spacing_s),
                         bottom = dimensionResource(id = com.orange.ods.R.dimen.spacing_xs)
                     ),
-                    text = stringResource(id = R.string.component_snackbar_code_first_step)
+                    text = stringResource(id = R.string.component_snackbar_code_first_step),
+                    style = OdsTextStyle.BodyM
                 )
                 CodeBackgroundColumn {
                     FunctionCallCode(
@@ -119,12 +121,13 @@ fun ComponentSnackbars() {
                     }
                 }
 
-                OdsTextBodyM(
+                OdsText(
                     modifier = Modifier.padding(
                         top = dimensionResource(id = com.orange.ods.R.dimen.spacing_s),
                         bottom = dimensionResource(id = com.orange.ods.R.dimen.spacing_xs)
                     ),
-                    text = stringResource(id = R.string.component_snackbar_code_second_step)
+                    text = stringResource(id = R.string.component_snackbar_code_second_step),
+                    style = OdsTextStyle.BodyM
                 )
                 CodeBackgroundColumn {
                     TechnicalText(text = "coroutineScope.launch {")

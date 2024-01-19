@@ -27,9 +27,8 @@ import androidx.compose.ui.res.dimensionResource
 import androidx.lifecycle.ViewModelStoreOwner
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.orange.ods.compose.component.divider.OdsDivider
-import com.orange.ods.compose.text.OdsTextBodyL
-import com.orange.ods.compose.text.OdsTextBodyS
-import com.orange.ods.compose.text.OdsTextTitleM
+import com.orange.ods.compose.text.OdsText
+import com.orange.ods.compose.text.OdsTextStyle
 
 @Composable
 internal fun OdsAboutAppNewsScreen(@RawRes fileRes: Int, viewModel: OdsAboutAppNewsViewModel = viewModel(LocalContext.current as ViewModelStoreOwner)) {
@@ -46,15 +45,16 @@ internal fun OdsAboutAppNewsScreen(@RawRes fileRes: Int, viewModel: OdsAboutAppN
                     .padding(horizontal = dimensionResource(id = com.orange.ods.R.dimen.spacing_m))
                     .padding(top = dimensionResource(id = com.orange.ods.R.dimen.spacing_m))
             ) {
-                OdsTextTitleM(modifier = Modifier.weight(1f), text = news.version)
-                OdsTextBodyS(text = news.date)
+                OdsText(modifier = Modifier.weight(1f), text = news.version, style = OdsTextStyle.TitleM)
+                OdsText(text = news.date, style = OdsTextStyle.BodyS)
             }
-            OdsTextBodyL(
+            OdsText(
                 modifier = Modifier
                     .fillMaxWidth()
                     .padding(horizontal = dimensionResource(id = com.orange.ods.R.dimen.spacing_m))
                     .padding(top = dimensionResource(id = com.orange.ods.R.dimen.spacing_s)),
-                text = news.news
+                text = news.news,
+                style = OdsTextStyle.BodyL
             )
             if (index + 1 < viewModel.appNews.size) {
                 OdsDivider(modifier = Modifier.padding(top = dimensionResource(id = com.orange.ods.R.dimen.spacing_m)))

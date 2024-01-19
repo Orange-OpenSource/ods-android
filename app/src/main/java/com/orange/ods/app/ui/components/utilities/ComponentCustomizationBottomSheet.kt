@@ -49,7 +49,8 @@ import androidx.compose.ui.unit.dp
 import com.orange.ods.app.R
 import com.orange.ods.app.ui.utilities.composable.OnResumeEffect
 import com.orange.ods.compose.component.bottomsheet.OdsBottomSheetScaffold
-import com.orange.ods.compose.text.OdsTextTitleM
+import com.orange.ods.compose.text.OdsText
+import com.orange.ods.compose.text.OdsTextStyle
 import com.orange.ods.compose.theme.OdsTheme
 import kotlinx.coroutines.CancellationException
 import kotlinx.coroutines.CoroutineScope
@@ -110,9 +111,10 @@ fun ComponentCustomizationBottomSheetScaffold(
                     contentDescription = null,
                     tint = OdsTheme.colors.onSurface
                 )
-                OdsTextTitleM(
+                OdsText(
                     modifier = Modifier.padding(start = dimensionResource(id = com.orange.ods.R.dimen.spacing_m)),
-                    text = stringResource(id = titleResId)
+                    text = stringResource(id = titleResId),
+                    style = OdsTextStyle.TitleM
                 )
             }
 

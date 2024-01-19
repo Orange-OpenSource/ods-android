@@ -59,7 +59,8 @@ import com.orange.ods.compose.component.listitem.OdsListItem
 import com.orange.ods.compose.component.utilities.BasicPreviewParameterProvider
 import com.orange.ods.compose.component.utilities.Preview
 import com.orange.ods.compose.component.utilities.UiModePreviews
-import com.orange.ods.compose.text.OdsTextBodyM
+import com.orange.ods.compose.text.OdsText
+import com.orange.ods.compose.text.OdsTextStyle
 import com.orange.ods.compose.theme.OdsTheme
 
 private val DrawerHeaderMinHeight = 167.dp
@@ -129,9 +130,10 @@ object OdsModalDrawer {
         override fun Content(modifier: Modifier) {
             Column(modifier = modifier) {
                 OdsDivider()
-                OdsTextBodyM(
+                OdsText(
                     modifier = Modifier.padding(top = dimensionResource(id = R.dimen.spacing_m), start = dimensionResource(id = R.dimen.spacing_m)),
-                    text = label
+                    text = label,
+                    style = OdsTextStyle.BodyM
                 )
             }
         }
