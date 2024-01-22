@@ -109,7 +109,6 @@ fun ButtonsText(customizationState: ButtonCustomizationState) {
                                 if (hasLeadingIcon) drawableAppAttr("icon", "icon")
                                 if (!isEnabled) disabledAppAttr()
                                 if (textButtonStyle.value != OdsTextButton.Style.Default) appAttr("odsTextButtonStyle", textButtonStyle.value.getXmlEnumValue())
-                                appAttr("odsDisplaySurface", "light")
                             }
                         )
                     }
@@ -156,7 +155,7 @@ private fun TextButton(
                 this.displaySurface = displaySurface
                 root.layoutParams = ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT)
                 val width = if (fullScreenWidth) FrameLayout.LayoutParams.MATCH_PARENT else FrameLayout.LayoutParams.WRAP_CONTENT
-                odsTextbutton.layoutParams = FrameLayout.LayoutParams(width, FrameLayout.LayoutParams.WRAP_CONTENT)
+                odsTextButton.layoutParams = FrameLayout.LayoutParams(width, FrameLayout.LayoutParams.WRAP_CONTENT)
             }
         )
     }

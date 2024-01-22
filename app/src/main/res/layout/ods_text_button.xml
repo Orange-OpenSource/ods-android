@@ -41,7 +41,7 @@
         android:layout_height="wrap_content">
 
         <com.orange.ods.xml.component.button.OdsTextButton
-            android:id="@+id/ods_textbutton"
+            android:id="@+id/ods_text_button"
             android:layout_height="wrap_content"
             android:layout_width="wrap_content"
             app:icon="@{icon}"
@@ -52,7 +52,7 @@
 
         <!-- Invisible OdsTextButton used for tests -->
         <com.orange.ods.xml.component.button.OdsTextButton
-            android:id="@+id/ods_textbutton_test"
+            android:id="@+id/ods_text_button_test"
             android:visibility="gone"
             android:layout_height="wrap_content"
             android:layout_width="wrap_content"

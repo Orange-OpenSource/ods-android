@@ -93,7 +93,6 @@ fun ButtonsOutlined(customizationState: ButtonCustomizationState) {
                                 appAttr("text", buttonText)
                                 if (hasLeadingIcon) drawableAppAttr("icon", "icon")
                                 if (!isEnabled) disabledAppAttr()
-                                appAttr("odsDisplaySurface", "light")
                             }
                         )
                     }

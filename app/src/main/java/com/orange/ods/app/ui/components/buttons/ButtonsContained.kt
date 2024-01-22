@@ -112,7 +112,6 @@ fun ButtonsContained(customizationState: ButtonCustomizationState) {
                                 if (hasLeadingIcon) drawableAppAttr("icon", "icon")
                                 if (!isEnabled) disabledAppAttr()
                                 if (buttonStyle.value != OdsButton.Style.Default) appAttr("odsButtonStyle", buttonStyle.value.getXmlEnumValue())
-                                appAttr("odsDisplaySurface", "light")
                             }
                         )
                     }
