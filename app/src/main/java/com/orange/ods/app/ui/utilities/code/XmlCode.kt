@@ -44,6 +44,7 @@ object PredefinedXmlAttribute {
 
     open class AppAttr(name: String, value: String) : XmlAttribute("app:$name", value)
     class DrawableAppAttr(name: String, drawableName: String) : AppAttr(name, "@drawable/$drawableName")
+    class DisabledAppAttr : AppAttr("enabled", "false")
 }
 
 @DslMarker
@@ -61,10 +62,10 @@ class XmlAttributesBuilder {
     fun layoutWidth(matchParent: Boolean = false) = add(PredefinedXmlAttribute.LayoutWidth(matchParent))
     fun appAttr(name: String, value: String) = add(PredefinedXmlAttribute.AppAttr(name, value))
     fun drawableAppAttr(name: String, drawableName: String) = add(PredefinedXmlAttribute.DrawableAppAttr(name, drawableName))
+    fun disabledAppAttr() = add(PredefinedXmlAttribute.DisabledAppAttr())
 
     @Composable
     fun Build() = xmlAttributes.forEach { it.code() }
 }
-
 
 private fun getLayoutParamValue(matchParent: Boolean) = if (matchParent) "match_parent" else "wrap_content"

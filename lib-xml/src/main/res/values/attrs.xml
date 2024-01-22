@@ -33,6 +33,7 @@
         <attr name="icon" />
         <attr name="text" />
         <attr name="enabled" />
+        <!-- BE CAREFUL: If this enum change, don't forget to update associated extension -->
         <attr name="odsButtonStyle" format="enum">
             <enum name="standard" value="0" />
             <enum name="primary" value="1" />
