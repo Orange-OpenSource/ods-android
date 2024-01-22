@@ -31,8 +31,10 @@ import androidx.compose.ui.res.stringResource
 import com.orange.ods.app.R
 import com.orange.ods.app.databinding.OdsOutlinedButtonBinding
 import com.orange.ods.app.ui.UiFramework
+import com.orange.ods.app.ui.utilities.code.CodeBackgroundColumn
 import com.orange.ods.app.ui.utilities.code.CodeImplementationColumn
 import com.orange.ods.app.ui.utilities.code.FunctionCallCode
+import com.orange.ods.app.ui.utilities.code.XmlViewTag
 import com.orange.ods.compose.OdsComposable
 import com.orange.ods.compose.component.button.OdsButton
 import com.orange.ods.compose.component.button.OdsOutlinedButton
@@ -41,47 +43,75 @@ import com.orange.ods.compose.theme.OdsDisplaySurface
 @Composable
 fun ButtonsOutlined(customizationState: ButtonCustomizationState) {
     with(customizationState) {
+        val buttonText = stringResource(if (isEnabled) R.string.component_state_enabled else R.string.component_state_disabled)
+
         Column(
             modifier = Modifier
                 .verticalScroll(rememberScrollState())
                 .padding(vertical = dimensionResource(id = com.orange.ods.R.dimen.screen_vertical_margin))
         ) {
 
-            OutlinedButton(leadingIcon = hasLeadingIcon, enabled = isEnabled, fullScreenWidth = hasFullScreenWidth)
+            OutlinedButton(text = buttonText, leadingIcon = hasLeadingIcon, enabled = isEnabled, fullScreenWidth = hasFullScreenWidth)
 
             Spacer(modifier = Modifier.padding(top = dimensionResource(com.orange.ods.R.dimen.spacing_s)))
 
             InvertedBackgroundColumn {
-                OutlinedButton(leadingIcon = hasLeadingIcon, enabled = isEnabled, fullScreenWidth = hasFullScreenWidth, displaySurface = displaySurface)
+                OutlinedButton(
+                    text = buttonText,
+                    leadingIcon = hasLeadingIcon,
+                    enabled = isEnabled,
+                    fullScreenWidth = hasFullScreenWidth,
+                    displaySurface = displaySurface
+                )
             }
 
-            CodeImplementationColumn(modifier = Modifier.padding(horizontal = dimensionResource(id = com.orange.ods.R.dimen.screen_horizontal_margin))) {
-                FunctionCallCode(
-                    name = OdsComposable.OdsOutlinedButton.name,
-                    exhaustiveParameters = false,
-                    parameters = {
-                        if (hasFullScreenWidth) fillMaxWidth()
-                        if (hasLeadingIcon) {
-                            classInstance<OdsButton.Icon>("icon") {
-                                painter()
+            CodeImplementationColumn(modifier = Modifier.padding(horizontal = dimensionResource(id = com.orange.ods.R.dimen.screen_horizontal_margin)),
+                composeContent = {
+                    FunctionCallCode(
+                        name = OdsComposable.OdsOutlinedButton.name,
+                        exhaustiveParameters = false,
+                        parameters = {
+                            text(buttonText)
+                            if (hasFullScreenWidth) fillMaxWidth()
+                            if (hasLeadingIcon) {
+                                classInstance<OdsButton.Icon>("icon") {
+                                    painter()
+                                }
                             }
+                            if (!isEnabled) enabled(false)
                         }
-                        if (!isEnabled) enabled(false)
-                    })
-            }
+                    )
+                },
+                xmlContent = {
+                    CodeBackgroundColumn {
+                        XmlViewTag(
+                            clazz = com.orange.ods.xml.component.button.OdsOutlinedButton::class.java,
+                            xmlAttributes = {
+                                id("ods_outlined_button")
+                                layoutWidth(hasFullScreenWidth)
+                                layoutHeight()
+                                appAttr("text", buttonText)
+                                if (hasLeadingIcon) drawableAppAttr("icon", "icon")
+                                if (!isEnabled) disabledAppAttr()
+                                appAttr("odsDisplaySurface", "light")
+                            }
+                        )
+                    }
+                }
+            )
         }
     }
 }
 
 @Composable
 private fun OutlinedButton(
+    text: String,
     leadingIcon: Boolean,
     enabled: Boolean,
     fullScreenWidth: Boolean,
     displaySurface: OdsDisplaySurface = OdsDisplaySurface.Default,
 ) {
     val context = LocalContext.current
-    val text = stringResource(if (enabled) R.string.component_state_enabled else R.string.component_state_disabled)
     val iconId = R.drawable.ic_coffee
 
     Box(
