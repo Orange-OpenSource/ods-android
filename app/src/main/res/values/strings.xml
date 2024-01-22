@@ -173,6 +173,8 @@
     <string name="component_button_icon_toggle_count">Toggle count</string>
     <string name="component_button_icon_toggle_remove">Remove toggle</string>
     <string name="component_button_icon_toggle_add">Add toggle</string>
+    <string name="component_button_icon_toggle_group_code_add_icons">Add the toggle group icons by code using view binding:</string>
+
 
     <!-- Component Cards -->
     <string name="component_cards">Cards</string>
