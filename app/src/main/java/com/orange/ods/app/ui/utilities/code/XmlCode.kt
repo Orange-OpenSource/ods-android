@@ -27,7 +27,6 @@ open class XmlAttribute(val key: String, val value: String) {
 fun XmlViewTag(clazz: Class<out View>, xmlAttributes: (XmlAttributesBuilder.() -> Unit)? = null) {
     val viewName = clazz.name
     if (xmlAttributes != null) {
-
         TechnicalText(text = "<$viewName")
         IndentCodeColumn {
             XmlAttributesBuilder().apply(xmlAttributes).Build()
@@ -42,6 +41,9 @@ object PredefinedXmlAttribute {
     class Id(value: String) : XmlAttribute("android:id", "@+id/$value")
     class LayoutHeight(matchParent: Boolean = false) : XmlAttribute("android:layout_height", getLayoutParamValue(matchParent))
     class LayoutWidth(matchParent: Boolean = false) : XmlAttribute("android:layout_width", getLayoutParamValue(matchParent))
+
+    open class AppAttr(name: String, value: String) : XmlAttribute("app:$name", value)
+    class DrawableAppAttr(name: String, drawableName: String) : AppAttr(name, "@drawable/$drawableName")
 }
 
 @DslMarker
@@ -57,6 +59,8 @@ class XmlAttributesBuilder {
     fun id(value: String) = add(PredefinedXmlAttribute.Id(value))
     fun layoutHeight(matchParent: Boolean = false) = add(PredefinedXmlAttribute.LayoutHeight(matchParent))
     fun layoutWidth(matchParent: Boolean = false) = add(PredefinedXmlAttribute.LayoutWidth(matchParent))
+    fun appAttr(name: String, value: String) = add(PredefinedXmlAttribute.AppAttr(name, value))
+    fun drawableAppAttr(name: String, drawableName: String) = add(PredefinedXmlAttribute.DrawableAppAttr(name, drawableName))
 
     @Composable
     fun Build() = xmlAttributes.forEach { it.code() }
