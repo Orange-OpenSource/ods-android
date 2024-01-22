@@ -75,7 +75,7 @@ fun CodeImplementationColumn(
                         modifier = Modifier
                             .fillMaxWidth()
                             .padding(dimensionResource(id = com.orange.ods.R.dimen.spacing_xs)),
-                        text = stringResource(id = R.string.soon_available)
+                        text = stringResource(id = R.string.component_not_yet_available)
                     )
                 }
             }
