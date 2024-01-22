@@ -76,7 +76,7 @@
         <attr name="text" />
         <attr name="icon" />
         <attr name="enabled" />
-        <attr name="textButtonStyle" format="enum">
+        <attr name="odsTextButtonStyle" format="enum">
             <enum name="standard" value="0" />
             <enum name="primary" value="1" />
         </attr>
