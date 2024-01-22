@@ -35,8 +35,10 @@ import com.orange.ods.app.R
 import com.orange.ods.app.databinding.OdsIconToogleButtonBinding
 import com.orange.ods.app.ui.UiFramework
 import com.orange.ods.app.ui.components.buttons.InvertedBackgroundColumn
+import com.orange.ods.app.ui.utilities.code.CodeBackgroundColumn
 import com.orange.ods.app.ui.utilities.code.CodeImplementationColumn
 import com.orange.ods.app.ui.utilities.code.FunctionCallCode
+import com.orange.ods.app.ui.utilities.code.XmlViewTag
 import com.orange.ods.compose.OdsComposable
 import com.orange.ods.compose.component.button.OdsIconButton
 import com.orange.ods.compose.component.button.OdsIconToggleButton
@@ -76,24 +78,47 @@ fun ButtonsIconToggle(customizationState: ButtonIconCustomizationState) {
                 )
             }
 
-            CodeImplementationColumn(modifier = Modifier.padding(horizontal = dimensionResource(id = com.orange.ods.R.dimen.screen_horizontal_margin))) {
-                FunctionCallCode(
-                    name = OdsComposable.OdsIconToggleButton.name,
-                    exhaustiveParameters = false,
-                    parameters = {
-                        classInstance<OdsIconButton.Icon>("uncheckedIcon") {
-                            painter()
-                            contentDescription("")
+            val uncheckedIconAttrName = "uncheckedIcon"
+            val checkedIconAttrName = "checkedIcon"
+            CodeImplementationColumn(
+                modifier = Modifier.padding(horizontal = dimensionResource(id = com.orange.ods.R.dimen.screen_horizontal_margin)),
+                composeContent = {
+                    FunctionCallCode(
+                        name = OdsComposable.OdsIconToggleButton.name,
+                        exhaustiveParameters = false,
+                        parameters = {
+                            classInstance<OdsIconButton.Icon>(uncheckedIconAttrName) {
+                                painter()
+                                contentDescription("")
+                            }
+                            classInstance<OdsIconButton.Icon>(checkedIconAttrName) {
+                                painter()
+                                contentDescription("")
+                            }
+                            checked(buttonCheckedState.value)
+                            if (!isEnabled) enabled(false)
                         }
-                        classInstance<OdsIconButton.Icon>("checkedIcon") {
-                            painter()
-                            contentDescription("")
-                        }
-                        checked(buttonCheckedState.value)
-                        if (!isEnabled) enabled(false)
+                    )
+                },
+                xmlContent = {
+                    CodeBackgroundColumn {
+                        XmlViewTag(
+                            clazz = com.orange.ods.xml.component.button.OdsIconToggleButton::class.java,
+                            xmlAttributes = {
+                                id("ods_icon_toggle_button")
+                                layoutWidth()
+                                layoutHeight()
+                                appAttr("checked", "${buttonCheckedState.value}")
+                                drawableAppAttr(uncheckedIconAttrName, "unchecked_icon")
+                                drawableAppAttr(checkedIconAttrName, "checked_icon")
+                                appAttr("uncheckedIconContentDescription", "")
+                                appAttr("checkedIconContentDescription", "")
+                                if (!isEnabled) disabledAppAttr()
+                            }
+                        )
                     }
-                )
-            }
+                }
+            )
         }
     }
 }
