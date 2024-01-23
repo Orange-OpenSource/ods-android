@@ -110,15 +110,8 @@ private class OdsSmallCardPreviewParameterProvider :
     BasicPreviewParameterProvider<OdsSmallCardPreviewParameter>(*previewParameterValues.toTypedArray())
 
 private val previewParameterValues: List<OdsSmallCardPreviewParameter>
-    get() {
-        val shortTitle = "Title"
-        val longTitle = "Here is a long title that don't fit"
-        val shortSubtitle = "Subtitle"
-        val longSubtitle = "Here is a very very very long subtitle"
-
-        return listOf(
-            OdsSmallCardPreviewParameter(shortTitle, shortSubtitle),
-            OdsSmallCardPreviewParameter(longTitle, longSubtitle),
-            OdsSmallCardPreviewParameter(longTitle, longSubtitle, null),
+    get() = listOf(
+            OdsSmallCardPreviewParameter(CardPreview.Title, CardPreview.Subtitle),
+            OdsSmallCardPreviewParameter(CardPreview.LongTitle, CardPreview.LongSubtitle),
+            OdsSmallCardPreviewParameter(CardPreview.LongTitle, CardPreview.LongSubtitle, null),
         )
-    }

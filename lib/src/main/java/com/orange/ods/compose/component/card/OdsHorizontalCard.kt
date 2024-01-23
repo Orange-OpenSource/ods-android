@@ -12,7 +12,8 @@
 
 package com.orange.ods.compose.component.card
 
-import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.ExperimentalLayoutApi
+import androidx.compose.foundation.layout.FlowRow
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
@@ -54,6 +55,7 @@ import com.orange.ods.compose.theme.OdsTheme
  * @param divider Controls the divider display. If `true`, it will be displayed between the card content and the action buttons.
  * @param onClick Callback invoked on card click.
  */
+@OptIn(ExperimentalLayoutApi::class)
 @Composable
 @OdsComposable
 fun OdsHorizontalCard(
@@ -80,8 +82,7 @@ fun OdsHorizontalCard(
                 textRef,
                 chainBottomSpacerRef, // A 0 dp spacer located at the bottom of the vertical chain composed of title, subtitle and text. Without this spacer, when text is gone, bottom margin of the chain is not respected
                 dividerRef,
-                firstButtonRef,
-                secondButtonRef
+                buttonsRef
             ) = createRefs()
 
             val imageSize = dimensionResource(R.dimen.card_horizontal_image_size)
@@ -161,21 +162,12 @@ fun OdsHorizontalCard(
                 }
             )
 
-            Box(modifier = Modifier.constrainAs(firstButtonRef) {
+            FlowRow(modifier = Modifier.constrainAs(buttonsRef) {
                 top.linkTo(dividerRef.bottom)
                 start.linkTo(parent.start, margin = smallSpacing)
-                visibility = if (firstButton != null) Visibility.Visible else Visibility.Gone
+                visibility = if (firstButton != null && secondButton != null) Visibility.Visible else Visibility.Gone
             }) {
                 firstButton?.Content()
-            }
-
-            Box(
-                modifier = Modifier.constrainAs(secondButtonRef) {
-                    top.linkTo(dividerRef.bottom)
-                    start.linkTo(firstButtonRef.end, margin = smallSpacing, goneMargin = smallSpacing)
-                    visibility = if (secondButton != null) Visibility.Visible else Visibility.Gone
-                }
-            ) {
                 secondButton?.Content()
             }
         }
@@ -187,9 +179,9 @@ fun OdsHorizontalCard(
 private fun PreviewOdsHorizontalCard(@PreviewParameter(OdsHorizontalCardPreviewParameterProvider::class) parameter: OdsHorizontalCardPreviewParameter) =
     Preview {
         OdsHorizontalCard(
-            title = "Title",
+            title = CardPreview.Title,
             subtitle = parameter.subtitle,
-            text = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed non risus. Suspendisse lectus tortor, dignissim sit amet, adipiscing nec, ultricies sed, dolor.",
+            text = CardPreview.Text,
             firstButton = parameter.firstButtonText?.let { OdsCard.Button(it) {} },
             secondButton = parameter.secondButtonText?.let { OdsCard.Button(it) {} },
             image = OdsCard.Image(painterResource(id = R.drawable.placeholder), ""),
@@ -198,7 +190,7 @@ private fun PreviewOdsHorizontalCard(@PreviewParameter(OdsHorizontalCardPreviewP
         )
     }
 
-internal data class OdsHorizontalCardPreviewParameter(
+private data class OdsHorizontalCardPreviewParameter(
     val subtitle: String?,
     val imagePosition: OdsCard.Image.Position,
     val dividerEnabled: Boolean,
@@ -210,15 +202,16 @@ private class OdsHorizontalCardPreviewParameterProvider :
     BasicPreviewParameterProvider<OdsHorizontalCardPreviewParameter>(*previewParameterValues.toTypedArray())
 
 private val previewParameterValues: List<OdsHorizontalCardPreviewParameter>
-    get() {
-        val subtitle = "Subtitle"
-        val firstButtonText = "First button"
-        val secondButtonText = "Second button"
-
-        return listOf(
-            OdsHorizontalCardPreviewParameter(subtitle, OdsCard.Image.Position.Start, true, firstButtonText, secondButtonText),
-            OdsHorizontalCardPreviewParameter(subtitle, OdsCard.Image.Position.End, false, firstButtonText, null),
-            OdsHorizontalCardPreviewParameter(subtitle, OdsCard.Image.Position.Start, true, null, null),
-            OdsHorizontalCardPreviewParameter(null, OdsCard.Image.Position.Start, false, null, secondButtonText)
-        )
-    }
+    get() = listOf(
+        OdsHorizontalCardPreviewParameter(CardPreview.Subtitle, OdsCard.Image.Position.Start, true, CardPreview.FirstButtonText, CardPreview.SecondButtonText),
+        OdsHorizontalCardPreviewParameter(
+            CardPreview.Subtitle,
+            OdsCard.Image.Position.Start,
+            true,
+            CardPreview.FirstButtonText,
+            CardPreview.SecondButtonLongText
+        ),
+        OdsHorizontalCardPreviewParameter(CardPreview.Subtitle, OdsCard.Image.Position.End, false, CardPreview.FirstButtonText, null),
+        OdsHorizontalCardPreviewParameter(CardPreview.Subtitle, OdsCard.Image.Position.Start, true, null, null),
+        OdsHorizontalCardPreviewParameter(null, OdsCard.Image.Position.Start, false, null, CardPreview.SecondButtonText)
+    )
