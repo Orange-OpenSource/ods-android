@@ -15,15 +15,14 @@ package com.orange.ods.app.ui
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
-import com.orange.ods.theme.OdsThemeConfigurationContract
+import com.orange.ods.theme.innovationcup.InnovationCupThemeConfiguration
+import com.orange.ods.theme.orange.OrangeThemeConfiguration
 import dagger.hilt.android.AndroidEntryPoint
-import javax.inject.Inject
 
 @AndroidEntryPoint
 class MainActivity : ComponentActivity() {
 
-    @Inject
-    lateinit var themeConfigurations: Set<@JvmSuppressWildcards OdsThemeConfigurationContract>
+    private val themeConfigurations = listOf(OrangeThemeConfiguration(), InnovationCupThemeConfiguration())
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
