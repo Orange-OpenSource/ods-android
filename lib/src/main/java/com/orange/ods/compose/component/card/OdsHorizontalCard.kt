@@ -165,7 +165,7 @@ fun OdsHorizontalCard(
             FlowRow(modifier = Modifier.constrainAs(buttonsRef) {
                 top.linkTo(dividerRef.bottom)
                 start.linkTo(parent.start, margin = smallSpacing)
-                visibility = if (firstButton != null && secondButton != null) Visibility.Visible else Visibility.Gone
+                visibility = if (firstButton != null || secondButton != null) Visibility.Visible else Visibility.Gone
             }) {
                 firstButton?.Content()
                 secondButton?.Content()
