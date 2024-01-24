@@ -168,3 +168,17 @@ object OdsCard {
     }
 
 }
+
+/**
+ * Constants used for card preview
+ */
+internal object CardPreview {
+    const val Title = "Title"
+    const val LongTitle = "Here is a long title that don't fit"
+    const val Subtitle = "Subtitle"
+    const val LongSubtitle = "Here is a very very very long subtitle"
+    const val Text = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed non risus. Suspendisse lectus tortor, dignissim sit amet, adipiscing nec, ultricies sed, dolor."
+    const val FirstButtonText = "First button"
+    const val SecondButtonText = "Second button"
+    const val SecondButtonLongText = "Second button with lonnnnnnng text"
+}

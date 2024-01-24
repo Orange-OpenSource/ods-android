@@ -14,7 +14,8 @@ package com.orange.ods.compose.component.card
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.ExperimentalLayoutApi
+import androidx.compose.foundation.layout.FlowRow
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
@@ -22,8 +23,10 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.tooling.preview.PreviewParameter
 import com.orange.ods.R
 import com.orange.ods.compose.component.OdsComposable
+import com.orange.ods.compose.component.utilities.BasicPreviewParameterProvider
 import com.orange.ods.compose.component.utilities.Preview
 import com.orange.ods.compose.component.utilities.UiModePreviews
 import com.orange.ods.compose.text.OdsTextBodyL
@@ -44,6 +47,7 @@ import com.orange.ods.compose.text.OdsTextTitleS
  * @param secondButton Second [OdsCard.Button] displayed into the card.
  * @param onClick Callback invoked on card click.
  */
+@OptIn(ExperimentalLayoutApi::class)
 @Composable
 @OdsComposable
 fun OdsVerticalImageFirstCard(
@@ -83,7 +87,7 @@ fun OdsVerticalImageFirstCard(
                     )
                 }
             }
-            Row(
+            FlowRow(
                 modifier = Modifier.padding(horizontal = dimensionResource(id = R.dimen.spacing_s)),
                 horizontalArrangement = Arrangement.spacedBy(dimensionResource(id = R.dimen.spacing_s))
             ) {
@@ -96,13 +100,33 @@ fun OdsVerticalImageFirstCard(
 
 @UiModePreviews.Default
 @Composable
-private fun PreviewOdsVerticalImageFirstCard() = Preview {
-    OdsVerticalImageFirstCard(
-        title = "Title",
-        subtitle = "Subtitle",
-        text = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed non risus. Suspendisse lectus tortor, dignissim sit amet, adipiscing nec, ultricies sed, dolor.",
-        firstButton = OdsCard.Button("First button") {},
-        secondButton = OdsCard.Button("Second button") {},
-        image = OdsCard.Image(painterResource(id = R.drawable.placeholder), "")
+private fun PreviewOdsVerticalImageFirstCard(@PreviewParameter(OdsVerticalImageFirstCardPreviewParameterProvider::class) parameter: OdsVerticalImageFirstCardPreviewParameter) =
+    Preview {
+        with(parameter) {
+            OdsVerticalImageFirstCard(
+                title = CardPreview.Title,
+                subtitle = subtitle,
+                text = text,
+                firstButton = firstButtonText?.let { OdsCard.Button(it) {} },
+                secondButton = secondButtonText?.let { OdsCard.Button(it) {} },
+                image = OdsCard.Image(painterResource(id = R.drawable.placeholder), "")
+            )
+        }
+    }
+
+private data class OdsVerticalImageFirstCardPreviewParameter(
+    val subtitle: String? = null,
+    val text: String? = null,
+    val firstButtonText: String? = null,
+    val secondButtonText: String? = null
+)
+
+private class OdsVerticalImageFirstCardPreviewParameterProvider :
+    BasicPreviewParameterProvider<OdsVerticalImageFirstCardPreviewParameter>(*previewParameterValues.toTypedArray())
+
+private val previewParameterValues: List<OdsVerticalImageFirstCardPreviewParameter>
+    get() = listOf(
+        OdsVerticalImageFirstCardPreviewParameter(CardPreview.Subtitle, CardPreview.Text, CardPreview.FirstButtonText, CardPreview.SecondButtonText),
+        OdsVerticalImageFirstCardPreviewParameter(CardPreview.Subtitle, CardPreview.Text, CardPreview.FirstButtonText, CardPreview.SecondButtonLongText),
+        OdsVerticalImageFirstCardPreviewParameter(null, null, null, null),
     )
-}
