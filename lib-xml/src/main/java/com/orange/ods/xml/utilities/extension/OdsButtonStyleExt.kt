@@ -21,12 +21,13 @@ import com.orange.ods.compose.component.button.OdsButton
 fun OdsButton.Style.Companion.fromXmlAttrValue(xmlId: Int): OdsButton.Style = OdsButton.Style.entries[xmlId]
 
 /**
- * @return the XML enum value corresponding to this [OdsButton.Style]
+ * XML enum value corresponding to this [OdsButton.Style]
  * BE CAREFUL: As there is no way to access XML enum names directly, if an enum name change, you have to update this method.
  */
-fun OdsButton.Style.getXmlEnumValue() = when (this) {
-    OdsButton.Style.Default -> "standard"
-    OdsButton.Style.Primary -> "primary"
-    OdsButton.Style.FunctionalPositive -> "functional_positive"
-    OdsButton.Style.FunctionalNegative -> "functional_negative"
-}
+val OdsButton.Style.xmlEnumValue
+    get() = when (this) {
+        OdsButton.Style.Default -> "standard"
+        OdsButton.Style.Primary -> "primary"
+        OdsButton.Style.FunctionalPositive -> "functional_positive"
+        OdsButton.Style.FunctionalNegative -> "functional_negative"
+    }

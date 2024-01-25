@@ -40,7 +40,7 @@ import com.orange.ods.compose.OdsComposable
 import com.orange.ods.compose.component.button.OdsButton
 import com.orange.ods.compose.component.button.OdsTextButton
 import com.orange.ods.compose.theme.OdsDisplaySurface
-import com.orange.ods.xml.utilities.extension.getXmlEnumValue
+import com.orange.ods.xml.utilities.extension.xmlEnumValue
 
 @Composable
 fun ButtonsText(customizationState: ButtonCustomizationState) {
@@ -108,7 +108,7 @@ fun ButtonsText(customizationState: ButtonCustomizationState) {
                                 appAttr("text", buttonText)
                                 if (hasLeadingIcon) drawable("icon", "icon")
                                 if (!isEnabled) disabled()
-                                if (textButtonStyle.value != OdsTextButton.Style.Default) appAttr("odsTextButtonStyle", textButtonStyle.value.getXmlEnumValue())
+                                if (textButtonStyle.value != OdsTextButton.Style.Default) appAttr("odsTextButtonStyle", textButtonStyle.value.xmlEnumValue)
                             }
                         )
                     }

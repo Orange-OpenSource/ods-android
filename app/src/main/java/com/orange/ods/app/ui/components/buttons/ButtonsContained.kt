@@ -39,7 +39,7 @@ import com.orange.ods.app.ui.utilities.composable.Title
 import com.orange.ods.compose.OdsComposable
 import com.orange.ods.compose.component.button.OdsButton
 import com.orange.ods.compose.theme.OdsDisplaySurface
-import com.orange.ods.xml.utilities.extension.getXmlEnumValue
+import com.orange.ods.xml.utilities.extension.xmlEnumValue
 
 @Composable
 fun ButtonsContained(customizationState: ButtonCustomizationState) {
@@ -111,7 +111,7 @@ fun ButtonsContained(customizationState: ButtonCustomizationState) {
                                 appAttr("text", buttonText)
                                 if (hasLeadingIcon) drawable("icon", "icon")
                                 if (!isEnabled) disabled()
-                                if (buttonStyle.value != OdsButton.Style.Default) appAttr("odsButtonStyle", buttonStyle.value.getXmlEnumValue())
+                                if (buttonStyle.value != OdsButton.Style.Default) appAttr("odsButtonStyle", buttonStyle.value.xmlEnumValue)
                             }
                         )
                     }
