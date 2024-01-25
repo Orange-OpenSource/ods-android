@@ -44,7 +44,6 @@ import com.orange.ods.app.ui.utilities.code.FunctionCallCode
 import com.orange.ods.app.ui.utilities.composable.Subtitle
 import com.orange.ods.app.ui.utilities.extension.buildImageRequest
 import com.orange.ods.compose.OdsComposable
-import com.orange.ods.compose.component.chip.OdsChoiceChip
 import com.orange.ods.compose.component.chip.OdsChoiceChipsFlowRow
 import com.orange.ods.compose.component.listitem.OdsListItem
 import com.orange.ods.extension.ifNotNull
@@ -74,26 +73,28 @@ private fun ComponentListItemBottomSheetContent(listItemCustomizationState: List
     )
 
     Subtitle(textRes = R.string.component_list_leading, horizontalPadding = true)
+    val leadingIconTypes = listOf(null) + OdsListItem.LeadingIcon.Type.entries
     OdsChoiceChipsFlowRow(
-        value = listItemCustomizationState.selectedLeadingIconType.value,
-        onValueChange = { value -> listItemCustomizationState.selectedLeadingIconType.value = value },
+        selectedChoiceChipIndex = leadingIconTypes.indexOf(listItemCustomizationState.selectedLeadingIconType.value),
         modifier = Modifier.padding(horizontal = dimensionResource(id = com.orange.ods.R.dimen.spacing_m)),
-        chips = listOf(
-            OdsChoiceChip(text = stringResource(id = R.string.component_list_leading_none), value = null),
-            OdsChoiceChip(text = stringResource(id = R.string.component_list_leading_icon), value = OdsListItem.LeadingIcon.Type.Icon),
-            OdsChoiceChip(text = stringResource(id = R.string.component_list_leading_circular_image), value = OdsListItem.LeadingIcon.Type.CircularImage),
-            OdsChoiceChip(text = stringResource(id = R.string.component_list_leading_square_image), value = OdsListItem.LeadingIcon.Type.SquareImage),
-            OdsChoiceChip(text = stringResource(id = R.string.component_list_leading_wide_image), value = OdsListItem.LeadingIcon.Type.WideImage),
-        )
+        choiceChips = leadingIconTypes.map { leadingIconType ->
+            val text = when (leadingIconType) {
+                OdsListItem.LeadingIcon.Type.Icon -> stringResource(id = R.string.component_list_leading_icon)
+                OdsListItem.LeadingIcon.Type.CircularImage -> stringResource(id = R.string.component_list_leading_circular_image)
+                OdsListItem.LeadingIcon.Type.SquareImage -> stringResource(id = R.string.component_list_leading_square_image)
+                OdsListItem.LeadingIcon.Type.WideImage -> stringResource(id = R.string.component_list_leading_wide_image)
+                null -> stringResource(id = R.string.component_list_leading_none)
+            }
+            OdsChoiceChipsFlowRow.ChoiceChip(text, { listItemCustomizationState.selectedLeadingIconType.value = leadingIconType })
+        }
     )
 
     Subtitle(textRes = R.string.component_list_trailing, horizontalPadding = true)
     OdsChoiceChipsFlowRow(
-        value = listItemCustomizationState.selectedTrailing.value,
-        onValueChange = { value -> listItemCustomizationState.selectedTrailing.value = value },
+        selectedChoiceChipIndex = listItemCustomizationState.trailings.indexOf(listItemCustomizationState.selectedTrailing.value),
         modifier = Modifier.padding(horizontal = dimensionResource(id = com.orange.ods.R.dimen.spacing_m)),
-        chips = listItemCustomizationState.trailings.map { trailing ->
-            OdsChoiceChip(text = stringResource(id = trailing.textResId), value = trailing)
+        choiceChips = listItemCustomizationState.trailings.map { trailing ->
+            OdsChoiceChipsFlowRow.ChoiceChip(stringResource(id = trailing.textResId), { listItemCustomizationState.selectedTrailing.value = trailing })
         }
     )
 }

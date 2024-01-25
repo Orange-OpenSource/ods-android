@@ -43,7 +43,6 @@ import com.orange.ods.app.ui.utilities.composable.Subtitle
 import com.orange.ods.app.ui.utilities.composable.TechnicalText
 import com.orange.ods.compose.OdsComposable
 import com.orange.ods.compose.component.appbar.top.OdsTopAppBar
-import com.orange.ods.compose.component.chip.OdsChoiceChip
 import com.orange.ods.compose.component.chip.OdsChoiceChipsFlowRow
 import com.orange.ods.compose.component.menu.OdsDropdownMenu
 import com.orange.ods.compose.text.OdsText
@@ -161,42 +160,31 @@ fun LargeTopAppBarBottomSheetContent() {
     with(LocalTopAppBarCustomizationState.current) {
         Subtitle(textRes = com.orange.ods.app.R.string.component_app_bars_top_large_scroll_behavior, horizontalPadding = true)
         OdsChoiceChipsFlowRow(
-            value = scrollBehavior.value,
-            onValueChange = { value -> scrollBehavior.value = value },
             modifier = Modifier.padding(horizontal = dimensionResource(id = R.dimen.spacing_m)),
-            chips = listOf(
-                OdsChoiceChip(
-                    text = stringResource(id = com.orange.ods.app.R.string.component_app_bars_top_large_scroll_behavior_none),
-                    value = TopAppBarCustomizationState.ScrollBehavior.None
-                ),
-                OdsChoiceChip(
-                    text = stringResource(com.orange.ods.app.R.string.component_app_bars_top_large_scroll_behavior_collapsible),
-                    value = TopAppBarCustomizationState.ScrollBehavior.Collapsible
-                )
-            )
+            selectedChoiceChipIndex = TopAppBarCustomizationState.ScrollBehavior.entries.indexOf(scrollBehavior.value),
+            choiceChips = TopAppBarCustomizationState.ScrollBehavior.entries.map { scrollBehavior ->
+                val text = when (scrollBehavior) {
+                    TopAppBarCustomizationState.ScrollBehavior.None -> stringResource(id = com.orange.ods.app.R.string.component_app_bars_top_large_scroll_behavior_none)
+                    TopAppBarCustomizationState.ScrollBehavior.Collapsible -> stringResource(com.orange.ods.app.R.string.component_app_bars_top_large_scroll_behavior_collapsible)
+                }
+                OdsChoiceChipsFlowRow.ChoiceChip(text, { this.scrollBehavior.value = scrollBehavior })
+            }
         )
 
         RegularTopAppBarBottomSheetContent()
 
         Subtitle(textRes = com.orange.ods.app.R.string.component_element_title, horizontalPadding = true)
         OdsChoiceChipsFlowRow(
-            value = title.value,
-            onValueChange = { value -> title.value = value },
             modifier = Modifier.padding(horizontal = dimensionResource(id = R.dimen.spacing_m)),
-            chips = listOf(
-                OdsChoiceChip(
-                    text = stringResource(id = com.orange.ods.app.R.string.component_app_bars_top_large_title_one_line),
-                    value = TopAppBarCustomizationState.Title.Short
-                ),
-                OdsChoiceChip(
-                    text = stringResource(id = com.orange.ods.app.R.string.component_app_bars_top_large_title_two_lines),
-                    value = TopAppBarCustomizationState.Title.TwoLines
-                ),
-                OdsChoiceChip(
-                    text = stringResource(id = com.orange.ods.app.R.string.component_app_bars_top_large_title_truncated),
-                    value = TopAppBarCustomizationState.Title.Long
-                )
-            )
+            selectedChoiceChipIndex = TopAppBarCustomizationState.Title.entries.indexOf(title.value),
+            choiceChips = TopAppBarCustomizationState.Title.entries.map { title ->
+                val text = when (title) {
+                    TopAppBarCustomizationState.Title.Short -> stringResource(id = com.orange.ods.app.R.string.component_app_bars_top_large_title_one_line)
+                    TopAppBarCustomizationState.Title.TwoLines -> stringResource(id = com.orange.ods.app.R.string.component_app_bars_top_large_title_two_lines)
+                    TopAppBarCustomizationState.Title.Long -> stringResource(id = com.orange.ods.app.R.string.component_app_bars_top_large_title_truncated)
+                }
+                OdsChoiceChipsFlowRow.ChoiceChip(text, { this.title.value = title })
+            }
         )
     }
 }

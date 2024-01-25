@@ -31,7 +31,6 @@ import com.orange.ods.app.ui.utilities.code.CodeImplementationColumn
 import com.orange.ods.app.ui.utilities.code.FunctionCallCode
 import com.orange.ods.app.ui.utilities.composable.Subtitle
 import com.orange.ods.compose.OdsComposable
-import com.orange.ods.compose.component.chip.OdsChoiceChip
 import com.orange.ods.compose.component.chip.OdsChoiceChipsFlowRow
 import com.orange.ods.compose.component.listitem.OdsListItem
 import com.orange.ods.compose.component.progressindicator.OdsLinearProgressIndicator
@@ -48,19 +47,19 @@ fun ProgressLinear() {
             bottomSheetContent = {
                 Subtitle(textRes = R.string.component_element_type, horizontalPadding = true)
                 OdsChoiceChipsFlowRow(
-                    value = type.value,
-                    onValueChange = { value ->
-                        type.value = value
-                        if (value == ProgressCustomizationState.Type.Indeterminate) resetAnimation()
-                    },
+                    selectedChoiceChipIndex = ProgressCustomizationState.Type.entries.indexOf(type.value),
                     modifier = Modifier.padding(horizontal = dimensionResource(id = com.orange.ods.R.dimen.spacing_m)),
-                    chips = listOf(
-                        OdsChoiceChip(text = stringResource(id = R.string.component_progress_determinate), value = ProgressCustomizationState.Type.Determinate),
-                        OdsChoiceChip(
-                            text = stringResource(id = R.string.component_progress_indeterminate),
-                            value = ProgressCustomizationState.Type.Indeterminate
-                        )
-                    )
+                    choiceChips = ProgressCustomizationState.Type.entries.map { type ->
+                        val text = when (type) {
+                            ProgressCustomizationState.Type.Determinate -> stringResource(id = R.string.component_progress_determinate)
+                            ProgressCustomizationState.Type.Indeterminate -> stringResource(id = R.string.component_progress_indeterminate)
+                        }
+                        val onClick = {
+                            this.type.value = type
+                            if (type == ProgressCustomizationState.Type.Indeterminate) resetAnimation()
+                        }
+                        OdsChoiceChipsFlowRow.ChoiceChip(text, onClick)
+                    }
                 )
                 OdsListItem(
                     text = stringResource(id = R.string.component_element_label),

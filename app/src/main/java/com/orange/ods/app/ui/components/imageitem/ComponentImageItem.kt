@@ -45,7 +45,6 @@ import com.orange.ods.app.ui.utilities.composable.Subtitle
 import com.orange.ods.app.ui.utilities.extension.buildImageRequest
 import com.orange.ods.compose.OdsComposable
 import com.orange.ods.compose.component.button.OdsIconButton
-import com.orange.ods.compose.component.chip.OdsChoiceChip
 import com.orange.ods.compose.component.chip.OdsChoiceChipsFlowRow
 import com.orange.ods.compose.component.imageitem.OdsImageItem
 import com.orange.ods.compose.component.listitem.OdsListItem
@@ -72,20 +71,16 @@ fun ComponentImageItem() {
             bottomSheetContent = {
                 Subtitle(textRes = R.string.component_image_item_legend_area_display_type, horizontalPadding = true)
                 OdsChoiceChipsFlowRow(
-                    value = type.value,
-                    onValueChange = { value -> type.value = value },
+                    selectedChoiceChipIndex = OdsImageItem.LegendAreaDisplayType.entries.indexOf(type.value),
                     modifier = Modifier.padding(horizontal = dimensionResource(id = com.orange.ods.R.dimen.spacing_m)),
-                    chips = listOf(
-                        OdsChoiceChip(
-                            text = stringResource(R.string.component_image_item_legend_area_display_type_overlay),
-                            value = OdsImageItem.LegendAreaDisplayType.Overlay
-                        ),
-                        OdsChoiceChip(
-                            text = stringResource(R.string.component_image_item_legend_area_display_type_below),
-                            value = OdsImageItem.LegendAreaDisplayType.Below
-                        ),
-                        OdsChoiceChip(text = stringResource(R.string.component_element_none), value = OdsImageItem.LegendAreaDisplayType.None),
-                    )
+                    choiceChips = OdsImageItem.LegendAreaDisplayType.entries.map { type ->
+                        val text = when (type) {
+                            OdsImageItem.LegendAreaDisplayType.Below -> stringResource(R.string.component_image_item_legend_area_display_type_below)
+                            OdsImageItem.LegendAreaDisplayType.Overlay -> stringResource(R.string.component_image_item_legend_area_display_type_overlay)
+                            OdsImageItem.LegendAreaDisplayType.None -> stringResource(R.string.component_element_none)
+                        }
+                        OdsChoiceChipsFlowRow.ChoiceChip(text, { this.type.value = type })
+                    }
                 )
                 OdsListItem(
                     text = stringResource(id = R.string.component_element_icon),

@@ -38,7 +38,7 @@ class ChipCustomizationState(
     val chipType: MutableState<ChipType>,
     val leadingElement: MutableState<LeadingElement>,
     val enabled: MutableState<Boolean>,
-    val choiceChipIndexSelected: MutableState<Int?>
+    val selectedChoiceChipIndex: MutableState<Int?>
 ) {
 
     enum class ChipType {

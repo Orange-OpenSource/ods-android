@@ -47,7 +47,6 @@ import com.orange.ods.app.ui.utilities.composable.Subtitle
 import com.orange.ods.app.ui.utilities.extension.buildImageRequest
 import com.orange.ods.compose.OdsComposable
 import com.orange.ods.compose.component.banner.OdsBanner
-import com.orange.ods.compose.component.chip.OdsChoiceChip
 import com.orange.ods.compose.component.chip.OdsChoiceChipsFlowRow
 import com.orange.ods.compose.component.listitem.OdsListItem
 import com.orange.ods.extension.ifNotNull
@@ -67,15 +66,11 @@ fun ComponentBanners() {
             bottomSheetContent = {
                 Subtitle(textRes = R.string.component_banner_message_example, horizontalPadding = true)
                 OdsChoiceChipsFlowRow(
-                    value = shortMessage.value,
-                    onValueChange = { value -> shortMessage.value = value },
+                    selectedChoiceChipIndex = if (shortMessage.value) 0 else 1,
                     modifier = Modifier.padding(horizontal = dimensionResource(id = com.orange.ods.R.dimen.spacing_m)),
-                    chips = listOf(
-                        OdsChoiceChip(
-                            text = stringResource(id = R.string.component_banner_message_example_short),
-                            value = true
-                        ),
-                        OdsChoiceChip(text = stringResource(id = R.string.component_banner_message_example_long), value = false)
+                    choiceChips = listOf(
+                        OdsChoiceChipsFlowRow.ChoiceChip(stringResource(id = R.string.component_banner_message_example_short), { shortMessage.value = true }),
+                        OdsChoiceChipsFlowRow.ChoiceChip(stringResource(id = R.string.component_banner_message_example_long), { shortMessage.value = false })
                     )
                 )
                 ComponentCountRow(

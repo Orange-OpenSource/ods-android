@@ -31,7 +31,6 @@ import com.orange.ods.app.ui.components.utilities.ComponentCustomizationBottomSh
 import com.orange.ods.app.ui.utilities.code.CodeImplementationColumn
 import com.orange.ods.app.ui.utilities.code.FunctionCallCode
 import com.orange.ods.compose.OdsComposable
-import com.orange.ods.compose.component.chip.OdsChoiceChip
 import com.orange.ods.compose.component.chip.OdsChoiceChipsFlowRow
 import com.orange.ods.compose.component.listitem.OdsListItem
 import com.orange.ods.compose.text.OdsText
@@ -74,26 +73,15 @@ fun ComponentSheetsBottom() {
                         modifier = Modifier.padding(top = dimensionResource(id = com.orange.ods.R.dimen.spacing_s)),
                         style = OdsTextStyle.TitleM
                     )
-                    val contentEmptyDesc = stringResource(id = R.string.component_sheet_bottom_customize_content_empty_desc)
-                    val contentExampleDesc = stringResource(id = R.string.component_sheet_bottom_customize_content_example_desc)
                     OdsChoiceChipsFlowRow(
-                        value = content.value,
-                        onValueChange = { value -> content.value = value },
-                        chips = listOf(
-                            OdsChoiceChip(
-                                text = stringResource(id = R.string.component_element_empty),
-                                value = SheetsBottomCustomizationState.Content.Empty,
-                                semantics = {
-                                    onClick(contentEmptyDesc, null)
-                                }),
-                            OdsChoiceChip(
-                                text = stringResource(id = R.string.component_element_example),
-                                value = SheetsBottomCustomizationState.Content.Example,
-                                semantics = {
-                                    onClick(contentExampleDesc, null)
-                                }
-                            )
-                        )
+                        selectedChoiceChipIndex = SheetsBottomCustomizationState.Content.entries.indexOf(content.value),
+                        choiceChips = SheetsBottomCustomizationState.Content.entries.map { content ->
+                            val (text, contentDesc) = when (content) {
+                                SheetsBottomCustomizationState.Content.Empty -> stringResource(id = R.string.component_element_empty) to stringResource(id = R.string.component_sheet_bottom_customize_content_empty_desc)
+                                SheetsBottomCustomizationState.Content.Example -> stringResource(id = R.string.component_element_example) to stringResource(id = R.string.component_sheet_bottom_customize_content_example_desc)
+                            }
+                            OdsChoiceChipsFlowRow.ChoiceChip(text, { this@with.content.value = content }, semantics = { onClick(contentDesc, null) })
+                        }
                     )
                 }
 

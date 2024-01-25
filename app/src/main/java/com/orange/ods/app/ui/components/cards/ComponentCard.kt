@@ -25,7 +25,6 @@ import com.orange.ods.app.ui.components.utilities.ComponentCountRow
 import com.orange.ods.app.ui.components.utilities.ComponentCustomizationBottomSheetScaffold
 import com.orange.ods.app.ui.utilities.composable.Subtitle
 import com.orange.ods.compose.component.card.OdsCard
-import com.orange.ods.compose.component.chip.OdsChoiceChip
 import com.orange.ods.compose.component.chip.OdsChoiceChipsFlowRow
 import com.orange.ods.compose.component.listitem.OdsListItem
 
@@ -50,19 +49,15 @@ fun ComponentCard(variant: Variant) {
                 } else if (variant == Variant.CardHorizontal) {
                     Subtitle(textRes = R.string.component_card_horizontal_image_position, horizontalPadding = true)
                     OdsChoiceChipsFlowRow(
-                        value = imagePosition.value,
-                        onValueChange = { value -> imagePosition.value = value },
+                        selectedChoiceChipIndex = OdsCard.Image.Position.entries.indexOf(imagePosition.value),
                         modifier = Modifier.padding(horizontal = dimensionResource(id = com.orange.ods.R.dimen.spacing_m)),
-                        chips = listOf(
-                            OdsChoiceChip(
-                                text = stringResource(id = R.string.component_card_horizontal_image_position_start),
-                                value = OdsCard.Image.Position.Start
-                            ),
-                            OdsChoiceChip(
-                                text = stringResource(id = R.string.component_card_horizontal_image_position_end),
-                                value = OdsCard.Image.Position.End
-                            )
-                        )
+                        choiceChips = OdsCard.Image.Position.entries.map { imagePosition ->
+                            val text = when (imagePosition) {
+                                OdsCard.Image.Position.Start -> stringResource(id = R.string.component_card_horizontal_image_position_start)
+                                OdsCard.Image.Position.End -> stringResource(id = R.string.component_card_horizontal_image_position_end)
+                            }
+                            OdsChoiceChipsFlowRow.ChoiceChip(text, { this.imagePosition.value = imagePosition })
+                        }
                     )
                 }
                 OdsListItem(
