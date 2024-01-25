@@ -87,7 +87,9 @@ In your layout, use the `OdsBottomNavigation` view.
 
 ```xml
 
-<com.orange.ods.xml.component.bottomnavigation.OdsBottomNavigation android:id="@+id/ods_bottom_navigation" android:layout_height="wrap_content"
+<com.orange.ods.xml.component.bottomnavigation.OdsBottomNavigation
+    android:id="@+id/ods_bottom_navigation"
+    android:layout_height="wrap_content"
     android:layout_width="wrap_content" />
 ```
 
