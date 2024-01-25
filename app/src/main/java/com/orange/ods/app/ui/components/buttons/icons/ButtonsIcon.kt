@@ -72,7 +72,7 @@ fun ButtonsIcon(customizationState: ButtonIconCustomizationState) {
             CodeImplementationColumn(
                 modifier = Modifier.padding(horizontal = dimensionResource(id = com.orange.ods.R.dimen.screen_horizontal_margin)),
                 composeContent = {
-                FunctionCallCode(
+                    FunctionCallCode(
                         name = OdsComposable.OdsIconButton.name,
                         exhaustiveParameters = false,
                         parameters = {
@@ -95,7 +95,6 @@ fun ButtonsIcon(customizationState: ButtonIconCustomizationState) {
                                 drawableAppAttr("icon", "icon")
                                 appAttr("iconContentDescription", "Icon description")
                                 if (!isEnabled) disabledAppAttr()
-                                appAttr("odsDisplaySurface", "light")
                             }
                         )
                     }
