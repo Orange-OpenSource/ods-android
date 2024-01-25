@@ -106,8 +106,8 @@ fun ButtonsText(customizationState: ButtonCustomizationState) {
                                 layoutWidth(hasFullScreenWidth)
                                 layoutHeight()
                                 appAttr("text", buttonText)
-                                if (hasLeadingIcon) drawableAppAttr("icon", "icon")
-                                if (!isEnabled) disabledAppAttr()
+                                if (hasLeadingIcon) drawable("icon", "icon")
+                                if (!isEnabled) disabled()
                                 if (textButtonStyle.value != OdsTextButton.Style.Default) appAttr("odsTextButtonStyle", textButtonStyle.value.getXmlEnumValue())
                             }
                         )

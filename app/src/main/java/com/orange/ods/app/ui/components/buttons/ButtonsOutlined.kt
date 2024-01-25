@@ -91,8 +91,8 @@ fun ButtonsOutlined(customizationState: ButtonCustomizationState) {
                                 layoutWidth(hasFullScreenWidth)
                                 layoutHeight()
                                 appAttr("text", buttonText)
-                                if (hasLeadingIcon) drawableAppAttr("icon", "icon")
-                                if (!isEnabled) disabledAppAttr()
+                                if (hasLeadingIcon) drawable("icon", "icon")
+                                if (!isEnabled) disabled()
                             }
                         )
                     }

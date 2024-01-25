@@ -109,8 +109,8 @@ fun ButtonsContained(customizationState: ButtonCustomizationState) {
                                 layoutWidth(hasFullScreenWidth)
                                 layoutHeight()
                                 appAttr("text", buttonText)
-                                if (hasLeadingIcon) drawableAppAttr("icon", "icon")
-                                if (!isEnabled) disabledAppAttr()
+                                if (hasLeadingIcon) drawable("icon", "icon")
+                                if (!isEnabled) disabled()
                                 if (buttonStyle.value != OdsButton.Style.Default) appAttr("odsButtonStyle", buttonStyle.value.getXmlEnumValue())
                             }
                         )

@@ -38,13 +38,14 @@ fun XmlViewTag(clazz: Class<out View>, xmlAttributes: (XmlAttributesBuilder.() -
 }
 
 object PredefinedXmlAttribute {
-    class Id(value: String) : XmlAttribute("android:id", "@+id/$value")
-    class LayoutHeight(matchParent: Boolean = false) : XmlAttribute("android:layout_height", getLayoutParamValue(matchParent))
-    class LayoutWidth(matchParent: Boolean = false) : XmlAttribute("android:layout_width", getLayoutParamValue(matchParent))
+    open class AndroidAttr(name: String, value: String) : XmlAttribute("android:$name", value)
+    class Id(value: String) : AndroidAttr("id", "@+id/$value")
+    class LayoutHeight(matchParent: Boolean = false) : AndroidAttr("layout_height", getLayoutParamValue(matchParent))
+    class LayoutWidth(matchParent: Boolean = false) : AndroidAttr("layout_width", getLayoutParamValue(matchParent))
 
     open class AppAttr(name: String, value: String) : XmlAttribute("app:$name", value)
-    class DrawableAppAttr(name: String, drawableName: String) : AppAttr(name, "@drawable/$drawableName")
-    class DisabledAppAttr : AppAttr("enabled", "false")
+    class Drawable(name: String, drawableName: String) : AppAttr(name, "@drawable/$drawableName")
+    class Disabled : AppAttr("enabled", "false")
 }
 
 @DslMarker
@@ -61,8 +62,8 @@ class XmlAttributesBuilder {
     fun layoutHeight(matchParent: Boolean = false) = add(PredefinedXmlAttribute.LayoutHeight(matchParent))
     fun layoutWidth(matchParent: Boolean = false) = add(PredefinedXmlAttribute.LayoutWidth(matchParent))
     fun appAttr(name: String, value: String) = add(PredefinedXmlAttribute.AppAttr(name, value))
-    fun drawableAppAttr(name: String, drawableName: String) = add(PredefinedXmlAttribute.DrawableAppAttr(name, drawableName))
-    fun disabledAppAttr() = add(PredefinedXmlAttribute.DisabledAppAttr())
+    fun drawable(name: String, drawableName: String) = add(PredefinedXmlAttribute.Drawable(name, drawableName))
+    fun disabled() = add(PredefinedXmlAttribute.Disabled())
 
     @Composable
     fun Build() = xmlAttributes.forEach { it.code() }

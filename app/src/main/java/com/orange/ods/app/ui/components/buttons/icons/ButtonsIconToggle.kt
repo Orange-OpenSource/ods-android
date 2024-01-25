@@ -109,11 +109,11 @@ fun ButtonsIconToggle(customizationState: ButtonIconCustomizationState) {
                                 layoutWidth()
                                 layoutHeight()
                                 appAttr("checked", "${buttonCheckedState.value}")
-                                drawableAppAttr(uncheckedIconAttrName, "unchecked_icon")
-                                drawableAppAttr(checkedIconAttrName, "checked_icon")
+                                drawable(uncheckedIconAttrName, "unchecked_icon")
+                                drawable(checkedIconAttrName, "checked_icon")
                                 appAttr("uncheckedIconContentDescription", "")
                                 appAttr("checkedIconContentDescription", "")
-                                if (!isEnabled) disabledAppAttr()
+                                if (!isEnabled) disabled()
                             }
                         )
                     }

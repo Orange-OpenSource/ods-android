@@ -166,7 +166,7 @@ fun ComponentBanners() {
                                         appAttr("secondButtonText", it)
                                     }
                                     if (hasImage) {
-                                        drawableAppAttr("image", "image")
+                                        drawable("image", "image")
                                         appAttr("imageContentDescription", "Banner image")
                                     }
                                 }

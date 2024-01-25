@@ -92,9 +92,9 @@ fun ButtonsIcon(customizationState: ButtonIconCustomizationState) {
                                 id("ods_icon_button")
                                 layoutWidth()
                                 layoutHeight()
-                                drawableAppAttr("icon", "icon")
+                                drawable("icon", "icon")
                                 appAttr("iconContentDescription", "Icon description")
-                                if (!isEnabled) disabledAppAttr()
+                                if (!isEnabled) disabled()
                             }
                         )
                     }
