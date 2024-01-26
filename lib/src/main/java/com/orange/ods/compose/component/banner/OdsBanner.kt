@@ -15,6 +15,8 @@ package com.orange.ods.compose.component.banner
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.ExperimentalLayoutApi
+import androidx.compose.foundation.layout.FlowRow
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
@@ -54,6 +56,7 @@ import com.orange.ods.compose.theme.OdsTheme
  * @param firstButton Primary button displayed in the banner.
  * @param secondButton Secondary button displayed into the banner next to the primary one.
  */
+@OptIn(ExperimentalLayoutApi::class)
 @Composable
 @OdsComposable
 fun OdsBanner(
@@ -115,18 +118,18 @@ fun OdsBanner(
             }
         }
         if (!isSingleLineBanner && buttonCount > 0) {
-            Row(
+            FlowRow(
                 modifier = Modifier
-                    .padding(bottom = dimensionResource(id = R.dimen.spacing_xs))
                     .padding(horizontal = dimensionResource(id = R.dimen.spacing_m))
                     .align(Alignment.End),
-                horizontalArrangement = Arrangement.spacedBy(dimensionResource(id = R.dimen.spacing_s))
+                horizontalArrangement = Arrangement.spacedBy(dimensionResource(id = R.dimen.spacing_s), Alignment.End),
+                verticalArrangement = Arrangement.spacedBy((-6).dp)
             ) {
                 firstButton?.Content()
                 secondButton?.Content()
             }
         }
-        OdsDivider()
+        OdsDivider(modifier = Modifier.padding(top = dimensionResource(id = R.dimen.spacing_xs)))
     }
 }
 
@@ -211,10 +214,12 @@ private val previewParameterValues: List<OdsBannerPreviewParameter>
         val shortMessage = "Here is a short banner message."
         val longMessage = "Here is a long banner message. One to two lines is preferable on mobile and tablet."
         val firstButtonText = "ACTION 1"
+        val firstButtonLongText = "ACTION with a very long label"
         val secondButtonText = "ACTION 2"
 
         return listOf(
             OdsBannerPreviewParameter(longMessage, firstButtonText, secondButtonText, imageRes),
+            OdsBannerPreviewParameter(longMessage, firstButtonLongText, secondButtonText, imageRes),
             OdsBannerPreviewParameter(shortMessage),
             OdsBannerPreviewParameter(shortMessage, firstButtonText),
             OdsBannerPreviewParameter(shortMessage, secondButtonText = secondButtonText),
