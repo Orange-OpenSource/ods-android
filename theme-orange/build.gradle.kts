@@ -15,7 +15,6 @@ import com.orange.ods.gradle.Dependencies
 plugins {
     id("library")
     id("kotlin-kapt")
-    id("dagger.hilt.android.plugin")
     id("kotlin-parcelize")
 }
 
@@ -28,7 +27,5 @@ dependencies {
 
     implementation(platform(Dependencies.composeBom))
     implementation(Dependencies.composeMaterial)
-    implementation(Dependencies.hiltAndroid)
-    kapt(Dependencies.hiltCompiler)
     implementation(Dependencies.material)
 }

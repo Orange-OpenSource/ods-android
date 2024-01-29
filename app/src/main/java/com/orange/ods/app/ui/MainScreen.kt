@@ -71,7 +71,7 @@ import kotlinx.coroutines.flow.onEach
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun MainScreen(themeConfigurations: Set<OdsThemeConfigurationContract>, mainViewModel: MainViewModel = viewModel()) {
+fun MainScreen(themeConfigurations: List<OdsThemeConfigurationContract>, mainViewModel: MainViewModel = viewModel()) {
     val isSystemInDarkTheme = isSystemInDarkTheme()
     val mainState = rememberMainState(
         themeState = rememberThemeState(
@@ -84,7 +84,7 @@ fun MainScreen(themeConfigurations: Set<OdsThemeConfigurationContract>, mainView
                 )
             },
             darkModeEnabled = rememberSaveable { mutableStateOf(isSystemInDarkTheme) },
-            themeConfigurations = themeConfigurations.toList()
+            themeConfigurations = themeConfigurations
         )
     )
 
@@ -202,7 +202,7 @@ fun MainScreen(themeConfigurations: Set<OdsThemeConfigurationContract>, mainView
     }
 }
 
-private fun getCurrentThemeConfiguration(storedUserThemeName: String?, themeConfigurations: Set<OdsThemeConfigurationContract>): OdsThemeConfigurationContract {
+private fun getCurrentThemeConfiguration(storedUserThemeName: String?, themeConfigurations: List<OdsThemeConfigurationContract>): OdsThemeConfigurationContract {
     // Return the stored user theme configuration if it exists. If not, return the Orange theme configuration or the first existing theme configuration
     return themeConfigurations.firstOrNull { it.name == storedUserThemeName }
         .orElse { themeConfigurations.firstOrNull { it.isOrange } }
