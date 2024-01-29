@@ -33,7 +33,6 @@ import com.orange.ods.app.ui.components.Variant
 import com.orange.ods.app.ui.components.utilities.ComponentCountRow
 import com.orange.ods.app.ui.components.utilities.ComponentCustomizationBottomSheetScaffold
 import com.orange.ods.app.ui.utilities.composable.Subtitle
-import com.orange.ods.compose.component.chip.OdsChoiceChip
 import com.orange.ods.compose.component.chip.OdsChoiceChipsFlowRow
 import com.orange.ods.compose.component.listitem.OdsListItem
 import com.orange.ods.compose.component.tab.OdsTabRow
@@ -82,20 +81,15 @@ fun ComponentTabs(variant: Variant) {
                 )
                 Subtitle(textRes = R.string.component_tabs_icon_position, horizontalPadding = true)
                 OdsChoiceChipsFlowRow(
-                    value = tabsIconPosition.value,
-                    onValueChange = { value -> tabsIconPosition.value = value },
+                    selectedChoiceChipIndex = OdsTabRow.Tab.Icon.Position.entries.indexOf(tabsIconPosition.value),
                     modifier = Modifier.padding(horizontal = dimensionResource(id = com.orange.ods.R.dimen.spacing_m)),
-                    chips = listOf(
-                        OdsChoiceChip(
-                            text = stringResource(id = R.string.component_tabs_icon_position_leading),
-                            value = OdsTabRow.Tab.Icon.Position.Leading,
-                            enabled = isTabsIconPositionEnabled
-                        ),
-                        OdsChoiceChip(
-                            text = stringResource(id = R.string.component_tabs_icon_position_top), value = OdsTabRow.Tab.Icon.Position.Top,
-                            enabled = isTabsIconPositionEnabled
-                        )
-                    )
+                    choiceChips = OdsTabRow.Tab.Icon.Position.entries.map { tabsIconPosition ->
+                        val textResId = when (tabsIconPosition) {
+                            OdsTabRow.Tab.Icon.Position.Top -> R.string.component_tabs_icon_position_top
+                            OdsTabRow.Tab.Icon.Position.Leading -> R.string.component_tabs_icon_position_leading
+                        }
+                        OdsChoiceChipsFlowRow.ChoiceChip(stringResource(id = textResId), { this.tabsIconPosition.value = tabsIconPosition }, isTabsIconPositionEnabled)
+                    }
                 )
 
                 ComponentCountRow(

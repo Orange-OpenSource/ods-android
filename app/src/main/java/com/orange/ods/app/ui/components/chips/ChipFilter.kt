@@ -42,7 +42,6 @@ import com.orange.ods.app.ui.utilities.composable.Subtitle
 import com.orange.ods.app.ui.utilities.extension.buildImageRequest
 import com.orange.ods.compose.OdsComposable
 import com.orange.ods.compose.component.chip.OdsChip
-import com.orange.ods.compose.component.chip.OdsChoiceChip
 import com.orange.ods.compose.component.chip.OdsChoiceChipsFlowRow
 import com.orange.ods.compose.component.chip.OdsFilterChip
 import com.orange.ods.compose.component.listitem.OdsListItem
@@ -60,16 +59,16 @@ fun ChipFilter() {
         ComponentCustomizationBottomSheetScaffold(
             bottomSheetScaffoldState = rememberBottomSheetScaffoldState(),
             bottomSheetContent = {
-
                 Subtitle(textRes = R.string.component_element_leading, horizontalPadding = true)
+                val leadingElements = listOf(ChipCustomizationState.LeadingElement.None, ChipCustomizationState.LeadingElement.Avatar)
                 OdsChoiceChipsFlowRow(
-                    value = leadingElement.value,
-                    onValueChange = { value -> leadingElement.value = value },
+                    selectedChoiceChipIndex = leadingElements.indexOf(leadingElement.value),
                     modifier = Modifier.padding(horizontal = dimensionResource(id = com.orange.ods.R.dimen.spacing_m)),
-                    chips = listOf(
-                        OdsChoiceChip(text = stringResource(id = R.string.component_element_none), value = ChipCustomizationState.LeadingElement.None),
-                        OdsChoiceChip(text = stringResource(id = R.string.component_element_avatar), value = ChipCustomizationState.LeadingElement.Avatar),
-                    )
+                    choiceChips = leadingElements.map { leadingElement ->
+                        val textResId =
+                            if (leadingElement == ChipCustomizationState.LeadingElement.None) R.string.component_element_none else R.string.component_element_avatar
+                        OdsChoiceChipsFlowRow.ChoiceChip(stringResource(id = textResId), { this.leadingElement.value = leadingElement })
+                    }
                 )
 
                 OdsListItem(

@@ -36,7 +36,6 @@ import com.orange.ods.app.ui.utilities.composable.Subtitle
 import com.orange.ods.compose.OdsComposable
 import com.orange.ods.compose.component.button.OdsExtendedFloatingActionButton
 import com.orange.ods.compose.component.button.OdsFloatingActionButton
-import com.orange.ods.compose.component.chip.OdsChoiceChip
 import com.orange.ods.compose.component.chip.OdsChoiceChipsFlowRow
 import com.orange.ods.compose.component.listitem.OdsListItem
 
@@ -93,16 +92,15 @@ fun ComponentFloatingActionButton() {
             bottomSheetContent = {
                 Subtitle(textRes = R.string.component_size, horizontalPadding = true)
                 OdsChoiceChipsFlowRow(
-                    value = size.value,
-                    onValueChange = { value -> size.value = value },
+                    selectedChoiceChipIndex = FabCustomizationState.Size.entries.indexOf(size.value),
                     modifier = Modifier.padding(horizontal = dimensionResource(id = com.orange.ods.R.dimen.spacing_m)),
-                    chips = listOf(
-                        OdsChoiceChip(
-                            text = stringResource(id = R.string.component_floating_action_button_size_default),
-                            value = FabCustomizationState.Size.Default
-                        ),
-                        OdsChoiceChip(text = stringResource(id = R.string.component_floating_action_button_size_mini), value = FabCustomizationState.Size.Mini)
-                    )
+                    choiceChips = FabCustomizationState.Size.entries.map { size ->
+                        val textResId = when (size) {
+                            FabCustomizationState.Size.Default -> R.string.component_floating_action_button_size_default
+                            FabCustomizationState.Size.Mini -> R.string.component_floating_action_button_size_mini
+                        }
+                        OdsChoiceChipsFlowRow.ChoiceChip(stringResource(id = textResId), { this.size.value = size })
+                    }
                 )
                 OdsListItem(
                     text = stringResource(id = R.string.component_element_text),

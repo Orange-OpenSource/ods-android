@@ -215,12 +215,11 @@ outlined by default.
 
 ```kotlin
 OdsChoiceChipsFlowRow(
-    chips = listOf(
-        OdsChoiceChip(text = "Choice chip 1", value = 1),
-        OdsChoiceChip(text = "Choice chip 2", value = 2)
+    selectedChoiceChipIndex = selectedChoiceChipIndex,
+    choiceChips = listOf(
+        OdsChoiceChipsFlowRow.ChoiceChip("Choice chip 1", { selectedChoiceChipIndex = 0 }),
+        OdsChoiceChipsFlowRow.ChoiceChip("Choice chip 2", { selectedChoiceChipIndex = 1 })
     ),
-    value = chipValue,
-    onValueChange = { value -> chipValue = value },
     modifier = Modifier.padding(horizontal = dimensionResource(id = com.orange.ods.R.dimen.spacing_m))
 )
 ```
@@ -229,9 +228,8 @@ OdsChoiceChipsFlowRow(
 
 {:.table}
 
-| Parameter                                  | Default&nbsp;value | Description                                                                      |
-|--------------------------------------------|--------------------|----------------------------------------------------------------------------------|
-| <b>`chips: List<OdsChoiceChip<T>>`</b>     |                    | Chips displayed into the flow row                                                |
-| <b>`value: String`</b>                     |                    | Initial value of the choice chips flow row                                       |
-| <b>`onValueChange: (value: T) -> Unit`</b> |                    | Callback invoked when the value changes. The new value is provided as parameter. |
-| `modifier: Modifier`                       | `Modifier`         | `Modifier` applied to the chips flow row                                         |
+| Parameter                                                    | Default&nbsp;value | Description                                                                       |
+|--------------------------------------------------------------|--------------------|-----------------------------------------------------------------------------------|
+| <b>`selectedChoiceChipIndex: Int`</b>                        |                    | The index of the currently selected chip.                                         |
+| <b>`choiceChips: List<OdsChoiceChipsFlowRow.ChoiceChip>`</b> |                    | The list of `OdsChoiceChipsFlowRow.ChoiceChip` displayed into the chips flow row. |
+| `modifier: Modifier`                                         | `Modifier`         | `Modifier` applied to the chips flow row.                                         |

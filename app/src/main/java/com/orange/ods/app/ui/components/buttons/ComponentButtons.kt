@@ -36,7 +36,6 @@ import com.orange.ods.app.ui.components.utilities.ComponentCustomizationBottomSh
 import com.orange.ods.app.ui.utilities.composable.Subtitle
 import com.orange.ods.compose.component.button.OdsButton
 import com.orange.ods.compose.component.button.OdsTextButton
-import com.orange.ods.compose.component.chip.OdsChoiceChip
 import com.orange.ods.compose.component.chip.OdsChoiceChipsFlowRow
 import com.orange.ods.compose.component.listitem.OdsListItem
 import com.orange.ods.compose.text.OdsText
@@ -64,32 +63,29 @@ fun ComponentButtons(variant: Variant) {
                 when (variant) {
                     Variant.ButtonsFunctional -> {
                         Subtitle(textRes = R.string.component_button_style_functional, horizontalPadding = true)
+                        val buttonStyles = listOf(OdsButton.Style.FunctionalPositive, OdsButton.Style.FunctionalNegative)
                         OdsChoiceChipsFlowRow(
-                            value = buttonStyle.value,
-                            onValueChange = { value -> buttonStyle.value = value },
+                            selectedChoiceChipIndex = buttonStyles.indexOf(buttonStyle.value),
                             modifier = Modifier.padding(horizontal = dimensionResource(id = com.orange.ods.R.dimen.spacing_m)),
-                            chips = listOf(
-                                OdsChoiceChip(
-                                    text = stringResource(id = R.string.component_button_style_functional_positive),
-                                    value = OdsButton.Style.FunctionalPositive
-                                ),
-                                OdsChoiceChip(
-                                    text = stringResource(id = R.string.component_button_style_functional_negative),
-                                    value = OdsButton.Style.FunctionalNegative
-                                )
-                            )
+                            choiceChips = buttonStyles.map { buttonStyle ->
+                                val textResId =
+                                    if (buttonStyle == OdsButton.Style.FunctionalPositive) R.string.component_button_style_functional_positive else R.string.component_button_style_functional_negative
+                                OdsChoiceChipsFlowRow.ChoiceChip(stringResource(id = textResId), { this.buttonStyle.value = buttonStyle })
+                            }
                         )
                     }
                     Variant.ButtonsText -> {
                         Subtitle(textRes = R.string.component_style, horizontalPadding = true)
                         OdsChoiceChipsFlowRow(
-                            value = textButtonStyle.value,
-                            onValueChange = { value -> textButtonStyle.value = value },
+                            selectedChoiceChipIndex = OdsTextButton.Style.entries.indexOf(textButtonStyle.value),
                             modifier = Modifier.padding(horizontal = dimensionResource(id = com.orange.ods.R.dimen.spacing_m)),
-                            chips = listOf(
-                                OdsChoiceChip(text = stringResource(id = R.string.component_button_style_primary), value = OdsTextButton.Style.Primary),
-                                OdsChoiceChip(text = stringResource(id = R.string.component_button_style_default), value = OdsTextButton.Style.Default)
-                            )
+                            choiceChips = OdsTextButton.Style.entries.map { textButtonStyle ->
+                                val textResId = when (textButtonStyle) {
+                                    OdsTextButton.Style.Default -> R.string.component_button_style_default
+                                    OdsTextButton.Style.Primary -> R.string.component_button_style_primary
+                                }
+                                OdsChoiceChipsFlowRow.ChoiceChip(stringResource(id = textResId), { this.textButtonStyle.value = textButtonStyle })
+                            }
                         )
                     }
                     Variant.ButtonsTextToggleGroup -> {

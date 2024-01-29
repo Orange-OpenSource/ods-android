@@ -45,7 +45,7 @@ class ComponentNavigationDrawersContentState(
     val listIconChecked: MutableState<Boolean>,
     val contentExampleChecked: MutableState<Boolean>,
     val content: MutableState<SectionListExample>,
-    val header: MutableState<HeaderImage>
+    val headerImage: MutableState<HeaderImage>
 ) {
     val isSubTitleChecked
         get() = subtitleChecked.value
@@ -65,10 +65,10 @@ class ComponentNavigationDrawersContentState(
     }
 
     val hasAvatar
-        get() = header.value == HeaderImage.Avatar
+        get() = headerImage.value == HeaderImage.Avatar
 
     val hasBackground
-        get() = header.value == HeaderImage.Background
+        get() = headerImage.value == HeaderImage.Background
 
     val hasDivider
         get() = content.value == SectionListExample.Divider
