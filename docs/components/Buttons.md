@@ -375,7 +375,7 @@ You can also force the button display on `light` or `dark` surface using `displa
 
 ```xml
 
-<com.orange.ods.xml.component.button.OdsIconButton
+<com.orange.ods.xml.component.button.OdsIconToggleButton
     android:id="@+id/ods_icon_toggle_button"
     android:layout_height="wrap_content"
     android:layout_width="wrap_content"
@@ -437,13 +437,16 @@ OdsIconToggleButtonsRow(
 
 In your layout, use the `OdsIconToggleButtonsRow` view.
 
+You can also force the buttons display on `light` or `dark` surface using `displaySurface` attribute. By default (`standard` value), the appearance applied is based on the system night mode value.
+
 ```xml
 
-<com.orange.ods.xml.component.button.OdsIconToggleButtons_row
+<com.orange.ods.xml.component.button.OdsIconToggleButtonsRow
     android:id="@+id/ods_icon_toggle_buttons_row"
     android:layout_height="wrap_content"
     android:layout_width="wrap_content"
-    app:selectedIndex="1" />
+    app:selectedIndex="1"
+    app:displaySurface="standard" />
 ```
 
 Add the icons in the `OdsIconToggleButtonsRow` by code using view binding:
