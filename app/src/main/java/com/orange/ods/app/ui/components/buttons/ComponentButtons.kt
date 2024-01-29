@@ -83,8 +83,8 @@ fun ComponentButtons(variant: Variant) {
                             modifier = Modifier.padding(horizontal = dimensionResource(id = com.orange.ods.R.dimen.spacing_m)),
                             choiceChips = OdsTextButton.Style.entries.map { textButtonStyle ->
                                 val text = when (textButtonStyle) {
-                                    OdsTextButton.Style.Default -> stringResource(id = R.string.component_button_style_primary)
-                                    OdsTextButton.Style.Primary -> stringResource(id = R.string.component_button_style_default)
+                                    OdsTextButton.Style.Default -> stringResource(id = R.string.component_button_style_default)
+                                    OdsTextButton.Style.Primary -> stringResource(id = R.string.component_button_style_primary)
                                 }
                                 OdsChoiceChipsFlowRow.ChoiceChip(text, { this.textButtonStyle.value = textButtonStyle })
                             }
