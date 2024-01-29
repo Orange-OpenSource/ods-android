@@ -16,6 +16,7 @@ import androidx.compose.material.LeadingIconTab
 import androidx.compose.material.Tab
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.ImageBitmap
 import androidx.compose.ui.graphics.painter.Painter
 import androidx.compose.ui.graphics.vector.ImageVector
@@ -54,7 +55,17 @@ object OdsTabRow {
                 LeadingIconTab(
                     modifier = modifier,
                     icon = { icon.Content() },
-                    text = { OdsText(text = text, maxLines = 1, overflow = TextOverflow.Ellipsis, style = OdsTextStyle.LabelL) },
+                    text = {
+                        OdsText(
+                            text = text,
+                            // Set color to Unspecified otherwise the colors parameter of LeadingIconTab is overridden
+                            // by the default value of the displaySurface parameter of OdsText
+                            color = Color.Unspecified,
+                            maxLines = 1,
+                            overflow = TextOverflow.Ellipsis,
+                            style = OdsTextStyle.LabelL
+                        )
+                    },
                     selected = extraParameters.selected,
                     selectedContentColor = selectedContentColor,
                     unselectedContentColor = unselectedContentColor,
@@ -68,7 +79,19 @@ object OdsTabRow {
                     modifier = modifier,
                     enabled = enabled,
                     icon = icon?.let { { it.Content() } },
-                    text = text?.let { { OdsText(text, maxLines = 1, overflow = TextOverflow.Ellipsis, style = OdsTextStyle.LabelL) } },
+                    text = text?.let {
+                        {
+                            OdsText(
+                                text = text,
+                                // Set color to Unspecified otherwise the colors parameter of Tab is overridden
+                                // by the default value of the displaySurface parameter of OdsText
+                                color = Color.Unspecified,
+                                maxLines = 1,
+                                overflow = TextOverflow.Ellipsis,
+                                style = OdsTextStyle.LabelL
+                            )
+                        }
+                    },
                     selectedContentColor = selectedContentColor,
                     unselectedContentColor = unselectedContentColor,
                 )
