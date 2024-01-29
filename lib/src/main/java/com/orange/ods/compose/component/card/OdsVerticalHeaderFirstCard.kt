@@ -33,10 +33,9 @@ import com.orange.ods.compose.component.OdsComposable
 import com.orange.ods.compose.component.utilities.BasicPreviewParameterProvider
 import com.orange.ods.compose.component.utilities.Preview
 import com.orange.ods.compose.component.utilities.UiModePreviews
-import com.orange.ods.compose.text.OdsTextBodyL
-import com.orange.ods.compose.text.OdsTextTitleL
-import com.orange.ods.compose.text.OdsTextTitleS
+import com.orange.ods.compose.text.OdsText
 import com.orange.ods.extension.orElse
+import com.orange.ods.theme.typography.OdsTextStyle
 
 /**
  * <a href="https://system.design.orange.com/0c1af118d/p/272739-cards/b/991690" target="_blank">ODS Card</a>.
@@ -81,9 +80,9 @@ fun OdsVerticalHeaderFirstCard(
             ) {
                 thumbnail?.Content()
                 Column(modifier = Modifier.padding(start = thumbnail?.let { dimensionResource(id = R.dimen.spacing_s) }.orElse { 0.dp })) {
-                    OdsTextTitleL(text = title)
+                    OdsText(text = title, style = OdsTextStyle.TitleL)
                     subtitle?.let {
-                        OdsTextTitleS(text = it)
+                        OdsText(text = it, style = OdsTextStyle.BodyM)
                     }
                 }
             }
@@ -94,11 +93,12 @@ fun OdsVerticalHeaderFirstCard(
             )
 
             text?.let {
-                OdsTextBodyL(
+                OdsText(
                     modifier = Modifier
                         .padding(top = dimensionResource(id = R.dimen.spacing_m))
                         .padding(horizontal = dimensionResource(id = R.dimen.spacing_m)),
-                    text = it
+                    text = it,
+                    style = OdsTextStyle.BodyL
                 )
             }
 

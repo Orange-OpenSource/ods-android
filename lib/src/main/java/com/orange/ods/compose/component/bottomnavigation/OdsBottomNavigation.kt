@@ -23,7 +23,6 @@ import androidx.compose.foundation.layout.RowScope
 import androidx.compose.foundation.selection.selectable
 import androidx.compose.material.BottomNavigation
 import androidx.compose.material.BottomNavigationItem
-import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableIntStateOf
@@ -31,6 +30,7 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.focus.focusProperties
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.ImageBitmap
 import androidx.compose.ui.graphics.painter.Painter
 import androidx.compose.ui.graphics.vector.ImageVector
@@ -46,7 +46,9 @@ import com.orange.ods.compose.component.content.OdsComponentIcon
 import com.orange.ods.compose.component.content.OdsComponentScopeContent
 import com.orange.ods.compose.component.utilities.Preview
 import com.orange.ods.compose.component.utilities.UiModePreviews
+import com.orange.ods.compose.text.OdsText
 import com.orange.ods.compose.theme.OdsTheme
+import com.orange.ods.theme.typography.OdsTextStyle
 
 private const val MaxBottomNavigationItemCount = 5
 
@@ -145,11 +147,14 @@ object OdsBottomNavigation {
                     enabled = enabled,
                     label = label?.let {
                         {
-                            Text(
+                            OdsText(
                                 text = label,
+                                // Set color to Unspecified otherwise the colors parameter of BottomNavigationItem is overridden
+                                // by the default value of the displaySurface parameter of OdsText
+                                color = Color.Unspecified,
                                 maxLines = 1,
                                 overflow = TextOverflow.Ellipsis,
-                                style = OdsTheme.typography.bodyS
+                                style = OdsTextStyle.BodyS
                             )
                         }
                     },

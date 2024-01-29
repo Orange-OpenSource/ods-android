@@ -45,9 +45,11 @@ import com.orange.ods.compose.component.content.OdsComponentImage
 import com.orange.ods.compose.component.utilities.BasicPreviewParameterProvider
 import com.orange.ods.compose.component.utilities.Preview
 import com.orange.ods.compose.component.utilities.UiModePreviews
+import com.orange.ods.compose.text.OdsText
 import com.orange.ods.compose.theme.OdsDisplaySurface
 import com.orange.ods.compose.theme.OdsTheme
 import com.orange.ods.extension.orElse
+import com.orange.ods.theme.typography.OdsTextStyle
 
 
 /**
@@ -222,11 +224,11 @@ private fun OdsImageItemLegendArea(
     icon: OdsImageItem.IconToggleButton?,
     @SuppressLint("ModifierParameter") textModifier: Modifier
 ) {
-    Text(
+    OdsText(
         text = text,
         color = color,
         modifier = textModifier,
-        style = OdsTheme.typography.titleM,
+        style = OdsTextStyle.TitleM,
         maxLines = 1,
         overflow = TextOverflow.Ellipsis
     )

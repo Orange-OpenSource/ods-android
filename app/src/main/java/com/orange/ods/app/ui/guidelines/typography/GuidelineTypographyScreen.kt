@@ -36,9 +36,10 @@ import com.orange.ods.app.ui.utilities.DrawableManager
 import com.orange.ods.app.ui.utilities.composable.DetailScreenHeader
 import com.orange.ods.app.ui.utilities.extension.getStringName
 import com.orange.ods.compose.component.divider.OdsDivider
-import com.orange.ods.compose.text.OdsTextBodyL
+import com.orange.ods.compose.text.OdsText
 import com.orange.ods.compose.theme.OdsTheme
 import com.orange.ods.theme.guideline.GuidelineTextStyle
+import com.orange.ods.theme.typography.OdsTextStyle
 
 @Composable
 fun GuidelineTypographyScreen() {
@@ -56,12 +57,13 @@ fun GuidelineTypographyScreen() {
         }
         if (guidelineTypography.isEmpty()) {
             item {
-                OdsTextBodyL(
+                OdsText(
                     modifier = Modifier.padding(
                         horizontal = dimensionResource(id = com.orange.ods.R.dimen.screen_horizontal_margin),
                         vertical = dimensionResource(id = com.orange.ods.R.dimen.screen_vertical_margin)
                     ),
-                    text = stringResource(id = R.string.guideline_typography_no_typography_defined)
+                    text = stringResource(id = R.string.guideline_typography_no_typography_defined),
+                    style = OdsTextStyle.BodyL
                 )
             }
         } else {

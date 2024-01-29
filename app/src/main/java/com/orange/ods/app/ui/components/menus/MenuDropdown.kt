@@ -44,7 +44,8 @@ import com.orange.ods.app.ui.utilities.code.FunctionCallCode
 import com.orange.ods.compose.OdsComposable
 import com.orange.ods.compose.component.listitem.OdsListItem
 import com.orange.ods.compose.component.menu.OdsDropdownMenu
-import com.orange.ods.compose.text.OdsTextBodyL
+import com.orange.ods.compose.text.OdsText
+import com.orange.ods.theme.typography.OdsTextStyle
 
 @OptIn(ExperimentalMaterialApi::class)
 @Composable
@@ -77,10 +78,11 @@ fun MenuDropdown() {
                         bottom = dimensionResource(id = com.orange.ods.R.dimen.spacing_s)
                     )
             ) {
-                OdsTextBodyL(
+                OdsText(
                     modifier = Modifier
                         .padding(horizontal = dimensionResource(id = com.orange.ods.R.dimen.screen_horizontal_margin)),
-                    text = stringResource(id = R.string.component_menu_dropdown_description)
+                    text = stringResource(id = R.string.component_menu_dropdown_description),
+                    style = OdsTextStyle.BodyL
                 )
 
                 val dividerIndex = 1

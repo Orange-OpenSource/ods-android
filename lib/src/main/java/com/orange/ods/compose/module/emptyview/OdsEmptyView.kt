@@ -17,7 +17,6 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
-import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -36,7 +35,8 @@ import com.orange.ods.compose.component.content.OdsComponentImage
 import com.orange.ods.compose.component.utilities.BasicPreviewParameterProvider
 import com.orange.ods.compose.component.utilities.Preview
 import com.orange.ods.compose.component.utilities.UiModePreviews
-import com.orange.ods.compose.theme.OdsTheme
+import com.orange.ods.compose.text.OdsText
+import com.orange.ods.theme.typography.OdsTextStyle
 
 /**
  * Display a full screen empty view with a centered image followed by a title and an optional text. A button can also be added.
@@ -66,23 +66,23 @@ private fun OdsEmptyView(
 
         image.Content(modifier = Modifier.fillMaxWidth())
 
-        Text(
+        OdsText(
             modifier = Modifier
                 .padding(top = dimensionResource(id = R.dimen.spacing_m))
                 .fillMaxWidth(),
             text = title,
             textAlign = TextAlign.Center,
-            style = OdsTheme.typography.titleL
+            style = OdsTextStyle.TitleL
         )
 
         text?.let {
-            Text(
+            OdsText(
                 modifier = Modifier
                     .padding(top = dimensionResource(id = R.dimen.spacing_s))
                     .fillMaxWidth(),
                 text = text,
                 textAlign = TextAlign.Center,
-                style = OdsTheme.typography.titleS
+                style = OdsTextStyle.BodyM
             )
         }
 

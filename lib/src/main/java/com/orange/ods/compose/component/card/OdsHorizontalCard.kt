@@ -34,9 +34,9 @@ import com.orange.ods.compose.component.divider.OdsDivider
 import com.orange.ods.compose.component.utilities.BasicPreviewParameterProvider
 import com.orange.ods.compose.component.utilities.Preview
 import com.orange.ods.compose.component.utilities.UiModePreviews
-import com.orange.ods.compose.text.OdsTextTitleL
-import com.orange.ods.compose.text.OdsTextTitleS
+import com.orange.ods.compose.text.OdsText
 import com.orange.ods.compose.theme.OdsTheme
+import com.orange.ods.theme.typography.OdsTextStyle
 
 /**
  * <a href="https://system.design.orange.com/0c1af118d/p/272739-cards/b/991690" target="_blank">ODS Card</a>.
@@ -108,7 +108,7 @@ fun OdsHorizontalCard(
                 bottom.linkTo(imageRef.bottom, margin = mediumSpacing)
             }
 
-            OdsTextTitleL(
+            OdsText(
                 text = title,
                 modifier = Modifier.constrainAs(titleRef) {
                     when (imagePosition) {
@@ -122,20 +122,22 @@ fun OdsHorizontalCard(
                         }
                     }
                     width = Dimension.fillToConstraints
-                }
+                },
+                style = OdsTextStyle.TitleL
             )
 
-            OdsTextTitleS(
+            OdsText(
                 text = subtitle.orEmpty(),
                 modifier = Modifier.constrainAs(subtitleRef) {
                     start.linkTo(titleRef.start)
                     end.linkTo(titleRef.end)
                     width = Dimension.fillToConstraints
                     visibility = if (subtitle != null) Visibility.Visible else Visibility.Gone
-                }
+                },
+                style = OdsTextStyle.BodyM
             )
 
-            Text(
+            OdsText(
                 modifier = Modifier
                     .padding(top = smallSpacing) // For some reason, margins inside a chain are not applied, a workaround is to apply padding before the constraints
                     .constrainAs(textRef) {
@@ -145,7 +147,7 @@ fun OdsHorizontalCard(
                         visibility = if (text != null) Visibility.Visible else Visibility.Gone
                     },
                 text = text.orEmpty(),
-                style = OdsTheme.typography.bodyL,
+                style = OdsTextStyle.BodyL,
                 maxLines = if (subtitle == null) 3 else 2,
                 overflow = TextOverflow.Ellipsis
             )

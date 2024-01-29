@@ -44,7 +44,9 @@ import com.orange.ods.compose.component.menu.OdsDropdownMenu
 import com.orange.ods.compose.component.utilities.BasicPreviewParameterProvider
 import com.orange.ods.compose.component.utilities.Preview
 import com.orange.ods.compose.component.utilities.UiModePreviews
+import com.orange.ods.compose.text.OdsText
 import com.orange.ods.compose.theme.OdsTheme
+import com.orange.ods.theme.typography.OdsTextStyle
 import kotlinx.coroutines.delay
 
 /**
@@ -111,7 +113,7 @@ fun OdsLargeTopAppBar(
 
     LargeTopAppBar(
         title = {
-            Text(
+            OdsText(
                 modifier = Modifier
                     .padding(
                         start = titleStartPadding,
@@ -122,7 +124,7 @@ fun OdsLargeTopAppBar(
                     .focusRequester(focusRequester)
                     .focusable(),
                 text = title,
-                style = OdsTheme.typography.titleL,
+                style = OdsTextStyle.TitleL,
                 overflow = TextOverflow.Ellipsis,
                 maxLines = titleMaxLines,
             )

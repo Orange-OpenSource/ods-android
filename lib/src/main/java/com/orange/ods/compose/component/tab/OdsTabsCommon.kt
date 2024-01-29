@@ -14,9 +14,9 @@ package com.orange.ods.compose.component.tab
 
 import androidx.compose.material.LeadingIconTab
 import androidx.compose.material.Tab
-import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.ImageBitmap
 import androidx.compose.ui.graphics.painter.Painter
 import androidx.compose.ui.graphics.vector.ImageVector
@@ -24,8 +24,10 @@ import androidx.compose.ui.text.style.TextOverflow
 import com.orange.ods.compose.component.content.OdsComponentContent
 import com.orange.ods.compose.component.content.OdsComponentIcon
 import com.orange.ods.compose.component.utilities.BasicPreviewParameterProvider
+import com.orange.ods.compose.text.OdsText
 import com.orange.ods.compose.theme.OdsTheme
 import com.orange.ods.compose.utilities.extension.enable
+import com.orange.ods.theme.typography.OdsTextStyle
 
 /**
  * Contains classes to build an [com.orange.ods.compose.component.tab.OdsTabRow] or an [com.orange.ods.compose.component.tab.OdsScrollableTabRow].
@@ -53,7 +55,17 @@ object OdsTabRow {
                 LeadingIconTab(
                     modifier = modifier,
                     icon = { icon.Content() },
-                    text = { Text(text = text.uppercase(), maxLines = 1, overflow = TextOverflow.Ellipsis, style = OdsTheme.typography.labelL) },
+                    text = {
+                        OdsText(
+                            text = text,
+                            // Set color to Unspecified otherwise the colors parameter of LeadingIconTab is overridden
+                            // by the default value of the displaySurface parameter of OdsText
+                            color = Color.Unspecified,
+                            maxLines = 1,
+                            overflow = TextOverflow.Ellipsis,
+                            style = OdsTextStyle.LabelL
+                        )
+                    },
                     selected = extraParameters.selected,
                     selectedContentColor = selectedContentColor,
                     unselectedContentColor = unselectedContentColor,
@@ -67,7 +79,19 @@ object OdsTabRow {
                     modifier = modifier,
                     enabled = enabled,
                     icon = icon?.let { { it.Content() } },
-                    text = text?.let { { Text(text.uppercase(), maxLines = 1, overflow = TextOverflow.Ellipsis, style = OdsTheme.typography.labelL) } },
+                    text = text?.let {
+                        {
+                            OdsText(
+                                text = text,
+                                // Set color to Unspecified otherwise the colors parameter of Tab is overridden
+                                // by the default value of the displaySurface parameter of OdsText
+                                color = Color.Unspecified,
+                                maxLines = 1,
+                                overflow = TextOverflow.Ellipsis,
+                                style = OdsTextStyle.LabelL
+                            )
+                        }
+                    },
                     selectedContentColor = selectedContentColor,
                     unselectedContentColor = unselectedContentColor,
                 )

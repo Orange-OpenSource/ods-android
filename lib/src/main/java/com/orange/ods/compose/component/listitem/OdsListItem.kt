@@ -29,7 +29,6 @@ import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.ExperimentalMaterialApi
 import androidx.compose.material.ListItem
 import androidx.compose.material.MaterialTheme
-import androidx.compose.material.Text
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.AccountBox
 import androidx.compose.runtime.Composable
@@ -52,7 +51,7 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.semantics.Role
 import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.semantics.stateDescription
-import androidx.compose.ui.text.TextStyle
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.PreviewParameter
 import androidx.compose.ui.unit.Dp
@@ -70,10 +69,11 @@ import com.orange.ods.compose.component.divider.OdsDivider
 import com.orange.ods.compose.component.utilities.BasicPreviewParameterProvider
 import com.orange.ods.compose.component.utilities.Preview
 import com.orange.ods.compose.component.utilities.UiModePreviews
-import com.orange.ods.compose.text.OdsTextBodyS
+import com.orange.ods.compose.text.OdsText
 import com.orange.ods.compose.theme.OdsTheme
 import com.orange.ods.extension.isNotNullOrBlank
 import com.orange.ods.extension.orElse
+import com.orange.ods.theme.typography.OdsTextStyle
 
 /**
  * <a href="https://system.design.orange.com/0c1af118d/p/09a804-lists/b/669743" target="_blank">ODS Lists</a>.
@@ -109,7 +109,7 @@ fun OdsListItem(
     OdsListItem(
         text = text,
         textColor = OdsTheme.colors.onSurface,
-        textStyle = OdsTheme.typography.titleM,
+        textStyle = OdsTextStyle.TitleM,
         modifier = modifier,
         leadingIcon = leadingIcon,
         secondaryText = secondaryText,
@@ -125,8 +125,9 @@ fun OdsListItem(
 internal fun OdsListItem(
     text: String,
     textColor: Color,
-    textStyle: TextStyle,
+    textStyle: OdsTextStyle,
     modifier: Modifier = Modifier,
+    textFontWeight: FontWeight? = null,
     leadingIcon: OdsListItem.LeadingIcon? = null,
     secondaryText: String? = null,
     secondaryTextLineCount: OdsListItem.SecondaryTextLineCount = OdsListItem.SecondaryTextLineCount.One,
@@ -147,6 +148,7 @@ internal fun OdsListItem(
                 textColor = textColor,
                 textStyle = textStyle,
                 modifier = Modifier.weight(1f),
+                textFontWeight = textFontWeight,
                 leadingIcon = null,
                 secondaryText = secondaryText,
                 singleLineSecondaryText = singleLineSecondaryText,
@@ -160,6 +162,7 @@ internal fun OdsListItem(
             textColor = textColor,
             textStyle = textStyle,
             modifier = rootModifier,
+            textFontWeight = textFontWeight,
             leadingIcon = leadingIcon,
             secondaryText = secondaryText,
             singleLineSecondaryText = singleLineSecondaryText,
@@ -178,8 +181,9 @@ internal fun OdsListItem(
 private fun OdsListItemInternal(
     text: String,
     textColor: Color,
-    textStyle: TextStyle,
+    textStyle: OdsTextStyle,
     modifier: Modifier = Modifier,
+    textFontWeight: FontWeight? = null,
     leadingIcon: OdsListItem.LeadingIcon? = null,
     secondaryText: String? = null,
     singleLineSecondaryText: Boolean = true,
@@ -196,9 +200,9 @@ private fun OdsListItemInternal(
         icon = leadingIcon?.let { { it.Content() } },
         secondaryText = if (secondaryText.isNotNullOrBlank()) {
             {
-                Text(
+                OdsText(
                     text = secondaryText,
-                    style = OdsTheme.typography.bodyM,
+                    style = OdsTextStyle.BodyM,
                     maxLines = secondaryTextLinesNumber,
                     overflow = TextOverflow.Ellipsis,
                     color = OdsTheme.colors.onSurface
@@ -207,12 +211,12 @@ private fun OdsListItemInternal(
         } else null,
         singleLineSecondaryText = singleLineSecondaryText,
         overlineText = if (overlineText.isNotNullOrBlank()) {
-            { Text(text = overlineText, style = OdsTheme.typography.labelS, color = OdsTheme.colors.onSurface.copy(alpha = 0.6f)) }
+            { OdsText(text = overlineText, style = OdsTextStyle.LabelS, color = OdsTheme.colors.onSurface.copy(alpha = 0.6f)) }
         } else null,
         trailing = (trailing as? OdsComponentContent<*>)?.let { { it.Content() } },
         text = {
             if (hasText) {
-                Text(text = text, style = textStyle, color = textColor)
+                OdsText(text = text, style = textStyle, color = textColor, fontWeight = textFontWeight)
             }
         }
     )
@@ -519,7 +523,7 @@ object OdsListItem {
 
         @Composable
         override fun Content(modifier: Modifier) {
-            OdsTextBodyS(modifier = modifier, text = text)
+            OdsText(modifier = modifier, text = text, style = OdsTextStyle.BodyS)
         }
     }
 
@@ -582,10 +586,30 @@ private val previewParameterValues: List<OdsListItemPreviewParameter>
 
         return listOf(
             OdsListItemPreviewParameter(null, OdsListItem.SecondaryTextLineCount.One, null, null),
-            OdsListItemPreviewParameter(longSecondaryText,  OdsListItem.SecondaryTextLineCount.One, null, OdsListItem.TrailingCheckbox::class.java),
-            OdsListItemPreviewParameter(shortSecondaryText,  OdsListItem.SecondaryTextLineCount.One, OdsListItem.LeadingIcon.Type.Icon, OdsListItem.TrailingIcon::class.java),
-            OdsListItemPreviewParameter(longSecondaryText,  OdsListItem.SecondaryTextLineCount.Two, OdsListItem.LeadingIcon.Type.SquareImage, OdsListItem.TrailingSwitch::class.java),
-            OdsListItemPreviewParameter(longSecondaryText,  OdsListItem.SecondaryTextLineCount.Two, OdsListItem.LeadingIcon.Type.WideImage, OdsListItem.TrailingCaption::class.java),
-            OdsListItemPreviewParameter(shortSecondaryText,  OdsListItem.SecondaryTextLineCount.One, OdsListItem.LeadingIcon.Type.CircularImage, OdsListItem.TrailingRadioButton::class.java)
+            OdsListItemPreviewParameter(longSecondaryText, OdsListItem.SecondaryTextLineCount.One, null, OdsListItem.TrailingCheckbox::class.java),
+            OdsListItemPreviewParameter(
+                shortSecondaryText,
+                OdsListItem.SecondaryTextLineCount.One,
+                OdsListItem.LeadingIcon.Type.Icon,
+                OdsListItem.TrailingIcon::class.java
+            ),
+            OdsListItemPreviewParameter(
+                longSecondaryText,
+                OdsListItem.SecondaryTextLineCount.Two,
+                OdsListItem.LeadingIcon.Type.SquareImage,
+                OdsListItem.TrailingSwitch::class.java
+            ),
+            OdsListItemPreviewParameter(
+                longSecondaryText,
+                OdsListItem.SecondaryTextLineCount.Two,
+                OdsListItem.LeadingIcon.Type.WideImage,
+                OdsListItem.TrailingCaption::class.java
+            ),
+            OdsListItemPreviewParameter(
+                shortSecondaryText,
+                OdsListItem.SecondaryTextLineCount.One,
+                OdsListItem.LeadingIcon.Type.CircularImage,
+                OdsListItem.TrailingRadioButton::class.java
+            )
         )
     }

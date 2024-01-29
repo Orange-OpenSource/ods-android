@@ -41,9 +41,10 @@ import com.orange.ods.compose.component.content.OdsComponentIcon
 import com.orange.ods.compose.component.utilities.BasicPreviewParameterProvider
 import com.orange.ods.compose.component.utilities.Preview
 import com.orange.ods.compose.component.utilities.UiModePreviews
-import com.orange.ods.compose.text.OdsTextBodyS
+import com.orange.ods.compose.text.OdsText
 import com.orange.ods.compose.theme.OdsTheme
 import com.orange.ods.extension.orElse
+import com.orange.ods.theme.typography.OdsTextStyle
 
 /**
  * Progress indicators express an unspecified wait time or display the length of a process.
@@ -79,9 +80,9 @@ fun OdsLinearProgressIndicator(
             icon?.Content(modifier = Modifier.padding(end = ButtonDefaults.IconSpacing))
 
             if (label != null) {
-                Text(
+                OdsText(
                     text = label,
-                    style = OdsTheme.typography.bodyS,
+                    style = OdsTextStyle.BodyS,
                     color = OdsTheme.colors.onSurface,
                     overflow = TextOverflow.Ellipsis,
                     maxLines = 1,
@@ -94,13 +95,14 @@ fun OdsLinearProgressIndicator(
 
             if (showCurrentValue) {
                 Row(horizontalArrangement = Arrangement.End, modifier = Modifier.fillMaxWidth()) {
-                    OdsTextBodyS(
+                    OdsText(
                         modifier = Modifier
                             .padding(top = dimensionResource(id = R.dimen.spacing_xs))
                             .semantics {
                                 this.invisibleToUser() // Prevent TalkBack to focus this Text cause the value of the progress is already read on LinearProgressIndicator focus
                             },
-                        text = stringResource(id = R.string.ods_progressLinearIndicator_value, (progress * 100).toInt())
+                        text = stringResource(id = R.string.ods_progressLinearIndicator_value, (progress * 100).toInt()),
+                        style = OdsTextStyle.BodyS
                     )
                 }
             }

@@ -45,7 +45,9 @@ import com.orange.ods.compose.component.divider.OdsDivider
 import com.orange.ods.compose.component.utilities.BasicPreviewParameterProvider
 import com.orange.ods.compose.component.utilities.Preview
 import com.orange.ods.compose.component.utilities.UiModePreviews
+import com.orange.ods.compose.text.OdsText
 import com.orange.ods.compose.theme.OdsTheme
+import com.orange.ods.theme.typography.OdsTextStyle
 
 /**
  * <a href="https://system.design.orange.com/0c1af118d/p/19a040-banners/b/497b77" class="external" target="_blank">ODS banners</a>.
@@ -98,10 +100,10 @@ fun OdsBanner(
             Row(
                 verticalAlignment = Alignment.CenterVertically
             ) {
-                Text(
+                OdsText(
                     modifier = Modifier.weight(1f),
                     text = message,
-                    style = OdsTheme.typography.bodyM,
+                    style = OdsTextStyle.BodyM,
                     color = OdsTheme.colors.onSurface,
                     maxLines = if (hasVisualOverflowText) Int.MAX_VALUE else 2,
                     overflow = TextOverflow.Ellipsis,

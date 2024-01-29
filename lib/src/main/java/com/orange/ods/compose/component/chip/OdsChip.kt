@@ -19,13 +19,13 @@ import androidx.compose.material.Chip
 import androidx.compose.material.ChipColors
 import androidx.compose.material.ExperimentalMaterialApi
 import androidx.compose.material.Icon
-import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.semantics.semantics
@@ -37,9 +37,11 @@ import com.orange.ods.compose.component.chip.OdsChipDefaults.SurfaceOverlayOpaci
 import com.orange.ods.compose.component.utilities.Preview
 import com.orange.ods.compose.component.utilities.UiModePreviews
 import com.orange.ods.compose.component.utilities.selectionStateDescription
+import com.orange.ods.compose.text.OdsText
 import com.orange.ods.compose.theme.OdsTheme
 import com.orange.ods.compose.utilities.extension.noRippleClickable
 import com.orange.ods.theme.OdsComponentsConfiguration
+import com.orange.ods.theme.typography.OdsTextStyle
 
 
 /**
@@ -117,10 +119,13 @@ private fun OdsChip(
             else -> null
         }
     ) {
-        Text(
+        OdsText(
             text = text,
-            style = OdsTheme.typography.bodyM
-        ) // Don't use an OdsText here cause the color of the chip content is already managed by odsChipColors()
+            style = OdsTextStyle.BodyM,
+            // Set color to Unspecified otherwise the colors parameter of Chip is overridden
+            // by the default value of the displaySurface parameter of OdsText
+            color = Color.Unspecified
+        )
 
         onCancel?.let {
             val iconModifier = if (enabled) Modifier.noRippleClickable {

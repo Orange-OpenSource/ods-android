@@ -30,7 +30,10 @@ import androidx.compose.ui.tooling.preview.PreviewParameter
 import com.orange.ods.compose.component.content.OdsComponentContent
 import com.orange.ods.compose.component.utilities.Preview
 import com.orange.ods.compose.component.utilities.UiModePreviews
+import com.orange.ods.compose.text.OdsText
+import com.orange.ods.compose.text.styledText
 import com.orange.ods.compose.theme.OdsTheme
+import com.orange.ods.theme.typography.OdsTextStyle
 
 @Composable
 internal fun OdsFilledTextField(
@@ -52,10 +55,11 @@ internal fun OdsFilledTextField(
     maxLines: Int = Int.MAX_VALUE,
     characterCounter: OdsTextField.CharacterCounter? = null
 ) {
+    val textStyle = OdsTheme.typography.titleM
     Column(modifier = modifier) {
         TextField(
             modifier = Modifier.fillMaxWidth(),
-            value = if (singleLine) value.filter { it != '\n' } else value,
+            value = styledText(text = if (singleLine) value.filter { it != '\n' } else value, textStyle = textStyle),
             onValueChange = { newValue ->
                 if (!singleLine || !newValue.contains('\n')) {
                     onValueChange(newValue)
@@ -63,9 +67,9 @@ internal fun OdsFilledTextField(
             },
             enabled = enabled,
             readOnly = readOnly,
-            textStyle = OdsTheme.typography.titleM,
+            textStyle = textStyle,
             label = label?.let { { Text(label) } },
-            placeholder = placeholder?.let { { Text(text = placeholder, style = OdsTheme.typography.titleM) } },
+            placeholder = placeholder?.let { { OdsText(text = placeholder, style = OdsTextStyle.TitleM) } },
             leadingIcon = leadingIcon?.let {
                 {
                     it.Content(OdsTextField.LeadingIcon.ExtraParameters(enabled))

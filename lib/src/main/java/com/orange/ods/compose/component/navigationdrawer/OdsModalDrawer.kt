@@ -29,7 +29,6 @@ import androidx.compose.material.DrawerState
 import androidx.compose.material.DrawerValue
 import androidx.compose.material.ModalDrawer
 import androidx.compose.material.Surface
-import androidx.compose.material.Text
 import androidx.compose.material.contentColorFor
 import androidx.compose.material.rememberDrawerState
 import androidx.compose.material.ripple.LocalRippleTheme
@@ -46,7 +45,6 @@ import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.painterResource
-import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.PreviewParameter
 import androidx.compose.ui.unit.dp
 import com.orange.ods.R
@@ -59,8 +57,9 @@ import com.orange.ods.compose.component.listitem.OdsListItem
 import com.orange.ods.compose.component.utilities.BasicPreviewParameterProvider
 import com.orange.ods.compose.component.utilities.Preview
 import com.orange.ods.compose.component.utilities.UiModePreviews
-import com.orange.ods.compose.text.OdsTextBodyM
+import com.orange.ods.compose.text.OdsText
 import com.orange.ods.compose.theme.OdsTheme
+import com.orange.ods.theme.typography.OdsTextStyle
 
 private val DrawerHeaderMinHeight = 167.dp
 private const val SelectedItemOpacity = 20f / 255f
@@ -129,9 +128,10 @@ object OdsModalDrawer {
         override fun Content(modifier: Modifier) {
             Column(modifier = modifier) {
                 OdsDivider()
-                OdsTextBodyM(
+                OdsText(
                     modifier = Modifier.padding(top = dimensionResource(id = R.dimen.spacing_m), start = dimensionResource(id = R.dimen.spacing_m)),
-                    text = label
+                    text = label,
+                    style = OdsTextStyle.BodyM
                 )
             }
         }
@@ -165,7 +165,7 @@ object OdsModalDrawer {
                 OdsListItem(
                     text = text,
                     textColor = if (selected) OdsTheme.colors.primaryVariant else OdsTheme.colors.onSurface,
-                    textStyle = if (selected) OdsTheme.typography.titleS else OdsTheme.typography.titleS.copy(fontWeight = FontWeight.Bold),
+                    textStyle = OdsTextStyle.BodyM,
                     modifier = modifier
                         .selectable(selected = selected, onClick = { onClick(this@ListItem) })
                         .let {
@@ -317,8 +317,8 @@ private fun OdsHeaderText(title: String, subtitle: String?, color: Color, modifi
         modifier = modifier.padding(all = dimensionResource(id = R.dimen.spacing_m)),
         verticalArrangement = Arrangement.Center
     ) {
-        Text(text = title, color = color, style = OdsTheme.typography.titleL)
-        subtitle?.let { Text(text = it, color = color, style = OdsTheme.typography.bodyM) }
+        OdsText(text = title, color = color, style = OdsTextStyle.TitleL)
+        subtitle?.let { OdsText(text = it, color = color, style = OdsTextStyle.BodyM) }
     }
 }
 

@@ -34,8 +34,8 @@ import com.orange.ods.compose.OdsComposable
 import com.orange.ods.compose.component.chip.OdsChoiceChip
 import com.orange.ods.compose.component.chip.OdsChoiceChipsFlowRow
 import com.orange.ods.compose.component.listitem.OdsListItem
-import com.orange.ods.compose.text.OdsTextBodyL
-import com.orange.ods.compose.text.OdsTextTitleM
+import com.orange.ods.compose.text.OdsText
+import com.orange.ods.theme.typography.OdsTextStyle
 
 
 @OptIn(ExperimentalMaterialApi::class)
@@ -68,10 +68,11 @@ fun ComponentSheetsBottom() {
                         .padding(top = dimensionResource(id = com.orange.ods.R.dimen.screen_vertical_margin))
                         .padding(horizontal = dimensionResource(id = com.orange.ods.R.dimen.screen_horizontal_margin))
                 ) {
-                    OdsTextBodyL(text = stringResource(id = R.string.component_sheet_bottom_customize))
-                    OdsTextTitleM(
+                    OdsText(text = stringResource(id = R.string.component_sheet_bottom_customize), style = OdsTextStyle.BodyL)
+                    OdsText(
                         text = stringResource(id = R.string.component_element_content),
-                        modifier = Modifier.padding(top = dimensionResource(id = com.orange.ods.R.dimen.spacing_s))
+                        modifier = Modifier.padding(top = dimensionResource(id = com.orange.ods.R.dimen.spacing_s)),
+                        style = OdsTextStyle.TitleM
                     )
                     val contentEmptyDesc = stringResource(id = R.string.component_sheet_bottom_customize_content_empty_desc)
                     val contentExampleDesc = stringResource(id = R.string.component_sheet_bottom_customize_content_example_desc)

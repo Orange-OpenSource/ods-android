@@ -48,8 +48,9 @@ import com.orange.ods.app.ui.utilities.code.XmlViewTag
 import com.orange.ods.app.ui.utilities.composable.TechnicalText
 import com.orange.ods.compose.OdsComposable
 import com.orange.ods.compose.component.bottomnavigation.OdsBottomNavigation
-import com.orange.ods.compose.text.OdsTextBodyM
+import com.orange.ods.compose.text.OdsText
 import com.orange.ods.extension.simpleNestedName
+import com.orange.ods.theme.typography.OdsTextStyle
 
 private object ComponentBottomNavigation {
     const val MinNavigationItemCount = 3
@@ -118,12 +119,13 @@ fun ComponentBottomNavigation() {
                             }
                         )
                     }
-                    OdsTextBodyM(
+                    OdsText(
                         modifier = Modifier.padding(
                             top = dimensionResource(id = com.orange.ods.R.dimen.spacing_s),
                             bottom = dimensionResource(id = com.orange.ods.R.dimen.spacing_xs)
                         ),
-                        text = stringResource(id = R.string.component_bottom_navigation_code_add_items)
+                        text = stringResource(id = R.string.component_bottom_navigation_code_add_items),
+                        style = OdsTextStyle.BodyM
                     )
                     CodeBackgroundColumn {
                         TechnicalText(text = "binding.odsBottomNavigation.items = listOf(")

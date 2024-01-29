@@ -21,7 +21,8 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.stringResource
 import com.orange.ods.compose.component.button.OdsButton
-import com.orange.ods.compose.text.OdsTextBodyL
+import com.orange.ods.compose.text.OdsText
+import com.orange.ods.theme.typography.OdsTextStyle
 
 @Composable
 fun ComponentLaunchContentColumn(@StringRes textRes: Int, @StringRes buttonLabelRes: Int, onButtonClick: () -> Unit) {
@@ -31,10 +32,11 @@ fun ComponentLaunchContentColumn(@StringRes textRes: Int, @StringRes buttonLabel
             bottom = dimensionResource(id = com.orange.ods.R.dimen.spacing_s)
         )
     ) {
-        OdsTextBodyL(
+        OdsText(
             modifier = Modifier
                 .padding(horizontal = dimensionResource(id = com.orange.ods.R.dimen.screen_horizontal_margin)),
-            text = stringResource(id = textRes)
+            text = stringResource(id = textRes),
+            style = OdsTextStyle.BodyL
         )
 
         OdsButton(

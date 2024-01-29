@@ -19,7 +19,7 @@ import androidx.compose.foundation.layout.size
 import androidx.compose.material.ExtendedFloatingActionButton
 import androidx.compose.material.FloatingActionButton
 import androidx.compose.material.Icon
-import androidx.compose.material.Text
+import androidx.compose.material.LocalContentColor
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.ImageBitmap
@@ -35,7 +35,10 @@ import com.orange.ods.compose.component.content.OdsComponentIcon
 import com.orange.ods.compose.component.utilities.BasicPreviewParameterProvider
 import com.orange.ods.compose.component.utilities.Preview
 import com.orange.ods.compose.component.utilities.UiModePreviews
+import com.orange.ods.compose.text.OdsText
+import com.orange.ods.compose.theme.OdsDisplaySurface
 import com.orange.ods.compose.theme.OdsTheme
+import com.orange.ods.theme.typography.OdsTextStyle
 
 private val MiniFabSize = 40.dp
 private val FabIconSize = 24.dp
@@ -98,7 +101,7 @@ fun OdsExtendedFloatingActionButton(
 ) {
     ExtendedFloatingActionButton(
         onClick = onClick,
-        text = { Text(text = text.uppercase(), style = OdsTheme.typography.labelL) },
+        text = { OdsText(text = text, style = OdsTextStyle.LabelL, color = LocalContentColor.current) },
         modifier = modifier,
         backgroundColor = OdsTheme.colors.component.floatingActionButton.background,
         contentColor = OdsTheme.colors.component.floatingActionButton.content,

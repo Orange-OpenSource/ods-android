@@ -17,7 +17,6 @@ import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material.DropdownMenu
 import androidx.compose.material.DropdownMenuItem
-import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.painter.Painter
@@ -34,8 +33,9 @@ import com.orange.ods.compose.component.divider.OdsDivider
 import com.orange.ods.compose.component.icon.OdsIcon
 import com.orange.ods.compose.component.utilities.Preview
 import com.orange.ods.compose.component.utilities.UiModePreviews
+import com.orange.ods.compose.text.OdsText
 import com.orange.ods.compose.theme.OdsTheme
-import com.orange.ods.compose.utilities.extension.enable
+import com.orange.ods.theme.typography.OdsTextStyle
 
 /**
  * <a href="https://system.design.orange.com/0c1af118d/p/07a69b-menus/b/862cbb" class="external" target="_blank">ODS menus</a>.
@@ -180,7 +180,7 @@ object OdsDropdownMenu {
                         modifier = Modifier.padding(end = dimensionResource(id = R.dimen.spacing_m)),
                     )
                 }
-                Text(text = text, style = OdsTheme.typography.bodyL, color = OdsTheme.colors.onSurface.enable(enabled = enabled))
+                OdsText(text = text, style = OdsTextStyle.BodyL, enabled = enabled)
             }
             if (divider) OdsDivider()
         }

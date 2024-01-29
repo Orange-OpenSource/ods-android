@@ -59,11 +59,12 @@ import com.orange.ods.app.ui.utilities.extension.isOrange
 import com.orange.ods.compose.component.listitem.OdsListItem
 import com.orange.ods.compose.component.tab.OdsScrollableTabRow
 import com.orange.ods.compose.component.tab.OdsTabRow
-import com.orange.ods.compose.text.OdsTextTitleL
+import com.orange.ods.compose.text.OdsText
 import com.orange.ods.compose.theme.OdsTheme
 import com.orange.ods.extension.orElse
 import com.orange.ods.module.about.ui.navigation.navigateToOdsAbout
 import com.orange.ods.theme.OdsThemeConfigurationContract
+import com.orange.ods.theme.typography.OdsTextStyle
 import com.orange.ods.xml.theme.OdsXml
 import com.orange.ods.xml.utilities.extension.xml
 import kotlinx.coroutines.flow.launchIn
@@ -279,11 +280,12 @@ private fun ChangeThemeDialog(themeManager: ThemeManager, dismissDialog: () -> U
 
     Dialog(onDismissRequest = dismissDialog) {
         Column(modifier = Modifier.background(OdsTheme.colors.surface)) {
-            OdsTextTitleL(
+            OdsText(
                 text = stringResource(R.string.top_app_bar_action_change_theme_desc),
                 modifier = Modifier
                     .padding(top = dimensionResource(com.orange.ods.R.dimen.spacing_m), bottom = dimensionResource(id = com.orange.ods.R.dimen.spacing_s))
-                    .padding(horizontal = dimensionResource(com.orange.ods.R.dimen.screen_horizontal_margin))
+                    .padding(horizontal = dimensionResource(com.orange.ods.R.dimen.screen_horizontal_margin)),
+                style = OdsTextStyle.TitleL
             )
             themeManager.themeConfigurations.forEach { themeConfiguration ->
                 OdsListItem(
