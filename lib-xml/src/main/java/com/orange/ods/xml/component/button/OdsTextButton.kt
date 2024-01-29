@@ -43,7 +43,7 @@ class OdsTextButton @JvmOverloads constructor(context: Context, attrs: Attribute
         context.withStyledAttributes(attrs, R.styleable.OdsTextButton) {
             text = getString(R.styleable.OdsTextButton_text).orEmpty()
             icon = getResourceIdOrNull(R.styleable.OdsTextButton_icon)?.let { AppCompatResources.getDrawable(context, it) }
-            style = OdsTextButton.Style.fromXmlAttrValue(getInteger(R.styleable.OdsTextButton_textButtonStyle, 0))
+            style = OdsTextButton.Style.fromXmlAttrValue(getInteger(R.styleable.OdsTextButton_odsTextButtonStyle, 0))
             displaySurface = OdsDisplaySurface.fromXmlAttrValue(getInteger(R.styleable.OdsTextButton_displaySurface, 0))
         }
     }
@@ -64,8 +64,8 @@ class OdsTextButton @JvmOverloads constructor(context: Context, attrs: Attribute
 internal object OdsTextButtonBindingAdapter {
 
     @JvmStatic
-    @BindingAdapter("textButtonStyle")
-    fun com.orange.ods.xml.component.button.OdsTextButton.setTextButtonStyle(style: OdsTextButton.Style) {
+    @BindingAdapter("odsTextButtonStyle")
+    fun com.orange.ods.xml.component.button.OdsTextButton.setOdsTextButtonStyle(style: OdsTextButton.Style) {
         this.style = style
     }
 }

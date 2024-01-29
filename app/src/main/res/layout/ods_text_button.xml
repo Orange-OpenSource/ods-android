@@ -41,25 +41,25 @@
         android:layout_height="wrap_content">
 
         <com.orange.ods.xml.component.button.OdsTextButton
-            android:id="@+id/ods_textbutton"
+            android:id="@+id/ods_text_button"
             android:layout_height="wrap_content"
             android:layout_width="wrap_content"
             app:icon="@{icon}"
             app:text="@{text}"
             app:enabled="@{enabled}"
-            app:textButtonStyle="@{style}"
+            app:odsTextButtonStyle="@{style}"
             app:displaySurface="@{displaySurface}" />
 
         <!-- Invisible OdsTextButton used for tests -->
-        <com.orange.ods.xml.component.button.OdsButton
-            android:id="@+id/ods_textbutton_test"
+        <com.orange.ods.xml.component.button.OdsTextButton
+            android:id="@+id/ods_text_button_test"
             android:visibility="gone"
             android:layout_height="wrap_content"
             android:layout_width="wrap_content"
             app:icon="@drawable/ic_add"
             app:text="Button"
             app:enabled="true"
-            app:textButtonStyle="primary"
+            app:odsTextButtonStyle="primary"
             app:displaySurface="standard" />
 
     </FrameLayout>

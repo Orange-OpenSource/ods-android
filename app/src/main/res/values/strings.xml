@@ -16,7 +16,7 @@
     <string name="code_implementation">Code implementation</string>
     <string name="code_implementation_xml">XML</string>
     <string name="code_implementation_compose">Jetpack Compose</string>
-    <string name="soon_available">Soon available…</string>
+    <string name="xml_component_not_yet_available">This component is not yet available in XML.</string>
 
     <!-- Navigation -->
     <string name="navigation_item_guidelines">Guidelines</string>
@@ -173,6 +173,8 @@
     <string name="component_button_icon_toggle_count">Toggle count</string>
     <string name="component_button_icon_toggle_remove">Remove toggle</string>
     <string name="component_button_icon_toggle_add">Add toggle</string>
+    <string name="component_button_icon_toggle_group_code_add_icons">Add the toggle group icons by code using view binding:</string>
+
 
     <!-- Component Cards -->
     <string name="component_cards">Cards</string>

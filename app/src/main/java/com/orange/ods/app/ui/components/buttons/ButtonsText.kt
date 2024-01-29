@@ -31,17 +31,22 @@ import androidx.compose.ui.res.stringResource
 import com.orange.ods.app.R
 import com.orange.ods.app.databinding.OdsTextButtonBinding
 import com.orange.ods.app.ui.UiFramework
+import com.orange.ods.app.ui.utilities.code.CodeBackgroundColumn
 import com.orange.ods.app.ui.utilities.code.CodeImplementationColumn
 import com.orange.ods.app.ui.utilities.code.FunctionCallCode
+import com.orange.ods.app.ui.utilities.code.XmlViewTag
 import com.orange.ods.app.ui.utilities.composable.Title
 import com.orange.ods.compose.OdsComposable
 import com.orange.ods.compose.component.button.OdsButton
 import com.orange.ods.compose.component.button.OdsTextButton
 import com.orange.ods.compose.theme.OdsDisplaySurface
+import com.orange.ods.xml.utilities.extension.xmlEnumValue
 
 @Composable
 fun ButtonsText(customizationState: ButtonCustomizationState) {
     with(customizationState) {
+        val buttonText = stringResource(if (isEnabled) R.string.component_state_enabled else R.string.component_state_disabled)
+
         Column(
             modifier = Modifier
                 .verticalScroll(rememberScrollState())
@@ -53,6 +58,7 @@ fun ButtonsText(customizationState: ButtonCustomizationState) {
             )
 
             TextButton(
+                text = buttonText,
                 style = textButtonStyle.value,
                 leadingIcon = hasLeadingIcon,
                 enabled = isEnabled,
@@ -63,6 +69,7 @@ fun ButtonsText(customizationState: ButtonCustomizationState) {
 
             InvertedBackgroundColumn {
                 TextButton(
+                    text = buttonText,
                     style = textButtonStyle.value,
                     leadingIcon = hasLeadingIcon,
                     enabled = isEnabled,
@@ -71,28 +78,49 @@ fun ButtonsText(customizationState: ButtonCustomizationState) {
                 )
             }
 
-            CodeImplementationColumn(modifier = Modifier.padding(horizontal = dimensionResource(id = com.orange.ods.R.dimen.screen_horizontal_margin))) {
-                FunctionCallCode(
-                    name = OdsComposable.OdsTextButton.name,
-                    exhaustiveParameters = false,
-                    parameters = {
-                        enum("style", textButtonStyle.value)
-                        if (hasFullScreenWidth) fillMaxWidth()
-                        if (hasLeadingIcon) {
-                            classInstance<OdsButton.Icon>("icon") {
-                                painter()
+            CodeImplementationColumn(
+                modifier = Modifier.padding(horizontal = dimensionResource(id = com.orange.ods.R.dimen.screen_horizontal_margin)),
+                composeContent = {
+                    FunctionCallCode(
+                        name = OdsComposable.OdsTextButton.name,
+                        exhaustiveParameters = false,
+                        parameters = {
+                            text(buttonText)
+                            enum("style", textButtonStyle.value)
+                            if (hasFullScreenWidth) fillMaxWidth()
+                            if (hasLeadingIcon) {
+                                classInstance<OdsButton.Icon>("icon") {
+                                    painter()
+                                }
                             }
+                            if (!isEnabled) enabled(false)
                         }
-                        if (!isEnabled) enabled(false)
+                    )
+                },
+                xmlContent = {
+                    CodeBackgroundColumn {
+                        XmlViewTag(
+                            clazz = com.orange.ods.xml.component.button.OdsTextButton::class.java,
+                            xmlAttributes = {
+                                id("ods_text_button")
+                                layoutWidth(hasFullScreenWidth)
+                                layoutHeight()
+                                appAttr("text", buttonText)
+                                if (hasLeadingIcon) drawable("icon", "icon")
+                                if (!isEnabled) disabled()
+                                if (textButtonStyle.value != OdsTextButton.Style.Default) appAttr("odsTextButtonStyle", textButtonStyle.value.xmlEnumValue)
+                            }
+                        )
                     }
-                )
-            }
+                }
+            )
         }
     }
 }
 
 @Composable
 private fun TextButton(
+    text: String,
     style: OdsTextButton.Style,
     leadingIcon: Boolean,
     enabled: Boolean,
@@ -100,7 +128,6 @@ private fun TextButton(
     displaySurface: OdsDisplaySurface = OdsDisplaySurface.Default
 ) {
     val context = LocalContext.current
-    val text = stringResource(if (enabled) R.string.component_state_enabled else R.string.component_state_disabled)
     val iconId = R.drawable.ic_coffee
 
     Box(
@@ -128,7 +155,7 @@ private fun TextButton(
                 this.displaySurface = displaySurface
                 root.layoutParams = ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT)
                 val width = if (fullScreenWidth) FrameLayout.LayoutParams.MATCH_PARENT else FrameLayout.LayoutParams.WRAP_CONTENT
-                odsTextbutton.layoutParams = FrameLayout.LayoutParams(width, FrameLayout.LayoutParams.WRAP_CONTENT)
+                odsTextButton.layoutParams = FrameLayout.LayoutParams(width, FrameLayout.LayoutParams.WRAP_CONTENT)
             }
         )
     }

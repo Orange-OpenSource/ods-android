@@ -34,8 +34,10 @@ import com.orange.ods.app.databinding.OdsIconButtonBinding
 import com.orange.ods.app.ui.UiFramework
 import com.orange.ods.app.ui.components.buttons.InvertedBackgroundColumn
 import com.orange.ods.app.ui.components.utilities.clickOnElement
+import com.orange.ods.app.ui.utilities.code.CodeBackgroundColumn
 import com.orange.ods.app.ui.utilities.code.CodeImplementationColumn
 import com.orange.ods.app.ui.utilities.code.FunctionCallCode
+import com.orange.ods.app.ui.utilities.code.XmlViewTag
 import com.orange.ods.compose.OdsComposable
 import com.orange.ods.compose.component.button.OdsIconButton
 import com.orange.ods.compose.theme.OdsDisplaySurface
@@ -67,19 +69,37 @@ fun ButtonsIcon(customizationState: ButtonIconCustomizationState) {
                 )
             }
 
-            CodeImplementationColumn(modifier = Modifier.padding(horizontal = dimensionResource(id = com.orange.ods.R.dimen.screen_horizontal_margin))) {
-                FunctionCallCode(
-                    name = OdsComposable.OdsIconButton.name,
-                    exhaustiveParameters = false,
-                    parameters = {
-                        classInstance<OdsIconButton.Icon>("icon") {
-                            painter()
-                            contentDescription("")
+            CodeImplementationColumn(
+                modifier = Modifier.padding(horizontal = dimensionResource(id = com.orange.ods.R.dimen.screen_horizontal_margin)),
+                composeContent = {
+                    FunctionCallCode(
+                        name = OdsComposable.OdsIconButton.name,
+                        exhaustiveParameters = false,
+                        parameters = {
+                            classInstance<OdsIconButton.Icon>("icon") {
+                                painter()
+                                contentDescription("")
+                            }
+                            if (!isEnabled) enabled(false)
                         }
-                        if (!isEnabled) enabled(false)
+                    )
+                },
+                xmlContent = {
+                    CodeBackgroundColumn {
+                        XmlViewTag(
+                            clazz = com.orange.ods.xml.component.button.OdsIconButton::class.java,
+                            xmlAttributes = {
+                                id("ods_icon_button")
+                                layoutWidth()
+                                layoutHeight()
+                                drawable("icon", "icon")
+                                appAttr("iconContentDescription", "Icon description")
+                                if (!isEnabled) disabled()
+                            }
+                        )
                     }
-                )
-            }
+                }
+            )
         }
     }
 }

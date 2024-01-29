@@ -39,8 +39,10 @@ import com.orange.ods.app.ui.components.utilities.ComponentCountRow
 import com.orange.ods.app.ui.components.utilities.ComponentCustomizationBottomSheetScaffold
 import com.orange.ods.app.ui.components.utilities.clickOnElement
 import com.orange.ods.app.ui.utilities.DrawableManager
+import com.orange.ods.app.ui.utilities.code.CodeBackgroundColumn
 import com.orange.ods.app.ui.utilities.code.CodeImplementationColumn
 import com.orange.ods.app.ui.utilities.code.FunctionCallCode
+import com.orange.ods.app.ui.utilities.code.XmlViewTag
 import com.orange.ods.app.ui.utilities.composable.Subtitle
 import com.orange.ods.app.ui.utilities.extension.buildImageRequest
 import com.orange.ods.compose.OdsComposable
@@ -148,33 +150,57 @@ fun ComponentBanners() {
 
                 CodeImplementationColumn(
                     modifier = Modifier.padding(horizontal = dimensionResource(id = com.orange.ods.R.dimen.screen_horizontal_margin)),
-                ) {
-                    FunctionCallCode(
-                        name = OdsComposable.OdsBanner.name,
-                        exhaustiveParameters = false,
-                        parameters = {
-                            string("message", if (hasShortMessage) recipe.title else recipe.description)
-                            if (hasFirstButton) {
-                                classInstance<OdsBanner.Button>("firstButton") {
-                                    text(context.getString(R.string.component_banner_dismiss))
-                                    onClick()
+                    xmlContent = {
+                        CodeBackgroundColumn {
+                            XmlViewTag(
+                                clazz = com.orange.ods.xml.component.banner.OdsBanner::class.java,
+                                xmlAttributes = {
+                                    id("ods_banner")
+                                    layoutWidth(true)
+                                    layoutHeight()
+                                    appAttr("message", message)
+                                    firstButtonText?.let {
+                                        appAttr("firstButtonText", it)
+                                    }
+                                    secondButtonText?.let {
+                                        appAttr("secondButtonText", it)
+                                    }
+                                    if (hasImage) {
+                                        drawable("image", "image")
+                                        appAttr("imageContentDescription", "Banner image")
+                                    }
                                 }
-                            }
-                            if (hasImage) {
-                                classInstance<OdsBanner.Image>("image") {
-                                    painter()
-                                    contentDescription("")
-                                }
-                            }
-                            if (hasSecondButton) {
-                                classInstance<OdsBanner.Button>("secondButton") {
-                                    text(context.getString(R.string.component_banner_detail))
-                                    onClick()
-                                }
-                            }
+                            )
                         }
-                    )
-                }
+                    },
+                    composeContent = {
+                        FunctionCallCode(
+                            name = OdsComposable.OdsBanner.name,
+                            exhaustiveParameters = false,
+                            parameters = {
+                                string("message", message)
+                                firstButtonText?.let {
+                                    classInstance<OdsBanner.Button>("firstButton") {
+                                        text(it)
+                                        onClick()
+                                    }
+                                }
+                                if (hasImage) {
+                                    classInstance<OdsBanner.Image>("image") {
+                                        painter()
+                                        contentDescription("")
+                                    }
+                                }
+                                secondButtonText?.let {
+                                    classInstance<OdsBanner.Button>("secondButton") {
+                                        text(it)
+                                        onClick()
+                                    }
+                                }
+                            }
+                        )
+                    }
+                )
             }
         }
     }
