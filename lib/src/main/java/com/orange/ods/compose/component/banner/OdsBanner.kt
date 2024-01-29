@@ -121,6 +121,7 @@ fun OdsBanner(
             FlowRow(
                 modifier = Modifier
                     .padding(horizontal = dimensionResource(id = R.dimen.spacing_m))
+                    .padding(bottom = dimensionResource(id = R.dimen.spacing_xs))
                     .align(Alignment.End),
                 horizontalArrangement = Arrangement.spacedBy(dimensionResource(id = R.dimen.spacing_s), Alignment.End),
                 verticalArrangement = Arrangement.spacedBy((-6).dp)
@@ -129,7 +130,7 @@ fun OdsBanner(
                 secondButton?.Content()
             }
         }
-        OdsDivider(modifier = Modifier.padding(top = dimensionResource(id = R.dimen.spacing_xs)))
+        OdsDivider()
     }
 }
 
