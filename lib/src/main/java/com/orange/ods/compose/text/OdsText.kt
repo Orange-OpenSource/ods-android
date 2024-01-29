@@ -66,9 +66,8 @@ fun OdsText(
     minLines: Int = 1,
     onTextLayout: ((TextLayoutResult) -> Unit)? = null,
 ) {
-    val textStyle = textStyle(style = style)
     OdsText(
-        text = styledText(text, textStyle),
+        text = text,
         modifier = modifier,
         color = displaySurface.themeColors.onSurface.enable(enabled = enabled),
         textAlign = textAlign,
@@ -97,7 +96,7 @@ internal fun OdsText(
 ) {
     val textStyle = textStyle(style = style)
     Text(
-        text = if (OdsTheme.typography.isAllCapsTextStyle(textStyle)) text.uppercase() else text,
+        text = styledText(text = text, textStyle = textStyle),
         modifier = modifier,
         color = color,
         fontWeight = fontWeight,
