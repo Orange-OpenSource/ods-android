@@ -45,7 +45,6 @@ import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.painterResource
-import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.PreviewParameter
 import androidx.compose.ui.unit.dp
 import com.orange.ods.R
@@ -172,7 +171,6 @@ object OdsModalDrawer {
                         .let {
                             if (selected) it.background(OdsTheme.colors.primaryVariant.copy(alpha = SelectedItemOpacity)) else it
                         },
-                    textFontWeight = if (selected) null else FontWeight.Bold,
                     leadingIcon = leadingIcon?.let {
                         OdsListItem.LeadingIcon(it, "", if (selected) OdsTheme.colors.primaryVariant else OdsTheme.colors.onSurface)
                     }
