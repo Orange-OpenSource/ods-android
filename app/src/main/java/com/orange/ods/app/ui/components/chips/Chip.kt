@@ -64,12 +64,12 @@ fun Chip(variant: Variant) {
                         selectedChoiceChipIndex = ChipCustomizationState.LeadingElement.entries.indexOf(leadingElement.value),
                         modifier = Modifier.padding(horizontal = dimensionResource(id = com.orange.ods.R.dimen.spacing_m)),
                         choiceChips = ChipCustomizationState.LeadingElement.entries.map { leadingElement ->
-                            val text = when (leadingElement) {
-                                LeadingElement.None -> stringResource(id = R.string.component_element_none)
-                                LeadingElement.Avatar -> stringResource(id = R.string.component_element_avatar)
-                                LeadingElement.Icon -> stringResource(id = R.string.component_element_icon)
+                            val textResId = when (leadingElement) {
+                                LeadingElement.None -> R.string.component_element_none
+                                LeadingElement.Avatar -> R.string.component_element_avatar
+                                LeadingElement.Icon -> R.string.component_element_icon
                             }
-                            OdsChoiceChipsFlowRow.ChoiceChip(text, { this.leadingElement.value = leadingElement })
+                            OdsChoiceChipsFlowRow.ChoiceChip(stringResource(id = textResId), { this.leadingElement.value = leadingElement })
                         }
                     )
                 } else {

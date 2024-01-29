@@ -68,11 +68,9 @@ fun ComponentButtons(variant: Variant) {
                             selectedChoiceChipIndex = buttonStyles.indexOf(buttonStyle.value),
                             modifier = Modifier.padding(horizontal = dimensionResource(id = com.orange.ods.R.dimen.spacing_m)),
                             choiceChips = buttonStyles.map { buttonStyle ->
-                                val text = when (buttonStyle) {
-                                    OdsButton.Style.FunctionalPositive -> stringResource(id = R.string.component_button_style_functional_positive)
-                                    else -> stringResource(id = R.string.component_button_style_functional_negative)
-                                }
-                                OdsChoiceChipsFlowRow.ChoiceChip(text, { this.buttonStyle.value = buttonStyle })
+                                val textResId =
+                                    if (buttonStyle == OdsButton.Style.FunctionalPositive) R.string.component_button_style_functional_positive else R.string.component_button_style_functional_negative
+                                OdsChoiceChipsFlowRow.ChoiceChip(stringResource(id = textResId), { this.buttonStyle.value = buttonStyle })
                             }
                         )
                     }
@@ -82,11 +80,11 @@ fun ComponentButtons(variant: Variant) {
                             selectedChoiceChipIndex = OdsTextButton.Style.entries.indexOf(textButtonStyle.value),
                             modifier = Modifier.padding(horizontal = dimensionResource(id = com.orange.ods.R.dimen.spacing_m)),
                             choiceChips = OdsTextButton.Style.entries.map { textButtonStyle ->
-                                val text = when (textButtonStyle) {
-                                    OdsTextButton.Style.Default -> stringResource(id = R.string.component_button_style_default)
-                                    OdsTextButton.Style.Primary -> stringResource(id = R.string.component_button_style_primary)
+                                val textResId = when (textButtonStyle) {
+                                    OdsTextButton.Style.Default -> R.string.component_button_style_default
+                                    OdsTextButton.Style.Primary -> R.string.component_button_style_primary
                                 }
-                                OdsChoiceChipsFlowRow.ChoiceChip(text, { this.textButtonStyle.value = textButtonStyle })
+                                OdsChoiceChipsFlowRow.ChoiceChip(stringResource(id = textResId), { this.textButtonStyle.value = textButtonStyle })
                             }
                         )
                     }

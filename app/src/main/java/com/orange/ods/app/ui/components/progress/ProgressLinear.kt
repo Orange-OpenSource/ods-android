@@ -50,15 +50,15 @@ fun ProgressLinear() {
                     selectedChoiceChipIndex = ProgressCustomizationState.Type.entries.indexOf(type.value),
                     modifier = Modifier.padding(horizontal = dimensionResource(id = com.orange.ods.R.dimen.spacing_m)),
                     choiceChips = ProgressCustomizationState.Type.entries.map { type ->
-                        val text = when (type) {
-                            ProgressCustomizationState.Type.Determinate -> stringResource(id = R.string.component_progress_determinate)
-                            ProgressCustomizationState.Type.Indeterminate -> stringResource(id = R.string.component_progress_indeterminate)
+                        val textResId = when (type) {
+                            ProgressCustomizationState.Type.Determinate -> R.string.component_progress_determinate
+                            ProgressCustomizationState.Type.Indeterminate -> R.string.component_progress_indeterminate
                         }
                         val onClick = {
                             this.type.value = type
                             if (type == ProgressCustomizationState.Type.Indeterminate) resetAnimation()
                         }
-                        OdsChoiceChipsFlowRow.ChoiceChip(text, onClick)
+                        OdsChoiceChipsFlowRow.ChoiceChip(stringResource(id = textResId), onClick)
                     }
                 )
                 OdsListItem(

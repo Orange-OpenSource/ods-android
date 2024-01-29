@@ -95,11 +95,11 @@ fun ComponentFloatingActionButton() {
                     selectedChoiceChipIndex = FabCustomizationState.Size.entries.indexOf(size.value),
                     modifier = Modifier.padding(horizontal = dimensionResource(id = com.orange.ods.R.dimen.spacing_m)),
                     choiceChips = FabCustomizationState.Size.entries.map { size ->
-                        val text = when (size) {
-                            FabCustomizationState.Size.Default -> stringResource(id = R.string.component_floating_action_button_size_default)
-                            FabCustomizationState.Size.Mini -> stringResource(id = R.string.component_floating_action_button_size_mini)
+                        val textResId = when (size) {
+                            FabCustomizationState.Size.Default -> R.string.component_floating_action_button_size_default
+                            FabCustomizationState.Size.Mini -> R.string.component_floating_action_button_size_mini
                         }
-                        OdsChoiceChipsFlowRow.ChoiceChip(text, { this.size.value = size })
+                        OdsChoiceChipsFlowRow.ChoiceChip(stringResource(id = textResId), { this.size.value = size })
                     }
                 )
                 OdsListItem(

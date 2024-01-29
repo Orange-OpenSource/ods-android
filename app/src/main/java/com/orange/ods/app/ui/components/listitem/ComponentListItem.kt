@@ -78,14 +78,14 @@ private fun ComponentListItemBottomSheetContent(listItemCustomizationState: List
         selectedChoiceChipIndex = leadingIconTypes.indexOf(listItemCustomizationState.selectedLeadingIconType.value),
         modifier = Modifier.padding(horizontal = dimensionResource(id = com.orange.ods.R.dimen.spacing_m)),
         choiceChips = leadingIconTypes.map { leadingIconType ->
-            val text = when (leadingIconType) {
-                OdsListItem.LeadingIcon.Type.Icon -> stringResource(id = R.string.component_list_leading_icon)
-                OdsListItem.LeadingIcon.Type.CircularImage -> stringResource(id = R.string.component_list_leading_circular_image)
-                OdsListItem.LeadingIcon.Type.SquareImage -> stringResource(id = R.string.component_list_leading_square_image)
-                OdsListItem.LeadingIcon.Type.WideImage -> stringResource(id = R.string.component_list_leading_wide_image)
-                null -> stringResource(id = R.string.component_list_leading_none)
+            val textResId = when (leadingIconType) {
+                OdsListItem.LeadingIcon.Type.Icon -> R.string.component_list_leading_icon
+                OdsListItem.LeadingIcon.Type.CircularImage -> R.string.component_list_leading_circular_image
+                OdsListItem.LeadingIcon.Type.SquareImage -> R.string.component_list_leading_square_image
+                OdsListItem.LeadingIcon.Type.WideImage -> R.string.component_list_leading_wide_image
+                null -> R.string.component_list_leading_none
             }
-            OdsChoiceChipsFlowRow.ChoiceChip(text, { listItemCustomizationState.selectedLeadingIconType.value = leadingIconType })
+            OdsChoiceChipsFlowRow.ChoiceChip(stringResource(id = textResId), { listItemCustomizationState.selectedLeadingIconType.value = leadingIconType })
         }
     )
 

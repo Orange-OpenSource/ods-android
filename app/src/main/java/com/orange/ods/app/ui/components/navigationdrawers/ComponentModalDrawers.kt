@@ -130,12 +130,12 @@ fun ComponentModalDrawers() {
                             selectedChoiceChipIndex = ComponentNavigationDrawersContentState.HeaderImage.entries.indexOf(headerImage.value),
                             modifier = Modifier.padding(horizontal = dimensionResource(id = com.orange.ods.R.dimen.spacing_m)),
                             choiceChips = ComponentNavigationDrawersContentState.HeaderImage.entries.map { headerImage ->
-                                val text = when (headerImage) {
-                                    ComponentNavigationDrawersContentState.HeaderImage.Avatar -> stringResource(id = R.string.component_element_avatar)
-                                    ComponentNavigationDrawersContentState.HeaderImage.Background -> stringResource(id = R.string.component_modal_drawer_background)
-                                    ComponentNavigationDrawersContentState.HeaderImage.None -> stringResource(id = R.string.component_element_none)
+                                val textResId = when (headerImage) {
+                                    ComponentNavigationDrawersContentState.HeaderImage.Avatar -> R.string.component_element_avatar
+                                    ComponentNavigationDrawersContentState.HeaderImage.Background -> R.string.component_modal_drawer_background
+                                    ComponentNavigationDrawersContentState.HeaderImage.None -> R.string.component_element_none
                                 }
-                                OdsChoiceChipsFlowRow.ChoiceChip(text, { this.headerImage.value = headerImage })
+                                OdsChoiceChipsFlowRow.ChoiceChip(stringResource(id = textResId), { this.headerImage.value = headerImage })
                             }
                         )
                         OdsListItem(
@@ -151,12 +151,12 @@ fun ComponentModalDrawers() {
                             selectedChoiceChipIndex = ComponentNavigationDrawersContentState.SectionListExample.entries.indexOf(content.value),
                             modifier = Modifier.padding(horizontal = dimensionResource(id = com.orange.ods.R.dimen.spacing_m)),
                             choiceChips = ComponentNavigationDrawersContentState.SectionListExample.entries.map { content ->
-                                val text = when (content) {
-                                    ComponentNavigationDrawersContentState.SectionListExample.Divider -> stringResource(id = R.string.component_element_divider)
-                                    ComponentNavigationDrawersContentState.SectionListExample.Label -> stringResource(id = R.string.component_element_label)
-                                    ComponentNavigationDrawersContentState.SectionListExample.None -> stringResource(id = R.string.component_element_none)
+                                val textResId = when (content) {
+                                    ComponentNavigationDrawersContentState.SectionListExample.Divider -> R.string.component_element_divider
+                                    ComponentNavigationDrawersContentState.SectionListExample.Label -> R.string.component_element_label
+                                    ComponentNavigationDrawersContentState.SectionListExample.None -> R.string.component_element_none
                                 }
-                                OdsChoiceChipsFlowRow.ChoiceChip(text, { this.content.value = content })
+                                OdsChoiceChipsFlowRow.ChoiceChip(stringResource(id = textResId), { this.content.value = content })
                             }
                         )
                     }) {

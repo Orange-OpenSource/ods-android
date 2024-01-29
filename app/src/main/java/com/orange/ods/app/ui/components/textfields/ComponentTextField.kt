@@ -134,13 +134,13 @@ private fun ComponentCustomizationContent(textFieldCustomizationState: TextField
             selectedChoiceChipIndex = TextFieldCustomizationState.InputType.entries.indexOf(inputType.value),
             modifier = Modifier.padding(horizontal = dimensionResource(id = com.orange.ods.R.dimen.spacing_m)),
             choiceChips = TextFieldCustomizationState.InputType.entries.map { inputType ->
-                val text = when (inputType) {
-                    TextFieldCustomizationState.InputType.SingleLine -> stringResource(id = R.string.component_text_field_input_type_single_line)
-                    TextFieldCustomizationState.InputType.Multiline -> stringResource(id = R.string.component_text_field_input_type_multiline)
-                    TextFieldCustomizationState.InputType.TextArea -> stringResource(id = R.string.component_text_field_input_type_text_area)
+                val textResId = when (inputType) {
+                    TextFieldCustomizationState.InputType.SingleLine -> R.string.component_text_field_input_type_single_line
+                    TextFieldCustomizationState.InputType.Multiline -> R.string.component_text_field_input_type_multiline
+                    TextFieldCustomizationState.InputType.TextArea -> R.string.component_text_field_input_type_text_area
                 }
                 OdsChoiceChipsFlowRow.ChoiceChip(
-                    text,
+                    stringResource(id = textResId),
                     { this.inputType.value = inputType },
                     // Note: TextArea chip is disabled cause there is no parameter allowing text area in Jetpack Compose sdk for now
                     // https://issuetracker.google.com/issues/122476634
@@ -156,12 +156,12 @@ private fun ComponentCustomizationContent(textFieldCustomizationState: TextField
             selectedChoiceChipIndex = TextFieldCustomizationState.TrailingElement.entries.indexOf(trailingElement.value),
             modifier = Modifier.padding(horizontal = dimensionResource(id = com.orange.ods.R.dimen.spacing_m)),
             choiceChips = TextFieldCustomizationState.TrailingElement.entries.map { trailingElement ->
-                val text = when (trailingElement) {
-                    TextFieldCustomizationState.TrailingElement.None -> stringResource(id = R.string.component_element_none)
-                    TextFieldCustomizationState.TrailingElement.Icon -> stringResource(id = R.string.component_element_icon)
-                    TextFieldCustomizationState.TrailingElement.Text -> stringResource(id = R.string.component_element_text)
+                val textResId = when (trailingElement) {
+                    TextFieldCustomizationState.TrailingElement.None -> R.string.component_element_none
+                    TextFieldCustomizationState.TrailingElement.Icon -> R.string.component_element_icon
+                    TextFieldCustomizationState.TrailingElement.Text -> R.string.component_element_text
                 }
-                OdsChoiceChipsFlowRow.ChoiceChip(text, { this.trailingElement.value = trailingElement })
+                OdsChoiceChipsFlowRow.ChoiceChip(stringResource(id = textResId), { this.trailingElement.value = trailingElement })
             }
         )
         OdsListItem(
@@ -207,13 +207,13 @@ private fun DisplayTypeCustomization(textFieldCustomizationState: TextFieldCusto
         selectedChoiceChipIndex = TextFieldCustomizationState.DisplayType.entries.indexOf(textFieldCustomizationState.displayType.value),
         modifier = Modifier.padding(horizontal = dimensionResource(id = com.orange.ods.R.dimen.spacing_m)),
         choiceChips = TextFieldCustomizationState.DisplayType.entries.map { displayType ->
-            val text = when (displayType) {
-                TextFieldCustomizationState.DisplayType.Default -> stringResource(id = R.string.component_state_default)
-                TextFieldCustomizationState.DisplayType.Error -> stringResource(id = R.string.component_state_error)
-                TextFieldCustomizationState.DisplayType.Disabled -> stringResource(id = R.string.component_state_disabled)
+            val textResId = when (displayType) {
+                TextFieldCustomizationState.DisplayType.Default -> R.string.component_state_default
+                TextFieldCustomizationState.DisplayType.Error -> R.string.component_state_error
+                TextFieldCustomizationState.DisplayType.Disabled -> R.string.component_state_disabled
             }
             OdsChoiceChipsFlowRow.ChoiceChip(
-                text,
+                stringResource(id = textResId),
                 { textFieldCustomizationState.displayType.value = displayType },
                 semantics = {
                     if (textFieldCustomizationState.displayType.value == TextFieldCustomizationState.DisplayType.Error && displayType == TextFieldCustomizationState.DisplayType.Error) {

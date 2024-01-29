@@ -65,11 +65,9 @@ fun ChipFilter() {
                     selectedChoiceChipIndex = leadingElements.indexOf(leadingElement.value),
                     modifier = Modifier.padding(horizontal = dimensionResource(id = com.orange.ods.R.dimen.spacing_m)),
                     choiceChips = leadingElements.map { leadingElement ->
-                        val text = when (leadingElement) {
-                            ChipCustomizationState.LeadingElement.None -> stringResource(id = R.string.component_element_none)
-                            else -> stringResource(id = R.string.component_element_avatar)
-                        }
-                        OdsChoiceChipsFlowRow.ChoiceChip(text, { this.leadingElement.value = leadingElement })
+                        val textResId =
+                            if (leadingElement == ChipCustomizationState.LeadingElement.None) R.string.component_element_none else R.string.component_element_avatar
+                        OdsChoiceChipsFlowRow.ChoiceChip(stringResource(id = textResId), { this.leadingElement.value = leadingElement })
                     }
                 )
 

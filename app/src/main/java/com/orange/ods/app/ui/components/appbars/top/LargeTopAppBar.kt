@@ -163,11 +163,11 @@ fun LargeTopAppBarBottomSheetContent() {
             modifier = Modifier.padding(horizontal = dimensionResource(id = R.dimen.spacing_m)),
             selectedChoiceChipIndex = TopAppBarCustomizationState.ScrollBehavior.entries.indexOf(scrollBehavior.value),
             choiceChips = TopAppBarCustomizationState.ScrollBehavior.entries.map { scrollBehavior ->
-                val text = when (scrollBehavior) {
-                    TopAppBarCustomizationState.ScrollBehavior.None -> stringResource(id = com.orange.ods.app.R.string.component_app_bars_top_large_scroll_behavior_none)
-                    TopAppBarCustomizationState.ScrollBehavior.Collapsible -> stringResource(com.orange.ods.app.R.string.component_app_bars_top_large_scroll_behavior_collapsible)
+                val textResId = when (scrollBehavior) {
+                    TopAppBarCustomizationState.ScrollBehavior.None -> com.orange.ods.app.R.string.component_app_bars_top_large_scroll_behavior_none
+                    TopAppBarCustomizationState.ScrollBehavior.Collapsible -> com.orange.ods.app.R.string.component_app_bars_top_large_scroll_behavior_collapsible
                 }
-                OdsChoiceChipsFlowRow.ChoiceChip(text, { this.scrollBehavior.value = scrollBehavior })
+                OdsChoiceChipsFlowRow.ChoiceChip(stringResource(id = textResId), { this.scrollBehavior.value = scrollBehavior })
             }
         )
 
@@ -178,12 +178,12 @@ fun LargeTopAppBarBottomSheetContent() {
             modifier = Modifier.padding(horizontal = dimensionResource(id = R.dimen.spacing_m)),
             selectedChoiceChipIndex = TopAppBarCustomizationState.Title.entries.indexOf(title.value),
             choiceChips = TopAppBarCustomizationState.Title.entries.map { title ->
-                val text = when (title) {
-                    TopAppBarCustomizationState.Title.Short -> stringResource(id = com.orange.ods.app.R.string.component_app_bars_top_large_title_one_line)
-                    TopAppBarCustomizationState.Title.TwoLines -> stringResource(id = com.orange.ods.app.R.string.component_app_bars_top_large_title_two_lines)
-                    TopAppBarCustomizationState.Title.Long -> stringResource(id = com.orange.ods.app.R.string.component_app_bars_top_large_title_truncated)
+                val textResId = when (title) {
+                    TopAppBarCustomizationState.Title.Short -> com.orange.ods.app.R.string.component_app_bars_top_large_title_one_line
+                    TopAppBarCustomizationState.Title.TwoLines -> com.orange.ods.app.R.string.component_app_bars_top_large_title_two_lines
+                    TopAppBarCustomizationState.Title.Long -> com.orange.ods.app.R.string.component_app_bars_top_large_title_truncated
                 }
-                OdsChoiceChipsFlowRow.ChoiceChip(text, { this.title.value = title })
+                OdsChoiceChipsFlowRow.ChoiceChip(stringResource(id = textResId), { this.title.value = title })
             }
         )
     }

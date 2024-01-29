@@ -52,11 +52,11 @@ fun ComponentCard(variant: Variant) {
                         selectedChoiceChipIndex = OdsCard.Image.Position.entries.indexOf(imagePosition.value),
                         modifier = Modifier.padding(horizontal = dimensionResource(id = com.orange.ods.R.dimen.spacing_m)),
                         choiceChips = OdsCard.Image.Position.entries.map { imagePosition ->
-                            val text = when (imagePosition) {
-                                OdsCard.Image.Position.Start -> stringResource(id = R.string.component_card_horizontal_image_position_start)
-                                OdsCard.Image.Position.End -> stringResource(id = R.string.component_card_horizontal_image_position_end)
+                            val textResId = when (imagePosition) {
+                                OdsCard.Image.Position.Start -> R.string.component_card_horizontal_image_position_start
+                                OdsCard.Image.Position.End -> R.string.component_card_horizontal_image_position_end
                             }
-                            OdsChoiceChipsFlowRow.ChoiceChip(text, { this.imagePosition.value = imagePosition })
+                            OdsChoiceChipsFlowRow.ChoiceChip(stringResource(id = textResId), { this.imagePosition.value = imagePosition })
                         }
                     )
                 }

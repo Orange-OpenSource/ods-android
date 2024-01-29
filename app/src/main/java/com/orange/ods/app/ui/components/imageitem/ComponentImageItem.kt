@@ -74,12 +74,12 @@ fun ComponentImageItem() {
                     selectedChoiceChipIndex = OdsImageItem.LegendAreaDisplayType.entries.indexOf(type.value),
                     modifier = Modifier.padding(horizontal = dimensionResource(id = com.orange.ods.R.dimen.spacing_m)),
                     choiceChips = OdsImageItem.LegendAreaDisplayType.entries.map { type ->
-                        val text = when (type) {
-                            OdsImageItem.LegendAreaDisplayType.Below -> stringResource(R.string.component_image_item_legend_area_display_type_below)
-                            OdsImageItem.LegendAreaDisplayType.Overlay -> stringResource(R.string.component_image_item_legend_area_display_type_overlay)
-                            OdsImageItem.LegendAreaDisplayType.None -> stringResource(R.string.component_element_none)
+                        val textResId = when (type) {
+                            OdsImageItem.LegendAreaDisplayType.Below -> R.string.component_image_item_legend_area_display_type_below
+                            OdsImageItem.LegendAreaDisplayType.Overlay -> R.string.component_image_item_legend_area_display_type_overlay
+                            OdsImageItem.LegendAreaDisplayType.None -> R.string.component_element_none
                         }
-                        OdsChoiceChipsFlowRow.ChoiceChip(text, { this.type.value = type })
+                        OdsChoiceChipsFlowRow.ChoiceChip(stringResource(id = textResId), { this.type.value = type })
                     }
                 )
                 OdsListItem(
