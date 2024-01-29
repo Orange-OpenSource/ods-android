@@ -12,10 +12,8 @@
 
 package com.orange.ods.compose.component.card
 
-import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.ExperimentalLayoutApi
-import androidx.compose.foundation.layout.FlowRow
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
@@ -87,13 +85,12 @@ fun OdsVerticalImageFirstCard(
                     )
                 }
             }
-            FlowRow(
+
+            OdsCardButtonsFlowRow(
                 modifier = Modifier.padding(horizontal = dimensionResource(id = R.dimen.spacing_s)),
-                horizontalArrangement = Arrangement.spacedBy(dimensionResource(id = R.dimen.spacing_s))
-            ) {
-                firstButton?.Content()
-                secondButton?.Content()
-            }
+                firstButton = firstButton,
+                secondButton = secondButton
+            )
         }
     }
 }

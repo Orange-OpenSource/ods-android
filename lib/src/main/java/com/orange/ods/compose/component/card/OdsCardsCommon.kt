@@ -13,6 +13,10 @@
 package com.orange.ods.compose.component.card
 
 import androidx.compose.foundation.background
+import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.ExperimentalLayoutApi
+import androidx.compose.foundation.layout.FlowRow
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.material.Card
 import androidx.compose.material.ExperimentalMaterialApi
 import androidx.compose.runtime.Composable
@@ -23,7 +27,10 @@ import androidx.compose.ui.graphics.ImageBitmap
 import androidx.compose.ui.graphics.painter.Painter
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.semantics.semantics
+import androidx.compose.ui.unit.dp
+import com.orange.ods.R
 import com.orange.ods.compose.component.button.OdsTextButton
 import com.orange.ods.compose.component.content.OdsComponentCircularImage
 import com.orange.ods.compose.component.content.OdsComponentContent
@@ -36,6 +43,19 @@ internal fun OdsCard(modifier: Modifier, onClick: (() -> Unit)?, content: @Compo
         Card(modifier = modifier, onClick = onClick, content = content)
     } else {
         Card(modifier = modifier.semantics(mergeDescendants = true) {}, content = content)
+    }
+}
+
+@OptIn(ExperimentalLayoutApi::class)
+@Composable
+internal fun OdsCardButtonsFlowRow(modifier: Modifier = Modifier, firstButton: OdsCard.Button? = null, secondButton: OdsCard.Button? = null) {
+    FlowRow(
+        modifier = modifier.fillMaxWidth(),
+        horizontalArrangement = Arrangement.spacedBy(dimensionResource(id = R.dimen.spacing_s)),
+        verticalArrangement = Arrangement.spacedBy((-6).dp)
+    ) {
+        firstButton?.Content()
+        secondButton?.Content()
     }
 }
 
