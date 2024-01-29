@@ -39,7 +39,7 @@ import com.orange.ods.compose.component.listitem.OdsListItem
 fun ComponentCheckboxes() {
     var enabled by rememberSaveable { mutableStateOf(true) }
     val recipes = LocalRecipes.current
-    val recipe = rememberSaveable { recipes.filter { it.ingredients.count() >= 3 }.random() }
+    val recipe = rememberSaveable { recipes.filter { it.ingredients.isNotEmpty() }.random() }
 
     ComponentCustomizationBottomSheetScaffold(
         bottomSheetScaffoldState = rememberBottomSheetScaffoldState(),
@@ -54,22 +54,23 @@ fun ComponentCheckboxes() {
                 .verticalScroll(rememberScrollState())
                 .padding(vertical = dimensionResource(id = com.orange.ods.R.dimen.spacing_s))
         ) {
-            recipe.ingredients.take(3).forEachIndexed { index, ingredient ->
-                var checked by rememberSaveable { mutableStateOf(index == 0) }
-                OdsListItem(
-                    text = ingredient.food.name,
-                    trailing = OdsListItem.TrailingCheckbox(checked, { checked = it }, enabled)
-                )
-            }
+            var checked by rememberSaveable { mutableStateOf(false) }
+            val ingredient = recipe.ingredients.first()
+            OdsListItem(
+                text = ingredient.food.name,
+                trailing = OdsListItem.TrailingCheckbox(checked, { checked = it }, enabled)
+            )
 
             CodeImplementationColumn(
-                modifier = Modifier.padding(horizontal = dimensionResource(id = com.orange.ods.R.dimen.screen_horizontal_margin))
+                modifier = Modifier
+                    .padding(top = dimensionResource(id = com.orange.ods.R.dimen.spacing_xs))
+                    .padding(horizontal = dimensionResource(id = com.orange.ods.R.dimen.screen_horizontal_margin))
             ) {
                 FunctionCallCode(
                     name = OdsComposable.OdsCheckbox.name,
                     exhaustiveParameters = false,
                     parameters = {
-                        checked(false)
+                        checked(checked)
                         onCheckedChange()
                         if (!enabled) enabled(false)
                     }

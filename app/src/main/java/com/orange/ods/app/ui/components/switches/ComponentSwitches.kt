@@ -52,23 +52,23 @@ fun ComponentSwitches() {
                 .verticalScroll(rememberScrollState())
                 .padding(vertical = dimensionResource(id = com.orange.ods.R.dimen.spacing_s))
         ) {
-            val recipes = LocalRecipes.current.take(3)
-            recipes.forEach { recipe ->
-                var checked by rememberSaveable { mutableStateOf(false) }
-                OdsListItem(
-                    text = recipe.title,
-                    trailing = OdsListItem.TrailingSwitch(checked, { checked = it }, enabled)
-                )
-            }
+            var checked by rememberSaveable { mutableStateOf(false) }
+            val recipe = LocalRecipes.current.first()
+            OdsListItem(
+                text = recipe.title,
+                trailing = OdsListItem.TrailingSwitch(checked, { checked = it }, enabled)
+            )
 
             CodeImplementationColumn(
-                modifier = Modifier.padding(horizontal = dimensionResource(id = com.orange.ods.R.dimen.screen_horizontal_margin))
+                modifier = Modifier
+                    .padding(top = dimensionResource(id = com.orange.ods.R.dimen.spacing_xs))
+                    .padding(horizontal = dimensionResource(id = com.orange.ods.R.dimen.screen_horizontal_margin))
             ) {
                 FunctionCallCode(
                     name = OdsComposable.OdsSwitch.name,
                     exhaustiveParameters = false,
                     parameters = {
-                        checked(false)
+                        checked(checked)
                         onCheckedChange()
                         if (!enabled) enabled(false)
                     })
