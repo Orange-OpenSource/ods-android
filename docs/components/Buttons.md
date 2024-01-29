@@ -12,24 +12,30 @@ description: Buttons allow users to take actions, and make choices, with a singl
     * [Contained button](#contained-button)
         * [Jetpack Compose](#jetpack-compose)
             * [OdsButton API](#odsbutton-api)
+        * [XML](#xml)
     * [Text button](#text-button)
         * [Jetpack Compose](#jetpack-compose-1)
             * [OdsTextButton API](#odstextbutton-api)
+        * [XML](#xml-1)
     * [Outlined button](#outlined-button)
         * [Jetpack Compose](#jetpack-compose-2)
             * [OdsOutlinedButton API](#odsoutlinedbutton-api)
+        * [XML](#xml-2)
     * [Text toggle buttons group](#text-toggle-buttons-group)
         * [Jetpack Compose](#jetpack-compose-3)
             * [OdsTextToggleButtonsRow API](#odstexttogglebuttonsrow-api)
     * [Icon button](#icon-button)
         * [Jetpack Compose](#jetpack-compose-4)
             * [OdsIconButton API](#odsiconbutton-api)
+        * [XML](#xml-3)
     * [Icon toggle button](#icon-toggle-button)
         * [Jetpack Compose](#jetpack-compose-5)
             * [OdsIconToggleButton API](#odsicontogglebutton-api)
+        * [XML](#xml-4)
     * [Icon toggle buttons group](#icon-toggle-buttons-group)
         * [Jetpack Compose](#jetpack-compose-6)
             * [OdsIconToggleButtonsRow API](#odsicontogglebuttonsrow-api)
+        * [XML](#xml-5)
 
 ---
 
@@ -103,6 +109,31 @@ OdsButton(
 | `style: OdsButton.Style`            | `OdsButton.Style.Default`   | Style applied to the button. Set it to `OdsButton.Style.Primary` for an highlighted button style or use `OdsButton.Style.FunctionalPositive`/ `OdsButton.Style.FunctionalNegative` for a functional green/red button style. |
 | `displaySurface: OdsDisplaySurface` | `OdsDisplaySurface.Default` | `OdsDisplaySurface` applied to the button. It allows to force the button display on light or dark surface. By default, the appearance applied is based on the system night mode value.                                      |
 
+#### XML
+
+In your layout, use the `OdsButton` view.
+
+Set `odsButtonStyle` attribute to:
+
+- `primary` for a primary background color
+- `functional_positive` for a positive background color
+- `functional_negative` for a negative background color
+- `standard` for a default background color
+
+You can also force the button display on `light` or `dark` surface using `displaySurface` attribute. By default (`standard` value), the appearance applied is based on the system night mode value.
+
+```xml
+
+<com.orange.ods.xml.component.button.OdsButton
+    android:id="@+id/ods_button"
+    android:layout_height="wrap_content"
+    android:layout_width="wrap_content"
+    app:text="Contained button"
+    app:icon="@drawable/ic_coffee"
+    app:odsButtonStyle="primary"
+    app:displaySurface="standard" />
+```
+
 ### Text button
 
 Text buttons are typically used for less-pronounced actions, including those located in dialogs and
@@ -138,6 +169,29 @@ OdsTextButton(
 | `style: OdsTextButton.Style`        | `OdsTextButton.Style.Default` | Style applied to the button. By default `onSurface` color is used for text color. Use `OdsTextButton.Style.Primary` for an highlighted text color.                                     |
 | `displaySurface: OdsDisplaySurface` | `OdsDisplaySurface.Default`   | `OdsDisplaySurface` applied to the button. It allows to force the button display on light or dark surface. By default, the appearance applied is based on the system night mode value. |
 
+#### XML
+
+In your layout, use the `OdsTextButton` view.
+
+Set `odsTextButtonStyle` attribute to:
+
+- `primary` for a primary colored text button
+- `standard` for a default colored text button
+
+You can also force the button display on `light` or `dark` surface using `displaySurface` attribute. By default (`standard` value), the appearance applied is based on the system night mode value.
+
+```xml
+
+<com.orange.ods.xml.component.button.OdsTextButton
+    android:id="@+id/ods_text_button"
+    android:layout_height="wrap_content"
+    android:layout_width="wrap_content"
+    app:text="Text button"
+    app:icon="@drawable/ic_coffee"
+    app:odsTextButtonStyle="primary"
+    app:displaySurface="light" />
+```
+
 ### Outlined button
 
 Outlined buttons are medium-emphasis buttons. They contain actions that are important, but aren’t
@@ -170,6 +224,23 @@ OdsOutlinedButton(
 | `icon: OdsButton.Icon?`             | `null`                      | Icon displayed in the button before the text                                                                                                                                           |
 | `enabled: Boolean`                  | `true`                      | Controls the enabled state of the button. When `false`, the button is not clickable.                                                                                                   |
 | `displaySurface: OdsDisplaySurface` | `OdsDisplaySurface.Default` | `OdsDisplaySurface` applied to the button. It allows to force the button display on light or dark surface. By default, the appearance applied is based on the system night mode value. |
+
+#### XML
+
+In your layout, use the `OdsOutlinedButton` view.
+
+You can also force the button display on `light` or `dark` surface using `displaySurface` attribute. By default (`standard` value), the appearance applied is based on the system night mode value.
+
+```xml
+
+<com.orange.ods.xml.component.button.OdsOutlinedButton
+    android:id="@+id/ods_outlined_button"
+    android:layout_height="wrap_content"
+    android:layout_width="wrap_content"
+    app:text="Outlined button"
+    app:icon="@drawable/ic_coffee"
+    app:displaySurface="light" />
+```
 
 ### Text toggle buttons group
 
@@ -242,6 +313,23 @@ OdsIconButton(
 | `enabled: Boolean`                  | `true`                      | Controls the enabled state of the button. When `false`, this button will not be clickable.                                                                                                   |
 | `displaySurface: OdsDisplaySurface` | `OdsDisplaySurface.Default` | `OdsDisplaySurface` to be applied to the button. It allows to force the button display on light or dark surface. By default, the appearance applied is based on the system night mode value. |
 
+#### XML
+
+In your layout, use the `OdsIconButton` view.
+
+You can also force the button display on `light` or `dark` surface using `displaySurface` attribute. By default (`standard` value), the appearance applied is based on the system night mode value.
+
+```xml
+
+<com.orange.ods.xml.component.button.OdsIconButton
+    android:id="@+id/ods_icon_button"
+    android:layout_height="wrap_content"
+    android:layout_width="wrap_content"
+    app:icon="@drawable/ic_coffee"
+    app:iconContentDescription="Coffee"
+    app:displaySurface="standard" />
+```
+
 ### Icon toggle button
 
 An icon button with two states, for icons that can be toggled 'on' and 'off', such as a bookmark
@@ -278,6 +366,26 @@ OdsIconToggleButton(
 | `modifier: Modifier`                        | `Modifier`                  | `Modifier` applied to the button                                                                                                                                                       |
 | `enabled: Boolean`                          | `true`                      | Controls the enabled state of the button. When `false`, this button will not be clickable.                                                                                             |
 | `displaySurface: OdsDisplaySurface`         | `OdsDisplaySurface.Default` | `OdsDisplaySurface` applied to the button. It allows to force the button display on light or dark surface. By default, the appearance applied is based on the system night mode value. |
+
+#### XML
+
+In your layout, use the `OdsIconToggleButton` view.
+
+You can also force the button display on `light` or `dark` surface using `displaySurface` attribute. By default (`standard` value), the appearance applied is based on the system night mode value.
+
+```xml
+
+<com.orange.ods.xml.component.button.OdsIconToggleButton
+    android:id="@+id/ods_icon_toggle_button"
+    android:layout_height="wrap_content"
+    android:layout_width="wrap_content"
+    app:checked="true"
+    app:checkedIcon="@drawable/ic_eye"
+    app:checkedIconContentDescription="Password visible"
+    app:uncheckedIcon="@drawable/ic_crossed_eye"
+    app:uncheckedIconContentDescription="Password invisible"
+    app:displaySurface="standard" />
+```
 
 ### Icon toggle buttons group
 
@@ -324,3 +432,34 @@ OdsIconToggleButtonsRow(
 | <b>`onSelectedIndexChange: (Int) -> Unit`</b>      |                             | Callback invoked on selection change                                                                                                                                                   |
 | `modifier: Modifier`                               | `Modifier`                  | `Modifier` applied to the toggle buttons group                                                                                                                                         |
 | `displaySurface: OdsDisplaySurface`                | `OdsDisplaySurface.Default` | `OdsDisplaySurface` applied to the button. It allows to force the button display on light or dark surface. By default, the appearance applied is based on the system night mode value. |
+
+#### XML
+
+In your layout, use the `OdsIconToggleButtonsRow` view.
+
+You can also force the buttons display on `light` or `dark` surface using `displaySurface` attribute. By default (`standard` value), the appearance applied is based on the system night mode value.
+
+```xml
+
+<com.orange.ods.xml.component.button.OdsIconToggleButtonsRow
+    android:id="@+id/ods_icon_toggle_buttons_row"
+    android:layout_height="wrap_content"
+    android:layout_width="wrap_content"
+    app:selectedIndex="1"
+    app:displaySurface="standard" />
+```
+
+Add the icons in the `OdsIconToggleButtonsRow` by code using view binding:
+
+```kotlin
+binding.odsIconToggleButtonsRow.icons = listOf(
+    OdsIconToggleButtonsRow.Icon(
+        painter = painterResource(id = R.drawable.ic_cooking_pot),
+        contentDescription = "Cooking pot"
+    ),
+    OdsIconToggleButtonsRow.Icon(
+        painter = painterResource(id = R.drawable.ic_coffee),
+        contentDescription = "Coffee"
+    )
+)
+```

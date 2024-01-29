@@ -17,6 +17,7 @@ Only one banner should be shown at a time
 * [Implementation](#implementation)
     * [Jetpack Compose](#jetpack-compose)
         * [OdsBanner API](#odsbanner-api)
+    * [XML](#xml)
 
 ---
 
@@ -61,3 +62,20 @@ OdsBanner(
 | `image: OdsBanner.Image?`         | `null`             | Image displayed in the banner in a circle shape                    |
 | `firstButton: OdsBanner.Button?`  | `null`             | Primary button displayed in the banner                             |
 | `secondButton: OdsBanner.Button?` | `null`             | Secondary button displayed into the banner next to the primary one |
+
+### XML
+
+In your layout, use the `OdsBanner` view as shown below:
+
+```xml
+
+<com.orange.ods.xml.component.banner.OdsBanner
+    android:id="@+id/ods_banner"
+    android:layout_height="wrap_content"
+    android:layout_width="match_parent"
+    app:message="Message displayed into the banner."
+    app:firstButtonText="Dismiss"
+    app:secondButtonText="Detail"
+    app:image="@drawable/placeholder"
+    app:imageContentDescription="Banner image" />
+```
