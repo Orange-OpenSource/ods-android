@@ -51,7 +51,6 @@ import com.orange.ods.theme.typography.OdsTextStyle
  * text, baselines and other details. The callback can be used to add additional decoration or
  * functionality to the text. For example, to draw selection around the text.
  */
-
 @Composable
 fun OdsText(
     text: String,
