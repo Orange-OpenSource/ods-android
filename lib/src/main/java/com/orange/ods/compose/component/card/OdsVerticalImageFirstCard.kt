@@ -73,7 +73,7 @@ fun OdsVerticalImageFirstCard(
             ) {
                 OdsText(text = title, style = OdsTextStyle.TitleL)
                 subtitle?.let {
-                    OdsText(text = it, style = OdsTextStyle.TitleS)
+                    OdsText(text = it, style = OdsTextStyle.BodyM)
                 }
                 text?.let {
                     OdsText(

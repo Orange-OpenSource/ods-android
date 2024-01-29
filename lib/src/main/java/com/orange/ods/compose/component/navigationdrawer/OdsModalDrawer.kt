@@ -165,7 +165,7 @@ object OdsModalDrawer {
                 OdsListItem(
                     text = text,
                     textColor = if (selected) OdsTheme.colors.primaryVariant else OdsTheme.colors.onSurface,
-                    textStyle = OdsTextStyle.TitleS,
+                    textStyle = OdsTextStyle.BodyM,
                     modifier = modifier
                         .selectable(selected = selected, onClick = { onClick(this@ListItem) })
                         .let {

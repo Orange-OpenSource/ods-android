@@ -73,7 +73,7 @@ fun OdsSmallCard(
             ) {
                 SmallCardText(text = title, style = OdsTextStyle.TitleL, isClickableCard = onClick != null)
                 subtitle?.let {
-                    SmallCardText(text = it, style = OdsTextStyle.TitleS, isClickableCard = onClick != null)
+                    SmallCardText(text = it, style = OdsTextStyle.BodyM, isClickableCard = onClick != null)
                 }
             }
         }

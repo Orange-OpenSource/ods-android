@@ -82,7 +82,7 @@ private fun OdsEmptyView(
                     .fillMaxWidth(),
                 text = text,
                 textAlign = TextAlign.Center,
-                style = OdsTextStyle.TitleS
+                style = OdsTextStyle.BodyM
             )
         }
 

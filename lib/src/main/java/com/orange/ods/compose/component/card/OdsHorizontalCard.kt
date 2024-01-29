@@ -134,7 +134,7 @@ fun OdsHorizontalCard(
                     width = Dimension.fillToConstraints
                     visibility = if (subtitle != null) Visibility.Visible else Visibility.Gone
                 },
-                style = OdsTextStyle.TitleS
+                style = OdsTextStyle.BodyM
             )
 
             OdsText(

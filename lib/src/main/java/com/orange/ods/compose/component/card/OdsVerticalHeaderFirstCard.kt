@@ -82,7 +82,7 @@ fun OdsVerticalHeaderFirstCard(
                 Column(modifier = Modifier.padding(start = thumbnail?.let { dimensionResource(id = R.dimen.spacing_s) }.orElse { 0.dp })) {
                     OdsText(text = title, style = OdsTextStyle.TitleL)
                     subtitle?.let {
-                        OdsText(text = it, style = OdsTextStyle.TitleS)
+                        OdsText(text = it, style = OdsTextStyle.BodyM)
                     }
                 }
             }
