@@ -13,7 +13,6 @@
 package com.orange.ods.compose.component.card
 
 import androidx.compose.foundation.layout.ExperimentalLayoutApi
-import androidx.compose.foundation.layout.FlowRow
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
@@ -162,14 +161,15 @@ fun OdsHorizontalCard(
                 }
             )
 
-            FlowRow(modifier = Modifier.constrainAs(buttonsRef) {
-                top.linkTo(dividerRef.bottom)
-                start.linkTo(parent.start, margin = smallSpacing)
-                visibility = if (firstButton != null || secondButton != null) Visibility.Visible else Visibility.Gone
-            }) {
-                firstButton?.Content()
-                secondButton?.Content()
-            }
+            OdsCardButtonsFlowRow(
+                modifier = Modifier.constrainAs(buttonsRef) {
+                    top.linkTo(dividerRef.bottom)
+                    start.linkTo(parent.start, margin = smallSpacing)
+                    visibility = if (firstButton != null || secondButton != null) Visibility.Visible else Visibility.Gone
+                },
+                firstButton = firstButton,
+                secondButton = secondButton
+            )
         }
     }
 }

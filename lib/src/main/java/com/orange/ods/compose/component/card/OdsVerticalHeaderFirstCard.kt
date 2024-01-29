@@ -13,10 +13,8 @@
 package com.orange.ods.compose.component.card
 
 import androidx.annotation.DrawableRes
-import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.ExperimentalLayoutApi
-import androidx.compose.foundation.layout.FlowRow
 import androidx.compose.foundation.layout.IntrinsicSize
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
@@ -108,15 +106,11 @@ fun OdsVerticalHeaderFirstCard(
                 Spacer(modifier = Modifier.height(dimensionResource(id = R.dimen.spacing_m)))
             }
 
-            FlowRow(
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .padding(horizontal = dimensionResource(id = R.dimen.spacing_s)),
-                horizontalArrangement = Arrangement.spacedBy(dimensionResource(id = R.dimen.spacing_s))
-            ) {
-                firstButton?.Content()
-                secondButton?.Content()
-            }
+            OdsCardButtonsFlowRow(
+                modifier = Modifier.padding(horizontal = dimensionResource(id = R.dimen.spacing_s)),
+                firstButton = firstButton,
+                secondButton = secondButton
+            )
         }
     }
 }
