@@ -42,9 +42,10 @@ import com.orange.ods.app.ui.utilities.code.XmlViewTag
 import com.orange.ods.app.ui.utilities.composable.TechnicalText
 import com.orange.ods.compose.OdsComposable
 import com.orange.ods.compose.component.button.OdsIconToggleButtonsRow
-import com.orange.ods.compose.text.OdsTextBodyM
+import com.orange.ods.compose.text.OdsText
 import com.orange.ods.compose.theme.OdsDisplaySurface
 import com.orange.ods.extension.simpleNestedName
+import com.orange.ods.theme.typography.OdsTextStyle
 
 @Composable
 fun ButtonsIconToggleGroup(customizationState: ButtonIconCustomizationState) {
@@ -111,12 +112,13 @@ fun ButtonsIconToggleGroup(customizationState: ButtonIconCustomizationState) {
                             }
                         )
                     }
-                    OdsTextBodyM(
+                    OdsText(
                         modifier = Modifier.padding(
                             top = dimensionResource(id = R.dimen.spacing_s),
                             bottom = dimensionResource(id = R.dimen.spacing_xs)
                         ),
-                        text = stringResource(id = com.orange.ods.app.R.string.component_button_icon_toggle_group_code_add_icons)
+                        text = stringResource(id = com.orange.ods.app.R.string.component_button_icon_toggle_group_code_add_icons),
+                        style = OdsTextStyle.BodyM
                     )
                     CodeBackgroundColumn {
                         TechnicalText(text = "binding.odsIconToggleButtonsRow.icons = listOf(")
