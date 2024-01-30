@@ -22,7 +22,6 @@ import com.orange.ods.app.R
 import com.orange.ods.app.ui.modules.Module
 import com.orange.ods.app.ui.modules.ModuleDetailColumn
 import com.orange.ods.app.ui.utilities.composable.Subtitle
-import com.orange.ods.compose.component.chip.OdsChoiceChip
 import com.orange.ods.compose.component.chip.OdsChoiceChipsFlowRow
 import com.orange.ods.compose.component.listitem.OdsListItem
 
@@ -67,16 +66,14 @@ enum class EmptyStateUsage(
 fun EmptyStateSetupScreen(onViewDemoButtonClick: () -> Unit, viewModel: EmptyStateViewModel = viewModel()) {
     with(viewModel) {
         ModuleDetailColumn(module = Module.EmptyState, onViewDemoButtonClick = onViewDemoButtonClick) {
-
             Subtitle(textRes = R.string.module_emptyState_usage_setup, horizontalPadding = true)
             OdsChoiceChipsFlowRow(
-                value = usage,
-                onValueChange = { value -> usage = value },
+                selectedChoiceChipIndex = EmptyStateUsage.entries.indexOf(usage),
                 modifier = Modifier.padding(horizontal = dimensionResource(id = com.orange.ods.R.dimen.spacing_m)),
-                chips = EmptyStateUsage.entries.map { emptyStateUsage ->
-                    OdsChoiceChip(
-                        text = stringResource(id = emptyStateUsage.choiceLabelRes),
-                        value = emptyStateUsage
+                choiceChips = EmptyStateUsage.entries.map { emptyStateUsage ->
+                    OdsChoiceChipsFlowRow.ChoiceChip(
+                        stringResource(id = emptyStateUsage.choiceLabelRes),
+                        { usage = emptyStateUsage }
                     )
                 }
             )
