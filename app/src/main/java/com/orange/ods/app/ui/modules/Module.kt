@@ -24,7 +24,7 @@ sealed class Module(
     @DrawableRes val imageRes: Int,
     @StringRes val descriptionRes: Int,
     val route: String,
-    val imageAlignment: Alignment = Alignment.TopCenter,
+    val imageAlignment: Alignment = Alignment.Center,
 ) {
     companion object {
         fun fromId(moduleId: Long?) = modules.firstOrNull { module -> module.id == moduleId }
