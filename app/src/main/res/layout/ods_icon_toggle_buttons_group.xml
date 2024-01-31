@@ -15,7 +15,7 @@
     <data>
 
         <variable
-            name="selectedIndex"
+            name="selectedIconButtonIndex"
             type="Integer" />
 
         <variable
@@ -32,7 +32,7 @@
             android:id="@+id/ods_icon_toggle_buttons_row"
             android:layout_height="wrap_content"
             android:layout_width="wrap_content"
-            app:selectedIndex="@{selectedIndex}"
+            app:selectedIconButtonIndex="@{selectedIconButtonIndex}"
             app:displaySurface="@{displaySurface}" />
 
         <!-- Invisible OdsIconToggleButtonsRow used for tests -->
@@ -41,7 +41,7 @@
             android:visibility="gone"
             android:layout_height="wrap_content"
             android:layout_width="wrap_content"
-            app:selectedIndex="0"
+            app:selectedIconButtonIndex="0"
             app:displaySurface="standard" />
 
     </FrameLayout>
