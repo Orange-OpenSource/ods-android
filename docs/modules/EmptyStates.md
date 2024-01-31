@@ -1,6 +1,6 @@
 ---
 layout: detail
-title: Empty state
+title: Empty states
 description: An empty state can occur when no content or data is available to display in the UI. Avoid displaying completely empty screens.
 ---
 
@@ -24,7 +24,7 @@ An empty state display should inform the user of what is happening, why it's hap
 
 Please follow [accessibility criteria for development](https://a11y-guidelines.orange.com/en/mobile/android/development/).
 
-The ODS Empty state module is built to support accessibility criteria and is readable by most screen readers, such as TalkBack.
+The ODS Empty states module is built to support accessibility criteria and is readable by most screen readers, such as TalkBack.
 
 ## Integration
 
