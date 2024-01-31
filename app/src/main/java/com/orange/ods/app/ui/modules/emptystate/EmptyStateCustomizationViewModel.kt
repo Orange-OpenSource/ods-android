@@ -17,7 +17,7 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
 import androidx.lifecycle.ViewModel
 
-class EmptyStateViewModel : ViewModel() {
+class EmptyStateCustomizationViewModel : ViewModel() {
     var text by mutableStateOf(false)
     var button by mutableStateOf(false)
     var usage by mutableStateOf(EmptyStateUsage.FirstUse)

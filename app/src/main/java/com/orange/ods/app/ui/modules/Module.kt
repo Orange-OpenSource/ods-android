@@ -43,6 +43,6 @@ sealed class Module(
         R.string.module_emptyState_title,
         R.drawable.il_empty_state,
         R.string.module_emptyState_description,
-        route = ModulesNavigation.EmptyStateSetupRoute
+        route = ModulesNavigation.EmptyStateCustomizationRoute
     )
 }

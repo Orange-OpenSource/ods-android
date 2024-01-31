@@ -22,9 +22,9 @@ import com.orange.ods.compose.module.emptystate.OdsEmptyStateContent
 import com.orange.ods.extension.orElse
 
 @Composable
-fun EmptyStateDemoScreen(viewModel: EmptyStateViewModel) {
+fun EmptyStateDemoScreen(viewModel: EmptyStateCustomizationViewModel) {
     val context = LocalContext.current
-    val elementClicked = stringResource(id = R.string.module_emptyState_button_setup)
+    val elementClicked = stringResource(id = R.string.module_emptyState_button_customization)
     OdsEmptyStateContent(
         title = stringResource(id = viewModel.usage.titleRes),
         text = if (viewModel.text) stringResource(id = viewModel.usage.textRes) else null,

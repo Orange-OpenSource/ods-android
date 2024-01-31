@@ -143,8 +143,8 @@ sealed class Screen(
         title = UiString.StringResource(R.string.module_about),
     )
 
-    data object ModuleEmptyStateSetup : Screen(
-        route = ModulesNavigation.EmptyStateSetupRoute,
+    data object ModuleEmptyStateCustomization : Screen(
+        route = ModulesNavigation.EmptyStateCustomizationRoute,
         title = UiString.StringResource(R.string.module_emptyState_title)
     )
 

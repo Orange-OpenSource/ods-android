@@ -65,10 +65,10 @@ enum class EmptyStateUsage(
 }
 
 @Composable
-fun EmptyStateSetupScreen(onViewDemoButtonClick: () -> Unit, viewModel: EmptyStateViewModel = viewModel()) {
+fun EmptyStateCustomizationScreen(onViewDemoButtonClick: () -> Unit, viewModel: EmptyStateCustomizationViewModel = viewModel()) {
     with(viewModel) {
         ModuleDetailColumn(module = Module.EmptyState, onViewDemoButtonClick = onViewDemoButtonClick) {
-            Subtitle(textRes = R.string.module_emptyState_usage_setup, horizontalPadding = true)
+            Subtitle(textRes = R.string.module_emptyState_usage_customization, horizontalPadding = true)
             OdsChoiceChipsFlowRow(
                 selectedChoiceChipIndex = EmptyStateUsage.entries.indexOf(usage),
                 modifier = Modifier.padding(horizontal = dimensionResource(id = com.orange.ods.R.dimen.spacing_m)),
@@ -81,7 +81,7 @@ fun EmptyStateSetupScreen(onViewDemoButtonClick: () -> Unit, viewModel: EmptySta
             )
 
             OdsListItem(
-                text = stringResource(id = R.string.module_emptyState_button_setup),
+                text = stringResource(id = R.string.module_emptyState_button_customization),
                 trailing = OdsListItem.TrailingSwitch(button, { button = it })
             )
             OdsListItem(

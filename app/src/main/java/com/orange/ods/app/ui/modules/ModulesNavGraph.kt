@@ -19,13 +19,13 @@ import androidx.navigation.NavController
 import androidx.navigation.NavGraphBuilder
 import androidx.navigation.compose.composable
 import com.orange.ods.app.ui.modules.ModulesNavigation.AboutCustomizationRoute
+import com.orange.ods.app.ui.modules.ModulesNavigation.EmptyStateCustomizationRoute
 import com.orange.ods.app.ui.modules.ModulesNavigation.EmptyStateDemoRoute
-import com.orange.ods.app.ui.modules.ModulesNavigation.EmptyStateSetupRoute
 import com.orange.ods.app.ui.modules.about.AboutCustomizationScreen
 import com.orange.ods.app.ui.modules.about.AboutCustomizationViewModel
+import com.orange.ods.app.ui.modules.emptystate.EmptyStateCustomizationScreen
+import com.orange.ods.app.ui.modules.emptystate.EmptyStateCustomizationViewModel
 import com.orange.ods.app.ui.modules.emptystate.EmptyStateDemoScreen
-import com.orange.ods.app.ui.modules.emptystate.EmptyStateSetupScreen
-import com.orange.ods.app.ui.modules.emptystate.EmptyStateViewModel
 import com.orange.ods.app.ui.navigateToElement
 
 /**
@@ -34,7 +34,7 @@ import com.orange.ods.app.ui.navigateToElement
 object ModulesNavigation {
     const val AboutCustomizationRoute = "module/about/customization"
 
-    const val EmptyStateSetupRoute = "module/emptyState/setup"
+    const val EmptyStateCustomizationRoute = "module/emptyState/customization"
     const val EmptyStateDemoRoute = "module/emptyState/demo"
 }
 
@@ -45,13 +45,13 @@ fun NavGraphBuilder.addModulesGraph(navController: NavController, navigateToAbou
         AboutCustomizationScreen(navigateToAboutDemo = navigateToAboutDemo, viewModel = viewModel)
     }
 
-    composable(route = EmptyStateSetupRoute) { navBackStackEntry ->
-        EmptyStateSetupScreen(onViewDemoButtonClick = { navController.navigateToElement(EmptyStateDemoRoute, null, navBackStackEntry) })
+    composable(route = EmptyStateCustomizationRoute) { navBackStackEntry ->
+        EmptyStateCustomizationScreen(onViewDemoButtonClick = { navController.navigateToElement(EmptyStateDemoRoute, null, navBackStackEntry) })
     }
 
     composable(route = EmptyStateDemoRoute) { _ ->
         navController.previousBackStackEntry?.let { previousBackStackEntry ->
-            val viewModel = viewModel<EmptyStateViewModel>(previousBackStackEntry)
+            val viewModel = viewModel<EmptyStateCustomizationViewModel>(previousBackStackEntry)
             EmptyStateDemoScreen(viewModel = viewModel)
         }
     }
