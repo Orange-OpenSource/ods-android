@@ -29,7 +29,7 @@ fun rememberListItemCustomizationState(
     secondaryTextLineCount: MutableState<OdsListItem.SecondaryTextLineCount?> = rememberSaveable { mutableStateOf(OdsListItem.SecondaryTextLineCount.One) },
     selectedLeadingIconType: MutableState<OdsListItem.LeadingIcon.Type?> = rememberSaveable { mutableStateOf(null) },
     selectedTrailing: MutableState<Class<out OdsListItem.Trailing>?> = rememberSaveable { mutableStateOf(null) },
-) = remember(secondaryTextLineCount) {
+) = remember(bottomSheetScaffoldState, secondaryTextLineCount, selectedLeadingIconType, selectedTrailing) {
     ListItemCustomizationState(bottomSheetScaffoldState, secondaryTextLineCount, selectedLeadingIconType, selectedTrailing)
 }
 
