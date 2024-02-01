@@ -38,12 +38,14 @@ import com.orange.ods.compose.theme.OdsDisplaySurface
 
 @Composable
 fun ButtonsTextToggleButtonsRow(customizationState: ButtonCustomizationState) {
-    val textToggleButtons =
-        LocalRecipes.current.first().ingredients.take(ButtonCustomizationState.MaxToggleCount).map { ingredient ->
-            OdsTextToggleButtonsRow.Item(ingredient.food.name, customizationState.isEnabled)
+    var selectedTextButtonIndex by rememberSaveable { mutableIntStateOf(0) }
+    val textButtons = LocalRecipes.current
+        .first()
+        .ingredients
+        .take(customizationState.toggleCount.intValue)
+        .mapIndexed { index, ingredient ->
+            OdsTextToggleButtonsRow.TextButton(ingredient.food.name, { selectedTextButtonIndex = index }, customizationState.isEnabled)
         }
-
-    var selectedIndex by rememberSaveable { mutableIntStateOf(0) }
 
     with(customizationState) {
         Column(
@@ -52,10 +54,8 @@ fun ButtonsTextToggleButtonsRow(customizationState: ButtonCustomizationState) {
                 .padding(vertical = dimensionResource(id = com.orange.ods.R.dimen.screen_vertical_margin))
         ) {
             ToggleButtonsRow(
-                textToggleButtons = textToggleButtons,
-                selectedIndex = selectedIndex,
-                onSelectedIndexChange = { index -> selectedIndex = index },
-                toggleCount = toggleCount.intValue,
+                selectedTextButtonIndex = selectedTextButtonIndex,
+                textButtons = textButtons,
                 sameItemsWeight = hasSameItemsWeight,
             )
 
@@ -63,10 +63,8 @@ fun ButtonsTextToggleButtonsRow(customizationState: ButtonCustomizationState) {
 
             InvertedBackgroundColumn {
                 ToggleButtonsRow(
-                    textToggleButtons = textToggleButtons,
-                    selectedIndex = selectedIndex,
-                    onSelectedIndexChange = { index -> selectedIndex = index },
-                    toggleCount = toggleCount.intValue,
+                    selectedTextButtonIndex = selectedTextButtonIndex,
+                    textButtons = textButtons,
                     sameItemsWeight = hasSameItemsWeight,
                     displaySurface = displaySurface
                 )
@@ -77,15 +75,16 @@ fun ButtonsTextToggleButtonsRow(customizationState: ButtonCustomizationState) {
                     name = OdsComposable.OdsTextToggleButtonsRow.name,
                     exhaustiveParameters = false,
                     parameters = {
+                        stringRepresentation("selectedTextButtonIndex", selectedTextButtonIndex)
                         list("textToggleButtons") {
-                            textToggleButtons.take(toggleCount.intValue).forEach { item ->
-                                classInstance<OdsTextToggleButtonsRow.Item> {
-                                    text(item.text)
+                            textButtons.forEach { textButton ->
+                                classInstance<OdsTextToggleButtonsRow.TextButton> {
+                                    text(textButton.text)
+                                    onClick()
                                     enabled(customizationState.isEnabled)
                                 }
                             }
                         }
-                        stringRepresentation("selectedIndex", selectedIndex)
                         stringRepresentation("sameItemsWeight", hasSameItemsWeight)
                     }
                 )
@@ -97,10 +96,8 @@ fun ButtonsTextToggleButtonsRow(customizationState: ButtonCustomizationState) {
 @OptIn(ExperimentalOdsApi::class)
 @Composable
 private fun ToggleButtonsRow(
-    textToggleButtons: List<OdsTextToggleButtonsRow.Item>,
-    selectedIndex: Int,
-    onSelectedIndexChange: (Int) -> Unit,
-    toggleCount: Int,
+    selectedTextButtonIndex: Int,
+    textButtons: List<OdsTextToggleButtonsRow.TextButton>,
     sameItemsWeight: Boolean,
     displaySurface: OdsDisplaySurface = OdsDisplaySurface.Default
 ) {
@@ -112,9 +109,8 @@ private fun ToggleButtonsRow(
         horizontalArrangement = Arrangement.Center
     ) {
         OdsTextToggleButtonsRow(
-            textToggleButtons = textToggleButtons.take(toggleCount),
-            selectedIndex = selectedIndex,
-            onSelectedIndexChange = onSelectedIndexChange,
+            selectedTextButtonIndex = selectedTextButtonIndex,
+            textButtons = textButtons,
             sameItemsWeight = sameItemsWeight,
             displaySurface = displaySurface
         )

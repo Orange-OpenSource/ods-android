@@ -221,14 +221,19 @@ Use the `OdsTextToggleButtonsRow` composable:
 
 ```kotlin
 OdsTextToggleButtonsRow(
-    textToggleButtons = listOf(
-        OdsTextToggleButtonsRowItem("XML", true),
-        OdsTextToggleButtonsRowItem("COMPOSE", true),
+    selectedTextButtonIndex = 0,
+    texts = listOf(
+        OdsTextToggleButtonsRow.TextButton(
+            "XML",
+            { doSomething() }, // Do something like changing selectedTextButtonIndex to refresh composable with new selection
+            true
+        ),
+        OdsTextToggleButtonsRow.TextButton(
+            "COMPOSE",
+            { doSomething() }, // Do something like changing selectedTextButtonIndex to refresh composable with new selection
+            true
+        ),
     ),
-    selectedIndex = 0,
-    onSelectedIndexChange = {
-        doSomething() // Do something like changing selectedIndex to refresh composable with new selection
-    },
     sameItemsWeight = false
 )
 ```
@@ -237,9 +242,8 @@ OdsTextToggleButtonsRow(
 
 | Parameter                                                      | Default&nbsp;value          | Description                                                                                                                                                                            |
 |----------------------------------------------------------------|-----------------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| <b>`textToggleButtons: List<OdsTextToggleButtonsRow.Item>`</b> |                             | Items displayed into the toggle group                                                                                                                                                  |
-| <b>`selectedIndex: Int`</b>                                    |                             | `textToggleButtons` list index of the selected button                                                                                                                                  |
-| <b>`onSelectedIndexChange: (Int) -> Unit`</b>                  |                             | Callback invoked on selection change                                                                                                                                                   |
+| <b>`selectedTextButtonIndex: Int`</b>                          |                             | The index of the currently selected text button.                                                                                                                                       |
+| <b>`textButtons: List<OdsTextToggleButtonsRow.TextButton>`</b> |                             | List of [OdsTextToggleButtonsRow.TextButton] displayed into the toggle group.                                                                                                          |
 | `modifier: Modifier`                                           | `Modifier`                  | `Modifier` applied to the toggle buttons row                                                                                                                                           |
 | `sameItemsWeight: Boolean`                                     | `false`                     | Controls the place occupied by each item. When `true`, same weight of importance will be applied to each item, they will occupy the same width.                                        |
 | `displaySurface: OdsDisplaySurface`                            | `OdsDisplaySurface.Default` | `OdsDisplaySurface` applied to the button. It allows to force the button display on light or dark surface. By default, the appearance applied is based on the system night mode value. |

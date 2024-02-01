@@ -33,6 +33,8 @@ import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import com.orange.ods.compose.annotation.ExperimentalOdsApi
 import com.orange.ods.compose.component.OdsComposable
+import com.orange.ods.compose.component.content.OdsComponentContent
+import com.orange.ods.compose.component.content.OdsComponentScopeContent
 import com.orange.ods.compose.component.utilities.Preview
 import com.orange.ods.compose.component.utilities.UiModePreviews
 import com.orange.ods.compose.theme.OdsDisplaySurface
@@ -43,9 +45,8 @@ import com.orange.ods.compose.theme.OdsDisplaySurface
  * A group of toggle buttons. Only one option in a group of toggle buttons can be selected and active at a time.
  * Selecting one option deselects any other.
  *
- * @param textToggleButtons List of [OdsTextToggleButtonsRow.Item] displayed into the toggle group.
- * @param selectedIndex [textToggleButtons] list index of the selected button.
- * @param onSelectedIndexChange Callback invoked on selection change.
+ * @param selectedTextButtonIndex The index of the currently selected text button.
+ * @param textButtons List of [OdsTextToggleButtonsRow.TextButton] displayed into the toggle group.
  * @param modifier [Modifier] applied to the toggle buttons row.
  * @param sameItemsWeight Controls the place occupied by each item. When `true`, same weight of importance will be applied to each item, they will occupy
  * the same width.
@@ -56,9 +57,8 @@ import com.orange.ods.compose.theme.OdsDisplaySurface
 @OdsComposable
 @ExperimentalOdsApi
 fun OdsTextToggleButtonsRow(
-    textToggleButtons: List<OdsTextToggleButtonsRow.Item>,
-    selectedIndex: Int,
-    onSelectedIndexChange: (Int) -> Unit,
+    selectedTextButtonIndex: Int,
+    textButtons: List<OdsTextToggleButtonsRow.TextButton>,
     modifier: Modifier = Modifier,
     sameItemsWeight: Boolean = false,
     displaySurface: OdsDisplaySurface = OdsDisplaySurface.Default
@@ -72,17 +72,18 @@ fun OdsTextToggleButtonsRow(
                 color = buttonToggleBorderColor(displaySurface)
             )
     ) {
-        textToggleButtons.forEachIndexed { index, textToggleButton ->
-            TextToggleButtonsRowItem(
-                index = index,
-                textToggleButton = textToggleButton,
-                selected = selectedIndex == index,
-                sameItemsWeight = sameItemsWeight,
-                displaySurface = displaySurface
-            ) { clickedButtonIndex ->
-                onSelectedIndexChange(clickedButtonIndex)
+        textButtons.forEachIndexed { index, textButton ->
+            with(textButton) {
+                Content(
+                    extraParameters = OdsTextToggleButtonsRow.TextButton.ExtraParameters(
+                        index,
+                        displaySurface,
+                        selectedTextButtonIndex == index,
+                        sameItemsWeight
+                    )
+                )
             }
-            if (index < textToggleButtons.size) {
+            if (index < textButtons.size) {
                 Divider(
                     modifier = Modifier
                         .fillMaxHeight()
@@ -100,56 +101,61 @@ fun OdsTextToggleButtonsRow(
 object OdsTextToggleButtonsRow {
 
     /**
-     * An item in an [OdsTextToggleButtonsRow].
+     * An text button in an [OdsTextToggleButtonsRow].
+     *
+     * @property text The text of the button.
+     * @property onClick Callback invoked when this text button is selected.
+     * @property enabled Whether or not this [OdsTextToggleButtonsRow.TextButton] will handle input events and appear enabled for
+     * semantics purposes, true by default.
      */
-    data class Item(
+    class TextButton(
         val text: String,
+        val onClick: () -> Unit,
         val enabled: Boolean = true
-    )
+    ) : OdsComponentScopeContent<RowScope, TextButton.ExtraParameters>() {
 
-}
+        data class ExtraParameters(
+            val index: Int,
+            val displaySurface: OdsDisplaySurface,
+            val selected: Boolean,
+            val sameItemsWeight: Boolean
+        ) : OdsComponentContent.ExtraParameters()
 
-@Composable
-private fun RowScope.TextToggleButtonsRowItem(
-    index: Int,
-    textToggleButton: OdsTextToggleButtonsRow.Item,
-    selected: Boolean,
-    sameItemsWeight: Boolean,
-    displaySurface: OdsDisplaySurface,
-    onClick: (Int) -> Unit
-) {
-    val backgroundAlpha by animateFloatAsState(if (selected) 0.12f else 0f, label = "")
+        @Composable
+        override fun RowScope.Content(modifier: Modifier) {
+            val backgroundAlpha by animateFloatAsState(if (extraParameters.selected) 0.12f else 0f, label = "")
 
-    OdsTextButton(
-        text = textToggleButton.text,
-        enabled = textToggleButton.enabled,
-        modifier = Modifier
-            .background(color = buttonToggleBackgroundColor(displaySurface).copy(alpha = backgroundAlpha))
-            .fillMaxHeight()
-            .let {
-                if (sameItemsWeight) it.weight(1f) else it
-            },
-        maxLines = 1,
-        overflow = TextOverflow.Ellipsis,
-        displaySurface = displaySurface,
-        style = OdsTextButton.Style.Default,
-        onClick = { onClick(index) }
-    )
+            OdsTextButton(
+                text = text,
+                enabled = enabled,
+                modifier = Modifier
+                    .background(color = buttonToggleBackgroundColor(extraParameters.displaySurface).copy(alpha = backgroundAlpha))
+                    .fillMaxHeight()
+                    .let {
+                        if (extraParameters.sameItemsWeight) it.weight(1f) else it
+                    },
+                maxLines = 1,
+                overflow = TextOverflow.Ellipsis,
+                displaySurface = extraParameters.displaySurface,
+                style = OdsTextButton.Style.Default,
+                onClick = onClick
+            )
+        }
+    }
 }
 
 @OptIn(ExperimentalOdsApi::class)
 @UiModePreviews.Default
 @Composable
-private fun PreviewOdsTextToggleButtonsGroupRow() = Preview {
-    val textToggleButtons = listOf(
-        OdsTextToggleButtonsRow.Item("XML", true),
-        OdsTextToggleButtonsRow.Item("COMPOSE", true),
+private fun PreviewOdsTextToggleButtonsRow() = Preview {
+    var selectedTextButtonIndex by remember { mutableIntStateOf(0) }
+    val textButtons = listOf(
+        OdsTextToggleButtonsRow.TextButton("XML", { selectedTextButtonIndex = 0 }, true),
+        OdsTextToggleButtonsRow.TextButton("COMPOSE", { selectedTextButtonIndex = 1 }, true),
     )
-    var selectedIndex by remember { mutableIntStateOf(0) }
 
     OdsTextToggleButtonsRow(
-        textToggleButtons = textToggleButtons,
-        selectedIndex = selectedIndex,
-        onSelectedIndexChange = { index -> selectedIndex = index }
+        selectedTextButtonIndex = selectedTextButtonIndex,
+        textButtons = textButtons,
     )
 }
