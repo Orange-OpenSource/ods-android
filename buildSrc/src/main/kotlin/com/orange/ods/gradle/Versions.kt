@@ -20,7 +20,7 @@ object Versions {
 
     const val accompanist = "0.32.0"
     const val activity = "1.8.2"
-    const val androidGradlePlugin = "8.2.0"
+    const val androidGradlePlugin = "8.2.2"
     const val appCompat = "1.6.1"
     const val browser = "1.7.0"
     const val composeBom = "2023.10.01"
