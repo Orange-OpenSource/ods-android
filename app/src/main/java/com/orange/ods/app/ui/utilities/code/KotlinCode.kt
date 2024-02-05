@@ -189,6 +189,7 @@ class ParametersBuilder {
     fun string(name: String, textValue: String) = add(StringParameter(name, textValue))
     fun lambda(name: String, value: String = "") = add(LambdaParameter(name, value))
     fun float(name: String, value: Float) = add(FloatParameter(name, value))
+    fun int(name: String, value: Int) = add(SimpleParameter(name, value.toString()))
     fun mutableState(name: String, stateValue: String) = add(MutableStateParameter(name, stateValue))
     fun <T : Enum<T>> enum(name: String, value: T) = add(EnumParameter(name, value))
     inline fun <reified T> classInstance(name: String, noinline parameters: ParametersBuilder.() -> Unit) =
