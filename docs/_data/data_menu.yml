@@ -62,3 +62,8 @@ toc2:
     subfolderitems:
       - page: "About"
         url: /modules/About_docs
+
+  - title: About
+    subfolderitems:
+      - page: "Cookies"
+        url: /about/Cookies_docs
