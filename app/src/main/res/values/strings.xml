@@ -57,7 +57,6 @@
     <!-- Data -->
     <string name="data_recipe">Recipe</string>
 
-
     <!-- Components -->
     <string name="component_force_on_dark">Forced on dark</string>
     <string name="component_force_on_light">Forced on light</string>
@@ -175,7 +174,6 @@
     <string name="component_button_icon_toggle_add">Add toggle</string>
     <string name="component_button_icon_toggle_group_code_add_icons">Add the toggle group icons by code using view binding:</string>
 
-
     <!-- Component Cards -->
     <string name="component_cards">Cards</string>
     <string name="component_card_vertical_image_first">Vertical image first card</string>
@@ -235,22 +233,17 @@
     <!-- Component List item -->
     <string name="component_list_item">List item</string>
     <string name="component_list_item_description">A list item is the individual element of data entries like text, icons or images that is used to create a list.</string>
-    <string name="component_list_item_line_count">Line count</string>
-    <string name="component_list_item_add_line">Add line</string>
-    <string name="component_list_item_remove_line">Remove line</string>
+    <string name="component_list_item_secondary_text">Secondary text</string>
+    <string name="component_list_item_secondary_text_one_line">One line</string>
+    <string name="component_list_item_secondary_text_two_lines">Two lines</string>
     <string name="component_list_leading">Leading - Before the list text</string>
-    <string name="component_list_leading_none">None</string>
-    <string name="component_list_leading_icon">Icon</string>
     <string name="component_list_leading_circular_image">Circle</string>
     <string name="component_list_leading_square_image">Square</string>
     <string name="component_list_leading_wide_image">Wide</string>
     <string name="component_list_trailing">Trailing - After the list text</string>
-    <string name="component_list_trailing_none">None</string>
     <string name="component_list_trailing_checkbox">Checkbox</string>
     <string name="component_list_trailing_switch">Switch</string>
     <string name="component_list_trailing_radio_button">Radio button</string>
-    <string name="component_list_trailing_icon">Icon</string>
-    <string name="component_list_trailing_caption">Caption</string>
     <string name="component_list_information">Information</string>
 
     <!-- Component Menus -->
