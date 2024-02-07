@@ -39,7 +39,7 @@ import com.orange.ods.compose.text.OdsText
 import com.orange.ods.theme.typography.OdsTextStyle
 
 /**
- * Display an empty state content with a centered image followed by a title and an optional text. A button can also be added.
+ * Display an empty state with a centered image followed by a title and an optional text. A button can also be added.
  *
  * @param title The title of the screen displayed below the image. For example "File is missing".
  * @param modifier [Modifier] applied to the composable.
@@ -48,12 +48,12 @@ import com.orange.ods.theme.typography.OdsTextStyle
  * @param button The button to add below the text.
  */
 @Composable
-fun OdsEmptyStateContent(
+fun OdsEmptyStateView(
     title: String,
     modifier: Modifier = Modifier,
     text: String? = null,
-    image: OdsEmptyStateContent.Image = OdsEmptyStateContent.Image(painter = painterResource(id = R.drawable.il_yoga_man)),
-    button: OdsEmptyStateContent.Button? = null
+    image: OdsEmptyStateView.Image = OdsEmptyStateView.Image(painter = painterResource(id = R.drawable.il_yoga_man)),
+    button: OdsEmptyStateView.Button? = null
 ) {
     Column(
         modifier = modifier
@@ -90,14 +90,14 @@ fun OdsEmptyStateContent(
 }
 
 /**
- * Contains classes to build an [com.orange.ods.compose.module.emptystate.OdsEmptyStateContent].
+ * Contains classes to build an [com.orange.ods.compose.module.emptystate.OdsEmptyStateView].
  */
-object OdsEmptyStateContent {
+object OdsEmptyStateView {
 
     /**
-     * A button in an [OdsEmptyStateContent].
+     * A button in an [OdsEmptyStateView].
      *
-     * @constructor Creates an instance of [OdsEmptyStateContent.Button].
+     * @constructor Creates an instance of [OdsEmptyStateView.Button].
      * @param text Text of the button.
      * @param onClick Callback invoked on button click.
      */
@@ -110,16 +110,16 @@ object OdsEmptyStateContent {
     }
 
     /**
-     * An image in an [OdsEmptyStateContent].
+     * An image in an [OdsEmptyStateView].
      */
     class Image : OdsComponentImage<Nothing> {
 
         /**
-         * Creates an instance of [OdsEmptyStateContent.Image].
+         * Creates an instance of [OdsEmptyStateView.Image].
          *
          * @param painter The painter to draw.
          * @param alignment Alignment parameter used to place the [Painter] in the given bounds defined by the width and height.
-         * @param contentScale The rule to apply to scale the image in this [OdsEmptyStateContent.Image].
+         * @param contentScale The rule to apply to scale the image in this [OdsEmptyStateView.Image].
          */
         constructor(painter: Painter, alignment: Alignment = Alignment.Center, contentScale: ContentScale = ContentScale.Fit) : super(
             painter,
@@ -129,11 +129,11 @@ object OdsEmptyStateContent {
         )
 
         /**
-         * Creates an instance of [OdsEmptyStateContent.Image].
+         * Creates an instance of [OdsEmptyStateView.Image].
          *
          * @param imageVector The image vector to draw.
          * @param alignment Alignment parameter used to place the [ImageVector] in the given bounds defined by the width and height.
-         * @param contentScale The rule to apply to scale the image in this [OdsEmptyStateContent.Image].
+         * @param contentScale The rule to apply to scale the image in this [OdsEmptyStateView.Image].
          */
         constructor(imageVector: ImageVector, alignment: Alignment = Alignment.Center, contentScale: ContentScale = ContentScale.Fit) : super(
             imageVector,
@@ -143,11 +143,11 @@ object OdsEmptyStateContent {
         )
 
         /**
-         * Creates an instance of [OdsEmptyStateContent.Image].
+         * Creates an instance of [OdsEmptyStateView.Image].
          *
          * @param bitmap The image bitmap to draw.
          * @param alignment Alignment parameter used to place the [ImageBitmap] in the given bounds defined by the width and height.
-         * @param contentScale The rule to apply to scale the image in this [OdsEmptyStateContent.Image].
+         * @param contentScale The rule to apply to scale the image in this [OdsEmptyStateView.Image].
          */
         constructor(bitmap: ImageBitmap, alignment: Alignment = Alignment.Center, contentScale: ContentScale = ContentScale.Fit) : super(
             bitmap,
@@ -160,31 +160,31 @@ object OdsEmptyStateContent {
 
 @UiModePreviews.Default
 @Composable
-private fun PreviewOdsEmptyStateContent(@PreviewParameter(OdsEmptyStateContentPreviewParameterProvider::class) parameter: OdsEmptyStateContentPreviewParameter) =
+private fun PreviewOdsEmptyStateView(@PreviewParameter(OdsEmptyStateViewPreviewParameterProvider::class) parameter: OdsEmptyStateViewPreviewParameter) =
     Preview {
         with(parameter) {
-            OdsEmptyStateContent(title = title, text = text, button = button)
+            OdsEmptyStateView(title = title, text = text, button = button)
         }
     }
 
-private data class OdsEmptyStateContentPreviewParameter(
+private data class OdsEmptyStateViewPreviewParameter(
     val title: String,
     val text: String? = null,
-    val button: OdsEmptyStateContent.Button? = null
+    val button: OdsEmptyStateView.Button? = null
 )
 
-private class OdsEmptyStateContentPreviewParameterProvider :
-    BasicPreviewParameterProvider<OdsEmptyStateContentPreviewParameter>(*previewParameterValues.toTypedArray())
+private class OdsEmptyStateViewPreviewParameterProvider :
+    BasicPreviewParameterProvider<OdsEmptyStateViewPreviewParameter>(*previewParameterValues.toTypedArray())
 
-private val previewParameterValues: List<OdsEmptyStateContentPreviewParameter>
+private val previewParameterValues: List<OdsEmptyStateViewPreviewParameter>
     get() {
         val title = "Nothing to see here"
         val text = "To add your favourite stations, press the button."
-        val button = OdsEmptyStateContent.Button("Add station") {}
+        val button = OdsEmptyStateView.Button("Add station") {}
 
         return listOf(
-            OdsEmptyStateContentPreviewParameter(title = title, text = text, button = button),
-            OdsEmptyStateContentPreviewParameter(title = title, text = text),
-            OdsEmptyStateContentPreviewParameter(title = title),
+            OdsEmptyStateViewPreviewParameter(title = title, text = text, button = button),
+            OdsEmptyStateViewPreviewParameter(title = title, text = text),
+            OdsEmptyStateViewPreviewParameter(title = title),
         )
     }

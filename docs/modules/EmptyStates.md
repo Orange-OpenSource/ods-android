@@ -12,7 +12,7 @@ An empty state display should inform the user of what is happening, why it's hap
 * [Accessibility](#accessibility)
 * [Integration](#integration)
     * [Jetpack Compose](#jetpack-compose)
-        * [OdsEmptyStateContent API](#odsemptystatecontent-api)
+        * [OdsEmptyStateView API](#odsemptystateview-api)
 
 ---
 
@@ -32,27 +32,27 @@ The ODS Empty states module is built to support accessibility criteria and is re
 
 ### Jetpack Compose
 
-To integrate an ODS Empty state into your app, you can use `OdsEmptyStateContent` composable as shown below:
+To integrate an ODS Empty state into your app, you can use `OdsEmptyStateView` composable as shown below:
 
 ```kotlin
-OdsEmptyStateContent(
+OdsEmptyStateView(
     title = "No result",
     text = "Try a new search",
-    button = OdsEmptyStateContent.Button(text = "Search") {
+    button = OdsEmptyStateView.Button(text = "Search") {
         // Do something
     },
-    image = OdsEmptyStateContent.Image(painter = painterResource(id = R.drawable.il_no_result))
+    image = OdsEmptyStateView.Image(painter = painterResource(id = R.drawable.il_no_result))
 )
 ```
 
-#### OdsEmptyStateContent API
+#### OdsEmptyStateView API
 
 {:.table}
 
-| Parameter                              | Default&nbsp;value                                                                   | Description                                                                       |
-|----------------------------------------|--------------------------------------------------------------------------------------|-----------------------------------------------------------------------------------|
-| <b>`title: String`</b>                 |                                                                                      | The title of the screen displayed below the image. For example "File is missing". |
-| `modifier: Modifier`                   | `Modifier`                                                                           | `Modifier` applied to the composable                                              |
-| `text: String?`                        | `null`                                                                               | Text displayed below the title                                                    |
-| `image: OdsEmptyStateContent.Image`    | `OdsEmptyStateContent.Image(painter = painterResource(id = R.drawable.il_yoga_man))` | Image displayed centered in the composable                                        |
-| `button: OdsEmptyStateContent.Button?` | `null`                                                                               | The button to add below the text                                                  |
+| Parameter                           | Default&nbsp;value                                                                | Description                                                                       |
+|-------------------------------------|-----------------------------------------------------------------------------------|-----------------------------------------------------------------------------------|
+| <b>`title: String`</b>              |                                                                                   | The title of the screen displayed below the image. For example "File is missing". |
+| `modifier: Modifier`                | `Modifier`                                                                        | `Modifier` applied to the composable                                              |
+| `text: String?`                     | `null`                                                                            | Text displayed below the title                                                    |
+| `image: OdsEmptyStateView.Image`    | `OdsEmptyStateView.Image(painter = painterResource(id = R.drawable.il_yoga_man))` | Image displayed centered in the composable                                        |
+| `button: OdsEmptyStateView.Button?` | `null`                                                                            | The button to add below the text                                                  |
