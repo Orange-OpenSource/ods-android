@@ -53,6 +53,8 @@ OdsBanner(
 
 #### OdsBanner API
 
+<div class="table-responsive" markdown="1">
+
 {:.table}
 
 | Parameter                         | Default&nbsp;value | Description                                                        |
@@ -62,6 +64,8 @@ OdsBanner(
 | `image: OdsBanner.Image?`         | `null`             | Image displayed in the banner in a circle shape                    |
 | `firstButton: OdsBanner.Button?`  | `null`             | Primary button displayed in the banner                             |
 | `secondButton: OdsBanner.Button?` | `null`             | Secondary button displayed into the banner next to the primary one |
+
+</div>
 
 ### XML
 

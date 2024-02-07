@@ -76,6 +76,8 @@ OdsSlider(
 
 ##### OdsSlider API
 
+<div class="table-responsive" markdown="1">
+
 {:.table}
 
 | Parameter                                     | Default&nbsp;value | Description                                                                                                                                                                                                                                             |
@@ -89,6 +91,8 @@ OdsSlider(
 | `onValueChangeFinished: (() -> Unit)?`        | `null`             | Callback invoked when value change has ended. This callback shouldn't be used to update the slider value (use `onValueChange` for that), but rather to know when the user has completed selecting a new value by ending a drag or a click.              |
 | `startIcon: OdsSlider.Icon?`                  | `null`             | Icon displayed at the start of the slider                                                                                                                                                                                                               |
 | `endIcon: OdsSlider.Icon?`                    | `null`             | Icon displayed at the end of the slider                                                                                                                                                                                                                 |
+
+</div>
 
 ### Continuous lockups slider
 
@@ -130,6 +134,8 @@ OdsSliderLockups(
 
 ##### OdsSliderLockups API
 
+<div class="table-responsive" markdown="1">
+
 {:.table}
 
 | Parameter                                     | Default&nbsp;value | Description                                                                                                                                                                                                                                             |
@@ -143,6 +149,8 @@ OdsSliderLockups(
 | `onValueChangeFinished: (() -> Unit)?`        | `null`             | Callback invoked when value change has ended. This callback shouldn't be used to update the slider value (use `onValueChange` for that), but rather to know when the user has completed selecting a new value by ending a drag or a click.              |
 | `startIcon: OdsSlider.Icon?`                  | `null`             | Icon displayed at the start of the slider                                                                                                                                                                                                               |
 | `endIcon: OdsSlider.Icon?`                    | `null`             | Icon displayed at the end of the slider                                                                                                                                                                                                                 |
+
+</div>
 
 ### Discrete slider
 

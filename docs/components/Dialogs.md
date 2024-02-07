@@ -56,6 +56,8 @@ OdsAlertDialog(
 
 ##### OdsAlertDialog API
 
+<div class="table-responsive" markdown="1">
+
 {:.table}
 
 | Parameter                                     | Default&nbsp;value   | Description                                                                                                                                                                |
@@ -67,3 +69,5 @@ OdsAlertDialog(
 | `dismissButton: OdsAlertDialog.Button?`       | `null`               | Button displayed into the dialog which is meant to dismiss the dialog                                                                                                      |
 | `title: String?`                              | `null`               | Title displayed into the dialog which should specify the purpose of the dialog. The title is not mandatory, because there may be sufficient information inside the `text`. |
 | `properties: DialogProperties`                | `DialogProperties()` | Typically platform specific properties to further configure the dialog                                                                                                     |
+
+</div>

@@ -86,6 +86,8 @@ Scaffold(
 
 #### OdsSnackbarHost API
 
+<div class="table-responsive" markdown="1">
+
 {:.table}
 
 | Parameter                                              | Default&nbsp;value                 | Description                                                                                                                                    |
@@ -93,3 +95,5 @@ Scaffold(
 | <b>`hostState: SnackbarHostState`</b>                  |                                    | State of this component to read and show `OdsSnackbar` accordingly.                                                                            |
 | `modifier: Modifier`                                   | `Modifier`                         | `Modifier` applied to the snackbar host                                                                                                        |
 | `snackbar: (SnackbarData) -> OdsSnackbarHost.Snackbar` | `{ OdsSnackbarHost.Snackbar(it) }` | Instance of the `OdsSnackbarHost.Snackbar` to be shown at the appropriate time with appearance based on the `SnackbarData` provided as a param |
+
+</div>

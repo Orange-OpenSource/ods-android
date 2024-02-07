@@ -1,7 +1,6 @@
 <header class="sticky-top bg-black">
   <div class="navbar navbar-dark bg-dark navbar-expand-lg" aria-label="Global header of ODS Android">
-    <div class="container-xxl"><!-- Should we have full page doc or more like Boosted ? -->
-
+    <div class="container-xxl">
       <!-- Orange brand logo -->
       <div class="navbar-brand me-auto me-lg-4">
         <span>
@@ -13,6 +12,12 @@
           Documentation
         </h1>
       </div>
+      {% if page.name != "404.html" %}
+      <!-- Burger menu to toggle offcanvas -->
+      <button class="navbar-toggler collapsed" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasExample" aria-controls="offcanvasExample" aria-expanded="false" aria-label="Toggle global navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      {% endif %}
     </div>
   </div>
 </header>

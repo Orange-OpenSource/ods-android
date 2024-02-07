@@ -68,6 +68,8 @@ OdsTabRow(
 
 ##### OdsTabRow API
 
+<div class="table-responsive" markdown="1">
+
 {:.table}
 
 | Parameter                                      | Default&nbsp;value                | Description                                                                                      |
@@ -76,6 +78,8 @@ OdsTabRow(
 | <b>`tabs: List<OdsTabRow.Tab>`</b>             |                                   | List of the `OdsTabRow.Tab` displayed inside this tabs row                                       |
 | `modifier: Modifier`                           | `Modifier`                        | `Modifier` applied to the tabs row                                                               |
 | `tabIconPosition: OdsTabRow.Tab.Icon.Position` | `OdsTabRow.Tab.Icon.Position.Top` | Controls the position of the icon in the tabs. By default, the icon is displayed above the text. |
+
+</div>
 
 ### Scrollable tabs row
 
@@ -111,6 +115,8 @@ OdsScrollableTabRow(
 
 ##### OdsScrollableTabRow API
 
+<div class="table-responsive" markdown="1">
+
 {:.table}
 
 | Parameter                                      | Default&nbsp;value                | Description                                                                                      |
@@ -119,3 +125,5 @@ OdsScrollableTabRow(
 | <b>`tabs: List<OdsTabRow.Tab>`</b>             |                                   | List of the `OdsTabRow.Tab` displayed inside this tabs row                                       |
 | `modifier: Modifier`                           | `Modifier`                        | `Modifier` applied to the tabs row                                                               |
 | `tabIconPosition: OdsTabRow.Tab.Icon.Position` | `OdsTabRow.Tab.Icon.Position.Top` | Controls the position of the icon in the tabs. By default, the icon is displayed above the text. |
+
+</div>

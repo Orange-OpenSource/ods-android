@@ -18,15 +18,20 @@
     {% include head.html %}
 
     <style type="text/css">
-        html {
-            height: 100%;
-        }
+        html,
         body {
-            min-height: 100%;
+            min-height: 100vh;
         }
         img {
             max-width: 100%;
-            max-height: 100%;
+        }
+        .highlighter-rouge:last-child .highlight {
+            margin-bottom: 0;
+        }
+        @media (max-width: 1023.98px) {
+            .z-offcanvas {
+                z-index: 1045;
+            }
         }
     </style>
 
@@ -36,80 +41,87 @@
 <body>
     {% include header.html %}
 
-    <div class="container-xxl pt-4 pt-md-5">
+    <div class="container-xxl pt-4 pt-lg-5 mb-4 mb-lg-5">
         <div class="row">
-            <nav class="col-md-3" aria-label="Global navigation of ODS Android">
-                <div class="mb-3 mb-md-5 border-end border-1 border-light overflow-auto" style="position: sticky; top: 120px; max-height: calc(100vh - 180px);">
-                    {% if site.data.data_menu.toc2[0] %}
-                    {% if page.version == "" %}
-                    {% assign urlPrefix = "" %}
-                    {% else %}
-                    {% assign urlPrefix = "/" | append: page.version %}
-                    {% endif %}
-                    {% for item in site.data.data_menu.toc2 %}
-                    <div>
-                        <h3 class="mb-2">{{ item.title }}</h3>
-                    </div>
-                    {% if item.subfolderitems[0] %}
-                    <div class="mb-4 ps-3">
-                        <ul class="mb-0 list-unstyled">
-                            {% for entry in item.subfolderitems %}
-                            <li class="mb-1"><a class="text-decoration-none" href="{{ site.baseurl }}{{ urlPrefix }}{{ entry.url }}">{{ entry.page }}</a>
-                                {% if entry.subsubfolderitems[0] %}
-                                <ul>
-                                    {% for subentry in entry.subsubfolderitems %}
-                                    <li><a href="{{ site.baseurl }}{{ urlPrefix }}{{ subentry.url }}">{{ subentry.page }}</a></li>
-                                    {% endfor %}
-                                </ul>
+            
+            <div class="col-lg-3" aria-label="Global navigation of ODS Android">
+                <div class="h-100 border-end border-1 border-light overflow-auto z-offcanvas" style="position: sticky; top: 120px; max-height: calc(100vh - 180px);">
+
+                    <div class="offcanvas-lg offcanvas-end" tabindex="-1" id="offcanvasExample" aria-labelledby="offcanvasExampleLabel" style="--bs-offcanvas-width: 300px;">
+                        <div class="offcanvas-header border-bottom border-1 border-light">
+                            <h5 class="offcanvas-title" id="offcanvasExampleLabel">ODS Android navigation</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" data-bs-target="#offcanvasExample" style="margin-right: -.625rem;"><span class="visually-hidden">Close</span></button>
+                        </div>
+                        <nav class="offcanvas-body d-flex flex-column pb-4 pb-lg-0 pe-1 gap-4">
+                            {% if site.data.data_menu.toc2[0] %}
+                            {% if page.version == "" %}
+                            {% assign urlPrefix = "" %}
+                            {% else %}
+                            {% assign urlPrefix = "/" | append: page.version %}
+                            {% endif %}
+                            {% for item in site.data.data_menu.toc2 %}
+                            <div>
+                                <h3 class="mb-2">{{ item.title }}</h3>
+                                {% if item.subfolderitems[0] %}
+                                <div class="ps-3">
+                                    <ul class="d-flex flex-column gap-2 gap-lg-1 mb-0 list-unstyled">
+                                        {% for entry in item.subfolderitems %}
+                                        {% if entry.page == page.title %}
+                                        <li><a class="text-decoration-none fw-bold" href="{{ site.baseurl }}{{ urlPrefix }}{{ entry.url }}">{{ entry.page }}</a>
+                                        {% else %}
+                                        <li><a class="text-decoration-none" href="{{ site.baseurl }}{{ urlPrefix }}{{ entry.url }}">{{ entry.page }}</a>
+                                        {% endif %}
+                                            {% if entry.subsubfolderitems[0] %}
+                                            <ul>
+                                                {% for subentry in entry.subsubfolderitems %}
+                                                <li><a href="{{ site.baseurl }}{{ urlPrefix }}{{ subentry.url }}">{{ subentry.page }}</a></li>
+                                                {% endfor %}
+                                            </ul>
+                                            {% endif %}
+                                        </li>
+                                        {% endfor %}
+                                    </ul>
+                                </div>
                                 {% endif %}
-                            </li>
+                            </div>
                             {% endfor %}
-                        </ul>
+                            {% endif %}
+                        </nav>
                     </div>
+                </div>
+            </div>
+    
+            <main class="col-lg-9">
+                <div class="ps-lg-4">
+                    {% if page.content_page %}
+    
+                    {% for all in site.pages %}
+                    {% if all.name == page.content_page and all.version == page.version %}
+    
+                    {% if page.url != "/" %}
+                    <h1>{{ all.title }}</h1>
+                    <p class="lead fw-bold">{{ all.description }}</p>
+                    {% else %}
+                    <h1>{{ all.description }}</h1>
+                    {% endif %}
+    
+                    {{ all.content }}
+
                     {% endif %}
                     {% endfor %}
-                    {% endif %}
-                </div>
-            </nav>
     
-            <main class="col-md-9">
-                <div class="ods-layout container-xxl">
-                    <div>
-        
-                        {% if page.content_page %}
-        
-                        {% for all in site.pages %}
-                        {% if all.name == page.content_page and all.version == page.version %}
-        
-                        <div>
-                            <div class="d-md-flex align-items-center justify-content-between">
-                                <h1 id="ods-title">{{ all.title }}</h1>
-                            </div>
-                            <p class="ods-lead">{{ all.description }}</p>
-                        </div>
-        
-                        <div class="ods-content ps-lg-4 mb-3">
-                            {{all.content}}
-                        </div>
-                        {% endif %}
-                        {% endfor %}
-        
-                        {% else %}
-        
-                        <div>
-                            <div class="d-md-flex align-items-center justify-content-between">
-                                <h1 id="ods-title">{{ page.title }}</h1>
-                            </div>
-                            <p class="ods-lead">{{ page.description }}</p>
-                        </div>
-        
-                        <div class="ods-content ps-lg-4 mb-3">
-                            {{content}}
-                        </div>
-        
-                        {% endif %}
-        
-                    </div>
+                    {% else %}
+    
+                    {% if page.url != "/" %}
+                    <h1>{{ page.title }}</h1>
+                    <p class="lead fw-bold">{{ page.description }}</p>
+                    {% else %}
+                    <h1>{{ page.description }}</h1>
+                    {% endif %}
+    
+                    {{ content }}
+    
+                    {% endif %}
                 </div>
             </main>
         </div>

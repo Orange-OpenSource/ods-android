@@ -90,6 +90,8 @@ The library provides several `OdsTextField.Trailing` that you can use as trailin
 
 ##### OdsTextField API [#](#odstextfield-api-)
 
+<div class="table-responsive" markdown="1">
+
 {:.table}
 
 | Parameter                                                                             | Default&nbsp;value          | Description                                                                                                                                                                                                                                                                                                           |
@@ -111,6 +113,8 @@ The library provides several `OdsTextField.Trailing` that you can use as trailin
 | `singleLine: Boolean`                                                                 | `false`                     | When set to `true`, this text field becomes a single horizontally scrolling text field instead of wrapping onto multiple lines. The keyboard will be informed to not show the return key as the `ImeAction`. Note that `maxLines` parameter will be ignored as the maxLines attribute will be automatically set to 1. |
 | `maxLines: Int`                                                                       | `Int.MAX_VALUE`             | Maximum number of visible lines. Should be equal or greater than 1. Note that this parameter will be ignored and instead maxLines will be set to 1 if `singleLine` is set to `true`.                                                                                                                                  |
 | `characterCounter: `[OdsTextFieldCharacterCounter](#odstextfieldcharactercounter-)`?` | `null`                      | Character counter displayed below the text field                                                                                                                                                                                                                                                                      |
+
+</div>
 
 ### Password text field [#](#password-text-field-)
 
@@ -154,6 +158,8 @@ See [text field section](#text-field) if you want to change it in your custom th
 
 ##### OdsPasswordTextField API [#](#odspasswordtextfield-api-)
 
+<div class="table-responsive" markdown="1">
+
 {:.table}
 
 | Parameter                                                                             | Default&nbsp;value        | Description                                                                                                                                                                                                                                    |
@@ -171,6 +177,8 @@ See [text field section](#text-field) if you want to change it in your custom th
 | `keyboardOptions: KeyboardOptions`                                                    | `KeyboardOptions.Default` | Software keyboard options that contains configuration such as `KeyboardType` and `ImeAction`                                                                                                                                                   |
 | `keyboardActions: KeyboardActions`                                                    | `KeyboardActions()`       | When the input service emits an IME action, the corresponding callback is called. Note that this IME action may be different from what you specified in `KeyboardOptions.imeAction`.                                                           |
 | `characterCounter: `[OdsTextFieldCharacterCounter](#odstextfieldcharactercounter-)`?` | `null`                    | Character counter displayed below the text field                                                                                                                                                                                               |
+
+</div>
 
 ## Extras
 
@@ -205,6 +213,8 @@ if (text.length <= TextFieldMaxCharacterCount) {
 
 ##### OdsTextFieldCharacterCounter [#](#odstextfieldcharactercounter-)
 
+<div class="table-responsive" markdown="1">
+
 {:.table}
 
 | Parameter                       | Default&nbsp;value | Description                                                                                                                                                          |
@@ -212,6 +222,8 @@ if (text.length <= TextFieldMaxCharacterCount) {
 | <b>`characterCount: Int`</b>    |                    | Text field current characters count.                                                                                                                                 |
 | <b>`maxCharacterCount: Int`</b> |                    | Maximum number of characters to display in the counter. Note: the limitation behavior should be managed by yourself in the `onValueChange` method of the text field. |
 | `enabled: Boolean`              | `true`             | Controls the enable state of the counter. If set to `false` the text will be displayed in disabled color.                                                            |
+
+</div>
 
 ## Custom theme configuration
 

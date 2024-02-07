@@ -66,6 +66,8 @@ OdsDropdownMenu(
 
 ##### OdsDropdownMenu API
 
+<div class="table-responsive" markdown="1">
+
 {:.table}
 
 | Parameter                                  | Default&nbsp;value                  | Description                                                                                               |
@@ -76,6 +78,8 @@ OdsDropdownMenu(
 | `modifier: Modifier`                       | `Modifier`                          | `Modifier` applied to the dropdown menu                                                                   |
 | `offset: DpOffset`                         | `DpOffset(0.dp, 0.dp)`              | Offset added to the menu position                                                                         |
 | `properties: PopupProperties`              | `PopupProperties(focusable = true)` | Properties for further customization of the popup's behavior                                              |
+
+</div>
 
 ### Exposed dropdown menu
 
@@ -108,6 +112,8 @@ OdsExposedDropdownMenu(
 
 ##### OdsExposedDropdownMenu API
 
+<div class="table-responsive" markdown="1">
+
 {:.table}
 
 | Parameter                                                             | Default&nbsp;value | Description                                                                                                                                                                         |
@@ -118,3 +124,5 @@ OdsExposedDropdownMenu(
 | <b>`onItemSelectionChange: (OdsExposedDropdownMenu.Item) -> Unit`</b> |                    | Callback invoked when a dropdown menu item is selected. It can be used to get the menu value.                                                                                       |
 | `modifier: Modifier`                                                  | `Modifier`         | `Modifier` applied to the dropdown menu                                                                                                                                             |
 | `enabled: Boolean`                                                    | `true`             | Controls the enabled state of the dropdown menu. When `false`, the dropdown menu text field will be neither clickable nor focusable, visually it will appear in the disabled state. |
+
+</div>

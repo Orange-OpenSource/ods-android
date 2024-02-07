@@ -73,6 +73,8 @@ Note: By default, the `OdsTopAppBar` is elevated but you can set `elevated` para
 
 ##### OdsTopAppBar API
 
+<div class="table-responsive" markdown="1">
+
 {:.table}
 
 | Parameter                                       | Default&nbsp;value | Description                                                                                                                               |
@@ -83,6 +85,8 @@ Note: By default, the `OdsTopAppBar` is elevated but you can set `elevated` para
 | `actions: List<OdsTopAppBar.ActionButton>`      | `emptyList()`      | Actions to be displayed at the end of the top app bar. The default layout here is a `Row`, so icons inside will be placed horizontally.   |
 | `overflowMenuItems: List<OdsDropdownMenu.Item>` | `emptyList()`      | List of items displayed in the overflow menu. The top app bar uses `OdsDropdownMenu` to display its overflow menu.                        |
 | `elevated: Boolean`                             | `true`             | Controls the elevation of the top app bar: `true` to set an elevation to the top app bar (a shadow is displayed below), `false` otherwise |
+
+</div>
 
 ### Large top app bar
 
@@ -150,6 +154,8 @@ Scaffold(
 
 ##### OdsLargeTopAppBar API
 
+<div class="table-responsive" markdown="1">
+
 {:.table}
 
 | Parameter                                       | Default&nbsp;value | Description                                                                                                                       |
@@ -160,6 +166,8 @@ Scaffold(
 | `actions: List<OdsTopAppBar.ActionButton>`      | `emptyList()`      | Actions displayed at the end of the top app bar. The default layout here is a `Row`, so icons inside will be placed horizontally. |
 | `overflowMenuItems: List<OdsDropdownMenu.Item>` | `emptyList()`      | List of items displayed in the overflow menu. The top app bar uses `OdsDropdownMenu` to display its overflow menu.                |
 | `scrollBehavior: TopAppBarScrollBehavior?`      | `null`             | `TopAppBarScrollBehavior` attached to the top app bar                                                                             |
+
+</div>
 
 ### Search top app bar
 
@@ -183,6 +191,8 @@ OdsSearchTopAppBar(
 
 ##### OdsSearchTopAppBar API
 
+<div class="table-responsive" markdown="1">
+
 {:.table}
 
 | Parameter                                        | Default&nbsp;value | Description                                                                                                                               |
@@ -193,3 +203,5 @@ OdsSearchTopAppBar(
 | `modifier: Modifier`                             | `Modifier`         | `Modifier` to be applied to the search top app bar                                                                                        |
 | `navigationIcon: OdsTopAppBar.NavigationIcon?`   | `null`             | Icon to be displayed at the start of the top app bar before the text field                                                                |
 | `elevated: Boolean`                              | `true`             | Controls the elevation of the top app bar: `true` to set an elevation to the top app bar (a shadow is displayed below), `false` otherwise |
+
+</div>

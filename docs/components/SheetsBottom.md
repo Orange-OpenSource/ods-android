@@ -57,6 +57,8 @@ OdsBottomSheetScaffold(
 
 #### OdsBottomSheetScaffold API [#](#odsbottomsheetscaffold-api-)
 
+<div class="table-responsive" markdown="1">
+
 {:.table}
 
 | Parameter                                                 | Default&nbsp;value                            | Description                                                 |
@@ -71,3 +73,5 @@ OdsBottomSheetScaffold(
 | `sheetGesturesEnabled: Boolean`                           | `true`                                        | Whether the bottom sheet can be interacted with by gestures |
 | `sheetPeekHeight: Dp`                                     | `BottomSheetScaffoldDefaults.SheetPeekHeight` | Height of the bottom sheet when it is collapsed             |
 | <b>`content: @Composable (PaddingValues) -> Unit`</b>     |                                               | Content of the screen                                       |
+
+</div>

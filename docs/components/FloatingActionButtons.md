@@ -61,6 +61,8 @@ OdsFloatingActionButton(
 
 ##### OdsFloatingActionButton API
 
+<div class="table-responsive" markdown="1">
+
 {:.table}
 
 | Parameter                                   | Default&nbsp;value | Description                                                                                                         |
@@ -69,6 +71,8 @@ OdsFloatingActionButton(
 | <b>`onClick: () -> Unit`</b>                |                    | Callback invoked on FAB click                                                                                       |
 | `modifier: Modifier`                        | `Modifier`         | `Modifier` applied to the FAB                                                                                       |
 | `mini: Boolean`                             | `false`            | Controls the size of the FAB. If `true`, the size of the FAB will be 40dp, otherwise the default size will be used. |
+
+</div>
 
 ### Mini FAB
 
@@ -119,6 +123,8 @@ OdsExtendedFloatingActionButton(
 
 ##### OdsExtendedFloatingActionButton API
 
+<div class="table-responsive" markdown="1">
+
 {:.table}
 
 | Parameter                                   | Default&nbsp;value | Description                   |
@@ -127,3 +133,5 @@ OdsExtendedFloatingActionButton(
 | <b>`onClick: () -> Unit`</b>                |                    | Callback invoked on FAB click |
 | <b>`text: String`</b>                       |                    | Text displayed into the FAB   |
 | `modifier: Modifier`                        | `Modifier`         | `Modifier` applied to the FAB |
+
+</div>

@@ -49,6 +49,8 @@ OdsSwitch(
 
 #### OdsSwitch API
 
+<div class="table-responsive" markdown="1">
+
 {:.table}
 
 | Parameter                                      | Default&nbsp;value | Description                                                                                                                                       |
@@ -57,3 +59,5 @@ OdsSwitch(
 | <b>`onCheckedChange: ((Boolean) -> Unit)?`</b> |                    | Callback invoked on switch check. If `null`, then this is passive and relies entirely on a higher-level component to control the "checked" state. |
 | `modifier: Modifier`                           | `Modifier`         | `Modifier` applied to the switch                                                                                                                  |
 | `enabled: Boolean`                             | `true`             | Controls the enabled state of the switch. When `false`, the switch will not be checkable and appears disabled.                                    |
+
+</div>

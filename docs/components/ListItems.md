@@ -68,6 +68,8 @@ OdsListItem(
 
 ##### OdsListItem API
 
+<div class="table-responsive" markdown="1">
+
 {:.table}
 
 | Parameter                                                    | Default&nbsp;value                       | Description                                                                                                                               |
@@ -81,6 +83,8 @@ OdsListItem(
 | `trailing: OdsListItem.Trailing?`                            | `null`                                   | The trailing content to display at the end of the list item                                                                               |
 | `divider: Boolean`                                           | `false`                                  | Whether or not a divider is displayed at the bottom of the list item                                                                      |
 | `onClick: (() -> Unit)?`                                     | `null`                                   | Will be called when the user clicks the list item. This parameter only has an effect if trailing is `OdsListItem.TrailingIcon` or `null`. |
+
+</div>
 
 ### Two-line list
 

@@ -52,6 +52,8 @@ OdsCheckbox(
 
 #### OdsCheckbox API
 
+<div class="table-responsive" markdown="1">
+
 {:.table}
 
 | Parameter                                      | Default&nbsp;value | Description                                                                                                                                       |
@@ -60,3 +62,5 @@ OdsCheckbox(
 | <b>`onCheckedChange: ((Boolean) -> Unit)?`</b> |                    | Callback invoked on checkbox click. If `null`, then this is passive and relies entirely on a higher-level component to control the checked state. |
 | `modifier: Modifier`                           | `Modifier`         | `Modifier` applied to the checkbox                                                                                                                |
 | `enabled: Boolean`                             | `true`             | Controls enabled state of the checkbox. When `false`, this checkbox will not be clickable.                                                        |
+
+</div>
