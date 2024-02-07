@@ -62,6 +62,8 @@ toc2:
     subfolderitems:
       - page: "About"
         url: /modules/About_docs
+      - page: "Empty states"
+        url: /modules/EmptyStates_docs
 
   - title: About
     subfolderitems:

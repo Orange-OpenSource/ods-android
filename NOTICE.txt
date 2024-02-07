@@ -80,6 +80,10 @@ app/src/main/res/drawable-hdpi/il_chips_small.png
 app/src/main/res/drawable-hdpi/il_chips_small_generic.png
 app/src/main/res/drawable-hdpi/il_color.png
 app/src/main/res/drawable-hdpi/il_color_generic.png
+app/src/main/res/drawable-hdpi/il_empty_state.png
+app/src/main/res/drawable-hdpi/il_empty_state_error.png
+app/src/main/res/drawable-hdpi/il_empty_state_first_use.png
+app/src/main/res/drawable-hdpi/il_empty_state_no_data.png
 app/src/main/res/drawable-hdpi/il_image_item.png
 app/src/main/res/drawable-hdpi/il_image_item_generic.png
 app/src/main/res/drawable-hdpi/il_menus.png
@@ -125,6 +129,10 @@ app/src/main/res/drawable-mdpi/il_chips_small.png
 app/src/main/res/drawable-mdpi/il_chips_small_generic.png
 app/src/main/res/drawable-mdpi/il_color.png
 app/src/main/res/drawable-mdpi/il_color_generic.png
+app/src/main/res/drawable-mdpi/il_empty_state.png
+app/src/main/res/drawable-mdpi/il_empty_state_error.png
+app/src/main/res/drawable-mdpi/il_empty_state_first_use.png
+app/src/main/res/drawable-mdpi/il_empty_state_no_data.png
 app/src/main/res/drawable-mdpi/il_image_item.png
 app/src/main/res/drawable-mdpi/il_image_item_generic.png
 app/src/main/res/drawable-mdpi/il_menus.png
@@ -170,6 +178,10 @@ app/src/main/res/drawable-xhdpi/il_chips_small.png
 app/src/main/res/drawable-xhdpi/il_chips_small_generic.png
 app/src/main/res/drawable-xhdpi/il_color.png
 app/src/main/res/drawable-xhdpi/il_color_generic.png
+app/src/main/res/drawable-xhdpi/il_empty_state.png
+app/src/main/res/drawable-xhdpi/il_empty_state_error.png
+app/src/main/res/drawable-xhdpi/il_empty_state_first_use.png
+app/src/main/res/drawable-xhdpi/il_empty_state_no_data.png
 app/src/main/res/drawable-xhdpi/il_image_item.png
 app/src/main/res/drawable-xhdpi/il_image_item_generic.png
 app/src/main/res/drawable-xhdpi/il_menus.png
@@ -215,6 +227,10 @@ app/src/main/res/drawable-xxhdpi/il_chips_small.png
 app/src/main/res/drawable-xxhdpi/il_chips_small_generic.png
 app/src/main/res/drawable-xxhdpi/il_color.png
 app/src/main/res/drawable-xxhdpi/il_color_generic.png
+app/src/main/res/drawable-xxhdpi/il_empty_state.png
+app/src/main/res/drawable-xxhdpi/il_empty_state_error.png
+app/src/main/res/drawable-xxhdpi/il_empty_state_first_use.png
+app/src/main/res/drawable-xxhdpi/il_empty_state_no_data.png
 app/src/main/res/drawable-xxhdpi/il_image_item.png
 app/src/main/res/drawable-xxhdpi/il_image_item_generic.png
 app/src/main/res/drawable-xxhdpi/il_menus.png
@@ -260,6 +276,10 @@ app/src/main/res/drawable-xxxhdpi/il_chips_small.png
 app/src/main/res/drawable-xxxhdpi/il_chips_small_generic.png
 app/src/main/res/drawable-xxxhdpi/il_color.png
 app/src/main/res/drawable-xxxhdpi/il_color_generic.png
+app/src/main/res/drawable-xxxhdpi/il_empty_state.png
+app/src/main/res/drawable-xxxhdpi/il_empty_state_error.png
+app/src/main/res/drawable-xxxhdpi/il_empty_state_first_use.png
+app/src/main/res/drawable-xxxhdpi/il_empty_state_no_data.png
 app/src/main/res/drawable-xxxhdpi/il_image_item.png
 app/src/main/res/drawable-xxxhdpi/il_image_item_generic.png
 app/src/main/res/drawable-xxxhdpi/il_menus.png

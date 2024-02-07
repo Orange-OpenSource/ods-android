@@ -13,11 +13,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - \[App\] Display XML code implementation for components with an XML version available ([#788](https://github.com/Orange-OpenSource/ods-android/issues/788))
 - \[Doc\] Add XML integration documentation for components with an XML version ([#540](https://github.com/Orange-OpenSource/ods-android/issues/540))
 - \[Lib\] Add `OdsSearchTopAppBar` component variant ([#577](https://github.com/Orange-OpenSource/ods-android/issues/577))
+- \[Lib\] Add `OdsEmptyStateView` module ([#119](https://github.com/Orange-OpenSource/ods-android/issues/119))
 
 ### Changed
 
 - \[App\] Display typography tokens in search results ([#551](https://github.com/Orange-OpenSource/ods-android/issues/551))
 - \[App\] Update checkboxes and switches components demo by showing only one element ([#666](https://github.com/Orange-OpenSource/ods-android/issues/666))
+- \[App\] Replace `OdsListItem` lines counter customization by choice chips allowing secondary text lines count customization ([#799](https://github.com/Orange-OpenSource/ods-android/issues/799))
 - \[Lib\] Update i18n keys ([#752](https://github.com/Orange-OpenSource/ods-android/issues/752))
 - \[Lib\] Update `OdsChoiceChipsFlowRow` to have less vertical space between elements ([#758](https://github.com/Orange-OpenSource/ods-android/issues/758))
 - \[Lib\] Change `OdsListItem` API by replacing `singleLineSecondaryText` boolean parameter by an enum called `secondaryTextLineCount` ([#777](https://github.com/Orange-OpenSource/ods-android/issues/777))

@@ -16,12 +16,9 @@ import android.os.Bundle
 import androidx.compose.runtime.Composable
 import com.orange.ods.app.R
 import com.orange.ods.app.ui.components.ComponentsNavigation
-import com.orange.ods.app.ui.components.ComponentsNavigation.ComponentDemoRoute
-import com.orange.ods.app.ui.components.ComponentsNavigation.ComponentDetailRoute
-import com.orange.ods.app.ui.components.ComponentsNavigation.ComponentVariantDemoRoute
 import com.orange.ods.app.ui.components.Variant
 import com.orange.ods.app.ui.guidelines.GuidelinesNavigation
-import com.orange.ods.app.ui.modules.ModuleDemoDestinations
+import com.orange.ods.app.ui.modules.ModulesNavigation
 import com.orange.ods.app.ui.utilities.UiString
 import com.orange.ods.compose.component.appbar.top.OdsTopAppBar
 import com.orange.ods.extension.orElse
@@ -38,8 +35,12 @@ fun getScreen(route: String, args: Bundle?): Screen? {
         // Specific element route -> get element id
         val (routeRoot) = matchElementRouteResult.destructured
         when (routeRoot) {
-            ComponentDetailRoute, ComponentDemoRoute -> args?.getLong(ComponentsNavigation.ComponentIdKey)?.let { Screen.Component(it) }
-            ComponentVariantDemoRoute -> args?.getLong(ComponentsNavigation.ComponentVariantIdKey)?.let { Screen.ComponentVariant(it) }
+            ComponentsNavigation.ComponentDetailRoute, ComponentsNavigation.ComponentDemoRoute -> {
+                args?.getLong(ComponentsNavigation.ComponentIdKey)?.let { Screen.Component(it) }
+            }
+            ComponentsNavigation.ComponentVariantDemoRoute -> {
+                args?.getLong(ComponentsNavigation.ComponentVariantIdKey)?.let { Screen.ComponentVariant(it) }
+            }
             else -> null
         }
     } else {
@@ -70,7 +71,7 @@ sealed class Screen(
     }
 
     fun isHome(previousRoute: String?): Boolean {
-        return (this in listOf(Guidelines, Components, Modules, About)) && previousRoute != ModuleDemoDestinations.AboutCustomizationRoute
+        return (this in listOf(Guidelines, Components, Modules, About)) && previousRoute != ModulesNavigation.AboutCustomizationRoute
     }
 
     val hasCustomAppBar: Boolean
@@ -124,12 +125,12 @@ sealed class Screen(
     // Components screens
 
     data class Component(val componentId: Long) : Screen(
-        route = ComponentDetailRoute,
+        route = ComponentsNavigation.ComponentDetailRoute,
         title = com.orange.ods.app.ui.components.Component.fromId(componentId)?.titleRes?.let { UiString.StringResource(it) }
     )
 
     data class ComponentVariant(val variantId: Long) : Screen(
-        route = ComponentVariantDemoRoute,
+        route = ComponentsNavigation.ComponentVariantDemoRoute,
         title = Variant.fromId(variantId)?.titleRes?.let { UiString.StringResource(it) },
         topAppBarType = Variant.fromId(variantId)?.topAppBarType.orElse { TopAppBarType.Default },
         hasTabs = Variant.fromId(variantId)?.hasTabs == true
@@ -138,8 +139,18 @@ sealed class Screen(
     // Modules screens
 
     data object ModuleAbout : Screen(
-        route = ModuleDemoDestinations.AboutCustomizationRoute,
+        route = ModulesNavigation.AboutCustomizationRoute,
         title = UiString.StringResource(R.string.module_about),
+    )
+
+    data object ModuleEmptyStateCustomization : Screen(
+        route = ModulesNavigation.EmptyStateCustomizationRoute,
+        title = UiString.StringResource(R.string.module_emptyState_title)
+    )
+
+    data object ModuleEmptyStateDemo : Screen(
+        route = ModulesNavigation.EmptyStateDemoRoute,
+        title = UiString.StringResource(R.string.module_emptyState_title)
     )
 
     // Search screen
