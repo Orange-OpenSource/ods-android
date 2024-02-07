@@ -13,6 +13,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - \[App\] Display XML code implementation for components with an XML version available ([#788](https://github.com/Orange-OpenSource/ods-android/issues/788))
 - \[Doc\] Add XML integration documentation for components with an XML version ([#540](https://github.com/Orange-OpenSource/ods-android/issues/540))
 - \[Lib\] Add `OdsSearchTopAppBar` component variant ([#577](https://github.com/Orange-OpenSource/ods-android/issues/577))
+- \[Lib\] Add `OdsEmptyStateView` module ([#119](https://github.com/Orange-OpenSource/ods-android/issues/119))
 
 ### Changed
 
