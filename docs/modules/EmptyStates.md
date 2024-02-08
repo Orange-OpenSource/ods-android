@@ -8,11 +8,8 @@ An empty state display should inform the user of what is happening, why it's hap
 
 <br>**On this page**
 
-* [Specifications references](#specifications-references)
-* [Accessibility](#accessibility)
-* [Integration](#integration)
-    * [Jetpack Compose](#jetpack-compose)
-        * [OdsEmptyStateView API](#odsemptystateview-api)
+* Table of contents
+{:toc}
 
 ---
 
@@ -46,8 +43,6 @@ OdsEmptyStateView(
 ```
 
 #### OdsEmptyStateView API
-
-{:.table}
 
 | Parameter                           | Default&nbsp;value                                                                | Description                                                                       |
 |-------------------------------------|-----------------------------------------------------------------------------------|-----------------------------------------------------------------------------------|

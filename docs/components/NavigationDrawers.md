@@ -6,14 +6,8 @@ description: The navigation drawer slides in from the left when the nav icon is 
 
 <br>**On this page**
 
-* [Specifications references](#specifications-references)
-* [Accessibility](#accessibility)
-* [Implementation](#implementation)
-    * [Jetpack Compose](#jetpack-compose)
-        * [OdsModalDrawer API](#odsmodaldrawer-api)
-        * [API parameter types](#api-parameter-types)
-            * [OdsModalDrawer.Header](#odsmodaldrawerheader)
-            * [OdsModalDrawer.Item](#odsmodaldraweritem)
+* Table of contents
+{:toc}
 
 ---
 
@@ -70,10 +64,6 @@ OdsModalDrawer(
 
 #### OdsModalDrawer API
 
-<div class="table-responsive" markdown="1">
-
-{:.table}
-
 | Parameter                                                                 | Default&nbsp;value                        | Description                                                                 |
 |---------------------------------------------------------------------------|-------------------------------------------|-----------------------------------------------------------------------------|
 | <b>`header: `</b>[OdsModalDrawer.Header](#odsmodaldrawerheader)           |                                           | Content descriptor of the drawer header                                     |
@@ -83,15 +73,9 @@ OdsModalDrawer(
 | `selectedItem: OdsModalDrawer.ListItem?`                                  | `null`                                    | Selected `OdsModalDrawer.ListItem` that appears in selected state           |
 | <b>`content: @Composable () -> Unit`</b>                                  |                                           | Content of the rest of the UI                                               |
 
-</div>
-
 #### API parameter types
 
 ##### OdsModalDrawer.Header
-
-<div class="table-responsive" markdown="1">
-
-{:.table}
 
 | Parameter                            | Default&nbsp;value | Description                                                                                                                                                          |
 |--------------------------------------|--------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------|
@@ -99,36 +83,22 @@ OdsModalDrawer(
 | `image: OdsModalDrawer.HeaderImage?` | `null`             | Image displayed in the header. It should be an avatar image of `OdsModalDrawer.Header.Avatar` type or a background image of `OdsModalDrawer.Header.Background` type. |
 | `subtitle: String?`                  | `null`             | Subtitle displayed below the `title` in the header                                                                                                                   |
 
-</div>
-
 ##### OdsModalDrawer.Item
 
 Here are the available types of `OdsModalDrawer.Item`:
 
 **OdsModalDrawer.SectionHeader** displays a divider and a section header label below
 
-<div class="table-responsive" markdown="1">
-
-{:.table}
-
 | Parameter              | Default&nbsp;value | Description                 |
 |------------------------|--------------------|-----------------------------|
 | <b>`label: String`</b> |                    | Label of the section header |
 
-</div>
-
 **OdsModalDrawer.ListItem** displays a clickable item in the modal drawer
-
-<div class="table-responsive" markdown="1">
-
-{:.table}
 
 | Parameter                                           | Default&nbsp;value | Description                                                                                             |
 |-----------------------------------------------------|--------------------|---------------------------------------------------------------------------------------------------------|
 | <b>`text: String`</b>                               |                    | Text displayed in the modal drawer list item                                                            |
 | `leadingIcon: Painter?`                             | `null`             | Leading icon displayed in the modal drawer list item                                                    |
 | <b>`onClick: (OdsModalDrawer.ListItem) -> Unit`</b> |                    | Callback invoked on an `OdsModalDrawer.ListItem` click. Provides the clicked `OdsModalDrawer.ListItem`. |
-
-</div>
 
 **OdsModalDrawerDivider** displays a simple divider (no parameter needed)

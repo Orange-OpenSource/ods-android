@@ -6,19 +6,8 @@ description: Sliders allow users to make selections from a range of values.
 
 <br>**On this page**
 
-* [Specifications references](#specifications-references)
-* [Accessibility](#accessibility)
-* [Variants](#variants)
-    * [Continuous slider](#continuous-slider)
-        * [Jetpack Compose](#jetpack-compose)
-            * [OdsSlider API](#odsslider-api)
-    * [Continuous lockups slider](#continuous-lockups-slider)
-        * [Jetpack Compose](#jetpack-compose-1)
-            * [OdsSliderLockups API](#odssliderlockups-api)
-    * [Discrete slider](#discrete-slider)
-        * [Jetpack Compose](#jetpack-compose-2)
-    * [Discrete lockups slider](#discrete-lockups-slider)
-        * [Jetpack Compose](#jetpack-compose-3)
+* Table of contents
+{:toc}
 
 ---
 
@@ -76,10 +65,6 @@ OdsSlider(
 
 ##### OdsSlider API
 
-<div class="table-responsive" markdown="1">
-
-{:.table}
-
 | Parameter                                     | Default&nbsp;value | Description                                                                                                                                                                                                                                             |
 |-----------------------------------------------|--------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | <b>`value: Float`</b>                         |                    | Current value of the slider. If outside of `valueRange` provided, value will be coerced to this range.                                                                                                                                                  |
@@ -91,8 +76,6 @@ OdsSlider(
 | `onValueChangeFinished: (() -> Unit)?`        | `null`             | Callback invoked when value change has ended. This callback shouldn't be used to update the slider value (use `onValueChange` for that), but rather to know when the user has completed selecting a new value by ending a drag or a click.              |
 | `startIcon: OdsSlider.Icon?`                  | `null`             | Icon displayed at the start of the slider                                                                                                                                                                                                               |
 | `endIcon: OdsSlider.Icon?`                    | `null`             | Icon displayed at the end of the slider                                                                                                                                                                                                                 |
-
-</div>
 
 ### Continuous lockups slider
 
@@ -134,10 +117,6 @@ OdsSliderLockups(
 
 ##### OdsSliderLockups API
 
-<div class="table-responsive" markdown="1">
-
-{:.table}
-
 | Parameter                                     | Default&nbsp;value | Description                                                                                                                                                                                                                                             |
 |-----------------------------------------------|--------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | <b>`value: Float`</b>                         |                    | Current value of the slider. If outside of `valueRange` provided, value will be coerced to this range.                                                                                                                                                  |
@@ -149,8 +128,6 @@ OdsSliderLockups(
 | `onValueChangeFinished: (() -> Unit)?`        | `null`             | Callback invoked when value change has ended. This callback shouldn't be used to update the slider value (use `onValueChange` for that), but rather to know when the user has completed selecting a new value by ending a drag or a click.              |
 | `startIcon: OdsSlider.Icon?`                  | `null`             | Icon displayed at the start of the slider                                                                                                                                                                                                               |
 | `endIcon: OdsSlider.Icon?`                    | `null`             | Icon displayed at the end of the slider                                                                                                                                                                                                                 |
-
-</div>
 
 ### Discrete slider
 

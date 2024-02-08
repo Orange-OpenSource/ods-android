@@ -6,22 +6,8 @@ description: Chips are compact elements that represent an input, attribute, or a
 
 <br>**On this page**
 
-* [Specifications references](#specifications-references)
-* [Accessibility](#accessibility)
-* [Variants](#variants)
-    * [Input chip](#input-chip)
-        * [Jetpack Compose](#jetpack-compose)
-            * [OdsChip API](#odschip-api)
-    * [Choice chip](#choice-chip)
-        * [Jetpack Compose](#jetpack-compose-1)
-    * [Filter chip](#filter-chip)
-        * [Jetpack Compose](#jetpack-compose-2)
-            * [OdsFilterChip API](#odsfilterchip-api)
-    * [Action chip](#action-chip)
-        * [Jetpack Compose](#jetpack-compose-3)
-* [Extras](#extras)
-    * [Choice chips flow row](#choice-chips-flow-row)
-        * [OdsChoiceChipsFlowRow API](#odschoicechipsflowrow-api)
+* Table of contents
+{:toc}
 
 ---
 
@@ -75,10 +61,6 @@ OdsChip(
 
 ##### OdsChip API
 
-<div class="table-responsive" markdown="1">
-
-{:.table}
-
 | Parameter                    | Default&nbsp;value | Description                                                                                              |
 |------------------------------|--------------------|----------------------------------------------------------------------------------------------------------|
 | <b>`text: String`</b>        |                    | Text to be displayed into the chip                                                                       |
@@ -88,8 +70,6 @@ OdsChip(
 | `selected: Boolean`          | `false`            | Controls the selected state of the chip. When `true`, the chip is highlighted (useful for choice chips). |
 | `leading: OdsChip.Leading?`  | `null`             | The leading content to be displayed at the start of the chip, preceding the text                         |
 | `onCancel: (() -> Unit)?`    | `null`             | Callback called on chip cancel cross click. Pass `null` for no cancel cross.                             |
-
-</div>
 
 ### Choice chip
 
@@ -157,10 +137,6 @@ OdsFilterChip(
 
 ##### OdsFilterChip API
 
-<div class="table-responsive" markdown="1">
-
-{:.table}
-
 | Parameter                               | Default&nbsp;value | Description                                                                                                                                                                  |
 |-----------------------------------------|--------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | <b>`text: String`</b>                   |                    | Text to be displayed into the chip                                                                                                                                           |
@@ -169,8 +145,6 @@ OdsFilterChip(
 | `enabled: Boolean`                      | `true`             | Controls the enabled state of the chip. When `false`, this chip will not respond to user input. It also appears visually disabled and is disabled to accessibility services. |
 | `selected: Boolean`                     | `false`            | Controls the selected state of the chip. When `true`, the chip is highlighted.                                                                                               |
 | `leadingAvatar: OdsChip.LeadingAvatar?` | `null`             | Avatar to be displayed in a circle shape at the start of the chip, preceding the content text                                                                                |
-
-</div>
 
 ### Action chip
 
@@ -234,14 +208,8 @@ OdsChoiceChipsFlowRow(
 
 #### OdsChoiceChipsFlowRow API
 
-<div class="table-responsive" markdown="1">
-
-{:.table}
-
 | Parameter                                                    | Default&nbsp;value | Description                                                                       |
 |--------------------------------------------------------------|--------------------|-----------------------------------------------------------------------------------|
 | <b>`selectedChoiceChipIndex: Int`</b>                        |                    | The index of the currently selected chip.                                         |
 | <b>`choiceChips: List<OdsChoiceChipsFlowRow.ChoiceChip>`</b> |                    | The list of `OdsChoiceChipsFlowRow.ChoiceChip` displayed into the chips flow row. |
 | `modifier: Modifier`                                         | `Modifier`         | `Modifier` applied to the chips flow row.                                         |
-
-</div>

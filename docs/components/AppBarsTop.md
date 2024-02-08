@@ -6,18 +6,8 @@ description: Top app bars display information and actions relating to the curren
 
 <br>**On this page**
 
-* [Specifications references](#specifications-references)
-* [Accessibility](#accessibility)
-* [Variants](#variants)
-    * [Regular top app bar](#regular-top-app-bar)
-        * [Jetpack Compose](#jetpack-compose)
-            * [OdsTopAppBar API](#odstopappbar-api)
-    * [Large top app bar](#large-top-app-bar)
-        * [Jetpack Compose](#jetpack-compose-1)
-            * [OdsLargeTopAppBar API](#odslargetopappbar-api)
-    * [Search top app bar](#search-top-app-bar)
-        * [Jetpack Compose](#jetpack-compose-2)
-            * [OdsSearchTopAppBar API](#odssearchtopappbar-api)
+* Table of contents
+{:toc}
 
 ---
 
@@ -73,10 +63,6 @@ Note: By default, the `OdsTopAppBar` is elevated but you can set `elevated` para
 
 ##### OdsTopAppBar API
 
-<div class="table-responsive" markdown="1">
-
-{:.table}
-
 | Parameter                                       | Default&nbsp;value | Description                                                                                                                               |
 |-------------------------------------------------|--------------------|-------------------------------------------------------------------------------------------------------------------------------------------|
 | <b>`title: String`</b>                          |                    | Title to be displayed in the center of the top app bar                                                                                    |
@@ -85,8 +71,6 @@ Note: By default, the `OdsTopAppBar` is elevated but you can set `elevated` para
 | `actions: List<OdsTopAppBar.ActionButton>`      | `emptyList()`      | Actions to be displayed at the end of the top app bar. The default layout here is a `Row`, so icons inside will be placed horizontally.   |
 | `overflowMenuItems: List<OdsDropdownMenu.Item>` | `emptyList()`      | List of items displayed in the overflow menu. The top app bar uses `OdsDropdownMenu` to display its overflow menu.                        |
 | `elevated: Boolean`                             | `true`             | Controls the elevation of the top app bar: `true` to set an elevation to the top app bar (a shadow is displayed below), `false` otherwise |
-
-</div>
 
 ### Large top app bar
 
@@ -154,10 +138,6 @@ Scaffold(
 
 ##### OdsLargeTopAppBar API
 
-<div class="table-responsive" markdown="1">
-
-{:.table}
-
 | Parameter                                       | Default&nbsp;value | Description                                                                                                                       |
 |-------------------------------------------------|--------------------|-----------------------------------------------------------------------------------------------------------------------------------|
 | <b>`title: String`</b>                          |                    | Title displayed in the center of the top app bar                                                                                  |
@@ -166,8 +146,6 @@ Scaffold(
 | `actions: List<OdsTopAppBar.ActionButton>`      | `emptyList()`      | Actions displayed at the end of the top app bar. The default layout here is a `Row`, so icons inside will be placed horizontally. |
 | `overflowMenuItems: List<OdsDropdownMenu.Item>` | `emptyList()`      | List of items displayed in the overflow menu. The top app bar uses `OdsDropdownMenu` to display its overflow menu.                |
 | `scrollBehavior: TopAppBarScrollBehavior?`      | `null`             | `TopAppBarScrollBehavior` attached to the top app bar                                                                             |
-
-</div>
 
 ### Search top app bar
 
@@ -191,10 +169,6 @@ OdsSearchTopAppBar(
 
 ##### OdsSearchTopAppBar API
 
-<div class="table-responsive" markdown="1">
-
-{:.table}
-
 | Parameter                                        | Default&nbsp;value | Description                                                                                                                               |
 |--------------------------------------------------|--------------------|-------------------------------------------------------------------------------------------------------------------------------------------|
 | <b>`placeholder: String`</b>                     |                    | Text placeholder displayed in the search text field when search value is empty                                                            |
@@ -203,5 +177,3 @@ OdsSearchTopAppBar(
 | `modifier: Modifier`                             | `Modifier`         | `Modifier` to be applied to the search top app bar                                                                                        |
 | `navigationIcon: OdsTopAppBar.NavigationIcon?`   | `null`             | Icon to be displayed at the start of the top app bar before the text field                                                                |
 | `elevated: Boolean`                              | `true`             | Controls the elevation of the top app bar: `true` to set an elevation to the top app bar (a shadow is displayed below), `false` otherwise |
-
-</div>

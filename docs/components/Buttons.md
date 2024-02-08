@@ -6,36 +6,8 @@ description: Buttons allow users to take actions, and make choices, with a singl
 
 <br>**On this page**
 
-* [Specifications references](#specifications-references)
-* [Accessibility](#accessibility)
-* [Variants](#variants)
-    * [Contained button](#contained-button)
-        * [Jetpack Compose](#jetpack-compose)
-            * [OdsButton API](#odsbutton-api)
-        * [XML](#xml)
-    * [Text button](#text-button)
-        * [Jetpack Compose](#jetpack-compose-1)
-            * [OdsTextButton API](#odstextbutton-api)
-        * [XML](#xml-1)
-    * [Outlined button](#outlined-button)
-        * [Jetpack Compose](#jetpack-compose-2)
-            * [OdsOutlinedButton API](#odsoutlinedbutton-api)
-        * [XML](#xml-2)
-    * [Text toggle buttons group](#text-toggle-buttons-group)
-        * [Jetpack Compose](#jetpack-compose-3)
-            * [OdsTextToggleButtonsRow API](#odstexttogglebuttonsrow-api)
-    * [Icon button](#icon-button)
-        * [Jetpack Compose](#jetpack-compose-4)
-            * [OdsIconButton API](#odsiconbutton-api)
-        * [XML](#xml-3)
-    * [Icon toggle button](#icon-toggle-button)
-        * [Jetpack Compose](#jetpack-compose-5)
-            * [OdsIconToggleButton API](#odsicontogglebutton-api)
-        * [XML](#xml-4)
-    * [Icon toggle buttons group](#icon-toggle-buttons-group)
-        * [Jetpack Compose](#jetpack-compose-6)
-            * [OdsIconToggleButtonsRow API](#odsicontogglebuttonsrow-api)
-        * [XML](#xml-5)
+* Table of contents
+{:toc}
 
 ---
 
@@ -97,10 +69,6 @@ OdsButton(
 
 ##### OdsButton API
 
-<div class="table-responsive" markdown="1">
-
-{:.table}
-
 | Parameter                           | Default&nbsp;value          | Description                                                                                                                                                                                                                 |
 |-------------------------------------|-----------------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | <b>`text: String`</b>               |                             | Text displayed into the button                                                                                                                                                                                              |
@@ -110,8 +78,6 @@ OdsButton(
 | `enabled: Boolean`                  | `true`                      | Controls the enabled state of the button. When `false`, this button will not be clickable.                                                                                                                                  |
 | `style: OdsButton.Style`            | `OdsButton.Style.Default`   | Style applied to the button. Set it to `OdsButton.Style.Primary` for an highlighted button style or use `OdsButton.Style.FunctionalPositive`/ `OdsButton.Style.FunctionalNegative` for a functional green/red button style. |
 | `displaySurface: OdsDisplaySurface` | `OdsDisplaySurface.Default` | `OdsDisplaySurface` applied to the button. It allows to force the button display on light or dark surface. By default, the appearance applied is based on the system night mode value.                                      |
-
-</div>
 
 #### XML
 
@@ -161,10 +127,6 @@ OdsTextButton(
 
 ##### OdsTextButton API
 
-<div class="table-responsive" markdown="1">
-
-{:.table}
-
 | Parameter                           | Default&nbsp;value            | Description                                                                                                                                                                            |
 |-------------------------------------|-------------------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | <b>`text: String`</b>               |                               | Text displayed into the button                                                                                                                                                         |
@@ -174,8 +136,6 @@ OdsTextButton(
 | `enabled: Boolean`                  | `true`                        | Controls the enabled state of the button. When `false`, this button will not be clickable.                                                                                             |
 | `style: OdsTextButton.Style`        | `OdsTextButton.Style.Default` | Style applied to the button. By default `onSurface` color is used for text color. Use `OdsTextButton.Style.Primary` for an highlighted text color.                                     |
 | `displaySurface: OdsDisplaySurface` | `OdsDisplaySurface.Default`   | `OdsDisplaySurface` applied to the button. It allows to force the button display on light or dark surface. By default, the appearance applied is based on the system night mode value. |
-
-</div>
 
 #### XML
 
@@ -222,10 +182,6 @@ OdsOutlinedButton(
 
 ##### OdsOutlinedButton API
 
-<div class="table-responsive" markdown="1">
-
-{:.table}
-
 | Parameter                           | Default&nbsp;value          | Description                                                                                                                                                                            |
 |-------------------------------------|-----------------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | <b>`text: String`</b>               |                             | Text displayed into the button                                                                                                                                                         |
@@ -234,8 +190,6 @@ OdsOutlinedButton(
 | `icon: OdsButton.Icon?`             | `null`                      | Icon displayed in the button before the text                                                                                                                                           |
 | `enabled: Boolean`                  | `true`                      | Controls the enabled state of the button. When `false`, the button is not clickable.                                                                                                   |
 | `displaySurface: OdsDisplaySurface` | `OdsDisplaySurface.Default` | `OdsDisplaySurface` applied to the button. It allows to force the button display on light or dark surface. By default, the appearance applied is based on the system night mode value. |
-
-</div>
 
 #### XML
 
@@ -281,10 +235,6 @@ OdsTextToggleButtonsRow(
 
 ##### OdsTextToggleButtonsRow API
 
-<div class="table-responsive" markdown="1">
-
-{:.table}
-
 | Parameter                                                      | Default&nbsp;value          | Description                                                                                                                                                                            |
 |----------------------------------------------------------------|-----------------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | <b>`textToggleButtons: List<OdsTextToggleButtonsRow.Item>`</b> |                             | Items displayed into the toggle group                                                                                                                                                  |
@@ -293,8 +243,6 @@ OdsTextToggleButtonsRow(
 | `modifier: Modifier`                                           | `Modifier`                  | `Modifier` applied to the toggle buttons row                                                                                                                                           |
 | `sameItemsWeight: Boolean`                                     | `false`                     | Controls the place occupied by each item. When `true`, same weight of importance will be applied to each item, they will occupy the same width.                                        |
 | `displaySurface: OdsDisplaySurface`                            | `OdsDisplaySurface.Default` | `OdsDisplaySurface` applied to the button. It allows to force the button display on light or dark surface. By default, the appearance applied is based on the system night mode value. |
-
-</div>
 
 ### Icon button
 
@@ -319,10 +267,6 @@ OdsIconButton(
 
 ##### OdsIconButton API
 
-<div class="table-responsive" markdown="1">
-
-{:.table}
-
 | Parameter                           | Default&nbsp;value          | Description                                                                                                                                                                                  |
 |-------------------------------------|-----------------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | <b>`icon: OdsIconButton.Icon`</b>   |                             | Icon to be drawn into the button                                                                                                                                                             |
@@ -330,8 +274,6 @@ OdsIconButton(
 | `modifier: Modifier`                | `Modifier`                  | `Modifier` to be applied to the button                                                                                                                                                       |
 | `enabled: Boolean`                  | `true`                      | Controls the enabled state of the button. When `false`, this button will not be clickable.                                                                                                   |
 | `displaySurface: OdsDisplaySurface` | `OdsDisplaySurface.Default` | `OdsDisplaySurface` to be applied to the button. It allows to force the button display on light or dark surface. By default, the appearance applied is based on the system night mode value. |
-
-</div>
 
 #### XML
 
@@ -375,10 +317,6 @@ OdsIconToggleButton(
 
 ##### OdsIconToggleButton API
 
-<div class="table-responsive" markdown="1">
-
-{:.table}
-
 | Parameter                                   | Default&nbsp;value          | Description                                                                                                                                                                            |
 |---------------------------------------------|-----------------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | <b>`checked: Boolean`</b>                   |                             | Controls the checked state of the button                                                                                                                                               |
@@ -388,8 +326,6 @@ OdsIconToggleButton(
 | `modifier: Modifier`                        | `Modifier`                  | `Modifier` applied to the button                                                                                                                                                       |
 | `enabled: Boolean`                          | `true`                      | Controls the enabled state of the button. When `false`, this button will not be clickable.                                                                                             |
 | `displaySurface: OdsDisplaySurface`         | `OdsDisplaySurface.Default` | `OdsDisplaySurface` applied to the button. It allows to force the button display on light or dark surface. By default, the appearance applied is based on the system night mode value. |
-
-</div>
 
 #### XML
 
@@ -447,10 +383,6 @@ OdsIconToggleButtonsRow(
 
 ##### OdsIconToggleButtonsRow API
 
-<div class="table-responsive" markdown="1">
-
-{:.table}
-
 | Parameter                                          | Default&nbsp;value          | Description                                                                                                                                                                            |
 |----------------------------------------------------|-----------------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | <b>`icons: List<OdsIconToggleButtonsRow.Icon>`</b> |                             | Icons to be displayed into the toggle group                                                                                                                                            |
@@ -458,8 +390,6 @@ OdsIconToggleButtonsRow(
 | <b>`onSelectedIndexChange: (Int) -> Unit`</b>      |                             | Callback invoked on selection change                                                                                                                                                   |
 | `modifier: Modifier`                               | `Modifier`                  | `Modifier` applied to the toggle buttons group                                                                                                                                         |
 | `displaySurface: OdsDisplaySurface`                | `OdsDisplaySurface.Default` | `OdsDisplaySurface` applied to the button. It allows to force the button display on light or dark surface. By default, the appearance applied is based on the system night mode value. |
-
-</div>
 
 #### XML
 

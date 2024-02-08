@@ -7,11 +7,8 @@ title: Colors
 
 **Page Summary**
 
-* [Specifications references](#specifications-references)
-* [Implementation in Jetpack Compose](#implementation-in-jetpack-compose)
-  * [Theme colors](#theme-colors)
-  * [Functional colors](#functional-colors)
-  * [Other colors from Orange Design System](#other-colors-from-orange-design-system)
+* Table of contents
+{:toc}
 
 ---
 

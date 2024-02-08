@@ -12,12 +12,8 @@ Only one banner should be shown at a time
 
 <br>**On this page**
 
-* [Specifications references](#specifications-references)
-* [Accessibility](#accessibility)
-* [Implementation](#implementation)
-    * [Jetpack Compose](#jetpack-compose)
-        * [OdsBanner API](#odsbanner-api)
-    * [XML](#xml)
+* Table of contents
+{:toc}
 
 ---
 
@@ -53,10 +49,6 @@ OdsBanner(
 
 #### OdsBanner API
 
-<div class="table-responsive" markdown="1">
-
-{:.table}
-
 | Parameter                         | Default&nbsp;value | Description                                                        |
 |-----------------------------------|--------------------|--------------------------------------------------------------------|
 | <b>`message: String`</b>          |                    | Text displayed into the banner                                     |
@@ -64,8 +56,6 @@ OdsBanner(
 | `image: OdsBanner.Image?`         | `null`             | Image displayed in the banner in a circle shape                    |
 | `firstButton: OdsBanner.Button?`  | `null`             | Primary button displayed in the banner                             |
 | `secondButton: OdsBanner.Button?` | `null`             | Secondary button displayed into the banner next to the primary one |
-
-</div>
 
 ### XML
 

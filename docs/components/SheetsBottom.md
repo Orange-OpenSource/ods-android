@@ -11,11 +11,8 @@ Use Sheets bottom to:
 
 <br>**On this page**
 
-* [Specifications references](#specifications-references)
-* [Accessibility](#accessibility)
-* [Implementation](#implementation)
-    * [Jetpack Compose](#jetpack-compose)
-        * [OdsBottomSheetScaffold API](#odsbottomsheetscaffold-api-)
+* Table of contents
+{:toc}
 
 ---
 
@@ -57,10 +54,6 @@ OdsBottomSheetScaffold(
 
 #### OdsBottomSheetScaffold API [#](#odsbottomsheetscaffold-api-)
 
-<div class="table-responsive" markdown="1">
-
-{:.table}
-
 | Parameter                                                 | Default&nbsp;value                            | Description                                                 |
 |-----------------------------------------------------------|-----------------------------------------------|-------------------------------------------------------------|
 | <b>`sheetContent: @Composable ColumnScope.() -> Unit`</b> |                                               | Content of the bottom sheet                                 |
@@ -73,5 +66,3 @@ OdsBottomSheetScaffold(
 | `sheetGesturesEnabled: Boolean`                           | `true`                                        | Whether the bottom sheet can be interacted with by gestures |
 | `sheetPeekHeight: Dp`                                     | `BottomSheetScaffoldDefaults.SheetPeekHeight` | Height of the bottom sheet when it is collapsed             |
 | <b>`content: @Composable (PaddingValues) -> Unit`</b>     |                                               | Content of the screen                                       |
-
-</div>

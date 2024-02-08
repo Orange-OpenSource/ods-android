@@ -13,11 +13,8 @@ Use radio buttons to:
 
 <br>**On this page**
 
-* [Specifications references](#specifications-references)
-* [Accessibility](#accessibility)
-* [Implementation](#implementation)
-    * [Jetpack Compose](#jetpack-compose)
-        * [OdsRadioButton API](#odsradiobutton-api)
+* Table of contents
+{:toc}
 
 ---
 
@@ -53,15 +50,9 @@ OdsRadioButton(
 
 #### OdsRadioButton API
 
-<div class="table-responsive" markdown="1">
-
-{:.table}
-
 | Parameter                       | Default&nbsp;value | Description                                                                                                                                                    |
 |---------------------------------|--------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | <b>`selected: Boolean`</b>      |                    | Controls the selected state of the radio button                                                                                                                |
 | <b>`onClick: (() -> Unit)?`</b> |                    | Callback invoked on radio button click. If `null`, then the radio button will not handle input events, and only act as a visual indicator of `selected` state. |
 | `modifier: Modifier`            | `Modifier`         | `Modifier` applied to the radio button                                                                                                                         |
 | `enabled: Boolean`              | `true`             | Controls the enabled state of the radio button. When `false`, the button will not be selectable and appears disabled.                                          |
-
-</div>

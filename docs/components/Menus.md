@@ -6,15 +6,8 @@ description: Menus appear from a button, action, or other control. It contains a
 
 <br>**On this page**
 
-* [Specifications references](#specifications-references)
-* [Accessibility](#accessibility)
-* [Variants](#variants)
-    * [Dropdown menu](#dropdown-menu)
-        * [Jetpack Compose](#jetpack-compose)
-            * [OdsDropdownMenu API](#odsdropdownmenu-api)
-    * [Exposed dropdown menu](#exposed-dropdown-menu)
-        * [Jetpack Compose](#jetpack-compose-1)
-            * [OdsExposedDropdownMenu API](#odsexposeddropdownmenu-api)
+* Table of contents
+{:toc}
 
 ---
 
@@ -66,10 +59,6 @@ OdsDropdownMenu(
 
 ##### OdsDropdownMenu API
 
-<div class="table-responsive" markdown="1">
-
-{:.table}
-
 | Parameter                                  | Default&nbsp;value                  | Description                                                                                               |
 |--------------------------------------------|-------------------------------------|-----------------------------------------------------------------------------------------------------------|
 | <b>`items: List<OdsDropdownMenu.Item>`</b> |                                     | Items displayed into the dropdown menu                                                                    |
@@ -78,8 +67,6 @@ OdsDropdownMenu(
 | `modifier: Modifier`                       | `Modifier`                          | `Modifier` applied to the dropdown menu                                                                   |
 | `offset: DpOffset`                         | `DpOffset(0.dp, 0.dp)`              | Offset added to the menu position                                                                         |
 | `properties: PopupProperties`              | `PopupProperties(focusable = true)` | Properties for further customization of the popup's behavior                                              |
-
-</div>
 
 ### Exposed dropdown menu
 
@@ -112,10 +99,6 @@ OdsExposedDropdownMenu(
 
 ##### OdsExposedDropdownMenu API
 
-<div class="table-responsive" markdown="1">
-
-{:.table}
-
 | Parameter                                                             | Default&nbsp;value | Description                                                                                                                                                                         |
 |-----------------------------------------------------------------------|--------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | <b>`label: String`</b>                                                |                    | Label of the exposed menu text field                                                                                                                                                |
@@ -124,5 +107,3 @@ OdsExposedDropdownMenu(
 | <b>`onItemSelectionChange: (OdsExposedDropdownMenu.Item) -> Unit`</b> |                    | Callback invoked when a dropdown menu item is selected. It can be used to get the menu value.                                                                                       |
 | `modifier: Modifier`                                                  | `Modifier`         | `Modifier` applied to the dropdown menu                                                                                                                                             |
 | `enabled: Boolean`                                                    | `true`             | Controls the enabled state of the dropdown menu. When `false`, the dropdown menu text field will be neither clickable nor focusable, visually it will appear in the disabled state. |
-
-</div>

@@ -13,12 +13,8 @@ Dialogs are purposefully interruptive, so they should be used sparingly.
 
 <br>**On this page**
 
-* [Specifications references](#specifications-references)
-* [Accessibility](#accessibility)
-* [Variants](#variants)
-    * [Alert dialog](#alert-dialog)
-        * [Jetpack Compose](#jetpack-compose)
-            * [OdsAlertDialog API](#odsalertdialog-api)
+* Table of contents
+{:toc}
 
 ---
 
@@ -56,10 +52,6 @@ OdsAlertDialog(
 
 ##### OdsAlertDialog API
 
-<div class="table-responsive" markdown="1">
-
-{:.table}
-
 | Parameter                                     | Default&nbsp;value   | Description                                                                                                                                                                |
 |-----------------------------------------------|----------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | <b>`text: String`</b>                         |                      | Text displayed into the dialog which presents the details regarding the Dialog's purpose                                                                                   |
@@ -69,5 +61,3 @@ OdsAlertDialog(
 | `dismissButton: OdsAlertDialog.Button?`       | `null`               | Button displayed into the dialog which is meant to dismiss the dialog                                                                                                      |
 | `title: String?`                              | `null`               | Title displayed into the dialog which should specify the purpose of the dialog. The title is not mandatory, because there may be sufficient information inside the `text`. |
 | `properties: DialogProperties`                | `DialogProperties()` | Typically platform specific properties to further configure the dialog                                                                                                     |
-
-</div>

@@ -6,17 +6,8 @@ description: A floating action button (FAB) represents the primary action of a s
 
 <br>**On this page**
 
-* [Specifications references](#specifications-references)
-* [Accessibility](#accessibility)
-* [Variants](#variants)
-    * [Regular FAB](#regular-fab)
-        * [Jetpack Compose](#jetpack-compose)
-            * [OdsFloatingActionButton API](#odsfloatingactionbutton-api)
-    * [Mini FAB](#mini-fab)
-        * [Jetpack Compose](#jetpack-compose-1)
-    * [Extended FAB](#extended-fab)
-        * [Jetpack Compose](#jetpack-compose-2)
-            * [OdsExtendedFloatingActionButton API](#odsextendedfloatingactionbutton-api)
+* Table of contents
+{:toc}
 
 ---
 
@@ -61,18 +52,12 @@ OdsFloatingActionButton(
 
 ##### OdsFloatingActionButton API
 
-<div class="table-responsive" markdown="1">
-
-{:.table}
-
 | Parameter                                   | Default&nbsp;value | Description                                                                                                         |
 |---------------------------------------------|--------------------|---------------------------------------------------------------------------------------------------------------------|
 | <b>`icon: OdsFloatingActionButton.Icon`</b> |                    | Icon used into the FAB                                                                                              |
 | <b>`onClick: () -> Unit`</b>                |                    | Callback invoked on FAB click                                                                                       |
 | `modifier: Modifier`                        | `Modifier`         | `Modifier` applied to the FAB                                                                                       |
 | `mini: Boolean`                             | `false`            | Controls the size of the FAB. If `true`, the size of the FAB will be 40dp, otherwise the default size will be used. |
-
-</div>
 
 ### Mini FAB
 
@@ -123,15 +108,9 @@ OdsExtendedFloatingActionButton(
 
 ##### OdsExtendedFloatingActionButton API
 
-<div class="table-responsive" markdown="1">
-
-{:.table}
-
 | Parameter                                   | Default&nbsp;value | Description                   |
 |---------------------------------------------|--------------------|-------------------------------|
 | <b>`icon: OdsFloatingActionButton.Icon`</b> |                    | Icon used into the FAB        |
 | <b>`onClick: () -> Unit`</b>                |                    | Callback invoked on FAB click |
 | <b>`text: String`</b>                       |                    | Text displayed into the FAB   |
 | `modifier: Modifier`                        | `Modifier`         | `Modifier` applied to the FAB |
-
-</div>

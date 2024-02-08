@@ -9,11 +9,8 @@ way to adjust settings on mobile.
 
 <br>**On this page**
 
-* [Specifications references](#specifications-references)
-* [Accessibility](#accessibility)
-* [Implementation](#implementation)
-    * [Jetpack Compose](#jetpack-compose)
-        * [OdsSwitch API](#odsswitch-api)
+* Table of contents
+{:toc}
 
 ---
 
@@ -49,15 +46,9 @@ OdsSwitch(
 
 #### OdsSwitch API
 
-<div class="table-responsive" markdown="1">
-
-{:.table}
-
 | Parameter                                      | Default&nbsp;value | Description                                                                                                                                       |
 |------------------------------------------------|--------------------|---------------------------------------------------------------------------------------------------------------------------------------------------|
 | <b>`checked: Boolean`</b>                      |                    | Controls the checked state of the switch                                                                                                          |
 | <b>`onCheckedChange: ((Boolean) -> Unit)?`</b> |                    | Callback invoked on switch check. If `null`, then this is passive and relies entirely on a higher-level component to control the "checked" state. |
 | `modifier: Modifier`                           | `Modifier`         | `Modifier` applied to the switch                                                                                                                  |
 | `enabled: Boolean`                             | `true`             | Controls the enabled state of the switch. When `false`, the switch will not be checkable and appears disabled.                                    |
-
-</div>

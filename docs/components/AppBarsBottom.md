@@ -6,8 +6,8 @@ description: A bottom app bar displays navigation and key actions at the bottom 
 
 <br>**On this page**
 
-* [Specifications references](#specifications-references)
-* [Accessibility](#accessibility)
+* Table of contents
+{:toc}
 
 ---
 

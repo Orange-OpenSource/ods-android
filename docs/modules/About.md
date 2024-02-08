@@ -12,13 +12,8 @@ Share and feedback functionalities are optional but can be added and configured.
 
 <br>**On this page**
 
-* [Specifications references](#specifications-references)
-* [Accessibility](#accessibility)
-* [Integration](#integration)
-    * [Jetpack Compose](#jetpack-compose)
-* [Configuration](#configuration)
-    * [OdsAboutConfiguration API](#odsaboutconfiguration-api)
-    * [App news](#app-news)
+* Table of contents
+{:toc}
 
 ---
 
@@ -74,10 +69,6 @@ In order to configure the ODS About Module, you need to provide an `OdsAboutConf
 
 ### OdsAboutConfiguration API
 
-<div class="table-responsive" markdown="1">
-
-{:.table}
-
 | Property                                                       | Default&nbsp;value    | Description                                                                                                                                                                                                                                                     |
 |----------------------------------------------------------------|-----------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | <b>`appName: String`</b>                                       |                       | The name of the application displayed on the main screen of the About module                                                                                                                                                                                    |
@@ -95,8 +86,6 @@ In order to configure the ODS About Module, you need to provide an `OdsAboutConf
 | `rateTheAppUrl: String?`                                       | `null`                | Rate the app URL. Provide it to display a Rate the app menu item linked to this URL.                                                                                                                                                                            |
 | `customMenuItems: List<OdsAboutMenuItem>`                      | `emptyList()`         | The custom menu items to be displayed on the about main screen. Note that mandatory items will be added to the provided list: Privacy policy (position = 100), Term of services (position = 101), Accessibility (position = 102).                               |
 | `onScreenChange: ((title: String) -> Unit)?`                   | `null`                | Callback invoked on about module screen change. It can help you managing top app bar title update if necessary.                                                                                                                                                 |
-
-</div>
 
 ### App news
 

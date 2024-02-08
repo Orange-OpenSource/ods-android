@@ -6,11 +6,8 @@ description:
 
 <br>**On this page**
 
-* [Specifications references](#specifications-references)
-* [Accessibility](#accessibility)
-* [Implementation](#implementation)
-    * [Jetpack Compose](#jetpack-compose)
-        * [OdsImageItem API](#odsimageitem-api)
+* Table of contents
+{:toc}
 
 ---
 
@@ -58,10 +55,6 @@ OdsImageItem(
 
 ##### OdsImageItem API
 
-<div class="table-responsive" markdown="1">
-
-{:.table}
-
 | Parameter                                                          | Default&nbsp;value | Description                                                                                                                                                       |
 |--------------------------------------------------------------------|--------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | <b>`image: OdsImageItem.Image`</b>                                 |                    | Image displayed into the item                                                                                                                                     |
@@ -70,5 +63,3 @@ OdsImageItem(
 | `title: String?`                                                   | `null`             | Title displayed into the image item. It is linked to the image and displayed according to the `legendAreaDisplayType` value.                                      |
 | `icon: OdsImageItem.IconToggleButton`                              | `null`             | Clickable icon displayed next to the `title`                                                                                                                      |
 | `onClick: (() -> Unit)?`                                           | `null`             | Callback invoked on image item click                                                                                                                              |
-
-</div>

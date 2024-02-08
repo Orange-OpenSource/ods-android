@@ -6,21 +6,8 @@ description: Cards contain content and actions about a single subject.
 
 <br>**On this page**
 
-* [Specifications references](#specifications-references)
-* [Accessibility](#accessibility)
-* [Variants](#variants)
-    * [Vertical image first card](#vertical-image-first-card)
-        * [Jetpack Compose](#jetpack-compose)
-            * [OdsVerticalImageFirstCard API](#odsverticalimagefirstcard-api)
-    * [Vertical header first card](#vertical-header-first-card)
-        * [Jetpack Compose](#jetpack-compose-1)
-            * [OdsVerticalHeaderFirstCard API](#odsverticalheaderfirstcard-api)
-    * [Small card](#small-card)
-        * [Jetpack Compose](#jetpack-compose-2)
-            * [OdsSmallCard API](#odssmallcard-api)
-    * [Horizontal card](#horizontal-card)
-        * [Jetpack Compose](#jetpack-compose-3)
-            * [OdsHorizontalCard API](#odshorizontalcard-api)
+* Table of contents
+{:toc}
 
 ---
 
@@ -70,10 +57,6 @@ OdsVerticalImageFirstCard(
 
 ##### OdsVerticalImageFirstCard API
 
-<div class="table-responsive" markdown="1">
-
-{:.table}
-
 | Parameter                       | Default&nbsp;value | Description                                  |
 |---------------------------------|--------------------|----------------------------------------------|
 | <b>`title: String`</b>          |                    | Title displayed into the card                |
@@ -84,8 +67,6 @@ OdsVerticalImageFirstCard(
 | `firstButton: OdsCard.Button?`  | `null`             | First button displayed into the card         |
 | `secondButton: OdsCard.Button?` | `null`             | Second button displayed into the card        |
 | `onClick: (() -> Unit)?`        | `null`             | Callback invoked on card click               |
-
-</div>
 
 ### Vertical header first card
 
@@ -121,10 +102,6 @@ OdsVerticalHeaderFirstCard(
 
 ##### OdsVerticalHeaderFirstCard API
 
-<div class="table-responsive" markdown="1">
-
-{:.table}
-
 | Parameter                       | Default&nbsp;value | Description                                                                |
 |---------------------------------|--------------------|----------------------------------------------------------------------------|
 | <b>`title: String`</b>          |                    | Title displayed into the card                                              |
@@ -136,8 +113,6 @@ OdsVerticalHeaderFirstCard(
 | `firstButton: OdsCard.Button?`  | `null`             | First button displayed into the card                                       |
 | `secondButton: OdsCard.Button?` | `null`             | Second button displayed into the card                                      |
 | `onClick: (() -> Unit)?`        | `null`             | Callback called on card click                                              |
-
-</div>
 
 ### Small card
 
@@ -176,10 +151,6 @@ Row(
 
 ##### OdsSmallCard API
 
-<div class="table-responsive" markdown="1">
-
-{:.table}
-
 | Parameter                     | Default&nbsp;value | Description                                                                                                                                                            |
 |-------------------------------|--------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | <b>`title: String`</b>        |                    | Title displayed into the card. If the card is clickable, it will be truncated to fit on one line otherwise it will be displayed entirely for accessibility reasons.    |
@@ -187,8 +158,6 @@ Row(
 | `modifier: Modifier`          | `Modifier`         | `Modifier` applied to the layout of the card                                                                                                                           |
 | `subtitle: String?`           | `null`             | Subtitle displayed into the card. If the card is clickable, it will be truncated to fit on one line otherwise it will be displayed entirely for accessibility reasons. |
 | `onClick: (() -> Unit)?`      | `null`             | Callback invoked on card click                                                                                                                                         |
-
-</div>
 
 ### Horizontal card
 
@@ -222,10 +191,6 @@ OdsHorizontalCard(
 
 ##### OdsHorizontalCard API
 
-<div class="table-responsive" markdown="1">
-
-{:.table}
-
 | Parameter                               | Default&nbsp;value             | Description                                                                                                            |
 |-----------------------------------------|--------------------------------|------------------------------------------------------------------------------------------------------------------------|
 | <b>`title: String`</b>                  |                                | Title displayed into the card                                                                                          |
@@ -238,5 +203,3 @@ OdsHorizontalCard(
 | `imagePosition: OdsCard.Image.Position` | `OdsCard.Image.Position.Start` | Position of the image within the card, it can be set to `OdsCard.Image.Position.Start` or `OdsCard.Image.Position.End` |
 | `divider: Boolean`                      | `true`                         | Controls the divider display. If `true`, it will be displayed between the card content and the action buttons.         |
 | `onClick: (() -> Unit)?`                | `null`                         | Callback invoked on card click                                                                                         |
-
-</div>
