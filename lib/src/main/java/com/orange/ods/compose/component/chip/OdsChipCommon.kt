@@ -51,7 +51,7 @@ object OdsChip {
          * @param painter The painter to draw.
          * @param contentDescription The content description associated to this [OdsChip.LeadingIcon].
          */
-        constructor(painter: Painter, contentDescription: String) : super(painter, contentDescription)
+        constructor(painter: Painter, contentDescription: String) : super(Nothing::class.java, painter, contentDescription)
 
         /**
          * Creates an instance of [OdsChip.LeadingIcon].
@@ -59,7 +59,7 @@ object OdsChip {
          * @param imageVector The image vector to draw.
          * @param contentDescription The content description associated to this [OdsChip.LeadingIcon].
          */
-        constructor(imageVector: ImageVector, contentDescription: String) : super(imageVector, contentDescription)
+        constructor(imageVector: ImageVector, contentDescription: String) : super(Nothing::class.java, imageVector, contentDescription)
 
         /**
          * Creates an instance of [OdsChip.LeadingIcon].
@@ -67,7 +67,7 @@ object OdsChip {
          * @param bitmap The image bitmap to draw.
          * @param contentDescription The content description associated to this [OdsChip.LeadingIcon].
          */
-        constructor(bitmap: ImageBitmap, contentDescription: String) : super(bitmap, contentDescription)
+        constructor(bitmap: ImageBitmap, contentDescription: String) : super(Nothing::class.java, bitmap, contentDescription)
 
         @Composable
         override fun Content(modifier: Modifier) {
@@ -86,7 +86,7 @@ object OdsChip {
          * @param painter The painter to draw.
          * @param contentDescription The content description associated to this [OdsChip.LeadingAvatar].
          */
-        constructor(painter: Painter, contentDescription: String) : super(painter, contentDescription, contentScale = ContentScale.Crop)
+        constructor(painter: Painter, contentDescription: String) : super(Nothing::class.java, painter, contentDescription, contentScale = ContentScale.Crop)
 
         /**
          * Creates an instance of [OdsChip.LeadingAvatar].
@@ -94,7 +94,12 @@ object OdsChip {
          * @param imageVector The image vector to draw.
          * @param contentDescription The content description associated to this [OdsChip.LeadingAvatar].
          */
-        constructor(imageVector: ImageVector, contentDescription: String) : super(imageVector, contentDescription, contentScale = ContentScale.Crop)
+        constructor(imageVector: ImageVector, contentDescription: String) : super(
+            Nothing::class.java,
+            imageVector,
+            contentDescription,
+            contentScale = ContentScale.Crop
+        )
 
         /**
          * Creates an instance of [OdsChip.LeadingAvatar].
@@ -102,7 +107,7 @@ object OdsChip {
          * @param bitmap The image bitmap to draw.
          * @param contentDescription The content description associated to this [OdsChip.LeadingAvatar].
          */
-        constructor(bitmap: ImageBitmap, contentDescription: String) : super(bitmap, contentDescription, contentScale = ContentScale.Crop)
+        constructor(bitmap: ImageBitmap, contentDescription: String) : super(Nothing::class.java, bitmap, contentDescription, contentScale = ContentScale.Crop)
 
         @Composable
         fun Content(enabled: Boolean) {

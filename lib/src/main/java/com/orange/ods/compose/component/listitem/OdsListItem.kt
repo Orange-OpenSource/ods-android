@@ -274,7 +274,7 @@ object OdsListItem {
         private val graphicsObject: Any,
         private val contentDescription: String,
         tint: Color?
-    ) : OdsComponentContent<Nothing>() {
+    ) : OdsComponentContent<Nothing>(Nothing::class.java) {
 
         /**
          * Creates an instance of [OdsListItem.LeadingIcon].
@@ -341,7 +341,7 @@ object OdsListItem {
         }
 
         private fun getIcon(tint: Color?): OdsComponentContent<Nothing> {
-            return object : OdsComponentIcon<Nothing>(graphicsObject, contentDescription) {
+            return object : OdsComponentIcon<Nothing>(Nothing::class.java, graphicsObject, contentDescription) {
                 override val tint: Color?
                     @Composable
                     get() = tint.orElse { OdsTheme.colors.onSurface }
@@ -356,11 +356,11 @@ object OdsListItem {
         }
 
         private fun getCircularImage(): OdsComponentContent<Nothing> {
-            return object : OdsComponentCircularImage(graphicsObject, contentDescription) {}
+            return object : OdsComponentCircularImage<Nothing>(Nothing::class.java, graphicsObject, contentDescription) {}
         }
 
         private fun getSquareImage(): OdsComponentContent<Nothing> {
-            return object : OdsComponentImage<Nothing>(graphicsObject, contentDescription, contentScale = ContentScale.Crop) {
+            return object : OdsComponentImage<Nothing>(Nothing::class.java, graphicsObject, contentDescription, contentScale = ContentScale.Crop) {
                 @Composable
                 override fun Content(modifier: Modifier) {
                     super.Content(
@@ -373,7 +373,7 @@ object OdsListItem {
         }
 
         private fun getWideImage(): OdsComponentContent<Nothing> {
-            return object : OdsComponentImage<Nothing>(graphicsObject, contentDescription, contentScale = ContentScale.Crop) {
+            return object : OdsComponentImage<Nothing>(Nothing::class.java, graphicsObject, contentDescription, contentScale = ContentScale.Crop) {
                 @Composable
                 override fun Content(modifier: Modifier) {
                     super.Content(
@@ -405,7 +405,7 @@ object OdsListItem {
         internal val checked: Boolean,
         internal val onCheckedChange: ((Boolean) -> Unit)?,
         internal val enabled: Boolean = true
-    ) : OdsComponentContent<Nothing>(), Trailing {
+    ) : OdsComponentContent<Nothing>(Nothing::class.java), Trailing {
 
         @Composable
         override fun Content(modifier: Modifier) {
@@ -432,7 +432,7 @@ object OdsListItem {
         internal val checked: Boolean,
         internal val onCheckedChange: ((Boolean) -> Unit)?,
         internal val enabled: Boolean = true
-    ) : OdsComponentContent<Nothing>(), Trailing {
+    ) : OdsComponentContent<Nothing>(Nothing::class.java), Trailing {
 
         @Composable
         override fun Content(modifier: Modifier) {
@@ -459,7 +459,7 @@ object OdsListItem {
         internal val selected: Boolean,
         internal val onClick: (() -> Unit)?,
         internal val enabled: Boolean = true
-    ) : OdsComponentContent<Nothing>(), Trailing {
+    ) : OdsComponentContent<Nothing>(Nothing::class.java), Trailing {
 
         @Composable
         override fun Content(modifier: Modifier) {
@@ -479,7 +479,12 @@ object OdsListItem {
          * @param contentDescription The content description associated to this [OdsListItem.TrailingIcon].
          * @param onClick Will be called when the user clicks on the icon.
          */
-        constructor(painter: Painter, contentDescription: String, onClick: (() -> Unit)?) : super(painter, contentDescription, onClick = onClick)
+        constructor(painter: Painter, contentDescription: String, onClick: (() -> Unit)?) : super(
+            Nothing::class.java,
+            painter,
+            contentDescription,
+            onClick = onClick
+        )
 
         /**
          * Creates an instance of [OdsListItem.TrailingIcon].
@@ -489,6 +494,7 @@ object OdsListItem {
          * @param onClick Will be called when the user clicks on the icon.
          */
         constructor(imageVector: ImageVector, contentDescription: String, onClick: (() -> Unit)?) : super(
+            Nothing::class.java,
             imageVector,
             contentDescription,
             onClick = onClick
@@ -501,7 +507,12 @@ object OdsListItem {
          * @param contentDescription The content description associated to this [OdsListItem.TrailingIcon].
          * @param onClick Will be called when the user clicks on the icon.
          */
-        constructor(bitmap: ImageBitmap, contentDescription: String, onClick: (() -> Unit)?) : super(bitmap, contentDescription, onClick = onClick)
+        constructor(bitmap: ImageBitmap, contentDescription: String, onClick: (() -> Unit)?) : super(
+            Nothing::class.java,
+            bitmap,
+            contentDescription,
+            onClick = onClick
+        )
 
         override val tint: Color? // Despite warning, keep it optional as in parent class
             @Composable
@@ -519,7 +530,7 @@ object OdsListItem {
      * @constructor Creates an instance of [OdsListItem.TrailingCaption].
      * @param text The caption text.
      */
-    class TrailingCaption(private val text: String) : OdsComponentContent<Nothing>(), Trailing {
+    class TrailingCaption(private val text: String) : OdsComponentContent<Nothing>(Nothing::class.java), Trailing {
 
         @Composable
         override fun Content(modifier: Modifier) {

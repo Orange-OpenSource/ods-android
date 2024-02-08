@@ -23,34 +23,55 @@ import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.unit.dp
 
-abstract class OdsComponentCircularImage internal constructor(
+abstract class OdsComponentCircularImage<T> internal constructor(
+    extraParametersClass: Class<T>,
     graphicsObject: Any,
     contentDescription: String
-) : OdsComponentImage<Nothing>(graphicsObject, contentDescription, contentScale = ContentScale.Crop) {
+) : OdsComponentImage<T>(
+    extraParametersClass,
+    graphicsObject,
+    contentDescription,
+    contentScale = ContentScale.Crop
+) where T : OdsComponentContent.ExtraParameters {
 
     /**
      * Creates an instance of [OdsComponentCircularImage].
      *
+     * @param extraParametersClass The extra parameters class.
      * @param painter The painter to draw.
      * @param contentDescription The content description associated to this [OdsComponentCircularImage].
      */
-    constructor(painter: Painter, contentDescription: String) : this(painter as Any, contentDescription)
+    protected constructor(extraParametersClass: Class<T>, painter: Painter, contentDescription: String) : this(
+        extraParametersClass,
+        painter as Any,
+        contentDescription
+    )
 
     /**
      * Creates an instance of [OdsComponentCircularImage].
      *
+     * @param extraParametersClass The extra parameters class.
      * @param imageVector The image vector to draw.
      * @param contentDescription The content description associated to this [OdsComponentCircularImage].
      */
-    constructor(imageVector: ImageVector, contentDescription: String) : this(imageVector as Any, contentDescription)
+    protected constructor(extraParametersClass: Class<T>, imageVector: ImageVector, contentDescription: String) : this(
+        extraParametersClass,
+        imageVector as Any,
+        contentDescription
+    )
 
     /**
      * Creates an instance of [OdsComponentCircularImage].
      *
+     * @param extraParametersClass The extra parameters class.
      * @param bitmap The image bitmap to draw.
      * @param contentDescription The content description associated to this [OdsComponentCircularImage].
      */
-    constructor(bitmap: ImageBitmap, contentDescription: String) : this(bitmap as Any, contentDescription)
+    protected constructor(extraParametersClass: Class<T>, bitmap: ImageBitmap, contentDescription: String) : this(
+        extraParametersClass,
+        bitmap as Any,
+        contentDescription
+    )
 
     @Composable
     override fun Content(modifier: Modifier) {

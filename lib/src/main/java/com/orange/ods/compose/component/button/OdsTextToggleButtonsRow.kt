@@ -112,7 +112,7 @@ object OdsTextToggleButtonsRow {
         val text: String,
         val onClick: () -> Unit,
         val enabled: Boolean = true
-    ) : OdsComponentScopeContent<RowScope, TextButton.ExtraParameters>() {
+    ) : OdsComponentScopeContent<RowScope, TextButton.ExtraParameters>(ExtraParameters::class.java) {
 
         data class ExtraParameters(
             val index: Int,

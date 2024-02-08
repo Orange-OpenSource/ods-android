@@ -42,21 +42,21 @@ object OdsButton {
          *
          * @param painter Painter of the icon.
          */
-        constructor(painter: Painter) : super(painter, "")
+        constructor(painter: Painter) : super(Nothing::class.java, painter, "")
 
         /**
          * Creates an instance of [OdsButton.Icon].
          *
          * @param imageVector Image vector of the icon.
          */
-        constructor(imageVector: ImageVector) : super(imageVector, "")
+        constructor(imageVector: ImageVector) : super(Nothing::class.java, imageVector, "")
 
         /**
          * Creates an instance of [OdsButton.Icon].
          *
          * @param bitmap Image bitmap of the icon.
          */
-        constructor(bitmap: ImageBitmap) : super(bitmap, "")
+        constructor(bitmap: ImageBitmap) : super(Nothing::class.java, bitmap, "")
 
         @Composable
         override fun Content(modifier: Modifier) {

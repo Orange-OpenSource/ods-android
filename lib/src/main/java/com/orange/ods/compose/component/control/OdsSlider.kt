@@ -221,7 +221,7 @@ object OdsSlider {
          * @param painter Painter of the icon.
          * @param contentDescription The content description associated to this [OdsSlider.Icon].
          */
-        constructor(painter: Painter, contentDescription: String) : super(painter, contentDescription)
+        constructor(painter: Painter, contentDescription: String) : super(Nothing::class.java, painter, contentDescription)
 
         /**
          * Creates an instance of [OdsSlider.Icon].
@@ -229,7 +229,7 @@ object OdsSlider {
          * @param imageVector Image vector of the icon.
          * @param contentDescription The content description associated to this [OdsSlider.Icon].
          */
-        constructor(imageVector: ImageVector, contentDescription: String) : super(imageVector, contentDescription)
+        constructor(imageVector: ImageVector, contentDescription: String) : super(Nothing::class.java, imageVector, contentDescription)
 
         /**
          * Creates an instance of [OdsSlider.Icon].
@@ -237,7 +237,7 @@ object OdsSlider {
          * @param bitmap Image bitmap of the icon.
          * @param contentDescription The content description associated to this [OdsSlider.Icon].
          */
-        constructor(bitmap: ImageBitmap, contentDescription: String) : super(bitmap, contentDescription)
+        constructor(bitmap: ImageBitmap, contentDescription: String) : super(Nothing::class.java, bitmap, contentDescription)
 
         override val tint: Color?
             @Composable

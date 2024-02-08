@@ -13,6 +13,7 @@
 package com.orange.ods.compose.component.content
 
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.ui.Modifier
 
 /**
@@ -20,14 +21,17 @@ import androidx.compose.ui.Modifier
  *
  * This class is an equivalent to [OdsComponentContent] where the `Content` method is called against a specific scope (for instance a [androidx.compose.foundation.layout.RowScope]).
  *
+ * @param extraParametersClass The extra parameters class.
  * @param T The type of the scope.
  */
-abstract class OdsComponentScopeContent<T, S> where S : OdsComponentContent.ExtraParameters {
+abstract class OdsComponentScopeContent<T, S>(private val extraParametersClass: Class<S>) where S : OdsComponentContent.ExtraParameters {
 
     /**
      * The extra parameters.
      */
-    protected lateinit var extraParameters: S
+    protected val extraParameters: S
+        @Composable
+        get() = getLocalExtraParameters(extraParametersClass).current
 
     /**
      * The Jetpack Compose UI for this component content.
@@ -55,8 +59,9 @@ abstract class OdsComponentScopeContent<T, S> where S : OdsComponentContent.Extr
      */
     @Composable
     internal fun T.Content(modifier: Modifier, extraParameters: S) {
-        this@OdsComponentScopeContent.extraParameters = extraParameters
-        Content(modifier = modifier)
+        CompositionLocalProvider(getLocalExtraParameters(extraParametersClass) provides extraParameters) {
+            Content(modifier = modifier)
+        }
     }
 
     /**

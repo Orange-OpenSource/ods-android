@@ -118,7 +118,7 @@ object OdsBottomNavigation {
         val enabled: Boolean = true,
         val label: String? = null,
         val alwaysShowLabel: Boolean = true
-    ) : OdsComponentScopeContent<RowScope, Nothing>() {
+    ) : OdsComponentScopeContent<RowScope, Nothing>(Nothing::class.java) {
 
         @Composable
         override fun RowScope.Content(modifier: Modifier) {
@@ -189,7 +189,7 @@ object OdsBottomNavigation {
              * @param painter Painter of the icon.
              * @param contentDescription The content description associated to this [OdsBottomNavigation.Item.Icon].
              */
-            constructor(painter: Painter, contentDescription: String) : super(painter, contentDescription)
+            constructor(painter: Painter, contentDescription: String) : super(Nothing::class.java, painter, contentDescription)
 
             /**
              * Creates an instance of [OdsBottomNavigation.Item.Icon].
@@ -197,7 +197,7 @@ object OdsBottomNavigation {
              * @param imageVector Image vector of the icon.
              * @param contentDescription The content description associated to this [OdsBottomNavigation.Item.Icon].
              */
-            constructor(imageVector: ImageVector, contentDescription: String) : super(imageVector, contentDescription)
+            constructor(imageVector: ImageVector, contentDescription: String) : super(Nothing::class.java, imageVector, contentDescription)
 
             /**
              * Creates an instance of [OdsBottomNavigation.Item.Icon].
@@ -205,7 +205,7 @@ object OdsBottomNavigation {
              * @param bitmap Image bitmap of the icon.
              * @param contentDescription The content description associated to this [OdsBottomNavigation.Item.Icon].
              */
-            constructor(bitmap: ImageBitmap, contentDescription: String) : super(bitmap, contentDescription)
+            constructor(bitmap: ImageBitmap, contentDescription: String) : super(Nothing::class.java, bitmap, contentDescription)
         }
     }
 

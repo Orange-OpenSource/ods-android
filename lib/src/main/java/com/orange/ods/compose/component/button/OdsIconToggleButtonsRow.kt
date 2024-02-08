@@ -102,7 +102,7 @@ object OdsIconToggleButtonsRow {
         contentDescription: String,
         private val onClick: () -> Unit,
         enabled: Boolean = true
-    ) : OdsComponentIcon<IconButton.ExtraParameters>(graphicsObject, contentDescription, enabled, onClick) {
+    ) : OdsComponentIcon<IconButton.ExtraParameters>(ExtraParameters::class.java, graphicsObject, contentDescription, enabled, onClick) {
 
         data class ExtraParameters(
             val index: Int,

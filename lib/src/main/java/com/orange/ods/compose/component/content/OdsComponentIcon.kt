@@ -28,37 +28,41 @@ import com.orange.ods.extension.orElse
  * An icon in a component.
  */
 abstract class OdsComponentIcon<T> internal constructor(
+    extraParametersClass: Class<T>,
     private val graphicsObject: Any,
     private val contentDescription: String,
     protected var enabled: Boolean = true,
     private val onClick: (() -> Unit)? = null,
     protected var displaySurface: OdsDisplaySurface = OdsDisplaySurface.Default
-) : OdsComponentContent<T>() where T : OdsComponentContent.ExtraParameters {
+) : OdsComponentContent<T>(extraParametersClass) where T : OdsComponentContent.ExtraParameters {
 
     protected open val tint: Color?
         @Composable
         get() = null
 
     protected constructor(
+        extraParametersClass: Class<T>,
         painter: Painter,
         contentDescription: String,
         enabled: Boolean = true,
-        onClick: (() -> Unit)? = null
-    ) : this(painter as Any, contentDescription, enabled, onClick)
+        onClick: (() -> Unit)? = null,
+    ) : this(extraParametersClass, painter as Any, contentDescription, enabled, onClick)
 
     protected constructor(
+        extraParametersClass: Class<T>,
         imageVector: ImageVector,
         contentDescription: String,
         enabled: Boolean = true,
         onClick: (() -> Unit)? = null
-    ) : this(imageVector as Any, contentDescription, enabled, onClick)
+    ) : this(extraParametersClass, imageVector as Any, contentDescription, enabled, onClick)
 
     protected constructor(
+        extraParametersClass: Class<T>,
         bitmap: ImageBitmap,
         contentDescription: String,
         enabled: Boolean = true,
         onClick: (() -> Unit)? = null
-    ) : this(bitmap as Any, contentDescription, enabled, onClick)
+    ) : this(extraParametersClass, bitmap as Any, contentDescription, enabled, onClick)
 
     @Composable
     override fun Content(modifier: Modifier) {

@@ -71,7 +71,7 @@ object OdsCard {
      * @param text Text of the button.
      * @param onClick Will be called when the user clicks the button.
      */
-    class Button(private val text: String, private val onClick: () -> Unit) : OdsComponentContent<Nothing>() {
+    class Button(private val text: String, private val onClick: () -> Unit) : OdsComponentContent<Nothing>(Nothing::class.java) {
 
         @Composable
         override fun Content(modifier: Modifier) {
@@ -88,7 +88,7 @@ object OdsCard {
         alignment: Alignment = Alignment.Center,
         contentScale: ContentScale = ContentScale.Crop,
         private val backgroundColor: Color? = null
-    ) : OdsComponentImage<Nothing>(graphicsObject, contentDescription, alignment, contentScale) {
+    ) : OdsComponentImage<Nothing>(Nothing::class.java, graphicsObject, contentDescription, alignment, contentScale) {
 
         /**
          * Creates an instance of [OdsCard.Image].
@@ -160,7 +160,7 @@ object OdsCard {
     /**
      * A thumbnail in a card.
      */
-    class Thumbnail : OdsComponentCircularImage {
+    class Thumbnail : OdsComponentCircularImage<Nothing> {
 
         /**
          * Creates an instance of [OdsCard.Thumbnail].
@@ -168,7 +168,7 @@ object OdsCard {
          * @param painter The painter to draw.
          * @param contentDescription The content description associated to this [OdsCard.Thumbnail].
          */
-        constructor(painter: Painter, contentDescription: String) : super(painter, contentDescription)
+        constructor(painter: Painter, contentDescription: String) : super(Nothing::class.java, painter, contentDescription)
 
         /**
          * Creates an instance of [OdsCard.Thumbnail].
@@ -176,7 +176,7 @@ object OdsCard {
          * @param imageVector The image vector to draw.
          * @param contentDescription The content description associated to this [OdsCard.Thumbnail].
          */
-        constructor(imageVector: ImageVector, contentDescription: String) : super(imageVector, contentDescription)
+        constructor(imageVector: ImageVector, contentDescription: String) : super(Nothing::class.java, imageVector, contentDescription)
 
         /**
          * Creates an instance of [OdsCard.Thumbnail].
@@ -184,7 +184,7 @@ object OdsCard {
          * @param bitmap The image bitmap to draw.
          * @param contentDescription The content description associated to this [OdsCard.Thumbnail].
          */
-        constructor(bitmap: ImageBitmap, contentDescription: String) : super(bitmap, contentDescription)
+        constructor(bitmap: ImageBitmap, contentDescription: String) : super(Nothing::class.java, bitmap, contentDescription)
     }
 
 }
@@ -197,7 +197,8 @@ internal object CardPreview {
     const val LongTitle = "Here is a long title that don't fit"
     const val Subtitle = "Subtitle"
     const val LongSubtitle = "Here is a very very very long subtitle"
-    const val Text = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed non risus. Suspendisse lectus tortor, dignissim sit amet, adipiscing nec, ultricies sed, dolor."
+    const val Text =
+        "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed non risus. Suspendisse lectus tortor, dignissim sit amet, adipiscing nec, ultricies sed, dolor."
     const val FirstButtonText = "First button"
     const val SecondButtonText = "Second button"
     const val SecondButtonLongText = "Second button with lonnnnnnng text"

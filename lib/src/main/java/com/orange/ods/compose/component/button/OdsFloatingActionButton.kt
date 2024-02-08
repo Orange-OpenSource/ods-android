@@ -125,7 +125,7 @@ object OdsFloatingActionButton {
          * @param painter Painter of the icon.
          * @param contentDescription The content description associated to this [OdsFloatingActionButton.Icon].
          */
-        constructor(painter: Painter, contentDescription: String) : super(painter, contentDescription)
+        constructor(painter: Painter, contentDescription: String) : super(Nothing::class.java, painter, contentDescription)
 
         /**
          * Creates an instance of [OdsFloatingActionButton.Icon].
@@ -133,7 +133,7 @@ object OdsFloatingActionButton {
          * @param imageVector Image vector of the icon.
          * @param contentDescription The content description associated to this [OdsFloatingActionButton.Icon].
          */
-        constructor(imageVector: ImageVector, contentDescription: String) : super(imageVector, contentDescription)
+        constructor(imageVector: ImageVector, contentDescription: String) : super(Nothing::class.java, imageVector, contentDescription)
 
         /**
          * Creates an instance of [OdsFloatingActionButton.Icon].
@@ -141,7 +141,7 @@ object OdsFloatingActionButton {
          * @param bitmap Image bitmap of the icon.
          * @param contentDescription The content description associated to this [OdsFloatingActionButton.Icon].
          */
-        constructor(bitmap: ImageBitmap, contentDescription: String) : super(bitmap, contentDescription)
+        constructor(bitmap: ImageBitmap, contentDescription: String) : super(Nothing::class.java, bitmap, contentDescription)
 
         @Composable
         override fun Content(modifier: Modifier) {

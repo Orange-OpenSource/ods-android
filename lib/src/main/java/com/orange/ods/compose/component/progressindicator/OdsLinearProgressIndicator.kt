@@ -20,7 +20,6 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.material.ButtonDefaults
 import androidx.compose.material.LinearProgressIndicator
-import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.ExperimentalComposeUiApi
@@ -129,7 +128,7 @@ object OdsLinearProgressIndicator {
          * @param painter Painter of the icon.
          * @param contentDescription The content description associated to this [OdsLinearProgressIndicator.Icon].
          */
-        constructor(painter: Painter, contentDescription: String) : super(painter, contentDescription)
+        constructor(painter: Painter, contentDescription: String) : super(Nothing::class.java, painter, contentDescription)
 
         /**
          * Creates an instance of [OdsLinearProgressIndicator.Icon].
@@ -137,7 +136,7 @@ object OdsLinearProgressIndicator {
          * @param imageVector Image vector of the icon.
          * @param contentDescription The content description associated to this [OdsLinearProgressIndicator.Icon].
          */
-        constructor(imageVector: ImageVector, contentDescription: String) : super(imageVector, contentDescription)
+        constructor(imageVector: ImageVector, contentDescription: String) : super(Nothing::class.java, imageVector, contentDescription)
 
         /**
          * Creates an instance of [OdsLinearProgressIndicator.Icon].
@@ -145,7 +144,7 @@ object OdsLinearProgressIndicator {
          * @param bitmap Image bitmap of the icon.
          * @param contentDescription The content description associated to this [OdsLinearProgressIndicator.Icon].
          */
-        constructor(bitmap: ImageBitmap, contentDescription: String) : super(bitmap, contentDescription)
+        constructor(bitmap: ImageBitmap, contentDescription: String) : super(Nothing::class.java, bitmap, contentDescription)
 
         @Composable
         override fun Content(modifier: Modifier) {
