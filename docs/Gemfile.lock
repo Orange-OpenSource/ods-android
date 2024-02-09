@@ -107,7 +107,7 @@ DEPENDENCIES
   jekyll-relative-links
   jekyll-sass-converter (~> 2.0)
   minima (~> 2.5)
-  nokogiri (~> 1.16.2)
+  nokogiri
   ods-jekyll-theme!
   tzinfo (>= 1, < 3)
   tzinfo-data
