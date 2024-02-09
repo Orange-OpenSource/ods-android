@@ -10,7 +10,7 @@
  * Software description: Android library of reusable graphical components
  */
 
-package com.orange.ods.compose.module.emptyview
+package com.orange.ods.compose.module.emptystate
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -39,7 +39,7 @@ import com.orange.ods.compose.text.OdsText
 import com.orange.ods.theme.typography.OdsTextStyle
 
 /**
- * Display a full screen empty view with a centered image followed by a title and an optional text. A button can also be added.
+ * Display an empty state with a centered image followed by a title and an optional text. A button can also be added.
  *
  * @param title The title of the screen displayed below the image. For example "File is missing".
  * @param modifier [Modifier] applied to the composable.
@@ -47,14 +47,13 @@ import com.orange.ods.theme.typography.OdsTextStyle
  * @param image Image displayed centered in the composable.
  * @param button The button to add below the text.
  */
-//TODO Expose this composable when illustration and documentation are OK
 @Composable
-private fun OdsEmptyView(
+fun OdsEmptyStateView(
     title: String,
     modifier: Modifier = Modifier,
     text: String? = null,
-    image: OdsEmptyView.Image = OdsEmptyView.Image(painter = painterResource(id = R.drawable.il_binoculars)),
-    button: OdsEmptyView.Button? = null
+    image: OdsEmptyStateView.Image = OdsEmptyStateView.Image(painter = painterResource(id = R.drawable.il_yoga_man)),
+    button: OdsEmptyStateView.Button? = null
 ) {
     Column(
         modifier = modifier
@@ -91,14 +90,14 @@ private fun OdsEmptyView(
 }
 
 /**
- * Contains classes to build an [com.orange.ods.compose.module.emptyview.OdsEmptyView].
+ * Contains classes to build an [com.orange.ods.compose.module.emptystate.OdsEmptyStateView].
  */
-private object OdsEmptyView {
+object OdsEmptyStateView {
 
     /**
-     * A button in an [OdsEmptyView].
+     * A button in an [OdsEmptyStateView].
      *
-     * @constructor Creates an instance of [OdsEmptyView.Button].
+     * @constructor Creates an instance of [OdsEmptyStateView.Button].
      * @param text Text of the button.
      * @param onClick Callback invoked on button click.
      */
@@ -111,16 +110,16 @@ private object OdsEmptyView {
     }
 
     /**
-     * An image in an [OdsEmptyView].
+     * An image in an [OdsEmptyStateView].
      */
     class Image : OdsComponentImage<Nothing> {
 
         /**
-         * Creates an instance of [OdsEmptyView.Image].
+         * Creates an instance of [OdsEmptyStateView.Image].
          *
          * @param painter The painter to draw.
          * @param alignment Alignment parameter used to place the [Painter] in the given bounds defined by the width and height.
-         * @param contentScale The rule to apply to scale the image in this [OdsEmptyView.Image].
+         * @param contentScale The rule to apply to scale the image in this [OdsEmptyStateView.Image].
          */
         constructor(painter: Painter, alignment: Alignment = Alignment.Center, contentScale: ContentScale = ContentScale.Fit) : super(
             painter,
@@ -130,11 +129,11 @@ private object OdsEmptyView {
         )
 
         /**
-         * Creates an instance of [OdsEmptyView.Image].
+         * Creates an instance of [OdsEmptyStateView.Image].
          *
          * @param imageVector The image vector to draw.
          * @param alignment Alignment parameter used to place the [ImageVector] in the given bounds defined by the width and height.
-         * @param contentScale The rule to apply to scale the image in this [OdsEmptyView.Image].
+         * @param contentScale The rule to apply to scale the image in this [OdsEmptyStateView.Image].
          */
         constructor(imageVector: ImageVector, alignment: Alignment = Alignment.Center, contentScale: ContentScale = ContentScale.Fit) : super(
             imageVector,
@@ -144,11 +143,11 @@ private object OdsEmptyView {
         )
 
         /**
-         * Creates an instance of [OdsEmptyView.Image].
+         * Creates an instance of [OdsEmptyStateView.Image].
          *
          * @param bitmap The image bitmap to draw.
          * @param alignment Alignment parameter used to place the [ImageBitmap] in the given bounds defined by the width and height.
-         * @param contentScale The rule to apply to scale the image in this [OdsEmptyView.Image].
+         * @param contentScale The rule to apply to scale the image in this [OdsEmptyStateView.Image].
          */
         constructor(bitmap: ImageBitmap, alignment: Alignment = Alignment.Center, contentScale: ContentScale = ContentScale.Fit) : super(
             bitmap,
@@ -161,31 +160,31 @@ private object OdsEmptyView {
 
 @UiModePreviews.Default
 @Composable
-private fun PreviewOdsEmptyView(@PreviewParameter(OdsEmptyViewPreviewParameterProvider::class) parameter: OdsEmptyViewPreviewParameter) =
+private fun PreviewOdsEmptyStateView(@PreviewParameter(OdsEmptyStateViewPreviewParameterProvider::class) parameter: OdsEmptyStateViewPreviewParameter) =
     Preview {
         with(parameter) {
-            OdsEmptyView(title = title, text = text, button = button)
+            OdsEmptyStateView(title = title, text = text, button = button)
         }
     }
 
-private data class OdsEmptyViewPreviewParameter(
+private data class OdsEmptyStateViewPreviewParameter(
     val title: String,
     val text: String? = null,
-    val button: OdsEmptyView.Button? = null
+    val button: OdsEmptyStateView.Button? = null
 )
 
-private class OdsEmptyViewPreviewParameterProvider :
-    BasicPreviewParameterProvider<OdsEmptyViewPreviewParameter>(*previewParameterValues.toTypedArray())
+private class OdsEmptyStateViewPreviewParameterProvider :
+    BasicPreviewParameterProvider<OdsEmptyStateViewPreviewParameter>(*previewParameterValues.toTypedArray())
 
-private val previewParameterValues: List<OdsEmptyViewPreviewParameter>
+private val previewParameterValues: List<OdsEmptyStateViewPreviewParameter>
     get() {
         val title = "Nothing to see here"
         val text = "To add your favourite stations, press the button."
-        val button = OdsEmptyView.Button("Add station") {}
+        val button = OdsEmptyStateView.Button("Add station") {}
 
         return listOf(
-            OdsEmptyViewPreviewParameter(title = title, text = text, button = button),
-            OdsEmptyViewPreviewParameter(title = title, text = text),
-            OdsEmptyViewPreviewParameter(title = title),
+            OdsEmptyStateViewPreviewParameter(title = title, text = text, button = button),
+            OdsEmptyStateViewPreviewParameter(title = title, text = text),
+            OdsEmptyStateViewPreviewParameter(title = title),
         )
     }

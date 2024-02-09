@@ -58,7 +58,7 @@ private fun ColumnScope.ModuleCard(module: Module, onModuleClick: (String) -> Un
             painterResource(id = imageResId),
             "",
             module.imageAlignment,
-            ContentScale.Fit,
+            ContentScale.Crop,
             Color(DrawableManager.ImageBackgroundColor)
         ),
         onClick = { onModuleClick(module.route) }

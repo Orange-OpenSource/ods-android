@@ -53,12 +53,14 @@ fun AboutCustomizationScreen(navigateToAboutDemo: () -> Unit, viewModel: AboutCu
     with(viewModel) {
         ModuleDetailColumn(module = Module.About, onViewDemoButtonClick = navigateToAboutDemo) {
             OdsText(
-                modifier = Modifier.padding(top = dimensionResource(id = com.orange.ods.R.dimen.spacing_s)),
+                modifier = Modifier
+                    .padding(top = dimensionResource(id = com.orange.ods.R.dimen.spacing_s))
+                    .padding(horizontal = dimensionResource(id = com.orange.ods.R.dimen.screen_horizontal_margin)),
                 text = stringResource(id = R.string.module_about_customization),
                 style = OdsTextStyle.BodyM
             )
 
-            Subtitle(textRes = R.string.module_about_customization_app_sections)
+            Subtitle(textRes = R.string.module_about_customization_app_sections, horizontalPadding = true)
             CustomizationChipsFlowRow {
                 AboutCustomizationAppSection.entries.forEach { appSection: AboutCustomizationAppSection ->
                     OdsFilterChip(
@@ -71,7 +73,7 @@ fun AboutCustomizationScreen(navigateToAboutDemo: () -> Unit, viewModel: AboutCu
                 }
             }
 
-            Subtitle(textRes = R.string.module_about_customization_optional_items)
+            Subtitle(textRes = R.string.module_about_customization_optional_items, horizontalPadding = true)
             CustomizationChipsFlowRow {
                 AboutCustomizationOptionalItem.entries.forEach { item: AboutCustomizationOptionalItem ->
                     OdsFilterChip(
@@ -85,6 +87,7 @@ fun AboutCustomizationScreen(navigateToAboutDemo: () -> Unit, viewModel: AboutCu
             }
 
             ComponentCountRow(
+                modifier = Modifier.padding(horizontal = dimensionResource(id = com.orange.ods.R.dimen.screen_horizontal_margin)),
                 title = stringResource(id = R.string.module_about_customization_additional_items),
                 count = additionalLinksCount,
                 minusIconContentDescription = stringResource(id = R.string.module_about_customization_additional_item_remove),
@@ -102,7 +105,8 @@ private fun CustomizationChipsFlowRow(content: @Composable () -> Unit) {
     FlowRow(
         modifier = Modifier
             .fillMaxWidth()
-            .padding(top = dimensionResource(id = com.orange.ods.R.dimen.spacing_xs)),
+            .padding(top = dimensionResource(id = com.orange.ods.R.dimen.spacing_xs))
+            .padding(horizontal = dimensionResource(id = com.orange.ods.R.dimen.screen_horizontal_margin)),
         horizontalArrangement = Arrangement.spacedBy(dimensionResource(id = com.orange.ods.R.dimen.spacing_s)),
         verticalArrangement = Arrangement.spacedBy((-4).dp),
         content = { content() }

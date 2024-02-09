@@ -42,7 +42,7 @@ fun NavGraphBuilder.appNavGraph(
 
     addGuidelinesGraph()
     addComponentsGraph(navController)
-    addModulesGraph(navigateToAboutDemo)
+    addModulesGraph(navController, navigateToAboutDemo)
 
     composable(
         route = MainNavigation.SearchRoute
