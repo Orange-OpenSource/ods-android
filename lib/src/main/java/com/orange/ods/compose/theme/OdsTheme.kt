@@ -97,7 +97,8 @@ fun OdsTheme(
         LocalComponentsConfiguration provides themeConfiguration.componentsConfiguration,
     ) {
         MaterialTheme(
-            colors = colors.materialColors
+            colors = colors.materialColors,
+            typography = themeConfiguration.typography
         ) {
             Surface(color = colors.background, content = content)
         }
