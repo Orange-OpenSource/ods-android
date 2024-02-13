@@ -1,3 +1,35 @@
+## In the ODS lib
+
+### AndroidX
+
+Copyright 2021 The Android Open Source Project
+[https://github.com/androidx/androidx](https://github.com/androidx/androidx)
+Apache License 2.0
+
+### KotlinPoet
+
+Copyright 2017 Square, Inc.
+[https://github.com/square/kotlinpoet](https://github.com/square/kotlinpoet)
+Apache License 2.0
+
+### Kotlin Symbol Processing
+
+[https://github.com/google/ksp](https://github.com/google/ksp)
+Apache License 2.0
+
+### Material Components
+
+Copyright 2017 The Android Open Source Project
+[https://github.com/material-components/material-components-android](https://github.com/material-components/material-components-android)
+Apache License 2.0
+
+### Roboto fonts
+
+[https://fonts.google.com/specimen/Roboto](https://fonts.google.com/specimen/Roboto)
+Apache License 2.0
+
+## In the demo app
+
 ### Accompanist
 
 Copyright 2020 The Android Open Source Project
@@ -39,33 +71,11 @@ Apache License 2.0
 [https://github.com/junit-team/junit5/](https://github.com/junit-team/junit5/)
 Eclipse Public License 2.0
 
-### KotlinPoet
-
-Copyright 2017 Square, Inc.
-[https://github.com/square/kotlinpoet](https://github.com/square/kotlinpoet)
-Apache License 2.0
-
-### Kotlin Symbol Processing
-
-[https://github.com/google/ksp](https://github.com/google/ksp)
-Apache License 2.0
-
-### Material Components
-
-Copyright 2017 The Android Open Source Project
-[https://github.com/material-components/material-components-android](https://github.com/material-components/material-components-android)
-Apache License 2.0
-
 ### ODS libraries
 
 Copyright (c) Orange SA
 [https://github.com/Orange-OpenSource/ods-android](https://github.com/Orange-OpenSource/ods-android)
 MIT License
-
-### Roboto fonts
-
-[https://fonts.google.com/specimen/Roboto](https://fonts.google.com/specimen/Roboto)
-Apache License 2.0
 
 ### Timber
 
