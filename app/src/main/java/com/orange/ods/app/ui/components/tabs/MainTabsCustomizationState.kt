@@ -33,12 +33,12 @@ fun rememberMainTabsCustomizationState(
     bottomSheetScaffoldState: BottomSheetScaffoldState = rememberBottomSheetScaffoldState(),
     tabsCount: MutableIntState,
     pagerState: PagerState = rememberPagerState { tabsCount.intValue.coerceAtLeast(0) },
-    selectedTabIconPosition: MutableState<OdsTabRow.Tab.Icon.Position> = rememberSaveable { mutableStateOf(OdsTabRow.Tab.Icon.Position.Top) },
+    tabIconPosition: MutableState<OdsTabRow.Tab.Icon.Position> = rememberSaveable { mutableStateOf(OdsTabRow.Tab.Icon.Position.Top) },
     tabIconEnabled: MutableState<Boolean> = rememberSaveable { mutableStateOf(true) },
     tabTextEnabled: MutableState<Boolean> = rememberSaveable { mutableStateOf(true) }
 ) =
-    remember(bottomSheetScaffoldState, pagerState, tabsCount, selectedTabIconPosition, tabIconEnabled, tabTextEnabled) {
-        MainTabsCustomizationState(bottomSheetScaffoldState, pagerState, tabsCount, selectedTabIconPosition, tabIconEnabled, tabTextEnabled)
+    remember(bottomSheetScaffoldState, pagerState, tabsCount, tabIconPosition, tabIconEnabled, tabTextEnabled) {
+        MainTabsCustomizationState(bottomSheetScaffoldState, pagerState, tabsCount, tabIconPosition, tabIconEnabled, tabTextEnabled)
     }
 
 @OptIn(ExperimentalMaterialApi::class, ExperimentalFoundationApi::class)
