@@ -15,7 +15,6 @@ package com.orange.ods.app.ui.components.tabs
 import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.wrapContentSize
 import androidx.compose.foundation.pager.HorizontalPager
@@ -116,7 +115,7 @@ fun ComponentTabs(variant: Variant) {
             HorizontalPager(state = pagerState) { pageIndex ->
                 val modifier = if (pageIndex == 0) {
                     Modifier
-                        .fillMaxWidth()
+                        .fillMaxSize()
                         .verticalScroll(rememberScrollState())
                         .padding(top = dimensionResource(id = com.orange.ods.R.dimen.screen_vertical_margin))
                 } else {
