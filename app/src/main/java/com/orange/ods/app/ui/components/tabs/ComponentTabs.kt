@@ -89,14 +89,14 @@ fun ComponentTabs(variant: Variant) {
                 OdsChoiceChipsFlowRow(
                     selectedChoiceChipIndex = OdsTabRow.Tab.Icon.Position.entries.indexOf(tabIconPosition.value),
                     modifier = Modifier.padding(horizontal = dimensionResource(id = com.orange.ods.R.dimen.spacing_m)),
-                    choiceChips = OdsTabRow.Tab.Icon.Position.entries.map { tabsIconPosition ->
-                        val textResId = when (tabsIconPosition) {
+                    choiceChips = OdsTabRow.Tab.Icon.Position.entries.map { tabIconPosition ->
+                        val textResId = when (tabIconPosition) {
                             OdsTabRow.Tab.Icon.Position.Top -> R.string.component_tabs_icon_position_top
                             OdsTabRow.Tab.Icon.Position.Leading -> R.string.component_tabs_icon_position_leading
                         }
                         OdsChoiceChipsFlowRow.ChoiceChip(
                             stringResource(id = textResId),
-                            { this.tabIconPosition.value = tabsIconPosition },
+                            { this.tabIconPosition.value = tabIconPosition },
                             isTabIconPositionEnabled
                         )
                     }
