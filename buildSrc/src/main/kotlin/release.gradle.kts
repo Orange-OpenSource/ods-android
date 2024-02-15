@@ -50,6 +50,7 @@ fun updateDependencies(version: String) {
         "${matchResult.groupValues[1]}$version"
     }
     File("docs/home_content.md").replace(regex, transform)
+    File("docs/modules/About.md").replace(regex, transform)
     File("DEVELOP.md").replace(regex, transform)
 }
 
