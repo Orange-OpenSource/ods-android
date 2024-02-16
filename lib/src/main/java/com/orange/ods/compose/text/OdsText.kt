@@ -12,6 +12,7 @@
 
 package com.orange.ods.compose.text
 
+import androidx.compose.material.LocalContentColor
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
@@ -21,7 +22,6 @@ import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.style.TextOverflow
-import com.orange.ods.compose.theme.OdsDisplaySurface
 import com.orange.ods.compose.theme.OdsTheme
 import com.orange.ods.compose.utilities.extension.enable
 import com.orange.ods.theme.typography.OdsTextStyle
@@ -32,8 +32,6 @@ import com.orange.ods.theme.typography.OdsTextStyle
  * @param text The text to be displayed.
  * @param style ODS style configuration for the text such as color, font, line height etc.
  * @param modifier [Modifier] to apply to this layout node.
- * @param displaySurface [OdsDisplaySurface] applied to the text. It allows to force the text display on light or dark surface.
- * By default, the appearance applied is based on the system night mode value.
  * @param enabled Modifies the text color so that the content looks enabled or disabled.
  * @param textAlign The alignment of the text within the lines of the paragraph.
  * See [TextStyle.textAlign].
@@ -56,7 +54,6 @@ fun OdsText(
     text: String,
     style: OdsTextStyle,
     modifier: Modifier = Modifier,
-    displaySurface: OdsDisplaySurface = OdsDisplaySurface.Default,
     enabled: Boolean = true,
     textAlign: TextAlign? = null,
     overflow: TextOverflow = TextOverflow.Clip,
@@ -68,7 +65,7 @@ fun OdsText(
     OdsText(
         text = text,
         modifier = modifier,
-        color = displaySurface.themeColors.onSurface.enable(enabled = enabled),
+        color = LocalContentColor.current.enable(enabled = enabled),
         textAlign = textAlign,
         overflow = overflow,
         softWrap = softWrap,
