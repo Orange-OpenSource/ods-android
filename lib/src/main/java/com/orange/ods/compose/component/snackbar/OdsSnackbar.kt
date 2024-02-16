@@ -119,11 +119,7 @@ private fun OdsSnackbar(
         },
         actionOnNewLine = actionOnNewLine
     ) {
-        OdsText(
-            text = message,
-            style = OdsTextStyle.BodyM,
-            displaySurface = if (isSystemInDarkTheme()) OdsDisplaySurface.Light else OdsDisplaySurface.Dark
-        )
+        OdsText(text = message, style = OdsTextStyle.BodyM)
     }
 }
 
