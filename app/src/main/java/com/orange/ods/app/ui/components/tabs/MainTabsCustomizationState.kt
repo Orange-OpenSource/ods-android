@@ -33,12 +33,12 @@ fun rememberMainTabsCustomizationState(
     bottomSheetScaffoldState: BottomSheetScaffoldState = rememberBottomSheetScaffoldState(),
     tabsCount: MutableIntState,
     pagerState: PagerState = rememberPagerState { tabsCount.intValue.coerceAtLeast(0) },
-    selectedTabsIconPosition: MutableState<OdsTabRow.Tab.Icon.Position> = rememberSaveable { mutableStateOf(OdsTabRow.Tab.Icon.Position.Top) },
+    tabIconPosition: MutableState<OdsTabRow.Tab.Icon.Position> = rememberSaveable { mutableStateOf(OdsTabRow.Tab.Icon.Position.Top) },
     tabIconEnabled: MutableState<Boolean> = rememberSaveable { mutableStateOf(true) },
     tabTextEnabled: MutableState<Boolean> = rememberSaveable { mutableStateOf(true) }
 ) =
-    remember(bottomSheetScaffoldState, pagerState, tabsCount, selectedTabsIconPosition, tabIconEnabled, tabTextEnabled) {
-        MainTabsCustomizationState(bottomSheetScaffoldState, pagerState, tabsCount, selectedTabsIconPosition, tabIconEnabled, tabTextEnabled)
+    remember(bottomSheetScaffoldState, pagerState, tabsCount, tabIconPosition, tabIconEnabled, tabTextEnabled) {
+        MainTabsCustomizationState(bottomSheetScaffoldState, pagerState, tabsCount, tabIconPosition, tabIconEnabled, tabTextEnabled)
     }
 
 @OptIn(ExperimentalMaterialApi::class, ExperimentalFoundationApi::class)
@@ -46,7 +46,7 @@ class MainTabsCustomizationState(
     val bottomSheetScaffoldState: BottomSheetScaffoldState,
     val pagerState: PagerState,
     val tabsCount: MutableIntState,
-    val tabsIconPosition: MutableState<OdsTabRow.Tab.Icon.Position>,
+    val tabIconPosition: MutableState<OdsTabRow.Tab.Icon.Position>,
     val tabIconEnabled: MutableState<Boolean>,
     val tabTextEnabled: MutableState<Boolean>
 ) {
@@ -56,7 +56,7 @@ class MainTabsCustomizationState(
     val isTabIconCustomizationEnabled: Boolean
         get() = tabTextEnabled.value
 
-    val isTabsIconPositionEnabled: Boolean
+    val isTabIconPositionEnabled: Boolean
         get() = isTabIconCustomizationEnabled && isTabTextCustomizationEnabled
 
     val tabs: List<NavigationItem>
