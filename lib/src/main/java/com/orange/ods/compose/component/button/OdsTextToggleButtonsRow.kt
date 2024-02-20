@@ -101,7 +101,7 @@ fun OdsTextToggleButtonsRow(
 object OdsTextToggleButtonsRow {
 
     /**
-     * An text button in an [OdsTextToggleButtonsRow].
+     * A text button in an [OdsTextToggleButtonsRow].
      *
      * @property text The text of the button.
      * @property onClick Callback invoked when this text button is selected.
