@@ -222,7 +222,7 @@ Use the `OdsTextToggleButtonsRow` composable:
 ```kotlin
 OdsTextToggleButtonsRow(
     selectedTextButtonIndex = 0,
-    texts = listOf(
+    textButtons = listOf(
         OdsTextToggleButtonsRow.TextButton(
             "XML",
             { doSomething() }, // Do something like changing selectedTextButtonIndex to refresh composable with new selection
