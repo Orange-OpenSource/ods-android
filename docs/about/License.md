@@ -32,4 +32,4 @@ ODS Android is released under the MIT license and is copyright Orange SA, which 
 - Include the source of ODS Android itself, or of any modifications you may have made to it, in any redistribution you may assemble that includes it
 - Submit changes that you make to ODS Android back to its project (though such feedback is encouraged)
 
-For more information, the full ODS Android license is located [in the project repository](https://github.com/Orange-OpenSource/ods-ios/blob/main/LICENSE).
+For more information, the full ODS Android license is located [in the project repository](https://github.com/Orange-OpenSource/ods-android/blob/main/LICENSE).
