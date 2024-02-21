@@ -72,7 +72,7 @@ fun archiveDocumentation(version: String) {
     copy {
         from("docs")
         into("docs/$version")
-        exclude("_*", "Gemfile*")
+        exclude("_*", "Gemfile*", "404.html")
         val versionRegex = "^\\d+.\\d+.\\d+$".toRegex()
         exclude { versionRegex.matches(it.name) }
     }
