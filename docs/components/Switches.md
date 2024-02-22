@@ -9,11 +9,8 @@ way to adjust settings on mobile.
 
 <br>**On this page**
 
-* [Specifications references](#specifications-references)
-* [Accessibility](#accessibility)
-* [Implementation](#implementation)
-    * [Jetpack Compose](#jetpack-compose)
-        * [OdsSwitch API](#odsswitch-api)
+* Table of contents
+{:toc}
 
 ---
 
@@ -48,8 +45,6 @@ OdsSwitch(
 ```
 
 #### OdsSwitch API
-
-{:.table}
 
 | Parameter                                      | Default&nbsp;value | Description                                                                                                                                       |
 |------------------------------------------------|--------------------|---------------------------------------------------------------------------------------------------------------------------------------------------|

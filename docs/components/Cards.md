@@ -6,21 +6,8 @@ description: Cards contain content and actions about a single subject.
 
 <br>**On this page**
 
-* [Specifications references](#specifications-references)
-* [Accessibility](#accessibility)
-* [Variants](#variants)
-    * [Vertical image first card](#vertical-image-first-card)
-        * [Jetpack Compose](#jetpack-compose)
-            * [OdsVerticalImageFirstCard API](#odsverticalimagefirstcard-api)
-    * [Vertical header first card](#vertical-header-first-card)
-        * [Jetpack Compose](#jetpack-compose-1)
-            * [OdsVerticalHeaderFirstCard API](#odsverticalheaderfirstcard-api)
-    * [Small card](#small-card)
-        * [Jetpack Compose](#jetpack-compose-2)
-            * [OdsSmallCard API](#odssmallcard-api)
-    * [Horizontal card](#horizontal-card)
-        * [Jetpack Compose](#jetpack-compose-3)
-            * [OdsHorizontalCard API](#odshorizontalcard-api)
+* Table of contents
+{:toc}
 
 ---
 
@@ -70,8 +57,6 @@ OdsVerticalImageFirstCard(
 
 ##### OdsVerticalImageFirstCard API
 
-{:.table}
-
 | Parameter                       | Default&nbsp;value | Description                                  |
 |---------------------------------|--------------------|----------------------------------------------|
 | <b>`title: String`</b>          |                    | Title displayed into the card                |
@@ -116,8 +101,6 @@ OdsVerticalHeaderFirstCard(
 ```
 
 ##### OdsVerticalHeaderFirstCard API
-
-{:.table}
 
 | Parameter                       | Default&nbsp;value | Description                                                                |
 |---------------------------------|--------------------|----------------------------------------------------------------------------|
@@ -168,8 +151,6 @@ Row(
 
 ##### OdsSmallCard API
 
-{:.table}
-
 | Parameter                     | Default&nbsp;value | Description                                                                                                                                                            |
 |-------------------------------|--------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | <b>`title: String`</b>        |                    | Title displayed into the card. If the card is clickable, it will be truncated to fit on one line otherwise it will be displayed entirely for accessibility reasons.    |
@@ -209,8 +190,6 @@ OdsHorizontalCard(
 ```
 
 ##### OdsHorizontalCard API
-
-{:.table}
 
 | Parameter                               | Default&nbsp;value             | Description                                                                                                            |
 |-----------------------------------------|--------------------------------|------------------------------------------------------------------------------------------------------------------------|

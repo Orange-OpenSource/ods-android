@@ -6,19 +6,8 @@ description: Sliders allow users to make selections from a range of values.
 
 <br>**On this page**
 
-* [Specifications references](#specifications-references)
-* [Accessibility](#accessibility)
-* [Variants](#variants)
-    * [Continuous slider](#continuous-slider)
-        * [Jetpack Compose](#jetpack-compose)
-            * [OdsSlider API](#odsslider-api)
-    * [Continuous lockups slider](#continuous-lockups-slider)
-        * [Jetpack Compose](#jetpack-compose-1)
-            * [OdsSliderLockups API](#odssliderlockups-api)
-    * [Discrete slider](#discrete-slider)
-        * [Jetpack Compose](#jetpack-compose-2)
-    * [Discrete lockups slider](#discrete-lockups-slider)
-        * [Jetpack Compose](#jetpack-compose-3)
+* Table of contents
+{:toc}
 
 ---
 
@@ -76,8 +65,6 @@ OdsSlider(
 
 ##### OdsSlider API
 
-{:.table}
-
 | Parameter                                     | Default&nbsp;value | Description                                                                                                                                                                                                                                             |
 |-----------------------------------------------|--------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | <b>`value: Float`</b>                         |                    | Current value of the slider. If outside of `valueRange` provided, value will be coerced to this range.                                                                                                                                                  |
@@ -129,8 +116,6 @@ OdsSliderLockups(
 ```
 
 ##### OdsSliderLockups API
-
-{:.table}
 
 | Parameter                                     | Default&nbsp;value | Description                                                                                                                                                                                                                                             |
 |-----------------------------------------------|--------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|

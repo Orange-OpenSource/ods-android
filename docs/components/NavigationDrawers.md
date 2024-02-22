@@ -6,14 +6,8 @@ description: The navigation drawer slides in from the left when the nav icon is 
 
 <br>**On this page**
 
-* [Specifications references](#specifications-references)
-* [Accessibility](#accessibility)
-* [Implementation](#implementation)
-    * [Jetpack Compose](#jetpack-compose)
-        * [OdsModalDrawer API](#odsmodaldrawer-api)
-        * [API parameter types](#api-parameter-types)
-            * [OdsModalDrawer.Header](#odsmodaldrawerheader)
-            * [OdsModalDrawer.Item](#odsmodaldraweritem)
+* Table of contents
+{:toc}
 
 ---
 
@@ -70,8 +64,6 @@ OdsModalDrawer(
 
 #### OdsModalDrawer API
 
-{:.table}
-
 | Parameter                                                                 | Default&nbsp;value                        | Description                                                                 |
 |---------------------------------------------------------------------------|-------------------------------------------|-----------------------------------------------------------------------------|
 | <b>`header: `</b>[OdsModalDrawer.Header](#odsmodaldrawerheader)           |                                           | Content descriptor of the drawer header                                     |
@@ -85,8 +77,6 @@ OdsModalDrawer(
 
 ##### OdsModalDrawer.Header
 
-{:.table}
-
 | Parameter                            | Default&nbsp;value | Description                                                                                                                                                          |
 |--------------------------------------|--------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | <b>`title: String`</b>               |                    | Title displayed in the header                                                                                                                                        |
@@ -99,15 +89,11 @@ Here are the available types of `OdsModalDrawer.Item`:
 
 **OdsModalDrawer.SectionHeader** displays a divider and a section header label below
 
-{:.table}
-
 | Parameter              | Default&nbsp;value | Description                 |
 |------------------------|--------------------|-----------------------------|
 | <b>`label: String`</b> |                    | Label of the section header |
 
 **OdsModalDrawer.ListItem** displays a clickable item in the modal drawer
-
-{:.table}
 
 | Parameter                                           | Default&nbsp;value | Description                                                                                             |
 |-----------------------------------------------------|--------------------|---------------------------------------------------------------------------------------------------------|

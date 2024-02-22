@@ -12,13 +12,8 @@ Share and feedback functionalities are optional but can be added and configured.
 
 <br>**On this page**
 
-* [Specifications references](#specifications-references)
-* [Accessibility](#accessibility)
-* [Integration](#integration)
-    * [Jetpack Compose](#jetpack-compose)
-* [Configuration](#configuration)
-    * [OdsAboutConfiguration API](#odsaboutconfiguration-api)
-    * [App news](#app-news)
+* Table of contents
+{:toc}
 
 ---
 
@@ -83,8 +78,6 @@ Follow these steps in order to integrate an ODS About into your app:
 In order to configure the ODS About Module, you need to provide an `OdsAboutConfiguration`. The properties of this class are explained below.
 
 ### OdsAboutConfiguration API
-
-{:.table}
 
 | Property                                                       | Default&nbsp;value    | Description                                                                                                                                                                                                                                                     |
 |----------------------------------------------------------------|-----------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|

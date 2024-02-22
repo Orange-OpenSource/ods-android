@@ -6,15 +6,8 @@ description: Progress indicators express an unspecified wait time or display the
 
 <br>**On this page**
 
-* [Specifications references](#specifications-references)
-* [Accessibility](#accessibility)
-* [Variants](#variants)
-    * [Progress bar](#progress-bar)
-        * [Jetpack Compose](#jetpack-compose)
-            * [OdsLinearProgressIndicator API](#odslinearprogressindicator-api)
-    * [Activity indicator](#activity-indicator)
-        * [Jetpack Compose](#jetpack-compose-1)
-            * [OdsCircularProgressIndicator API](#odscircularprogressindicator-api)
+* Table of contents
+{:toc}
 
 ---
 
@@ -78,8 +71,6 @@ OdsLinearProgressIndicator(
 
 ##### OdsLinearProgressIndicator API
 
-{:.table}
-
 | Parameter                                | Default&nbsp;value | Description                                                                                                                                                                                                     |
 |------------------------------------------|--------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | `modifier: Modifier`                     | `Modifier`         | `Modifier` applied to the progress indicator                                                                                                                                                                    |
@@ -126,8 +117,6 @@ OdsCircularProgressIndicator(
 ```
 
 ##### OdsCircularProgressIndicator API
-
-{:.table}
 
 | Parameter            | Default&nbsp;value | Description                                                                                                                                                                                                     |
 |----------------------|--------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|

@@ -6,20 +6,8 @@ description: Text fields let users enter and edit text.
 
 <br>**On this page**
 
-* [Specifications references](#specifications-references)
-* [Accessibility](#accessibility)
-* [Variants](#variants)
-    * [Text field](#text-field-)
-        * [Jetpack Compose](#jetpack-compose)
-            * [OdsTextField API](#odstextfield-api-)
-    * [Password text field](#password-text-field-)
-        * [Jetpack Compose](#jetpack-compose-1)
-            * [OdsPasswordTextField API](#odspasswordtextfield-api-)
-* [Extras](#extras)
-    * [Character counter](#character-counter-)
-        * [Jetpack Compose](#jetpack-compose-2)
-            * [OdsTextFieldCharacterCounter](#odstextfieldcharactercounter-)
-* [Custom theme configuration](#custom-theme-configuration)
+* Table of contents
+{:toc}
 
 ---
 
@@ -90,8 +78,6 @@ The library provides several `OdsTextField.Trailing` that you can use as trailin
 
 ##### OdsTextField API [#](#odstextfield-api-)
 
-{:.table}
-
 | Parameter                                                                             | Default&nbsp;value          | Description                                                                                                                                                                                                                                                                                                           |
 |---------------------------------------------------------------------------------------|-----------------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | <b>`value: String`</b>                                                                |                             | Input text to be shown in the text field                                                                                                                                                                                                                                                                              |
@@ -154,8 +140,6 @@ See [text field section](#text-field) if you want to change it in your custom th
 
 ##### OdsPasswordTextField API [#](#odspasswordtextfield-api-)
 
-{:.table}
-
 | Parameter                                                                             | Default&nbsp;value        | Description                                                                                                                                                                                                                                    |
 |---------------------------------------------------------------------------------------|---------------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | <b>`value: String`</b>                                                                |                           | Input text to be shown in the text field                                                                                                                                                                                                       |
@@ -204,8 +188,6 @@ if (text.length <= TextFieldMaxCharacterCount) {
 ```
 
 ##### OdsTextFieldCharacterCounter [#](#odstextfieldcharactercounter-)
-
-{:.table}
 
 | Parameter                       | Default&nbsp;value | Description                                                                                                                                                          |
 |---------------------------------|--------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------|

@@ -6,36 +6,8 @@ description: Buttons allow users to take actions, and make choices, with a singl
 
 <br>**On this page**
 
-* [Specifications references](#specifications-references)
-* [Accessibility](#accessibility)
-* [Variants](#variants)
-    * [Contained button](#contained-button)
-        * [Jetpack Compose](#jetpack-compose)
-            * [OdsButton API](#odsbutton-api)
-        * [XML](#xml)
-    * [Text button](#text-button)
-        * [Jetpack Compose](#jetpack-compose-1)
-            * [OdsTextButton API](#odstextbutton-api)
-        * [XML](#xml-1)
-    * [Outlined button](#outlined-button)
-        * [Jetpack Compose](#jetpack-compose-2)
-            * [OdsOutlinedButton API](#odsoutlinedbutton-api)
-        * [XML](#xml-2)
-    * [Text toggle buttons group](#text-toggle-buttons-group)
-        * [Jetpack Compose](#jetpack-compose-3)
-            * [OdsTextToggleButtonsRow API](#odstexttogglebuttonsrow-api)
-    * [Icon button](#icon-button)
-        * [Jetpack Compose](#jetpack-compose-4)
-            * [OdsIconButton API](#odsiconbutton-api)
-        * [XML](#xml-3)
-    * [Icon toggle button](#icon-toggle-button)
-        * [Jetpack Compose](#jetpack-compose-5)
-            * [OdsIconToggleButton API](#odsicontogglebutton-api)
-        * [XML](#xml-4)
-    * [Icon toggle buttons group](#icon-toggle-buttons-group)
-        * [Jetpack Compose](#jetpack-compose-6)
-            * [OdsIconToggleButtonsRow API](#odsicontogglebuttonsrow-api)
-        * [XML](#xml-5)
+* Table of contents
+{:toc}
 
 ---
 
@@ -97,8 +69,6 @@ OdsButton(
 
 ##### OdsButton API
 
-{:.table}
-
 | Parameter                           | Default&nbsp;value          | Description                                                                                                                                                                                                                 |
 |-------------------------------------|-----------------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | <b>`text: String`</b>               |                             | Text displayed into the button                                                                                                                                                                                              |
@@ -157,8 +127,6 @@ OdsTextButton(
 
 ##### OdsTextButton API
 
-{:.table}
-
 | Parameter                           | Default&nbsp;value            | Description                                                                                                                                                                            |
 |-------------------------------------|-------------------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | <b>`text: String`</b>               |                               | Text displayed into the button                                                                                                                                                         |
@@ -214,8 +182,6 @@ OdsOutlinedButton(
 
 ##### OdsOutlinedButton API
 
-{:.table}
-
 | Parameter                           | Default&nbsp;value          | Description                                                                                                                                                                            |
 |-------------------------------------|-----------------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | <b>`text: String`</b>               |                             | Text displayed into the button                                                                                                                                                         |
@@ -269,8 +235,6 @@ OdsTextToggleButtonsRow(
 
 ##### OdsTextToggleButtonsRow API
 
-{:.table}
-
 | Parameter                                                      | Default&nbsp;value          | Description                                                                                                                                                                            |
 |----------------------------------------------------------------|-----------------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | <b>`textToggleButtons: List<OdsTextToggleButtonsRow.Item>`</b> |                             | Items displayed into the toggle group                                                                                                                                                  |
@@ -302,8 +266,6 @@ OdsIconButton(
 ```
 
 ##### OdsIconButton API
-
-{:.table}
 
 | Parameter                           | Default&nbsp;value          | Description                                                                                                                                                                                  |
 |-------------------------------------|-----------------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
@@ -354,8 +316,6 @@ OdsIconToggleButton(
 ```
 
 ##### OdsIconToggleButton API
-
-{:.table}
 
 | Parameter                                   | Default&nbsp;value          | Description                                                                                                                                                                            |
 |---------------------------------------------|-----------------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
@@ -422,8 +382,6 @@ OdsIconToggleButtonsRow(
 ```
 
 ##### OdsIconToggleButtonsRow API
-
-{:.table}
 
 | Parameter                                          | Default&nbsp;value          | Description                                                                                                                                                                            |
 |----------------------------------------------------|-----------------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|

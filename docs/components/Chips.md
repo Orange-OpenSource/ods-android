@@ -6,22 +6,8 @@ description: Chips are compact elements that represent an input, attribute, or a
 
 <br>**On this page**
 
-* [Specifications references](#specifications-references)
-* [Accessibility](#accessibility)
-* [Variants](#variants)
-    * [Input chip](#input-chip)
-        * [Jetpack Compose](#jetpack-compose)
-            * [OdsChip API](#odschip-api)
-    * [Choice chip](#choice-chip)
-        * [Jetpack Compose](#jetpack-compose-1)
-    * [Filter chip](#filter-chip)
-        * [Jetpack Compose](#jetpack-compose-2)
-            * [OdsFilterChip API](#odsfilterchip-api)
-    * [Action chip](#action-chip)
-        * [Jetpack Compose](#jetpack-compose-3)
-* [Extras](#extras)
-    * [Choice chips flow row](#choice-chips-flow-row)
-        * [OdsChoiceChipsFlowRow API](#odschoicechipsflowrow-api)
+* Table of contents
+{:toc}
 
 ---
 
@@ -74,8 +60,6 @@ OdsChip(
 ```
 
 ##### OdsChip API
-
-{:.table}
 
 | Parameter                    | Default&nbsp;value | Description                                                                                              |
 |------------------------------|--------------------|----------------------------------------------------------------------------------------------------------|
@@ -153,8 +137,6 @@ OdsFilterChip(
 
 ##### OdsFilterChip API
 
-{:.table}
-
 | Parameter                               | Default&nbsp;value | Description                                                                                                                                                                  |
 |-----------------------------------------|--------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | <b>`text: String`</b>                   |                    | Text to be displayed into the chip                                                                                                                                           |
@@ -225,8 +207,6 @@ OdsChoiceChipsFlowRow(
 ```
 
 #### OdsChoiceChipsFlowRow API
-
-{:.table}
 
 | Parameter                                                    | Default&nbsp;value | Description                                                                       |
 |--------------------------------------------------------------|--------------------|-----------------------------------------------------------------------------------|

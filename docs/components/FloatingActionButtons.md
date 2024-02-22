@@ -6,17 +6,8 @@ description: A floating action button (FAB) represents the primary action of a s
 
 <br>**On this page**
 
-* [Specifications references](#specifications-references)
-* [Accessibility](#accessibility)
-* [Variants](#variants)
-    * [Regular FAB](#regular-fab)
-        * [Jetpack Compose](#jetpack-compose)
-            * [OdsFloatingActionButton API](#odsfloatingactionbutton-api)
-    * [Mini FAB](#mini-fab)
-        * [Jetpack Compose](#jetpack-compose-1)
-    * [Extended FAB](#extended-fab)
-        * [Jetpack Compose](#jetpack-compose-2)
-            * [OdsExtendedFloatingActionButton API](#odsextendedfloatingactionbutton-api)
+* Table of contents
+{:toc}
 
 ---
 
@@ -60,8 +51,6 @@ OdsFloatingActionButton(
 ```
 
 ##### OdsFloatingActionButton API
-
-{:.table}
 
 | Parameter                                   | Default&nbsp;value | Description                                                                                                         |
 |---------------------------------------------|--------------------|---------------------------------------------------------------------------------------------------------------------|
@@ -118,8 +107,6 @@ OdsExtendedFloatingActionButton(
 ```
 
 ##### OdsExtendedFloatingActionButton API
-
-{:.table}
 
 | Parameter                                   | Default&nbsp;value | Description                   |
 |---------------------------------------------|--------------------|-------------------------------|

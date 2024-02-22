@@ -6,18 +6,8 @@ description: Top app bars display information and actions relating to the curren
 
 <br>**On this page**
 
-* [Specifications references](#specifications-references)
-* [Accessibility](#accessibility)
-* [Variants](#variants)
-    * [Regular top app bar](#regular-top-app-bar)
-        * [Jetpack Compose](#jetpack-compose)
-            * [OdsTopAppBar API](#odstopappbar-api)
-    * [Large top app bar](#large-top-app-bar)
-        * [Jetpack Compose](#jetpack-compose-1)
-            * [OdsLargeTopAppBar API](#odslargetopappbar-api)
-    * [Search top app bar](#search-top-app-bar)
-        * [Jetpack Compose](#jetpack-compose-2)
-            * [OdsSearchTopAppBar API](#odssearchtopappbar-api)
+* Table of contents
+{:toc}
 
 ---
 
@@ -72,8 +62,6 @@ OdsTopAppBar(
 Note: By default, the `OdsTopAppBar` is elevated but you can set `elevated` parameter to `false` if you don't want any shadow below it (for example if you want to display tabs below).
 
 ##### OdsTopAppBar API
-
-{:.table}
 
 | Parameter                                       | Default&nbsp;value | Description                                                                                                                               |
 |-------------------------------------------------|--------------------|-------------------------------------------------------------------------------------------------------------------------------------------|
@@ -150,8 +138,6 @@ Scaffold(
 
 ##### OdsLargeTopAppBar API
 
-{:.table}
-
 | Parameter                                       | Default&nbsp;value | Description                                                                                                                       |
 |-------------------------------------------------|--------------------|-----------------------------------------------------------------------------------------------------------------------------------|
 | <b>`title: String`</b>                          |                    | Title displayed in the center of the top app bar                                                                                  |
@@ -182,8 +168,6 @@ OdsSearchTopAppBar(
 ```
 
 ##### OdsSearchTopAppBar API
-
-{:.table}
 
 | Parameter                                        | Default&nbsp;value | Description                                                                                                                               |
 |--------------------------------------------------|--------------------|-------------------------------------------------------------------------------------------------------------------------------------------|

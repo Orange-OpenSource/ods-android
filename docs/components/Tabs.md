@@ -6,15 +6,8 @@ description: Tabs organize content across different screens, data sets, and othe
 
 <br>**On this page**
 
-* [Specifications references](#specifications-references)
-* [Accessibility](#accessibility)
-* [Variants](#variants)
-    * [Fixed tabs row](#fixed-tabs-row)
-        * [Jetpack Compose](#jetpack-compose)
-            * [OdsTabRow API](#odstabrow-api)
-    * [Scrollable tabs row](#scrollable-tabs-row)
-        * [Jetpack Compose](#jetpack-compose-1)
-            * [OdsScrollableTabRow API](#odsscrollabletabrow-api)
+* Table of contents
+{:toc}
 
 ---
 
@@ -68,8 +61,6 @@ OdsTabRow(
 
 ##### OdsTabRow API
 
-{:.table}
-
 | Parameter                                      | Default&nbsp;value                | Description                                                                                      |
 |------------------------------------------------|-----------------------------------|--------------------------------------------------------------------------------------------------|
 | <b>`selectedTabIndex: Int`</b>                 |                                   | Index of the currently selected tab                                                              |
@@ -110,8 +101,6 @@ OdsScrollableTabRow(
 ```
 
 ##### OdsScrollableTabRow API
-
-{:.table}
 
 | Parameter                                      | Default&nbsp;value                | Description                                                                                      |
 |------------------------------------------------|-----------------------------------|--------------------------------------------------------------------------------------------------|

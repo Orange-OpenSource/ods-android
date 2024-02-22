@@ -7,10 +7,8 @@ title: Typography
 
 **Page Summary**
 
-* [Specifications references](#specifications-references)
-* [Implementation in Jetpack Compose](#implementation-in-jetpack-compose)
-  * [TextStyles](#textstyles)
-  * [OdsText composables](#odstext-composables)
+* Table of contents
+{:toc}
 
 ---
 

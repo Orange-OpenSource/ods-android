@@ -12,12 +12,8 @@ Only one banner should be shown at a time
 
 <br>**On this page**
 
-* [Specifications references](#specifications-references)
-* [Accessibility](#accessibility)
-* [Implementation](#implementation)
-    * [Jetpack Compose](#jetpack-compose)
-        * [OdsBanner API](#odsbanner-api)
-    * [XML](#xml)
+* Table of contents
+{:toc}
 
 ---
 
@@ -52,8 +48,6 @@ OdsBanner(
 ```
 
 #### OdsBanner API
-
-{:.table}
 
 | Parameter                         | Default&nbsp;value | Description                                                        |
 |-----------------------------------|--------------------|--------------------------------------------------------------------|

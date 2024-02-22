@@ -6,16 +6,8 @@ description: Lists are continuous, vertical indexes of text or images.
 
 <br>**On this page**
 
-* [Specifications references](#specifications-references)
-* [Accessibility](#accessibility)
-* [Variants](#variants)
-    * [Single-line list](#single-line-list)
-        * [Jetpack Compose](#jetpack-compose)
-            * [OdsListItem API](#odslistitem-api)
-    * [Two-line list](#two-line-list)
-        * [Jetpack Compose](#jetpack-compose-1)
-    * [Three-line list](#three-line-list)
-        * [Jetpack Compose](#jetpack-compose-2)
+* Table of contents
+{:toc}
 
 ---
 
@@ -67,8 +59,6 @@ OdsListItem(
 ```
 
 ##### OdsListItem API
-
-{:.table}
 
 | Parameter                                                    | Default&nbsp;value                       | Description                                                                                                                               |
 |--------------------------------------------------------------|------------------------------------------|-------------------------------------------------------------------------------------------------------------------------------------------|

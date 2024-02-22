@@ -6,11 +6,8 @@ description:
 
 <br>**On this page**
 
-* [Specifications references](#specifications-references)
-* [Accessibility](#accessibility)
-* [Implementation](#implementation)
-    * [Jetpack Compose](#jetpack-compose)
-        * [OdsImageItem API](#odsimageitem-api)
+* Table of contents
+{:toc}
 
 ---
 
@@ -57,8 +54,6 @@ OdsImageItem(
 ```
 
 ##### OdsImageItem API
-
-{:.table}
 
 | Parameter                                                          | Default&nbsp;value | Description                                                                                                                                                       |
 |--------------------------------------------------------------------|--------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------|

@@ -13,12 +13,8 @@ Dialogs are purposefully interruptive, so they should be used sparingly.
 
 <br>**On this page**
 
-* [Specifications references](#specifications-references)
-* [Accessibility](#accessibility)
-* [Variants](#variants)
-    * [Alert dialog](#alert-dialog)
-        * [Jetpack Compose](#jetpack-compose)
-            * [OdsAlertDialog API](#odsalertdialog-api)
+* Table of contents
+{:toc}
 
 ---
 
@@ -55,8 +51,6 @@ OdsAlertDialog(
 ```
 
 ##### OdsAlertDialog API
-
-{:.table}
 
 | Parameter                                     | Default&nbsp;value   | Description                                                                                                                                                                |
 |-----------------------------------------------|----------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------|

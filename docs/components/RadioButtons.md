@@ -13,11 +13,8 @@ Use radio buttons to:
 
 <br>**On this page**
 
-* [Specifications references](#specifications-references)
-* [Accessibility](#accessibility)
-* [Implementation](#implementation)
-    * [Jetpack Compose](#jetpack-compose)
-        * [OdsRadioButton API](#odsradiobutton-api)
+* Table of contents
+{:toc}
 
 ---
 
@@ -52,8 +49,6 @@ OdsRadioButton(
 ```
 
 #### OdsRadioButton API
-
-{:.table}
 
 | Parameter                       | Default&nbsp;value | Description                                                                                                                                                    |
 |---------------------------------|--------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------|

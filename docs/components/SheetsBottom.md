@@ -11,11 +11,8 @@ Use Sheets bottom to:
 
 <br>**On this page**
 
-* [Specifications references](#specifications-references)
-* [Accessibility](#accessibility)
-* [Implementation](#implementation)
-    * [Jetpack Compose](#jetpack-compose)
-        * [OdsBottomSheetScaffold API](#odsbottomsheetscaffold-api-)
+* Table of contents
+{:toc}
 
 ---
 
@@ -56,8 +53,6 @@ OdsBottomSheetScaffold(
 ```
 
 #### OdsBottomSheetScaffold API [#](#odsbottomsheetscaffold-api-)
-
-{:.table}
 
 | Parameter                                                 | Default&nbsp;value                            | Description                                                 |
 |-----------------------------------------------------------|-----------------------------------------------|-------------------------------------------------------------|

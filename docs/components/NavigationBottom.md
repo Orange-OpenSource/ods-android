@@ -6,12 +6,8 @@ description: Bottom navigation bars allow movement between primary destinations 
 
 <br>**On this page**
 
-* [Specifications references](#specifications-references)
-* [Accessibility](#accessibility)
-* [Implementation](#implementation)
-    * [Jetpack Compose](#jetpack-compose)
-        * [OdsBottomNavigation API](#odsbottomnavigation-api)
-    * [XML](#xml)
+* Table of contents
+{:toc}
 
 ---
 
@@ -73,8 +69,6 @@ OdsBottomNavigation(
 ```
 
 #### OdsBottomNavigation API
-
-{:.table}
 
 | Parameter                                      | Default&nbsp;value | Description                                 |
 |------------------------------------------------|--------------------|---------------------------------------------|

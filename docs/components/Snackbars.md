@@ -15,11 +15,8 @@ action that was just taken, or retrying an action that had failed.
 
 <br>**On this page**
 
-* [Specifications references](#specifications-references)
-* [Accessibility](#accessibility)
-* [Implementation](#implementation)
-    * [Jetpack Compose](#jetpack-compose)
-        * [OdsSnackbarHost API](#odssnackbarhost-api)
+* Table of contents
+{:toc}
 
 ---
 
@@ -85,8 +82,6 @@ Scaffold(
 ```
 
 #### OdsSnackbarHost API
-
-{:.table}
 
 | Parameter                                              | Default&nbsp;value                 | Description                                                                                                                                    |
 |--------------------------------------------------------|------------------------------------|------------------------------------------------------------------------------------------------------------------------------------------------|

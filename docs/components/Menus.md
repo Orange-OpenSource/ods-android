@@ -6,15 +6,8 @@ description: Menus appear from a button, action, or other control. It contains a
 
 <br>**On this page**
 
-* [Specifications references](#specifications-references)
-* [Accessibility](#accessibility)
-* [Variants](#variants)
-    * [Dropdown menu](#dropdown-menu)
-        * [Jetpack Compose](#jetpack-compose)
-            * [OdsDropdownMenu API](#odsdropdownmenu-api)
-    * [Exposed dropdown menu](#exposed-dropdown-menu)
-        * [Jetpack Compose](#jetpack-compose-1)
-            * [OdsExposedDropdownMenu API](#odsexposeddropdownmenu-api)
+* Table of contents
+{:toc}
 
 ---
 
@@ -66,8 +59,6 @@ OdsDropdownMenu(
 
 ##### OdsDropdownMenu API
 
-{:.table}
-
 | Parameter                                  | Default&nbsp;value                  | Description                                                                                               |
 |--------------------------------------------|-------------------------------------|-----------------------------------------------------------------------------------------------------------|
 | <b>`items: List<OdsDropdownMenu.Item>`</b> |                                     | Items displayed into the dropdown menu                                                                    |
@@ -107,8 +98,6 @@ OdsExposedDropdownMenu(
 ```
 
 ##### OdsExposedDropdownMenu API
-
-{:.table}
 
 | Parameter                                                             | Default&nbsp;value | Description                                                                                                                                                                         |
 |-----------------------------------------------------------------------|--------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
