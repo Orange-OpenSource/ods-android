@@ -37,31 +37,41 @@ The ODS About module is built to support accessibility criteria and is readable 
 
 Follow these steps in order to integrate an ODS About into your app:
 
-1) Add ODS About graph to your app navigation graph and provide the app `NavController` instance as well as a lambda that returns a configuration for the module (see [Configuration chapter](#configuration)).
+1. Add the ODS About module to the `dependencies` section of your `build.gradle` file:
 
-```kotlin
-NavHost(
-    navController = navController,
-    startDestination = StartRoute,
-    modifier = Modifier.padding(innerPadding)
-) {
-    //...
-    odsAboutGraph(navController) {
-        OdsAboutConfiguration(
-            appName = "App name",
-            privacyPolicyMenuItemFile = OdsAboutFileMenuItem.File(R.raw.about_privacy_policy, OdsAboutFileMenuItem.File.Format.Html),
-            termsOfServiceMenuItemFile = OdsAboutFileMenuItem.File(R.raw.about_terms_of_service, OdsAboutFileMenuItem.File.Format.Html),
-        )
+    ```groovy
+    dependencies {
+        // ...
+        implementation 'com.orange.ods.android:ods-module-about:0.18.0'
+        // ...
     }
-    //...
-}
-```
+    ```
 
-2) Use the `NavController.navigateToOdsAbout()` extension method when you need to display the previously configured ODS About.
+2. Add ODS About graph to your app navigation graph and provide the app `NavController` instance as well as a lambda that returns a configuration for the module (see [Configuration chapter](#configuration)).
 
-```kotlin
-navController.navigateToOdsAbout()
-```
+    ```kotlin
+    NavHost(
+        navController = navController,
+        startDestination = StartRoute,
+        modifier = Modifier.padding(innerPadding)
+    ) {
+        //...
+        odsAboutGraph(navController) {
+            OdsAboutConfiguration(
+                appName = "App name",
+                privacyPolicyMenuItemFile = OdsAboutFileMenuItem.File(R.raw.about_privacy_policy, OdsAboutFileMenuItem.File.Format.Html),
+                termsOfServiceMenuItemFile = OdsAboutFileMenuItem.File(R.raw.about_terms_of_service, OdsAboutFileMenuItem.File.Format.Html),
+            )
+        }
+        //...
+    }
+    ```
+   
+3. Use the `NavController.navigateToOdsAbout()` extension method when you need to display the previously configured ODS About.
+
+    ```kotlin
+    navController.navigateToOdsAbout()
+    ```
 
 ## Configuration
 
