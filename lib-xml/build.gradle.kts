@@ -44,3 +44,7 @@ dependencies {
     testImplementation(Dependencies.jUnit)
     androidTestImplementation(Dependencies.testExtJUnit)
 }
+
+mavenCentralPublish {
+    enabled = false
+}

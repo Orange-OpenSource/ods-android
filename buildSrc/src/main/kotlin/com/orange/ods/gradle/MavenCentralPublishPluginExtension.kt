@@ -20,4 +20,6 @@ abstract class MavenCentralPublishPluginExtension {
     }
 
     var artifactId: String? = null
+
+    var enabled: Boolean = true
 }
