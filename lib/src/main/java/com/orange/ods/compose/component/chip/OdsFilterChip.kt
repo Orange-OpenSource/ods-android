@@ -138,10 +138,7 @@ private fun OdsFilterChip(
     ) {
         OdsText(
             text = text,
-            style = OdsTextStyle.BodyM,
-            // Set color to Unspecified otherwise the colors parameter of FilterChip is overridden
-            // by the default value of the displaySurface parameter of OdsText
-            color = Color.Unspecified
+            style = OdsTextStyle.BodyM
         )
     }
 }
