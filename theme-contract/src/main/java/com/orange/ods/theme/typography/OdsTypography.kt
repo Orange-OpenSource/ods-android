@@ -17,6 +17,14 @@ import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.sp
 
+/**
+ * ODS typography system.
+ *
+ * The ODS typography system can help you create an ODS typography theme that reflects your brand or style.
+ * By default, the ODS typography is built with Orange values but you can override these values in your theme as you want.
+ * The [defaultFontFamily] applied to the typography text styles can be changed and you can define text styles you want to be in capitals by adding it into
+ * the [allCapsTextStyles] list.
+ */
 class OdsTypography(
     defaultFontFamily: FontFamily = FontFamily.Default,
     headlineL: TextStyle = TextStyle(
