@@ -68,14 +68,14 @@ fun Project.curl(vararg args: String) {
  * @return The release notes.
  */
 fun Project.generateReleaseNotes(since: String?): String {
-    val args = mutableListOf("log", "--pretty=format:- %b", "--merges", "--grep=Merge pull request")
-    if (since != null && since.isNotEmpty()) {
+    val args = mutableListOf("log", "--pretty=format:- %s")
+    if (!since.isNullOrEmpty()) {
         args += "${since}..HEAD"
     }
     val log = execute("git", *args.toTypedArray())
 
     // Remove useless lines
-    val emptyLineRegex = Regex("(?m)^[\t]*\r?\n")
+    val emptyLineRegex = Regex("(?m)^\t*\r?\n")
 
     return log.replace(emptyLineRegex, "").trim()
 }
