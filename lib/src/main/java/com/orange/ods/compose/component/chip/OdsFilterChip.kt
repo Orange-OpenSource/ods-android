@@ -25,10 +25,7 @@ import androidx.compose.material.Icon
 import androidx.compose.material.LocalContentAlpha
 import androidx.compose.material.LocalContentColor
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
-import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
@@ -40,10 +37,12 @@ import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.tooling.preview.PreviewParameter
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import com.orange.ods.R
 import com.orange.ods.compose.component.OdsComposable
+import com.orange.ods.compose.component.utilities.BasicPreviewParameterProvider
 import com.orange.ods.compose.component.utilities.DisabledInteractionSource
 import com.orange.ods.compose.component.utilities.Preview
 import com.orange.ods.compose.component.utilities.UiModePreviews
@@ -176,14 +175,15 @@ private fun OdsImageCircleShape(
     )
 }
 
+private class OdsFilterChipPreviewParameterProvider : BasicPreviewParameterProvider<Boolean>(false, true)
+
 @UiModePreviews.Chip
 @Composable
-private fun PreviewOdsFilterChip() = Preview {
-    var selected by remember { mutableStateOf(false) }
+private fun PreviewOdsFilterChip(@PreviewParameter(OdsFilterChipPreviewParameterProvider::class) selected: Boolean) = Preview {
     OdsFilterChip(
         text = "Text",
         selected = selected,
-        onClick = { selected = !selected },
-        leadingAvatar = OdsChip.LeadingAvatar(painterResource(id = R.drawable.ic_check), "selected"),
+        onClick = { },
+        leadingAvatar = OdsChip.LeadingAvatar(painterResource(id = R.drawable.placeholder_small), ""),
     )
 }
