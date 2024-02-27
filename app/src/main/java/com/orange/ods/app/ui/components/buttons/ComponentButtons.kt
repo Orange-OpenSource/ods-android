@@ -20,8 +20,10 @@ import androidx.compose.foundation.layout.ColumnScope
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material.ExperimentalMaterialApi
+import androidx.compose.material.LocalContentColor
 import androidx.compose.material.rememberBottomSheetScaffoldState
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.ui.Alignment
@@ -141,36 +143,42 @@ fun InvertedBackgroundColumn(
     content: @Composable InvertedBackgroundColumnScope.() -> Unit
 ) {
     val backgroundColor: Color
+    val contentColor: Color
     @StringRes val textRes: Int
     val displaySurface: OdsDisplaySurface
     if (isSystemInDarkTheme()) {
         backgroundColor = OdsTheme.lightThemeColors.surface
+        contentColor = OdsTheme.lightThemeColors.onSurface
         textRes = R.string.component_force_on_light
         displaySurface = OdsDisplaySurface.Light
     } else {
         backgroundColor = OdsTheme.darkThemeColors.surface
+        contentColor = OdsTheme.darkThemeColors.onSurface
         textRes = R.string.component_force_on_dark
         displaySurface = OdsDisplaySurface.Dark
     }
 
-    Column(
-        modifier = Modifier
-            .fillMaxWidth()
-            .background(color = backgroundColor)
-            .padding(bottom = dimensionResource(com.orange.ods.R.dimen.spacing_m)),
-        horizontalAlignment = horizontalAlignment
+    CompositionLocalProvider(
+        LocalContentColor provides contentColor
     ) {
-        OdsText(
+        Column(
             modifier = Modifier
-                .padding(horizontal = dimensionResource(id = com.orange.ods.R.dimen.spacing_m))
-                .padding(top = dimensionResource(id = com.orange.ods.R.dimen.spacing_s))
                 .fillMaxWidth()
-                .align(Alignment.Start),
-            text = stringResource(id = textRes),
-            displaySurface = displaySurface,
-            style = OdsTextStyle.BodyM
-        )
-        InvertedBackgroundColumnScope(this, displaySurface).content()
+                .background(color = backgroundColor)
+                .padding(bottom = dimensionResource(com.orange.ods.R.dimen.spacing_m)),
+            horizontalAlignment = horizontalAlignment
+        ) {
+            OdsText(
+                modifier = Modifier
+                    .padding(horizontal = dimensionResource(id = com.orange.ods.R.dimen.spacing_m))
+                    .padding(top = dimensionResource(id = com.orange.ods.R.dimen.spacing_s))
+                    .fillMaxWidth()
+                    .align(Alignment.Start),
+                text = stringResource(id = textRes),
+                style = OdsTextStyle.BodyM
+            )
+            InvertedBackgroundColumnScope(this, displaySurface).content()
+        }
     }
 }
 

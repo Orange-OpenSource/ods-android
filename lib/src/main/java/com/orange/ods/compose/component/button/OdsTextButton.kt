@@ -20,7 +20,6 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.PreviewParameter
 import com.orange.ods.compose.component.OdsComposable
@@ -109,9 +108,6 @@ internal fun OdsTextButton(
                 text = text,
                 style = OdsTextStyle.LabelL,
                 maxLines = maxLines,
-                // Set color to Unspecified otherwise the colors parameter of TextButton is overridden
-                // by the default value of the displaySurface parameter of OdsText
-                color = Color.Unspecified,
                 overflow = overflow
             )
         }

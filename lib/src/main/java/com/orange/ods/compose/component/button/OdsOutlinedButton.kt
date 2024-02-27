@@ -80,9 +80,7 @@ fun OdsOutlinedButton(
             )
         ) {
             icon?.Content()
-            // Set color to Unspecified otherwise the colors parameter of OutlinedButton is overridden
-            // by the default value of the displaySurface parameter of OdsText
-            OdsText(text = text, color = Color.Unspecified, style = OdsTextStyle.LabelL)
+            OdsText(text = text, style = OdsTextStyle.LabelL)
         }
     }
 }
