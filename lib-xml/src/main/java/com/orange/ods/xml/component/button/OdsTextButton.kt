@@ -55,8 +55,7 @@ class OdsTextButton @JvmOverloads constructor(context: Context, attrs: Attribute
             onClick = onClick,
             icon = icon?.let { OdsButton.Icon(rememberDrawablePainter(drawable = it)) },
             enabled = isEnabled,
-            style = style,
-            displaySurface = displaySurface
+            style = style
         )
     }
 }

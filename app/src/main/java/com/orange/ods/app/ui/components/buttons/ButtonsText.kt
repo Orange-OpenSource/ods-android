@@ -39,7 +39,6 @@ import com.orange.ods.app.ui.utilities.composable.Title
 import com.orange.ods.compose.OdsComposable
 import com.orange.ods.compose.component.button.OdsButton
 import com.orange.ods.compose.component.button.OdsTextButton
-import com.orange.ods.compose.theme.OdsDisplaySurface
 import com.orange.ods.xml.utilities.extension.xmlEnumValue
 
 @Composable
@@ -74,7 +73,6 @@ fun ButtonsText(customizationState: ButtonCustomizationState) {
                     leadingIcon = hasLeadingIcon,
                     enabled = isEnabled,
                     fullScreenWidth = hasFullScreenWidth,
-                    displaySurface = displaySurface
                 )
             }
 
@@ -125,7 +123,6 @@ private fun TextButton(
     leadingIcon: Boolean,
     enabled: Boolean,
     fullScreenWidth: Boolean,
-    displaySurface: OdsDisplaySurface = OdsDisplaySurface.Default
 ) {
     val context = LocalContext.current
     val iconId = R.drawable.ic_coffee
@@ -145,7 +142,6 @@ private fun TextButton(
                     onClick = {},
                     enabled = enabled,
                     style = style,
-                    displaySurface = displaySurface
                 )
             }, xml = {
                 this.text = text

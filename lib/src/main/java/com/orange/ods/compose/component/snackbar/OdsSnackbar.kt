@@ -12,7 +12,6 @@
 
 package com.orange.ods.compose.component.snackbar
 
-import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material.Scaffold
 import androidx.compose.material.Snackbar
@@ -31,7 +30,7 @@ import com.orange.ods.compose.component.utilities.BasicPreviewParameterProvider
 import com.orange.ods.compose.component.utilities.Preview
 import com.orange.ods.compose.component.utilities.UiModePreviews
 import com.orange.ods.compose.text.OdsText
-import com.orange.ods.compose.theme.OdsDisplaySurface
+import com.orange.ods.compose.theme.InverseSurface
 import com.orange.ods.theme.typography.OdsTextStyle
 
 /**
@@ -109,12 +108,13 @@ private fun OdsSnackbar(
         modifier = modifier,
         action = actionLabel?.let {
             {
-                OdsTextButton(
-                    style = OdsTextButton.Style.Primary,
-                    displaySurface = if (isSystemInDarkTheme()) OdsDisplaySurface.Light else OdsDisplaySurface.Dark,
-                    text = it,
-                    onClick = onActionClick
-                )
+                InverseSurface {
+                    OdsTextButton(
+                        style = OdsTextButton.Style.Primary,
+                        text = it,
+                        onClick = onActionClick
+                    )
+                }
             }
         },
         actionOnNewLine = actionOnNewLine

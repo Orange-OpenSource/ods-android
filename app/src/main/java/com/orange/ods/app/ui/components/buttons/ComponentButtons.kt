@@ -20,10 +20,8 @@ import androidx.compose.foundation.layout.ColumnScope
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material.ExperimentalMaterialApi
-import androidx.compose.material.LocalContentColor
 import androidx.compose.material.rememberBottomSheetScaffoldState
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.ui.Alignment
@@ -41,6 +39,7 @@ import com.orange.ods.compose.component.button.OdsTextButton
 import com.orange.ods.compose.component.chip.OdsChoiceChipsFlowRow
 import com.orange.ods.compose.component.listitem.OdsListItem
 import com.orange.ods.compose.text.OdsText
+import com.orange.ods.compose.theme.InverseSurface
 import com.orange.ods.compose.theme.OdsDisplaySurface
 import com.orange.ods.compose.theme.OdsTheme
 import com.orange.ods.theme.typography.OdsTextStyle
@@ -143,24 +142,19 @@ fun InvertedBackgroundColumn(
     content: @Composable InvertedBackgroundColumnScope.() -> Unit
 ) {
     val backgroundColor: Color
-    val contentColor: Color
     @StringRes val textRes: Int
     val displaySurface: OdsDisplaySurface
     if (isSystemInDarkTheme()) {
         backgroundColor = OdsTheme.lightThemeColors.surface
-        contentColor = OdsTheme.lightThemeColors.onSurface
         textRes = R.string.component_force_on_light
         displaySurface = OdsDisplaySurface.Light
     } else {
         backgroundColor = OdsTheme.darkThemeColors.surface
-        contentColor = OdsTheme.darkThemeColors.onSurface
         textRes = R.string.component_force_on_dark
         displaySurface = OdsDisplaySurface.Dark
     }
 
-    CompositionLocalProvider(
-        LocalContentColor provides contentColor
-    ) {
+    InverseSurface {
         Column(
             modifier = Modifier
                 .fillMaxWidth()

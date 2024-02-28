@@ -136,7 +136,6 @@ object OdsTextToggleButtonsRow {
                     },
                 maxLines = 1,
                 overflow = TextOverflow.Ellipsis,
-                displaySurface = extraParameters.displaySurface,
                 style = OdsTextButton.Style.Default,
                 onClick = onClick
             )
