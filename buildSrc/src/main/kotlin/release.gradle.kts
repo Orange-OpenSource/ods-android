@@ -69,6 +69,7 @@ fun updateChangelog(version: String) {
 }
 
 fun archiveDocumentation(version: String) {
+    // Copy all files to a new directory named with the version
     copy {
         from("docs")
         into("docs/$version")
@@ -77,15 +78,29 @@ fun archiveDocumentation(version: String) {
         exclude { versionRegex.matches(it.name) }
     }
 
-    val text = """
+    // Copy and update data_menu.yml and team.yml files
+    val dataPath = "docs/_data"
+    val dataFileSuffix = "_${version.replace(".", "_")}"
+    val dataFilenames = listOf("data_menu", "team")
+    copy {
+        from(dataFilenames.map { "$dataPath/$it.yml" })
+        into(dataPath)
+        rename { it.removeSuffix(".yml") + "$dataFileSuffix.yml" }
+    }
+    dataFilenames.forEach { filename ->
+        File("$dataPath/$filename$dataFileSuffix.yml").replace("version: \"\"".toRegex(), "version: \"$version\"")
+    }
+
+    // Update Jekyll configuration files
+    val configText = """
             |  - scope:
             |      path: "$version"
             |    values:
             |      version: "$version"
             |
             """.trimMargin()
-    File("docs/_config.yml").appendText(text)
-    File("docs/_config_netlify.yml").appendText(text)
+    File("docs/_config.yml").appendText(configText)
+    File("docs/_config_netlify.yml").appendText(configText)
 }
 
 fun updateVersionCode() {

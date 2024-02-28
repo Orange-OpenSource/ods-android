@@ -53,13 +53,17 @@
                             <button type="button" class="btn-close" data-bs-dismiss="offcanvas" data-bs-target="#offcanvasWrapper" style="margin-right: -.625rem;"><span class="visually-hidden">Close</span></button>
                         </div>
                         <nav class="offcanvas-body d-flex flex-column pb-4 pb-lg-0 pe-1 gap-4">
-                            {% if site.data.data_menu.toc2[0] %}
                             {% if page.version == "" %}
-                            {% assign urlPrefix = "" %}
+                            {% assign url_prefix = "" %}
+                            {% assign key_suffix = "" %}
                             {% else %}
-                            {% assign urlPrefix = "/" | append: page.version %}
+                            {% assign url_prefix = "/" | append: page.version %}
+                            {% capture key_suffix %}_{{ page.version | replace: '.', '_' }}{% endcapture %}
                             {% endif %}
-                            {% for item in site.data.data_menu.toc2 %}
+                            {% capture data_menu_key %}data_menu{{ key_suffix }}{% endcapture %}
+                            {% assign data_menu = site.data[data_menu_key] %}
+                            {% if data_menu.toc2[0] %}
+                            {% for item in data_menu.toc2 %}
                             <div>
                                 <h3 class="mb-2">{{ item.title }}</h3>
                                 {% if item.subfolderitems[0] %}
@@ -67,14 +71,14 @@
                                     <ul class="d-flex flex-column gap-2 gap-lg-1 mb-0 list-unstyled">
                                         {% for entry in item.subfolderitems %}
                                         {% if entry.page == page.title %}
-                                        <li><a class="text-decoration-none fw-bold" href="{{ site.baseurl }}{{ urlPrefix }}{{ entry.url }}">{{ entry.page }}</a>
+                                        <li><a class="text-decoration-none fw-bold" href="{{ site.baseurl }}{{ url_prefix }}{{ entry.url }}">{{ entry.page }}</a>
                                         {% else %}
-                                        <li><a class="text-decoration-none" href="{{ site.baseurl }}{{ urlPrefix }}{{ entry.url }}">{{ entry.page }}</a>
+                                        <li><a class="text-decoration-none" href="{{ site.baseurl }}{{ url_prefix }}{{ entry.url }}">{{ entry.page }}</a>
                                         {% endif %}
                                             {% if entry.subsubfolderitems[0] %}
                                             <ul>
                                                 {% for subentry in entry.subsubfolderitems %}
-                                                <li><a href="{{ site.baseurl }}{{ urlPrefix }}{{ subentry.url }}">{{ subentry.page }}</a></li>
+                                                <li><a href="{{ site.baseurl }}{{ url_prefix }}{{ subentry.url }}">{{ subentry.page }}</a></li>
                                                 {% endfor %}
                                             </ul>
                                             {% endif %}

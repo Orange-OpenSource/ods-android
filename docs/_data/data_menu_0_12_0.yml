@@ -1,4 +1,4 @@
-version: ""
+version: "0.12.0"
 toc2:
   - title: Getting Started
     subfolderitems:
@@ -32,16 +32,12 @@ toc2:
         url: /components/Dialogs_docs
       - page: Floating action buttons
         url: /components/FloatingActionButtons_docs
-      - page: Image item
-        url: /components/ImageItem_docs
-      - page: List items
-        url: /components/ListItems_docs
+      - page: Lists
+        url: /components/Lists_docs
       - page: Menus
         url: /components/Menus_docs
       - page: "Navigation: bottom"
         url: /components/NavigationBottom_docs
-      - page: Navigation drawers
-        url: /components/NavigationDrawers_docs
       - page: Progress indicators
         url: /components/ProgressIndicators_docs
       - page: Radio buttons
@@ -58,19 +54,3 @@ toc2:
         url: /components/Tabs_docs
       - page: Text fields
         url: /components/TextFields_docs
-
-  - title: Modules
-    subfolderitems:
-      - page: "About"
-        url: /modules/About_docs
-      - page: "Empty states"
-        url: /modules/EmptyStates_docs
-
-  - title: About
-    subfolderitems:
-      - page: "License"
-        url: /about/License_docs
-      - page: "Team"
-        url: /about/Team_docs
-      - page: "Cookies"
-        url: /about/Cookies_docs
