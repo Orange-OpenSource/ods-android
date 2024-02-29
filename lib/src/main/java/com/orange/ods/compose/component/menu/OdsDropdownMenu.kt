@@ -91,7 +91,7 @@ object OdsDropdownMenu {
         private val enabled: Boolean,
         private val divider: Boolean,
         private val onClick: () -> Unit
-    ) : OdsComponentContent<Item.ExtraParameters>() {
+    ) : OdsComponentContent<Item.ExtraParameters>(ExtraParameters::class.java) {
 
         data class ExtraParameters(val onDismissRequest: () -> Unit) : OdsComponentContent.ExtraParameters()
 
@@ -163,26 +163,28 @@ object OdsDropdownMenu {
 
         @Composable
         override fun Content(modifier: Modifier) {
-            DropdownMenuItem(
-                modifier = modifier,
-                onClick = {
-                    onClick()
-                    extraParameters.onDismissRequest()
-                },
-                enabled = enabled
-            ) {
-                icon?.let {
-                    OdsIcon(
-                        graphicsObject = icon,
-                        contentDescription = "",
-                        tint = OdsTheme.colors.onSurface,
-                        enabled = enabled,
-                        modifier = Modifier.padding(end = dimensionResource(id = R.dimen.spacing_m)),
-                    )
+            with(extraParameters) {
+                DropdownMenuItem(
+                    modifier = modifier,
+                    onClick = {
+                        onClick()
+                        onDismissRequest()
+                    },
+                    enabled = enabled
+                ) {
+                    icon?.let {
+                        OdsIcon(
+                            graphicsObject = icon,
+                            contentDescription = "",
+                            tint = OdsTheme.colors.onSurface,
+                            enabled = enabled,
+                            modifier = Modifier.padding(end = dimensionResource(id = R.dimen.spacing_m)),
+                        )
+                    }
+                    OdsText(text = text, style = OdsTextStyle.BodyL, enabled = enabled)
                 }
-                OdsText(text = text, style = OdsTextStyle.BodyL, enabled = enabled)
+                if (divider) OdsDivider()
             }
-            if (divider) OdsDivider()
         }
     }
 }

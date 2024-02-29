@@ -156,6 +156,7 @@ object OdsImageItem {
          * @param contentScale The rule to apply to scale the image in this [OdsImageItem.Image], [ContentScale.Crop] by default.
          */
         constructor(painter: Painter, contentDescription: String, contentScale: ContentScale = ContentScale.Crop) : super(
+            Nothing::class.java,
             painter,
             contentDescription,
             contentScale = contentScale
@@ -169,6 +170,7 @@ object OdsImageItem {
          * @param contentScale The rule to apply to scale the image in this [OdsImageItem.Image], [ContentScale.Crop] by default.
          */
         constructor(imageVector: ImageVector, contentDescription: String, contentScale: ContentScale = ContentScale.Crop) : super(
+            Nothing::class.java,
             imageVector,
             contentDescription,
             contentScale = contentScale
@@ -182,6 +184,7 @@ object OdsImageItem {
          * @param contentScale The rule to apply to scale the image in this [OdsImageItem.Image], [ContentScale.Crop] by default.
          */
         constructor(bitmap: ImageBitmap, contentDescription: String, contentScale: ContentScale = ContentScale.Crop) : super(
+            Nothing::class.java,
             bitmap,
             contentDescription,
             contentScale = contentScale

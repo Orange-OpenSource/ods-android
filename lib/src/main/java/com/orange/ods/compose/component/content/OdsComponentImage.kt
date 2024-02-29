@@ -25,32 +25,36 @@ import androidx.compose.ui.layout.ContentScale
  * An image in a component.
  */
 abstract class OdsComponentImage<T> internal constructor(
+    extraParametersClass: Class<T>,
     private val graphicsObject: Any,
     private val contentDescription: String,
     private val alignment: Alignment = Alignment.Center,
     private val contentScale: ContentScale = ContentScale.Fit
-) : OdsComponentContent<T>() where T : OdsComponentContent.ExtraParameters {
+) : OdsComponentContent<T>(extraParametersClass) where T : OdsComponentContent.ExtraParameters {
 
     protected constructor(
+        extraParametersClass: Class<T>,
         painter: Painter,
         contentDescription: String,
         alignment: Alignment = Alignment.Center,
         contentScale: ContentScale = ContentScale.Fit
-    ) : this(painter as Any, contentDescription, alignment, contentScale)
+    ) : this(extraParametersClass, painter as Any, contentDescription, alignment, contentScale)
 
     protected constructor(
+        extraParametersClass: Class<T>,
         imageVector: ImageVector,
         contentDescription: String,
         alignment: Alignment = Alignment.Center,
         contentScale: ContentScale = ContentScale.Fit
-    ) : this(imageVector as Any, contentDescription, alignment, contentScale)
+    ) : this(extraParametersClass, imageVector as Any, contentDescription, alignment, contentScale)
 
     protected constructor(
+        extraParametersClass: Class<T>,
         bitmap: ImageBitmap,
         contentDescription: String,
         alignment: Alignment = Alignment.Center,
         contentScale: ContentScale = ContentScale.Fit
-    ) : this(bitmap as Any, contentDescription, alignment, contentScale)
+    ) : this(extraParametersClass, bitmap as Any, contentDescription, alignment, contentScale)
 
     @Composable
     override fun Content(modifier: Modifier) {

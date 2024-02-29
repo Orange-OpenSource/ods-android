@@ -38,7 +38,7 @@ object OdsTabRow {
         private val text: String?,
         private val enabled: Boolean = true,
         private val onClick: () -> Unit
-    ) : OdsComponentContent<Tab.ExtraParameters>() {
+    ) : OdsComponentContent<Tab.ExtraParameters>(ExtraParameters::class.java) {
 
         data class ExtraParameters(
             val selected: Boolean,
@@ -108,7 +108,7 @@ object OdsTabRow {
              * @param painter Painter of the icon.
              * @param contentDescription The content description associated to this [OdsTabRow.Tab.Icon].
              */
-            constructor(painter: Painter, contentDescription: String = "") : super(painter, contentDescription)
+            constructor(painter: Painter, contentDescription: String = "") : super(Nothing::class.java, painter, contentDescription)
 
             /**
              * Creates an instance of [OdsTabRow.Tab.Icon].
@@ -116,7 +116,7 @@ object OdsTabRow {
              * @param imageVector Image vector of the icon.
              * @param contentDescription The content description associated to this [OdsTabRow.Tab.Icon].
              */
-            constructor(imageVector: ImageVector, contentDescription: String = "") : super(imageVector, contentDescription)
+            constructor(imageVector: ImageVector, contentDescription: String = "") : super(Nothing::class.java, imageVector, contentDescription)
 
             /**
              * Creates an instance of [OdsTabRow.Tab.Icon].
@@ -124,7 +124,7 @@ object OdsTabRow {
              * @param bitmap Image bitmap of the icon.
              * @param contentDescription The content description associated to this [OdsTabRow.Tab.Icon].
              */
-            constructor(bitmap: ImageBitmap, contentDescription: String = "") : super(bitmap, contentDescription)
+            constructor(bitmap: ImageBitmap, contentDescription: String = "") : super(Nothing::class.java, bitmap, contentDescription)
 
         }
     }

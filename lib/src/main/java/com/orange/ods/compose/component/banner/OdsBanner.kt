@@ -20,7 +20,6 @@ import androidx.compose.foundation.layout.FlowRow
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
-import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
@@ -148,7 +147,7 @@ object OdsBanner {
      * @param text Text of the button.
      * @param onClick Will be called when the user clicks the button.
      */
-    class Button(private val text: String, private val onClick: () -> Unit) : OdsComponentContent<Nothing>() {
+    class Button(private val text: String, private val onClick: () -> Unit) : OdsComponentContent<Nothing>(Nothing::class.java) {
 
         @Composable
         override fun Content(modifier: Modifier) {
@@ -159,7 +158,7 @@ object OdsBanner {
     /**
      * An image in an OdsBanner.
      */
-    class Image : OdsComponentCircularImage {
+    class Image : OdsComponentCircularImage<Nothing> {
 
         /**
          * Creates an instance of [OdsBanner.Image].
@@ -167,7 +166,7 @@ object OdsBanner {
          * @param painter The painter to draw.
          * @param contentDescription The content description associated to this [OdsBanner.Image].
          */
-        constructor(painter: Painter, contentDescription: String) : super(painter, contentDescription)
+        constructor(painter: Painter, contentDescription: String) : super(Nothing::class.java, painter, contentDescription)
 
         /**
          * Creates an instance of [OdsBanner.Image].
@@ -175,7 +174,7 @@ object OdsBanner {
          * @param imageVector The image vector to draw.
          * @param contentDescription The content description associated to this [OdsBanner.Image].
          */
-        constructor(imageVector: ImageVector, contentDescription: String) : super(imageVector, contentDescription)
+        constructor(imageVector: ImageVector, contentDescription: String) : super(Nothing::class.java, imageVector, contentDescription)
 
         /**
          * Creates an instance of [OdsBanner.Image].
@@ -183,7 +182,7 @@ object OdsBanner {
          * @param bitmap The image bitmap to draw.
          * @param contentDescription The content description associated to this [OdsBanner.Image].
          */
-        constructor(bitmap: ImageBitmap, contentDescription: String) : super(bitmap, contentDescription)
+        constructor(bitmap: ImageBitmap, contentDescription: String) : super(Nothing::class.java, bitmap, contentDescription)
     }
 }
 

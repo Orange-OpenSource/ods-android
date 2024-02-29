@@ -98,7 +98,7 @@ object OdsIconButton {
          * @param painter Painter of the icon.
          * @param contentDescription The content description associated to this [OdsIconButton.Icon].
          */
-        constructor(painter: Painter, contentDescription: String) : super(painter, contentDescription)
+        constructor(painter: Painter, contentDescription: String) : super(ExtraParameters::class.java, painter, contentDescription)
 
         /**
          * Creates an instance of [OdsIconButton.Icon].
@@ -106,7 +106,7 @@ object OdsIconButton {
          * @param imageVector Image vector of the icon.
          * @param contentDescription The content description associated to this [OdsIconButton.Icon].
          */
-        constructor(imageVector: ImageVector, contentDescription: String) : super(imageVector, contentDescription)
+        constructor(imageVector: ImageVector, contentDescription: String) : super(ExtraParameters::class.java, imageVector, contentDescription)
 
         /**
          * Creates an instance of [OdsIconButton.Icon].
@@ -114,7 +114,7 @@ object OdsIconButton {
          * @param bitmap Image bitmap of the icon.
          * @param contentDescription The content description associated to this [OdsIconButton.Icon].
          */
-        constructor(bitmap: ImageBitmap, contentDescription: String) : super(bitmap, contentDescription)
+        constructor(bitmap: ImageBitmap, contentDescription: String) : super(ExtraParameters::class.java, bitmap, contentDescription)
 
         override val tint: Color
             @Composable

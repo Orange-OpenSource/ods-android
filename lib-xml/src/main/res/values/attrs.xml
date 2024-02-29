@@ -61,7 +61,7 @@
     </declare-styleable>
 
     <declare-styleable name="OdsIconToggleButtonsRow">
-        <attr name="selectedIndex" format="integer" />
+        <attr name="selectedIconButtonIndex" format="integer" />
         <attr name="displaySurface" />
     </declare-styleable>
 

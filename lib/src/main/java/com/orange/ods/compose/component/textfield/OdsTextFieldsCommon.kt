@@ -53,7 +53,7 @@ object OdsTextField {
      * @property enabled Controls the enable state of the counter. If set to `false` the text will be displayed in disabled color.
      */
     class CharacterCounter(private val characterCount: Int, private val maxCharacterCount: Int, private val enabled: Boolean = true) :
-        OdsComponentContent<Nothing>() {
+        OdsComponentContent<Nothing>(Nothing::class.java) {
 
         @Composable
         override fun Content(modifier: Modifier) {
@@ -83,7 +83,12 @@ object OdsTextField {
          * @param contentDescription The content description associated to this [OdsTextField.LeadingIcon].
          * @param onClick Callback invoked on icon click.
          */
-        constructor(painter: Painter, contentDescription: String, onClick: (() -> Unit)? = null) : super(painter, contentDescription, onClick = onClick)
+        constructor(painter: Painter, contentDescription: String, onClick: (() -> Unit)? = null) : super(
+            ExtraParameters::class.java,
+            painter,
+            contentDescription,
+            onClick = onClick
+        )
 
         /**
          * Creates an instance of [OdsTextField.LeadingIcon].
@@ -93,6 +98,7 @@ object OdsTextField {
          * @param onClick Callback invoked on icon click.
          */
         constructor(imageVector: ImageVector, contentDescription: String, onClick: (() -> Unit)? = null) : super(
+            ExtraParameters::class.java,
             imageVector,
             contentDescription,
             onClick = onClick
@@ -105,7 +111,12 @@ object OdsTextField {
          * @param contentDescription The content description associated to this [OdsTextField.LeadingIcon].
          * @param onClick Callback invoked on icon click.
          */
-        constructor(bitmap: ImageBitmap, contentDescription: String, onClick: (() -> Unit)? = null) : super(bitmap, contentDescription, onClick = onClick)
+        constructor(bitmap: ImageBitmap, contentDescription: String, onClick: (() -> Unit)? = null) : super(
+            ExtraParameters::class.java,
+            bitmap,
+            contentDescription,
+            onClick = onClick
+        )
 
         @Composable
         override fun Content(modifier: Modifier) {
@@ -121,7 +132,7 @@ object OdsTextField {
         ) : OdsComponentContent.ExtraParameters()
     }
 
-    class TrailingText(val text: String) : Trailing, OdsComponentContent<Trailing.ExtraParameters>() {
+    class TrailingText(val text: String) : Trailing, OdsComponentContent<Trailing.ExtraParameters>(Trailing.ExtraParameters::class.java) {
 
         @Composable
         override fun Content(modifier: Modifier) {
@@ -143,7 +154,12 @@ object OdsTextField {
          * @param contentDescription The content description associated to this [OdsTextField.TrailingIcon].
          * @param onClick Callback invoked on icon click.
          */
-        constructor(painter: Painter, contentDescription: String, onClick: (() -> Unit)? = null) : super(painter, contentDescription, onClick = onClick)
+        constructor(painter: Painter, contentDescription: String, onClick: (() -> Unit)? = null) : super(
+            Trailing.ExtraParameters::class.java,
+            painter,
+            contentDescription,
+            onClick = onClick
+        )
 
         /**
          * Creates an instance of [OdsTextField.TrailingIcon].
@@ -153,6 +169,7 @@ object OdsTextField {
          * @param onClick Callback invoked on icon click.
          */
         constructor(imageVector: ImageVector, contentDescription: String, onClick: (() -> Unit)? = null) : super(
+            Trailing.ExtraParameters::class.java,
             imageVector,
             contentDescription,
             onClick = onClick
@@ -165,7 +182,12 @@ object OdsTextField {
          * @param contentDescription The content description associated to this [OdsTextField.TrailingIcon].
          * @param onClick Callback invoked on icon click.
          */
-        constructor(bitmap: ImageBitmap, contentDescription: String, onClick: (() -> Unit)? = null) : super(bitmap, contentDescription, onClick = onClick)
+        constructor(bitmap: ImageBitmap, contentDescription: String, onClick: (() -> Unit)? = null) : super(
+            Trailing.ExtraParameters::class.java,
+            bitmap,
+            contentDescription,
+            onClick = onClick
+        )
 
         @Composable
         override fun Content(modifier: Modifier) {
@@ -175,7 +197,8 @@ object OdsTextField {
     }
 }
 
-internal class OdsExposedDropdownMenuTrailing(val expanded: Boolean) : OdsTextField.Trailing, OdsComponentContent<OdsTextField.Trailing.ExtraParameters>() {
+internal class OdsExposedDropdownMenuTrailing(val expanded: Boolean) : OdsTextField.Trailing,
+    OdsComponentContent<OdsTextField.Trailing.ExtraParameters>(OdsTextField.Trailing.ExtraParameters::class.java) {
     @Composable
     override fun Content(modifier: Modifier) {
         val degrees = if (expanded && extraParameters.enabled) 180f else 0f

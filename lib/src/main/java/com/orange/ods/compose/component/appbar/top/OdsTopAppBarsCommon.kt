@@ -67,7 +67,12 @@ object OdsTopAppBar {
          * @param contentDescription The content description associated to this [OdsTopAppBar.NavigationIcon].
          * @param onClick Will be called when the user clicks on the action icon button.
          */
-        constructor(painter: Painter, contentDescription: String, onClick: () -> Unit) : super(painter, contentDescription, onClick = onClick)
+        constructor(painter: Painter, contentDescription: String, onClick: () -> Unit) : super(
+            Nothing::class.java,
+            painter,
+            contentDescription,
+            onClick = onClick
+        )
 
         /**
          * Creates an instance of [OdsTopAppBar.NavigationIcon].
@@ -76,7 +81,12 @@ object OdsTopAppBar {
          * @param contentDescription The content description associated to this [OdsTopAppBar.NavigationIcon].
          * @param onClick Will be called when the user clicks on the action icon button.
          */
-        constructor(imageVector: ImageVector, contentDescription: String, onClick: () -> Unit) : super(imageVector, contentDescription, onClick = onClick)
+        constructor(imageVector: ImageVector, contentDescription: String, onClick: () -> Unit) : super(
+            Nothing::class.java,
+            imageVector,
+            contentDescription,
+            onClick = onClick
+        )
 
         /**
          * Creates an instance of [OdsTopAppBar.NavigationIcon].
@@ -85,7 +95,12 @@ object OdsTopAppBar {
          * @param contentDescription The content description associated to this [OdsTopAppBar.NavigationIcon].
          * @param onClick Will be called when the user clicks on the action icon button.
          */
-        constructor(bitmap: ImageBitmap, contentDescription: String, onClick: () -> Unit) : super(bitmap, contentDescription, onClick = onClick)
+        constructor(bitmap: ImageBitmap, contentDescription: String, onClick: () -> Unit) : super(
+            Nothing::class.java,
+            bitmap,
+            contentDescription,
+            onClick = onClick
+        )
 
         override val tint: Color?
             @Composable
@@ -111,7 +126,7 @@ object OdsTopAppBar {
             contentDescription: String,
             enabled: Boolean = true,
             onClick: () -> Unit
-        ) : super(painter, contentDescription, enabled, onClick)
+        ) : super(Nothing::class.java, painter, contentDescription, enabled, onClick)
 
         /**
          * Creates an instance of [OdsTopAppBar.ActionButton].
@@ -127,7 +142,7 @@ object OdsTopAppBar {
             contentDescription: String,
             enabled: Boolean = true,
             onClick: () -> Unit
-        ) : super(imageVector, contentDescription, enabled, onClick)
+        ) : super(Nothing::class.java, imageVector, contentDescription, enabled, onClick)
 
         /**
          * Creates an instance of [OdsTopAppBar.ActionButton].
@@ -143,7 +158,7 @@ object OdsTopAppBar {
             contentDescription: String,
             enabled: Boolean = true,
             onClick: () -> Unit
-        ) : super(bitmap, contentDescription, enabled, onClick)
+        ) : super(Nothing::class.java, bitmap, contentDescription, enabled, onClick)
 
         override val tint: Color
             @Composable

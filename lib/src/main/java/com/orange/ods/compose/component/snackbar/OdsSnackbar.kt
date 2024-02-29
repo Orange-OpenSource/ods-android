@@ -72,7 +72,7 @@ object OdsSnackbarHost {
      * @param onActionClick Callback invoked when the action button is clicked.
      */
     class Snackbar(private val data: SnackbarData, private val actionOnNewLine: Boolean = false, private val onActionClick: () -> Unit = {}) :
-        OdsComponentContent<Nothing>() {
+        OdsComponentContent<Nothing>(Nothing::class.java) {
 
         @Composable
         override fun Content(modifier: Modifier) {

@@ -87,7 +87,7 @@ object OdsChoiceChipsFlowRow {
         val onClick: () -> Unit,
         val enabled: Boolean = true,
         val semantics: SemanticsPropertyReceiver.() -> Unit = {}
-    ) : OdsComponentContent<ChoiceChip.ExtraParameters>() {
+    ) : OdsComponentContent<ChoiceChip.ExtraParameters>(ExtraParameters::class.java) {
 
         data class ExtraParameters(val selected: Boolean) : OdsComponentContent.ExtraParameters()
 

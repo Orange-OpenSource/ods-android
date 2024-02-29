@@ -221,14 +221,19 @@ Use the `OdsTextToggleButtonsRow` composable:
 
 ```kotlin
 OdsTextToggleButtonsRow(
-    textToggleButtons = listOf(
-        OdsTextToggleButtonsRowItem("XML", true),
-        OdsTextToggleButtonsRowItem("COMPOSE", true),
+    selectedTextButtonIndex = 0,
+    textButtons = listOf(
+        OdsTextToggleButtonsRow.TextButton(
+            "XML",
+            { doSomething() }, // Do something like changing selectedTextButtonIndex to refresh composable with new selection
+            true
+        ),
+        OdsTextToggleButtonsRow.TextButton(
+            "COMPOSE",
+            { doSomething() }, // Do something like changing selectedTextButtonIndex to refresh composable with new selection
+            true
+        ),
     ),
-    selectedIndex = 0,
-    onSelectedIndexChange = {
-        doSomething() // Do something like changing selectedIndex to refresh composable with new selection
-    },
     sameItemsWeight = false
 )
 ```
@@ -237,9 +242,8 @@ OdsTextToggleButtonsRow(
 
 | Parameter                                                      | Default&nbsp;value          | Description                                                                                                                                                                            |
 |----------------------------------------------------------------|-----------------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| <b>`textToggleButtons: List<OdsTextToggleButtonsRow.Item>`</b> |                             | Items displayed into the toggle group                                                                                                                                                  |
-| <b>`selectedIndex: Int`</b>                                    |                             | `textToggleButtons` list index of the selected button                                                                                                                                  |
-| <b>`onSelectedIndexChange: (Int) -> Unit`</b>                  |                             | Callback invoked on selection change                                                                                                                                                   |
+| <b>`selectedTextButtonIndex: Int`</b>                          |                             | The index of the currently selected text button.                                                                                                                                       |
+| <b>`textButtons: List<OdsTextToggleButtonsRow.TextButton>`</b> |                             | List of [OdsTextToggleButtonsRow.TextButton] displayed into the toggle group.                                                                                                          |
 | `modifier: Modifier`                                           | `Modifier`                  | `Modifier` applied to the toggle buttons row                                                                                                                                           |
 | `sameItemsWeight: Boolean`                                     | `false`                     | Controls the place occupied by each item. When `true`, same weight of importance will be applied to each item, they will occupy the same width.                                        |
 | `displaySurface: OdsDisplaySurface`                            | `OdsDisplaySurface.Default` | `OdsDisplaySurface` applied to the button. It allows to force the button display on light or dark surface. By default, the appearance applied is based on the system night mode value. |
@@ -361,35 +365,37 @@ Use the `OdsIconToggleButtonsRow` composable:
 
 ```kotlin
 OdsIconToggleButtonsRow(
-    icons = listOf(
-        OdsIconToggleButtonsRow.Icon(painterResource(id = R.drawable.ic_restaurant), "Restaurant"),
-        OdsIconToggleButtonsRow.Icon(
-            painterResource(id = R.drawable.ic_cooking_pot),
-            "Cooking pot"
+    selectedIconButtonIndex = 0,
+    iconButtons = listOf(
+        OdsIconToggleButtonsRow.IconButton(
+            painterResource(id = R.drawable.ic_restaurant),
+            "Restaurant",
+            { doSomething() } // Do something like changing selectedIconButtonIndex to refresh composable with new selection
         ),
-        OdsIconToggleButtonsRow.Icon(
+        OdsIconToggleButtonsRow.IconButton(
+            painterResource(id = R.drawable.ic_cooking_pot),
+            "Cooking pot",
+            { doSomething() } // Do something like changing selectedIconButtonIndex to refresh composable with new selection
+        ),
+        OdsIconToggleButtonsRow.IconButton(
             painterResource(id = R.drawable.ic_coffee),
             "Coffee",
+            { doSomething() }, // Do something like changing selectedIconButtonIndex to refresh composable with new selection
             enabled = false
         )
     ),
-    selectedIndex = 0,
-    onSelectedIndexChange = {
-        doSomething() // Do something like changing selectedIndex to refresh composable with new selection                        
-    },
     displaySurface = displaySurface
 )
 ```
 
 ##### OdsIconToggleButtonsRow API
 
-| Parameter                                          | Default&nbsp;value          | Description                                                                                                                                                                            |
-|----------------------------------------------------|-----------------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| <b>`icons: List<OdsIconToggleButtonsRow.Icon>`</b> |                             | Icons to be displayed into the toggle group                                                                                                                                            |
-| <b>`selectedIndex: Int`</b>                        |                             | `icons` list index of the selected button                                                                                                                                              |
-| <b>`onSelectedIndexChange: (Int) -> Unit`</b>      |                             | Callback invoked on selection change                                                                                                                                                   |
-| `modifier: Modifier`                               | `Modifier`                  | `Modifier` applied to the toggle buttons group                                                                                                                                         |
-| `displaySurface: OdsDisplaySurface`                | `OdsDisplaySurface.Default` | `OdsDisplaySurface` applied to the button. It allows to force the button display on light or dark surface. By default, the appearance applied is based on the system night mode value. |
+| Parameter                                                      | Default&nbsp;value          | Description                                                                                                                                                                            |
+|----------------------------------------------------------------|-----------------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| <b>`selectedIconButtonIndex: Int`</b>                          |                             | The index of the currently selected icon button.                                                                                                                                       |
+| <b>`iconButtons: List<OdsIconToggleButtonsRow.IconButton>`</b> |                             | List of [OdsIconToggleButtonsRow.IconButton] displayed into the toggle group.                                                                                                          |
+| `modifier: Modifier`                                           | `Modifier`                  | `Modifier` applied to the toggle buttons group                                                                                                                                         |
+| `displaySurface: OdsDisplaySurface`                            | `OdsDisplaySurface.Default` | `OdsDisplaySurface` applied to the button. It allows to force the button display on light or dark surface. By default, the appearance applied is based on the system night mode value. |
 
 #### XML
 
@@ -403,7 +409,7 @@ You can also force the buttons display on `light` or `dark` surface using `displ
     android:id="@+id/ods_icon_toggle_buttons_row"
     android:layout_height="wrap_content"
     android:layout_width="wrap_content"
-    app:selectedIndex="1"
+    app:selectedIconButtonIndex="1"
     app:displaySurface="standard" />
 ```
 
@@ -411,13 +417,15 @@ Add the icons in the `OdsIconToggleButtonsRow` by code using view binding:
 
 ```kotlin
 binding.odsIconToggleButtonsRow.icons = listOf(
-    OdsIconToggleButtonsRow.Icon(
+    OdsIconToggleButtonsRow.IconButton(
         painter = painterResource(id = R.drawable.ic_cooking_pot),
-        contentDescription = "Cooking pot"
+        contentDescription = "Cooking pot",
+        onClick = { doSomething() } // Do something like changing selectedIconButtonIndex to refresh composable with new selection
     ),
-    OdsIconToggleButtonsRow.Icon(
+    OdsIconToggleButtonsRow.IconButton(
         painter = painterResource(id = R.drawable.ic_coffee),
-        contentDescription = "Coffee"
+        contentDescription = "Coffee",
+        onClick = { doSomething() } // Do something like changing selectedIconButtonIndex to refresh composable with new selection
     )
 )
 ```

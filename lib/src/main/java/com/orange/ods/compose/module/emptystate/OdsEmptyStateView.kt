@@ -101,7 +101,7 @@ object OdsEmptyStateView {
      * @param text Text of the button.
      * @param onClick Callback invoked on button click.
      */
-    class Button(private val text: String, private val onClick: () -> Unit) : OdsComponentContent<Nothing>() {
+    class Button(private val text: String, private val onClick: () -> Unit) : OdsComponentContent<Nothing>(Nothing::class.java) {
 
         @Composable
         override fun Content(modifier: Modifier) {
@@ -122,6 +122,7 @@ object OdsEmptyStateView {
          * @param contentScale The rule to apply to scale the image in this [OdsEmptyStateView.Image].
          */
         constructor(painter: Painter, alignment: Alignment = Alignment.Center, contentScale: ContentScale = ContentScale.Fit) : super(
+            Nothing::class.java,
             painter,
             "",
             alignment = alignment,
@@ -136,6 +137,7 @@ object OdsEmptyStateView {
          * @param contentScale The rule to apply to scale the image in this [OdsEmptyStateView.Image].
          */
         constructor(imageVector: ImageVector, alignment: Alignment = Alignment.Center, contentScale: ContentScale = ContentScale.Fit) : super(
+            Nothing::class.java,
             imageVector,
             "",
             alignment = alignment,
@@ -150,6 +152,7 @@ object OdsEmptyStateView {
          * @param contentScale The rule to apply to scale the image in this [OdsEmptyStateView.Image].
          */
         constructor(bitmap: ImageBitmap, alignment: Alignment = Alignment.Center, contentScale: ContentScale = ContentScale.Fit) : super(
+            Nothing::class.java,
             bitmap,
             "",
             alignment = alignment,
