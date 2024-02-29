@@ -67,17 +67,24 @@ OdsButton(
 )
 ```
 
+In the same way as for other buttons, you can display an `OdsButton` in the inverse theme of the default system theme by putting it into an `InverseTheme` composable:
+
+```kotlin
+InverseTheme {
+    // Put here the `OdsButton` you want to display in inverse theme
+}
+```
+
 ##### OdsButton API
 
-| Parameter                           | Default&nbsp;value          | Description                                                                                                                                                                                                                 |
-|-------------------------------------|-----------------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| <b>`text: String`</b>               |                             | Text displayed into the button                                                                                                                                                                                              |
-| <b>`onClick: () -> Unit`</b>        |                             | Callback invoked when the button is clicked                                                                                                                                                                                 |
-| `modifier: Modifier`                | `Modifier`                  | `Modifier` applied to the button                                                                                                                                                                                            |
-| `icon: OdsButton.Icon?`             | `null`                      | Icon displayed in the button before the text                                                                                                                                                                                |
-| `enabled: Boolean`                  | `true`                      | Controls the enabled state of the button. When `false`, this button will not be clickable.                                                                                                                                  |
-| `style: OdsButton.Style`            | `OdsButton.Style.Default`   | Style applied to the button. Set it to `OdsButton.Style.Primary` for an highlighted button style or use `OdsButton.Style.FunctionalPositive`/ `OdsButton.Style.FunctionalNegative` for a functional green/red button style. |
-| `displaySurface: OdsDisplaySurface` | `OdsDisplaySurface.Default` | `OdsDisplaySurface` applied to the button. It allows to force the button display on light or dark surface. By default, the appearance applied is based on the system night mode value.                                      |
+| Parameter                    | Default&nbsp;value        | Description                                                                                                                                                                                                                 |
+|------------------------------|---------------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| <b>`text: String`</b>        |                           | Text displayed into the button                                                                                                                                                                                              |
+| <b>`onClick: () -> Unit`</b> |                           | Callback invoked when the button is clicked                                                                                                                                                                                 |
+| `modifier: Modifier`         | `Modifier`                | `Modifier` applied to the button                                                                                                                                                                                            |
+| `icon: OdsButton.Icon?`      | `null`                    | Icon displayed in the button before the text                                                                                                                                                                                |
+| `enabled: Boolean`           | `true`                    | Controls the enabled state of the button. When `false`, this button will not be clickable.                                                                                                                                  |
+| `style: OdsButton.Style`     | `OdsButton.Style.Default` | Style applied to the button. Set it to `OdsButton.Style.Primary` for an highlighted button style or use `OdsButton.Style.FunctionalPositive`/ `OdsButton.Style.FunctionalNegative` for a functional green/red button style. |
 
 #### XML
 
@@ -90,7 +97,7 @@ Set `odsButtonStyle` attribute to:
 - `functional_negative` for a negative background color
 - `standard` for a default background color
 
-You can also force the button display on `light` or `dark` surface using `displaySurface` attribute. By default (`standard` value), the appearance applied is based on the system night mode value.
+You can also force the button display in `light` or `dark` theme using `inverseTheme` boolean attribute. By default (`false` value), the appearance applied is based on the system night mode value.
 
 ```xml
 
@@ -101,7 +108,7 @@ You can also force the button display on `light` or `dark` surface using `displa
     app:text="Contained button"
     app:icon="@drawable/ic_coffee"
     app:odsButtonStyle="primary"
-    app:displaySurface="standard" />
+    app:inverseTheme="false" />
 ```
 
 ### Text button
@@ -125,17 +132,24 @@ OdsTextButton(
 )
 ```
 
+In the same way as for other buttons, you can display an `OdsTextButton` in the inverse theme of the default system theme by putting it into an `InverseTheme` composable:
+
+```kotlin
+InverseTheme {
+    // Put here the `OdsTextButton` you want to display in inverse theme
+}
+```
+
 ##### OdsTextButton API
 
-| Parameter                           | Default&nbsp;value            | Description                                                                                                                                                                            |
-|-------------------------------------|-------------------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| <b>`text: String`</b>               |                               | Text displayed into the button                                                                                                                                                         |
-| <b>`onClick: () -> Unit`</b>        |                               | Callback invoked on button click                                                                                                                                                       |
-| `modifier: Modifier`                | `Modifier`                    | `Modifier` applied to the button                                                                                                                                                       |
-| `icon: OdsButton.Icon?`             | `null`                        | Icon displayed in the button before the text                                                                                                                                           |
-| `enabled: Boolean`                  | `true`                        | Controls the enabled state of the button. When `false`, this button will not be clickable.                                                                                             |
-| `style: OdsTextButton.Style`        | `OdsTextButton.Style.Default` | Style applied to the button. By default `onSurface` color is used for text color. Use `OdsTextButton.Style.Primary` for an highlighted text color.                                     |
-| `displaySurface: OdsDisplaySurface` | `OdsDisplaySurface.Default`   | `OdsDisplaySurface` applied to the button. It allows to force the button display on light or dark surface. By default, the appearance applied is based on the system night mode value. |
+| Parameter                    | Default&nbsp;value            | Description                                                                                                                                        |
+|------------------------------|-------------------------------|----------------------------------------------------------------------------------------------------------------------------------------------------|
+| <b>`text: String`</b>        |                               | Text displayed into the button                                                                                                                     |
+| <b>`onClick: () -> Unit`</b> |                               | Callback invoked on button click                                                                                                                   |
+| `modifier: Modifier`         | `Modifier`                    | `Modifier` applied to the button                                                                                                                   |
+| `icon: OdsButton.Icon?`      | `null`                        | Icon displayed in the button before the text                                                                                                       |
+| `enabled: Boolean`           | `true`                        | Controls the enabled state of the button. When `false`, this button will not be clickable.                                                         |
+| `style: OdsTextButton.Style` | `OdsTextButton.Style.Default` | Style applied to the button. By default `onSurface` color is used for text color. Use `OdsTextButton.Style.Primary` for an highlighted text color. |
 
 #### XML
 
@@ -146,7 +160,7 @@ Set `odsTextButtonStyle` attribute to:
 - `primary` for a primary colored text button
 - `standard` for a default colored text button
 
-You can also force the button display on `light` or `dark` surface using `displaySurface` attribute. By default (`standard` value), the appearance applied is based on the system night mode value.
+You can also force the button display in `light` or `dark` theme using `inverseTheme` boolean attribute. By default (`false` value), the appearance applied is based on the system night mode value.
 
 ```xml
 
@@ -157,7 +171,7 @@ You can also force the button display on `light` or `dark` surface using `displa
     app:text="Text button"
     app:icon="@drawable/ic_coffee"
     app:odsTextButtonStyle="primary"
-    app:displaySurface="light" />
+    app:inverseTheme="true" />
 ```
 
 ### Outlined button
@@ -180,22 +194,29 @@ OdsOutlinedButton(
 )
 ```
 
+In the same way as for other buttons, you can display an `OdsOutlinedButton` in the inverse theme of the default system theme by putting it into an `InverseTheme` composable:
+
+```kotlin
+InverseTheme {
+    // Put here the `OdsOutlinedButton` you want to display in inverse theme
+}
+```
+
 ##### OdsOutlinedButton API
 
-| Parameter                           | Default&nbsp;value          | Description                                                                                                                                                                            |
-|-------------------------------------|-----------------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| <b>`text: String`</b>               |                             | Text displayed into the button                                                                                                                                                         |
-| <b>`onClick: () -> Unit`</b>        |                             | Callback invoked on button click                                                                                                                                                       |
-| `modifier: Modifier`                | `Modifier`                  | `Modifier` applied to the button                                                                                                                                                       |
-| `icon: OdsButton.Icon?`             | `null`                      | Icon displayed in the button before the text                                                                                                                                           |
-| `enabled: Boolean`                  | `true`                      | Controls the enabled state of the button. When `false`, the button is not clickable.                                                                                                   |
-| `displaySurface: OdsDisplaySurface` | `OdsDisplaySurface.Default` | `OdsDisplaySurface` applied to the button. It allows to force the button display on light or dark surface. By default, the appearance applied is based on the system night mode value. |
+| Parameter                    | Default&nbsp;value | Description                                                                          |
+|------------------------------|--------------------|--------------------------------------------------------------------------------------|
+| <b>`text: String`</b>        |                    | Text displayed into the button                                                       |
+| <b>`onClick: () -> Unit`</b> |                    | Callback invoked on button click                                                     |
+| `modifier: Modifier`         | `Modifier`         | `Modifier` applied to the button                                                     |
+| `icon: OdsButton.Icon?`      | `null`             | Icon displayed in the button before the text                                         |
+| `enabled: Boolean`           | `true`             | Controls the enabled state of the button. When `false`, the button is not clickable. |
 
 #### XML
 
 In your layout, use the `OdsOutlinedButton` view.
 
-You can also force the button display on `light` or `dark` surface using `displaySurface` attribute. By default (`standard` value), the appearance applied is based on the system night mode value.
+You can also force the button display in `light` or `dark` theme using `inverseTheme` boolean attribute. By default (`false` value), the appearance applied is based on the system night mode value.
 
 ```xml
 
@@ -205,7 +226,7 @@ You can also force the button display on `light` or `dark` surface using `displa
     android:layout_width="wrap_content"
     app:text="Outlined button"
     app:icon="@drawable/ic_coffee"
-    app:displaySurface="light" />
+    app:inverseTheme="false" />
 ```
 
 ### Text toggle buttons group
@@ -238,15 +259,22 @@ OdsTextToggleButtonsRow(
 )
 ```
 
+In the same way as for other buttons, you can display an `OdsTextToggleButtonsRow` in the inverse theme of the default system theme by putting it into an `InverseTheme` composable:
+
+```kotlin
+InverseTheme {
+    // Put here the `OdsTextToggleButtonsRow` you want to display in inverse theme
+}
+```
+
 ##### OdsTextToggleButtonsRow API
 
-| Parameter                                                      | Default&nbsp;value          | Description                                                                                                                                                                            |
-|----------------------------------------------------------------|-----------------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| <b>`selectedTextButtonIndex: Int`</b>                          |                             | The index of the currently selected text button.                                                                                                                                       |
-| <b>`textButtons: List<OdsTextToggleButtonsRow.TextButton>`</b> |                             | List of [OdsTextToggleButtonsRow.TextButton] displayed into the toggle group.                                                                                                          |
-| `modifier: Modifier`                                           | `Modifier`                  | `Modifier` applied to the toggle buttons row                                                                                                                                           |
-| `sameItemsWeight: Boolean`                                     | `false`                     | Controls the place occupied by each item. When `true`, same weight of importance will be applied to each item, they will occupy the same width.                                        |
-| `displaySurface: OdsDisplaySurface`                            | `OdsDisplaySurface.Default` | `OdsDisplaySurface` applied to the button. It allows to force the button display on light or dark surface. By default, the appearance applied is based on the system night mode value. |
+| Parameter                                                      | Default&nbsp;value | Description                                                                                                                                     |
+|----------------------------------------------------------------|--------------------|-------------------------------------------------------------------------------------------------------------------------------------------------|
+| <b>`selectedTextButtonIndex: Int`</b>                          |                    | The index of the currently selected text button.                                                                                                |
+| <b>`textButtons: List<OdsTextToggleButtonsRow.TextButton>`</b> |                    | List of [OdsTextToggleButtonsRow.TextButton] displayed into the toggle group.                                                                   |
+| `modifier: Modifier`                                           | `Modifier`         | `Modifier` applied to the toggle buttons row                                                                                                    |
+| `sameItemsWeight: Boolean`                                     | `false`            | Controls the place occupied by each item. When `true`, same weight of importance will be applied to each item, they will occupy the same width. |
 
 ### Icon button
 
@@ -269,21 +297,28 @@ OdsIconButton(
 )
 ```
 
+In the same way as for other buttons, you can display an `OdsIconButton` in the inverse theme of the default system theme by putting it into an `InverseTheme` composable:
+
+```kotlin
+InverseTheme {
+    // Put here the `OdsIconButton` you want to display in inverse theme
+}
+```
+
 ##### OdsIconButton API
 
-| Parameter                           | Default&nbsp;value          | Description                                                                                                                                                                                  |
-|-------------------------------------|-----------------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| <b>`icon: OdsIconButton.Icon`</b>   |                             | Icon to be drawn into the button                                                                                                                                                             |
-| <b>`onClick: () -> Unit`</b>        |                             | Callback to be invoked when the button is clicked                                                                                                                                            |
-| `modifier: Modifier`                | `Modifier`                  | `Modifier` to be applied to the button                                                                                                                                                       |
-| `enabled: Boolean`                  | `true`                      | Controls the enabled state of the button. When `false`, this button will not be clickable.                                                                                                   |
-| `displaySurface: OdsDisplaySurface` | `OdsDisplaySurface.Default` | `OdsDisplaySurface` to be applied to the button. It allows to force the button display on light or dark surface. By default, the appearance applied is based on the system night mode value. |
+| Parameter                         | Default&nbsp;value | Description                                                                                |
+|-----------------------------------|--------------------|--------------------------------------------------------------------------------------------|
+| <b>`icon: OdsIconButton.Icon`</b> |                    | Icon to be drawn into the button                                                           |
+| <b>`onClick: () -> Unit`</b>      |                    | Callback to be invoked when the button is clicked                                          |
+| `modifier: Modifier`              | `Modifier`         | `Modifier` to be applied to the button                                                     |
+| `enabled: Boolean`                | `true`             | Controls the enabled state of the button. When `false`, this button will not be clickable. |
 
 #### XML
 
 In your layout, use the `OdsIconButton` view.
 
-You can also force the button display on `light` or `dark` surface using `displaySurface` attribute. By default (`standard` value), the appearance applied is based on the system night mode value.
+You can also force the icon button display in `light` or `dark` theme using `inverseTheme` boolean attribute. By default (`false` value), the appearance applied is based on the system night mode value.
 
 ```xml
 
@@ -293,7 +328,7 @@ You can also force the button display on `light` or `dark` surface using `displa
     android:layout_width="wrap_content"
     app:icon="@drawable/ic_coffee"
     app:iconContentDescription="Coffee"
-    app:displaySurface="standard" />
+    app:inverseTheme="true" />
 ```
 
 ### Icon toggle button
@@ -319,23 +354,30 @@ OdsIconToggleButton(
 )
 ```
 
+In the same way as for other buttons, you can display an `OdsIconToggleButton` in the inverse theme of the default system theme by putting it into an `InverseTheme` composable:
+
+```kotlin
+InverseTheme {
+    // Put here the `OdsIconToggleButton` you want to display in inverse theme
+}
+```
+
 ##### OdsIconToggleButton API
 
-| Parameter                                   | Default&nbsp;value          | Description                                                                                                                                                                            |
-|---------------------------------------------|-----------------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| <b>`checked: Boolean`</b>                   |                             | Controls the checked state of the button                                                                                                                                               |
-| <b>`onCheckedChange: (Boolean) -> Unit`</b> |                             | Callback invoked when the button is checked                                                                                                                                            |
-| <b>`uncheckedIcon: OdsIconButton.Icon`</b>  |                             | Icon displayed when the button is unchecked                                                                                                                                            |
-| <b>`checkedIcon: OdsIconButton.Icon`</b>    |                             | Icon displayed when the button is checked                                                                                                                                              |
-| `modifier: Modifier`                        | `Modifier`                  | `Modifier` applied to the button                                                                                                                                                       |
-| `enabled: Boolean`                          | `true`                      | Controls the enabled state of the button. When `false`, this button will not be clickable.                                                                                             |
-| `displaySurface: OdsDisplaySurface`         | `OdsDisplaySurface.Default` | `OdsDisplaySurface` applied to the button. It allows to force the button display on light or dark surface. By default, the appearance applied is based on the system night mode value. |
+| Parameter                                   | Default&nbsp;value | Description                                                                                |
+|---------------------------------------------|--------------------|--------------------------------------------------------------------------------------------|
+| <b>`checked: Boolean`</b>                   |                    | Controls the checked state of the button                                                   |
+| <b>`onCheckedChange: (Boolean) -> Unit`</b> |                    | Callback invoked when the button is checked                                                |
+| <b>`uncheckedIcon: OdsIconButton.Icon`</b>  |                    | Icon displayed when the button is unchecked                                                |
+| <b>`checkedIcon: OdsIconButton.Icon`</b>    |                    | Icon displayed when the button is checked                                                  |
+| `modifier: Modifier`                        | `Modifier`         | `Modifier` applied to the button                                                           |
+| `enabled: Boolean`                          | `true`             | Controls the enabled state of the button. When `false`, this button will not be clickable. |
 
 #### XML
 
 In your layout, use the `OdsIconToggleButton` view.
 
-You can also force the button display on `light` or `dark` surface using `displaySurface` attribute. By default (`standard` value), the appearance applied is based on the system night mode value.
+You can also force the icon toggle button display in `light` or `dark` theme using `inverseTheme` boolean attribute. By default (`false` value), the appearance applied is based on the system night mode value.
 
 ```xml
 
@@ -348,7 +390,7 @@ You can also force the button display on `light` or `dark` surface using `displa
     app:checkedIconContentDescription="Password visible"
     app:uncheckedIcon="@drawable/ic_crossed_eye"
     app:uncheckedIconContentDescription="Password invisible"
-    app:displaySurface="standard" />
+    app:inverseTheme="false" />
 ```
 
 ### Icon toggle buttons group
@@ -383,25 +425,31 @@ OdsIconToggleButtonsRow(
             { doSomething() }, // Do something like changing selectedIconButtonIndex to refresh composable with new selection
             enabled = false
         )
-    ),
-    displaySurface = displaySurface
+    )
 )
+```
+
+In the same way as for other buttons, you can display an `OdsIconToggleButtonsRow` in the inverse theme of the default system theme by putting it into an `InverseTheme` composable:
+
+```kotlin
+InverseTheme {
+    // Put here the `OdsIconToggleButtonsRow` you want to display in inverse theme
+}
 ```
 
 ##### OdsIconToggleButtonsRow API
 
-| Parameter                                                      | Default&nbsp;value          | Description                                                                                                                                                                            |
-|----------------------------------------------------------------|-----------------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| <b>`selectedIconButtonIndex: Int`</b>                          |                             | The index of the currently selected icon button.                                                                                                                                       |
-| <b>`iconButtons: List<OdsIconToggleButtonsRow.IconButton>`</b> |                             | List of [OdsIconToggleButtonsRow.IconButton] displayed into the toggle group.                                                                                                          |
-| `modifier: Modifier`                                           | `Modifier`                  | `Modifier` applied to the toggle buttons group                                                                                                                                         |
-| `displaySurface: OdsDisplaySurface`                            | `OdsDisplaySurface.Default` | `OdsDisplaySurface` applied to the button. It allows to force the button display on light or dark surface. By default, the appearance applied is based on the system night mode value. |
+| Parameter                                                      | Default&nbsp;value | Description                                                                   |
+|----------------------------------------------------------------|--------------------|-------------------------------------------------------------------------------|
+| <b>`selectedIconButtonIndex: Int`</b>                          |                    | The index of the currently selected icon button.                              |
+| <b>`iconButtons: List<OdsIconToggleButtonsRow.IconButton>`</b> |                    | List of [OdsIconToggleButtonsRow.IconButton] displayed into the toggle group. |
+| `modifier: Modifier`                                           | `Modifier`         | `Modifier` applied to the toggle buttons group                                |
 
 #### XML
 
 In your layout, use the `OdsIconToggleButtonsRow` view.
 
-You can also force the buttons display on `light` or `dark` surface using `displaySurface` attribute. By default (`standard` value), the appearance applied is based on the system night mode value.
+You can also force the icon toggle buttons row display in `light` or `dark` theme using `inverseTheme` boolean attribute. By default (`false` value), the appearance applied is based on the system night mode value.
 
 ```xml
 
@@ -410,7 +458,7 @@ You can also force the buttons display on `light` or `dark` surface using `displ
     android:layout_height="wrap_content"
     android:layout_width="wrap_content"
     app:selectedIconButtonIndex="1"
-    app:displaySurface="standard" />
+    app:inverseTheme="false" />
 ```
 
 Add the icons in the `OdsIconToggleButtonsRow` by code using view binding:
