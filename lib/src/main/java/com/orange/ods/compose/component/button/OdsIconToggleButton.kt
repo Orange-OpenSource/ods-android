@@ -14,19 +14,18 @@ package com.orange.ods.compose.component.button
 
 import androidx.compose.material.IconButton
 import androidx.compose.material.IconToggleButton
-import androidx.compose.material.ripple.LocalRippleTheme
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.tooling.preview.PreviewParameter
 import com.orange.ods.compose.component.OdsComposable
+import com.orange.ods.compose.component.utilities.BasicPreviewParameterProvider
 import com.orange.ods.compose.component.utilities.Preview
 import com.orange.ods.compose.component.utilities.UiModePreviews
-import com.orange.ods.compose.theme.OdsDisplaySurface
 
 /**
  * <a href="https://system.design.orange.com/0c1af118d/p/06a393-buttons/b/79b091" target="_blank">ODS Buttons</a>.
@@ -40,7 +39,6 @@ import com.orange.ods.compose.theme.OdsDisplaySurface
  * @param checkedIcon Icon displayed when the button is checked.
  * @param modifier [Modifier] applied to the button.
  * @param enabled Controls the enabled state of the button. When `false`, this button will not be clickable.
- * @param displaySurface [OdsDisplaySurface] applied to the button. It allows to force the button display on light or dark surface. By default, the appearance applied is based on the system night mode value.
  */
 @Composable
 @OdsComposable
@@ -51,31 +49,29 @@ fun OdsIconToggleButton(
     checkedIcon: OdsIconButton.Icon,
     modifier: Modifier = Modifier,
     enabled: Boolean = true,
-    displaySurface: OdsDisplaySurface = OdsDisplaySurface.Default
 ) {
-    CompositionLocalProvider(
-        LocalRippleTheme provides displaySurface.rippleTheme
+    IconToggleButton(
+        checked = checked,
+        onCheckedChange = onCheckedChange,
+        modifier = modifier,
+        enabled = enabled
     ) {
-        IconToggleButton(
-            checked = checked,
-            onCheckedChange = onCheckedChange,
-            modifier = modifier,
-            enabled = enabled
-        ) {
-            val icon = if (checked) checkedIcon else uncheckedIcon
-            icon.Content(OdsIconButton.Icon.ExtraParameters(enabled, displaySurface))
-        }
+        val icon = if (checked) checkedIcon else uncheckedIcon
+        icon.Content(OdsIconButton.Icon.ExtraParameters(enabled))
     }
 }
 
 @UiModePreviews.Default
 @Composable
-private fun PreviewOdsIconToggleButton() = Preview {
+private fun PreviewOdsIconToggleButton(@PreviewParameter(OdsIconToggleButtonPreviewParameterProvider::class) enabled: Boolean) = Preview {
     var checked by remember { mutableStateOf(false) }
     OdsIconToggleButton(
         checked = checked,
         onCheckedChange = { checked = it },
-        uncheckedIcon = OdsIconButton.Icon(painterResource(id = android.R.drawable.ic_media_play), "Play"),
-        checkedIcon = OdsIconButton.Icon(painterResource(id = android.R.drawable.ic_media_pause), "Pause"),
+        uncheckedIcon = OdsIconButton.Icon(painterResource(id = android.R.drawable.ic_dialog_info), "Info"),
+        checkedIcon = OdsIconButton.Icon(painterResource(id = android.R.drawable.ic_dialog_alert), "Alert"),
+        enabled = enabled
     )
 }
+
+private class OdsIconToggleButtonPreviewParameterProvider : BasicPreviewParameterProvider<Boolean>(true, false)

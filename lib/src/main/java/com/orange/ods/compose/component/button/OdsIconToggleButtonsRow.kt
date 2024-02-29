@@ -44,7 +44,7 @@ import com.orange.ods.compose.component.utilities.DisabledInteractionSource
 import com.orange.ods.compose.component.utilities.Preview
 import com.orange.ods.compose.component.utilities.UiModePreviews
 import com.orange.ods.compose.component.utilities.selectionStateDescription
-import com.orange.ods.compose.theme.OdsDisplaySurface
+import com.orange.ods.compose.theme.OdsTheme
 import com.orange.ods.compose.utilities.extension.enable
 
 /**
@@ -55,8 +55,6 @@ import com.orange.ods.compose.utilities.extension.enable
  * @param selectedIconButtonIndex The index of the currently selected icon button.
  * @param iconButtons List of [OdsIconToggleButtonsRow.IconButton] displayed into the toggle group.
  * @param modifier [Modifier] applied to the toggle buttons group.
- * @param displaySurface [OdsDisplaySurface] applied to the button. It allows to force the button display on light or dark surface. By default, the
- * appearance applied is based on the system night mode value.
  */
 @Composable
 @OdsComposable
@@ -64,7 +62,6 @@ fun OdsIconToggleButtonsRow(
     selectedIconButtonIndex: Int,
     iconButtons: List<OdsIconToggleButtonsRow.IconButton>,
     modifier: Modifier = Modifier,
-    displaySurface: OdsDisplaySurface = OdsDisplaySurface.Default
 ) {
     Row(
         modifier = modifier
@@ -72,17 +69,17 @@ fun OdsIconToggleButtonsRow(
             .selectableGroup()
             .border(
                 width = 1.dp,
-                color = buttonToggleBorderColor(displaySurface)
+                color = buttonToggleBorderColor()
             )
     ) {
         iconButtons.forEachIndexed { index, iconButton ->
-            iconButton.Content(extraParameters = OdsIconToggleButtonsRow.IconButton.ExtraParameters(index, displaySurface, selectedIconButtonIndex == index))
+            iconButton.Content(extraParameters = OdsIconToggleButtonsRow.IconButton.ExtraParameters(index, selectedIconButtonIndex == index))
             if (index < iconButtons.size) {
                 Divider(
                     modifier = Modifier
                         .fillMaxHeight()
                         .width(1.dp),
-                    color = buttonToggleBorderColor(displaySurface)
+                    color = buttonToggleBorderColor()
                 )
             }
         }
@@ -106,7 +103,6 @@ object OdsIconToggleButtonsRow {
 
         data class ExtraParameters(
             val index: Int,
-            val displaySurface: OdsDisplaySurface,
             val selected: Boolean
         ) : OdsComponentContent.ExtraParameters()
 
@@ -161,7 +157,7 @@ object OdsIconToggleButtonsRow {
         override val tint: Color
             @Composable
             get() {
-                return with(extraParameters) { getIconColor(displaySurface, selected, enabled) }
+                return with(extraParameters) { getIconColor(selected, enabled) }
             }
 
         @Composable
@@ -172,7 +168,7 @@ object OdsIconToggleButtonsRow {
 
                 super.Content(
                     modifier
-                        .background(color = buttonToggleBackgroundColor(displaySurface).copy(alpha = backgroundAlpha))
+                        .background(color = buttonToggleBackgroundColor().copy(alpha = backgroundAlpha))
                         .padding(12.dp)
                         .run {
                             if (enabled) {
@@ -189,8 +185,8 @@ object OdsIconToggleButtonsRow {
         }
 
         @Composable
-        private fun getIconColor(displaySurface: OdsDisplaySurface, selected: Boolean, enabled: Boolean) =
-            with(displaySurface.themeColors) {
+        private fun getIconColor(selected: Boolean, enabled: Boolean) =
+            with(OdsTheme.colors) {
                 if (selected && enabled) primary else onSurface.enable(enabled = enabled)
             }
     }

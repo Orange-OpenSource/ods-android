@@ -13,10 +13,10 @@
 package com.orange.ods.compose.component.button
 
 import androidx.compose.runtime.Composable
-import com.orange.ods.compose.theme.OdsDisplaySurface
+import com.orange.ods.compose.theme.OdsTheme
 
 @Composable
-internal fun buttonToggleBackgroundColor(displaySurface: OdsDisplaySurface) = displaySurface.themeColors.primary
+internal fun buttonToggleBackgroundColor() = OdsTheme.colors.primary
 
 @Composable
-internal fun buttonToggleBorderColor(displaySurface: OdsDisplaySurface) = displaySurface.themeColors.onSurface.copy(alpha = 0.12f)
+internal fun buttonToggleBorderColor() = OdsTheme.colors.onSurface.copy(alpha = 0.12f)

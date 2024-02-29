@@ -40,7 +40,6 @@ import com.orange.ods.app.ui.utilities.code.FunctionCallCode
 import com.orange.ods.app.ui.utilities.code.XmlViewTag
 import com.orange.ods.compose.OdsComposable
 import com.orange.ods.compose.component.button.OdsIconButton
-import com.orange.ods.compose.theme.OdsDisplaySurface
 
 @Composable
 fun ButtonsIcon(customizationState: ButtonIconCustomizationState) {
@@ -65,7 +64,7 @@ fun ButtonsIcon(customizationState: ButtonIconCustomizationState) {
             InvertedBackgroundColumn(horizontalAlignment = Alignment.CenterHorizontally) {
                 IconButton(
                     enabled = isEnabled,
-                    displaySurface = displaySurface
+                    inverseTheme = true
                 )
             }
 
@@ -107,7 +106,7 @@ fun ButtonsIcon(customizationState: ButtonIconCustomizationState) {
 @Composable
 private fun IconButton(
     enabled: Boolean,
-    displaySurface: OdsDisplaySurface = OdsDisplaySurface.Default
+    inverseTheme: Boolean = false
 ) {
     val context = LocalContext.current
     val iconId = R.drawable.ic_search
@@ -126,13 +125,12 @@ private fun IconButton(
                     onClick = onClick,
                     icon = OdsIconButton.Icon(painterResource(id = R.drawable.ic_search), contentDescription),
                     enabled = enabled,
-                    displaySurface = displaySurface
                 )
             },
             xml = {
                 icon = AppCompatResources.getDrawable(context, iconId)
                 this.enabled = enabled
-                this.displaySurface = displaySurface
+                this.inverseTheme = inverseTheme
                 iconContentDescription = contentDescription
                 odsIconButton.onClick = onClick
             }

@@ -42,7 +42,6 @@ import com.orange.ods.app.ui.utilities.code.XmlViewTag
 import com.orange.ods.compose.OdsComposable
 import com.orange.ods.compose.component.button.OdsIconButton
 import com.orange.ods.compose.component.button.OdsIconToggleButton
-import com.orange.ods.compose.theme.OdsDisplaySurface
 
 @Composable
 fun ButtonsIconToggle(customizationState: ButtonIconCustomizationState) {
@@ -74,7 +73,7 @@ fun ButtonsIconToggle(customizationState: ButtonIconCustomizationState) {
                     checked = buttonCheckedState.value,
                     onCheckedChange = onCheckedChange,
                     enabled = isEnabled,
-                    displaySurface = displaySurface
+                    inverseTheme = true
                 )
             }
 
@@ -128,7 +127,7 @@ private fun IconToggleButton(
     checked: Boolean,
     onCheckedChange: (Boolean) -> Unit,
     enabled: Boolean,
-    displaySurface: OdsDisplaySurface = OdsDisplaySurface.Default
+    inverseTheme: Boolean = false
 ) {
     val context = LocalContext.current
     val uncheckedIconResId = R.drawable.ic_heart_outlined
@@ -150,7 +149,6 @@ private fun IconToggleButton(
                     checkedIcon = OdsIconButton.Icon(painterResource(id = checkedIconResId), checkedIconContentDescription),
                     onCheckedChange = onCheckedChange,
                     enabled = enabled,
-                    displaySurface = displaySurface
                 )
             }, xml = {
                 this.checked = checked
@@ -159,7 +157,7 @@ private fun IconToggleButton(
                 uncheckedIconDescription = uncheckedIconContentDescription
                 checkedIconDescription = checkedIconContentDescription
                 this.enabled = enabled
-                this.displaySurface = displaySurface
+                this.inverseTheme = inverseTheme
                 odsIconToggleButton.onCheckedChange = onCheckedChange
             }
         )

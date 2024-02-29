@@ -38,7 +38,7 @@ class OdsIconToggleButton @JvmOverloads constructor(context: Context, attrs: Att
     var uncheckedIconContentDescription by mutableStateOf<String?>(null)
     var checked by mutableStateOf(false)
     var onCheckedChange by mutableStateOf<(Boolean) -> Unit>({})
-    var displaySurface by mutableStateOf(OdsDisplaySurface.Default)
+    var inverseTheme by mutableStateOf(false)
 
     init {
         context.withStyledAttributes(attrs, R.styleable.OdsIconToggleButton) {
@@ -47,19 +47,20 @@ class OdsIconToggleButton @JvmOverloads constructor(context: Context, attrs: Att
             uncheckedIconContentDescription = getString(R.styleable.OdsIconToggleButton_uncheckedIconContentDescription).orEmpty()
             checkedIcon = getResourceIdOrNull(R.styleable.OdsIconToggleButton_checkedIcon)?.let { AppCompatResources.getDrawable(context, it) }
             uncheckedIcon = getResourceIdOrNull(R.styleable.OdsIconToggleButton_uncheckedIcon)?.let { AppCompatResources.getDrawable(context, it) }
-            displaySurface = OdsDisplaySurface.fromXmlAttrValue(getInteger(R.styleable.OdsIconToggleButton_displaySurface, 0))
+            inverseTheme = getBoolean(R.styleable.OdsIconToggleButton_inverseTheme, false)
         }
     }
 
     @Composable
     override fun OdsContent() {
-        OdsIconToggleButton(
-            checked = checked,
-            onCheckedChange = onCheckedChange,
-            uncheckedIcon = OdsIconButton.Icon(rememberDrawablePainter(drawable = uncheckedIcon), uncheckedIconContentDescription.orEmpty()),
-            checkedIcon = OdsIconButton.Icon(rememberDrawablePainter(drawable = checkedIcon), checkedIconContentDescription.orEmpty()),
-            enabled = isEnabled,
-            displaySurface = displaySurface
-        )
+        OdsButtonContent(inverseTheme = inverseTheme) {
+            OdsIconToggleButton(
+                checked = checked,
+                onCheckedChange = onCheckedChange,
+                uncheckedIcon = OdsIconButton.Icon(rememberDrawablePainter(drawable = uncheckedIcon), uncheckedIconContentDescription.orEmpty()),
+                checkedIcon = OdsIconButton.Icon(rememberDrawablePainter(drawable = checkedIcon), checkedIconContentDescription.orEmpty()),
+                enabled = isEnabled,
+            )
+        }
     }
 }

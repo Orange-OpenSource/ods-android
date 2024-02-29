@@ -24,8 +24,10 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
-import androidx.compose.material.Text
+import androidx.compose.material.LocalContentColor
+import androidx.compose.material.ripple.LocalRippleTheme
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -46,7 +48,8 @@ import com.orange.ods.compose.component.utilities.BasicPreviewParameterProvider
 import com.orange.ods.compose.component.utilities.Preview
 import com.orange.ods.compose.component.utilities.UiModePreviews
 import com.orange.ods.compose.text.OdsText
-import com.orange.ods.compose.theme.OdsDisplaySurface
+import com.orange.ods.compose.theme.LocalColors
+import com.orange.ods.compose.theme.OdsDarkRippleTheme
 import com.orange.ods.compose.theme.OdsTheme
 import com.orange.ods.extension.orElse
 import com.orange.ods.theme.typography.OdsTextStyle
@@ -88,15 +91,20 @@ fun OdsImageItem(
                             .align(Alignment.BottomStart)
                             .height(IntrinsicSize.Min)
                     ) {
-                        OdsImageItemLegendArea(
-                            text = it,
-                            color = Color.White,
-                            displaySurface = OdsDisplaySurface.Dark,
-                            textModifier = Modifier
-                                .weight(1f)
-                                .padding(all = dimensionResource(id = R.dimen.spacing_m)),
-                            icon = icon
-                        )
+                        // Legend is displayed on dark background so we force dark theme
+                        CompositionLocalProvider(
+                            LocalRippleTheme provides OdsDarkRippleTheme,
+                            LocalColors provides OdsTheme.darkThemeColors,
+                            LocalContentColor provides Color.White
+                        ) {
+                            OdsImageItemLegendArea(
+                                text = it,
+                                textModifier = Modifier
+                                    .weight(1f)
+                                    .padding(all = dimensionResource(id = R.dimen.spacing_m)),
+                                icon = icon
+                            )
+                        }
                     }
                 }
             }
@@ -116,8 +124,6 @@ fun OdsImageItem(
                         title?.let {
                             OdsImageItemLegendArea(
                                 text = it,
-                                color = OdsTheme.colors.onSurface,
-                                displaySurface = OdsDisplaySurface.Default,
                                 textModifier = Modifier
                                     .weight(1f)
                                     .padding(vertical = dimensionResource(id = R.dimen.spacing_m))
@@ -206,13 +212,12 @@ object OdsImageItem {
         val uncheckedIcon: OdsIconButton.Icon,
     ) {
         @Composable
-        fun Content(displaySurface: OdsDisplaySurface) {
+        fun Content() {
             OdsIconToggleButton(
                 checked = checked,
                 onCheckedChange = onCheckedChange,
                 uncheckedIcon = uncheckedIcon,
-                checkedIcon = checkedIcon,
-                displaySurface = displaySurface
+                checkedIcon = checkedIcon
             )
         }
     }
@@ -222,20 +227,17 @@ object OdsImageItem {
 @Composable
 private fun OdsImageItemLegendArea(
     text: String,
-    color: Color,
-    displaySurface: OdsDisplaySurface,
     icon: OdsImageItem.IconToggleButton?,
     @SuppressLint("ModifierParameter") textModifier: Modifier
 ) {
     OdsText(
         text = text,
-        color = color,
         modifier = textModifier,
         style = OdsTextStyle.TitleM,
         maxLines = 1,
         overflow = TextOverflow.Ellipsis
     )
-    icon?.Content(displaySurface)
+    icon?.Content()
 }
 
 @UiModePreviews.ImageItem

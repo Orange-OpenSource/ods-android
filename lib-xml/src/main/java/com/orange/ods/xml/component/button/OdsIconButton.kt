@@ -23,10 +23,8 @@ import androidx.compose.runtime.setValue
 import androidx.core.content.withStyledAttributes
 import com.google.accompanist.drawablepainter.rememberDrawablePainter
 import com.orange.ods.compose.component.button.OdsIconButton
-import com.orange.ods.compose.theme.OdsDisplaySurface
 import com.orange.ods.xml.R
 import com.orange.ods.xml.component.OdsAbstractComposeView
-import com.orange.ods.xml.utilities.extension.fromXmlAttrValue
 import com.orange.ods.xml.utilities.extension.getResourceIdOrNull
 
 class OdsIconButton @JvmOverloads constructor(context: Context, attrs: AttributeSet? = null) : OdsAbstractComposeView(context, attrs) {
@@ -34,23 +32,24 @@ class OdsIconButton @JvmOverloads constructor(context: Context, attrs: Attribute
     var onClick by mutableStateOf({})
     var icon by mutableStateOf<Drawable?>(null)
     var iconContentDescription by mutableStateOf("")
-    var displaySurface by mutableStateOf(OdsDisplaySurface.Default)
+    var inverseTheme by mutableStateOf(false)
 
     init {
         context.withStyledAttributes(attrs, R.styleable.OdsIconButton) {
             iconContentDescription = getString(R.styleable.OdsIconButton_iconContentDescription).orEmpty()
             icon = getResourceIdOrNull(R.styleable.OdsIconButton_icon)?.let { AppCompatResources.getDrawable(context, it) }
-            displaySurface = OdsDisplaySurface.fromXmlAttrValue(getInteger(R.styleable.OdsIconButton_displaySurface, 0))
+            inverseTheme = getBoolean(R.styleable.OdsIconButton_inverseTheme, false)
         }
     }
 
     @Composable
     override fun OdsContent() {
-        OdsIconButton(
-            onClick = onClick,
-            icon = OdsIconButton.Icon(rememberDrawablePainter(drawable = icon), iconContentDescription),
-            enabled = isEnabled,
-            displaySurface = displaySurface
-        )
+        OdsButtonContent(inverseTheme = inverseTheme) {
+            OdsIconButton(
+                onClick = onClick,
+                icon = OdsIconButton.Icon(rememberDrawablePainter(drawable = icon), iconContentDescription),
+                enabled = isEnabled
+            )
+        }
     }
 }

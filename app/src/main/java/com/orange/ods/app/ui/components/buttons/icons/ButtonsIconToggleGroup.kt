@@ -43,7 +43,6 @@ import com.orange.ods.app.ui.utilities.composable.TechnicalText
 import com.orange.ods.compose.OdsComposable
 import com.orange.ods.compose.component.button.OdsIconToggleButtonsRow
 import com.orange.ods.compose.text.OdsText
-import com.orange.ods.compose.theme.OdsDisplaySurface
 import com.orange.ods.extension.simpleNestedName
 import com.orange.ods.theme.typography.OdsTextStyle
 
@@ -83,7 +82,7 @@ fun ButtonsIconToggleGroup(customizationState: ButtonIconCustomizationState) {
                 ToggleButtonsRow(
                     selectedIconButtonIndex = selectedIconButtonIndex,
                     iconButtons = displayedIconButtons,
-                    displaySurface = displaySurface
+                    inverseTheme = true
                 )
             }
 
@@ -151,7 +150,7 @@ fun ButtonsIconToggleGroup(customizationState: ButtonIconCustomizationState) {
 private fun ToggleButtonsRow(
     selectedIconButtonIndex: Int,
     iconButtons: List<OdsIconToggleButtonsRow.IconButton>,
-    displaySurface: OdsDisplaySurface = OdsDisplaySurface.Default
+    inverseTheme: Boolean = false
 ) {
     Row(
         modifier = Modifier
@@ -164,13 +163,12 @@ private fun ToggleButtonsRow(
             compose = {
                 OdsIconToggleButtonsRow(
                     selectedIconButtonIndex = selectedIconButtonIndex,
-                    iconButtons = iconButtons,
-                    displaySurface = displaySurface
+                    iconButtons = iconButtons
                 )
             }, xml = {
                 this.odsIconToggleButtonsRow.iconButtons = iconButtons
                 this.selectedIconButtonIndex = selectedIconButtonIndex
-                this.displaySurface = displaySurface
+                this.inverseTheme = inverseTheme
             }
         )
     }

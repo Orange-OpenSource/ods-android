@@ -21,30 +21,29 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
 import androidx.core.content.withStyledAttributes
 import com.orange.ods.compose.component.button.OdsIconToggleButtonsRow
-import com.orange.ods.compose.theme.OdsDisplaySurface
 import com.orange.ods.xml.R
 import com.orange.ods.xml.component.OdsAbstractComposeView
-import com.orange.ods.xml.utilities.extension.fromXmlAttrValue
 
 class OdsIconToggleButtonsRow @JvmOverloads constructor(context: Context, attrs: AttributeSet? = null) : OdsAbstractComposeView(context, attrs) {
 
     var iconButtons by mutableStateOf<List<OdsIconToggleButtonsRow.IconButton>>(emptyList())
     var selectedIconButtonIndex by mutableIntStateOf(0)
-    var displaySurface by mutableStateOf(OdsDisplaySurface.Default)
+    var inverseTheme by mutableStateOf(false)
 
     init {
         context.withStyledAttributes(attrs, R.styleable.OdsIconToggleButtonsRow) {
             selectedIconButtonIndex = getInt(R.styleable.OdsIconToggleButtonsRow_selectedIconButtonIndex, 0)
-            displaySurface = OdsDisplaySurface.fromXmlAttrValue(getInteger(R.styleable.OdsIconToggleButtonsRow_displaySurface, 0))
+            inverseTheme = getBoolean(R.styleable.OdsIconToggleButtonsRow_inverseTheme, false)
         }
     }
 
     @Composable
     override fun OdsContent() {
-        OdsIconToggleButtonsRow(
-            selectedIconButtonIndex = selectedIconButtonIndex,
-            iconButtons = iconButtons,
-            displaySurface = displaySurface
-        )
+        OdsButtonContent(inverseTheme = inverseTheme) {
+            OdsIconToggleButtonsRow(
+                selectedIconButtonIndex = selectedIconButtonIndex,
+                iconButtons = iconButtons,
+            )
+        }
     }
 }
