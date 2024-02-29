@@ -41,7 +41,7 @@
             <enum name="functional_positive" value="2" />
             <enum name="functional_negative" value="3" />
         </attr>
-        <attr name="displaySurface" />
+        <attr name="inverseTheme" />
     </declare-styleable>
 
     <declare-styleable name="OdsIconButton">

@@ -38,7 +38,6 @@ import com.orange.ods.app.ui.utilities.code.XmlViewTag
 import com.orange.ods.app.ui.utilities.composable.Title
 import com.orange.ods.compose.OdsComposable
 import com.orange.ods.compose.component.button.OdsButton
-import com.orange.ods.compose.theme.OdsDisplaySurface
 import com.orange.ods.xml.utilities.extension.xmlEnumValue
 
 @Composable
@@ -77,7 +76,7 @@ fun ButtonsContained(customizationState: ButtonCustomizationState) {
                     leadingIcon = hasLeadingIcon,
                     enabled = isEnabled,
                     fullScreenWidth = hasFullScreenWidth,
-                    displaySurface = displaySurface
+                    inverseTheme = true
                 )
             }
 
@@ -128,7 +127,7 @@ private fun ContainedButton(
     leadingIcon: Boolean,
     enabled: Boolean,
     fullScreenWidth: Boolean,
-    displaySurface: OdsDisplaySurface = OdsDisplaySurface.Default
+    inverseTheme: Boolean = false
 ) {
     val context = LocalContext.current
     val iconId = R.drawable.ic_coffee
@@ -148,14 +147,13 @@ private fun ContainedButton(
                     onClick = {},
                     enabled = enabled,
                     style = style,
-                    displaySurface = displaySurface
                 )
             }, xml = {
                 this.text = text
                 this.icon = if (leadingIcon) AppCompatResources.getDrawable(context, iconId) else null
                 this.enabled = enabled
                 this.style = style
-                this.displaySurface = displaySurface
+                this.inverseTheme = inverseTheme
 
                 root.layoutParams = ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT)
                 val width = if (fullScreenWidth) FrameLayout.LayoutParams.MATCH_PARENT else FrameLayout.LayoutParams.WRAP_CONTENT

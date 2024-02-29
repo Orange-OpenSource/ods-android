@@ -25,7 +25,6 @@ import androidx.databinding.BindingAdapter
 import com.google.accompanist.drawablepainter.rememberDrawablePainter
 import com.orange.ods.compose.component.button.OdsButton
 import com.orange.ods.compose.component.button.OdsTextButton
-import com.orange.ods.compose.theme.InverseTheme
 import com.orange.ods.xml.R
 import com.orange.ods.xml.component.OdsAbstractComposeView
 import com.orange.ods.xml.utilities.extension.fromXmlAttrValue
@@ -50,7 +49,7 @@ class OdsTextButton @JvmOverloads constructor(context: Context, attrs: Attribute
 
     @Composable
     override fun OdsContent() {
-        val textButton: @Composable () -> Unit = {
+        OdsButtonContent(inverseTheme = inverseTheme) {
             OdsTextButton(
                 text = text,
                 onClick = onClick,
@@ -58,14 +57,6 @@ class OdsTextButton @JvmOverloads constructor(context: Context, attrs: Attribute
                 enabled = isEnabled,
                 style = style
             )
-        }
-
-        if (inverseTheme) {
-            InverseTheme {
-                textButton()
-            }
-        } else {
-            textButton()
         }
     }
 }
