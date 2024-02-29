@@ -155,6 +155,6 @@ private val previewParameterValues: List<OdsTextButtonPreviewParameter>
         OdsTextButtonPreviewParameter(OdsTextButton.Style.Default),
         OdsTextButtonPreviewParameter(OdsTextButton.Style.Default, enabled = false),
         OdsTextButtonPreviewParameter(OdsTextButton.Style.Primary, hasIcon = true),
-        OdsTextButtonPreviewParameter(OdsTextButton.Style.Default, hasIcon = true, enabled = false)
+        OdsTextButtonPreviewParameter(OdsTextButton.Style.Primary, hasIcon = true, enabled = false)
     )
 

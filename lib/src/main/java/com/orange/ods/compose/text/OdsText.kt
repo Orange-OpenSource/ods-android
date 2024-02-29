@@ -54,7 +54,7 @@ fun OdsText(
     text: String,
     style: OdsTextStyle,
     modifier: Modifier = Modifier,
-    enabled: Boolean = true, //TODO Not sure this is a good point to have this here cause I had to specify enabled parameter in OdsTextButton and this should be handled by disabledContentColor of TextButton
+    enabled: Boolean = true,
     textAlign: TextAlign? = null,
     overflow: TextOverflow = TextOverflow.Clip,
     softWrap: Boolean = true,
