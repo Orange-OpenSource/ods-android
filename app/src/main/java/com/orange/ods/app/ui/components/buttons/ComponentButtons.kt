@@ -26,7 +26,6 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.stringResource
 import com.orange.ods.app.R
@@ -40,7 +39,6 @@ import com.orange.ods.compose.component.chip.OdsChoiceChipsFlowRow
 import com.orange.ods.compose.component.listitem.OdsListItem
 import com.orange.ods.compose.text.OdsText
 import com.orange.ods.compose.theme.InverseTheme
-import com.orange.ods.compose.theme.OdsDisplaySurface
 import com.orange.ods.compose.theme.OdsTheme
 import com.orange.ods.theme.typography.OdsTextStyle
 
@@ -141,24 +139,13 @@ fun InvertedBackgroundColumn(
     horizontalAlignment: Alignment.Horizontal = Alignment.Start,
     content: @Composable InvertedBackgroundColumnScope.() -> Unit
 ) {
-    val backgroundColor: Color
-    @StringRes val textRes: Int
-    val displaySurface: OdsDisplaySurface
-    if (isSystemInDarkTheme()) {
-        backgroundColor = OdsTheme.lightThemeColors.surface
-        textRes = R.string.component_force_on_light
-        displaySurface = OdsDisplaySurface.Light
-    } else {
-        backgroundColor = OdsTheme.darkThemeColors.surface
-        textRes = R.string.component_force_on_dark
-        displaySurface = OdsDisplaySurface.Dark
-    }
+    @StringRes val textRes = if (isSystemInDarkTheme()) R.string.component_force_on_light else R.string.component_force_on_dark
 
     InverseTheme {
         Column(
             modifier = Modifier
                 .fillMaxWidth()
-                .background(color = backgroundColor)
+                .background(color = OdsTheme.colors.surface)
                 .padding(bottom = dimensionResource(com.orange.ods.R.dimen.spacing_m)),
             horizontalAlignment = horizontalAlignment
         ) {
@@ -171,9 +158,9 @@ fun InvertedBackgroundColumn(
                 text = stringResource(id = textRes),
                 style = OdsTextStyle.BodyM
             )
-            InvertedBackgroundColumnScope(this, displaySurface).content()
+            InvertedBackgroundColumnScope(this).content()
         }
     }
 }
 
-class InvertedBackgroundColumnScope(scope: ColumnScope, val displaySurface: OdsDisplaySurface) : ColumnScope by scope
+class InvertedBackgroundColumnScope(scope: ColumnScope) : ColumnScope by scope

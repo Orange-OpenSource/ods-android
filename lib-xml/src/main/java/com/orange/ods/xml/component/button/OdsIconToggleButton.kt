@@ -24,10 +24,8 @@ import androidx.core.content.withStyledAttributes
 import com.google.accompanist.drawablepainter.rememberDrawablePainter
 import com.orange.ods.compose.component.button.OdsIconButton
 import com.orange.ods.compose.component.button.OdsIconToggleButton
-import com.orange.ods.compose.theme.OdsDisplaySurface
 import com.orange.ods.xml.R
 import com.orange.ods.xml.component.OdsAbstractComposeView
-import com.orange.ods.xml.utilities.extension.fromXmlAttrValue
 import com.orange.ods.xml.utilities.extension.getResourceIdOrNull
 
 class OdsIconToggleButton @JvmOverloads constructor(context: Context, attrs: AttributeSet? = null) : OdsAbstractComposeView(context, attrs) {

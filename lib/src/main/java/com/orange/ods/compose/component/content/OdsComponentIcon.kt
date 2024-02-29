@@ -21,7 +21,6 @@ import androidx.compose.ui.graphics.vector.ImageVector
 import com.orange.ods.compose.component.button.OdsIconButton
 import com.orange.ods.compose.component.icon.OdsIcon
 import com.orange.ods.compose.component.icon.OdsIconDefaults
-import com.orange.ods.compose.theme.OdsDisplaySurface
 import com.orange.ods.extension.orElse
 
 /**
@@ -33,7 +32,6 @@ abstract class OdsComponentIcon<T> internal constructor(
     private val contentDescription: String,
     protected var enabled: Boolean = true,
     private val onClick: (() -> Unit)? = null,
-    protected var displaySurface: OdsDisplaySurface = OdsDisplaySurface.Default
 ) : OdsComponentContent<T>(extraParametersClass) where T : OdsComponentContent.ExtraParameters {
 
     protected open val tint: Color?
