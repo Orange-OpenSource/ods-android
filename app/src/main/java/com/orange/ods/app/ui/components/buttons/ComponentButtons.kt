@@ -39,7 +39,7 @@ import com.orange.ods.compose.component.button.OdsTextButton
 import com.orange.ods.compose.component.chip.OdsChoiceChipsFlowRow
 import com.orange.ods.compose.component.listitem.OdsListItem
 import com.orange.ods.compose.text.OdsText
-import com.orange.ods.compose.theme.InverseSurface
+import com.orange.ods.compose.theme.InverseTheme
 import com.orange.ods.compose.theme.OdsDisplaySurface
 import com.orange.ods.compose.theme.OdsTheme
 import com.orange.ods.theme.typography.OdsTextStyle
@@ -154,7 +154,7 @@ fun InvertedBackgroundColumn(
         displaySurface = OdsDisplaySurface.Dark
     }
 
-    InverseSurface {
+    InverseTheme {
         Column(
             modifier = Modifier
                 .fillMaxWidth()

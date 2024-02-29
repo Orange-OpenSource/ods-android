@@ -73,6 +73,7 @@ fun ButtonsText(customizationState: ButtonCustomizationState) {
                     leadingIcon = hasLeadingIcon,
                     enabled = isEnabled,
                     fullScreenWidth = hasFullScreenWidth,
+                    inverseTheme = true
                 )
             }
 
@@ -123,6 +124,7 @@ private fun TextButton(
     leadingIcon: Boolean,
     enabled: Boolean,
     fullScreenWidth: Boolean,
+    inverseTheme: Boolean = false
 ) {
     val context = LocalContext.current
     val iconId = R.drawable.ic_coffee
@@ -148,7 +150,7 @@ private fun TextButton(
                 this.icon = if (leadingIcon) AppCompatResources.getDrawable(context, iconId) else null
                 this.enabled = enabled
                 this.style = style
-                this.displaySurface = displaySurface
+                this.inverseTheme = inverseTheme
                 root.layoutParams = ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT)
                 val width = if (fullScreenWidth) FrameLayout.LayoutParams.MATCH_PARENT else FrameLayout.LayoutParams.WRAP_CONTENT
                 odsTextButton.layoutParams = FrameLayout.LayoutParams(width, FrameLayout.LayoutParams.WRAP_CONTENT)

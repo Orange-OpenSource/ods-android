@@ -37,6 +37,7 @@ private val LocalDarkThemeColors = compositionLocalOf<OdsColors> { error("Compos
 private val LocalTypography = staticCompositionLocalOf { OdsTypography() }
 private val LocalComponentsConfiguration = staticCompositionLocalOf { OdsComponentsConfiguration() }
 
+private val LocalDarkThemeEnabled = staticCompositionLocalOf<Boolean> { error("CompositionLocal LocalDarkThemeEnabled not present") }
 
 object OdsTheme {
 
@@ -87,13 +88,14 @@ fun OdsTheme(
     val colors = if (darkThemeEnabled) themeConfiguration.colors.darkColors else themeConfiguration.colors.lightColors
 
     CompositionLocalProvider(
+        LocalDarkThemeEnabled provides darkThemeEnabled,
         LocalRippleTheme provides OdsRippleTheme,
         LocalColors provides colors,
         LocalLightThemeColors provides themeConfiguration.colors.lightColors,
         LocalDarkThemeColors provides themeConfiguration.colors.darkColors,
         LocalTypography provides themeConfiguration.typography,
         LocalShapes provides themeConfiguration.shapes,
-        LocalComponentsConfiguration provides themeConfiguration.componentsConfiguration,
+        LocalComponentsConfiguration provides themeConfiguration.componentsConfiguration
     ) {
         MaterialTheme(
             colors = colors.materialColors
@@ -103,11 +105,15 @@ fun OdsTheme(
     }
 }
 
+/**
+ * Force the given [content] to be displayed in inverse theme (i.e. in dark theme when app is in light or in light theme when app is in dark)
+ */
 @Composable
-fun InverseSurface(content: @Composable () -> Unit) {
+fun InverseTheme(content: @Composable () -> Unit) {
+    val darkThemeEnabled = LocalDarkThemeEnabled.current
     val colors: OdsColors
     val rippleTheme: RippleTheme
-    if (isSystemInDarkTheme()) {
+    if (darkThemeEnabled) {
         colors = OdsTheme.lightThemeColors
         rippleTheme = OdsLightRippleTheme
     } else {
