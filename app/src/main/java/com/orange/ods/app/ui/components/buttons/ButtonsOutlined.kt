@@ -38,7 +38,6 @@ import com.orange.ods.app.ui.utilities.code.XmlViewTag
 import com.orange.ods.compose.OdsComposable
 import com.orange.ods.compose.component.button.OdsButton
 import com.orange.ods.compose.component.button.OdsOutlinedButton
-import com.orange.ods.compose.theme.OdsDisplaySurface
 
 @Composable
 fun ButtonsOutlined(customizationState: ButtonCustomizationState) {
@@ -61,7 +60,7 @@ fun ButtonsOutlined(customizationState: ButtonCustomizationState) {
                     leadingIcon = hasLeadingIcon,
                     enabled = isEnabled,
                     fullScreenWidth = hasFullScreenWidth,
-                    displaySurface = displaySurface
+                    inverseTheme = true
                 )
             }
 
@@ -108,7 +107,7 @@ private fun OutlinedButton(
     leadingIcon: Boolean,
     enabled: Boolean,
     fullScreenWidth: Boolean,
-    displaySurface: OdsDisplaySurface = OdsDisplaySurface.Default,
+    inverseTheme: Boolean = false
 ) {
     val context = LocalContext.current
     val iconId = R.drawable.ic_coffee
@@ -126,14 +125,13 @@ private fun OutlinedButton(
                     text = text,
                     onClick = {},
                     icon = if (leadingIcon) OdsButton.Icon(painterResource(id = iconId)) else null,
-                    enabled = enabled,
-                    displaySurface = displaySurface
+                    enabled = enabled
                 )
             }, xml = {
                 this.text = text
                 this.icon = if (leadingIcon) AppCompatResources.getDrawable(context, iconId) else null
                 this.enabled = enabled
-                this.displaySurface = displaySurface
+                this.inverseTheme = inverseTheme
 
                 root.layoutParams = ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT)
                 val width = if (fullScreenWidth) FrameLayout.LayoutParams.MATCH_PARENT else FrameLayout.LayoutParams.WRAP_CONTENT

@@ -15,11 +15,6 @@
     <attr name="text" format="string" />
     <attr name="enabled" format="boolean" />
     <attr name="inverseTheme" format="boolean" />
-    <attr name="displaySurface" format="enum">
-        <enum name="standard" value="0" />
-        <enum name="dark" value="1" />
-        <enum name="light" value="2" />
-    </attr>
     <attr name="iconContentDescription" format="string" />
 
     <declare-styleable name="OdsBanner">
@@ -70,7 +65,7 @@
         <attr name="icon" />
         <attr name="text" />
         <attr name="enabled" />
-        <attr name="displaySurface" />
+        <attr name="inverseTheme" />
     </declare-styleable>
 
     <declare-styleable name="OdsTextButton">

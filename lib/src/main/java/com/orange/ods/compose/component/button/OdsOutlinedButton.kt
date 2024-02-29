@@ -16,20 +16,18 @@ import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.material.ButtonDefaults
 import androidx.compose.material.OutlinedButton
-import androidx.compose.material.ripple.LocalRippleTheme
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.tooling.preview.PreviewParameter
 import com.orange.ods.compose.component.OdsComposable
+import com.orange.ods.compose.component.utilities.BasicPreviewParameterProvider
 import com.orange.ods.compose.component.utilities.Preview
 import com.orange.ods.compose.component.utilities.UiModePreviews
 import com.orange.ods.compose.text.OdsText
-import com.orange.ods.compose.theme.OdsDisplaySurface
 import com.orange.ods.compose.theme.OdsTheme
 import com.orange.ods.compose.utilities.extension.enable
-import com.orange.ods.theme.colors.OdsColors
 import com.orange.ods.theme.typography.OdsTextStyle
 
 /**
@@ -43,8 +41,6 @@ import com.orange.ods.theme.typography.OdsTextStyle
  * @param modifier [Modifier] applied to the button.
  * @param icon Icon displayed in the button before the text.
  * @param enabled Controls the enabled state of the button. When `false`, the button is not clickable.
- * @param displaySurface [OdsDisplaySurface] applied to the button. It allows to force the button display on light or dark surface. By default, the
- * appearance applied is based on the system night mode value.
  */
 @Composable
 @OdsComposable
@@ -54,45 +50,39 @@ fun OdsOutlinedButton(
     modifier: Modifier = Modifier,
     icon: OdsButton.Icon? = null,
     enabled: Boolean = true,
-    displaySurface: OdsDisplaySurface = OdsDisplaySurface.Default
 ) {
-    CompositionLocalProvider(
-        LocalRippleTheme provides displaySurface.rippleTheme
+    val color = OdsTheme.colors.onSurface
+    OutlinedButton(
+        onClick = onClick,
+        enabled = enabled,
+        modifier = modifier,
+        interactionSource = remember { MutableInteractionSource() },
+        shape = OdsTheme.shapes.small,
+        border = BorderStroke(
+            ButtonDefaults.OutlinedBorderSize,
+            if (enabled) color else color.enable(enabled = false)
+        ),
+        colors = ButtonDefaults.outlinedButtonColors(
+            backgroundColor = Color.Transparent,
+            contentColor = color,
+            disabledContentColor = color.enable(false)
+        )
     ) {
-        OutlinedButton(
-            onClick = onClick,
-            enabled = enabled,
-            modifier = modifier,
-            interactionSource = remember { MutableInteractionSource() },
-            shape = OdsTheme.shapes.small,
-            border = BorderStroke(
-                ButtonDefaults.OutlinedBorderSize,
-                if (enabled) {
-                    OdsTheme.colors.buttonOutlinedColor(displaySurface)
-                } else {
-                    OdsTheme.colors.buttonOutlinedDisabledColor(displaySurface)
-                }
-            ),
-            colors = ButtonDefaults.outlinedButtonColors(
-                backgroundColor = Color.Transparent,
-                contentColor = OdsTheme.colors.buttonOutlinedColor(displaySurface),
-                disabledContentColor = OdsTheme.colors.buttonOutlinedDisabledColor(displaySurface)
-            )
-        ) {
-            icon?.Content()
-            OdsText(text = text, style = OdsTextStyle.LabelL)
-        }
+        icon?.Content()
+        OdsText(
+            text = text,
+            style = OdsTextStyle.LabelL,
+            enabled = enabled
+        )
     }
 }
 
-@Composable
-private fun OdsColors.buttonOutlinedColor(displaySurface: OdsDisplaySurface) = displaySurface.themeColors.onSurface
-
-@Composable
-private fun OdsColors.buttonOutlinedDisabledColor(displaySurface: OdsDisplaySurface) = buttonOutlinedColor(displaySurface).enable(enabled = false)
 
 @UiModePreviews.Button
 @Composable
-private fun PreviewOdsOutlinedButton() = Preview {
-    OdsOutlinedButton(text = "Text", onClick = {})
+private fun PreviewOdsOutlinedButton(@PreviewParameter(OdsOutlinedButtonPreviewParameterProvider::class) enabled: Boolean) = Preview {
+    OdsOutlinedButton(text = "Text", onClick = {}, enabled = enabled)
 }
+
+private class OdsOutlinedButtonPreviewParameterProvider : BasicPreviewParameterProvider<Boolean>(true, false)
+
