@@ -1,11 +1,14 @@
 {
   "$schema": "https://docs.renovatebot.com/renovate-schema.json",
   "extends": [
-    "config:base",
+    "config:recommended",
     ":rebaseStalePrs",
     ":renovatePrefix"
   ],
+  "labels": ["dependencies"],
   "baseBranches": ["develop"],
   "schedule": [ "before 5am on the first day of the month" ],
   "timezone": "Europe/Paris"
+  "prHourlyLimit": 0,
+  "prConcurrentLimit": 0
 }
