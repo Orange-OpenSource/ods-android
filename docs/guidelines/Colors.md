@@ -36,6 +36,7 @@ Icon(
 You can use the following **functional colors** in your application:
 
 - `OdsTheme.colors.functional.positive` and `OdsTheme.colors.functional.onPositive`
+- `OdsTheme.colors.functional.negative` and `OdsTheme.colors.functional.onNegative`
 - `OdsTheme.colors.functional.info`
 - `OdsTheme.colors.functional.alert`
 
