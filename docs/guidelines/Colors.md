@@ -5,10 +5,10 @@ title: Colors
 
 ---
 
-**Page Summary**
+<br>**On this page**
 
-* [Specifications references](#specifications-references)
-* [Implementation in Jetpack Compose](#implementation-in-jetpack-compose)
+* Table of contents
+{:toc}
 
 ---
 

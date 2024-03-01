@@ -5,11 +5,10 @@ title: Typography
 
 ---
 
-**Page Summary**
+<br>**On this page**
 
-* [Specifications references](#specifications-references)
-* [Implementation in Jetpack Compose](#implementation-in-jetpack-compose)
-    * [OdsText composable](#odstext-composable)
+* Table of contents
+{:toc}
 
 ---
 
