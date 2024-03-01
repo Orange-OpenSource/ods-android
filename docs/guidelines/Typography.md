@@ -23,7 +23,7 @@ title: Typography
 As ODS library supports multi-theme, the available typography is managed by a class (`OdsTypography`) which is instantiated by the theme itself. It has a default constructor with the values used by Orange.
 The theme provides typography for the application which uses the ODS library. ODS library components relies on the `OdsTypography` defined by the used theme.
 
-Through the `OdsTypography` class, you can set the `defaultFontFamily` which will be applied to the typography text styles and you can define text styles you want to be in capitals by adding it into the `allCapsTextStyles` list.
+Through the `OdsTypography` class, you can set the `fontFamily` which will be applied to the typography text styles and you can define text styles you want to be in capitals by adding it into the `allCapsTextStyles` list.
 
 We recommend you to use `OdsText` composable and provide an `OdsTextStyle` to display texts:
 
