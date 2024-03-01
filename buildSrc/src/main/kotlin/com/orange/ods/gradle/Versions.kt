@@ -41,7 +41,7 @@ object Versions {
     const val ksp = "$kotlin-1.0.15"
     const val lifecycle = "2.6.2"
     const val material = "1.10.0"
-    const val navigation = "2.7.6"
+    const val navigation = "2.7.7"
     const val testExtJUnit = "1.1.5"
     const val timber = "5.0.1"
     const val webkit = "1.9.0"
