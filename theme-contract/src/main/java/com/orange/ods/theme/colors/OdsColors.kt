@@ -24,7 +24,7 @@ import androidx.compose.runtime.setValue
  * Default components' colors are based on the provided [materialColors] but you can override these colors by providing your colors for each component. As an
  * example, if you need to change the switches' colors you can provide your own [OdsSwitchColors] in the ODS color system.
  */
-open class OdsColors(
+class OdsColors(
     val materialColors: Colors,
     functionalColors: OdsFunctionalColors,
     private var componentColors: OdsComponentColors

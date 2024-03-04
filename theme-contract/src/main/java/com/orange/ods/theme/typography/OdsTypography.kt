@@ -17,8 +17,16 @@ import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.sp
 
+/**
+ * ODS typography system.
+ *
+ * The ODS typography system can help you create an ODS typography theme that reflects your brand or style.
+ * By default, the ODS typography is built with Orange values but you can override these values in your theme as you want.
+ * The [fontFamily] applied to the typography text styles can be changed and you can define text styles you want to be in capitals by adding it into
+ * the [allCapsTextStyles] list.
+ */
 class OdsTypography(
-    defaultFontFamily: FontFamily = FontFamily.Default,
+    fontFamily: FontFamily = FontFamily.Default,
     headlineL: TextStyle = TextStyle(
         fontWeight = FontWeight.Bold,
         fontSize = 34.sp,
@@ -95,16 +103,16 @@ class OdsTypography(
     private val allCapsTextStyles: List<TextStyle>
 
     init {
-        this.headlineL = headlineL.withDefaultFontFamily(defaultFontFamily)
-        this.headlineS = headlineS.withDefaultFontFamily(defaultFontFamily)
-        this.titleL = titleL.withDefaultFontFamily(defaultFontFamily)
-        this.titleM = titleM.withDefaultFontFamily(defaultFontFamily)
-        this.titleS = titleS.withDefaultFontFamily(defaultFontFamily)
-        this.bodyL = bodyL.withDefaultFontFamily(defaultFontFamily)
-        this.bodyM = bodyM.withDefaultFontFamily(defaultFontFamily)
-        this.bodyS = bodyS.withDefaultFontFamily(defaultFontFamily)
-        this.labelL = labelL.withDefaultFontFamily(defaultFontFamily)
-        this.labelS = labelS.withDefaultFontFamily(defaultFontFamily)
+        this.headlineL = headlineL.withDefaultFontFamily(fontFamily)
+        this.headlineS = headlineS.withDefaultFontFamily(fontFamily)
+        this.titleL = titleL.withDefaultFontFamily(fontFamily)
+        this.titleM = titleM.withDefaultFontFamily(fontFamily)
+        this.titleS = titleS.withDefaultFontFamily(fontFamily)
+        this.bodyL = bodyL.withDefaultFontFamily(fontFamily)
+        this.bodyM = bodyM.withDefaultFontFamily(fontFamily)
+        this.bodyS = bodyS.withDefaultFontFamily(fontFamily)
+        this.labelL = labelL.withDefaultFontFamily(fontFamily)
+        this.labelS = labelS.withDefaultFontFamily(fontFamily)
         this.allCapsTextStyles = allCapsTextStyles.map { textStyle ->
             when (textStyle) {
                 OdsTextStyle.HeadlineL -> this.headlineL
