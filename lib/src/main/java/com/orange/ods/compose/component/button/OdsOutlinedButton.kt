@@ -60,7 +60,7 @@ fun OdsOutlinedButton(
         shape = OdsTheme.shapes.small,
         border = BorderStroke(
             ButtonDefaults.OutlinedBorderSize,
-            if (enabled) color else color.enable(enabled = false)
+            color.enable(enabled = enabled)
         ),
         colors = ButtonDefaults.outlinedButtonColors(
             backgroundColor = Color.Transparent,
