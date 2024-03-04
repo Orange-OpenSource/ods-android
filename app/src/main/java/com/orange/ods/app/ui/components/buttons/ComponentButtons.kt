@@ -137,7 +137,7 @@ fun ComponentButtons(variant: Variant) {
 @Composable
 fun InvertedBackgroundColumn(
     horizontalAlignment: Alignment.Horizontal = Alignment.Start,
-    content: @Composable InvertedBackgroundColumnScope.() -> Unit
+    content: @Composable ColumnScope.() -> Unit
 ) {
     @StringRes val textRes = if (isSystemInDarkTheme()) R.string.component_force_on_light else R.string.component_force_on_dark
 
@@ -158,9 +158,7 @@ fun InvertedBackgroundColumn(
                 text = stringResource(id = textRes),
                 style = OdsTextStyle.BodyM
             )
-            InvertedBackgroundColumnScope(this).content()
+            content()
         }
     }
 }
-
-class InvertedBackgroundColumnScope(scope: ColumnScope) : ColumnScope by scope
