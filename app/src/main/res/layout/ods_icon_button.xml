@@ -27,7 +27,7 @@
             type="Boolean" />
 
         <variable
-            name="inverseTheme"
+            name="invertedTheme"
             type="Boolean" />
 
     </data>
@@ -43,7 +43,7 @@
             app:icon="@{icon}"
             app:enabled="@{enabled}"
             app:iconContentDescription="@{iconContentDescription}"
-            app:inverseTheme="@{inverseTheme}" />
+            app:invertedTheme="@{invertedTheme}" />
 
         <!-- Invisible OdsIconButton used for tests -->
         <com.orange.ods.xml.component.button.OdsIconButton

@@ -28,18 +28,18 @@ class OdsIconToggleButtonsRow @JvmOverloads constructor(context: Context, attrs:
 
     var iconButtons by mutableStateOf<List<OdsIconToggleButtonsRow.IconButton>>(emptyList())
     var selectedIconButtonIndex by mutableIntStateOf(0)
-    var inverseTheme by mutableStateOf(false)
+    var invertedTheme by mutableStateOf(false)
 
     init {
         context.withStyledAttributes(attrs, R.styleable.OdsIconToggleButtonsRow) {
             selectedIconButtonIndex = getInt(R.styleable.OdsIconToggleButtonsRow_selectedIconButtonIndex, 0)
-            inverseTheme = getBoolean(R.styleable.OdsIconToggleButtonsRow_inverseTheme, false)
+            invertedTheme = getBoolean(R.styleable.OdsIconToggleButtonsRow_invertedTheme, false)
         }
     }
 
     @Composable
     override fun OdsContent() {
-        OdsButtonContent(inverseTheme = inverseTheme) {
+        OdsButtonContent(invertedTheme = invertedTheme) {
             OdsIconToggleButtonsRow(
                 selectedIconButtonIndex = selectedIconButtonIndex,
                 iconButtons = iconButtons,

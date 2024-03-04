@@ -36,7 +36,7 @@ class OdsIconToggleButton @JvmOverloads constructor(context: Context, attrs: Att
     var uncheckedIconContentDescription by mutableStateOf<String?>(null)
     var checked by mutableStateOf(false)
     var onCheckedChange by mutableStateOf<(Boolean) -> Unit>({})
-    var inverseTheme by mutableStateOf(false)
+    var invertedTheme by mutableStateOf(false)
 
     init {
         context.withStyledAttributes(attrs, R.styleable.OdsIconToggleButton) {
@@ -45,13 +45,13 @@ class OdsIconToggleButton @JvmOverloads constructor(context: Context, attrs: Att
             uncheckedIconContentDescription = getString(R.styleable.OdsIconToggleButton_uncheckedIconContentDescription).orEmpty()
             checkedIcon = getResourceIdOrNull(R.styleable.OdsIconToggleButton_checkedIcon)?.let { AppCompatResources.getDrawable(context, it) }
             uncheckedIcon = getResourceIdOrNull(R.styleable.OdsIconToggleButton_uncheckedIcon)?.let { AppCompatResources.getDrawable(context, it) }
-            inverseTheme = getBoolean(R.styleable.OdsIconToggleButton_inverseTheme, false)
+            invertedTheme = getBoolean(R.styleable.OdsIconToggleButton_invertedTheme, false)
         }
     }
 
     @Composable
     override fun OdsContent() {
-        OdsButtonContent(inverseTheme = inverseTheme) {
+        OdsButtonContent(invertedTheme = invertedTheme) {
             OdsIconToggleButton(
                 checked = checked,
                 onCheckedChange = onCheckedChange,

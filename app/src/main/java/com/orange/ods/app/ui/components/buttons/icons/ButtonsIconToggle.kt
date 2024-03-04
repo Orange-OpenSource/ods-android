@@ -73,7 +73,7 @@ fun ButtonsIconToggle(customizationState: ButtonIconCustomizationState) {
                     checked = buttonCheckedState.value,
                     onCheckedChange = onCheckedChange,
                     enabled = isEnabled,
-                    inverseTheme = true
+                    invertedTheme = true
                 )
             }
 
@@ -127,7 +127,7 @@ private fun IconToggleButton(
     checked: Boolean,
     onCheckedChange: (Boolean) -> Unit,
     enabled: Boolean,
-    inverseTheme: Boolean = false
+    invertedTheme: Boolean = false
 ) {
     val context = LocalContext.current
     val uncheckedIconResId = R.drawable.ic_heart_outlined
@@ -157,7 +157,7 @@ private fun IconToggleButton(
                 uncheckedIconDescription = uncheckedIconContentDescription
                 checkedIconDescription = checkedIconContentDescription
                 this.enabled = enabled
-                this.inverseTheme = inverseTheme
+                this.invertedTheme = invertedTheme
                 odsIconToggleButton.onCheckedChange = onCheckedChange
             }
         )

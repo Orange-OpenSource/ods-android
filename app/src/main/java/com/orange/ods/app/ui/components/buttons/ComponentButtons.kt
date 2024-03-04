@@ -38,7 +38,7 @@ import com.orange.ods.compose.component.button.OdsTextButton
 import com.orange.ods.compose.component.chip.OdsChoiceChipsFlowRow
 import com.orange.ods.compose.component.listitem.OdsListItem
 import com.orange.ods.compose.text.OdsText
-import com.orange.ods.compose.theme.InverseTheme
+import com.orange.ods.compose.theme.InvertedTheme
 import com.orange.ods.compose.theme.OdsTheme
 import com.orange.ods.theme.typography.OdsTextStyle
 
@@ -141,7 +141,7 @@ fun InvertedBackgroundColumn(
 ) {
     @StringRes val textRes = if (isSystemInDarkTheme()) R.string.component_force_on_light else R.string.component_force_on_dark
 
-    InverseTheme {
+    InvertedTheme {
         Column(
             modifier = Modifier
                 .fillMaxWidth()

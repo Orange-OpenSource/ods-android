@@ -13,12 +13,12 @@
 package com.orange.ods.xml.component.button
 
 import androidx.compose.runtime.Composable
-import com.orange.ods.compose.theme.InverseTheme
+import com.orange.ods.compose.theme.InvertedTheme
 
 @Composable
-internal fun OdsButtonContent(inverseTheme: Boolean, content: @Composable () -> Unit) {
-    if (inverseTheme) {
-        InverseTheme {
+internal fun OdsButtonContent(invertedTheme: Boolean, content: @Composable () -> Unit) {
+    if (invertedTheme) {
+        InvertedTheme {
             content()
         }
     } else {

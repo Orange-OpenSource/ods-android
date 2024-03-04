@@ -32,19 +32,19 @@ class OdsIconButton @JvmOverloads constructor(context: Context, attrs: Attribute
     var onClick by mutableStateOf({})
     var icon by mutableStateOf<Drawable?>(null)
     var iconContentDescription by mutableStateOf("")
-    var inverseTheme by mutableStateOf(false)
+    var invertedTheme by mutableStateOf(false)
 
     init {
         context.withStyledAttributes(attrs, R.styleable.OdsIconButton) {
             iconContentDescription = getString(R.styleable.OdsIconButton_iconContentDescription).orEmpty()
             icon = getResourceIdOrNull(R.styleable.OdsIconButton_icon)?.let { AppCompatResources.getDrawable(context, it) }
-            inverseTheme = getBoolean(R.styleable.OdsIconButton_inverseTheme, false)
+            invertedTheme = getBoolean(R.styleable.OdsIconButton_invertedTheme, false)
         }
     }
 
     @Composable
     override fun OdsContent() {
-        OdsButtonContent(inverseTheme = inverseTheme) {
+        OdsButtonContent(invertedTheme = invertedTheme) {
             OdsIconButton(
                 onClick = onClick,
                 icon = OdsIconButton.Icon(rememberDrawablePainter(drawable = icon), iconContentDescription),

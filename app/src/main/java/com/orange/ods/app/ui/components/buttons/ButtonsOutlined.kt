@@ -60,7 +60,7 @@ fun ButtonsOutlined(customizationState: ButtonCustomizationState) {
                     leadingIcon = hasLeadingIcon,
                     enabled = isEnabled,
                     fullScreenWidth = hasFullScreenWidth,
-                    inverseTheme = true
+                    invertedTheme = true
                 )
             }
 
@@ -107,7 +107,7 @@ private fun OutlinedButton(
     leadingIcon: Boolean,
     enabled: Boolean,
     fullScreenWidth: Boolean,
-    inverseTheme: Boolean = false
+    invertedTheme: Boolean = false
 ) {
     val context = LocalContext.current
     val iconId = R.drawable.ic_coffee
@@ -131,7 +131,7 @@ private fun OutlinedButton(
                 this.text = text
                 this.icon = if (leadingIcon) AppCompatResources.getDrawable(context, iconId) else null
                 this.enabled = enabled
-                this.inverseTheme = inverseTheme
+                this.invertedTheme = invertedTheme
 
                 root.layoutParams = ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT)
                 val width = if (fullScreenWidth) FrameLayout.LayoutParams.MATCH_PARENT else FrameLayout.LayoutParams.WRAP_CONTENT

@@ -67,11 +67,11 @@ OdsButton(
 )
 ```
 
-In the same way as for other buttons, you can display an `OdsButton` in the inverse theme of the default system theme by putting it into an `InverseTheme` composable:
+In the same way as for other buttons, you can display an `OdsButton` in the inverted theme of the default system theme by putting it into an `InvertedTheme` composable:
 
 ```kotlin
-InverseTheme {
-    // Put here the `OdsButton` you want to display in inverse theme
+InvertedTheme {
+    // Put here the `OdsButton` you want to display in inverted theme
 }
 ```
 
@@ -97,7 +97,7 @@ Set `odsButtonStyle` attribute to:
 - `functional_negative` for a negative background color
 - `standard` for a default background color
 
-You can also force the button display in `light` or `dark` theme using `inverseTheme` boolean attribute. By default (`false` value), the appearance applied is based on the system night mode value.
+You can also force the button display in `light` or `dark` theme using `invertedTheme` boolean attribute. By default (`false` value), the appearance applied is based on the system night mode value.
 
 ```xml
 
@@ -108,7 +108,7 @@ You can also force the button display in `light` or `dark` theme using `inverseT
     app:text="Contained button"
     app:icon="@drawable/ic_coffee"
     app:odsButtonStyle="primary"
-    app:inverseTheme="false" />
+    app:invertedTheme="false" />
 ```
 
 ### Text button
@@ -132,11 +132,11 @@ OdsTextButton(
 )
 ```
 
-In the same way as for other buttons, you can display an `OdsTextButton` in the inverse theme of the default system theme by putting it into an `InverseTheme` composable:
+In the same way as for other buttons, you can display an `OdsTextButton` in the inverted theme of the default system theme by putting it into an `InvertedTheme` composable:
 
 ```kotlin
-InverseTheme {
-    // Put here the `OdsTextButton` you want to display in inverse theme
+InvertedTheme {
+    // Put here the `OdsTextButton` you want to display in inverted theme
 }
 ```
 
@@ -160,7 +160,7 @@ Set `odsTextButtonStyle` attribute to:
 - `primary` for a primary colored text button
 - `standard` for a default colored text button
 
-You can also force the button display in `light` or `dark` theme using `inverseTheme` boolean attribute. By default (`false` value), the appearance applied is based on the system night mode value.
+You can also force the button display in `light` or `dark` theme using `invertedTheme` boolean attribute. By default (`false` value), the appearance applied is based on the system night mode value.
 
 ```xml
 
@@ -171,7 +171,7 @@ You can also force the button display in `light` or `dark` theme using `inverseT
     app:text="Text button"
     app:icon="@drawable/ic_coffee"
     app:odsTextButtonStyle="primary"
-    app:inverseTheme="true" />
+    app:invertedTheme="true" />
 ```
 
 ### Outlined button
@@ -194,11 +194,11 @@ OdsOutlinedButton(
 )
 ```
 
-In the same way as for other buttons, you can display an `OdsOutlinedButton` in the inverse theme of the default system theme by putting it into an `InverseTheme` composable:
+In the same way as for other buttons, you can display an `OdsOutlinedButton` in the inverted theme of the default system theme by putting it into an `InvertedTheme` composable:
 
 ```kotlin
-InverseTheme {
-    // Put here the `OdsOutlinedButton` you want to display in inverse theme
+InvertedTheme {
+    // Put here the `OdsOutlinedButton` you want to display in inverted theme
 }
 ```
 
@@ -216,7 +216,7 @@ InverseTheme {
 
 In your layout, use the `OdsOutlinedButton` view.
 
-You can also force the button display in `light` or `dark` theme using `inverseTheme` boolean attribute. By default (`false` value), the appearance applied is based on the system night mode value.
+You can also force the button display in `light` or `dark` theme using `invertedTheme` boolean attribute. By default (`false` value), the appearance applied is based on the system night mode value.
 
 ```xml
 
@@ -226,7 +226,7 @@ You can also force the button display in `light` or `dark` theme using `inverseT
     android:layout_width="wrap_content"
     app:text="Outlined button"
     app:icon="@drawable/ic_coffee"
-    app:inverseTheme="false" />
+    app:invertedTheme="false" />
 ```
 
 ### Text toggle buttons group
@@ -259,11 +259,11 @@ OdsTextToggleButtonsRow(
 )
 ```
 
-In the same way as for other buttons, you can display an `OdsTextToggleButtonsRow` in the inverse theme of the default system theme by putting it into an `InverseTheme` composable:
+In the same way as for other buttons, you can display an `OdsTextToggleButtonsRow` in the inverted theme of the default system theme by putting it into an `InvertedTheme` composable:
 
 ```kotlin
-InverseTheme {
-    // Put here the `OdsTextToggleButtonsRow` you want to display in inverse theme
+InvertedTheme {
+    // Put here the `OdsTextToggleButtonsRow` you want to display in inverted theme
 }
 ```
 
@@ -297,11 +297,11 @@ OdsIconButton(
 )
 ```
 
-In the same way as for other buttons, you can display an `OdsIconButton` in the inverse theme of the default system theme by putting it into an `InverseTheme` composable:
+In the same way as for other buttons, you can display an `OdsIconButton` in the inverted theme of the default system theme by putting it into an `InvertedTheme` composable:
 
 ```kotlin
-InverseTheme {
-    // Put here the `OdsIconButton` you want to display in inverse theme
+InvertedTheme {
+    // Put here the `OdsIconButton` you want to display in inverted theme
 }
 ```
 
@@ -318,7 +318,7 @@ InverseTheme {
 
 In your layout, use the `OdsIconButton` view.
 
-You can also force the icon button display in `light` or `dark` theme using `inverseTheme` boolean attribute. By default (`false` value), the appearance applied is based on the system night mode value.
+You can also force the icon button display in `light` or `dark` theme using `invertedTheme` boolean attribute. By default (`false` value), the appearance applied is based on the system night mode value.
 
 ```xml
 
@@ -328,7 +328,7 @@ You can also force the icon button display in `light` or `dark` theme using `inv
     android:layout_width="wrap_content"
     app:icon="@drawable/ic_coffee"
     app:iconContentDescription="Coffee"
-    app:inverseTheme="true" />
+    app:invertedTheme="true" />
 ```
 
 ### Icon toggle button
@@ -354,11 +354,11 @@ OdsIconToggleButton(
 )
 ```
 
-In the same way as for other buttons, you can display an `OdsIconToggleButton` in the inverse theme of the default system theme by putting it into an `InverseTheme` composable:
+In the same way as for other buttons, you can display an `OdsIconToggleButton` in the inverted theme of the default system theme by putting it into an `InvertedTheme` composable:
 
 ```kotlin
-InverseTheme {
-    // Put here the `OdsIconToggleButton` you want to display in inverse theme
+InvertedTheme {
+    // Put here the `OdsIconToggleButton` you want to display in inverted theme
 }
 ```
 
@@ -377,7 +377,7 @@ InverseTheme {
 
 In your layout, use the `OdsIconToggleButton` view.
 
-You can also force the icon toggle button display in `light` or `dark` theme using `inverseTheme` boolean attribute. By default (`false` value), the appearance applied is based on the system night mode value.
+You can also force the icon toggle button display in `light` or `dark` theme using `invertedTheme` boolean attribute. By default (`false` value), the appearance applied is based on the system night mode value.
 
 ```xml
 
@@ -390,7 +390,7 @@ You can also force the icon toggle button display in `light` or `dark` theme usi
     app:checkedIconContentDescription="Password visible"
     app:uncheckedIcon="@drawable/ic_crossed_eye"
     app:uncheckedIconContentDescription="Password invisible"
-    app:inverseTheme="false" />
+    app:invertedTheme="false" />
 ```
 
 ### Icon toggle buttons group
@@ -429,11 +429,11 @@ OdsIconToggleButtonsRow(
 )
 ```
 
-In the same way as for other buttons, you can display an `OdsIconToggleButtonsRow` in the inverse theme of the default system theme by putting it into an `InverseTheme` composable:
+In the same way as for other buttons, you can display an `OdsIconToggleButtonsRow` in the inverted theme of the default system theme by putting it into an `InvertedTheme` composable:
 
 ```kotlin
-InverseTheme {
-    // Put here the `OdsIconToggleButtonsRow` you want to display in inverse theme
+InvertedTheme {
+    // Put here the `OdsIconToggleButtonsRow` you want to display in inverted theme
 }
 ```
 
@@ -449,7 +449,7 @@ InverseTheme {
 
 In your layout, use the `OdsIconToggleButtonsRow` view.
 
-You can also force the icon toggle buttons row display in `light` or `dark` theme using `inverseTheme` boolean attribute. By default (`false` value), the appearance applied is based on the system night mode value.
+You can also force the icon toggle buttons row display in `light` or `dark` theme using `invertedTheme` boolean attribute. By default (`false` value), the appearance applied is based on the system night mode value.
 
 ```xml
 
@@ -458,7 +458,7 @@ You can also force the icon toggle buttons row display in `light` or `dark` them
     android:layout_height="wrap_content"
     android:layout_width="wrap_content"
     app:selectedIconButtonIndex="1"
-    app:inverseTheme="false" />
+    app:invertedTheme="false" />
 ```
 
 Add the icons in the `OdsIconToggleButtonsRow` by code using view binding:

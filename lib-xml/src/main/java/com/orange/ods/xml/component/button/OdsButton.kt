@@ -34,7 +34,7 @@ class OdsButton @JvmOverloads constructor(context: Context, attrs: AttributeSet?
     var icon by mutableStateOf<Drawable?>(null)
     var text by mutableStateOf("")
     var style by mutableStateOf(OdsButton.Style.Default)
-    var inverseTheme by mutableStateOf(false)
+    var invertedTheme by mutableStateOf(false)
 
     var onClick by mutableStateOf({})
 
@@ -43,13 +43,13 @@ class OdsButton @JvmOverloads constructor(context: Context, attrs: AttributeSet?
             text = getString(R.styleable.OdsButton_text).orEmpty()
             icon = getResourceIdOrNull(R.styleable.OdsButton_icon)?.let { AppCompatResources.getDrawable(context, it) }
             style = OdsButton.Style.fromXmlAttrValue(getInteger(R.styleable.OdsButton_odsButtonStyle, 0))
-            inverseTheme = getBoolean(R.styleable.OdsButton_inverseTheme, false)
+            invertedTheme = getBoolean(R.styleable.OdsButton_invertedTheme, false)
         }
     }
 
     @Composable
     override fun OdsContent() {
-        OdsButtonContent(inverseTheme = inverseTheme) {
+        OdsButtonContent(invertedTheme = invertedTheme) {
             OdsButton(
                 text = text,
                 onClick = onClick,

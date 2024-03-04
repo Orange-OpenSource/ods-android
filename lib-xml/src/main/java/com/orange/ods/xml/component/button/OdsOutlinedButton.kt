@@ -32,7 +32,7 @@ class OdsOutlinedButton @JvmOverloads constructor(context: Context, attrs: Attri
 
     var text by mutableStateOf("")
     var icon by mutableStateOf<Drawable?>(null)
-    var inverseTheme by mutableStateOf(false)
+    var invertedTheme by mutableStateOf(false)
 
     var onClick by mutableStateOf({})
 
@@ -40,13 +40,13 @@ class OdsOutlinedButton @JvmOverloads constructor(context: Context, attrs: Attri
         context.withStyledAttributes(attrs, R.styleable.OdsOutlinedButton) {
             text = getString(R.styleable.OdsOutlinedButton_text).orEmpty()
             icon = getResourceIdOrNull(R.styleable.OdsOutlinedButton_icon)?.let { AppCompatResources.getDrawable(context, it) }
-            inverseTheme = getBoolean(R.styleable.OdsOutlinedButton_inverseTheme, false)
+            invertedTheme = getBoolean(R.styleable.OdsOutlinedButton_invertedTheme, false)
         }
     }
 
     @Composable
     override fun OdsContent() {
-        OdsButtonContent(inverseTheme = inverseTheme) {
+        OdsButtonContent(invertedTheme = invertedTheme) {
             OdsOutlinedButton(
                 text = text,
                 onClick = onClick,

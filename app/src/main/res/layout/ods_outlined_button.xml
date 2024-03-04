@@ -27,7 +27,7 @@
             type="android.graphics.drawable.Drawable" />
 
         <variable
-            name="inverseTheme"
+            name="invertedTheme"
             type="Boolean" />
     </data>
 
@@ -42,7 +42,7 @@
             app:icon="@{icon}"
             app:text="@{text}"
             app:enabled="@{enabled}"
-            app:inverseTheme="@{inverseTheme}" />
+            app:invertedTheme="@{invertedTheme}" />
 
         <!-- Invisible OdsOutlinedButton used for tests -->
         <com.orange.ods.xml.component.button.OdsOutlinedButton

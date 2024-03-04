@@ -106,10 +106,11 @@ fun OdsTheme(
 }
 
 /**
- * Force the given [content] to be displayed in inverse theme (i.e. in dark theme when app is in light or in light theme when app is in dark)
+ * Force the given [content] to be displayed in an inverted ODS theme (i.e. in dark theme when app is in light or in light theme when app is in dark)
+ * Note: This composable is directly related to [OdsTheme] and MUST be used inside it.
  */
 @Composable
-fun InverseTheme(content: @Composable () -> Unit) {
+fun InvertedTheme(content: @Composable () -> Unit) {
     val darkThemeEnabled = LocalDarkThemeEnabled.current
     val colors: OdsColors
     val rippleTheme: RippleTheme

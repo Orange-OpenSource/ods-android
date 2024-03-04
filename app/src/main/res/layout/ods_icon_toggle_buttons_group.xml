@@ -19,7 +19,7 @@
             type="Integer" />
 
         <variable
-            name="inverseTheme"
+            name="invertedTheme"
             type="Boolean" />
 
     </data>
@@ -33,7 +33,7 @@
             android:layout_height="wrap_content"
             android:layout_width="wrap_content"
             app:selectedIconButtonIndex="@{selectedIconButtonIndex}"
-            app:inverseTheme="@{inverseTheme}" />
+            app:invertedTheme="@{invertedTheme}" />
 
         <!-- Invisible OdsIconToggleButtonsRow used for tests -->
         <com.orange.ods.xml.component.button.OdsIconToggleButtonsRow

@@ -64,7 +64,7 @@ fun ButtonsIcon(customizationState: ButtonIconCustomizationState) {
             InvertedBackgroundColumn(horizontalAlignment = Alignment.CenterHorizontally) {
                 IconButton(
                     enabled = isEnabled,
-                    inverseTheme = true
+                    invertedTheme = true
                 )
             }
 
@@ -106,7 +106,7 @@ fun ButtonsIcon(customizationState: ButtonIconCustomizationState) {
 @Composable
 private fun IconButton(
     enabled: Boolean,
-    inverseTheme: Boolean = false
+    invertedTheme: Boolean = false
 ) {
     val context = LocalContext.current
     val iconId = R.drawable.ic_search
@@ -130,7 +130,7 @@ private fun IconButton(
             xml = {
                 icon = AppCompatResources.getDrawable(context, iconId)
                 this.enabled = enabled
-                this.inverseTheme = inverseTheme
+                this.invertedTheme = invertedTheme
                 iconContentDescription = contentDescription
                 odsIconButton.onClick = onClick
             }

@@ -82,7 +82,7 @@ fun ButtonsIconToggleGroup(customizationState: ButtonIconCustomizationState) {
                 ToggleButtonsRow(
                     selectedIconButtonIndex = selectedIconButtonIndex,
                     iconButtons = displayedIconButtons,
-                    inverseTheme = true
+                    invertedTheme = true
                 )
             }
 
@@ -150,7 +150,7 @@ fun ButtonsIconToggleGroup(customizationState: ButtonIconCustomizationState) {
 private fun ToggleButtonsRow(
     selectedIconButtonIndex: Int,
     iconButtons: List<OdsIconToggleButtonsRow.IconButton>,
-    inverseTheme: Boolean = false
+    invertedTheme: Boolean = false
 ) {
     Row(
         modifier = Modifier
@@ -168,7 +168,7 @@ private fun ToggleButtonsRow(
             }, xml = {
                 this.odsIconToggleButtonsRow.iconButtons = iconButtons
                 this.selectedIconButtonIndex = selectedIconButtonIndex
-                this.inverseTheme = inverseTheme
+                this.invertedTheme = invertedTheme
             }
         )
     }

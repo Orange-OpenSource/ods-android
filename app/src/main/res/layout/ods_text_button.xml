@@ -31,7 +31,7 @@
             type="com.orange.ods.compose.component.button.OdsTextButton.Style" />
 
         <variable
-            name="inverseTheme"
+            name="invertedTheme"
             type="Boolean" />
 
     </data>
@@ -48,7 +48,7 @@
             app:text="@{text}"
             app:enabled="@{enabled}"
             app:odsTextButtonStyle="@{style}"
-            app:inverseTheme="@{inverseTheme}" />
+            app:invertedTheme="@{invertedTheme}" />
 
         <!-- Invisible OdsTextButton used for tests -->
         <com.orange.ods.xml.component.button.OdsTextButton
@@ -60,7 +60,7 @@
             app:text="Button"
             app:enabled="true"
             app:odsTextButtonStyle="primary"
-            app:inverseTheme="false" />
+            app:invertedTheme="false" />
 
     </FrameLayout>
 
