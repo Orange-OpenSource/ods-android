@@ -35,4 +35,8 @@ Execute the commands below to generate and run the documentation:
 
 If you encounter errors during installation and your platform is not listed in the `PLATFORMS` section of `Gemfile.lock`, you can optionally run `bundle platform` to retrieve your platform, then `bundle lock --add-platform <your_platform>` to install specific dependencies for your platform.
 
+In case you need to update the submodules, please run and commit the changes it brings:
+
+`git submodule foreach git pull origin main`
+
 Finally, open your browser and go to http://127.0.0.1:4000/ods-android/
