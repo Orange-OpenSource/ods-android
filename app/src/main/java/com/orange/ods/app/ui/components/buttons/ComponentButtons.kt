@@ -20,15 +20,12 @@ import androidx.compose.foundation.layout.ColumnScope
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material.ExperimentalMaterialApi
-import androidx.compose.material.LocalContentColor
 import androidx.compose.material.rememberBottomSheetScaffoldState
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.stringResource
 import com.orange.ods.app.R
@@ -41,8 +38,9 @@ import com.orange.ods.compose.component.button.OdsTextButton
 import com.orange.ods.compose.component.chip.OdsChoiceChipsFlowRow
 import com.orange.ods.compose.component.listitem.OdsListItem
 import com.orange.ods.compose.text.OdsText
-import com.orange.ods.compose.theme.OdsDisplaySurface
 import com.orange.ods.compose.theme.OdsTheme
+import com.orange.ods.compose.theme.OdsThemeTweak
+import com.orange.ods.compose.theme.OdsThemeTweakType
 import com.orange.ods.theme.typography.OdsTextStyle
 
 @OptIn(ExperimentalMaterialApi::class)
@@ -140,31 +138,15 @@ fun ComponentButtons(variant: Variant) {
 @Composable
 fun InvertedBackgroundColumn(
     horizontalAlignment: Alignment.Horizontal = Alignment.Start,
-    content: @Composable InvertedBackgroundColumnScope.() -> Unit
+    content: @Composable ColumnScope.() -> Unit
 ) {
-    val backgroundColor: Color
-    val contentColor: Color
-    @StringRes val textRes: Int
-    val displaySurface: OdsDisplaySurface
-    if (isSystemInDarkTheme()) {
-        backgroundColor = OdsTheme.lightThemeColors.surface
-        contentColor = OdsTheme.lightThemeColors.onSurface
-        textRes = R.string.component_force_on_light
-        displaySurface = OdsDisplaySurface.Light
-    } else {
-        backgroundColor = OdsTheme.darkThemeColors.surface
-        contentColor = OdsTheme.darkThemeColors.onSurface
-        textRes = R.string.component_force_on_dark
-        displaySurface = OdsDisplaySurface.Dark
-    }
+    @StringRes val textRes = if (isSystemInDarkTheme()) R.string.component_force_on_light else R.string.component_force_on_dark
 
-    CompositionLocalProvider(
-        LocalContentColor provides contentColor
-    ) {
+    OdsThemeTweak(tweakType = OdsThemeTweakType.Inverted) {
         Column(
             modifier = Modifier
                 .fillMaxWidth()
-                .background(color = backgroundColor)
+                .background(color = OdsTheme.colors.surface)
                 .padding(bottom = dimensionResource(com.orange.ods.R.dimen.spacing_m)),
             horizontalAlignment = horizontalAlignment
         ) {
@@ -177,9 +159,7 @@ fun InvertedBackgroundColumn(
                 text = stringResource(id = textRes),
                 style = OdsTextStyle.BodyM
             )
-            InvertedBackgroundColumnScope(this, displaySurface).content()
+            content()
         }
     }
 }
-
-class InvertedBackgroundColumnScope(scope: ColumnScope, val displaySurface: OdsDisplaySurface) : ColumnScope by scope

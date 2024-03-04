@@ -39,8 +39,8 @@
             type="Boolean" />
 
         <variable
-            name="displaySurface"
-            type="com.orange.ods.compose.theme.OdsDisplaySurface" />
+            name="invertedTheme"
+            type="Boolean" />
 
     </data>
 
@@ -58,7 +58,7 @@
             app:checkedIcon="@{checkedIcon}"
             app:uncheckedIconContentDescription="@{uncheckedIconDescription}"
             app:checkedIconContentDescription="@{checkedIconDescription}"
-            app:displaySurface="@{displaySurface}" />
+            app:invertedTheme="@{invertedTheme}" />
 
         <!-- Invisible OdsIconToggleButton used for tests -->
         <com.orange.ods.xml.component.button.OdsIconToggleButton
@@ -71,8 +71,7 @@
             app:checkedIcon="@drawable/ic_add"
             app:checked="true"
             app:uncheckedIconContentDescription="@{uncheckedIconDescription}"
-            app:checkedIconContentDescription="@{checkedIconDescription}"
-            app:displaySurface="standard" />
+            app:checkedIconContentDescription="@{checkedIconDescription}" />
 
     </FrameLayout>
 

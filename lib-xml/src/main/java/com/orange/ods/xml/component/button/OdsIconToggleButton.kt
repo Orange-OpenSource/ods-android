@@ -24,10 +24,8 @@ import androidx.core.content.withStyledAttributes
 import com.google.accompanist.drawablepainter.rememberDrawablePainter
 import com.orange.ods.compose.component.button.OdsIconButton
 import com.orange.ods.compose.component.button.OdsIconToggleButton
-import com.orange.ods.compose.theme.OdsDisplaySurface
 import com.orange.ods.xml.R
 import com.orange.ods.xml.component.OdsAbstractComposeView
-import com.orange.ods.xml.utilities.extension.fromXmlAttrValue
 import com.orange.ods.xml.utilities.extension.getResourceIdOrNull
 
 class OdsIconToggleButton @JvmOverloads constructor(context: Context, attrs: AttributeSet? = null) : OdsAbstractComposeView(context, attrs) {
@@ -38,7 +36,7 @@ class OdsIconToggleButton @JvmOverloads constructor(context: Context, attrs: Att
     var uncheckedIconContentDescription by mutableStateOf<String?>(null)
     var checked by mutableStateOf(false)
     var onCheckedChange by mutableStateOf<(Boolean) -> Unit>({})
-    var displaySurface by mutableStateOf(OdsDisplaySurface.Default)
+    var invertedTheme by mutableStateOf(false)
 
     init {
         context.withStyledAttributes(attrs, R.styleable.OdsIconToggleButton) {
@@ -47,19 +45,20 @@ class OdsIconToggleButton @JvmOverloads constructor(context: Context, attrs: Att
             uncheckedIconContentDescription = getString(R.styleable.OdsIconToggleButton_uncheckedIconContentDescription).orEmpty()
             checkedIcon = getResourceIdOrNull(R.styleable.OdsIconToggleButton_checkedIcon)?.let { AppCompatResources.getDrawable(context, it) }
             uncheckedIcon = getResourceIdOrNull(R.styleable.OdsIconToggleButton_uncheckedIcon)?.let { AppCompatResources.getDrawable(context, it) }
-            displaySurface = OdsDisplaySurface.fromXmlAttrValue(getInteger(R.styleable.OdsIconToggleButton_displaySurface, 0))
+            invertedTheme = getBoolean(R.styleable.OdsIconToggleButton_invertedTheme, false)
         }
     }
 
     @Composable
     override fun OdsContent() {
-        OdsIconToggleButton(
-            checked = checked,
-            onCheckedChange = onCheckedChange,
-            uncheckedIcon = OdsIconButton.Icon(rememberDrawablePainter(drawable = uncheckedIcon), uncheckedIconContentDescription.orEmpty()),
-            checkedIcon = OdsIconButton.Icon(rememberDrawablePainter(drawable = checkedIcon), checkedIconContentDescription.orEmpty()),
-            enabled = isEnabled,
-            displaySurface = displaySurface
-        )
+        OdsButtonContent(invertedTheme = invertedTheme) {
+            OdsIconToggleButton(
+                checked = checked,
+                onCheckedChange = onCheckedChange,
+                uncheckedIcon = OdsIconButton.Icon(rememberDrawablePainter(drawable = uncheckedIcon), uncheckedIconContentDescription.orEmpty()),
+                checkedIcon = OdsIconButton.Icon(rememberDrawablePainter(drawable = checkedIcon), checkedIconContentDescription.orEmpty()),
+                enabled = isEnabled,
+            )
+        }
     }
 }

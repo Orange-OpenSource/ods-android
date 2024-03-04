@@ -25,7 +25,6 @@ import androidx.databinding.BindingAdapter
 import com.google.accompanist.drawablepainter.rememberDrawablePainter
 import com.orange.ods.compose.component.button.OdsButton
 import com.orange.ods.compose.component.button.OdsTextButton
-import com.orange.ods.compose.theme.OdsDisplaySurface
 import com.orange.ods.xml.R
 import com.orange.ods.xml.component.OdsAbstractComposeView
 import com.orange.ods.xml.utilities.extension.fromXmlAttrValue
@@ -37,27 +36,28 @@ class OdsTextButton @JvmOverloads constructor(context: Context, attrs: Attribute
     var onClick by mutableStateOf({})
     var icon by mutableStateOf<Drawable?>(null)
     var style by mutableStateOf(OdsTextButton.Style.Default)
-    var displaySurface by mutableStateOf(OdsDisplaySurface.Default)
+    var invertedTheme by mutableStateOf(false)
 
     init {
         context.withStyledAttributes(attrs, R.styleable.OdsTextButton) {
             text = getString(R.styleable.OdsTextButton_text).orEmpty()
             icon = getResourceIdOrNull(R.styleable.OdsTextButton_icon)?.let { AppCompatResources.getDrawable(context, it) }
             style = OdsTextButton.Style.fromXmlAttrValue(getInteger(R.styleable.OdsTextButton_odsTextButtonStyle, 0))
-            displaySurface = OdsDisplaySurface.fromXmlAttrValue(getInteger(R.styleable.OdsTextButton_displaySurface, 0))
+            invertedTheme = getBoolean(R.styleable.OdsTextButton_invertedTheme, false)
         }
     }
 
     @Composable
     override fun OdsContent() {
-        OdsTextButton(
-            text = text,
-            onClick = onClick,
-            icon = icon?.let { OdsButton.Icon(rememberDrawablePainter(drawable = it)) },
-            enabled = isEnabled,
-            style = style,
-            displaySurface = displaySurface
-        )
+        OdsButtonContent(invertedTheme = invertedTheme) {
+            OdsTextButton(
+                text = text,
+                onClick = onClick,
+                icon = icon?.let { OdsButton.Icon(rememberDrawablePainter(drawable = it)) },
+                enabled = isEnabled,
+                style = style
+            )
+        }
     }
 }
 

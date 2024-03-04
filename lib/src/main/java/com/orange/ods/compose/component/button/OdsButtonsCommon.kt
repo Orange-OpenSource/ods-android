@@ -18,11 +18,11 @@ import androidx.compose.material.ButtonColors
 import androidx.compose.material.ButtonDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.ImageBitmap
 import androidx.compose.ui.graphics.painter.Painter
 import androidx.compose.ui.graphics.vector.ImageVector
 import com.orange.ods.compose.component.content.OdsComponentIcon
-import com.orange.ods.compose.theme.OdsDisplaySurface
 import com.orange.ods.compose.theme.OdsTheme
 import com.orange.ods.compose.utilities.extension.enable
 
@@ -74,55 +74,45 @@ object OdsButton {
         companion object
 
         @Composable
-        internal fun getColors(displaySurface: OdsDisplaySurface): ButtonColors {
+        internal fun getColors(): ButtonColors {
             return when (this) {
-                Default -> odsDefaultButtonColors(displaySurface)
-                Primary -> odsPrimaryButtonColors(displaySurface)
-                FunctionalPositive -> odsPositiveButtonColors(displaySurface)
-                FunctionalNegative -> odsNegativeButtonColors(displaySurface)
+                Default -> odsDefaultButtonColors()
+                Primary -> odsPrimaryButtonColors()
+                FunctionalPositive -> odsPositiveButtonColors()
+                FunctionalNegative -> odsNegativeButtonColors()
             }
         }
     }
 
     @Composable
-    private fun odsDefaultButtonColors(displaySurface: OdsDisplaySurface) = ButtonDefaults.buttonColors(
-        backgroundColor = displaySurface.themeColors.onSurface,
-        contentColor = displaySurface.themeColors.surface,
-        disabledBackgroundColor = disabledButtonBackgroundColor(displaySurface),
-        disabledContentColor = disabledButtonContentColor(displaySurface),
+    private fun odsDefaultButtonColors() = buttonColors(
+        backgroundColor = OdsTheme.colors.onSurface,
+        contentColor = OdsTheme.colors.surface
     )
 
     @Composable
-    private fun odsPrimaryButtonColors(displaySurface: OdsDisplaySurface) = ButtonDefaults.buttonColors(
-        backgroundColor = displaySurface.themeColors.primary,
-        contentColor = displaySurface.themeColors.onPrimary,
-        disabledBackgroundColor = disabledButtonBackgroundColor(displaySurface),
-        disabledContentColor = disabledButtonContentColor(displaySurface),
+    private fun odsPrimaryButtonColors() = buttonColors(
+        backgroundColor = OdsTheme.colors.primary,
+        contentColor = OdsTheme.colors.onPrimary
     )
 
     @Composable
-    private fun odsPositiveButtonColors(displaySurface: OdsDisplaySurface) = ButtonDefaults.buttonColors(
+    private fun odsPositiveButtonColors() = buttonColors(
         backgroundColor = OdsTheme.colors.functional.positive,
-        contentColor = OdsTheme.colors.functional.onPositive,
-        disabledBackgroundColor = disabledButtonBackgroundColor(displaySurface),
-        disabledContentColor = disabledButtonContentColor(displaySurface),
+        contentColor = OdsTheme.colors.functional.onPositive
     )
 
     @Composable
-    private fun odsNegativeButtonColors(displaySurface: OdsDisplaySurface) = ButtonDefaults.buttonColors(
+    private fun odsNegativeButtonColors() = buttonColors(
         backgroundColor = OdsTheme.colors.functional.negative,
-        contentColor = OdsTheme.colors.functional.onNegative,
-        disabledBackgroundColor = disabledButtonBackgroundColor(displaySurface),
-        disabledContentColor = disabledButtonContentColor(displaySurface),
+        contentColor = OdsTheme.colors.functional.onNegative
     )
 
     @Composable
-    private fun disabledButtonColors(displaySurface: OdsDisplaySurface) = displaySurface.themeColors.onSurface
-
-    @Composable
-    private fun disabledButtonBackgroundColor(displaySurface: OdsDisplaySurface) = disabledButtonColors(displaySurface = displaySurface).copy(alpha = 0.12f)
-
-    @Composable
-    private fun disabledButtonContentColor(displaySurface: OdsDisplaySurface) =
-        disabledButtonColors(displaySurface = displaySurface).enable(enabled = false)
+    private fun buttonColors(backgroundColor: Color, contentColor: Color) = ButtonDefaults.buttonColors(
+        backgroundColor = backgroundColor,
+        contentColor = contentColor,
+        disabledBackgroundColor = OdsTheme.colors.onSurface.copy(alpha = 0.12f),
+        disabledContentColor = OdsTheme.colors.onSurface.enable(enabled = false)
+    )
 }

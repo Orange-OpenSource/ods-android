@@ -41,8 +41,8 @@ Orange Design System for Android is available through [Maven Central Repository]
 
 4. (Optional) Add an `OdsThemeConfiguration` implementation library to the `dependencies` section:
 
-    You have the possibility to use the ODS library with another theme than the Orange theme.
-  
+   You have the possibility to use the ODS library with another theme than the Orange theme.
+
     ```groovy
     dependencies {
       // ...
@@ -71,15 +71,16 @@ Note that Orange theme supports both light and dark mode.
 #### In Jetpack Compose app
 
 In the `Manifest.xml` file, add `Theme.Orange.NoActionBar` to your application:
+
 ```xml
-<application
-    android:theme="@style/Theme.Orange.NoActionBar">
+<application android:theme="@style/Theme.Orange.NoActionBar">
     <!-- ... -->
 </application>
 ```
 
 Use the `OdsTheme` in your screens which is a Material theme extension for Jetpack Compose applications.
 Cause ODS support multi-theme, you should pass the `OrangeThemeConfiguration` as theme configuration to use the Orange theme.
+
 ```kotlin
 OdsTheme(themeConfiguration = OrangeThemeConfiguration()) {
     //...
@@ -88,9 +89,29 @@ OdsTheme(themeConfiguration = OrangeThemeConfiguration()) {
 
 Note: Use another provided `OdsThemeConfigurationContract` implementation if you want to use a custom theme. For example `InnovationCupThemeConfiguration`.
 
+**Inverse or force theme colors**
+
+In some cases, you may need to display a part of your UI always in dark or in light theme. For example, if you want to display a button over a dark image, you probably need a light button in all cases.  
+To do this, you can use `OdsThemeTweak` composable inside the `OdsTheme` hierarchy as shown below:
+
+```kotlin
+OdsTheme(themeConfiguration = OrangeThemeConfiguration()) {
+    //...
+    OdsThemeTweak(tweakType = OdsThemeTweakType.ForceLight) {
+        OdsOutlinedButton(
+            text = "Details",
+            onClick = { },
+        )
+    }
+}
+```
+
+Note that `tweakType` can also be set to `OdsThemeTweakType.Inverted` in order to set theme in dark when app is in light or in light when app is in dark.
+
 #### In XML app
 
 Update your app theme to inherit from Orange theme, e.g.:
+
 ```xml
 <style name="Theme.MyApp" parent="Theme.Orange">
     <!-- ... -->
@@ -98,6 +119,7 @@ Update your app theme to inherit from Orange theme, e.g.:
 ```
 
 This theme will use the default `Toolbar`. If you want to provide your own `Toolbar` please use:
+
 ```xml
 <style name="Theme.MyApp" parent="Theme.Orange.NoActionBar">
     <!-- ... -->

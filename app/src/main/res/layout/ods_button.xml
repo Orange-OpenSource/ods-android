@@ -31,8 +31,8 @@
             type="com.orange.ods.compose.component.button.OdsButton.Style" />
 
         <variable
-            name="displaySurface"
-            type="com.orange.ods.compose.theme.OdsDisplaySurface" />
+            name="invertedTheme"
+            type="Boolean" />
 
     </data>
 
@@ -48,7 +48,7 @@
             app:text="@{text}"
             app:enabled="@{enabled}"
             app:odsButtonStyle="@{style}"
-            app:displaySurface="@{displaySurface}" />
+            app:invertedTheme="@{invertedTheme}" />
 
         <!-- Invisible OdsButton used for tests -->
         <com.orange.ods.xml.component.button.OdsButton
@@ -59,8 +59,7 @@
             app:icon="@drawable/ic_add"
             app:text="Button"
             app:enabled="true"
-            app:odsButtonStyle="standard"
-            app:displaySurface="standard" />
+            app:odsButtonStyle="standard" />
 
     </FrameLayout>
 

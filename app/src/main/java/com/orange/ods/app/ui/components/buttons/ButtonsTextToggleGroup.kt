@@ -34,7 +34,6 @@ import com.orange.ods.app.ui.utilities.code.FunctionCallCode
 import com.orange.ods.compose.OdsComposable
 import com.orange.ods.compose.annotation.ExperimentalOdsApi
 import com.orange.ods.compose.component.button.OdsTextToggleButtonsRow
-import com.orange.ods.compose.theme.OdsDisplaySurface
 
 @Composable
 fun ButtonsTextToggleButtonsRow(customizationState: ButtonCustomizationState) {
@@ -66,7 +65,6 @@ fun ButtonsTextToggleButtonsRow(customizationState: ButtonCustomizationState) {
                     selectedTextButtonIndex = selectedTextButtonIndex,
                     textButtons = textButtons,
                     sameItemsWeight = hasSameItemsWeight,
-                    displaySurface = displaySurface
                 )
             }
 
@@ -99,7 +97,6 @@ private fun ToggleButtonsRow(
     selectedTextButtonIndex: Int,
     textButtons: List<OdsTextToggleButtonsRow.TextButton>,
     sameItemsWeight: Boolean,
-    displaySurface: OdsDisplaySurface = OdsDisplaySurface.Default
 ) {
     Row(
         modifier = Modifier
@@ -112,7 +109,6 @@ private fun ToggleButtonsRow(
             selectedTextButtonIndex = selectedTextButtonIndex,
             textButtons = textButtons,
             sameItemsWeight = sameItemsWeight,
-            displaySurface = displaySurface
         )
     }
 }

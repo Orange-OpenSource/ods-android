@@ -24,17 +24,15 @@ import androidx.core.content.withStyledAttributes
 import com.google.accompanist.drawablepainter.rememberDrawablePainter
 import com.orange.ods.compose.component.button.OdsButton
 import com.orange.ods.compose.component.button.OdsOutlinedButton
-import com.orange.ods.compose.theme.OdsDisplaySurface
 import com.orange.ods.xml.R
 import com.orange.ods.xml.component.OdsAbstractComposeView
-import com.orange.ods.xml.utilities.extension.fromXmlAttrValue
 import com.orange.ods.xml.utilities.extension.getResourceIdOrNull
 
 class OdsOutlinedButton @JvmOverloads constructor(context: Context, attrs: AttributeSet? = null) : OdsAbstractComposeView(context, attrs) {
 
     var text by mutableStateOf("")
     var icon by mutableStateOf<Drawable?>(null)
-    var displaySurface by mutableStateOf(OdsDisplaySurface.Default)
+    var invertedTheme by mutableStateOf(false)
 
     var onClick by mutableStateOf({})
 
@@ -42,19 +40,20 @@ class OdsOutlinedButton @JvmOverloads constructor(context: Context, attrs: Attri
         context.withStyledAttributes(attrs, R.styleable.OdsOutlinedButton) {
             text = getString(R.styleable.OdsOutlinedButton_text).orEmpty()
             icon = getResourceIdOrNull(R.styleable.OdsOutlinedButton_icon)?.let { AppCompatResources.getDrawable(context, it) }
-            displaySurface = OdsDisplaySurface.fromXmlAttrValue(getInteger(R.styleable.OdsOutlinedButton_displaySurface, 0))
+            invertedTheme = getBoolean(R.styleable.OdsOutlinedButton_invertedTheme, false)
         }
     }
 
     @Composable
     override fun OdsContent() {
-        OdsOutlinedButton(
-            text = text,
-            onClick = onClick,
-            icon = icon?.let { OdsButton.Icon(rememberDrawablePainter(drawable = it)) },
-            enabled = isEnabled,
-            displaySurface = displaySurface
-        )
+        OdsButtonContent(invertedTheme = invertedTheme) {
+            OdsOutlinedButton(
+                text = text,
+                onClick = onClick,
+                icon = icon?.let { OdsButton.Icon(rememberDrawablePainter(drawable = it)) },
+                enabled = isEnabled
+            )
+        }
     }
 
 }

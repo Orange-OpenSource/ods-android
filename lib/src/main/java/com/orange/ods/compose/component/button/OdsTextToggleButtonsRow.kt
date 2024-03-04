@@ -37,7 +37,6 @@ import com.orange.ods.compose.component.content.OdsComponentContent
 import com.orange.ods.compose.component.content.OdsComponentScopeContent
 import com.orange.ods.compose.component.utilities.Preview
 import com.orange.ods.compose.component.utilities.UiModePreviews
-import com.orange.ods.compose.theme.OdsDisplaySurface
 
 /**
  * <a href="https://system.design.orange.com/0c1af118d/p/06a393-buttons/b/79b091" target="_blank">ODS Buttons</a>.
@@ -50,8 +49,6 @@ import com.orange.ods.compose.theme.OdsDisplaySurface
  * @param modifier [Modifier] applied to the toggle buttons row.
  * @param sameItemsWeight Controls the place occupied by each item. When `true`, same weight of importance will be applied to each item, they will occupy
  * the same width.
- * @param displaySurface [OdsDisplaySurface] applied to the button. It allows to force the button display on light or dark surface. By default,
- * the appearance applied is based on the system night mode value.
  */
 @Composable
 @OdsComposable
@@ -60,8 +57,7 @@ fun OdsTextToggleButtonsRow(
     selectedTextButtonIndex: Int,
     textButtons: List<OdsTextToggleButtonsRow.TextButton>,
     modifier: Modifier = Modifier,
-    sameItemsWeight: Boolean = false,
-    displaySurface: OdsDisplaySurface = OdsDisplaySurface.Default
+    sameItemsWeight: Boolean = false
 ) {
     Row(
         modifier = modifier
@@ -69,7 +65,7 @@ fun OdsTextToggleButtonsRow(
             .selectableGroup()
             .border(
                 width = 1.dp,
-                color = buttonToggleBorderColor(displaySurface)
+                color = buttonToggleBorderColor()
             )
     ) {
         textButtons.forEachIndexed { index, textButton ->
@@ -77,7 +73,6 @@ fun OdsTextToggleButtonsRow(
                 Content(
                     extraParameters = OdsTextToggleButtonsRow.TextButton.ExtraParameters(
                         index,
-                        displaySurface,
                         selectedTextButtonIndex == index,
                         sameItemsWeight
                     )
@@ -88,7 +83,7 @@ fun OdsTextToggleButtonsRow(
                     modifier = Modifier
                         .fillMaxHeight()
                         .width(1.dp),
-                    color = buttonToggleBorderColor(displaySurface)
+                    color = buttonToggleBorderColor()
                 )
             }
         }
@@ -116,7 +111,6 @@ object OdsTextToggleButtonsRow {
 
         data class ExtraParameters(
             val index: Int,
-            val displaySurface: OdsDisplaySurface,
             val selected: Boolean,
             val sameItemsWeight: Boolean
         ) : OdsComponentContent.ExtraParameters()
@@ -129,14 +123,13 @@ object OdsTextToggleButtonsRow {
                 text = text,
                 enabled = enabled,
                 modifier = Modifier
-                    .background(color = buttonToggleBackgroundColor(extraParameters.displaySurface).copy(alpha = backgroundAlpha))
+                    .background(color = buttonToggleBackgroundColor().copy(alpha = backgroundAlpha))
                     .fillMaxHeight()
                     .let {
                         if (extraParameters.sameItemsWeight) it.weight(1f) else it
                     },
                 maxLines = 1,
                 overflow = TextOverflow.Ellipsis,
-                displaySurface = extraParameters.displaySurface,
                 style = OdsTextButton.Style.Default,
                 onClick = onClick
             )

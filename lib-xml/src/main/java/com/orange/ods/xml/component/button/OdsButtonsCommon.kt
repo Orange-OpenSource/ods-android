@@ -10,13 +10,19 @@
  * Software description: Android library of reusable graphical components
  */
 
-package com.orange.ods.compose.component.button
+package com.orange.ods.xml.component.button
 
 import androidx.compose.runtime.Composable
-import com.orange.ods.compose.theme.OdsTheme
+import com.orange.ods.compose.theme.OdsThemeTweak
+import com.orange.ods.compose.theme.OdsThemeTweakType
 
 @Composable
-internal fun buttonToggleBackgroundColor() = OdsTheme.colors.primary
-
-@Composable
-internal fun buttonToggleBorderColor() = OdsTheme.colors.onSurface.copy(alpha = 0.12f)
+internal fun OdsButtonContent(invertedTheme: Boolean, content: @Composable () -> Unit) {
+    if (invertedTheme) {
+        OdsThemeTweak(tweakType = OdsThemeTweakType.Inverted) {
+            content()
+        }
+    } else {
+        content()
+    }
+}

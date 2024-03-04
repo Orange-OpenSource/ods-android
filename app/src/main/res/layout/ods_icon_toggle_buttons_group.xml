@@ -19,8 +19,8 @@
             type="Integer" />
 
         <variable
-            name="displaySurface"
-            type="com.orange.ods.compose.theme.OdsDisplaySurface" />
+            name="invertedTheme"
+            type="Boolean" />
 
     </data>
 
@@ -33,7 +33,7 @@
             android:layout_height="wrap_content"
             android:layout_width="wrap_content"
             app:selectedIconButtonIndex="@{selectedIconButtonIndex}"
-            app:displaySurface="@{displaySurface}" />
+            app:invertedTheme="@{invertedTheme}" />
 
         <!-- Invisible OdsIconToggleButtonsRow used for tests -->
         <com.orange.ods.xml.component.button.OdsIconToggleButtonsRow
@@ -41,8 +41,7 @@
             android:visibility="gone"
             android:layout_height="wrap_content"
             android:layout_width="wrap_content"
-            app:selectedIconButtonIndex="0"
-            app:displaySurface="standard" />
+            app:selectedIconButtonIndex="0" />
 
     </FrameLayout>
 
