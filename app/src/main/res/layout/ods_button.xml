@@ -59,8 +59,7 @@
             app:icon="@drawable/ic_add"
             app:text="Button"
             app:enabled="true"
-            app:odsButtonStyle="standard"
-            app:invertedTheme="false" />
+            app:odsButtonStyle="standard" />
 
     </FrameLayout>
 
