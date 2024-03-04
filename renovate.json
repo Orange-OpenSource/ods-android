@@ -4,6 +4,7 @@
     "config:recommended",
     ":renovatePrefix"
   ],
+  "schedule": ["every weekend"],
   "labels": ["dependencies"],
   "baseBranches": ["develop"],
   "timezone": "Europe/Paris",
