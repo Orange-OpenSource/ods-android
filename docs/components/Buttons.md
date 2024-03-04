@@ -67,14 +67,6 @@ OdsButton(
 )
 ```
 
-In the same way as for other buttons, you can display an `OdsButton` in the inverted theme of the default system theme by putting it into an `InvertedTheme` composable:
-
-```kotlin
-InvertedTheme {
-    // Put here the `OdsButton` you want to display in inverted theme
-}
-```
-
 ##### OdsButton API
 
 | Parameter                    | Default&nbsp;value        | Description                                                                                                                                                                                                                 |
@@ -132,14 +124,6 @@ OdsTextButton(
 )
 ```
 
-In the same way as for other buttons, you can display an `OdsTextButton` in the inverted theme of the default system theme by putting it into an `InvertedTheme` composable:
-
-```kotlin
-InvertedTheme {
-    // Put here the `OdsTextButton` you want to display in inverted theme
-}
-```
-
 ##### OdsTextButton API
 
 | Parameter                    | Default&nbsp;value            | Description                                                                                                                                        |
@@ -192,14 +176,6 @@ OdsOutlinedButton(
     enabled = true,
     icon = OdsButton.Icon(painterResource(R.drawable.ic_coffee)) // Line can be removed if you don't need any icon
 )
-```
-
-In the same way as for other buttons, you can display an `OdsOutlinedButton` in the inverted theme of the default system theme by putting it into an `InvertedTheme` composable:
-
-```kotlin
-InvertedTheme {
-    // Put here the `OdsOutlinedButton` you want to display in inverted theme
-}
 ```
 
 ##### OdsOutlinedButton API
@@ -259,14 +235,6 @@ OdsTextToggleButtonsRow(
 )
 ```
 
-In the same way as for other buttons, you can display an `OdsTextToggleButtonsRow` in the inverted theme of the default system theme by putting it into an `InvertedTheme` composable:
-
-```kotlin
-InvertedTheme {
-    // Put here the `OdsTextToggleButtonsRow` you want to display in inverted theme
-}
-```
-
 ##### OdsTextToggleButtonsRow API
 
 | Parameter                                                      | Default&nbsp;value | Description                                                                                                                                     |
@@ -295,14 +263,6 @@ OdsIconButton(
     ),
     onClick = { doSomething() },
 )
-```
-
-In the same way as for other buttons, you can display an `OdsIconButton` in the inverted theme of the default system theme by putting it into an `InvertedTheme` composable:
-
-```kotlin
-InvertedTheme {
-    // Put here the `OdsIconButton` you want to display in inverted theme
-}
 ```
 
 ##### OdsIconButton API
@@ -352,14 +312,6 @@ OdsIconToggleButton(
     ),
     checkedIcon = OdsIconButton.Icon(painterResource(R.drawable.ic_heart), "Remove from favorites")
 )
-```
-
-In the same way as for other buttons, you can display an `OdsIconToggleButton` in the inverted theme of the default system theme by putting it into an `InvertedTheme` composable:
-
-```kotlin
-InvertedTheme {
-    // Put here the `OdsIconToggleButton` you want to display in inverted theme
-}
 ```
 
 ##### OdsIconToggleButton API
@@ -427,14 +379,6 @@ OdsIconToggleButtonsRow(
         )
     )
 )
-```
-
-In the same way as for other buttons, you can display an `OdsIconToggleButtonsRow` in the inverted theme of the default system theme by putting it into an `InvertedTheme` composable:
-
-```kotlin
-InvertedTheme {
-    // Put here the `OdsIconToggleButtonsRow` you want to display in inverted theme
-}
 ```
 
 ##### OdsIconToggleButtonsRow API
