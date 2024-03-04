@@ -6,7 +6,6 @@
   ],
   "labels": ["dependencies"],
   "baseBranches": ["develop"],
-  "schedule": [ "before 5am on the first day of the month" ],
   "timezone": "Europe/Paris",
   "prHourlyLimit": 0,
   "prConcurrentLimit": 0
