@@ -30,7 +30,7 @@ import com.orange.ods.compose.component.utilities.BasicPreviewParameterProvider
 import com.orange.ods.compose.component.utilities.Preview
 import com.orange.ods.compose.component.utilities.UiModePreviews
 import com.orange.ods.compose.text.OdsText
-import com.orange.ods.compose.theme.InvertedTheme
+import com.orange.ods.compose.theme.TweakedTheme
 import com.orange.ods.theme.typography.OdsTextStyle
 
 /**
@@ -108,7 +108,7 @@ private fun OdsSnackbar(
         modifier = modifier,
         action = actionLabel?.let {
             {
-                InvertedTheme {
+                TweakedTheme {
                     OdsTextButton(
                         style = OdsTextButton.Style.Primary,
                         text = it,

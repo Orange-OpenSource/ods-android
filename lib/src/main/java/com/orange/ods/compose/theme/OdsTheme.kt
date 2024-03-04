@@ -107,20 +107,33 @@ fun OdsTheme(
 }
 
 /**
- * Force the given [content] to be displayed in an inverted ODS theme (i.e. in dark theme when app is in light or in light theme when app is in dark)
+ * Tweaked type of the current [OdsTheme] which can be pass to [TweakedTheme] composable:
+ *   - Inverted set theme in dark when app is in light or in light when app is in dark
+ *   - ForceDark and ForceLight force the theme to be in dark or in light
+ */
+enum class OdsThemeTweakType {
+    Inverted, ForceDark, ForceLight
+}
+
+/**
+ * Tweaks the current ODS theme according the given [tweakType] and display given [content] according that tweak.
  * Note: This composable is directly related to [OdsTheme] and MUST be used inside it.
  */
 @Composable
-fun InvertedTheme(content: @Composable () -> Unit) {
-    val darkThemeEnabled = LocalDarkThemeEnabled.current
+fun TweakedTheme(tweakType: OdsThemeTweakType = OdsThemeTweakType.Inverted, content: @Composable () -> Unit) {
+    val tweakedToDark = when (tweakType) {
+        OdsThemeTweakType.Inverted -> !LocalDarkThemeEnabled.current
+        OdsThemeTweakType.ForceDark -> true
+        OdsThemeTweakType.ForceLight -> false
+    }
     val colors: OdsColors
     val rippleTheme: RippleTheme
-    if (darkThemeEnabled) {
-        colors = OdsTheme.lightThemeColors
-        rippleTheme = OdsLightRippleTheme
-    } else {
+    if (tweakedToDark) {
         colors = OdsTheme.darkThemeColors
         rippleTheme = OdsDarkRippleTheme
+    } else {
+        colors = OdsTheme.lightThemeColors
+        rippleTheme = OdsLightRippleTheme
     }
 
     CompositionLocalProvider(

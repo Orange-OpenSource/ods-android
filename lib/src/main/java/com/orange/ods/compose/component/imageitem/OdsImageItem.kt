@@ -24,10 +24,7 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
-import androidx.compose.material.LocalContentColor
-import androidx.compose.material.ripple.LocalRippleTheme
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -48,9 +45,8 @@ import com.orange.ods.compose.component.utilities.BasicPreviewParameterProvider
 import com.orange.ods.compose.component.utilities.Preview
 import com.orange.ods.compose.component.utilities.UiModePreviews
 import com.orange.ods.compose.text.OdsText
-import com.orange.ods.compose.theme.LocalColors
-import com.orange.ods.compose.theme.OdsDarkRippleTheme
-import com.orange.ods.compose.theme.OdsTheme
+import com.orange.ods.compose.theme.OdsThemeTweakType
+import com.orange.ods.compose.theme.TweakedTheme
 import com.orange.ods.extension.orElse
 import com.orange.ods.theme.typography.OdsTextStyle
 
@@ -92,11 +88,7 @@ fun OdsImageItem(
                             .height(IntrinsicSize.Min)
                     ) {
                         // Legend is displayed on dark background so we force dark theme
-                        CompositionLocalProvider(
-                            LocalRippleTheme provides OdsDarkRippleTheme,
-                            LocalColors provides OdsTheme.darkThemeColors,
-                            LocalContentColor provides Color.White
-                        ) {
+                        TweakedTheme(tweakType = OdsThemeTweakType.ForceDark) {
                             OdsImageItemLegendArea(
                                 text = it,
                                 textModifier = Modifier
