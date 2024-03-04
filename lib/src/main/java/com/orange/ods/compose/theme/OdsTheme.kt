@@ -137,6 +137,7 @@ fun TweakedTheme(tweakType: OdsThemeTweakType = OdsThemeTweakType.Inverted, cont
     }
 
     CompositionLocalProvider(
+        LocalDarkThemeEnabled provides tweakedToDark,
         LocalRippleTheme provides rippleTheme,
         LocalColors provides colors,
         LocalContentColor provides colors.onSurface
