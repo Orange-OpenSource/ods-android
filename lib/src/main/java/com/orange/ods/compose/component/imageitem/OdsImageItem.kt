@@ -45,8 +45,8 @@ import com.orange.ods.compose.component.utilities.BasicPreviewParameterProvider
 import com.orange.ods.compose.component.utilities.Preview
 import com.orange.ods.compose.component.utilities.UiModePreviews
 import com.orange.ods.compose.text.OdsText
+import com.orange.ods.compose.theme.OdsThemeTweak
 import com.orange.ods.compose.theme.OdsThemeTweakType
-import com.orange.ods.compose.theme.TweakedTheme
 import com.orange.ods.extension.orElse
 import com.orange.ods.theme.typography.OdsTextStyle
 
@@ -88,7 +88,7 @@ fun OdsImageItem(
                             .height(IntrinsicSize.Min)
                     ) {
                         // Legend is displayed on dark background so we force dark theme
-                        TweakedTheme(tweakType = OdsThemeTweakType.ForceDark) {
+                        OdsThemeTweak(tweakType = OdsThemeTweakType.ForceDark) {
                             OdsImageItemLegendArea(
                                 text = it,
                                 textModifier = Modifier

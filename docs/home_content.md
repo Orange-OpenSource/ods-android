@@ -73,8 +73,7 @@ Note that Orange theme supports both light and dark mode.
 In the `Manifest.xml` file, add `Theme.Orange.NoActionBar` to your application:
 
 ```xml
-<application
-    android:theme="@style/Theme.Orange.NoActionBar">
+<application android:theme="@style/Theme.Orange.NoActionBar">
     <!-- ... -->
 </application>
 ```
@@ -93,12 +92,12 @@ Note: Use another provided `OdsThemeConfigurationContract` implementation if you
 **Inverse or force theme colors**
 
 In some cases, you may need to display a part of your UI always in dark or in light theme. For example, if you want to display a button over a dark image, you probably need a light button in all cases.  
-To do this, you can use `TweakedTheme` composable inside the `OdsTheme` hierarchy as shown below:
+To do this, you can use `OdsThemeTweak` composable inside the `OdsTheme` hierarchy as shown below:
 
 ```kotlin
 OdsTheme(themeConfiguration = OrangeThemeConfiguration()) {
     //...
-    TweakedTheme(tweakType = OdsThemeTweakType.ForceLight) {
+    OdsThemeTweak(tweakType = OdsThemeTweakType.ForceLight) {
         OdsOutlinedButton(
             text = "Details",
             onClick = { },

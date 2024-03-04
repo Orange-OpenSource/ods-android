@@ -107,7 +107,7 @@ fun OdsTheme(
 }
 
 /**
- * Tweaked type of the current [OdsTheme] which can be pass to [TweakedTheme] composable:
+ * Tweak type of the current [OdsTheme] which can be pass to [OdsThemeTweak] composable:
  *   - Inverted set theme in dark when app is in light or in light when app is in dark
  *   - ForceDark and ForceLight force the theme to be in dark or in light
  */
@@ -120,7 +120,7 @@ enum class OdsThemeTweakType {
  * Note: This composable is directly related to [OdsTheme] and MUST be used inside it.
  */
 @Composable
-fun TweakedTheme(tweakType: OdsThemeTweakType, content: @Composable () -> Unit) {
+fun OdsThemeTweak(tweakType: OdsThemeTweakType, content: @Composable () -> Unit) {
     val tweakedToDark = when (tweakType) {
         OdsThemeTweakType.Inverted -> !LocalDarkThemeEnabled.current
         OdsThemeTweakType.ForceDark -> true
