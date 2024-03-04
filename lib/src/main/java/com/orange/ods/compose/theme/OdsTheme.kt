@@ -120,7 +120,7 @@ enum class OdsThemeTweakType {
  * Note: This composable is directly related to [OdsTheme] and MUST be used inside it.
  */
 @Composable
-fun TweakedTheme(tweakType: OdsThemeTweakType = OdsThemeTweakType.Inverted, content: @Composable () -> Unit) {
+fun TweakedTheme(tweakType: OdsThemeTweakType, content: @Composable () -> Unit) {
     val tweakedToDark = when (tweakType) {
         OdsThemeTweakType.Inverted -> !LocalDarkThemeEnabled.current
         OdsThemeTweakType.ForceDark -> true
