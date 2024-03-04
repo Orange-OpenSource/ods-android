@@ -28,16 +28,17 @@ import com.orange.ods.theme.OdsThemeConfigurationContract
 import com.orange.ods.theme.colors.OdsColors
 import com.orange.ods.theme.typography.OdsTypography
 
+private fun odsThemeError(message: Any): Nothing = error("OdsTheme not found. $message")
+
+internal val LocalColors = staticCompositionLocalOf<OdsColors> { odsThemeError("LocalColors CompositionLocal not present") }
+private val LocalLightThemeColors = compositionLocalOf<OdsColors> { odsThemeError("LocalLightThemeColors CompositionLocal not present") }
+private val LocalDarkThemeColors = compositionLocalOf<OdsColors> { odsThemeError("LocalDarkThemeColors CompositionLocal not present") }
+
 private val LocalShapes = staticCompositionLocalOf { Shapes() }
-
-internal val LocalColors = staticCompositionLocalOf<OdsColors> { error("CompositionLocal LocalColors not present") }
-private val LocalLightThemeColors = compositionLocalOf<OdsColors> { error("CompositionLocal LocalLightThemeColors not present") }
-private val LocalDarkThemeColors = compositionLocalOf<OdsColors> { error("CompositionLocal LocalDarkThemeColors not present") }
-
 private val LocalTypography = staticCompositionLocalOf { OdsTypography() }
 private val LocalComponentsConfiguration = staticCompositionLocalOf { OdsComponentsConfiguration() }
 
-private val LocalDarkThemeEnabled = staticCompositionLocalOf<Boolean> { error("CompositionLocal LocalDarkThemeEnabled not present") }
+private val LocalDarkThemeEnabled = staticCompositionLocalOf<Boolean> { odsThemeError("LocalDarkThemeEnabled CompositionLocal not present.") }
 
 object OdsTheme {
 
