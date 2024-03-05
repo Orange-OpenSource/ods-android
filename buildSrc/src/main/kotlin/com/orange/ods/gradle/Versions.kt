@@ -34,7 +34,7 @@ object Versions {
     const val firebaseBom = "32.6.0"
     const val firebaseCrashlyticsGradlePlugin = "2.9.9"
     const val googleServicesGradlePlugin = "4.4.0"
-    const val hilt = "2.49"
+    const val hilt = "2.51"
     const val jUnit = "4.13.2"
     const val kotlin = "1.9.21"
     const val kotlinPoet = "1.15.3"
