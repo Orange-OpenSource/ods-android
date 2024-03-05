@@ -5,7 +5,6 @@
     ":renovatePrefix",
     ":rebaseStalePrs"
   ],
-  "schedule": ["every weekend"],
   "labels": ["dependencies"],
   "baseBranches": ["develop"],
   "timezone": "Europe/Paris",
