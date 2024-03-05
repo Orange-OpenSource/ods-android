@@ -25,7 +25,7 @@ object Versions {
     const val browser = "1.7.0"
     const val composeBom = "2023.10.01"
     const val composeCompiler = "1.5.6"
-    const val coil = "2.5.0"
+    const val coil = "2.6.0"
     const val constraintLayoutCompose = "1.0.1"
     const val core = "1.12.0"
     const val customViewPoolingContainer = "1.0.0"
