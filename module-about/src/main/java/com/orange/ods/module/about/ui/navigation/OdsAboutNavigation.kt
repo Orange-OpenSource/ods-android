@@ -26,13 +26,14 @@ import androidx.navigation.navigation
 import com.orange.ods.module.about.ui.OdsAboutFileScreen
 import com.orange.ods.module.about.ui.OdsAboutHomeScreen
 import com.orange.ods.module.about.ui.OdsAboutViewModel
+import com.orange.ods.module.about.ui.accessibilitystatement.OdsAboutAccessibilityStatementScreen
 import com.orange.ods.module.about.ui.appnews.OdsAboutAppNewsScreen
+import com.orange.ods.module.about.ui.configuration.OdsAboutAccessibilityStatementMenuItem
 import com.orange.ods.module.about.ui.configuration.OdsAboutAppNewsMenuItem
 import com.orange.ods.module.about.ui.configuration.OdsAboutConfiguration
 import com.orange.ods.module.about.ui.configuration.OdsAboutFileMenuItem
 import com.orange.ods.module.about.ui.configuration.OdsAboutMenuItem
 import com.orange.ods.module.about.ui.configuration.OdsAboutUrlMenuItem
-import com.orange.ods.module.about.ui.navigation.OdsAboutDestinations.AppNewsRoute
 import com.orange.ods.module.about.ui.utilities.extension.launchUrl
 
 
@@ -41,10 +42,12 @@ private object OdsAboutDestinations {
     const val AboutRoute = "ods/module/about/"
     const val FileItemRoute = "ods/module/about/fileItem"
     const val AppNewsRoute = "ods/module/about/appNews"
+    const val AccessibilityStatementRoute = "ods/module/about/accessibilityStatement"
 }
 
 private const val AboutItemIdKey = "aboutItemId"
 private const val AppNewsFileResId = "appNewsFileResId"
+private const val AccessibilityStatementItemIdKey = "accessibilityStatementItemIdKey"
 
 fun NavController.navigateToOdsAbout(navOptions: NavOptions? = null) {
     navigate(OdsAboutDestinations.AboutRoute, navOptions)
@@ -79,11 +82,24 @@ fun NavGraphBuilder.odsAboutGraph(navController: NavController, configuration: (
         }
 
         composable(
-            "$AppNewsRoute/{$AppNewsFileResId}",
+            "${OdsAboutDestinations.AppNewsRoute}/{$AppNewsFileResId}",
             arguments = listOf(navArgument(AppNewsFileResId) { type = NavType.LongType })
         ) { navBackStackEntry ->
             val appNewsFileResId = requireNotNull(navBackStackEntry.arguments).getLong(AppNewsFileResId).toInt()
             OdsAboutAppNewsScreen(fileRes = appNewsFileResId)
+        }
+
+        composable(
+            "${OdsAboutDestinations.AccessibilityStatementRoute}/{$AccessibilityStatementItemIdKey}",
+            arguments = listOf(navArgument(AccessibilityStatementItemIdKey) { type = NavType.LongType })
+        ) { navBackStackEntry ->
+            navController.previousBackStackEntry?.let { previousBackStackEntry ->
+                val aboutViewModel = viewModel<OdsAboutViewModel>(previousBackStackEntry)
+                val accessibilityStatementMenuItemId = requireNotNull(navBackStackEntry.arguments).getLong(AccessibilityStatementItemIdKey).toInt()
+                val accessibilityStatementMenuItem =
+                    aboutViewModel.configuration?.menuItemById?.get(accessibilityStatementMenuItemId) as? OdsAboutAccessibilityStatementMenuItem
+                accessibilityStatementMenuItem?.let { OdsAboutAccessibilityStatementScreen(accessibilityStatementMenuItem = it) }
+            }
         }
     }
 }
@@ -96,12 +112,14 @@ internal fun onAboutMenuItemClick(
 ): (Int) -> Unit {
     val context = LocalContext.current
     return { id ->
-        val aboutMenuItem = menuItemById[id]
-        onScreenChange?.invoke(aboutMenuItem?.text.orEmpty())
-        when (aboutMenuItem) {
-            is OdsAboutUrlMenuItem -> context.launchUrl(aboutMenuItem.url)
-            is OdsAboutAppNewsMenuItem -> navController.navigate("$AppNewsRoute/${aboutMenuItem.jsonFileRes}")
-            else -> navController.navigate("${OdsAboutDestinations.FileItemRoute}/$id")
+        menuItemById[id]?.let { aboutMenuItem ->
+            onScreenChange?.invoke(aboutMenuItem.text)
+            when (aboutMenuItem) {
+                is OdsAboutUrlMenuItem -> context.launchUrl(aboutMenuItem.url)
+                is OdsAboutAppNewsMenuItem -> navController.navigate("${OdsAboutDestinations.AppNewsRoute}/${aboutMenuItem.jsonFileRes}")
+                is OdsAboutAccessibilityStatementMenuItem -> navController.navigate("${OdsAboutDestinations.AccessibilityStatementRoute}/$id")
+                is OdsAboutFileMenuItem -> navController.navigate("${OdsAboutDestinations.FileItemRoute}/$id")
+            }
         }
     }
 }

@@ -9,6 +9,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
+- \[About\] Add accessibility statement menu item ([#162](https://github.com/Orange-OpenSource/ods-android/issues/162))
 - \[App\] Display third party libraries in the About section ([#485](https://github.com/Orange-OpenSource/ods-android/issues/485))
 - \[App\] Display XML code implementation for components with an XML version available ([#788](https://github.com/Orange-OpenSource/ods-android/issues/788))
 - \[App\] Display Compose code implementation for `OdsTabRow` and `OdsScrollableTabRow` ([#549](https://github.com/Orange-OpenSource/ods-android/issues/549))

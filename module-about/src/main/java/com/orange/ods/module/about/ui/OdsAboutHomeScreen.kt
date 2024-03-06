@@ -40,6 +40,7 @@ import com.orange.ods.compose.component.utilities.Preview
 import com.orange.ods.compose.component.utilities.UiModePreviews
 import com.orange.ods.compose.text.OdsText
 import com.orange.ods.module.about.R
+import com.orange.ods.module.about.ui.configuration.OdsAboutAccessibilityStatementMenuItemConfiguration
 import com.orange.ods.module.about.ui.configuration.OdsAboutConfiguration
 import com.orange.ods.module.about.ui.configuration.OdsAboutFileMenuItem
 import com.orange.ods.module.about.ui.configuration.OdsAboutShareData
@@ -141,6 +142,7 @@ private fun PreviewOdsAboutHomeScreen() {
         appName = "App name",
         privacyPolicyMenuItemFile = OdsAboutFileMenuItem.File(0, OdsAboutFileMenuItem.File.Format.Html),
         termsOfServiceMenuItemFile = OdsAboutFileMenuItem.File(0, OdsAboutFileMenuItem.File.Format.Html),
+        accessibilityStatementMenuItemConfiguration = OdsAboutAccessibilityStatementMenuItemConfiguration(""),
         appVersion = "Version 1.0",
         appDescription = "Here is the description of the current application.",
         shareData = OdsAboutShareData("Title", "Text to display for sharing."),
