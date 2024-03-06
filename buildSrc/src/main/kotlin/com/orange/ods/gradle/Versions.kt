@@ -36,7 +36,7 @@ object Versions {
     const val googleServicesGradlePlugin = "4.4.1"
     const val hilt = "2.51"
     const val jUnit = "4.13.2"
-    const val kotlin = "1.9.21"
+    const val kotlin = "1.9.22"
     const val kotlinPoet = "1.16.0"
     const val ksp = "$kotlin-1.0.15"
     const val lifecycle = "2.7.0"
