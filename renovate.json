@@ -17,6 +17,10 @@
       "automerge": true,
       "automergeType": "branch",
       "automergeStrategy": "rebase"
+    },
+    {
+      "matchManagers": ["github-actions"],
+      "groupName": "github-actions"
     }
   ],
   "platformAutomerge": true
