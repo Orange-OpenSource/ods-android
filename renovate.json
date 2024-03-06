@@ -21,6 +21,9 @@
     {
       "matchManagers": ["github-actions"],
       "groupName": "github-actions"
+    },
+    {
+      "matchManagers": ["bundler"]
     }
   ],
   "platformAutomerge": true
