@@ -44,6 +44,7 @@ object DrawableManager {
         R.drawable.il_chips_generic to R.drawable.il_chips,
         R.drawable.il_chips_small_generic to R.drawable.il_chips_small,
         R.drawable.il_dialogs_generic to R.drawable.il_dialogs,
+        R.drawable.il_empty_state_generic to R.drawable.il_empty_state,
         R.drawable.il_empty_state_error_generic to R.drawable.il_empty_state_error,
         R.drawable.il_empty_state_first_use_generic to R.drawable.il_empty_state_first_use,
         R.drawable.il_empty_state_no_data_generic to R.drawable.il_empty_state_no_data,
