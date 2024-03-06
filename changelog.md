@@ -23,6 +23,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - \[App\] Update checkboxes and switches components demo by showing only one element ([#666](https://github.com/Orange-OpenSource/ods-android/issues/666))
 - \[App\] Replace `OdsListItem` lines counter customization by choice chips allowing secondary text lines count customization ([#799](https://github.com/Orange-OpenSource/ods-android/issues/799))
 - \[App\] Update image for empty state module no data example ([#811](https://github.com/Orange-OpenSource/ods-android/issues/811))
+- \[App\] Update empty state module demo images for innovation cup theme ([#868](https://github.com/Orange-OpenSource/ods-android/issues/868))
 - \[Doc\] Update About module integration instructions ([#815](https://github.com/Orange-OpenSource/ods-android/issues/815))
 - \[Doc\] Update colors and typography documentations ([#818](https://github.com/Orange-OpenSource/ods-android/issues/818))
 - \[Lib\] Update i18n keys ([#752](https://github.com/Orange-OpenSource/ods-android/issues/752))
