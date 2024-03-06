@@ -46,7 +46,8 @@ enum class EmptyStateUsage(
         R.string.module_emptyState_usageUserCleared_choice,
         R.string.module_emptyState_usageUserCleared_title,
         R.string.module_emptyState_usageUserCleared_text,
-        R.string.module_emptyState_usageUserCleared_buttonLabel
+        R.string.module_emptyState_usageUserCleared_buttonLabel,
+        R.drawable.il_empty_state_user_clear
     ),
     Error(
         R.string.module_emptyState_usageError_choice,
