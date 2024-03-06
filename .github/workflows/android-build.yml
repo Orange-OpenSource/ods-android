@@ -24,7 +24,7 @@ jobs:
           fetch-depth: 0
 
       - name: Set up our JDK environment
-        uses: actions/setup-java@v3
+        uses: actions/setup-java@v4
         with:
           distribution: 'zulu'
           java-version: '17'
@@ -49,31 +49,31 @@ jobs:
           ./gradlew assemble -PversionNameSuffix="-${COMMIT_SHA::7}" -PversionCode=$GITHUB_RUN_NUMBER --stacktrace
 
       - name: Store app artifacts
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: app
           path: app/build/outputs/apk/*/*/*.apk
 
       - name: Store lib artifacts
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: lib
           path: lib/build/outputs/aar/*.aar
 
       - name: Store theme-contract artifacts
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: theme-contract
           path: theme-contract/build/outputs/aar/*.aar
 
       - name: Store theme-innovation-cup artifacts
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: theme-innovation-cup
           path: theme-innovation-cup/build/outputs/aar/*.aar
 
       - name: Store theme-orange artifacts
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: theme-orange
           path: theme-orange/build/outputs/aar/*.aar
@@ -92,7 +92,7 @@ jobs:
           fetch-depth: 0
 
       - name: Set up our JDK environment
-        uses: actions/setup-java@v3
+        uses: actions/setup-java@v4
         with:
           distribution: 'zulu'
           java-version: '17'
@@ -128,7 +128,7 @@ jobs:
           fetch-depth: 0
 
       - name: Set up our JDK environment
-        uses: actions/setup-java@v3
+        uses: actions/setup-java@v4
         with:
           distribution: 'zulu'
           java-version: '17'
@@ -160,7 +160,7 @@ jobs:
           fetch-depth: 0
 
       - name: Set up our JDK environment
-        uses: actions/setup-java@v3
+        uses: actions/setup-java@v4
         with:
           distribution: 'zulu'
           java-version: '17'
@@ -171,7 +171,7 @@ jobs:
           curl -F 'file=@app/build/outputs/bundle/prodRelease/app-prod-release.aab' https://oma-portal.orange.fr/oma/api/v1/external/applications/${{ secrets.OMA_APP_ID }}/artifacts -H "apiKey:${{ secrets.OMA_APP_TOKEN }}"
 
       - name: Store Google Play Store artifacts
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: google-play-store
           path: |
