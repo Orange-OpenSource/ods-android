@@ -22,6 +22,10 @@
         body {
             min-height: 100vh;
         }
+        body > .container-xxl,
+        body > .container-xxl > .row {
+            min-height: calc(100vh - 280px);
+        }
         img {
             max-width: 100%;
         }
@@ -42,9 +46,13 @@
 </head>
 
 <body>
+    {% if page.back-to-top != false %}
+    <a id="top"></a>
+    {% endif %}
+
     {% include header.html %}
 
-    <div class="container-xxl pt-4 pt-lg-5 mb-4 mb-lg-5">
+    <div class="container-xxl my-4 my-lg-5">
         <div class="row">
             
             <div class="col-lg-3" aria-label="Global navigation of ODS Android">
@@ -135,6 +143,14 @@
     </div>
 
     {% include footer.html %}
+
+    {% if page.back-to-top != false %}
+    <nav aria-label="Back to top" class="back-to-top">
+      <a href="#top" class="back-to-top-link btn btn-icon btn-outline-secondary" data-bs-label="Back to top">
+        <span class="visually-hidden">Back to top</span>
+      </a>
+    </nav>
+    {% endif %}
 
     {% include scripts.html %}
 
