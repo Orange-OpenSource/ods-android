@@ -22,7 +22,7 @@ object Versions {
     const val activity = "1.8.2"
     const val androidGradlePlugin = "8.2.2"
     const val appCompat = "1.6.1"
-    const val browser = "1.7.0"
+    const val browser = "1.8.0"
     const val composeBom = "2023.10.01"
     const val composeCompiler = "1.5.6"
     const val coil = "2.6.0"
