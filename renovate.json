@@ -15,7 +15,6 @@
       "description": "Automerge branch for minor and patch updates",
       "matchUpdateTypes": ["minor", "patch"],
       "automerge": true,
-      "automergeType": "branch",
       "automergeStrategy": "rebase"
     },
     {
