@@ -32,7 +32,7 @@ enum class EmptyStateUsage(
     @StringRes val titleRes: Int,
     @StringRes val textRes: Int,
     @StringRes val buttonLabelRes: Int,
-    @DrawableRes val illustrationRes: Int? = null
+    @DrawableRes val illustrationRes: Int
 ) {
     FirstUse(
         R.string.module_emptyState_usageFirstUse_choice,

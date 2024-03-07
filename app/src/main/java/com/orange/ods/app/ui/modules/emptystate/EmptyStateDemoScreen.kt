@@ -25,7 +25,7 @@ import com.orange.ods.compose.module.emptystate.OdsEmptyStateView
 fun EmptyStateDemoScreen(viewModel: EmptyStateCustomizationViewModel) {
     val context = LocalContext.current
     val elementClicked = stringResource(id = R.string.module_emptyState_button_customization)
-    val illustrationRes = viewModel.usage.illustrationRes?.let { getDrawableResIdForCurrentTheme(it) }
+    val illustrationRes = getDrawableResIdForCurrentTheme(viewModel.usage.illustrationRes)
     OdsEmptyStateView(
         title = stringResource(id = viewModel.usage.titleRes),
         text = if (viewModel.text) stringResource(id = viewModel.usage.textRes) else null,
@@ -34,6 +34,6 @@ fun EmptyStateDemoScreen(viewModel: EmptyStateCustomizationViewModel) {
         } else {
             null
         },
-        image = illustrationRes?.let { OdsEmptyStateView.Image(painter = painterResource(id = it)) }
+        image = OdsEmptyStateView.Image(painter = painterResource(id = illustrationRes))
     )
 }

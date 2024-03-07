@@ -52,7 +52,7 @@ fun OdsEmptyStateView(
     title: String,
     modifier: Modifier = Modifier,
     text: String? = null,
-    image: OdsEmptyStateView.Image? = OdsEmptyStateView.Image(painter = painterResource(id = R.drawable.il_yoga_man)),
+    image: OdsEmptyStateView.Image = OdsEmptyStateView.Image(painter = painterResource(id = R.drawable.il_yoga_man)),
     button: OdsEmptyStateView.Button? = null
 ) {
     Column(
@@ -63,7 +63,7 @@ fun OdsEmptyStateView(
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
 
-        image?.Content(modifier = Modifier.fillMaxWidth())
+        image.Content(modifier = Modifier.fillMaxWidth())
 
         OdsText(
             modifier = Modifier
