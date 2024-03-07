@@ -16,7 +16,7 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.material.AppBarDefaults
 import androidx.compose.material.TopAppBar
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.ArrowBack
+import androidx.compose.material.icons.automirrored.filled.ArrowBack
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.remember
@@ -84,6 +84,6 @@ private fun PreviewOdsSearchTopAppBar() = Preview {
         placeholder = "Enter text to search",
         value = TextFieldValue(),
         onValueChange = {},
-        navigationIcon = OdsTopAppBar.NavigationIcon(Icons.Filled.ArrowBack, "") {},
+        navigationIcon = OdsTopAppBar.NavigationIcon(Icons.AutoMirrored.Filled.ArrowBack, "") {},
     )
 }

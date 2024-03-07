@@ -13,7 +13,7 @@
 package com.orange.ods.app.ui
 
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.ArrowBack
+import androidx.compose.material.icons.automirrored.filled.ArrowBack
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.MutableState
 import androidx.compose.runtime.getValue
@@ -115,7 +115,7 @@ class AppBarState(
 
     @Composable
     fun getNavigationIcon(upPress: () -> Unit) = if (showNavigationIcon) {
-        OdsTopAppBar.NavigationIcon(Icons.Filled.ArrowBack, stringResource(id = R.string.top_app_bar_back_icon_desc), upPress)
+        OdsTopAppBar.NavigationIcon(Icons.AutoMirrored.Filled.ArrowBack, stringResource(id = R.string.top_app_bar_back_icon_desc), upPress)
     } else {
         null
     }

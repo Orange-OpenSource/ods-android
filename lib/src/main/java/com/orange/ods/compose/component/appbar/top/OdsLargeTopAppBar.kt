@@ -15,10 +15,9 @@ package com.orange.ods.compose.component.appbar.top
 import androidx.compose.foundation.focusable
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.ArrowBack
+import androidx.compose.material.icons.automirrored.filled.ArrowBack
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.LargeTopAppBar
-import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.material3.TopAppBarScrollBehavior
 import androidx.compose.runtime.Composable
@@ -170,7 +169,7 @@ private class OdsLargeTopAppBarPreviewParameterProvider :
 
 private val previewParameterValues: List<OdsLargeTopAppBarPreviewParameter>
     get() {
-        val navigationIcon = OdsTopAppBar.NavigationIcon(Icons.Filled.ArrowBack, "") {}
+        val navigationIcon = OdsTopAppBar.NavigationIcon(Icons.AutoMirrored.Filled.ArrowBack, "") {}
         return listOf(
             OdsLargeTopAppBarPreviewParameter("One line title", navigationIcon),
             OdsLargeTopAppBarPreviewParameter("Two lines title is allowed in large top app bar", navigationIcon),
