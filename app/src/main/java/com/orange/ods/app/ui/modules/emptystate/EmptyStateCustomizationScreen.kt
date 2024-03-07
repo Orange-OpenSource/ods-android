@@ -32,7 +32,7 @@ enum class EmptyStateUsage(
     @StringRes val titleRes: Int,
     @StringRes val textRes: Int,
     @StringRes val buttonLabelRes: Int,
-    @DrawableRes val illustrationRes: Int? = null
+    @DrawableRes val illustrationRes: Int
 ) {
     FirstUse(
         R.string.module_emptyState_usageFirstUse_choice,
@@ -46,7 +46,8 @@ enum class EmptyStateUsage(
         R.string.module_emptyState_usageUserCleared_choice,
         R.string.module_emptyState_usageUserCleared_title,
         R.string.module_emptyState_usageUserCleared_text,
-        R.string.module_emptyState_usageUserCleared_buttonLabel
+        R.string.module_emptyState_usageUserCleared_buttonLabel,
+        R.drawable.il_empty_state_user_clear
     ),
     Error(
         R.string.module_emptyState_usageError_choice,
