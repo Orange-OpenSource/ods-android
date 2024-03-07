@@ -18,7 +18,7 @@ object Versions {
     const val minSdk = 21
     const val targetSdk = compileSdk
 
-    const val accompanist = "0.32.0"
+    const val accompanist = "0.34.0"
     const val activity = "1.8.2"
     const val androidGradlePlugin = "8.2.2"
     const val appCompat = "1.6.1"
