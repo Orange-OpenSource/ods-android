@@ -24,7 +24,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.PreviewParameter
 import com.orange.ods.compose.component.OdsComposable
 import com.orange.ods.compose.component.utilities.BasicPreviewParameterProvider
-import com.orange.ods.compose.component.utilities.Preview
+import com.orange.ods.compose.component.utilities.OdsPreview
 import com.orange.ods.compose.component.utilities.UiModePreviews
 import com.orange.ods.compose.text.OdsText
 import com.orange.ods.compose.theme.OdsTheme
@@ -94,7 +94,7 @@ private object OdsOnPrimaryRippleTheme : RippleTheme {
 
 @UiModePreviews.Button
 @Composable
-private fun PreviewOdsButton(@PreviewParameter(OdsButtonPreviewParameterProvider::class) parameter: OdsButtonPreviewParameter) = Preview {
+private fun PreviewOdsButton(@PreviewParameter(OdsButtonPreviewParameterProvider::class) parameter: OdsButtonPreviewParameter) = OdsPreview {
     with(parameter) {
         OdsButton(text = "Text", onClick = {}, style = style, enabled = enabled)
     }

@@ -12,6 +12,7 @@
 
 package com.orange.ods.theme.guideline
 
+import com.orange.ods.compose.annotation.ExperimentalOdsApi
 import com.orange.ods.theme.typography.OdsTypography
 
 /**
@@ -19,6 +20,7 @@ import com.orange.ods.theme.typography.OdsTypography
  * Extend this class and override its properties to allow the application to display the guideline
  * elements (colors, typography) of your theme configuration.
  */
+@ExperimentalOdsApi
 open class OdsGuideline(private val typography: OdsTypography) {
 
     /**

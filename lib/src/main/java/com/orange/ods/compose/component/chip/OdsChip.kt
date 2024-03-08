@@ -33,7 +33,7 @@ import androidx.compose.ui.unit.dp
 import com.orange.ods.R
 import com.orange.ods.compose.component.OdsComposable
 import com.orange.ods.compose.component.chip.OdsChipDefaults.SurfaceOverlayOpacity
-import com.orange.ods.compose.component.utilities.Preview
+import com.orange.ods.compose.component.utilities.OdsPreview
 import com.orange.ods.compose.component.utilities.UiModePreviews
 import com.orange.ods.compose.component.utilities.selectionStateDescription
 import com.orange.ods.compose.text.OdsText
@@ -160,7 +160,7 @@ private fun odsChipBorderColor(selected: Boolean, enabled: Boolean) = when {
 
 @UiModePreviews.Chip
 @Composable
-private fun PreviewOdsChip() = Preview {
+private fun PreviewOdsChip() = OdsPreview {
     var selected by remember { mutableStateOf(false) }
     OdsChip(
         text = "Text",

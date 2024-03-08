@@ -26,7 +26,7 @@ import androidx.compose.ui.tooling.preview.PreviewParameter
 import com.orange.ods.R
 import com.orange.ods.compose.component.OdsComposable
 import com.orange.ods.compose.component.utilities.BasicPreviewParameterProvider
-import com.orange.ods.compose.component.utilities.Preview
+import com.orange.ods.compose.component.utilities.OdsPreview
 import com.orange.ods.compose.component.utilities.UiModePreviews
 import com.orange.ods.compose.text.OdsText
 import com.orange.ods.compose.theme.OdsPrimaryRippleTheme
@@ -134,7 +134,7 @@ private fun OdsColors.buttonTextColor(style: OdsTextButton.Style) =
 
 @UiModePreviews.Button
 @Composable
-private fun PreviewOdsTextButton(@PreviewParameter(OdsTextButtonPreviewParameterProvider::class) parameter: OdsTextButtonPreviewParameter) = Preview {
+private fun PreviewOdsTextButton(@PreviewParameter(OdsTextButtonPreviewParameterProvider::class) parameter: OdsTextButtonPreviewParameter) = OdsPreview {
     with(parameter) {
         val icon = if (hasIcon) OdsButton.Icon(painter = painterResource(id = R.drawable.ic_check)) else null
         OdsTextButton(text = "Text", icon = icon, maxLines = 1, overflow = TextOverflow.Clip, onClick = {}, style = style, enabled = enabled)

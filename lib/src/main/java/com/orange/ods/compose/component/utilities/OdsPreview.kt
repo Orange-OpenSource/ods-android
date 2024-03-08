@@ -21,12 +21,12 @@ import com.orange.ods.BuildConfig
 import com.orange.ods.compose.theme.OdsTheme
 
 /**
- * Configures the Compose preview environment in Android Studio.
+ * Configures the Compose ODS preview environment in Android Studio.
  *
  * @param content The content of the preview.
  */
 @Composable
-fun Preview(content: @Composable () -> Unit) = OdsTheme(BuildConfig.PREVIEW_THEME_CONFIGURATION) {
+fun OdsPreview(content: @Composable () -> Unit) = OdsTheme(BuildConfig.PREVIEW_THEME_CONFIGURATION) {
     Surface(color = OdsTheme.colors.background, content = content) // Add a surface to be able to see components
 }
 

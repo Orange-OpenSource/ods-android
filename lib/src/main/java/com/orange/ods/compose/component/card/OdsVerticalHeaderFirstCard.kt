@@ -14,7 +14,6 @@ package com.orange.ods.compose.component.card
 
 import androidx.annotation.DrawableRes
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.ExperimentalLayoutApi
 import androidx.compose.foundation.layout.IntrinsicSize
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
@@ -31,10 +30,10 @@ import androidx.compose.ui.unit.dp
 import com.orange.ods.R
 import com.orange.ods.compose.component.OdsComposable
 import com.orange.ods.compose.component.utilities.BasicPreviewParameterProvider
-import com.orange.ods.compose.component.utilities.Preview
+import com.orange.ods.compose.component.utilities.OdsPreview
 import com.orange.ods.compose.component.utilities.UiModePreviews
 import com.orange.ods.compose.text.OdsText
-import com.orange.ods.extension.orElse
+import com.orange.ods.compose.extension.orElse
 import com.orange.ods.theme.typography.OdsTextStyle
 
 /**
@@ -52,7 +51,6 @@ import com.orange.ods.theme.typography.OdsTextStyle
  * @param secondButton Second [OdsCard.Button] displayed into the card.
  * @param onClick Callback invoked on card click.
  */
-@OptIn(ExperimentalLayoutApi::class)
 @Composable
 @OdsComposable
 fun OdsVerticalHeaderFirstCard(
@@ -118,7 +116,7 @@ fun OdsVerticalHeaderFirstCard(
 @UiModePreviews.Default
 @Composable
 private fun PreviewOdsVerticalHeaderFirstCard(@PreviewParameter(OdsVerticalHeaderFirstCardPreviewParameterProvider::class) parameter: OdsVerticalHeaderFirstCardPreviewParameter) =
-    Preview {
+    OdsPreview {
         with(parameter) {
             OdsVerticalHeaderFirstCard(
                 title = CardPreview.Title,

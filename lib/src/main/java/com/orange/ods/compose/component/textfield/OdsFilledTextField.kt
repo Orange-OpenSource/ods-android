@@ -28,7 +28,7 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.input.VisualTransformation
 import androidx.compose.ui.tooling.preview.PreviewParameter
 import com.orange.ods.compose.component.content.OdsComponentContent
-import com.orange.ods.compose.component.utilities.Preview
+import com.orange.ods.compose.component.utilities.OdsPreview
 import com.orange.ods.compose.component.utilities.UiModePreviews
 import com.orange.ods.compose.text.OdsText
 import com.orange.ods.compose.text.styledText
@@ -93,7 +93,7 @@ internal fun OdsFilledTextField(
 
 @UiModePreviews.Default
 @Composable
-private fun PreviewOdsTextField(@PreviewParameter(OdsTextFieldPreviewParameterProvider::class) parameter: OdsTextFieldPreviewParameter) = Preview {
+private fun PreviewOdsTextField(@PreviewParameter(OdsTextFieldPreviewParameterProvider::class) parameter: OdsTextFieldPreviewParameter) = OdsPreview {
     var value by remember { mutableStateOf("Input text") }
     OdsFilledTextField(
         modifier = Modifier.fillMaxWidth(),

@@ -27,7 +27,7 @@ import com.orange.ods.compose.component.OdsComposable
 import com.orange.ods.compose.component.button.OdsTextButton
 import com.orange.ods.compose.component.content.OdsComponentContent
 import com.orange.ods.compose.component.utilities.BasicPreviewParameterProvider
-import com.orange.ods.compose.component.utilities.Preview
+import com.orange.ods.compose.component.utilities.OdsPreview
 import com.orange.ods.compose.component.utilities.UiModePreviews
 import com.orange.ods.compose.text.OdsText
 import com.orange.ods.compose.theme.OdsThemeTweak
@@ -71,8 +71,11 @@ object OdsSnackbarHost {
      * @param actionOnNewLine Whether or not the action should be put on a separate line. Recommended for action with long action text.
      * @param onActionClick Callback invoked when the action button is clicked.
      */
-    class Snackbar(private val data: SnackbarData, private val actionOnNewLine: Boolean = false, private val onActionClick: () -> Unit = {}) :
-        OdsComponentContent<Nothing>(Nothing::class.java) {
+    class Snackbar(
+        val data: SnackbarData,
+        val actionOnNewLine: Boolean = false,
+        val onActionClick: () -> Unit = {}
+    ) : OdsComponentContent<Nothing>(Nothing::class.java) {
 
         @Composable
         override fun Content(modifier: Modifier) {
@@ -126,7 +129,7 @@ private fun OdsSnackbar(
 
 @UiModePreviews.Default
 @Composable
-private fun PreviewOdsSnackbar(@PreviewParameter(OdsSnackbarPreviewParameterProvider::class) parameter: OdsSnackbarPreviewParameter) = Preview {
+private fun PreviewOdsSnackbar(@PreviewParameter(OdsSnackbarPreviewParameterProvider::class) parameter: OdsSnackbarPreviewParameter) = OdsPreview {
     with(parameter) {
         OdsSnackbar(
             message = "This is the message of the snackbar.",

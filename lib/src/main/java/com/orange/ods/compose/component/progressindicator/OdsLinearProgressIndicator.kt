@@ -38,11 +38,11 @@ import com.orange.ods.R
 import com.orange.ods.compose.component.OdsComposable
 import com.orange.ods.compose.component.content.OdsComponentIcon
 import com.orange.ods.compose.component.utilities.BasicPreviewParameterProvider
-import com.orange.ods.compose.component.utilities.Preview
+import com.orange.ods.compose.component.utilities.OdsPreview
 import com.orange.ods.compose.component.utilities.UiModePreviews
 import com.orange.ods.compose.text.OdsText
 import com.orange.ods.compose.theme.OdsTheme
-import com.orange.ods.extension.orElse
+import com.orange.ods.compose.extension.orElse
 import com.orange.ods.theme.typography.OdsTextStyle
 
 /**
@@ -156,7 +156,7 @@ object OdsLinearProgressIndicator {
 @UiModePreviews.Default
 @Composable
 private fun PreviewOdsLinearProgressIndicator(@PreviewParameter(OdsLinearProgressIndicatorPreviewParameterProvider::class) parameter: OdsLinearProgressIndicatorPreviewParameter) =
-    Preview {
+    OdsPreview {
         with(parameter) {
             OdsLinearProgressIndicator(
                 progress = progress,

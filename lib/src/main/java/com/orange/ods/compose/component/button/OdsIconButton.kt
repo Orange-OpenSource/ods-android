@@ -27,7 +27,7 @@ import com.orange.ods.compose.component.content.OdsComponentContent
 import com.orange.ods.compose.component.content.OdsComponentIcon
 import com.orange.ods.compose.component.icon.OdsIcon
 import com.orange.ods.compose.component.utilities.BasicPreviewParameterProvider
-import com.orange.ods.compose.component.utilities.Preview
+import com.orange.ods.compose.component.utilities.OdsPreview
 import com.orange.ods.compose.component.utilities.UiModePreviews
 import com.orange.ods.compose.theme.OdsTheme
 
@@ -81,8 +81,8 @@ object OdsIconButton {
      */
     class Icon : OdsComponentIcon<Icon.ExtraParameters> {
 
-        data class ExtraParameters(
-            val enabled: Boolean
+        data class ExtraParameters internal constructor(
+            internal val enabled: Boolean
         ) : OdsComponentContent.ExtraParameters()
 
         /**
@@ -124,7 +124,7 @@ object OdsIconButton {
 
 @UiModePreviews.Default
 @Composable
-private fun PreviewOdsIconButton(@PreviewParameter(OdsIconButtonPreviewParameterProvider::class) enabled: Boolean) = Preview {
+private fun PreviewOdsIconButton(@PreviewParameter(OdsIconButtonPreviewParameterProvider::class) enabled: Boolean) = OdsPreview {
     OdsIconButton(
         onClick = {},
         icon = OdsIconButton.Icon(painterResource(id = android.R.drawable.ic_dialog_info), ""),

@@ -43,7 +43,7 @@ import com.orange.ods.R
 import com.orange.ods.compose.component.OdsComposable
 import com.orange.ods.compose.component.content.OdsComponentIcon
 import com.orange.ods.compose.component.content.OdsComponentScopeContent
-import com.orange.ods.compose.component.utilities.Preview
+import com.orange.ods.compose.component.utilities.OdsPreview
 import com.orange.ods.compose.component.utilities.UiModePreviews
 import com.orange.ods.compose.text.OdsText
 import com.orange.ods.compose.theme.OdsTheme
@@ -213,7 +213,7 @@ object OdsBottomNavigation {
 
 @UiModePreviews.Default
 @Composable
-private fun PreviewOdsBottomNavigation() = Preview {
+private fun PreviewOdsBottomNavigation() = OdsPreview {
     val items = listOf(
         android.R.drawable.ic_dialog_email to "First item",
         android.R.drawable.ic_dialog_map to "Second item",

@@ -32,7 +32,7 @@ import androidx.compose.ui.unit.dp
 import com.orange.ods.R
 import com.orange.ods.compose.component.OdsComposable
 import com.orange.ods.compose.component.content.OdsComponentContent
-import com.orange.ods.compose.component.utilities.Preview
+import com.orange.ods.compose.component.utilities.OdsPreview
 import com.orange.ods.compose.component.utilities.UiModePreviews
 import com.orange.ods.compose.component.utilities.selectionStateDescription
 import com.orange.ods.compose.theme.OdsTheme
@@ -89,7 +89,9 @@ object OdsChoiceChipsFlowRow {
         val semantics: SemanticsPropertyReceiver.() -> Unit = {}
     ) : OdsComponentContent<ChoiceChip.ExtraParameters>(ExtraParameters::class.java) {
 
-        data class ExtraParameters(val selected: Boolean) : OdsComponentContent.ExtraParameters()
+        data class ExtraParameters internal constructor(
+            internal val selected: Boolean
+        ) : OdsComponentContent.ExtraParameters()
 
         @Composable
         override fun Content(modifier: Modifier) {
@@ -110,7 +112,7 @@ object OdsChoiceChipsFlowRow {
 
 @UiModePreviews.Default
 @Composable
-private fun PreviewOdsChoiceChipsFlowRow() = Preview {
+private fun PreviewOdsChoiceChipsFlowRow() = OdsPreview {
     val texts = listOf("First", "Second", "Third", "Fourth")
     var selectedChoiceChipIndex by remember { mutableIntStateOf(0) }
     OdsChoiceChipsFlowRow(

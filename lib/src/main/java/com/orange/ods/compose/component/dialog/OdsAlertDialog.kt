@@ -19,7 +19,7 @@ import androidx.compose.ui.window.DialogProperties
 import com.orange.ods.compose.component.OdsComposable
 import com.orange.ods.compose.component.button.OdsTextButton
 import com.orange.ods.compose.component.content.OdsComponentContent
-import com.orange.ods.compose.component.utilities.Preview
+import com.orange.ods.compose.component.utilities.OdsPreview
 import com.orange.ods.compose.component.utilities.UiModePreviews
 import com.orange.ods.compose.text.OdsText
 import com.orange.ods.theme.typography.OdsTextStyle
@@ -82,7 +82,7 @@ object OdsAlertDialog {
      * @param text Text of the button.
      * @param onClick Will be called when the user clicks the button.
      */
-    class Button(private val text: String, private val onClick: () -> Unit) : OdsComponentContent<Nothing>(Nothing::class.java) {
+    class Button(val text: String, val onClick: () -> Unit) : OdsComponentContent<Nothing>(Nothing::class.java) {
 
         @Composable
         override fun Content(modifier: Modifier) {
@@ -94,7 +94,7 @@ object OdsAlertDialog {
 
 @UiModePreviews.Default
 @Composable
-private fun PreviewOdsAlertDialog() = Preview {
+private fun PreviewOdsAlertDialog() = OdsPreview {
     OdsAlertDialog(
         text = "Text",
         confirmButton = OdsAlertDialog.Button("Confirm") {},

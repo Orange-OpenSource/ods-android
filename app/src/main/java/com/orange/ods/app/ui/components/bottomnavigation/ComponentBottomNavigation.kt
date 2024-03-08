@@ -49,7 +49,7 @@ import com.orange.ods.app.ui.utilities.composable.TechnicalText
 import com.orange.ods.compose.OdsComposable
 import com.orange.ods.compose.component.bottomnavigation.OdsBottomNavigation
 import com.orange.ods.compose.text.OdsText
-import com.orange.ods.extension.simpleNestedName
+import com.orange.ods.app.ui.utilities.extension.simpleNestedName
 import com.orange.ods.theme.typography.OdsTextStyle
 
 private object ComponentBottomNavigation {

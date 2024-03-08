@@ -17,22 +17,19 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
-import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.painterResource
-import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.PreviewParameter
 import androidx.compose.ui.unit.dp
 import com.orange.ods.R
 import com.orange.ods.compose.component.OdsComposable
 import com.orange.ods.compose.component.utilities.BasicPreviewParameterProvider
-import com.orange.ods.compose.component.utilities.Preview
+import com.orange.ods.compose.component.utilities.OdsPreview
 import com.orange.ods.compose.component.utilities.UiModePreviews
 import com.orange.ods.compose.text.OdsText
-import com.orange.ods.compose.theme.OdsTheme
 import com.orange.ods.theme.typography.OdsTextStyle
 
 /**
@@ -92,7 +89,7 @@ private fun SmallCardText(text: String, style: OdsTextStyle, isClickableCard: Bo
 
 @UiModePreviews.Default
 @Composable
-private fun PreviewOdsSmallCard(@PreviewParameter(OdsSmallCardPreviewParameterProvider::class) parameter: OdsSmallCardPreviewParameter) = Preview {
+private fun PreviewOdsSmallCard(@PreviewParameter(OdsSmallCardPreviewParameterProvider::class) parameter: OdsSmallCardPreviewParameter) = OdsPreview {
     OdsSmallCard(
         modifier = Modifier.width(200.dp),
         title = parameter.title,

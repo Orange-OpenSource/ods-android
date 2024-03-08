@@ -22,6 +22,6 @@ private val Roboto = FontFamily(
     Font(R.font.roboto_bold, FontWeight.Bold)
 )
 
-val OrangeTypography = OdsTypography(
+internal val OrangeTypography = OdsTypography(
     fontFamily = Roboto
 )

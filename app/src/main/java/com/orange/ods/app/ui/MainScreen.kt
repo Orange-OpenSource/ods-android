@@ -60,12 +60,13 @@ import com.orange.ods.app.ui.components.tabs.tabs
 import com.orange.ods.app.ui.modules.about.AboutCustomizationViewModel
 import com.orange.ods.app.ui.utilities.extension.isDarkModeEnabled
 import com.orange.ods.app.ui.utilities.extension.isOrange
+import com.orange.ods.compose.annotation.ExperimentalOdsApi
 import com.orange.ods.compose.component.listitem.OdsListItem
 import com.orange.ods.compose.component.tab.OdsScrollableTabRow
 import com.orange.ods.compose.component.tab.OdsTabRow
+import com.orange.ods.compose.extension.orElse
 import com.orange.ods.compose.text.OdsText
 import com.orange.ods.compose.theme.OdsTheme
-import com.orange.ods.extension.orElse
 import com.orange.ods.module.about.ui.navigation.navigateToOdsAbout
 import com.orange.ods.theme.OdsThemeConfigurationContract
 import com.orange.ods.theme.typography.OdsTextStyle
@@ -74,7 +75,7 @@ import com.orange.ods.xml.utilities.extension.xml
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
 
-@OptIn(ExperimentalMaterial3Api::class)
+@OptIn(ExperimentalMaterial3Api::class, ExperimentalOdsApi::class)
 @Composable
 fun MainScreen(themeConfigurations: List<OdsThemeConfigurationContract>, mainViewModel: MainViewModel = viewModel()) {
     val isSystemInDarkTheme = isSystemInDarkTheme()

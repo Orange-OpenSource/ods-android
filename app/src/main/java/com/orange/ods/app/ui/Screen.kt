@@ -21,7 +21,7 @@ import com.orange.ods.app.ui.guidelines.GuidelinesNavigation
 import com.orange.ods.app.ui.modules.ModulesNavigation
 import com.orange.ods.app.ui.utilities.UiString
 import com.orange.ods.compose.component.appbar.top.OdsTopAppBar
-import com.orange.ods.extension.orElse
+import com.orange.ods.compose.extension.orElse
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.asSharedFlow

@@ -34,15 +34,15 @@ import com.orange.ods.theme.typography.OdsTextStyle
 object OdsTabRow {
 
     class Tab(
-        private val icon: Icon?,
-        private val text: String?,
-        private val enabled: Boolean = true,
-        private val onClick: () -> Unit
+        val icon: Icon?,
+        val text: String?,
+        val enabled: Boolean = true,
+        val onClick: () -> Unit
     ) : OdsComponentContent<Tab.ExtraParameters>(ExtraParameters::class.java) {
 
-        data class ExtraParameters(
-            val selected: Boolean,
-            val iconPosition: Icon.Position
+        data class ExtraParameters internal constructor(
+            internal val selected: Boolean,
+            internal val iconPosition: Icon.Position
         ) : OdsComponentContent.ExtraParameters()
 
         @Composable

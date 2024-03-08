@@ -18,6 +18,7 @@ import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.TextStyle
+import com.orange.ods.compose.annotation.ExperimentalOdsApi
 import com.orange.ods.theme.colors.OdsColors
 
 /**
@@ -29,6 +30,7 @@ import com.orange.ods.theme.colors.OdsColors
  * @property darkThemeName The color name when dark theme is applied
  * @property xmlResource Optional resource used to use this color in XML
  */
+@ExperimentalOdsApi
 data class GuidelineColor(
     val callableName: String,
     val type: GuidelineColorType,
@@ -47,6 +49,7 @@ data class GuidelineColor(
     }
 }
 
+@ExperimentalOdsApi
 enum class GuidelineColorType {
     Core,
     Functional,
@@ -76,6 +79,7 @@ fun Color.toRgbString(): String {
  * @property xmlResource The typography style to use in XML
  * @property allCaps Controls whether the text is in uppercase or not.
  */
+@ExperimentalOdsApi
 data class GuidelineTextStyle(
     val name: String,
     val textStyle: TextStyle,

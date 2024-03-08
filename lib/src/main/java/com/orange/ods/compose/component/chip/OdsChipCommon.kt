@@ -110,7 +110,7 @@ object OdsChip {
         constructor(bitmap: ImageBitmap, contentDescription: String) : super(Nothing::class.java, bitmap, contentDescription, contentScale = ContentScale.Crop)
 
         @Composable
-        fun Content(enabled: Boolean) {
+        internal fun Content(enabled: Boolean) {
             this.Content(modifier = Modifier.odsChipAvatar(enabled))
         }
     }

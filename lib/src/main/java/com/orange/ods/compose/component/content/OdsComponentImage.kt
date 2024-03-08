@@ -26,10 +26,10 @@ import androidx.compose.ui.layout.ContentScale
  */
 abstract class OdsComponentImage<T> internal constructor(
     extraParametersClass: Class<T>,
-    private val graphicsObject: Any,
-    private val contentDescription: String,
-    private val alignment: Alignment = Alignment.Center,
-    private val contentScale: ContentScale = ContentScale.Fit
+    val graphicsObject: Any,
+    val contentDescription: String,
+    val alignment: Alignment = Alignment.Center,
+    val contentScale: ContentScale = ContentScale.Fit
 ) : OdsComponentContent<T>(extraParametersClass) where T : OdsComponentContent.ExtraParameters {
 
     protected constructor(
@@ -55,6 +55,11 @@ abstract class OdsComponentImage<T> internal constructor(
         alignment: Alignment = Alignment.Center,
         contentScale: ContentScale = ContentScale.Fit
     ) : this(extraParametersClass, bitmap as Any, contentDescription, alignment, contentScale)
+
+
+    val painter: Painter? = graphicsObject as? Painter
+    val imageVector: ImageVector? = graphicsObject as? ImageVector
+    val bitmap: ImageBitmap? = graphicsObject as? ImageBitmap
 
     @Composable
     override fun Content(modifier: Modifier) {

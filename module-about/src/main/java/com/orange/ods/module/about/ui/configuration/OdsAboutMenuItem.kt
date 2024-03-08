@@ -109,7 +109,11 @@ internal fun optionalMenuItems(
  * @property secondaryText The secondary text of the menu item displayed below the primary text.
  */
 @Immutable
-sealed class OdsAboutMenuItem(val graphicsObject: Any, val text: String, val position: Int, val secondaryText: String? = null)
+sealed class OdsAboutMenuItem(val graphicsObject: Any, val text: String, val position: Int, val secondaryText: String? = null) {
+    val painter: Painter? = graphicsObject as? Painter
+    val imageVector: ImageVector? = graphicsObject as? ImageVector
+    val bitmap: ImageBitmap? = graphicsObject as? ImageBitmap
+}
 
 /**
  * A [OdsAboutMenuItem] linked to a file.

@@ -36,7 +36,7 @@ import androidx.compose.ui.unit.dp
 import com.orange.ods.compose.component.button.OdsButton
 import com.orange.ods.compose.component.button.OdsTextButton
 import com.orange.ods.compose.component.listitem.OdsListItem
-import com.orange.ods.compose.component.utilities.Preview
+import com.orange.ods.compose.component.utilities.OdsPreview
 import com.orange.ods.compose.component.utilities.UiModePreviews
 import com.orange.ods.compose.text.OdsText
 import com.orange.ods.module.about.R
@@ -149,7 +149,7 @@ private fun PreviewOdsAboutHomeScreen() {
         onFeedbackButtonClick = {}
     )
 
-    Preview {
+    OdsPreview {
         OdsAboutHomeScreen(configuration = configuration, onAboutMenuItemClick = {})
     }
 }

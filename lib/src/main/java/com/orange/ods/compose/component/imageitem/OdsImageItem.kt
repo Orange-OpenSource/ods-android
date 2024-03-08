@@ -42,12 +42,12 @@ import com.orange.ods.compose.component.button.OdsIconButton
 import com.orange.ods.compose.component.button.OdsIconToggleButton
 import com.orange.ods.compose.component.content.OdsComponentImage
 import com.orange.ods.compose.component.utilities.BasicPreviewParameterProvider
-import com.orange.ods.compose.component.utilities.Preview
+import com.orange.ods.compose.component.utilities.OdsPreview
 import com.orange.ods.compose.component.utilities.UiModePreviews
 import com.orange.ods.compose.text.OdsText
 import com.orange.ods.compose.theme.OdsThemeTweak
 import com.orange.ods.compose.theme.OdsThemeTweakType
-import com.orange.ods.extension.orElse
+import com.orange.ods.compose.extension.orElse
 import com.orange.ods.theme.typography.OdsTextStyle
 
 
@@ -204,7 +204,7 @@ object OdsImageItem {
         val uncheckedIcon: OdsIconButton.Icon,
     ) {
         @Composable
-        fun Content() {
+        internal fun Content() {
             OdsIconToggleButton(
                 checked = checked,
                 onCheckedChange = onCheckedChange,
@@ -235,7 +235,7 @@ private fun OdsImageItemLegendArea(
 @UiModePreviews.ImageItem
 @Composable
 private fun PreviewOdsImageItem(@PreviewParameter(OdsImageItemPreviewParameterProvider::class) parameter: OdsImageItemPreviewParameter) =
-    Preview {
+    OdsPreview {
         OdsImageItem(
             image = OdsImageItem.Image(painterResource(id = parameter.image), ""),
             title = parameter.title,

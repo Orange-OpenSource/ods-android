@@ -18,7 +18,7 @@ import androidx.compose.runtime.Composable
 import com.orange.ods.app.R
 import com.orange.ods.app.ui.LocalThemeManager
 import com.orange.ods.app.ui.utilities.extension.isOrange
-import com.orange.ods.extension.orElse
+import com.orange.ods.compose.extension.orElse
 
 object DrawableManager {
     const val ImageBackgroundColor = 0xff1b1b1b

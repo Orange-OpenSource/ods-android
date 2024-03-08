@@ -33,7 +33,7 @@ import com.orange.ods.R
 import com.orange.ods.compose.component.OdsComposable
 import com.orange.ods.compose.component.content.OdsComponentIcon
 import com.orange.ods.compose.component.utilities.BasicPreviewParameterProvider
-import com.orange.ods.compose.component.utilities.Preview
+import com.orange.ods.compose.component.utilities.OdsPreview
 import com.orange.ods.compose.component.utilities.UiModePreviews
 import com.orange.ods.compose.text.OdsText
 import com.orange.ods.compose.theme.OdsTheme
@@ -153,7 +153,7 @@ object OdsFloatingActionButton {
 @UiModePreviews.Default
 @Composable
 private fun PreviewOdsFloatingActionButton(@PreviewParameter(OdsFloatingActionButtonPreviewParameterProvider::class) isMini: Boolean) =
-    Preview {
+    OdsPreview {
         Column(modifier = Modifier.padding(dimensionResource(id = R.dimen.spacing_s))) {
             OdsFloatingActionButton(
                 onClick = {},
@@ -167,7 +167,7 @@ internal class OdsFloatingActionButtonPreviewParameterProvider : BasicPreviewPar
 
 @UiModePreviews.Button
 @Composable
-private fun PreviewOdsExtendedFloatingActionButton() = Preview {
+private fun PreviewOdsExtendedFloatingActionButton() = OdsPreview {
     Column(modifier = Modifier.padding(dimensionResource(id = R.dimen.spacing_s))) {
         OdsExtendedFloatingActionButton(
             modifier = Modifier.fillMaxWidth(),

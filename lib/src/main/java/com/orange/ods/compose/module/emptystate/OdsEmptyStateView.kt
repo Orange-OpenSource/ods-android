@@ -33,7 +33,7 @@ import com.orange.ods.compose.component.button.OdsOutlinedButton
 import com.orange.ods.compose.component.content.OdsComponentContent
 import com.orange.ods.compose.component.content.OdsComponentImage
 import com.orange.ods.compose.component.utilities.BasicPreviewParameterProvider
-import com.orange.ods.compose.component.utilities.Preview
+import com.orange.ods.compose.component.utilities.OdsPreview
 import com.orange.ods.compose.component.utilities.UiModePreviews
 import com.orange.ods.compose.text.OdsText
 import com.orange.ods.theme.typography.OdsTextStyle
@@ -101,7 +101,7 @@ object OdsEmptyStateView {
      * @param text Text of the button.
      * @param onClick Callback invoked on button click.
      */
-    class Button(private val text: String, private val onClick: () -> Unit) : OdsComponentContent<Nothing>(Nothing::class.java) {
+    class Button(val text: String, val onClick: () -> Unit) : OdsComponentContent<Nothing>(Nothing::class.java) {
 
         @Composable
         override fun Content(modifier: Modifier) {
@@ -164,7 +164,7 @@ object OdsEmptyStateView {
 @UiModePreviews.Default
 @Composable
 private fun PreviewOdsEmptyStateView(@PreviewParameter(OdsEmptyStateViewPreviewParameterProvider::class) parameter: OdsEmptyStateViewPreviewParameter) =
-    Preview {
+    OdsPreview {
         with(parameter) {
             OdsEmptyStateView(title = title, text = text, button = button)
         }

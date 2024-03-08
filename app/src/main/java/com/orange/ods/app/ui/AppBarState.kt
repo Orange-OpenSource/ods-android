@@ -33,7 +33,7 @@ import com.orange.ods.app.ui.components.utilities.clickOnElement
 import com.orange.ods.app.ui.utilities.NavigationItem
 import com.orange.ods.compose.component.appbar.top.OdsTopAppBar
 import com.orange.ods.compose.component.menu.OdsDropdownMenu
-import com.orange.ods.extension.orElse
+import com.orange.ods.compose.extension.orElse
 import kotlin.math.max
 
 val LocalAppBarManager = staticCompositionLocalOf<AppBarManager> { error("CompositionLocal AppBarManager not present") }

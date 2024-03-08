@@ -17,8 +17,8 @@ import android.content.pm.PackageInfo
 import android.content.pm.PackageManager
 import android.os.Build
 import androidx.compose.runtime.Composable
-import com.orange.ods.extension.ifNotNull
-import com.orange.ods.extension.orElse
+import com.orange.ods.compose.extension.ifNotNull
+import com.orange.ods.compose.extension.orElse
 import com.orange.ods.module.about.R
 
 object OdsAboutVersionHelper {

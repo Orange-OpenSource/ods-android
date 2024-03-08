@@ -10,7 +10,16 @@
  * Software description: Android library of reusable graphical components
  */
 
-package com.orange.ods.extension
+package com.orange.ods.compose.extension
 
-val Class<*>.simpleNestedName: String
-    get() = name.substringAfterLast(".").replace("$", ".")
+import kotlin.contracts.ExperimentalContracts
+import kotlin.contracts.contract
+
+@OptIn(ExperimentalContracts::class)
+internal fun CharSequence?.isNotNullOrBlank(): Boolean {
+    contract {
+        returns(true) implies (this@isNotNullOrBlank != null)
+    }
+
+    return !isNullOrBlank()
+}

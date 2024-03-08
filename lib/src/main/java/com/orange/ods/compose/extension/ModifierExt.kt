@@ -17,26 +17,13 @@ import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.composed
-import com.orange.ods.extension.orElse
 
 /**
- * Allow to activate click on an element without any ripple effect
+ * Allows to activate click on an element without any ripple effect
  */
-fun Modifier.noRippleClickable(onClick: () -> Unit): Modifier = composed {
+internal fun Modifier.noRippleClickable(onClick: () -> Unit): Modifier = this.composed {
     clickable(indication = null,
         interactionSource = remember { MutableInteractionSource() }) {
         onClick()
-    }
-}
-
-/**
- * Returns the first [Modifier.Element] of type [T] in the current modifier, or null if an element of type [T] could not be found.
- *
- * @param T The type of the [Modifier.Element].
- * @return The modifier element, or null if it could not be found.
- */
-internal inline fun <reified T> Modifier.getElementOfType(): T? where T : Modifier.Element {
-    return foldOut(null as T?) { currentElement, foundElement ->
-        foundElement.orElse { currentElement as? T }
     }
 }

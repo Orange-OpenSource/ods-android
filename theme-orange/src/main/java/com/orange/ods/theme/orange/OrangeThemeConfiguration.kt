@@ -15,6 +15,7 @@ package com.orange.ods.theme.orange
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.Shapes
 import androidx.compose.ui.unit.dp
+import com.orange.ods.compose.annotation.ExperimentalOdsApi
 import com.orange.ods.theme.OdsThemeColors
 import com.orange.ods.theme.OdsThemeConfigurationContract
 import com.orange.ods.theme.guideline.OdsGuideline
@@ -43,6 +44,7 @@ class OrangeThemeConfiguration : OdsThemeConfigurationContract {
             small = RoundedCornerShape(0.dp)
         )
 
+    @OptIn(ExperimentalOdsApi::class)
     override val guideline: OdsGuideline
         get() = OrangeGuideline(typography)
 }

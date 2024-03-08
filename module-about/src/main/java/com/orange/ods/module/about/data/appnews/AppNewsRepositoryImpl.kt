@@ -14,7 +14,7 @@ package com.orange.ods.module.about.data.appnews
 
 import android.content.Context
 import androidx.annotation.RawRes
-import com.orange.ods.extension.contentAsString
+import com.orange.ods.compose.extension.contentAsString
 import com.orange.ods.module.about.domain.appnews.AppNews
 import com.orange.ods.module.about.domain.appnews.AppNewsRepository
 import kotlinx.coroutines.CancellationException

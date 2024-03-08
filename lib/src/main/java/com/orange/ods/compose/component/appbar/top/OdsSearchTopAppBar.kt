@@ -27,7 +27,7 @@ import androidx.compose.ui.text.input.TextFieldValue
 import androidx.compose.ui.unit.dp
 import com.orange.ods.compose.component.OdsComposable
 import com.orange.ods.compose.component.textfield.search.OdsSearchTextField
-import com.orange.ods.compose.component.utilities.Preview
+import com.orange.ods.compose.component.utilities.OdsPreview
 import com.orange.ods.compose.component.utilities.UiModePreviews
 import com.orange.ods.compose.theme.OdsTheme
 
@@ -79,7 +79,7 @@ fun OdsSearchTopAppBar(
 
 @UiModePreviews.Default
 @Composable
-private fun PreviewOdsSearchTopAppBar() = Preview {
+private fun PreviewOdsSearchTopAppBar() = OdsPreview {
     OdsSearchTopAppBar(
         placeholder = "Enter text to search",
         value = TextFieldValue(),

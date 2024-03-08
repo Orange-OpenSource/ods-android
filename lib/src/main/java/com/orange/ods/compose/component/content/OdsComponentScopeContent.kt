@@ -24,7 +24,7 @@ import androidx.compose.ui.Modifier
  * @param extraParametersClass The extra parameters class.
  * @param T The type of the scope.
  */
-abstract class OdsComponentScopeContent<T, S>(private val extraParametersClass: Class<S>) where S : OdsComponentContent.ExtraParameters {
+abstract class OdsComponentScopeContent<T, S> internal constructor(private val extraParametersClass: Class<S>) where S : OdsComponentContent.ExtraParameters {
 
     /**
      * The extra parameters.

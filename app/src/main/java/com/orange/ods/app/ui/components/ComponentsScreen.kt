@@ -32,7 +32,7 @@ import androidx.compose.ui.res.stringResource
 import com.orange.ods.app.ui.utilities.DrawableManager
 import com.orange.ods.compose.component.card.OdsCard
 import com.orange.ods.compose.component.card.OdsSmallCard
-import com.orange.ods.extension.orElse
+import com.orange.ods.compose.extension.orElse
 
 @Composable
 fun ComponentsScreen(onComponentClick: (Long) -> Unit) {

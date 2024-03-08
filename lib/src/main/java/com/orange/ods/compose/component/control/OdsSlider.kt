@@ -43,7 +43,7 @@ import com.orange.ods.R
 import com.orange.ods.compose.component.OdsComposable
 import com.orange.ods.compose.component.content.OdsComponentIcon
 import com.orange.ods.compose.component.utilities.BasicPreviewParameterProvider
-import com.orange.ods.compose.component.utilities.Preview
+import com.orange.ods.compose.component.utilities.OdsPreview
 import com.orange.ods.compose.component.utilities.UiModePreviews
 import com.orange.ods.compose.text.OdsText
 import com.orange.ods.compose.theme.OdsTheme
@@ -289,7 +289,7 @@ private fun calcFraction(a: Float, b: Float, pos: Float) =
 
 @UiModePreviews.Default
 @Composable
-private fun PreviewOdsSlider(@PreviewParameter(OdsSliderPreviewParameterProvider::class) withIcons: Boolean) = Preview {
+private fun PreviewOdsSlider(@PreviewParameter(OdsSliderPreviewParameterProvider::class) withIcons: Boolean) = OdsPreview {
     val sliderValue = remember { mutableFloatStateOf(0.5f) }
 
     OdsSlider(
@@ -303,7 +303,7 @@ private fun PreviewOdsSlider(@PreviewParameter(OdsSliderPreviewParameterProvider
 
 @UiModePreviews.Default
 @Composable
-private fun PreviewOdsSliderLockups(@PreviewParameter(OdsSliderPreviewParameterProvider::class) withIcons: Boolean) = Preview {
+private fun PreviewOdsSliderLockups(@PreviewParameter(OdsSliderPreviewParameterProvider::class) withIcons: Boolean) = OdsPreview {
     var value by remember { mutableFloatStateOf(50.0f) }
     OdsSliderLockups(
         value = value,

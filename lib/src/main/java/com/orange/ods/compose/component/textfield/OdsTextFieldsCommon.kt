@@ -52,8 +52,11 @@ object OdsTextField {
      * in the `onValueChange` method of the text field.
      * @property enabled Controls the enable state of the counter. If set to `false` the text will be displayed in disabled color.
      */
-    class CharacterCounter(private val characterCount: Int, private val maxCharacterCount: Int, private val enabled: Boolean = true) :
-        OdsComponentContent<Nothing>(Nothing::class.java) {
+    class CharacterCounter(
+        val characterCount: Int,
+        val maxCharacterCount: Int,
+        val enabled: Boolean = true
+    ) : OdsComponentContent<Nothing>(Nothing::class.java) {
 
         @Composable
         override fun Content(modifier: Modifier) {
@@ -72,8 +75,8 @@ object OdsTextField {
      */
     class LeadingIcon : OdsComponentIcon<LeadingIcon.ExtraParameters> {
 
-        data class ExtraParameters(
-            val enabled: Boolean
+        data class ExtraParameters internal constructor(
+            internal val enabled: Boolean
         ) : OdsComponentContent.ExtraParameters()
 
         /**
@@ -126,9 +129,9 @@ object OdsTextField {
     }
 
     sealed interface Trailing {
-        data class ExtraParameters(
-            val enabled: Boolean,
-            val isTextFieldEmpty: Boolean
+        data class ExtraParameters internal constructor(
+            internal val enabled: Boolean,
+            internal val isTextFieldEmpty: Boolean
         ) : OdsComponentContent.ExtraParameters()
     }
 

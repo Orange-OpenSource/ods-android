@@ -49,7 +49,7 @@ import com.orange.ods.compose.OdsComposable
 import com.orange.ods.compose.component.banner.OdsBanner
 import com.orange.ods.compose.component.chip.OdsChoiceChipsFlowRow
 import com.orange.ods.compose.component.listitem.OdsListItem
-import com.orange.ods.extension.ifNotNull
+import com.orange.ods.compose.extension.ifNotNull
 
 @OptIn(ExperimentalMaterialApi::class)
 @Composable
