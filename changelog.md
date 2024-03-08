@@ -54,6 +54,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - \[Lib\] Fix an issue in `OdsExposedDropdownMenu` where menu was not accessible with keyboard navigation ([#750](https://github.com/Orange-OpenSource/ods-android/issues/750))
 - \[Lib\] Fix an A11y issue on `OdsBottomNavigation` where the items were focused twice when navigating with a keyboard ([#784](https://github.com/Orange-OpenSource/ods-android/issues/784))
 - \[Lib\] Fix XML buttons display when forced on dark or light ([#656](https://github.com/Orange-OpenSource/ods-android/issues/656))
+- \[Lib\] Fix a bug where ODS typography were not installed in the Material theme instance ([#813](https://github.com/Orange-OpenSource/ods-android/issues/813))
 
 ## [0.18.0](https://github.com/Orange-OpenSource/ods-android/compare/0.17.0...0.18.0) - 2023-12-11
 
