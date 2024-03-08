@@ -15,7 +15,7 @@ package com.orange.ods.compose.component.appbar.top
 import androidx.compose.material.AppBarDefaults
 import androidx.compose.material.TopAppBar
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.ArrowBack
+import androidx.compose.material.icons.automirrored.filled.ArrowBack
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.painterResource
@@ -79,7 +79,7 @@ private fun PreviewOdsTopAppBar() = Preview {
     )
     OdsTopAppBar(
         title = "Title",
-        navigationIcon = OdsTopAppBar.NavigationIcon(Icons.Filled.ArrowBack, "") {},
+        navigationIcon = OdsTopAppBar.NavigationIcon(Icons.AutoMirrored.Filled.ArrowBack, "") {},
         actions = actions,
         overflowMenuItems = overflowMenuItems
     )
