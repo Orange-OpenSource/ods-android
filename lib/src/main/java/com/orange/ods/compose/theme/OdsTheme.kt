@@ -99,7 +99,8 @@ fun OdsTheme(
         LocalComponentsConfiguration provides themeConfiguration.componentsConfiguration
     ) {
         MaterialTheme(
-            colors = colors.materialColors
+            colors = colors.materialColors,
+            typography = themeConfiguration.typography.materialTypography
         ) {
             content()
         }
@@ -143,7 +144,8 @@ fun OdsThemeTweak(tweakType: OdsThemeTweakType, content: @Composable () -> Unit)
         LocalContentColor provides colors.onSurface
     ) {
         MaterialTheme(
-            colors = colors.materialColors
+            colors = colors.materialColors,
+            typography = LocalTypography.current.materialTypography
         ) {
             content()
         }

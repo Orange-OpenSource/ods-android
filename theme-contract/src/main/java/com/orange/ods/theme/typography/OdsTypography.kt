@@ -12,6 +12,7 @@
 
 package com.orange.ods.theme.typography
 
+import androidx.compose.material.Typography
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight
@@ -26,7 +27,7 @@ import androidx.compose.ui.unit.sp
  * the [allCapsTextStyles] list.
  */
 class OdsTypography(
-    fontFamily: FontFamily = FontFamily.Default,
+    private val fontFamily: FontFamily = FontFamily.Default,
     headlineL: TextStyle = TextStyle(
         fontWeight = FontWeight.Bold,
         fontSize = 34.sp,
@@ -130,6 +131,25 @@ class OdsTypography(
     }
 
     fun isAllCapsTextStyle(textStyle: TextStyle) = allCapsTextStyles.contains(textStyle)
+
+    /** Corresponding Material 2 Typography */
+    val materialTypography
+        get() = Typography(
+            defaultFontFamily = fontFamily,
+            h1 = headlineL,
+            h2 = headlineL,
+            h3 = headlineL,
+            h4 = headlineL,
+            h5 = headlineS,
+            h6 = titleL,
+            subtitle1 = titleM,
+            subtitle2 = titleS,
+            body1 = bodyL,
+            body2 = bodyM,
+            button = labelL,
+            caption = bodyS,
+            overline = labelS
+        )
 }
 
 private fun TextStyle.withDefaultFontFamily(default: FontFamily): TextStyle {
