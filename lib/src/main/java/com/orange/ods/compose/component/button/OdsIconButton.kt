@@ -118,7 +118,7 @@ object OdsIconButton {
 
         @Composable
         override fun Content(modifier: Modifier) {
-            enabled = extraParameters.enabled
+            setEnabled(extraParameters.enabled)
             super.Content(modifier)
         }
     }

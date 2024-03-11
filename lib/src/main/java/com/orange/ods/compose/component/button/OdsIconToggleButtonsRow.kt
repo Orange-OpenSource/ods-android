@@ -98,7 +98,7 @@ object OdsIconToggleButtonsRow {
         val graphicsObject: Any,
         val contentDescription: String,
         val onClick: () -> Unit,
-        enabled: Boolean = true
+        val enabled: Boolean = true
     ) : OdsComponentIcon<IconButton.ExtraParameters>(ExtraParameters::class.java, graphicsObject, contentDescription, enabled) {
 
         data class ExtraParameters internal constructor(
@@ -153,9 +153,6 @@ object OdsIconToggleButtonsRow {
             onClick: () -> Unit,
             enabled: Boolean = true
         ) : this(bitmap as Any, contentDescription, onClick, enabled)
-
-        public override var enabled: Boolean = enabled
-            protected set
 
         override val tint: Color
             @Composable

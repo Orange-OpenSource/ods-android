@@ -30,13 +30,17 @@ abstract class OdsComponentIcon<T> protected constructor(
     extraParametersClass: Class<T>,
     private val graphicsObject: Any,
     private val contentDescription: String,
-    protected open var enabled: Boolean = true,
+    private var enabled: Boolean = true,
     private val onClick: (() -> Unit)? = null,
 ) : OdsComponentContent<T>(extraParametersClass) where T : OdsComponentContent.ExtraParameters {
 
     val painter: Painter? = graphicsObject as? Painter
     val imageVector: ImageVector? = graphicsObject as? ImageVector
     val bitmap: ImageBitmap? = graphicsObject as? ImageBitmap
+
+    protected fun setEnabled(enabled: Boolean) {
+        this.enabled = enabled
+    }
 
     protected open val tint: Color?
         @Composable

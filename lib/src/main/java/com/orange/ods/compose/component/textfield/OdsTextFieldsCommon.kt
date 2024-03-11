@@ -112,7 +112,7 @@ object OdsTextField {
 
         @Composable
         override fun Content(modifier: Modifier) {
-            enabled = extraParameters.enabled
+            setEnabled(extraParameters.enabled)
             super.Content(modifier)
         }
     }
@@ -172,7 +172,7 @@ object OdsTextField {
 
         @Composable
         override fun Content(modifier: Modifier) {
-            enabled = extraParameters.enabled
+            setEnabled(extraParameters.enabled)
             super.Content(modifier)
         }
     }

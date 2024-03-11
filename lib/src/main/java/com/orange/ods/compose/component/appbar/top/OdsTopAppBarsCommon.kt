@@ -102,7 +102,7 @@ object OdsTopAppBar {
     class ActionButton private constructor(
         val graphicsObject: Any,
         val contentDescription: String,
-        enabled: Boolean = true,
+        val enabled: Boolean = true,
         val onClick: () -> Unit
     ) : OdsComponentIcon<Nothing>(Nothing::class.java, graphicsObject, contentDescription, enabled, onClick) {
 
@@ -153,9 +153,6 @@ object OdsTopAppBar {
             enabled: Boolean = true,
             onClick: () -> Unit
         ) : this(bitmap as Any, contentDescription, enabled, onClick)
-
-        public override var enabled: Boolean = enabled
-            protected set
 
         override val tint: Color
             @Composable
