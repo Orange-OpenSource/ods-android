@@ -158,7 +158,10 @@ object OdsBanner {
     /**
      * An image in an OdsBanner.
      */
-    class Image : OdsComponentCircularImage<Nothing> {
+    class Image private constructor(
+        val graphicsObject: Any,
+        val contentDescription: String
+    ) : OdsComponentCircularImage<Nothing>(Nothing::class.java, graphicsObject, contentDescription) {
 
         /**
          * Creates an instance of [OdsBanner.Image].
@@ -166,7 +169,7 @@ object OdsBanner {
          * @param painter The painter to draw.
          * @param contentDescription The content description associated to this [OdsBanner.Image].
          */
-        constructor(painter: Painter, contentDescription: String) : super(Nothing::class.java, painter, contentDescription)
+        constructor(painter: Painter, contentDescription: String) : this(painter as Any, contentDescription)
 
         /**
          * Creates an instance of [OdsBanner.Image].
@@ -174,7 +177,7 @@ object OdsBanner {
          * @param imageVector The image vector to draw.
          * @param contentDescription The content description associated to this [OdsBanner.Image].
          */
-        constructor(imageVector: ImageVector, contentDescription: String) : super(Nothing::class.java, imageVector, contentDescription)
+        constructor(imageVector: ImageVector, contentDescription: String) : this(imageVector as Any, contentDescription)
 
         /**
          * Creates an instance of [OdsBanner.Image].
@@ -182,7 +185,7 @@ object OdsBanner {
          * @param bitmap The image bitmap to draw.
          * @param contentDescription The content description associated to this [OdsBanner.Image].
          */
-        constructor(bitmap: ImageBitmap, contentDescription: String) : super(Nothing::class.java, bitmap, contentDescription)
+        constructor(bitmap: ImageBitmap, contentDescription: String) : this(bitmap as Any, contentDescription)
     }
 }
 

@@ -78,7 +78,10 @@ object OdsChip {
     /**
      * A leading avatar in an [OdsChip].
      */
-    class LeadingAvatar : OdsComponentImage<Nothing>, Leading {
+    class LeadingAvatar private constructor(
+        val graphicsObject: Any,
+        val contentDescription: String
+    ) : OdsComponentImage<Nothing>(Nothing::class.java, graphicsObject, contentDescription, contentScale = ContentScale.Crop), Leading {
 
         /**
          * Creates an instance of [OdsChip.LeadingAvatar].
@@ -86,7 +89,10 @@ object OdsChip {
          * @param painter The painter to draw.
          * @param contentDescription The content description associated to this [OdsChip.LeadingAvatar].
          */
-        constructor(painter: Painter, contentDescription: String) : super(Nothing::class.java, painter, contentDescription, contentScale = ContentScale.Crop)
+        constructor(
+            painter: Painter,
+            contentDescription: String
+        ) : this(painter as Any, contentDescription)
 
         /**
          * Creates an instance of [OdsChip.LeadingAvatar].
@@ -94,12 +100,10 @@ object OdsChip {
          * @param imageVector The image vector to draw.
          * @param contentDescription The content description associated to this [OdsChip.LeadingAvatar].
          */
-        constructor(imageVector: ImageVector, contentDescription: String) : super(
-            Nothing::class.java,
-            imageVector,
-            contentDescription,
-            contentScale = ContentScale.Crop
-        )
+        constructor(
+            imageVector: ImageVector,
+            contentDescription: String
+        ) : this(imageVector as Any, contentDescription)
 
         /**
          * Creates an instance of [OdsChip.LeadingAvatar].
@@ -107,7 +111,10 @@ object OdsChip {
          * @param bitmap The image bitmap to draw.
          * @param contentDescription The content description associated to this [OdsChip.LeadingAvatar].
          */
-        constructor(bitmap: ImageBitmap, contentDescription: String) : super(Nothing::class.java, bitmap, contentDescription, contentScale = ContentScale.Crop)
+        constructor(
+            bitmap: ImageBitmap,
+            contentDescription: String
+        ) : this(bitmap as Any, contentDescription)
 
         @Composable
         internal fun Content(enabled: Boolean) {

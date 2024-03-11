@@ -83,11 +83,11 @@ object OdsCard {
      * An image in an [OdsSmallCard], [OdsHorizontalCard], [OdsVerticalHeaderFirstCard] or [OdsVerticalImageFirstCard].
      */
     class Image private constructor(
-        graphicsObject: Any,
-        contentDescription: String,
-        alignment: Alignment = Alignment.Center,
-        contentScale: ContentScale = ContentScale.Crop,
-        private val backgroundColor: Color? = null
+        val graphicsObject: Any,
+        val contentDescription: String,
+        val alignment: Alignment = Alignment.Center,
+        val contentScale: ContentScale = ContentScale.Crop,
+        val backgroundColor: Color? = null
     ) : OdsComponentImage<Nothing>(Nothing::class.java, graphicsObject, contentDescription, alignment, contentScale) {
 
         /**
@@ -160,7 +160,10 @@ object OdsCard {
     /**
      * A thumbnail in a card.
      */
-    class Thumbnail : OdsComponentCircularImage<Nothing> {
+    class Thumbnail private constructor(
+        val graphicsObject: Any,
+        val contentDescription: String
+    ) : OdsComponentCircularImage<Nothing>(Nothing::class.java, graphicsObject, contentDescription) {
 
         /**
          * Creates an instance of [OdsCard.Thumbnail].
@@ -168,7 +171,7 @@ object OdsCard {
          * @param painter The painter to draw.
          * @param contentDescription The content description associated to this [OdsCard.Thumbnail].
          */
-        constructor(painter: Painter, contentDescription: String) : super(Nothing::class.java, painter, contentDescription)
+        constructor(painter: Painter, contentDescription: String) : this(painter as Any, contentDescription)
 
         /**
          * Creates an instance of [OdsCard.Thumbnail].
@@ -176,7 +179,7 @@ object OdsCard {
          * @param imageVector The image vector to draw.
          * @param contentDescription The content description associated to this [OdsCard.Thumbnail].
          */
-        constructor(imageVector: ImageVector, contentDescription: String) : super(Nothing::class.java, imageVector, contentDescription)
+        constructor(imageVector: ImageVector, contentDescription: String) : this(imageVector as Any, contentDescription)
 
         /**
          * Creates an instance of [OdsCard.Thumbnail].
@@ -184,7 +187,7 @@ object OdsCard {
          * @param bitmap The image bitmap to draw.
          * @param contentDescription The content description associated to this [OdsCard.Thumbnail].
          */
-        constructor(bitmap: ImageBitmap, contentDescription: String) : super(Nothing::class.java, bitmap, contentDescription)
+        constructor(bitmap: ImageBitmap, contentDescription: String) : this(bitmap as Any, contentDescription)
     }
 
 }

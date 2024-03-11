@@ -112,7 +112,11 @@ object OdsEmptyStateView {
     /**
      * An image in an [OdsEmptyStateView].
      */
-    class Image : OdsComponentImage<Nothing> {
+    class Image private constructor(
+        val graphicsObject: Any,
+        val alignment: Alignment,
+        val contentScale: ContentScale
+    ) : OdsComponentImage<Nothing>(Nothing::class.java, graphicsObject, "", alignment, contentScale) {
 
         /**
          * Creates an instance of [OdsEmptyStateView.Image].
@@ -121,13 +125,11 @@ object OdsEmptyStateView {
          * @param alignment Alignment parameter used to place the [Painter] in the given bounds defined by the width and height.
          * @param contentScale The rule to apply to scale the image in this [OdsEmptyStateView.Image].
          */
-        constructor(painter: Painter, alignment: Alignment = Alignment.Center, contentScale: ContentScale = ContentScale.Fit) : super(
-            Nothing::class.java,
-            painter,
-            "",
-            alignment = alignment,
-            contentScale = contentScale
-        )
+        constructor(
+            painter: Painter,
+            alignment: Alignment = Alignment.Center,
+            contentScale: ContentScale = ContentScale.Fit
+        ) : this(painter as Any, alignment, contentScale)
 
         /**
          * Creates an instance of [OdsEmptyStateView.Image].
@@ -136,13 +138,11 @@ object OdsEmptyStateView {
          * @param alignment Alignment parameter used to place the [ImageVector] in the given bounds defined by the width and height.
          * @param contentScale The rule to apply to scale the image in this [OdsEmptyStateView.Image].
          */
-        constructor(imageVector: ImageVector, alignment: Alignment = Alignment.Center, contentScale: ContentScale = ContentScale.Fit) : super(
-            Nothing::class.java,
-            imageVector,
-            "",
-            alignment = alignment,
-            contentScale = contentScale
-        )
+        constructor(
+            imageVector: ImageVector,
+            alignment: Alignment = Alignment.Center,
+            contentScale: ContentScale = ContentScale.Fit
+        ) : this(imageVector as Any, alignment, contentScale)
 
         /**
          * Creates an instance of [OdsEmptyStateView.Image].
@@ -151,13 +151,11 @@ object OdsEmptyStateView {
          * @param alignment Alignment parameter used to place the [ImageBitmap] in the given bounds defined by the width and height.
          * @param contentScale The rule to apply to scale the image in this [OdsEmptyStateView.Image].
          */
-        constructor(bitmap: ImageBitmap, alignment: Alignment = Alignment.Center, contentScale: ContentScale = ContentScale.Fit) : super(
-            Nothing::class.java,
-            bitmap,
-            "",
-            alignment = alignment,
-            contentScale = contentScale
-        )
+        constructor(
+            bitmap: ImageBitmap,
+            alignment: Alignment = Alignment.Center,
+            contentScale: ContentScale = ContentScale.Fit
+        ) : this(bitmap as Any, alignment, contentScale)
     }
 }
 

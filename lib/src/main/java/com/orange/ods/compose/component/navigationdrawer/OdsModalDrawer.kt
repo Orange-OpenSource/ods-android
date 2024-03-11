@@ -244,7 +244,10 @@ object OdsModalDrawer {
         /**
          * An avatar in [OdsModalDrawer.Header].
          */
-        class Avatar : Image, OdsComponentCircularImage<Nothing> {
+        class Avatar private constructor(
+            val graphicsObject: Any,
+            val contentDescription: String
+        ) : Image, OdsComponentCircularImage<Nothing>(Nothing::class.java, graphicsObject, contentDescription) {
 
             /**
              * Creates an instance of [OdsModalDrawer.Header.Avatar].
@@ -252,7 +255,7 @@ object OdsModalDrawer {
              * @param painter The painter to draw.
              * @param contentDescription The content description associated to this [OdsModalDrawer.Header.Avatar].
              */
-            constructor(painter: Painter, contentDescription: String) : super(Nothing::class.java, painter, contentDescription)
+            constructor(painter: Painter, contentDescription: String) : this(painter as Any, contentDescription)
 
             /**
              * Creates an instance of [OdsModalDrawer.Header.Avatar].
@@ -260,7 +263,7 @@ object OdsModalDrawer {
              * @param imageVector The image vector to draw.
              * @param contentDescription The content description associated to this [OdsModalDrawer.Header.Avatar].
              */
-            constructor(imageVector: ImageVector, contentDescription: String) : super(Nothing::class.java, imageVector, contentDescription)
+            constructor(imageVector: ImageVector, contentDescription: String) : this(imageVector as Any, contentDescription)
 
             /**
              * Creates an instance of [OdsModalDrawer.Header.Avatar].
@@ -268,13 +271,16 @@ object OdsModalDrawer {
              * @param bitmap The image bitmap to draw.
              * @param contentDescription The content description associated to this [OdsModalDrawer.Header.Avatar].
              */
-            constructor(bitmap: ImageBitmap, contentDescription: String) : super(Nothing::class.java, bitmap, contentDescription)
+            constructor(bitmap: ImageBitmap, contentDescription: String) : this(bitmap as Any, contentDescription)
         }
 
         /**
          * A background image in the [OdsModalDrawer.Header].
          */
-        class Background : Image, OdsComponentImage<Nothing> {
+        class Background private constructor(
+            val graphicsObject: Any,
+            val contentScale: ContentScale
+        ) : Image, OdsComponentImage<Nothing>(Nothing::class.java, graphicsObject, "", contentScale = contentScale) {
 
             /**
              * Creates an instance of [OdsModalDrawer.Header.Background].
@@ -282,7 +288,7 @@ object OdsModalDrawer {
              * @param painter The painter to draw.
              * @param contentScale The rule to apply to scale the image in this [OdsModalDrawer.Header.Background], [ContentScale.Crop] by default.
              */
-            constructor(painter: Painter, contentScale: ContentScale = ContentScale.Crop) : super(Nothing::class.java, painter, "", contentScale = contentScale)
+            constructor(painter: Painter, contentScale: ContentScale = ContentScale.Crop) : this(painter as Any, contentScale)
 
             /**
              * Creates an instance of [OdsModalDrawer.Header.Background].
@@ -290,12 +296,7 @@ object OdsModalDrawer {
              * @param imageVector The image vector to draw.
              * @param contentScale The rule to apply to scale the image in this [OdsModalDrawer.Header.Background], [ContentScale.Crop] by default.
              */
-            constructor(imageVector: ImageVector, contentScale: ContentScale = ContentScale.Crop) : super(
-                Nothing::class.java,
-                imageVector,
-                "",
-                contentScale = contentScale
-            )
+            constructor(imageVector: ImageVector, contentScale: ContentScale = ContentScale.Crop) : this(imageVector as Any, contentScale)
 
             /**
              * Creates an instance of [OdsModalDrawer.Header.Background].
@@ -303,12 +304,7 @@ object OdsModalDrawer {
              * @param bitmap The image bitmap to draw.
              * @param contentScale The rule to apply to scale the image in this [OdsModalDrawer.Header.Background], [ContentScale.Crop] by default.
              */
-            constructor(bitmap: ImageBitmap, contentScale: ContentScale = ContentScale.Crop) : super(
-                Nothing::class.java,
-                bitmap,
-                "",
-                contentScale = contentScale
-            )
+            constructor(bitmap: ImageBitmap, contentScale: ContentScale = ContentScale.Crop) : this(bitmap as Any, contentScale)
         }
 
     }
