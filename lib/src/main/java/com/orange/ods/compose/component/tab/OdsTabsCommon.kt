@@ -47,8 +47,8 @@ object OdsTabRow {
 
         @Composable
         override fun Content(modifier: Modifier) {
-            val selectedContentColor = OdsTheme.colors.component.tab.selectedContent.enable(enabled = enabled)
-            val unselectedContentColor = OdsTheme.colors.component.tab.unselectedContent.enable(enabled = enabled)
+            val selectedContentColor = OdsTheme.colors.components.tab.selectedContent.enable(enabled = enabled)
+            val unselectedContentColor = OdsTheme.colors.components.tab.unselectedContent.enable(enabled = enabled)
 
             if (extraParameters.iconPosition == Icon.Position.Leading && text != null && icon != null) {
                 LeadingIconTab(

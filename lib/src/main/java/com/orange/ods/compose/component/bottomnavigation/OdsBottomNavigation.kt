@@ -74,8 +74,8 @@ fun OdsBottomNavigation(
     BottomNavigation(
         modifier = modifier.focusProperties { canFocus = false },
         // Need to define backgroundColor cause in Compose default backgroundColor is primarySurface
-        backgroundColor = OdsTheme.colors.component.bottomNavigation.barBackground,
-        contentColor = OdsTheme.colors.component.bottomNavigation.barContent,
+        backgroundColor = OdsTheme.colors.components.bottomNavigation.barBackground,
+        contentColor = OdsTheme.colors.components.bottomNavigation.barContent,
         content = {
             items.take(MaxBottomNavigationItemCount).forEach { item ->
                 with(item) { this@BottomNavigation.Content() }
@@ -155,8 +155,8 @@ object OdsBottomNavigation {
                         }
                     },
                     alwaysShowLabel = alwaysShowLabel,
-                    selectedContentColor = OdsTheme.colors.component.bottomNavigation.itemSelected,
-                    unselectedContentColor = OdsTheme.colors.component.bottomNavigation.itemUnselected
+                    selectedContentColor = OdsTheme.colors.components.bottomNavigation.itemSelected,
+                    unselectedContentColor = OdsTheme.colors.components.bottomNavigation.itemUnselected
                 )
 
                 // Visual alternative for selected item (a11y)
@@ -173,7 +173,7 @@ object OdsBottomNavigation {
                     enter = fadeIn() + slideInVertically { it },
                     exit = fadeOut() + slideOutVertically { it }
                 ) {
-                    Box(modifier = Modifier.background(OdsTheme.colors.component.bottomNavigation.itemSelected))
+                    Box(modifier = Modifier.background(OdsTheme.colors.components.bottomNavigation.itemSelected))
                 }
             }
         }

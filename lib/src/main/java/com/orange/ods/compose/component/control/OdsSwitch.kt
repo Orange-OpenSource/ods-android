@@ -53,7 +53,7 @@ fun OdsSwitch(
             onCheckedChange = onCheckedChange,
             modifier = modifier,
             enabled = enabled,
-            colors = SwitchDefaults.colors(uncheckedThumbColor = OdsTheme.colors.component.switch.uncheckedThumb)
+            colors = SwitchDefaults.colors(uncheckedThumbColor = OdsTheme.colors.components.switch.uncheckedThumb)
         )
     }
 }

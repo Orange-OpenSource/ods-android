@@ -23,7 +23,7 @@ private val Colors.primarySurface
 private val Colors.onPrimarySurface
     get() = if (isLight) onPrimary else onSurface
 
-class OdsComponentColors(
+class OdsComponentsColors(
     val systemBarsBackground: Color,
     val bottomNavigation: OdsBottomNavigationColors,
     val floatingActionButton: OdsFloatingActionButtonColors,
@@ -40,7 +40,7 @@ class OdsComponentColors(
         var tab: OdsTabColors? = null
         var topAppBar: OdsTopAppBarColors? = null
 
-        internal fun build(materialColors: Colors) = OdsComponentColors(
+        internal fun build(materialColors: Colors) = OdsComponentsColors(
             systemBarsBackground,
             bottomNavigation ?: materialColors.DefaultOdsBottomNavigationColors,
             floatingActionButton ?: materialColors.DefaultOdsFloatingActionButtonColors,
@@ -52,8 +52,8 @@ class OdsComponentColors(
 }
 
 @Suppress("FunctionName")
-fun OdsComponentColors(systemBarsBackground: Color, init: OdsComponentColors.Builder.() -> Unit = {}): OdsComponentColors.Builder {
-    return OdsComponentColors.Builder(systemBarsBackground).apply(init)
+fun OdsComponentsColors(systemBarsBackground: Color, init: OdsComponentsColors.Builder.() -> Unit = {}): OdsComponentsColors.Builder {
+    return OdsComponentsColors.Builder(systemBarsBackground).apply(init)
 }
 
 /**

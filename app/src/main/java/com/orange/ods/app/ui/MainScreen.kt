@@ -220,7 +220,7 @@ private fun getCurrentThemeConfiguration(
 
 @Composable
 private fun SystemBarsColorSideEffect(mainState: MainState) {
-    val systemBarsBackground = OdsTheme.colors.component.systemBarsBackground
+    val systemBarsBackground = OdsTheme.colors.components.systemBarsBackground
     val activity = LocalContext.current as? ComponentActivity
     activity?.window?.let { window ->
         val view = LocalView.current

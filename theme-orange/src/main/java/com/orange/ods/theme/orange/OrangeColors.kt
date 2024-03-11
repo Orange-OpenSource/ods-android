@@ -15,7 +15,7 @@ package com.orange.ods.theme.orange
 import androidx.compose.material.Colors
 import com.orange.ods.theme.colors.OdsBottomNavigationColors
 import com.orange.ods.theme.colors.OdsColors
-import com.orange.ods.theme.colors.OdsComponentColors
+import com.orange.ods.theme.colors.OdsComponentsColors
 import com.orange.ods.theme.colors.OdsFloatingActionButtonColors
 import com.orange.ods.theme.colors.OdsFunctionalColors
 import com.orange.ods.theme.colors.OdsSwitchColors
@@ -23,7 +23,7 @@ import com.orange.ods.theme.colors.OdsTabColors
 import com.orange.ods.theme.colors.OdsTopAppBarColors
 
 internal val OrangeLightColors = OdsColors(
-    materialColors = Colors(
+    material = Colors(
         primary = Orange200,
         primaryVariant = Orange100,
         secondary = Orange200,
@@ -39,7 +39,7 @@ internal val OrangeLightColors = OdsColors(
         isLight = true
     ),
 
-    functionalColors = OdsFunctionalColors(
+    functional = OdsFunctionalColors(
         positive = Positive200,
         onPositive = White100,
         negative = Negative200,
@@ -48,7 +48,7 @@ internal val OrangeLightColors = OdsColors(
         alert = Alert200
     ),
 
-    componentColors = OdsComponentColors(
+    components = OdsComponentsColors(
         systemBarsBackground = White100
     ) {
         bottomNavigation = OdsBottomNavigationColors(
@@ -81,7 +81,7 @@ internal val OrangeLightColors = OdsColors(
 )
 
 internal val OrangeDarkColors = OdsColors(
-    materialColors = Colors(
+    material = Colors(
         primary = Orange100,
         primaryVariant = Orange200,
         secondary = Orange200,
@@ -97,7 +97,7 @@ internal val OrangeDarkColors = OdsColors(
         isLight = false
     ),
 
-    functionalColors = OdsFunctionalColors(
+    functional = OdsFunctionalColors(
         positive = Positive100,
         onPositive = Black900,
         negative = Negative100,
@@ -106,7 +106,7 @@ internal val OrangeDarkColors = OdsColors(
         alert = Alert100
     ),
 
-    componentColors = OdsComponentColors(
+    components = OdsComponentsColors(
         systemBarsBackground = Black900
     ) {
         bottomNavigation = OdsBottomNavigationColors(
