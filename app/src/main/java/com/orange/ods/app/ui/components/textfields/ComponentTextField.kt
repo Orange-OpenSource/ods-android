@@ -37,8 +37,8 @@ import com.orange.ods.app.ui.utilities.composable.Subtitle
 import com.orange.ods.compose.component.chip.OdsChoiceChipsFlowRow
 import com.orange.ods.compose.component.listitem.OdsListItem
 import com.orange.ods.compose.component.tab.OdsTabRow
-import com.orange.ods.compose.utilities.composable.Keyboard
-import com.orange.ods.compose.utilities.composable.keyboardAsState
+import com.orange.ods.app.ui.utilities.composable.Keyboard
+import com.orange.ods.app.ui.utilities.composable.keyboardAsState
 import kotlinx.coroutines.launch
 
 @OptIn(ExperimentalMaterialApi::class)

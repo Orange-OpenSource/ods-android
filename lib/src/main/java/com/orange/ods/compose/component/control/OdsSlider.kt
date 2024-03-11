@@ -43,7 +43,7 @@ import com.orange.ods.R
 import com.orange.ods.compose.component.OdsComposable
 import com.orange.ods.compose.component.content.OdsComponentIcon
 import com.orange.ods.compose.component.utilities.BasicPreviewParameterProvider
-import com.orange.ods.compose.component.utilities.Preview
+import com.orange.ods.compose.component.utilities.OdsPreview
 import com.orange.ods.compose.component.utilities.UiModePreviews
 import com.orange.ods.compose.text.OdsText
 import com.orange.ods.compose.theme.OdsTheme
@@ -213,7 +213,10 @@ object OdsSlider {
     /**
      * An icon in an [OdsSlider] or an [OdsSliderLockups].
      */
-    class Icon : OdsComponentIcon<Nothing> {
+    class Icon private constructor(
+        val graphicsObject: Any,
+        val contentDescription: String,
+    ) : OdsComponentIcon<Nothing>(Nothing::class.java, graphicsObject, contentDescription) {
 
         /**
          * Creates an instance of [OdsSlider.Icon].
@@ -221,7 +224,7 @@ object OdsSlider {
          * @param painter Painter of the icon.
          * @param contentDescription The content description associated to this [OdsSlider.Icon].
          */
-        constructor(painter: Painter, contentDescription: String) : super(Nothing::class.java, painter, contentDescription)
+        constructor(painter: Painter, contentDescription: String) : this(painter as Any, contentDescription)
 
         /**
          * Creates an instance of [OdsSlider.Icon].
@@ -229,7 +232,7 @@ object OdsSlider {
          * @param imageVector Image vector of the icon.
          * @param contentDescription The content description associated to this [OdsSlider.Icon].
          */
-        constructor(imageVector: ImageVector, contentDescription: String) : super(Nothing::class.java, imageVector, contentDescription)
+        constructor(imageVector: ImageVector, contentDescription: String) : this(imageVector as Any, contentDescription)
 
         /**
          * Creates an instance of [OdsSlider.Icon].
@@ -237,7 +240,7 @@ object OdsSlider {
          * @param bitmap Image bitmap of the icon.
          * @param contentDescription The content description associated to this [OdsSlider.Icon].
          */
-        constructor(bitmap: ImageBitmap, contentDescription: String) : super(Nothing::class.java, bitmap, contentDescription)
+        constructor(bitmap: ImageBitmap, contentDescription: String) : this(bitmap as Any, contentDescription)
 
         override val tint: Color?
             @Composable
@@ -289,7 +292,7 @@ private fun calcFraction(a: Float, b: Float, pos: Float) =
 
 @UiModePreviews.Default
 @Composable
-private fun PreviewOdsSlider(@PreviewParameter(OdsSliderPreviewParameterProvider::class) withIcons: Boolean) = Preview {
+private fun PreviewOdsSlider(@PreviewParameter(OdsSliderPreviewParameterProvider::class) withIcons: Boolean) = OdsPreview {
     val sliderValue = remember { mutableFloatStateOf(0.5f) }
 
     OdsSlider(
@@ -303,7 +306,7 @@ private fun PreviewOdsSlider(@PreviewParameter(OdsSliderPreviewParameterProvider
 
 @UiModePreviews.Default
 @Composable
-private fun PreviewOdsSliderLockups(@PreviewParameter(OdsSliderPreviewParameterProvider::class) withIcons: Boolean) = Preview {
+private fun PreviewOdsSliderLockups(@PreviewParameter(OdsSliderPreviewParameterProvider::class) withIcons: Boolean) = OdsPreview {
     var value by remember { mutableFloatStateOf(50.0f) }
     OdsSliderLockups(
         value = value,

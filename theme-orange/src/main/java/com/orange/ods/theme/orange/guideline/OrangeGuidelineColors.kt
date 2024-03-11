@@ -12,6 +12,7 @@
 
 package com.orange.ods.theme.orange.guideline
 
+import com.orange.ods.compose.annotation.ExperimentalOdsApi
 import com.orange.ods.theme.colors.OdsColors
 import com.orange.ods.theme.colors.OdsFunctionalColors
 import com.orange.ods.theme.guideline.GuidelineColor
@@ -34,6 +35,7 @@ import com.orange.ods.theme.orange.Yellow100
 import com.orange.ods.theme.orange.Yellow200
 import com.orange.ods.theme.orange.Yellow300
 
+@ExperimentalOdsApi
 val OrangeGuidelineColors = listOf(
     GuidelineColor(
         OdsColors::primary.name,

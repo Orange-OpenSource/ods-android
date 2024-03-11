@@ -35,12 +35,14 @@ import com.orange.ods.app.ui.LocalGuideline
 import com.orange.ods.app.ui.utilities.DrawableManager
 import com.orange.ods.app.ui.utilities.composable.DetailScreenHeader
 import com.orange.ods.app.ui.utilities.extension.getStringName
+import com.orange.ods.compose.annotation.ExperimentalOdsApi
 import com.orange.ods.compose.component.divider.OdsDivider
 import com.orange.ods.compose.text.OdsText
 import com.orange.ods.compose.theme.OdsTheme
 import com.orange.ods.theme.guideline.GuidelineTextStyle
 import com.orange.ods.theme.typography.OdsTextStyle
 
+@OptIn(ExperimentalOdsApi::class)
 @Composable
 fun GuidelineTypographyScreen() {
     val guidelineTypography = LocalGuideline.current.guidelineTypography
@@ -81,6 +83,7 @@ fun GuidelineTypographyScreen() {
     }
 }
 
+@OptIn(ExperimentalOdsApi::class)
 @Composable
 private fun TextStyleRow(guidelineTextStyle: GuidelineTextStyle) {
     val context = LocalContext.current

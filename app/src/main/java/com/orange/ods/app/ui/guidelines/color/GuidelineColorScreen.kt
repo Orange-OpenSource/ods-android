@@ -51,6 +51,7 @@ import com.orange.ods.app.R
 import com.orange.ods.app.ui.LocalGuideline
 import com.orange.ods.app.ui.utilities.composable.Title
 import com.orange.ods.app.ui.utilities.extension.getStringName
+import com.orange.ods.compose.annotation.ExperimentalOdsApi
 import com.orange.ods.compose.component.button.OdsButton
 import com.orange.ods.compose.text.OdsText
 import com.orange.ods.compose.theme.OdsTheme
@@ -60,6 +61,7 @@ import com.orange.ods.theme.guideline.toHexString
 import com.orange.ods.theme.guideline.toRgbString
 import com.orange.ods.theme.typography.OdsTextStyle
 
+@OptIn(ExperimentalOdsApi::class)
 @Composable
 fun GuidelineColorScreen() {
     val guidelineColors = LocalGuideline.current.guidelineColors
@@ -133,7 +135,7 @@ fun GuidelineColorScreen() {
     }
 }
 
-@OptIn(ExperimentalFoundationApi::class)
+@OptIn(ExperimentalFoundationApi::class, ExperimentalOdsApi::class)
 @Composable
 private fun RowScope.SmallColorItem(color: GuidelineColor) {
     val openDialog = remember { mutableStateOf(false) }
@@ -166,7 +168,7 @@ private fun RowScope.SmallColorItem(color: GuidelineColor) {
     }
 }
 
-@OptIn(ExperimentalFoundationApi::class)
+@OptIn(ExperimentalFoundationApi::class, ExperimentalOdsApi::class)
 @Composable
 private fun RowScope.BigColorItem(color: GuidelineColor) {
     val openDialog = remember { mutableStateOf(false) }
@@ -213,6 +215,7 @@ private fun RowScope.BigColorItem(color: GuidelineColor) {
     }
 }
 
+@OptIn(ExperimentalOdsApi::class)
 @Composable
 fun DialogColor(color: GuidelineColor, openDialog: MutableState<Boolean>) {
     val context = LocalContext.current

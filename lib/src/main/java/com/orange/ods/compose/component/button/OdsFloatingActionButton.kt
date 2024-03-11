@@ -33,7 +33,7 @@ import com.orange.ods.R
 import com.orange.ods.compose.component.OdsComposable
 import com.orange.ods.compose.component.content.OdsComponentIcon
 import com.orange.ods.compose.component.utilities.BasicPreviewParameterProvider
-import com.orange.ods.compose.component.utilities.Preview
+import com.orange.ods.compose.component.utilities.OdsPreview
 import com.orange.ods.compose.component.utilities.UiModePreviews
 import com.orange.ods.compose.text.OdsText
 import com.orange.ods.compose.theme.OdsTheme
@@ -116,7 +116,10 @@ object OdsFloatingActionButton {
     /**
      * A button icon in an [OdsFloatingActionButton].
      */
-    class Icon : OdsComponentIcon<Nothing> {
+    class Icon private constructor(
+        val graphicsObject: Any,
+        val contentDescription: String
+    ) : OdsComponentIcon<Nothing>(Nothing::class.java, graphicsObject, contentDescription) {
 
         /**
          * Creates an instance of [OdsFloatingActionButton.Icon].
@@ -124,7 +127,7 @@ object OdsFloatingActionButton {
          * @param painter Painter of the icon.
          * @param contentDescription The content description associated to this [OdsFloatingActionButton.Icon].
          */
-        constructor(painter: Painter, contentDescription: String) : super(Nothing::class.java, painter, contentDescription)
+        constructor(painter: Painter, contentDescription: String) : this(painter as Any, contentDescription)
 
         /**
          * Creates an instance of [OdsFloatingActionButton.Icon].
@@ -132,7 +135,7 @@ object OdsFloatingActionButton {
          * @param imageVector Image vector of the icon.
          * @param contentDescription The content description associated to this [OdsFloatingActionButton.Icon].
          */
-        constructor(imageVector: ImageVector, contentDescription: String) : super(Nothing::class.java, imageVector, contentDescription)
+        constructor(imageVector: ImageVector, contentDescription: String) : this(imageVector as Any, contentDescription)
 
         /**
          * Creates an instance of [OdsFloatingActionButton.Icon].
@@ -140,7 +143,7 @@ object OdsFloatingActionButton {
          * @param bitmap Image bitmap of the icon.
          * @param contentDescription The content description associated to this [OdsFloatingActionButton.Icon].
          */
-        constructor(bitmap: ImageBitmap, contentDescription: String) : super(Nothing::class.java, bitmap, contentDescription)
+        constructor(bitmap: ImageBitmap, contentDescription: String) : this(bitmap as Any, contentDescription)
 
         @Composable
         override fun Content(modifier: Modifier) {
@@ -153,7 +156,7 @@ object OdsFloatingActionButton {
 @UiModePreviews.Default
 @Composable
 private fun PreviewOdsFloatingActionButton(@PreviewParameter(OdsFloatingActionButtonPreviewParameterProvider::class) isMini: Boolean) =
-    Preview {
+    OdsPreview {
         Column(modifier = Modifier.padding(dimensionResource(id = R.dimen.spacing_s))) {
             OdsFloatingActionButton(
                 onClick = {},
@@ -167,7 +170,7 @@ internal class OdsFloatingActionButtonPreviewParameterProvider : BasicPreviewPar
 
 @UiModePreviews.Button
 @Composable
-private fun PreviewOdsExtendedFloatingActionButton() = Preview {
+private fun PreviewOdsExtendedFloatingActionButton() = OdsPreview {
     Column(modifier = Modifier.padding(dimensionResource(id = R.dimen.spacing_s))) {
         OdsExtendedFloatingActionButton(
             modifier = Modifier.fillMaxWidth(),

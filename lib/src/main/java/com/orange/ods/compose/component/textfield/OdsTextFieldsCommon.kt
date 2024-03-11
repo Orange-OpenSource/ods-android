@@ -52,8 +52,11 @@ object OdsTextField {
      * in the `onValueChange` method of the text field.
      * @property enabled Controls the enable state of the counter. If set to `false` the text will be displayed in disabled color.
      */
-    class CharacterCounter(private val characterCount: Int, private val maxCharacterCount: Int, private val enabled: Boolean = true) :
-        OdsComponentContent<Nothing>(Nothing::class.java) {
+    class CharacterCounter(
+        val characterCount: Int,
+        val maxCharacterCount: Int,
+        val enabled: Boolean = true
+    ) : OdsComponentContent<Nothing>(Nothing::class.java) {
 
         @Composable
         override fun Content(modifier: Modifier) {
@@ -70,10 +73,14 @@ object OdsTextField {
     /**
      * A leading icon in an [OdsTextField].
      */
-    class LeadingIcon : OdsComponentIcon<LeadingIcon.ExtraParameters> {
+    class LeadingIcon private constructor(
+        val graphicsObject: Any,
+        val contentDescription: String,
+        val onClick: (() -> Unit)?
+    ) : OdsComponentIcon<LeadingIcon.ExtraParameters>(ExtraParameters::class.java, graphicsObject, contentDescription, onClick = onClick) {
 
-        data class ExtraParameters(
-            val enabled: Boolean
+        data class ExtraParameters internal constructor(
+            internal val enabled: Boolean
         ) : OdsComponentContent.ExtraParameters()
 
         /**
@@ -83,12 +90,7 @@ object OdsTextField {
          * @param contentDescription The content description associated to this [OdsTextField.LeadingIcon].
          * @param onClick Callback invoked on icon click.
          */
-        constructor(painter: Painter, contentDescription: String, onClick: (() -> Unit)? = null) : super(
-            ExtraParameters::class.java,
-            painter,
-            contentDescription,
-            onClick = onClick
-        )
+        constructor(painter: Painter, contentDescription: String, onClick: (() -> Unit)? = null) : this(painter as Any, contentDescription, onClick)
 
         /**
          * Creates an instance of [OdsTextField.LeadingIcon].
@@ -97,12 +99,7 @@ object OdsTextField {
          * @param contentDescription The content description associated to this [OdsTextField.LeadingIcon].
          * @param onClick Callback invoked on icon click.
          */
-        constructor(imageVector: ImageVector, contentDescription: String, onClick: (() -> Unit)? = null) : super(
-            ExtraParameters::class.java,
-            imageVector,
-            contentDescription,
-            onClick = onClick
-        )
+        constructor(imageVector: ImageVector, contentDescription: String, onClick: (() -> Unit)? = null) : this(imageVector as Any, contentDescription, onClick)
 
         /**
          * Creates an instance of [OdsTextField.LeadingIcon].
@@ -111,24 +108,19 @@ object OdsTextField {
          * @param contentDescription The content description associated to this [OdsTextField.LeadingIcon].
          * @param onClick Callback invoked on icon click.
          */
-        constructor(bitmap: ImageBitmap, contentDescription: String, onClick: (() -> Unit)? = null) : super(
-            ExtraParameters::class.java,
-            bitmap,
-            contentDescription,
-            onClick = onClick
-        )
+        constructor(bitmap: ImageBitmap, contentDescription: String, onClick: (() -> Unit)? = null) : this(bitmap as Any, contentDescription, onClick)
 
         @Composable
         override fun Content(modifier: Modifier) {
-            enabled = extraParameters.enabled
+            setEnabled(extraParameters.enabled)
             super.Content(modifier)
         }
     }
 
     sealed interface Trailing {
-        data class ExtraParameters(
-            val enabled: Boolean,
-            val isTextFieldEmpty: Boolean
+        data class ExtraParameters internal constructor(
+            internal val enabled: Boolean,
+            internal val isTextFieldEmpty: Boolean
         ) : OdsComponentContent.ExtraParameters()
     }
 
@@ -145,7 +137,11 @@ object OdsTextField {
         }
     }
 
-    class TrailingIcon : Trailing, OdsComponentIcon<Trailing.ExtraParameters> {
+    class TrailingIcon private constructor(
+        val graphicsObject: Any,
+        val contentDescription: String,
+        val onClick: (() -> Unit)?
+    ) : Trailing, OdsComponentIcon<Trailing.ExtraParameters>(Trailing.ExtraParameters::class.java, graphicsObject, contentDescription, onClick = onClick) {
 
         /**
          * Creates an instance of [OdsTextField.TrailingIcon].
@@ -154,12 +150,7 @@ object OdsTextField {
          * @param contentDescription The content description associated to this [OdsTextField.TrailingIcon].
          * @param onClick Callback invoked on icon click.
          */
-        constructor(painter: Painter, contentDescription: String, onClick: (() -> Unit)? = null) : super(
-            Trailing.ExtraParameters::class.java,
-            painter,
-            contentDescription,
-            onClick = onClick
-        )
+        constructor(painter: Painter, contentDescription: String, onClick: (() -> Unit)? = null) : this(painter as Any, contentDescription, onClick)
 
         /**
          * Creates an instance of [OdsTextField.TrailingIcon].
@@ -168,12 +159,7 @@ object OdsTextField {
          * @param contentDescription The content description associated to this [OdsTextField.TrailingIcon].
          * @param onClick Callback invoked on icon click.
          */
-        constructor(imageVector: ImageVector, contentDescription: String, onClick: (() -> Unit)? = null) : super(
-            Trailing.ExtraParameters::class.java,
-            imageVector,
-            contentDescription,
-            onClick = onClick
-        )
+        constructor(imageVector: ImageVector, contentDescription: String, onClick: (() -> Unit)? = null) : this(imageVector as Any, contentDescription, onClick)
 
         /**
          * Creates an instance of [OdsTextField.TrailingIcon].
@@ -182,16 +168,11 @@ object OdsTextField {
          * @param contentDescription The content description associated to this [OdsTextField.TrailingIcon].
          * @param onClick Callback invoked on icon click.
          */
-        constructor(bitmap: ImageBitmap, contentDescription: String, onClick: (() -> Unit)? = null) : super(
-            Trailing.ExtraParameters::class.java,
-            bitmap,
-            contentDescription,
-            onClick = onClick
-        )
+        constructor(bitmap: ImageBitmap, contentDescription: String, onClick: (() -> Unit)? = null) : this(bitmap as Any, contentDescription, onClick)
 
         @Composable
         override fun Content(modifier: Modifier) {
-            enabled = extraParameters.enabled
+            setEnabled(extraParameters.enabled)
             super.Content(modifier)
         }
     }

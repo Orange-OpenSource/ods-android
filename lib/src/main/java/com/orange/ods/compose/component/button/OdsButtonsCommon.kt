@@ -35,28 +35,30 @@ object OdsButton {
      * A button icon in an [OdsButton].
      * It is non-clickable and no content description is needed cause a button label is always present.
      */
-    class Icon : OdsComponentIcon<Nothing> {
+    class Icon private constructor(
+        val graphicsObject: Any
+    ) : OdsComponentIcon<Nothing>(Nothing::class.java, graphicsObject, "") {
 
         /**
          * Creates an instance of [OdsButton.Icon].
          *
          * @param painter Painter of the icon.
          */
-        constructor(painter: Painter) : super(Nothing::class.java, painter, "")
+        constructor(painter: Painter) : this(painter as Any)
 
         /**
          * Creates an instance of [OdsButton.Icon].
          *
          * @param imageVector Image vector of the icon.
          */
-        constructor(imageVector: ImageVector) : super(Nothing::class.java, imageVector, "")
+        constructor(imageVector: ImageVector) : this(imageVector as Any)
 
         /**
          * Creates an instance of [OdsButton.Icon].
          *
          * @param bitmap Image bitmap of the icon.
          */
-        constructor(bitmap: ImageBitmap) : super(Nothing::class.java, bitmap, "")
+        constructor(bitmap: ImageBitmap) : this(bitmap as Any)
 
         @Composable
         override fun Content(modifier: Modifier) {

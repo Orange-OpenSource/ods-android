@@ -13,7 +13,6 @@
 package com.orange.ods.compose.component.card
 
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.ExperimentalLayoutApi
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
@@ -25,7 +24,7 @@ import androidx.compose.ui.tooling.preview.PreviewParameter
 import com.orange.ods.R
 import com.orange.ods.compose.component.OdsComposable
 import com.orange.ods.compose.component.utilities.BasicPreviewParameterProvider
-import com.orange.ods.compose.component.utilities.Preview
+import com.orange.ods.compose.component.utilities.OdsPreview
 import com.orange.ods.compose.component.utilities.UiModePreviews
 import com.orange.ods.compose.text.OdsText
 import com.orange.ods.theme.typography.OdsTextStyle
@@ -44,7 +43,6 @@ import com.orange.ods.theme.typography.OdsTextStyle
  * @param secondButton Second [OdsCard.Button] displayed into the card.
  * @param onClick Callback invoked on card click.
  */
-@OptIn(ExperimentalLayoutApi::class)
 @Composable
 @OdsComposable
 fun OdsVerticalImageFirstCard(
@@ -98,7 +96,7 @@ fun OdsVerticalImageFirstCard(
 @UiModePreviews.Default
 @Composable
 private fun PreviewOdsVerticalImageFirstCard(@PreviewParameter(OdsVerticalImageFirstCardPreviewParameterProvider::class) parameter: OdsVerticalImageFirstCardPreviewParameter) =
-    Preview {
+    OdsPreview {
         with(parameter) {
             OdsVerticalImageFirstCard(
                 title = CardPreview.Title,

@@ -20,7 +20,7 @@ import kotlinx.coroutines.flow.emptyFlow
 /**
  * Prevent ripple effect on element click.
  */
-class DisabledInteractionSource : MutableInteractionSource {
+internal class DisabledInteractionSource : MutableInteractionSource {
     override val interactions: Flow<Interaction> = emptyFlow()
     override suspend fun emit(interaction: Interaction) {}
     override fun tryEmit(interaction: Interaction) = true

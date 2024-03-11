@@ -37,6 +37,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - \[Lib\] Update `OdsChoiceChipsFlowRow` API ([#794](https://github.com/Orange-OpenSource/ods-android/issues/794))
 - \[Lib\] Update `OdsIconToggleButtonsRow` and `OdsTextToggleButtonsRow` APIs ([#801](https://github.com/Orange-OpenSource/ods-android/issues/801))
 - \[Lib\] Update `OdsButton`, `OdsTextButton`, `OdsOutlinedButton`, `OdsIconButton`, `OdsIconToggleButton`, `OdsIconToggleButtonsRow` and `OdsTextToggleButtonsRow` APIs by removing `displaySurface` parameters ([#830](https://github.com/Orange-OpenSource/ods-android/issues/830))
+- \[Lib\] Review APIs and clean project before v1.0 release ([#878](https://github.com/Orange-OpenSource/ods-android/issues/878))
 - \[LibXml\] Replace `displaySurface` attribute by `invertedTheme` for `OdsButton`, `OdsTextButton`, `OdsOutlinedButton`, `OdsIconButton`, `OdsIconToggleButton` and `OdsIconToggleButtonsRow` ([#830](https://github.com/Orange-OpenSource/ods-android/issues/830))
 
 ### Fixed

@@ -67,12 +67,12 @@ import com.orange.ods.compose.component.control.OdsRadioButton
 import com.orange.ods.compose.component.control.OdsSwitch
 import com.orange.ods.compose.component.divider.OdsDivider
 import com.orange.ods.compose.component.utilities.BasicPreviewParameterProvider
-import com.orange.ods.compose.component.utilities.Preview
+import com.orange.ods.compose.component.utilities.OdsPreview
 import com.orange.ods.compose.component.utilities.UiModePreviews
+import com.orange.ods.compose.extension.isNotNullOrBlank
+import com.orange.ods.compose.extension.orElse
 import com.orange.ods.compose.text.OdsText
 import com.orange.ods.compose.theme.OdsTheme
-import com.orange.ods.extension.isNotNullOrBlank
-import com.orange.ods.extension.orElse
 import com.orange.ods.theme.typography.OdsTextStyle
 
 /**
@@ -140,7 +140,7 @@ internal fun OdsListItem(
     val rootModifier = modifier.rootModifier(context, trailing, onClick)
     val singleLineSecondaryText = secondaryTextLineCount == OdsListItem.SecondaryTextLineCount.One
 
-    if (leadingIcon?.iconType == OdsListItem.LeadingIcon.Type.WideImage) {
+    if (leadingIcon?.type == OdsListItem.LeadingIcon.Type.WideImage) {
         Row(modifier = rootModifier, verticalAlignment = Alignment.CenterVertically) {
             leadingIcon.Content()
             OdsListItemInternal(
@@ -172,7 +172,7 @@ internal fun OdsListItem(
     }
 
     if (divider) {
-        OdsDivider(startIndent = getDividerStartIndent(leadingIcon?.iconType))
+        OdsDivider(startIndent = getDividerStartIndent(leadingIcon?.type))
     }
 }
 
@@ -270,9 +270,9 @@ object OdsListItem {
      * A leading icon in an [OdsListItem].
      */
     class LeadingIcon private constructor(
-        internal val iconType: Type,
-        private val graphicsObject: Any,
-        private val contentDescription: String,
+        val type: Type,
+        val graphicsObject: Any,
+        val contentDescription: String,
         tint: Color?
     ) : OdsComponentContent<Nothing>(Nothing::class.java) {
 
@@ -333,7 +333,7 @@ object OdsListItem {
             icon.Content(modifier = modifier)
         }
 
-        private val icon = when (iconType) {
+        private val icon = when (type) {
             Type.Icon -> getIcon(tint)
             Type.CircularImage -> getCircularImage()
             Type.SquareImage -> getSquareImage()
@@ -402,9 +402,9 @@ object OdsListItem {
      * @param enabled Whether the component is enabled or grayed out.
      */
     class TrailingCheckbox(
-        internal val checked: Boolean,
-        internal val onCheckedChange: ((Boolean) -> Unit)?,
-        internal val enabled: Boolean = true
+        val checked: Boolean,
+        val onCheckedChange: ((Boolean) -> Unit)?,
+        val enabled: Boolean = true
     ) : OdsComponentContent<Nothing>(Nothing::class.java), Trailing {
 
         @Composable
@@ -429,9 +429,9 @@ object OdsListItem {
      * @param enabled Whether the component is enabled or grayed out.
      */
     class TrailingSwitch(
-        internal val checked: Boolean,
-        internal val onCheckedChange: ((Boolean) -> Unit)?,
-        internal val enabled: Boolean = true
+        val checked: Boolean,
+        val onCheckedChange: ((Boolean) -> Unit)?,
+        val enabled: Boolean = true
     ) : OdsComponentContent<Nothing>(Nothing::class.java), Trailing {
 
         @Composable
@@ -456,9 +456,9 @@ object OdsListItem {
      * not be selectable and appears disabled.
      */
     class TrailingRadioButton(
-        internal val selected: Boolean,
-        internal val onClick: (() -> Unit)?,
-        internal val enabled: Boolean = true
+        val selected: Boolean,
+        val onClick: (() -> Unit)?,
+        val enabled: Boolean = true
     ) : OdsComponentContent<Nothing>(Nothing::class.java), Trailing {
 
         @Composable
@@ -470,7 +470,11 @@ object OdsListItem {
     /**
      * A trailing icon in an [OdsListItem].
      */
-    class TrailingIcon : OdsComponentIcon<Nothing>, Trailing {
+    class TrailingIcon private constructor(
+        val graphicsObject: Any,
+        val contentDescription: String,
+        val onClick: (() -> Unit)?
+    ) : OdsComponentIcon<Nothing>(Nothing::class.java, graphicsObject, contentDescription, onClick = onClick), Trailing {
 
         /**
          * Creates an instance of [OdsListItem.TrailingIcon].
@@ -479,12 +483,7 @@ object OdsListItem {
          * @param contentDescription The content description associated to this [OdsListItem.TrailingIcon].
          * @param onClick Will be called when the user clicks on the icon.
          */
-        constructor(painter: Painter, contentDescription: String, onClick: (() -> Unit)?) : super(
-            Nothing::class.java,
-            painter,
-            contentDescription,
-            onClick = onClick
-        )
+        constructor(painter: Painter, contentDescription: String, onClick: (() -> Unit)?) : this(painter as Any, contentDescription, onClick)
 
         /**
          * Creates an instance of [OdsListItem.TrailingIcon].
@@ -493,12 +492,7 @@ object OdsListItem {
          * @param contentDescription The content description associated to this [OdsListItem.TrailingIcon].
          * @param onClick Will be called when the user clicks on the icon.
          */
-        constructor(imageVector: ImageVector, contentDescription: String, onClick: (() -> Unit)?) : super(
-            Nothing::class.java,
-            imageVector,
-            contentDescription,
-            onClick = onClick
-        )
+        constructor(imageVector: ImageVector, contentDescription: String, onClick: (() -> Unit)?) : this(imageVector as Any, contentDescription, onClick)
 
         /**
          * Creates an instance of [OdsListItem.TrailingIcon].
@@ -507,12 +501,7 @@ object OdsListItem {
          * @param contentDescription The content description associated to this [OdsListItem.TrailingIcon].
          * @param onClick Will be called when the user clicks on the icon.
          */
-        constructor(bitmap: ImageBitmap, contentDescription: String, onClick: (() -> Unit)?) : super(
-            Nothing::class.java,
-            bitmap,
-            contentDescription,
-            onClick = onClick
-        )
+        constructor(bitmap: ImageBitmap, contentDescription: String, onClick: (() -> Unit)?) : this(bitmap as Any, contentDescription, onClick)
 
         override val tint: Color? // Despite warning, keep it optional as in parent class
             @Composable
@@ -530,7 +519,7 @@ object OdsListItem {
      * @constructor Creates an instance of [OdsListItem.TrailingCaption].
      * @param text The caption text.
      */
-    class TrailingCaption(private val text: String) : OdsComponentContent<Nothing>(Nothing::class.java), Trailing {
+    class TrailingCaption(val text: String) : OdsComponentContent<Nothing>(Nothing::class.java), Trailing {
 
         @Composable
         override fun Content(modifier: Modifier) {
@@ -553,7 +542,7 @@ private fun getDividerStartIndent(leadingIconType: OdsListItem.LeadingIcon.Type?
 
 @UiModePreviews.Default
 @Composable
-private fun PreviewOdsListItem(@PreviewParameter(OdsListItemPreviewParameterProvider::class) parameter: OdsListItemPreviewParameter) = Preview {
+private fun PreviewOdsListItem(@PreviewParameter(OdsListItemPreviewParameterProvider::class) parameter: OdsListItemPreviewParameter) = OdsPreview {
     with(parameter) {
         var trailingState by remember { mutableStateOf(false) }
         OdsListItem(

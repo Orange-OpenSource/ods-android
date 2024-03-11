@@ -41,11 +41,11 @@ abstract class OdsComponentCircularImage<T> internal constructor(
      * @param painter The painter to draw.
      * @param contentDescription The content description associated to this [OdsComponentCircularImage].
      */
-    protected constructor(extraParametersClass: Class<T>, painter: Painter, contentDescription: String) : this(
-        extraParametersClass,
-        painter as Any,
-        contentDescription
-    )
+    protected constructor(
+        extraParametersClass: Class<T>,
+        painter: Painter,
+        contentDescription: String
+    ) : this(extraParametersClass, painter as Any, contentDescription)
 
     /**
      * Creates an instance of [OdsComponentCircularImage].
@@ -54,11 +54,11 @@ abstract class OdsComponentCircularImage<T> internal constructor(
      * @param imageVector The image vector to draw.
      * @param contentDescription The content description associated to this [OdsComponentCircularImage].
      */
-    protected constructor(extraParametersClass: Class<T>, imageVector: ImageVector, contentDescription: String) : this(
-        extraParametersClass,
-        imageVector as Any,
-        contentDescription
-    )
+    protected constructor(
+        extraParametersClass: Class<T>,
+        imageVector: ImageVector,
+        contentDescription: String
+    ) : this(extraParametersClass, imageVector as Any, contentDescription)
 
     /**
      * Creates an instance of [OdsComponentCircularImage].
@@ -67,11 +67,11 @@ abstract class OdsComponentCircularImage<T> internal constructor(
      * @param bitmap The image bitmap to draw.
      * @param contentDescription The content description associated to this [OdsComponentCircularImage].
      */
-    protected constructor(extraParametersClass: Class<T>, bitmap: ImageBitmap, contentDescription: String) : this(
-        extraParametersClass,
-        bitmap as Any,
-        contentDescription
-    )
+    protected constructor(
+        extraParametersClass: Class<T>,
+        bitmap: ImageBitmap,
+        contentDescription: String
+    ) : this(extraParametersClass, bitmap as Any, contentDescription)
 
     @Composable
     override fun Content(modifier: Modifier) {

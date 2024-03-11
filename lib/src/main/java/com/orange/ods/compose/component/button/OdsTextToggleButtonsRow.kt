@@ -35,7 +35,7 @@ import com.orange.ods.compose.annotation.ExperimentalOdsApi
 import com.orange.ods.compose.component.OdsComposable
 import com.orange.ods.compose.component.content.OdsComponentContent
 import com.orange.ods.compose.component.content.OdsComponentScopeContent
-import com.orange.ods.compose.component.utilities.Preview
+import com.orange.ods.compose.component.utilities.OdsPreview
 import com.orange.ods.compose.component.utilities.UiModePreviews
 
 /**
@@ -109,10 +109,10 @@ object OdsTextToggleButtonsRow {
         val enabled: Boolean = true
     ) : OdsComponentScopeContent<RowScope, TextButton.ExtraParameters>(ExtraParameters::class.java) {
 
-        data class ExtraParameters(
-            val index: Int,
-            val selected: Boolean,
-            val sameItemsWeight: Boolean
+        data class ExtraParameters internal constructor(
+            internal val index: Int,
+            internal val selected: Boolean,
+            internal val sameItemsWeight: Boolean
         ) : OdsComponentContent.ExtraParameters()
 
         @Composable
@@ -140,7 +140,7 @@ object OdsTextToggleButtonsRow {
 @OptIn(ExperimentalOdsApi::class)
 @UiModePreviews.Default
 @Composable
-private fun PreviewOdsTextToggleButtonsRow() = Preview {
+private fun PreviewOdsTextToggleButtonsRow() = OdsPreview {
     var selectedTextButtonIndex by remember { mutableIntStateOf(0) }
     val textButtons = listOf(
         OdsTextToggleButtonsRow.TextButton("XML", { selectedTextButtonIndex = 0 }, true),

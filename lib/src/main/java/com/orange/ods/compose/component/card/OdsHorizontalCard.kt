@@ -12,11 +12,9 @@
 
 package com.orange.ods.compose.component.card
 
-import androidx.compose.foundation.layout.ExperimentalLayoutApi
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
-import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.dimensionResource
@@ -32,10 +30,9 @@ import com.orange.ods.R
 import com.orange.ods.compose.component.OdsComposable
 import com.orange.ods.compose.component.divider.OdsDivider
 import com.orange.ods.compose.component.utilities.BasicPreviewParameterProvider
-import com.orange.ods.compose.component.utilities.Preview
+import com.orange.ods.compose.component.utilities.OdsPreview
 import com.orange.ods.compose.component.utilities.UiModePreviews
 import com.orange.ods.compose.text.OdsText
-import com.orange.ods.compose.theme.OdsTheme
 import com.orange.ods.theme.typography.OdsTextStyle
 
 /**
@@ -54,7 +51,6 @@ import com.orange.ods.theme.typography.OdsTextStyle
  * @param divider Controls the divider display. If `true`, it will be displayed between the card content and the action buttons.
  * @param onClick Callback invoked on card click.
  */
-@OptIn(ExperimentalLayoutApi::class)
 @Composable
 @OdsComposable
 fun OdsHorizontalCard(
@@ -179,7 +175,7 @@ fun OdsHorizontalCard(
 @UiModePreviews.Default
 @Composable
 private fun PreviewOdsHorizontalCard(@PreviewParameter(OdsHorizontalCardPreviewParameterProvider::class) parameter: OdsHorizontalCardPreviewParameter) =
-    Preview {
+    OdsPreview {
         OdsHorizontalCard(
             title = CardPreview.Title,
             subtitle = parameter.subtitle,

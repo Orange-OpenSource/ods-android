@@ -24,7 +24,7 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.PreviewParameter
 import com.orange.ods.compose.component.OdsComposable
 import com.orange.ods.compose.component.utilities.BasicPreviewParameterProvider
-import com.orange.ods.compose.component.utilities.Preview
+import com.orange.ods.compose.component.utilities.OdsPreview
 import com.orange.ods.compose.component.utilities.UiModePreviews
 
 /**
@@ -63,7 +63,7 @@ fun OdsIconToggleButton(
 
 @UiModePreviews.Default
 @Composable
-private fun PreviewOdsIconToggleButton(@PreviewParameter(OdsIconToggleButtonPreviewParameterProvider::class) enabled: Boolean) = Preview {
+private fun PreviewOdsIconToggleButton(@PreviewParameter(OdsIconToggleButtonPreviewParameterProvider::class) enabled: Boolean) = OdsPreview {
     var checked by remember { mutableStateOf(false) }
     OdsIconToggleButton(
         checked = checked,

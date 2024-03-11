@@ -36,7 +36,7 @@ import com.orange.ods.compose.component.OdsComposable
 import com.orange.ods.compose.component.textfield.OdsExposedDropdownMenuTrailing
 import com.orange.ods.compose.component.textfield.OdsTextField
 import com.orange.ods.compose.component.utilities.BasicPreviewParameterProvider
-import com.orange.ods.compose.component.utilities.Preview
+import com.orange.ods.compose.component.utilities.OdsPreview
 import com.orange.ods.compose.component.utilities.UiModePreviews
 import com.orange.ods.compose.component.utilities.enabledStateDescription
 import kotlinx.parcelize.Parcelize
@@ -119,7 +119,7 @@ object OdsExposedDropdownMenu {
  */
 @UiModePreviews.Default
 @Composable
-private fun PreviewOdsDropdownMenu(@PreviewParameter(OdsDropdownMenuPreviewParameterProvider::class) enabled: Boolean) = Preview {
+private fun PreviewOdsDropdownMenu(@PreviewParameter(OdsDropdownMenuPreviewParameterProvider::class) enabled: Boolean) = OdsPreview {
     val items = listOf(
         OdsExposedDropdownMenu.Item("Email", android.R.drawable.ic_dialog_email),
         OdsExposedDropdownMenu.Item("Map", android.R.drawable.ic_dialog_map),

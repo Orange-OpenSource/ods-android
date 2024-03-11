@@ -21,18 +21,26 @@ import androidx.compose.ui.graphics.vector.ImageVector
 import com.orange.ods.compose.component.button.OdsIconButton
 import com.orange.ods.compose.component.icon.OdsIcon
 import com.orange.ods.compose.component.icon.OdsIconDefaults
-import com.orange.ods.extension.orElse
+import com.orange.ods.compose.extension.orElse
 
 /**
  * An icon in a component.
  */
-abstract class OdsComponentIcon<T> internal constructor(
+abstract class OdsComponentIcon<T> protected constructor(
     extraParametersClass: Class<T>,
     private val graphicsObject: Any,
     private val contentDescription: String,
-    protected var enabled: Boolean = true,
+    private var enabled: Boolean = true,
     private val onClick: (() -> Unit)? = null,
 ) : OdsComponentContent<T>(extraParametersClass) where T : OdsComponentContent.ExtraParameters {
+
+    val painter: Painter? = graphicsObject as? Painter
+    val imageVector: ImageVector? = graphicsObject as? ImageVector
+    val bitmap: ImageBitmap? = graphicsObject as? ImageBitmap
+
+    protected fun setEnabled(enabled: Boolean) {
+        this.enabled = enabled
+    }
 
     protected open val tint: Color?
         @Composable

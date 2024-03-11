@@ -17,7 +17,7 @@ import com.orange.ods.theme.colors.OdsColors
 import com.orange.ods.theme.colors.OdsComponentColors
 import com.orange.ods.theme.colors.OdsFunctionalColors
 
-val InnovationCupLightColors = OdsColors(
+internal val InnovationCupLightColors = OdsColors(
     materialColors = Colors(
         primary = Primary,
         primaryVariant = PrimaryDark,
@@ -48,7 +48,7 @@ val InnovationCupLightColors = OdsColors(
     )
 )
 
-val InnovationCupDarkColors = OdsColors(
+internal val InnovationCupDarkColors = OdsColors(
     materialColors = Colors(
         primary = Primary,
         primaryVariant = PrimaryDark,

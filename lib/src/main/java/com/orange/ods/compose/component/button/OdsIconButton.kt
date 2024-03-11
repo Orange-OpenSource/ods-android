@@ -27,7 +27,7 @@ import com.orange.ods.compose.component.content.OdsComponentContent
 import com.orange.ods.compose.component.content.OdsComponentIcon
 import com.orange.ods.compose.component.icon.OdsIcon
 import com.orange.ods.compose.component.utilities.BasicPreviewParameterProvider
-import com.orange.ods.compose.component.utilities.Preview
+import com.orange.ods.compose.component.utilities.OdsPreview
 import com.orange.ods.compose.component.utilities.UiModePreviews
 import com.orange.ods.compose.theme.OdsTheme
 
@@ -79,10 +79,13 @@ object OdsIconButton {
     /**
      * An icon in an [OdsIconButton].
      */
-    class Icon : OdsComponentIcon<Icon.ExtraParameters> {
+    class Icon private constructor(
+        val graphicsObject: Any,
+        val contentDescription: String
+    ) : OdsComponentIcon<Icon.ExtraParameters>(ExtraParameters::class.java, graphicsObject, contentDescription) {
 
-        data class ExtraParameters(
-            val enabled: Boolean
+        data class ExtraParameters internal constructor(
+            internal val enabled: Boolean
         ) : OdsComponentContent.ExtraParameters()
 
         /**
@@ -91,7 +94,7 @@ object OdsIconButton {
          * @param painter Painter of the icon.
          * @param contentDescription The content description associated to this [OdsIconButton.Icon].
          */
-        constructor(painter: Painter, contentDescription: String) : super(ExtraParameters::class.java, painter, contentDescription)
+        constructor(painter: Painter, contentDescription: String) : this(painter as Any, contentDescription)
 
         /**
          * Creates an instance of [OdsIconButton.Icon].
@@ -99,7 +102,7 @@ object OdsIconButton {
          * @param imageVector Image vector of the icon.
          * @param contentDescription The content description associated to this [OdsIconButton.Icon].
          */
-        constructor(imageVector: ImageVector, contentDescription: String) : super(ExtraParameters::class.java, imageVector, contentDescription)
+        constructor(imageVector: ImageVector, contentDescription: String) : this(imageVector as Any, contentDescription)
 
         /**
          * Creates an instance of [OdsIconButton.Icon].
@@ -107,7 +110,7 @@ object OdsIconButton {
          * @param bitmap Image bitmap of the icon.
          * @param contentDescription The content description associated to this [OdsIconButton.Icon].
          */
-        constructor(bitmap: ImageBitmap, contentDescription: String) : super(ExtraParameters::class.java, bitmap, contentDescription)
+        constructor(bitmap: ImageBitmap, contentDescription: String) : this(bitmap as Any, contentDescription)
 
         override val tint: Color
             @Composable
@@ -115,7 +118,7 @@ object OdsIconButton {
 
         @Composable
         override fun Content(modifier: Modifier) {
-            enabled = extraParameters.enabled
+            setEnabled(extraParameters.enabled)
             super.Content(modifier)
         }
     }
@@ -124,7 +127,7 @@ object OdsIconButton {
 
 @UiModePreviews.Default
 @Composable
-private fun PreviewOdsIconButton(@PreviewParameter(OdsIconButtonPreviewParameterProvider::class) enabled: Boolean) = Preview {
+private fun PreviewOdsIconButton(@PreviewParameter(OdsIconButtonPreviewParameterProvider::class) enabled: Boolean) = OdsPreview {
     OdsIconButton(
         onClick = {},
         icon = OdsIconButton.Icon(painterResource(id = android.R.drawable.ic_dialog_info), ""),

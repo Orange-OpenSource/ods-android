@@ -10,7 +10,12 @@
  * Software description: Android library of reusable graphical components
  */
 
-package com.orange.ods.extension
+package com.orange.ods.compose.extension
 
-val Enum<*>.fullName: String
-    get() = "${javaClass.simpleNestedName}.$name"
+import java.io.InputStream
+import java.util.Scanner
+
+fun InputStream.contentAsString(): String? {
+    val scanner = Scanner(this).useDelimiter("\\A")
+    return if (scanner.hasNext()) scanner.next() else null
+}

@@ -31,7 +31,7 @@ import com.orange.ods.compose.component.OdsComposable
 import com.orange.ods.compose.component.content.OdsComponentContent
 import com.orange.ods.compose.component.divider.OdsDivider
 import com.orange.ods.compose.component.icon.OdsIcon
-import com.orange.ods.compose.component.utilities.Preview
+import com.orange.ods.compose.component.utilities.OdsPreview
 import com.orange.ods.compose.component.utilities.UiModePreviews
 import com.orange.ods.compose.text.OdsText
 import com.orange.ods.compose.theme.OdsTheme
@@ -86,14 +86,16 @@ object OdsDropdownMenu {
      * @property onClick Called when the menu item was clicked
      */
     class Item private constructor(
-        private val text: String,
-        private val icon: Any?,
-        private val enabled: Boolean,
-        private val divider: Boolean,
-        private val onClick: () -> Unit
+        val text: String,
+        val icon: Any?,
+        val enabled: Boolean,
+        val divider: Boolean,
+        val onClick: () -> Unit
     ) : OdsComponentContent<Item.ExtraParameters>(ExtraParameters::class.java) {
 
-        data class ExtraParameters(val onDismissRequest: () -> Unit) : OdsComponentContent.ExtraParameters()
+        data class ExtraParameters internal constructor(
+            internal val onDismissRequest: () -> Unit
+        ) : OdsComponentContent.ExtraParameters()
 
         /**
          * Creates an instance of [OdsDropdownMenu.Item].
@@ -194,7 +196,7 @@ object OdsDropdownMenu {
  */
 @UiModePreviews.Default
 @Composable
-private fun PreviewOdsDropdownMenu() = Preview {
+private fun PreviewOdsDropdownMenu() = OdsPreview {
     val items = listOf(
         OdsDropdownMenu.Item("First menu item", painterResource(id = android.R.drawable.ic_dialog_email)) {},
         OdsDropdownMenu.Item("Second menu item", painterResource(id = android.R.drawable.ic_dialog_map), divider = true) {},

@@ -34,15 +34,15 @@ import com.orange.ods.theme.typography.OdsTextStyle
 object OdsTabRow {
 
     class Tab(
-        private val icon: Icon?,
-        private val text: String?,
-        private val enabled: Boolean = true,
-        private val onClick: () -> Unit
+        val icon: Icon?,
+        val text: String?,
+        val enabled: Boolean = true,
+        val onClick: () -> Unit
     ) : OdsComponentContent<Tab.ExtraParameters>(ExtraParameters::class.java) {
 
-        data class ExtraParameters(
-            val selected: Boolean,
-            val iconPosition: Icon.Position
+        data class ExtraParameters internal constructor(
+            internal val selected: Boolean,
+            internal val iconPosition: Icon.Position
         ) : OdsComponentContent.ExtraParameters()
 
         @Composable
@@ -96,7 +96,10 @@ object OdsTabRow {
          * It is non-clickable and the content description is optional cause a tab can have a label.
          * Note that for accessibility, if the tab has no text, it is highly recommended to set a content description.
          */
-        class Icon : OdsComponentIcon<Nothing> {
+        class Icon private constructor(
+            val graphicsObject: Any,
+            val contentDescription: String
+        ) : OdsComponentIcon<Nothing>(Nothing::class.java, graphicsObject, contentDescription) {
 
             enum class Position {
                 Top, Leading
@@ -108,7 +111,7 @@ object OdsTabRow {
              * @param painter Painter of the icon.
              * @param contentDescription The content description associated to this [OdsTabRow.Tab.Icon].
              */
-            constructor(painter: Painter, contentDescription: String = "") : super(Nothing::class.java, painter, contentDescription)
+            constructor(painter: Painter, contentDescription: String = "") : this(painter as Any, contentDescription)
 
             /**
              * Creates an instance of [OdsTabRow.Tab.Icon].
@@ -116,7 +119,7 @@ object OdsTabRow {
              * @param imageVector Image vector of the icon.
              * @param contentDescription The content description associated to this [OdsTabRow.Tab.Icon].
              */
-            constructor(imageVector: ImageVector, contentDescription: String = "") : super(Nothing::class.java, imageVector, contentDescription)
+            constructor(imageVector: ImageVector, contentDescription: String = "") : this(imageVector as Any, contentDescription)
 
             /**
              * Creates an instance of [OdsTabRow.Tab.Icon].
@@ -124,7 +127,7 @@ object OdsTabRow {
              * @param bitmap Image bitmap of the icon.
              * @param contentDescription The content description associated to this [OdsTabRow.Tab.Icon].
              */
-            constructor(bitmap: ImageBitmap, contentDescription: String = "") : super(Nothing::class.java, bitmap, contentDescription)
+            constructor(bitmap: ImageBitmap, contentDescription: String = "") : this(bitmap as Any, contentDescription)
 
         }
     }

@@ -14,6 +14,7 @@ package com.orange.ods.theme
 
 import android.os.Parcelable
 import androidx.compose.material.Shapes
+import com.orange.ods.compose.annotation.ExperimentalOdsApi
 import com.orange.ods.theme.colors.OdsColors
 import com.orange.ods.theme.guideline.OdsGuideline
 import com.orange.ods.theme.typography.OdsTypography
@@ -51,6 +52,7 @@ interface OdsThemeConfigurationContract : Parcelable {
      * Guideline definition
      * By default a guideline typography is generated based on the theme configuration typography defined.
      */
+    @OptIn(ExperimentalOdsApi::class)
     val guideline: OdsGuideline
         get() = OdsGuideline(typography)
 

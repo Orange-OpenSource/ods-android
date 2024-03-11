@@ -25,7 +25,7 @@ import androidx.compose.ui.semantics.traversalIndex
 import androidx.compose.ui.unit.dp
 import com.orange.ods.compose.component.OdsComposable
 import com.orange.ods.compose.component.menu.OdsDropdownMenu
-import com.orange.ods.compose.component.utilities.Preview
+import com.orange.ods.compose.component.utilities.OdsPreview
 import com.orange.ods.compose.component.utilities.UiModePreviews
 import com.orange.ods.compose.text.OdsText
 import com.orange.ods.compose.theme.OdsTheme
@@ -71,7 +71,7 @@ fun OdsTopAppBar(
 
 @UiModePreviews.Default
 @Composable
-private fun PreviewOdsTopAppBar() = Preview {
+private fun PreviewOdsTopAppBar() = OdsPreview {
     val actions = listOf(OdsTopAppBar.ActionButton(painterResource(id = android.R.drawable.ic_dialog_info), "Info") {})
     val overflowMenuItems = listOf(
         OdsDropdownMenu.Item("Settings") {},

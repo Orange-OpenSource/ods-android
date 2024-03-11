@@ -10,7 +10,7 @@
  * Software description: Android library of reusable graphical components
  */
 
-package com.orange.ods.compose.utilities.composable
+package com.orange.ods.app.ui.utilities.composable
 
 import android.graphics.Rect
 import android.view.ViewTreeObserver

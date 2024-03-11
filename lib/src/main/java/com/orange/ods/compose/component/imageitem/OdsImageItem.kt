@@ -42,12 +42,12 @@ import com.orange.ods.compose.component.button.OdsIconButton
 import com.orange.ods.compose.component.button.OdsIconToggleButton
 import com.orange.ods.compose.component.content.OdsComponentImage
 import com.orange.ods.compose.component.utilities.BasicPreviewParameterProvider
-import com.orange.ods.compose.component.utilities.Preview
+import com.orange.ods.compose.component.utilities.OdsPreview
 import com.orange.ods.compose.component.utilities.UiModePreviews
+import com.orange.ods.compose.extension.orElse
 import com.orange.ods.compose.text.OdsText
 import com.orange.ods.compose.theme.OdsThemeTweak
 import com.orange.ods.compose.theme.OdsThemeTweakType
-import com.orange.ods.extension.orElse
 import com.orange.ods.theme.typography.OdsTextStyle
 
 
@@ -144,7 +144,11 @@ object OdsImageItem {
     /**
      * An image in an [OdsImageItem].
      */
-    class Image : OdsComponentImage<Nothing> {
+    class Image private constructor(
+        val graphicsObject: Any,
+        val contentDescription: String,
+        val contentScale: ContentScale
+    ) : OdsComponentImage<Nothing>(Nothing::class.java, graphicsObject, contentDescription, contentScale = contentScale) {
 
         /**
          * Creates an instance of [OdsImageItem.Image].
@@ -153,12 +157,11 @@ object OdsImageItem {
          * @param contentDescription The content description associated to this [OdsImageItem.Image].
          * @param contentScale The rule to apply to scale the image in this [OdsImageItem.Image], [ContentScale.Crop] by default.
          */
-        constructor(painter: Painter, contentDescription: String, contentScale: ContentScale = ContentScale.Crop) : super(
-            Nothing::class.java,
-            painter,
-            contentDescription,
-            contentScale = contentScale
-        )
+        constructor(
+            painter: Painter,
+            contentDescription: String,
+            contentScale: ContentScale = ContentScale.Crop
+        ) : this(painter as Any, contentDescription, contentScale)
 
         /**
          * Creates an instance of [OdsImageItem.Image].
@@ -167,12 +170,11 @@ object OdsImageItem {
          * @param contentDescription The content description associated to this [OdsImageItem.Image].
          * @param contentScale The rule to apply to scale the image in this [OdsImageItem.Image], [ContentScale.Crop] by default.
          */
-        constructor(imageVector: ImageVector, contentDescription: String, contentScale: ContentScale = ContentScale.Crop) : super(
-            Nothing::class.java,
-            imageVector,
-            contentDescription,
-            contentScale = contentScale
-        )
+        constructor(
+            imageVector: ImageVector,
+            contentDescription: String,
+            contentScale: ContentScale = ContentScale.Crop
+        ) : this(imageVector as Any, contentDescription, contentScale)
 
         /**
          * Creates an instance of [OdsImageItem.Image].
@@ -181,12 +183,11 @@ object OdsImageItem {
          * @param contentDescription The content description associated to this [OdsImageItem.Image].
          * @param contentScale The rule to apply to scale the image in this [OdsImageItem.Image], [ContentScale.Crop] by default.
          */
-        constructor(bitmap: ImageBitmap, contentDescription: String, contentScale: ContentScale = ContentScale.Crop) : super(
-            Nothing::class.java,
-            bitmap,
-            contentDescription,
-            contentScale = contentScale
-        )
+        constructor(
+            bitmap: ImageBitmap,
+            contentDescription: String,
+            contentScale: ContentScale = ContentScale.Crop
+        ) : this(bitmap as Any, contentDescription, contentScale)
     }
 
     /**
@@ -204,7 +205,7 @@ object OdsImageItem {
         val uncheckedIcon: OdsIconButton.Icon,
     ) {
         @Composable
-        fun Content() {
+        internal fun Content() {
             OdsIconToggleButton(
                 checked = checked,
                 onCheckedChange = onCheckedChange,
@@ -235,7 +236,7 @@ private fun OdsImageItemLegendArea(
 @UiModePreviews.ImageItem
 @Composable
 private fun PreviewOdsImageItem(@PreviewParameter(OdsImageItemPreviewParameterProvider::class) parameter: OdsImageItemPreviewParameter) =
-    Preview {
+    OdsPreview {
         OdsImageItem(
             image = OdsImageItem.Image(painterResource(id = parameter.image), ""),
             title = parameter.title,

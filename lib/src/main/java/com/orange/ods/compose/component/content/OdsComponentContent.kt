@@ -17,7 +17,7 @@ import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.runtime.ProvidableCompositionLocal
 import androidx.compose.runtime.staticCompositionLocalOf
 import androidx.compose.ui.Modifier
-import com.orange.ods.extension.orElse
+import com.orange.ods.compose.extension.orElse
 
 internal val localExtraParametersByClass =
     mutableMapOf<Class<out OdsComponentContent.ExtraParameters>, ProvidableCompositionLocal<out OdsComponentContent.ExtraParameters>>()
@@ -44,7 +44,7 @@ internal fun <T> getLocalExtraParameters(clazz: Class<T>): ProvidableComposition
  * @param extraParametersClass The extra parameters class.
  * @param T the type of extra parameters.
  */
-abstract class OdsComponentContent<T>(private val extraParametersClass: Class<T>) where T : OdsComponentContent.ExtraParameters {
+abstract class OdsComponentContent<T> internal constructor(private val extraParametersClass: Class<T>) where T : OdsComponentContent.ExtraParameters {
 
     /**
      * Extra parameters that can be passed to the `Content` method when other parameters than those provided by the user are needed to layout the component.

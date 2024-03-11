@@ -26,7 +26,7 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import com.orange.ods.compose.component.OdsComposable
-import com.orange.ods.compose.component.utilities.Preview
+import com.orange.ods.compose.component.utilities.OdsPreview
 import com.orange.ods.compose.component.utilities.UiModePreviews
 import com.orange.ods.compose.theme.OdsPrimaryRippleTheme
 import com.orange.ods.compose.theme.OdsTheme
@@ -73,7 +73,7 @@ fun OdsRadioButton(
 
 @UiModePreviews.Default
 @Composable
-private fun PreviewOdsRadioButton() = Preview {
+private fun PreviewOdsRadioButton() = OdsPreview {
     var selected by remember { mutableStateOf(false) }
     OdsRadioButton(
         selected = selected,

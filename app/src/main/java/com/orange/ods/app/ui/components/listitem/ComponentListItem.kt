@@ -45,8 +45,8 @@ import com.orange.ods.app.ui.utilities.extension.buildImageRequest
 import com.orange.ods.compose.OdsComposable
 import com.orange.ods.compose.component.chip.OdsChoiceChipsFlowRow
 import com.orange.ods.compose.component.listitem.OdsListItem
-import com.orange.ods.extension.ifNotNull
-import com.orange.ods.extension.orElse
+import com.orange.ods.compose.extension.ifNotNull
+import com.orange.ods.compose.extension.orElse
 
 
 @OptIn(ExperimentalMaterialApi::class)

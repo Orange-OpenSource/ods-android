@@ -23,7 +23,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.tooling.preview.PreviewParameter
 import com.orange.ods.compose.component.OdsComposable
 import com.orange.ods.compose.component.utilities.BasicPreviewParameterProvider
-import com.orange.ods.compose.component.utilities.Preview
+import com.orange.ods.compose.component.utilities.OdsPreview
 import com.orange.ods.compose.component.utilities.UiModePreviews
 import com.orange.ods.compose.text.OdsText
 import com.orange.ods.compose.theme.OdsTheme
@@ -80,7 +80,7 @@ fun OdsOutlinedButton(
 
 @UiModePreviews.Button
 @Composable
-private fun PreviewOdsOutlinedButton(@PreviewParameter(OdsOutlinedButtonPreviewParameterProvider::class) enabled: Boolean) = Preview {
+private fun PreviewOdsOutlinedButton(@PreviewParameter(OdsOutlinedButtonPreviewParameterProvider::class) enabled: Boolean) = OdsPreview {
     OdsOutlinedButton(text = "Text", onClick = {}, enabled = enabled)
 }
 

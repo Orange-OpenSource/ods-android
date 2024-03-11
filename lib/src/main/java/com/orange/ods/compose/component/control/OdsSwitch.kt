@@ -23,7 +23,7 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import com.orange.ods.compose.component.OdsComposable
-import com.orange.ods.compose.component.utilities.Preview
+import com.orange.ods.compose.component.utilities.OdsPreview
 import com.orange.ods.compose.component.utilities.UiModePreviews
 import com.orange.ods.compose.theme.OdsPrimaryRippleTheme
 import com.orange.ods.compose.theme.OdsTheme
@@ -60,7 +60,7 @@ fun OdsSwitch(
 
 @UiModePreviews.Default
 @Composable
-private fun PreviewOdsSwitch() = Preview {
+private fun PreviewOdsSwitch() = OdsPreview {
     var checked by remember { mutableStateOf(false) }
     OdsSwitch(
         checked = checked,

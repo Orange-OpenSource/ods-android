@@ -55,7 +55,7 @@ import com.orange.ods.compose.component.content.OdsComponentImage
 import com.orange.ods.compose.component.divider.OdsDivider
 import com.orange.ods.compose.component.listitem.OdsListItem
 import com.orange.ods.compose.component.utilities.BasicPreviewParameterProvider
-import com.orange.ods.compose.component.utilities.Preview
+import com.orange.ods.compose.component.utilities.OdsPreview
 import com.orange.ods.compose.component.utilities.UiModePreviews
 import com.orange.ods.compose.text.OdsText
 import com.orange.ods.compose.theme.OdsTheme
@@ -115,7 +115,9 @@ object OdsModalDrawer {
      * These items will be displayed vertically in the [OdsModalDrawer] after the header part.
      */
     sealed interface Item {
-        data class ExtraParameters(val selected: Boolean) : OdsComponentContent.ExtraParameters()
+        data class ExtraParameters internal constructor(
+            internal val selected: Boolean
+        ) : OdsComponentContent.ExtraParameters()
     }
 
     /**
@@ -123,7 +125,7 @@ object OdsModalDrawer {
      *
      * @property label Label of the section header.
      */
-    data class SectionHeader(private val label: String) : Item, OdsComponentContent<Item.ExtraParameters>(Item.ExtraParameters::class.java) {
+    data class SectionHeader(val label: String) : Item, OdsComponentContent<Item.ExtraParameters>(Item.ExtraParameters::class.java) {
         @Composable
         override fun Content(modifier: Modifier) {
             Column(modifier = modifier) {
@@ -153,9 +155,9 @@ object OdsModalDrawer {
      * @property onClick Callback invoked on an `OdsModalDrawer.ListItem` click. Provides the clicked `OdsModalDrawer.ListItem`.
      */
     data class ListItem(
-        private val text: String,
-        private val leadingIcon: Painter? = null,
-        private val onClick: (ListItem) -> Unit
+        val text: String,
+        val leadingIcon: Painter? = null,
+        val onClick: (ListItem) -> Unit
     ) : Item, OdsComponentContent<Item.ExtraParameters>(Item.ExtraParameters::class.java) {
 
         @Composable
@@ -188,9 +190,9 @@ object OdsModalDrawer {
      * @property subtitle Subtitle displayed below the [title] in the header.
      */
     class Header(
-        private var title: String,
-        private val image: Image? = null,
-        private var subtitle: String? = null
+        var title: String,
+        val image: Image? = null,
+        var subtitle: String? = null
     ) : OdsComponentContent<Nothing>(Nothing::class.java) {
 
         @Composable
@@ -242,7 +244,10 @@ object OdsModalDrawer {
         /**
          * An avatar in [OdsModalDrawer.Header].
          */
-        class Avatar : Image, OdsComponentCircularImage<Nothing> {
+        class Avatar private constructor(
+            val graphicsObject: Any,
+            val contentDescription: String
+        ) : Image, OdsComponentCircularImage<Nothing>(Nothing::class.java, graphicsObject, contentDescription) {
 
             /**
              * Creates an instance of [OdsModalDrawer.Header.Avatar].
@@ -250,7 +255,7 @@ object OdsModalDrawer {
              * @param painter The painter to draw.
              * @param contentDescription The content description associated to this [OdsModalDrawer.Header.Avatar].
              */
-            constructor(painter: Painter, contentDescription: String) : super(Nothing::class.java, painter, contentDescription)
+            constructor(painter: Painter, contentDescription: String) : this(painter as Any, contentDescription)
 
             /**
              * Creates an instance of [OdsModalDrawer.Header.Avatar].
@@ -258,7 +263,7 @@ object OdsModalDrawer {
              * @param imageVector The image vector to draw.
              * @param contentDescription The content description associated to this [OdsModalDrawer.Header.Avatar].
              */
-            constructor(imageVector: ImageVector, contentDescription: String) : super(Nothing::class.java, imageVector, contentDescription)
+            constructor(imageVector: ImageVector, contentDescription: String) : this(imageVector as Any, contentDescription)
 
             /**
              * Creates an instance of [OdsModalDrawer.Header.Avatar].
@@ -266,13 +271,16 @@ object OdsModalDrawer {
              * @param bitmap The image bitmap to draw.
              * @param contentDescription The content description associated to this [OdsModalDrawer.Header.Avatar].
              */
-            constructor(bitmap: ImageBitmap, contentDescription: String) : super(Nothing::class.java, bitmap, contentDescription)
+            constructor(bitmap: ImageBitmap, contentDescription: String) : this(bitmap as Any, contentDescription)
         }
 
         /**
          * A background image in the [OdsModalDrawer.Header].
          */
-        class Background : Image, OdsComponentImage<Nothing> {
+        class Background private constructor(
+            val graphicsObject: Any,
+            val contentScale: ContentScale
+        ) : Image, OdsComponentImage<Nothing>(Nothing::class.java, graphicsObject, "", contentScale = contentScale) {
 
             /**
              * Creates an instance of [OdsModalDrawer.Header.Background].
@@ -280,7 +288,7 @@ object OdsModalDrawer {
              * @param painter The painter to draw.
              * @param contentScale The rule to apply to scale the image in this [OdsModalDrawer.Header.Background], [ContentScale.Crop] by default.
              */
-            constructor(painter: Painter, contentScale: ContentScale = ContentScale.Crop) : super(Nothing::class.java, painter, "", contentScale = contentScale)
+            constructor(painter: Painter, contentScale: ContentScale = ContentScale.Crop) : this(painter as Any, contentScale)
 
             /**
              * Creates an instance of [OdsModalDrawer.Header.Background].
@@ -288,7 +296,7 @@ object OdsModalDrawer {
              * @param imageVector The image vector to draw.
              * @param contentScale The rule to apply to scale the image in this [OdsModalDrawer.Header.Background], [ContentScale.Crop] by default.
              */
-            constructor(imageVector: ImageVector, contentScale: ContentScale = ContentScale.Crop) : super(Nothing::class.java, imageVector, "", contentScale = contentScale)
+            constructor(imageVector: ImageVector, contentScale: ContentScale = ContentScale.Crop) : this(imageVector as Any, contentScale)
 
             /**
              * Creates an instance of [OdsModalDrawer.Header.Background].
@@ -296,7 +304,7 @@ object OdsModalDrawer {
              * @param bitmap The image bitmap to draw.
              * @param contentScale The rule to apply to scale the image in this [OdsModalDrawer.Header.Background], [ContentScale.Crop] by default.
              */
-            constructor(bitmap: ImageBitmap, contentScale: ContentScale = ContentScale.Crop) : super(Nothing::class.java, bitmap, "", contentScale = contentScale)
+            constructor(bitmap: ImageBitmap, contentScale: ContentScale = ContentScale.Crop) : this(bitmap as Any, contentScale)
         }
 
     }
@@ -325,7 +333,7 @@ private fun OdsHeaderText(title: String, subtitle: String?, color: Color, modifi
 @UiModePreviews.Default
 @Composable
 private fun PreviewOdsModalDrawer(@PreviewParameter(OdsModalDrawerPreviewParameterProvider::class) parameter: OdsModalDrawerPreviewParameter) =
-    Preview {
+    OdsPreview {
         val listItemIcon = painterResource(id = R.drawable.ic_check)
         val items = if (parameter.hasItems) {
             listOf(

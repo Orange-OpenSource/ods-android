@@ -43,7 +43,7 @@ import com.orange.ods.R
 import com.orange.ods.compose.component.OdsComposable
 import com.orange.ods.compose.component.content.OdsComponentIcon
 import com.orange.ods.compose.component.content.OdsComponentScopeContent
-import com.orange.ods.compose.component.utilities.Preview
+import com.orange.ods.compose.component.utilities.OdsPreview
 import com.orange.ods.compose.component.utilities.UiModePreviews
 import com.orange.ods.compose.text.OdsText
 import com.orange.ods.compose.theme.OdsTheme
@@ -181,7 +181,10 @@ object OdsBottomNavigation {
         /**
          * An icon in an [OdsBottomNavigation.Item].
          */
-        class Icon : OdsComponentIcon<Nothing> {
+        class Icon private constructor(
+            val graphicsObject: Any,
+            val contentDescription: String
+        ) : OdsComponentIcon<Nothing>(Nothing::class.java, graphicsObject, contentDescription) {
 
             /**
              * Creates an instance of [OdsBottomNavigation.Item.Icon].
@@ -189,7 +192,7 @@ object OdsBottomNavigation {
              * @param painter Painter of the icon.
              * @param contentDescription The content description associated to this [OdsBottomNavigation.Item.Icon].
              */
-            constructor(painter: Painter, contentDescription: String) : super(Nothing::class.java, painter, contentDescription)
+            constructor(painter: Painter, contentDescription: String) : this(painter as Any, contentDescription)
 
             /**
              * Creates an instance of [OdsBottomNavigation.Item.Icon].
@@ -197,7 +200,7 @@ object OdsBottomNavigation {
              * @param imageVector Image vector of the icon.
              * @param contentDescription The content description associated to this [OdsBottomNavigation.Item.Icon].
              */
-            constructor(imageVector: ImageVector, contentDescription: String) : super(Nothing::class.java, imageVector, contentDescription)
+            constructor(imageVector: ImageVector, contentDescription: String) : this(imageVector as Any, contentDescription)
 
             /**
              * Creates an instance of [OdsBottomNavigation.Item.Icon].
@@ -205,7 +208,7 @@ object OdsBottomNavigation {
              * @param bitmap Image bitmap of the icon.
              * @param contentDescription The content description associated to this [OdsBottomNavigation.Item.Icon].
              */
-            constructor(bitmap: ImageBitmap, contentDescription: String) : super(Nothing::class.java, bitmap, contentDescription)
+            constructor(bitmap: ImageBitmap, contentDescription: String) : this(bitmap as Any, contentDescription)
         }
     }
 
@@ -213,7 +216,7 @@ object OdsBottomNavigation {
 
 @UiModePreviews.Default
 @Composable
-private fun PreviewOdsBottomNavigation() = Preview {
+private fun PreviewOdsBottomNavigation() = OdsPreview {
     val items = listOf(
         android.R.drawable.ic_dialog_email to "First item",
         android.R.drawable.ic_dialog_map to "Second item",

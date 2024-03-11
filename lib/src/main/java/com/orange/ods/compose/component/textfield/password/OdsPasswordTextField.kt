@@ -33,7 +33,7 @@ import com.orange.ods.compose.component.OdsComposable
 import com.orange.ods.compose.component.textfield.OdsTextField
 import com.orange.ods.compose.component.textfield.OdsTextFieldBottomRow
 import com.orange.ods.compose.component.utilities.BasicPreviewParameterProvider
-import com.orange.ods.compose.component.utilities.Preview
+import com.orange.ods.compose.component.utilities.OdsPreview
 import com.orange.ods.compose.component.utilities.UiModePreviews
 import com.orange.ods.theme.typography.OdsTypography
 
@@ -124,7 +124,7 @@ private class OdsPasswordTextFieldPreviewParameterProvider : BasicPreviewParamet
 
 @UiModePreviews.Default
 @Composable
-private fun PreviewOdsPasswordTextField(@PreviewParameter(OdsPasswordTextFieldPreviewParameterProvider::class) hasErrorMessage: Boolean) = Preview {
+private fun PreviewOdsPasswordTextField(@PreviewParameter(OdsPasswordTextFieldPreviewParameterProvider::class) hasErrorMessage: Boolean) = OdsPreview {
     var value by remember { mutableStateOf("Input text") }
     OdsPasswordTextField(
         value = value,

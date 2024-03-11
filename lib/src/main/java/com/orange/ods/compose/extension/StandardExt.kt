@@ -10,7 +10,7 @@
  * Software description: Android library of reusable graphical components 
  */
 
-package com.orange.ods.extension
+package com.orange.ods.compose.extension
 
 /**
  * Calls the specified function [block] and returns its result if `this` is `null`.

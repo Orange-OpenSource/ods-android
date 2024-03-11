@@ -41,7 +41,7 @@ import com.orange.ods.compose.component.OdsComposable
 import com.orange.ods.compose.component.content.OdsComponentContent
 import com.orange.ods.compose.component.content.OdsComponentIcon
 import com.orange.ods.compose.component.utilities.DisabledInteractionSource
-import com.orange.ods.compose.component.utilities.Preview
+import com.orange.ods.compose.component.utilities.OdsPreview
 import com.orange.ods.compose.component.utilities.UiModePreviews
 import com.orange.ods.compose.component.utilities.selectionStateDescription
 import com.orange.ods.compose.theme.OdsTheme
@@ -95,15 +95,15 @@ object OdsIconToggleButtonsRow {
      * An icon button in an [OdsIconToggleButtonsRow].
      */
     class IconButton private constructor(
-        graphicsObject: Any,
-        contentDescription: String,
-        private val onClick: () -> Unit,
-        enabled: Boolean = true
+        val graphicsObject: Any,
+        val contentDescription: String,
+        val onClick: () -> Unit,
+        val enabled: Boolean = true
     ) : OdsComponentIcon<IconButton.ExtraParameters>(ExtraParameters::class.java, graphicsObject, contentDescription, enabled) {
 
-        data class ExtraParameters(
-            val index: Int,
-            val selected: Boolean
+        data class ExtraParameters internal constructor(
+            internal val index: Int,
+            internal val selected: Boolean
         ) : OdsComponentContent.ExtraParameters()
 
         /**
@@ -195,7 +195,7 @@ object OdsIconToggleButtonsRow {
 
 @UiModePreviews.Default
 @Composable
-private fun PreviewOdsIconToggleButtonsRow() = Preview {
+private fun PreviewOdsIconToggleButtonsRow() = OdsPreview {
     var selectedIconButtonIndex by remember { mutableIntStateOf(0) }
     val iconButtons = listOf(
         OdsIconToggleButtonsRow.IconButton(painterResource(id = android.R.drawable.ic_dialog_dialer), "Today", { selectedIconButtonIndex = 0 }),

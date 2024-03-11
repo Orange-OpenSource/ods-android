@@ -14,9 +14,9 @@ package com.orange.ods.app.ui.utilities.code
 
 import androidx.compose.runtime.Composable
 import com.orange.ods.app.ui.utilities.composable.TechnicalText
-import com.orange.ods.extension.fullName
-import com.orange.ods.extension.orElse
-import com.orange.ods.extension.simpleNestedName
+import com.orange.ods.app.ui.utilities.extension.fullName
+import com.orange.ods.compose.extension.orElse
+import com.orange.ods.app.ui.utilities.extension.simpleNestedName
 
 const val IconPainterValue = "<icon painter>"
 const val ImagePainterValue = "<image painter>"

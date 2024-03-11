@@ -23,7 +23,7 @@ import androidx.compose.runtime.setValue
 import androidx.core.content.withStyledAttributes
 import com.google.accompanist.drawablepainter.rememberDrawablePainter
 import com.orange.ods.compose.component.banner.OdsBanner
-import com.orange.ods.extension.ifNotNull
+import com.orange.ods.compose.extension.ifNotNull
 import com.orange.ods.xml.R
 import com.orange.ods.xml.component.OdsAbstractComposeView
 import com.orange.ods.xml.utilities.extension.getResourceIdOrNull

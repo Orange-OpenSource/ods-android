@@ -33,7 +33,7 @@ import com.orange.ods.compose.component.button.OdsOutlinedButton
 import com.orange.ods.compose.component.content.OdsComponentContent
 import com.orange.ods.compose.component.content.OdsComponentImage
 import com.orange.ods.compose.component.utilities.BasicPreviewParameterProvider
-import com.orange.ods.compose.component.utilities.Preview
+import com.orange.ods.compose.component.utilities.OdsPreview
 import com.orange.ods.compose.component.utilities.UiModePreviews
 import com.orange.ods.compose.text.OdsText
 import com.orange.ods.theme.typography.OdsTextStyle
@@ -101,7 +101,7 @@ object OdsEmptyStateView {
      * @param text Text of the button.
      * @param onClick Callback invoked on button click.
      */
-    class Button(private val text: String, private val onClick: () -> Unit) : OdsComponentContent<Nothing>(Nothing::class.java) {
+    class Button(val text: String, val onClick: () -> Unit) : OdsComponentContent<Nothing>(Nothing::class.java) {
 
         @Composable
         override fun Content(modifier: Modifier) {
@@ -112,7 +112,11 @@ object OdsEmptyStateView {
     /**
      * An image in an [OdsEmptyStateView].
      */
-    class Image : OdsComponentImage<Nothing> {
+    class Image private constructor(
+        val graphicsObject: Any,
+        val alignment: Alignment,
+        val contentScale: ContentScale
+    ) : OdsComponentImage<Nothing>(Nothing::class.java, graphicsObject, "", alignment, contentScale) {
 
         /**
          * Creates an instance of [OdsEmptyStateView.Image].
@@ -121,13 +125,11 @@ object OdsEmptyStateView {
          * @param alignment Alignment parameter used to place the [Painter] in the given bounds defined by the width and height.
          * @param contentScale The rule to apply to scale the image in this [OdsEmptyStateView.Image].
          */
-        constructor(painter: Painter, alignment: Alignment = Alignment.Center, contentScale: ContentScale = ContentScale.Fit) : super(
-            Nothing::class.java,
-            painter,
-            "",
-            alignment = alignment,
-            contentScale = contentScale
-        )
+        constructor(
+            painter: Painter,
+            alignment: Alignment = Alignment.Center,
+            contentScale: ContentScale = ContentScale.Fit
+        ) : this(painter as Any, alignment, contentScale)
 
         /**
          * Creates an instance of [OdsEmptyStateView.Image].
@@ -136,13 +138,11 @@ object OdsEmptyStateView {
          * @param alignment Alignment parameter used to place the [ImageVector] in the given bounds defined by the width and height.
          * @param contentScale The rule to apply to scale the image in this [OdsEmptyStateView.Image].
          */
-        constructor(imageVector: ImageVector, alignment: Alignment = Alignment.Center, contentScale: ContentScale = ContentScale.Fit) : super(
-            Nothing::class.java,
-            imageVector,
-            "",
-            alignment = alignment,
-            contentScale = contentScale
-        )
+        constructor(
+            imageVector: ImageVector,
+            alignment: Alignment = Alignment.Center,
+            contentScale: ContentScale = ContentScale.Fit
+        ) : this(imageVector as Any, alignment, contentScale)
 
         /**
          * Creates an instance of [OdsEmptyStateView.Image].
@@ -151,20 +151,18 @@ object OdsEmptyStateView {
          * @param alignment Alignment parameter used to place the [ImageBitmap] in the given bounds defined by the width and height.
          * @param contentScale The rule to apply to scale the image in this [OdsEmptyStateView.Image].
          */
-        constructor(bitmap: ImageBitmap, alignment: Alignment = Alignment.Center, contentScale: ContentScale = ContentScale.Fit) : super(
-            Nothing::class.java,
-            bitmap,
-            "",
-            alignment = alignment,
-            contentScale = contentScale
-        )
+        constructor(
+            bitmap: ImageBitmap,
+            alignment: Alignment = Alignment.Center,
+            contentScale: ContentScale = ContentScale.Fit
+        ) : this(bitmap as Any, alignment, contentScale)
     }
 }
 
 @UiModePreviews.Default
 @Composable
 private fun PreviewOdsEmptyStateView(@PreviewParameter(OdsEmptyStateViewPreviewParameterProvider::class) parameter: OdsEmptyStateViewPreviewParameter) =
-    Preview {
+    OdsPreview {
         with(parameter) {
             OdsEmptyStateView(title = title, text = text, button = button)
         }

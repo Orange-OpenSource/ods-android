@@ -22,7 +22,7 @@ import com.orange.ods.theme.colors.OdsSwitchColors
 import com.orange.ods.theme.colors.OdsTabColors
 import com.orange.ods.theme.colors.OdsTopAppBarColors
 
-val OrangeLightColors = OdsColors(
+internal val OrangeLightColors = OdsColors(
     materialColors = Colors(
         primary = Orange200,
         primaryVariant = Orange100,
@@ -80,7 +80,7 @@ val OrangeLightColors = OdsColors(
     )
 )
 
-val OrangeDarkColors = OdsColors(
+internal val OrangeDarkColors = OdsColors(
     materialColors = Colors(
         primary = Orange100,
         primaryVariant = Orange200,

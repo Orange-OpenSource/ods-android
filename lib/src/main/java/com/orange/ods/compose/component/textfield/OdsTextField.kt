@@ -28,7 +28,7 @@ import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.input.VisualTransformation
 import androidx.compose.ui.tooling.preview.PreviewParameter
 import com.orange.ods.compose.component.OdsComposable
-import com.orange.ods.compose.component.utilities.Preview
+import com.orange.ods.compose.component.utilities.OdsPreview
 import com.orange.ods.compose.component.utilities.UiModePreviews
 import com.orange.ods.compose.theme.OdsTheme
 import com.orange.ods.theme.OdsComponentsConfiguration
@@ -146,7 +146,7 @@ fun OdsTextField(
 
 @UiModePreviews.Default
 @Composable
-private fun PreviewOdsTextField(@PreviewParameter(OdsTextFieldPreviewParameterProvider::class) parameter: OdsTextFieldPreviewParameter) = Preview {
+private fun PreviewOdsTextField(@PreviewParameter(OdsTextFieldPreviewParameterProvider::class) parameter: OdsTextFieldPreviewParameter) = OdsPreview {
     var value by remember { mutableStateOf("Input text") }
     OdsTextField(
         modifier = Modifier.fillMaxWidth(),

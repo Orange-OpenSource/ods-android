@@ -34,7 +34,7 @@ import com.orange.ods.app.ui.UiFramework
 import com.orange.ods.app.ui.utilities.composable.TechnicalText
 import com.orange.ods.compose.component.menu.OdsExposedDropdownMenu
 import com.orange.ods.compose.theme.OdsTheme
-import com.orange.ods.extension.orElse
+import com.orange.ods.compose.extension.orElse
 
 @Composable
 fun CodeImplementationColumn(

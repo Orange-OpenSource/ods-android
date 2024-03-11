@@ -46,7 +46,7 @@ import com.orange.ods.compose.component.chip.OdsChip
 import com.orange.ods.compose.component.chip.OdsChoiceChipsFlowRow
 import com.orange.ods.compose.component.listitem.OdsListItem
 import com.orange.ods.compose.text.OdsText
-import com.orange.ods.extension.orElse
+import com.orange.ods.compose.extension.orElse
 import com.orange.ods.theme.typography.OdsTextStyle
 
 @OptIn(ExperimentalMaterialApi::class)

@@ -27,15 +27,13 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.input.TextFieldValue
-import androidx.compose.ui.text.toUpperCase
 import androidx.compose.ui.tooling.preview.PreviewParameter
 import androidx.compose.ui.unit.sp
 import com.orange.ods.R
-import com.orange.ods.compose.component.OdsComposable
 import com.orange.ods.compose.component.button.OdsIconButton
 import com.orange.ods.compose.component.textfield.styledTextFieldValue
 import com.orange.ods.compose.component.utilities.BasicPreviewParameterProvider
-import com.orange.ods.compose.component.utilities.Preview
+import com.orange.ods.compose.component.utilities.OdsPreview
 import com.orange.ods.compose.component.utilities.UiModePreviews
 import com.orange.ods.compose.theme.OdsTheme
 
@@ -98,7 +96,7 @@ internal fun OdsSearchTextField(
 @UiModePreviews.Default
 @Composable
 private fun PreviewOdsSearchTextField(@PreviewParameter(OdsSearchTextFieldPreviewParameterProvider::class) parameter: OdsSearchTextFieldPreviewParameter) =
-    Preview {
+    OdsPreview {
         with(parameter) {
             OdsSearchTextField(
                 value = value,
