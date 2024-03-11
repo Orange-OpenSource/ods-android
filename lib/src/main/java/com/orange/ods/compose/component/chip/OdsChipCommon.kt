@@ -43,7 +43,10 @@ object OdsChip {
     /**
      * A leading icon in an [OdsChip].
      */
-    class LeadingIcon : OdsComponentIcon<Nothing>, Leading {
+    class LeadingIcon private constructor(
+        val graphicsObject: Any,
+        val contentDescription: String
+    ) : OdsComponentIcon<Nothing>(Nothing::class.java, graphicsObject, contentDescription), Leading {
 
         /**
          * Creates an instance of [OdsChip.LeadingIcon].
@@ -51,7 +54,7 @@ object OdsChip {
          * @param painter The painter to draw.
          * @param contentDescription The content description associated to this [OdsChip.LeadingIcon].
          */
-        constructor(painter: Painter, contentDescription: String) : super(Nothing::class.java, painter, contentDescription)
+        constructor(painter: Painter, contentDescription: String) : this(painter as Any, contentDescription)
 
         /**
          * Creates an instance of [OdsChip.LeadingIcon].
@@ -59,7 +62,7 @@ object OdsChip {
          * @param imageVector The image vector to draw.
          * @param contentDescription The content description associated to this [OdsChip.LeadingIcon].
          */
-        constructor(imageVector: ImageVector, contentDescription: String) : super(Nothing::class.java, imageVector, contentDescription)
+        constructor(imageVector: ImageVector, contentDescription: String) : this(imageVector as Any, contentDescription)
 
         /**
          * Creates an instance of [OdsChip.LeadingIcon].
@@ -67,7 +70,7 @@ object OdsChip {
          * @param bitmap The image bitmap to draw.
          * @param contentDescription The content description associated to this [OdsChip.LeadingIcon].
          */
-        constructor(bitmap: ImageBitmap, contentDescription: String) : super(Nothing::class.java, bitmap, contentDescription)
+        constructor(bitmap: ImageBitmap, contentDescription: String) : this(bitmap as Any, contentDescription)
 
         @Composable
         override fun Content(modifier: Modifier) {

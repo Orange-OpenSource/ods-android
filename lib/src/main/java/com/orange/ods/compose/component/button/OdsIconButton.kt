@@ -79,7 +79,10 @@ object OdsIconButton {
     /**
      * An icon in an [OdsIconButton].
      */
-    class Icon : OdsComponentIcon<Icon.ExtraParameters> {
+    class Icon private constructor(
+        val graphicsObject: Any,
+        val contentDescription: String
+    ) : OdsComponentIcon<Icon.ExtraParameters>(ExtraParameters::class.java, graphicsObject, contentDescription) {
 
         data class ExtraParameters internal constructor(
             internal val enabled: Boolean
@@ -91,7 +94,7 @@ object OdsIconButton {
          * @param painter Painter of the icon.
          * @param contentDescription The content description associated to this [OdsIconButton.Icon].
          */
-        constructor(painter: Painter, contentDescription: String) : super(ExtraParameters::class.java, painter, contentDescription)
+        constructor(painter: Painter, contentDescription: String) : this(painter as Any, contentDescription)
 
         /**
          * Creates an instance of [OdsIconButton.Icon].
@@ -99,7 +102,7 @@ object OdsIconButton {
          * @param imageVector Image vector of the icon.
          * @param contentDescription The content description associated to this [OdsIconButton.Icon].
          */
-        constructor(imageVector: ImageVector, contentDescription: String) : super(ExtraParameters::class.java, imageVector, contentDescription)
+        constructor(imageVector: ImageVector, contentDescription: String) : this(imageVector as Any, contentDescription)
 
         /**
          * Creates an instance of [OdsIconButton.Icon].
@@ -107,7 +110,7 @@ object OdsIconButton {
          * @param bitmap Image bitmap of the icon.
          * @param contentDescription The content description associated to this [OdsIconButton.Icon].
          */
-        constructor(bitmap: ImageBitmap, contentDescription: String) : super(ExtraParameters::class.java, bitmap, contentDescription)
+        constructor(bitmap: ImageBitmap, contentDescription: String) : this(bitmap as Any, contentDescription)
 
         override val tint: Color
             @Composable

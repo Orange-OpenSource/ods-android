@@ -26,16 +26,13 @@ import com.orange.ods.compose.extension.orElse
 /**
  * An icon in a component.
  */
-abstract class OdsComponentIcon<T> internal constructor(
+abstract class OdsComponentIcon<T> protected constructor(
     extraParametersClass: Class<T>,
-    val graphicsObject: Any,
-    val contentDescription: String,
-    enabled: Boolean = true,
-    val onClick: (() -> Unit)? = null,
+    private val graphicsObject: Any,
+    private val contentDescription: String,
+    protected open var enabled: Boolean = true,
+    private val onClick: (() -> Unit)? = null,
 ) : OdsComponentContent<T>(extraParametersClass) where T : OdsComponentContent.ExtraParameters {
-
-    var enabled = enabled
-        protected set
 
     val painter: Painter? = graphicsObject as? Painter
     val imageVector: ImageVector? = graphicsObject as? ImageVector

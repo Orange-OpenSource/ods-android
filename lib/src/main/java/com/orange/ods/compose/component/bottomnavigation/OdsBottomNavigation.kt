@@ -181,7 +181,10 @@ object OdsBottomNavigation {
         /**
          * An icon in an [OdsBottomNavigation.Item].
          */
-        class Icon : OdsComponentIcon<Nothing> {
+        class Icon private constructor(
+            val graphicsObject: Any,
+            val contentDescription: String
+        ) : OdsComponentIcon<Nothing>(Nothing::class.java, graphicsObject, contentDescription) {
 
             /**
              * Creates an instance of [OdsBottomNavigation.Item.Icon].
@@ -189,7 +192,7 @@ object OdsBottomNavigation {
              * @param painter Painter of the icon.
              * @param contentDescription The content description associated to this [OdsBottomNavigation.Item.Icon].
              */
-            constructor(painter: Painter, contentDescription: String) : super(Nothing::class.java, painter, contentDescription)
+            constructor(painter: Painter, contentDescription: String) : this(painter as Any, contentDescription)
 
             /**
              * Creates an instance of [OdsBottomNavigation.Item.Icon].
@@ -197,7 +200,7 @@ object OdsBottomNavigation {
              * @param imageVector Image vector of the icon.
              * @param contentDescription The content description associated to this [OdsBottomNavigation.Item.Icon].
              */
-            constructor(imageVector: ImageVector, contentDescription: String) : super(Nothing::class.java, imageVector, contentDescription)
+            constructor(imageVector: ImageVector, contentDescription: String) : this(imageVector as Any, contentDescription)
 
             /**
              * Creates an instance of [OdsBottomNavigation.Item.Icon].
@@ -205,7 +208,7 @@ object OdsBottomNavigation {
              * @param bitmap Image bitmap of the icon.
              * @param contentDescription The content description associated to this [OdsBottomNavigation.Item.Icon].
              */
-            constructor(bitmap: ImageBitmap, contentDescription: String) : super(Nothing::class.java, bitmap, contentDescription)
+            constructor(bitmap: ImageBitmap, contentDescription: String) : this(bitmap as Any, contentDescription)
         }
     }
 

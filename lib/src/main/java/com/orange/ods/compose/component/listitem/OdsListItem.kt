@@ -69,10 +69,10 @@ import com.orange.ods.compose.component.divider.OdsDivider
 import com.orange.ods.compose.component.utilities.BasicPreviewParameterProvider
 import com.orange.ods.compose.component.utilities.OdsPreview
 import com.orange.ods.compose.component.utilities.UiModePreviews
-import com.orange.ods.compose.text.OdsText
-import com.orange.ods.compose.theme.OdsTheme
 import com.orange.ods.compose.extension.isNotNullOrBlank
 import com.orange.ods.compose.extension.orElse
+import com.orange.ods.compose.text.OdsText
+import com.orange.ods.compose.theme.OdsTheme
 import com.orange.ods.theme.typography.OdsTextStyle
 
 /**
@@ -470,7 +470,11 @@ object OdsListItem {
     /**
      * A trailing icon in an [OdsListItem].
      */
-    class TrailingIcon : OdsComponentIcon<Nothing>, Trailing {
+    class TrailingIcon private constructor(
+        val graphicsObject: Any,
+        val contentDescription: String,
+        val onClick: (() -> Unit)?
+    ) : OdsComponentIcon<Nothing>(Nothing::class.java, graphicsObject, contentDescription, onClick = onClick), Trailing {
 
         /**
          * Creates an instance of [OdsListItem.TrailingIcon].
@@ -479,12 +483,7 @@ object OdsListItem {
          * @param contentDescription The content description associated to this [OdsListItem.TrailingIcon].
          * @param onClick Will be called when the user clicks on the icon.
          */
-        constructor(painter: Painter, contentDescription: String, onClick: (() -> Unit)?) : super(
-            Nothing::class.java,
-            painter,
-            contentDescription,
-            onClick = onClick
-        )
+        constructor(painter: Painter, contentDescription: String, onClick: (() -> Unit)?) : this(painter as Any, contentDescription, onClick)
 
         /**
          * Creates an instance of [OdsListItem.TrailingIcon].
@@ -493,12 +492,7 @@ object OdsListItem {
          * @param contentDescription The content description associated to this [OdsListItem.TrailingIcon].
          * @param onClick Will be called when the user clicks on the icon.
          */
-        constructor(imageVector: ImageVector, contentDescription: String, onClick: (() -> Unit)?) : super(
-            Nothing::class.java,
-            imageVector,
-            contentDescription,
-            onClick = onClick
-        )
+        constructor(imageVector: ImageVector, contentDescription: String, onClick: (() -> Unit)?) : this(imageVector as Any, contentDescription, onClick)
 
         /**
          * Creates an instance of [OdsListItem.TrailingIcon].
@@ -507,12 +501,7 @@ object OdsListItem {
          * @param contentDescription The content description associated to this [OdsListItem.TrailingIcon].
          * @param onClick Will be called when the user clicks on the icon.
          */
-        constructor(bitmap: ImageBitmap, contentDescription: String, onClick: (() -> Unit)?) : super(
-            Nothing::class.java,
-            bitmap,
-            contentDescription,
-            onClick = onClick
-        )
+        constructor(bitmap: ImageBitmap, contentDescription: String, onClick: (() -> Unit)?) : this(bitmap as Any, contentDescription, onClick)
 
         override val tint: Color? // Despite warning, keep it optional as in parent class
             @Composable

@@ -40,9 +40,9 @@ import com.orange.ods.compose.component.content.OdsComponentIcon
 import com.orange.ods.compose.component.utilities.BasicPreviewParameterProvider
 import com.orange.ods.compose.component.utilities.OdsPreview
 import com.orange.ods.compose.component.utilities.UiModePreviews
+import com.orange.ods.compose.extension.orElse
 import com.orange.ods.compose.text.OdsText
 import com.orange.ods.compose.theme.OdsTheme
-import com.orange.ods.compose.extension.orElse
 import com.orange.ods.theme.typography.OdsTextStyle
 
 /**
@@ -120,7 +120,10 @@ object OdsLinearProgressIndicator {
      * An icon in an [OdsLinearProgressIndicator].
      * It is a non-clickable button.
      */
-    class Icon : OdsComponentIcon<Nothing> {
+    class Icon private constructor(
+        val graphicsObject: Any,
+        val contentDescription: String
+    ) : OdsComponentIcon<Nothing>(Nothing::class.java, graphicsObject, contentDescription) {
 
         /**
          * Creates an instance of [OdsLinearProgressIndicator.Icon].
@@ -128,7 +131,7 @@ object OdsLinearProgressIndicator {
          * @param painter Painter of the icon.
          * @param contentDescription The content description associated to this [OdsLinearProgressIndicator.Icon].
          */
-        constructor(painter: Painter, contentDescription: String) : super(Nothing::class.java, painter, contentDescription)
+        constructor(painter: Painter, contentDescription: String) : this(painter as Any, contentDescription)
 
         /**
          * Creates an instance of [OdsLinearProgressIndicator.Icon].
@@ -136,7 +139,7 @@ object OdsLinearProgressIndicator {
          * @param imageVector Image vector of the icon.
          * @param contentDescription The content description associated to this [OdsLinearProgressIndicator.Icon].
          */
-        constructor(imageVector: ImageVector, contentDescription: String) : super(Nothing::class.java, imageVector, contentDescription)
+        constructor(imageVector: ImageVector, contentDescription: String) : this(imageVector as Any, contentDescription)
 
         /**
          * Creates an instance of [OdsLinearProgressIndicator.Icon].
@@ -144,7 +147,7 @@ object OdsLinearProgressIndicator {
          * @param bitmap Image bitmap of the icon.
          * @param contentDescription The content description associated to this [OdsLinearProgressIndicator.Icon].
          */
-        constructor(bitmap: ImageBitmap, contentDescription: String) : super(Nothing::class.java, bitmap, contentDescription)
+        constructor(bitmap: ImageBitmap, contentDescription: String) : this(bitmap as Any, contentDescription)
 
         @Composable
         override fun Content(modifier: Modifier) {

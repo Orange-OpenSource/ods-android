@@ -95,11 +95,11 @@ object OdsIconToggleButtonsRow {
      * An icon button in an [OdsIconToggleButtonsRow].
      */
     class IconButton private constructor(
-        graphicsObject: Any,
-        contentDescription: String,
-        onClick: () -> Unit,
+        val graphicsObject: Any,
+        val contentDescription: String,
+        val onClick: () -> Unit,
         enabled: Boolean = true
-    ) : OdsComponentIcon<IconButton.ExtraParameters>(ExtraParameters::class.java, graphicsObject, contentDescription, enabled, onClick) {
+    ) : OdsComponentIcon<IconButton.ExtraParameters>(ExtraParameters::class.java, graphicsObject, contentDescription, enabled) {
 
         data class ExtraParameters internal constructor(
             internal val index: Int,
@@ -154,6 +154,9 @@ object OdsIconToggleButtonsRow {
             enabled: Boolean = true
         ) : this(bitmap as Any, contentDescription, onClick, enabled)
 
+        public override var enabled: Boolean = enabled
+            protected set
+
         override val tint: Color
             @Composable
             get() {
@@ -171,7 +174,7 @@ object OdsIconToggleButtonsRow {
                         .background(color = buttonToggleBackgroundColor().copy(alpha = backgroundAlpha))
                         .padding(12.dp)
                         .run {
-                            if (enabled && onClick != null) {
+                            if (enabled) {
                                 clickable(interactionSource = remember { DisabledInteractionSource() }, indication = null, onClick = onClick)
                             } else {
                                 this
