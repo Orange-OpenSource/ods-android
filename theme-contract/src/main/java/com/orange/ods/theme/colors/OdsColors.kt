@@ -27,7 +27,7 @@ import androidx.compose.runtime.setValue
 class OdsColors(
     val materialColors: Colors,
     functionalColors: OdsFunctionalColors,
-    private var componentColors: OdsComponentColors
+    componentColors: OdsComponentColors.Builder
 ) {
     var primary = materialColors.primary
         private set
@@ -57,12 +57,5 @@ class OdsColors(
     var functional by mutableStateOf(functionalColors)
         private set
 
-    val component = OdsComponentColorsInternal(
-        this.componentColors.systemBarsBackground,
-        this.componentColors.bottomNavigation ?: materialColors.DefaultOdsBottomNavigationColors,
-        this.componentColors.floatingActionButton ?: materialColors.DefaultOdsFloatingActionButtonColors,
-        this.componentColors.switch ?: materialColors.DefaultOdsSwitchColors,
-        this.componentColors.tab ?: materialColors.DefaultOdsTabColors,
-        this.componentColors.topAppBar ?: materialColors.DefaultOdsTopAppBarColors
-    )
+    val component = componentColors.build(materialColors)
 }

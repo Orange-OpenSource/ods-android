@@ -49,35 +49,35 @@ internal val OrangeLightColors = OdsColors(
     ),
 
     componentColors = OdsComponentColors(
-        systemBarsBackground = White100,
-
+        systemBarsBackground = White100
+    ) {
         bottomNavigation = OdsBottomNavigationColors(
             barBackground = White100,
             barContent = Black900,
             itemSelected = Orange200,
             itemUnselected = Black900
-        ),
+        )
 
         floatingActionButton = OdsFloatingActionButtonColors(
             background = Orange200,
             content = Black900
-        ),
+        )
 
         topAppBar = OdsTopAppBarColors(
             barBackground = White100,
             barContent = Black900
-        ),
+        )
 
         switch = OdsSwitchColors(
             uncheckedThumb = White100
-        ),
+        )
 
         tab = OdsTabColors(
             background = White100,
             selectedContent = Orange200,
             unselectedContent = Black900
         )
-    )
+    }
 )
 
 internal val OrangeDarkColors = OdsColors(
@@ -107,33 +107,33 @@ internal val OrangeDarkColors = OdsColors(
     ),
 
     componentColors = OdsComponentColors(
-        systemBarsBackground = Black900,
-
+        systemBarsBackground = Black900
+    ) {
         bottomNavigation = OdsBottomNavigationColors(
             barBackground = Black900,
             barContent = White100,
             itemSelected = Orange200,
             itemUnselected = White100
-        ),
+        )
 
         floatingActionButton = OdsFloatingActionButtonColors(
             background = Orange100,
             content = Black900
-        ),
+        )
 
         topAppBar = OdsTopAppBarColors(
             barBackground = DarkSurfaceDefault,
             barContent = White100
-        ),
+        )
 
         switch = OdsSwitchColors(
             uncheckedThumb = Grey400
-        ),
+        )
 
         tab = OdsTabColors(
             background = DarkSurfaceDefault,
             selectedContent = Orange100,
             unselectedContent = White100
         )
-    )
+    }
 )
