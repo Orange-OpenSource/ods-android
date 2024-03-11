@@ -10,7 +10,7 @@
  * Software description: Android library of reusable graphical components
  */
 
-package com.orange.ods.compose.utilities.extension
+package com.orange.ods.compose.extension
 
 import androidx.compose.material.ContentAlpha
 import androidx.compose.runtime.Composable

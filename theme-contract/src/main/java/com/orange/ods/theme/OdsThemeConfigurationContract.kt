@@ -14,7 +14,7 @@ package com.orange.ods.theme
 
 import android.os.Parcelable
 import androidx.compose.material.Shapes
-import com.orange.ods.compose.annotation.ExperimentalOdsApi
+import com.orange.ods.theme.annotation.ExperimentalOdsApi
 import com.orange.ods.theme.colors.OdsColors
 import com.orange.ods.theme.guideline.OdsGuideline
 import com.orange.ods.theme.typography.OdsTypography

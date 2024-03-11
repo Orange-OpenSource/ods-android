@@ -18,8 +18,8 @@ import androidx.compose.material.ExperimentalMaterialApi
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.compositeOver
+import com.orange.ods.compose.extension.enable
 import com.orange.ods.compose.theme.OdsTheme
-import com.orange.ods.compose.utilities.extension.enable
 
 internal object OdsChipDefaults {
 

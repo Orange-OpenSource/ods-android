@@ -18,8 +18,8 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.runtime.staticCompositionLocalOf
-import com.orange.ods.compose.annotation.ExperimentalOdsApi
 import com.orange.ods.theme.OdsThemeConfigurationContract
+import com.orange.ods.theme.annotation.ExperimentalOdsApi
 import com.orange.ods.theme.guideline.OdsGuideline
 
 val LocalThemeManager = staticCompositionLocalOf<ThemeManager> { error("CompositionLocal LocalThemeManager not present") }

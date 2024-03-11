@@ -36,9 +36,9 @@ import com.orange.ods.compose.component.chip.OdsChipDefaults.SurfaceOverlayOpaci
 import com.orange.ods.compose.component.utilities.OdsPreview
 import com.orange.ods.compose.component.utilities.UiModePreviews
 import com.orange.ods.compose.component.utilities.selectionStateDescription
+import com.orange.ods.compose.extension.noRippleClickable
 import com.orange.ods.compose.text.OdsText
 import com.orange.ods.compose.theme.OdsTheme
-import com.orange.ods.compose.utilities.extension.noRippleClickable
 import com.orange.ods.theme.OdsComponentsConfiguration
 import com.orange.ods.theme.typography.OdsTextStyle
 

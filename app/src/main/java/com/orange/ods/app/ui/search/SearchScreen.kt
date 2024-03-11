@@ -44,10 +44,10 @@ import com.orange.ods.app.ui.guidelines.GuidelinesNavigation
 import com.orange.ods.app.ui.guidelines.color.DialogColor
 import com.orange.ods.app.ui.guidelines.spacing.Spacing
 import com.orange.ods.app.ui.utilities.DrawableManager
-import com.orange.ods.compose.annotation.ExperimentalOdsApi
 import com.orange.ods.compose.component.listitem.OdsListItem
 import com.orange.ods.compose.extension.orElse
 import com.orange.ods.compose.theme.OdsTheme
+import com.orange.ods.theme.annotation.ExperimentalOdsApi
 import com.orange.ods.theme.guideline.GuidelineColor
 import com.orange.ods.theme.guideline.GuidelineTextStyle
 import com.orange.ods.theme.guideline.toHexString

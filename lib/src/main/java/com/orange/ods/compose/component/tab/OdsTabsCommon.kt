@@ -23,9 +23,9 @@ import androidx.compose.ui.text.style.TextOverflow
 import com.orange.ods.compose.component.content.OdsComponentContent
 import com.orange.ods.compose.component.content.OdsComponentIcon
 import com.orange.ods.compose.component.utilities.BasicPreviewParameterProvider
+import com.orange.ods.compose.extension.enable
 import com.orange.ods.compose.text.OdsText
 import com.orange.ods.compose.theme.OdsTheme
-import com.orange.ods.compose.utilities.extension.enable
 import com.orange.ods.theme.typography.OdsTextStyle
 
 /**
