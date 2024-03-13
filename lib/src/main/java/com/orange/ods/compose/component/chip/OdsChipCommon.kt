@@ -1,11 +1,13 @@
 /*
+ * Software Name: Orange Design System
+ * SPDX-FileCopyrightText: Copyright (c) Orange SA
+ * SPDX-License-Identifier: MIT
  *
- *  Copyright 2021 Orange
+ * This software is distributed under the MIT license,
+ * the text of which is available at https://opensource.org/license/MIT/
+ * or see the "LICENSE" file for more details.
  *
- *  Use of this source code is governed by an MIT-style
- *  license that can be found in the LICENSE file or at
- *  https://opensource.org/licenses/MIT.
- * /
+ * Software description: Android library of reusable graphical components 
  */
 
 package com.orange.ods.compose.component.chip
@@ -41,7 +43,10 @@ object OdsChip {
     /**
      * A leading icon in an [OdsChip].
      */
-    class LeadingIcon : OdsComponentIcon<Nothing>, Leading {
+    class LeadingIcon private constructor(
+        val graphicsObject: Any,
+        val contentDescription: String
+    ) : OdsComponentIcon<Nothing>(Nothing::class.java, graphicsObject, contentDescription), Leading {
 
         /**
          * Creates an instance of [OdsChip.LeadingIcon].
@@ -49,7 +54,7 @@ object OdsChip {
          * @param painter The painter to draw.
          * @param contentDescription The content description associated to this [OdsChip.LeadingIcon].
          */
-        constructor(painter: Painter, contentDescription: String) : super(painter, contentDescription)
+        constructor(painter: Painter, contentDescription: String) : this(painter as Any, contentDescription)
 
         /**
          * Creates an instance of [OdsChip.LeadingIcon].
@@ -57,7 +62,7 @@ object OdsChip {
          * @param imageVector The image vector to draw.
          * @param contentDescription The content description associated to this [OdsChip.LeadingIcon].
          */
-        constructor(imageVector: ImageVector, contentDescription: String) : super(imageVector, contentDescription)
+        constructor(imageVector: ImageVector, contentDescription: String) : this(imageVector as Any, contentDescription)
 
         /**
          * Creates an instance of [OdsChip.LeadingIcon].
@@ -65,7 +70,7 @@ object OdsChip {
          * @param bitmap The image bitmap to draw.
          * @param contentDescription The content description associated to this [OdsChip.LeadingIcon].
          */
-        constructor(bitmap: ImageBitmap, contentDescription: String) : super(bitmap, contentDescription)
+        constructor(bitmap: ImageBitmap, contentDescription: String) : this(bitmap as Any, contentDescription)
 
         @Composable
         override fun Content(modifier: Modifier) {
@@ -76,7 +81,10 @@ object OdsChip {
     /**
      * A leading avatar in an [OdsChip].
      */
-    class LeadingAvatar : OdsComponentImage<Nothing>, Leading {
+    class LeadingAvatar private constructor(
+        val graphicsObject: Any,
+        val contentDescription: String
+    ) : OdsComponentImage<Nothing>(Nothing::class.java, graphicsObject, contentDescription, contentScale = ContentScale.Crop), Leading {
 
         /**
          * Creates an instance of [OdsChip.LeadingAvatar].
@@ -84,7 +92,10 @@ object OdsChip {
          * @param painter The painter to draw.
          * @param contentDescription The content description associated to this [OdsChip.LeadingAvatar].
          */
-        constructor(painter: Painter, contentDescription: String) : super(painter, contentDescription, contentScale = ContentScale.Crop)
+        constructor(
+            painter: Painter,
+            contentDescription: String
+        ) : this(painter as Any, contentDescription)
 
         /**
          * Creates an instance of [OdsChip.LeadingAvatar].
@@ -92,7 +103,10 @@ object OdsChip {
          * @param imageVector The image vector to draw.
          * @param contentDescription The content description associated to this [OdsChip.LeadingAvatar].
          */
-        constructor(imageVector: ImageVector, contentDescription: String) : super(imageVector, contentDescription, contentScale = ContentScale.Crop)
+        constructor(
+            imageVector: ImageVector,
+            contentDescription: String
+        ) : this(imageVector as Any, contentDescription)
 
         /**
          * Creates an instance of [OdsChip.LeadingAvatar].
@@ -100,10 +114,13 @@ object OdsChip {
          * @param bitmap The image bitmap to draw.
          * @param contentDescription The content description associated to this [OdsChip.LeadingAvatar].
          */
-        constructor(bitmap: ImageBitmap, contentDescription: String) : super(bitmap, contentDescription, contentScale = ContentScale.Crop)
+        constructor(
+            bitmap: ImageBitmap,
+            contentDescription: String
+        ) : this(bitmap as Any, contentDescription)
 
         @Composable
-        fun Content(enabled: Boolean) {
+        internal fun Content(enabled: Boolean) {
             this.Content(modifier = Modifier.odsChipAvatar(enabled))
         }
     }

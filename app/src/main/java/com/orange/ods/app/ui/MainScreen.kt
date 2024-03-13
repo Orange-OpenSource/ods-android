@@ -1,23 +1,23 @@
 /*
+ * Software Name: Orange Design System
+ * SPDX-FileCopyrightText: Copyright (c) Orange SA
+ * SPDX-License-Identifier: MIT
  *
- *  Copyright 2021 Orange
+ * This software is distributed under the MIT license,
+ * the text of which is available at https://opensource.org/license/MIT/
+ * or see the "LICENSE" file for more details.
  *
- *  Use of this source code is governed by an MIT-style
- *  license that can be found in the LICENSE file or at
- *  https://opensource.org/licenses/MIT.
- * /
+ * Software description: Android library of reusable graphical components
  */
 
 package com.orange.ods.app.ui
 
+import androidx.activity.ComponentActivity
 import androidx.compose.animation.AnimatedVisibility
-import androidx.compose.animation.EnterTransition
 import androidx.compose.animation.ExitTransition
 import androidx.compose.animation.core.tween
 import androidx.compose.animation.fadeIn
 import androidx.compose.animation.fadeOut
-import androidx.compose.animation.slideInVertically
-import androidx.compose.animation.slideOutVertically
 import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.background
 import androidx.compose.foundation.isSystemInDarkTheme
@@ -40,15 +40,18 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.toArgb
 import androidx.compose.ui.input.nestedscroll.nestedScroll
 import androidx.compose.ui.platform.LocalConfiguration
+import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.platform.LocalView
 import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.window.Dialog
+import androidx.core.view.WindowCompat
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.compose.NavHost
-import com.google.accompanist.systemuicontroller.rememberSystemUiController
 import com.orange.ods.app.R
 import com.orange.ods.app.domain.recipes.LocalCategories
 import com.orange.ods.app.domain.recipes.LocalRecipes
@@ -60,19 +63,21 @@ import com.orange.ods.app.ui.utilities.extension.isOrange
 import com.orange.ods.compose.component.listitem.OdsListItem
 import com.orange.ods.compose.component.tab.OdsScrollableTabRow
 import com.orange.ods.compose.component.tab.OdsTabRow
-import com.orange.ods.compose.text.OdsTextH6
+import com.orange.ods.compose.extension.orElse
+import com.orange.ods.compose.text.OdsText
 import com.orange.ods.compose.theme.OdsTheme
-import com.orange.ods.extension.orElse
-import com.orange.ods.module.about.navigation.navigateToOdsAbout
+import com.orange.ods.module.about.ui.navigation.navigateToOdsAbout
 import com.orange.ods.theme.OdsThemeConfigurationContract
+import com.orange.ods.theme.annotation.ExperimentalOdsApi
+import com.orange.ods.theme.typography.OdsTextStyle
 import com.orange.ods.xml.theme.OdsXml
 import com.orange.ods.xml.utilities.extension.xml
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
 
-@OptIn(ExperimentalMaterial3Api::class)
+@OptIn(ExperimentalMaterial3Api::class, ExperimentalOdsApi::class)
 @Composable
-fun MainScreen(themeConfigurations: Set<OdsThemeConfigurationContract>, mainViewModel: MainViewModel = viewModel()) {
+fun MainScreen(themeConfigurations: List<OdsThemeConfigurationContract>, mainViewModel: MainViewModel = viewModel()) {
     val isSystemInDarkTheme = isSystemInDarkTheme()
     val mainState = rememberMainState(
         themeState = rememberThemeState(
@@ -85,7 +90,7 @@ fun MainScreen(themeConfigurations: Set<OdsThemeConfigurationContract>, mainView
                 )
             },
             darkModeEnabled = rememberSaveable { mutableStateOf(isSystemInDarkTheme) },
-            themeConfigurations = themeConfigurations.toList()
+            themeConfigurations = themeConfigurations
         )
     )
 
@@ -105,7 +110,7 @@ fun MainScreen(themeConfigurations: Set<OdsThemeConfigurationContract>, mainView
         LocalConfiguration provides configuration,
         LocalAppBarManager provides mainState.appBarState,
         LocalThemeManager provides mainState.themeState,
-        LocalOdsGuideline provides mainState.themeState.currentThemeConfiguration.guideline,
+        LocalGuideline provides mainState.themeState.currentThemeConfiguration.guideline,
         LocalRecipes provides mainViewModel.recipes,
         LocalCategories provides mainViewModel.categories,
         LocalUiFramework provides mainState.uiFramework
@@ -118,7 +123,7 @@ fun MainScreen(themeConfigurations: Set<OdsThemeConfigurationContract>, mainView
             val topBarScrollBehavior: TopAppBarScrollBehavior?
             val modifier: Modifier
 
-            if (mainState.appBarState.isLarge) {
+            if (mainState.appBarState.type == Screen.TopAppBarType.Large) {
                 topBarScrollBehavior = TopAppBarDefaults.exitUntilCollapsedScrollBehavior(rememberTopAppBarState())
                 val nestedScrollConnection = remember { topBarScrollBehavior.nestedScrollConnection }
                 modifier = Modifier.nestedScroll(nestedScrollConnection)
@@ -135,7 +140,7 @@ fun MainScreen(themeConfigurations: Set<OdsThemeConfigurationContract>, mainView
                 topBar = {
                     Surface(elevation = if (isSystemInDarkTheme()) 0.dp else AppBarDefaults.TopAppBarElevation) {
                         Column {
-                            SystemBarsColorSideEffect()
+                            SystemBarsColorSideEffect(mainState)
                             AppBar(
                                 appBarState = mainState.appBarState,
                                 upPress = mainState.navigationState::upPress,
@@ -203,7 +208,10 @@ fun MainScreen(themeConfigurations: Set<OdsThemeConfigurationContract>, mainView
     }
 }
 
-private fun getCurrentThemeConfiguration(storedUserThemeName: String?, themeConfigurations: Set<OdsThemeConfigurationContract>): OdsThemeConfigurationContract {
+private fun getCurrentThemeConfiguration(
+    storedUserThemeName: String?,
+    themeConfigurations: List<OdsThemeConfigurationContract>
+): OdsThemeConfigurationContract {
     // Return the stored user theme configuration if it exists. If not, return the Orange theme configuration or the first existing theme configuration
     return themeConfigurations.firstOrNull { it.name == storedUserThemeName }
         .orElse { themeConfigurations.firstOrNull { it.isOrange } }
@@ -211,13 +219,20 @@ private fun getCurrentThemeConfiguration(storedUserThemeName: String?, themeConf
 }
 
 @Composable
-private fun SystemBarsColorSideEffect() {
-    val systemUiController = rememberSystemUiController()
-    val systemBarsBackground = OdsTheme.colors.component.systemBarsBackground
-    SideEffect {
-        systemUiController.setSystemBarsColor(
-            color = systemBarsBackground
-        )
+private fun SystemBarsColorSideEffect(mainState: MainState) {
+    val systemBarsBackground = OdsTheme.colors.components.systemBarsBackground
+    val activity = LocalContext.current as? ComponentActivity
+    activity?.window?.let { window ->
+        val view = LocalView.current
+        SideEffect {
+            window.statusBarColor = systemBarsBackground.toArgb()
+            window.navigationBarColor = systemBarsBackground.toArgb()
+            val isAppearanceLightBars = with(mainState.themeState) { if (currentThemeConfiguration.isOrange) !darkModeEnabled else false }
+            with(WindowCompat.getInsetsController(window, view)) {
+                isAppearanceLightStatusBars = isAppearanceLightBars
+                isAppearanceLightNavigationBars = isAppearanceLightBars
+            }
+        }
     }
 }
 
@@ -280,11 +295,12 @@ private fun ChangeThemeDialog(themeManager: ThemeManager, dismissDialog: () -> U
 
     Dialog(onDismissRequest = dismissDialog) {
         Column(modifier = Modifier.background(OdsTheme.colors.surface)) {
-            OdsTextH6(
+            OdsText(
                 text = stringResource(R.string.top_app_bar_action_change_theme_desc),
                 modifier = Modifier
                     .padding(top = dimensionResource(com.orange.ods.R.dimen.spacing_m), bottom = dimensionResource(id = com.orange.ods.R.dimen.spacing_s))
-                    .padding(horizontal = dimensionResource(com.orange.ods.R.dimen.screen_horizontal_margin))
+                    .padding(horizontal = dimensionResource(com.orange.ods.R.dimen.screen_horizontal_margin)),
+                style = OdsTextStyle.TitleL
             )
             themeManager.themeConfigurations.forEach { themeConfiguration ->
                 OdsListItem(

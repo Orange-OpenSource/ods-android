@@ -1,11 +1,13 @@
 /*
+ * Software Name: Orange Design System
+ * SPDX-FileCopyrightText: Copyright (c) Orange SA
+ * SPDX-License-Identifier: MIT
  *
- *  Copyright 2021 Orange
+ * This software is distributed under the MIT license,
+ * the text of which is available at https://opensource.org/license/MIT/
+ * or see the "LICENSE" file for more details.
  *
- *  Use of this source code is governed by an MIT-style
- *  license that can be found in the LICENSE file or at
- *  https://opensource.org/licenses/MIT.
- * /
+ * Software description: Android library of reusable graphical components
  */
 
 package com.orange.ods.compose.component.utilities
@@ -21,7 +23,7 @@ import com.orange.ods.R
  */
 @Composable
 internal fun selectionStateDescription(selected: Boolean) =
-    if (selected) stringResource(id = R.string.state_selected) else stringResource(id = R.string.state_not_selected)
+    if (selected) stringResource(id = R.string.ods_selected_stateA11y) else stringResource(id = R.string.ods_unselected_stateA11y)
 
 /**
  * Returns the enabled/disabled state ready for vocalization according to the [enabled] provided value.
@@ -30,4 +32,4 @@ internal fun selectionStateDescription(selected: Boolean) =
  */
 @Composable
 internal fun enabledStateDescription(enabled: Boolean) =
-    if (!enabled) stringResource(id = R.string.state_disabled) else ""
+    if (!enabled) stringResource(id = R.string.ods_disabled_stateA11y) else ""

@@ -1,20 +1,20 @@
 /*
+ * Software Name: Orange Design System
+ * SPDX-FileCopyrightText: Copyright (c) Orange SA
+ * SPDX-License-Identifier: MIT
  *
- *  Copyright 2021 Orange
+ * This software is distributed under the MIT license,
+ * the text of which is available at https://opensource.org/license/MIT/
+ * or see the "LICENSE" file for more details.
  *
- *  Use of this source code is governed by an MIT-style
- *  license that can be found in the LICENSE file or at
- *  https://opensource.org/licenses/MIT.
- * /
+ * Software description: Android library of reusable graphical components 
  */
 
 package com.orange.ods.compose.component.card
 
-import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
-import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.dimensionResource
@@ -30,11 +30,10 @@ import com.orange.ods.R
 import com.orange.ods.compose.component.OdsComposable
 import com.orange.ods.compose.component.divider.OdsDivider
 import com.orange.ods.compose.component.utilities.BasicPreviewParameterProvider
-import com.orange.ods.compose.component.utilities.Preview
+import com.orange.ods.compose.component.utilities.OdsPreview
 import com.orange.ods.compose.component.utilities.UiModePreviews
-import com.orange.ods.compose.text.OdsTextH6
-import com.orange.ods.compose.text.OdsTextSubtitle2
-import com.orange.ods.compose.theme.OdsTheme
+import com.orange.ods.compose.text.OdsText
+import com.orange.ods.theme.typography.OdsTextStyle
 
 /**
  * <a href="https://system.design.orange.com/0c1af118d/p/272739-cards/b/991690" target="_blank">ODS Card</a>.
@@ -78,8 +77,7 @@ fun OdsHorizontalCard(
                 textRef,
                 chainBottomSpacerRef, // A 0 dp spacer located at the bottom of the vertical chain composed of title, subtitle and text. Without this spacer, when text is gone, bottom margin of the chain is not respected
                 dividerRef,
-                firstButtonRef,
-                secondButtonRef
+                buttonsRef
             ) = createRefs()
 
             val imageSize = dimensionResource(R.dimen.card_horizontal_image_size)
@@ -106,7 +104,7 @@ fun OdsHorizontalCard(
                 bottom.linkTo(imageRef.bottom, margin = mediumSpacing)
             }
 
-            OdsTextH6(
+            OdsText(
                 text = title,
                 modifier = Modifier.constrainAs(titleRef) {
                     when (imagePosition) {
@@ -120,20 +118,22 @@ fun OdsHorizontalCard(
                         }
                     }
                     width = Dimension.fillToConstraints
-                }
+                },
+                style = OdsTextStyle.TitleL
             )
 
-            OdsTextSubtitle2(
+            OdsText(
                 text = subtitle.orEmpty(),
                 modifier = Modifier.constrainAs(subtitleRef) {
                     start.linkTo(titleRef.start)
                     end.linkTo(titleRef.end)
                     width = Dimension.fillToConstraints
                     visibility = if (subtitle != null) Visibility.Visible else Visibility.Gone
-                }
+                },
+                style = OdsTextStyle.BodyM
             )
 
-            Text(
+            OdsText(
                 modifier = Modifier
                     .padding(top = smallSpacing) // For some reason, margins inside a chain are not applied, a workaround is to apply padding before the constraints
                     .constrainAs(textRef) {
@@ -143,7 +143,7 @@ fun OdsHorizontalCard(
                         visibility = if (text != null) Visibility.Visible else Visibility.Gone
                     },
                 text = text.orEmpty(),
-                style = OdsTheme.typography.body1,
+                style = OdsTextStyle.BodyL,
                 maxLines = if (subtitle == null) 3 else 2,
                 overflow = TextOverflow.Ellipsis
             )
@@ -159,23 +159,15 @@ fun OdsHorizontalCard(
                 }
             )
 
-            Box(modifier = Modifier.constrainAs(firstButtonRef) {
-                top.linkTo(dividerRef.bottom)
-                start.linkTo(parent.start, margin = smallSpacing)
-                visibility = if (firstButton != null) Visibility.Visible else Visibility.Gone
-            }) {
-                firstButton?.Content()
-            }
-
-            Box(
-                modifier = Modifier.constrainAs(secondButtonRef) {
+            OdsCardButtonsFlowRow(
+                modifier = Modifier.constrainAs(buttonsRef) {
                     top.linkTo(dividerRef.bottom)
-                    start.linkTo(firstButtonRef.end, margin = smallSpacing, goneMargin = smallSpacing)
-                    visibility = if (secondButton != null) Visibility.Visible else Visibility.Gone
-                }
-            ) {
-                secondButton?.Content()
-            }
+                    start.linkTo(parent.start, margin = smallSpacing)
+                    visibility = if (firstButton != null || secondButton != null) Visibility.Visible else Visibility.Gone
+                },
+                firstButton = firstButton,
+                secondButton = secondButton
+            )
         }
     }
 }
@@ -183,11 +175,11 @@ fun OdsHorizontalCard(
 @UiModePreviews.Default
 @Composable
 private fun PreviewOdsHorizontalCard(@PreviewParameter(OdsHorizontalCardPreviewParameterProvider::class) parameter: OdsHorizontalCardPreviewParameter) =
-    Preview {
+    OdsPreview {
         OdsHorizontalCard(
-            title = "Title",
+            title = CardPreview.Title,
             subtitle = parameter.subtitle,
-            text = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed non risus. Suspendisse lectus tortor, dignissim sit amet, adipiscing nec, ultricies sed, dolor.",
+            text = CardPreview.Text,
             firstButton = parameter.firstButtonText?.let { OdsCard.Button(it) {} },
             secondButton = parameter.secondButtonText?.let { OdsCard.Button(it) {} },
             image = OdsCard.Image(painterResource(id = R.drawable.placeholder), ""),
@@ -196,7 +188,7 @@ private fun PreviewOdsHorizontalCard(@PreviewParameter(OdsHorizontalCardPreviewP
         )
     }
 
-internal data class OdsHorizontalCardPreviewParameter(
+private data class OdsHorizontalCardPreviewParameter(
     val subtitle: String?,
     val imagePosition: OdsCard.Image.Position,
     val dividerEnabled: Boolean,
@@ -208,15 +200,16 @@ private class OdsHorizontalCardPreviewParameterProvider :
     BasicPreviewParameterProvider<OdsHorizontalCardPreviewParameter>(*previewParameterValues.toTypedArray())
 
 private val previewParameterValues: List<OdsHorizontalCardPreviewParameter>
-    get() {
-        val subtitle = "Subtitle"
-        val firstButtonText = "First button"
-        val secondButtonText = "Second button"
-
-        return listOf(
-            OdsHorizontalCardPreviewParameter(subtitle, OdsCard.Image.Position.Start, true, firstButtonText, secondButtonText),
-            OdsHorizontalCardPreviewParameter(subtitle, OdsCard.Image.Position.End, false, firstButtonText, null),
-            OdsHorizontalCardPreviewParameter(subtitle, OdsCard.Image.Position.Start, true, null, null),
-            OdsHorizontalCardPreviewParameter(null, OdsCard.Image.Position.Start, false, null, secondButtonText)
-        )
-    }
+    get() = listOf(
+        OdsHorizontalCardPreviewParameter(CardPreview.Subtitle, OdsCard.Image.Position.Start, true, CardPreview.FirstButtonText, CardPreview.SecondButtonText),
+        OdsHorizontalCardPreviewParameter(
+            CardPreview.Subtitle,
+            OdsCard.Image.Position.Start,
+            true,
+            CardPreview.FirstButtonText,
+            CardPreview.SecondButtonLongText
+        ),
+        OdsHorizontalCardPreviewParameter(CardPreview.Subtitle, OdsCard.Image.Position.End, false, CardPreview.FirstButtonText, null),
+        OdsHorizontalCardPreviewParameter(CardPreview.Subtitle, OdsCard.Image.Position.Start, true, null, null),
+        OdsHorizontalCardPreviewParameter(null, OdsCard.Image.Position.Start, false, null, CardPreview.SecondButtonText)
+    )

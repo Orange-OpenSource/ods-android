@@ -1,11 +1,13 @@
 /*
+ * Software Name: Orange Design System
+ * SPDX-FileCopyrightText: Copyright (c) Orange SA
+ * SPDX-License-Identifier: MIT
  *
- *  Copyright 2021 Orange
+ * This software is distributed under the MIT license,
+ * the text of which is available at https://opensource.org/license/MIT/
+ * or see the "LICENSE" file for more details.
  *
- *  Use of this source code is governed by an MIT-style
- *  license that can be found in the LICENSE file or at
- *  https://opensource.org/licenses/MIT.
- * /
+ * Software description: Android library of reusable graphical components
  */
 
 package com.orange.ods.app.ui.components.cards
@@ -23,7 +25,6 @@ import com.orange.ods.app.ui.components.utilities.ComponentCountRow
 import com.orange.ods.app.ui.components.utilities.ComponentCustomizationBottomSheetScaffold
 import com.orange.ods.app.ui.utilities.composable.Subtitle
 import com.orange.ods.compose.component.card.OdsCard
-import com.orange.ods.compose.component.chip.OdsChoiceChip
 import com.orange.ods.compose.component.chip.OdsChoiceChipsFlowRow
 import com.orange.ods.compose.component.listitem.OdsListItem
 
@@ -48,19 +49,15 @@ fun ComponentCard(variant: Variant) {
                 } else if (variant == Variant.CardHorizontal) {
                     Subtitle(textRes = R.string.component_card_horizontal_image_position, horizontalPadding = true)
                     OdsChoiceChipsFlowRow(
-                        value = imagePosition.value,
-                        onValueChange = { value -> imagePosition.value = value },
+                        selectedChoiceChipIndex = OdsCard.Image.Position.entries.indexOf(imagePosition.value),
                         modifier = Modifier.padding(horizontal = dimensionResource(id = com.orange.ods.R.dimen.spacing_m)),
-                        chips = listOf(
-                            OdsChoiceChip(
-                                text = stringResource(id = R.string.component_card_horizontal_image_position_start),
-                                value = OdsCard.Image.Position.Start
-                            ),
-                            OdsChoiceChip(
-                                text = stringResource(id = R.string.component_card_horizontal_image_position_end),
-                                value = OdsCard.Image.Position.End
-                            )
-                        )
+                        choiceChips = OdsCard.Image.Position.entries.map { imagePosition ->
+                            val textResId = when (imagePosition) {
+                                OdsCard.Image.Position.Start -> R.string.component_card_horizontal_image_position_start
+                                OdsCard.Image.Position.End -> R.string.component_card_horizontal_image_position_end
+                            }
+                            OdsChoiceChipsFlowRow.ChoiceChip(stringResource(id = textResId), { this.imagePosition.value = imagePosition })
+                        }
                     )
                 }
                 OdsListItem(

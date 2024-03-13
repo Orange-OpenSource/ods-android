@@ -1,11 +1,13 @@
 /*
+ * Software Name: Orange Design System
+ * SPDX-FileCopyrightText: Copyright (c) Orange SA
+ * SPDX-License-Identifier: MIT
  *
- *  Copyright 2021 Orange
+ * This software is distributed under the MIT license,
+ * the text of which is available at https://opensource.org/license/MIT/
+ * or see the "LICENSE" file for more details.
  *
- *  Use of this source code is governed by an MIT-style
- *  license that can be found in the LICENSE file or at
- *  https://opensource.org/licenses/MIT.
- * /
+ * Software description: Android library of reusable graphical components
  */
 
 package com.orange.ods.compose.component.bottomnavigation
@@ -21,14 +23,13 @@ import androidx.compose.foundation.layout.RowScope
 import androidx.compose.foundation.selection.selectable
 import androidx.compose.material.BottomNavigation
 import androidx.compose.material.BottomNavigationItem
-import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableIntStateOf
-import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.focus.focusProperties
 import androidx.compose.ui.graphics.ImageBitmap
 import androidx.compose.ui.graphics.painter.Painter
 import androidx.compose.ui.graphics.vector.ImageVector
@@ -42,9 +43,11 @@ import com.orange.ods.R
 import com.orange.ods.compose.component.OdsComposable
 import com.orange.ods.compose.component.content.OdsComponentIcon
 import com.orange.ods.compose.component.content.OdsComponentScopeContent
-import com.orange.ods.compose.component.utilities.Preview
+import com.orange.ods.compose.component.utilities.OdsPreview
 import com.orange.ods.compose.component.utilities.UiModePreviews
+import com.orange.ods.compose.text.OdsText
 import com.orange.ods.compose.theme.OdsTheme
+import com.orange.ods.theme.typography.OdsTextStyle
 
 private const val MaxBottomNavigationItemCount = 5
 
@@ -69,10 +72,10 @@ fun OdsBottomNavigation(
     modifier: Modifier = Modifier
 ) {
     BottomNavigation(
-        modifier = modifier,
+        modifier = modifier.focusProperties { canFocus = false },
         // Need to define backgroundColor cause in Compose default backgroundColor is primarySurface
-        backgroundColor = OdsTheme.colors.component.bottomNavigation.barBackground,
-        contentColor = OdsTheme.colors.component.bottomNavigation.barContent,
+        backgroundColor = OdsTheme.colors.components.bottomNavigation.barBackground,
+        contentColor = OdsTheme.colors.components.bottomNavigation.barContent,
         content = {
             items.take(MaxBottomNavigationItemCount).forEach { item ->
                 with(item) { this@BottomNavigation.Content() }
@@ -115,13 +118,13 @@ object OdsBottomNavigation {
         val enabled: Boolean = true,
         val label: String? = null,
         val alwaysShowLabel: Boolean = true
-    ) : OdsComponentScopeContent<RowScope, Nothing>() {
+    ) : OdsComponentScopeContent<RowScope, Nothing>(Nothing::class.java) {
 
         @Composable
         override fun RowScope.Content(modifier: Modifier) {
             val selectedLineMargin = dimensionResource(id = R.dimen.spacing_s)
             val selectedLineHeight = dimensionResource(id = R.dimen.spacing_xs)
-            
+
             ConstraintLayout(
                 modifier = modifier
                     .weight(1f)
@@ -143,17 +146,17 @@ object OdsBottomNavigation {
                     enabled = enabled,
                     label = label?.let {
                         {
-                            Text(
+                            OdsText(
                                 text = label,
                                 maxLines = 1,
                                 overflow = TextOverflow.Ellipsis,
-                                style = OdsTheme.typography.caption
+                                style = OdsTextStyle.BodyS
                             )
                         }
                     },
                     alwaysShowLabel = alwaysShowLabel,
-                    selectedContentColor = OdsTheme.colors.component.bottomNavigation.itemSelected,
-                    unselectedContentColor = OdsTheme.colors.component.bottomNavigation.itemUnselected
+                    selectedContentColor = OdsTheme.colors.components.bottomNavigation.itemSelected,
+                    unselectedContentColor = OdsTheme.colors.components.bottomNavigation.itemUnselected
                 )
 
                 // Visual alternative for selected item (a11y)
@@ -170,7 +173,7 @@ object OdsBottomNavigation {
                     enter = fadeIn() + slideInVertically { it },
                     exit = fadeOut() + slideOutVertically { it }
                 ) {
-                    Box(modifier = Modifier.background(OdsTheme.colors.component.bottomNavigation.itemSelected))
+                    Box(modifier = Modifier.background(OdsTheme.colors.components.bottomNavigation.itemSelected))
                 }
             }
         }
@@ -178,7 +181,10 @@ object OdsBottomNavigation {
         /**
          * An icon in an [OdsBottomNavigation.Item].
          */
-        class Icon : OdsComponentIcon<Nothing> {
+        class Icon private constructor(
+            val graphicsObject: Any,
+            val contentDescription: String
+        ) : OdsComponentIcon<Nothing>(Nothing::class.java, graphicsObject, contentDescription) {
 
             /**
              * Creates an instance of [OdsBottomNavigation.Item.Icon].
@@ -186,7 +192,7 @@ object OdsBottomNavigation {
              * @param painter Painter of the icon.
              * @param contentDescription The content description associated to this [OdsBottomNavigation.Item.Icon].
              */
-            constructor(painter: Painter, contentDescription: String) : super(painter, contentDescription)
+            constructor(painter: Painter, contentDescription: String) : this(painter as Any, contentDescription)
 
             /**
              * Creates an instance of [OdsBottomNavigation.Item.Icon].
@@ -194,7 +200,7 @@ object OdsBottomNavigation {
              * @param imageVector Image vector of the icon.
              * @param contentDescription The content description associated to this [OdsBottomNavigation.Item.Icon].
              */
-            constructor(imageVector: ImageVector, contentDescription: String) : super(imageVector, contentDescription)
+            constructor(imageVector: ImageVector, contentDescription: String) : this(imageVector as Any, contentDescription)
 
             /**
              * Creates an instance of [OdsBottomNavigation.Item.Icon].
@@ -202,7 +208,7 @@ object OdsBottomNavigation {
              * @param bitmap Image bitmap of the icon.
              * @param contentDescription The content description associated to this [OdsBottomNavigation.Item.Icon].
              */
-            constructor(bitmap: ImageBitmap, contentDescription: String) : super(bitmap, contentDescription)
+            constructor(bitmap: ImageBitmap, contentDescription: String) : this(bitmap as Any, contentDescription)
         }
     }
 
@@ -210,7 +216,7 @@ object OdsBottomNavigation {
 
 @UiModePreviews.Default
 @Composable
-private fun PreviewOdsBottomNavigation() = Preview {
+private fun PreviewOdsBottomNavigation() = OdsPreview {
     val items = listOf(
         android.R.drawable.ic_dialog_email to "First item",
         android.R.drawable.ic_dialog_map to "Second item",

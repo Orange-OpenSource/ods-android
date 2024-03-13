@@ -1,11 +1,13 @@
 /*
+ * Software Name: Orange Design System
+ * SPDX-FileCopyrightText: Copyright (c) Orange SA
+ * SPDX-License-Identifier: MIT
  *
- *  Copyright 2021 Orange
+ * This software is distributed under the MIT license,
+ * the text of which is available at https://opensource.org/license/MIT/
+ * or see the "LICENSE" file for more details.
  *
- *  Use of this source code is governed by an MIT-style
- *  license that can be found in the LICENSE file or at
- *  https://opensource.org/licenses/MIT.
- * /
+ * Software description: Android library of reusable graphical components
  */
 
 package com.orange.ods.app.ui.components.navigationdrawers
@@ -25,6 +27,7 @@ import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
@@ -32,6 +35,7 @@ import coil.compose.rememberAsyncImagePainter
 import com.orange.ods.app.R
 import com.orange.ods.app.domain.recipes.LocalCategories
 import com.orange.ods.app.domain.recipes.LocalRecipes
+import com.orange.ods.app.ui.LocalThemeManager
 import com.orange.ods.app.ui.components.utilities.ComponentCustomizationBottomSheetScaffold
 import com.orange.ods.app.ui.components.utilities.ComponentLaunchContentColumn
 import com.orange.ods.app.ui.utilities.DrawableManager
@@ -39,8 +43,8 @@ import com.orange.ods.app.ui.utilities.code.CodeImplementationColumn
 import com.orange.ods.app.ui.utilities.code.FunctionCallCode
 import com.orange.ods.app.ui.utilities.code.IconPainterValue
 import com.orange.ods.app.ui.utilities.composable.Subtitle
+import com.orange.ods.app.ui.utilities.extension.buildImageRequest
 import com.orange.ods.compose.OdsComposable
-import com.orange.ods.compose.component.chip.OdsChoiceChip
 import com.orange.ods.compose.component.chip.OdsChoiceChipsFlowRow
 import com.orange.ods.compose.component.listitem.OdsListItem
 import com.orange.ods.compose.component.navigationdrawer.OdsModalDrawer
@@ -52,8 +56,11 @@ fun ComponentModalDrawers() {
     val customizationState = rememberNavigationDrawersCustomizationState()
     val scope = rememberCoroutineScope()
     val drawerState = rememberDrawerState(DrawerValue.Closed)
+    val context = LocalContext.current
+    val darkModeEnabled = LocalThemeManager.current.darkModeEnabled
     val recipes = LocalRecipes.current
     val categories = LocalCategories.current
+    val recipe = rememberSaveable { recipes.random() }
 
     with(customizationState) {
         var selectedItem: OdsModalDrawer.ListItem? by remember { mutableStateOf(null) }
@@ -84,7 +91,7 @@ fun ComponentModalDrawers() {
         val title = stringResource(id = R.string.component_modal_drawer_side)
         val subtitle = if (isSubTitleChecked) stringResource(id = R.string.component_element_example) else null
         val imagePainter = rememberAsyncImagePainter(
-            model = rememberSaveable { recipes.random() }.imageUrl,
+            model = buildImageRequest(context, recipe.imageUrl, darkModeEnabled),
             placeholder = painterResource(id = DrawableManager.getPlaceholderResId()),
             error = painterResource(id = DrawableManager.getPlaceholderResId(error = true))
         )
@@ -120,23 +127,16 @@ fun ComponentModalDrawers() {
                         )
                         Subtitle(textRes = R.string.component_modal_drawer_header_image, horizontalPadding = true)
                         OdsChoiceChipsFlowRow(
-                            value = header.value,
-                            onValueChange = { value -> header.value = value },
+                            selectedChoiceChipIndex = ComponentNavigationDrawersContentState.HeaderImage.entries.indexOf(headerImage.value),
                             modifier = Modifier.padding(horizontal = dimensionResource(id = com.orange.ods.R.dimen.spacing_m)),
-                            chips = listOf(
-                                OdsChoiceChip(
-                                    text = stringResource(id = R.string.component_element_avatar),
-                                    value = ComponentNavigationDrawersContentState.HeaderImage.Avatar
-                                ),
-                                OdsChoiceChip(
-                                    text = stringResource(id = R.string.component_modal_drawer_background),
-                                    value = ComponentNavigationDrawersContentState.HeaderImage.Background
-                                ),
-                                OdsChoiceChip(
-                                    text = stringResource(id = R.string.component_element_none),
-                                    value = ComponentNavigationDrawersContentState.HeaderImage.None
-                                )
-                            )
+                            choiceChips = ComponentNavigationDrawersContentState.HeaderImage.entries.map { headerImage ->
+                                val textResId = when (headerImage) {
+                                    ComponentNavigationDrawersContentState.HeaderImage.Avatar -> R.string.component_element_avatar
+                                    ComponentNavigationDrawersContentState.HeaderImage.Background -> R.string.component_modal_drawer_background
+                                    ComponentNavigationDrawersContentState.HeaderImage.None -> R.string.component_element_none
+                                }
+                                OdsChoiceChipsFlowRow.ChoiceChip(stringResource(id = textResId), { this.headerImage.value = headerImage })
+                            }
                         )
                         OdsListItem(
                             text = stringResource(id = R.string.component_modal_drawer_subtitle),
@@ -148,23 +148,16 @@ fun ComponentModalDrawers() {
                         )
                         Subtitle(textRes = R.string.component_modal_drawer_list_example, horizontalPadding = true)
                         OdsChoiceChipsFlowRow(
-                            value = content.value,
-                            onValueChange = { value -> content.value = value },
+                            selectedChoiceChipIndex = ComponentNavigationDrawersContentState.SectionListExample.entries.indexOf(content.value),
                             modifier = Modifier.padding(horizontal = dimensionResource(id = com.orange.ods.R.dimen.spacing_m)),
-                            chips = listOf(
-                                OdsChoiceChip(
-                                    text = stringResource(id = R.string.component_element_divider),
-                                    value = ComponentNavigationDrawersContentState.SectionListExample.Divider
-                                ),
-                                OdsChoiceChip(
-                                    text = stringResource(id = R.string.component_element_label),
-                                    value = ComponentNavigationDrawersContentState.SectionListExample.Label
-                                ),
-                                OdsChoiceChip(
-                                    text = stringResource(id = R.string.component_element_none),
-                                    value = ComponentNavigationDrawersContentState.SectionListExample.None
-                                )
-                            )
+                            choiceChips = ComponentNavigationDrawersContentState.SectionListExample.entries.map { content ->
+                                val textResId = when (content) {
+                                    ComponentNavigationDrawersContentState.SectionListExample.Divider -> R.string.component_element_divider
+                                    ComponentNavigationDrawersContentState.SectionListExample.Label -> R.string.component_element_label
+                                    ComponentNavigationDrawersContentState.SectionListExample.None -> R.string.component_element_none
+                                }
+                                OdsChoiceChipsFlowRow.ChoiceChip(stringResource(id = textResId), { this.content.value = content })
+                            }
                         )
                     }) {
                     Column {

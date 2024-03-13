@@ -1,11 +1,13 @@
 /*
+ * Software Name: Orange Design System
+ * SPDX-FileCopyrightText: Copyright (c) Orange SA
+ * SPDX-License-Identifier: MIT
  *
- *  Copyright 2021 Orange
+ * This software is distributed under the MIT license,
+ * the text of which is available at https://opensource.org/license/MIT/
+ * or see the "LICENSE" file for more details.
  *
- *  Use of this source code is governed by an MIT-style
- *  license that can be found in the LICENSE file or at
- *  https://opensource.org/licenses/MIT.
- * /
+ * Software description: Android library of reusable graphical components
  */
 
 package com.orange.ods.theme.orange
@@ -13,15 +15,15 @@ package com.orange.ods.theme.orange
 import androidx.compose.material.Colors
 import com.orange.ods.theme.colors.OdsBottomNavigationColors
 import com.orange.ods.theme.colors.OdsColors
-import com.orange.ods.theme.colors.OdsComponentColors
+import com.orange.ods.theme.colors.OdsComponentsColors
 import com.orange.ods.theme.colors.OdsFloatingActionButtonColors
 import com.orange.ods.theme.colors.OdsFunctionalColors
 import com.orange.ods.theme.colors.OdsSwitchColors
 import com.orange.ods.theme.colors.OdsTabColors
 import com.orange.ods.theme.colors.OdsTopAppBarColors
 
-val OrangeLightColors = OdsColors(
-    materialColors = Colors(
+internal val OrangeLightColors = OdsColors(
+    material = Colors(
         primary = Orange200,
         primaryVariant = Orange100,
         secondary = Orange200,
@@ -37,7 +39,7 @@ val OrangeLightColors = OdsColors(
         isLight = true
     ),
 
-    functionalColors = OdsFunctionalColors(
+    functional = OdsFunctionalColors(
         positive = Positive200,
         onPositive = White100,
         negative = Negative200,
@@ -46,40 +48,40 @@ val OrangeLightColors = OdsColors(
         alert = Alert200
     ),
 
-    componentColors = OdsComponentColors(
-        systemBarsBackground = White100,
-
+    components = OdsComponentsColors(
+        systemBarsBackground = White100
+    ) {
         bottomNavigation = OdsBottomNavigationColors(
             barBackground = White100,
             barContent = Black900,
             itemSelected = Orange200,
             itemUnselected = Black900
-        ),
+        )
 
         floatingActionButton = OdsFloatingActionButtonColors(
             background = Orange200,
             content = Black900
-        ),
+        )
 
         topAppBar = OdsTopAppBarColors(
             barBackground = White100,
             barContent = Black900
-        ),
+        )
 
         switch = OdsSwitchColors(
             uncheckedThumb = White100
-        ),
+        )
 
         tab = OdsTabColors(
             background = White100,
             selectedContent = Orange200,
             unselectedContent = Black900
         )
-    )
+    }
 )
 
-val OrangeDarkColors = OdsColors(
-    materialColors = Colors(
+internal val OrangeDarkColors = OdsColors(
+    material = Colors(
         primary = Orange100,
         primaryVariant = Orange200,
         secondary = Orange200,
@@ -95,7 +97,7 @@ val OrangeDarkColors = OdsColors(
         isLight = false
     ),
 
-    functionalColors = OdsFunctionalColors(
+    functional = OdsFunctionalColors(
         positive = Positive100,
         onPositive = Black900,
         negative = Negative100,
@@ -104,34 +106,34 @@ val OrangeDarkColors = OdsColors(
         alert = Alert100
     ),
 
-    componentColors = OdsComponentColors(
-        systemBarsBackground = Black900,
-
+    components = OdsComponentsColors(
+        systemBarsBackground = Black900
+    ) {
         bottomNavigation = OdsBottomNavigationColors(
             barBackground = Black900,
             barContent = White100,
             itemSelected = Orange200,
             itemUnselected = White100
-        ),
+        )
 
         floatingActionButton = OdsFloatingActionButtonColors(
             background = Orange100,
             content = Black900
-        ),
+        )
 
         topAppBar = OdsTopAppBarColors(
             barBackground = DarkSurfaceDefault,
             barContent = White100
-        ),
+        )
 
         switch = OdsSwitchColors(
             uncheckedThumb = Grey400
-        ),
+        )
 
         tab = OdsTabColors(
             background = DarkSurfaceDefault,
             selectedContent = Orange100,
             unselectedContent = White100
         )
-    )
+    }
 )

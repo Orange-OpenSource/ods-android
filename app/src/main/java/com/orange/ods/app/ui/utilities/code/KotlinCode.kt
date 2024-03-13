@@ -1,20 +1,22 @@
 /*
+ * Software Name: Orange Design System
+ * SPDX-FileCopyrightText: Copyright (c) Orange SA
+ * SPDX-License-Identifier: MIT
  *
- *  Copyright 2021 Orange
+ * This software is distributed under the MIT license,
+ * the text of which is available at https://opensource.org/license/MIT/
+ * or see the "LICENSE" file for more details.
  *
- *  Use of this source code is governed by an MIT-style
- *  license that can be found in the LICENSE file or at
- *  https://opensource.org/licenses/MIT.
- * /
+ * Software description: Android library of reusable graphical components
  */
 
 package com.orange.ods.app.ui.utilities.code
 
 import androidx.compose.runtime.Composable
 import com.orange.ods.app.ui.utilities.composable.TechnicalText
-import com.orange.ods.extension.fullName
-import com.orange.ods.extension.orElse
-import com.orange.ods.extension.simpleNestedName
+import com.orange.ods.app.ui.utilities.extension.fullName
+import com.orange.ods.compose.extension.orElse
+import com.orange.ods.app.ui.utilities.extension.simpleNestedName
 
 const val IconPainterValue = "<icon painter>"
 const val ImagePainterValue = "<image painter>"
@@ -187,6 +189,7 @@ class ParametersBuilder {
     fun string(name: String, textValue: String) = add(StringParameter(name, textValue))
     fun lambda(name: String, value: String = "") = add(LambdaParameter(name, value))
     fun float(name: String, value: Float) = add(FloatParameter(name, value))
+    fun int(name: String, value: Int) = add(SimpleParameter(name, value.toString()))
     fun mutableState(name: String, stateValue: String) = add(MutableStateParameter(name, stateValue))
     fun <T : Enum<T>> enum(name: String, value: T) = add(EnumParameter(name, value))
     inline fun <reified T> classInstance(name: String, noinline parameters: ParametersBuilder.() -> Unit) =

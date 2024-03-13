@@ -1,11 +1,13 @@
 /*
+ * Software Name: Orange Design System
+ * SPDX-FileCopyrightText: Copyright (c) Orange SA
+ * SPDX-License-Identifier: MIT
  *
- *  Copyright 2021 Orange
+ * This software is distributed under the MIT license,
+ * the text of which is available at https://opensource.org/license/MIT/
+ * or see the "LICENSE" file for more details.
  *
- *  Use of this source code is governed by an MIT-style
- *  license that can be found in the LICENSE file or at
- *  https://opensource.org/licenses/MIT.
- * /
+ * Software description: Android library of reusable graphical components
  */
 
 package com.orange.ods.app.ui.guidelines.spacing
@@ -33,7 +35,8 @@ import com.orange.ods.app.ui.utilities.DrawableManager
 import com.orange.ods.app.ui.utilities.composable.DetailScreenHeader
 import com.orange.ods.app.ui.utilities.extension.isOrange
 import com.orange.ods.compose.component.listitem.OdsListItem
-import com.orange.ods.compose.text.OdsTextSubtitle1
+import com.orange.ods.compose.text.OdsText
+import com.orange.ods.theme.typography.OdsTextStyle
 import java.text.DecimalFormat
 import java.text.DecimalFormatSymbols
 import java.util.Locale
@@ -51,11 +54,12 @@ fun GuidelineSpacingScreen() {
             )
         }
         item {
-            OdsTextSubtitle1(
+            OdsText(
                 modifier = Modifier
                     .padding(horizontal = dimensionResource(id = com.orange.ods.R.dimen.screen_horizontal_margin))
                     .padding(vertical = dimensionResource(id = com.orange.ods.R.dimen.spacing_m)),
-                text = stringResource(id = R.string.guideline_spacing_subtitle)
+                text = stringResource(id = R.string.guideline_spacing_subtitle),
+                style = OdsTextStyle.TitleM
             )
         }
         items(Spacing.entries) { spacing ->
@@ -64,7 +68,7 @@ fun GuidelineSpacingScreen() {
             OdsListItem(
                 text = spacing.tokenName,
                 secondaryText = stringResource(id = R.string.guideline_spacing_dp, dp.value.toInt()) + "\n",
-                singleLineSecondaryText = false,
+                secondaryTextLineCount = OdsListItem.SecondaryTextLineCount.Two,
                 leadingIcon = OdsListItem.LeadingIcon(OdsListItem.LeadingIcon.Type.SquareImage, rememberGuidelineSpacingPainter(spacing = spacing), ""),
                 trailing = OdsListItem.TrailingCaption(
                     stringResource(

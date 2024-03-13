@@ -1,22 +1,31 @@
 /*
+ * Software Name: Orange Design System
+ * SPDX-FileCopyrightText: Copyright (c) Orange SA
+ * SPDX-License-Identifier: MIT
  *
- *  Copyright 2021 Orange
+ * This software is distributed under the MIT license,
+ * the text of which is available at https://opensource.org/license/MIT/
+ * or see the "LICENSE" file for more details.
  *
- *  Use of this source code is governed by an MIT-style
- *  license that can be found in the LICENSE file or at
- *  https://opensource.org/licenses/MIT.
- * /
+ * Software description: Android library of reusable graphical components
  */
 
 package com.orange.ods.compose.component.menu
 
 import android.os.Parcelable
 import androidx.annotation.DrawableRes
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.material.ExperimentalMaterialApi
 import androidx.compose.material.ExposedDropdownMenuBox
-import androidx.compose.runtime.*
+import androidx.compose.runtime.Composable
+import androidx.compose.runtime.MutableState
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.focus.focusProperties
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.semantics.clearAndSetSemantics
@@ -27,7 +36,7 @@ import com.orange.ods.compose.component.OdsComposable
 import com.orange.ods.compose.component.textfield.OdsExposedDropdownMenuTrailing
 import com.orange.ods.compose.component.textfield.OdsTextField
 import com.orange.ods.compose.component.utilities.BasicPreviewParameterProvider
-import com.orange.ods.compose.component.utilities.Preview
+import com.orange.ods.compose.component.utilities.OdsPreview
 import com.orange.ods.compose.component.utilities.UiModePreviews
 import com.orange.ods.compose.component.utilities.enabledStateDescription
 import kotlinx.parcelize.Parcelize
@@ -56,20 +65,24 @@ fun OdsExposedDropdownMenu(
 ) {
     var expanded by remember { mutableStateOf(false) }
     val menuBoxStateDescription = enabledStateDescription(enabled = enabled)
-    val menuBoxAction = if (enabled) stringResource(id = com.orange.ods.R.string.dropdown_menu_action) else ""
+    val menuBoxAction = if (enabled) stringResource(id = com.orange.ods.R.string.ods_dropdownMenu_open_actionA11y) else ""
 
     ExposedDropdownMenuBox(
-        modifier = modifier.clearAndSetSemantics {
-            contentDescription = "$label, ${selectedItem.value.label}, $menuBoxAction"
-            stateDescription = menuBoxStateDescription
-        },
+        modifier = modifier
+            .clearAndSetSemantics {
+                contentDescription = "$label, ${selectedItem.value.label}, $menuBoxAction"
+                stateDescription = menuBoxStateDescription
+            }
+            .focusProperties { canFocus = false },
         expanded = expanded,
         onExpandedChange = {
             expanded = !expanded
         }
     ) {
         OdsTextField(
-            modifier = Modifier.fillMaxWidth(),
+            modifier = Modifier
+                .fillMaxWidth()
+                .clickable { expanded = !expanded },
             value = selectedItem.value.label,
             onValueChange = {},
             readOnly = true,
@@ -106,7 +119,7 @@ object OdsExposedDropdownMenu {
  */
 @UiModePreviews.Default
 @Composable
-private fun PreviewOdsDropdownMenu(@PreviewParameter(OdsDropdownMenuPreviewParameterProvider::class) enabled: Boolean) = Preview {
+private fun PreviewOdsDropdownMenu(@PreviewParameter(OdsDropdownMenuPreviewParameterProvider::class) enabled: Boolean) = OdsPreview {
     val items = listOf(
         OdsExposedDropdownMenu.Item("Email", android.R.drawable.ic_dialog_email),
         OdsExposedDropdownMenu.Item("Map", android.R.drawable.ic_dialog_map),

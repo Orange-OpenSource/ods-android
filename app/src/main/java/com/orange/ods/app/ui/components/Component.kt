@@ -1,11 +1,13 @@
 /*
+ * Software Name: Orange Design System
+ * SPDX-FileCopyrightText: Copyright (c) Orange SA
+ * SPDX-License-Identifier: MIT
  *
- *  Copyright 2021 Orange
+ * This software is distributed under the MIT license,
+ * the text of which is available at https://opensource.org/license/MIT/
+ * or see the "LICENSE" file for more details.
  *
- *  Use of this source code is governed by an MIT-style
- *  license that can be found in the LICENSE file or at
- *  https://opensource.org/licenses/MIT.
- * /
+ * Software description: Android library of reusable graphical components
  */
 
 package com.orange.ods.app.ui.components
@@ -15,6 +17,7 @@ import androidx.annotation.StringRes
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import com.orange.ods.app.R
+import com.orange.ods.app.ui.Screen
 import com.orange.ods.app.ui.components.appbars.top.ComponentTopAppBar
 import com.orange.ods.app.ui.components.banners.ComponentBanners
 import com.orange.ods.app.ui.components.bottomnavigation.ComponentBottomNavigation
@@ -63,7 +66,7 @@ sealed class Component(
         R.drawable.il_app_bars_top,
         R.drawable.il_app_bars_top_small,
         R.string.component_app_bars_top_description,
-        variants = listOf(Variant.AppBarsTopRegular, Variant.AppBarsTopLarge),
+        variants = listOf(Variant.AppBarsTopRegular, Variant.AppBarsTopLarge, Variant.AppBarsTopSearch),
         demoScreen = { variant -> if (variant != null) ComponentTopAppBar(variant) },
         imageAlignment = Alignment.TopCenter
     )
@@ -280,7 +283,7 @@ val components = Component::class.sealedSubclasses.mapNotNull { it.objectInstanc
 sealed class Variant(
     @StringRes val titleRes: Int,
     val composableName: String,
-    val largeTopAppBar: Boolean = false,
+    val topAppBarType: Screen.TopAppBarType = Screen.TopAppBarType.Default,
     val customizableTopAppBar: Boolean = false,
     val hasTabs: Boolean = false
 ) {
@@ -291,8 +294,20 @@ sealed class Variant(
 
     val id: Long = Variant::class.sealedSubclasses.indexOf(this::class).toLong()
 
-    data object AppBarsTopRegular : Variant(R.string.component_app_bars_top_regular, OdsComposable.OdsTopAppBar.name)
-    data object AppBarsTopLarge : Variant(R.string.component_app_bars_top_large, OdsComposable.OdsLargeTopAppBar.name, true)
+    data object AppBarsTopRegular : Variant(R.string.component_app_bars_top_regular, OdsComposable.OdsTopAppBar.name, customizableTopAppBar = true)
+    data object AppBarsTopLarge : Variant(
+        R.string.component_app_bars_top_large,
+        OdsComposable.OdsLargeTopAppBar.name,
+        topAppBarType = Screen.TopAppBarType.Large,
+        customizableTopAppBar = true
+    )
+
+    data object AppBarsTopSearch : Variant(
+        R.string.component_app_bars_top_search,
+        OdsComposable.OdsSearchTopAppBar.name,
+        topAppBarType = Screen.TopAppBarType.Search,
+        customizableTopAppBar = true
+    )
 
     data object ButtonsPrimary : Variant(R.string.component_buttons_high_emphasis, "${OdsComposable.OdsButton.name} with ${OdsButton.Style.Primary.name}")
     data object ButtonsDefault : Variant(R.string.component_buttons_medium_emphasis, "${OdsComposable.OdsButton.name} with ${OdsButton.Style.Default.name}")

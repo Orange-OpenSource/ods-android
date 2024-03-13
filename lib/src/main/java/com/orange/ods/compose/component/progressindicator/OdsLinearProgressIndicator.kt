@@ -1,11 +1,13 @@
 /*
+ * Software Name: Orange Design System
+ * SPDX-FileCopyrightText: Copyright (c) Orange SA
+ * SPDX-License-Identifier: MIT
  *
- *  Copyright 2021 Orange
+ * This software is distributed under the MIT license,
+ * the text of which is available at https://opensource.org/license/MIT/
+ * or see the "LICENSE" file for more details.
  *
- *  Use of this source code is governed by an MIT-style
- *  license that can be found in the LICENSE file or at
- *  https://opensource.org/licenses/MIT.
- * /
+ * Software description: Android library of reusable graphical components
  */
 
 package com.orange.ods.compose.component.progressindicator
@@ -13,14 +15,11 @@ package com.orange.ods.compose.component.progressindicator
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
-import androidx.compose.foundation.layout.width
 import androidx.compose.material.ButtonDefaults
 import androidx.compose.material.LinearProgressIndicator
-import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.ExperimentalComposeUiApi
@@ -39,11 +38,12 @@ import com.orange.ods.R
 import com.orange.ods.compose.component.OdsComposable
 import com.orange.ods.compose.component.content.OdsComponentIcon
 import com.orange.ods.compose.component.utilities.BasicPreviewParameterProvider
-import com.orange.ods.compose.component.utilities.Preview
+import com.orange.ods.compose.component.utilities.OdsPreview
 import com.orange.ods.compose.component.utilities.UiModePreviews
-import com.orange.ods.compose.text.OdsTextCaption
+import com.orange.ods.compose.extension.orElse
+import com.orange.ods.compose.text.OdsText
 import com.orange.ods.compose.theme.OdsTheme
-import com.orange.ods.extension.orElse
+import com.orange.ods.theme.typography.OdsTextStyle
 
 /**
  * Progress indicators express an unspecified wait time or display the length of a process.
@@ -75,15 +75,13 @@ fun OdsLinearProgressIndicator(
         Row(
             modifier = Modifier
                 .padding(bottom = dimensionResource(id = R.dimen.spacing_xs)),
-            horizontalArrangement = Arrangement.spacedBy(dimensionResource(id = R.dimen.spacing_s))
         ) {
-            icon?.Content()
-            Spacer(Modifier.width(ButtonDefaults.IconSpacing))
+            icon?.Content(modifier = Modifier.padding(end = ButtonDefaults.IconSpacing))
 
             if (label != null) {
-                Text(
+                OdsText(
                     text = label,
-                    style = OdsTheme.typography.caption,
+                    style = OdsTextStyle.BodyS,
                     color = OdsTheme.colors.onSurface,
                     overflow = TextOverflow.Ellipsis,
                     maxLines = 1,
@@ -96,13 +94,14 @@ fun OdsLinearProgressIndicator(
 
             if (showCurrentValue) {
                 Row(horizontalArrangement = Arrangement.End, modifier = Modifier.fillMaxWidth()) {
-                    OdsTextCaption(
+                    OdsText(
                         modifier = Modifier
                             .padding(top = dimensionResource(id = R.dimen.spacing_xs))
                             .semantics {
                                 this.invisibleToUser() // Prevent TalkBack to focus this Text cause the value of the progress is already read on LinearProgressIndicator focus
                             },
-                        text = stringResource(id = R.string.progress_linear_indicator_value, (progress * 100).toInt())
+                        text = stringResource(id = R.string.ods_progressLinearIndicator_value, (progress * 100).toInt()),
+                        style = OdsTextStyle.BodyS
                     )
                 }
             }
@@ -121,7 +120,10 @@ object OdsLinearProgressIndicator {
      * An icon in an [OdsLinearProgressIndicator].
      * It is a non-clickable button.
      */
-    class Icon : OdsComponentIcon<Nothing> {
+    class Icon private constructor(
+        val graphicsObject: Any,
+        val contentDescription: String
+    ) : OdsComponentIcon<Nothing>(Nothing::class.java, graphicsObject, contentDescription) {
 
         /**
          * Creates an instance of [OdsLinearProgressIndicator.Icon].
@@ -129,7 +131,7 @@ object OdsLinearProgressIndicator {
          * @param painter Painter of the icon.
          * @param contentDescription The content description associated to this [OdsLinearProgressIndicator.Icon].
          */
-        constructor(painter: Painter, contentDescription: String) : super(painter, contentDescription)
+        constructor(painter: Painter, contentDescription: String) : this(painter as Any, contentDescription)
 
         /**
          * Creates an instance of [OdsLinearProgressIndicator.Icon].
@@ -137,7 +139,7 @@ object OdsLinearProgressIndicator {
          * @param imageVector Image vector of the icon.
          * @param contentDescription The content description associated to this [OdsLinearProgressIndicator.Icon].
          */
-        constructor(imageVector: ImageVector, contentDescription: String) : super(imageVector, contentDescription)
+        constructor(imageVector: ImageVector, contentDescription: String) : this(imageVector as Any, contentDescription)
 
         /**
          * Creates an instance of [OdsLinearProgressIndicator.Icon].
@@ -145,7 +147,7 @@ object OdsLinearProgressIndicator {
          * @param bitmap Image bitmap of the icon.
          * @param contentDescription The content description associated to this [OdsLinearProgressIndicator.Icon].
          */
-        constructor(bitmap: ImageBitmap, contentDescription: String) : super(bitmap, contentDescription)
+        constructor(bitmap: ImageBitmap, contentDescription: String) : this(bitmap as Any, contentDescription)
 
         @Composable
         override fun Content(modifier: Modifier) {
@@ -157,7 +159,7 @@ object OdsLinearProgressIndicator {
 @UiModePreviews.Default
 @Composable
 private fun PreviewOdsLinearProgressIndicator(@PreviewParameter(OdsLinearProgressIndicatorPreviewParameterProvider::class) parameter: OdsLinearProgressIndicatorPreviewParameter) =
-    Preview {
+    OdsPreview {
         with(parameter) {
             OdsLinearProgressIndicator(
                 progress = progress,
@@ -187,5 +189,6 @@ private val previewParameterValues: List<OdsLinearProgressIndicatorPreviewParame
         return listOf(
             OdsLinearProgressIndicatorPreviewParameter(0.75f, iconRes, shortLabel, true),
             OdsLinearProgressIndicatorPreviewParameter(0.75f, iconRes, longLabel, false),
+            OdsLinearProgressIndicatorPreviewParameter(0.40f, null, longLabel, false),
         )
     }

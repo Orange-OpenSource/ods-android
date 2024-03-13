@@ -5,6 +5,58 @@ All notable changes done in ODS library will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.0.0](https://github.com/Orange-OpenSource/ods-android/compare/0.18.0...1.0.0) - 2024-03-13
+
+### Added
+
+- \[About\] Add accessibility statement menu item ([#162](https://github.com/Orange-OpenSource/ods-android/issues/162))
+- \[App\] Display third party libraries in the About section ([#485](https://github.com/Orange-OpenSource/ods-android/issues/485))
+- \[App\] Display XML code implementation for components with an XML version available ([#788](https://github.com/Orange-OpenSource/ods-android/issues/788))
+- \[App\] Display Compose code implementation for `OdsTabRow` and `OdsScrollableTabRow` ([#549](https://github.com/Orange-OpenSource/ods-android/issues/549))
+- \[Doc\] Add XML integration documentation for components with an XML version ([#540](https://github.com/Orange-OpenSource/ods-android/issues/540))
+- \[Lib\] Add `OdsSearchTopAppBar` component variant ([#577](https://github.com/Orange-OpenSource/ods-android/issues/577))
+- \[Lib\] Add `OdsEmptyStateView` module ([#119](https://github.com/Orange-OpenSource/ods-android/issues/119))
+
+### Changed
+
+- \[App\] Display typography tokens in search results ([#551](https://github.com/Orange-OpenSource/ods-android/issues/551))
+- \[App\] Update checkboxes and switches components demo by showing only one element ([#666](https://github.com/Orange-OpenSource/ods-android/issues/666))
+- \[App\] Replace `OdsListItem` lines counter customization by choice chips allowing secondary text lines count customization ([#799](https://github.com/Orange-OpenSource/ods-android/issues/799))
+- \[App\] Update image for empty state module no data example ([#811](https://github.com/Orange-OpenSource/ods-android/issues/811))
+- \[App\] Update empty state module demo images for innovation cup theme ([#868](https://github.com/Orange-OpenSource/ods-android/issues/868))
+- \[Doc\] Update About module integration instructions ([#815](https://github.com/Orange-OpenSource/ods-android/issues/815))
+- \[Doc\] Update colors and typography documentations ([#818](https://github.com/Orange-OpenSource/ods-android/issues/818))
+- \[Lib\] Update i18n keys ([#752](https://github.com/Orange-OpenSource/ods-android/issues/752))
+- \[Lib\] Update `OdsChoiceChipsFlowRow` to have less vertical space between elements ([#758](https://github.com/Orange-OpenSource/ods-android/issues/758))
+- \[Lib\] Change `OdsListItem` API by replacing `singleLineSecondaryText` boolean parameter by an enum called `secondaryTextLineCount` ([#777](https://github.com/Orange-OpenSource/ods-android/issues/777))
+- \[Lib\] Update typography tokens and rename ODS text composables ([#615](https://github.com/Orange-OpenSource/ods-android/issues/615))
+- \[Lib\] Move placeholder images from `app` to `lib` ([#531](https://github.com/Orange-OpenSource/ods-android/issues/531))
+- \[Lib\] Stack cards buttons when texts are too long to fit on one line ([#620](https://github.com/Orange-OpenSource/ods-android/issues/620))
+- \[Lib\] Stack `OdsBanner` buttons when texts are too long to fit on one line ([#795](https://github.com/Orange-OpenSource/ods-android/issues/795))
+- \[Lib\] Update `OdsText` APIs and use `OdsText` instead of `Text` whenever possible ([#783](https://github.com/Orange-OpenSource/ods-android/issues/783))
+- \[Lib\] Update `OdsChoiceChipsFlowRow` API ([#794](https://github.com/Orange-OpenSource/ods-android/issues/794))
+- \[Lib\] Update `OdsIconToggleButtonsRow` and `OdsTextToggleButtonsRow` APIs ([#801](https://github.com/Orange-OpenSource/ods-android/issues/801))
+- \[Lib\] Update `OdsButton`, `OdsTextButton`, `OdsOutlinedButton`, `OdsIconButton`, `OdsIconToggleButton`, `OdsIconToggleButtonsRow` and `OdsTextToggleButtonsRow` APIs by removing `displaySurface` parameters ([#830](https://github.com/Orange-OpenSource/ods-android/issues/830))
+- \[Lib\] Review APIs and clean project before v1.0 release ([#878](https://github.com/Orange-OpenSource/ods-android/issues/878))
+- \[LibXml\] Replace `displaySurface` attribute by `invertedTheme` for `OdsButton`, `OdsTextButton`, `OdsOutlinedButton`, `OdsIconButton`, `OdsIconToggleButton` and `OdsIconToggleButtonsRow` ([#830](https://github.com/Orange-OpenSource/ods-android/issues/830))
+
+### Fixed
+
+- \[App\] Fix `OdsTopAppBar` and `OdsLargeTopAppBar` components customization through the bottom sheet ([#747](https://github.com/Orange-OpenSource/ods-android/issues/747))
+- \[App\] Fix guideline functional colors display when switching light/dark mode ([#761](https://github.com/Orange-OpenSource/ods-android/issues/761))
+- \[App\] Fix code implementation dropdown menu contrast for accessibility reason by always enabling it ([#749](https://github.com/Orange-OpenSource/ods-android/issues/749))
+- \[App\] Fix a bug where placeholder and error placeholder images did not change when switching between light and dark mode ([#531](https://github.com/Orange-OpenSource/ods-android/issues/531))
+- \[Doc\] Fix a Jekyll warning with 404.html file when releasing a new version ([#822](https://github.com/Orange-OpenSource/ods-android/issues/822))
+- \[Doc\] Fix typo in files copyright ([#821](https://github.com/Orange-OpenSource/ods-android/issues/821))
+- \[Doc\] Fix a bug where content of left menu in documentation was wrong for old versions ([#738](https://github.com/Orange-OpenSource/ods-android/issues/738))
+- \[Lib\] Update `OdsListItem` so that if it has a control trailing (checkbox, switch or radio button), the action is handled by the row only ([#743](https://github.com/Orange-OpenSource/ods-android/issues/743))
+- \[Lib\] Remove padding added before `OdsLinearProgressIndicator` text if there is no icon displayed ([#745](https://github.com/Orange-OpenSource/ods-android/issues/745))
+- \[Lib\] Update `OdsTopAppBar` and `OdsLargeTopAppBar` so that TalkBack reads the title of the app bar first ([#275](https://github.com/Orange-OpenSource/ods-android/issues/275))
+- \[Lib\] Fix an issue in `OdsExposedDropdownMenu` where menu was not accessible with keyboard navigation ([#750](https://github.com/Orange-OpenSource/ods-android/issues/750))
+- \[Lib\] Fix an A11y issue on `OdsBottomNavigation` where the items were focused twice when navigating with a keyboard ([#784](https://github.com/Orange-OpenSource/ods-android/issues/784))
+- \[Lib\] Fix XML buttons display when forced on dark or light ([#656](https://github.com/Orange-OpenSource/ods-android/issues/656))
+- \[Lib\] Fix a bug where ODS typography were not installed in the Material theme instance ([#813](https://github.com/Orange-OpenSource/ods-android/issues/813))
+
 ## [0.18.0](https://github.com/Orange-OpenSource/ods-android/compare/0.17.0...0.18.0) - 2023-12-11
 
 ### Added
@@ -105,6 +157,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - \[Lib\] Update `OdsLinearProgressIndicator` and `OdsCircularProgressIndicator` APIs ([#607](https://github.com/Orange-OpenSource/ods-android/issues/607))
 - \[Lib\] Update `OdsImageItem` API and rename it into `OdsImageTile` ([#609](https://github.com/Orange-OpenSource/ods-android/issues/609))
 - \[Lib\] Update `OdsChip`, `OdsChoiceChipsFlowRow`and `OdsFilterChip` APIs ([#603](https://github.com/Orange-OpenSource/ods-android/issues/603))
+- \[ThemeInnovationCup/ThemeOrange\] Remove Hilt dependency in themes ([#791](https://github.com/Orange-OpenSource/ods-android/issues/791))
 
 ### Fixed
 

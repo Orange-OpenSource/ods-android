@@ -1,11 +1,13 @@
 /*
+ * Software Name: Orange Design System
+ * SPDX-FileCopyrightText: Copyright (c) Orange SA
+ * SPDX-License-Identifier: MIT
  *
- *  Copyright 2021 Orange
+ * This software is distributed under the MIT license,
+ * the text of which is available at https://opensource.org/license/MIT/
+ * or see the "LICENSE" file for more details.
  *
- *  Use of this source code is governed by an MIT-style
- *  license that can be found in the LICENSE file or at
- *  https://opensource.org/licenses/MIT.
- * /
+ * Software description: Android library of reusable graphical components 
  */
 
 package com.orange.ods.app.ui.components.sheets
@@ -29,11 +31,10 @@ import com.orange.ods.app.ui.components.utilities.ComponentCustomizationBottomSh
 import com.orange.ods.app.ui.utilities.code.CodeImplementationColumn
 import com.orange.ods.app.ui.utilities.code.FunctionCallCode
 import com.orange.ods.compose.OdsComposable
-import com.orange.ods.compose.component.chip.OdsChoiceChip
 import com.orange.ods.compose.component.chip.OdsChoiceChipsFlowRow
 import com.orange.ods.compose.component.listitem.OdsListItem
-import com.orange.ods.compose.text.OdsTextBody1
-import com.orange.ods.compose.text.OdsTextSubtitle1
+import com.orange.ods.compose.text.OdsText
+import com.orange.ods.theme.typography.OdsTextStyle
 
 
 @OptIn(ExperimentalMaterialApi::class)
@@ -66,31 +67,21 @@ fun ComponentSheetsBottom() {
                         .padding(top = dimensionResource(id = com.orange.ods.R.dimen.screen_vertical_margin))
                         .padding(horizontal = dimensionResource(id = com.orange.ods.R.dimen.screen_horizontal_margin))
                 ) {
-                    OdsTextBody1(text = stringResource(id = R.string.component_sheet_bottom_customize))
-                    OdsTextSubtitle1(
+                    OdsText(text = stringResource(id = R.string.component_sheet_bottom_customize), style = OdsTextStyle.BodyL)
+                    OdsText(
                         text = stringResource(id = R.string.component_element_content),
-                        modifier = Modifier.padding(top = dimensionResource(id = com.orange.ods.R.dimen.spacing_s))
+                        modifier = Modifier.padding(top = dimensionResource(id = com.orange.ods.R.dimen.spacing_s)),
+                        style = OdsTextStyle.TitleM
                     )
-                    val contentEmptyDesc = stringResource(id = R.string.component_sheet_bottom_customize_content_empty_desc)
-                    val contentExampleDesc = stringResource(id = R.string.component_sheet_bottom_customize_content_example_desc)
                     OdsChoiceChipsFlowRow(
-                        value = content.value,
-                        onValueChange = { value -> content.value = value },
-                        chips = listOf(
-                            OdsChoiceChip(
-                                text = stringResource(id = R.string.component_element_empty),
-                                value = SheetsBottomCustomizationState.Content.Empty,
-                                semantics = {
-                                    onClick(contentEmptyDesc, null)
-                                }),
-                            OdsChoiceChip(
-                                text = stringResource(id = R.string.component_element_example),
-                                value = SheetsBottomCustomizationState.Content.Example,
-                                semantics = {
-                                    onClick(contentExampleDesc, null)
-                                }
-                            )
-                        )
+                        selectedChoiceChipIndex = SheetsBottomCustomizationState.Content.entries.indexOf(content.value),
+                        choiceChips = SheetsBottomCustomizationState.Content.entries.map { content ->
+                            val (text, contentDesc) = when (content) {
+                                SheetsBottomCustomizationState.Content.Empty -> stringResource(id = R.string.component_element_empty) to stringResource(id = R.string.component_sheet_bottom_customize_content_empty_desc)
+                                SheetsBottomCustomizationState.Content.Example -> stringResource(id = R.string.component_element_example) to stringResource(id = R.string.component_sheet_bottom_customize_content_example_desc)
+                            }
+                            OdsChoiceChipsFlowRow.ChoiceChip(text, { this@with.content.value = content }, semantics = { onClick(contentDesc, null) })
+                        }
                     )
                 }
 

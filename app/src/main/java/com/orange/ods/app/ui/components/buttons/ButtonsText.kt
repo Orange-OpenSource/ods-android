@@ -1,11 +1,13 @@
 /*
+ * Software Name: Orange Design System
+ * SPDX-FileCopyrightText: Copyright (c) Orange SA
+ * SPDX-License-Identifier: MIT
  *
- *  Copyright 2021 Orange
+ * This software is distributed under the MIT license,
+ * the text of which is available at https://opensource.org/license/MIT/
+ * or see the "LICENSE" file for more details.
  *
- *  Use of this source code is governed by an MIT-style
- *  license that can be found in the LICENSE file or at
- *  https://opensource.org/licenses/MIT.
- * /
+ * Software description: Android library of reusable graphical components 
  */
 
 package com.orange.ods.app.ui.components.buttons
@@ -29,17 +31,21 @@ import androidx.compose.ui.res.stringResource
 import com.orange.ods.app.R
 import com.orange.ods.app.databinding.OdsTextButtonBinding
 import com.orange.ods.app.ui.UiFramework
+import com.orange.ods.app.ui.utilities.code.CodeBackgroundColumn
 import com.orange.ods.app.ui.utilities.code.CodeImplementationColumn
 import com.orange.ods.app.ui.utilities.code.FunctionCallCode
+import com.orange.ods.app.ui.utilities.code.XmlViewTag
 import com.orange.ods.app.ui.utilities.composable.Title
 import com.orange.ods.compose.OdsComposable
 import com.orange.ods.compose.component.button.OdsButton
 import com.orange.ods.compose.component.button.OdsTextButton
-import com.orange.ods.compose.theme.OdsDisplaySurface
+import com.orange.ods.xml.utilities.extension.xmlEnumValue
 
 @Composable
 fun ButtonsText(customizationState: ButtonCustomizationState) {
     with(customizationState) {
+        val buttonText = stringResource(if (isEnabled) R.string.component_state_enabled else R.string.component_state_disabled)
+
         Column(
             modifier = Modifier
                 .verticalScroll(rememberScrollState())
@@ -51,6 +57,7 @@ fun ButtonsText(customizationState: ButtonCustomizationState) {
             )
 
             TextButton(
+                text = buttonText,
                 style = textButtonStyle.value,
                 leadingIcon = hasLeadingIcon,
                 enabled = isEnabled,
@@ -61,47 +68,65 @@ fun ButtonsText(customizationState: ButtonCustomizationState) {
 
             InvertedBackgroundColumn {
                 TextButton(
+                    text = buttonText,
                     style = textButtonStyle.value,
                     leadingIcon = hasLeadingIcon,
                     enabled = isEnabled,
                     fullScreenWidth = hasFullScreenWidth,
-                    displaySurface = displaySurface
+                    invertedTheme = true
                 )
             }
 
             CodeImplementationColumn(
                 modifier = Modifier.padding(horizontal = dimensionResource(id = com.orange.ods.R.dimen.screen_horizontal_margin)),
-                xmlAvailable = true
-            ) {
-                FunctionCallCode(
-                    name = OdsComposable.OdsTextButton.name,
-                    exhaustiveParameters = false,
-                    parameters = {
-                        enum("style", textButtonStyle.value)
-                        if (hasFullScreenWidth) fillMaxWidth()
-                        if (hasLeadingIcon) {
-                            classInstance<OdsButton.Icon>("icon") {
-                                painter()
+                composeContent = {
+                    FunctionCallCode(
+                        name = OdsComposable.OdsTextButton.name,
+                        exhaustiveParameters = false,
+                        parameters = {
+                            text(buttonText)
+                            enum("style", textButtonStyle.value)
+                            if (hasFullScreenWidth) fillMaxWidth()
+                            if (hasLeadingIcon) {
+                                classInstance<OdsButton.Icon>("icon") {
+                                    painter()
+                                }
                             }
+                            if (!isEnabled) enabled(false)
                         }
-                        if (!isEnabled) enabled(false)
+                    )
+                },
+                xmlContent = {
+                    CodeBackgroundColumn {
+                        XmlViewTag(
+                            clazz = com.orange.ods.xml.component.button.OdsTextButton::class.java,
+                            xmlAttributes = {
+                                id("ods_text_button")
+                                layoutWidth(hasFullScreenWidth)
+                                layoutHeight()
+                                appAttr("text", buttonText)
+                                if (hasLeadingIcon) drawable("icon", "icon")
+                                if (!isEnabled) disabled()
+                                if (textButtonStyle.value != OdsTextButton.Style.Default) appAttr("odsTextButtonStyle", textButtonStyle.value.xmlEnumValue)
+                            }
+                        )
                     }
-                )
-            }
+                }
+            )
         }
     }
 }
 
 @Composable
 private fun TextButton(
+    text: String,
     style: OdsTextButton.Style,
     leadingIcon: Boolean,
     enabled: Boolean,
     fullScreenWidth: Boolean,
-    displaySurface: OdsDisplaySurface = OdsDisplaySurface.Default
+    invertedTheme: Boolean = false
 ) {
     val context = LocalContext.current
-    val text = stringResource(if (enabled) R.string.component_state_enabled else R.string.component_state_disabled)
     val iconId = R.drawable.ic_coffee
 
     Box(
@@ -119,17 +144,16 @@ private fun TextButton(
                     onClick = {},
                     enabled = enabled,
                     style = style,
-                    displaySurface = displaySurface
                 )
             }, xml = {
                 this.text = text
                 this.icon = if (leadingIcon) AppCompatResources.getDrawable(context, iconId) else null
                 this.enabled = enabled
                 this.style = style
-                this.displaySurface = displaySurface
+                this.invertedTheme = invertedTheme
                 root.layoutParams = ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT)
                 val width = if (fullScreenWidth) FrameLayout.LayoutParams.MATCH_PARENT else FrameLayout.LayoutParams.WRAP_CONTENT
-                odsTextbutton.layoutParams = FrameLayout.LayoutParams(width, FrameLayout.LayoutParams.WRAP_CONTENT)
+                odsTextButton.layoutParams = FrameLayout.LayoutParams(width, FrameLayout.LayoutParams.WRAP_CONTENT)
             }
         )
     }

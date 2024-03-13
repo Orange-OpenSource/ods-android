@@ -1,11 +1,13 @@
 /*
+ * Software Name: Orange Design System
+ * SPDX-FileCopyrightText: Copyright (c) Orange SA
+ * SPDX-License-Identifier: MIT
  *
- *  Copyright 2021 Orange
+ * This software is distributed under the MIT license,
+ * the text of which is available at https://opensource.org/license/MIT/
+ * or see the "LICENSE" file for more details.
  *
- *  Use of this source code is governed by an MIT-style
- *  license that can be found in the LICENSE file or at
- *  https://opensource.org/licenses/MIT.
- * /
+ * Software description: Android library of reusable graphical components
  */
 
 package com.orange.ods.compose.component.textfield.search
@@ -28,10 +30,10 @@ import androidx.compose.ui.text.input.TextFieldValue
 import androidx.compose.ui.tooling.preview.PreviewParameter
 import androidx.compose.ui.unit.sp
 import com.orange.ods.R
-import com.orange.ods.compose.component.OdsComposable
 import com.orange.ods.compose.component.button.OdsIconButton
+import com.orange.ods.compose.component.textfield.styledTextFieldValue
 import com.orange.ods.compose.component.utilities.BasicPreviewParameterProvider
-import com.orange.ods.compose.component.utilities.Preview
+import com.orange.ods.compose.component.utilities.OdsPreview
 import com.orange.ods.compose.component.utilities.UiModePreviews
 import com.orange.ods.compose.theme.OdsTheme
 
@@ -47,31 +49,31 @@ import com.orange.ods.compose.theme.OdsTheme
  * @param modifier [Modifier] applied to this text field.
  */
 @Composable
-@OdsComposable
-fun OdsSearchTextField(
+internal fun OdsSearchTextField(
     value: TextFieldValue,
     onValueChange: (TextFieldValue) -> Unit,
     placeholder: String,
     modifier: Modifier = Modifier,
 ) {
+    val textStyle = OdsTheme.typography.titleL
     TextField(
-        value = value,
+        value = styledTextFieldValue(value = value, textStyle = textStyle),
         onValueChange = onValueChange,
         placeholder = {
             Text(
                 text = placeholder,
-                style = OdsTheme.typography.body1,
+                style = OdsTheme.typography.bodyL,
                 fontSize = 20.sp
             )
         },
         modifier = modifier,
-        textStyle = OdsTheme.typography.h6,
+        textStyle = textStyle,
         trailingIcon = {
             OdsIconButton(
                 onClick = { onValueChange(TextFieldValue("")) },
                 graphicsObject = rememberVectorPainter(image = Icons.Default.Close),
-                contentDescription = stringResource(id = R.string.search_clear),
-                tint = OdsTheme.colors.component.topAppBar.barContent
+                contentDescription = stringResource(id = R.string.ods_searchTextField_clear_labelA11y),
+                tint = OdsTheme.colors.components.topAppBar.barContent
             )
         },
         singleLine = false,
@@ -80,13 +82,13 @@ fun OdsSearchTextField(
             imeAction = ImeAction.Search
         ),
         colors = TextFieldDefaults.textFieldColors(
-            textColor = OdsTheme.colors.component.topAppBar.barContent,
-            cursorColor = OdsTheme.colors.component.topAppBar.barContent,
-            leadingIconColor = OdsTheme.colors.component.topAppBar.barContent,
-            trailingIconColor = OdsTheme.colors.component.topAppBar.barContent,
+            textColor = OdsTheme.colors.components.topAppBar.barContent,
+            cursorColor = OdsTheme.colors.components.topAppBar.barContent,
+            leadingIconColor = OdsTheme.colors.components.topAppBar.barContent,
+            trailingIconColor = OdsTheme.colors.components.topAppBar.barContent,
             backgroundColor = Color.Transparent,
             focusedIndicatorColor = Color.Transparent,
-            placeholderColor = OdsTheme.colors.component.topAppBar.barContent.copy(ContentAlpha.medium),
+            placeholderColor = OdsTheme.colors.components.topAppBar.barContent.copy(ContentAlpha.medium),
         )
     )
 }
@@ -94,7 +96,7 @@ fun OdsSearchTextField(
 @UiModePreviews.Default
 @Composable
 private fun PreviewOdsSearchTextField(@PreviewParameter(OdsSearchTextFieldPreviewParameterProvider::class) parameter: OdsSearchTextFieldPreviewParameter) =
-    Preview {
+    OdsPreview {
         with(parameter) {
             OdsSearchTextField(
                 value = value,

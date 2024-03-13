@@ -1,11 +1,13 @@
 /*
+ * Software Name: Orange Design System
+ * SPDX-FileCopyrightText: Copyright (c) Orange SA
+ * SPDX-License-Identifier: MIT
  *
- *  Copyright 2021 Orange
+ * This software is distributed under the MIT license,
+ * the text of which is available at https://opensource.org/license/MIT/
+ * or see the "LICENSE" file for more details.
  *
- *  Use of this source code is governed by an MIT-style
- *  license that can be found in the LICENSE file or at
- *  https://opensource.org/licenses/MIT.
- * /
+ * Software description: Android library of reusable graphical components
  */
 
 package com.orange.ods.app.ui.components.imageitem
@@ -34,14 +36,15 @@ import androidx.compose.ui.unit.dp
 import coil.compose.rememberAsyncImagePainter
 import com.orange.ods.app.R
 import com.orange.ods.app.domain.recipes.LocalRecipes
+import com.orange.ods.app.ui.LocalThemeManager
 import com.orange.ods.app.ui.components.utilities.ComponentCustomizationBottomSheetScaffold
 import com.orange.ods.app.ui.components.utilities.clickOnElement
 import com.orange.ods.app.ui.utilities.code.CodeImplementationColumn
 import com.orange.ods.app.ui.utilities.code.FunctionCallCode
 import com.orange.ods.app.ui.utilities.composable.Subtitle
+import com.orange.ods.app.ui.utilities.extension.buildImageRequest
 import com.orange.ods.compose.OdsComposable
 import com.orange.ods.compose.component.button.OdsIconButton
-import com.orange.ods.compose.component.chip.OdsChoiceChip
 import com.orange.ods.compose.component.chip.OdsChoiceChipsFlowRow
 import com.orange.ods.compose.component.imageitem.OdsImageItem
 import com.orange.ods.compose.component.listitem.OdsListItem
@@ -50,6 +53,7 @@ import com.orange.ods.compose.component.listitem.OdsListItem
 @Composable
 fun ComponentImageItem() {
     val context = LocalContext.current
+    val darkModeEnabled = LocalThemeManager.current.darkModeEnabled
     val imageItemCustomizationState = rememberImageItemCustomizationState()
     var iconChecked by rememberSaveable { mutableStateOf(false) }
     val recipes = LocalRecipes.current
@@ -67,20 +71,16 @@ fun ComponentImageItem() {
             bottomSheetContent = {
                 Subtitle(textRes = R.string.component_image_item_legend_area_display_type, horizontalPadding = true)
                 OdsChoiceChipsFlowRow(
-                    value = type.value,
-                    onValueChange = { value -> type.value = value },
+                    selectedChoiceChipIndex = OdsImageItem.LegendAreaDisplayType.entries.indexOf(type.value),
                     modifier = Modifier.padding(horizontal = dimensionResource(id = com.orange.ods.R.dimen.spacing_m)),
-                    chips = listOf(
-                        OdsChoiceChip(
-                            text = stringResource(R.string.component_image_item_legend_area_display_type_overlay),
-                            value = OdsImageItem.LegendAreaDisplayType.Overlay
-                        ),
-                        OdsChoiceChip(
-                            text = stringResource(R.string.component_image_item_legend_area_display_type_below),
-                            value = OdsImageItem.LegendAreaDisplayType.Below
-                        ),
-                        OdsChoiceChip(text = stringResource(R.string.component_element_none), value = OdsImageItem.LegendAreaDisplayType.None),
-                    )
+                    choiceChips = OdsImageItem.LegendAreaDisplayType.entries.map { type ->
+                        val textResId = when (type) {
+                            OdsImageItem.LegendAreaDisplayType.Below -> R.string.component_image_item_legend_area_display_type_below
+                            OdsImageItem.LegendAreaDisplayType.Overlay -> R.string.component_image_item_legend_area_display_type_overlay
+                            OdsImageItem.LegendAreaDisplayType.None -> R.string.component_element_none
+                        }
+                        OdsChoiceChipsFlowRow.ChoiceChip(stringResource(id = textResId), { this.type.value = type })
+                    }
                 )
                 OdsListItem(
                     text = stringResource(id = R.string.component_element_icon),
@@ -110,9 +110,9 @@ fun ComponentImageItem() {
                     onClick = { clickOnElement(context, context.getString(R.string.component_image_item)) },
                     image = OdsImageItem.Image(
                         rememberAsyncImagePainter(
-                            model = recipe.imageUrl,
-                            placeholder = painterResource(id = R.drawable.placeholder),
-                            error = painterResource(id = R.drawable.placeholder)
+                            model = buildImageRequest(context, recipe.imageUrl, darkModeEnabled),
+                            placeholder = painterResource(id = com.orange.ods.R.drawable.placeholder),
+                            error = painterResource(id = com.orange.ods.R.drawable.placeholder)
                         ), ""
                     ),
                     title = if (hasText) recipe.title else null,

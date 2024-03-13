@@ -1,11 +1,13 @@
 /*
+ * Software Name: Orange Design System
+ * SPDX-FileCopyrightText: Copyright (c) Orange SA
+ * SPDX-License-Identifier: MIT
  *
- *  Copyright 2021 Orange
+ * This software is distributed under the MIT license,
+ * the text of which is available at https://opensource.org/license/MIT/
+ * or see the "LICENSE" file for more details.
  *
- *  Use of this source code is governed by an MIT-style
- *  license that can be found in the LICENSE file or at
- *  https://opensource.org/licenses/MIT.
- * /
+ * Software description: Android library of reusable graphical components 
  */
 
 package com.orange.ods.theme.guideline
@@ -16,6 +18,7 @@ import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.TextStyle
+import com.orange.ods.theme.annotation.ExperimentalOdsApi
 import com.orange.ods.theme.colors.OdsColors
 
 /**
@@ -27,6 +30,7 @@ import com.orange.ods.theme.colors.OdsColors
  * @property darkThemeName The color name when dark theme is applied
  * @property xmlResource Optional resource used to use this color in XML
  */
+@ExperimentalOdsApi
 data class GuidelineColor(
     val callableName: String,
     val type: GuidelineColorType,
@@ -45,6 +49,7 @@ data class GuidelineColor(
     }
 }
 
+@ExperimentalOdsApi
 enum class GuidelineColorType {
     Core,
     Functional,
@@ -72,10 +77,13 @@ fun Color.toRgbString(): String {
  * @property textStyle The [TextStyle] of the typography
  * @property composeStyle The typography style to use for a composable
  * @property xmlResource The typography style to use in XML
+ * @property allCaps Controls whether the text is in uppercase or not.
  */
+@ExperimentalOdsApi
 data class GuidelineTextStyle(
     val name: String,
     val textStyle: TextStyle,
     val composeStyle: String,
-    @AttrRes val xmlResource: Int
+    @AttrRes val xmlResource: Int,
+    val allCaps: Boolean = false
 )

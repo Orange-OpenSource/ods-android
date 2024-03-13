@@ -1,26 +1,27 @@
 <?xml version="1.0" encoding="utf-8"?><!--
-  ~ /*
-  ~ * Copyright 2021 Orange
-  ~ *
-  ~ * Use of this source code is governed by an MIT-style
-  ~ * license that can be found in the LICENSE file or at
-  ~ * https://opensource.org/licenses/MIT.
-  ~ */
+  ~ Software Name: Orange Design System
+  ~ SPDX-FileCopyrightText: Copyright (c) Orange SA
+  ~ SPDX-License-Identifier: MIT
+  ~
+  ~ This software is distributed under the MIT license,
+  ~ the text of which is available at https://opensource.org/license/MIT/
+  ~ or see the "LICENSE" file for more details.
+  ~
+  ~ Software description: Android library of reusable graphical components
   -->
 
 <resources>
-    <string name="state_disabled">Disabled</string>
-    <string name="state_selected">Selected</string>
-    <string name="state_not_selected">Not selected</string>
-
-    <string name="dropdown_menu_action">Double click to change selection</string>
-
-    <string name="text_field_password_show">Show password</string>
-    <string name="text_field_password_hide">Hide password</string>
-
-    <string name="top_app_bar_overflow_menu_content_description">More options</string>
-
-    <string name="progress_linear_indicator_value">%s%%</string>
-
-    <string name="search_clear">Clear search</string>
+    <string name="ods_checked_stateA11y">Checked</string>
+    <string name="ods_disabled_stateA11y">Disabled</string>
+    <string name="ods_dropdownMenu_open_actionA11y">Double tap to change selection</string>
+    <string name="ods_off_stateA11y">Off</string>
+    <string name="ods_on_stateA11y">On</string>
+    <string name="ods_passwordTextField_hide_labelA11y">Hide password</string>
+    <string name="ods_passwordTextField_show_labelA11y">Show password</string>
+    <string name="ods_progressLinearIndicator_value">%s%%</string>
+    <string name="ods_searchTextField_clear_labelA11y">Clear search</string>
+    <string name="ods_selected_stateA11y">Selected</string>
+    <string name="ods_topAppBar_overflowMenu_labelA11y">More options</string>
+    <string name="ods_unchecked_stateA11y">Unchecked</string>
+    <string name="ods_unselected_stateA11y">Not selected</string>
 </resources>

@@ -1,11 +1,13 @@
 /*
+ * Software Name: Orange Design System
+ * SPDX-FileCopyrightText: Copyright (c) Orange SA
+ * SPDX-License-Identifier: MIT
  *
- *  Copyright 2021 Orange
+ * This software is distributed under the MIT license,
+ * the text of which is available at https://opensource.org/license/MIT/
+ * or see the "LICENSE" file for more details.
  *
- *  Use of this source code is governed by an MIT-style
- *  license that can be found in the LICENSE file or at
- *  https://opensource.org/licenses/MIT.
- * /
+ * Software description: Android library of reusable graphical components
  */
 
 package com.orange.ods.compose.component.textfield
@@ -13,25 +15,29 @@ package com.orange.ods.compose.component.textfield
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.padding
-import androidx.compose.material.Text
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ArrowDropDown
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.rotate
+import androidx.compose.ui.focus.focusProperties
 import androidx.compose.ui.graphics.ImageBitmap
 import androidx.compose.ui.graphics.painter.Painter
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.graphics.vector.rememberVectorPainter
 import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.text.TextStyle
+import androidx.compose.ui.text.input.TextFieldValue
+import androidx.compose.ui.text.toUpperCase
 import com.orange.ods.R
 import com.orange.ods.compose.component.button.OdsIconButton
 import com.orange.ods.compose.component.content.OdsComponentContent
 import com.orange.ods.compose.component.content.OdsComponentIcon
 import com.orange.ods.compose.component.utilities.BasicPreviewParameterProvider
-import com.orange.ods.compose.text.OdsTextCaption
+import com.orange.ods.compose.text.OdsText
 import com.orange.ods.compose.theme.OdsTheme
+import com.orange.ods.theme.typography.OdsTextStyle
 
 /**
  * Contains classes to build an [com.orange.ods.compose.component.textfield.OdsTextField] or an [com.orange.ods.compose.component.textfield.password.OdsPasswordTextField].
@@ -46,16 +52,20 @@ object OdsTextField {
      * in the `onValueChange` method of the text field.
      * @property enabled Controls the enable state of the counter. If set to `false` the text will be displayed in disabled color.
      */
-    class CharacterCounter(private val characterCount: Int, private val maxCharacterCount: Int, private val enabled: Boolean = true) :
-        OdsComponentContent<Nothing>() {
+    class CharacterCounter(
+        val characterCount: Int,
+        val maxCharacterCount: Int,
+        val enabled: Boolean = true
+    ) : OdsComponentContent<Nothing>(Nothing::class.java) {
 
         @Composable
         override fun Content(modifier: Modifier) {
-            OdsTextCaption(
-                modifier = Modifier
+            OdsText(
+                modifier = modifier
                     .padding(top = dimensionResource(id = R.dimen.spacing_xs), end = dimensionResource(id = R.dimen.spacing_m)),
                 text = "$characterCount/$maxCharacterCount",
-                enabled = enabled
+                enabled = enabled,
+                style = OdsTextStyle.BodyS
             )
         }
     }
@@ -63,10 +73,14 @@ object OdsTextField {
     /**
      * A leading icon in an [OdsTextField].
      */
-    class LeadingIcon : OdsComponentIcon<LeadingIcon.ExtraParameters> {
+    class LeadingIcon private constructor(
+        val graphicsObject: Any,
+        val contentDescription: String,
+        val onClick: (() -> Unit)?
+    ) : OdsComponentIcon<LeadingIcon.ExtraParameters>(ExtraParameters::class.java, graphicsObject, contentDescription, onClick = onClick) {
 
-        data class ExtraParameters(
-            val enabled: Boolean
+        data class ExtraParameters internal constructor(
+            internal val enabled: Boolean
         ) : OdsComponentContent.ExtraParameters()
 
         /**
@@ -76,7 +90,7 @@ object OdsTextField {
          * @param contentDescription The content description associated to this [OdsTextField.LeadingIcon].
          * @param onClick Callback invoked on icon click.
          */
-        constructor(painter: Painter, contentDescription: String, onClick: (() -> Unit)? = null) : super(painter, contentDescription, onClick = onClick)
+        constructor(painter: Painter, contentDescription: String, onClick: (() -> Unit)? = null) : this(painter as Any, contentDescription, onClick)
 
         /**
          * Creates an instance of [OdsTextField.LeadingIcon].
@@ -85,11 +99,7 @@ object OdsTextField {
          * @param contentDescription The content description associated to this [OdsTextField.LeadingIcon].
          * @param onClick Callback invoked on icon click.
          */
-        constructor(imageVector: ImageVector, contentDescription: String, onClick: (() -> Unit)? = null) : super(
-            imageVector,
-            contentDescription,
-            onClick = onClick
-        )
+        constructor(imageVector: ImageVector, contentDescription: String, onClick: (() -> Unit)? = null) : this(imageVector as Any, contentDescription, onClick)
 
         /**
          * Creates an instance of [OdsTextField.LeadingIcon].
@@ -98,35 +108,40 @@ object OdsTextField {
          * @param contentDescription The content description associated to this [OdsTextField.LeadingIcon].
          * @param onClick Callback invoked on icon click.
          */
-        constructor(bitmap: ImageBitmap, contentDescription: String, onClick: (() -> Unit)? = null) : super(bitmap, contentDescription, onClick = onClick)
+        constructor(bitmap: ImageBitmap, contentDescription: String, onClick: (() -> Unit)? = null) : this(bitmap as Any, contentDescription, onClick)
 
         @Composable
         override fun Content(modifier: Modifier) {
-            enabled = extraParameters.enabled
+            setEnabled(extraParameters.enabled)
             super.Content(modifier)
         }
     }
 
     sealed interface Trailing {
-        data class ExtraParameters(
-            val enabled: Boolean,
-            val isTextFieldEmpty: Boolean
+        data class ExtraParameters internal constructor(
+            internal val enabled: Boolean,
+            internal val isTextFieldEmpty: Boolean
         ) : OdsComponentContent.ExtraParameters()
     }
 
-    class TrailingText(val text: String) : Trailing, OdsComponentContent<Trailing.ExtraParameters>() {
+    class TrailingText(val text: String) : Trailing, OdsComponentContent<Trailing.ExtraParameters>(Trailing.ExtraParameters::class.java) {
+
         @Composable
         override fun Content(modifier: Modifier) {
-            Text(
-                modifier = Modifier.padding(end = dimensionResource(id = R.dimen.spacing_s)),
+            OdsText(
+                modifier = modifier.padding(end = dimensionResource(id = R.dimen.spacing_s)),
                 text = text,
-                style = OdsTheme.typography.subtitle1,
+                style = OdsTextStyle.TitleM,
                 color = OdsTextFieldDefaults.trailingTextColor(extraParameters.isTextFieldEmpty, extraParameters.enabled)
             )
         }
     }
 
-    class TrailingIcon : Trailing, OdsComponentIcon<Trailing.ExtraParameters> {
+    class TrailingIcon private constructor(
+        val graphicsObject: Any,
+        val contentDescription: String,
+        val onClick: (() -> Unit)?
+    ) : Trailing, OdsComponentIcon<Trailing.ExtraParameters>(Trailing.ExtraParameters::class.java, graphicsObject, contentDescription, onClick = onClick) {
 
         /**
          * Creates an instance of [OdsTextField.TrailingIcon].
@@ -135,7 +150,7 @@ object OdsTextField {
          * @param contentDescription The content description associated to this [OdsTextField.TrailingIcon].
          * @param onClick Callback invoked on icon click.
          */
-        constructor(painter: Painter, contentDescription: String, onClick: (() -> Unit)? = null) : super(painter, contentDescription, onClick = onClick)
+        constructor(painter: Painter, contentDescription: String, onClick: (() -> Unit)? = null) : this(painter as Any, contentDescription, onClick)
 
         /**
          * Creates an instance of [OdsTextField.TrailingIcon].
@@ -144,11 +159,7 @@ object OdsTextField {
          * @param contentDescription The content description associated to this [OdsTextField.TrailingIcon].
          * @param onClick Callback invoked on icon click.
          */
-        constructor(imageVector: ImageVector, contentDescription: String, onClick: (() -> Unit)? = null) : super(
-            imageVector,
-            contentDescription,
-            onClick = onClick
-        )
+        constructor(imageVector: ImageVector, contentDescription: String, onClick: (() -> Unit)? = null) : this(imageVector as Any, contentDescription, onClick)
 
         /**
          * Creates an instance of [OdsTextField.TrailingIcon].
@@ -157,33 +168,36 @@ object OdsTextField {
          * @param contentDescription The content description associated to this [OdsTextField.TrailingIcon].
          * @param onClick Callback invoked on icon click.
          */
-        constructor(bitmap: ImageBitmap, contentDescription: String, onClick: (() -> Unit)? = null) : super(bitmap, contentDescription, onClick = onClick)
+        constructor(bitmap: ImageBitmap, contentDescription: String, onClick: (() -> Unit)? = null) : this(bitmap as Any, contentDescription, onClick)
 
         @Composable
         override fun Content(modifier: Modifier) {
-            enabled = extraParameters.enabled
+            setEnabled(extraParameters.enabled)
             super.Content(modifier)
         }
     }
 }
 
-internal class OdsExposedDropdownMenuTrailing(val expanded: Boolean) : OdsTextField.Trailing, OdsComponentContent<OdsTextField.Trailing.ExtraParameters>() {
+internal class OdsExposedDropdownMenuTrailing(val expanded: Boolean) : OdsTextField.Trailing,
+    OdsComponentContent<OdsTextField.Trailing.ExtraParameters>(OdsTextField.Trailing.ExtraParameters::class.java) {
     @Composable
     override fun Content(modifier: Modifier) {
         val degrees = if (expanded && extraParameters.enabled) 180f else 0f
-        Box(modifier = Modifier.rotate(degrees)) {
-            OdsTextFieldIcon(
-                painter = rememberVectorPainter(image = Icons.Filled.ArrowDropDown),
-                contentDescription = null,
-                onClick = if (extraParameters.enabled) {
-                    {}
-                } else {
-                    null
-                }
-            )
+
+        Box(
+            modifier = Modifier
+                .rotate(degrees)
+        ) {
+            OdsIconButton(
+                modifier = Modifier.focusProperties { canFocus = false },
+                icon = OdsIconButton.Icon(
+                    painter = rememberVectorPainter(image = Icons.Filled.ArrowDropDown),
+                    contentDescription = ""
+                ),
+                enabled = extraParameters.enabled,
+                onClick = {})
         }
     }
-
 }
 
 @Composable
@@ -199,24 +213,21 @@ internal fun OdsTextFieldBottomRow(isError: Boolean, errorMessage: String?, char
 }
 
 @Composable
-internal fun OdsTextFieldIcon(painter: Painter, contentDescription: String?, onClick: (() -> Unit)?) {
-    OdsIconButton(
-        icon = OdsIconButton.Icon(
-            painter = painter, contentDescription = contentDescription.orEmpty()
-        ),
-        enabled = onClick != null,
-        onClick = onClick ?: {})
+internal fun styledTextFieldValue(value: TextFieldValue, textStyle: TextStyle): TextFieldValue {
+    return with(value) {
+        if (OdsTheme.typography.isAllCapsTextStyle(textStyle)) copy(annotatedString = annotatedString.toUpperCase()) else this
+    }
 }
 
 @Composable
 private fun OdsTextFieldErrorText(message: String) {
-    Text(
+    OdsText(
         modifier = Modifier.padding(
             start = dimensionResource(id = R.dimen.spacing_m),
             top = dimensionResource(id = R.dimen.spacing_xs)
         ),
         text = message,
-        style = OdsTheme.typography.caption,
+        style = OdsTextStyle.BodyS,
         color = OdsTheme.colors.error
     )
 }

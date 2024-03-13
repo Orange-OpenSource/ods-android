@@ -1,11 +1,13 @@
 /*
+ * Software Name: Orange Design System
+ * SPDX-FileCopyrightText: Copyright (c) Orange SA
+ * SPDX-License-Identifier: MIT
  *
- *  Copyright 2021 Orange
+ * This software is distributed under the MIT license,
+ * the text of which is available at https://opensource.org/license/MIT/
+ * or see the "LICENSE" file for more details.
  *
- *  Use of this source code is governed by an MIT-style
- *  license that can be found in the LICENSE file or at
- *  https://opensource.org/licenses/MIT.
- * /
+ * Software description: Android library of reusable graphical components 
  */
 
 package com.orange.ods.app.ui.components.chips
@@ -28,6 +30,7 @@ import androidx.compose.ui.res.stringResource
 import coil.compose.rememberAsyncImagePainter
 import com.orange.ods.app.R
 import com.orange.ods.app.domain.recipes.LocalRecipes
+import com.orange.ods.app.ui.LocalThemeManager
 import com.orange.ods.app.ui.components.Variant
 import com.orange.ods.app.ui.components.chips.ChipCustomizationState.ChipType
 import com.orange.ods.app.ui.components.chips.ChipCustomizationState.LeadingElement
@@ -37,12 +40,14 @@ import com.orange.ods.app.ui.utilities.DrawableManager
 import com.orange.ods.app.ui.utilities.code.CodeImplementationColumn
 import com.orange.ods.app.ui.utilities.code.FunctionCallCode
 import com.orange.ods.app.ui.utilities.composable.Subtitle
+import com.orange.ods.app.ui.utilities.extension.buildImageRequest
 import com.orange.ods.compose.OdsComposable
 import com.orange.ods.compose.component.chip.OdsChip
-import com.orange.ods.compose.component.chip.OdsChoiceChip
 import com.orange.ods.compose.component.chip.OdsChoiceChipsFlowRow
 import com.orange.ods.compose.component.listitem.OdsListItem
-import com.orange.ods.compose.text.OdsTextBody2
+import com.orange.ods.compose.text.OdsText
+import com.orange.ods.compose.extension.orElse
+import com.orange.ods.theme.typography.OdsTextStyle
 
 @OptIn(ExperimentalMaterialApi::class)
 @Composable
@@ -56,14 +61,16 @@ fun Chip(variant: Variant) {
                 if (isInputChip) {
                     Subtitle(textRes = R.string.component_element_leading, horizontalPadding = true)
                     OdsChoiceChipsFlowRow(
-                        value = leadingElement.value,
-                        onValueChange = { value -> leadingElement.value = value },
+                        selectedChoiceChipIndex = ChipCustomizationState.LeadingElement.entries.indexOf(leadingElement.value),
                         modifier = Modifier.padding(horizontal = dimensionResource(id = com.orange.ods.R.dimen.spacing_m)),
-                        chips = listOf(
-                            OdsChoiceChip(text = stringResource(id = R.string.component_element_none), value = LeadingElement.None),
-                            OdsChoiceChip(text = stringResource(id = R.string.component_element_avatar), value = LeadingElement.Avatar),
-                            OdsChoiceChip(text = stringResource(id = R.string.component_element_icon), value = LeadingElement.Icon)
-                        )
+                        choiceChips = ChipCustomizationState.LeadingElement.entries.map { leadingElement ->
+                            val textResId = when (leadingElement) {
+                                LeadingElement.None -> R.string.component_element_none
+                                LeadingElement.Avatar -> R.string.component_element_avatar
+                                LeadingElement.Icon -> R.string.component_element_icon
+                            }
+                            OdsChoiceChipsFlowRow.ChoiceChip(stringResource(id = textResId), { this.leadingElement.value = leadingElement })
+                        }
                     )
                 } else {
                     resetLeadingElement()
@@ -91,9 +98,10 @@ fun ChipTypeDemo(chipType: ChipType, content: @Composable () -> Unit) {
                 vertical = dimensionResource(id = com.orange.ods.R.dimen.screen_vertical_margin)
             )
     ) {
-        OdsTextBody2(
+        OdsText(
             modifier = Modifier.padding(bottom = dimensionResource(id = com.orange.ods.R.dimen.spacing_s)),
-            text = stringResource(id = chipType.descriptionRes)
+            text = stringResource(id = chipType.descriptionRes),
+            style = OdsTextStyle.BodyM
         )
         content()
     }
@@ -108,13 +116,12 @@ private fun Chip(chipCustomizationState: ChipCustomizationState) {
     with(chipCustomizationState) {
         if (isChoiceChip) {
             OdsChoiceChipsFlowRow(
-                value = choiceChipIndexSelected.value,
-                onValueChange = { value -> choiceChipIndexSelected.value = value },
+                selectedChoiceChipIndex = selectedChoiceChipIndex.value.orElse { 0 },
                 modifier = Modifier.padding(horizontal = dimensionResource(id = com.orange.ods.R.dimen.spacing_m)),
-                chips = recipes.mapIndexed { index, recipe ->
-                    OdsChoiceChip(
+                choiceChips = recipes.mapIndexed { index, recipe ->
+                    OdsChoiceChipsFlowRow.ChoiceChip(
                         text = recipe.title,
-                        value = index,
+                        { selectedChoiceChipIndex.value = index },
                         enabled = isEnabled
                     )
                 }
@@ -126,14 +133,13 @@ private fun Chip(chipCustomizationState: ChipCustomizationState) {
                 FunctionCallCode(
                     name = OdsComposable.OdsChoiceChipsFlowRow.name,
                     parameters = {
-                        stringRepresentation("value", choiceChipIndexSelected.value.toString())
-                        lambda("onValueChange")
-                        list("chips") {
-                            recipes.forEachIndexed { index, recipe ->
-                                classInstance<OdsChoiceChip<*>> {
+                        stringRepresentation("selectedChoiceChipIndex", selectedChoiceChipIndex.value.toString())
+                        list("choiceChips") {
+                            recipes.forEach { recipe ->
+                                classInstance<OdsChoiceChipsFlowRow.ChoiceChip> {
                                     text(recipe.title)
-                                    stringRepresentation("value", index)
                                     if (!isEnabled) enabled(false)
+                                    onClick()
                                 }
                             }
                         }
@@ -147,10 +153,11 @@ private fun Chip(chipCustomizationState: ChipCustomizationState) {
                 onClick = { clickOnElement(context, recipe?.title.orEmpty()) },
                 leading = when {
                     isActionChip || hasLeadingIcon -> recipe?.iconResId?.let { OdsChip.LeadingIcon(painterResource(id = it), "") }
-                    hasLeadingAvatar ->  {
+                    hasLeadingAvatar -> {
+                        val darkModeEnabled = LocalThemeManager.current.darkModeEnabled
                         OdsChip.LeadingAvatar(
                             rememberAsyncImagePainter(
-                                model = recipe?.imageUrl,
+                                model = buildImageRequest(context, recipe?.imageUrl, darkModeEnabled),
                                 placeholder = painterResource(id = DrawableManager.getPlaceholderSmallResId()),
                                 error = painterResource(id = DrawableManager.getPlaceholderSmallResId(error = true))
                             ), ""

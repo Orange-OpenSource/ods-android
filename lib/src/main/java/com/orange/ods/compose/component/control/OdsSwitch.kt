@@ -1,11 +1,13 @@
 /*
+ * Software Name: Orange Design System
+ * SPDX-FileCopyrightText: Copyright (c) Orange SA
+ * SPDX-License-Identifier: MIT
  *
- *  Copyright 2021 Orange
+ * This software is distributed under the MIT license,
+ * the text of which is available at https://opensource.org/license/MIT/
+ * or see the "LICENSE" file for more details.
  *
- *  Use of this source code is governed by an MIT-style
- *  license that can be found in the LICENSE file or at
- *  https://opensource.org/licenses/MIT.
- * /
+ * Software description: Android library of reusable graphical components
  */
 
 package com.orange.ods.compose.component.control
@@ -21,7 +23,7 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import com.orange.ods.compose.component.OdsComposable
-import com.orange.ods.compose.component.utilities.Preview
+import com.orange.ods.compose.component.utilities.OdsPreview
 import com.orange.ods.compose.component.utilities.UiModePreviews
 import com.orange.ods.compose.theme.OdsPrimaryRippleTheme
 import com.orange.ods.compose.theme.OdsTheme
@@ -51,14 +53,14 @@ fun OdsSwitch(
             onCheckedChange = onCheckedChange,
             modifier = modifier,
             enabled = enabled,
-            colors = SwitchDefaults.colors(uncheckedThumbColor = OdsTheme.colors.component.switch.uncheckedThumb)
+            colors = SwitchDefaults.colors(uncheckedThumbColor = OdsTheme.colors.components.switch.uncheckedThumb)
         )
     }
 }
 
 @UiModePreviews.Default
 @Composable
-private fun PreviewOdsSwitch() = Preview {
+private fun PreviewOdsSwitch() = OdsPreview {
     var checked by remember { mutableStateOf(false) }
     OdsSwitch(
         checked = checked,

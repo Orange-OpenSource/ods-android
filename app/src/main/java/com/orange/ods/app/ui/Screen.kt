@@ -1,28 +1,27 @@
 /*
+ * Software Name: Orange Design System
+ * SPDX-FileCopyrightText: Copyright (c) Orange SA
+ * SPDX-License-Identifier: MIT
  *
- *  Copyright 2021 Orange
+ * This software is distributed under the MIT license,
+ * the text of which is available at https://opensource.org/license/MIT/
+ * or see the "LICENSE" file for more details.
  *
- *  Use of this source code is governed by an MIT-style
- *  license that can be found in the LICENSE file or at
- *  https://opensource.org/licenses/MIT.
- * /
+ * Software description: Android library of reusable graphical components
  */
 
 package com.orange.ods.app.ui
 
 import android.os.Bundle
 import androidx.compose.runtime.Composable
-import androidx.compose.ui.text.input.TextFieldValue
 import com.orange.ods.app.R
 import com.orange.ods.app.ui.components.ComponentsNavigation
-import com.orange.ods.app.ui.components.ComponentsNavigation.ComponentDemoRoute
-import com.orange.ods.app.ui.components.ComponentsNavigation.ComponentDetailRoute
-import com.orange.ods.app.ui.components.ComponentsNavigation.ComponentVariantDemoRoute
 import com.orange.ods.app.ui.components.Variant
 import com.orange.ods.app.ui.guidelines.GuidelinesNavigation
-import com.orange.ods.app.ui.modules.ModuleDemoDestinations
+import com.orange.ods.app.ui.modules.ModulesNavigation
 import com.orange.ods.app.ui.utilities.UiString
-import com.orange.ods.compose.component.content.OdsComponentContent
+import com.orange.ods.compose.component.appbar.top.OdsTopAppBar
+import com.orange.ods.compose.extension.orElse
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.asSharedFlow
@@ -36,8 +35,12 @@ fun getScreen(route: String, args: Bundle?): Screen? {
         // Specific element route -> get element id
         val (routeRoot) = matchElementRouteResult.destructured
         when (routeRoot) {
-            ComponentDetailRoute, ComponentDemoRoute -> args?.getLong(ComponentsNavigation.ComponentIdKey)?.let { Screen.Component(it) }
-            ComponentVariantDemoRoute -> args?.getLong(ComponentsNavigation.ComponentVariantIdKey)?.let { Screen.ComponentVariant(it) }
+            ComponentsNavigation.ComponentDetailRoute, ComponentsNavigation.ComponentDemoRoute -> {
+                args?.getLong(ComponentsNavigation.ComponentIdKey)?.let { Screen.Component(it) }
+            }
+            ComponentsNavigation.ComponentVariantDemoRoute -> {
+                args?.getLong(ComponentsNavigation.ComponentVariantIdKey)?.let { Screen.ComponentVariant(it) }
+            }
             else -> null
         }
     } else {
@@ -53,7 +56,7 @@ fun getScreen(route: String, args: Bundle?): Screen? {
  */
 sealed class Screen(
     val route: String,
-    val isLargeAppBar: Boolean = false,
+    val topAppBarType: TopAppBarType = TopAppBarType.Default,
     val title: UiString? = null,
     val hasTabs: Boolean = false
 ) {
@@ -63,17 +66,20 @@ sealed class Screen(
         val appBarActionClicked: Flow<AppBarAction> = _appBarActionClicked.asSharedFlow()
     }
 
+    enum class TopAppBarType {
+        Default, Large, Search
+    }
+
     fun isHome(previousRoute: String?): Boolean {
-        return (this in listOf(Guidelines, Components, Modules, About)) && previousRoute != ModuleDemoDestinations.AboutCustomizationRoute
+        return (this in listOf(Guidelines, Components, Modules, About)) && previousRoute != ModulesNavigation.AboutCustomizationRoute
     }
 
     val hasCustomAppBar: Boolean
         get() = this is ComponentVariant && Variant.fromId(this.variantId)?.customizableTopAppBar == true
 
     @Composable
-    fun getAppBarActions(previousRoute: String?, onSearchedTextChange: (TextFieldValue) -> Unit): List<OdsComponentContent<Nothing>> = when {
+    fun getAppBarActions(previousRoute: String?): List<OdsTopAppBar.ActionButton> = when {
         isHome(previousRoute) -> getHomeActions { action -> _appBarActionClicked.tryEmit(action) }
-        this is Search -> listOf(getSearchFieldAction(onSearchedTextChange))
         else -> getDefaultActions { action -> _appBarActionClicked.tryEmit(action) }
     }
 
@@ -119,28 +125,39 @@ sealed class Screen(
     // Components screens
 
     data class Component(val componentId: Long) : Screen(
-        route = ComponentDetailRoute,
+        route = ComponentsNavigation.ComponentDetailRoute,
         title = com.orange.ods.app.ui.components.Component.fromId(componentId)?.titleRes?.let { UiString.StringResource(it) }
     )
 
     data class ComponentVariant(val variantId: Long) : Screen(
-        route = ComponentVariantDemoRoute,
+        route = ComponentsNavigation.ComponentVariantDemoRoute,
         title = Variant.fromId(variantId)?.titleRes?.let { UiString.StringResource(it) },
-        isLargeAppBar = Variant.fromId(variantId)?.largeTopAppBar == true,
+        topAppBarType = Variant.fromId(variantId)?.topAppBarType.orElse { TopAppBarType.Default },
         hasTabs = Variant.fromId(variantId)?.hasTabs == true
     )
 
     // Modules screens
 
     data object ModuleAbout : Screen(
-        route = ModuleDemoDestinations.AboutCustomizationRoute,
+        route = ModulesNavigation.AboutCustomizationRoute,
         title = UiString.StringResource(R.string.module_about),
+    )
+
+    data object ModuleEmptyStateCustomization : Screen(
+        route = ModulesNavigation.EmptyStateCustomizationRoute,
+        title = UiString.StringResource(R.string.module_emptyState_title)
+    )
+
+    data object ModuleEmptyStateDemo : Screen(
+        route = ModulesNavigation.EmptyStateDemoRoute,
+        title = UiString.StringResource(R.string.module_emptyState_title)
     )
 
     // Search screen
 
     data object Search : Screen(
-        route = MainNavigation.SearchRoute
+        route = MainNavigation.SearchRoute,
+        topAppBarType = TopAppBarType.Search
     )
 
 }

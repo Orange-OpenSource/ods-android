@@ -1,11 +1,13 @@
 /*
+ * Software Name: Orange Design System
+ * SPDX-FileCopyrightText: Copyright (c) Orange SA
+ * SPDX-License-Identifier: MIT
  *
- *  Copyright 2021 Orange
+ * This software is distributed under the MIT license,
+ * the text of which is available at https://opensource.org/license/MIT/
+ * or see the "LICENSE" file for more details.
  *
- *  Use of this source code is governed by an MIT-style
- *  license that can be found in the LICENSE file or at
- *  https://opensource.org/licenses/MIT.
- * /
+ * Software description: Android library of reusable graphical components
  */
 
 package com.orange.ods.app.ui.components.buttons
@@ -24,7 +26,6 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.stringResource
 import com.orange.ods.app.R
@@ -34,12 +35,13 @@ import com.orange.ods.app.ui.components.utilities.ComponentCustomizationBottomSh
 import com.orange.ods.app.ui.utilities.composable.Subtitle
 import com.orange.ods.compose.component.button.OdsButton
 import com.orange.ods.compose.component.button.OdsTextButton
-import com.orange.ods.compose.component.chip.OdsChoiceChip
 import com.orange.ods.compose.component.chip.OdsChoiceChipsFlowRow
 import com.orange.ods.compose.component.listitem.OdsListItem
-import com.orange.ods.compose.text.OdsTextBody2
-import com.orange.ods.compose.theme.OdsDisplaySurface
+import com.orange.ods.compose.text.OdsText
 import com.orange.ods.compose.theme.OdsTheme
+import com.orange.ods.compose.theme.OdsThemeTweak
+import com.orange.ods.compose.theme.OdsThemeTweakType
+import com.orange.ods.theme.typography.OdsTextStyle
 
 @OptIn(ExperimentalMaterialApi::class)
 @Composable
@@ -61,32 +63,29 @@ fun ComponentButtons(variant: Variant) {
                 when (variant) {
                     Variant.ButtonsFunctional -> {
                         Subtitle(textRes = R.string.component_button_style_functional, horizontalPadding = true)
+                        val buttonStyles = listOf(OdsButton.Style.FunctionalPositive, OdsButton.Style.FunctionalNegative)
                         OdsChoiceChipsFlowRow(
-                            value = buttonStyle.value,
-                            onValueChange = { value -> buttonStyle.value = value },
+                            selectedChoiceChipIndex = buttonStyles.indexOf(buttonStyle.value),
                             modifier = Modifier.padding(horizontal = dimensionResource(id = com.orange.ods.R.dimen.spacing_m)),
-                            chips = listOf(
-                                OdsChoiceChip(
-                                    text = stringResource(id = R.string.component_button_style_functional_positive),
-                                    value = OdsButton.Style.FunctionalPositive
-                                ),
-                                OdsChoiceChip(
-                                    text = stringResource(id = R.string.component_button_style_functional_negative),
-                                    value = OdsButton.Style.FunctionalNegative
-                                )
-                            )
+                            choiceChips = buttonStyles.map { buttonStyle ->
+                                val textResId =
+                                    if (buttonStyle == OdsButton.Style.FunctionalPositive) R.string.component_button_style_functional_positive else R.string.component_button_style_functional_negative
+                                OdsChoiceChipsFlowRow.ChoiceChip(stringResource(id = textResId), { this.buttonStyle.value = buttonStyle })
+                            }
                         )
                     }
                     Variant.ButtonsText -> {
                         Subtitle(textRes = R.string.component_style, horizontalPadding = true)
                         OdsChoiceChipsFlowRow(
-                            value = textButtonStyle.value,
-                            onValueChange = { value -> textButtonStyle.value = value },
+                            selectedChoiceChipIndex = OdsTextButton.Style.entries.indexOf(textButtonStyle.value),
                             modifier = Modifier.padding(horizontal = dimensionResource(id = com.orange.ods.R.dimen.spacing_m)),
-                            chips = listOf(
-                                OdsChoiceChip(text = stringResource(id = R.string.component_button_style_primary), value = OdsTextButton.Style.Primary),
-                                OdsChoiceChip(text = stringResource(id = R.string.component_button_style_default), value = OdsTextButton.Style.Default)
-                            )
+                            choiceChips = OdsTextButton.Style.entries.map { textButtonStyle ->
+                                val textResId = when (textButtonStyle) {
+                                    OdsTextButton.Style.Default -> R.string.component_button_style_default
+                                    OdsTextButton.Style.Primary -> R.string.component_button_style_primary
+                                }
+                                OdsChoiceChipsFlowRow.ChoiceChip(stringResource(id = textResId), { this.textButtonStyle.value = textButtonStyle })
+                            }
                         )
                     }
                     Variant.ButtonsTextToggleGroup -> {
@@ -139,39 +138,28 @@ fun ComponentButtons(variant: Variant) {
 @Composable
 fun InvertedBackgroundColumn(
     horizontalAlignment: Alignment.Horizontal = Alignment.Start,
-    content: @Composable InvertedBackgroundColumnScope.() -> Unit
+    content: @Composable ColumnScope.() -> Unit
 ) {
-    val backgroundColor: Color
-    @StringRes val textRes: Int
-    val displaySurface: OdsDisplaySurface
-    if (isSystemInDarkTheme()) {
-        backgroundColor = OdsTheme.lightThemeColors.surface
-        textRes = R.string.component_force_on_light
-        displaySurface = OdsDisplaySurface.Light
-    } else {
-        backgroundColor = OdsTheme.darkThemeColors.surface
-        textRes = R.string.component_force_on_dark
-        displaySurface = OdsDisplaySurface.Dark
-    }
+    @StringRes val textRes = if (isSystemInDarkTheme()) R.string.component_force_on_light else R.string.component_force_on_dark
 
-    Column(
-        modifier = Modifier
-            .fillMaxWidth()
-            .background(color = backgroundColor)
-            .padding(bottom = dimensionResource(com.orange.ods.R.dimen.spacing_m)),
-        horizontalAlignment = horizontalAlignment
-    ) {
-        OdsTextBody2(
+    OdsThemeTweak(tweakType = OdsThemeTweakType.Inverted) {
+        Column(
             modifier = Modifier
-                .padding(horizontal = dimensionResource(id = com.orange.ods.R.dimen.spacing_m))
-                .padding(top = dimensionResource(id = com.orange.ods.R.dimen.spacing_s))
                 .fillMaxWidth()
-                .align(Alignment.Start),
-            text = stringResource(id = textRes),
-            displaySurface = displaySurface
-        )
-        InvertedBackgroundColumnScope(this, displaySurface).content()
+                .background(color = OdsTheme.colors.surface)
+                .padding(bottom = dimensionResource(com.orange.ods.R.dimen.spacing_m)),
+            horizontalAlignment = horizontalAlignment
+        ) {
+            OdsText(
+                modifier = Modifier
+                    .padding(horizontal = dimensionResource(id = com.orange.ods.R.dimen.spacing_m))
+                    .padding(top = dimensionResource(id = com.orange.ods.R.dimen.spacing_s))
+                    .fillMaxWidth()
+                    .align(Alignment.Start),
+                text = stringResource(id = textRes),
+                style = OdsTextStyle.BodyM
+            )
+            content()
+        }
     }
 }
-
-class InvertedBackgroundColumnScope(scope: ColumnScope, val displaySurface: OdsDisplaySurface) : ColumnScope by scope

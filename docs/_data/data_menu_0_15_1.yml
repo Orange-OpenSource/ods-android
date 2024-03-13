@@ -1,0 +1,58 @@
+version: "0.15.1"
+toc2:
+  - title: Getting Started
+    subfolderitems:
+      - page: Instructions
+        url: /index.html
+
+  - title: Guidelines
+    subfolderitems:
+      - page: Colors
+        url: /guidelines/Colors_docs
+      - page: Typography
+        url: /guidelines/Typography_docs
+
+  - title: Components
+    subfolderitems:
+      - page: "App bars: bottom"
+        url: /components/AppBarsBottom_docs
+      - page: "App bars: top"
+        url: /components/AppBarsTop_docs
+      - page: Banners
+        url: /components/Banners_docs
+      - page: Buttons
+        url: /components/Buttons_docs
+      - page: Cards
+        url: /components/Cards_docs
+      - page: Checkboxes
+        url: /components/Checkboxes_docs
+      - page: Chips
+        url: /components/Chips_docs
+      - page: Dialogs
+        url: /components/Dialogs_docs
+      - page: Floating action buttons
+        url: /components/FloatingActionButtons_docs
+      - page: Image tile
+        url: /components/ImageTile_docs
+      - page: Lists
+        url: /components/Lists_docs
+      - page: Menus
+        url: /components/Menus_docs
+      - page: "Navigation: bottom"
+        url: /components/NavigationBottom_docs
+      - page: Progress indicators
+        url: /components/ProgressIndicators_docs
+      - page: Radio buttons
+        url: /components/RadioButtons_docs
+      - page: "Sheets: bottom"
+        url: /components/SheetsBottom_docs
+      - page: Sliders
+        url: /components/Sliders_docs
+      - page: Snackbars
+        url: /components/Snackbars_docs
+      - page: Switches
+        url: /components/Switches_docs
+      - page: Tabs
+        url: /components/Tabs_docs
+      - page: Text fields
+        url: /components/TextFields_docs

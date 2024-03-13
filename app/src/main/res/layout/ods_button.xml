@@ -1,11 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?><!--
-  ~ /*
-  ~ * Copyright 2021 Orange
-  ~ *
-  ~ * Use of this source code is governed by an MIT-style
-  ~ * license that can be found in the LICENSE file or at
-  ~ * https://opensource.org/licenses/MIT.
-  ~ */
+  ~ Software Name: Orange Design System
+  ~ SPDX-FileCopyrightText: Copyright (c) Orange SA
+  ~ SPDX-License-Identifier: MIT
+  ~
+  ~ This software is distributed under the MIT license,
+  ~ the text of which is available at https://opensource.org/license/MIT/
+  ~ or see the "LICENSE" file for more details.
+  ~
+  ~ Software description: Android library of reusable graphical components
   -->
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
@@ -29,8 +31,8 @@
             type="com.orange.ods.compose.component.button.OdsButton.Style" />
 
         <variable
-            name="displaySurface"
-            type="com.orange.ods.compose.theme.OdsDisplaySurface" />
+            name="invertedTheme"
+            type="Boolean" />
 
     </data>
 
@@ -46,7 +48,7 @@
             app:text="@{text}"
             app:enabled="@{enabled}"
             app:odsButtonStyle="@{style}"
-            app:displaySurface="@{displaySurface}" />
+            app:invertedTheme="@{invertedTheme}" />
 
         <!-- Invisible OdsButton used for tests -->
         <com.orange.ods.xml.component.button.OdsButton
@@ -57,8 +59,7 @@
             app:icon="@drawable/ic_add"
             app:text="Button"
             app:enabled="true"
-            app:odsButtonStyle="standard"
-            app:displaySurface="standard" />
+            app:odsButtonStyle="standard" />
 
     </FrameLayout>
 

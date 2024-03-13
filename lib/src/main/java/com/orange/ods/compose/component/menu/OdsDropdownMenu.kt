@@ -1,11 +1,13 @@
 /*
+ * Software Name: Orange Design System
+ * SPDX-FileCopyrightText: Copyright (c) Orange SA
+ * SPDX-License-Identifier: MIT
  *
- *  Copyright 2021 Orange
+ * This software is distributed under the MIT license,
+ * the text of which is available at https://opensource.org/license/MIT/
+ * or see the "LICENSE" file for more details.
  *
- *  Use of this source code is governed by an MIT-style
- *  license that can be found in the LICENSE file or at
- *  https://opensource.org/licenses/MIT.
- * /
+ * Software description: Android library of reusable graphical components
  */
 
 package com.orange.ods.compose.component.menu
@@ -15,7 +17,6 @@ import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material.DropdownMenu
 import androidx.compose.material.DropdownMenuItem
-import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.painter.Painter
@@ -30,10 +31,11 @@ import com.orange.ods.compose.component.OdsComposable
 import com.orange.ods.compose.component.content.OdsComponentContent
 import com.orange.ods.compose.component.divider.OdsDivider
 import com.orange.ods.compose.component.icon.OdsIcon
-import com.orange.ods.compose.component.utilities.Preview
+import com.orange.ods.compose.component.utilities.OdsPreview
 import com.orange.ods.compose.component.utilities.UiModePreviews
+import com.orange.ods.compose.text.OdsText
 import com.orange.ods.compose.theme.OdsTheme
-import com.orange.ods.compose.utilities.extension.enable
+import com.orange.ods.theme.typography.OdsTextStyle
 
 /**
  * <a href="https://system.design.orange.com/0c1af118d/p/07a69b-menus/b/862cbb" class="external" target="_blank">ODS menus</a>.
@@ -84,14 +86,16 @@ object OdsDropdownMenu {
      * @property onClick Called when the menu item was clicked
      */
     class Item private constructor(
-        private val text: String,
-        private val icon: Any?,
-        private val enabled: Boolean,
-        private val divider: Boolean,
-        private val onClick: () -> Unit
-    ) : OdsComponentContent<Item.ExtraParameters>() {
+        val text: String,
+        val icon: Any?,
+        val enabled: Boolean,
+        val divider: Boolean,
+        val onClick: () -> Unit
+    ) : OdsComponentContent<Item.ExtraParameters>(ExtraParameters::class.java) {
 
-        data class ExtraParameters(val onDismissRequest: () -> Unit) : OdsComponentContent.ExtraParameters()
+        data class ExtraParameters internal constructor(
+            internal val onDismissRequest: () -> Unit
+        ) : OdsComponentContent.ExtraParameters()
 
         /**
          * Creates an instance of [OdsDropdownMenu.Item].
@@ -161,25 +165,28 @@ object OdsDropdownMenu {
 
         @Composable
         override fun Content(modifier: Modifier) {
-            DropdownMenuItem(
-                onClick = {
-                    onClick()
-                    extraParameters.onDismissRequest()
-                },
-                enabled = enabled
-            ) {
-                icon?.let {
-                    OdsIcon(
-                        graphicsObject = icon,
-                        contentDescription = "",
-                        tint = OdsTheme.colors.onSurface,
-                        enabled = enabled,
-                        modifier = Modifier.padding(end = dimensionResource(id = R.dimen.spacing_m)),
-                    )
+            with(extraParameters) {
+                DropdownMenuItem(
+                    modifier = modifier,
+                    onClick = {
+                        onClick()
+                        onDismissRequest()
+                    },
+                    enabled = enabled
+                ) {
+                    icon?.let {
+                        OdsIcon(
+                            graphicsObject = icon,
+                            contentDescription = "",
+                            tint = OdsTheme.colors.onSurface,
+                            enabled = enabled,
+                            modifier = Modifier.padding(end = dimensionResource(id = R.dimen.spacing_m)),
+                        )
+                    }
+                    OdsText(text = text, style = OdsTextStyle.BodyL, enabled = enabled)
                 }
-                Text(text = text, style = OdsTheme.typography.body1, color = OdsTheme.colors.onSurface.enable(enabled = enabled))
+                if (divider) OdsDivider()
             }
-            if (divider) OdsDivider()
         }
     }
 }
@@ -189,7 +196,7 @@ object OdsDropdownMenu {
  */
 @UiModePreviews.Default
 @Composable
-private fun PreviewOdsDropdownMenu() = Preview {
+private fun PreviewOdsDropdownMenu() = OdsPreview {
     val items = listOf(
         OdsDropdownMenu.Item("First menu item", painterResource(id = android.R.drawable.ic_dialog_email)) {},
         OdsDropdownMenu.Item("Second menu item", painterResource(id = android.R.drawable.ic_dialog_map), divider = true) {},

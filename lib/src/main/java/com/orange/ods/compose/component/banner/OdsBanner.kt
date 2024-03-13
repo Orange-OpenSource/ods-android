@@ -1,11 +1,13 @@
 /*
+ * Software Name: Orange Design System
+ * SPDX-FileCopyrightText: Copyright (c) Orange SA
+ * SPDX-License-Identifier: MIT
  *
- *  Copyright 2021 Orange
+ * This software is distributed under the MIT license,
+ * the text of which is available at https://opensource.org/license/MIT/
+ * or see the "LICENSE" file for more details.
  *
- *  Use of this source code is governed by an MIT-style
- *  license that can be found in the LICENSE file or at
- *  https://opensource.org/licenses/MIT.
- * /
+ * Software description: Android library of reusable graphical components
  */
 
 package com.orange.ods.compose.component.banner
@@ -13,10 +15,11 @@ package com.orange.ods.compose.component.banner
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.ExperimentalLayoutApi
+import androidx.compose.foundation.layout.FlowRow
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
-import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
@@ -39,9 +42,11 @@ import com.orange.ods.compose.component.content.OdsComponentCircularImage
 import com.orange.ods.compose.component.content.OdsComponentContent
 import com.orange.ods.compose.component.divider.OdsDivider
 import com.orange.ods.compose.component.utilities.BasicPreviewParameterProvider
-import com.orange.ods.compose.component.utilities.Preview
+import com.orange.ods.compose.component.utilities.OdsPreview
 import com.orange.ods.compose.component.utilities.UiModePreviews
+import com.orange.ods.compose.text.OdsText
 import com.orange.ods.compose.theme.OdsTheme
+import com.orange.ods.theme.typography.OdsTextStyle
 
 /**
  * <a href="https://system.design.orange.com/0c1af118d/p/19a040-banners/b/497b77" class="external" target="_blank">ODS banners</a>.
@@ -52,6 +57,7 @@ import com.orange.ods.compose.theme.OdsTheme
  * @param firstButton Primary button displayed in the banner.
  * @param secondButton Secondary button displayed into the banner next to the primary one.
  */
+@OptIn(ExperimentalLayoutApi::class)
 @Composable
 @OdsComposable
 fun OdsBanner(
@@ -93,10 +99,10 @@ fun OdsBanner(
             Row(
                 verticalAlignment = Alignment.CenterVertically
             ) {
-                Text(
+                OdsText(
                     modifier = Modifier.weight(1f),
                     text = message,
-                    style = OdsTheme.typography.body2,
+                    style = OdsTextStyle.BodyM,
                     color = OdsTheme.colors.onSurface,
                     maxLines = if (hasVisualOverflowText) Int.MAX_VALUE else 2,
                     overflow = TextOverflow.Ellipsis,
@@ -113,12 +119,13 @@ fun OdsBanner(
             }
         }
         if (!isSingleLineBanner && buttonCount > 0) {
-            Row(
+            FlowRow(
                 modifier = Modifier
-                    .padding(bottom = dimensionResource(id = R.dimen.spacing_xs))
                     .padding(horizontal = dimensionResource(id = R.dimen.spacing_m))
+                    .padding(bottom = dimensionResource(id = R.dimen.spacing_xs))
                     .align(Alignment.End),
-                horizontalArrangement = Arrangement.spacedBy(dimensionResource(id = R.dimen.spacing_s))
+                horizontalArrangement = Arrangement.spacedBy(dimensionResource(id = R.dimen.spacing_s), Alignment.End),
+                verticalArrangement = Arrangement.spacedBy((-6).dp)
             ) {
                 firstButton?.Content()
                 secondButton?.Content()
@@ -140,7 +147,7 @@ object OdsBanner {
      * @param text Text of the button.
      * @param onClick Will be called when the user clicks the button.
      */
-    class Button(private val text: String, private val onClick: () -> Unit) : OdsComponentContent<Nothing>() {
+    class Button(private val text: String, private val onClick: () -> Unit) : OdsComponentContent<Nothing>(Nothing::class.java) {
 
         @Composable
         override fun Content(modifier: Modifier) {
@@ -151,7 +158,10 @@ object OdsBanner {
     /**
      * An image in an OdsBanner.
      */
-    class Image : OdsComponentCircularImage {
+    class Image private constructor(
+        val graphicsObject: Any,
+        val contentDescription: String
+    ) : OdsComponentCircularImage<Nothing>(Nothing::class.java, graphicsObject, contentDescription) {
 
         /**
          * Creates an instance of [OdsBanner.Image].
@@ -159,7 +169,7 @@ object OdsBanner {
          * @param painter The painter to draw.
          * @param contentDescription The content description associated to this [OdsBanner.Image].
          */
-        constructor(painter: Painter, contentDescription: String) : super(painter, contentDescription)
+        constructor(painter: Painter, contentDescription: String) : this(painter as Any, contentDescription)
 
         /**
          * Creates an instance of [OdsBanner.Image].
@@ -167,7 +177,7 @@ object OdsBanner {
          * @param imageVector The image vector to draw.
          * @param contentDescription The content description associated to this [OdsBanner.Image].
          */
-        constructor(imageVector: ImageVector, contentDescription: String) : super(imageVector, contentDescription)
+        constructor(imageVector: ImageVector, contentDescription: String) : this(imageVector as Any, contentDescription)
 
         /**
          * Creates an instance of [OdsBanner.Image].
@@ -175,14 +185,14 @@ object OdsBanner {
          * @param bitmap The image bitmap to draw.
          * @param contentDescription The content description associated to this [OdsBanner.Image].
          */
-        constructor(bitmap: ImageBitmap, contentDescription: String) : super(bitmap, contentDescription)
+        constructor(bitmap: ImageBitmap, contentDescription: String) : this(bitmap as Any, contentDescription)
     }
 }
 
 @UiModePreviews.Default
 @Composable
 private fun PreviewOdsBanner(@PreviewParameter(OdsBannerPreviewParameterProvider::class) parameter: OdsBannerPreviewParameter) =
-    Preview {
+    OdsPreview {
         with(parameter) {
             OdsBanner(
                 message = message,
@@ -209,10 +219,12 @@ private val previewParameterValues: List<OdsBannerPreviewParameter>
         val shortMessage = "Here is a short banner message."
         val longMessage = "Here is a long banner message. One to two lines is preferable on mobile and tablet."
         val firstButtonText = "ACTION 1"
+        val firstButtonLongText = "ACTION with a very long label"
         val secondButtonText = "ACTION 2"
 
         return listOf(
             OdsBannerPreviewParameter(longMessage, firstButtonText, secondButtonText, imageRes),
+            OdsBannerPreviewParameter(longMessage, firstButtonLongText, secondButtonText, imageRes),
             OdsBannerPreviewParameter(shortMessage),
             OdsBannerPreviewParameter(shortMessage, firstButtonText),
             OdsBannerPreviewParameter(shortMessage, secondButtonText = secondButtonText),

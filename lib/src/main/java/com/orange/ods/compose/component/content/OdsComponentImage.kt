@@ -1,11 +1,13 @@
 /*
+ * Software Name: Orange Design System
+ * SPDX-FileCopyrightText: Copyright (c) Orange SA
+ * SPDX-License-Identifier: MIT
  *
- *  Copyright 2021 Orange
+ * This software is distributed under the MIT license,
+ * the text of which is available at https://opensource.org/license/MIT/
+ * or see the "LICENSE" file for more details.
  *
- *  Use of this source code is governed by an MIT-style
- *  license that can be found in the LICENSE file or at
- *  https://opensource.org/licenses/MIT.
- * /
+ * Software description: Android library of reusable graphical components
  */
 
 package com.orange.ods.compose.component.content
@@ -22,33 +24,42 @@ import androidx.compose.ui.layout.ContentScale
 /**
  * An image in a component.
  */
-abstract class OdsComponentImage<T> internal constructor(
+abstract class OdsComponentImage<T> protected constructor(
+    extraParametersClass: Class<T>,
     private val graphicsObject: Any,
     private val contentDescription: String,
     private val alignment: Alignment = Alignment.Center,
     private val contentScale: ContentScale = ContentScale.Fit
-) : OdsComponentContent<T>() where T : OdsComponentContent.ExtraParameters {
+) : OdsComponentContent<T>(extraParametersClass) where T : OdsComponentContent.ExtraParameters {
 
     protected constructor(
+        extraParametersClass: Class<T>,
         painter: Painter,
         contentDescription: String,
         alignment: Alignment = Alignment.Center,
         contentScale: ContentScale = ContentScale.Fit
-    ) : this(painter as Any, contentDescription, alignment, contentScale)
+    ) : this(extraParametersClass, painter as Any, contentDescription, alignment, contentScale)
 
     protected constructor(
+        extraParametersClass: Class<T>,
         imageVector: ImageVector,
         contentDescription: String,
         alignment: Alignment = Alignment.Center,
         contentScale: ContentScale = ContentScale.Fit
-    ) : this(imageVector as Any, contentDescription, alignment, contentScale)
+    ) : this(extraParametersClass, imageVector as Any, contentDescription, alignment, contentScale)
 
     protected constructor(
+        extraParametersClass: Class<T>,
         bitmap: ImageBitmap,
         contentDescription: String,
         alignment: Alignment = Alignment.Center,
         contentScale: ContentScale = ContentScale.Fit
-    ) : this(bitmap as Any, contentDescription, alignment, contentScale)
+    ) : this(extraParametersClass, bitmap as Any, contentDescription, alignment, contentScale)
+
+
+    val painter: Painter? = graphicsObject as? Painter
+    val imageVector: ImageVector? = graphicsObject as? ImageVector
+    val bitmap: ImageBitmap? = graphicsObject as? ImageBitmap
 
     @Composable
     override fun Content(modifier: Modifier) {

@@ -1,11 +1,13 @@
 /*
+ * Software Name: Orange Design System
+ * SPDX-FileCopyrightText: Copyright (c) Orange SA
+ * SPDX-License-Identifier: MIT
  *
- *  Copyright 2021 Orange
+ * This software is distributed under the MIT license,
+ * the text of which is available at https://opensource.org/license/MIT/
+ * or see the "LICENSE" file for more details.
  *
- *  Use of this source code is governed by an MIT-style
- *  license that can be found in the LICENSE file or at
- *  https://opensource.org/licenses/MIT.
- * /
+ * Software description: Android library of reusable graphical components
  */
 
 package com.orange.ods.app.ui.components.snackbars
@@ -38,7 +40,8 @@ import com.orange.ods.app.ui.utilities.composable.TechnicalText
 import com.orange.ods.compose.OdsComposable
 import com.orange.ods.compose.component.listitem.OdsListItem
 import com.orange.ods.compose.component.snackbar.OdsSnackbarHost
-import com.orange.ods.compose.text.OdsTextBody2
+import com.orange.ods.compose.text.OdsText
+import com.orange.ods.theme.typography.OdsTextStyle
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.launch
 
@@ -94,12 +97,13 @@ fun ComponentSnackbars() {
                 modifier = Modifier.padding(horizontal = dimensionResource(id = com.orange.ods.R.dimen.screen_horizontal_margin)),
                 contentBackground = false
             ) {
-                OdsTextBody2(
+                OdsText(
                     modifier = Modifier.padding(
                         top = dimensionResource(id = com.orange.ods.R.dimen.spacing_s),
                         bottom = dimensionResource(id = com.orange.ods.R.dimen.spacing_xs)
                     ),
-                    text = stringResource(id = R.string.component_snackbar_code_first_step)
+                    text = stringResource(id = R.string.component_snackbar_code_first_step),
+                    style = OdsTextStyle.BodyM
                 )
                 CodeBackgroundColumn {
                     FunctionCallCode(
@@ -117,12 +121,13 @@ fun ComponentSnackbars() {
                     }
                 }
 
-                OdsTextBody2(
+                OdsText(
                     modifier = Modifier.padding(
                         top = dimensionResource(id = com.orange.ods.R.dimen.spacing_s),
                         bottom = dimensionResource(id = com.orange.ods.R.dimen.spacing_xs)
                     ),
-                    text = stringResource(id = R.string.component_snackbar_code_second_step)
+                    text = stringResource(id = R.string.component_snackbar_code_second_step),
+                    style = OdsTextStyle.BodyM
                 )
                 CodeBackgroundColumn {
                     TechnicalText(text = "coroutineScope.launch {")

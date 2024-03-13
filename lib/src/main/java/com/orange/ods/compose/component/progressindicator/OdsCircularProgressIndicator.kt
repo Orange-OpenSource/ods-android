@@ -1,11 +1,13 @@
 /*
+ * Software Name: Orange Design System
+ * SPDX-FileCopyrightText: Copyright (c) Orange SA
+ * SPDX-License-Identifier: MIT
  *
- *  Copyright 2021 Orange
+ * This software is distributed under the MIT license,
+ * the text of which is available at https://opensource.org/license/MIT/
+ * or see the "LICENSE" file for more details.
  *
- *  Use of this source code is governed by an MIT-style
- *  license that can be found in the LICENSE file or at
- *  https://opensource.org/licenses/MIT.
- * /
+ * Software description: Android library of reusable graphical components 
  */
 
 package com.orange.ods.compose.component.progressindicator
@@ -21,10 +23,11 @@ import androidx.compose.ui.tooling.preview.PreviewParameter
 import com.orange.ods.R
 import com.orange.ods.compose.component.OdsComposable
 import com.orange.ods.compose.component.utilities.BasicPreviewParameterProvider
-import com.orange.ods.compose.component.utilities.Preview
+import com.orange.ods.compose.component.utilities.OdsPreview
 import com.orange.ods.compose.component.utilities.UiModePreviews
-import com.orange.ods.compose.text.OdsTextCaption
-import com.orange.ods.extension.orElse
+import com.orange.ods.compose.text.OdsText
+import com.orange.ods.compose.extension.orElse
+import com.orange.ods.theme.typography.OdsTextStyle
 
 
 /**
@@ -56,10 +59,10 @@ fun OdsCircularProgressIndicator(
             CircularProgressIndicator(modifier = modifier)
         }
         if (label != null) {
-            OdsTextCaption(
+            OdsText(
                 text = label,
-                modifier = Modifier
-                    .padding(top = dimensionResource(id = R.dimen.spacing_s))
+                modifier = Modifier.padding(top = dimensionResource(id = R.dimen.spacing_s)),
+                style = OdsTextStyle.BodyS
             )
         }
     }
@@ -68,7 +71,7 @@ fun OdsCircularProgressIndicator(
 
 @UiModePreviews.Default
 @Composable
-private fun PreviewOdsCircularProgressIndicator(@PreviewParameter(OdsCircularProgressIndicatorPreviewParameterProvider::class) progress: Float?) = Preview {
+private fun PreviewOdsCircularProgressIndicator(@PreviewParameter(OdsCircularProgressIndicatorPreviewParameterProvider::class) progress: Float?) = OdsPreview {
     OdsCircularProgressIndicator(progress = progress, label = "Downloading …")
 }
 

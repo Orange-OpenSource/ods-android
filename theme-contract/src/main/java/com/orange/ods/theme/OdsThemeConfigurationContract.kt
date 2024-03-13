@@ -1,20 +1,23 @@
 /*
+ * Software Name: Orange Design System
+ * SPDX-FileCopyrightText: Copyright (c) Orange SA
+ * SPDX-License-Identifier: MIT
  *
- *  Copyright 2021 Orange
+ * This software is distributed under the MIT license,
+ * the text of which is available at https://opensource.org/license/MIT/
+ * or see the "LICENSE" file for more details.
  *
- *  Use of this source code is governed by an MIT-style
- *  license that can be found in the LICENSE file or at
- *  https://opensource.org/licenses/MIT.
- * /
+ * Software description: Android library of reusable graphical components
  */
 
 package com.orange.ods.theme
 
 import android.os.Parcelable
 import androidx.compose.material.Shapes
-import androidx.compose.material.Typography
+import com.orange.ods.theme.annotation.ExperimentalOdsApi
 import com.orange.ods.theme.colors.OdsColors
 import com.orange.ods.theme.guideline.OdsGuideline
+import com.orange.ods.theme.typography.OdsTypography
 
 interface OdsThemeConfigurationContract : Parcelable {
 
@@ -28,10 +31,9 @@ interface OdsThemeConfigurationContract : Parcelable {
 
     /**
      * Customization of the typography if needed
-     * Note: If not overridden the MaterialTheme typography will be used
      */
-    val typography: Typography
-        get() = Typography()
+    val typography: OdsTypography
+        get() = OdsTypography()
 
     /**
      * Customization of the shapes if needed
@@ -50,6 +52,7 @@ interface OdsThemeConfigurationContract : Parcelable {
      * Guideline definition
      * By default a guideline typography is generated based on the theme configuration typography defined.
      */
+    @OptIn(ExperimentalOdsApi::class)
     val guideline: OdsGuideline
         get() = OdsGuideline(typography)
 

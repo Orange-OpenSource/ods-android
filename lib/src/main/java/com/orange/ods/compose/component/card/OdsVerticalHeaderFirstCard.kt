@@ -1,16 +1,18 @@
 /*
+ * Software Name: Orange Design System
+ * SPDX-FileCopyrightText: Copyright (c) Orange SA
+ * SPDX-License-Identifier: MIT
  *
- *  Copyright 2021 Orange
+ * This software is distributed under the MIT license,
+ * the text of which is available at https://opensource.org/license/MIT/
+ * or see the "LICENSE" file for more details.
  *
- *  Use of this source code is governed by an MIT-style
- *  license that can be found in the LICENSE file or at
- *  https://opensource.org/licenses/MIT.
- * /
+ * Software description: Android library of reusable graphical components
  */
 
 package com.orange.ods.compose.component.card
 
-import androidx.compose.foundation.layout.Arrangement
+import androidx.annotation.DrawableRes
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.IntrinsicSize
 import androidx.compose.foundation.layout.Row
@@ -23,15 +25,16 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.tooling.preview.PreviewParameter
 import androidx.compose.ui.unit.dp
 import com.orange.ods.R
 import com.orange.ods.compose.component.OdsComposable
-import com.orange.ods.compose.component.utilities.Preview
+import com.orange.ods.compose.component.utilities.BasicPreviewParameterProvider
+import com.orange.ods.compose.component.utilities.OdsPreview
 import com.orange.ods.compose.component.utilities.UiModePreviews
-import com.orange.ods.compose.text.OdsTextBody1
-import com.orange.ods.compose.text.OdsTextH6
-import com.orange.ods.compose.text.OdsTextSubtitle2
-import com.orange.ods.extension.orElse
+import com.orange.ods.compose.text.OdsText
+import com.orange.ods.compose.extension.orElse
+import com.orange.ods.theme.typography.OdsTextStyle
 
 /**
  * <a href="https://system.design.orange.com/0c1af118d/p/272739-cards/b/991690" target="_blank">ODS Card</a>.
@@ -75,9 +78,9 @@ fun OdsVerticalHeaderFirstCard(
             ) {
                 thumbnail?.Content()
                 Column(modifier = Modifier.padding(start = thumbnail?.let { dimensionResource(id = R.dimen.spacing_s) }.orElse { 0.dp })) {
-                    OdsTextH6(text = title)
+                    OdsText(text = title, style = OdsTextStyle.TitleL)
                     subtitle?.let {
-                        OdsTextSubtitle2(text = it)
+                        OdsText(text = it, style = OdsTextStyle.BodyM)
                     }
                 }
             }
@@ -88,11 +91,12 @@ fun OdsVerticalHeaderFirstCard(
             )
 
             text?.let {
-                OdsTextBody1(
+                OdsText(
                     modifier = Modifier
                         .padding(top = dimensionResource(id = R.dimen.spacing_m))
                         .padding(horizontal = dimensionResource(id = R.dimen.spacing_m)),
-                    text = it
+                    text = it,
+                    style = OdsTextStyle.BodyL
                 )
             }
 
@@ -100,29 +104,62 @@ fun OdsVerticalHeaderFirstCard(
                 Spacer(modifier = Modifier.height(dimensionResource(id = R.dimen.spacing_m)))
             }
 
-            Row(
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .padding(horizontal = dimensionResource(id = R.dimen.spacing_s)),
-                horizontalArrangement = Arrangement.spacedBy(dimensionResource(id = R.dimen.spacing_s))
-            ) {
-                firstButton?.Content()
-                secondButton?.Content()
-            }
+            OdsCardButtonsFlowRow(
+                modifier = Modifier.padding(horizontal = dimensionResource(id = R.dimen.spacing_s)),
+                firstButton = firstButton,
+                secondButton = secondButton
+            )
         }
     }
 }
 
 @UiModePreviews.Default
 @Composable
-private fun PreviewOdsVerticalHeaderFirstCard() = Preview {
-    OdsVerticalHeaderFirstCard(
-        title = "Title",
-        image = OdsCard.Image(painterResource(id = R.drawable.placeholder), ""),
-        thumbnail = OdsCard.Thumbnail(painterResource(id = R.drawable.placeholder_small), ""),
-        subtitle = "Subtitle",
-        text = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed non risus. Suspendisse lectus tortor, dignissim sit amet, adipiscing nec, ultricies sed, dolor.",
-        firstButton = OdsCard.Button("First button") {},
-        secondButton = OdsCard.Button("Second button") {}
-    )
-}
+private fun PreviewOdsVerticalHeaderFirstCard(@PreviewParameter(OdsVerticalHeaderFirstCardPreviewParameterProvider::class) parameter: OdsVerticalHeaderFirstCardPreviewParameter) =
+    OdsPreview {
+        with(parameter) {
+            OdsVerticalHeaderFirstCard(
+                title = CardPreview.Title,
+                image = OdsCard.Image(painterResource(id = R.drawable.placeholder), ""),
+                thumbnail = thumbnailResId?.let { OdsCard.Thumbnail(painterResource(id = it), "") },
+                subtitle = subtitle,
+                text = text,
+                firstButton = firstButtonText?.let { OdsCard.Button(it) {} },
+                secondButton = secondButtonText?.let { OdsCard.Button(it) {} }
+            )
+        }
+    }
+
+private data class OdsVerticalHeaderFirstCardPreviewParameter(
+    @DrawableRes val thumbnailResId: Int? = null,
+    val subtitle: String? = null,
+    val text: String? = null,
+    val firstButtonText: String? = null,
+    val secondButtonText: String? = null
+)
+
+private class OdsVerticalHeaderFirstCardPreviewParameterProvider :
+    BasicPreviewParameterProvider<OdsVerticalHeaderFirstCardPreviewParameter>(*previewParameterValues.toTypedArray())
+
+private val previewParameterValues: List<OdsVerticalHeaderFirstCardPreviewParameter>
+    get() {
+        val thumbnailResId = R.drawable.placeholder
+
+        return listOf(
+            OdsVerticalHeaderFirstCardPreviewParameter(
+                thumbnailResId,
+                CardPreview.Subtitle,
+                CardPreview.Text,
+                CardPreview.FirstButtonText,
+                CardPreview.SecondButtonText
+            ),
+            OdsVerticalHeaderFirstCardPreviewParameter(
+                null,
+                CardPreview.Subtitle,
+                CardPreview.Text,
+                CardPreview.FirstButtonText,
+                CardPreview.SecondButtonLongText
+            ),
+            OdsVerticalHeaderFirstCardPreviewParameter(null, null, null, null, null),
+        )
+    }

@@ -1,18 +1,19 @@
 /*
+ * Software Name: Orange Design System
+ * SPDX-FileCopyrightText: Copyright (c) Orange SA
+ * SPDX-License-Identifier: MIT
  *
- *  Copyright 2021 Orange
+ * This software is distributed under the MIT license,
+ * the text of which is available at https://opensource.org/license/MIT/
+ * or see the "LICENSE" file for more details.
  *
- *  Use of this source code is governed by an MIT-style
- *  license that can be found in the LICENSE file or at
- *  https://opensource.org/licenses/MIT.
- * /
+ * Software description: Android library of reusable graphical components
  */
 
 package com.orange.ods.app.ui.modules
 
 import androidx.annotation.DrawableRes
 import androidx.annotation.StringRes
-import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import com.orange.ods.app.R
 
@@ -23,7 +24,6 @@ sealed class Module(
     @DrawableRes val imageRes: Int,
     @StringRes val descriptionRes: Int,
     val route: String,
-    val demoScreen: @Composable (upPress: () -> Unit) -> Unit,
     val imageAlignment: Alignment = Alignment.Center,
 ) {
     val id: Long = Module::class.sealedSubclasses.indexOf(this::class).toLong()
@@ -32,7 +32,13 @@ sealed class Module(
         R.string.module_about,
         R.drawable.il_about,
         R.string.module_about_description,
-        route = ModuleDemoDestinations.AboutCustomizationRoute,
-        demoScreen = { _ -> },
+        route = ModulesNavigation.AboutCustomizationRoute
+    )
+
+    data object EmptyState : Module(
+        R.string.module_emptyState_title,
+        R.drawable.il_empty_state,
+        R.string.module_emptyState_description,
+        route = ModulesNavigation.EmptyStateCustomizationRoute
     )
 }

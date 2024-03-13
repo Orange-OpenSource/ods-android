@@ -1,11 +1,13 @@
 /*
+ * Software Name: Orange Design System
+ * SPDX-FileCopyrightText: Copyright (c) Orange SA
+ * SPDX-License-Identifier: MIT
  *
- *  Copyright 2021 Orange
+ * This software is distributed under the MIT license,
+ * the text of which is available at https://opensource.org/license/MIT/
+ * or see the "LICENSE" file for more details.
  *
- *  Use of this source code is governed by an MIT-style
- *  license that can be found in the LICENSE file or at
- *  https://opensource.org/licenses/MIT.
- * /
+ * Software description: Android library of reusable graphical components
  */
 
 package com.orange.ods.app.ui.components.appbars.top
@@ -22,19 +24,17 @@ import com.orange.ods.app.ui.CustomAppBarConfiguration
 
 @Composable
 fun rememberTopAppBarCustomizationState(
-    large: MutableState<Boolean>,
     navigationIconEnabled: MutableState<Boolean> = rememberSaveable { mutableStateOf(CustomAppBarConfiguration.Default.isNavigationIconEnabled) },
     actionCount: MutableIntState = rememberSaveable { mutableIntStateOf(CustomAppBarConfiguration.Default.actionCount) },
     overflowMenuEnabled: MutableState<Boolean> = rememberSaveable { mutableStateOf(CustomAppBarConfiguration.Default.isOverflowMenuEnabled) },
     titleLineCount: MutableState<TopAppBarCustomizationState.Title> = rememberSaveable { mutableStateOf(TopAppBarCustomizationState.Title.Short) },
     scrollBehavior: MutableState<TopAppBarCustomizationState.ScrollBehavior> = rememberSaveable { mutableStateOf(CustomAppBarConfiguration.Default.scrollBehavior) }
 ) =
-    remember(large, navigationIconEnabled, actionCount, overflowMenuEnabled, titleLineCount, scrollBehavior) {
-        TopAppBarCustomizationState(large, navigationIconEnabled, actionCount, overflowMenuEnabled, titleLineCount, scrollBehavior)
+    remember(navigationIconEnabled, actionCount, overflowMenuEnabled, titleLineCount, scrollBehavior) {
+        TopAppBarCustomizationState(navigationIconEnabled, actionCount, overflowMenuEnabled, titleLineCount, scrollBehavior)
     }
 
 class TopAppBarCustomizationState(
-    val large: MutableState<Boolean>,
     val navigationIconEnabled: MutableState<Boolean>,
     val actionCount: MutableIntState,
     val overflowMenuEnabled: MutableState<Boolean>,
@@ -54,12 +54,6 @@ class TopAppBarCustomizationState(
     private val maxActionCount = 3
 
     val minActionCount = 0
-
-    val isLarge: Boolean
-        get() = large.value
-
-    val isLargeCollapsible: Boolean
-        get() = large.value && scrollBehavior.value == ScrollBehavior.Collapsible
 
     val isNavigationIconEnabled: Boolean
         get() = navigationIconEnabled.value

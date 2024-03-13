@@ -1,11 +1,13 @@
 /*
+ * Software Name: Orange Design System
+ * SPDX-FileCopyrightText: Copyright (c) Orange SA
+ * SPDX-License-Identifier: MIT
  *
- *  Copyright 2021 Orange
+ * This software is distributed under the MIT license,
+ * the text of which is available at https://opensource.org/license/MIT/
+ * or see the "LICENSE" file for more details.
  *
- *  Use of this source code is governed by an MIT-style
- *  license that can be found in the LICENSE file or at
- *  https://opensource.org/licenses/MIT.
- * /
+ * Software description: Android library of reusable graphical components
  */
 
 package com.orange.ods.app.ui.components.buttons
@@ -21,7 +23,6 @@ import androidx.compose.foundation.verticalScroll
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableIntStateOf
-import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
@@ -31,18 +32,19 @@ import com.orange.ods.app.domain.recipes.LocalRecipes
 import com.orange.ods.app.ui.utilities.code.CodeImplementationColumn
 import com.orange.ods.app.ui.utilities.code.FunctionCallCode
 import com.orange.ods.compose.OdsComposable
-import com.orange.ods.compose.annotation.ExperimentalOdsApi
 import com.orange.ods.compose.component.button.OdsTextToggleButtonsRow
-import com.orange.ods.compose.theme.OdsDisplaySurface
+import com.orange.ods.theme.annotation.ExperimentalOdsApi
 
 @Composable
 fun ButtonsTextToggleButtonsRow(customizationState: ButtonCustomizationState) {
-    val textToggleButtons =
-        LocalRecipes.current.first().ingredients.take(ButtonCustomizationState.MaxToggleCount).map { ingredient ->
-            OdsTextToggleButtonsRow.Item(ingredient.food.name, customizationState.isEnabled)
+    var selectedTextButtonIndex by rememberSaveable { mutableIntStateOf(0) }
+    val textButtons = LocalRecipes.current
+        .first()
+        .ingredients
+        .take(customizationState.toggleCount.intValue)
+        .mapIndexed { index, ingredient ->
+            OdsTextToggleButtonsRow.TextButton(ingredient.food.name, { selectedTextButtonIndex = index }, customizationState.isEnabled)
         }
-
-    var selectedIndex by rememberSaveable { mutableIntStateOf(0) }
 
     with(customizationState) {
         Column(
@@ -51,10 +53,8 @@ fun ButtonsTextToggleButtonsRow(customizationState: ButtonCustomizationState) {
                 .padding(vertical = dimensionResource(id = com.orange.ods.R.dimen.screen_vertical_margin))
         ) {
             ToggleButtonsRow(
-                textToggleButtons = textToggleButtons,
-                selectedIndex = selectedIndex,
-                onSelectedIndexChange = { index -> selectedIndex = index },
-                toggleCount = toggleCount.intValue,
+                selectedTextButtonIndex = selectedTextButtonIndex,
+                textButtons = textButtons,
                 sameItemsWeight = hasSameItemsWeight,
             )
 
@@ -62,31 +62,27 @@ fun ButtonsTextToggleButtonsRow(customizationState: ButtonCustomizationState) {
 
             InvertedBackgroundColumn {
                 ToggleButtonsRow(
-                    textToggleButtons = textToggleButtons,
-                    selectedIndex = selectedIndex,
-                    onSelectedIndexChange = { index -> selectedIndex = index },
-                    toggleCount = toggleCount.intValue,
+                    selectedTextButtonIndex = selectedTextButtonIndex,
+                    textButtons = textButtons,
                     sameItemsWeight = hasSameItemsWeight,
-                    displaySurface = displaySurface
                 )
             }
 
-            CodeImplementationColumn(
-                modifier = Modifier.padding(horizontal = dimensionResource(id = R.dimen.screen_horizontal_margin))
-            ) {
+            CodeImplementationColumn(modifier = Modifier.padding(horizontal = dimensionResource(id = R.dimen.screen_horizontal_margin))) {
                 FunctionCallCode(
                     name = OdsComposable.OdsTextToggleButtonsRow.name,
                     exhaustiveParameters = false,
                     parameters = {
+                        stringRepresentation("selectedTextButtonIndex", selectedTextButtonIndex)
                         list("textToggleButtons") {
-                            textToggleButtons.take(toggleCount.intValue).forEach { item ->
-                                classInstance<OdsTextToggleButtonsRow.Item> {
-                                    text(item.text)
+                            textButtons.forEach { textButton ->
+                                classInstance<OdsTextToggleButtonsRow.TextButton> {
+                                    text(textButton.text)
+                                    onClick()
                                     enabled(customizationState.isEnabled)
                                 }
                             }
                         }
-                        stringRepresentation("selectedIndex", selectedIndex)
                         stringRepresentation("sameItemsWeight", hasSameItemsWeight)
                     }
                 )
@@ -98,12 +94,9 @@ fun ButtonsTextToggleButtonsRow(customizationState: ButtonCustomizationState) {
 @OptIn(ExperimentalOdsApi::class)
 @Composable
 private fun ToggleButtonsRow(
-    textToggleButtons: List<OdsTextToggleButtonsRow.Item>,
-    selectedIndex: Int,
-    onSelectedIndexChange: (Int) -> Unit,
-    toggleCount: Int,
+    selectedTextButtonIndex: Int,
+    textButtons: List<OdsTextToggleButtonsRow.TextButton>,
     sameItemsWeight: Boolean,
-    displaySurface: OdsDisplaySurface = OdsDisplaySurface.Default
 ) {
     Row(
         modifier = Modifier
@@ -113,11 +106,9 @@ private fun ToggleButtonsRow(
         horizontalArrangement = Arrangement.Center
     ) {
         OdsTextToggleButtonsRow(
-            textToggleButtons = textToggleButtons.take(toggleCount),
-            selectedIndex = selectedIndex,
-            onSelectedIndexChange = onSelectedIndexChange,
+            selectedTextButtonIndex = selectedTextButtonIndex,
+            textButtons = textButtons,
             sameItemsWeight = sameItemsWeight,
-            displaySurface = displaySurface
         )
     }
 }

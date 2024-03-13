@@ -1,16 +1,22 @@
 /*
+ * Software Name: Orange Design System
+ * SPDX-FileCopyrightText: Copyright (c) Orange SA
+ * SPDX-License-Identifier: MIT
  *
- *  Copyright 2021 Orange
+ * This software is distributed under the MIT license,
+ * the text of which is available at https://opensource.org/license/MIT/
+ * or see the "LICENSE" file for more details.
  *
- *  Use of this source code is governed by an MIT-style
- *  license that can be found in the LICENSE file or at
- *  https://opensource.org/licenses/MIT.
- * /
+ * Software description: Android library of reusable graphical components
  */
 
 package com.orange.ods.compose.component.card
 
 import androidx.compose.foundation.background
+import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.ExperimentalLayoutApi
+import androidx.compose.foundation.layout.FlowRow
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.material.Card
 import androidx.compose.material.ExperimentalMaterialApi
 import androidx.compose.runtime.Composable
@@ -21,7 +27,10 @@ import androidx.compose.ui.graphics.ImageBitmap
 import androidx.compose.ui.graphics.painter.Painter
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.semantics.semantics
+import androidx.compose.ui.unit.dp
+import com.orange.ods.R
 import com.orange.ods.compose.component.button.OdsTextButton
 import com.orange.ods.compose.component.content.OdsComponentCircularImage
 import com.orange.ods.compose.component.content.OdsComponentContent
@@ -37,6 +46,19 @@ internal fun OdsCard(modifier: Modifier, onClick: (() -> Unit)?, content: @Compo
     }
 }
 
+@OptIn(ExperimentalLayoutApi::class)
+@Composable
+internal fun OdsCardButtonsFlowRow(modifier: Modifier = Modifier, firstButton: OdsCard.Button? = null, secondButton: OdsCard.Button? = null) {
+    FlowRow(
+        modifier = modifier.fillMaxWidth(),
+        horizontalArrangement = Arrangement.spacedBy(dimensionResource(id = R.dimen.spacing_s)),
+        verticalArrangement = Arrangement.spacedBy((-6).dp)
+    ) {
+        firstButton?.Content()
+        secondButton?.Content()
+    }
+}
+
 /**
  * Contains classes to build an [com.orange.ods.compose.component.card.OdsHorizontalCard], an [com.orange.ods.compose.component.card.OdsSmallCard], an [com.orange.ods.compose.component.card.OdsVerticalImageFirstCard] or an [com.orange.ods.compose.component.card.OdsVerticalHeaderFirstCard].
  */
@@ -49,7 +71,7 @@ object OdsCard {
      * @param text Text of the button.
      * @param onClick Will be called when the user clicks the button.
      */
-    class Button(private val text: String, private val onClick: () -> Unit) : OdsComponentContent<Nothing>() {
+    class Button(private val text: String, private val onClick: () -> Unit) : OdsComponentContent<Nothing>(Nothing::class.java) {
 
         @Composable
         override fun Content(modifier: Modifier) {
@@ -61,12 +83,12 @@ object OdsCard {
      * An image in an [OdsSmallCard], [OdsHorizontalCard], [OdsVerticalHeaderFirstCard] or [OdsVerticalImageFirstCard].
      */
     class Image private constructor(
-        graphicsObject: Any,
-        contentDescription: String,
-        alignment: Alignment = Alignment.Center,
-        contentScale: ContentScale = ContentScale.Crop,
-        private val backgroundColor: Color? = null
-    ) : OdsComponentImage<Nothing>(graphicsObject, contentDescription, alignment, contentScale) {
+        val graphicsObject: Any,
+        val contentDescription: String,
+        val alignment: Alignment = Alignment.Center,
+        val contentScale: ContentScale = ContentScale.Crop,
+        val backgroundColor: Color? = null
+    ) : OdsComponentImage<Nothing>(Nothing::class.java, graphicsObject, contentDescription, alignment, contentScale) {
 
         /**
          * Creates an instance of [OdsCard.Image].
@@ -138,7 +160,10 @@ object OdsCard {
     /**
      * A thumbnail in a card.
      */
-    class Thumbnail : OdsComponentCircularImage {
+    class Thumbnail private constructor(
+        val graphicsObject: Any,
+        val contentDescription: String
+    ) : OdsComponentCircularImage<Nothing>(Nothing::class.java, graphicsObject, contentDescription) {
 
         /**
          * Creates an instance of [OdsCard.Thumbnail].
@@ -146,7 +171,7 @@ object OdsCard {
          * @param painter The painter to draw.
          * @param contentDescription The content description associated to this [OdsCard.Thumbnail].
          */
-        constructor(painter: Painter, contentDescription: String) : super(painter, contentDescription)
+        constructor(painter: Painter, contentDescription: String) : this(painter as Any, contentDescription)
 
         /**
          * Creates an instance of [OdsCard.Thumbnail].
@@ -154,7 +179,7 @@ object OdsCard {
          * @param imageVector The image vector to draw.
          * @param contentDescription The content description associated to this [OdsCard.Thumbnail].
          */
-        constructor(imageVector: ImageVector, contentDescription: String) : super(imageVector, contentDescription)
+        constructor(imageVector: ImageVector, contentDescription: String) : this(imageVector as Any, contentDescription)
 
         /**
          * Creates an instance of [OdsCard.Thumbnail].
@@ -162,7 +187,22 @@ object OdsCard {
          * @param bitmap The image bitmap to draw.
          * @param contentDescription The content description associated to this [OdsCard.Thumbnail].
          */
-        constructor(bitmap: ImageBitmap, contentDescription: String) : super(bitmap, contentDescription)
+        constructor(bitmap: ImageBitmap, contentDescription: String) : this(bitmap as Any, contentDescription)
     }
 
+}
+
+/**
+ * Constants used for card preview
+ */
+internal object CardPreview {
+    const val Title = "Title"
+    const val LongTitle = "Here is a long title that don't fit"
+    const val Subtitle = "Subtitle"
+    const val LongSubtitle = "Here is a very very very long subtitle"
+    const val Text =
+        "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed non risus. Suspendisse lectus tortor, dignissim sit amet, adipiscing nec, ultricies sed, dolor."
+    const val FirstButtonText = "First button"
+    const val SecondButtonText = "Second button"
+    const val SecondButtonLongText = "Second button with lonnnnnnng text"
 }

@@ -1,40 +1,44 @@
 /*
+ * Software Name: Orange Design System
+ * SPDX-FileCopyrightText: Copyright (c) Orange SA
+ * SPDX-License-Identifier: MIT
  *
- *  Copyright 2021 Orange
+ * This software is distributed under the MIT license,
+ * the text of which is available at https://opensource.org/license/MIT/
+ * or see the "LICENSE" file for more details.
  *
- *  Use of this source code is governed by an MIT-style
- *  license that can be found in the LICENSE file or at
- *  https://opensource.org/licenses/MIT.
- * /
+ * Software description: Android library of reusable graphical components 
  */
 
 package com.orange.ods.compose.theme
 
 import androidx.compose.foundation.isSystemInDarkTheme
+import androidx.compose.material.LocalContentColor
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Shapes
-import androidx.compose.material.Surface
-import androidx.compose.material.Typography
 import androidx.compose.material.ripple.LocalRippleTheme
+import androidx.compose.material.ripple.RippleTheme
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.runtime.ReadOnlyComposable
 import androidx.compose.runtime.compositionLocalOf
-import androidx.compose.runtime.remember
 import androidx.compose.runtime.staticCompositionLocalOf
 import com.orange.ods.theme.OdsComponentsConfiguration
 import com.orange.ods.theme.OdsThemeConfigurationContract
 import com.orange.ods.theme.colors.OdsColors
+import com.orange.ods.theme.typography.OdsTypography
+
+private fun odsThemeError(message: Any): Nothing = error("OdsTheme not found. $message")
+
+internal val LocalColors = staticCompositionLocalOf<OdsColors> { odsThemeError("LocalColors CompositionLocal not present") }
+private val LocalLightThemeColors = compositionLocalOf<OdsColors> { odsThemeError("LocalLightThemeColors CompositionLocal not present") }
+private val LocalDarkThemeColors = compositionLocalOf<OdsColors> { odsThemeError("LocalDarkThemeColors CompositionLocal not present") }
 
 private val LocalShapes = staticCompositionLocalOf { Shapes() }
-
-private val LocalColors = staticCompositionLocalOf<OdsColors> { error("CompositionLocal LocalColors not present") }
-private val LocalLightThemeColors = compositionLocalOf<OdsColors> { error("CompositionLocal LocalLightThemeColors not present") }
-private val LocalDarkThemeColors = compositionLocalOf<OdsColors> { error("CompositionLocal LocalDarkThemeColors not present") }
-
-private val LocalTypography = staticCompositionLocalOf { Typography() }
+private val LocalTypography = staticCompositionLocalOf { OdsTypography() }
 private val LocalComponentsConfiguration = staticCompositionLocalOf { OdsComponentsConfiguration() }
 
+private val LocalDarkThemeEnabled = staticCompositionLocalOf<Boolean> { odsThemeError("LocalDarkThemeEnabled CompositionLocal not present.") }
 
 object OdsTheme {
 
@@ -53,7 +57,7 @@ object OdsTheme {
         @ReadOnlyComposable
         get() = LocalDarkThemeColors.current
 
-    val typography: Typography
+    val typography: OdsTypography
         @Composable
         @ReadOnlyComposable
         get() = LocalTypography.current
@@ -84,22 +88,66 @@ fun OdsTheme(
 ) {
     val colors = if (darkThemeEnabled) themeConfiguration.colors.darkColors else themeConfiguration.colors.lightColors
 
-    // creating a new object for colors to not mutate the initial colors set when updating the values
-    val rememberedColors = remember { colors.copy() }.apply { updateColorsFrom(colors) }
-
     CompositionLocalProvider(
+        LocalDarkThemeEnabled provides darkThemeEnabled,
         LocalRippleTheme provides OdsRippleTheme,
-        LocalColors provides rememberedColors,
+        LocalColors provides colors,
         LocalLightThemeColors provides themeConfiguration.colors.lightColors,
         LocalDarkThemeColors provides themeConfiguration.colors.darkColors,
         LocalTypography provides themeConfiguration.typography,
         LocalShapes provides themeConfiguration.shapes,
-        LocalComponentsConfiguration provides themeConfiguration.componentsConfiguration,
+        LocalComponentsConfiguration provides themeConfiguration.componentsConfiguration
     ) {
         MaterialTheme(
-            colors = colors.materialColors
+            colors = colors.material,
+            typography = themeConfiguration.typography.materialTypography
         ) {
-            Surface(color = colors.background, content = content)
+            content()
+        }
+    }
+}
+
+/**
+ * Tweak type of the current [OdsTheme] which can be pass to [OdsThemeTweak] composable:
+ *   - Inverted set theme in dark when app is in light or in light when app is in dark
+ *   - ForceDark and ForceLight force the theme to be in dark or in light
+ */
+enum class OdsThemeTweakType {
+    Inverted, ForceDark, ForceLight
+}
+
+/**
+ * Tweaks the current ODS theme according the given [tweakType] and display given [content] according that tweak.
+ * Note: This composable is directly related to [OdsTheme] and MUST be used inside it.
+ */
+@Composable
+fun OdsThemeTweak(tweakType: OdsThemeTweakType, content: @Composable () -> Unit) {
+    val tweakedToDark = when (tweakType) {
+        OdsThemeTweakType.Inverted -> !LocalDarkThemeEnabled.current
+        OdsThemeTweakType.ForceDark -> true
+        OdsThemeTweakType.ForceLight -> false
+    }
+    val colors: OdsColors
+    val rippleTheme: RippleTheme
+    if (tweakedToDark) {
+        colors = OdsTheme.darkThemeColors
+        rippleTheme = OdsDarkRippleTheme
+    } else {
+        colors = OdsTheme.lightThemeColors
+        rippleTheme = OdsLightRippleTheme
+    }
+
+    CompositionLocalProvider(
+        LocalDarkThemeEnabled provides tweakedToDark,
+        LocalRippleTheme provides rippleTheme,
+        LocalColors provides colors,
+        LocalContentColor provides colors.onSurface
+    ) {
+        MaterialTheme(
+            colors = colors.material,
+            typography = LocalTypography.current.materialTypography
+        ) {
+            content()
         }
     }
 }

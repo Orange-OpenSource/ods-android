@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<!--
+  ~ Software Name: Orange Design System
+  ~ SPDX-FileCopyrightText: Copyright (c) Orange SA
+  ~ SPDX-License-Identifier: MIT
+  ~
+  ~ This software is distributed under the MIT licence,
+  ~ the text of which is available at https://opensource.org/license/MIT/
+  ~ or see the "LICENSE" file for more details.
+  ~
+  ~ Software description: Android library of reusable graphical components
+  -->
+
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/backgroundColorLibrary"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <com.orange.accessibilitystatementlibrary.StatementView
+        android:id="@+id/statementview"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:declarant="@string/odsAbout_menu_accessibilityStatement_declarant" />
+
+</ScrollView>

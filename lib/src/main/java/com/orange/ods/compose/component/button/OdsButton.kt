@@ -1,11 +1,13 @@
 /*
+ * Software Name: Orange Design System
+ * SPDX-FileCopyrightText: Copyright (c) Orange SA
+ * SPDX-License-Identifier: MIT
  *
- *  Copyright 2021 Orange
+ * This software is distributed under the MIT license,
+ * the text of which is available at https://opensource.org/license/MIT/
+ * or see the "LICENSE" file for more details.
  *
- *  Use of this source code is governed by an MIT-style
- *  license that can be found in the LICENSE file or at
- *  https://opensource.org/licenses/MIT.
- * /
+ * Software description: Android library of reusable graphical components
  */
 
 package com.orange.ods.compose.component.button
@@ -13,7 +15,6 @@ package com.orange.ods.compose.component.button
 import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.material.Button
-import androidx.compose.material.Text
 import androidx.compose.material.ripple.LocalRippleTheme
 import androidx.compose.material.ripple.RippleTheme
 import androidx.compose.runtime.Composable
@@ -22,11 +23,12 @@ import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.PreviewParameter
 import com.orange.ods.compose.component.OdsComposable
-import com.orange.ods.compose.component.utilities.EnumPreviewParameterProvider
-import com.orange.ods.compose.component.utilities.Preview
+import com.orange.ods.compose.component.utilities.BasicPreviewParameterProvider
+import com.orange.ods.compose.component.utilities.OdsPreview
 import com.orange.ods.compose.component.utilities.UiModePreviews
-import com.orange.ods.compose.theme.OdsDisplaySurface
+import com.orange.ods.compose.text.OdsText
 import com.orange.ods.compose.theme.OdsTheme
+import com.orange.ods.theme.typography.OdsTextStyle
 
 /**
  * <a href="https://system.design.orange.com/0c1af118d/p/06a393-buttons/b/79b091" target="_blank">ODS Buttons</a>.
@@ -41,8 +43,6 @@ import com.orange.ods.compose.theme.OdsTheme
  * @param enabled Controls the enabled state of the button. When `false`, this button will not be clickable.
  * @param style Style applied to the button. Set it to [OdsButton.Style.Primary] for an highlighted button style or use.
  * [OdsButton.Style.FunctionalPositive]/[OdsButton.Style.FunctionalNegative] for a functional green/red button style.
- * @param displaySurface [OdsDisplaySurface] applied to the button. It allows to force the button display on light or dark surface.
- * By default the appearance applied is based on the system night mode value.
  */
 @Composable
 @OdsComposable
@@ -53,7 +53,6 @@ fun OdsButton(
     icon: OdsButton.Icon? = null,
     enabled: Boolean = true,
     style: OdsButton.Style = OdsButton.Style.Default,
-    displaySurface: OdsDisplaySurface = OdsDisplaySurface.Default
 ) {
     CompositionLocalProvider(LocalRippleTheme provides OdsOnPrimaryRippleTheme) {
         Button(
@@ -63,10 +62,14 @@ fun OdsButton(
             interactionSource = remember { MutableInteractionSource() },
             elevation = null,
             shape = OdsTheme.shapes.small,
-            colors = style.getColors(displaySurface = displaySurface)
+            colors = style.getColors()
         ) {
             icon?.Content()
-            Text(text = text.uppercase(), style = OdsTheme.typography.button)
+            OdsText(
+                text = text,
+                style = OdsTextStyle.LabelL,
+                enabled = enabled
+            )
         }
     }
 }
@@ -91,8 +94,25 @@ private object OdsOnPrimaryRippleTheme : RippleTheme {
 
 @UiModePreviews.Button
 @Composable
-private fun PreviewOdsButton(@PreviewParameter(OdsButtonPreviewParameterProvider::class) style: OdsButton.Style) = Preview {
-    OdsButton(text = "Text", onClick = {}, style = style)
+private fun PreviewOdsButton(@PreviewParameter(OdsButtonPreviewParameterProvider::class) parameter: OdsButtonPreviewParameter) = OdsPreview {
+    with(parameter) {
+        OdsButton(text = "Text", onClick = {}, style = style, enabled = enabled)
+    }
 }
 
-private class OdsButtonPreviewParameterProvider : EnumPreviewParameterProvider(OdsButton.Style::class.java)
+private data class OdsButtonPreviewParameter(
+    val style: OdsButton.Style,
+    val enabled: Boolean = true
+)
+
+private class OdsButtonPreviewParameterProvider :
+    BasicPreviewParameterProvider<OdsButtonPreviewParameter>(*previewParameterValues.toTypedArray())
+
+private val previewParameterValues: List<OdsButtonPreviewParameter>
+    get() = mutableListOf<OdsButtonPreviewParameter>().apply {
+        OdsButton.Style.entries.forEach {
+            add(OdsButtonPreviewParameter(it))
+            add(OdsButtonPreviewParameter(it, false))
+        }
+    }
+

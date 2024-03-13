@@ -1,35 +1,39 @@
 /*
+ * Software Name: Orange Design System
+ * SPDX-FileCopyrightText: Copyright (c) Orange SA
+ * SPDX-License-Identifier: MIT
  *
- *  Copyright 2021 Orange
+ * This software is distributed under the MIT license,
+ * the text of which is available at https://opensource.org/license/MIT/
+ * or see the "LICENSE" file for more details.
  *
- *  Use of this source code is governed by an MIT-style
- *  license that can be found in the LICENSE file or at
- *  https://opensource.org/licenses/MIT.
- * /
+ * Software description: Android library of reusable graphical components 
  */
 
 package com.orange.ods.compose.component.button
 
 import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.material.ButtonDefaults
-import androidx.compose.material.Text
 import androidx.compose.material.TextButton
 import androidx.compose.material.ripple.LocalRippleTheme
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.PreviewParameter
+import com.orange.ods.R
 import com.orange.ods.compose.component.OdsComposable
-import com.orange.ods.compose.component.utilities.EnumPreviewParameterProvider
-import com.orange.ods.compose.component.utilities.Preview
+import com.orange.ods.compose.component.utilities.BasicPreviewParameterProvider
+import com.orange.ods.compose.component.utilities.OdsPreview
 import com.orange.ods.compose.component.utilities.UiModePreviews
-import com.orange.ods.compose.theme.OdsDisplaySurface
+import com.orange.ods.compose.extension.enable
+import com.orange.ods.compose.text.OdsText
 import com.orange.ods.compose.theme.OdsPrimaryRippleTheme
 import com.orange.ods.compose.theme.OdsTheme
-import com.orange.ods.compose.utilities.extension.enable
 import com.orange.ods.theme.colors.OdsColors
+import com.orange.ods.theme.typography.OdsTextStyle
 
 /**
  * <a href="https://system.design.orange.com/0c1af118d/p/06a393-buttons/b/79b091" target="_blank">ODS Buttons</a>.
@@ -44,8 +48,6 @@ import com.orange.ods.theme.colors.OdsColors
  * @param enabled Controls the enabled state of the button. When `false`, this button will not be clickable.
  * @param style Style applied to the button. By default `onSurface` color is used for text color. Use [OdsTextButton.Style.Primary] for an highlighted
  * text color.
- * @param displaySurface [OdsDisplaySurface] applied to the button. It allows to force the button display on light or dark surface. By default,
- * the appearance applied is based on the system night mode value.
  */
 @Composable
 @OdsComposable
@@ -55,8 +57,7 @@ fun OdsTextButton(
     modifier: Modifier = Modifier,
     icon: OdsButton.Icon? = null,
     enabled: Boolean = true,
-    style: OdsTextButton.Style = OdsTextButton.Style.Default,
-    displaySurface: OdsDisplaySurface = OdsDisplaySurface.Default
+    style: OdsTextButton.Style = OdsTextButton.Style.Default
 ) {
     OdsTextButton(
         text = text,
@@ -66,8 +67,7 @@ fun OdsTextButton(
         enabled = enabled,
         maxLines = Int.MAX_VALUE,
         overflow = TextOverflow.Clip,
-        style = style,
-        displaySurface = displaySurface
+        style = style
     )
 }
 
@@ -80,13 +80,12 @@ internal fun OdsTextButton(
     modifier: Modifier = Modifier,
     icon: OdsButton.Icon? = null,
     enabled: Boolean = true,
-    style: OdsTextButton.Style = OdsTextButton.Style.Default,
-    displaySurface: OdsDisplaySurface = OdsDisplaySurface.Default
+    style: OdsTextButton.Style = OdsTextButton.Style.Default
 ) {
     CompositionLocalProvider(
         LocalRippleTheme provides when (style) {
             OdsTextButton.Style.Primary -> OdsPrimaryRippleTheme
-            OdsTextButton.Style.Default -> displaySurface.rippleTheme
+            OdsTextButton.Style.Default -> LocalRippleTheme.current
         }
     ) {
         TextButton(
@@ -96,13 +95,16 @@ internal fun OdsTextButton(
             interactionSource = remember { MutableInteractionSource() },
             shape = OdsTheme.shapes.small,
             colors = ButtonDefaults.textButtonColors(
-                contentColor = OdsTheme.colors.buttonTextColor(displaySurface, style),
-                disabledContentColor = OdsTheme.colors.buttonTextDisabledColor(displaySurface)
+                contentColor = OdsTheme.colors.buttonTextColor(style),
+                disabledContentColor = OdsTheme.colors.buttonTextColor(style = OdsTextButton.Style.Default).enable(enabled = false)
             )
         ) {
             icon?.Content()
-            Text(
-                text = text.uppercase(), style = OdsTheme.typography.button, maxLines = maxLines,
+            OdsText(
+                text = text,
+                enabled = enabled,
+                style = OdsTextStyle.LabelL,
+                maxLines = maxLines,
                 overflow = overflow
             )
         }
@@ -124,20 +126,35 @@ object OdsTextButton {
 }
 
 @Composable
-private fun OdsColors.buttonTextColor(displaySurface: OdsDisplaySurface, style: OdsTextButton.Style) =
+private fun OdsColors.buttonTextColor(style: OdsTextButton.Style) =
     when (style) {
-        OdsTextButton.Style.Primary -> displaySurface.themeColors.primary
-        OdsTextButton.Style.Default -> displaySurface.themeColors.onSurface
+        OdsTextButton.Style.Primary -> OdsTheme.colors.primary
+        OdsTextButton.Style.Default -> OdsTheme.colors.onSurface
     }
-
-@Composable
-private fun OdsColors.buttonTextDisabledColor(displaySurface: OdsDisplaySurface) =
-    buttonTextColor(displaySurface = displaySurface, style = OdsTextButton.Style.Default).enable(enabled = false)
 
 @UiModePreviews.Button
 @Composable
-private fun PreviewOdsTextButton(@PreviewParameter(OdsTextButtonPreviewParameterProvider::class) style: OdsTextButton.Style) = Preview {
-    OdsTextButton(text = "Text", maxLines = 1, overflow = TextOverflow.Clip, onClick = {}, style = style)
+private fun PreviewOdsTextButton(@PreviewParameter(OdsTextButtonPreviewParameterProvider::class) parameter: OdsTextButtonPreviewParameter) = OdsPreview {
+    with(parameter) {
+        val icon = if (hasIcon) OdsButton.Icon(painter = painterResource(id = R.drawable.ic_check)) else null
+        OdsTextButton(text = "Text", icon = icon, maxLines = 1, overflow = TextOverflow.Clip, onClick = {}, style = style, enabled = enabled)
+    }
 }
 
-private class OdsTextButtonPreviewParameterProvider : EnumPreviewParameterProvider(OdsTextButton.Style::class.java)
+private data class OdsTextButtonPreviewParameter(
+    val style: OdsTextButton.Style,
+    val hasIcon: Boolean = false,
+    val enabled: Boolean = true
+)
+
+private class OdsTextButtonPreviewParameterProvider :
+    BasicPreviewParameterProvider<OdsTextButtonPreviewParameter>(*previewParameterValues.toTypedArray())
+
+private val previewParameterValues: List<OdsTextButtonPreviewParameter>
+    get() = listOf(
+        OdsTextButtonPreviewParameter(OdsTextButton.Style.Default),
+        OdsTextButtonPreviewParameter(OdsTextButton.Style.Default, enabled = false),
+        OdsTextButtonPreviewParameter(OdsTextButton.Style.Primary, hasIcon = true),
+        OdsTextButtonPreviewParameter(OdsTextButton.Style.Primary, hasIcon = true, enabled = false)
+    )
+

@@ -1,22 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?><!--
-  ~ /*
-  ~ * Copyright 2021 Orange
-  ~ *
-  ~ * Use of this source code is governed by an MIT-style
-  ~ * license that can be found in the LICENSE file or at
-  ~ * https://opensource.org/licenses/MIT.
-  ~ */
+  ~ Software Name: Orange Design System
+  ~ SPDX-FileCopyrightText: Copyright (c) Orange SA
+  ~ SPDX-License-Identifier: MIT
+  ~
+  ~ This software is distributed under the MIT license,
+  ~ the text of which is available at https://opensource.org/license/MIT/
+  ~ or see the "LICENSE" file for more details.
+  ~
+  ~ Software description: Android library of reusable graphical components
   -->
 
 <resources>
 
     <attr name="text" format="string" />
     <attr name="enabled" format="boolean" />
-    <attr name="displaySurface" format="enum">
-        <enum name="standard" value="0" />
-        <enum name="dark" value="1" />
-        <enum name="light" value="2" />
-    </attr>
+    <attr name="invertedTheme" format="boolean" />
     <attr name="iconContentDescription" format="string" />
 
     <declare-styleable name="OdsBanner">
@@ -31,20 +29,21 @@
         <attr name="icon" />
         <attr name="text" />
         <attr name="enabled" />
+        <!-- BE CAREFUL: If this enum change, don't forget to update associated extension -->
         <attr name="odsButtonStyle" format="enum">
             <enum name="standard" value="0" />
             <enum name="primary" value="1" />
             <enum name="functional_positive" value="2" />
             <enum name="functional_negative" value="3" />
         </attr>
-        <attr name="displaySurface" />
+        <attr name="invertedTheme" />
     </declare-styleable>
 
     <declare-styleable name="OdsIconButton">
         <attr name="icon" />
         <attr name="iconContentDescription" />
         <attr name="enabled" />
-        <attr name="displaySurface" />
+        <attr name="invertedTheme" />
     </declare-styleable>
 
     <declare-styleable name="OdsIconToggleButton">
@@ -54,30 +53,31 @@
         <attr name="checkedIconContentDescription" />
         <attr name="uncheckedIconContentDescription" />
         <attr name="enabled" />
-        <attr name="displaySurface" />
+        <attr name="invertedTheme" />
     </declare-styleable>
 
     <declare-styleable name="OdsIconToggleButtonsRow">
-        <attr name="selectedIndex" format="integer" />
-        <attr name="displaySurface" />
+        <attr name="selectedIconButtonIndex" format="integer" />
+        <attr name="invertedTheme" />
     </declare-styleable>
 
     <declare-styleable name="OdsOutlinedButton">
         <attr name="icon" />
         <attr name="text" />
         <attr name="enabled" />
-        <attr name="displaySurface" />
+        <attr name="invertedTheme" />
     </declare-styleable>
 
     <declare-styleable name="OdsTextButton">
         <attr name="text" />
         <attr name="icon" />
         <attr name="enabled" />
-        <attr name="textButtonStyle" format="enum">
+        <!-- BE CAREFUL: If this enum change, don't forget to update associated extension -->
+        <attr name="odsTextButtonStyle" format="enum">
             <enum name="standard" value="0" />
             <enum name="primary" value="1" />
         </attr>
-        <attr name="displaySurface" />
+        <attr name="invertedTheme" />
     </declare-styleable>
 
 </resources>

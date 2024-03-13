@@ -1,11 +1,13 @@
 /*
+ * Software Name: Orange Design System
+ * SPDX-FileCopyrightText: Copyright (c) Orange SA
+ * SPDX-License-Identifier: MIT
  *
- *  Copyright 2021 Orange
+ * This software is distributed under the MIT license,
+ * the text of which is available at https://opensource.org/license/MIT/
+ * or see the "LICENSE" file for more details.
  *
- *  Use of this source code is governed by an MIT-style
- *  license that can be found in the LICENSE file or at
- *  https://opensource.org/licenses/MIT.
- * /
+ * Software description: Android library of reusable graphical components
  */
 
 package com.orange.ods.app.ui.components.bottomnavigation
@@ -46,8 +48,9 @@ import com.orange.ods.app.ui.utilities.code.XmlViewTag
 import com.orange.ods.app.ui.utilities.composable.TechnicalText
 import com.orange.ods.compose.OdsComposable
 import com.orange.ods.compose.component.bottomnavigation.OdsBottomNavigation
-import com.orange.ods.compose.text.OdsTextBody2
-import com.orange.ods.extension.simpleNestedName
+import com.orange.ods.compose.text.OdsText
+import com.orange.ods.app.ui.utilities.extension.simpleNestedName
+import com.orange.ods.theme.typography.OdsTextStyle
 
 private object ComponentBottomNavigation {
     const val MinNavigationItemCount = 3
@@ -105,7 +108,6 @@ fun ComponentBottomNavigation() {
 
             CodeImplementationColumn(
                 modifier = Modifier.padding(horizontal = dimensionResource(id = com.orange.ods.R.dimen.screen_horizontal_margin)),
-                xmlAvailable = true,
                 xmlContent = {
                     CodeBackgroundColumn {
                         XmlViewTag(
@@ -117,12 +119,13 @@ fun ComponentBottomNavigation() {
                             }
                         )
                     }
-                    OdsTextBody2(
+                    OdsText(
                         modifier = Modifier.padding(
                             top = dimensionResource(id = com.orange.ods.R.dimen.spacing_s),
                             bottom = dimensionResource(id = com.orange.ods.R.dimen.spacing_xs)
                         ),
-                        text = stringResource(id = R.string.component_bottom_navigation_code_add_items)
+                        text = stringResource(id = R.string.component_bottom_navigation_code_add_items),
+                        style = OdsTextStyle.BodyM
                     )
                     CodeBackgroundColumn {
                         TechnicalText(text = "binding.odsBottomNavigation.items = listOf(")

@@ -1,13 +1,14 @@
 /*
+ * Software Name: Orange Design System
+ * SPDX-FileCopyrightText: Copyright (c) Orange SA
+ * SPDX-License-Identifier: MIT
  *
- *  Copyright 2021 Orange
+ * This software is distributed under the MIT license,
+ * the text of which is available at https://opensource.org/license/MIT/
+ * or see the "LICENSE" file for more details.
  *
- *  Use of this source code is governed by an MIT-style
- *  license that can be found in the LICENSE file or at
- *  https://opensource.org/licenses/MIT.
- * /
+ * Software description: Android library of reusable graphical components
  */
-
 import com.android.build.gradle.internal.tasks.factory.dependsOn
 import com.orange.ods.gradle.Dependencies
 import com.orange.ods.gradle.Environment
@@ -35,7 +36,7 @@ android {
         minSdk = Versions.minSdk
         targetSdk = Versions.targetSdk
         val versionCodeProperty = project.findTypedProperty<String>("versionCode")
-        versionCode = versionCodeProperty?.toInt() ?: 10
+        versionCode = versionCodeProperty?.toInt() ?: 11
         versionName = version.toString()
         val versionNameSuffixProperty = project.findTypedProperty<String>("versionNameSuffix")
         versionNameSuffix = versionNameSuffixProperty
@@ -139,7 +140,7 @@ dependencies {
     implementation(platform(Dependencies.composeBom))
     implementation(Dependencies.composeMaterial3)
     implementation(Dependencies.composeUi)
-    implementation(Dependencies.composeUiTooling)
+    debugImplementation(Dependencies.composeUiTooling)
     implementation(Dependencies.composeUiToolingPreview)
     implementation(Dependencies.coreKtx)
     implementation(Dependencies.dataStorePreferences)
@@ -160,6 +161,10 @@ tasks.register<Copy>("copyChangelog") {
     from("../changelog.md").into("src/main/res/raw")
 }
 
+tasks.register<Copy>("copyThirdParty") {
+    from("../THIRD_PARTY.md").into("src/main/res/raw").rename { it.lowercase() }
+}
+
 gradle.projectsEvaluated {
-    tasks.named("preBuild").dependsOn(tasks.named("copyChangelog"))
+    tasks.named("preBuild").dependsOn(tasks.named("copyChangelog"), tasks.named("copyThirdParty"))
 }

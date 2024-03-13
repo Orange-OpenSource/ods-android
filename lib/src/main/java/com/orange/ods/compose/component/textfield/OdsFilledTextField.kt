@@ -1,11 +1,13 @@
 /*
+ * Software Name: Orange Design System
+ * SPDX-FileCopyrightText: Copyright (c) Orange SA
+ * SPDX-License-Identifier: MIT
  *
- *  Copyright 2021 Orange
+ * This software is distributed under the MIT license,
+ * the text of which is available at https://opensource.org/license/MIT/
+ * or see the "LICENSE" file for more details.
  *
- *  Use of this source code is governed by an MIT-style
- *  license that can be found in the LICENSE file or at
- *  https://opensource.org/licenses/MIT.
- * /
+ * Software description: Android library of reusable graphical components 
  */
 
 package com.orange.ods.compose.component.textfield
@@ -26,9 +28,12 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.input.VisualTransformation
 import androidx.compose.ui.tooling.preview.PreviewParameter
 import com.orange.ods.compose.component.content.OdsComponentContent
-import com.orange.ods.compose.component.utilities.Preview
+import com.orange.ods.compose.component.utilities.OdsPreview
 import com.orange.ods.compose.component.utilities.UiModePreviews
+import com.orange.ods.compose.text.OdsText
+import com.orange.ods.compose.text.styledText
 import com.orange.ods.compose.theme.OdsTheme
+import com.orange.ods.theme.typography.OdsTextStyle
 
 @Composable
 internal fun OdsFilledTextField(
@@ -50,10 +55,11 @@ internal fun OdsFilledTextField(
     maxLines: Int = Int.MAX_VALUE,
     characterCounter: OdsTextField.CharacterCounter? = null
 ) {
+    val textStyle = OdsTheme.typography.titleM
     Column(modifier = modifier) {
         TextField(
             modifier = Modifier.fillMaxWidth(),
-            value = if (singleLine) value.filter { it != '\n' } else value,
+            value = styledText(text = if (singleLine) value.filter { it != '\n' } else value, textStyle = textStyle),
             onValueChange = { newValue ->
                 if (!singleLine || !newValue.contains('\n')) {
                     onValueChange(newValue)
@@ -61,9 +67,9 @@ internal fun OdsFilledTextField(
             },
             enabled = enabled,
             readOnly = readOnly,
-            textStyle = OdsTheme.typography.subtitle1,
+            textStyle = textStyle,
             label = label?.let { { Text(label) } },
-            placeholder = placeholder?.let { { Text(text = placeholder, style = OdsTheme.typography.subtitle1) } },
+            placeholder = placeholder?.let { { OdsText(text = placeholder, style = OdsTextStyle.TitleM) } },
             leadingIcon = leadingIcon?.let {
                 {
                     it.Content(OdsTextField.LeadingIcon.ExtraParameters(enabled))
@@ -87,7 +93,7 @@ internal fun OdsFilledTextField(
 
 @UiModePreviews.Default
 @Composable
-private fun PreviewOdsTextField(@PreviewParameter(OdsTextFieldPreviewParameterProvider::class) parameter: OdsTextFieldPreviewParameter) = Preview {
+private fun PreviewOdsTextField(@PreviewParameter(OdsTextFieldPreviewParameterProvider::class) parameter: OdsTextFieldPreviewParameter) = OdsPreview {
     var value by remember { mutableStateOf("Input text") }
     OdsFilledTextField(
         modifier = Modifier.fillMaxWidth(),

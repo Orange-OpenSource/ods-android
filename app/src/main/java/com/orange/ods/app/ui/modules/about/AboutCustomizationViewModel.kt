@@ -1,11 +1,13 @@
 /*
+ * Software Name: Orange Design System
+ * SPDX-FileCopyrightText: Copyright (c) Orange SA
+ * SPDX-License-Identifier: MIT
  *
- *  Copyright 2021 Orange
+ * This software is distributed under the MIT license,
+ * the text of which is available at https://opensource.org/license/MIT/
+ * or see the "LICENSE" file for more details.
  *
- *  Use of this source code is governed by an MIT-style
- *  license that can be found in the LICENSE file or at
- *  https://opensource.org/licenses/MIT.
- * /
+ * Software description: Android library of reusable graphical components
  */
 
 package com.orange.ods.app.ui.modules.about
@@ -24,10 +26,11 @@ import com.orange.ods.app.ui.CustomAppBarConfiguration
 import com.orange.ods.app.ui.LocalAppBarManager
 import com.orange.ods.app.ui.about.RateTheAppUrl
 import com.orange.ods.app.ui.components.utilities.clickOnElement
-import com.orange.ods.module.about.configuration.OdsAboutConfiguration
-import com.orange.ods.module.about.configuration.OdsAboutFileMenuItem
-import com.orange.ods.module.about.configuration.OdsAboutMenuItem
-import com.orange.ods.module.about.configuration.OdsAboutShareData
+import com.orange.ods.module.about.ui.configuration.OdsAboutAccessibilityStatementMenuItemConfiguration
+import com.orange.ods.module.about.ui.configuration.OdsAboutConfiguration
+import com.orange.ods.module.about.ui.configuration.OdsAboutFileMenuItem
+import com.orange.ods.module.about.ui.configuration.OdsAboutMenuItem
+import com.orange.ods.module.about.ui.configuration.OdsAboutShareData
 
 class AboutCustomizationViewModel : ViewModel() {
 
@@ -43,6 +46,7 @@ class AboutCustomizationViewModel : ViewModel() {
             appName = stringResource(id = R.string.module_about_demo_app_name),
             privacyPolicyMenuItemFile = OdsAboutFileMenuItem.File(R.raw.about_privacy_policy, OdsAboutFileMenuItem.File.Format.Html),
             termsOfServiceMenuItemFile = OdsAboutFileMenuItem.File(R.raw.about_terms_of_service, OdsAboutFileMenuItem.File.Format.Html),
+            accessibilityStatementMenuItemConfiguration = OdsAboutAccessibilityStatementMenuItemConfiguration("accessibility-statement/orange-design-system.xml"),
             appVersion = if (selectedAppSections.contains(AboutCustomizationAppSection.Version)) stringResource(id = R.string.module_about_demo_version) else null,
             appDescription = if (selectedAppSections.contains(AboutCustomizationAppSection.Description)) stringResource(id = R.string.module_about_demo_description) else null,
             shareData = if (selectedAppSections.contains(AboutCustomizationAppSection.Share)) {

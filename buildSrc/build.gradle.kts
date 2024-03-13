@@ -1,11 +1,13 @@
 /*
+ * Software Name: Orange Design System
+ * SPDX-FileCopyrightText: Copyright (c) Orange SA
+ * SPDX-License-Identifier: MIT
  *
- *  Copyright 2021 Orange
+ * This software is distributed under the MIT license,
+ * the text of which is available at https://opensource.org/license/MIT/
+ * or see the "LICENSE" file for more details.
  *
- *  Use of this source code is governed by an MIT-style
- *  license that can be found in the LICENSE file or at
- *  https://opensource.org/licenses/MIT.
- * /
+ * Software description: Android library of reusable graphical components
  */
 
 plugins {
@@ -28,7 +30,7 @@ kotlin {
 }
 
 dependencies {
-    implementation("com.android.tools.build:gradle:8.2.0")
-    implementation("org.jetbrains.kotlin:kotlin-gradle-plugin:1.9.21") // https://issuetracker.google.com/issues/176079157#comment14
+    implementation("com.android.tools.build:gradle:8.3.0")
+    implementation("org.jetbrains.kotlin:kotlin-gradle-plugin:1.9.22") // https://issuetracker.google.com/issues/176079157#comment14
     implementation("com.squareup:javapoet:1.13.0") // https://github.com/google/dagger/issues/3282
 }

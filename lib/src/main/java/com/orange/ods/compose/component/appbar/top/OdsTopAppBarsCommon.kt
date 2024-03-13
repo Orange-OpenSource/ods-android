@@ -1,11 +1,13 @@
 /*
+ * Software Name: Orange Design System
+ * SPDX-FileCopyrightText: Copyright (c) Orange SA
+ * SPDX-License-Identifier: MIT
  *
- *  Copyright 2021 Orange
+ * This software is distributed under the MIT license,
+ * the text of which is available at https://opensource.org/license/MIT/
+ * or see the "LICENSE" file for more details.
  *
- *  Use of this source code is governed by an MIT-style
- *  license that can be found in the LICENSE file or at
- *  https://opensource.org/licenses/MIT.
- * /
+ * Software description: Android library of reusable graphical components 
  */
 
 package com.orange.ods.compose.component.appbar.top
@@ -24,20 +26,19 @@ import androidx.compose.ui.graphics.painter.Painter
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.res.stringResource
 import com.orange.ods.R
-import com.orange.ods.compose.component.content.OdsComponentContent
 import com.orange.ods.compose.component.content.OdsComponentIcon
 import com.orange.ods.compose.component.menu.OdsDropdownMenu
 import com.orange.ods.compose.theme.OdsTheme
 
 @Composable
-internal fun OdsTopAppBarActions(actions: List<OdsComponentContent<*>>, overflowMenuItems: List<OdsDropdownMenu.Item>) {
+internal fun OdsTopAppBarActions(actions: List<OdsTopAppBar.ActionButton>, overflowMenuItems: List<OdsDropdownMenu.Item>) {
     val maxTotalActionCount = 3
     val maxActionCount = if (overflowMenuItems.isNotEmpty()) maxTotalActionCount - 1 else maxTotalActionCount
     actions.take(maxActionCount).forEach { it.Content() }
     if (overflowMenuItems.isNotEmpty()) {
         Box {
             var showMenu by remember { mutableStateOf(false) }
-            val contentDescription = stringResource(id = R.string.top_app_bar_overflow_menu_content_description)
+            val contentDescription = stringResource(id = R.string.ods_topAppBar_overflowMenu_labelA11y)
             val dropdownMenuAction = OdsTopAppBar.ActionButton(Icons.Filled.MoreVert, contentDescription, true) { showMenu = !showMenu }
             dropdownMenuAction.Content()
             OdsDropdownMenu(
@@ -57,7 +58,11 @@ object OdsTopAppBar {
     /**
      * A navigation icon in an OdsTopAppBar.
      */
-    class NavigationIcon : OdsComponentIcon<Nothing> {
+    class NavigationIcon private constructor(
+        val graphicsObject: Any,
+        val contentDescription: String,
+        val onClick: () -> Unit
+    ) : OdsComponentIcon<Nothing>(Nothing::class.java, graphicsObject, contentDescription, onClick = onClick) {
 
         /**
          * Creates an instance of [OdsTopAppBar.NavigationIcon].
@@ -66,7 +71,7 @@ object OdsTopAppBar {
          * @param contentDescription The content description associated to this [OdsTopAppBar.NavigationIcon].
          * @param onClick Will be called when the user clicks on the action icon button.
          */
-        constructor(painter: Painter, contentDescription: String, onClick: () -> Unit) : super(painter, contentDescription, onClick = onClick)
+        constructor(painter: Painter, contentDescription: String, onClick: () -> Unit) : this(painter as Any, contentDescription, onClick)
 
         /**
          * Creates an instance of [OdsTopAppBar.NavigationIcon].
@@ -75,7 +80,7 @@ object OdsTopAppBar {
          * @param contentDescription The content description associated to this [OdsTopAppBar.NavigationIcon].
          * @param onClick Will be called when the user clicks on the action icon button.
          */
-        constructor(imageVector: ImageVector, contentDescription: String, onClick: () -> Unit) : super(imageVector, contentDescription, onClick = onClick)
+        constructor(imageVector: ImageVector, contentDescription: String, onClick: () -> Unit) : this(imageVector as Any, contentDescription, onClick)
 
         /**
          * Creates an instance of [OdsTopAppBar.NavigationIcon].
@@ -84,17 +89,22 @@ object OdsTopAppBar {
          * @param contentDescription The content description associated to this [OdsTopAppBar.NavigationIcon].
          * @param onClick Will be called when the user clicks on the action icon button.
          */
-        constructor(bitmap: ImageBitmap, contentDescription: String, onClick: () -> Unit) : super(bitmap, contentDescription, onClick = onClick)
+        constructor(bitmap: ImageBitmap, contentDescription: String, onClick: () -> Unit) : this(bitmap as Any, contentDescription, onClick)
 
         override val tint: Color?
             @Composable
-            get() = OdsTheme.colors.component.topAppBar.barContent
+            get() = OdsTheme.colors.components.topAppBar.barContent
     }
 
     /**
      * An action button displayed in an [OdsTopAppBar].
      */
-    class ActionButton : OdsComponentIcon<Nothing> {
+    class ActionButton private constructor(
+        val graphicsObject: Any,
+        val contentDescription: String,
+        val enabled: Boolean = true,
+        val onClick: () -> Unit
+    ) : OdsComponentIcon<Nothing>(Nothing::class.java, graphicsObject, contentDescription, enabled, onClick) {
 
         /**
          * Creates an instance of [OdsTopAppBar.ActionButton].
@@ -110,7 +120,7 @@ object OdsTopAppBar {
             contentDescription: String,
             enabled: Boolean = true,
             onClick: () -> Unit
-        ) : super(painter, contentDescription, enabled, onClick)
+        ) : this(painter as Any, contentDescription, enabled, onClick)
 
         /**
          * Creates an instance of [OdsTopAppBar.ActionButton].
@@ -126,7 +136,7 @@ object OdsTopAppBar {
             contentDescription: String,
             enabled: Boolean = true,
             onClick: () -> Unit
-        ) : super(imageVector, contentDescription, enabled, onClick)
+        ) : this(imageVector as Any, contentDescription, enabled, onClick)
 
         /**
          * Creates an instance of [OdsTopAppBar.ActionButton].
@@ -142,11 +152,11 @@ object OdsTopAppBar {
             contentDescription: String,
             enabled: Boolean = true,
             onClick: () -> Unit
-        ) : super(bitmap, contentDescription, enabled, onClick)
+        ) : this(bitmap as Any, contentDescription, enabled, onClick)
 
         override val tint: Color
             @Composable
-            get() = OdsTheme.colors.component.topAppBar.barContent
+            get() = OdsTheme.colors.components.topAppBar.barContent
     }
 
 }

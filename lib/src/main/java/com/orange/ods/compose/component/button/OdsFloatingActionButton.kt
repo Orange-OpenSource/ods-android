@@ -1,11 +1,13 @@
 /*
+ * Software Name: Orange Design System
+ * SPDX-FileCopyrightText: Copyright (c) Orange SA
+ * SPDX-License-Identifier: MIT
  *
- *  Copyright 2021 Orange
+ * This software is distributed under the MIT license,
+ * the text of which is available at https://opensource.org/license/MIT/
+ * or see the "LICENSE" file for more details.
  *
- *  Use of this source code is governed by an MIT-style
- *  license that can be found in the LICENSE file or at
- *  https://opensource.org/licenses/MIT.
- * /
+ * Software description: Android library of reusable graphical components 
  */
 
 package com.orange.ods.compose.component.button
@@ -17,7 +19,7 @@ import androidx.compose.foundation.layout.size
 import androidx.compose.material.ExtendedFloatingActionButton
 import androidx.compose.material.FloatingActionButton
 import androidx.compose.material.Icon
-import androidx.compose.material.Text
+import androidx.compose.material.LocalContentColor
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.ImageBitmap
@@ -31,9 +33,11 @@ import com.orange.ods.R
 import com.orange.ods.compose.component.OdsComposable
 import com.orange.ods.compose.component.content.OdsComponentIcon
 import com.orange.ods.compose.component.utilities.BasicPreviewParameterProvider
-import com.orange.ods.compose.component.utilities.Preview
+import com.orange.ods.compose.component.utilities.OdsPreview
 import com.orange.ods.compose.component.utilities.UiModePreviews
+import com.orange.ods.compose.text.OdsText
 import com.orange.ods.compose.theme.OdsTheme
+import com.orange.ods.theme.typography.OdsTextStyle
 
 private val MiniFabSize = 40.dp
 private val FabIconSize = 24.dp
@@ -64,8 +68,8 @@ fun OdsFloatingActionButton(
     FloatingActionButton(
         onClick = onClick,
         modifier = modifier.let { if (mini) it.size(MiniFabSize) else it },
-        backgroundColor = OdsTheme.colors.component.floatingActionButton.background,
-        contentColor = OdsTheme.colors.component.floatingActionButton.content
+        backgroundColor = OdsTheme.colors.components.floatingActionButton.background,
+        contentColor = OdsTheme.colors.components.floatingActionButton.content
     ) {
         icon.Content()
     }
@@ -96,10 +100,10 @@ fun OdsExtendedFloatingActionButton(
 ) {
     ExtendedFloatingActionButton(
         onClick = onClick,
-        text = { Text(text = text.uppercase(), style = OdsTheme.typography.button) },
+        text = { OdsText(text = text, style = OdsTextStyle.LabelL, color = LocalContentColor.current) },
         modifier = modifier,
-        backgroundColor = OdsTheme.colors.component.floatingActionButton.background,
-        contentColor = OdsTheme.colors.component.floatingActionButton.content,
+        backgroundColor = OdsTheme.colors.components.floatingActionButton.background,
+        contentColor = OdsTheme.colors.components.floatingActionButton.content,
         icon = { icon.Content() }
     )
 }
@@ -112,7 +116,10 @@ object OdsFloatingActionButton {
     /**
      * A button icon in an [OdsFloatingActionButton].
      */
-    class Icon : OdsComponentIcon<Nothing> {
+    class Icon private constructor(
+        val graphicsObject: Any,
+        val contentDescription: String
+    ) : OdsComponentIcon<Nothing>(Nothing::class.java, graphicsObject, contentDescription) {
 
         /**
          * Creates an instance of [OdsFloatingActionButton.Icon].
@@ -120,7 +127,7 @@ object OdsFloatingActionButton {
          * @param painter Painter of the icon.
          * @param contentDescription The content description associated to this [OdsFloatingActionButton.Icon].
          */
-        constructor(painter: Painter, contentDescription: String) : super(painter, contentDescription)
+        constructor(painter: Painter, contentDescription: String) : this(painter as Any, contentDescription)
 
         /**
          * Creates an instance of [OdsFloatingActionButton.Icon].
@@ -128,7 +135,7 @@ object OdsFloatingActionButton {
          * @param imageVector Image vector of the icon.
          * @param contentDescription The content description associated to this [OdsFloatingActionButton.Icon].
          */
-        constructor(imageVector: ImageVector, contentDescription: String) : super(imageVector, contentDescription)
+        constructor(imageVector: ImageVector, contentDescription: String) : this(imageVector as Any, contentDescription)
 
         /**
          * Creates an instance of [OdsFloatingActionButton.Icon].
@@ -136,7 +143,7 @@ object OdsFloatingActionButton {
          * @param bitmap Image bitmap of the icon.
          * @param contentDescription The content description associated to this [OdsFloatingActionButton.Icon].
          */
-        constructor(bitmap: ImageBitmap, contentDescription: String) : super(bitmap, contentDescription)
+        constructor(bitmap: ImageBitmap, contentDescription: String) : this(bitmap as Any, contentDescription)
 
         @Composable
         override fun Content(modifier: Modifier) {
@@ -149,7 +156,7 @@ object OdsFloatingActionButton {
 @UiModePreviews.Default
 @Composable
 private fun PreviewOdsFloatingActionButton(@PreviewParameter(OdsFloatingActionButtonPreviewParameterProvider::class) isMini: Boolean) =
-    Preview {
+    OdsPreview {
         Column(modifier = Modifier.padding(dimensionResource(id = R.dimen.spacing_s))) {
             OdsFloatingActionButton(
                 onClick = {},
@@ -163,7 +170,7 @@ internal class OdsFloatingActionButtonPreviewParameterProvider : BasicPreviewPar
 
 @UiModePreviews.Button
 @Composable
-private fun PreviewOdsExtendedFloatingActionButton() = Preview {
+private fun PreviewOdsExtendedFloatingActionButton() = OdsPreview {
     Column(modifier = Modifier.padding(dimensionResource(id = R.dimen.spacing_s))) {
         OdsExtendedFloatingActionButton(
             modifier = Modifier.fillMaxWidth(),

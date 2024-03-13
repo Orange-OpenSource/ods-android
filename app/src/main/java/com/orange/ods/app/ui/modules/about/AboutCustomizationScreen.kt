@@ -1,11 +1,13 @@
 /*
+ * Software Name: Orange Design System
+ * SPDX-FileCopyrightText: Copyright (c) Orange SA
+ * SPDX-License-Identifier: MIT
  *
- *  Copyright 2021 Orange
+ * This software is distributed under the MIT license,
+ * the text of which is available at https://opensource.org/license/MIT/
+ * or see the "LICENSE" file for more details.
  *
- *  Use of this source code is governed by an MIT-style
- *  license that can be found in the LICENSE file or at
- *  https://opensource.org/licenses/MIT.
- * /
+ * Software description: Android library of reusable graphical components
  */
 
 package com.orange.ods.app.ui.modules.about
@@ -20,13 +22,15 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.unit.dp
 import com.orange.ods.app.R
 import com.orange.ods.app.ui.components.utilities.ComponentCountRow
 import com.orange.ods.app.ui.modules.Module
 import com.orange.ods.app.ui.modules.ModuleDetailColumn
 import com.orange.ods.app.ui.utilities.composable.Subtitle
 import com.orange.ods.compose.component.chip.OdsFilterChip
-import com.orange.ods.compose.text.OdsTextBody2
+import com.orange.ods.compose.text.OdsText
+import com.orange.ods.theme.typography.OdsTextStyle
 
 enum class AboutCustomizationAppSection(@StringRes val labelResId: Int) {
     Version(R.string.module_about_customization_app_section_version),
@@ -48,13 +52,15 @@ private const val MaxLinkItemCount = 10
 fun AboutCustomizationScreen(navigateToAboutDemo: () -> Unit, viewModel: AboutCustomizationViewModel) {
     with(viewModel) {
         ModuleDetailColumn(module = Module.About, onViewDemoButtonClick = navigateToAboutDemo) {
-
-            OdsTextBody2(
-                modifier = Modifier.padding(top = dimensionResource(id = com.orange.ods.R.dimen.spacing_s)),
-                text = stringResource(id = R.string.module_about_customization)
+            OdsText(
+                modifier = Modifier
+                    .padding(top = dimensionResource(id = com.orange.ods.R.dimen.spacing_s))
+                    .padding(horizontal = dimensionResource(id = com.orange.ods.R.dimen.screen_horizontal_margin)),
+                text = stringResource(id = R.string.module_about_customization),
+                style = OdsTextStyle.BodyM
             )
 
-            Subtitle(textRes = R.string.module_about_customization_app_sections)
+            Subtitle(textRes = R.string.module_about_customization_app_sections, horizontalPadding = true)
             CustomizationChipsFlowRow {
                 AboutCustomizationAppSection.entries.forEach { appSection: AboutCustomizationAppSection ->
                     OdsFilterChip(
@@ -67,7 +73,7 @@ fun AboutCustomizationScreen(navigateToAboutDemo: () -> Unit, viewModel: AboutCu
                 }
             }
 
-            Subtitle(textRes = R.string.module_about_customization_optional_items)
+            Subtitle(textRes = R.string.module_about_customization_optional_items, horizontalPadding = true)
             CustomizationChipsFlowRow {
                 AboutCustomizationOptionalItem.entries.forEach { item: AboutCustomizationOptionalItem ->
                     OdsFilterChip(
@@ -81,6 +87,7 @@ fun AboutCustomizationScreen(navigateToAboutDemo: () -> Unit, viewModel: AboutCu
             }
 
             ComponentCountRow(
+                modifier = Modifier.padding(horizontal = dimensionResource(id = com.orange.ods.R.dimen.screen_horizontal_margin)),
                 title = stringResource(id = R.string.module_about_customization_additional_items),
                 count = additionalLinksCount,
                 minusIconContentDescription = stringResource(id = R.string.module_about_customization_additional_item_remove),
@@ -98,8 +105,10 @@ private fun CustomizationChipsFlowRow(content: @Composable () -> Unit) {
     FlowRow(
         modifier = Modifier
             .fillMaxWidth()
-            .padding(top = dimensionResource(id = com.orange.ods.R.dimen.spacing_xs)),
+            .padding(top = dimensionResource(id = com.orange.ods.R.dimen.spacing_xs))
+            .padding(horizontal = dimensionResource(id = com.orange.ods.R.dimen.screen_horizontal_margin)),
         horizontalArrangement = Arrangement.spacedBy(dimensionResource(id = com.orange.ods.R.dimen.spacing_s)),
+        verticalArrangement = Arrangement.spacedBy((-4).dp),
         content = { content() }
     )
 }

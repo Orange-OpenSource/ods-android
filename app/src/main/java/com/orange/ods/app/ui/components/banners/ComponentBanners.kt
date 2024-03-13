@@ -1,15 +1,18 @@
 /*
+ * Software Name: Orange Design System
+ * SPDX-FileCopyrightText: Copyright (c) Orange SA
+ * SPDX-License-Identifier: MIT
  *
- *  Copyright 2021 Orange
+ * This software is distributed under the MIT license,
+ * the text of which is available at https://opensource.org/license/MIT/
+ * or see the "LICENSE" file for more details.
  *
- *  Use of this source code is governed by an MIT-style
- *  license that can be found in the LICENSE file or at
- *  https://opensource.org/licenses/MIT.
- * /
+ * Software description: Android library of reusable graphical components 
  */
 
 package com.orange.ods.app.ui.components.banners
 
+import android.graphics.drawable.Drawable
 import androidx.appcompat.content.res.AppCompatResources
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.padding
@@ -30,25 +33,30 @@ import coil.request.ImageRequest
 import com.orange.ods.app.R
 import com.orange.ods.app.databinding.OdsBannerBinding
 import com.orange.ods.app.domain.recipes.LocalRecipes
+import com.orange.ods.app.ui.LocalThemeManager
 import com.orange.ods.app.ui.UiFramework
 import com.orange.ods.app.ui.components.utilities.ComponentCountRow
 import com.orange.ods.app.ui.components.utilities.ComponentCustomizationBottomSheetScaffold
 import com.orange.ods.app.ui.components.utilities.clickOnElement
 import com.orange.ods.app.ui.utilities.DrawableManager
+import com.orange.ods.app.ui.utilities.code.CodeBackgroundColumn
 import com.orange.ods.app.ui.utilities.code.CodeImplementationColumn
 import com.orange.ods.app.ui.utilities.code.FunctionCallCode
+import com.orange.ods.app.ui.utilities.code.XmlViewTag
 import com.orange.ods.app.ui.utilities.composable.Subtitle
+import com.orange.ods.app.ui.utilities.extension.buildImageRequest
 import com.orange.ods.compose.OdsComposable
 import com.orange.ods.compose.component.banner.OdsBanner
-import com.orange.ods.compose.component.chip.OdsChoiceChip
 import com.orange.ods.compose.component.chip.OdsChoiceChipsFlowRow
 import com.orange.ods.compose.component.listitem.OdsListItem
-import com.orange.ods.extension.ifNotNull
+import com.orange.ods.compose.extension.ifNotNull
 
 @OptIn(ExperimentalMaterialApi::class)
 @Composable
 fun ComponentBanners() {
     val bannerCustomizationState = rememberBannerCustomizationState()
+    val context = LocalContext.current
+    val darkModeEnabled = LocalThemeManager.current.darkModeEnabled
     val recipes = LocalRecipes.current
     val recipe = rememberSaveable { recipes.filter { it.description.isNotBlank() }.random() }
 
@@ -58,15 +66,11 @@ fun ComponentBanners() {
             bottomSheetContent = {
                 Subtitle(textRes = R.string.component_banner_message_example, horizontalPadding = true)
                 OdsChoiceChipsFlowRow(
-                    value = shortMessage.value,
-                    onValueChange = { value -> shortMessage.value = value },
+                    selectedChoiceChipIndex = if (shortMessage.value) 0 else 1,
                     modifier = Modifier.padding(horizontal = dimensionResource(id = com.orange.ods.R.dimen.spacing_m)),
-                    chips = listOf(
-                        OdsChoiceChip(
-                            text = stringResource(id = R.string.component_banner_message_example_short),
-                            value = true
-                        ),
-                        OdsChoiceChip(text = stringResource(id = R.string.component_banner_message_example_long), value = false)
+                    choiceChips = listOf(
+                        OdsChoiceChipsFlowRow.ChoiceChip(stringResource(id = R.string.component_banner_message_example_short), { shortMessage.value = true }),
+                        OdsChoiceChipsFlowRow.ChoiceChip(stringResource(id = R.string.component_banner_message_example_long), { shortMessage.value = false })
                     )
                 )
                 ComponentCountRow(
@@ -84,7 +88,6 @@ fun ComponentBanners() {
                 )
             }
         ) {
-            val context = LocalContext.current
             Column(
                 modifier = Modifier
                     .verticalScroll(rememberScrollState())
@@ -108,7 +111,7 @@ fun ComponentBanners() {
                             message = message,
                             image = if (hasImage) {
                                 val painter = rememberAsyncImagePainter(
-                                    model = recipe.imageUrl,
+                                    model = buildImageRequest(context, recipe.imageUrl, darkModeEnabled),
                                     placeholder = painterResource(id = placeholderResId),
                                     error = painterResource(id = errorPlaceholderResId)
                                 )
@@ -128,10 +131,10 @@ fun ComponentBanners() {
                         odsBanner.onSecondButtonClick = onFirstButtonClick
                         if (hasImage) {
                             odsBanner.image = AppCompatResources.getDrawable(context, placeholderResId)
-                            val request = ImageRequest.Builder(context)
-                                .data(recipe.imageUrl)
+                            val onDrawable: (Drawable?) -> Unit = { odsBanner.image = it }
+                            val request = ImageRequest.Builder(buildImageRequest(context, recipe.imageUrl, darkModeEnabled))
                                 .error(errorPlaceholderResId)
-                                .target { odsBanner.image = it }
+                                .target(onError = onDrawable, onSuccess = onDrawable)
                                 .build()
                             context.imageLoader.enqueue(request)
                         } else {
@@ -142,34 +145,57 @@ fun ComponentBanners() {
 
                 CodeImplementationColumn(
                     modifier = Modifier.padding(horizontal = dimensionResource(id = com.orange.ods.R.dimen.screen_horizontal_margin)),
-                    xmlAvailable = true
-                ) {
-                    FunctionCallCode(
-                        name = OdsComposable.OdsBanner.name,
-                        exhaustiveParameters = false,
-                        parameters = {
-                            string("message", if (hasShortMessage) recipe.title else recipe.description)
-                            if (hasFirstButton) {
-                                classInstance<OdsBanner.Button>("firstButton") {
-                                    text(context.getString(R.string.component_banner_dismiss))
-                                    onClick()
+                    xmlContent = {
+                        CodeBackgroundColumn {
+                            XmlViewTag(
+                                clazz = com.orange.ods.xml.component.banner.OdsBanner::class.java,
+                                xmlAttributes = {
+                                    id("ods_banner")
+                                    layoutWidth(true)
+                                    layoutHeight()
+                                    appAttr("message", message)
+                                    firstButtonText?.let {
+                                        appAttr("firstButtonText", it)
+                                    }
+                                    secondButtonText?.let {
+                                        appAttr("secondButtonText", it)
+                                    }
+                                    if (hasImage) {
+                                        drawable("image", "image")
+                                        appAttr("imageContentDescription", "Banner image")
+                                    }
                                 }
-                            }
-                            if (hasImage) {
-                                classInstance<OdsBanner.Image>("image") {
-                                    painter()
-                                    contentDescription("")
-                                }
-                            }
-                            if (hasSecondButton) {
-                                classInstance<OdsBanner.Button>("secondButton") {
-                                    text(context.getString(R.string.component_banner_detail))
-                                    onClick()
-                                }
-                            }
+                            )
                         }
-                    )
-                }
+                    },
+                    composeContent = {
+                        FunctionCallCode(
+                            name = OdsComposable.OdsBanner.name,
+                            exhaustiveParameters = false,
+                            parameters = {
+                                string("message", message)
+                                firstButtonText?.let {
+                                    classInstance<OdsBanner.Button>("firstButton") {
+                                        text(it)
+                                        onClick()
+                                    }
+                                }
+                                if (hasImage) {
+                                    classInstance<OdsBanner.Image>("image") {
+                                        painter()
+                                        contentDescription("")
+                                    }
+                                }
+                                secondButtonText?.let {
+                                    classInstance<OdsBanner.Button>("secondButton") {
+                                        text(it)
+                                        onClick()
+                                    }
+                                }
+                            }
+                        )
+                    }
+                )
             }
         }
     }

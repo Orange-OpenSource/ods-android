@@ -1,11 +1,13 @@
 /*
+ * Software Name: Orange Design System
+ * SPDX-FileCopyrightText: Copyright (c) Orange SA
+ * SPDX-License-Identifier: MIT
  *
- *  Copyright 2021 Orange
+ * This software is distributed under the MIT license,
+ * the text of which is available at https://opensource.org/license/MIT/
+ * or see the "LICENSE" file for more details.
  *
- *  Use of this source code is governed by an MIT-style
- *  license that can be found in the LICENSE file or at
- *  https://opensource.org/licenses/MIT.
- * /
+ * Software description: Android library of reusable graphical components
  */
 
 package com.orange.ods.compose.component.tab
@@ -17,14 +19,13 @@ import androidx.compose.material.TabRowDefaults.tabIndicatorOffset
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableIntStateOf
-import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.PreviewParameter
 import com.orange.ods.compose.component.OdsComposable
-import com.orange.ods.compose.component.utilities.Preview
+import com.orange.ods.compose.component.utilities.OdsPreview
 import com.orange.ods.compose.component.utilities.UiModePreviews
 import com.orange.ods.compose.theme.OdsTheme
 
@@ -49,25 +50,34 @@ fun OdsScrollableTabRow(
 ) {
     ScrollableTabRow(
         modifier = modifier,
-        backgroundColor = OdsTheme.colors.component.tab.background,
-        contentColor = OdsTheme.colors.component.tab.unselectedContent,
+        backgroundColor = OdsTheme.colors.components.tab.background,
+        contentColor = OdsTheme.colors.components.tab.unselectedContent,
         selectedTabIndex = selectedTabIndex,
         indicator = { tabPositions ->
             if (selectedTabIndex < tabPositions.size) {
                 TabRowDefaults.Indicator(
                     modifier = Modifier.tabIndicatorOffset(tabPositions[selectedTabIndex]),
-                    color = OdsTheme.colors.component.tab.selectedContent
+                    color = OdsTheme.colors.components.tab.selectedContent
                 )
             }
         },
         divider = {},
-        tabs = { tabs.forEachIndexed { index, tab -> tab.Content(OdsTabRow.Tab.ExtraParameters(selected = index == selectedTabIndex, iconPosition = tabIconPosition)) } }
+        tabs = {
+            tabs.forEachIndexed { index, tab ->
+                tab.Content(
+                    OdsTabRow.Tab.ExtraParameters(
+                        selected = index == selectedTabIndex,
+                        iconPosition = tabIconPosition
+                    )
+                )
+            }
+        }
     )
 }
 
 @UiModePreviews.Default
 @Composable
-private fun PreviewOdsScrollableTabRow(@PreviewParameter(OdsTabRowPreviewParameterProvider::class) parameter: OdsTabPreviewParameter) = Preview {
+private fun PreviewOdsScrollableTabRow(@PreviewParameter(OdsTabRowPreviewParameterProvider::class) parameter: OdsTabPreviewParameter) = OdsPreview {
     data class Tab(@DrawableRes val iconResId: Int, val text: String)
 
     val tabs = listOf(

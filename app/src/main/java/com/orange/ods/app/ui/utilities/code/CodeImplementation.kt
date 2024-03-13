@@ -1,11 +1,13 @@
 /*
+ * Software Name: Orange Design System
+ * SPDX-FileCopyrightText: Copyright (c) Orange SA
+ * SPDX-License-Identifier: MIT
  *
- *  Copyright 2021 Orange
+ * This software is distributed under the MIT license,
+ * the text of which is available at https://opensource.org/license/MIT/
+ * or see the "LICENSE" file for more details.
  *
- *  Use of this source code is governed by an MIT-style
- *  license that can be found in the LICENSE file or at
- *  https://opensource.org/licenses/MIT.
- * /
+ * Software description: Android library of reusable graphical components
  */
 
 package com.orange.ods.app.ui.utilities.code
@@ -32,12 +34,11 @@ import com.orange.ods.app.ui.UiFramework
 import com.orange.ods.app.ui.utilities.composable.TechnicalText
 import com.orange.ods.compose.component.menu.OdsExposedDropdownMenu
 import com.orange.ods.compose.theme.OdsTheme
-import com.orange.ods.extension.orElse
+import com.orange.ods.compose.extension.orElse
 
 @Composable
 fun CodeImplementationColumn(
     modifier: Modifier = Modifier,
-    xmlAvailable: Boolean = false, // Temporary parameter: Indicates whether the XML version of the component is available
     contentBackground: Boolean = true,
     xmlContent: (@Composable () -> Unit)? = null,
     composeContent: @Composable () -> Unit
@@ -58,7 +59,7 @@ fun CodeImplementationColumn(
             vertical = dimensionResource(id = com.orange.ods.R.dimen.spacing_s)
         )
     ) {
-        UiFrameworkChoice(xmlAvailable)
+        UiFrameworkChoice()
         if (currentUiFramework == UiFramework.Compose) {
             if (contentBackground) {
                 CodeBackgroundColumn(composeContent)
@@ -69,26 +70,28 @@ fun CodeImplementationColumn(
             xmlContent?.let {
                 it()
             }.orElse {
-                TechnicalText(
-                    modifier = Modifier
-                        .fillMaxWidth()
-                        .padding(dimensionResource(id = com.orange.ods.R.dimen.spacing_xs)),
-                    text = stringResource(id = R.string.soon_available)
-                )
+                CodeBackgroundColumn {
+                    TechnicalText(
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .padding(dimensionResource(id = com.orange.ods.R.dimen.spacing_xs)),
+                        text = stringResource(id = R.string.xml_component_not_yet_available)
+                    )
+                }
             }
         }
     }
 }
 
 @Composable
-private fun UiFrameworkChoice(xmlAvailable: Boolean) {
+private fun UiFrameworkChoice() {
     val context = LocalContext.current
     val currentUiFramework = LocalUiFramework.current
     val uiFrameworkItems = UiFramework.entries.map { uiFramework ->
         OdsExposedDropdownMenu.Item(label = stringResource(id = uiFramework.labelResId), iconResId = uiFramework.iconResId)
     }
     val selectedUiFramework = rememberSaveable(currentUiFramework.value) {
-        val selectedUiFramework = if (xmlAvailable) currentUiFramework.value else UiFramework.Compose
+        val selectedUiFramework = currentUiFramework.value
         val selectedUiFrameworkIndex = UiFramework.entries.indexOf(selectedUiFramework)
         mutableStateOf(uiFrameworkItems[selectedUiFrameworkIndex])
     }
@@ -99,8 +102,7 @@ private fun UiFrameworkChoice(xmlAvailable: Boolean) {
         selectedItem = selectedUiFramework,
         onItemSelectionChange = { selectedItem ->
             currentUiFramework.value = UiFramework.entries.first { context.getString(it.labelResId) == selectedItem.label }
-        },
-        enabled = xmlAvailable
+        }
     )
 }
 

@@ -1,45 +1,55 @@
 /*
+ * Software Name: Orange Design System
+ * SPDX-FileCopyrightText: Copyright (c) Orange SA
+ * SPDX-License-Identifier: MIT
  *
- *  Copyright 2021 Orange
+ * This software is distributed under the MIT license,
+ * the text of which is available at https://opensource.org/license/MIT/
+ * or see the "LICENSE" file for more details.
  *
- *  Use of this source code is governed by an MIT-style
- *  license that can be found in the LICENSE file or at
- *  https://opensource.org/licenses/MIT.
- * /
+ * Software description: Android library of reusable graphical components
  */
 
 package com.orange.ods.compose.component.appbar.top
 
+import androidx.compose.foundation.focusable
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.ArrowBack
+import androidx.compose.material.icons.automirrored.filled.ArrowBack
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.LargeTopAppBar
-import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.material3.TopAppBarScrollBehavior
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.derivedStateOf
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.alpha
+import androidx.compose.ui.focus.FocusRequester
+import androidx.compose.ui.focus.focusRequester
 import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.semantics.isTraversalGroup
+import androidx.compose.ui.semantics.semantics
+import androidx.compose.ui.semantics.traversalIndex
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.PreviewParameter
 import androidx.compose.ui.unit.dp
 import com.orange.ods.R
 import com.orange.ods.compose.component.OdsComposable
-import com.orange.ods.compose.component.content.OdsComponentContent
 import com.orange.ods.compose.component.menu.OdsDropdownMenu
 import com.orange.ods.compose.component.utilities.BasicPreviewParameterProvider
-import com.orange.ods.compose.component.utilities.Preview
+import com.orange.ods.compose.component.utilities.OdsPreview
 import com.orange.ods.compose.component.utilities.UiModePreviews
+import com.orange.ods.compose.text.OdsText
 import com.orange.ods.compose.theme.OdsTheme
+import com.orange.ods.theme.typography.OdsTextStyle
+import kotlinx.coroutines.delay
 
 /**
- * <a href="https://system.design.orange.com/0c1af118d/p/23e0e6-app-bars/b/620966" class="external" target="_blank">Material ODS Top App Bar</a>.
+ * <a href="https://system.design.orange.com/0c1af118d/p/23e0e6-app-bars/b/620966" class="external" target="_blank">ODS Top App Bar</a>.
  *
  * The top app bar displays information and actions relating to the current screen.
  *
@@ -61,29 +71,7 @@ fun OdsLargeTopAppBar(
     overflowMenuItems: List<OdsDropdownMenu.Item> = emptyList(),
     scrollBehavior: TopAppBarScrollBehavior? = null
 ) {
-    OdsLargeTopAppBarInternal(
-        title = title,
-        modifier = modifier,
-        navigationIcon = navigationIcon,
-        actions = actions,
-        overflowMenuItems = overflowMenuItems,
-        scrollBehavior = scrollBehavior
-    )
-}
-
-// TODO: Remove this method once OdsSearchTopAppBar is developed
-@OptIn(ExperimentalMaterial3Api::class)
-@Composable
-@OdsComposable
-fun OdsLargeTopAppBarInternal(
-    title: String,
-    modifier: Modifier = Modifier,
-    navigationIcon: OdsTopAppBar.NavigationIcon? = null,
-    actions: List<OdsComponentContent<*>> = emptyList(),
-    overflowMenuItems: List<OdsDropdownMenu.Item> = emptyList(),
-    scrollBehavior: TopAppBarScrollBehavior? = null
-) {
-    val contentColor = OdsTheme.colors.component.topAppBar.barContent
+    val contentColor = OdsTheme.colors.components.topAppBar.barContent
     val expandedTitleStartPadding = 48.dp
     val collapsedTitleStartPadding = 8.dp
     val expandedTitleAlpha = 1f
@@ -116,26 +104,35 @@ fun OdsLargeTopAppBarInternal(
         }
     }
 
+    val focusRequester = remember { FocusRequester() }
+    LaunchedEffect(title) {
+        delay(100L)
+        focusRequester.requestFocus()
+    }
+
     LargeTopAppBar(
         title = {
-            Text(
+            OdsText(
                 modifier = Modifier
                     .padding(
                         start = titleStartPadding,
                         end = dimensionResource(id = R.dimen.spacing_m)
                     )
-                    .alpha(titleAlpha),
+                    .alpha(titleAlpha)
+                    .semantics { traversalIndex = -1f }
+                    .focusRequester(focusRequester)
+                    .focusable(),
                 text = title,
-                style = OdsTheme.typography.h6,
+                style = OdsTextStyle.TitleL,
                 overflow = TextOverflow.Ellipsis,
                 maxLines = titleMaxLines,
             )
         },
-        modifier = modifier,
+        modifier = modifier.semantics { isTraversalGroup = true },
         navigationIcon = { navigationIcon?.Content() },
         actions = { OdsTopAppBarActions(actions = actions, overflowMenuItems = overflowMenuItems) },
         colors = TopAppBarDefaults.largeTopAppBarColors(
-            containerColor = OdsTheme.colors.component.topAppBar.barBackground,
+            containerColor = OdsTheme.colors.components.topAppBar.barBackground,
             navigationIconContentColor = contentColor,
             titleContentColor = contentColor,
             actionIconContentColor = contentColor
@@ -148,7 +145,7 @@ fun OdsLargeTopAppBarInternal(
 @UiModePreviews.Default
 @Composable
 private fun PreviewOdsLargeTopAppBar(@PreviewParameter(OdsLargeTopAppBarPreviewParameterProvider::class) parameter: OdsLargeTopAppBarPreviewParameter) =
-    Preview {
+    OdsPreview {
         val actions = listOf(OdsTopAppBar.ActionButton(painterResource(id = android.R.drawable.ic_dialog_info), "Info") {})
         val overflowMenuItems = listOf(
             OdsDropdownMenu.Item("Settings") { },
@@ -172,7 +169,7 @@ private class OdsLargeTopAppBarPreviewParameterProvider :
 
 private val previewParameterValues: List<OdsLargeTopAppBarPreviewParameter>
     get() {
-        val navigationIcon = OdsTopAppBar.NavigationIcon(Icons.Filled.ArrowBack, "") {}
+        val navigationIcon = OdsTopAppBar.NavigationIcon(Icons.AutoMirrored.Filled.ArrowBack, "") {}
         return listOf(
             OdsLargeTopAppBarPreviewParameter("One line title", navigationIcon),
             OdsLargeTopAppBarPreviewParameter("Two lines title is allowed in large top app bar", navigationIcon),

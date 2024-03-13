@@ -1,11 +1,13 @@
 /*
+ * Software Name: Orange Design System
+ * SPDX-FileCopyrightText: Copyright (c) Orange SA
+ * SPDX-License-Identifier: MIT
  *
- *  Copyright 2021 Orange
+ * This software is distributed under the MIT license,
+ * the text of which is available at https://opensource.org/license/MIT/
+ * or see the "LICENSE" file for more details.
  *
- *  Use of this source code is governed by an MIT-style
- *  license that can be found in the LICENSE file or at
- *  https://opensource.org/licenses/MIT.
- * /
+ * Software description: Android library of reusable graphical components
  */
 
 package com.orange.ods.app.ui.guidelines.color
@@ -46,35 +48,36 @@ import androidx.compose.ui.text.AnnotatedString
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.window.Dialog
 import com.orange.ods.app.R
-import com.orange.ods.app.ui.LocalOdsGuideline
+import com.orange.ods.app.ui.LocalGuideline
 import com.orange.ods.app.ui.utilities.composable.Title
 import com.orange.ods.app.ui.utilities.extension.getStringName
 import com.orange.ods.compose.component.button.OdsButton
-import com.orange.ods.compose.text.OdsTextBody1
-import com.orange.ods.compose.text.OdsTextCaption
-import com.orange.ods.compose.text.OdsTextH5
-import com.orange.ods.compose.text.OdsTextH6
+import com.orange.ods.compose.text.OdsText
 import com.orange.ods.compose.theme.OdsTheme
+import com.orange.ods.theme.annotation.ExperimentalOdsApi
 import com.orange.ods.theme.guideline.GuidelineColor
 import com.orange.ods.theme.guideline.GuidelineColorType
 import com.orange.ods.theme.guideline.toHexString
 import com.orange.ods.theme.guideline.toRgbString
+import com.orange.ods.theme.typography.OdsTextStyle
 
+@OptIn(ExperimentalOdsApi::class)
 @Composable
 fun GuidelineColorScreen() {
-    val guidelineColors = LocalOdsGuideline.current.guidelineColors
+    val guidelineColors = LocalGuideline.current.guidelineColors
 
     val coreColors = guidelineColors.filter { it.type == GuidelineColorType.Core }
     val functionalColors = guidelineColors.filter { it.type == GuidelineColorType.Functional }
     val supportingColors = guidelineColors.filter { it.type == GuidelineColorType.Supporting }
 
     if (guidelineColors.isEmpty()) {
-        OdsTextBody1(
+        OdsText(
             modifier = Modifier.padding(
                 horizontal = dimensionResource(id = com.orange.ods.R.dimen.screen_horizontal_margin),
                 vertical = dimensionResource(id = com.orange.ods.R.dimen.screen_vertical_margin)
             ),
-            text = stringResource(id = R.string.guideline_colour_no_colours_defined)
+            text = stringResource(id = R.string.guideline_colour_no_colours_defined),
+            style = OdsTextStyle.BodyL
         )
     } else {
         LazyColumn(
@@ -132,7 +135,7 @@ fun GuidelineColorScreen() {
     }
 }
 
-@OptIn(ExperimentalFoundationApi::class)
+@OptIn(ExperimentalFoundationApi::class, ExperimentalOdsApi::class)
 @Composable
 private fun RowScope.SmallColorItem(color: GuidelineColor) {
     val openDialog = remember { mutableStateOf(false) }
@@ -153,18 +156,19 @@ private fun RowScope.SmallColorItem(color: GuidelineColor) {
                 .fillMaxWidth()
                 .aspectRatio(1f)
         )
-        OdsTextH6(
+        OdsText(
             text = color.getName(),
-            modifier = Modifier.padding(top = dimensionResource(id = com.orange.ods.R.dimen.spacing_xs))
+            modifier = Modifier.padding(top = dimensionResource(id = com.orange.ods.R.dimen.spacing_xs)),
+            style = OdsTextStyle.TitleL
         )
-        OdsTextCaption(text = colorValue.toHexString())
+        OdsText(text = colorValue.toHexString(), style = OdsTextStyle.BodyS)
     }
     if (openDialog.value) {
         DialogColor(color = color, openDialog)
     }
 }
 
-@OptIn(ExperimentalFoundationApi::class)
+@OptIn(ExperimentalFoundationApi::class, ExperimentalOdsApi::class)
 @Composable
 private fun RowScope.BigColorItem(color: GuidelineColor) {
     val openDialog = remember { mutableStateOf(false) }
@@ -190,17 +194,20 @@ private fun RowScope.BigColorItem(color: GuidelineColor) {
                 boxColorModifier
             }
         )
-        OdsTextH6(
+        OdsText(
             text = color.getName(),
-            modifier = Modifier.padding(top = dimensionResource(id = com.orange.ods.R.dimen.spacing_xs))
-        )
-        OdsTextBody1(text = color.callableName)
-        OdsTextCaption(
             modifier = Modifier.padding(top = dimensionResource(id = com.orange.ods.R.dimen.spacing_xs)),
-            text = colorValue.toHexString()
+            style = OdsTextStyle.TitleL
         )
-        OdsTextCaption(
-            text = colorValue.toRgbString()
+        OdsText(text = color.callableName, style = OdsTextStyle.BodyL)
+        OdsText(
+            modifier = Modifier.padding(top = dimensionResource(id = com.orange.ods.R.dimen.spacing_xs)),
+            text = colorValue.toHexString(),
+            style = OdsTextStyle.BodyS
+        )
+        OdsText(
+            text = colorValue.toRgbString(),
+            style = OdsTextStyle.BodyS
         )
     }
     if (openDialog.value) {
@@ -208,6 +215,7 @@ private fun RowScope.BigColorItem(color: GuidelineColor) {
     }
 }
 
+@OptIn(ExperimentalOdsApi::class)
 @Composable
 fun DialogColor(color: GuidelineColor, openDialog: MutableState<Boolean>) {
     val context = LocalContext.current
@@ -232,26 +240,30 @@ fun DialogColor(color: GuidelineColor, openDialog: MutableState<Boolean>) {
                         vertical = dimensionResource(id = com.orange.ods.R.dimen.spacing_s)
                     )
             ) {
-                OdsTextH5(text = color.getName())
-                OdsTextBody1(
+                OdsText(text = color.getName(), style = OdsTextStyle.HeadlineS)
+                OdsText(
                     modifier = Modifier.padding(top = dimensionResource(id = com.orange.ods.R.dimen.spacing_xs)),
-                    text = color.callableName
+                    text = color.callableName,
+                    style = OdsTextStyle.BodyL
                 )
-                OdsTextBody1(
+                OdsText(
                     modifier = Modifier.padding(top = dimensionResource(id = com.orange.ods.R.dimen.spacing_s)),
-                    text = colorValue.toHexString()
+                    text = colorValue.toHexString(),
+                    style = OdsTextStyle.BodyL
                 )
-                OdsTextBody1(
+                OdsText(
                     modifier = Modifier.padding(top = dimensionResource(id = com.orange.ods.R.dimen.spacing_s)),
-                    text = colorValue.toRgbString()
+                    text = colorValue.toRgbString(),
+                    style = OdsTextStyle.BodyL
                 )
                 color.xmlResource?.let { xmlResource ->
-                    OdsTextBody1(
+                    OdsText(
                         modifier = Modifier.padding(top = dimensionResource(id = com.orange.ods.R.dimen.spacing_s)),
                         text = stringResource(
                             id = R.string.guideline_colour_xml,
                             context.getStringName(xmlResource)
-                        )
+                        ),
+                        style = OdsTextStyle.BodyL
                     )
                 }
                 OdsButton(

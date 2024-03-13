@@ -12,6 +12,11 @@
     <MarkdownNavigatorCodeStyleSettings>
       <option name="RIGHT_MARGIN" value="72" />
     </MarkdownNavigatorCodeStyleSettings>
+    <XML>
+      <option name="XML_ATTRIBUTE_WRAP" value="2" />
+      <option name="XML_KEEP_LINE_BREAKS" value="true" />
+      <option name="XML_KEEP_BLANK_LINES" value="1" />
+    </XML>
     <codeStyleSettings language="HTML">
       <option name="RIGHT_MARGIN" value="160" />
     </codeStyleSettings>

@@ -1,23 +1,23 @@
 /*
+ * Software Name: Orange Design System
+ * SPDX-FileCopyrightText: Copyright (c) Orange SA
+ * SPDX-License-Identifier: MIT
  *
- *  Copyright 2021 Orange
+ * This software is distributed under the MIT license,
+ * the text of which is available at https://opensource.org/license/MIT/
+ * or see the "LICENSE" file for more details.
  *
- *  Use of this source code is governed by an MIT-style
- *  license that can be found in the LICENSE file or at
- *  https://opensource.org/licenses/MIT.
- * /
+ * Software description: Android library of reusable graphical components
  */
 
 package com.orange.ods.compose.component.snackbar
 
-import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material.Scaffold
 import androidx.compose.material.Snackbar
 import androidx.compose.material.SnackbarData
 import androidx.compose.material.SnackbarHost
 import androidx.compose.material.SnackbarHostState
-import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.dimensionResource
@@ -27,9 +27,12 @@ import com.orange.ods.compose.component.OdsComposable
 import com.orange.ods.compose.component.button.OdsTextButton
 import com.orange.ods.compose.component.content.OdsComponentContent
 import com.orange.ods.compose.component.utilities.BasicPreviewParameterProvider
-import com.orange.ods.compose.component.utilities.Preview
+import com.orange.ods.compose.component.utilities.OdsPreview
 import com.orange.ods.compose.component.utilities.UiModePreviews
-import com.orange.ods.compose.theme.OdsDisplaySurface
+import com.orange.ods.compose.text.OdsText
+import com.orange.ods.compose.theme.OdsThemeTweak
+import com.orange.ods.compose.theme.OdsThemeTweakType
+import com.orange.ods.theme.typography.OdsTextStyle
 
 /**
  * Host for [OdsSnackbar]s to be used in [Scaffold] to properly show, hide and dismiss items based
@@ -68,8 +71,11 @@ object OdsSnackbarHost {
      * @param actionOnNewLine Whether or not the action should be put on a separate line. Recommended for action with long action text.
      * @param onActionClick Callback invoked when the action button is clicked.
      */
-    class Snackbar(private val data: SnackbarData, private val actionOnNewLine: Boolean = false, private val onActionClick: () -> Unit = {}) :
-        OdsComponentContent<Nothing>() {
+    class Snackbar(
+        val data: SnackbarData,
+        val actionOnNewLine: Boolean = false,
+        val onActionClick: () -> Unit = {}
+    ) : OdsComponentContent<Nothing>(Nothing::class.java) {
 
         @Composable
         override fun Content(modifier: Modifier) {
@@ -106,21 +112,24 @@ private fun OdsSnackbar(
         modifier = modifier,
         action = actionLabel?.let {
             {
-                OdsTextButton(
-                    style = OdsTextButton.Style.Primary,
-                    displaySurface = if (isSystemInDarkTheme()) OdsDisplaySurface.Light else OdsDisplaySurface.Dark,
-                    text = it,
-                    onClick = onActionClick
-                )
+                OdsThemeTweak(tweakType = OdsThemeTweakType.Inverted) {
+                    OdsTextButton(
+                        style = OdsTextButton.Style.Primary,
+                        text = it,
+                        onClick = onActionClick
+                    )
+                }
             }
         },
         actionOnNewLine = actionOnNewLine
-    ) { Text(text = message) }
+    ) {
+        OdsText(text = message, style = OdsTextStyle.BodyM)
+    }
 }
 
 @UiModePreviews.Default
 @Composable
-private fun PreviewOdsSnackbar(@PreviewParameter(OdsSnackbarPreviewParameterProvider::class) parameter: OdsSnackbarPreviewParameter) = Preview {
+private fun PreviewOdsSnackbar(@PreviewParameter(OdsSnackbarPreviewParameterProvider::class) parameter: OdsSnackbarPreviewParameter) = OdsPreview {
     with(parameter) {
         OdsSnackbar(
             message = "This is the message of the snackbar.",

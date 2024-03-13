@@ -1,11 +1,13 @@
 /*
+ * Software Name: Orange Design System
+ * SPDX-FileCopyrightText: Copyright (c) Orange SA
+ * SPDX-License-Identifier: MIT
  *
- *  Copyright 2021 Orange
+ * This software is distributed under the MIT license,
+ * the text of which is available at https://opensource.org/license/MIT/
+ * or see the "LICENSE" file for more details.
  *
- *  Use of this source code is governed by an MIT-style
- *  license that can be found in the LICENSE file or at
- *  https://opensource.org/licenses/MIT.
- * /
+ * Software description: Android library of reusable graphical components
  */
 
 package com.orange.ods.xml.utilities.extension
@@ -17,3 +19,13 @@ import com.orange.ods.compose.component.button.OdsTextButton
  * BE CAREFUL: If the enum values change you have to update associated XML attributes in the lib-xml
  */
 fun OdsTextButton.Style.Companion.fromXmlAttrValue(xmlId: Int): OdsTextButton.Style = OdsTextButton.Style.entries[xmlId]
+
+/**
+ * XML enum value corresponding to this [OdsTextButton.Style]
+ * BE CAREFUL: As there is no way to access XML enum names directly, if an enum name change, you have to update this method.
+ */
+val OdsTextButton.Style.xmlEnumValue
+    get() = when (this) {
+        OdsTextButton.Style.Default -> "standard"
+        OdsTextButton.Style.Primary -> "primary"
+    }

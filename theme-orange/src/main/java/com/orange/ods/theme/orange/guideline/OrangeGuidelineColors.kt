@@ -1,15 +1,18 @@
 /*
+ * Software Name: Orange Design System
+ * SPDX-FileCopyrightText: Copyright (c) Orange SA
+ * SPDX-License-Identifier: MIT
  *
- *  Copyright 2021 Orange
+ * This software is distributed under the MIT license,
+ * the text of which is available at https://opensource.org/license/MIT/
+ * or see the "LICENSE" file for more details.
  *
- *  Use of this source code is governed by an MIT-style
- *  license that can be found in the LICENSE file or at
- *  https://opensource.org/licenses/MIT.
- * /
+ * Software description: Android library of reusable graphical components 
  */
 
 package com.orange.ods.theme.orange.guideline
 
+import com.orange.ods.theme.annotation.ExperimentalOdsApi
 import com.orange.ods.theme.colors.OdsColors
 import com.orange.ods.theme.colors.OdsFunctionalColors
 import com.orange.ods.theme.guideline.GuidelineColor
@@ -32,6 +35,7 @@ import com.orange.ods.theme.orange.Yellow100
 import com.orange.ods.theme.orange.Yellow200
 import com.orange.ods.theme.orange.Yellow300
 
+@ExperimentalOdsApi
 val OrangeGuidelineColors = listOf(
     GuidelineColor(
         OdsColors::primary.name,
@@ -64,12 +68,12 @@ val OrangeGuidelineColors = listOf(
         R.attr.functionalPositive
     ) { it.functional.positive },
     GuidelineColor(
-        OdsColors::error.name,
+        OdsFunctionalColors::negative.name,
         GuidelineColorType.Functional,
         "Negative 200",
         "Negative 100",
-        com.google.android.material.R.attr.colorError
-    ) { it.error },
+        R.attr.functionalNegative
+    ) { it.functional.negative },
     GuidelineColor(OdsFunctionalColors::info.name, GuidelineColorType.Functional, "Info 200", "Info 100", R.attr.functionalInfo) { it.functional.info },
     GuidelineColor(OdsFunctionalColors::alert.name, GuidelineColorType.Functional, "Alert 200", "Alert 100", R.attr.functionalAlert) { it.functional.alert },
 

@@ -1,11 +1,13 @@
 /*
+ * Software Name: Orange Design System
+ * SPDX-FileCopyrightText: Copyright (c) Orange SA
+ * SPDX-License-Identifier: MIT
  *
- *  Copyright 2021 Orange
+ * This software is distributed under the MIT license,
+ * the text of which is available at https://opensource.org/license/MIT/
+ * or see the "LICENSE" file for more details.
  *
- *  Use of this source code is governed by an MIT-style
- *  license that can be found in the LICENSE file or at
- *  https://opensource.org/licenses/MIT.
- * /
+ * Software description: Android library of reusable graphical components
  */
 
 package com.orange.ods.compose.component.chip
@@ -17,7 +19,6 @@ import androidx.compose.material.Chip
 import androidx.compose.material.ChipColors
 import androidx.compose.material.ExperimentalMaterialApi
 import androidx.compose.material.Icon
-import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
@@ -32,12 +33,14 @@ import androidx.compose.ui.unit.dp
 import com.orange.ods.R
 import com.orange.ods.compose.component.OdsComposable
 import com.orange.ods.compose.component.chip.OdsChipDefaults.SurfaceOverlayOpacity
-import com.orange.ods.compose.component.utilities.Preview
+import com.orange.ods.compose.component.utilities.OdsPreview
 import com.orange.ods.compose.component.utilities.UiModePreviews
 import com.orange.ods.compose.component.utilities.selectionStateDescription
+import com.orange.ods.compose.extension.noRippleClickable
+import com.orange.ods.compose.text.OdsText
 import com.orange.ods.compose.theme.OdsTheme
-import com.orange.ods.compose.utilities.extension.noRippleClickable
 import com.orange.ods.theme.OdsComponentsConfiguration
+import com.orange.ods.theme.typography.OdsTextStyle
 
 
 /**
@@ -105,7 +108,7 @@ private fun OdsChip(
         } else null,
         enabled = enabled,
         colors = odsChipColors(outlined, selected),
-        leadingIcon = when(leading) {
+        leadingIcon = when (leading) {
             is OdsChip.LeadingIcon -> {
                 { leading.Content() }
             }
@@ -115,10 +118,10 @@ private fun OdsChip(
             else -> null
         }
     ) {
-        Text(
+        OdsText(
             text = text,
-            style = OdsTheme.typography.body2
-        ) // Don't use an OdsText here cause the color of the chip content is already managed by odsChipColors()
+            style = OdsTextStyle.BodyM
+        )
 
         onCancel?.let {
             val iconModifier = if (enabled) Modifier.noRippleClickable {
@@ -157,7 +160,7 @@ private fun odsChipBorderColor(selected: Boolean, enabled: Boolean) = when {
 
 @UiModePreviews.Chip
 @Composable
-private fun PreviewOdsChip() = Preview {
+private fun PreviewOdsChip() = OdsPreview {
     var selected by remember { mutableStateOf(false) }
     OdsChip(
         text = "Text",

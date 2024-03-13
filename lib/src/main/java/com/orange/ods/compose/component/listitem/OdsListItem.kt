@@ -1,15 +1,18 @@
 /*
+ * Software Name: Orange Design System
+ * SPDX-FileCopyrightText: Copyright (c) Orange SA
+ * SPDX-License-Identifier: MIT
  *
- *  Copyright 2021 Orange
+ * This software is distributed under the MIT license,
+ * the text of which is available at https://opensource.org/license/MIT/
+ * or see the "LICENSE" file for more details.
  *
- *  Use of this source code is governed by an MIT-style
- *  license that can be found in the LICENSE file or at
- *  https://opensource.org/licenses/MIT.
- * /
+ * Software description: Android library of reusable graphical components
  */
 
 package com.orange.ods.compose.component.listitem
 
+import android.content.Context
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -26,7 +29,6 @@ import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.ExperimentalMaterialApi
 import androidx.compose.material.ListItem
 import androidx.compose.material.MaterialTheme
-import androidx.compose.material.Text
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.AccountBox
 import androidx.compose.runtime.Composable
@@ -43,10 +45,13 @@ import androidx.compose.ui.graphics.painter.Painter
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.graphics.vector.rememberVectorPainter
 import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.semantics.Role
-import androidx.compose.ui.text.TextStyle
+import androidx.compose.ui.semantics.semantics
+import androidx.compose.ui.semantics.stateDescription
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.PreviewParameter
 import androidx.compose.ui.unit.Dp
@@ -62,12 +67,13 @@ import com.orange.ods.compose.component.control.OdsRadioButton
 import com.orange.ods.compose.component.control.OdsSwitch
 import com.orange.ods.compose.component.divider.OdsDivider
 import com.orange.ods.compose.component.utilities.BasicPreviewParameterProvider
-import com.orange.ods.compose.component.utilities.Preview
+import com.orange.ods.compose.component.utilities.OdsPreview
 import com.orange.ods.compose.component.utilities.UiModePreviews
-import com.orange.ods.compose.text.OdsTextCaption
+import com.orange.ods.compose.extension.isNotNullOrBlank
+import com.orange.ods.compose.extension.orElse
+import com.orange.ods.compose.text.OdsText
 import com.orange.ods.compose.theme.OdsTheme
-import com.orange.ods.extension.isNotNullOrBlank
-import com.orange.ods.extension.orElse
+import com.orange.ods.theme.typography.OdsTextStyle
 
 /**
  * <a href="https://system.design.orange.com/0c1af118d/p/09a804-lists/b/669743" target="_blank">ODS Lists</a>.
@@ -81,7 +87,7 @@ import com.orange.ods.extension.orElse
  * @param modifier [Modifier] applied to the list item.
  * @param leadingIcon The leading supporting visual of the list item.
  * @param secondaryText The secondary text of the list item.
- * @param singleLineSecondaryText Whether the secondary text is single line.
+ * @param secondaryTextLineCount Indicates the lines number for the secondary text. If longer, it will be truncated.
  * @param overlineText The text displayed above the primary text.
  * @param trailing The trailing content to display at the end of the list item.
  * @param divider Whether or not a divider is displayed at the bottom of the list item.
@@ -94,7 +100,7 @@ fun OdsListItem(
     modifier: Modifier = Modifier,
     leadingIcon: OdsListItem.LeadingIcon? = null,
     secondaryText: String? = null,
-    singleLineSecondaryText: Boolean = true,
+    secondaryTextLineCount: OdsListItem.SecondaryTextLineCount = OdsListItem.SecondaryTextLineCount.One,
     overlineText: String? = null,
     trailing: OdsListItem.Trailing? = null,
     divider: Boolean = false,
@@ -103,11 +109,11 @@ fun OdsListItem(
     OdsListItem(
         text = text,
         textColor = OdsTheme.colors.onSurface,
-        textStyle = OdsTheme.typography.subtitle1,
+        textStyle = OdsTextStyle.TitleM,
         modifier = modifier,
         leadingIcon = leadingIcon,
         secondaryText = secondaryText,
-        singleLineSecondaryText = singleLineSecondaryText,
+        secondaryTextLineCount = secondaryTextLineCount,
         overlineText = overlineText,
         trailing = trailing,
         divider = divider,
@@ -119,18 +125,22 @@ fun OdsListItem(
 internal fun OdsListItem(
     text: String,
     textColor: Color,
-    textStyle: TextStyle,
+    textStyle: OdsTextStyle,
     modifier: Modifier = Modifier,
+    textFontWeight: FontWeight? = null,
     leadingIcon: OdsListItem.LeadingIcon? = null,
     secondaryText: String? = null,
-    singleLineSecondaryText: Boolean = true,
+    secondaryTextLineCount: OdsListItem.SecondaryTextLineCount = OdsListItem.SecondaryTextLineCount.One,
     overlineText: String? = null,
     trailing: OdsListItem.Trailing? = null,
     divider: Boolean = false,
     onClick: (() -> Unit)? = null
 ) {
-    val rootModifier = modifier.rootModifier(trailing, onClick)
-    if (leadingIcon?.iconType == OdsListItem.LeadingIcon.Type.WideImage) {
+    val context = LocalContext.current
+    val rootModifier = modifier.rootModifier(context, trailing, onClick)
+    val singleLineSecondaryText = secondaryTextLineCount == OdsListItem.SecondaryTextLineCount.One
+
+    if (leadingIcon?.type == OdsListItem.LeadingIcon.Type.WideImage) {
         Row(modifier = rootModifier, verticalAlignment = Alignment.CenterVertically) {
             leadingIcon.Content()
             OdsListItemInternal(
@@ -138,6 +148,7 @@ internal fun OdsListItem(
                 textColor = textColor,
                 textStyle = textStyle,
                 modifier = Modifier.weight(1f),
+                textFontWeight = textFontWeight,
                 leadingIcon = null,
                 secondaryText = secondaryText,
                 singleLineSecondaryText = singleLineSecondaryText,
@@ -151,6 +162,7 @@ internal fun OdsListItem(
             textColor = textColor,
             textStyle = textStyle,
             modifier = rootModifier,
+            textFontWeight = textFontWeight,
             leadingIcon = leadingIcon,
             secondaryText = secondaryText,
             singleLineSecondaryText = singleLineSecondaryText,
@@ -160,7 +172,7 @@ internal fun OdsListItem(
     }
 
     if (divider) {
-        OdsDivider(startIndent = getDividerStartIndent(leadingIcon?.iconType))
+        OdsDivider(startIndent = getDividerStartIndent(leadingIcon?.type))
     }
 }
 
@@ -169,8 +181,9 @@ internal fun OdsListItem(
 private fun OdsListItemInternal(
     text: String,
     textColor: Color,
-    textStyle: TextStyle,
+    textStyle: OdsTextStyle,
     modifier: Modifier = Modifier,
+    textFontWeight: FontWeight? = null,
     leadingIcon: OdsListItem.LeadingIcon? = null,
     secondaryText: String? = null,
     singleLineSecondaryText: Boolean = true,
@@ -181,14 +194,15 @@ private fun OdsListItemInternal(
     val secondaryTextLinesNumber = if (singleLineSecondaryText || (overlineText != null && secondaryText != null)) 1 else 2
 
     ListItem(
-        modifier = modifier.height(IntrinsicSize.Min)
+        modifier = modifier
+            .height(IntrinsicSize.Min)
             .fillMaxWidth(),
         icon = leadingIcon?.let { { it.Content() } },
         secondaryText = if (secondaryText.isNotNullOrBlank()) {
             {
-                Text(
+                OdsText(
                     text = secondaryText,
-                    style = OdsTheme.typography.body2,
+                    style = OdsTextStyle.BodyM,
                     maxLines = secondaryTextLinesNumber,
                     overflow = TextOverflow.Ellipsis,
                     color = OdsTheme.colors.onSurface
@@ -197,18 +211,18 @@ private fun OdsListItemInternal(
         } else null,
         singleLineSecondaryText = singleLineSecondaryText,
         overlineText = if (overlineText.isNotNullOrBlank()) {
-            { Text(text = overlineText, style = OdsTheme.typography.overline, color = OdsTheme.colors.onSurface.copy(alpha = 0.6f)) }
+            { OdsText(text = overlineText, style = OdsTextStyle.LabelS, color = OdsTheme.colors.onSurface.copy(alpha = 0.6f)) }
         } else null,
         trailing = (trailing as? OdsComponentContent<*>)?.let { { it.Content() } },
         text = {
             if (hasText) {
-                Text(text = text, style = textStyle, color = textColor)
+                OdsText(text = text, style = textStyle, color = textColor, fontWeight = textFontWeight)
             }
         }
     )
 }
 
-private fun Modifier.rootModifier(trailing: OdsListItem.Trailing?, onListItemClick: (() -> Unit)?): Modifier {
+private fun Modifier.rootModifier(context: Context, trailing: OdsListItem.Trailing?, onListItemClick: (() -> Unit)?): Modifier {
     return with(trailing) {
         when {
             this is OdsListItem.TrailingCheckbox && onCheckedChange != null -> toggleable(
@@ -216,19 +230,25 @@ private fun Modifier.rootModifier(trailing: OdsListItem.Trailing?, onListItemCli
                 role = Role.Checkbox,
                 enabled = enabled,
                 onValueChange = onCheckedChange
-            )
+            ).semantics {
+                stateDescription = if (checked) context.getString(R.string.ods_checked_stateA11y) else context.getString(R.string.ods_unchecked_stateA11y)
+            }
             this is OdsListItem.TrailingRadioButton && onClick != null -> selectable(
                 selected = selected,
                 role = Role.RadioButton,
                 enabled = enabled,
                 onClick = onClick
-            )
+            ).semantics {
+                stateDescription = if (selected) context.getString(R.string.ods_selected_stateA11y) else context.getString(R.string.ods_unselected_stateA11y)
+            }
             this is OdsListItem.TrailingSwitch && onCheckedChange != null -> toggleable(
                 value = checked,
                 role = Role.Switch,
                 enabled = enabled,
                 onValueChange = onCheckedChange
-            )
+            ).semantics {
+                stateDescription = if (checked) context.getString(R.string.ods_on_stateA11y) else context.getString(R.string.ods_off_stateA11y)
+            }
             else -> onListItemClick?.let { clickable(onClick = it) }.orElse { this@rootModifier }
         }
     }
@@ -240,14 +260,21 @@ private fun Modifier.rootModifier(trailing: OdsListItem.Trailing?, onListItemCli
 object OdsListItem {
 
     /**
+     * Represents the available line count for a secondary text in an [OdsListItem].
+     */
+    enum class SecondaryTextLineCount {
+        One, Two
+    }
+
+    /**
      * A leading icon in an [OdsListItem].
      */
     class LeadingIcon private constructor(
-        internal val iconType: Type,
-        private val graphicsObject: Any,
-        private val contentDescription: String,
+        val type: Type,
+        val graphicsObject: Any,
+        val contentDescription: String,
         tint: Color?
-    ) : OdsComponentContent<Nothing>() {
+    ) : OdsComponentContent<Nothing>(Nothing::class.java) {
 
         /**
          * Creates an instance of [OdsListItem.LeadingIcon].
@@ -306,7 +333,7 @@ object OdsListItem {
             icon.Content(modifier = modifier)
         }
 
-        private val icon = when (iconType) {
+        private val icon = when (type) {
             Type.Icon -> getIcon(tint)
             Type.CircularImage -> getCircularImage()
             Type.SquareImage -> getSquareImage()
@@ -314,7 +341,7 @@ object OdsListItem {
         }
 
         private fun getIcon(tint: Color?): OdsComponentContent<Nothing> {
-            return object : OdsComponentIcon<Nothing>(graphicsObject, contentDescription) {
+            return object : OdsComponentIcon<Nothing>(Nothing::class.java, graphicsObject, contentDescription) {
                 override val tint: Color?
                     @Composable
                     get() = tint.orElse { OdsTheme.colors.onSurface }
@@ -322,18 +349,18 @@ object OdsListItem {
                 @Composable
                 override fun Content(modifier: Modifier) {
                     Column(modifier = modifier.fillMaxHeight(), verticalArrangement = Arrangement.Center) {
-                        super.Content(modifier = modifier)
+                        super.Content(modifier = Modifier)
                     }
                 }
             }
         }
 
         private fun getCircularImage(): OdsComponentContent<Nothing> {
-            return object : OdsComponentCircularImage(graphicsObject, contentDescription) {}
+            return object : OdsComponentCircularImage<Nothing>(Nothing::class.java, graphicsObject, contentDescription) {}
         }
 
         private fun getSquareImage(): OdsComponentContent<Nothing> {
-            return object : OdsComponentImage<Nothing>(graphicsObject, contentDescription, contentScale = ContentScale.Crop) {
+            return object : OdsComponentImage<Nothing>(Nothing::class.java, graphicsObject, contentDescription, contentScale = ContentScale.Crop) {
                 @Composable
                 override fun Content(modifier: Modifier) {
                     super.Content(
@@ -346,7 +373,7 @@ object OdsListItem {
         }
 
         private fun getWideImage(): OdsComponentContent<Nothing> {
-            return object : OdsComponentImage<Nothing>(graphicsObject, contentDescription, contentScale = ContentScale.Crop) {
+            return object : OdsComponentImage<Nothing>(Nothing::class.java, graphicsObject, contentDescription, contentScale = ContentScale.Crop) {
                 @Composable
                 override fun Content(modifier: Modifier) {
                     super.Content(
@@ -375,14 +402,19 @@ object OdsListItem {
      * @param enabled Whether the component is enabled or grayed out.
      */
     class TrailingCheckbox(
-        internal val checked: Boolean,
-        internal val onCheckedChange: ((Boolean) -> Unit)?,
-        internal val enabled: Boolean = true
-    ) : OdsComponentContent<Nothing>(), Trailing {
+        val checked: Boolean,
+        val onCheckedChange: ((Boolean) -> Unit)?,
+        val enabled: Boolean = true
+    ) : OdsComponentContent<Nothing>(Nothing::class.java), Trailing {
 
         @Composable
         override fun Content(modifier: Modifier) {
-            OdsCheckbox(modifier = modifier, checked = checked, onCheckedChange = onCheckedChange, enabled = enabled)
+            OdsCheckbox(
+                modifier = modifier,
+                checked = checked,
+                onCheckedChange = null,
+                enabled = enabled
+            ) // a11y: `onCheckedChange` is done on list item row click
         }
     }
 
@@ -397,14 +429,19 @@ object OdsListItem {
      * @param enabled Whether the component is enabled or grayed out.
      */
     class TrailingSwitch(
-        internal val checked: Boolean,
-        internal val onCheckedChange: ((Boolean) -> Unit)?,
-        internal val enabled: Boolean = true
-    ) : OdsComponentContent<Nothing>(), Trailing {
+        val checked: Boolean,
+        val onCheckedChange: ((Boolean) -> Unit)?,
+        val enabled: Boolean = true
+    ) : OdsComponentContent<Nothing>(Nothing::class.java), Trailing {
 
         @Composable
         override fun Content(modifier: Modifier) {
-            OdsSwitch(modifier = modifier, checked = checked, onCheckedChange = onCheckedChange, enabled = enabled)
+            OdsSwitch(
+                modifier = modifier,
+                checked = checked,
+                onCheckedChange = null,
+                enabled = enabled
+            ) // a11y: `onCheckedChange` is done on list item row click
         }
     }
 
@@ -419,21 +456,25 @@ object OdsListItem {
      * not be selectable and appears disabled.
      */
     class TrailingRadioButton(
-        internal val selected: Boolean,
-        internal val onClick: (() -> Unit)?,
-        internal val enabled: Boolean = true
-    ) : OdsComponentContent<Nothing>(), Trailing {
+        val selected: Boolean,
+        val onClick: (() -> Unit)?,
+        val enabled: Boolean = true
+    ) : OdsComponentContent<Nothing>(Nothing::class.java), Trailing {
 
         @Composable
         override fun Content(modifier: Modifier) {
-            OdsRadioButton(modifier = modifier, selected = selected, onClick = onClick, enabled = enabled)
+            OdsRadioButton(modifier = modifier, selected = selected, onClick = null, enabled = enabled) // a11y: `onClick` is done on list item row click
         }
     }
 
     /**
      * A trailing icon in an [OdsListItem].
      */
-    class TrailingIcon : OdsComponentIcon<Nothing>, Trailing {
+    class TrailingIcon private constructor(
+        val graphicsObject: Any,
+        val contentDescription: String,
+        val onClick: (() -> Unit)?
+    ) : OdsComponentIcon<Nothing>(Nothing::class.java, graphicsObject, contentDescription, onClick = onClick), Trailing {
 
         /**
          * Creates an instance of [OdsListItem.TrailingIcon].
@@ -442,7 +483,7 @@ object OdsListItem {
          * @param contentDescription The content description associated to this [OdsListItem.TrailingIcon].
          * @param onClick Will be called when the user clicks on the icon.
          */
-        constructor(painter: Painter, contentDescription: String, onClick: (() -> Unit)?) : super(painter, contentDescription, onClick = onClick)
+        constructor(painter: Painter, contentDescription: String, onClick: (() -> Unit)?) : this(painter as Any, contentDescription, onClick)
 
         /**
          * Creates an instance of [OdsListItem.TrailingIcon].
@@ -451,11 +492,7 @@ object OdsListItem {
          * @param contentDescription The content description associated to this [OdsListItem.TrailingIcon].
          * @param onClick Will be called when the user clicks on the icon.
          */
-        constructor(imageVector: ImageVector, contentDescription: String, onClick: (() -> Unit)?) : super(
-            imageVector,
-            contentDescription,
-            onClick = onClick
-        )
+        constructor(imageVector: ImageVector, contentDescription: String, onClick: (() -> Unit)?) : this(imageVector as Any, contentDescription, onClick)
 
         /**
          * Creates an instance of [OdsListItem.TrailingIcon].
@@ -464,7 +501,7 @@ object OdsListItem {
          * @param contentDescription The content description associated to this [OdsListItem.TrailingIcon].
          * @param onClick Will be called when the user clicks on the icon.
          */
-        constructor(bitmap: ImageBitmap, contentDescription: String, onClick: (() -> Unit)?) : super(bitmap, contentDescription, onClick = onClick)
+        constructor(bitmap: ImageBitmap, contentDescription: String, onClick: (() -> Unit)?) : this(bitmap as Any, contentDescription, onClick)
 
         override val tint: Color? // Despite warning, keep it optional as in parent class
             @Composable
@@ -482,11 +519,11 @@ object OdsListItem {
      * @constructor Creates an instance of [OdsListItem.TrailingCaption].
      * @param text The caption text.
      */
-    class TrailingCaption(private val text: String) : OdsComponentContent<Nothing>(), Trailing {
+    class TrailingCaption(val text: String) : OdsComponentContent<Nothing>(Nothing::class.java), Trailing {
 
         @Composable
         override fun Content(modifier: Modifier) {
-            OdsTextCaption(modifier = modifier, text = text)
+            OdsText(modifier = modifier, text = text, style = OdsTextStyle.BodyS)
         }
     }
 
@@ -505,7 +542,7 @@ private fun getDividerStartIndent(leadingIconType: OdsListItem.LeadingIcon.Type?
 
 @UiModePreviews.Default
 @Composable
-private fun PreviewOdsListItem(@PreviewParameter(OdsListItemPreviewParameterProvider::class) parameter: OdsListItemPreviewParameter) = Preview {
+private fun PreviewOdsListItem(@PreviewParameter(OdsListItemPreviewParameterProvider::class) parameter: OdsListItemPreviewParameter) = OdsPreview {
     with(parameter) {
         var trailingState by remember { mutableStateOf(false) }
         OdsListItem(
@@ -520,7 +557,7 @@ private fun PreviewOdsListItem(@PreviewParameter(OdsListItemPreviewParameterProv
                 OdsListItem.LeadingIcon(iconType, painter, "")
             },
             secondaryText = secondaryText,
-            singleLineSecondaryText = singleLineSecondaryText,
+            secondaryTextLineCount = secondaryTextLineCount,
             trailing = when (trailingClass) {
                 OdsListItem.TrailingCheckbox::class.java -> OdsListItem.TrailingCheckbox(trailingState, { trailingState = it })
                 OdsListItem.TrailingSwitch::class.java -> OdsListItem.TrailingSwitch(trailingState, { trailingState = it })
@@ -535,7 +572,7 @@ private fun PreviewOdsListItem(@PreviewParameter(OdsListItemPreviewParameterProv
 
 internal data class OdsListItemPreviewParameter(
     val secondaryText: String?,
-    val singleLineSecondaryText: Boolean,
+    val secondaryTextLineCount: OdsListItem.SecondaryTextLineCount,
     val leadingIconType: OdsListItem.LeadingIcon.Type?,
     val trailingClass: Class<out OdsListItem.Trailing>?
 )
@@ -548,11 +585,31 @@ private val previewParameterValues: List<OdsListItemPreviewParameter>
         val longSecondaryText = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor."
 
         return listOf(
-            OdsListItemPreviewParameter(null, true, null, null),
-            OdsListItemPreviewParameter(longSecondaryText, true, null, OdsListItem.TrailingCheckbox::class.java),
-            OdsListItemPreviewParameter(shortSecondaryText, true, OdsListItem.LeadingIcon.Type.Icon, OdsListItem.TrailingIcon::class.java),
-            OdsListItemPreviewParameter(longSecondaryText, false, OdsListItem.LeadingIcon.Type.SquareImage, OdsListItem.TrailingSwitch::class.java),
-            OdsListItemPreviewParameter(longSecondaryText, false, OdsListItem.LeadingIcon.Type.WideImage, OdsListItem.TrailingCaption::class.java),
-            OdsListItemPreviewParameter(shortSecondaryText, true, OdsListItem.LeadingIcon.Type.CircularImage, OdsListItem.TrailingRadioButton::class.java)
+            OdsListItemPreviewParameter(null, OdsListItem.SecondaryTextLineCount.One, null, null),
+            OdsListItemPreviewParameter(longSecondaryText, OdsListItem.SecondaryTextLineCount.One, null, OdsListItem.TrailingCheckbox::class.java),
+            OdsListItemPreviewParameter(
+                shortSecondaryText,
+                OdsListItem.SecondaryTextLineCount.One,
+                OdsListItem.LeadingIcon.Type.Icon,
+                OdsListItem.TrailingIcon::class.java
+            ),
+            OdsListItemPreviewParameter(
+                longSecondaryText,
+                OdsListItem.SecondaryTextLineCount.Two,
+                OdsListItem.LeadingIcon.Type.SquareImage,
+                OdsListItem.TrailingSwitch::class.java
+            ),
+            OdsListItemPreviewParameter(
+                longSecondaryText,
+                OdsListItem.SecondaryTextLineCount.Two,
+                OdsListItem.LeadingIcon.Type.WideImage,
+                OdsListItem.TrailingCaption::class.java
+            ),
+            OdsListItemPreviewParameter(
+                shortSecondaryText,
+                OdsListItem.SecondaryTextLineCount.One,
+                OdsListItem.LeadingIcon.Type.CircularImage,
+                OdsListItem.TrailingRadioButton::class.java
+            )
         )
     }

@@ -1,11 +1,13 @@
 /*
+ * Software Name: Orange Design System
+ * SPDX-FileCopyrightText: Copyright (c) Orange SA
+ * SPDX-License-Identifier: MIT
  *
- *  Copyright 2021 Orange
+ * This software is distributed under the MIT license,
+ * the text of which is available at https://opensource.org/license/MIT/
+ * or see the "LICENSE" file for more details.
  *
- *  Use of this source code is governed by an MIT-style
- *  license that can be found in the LICENSE file or at
- *  https://opensource.org/licenses/MIT.
- * /
+ * Software description: Android library of reusable graphical components
  */
 
 package com.orange.ods.app.ui.components.listitem
@@ -32,18 +34,20 @@ import coil.size.Size
 import com.orange.ods.app.R
 import com.orange.ods.app.domain.recipes.LocalRecipes
 import com.orange.ods.app.domain.recipes.Recipe
-import com.orange.ods.app.ui.components.utilities.ComponentCountRow
+import com.orange.ods.app.ui.LocalThemeManager
 import com.orange.ods.app.ui.components.utilities.ComponentCustomizationBottomSheetScaffold
 import com.orange.ods.app.ui.components.utilities.clickOnElement
 import com.orange.ods.app.ui.utilities.DrawableManager
 import com.orange.ods.app.ui.utilities.code.CodeImplementationColumn
 import com.orange.ods.app.ui.utilities.code.FunctionCallCode
 import com.orange.ods.app.ui.utilities.composable.Subtitle
+import com.orange.ods.app.ui.utilities.extension.buildImageRequest
 import com.orange.ods.compose.OdsComposable
-import com.orange.ods.compose.component.chip.OdsChoiceChip
 import com.orange.ods.compose.component.chip.OdsChoiceChipsFlowRow
 import com.orange.ods.compose.component.listitem.OdsListItem
-import com.orange.ods.extension.ifNotNull
+import com.orange.ods.compose.extension.ifNotNull
+import com.orange.ods.compose.extension.orElse
+
 
 @OptIn(ExperimentalMaterialApi::class)
 @Composable
@@ -58,37 +62,46 @@ fun ComponentListItem() {
 
 @Composable
 private fun ComponentListItemBottomSheetContent(listItemCustomizationState: ListItemCustomizationState) {
-    ComponentCountRow(
-        modifier = Modifier.padding(start = dimensionResource(id = com.orange.ods.R.dimen.screen_horizontal_margin)),
-        title = stringResource(id = R.string.component_list_item_line_count),
-        count = listItemCustomizationState.lineCount,
-        minusIconContentDescription = stringResource(id = R.string.component_list_item_remove_line),
-        plusIconContentDescription = stringResource(id = R.string.component_list_item_add_line),
-        minCount = ListItemCustomizationState.MinLineCount,
-        maxCount = ListItemCustomizationState.MaxLineCount
+    Subtitle(textRes = R.string.component_list_item_secondary_text, horizontalPadding = true)
+    val secondaryTextLineCountValues = listOf(null) + OdsListItem.SecondaryTextLineCount.entries
+    OdsChoiceChipsFlowRow(
+        selectedChoiceChipIndex = secondaryTextLineCountValues.indexOf(listItemCustomizationState.secondaryTextLineCount.value),
+        modifier = Modifier.padding(horizontal = dimensionResource(id = com.orange.ods.R.dimen.spacing_m)),
+        choiceChips = secondaryTextLineCountValues.map { secondaryTextLineCount ->
+            val textResId = when (secondaryTextLineCount) {
+                OdsListItem.SecondaryTextLineCount.One -> R.string.component_list_item_secondary_text_one_line
+                OdsListItem.SecondaryTextLineCount.Two -> R.string.component_list_item_secondary_text_two_lines
+                null -> R.string.component_element_none
+            }
+            OdsChoiceChipsFlowRow.ChoiceChip(
+                stringResource(id = textResId),
+                { listItemCustomizationState.secondaryTextLineCount.value = secondaryTextLineCount })
+        }
     )
 
     Subtitle(textRes = R.string.component_list_leading, horizontalPadding = true)
+    val leadingIconTypes = listOf(null) + OdsListItem.LeadingIcon.Type.entries
     OdsChoiceChipsFlowRow(
-        value = listItemCustomizationState.selectedLeadingIconType.value,
-        onValueChange = { value -> listItemCustomizationState.selectedLeadingIconType.value = value },
+        selectedChoiceChipIndex = leadingIconTypes.indexOf(listItemCustomizationState.selectedLeadingIconType.value),
         modifier = Modifier.padding(horizontal = dimensionResource(id = com.orange.ods.R.dimen.spacing_m)),
-        chips = listOf(
-            OdsChoiceChip(text = stringResource(id = R.string.component_list_leading_none), value = null),
-            OdsChoiceChip(text = stringResource(id = R.string.component_list_leading_icon), value = OdsListItem.LeadingIcon.Type.Icon),
-            OdsChoiceChip(text = stringResource(id = R.string.component_list_leading_circular_image), value = OdsListItem.LeadingIcon.Type.CircularImage),
-            OdsChoiceChip(text = stringResource(id = R.string.component_list_leading_square_image), value = OdsListItem.LeadingIcon.Type.SquareImage),
-            OdsChoiceChip(text = stringResource(id = R.string.component_list_leading_wide_image), value = OdsListItem.LeadingIcon.Type.WideImage),
-        )
+        choiceChips = leadingIconTypes.map { leadingIconType ->
+            val textResId = when (leadingIconType) {
+                OdsListItem.LeadingIcon.Type.Icon -> R.string.component_element_icon
+                OdsListItem.LeadingIcon.Type.CircularImage -> R.string.component_list_leading_circular_image
+                OdsListItem.LeadingIcon.Type.SquareImage -> R.string.component_list_leading_square_image
+                OdsListItem.LeadingIcon.Type.WideImage -> R.string.component_list_leading_wide_image
+                null -> R.string.component_element_none
+            }
+            OdsChoiceChipsFlowRow.ChoiceChip(stringResource(id = textResId), { listItemCustomizationState.selectedLeadingIconType.value = leadingIconType })
+        }
     )
 
     Subtitle(textRes = R.string.component_list_trailing, horizontalPadding = true)
     OdsChoiceChipsFlowRow(
-        value = listItemCustomizationState.selectedTrailing.value,
-        onValueChange = { value -> listItemCustomizationState.selectedTrailing.value = value },
+        selectedChoiceChipIndex = listItemCustomizationState.trailings.indexOf(listItemCustomizationState.selectedTrailing.value),
         modifier = Modifier.padding(horizontal = dimensionResource(id = com.orange.ods.R.dimen.spacing_m)),
-        chips = listItemCustomizationState.trailings.map { trailing ->
-            OdsChoiceChip(text = stringResource(id = trailing.textResId), value = trailing)
+        choiceChips = listItemCustomizationState.trailings.map { trailing ->
+            OdsChoiceChipsFlowRow.ChoiceChip(stringResource(id = trailing.textResId), { listItemCustomizationState.selectedTrailing.value = trailing })
         }
     )
 }
@@ -97,15 +110,14 @@ private fun ComponentListItemBottomSheetContent(listItemCustomizationState: List
 private fun ComponentListItemContent(listItemCustomizationState: ListItemCustomizationState) {
     val recipe = LocalRecipes.current.first { it.description.isNotBlank() }
     with(listItemCustomizationState) {
-        Column {
+        Column(modifier = Modifier.padding(vertical = dimensionResource(id = com.orange.ods.R.dimen.screen_vertical_margin))) {
             if (!trailings.contains(selectedTrailing.value)) {
                 resetTrailing()
             }
 
-            val singleLineSecondaryText = lineCount.intValue == 2
-
             val text = recipe.title
-            val secondaryText = if (lineCount.intValue > 1) recipe.description else null
+            val secondaryTextLineCountValue = secondaryTextLineCount.value
+            val secondaryText = if (secondaryTextLineCountValue != null) recipe.description else null
             val leadingIcon = ifNotNull(getIconPainter(recipe), selectedLeadingIconType.value) { painter, type ->
                 OdsListItem.LeadingIcon(type, painter, "")
             }
@@ -114,21 +126,25 @@ private fun ComponentListItemContent(listItemCustomizationState: ListItemCustomi
             OdsListItem(
                 text = text,
                 secondaryText = secondaryText,
-                singleLineSecondaryText = singleLineSecondaryText,
+                secondaryTextLineCount = secondaryTextLineCountValue.orElse { OdsListItem.SecondaryTextLineCount.One },
                 leadingIcon = leadingIcon,
                 trailing = trailing
             ) {
                 clickOnElement(context = context, context.getString(R.string.component_list_item))
             }
 
-            CodeImplementationColumn(modifier = Modifier.padding(horizontal = dimensionResource(id = com.orange.ods.R.dimen.screen_horizontal_margin))) {
+            CodeImplementationColumn(
+                modifier = Modifier
+                    .padding(horizontal = dimensionResource(id = com.orange.ods.R.dimen.screen_horizontal_margin))
+                    .padding(top = dimensionResource(id = com.orange.ods.R.dimen.spacing_s))
+            ) {
                 FunctionCallCode(
                     name = OdsComposable.OdsListItem.name,
                     parameters = {
                         string("text", text)
-                        if (secondaryText != null) {
+                        if (secondaryTextLineCountValue != null && secondaryText != null) {
                             string("secondaryText", secondaryText)
-                            if (!singleLineSecondaryText) stringRepresentation("singleLineSecondaryText", false)
+                            enum("secondaryTextLineCount", secondaryTextLineCountValue)
                         }
                         selectedLeadingIconType.value?.let { iconType ->
                             classInstance<OdsListItem.LeadingIcon>("leadingIcon") {
@@ -172,9 +188,9 @@ private val Class<out OdsListItem.Trailing>?.textResId: Int
         OdsListItem.TrailingCheckbox::class.java -> R.string.component_list_trailing_checkbox
         OdsListItem.TrailingSwitch::class.java -> R.string.component_list_trailing_switch
         OdsListItem.TrailingRadioButton::class.java -> R.string.component_list_trailing_radio_button
-        OdsListItem.TrailingIcon::class.java -> R.string.component_list_trailing_icon
-        OdsListItem.TrailingCaption::class.java -> R.string.component_list_trailing_caption
-        else -> R.string.component_list_trailing_none
+        OdsListItem.TrailingIcon::class.java -> R.string.component_element_icon
+        OdsListItem.TrailingCaption::class.java -> R.string.component_element_caption
+        else -> R.string.component_element_none
     }
 
 @Composable
@@ -186,9 +202,9 @@ private fun ListItemCustomizationState.getIconPainter(recipe: Recipe): Painter? 
         OdsListItem.LeadingIcon.Type.WideImage -> {
             val wideImageSizeWidthPx = with(LocalDensity.current) { dimensionResource(id = com.orange.ods.R.dimen.list_wide_image_width).toPx() }
             val wideImageSizeHeightPx = with(LocalDensity.current) { dimensionResource(id = com.orange.ods.R.dimen.list_wide_image_height).toPx() }
+            val darkModeEnabled = LocalThemeManager.current.darkModeEnabled
             rememberAsyncImagePainter(
-                model = ImageRequest.Builder(LocalContext.current)
-                    .data(recipe.imageUrl)
+                model = ImageRequest.Builder(buildImageRequest(LocalContext.current, recipe.imageUrl, darkModeEnabled))
                     .scale(Scale.FILL)
                     .size(Size(wideImageSizeWidthPx.toInt(), wideImageSizeHeightPx.toInt()))
                     .build(),

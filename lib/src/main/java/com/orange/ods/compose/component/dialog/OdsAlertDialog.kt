@@ -1,11 +1,13 @@
 /*
+ * Software Name: Orange Design System
+ * SPDX-FileCopyrightText: Copyright (c) Orange SA
+ * SPDX-License-Identifier: MIT
  *
- *  Copyright 2021 Orange
+ * This software is distributed under the MIT license,
+ * the text of which is available at https://opensource.org/license/MIT/
+ * or see the "LICENSE" file for more details.
  *
- *  Use of this source code is governed by an MIT-style
- *  license that can be found in the LICENSE file or at
- *  https://opensource.org/licenses/MIT.
- * /
+ * Software description: Android library of reusable graphical components 
  */
 
 package com.orange.ods.compose.component.dialog
@@ -17,10 +19,10 @@ import androidx.compose.ui.window.DialogProperties
 import com.orange.ods.compose.component.OdsComposable
 import com.orange.ods.compose.component.button.OdsTextButton
 import com.orange.ods.compose.component.content.OdsComponentContent
-import com.orange.ods.compose.component.utilities.Preview
+import com.orange.ods.compose.component.utilities.OdsPreview
 import com.orange.ods.compose.component.utilities.UiModePreviews
-import com.orange.ods.compose.text.OdsTextBody2
-import com.orange.ods.compose.text.OdsTextSubtitle1
+import com.orange.ods.compose.text.OdsText
+import com.orange.ods.theme.typography.OdsTextStyle
 
 /**
  * <a href="https://system.design.orange.com/0c1af118d/p/02ae02-dialogs/b/81772e" class="external" target="_blank">ODS alert dialog</a>.
@@ -57,9 +59,9 @@ fun OdsAlertDialog(
         modifier = modifier,
         onDismissRequest = onDismissRequest,
         title = title?.let {
-            { OdsTextSubtitle1(text = title) }
+            { OdsText(text = title, style = OdsTextStyle.TitleM) }
         },
-        text = { OdsTextBody2(text) },
+        text = { OdsText(text, style = OdsTextStyle.BodyM) },
         confirmButton = {
             confirmButton.Content()
         },
@@ -80,7 +82,7 @@ object OdsAlertDialog {
      * @param text Text of the button.
      * @param onClick Will be called when the user clicks the button.
      */
-    class Button(private val text: String, private val onClick: () -> Unit) : OdsComponentContent<Nothing>() {
+    class Button(val text: String, val onClick: () -> Unit) : OdsComponentContent<Nothing>(Nothing::class.java) {
 
         @Composable
         override fun Content(modifier: Modifier) {
@@ -92,7 +94,7 @@ object OdsAlertDialog {
 
 @UiModePreviews.Default
 @Composable
-private fun PreviewOdsAlertDialog() = Preview {
+private fun PreviewOdsAlertDialog() = OdsPreview {
     OdsAlertDialog(
         text = "Text",
         confirmButton = OdsAlertDialog.Button("Confirm") {},

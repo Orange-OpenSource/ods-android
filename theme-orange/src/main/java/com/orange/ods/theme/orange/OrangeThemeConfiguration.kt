@@ -1,23 +1,26 @@
 /*
+ * Software Name: Orange Design System
+ * SPDX-FileCopyrightText: Copyright (c) Orange SA
+ * SPDX-License-Identifier: MIT
  *
- *  Copyright 2021 Orange
+ * This software is distributed under the MIT license,
+ * the text of which is available at https://opensource.org/license/MIT/
+ * or see the "LICENSE" file for more details.
  *
- *  Use of this source code is governed by an MIT-style
- *  license that can be found in the LICENSE file or at
- *  https://opensource.org/licenses/MIT.
- * /
+ * Software description: Android library of reusable graphical components 
  */
 
 package com.orange.ods.theme.orange
 
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.Shapes
-import androidx.compose.material.Typography
 import androidx.compose.ui.unit.dp
 import com.orange.ods.theme.OdsThemeColors
 import com.orange.ods.theme.OdsThemeConfigurationContract
+import com.orange.ods.theme.annotation.ExperimentalOdsApi
 import com.orange.ods.theme.guideline.OdsGuideline
 import com.orange.ods.theme.orange.guideline.OrangeGuideline
+import com.orange.ods.theme.typography.OdsTypography
 import kotlinx.parcelize.Parcelize
 
 @Parcelize
@@ -33,7 +36,7 @@ class OrangeThemeConfiguration : OdsThemeConfigurationContract {
     override val colors: OdsThemeColors
         get() = OdsThemeColors(OrangeLightColors, OrangeDarkColors)
 
-    override val typography: Typography
+    override val typography: OdsTypography
         get() = OrangeTypography
 
     override val shapes: Shapes
@@ -41,6 +44,7 @@ class OrangeThemeConfiguration : OdsThemeConfigurationContract {
             small = RoundedCornerShape(0.dp)
         )
 
+    @OptIn(ExperimentalOdsApi::class)
     override val guideline: OdsGuideline
         get() = OrangeGuideline(typography)
 }

@@ -1,11 +1,13 @@
 /*
+ * Software Name: Orange Design System
+ * SPDX-FileCopyrightText: Copyright (c) Orange SA
+ * SPDX-License-Identifier: MIT
  *
- *  Copyright 2021 Orange
+ * This software is distributed under the MIT license,
+ * the text of which is available at https://opensource.org/license/MIT/
+ * or see the "LICENSE" file for more details.
  *
- *  Use of this source code is governed by an MIT-style
- *  license that can be found in the LICENSE file or at
- *  https://opensource.org/licenses/MIT.
- * /
+ * Software description: Android library of reusable graphical components
  */
 
 package com.orange.ods.app.ui.utilities
@@ -16,7 +18,7 @@ import androidx.compose.runtime.Composable
 import com.orange.ods.app.R
 import com.orange.ods.app.ui.LocalThemeManager
 import com.orange.ods.app.ui.utilities.extension.isOrange
-import com.orange.ods.extension.orElse
+import com.orange.ods.compose.extension.orElse
 
 object DrawableManager {
     const val ImageBackgroundColor = 0xff1b1b1b
@@ -42,6 +44,11 @@ object DrawableManager {
         R.drawable.il_chips_generic to R.drawable.il_chips,
         R.drawable.il_chips_small_generic to R.drawable.il_chips_small,
         R.drawable.il_dialogs_generic to R.drawable.il_dialogs,
+        R.drawable.il_empty_state_generic to R.drawable.il_empty_state,
+        R.drawable.il_empty_state_error_generic to R.drawable.il_empty_state_error,
+        R.drawable.il_empty_state_first_use_generic to R.drawable.il_empty_state_first_use,
+        R.drawable.il_empty_state_no_data_generic to R.drawable.il_empty_state_no_data,
+        R.drawable.il_empty_state_user_clear_generic to R.drawable.il_empty_state_user_clear,
         R.drawable.il_fab_generic to R.drawable.il_fab,
         R.drawable.il_image_item_generic to R.drawable.il_image_item,
         R.drawable.il_list_item_generic to R.drawable.il_list_item,
@@ -75,10 +82,10 @@ object DrawableManager {
     fun getPlaceholderResId(error: Boolean = false): Int {
         val darkTheme = isSystemInDarkTheme()
         return when {
-            !darkTheme && !error -> R.drawable.placeholder
-            !darkTheme && error -> R.drawable.placeholder_error
-            darkTheme && !error -> R.drawable.placeholder_dark
-            else -> R.drawable.placeholder_error_dark
+            !darkTheme && !error -> com.orange.ods.R.drawable.placeholder
+            !darkTheme && error -> com.orange.ods.R.drawable.placeholder_error
+            darkTheme && !error -> com.orange.ods.R.drawable.placeholder_dark
+            else -> com.orange.ods.R.drawable.placeholder_error_dark
         }
     }
 
@@ -86,10 +93,10 @@ object DrawableManager {
     fun getPlaceholderSmallResId(error: Boolean = false): Int {
         val darkTheme = isSystemInDarkTheme()
         return when {
-            !darkTheme && !error -> R.drawable.placeholder_small
-            !darkTheme && error -> R.drawable.placeholder_error_small
-            darkTheme && !error -> R.drawable.placeholder_small_dark
-            else -> R.drawable.placeholder_error_small_dark
+            !darkTheme && !error -> com.orange.ods.R.drawable.placeholder_small
+            !darkTheme && error -> com.orange.ods.R.drawable.placeholder_error_small
+            darkTheme && !error -> com.orange.ods.R.drawable.placeholder_small_dark
+            else -> com.orange.ods.R.drawable.placeholder_error_small_dark
         }
     }
 }

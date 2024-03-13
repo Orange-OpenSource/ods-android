@@ -1,11 +1,13 @@
 /*
+ * Software Name: Orange Design System
+ * SPDX-FileCopyrightText: Copyright (c) Orange SA
+ * SPDX-License-Identifier: MIT
  *
- *  Copyright 2021 Orange
+ * This software is distributed under the MIT license,
+ * the text of which is available at https://opensource.org/license/MIT/
+ * or see the "LICENSE" file for more details.
  *
- *  Use of this source code is governed by an MIT-style
- *  license that can be found in the LICENSE file or at
- *  https://opensource.org/licenses/MIT.
- * /
+ * Software description: Android library of reusable graphical components 
  */
 
 package com.orange.ods.app.ui.about
@@ -18,11 +20,12 @@ import com.orange.ods.app.R
 import com.orange.ods.app.ui.CustomAppBarConfiguration
 import com.orange.ods.app.ui.LocalAppBarManager
 import com.orange.ods.app.ui.utilities.extension.launchUrl
-import com.orange.ods.module.about.configuration.OdsAboutFileMenuItem
-import com.orange.ods.module.about.configuration.OdsAboutConfiguration
-import com.orange.ods.module.about.configuration.OdsAboutShareData
-import com.orange.ods.module.about.configuration.OdsAboutUrlMenuItem
-import com.orange.ods.module.about.utilities.OdsAboutVersionHelper
+import com.orange.ods.module.about.ui.configuration.OdsAboutAccessibilityStatementMenuItemConfiguration
+import com.orange.ods.module.about.ui.configuration.OdsAboutConfiguration
+import com.orange.ods.module.about.ui.configuration.OdsAboutFileMenuItem
+import com.orange.ods.module.about.ui.configuration.OdsAboutShareData
+import com.orange.ods.module.about.ui.configuration.OdsAboutUrlMenuItem
+import com.orange.ods.module.about.ui.utilities.OdsAboutVersionHelper
 
 const val RateTheAppUrl = "https://play.google.com/apps/testing/com.orange.ods.app"
 private const val ShareUrl = "http://oran.ge/dsapp"
@@ -36,6 +39,7 @@ fun appAboutConfiguration(): OdsAboutConfiguration {
         appName = stringResource(id = R.string.about_app_name),
         privacyPolicyMenuItemFile = OdsAboutFileMenuItem.File(R.raw.about_privacy_policy, OdsAboutFileMenuItem.File.Format.Html),
         termsOfServiceMenuItemFile = OdsAboutFileMenuItem.File(R.raw.about_terms_of_service, OdsAboutFileMenuItem.File.Format.Html),
+        accessibilityStatementMenuItemConfiguration = OdsAboutAccessibilityStatementMenuItemConfiguration("accessibility-statement/orange-design-system.xml"),
         appVersion = OdsAboutVersionHelper.getFromPackageInfo(context = LocalContext.current),
         appDescription = stringResource(id = R.string.about_description),
         shareData = OdsAboutShareData(
@@ -65,6 +69,12 @@ fun appAboutConfiguration(): OdsAboutConfiguration {
                 stringResource(id = R.string.about_menu_report_issue),
                 3,
                 "https://github.com/Orange-OpenSource/ods-android/issues/new/choose"
+            ),
+            OdsAboutFileMenuItem(
+                painterResource(id = com.orange.ods.module.about.R.drawable.ic_tasklist),
+                stringResource(id = R.string.about_menu_third_party_libraries),
+                555,
+                OdsAboutFileMenuItem.File(R.raw.third_party, OdsAboutFileMenuItem.File.Format.Markdown)
             )
         ),
         onScreenChange = { title ->

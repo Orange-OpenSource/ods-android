@@ -1,21 +1,25 @@
 /*
+ * Software Name: Orange Design System
+ * SPDX-FileCopyrightText: Copyright (c) Orange SA
+ * SPDX-License-Identifier: MIT
  *
- *  Copyright 2021 Orange
+ * This software is distributed under the MIT license,
+ * the text of which is available at https://opensource.org/license/MIT/
+ * or see the "LICENSE" file for more details.
  *
- *  Use of this source code is governed by an MIT-style
- *  license that can be found in the LICENSE file or at
- *  https://opensource.org/licenses/MIT.
- * /
+ * Software description: Android library of reusable graphical components
  */
 
 package com.orange.ods.app.ui
 
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.ArrowBack
+import androidx.compose.material.icons.automirrored.filled.ArrowBack
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.MutableState
+import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.runtime.staticCompositionLocalOf
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
@@ -28,14 +32,14 @@ import com.orange.ods.app.ui.components.appbars.top.TopAppBarCustomizationState
 import com.orange.ods.app.ui.components.utilities.clickOnElement
 import com.orange.ods.app.ui.utilities.NavigationItem
 import com.orange.ods.compose.component.appbar.top.OdsTopAppBar
-import com.orange.ods.compose.component.content.OdsComponentContent
 import com.orange.ods.compose.component.menu.OdsDropdownMenu
+import com.orange.ods.compose.extension.orElse
 import kotlin.math.max
 
 val LocalAppBarManager = staticCompositionLocalOf<AppBarManager> { error("CompositionLocal AppBarManager not present") }
 
 interface AppBarManager {
-    val searchedText: TextFieldValue
+    var searchedText: TextFieldValue
 
     fun setCustomAppBar(customAppBarConfiguration: CustomAppBarConfiguration)
 
@@ -51,7 +55,7 @@ interface AppBarManager {
  */
 class AppBarState(
     private val navigationState: AppNavigationState,
-    private val searchText: MutableState<TextFieldValue>,
+    searchedText: MutableState<TextFieldValue>,
     private val customAppBarConfiguration: MutableState<CustomAppBarConfiguration>,
     val tabsState: AppBarTabsState
 ) : AppBarManager {
@@ -63,8 +67,8 @@ class AppBarState(
         @Composable get() = (isCustom && customAppBarConfiguration.value.isNavigationIconEnabled)
                 || (!isCustom && navigationState.currentScreen?.isHome(navigationState.previousRoute) == false)
 
-    val isLarge: Boolean
-        @Composable get() = navigationState.currentScreen?.isLargeAppBar == true
+    val type: Screen.TopAppBarType
+        @Composable get() = navigationState.currentScreen?.topAppBarType.orElse { Screen.TopAppBarType.Default }
 
     val title: String
         @Composable get() = if (isCustom) {
@@ -73,9 +77,9 @@ class AppBarState(
             navigationState.currentScreen?.title?.asString().orEmpty()
         }
 
-    val actions: List<OdsComponentContent<Nothing>>
+    val actions: List<OdsTopAppBar.ActionButton>
         @Composable get() {
-            val screenAppBarActions = navigationState.currentScreen?.getAppBarActions(navigationState.previousRoute) { searchText.value = it }.orEmpty()
+            val screenAppBarActions = navigationState.currentScreen?.getAppBarActions(navigationState.previousRoute).orEmpty()
             return if (isCustom) {
                 val context = LocalContext.current
                 val customActionCount = max(0, customAppBarConfiguration.value.actionCount - AppBarAction.defaultActions.size)
@@ -111,7 +115,7 @@ class AppBarState(
 
     @Composable
     fun getNavigationIcon(upPress: () -> Unit) = if (showNavigationIcon) {
-        OdsTopAppBar.NavigationIcon(Icons.Filled.ArrowBack, stringResource(id = R.string.top_app_bar_back_icon_desc), upPress)
+        OdsTopAppBar.NavigationIcon(Icons.AutoMirrored.Filled.ArrowBack, stringResource(id = R.string.top_app_bar_back_icon_desc), upPress)
     } else {
         null
     }
@@ -120,8 +124,7 @@ class AppBarState(
     // AppBarManager implementation
     // ----------------------------------------------------------
 
-    override val searchedText: TextFieldValue
-        get() = searchText.value
+    override var searchedText by searchedText
 
     override fun setCustomAppBar(customAppBarConfiguration: CustomAppBarConfiguration) {
         this.customAppBarConfiguration.value = customAppBarConfiguration

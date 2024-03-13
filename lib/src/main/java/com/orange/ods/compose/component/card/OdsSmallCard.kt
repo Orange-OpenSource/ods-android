@@ -1,11 +1,13 @@
 /*
+ * Software Name: Orange Design System
+ * SPDX-FileCopyrightText: Copyright (c) Orange SA
+ * SPDX-License-Identifier: MIT
  *
- *  Copyright 2021 Orange
+ * This software is distributed under the MIT license,
+ * the text of which is available at https://opensource.org/license/MIT/
+ * or see the "LICENSE" file for more details.
  *
- *  Use of this source code is governed by an MIT-style
- *  license that can be found in the LICENSE file or at
- *  https://opensource.org/licenses/MIT.
- * /
+ * Software description: Android library of reusable graphical components
  */
 
 package com.orange.ods.compose.component.card
@@ -15,21 +17,20 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
-import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.painterResource
-import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.PreviewParameter
 import androidx.compose.ui.unit.dp
 import com.orange.ods.R
 import com.orange.ods.compose.component.OdsComposable
 import com.orange.ods.compose.component.utilities.BasicPreviewParameterProvider
-import com.orange.ods.compose.component.utilities.Preview
+import com.orange.ods.compose.component.utilities.OdsPreview
 import com.orange.ods.compose.component.utilities.UiModePreviews
-import com.orange.ods.compose.theme.OdsTheme
+import com.orange.ods.compose.text.OdsText
+import com.orange.ods.theme.typography.OdsTextStyle
 
 /**
  * <a href="https://system.design.orange.com/0c1af118d/p/272739-cards/b/991690" target="_blank">ODS Card</a>.
@@ -67,9 +68,9 @@ fun OdsSmallCard(
                 modifier = Modifier
                     .padding(dimensionResource(id = R.dimen.spacing_m))
             ) {
-                SmallCardText(text = title, style = OdsTheme.typography.h6, isClickableCard = onClick != null)
+                SmallCardText(text = title, style = OdsTextStyle.TitleL, isClickableCard = onClick != null)
                 subtitle?.let {
-                    SmallCardText(text = it, style = OdsTheme.typography.subtitle2, isClickableCard = onClick != null)
+                    SmallCardText(text = it, style = OdsTextStyle.BodyM, isClickableCard = onClick != null)
                 }
             }
         }
@@ -77,8 +78,8 @@ fun OdsSmallCard(
 }
 
 @Composable
-private fun SmallCardText(text: String, style: TextStyle, isClickableCard: Boolean) {
-    Text(
+private fun SmallCardText(text: String, style: OdsTextStyle, isClickableCard: Boolean) {
+    OdsText(
         text = text,
         style = style,
         maxLines = if (isClickableCard) 1 else Int.MAX_VALUE,
@@ -88,7 +89,7 @@ private fun SmallCardText(text: String, style: TextStyle, isClickableCard: Boole
 
 @UiModePreviews.Default
 @Composable
-private fun PreviewOdsSmallCard(@PreviewParameter(OdsSmallCardPreviewParameterProvider::class) parameter: OdsSmallCardPreviewParameter) = Preview {
+private fun PreviewOdsSmallCard(@PreviewParameter(OdsSmallCardPreviewParameterProvider::class) parameter: OdsSmallCardPreviewParameter) = OdsPreview {
     OdsSmallCard(
         modifier = Modifier.width(200.dp),
         title = parameter.title,
@@ -108,15 +109,8 @@ private class OdsSmallCardPreviewParameterProvider :
     BasicPreviewParameterProvider<OdsSmallCardPreviewParameter>(*previewParameterValues.toTypedArray())
 
 private val previewParameterValues: List<OdsSmallCardPreviewParameter>
-    get() {
-        val shortTitle = "Title"
-        val longTitle = "Here is a long title that don't fit"
-        val shortSubtitle = "Subtitle"
-        val longSubtitle = "Here is a very very very long subtitle"
-
-        return listOf(
-            OdsSmallCardPreviewParameter(shortTitle, shortSubtitle),
-            OdsSmallCardPreviewParameter(longTitle, longSubtitle),
-            OdsSmallCardPreviewParameter(longTitle, longSubtitle, null),
+    get() = listOf(
+            OdsSmallCardPreviewParameter(CardPreview.Title, CardPreview.Subtitle),
+            OdsSmallCardPreviewParameter(CardPreview.LongTitle, CardPreview.LongSubtitle),
+            OdsSmallCardPreviewParameter(CardPreview.LongTitle, CardPreview.LongSubtitle, null),
         )
-    }

@@ -1,11 +1,13 @@
 /*
+ * Software Name: Orange Design System
+ * SPDX-FileCopyrightText: Copyright (c) Orange SA
+ * SPDX-License-Identifier: MIT
  *
- *  Copyright 2021 Orange
+ * This software is distributed under the MIT license,
+ * the text of which is available at https://opensource.org/license/MIT/
+ * or see the "LICENSE" file for more details.
  *
- *  Use of this source code is governed by an MIT-style
- *  license that can be found in the LICENSE file or at
- *  https://opensource.org/licenses/MIT.
- * /
+ * Software description: Android library of reusable graphical components
  */
 
 package com.orange.ods.compose.component.imageitem
@@ -22,7 +24,6 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
-import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -41,11 +42,13 @@ import com.orange.ods.compose.component.button.OdsIconButton
 import com.orange.ods.compose.component.button.OdsIconToggleButton
 import com.orange.ods.compose.component.content.OdsComponentImage
 import com.orange.ods.compose.component.utilities.BasicPreviewParameterProvider
-import com.orange.ods.compose.component.utilities.Preview
+import com.orange.ods.compose.component.utilities.OdsPreview
 import com.orange.ods.compose.component.utilities.UiModePreviews
-import com.orange.ods.compose.theme.OdsDisplaySurface
-import com.orange.ods.compose.theme.OdsTheme
-import com.orange.ods.extension.orElse
+import com.orange.ods.compose.extension.orElse
+import com.orange.ods.compose.text.OdsText
+import com.orange.ods.compose.theme.OdsThemeTweak
+import com.orange.ods.compose.theme.OdsThemeTweakType
+import com.orange.ods.theme.typography.OdsTextStyle
 
 
 /**
@@ -84,15 +87,16 @@ fun OdsImageItem(
                             .align(Alignment.BottomStart)
                             .height(IntrinsicSize.Min)
                     ) {
-                        OdsImageItemLegendArea(
-                            text = it,
-                            color = Color.White,
-                            displaySurface = OdsDisplaySurface.Dark,
-                            textModifier = Modifier
-                                .weight(1f)
-                                .padding(all = dimensionResource(id = R.dimen.spacing_m)),
-                            icon = icon
-                        )
+                        // Legend is displayed on dark background so we force dark theme
+                        OdsThemeTweak(tweakType = OdsThemeTweakType.ForceDark) {
+                            OdsImageItemLegendArea(
+                                text = it,
+                                textModifier = Modifier
+                                    .weight(1f)
+                                    .padding(all = dimensionResource(id = R.dimen.spacing_m)),
+                                icon = icon
+                            )
+                        }
                     }
                 }
             }
@@ -112,8 +116,6 @@ fun OdsImageItem(
                         title?.let {
                             OdsImageItemLegendArea(
                                 text = it,
-                                color = OdsTheme.colors.onSurface,
-                                displaySurface = OdsDisplaySurface.Default,
                                 textModifier = Modifier
                                     .weight(1f)
                                     .padding(vertical = dimensionResource(id = R.dimen.spacing_m))
@@ -142,7 +144,11 @@ object OdsImageItem {
     /**
      * An image in an [OdsImageItem].
      */
-    class Image : OdsComponentImage<Nothing> {
+    class Image private constructor(
+        val graphicsObject: Any,
+        val contentDescription: String,
+        val contentScale: ContentScale
+    ) : OdsComponentImage<Nothing>(Nothing::class.java, graphicsObject, contentDescription, contentScale = contentScale) {
 
         /**
          * Creates an instance of [OdsImageItem.Image].
@@ -151,11 +157,11 @@ object OdsImageItem {
          * @param contentDescription The content description associated to this [OdsImageItem.Image].
          * @param contentScale The rule to apply to scale the image in this [OdsImageItem.Image], [ContentScale.Crop] by default.
          */
-        constructor(painter: Painter, contentDescription: String, contentScale: ContentScale = ContentScale.Crop) : super(
-            painter,
-            contentDescription,
-            contentScale = contentScale
-        )
+        constructor(
+            painter: Painter,
+            contentDescription: String,
+            contentScale: ContentScale = ContentScale.Crop
+        ) : this(painter as Any, contentDescription, contentScale)
 
         /**
          * Creates an instance of [OdsImageItem.Image].
@@ -164,11 +170,11 @@ object OdsImageItem {
          * @param contentDescription The content description associated to this [OdsImageItem.Image].
          * @param contentScale The rule to apply to scale the image in this [OdsImageItem.Image], [ContentScale.Crop] by default.
          */
-        constructor(imageVector: ImageVector, contentDescription: String, contentScale: ContentScale = ContentScale.Crop) : super(
-            imageVector,
-            contentDescription,
-            contentScale = contentScale
-        )
+        constructor(
+            imageVector: ImageVector,
+            contentDescription: String,
+            contentScale: ContentScale = ContentScale.Crop
+        ) : this(imageVector as Any, contentDescription, contentScale)
 
         /**
          * Creates an instance of [OdsImageItem.Image].
@@ -177,11 +183,11 @@ object OdsImageItem {
          * @param contentDescription The content description associated to this [OdsImageItem.Image].
          * @param contentScale The rule to apply to scale the image in this [OdsImageItem.Image], [ContentScale.Crop] by default.
          */
-        constructor(bitmap: ImageBitmap, contentDescription: String, contentScale: ContentScale = ContentScale.Crop) : super(
-            bitmap,
-            contentDescription,
-            contentScale = contentScale
-        )
+        constructor(
+            bitmap: ImageBitmap,
+            contentDescription: String,
+            contentScale: ContentScale = ContentScale.Crop
+        ) : this(bitmap as Any, contentDescription, contentScale)
     }
 
     /**
@@ -199,13 +205,12 @@ object OdsImageItem {
         val uncheckedIcon: OdsIconButton.Icon,
     ) {
         @Composable
-        fun Content(displaySurface: OdsDisplaySurface) {
+        internal fun Content() {
             OdsIconToggleButton(
                 checked = checked,
                 onCheckedChange = onCheckedChange,
                 uncheckedIcon = uncheckedIcon,
-                checkedIcon = checkedIcon,
-                displaySurface = displaySurface
+                checkedIcon = checkedIcon
             )
         }
     }
@@ -215,26 +220,23 @@ object OdsImageItem {
 @Composable
 private fun OdsImageItemLegendArea(
     text: String,
-    color: Color,
-    displaySurface: OdsDisplaySurface,
     icon: OdsImageItem.IconToggleButton?,
     @SuppressLint("ModifierParameter") textModifier: Modifier
 ) {
-    Text(
+    OdsText(
         text = text,
-        color = color,
         modifier = textModifier,
-        style = OdsTheme.typography.subtitle1,
+        style = OdsTextStyle.TitleM,
         maxLines = 1,
         overflow = TextOverflow.Ellipsis
     )
-    icon?.Content(displaySurface)
+    icon?.Content()
 }
 
 @UiModePreviews.ImageItem
 @Composable
 private fun PreviewOdsImageItem(@PreviewParameter(OdsImageItemPreviewParameterProvider::class) parameter: OdsImageItemPreviewParameter) =
-    Preview {
+    OdsPreview {
         OdsImageItem(
             image = OdsImageItem.Image(painterResource(id = parameter.image), ""),
             title = parameter.title,

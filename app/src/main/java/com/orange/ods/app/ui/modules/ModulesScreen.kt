@@ -1,11 +1,13 @@
 /*
+ * Software Name: Orange Design System
+ * SPDX-FileCopyrightText: Copyright (c) Orange SA
+ * SPDX-License-Identifier: MIT
  *
- *  Copyright 2021 Orange
+ * This software is distributed under the MIT license,
+ * the text of which is available at https://opensource.org/license/MIT/
+ * or see the "LICENSE" file for more details.
  *
- *  Use of this source code is governed by an MIT-style
- *  license that can be found in the LICENSE file or at
- *  https://opensource.org/licenses/MIT.
- * /
+ * Software description: Android library of reusable graphical components
  */
 
 package com.orange.ods.app.ui.modules
@@ -56,7 +58,7 @@ private fun ColumnScope.ModuleCard(module: Module, onModuleClick: (String) -> Un
             painterResource(id = imageResId),
             "",
             module.imageAlignment,
-            ContentScale.Fit,
+            ContentScale.Crop,
             Color(DrawableManager.ImageBackgroundColor)
         ),
         onClick = { onModuleClick(module.route) }

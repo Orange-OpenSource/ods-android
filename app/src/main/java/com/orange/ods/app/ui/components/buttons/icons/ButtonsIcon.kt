@@ -1,11 +1,13 @@
 /*
+ * Software Name: Orange Design System
+ * SPDX-FileCopyrightText: Copyright (c) Orange SA
+ * SPDX-License-Identifier: MIT
  *
- *  Copyright 2021 Orange
+ * This software is distributed under the MIT license,
+ * the text of which is available at https://opensource.org/license/MIT/
+ * or see the "LICENSE" file for more details.
  *
- *  Use of this source code is governed by an MIT-style
- *  license that can be found in the LICENSE file or at
- *  https://opensource.org/licenses/MIT.
- * /
+ * Software description: Android library of reusable graphical components
  */
 
 package com.orange.ods.app.ui.components.buttons.icons
@@ -32,11 +34,12 @@ import com.orange.ods.app.databinding.OdsIconButtonBinding
 import com.orange.ods.app.ui.UiFramework
 import com.orange.ods.app.ui.components.buttons.InvertedBackgroundColumn
 import com.orange.ods.app.ui.components.utilities.clickOnElement
+import com.orange.ods.app.ui.utilities.code.CodeBackgroundColumn
 import com.orange.ods.app.ui.utilities.code.CodeImplementationColumn
 import com.orange.ods.app.ui.utilities.code.FunctionCallCode
+import com.orange.ods.app.ui.utilities.code.XmlViewTag
 import com.orange.ods.compose.OdsComposable
 import com.orange.ods.compose.component.button.OdsIconButton
-import com.orange.ods.compose.theme.OdsDisplaySurface
 
 @Composable
 fun ButtonsIcon(customizationState: ButtonIconCustomizationState) {
@@ -61,26 +64,41 @@ fun ButtonsIcon(customizationState: ButtonIconCustomizationState) {
             InvertedBackgroundColumn(horizontalAlignment = Alignment.CenterHorizontally) {
                 IconButton(
                     enabled = isEnabled,
-                    displaySurface = displaySurface
+                    invertedTheme = true
                 )
             }
 
             CodeImplementationColumn(
                 modifier = Modifier.padding(horizontal = dimensionResource(id = com.orange.ods.R.dimen.screen_horizontal_margin)),
-                xmlAvailable = true
-            ) {
-                FunctionCallCode(
-                    name = OdsComposable.OdsIconButton.name,
-                    exhaustiveParameters = false,
-                    parameters = {
-                        classInstance<OdsIconButton.Icon>("icon") {
-                            painter()
-                            contentDescription("")
+                composeContent = {
+                    FunctionCallCode(
+                        name = OdsComposable.OdsIconButton.name,
+                        exhaustiveParameters = false,
+                        parameters = {
+                            classInstance<OdsIconButton.Icon>("icon") {
+                                painter()
+                                contentDescription("")
+                            }
+                            if (!isEnabled) enabled(false)
                         }
-                        if (!isEnabled) enabled(false)
+                    )
+                },
+                xmlContent = {
+                    CodeBackgroundColumn {
+                        XmlViewTag(
+                            clazz = com.orange.ods.xml.component.button.OdsIconButton::class.java,
+                            xmlAttributes = {
+                                id("ods_icon_button")
+                                layoutWidth()
+                                layoutHeight()
+                                drawable("icon", "icon")
+                                appAttr("iconContentDescription", "Icon description")
+                                if (!isEnabled) disabled()
+                            }
+                        )
                     }
-                )
-            }
+                }
+            )
         }
     }
 }
@@ -88,7 +106,7 @@ fun ButtonsIcon(customizationState: ButtonIconCustomizationState) {
 @Composable
 private fun IconButton(
     enabled: Boolean,
-    displaySurface: OdsDisplaySurface = OdsDisplaySurface.Default
+    invertedTheme: Boolean = false
 ) {
     val context = LocalContext.current
     val iconId = R.drawable.ic_search
@@ -107,13 +125,12 @@ private fun IconButton(
                     onClick = onClick,
                     icon = OdsIconButton.Icon(painterResource(id = R.drawable.ic_search), contentDescription),
                     enabled = enabled,
-                    displaySurface = displaySurface
                 )
             },
             xml = {
                 icon = AppCompatResources.getDrawable(context, iconId)
                 this.enabled = enabled
-                this.displaySurface = displaySurface
+                this.invertedTheme = invertedTheme
                 iconContentDescription = contentDescription
                 odsIconButton.onClick = onClick
             }

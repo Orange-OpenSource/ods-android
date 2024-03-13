@@ -1,27 +1,25 @@
 <?xml version="1.0" encoding="utf-8"?><!--
-  ~ /*
-  ~ * Copyright 2021 Orange
-  ~ *
-  ~ * Use of this source code is governed by an MIT-style
-  ~ * license that can be found in the LICENSE file or at
-  ~ * https://opensource.org/licenses/MIT.
-  ~ */
+  ~ Software Name: Orange Design System
+  ~ SPDX-FileCopyrightText: Copyright (c) Orange SA
+  ~ SPDX-License-Identifier: MIT
+  ~
+  ~ This software is distributed under the MIT license,
+  ~ the text of which is available at https://opensource.org/license/MIT/
+  ~ or see the "LICENSE" file for more details.
+  ~
+  ~ Software description: Android library of reusable graphical components
   -->
 
 <resources>
-    <string name="about_top_bar_title">About</string>
-
-    <string name="ods_about_app_version">Version %1$s (%2$d)</string>
-    <string name="ods_about_app_share">Share</string>
-    <string name="ods_about_app_feedback">Feedback</string>
-
-    <!-- Mandatory menu items -->
-    <string name="ods_about_menu_terms_of_service">Terms of service</string>
-    <string name="ods_about_menu_privacy_policy">Privacy policy</string>
-    <string name="ods_about_menu_accessibility_statement">Accessibility statement</string>
-
-    <!-- Optional menu items -->
-    <string name="ods_about_menu_app_news">App news</string>
-    <string name="ods_about_menu_legal_information">Legal information</string>
-    <string name="ods_about_menu_rate_the_app">Rate the app</string>
+    <string name="odsAbout_appFeedback">Feedback</string>
+    <string name="odsAbout_appShare">Share</string>
+    <string name="odsAbout_appVersion">Version %1$s (%2$d)</string>
+    <string name="odsAbout_menu_accessibilityStatement">Accessibility statement</string>
+    <string name="odsAbout_menu_accessibilityStatement_declarant" translatable="false">Orange SA\nSiège social : 111, quai du Président Roosevelt, 92449 Issy-les-Moulineaux</string>
+    <string name="odsAbout_menu_appNews">App news</string>
+    <string name="odsAbout_menu_legalInformation">Legal information</string>
+    <string name="odsAbout_menu_privacyPolicy">Privacy policy</string>
+    <string name="odsAbout_menu_rateTheApp">Rate the app</string>
+    <string name="odsAbout_menu_termsOfService">Terms of service</string>
+    <string name="odsAbout_topAppBar_title">About</string>
 </resources>

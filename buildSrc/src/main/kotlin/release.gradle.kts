@@ -1,17 +1,19 @@
 /*
+ * Software Name: Orange Design System
+ * SPDX-FileCopyrightText: Copyright (c) Orange SA
+ * SPDX-License-Identifier: MIT
  *
- *  Copyright 2021 Orange
+ * This software is distributed under the MIT license,
+ * the text of which is available at https://opensource.org/license/MIT/
+ * or see the "LICENSE" file for more details.
  *
- *  Use of this source code is governed by an MIT-style
- *  license that can be found in the LICENSE file or at
- *  https://opensource.org/licenses/MIT.
- * /
+ * Software description: Android library of reusable graphical components
  */
 
 import com.orange.ods.gradle.execute
 import com.orange.ods.gradle.findTypedProperty
 import java.text.SimpleDateFormat
-import java.util.*
+import java.util.Date
 
 tasks.register<DefaultTask>("prepareRelease") {
     doLast {
@@ -48,6 +50,7 @@ fun updateDependencies(version: String) {
         "${matchResult.groupValues[1]}$version"
     }
     File("docs/home_content.md").replace(regex, transform)
+    File("docs/modules/About.md").replace(regex, transform)
     File("DEVELOP.md").replace(regex, transform)
 }
 
@@ -66,23 +69,38 @@ fun updateChangelog(version: String) {
 }
 
 fun archiveDocumentation(version: String) {
+    // Copy all files to a new directory named with the version
     copy {
         from("docs")
         into("docs/$version")
-        exclude("_*", "Gemfile*")
+        exclude("_*", "Gemfile*", "404.html")
         val versionRegex = "^\\d+.\\d+.\\d+$".toRegex()
         exclude { versionRegex.matches(it.name) }
     }
 
-    val text = """
+    // Copy and update data_menu.yml and team.yml files
+    val dataPath = "docs/_data"
+    val dataFileSuffix = "_${version.replace(".", "_")}"
+    val dataFilenames = listOf("data_menu", "team")
+    copy {
+        from(dataFilenames.map { "$dataPath/$it.yml" })
+        into(dataPath)
+        rename { it.removeSuffix(".yml") + "$dataFileSuffix.yml" }
+    }
+    dataFilenames.forEach { filename ->
+        File("$dataPath/$filename$dataFileSuffix.yml").replace("version: \"\"".toRegex(), "version: \"$version\"")
+    }
+
+    // Update Jekyll configuration files
+    val configText = """
             |  - scope:
             |      path: "$version"
             |    values:
             |      version: "$version"
             |
             """.trimMargin()
-    File("docs/_config.yml").appendText(text)
-    File("docs/_config_netlify.yml").appendText(text)
+    File("docs/_config.yml").appendText(configText)
+    File("docs/_config_netlify.yml").appendText(configText)
 }
 
 fun updateVersionCode() {

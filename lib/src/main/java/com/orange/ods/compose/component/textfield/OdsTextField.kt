@@ -1,11 +1,13 @@
 /*
+ * Software Name: Orange Design System
+ * SPDX-FileCopyrightText: Copyright (c) Orange SA
+ * SPDX-License-Identifier: MIT
  *
- *  Copyright 2021 Orange
+ * This software is distributed under the MIT license,
+ * the text of which is available at https://opensource.org/license/MIT/
+ * or see the "LICENSE" file for more details.
  *
- *  Use of this source code is governed by an MIT-style
- *  license that can be found in the LICENSE file or at
- *  https://opensource.org/licenses/MIT.
- * /
+ * Software description: Android library of reusable graphical components
  */
 
 package com.orange.ods.compose.component.textfield
@@ -14,7 +16,6 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.text.KeyboardActions
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material.Text
-import androidx.compose.material.Typography
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
@@ -27,10 +28,11 @@ import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.input.VisualTransformation
 import androidx.compose.ui.tooling.preview.PreviewParameter
 import com.orange.ods.compose.component.OdsComposable
-import com.orange.ods.compose.component.utilities.Preview
+import com.orange.ods.compose.component.utilities.OdsPreview
 import com.orange.ods.compose.component.utilities.UiModePreviews
 import com.orange.ods.compose.theme.OdsTheme
 import com.orange.ods.theme.OdsComponentsConfiguration
+import com.orange.ods.theme.typography.OdsTypography
 
 /**
  * <a href="https://system.design.orange.com/0c1af118d/p/483f94-text-fields/b/720e3b" target="_blank">ODS Text fields</a>.
@@ -53,9 +55,9 @@ import com.orange.ods.theme.OdsComponentsConfiguration
  * field can not be modified, however, a user can focus it and copy text from it. Read-only text
  * fields are usually used to display pre-filled forms that user can not edit.
  * @param label Label to be displayed inside or outside the text field. The default text style used
- * is [Typography.caption] when the text field is in focus and [Typography.subtitle1] when the text field is not in focus.
+ * is [OdsTypography.bodyS] when the text field is in focus and [OdsTypography.titleM] when the text field is not in focus.
  * @param placeholder Placeholder to be displayed when the text field is in focus and
- * the input text is empty. The default text style for internal [Text] is [Typography.subtitle1].
+ * the input text is empty. The default text style for internal [Text] is [OdsTypography.titleM].
  * @param leadingIcon [OdsTextField.LeadingIcon] displayed at the beginning of the text field container.
  * @param isError Indicates if the text field's current value is in error state. If set to
  * `true`, the text field outline and the error message will be displayed in error color.
@@ -144,7 +146,7 @@ fun OdsTextField(
 
 @UiModePreviews.Default
 @Composable
-private fun PreviewOdsTextField(@PreviewParameter(OdsTextFieldPreviewParameterProvider::class) parameter: OdsTextFieldPreviewParameter) = Preview {
+private fun PreviewOdsTextField(@PreviewParameter(OdsTextFieldPreviewParameterProvider::class) parameter: OdsTextFieldPreviewParameter) = OdsPreview {
     var value by remember { mutableStateOf("Input text") }
     OdsTextField(
         modifier = Modifier.fillMaxWidth(),

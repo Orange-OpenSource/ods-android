@@ -1,11 +1,13 @@
 /*
+ * Software Name: Orange Design System
+ * SPDX-FileCopyrightText: Copyright (c) Orange SA
+ * SPDX-License-Identifier: MIT
  *
- *  Copyright 2021 Orange
+ * This software is distributed under the MIT license,
+ * the text of which is available at https://opensource.org/license/MIT/
+ * or see the "LICENSE" file for more details.
  *
- *  Use of this source code is governed by an MIT-style
- *  license that can be found in the LICENSE file or at
- *  https://opensource.org/licenses/MIT.
- * /
+ * Software description: Android library of reusable graphical components
  */
 
 package com.orange.ods.app.ui.guidelines.typography
@@ -29,18 +31,21 @@ import androidx.compose.ui.text.font.FontStyle
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.text.withStyle
 import com.orange.ods.app.R
-import com.orange.ods.app.ui.LocalOdsGuideline
+import com.orange.ods.app.ui.LocalGuideline
 import com.orange.ods.app.ui.utilities.DrawableManager
 import com.orange.ods.app.ui.utilities.composable.DetailScreenHeader
 import com.orange.ods.app.ui.utilities.extension.getStringName
 import com.orange.ods.compose.component.divider.OdsDivider
-import com.orange.ods.compose.text.OdsTextBody1
+import com.orange.ods.compose.text.OdsText
 import com.orange.ods.compose.theme.OdsTheme
+import com.orange.ods.theme.annotation.ExperimentalOdsApi
 import com.orange.ods.theme.guideline.GuidelineTextStyle
+import com.orange.ods.theme.typography.OdsTextStyle
 
+@OptIn(ExperimentalOdsApi::class)
 @Composable
 fun GuidelineTypographyScreen() {
-    val guidelineTypography = LocalOdsGuideline.current.guidelineTypography
+    val guidelineTypography = LocalGuideline.current.guidelineTypography
 
     LazyColumn(
         contentPadding = PaddingValues(bottom = dimensionResource(id = com.orange.ods.R.dimen.screen_vertical_margin)),
@@ -54,12 +59,13 @@ fun GuidelineTypographyScreen() {
         }
         if (guidelineTypography.isEmpty()) {
             item {
-                OdsTextBody1(
+                OdsText(
                     modifier = Modifier.padding(
                         horizontal = dimensionResource(id = com.orange.ods.R.dimen.screen_horizontal_margin),
                         vertical = dimensionResource(id = com.orange.ods.R.dimen.screen_vertical_margin)
                     ),
-                    text = stringResource(id = R.string.guideline_typography_no_typography_defined)
+                    text = stringResource(id = R.string.guideline_typography_no_typography_defined),
+                    style = OdsTextStyle.BodyL
                 )
             }
         } else {
@@ -77,6 +83,7 @@ fun GuidelineTypographyScreen() {
     }
 }
 
+@OptIn(ExperimentalOdsApi::class)
 @Composable
 private fun TextStyleRow(guidelineTextStyle: GuidelineTextStyle) {
     val context = LocalContext.current
@@ -85,7 +92,7 @@ private fun TextStyleRow(guidelineTextStyle: GuidelineTextStyle) {
         .padding(horizontal = dimensionResource(id = com.orange.ods.R.dimen.screen_horizontal_margin))
         .semantics(mergeDescendants = true) {}) {
         Text(
-            text = guidelineTextStyle.name,
+            text = guidelineTextStyle.name.let { if (guidelineTextStyle.allCaps) it.uppercase() else it },
             style = guidelineTextStyle.textStyle,
             maxLines = 1,
             overflow = TextOverflow.Ellipsis,
