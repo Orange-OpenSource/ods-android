@@ -36,7 +36,7 @@ android {
         minSdk = Versions.minSdk
         targetSdk = Versions.targetSdk
         val versionCodeProperty = project.findTypedProperty<String>("versionCode")
-        versionCode = versionCodeProperty?.toInt() ?: 10
+        versionCode = versionCodeProperty?.toInt() ?: 11
         versionName = version.toString()
         val versionNameSuffixProperty = project.findTypedProperty<String>("versionNameSuffix")
         versionNameSuffix = versionNameSuffixProperty
