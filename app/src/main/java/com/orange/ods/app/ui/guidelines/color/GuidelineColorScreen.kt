@@ -51,10 +51,10 @@ import com.orange.ods.app.R
 import com.orange.ods.app.ui.LocalGuideline
 import com.orange.ods.app.ui.utilities.composable.Title
 import com.orange.ods.app.ui.utilities.extension.getStringName
-import com.orange.ods.compose.annotation.ExperimentalOdsApi
 import com.orange.ods.compose.component.button.OdsButton
 import com.orange.ods.compose.text.OdsText
 import com.orange.ods.compose.theme.OdsTheme
+import com.orange.ods.theme.annotation.ExperimentalOdsApi
 import com.orange.ods.theme.guideline.GuidelineColor
 import com.orange.ods.theme.guideline.GuidelineColorType
 import com.orange.ods.theme.guideline.toHexString

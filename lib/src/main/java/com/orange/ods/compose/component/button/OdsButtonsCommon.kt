@@ -23,8 +23,8 @@ import androidx.compose.ui.graphics.ImageBitmap
 import androidx.compose.ui.graphics.painter.Painter
 import androidx.compose.ui.graphics.vector.ImageVector
 import com.orange.ods.compose.component.content.OdsComponentIcon
+import com.orange.ods.compose.extension.enable
 import com.orange.ods.compose.theme.OdsTheme
-import com.orange.ods.compose.utilities.extension.enable
 
 /**
  * Contains classes to build an [com.orange.ods.compose.component.button.OdsButton].

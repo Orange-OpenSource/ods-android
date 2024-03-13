@@ -13,9 +13,6 @@
 package com.orange.ods.theme.colors
 
 import androidx.compose.material.Colors
-import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.setValue
 import androidx.compose.ui.graphics.Color
 
 private const val ContentUnselectedAlpha = 0.74f
@@ -26,41 +23,37 @@ private val Colors.primarySurface
 private val Colors.onPrimarySurface
     get() = if (isLight) onPrimary else onSurface
 
-data class OdsComponentColors(
+class OdsComponentsColors(
     val systemBarsBackground: Color,
-    val bottomNavigation: OdsBottomNavigationColors? = null,
-    val floatingActionButton: OdsFloatingActionButtonColors? = null,
-    val switch: OdsSwitchColors? = null,
-    val tab: OdsTabColors? = null,
-    val topAppBar: OdsTopAppBarColors? = null
-)
-
-class OdsComponentColorsInternal(
-    systemBarsBackground: Color,
-    bottomNavigation: OdsBottomNavigationColors,
-    floatingActionButton: OdsFloatingActionButtonColors,
-    switch: OdsSwitchColors,
-    tab: OdsTabColors,
-    topAppBar: OdsTopAppBarColors
+    val bottomNavigation: OdsBottomNavigationColors,
+    val floatingActionButton: OdsFloatingActionButtonColors,
+    val switch: OdsSwitchColors,
+    val tab: OdsTabColors,
+    val topAppBar: OdsTopAppBarColors
 ) {
 
-    var systemBarsBackground = systemBarsBackground
-        private set
+    class Builder internal constructor(val systemBarsBackground: Color) {
 
-    var bottomNavigation by mutableStateOf(bottomNavigation)
-        private set
+        var bottomNavigation: OdsBottomNavigationColors? = null
+        var floatingActionButton: OdsFloatingActionButtonColors? = null
+        var switch: OdsSwitchColors? = null
+        var tab: OdsTabColors? = null
+        var topAppBar: OdsTopAppBarColors? = null
 
-    var floatingActionButton = floatingActionButton
-        private set
+        internal fun build(materialColors: Colors) = OdsComponentsColors(
+            systemBarsBackground,
+            bottomNavigation ?: materialColors.DefaultOdsBottomNavigationColors,
+            floatingActionButton ?: materialColors.DefaultOdsFloatingActionButtonColors,
+            switch ?: materialColors.DefaultOdsSwitchColors,
+            tab ?: materialColors.DefaultOdsTabColors,
+            topAppBar ?: materialColors.DefaultOdsTopAppBarColors
+        )
+    }
+}
 
-    var switch = switch
-        private set
-
-    var tab = tab
-        private set
-
-    var topAppBar = topAppBar
-        private set
+@Suppress("FunctionName")
+fun OdsComponentsColors(systemBarsBackground: Color, init: OdsComponentsColors.Builder.() -> Unit = {}): OdsComponentsColors.Builder {
+    return OdsComponentsColors.Builder(systemBarsBackground).apply(init)
 }
 
 /**

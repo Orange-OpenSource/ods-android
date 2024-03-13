@@ -23,9 +23,9 @@ import androidx.compose.ui.text.style.TextOverflow
 import com.orange.ods.compose.component.content.OdsComponentContent
 import com.orange.ods.compose.component.content.OdsComponentIcon
 import com.orange.ods.compose.component.utilities.BasicPreviewParameterProvider
+import com.orange.ods.compose.extension.enable
 import com.orange.ods.compose.text.OdsText
 import com.orange.ods.compose.theme.OdsTheme
-import com.orange.ods.compose.utilities.extension.enable
 import com.orange.ods.theme.typography.OdsTextStyle
 
 /**
@@ -47,8 +47,8 @@ object OdsTabRow {
 
         @Composable
         override fun Content(modifier: Modifier) {
-            val selectedContentColor = OdsTheme.colors.component.tab.selectedContent.enable(enabled = enabled)
-            val unselectedContentColor = OdsTheme.colors.component.tab.unselectedContent.enable(enabled = enabled)
+            val selectedContentColor = OdsTheme.colors.components.tab.selectedContent.enable(enabled = enabled)
+            val unselectedContentColor = OdsTheme.colors.components.tab.unselectedContent.enable(enabled = enabled)
 
             if (extraParameters.iconPosition == Icon.Position.Leading && text != null && icon != null) {
                 LeadingIconTab(

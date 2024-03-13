@@ -28,10 +28,10 @@ import com.orange.ods.compose.component.OdsComposable
 import com.orange.ods.compose.component.utilities.BasicPreviewParameterProvider
 import com.orange.ods.compose.component.utilities.OdsPreview
 import com.orange.ods.compose.component.utilities.UiModePreviews
+import com.orange.ods.compose.extension.enable
 import com.orange.ods.compose.text.OdsText
 import com.orange.ods.compose.theme.OdsPrimaryRippleTheme
 import com.orange.ods.compose.theme.OdsTheme
-import com.orange.ods.compose.utilities.extension.enable
 import com.orange.ods.theme.colors.OdsColors
 import com.orange.ods.theme.typography.OdsTextStyle
 

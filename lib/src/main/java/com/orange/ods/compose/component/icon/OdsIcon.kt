@@ -19,7 +19,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.ImageBitmap
 import androidx.compose.ui.graphics.painter.Painter
 import androidx.compose.ui.graphics.vector.ImageVector
-import com.orange.ods.compose.utilities.extension.enable
+import com.orange.ods.compose.extension.enable
 
 @Composable
 internal fun OdsIcon(

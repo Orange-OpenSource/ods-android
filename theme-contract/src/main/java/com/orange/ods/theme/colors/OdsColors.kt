@@ -21,48 +21,41 @@ import androidx.compose.runtime.setValue
  * ODS color system.
  *
  * The ODS color system can help you create an ODS color theme that reflects your brand or style.
- * Default components' colors are based on the provided [materialColors] but you can override these colors by providing your colors for each component. As an
+ * Default components' colors are based on the provided [material] but you can override these colors by providing your colors for each component. As an
  * example, if you need to change the switches' colors you can provide your own [OdsSwitchColors] in the ODS color system.
  */
 class OdsColors(
-    val materialColors: Colors,
-    functionalColors: OdsFunctionalColors,
-    private var componentColors: OdsComponentColors
+    val material: Colors,
+    functional: OdsFunctionalColors,
+    components: OdsComponentsColors.Builder
 ) {
-    var primary = materialColors.primary
+    var primary = material.primary
         private set
-    var primaryVariant = materialColors.primaryVariant
+    var primaryVariant = material.primaryVariant
         private set
-    var secondary = materialColors.secondary
+    var secondary = material.secondary
         private set
-    var secondaryVariant = materialColors.secondaryVariant
+    var secondaryVariant = material.secondaryVariant
         private set
-    var background = materialColors.background
+    var background = material.background
         private set
-    var surface = materialColors.surface
+    var surface = material.surface
         private set
-    var error = materialColors.error
+    var error = material.error
         private set
-    var onPrimary = materialColors.onPrimary
+    var onPrimary = material.onPrimary
         private set
-    var onSecondary = materialColors.onSecondary
+    var onSecondary = material.onSecondary
         private set
-    var onBackground = materialColors.onBackground
+    var onBackground = material.onBackground
         private set
-    var onSurface = materialColors.onSurface
+    var onSurface = material.onSurface
         private set
-    var onError = materialColors.onError
-        private set
-
-    var functional by mutableStateOf(functionalColors)
+    var onError = material.onError
         private set
 
-    val component = OdsComponentColorsInternal(
-        this.componentColors.systemBarsBackground,
-        this.componentColors.bottomNavigation ?: materialColors.DefaultOdsBottomNavigationColors,
-        this.componentColors.floatingActionButton ?: materialColors.DefaultOdsFloatingActionButtonColors,
-        this.componentColors.switch ?: materialColors.DefaultOdsSwitchColors,
-        this.componentColors.tab ?: materialColors.DefaultOdsTabColors,
-        this.componentColors.topAppBar ?: materialColors.DefaultOdsTopAppBarColors
-    )
+    var functional by mutableStateOf(functional)
+        private set
+
+    val components = components.build(material)
 }

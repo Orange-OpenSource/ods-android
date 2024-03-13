@@ -12,7 +12,7 @@
 
 package com.orange.ods.theme.orange.guideline
 
-import com.orange.ods.compose.annotation.ExperimentalOdsApi
+import com.orange.ods.theme.annotation.ExperimentalOdsApi
 import com.orange.ods.theme.colors.OdsColors
 import com.orange.ods.theme.colors.OdsFunctionalColors
 import com.orange.ods.theme.guideline.GuidelineColor

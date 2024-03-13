@@ -12,7 +12,7 @@
 
 package com.orange.ods.theme.guideline
 
-import com.orange.ods.compose.annotation.ExperimentalOdsApi
+import com.orange.ods.theme.annotation.ExperimentalOdsApi
 import com.orange.ods.theme.typography.OdsTypography
 
 /**

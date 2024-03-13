@@ -60,7 +60,6 @@ import com.orange.ods.app.ui.components.tabs.tabs
 import com.orange.ods.app.ui.modules.about.AboutCustomizationViewModel
 import com.orange.ods.app.ui.utilities.extension.isDarkModeEnabled
 import com.orange.ods.app.ui.utilities.extension.isOrange
-import com.orange.ods.compose.annotation.ExperimentalOdsApi
 import com.orange.ods.compose.component.listitem.OdsListItem
 import com.orange.ods.compose.component.tab.OdsScrollableTabRow
 import com.orange.ods.compose.component.tab.OdsTabRow
@@ -69,6 +68,7 @@ import com.orange.ods.compose.text.OdsText
 import com.orange.ods.compose.theme.OdsTheme
 import com.orange.ods.module.about.ui.navigation.navigateToOdsAbout
 import com.orange.ods.theme.OdsThemeConfigurationContract
+import com.orange.ods.theme.annotation.ExperimentalOdsApi
 import com.orange.ods.theme.typography.OdsTextStyle
 import com.orange.ods.xml.theme.OdsXml
 import com.orange.ods.xml.utilities.extension.xml
@@ -220,7 +220,7 @@ private fun getCurrentThemeConfiguration(
 
 @Composable
 private fun SystemBarsColorSideEffect(mainState: MainState) {
-    val systemBarsBackground = OdsTheme.colors.component.systemBarsBackground
+    val systemBarsBackground = OdsTheme.colors.components.systemBarsBackground
     val activity = LocalContext.current as? ComponentActivity
     activity?.window?.let { window ->
         val view = LocalView.current

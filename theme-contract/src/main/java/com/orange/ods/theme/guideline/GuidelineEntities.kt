@@ -18,7 +18,7 @@ import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.TextStyle
-import com.orange.ods.compose.annotation.ExperimentalOdsApi
+import com.orange.ods.theme.annotation.ExperimentalOdsApi
 import com.orange.ods.theme.colors.OdsColors
 
 /**

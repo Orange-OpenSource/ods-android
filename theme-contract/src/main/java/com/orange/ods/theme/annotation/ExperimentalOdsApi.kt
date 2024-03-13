@@ -10,7 +10,7 @@
  * Software description: Android library of reusable graphical components
  */
 
-package com.orange.ods.compose.annotation
+package com.orange.ods.theme.annotation
 
 @RequiresOptIn(
     "This ODS API is experimental and is likely to change or to be removed in the future."

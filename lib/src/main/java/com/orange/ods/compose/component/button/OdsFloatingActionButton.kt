@@ -68,8 +68,8 @@ fun OdsFloatingActionButton(
     FloatingActionButton(
         onClick = onClick,
         modifier = modifier.let { if (mini) it.size(MiniFabSize) else it },
-        backgroundColor = OdsTheme.colors.component.floatingActionButton.background,
-        contentColor = OdsTheme.colors.component.floatingActionButton.content
+        backgroundColor = OdsTheme.colors.components.floatingActionButton.background,
+        contentColor = OdsTheme.colors.components.floatingActionButton.content
     ) {
         icon.Content()
     }
@@ -102,8 +102,8 @@ fun OdsExtendedFloatingActionButton(
         onClick = onClick,
         text = { OdsText(text = text, style = OdsTextStyle.LabelL, color = LocalContentColor.current) },
         modifier = modifier,
-        backgroundColor = OdsTheme.colors.component.floatingActionButton.background,
-        contentColor = OdsTheme.colors.component.floatingActionButton.content,
+        backgroundColor = OdsTheme.colors.components.floatingActionButton.background,
+        contentColor = OdsTheme.colors.components.floatingActionButton.content,
         icon = { icon.Content() }
     )
 }

@@ -32,8 +32,8 @@ import com.orange.ods.app.domain.recipes.LocalRecipes
 import com.orange.ods.app.ui.utilities.code.CodeImplementationColumn
 import com.orange.ods.app.ui.utilities.code.FunctionCallCode
 import com.orange.ods.compose.OdsComposable
-import com.orange.ods.compose.annotation.ExperimentalOdsApi
 import com.orange.ods.compose.component.button.OdsTextToggleButtonsRow
+import com.orange.ods.theme.annotation.ExperimentalOdsApi
 
 @Composable
 fun ButtonsTextToggleButtonsRow(customizationState: ButtonCustomizationState) {

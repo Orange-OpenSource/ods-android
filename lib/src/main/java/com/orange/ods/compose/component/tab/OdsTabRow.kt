@@ -50,14 +50,14 @@ fun OdsTabRow(
 ) {
     TabRow(
         modifier = modifier,
-        backgroundColor = OdsTheme.colors.component.tab.background,
-        contentColor = OdsTheme.colors.component.tab.unselectedContent,
+        backgroundColor = OdsTheme.colors.components.tab.background,
+        contentColor = OdsTheme.colors.components.tab.unselectedContent,
         selectedTabIndex = selectedTabIndex,
         indicator = { tabPositions ->
             if (selectedTabIndex < tabPositions.size) {
                 TabRowDefaults.Indicator(
                     modifier = Modifier.tabIndicatorOffset(tabPositions[selectedTabIndex]),
-                    color = OdsTheme.colors.component.tab.selectedContent
+                    color = OdsTheme.colors.components.tab.selectedContent
                 )
             }
         },

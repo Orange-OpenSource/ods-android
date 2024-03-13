@@ -73,7 +73,7 @@ internal fun OdsSearchTextField(
                 onClick = { onValueChange(TextFieldValue("")) },
                 graphicsObject = rememberVectorPainter(image = Icons.Default.Close),
                 contentDescription = stringResource(id = R.string.ods_searchTextField_clear_labelA11y),
-                tint = OdsTheme.colors.component.topAppBar.barContent
+                tint = OdsTheme.colors.components.topAppBar.barContent
             )
         },
         singleLine = false,
@@ -82,13 +82,13 @@ internal fun OdsSearchTextField(
             imeAction = ImeAction.Search
         ),
         colors = TextFieldDefaults.textFieldColors(
-            textColor = OdsTheme.colors.component.topAppBar.barContent,
-            cursorColor = OdsTheme.colors.component.topAppBar.barContent,
-            leadingIconColor = OdsTheme.colors.component.topAppBar.barContent,
-            trailingIconColor = OdsTheme.colors.component.topAppBar.barContent,
+            textColor = OdsTheme.colors.components.topAppBar.barContent,
+            cursorColor = OdsTheme.colors.components.topAppBar.barContent,
+            leadingIconColor = OdsTheme.colors.components.topAppBar.barContent,
+            trailingIconColor = OdsTheme.colors.components.topAppBar.barContent,
             backgroundColor = Color.Transparent,
             focusedIndicatorColor = Color.Transparent,
-            placeholderColor = OdsTheme.colors.component.topAppBar.barContent.copy(ContentAlpha.medium),
+            placeholderColor = OdsTheme.colors.components.topAppBar.barContent.copy(ContentAlpha.medium),
         )
     )
 }
