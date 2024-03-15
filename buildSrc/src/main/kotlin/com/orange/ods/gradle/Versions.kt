@@ -26,6 +26,7 @@ object Versions {
     const val composeBom = "2024.02.02"
     const val composeCompiler = "1.5.10"
     const val coil = "2.6.0"
+    const val constraintLayout = "2.1.4"
     const val constraintLayoutCompose = "1.0.1"
     const val core = "1.12.0"
     const val customViewPoolingContainer = "1.0.0"
