@@ -29,6 +29,7 @@ object Dependencies {
     const val composeUiTooling = "androidx.compose.ui:ui-tooling"
     const val composeUiToolingPreview = "androidx.compose.ui:ui-tooling-preview"
     const val composeUiViewBinding = "androidx.compose.ui:ui-viewbinding"
+    const val constraintLayout = "androidx.constraintlayout:constraintlayout:${Versions.constraintLayout}"
     const val constraintLayoutCompose = "androidx.constraintlayout:constraintlayout-compose:${Versions.constraintLayoutCompose}"
     const val coreKtx = "androidx.core:core-ktx:${Versions.core}"
     const val customViewPoolingContainer = "androidx.customview:customview-poolingcontainer:${Versions.customViewPoolingContainer}"

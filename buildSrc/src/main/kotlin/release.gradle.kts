@@ -10,8 +10,10 @@
  * Software description: Android library of reusable graphical components
  */
 
+import com.orange.ods.gradle.artifactId
 import com.orange.ods.gradle.execute
 import com.orange.ods.gradle.findTypedProperty
+import com.orange.ods.gradle.isPublished
 import java.text.SimpleDateFormat
 import java.util.Date
 
@@ -118,18 +120,25 @@ tasks.register<DefaultTask>("testSonatypeRepository") {
             throw GradleException("Please set the \"sonatypeRepositoryId\" project property.")
         }
 
-        // Add Sonatype Maven repository
+        // Add Sonatype Maven repository in root build.gradle.kts file
         File("build.gradle.kts").replace("(\\s*)mavenCentral\\(\\)".toRegex()) { matchResult ->
             val indent = matchResult.groupValues[1]
             "${matchResult.value}${indent}maven(url = \"https://oss.sonatype.org/content/repositories/comorange-$sonatypeRepositoryId\")"
         }
 
-        // Replace project dependencies with module dependencies in app
-        File("app/build.gradle.kts").replace("implementation\\(project\\(\":(.*)\"\\)\\)".toRegex()) { matchResult ->
-            "implementation(\"com.orange.ods.android:ods-${matchResult.groupValues[1]}:$version\")"
-        }
+        val publishedSubprojects = rootProject.subprojects.filter { it.isPublished }
+        val nonPublishedSubprojects = rootProject.subprojects.filter { !it.isPublished }
+        publishedSubprojects.forEach { publishedSubproject ->
+            // Remove published Android Studio modules from settings.gradle.kts
+            File("settings.gradle.kts").replace("include\\(\":${publishedSubproject.name}\"\\)(\\n)?".toRegex(), "")
 
-        // Remove all Android Studio modules except app
-        File("settings.gradle.kts").replace("(include\\(.*\\)(\\n)?)+".toRegex(), "include(\":app\")\n")
+            // Replace project dependencies with artifact dependencies in build.gradle.kts files of non published modules
+            nonPublishedSubprojects.forEach { nonPublishedSubproject ->
+                File("${nonPublishedSubproject.name}/build.gradle.kts").replace(
+                    "implementation\\(project\\(\":${publishedSubproject.name}\"\\)\\)".toRegex(),
+                    "implementation(\"com.orange.ods.android:${publishedSubproject.artifactId}:$version\")"
+                )
+            }
+        }
     }
 }
