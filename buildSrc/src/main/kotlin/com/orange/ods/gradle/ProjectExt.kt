@@ -109,3 +109,9 @@ fun Project.gitHubApi(action: GitHubApi.() -> Unit) {
     val token = Environment.getVariables("GITHUB_TOKEN").first()
     GitHubApi(token, "Orange-OpenSource/ods-android").action()
 }
+
+val Project.artifactId: String
+    get() = "ods-$name"
+
+val Project.isPublished: Boolean
+    get() = extensions.findByType(MavenCentralPublishPluginExtension::class.java)?.enabled == true

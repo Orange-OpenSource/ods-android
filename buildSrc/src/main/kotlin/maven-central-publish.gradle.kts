@@ -12,6 +12,7 @@
 
 import com.orange.ods.gradle.Environment
 import com.orange.ods.gradle.MavenCentralPublishPluginExtension
+import com.orange.ods.gradle.artifactId
 
 plugins {
     id("com.android.library")
@@ -35,7 +36,7 @@ afterEvaluate {
                 create<MavenPublication>(MavenCentralPublishPluginExtension.VARIANT) {
                     from(components["release"])
                     groupId = "com.orange.ods.android"
-                    artifactId = pluginExtension?.artifactId ?: "ods-${project.name}"
+                    artifactId = pluginExtension?.artifactId ?: project.artifactId
                     this.version = version
 
                     pom {

@@ -12,13 +12,12 @@
 
 rootProject.name = "Orange Design System Android"
 
+include(":accessibility-statement")
 include(":app")
 include(":composable-processor")
 include(":lib")
 include(":lib-xml")
-include(":theme-orange")
-include(":theme-innovation-cup")
-include(":theme-contract")
 include(":module-about")
-include(":accessibility-statement-lib-android")
-project(":accessibility-statement-lib-android").projectDir = File("vendor/accessibility-statement-lib-android/AccessibilityStatementLibrary")
+include(":theme-contract")
+include(":theme-innovation-cup")
+include(":theme-orange")

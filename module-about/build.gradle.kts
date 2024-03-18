@@ -33,7 +33,7 @@ android {
 }
 
 dependencies {
-    implementation(project(":accessibility-statement-lib-android"))
+    implementation(project(":accessibility-statement"))
     implementation(project(":lib"))
     implementation(Dependencies.appCompat)
     implementation(Dependencies.browser)
