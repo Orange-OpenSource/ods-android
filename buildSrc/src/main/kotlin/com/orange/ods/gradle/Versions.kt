@@ -23,7 +23,7 @@ object Versions {
     const val androidGradlePlugin = "8.3.1"
     const val appCompat = "1.6.1"
     const val browser = "1.8.0"
-    const val composeBom = "2024.02.02"
+    const val composeBom = "2024.03.00"
     const val composeCompiler = "1.5.10"
     const val coil = "2.6.0"
     const val constraintLayout = "2.1.4"
