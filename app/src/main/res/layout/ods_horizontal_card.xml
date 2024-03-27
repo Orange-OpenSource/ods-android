@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<!--
+  ~ Software Name: Orange Design System
+  ~ SPDX-FileCopyrightText: Copyright (c) Orange SA
+  ~ SPDX-License-Identifier: MIT
+  ~
+  ~ This software is distributed under the MIT licence,
+  ~ the text of which is available at https://opensource.org/license/MIT/
+  ~ or see the "LICENSE" file for more details.
+  ~
+  ~ Software description: Android library of reusable graphical components
+  -->
+
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <variable
+            name="title"
+            type="String" />
+
+        <variable
+            name="subtitle"
+            type="String" />
+
+        <variable
+            name="text"
+            type="String" />
+
+        <variable
+            name="firstButtonText"
+            type="String" />
+
+        <variable
+            name="secondButtonText"
+            type="String" />
+
+        <variable
+            name="imagePosition"
+            type="com.orange.ods.compose.component.card.OdsCard.Image.Position" />
+    </data>
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <com.orange.ods.xml.component.card.OdsHorizontalCard
+            android:id="@+id/ods_horizontal_card"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:title="@{title}"
+            app:subtitle="@{subtitle}"
+            app:text="@{text}"
+            app:firstButtonText="@{firstButtonText}"
+            app:secondButtonText="@{secondButtonText}"
+            app:odsHorizontalCardImagePosition="@{imagePosition}" />
+
+        <!-- Invisible OdsHorizontalCard used for tests -->
+        <com.orange.ods.xml.component.card.OdsHorizontalCard
+            android:id="@+id/ods_horizontal_card_test"
+            android:visibility="gone"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:title="Card title"
+            app:subtitle="Card subtitle"
+            app:text="Text displayed in the card."
+            app:firstButtonText="First button"
+            app:secondButtonText="Second button"
+            app:imageContentDescription="Content description of the image"
+            app:odsHorizontalCardImagePosition="end" />
+
+    </FrameLayout>
+
+</layout>
