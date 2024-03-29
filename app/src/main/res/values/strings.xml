@@ -398,6 +398,12 @@
     <string name="module_about_demo_share_title">Share title</string>
     <string name="module_about_demo_share_text">Add your share text here.</string>
 
+    <!-- Module Apps recirculation -->
+    <string name="module_appsRecirculation_title">Apps recirculation</string>
+    <string name="module_appsRecirculation_description">Apps recirculation helps to make discovering Orange Apps easier than ever.</string>
+    <string name="module_appsRecirculation_categorizeApps_customization">Categorize apps</string>
+
+
     <!-- Module Empty state -->
     <string name="module_emptyState_title">Empty state</string>
     <string name="module_emptyState_description">An empty state can occur when no content or data is available to display in the UI. Avoid displaying completely empty screens.</string>

@@ -19,10 +19,12 @@ import androidx.navigation.NavController
 import androidx.navigation.NavGraphBuilder
 import androidx.navigation.compose.composable
 import com.orange.ods.app.ui.modules.ModulesNavigation.AboutCustomizationRoute
+import com.orange.ods.app.ui.modules.ModulesNavigation.AppsRecirculationCustomizationRoute
 import com.orange.ods.app.ui.modules.ModulesNavigation.EmptyStateCustomizationRoute
 import com.orange.ods.app.ui.modules.ModulesNavigation.EmptyStateDemoRoute
 import com.orange.ods.app.ui.modules.about.AboutCustomizationScreen
 import com.orange.ods.app.ui.modules.about.AboutCustomizationViewModel
+import com.orange.ods.app.ui.modules.appsrecirculation.AppsRecirculationCustomizationScreen
 import com.orange.ods.app.ui.modules.emptystate.EmptyStateCustomizationScreen
 import com.orange.ods.app.ui.modules.emptystate.EmptyStateCustomizationViewModel
 import com.orange.ods.app.ui.modules.emptystate.EmptyStateDemoScreen
@@ -34,6 +36,8 @@ import com.orange.ods.app.ui.navigateToElement
 object ModulesNavigation {
     const val AboutCustomizationRoute = "module/about/customization"
 
+    const val AppsRecirculationCustomizationRoute = "module/appsRecirculation/customization"
+
     const val EmptyStateCustomizationRoute = "module/emptyState/customization"
     const val EmptyStateDemoRoute = "module/emptyState/demo"
 }
@@ -43,6 +47,10 @@ fun NavGraphBuilder.addModulesGraph(navController: NavController, navigateToAbou
         val viewModelStoreOwner = LocalContext.current as ViewModelStoreOwner
         val viewModel = viewModel<AboutCustomizationViewModel>(viewModelStoreOwner)
         AboutCustomizationScreen(navigateToAboutDemo = navigateToAboutDemo, viewModel = viewModel)
+    }
+
+    composable(route = AppsRecirculationCustomizationRoute) { _ ->
+        AppsRecirculationCustomizationScreen(onViewDemoButtonClick = { /*TODO*/ })
     }
 
     composable(route = EmptyStateCustomizationRoute) { navBackStackEntry ->
