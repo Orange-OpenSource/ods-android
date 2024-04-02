@@ -96,15 +96,12 @@ android {
         groups = project.findTypedProperty("appDistributionGroup")
     }
 
-    compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_11
-        targetCompatibility = JavaVersion.VERSION_11
-    }
-
-    kotlinOptions {
-        jvmTarget = "11"
-        allWarningsAsErrors = true
-        freeCompilerArgs = freeCompilerArgs + "-opt-in=kotlin.RequiresOptIn"
+    kotlin {
+        jvmToolchain(17)
+        compilerOptions {
+            allWarningsAsErrors = true
+            freeCompilerArgs.add("-opt-in=kotlin.RequiresOptIn")
+        }
     }
 
     buildFeatures {
