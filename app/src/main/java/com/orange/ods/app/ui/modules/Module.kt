@@ -37,7 +37,7 @@ sealed class Module(
 
     data object AppsRecirculation : Module(
         R.string.module_appsRecirculation_title,
-        R.drawable.il_empty_state,
+        R.drawable.il_recirculation,
         R.string.module_appsRecirculation_description,
         route = ModulesNavigation.AppsRecirculationCustomizationRoute
     )

@@ -23,7 +23,7 @@ import com.orange.ods.compose.component.listitem.OdsListItem
 @Composable
 fun AppsRecirculationCustomizationScreen(onViewDemoButtonClick: () -> Unit, viewModel: AppsRecirculationCustomizationViewModel = viewModel()) {
     with(viewModel) {
-        ModuleDetailColumn(module = Module.EmptyState, onViewDemoButtonClick = onViewDemoButtonClick) {
+        ModuleDetailColumn(module = Module.AppsRecirculation, onViewDemoButtonClick = onViewDemoButtonClick) {
             OdsListItem(
                 text = stringResource(id = R.string.module_appsRecirculation_categorizeApps_customization),
                 trailing = OdsListItem.TrailingSwitch(categorizeApps, { categorizeApps = it })
