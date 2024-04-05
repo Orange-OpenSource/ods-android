@@ -18,7 +18,9 @@ import androidx.compose.ui.test.junit4.createComposeRule
 import androidx.compose.ui.test.onNodeWithText
 import androidx.compose.ui.test.performClick
 import com.orange.ods.R
-import com.orange.ods.compose.extension.onNode
+import com.orange.ods.compose.extension.setOdsContent
+import com.orange.ods.compose.test.isBannerButton
+import com.orange.ods.compose.test.isBannerImage
 import org.junit.Rule
 import org.junit.Test
 import org.mockito.kotlin.mock
@@ -48,9 +50,9 @@ class OdsBannerTest {
             }
 
             onNodeWithText(message).assertIsDisplayed()
-            onNode(image).assertIsDisplayed()
-            onNode(firstButton).assertIsDisplayed()
-            onNode(secondButton).assertIsDisplayed()
+            onNode(isBannerImage(image)).assertIsDisplayed()
+            onNode(isBannerButton(firstButton)).assertIsDisplayed()
+            onNode(isBannerButton(secondButton)).assertIsDisplayed()
         }
     }
 
@@ -68,8 +70,8 @@ class OdsBannerTest {
                 )
             }
 
-            onNode(firstButton).performClick()
-            onNode(secondButton).performClick()
+            onNode(isBannerButton(firstButton)).performClick()
+            onNode(isBannerButton(secondButton)).performClick()
             verify(firstButton.onClick).invoke()
             verify(secondButton.onClick).invoke()
         }
