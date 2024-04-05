@@ -66,6 +66,10 @@ dependencies {
     implementation(Dependencies.customViewPoolingContainer) // This dependency is needed otherwise the compose preview does not work properly
     implementation(Dependencies.lifecycleRuntimeKtx)
 
-    testImplementation(Dependencies.jUnit)
-    androidTestImplementation(Dependencies.testExtJUnit)
+    androidTestImplementation(Dependencies.composeUiTestJUnit)
+    androidTestImplementation(Dependencies.kotlinReflect)
+    androidTestImplementation(Dependencies.mockitoAndroid)
+    androidTestImplementation(Dependencies.mockitoKotlin)
+    // Needed for createComposeRule(), but not for createAndroidComposeRule<YourActivity>():
+    debugImplementation(Dependencies.composeUiTestManifest)
 }
