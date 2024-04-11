@@ -44,11 +44,14 @@ jobs:
           sudo udevadm control --reload-rules
           sudo udevadm trigger --name-match=kvm
 
-      - name: Run tests
+      - name: Run instrumented tests
         uses: reactivecircus/android-emulator-runner@v2
         with:
           api-level: 29
           script: ./gradlew :lib:connectedCheck
+
+      - name: Run snapshot tests
+        run: ./gradlew :lib:verifyPaparazziDebug
 
       - name: Run Android Linter
         run: ./gradlew lintDebug
@@ -60,6 +63,16 @@ jobs:
           BRANCH_SHA=${{ github.event.pull_request.head.sha }}
           COMMIT_SHA=${BRANCH_SHA:-$GITHUB_SHA}
           ./gradlew assemble -PversionNameSuffix="-${COMMIT_SHA::7}" -PversionCode=$GITHUB_RUN_NUMBER --stacktrace
+
+      - name: Store tests artifacts
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: tests
+          path: |
+            lib/build/paparazzi
+            lib/build/reports/androidTests
+            lib/build/reports/tests
 
       - name: Store app artifacts
         uses: actions/upload-artifact@v4

@@ -26,7 +26,7 @@ import org.junit.Test
 import org.mockito.kotlin.mock
 import org.mockito.kotlin.verify
 
-class OdsBannerTest {
+internal class OdsBannerTest {
 
     @get:Rule
     val composeTestRule = createComposeRule()

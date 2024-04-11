@@ -36,7 +36,7 @@ import org.mockito.Mockito.mock
 import org.mockito.Mockito.verify
 import org.mockito.kotlin.never
 
-class OdsTopAppBarTest {
+internal class OdsTopAppBarTest {
 
     @get:Rule
     val composeTestRule = createAndroidComposeRule<ComponentActivity>()

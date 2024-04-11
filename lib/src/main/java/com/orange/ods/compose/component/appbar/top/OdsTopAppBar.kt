@@ -12,6 +12,7 @@
 
 package com.orange.ods.compose.component.appbar.top
 
+import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.material.AppBarDefaults
 import androidx.compose.material.TopAppBar
 import androidx.compose.material.icons.Icons
@@ -71,7 +72,12 @@ fun OdsTopAppBar(
 
 @UiModePreviews.Default
 @Composable
-private fun PreviewOdsTopAppBar() = OdsPreview {
+internal fun PreviewOdsTopAppBar() = OdsPreview {
+    PreviewOdsTopAppBar(isSystemInDarkTheme())
+}
+
+@Composable
+internal fun PreviewOdsTopAppBar(darkThemeEnabled: Boolean) = OdsPreview(darkThemeEnabled) {
     val actions = listOf(OdsTopAppBar.ActionButton(painterResource(id = android.R.drawable.ic_dialog_info), "Info") {})
     val overflowMenuItems = listOf(
         OdsDropdownMenu.Item("Settings") {},

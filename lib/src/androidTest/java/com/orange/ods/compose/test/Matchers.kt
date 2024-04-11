@@ -25,19 +25,19 @@ import com.orange.ods.compose.component.menu.OdsDropdownMenu
 import kotlin.reflect.full.memberProperties
 import kotlin.reflect.jvm.isAccessible
 
-fun isTopAppBarNavigationIcon(navigationIcon: OdsTopAppBar.NavigationIcon) = isComponentIcon(navigationIcon)
+internal fun isTopAppBarNavigationIcon(navigationIcon: OdsTopAppBar.NavigationIcon) = isComponentIcon(navigationIcon)
 
-fun isTopAppBarActionButton(action: OdsTopAppBar.ActionButton) = isComponentIcon(action)
+internal fun isTopAppBarActionButton(action: OdsTopAppBar.ActionButton) = isComponentIcon(action)
 
-fun isTopAppBarOverflowMenu(context: Context) = hasContentDescription(context.getString(R.string.ods_topAppBar_overflowMenu_labelA11y))
+internal fun isTopAppBarOverflowMenu(context: Context) = hasContentDescription(context.getString(R.string.ods_topAppBar_overflowMenu_labelA11y))
 
-fun isBannerButton(button: OdsBanner.Button) = hasText(button.text.uppercase())
+internal fun isBannerButton(button: OdsBanner.Button) = hasText(button.text.uppercase())
 
-fun isBannerImage(image: OdsBanner.Image) = isComponentImage(image)
+internal fun isBannerImage(image: OdsBanner.Image) = isComponentImage(image)
 
-fun isDropdownMenuItem(item: OdsDropdownMenu.Item) = hasText(item.text)
+internal fun isDropdownMenuItem(item: OdsDropdownMenu.Item) = hasText(item.text)
 
-fun isDropdownMenuItemDivider(itemIndex: Int) = hasTestTag("OdsDropdownMenu.Item.$itemIndex.Divider")
+internal fun isDropdownMenuItemDivider(itemIndex: Int) = hasTestTag("OdsDropdownMenu.Item.$itemIndex.Divider")
 
 private fun isComponentIcon(icon: OdsComponentIcon<*>) = hasContentDescription(icon.getPrivateProperty("contentDescription"))
 
