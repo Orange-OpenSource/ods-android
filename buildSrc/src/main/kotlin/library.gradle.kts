@@ -35,14 +35,11 @@ android {
         }
     }
 
-    compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_11
-        targetCompatibility = JavaVersion.VERSION_11
-    }
-
-    kotlinOptions {
-        jvmTarget = "11"
-        allWarningsAsErrors = true
+    kotlin {
+        jvmToolchain(17)
+        compilerOptions {
+            allWarningsAsErrors = true
+        }
     }
 
     publishing {
