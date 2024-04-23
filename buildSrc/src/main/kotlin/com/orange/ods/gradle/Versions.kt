@@ -30,7 +30,7 @@ object Versions {
     const val constraintLayoutCompose = "1.0.1"
     const val core = "1.13.0"
     const val customViewPoolingContainer = "1.0.0"
-    const val dataStorePreferences = "1.0.0"
+    const val dataStorePreferences = "1.1.0"
     const val firebaseAppDistributionGradlePlugin = "4.2.0"
     const val firebaseBom = "32.8.1"
     const val firebaseCrashlyticsGradlePlugin = "2.9.9"
