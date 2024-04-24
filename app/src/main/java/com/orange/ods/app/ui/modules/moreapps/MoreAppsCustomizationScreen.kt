@@ -10,7 +10,7 @@
  * Software description: Android library of reusable graphical components
  */
 
-package com.orange.ods.app.ui.modules.appsrecirculation
+package com.orange.ods.app.ui.modules.moreapps
 
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.res.stringResource
@@ -21,11 +21,11 @@ import com.orange.ods.app.ui.modules.ModuleDetailColumn
 import com.orange.ods.compose.component.listitem.OdsListItem
 
 @Composable
-fun AppsRecirculationCustomizationScreen(onViewDemoButtonClick: () -> Unit, viewModel: AppsRecirculationCustomizationViewModel = viewModel()) {
+fun MoreAppsCustomizationScreen(onViewDemoButtonClick: () -> Unit, viewModel: MoreAppsCustomizationViewModel = viewModel()) {
     with(viewModel) {
-        ModuleDetailColumn(module = Module.AppsRecirculation, onViewDemoButtonClick = onViewDemoButtonClick) {
+        ModuleDetailColumn(module = Module.MoreApps, onViewDemoButtonClick = onViewDemoButtonClick) {
             OdsListItem(
-                text = stringResource(id = R.string.module_appsRecirculation_categorizeApps_customization),
+                text = stringResource(id = R.string.module_moreApps_categorizeApps_customization),
                 trailing = OdsListItem.TrailingSwitch(categorizeApps, { categorizeApps = it })
             )
         }

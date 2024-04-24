@@ -131,6 +131,7 @@ dependencies {
     implementation(project(":lib-xml"))
     implementation(project(":theme-innovation-cup"))
     implementation(project(":module-about"))
+    implementation(project(":module-more-apps"))
 
     implementation(Dependencies.accompanistSystemUiController)
     implementation(Dependencies.activityCompose)

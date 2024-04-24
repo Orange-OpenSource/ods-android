@@ -10,15 +10,21 @@
  * Software description: Android library of reusable graphical components
  */
 
-rootProject.name = "Orange Design System Android"
+package com.orange.ods.module.moreapps.ui.configuration
 
-include(":accessibility-statement")
-include(":app")
-include(":composable-processor")
-include(":lib")
-include(":lib-xml")
-include(":module-about")
-include(":module-more-apps")
-include(":theme-contract")
-include(":theme-innovation-cup")
-include(":theme-orange")
+import java.util.Locale
+
+/**
+ * More apps module configuration.
+ */
+data class OdsMoreAppsConfiguration(
+    /**
+     * The AppsPlus API key.
+     */
+    val apiKey: String,
+
+    /**
+     *
+     */
+    val locale: Locale = Locale.getDefault()
+)

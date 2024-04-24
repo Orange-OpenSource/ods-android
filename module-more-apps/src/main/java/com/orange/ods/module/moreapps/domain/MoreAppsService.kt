@@ -10,15 +10,11 @@
  * Software description: Android library of reusable graphical components
  */
 
-rootProject.name = "Orange Design System Android"
+package com.orange.ods.module.moreapps.domain
 
-include(":accessibility-statement")
-include(":app")
-include(":composable-processor")
-include(":lib")
-include(":lib-xml")
-include(":module-about")
-include(":module-more-apps")
-include(":theme-contract")
-include(":theme-innovation-cup")
-include(":theme-orange")
+import kotlinx.coroutines.flow.Flow
+import java.util.Locale
+
+internal interface MoreAppsService {
+    suspend fun getAppsSections(apiKey: String, locale: Locale): Flow<Resource<List<AppsSection>>>
+}

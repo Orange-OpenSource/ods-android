@@ -10,15 +10,9 @@
  * Software description: Android library of reusable graphical components
  */
 
-rootProject.name = "Orange Design System Android"
+package com.orange.ods.module.moreapps.domain
 
-include(":accessibility-statement")
-include(":app")
-include(":composable-processor")
-include(":lib")
-include(":lib-xml")
-include(":module-about")
-include(":module-more-apps")
-include(":theme-contract")
-include(":theme-innovation-cup")
-include(":theme-orange")
+sealed interface Resource<out T> {
+    data class Success<out T>(val value: T) : Resource<T>
+    data class Failure(val throwable: Throwable) : Resource<Nothing>
+}

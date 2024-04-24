@@ -10,15 +10,17 @@
  * Software description: Android library of reusable graphical components
  */
 
-rootProject.name = "Orange Design System Android"
+package com.orange.ods.module.moreapps.data
 
-include(":accessibility-statement")
-include(":app")
-include(":composable-processor")
-include(":lib")
-include(":lib-xml")
-include(":module-about")
-include(":module-more-apps")
-include(":theme-contract")
-include(":theme-innovation-cup")
-include(":theme-orange")
+import retrofit2.Response
+import retrofit2.http.GET
+import retrofit2.http.Query
+
+internal interface AppsPlusApi {
+
+    @GET("get")
+    suspend fun getApps(
+        @Query("apikey") apikey: String,
+        @Query("lang") lang: String
+    ): Response<AppsPlusResponseDto>
+}

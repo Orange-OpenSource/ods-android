@@ -143,9 +143,9 @@ sealed class Screen(
         title = UiString.StringResource(R.string.module_about),
     )
 
-    data object ModuleAppsRecirculationCustomization : Screen(
-        route = ModulesNavigation.AppsRecirculationCustomizationRoute,
-        title = UiString.StringResource(R.string.module_appsRecirculation_title)
+    data object ModuleMoreAppsCustomization : Screen(
+        route = ModulesNavigation.MoreAppsCustomizationRoute,
+        title = UiString.StringResource(R.string.module_moreApps_title)
     )
 
     data object ModuleEmptyStateCustomization : Screen(

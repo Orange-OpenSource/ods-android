@@ -35,17 +35,17 @@ sealed class Module(
         route = ModulesNavigation.AboutCustomizationRoute
     )
 
-    data object AppsRecirculation : Module(
-        R.string.module_appsRecirculation_title,
-        R.drawable.il_recirculation,
-        R.string.module_appsRecirculation_description,
-        route = ModulesNavigation.AppsRecirculationCustomizationRoute
-    )
-
     data object EmptyState : Module(
         R.string.module_emptyState_title,
         R.drawable.il_empty_state,
         R.string.module_emptyState_description,
         route = ModulesNavigation.EmptyStateCustomizationRoute
+    )
+
+    data object MoreApps : Module(
+        R.string.module_moreApps_title,
+        R.drawable.il_more_apps,
+        R.string.module_moreApps_description,
+        route = ModulesNavigation.MoreAppsCustomizationRoute
     )
 }

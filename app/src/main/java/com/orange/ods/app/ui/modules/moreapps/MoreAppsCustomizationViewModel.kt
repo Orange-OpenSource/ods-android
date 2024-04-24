@@ -10,14 +10,13 @@
  * Software description: Android library of reusable graphical components
  */
 
-package com.orange.ods.app.ui.modules.appsrecirculation
+package com.orange.ods.app.ui.modules.moreapps
 
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
 import androidx.lifecycle.ViewModel
-import com.orange.ods.app.ui.modules.emptystate.EmptyStateUsage
 
-class AppsRecirculationCustomizationViewModel : ViewModel() {
+class MoreAppsCustomizationViewModel : ViewModel() {
     var categorizeApps by mutableStateOf(true)
 }

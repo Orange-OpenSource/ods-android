@@ -18,17 +18,21 @@ import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavController
 import androidx.navigation.NavGraphBuilder
 import androidx.navigation.compose.composable
+import com.orange.ods.app.BuildConfig
 import com.orange.ods.app.ui.modules.ModulesNavigation.AboutCustomizationRoute
-import com.orange.ods.app.ui.modules.ModulesNavigation.AppsRecirculationCustomizationRoute
+import com.orange.ods.app.ui.modules.ModulesNavigation.MoreAppsCustomizationRoute
 import com.orange.ods.app.ui.modules.ModulesNavigation.EmptyStateCustomizationRoute
 import com.orange.ods.app.ui.modules.ModulesNavigation.EmptyStateDemoRoute
 import com.orange.ods.app.ui.modules.about.AboutCustomizationScreen
 import com.orange.ods.app.ui.modules.about.AboutCustomizationViewModel
-import com.orange.ods.app.ui.modules.appsrecirculation.AppsRecirculationCustomizationScreen
+import com.orange.ods.app.ui.modules.moreapps.MoreAppsCustomizationScreen
 import com.orange.ods.app.ui.modules.emptystate.EmptyStateCustomizationScreen
 import com.orange.ods.app.ui.modules.emptystate.EmptyStateCustomizationViewModel
 import com.orange.ods.app.ui.modules.emptystate.EmptyStateDemoScreen
 import com.orange.ods.app.ui.navigateToElement
+import com.orange.ods.module.moreapps.ui.configuration.OdsMoreAppsConfiguration
+import com.orange.ods.module.moreapps.ui.navigation.navigateToOdsMoreApps
+import com.orange.ods.module.moreapps.ui.navigation.odsMoreAppsGraph
 
 /**
  * Modules demo destinations.
@@ -36,7 +40,7 @@ import com.orange.ods.app.ui.navigateToElement
 object ModulesNavigation {
     const val AboutCustomizationRoute = "module/about/customization"
 
-    const val AppsRecirculationCustomizationRoute = "module/appsRecirculation/customization"
+    const val MoreAppsCustomizationRoute = "module/moreApps/customization"
 
     const val EmptyStateCustomizationRoute = "module/emptyState/customization"
     const val EmptyStateDemoRoute = "module/emptyState/demo"
@@ -49,10 +53,6 @@ fun NavGraphBuilder.addModulesGraph(navController: NavController, navigateToAbou
         AboutCustomizationScreen(navigateToAboutDemo = navigateToAboutDemo, viewModel = viewModel)
     }
 
-    composable(route = AppsRecirculationCustomizationRoute) { _ ->
-        AppsRecirculationCustomizationScreen(onViewDemoButtonClick = { /*TODO*/ })
-    }
-
     composable(route = EmptyStateCustomizationRoute) { navBackStackEntry ->
         EmptyStateCustomizationScreen(onViewDemoButtonClick = { navController.navigateToElement(EmptyStateDemoRoute, null, navBackStackEntry) })
     }
@@ -63,4 +63,10 @@ fun NavGraphBuilder.addModulesGraph(navController: NavController, navigateToAbou
             EmptyStateDemoScreen(viewModel = viewModel)
         }
     }
+
+    composable(route = MoreAppsCustomizationRoute) { _ ->
+        MoreAppsCustomizationScreen(onViewDemoButtonClick = { navController.navigateToOdsMoreApps() } )
+    }
+
+    odsMoreAppsGraph(OdsMoreAppsConfiguration(apiKey = BuildConfig.APPS_PLUS_API_KEY))
 }
